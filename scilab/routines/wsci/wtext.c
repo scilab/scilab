@@ -1166,8 +1166,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 	
 	/* Modification Allan CORNET 15/07/03 */
 	
-	Windows_Console_State=0; /* Console DOS Cachée par défaut */
-	HideScilex(); /* Cache la fenetre Console Scilex (x) */
+	
 	/* Renomme la fenetre avec VERSION et numero x associé à la console*/  
 	{
 		char CopyNameConsole[MAX_PATH];
@@ -1177,9 +1176,9 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		strcpy(CopyNameConsole,ScilexConsoleName);
 		FirstOccurence = strtok(CopyNameConsole,"("); 
 		SecondOccurence= strtok(NULL,"("); 
-    		wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
+    	wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
     		
-    		SetWindowText(hwnd,ScilexWindowName);  
+    	SetWindowText(hwnd,ScilexWindowName);  
     	
 	}
 
@@ -2686,7 +2685,7 @@ void OpenSelection(LPTW lptw)
 	{
 		char Fichier[MAX_PATH];
 		GetShortPathName(FileNameSCI,Fichier,MAX_PATH);
-		DoubleDoubleSlash(FileNameSCI,Fichier);
+		ReplaceSlash(FileNameSCI,Fichier);
 		wsprintf(Command,"scipad('%s')",FileNameSCI);
 		
 		StoreCommand1 (Command, 2);
@@ -2697,7 +2696,7 @@ void OpenSelection(LPTW lptw)
 	{
 		char Fichier[MAX_PATH];
 		GetShortPathName(FileNameSCE,Fichier,MAX_PATH);
-		DoubleDoubleSlash(FileNameSCE,Fichier);
+		ReplaceSlash(FileNameSCE,Fichier);
 		wsprintf(Command,"scipad('%s')",FileNameSCE);
 		StoreCommand1 (Command, 2);
 		return ;			
@@ -2707,7 +2706,7 @@ void OpenSelection(LPTW lptw)
 	{
 		char Fichier[MAX_PATH];
 		GetShortPathName(FileName,Fichier,MAX_PATH);
-		DoubleDoubleSlash(FileName,Fichier);
+		ReplaceSlash(FileName,Fichier);
 		//MessageBox(NULL,FileName,Fichier,MB_OK);
 		wsprintf(Command,"scipad('%s')",FileName);
 		StoreCommand1 (Command, 2);
@@ -2729,7 +2728,7 @@ void OpenSelection(LPTW lptw)
 			{
 				fclose(fp);
 				GetShortPathName(FileNameSCI,Fichier,MAX_PATH);
-				DoubleDoubleSlash(FileNameSCI,Fichier);
+				ReplaceSlash(FileNameSCI,Fichier);
 				wsprintf(Command,"scipad('%s')",FileNameSCI);
 				StoreCommand1 (Command, 2);			
 			}

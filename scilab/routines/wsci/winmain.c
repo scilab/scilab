@@ -1,3 +1,4 @@
+#define NameConsole "Console Scilab"
 /*******************************************
 * Original source : GNUPLOT - winmain.c
 * modified for Scilab
@@ -37,12 +38,418 @@ extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
 
+/*-----------------------------------------------------------------------------------*/
+int MAIN__ ()
+{
+	#ifndef __ABSC__
+	HANDLE x = GetModuleHandleA (0);
+	Windows_Main  (x, 0, GetCommandLineA (), 1);
+	#else
+	HMODULE x = GetModuleHandle (0);
+	Windows_Main (x, 0, GetCommandLine (), 1);
+	#endif
+	return (0);
+}
+/*-----------------------------------------------------------------------------------*/
+int Console_Main(int argc, char **argv)
+{
+  LPSTR tail;
+  int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
+  char *path = NULL;
+  OSVERSIONINFO os;
+  int i=0;
+  my_argc = -1;
 
+  WindowMode=FALSE;
+  
+  
+  for (i=0;i<argc;i++)
+  {
+	  my_argv[i] = argv[i];
+  }
+  my_argc =argc;
+
+  //wsprintf(ScilexConsoleName,"%s",NameConsole);
+  //SetConsoleTitle(ScilexConsoleName);
+
+  os.dwOSVersionInfoSize = sizeof (os);
+  GetVersionEx (&os);
+  SciPlatformId = os.dwPlatformId;
+
+  szModuleName = (LPSTR) malloc (MAXSTR + 1);
+  CheckMemory (szModuleName);
+  szModuleName = (LPSTR) malloc (MAXSTR + 1);
+  CheckMemory (szModuleName);
+
+  /* get path to EXE */
+  GetModuleFileName (GetModuleHandle (0), (LPSTR) szModuleName, MAXSTR);
+  if (CheckWScilabVersion (WSCILABVERSION))
+    {
+      MessageBox (NULL, "Wrong version of WSCILAB.DLL", szModuleName, MB_ICONSTOP | MB_OK);
+      exit (1);
+    }
+
+  if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+    {
+      tail++;
+      *tail = '\0';
+    }
+  szModuleName = realloc (szModuleName, strlen (szModuleName) + 1);
+  CheckMemory (szModuleName);
+
+  szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (MENUNAME) + 1);
+  CheckMemory (szMenuName);
+  strcpy (szMenuName, szModuleName);
+  strcat (szMenuName, MENUNAME);
+
+  szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
+  CheckMemory (szGraphMenuName);
+  strcpy (szGraphMenuName, szModuleName);
+  strcat (szGraphMenuName, GRAPHMENUNAME);
+
+  /* Load common control library * */
+  InitCommonControls ();
+
+  textwin.hInstance = GetModuleHandle (0);
+  textwin.hPrevInstance = 0;
+  textwin.nCmdShow = 1;
+  textwin.Title = "Scilab";
+  textwin.IniFile = "scilab.ini";
+  textwin.IniSection = "SCILAB";
+  textwin.DragPre = "gl_name='";
+  textwin.DragPost = "';exec('SCI/util/GLoad.sce');\n";
+  textwin.lpmw = &menuwin;
+  textwin.ScreenSize.x = 120;
+  textwin.ScreenSize.y = 80;
+  textwin.KeyBufSize = 2048;
+  textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
+  textwin.shutdown = (DLGPROC) ShutDown;
+  textwin.AboutText = (LPSTR) malloc (1024);
+  CheckMemory (textwin.AboutText);
+  strcat (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
+  strcpy (textwin.AboutText, "developed by Scilab Group (Inria/Enpc)\n\t");
+  strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
+  textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
+  CheckMemory (textwin.AboutText);
+
+  menuwin.szMenuName = szMenuName;
+
+  pausewin.hInstance = GetModuleHandle (0);
+  pausewin.hPrevInstance = 0;
+  pausewin.Title = "Scilab pause";
+
+  graphwin.hInstance = GetModuleHandle (0);
+  graphwin.hPrevInstance = 0;
+  graphwin.Title = "Scilab Graph";
+  graphwin.szMenuName = szGraphMenuName;
+  graphwin.lptw = &textwin;
+  graphwin.IniFile = textwin.IniFile;
+  graphwin.IniSection = textwin.IniSection;
+  argcount = my_argc;
+  while (argcount > 0)
+    {
+      argcount--;
+      if (strcmp (my_argv[argcount], "-nw") == 0) nowin = 1;
+      else if (strcmp (my_argv[argcount], "-ns") == 0) startupf = 1;
+      else if ( strcmp(my_argv[argcount],"-nb") == 0) { sci_show_banner = 0; }
+      else if (strcmp (my_argv[argcount], "-nwni") == 0)
+		{
+			nowin = 1;
+			nointeractive = 1;
+		}
+      else if (strcmp (my_argv[argcount], "-f") == 0 && argcount + 1 < my_argc)
+		{
+			path = my_argv[argcount + 1];
+			lpath = strlen (my_argv[argcount + 1]);
+		}
+      else if (strcmp (my_argv[argcount], "-e") == 0 && argcount + 1 < my_argc)
+		{
+			path = my_argv[argcount + 1];
+			lpath = strlen (my_argv[argcount + 1]);
+			pathtype=1;
+		}
+      else if ( strcmp(my_argv[argcount],"-mem") == 0 && argcount + 1 < my_argc)
+		{
+			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );} 
+		}
+#ifndef __DLL__
+  /** when we don't use a dll version of the graphic library 
+    which is the case up to now **/
+  NoDll (GetModuleHandle (0));
+#endif
+  atexit (WinExit);
+  SciEnv ();
+  if (nowin == 1)
+    {
+      sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
+    }
+  else
+    {
+        MessageBox(NULL,"-nw or -nwni not found","Error",MB_ICONWARNING);
+    }
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
+{
+	int i=0;
+	LPSTR tail;
+	
+	
+	char FileName[MAX_PATH];
+	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
+	char *path = NULL;
+	
+	HANDLE hOut = NULL;
+	int Current_Number_of_Scilex=-1; 
+
+	char *pFullCmdLine=NULL;
+
+	WindowMode=TRUE;
+	strcpy(FileName,"Empty");
+
+	
+	szModuleName = (LPSTR) malloc (MAXSTR + 1);
+	CheckMemory (szModuleName);
+	szModuleName = (LPSTR) malloc (MAXSTR + 1);
+	CheckMemory (szModuleName);
+
+	/* get path to EXE */
+	GetModuleFileName (hInstance, (LPSTR) szModuleName, MAXSTR);
+	if (CheckWScilabVersion (WSCILABVERSION))
+	{
+		MessageBox (NULL, "Wrong version of libScilab.DLL", szModuleName, MB_ICONSTOP | MB_OK);
+		exit (1);
+	}
+
+	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+	{
+		tail++;
+		*tail = '\0';
+	}
+	szModuleName = realloc (szModuleName, strlen (szModuleName) + 1);
+	CheckMemory (szModuleName);
+
+	szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (MENUNAME) + 1);
+	CheckMemory (szMenuName);
+	strcpy (szMenuName, szModuleName);
+	strcat (szMenuName, MENUNAME);
+
+	szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
+	CheckMemory (szGraphMenuName);
+	strcpy (szGraphMenuName, szModuleName);
+	strcat (szGraphMenuName, GRAPHMENUNAME);
+
+
+	/* Load common control library * */
+	InitCommonControls ();
+
+	textwin.hInstance = hInstance;
+	textwin.hPrevInstance = hPrevInstance;
+	textwin.nCmdShow = iCmdShow;
+	textwin.Title = "Scilab";
+	textwin.IniFile = "scilab.ini";
+	textwin.IniSection = "SCILAB";
+	textwin.DragPre = "gl_name='";
+	textwin.DragPost = "';exec('SCI/util/GLoad.sce');\n";
+	textwin.lpmw = &menuwin;
+	textwin.ScreenSize.x = 120;
+	textwin.ScreenSize.y = 80;
+	textwin.KeyBufSize = 4096;
+	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
+	textwin.shutdown = (DLGPROC) ShutDown;
+	textwin.AboutText = (LPSTR) malloc (1024);
+	CheckMemory (textwin.AboutText);
+	strcat (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
+	strcpy (textwin.AboutText, "developed by Scilab Consortium (Inria/Enpc)\n\t");
+	strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
+	textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
+	CheckMemory (textwin.AboutText);
+
+	menuwin.szMenuName = szMenuName;
+
+	pausewin.hInstance = hInstance;
+	pausewin.hPrevInstance = hPrevInstance;
+	pausewin.Title = "Scilab pause";
+
+	graphwin.hInstance = hInstance;
+	graphwin.hPrevInstance = hPrevInstance;
+	graphwin.Title = "Scilab Graph";
+	graphwin.szMenuName = szGraphMenuName;
+	graphwin.lptw = &textwin;
+	graphwin.IniFile = textwin.IniFile;
+	graphwin.IniSection = textwin.IniSection;
+
+	pFullCmdLine=GetCommandLine();
+	
+	
+	my_argv[++my_argc] = strtok (pFullCmdLine, " ");
+	while (my_argv[my_argc] != NULL)
+	{
+		my_argv[++my_argc] = strtok(NULL, " ");
+		
+	}
+
+	for (i=1;i<my_argc;i++)
+	{
+		char ArgTmp[MAX_PATH];
+		strcpy(ArgTmp,my_argv[i]);
+		if  ( (strcmp (strupr(ArgTmp), "-NW") == 0) || (strcmp (strupr(ArgTmp), "-NWI") == 0) )
+		{
+			MessageBox(NULL,"Not with Windows Console","Error",MB_ICONINFORMATION);
+			exit(1);
+		}
+
+		if ( (strcmp (strupr(ArgTmp), "-H") == 0) ||
+			 (strcmp (strupr(ArgTmp), "-?") == 0) ||
+			 (strcmp (strupr(ArgTmp), "-HELP") == 0) )
+		{
+			char Msg[1024];
+			strcpy(Msg,"Wscilex <Options> : run Scilab.\n");
+			strcat(Msg,"-ns:if this option is present the startup file SCI/scilab.star is not executed.\n"); 
+			strcat(Msg,"-nb:if this option is present then the scilab welcome banner is not displayed.\n"); 
+			strcat(Msg,"-l lang: it fixes the user language.\nThe possible lang values are 'fr' for french and 'eng' for english.\nThe default language is english. This default value is fixed the scilab.star file.\n"); 
+			strcat(Msg,"-f file: Scilab script file is executed first into Scilab.\n"); 
+			strcat(Msg,"-e instruction: Scilab instruction instruction is executed first into Scilab.");
+			MessageBox(NULL,Msg,"Help",MB_ICONINFORMATION);
+			exit(1);
+		}
+	}
+
+	argcount = my_argc;
+
+	if (argcount >= 2)
+	{
+		if ( (strcmp (my_argv[1], "-X") == 0) ||
+		     (strcmp (my_argv[1], "-O") == 0) ||	
+		     (strcmp (my_argv[1], "-P") == 0) )
+		{
+			char *Commande=NULL;
+			int CodeAction=-1;
+			int j=0;
+
+			strcpy(FileName,my_argv[2]);
+			for (j=3;j<argcount;j++)
+			{
+				strcat(FileName," ");
+				strcat(FileName,my_argv[j]);
+			}
+			if (strcmp (my_argv[1], "-O") == 0) CodeAction=0;
+			if (strcmp (my_argv[1], "-X") == 0) CodeAction=1; 
+			if (strcmp (my_argv[1], "-P") == 0) CodeAction=2;
+
+			Commande=(char*)malloc(MAX_PATH*sizeof(char));
+			strcpy(Commande,"empty");
+			CommandByFileExtension(FileName,CodeAction,Commande);
+			
+			
+			my_argc=-1;
+			my_argv[++my_argc] = strtok (Commande, " ");
+			while (my_argv[my_argc] != NULL)
+			{
+				my_argv[++my_argc] = strtok(NULL, " ");
+			}
+			argcount = my_argc;
+		}
+	}	
+	
+	while (argcount > 0)
+	{
+        char ArgTmp[MAX_PATH];
+                
+		argcount--;
+		strcpy(ArgTmp,my_argv[argcount]);
+		
+		if (strcmp (strupr(ArgTmp), "-NS") == 0) startupf = 1;
+		else if ( strcmp(strupr(ArgTmp),"-NB") == 0) { sci_show_banner = 0; }
+		else if (strcmp (strupr(ArgTmp), "-F") == 0 && argcount + 1 < my_argc)
+		{
+			path = my_argv[argcount + 1];
+			lpath = strlen (my_argv[argcount + 1]);
+		}
+		else if (strcmp (strupr(ArgTmp), "-E") == 0 && argcount + 1 < my_argc)
+		{
+			path = my_argv[argcount + 1];
+			lpath = strlen (my_argv[argcount + 1]);
+			pathtype=1;
+		}
+		else if ( strcmp(strupr(ArgTmp),"-MEM") == 0 && argcount + 1 < my_argc)
+		{
+
+			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
+		}
+	}		
+
+	
+	#ifndef __DLL__
+		/** when we don't use a dll version of the graphic library
+		which is the case up to now **/
+		NoDll (hInstance);
+	#endif
+	atexit (WinExit);
+	SciEnv ();
+
+	Current_Number_of_Scilex=FindFreeScilexNumber();
+	wsprintf(ScilexConsoleName,"%s (%d)",NameConsole,Current_Number_of_Scilex);
+	Windows_Console_State=0; /* Console DOS Cachée par défaut */
+
+	
+	if (TextInit (&textwin))	exit (1);
+
+	AllocConsole();
+	SetConsoleTitle(ScilexConsoleName);
+	HideScilex(); /* Cache la fenetre Console Scilex (x) */
+
+	/* Modification Allan CORNET 18/07/03 */
+	/* Splashscreen*/
+	if (sci_show_banner) 	CreateThreadSplashscreen();
+	
+	
+	textwin.hIcon = LoadIcon (hInstance, "texticon");
+	SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
+
+	SetXsciOn ();
+
+	
+	ShowWindow (textwin.hWndParent, SW_SHOW);
+	
+	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
+    freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
+	freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
+
+	
+	if (sci_show_banner)
+	{
+		char line[80];
+		strcpy(line,"        __________________________________________\r\n");
+		printf(line);
+		wsprintf(line,"                       %s\r\n\n",VERSION);
+		printf(line);
+		strcpy(line,"              Copyright (C) 1989-2004 INRIA ENPC \r\n");
+		printf(line);
+		strcpy(line,"        __________________________________________\r\n");
+		printf(line);
+	}
+
+	
+	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
+
+	fclose(stdout);
+	fclose(stderr);
+	FreeConsole();
+	/* Tue ce process pour fermeture correcte sous Windows 98 */
+	Kill_Scilex_Win98();
+	
+	return 0;
+
+	
+}
 /*-----------------------------------------------------------------------------------*/
 void InitWindowGraphDll(void)
 /* Modification Allan CORNET*/
-/* Novembre 2003 */
-/* Permet l'affichage des menus graphiques lors d'un appel de la DLL Scilab*/
+/* November 2003 */
+/* Display graphic menus with a call of the DLL Scilab*/
+/* for Interface with Java */
 {
   
   HINSTANCE hdllInstanceTmp=NULL;
@@ -84,279 +491,6 @@ void InitWindowGraphDll(void)
     
 }
 /*-----------------------------------------------------------------------------------*/
-/*---------------------------------------------------
-* The WinMain function
-*---------------------------------------------------*/
-
-int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
-LPSTR szCmdLine, int iCmdShow)
-{
-	WinMain (hInstance,hPrevInstance, szCmdLine,iCmdShow);
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-#ifndef __ABSC__
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
-#else
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
-#endif
-{
-	char *pFullCmdLine=NULL;
-	char CmdlineToTransmit[MAX_PATH];
-	char CmdlineToTransmitTmp[MAX_PATH];
-	int Current_Number_of_Scilex=-1;
-	LPSTR tail;
-	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
-	int i=0;
-	int nbarg=0;
-	char FileToEdit[MAX_PATH];
-	char *path = NULL;
-	OSVERSIONINFO os;
-        int CodeAction=-1;
-
-	WindowMode=TRUE;
-	my_argc = -1;
-	
-	pFullCmdLine=GetCommandLine();
-	//strcpy(CmdlineToTransmit,pFullCmdLine);
-	strcpy(CmdlineToTransmit,szCmdLine);
-	strcpy(CmdlineToTransmitTmp,szCmdLine);
-	
-	my_argv[++my_argc] = strtok (szCmdLine, " ");
-	while (my_argv[my_argc] != NULL)
-	{
-		my_argv[++my_argc] = strtok(NULL, " ");
-		
-	}
-	
-	/* Sauvegarde la ligne de commande */
-	if ( ! SaveArgs(CmdlineToTransmit) ) strcpy(CmdlineToTransmit,CmdlineToTransmitTmp);
-	
-	
-	/* Teste et prepare la ligne de commande*/
-	/* Donne leChoix utilisateur dans CodeAction "Open , Execute , Print" */
-	if ( CleanFileName(CmdlineToTransmit,FileToEdit,&CodeAction) == TRUE )
-	{
-		strcpy(CmdlineToTransmit,FileToEdit);
-	
-		nbarg=1;
-	}
-	
-
-	os.dwOSVersionInfoSize = sizeof (os);
-	GetVersionEx (&os);
-	SciPlatformId = os.dwPlatformId;
-
-	szModuleName = (LPSTR) malloc (MAXSTR + 1);
-	CheckMemory (szModuleName);
-	szModuleName = (LPSTR) malloc (MAXSTR + 1);
-	CheckMemory (szModuleName);
-
-	/* get path to EXE */
-	GetModuleFileName (hInstance, (LPSTR) szModuleName, MAXSTR);
-	if (CheckWScilabVersion (WSCILABVERSION))
-	{
-		MessageBox (NULL, "Wrong version of libScilab.DLL", szModuleName, MB_ICONSTOP | MB_OK);
-		exit (1);
-	}
-
-	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-	{
-		tail++;
-		*tail = '\0';
-	}
-	szModuleName = realloc (szModuleName, strlen (szModuleName) + 1);
-	CheckMemory (szModuleName);
-
-	szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (MENUNAME) + 1);
-	CheckMemory (szMenuName);
-	strcpy (szMenuName, szModuleName);
-	strcat (szMenuName, MENUNAME);
-
-	szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
-	CheckMemory (szGraphMenuName);
-	strcpy (szGraphMenuName, szModuleName);
-	strcat (szGraphMenuName, GRAPHMENUNAME);
-
-	/* Load common control library * */
-	InitCommonControls ();
-
-	textwin.hInstance = hInstance;
-	textwin.hPrevInstance = hPrevInstance;
-	textwin.nCmdShow = iCmdShow;
-	textwin.Title = "Scilab";
-	textwin.IniFile = "scilab.ini";
-	textwin.IniSection = "SCILAB";
-	textwin.DragPre = "gl_name='";
-	textwin.DragPost = "';exec('SCI/util/GLoad.sce');\n";
-	textwin.lpmw = &menuwin;
-	textwin.ScreenSize.x = 120;
-	textwin.ScreenSize.y = 80;
-	textwin.KeyBufSize = 4096;
-	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
-	textwin.shutdown = (DLGPROC) ShutDown;
-	textwin.AboutText = (LPSTR) malloc (1024);
-	CheckMemory (textwin.AboutText);
-	strcat (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
-	strcpy (textwin.AboutText, "developed by Scilab Group (Inria/Enpc)\n\t");
-	strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
-	textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
-	CheckMemory (textwin.AboutText);
-
-	menuwin.szMenuName = szMenuName;
-
-	pausewin.hInstance = hInstance;
-	pausewin.hPrevInstance = hPrevInstance;
-	pausewin.Title = "Scilab pause";
-
-	graphwin.hInstance = hInstance;
-	graphwin.hPrevInstance = hPrevInstance;
-	graphwin.Title = "Scilab Graph";
-	graphwin.szMenuName = szGraphMenuName;
-	graphwin.lptw = &textwin;
-	graphwin.IniFile = textwin.IniFile;
-	graphwin.IniSection = textwin.IniSection;
-	argcount = my_argc;
-	/* Modification Allan CORNET le 22 Juillet 2003 */
-	/* Permet l'association pour ouverture directement avec scipad */
-
-	if ( (nbarg== 1)&& (IsAFile(FileToEdit) == TRUE) )
-	{
-		char Commande[MAX_PATH];
-		
-		CommandByFileExtension(FileToEdit,CodeAction,Commande);
-		if (CodeAction==2) exit(1); /*Sortie apres impression */
-		
-		path = Commande;
-		lpath = strlen (Commande);
-		pathtype=1;
-	}
-	else
-	{
-	
-	while (argcount > 0)
-	{
-                char ArgTmp[MAX_PATH];
-                
-		argcount--;
-		strcpy(ArgTmp,my_argv[argcount]);
-		if ( (strcmp (strupr(ArgTmp), "-H") == 0) || (strcmp (ArgTmp, "-?") == 0) || (strcmp (strupr(ArgTmp), "-HELP") == 0) )
-		{
-
-			MessageBox(NULL,"-h help\n-f <script> Execute script file\n-nwni Console Mode\n-nb no banner\n-e\n-mem\n-nw\n-ns","Help",MB_ICONINFORMATION);
-
-			exit(1);
-		}
-		
-		if (strcmp (strupr(ArgTmp), "-NW") == 0)
-		{
-			nowin = 1;
-		}
-		else if (strcmp (strupr(ArgTmp), "-NS") == 0)
-		startupf = 1;
-		else if ( strcmp(strupr(ArgTmp),"-NB") == 0) { sci_show_banner = 0; }
-		else if (strcmp (strupr(ArgTmp), "-NWNI") == 0)
-		{
-			nowin = 1;
-			nointeractive = 1;
-		}
-		else if (strcmp (strupr(ArgTmp), "-F") == 0 && argcount + 1 < my_argc)
-		{
-			path = my_argv[argcount + 1];
-			lpath = strlen (my_argv[argcount + 1]);
-		}
-		else if (strcmp (strupr(ArgTmp), "-E") == 0 && argcount + 1 < my_argc)
-		{
-			path = my_argv[argcount + 1];
-			lpath = strlen (my_argv[argcount + 1]);
-			pathtype=1;
-		}
-		else if ( strcmp(strupr(ArgTmp),"-MEM") == 0 && argcount + 1 < my_argc)
-		{
-
-			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
-		}
-	}
-	}
-	#ifndef __DLL__
-	/** when we don't use a dll version of the graphic library
-	which is the case up to now **/
-	NoDll (hInstance);
-	#endif
-	atexit (WinExit);
-	SciEnv ();
-	if (nowin == 1)
-	{
-		WindowMode=FALSE;
-		/** XXXX AllocConsole(); **/
-		sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
-	}
-	else
-	{
-
-		/* Mode Interface Windows */
-		STARTUPINFO InfoCurrentProcess; /* Utiliser pour récuperer le nom de la Console Courante sous W9x*/
-
-		Current_Number_of_Scilex=FindFreeScilexNumber();
-
-		/* Cree un process independant si Scilex est lancé depuis le shell */
-		/* Permet d'eviter d'avoir à utiliser runscilab cf. Version 2.7 */
-		
-		CreateProcessScilex(CmdlineToTransmit,Current_Number_of_Scilex,CodeAction);
-
-		/* Retrouve le nom de la fenetre Console pour Windows 9x */
-		if (SciWinGetPlatformId () == VER_PLATFORM_WIN32_WINDOWS)
-		{
-			GetStartupInfo(&InfoCurrentProcess); /* Recupere le nom de la Console Courante */
-			strcpy(ScilexConsoleName,InfoCurrentProcess.lpTitle); /* Sauvegarde du nom de la console */
-		}
-
-		if (TextInit (&textwin))	exit (1);
-
-		/* Modification Allan CORNET 18/07/03 */
-		/* Splashscreen*/
-		if (sci_show_banner) CreateThreadSplashscreen();
-
-		textwin.hIcon = LoadIcon (hInstance, "texticon");
-		SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
-
-		SetXsciOn ();
-		
-		ShowWindow (textwin.hWndParent, SW_SHOW);
-		
-		sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
-
-		/* Tue ce process pour fermeture correcte sous Windows 98 */
-		Kill_Scilex_Win98();
-
-	}
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-#define __MSC_NOC__
-#ifdef __MSC_NOC__
-/*
-we want Scilab to work in two mode
-as a console application or as a window
-application
-for a console application
-we do not directly use main for scilab
-since main is in libf2c which in truns call our MAIN__
-* */
-
-int MAIN__ ()
-{
-	#ifndef __ABSC__
-	HANDLE x = GetModuleHandleA (0);
-	WinMain (x, 0, GetCommandLineA (), 1);
-	#else
-	HMODULE x = GetModuleHandle (0);
-	WinMain (x, 0, GetCommandLine (), 1);
-	#endif
-	return (0);
-}
-#endif
-/*-----------------------------------------------------------------------------------*/
 /* to simulate argv */
 void add_sci_argv(char *p)
 {
@@ -364,7 +498,6 @@ void add_sci_argv(char *p)
 }
 /*-----------------------------------------------------------------------------------*/
 /* Fortran iargc and fgetarg implemented here */
-
 int sci_iargc()
 {
 	#ifdef TEST
@@ -388,6 +521,8 @@ int sci_getarg(int *n,char *s,long int ls)
 	t = my_argv[*n];
 	else
 	t = "";
+
+
 	for(i = 0; i < ls && *t!='\0' ; ++i)
 	*s++ = *t++;
 	for( ; i<ls ; ++i)
@@ -812,11 +947,13 @@ int WriteKey (char c, FILE * file)
 /*-----------------------------------------------------------------------------------*/
 static void CheckMemory (LPSTR str)
 {
+#ifndef _DEBUG
 	if (str == (LPSTR) NULL)
 	{
 		MessageBox (NULL, "out of memory", "Scilab", MB_ICONSTOP | MB_OK);
 		exit (1);
 	}
+#endif
 }
 /*-----------------------------------------------------------------------------------*/
 int Pause (LPSTR str)
@@ -876,7 +1013,6 @@ EXPORT int CALLBACK  ShutDown (void)
 /* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
 /* sont définies directement dans scilex */
 /* scilex peut donc etre executé seul */
-
 static void SciEnv ()
 {
 	char *p, *p1;
@@ -915,7 +1051,6 @@ static void SciEnv ()
 	}
 }
 /********************************************************************************************************/
-
 /*----------------------------------------------------
 * set env variables (used when calling scilab from
 * other programs)
@@ -959,7 +1094,9 @@ void set_sci_env(char *p, char *wsci)
 	{
 		if ((p1 = getenv ("TEMP")) == (char *) 0)
 		{
-			sprintf (env, "PVM_TMP=c:\\tmp");
+			char PathTmp[MAX_PATH];
+			GetTempPath(MAX_PATH,PathTmp);
+			sprintf (env, "PVM_TMP=%s",PathTmp);
 			putenv (env);
 		}
 		else
@@ -1035,137 +1172,6 @@ void Kill_Scilex(void)
 
 }
 /*-----------------------------------------------------------------------------------*/
-/* Allan CORNET 17/07/03 */
-/* Cree un process independant si Scilex est lancé depuis le shell */
-/* Permet d'eviter d'avoir à utiliser runscilab cf. Version 2.7 */
-void CreateProcessScilex(char *cmdline,int NumberScilex,int CodeActionWin98)
-{
-	char modname[MAX_PATH + 1];
-	
-	if ( ! GetModuleFileName (NULL, modname, MAX_PATH) ) exit (1);
-	else
-	{
-		if (SciWinGetPlatformId () == VER_PLATFORM_WIN32_WINDOWS)
-		{
-			HWND hConsole;
-
-			char TitleConsole[MAX_PATH];
-
-			hConsole=FindWindow(NULL,"scilex");
-
-			if (hConsole)
-			{
-
-				STARTUPINFO start;
-				SECURITY_ATTRIBUTES sec_attrs;
-				PROCESS_INFORMATION child;
-
-				SetWindowText(hConsole,"");
-				memset (&start, 0, sizeof (start));
-				start.cb = sizeof (start);
-
-				wsprintf(TitleConsole,"%s (%d)","Scilex", NumberScilex);
-				start.lpTitle=TitleConsole;
-				
-				if ( IsAFile(cmdline) )
-				{
-					char bufftemp[MAX_PATH];
-					wsprintf(bufftemp,"\"%s\"",cmdline);
-					strcpy(cmdline,bufftemp);
-				}
-					
-
-				strcat(modname," ");
-				
-				strcat(modname,cmdline);
-				
-				switch (CodeActionWin98)
-				{
-					case 0:
-						strcat(modname," -o");
-					break;
-					case 1:
-						strcat(modname," -x");
-					break;
-					case 2:
-						strcat(modname," -p");
-					break;
-					default:
-					break;
-				}
-				strcat(modname," &\0");
-
-				start.dwFlags = STARTF_USESHOWWINDOW;
-
-				start.wShowWindow = SW_NORMAL;
-
-
-				sec_attrs.nLength = sizeof (sec_attrs);
-				sec_attrs.lpSecurityDescriptor = NULL;
-				sec_attrs.bInheritHandle = FALSE;
-
-				if (CreateProcess (NULL,modname, &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
-				{
-					CloseHandle (child.hThread);
-					CloseHandle (child.hProcess);
-				}
-				exit (1);
-			}
-
-		}
-		else
-		{
-			char ConsoleName[MAX_PATH];
-			GetConsoleTitle(ConsoleName,MAX_PATH);
-
-			if (strcmp(ConsoleName,modname)==0)
-			{
-				/* Execution directe*/
-				HWND hConsole;
-				char TitleConsole[MAX_PATH];
-
-				hConsole=FindWindow(NULL,ConsoleName);
-				wsprintf(TitleConsole,"%s (%d)","Scilex", NumberScilex);
-				strcpy(ScilexConsoleName,TitleConsole);
-				SetWindowText(hConsole,TitleConsole);
-			}
-			else
-			{
-
-				/* Ligne de commandes ou raccourci */
-				/* Creation d'un process separé */
-
-				STARTUPINFO start;
-				SECURITY_ATTRIBUTES sec_attrs;
-				PROCESS_INFORMATION child;
-
-				memset (&start, 0, sizeof (start));
-				start.cb = sizeof (start);
-				start.dwFlags = STARTF_USESHOWWINDOW;
-
-				start.wShowWindow = SW_SHOWMINIMIZED;
-
-				sec_attrs.nLength = sizeof (sec_attrs);
-				sec_attrs.lpSecurityDescriptor = NULL;
-				sec_attrs.bInheritHandle = FALSE;
-	
-				/* Creation d'un nouveau process scilex independant du shell */
-				if (CreateProcess (modname,cmdline, &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
-				{
-					CloseHandle (child.hThread);
-					CloseHandle (child.hProcess);
-				}
-
-				/* Fermeture du process scilex courant*/
-				/* pour laisser place a celui qui est autonome de la ligne de commande */
-				exit (1);
-
-			}
-		}
-	}
-
-}
-/*-----------------------------------------------------------------------------------*/
 void CreateThreadSplashscreen(void)
 {
 	HANDLE hThread;
@@ -1199,11 +1205,11 @@ int FindFreeScilexNumber(void)
 	int Number_of_Scilex=0;
 	char NameScilex[MAX_PATH];
 
-	wsprintf(NameScilex,"%s (%d)","Scilex",Number_of_Scilex);
+	wsprintf(NameScilex,"%s (%d)",NameConsole,Number_of_Scilex);
 	while ( FindWindow(NULL,NameScilex) )
 	{
 		Number_of_Scilex++;
-		wsprintf(NameScilex,"%s (%d)","Scilex",Number_of_Scilex);
+		wsprintf(NameScilex,"%s (%d)",NameConsole,Number_of_Scilex);
 	}
 
 	return Number_of_Scilex;
@@ -1261,7 +1267,7 @@ BOOL IsAGraphFilegraph(char *chainefichier)
 	char ChaineTemp[MAX_PATH];
 	char *buffer=NULL;
 	char *lastdot=NULL;
-	int i=0;
+	unsigned int i=0;
 	BOOL retour=FALSE;
 
 	strcpy(ChaineTemp,chainefichier);
@@ -1277,7 +1283,7 @@ BOOL IsAGraphFilegraph(char *chainefichier)
 		lastdot[i]=toupper(lastdot[i]);
 	}
 	/* Comparaison avec l'extension Graph */
-	if ( strcmp(lastdot,"GRAPH")==0) retour=TRUE;
+		if ( strcmp(lastdot,"GRAPH")==0) retour=TRUE;
 
 	return retour;
 
@@ -1349,6 +1355,7 @@ BOOL IsAScicosFileCOS(char *chainefichier)
 		lastdot[i]=toupper(lastdot[i]);
 	}
 	/* Comparaison avec l'extension COS */
+	
 	if ( strcmp(lastdot,"COS")==0 ) retour=TRUE;
 
 	return retour;
@@ -1380,199 +1387,87 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 	return retour;
 }
 /*-----------------------------------------------------------------------------------*/
-/* Sauvegarde des parametres eventuels de la ligne de commandes */
-int SaveArgs(LPSTR saveargv)
-{
-	int CodeRetour=TRUE;
-	char tmpsaveargv[MAX_PATH];
-	char params[MAX_PATH];
-	char *ScilexName=NULL;
-	char *Strfind=NULL;
-	/*char ScilexName[11];*/
-	int i=0;
-	int pos=0;
-	
-
-	strcpy(tmpsaveargv,saveargv);
-	
-	ScilexName=strupr(tmpsaveargv);
-	/* recherche scilex.exe  dans la ligne passée*/
-	/* Strfind chaine en majuscule */
-	Strfind=strstr(ScilexName,ExecutableNameOfScilab);
-	
-	if (Strfind) /* Nom de l'executable trouvé */
-	{
-		pos=10; /*nombre de caracteres composants "scilex.exe" avec \0 à la fin */
-		strcpy(tmpsaveargv,Strfind);
-		
-		if (strlen(tmpsaveargv)>10) /* il y a des parametres */
-		{
-			if (tmpsaveargv[pos] == '\"') pos++;
-			if (tmpsaveargv[pos] == ' ') pos++;
-			for (i=pos;i<strlen(tmpsaveargv);i++)
-			{
-				params[i-pos]=tmpsaveargv[i];
-			}
-			params[i-pos]='\0';
-		
-		}
-		else strcpy(params,""); /* Pas de Parametres */
-	
-	}
-	else
-	{
-		strcpy(params,"");
-		CodeRetour=FALSE;
-	}
-	strcpy(saveargv,params);
-
-	return CodeRetour;
-}
-/*-----------------------------------------------------------------------------------*/
-/* Teste si la chaine de caracteres line correspond à un fichier existant */
-/* retourne le nom du fichier au format 8.3 pour Scipad */
-/* retourne TRUE si OK */
-int CleanFileName(char *line,char *filename,int *option)
-{
-	int Retour=FALSE;
-	char buffertemp[MAX_PATH];
-	int i=0;
-	
-	*option=-1;
-	
-	strcpy(buffertemp,line); /* Copie de line pour modification */
-	
-	/* Windows passe le nom des fichiers entre "" lorsque l'extension a été associé 
-	dans la base de registres */
-	if (buffertemp[0] == '"') /* On enleve les " au debut et à la fin */
-	{
-		
-		char stroption[3];
-		
-		i=1;
-		
-		while (line[i] != '"')
-		{
-			buffertemp[i-1]=line[i];
-			i++;
-		}
-		buffertemp[i-1]='\0';
-		
-		stroption[0]=line[i+2];
-		stroption[1]=line[i+3];
-		stroption[2]='\0';
-		
-		
-		if  ( (strcmp(stroption,"-o") == 0) || (strcmp(stroption,"-O") == 0) )
-		{
-			*option=0; /* Code pour Open */
-		}
-		else
-		if ( (strcmp(stroption,"-x") == 0) || (strcmp(stroption,"-X") == 0) )
-		{
-			*option=1; /* Code pour Execute */
-		}
-		else
-		if ( (strcmp(stroption,"-p") == 0) || (strcmp(stroption,"-P") == 0) )
-		{
-			*option=2; /* Code pour Print */
-		}
-		else *option=-1; /* Code pour le reste */
-
-		strcpy(line,buffertemp); 
-		
-		
-		if  ( (IsAGraphFile(line) == TRUE) || (IsAScicosFile(line) == TRUE) )
-		{
-			strcpy(filename,line); 
-			Retour=IsAFile(line);
-		}
-		else
-		{
-			GetShortPathName(line,filename,MAX_PATH); /* Recuperation du nom du fichier au format 8.3 */
-			Retour=IsAFile(filename);
-		}
-		
-		
-		
-	}
-	else /* pas de " */
-	{
-		/*GetShortPathName(line,filename,MAX_PATH); /* Recuperation du nom du fichier au format 8.3 */
-		/*Retour=IsAFile(filename);*/
-		
-		Retour=FALSE;
-	}
-
-	return Retour;
-	
-	
-	
-}
-/*-----------------------------------------------------------------------------------*/
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 {
 	int Retour=FALSE;
-	char chemin[MAX_PATH];
+	char FinalFileName[MAX_PATH];
+	char ShortPath[MAX_PATH];
+	char PathWScilex[MAX_PATH];
+
 	
-
-	/* Il faut doubler les \ pour transmettre chemin correctement à Scipad*/
-	DoubleDoubleSlash(chemin,fichier);
-		
-	if ( IsABinOrSavFile(fichier)== TRUE )
+	if (fichier[0]=='\"')
 	{
-
-		/* C'est un fichier .BIN ou .SAV d'ou load */
-		wsprintf(Cmd,"load('%s');disp('%s loaded');",fichier,fichier);
+		char buffertemp[MAX_PATH];
+		int i=1;
+		
+		while (fichier[i] != '"')
+		{
+			buffertemp[i-1]=fichier[i];
+			i++;
+			if (i>strlen(fichier))
+			{
+				i=strlen(fichier);
+				break;
+			}
+		}
+		buffertemp[i-1]='\0';
+		strcpy(fichier,buffertemp);
 	}
-	else
-	   {
-		/* Autre fichier .SCE ou .SCI d'ou Ouverture suivant code */
+	if (fichier[strlen(fichier)-1]=='\"') fichier[strlen(fichier)-1]='\0';
+
+	if (IsAFile(fichier))
+	{
+		GetShortPathName(fichier,ShortPath,MAX_PATH); /* Recuperation du nom du fichier au format 8.3 */
+		ReplaceSlash(FinalFileName,ShortPath);
+		GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), PathWScilex, MAX_PATH);
+		Retour=TRUE;
+
 		switch (OpenCode)
 		   {
-			
-			case 1: /* Execute */
-			{
-				if  ( IsAScicosFile(fichier)== TRUE )
+			case 1: /* Execute -X*/
 				{
-					ExtensionFileIntoLowerCase(fichier);	
-					wsprintf(Cmd,"scicos('%s');disp('%s loaded');",fichier,fichier);
+					if ( IsABinOrSavFile(FinalFileName)== TRUE )
+					{
+						/* C'est un fichier .BIN ou .SAV d'ou load */
+						wsprintf(Cmd,"%s -e load('%s');disp('%s loaded'); ",PathWScilex,FinalFileName,FinalFileName);
+					}
+					else
+					if  ( IsAScicosFile(FinalFileName)== TRUE )
+					{
+						ExtensionFileIntoLowerCase(FinalFileName);	
+						wsprintf(Cmd,"%s -e scicos('%s');disp('%s loaded'); ",PathWScilex,FinalFileName,FinalFileName);
+					}
+					else
+					if ( IsAGraphFile(FinalFileName)== TRUE )
+					{
+						ExtensionFileIntoLowerCase(FinalFileName);	
+						wsprintf(Cmd,"%s -e edit_graph('%s');disp('%s loaded'); ",PathWScilex,FinalFileName,fichier);
+					}
+					else wsprintf(Cmd,"%s -e exec('%s'); ",PathWScilex,FinalFileName);
 				}
-				else
-				if ( IsAGraphFile(fichier)== TRUE )
-				{
-			
-					ExtensionFileIntoLowerCase(fichier);	
-					wsprintf(Cmd,"edit_graph('%s');disp('%s loaded');",fichier,fichier);
-			
-				}
-				else
-				wsprintf(Cmd,"exec('%s');",fichier);
-			}
 			break;
-			
-			case 2: /* Print */
-			/* A mettre en place plus precisément*/
-			/* Pour le moment l'impression a lieu par l'editeur de fichier .txt défini par défaut */
-			/* c-a-d notepad ou autre */
-			{
+			case 2: /* Print -P*/
+				{
+					/* A mettre en place plus precisément*/
+					/* Pour le moment l'impression a lieu par l'editeur de fichier .txt défini par défaut */
+					/* c-a-d notepad ou autre */
+
 				MessageBox(NULL,"En cours de Dév.","Impression fichier",MB_OK);
-				
-					
-				/*
-				PrintFileText(fichier);*/
-				strcpy(Cmd,"");
-			}
+									
+				/*	PrintFileText(fichier);*/
+				strcpy(Cmd," ");
+				}
 			break;
-			case 0: case -1: /* Edit pour toute autre association*/
-			wsprintf(Cmd,"scipad('%s')",chemin);
+			case 0:default: /* Open -O*/
+				{
+					wsprintf(Cmd,"%s -e scipad('%s'); ",PathWScilex,FinalFileName);
+				}
 			break;
-			default: /* Probleme */
-			break;
-		   }
-	    	
 		
 	}
+	
+	}	
+	
 	
 	return Retour;
 }

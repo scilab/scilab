@@ -111,7 +111,6 @@ int Pause (LPSTR str);
 int SciWinGetPlatformId ();
 
 
-int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow);
 
 void add_sci_argv(char *p);
 int sci_iargc();
@@ -148,9 +147,11 @@ int WriteStr (char *s, FILE * file);
 int WriteKey (char c, FILE * file);
 
 
+int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow);
+int Console_Main(int argc, char **argv);
+int MAIN__ ();
 
 void WinExit (void);
-void CreateProcessScilex(char *cmdline,int NumberScilex,int CodeActionWin98);
 void CreateThreadSplashscreen(void);
 DWORD WINAPI ThreadSplashscreen(LPVOID lpParam );
 
@@ -178,23 +179,9 @@ BOOL IsAScicosFileCOSF(char *chainefichier);
 /* Retourne un numéro valide pour nommer les fenetres associées à ce process */
 int FindFreeScilexNumber(void);
 
-/* Sauvegarde des parametres eventuels de la ligne de commandes */
-int SaveArgs(LPSTR saveargv);
-
-/* Teste si la chaine de caracteres line correspond à un fichier existant */
-/* retourne le nom du fichier au format 8.3 pour Scipad dans filename*/
-/* retourne le code option */
-/*-1 rien ou invalide */
-/* 0 -o open with scipad*/
-/* 1 execute */
-/* 2 print file */
-/* retourne TRUE si OK */
-int CleanFileName(char *line,char *filename,int *option);
-
-
 
 /* Suivant la commande Via menu ouvre, edit, imprime ...*/
-extern void DoubleDoubleSlash(char *pathout,char *pathin);
+extern void ReplaceSlash(char *pathout,char *pathin);
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
 /* Imprime le fichier sur l'imprimante par défaut */
 void PrintFileText(char *fichier);

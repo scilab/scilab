@@ -1418,29 +1418,24 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 	return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
-/* Double le caractere \ dans un chemin */
-void DoubleDoubleSlash(char *pathout,char *pathin)
+/* Remplace \ par / dans un chemin */
+void ReplaceSlash(char *pathout,char *pathin)
 {
-	int l=0;
 	int i=0;
 	for (i=0;i < strlen(pathin);i++)
 		{
 
 			if (pathin[i]=='\\')
 			{
-				pathout[l]=pathin[i];
-				pathout[l+1]='\\';
-				l=l+2;
-
+				pathout[i]='/';
 			}
 			else
 			{
-				pathout[l]=pathin[i];
-				l++;
+				pathout[i]=pathin[i];
 			}
 
 		}
-		pathout[l]='\0';
+	pathout[i]='\0';
 }
 /*-----------------------------------------------------------------------------------*/
 /****************************************
@@ -1923,7 +1918,9 @@ void UpdateFileNameMenu(LPTW lptw,int LangCode)
 	LPSTR szModuleName;
 	LPSTR tail;
 	
-	HINSTANCE hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
+	HINSTANCE hInstance=NULL;
+
+	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
 	szModuleName = (LPSTR) malloc (MAXSTR + 1);
 	
 	GetModuleFileName (hInstance, (LPSTR) szModuleName, MAXSTR);

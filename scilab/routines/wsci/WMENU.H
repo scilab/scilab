@@ -221,8 +221,8 @@ void CloseMacros (LPTW lptw);
 
 /*Boite de dialogue Load ou Save */
 BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *file);
-/* Double le caractere \ dans un chemin */
-void DoubleDoubleSlash(char *pathout,char *pathin);
+/* Remplace \ par / dans un chemin */
+void ReplaceSlash(char *pathout,char *pathin);
 /* WTEXT.C*/
 /* extern void PasteFunction(LPTW lptw); */
 extern void SwitchConsole(void);

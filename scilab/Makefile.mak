@@ -4,7 +4,7 @@ SCIDIR1=.
 
 include Makefile.incl.mak 
 
-all ::  routines-pvm  bin/scilex.exe macros  imp intersci tcl
+all ::  routines-pvm  bin/scilex.exe bin/Wscilex.exe macros  imp intersci tcl
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
