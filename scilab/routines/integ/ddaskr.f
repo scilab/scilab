@@ -4990,7 +4990,7 @@ C
       NROW=0
       SQUR = SQRT(UROUND)
       DO 210 I=1,NEQ
-         DEL=SQUR*MAX(1,ABS(Y(I)),ABS(H*YPRIME(I)),
+         DEL=SQUR*MAX(1.D0,ABS(Y(I)),ABS(H*YPRIME(I)),
      *     ABS(1.D0/EWT(I)))
          DEL=SIGN(DEL,H*YPRIME(I))
          DEL=(Y(I)+DEL)-Y(I)         
