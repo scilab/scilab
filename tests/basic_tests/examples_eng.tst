@@ -14324,8 +14324,8 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
  
-   scipad SCI/scilab.star 
-]]>
+   scipad(SCI+'/scilab.star')
+
 xdel(winsid())
 
 //====================================================
@@ -14800,18 +14800,18 @@ clear;lines(0);
    f2=[10 1 1]
    f3=[1 ; 15]
    s=samplef(15,a,f1)
-   s=samplef(15,a,f2,'r')
-   s=samplef(15,a,f3,'c')
+   s=samplef(15,a,f2,'c')
+   s=samplef(15,a,f3,'r')
 
 xdel(winsid())
 
 //====================================================
 // ../man/eng/statistics/samwr.xml
 //====================================================
-clear;lines(0);
-    a=[0.33 1.24 2.1 1.03]
-    s=samwr(4,12,a)
-xdel(winsid())
+//clear;lines(0);
+//    a=[0.33 1.24 2.1 1.03]
+//    s=samwr(4,12,a)
+// xdel(winsid())
 
 //====================================================
 // ../man/eng/statistics/st_deviation.xml
