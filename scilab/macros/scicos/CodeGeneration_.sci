@@ -1344,6 +1344,7 @@ function [Code,proto]=callf(i)
 	for k=1:nin
 	  lprt=inplnk(inpptr(i)-1+k);
 	  uk=lnkptr(lprt);
+          nuk=(lnkptr(lprt+1))-uk;
 	  CodeC=CodeC+',&(outtb['+string(uk-1)+']),&nrd_'+string(nuk);
 	  proto=proto+", double *, int *"
 	end
@@ -1352,6 +1353,7 @@ function [Code,proto]=callf(i)
 	for k=1:nout
 	  lprt=outlnk(outptr(i)-1+k);
 	  yk=lnkptr(lprt);
+          nyk=(lnkptr(lprt+1))-yk;
 	  CodeC=CodeC+',&(outtb['+string(yk-1)+']),&nrd_'+string(nyk);
 	  proto=proto+", double *, int *"
 	end
@@ -2087,7 +2089,7 @@ function ok=gen_gui();
 
   for i=1:length(bllst)
     deput=[%t,%f]
-    if (bllst(i).dep_ut(2) == %t) then	
+    if (bllst(i).dep_ut(2) == %t)then	
       deput(1,2)=%t;      
       break;
     end
@@ -2346,16 +2348,6 @@ function Code=make_computational()
   nblk=cpr.sim.nblk;outlnk=cpr.sim.outlnk;
   nZ=size(z,'*')+size(outtb,'*')+clkptr($)
   
-//copy inputs
-Code=[Code;
-      '  /*Copy inputs in the block outtb */'];
-for i=1:size(capt,1)
-   ni=capt(i,3) // dimension of ith input
-  Code=[Code;
-        '  block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'] = ..
-         u['+string(capt(i,4)-1)+']['+string(0:ni-1)'+'];']
-end
-
 Code=['/*'+part('-',ones(1,40))+' Block Computational function */ ';
       'int  '+rdnom+'(scicos_block *block, int flag)'     
       '{'
