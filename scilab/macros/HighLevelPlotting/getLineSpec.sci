@@ -33,9 +33,11 @@ end
 
 //
 
+disp("ch vaut:::::::: 1/2")
+disp(ch)
 
 //color management
-//difficulty here since we have to allow evry kind of writings:
+//difficulty here since we have to allow every kind of writings:
 //i.e:
 //magenta can be set by: 'm' 'ma' 'mag' 'mage' 'magen' 'magent' or at least 'magenta'
 //
@@ -47,75 +49,109 @@ CYAN    = ['c' 'cy' 'cya' 'cyan'];
 BLUE    = ['b' 'bl' 'blu' 'blue'];
 GREEN   = ['g' 'gr' 'gre' 'gree' 'green'];
 RED     = ['r' 're' 'red'];
-BLA   = ['k'];
-WHI   = ['w'];
 
-for j=1:length(ch)
+BLA   =   ['k'      'bla' 'blac' 'black'];
+WHI   =   ['w' 'wh' 'whi' 'whit' 'white'];
 
- for i=length(ch):-1:1
+COULEURS = [YELLOW MAGENTA CYAN BLUE GREEN RED BLA WHI];
 
-  colour = part(ch,[j:i]);
+flag = %F;
 
-  if find(or(colour==YELLOW)) <> []
-   Color=color('yellow')
-   ch=strsubst(ch,colour,'');
-   break;
-  elseif find(or(colour==MAGENTA)) <> []
-    Color=color('magenta')
-    ch=strsubst(ch,colour,'');
-    break;
-  elseif find(or(colour==CYAN)) <> []
-    Color=color('cyan')
-    ch=strsubst(ch,colour,'');  
-    break;
-  elseif find(or(colour==BLUE)) <> []
-    Color=color('blue')
-    ch=strsubst(ch,colour,'');  
-    break;
-  elseif find(or(colour==GREEN)) <> []
-    Color=color('green')
-    ch=strsubst(ch,colour,'');
-    break;
-  elseif find(or(colour==RED)) <> []
-    Color=color('red')
-    ch=strsubst(ch,colour,'');
-    break;
-  elseif find(or(colour==BLA)) <> []
-    Color=color('black')
-    ch=strsubst(ch,colour,'');
-    break;
-  elseif find(or(colour==WHI)) <> []
-    Color=color('white')
-    ch=strsubst(ch,colour,'');
-    break;
-  end
+for j=length(ch):-1:1
 
+ if flag == %T
+  break;
  end
-end
 
-SQUARE = ['s' 'sq' 'squ' 'squa' 'squar' 'square'];
-DIAMOND =['d' 'di' 'dia' 'diam' 'diamo' 'diamon' 'diamond'];
+ res = find(length(COULEURS)==j)
 
-
-for j=1:length(ch)
-
- for i=length(ch):-1:1
-
-  mark = part(ch,[j:i]);
-
-  if find(or(mark==SQUARE)) <> []
-   MarkerStyle=12;
-   MarkerSize=4;
-   ch=strsubst(ch,mark,'');
-   break;
-  elseif find(or(mark==DIAMOND)) <> []
-   MarkerStyle=13;
-   MarkerSize=4;
-   ch=strsubst(ch,mark,'');
-   break;
+ for i=1:size(res,'*')
+  if strindex(ch,COULEURS(res(i)))<>[] then
+   if (res(i) >= 1) & (res(i) <= 6) then
+    Color=color('yellow')
+    ch=strsubst(ch,COULEURS(res(i)),'');
+    flag = %T
+    break;
+   else if (res(i) >= 7) & (res(i) <= 13) then
+     Color=color('magenta')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   else if (res(i) >= 14) & (res(i) <= 17) then
+     Color=color('cyan')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   else if (res(i) >= 18) & (res(i) <= 21) then
+     Color=color('blue')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   else if (res(i) >= 22) & (res(i) <= 26) then
+     Color=color('green')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   else if (res(i) >= 27) & (res(i) <= 29) then
+     Color=color('red')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   else if (res(i) >= 30) & (res(i) <= 33) then
+     Color=color('black')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   else if (res(i) >= 34) & (res(i) <= 38) then
+     Color=color('white')
+     ch=strsubst(ch,COULEURS(res(i)),'');
+     flag = %T
+     break;
+   end, end, end, end, end, end, end, end
   end
  end
+
+ 
 end
+
+
+disp("ch vaut:::::::: 2/2")
+disp(ch)
+
+// Special shapes
+
+SQUARE    = ['s' 'sq' 'squ' 'squa' 'squar' 'square'];
+DIAMOND   = ['d' 'di' 'dia' 'diam' 'diamo' 'diamon' 'diamond'];
+PENTAGRAM = ['p' 'pe' 'pen' 'pent' 'penta' 'pentag' 'pentag' 'pentagr' 'pentagra' 'pentagram'];
+
+SPESH = [SQUARE DIAMOND PENTAGRAM]
+
+for j=length(ch):-1:1
+ res = find(length(SPESH)==j)
+
+ for i=1:size(res,'*')
+  if strindex(ch,SPESH(res(i)))<>[]
+   if (res(i) >= 1) & (res(i) <= 6)
+    MarkerStyle=11;
+    MarkerSize=4;
+    ch=strsubst(ch,SPESH(res(i)),'');
+    break;
+   else if (res(i) >= 7) & (res(i) <= 13)
+    MarkerStyle=5;
+    MarkerSize=4;
+    ch=strsubst(ch,SPESH(res(i)),'');
+    break;
+   else if (res(i) >= 14) & (res(i) <= 23)
+    MarkerStyle=14;
+    MarkerSize=6;
+    ch=strsubst(ch,SPESH(res(i)),'');
+    break;
+   end, end, end
+  end
+ end
+
+end
+
 
 if(length(ch)>1) then
  disp("Error in LineSpec property : bad argument specified");
@@ -135,7 +171,7 @@ select part(ch,i)
      MarkerStyle=2;
      MarkerSize=1;
   case '*'
-     MarkerStyle=11;
+     MarkerStyle=10;
      MarkerSize=7;
   case '^'
      MarkerStyle=6;
@@ -150,7 +186,7 @@ select part(ch,i)
     MarkerStyle=4;
     MarkerSize=1;
   case 'o'
-     MarkerStyle=10;
+     MarkerStyle=9;
      MarkerSize=4;
   else
      fail=1;
@@ -160,10 +196,9 @@ end // for
 
 if MarkerStyle == []
    Marker = %F;
-   Line = %T;
 else
-   Line = %F;
    Marker = %T;
 end
 
+endfunction
 // end of getLineSpec

@@ -10,7 +10,10 @@ function Plot(varargin)
 Marker=[];
 MarkerSize=1;
 Color=0;
-LineStyle=1; 
+LineStyle=1;
+Line = %T;
+Marker = %F;
+
 
 
 
@@ -151,9 +154,11 @@ else
  P(1,1) = 0; // no x specified
  P(1,2) = d;
 
- if(d+2 < P1)
-  if(T(d+2,1)==10) then // LineSpec treatment
-   P(1,3) = d+2;
+//pause;
+
+ if(d+1 < P1)
+  if(T(d+1,1)==10) then // LineSpec treatment
+   P(1,3) = d+1;
   end
  end
 end
@@ -210,18 +215,64 @@ if(provided_data == 2) then
 
 disp(Color)
 
-   if(Line == %T)
-    e.mark_mode ='off'
-    e.foreground = Color;
-    e.line_style = LineStyle;
-   else
-    e.line_mode='off';
+   if(Marker == %T)
+    e.mark_style=MarkerStyle;
+    e.mark_mode ='on';
     e.mark_foreground = Color;
     e.mark_style=MarkerStyle;
     e.mark_size=MarkerSize;
+   else
+    e.mark_mode ='off'
+   end
+
+  if Line == %T
+    e.line_mode='on';
+    e.foreground = Color;
+    e.line_style = LineStyle;
+   else
+    e.line_mode='off'
    end
 
  end
+else
+// provided_data == 1 ONLY
+// numplot == 1
+
+ if or(size(ListArg(P(1,2))==1))  // If this is a vector
+  X=1:length(ListArg(P(1,2))); // insert an abcsissa vector of same length,
+ else                                  // if this is a matrix,
+  X=1:size(ListArg(P(1,2)),1); // insert an abcsissa vector with 
+ end
+
+ [X,Y] = checkXYPair(typeOfPlot,X,ListArg(P(1,2)))
+ if(P(1,3)<>0) then // if we have a line spec <=> index <> 0
+  [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(P(1,3)));
+ end
+
+ plot2d(X,Y);
+ e=gce();  // when using plot2d, we always have agregation as current entity
+ e=e.children; // we apply linespec to the only available line
+
+disp(Color)
+
+ if(Marker == %T)
+  e.mark_style=MarkerStyle;
+  e.mark_mode ='on';
+  e.mark_foreground = Color;
+  e.mark_style=MarkerStyle;
+  e.mark_size=MarkerSize;
+ else
+  e.mark_mode ='off'
+ end
+
+ if Line == %T
+  e.line_mode='on';
+  e.foreground = Color;
+  e.line_style = LineStyle;
+ else
+  e.line_mode='off'
+ end
+ 
 end
 
 //for i=0:numplot
