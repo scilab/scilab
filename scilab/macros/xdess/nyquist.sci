@@ -167,15 +167,16 @@ for k=1:mn,
   end
   if size(ks,'*') >1 then
     if ks($)<size(repf,2) then
-      last=$
+      last=$;
     else
-      last=$-1
+      last=$-1;
     end
     dx=repf(k,ks(1:last)+1)-repf(k,ks(1:last));
     dy=repi(k,ks(1:last)+1)-repi(k,ks(1:last));
     dd=150*sqrt((dx/(rect(3)-rect(1))).^2+(dy/(rect(4)-rect(2))).^2);
     if dd>0 then
       dx=dx./dd;dy=dy./dd;
+      pause
       xarrows([repf(k,ks(1:last));repf(k,ks(1:last))+dx],..
           [repi(k,ks(1:last));repi(k,ks(1:last))+dy],mrksiz)
     end

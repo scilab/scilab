@@ -30,6 +30,6 @@ MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	legends.sci dragrect.sci subplot.sci getlinestyle.sci getmark.sci \
 	getfont.sci loadplots.sci rubberbox.sci xclear.sci contour2d.sci \
 	gca.sci gcf.sci gce.sci gdf.sci gda.sci sdf.sci sda.sci \
-	colorbar.sci jetcolormap.sci 
+	colorbar.sci jetcolormap.sci  show_pixmap.sci clear_pixmap.sci
 
 include ../Make.lib.mak
