@@ -1,9 +1,10 @@
+function [status,msg]=mkdir(varargin)
+// mkdir Make a directory
+
 //------------------------------------------------------------------------
 // Allan CORNET
 // INRIA 2004
 //------------------------------------------------------------------------
-// mkdir Make a directory
-function [status,msg]=mkdir(varargin)
   lhs=argn(1);   
   rhs=argn(2);
   
@@ -28,8 +29,8 @@ function [status,msg]=mkdir(varargin)
      error('Number of parameters incorrect.');
   end
 
-  NewDirectory=""""+fullfile(DirName,NewDirName)+"""";
-  
+  NewDirectory=fullfile(DirName,NewDirName)
+  if MSDOS then NewDirectory='""'+NewDirectory+'""',end
   if (fileinfo(NewDirectory)==[]) then 
     // Le repertoire n'existe pas
     status=1;
@@ -61,7 +62,7 @@ function [status,msg]=mkdir(varargin)
         cmd='mkdir '+NewDirectory;
         cmdline=cmd+batchlog;
       else
-        batchlog = ' >'+ TMPDIR+'\mkdir.out' +' 2>'+TMPDIR+'\mkdir.err';
+        batchlog = ' >'+ TMPDIR+'/mkdir.out' +' 2>'+TMPDIR+'/mkdir.err';
         cmd='mkdir '+NewDirectory;
         cmdline=cmd+batchlog;
       end
@@ -76,8 +77,8 @@ function [status,msg]=mkdir(varargin)
             msg=msg+' '+mgetl(TMPDIR+'\mkdir.out');
           end
         else
-          msg='Error : '+mgetl(TMPDIR+'/rmdir.err');
-          msg=msg+' '+mgetl(TMPDIR+'/rmdir.out');
+          msg='Error : '+mgetl(TMPDIR+'/mkdir.err');
+          msg=msg+' '+mgetl(TMPDIR+'/mkdir.out');
         end
         status=0;
       else
