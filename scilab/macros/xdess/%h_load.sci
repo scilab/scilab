@@ -185,8 +185,16 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"mark_mode"            , toggle(mget(1,'c',fd))),
     set(a,"mark_style"           , mget(1,'c',fd))
     set(a,"mark_size"            , mget(1,'c',fd))
-    set(a,"mark_foreground"      , mget(1,'il',fd)),
-    set(a,"mark_background"      , mget(1,'il',fd)),
+    if version(1)>=3&version(2)>=1 then
+      if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
+      set(a,"mark_size_unit"   , msu)
+      set(a,"mark_foreground"      , mget(1,'il',fd)),
+      set(a,"mark_background"      , mget(1,'il',fd)),
+    else
+      set(a,"mark_size_unit"     , 'tabulated')
+      set(a,"mark_foreground"      , -1),
+      set(a,"mark_background"      , -2),
+    end
     set(a,"foreground"           , mget(1,'il',fd)),
     set(a,"background"           , mget(1,'il',fd)),
     clip_state                   = ascii(mget(mget(1,'c',fd),'c',fd))
@@ -212,9 +220,17 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     mark_mode      = toggle(mget(1,'c',fd))
     mark_style     = mget(1,'c',fd);
     mark_size      = mget(1,'c',fd);
-    foreground     = mget(1,'il',fd);
-    mark_foreground= mget(1,'il',fd);
-    mark_background= mget(1,'il',fd);
+    msu='tabulated'
+    if version(1)>=3&version(2)>=1 then
+      if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
+      foreground     = mget(1,'il',fd);
+      mark_foreground=mget(1,'il',fd)
+      mark_background=mget(1,'il',fd)
+    else
+      foreground     = mget(1,'il',fd);
+      mark_foreground=-1
+      mark_background=-2
+    end
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd)
@@ -231,10 +247,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"polyline_style",max(1,polyline_style)),
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
-    set(h,"mark_mode",mark_mode)
-    set(h,"foreground",foreground),
+    set(h,"mark_size_unit",msu),
     set(h,"mark_foreground",mark_foreground),
     set(h,"mark_background",mark_background)
+    set(h,"mark_mode",mark_mode)
+    set(h,"foreground",foreground),
+
     if clip_state =='' then clip_state='clipgrf',end
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
@@ -246,8 +264,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     mark_mode      = toggle(mget(1,'c',fd))
     mark_style     = mget(1,'c',fd);
     mark_size      = mget(1,'c',fd);
-    mark_foreground= mget(1,'il',fd);
-    mark_background= mget(1,'il',fd);
+    if version(1)>=3&version(2)>=1 then
+      if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
+      mark_foreground=mget(1,'il',fd)
+      mark_background=mget(1,'il',fd)
+    else
+      msu='tabulated'
+      mark_foreground=-1
+      mark_background=-2
+    end
     color_mode     = mget(1,'c',fd);
     color_flag     = mget(1,'c',fd);
 
@@ -280,10 +305,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"color_mode",color_mode),
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
-    set(h,"mark_mode",mark_mode)
+    set(h,"mark_size_unit",msu),
     set(h,"mark_foreground",mark_foreground),
     set(h,"mark_background",mark_background)
-    
+    set(h,"mark_mode",mark_mode)
     set(h,"color_flag",color_flag),
     set(h,"hiddencolor",hiddencolor),
   case "Fac3d" then
@@ -294,8 +319,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     mark_mode      = toggle(mget(1,'c',fd))
     mark_style     = mget(1,'c',fd);
     mark_size      = mget(1,'c',fd);
-    mark_foreground= mget(1,'il',fd);
-    mark_background= mget(1,'il',fd);
+    if version(1)>=3&version(2)>=1 then
+      if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
+      mark_foreground=mget(1,'il',fd)
+      mark_background=mget(1,'il',fd)
+    else
+      msu='tabulated'
+      mark_foreground=-1
+      mark_background=-2
+    end
     color_mode     = mget(1,'c',fd);
     color_flag     = mget(1,'c',fd);
  
@@ -330,6 +362,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"hiddencolor",hiddencolor),
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
+    set(h,"mark_size_unit",msu),
     set(h,"mark_mode",mark_mode)
     set(h,"mark_foreground",mark_foreground),
     set(h,"mark_background",mark_background)
@@ -348,8 +381,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     mark_mode      = toggle(mget(1,'c',fd))
     mark_style     = mget(1,'c',fd);
     mark_size      = mget(1,'c',fd);   
-    mark_foreground= mget(1,'il',fd);
-    mark_background= mget(1,'il',fd);
+    if version(1)>=3&version(2)>=1 then
+      if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
+      mark_foreground=mget(1,'il',fd)
+      mark_background=mget(1,'il',fd)
+    else
+      msu='tabulated'
+      mark_foreground=-1
+      mark_background=-2
+    end
     line_mode   = toggle(mget(1,'c',fd))
     line_style     = mget(1,'c',fd);      
     fill_mode      = toggle(mget(1,'c',fd))
@@ -367,12 +407,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"thickness",thickness)
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
+    set(h,"mark_size_unit",msu),
+    set(h,"mark_foreground",mark_foreground),
+    set(h,"mark_background",mark_background)
     set(h,"mark_mode",mark_mode)
     set(h,"line_style",line_style)
     set(h,"fill_mode",fill_mode)
     set(h,"foreground",foreground),
-    set(h,"mark_foreground",mark_foreground),
-    set(h,"mark_background",mark_background)
     set(h,"line_mode",line_mode)
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
@@ -417,8 +458,16 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"mark_mode" ,toggle(mget(1,'c',fd)))
     set(h,"mark_style"           , mget(1,'c',fd))
     set(h,"mark_size"            , mget(1,'c',fd))
-    set(h,"mark_foreground"      , mget(1,'il',fd)),
-    set(h,"mark_background"      , mget(1,'il',fd)),
+    if version(1)>=3&version(2)>=1 then
+      if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
+      set(h,"mark_size_unit"     , msu)
+      set(h,"mark_foreground"    , mget(1,'il',fd)),
+      set(h,"mark_background"    , mget(1,'il',fd)),
+    else
+      set(h,"mark_size_unit"     , 'tabulated')
+      set(h,"mark_foreground"    , -1),
+      set(h,"mark_background"    , -2),
+    end
     
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then
