@@ -5195,33 +5195,43 @@ sciClip (sciPointObj *pobj)
   }
   else if (value > 0)
     { 
-/*       double tmpw, tmph; */
+      double tmpw, tmph;
+      double tmpx, tmpy;
 /*       int i; */
-      
-/*       printf("AVANT\n"); */
+
+/*       printf("** ** *** ***** *** \n"); */
 /*       for(i=0;i<4;i++) */
 /* 	printf("clip_region[%d] = %lf\n",i,clip_region[i]); */
+
+      tmpw = clip_region[2];
+      tmph = clip_region[3];
       
-/*       tmpw = fabs(clip_region[2] - clip_region[0]); */
-/*       tmph = fabs(clip_region[3] - clip_region[1]); */
+      tmpx = clip_region[0];
+      tmpy = clip_region[1];
       
-/*       if(ppsubwin->axes.reverse[0] == TRUE) */
-/* 	clip_region[0] = clip_region[0] + tmpw; */
+/*       printf("AVANT\n"); */
+/*       printf("tmpx = %lf\n",tmpx); */
+/*       printf("tmpy = %lf\n",tmpy); */
+/*       printf("tmpw = %lf\n",tmpw); */
+/*       printf("tmph = %lf\n",tmph); */
+
+      if(ppsubwin->axes.reverse[0] == TRUE)
+	tmpx = tmpx + tmpw;
       
-/*       if(ppsubwin->axes.reverse[1] == TRUE) */
-/* 	clip_region[1] = clip_region[1] - tmph; */
+      if(ppsubwin->axes.reverse[1] == TRUE)
+	tmpy = tmpy - tmph;
       
       
 /*       printf("APRES\n"); */
-/*       for(i=0;i<4;i++) */
-/* 	printf("clip_region[%d] = %lf\n",i,clip_region[i]); */
-/*       printf("\n"); */
-
-
-      x = XDouble2Pixel( clip_region[0]);
-      y = YDouble2Pixel( clip_region[1]);
-      w = WDouble2Pixel( clip_region[0], clip_region[2]);
-      h = HDouble2Pixel( clip_region[1], clip_region[3]);
+/*       printf("tmpx = %lf\n",tmpx); */
+/*       printf("tmpy = %lf\n",tmpy); */
+/*       printf("tmpw = %lf\n",tmpw); */
+/*       printf("tmph = %lf\n-------------\n",tmph); */
+      
+      x = XDouble2Pixel( tmpx);
+      y = YDouble2Pixel( tmpy);
+      w = WDouble2Pixel( tmpx, tmpw);
+      h = HDouble2Pixel( tmpy, tmph);
       C2F(dr)("xset","clipping",&x, &y, &w, &h,PI0,PI0,PD0,PD0,PD0,PD0,4L,8L);
     }
 }
