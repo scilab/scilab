@@ -281,7 +281,7 @@ for i=1:numplot
 	      X(j,:) = PropertyValue(j,1);
 	    end
 	  else
-	    str=sprintf('plot : incompatible dimensions in input arguments');
+	    str='plot : incompatible dimensions in input arguments';
 	    error(str);
 	  end
 	end
@@ -304,7 +304,7 @@ for i=1:numplot
 	      Y(j,:) = PropertyValue(j);
 	    end
 	  else
-	    str=sprintf('plot : incompatible dimensions in input arguments');
+	    str='plot : incompatible dimensions in input arguments';
 	    error(str);
 	  end
 	end

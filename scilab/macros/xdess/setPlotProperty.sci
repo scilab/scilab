@@ -313,7 +313,7 @@ case 'zdata'        // <=> Zdata is treated after the curve was created
     
     for j=1:size(Curves,'*')
       if size(Curves(i).data,1) <> size(PropertyValue,'*')
-	str=sprintf('plot : incompatible dimensions in input arguments');
+	str='plot : incompatible dimensions in input arguments';
 	error(str);
       else
 	for jj=1:size(PropertyValue,'*')

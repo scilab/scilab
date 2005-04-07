@@ -35,7 +35,7 @@ case 'colordata'
     [tmp1,tmp2,tmp3,CC] = CreateFacetsFromXYZColor(X,Y,Z,PropertyValue);
     Surface.data.color = CC;
   else
-    str=sprintf('surf : incompatible dimensions in input arguments');
+    str='surf : incompatible dimensions in input arguments';
     error(str);
   end
   

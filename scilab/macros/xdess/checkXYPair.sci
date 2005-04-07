@@ -47,7 +47,13 @@ else // "classical" case
 
   if size(X,1)==1, X=X', end;  // si l'un des vecteurs est une ligne
   if size(Y,1)==1, Y=Y', end;  // on le transpose.
-
+  
+  if size(X)==[0 0] | size(Y)==[0 0]
+    ok=%F
+    str='plot error : empty input data';
+    error(str);
+  end
+  
   if and(size(X)==size(Y))  // si les tailles sont egales
     ok=%T;
 //    disp("I.)")
@@ -118,7 +124,7 @@ else // "classical" case
   
   
   if ~ok
-    str=sprintf('plot : incompatible dimensions of data arguments');
+    str='plot : incompatible dimensions of data arguments';
     error(str);
   end
 
