@@ -123,30 +123,19 @@ void axis_draw2(strflag)
 { 
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i,color; 
- /*  int isoflag = -1; */
+  /*  int isoflag = -1; */
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-
+  
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   
   /* F.Leray test on color here*/
   color=sciGetBackground(psubwin);
   
-  
-/*   ixbox[0]=ixbox[4]=Cscale.WIRect1[0];iybox[0]=iybox[4]=Cscale.WIRect1[1]; */
-/*   ixbox[1]=ixbox[0];iybox[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3]; */
-/*   ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1]; */
-/*   ixbox[3]=ixbox[2];iybox[3]=iybox[0];  */
-/*   C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	  */
-/*   C2F(dr)("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
-/*   C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	   */
-/* } */
-
   switch ( c) 
     {
     case '0' :
@@ -521,7 +510,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
   char c_format[5];
   integer flag=0,xx=0,yy=0,posi[2],rect[4],dash[6],trois=3;/**DJ.Abdemouche 2003**/
   integer i,barlength;
-  int ns=2,style=0,iflag=0;
+  int ns=2,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
   integer pstyle;
   int x3, y3, xpassed = 0, ypassed = 0; /* for log. case management */
@@ -663,7 +652,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
       if ( seg_flag == 1) 
 	{
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       /******* 01/07/2002  -> 11.05.04 **********/
@@ -763,7 +752,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0) 
 	    if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1) { /**DJ.Abdemouche 2003**/
@@ -823,7 +812,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 		  { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; }
 		else 
 		  { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; }
-		C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	    } 
 	  /***   01/07/2002  -> 11.05.04 ****/
@@ -844,7 +833,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 		      { vy[0]= ym[0];vy[1]=(int) (ym[0] + barlength/2.0) ; }
 		    else 
 		      { vy[0]= ym[0];vy[1]= (int)(ym[0] - barlength/2.0); }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      } 
 	    if ( i == Nx-1 ) 
@@ -860,7 +849,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 		      { vy[0]= ym[0];vy[1]= (int)(ym[0] + barlength/2.0) ; }
 		    else 
 		      { vy[0]= ym[0];vy[1]= (int)(ym[0] - barlength/2.0); }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      } 
 	  }
@@ -889,7 +878,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
       if ( seg_flag == 1) 
 	{
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
 
@@ -989,7 +978,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0)
 	    if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1 ){ /**DJ.Abdemouche 2003**/
@@ -1049,7 +1038,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 		    { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; }
 		  else 
 		    { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; }
-		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	    }
 	  /***   01/07/2002 -> 12.05.04 ****/
@@ -1070,7 +1059,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 		      { vx[0]= xm[0];vx[1]= (int)(xm[0] + barlength/2.0) ; }
 		    else 
 		      { vx[0]= xm[0];vx[1]= (int) (xm[0] - barlength/2.0); }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      }
 	    if ( i == Ny-1 )
@@ -1086,7 +1075,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 		      { vx[0]= xm[0];vx[1]= (int)(xm[0] + barlength/2.0) ; }
 		    else 
 		      { vx[0]= xm[0];vx[1]= (int)(xm[0] - barlength/2.0); }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }}
 	      }  
 	  }
@@ -1525,7 +1514,7 @@ static void axesplot(strflag, psubwin)
 	}
     }
   
-  ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+  ticscolor=sciGetForeground(psubwin);
   textcolor=sciGetFontForeground(psubwin);
   fontsize=sciGetFontDeciWidth(psubwin)/100;
   fontstyle=sciGetFontStyle(psubwin);
@@ -1597,7 +1586,7 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
    
   int vx[2],vy[2],ym[2];
   int barlength = 0;
-  int ns=2,style=0,iflag=0;
+  int ns=2,iflag=0;
   
   int nbtics = 0,i,j;
   int nbsubtics = ppsubwin->axes.nbsubtics[0];
@@ -1653,7 +1642,7 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] + 0.7*barlength) ; }
 	      else 
 		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] - 0.7*barlength) ; }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  
 	  FREE(tmp_log_grads); tmp_log_grads = NULL;
@@ -1676,7 +1665,7 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] + 0.7*barlength) ; }
 	      else 
 		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] - 0.7*barlength) ; }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
     }
@@ -1788,7 +1777,7 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   int barlength = 0;
   int posi[2];
   double angle=0.0;
-  int ns=2,style=0,iflag=0;
+  int ns=2,iflag=0;
   
   int nbtics = 0,i;
   char logflag = ppsubwin->logflags[0];
@@ -1848,8 +1837,8 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 	    } */
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
-	  
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
@@ -1929,8 +1918,8 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	    }
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
-
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
@@ -1963,7 +1952,7 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 
   int vx[2],vy[2],xm[2];
   int barlength = 0;
- int ns=2,style=0,iflag=0;
+ int ns=2,iflag=0;
   
   int nbtics = 0,i,j;
   int nbsubtics = ppsubwin->axes.nbsubtics[1];
@@ -2019,7 +2008,7 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] + 0.7*barlength) ; }
 	      else 
 		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] - 0.7*barlength) ; }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  
 	  FREE(tmp_log_grads); tmp_log_grads = NULL;
@@ -2042,7 +2031,7 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] + 0.7*barlength) ; }
 	      else 
 		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] - 0.7*barlength) ; }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
     }
@@ -2157,7 +2146,7 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   int barlength = 0;
   int posi[2];
   double angle=0.0;
-  int ns=2,style=0,iflag=0;
+  int ns=2,iflag=0;
   
   int nbtics = 0,i;
   char logflag = ppsubwin->logflags[1];
@@ -2226,8 +2215,9 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
 	  
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
@@ -2303,8 +2293,8 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
@@ -2324,14 +2314,14 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 static int XDrawAxisLine(double xminval,double xmaxval,double xy, int ticscolor, int color_kp)
 {
   int vx[2], vy[2];
-  int ns=2,style=0, iflag=0;
+  int ns=2, iflag=0;
   
   vx[0] =  XScale(xminval); /* C EST LA que se calcule les positions initiales et finales (en x et y) de la barre support de l'axe des abscisses */
   vx[1] =  XScale(xmaxval);
   vy[0]= vy[1] = YScale(xy);
   
   if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 
@@ -2341,14 +2331,14 @@ static int XDrawAxisLine(double xminval,double xmaxval,double xy, int ticscolor,
 static int YDrawAxisLine(double yminval,double ymaxval,double xy, int ticscolor, int color_kp)
 {
   int vx[2], vy[2];
-  int ns=2,style=0, iflag=0;
+  int ns=2, iflag=0;
 
   vy[0] =  YScale(yminval); /* C EST LA que se calcule les positions initiales et finales (en x et y) de la barre support de l'axe des abscisses */
   vy[1] =  YScale(ymaxval);
   vx[0]= vx[1] = XScale(xy);
   
   if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 
@@ -2396,8 +2386,6 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
     logflag = ppsubwin->logflags[1];
     auto_ticks = ppsubwin->axes.auto_ticks[1];
   }
-
-
 
 
   fontid[0]= fontstyle;

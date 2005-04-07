@@ -696,7 +696,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   int fontstyle=0; /* F.Leray 08.04.04 */
   sciPointObj *psubwin = NULL;
   sciSubWindow * ppsubwin = NULL;
-  int ns=2,style=0,iflag=0,gstyle,trois=3,dash[6];
+  int ns=2,iflag=0,gstyle,trois=3,dash[6];
   double xx[4],yy[4],zz[4],vxx1,vyy1,vzz1;
   integer i,xm,ym,vx[2],vy[2],xg[2],yg[2],j;
   integer fontid_old[2], textcolor_old;
@@ -733,6 +733,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 /*   ticscolor = pSUBWIN_FEATURE (psubwin)->axes.ticscolor; /\* no more use : property has been removed (except for AXIS (see drawaxis)) *\/ */
   ticscolor = sciGetForeground(psubwin);
   textcolor=sciGetFontForeground(psubwin);
+
   fontsize=sciGetFontDeciWidth(psubwin)/100;
   fontstyle=sciGetFontStyle(psubwin);
   
@@ -867,7 +868,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	      /* grid to put here */
 	      if (pSUBWIN_FEATURE (psubwin)->grid[2] > -1)
@@ -982,7 +983,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  vy[1]= (integer) (vy[0]+barlengthy/2.0);
 			  
 			  if(ppsubwin->axes.axes_visible[2] == TRUE)
-			    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			}
 		      FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 		    } /* end NEW */
@@ -1008,7 +1009,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  vy[1]= (integer) (vy[0]+barlengthy/2.0);
 			  
 			  if(ppsubwin->axes.axes_visible[2] == TRUE)
-			    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			}
 		    } 
 		}
@@ -1090,7 +1091,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		else
 		  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	      /* grid to put here */
 	      if (pSUBWIN_FEATURE (psubwin)->grid[2] > -1)
@@ -1205,7 +1206,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  vy[1]= (integer) (vy[0]+barlengthy/2.0);
 			  
 			  if(ppsubwin->axes.axes_visible[2] == TRUE)
-			    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			}
 		      FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 		    } /* end NEW */
@@ -1231,7 +1232,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  vy[1]= (integer) (vy[0]+barlengthy/2.0);
 			  
 			  if(ppsubwin->axes.axes_visible[2] == TRUE)
-			    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			}
 		    }
 		}
@@ -1340,7 +1341,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
@@ -1467,7 +1468,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
@@ -1504,7 +1505,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)   
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -1591,7 +1592,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    		    
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
@@ -1719,7 +1720,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
@@ -1754,7 +1755,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			  
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -1862,7 +1863,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
@@ -1988,7 +1989,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			  
@@ -2022,7 +2023,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -2107,7 +2108,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  
 		  /* grid to put here */
@@ -2235,7 +2236,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			  
@@ -2270,7 +2271,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -2377,7 +2378,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
@@ -2501,7 +2502,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
@@ -2538,7 +2539,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -2623,7 +2624,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
@@ -2747,7 +2748,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			} /* end NEW */
@@ -2783,7 +2784,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[0] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -2886,7 +2887,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
@@ -3010,7 +3011,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			  
@@ -3047,7 +3048,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
@@ -3130,7 +3131,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
 		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
@@ -3254,7 +3255,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
 			  
@@ -3289,7 +3290,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				}
 			      
 			      if(ppsubwin->axes.axes_visible[1] == TRUE)
-				C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			}
 		    }
