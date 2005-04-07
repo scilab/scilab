@@ -62,7 +62,7 @@ proc sciGUIConfigDo { winId } {
 # Parameters  : winId parameters
 # Description : Configure Scilab...
 # ----------------------------------------------------------------------------
-proc sciGUIConfig { {winId -1} {parameters "1000000 1240 0 v 10 72 28 1 0 0 %inf 0 2 500 12 5 0 -1 -1"} } {
+proc sciGUIConfig { {winId -1} {parameters "1000000 1240 0 v 10 28 72 1 0 0 %inf 0 2 500 12 5 0 -1 -1"} } {
 	global sciGUITable
 	set winId2 [sciGUICreate $winId "editvar" ]
 	set w [sciGUIName $winId2]
