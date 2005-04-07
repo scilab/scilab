@@ -56,7 +56,7 @@ function txt=ins2sci(lst,ilst)
     else
       if lst(ilst)(1)=='15' then ilst=ilst+1;txt($+1)='';end
       [t1,ilst]=cod2sci(lst,ilst)
-    end
+      end
     txt=catcode(txt,t1)
   end
 endfunction
@@ -245,6 +245,7 @@ function [txt,ilst]=cod2sci(lst,ilst)
       else
 	txt=catcode(txt,LHS+' = '+RHS+ip)
       end
+      txt=splitexp(txt)
     case '31' then //comment
       txt=catcode(txt,'//'+op(2))
     case '99' then //return
