@@ -708,7 +708,7 @@ int GetScreenDPI(int *ixres, int *iyres)
   /* be sure a gtk_init is started */
   
 #if GTK_MAJOR_VERSION == 1 
-  sciprint("GetScreenDPI not implemented in gtk 1\r\n");
+ /* sciprint("GetScreenDPI not implemented in gtk 1\r\n"); */
   return -1;
 #else 
   start_sci_gtk();
