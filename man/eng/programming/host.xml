@@ -33,12 +33,17 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-host("ls $SCI/demos");
-host("emacs $SCI/demos/simulation/wheel2/Readme.txt");
-deff('wd=getdir()','if MSDOS then host(''cd>''+TMPDIR+''\path'');..
-                 else host(''pwd>''+TMPDIR+''/path'');end..
-      wd=read(TMPDIR+''/path'',1,1,''(a)'')')
-wd=getdir()
+    //create a getdir function based on host
+    function wd=getdir()
+      if MSDOS then 
+        host('cd>'+TMPDIR+'\path');
+      else
+        host('pwd>'+TMPDIR+'/path');
+      end
+      wd=read(TMPDIR+'/path',1,1,'(a)')
+    endfunction
+    //call it
+    wd=getdir()
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
