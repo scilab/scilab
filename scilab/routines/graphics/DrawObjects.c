@@ -8346,7 +8346,10 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
   
   if(sciGetMarkSizeUnit(pobj) == 2){ /* tabulated */ /* size is given relative to the array tabulated_marksize */
     if( (int) size <= 5){
-      size = tabulated_marksize[(int) size];
+      if(style == 0 && size == 0) 
+	size = 1; /* Singularity : To allow the drawing of a single pixel in old mode (tabulated) */
+      else
+	size = tabulated_marksize[(int) size];
     }   
     else{
       size = tabulated_marksize[5];
