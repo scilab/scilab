@@ -17,6 +17,11 @@ str = convstr(PropertyName);
 [PName] = getPlotPropertyName(str,current_figure,cur_draw_mode)
 
 
+if (PName==[])
+  ResetFigureDDM(current_figure, cur_draw_mode);
+  return;
+end
+
 
 select PName
 
