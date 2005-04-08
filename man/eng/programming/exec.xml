@@ -85,7 +85,7 @@
   <EXAMPLE>
 <![CDATA[
 // create a script file
-write(TMPDIR+'/myscript','a=1;b=2')
+mputl('a=1;b=2',TMPDIR+'/myscript')
 // execute it
 exec(TMPDIR+'/myscript')
 who

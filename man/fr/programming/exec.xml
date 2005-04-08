@@ -107,7 +107,7 @@
   </SECTION>
   <EXAMPLE><![CDATA[
     // création d'un script
-    write(TMPDIR+'/myscript','a=1;b=2')
+    mputl('a=1;b=2',TMPDIR+'/myscript')
     // on l'exécute
     exec(TMPDIR+'/myscript')
     who
