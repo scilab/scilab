@@ -34,14 +34,6 @@ if ~rhs
   return;
 end
 
-
-// differ the drawing command
-// smart drawlater
-f=gcf();
-cur_draw_mode = f.immediate_drawing;
-f.immediate_drawing = 'off';
-
-
 X=[];
 Y=[];
 Z=[];
@@ -90,15 +82,25 @@ for i=1:nv
   end
 end
 
+
+// delay the drawing commands
+// smart drawlater
+current_figure=gcf();
+cur_draw_mode = current_figure.immediate_drawing;
+current_figure.immediate_drawing = 'off';
+
+
 // set some defaults here
-f=gcf();
-f.color_map=jetcolormap(64);
-colormap_size = size(f.color_map,1);
+// current_figure=gcf(); // already init. before
+// current_figure.color_map=jetcolormap(64); // bad choice -> init must be done somewhere else.
+
+colormap_size = size(current_figure.color_map,1);
 
 if given_data == 1 //surf(Z) with Z giving us data + color info.
   // ---------------------------------------------------------- //
   if or(size(ListArg(1))==1)
-    disp("Z must not be a scalar or vector, not rendering surface.")
+    disp("Z must not be a scalar or vector, not rendering surface.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -113,12 +115,14 @@ if given_data == 1 //surf(Z) with Z giving us data + color info.
 elseif given_data == 2 //surf(Z,COLOR)
   // ---------------------------------------------------------- //
   if or(size(ListArg(1))==1)
-    disp("Z must not be a scalar or vector, not rendering surface.")
+    disp("Z must not be a scalar or vector, not rendering surface.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
   if ((size(ListArg(1)) <> size(ListArg(2))) & (size(ListArg(1))-1 <> size(ListArg(2))))
     disp("Color Data must equal size(ZData) or size(ZData)-1 for flat shading ; not rendering surface.")
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -152,6 +156,7 @@ elseif given_data == 4 //surf(X,Y,Z,COLOR)
 
   if ((size(ListArg(1)) <> size(ListArg(2))) & (size(ListArg(1))-1 <> size(ListArg(2))))
     disp("Color Data must equal size(ZData) or size(ZData)-1 for flat shading ; not rendering surface.")
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -178,7 +183,8 @@ while ((Property <> 0) & (Property <= nv-1))
   if (PName == 'xdata')
     
     if (type(PropertyValue)<>1)
-      disp("X data must be a vector or matrix.")
+      disp("X data must be a vector or matrix.");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -189,7 +195,8 @@ while ((Property <> 0) & (Property <= nv-1))
   elseif (PName == 'ydata')
     
     if (type(PropertyValue)<>1)
-      disp("Y data must be a vector or matrix.")
+      disp("Y data must be a vector or matrix.");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -200,7 +207,8 @@ while ((Property <> 0) & (Property <= nv-1))
   elseif (PName == 'zdata')
     
     if (type(PropertyValue)<>1 | or(size(PropertyValue)==1))
-      disp("Z data must be a real matrix.")
+      disp("Z data must be a real matrix.");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -220,7 +228,14 @@ end
 // surf is made now !
 // with default option to simulate the Matlab mode
 
-plot3d(XX,YY,list(ZZ,CC));
+err = execstr('plot3d(XX,YY,list(ZZ,CC))','errcatch','m');
+
+if err <> 0
+  mprintf("Error %d : in plot3d called by surf",err);
+  ResetFigureDDM(current_figure, cur_draw_mode);
+  return;
+end
+
 a=gca();
 a.cube_scaling = 'on';
 a.rotation_angles = [51 -125];
@@ -314,7 +329,7 @@ current_surface.mark_size_unit='point';
 
 
 while ((Property <> 0) & (Property <= nv-1))
-  setSurfProperty(ListArg(Property),ListArg(Property+1),current_surface,X,Y,Z,C)
+  setSurfProperty(ListArg(Property),ListArg(Property+1),current_surface,X,Y,Z,C,current_figure,cur_draw_mode)
   
   Property = Property+2;
 end
@@ -332,7 +347,7 @@ end
 
 //postponed drawings are done now !
 // smart drawnow
-f.immediate_drawing = cur_draw_mode;
+ResetFigureDDM(current_figure, cur_draw_mode);
 
 endfunction
 
@@ -379,6 +394,7 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   
   if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
     error('surf : Vectors X, Y must match Z matrix dimensions');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -391,6 +407,7 @@ elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
   if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
     error('surf : Matrices must be the same size');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -403,6 +420,7 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
   if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
     error('surf : Matrices must be the same size');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -426,6 +444,7 @@ elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
   if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
     error('surf : Matrices must be the same size');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -446,7 +465,8 @@ elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   CC = ZZ;
   
 else
-  disp("Error: X and Y must be of the same type\n")
+  disp("Error: X and Y must be of the same type\n");
+  ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
 
@@ -465,6 +485,7 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   
   if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
     error('surf : Vectors X, Y must match Z matrix dimensions');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -484,6 +505,7 @@ elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
   if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
     error('surf : Matrices must be the same size');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -503,6 +525,7 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
   if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
     error('surf : Matrices must be the same size');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -523,7 +546,6 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
   // COLOR treatment
   if (size(C) == size(Z)) // color number == zdata number
-    pause;
     [XX,YY,CC] = nf3d(XMAT,Y,C);     // CC must be a color matrix of size nf x n
   elseif (size(C) == size(Z)-1) // color number -1 == zdata number => ONLY flat mode can be enabled
     Ctmp=[];
@@ -536,6 +558,7 @@ elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
   if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
     error('surf : Matrices must be the same size');
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
   
@@ -564,7 +587,24 @@ elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
 else
   disp("Error: X and Y must be of the same type\n")
+  ResetFigureDDM(current_figure, cur_draw_mode);
   return;
+end
+
+endfunction
+
+
+// Reset the Default Drawing Mode (DDM) of the figure
+// immediate_drawing is set to its input value.
+function ResetFigureDDM(cur_figure, cur_draw_mode)
+
+if type(cur_figure == 9)
+  if cur_figure.type == "Figure"
+    cur_figure.immediate_drawing = cur_draw_mode;
+  else
+    disp("Error in ResetFigureDDM : input argument must be a figure graphic handle");
+    return;
+  end
 end
 
 endfunction

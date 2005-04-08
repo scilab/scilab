@@ -3,7 +3,7 @@
 //Copyright INRIA
 //
 
-function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C)
+function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,current_figure,cur_draw_mode)
 
 fail=0;
 
@@ -14,9 +14,10 @@ str = convstr(PropertyName);
 
 //Property = ['foreground' 'clipping'];
 
-[PName] = getSurfPropertyName(str)
+[PName] = getSurfPropertyName(str,current_figure,cur_draw_mode)
 
 if (PName==[])
+  ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
 
@@ -27,7 +28,8 @@ case 'colordata'
   /////////////////////////
   
   if (type(PropertyValue)<>1 | or(size(PropertyValue)==1))
-    disp("Color data  must be a matrix.")
+    disp("Color data  must be a matrix.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -37,6 +39,7 @@ case 'colordata'
   else
     str='surf : incompatible dimensions in input arguments';
     error(str);
+    ResetFigureDDM(current_figure, cur_draw_mode);
   end
   
   /////////////////////////
@@ -45,6 +48,8 @@ case 'colordatamapping'
 
   if (type(PropertyValue)<>10)
     disp("Color data mapping must be a string with value ''scaled'' or ''direct''.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    return;
   end
   
   if (PropertyValue=='scaled')
@@ -53,6 +58,7 @@ case 'colordatamapping'
     Surface.cdata_mapping = 'direct';
   else
     disp("Error : the cdatamapping property should be set exactly to ''scaled'' or ''direct''.")
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -90,7 +96,8 @@ case 'foreground'         // <=> EdgeColor
       Surface.color_mode = 0; // <=> - colormap(1) and not black at all!!
       Surface.mark_foreground = -1; // <=> black
     else
-      disp("Color value must be a 3 element vector or an index in the colormap.")
+      disp("Color value must be a 3 element vector or an index in the colormap.");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
@@ -101,11 +108,13 @@ case 'foreground'         // <=> EdgeColor
       Surface.mark_foreground = addcolor(PropertyValue);
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
 
   else
-    disp("Color value must be a 3 element vector or an index in the colormap.")
+    disp("Color value must be a 3 element vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -138,6 +147,7 @@ case 'facecolor'          // FaceColor
       Surface.color_flag = 3;
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
@@ -148,11 +158,13 @@ case 'facecolor'          // FaceColor
       Surface.mark_foreground = addcolor(PropertyValue);
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
 
   else
-    disp("Color value must be a 3 element vector or an index in the colormap.")
+    disp("Color value must be a 3 element vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -177,7 +189,8 @@ case 'linestyle'          // LineStyle
       Surface.surface_mode = 'off';
     end
   else
-    disp("Bad value for property : LineStyle")
+    disp("Bad value for property : LineStyle");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -187,7 +200,8 @@ case 'thickness'        // <=> LineWidth
   if (type(PropertyValue)==1)
     Surface.thickness=PropertyValue;
   else
-    disp("Bad value for property : LineStyle")
+    disp("Bad value for property : LineStyle");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -209,10 +223,12 @@ case 'markstyle'        // <=> Marker
     if (k == [])
       disp("Error in MarkStyle specification : bad argument specified");
       PName=[];
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     elseif ( size(k,'*') > 1)
       disp("Ambiguous MarkStyle value"); //unreachable case normally
       PName=[];
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -233,7 +249,8 @@ case 'markstyle'        // <=> Marker
     str = part(str,i:length(str));
     
     if (size(opt1,'*') > 1)
-      disp("Error in MarkStyle specification : too much MarkStyle properties specified")
+      disp("Error in MarkStyle specification : too much MarkStyle properties specified");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -247,7 +264,8 @@ case 'markstyle'        // <=> Marker
     end
     
   else
-    disp("Bad value for property : LineStyle")
+    disp("Bad value for property : LineStyle");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -277,6 +295,7 @@ case 'markforeground'        // <=> MarkerEdgeColor
     else
       if (index==-1)
 	disp("Bad value for markforeground property");
+	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
 	if markmodeON <> []
@@ -293,11 +312,13 @@ case 'markforeground'        // <=> MarkerEdgeColor
       end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
   else
-    disp("Color value must be a 3 element vector or an index in the colormap.")
+    disp("Color value must be a 3 element vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -328,6 +349,7 @@ case 'markbackground'        // <=> MarkerFaceColor
     else
       if (index==-1)
 	disp("Bad value for markbackground property");
+	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
 	if markmodeON <> []
@@ -345,11 +367,13 @@ case 'markbackground'        // <=> MarkerFaceColor
       end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
   else
-    disp("Color value must be a 3 element vector or an index in the colormap.")
+    disp("Color value must be a 3 element vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -365,7 +389,8 @@ case 'marksize'        // <=> MarkerSize
       Surface(markmodeON).mark_size = PropertyValue;
     end
   else
-    disp("Color value must be an integer.")
+    disp("Color value must be an integer.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -375,7 +400,8 @@ case 'visible'        // <=> Visible
   if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
     Surface.visible = PropertyValue;
   else
-    disp("Error : the visibility property should be set to on or off.")
+    disp("Error : the visibility property should be set to on or off.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
