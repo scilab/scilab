@@ -2681,15 +2681,15 @@ int scixget(fname,fname_len)
     for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
     LhsVar(1)=Rhs+1;
   }
-/*   else if ( strncmp(cstk(l1),"font size",9) == 0) { */
-/*     int i; */
-/*     C2F(dr1)("xget","font",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L); */
-/*     x1[0]=x1[1]; */
-/*     x2=1; */
-/*     CreateVar(Rhs+1,"d",&one,&x2,&l3); */
-/*     for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];       */
-/*     LhsVar(1)=Rhs+1; */
-/*   } */
+  /*   else if ( strncmp(cstk(l1),"font size",9) == 0) { */
+  /*     int i; */
+  /*     C2F(dr1)("xget","font",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L); */
+  /*     x1[0]=x1[1]; */
+  /*     x2=1; */
+  /*     CreateVar(Rhs+1,"d",&one,&x2,&l3); */
+  /*     for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];       */
+  /*     LhsVar(1)=Rhs+1; */
+  /*   } */
   else if ( strncmp(cstk(l1),"line style",10) == 0) {
     C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
@@ -2705,7 +2705,6 @@ int scixget(fname,fname_len)
       LhsVar(1)=Rhs+1;          
     }   /* NG end*/
   else 
-
     {
       int i;
       x2=0;
@@ -2720,9 +2719,12 @@ int scixget(fname,fname_len)
 	  x1[0] = sciGetFontDeciWidth(psubwin)/100;
 	  x2 = 1;
 	}
+	else
+	  C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       }
       else
 	C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+      
       if (x2 > 0) {
 	CreateVar(Rhs+1,"d",&one,&x2,&l3);
 	for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
