@@ -3,7 +3,7 @@
 //Copyright INRIA
 //
 
-function [PName] = getPlotPropertyName(PropertyName)
+function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode)
 
 //conversion to lower format
 str = convstr(PropertyName);
@@ -23,6 +23,7 @@ k=find(part(Table,1:length(str))==str);
 if (k == [])
   disp("Error in Property specification : bad argument specified");
   PName=[];
+  ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 elseif ( size(k,'*') > 1)
   if or(find(k==7)) // case PropertyName == 'marker'
@@ -30,6 +31,7 @@ elseif ( size(k,'*') > 1)
   else
     disp("Ambiguous line property");
     PName=[];
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 end
@@ -51,7 +53,8 @@ opt1 = [opt1 k];
 str = part(str,i:length(str));
 
 if (size(opt1,'*') > 1)
-  disp("Error in Property specification : too much properties specified")
+  disp("Error in Property specification : too much properties specified");
+  ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
 

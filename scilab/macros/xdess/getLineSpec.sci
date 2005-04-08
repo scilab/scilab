@@ -3,7 +3,7 @@
 //Copyright INRIA
 //
 
-function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(str) 
+function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(str,current_figure,cur_draw_mode) 
 
 LineStyle=1;
 Color=[];
@@ -70,6 +70,7 @@ while length(str) > 1
 
   if (k == [] | (size(k,'*') > 1 & c1 <> 'b'))
     disp("Error in LineSpec property : bad argument specified");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -127,14 +128,5 @@ for i=1:size(opt1,'*')
 end
 
 
-//PropertyName and PropertyValue treatment
-
-
-
-
-
-
-
-
 endfunction
-// end of getLineSpec2
+// end of getLineSpec

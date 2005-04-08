@@ -3,7 +3,7 @@
 //Copyright INRIA
 //
 
-function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves)
+function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure,cur_draw_mode)
 
 fail=0;
 
@@ -14,7 +14,7 @@ str = convstr(PropertyName);
 
 //Property = ['foreground' 'clipping'];
 
-[PName] = getPlotPropertyName(str)
+[PName] = getPlotPropertyName(str,current_figure,cur_draw_mode)
 
 
 
@@ -36,6 +36,7 @@ case 'foreground'         // <=> Color
       Curves.mark_foreground = color(ColorVal(index));
     else  // 'none' selected
       disp("Bad value for line color property : none can not be selected");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
@@ -46,11 +47,13 @@ case 'foreground'         // <=> Color
       Curves.mark_foreground = addcolor(PropertyValue);
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
 
   else
-    disp("Color value must be a 3 element vector or an index in the colormap.")
+    disp("Color value must be a 3 element vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -61,7 +64,8 @@ case 'clipping'           // Clipping
   if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
     Curves.clip_state=PropertyValue;
   else
-    disp("Bad value for property : Clipping")
+    disp("Bad value for property : Clipping");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -86,7 +90,8 @@ case 'linestyle'          // LineStyle
       Curves.line_mode = 'off';
     end
   else
-    disp("Bad value for property : LineStyle")
+    disp("Bad value for property : LineStyle");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -96,7 +101,8 @@ case 'thickness'        // <=> LineWidth
   if (type(PropertyValue)==1)
     Curves.thickness=PropertyValue;
   else
-    disp("Bad value for property : LineStyle")
+    disp("Bad value for property : LineStyle");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -118,10 +124,12 @@ case 'markstyle'        // <=> Marker
     if (k == [])
       disp("Error in MarkStyle specification : bad argument specified");
       PName=[];
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     elseif ( size(k,'*') > 1)
       disp("Ambiguous MarkStyle value"); //unreachable case normally
       PName=[];
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -142,7 +150,8 @@ case 'markstyle'        // <=> Marker
     str = part(str,i:length(str));
     
     if (size(opt1,'*') > 1)
-      disp("Error in MarkStyle specification : too much MarkStyle properties specified")
+      disp("Error in MarkStyle specification : too much MarkStyle properties specified");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
@@ -156,7 +165,8 @@ case 'markstyle'        // <=> Marker
     end
     
   else
-    disp("Bad value for property : LineStyle")
+    disp("Bad value for property : LineStyle");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 
@@ -186,6 +196,7 @@ case 'markforeground'        // <=> MarkerEdgeColor
     else
       if (index==-1)
 	disp("Bad value for markforeground property");
+	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
 	if markmodeON <> []
@@ -202,11 +213,13 @@ case 'markforeground'        // <=> MarkerEdgeColor
       end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
   else
-    disp("Color value must be a 3 element vector or an index in the colormap.")
+    disp("Color value must be a 3 element vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -237,6 +250,7 @@ case 'markbackground'        // <=> MarkerFaceColor
     else
       if (index==-1)
 	disp("Bad value for markbackground property");
+	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
 	if markmodeON <> []
@@ -254,11 +268,13 @@ case 'markbackground'        // <=> MarkerFaceColor
       end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
     
   else
     disp("Color value must be a 3 element vector or an index in the colormap.")
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -274,7 +290,8 @@ case 'marksize'        // <=> MarkerSize
       Curves(markmodeON).mark_size = PropertyValue;
     end
   else
-    disp("Color value must be an integer.")
+    disp("Color value must be an integer.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -284,7 +301,8 @@ case 'visible'        // <=> Visible
   if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
     Curves.visible = PropertyValue;
   else
-    disp("Error : the visibility property should be set to on or off.")
+    disp("Error : the visibility property should be set to on or off.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
@@ -315,6 +333,7 @@ case 'zdata'        // <=> Zdata is treated after the curve was created
       if size(Curves(i).data,1) <> size(PropertyValue,'*')
 	str='plot : incompatible dimensions in input arguments';
 	error(str);
+	ResetFigureDDM(current_figure, cur_draw_mode);
       else
 	for jj=1:size(PropertyValue,'*')
 	  Curves(j).data(jj,3) = PropertyValue(jj);

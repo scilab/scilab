@@ -1,4 +1,4 @@
-function [X,Y]=checkXYPair(typeOfPlot,x,y) 
+function [X,Y]=checkXYPair(typeOfPlot,x,y,current_figure,cur_draw_mode)
 
 ok=%F;
 
@@ -6,6 +6,7 @@ if type(y)==13 // If y is a function
   f=y;
   if and(size(x)~=1)  // then x *must* be a vector
     error(sprintf('%s : x must be a vector',typeOfPlot));
+    ResetFigureDDM(current_figure, cur_draw_mode);
   end
 
   t=x(:); // to ensure that t is a column vector
@@ -126,6 +127,7 @@ else // "classical" case
   if ~ok
     str='plot : incompatible dimensions of data arguments';
     error(str);
+    ResetFigureDDM(current_figure, cur_draw_mode)
   end
 
 end

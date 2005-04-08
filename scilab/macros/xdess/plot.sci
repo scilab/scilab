@@ -20,7 +20,6 @@ end
 
 
 if ~rhs
-  clf();
   //LineSpec and PropertySpec examples:
   clf();
   t=0:%pi/20:2*%pi;
@@ -191,22 +190,15 @@ end
 
 
 
-
-
-
-// I reverse P upside-down
-//P = P($:-1:1,:);
-
+// delay the drawing commands
+// smart drawlater
+current_figure=gcf();
+cur_draw_mode = current_figure.immediate_drawing;
+current_figure.immediate_drawing = 'off';
 
 
 //Now, we plot the decomposed plots one by one with their own linespec
 // provided_data = 2 : x and y are provided
-
-// differ the drawing command
-// smart drawlater
-f=gcf();
-cur_draw_mode = f.immediate_drawing;
-f.immediate_drawing = 'off';
 
 //disp("P=")
 //disp(P)
@@ -243,14 +235,14 @@ for i=1:numplot
       ListArg(P(i,2)) = tmp;
     end
 
-    [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)))
+    [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)),current_figure,cur_draw_mode)
   else
     if or(size(ListArg(P(1,2)))==1)  // If this is a vector
       X=1:length(ListArg(P(1,2))); // insert an abcsissa vector of same length,
     else                                  // if this is a matrix,
       X=1:size(ListArg(P(1,2)),1); // insert an abcsissa vector with 
     end
-    [X,Y] = checkXYPair(typeOfPlot,X,ListArg(P(1,2)))
+    [X,Y] = checkXYPair(typeOfPlot,X,ListArg(P(1,2)),current_figure,cur_draw_mode)
   end
 
   // Case if 'Xdata', 'Ydata' or 'Zdata' have been set in (PropertyName,Propertyvalue) couples
@@ -264,17 +256,18 @@ for i=1:numplot
     PropertyValue = ListArg(Property+1);
     
     // Xdata can ONLY be a vector (cf. Matlab help)
-    PName = getPlotPropertyName(PropertyName);
+    PName = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode);
     if (PName == 'xdata')
       
       if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
-	disp("Xdata value must be a column or row vector.")
+	disp("Xdata value must be a column or row vector.");
+	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
 	PropertyValue = PropertyValue(:); // force
 	if or(size(X))==1  // If X is a vector (inevitably a column vector because checkXYPair always returns a column vector)
 	  X = PropertyValue; // X is replaced by PropertyValue
-	  [X,Y] = checkXYPair(typeOfPlot,X,Y)
+	  [X,Y] = checkXYPair(typeOfPlot,X,Y,current_figure,cur_draw_mode)
 	else // X is a matrix
 	  if size(PropertyValue,'*') == size(X,1)
 	    for j=1:size(PropertyValue,'*')
@@ -283,6 +276,7 @@ for i=1:numplot
 	  else
 	    str='plot : incompatible dimensions in input arguments';
 	    error(str);
+	    ResetFigureDDM(current_figure, cur_draw_mode);
 	  end
 	end
       end
@@ -291,13 +285,14 @@ for i=1:numplot
     elseif (PName == 'ydata')
       
       if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
-	disp("Ydata value must be a column or row vector.")
+	disp("Ydata value must be a column or row vector.");
+	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
 	PropertyValue = PropertyValue(:); // force
 	if or(size(Y))==1  // If Y is a vector (inevitably a column vector because checkXYPair always returns a column vector)
 	  Y = PropertyValue; // Y is replaced by PropertyValue
-	  [X,Y] = checkXYPair(typeOfPlot,X,Y)
+	  [X,Y] = checkXYPair(typeOfPlot,X,Y,current_figure,cur_draw_mode)
 	else // Y is a matrix
 	  if size(PropertyValue,'*') == size(Y,1)
 	    for j=1:size(PropertyValue,'*')
@@ -306,6 +301,7 @@ for i=1:numplot
 	  else
 	    str='plot : incompatible dimensions in input arguments';
 	    error(str);
+	    ResetFigureDDM(current_figure, cur_draw_mode);
 	  end
 	end
 	
@@ -317,8 +313,6 @@ for i=1:numplot
     Property = Property+2;
   end
   
-  
-
 
   
   //Now we have an array P [numplot x 3] containing indices pointing on T for :
@@ -336,14 +330,22 @@ for i=1:numplot
   
   
   if (P(i,3)<>0) then // if we have a line spec <=> index <> 0
-    [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(P(i,3))); 
+    [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(P(i,3)),current_figure,cur_draw_mode); 
   end
 
+  
   // The plot is made now :
   
   //  pause;
-  plot2d(X,Y);
-  agreg=gce();  // when using plot2d, we always have agregation as current entity
+  err = execstr('plot2d(X,Y)','errcatch','m');
+  
+  if err <> 0
+    mprintf("Error %d : in plot2d called by plot",err);
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    return;
+  end
+  
+  agreg=gce();  // when using plot2d, we always have an agregation as the current entity
 
   FinalAgreg = [agreg FinalAgreg];
 
@@ -435,7 +437,7 @@ Curves = Agreg.children
 Curves.mark_size_unit='point';
 
 while (Property <= nv-1)
-  setPlotProperty(ListArg(Property),ListArg(Property+1),Curves)
+  setPlotProperty(ListArg(Property),ListArg(Property+1),Curves,current_figure,cur_draw_mode)
   
   Property = Property+2;
 end
@@ -453,9 +455,24 @@ end
 
 //postponed drawings are done now !
 // smart drawnow
-f.immediate_drawing = cur_draw_mode;
+ResetFigureDDM(current_figure, cur_draw_mode)
 
 endfunction
 
 
 
+
+// Reset the Default Drawing Mode (DDM) of the figure
+// immediate_drawing is set to its input value.
+function ResetFigureDDM(cur_figure, cur_draw_mode)
+
+if type(cur_figure == 9)
+  if cur_figure.type == "Figure"
+    cur_figure.immediate_drawing = cur_draw_mode;
+  else
+    disp("Error in ResetFigureDDM : input argument must be a figure graphic handle");
+    return;
+  end
+end
+
+endfunction
