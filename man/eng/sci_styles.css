@@ -1,0 +1,34 @@
+body {
+	color: black;
+	background: white;
+	font-family: Verdana,Arial,sans-serif;
+}
+
+a {color: blue; text-decoration:none}
+a:visited {color: #00a}
+a:active {color: red}
+a:hover { text-decoration:underline }
+
+h1,h2 { text-align:center }
+h1 { padding: 2em 0; margin:auto}
+h2.section {border-top: 1px solid #aaa;}
+
+/**********************************/
+/* menu                           */
+/**********************************/
+
+div.menu {
+	background: #ccf;
+	margin: 0; padding: 0;
+	border: thin solid #00A;
+	padding: 0.5em 0.5em;
+	font-size: 90%;
+}
+
+div.titre {
+	margin: 0; padding: 0;
+	padding: 0.5em 0.5em;
+	font-size: 150%;
+	font-weight: bold;
+	font-variant: small-caps;
+}
