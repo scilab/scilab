@@ -2223,27 +2223,16 @@ Global
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Debug Information.ActiveCfg = Release with Atlas without Java|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Debug Information.Build.0 = Release with Atlas without Java|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug.ActiveCfg = Debug|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug.Build.0 = Debug|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug with Atlas.ActiveCfg = Debug|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug with Atlas.Build.0 = Debug|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug with Atlas without Java.ActiveCfg = Debug|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug with Atlas without Java.Build.0 = Debug|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug without Java.ActiveCfg = Debug|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Debug without Java.Build.0 = Debug|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Pentium_Release.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Pentium_Release.Build.0 = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.PIV_Release.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.PIV_Release.Build.0 = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.PIV_Release with Atlas.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.PIV_Release with Atlas.Build.0 = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release.Build.0 = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Atlas.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Atlas.Build.0 = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Atlas without Java.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Atlas without Java.Build.0 = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Debug Information.ActiveCfg = Release|Win32
-		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Debug Information.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
