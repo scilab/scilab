@@ -927,7 +927,7 @@ Francois VOGEL, 24/03/05
  * version --> 3.56
 
 Francois VOGEL, 25/03/05
- * version --> 4.0 for inclusion in Scilab 3.1RC
+ * version --> 4.0
 
 Francois VOGEL, 03/04/05
  * Scipad silently displays the already opened buffer if the corresponding
@@ -935,4 +935,9 @@ Francois VOGEL, 03/04/05
  * Bindings with shift modifier corrected for Solaris Sun OS
  * env(SCIHOME) is now used instead of env(HOME) for saving the preferences
    file (changes by A. Cornet)
- * version --> 4.1
+ * version --> 4.1 - This version comes with Scilab 3.1RC
+
+Francois VOGEL, 10/04/05
+ * Dropping text at the same place it was dragged from does no more tag the
+   buffer as modified
+ * version --> 4.2

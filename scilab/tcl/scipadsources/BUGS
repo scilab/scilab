@@ -214,6 +214,8 @@ Wishes:
  Possible references for implementation on a Windows box are:
  http://wiki.tcl.tk/11319
  http://wiki.tcl.tk/9846
+ http://pages.infinit.net/cclients/files/tkprint1.1.html
+ http://wiki.tcl.tk/2497
 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add

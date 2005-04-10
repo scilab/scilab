@@ -12,10 +12,15 @@ proc tkdndbind {w} {
 
 # Drag and drop text within Scipad - More complicated!
         dnd bindtarget $w text/plain <Drop> { \
-            if {"%A" == "copy"} { \
-                %W tag remove sel 0.0 end \
+            if {[%W tag ranges sel] != ""} { \
+                if { ! ([%W compare sel.first <= [%W index @%x,%y]] && \
+                        [%W compare [%W index @%x,%y] <= sel.last] ) } { \
+                    if {"%A" == "copy"} { \
+                        %W tag remove sel 0.0 end \
+                    } ; \
+                    puttext %W %D ; \
+                } ; \
             } ; \
-            puttext %W %D ; \
             if {$cursorblink == "true"} { \
                 %W configure -insertofftime 500 \
             } \
@@ -70,6 +75,8 @@ proc tkdndbind {w} {
 proc Button1BindText { w x y } {
 # What is inside the if {$cursorblink == "true"} is needed to ensure that
 # the cursor is on during a drag. This is a workaround to avoid tk bug 1169429
+# See https://sourceforge.net/tracker/?func=detail&atid=112997&aid=1169429&group_id=12997
+# The proper fix is included in any tk version strictly greater than 8.5.0 beta 3
     global extendsel cursorblink
     set extendsel "true"
     tk::TextButton1 $w $x $y ; \
