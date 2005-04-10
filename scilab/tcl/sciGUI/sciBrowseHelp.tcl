@@ -282,10 +282,15 @@ proc sciGUIBrowseHelp { {winId -1} update filelist {toFind ""} } {
                 pack $w.l.t -side top -fill x -expand 0 
                 pack $w.l.b -side top -fill both -expand 1 -pady 3
 
-                # 3 LINES ADDED BY FRANCOIS VOGEL, 03/04/05 - Implements Scilab request 106
+                # 3 BINDINGS ADDED BY FRANCOIS VOGEL, 03/04/05 - Implements Scilab request 106
                 bind $w.l.b.tree <Enter> {focus %W}
                 bind $w.l.b.tree <Leave> {focus [winfo toplevel %W].r.f.text}
-                bind $w.l.b.tree <MouseWheel> {%W yview scroll [expr {-(%D/120)}] units}
+                bind $w.l.b.tree <MouseWheel> {
+                    set fra [[winfo toplevel %W].l.b.sb get] ; \
+                    if {[lindex $fra 0]!="0.0" || [lindex $fra 1]!="1.0"} { \
+                        %W yview scroll [expr {-(%D/120)}] units \
+                    }
+                }
 
                 pack $w.l -side left -padx 5 -fill both -expand 0
                 pack $w.r -side left -padx 5 -fill both -expand 1
