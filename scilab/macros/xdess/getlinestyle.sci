@@ -35,8 +35,9 @@ deff('menu_cancel(k,gwin)','global done;done=2')
 
 set('figure_style','new')
 f=gcf();
+cur_draw_mode = f.immediate_drawing;
+f.immediate_drawing='off'
 a=gca();
-a.visible='off';
 a.axes_visible='off';
 a.data_bounds=[0 0;5 12];
 a.font_size=3;
@@ -55,7 +56,7 @@ for k=1:6
   xpoly(x,2*k*ones(x));p=gce();
   p.mark_mode='off',p.line_style=k;
 end
-a.visible='on'; //draw on the screen
+f.immediate_drawing=cur_draw_mode;
 
 global pos done;done=-1;
 ksel=1;
