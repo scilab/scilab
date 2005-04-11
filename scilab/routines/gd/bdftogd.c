@@ -10,19 +10,19 @@
 /* extern gdFontPtr FontPtr;*/
 
 int GetTag(s,tag)
-  char *s, *tag;
- {
-   int i;
-   i=0;
-   while (*s) {
-     tag[i++] = *s++;
-     if (*s == ' ' || *s == '\t' || *s == '\n') {
-	tag[i] = '\0';
-	return i++;
-      }
-   }
+     char *s, *tag;
+{
+  int i;
+  i=0;
+  while (*s) {
+    tag[i++] = *s++;
+    if (*s == ' ' || *s == '\t' || *s == '\n') {
+      tag[i] = '\0';
+      return i++;
+    }
+  }
   return i; /* Correction warning missing return statement at end of non-void function */
- }
+}
 
 void dispchar(C,height,width)
      char *C;
@@ -37,7 +37,7 @@ void dispchar(C,height,width)
     }
     printf("\n");
   }
-printf("\n");
+  printf("\n");
 }
 
 int ReadbdfFont(f,FontPtr,FontName)
@@ -69,8 +69,8 @@ int ReadbdfFont(f,FontPtr,FontName)
 	sscanf(s,"%s %s",tag,FontName);
       }
       else if (!strcmp(tag,"SPACING")){
-    char buff[256];
-    int nbchar = sprintf(buff,"%%%ds %%3s",MAXLINE-4);
+	char buff[256];
+	int nbchar = sprintf(buff,"%%%ds %%3s",MAXLINE-4);
 	buff[nbchar+1]='\0';
 
 	sscanf(s,buff,tag,Spacing);
@@ -131,8 +131,8 @@ int ReadbdfFont(f,FontPtr,FontName)
 
 	/* ?????? */
         if (curptrs >0)
-	    data[curptrs-1]=0;
-
+	  data[curptrs-1]=0;
+	
         curptrs = curptrs + width;
 	nrow++;
       }
