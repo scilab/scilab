@@ -57,11 +57,13 @@ C           XERSVE.  (RWC)
 C   910626  Added LIBTAB and SUBTAB to SAVE statement.  (BKS)
 C   920501  Reformatted the REFERENCES section.  (WRB)
 C***END PROLOGUE  XERSVE
+      include '../stack.h'
       PARAMETER (LENTAB=10)
       INTEGER LUN(5)
       CHARACTER*(*) LIBRAR, SUBROU, MESSG
       CHARACTER*8  LIBTAB(LENTAB), SUBTAB(LENTAB), LIB, SUB
       CHARACTER*20 MESTAB(LENTAB), MES
+      CHARACTER*148 CBUFF
       DIMENSION NERTAB(LENTAB), LEVTAB(LENTAB), KOUNT(LENTAB)
       SAVE LIBTAB, SUBTAB, MESTAB, NERTAB, LEVTAB, KOUNT, KOUNTX, NMSG
       DATA KOUNTX/0/, NMSG/0/
@@ -75,27 +77,42 @@ C
 C
 C        Print to each unit.
 C
-         CALL XGETUA (LUN, NUNIT)
-         DO 20 KUNIT = 1,NUNIT
-            IUNIT = LUN(KUNIT)
-            IF (IUNIT.EQ.0) IUNIT = I1MACH(4)
-C
-C           Print the table header.
-C
-            WRITE (IUNIT,9000)
-C
-C           Print body of table.
-C
-            DO 10 I = 1,NMSG
-               WRITE (IUNIT,9010) LIBTAB(I), SUBTAB(I), MESTAB(I),
-     *            NERTAB(I),LEVTAB(I),KOUNT(I)
-   10       CONTINUE
-C
-C           Print number of other errors.
-C
-            IF (KOUNTX.NE.0) WRITE (IUNIT,9020) KOUNTX
-            WRITE (IUNIT,9030)
-   20    CONTINUE
+         CALL BASOUT(IO,WTE,'0          ERROR MESSAGE SUMMARY')
+         CALL BASOUT(IO,WTE,
+     +        ' LIBRARY    SUBROUTINE MESSAGE START             NERR'//
+     +        '     LEVEL     COUNT')
+         DO 10 I = 1,NMSG
+            WRITE (CBUFF,9010) LIBTAB(I), SUBTAB(I), MESTAB(I),
+     *           NERTAB(I),LEVTAB(I),KOUNT(I)
+            CALL BASOUT(IO,WTE,CBUFF)
+ 10      CONTINUE
+         IF (KOUNTX.NE.0) then
+            WRITE (CBUFF,9020) KOUNTX
+            CALL BASOUT(IO,WTE,CBUFF)
+         ENDIF
+         CALL BASOUT(IO,WTE,' ')
+
+CSTD         CALL XGETUA (LUN, NUNIT)
+CSTD         DO 20 KUNIT = 1,NUNIT
+CSTD            IUNIT = LUN(KUNIT)
+CSTD            IF (IUNIT.EQ.0) IUNIT = I1MACH(4)
+CSTDC
+CSTDC           Print the table header.
+CSTDC
+CSTD            WRITE (IUNIT,9000)
+CSTDC
+CSTDC           Print body of table.
+CSTDC
+CSTD            DO 10 I = 1,NMSG
+CSTD               WRITE (IUNIT,9010) LIBTAB(I), SUBTAB(I), MESTAB(I),
+CSTD     *            NERTAB(I),LEVTAB(I),KOUNT(I)
+CSTD   10       CONTINUE
+CSTDC
+CSTDC           Print number of other errors.
+CSTDC
+CSTD            IF (KOUNTX.NE.0) WRITE (IUNIT,9020) KOUNTX
+CSTD            WRITE (IUNIT,9030)
+CSTD   20    CONTINUE
 C
 C        Clear the error tables.
 C

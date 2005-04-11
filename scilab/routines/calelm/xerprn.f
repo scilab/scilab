@@ -74,6 +74,7 @@ C   891214  Prologue converted to Version 4.0 format.  (WRB)
 C   900510  Added code to break messages between words.  (RWC)
 C   920501  Reformatted the REFERENCES section.  (WRB)
 C***END PROLOGUE  XERPRN
+      include '../stack.h'
       CHARACTER*(*) PREFIX, MESSG
       INTEGER NPREF, NWRAP
       CHARACTER*148 CBUFF
@@ -123,9 +124,11 @@ C       IF THE MESSAGE IS ALL BLANKS, THEN PRINT ONE BLANK LINE.
 C
       IF (LENMSG .EQ. 0) THEN
          CBUFF(LPREF+1:LPREF+1) = ' '
-         DO 40 I=1,NUNIT
-            WRITE(IU(I), '(A)') CBUFF(1:LPREF+1)
-   40    CONTINUE
+C     THREE NEXT LINES REPLACED FOR SCILAB INTERFACE
+CSTD         DO 40 I=1,NUNIT
+CSTD            WRITE(IU(I), '(A)') CBUFF(1:LPREF+1)
+CSTD   40    CONTINUE
+         CALL BASOUT(IO,WTE,CBUFF(1:LPREF+1))
          RETURN
       ENDIF
 C
@@ -219,9 +222,11 @@ C
 C
 C       PRINT
 C
-      DO 60 I=1,NUNIT
-         WRITE(IU(I), '(A)') CBUFF(1:LPREF+LPIECE)
-   60 CONTINUE
+C     THREE NEXT LINES REPLACED FOR SCILAB INTERFACE
+CSTD       DO 60 I=1,NUNIT
+CSTD          WRITE(IU(I), '(A)') CBUFF(1:LPREF+LPIECE)
+CSTD    60 CONTINUE
+         CALL BASOUT(IO,WTE,CBUFF(1:LPREF+LPIECE))
 C
       IF (NEXTC .LE. LENMSG) GO TO 50
       RETURN
