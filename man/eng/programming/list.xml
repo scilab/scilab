@@ -53,12 +53,10 @@
    </ITEMIZE>
   </SECTION>
    <SECTION label="Remarks">
-     <P>Scilab provides also another kind of list, the <LINK>tlist</LINK> type (typed list) which 
-        is useful to define a new data type with operator <LINK>overloading</LINK> facilities. 
-        A more recent type, the <LINK>mlist</LINK> type has all the properties of <EM>tlist</EM> 
-        with the additional possibility to redefine the extraction or insertion 
-        (<LINK>hypermatrices</LINK> which are multi-dimensionnal arrays in scilab are
-         in fact <EM>mlist</EM>).
+     <P>Scilab provides also other kinds of list, the <LINK>tlist</LINK> type (typed list) and
+        the <LINK>mlist</LINK> type which are useful to define a new data type with operator 
+        <LINK>overloading</LINK> facilities (<LINK>hypermatrices</LINK> which are 
+        multi-dimensionnal arrays in scilab are in fact <EM>mlist</EM>).
      </P>
      <P>Matlab <EM>struct</EM> are also available.</P>
   </SECTION>

@@ -222,7 +222,7 @@
       <ITEM label="uniform (uin)">
         <SP>: <VERB>Y=grand(m,n,'uin',Low,High)</VERB> generates random integers uniformly 
      distributed between <VERB>Low</VERB> and <VERB>High</VERB> (included). <VERB>High</VERB>
-     and <VERB>Low</VERB> must be integers such that <VERB>(High-Low+1) &gt; 2,147,483,561</VERB>.</SP>
+     and <VERB>Low</VERB> must be integers such that <VERB>(High-Low+1) &lt; 2,147,483,561</VERB>.</SP>
       </ITEM>
       <ITEM label="uniform (lgi)">
         <SP>: <VERB>Y=grand(m,n,'lgi')</VERB> returns the basic output of the current generator : random integers  

@@ -261,7 +261,7 @@
 <SP>   : <VERB>Y=grand(m,n,'uin',Low,High)</VERB> génère des entiers aléatoires suivant la loi uniforme
      sur <VERB>[Low, High]</VERB>. <VERB>High</VERB>
      et <VERB>Low</VERB> doivent être des entiers tels que <VERB>(High-Low+1)
-	    &gt; 2147483561</VERB>.</SP>
+	    &lt; 2147483561</VERB>.</SP>
   </ITEM>
 
   <ITEM label='uniforme (lgi)'>
@@ -492,29 +492,29 @@
 
   <AUTHORS>
   <AUTHORS_ITEM label='randlib'>
-     <SP>Les codes qui permettent de générer les lois autres que def, unf, lgi,  uin et geom 
+     <SP> Les codes qui permettent de générer les lois autres que def, unf, lgi,  uin et geom 
      proviennent de &quot;Library of Fortran Routines for Random Number  Generation&quot;, 
      de Barry W. Brown et James Lovato, Department of Biomathematics, The University of 
      Texas, Houston.</SP>  
   </AUTHORS_ITEM>
   <AUTHORS_ITEM label='mt'>
-     <SP>Le code est le mt19937int.c par M. Matsumoto and  T. Nishimura, &quot;Mersenne Twister: 
+     <SP> Le code est le mt19937int.c par M. Matsumoto and  T. Nishimura, &quot;Mersenne Twister: 
      A 623-dimensionally equidistributed  uniform pseudorandom number generator&quot;, 
      ACM Trans. on Modeling and  Computer Simulation Vol. 8, No. 1, January, pp.3-30 1998.</SP> 
   </AUTHORS_ITEM>
   <AUTHORS_ITEM label='kiss'>
-     <SP>Ce code a été donné par G. Marsaglia lors d'une discussion concernant la génération
+     <SP> Ce code a été donné par G. Marsaglia lors d'une discussion concernant la génération
      de nombres aléatoires en langage C dans plusieurs forums usenet (dont sci.math.num-analysis) 
      &quot;My offer of  RNG&apos;s for C was an invitation to dance...&quot; seul kiss a été
      inclus dans Scilab (kiss est construit à partir de plusieurs générateurs mais qui ne
      sont accessibles à l'interpréteur scilab).</SP> 
   </AUTHORS_ITEM>
   <AUTHORS_ITEM label='clcg2'>
-     <SP>Cette méthode est de P. L&apos;Ecuyer mais le code C code provient de la page
+     <SP> Cette méthode est de P. L&apos;Ecuyer mais le code C code provient de la page
      personnelle de Luc  Devroye (http://cgm.cs.mcgill.ca/~luc/rng.html).</SP> 
   </AUTHORS_ITEM>
   <AUTHORS_ITEM label='clcg4'>
-     <SP>Ce code est de P. L&apos;Ecuyer et Terry H.Andres et est distribué avec un article
+     <SP> Ce code est de P. L&apos;Ecuyer et Terry H.Andres et est distribué avec un article
      à partir de la page personnelle de P. L&apos;Ecuyer 
      ( http://www.iro.umontreal.ca/~lecuyer/papers.html). Ce paquetage est le successeur 
      logique d'un plus ancien utilisant le générateur clcg2 (muni d'un mécanisme équivalent
@@ -523,10 +523,10 @@
      17:1,pp 98-111.</SP> 
   </AUTHORS_ITEM>
   <AUTHORS_ITEM label='fsultra'>
-     <SP>un code d' Arif Zaman (arif@stat.fsu.edu) et de George Marsaglia (geo@stat.fsu.edu)</SP> 
+     <SP> un code d' Arif Zaman (arif@stat.fsu.edu) et de George Marsaglia (geo@stat.fsu.edu)</SP> 
   </AUTHORS_ITEM>
   <AUTHORS_ITEM label='scilab packaging'>
-     <SP>Par Jean-Philippe Chancelier et Bruno Pinçon  </SP> 
+     <SP> Par Jean-Philippe Chancelier et Bruno Pinçon  </SP> 
   </AUTHORS_ITEM>
   </AUTHORS>
 

@@ -61,12 +61,11 @@
    </ITEMIZE>
   </SECTION>
    <SECTION label="Remarques">
-     <P>Scilab propose une autre sorte de liste, les <LINK>tlist</LINK> (pour listes typées) qui 
-        sont très utiles pour définir de nouveaux types de données avec possibilité de surcharge  
-         des opérateurs classiques (voir <LINK>overloading</LINK>). Un type plus récent, les 
-        <LINK>mlist</LINK> permet en plus de rédéfinir aussi les opérations d'extraction/insertion 
-        (les tableaux multidimensionnels de scilab (les <LINK>hypermatrices</LINK>) sont en fait
-        codés comme des <EM>mlist</EM>).
+     <P>Scilab propose deux autres sortes de liste, les <LINK>tlist</LINK> (pour listes typées)
+        et les <LINK>mlist</LINK> qui sont très utiles pour définir de nouveaux types de 
+        données avec possibilité de surcharge des opérateurs classiques (voir <LINK>overloading</LINK>).
+        Les tableaux multidimensionnels de scilab (les <LINK>hypermatrices</LINK>) sont en fait
+        codés comme des <EM>mlist</EM>.
      </P>
      <P>Les structures Matlab (<EM>struct</EM>) sont aussi utilisables.</P>
   </SECTION>
