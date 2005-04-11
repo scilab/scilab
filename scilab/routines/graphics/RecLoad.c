@@ -692,6 +692,7 @@ static int LoadColormap()
 {
   double *table; double x;
   int m,i,trois=3;
+  int succeed;
   if (LoadLI(&m) == 0) return(0);
   table  = (double *)  MALLOC(3*m*sizeof(double));
   if ( table == NULL) return(0);
@@ -705,7 +706,7 @@ static int LoadColormap()
       table[i]=x;
       /** sciprint("loading %f\r\n",table[i]); **/
     }
-  C2F(dr)("xset","colormap",&m,&trois,PI0,PI0,PI0,PI0,table,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","colormap",&m,&trois,&succeed,PI0,PI0,PI0,table,PD0,PD0,PD0,0L,0L);
   FREE(table);
   return(1);
 }
