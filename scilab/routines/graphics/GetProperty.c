@@ -1145,7 +1145,8 @@ sciGetMarkStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->markstyle;
       break;
     case SCI_SUBWIN:
-      return sciGetMarkStyle (sciGetParent (pobj));
+      /*      return sciGetMarkStyle (sciGetParent (pobj));*/ /* F.Leray 11.04.05 : to fix bug 1296 */
+      return (sciGetGraphicContext(pobj))->markstyle; /* and replaced by this line */
       break;
     case SCI_ARC:
       return (sciGetGraphicContext(pobj))->markstyle;
