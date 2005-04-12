@@ -685,6 +685,9 @@ cd .. &gt;nul
 				RelativePath=".\ctest.c">
 			</File>
 			<File
+				RelativePath=".\dassl.c">
+			</File>
+			<File
 				RelativePath=".\getdate.c">
 			</File>
 			<File
