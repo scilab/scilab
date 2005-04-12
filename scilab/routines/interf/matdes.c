@@ -3133,7 +3133,7 @@ int scixset(fname,fname_len)
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   /* NG beg */
-  if ((versionflag == 0) && (strncmp(cstk(l1),"window",6L) == 0))
+  if ((version_flag() == 0) && (strncmp(cstk(l1),"window",6L) == 0))
     if (sciSwitchWindow(&x[0]) != 0){
       Scierror(999,"%s: It was not possible to create the requested figure",fname);
     }
@@ -5491,17 +5491,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {
 	if ((strncmp(cstk(*value),"old", 3) == 0)) {
 	  if (version_flag() == 0)  {
-	    versionflag = 1;
-	    /*  versionflag = 0; */
+/* 	    versionflag = 1; */
+
 	    sciXbasc();
-	    /*  versionflag = 1; */
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	    C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
 	    if (XGC->mafigure != (sciPointObj *)NULL) {
 	      DestroyFigure (XGC->mafigure);
 	      XGC->mafigure = (sciPointObj *)NULL; 
 	    }
-	    XGC->graphicsversion = 0; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
+	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
 	  }
 	}
 	else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
@@ -5515,7 +5514,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      /* Adding F.Leray 25.03.04*/
 	      sciSetCurrentObj(figure);
 	      XGC->mafigure = (sciPointObj *) figure;
-	      XGC->graphicsversion=1;   /* new graphic mode */
+	      XGC->graphicsversion = 0;   /* new graphic mode */
 	      cf_type=1;
 	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
 		sciSetCurrentObj(psubwin);

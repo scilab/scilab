@@ -53,6 +53,7 @@ extern int versionflag;
 void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag); 
 void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4);
+static void SetGraphicsVersion();
 void C2F(setforegroundXfig)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetXfig)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundXfig)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -1554,7 +1555,8 @@ static void C2F(FileInitXfig)(void)
   verbose = 0; 
   C2F(getwindowdimXfig)(&verbose,x,&narg,vdouble);
   FPRINTF((file,"#FIG 3.1\nPortrait\nCenter\nInches\n1200 2\n"));
-  C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0)	;
+  C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0);
+  SetGraphicsVersion();
   if (  CheckColormap(&m) == 1) 
     { 
       int i;
@@ -1638,11 +1640,17 @@ void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
     to force usecolorPos to perform initialisations 
     **/
   ScilabGCXfig.mafigure = (sciPointObj *)NULL;
-  ScilabGCXfig.graphicsversion = (versionflag==1) ? 0:1;/* NG */
+/*   ScilabGCXfig.graphicsversion = versionflag; /\* NG *\/ */
   ScilabGCXfig.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorXfig)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1;
   strcpy(ScilabGCXfig.CurNumberDispFormat,"%-5.2g");
+}
+
+
+static void SetGraphicsVersion()
+{ 
+  ScilabGCXfig.graphicsversion = versionflag; /* NG */
 }
 
 /*-------------------------------------------------------

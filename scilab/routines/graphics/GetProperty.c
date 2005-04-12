@@ -35,12 +35,12 @@
 
 extern sciHandleTab *PENDOFHANDLETAB;
 
-extern int versionflag;
 extern int xinitxend_flag;
 
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 
+extern int versionflag; /* just used for version_flag() function */
 extern int cf_type;
 
 /* extern sciClipTab ptabclip[15]; */
@@ -3763,7 +3763,7 @@ sciGetCurrentFigure ()
 	{
 	  sciSetCurrentObj (mafigure); 
 	  moncurScilabXgc->mafigure = mafigure;
-          moncurScilabXgc->graphicsversion = 1;
+          moncurScilabXgc->graphicsversion = 0;
 	  if ((masousfen = ConstructSubWin (mafigure, moncurScilabXgc->CurWindow)) != NULL) {
 	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
@@ -3782,8 +3782,8 @@ sciGetCurrentScilabXgc ()
 { 
   integer v=0;
   double *XGC, dv=0;
-  struct BCG *CurrentScilabXgc; 
- 
+  struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
+  
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
   return (struct BCG *) CurrentScilabXgc;
@@ -4403,15 +4403,16 @@ sciGetIdFigure (int *vect, int *id, int *flag)
 int version_flag() 
 { 
   double *XGC,dv=0;
-  struct BCG *CurrentScilabXgc; 
+  struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
   int v=0;
 
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
   /*  if (CurrentScilabXgc==(struct BCG *)NULL) return 1; */
-  if (CurrentScilabXgc==(struct BCG *)NULL) return 0; /* New Graphic mode returned by default F.Leray 11.06.04 */
+  if (CurrentScilabXgc==(struct BCG *)NULL) 
+    return versionflag; /* default versionflag is returned */
   
-  return (CurrentScilabXgc->graphicsversion == 0) ? 1 : 0; 
+  return CurrentScilabXgc->graphicsversion;
 }
 
 

@@ -22,7 +22,6 @@
  *            flag scig_buzy  is used to check for that 
  *            
  ********************************************************/
-extern int versionflag; /* NG */
 extern int sciSwitchWindow  __PARAMS((int *winnum));/* NG */
 extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
 #if !defined(WIN32) && !defined(WITH_GTK)
@@ -319,7 +318,7 @@ int scig_2dzoom(integer win_num)
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   /* if ( (GetDriver()) !='R'&&version_flag !=0) */ /* F.Leray 03.03.04*/
-  if ( (GetDriver()) !='R'&&versionflag !=0)
+  if ( (GetDriver()) !='R'&& version_flag() !=0)
     {
       wininfo("Zoom works only with the Rec driver");
       return 0;
@@ -351,7 +350,7 @@ void   scig_unzoom(integer win_num)
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   /* if ( (GetDriver()) !='R'&&version_flag !=0) */ /* F.Leray 03.03.04*/
-  if ( (GetDriver()) !='R'&&versionflag !=0)
+  if ( (GetDriver()) !='R'&& version_flag() !=0)
     {
       wininfo("UnZoom works only with the Rec driver ");
     }
@@ -379,7 +378,7 @@ int scig_3drot(integer win_num)
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   /*  if ( (GetDriver()) !='R'&&version_flag !=0) */ /* F.Leray 03.03.04 */
-  if ( (GetDriver()) !='R'&&versionflag !=0)
+  if ( (GetDriver()) !='R'&& version_flag() !=0)
     {
       wininfo("Rot3D works only with the Rec driver");
       return 0;
@@ -408,7 +407,7 @@ void scig_sel(integer win_num)
   if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
     {
       C2F(dr)("xset","window",&win_num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if (versionflag==0) sciSwitchWindow(&win_num);
+      if (version_flag() == 0) sciSwitchWindow(&win_num);
     }
 }
 
@@ -422,7 +421,7 @@ void scig_raise(integer win_num)
   char c ;
   int cur,n,na,verb=0,iflag=0;
 
-  if (versionflag == 0) /* NG */
+  if (version_flag() == 0) /* NG */
     { 
       sciGetIdFigure (PI0,&n,&iflag);
       if (n>0)

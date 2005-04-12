@@ -89,6 +89,7 @@ void C2F(setdashstyleGif)(integer *value, integer *xx, integer *n);
 void C2F(Write2VectGif)();
 void C2F(WriteGenericGif)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCGif)(integer *v1, integer *v2, integer *v3, integer *v4);
+static void SetGraphicsVersion();
 void C2F(setforegroundGif)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetGif)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundGif)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -1831,8 +1832,9 @@ static void FileInitGif(void)
   verbose = 0; 
   C2F(getwindowdimGif)(&verbose,x,&narg,vdouble);
   ColorInitGif();
-  InitScilabGCGif(PI0,PI0,PI0,PI0) ;
-
+  InitScilabGCGif(PI0,PI0,PI0,PI0);
+  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
+  
   if (  CheckColormap(&m) == 1) { /* a previously defined colormap */
 
     /* deallocate old colors*/
@@ -1963,13 +1965,18 @@ void InitScilabGCGif(integer *v1, integer *v2, integer *v3, integer *v4)
     **/
 
   ScilabGCGif.mafigure = (sciPointObj *)NULL;
-  ScilabGCGif.graphicsversion = (versionflag==1) ? 0:1;/* NG */
+/*   ScilabGCGif.graphicsversion = versionflag; /\* NG *\/ */
   ScilabGCGif.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorGif)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCGif.IDLastPattern = ScilabGCGif.Numcolors - 1;
   strcpy(ScilabGCGif.CurNumberDispFormat,"%-5.2g");
 }
 
+
+static void SetGraphicsVersion()
+{  
+  ScilabGCGif.graphicsversion = versionflag; /* NG */
+}
 
 /*-----------------------------------------------------
 \encadre{Draw an axis whith a slope of alpha degree (clockwise)

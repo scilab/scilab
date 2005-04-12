@@ -55,6 +55,7 @@ void C2F(setdashstylePos)(integer *value, integer *xx, integer *n);
 void C2F(Write2VectPos)(integer *vx, integer *vy, integer from, integer n, char *string, integer flag, integer fv);
 void C2F(WriteGenericPos)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCPos)(integer *v1, integer *v2, integer *v3, integer *v4);
+static void SetGraphicsVersion();
 void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -1659,7 +1660,9 @@ void FileInit(void)
   FPRINTF((file,"\n%% Init driver "));
   FPRINTF((file,"\n/PaintBackground {WhiteLev 2 add background eq {}{ (drawbox) 4 [background 1 add] [0 0 %d %d] dogrey}ifelse } def", x[0],x[1]));
 
-  InitScilabGCPos(PI0,PI0,PI0,PI0) ;
+  InitScilabGCPos(PI0,PI0,PI0,PI0);
+  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
+  
   FPRINTF((file,"\n%% End init driver "));
   FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
   /** If the X window exists we check its colormap **/
@@ -1749,7 +1752,7 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
     to force usecolorPos to perform initialisations 
     **/
   ScilabGCPos.mafigure = (sciPointObj *)NULL;
-  ScilabGCPos.graphicsversion = (versionflag==1) ? 0:1;/* NG */ 
+/*   ScilabGCPos.graphicsversion = versionflag; /\* NG *\/  */
 
   ScilabGCPos.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorPos)(&col,PI0,PI0,PI0);
@@ -1757,6 +1760,10 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
   strcpy(ScilabGCPos.CurNumberDispFormat,"%-5.2g");
 }
 
+static void SetGraphicsVersion()
+{
+  ScilabGCPos.graphicsversion = versionflag; /* NG */ 
+}
 
 /*-----------------------------------------------------
 \encadre{Draw an axis whith a slope of alpha degree (clockwise)

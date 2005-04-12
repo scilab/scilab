@@ -21,8 +21,6 @@
  * A List for storing Window scaling information 
  *----------------------------------------------*/
 
-extern int versionflag; /* Test for NG F.Leray 03.03.04*/
-
 static void scale_copy __PARAMS((WCScaleList *s1, WCScaleList *s2));
 static integer curwin __PARAMS((void));
 static void zoom_rect __PARAMS((double,double,double,double));
@@ -1353,7 +1351,7 @@ extern void unzoom()
 
 
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0 && versionflag !=0)  /* F.Leray 03.03.04*/
+  if (strcmp("Rec",driver) != 0 && version_flag() !=0)  /* F.Leray 03.03.04*/
     {
       Scistring("\n Use the Rec driver to unzoom " );
       return;

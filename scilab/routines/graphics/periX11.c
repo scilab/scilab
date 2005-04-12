@@ -2416,6 +2416,8 @@ void get_b(int i, float *b)
  *-----------------------------------------------------------*/
 
 static void InitMissileXgc(integer *v1, integer *v2, integer *v3, integer *v4);
+static void SetGraphicsVersion();
+
 
 static void xset_empty(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
@@ -3513,6 +3515,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       XSetIOErrorHandler((XIOErrorHandler) X_error_handler);
     }
   InitMissileXgc(PI0,PI0,PI0,PI0);
+  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
   /* to be sure that current values are recorded */
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
@@ -3792,7 +3795,7 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
       to force usecolorPos to perform initialisations 
   **/
   ScilabXgc->mafigure = (sciPointObj *)NULL;
-  ScilabXgc->graphicsversion = (versionflag==1) ? 0:1;/* NG */ 
+/*   ScilabXgc->graphicsversion = versionflag; /\* NG *\/  */
 
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   xset_usecolor(&i ,PI0,PI0,PI0);
@@ -3800,6 +3803,12 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   /** default scales **/
   Cscale2default();
 }
+
+static void SetGraphicsVersion()
+{
+  ScilabXgc->graphicsversion = versionflag; /* NG */ 
+}
+
 
 /* use the current ScilabXgc for reinitialization  
  * used when switching from one graphic window to an other one 

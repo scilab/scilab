@@ -31,8 +31,7 @@ extern sciPointObj *paxesmdl;
 /* sciClipTab ptabclip[15]; */
 BOOL modereplay = FALSE;
 
-int cmptclip=0;
-int cf_type;
+extern int cf_type;
 
 void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 {
@@ -2576,7 +2575,7 @@ sciSetDefaultValues ()
   else
     {
       C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L); 
-      sciGetScilabXgc (sciGetCurrentFigure())->graphicsversion = 1; /* To Re enable the NG -> graphicsversion = 1*/
+      sciGetScilabXgc (sciGetCurrentFigure())->graphicsversion = 0; /* To Re enable the NG -> graphicsversion = 0*/
     }
 }
 
@@ -3567,7 +3566,7 @@ int sciSwitchWindow(winnum)
 	{
 	  sciSetCurrentObj (mafigure); /* F.Leray 25.03.04*/
 	  CurXGC->mafigure = mafigure;
-          CurXGC->graphicsversion = 1;
+          CurXGC->graphicsversion = 0;
 	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL) {
 	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
