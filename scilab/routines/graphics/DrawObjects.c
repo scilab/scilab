@@ -6325,40 +6325,35 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    }
 	  }
 	} /* end SCI_SURFACE*/
-	else { 
-	  if (p == 1)/*point */
-	    C2F (dr) ("xmarks", "str", &p, polyx,polyy, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
-	  else if (p==2) /*segment*/{
-	    if (sciGetIsMark(pobj) == TRUE){
-	      integer v;
-	      double dv=0;
-	      int x[4], markidsizenew[2];
-	      int n1 = 5*npoly;
-	      
-	      x[0] = sciGetMarkForeground(pobj);
-	      
-	      markidsizenew[0] = sciGetMarkStyle(pobj);
-	      markidsizenew[1] = sciGetMarkSize (pobj);
-	      
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	      
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
-	      DrawNewMarks(pobj,n1,polyx,polyy,DPI);
-	    }
+	else { /* POLYLINE case starts here ! */
+	  if (sciGetIsMark(pobj) == TRUE){
+	    integer v;
+	    double dv=0;
+	    int x[4], markidsizenew[2];
 	    
-	    if(sciGetIsLine(pobj)){
-	      C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
-			PD0, PD0, PD0, 5L, 6L);
-	      C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
-			PD0, PD0, PD0, 5L, 10L);
-	      C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
-	      C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
-	      C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
+	    x[0] = sciGetMarkForeground(pobj);
+	    
+	    markidsizenew[0] = sciGetMarkStyle(pobj);
+	    markidsizenew[1] = sciGetMarkSize (pobj);
+	    
+	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+		      &dv, &dv, &dv, 5L, 4096);
+	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+		      &dv, &dv, &dv, &dv, 5L, 4096);
+	    
+	    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+		      PD0, PD0, 0L, 0L);
+	    DrawNewMarks(pobj,p,polyx,polyy,DPI);
+	  }
+	  
+	  if(sciGetIsLine(pobj)){
+	    C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
+		      PD0, PD0, PD0, 5L, 6L);
+	    C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
+		      PD0, PD0, PD0, 5L, 10L);
+	    C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
+	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
+	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  }
 	  else {/*patch*/
 	    int close=1;
