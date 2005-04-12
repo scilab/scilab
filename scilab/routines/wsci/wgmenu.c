@@ -24,21 +24,21 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	{
 	  int ierr = 0;
 	  
-/** Special cases **/
+	  /** Special cases **/
 	  switch (*s)
 	    {
-		  case TOOLBARGRAPH:
-			  if (ScilabGC->lpmw.LockToolBar == FALSE)
-				  {
-					if (ScilabGC->lpmw.ShowToolBar)	HideGraphToolBar(ScilabGC);
-					else ShowGraphToolBar(ScilabGC);
-				  }
-			  s++;
+	    case TOOLBARGRAPH:
+	      if (ScilabGC->lpmw.LockToolBar == FALSE)
+		{
+		  if (ScilabGC->lpmw.ShowToolBar)	HideGraphToolBar(ScilabGC);
+		  else ShowGraphToolBar(ScilabGC);
+		}
+	      s++;
 	      break;
-		case NEWFIG:
-			SaveCurrentLine(TRUE);
-			NewFigure(ScilabGC);
-			s++;
+	    case NEWFIG:
+	      SaveCurrentLine(TRUE);
+	      NewFigure(ScilabGC);
+	      s++;
 	      break;
 	    case ZOOM:
 	      scig_2dzoom (ScilabGC->CurWindow);
@@ -60,10 +60,10 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      s++;
 	      break;
 	    case COPYCLIP:
-		{
-			NewCopyClip (ScilabGC);
-			s++;
-		}
+	      {
+		NewCopyClip (ScilabGC);
+		s++;
+	      }
 	      break;
 	    case COPYCLIP1:
 	      CopyClip (ScilabGC);
@@ -121,9 +121,9 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      s++;
 	      break;
 	    }
-	/** all the special commands are directly performed 
-	  in the previous switch : we don't want to send any 
-	  other string to scilab **/
+	  /** all the special commands are directly performed 
+	      in the previous switch : we don't want to send any 
+	      other string to scilab **/
 	  d = buf;
 	  s = (BYTE *) "";
 	}
@@ -134,9 +134,9 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
     }
   *d = '\0';
   /** Now the result is a string in buf 
-    we can send the result to the textwindow **/
+      we can send the result to the textwindow **/
   /** we check if the string is coming from a dynamically 
-    added menu **/
+      added menu **/
   ScilabMenuAction (buf);
   LocalFree (buf);
 
@@ -154,7 +154,7 @@ void ScilabMenuAction (char *buf)
   char *d;
   if (strlen (buf) > 2 && buf[0] == '@')
     {
-/** special cases : buf was produced by a dynamic menu **/
+      /** special cases : buf was produced by a dynamic menu **/
       if (buf[1] == '0')
 	{
 	  /* Interpreted mode : we store the action on a queue */
@@ -181,7 +181,7 @@ void ScilabMenuAction (char *buf)
 		  *d = '\0';
 		}
 	    }
-/** removing leading @1execstr( **/
+	  /** removing leading @1execstr( **/
 	  C2F (setfbutn) (buf + 2 + 8, &rep);
 	  if (rep == 0)
 	    F2C (fbutn) (buf + 2, &(win), &(entry));
@@ -189,7 +189,7 @@ void ScilabMenuAction (char *buf)
     }
   else if (buf[0] != '\0')
     {
-/** standard string that we send to scilab **/
+      /** standard string that we send to scilab **/
       if (strlen (buf) == 1 && buf[0] <= 31 && buf[0] >= 1)
 	StoreCommand1 (buf, 0);
       else
@@ -262,7 +262,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
       ScilabGC->lpmw.macro[i] = (BYTE *) 0;
     }
   /** used to count items defined at start up in the menu bar :
-    for preventing deletion **/
+      for preventing deletion **/
   ScilabGC->lpmw.nCountMenu = 0;
   ScilabGC->lpmw.nButton = 0;
   ScilabGC->lpmw.hMenu = hMenu[0] = CreateMenu ();
@@ -356,11 +356,11 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 
   goto cleanup;
 
-nomemory:
+ nomemory:
   MessageBox (ScilabGC->hWndParent, "Out of memory",
 	      ScilabGC->lpgw->Title, MB_ICONEXCLAMATION);
 
-errorcleanup:
+ errorcleanup:
   if (hmacro)
     {
       for (i = 0; i < NUMMENU; i++)
@@ -376,7 +376,7 @@ errorcleanup:
       ScilabGC->lpmw.macro = (BYTE **) NULL;
     }
 
-cleanup:
+ cleanup:
   if (buf != (char *) NULL)
     LocalFree (buf);
   if (menufile != (GFILE *) NULL)
@@ -509,7 +509,7 @@ static void SciSetMenu (HMENU hmen, char *name, int num, int flag)
       char buf[256], *ptr;
       is = GetMenuString (hmen, i, buf, 256, MF_BYPOSITION);
       buf[is] = '\0';
-/** we strip the & sign which can be present in the menu name **/
+      /** we strip the & sign which can be present in the menu name **/
       if ((ptr = strstr (buf, "&")) != NULL)
 	lstrcpy (ptr, ptr + 1);
       if (strcmp (buf, name) == 0)
@@ -614,15 +614,15 @@ static void SciDelMenu (LPMW lpmw, char *name)
 	      for (j = 0; j < Nums1; j++)
 		{
 		  id = GetMenuItemID (hSubMenu, j);
-/** menu item without a macro : id < 0 **/
+		  /** menu item without a macro : id < 0 **/
 		  if (id < 0 || is == 0)
 		    continue;
 		  /** XXXX : we accept to delete predefined menus  
-		  if ( id < lpmw->nCountMenu ) 
-		    {
+		      if ( id < lpmw->nCountMenu ) 
+		      {
 		      sciprint("Warning : Can't delete predefined menus\r\n");
 		      continue;
-		    }
+		      }
 		  **/
 		  if (lpmw->macro[id] != (BYTE *) 0)
 		    {
@@ -634,15 +634,15 @@ static void SciDelMenu (LPMW lpmw, char *name)
 	  else
 	    {
 	      id = GetMenuItemID (lpmw->hMenu, i);
-/** menu item without a macro : id < 0 **/
+	      /** menu item without a macro : id < 0 **/
 	      if (id < 0 || is == 0)
 		continue;
 	      /** XXXX : we accept to delete predefined menus  
-	      if ( id < lpmw->nCountMenu ) 
-		{
+		  if ( id < lpmw->nCountMenu ) 
+		  {
 		  sciprint("Warning : Can't delete predefined menus\r\n");
 		  continue;
-		}
+		  }
 	      **/
 	      if (lpmw->macro[id] != (BYTE *) 0)
 		{
@@ -666,7 +666,7 @@ static void SciDelMenu (LPMW lpmw, char *name)
                  typ==0 : interpreted (execution of scilab instruction
                  typ!=0 : hard coded a routine is called
    fname;      : name of the action function  
-   *****************************************************/
+*****************************************************/
 
 void AddMenu (integer * win_num, char *button_name, char **entries,
 	      integer * ne, integer * typ, char *fname, integer * ierr)
@@ -750,7 +750,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
 	    }
 	  AppendMenu (hMenu, MF_STRING, nCountMenu, entries[i]);
 	  if ((macroptr = LocalAlloc (LPTR, lstrlen ("@%dexecstr(%s_%d(%d))")
-				   + lstrlen (fname) + 1)) != (BYTE *) NULL)
+				      + lstrlen (fname) + 1)) != (BYTE *) NULL)
 	    {
 	      if (*win_num < 0)
 		if (*typ==0) 
@@ -790,10 +790,10 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
    typ==0 : interpreted (execution of scilab instruction
    typ!=0 : hard coded a routine is called
    fname;      : name of the action function  
- */
+*/
 
 int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
-	     integer * ptrentries, integer * ne, integer * typ, char *fname,
+		  integer * ptrentries, integer * ne, integer * typ, char *fname,
 		  integer * ierr)
 {
   char **menu_entries;
@@ -808,9 +808,9 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
   /* Modification Allan CORNET */
   /* Réinitialisation Menu Console Principale */
   if ( (strcmp(button_name,"RESETMENU")==0) && (*win_num==-1) )
-  {
-	ResetMenu();	
-  }
+    {
+      ResetMenu();	
+    }
   else AddMenu (win_num, button_name, menu_entries, ne, typ, fname, ierr);
   return (0);
 }
@@ -821,7 +821,7 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
  ****************************************************/
 
 EXPORT BOOL CALLBACK
-  ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
+ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 {
   int i;
   switch (wmsg)
@@ -904,11 +904,11 @@ static void SavePs (struct BCG *ScilabGC)
   BYTE *s;
   char str[] = "[SAVESCG]XScilab Postscript[EOS]*[EOS]";
   int flag, ierr = 0;
-/** getting ls flags **/
+  /** getting ls flags **/
   ls.use_printer = 0;
   if (ExportStyle (ScilabGC) == FALSE)
     return;
-/** getting filename **/
+  /** getting filename **/
   d = filename;
   TranslateMacro (str);
   s = str;
@@ -924,7 +924,7 @@ static void SavePs (struct BCG *ScilabGC)
   switch (ls.ps_type)
     {
     case 0:
-	  /** postscript Epsf file **/
+      /** postscript Epsf file **/
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       wininfo ("Epsf file generation");
       dos2win32 (filename, filename1);
@@ -941,7 +941,7 @@ static void SavePs (struct BCG *ScilabGC)
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 2:
-	  /** Epsf + Tex file **/
+      /** Epsf + Tex file **/
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       wininfo ("Epsf and LaTeX files generation");
       dos2win32 (filename, filename1);
@@ -969,18 +969,18 @@ static void SavePs (struct BCG *ScilabGC)
       wininfo ("end of PPM file generation");
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
-	case 6:
-	  SetCursor (LoadCursor (NULL, IDC_WAIT));
+    case 6:
+      SetCursor (LoadCursor (NULL, IDC_WAIT));
       ExportBMP(ScilabGC,filename);
       wininfo ("end of BMP file generation");
       SetCursor (LoadCursor (NULL, IDC_CROSS));
-	  break;
-	case 7:
+      break;
+    case 7:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       ExportEMF(ScilabGC,filename);
       wininfo ("end of EMF file generation");
       SetCursor (LoadCursor (NULL, IDC_CROSS));
-	  break;
+      break;
     }
 	
 	
@@ -1010,18 +1010,18 @@ static void PrintPs (struct BCG *ScilabGC)
 {
   char *p1;
   char ori;
-/** getting ls flags **/
+  /** getting ls flags **/
   ls.use_printer = 1;
   if (ExportStyle (ScilabGC) == FALSE)
     return;
-/** getting filename **/
+  /** getting filename **/
   if ((p1 = getenv ("TMPDIR")) == (char *) 0)
     {
       sciprint ("Cannot find environment variable TMPDIR\r\n");
       return;
     }
   sprintf (filename, "%s/scilab-%d", p1, (int) ScilabGC->CurWindow);
-/** sciprint(" file name [%s] color=%d\r\n",filename,ls.colored); **/
+  /** sciprint(" file name [%s] color=%d\r\n",filename,ls.colored); **/
   dos2win32 (filename, filename1);
   scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
   ori = (ls.land == 1) ? 'l' : 'p';
@@ -1031,7 +1031,7 @@ static void PrintPs (struct BCG *ScilabGC)
 			(char *) 0) == FALSE)
 	sciprint ("Error while printing\r\n");
     }
-/** filename is destroyed when we quit scilab **/
+  /** filename is destroyed when we quit scilab **/
 }
 /*-----------------------------------------------------------------------------------*/
 /* used by command_handler in metanet */
@@ -1070,67 +1070,67 @@ void scig_export (integer number)
 /*-----------------------------------------------------------------------------------*/
 void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 {
-	#define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
-	#define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
+#define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
+#define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
 	
-	char szModuleName[MAX_PATH];
-	LPSTR tail;
+  char szModuleName[MAX_PATH];
+  LPSTR tail;
 	
-	HINSTANCE hInstance=NULL;
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
-	int LangCode=0; /*English*/
+  HINSTANCE hInstance=NULL;
+  extern char ScilexWindowName[MAX_PATH];
+  LPTW lptw;
+  HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
+  int LangCode=0; /*English*/
 
-	if (IsWindowInterface())
+  if (IsWindowInterface())
+    {
+      if (hWndTmpScilex)
 	{
-	if (hWndTmpScilex)
-		{
-			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-			LangCode=lptw->lpmw->CodeLanguage;
-		}
-		else LangCode=0;
+	  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	  LangCode=lptw->lpmw->CodeLanguage;
 	}
-	else LangCode=0;
-	ScilabGC->lpmw.CodeLanguage=LangCode;
+      else LangCode=0;
+    }
+  else LangCode=0;
+  ScilabGC->lpmw.CodeLanguage=LangCode;
 
-	hInstance=(HINSTANCE) GetModuleHandle("LibScilab");   		
+  hInstance=(HINSTANCE) GetModuleHandle("LibScilab");   		
 	
 	
-	GetModuleFileName (hInstance,szModuleName, MAX_PATH);
+  GetModuleFileName (hInstance,szModuleName, MAX_PATH);
 	
-	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-	{
-		tail++;
-		*tail = '\0';
-	}
+  if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+    {
+      tail++;
+      *tail = '\0';
+    }
 	
-	if (ScilabGC->lpgw->szMenuName!=NULL) free(ScilabGC->lpgw->szMenuName);
-	ScilabGC->lpgw->szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (FILEGRAPHMENUENGLISH) + 1);
-	strcpy (ScilabGC->lpgw->szMenuName, szModuleName);
+  if (ScilabGC->lpgw->szMenuName!=NULL) free(ScilabGC->lpgw->szMenuName);
+  ScilabGC->lpgw->szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (FILEGRAPHMENUENGLISH) + 1);
+  strcpy (ScilabGC->lpgw->szMenuName, szModuleName);
 
 	
-	switch (LangCode)
-	{
-		case 1:
-			strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUFRENCH);
-		break;
-		default : case 0:
-			strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUENGLISH);
-		break;
-	}
+  switch (LangCode)
+    {
+    case 1:
+      strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUFRENCH);
+      break;
+    default : case 0:
+      strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUENGLISH);
+      break;
+    }
 	
 }
 /*-----------------------------------------------------------------------------------*/
 void NewFigure(struct BCG * ScilabGC)
 {
 	
-	char Command[MAX_PATH];
-	int FreeWindow=0;
+  char Command[MAX_PATH];
+  int FreeWindow=0;
 
-	FreeWindow=FindFreeGraphicWindow(ScilabGC);
-	wsprintf(Command,"xset(\"window\",%d);",FreeWindow);
-	StoreCommand1(Command,0);
+  FreeWindow=FindFreeGraphicWindow(ScilabGC);
+  wsprintf(Command,"xset(\"window\",%d);",FreeWindow);
+  StoreCommand1(Command,0);
 	
 }
 	
@@ -1138,46 +1138,46 @@ void NewFigure(struct BCG * ScilabGC)
 /* Retourne un numéro valide de fenetre graphique libre */
 int FindFreeGraphicWindow(struct BCG * ScilabGC)
 {
-	int FreeNumber=-1;
-	integer iflag =0,ids,num,un=1;
+  int FreeNumber=-1;
+  integer iflag =0,ids,num,un=1;
 
-	if (ScilabGC->graphicsversion == 0)
+  if (ScilabGC->graphicsversion == 1) /* old mode */
+    {
+      HWND hWndGraph=NULL;
+      int Num=0;
+      char NameWindow[MAX_PATH];
+
+      wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
+      while ( FindWindow(NULL,NameWindow) )
 	{
-		HWND hWndGraph=NULL;
-		int Num=0;
-		char NameWindow[MAX_PATH];
-
-		wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
-		while ( FindWindow(NULL,NameWindow) )
-		{
-			Num++;
-			wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
-		}
-		FreeNumber=Num;
+	  Num++;
+	  wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
 	}
-	else
+      FreeNumber=Num;
+    }
+  else
+    {
+      integer *tab=NULL;
+      int sizetab=0;
+      int i=0;
+
+      iflag = 0; 
+      C2F(getwins)(&num,&ids ,&iflag);
+      sizetab=num;
+
+      tab=(integer*)malloc(sizeof(integer)*sizetab);
+      for(i=0;i<sizetab;i++) tab[i]=0;
+
+      iflag = 1; 
+      C2F(getwins)(&num,tab,&iflag);
+
+      for(i=0;i<sizetab;i++)
 	{
-		integer *tab=NULL;
-		int sizetab=0;
-		int i=0;
-
-		iflag = 0; 
-		C2F(getwins)(&num,&ids ,&iflag);
-		sizetab=num;
-
-		tab=(integer*)malloc(sizeof(integer)*sizetab);
-		for(i=0;i<sizetab;i++) tab[i]=0;
-
-		iflag = 1; 
-		C2F(getwins)(&num,tab,&iflag);
-
-		for(i=0;i<sizetab;i++)
-		{
-			if(FreeNumber<tab[i]) FreeNumber=tab[i];	
-		}
-		FreeNumber=FreeNumber+1;
-		free(tab);
+	  if(FreeNumber<tab[i]) FreeNumber=tab[i];	
+	}
+      FreeNumber=FreeNumber+1;
+      free(tab);
     } 
-	return FreeNumber;
+  return FreeNumber;
 }
 /*-----------------------------------------------------------------------------------*/
