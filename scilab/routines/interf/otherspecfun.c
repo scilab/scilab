@@ -14,6 +14,7 @@
  */
 #include <string.h> /*pour strcmp */
 #include <math.h>
+#include <setjmp.h>
 #include "../stack-c.h"
 
 
@@ -49,8 +50,7 @@ extern void  C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *
 			int *id, double *pqa, int *ipqa, int *ierror);
 extern void C2F(msgs)(int *n, int* ierr);
 extern void C2F(dset)(int *n, double *a,double *x,int *ix);
-extern int C2F(setslatecjmp)();
-
+extern jmp_buf slatec_jmp_env; 
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
 {
   /*    1/ verify that the array x is formed by non negative integers
@@ -1080,7 +1080,7 @@ static TabF Tab[]={
 int C2F(otherspfunlib)(void)
 {
   Rhs = Max(0, Rhs);
-  if (C2F(setslatecjmp)()) { 
+ if (setjmp(slatec_jmp_env)) { 
     Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
     return 0;
   }
