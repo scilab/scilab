@@ -51,127 +51,6 @@ void set_sci_env(char *DefaultSCIPATH)
 		exit(1);
 	}
 
-//	char *environmentTemp=NULL;
-//	char *CopyOfp=NULL;
-//	char env[MAX_PATH + 1 + 10];
-//	char ShortPath[MAX_PATH+1];
-//
-//	if (p)
-//	{
-//		CopyOfp=(char*)malloc(sizeof(char)*(strlen(p)+1));
-//	}
-//	else
-//	{
-//		/* Error */
-//		exit(1);
-//	}
-//
-//	/* SCI variable Environment */
-//	if ((environmentTemp = getenv ("SCI")) == (char *) 0)
-//	{
-//		if ( GetVersion() < 0x80000000 ) /* Windows NT */
-//		{
-//			
-//			/* to be sure that it's unix format */
-//			/* c:/progra~1/scilab-3.1 */
-//			ConvertPathWindowsToUnixFormat(p,CopyOfp);
-//			GetShortPathName(CopyOfp ,ShortPath,MAX_PATH);
-//			sprintf (env, "SCI=%s",ShortPath);
-//		}
-//		else
-//		{
-//			/* Win32s, Win95,Win98,WinME */
-//			GetShortPathName(p ,ShortPath,MAX_PATH);
-//			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfp);
-//			//* to be sure that it's unix format */
-//			/* c:/progra~1/scilab-3.1 */
-//			sprintf (env, "SCI=%s",CopyOfp);
-//		}
-//
-//		putenv (env);
-//	}
-//
-//	
-//	/* HOME variable Environment */
-//	sprintf (env, "HOME=%s",CopyOfp);
-//	putenv (env);
-//		
-//	/* TK_LIBRARY variable Environment */
-//	if ((environmentTemp = getenv ("TK_LIBRARY")) == (char *) 0)
-//	{
-//		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4",ShortPath);
-//		putenv (env);
-//	}
-//
-//	/* TCL_LIBRARY variable Environment */
-//	if ((environmentTemp = getenv ("TCL_LIBRARY")) == (char *) 0)
-//	{
-//		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4",ShortPath);
-//		putenv (env);
-//	}
-//
-//	/* COMPILER variable Environment */
-//	#ifdef __MSC__
-//	putenv ("COMPILER=VC++");
-//	#endif
-//	#if (defined __CYGWIN32__ ) || (defined __MINGW32__)
-//	putenv ("COMPILER=gcc");
-//	#endif
-//	#ifdef __ABSC__
-//	putenv ("COMPILER=ABSOFT");
-//	#endif
-//
-//	/* WIN32 variable Environment */
-//    #ifdef _WIN32
-//	putenv ("WIN32=OK");
-//	#endif
-//
-//	/* WIN64 variable Environment */
-//    #ifdef _WIN64
-//	putenv ("WIN64=OK");
-//	#endif
-//
-///* Add lcc to path */
-//	if ((environmentTemp = getenv ("PATH")) == (char *) 0)
-//	{
-//		MessageBox(NULL,"No PATH environment ...","Error",MB_ICONWARNING);
-//		exit(1);
-//	}
-//	else
-//	{
-//		char *NewPath=NULL;
-//		char *PathWsci= getenv ("SCI");
-//
-//		if ( PathWsci == (char *)0 )
-//		{
-//			MessageBox(NULL,"SCI not defined","Error",MB_ICONWARNING);
-//			exit(1);
-//		}
-//		else
-//		{
-//			char PathsLCC[1024];
-//			char LCCFILE[MAX_PATH];
-//
-//			wsprintf(LCCFILE,"%s%s",PathWsci,LCCEXE);
-//			if ( IsAFile(LCCFILE) )
-//			{
-//			wsprintf(PathsLCC,"%s%s;%s%s;%s%s",PathWsci,LCCBIN,PathWsci,LCCINCLUDE,PathWsci,LCCLIB);
-//			NewPath=(char*)malloc( (strlen("PATH=;;")+strlen(environmentTemp)+strlen(PathsLCC)+1)*sizeof(char));
-//			wsprintf(NewPath,"PATH=%s;%s;",environmentTemp,PathsLCC);
-//			putenv (NewPath);
-//
-//			free(NewPath);
-//			NewPath=NULL;
-//			}
-//		}
-//	
-//	}
-//
-//	if (CopyOfp)
-//	{
-//		free(CopyOfp);
-//		CopyOfp=NULL;
-//	}
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)
@@ -218,7 +97,26 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 
 	GetSCIpath=getenv ("SCI");
 
-	if (GetSCIpath) return TRUE;
+	if (GetSCIpath) 
+	{
+		char ShortPath[MAX_PATH+1];
+		char *CopyOfDefaultPath=NULL;
+		CopyOfDefaultPath=malloc(((int)strlen(GetSCIpath)+1)*sizeof(char));
+
+		if (GetShortPathName(GetSCIpath,ShortPath,MAX_PATH) == 0)
+		{
+			MessageBox(NULL,"Incorrect SCI path. Please verify your SCI environment variable","ERROR",MB_ICONWARNING);
+			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			exit(1);
+			return FALSE;
+		}
+		else
+		{
+			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+			sprintf (env, "SCI=%s",CopyOfDefaultPath);
+			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		}
+	}
 	else
 	{
 		char ShortPath[MAX_PATH+1];
@@ -254,7 +152,27 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 
 	GetHOMEpath=getenv ("HOME");
 
-	if (GetHOMEpath) return TRUE;
+	if (GetHOMEpath) 
+	{
+		char ShortPath[MAX_PATH+1];
+		char *CopyOfDefaultPath=NULL;
+		CopyOfDefaultPath=malloc(((int)strlen(GetHOMEpath)+1)*sizeof(char));
+		if (GetShortPathName(GetHOMEpath,ShortPath,MAX_PATH)==0)
+		{
+			MessageBox(NULL,"Incorrect HOME path. Please verify your HOME environment variable","ERROR",MB_ICONWARNING);
+			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			exit(1);
+			return FALSE;
+		}
+		else
+		{
+			/* to be sure that it's unix format */
+			/* c:/progra~1/scilab-3.1 */
+			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+			sprintf (env, "HOME=%s",CopyOfDefaultPath);
+			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		}
+	}
 	else
 	{
 		char ShortPath[MAX_PATH+1];
@@ -287,23 +205,29 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
 	char env[MAX_PATH + 1 + 10];
-	/*char *pGetTCL_LIBRARY_PATH=NULL;*/
-
+	
 	char ShortPath[MAX_PATH+1];
 	char *CopyOfDefaultPath=NULL;
-
-	/*pGetTCL_LIBRARY_PATH=getenv ("TCL_LIBRARY");*/
 
 	CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-3.1\tcl\tcl8.4 */
-	GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
-	ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-	sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4",CopyOfDefaultPath);
+	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
+	{
+		MessageBox(NULL,"Impossible to define TCL_LIBRARY environment variable","ERROR",MB_ICONWARNING);
+		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		exit(1);
+		return FALSE;
+	}
+	else
+	{
+		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
+		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4",CopyOfDefaultPath);
 		
-	if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-	
+		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+	}
+
 	if (_putenv (env))
 	{
 		bOK=FALSE;
@@ -320,22 +244,27 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
 	char env[MAX_PATH + 1 + 10];
-	/*char *pGetTK_LIBRARY_PATH=NULL;*/
-
 	char ShortPath[MAX_PATH+1];
 	char *CopyOfDefaultPath=NULL;
-
-	/*pGetTK_LIBRARY_PATH=getenv ("TK_LIBRARY");*/
 
 	CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-3.1\tcl\tk8.4 */
-	GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
-	ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-	sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4",CopyOfDefaultPath);
+	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
+	{
+		MessageBox(NULL,"Impossible to define TK_LIBRARY environment variable","ERROR",MB_ICONWARNING);
+		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		exit(1);
+		return FALSE;
+	}
+	else
+	{
+		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
+		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4",CopyOfDefaultPath);
 
-	if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+	}
 
 	if (_putenv (env))
 	{
