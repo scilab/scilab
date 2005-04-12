@@ -19,41 +19,39 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 		case WM_KEYDOWN:
 		/*http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/WindowsUserInterface/UserInput/VirtualKeyCodes.asp*/
 		{
-			if (GetKeyState (VK_CONTROL) < 0)
+			int RetToAscii=0;
+			BYTE KeyState[256]; // address of key-state array
+			WORD Char; // buffer for translated key
+			GetKeyboardState(KeyState);
+
+			RetToAscii=ToAscii ( wParam, 0, KeyState, &Char, 0 );
+			if (RetToAscii == 1)
 			{
-				//char ch;
-				//int CharToSend=0;
-				//BYTE KeyState[256]; // address of key-state array
-				//WORD Char; // buffer for translated key
-
-				//check_pointer_win(&x,&y,&iwin);
-				//
-				//GetKeyboardState ( KeyState );
-				//		
-
-				//ToAscii ( wParam, 0, KeyState, &Char, 0 );
-				//ch = (char)Char;
-
-				//CharToSend=(int)ch+1096;
-
-				//if (CharToSend != 1044) /* CONTROL only */
-				//{
-				//	PushClickQueue (ScilabGC->CurWindow, x,y,CharToSend,0,0);
-				//}
+				if ( (GetKeyState (VK_CONTROL) < 0) && (GetKeyState (VK_SHIFT) <0) )
+				{
+					CodeKey=MapVirtualKey(wParam,2)+CTRL_KEY;
+				}
+				else
+				if (GetKeyState (VK_CONTROL) < 0)
+				{
+					CodeKey=tolower((char)MapVirtualKey(wParam,2))+CTRL_KEY;
+				}
+				else
+				if (GetKeyState (VK_SHIFT) < 0)
+				{
+					CodeKey=MapVirtualKey(wParam,2);
+				}
+				else
+				{
+					CodeKey= tolower((char)Char);
+				}
+				check_pointer_win(&x,&y,&iwin);
+				PushClickQueue (ScilabGC->CurWindow, x,y,(int)CodeKey,0,0);
 			}
 			else
-			{	
-				char ch;
-				BYTE KeyState[256]; // address of key-state array
-				WORD Char; // buffer for translated key
-			
-				check_pointer_win(&x,&y,&iwin);
-
-				GetKeyboardState ( KeyState );
-				ToAscii ( wParam, 0, KeyState, &Char, 0 );
-				ch = (char)Char;
-
-				PushClickQueue (ScilabGC->CurWindow, x,y,(int)ch,0,0);
+			{
+				/* Not a character */
+				/* A key */
 			}
 			
 		}
@@ -61,48 +59,40 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 
 		case WM_KEYUP:
 		{
-			if (GetKeyState (VK_CONTROL) < 0)
+			int RetToAscii=0;
+			BYTE KeyState[256]; // address of key-state array
+			WORD Char; // buffer for translated key
+			GetKeyboardState(KeyState);
+
+			RetToAscii=ToAscii ( wParam, 0, KeyState, &Char, 0 );
+			if (RetToAscii == 1)
 			{
-				//char ch;
-				//int CharToSend=0;
-				//BYTE KeyState[256]; // address of key-state array
-				//WORD Char; // buffer for translated key
-
-				//check_pointer_win(&x,&y,&iwin);
-				//
-				//GetKeyboardState ( KeyState );
-				//		
-
-				//ToAscii ( wParam, 0, KeyState, &Char, 0 );
-				//ch = (char)Char;
-
-				//CharToSend=(int)ch-1140;
-
-				//
-				//PushClickQueue (ScilabGC->CurWindow, x,y,(int)CharToSend,0,1);
-				
+				if ( (GetKeyState (VK_CONTROL) < 0) && (GetKeyState (VK_SHIFT) <0) )
+				{
+					CodeKey=MapVirtualKey(wParam,2)+CTRL_KEY;
+				}
+				else
+				if (GetKeyState (VK_CONTROL) < 0)
+				{
+					CodeKey=tolower((char)MapVirtualKey(wParam,2))+CTRL_KEY;
+				}
+				else
+				if (GetKeyState (VK_SHIFT) < 0)
+				{
+					CodeKey=MapVirtualKey(wParam,2);
+				}
+				else
+				{
+					CodeKey= tolower((char)Char);
+				}
+				check_pointer_win(&x,&y,&iwin);
+				PushClickQueue (ScilabGC->CurWindow, x,y,-(int)CodeKey,0,1);
 			}
 			else
-			{	
-				char ch;
-				BYTE KeyState[256]; // address of key-state array
-				WORD Char; // buffer for translated key
-			
-				check_pointer_win(&x,&y,&iwin);
-
-				GetKeyboardState ( KeyState );
-				ToAscii ( wParam, 0, KeyState, &Char, 0 );
-				ch = (char)Char;
-
-				PushClickQueue (ScilabGC->CurWindow, x,y,-(int)ch,0,1);
+			{
+				/* Not a character */
+				/* A key */
 			}
-		}
-		return (0);
-
-		case WM_CHAR:
-		{
-			/*check_pointer_win(&x,&y,&iwin);
-			PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);*/
 		}
 		return (0);
 

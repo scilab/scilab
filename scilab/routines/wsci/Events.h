@@ -23,6 +23,8 @@
 #define CTRL_DBL_CLCK_MIDDLE 1011
 #define CTRL_DBL_CLCK_RIGHT 1012
 
+#define CTRL_KEY 1000
+
 
 int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 
