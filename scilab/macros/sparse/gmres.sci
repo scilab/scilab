@@ -60,7 +60,7 @@ b=varargin(1);
 if (size(b,2) ~= 1),
   error("gmres: right hand side member must be a column vector");
 end
-if (cpt==1),
+if (matrixType==1),
   if (size(b,1) ~= size(A,1)),
     error("gmres: right hand side vector must have the size of the matrix A");
   end 
