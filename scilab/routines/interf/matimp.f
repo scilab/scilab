@@ -695,21 +695,18 @@ c     not enough memory
             t0=tout
             goto 120            
          else
-            if (setslatecjmp().ne.0) then
-               goto 116
-            endif
             stk(lyri)=tout
             call unsfdcopy(n1,stk(l1),1,stk(lyri+1),1)
             call unsfdcopy(n1,stk(lydot),1,stk(lyri+n1+1),1)
             l1=lyri+1
             lydot=lyri+n1+1
-            call ddassl(bresd,n1,t0,stk(l1),stk(lydot),
+            call dassl(bresd,n1,t0,stk(l1),stk(lydot),
      &           stk(lyri),info,stk(lrtol),stk(latol),idid,
      &           stk(lrwork),lrw,istk(iadr(liwork)),liw,stk(lw15),
      &           istk(il17),bjacd)
          endif
          if(err.gt.0)  return
- 116     if(idid.eq.1) then
+         if(idid.eq.1) then
 C     A step was successfully taken in the intermediate-output mode. 
 C     The code has not yet reached TOUT.
             stk(lyri)=t0
