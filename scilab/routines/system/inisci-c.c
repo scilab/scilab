@@ -1,11 +1,12 @@
 #ifdef WIN32
-	#include <windows.h>
+#include <windows.h>
 #else
-	#include <stdio.h>
-	#include <sys/utsname.h>
+#include <stdio.h>
+#include <sys/utsname.h>
 #endif
 
 #include <string.h>
+#include <stdlib.h> /* getenv ! */
 #include "../machine.h" 
 #include "../sun/Sun.h" 
 
