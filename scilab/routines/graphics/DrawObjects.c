@@ -8629,13 +8629,16 @@ int DrawMark_Plus(int xmi, int ymi, int size, int foreground, int pixel_offset)
   xmasterix[0] = xmi -((int) size) ;
   xmasterix[1] = xmi +(int) size + pixel_offset;
   ymasterix[0] = 	ymasterix[1] = ymi;
-  C2F(dr)("xsegs","v", xmasterix, ymasterix, &deux,&foreground,&closeflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*   C2F(dr)("xsegs","v", xmasterix, ymasterix, &deux,&foreground,&closeflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+
   
   xmasterix[0] = xmasterix[1] = xmi;
   ymasterix[0] = ymi - (int) size;
   ymasterix[1] = ymi + (int) size + pixel_offset;
-  C2F(dr)("xsegs","v", xmasterix, ymasterix, &deux,&foreground,&closeflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
- 
+/*   C2F(dr)("xsegs","v", xmasterix, ymasterix, &deux,&foreground,&closeflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+   
   return 0;
 }
 
