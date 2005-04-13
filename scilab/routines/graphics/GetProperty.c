@@ -2517,13 +2517,12 @@ sciGetParentSubwin (sciPointObj * pobj)
 int 
 sciGetNumFigure (sciPointObj * pobj)
 {
-  sciPointObj *figure;
-
-  figure = pobj;
+  sciPointObj *figure = pobj;
+  
   switch (sciGetEntityType (pobj))
     { 
     case SCI_FIGURE:
-      return  sciGetNum(sciGetCurrentFigure()) ;
+      return  sciGetNum(figure) ;
       break;
     case SCI_SUBWIN:
     case SCI_TEXT:
