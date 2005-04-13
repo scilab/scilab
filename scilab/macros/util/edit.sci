@@ -1,5 +1,6 @@
-function res=edit(macroname,editor)
-// macroname : character string giving a macroname 
+function res=edit(macroname,ueditor)
+// macroname : character string giving a macroname
+// ueditor : external command for a text editor, unless ueditor="scipad"
 //
 // Copyright INRIA
   default_editor="emacs -i -geometry 80x50+427+143  -font 9x15 "
@@ -15,7 +16,7 @@ function res=edit(macroname,editor)
 
   if rhs>=1 then // macroname is given
     if funptr(macroname)<>0 then
-      error(macroname+'is a uneditable hard coded function,')
+      error(macroname+' is a uneditable hard coded function')
     end
     libr=whereis(macroname)
     if libr<>[] then // macroname is the name of a defined function
@@ -59,12 +60,16 @@ function res=edit(macroname,editor)
   end
 
   // call the editor with the filename
-  if rhs<=1, editor =default_editor ;end
-  if MSDOS then 
-     // white spaces in path 
-     unix_s(editor+' ""'+fname+'""');
+  if rhs<=1, ueditor =default_editor ;end
+  if ueditor="scipad"
+    scipad(fname)
   else
-     unix_s(editor+' '+fname);
+    if MSDOS then
+       // white spaces in path
+       unix_s(ueditor+' ""'+fname+'""');
+    else
+       unix_s(ueditor+' '+fname);
+    end
   end
   //load the macro in scilab
   if tmp then write(%io(2),'modified file may be found in '+fname),end 
