@@ -39,7 +39,8 @@
     into Scilab under the name <VERB>newname</VERB>.</P>
     <P>
     The editor character string can be used to specify your favourite text
-    editor.</P>
+    editor. It is generally a system command, or the string "scipad", in 
+    which case the internal editor is used.</P>
     <P>
     Default editor is Emacs. This function should be customized according
     to your needs.</P>
@@ -52,7 +53,7 @@
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>manedit</LINK>
+      <LINK>manedit</LINK>, <LINK>editor</LINK>, <LINK>scipad</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
