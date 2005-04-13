@@ -9,12 +9,12 @@ function res=edit(macroname,ueditor)
   finded=%f;tmp=%f
   // tmpdir will have trailing / or \
   tmpdir= pathconvert(TMPDIR);
-  tmpfile= tmpdir+macroname+'.sci';
   if MSDOS then 
     default_editor="emacs ";
   end
 
   if rhs>=1 then // macroname is given
+    tmpfile= tmpdir+macroname+'.sci';
     if funptr(macroname)<>0 then
       error(macroname+' is a uneditable hard coded function')
     end
@@ -28,27 +28,28 @@ function res=edit(macroname,ueditor)
       // check if writable 
       // if MSDOS is true we assume here that file is writable
       if ~MSDOS then 
-	rep=unix_g("if [ -w "+ fname +" ]; then echo ok ;else echo nok; fi")
-	if part(rep,1:3)=='nok' then
-	  //if file is not writable create a copy in TMPDIR
-	  //unix_s("cp "+ fname + " " + tmpfile ); fname=tmpfile;
-	  txt = mgetl(fname,-1);fname=tmpfile; mputl(txt,fname);
-	  tmp=%t
-	end 
+        rep=unix_g("if [ -w "+ fname +" ]; then echo ok ;else echo nok; fi")
+        if part(rep,1:3)=='nok' then
+          //if file is not writable create a copy in TMPDIR
+          //unix_s("cp "+ fname + " " + tmpfile ); fname=tmpfile;
+          txt = mgetl(fname,-1);fname=tmpfile; mputl(txt,fname);
+          tmp=%t
+        end
       end
       finded=%t
     elseif isdef(macroname) 
-       if typeof(macroname)=='function' then 
-	 // macro name was defined online 
-	 txt = fun2string(evstr(macroname)) 
-	 fname=tmpfile
-	 mputl([txt,'endfunction'],fname);
-	 tmp=%t
-	 finded=%t
+       if typeof(evstr(macroname))=='function' then 
+      // tour de force to keep the original function name
+        execstr("txt=tree2code(macr2tree("+macroname+"),%t)")
+        fname=tmpfile
+        mputl(txt,fname);
+        tmp=%t
+        finded=%t
        end
     end
   else //no macroname specified
     macroname='untitled', 
+    tmpfile= tmpdir+macroname+'.sci';
     finded=%f
   end
 
@@ -61,7 +62,7 @@ function res=edit(macroname,ueditor)
 
   // call the editor with the filename
   if rhs<=1, ueditor =default_editor ;end
-  if ueditor="scipad"
+  if ueditor=="scipad"
     scipad(fname)
   else
     if MSDOS then
