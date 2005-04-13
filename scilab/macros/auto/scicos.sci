@@ -10,6 +10,13 @@ function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0)
+
+
+//xset('window',curwin);
+olds=get('old_style')
+set("old_style","on")
+//xset('default')
+
 //check if superblock editing mode
 [%ljunk,%mac]=where()
 slevel=prod(size(find(%mac=='scicos')))
@@ -229,12 +236,8 @@ end
 
 //initialize graphics
 //xdel(curwin)
-xset('window',curwin);
-olds=get('old_style')
-set("figure_style","old")
+
 xset('default')
-
-
 xbasc();
 
 if pixmap then xset('pixmap',1); end
