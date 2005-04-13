@@ -3172,9 +3172,10 @@ int scixset(fname,fname_len)
         sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
       }
       else if ( strncmp(cstk(l1),"font size",9) == 0) {
-        sciSetFontDeciWidth(subwin, font[1]); 
-        sciSetFontDeciWidth(sciGetParent(subwin), font[1]);   
-      }  
+	int fontsize_ = 100*font[1];
+        sciSetFontDeciWidth(subwin, fontsize_); 
+        sciSetFontDeciWidth(sciGetParent(subwin), fontsize_);
+      }
       else if ( strncmp(cstk(l1),"font",4) == 0) {
         sciSetFontStyle(subwin, x[0]); 
 	sciSetFontDeciWidth(subwin,  x[1]*100);  
