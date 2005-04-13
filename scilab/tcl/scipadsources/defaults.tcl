@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 4.2"
+set version "Version 4.3"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -9,10 +9,11 @@ set version "Version 4.2"
 #  - if needed, assign an initial fallback value here
 
 # group here for convenience all the color settings
-set colorpref {BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
+set bgcolors {BGCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR}
+set fgcolors {FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR QTXTCOLOR \
-       REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR LFUNCOLOR \
-       PDEFCOLOR FOUNDTEXTCOLOR}
+       REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR}
+set colorpref "$bgcolors $fgcolors"
 
 # those are the preferences which are going to be saved
 set listofpref "$colorpref wordWrap FontSize \

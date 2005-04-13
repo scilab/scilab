@@ -174,9 +174,15 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
                -menu $pad.filemenu.options.colors"
         menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
-        foreach c $colorpref {
+        foreach c $bgcolors {
               eval "$pad.filemenu.options.colors add command [me "$c"] \
-                -command {colormenuoption $c} -foreground \[set $c\]"
+                -command {colormenuoption $c} -background \[set $c\]\
+                -foreground $FGCOLOR"
+               }
+        foreach c $fgcolors {
+              eval "$pad.filemenu.options.colors add command [me "$c"] \
+                -command {colormenuoption $c} -foreground \[set $c\] \
+                -background $BGCOLOR"
                }
     eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
       -command {refreshQuotedStrings}\

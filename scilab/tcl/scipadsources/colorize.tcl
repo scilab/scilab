@@ -303,16 +303,23 @@ proc schememenus {textarea} {
 proc colormenuoption {c} {
 # called when changing a color option from menu. Chooses the new color and
 # refreshes whatever needed
-   global colorpref listoftextarea pad
-   foreach c1 $colorpref {global $c1}
+   global bgcolors fgcolors listoftextarea pad
+   foreach c1 "$bgcolors $fgcolors" {global $c1}
    set newcol [tk_chooseColor -initialcolor [set $c] -title [mc $c]]
    if {$newcol != ""} {
        set $c $newcol
        set i 0
 # refresh all the colors of the menu labels (one was changed)
-       foreach c $colorpref {
+# We rely on BGCOLOR and  FGCOLOR to be surely members of the color lists
+       foreach c $bgcolors {
            incr i
-           $pad.filemenu.options.colors entryconfigure $i -foreground [set $c] 
+           $pad.filemenu.options.colors entryconfigure $i \
+              -background [set $c] -foreground $FGCOLOR
+       }
+       foreach c $fgcolors {
+           incr i
+           $pad.filemenu.options.colors entryconfigure $i \
+              -foreground [set $c] -background $BGCOLOR
        }
 # refresh all color settings for all the opened buffers (only one color was
 #  changed)

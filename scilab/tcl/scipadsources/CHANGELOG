@@ -941,3 +941,8 @@ Francois VOGEL, 10/04/05
  * Dropping text at the same place it was dragged from does no more tag the
    buffer as modified
  * version --> 4.2
+
+ES, 13/04/05
+ * menu Options/Colors colorized enforcing background and foreground
+   color settings - makes it as readable as the textarea will be.
+ * version --> 4.3
