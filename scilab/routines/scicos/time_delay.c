@@ -40,7 +40,7 @@ void time_delay(scicos_block *block,int flag)
     td=t-block->rpar[0];
     if(td<pw[*iw]){
       sciprint("delayed time=%f but last stored time=%f \r\n", td, pw[*iw]);
-      sciprint("Conisder increasing the length of buffer in delay block \r\n");
+      sciprint("Consider increasing the length of buffer in delay block \r\n");
     }
 
     if (t>pw[(block->ipar[0]+*iw-1)%block->ipar[0]]){
