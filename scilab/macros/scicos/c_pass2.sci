@@ -2204,8 +2204,7 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
   if temps_continu then
     ordoclk(1,:)=[]
   end
-  //on ajoute les ports des horloges de vec_clk
-  ordoclk(:,2)=1
+
   ordptr=1;
   ordclk=[];
   blocs_traites=[]
