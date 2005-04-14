@@ -31,20 +31,21 @@ case "operation" then
       operands=[operands;expression2code(e.operands(i))]
     end
   end
+
   // Row concatenation
   if operator=="rc" then
     for i=1:nb_op
       if typeof(e.operands(i))=="operation" then
 	if e.operands(i).operator=="rc" then
 	  operands(i)=part(operands(i),2:length(operands(i))-1)
-	elseif or(e.operands(i).operator==["cc","cceol"]) then
-	  operands(1)=part(operands(1),2:length(operands(1)))
-	  operands($)=part(operands($),1:length(operands($))-1)
+	  //elseif or(e.operands(i).operator==["cc","cceol"]) then
+	  // operands(1)=part(operands(1),2:length(operands(1)))
+	  //operands($)=part(operands($),1:length(operands($))-1)
 	end
       end
     end
     C="["+strcat(operands,",")+"]"
-  // Multi-line column concatenation
+    // Multi-line column concatenation
   elseif operator=="cceol" then
     for i=1:nb_op
       opi=expression2code(e.operands(i))
@@ -59,29 +60,29 @@ case "operation" then
       
       if i==1 then
 	C="["
-	if size(opi,"*")>1 then
-	  C = [C+opi(1);opi(2:$)]
-	else
-	  C = C+opi
-	end
-	C($)=C($)+";"
-	C=[C;""]
-      else
- 	if size(opi,"*")>1 then
-	  C = [C(1:$-1);C($)+opi(1);opi(2:$)]
-	else
-	  C = [C(1:$-1);C($)+opi]
-	end
-	C($)=C($)+"]"
+	    if size(opi,"*")>1 then
+	      C = [C+opi(1);opi(2:$)]
+	    else
+	      C = C+opi
+	    end
+	    C($)=C($)+";"
+	    C=[C;""]
+	  else
+	    if size(opi,"*")>1 then
+	      C = [C(1:$-1);C($)+opi(1);opi(2:$)]
+	    else
+	      C = [C(1:$-1);C($)+opi]
+	    end
+	    C($)=C($)+"]"
       end
     end
-  // Column concatenation
+    // Column concatenation
   elseif operator=="cc" then
     C="["
-    for i=1:nb_op
-      opi=expression2code(e.operands(i))
-      // Delete [ and ] if there are...
-      if typeof(e.operands(i))=="operation" then
+	for i=1:nb_op
+	  opi=expression2code(e.operands(i))
+	  // Delete [ and ] if there are...
+	  if typeof(e.operands(i))=="operation" then
 	if e.operands(i).operator=="rc" then
 	  opi=part(opi,2:length(opi)-1)
 	elseif or(e.operands(i).operator==["cc","cceol"]) then
@@ -96,7 +97,7 @@ case "operation" then
 	  C = C+opi
 	end
 	C($)=C($)+";"
-     else
+      else
 	if size(opi,"*")>1 then
 	  C = [C(1:$-1);C($)+opi(1);opi(2:$)]
 	else
@@ -105,136 +106,143 @@ case "operation" then
       end
     end
     C($)=C($)+"]"
-  // Extraction
-  elseif operator=="ext" then
-    if size(e.operands)==1 then
-      C=e.operands(1).name
-      return
-    end
-    if type(e.operands(2))==15 then // Recursive extraction
-      C=operands(1)+operands(2)
-    else
-      // Deal with : 
-      for k=2:size(operands,"*")
-	if operands(k)==""":""" then
-	  operands(k)=":"
-	elseif operands(k)=="""$""" then
-	  operands(k)="$"
-	elseif operands(k)=="""*""" then // Only used for M2SCI
-	  operands(k)="*"
-	end
-      end
-      val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
-      if val then // struct field
-	C=operands(1)+"."+evstr(operands(2))
-	if size(operands,"*")>=3 then
-	  C=C+"("
-	end
-	for k=3:size(operands,"*")
-	  C=C+","+operands(k)
-	end
-	if size(operands,"*")>=3 then
-	  C=C+")"
-	end
-      else
-	C=operands(1)+"("+operands(2)
-	for k=3:size(operands,"*")
-	  C=C+","+operands(k)
-	end
-	C=C+")"
-      end
-    end
-  // Insertion  
-  elseif operator=="ins" then
-    if type(e.operands(2))==15 then // Recursive insertion
-      C=operands(1)+operands(2)
-    else
-      // Deal with : 
-      for k=2:size(operands,"*")
-	if operands(k)==""":""" then
-	  operands(k)=":"
-	elseif operands(k)=="""$""" then
-	  operands(k)="$"
-	elseif operands(k)=="""*""" then // Only used in M2SCI
-	  operands(k)="*"
-	end
-      end
-      val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
-      if val then // struct field
-	C=operands(1)+"."+evstr(operands(2))
-	if size(operands,"*")>=3 then
-	  C=C+"("
-	end
-	for k=3:size(operands,"*")
-	  C=C+","+operands(k)
-	end
-	if size(operands,"*")>=3 then
-	  C=C+")"
-	end
-      else
-	C=operands(1)+"("+operands(2)
-	for k=3:size(operands,"*")
-	  C=C+","+operands(k)
-	end
-	C=C+")"
-      end
-    end
-  // Unary Operators
-  elseif size(operands,"*")==1 then 
-    if or(operator==["''",".''"]) then
-      if typeof(e.operands(1))=="operation" then
-	if and(e.operands(1).operator<>["rc","cc"]) then
-	  operands="("+operands+")"
-	end
-      end
-      C=operands+operator
-    else
-      C=operator+operands
-    end
-  // Other operators  
+// Extraction
+elseif operator=="ext" then
+  if size(e.operands)==1 then
+    C=e.operands(1).name
+    return
+  end
+  if type(e.operands(2))==15 then // Recursive extraction
+    C=operands(1)+operands(2)
   else
-    // Parenthesize
-    if or(operator==["+","-"]) then
-      for i=1:nb_op
-	if typeof(e.operands(i))=="operation" then
-	  if or(e.operands(i).operator==othops) then
-	    operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
-	  end
-	end
-      end
-      for i=2:nb_op
-	if typeof(e.operands(i))=="operation" then
-	  if or(e.operands(i).operator==sumops) & operator=="-" then
-	    operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
-	  end
-	end
+    // Deal with : 
+    for k=2:size(operands,"*")
+      if operands(k)==""":""" then
+	operands(k)=":"
+      elseif operands(k)=="""$""" then
+	operands(k)="$"
+      elseif operands(k)=="""*""" then // Only used for M2SCI
+	operands(k)="*"
       end
     end
-    if or(operator==[prodops,othops]) & (operator<>":") then
-      if typeof(e.operands(1))=="operation" then
-	if or(e.operands(1).operator==[sumops,prodops,othops]) then
-	  operands(1)="("+operands(1)+")"
-	end
+    val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
+    if val then // struct field
+      C=operands(1)+"."+evstr(operands(2))
+      if size(operands,"*")>=3 then
+	C=C+"("
       end
-      if typeof(e.operands(2))=="operation" then
-	if or(e.operands(2).operator==[sumops,prodops,othops]) then
-	  operands(2)="("+operands(2)+")"
-	end
+      for k=3:size(operands,"*")
+	C=C+","+operands(k)
       end
-    end
-    if part(operator,1)=="." & part(operator,length(operator))=="." then
-      C=strcat(operands," "+operator+" ")
-    elseif part(operator,1)=="." then
-      C=strcat(operands," "+operator)
-    elseif part(operator,length(operator))=="." then
-      C=strcat(operands,operator+" ")
+      if size(operands,"*")>=3 then
+	C=C+")"
+      end
     else
-      C=strcat(operands,operator)
+      C=operands(1)+"("+operands(2)
+      for k=3:size(operands,"*")
+	C=C+","+operands(k)
+      end
+      C=C+")"
     end
   end
-  // --------
-  // CONSTANT
-  // --------
+  // Insertion  
+elseif operator=="ins" then
+  if type(e.operands(2))==15 then // Recursive insertion
+    C=operands(1)+operands(2)
+  else
+    // Deal with : 
+    for k=2:size(operands,"*")
+      if operands(k)==""":""" then
+	operands(k)=":"
+      elseif operands(k)=="""$""" then
+	operands(k)="$"
+      elseif operands(k)=="""*""" then // Only used in M2SCI
+	operands(k)="*"
+      end
+    end
+    val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
+    if val then // struct field
+      C=operands(1)+"."+evstr(operands(2))
+      if size(operands,"*")>=3 then
+	C=C+"("
+      end
+      for k=3:size(operands,"*")
+	C=C+","+operands(k)
+      end
+      if size(operands,"*")>=3 then
+	C=C+")"
+      end
+    else
+      C=operands(1)+"("+operands(2)
+      for k=3:size(operands,"*")
+	C=C+","+operands(k)
+      end
+      C=C+")"
+    end
+  end
+  // Unary Operators
+elseif size(operands,"*")==1 then
+  if or(operator==["''",".''"]) then
+    if typeof(e.operands(1))=="operation" then
+      if and(e.operands(1).operator<>["rc","cc","-","+"]) then
+	operands="("+operands+")"
+      end
+    end
+    C=operands+operator
+  elseif or(operator==["+","-"]) then
+    if typeof(e.operands(1))=="operation" then
+      if or(e.operands(1).operator==["-","+"]) then
+	operands="("+operands+")"
+      end
+    end
+    C=operator+operands    
+  else
+    C=operator+operands
+  end
+  // Other operators  
+else
+  // Parenthesize
+  if or(operator==["+","-"]) then
+    for i=1:nb_op
+      if typeof(e.operands(i))=="operation" then
+	if or(e.operands(i).operator==othops) then
+	  operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
+	end
+      end
+    end
+    for i=2:nb_op
+      if typeof(e.operands(i))=="operation" then
+	if or(e.operands(i).operator==sumops) & (operator=="-"| operator=="+")then
+	  operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
+	end
+      end
+    end
+  end
+  if or(operator==[prodops,othops]) & (operator<>":") then
+    if typeof(e.operands(1))=="operation" then
+      if or(e.operands(1).operator==[sumops,prodops,othops]) then
+	operands(1)="("+operands(1)+")"
+      end
+    end
+    if typeof(e.operands(2))=="operation" then
+      if or(e.operands(2).operator==[sumops,prodops,othops]) then
+	operands(2)="("+operands(2)+")"
+      end
+    end
+  end
+  if part(operator,1)=="." & part(operator,length(operator))=="." then
+    C=strcat(operands," "+operator+" ")
+  elseif part(operator,1)=="." then
+    C=strcat(operands," "+operator)
+  elseif part(operator,length(operator))=="." then
+    C=strcat(operands,operator+" ")
+  else
+    C=strcat(operands,operator)
+  end
+end
+// --------
+// CONSTANT
+// --------
 case "cste" then
   C=sci2exp(e.value)
   if C==""":""" then
@@ -242,7 +250,8 @@ case "cste" then
   elseif C=="""$""" then
     C="$"
   elseif C=="""*""" then // Only used in M2SCI
-    C="*"
+    C="""*"""
+    //  C="*"
   end
   // --------
   // VARIABLE
