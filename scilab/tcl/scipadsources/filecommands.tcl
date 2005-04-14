@@ -524,7 +524,7 @@ proc savepreferences {} {
     set preffile [open $preffilename w]
     foreach opt $listofpref {
         global $opt
-        puts $preffile [concat "set $opt" [set $opt]]
+        puts $preffile [concat "set $opt" \{[set $opt]\}]
     }
     foreach opt $listofpref_list {
         global $opt

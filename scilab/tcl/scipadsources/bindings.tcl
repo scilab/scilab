@@ -45,7 +45,7 @@ bind $pad <Control-n> {filesetasnew}
 bind $pad <Control-q> {exitapp}
 bind $pad <Control-g> {gotoline}
 if {"$tcl_platform(platform)" == "unix"} {
-    bind $pad <Control-p> {selectprint $textareacur}
+    bind $pad <Control-p> {selectprint %W}
     bind $pad <Control-P> {printseupselection}
 }
 bind $pad <Control-s> {filetosave %W}

@@ -946,3 +946,17 @@ ES, 13/04/05
  * menu Options/Colors colorized enforcing background and foreground
    color settings - makes it as readable as the textarea will be.
  * version --> 4.3
+
+ES, 14/04/05
+ * fixed linux printing. Checked, it works both with "lpr" and 
+   "a2ps -2 -Pprinter". If the buffer is unmodified, no temporary 
+   file is created (a2ps adds the proper header, which is nice)
+   The syntax has to be "$printCommand $file" (this excludes for the
+   moment e.g. "cat $file | lpr", but that could be reworked), and
+   if $printCommand reports something (e.g. the job number or the number
+   of pages, as a2ps does), that is popped up.
+ * Preference values are written in {} in the preference file. This was
+   necessary since $printCommand can contain spaces, minuses, piping chars.
+ * Credit message in proc aboutme desourced, and expanded in each *.msg file.
+   This will ease adding information, such as translator credits.
+ * version --> 4.4

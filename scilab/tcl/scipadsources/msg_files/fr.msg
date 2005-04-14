@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v3.52
+# in sync at least with v4.4
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -140,10 +140,7 @@
 
 # helps.tcl
 ::msgcat::mcset fr "About" "A propos"
-::msgcat::mcset fr "\n Originated by Joseph Acosta, joeja@mindspring.com.\n\
-                    Modified by Scilab Consortium.\n\
-                    Revised by Enrico Segre 2003-2005.\n\
-                    Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005." \
+::msgcat::mcset fr aboutme_message \
                    "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2005.\n\
@@ -318,7 +315,7 @@
 ::msgcat::mcset fr "The cursor is not currently inside a function body." "Le curseur ne se trouve pas à l'intérieur d'une fonction."
 ::msgcat::mcset fr "Which function?" "Quelle fonction ?"
 
-#except for "expanded" text, like preference variables description
+#preference variables description
 ::msgcat::mcset fr "BGCOLOR" "Arrière-plan"
 ::msgcat::mcset fr "FGCOLOR" "Texte brut"
 ::msgcat::mcset fr "CURCOLOR" "Curseur"

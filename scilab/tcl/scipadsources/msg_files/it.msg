@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v3.52
+# in sync at least with v4.4
 
 
 # commons
@@ -159,10 +159,7 @@
 
 # helps.tcl
 ::msgcat::mcset it "About" "A proposito"
-::msgcat::mcset it "\n Originated by Joseph Acosta, joeja@mindspring.com.\n\
-                    Modified by Scilab Consortium.\n\
-                    Revised by Enrico Segre 2003-2005.\n\
-                    Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005." \
+::msgcat::mcset it aboutme_message \
                    "\n Originato da tknotepad di Joseph Acosta, joeja@mindspring.com.\n\
                     Modificato dal Consorzio Scilab.\n\
                     Migliorato da Enrico Segre 2003-2005\n\
@@ -352,7 +349,7 @@
 ::msgcat::mcset it "Which function?" "Quale funzione?"
 
 
-#except for "expanded" text, like preference variables description
+#preference variables description
 ::msgcat::mcset it "BGCOLOR" "Sfondo"
 ::msgcat::mcset it "FGCOLOR" "Testo semplice"
 ::msgcat::mcset it "CURCOLOR" "Cursore"

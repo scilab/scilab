@@ -21,15 +21,14 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu.files add command [me "Compile as &help page"] \
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
-    eval "$pad.filemenu.files add command [me "Open &function source"] \
-                   -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
+    eval "$pad.filemenu.files add command [me "Open &function source"] \                 -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
                    -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
         eval "$pad.filemenu.files add command [me "Print Se&tup"]\
                    -command \"printseupselection\" -accelerator Ctrl+P"
         eval "$pad.filemenu.files add command [me "&Print"] \
-                   -command \"selectprint $textareacur\" -accelerator Ctrl+p"
+                 -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
         $pad.filemenu.files add separator
     }
     BuildInitialRecentFilesList

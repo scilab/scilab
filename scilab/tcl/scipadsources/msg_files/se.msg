@@ -1,5 +1,5 @@
 # Scipad texts in Swedish
-# in sync at least with v3.56
+# in sync at least with v4.4
 # provided by Gunnar Lindholm
 
 # commons
@@ -139,10 +139,7 @@
 
 # helps.tcl
 ::msgcat::mcset se "About" "Om"
-::msgcat::mcset se "\n Originated by Joseph Acosta, joeja@mindspring.com.\n\
-                    Modified by Scilab Consortium.\n\
-                    Revised by Enrico Segre 2003-2005.\n\
-                    Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005." \
+::msgcat::mcset se aboutme_message \
                    "\n Skapat av Joseph Acosta, joeja@mindspring.com.\n\
                     Modifierat av Scilab Constortium.\n\
                     Granskat av Enrico Segre 2003-2005.\n\
@@ -317,7 +314,7 @@
 ::msgcat::mcset se "The cursor is not currently inside a function body." "Markören är förnärvarande inte inuti en funktionskropp."
 ::msgcat::mcset se "Which function?" "Vilken funktion?"
 
-#except for "expanded" text, like preference variables description
+#preference variables description
 ::msgcat::mcset se "BGCOLOR" "Bakgrundsfärg"
 ::msgcat::mcset se "FGCOLOR" "Textfärg"
 ::msgcat::mcset se "CURCOLOR" "Markör"

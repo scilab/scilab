@@ -33,11 +33,16 @@ proc printseupselection {} {
 
 proc selectprint {textarea} {
 # procedure to print
-    set TempPrintFile [open /tmp/tkpadtmpfile w]
-    puts -nonewline $TempPrintFile [$textarea get 0.0 end]
-    close $TempPrintFile
-    global printCommand
-    set prncmd $printCommand	
-    eval exec $prncmd /tmp/tkpadtmpfile
+    global printCommand listoffile
+    if {$listoffile("$textarea",save) == 1} {
+      set TempPrintFile [open /tmp/tkpadtmpfile w]
+      puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+      close $TempPrintFile
+      catch {eval exec "$printCommand /tmp/tkpadtmpfile"} result
+    } else {
+      catch {eval exec "$printCommand $listoffile("$textarea",fullname)"}\
+               result
+    }
+    if {$result != ""} {tk_messageBox -message $result}
     eval exec rm -f /tmp/tkpadtmpfile
 }
