@@ -7,7 +7,7 @@ function surf(varargin)
 
 [lhs,rhs]=argn(0);
 
-isold=get('figure_style')=='old'
+isold=get('old_style')=='on'
 
 if isold
   disp("Not supported under old graphic style");
@@ -27,8 +27,12 @@ if ~rhs
       0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
       0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
   lines(0);
+  f=scf();
+  f.color_map = jetcolormap(64);
   surf(Z,'edgeco','b','marker','d','markersiz',9,'markeredg','red','markerfac','k')
   disp("lines(0);");
+  disp("f = scf(); // open a new figure to play surf examples");
+  disp("f.color_map = jetcolormap(64);");
   disp(Z);
   disp("surf(Z,''edgeco'',''b'',''marker'',''d'',''markersiz'',9,''markeredg'',''red'',''markerfac'',''k'')");
   return;

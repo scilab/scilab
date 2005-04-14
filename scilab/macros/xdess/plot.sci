@@ -10,7 +10,7 @@ function plot(varargin)
 
 [lhs,rhs]=argn(0);
 
-isold=get('figure_style')=='old'
+isold=get('old_style')=='on'
 
 if isold
   T = varargin
@@ -21,13 +21,13 @@ end
 
 if ~rhs
   //LineSpec and PropertySpec examples:
-  clf();
+  scf(); // new figure
   t=0:%pi/20:2*%pi;
   subplot(211)
   plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
   subplot(212)
   plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
-  disp("clf();")
+  disp("scf(); // open a new figure to play plot examples")
   disp("t=0:%pi/20:2*%pi;");
   disp("subplot(211)")
   disp("plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')");
