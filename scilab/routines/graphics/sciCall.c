@@ -65,8 +65,6 @@ void Objarc (angle1,angle2,x,y,width,height,color,fill,hdl)
          (psubwin,*x,*y,
 	  *height, *width, *angle1, *angle2, color, fill));
   pobj = sciGetCurrentObj();
-  sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
-  sciSetForeground (pobj, sciGetForeground (psubwin));
  
   *hdl=sciGetHandle(pobj);
   sciDrawObjIfRequired(pobj);
@@ -92,16 +90,16 @@ void Objpoly (x,y,n,closed,mark,hdl)
     { 
       sciSetIsMark(pobj, TRUE);
       sciSetIsLine(pobj,FALSE);
-      sciSetMarkStyle (pobj,-mark);
+      sciSetMarkStyle (pobj,abs(mark));
 /*       sciSetForeground (pobj, sciGetForeground (psubwin)); */
     }
-   else
-     {
+  else
+    {
       sciSetIsMark(pobj, FALSE);
       sciSetIsLine(pobj, TRUE);
 /*       sciSetLineStyle(pobj, sciGetLineStyle (psubwin)); */
       sciSetForeground (pobj, mark);
-     }
+    }
   *hdl=sciGetHandle(pobj); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -123,17 +121,61 @@ void Objfpoly (x,y,n,style,hdl)
      long * hdl;
 { 
   long hdltab[2];
-  sciPointObj *psubwin;
+  int fillcolor, contourcolor;
+  sciPointObj *psubwin, *pobj;
+  int closed = 1; /* we close the polyline by default */
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,5)); 
-  sciSetForeground (sciGetCurrentObj(), abs(style));
-  hdltab[0]=sciGetHandle(sciGetCurrentObj ()); 
+  
+  if(style == 0) /* filled color is the one used for axes background */
+    fillcolor = sciGetBackground(psubwin);
+  else /* fill with abs(style) */
+    fillcolor = abs(style);
+  
+  /*   if(style == 0) */
+  /*     closed = 0; */
+  /*   else */
+  /*     closed = 1; */
+  
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,5)); /* polyline_style is "filled" == 5 */
+  pobj = sciGetCurrentObj();
+  
+/*   if (style < 0) */
+/*     { */
+/*       sciSetIsMark(pobj, FALSE); */
+/*       sciSetIsLine(pobj, TRUE); */
+/*       sciSetForeground (pobj, abs(style)); */
+/*       sciSetBackground (pobj, abs(style)); */
+/*     } */
+/*   else if (style > 0) */
+/*     { */
+/*       sciSetIsMark(pobj, FALSE); */
+/*       sciSetIsLine(pobj, TRUE); */
+/*       sciSetBackground (pobj, style); */
+/*     } */
+/*   else */
+/*     { */
+/*       sciSetIsMark(pobj, FALSE); */
+/*       sciSetIsLine(pobj, TRUE); */
+/*       sciSetForeground (pobj, style); */
+/*     } */
+  
+  sciSetForeground (pobj, fillcolor);
+
+  hdltab[0]=sciGetHandle(pobj);
  
-  if (style > 0) {
-    sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,0)); 
-    hdltab[1]=sciGetHandle(sciGetCurrentObj ()); 
-    sciSetCurrentObj(ConstructAgregation (hdltab, 2)); }
+  if (style < 0)
+    contourcolor = fillcolor;
+  else
+    contourcolor = sciGetForeground(psubwin);
+  
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,0));  /* polyline_style is "interpolated" == 0 */
+  pobj = sciGetCurrentObj();
+  sciSetForeground (pobj, contourcolor);
+
+  hdltab[1]=sciGetHandle(pobj);
+  sciSetCurrentObj(ConstructAgregation (hdltab, 2)); 
+/* } */
   
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -197,9 +239,9 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,fill,hdl)
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 
   pTEXT_FEATURE (pobj)->fill=fill;
-  sciSetForeground (pobj, sciGetForeground (psubwin));
-  sciSetFontStyle(pobj, sciGetFontStyle (psubwin));
-  sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin));
+/*   sciSetForeground (pobj, sciGetForeground (psubwin)); */
+/*   sciSetFontStyle(pobj, sciGetFontStyle (psubwin)); */
+/*   sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin)); */
   sciDrawObjIfRequired(pobj);
           
 
@@ -301,7 +343,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   integer flagcolor;  
   long *hdltab;
   int i, ok, mn;
-  sciPointObj *psubwin;
+  sciPointObj *psubwin = NULL, *pobj = NULL;
   double drect[6];
   char * loc = NULL;
   char * legx = NULL;
@@ -518,20 +560,21 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	sciSetCurrentObj (ConstructPolyline
 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
+	pobj = sciGetCurrentObj();
 	if ((*n > 0) && (zcol != (double *)NULL)) {
 	  if ((int) zcol[i] > 0){
-	    sciSetForeground (sciGetCurrentObj(), (int) zcol[i]);
-	    sciSetIsMark(sciGetCurrentObj(), FALSE);
-	    sciSetIsLine(sciGetCurrentObj(),  TRUE);
+	    sciSetForeground (pobj, (int) zcol[i]);
+	    sciSetIsMark(pobj, FALSE);
+	    sciSetIsLine(pobj,  TRUE);
 	  }
 	  else {
-	    sciSetMarkSizeUnit(sciGetCurrentObj(),2); /* force switch to tabulated mode : old syntax */
- 	    sciSetIsMark(sciGetCurrentObj(),TRUE);
-	    sciSetIsLine(sciGetCurrentObj(),FALSE);
-	    sciSetMarkStyle(sciGetCurrentObj(),(int) -zcol[i]);
+	    sciSetMarkSizeUnit(pobj,2); /* force switch to tabulated mode : old syntax */
+ 	    sciSetIsMark(pobj,TRUE);
+	    sciSetIsLine(pobj,FALSE);
+	    sciSetMarkStyle(pobj,(int) -zcol[i]);
 	  }
 	}
-	hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 
+	hdltab[i]=sciGetHandle(pobj); 
       } 
       /** construct agregation and make it current object**/
       if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
