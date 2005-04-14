@@ -91,14 +91,16 @@ void Objpoly (x,y,n,closed,mark,hdl)
   if (mark <= 0)
     { 
       sciSetIsMark(pobj, TRUE);
-      sciSetMarkStyle (pobj,sciGetMarkStyle(psubwin));
-      sciSetForeground (pobj, sciGetForeground (psubwin));
+      sciSetIsLine(pobj,FALSE);
+      sciSetMarkStyle (pobj,-mark);
+/*       sciSetForeground (pobj, sciGetForeground (psubwin)); */
     }
    else
      {
       sciSetIsMark(pobj, FALSE);
-      sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
-      sciSetForeground (pobj, sciGetForeground (psubwin));
+      sciSetIsLine(pobj, TRUE);
+/*       sciSetLineStyle(pobj, sciGetLineStyle (psubwin)); */
+      sciSetForeground (pobj, mark);
      }
   *hdl=sciGetHandle(pobj); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
