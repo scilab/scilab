@@ -75,7 +75,7 @@ xlindx=[1,2,3,8,9,11];
 //(Columns 4 and 7 of A are eliminated).
 //A can be reconstructed from (xadj,xlindx,lindx).
 [xadj,adjncy,anz]= sp2adj(A);
-adjncy -  spcompack(xadj,xlindx,lindx)
+adjncy-spcompack(xadj,xlindx,lindx)
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
