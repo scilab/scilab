@@ -53,7 +53,13 @@
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>manedit</LINK>, <LINK>editor</LINK>, <LINK>scipad</LINK>
+      <LINK>manedit</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>editor</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>scipad</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
