@@ -22,7 +22,9 @@
     processing the call.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[tic;sleep(6000);toc]]></EXAMPLE>
+  <EXAMPLE><![CDATA[
+    tic;sleep(6000);toc
+    ]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
