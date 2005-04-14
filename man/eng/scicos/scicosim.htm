@@ -1,0 +1,60 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>scicosim</title></head><body bgcolor="FFFFFF"><CENTER>Scilab Function  </CENTER><p><H2>scicosim -   Scicos (batch) simulation function </H2></p><H3><font color="blue">Calling Sequence</font></H3><dl><dd><tt>[state,t] = scicosim(state,tcur,tf,sim,str,tol)</tt></dd></dl><H3><font color="blue">Parameters</font></H3><ul><ul>
+
+    <li><tt><b>state</b></tt>
+       
+    </li>
+
+    <li><tt><b>tcur</b></tt>
+       
+    </li>
+
+    <li><tt><b>tf</b></tt>
+       
+    </li>
+
+    <li><tt><b>sim</b></tt>
+       
+    </li>
+
+    <li><tt><b>str</b></tt>
+       
+    </li>
+
+    <li><tt><b>tol</b></tt>
+       
+    </li>
+
+    <li><tt><b>state</b></tt>
+       
+    </li>
+
+    <li><tt><b>t</b></tt>
+       
+    </li>
+  </ul></ul><H3><font color="blue">Description</font></H3><dl>
+     
+     <li><b></b>
+     <p>
+      Simulator for Scicos compiled diagram. Usually scicosim is called by scicos to perform simulation of a diagram.  
+But scicosim may also be called outside Scicos. Typical usage in such a case may be:  
+	1- Use Scicos to define a block diagram, compile it.  
+	2- Save the compiled diagram using Save,SaveAs Scicos menus .  
+	3- In Scilab, load saved file using load function. You get variables scicos_ver, scs_m, %cpr  
+scs_m is the diagram Scicos main data structure.  
+%cpr is the data structure containing (state,sim,cor,corinv) if the diagram had been compiled before saved, else %cpr=list(). 
+	4- Extract state, sim out of cpr  
+	5- Execute [state,t]=scicosim(state,0,tf,sim,'start',tol) for initialisation.  
+	6- Execute [state,t]=scicosim(state,0,tf,sim,'run',tol) for
+	simulation from 0 to tf. Many successives such calls may be
+	performed changing initial and final time.   
+	7- Execute [state,t]=scicosim(state,0,tf,sim,'finish',tol) at the very end of the simulation to close
+	files,... For advanced user it is possible to "manually"
+	change some parameters or state values.  
+     </p>
+
+     </li>
+     
+  </dl><H3><font color="blue">See Also</font></H3><p><ul><a href="scicos_simulate.htm"><tt><b> scicos_simulate</b></tt></a>&nbsp;&nbsp;<a href=""><tt><b> scicos</b></tt></a>&nbsp;&nbsp;</ul></p><H3><font color="blue">Authors</font></H3><p><ul>
+    
+    
+  </ul></p></body></html>
