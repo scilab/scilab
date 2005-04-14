@@ -114,7 +114,7 @@ else
 	if sci_instr.expression.vtype==Struct then
 	  // Variable is initialized to struct() in converted script is does not already exist
 	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Struct,Unknown)))
-	  m2sci_to_insert_b($+1)=Equal(list(inservar),Funcall("struct",1,list(),list()))
+	  //m2sci_to_insert_b($+1)=Equal(list(inservar),Funcall("struct",1,list(),list()))
 	elseif sci_instr.expression.vtype==Cell then
 	  // Variable is initialized to cell() in converted script is does not already exist
 	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Cell,Unknown)))
@@ -122,7 +122,7 @@ else
 	else
 	  // Variable is initialized to [] in converted script is does not already exist
 	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Double,Real)))
-	  m2sci_to_insert_b($+1)=Equal(list(inservar),Cste([]))
+	  //m2sci_to_insert_b($+1)=Equal(list(inservar),Cste([]))
 	end
 	sci_instr.lhs(k).out(1).infer=varslist($).infer
       else
