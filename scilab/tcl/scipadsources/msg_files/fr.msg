@@ -265,6 +265,7 @@
 
 
 # print.tcl
+::msgcat::mcset fr "Print Setup" "Mise en page"
 ::msgcat::mcset fr "Print Command: " "Commande d'impression : "
 
 

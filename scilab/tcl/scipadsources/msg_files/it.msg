@@ -290,6 +290,7 @@
 
 
 # print.tcl
+::msgcat::mcset it "Print Setup" "Configura stampante"
 ::msgcat::mcset it "Print Command: " "Comando di stampa:"
 
 

@@ -18,7 +18,8 @@
 
 
 # colorize.tcl
-::msgcat::mcset se "Wait seconds while recolorizing file" "Vänta ett ögonblick medans filen färgläggs"
+::msgcat::mcset se "Wait seconds while recolorizing file" \
+                   "Vänta ett ögonblick medans filen färgläggs"
 
 
 # db_argsmanagement.tcl
@@ -45,17 +46,24 @@
                         i konfigurationsdialogen.\n\
                         Ordningen på argumenten kan ändras genom dra och släppa med\
                         höger musknapp i rutan med argument."
-::msgcat::mcset se "Error in selected function name or arguments" "Fel i valt funktionsnamn eller argument"
-::msgcat::mcset se "Debugger is not yet developed for sce scripts!" "Det är ingen debugger utvecklad för sce script!"
+::msgcat::mcset se "Error in selected function name or arguments" \
+                   "Fel i valt funktionsnamn eller argument"
+::msgcat::mcset se "Debugger is not yet developed for sce scripts!" \
+                    "Det är ingen debugger utvecklad för sce script!"
 
 
 # db_debugsession.tcl
-::msgcat::mcset se "Scilab is working, wait for the prompt to issue a debugger command." "Scilab arbetar, vänta på att prompten ger ett debugg kommando."
-::msgcat::mcset se "Cursor position is out of reach!" "Markören är utom räckhåll!"
-::msgcat::mcset se "Cursor must be in a function" "Markören måste vara i en funktion"
-::msgcat::mcset se "No effect - The debugged file is not stuck" "Verkningslöst - den debuggade filen har inte fastnat"
+::msgcat::mcset se "Scilab is working, wait for the prompt to issue a debugger command." \
+         "Scilab arbetar, vänta på att prompten ger ett debugg kommando."
+::msgcat::mcset se "Cursor position is out of reach!" \
+                   "Markören är utom räckhåll!"
+::msgcat::mcset se "Cursor must be in a function" \
+                   "Markören måste vara i en funktion"
+::msgcat::mcset se "No effect - The debugged file is not stuck" \
+                   "Verkningslöst - den debuggade filen har inte fastnat"
 ::msgcat::mcset se "Scilab execution error" "Exekveringsfel i Scilab"
-::msgcat::mcset se "The shell reported an error while trying to execute " "Skalet rapporterade ett fel när det försökte exekvera "
+::msgcat::mcset se "The shell reported an error while trying to execute " \
+                   "Skalet rapporterade ett fel när det försökte exekvera "
     ::msgcat::mcset se " at line " " på rad "
     ::msgcat::mcset se " of " " i "
 ::msgcat::mcset se "Execution aborted!" "Exekveringen avbrute!"
@@ -66,7 +74,8 @@
 
 
 # db_states.tcl
-::msgcat::mcset se "Currently no debug session" "Finns ingen debuggsession för tillfället"
+::msgcat::mcset se "Currently no debug session" \
+                   "Finns ingen debuggsession för tillfället"
 ::msgcat::mcset se "Ready to start debug" "Redo att starta debugging"
 ::msgcat::mcset se "Debug in progress" "Debuggning pågår"
 
@@ -84,8 +93,10 @@
 
 # filecommands.tcl
 ::msgcat::mcset se "New Script" "Nytt Script"
-::msgcat::mcset se "The contents of" "Innehållet kan ha ändrats, vill du spara dina ändringar"
-    ::msgcat::mcset se "may have changed, do you wish to save your changes?" "?"
+::msgcat::mcset se "The contents of" \
+                 "Innehållet kan ha ändrats, vill du spara dina ändringar"
+    ::msgcat::mcset se "may have changed, do you wish to save your changes?" \
+                       "?"
 ::msgcat::mcset se "Save Confirm?" "Bekräfta spara ?"
 ::msgcat::mcset se "Weird drag&drop" "Konstig drag och släpp"
 ::msgcat::mcset se "is neither a valid filename nor a valid directory.\
@@ -100,19 +111,23 @@
                    "finns inte längre. Vill du skapa en tom fil med samma namn?"
 ::msgcat::mcset se "Open file" "Öppna fil"
 ::msgcat::mcset se "The file" "Filen"
-    ::msgcat::mcset se "is already opened! Save the current opened file to an another name and reopen it from disk!" "är redan öppen! Spara den öppna filen till ett annat filnamn och öppna den igen!"
+    ::msgcat::mcset se "is already opened! Save the current opened file to an another name and reopen it from disk!" \
+                       "är redan öppen! Spara den öppna filen till ett annat filnamn och öppna den igen!"
 ::msgcat::mcset se "File" "Fil"
     ::msgcat::mcset se "saved" "sparad"
 ::msgcat::mcset se "cannot be written!" "kan inte skrivas!"
 ::msgcat::mcset se "The contents of " "Innehållet i"
-    ::msgcat::mcset se "has changed on disk, save it anyway?" "har ändrats på hårddisken, spara det i allafall?"
+    ::msgcat::mcset se "has changed on disk, save it anyway?" \
+                       "har ändrats på hårddisken, spara det i allafall?"
 ::msgcat::mcset se "File has changed!" "Filen har ändrats!"
 ::msgcat::mcset se "Save as" "Spara som"
 ::msgcat::mcset se "Scilab files" "Scilab filer"
 ::msgcat::mcset se "XML files" "XML filer"
 ::msgcat::mcset se "All files" "Alla filer"
-::msgcat::mcset se "Wait seconds while loading and colorizing file" "Vänta ett ögonblick medan filen laddas och färgläggs"
-::msgcat::mcset se "The contents of this file may have changed, do you wish to save your changes?" "Innehållet i denna fil kan ha ändrats, will du spara dina ändringar?"
+::msgcat::mcset se "Wait seconds while loading and colorizing file" \
+                   "Vänta ett ögonblick medan filen laddas och färgläggs"
+::msgcat::mcset se "The contents of this file may have changed, do you wish to save your changes?" \
+                   "Innehållet i denna fil kan ha ändrats, will du spara dina ändringar?"
 ::msgcat::mcset se "Revert" "Återgå till tidigare version"
     ::msgcat::mcset se "to saved?" "?"
 ::msgcat::mcset se "Revert Confirm?" "Bekräfta återgång ?"
@@ -123,9 +138,12 @@
     ::msgcat::mcset se "could not be found" "kan inte hittas"
 ::msgcat::mcset se "replacements done" "ersättningar utförda"
 ::msgcat::mcset se "Find" "Finn"
-::msgcat::mcset se "No match found in the selection for" "Ingen träff i den markerade delen för"
-    ::msgcat::mcset se "\nWould you like to look for it in the entire text?" "\nVill du leta efter det i hela texten?"
-::msgcat::mcset se "You are searching for an empty string!" "Du letar efter en tom sträng, toker!"
+::msgcat::mcset se "No match found in the selection for" \
+                   "Ingen träff i den markerade delen för"
+    ::msgcat::mcset se "\nWould you like to look for it in the entire text?" \
+                       "\nVill du leta efter det i hela texten?"
+::msgcat::mcset se "You are searching for an empty string!" \
+                       "Du letar efter en tom sträng, toker!"
 ::msgcat::mcset se "Re&place" "E&rsätt"
 ::msgcat::mcset se "Find what:" "Leta efter :"
 ::msgcat::mcset se "Replace with:" "Ersätt med :"
@@ -158,7 +176,8 @@
 # inputtext.tcl
 ::msgcat::mcset se "No corresponding <" "Ingen motsvarande <"
     ::msgcat::mcset se "> found!" "> hittad !"
-::msgcat::mcset se "Code editing is not allowed during debug!" "Du kan inte ändra koden under debuggningen!"
+::msgcat::mcset se "Code editing is not allowed during debug!" \
+                    "Du kan inte ändra koden under debuggningen!"
 
 
 # menues.tcl
@@ -212,7 +231,8 @@
     ::msgcat::mcset se "&Evaluate selection" "&Evaluera markering"
 
     # menues.tcl - Debug menu
-    ::msgcat::mcset se "&Insert/Remove breakpoint" "Lägg t&ill tabort brytpunkt"
+    ::msgcat::mcset se "&Insert/Remove breakpoint" \
+                       "Lägg t&ill tabort brytpunkt"
     ::msgcat::mcset se "Remove &all breakpoints" "&Tabort alla brytpunkter"
     ::msgcat::mcset se "&Configure execution..." "Konfigurera exekveringen..."
     ::msgcat::mcset se "Go to next b&reakpoint" "Gå till nästa b&rytpunkt"
@@ -221,7 +241,8 @@
     ::msgcat::mcset se "Step o&ver" "Kliv &över"
     ::msgcat::mcset se "Step &out" "Kliv ut &ur"
     ::msgcat::mcset se "Run to c&ursor" "Exekvera till markering"
-    ::msgcat::mcset se "G&o on ignoring any breakpoint" "&Fortsätt och strunta i brytpunkter"
+    ::msgcat::mcset se "G&o on ignoring any breakpoint" \
+                       "&Fortsätt och strunta i brytpunkter"
     ::msgcat::mcset se "Show &watch" "&Visa kontroll"
     ::msgcat::mcset se "&Break" "&Stanna"
     ::msgcat::mcset se "Cance&l debug" "&Avbryt debugging"
@@ -246,7 +267,8 @@
     ::msgcat::mcset se "Word &Wrap" "&Bryt ej långa rader"
     ::msgcat::mcset se "File&names" "Fil&namn"
         ::msgcat::mcset se "&Full path" "&Hela sökvägen"
-        ::msgcat::mcset se "Full path if &ambiguous" "Hela sökvägen är tvetydig"
+        ::msgcat::mcset se "Full path if &ambiguous"\
+                           "Hela sökvägen är tvetydig"
         ::msgcat::mcset se "&Unambiguous pruned path" "&Entydig sökväg"
     ::msgcat::mcset se "&Recent files" "S&enaste filerna"
 
@@ -264,17 +286,23 @@
 
 
 # print.tcl
+::msgcat::mcset se "Print Setup" "Skrivar inställningar"
 ::msgcat::mcset se "Print Command: " "Utskriftskommando : "
 
 
 # scilabexec.tcl
-::msgcat::mcset se "No point in loading an empty file!" "Ingen ide att ladda en tom fil!"
-::msgcat::mcset se "Scilab is working, wait for the prompt to load file" "Scilab arbetar, vänta på att filen laddas"
+::msgcat::mcset se "No point in loading an empty file!" \
+                   "Ingen ide att ladda en tom fil!"
+::msgcat::mcset se "Scilab is working, wait for the prompt to load file"\
+                   "Scilab arbetar, vänta på att filen laddas"
 ::msgcat::mcset se "Exec done" "Exekveringen klar"
-::msgcat::mcset se "Scilab is working, wait for the prompt to execute the selection." "Scilab arbetar, vänta på att markeringen exekveraas."
-::msgcat::mcset se "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab arbetar, vänta på att Matlab filen konverteras."
+::msgcat::mcset se "Scilab is working, wait for the prompt to execute the selection."\
+                   "Scilab arbetar, vänta på att markeringen exekveraas."
+::msgcat::mcset se "Scilab is working, wait for the prompt to convert a Matlab file."\
+                   "Scilab arbetar, vänta på att Matlab filen konverteras."
 ::msgcat::mcset se "Matlab file to convert" "Konvertera denna Matlab fil"
-::msgcat::mcset se "Scilab is converting, please hold on..." "Scilab konverterar, vänligen vänta..."
+::msgcat::mcset se "Scilab is converting, please hold on..." \
+                   "Scilab konverterar, vänligen vänta..."
 ::msgcat::mcset se "Matlab file import" "Importera Matlab fil"
 ::msgcat::mcset se "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
@@ -284,14 +312,17 @@
                     för detaljer. Kanske skall du rapportera felmeddelandet och\
 					den krånglande Matlab filen till\
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi"
-::msgcat::mcset se "Please select destination path for the xml source of the help file" "Vänligen välj xml koden för hjälp filen"
+::msgcat::mcset se "Please select destination path for the xml source of the help file"\
+                   "Vänligen välj xml koden för hjälp filen"
 ::msgcat::mcset se "Older version of" "Äldre version av"
     ::msgcat::mcset se "found!" "funnen!"
 ::msgcat::mcset se "An old version of" "En gammal version av"
-    ::msgcat::mcset se "already exists: open the old file instead?" "finns redan: Öppna den gammla filen istället?"
+    ::msgcat::mcset se "already exists: open the old file instead?"\
+                        "finns redan: Öppna den gammla filen istället?"
 ::msgcat::mcset se "Existing file" "Filen finns"
 ::msgcat::mcset se "New skeleton" "Ny mall"
-::msgcat::mcset se "Scilab is working, wait for the prompt to compile the help file." "Scilab arbetar, vänta på att hjälpfilen ska kompileras."
+::msgcat::mcset se "Scilab is working, wait for the prompt to compile the help file."\
+                   "Scilab arbetar, vänta på att hjälpfilen ska kompileras."
 
 
 # scipad.tcl
@@ -307,11 +338,13 @@
     ::msgcat::mcset se ", function" ", funktionen"
     ::msgcat::mcset se "begins at" "börjar på"
     ::msgcat::mcset se ", and there are" ", och det är "
-    ::msgcat::mcset se "continued lines, i.e. we are at line" "flera rader, d.v.s. vi är på rad"
+    ::msgcat::mcset se "continued lines, i.e. we are at line"\
+            "flera rader, d.v.s. vi är på rad"
     ::msgcat::mcset se "of" "i"
 ::msgcat::mcset se "Function" "Funktion"
     ::msgcat::mcset se "line" "rad"
-::msgcat::mcset se "The cursor is not currently inside a function body." "Markören är förnärvarande inte inuti en funktionskropp."
+::msgcat::mcset se "The cursor is not currently inside a function body."\
+               "Markören är förnärvarande inte inuti en funktionskropp."
 ::msgcat::mcset se "Which function?" "Vilken funktion?"
 
 #preference variables description
