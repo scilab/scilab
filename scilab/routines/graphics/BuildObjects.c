@@ -1043,7 +1043,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
   sciPolyline *ppoly = (sciPolyline *) NULL;
   /* Adding F.Leray */
   /* sciPointObj *psubwin = ( sciPointObj *) NULL;*/
-/*   double xmax, ymax; */
   int i = 0;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
@@ -1114,20 +1113,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
  	}
-/*       ppoly->xmin   = pvecx[0]; */
-/*       ppoly->ymin   = pvecy[0]; */
-/*       ppoly->xmax   = pvecx[0];  /\* Adding F.Leray 07.04.04 *\/ */
-/*       ppoly->ymax   = pvecy[0];  /\* Adding F.Leray 07.04.04 *\/ */
-/*       xmax          = 0; */
-/*       ymax          = 0; */
-/*       ppoly->width  = 0; */
-/*       ppoly->height = 0; */
 
-/*       for (i = 0; i < n1; i++) */
-/* 	{ */
-/* 	  ppoly->pvx[i] = 0; */
-/* 	  ppoly->pvy[i] = 0; */
-/* 	} */
       for (i = 0; i < n1; i++)
 	{
 	  ppoly->pvector[i].x = pvecx[i];
@@ -1135,20 +1121,12 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  ppoly->pvx[i]       = pvecx[i];
 	  ppoly->pvy[i]       = pvecy[i];
 	  
-/* 	  ppoly->xmin   = Min(ppoly->pvx[i], ppoly->xmin); */
-/* 	  xmax          = Max(ppoly->pvx[i] ,xmax); */
-
-/* 	  ppoly->ymin   = Min(ppoly->pvy[i], ppoly->ymin); */
-/* 	  ymax          = Max(ppoly->pvy[i], ymax);                */
 	}
 
       /**DJ.Abdemouche 2003**/
       if (pvecz == (double *) NULL)
 	{
 	  pPOLYLINE_FEATURE (pobj)->pvz=NULL;
-
-/* 	  ppoly->zmin   = 0.; */
-/* 	  ppoly->zmax   = 0.; */
 	}
       else
 	{
@@ -1166,26 +1144,13 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  for (i = 0; i < n1; i++)
 	    ppoly->pvz[i] = pvecz[i];
 	  
-/* 	  ppoly->zmin   = pvecz[0];  /\* Adding F.Leray 07.04.04 *\/ */
-/* 	  ppoly->zmax   = pvecz[0];  /\* Adding F.Leray 07.04.04 *\/ */
-
-/* 	  /\* Adding F.Leray 07.04.04 : Find the min and max for z*\/ */
-/* 	  for (i = 0; i < n1; i++) */
-/* 	    { */
-/* 	      ppoly->zmin   = Min(ppoly->pvz[i], ppoly->zmin); */
-/* 	      ppoly->zmax   = Max(ppoly->pvz[i], ppoly->zmax); */
-/* 	    } */
-
 	}
-/*       ppoly->width  = fabs(xmax - ppoly->xmin); */
-/*       ppoly->height = fabs(ymax - ppoly->ymin);  */
+
       ppoly->n1 = n1;		/* memorisation du nombre des courbes */
       ppoly->n2 = n2;		/* memorisation du nombre de points */
       ppoly->closed = closed;
       ppoly->plot = plot; 
- /*      ppoly->xmax = xmax;  /\** xmax Adding  F.Leray 02.04.04 *\/ */
-/*       ppoly->ymax = ymax;  /\** ymax Adding  F.Leray 02.04.04 *\/ */
-
+ 
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvy);
