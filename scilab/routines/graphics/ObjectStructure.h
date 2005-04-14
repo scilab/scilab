@@ -820,23 +820,14 @@ typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
-  /* listPoints     points; */
   POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
   double *pvz; /**DJ.Abdemouche 2003**/
-  int n1;                               /** number of point */
-  int n2;                             /** numbre of curve if Plot **/ 
-  int closed;                      /** is it a closed polyline */
-  int plot;                        /** is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
-  double xmin;				/** xmin */
-  double ymin;				/** ymin */
-  double zmin;				/** ymin */
-  double xmax;				/** xmax Adding  F.Leray  02.04.04 */
-  double ymax;	                        /** ymax Adding  F.Leray  02.04.04 */
-  double zmax;	                        /** ymax Adding  F.Leray  02.04.04 */
-  double width;			/** width */
-  double height;		/** height */
+  int n1;                       /** number of point */
+  int n2;                       /** numbre of curve if Plot **/ 
+  int closed;                   /** is it a closed polyline */
+  int plot;                     /** defines the polyline_style (interpolated, staircase, bar_plot,...) : is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   BOOL isselected;
   char *callback;		/** specifies the text scilab code for the callback associated with this entity */
   int callbacklen;		/** the length of the callback code */  
