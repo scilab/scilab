@@ -1191,6 +1191,12 @@ int C2F(scicos)
   /*     full jac matrx */
   info[5] = 0;
 
+  if(hmax==0){
+    info[6] = 0;    /*  code determines maximaum step-size */
+  }else{
+    info[6] = 1;
+    rhot[2]=hmax;  /*  user defined maximaum step-size */
+  } 
 
   /*     code determines initial step size */
   info[7] = 0;
