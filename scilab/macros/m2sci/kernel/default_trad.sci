@@ -28,7 +28,7 @@ if funptr(tree.name)<>0 then
   ispriminame=%t;   
 end  
 //ismtlbfun is true if the the function is in a matlab toolboxe, mtlbpath is the path where is the function
- [mtlbpath,ismtlbtoolfun]=mtlbtoolfun(name)
+[mtlbpath,ismtlbtoolfun]=mtlbtoolfun(name)
 //Matlab reference functions
 if or(name==not_yet_converted()) then
   set_infos("Matlab function "+name+" not yet converted, original calling sequence used",2)
@@ -62,7 +62,7 @@ elseif isdefinedvar(Variable(tree.name,Infer())) then
 
   //Not matlbb function
 else 
- set_infos("Unknown function "+name+" not converted, original calling sequence used",2)  
+  set_infos("Unknown function "+name+" not converted, original calling sequence used",2)  
   if ~or(name==not_mtlb_fun(:,1)) then
     not_mtlb_fun($+1,1)=name
     if ispriminame then 
@@ -73,9 +73,9 @@ else
   end
 end
 if ispriminame then
- set_infos("Name conflict: function name changed from "+tree.name+" to "+name1,0)
+  set_infos("Name conflict: function name changed from "+name+" to "+name1,0)
 end
- [tree]=sci_generic(tree)
+[tree]=sci_generic(tree)
 endfunction
 
 
