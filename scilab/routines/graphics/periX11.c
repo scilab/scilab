@@ -3520,10 +3520,11 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
- if (string[0]!='.') 
-   AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
- 
-
+#ifdef WITH_TK
+  if (!IsTKGraphicalMode()) {
+    AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+  }
+#endif
   XSync(dpy,0);
   
 }
