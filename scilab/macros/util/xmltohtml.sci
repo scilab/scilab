@@ -37,7 +37,7 @@ function xmltohtml(dirs,titles,xsl,step)
   
   if rhs > 4 then error(39),return; end
   if rhs <= 3 then step='all';end 
-  if rhs <= 2 then xsl= 'html-jpc.xsl'; end 
+  if rhs <= 2 then xsl= 'html-rev.xsl'; end 
   if rhs <= 1 then titles= H + emptystr(dirs);end 
   if rhs <= 0 then dirs = man_dirs ;end 
   if titles==[] then titles= H+ emptystr(dirs);end 
