@@ -7581,7 +7581,7 @@ sciDrawObj (sciPointObj * pobj)
 	  /**DJ.Abdemouche 2003**/
 	  switch (pPOLYLINE_FEATURE (pobj)->plot)
 	    {
-	    case 0:
+	    case 0:  /* case plot2d, xpoly */
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
 		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
 		
@@ -7689,7 +7689,7 @@ sciDrawObj (sciPointObj * pobj)
 		    C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L); 
 		  } 
 	      break;
-	    case 5:
+	    case 5: /* case xfpoly */
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
 		
 		/* 	trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx, */
@@ -8266,12 +8266,12 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-		
-
+      
+      
       n=1;               
 #ifdef WIN32
       flag_DO = MaybeSetWinhdc();
-#endif     
+#endif
       switch(pSURFACE_FEATURE (pobj)->typeof3d)
 	{
 	case SCI_FAC3D:
