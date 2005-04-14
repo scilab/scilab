@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>steadycos</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>14-Apr-2005</DATE>
+  <SHORT_DESCRIPTION name="steadycos">  Finds an equilibrium state of a general  dynamical system described by a scicos diagram</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>scs_m</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a Scicos data structure
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>X</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : column vector. Continuous state. Can be set to [] if zero.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>U</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : column vector. Input. Can be set to [] if zero.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Y</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : column vector. Output. Can be set to [] if zero.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Indx</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : index of entries of X that are not fixed. If all can vary, set to 1:$
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Indu</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : index of entries of U that are not fixed. If all can vary, set to 1:$
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Indy</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : index of entries of Y that are not fixed. If all can vary, set to 1:$
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Indxp</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : index of entries of XP (derivative of x) that need not be
+    zero. If all can vary, set to 1:$. Default []. 
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : list with two elements (default list(1.d-6,0)). param(1):
+    scalar. Perturbation level for linearization; the following
+    variation is used del([x;u])_i =
+    param(1)+param(1)*1d-4*abs([x;u])_i. 
+    param(2): scalar. Time t.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>X</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : steady state X
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>U</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : stationary input U
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Y</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : output corresponding to steady state found
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>XP</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : derivative of the state corresponding to steady state found
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function finds the steady state for a given system described
+     by a Scicos diagram. The diagram consists in general of a Super
+     block with input and output port blocks. The steady states
+     concerns only the continuous-time dynamics.
+     </P>
+     </DESCRIPTION_ITEM>
+
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> lincos</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> scicos_simulate</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> scicos</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Ramine Nikoukhah'>
+    
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+
+
+  <USED_FUNCTIONS>
+     <SP>
+     optim
+     </SP>
+  </USED_FUNCTIONS>
+</MAN>

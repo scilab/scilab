@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scicos</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>14-Apr-2005</DATE>
+  <SHORT_DESCRIPTION name="scicos">  Block diagram editor and GUI for
+  the hybrid simulator <LINK>scicosim</LINK> </SHORT_DESCRIPTION> 
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>scs_m = scicos([toto])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>toto</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : either a Scicos diagram structure (scs_m) or a  character
+    string containing the path of the diagram file (.cos or .cosf
+    extension).  If no input argument is used, an empty diagram is
+    opened (default name Untitled).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+   <PARAM_ITEM>
+    <PARAM_NAME>scs_m</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : Scicos diagram structure after edition.
+       </SP>
+    </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      Scicos is a visual editor for constructing models of hybrid
+      dynamical systems. Invoking Scicos with no argument opens up an
+      empty Scicos window. Models can then be assembled, loaded,
+      saved, compiled, simulated, using GUI of Scicos.  Scicos
+      serves as an interface to the various block diagram compilers
+      and the hybrid simulator scicosim.   
+     </P>
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+     <P>
+      The input and output arguments are useful for debugging purposes.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> scicosim</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> scicos_simulate</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Ramine Nikoukhah'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
