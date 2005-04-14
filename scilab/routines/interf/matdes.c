@@ -2719,6 +2719,10 @@ int scixget(fname,fname_len)
 	  x1[0] = sciGetFontDeciWidth(psubwin)/100;
 	  x2 = 1;
 	}
+	else if(strcmp(cstk(l1),"dashes")==0){
+	  x1[0] = sciGetLineStyle(psubwin);
+	  x2 = 1;
+	}
 	else
 	  C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       }
@@ -2937,8 +2941,29 @@ int scixpoly(fname,fname_len)
     
   if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
   /* NG beg */
-  if (version_flag() == 0)
+  if (version_flag() == 0){
+    sciPointObj *pobj = NULL;
+    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    
     Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
+
+    pobj = sciGetCurrentObj(); /* the polyline newly created */
+    if(mark == 0){ 
+      /* marks are enabled but markstyle & foreground 
+	 is determined by parents' markstyle & foreground */
+      sciSetIsMark(pobj, TRUE);
+      sciSetIsLine(pobj,FALSE);
+      sciSetMarkStyle (pobj,sciGetMarkStyle(psubwin));
+      sciSetForeground (pobj, sciGetForeground (psubwin));
+    }
+    else{
+      sciSetIsMark(pobj, FALSE);
+      sciSetIsLine(pobj, TRUE);
+      sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
+      sciSetForeground (pobj, sciGetForeground (psubwin));
+    }
+    sciDrawObjIfRequired(pobj);
+  }
   else
     Xpoly(C2F(cha1).buf,bsiz,mn2,close,stk(l1),stk(l2));
   /* NG end */
@@ -3175,8 +3200,12 @@ int scixset(fname,fname_len)
 	int fontsize_ = 100*font[1];
         sciSetFontDeciWidth(subwin, fontsize_); 
         sciSetFontDeciWidth(sciGetParent(subwin), fontsize_);
-      }
-      else if ( strncmp(cstk(l1),"font",4) == 0) {
+      }     
+      else if ( strncmp(cstk(l1),"dashes",6) == 0) {
+        sciSetLineStyle(subwin, x[0]); 
+        sciSetLineStyle(sciGetParent(subwin), x[0]);   
+      }  
+      else if ( strcmp(cstk(l1),"font") == 0) {
         sciSetFontStyle(subwin, x[0]); 
 	sciSetFontDeciWidth(subwin,  x[1]*100);  
         sciSetFontStyle(sciGetParent(subwin), x[0]); 
