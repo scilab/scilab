@@ -84,7 +84,7 @@ function plotprofile(fun)
 while ok
     [c_i,c_x,c_y,cw,cm]=xclick()
     if (c_i <0&cm==str)|c_i==-100 then break,end
-    if cw==win then
+    if cw==win&or(c_i==0:5) then
       k=min(n,max(1,round(c_x)))
       // show source code in another window
       xinfo('line : '+string(k))
