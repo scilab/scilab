@@ -27,7 +27,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>opt</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: (optionnal) specify where to draw the legends; this parameter may be a integer
+          <SP>: (optional) specify where to draw the legends; this parameter may be a integer
                 flag (or equivalently a string flag) or a vector [x,y] which gives the coordinates 
                 of the upper left corner of the legend box. In the first case the possible values
                 are:</SP>

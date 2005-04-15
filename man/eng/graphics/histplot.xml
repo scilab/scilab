@@ -45,7 +45,7 @@
         <PARAM_DESCRIPTION>
           <SP>: This represents a sequence of statements <VERB>key1=value1,
           key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be any optionnal <LINK>plot2d</LINK> parameter (<TT>style,strf,leg,
+          <VERB>key2,...</VERB> can be any optional <LINK>plot2d</LINK> parameter (<TT>style,strf,leg,
           rect,nax, logflag,frameflag, axesflag</TT>) or normalization. For this last one the corresponding
           value must be a boolean scalar (default value %t). </SP>
         </PARAM_DESCRIPTION>
@@ -77,7 +77,7 @@
      ]]>
     </VERBATIM>
 
-    <P>Any <LINK>plot2d</LINK> (optionnal) parameter may be provided; for instance to
+    <P>Any <LINK>plot2d</LINK> (optional) parameter may be provided; for instance to
        plot an histogram with the color number 2 (blue if std colormap is used) and
        to restrict the plot inside the rectangle [-3,3]x[0,0.5],
        you may use <TT>histplot(n,data, style=2, rect=[-3,0,3,0.5])</TT>.
