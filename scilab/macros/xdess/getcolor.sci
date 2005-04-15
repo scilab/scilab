@@ -17,19 +17,25 @@ else
   error("function ""color"" must have 1 or 3 arguments")
 end
 
-if get("figure_style")=="old" then
-  cmap=xget("colormap");
+if winsid()<>[] then
+  if get("figure_style")=="old" then
+    cmap=xget("colormap");
+  else
+    cmap=get(gcf(),"color_map");
+  end
+  curwin=xget("window");
 else
-  cmap=get(gcf(),"color_map");
+  cmap=[]
+  curwin=[]
 end
-curwin=xget("window");
 win=max(winsid()+1);
 xset("window",win);
+
 if get("figure_style")=="old" then
   set("figure_style","new");
 end
 sdf(); sda(); f=gcf();
-f.color_map=cmap;
+if cmap<>[] then f.color_map=cmap;else cmap=f.color_map;end
 
 N=size(cmap,1);
 wdim=[1,1];
@@ -115,7 +121,7 @@ while %t
   if c_i==-100 then k=[];break, end
   mc=int(cx/dx)+1;nc=n-int(cy/dy);
   k=((mc-1)*n+nc);
-  if c_i==0&k<=N&k>0 then
+  if or(c_i==[0 3])&k<=N&k>0 then
     if k1<>0 then
       move(rector,[rects(1,k)-rects(1,k1),rects(2,k)-rects(2,k1)]);
       rector.foreground=color(255*(1-cmap(k,1)),255*(1-cmap(k,2)),255*(1-cmap(k,3)));
@@ -129,6 +135,6 @@ while %t
 end
 
 xdel(win);
-xset("window",curwin);
+if curwin<>[] then xset("window",curwin);end
 
 endfunction

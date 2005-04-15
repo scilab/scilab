@@ -23,7 +23,7 @@ end
 //Event handler and menu definition
 deff('evh(gwin,x,y,ibut)',..
      ['global pos done'
-      'if or(ibut==(0:2)) then '
+      'if or(ibut==(0:5)) then '
       '   [x,y]=xchange(x,y,''i2f'')'
       '   pos=[x,y],done=0,'
       'end'

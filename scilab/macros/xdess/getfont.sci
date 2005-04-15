@@ -75,7 +75,7 @@ function [fontId,fontSize]=getfont(S,v1)
       if str==cmdcancel then break,end
     elseif c_i==-100 then str=cmdcancel ;
       break, 
-    elseif c_i>=0&c_i<3 then
+    elseif c_i>=0&c_i<6 then
       if selected<>0 then 
 	t=Hdl(selected)
 	t.foreground=-1;
