@@ -99,6 +99,8 @@ proc TextStyles { t } {
     $t tag configure foundtext -background $FOUNDTEXTCOLOR
     $t tag configure replacedtext -background $REPLACEDTEXTCOLOR
     $t tag configure fakeselection -background $FAKESELCOLOR
+    $t tag raise sel activebreakpoint
+    $t tag raise sel breakpoint
 }
 
 proc setfontscipad {FontSize} {
@@ -137,9 +139,10 @@ proc setfontscipad {FontSize} {
 
 proc exitapp {} {
 # exit app
-    global listoffile listoftextarea pad
+    global listoftextarea
+    if {[getdbstate] == "DebugInProgress"} canceldebug_bp
     foreach textarea $listoftextarea {
-        closefile $textarea
+        closecur
     }
 }
 

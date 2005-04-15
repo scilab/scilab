@@ -1,5 +1,5 @@
 proc showpopup2 {} {
-    global pad
+    global pad mouseoversel
     set numx [winfo pointerx .]
     set numy [winfo pointery .]
     # if there is no debug session, popup menu is the edit menu
@@ -7,7 +7,12 @@ proc showpopup2 {} {
     if {[getdbstate] == "NoDebug"} {
         tk_popup $pad.filemenu.edit $numx $numy
     } else {
-        tk_popup $pad.filemenu.debug $numx $numy
+        set ta [gettextareacur]
+        if {$mouseoversel == "true"} { 
+            showpopupdebugwsel [[gettextareacur] index current]
+        } else {
+            tk_popup $pad.filemenu.debug $numx $numy
+        }
     }
 }
 
@@ -45,4 +50,16 @@ proc showpopupsource {ind} {
         }
     }
     tk_popup $pad.popsource $numx $numy
+}
+
+proc showpopupdebugwsel {ind} {
+    global pad textareacur menuFont
+    set numx [winfo pointerx .]
+    set numy [winfo pointery .]
+    catch {destroy $pad.popdebugwsel}
+    menu $pad.popdebugwsel -tearoff 0 -font $menuFont
+    set plabel [mc "Add watch"]
+    $pad.popdebugwsel add command -label $plabel\
+        -command "quickAddWatch_bp"
+    tk_popup $pad.popdebugwsel $numx $numy
 }

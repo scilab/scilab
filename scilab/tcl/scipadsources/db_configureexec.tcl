@@ -233,6 +233,7 @@ proc OKconf_bp {w} {
             set strargs ""
             for {set i 0} {$i < [$listboxinput size]} {incr i} {
                 set argvalue [$listboxinputval get $i]
+                if {$argvalue == ""} break
                 set strargs "$strargs,$argvalue"
             }
             set strargs [string range $strargs 1 end]
@@ -253,13 +254,14 @@ proc checkarglist {funname} {
 # Because the user could add input variables (in the buffer text) to the
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
-    global listoftextarea funvars
+    global listoftextarea funvars funvarsvals
     # In tcl<8.5, this does not match multiple lines. This is a tcl/tk bug.
     # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
     # <TODO>: once using 8.5, the messageBox below can be removed
     set pat "\\mfunction\\M.*\\m$funname\\M"
 #    set pat "\\mfunction\\M\[.\\n\\r\\t\]*\\m$funname\\M"
     set orderOK "false"
+    set found "false"
     foreach textarea $listoftextarea {
         set ex [$textarea search -regexp $pat 0.0 end]
         if {$ex != "" } {
@@ -269,6 +271,7 @@ proc checkarglist {funname} {
                 if {$ex == ""} break
             }
             if {$ex != "" } {
+                set found "true"
                 set infun [whichfun [$textarea index "$ex +1l"] $textarea]
                 set funline [lindex $infun 2]
                 set oppar [string first "\(" $funline]
@@ -278,7 +281,8 @@ proc checkarglist {funname} {
                 set orderOK "true"
                 set i 0
                 foreach var $funvars($funname) {
-                    if {[lindex $listvars $i] == "varargin"} {
+                    if {[lindex $listvars $i] == "varargin" || \
+                        $funvarsvals($funname,$var) == "" } {
                         break
                     }
                     if {$var != [lindex $listvars $i]} {
@@ -291,7 +295,7 @@ proc checkarglist {funname} {
             }
         }
     }
-    if {$ex == ""} {
+    if {$found == "false"} {
         tk_messageBox -message [mc "Check function definition: it must be on a single code line."]
     }
     if {$orderOK != "true" } {

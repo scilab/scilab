@@ -1,5 +1,5 @@
 # Scipad texts in Swedish
-# in sync at least with v4.4
+# in sync at least with v4.5
 # provided by Gunnar Lindholm
 
 # commons
@@ -85,8 +85,8 @@
 ::msgcat::mcset se "Remove" "Tabort"
 ::msgcat::mcset se "Call stack:" "Anropsstack:"
 ::msgcat::mcset se "Close" "Stäng"
-::msgcat::mcset se "Show watch variables" "Visa iaktagna variabler"
-::msgcat::mcset se "Hide watch variables" "Dölj iaktagna variabler"
+::msgcat::mcset se "Show watch variables" "Visa bevakade variabler"
+::msgcat::mcset se "Hide watch variables" "Dölj bevakade variabler"
 ::msgcat::mcset se "Show call stack" "Visa anropsstacken"
 ::msgcat::mcset se "Hide call stack" "Dölj anropsstacken"
 
@@ -161,7 +161,8 @@
                    "\n Skapat av Joseph Acosta, joeja@mindspring.com.\n\
                     Modifierat av Scilab Constortium.\n\
                     Granskat av Enrico Segre 2003-2005.\n\
-                    Diverse förbättringar, i synnerhet debuggingverktygen av François Vogel 2004-2005."
+                    Diverse förbättringar, i synnerhet debuggingverktygen av François Vogel 2004-2005.\n\
+                    Svensk översättning av Gunnar Lindholm 2005."
 
 
 # infomessages.tcl
@@ -243,7 +244,7 @@
     ::msgcat::mcset se "Run to c&ursor" "Exekvera till markering"
     ::msgcat::mcset se "G&o on ignoring any breakpoint" \
                        "&Fortsätt och strunta i brytpunkter"
-    ::msgcat::mcset se "Show &watch" "&Visa kontroll"
+    ::msgcat::mcset se "Show &watch" "&Visa bevakning"
     ::msgcat::mcset se "&Break" "&Stanna"
     ::msgcat::mcset se "Cance&l debug" "&Avbryt debugging"
 
@@ -283,6 +284,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset se "Open the source of" "Öppna källkoden till"
+::msgcat::mcset se "Add watch" "Lägg till bevakning"
 
 
 # print.tcl
@@ -346,6 +348,7 @@
 ::msgcat::mcset se "The cursor is not currently inside a function body."\
                "Markören är förnärvarande inte inuti en funktionskropp."
 ::msgcat::mcset se "Which function?" "Vilken funktion?"
+
 
 #preference variables description
 ::msgcat::mcset se "BGCOLOR" "Bakgrundsfärg"

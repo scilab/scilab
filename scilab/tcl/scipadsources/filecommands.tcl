@@ -81,7 +81,10 @@ proc filesetasnew {} {
 # procs closing buffers
 ##################################################
 proc closecur {} {
+# remove (in Scilab) the breakpoints initiated from the current buffer
+# unset the variables relative to this buffer, and
 # close current buffer
+    removescilabbuffer_bp "with_output" [gettextareacur]
     removefuns_bp [gettextareacur]
     closefile [gettextareacur]
 }

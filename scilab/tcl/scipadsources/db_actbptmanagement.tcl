@@ -59,3 +59,11 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpo
         }
     }
 }
+
+proc removeallactive_bp {} {
+    global listoftextarea
+    foreach textarea $listoftextarea {
+        $textarea tag remove activebreakpoint 0.0 end
+    }
+}
+

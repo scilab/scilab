@@ -960,3 +960,33 @@ ES, 14/04/05
  * Credit message in proc aboutme desourced, and expanded in each *.msg file.
    This will ease adding information, such as translator credits.
  * version --> 4.4
+
+Francois VOGEL, 15/04/05
+ * Slight change in proc OKconf_bp to avoid executing foo(1,2,,,) in case some
+   input parameters are not given. This lead to wrong value of rhs (5 in this
+   example). A call such as this one is now trimmed to foo(1,2), giving the
+   correct rhs=2
+ * Consistent change made in proc checkarglist to avoid Scipad complain when
+   argument order is not the same as what is in the function definition, and
+   argument value is "" (meaning this argument will not be sent on execution)
+ * Bug fixed: The message box "Check function definition" could inopportunely
+   pop up when there was more than one opened buffer
+ * Added a popup for the debugger: if the user right-clicks on a selection
+   he can now quickly add the selection as a watch variable
+ * The debug session is now properly canceled on Scipad close, so that Scilab
+   is no more in a messy state in such a case
+ * The debug session is aborted if the user closes the buffer that contains
+   the function launched for debug. If another buffer is closed, all the
+   breakpoints of the closed buffers are removed from Scilab and the debug
+   session can go on
+ * Minor bug fixed: the watch window icons for run to cursor and break (these
+   features are still pending, waiting for the Scilab parsers to be fixed...)
+   were sometimes inopportunely enabled
+ * Selection made visible even if overlayed by a breakpoint
+ * Bux fixed: In the debugger watch window with several watch variables, when
+   execution has stopped due to a breakpoint, when the user changes the value
+   of some variables and then adds a new variable (Add/Change button or
+   right-click on selection), then the changes previously made on the other
+   watch variables were lost
+ * Credit given to Gunnar in the About box for the se translation
+ * version --> 4.5

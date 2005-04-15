@@ -193,7 +193,7 @@ proc goonwo_bp {} {
     if {[checkscilabbusy] == "OK"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
-            [gettextareacur] tag remove activebreakpoint 1.0 end
+            removeallactive_bp
             removescilab_bp "with_output"
             ScilabEval "resume(0)" "seq"
             getfromshell
@@ -221,7 +221,7 @@ proc canceldebug_bp {} {
     if {[checkscilabbusy] == "OK"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
-            [gettextareacur] tag remove activebreakpoint 1.0 end
+            removeallactive_bp
             ScilabEval "abort" "seq"
             removescilab_bp "with_output"
             getfromshell

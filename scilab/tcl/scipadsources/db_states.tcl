@@ -163,11 +163,11 @@ if {$dev_debug=="true"} {
                 [lindex $wi  6] configure -state normal
 if {$dev_debug=="true"} {
                 [lindex $wi  8] configure -state normal
-}
+} else {[lindex $wi  8] configure -state disabled}
                 [lindex $wi  9] configure -state normal
 if {$dev_debug=="true"} {
                 [lindex $wi 13] configure -state normal
-}
+} else {[lindex $wi 13] configure -state disabled}
                 [lindex $wi 14] configure -state normal
             } else {
                 tk_messageBox -message $errmess

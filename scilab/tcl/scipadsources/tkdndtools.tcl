@@ -66,8 +66,8 @@ proc tkdndbind {w} {
                 } ; \
             } ; \
         }
-        $w tag bind sel <Enter> {%W configure -cursor hand2}
-        $w tag bind sel <Leave> {%W configure -cursor xterm}
+        $w tag bind sel <Enter> {%W configure -cursor hand2 ; set mouseoversel "true"}
+        $w tag bind sel <Leave> {%W configure -cursor xterm ; set mouseoversel "false"}
         set extendsel "false"
     }
 }

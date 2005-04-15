@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v4.4
+# in sync at least with v4.5
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -144,7 +144,8 @@
                    "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2005.\n\
-                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2005."
+                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2005.\n\
+                    Traduction en Suédois par Gunnar Lindholm 2005."
 
 
 # infomessages.tcl
@@ -262,6 +263,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
+::msgcat::mcset fr "Add watch" "Ajouter comme espion"
 
 
 # print.tcl
@@ -315,6 +317,7 @@
     ::msgcat::mcset fr "line" "ligne"
 ::msgcat::mcset fr "The cursor is not currently inside a function body." "Le curseur ne se trouve pas à l'intérieur d'une fonction."
 ::msgcat::mcset fr "Which function?" "Quelle fonction ?"
+
 
 #preference variables description
 ::msgcat::mcset fr "BGCOLOR" "Arrière-plan"

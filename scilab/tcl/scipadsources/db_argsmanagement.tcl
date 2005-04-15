@@ -30,15 +30,17 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     $adda.f.f2.entry selection range 0 end
     pack $adda.f.f2
     frame $adda.f.f9
-    button $adda.f.f9.buttonOK -text "OK" -command "OKadda_bp $adda $pos $leftwin $rightwin"\
+    button $adda.f.f9.buttonOK -text "OK" \
+           -command "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"\
            -width 10 -height 1
     set bl [mc "Cancel"]
-    button $adda.f.f9.buttonCancel -text $bl -command "Canceladda_bp $adda $pos $leftwin"\
+    button $adda.f.f9.buttonCancel -text $bl \
+           -command "Canceladda_bp $adda $pos $leftwin"\
            -width 10 -height 1
     pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
     pack $adda.f.f9 -pady 4
     pack $adda.f
-    bind $adda <Return> "OKadda_bp $adda $pos $leftwin $rightwin"
+    bind $adda <Return> "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"
     bind $adda <Escape> "Canceladda_bp $adda $pos $leftwin"
     if {$selecteditem != ""} {
         focus $adda.f.f2.entry
@@ -49,7 +51,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     focus $focusbut
 }
 
-proc OKadda_bp {w pos leftwin rightwin} {
+proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     global unklabel
     global argname argvalue
     global spin funvars funvarsvals
@@ -80,14 +82,14 @@ proc OKadda_bp {w pos leftwin rightwin} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    getfromshell
+                    getonefromshell $argname
                 }
             }
             $leftwin insert $pos $argname
             $rightwin insert $pos $argvalue
             $leftwin selection set $pos
             $leftwin see $pos
-       } else {
+        } else {
             set nextone [expr $eltindex + 1]
             if {$nextone >= [$leftwin size]} {
                 set nextone 0
@@ -97,6 +99,9 @@ proc OKadda_bp {w pos leftwin rightwin} {
             } else {
                 if {$argvalue == ""} {set argvalue $unklabel}
                 set watchvarsvals($argname) $argvalue
+                if {$forceget == "true"} {
+                    getonefromshell $argname
+                }
             }
             $leftwin selection set $nextone
             $leftwin see $nextone
@@ -104,7 +109,6 @@ proc OKadda_bp {w pos leftwin rightwin} {
             $rightwin insert $eltindex $argvalue
         }
     }
-    destroy $w
 }
 
 proc Canceladda_bp {w pos leftwin} {
@@ -135,9 +139,29 @@ proc Removearg_bp {leftwin rightwin} {
     }
 }
 
+proc quickAddWatch_bp {} {
+    global watch argname argvalue lbvarname lbvarval
+    set watchalreadyopen "false"
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            set watchalreadyopen "true"
+        }
+    }
+    if {$watchalreadyopen == "false"} {
+        showwatch_bp
+    }
+    set ta [gettextareacur]
+    set argname [$ta get [$ta index sel.first] [$ta index sel.last]]
+    # set value to "" so that OKadda_bp will get it from the shell
+    set argvalue ""
+    OKadda_bp -1 $lbvarname $lbvarval "true"
+}
+
 proc removefuns_bp {textarea} {
     global funsinbuffer funvars funvarsvals funnames funnameargs
     if {[info exists funsinbuffer($textarea)]} {
+        set oppar [expr [string first "\(" $funnameargs] - 1]
+        set curfunname [string range $funnameargs 0 $oppar]
         foreach fun $funsinbuffer($textarea) {
             if {[info exists funvars($fun)]} {
                 foreach arg $funvars($fun) {
@@ -147,9 +171,9 @@ proc removefuns_bp {textarea} {
             }
             set pos [lsearch $funnames $fun]
             set funnames [lreplace $funnames $pos $pos]
-            set oppar [expr [string first "\(" $funnameargs] - 1]
-            set curfunname [string range $funnameargs 0 $oppar]
             if {$curfunname == $fun} {
+                # debug session is aborted if the buffer containing the debugged function is closed
+                if {[getdbstate] == "DebugInProgress"} canceldebug_bp
                 set funnameargs "[lindex $funnames 0]("
             }
         }

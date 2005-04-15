@@ -7,7 +7,7 @@ proc aboutme {} {
 # about
     global winTitle version
     tk_messageBox -title [mc "About"] -type ok -message \
-        "$winTitle $version [mc aboutme_message]"
+        " $winTitle $version [mc aboutme_message]"
 }
 
 proc helpword {} {

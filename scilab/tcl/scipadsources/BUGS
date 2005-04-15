@@ -52,6 +52,9 @@ Bugs:
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux.
 
+-Ctrl-F1 on some characters like " ' - or + does not work (different errors in
+ the shell. Problem is partly in sciGUI, and partly in Scipad.
+
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
 
@@ -232,3 +235,7 @@ Wishes:
  the strings previously searched or replaced
 
 -Add an eventual "revert to defaults button" (colors option menu)
+
+-Carefully study whether the debugger would benefit from using editvar
+ or browsevar for the watch window variables. At least one drawback:
+ sciGUI is not localized.

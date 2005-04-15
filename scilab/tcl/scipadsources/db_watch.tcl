@@ -50,7 +50,6 @@ proc showwatch_bp {} {
     pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
     pack $watch.f.f1 -anchor w
-    pack $watch.f.f1
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
@@ -106,7 +105,7 @@ proc showwatch_bp {} {
             -expand 1 -fill both -padx 2
     pack $watch.f.f2.f2l $watch.f.f2.f2r -side left -padx 2
     if {$showwatchvariablesarea == "true"} {
-        pack $watch.f.f2 -pady 2
+        pack $watch.f.f2 -pady 2 -fill x
     }
 
     frame $watch.f.f6 -relief groove -borderwidth 2 -padx 2
@@ -115,9 +114,9 @@ proc showwatch_bp {} {
     pack $watch.f.f6.cslabel -anchor w -pady 4
     set callstackwidget $watch.f.f6.callstack
     text $callstackwidget -height 5 -width 81 -state normal -background gray83
-    pack $callstackwidget
+    pack $callstackwidget -fill x
     if {$showcallstackarea == "true"} {
-        pack $watch.f.f6 -pady 2
+        pack $watch.f.f6 -pady 2 -fill x
     }
     $callstackwidget delete 1.0 end
     $callstackwidget insert 1.0 $callstackcontent
@@ -130,7 +129,7 @@ proc showwatch_bp {} {
     pack $watch.f.f9.buttonClose
     pack $watch.f.f9 -pady 2
 
-    pack $watch.f
+    pack $watch.f -fill x
     bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                           closewatch_bp $watch nodestroy}
     bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
@@ -156,6 +155,8 @@ proc showwatch_bp {} {
         set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]
         set firsttimeinshowwatch "false"
     }
+#wm resizable $watch 1 1
+wm minsize $watch [winfo reqwidth $watch] [winfo reqheight $watch]
 }
 
 proc updatewatch_bp {} {
@@ -196,20 +197,25 @@ proc closewatch_bp {w {dest "destroy"}} {
 }
 
 proc getfromshell { {startitem 3} } {
-    global watchvars watchvarsvals unklabel callstackcontent
-    set fullcomm ""
+    global watchvars callstackcontent
     foreach var $watchvars {
-        set comm1 "if exists(\"$var\"),"
-        set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
-        set comm3 "else"
-        set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
-        set comm5 "end;"
-        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
-        ScilabEval $fullcomm "seq"
+        getonefromshell $var
     }
     set fullcomm "TCL_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch($startitem)+\"\"\"}\");"
     ScilabEval $fullcomm "seq"
     set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
+    ScilabEval $fullcomm "seq"
+}
+
+proc getonefromshell {wvar} {
+    global watchvars watchvarsvals unklabel
+    set fullcomm ""
+    set comm1 "if exists(\"$wvar\"),"
+    set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($wvar) \"\"\"+FormatStringsForDebugWatch($wvar)+\"\"\"}\");"
+    set comm3 "else"
+    set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($wvar) \"\"$unklabel\"\"}\");"
+    set comm5 "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
     ScilabEval $fullcomm "seq"
 }
 

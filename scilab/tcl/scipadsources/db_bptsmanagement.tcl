@@ -60,6 +60,8 @@ proc insertremovedebug_bp {{buf "current"}} {
 }
 
 proc removeall_bp {} {
+# remove all breakpoint tags from the opened buffer
+# possibly existing breakpoints in Scilab are not touched
     global listoftextarea
     if {[checkscilabbusy] == "OK"} {
         foreach textarea $listoftextarea {
@@ -75,6 +77,8 @@ proc removeall_bp {} {
 }
 
 proc removescilab_bp {outp} {
+# if $outp != "no_output", remove all the breakpoints set in Scilab
+# otherwise just return the command that would do that
     global funnames listoftextarea
     if {[checkscilabbusy] == "OK"} {
         set delbpcomm ""
@@ -83,17 +87,7 @@ proc removescilab_bp {outp} {
                 set delbpcomm [concat $delbpcomm "delbpt(\"$fun\");"]
             }
             foreach textarea $listoftextarea {
-                set tagranges [$textarea tag ranges breakpoint]
-                foreach {tstart tstop} $tagranges {
-                    set infun [whichfun [$textarea index $tstart] $textarea]
-                    if {$infun !={} } {
-                        set funname [lindex $infun 0]
-                        set lineinfun [expr [lindex $infun 1] - 1]
-                        if {[lsearch $funnames $funname] == -1} {
-                            set delbpcomm [concat $delbpcomm "delbpt(\"$funname\",$lineinfun);"]
-                        }
-                    }
-                }
+                set delbpcomm [concat $delbpcomm [removescilabbuffer_bp "no_output" $textarea]]
             }
             if {$outp != "no_output"} {
                 ScilabEval "$delbpcomm" "seq"
@@ -105,10 +99,32 @@ proc removescilab_bp {outp} {
     }
 }
 
-proc removeallactive_bp {} {
-    global listoftextarea
-    foreach textarea $listoftextarea {
-        $textarea tag remove activebreakpoint 0.0 end
+proc removescilabbuffer_bp {outp textarea} {
+# if $outp != "no_output", remove the breakpoints set in Scilab
+# that are related to / initiated by buffer $textarea
+# otherwise just return the command that would do that
+    global funnames
+    if {[checkscilabbusy] == "OK"} {
+        set delbpcomm ""
+        if {$funnames != ""} {
+            set tagranges [$textarea tag ranges breakpoint]
+            foreach {tstart tstop} $tagranges {
+                set infun [whichfun [$textarea index $tstart] $textarea]
+                if {$infun !={} } {
+                    set funname [lindex $infun 0]
+                    set lineinfun [expr [lindex $infun 1] - 1]
+                    if {[lsearch $funnames $funname] == -1} {
+                        set delbpcomm [concat $delbpcomm "delbpt(\"$funname\",$lineinfun);"]
+                    }
+                }
+                }
+            if {$outp != "no_output"} {
+                ScilabEval "$delbpcomm" "seq"
+            }
+        } else {
+            # <TODO> .sce case
+        }
+        return $delbpcomm
     }
 }
 

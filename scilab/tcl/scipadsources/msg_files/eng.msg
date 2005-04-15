@@ -1,4 +1,4 @@
-# in sync at least with v4.4
+# in sync at least with v4.5
 # English is the original language of Scipad
 # Scipad tcl/tk source should use english texts
 # for instance [mc "your text in english here"]
@@ -12,7 +12,8 @@
                     Modified by Scilab Consortium.\n\
                     Revised by Enrico Segre 2003-2005.\n\
                     Miscellaneous improvements, particularly debug tools,\
-                    by Francois Vogel 2004-2005." \
+                    by Francois Vogel 2004-2005.\n\
+                    Swedish translation by Gunnar Lindholm 2005."
 
 
 #preference variables description
