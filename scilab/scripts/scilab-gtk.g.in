@@ -39,7 +39,7 @@ do_scilex()
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
     tty -s && stty  kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
-    $SCI/bin/zterm -e $SCI/bin/scilex $*
+    $SCI/bin/zterm $zterm_arg -e $SCI/bin/scilex $*
 }
 
 do_scilex_now()
@@ -48,13 +48,13 @@ do_scilex_now()
     export PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
-    $SCI/bin/scilex $*
+    $SCI/bin/scilex $zterm_arg $*
 }
 
 do_help()
 {
 echo "Usage:"
-echo     "	scilab [-ns -nw -nb -display display -f file  -l lang -args arguments]"
+echo     "	scilab [-ns -nw -nb -display display -f file -font font_name  -l lang -args arguments]"
 echo     "	scilab [-ns -nw -nb -display display -e expression -l lang -args arguments]"
 echo     "	scilab -link <objects>"
 echo     "	scilab -debug"
@@ -210,6 +210,7 @@ if test "$rest" = "yes"; then
   start_file=
   prevarg=
   language=
+  fontname=
   for sciarg 
   do
     # If the previous argument needs an argument, assign it.
@@ -246,6 +247,9 @@ if test "$rest" = "yes"; then
        -f)
           prevarg="start_file"
           ;;
+       -font)
+	  prevarg="fontname"
+	  ;;
        -l)
           prevarg="language"
           ;;
@@ -282,6 +286,11 @@ if test "$rest" = "yes"; then
     sci_args="$sci_args  $arguments"
   fi
 
+  zterm_arg=
+  if test -n "$fontname"; then
+    zterm_arg="-f $fontname"
+  fi
+
   if test -n "$now"; then
      sci_exe="do_scilex_now"
      if test -n "$debug"; then
@@ -292,7 +301,7 @@ if test "$rest" = "yes"; then
   else
      sci_exe="do_scilex"
      if test -n "$debug"; then
-       $SCI/bin/zterm -e gdb $SCI/bin/scilex $sci_args
+       $SCI/bin/zterm $zterm_arg -e gdb $SCI/bin/scilex $sci_args
      else
        $sci_exe $sci_args &
      fi
