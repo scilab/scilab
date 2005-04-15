@@ -26,7 +26,7 @@ MACROS = configure_msvc.sci findmsvccompiler.sci sethomedirectory.sci \
 	typeof.sci ndims.sci  edit.sci \
 	whereami.sci projaff.sci derivative.sci \
 	unix_g.sci unix_s.sci unix_x.sci unix_w.sci \
-	x_choices.sci x_matrix.sci getvalue.sci getclick.sci \
+	x_choices.sci x_matrix.sci getvalue.sci \
 	odeoptions.sci whos.sci who_user.sci \
 	excel2sci.sci sci2excel.sci\
 	dec2hex.sci hex2dec.sci oct2dec.sci base2dec.sci\
