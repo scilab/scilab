@@ -110,7 +110,7 @@ function txt=cla2sci(clause)
     txt=catcode('for '+name+' = ',splitexp(t1(1)+','));
     sciexp=0;
     t1=ins2sci(clause(3),1)
-    txt=catcode(txt,catcode(indentsci(t1),'end'))
+    txt=catcode(txt,catcode(indentsci(t1),'end,'))
   case 'select' then
     ncas=(size(clause)-3)/2
     tg=''
@@ -132,7 +132,7 @@ function txt=cla2sci(clause)
     if or(t1<>'') then
       txt=catcode(txt,catcode('else',indentsci(t1)));
     end
-    txt=catcode(tg,catcode(txt,'end'))
+    txt=catcode(tg,catcode(txt,'end,'))
   end
 endfunction
 
@@ -221,19 +221,40 @@ function [txt,ilst]=cod2sci(lst,ilst)
       lhs=size(op,2)
       LHS=[]
       iind=0
+
       for k=1:lhs
 	name=op(1,k)
 	rhs=evstr(op(2,k))
 	if rhs==0 then
 	  LHS=[name,LHS]
 	else
-	  I=[];
-	  if rhs<>0 then
+	  if  rhs==1 then //x(i)=... or x.y.z(i,j..)=..
+	    iind=iind+1,
+	    p=''
+	    P=stk(iind) //Path
+	    if type(P(1))==1 then //x.y.z(i,j..)=..
+	      for ii=2:size(P)
+		Pi=P(ii)
+		if type(Pi(1))==1 then // ...(i,j,..)
+		  Ii=[];for ind=2:size(Pi),Ii=[Ii,Pi(ind)(1)],end
+		  p=p+'('+strcat(Ii ,', ')+')'
+		else
+		  if and(strindex(Pi(1),'''')==[1 length(Pi(1))]) then
+		    p=p+'.'+evstr(Pi(1))
+		  else
+		    p=p+'('+Pi(1)+')'
+		  end
+		end
+	      end
+	    else // /x(i)=...
+	      p='('+P(1)+')'
+	    end
+	    LHS=[name+p,LHS]
+	  else //rhs>1 x(i,j,..)=...
+	    I=[];
 	    for i=1:rhs, iind=iind+1,I=[I,string(stk(iind)(1))];end
-	    LHS=[name+'('+strcat(I,',')+')',LHS]
-	  else
-	    LHS=[name,LHS]
-	  end
+	    LHS=[name+'('+strcat(I,', ')+')',LHS]
+ 	  end
 	end
       end
       if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
@@ -304,6 +325,10 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	    end
 	    [stk,top]=func2sci(op,stk)
 	  end
+	elseif op(3)=='-2'&op(4)=='0' then //instruction reduced to a name
+	  [stk,top]=get2sci(op(2),stk,top)			   
+	  ilst=ilst+1
+	  lst;lst(ilst+1)(3)=op(2)
 	elseif op(4)=='0' then
 	  [stk,top]=get2sci(op(2),stk,top)
 	else
@@ -337,8 +362,9 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
       case '20' then //functions
 	[stk,top]=func2sci(op,stk)
       case '15' then 
-	if top>0 then 
-	  stk(top)(1)=stk(top)(1)+CR      
+	if top>0 then
+	  stk(top)(1)=stk(top)(1)+CR    
+	  if size(txt,'*')==1 then stk(top)(1)=stk(top)(1)+txt;txt='';end
 	else
 	  txt($+1)=''
 	end
@@ -404,6 +430,8 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	// funptr variable
 	top=top+1
 	stk(top)=list(op(4),'0')
+      case '31' then //comment into multi line matrix definition a=[...
+	stk(top)(1)=stk(top)(1)+'; //'+op(2)
       else
 	ok=%f
       end
@@ -818,8 +846,11 @@ function [stk,txt,top]=_e2sci()
       if s2(1)=='eye()' then s2(1)=':',end
       stk=list(sn(1)+'('+s2(1)+')','0')
     end
+  elseif rhs==0 then
+    sn(1)=sn(1)+'()';
+    stk=sn;
+    top=top+1
   else
-    if top<=1 then pause,end
     s1=stk(top-1);top=top-1
     if s2(1)=='eye()' then s2(1)=':',end
     if s1(1)=='eye()' then s1(1)=':',end
@@ -1029,21 +1060,24 @@ function t=catcode(a,b)
   end
 endfunction
 
-function t=splitexp(t)
+function T=splitexp(t)
 // Copyright INRIA
 // Author Serge Steer  
-  t=strsubst(t,CR+';',';'+CR)
-  ks=strindex(t,CR)
-  if ks==[] then return,end
-  to=t;t=[]
-  kd=1
-  ind=''
-  for kf=ks
-    t=[t;ind+part(to,kd:kf-1)]
-    kd=kf+length(CR)
-    ind='  '
+  T=[]
+  for i=1:size(t,'*')
+    ti=t(i)
+    ti=strsubst(ti,CR+';',';'+CR)
+    ti=strsubst(ti,CR+', [',', ['+CR)
+    ks=strindex(ti,CR)
+    kd=1
+    ind=''
+    for kf=ks
+      T=[T;ind+part(ti,kd:kf-1)];
+      kd=kf+length(CR);
+      ind='  ';
+    end
+    T=[T;ind+part(ti,kd:length(ti))]
   end
-  t=[t;ind+part(to,kd:length(to))]
 endfunction
 
 function [stk,txt,top]=_u2sci()
