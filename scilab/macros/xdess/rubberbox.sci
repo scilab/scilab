@@ -3,6 +3,7 @@ function [rect,btn]=rubberbox(rect)
 
 first=%t
 if argn(2)<1 then
+  rect=[]
   while %t
     [btn,xc,yc]=xclick(0)
     if or(btn==0:5) then break,end
@@ -29,6 +30,11 @@ if get("figure_style")=="old" then
     xrect(ox,oy,w,h)
     if xget('pixmap') then xset('wshow'),end  
     if first then rep=xgetmouse();else rep=xgetmouse(0),end
+    if rep(3)==-100 then //window has been closed
+      btn=rep(3)
+      driver(dr)
+      return
+    end
     xrect(ox,oy,w,h)
     if xget('pixmap') then xset('wshow'),end  
     xc1=rep(1);yc1=rep(2)
@@ -46,6 +52,10 @@ else
   r=gce();r.foreground=-1;
   while rep(3)==-1 do
     if first then rep=xgetmouse();else rep=xgetmouse(0),end
+    if rep(3)==-100 then //window has been closed
+      btn=rep(3)
+      return
+    end
     show_pixmap()
     xc1=rep(1);yc1=rep(2)
     ox=mini(xc,xc1)

@@ -12,6 +12,11 @@ function [rects,btn]=dragrect(rects)
       xrects(rects) //draw
       if xget('pixmap') then xset('wshow'),end
       repn=xgetmouse()
+      if repn(3)==-100  then //window has been closed 
+	driver(d)
+	btn=repn(3)
+	return
+      end
       xrects(rects) //erase
       if xget('pixmap') then xset('wshow'),end
       rects(1:2,:)=rects(1:2,:)+(repn(1:2)-rep(1:2))'*ones(1,n)
@@ -26,6 +31,10 @@ function [rects,btn]=dragrect(rects)
     while rep(3)==-1 then
       show_pixmap()
       repn=xgetmouse()
+      if repn(3)==-100  then //window has been closed 
+	btn=repn(3)
+	return
+      end
       rects(1:2,:)=rects(1:2,:)+(repn(1:2)-rep(1:2))'*ones(1,n);
       move(R,repn(1:2)-rep(1:2))
       rep=repn
