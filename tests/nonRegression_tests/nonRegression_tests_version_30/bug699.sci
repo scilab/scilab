@@ -25,7 +25,7 @@ SCIFILECONTENTSREF=["";
 		"// Display warning for floating point exception";
 		"ieee(1);";
 		"";
-		"M = [];M(1,1) = -sin(0.1);";
+		"M(1,1) = -sin(0.1);";
 		"M(1,1) = sin(0.1);"]
 
 

@@ -32,7 +32,6 @@ SCIFILECONTENTSREF=["";
 		"";
 		"result = ones(10,10);";
 		"m = 1;";
-		"result_bis = [];";
 		"for h = 1:10";
 		"  result_bis(m,1:length(result(h,:))) = result(h,:);";
 		"  m = m+1;";

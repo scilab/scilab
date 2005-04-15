@@ -27,7 +27,7 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"a = [];a(1,1) = 0;"]
+"a(1,1) = 0;"]
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then

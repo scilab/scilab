@@ -25,7 +25,7 @@ SCIFILECONTENTSREF=["";
 		"// Display warning for floating point exception";
 		"ieee(1);";
 		"";
-		"x = [];x(1,1) = 0;";
+		"x(1,1) = 0;";
 		"x(1,2) = 0;";
 		"y = zeros(2,1);";
 		"y(1) = 0;";
