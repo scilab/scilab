@@ -27,6 +27,7 @@
 #include <X11/IntrinsicP.h>
 #include <X11/@XAW@/ViewportP.h>
 
+
 #include <string.h>
 
 #include "../graphics/GetProperty.h"
@@ -101,7 +102,7 @@ static char popupname[sizeof("ScilabGraphic")+32];
 static Arg args[10] ;
 static int iargs=0;
 static int EventWindow=-1;
-static int MultiClickTime=20;/* to be changed after 3.1rc1, uncomment  also in  CreatePopupWindow below*/
+static int MultiClickTime=200;/* to be changed after 3.1rc1, uncomment  also in  CreatePopupWindow below*/
 /*
  * Fixes hints for the graphic windows (min sizes and wm delete window flag)
  */
@@ -1338,7 +1339,7 @@ void CreatePopupWindow(WinNum, button, ScilabXgc, fg, bg)
   XtSetArg(args[iargs],XtNtitle,popupname);iargs++;
   
   DisplayInit("",&dpy,&toplevel);
-  /*  MultiClickTime=XtGetMultiClickTime(dpy);*/
+  MultiClickTime=XtGetMultiClickTime(dpy);
 
   /* 
   ScilabXgc->popup = XtCreatePopupShell(popupname,
