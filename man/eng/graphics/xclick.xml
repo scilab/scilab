@@ -59,9 +59,8 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="c_i">
-        <SP>: an integer which gives the number of the mouse button that was
-	  pressed  0, 1 or 2 (for left, middle and right) or -1 in case of
-	  problems with xclick.</SP>
+        <SP>: an integer which gives the number of the mouse button or key that was
+	  pressed  .</SP>
 	
 	<DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM label="ibutton==0">
