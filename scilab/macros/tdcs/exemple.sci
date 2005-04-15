@@ -3,6 +3,7 @@ function []=exemple()
 // et simulation.
 //!
 // Copyright INRIA
+  systems();
 ue=1;
 xe=equilcom(ue);
 [f,g,h,vv]=lincomp(ue);

@@ -63,10 +63,19 @@ if rhs<=5
 	  n=x_choose(['New initial point';'Continue ode';'Quit'],"Choose ");
 	  n=n-1;
           if n==-1,go_on=0;lines(ncnl(1));
-		[p_xdim,p_npts,p_nxx]=resume(p_xdim,p_npts,p_nxx);return;end
+	    [p_xdim,p_npts,p_nxx]=resume(p_xdim,p_npts,p_nxx);
+	  end
           if n==2,go_on=0;lines(ncnl(1));
-		[p_xdim,p_npts,p_nxx]=resume(p_xdim,p_npts,p_nxx);return;end
-	  if n==0,[i,x,y]=xclick(); x0=[x,y];end;
+	    [p_xdim,p_npts,p_nxx]=resume(p_xdim,p_npts,p_nxx);
+	  end
+	  if n==0,
+	    while %t
+	      [i,x,y]=xclick(); 
+	      if i==-100 then return,end
+	      if or(i==[0 1 2 3 4 5]) then break,end
+	    end
+	    x0=[x,y];
+	  end;
           if n==1,x0=ylast';end;
           ftest=desorb(odem,x0',npts,fch,farrow,xdim);
           if ftest==1;x_message('Initial value out of boundaries'),end

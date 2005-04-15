@@ -65,20 +65,36 @@ ylast=[ylast;ylast];
 	  xset("window",0);xselect();
 	  n=x_choose(['New initial points (x0 and xchap0)';'Continue ode';'Quit'],"Choose ");
 	  n=n-1;
-          if n==-1,go_on=0;lines(ncnl(1));
-		[bcl_xdim,bcl_npts]=resume(bcl_xdim,bcl_npts);return;end
-          if n==2,go_on=0;lines(ncnl(1));
-		[bcl_xdim,bcl_npts]=resume(bcl_xdim,bcl_npts);return;end
-	  if n==0,[i,x,y]=xclick(); x0=[x,y];
-		[i,x,y]=xclick(); xchap0=[x,y];
-	        fullx0=[x0,xchap0]';
+          if n==-1,
+	    go_on=0;lines(ncnl(1));
+	    [bcl_xdim,
+	     bcl_npts]=resume(bcl_xdim,bcl_npts);
+	  end
+          if n==2,
+	    go_on=0;lines(ncnl(1));
+	    [bcl_xdim,bcl_npts]=resume(bcl_xdim,bcl_npts);
+	  end
+	  if n==0,
+	    while %t
+	      [i,x,y]=xclick(); 
+	      if i==-100 then return,end
+	      if or(i==[0 1 2 3 4 5]) then break,end
+	    end
+	    x0=[x,y];
+	    while %t
+	      [i,x,y]=xclick(); 
+	      if i==-100 then return,end
+	      if or(i==[0 1 2 3 4 5]) then break,end
+	    end
+	    xchap0=[x,y];
+	    fullx0=[x0,xchap0]';
 	  end;
           if n==1,fullx0=ylast;end;
           if type(fch)==10,
              ftest=desorb1(fullx0,npts,fch,farrow,xdim);
           else
-             ftest=desorb1(fullx0,npts,list(fch,abruit,...
-                         npts(2),npts(1)),farrow,xdim);
+	    ftest=desorb1(fullx0,npts,list(fch,abruit,...
+					   npts(2),npts(1)),farrow,xdim);
           end
           if ftest==1;x_message('Initial value out of boundaries'),end
        end
