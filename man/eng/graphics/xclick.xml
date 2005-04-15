@@ -59,7 +59,60 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="c_i">
-        <SP>: an integer which gives the number of the mouse button that was pressed  0, 1 or 2 (for left, middle and right) or -1 in case of problems with xclick.</SP>
+        <SP>: an integer which gives the number of the mouse button that was
+	  pressed  0, 1 or 2 (for left, middle and right) or -1 in case of
+	  problems with xclick.</SP>
+	
+	<DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="ibutton==0">
+            <SP>: Left mouse button has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==1">
+            <SP>: Middle mouse button has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==2">
+            <SP>: Right mouse button has been pressed</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="ibutton==3">
+            <SP>: Left mouse button has been clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==4">
+            <SP>: Middle mouse button has been clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==5">
+            <SP>: Right mouse button has been clicked</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="ibutton==10">
+            <SP>: Left mouse button has been double-clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==11">
+            <SP>: Middle mouse button has been double-clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==12">
+            <SP>: Right mouse button has been double-clicked</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="ibutton &gt; =32">
+            <SP>: key with ascii code ascii(ibutton) has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	
+          <DESCRIPTION_ITEM label="ibutton &gt; =1000+32">
+            <SP>: key with ascii code ascii(ibutton-1000) has been pressed while CTRL
+	    key pressed</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-100">
+            <SP>: graphic window has been closed</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-2">
+            <SP>: a dynamic menu has been selected</SP>
+          </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="c_x,c_y">
         <SP>: the coordinates of the position of the mouse click in the current graphics  scale.</SP>
@@ -72,15 +125,16 @@
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
-  <SECTION label="Known troubles">
-    <P><VERB>xclick</VERB> can return the message  &quot;Can't grab the pointer&quot; if the graphics window is iconified when  calling it.</P>
-  </SECTION>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>locate</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xgetmouse</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>seteventhandler</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>J.Ph.C.  </AUTHOR>
