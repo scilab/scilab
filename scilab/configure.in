@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.114 $)dnl
+AC_REVISION($Revision: 1.115 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1219,7 +1219,7 @@ case "$host" in
      GCC=yes
      CC=gcc
      CC_OPTIONS='-no-cpp-precomp -O2 -DNDEBUG -I/sw/include -L/sw/lib'
-     CC_LDFLAGS=
+     CC_LDFLAGS='-L/sw/lib'
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
      FC=g77
