@@ -68,6 +68,8 @@ zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
 zzm = min(zz); zzM = max(zz);
 xbasc();
 xset("colormap",jetcolormap(64))
+new_styl = get("figure_style") == "new";
+if new_styl then, drawlater(), end
 subplot(2,2,1)
    colorbar(zm,zM)
    Sgrayplot(x,x,z, strf="031", rect=[0 0 1 1])
@@ -84,6 +86,8 @@ subplot(2,2,4)
    colorbar(zzm,zzM)
    Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
    xtitle("a Sgrayplot with a colorbar")
+if new_styl then, drawnow(), end
+
 
 // example 3
 x = linspace(0,1,81);
@@ -93,11 +97,14 @@ zzm = min(zz); zzM = max(zz);
 nb_col = 64;
 xbasc()
 xset("colormap",hotcolormap(nb_col))
+new_styl = get("figure_style") == "new";
+if new_styl then, drawlater(), end
 colorbar(zzm,zzM)
 nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("a plot3d with shaded interpolated colors")
+if new_styl then, drawnow(), end
 xselect()
  ]]></EXAMPLE>
 
