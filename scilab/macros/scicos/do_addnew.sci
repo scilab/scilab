@@ -86,6 +86,7 @@ function [scs_m,fct]=do_addnew(scs_m)
     // get new position
     rep=xgetmouse(0)
     if rep(3)==-100 then //active window has been closed
+      driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     // clear block shape

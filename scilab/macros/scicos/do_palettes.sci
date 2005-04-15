@@ -88,6 +88,7 @@ function [palettes,windows]=do_palettes(palettes,windows)
     if ~set_cmap(palettes(kpal).props.options('Cmap')) then 
 	palettes(kpal).props.options('3D')(1)=%f //disable 3D block shape 
     end
+    pause
     drawobjs(palettes(kpal))
     if pixmap then xset('wshow'),end
 

@@ -27,6 +27,7 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
     // get new position
     rep=xgetmouse()
     if rep(3)==-100 then //active window has been closed
+      driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     // erase block shape

@@ -90,6 +90,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       if pixmap then xset('wshow'),end    
       rep=xgetmouse(0);
       if rep(3)==-100 then //active window has been closed
+	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
       // clear block shape
@@ -151,6 +152,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       // get new position
       rep=xgetmouse(0)
       if rep(3)==-100 then //active window has been closed
+	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
       
@@ -194,6 +196,7 @@ function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
     xpolys(x1,y1,ct(1))//draw moving part of the link
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
+      driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     if pixmap then xset('wshow'),end

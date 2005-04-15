@@ -150,6 +150,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     while rep(3)==-1 do //get a new point
       rep=xgetmouse(0)
       if rep(3)==-100 then //active window has been closed
+	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
  

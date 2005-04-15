@@ -22,6 +22,7 @@ while rep(3)==-1 do
     rep=xgetmouse(0),
   end
   if rep(3)==-100 then //active window has been closed
+    driver(dr);
     ok=%f
     return
   end

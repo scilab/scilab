@@ -185,6 +185,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       if pixmap then xset('wshow'),end    
       rep=xgetmouse( 0);
       if rep(3)==-100 then //active window has been closed
+	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
   
@@ -283,6 +284,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       // get new position
       rep=xgetmouse(0)
       if rep(3)==-100 then //active window has been closed
+	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
  
@@ -334,6 +336,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
 	xpolys(x1,y1,ct(1))//draw moving part of the link
 	rep=xgetmouse(0);
 	if rep(3)==-100 then //active window has been closed
+	  driver(dr);
 	  [%win,Cmenu]=resume(curwin,'Quit')
 	end
 	if pixmap then xset('wshow'),end
@@ -360,6 +363,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       if pixmap then xset('wshow'),end
     else  // link comes from a split 
       scs_m=movelink2(scs_m)
+      if Cmenu=='Quit' then [%win,Cmenu]=resume(curwin,Cmenu),end
     end
   elseif wh>=nl-1 then
     to=o.to
@@ -374,6 +378,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
 	xpolys(x1,y1,ct(1))//draw moving part of the link
 	rep=xgetmouse(0);
 	if rep(3)==-100 then //active window has been closed
+	  driver(dr);
 	  [%win,Cmenu]=resume(curwin,'Quit')
 	end
 	if pixmap then xset('wshow'),end
@@ -400,6 +405,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       if pixmap then xset('wshow'),end
     else // link goes to a split 
       scs_m=movelink3(scs_m)
+      if Cmenu=='Quit' then [%win,Cmenu]=resume(curwin,Cmenu),end
     end
   elseif nl<4 then
     p=projaff(xx(wh:wh+1),yy(wh:wh+1),[xc,yc])
@@ -412,6 +418,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       xpolys(x1,y1,ct(1))//draw moving part of the link
       rep=xgetmouse(0);
       if rep(3)==-100 then //active window has been closed
+	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
  
@@ -439,6 +446,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
     if pixmap then xset('wshow'),end
   else
     scs_m=movelink4(scs_m)
+    if Cmenu=='Quit' then [%win,Cmenu]=resume(curwin,Cmenu),end
   end
 endfunction
 
@@ -456,6 +464,7 @@ function scs_m=movelink4(scs_m)
     if pixmap then xset('wshow'),end
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
+      driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     xpolys(x1,y1,ct(1))//erase moving part of the link
@@ -493,6 +502,7 @@ function scs_m=movelink1(scs_m)
     if pixmap then xset('wshow'),end
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
+      driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     xpolys(xx,yy,ct(1)) //erase moving part of the link
@@ -595,6 +605,7 @@ function scs_m=movelink2(scs_m)
     if pixmap then xset('wshow'),end
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
+      driver(dr)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     xpolys(x1,y1,ct(1)) //erase moving part of the link
@@ -693,6 +704,7 @@ function scs_m=movelink3(scs_m)
     xpolys(x1,y1,ct(1))//draw moving part of the link
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
+      driver(dr)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
  
@@ -781,6 +793,7 @@ function scs_m=movecorner(scs_m,k,xc,yc,wh)
     xpolys(x1,y1,ct(1))//draw moving part of the link
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
+      driver(dr)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     if pixmap then xset('wshow'),end
