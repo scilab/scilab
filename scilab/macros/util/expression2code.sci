@@ -38,9 +38,9 @@ case "operation" then
       if typeof(e.operands(i))=="operation" then
 	if e.operands(i).operator=="rc" then
 	  operands(i)=part(operands(i),2:length(operands(i))-1)
-	  //elseif or(e.operands(i).operator==["cc","cceol"]) then
-	  // operands(1)=part(operands(1),2:length(operands(1)))
-	  //operands($)=part(operands($),1:length(operands($))-1)
+	  elseif or(e.operands(i).operator==["cceol"]) then
+	  operands(1)=part(operands(1),2:length(operands(1)))
+	  operands($)=part(operands($),1:length(operands($))-1)
 	end
       end
     end
@@ -212,7 +212,7 @@ else
     end
     for i=2:nb_op
       if typeof(e.operands(i))=="operation" then
-	if or(e.operands(i).operator==sumops) & (operator=="-"| operator=="+")then
+	  if or(e.operands(i).operator==sumops) then
 	  operands=[operands(1:i-1) "("+operands(i)+")" operands(i+1:$)]
 	end
       end
