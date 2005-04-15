@@ -24,7 +24,7 @@
     sets of entities. The main interest of the new graphic mode is to make
     property change easier. This new graphics'mode provides a set of
     high-level graphing routines (see <LINK>set</LINK>, <LINK>get</LINK>) used
-    to control objects' properties such us data, coordinates and scaling,
+    to control objects' properties such as data, coordinates and scaling,
     color and appearences without requiring to replay the initial graphics
     commands.</P>
 
