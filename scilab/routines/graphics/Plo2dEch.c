@@ -1118,7 +1118,8 @@ int zoom_get_rectangle(bbox)
   while ( ibutton == -1 ) 
     {
       /* dessin d'un rectangle */
-      C2F (dr) ("xset", "color",&noir,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0, PD0,0L,0L);
+      /* following line commented to solve bug 1314 */
+/*       C2F (dr) ("xset", "color",&noir,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0, PD0,0L,0L); */
       zoom_rect(x0,yy0,x,y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
