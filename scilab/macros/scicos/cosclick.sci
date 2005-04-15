@@ -3,7 +3,8 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
   [lhs,rhs]=argn(0)
   Cmenu_orig=Cmenu
   Cmenu=[];%pt=[];
-  if ~or(winsid()==curwin) then  Cmenu='Quit',return,end    
+  if ~or(winsid()==curwin) then  win=xget('window');Cmenu='Quit',return,end   
+
   if rhs==1 then
     [btn,xc,yc,win,str]=xclick(flag)
   else

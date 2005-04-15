@@ -149,8 +149,11 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     rep(3)=-1
     while rep(3)==-1 do //get a new point
       rep=xgetmouse(0)
-      
-      if rep(3)==2 then 
+      if rep(3)==-100 then //active window has been closed
+	[%win,Cmenu]=resume(curwin,'Quit')
+      end
+ 
+      if or(rep(3)==[2 5]) then 
 	xpoly([xl;xe],[yl;ye],'lines')
 	if pixmap then xset('wshow'),end
 	xset('dashes',dash)

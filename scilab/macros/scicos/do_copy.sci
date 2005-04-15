@@ -55,6 +55,9 @@ function [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
       if pixmap then xset('wshow'),end
       // get new position
       rep=xgetmouse(0)
+      if rep(3)==-100 then //active window has been closed
+	[%win,Cmenu]=resume(curwin,'Quit')
+      end
       // clear block shape
       xrect(xc,yc+sz(2),sz(1),sz(2))
       xc=rep(1);yc=rep(2)

@@ -16,7 +16,15 @@ pixmap=xget('pixmap')==1
 while rep(3)==-1 do
   xrect(ox,oy,w,h)
   if pixmap then xset('wshow'),end  
-  if first then rep=xgetmouse();else rep=xgetmouse(0),end
+  if first then 
+    rep=xgetmouse();
+  else 
+    rep=xgetmouse(0),
+  end
+  if rep(3)==-100 then //active window has been closed
+    ok=%f
+    return
+  end
   xrect(ox,oy,w,h)
   if pixmap then xset('wshow'),end  
   xc1=rep(1);yc1=rep(2)
@@ -25,7 +33,7 @@ while rep(3)==-1 do
   w=abs(xc-xc1);h=abs(yc-yc1)
   first=%f
 end
-if rep(3)==2 then ok=%f,end
+if or(rep(3)==[2 5]) then ok=%f,end
 
 driver(dr)
 xset('pattern',pat)

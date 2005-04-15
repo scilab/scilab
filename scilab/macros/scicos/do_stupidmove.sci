@@ -52,7 +52,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     driver(dr)
     if pixmap then xset('wshow'),end
     [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
-   
+    
     nl=prod(size(xl))
     if dr=='Rec' then driver('X11'),end
     if from(1)==k then
@@ -83,13 +83,15 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     dx=xc-xmin;dy=yc-ymin;
     
     while rep(3)==-1 ,  // move loop
-      // draw block shape
-      xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))
+      xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))// draw block shape
+      
       // draw moving links
-      xpolys(xmt,ymt,clr)// draw moving part of links
-      // get new position
+      xpolys(xmt,ymt,clr)// draw moving part of links get new position
       if pixmap then xset('wshow'),end    
       rep=xgetmouse(0);
+      if rep(3)==-100 then //active window has been closed
+	[%win,Cmenu]=resume(curwin,'Quit')
+      end
       // clear block shape
       xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))
       // clear moving part of links
@@ -97,7 +99,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       xc=rep(1);yc=rep(2)      
       xmt(2,:)=xm(2,:)-xco+xc; ymt(2,:)=ym(2,:)-yco+yc; 
     end
-    
+
     if xget('window')<>curwin then
       //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
@@ -105,7 +107,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     xy=[xc-dx,yc-dy];
     
     // update and draw block
-    if rep(3)==2 then //user cancels move
+    if or(rep(3)==[2 5]) then //user cancels move
       driver(dr)
       drawobj(o)
       xpolys(xm,ym,clr)
@@ -148,6 +150,10 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       if pixmap then xset('wshow'),end
       // get new position
       rep=xgetmouse(0)
+      if rep(3)==-100 then //active window has been closed
+	[%win,Cmenu]=resume(curwin,'Quit')
+      end
+      
       // clear block shape
       xrect(xc,yc+sz(2),sz(1),sz(2))
       xc=rep(1);yc=rep(2)
@@ -158,7 +164,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     // update and draw block
-    if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
+    if and(rep(3)<>[2 5]) then o.graphics.orig=xy,scs_m.objs(k)=o,end
     driver(dr)
     drawobj(o)
     if pixmap then xset('wshow'),end
@@ -167,105 +173,108 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
 endfunction
 
 function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
-o=scs_m.objs(k)
-[xx,yy,ct]=(o.xx,o.yy,o.ct)
-dr=driver()
+  o=scs_m.objs(k)
+  [xx,yy,ct]=(o.xx,o.yy,o.ct)
+  dr=driver()
 
-seg=[-wh-1:-wh+1]
+  seg=[-wh-1:-wh+1]
 
-if dr=='Rec' then driver('X11'),end
+  if dr=='Rec' then driver('X11'),end
 
-xpolys(xx(seg),yy(seg),ct(1)) //draw thin link
-if pixmap then xset('wshow'),end
-X1=xx(seg)
-Y1=yy(seg)
-x1=X1;y1=Y1;
-
-xpolys(x1,y1,ct(1)) //erase moving part of the link
-rep(3)=-1
-
-while rep(3)==-1 do
-  xpolys(x1,y1,ct(1))//draw moving part of the link
-  rep=xgetmouse(0);
+  xpolys(xx(seg),yy(seg),ct(1)) //draw thin link
   if pixmap then xset('wshow'),end
-  xpolys(x1,y1,ct(1))//erase moving part of the link
-  xc1=rep(1);yc1=rep(2)
-  x1(2)=X1(2)-(xc-xc1)
-  y1(2)=Y1(2)-(yc-yc1)
-end
-    if xget('window')<>curwin then
-      //active window has been closed
+  X1=xx(seg)
+  Y1=yy(seg)
+  x1=X1;y1=Y1;
+
+  xpolys(x1,y1,ct(1)) //erase moving part of the link
+  rep(3)=-1
+
+  while rep(3)==-1 do
+    xpolys(x1,y1,ct(1))//draw moving part of the link
+    rep=xgetmouse(0);
+    if rep(3)==-100 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-if rep(3)<>2 then
-  if abs(x1(1)-x1(2))<rela*abs(y1(1)-y1(2)) then
-    x1(2)=x1(1)
-  elseif abs(x1(2)-x1(3))<rela*abs(y1(2)-y1(3)) then
-    x1(2)=x1(3)
-  end  
-  if abs(y1(1)-y1(2))<rela*abs(x1(1)-x1(2)) then
-    y1(2)=y1(1)
-  elseif abs(y1(2)-y1(3))<rela*abs(x1(2)-x1(3)) then
-    y1(2)=y1(3)
-  end  
-  d=projaff([x1(1);x1(3)],[y1(1);y1(3)],[x1(2);y1(2)])
-  if norm(d(:)-[x1(2);y1(2)])<..
-      rela*max(norm(d(:)-[x1(3);y1(3)]),norm(d(:)-[x1(1);y1(1)])) then
-  xx(seg)=x1
-  yy(seg)=y1
-  xx(seg(2))=[]
-  yy(seg(2))=[]
-  x1(2)=[];y1(2)=[];seg(3)=[]
-else
-  xx(seg)=x1
-  yy(seg)=y1
-end
-o.xx=xx;o.yy=yy
-scs_m.objs(k)=o
-end
-driver(dr)
-draw_link_seg(o,seg)
-if pixmap then xset('wshow'),end
+    if pixmap then xset('wshow'),end
+    xpolys(x1,y1,ct(1))//erase moving part of the link
+    xc1=rep(1);yc1=rep(2)
+    x1(2)=X1(2)-(xc-xc1)
+    y1(2)=Y1(2)-(yc-yc1)
+  end
+  if xget('window')<>curwin then
+    //active window has been closed
+    [%win,Cmenu]=resume(curwin,'Quit')
+  end
+  if and(rep(3)<>[2 5]) then
+    if abs(x1(1)-x1(2))<rela*abs(y1(1)-y1(2)) then
+      x1(2)=x1(1)
+    elseif abs(x1(2)-x1(3))<rela*abs(y1(2)-y1(3)) then
+      x1(2)=x1(3)
+    end  
+    if abs(y1(1)-y1(2))<rela*abs(x1(1)-x1(2)) then
+      y1(2)=y1(1)
+    elseif abs(y1(2)-y1(3))<rela*abs(x1(2)-x1(3)) then
+      y1(2)=y1(3)
+    end  
+    d=projaff([x1(1);x1(3)],[y1(1);y1(3)],[x1(2);y1(2)])
+    if norm(d(:)-[x1(2);y1(2)])<..
+	  rela*max(norm(d(:)-[x1(3);y1(3)]),norm(d(:)-[x1(1);y1(1)])) then
+      xx(seg)=x1
+      yy(seg)=y1
+      xx(seg(2))=[]
+      yy(seg(2))=[]
+      x1(2)=[];y1(2)=[];seg(3)=[]
+    else
+      xx(seg)=x1
+      yy(seg)=y1
+    end
+    o.xx=xx;o.yy=yy
+    scs_m.objs(k)=o
+  end
+  driver(dr)
+  draw_link_seg(o,seg)
+  if pixmap then xset('wshow'),end
 endfunction
 
 function [k,wh,scs_m]=stupid_getobj(scs_m,pt)
-n=lstsize(scs_m.objs)
-wh=[];
-x=pt(1);y=pt(2)
-data=[]
-k=[]
-for i=1:n //loop on objects
-  o=scs_m.objs(i)
-  if typeof(o)=='Block' then
-    graphics=o.graphics
-    [orig,sz]=(graphics.orig,graphics.sz)
-    data=[(orig(1)-x)*(orig(1)+sz(1)-x),(orig(2)-y)*(orig(2)+sz(2)-y)]
-    if data(1)<0&data(2)<0 then k=i,break,end
-  elseif typeof(o)=='Link' then
-    [frect1,frect]=xgetech();
-    eps=4     
-    xx=o.xx;yy=o.yy;
-    [d,ptp,ind]=stupid_dist2polyline(xx,yy,pt,.85)
-    if d<eps then 
-      if ind==-1 then 
-	k=o.from(1),break,
-      elseif ind==-size(xx,1) then 
-	k=o.to(1),break,
-      elseif ind>0 then 
-	draw_link_seg(o,[ind,ind+1])
-	o.xx=[xx(1:ind);ptp(1);xx(ind+1:$)];
-	o.yy=[yy(1:ind);ptp(2);yy(ind+1:$)];
-	scs_m.objs(i)=o
-	k=i,wh=-ind-1,break,
-      else k=i,wh=ind,draw_link_seg(o,[-ind-1:-ind+1]);break,end
+  n=lstsize(scs_m.objs)
+  wh=[];
+  x=pt(1);y=pt(2)
+  data=[]
+  k=[]
+  for i=1:n //loop on objects
+    o=scs_m.objs(i)
+    if typeof(o)=='Block' then
+      graphics=o.graphics
+      [orig,sz]=(graphics.orig,graphics.sz)
+      data=[(orig(1)-x)*(orig(1)+sz(1)-x),(orig(2)-y)*(orig(2)+sz(2)-y)]
+      if data(1)<0&data(2)<0 then k=i,break,end
+    elseif typeof(o)=='Link' then
+      [frect1,frect]=xgetech();
+      eps=4     
+      xx=o.xx;yy=o.yy;
+      [d,ptp,ind]=stupid_dist2polyline(xx,yy,pt,.85)
+      if d<eps then 
+	if ind==-1 then 
+	  k=o.from(1),break,
+	elseif ind==-size(xx,1) then 
+	  k=o.to(1),break,
+	elseif ind>0 then 
+	  draw_link_seg(o,[ind,ind+1])
+	  o.xx=[xx(1:ind);ptp(1);xx(ind+1:$)];
+	  o.yy=[yy(1:ind);ptp(2);yy(ind+1:$)];
+	  scs_m.objs(i)=o
+	  k=i,wh=-ind-1,break,
+	else k=i,wh=ind,draw_link_seg(o,[-ind-1:-ind+1]);break,end
+      end
+    elseif typeof(o)=='Text' then
+      graphics=o.graphics
+      [orig,sz]=(graphics.orig,graphics.sz)
+      data=[(orig(1)-x)*(orig(1)+sz(1)-x),(orig(2)-y)*(orig(2)+sz(2)-y)]
+      if data(1)<0&data(2)<0 then k=i,break,end
     end
-  elseif typeof(o)=='Text' then
-    graphics=o.graphics
-    [orig,sz]=(graphics.orig,graphics.sz)
-    data=[(orig(1)-x)*(orig(1)+sz(1)-x),(orig(2)-y)*(orig(2)+sz(2)-y)]
-    if data(1)<0&data(2)<0 then k=i,break,end
   end
-end
 endfunction
 
 function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)

@@ -85,10 +85,13 @@ function [scs_m,fct]=do_addnew(scs_m)
   while rep(3)==-1 , //move loop
     // get new position
     rep=xgetmouse(0)
-    
+    if rep(3)==-100 then //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
     // clear block shape
     xrect(%xc+0,%yc+sz(2),sz(1),sz(2))
     if pixmap then xset('wshow'),end
+ 
     %xc=rep(1);%yc=rep(2)
     xy=[%xc,%yc];
     // draw block shape

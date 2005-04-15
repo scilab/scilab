@@ -26,6 +26,9 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
     if pixmap then xset('wshow'),end
     // get new position
     rep=xgetmouse()
+    if rep(3)==-100 then //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
     // erase block shape
     xrect(xc,yc+rect(4),rect(3),rect(4))
     if pixmap then xset('wshow'),end
