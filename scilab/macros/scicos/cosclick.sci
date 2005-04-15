@@ -11,7 +11,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
   end
   %pt=[xc,yc]
   
-  if btn==2|btn==5 then
+  if or(btn==[2 5]) then // button 2 pressed or clicked
     if win ==curwin then
       [k,wh]=getobj(scs_m,[xc;yc])
       if k<>[] then
