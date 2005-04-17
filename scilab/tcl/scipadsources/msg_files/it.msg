@@ -164,7 +164,7 @@
                     Modificato dal Consorzio Scilab.\n\
                     Migliorato da Enrico Segre 2003-2005\n\
                     e da François Vogel (in particolare il debugger) 2004-2005.\n\
-                    ENRICO, CREDIT TO GUNNAR HERE PLEASE Gunnar Lindholm 2005."
+                    Traduzioni: svedese, Gunnar Lindholm 2005."
 
 
 # infomessages.tcl
@@ -288,7 +288,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset it "Open the source of" "Aprire la sorgente di"
-::msgcat::mcset it "Add watch" "Aggiungi le variabili"
+::msgcat::mcset it "Add watch" "Tieni questa variabile sotto osservazione"
 
 
 # print.tcl
