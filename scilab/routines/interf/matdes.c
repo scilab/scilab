@@ -5512,7 +5512,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else if ((strncmp(cstk(*value),"off", 3) == 0))
       versionflag = 0; 
     else {
-      strcpy(error_message,"Graphics style must be 'on' or 'off'");
+      strcpy(error_message,"old_style must be 'on' or 'off'");
       return -1;
     }
   }
