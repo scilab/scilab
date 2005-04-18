@@ -27,7 +27,10 @@ int C2F(intFindObj) _PARAMS((char *fname))
 		GetRhsVar(2,"c",&m1,&n1,&l1);
 		value=cstk(l1);
 
-		nocase(value);
+		/* Removed to make example given in findobj.xml work */
+		/* nocase(value); */
+		/* Added to be compatible with TclUiSet.c */
+		nocase(field);
 
 		sprintf(MyTclCommand, "set TclScilabTmpVar [FindObj \"%s\" \"%s\"];", field, value);
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
