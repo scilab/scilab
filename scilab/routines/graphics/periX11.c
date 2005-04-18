@@ -583,6 +583,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
   integer buttons = 0,win;
+  Window SCWindow;
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
 
@@ -593,6 +594,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       *ibutton = -100;     return;
     }
   win = ScilabXgc->CurWindow;
+  SCWindow = ScilabXgc->CWindow;
   if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1)  return;
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
@@ -602,7 +604,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
     {
       C2F(sxevents)();
       /** maybe someone decided to destroy scilab Graphic window **/
-      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow != SCWindow)
 	{
 	  *x1   =  -1;
 	  *yy1  =  -1;
