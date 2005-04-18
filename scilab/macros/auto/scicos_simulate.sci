@@ -157,7 +157,9 @@ endfunction
 
 function restore_graphics_style()
   global bak
+  
   if Ignore==[] then
+
     //gg=xget('window')  // for bug in figure_style and winsid
     //xset('window',0) // for bug in figure_style and winsid
     set('old_style',bak) //set('figure_style',bak)
@@ -168,7 +170,7 @@ endfunction
 function switch_to_old_graphics_style()
   global bak
   if Ignore==[] then
-    bak=get("old_style") //bak=get('figure_style')
+    bak=stripblanks(get("old_style")) //bak=get('figure_style')
     set("old_style","on")
     //set('figure_style','old')
   end
