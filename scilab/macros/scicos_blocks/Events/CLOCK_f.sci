@@ -24,23 +24,23 @@ function [x,y,typ]=CLOCK_f(job,arg1,arg2)
     dt_old= model.rpar
     model_n=model
     while %t do
-      [ok,dt,t0,exprs]=getvalue('Set Clock  block parameters',..
+      [ok,dt,t0,exprs0]=getvalue('Set Clock  block parameters',..
 				['Period';'Init time'],list('vec',1,'vec',1),exprs)
       if ~ok then break,end
       if dt<=0 then
-	message('period must be positive')
-	ok=%f
+	     message('period must be positive')
+	     ok=%f
       end
       if ok then
-	xx.graphics.exprs=exprs
-	model.rpar=dt
-	model.firing=t0
-	xx.model=model
-	arg1.model.rpar.objs(path)=xx// Update
-	break
+	     xx.graphics.exprs=exprs0
+	     model.rpar=dt
+	     model.firing=t0
+	     xx.model=model
+	     arg1.model.rpar.objs(path)=xx// Update
+	     break
       end
     end
-    if ~and([t0_old dt_old]==[t0 dt]) then 
+    if ~and([t0_old dt_old]==[t0 dt])|~and(exprs0==exprs) then 
       // parameter  changed
       newpar(size(newpar)+1)=path// Notify modification
     end
