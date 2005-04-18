@@ -15,7 +15,7 @@
  <body bgcolor="#FFFFFF">
  <center><xsl:value-of select="./TYPE"/></center>
  <xsl:for-each select="./SHORT_DESCRIPTION">
-   <p><b><xsl:value-of select="@name"/></b> - <xsl:value-of select="text()"/></p>
+   <p><b><xsl:value-of select="@name"/></b> - <xsl:apply-templates/></p>
  </xsl:for-each>
  <xsl:apply-templates/>
  </body>
@@ -172,7 +172,7 @@
   <xsl:for-each select="./TABLE_NEW_ROW">
   <tr align="center">
     <xsl:for-each select="./TABLE_NEW_COLUMN">
-      <td><xsl:value-of select="./text()"/></td>
+      <td><xsl:apply-templates/></td>
     </xsl:for-each>
         </tr>
   </xsl:for-each>
