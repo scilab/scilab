@@ -90,13 +90,24 @@ DLPVM=YES
 #---------------------
 CC=cl
 LINKER=link
+
 # standard option for the linker 
-LINKER_FLAGS=/NOLOGO /machine:ix86 
+LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
+
+# debug for the linker 
+#LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
+
 # include options 
 INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) 
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
+
+# standard option for C compiler
 CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -G5 -Gd
+
+# debug option for C compiler
+#CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -GB -Gd
+
 CC_LDFLAGS = 
 #---------------------
 # Fortran Compiler 
