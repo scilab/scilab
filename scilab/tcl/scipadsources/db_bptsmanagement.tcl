@@ -104,28 +104,26 @@ proc removescilabbuffer_bp {outp textarea} {
 # that are related to / initiated by buffer $textarea
 # otherwise just return the command that would do that
     global funnames
-    if {[checkscilabbusy] == "OK"} {
-        set delbpcomm ""
-        if {$funnames != ""} {
-            set tagranges [$textarea tag ranges breakpoint]
-            foreach {tstart tstop} $tagranges {
-                set infun [whichfun [$textarea index $tstart] $textarea]
-                if {$infun !={} } {
-                    set funname [lindex $infun 0]
-                    set lineinfun [expr [lindex $infun 1] - 1]
-                    if {[lsearch $funnames $funname] == -1} {
-                        set delbpcomm [concat $delbpcomm "delbpt(\"$funname\",$lineinfun);"]
-                    }
+    set delbpcomm ""
+    if {$funnames != ""} {
+        set tagranges [$textarea tag ranges breakpoint]
+        foreach {tstart tstop} $tagranges {
+            set infun [whichfun [$textarea index $tstart] $textarea]
+            if {$infun !={} } {
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                if {[lsearch $funnames $funname] == -1} {
+                    set delbpcomm [concat $delbpcomm "delbpt(\"$funname\",$lineinfun);"]
                 }
-                }
-            if {$outp != "no_output"} {
-                ScilabEval "$delbpcomm" "seq"
             }
-        } else {
-            # <TODO> .sce case
         }
-        return $delbpcomm
+        if {$outp != "no_output"} {
+            ScilabEval "$delbpcomm" "seq"
+        }
+    } else {
+        # <TODO> .sce case
     }
+    return $delbpcomm
 }
 
 proc reshape_bp {} {
