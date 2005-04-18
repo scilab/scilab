@@ -164,7 +164,9 @@
                     Modificato dal Consorzio Scilab.\n\
                     Migliorato da Enrico Segre 2003-2005\n\
                     e da François Vogel (in particolare il debugger) 2004-2005.\n\
-                    Traduzioni: svedese, Gunnar Lindholm 2005."
+                    Traduzioni:\
+                    \n   svedese, Gunnar Lindholm 2005;\
+                    \n   tedesco, Dirk Reutsch 2005."
 
 
 # infomessages.tcl
@@ -357,7 +359,7 @@
 ::msgcat::mcset it "FGCOLOR" "Testo semplice"
 ::msgcat::mcset it "CURCOLOR" "Cursore"
 ::msgcat::mcset it "PARCOLOR" "Parentesi tonde ()"
-::msgcat::mcset it "BRAKCOLOR" "Parentesi quadre \\\[\\\]"
+::msgcat::mcset it "BRAKCOLOR" {Parentesi quadre \[\]}
 ::msgcat::mcset it "BRACCOLOR" "Parentesi graffe {}"
 ::msgcat::mcset it "PUNCOLOR"  "Punteggiatura"
 ::msgcat::mcset it "KEYWCOLOR" "Funzioni interne Scilab"

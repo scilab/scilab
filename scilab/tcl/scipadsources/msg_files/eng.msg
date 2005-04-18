@@ -13,7 +13,8 @@
                     Revised by Enrico Segre 2003-2005.\n\
                     Miscellaneous improvements, particularly debug tools,\
                     by Francois Vogel 2004-2005.\n\
-                    Swedish translation by Gunnar Lindholm 2005."
+                    Swedish translation by Gunnar Lindholm 2005.\n\
+                    German translation by Dirk Reutsch 2005"
 
 
 #preference variables description
