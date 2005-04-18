@@ -22,13 +22,17 @@ set StyTrad(popupmenu)      popupmenu;
 
 # define the equivalence between anchor names 
 # in scilab and anchor names in tk
-set AnchorEq(center) center;
-set AnchorEq(left)   w;
-set AnchorEq(right)  e;
-set AnchorEq(e)      e;
-set AnchorEq(w)      w;
-set AnchorEq(top)    n;
-set AnchorEq(bottom) s;
+# horizontal alignment
+set HorizontalAnchorEq(center) {};
+set HorizontalAnchorEq(left)   w;
+set HorizontalAnchorEq(right)  e;
+set HorizontalAnchorEq(e)      e; # kept for ascending compatibility
+set HorizontalAnchorEq(w)      w; # kept for ascending compatibility
+# vertical alignment
+set VerticalAnchorEq(center) center; # kept for ascending compatibility
+set VerticalAnchorEq(middle) center;
+set VerticalAnchorEq(top)    n;
+set VerticalAnchorEq(bottom) s;
 
 
 

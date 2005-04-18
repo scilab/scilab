@@ -328,34 +328,88 @@ proc Setfontunits { name value } {
 ######################################################################################
 proc Sethorizontalalignment { name value } {
 
- global "$name" AnchorEq;
+ global "$name" HorizontalAnchorEq;
+ global "$name" VerticalAnchorEq;
  set path [set "$name\(path)"];
  set "$name\(horizontalalignment)" $value;
  set style [set "$name\(style)"];
+
+ if {[string compare $value "center"] != 0} {
+     if {[info exist "$name\(verticalalignment)"] == 1} {
+	 set vanchor $VerticalAnchorEq([set "$name\(verticalalignment)"]);
+	 if {[string compare $vanchor "center"] == 0} {
+	      set anchor $HorizontalAnchorEq($value);
+	 } else {
+	     set anchor $vanchor$HorizontalAnchorEq($value);
+	 }
+     } else {
+	 set anchor $HorizontalAnchorEq($value);
+     }
+ } else {
+     if {[info exist "$name\(verticalalignment)"] == 1} {
+	 set anchor $VerticalAnchorEq([set "$name\(verticalalignment)"]);
+     } else {
+	 set anchor "center";
+     }
+ }
+
+ # Warning messages
+ if {[string equal $value "e"] != 0} {
+     ScilabEval "warning(\"Obsolete horizontal alignment \"\"e\"\", use \"\"right\"\" instead\")";
+ }
+ if {[string equal $value "w"] != 0} {
+     ScilabEval "warning(\"Obsolete horizontal alignment \"\"w\"\", use \"\"left\"\" instead\")";
+ }
+ 
     
     switch -exact -- $style {
-	text {$path configure -anchor $AnchorEq($value)}
-	edit {$path configure -anchor $AnchorEq($value)}
-	checkbox {$path configure -anchor $AnchorEq($value)}
+	text {$path configure -anchor $anchor}
+	edit {$path configure -justify $value}
+	checkbox {$path configure -anchor $anchor}
 	#listbox {$path.list configure -anchor $AnchorEq($value)}
-	
     }
 
 }
+
 ######################################################################################
 proc Setverticalalignment { name value } {
 
- global "$name" AnchorEq;
+ global "$name" HorizontalAnchorEq;
+ global "$name" VerticalAnchorEq;
  set path [set "$name\(path)"];
  set "$name\(verticalalignment)" $value;
  set style [set "$name\(style)"];
- 
+
+ if {[string compare $VerticalAnchorEq($value) "center"] != 0} {
+     if {[info exist "$name\(horizontalalignment)"] == 1} {
+	 set hanchor $HorizontalAnchorEq([set "$name\(horizontalalignment)"]);
+	 set anchor $VerticalAnchorEq($value)$hanchor;
+     } else {
+	 set anchor $VerticalAnchorEq($value)$hanchor;
+     }
+ } else {
+     if {[info exist "$name\(horizontalalignment)"] == 1} {
+	 set anchor $HorizontalAnchorEq([set "$name\(horizontalalignment)"]);
+	 if {[string compare $anchor {}] == 0} {
+	     set anchor "center";
+	 } 
+     } else {
+	 set anchor "center";
+     }
+ }
+
+
+ # Warning messages
+ if {[string equal $value "center"] != 0} {
+     ScilabEval "warning(\"Obsolete vertical alignment \"\"center\"\", use \"\"middle\"\" instead\")";
+ }
+
     switch -exact -- $style {
-	text {$path configure -anchor $AnchorEq($value)}
-	edit {$path configure -anchor $AnchorEq($value)}
-	checkbox {$path configure -anchor $AnchorEq($value)}
+	text {$path configure -anchor $anchor}
+	edit { unset "$name\(verticalalignment)"}
+	checkbox {$path configure -anchor $anchor}
 	#listbox {$path.list configure -anchor $AnchorEq($value)}
-	
+
     }
 
 }
