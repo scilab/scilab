@@ -159,7 +159,9 @@ int MustReturnAString(char *FieldPropertie)
 		 (strcmp(Propertie,"fontweight") == 0) ||
 		 (strcmp(Propertie,"string") == 0) ||
 		 (strcmp(Propertie,"label") == 0) ||
-		 (strcmp(Propertie,"figure_name") == 0) ) bOK=1;
+		 (strcmp(Propertie,"figure_name") == 0) ||
+	         (strcmp(Propertie,"verticalalignment") == 0) ||
+	         (strcmp(Propertie,"horizontalalignment") == 0) ) bOK=1;
 
 	return bOK;
 }
