@@ -1,5 +1,5 @@
 # Scipad texts in German
-# in sync at least with v4.5
+# in sync at least with v4.6
 # provided by Dirk Reusch <reusch@tmb.uni-karlsruhe.de>
 
 # commons
@@ -72,6 +72,7 @@
 
 
 # db_watch.tcl
+::msgcat::mcset de "Watch" "Beobachten"
 ::msgcat::mcset de "Watch variables:" "Beobachtete Variablen :"
 ::msgcat::mcset de "Remove" "Entfernen"
 ::msgcat::mcset de "Call stack:" "Ausführungsstapel:"
@@ -113,7 +114,6 @@
 ::msgcat::mcset de "Save as" "Speichern unter"
 ::msgcat::mcset de "Scilab files" "Scilab-Dateien"
 ::msgcat::mcset de "XML files" "XML-Dateien"
-::msgcat::mcset de "All files" "Alle Dateien"
 ::msgcat::mcset de "Wait seconds while loading and colorizing file" "Bitte warten Sie einen Moment während Datei geöffnet wird"
 ::msgcat::mcset de "The contents of this file may have changed, do you wish to save your changes?" "Diese Datei wurde verändert. Möchten Sie ihre Änderungen speichern?"
 ::msgcat::mcset de "Revert" "Möchten Sie auf die gespeicherte Version von"
@@ -266,7 +266,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset de "Open the source of" "Quellcode öffnen"
-::msgcat::mcset de "Add watch" "Variable beobachten"
+::msgcat::mcset de "AddWatch" "Variable %s beobachten"
 
 
 # print.tcl
@@ -280,6 +280,7 @@
 ::msgcat::mcset de "Exec done" "Ausführung beendet"
 ::msgcat::mcset de "Scilab is working, wait for the prompt to execute the selection." "Scilab arbeitet. Warten Sie auf die Eingabeaufforderung, um den markierten Bereich auszuführen."
 ::msgcat::mcset de "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab arbeitet. Warten Sie auf die Eingabeaufforderung, um eine Matlab-Datei zu importieren."
+::msgcat::mcset de "Matlab files" "Matlab-Dateien"
 ::msgcat::mcset de "Matlab file to convert" "Zu importierende Matlab-Datei"
 ::msgcat::mcset de "Scilab is converting, please hold on..." "Scilab konvertiert gerade, bitte warten Sie..."
 ::msgcat::mcset de "Matlab file import" "Import einer Matlab-Datei"

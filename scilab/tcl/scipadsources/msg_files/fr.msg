@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v4.5
+# in sync at least with v4.6
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -71,6 +71,7 @@
 
 
 # db_watch.tcl
+::msgcat::mcset fr "Watch" "Espions"
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
 ::msgcat::mcset fr "Remove" "Supprimer"
 ::msgcat::mcset fr "Call stack:" "Pile des appels:"
@@ -111,7 +112,6 @@
 ::msgcat::mcset fr "Save as" "Enregistrer sous"
 ::msgcat::mcset fr "Scilab files" "Fichiers Scilab"
 ::msgcat::mcset fr "XML files" "Fichiers XML"
-::msgcat::mcset fr "All files" "Tous les fichiers"
 ::msgcat::mcset fr "Wait seconds while loading and colorizing file" "Patientez un instant le temps du chargement et de la colorisation"
 ::msgcat::mcset fr "The contents of this file may have changed, do you wish to save your changes?" "Voulez-vous enregistrer les modifications apportées à ce fichier ?"
 ::msgcat::mcset fr "Revert" "Revenir à la version enregistrée de"
@@ -145,7 +145,8 @@
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2005.\n\
                     Améliorations diverses, dont outils de débug, par François Vogel 2004-2005.\n\
-                    Traduction en Suédois par Gunnar Lindholm 2005."
+                    Traduction en Suédois par Gunnar Lindholm 2005.\n\
+                    Traduction en Allemand par Dirk Reusch 2005."
 
 
 # infomessages.tcl
@@ -263,7 +264,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
-::msgcat::mcset fr "Add watch" "Ajouter comme espion"
+::msgcat::mcset fr "AddWatch" "Ajouter %s comme espion"
 
 
 # print.tcl
@@ -277,6 +278,7 @@
 ::msgcat::mcset fr "Exec done" "Exécution effectuée"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to execute the selection." "Scilab est occupé, attendez le prompt pour exécuter la sélection."
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab est occupé, attendez le prompt pour importer un fichier Matlab."
+::msgcat::mcset fr "Matlab files" "Fichiers Matlab"
 ::msgcat::mcset fr "Matlab file to convert" "Fichier Matlab à importer"
 ::msgcat::mcset fr "Scilab is converting, please hold on..." "Scilab est en train de convertir, patientez SVP..."
 ::msgcat::mcset fr "Matlab file import" "Import d'un fichier Matlab"

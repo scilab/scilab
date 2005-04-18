@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v4.4
+# in sync at least with v4.6
 
 
 # commons
@@ -127,7 +127,6 @@
 ::msgcat::mcset it "Save as" "Registra come"
 ::msgcat::mcset it "Scilab files" "Files Scilab"
 ::msgcat::mcset it "XML files" "Files XML"
-::msgcat::mcset it "All files" "Tutti i files"
 ::msgcat::mcset it "Wait seconds while loading and colorizing file" \
           "Attendere - apertura e colorazione del file in corso"
 ::msgcat::mcset it "The contents of this file may have changed,\
@@ -294,7 +293,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset it "Open the source of" "Aprire la sorgente di"
-::msgcat::mcset it "Add watch" "Tieni questa variabile sotto osservazione"
+::msgcat::mcset it "AddWatch" "Tieni %s sotto controllo"
 
 
 # print.tcl
@@ -311,8 +310,8 @@
     "Scilab è occupato, attendere il prompt per eseguire la selezione"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a Matlab file." \
     "Scilab è occupato, attendere il prompt per convertire un file Matlab"
-::msgcat::mcset it "Matlab file to convert" "File Matlab da importare"
 ::msgcat::mcset it "Matlab files" "Files Matlab"
+::msgcat::mcset it "Matlab file to convert" "File Matlab da importare"
 ::msgcat::mcset it "Scilab is converting, please hold on..." \
     "Scilab sta traducendo, attendere..."
 ::msgcat::mcset it "Matlab file import" "Importazione di un file Matlab"
@@ -364,7 +363,7 @@
 ::msgcat::mcset it "FGCOLOR" "Testo semplice"
 ::msgcat::mcset it "CURCOLOR" "Cursore"
 ::msgcat::mcset it "PARCOLOR" "Parentesi tonde ()"
-::msgcat::mcset it "BRAKCOLOR" {Parentesi quadre \[\]}
+::msgcat::mcset it "BRAKCOLOR" "Parentesi quadre \\\[\\\]"
 ::msgcat::mcset it "BRACCOLOR" "Parentesi graffe {}"
 ::msgcat::mcset it "PUNCOLOR"  "Punteggiatura"
 ::msgcat::mcset it "KEYWCOLOR" "Funzioni interne Scilab"

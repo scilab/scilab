@@ -8,8 +8,18 @@ proc showpopup2 {} {
         tk_popup $pad.filemenu.edit $numx $numy
     } else {
         set ta [gettextareacur]
-        if {$mouseoversel == "true"} { 
-            showpopupdebugwsel [[gettextareacur] index current]
+        # If there is a selection, and the selected text contains only one active
+        # tag, which is sel, and if the selected trimmed string matches a regexp
+        # (constructed from help names in Scilab) then the selection is probably
+        # a valid variable to watch and the quick add watch menu should pop up
+        if {$mouseoversel == "true"} {
+            if {[$ta tag names sel.first] == "sel" } {
+                set watchvar [string trim [$ta get sel.first sel.last]]
+                regexp {\A[\%_\#\!\$\?a-zA-Z][_\#\!\$\?a-zA-Z0-9]*\Z} $watchvar validwatchvar
+            }
+        }
+        if {[info exists validwatchvar]} {
+            showpopupdebugwsel $validwatchvar
         } else {
             tk_popup $pad.filemenu.debug $numx $numy
         }
@@ -52,14 +62,14 @@ proc showpopupsource {ind} {
     tk_popup $pad.popsource $numx $numy
 }
 
-proc showpopupdebugwsel {ind} {
-    global pad textareacur menuFont
+proc showpopupdebugwsel {watchvar} {
+    global pad menuFont
     set numx [winfo pointerx .]
     set numy [winfo pointery .]
     catch {destroy $pad.popdebugwsel}
     menu $pad.popdebugwsel -tearoff 0 -font $menuFont
-    set plabel [mc "Add watch"]
+    set plabel [mc AddWatch $watchvar]
     $pad.popdebugwsel add command -label $plabel\
-        -command "quickAddWatch_bp"
+        -command "quickAddWatch_bp $watchvar"
     tk_popup $pad.popdebugwsel $numx $numy
 }

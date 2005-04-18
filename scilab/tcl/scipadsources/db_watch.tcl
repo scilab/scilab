@@ -10,7 +10,7 @@ proc showwatch_bp {} {
     set watch $pad.watch
     catch {destroy $watch}
     toplevel $watch
-    wm title $watch "Watch"
+    wm title $watch [mc "Watch"]
     if { $firsttimeinshowwatch == "true" } { 
         setwingeom $watch
     } else {
@@ -98,8 +98,6 @@ proc showwatch_bp {} {
             $lbvarname insert end $var
             $lbvarval insert end $watchvarsvals($var)
         }
-        $lbvarname selection set 0
-        $lbvarname see 0
     }
     pack $lbvarname $scrolly $lbvarval -side left \
             -expand 1 -fill both -padx 2

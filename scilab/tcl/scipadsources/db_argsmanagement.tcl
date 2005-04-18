@@ -139,7 +139,7 @@ proc Removearg_bp {leftwin rightwin} {
     }
 }
 
-proc quickAddWatch_bp {} {
+proc quickAddWatch_bp {watchvar} {
     global watch argname argvalue lbvarname lbvarval
     set watchalreadyopen "false"
     if {[info exists watch]} {
@@ -150,8 +150,7 @@ proc quickAddWatch_bp {} {
     if {$watchalreadyopen == "false"} {
         showwatch_bp
     }
-    set ta [gettextareacur]
-    set argname [$ta get [$ta index sel.first] [$ta index sel.last]]
+    set argname $watchvar
     # set value to "" so that OKadda_bp will get it from the shell
     set argvalue ""
     OKadda_bp -1 $lbvarname $lbvarval "true"

@@ -81,6 +81,7 @@
 
 
 # db_watch.tcl
+::msgcat::mcset se "Watch" "Bevakning"
 ::msgcat::mcset se "Watch variables:" "Iakta variabler :"
 ::msgcat::mcset se "Remove" "Tabort"
 ::msgcat::mcset se "Call stack:" "Anropsstack:"
@@ -123,7 +124,6 @@
 ::msgcat::mcset se "Save as" "Spara som"
 ::msgcat::mcset se "Scilab files" "Scilab filer"
 ::msgcat::mcset se "XML files" "XML filer"
-::msgcat::mcset se "All files" "Alla filer"
 ::msgcat::mcset se "Wait seconds while loading and colorizing file" \
                    "Vänta ett ögonblick medan filen laddas och färgläggs"
 ::msgcat::mcset se "The contents of this file may have changed, do you wish to save your changes?" \
@@ -162,7 +162,8 @@
                     Modifierat av Scilab Constortium.\n\
                     Granskat av Enrico Segre 2003-2005.\n\
                     Diverse förbättringar, i synnerhet debuggingverktygen av François Vogel 2004-2005.\n\
-                    Svensk översättning av Gunnar Lindholm 2005."
+                    Översättning till svenska av Gunnar Lindholm 2005.\n\
+                    Översättning till tyska av Dirk Reusch 2005."
 
 
 # infomessages.tcl
@@ -284,7 +285,7 @@
 
 # popupmenus.tcl
 ::msgcat::mcset se "Open the source of" "Öppna källkoden till"
-::msgcat::mcset se "Add watch" "Lägg till bevakning"
+::msgcat::mcset se "AddWatch" "Bevaka %s"
 
 
 # print.tcl
@@ -302,6 +303,7 @@
                    "Scilab arbetar, vänta på att markeringen exekveraas."
 ::msgcat::mcset se "Scilab is working, wait for the prompt to convert a Matlab file."\
                    "Scilab arbetar, vänta på att Matlab filen konverteras."
+::msgcat::mcset se "Matlab files" "Matlab filer"
 ::msgcat::mcset se "Matlab file to convert" "Konvertera denna Matlab fil"
 ::msgcat::mcset se "Scilab is converting, please hold on..." \
                    "Scilab konverterar, vänligen vänta..."

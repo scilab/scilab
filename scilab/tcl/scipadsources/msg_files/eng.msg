@@ -1,4 +1,4 @@
-# in sync at least with v4.5
+# in sync at least with v4.6
 # English is the original language of Scipad
 # Scipad tcl/tk source should use english texts
 # for instance [mc "your text in english here"]
@@ -14,7 +14,11 @@
                     Miscellaneous improvements, particularly debug tools,\
                     by Francois Vogel 2004-2005.\n\
                     Swedish translation by Gunnar Lindholm 2005.\n\
-                    German translation by Dirk Reusch 2005"
+                    German translation by Dirk Reusch 2005."
+
+
+# popupmenus.tcl
+::msgcat::mcset eng "AddWatch" "Add %s as watch"
 
 
 #preference variables description

@@ -990,3 +990,11 @@ Francois VOGEL, 15/04/05
    watch variables were lost
  * Credit given to Gunnar in the About box for the se translation
  * version --> 4.5
+
+Francois VOGEL, 18/04/05
+ * Refined the popup menu for "Add watch" to include the selected text.
+ * Made use of the existing tags as well as of a regexp deduced from help
+   names in Scilab. Only valid variables can now (in principle) be added
+   on right-click on selection during debug
+ * Some editing in the message files - German version added
+ * version --> 4.6
