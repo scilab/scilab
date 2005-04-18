@@ -708,8 +708,11 @@ int GetScreenDPI(int *ixres, int *iyres)
   /* be sure a gtk_init is started */
   
 #if GTK_MAJOR_VERSION == 1 
-  /* sciprint("GetScreenDPI not implemented in gtk 1\r\n"); */
-  return -1;
+  /* These are default values, corresponding to a 17 inches 
+     flat panel with 1280x1024 resolution. */
+  *ixres = 96;
+  *iyres = 96;
+  return 0;
 #else 
   start_sci_gtk();
   GdkScreen *screen =  gdk_screen_get_default();
