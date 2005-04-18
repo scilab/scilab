@@ -4830,7 +4830,7 @@ int scirects(fname,fname_len)
 {
   integer m1,n1,l1,m2,n2,l2;
   long  hdl;
-  int i,j;
+  int i;
   SciWin();
   CheckRhs(1,2);
 
@@ -4860,10 +4860,11 @@ int scirects(fname,fname_len)
   /* NG beg */
   if (version_flag() == 0){
     for (i = 0; i < n1; ++i) { 
-      j = (i==0) ? 0 : 1;
+/*       j = (i==0) ? 0 : 1; */
       if (*istk(l2+i) == 0)  
 	/** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
-	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i-j),0,&hdl,FALSE);
+	/* F.Leray 18.04.05 : fillcolor == 0 will imply axes parent foreground to be used instead */
+	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,0,0,&hdl,FALSE);
       else  
 	if (*istk(l2+i) < 0)  
 	  /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
