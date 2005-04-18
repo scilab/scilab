@@ -28,9 +28,9 @@
 
 
 # db_configureexec.tcl
-::msgcat::mcset it "Configure execution" "Configurare l'esecuzione"
+::msgcat::mcset it "Configure execution" "Configura l'esecuzione"
 ::msgcat::mcset it "Function name:" "Nome della funzione:"
-::msgcat::mcset it "Obtain" "Ottenere"
+::msgcat::mcset it "Obtain" "Ottieni"
 ::msgcat::mcset it "Input arguments:" "Argumenti di ingresso:"
 ::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Check function definition: it must be on a single code line." \
@@ -83,6 +83,7 @@
 
 
 # db_watch.tcl
+::msgcat::mcset it "Watch" "Controllo esecuzione e variabili"
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
 ::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
@@ -113,7 +114,8 @@
                     stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
 ::msgcat::mcset it "The file" "Il file"
-    ::msgcat::mcset it "is already opened! Save the current opened file to an another name and reopen it from disk!" \
+    ::msgcat::mcset it "is already opened! Save the current opened file \
+          to an another name and reopen it from disk!" \
  "è già aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
     ::msgcat::mcset it "saved" "salvato"
@@ -128,8 +130,10 @@
 ::msgcat::mcset it "All files" "Tutti i files"
 ::msgcat::mcset it "Wait seconds while loading and colorizing file" \
           "Attendere - apertura e colorazione del file in corso"
-::msgcat::mcset it "The contents of this file may have changed, do you wish to save your changes?" \
-   "Il contenuto di questo file potrebbe essere cambiato, registrare la nuova versione?"
+::msgcat::mcset it "The contents of this file may have changed,\
+                     do you wish to save your changes?" \
+                   "Il contenuto di questo file potrebbe essere cambiato,\
+                     registrare la nuova versione?"
 ::msgcat::mcset it "Revert" "Ritornare alla versione di"
     ::msgcat::mcset it "to saved?" "salvata sul disco?"
 ::msgcat::mcset it "Revert Confirm?" "Conferma recupero?"
@@ -308,6 +312,7 @@
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a Matlab file." \
     "Scilab è occupato, attendere il prompt per convertire un file Matlab"
 ::msgcat::mcset it "Matlab file to convert" "File Matlab da importare"
+::msgcat::mcset it "Matlab files" "Files Matlab"
 ::msgcat::mcset it "Scilab is converting, please hold on..." \
     "Scilab sta traducendo, attendere..."
 ::msgcat::mcset it "Matlab file import" "Importazione di un file Matlab"
