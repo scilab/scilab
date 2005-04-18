@@ -1,4 +1,4 @@
-More .msg files can be added to this directory for support of additional
+More .msg files can be added to this directory for the support of additional
 languages. Please contact the current mantainers if you wish to contribute
 a new file. Here are generic instructions about the format used in these
 localization files.
@@ -10,7 +10,7 @@ INSTRUCTIONS FOR CONTRIBUTING SCIPAD LOCALES
 ====================================================
 
 If you're considering to contribute to the localization of Scipad, here
-is some background information. What need you to do is to create a 
+is some background information. What we need you to do is to create a 
 "message file" file XX.msg in the directory SCI/tcl/scipadsources/msg_files,
 containing the translation of the text strings used by Scipad, and to submit
 it to us. We'll take care of including it in the current Scilab developement 
@@ -33,7 +33,7 @@ THE MESSAGE FILE CONTENT
 The message file itself is written in Tcl. You're not expected to know
 Tcl at all, just to respect a few conventions adopted. Among these:
 
--strings are enclosed within double quotes ""
+-strings are enclosed within double quotes "" or curly brackets {}
 
 -a # marks the rest of a line as a comment
 
@@ -41,7 +41,8 @@ Tcl at all, just to respect a few conventions adopted. Among these:
  line
 
 -some characters, having special meanings in Tcl, like []{}, need to
- be escaped with a backslash (i.e. \[ )
+ be escaped with a backslash (i.e. \[ ) (in some very particular cases
+ with three backslashes \\\)
 
 -\n in a string represents the newline character
 
@@ -82,13 +83,12 @@ proper "TRANSLATED_STRING" for each case, replacing that of the original file.
 
 Please respect the existing order in the file, as this will be very
 convenient for mantaining it. For the moment, we are not equipped with
-any tool for cross checking the consistency of the different 
-localization files, and everything has to be done at hand. Also, do
-not touch the existing english version of "A_STRING": the localization
-procedure uses these exact strings as labels. If you think that the 
-english original is inadequate, please report it to us, an eventual 
-change needs to be propagated to the main code and to all of the 
-message files. 
+tools for cross checking the consistency of the different localization 
+files, and everything has to be done at hand. Also, do not touch the
+existing english version of "A_STRING": the localization procedure uses 
+these exact strings as labels. If you think that the english original is
+inadequate, please report it to us, an eventual change needs to be propagated
+to the main code and to all of the message files. 
 
 In most of the cases, the translation is one to one, in the sense that
 each string will have its immediate transation. In a few more complex
