@@ -22,7 +22,9 @@
 												'userdata' ..
 												'value' ..
 												'label' ..
-												'figure_name'];
+												'figure_name' ..
+											        'verticalalignment' ..
+												'horizontalalignment'];
   //conversion to lower format
   str = convstr(PropertyName);
   k=find(part(TableProperties,1:length(str))==str);

@@ -7,7 +7,7 @@
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
-#define NBRPROPERTIES 20
+#define NBRPROPERTIES 22
 static char *UiPropertiesName[NBRPROPERTIES]={
 												"backgroundcolor",
 												"callback",
@@ -28,7 +28,9 @@ static char *UiPropertiesName[NBRPROPERTIES]={
 												"userdata",
 												"label",
 												"figure_name",
-												"value"
+												"value",
+												"verticalalignment",
+												"horizontalalignment"
 											};
 /*-----------------------------------------------------------------------------------*/
 void nocase (char *s)
