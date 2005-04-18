@@ -24,7 +24,7 @@ function [wa,ha]=do_export(scs_m,fname,titleflag)
     if num<>2 then  fname= savefile('*');end
   end
   // remove blanks
-  if num<>2 then
+  if num<>2 & ~MSDOS then
     fname=stripblanks(fname)
     ff=str2code(fname);ff(find(ff==40|ff==53))=36;fname=code2str(ff)
     if fname==emptystr() then return;end   
@@ -114,10 +114,11 @@ function [wa,ha]=do_export(scs_m,fname,titleflag)
     if MSDOS then
       fname=pathconvert(fname,%f,%t,'w')
       comm=pathconvert(SCI+'\bin\BEpsf',%f,%f,'w')
-      rep=unix_g(''"'+comm+''" '+opt+fname)
+      rep=unix_g(comm+' '+opt+'""'+fname+'""')
     else
       rep=unix_g(SCI+'/bin/BEpsf '+opt+fname)
     end
+    
     if rep<>[] then 
       message(['Problem generating ps file.';..
 		 'perhaps directory not writable'] )
