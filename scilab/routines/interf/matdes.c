@@ -2188,16 +2188,28 @@ int scixsegs(fname,fname_len)
   mn2 = m2 * n2; 
 
   /* NG beg */
-  if (Rhs == 3 && m3 * n3 != 1) {
-    style=istk(l3); flag= one;
-  } 
-  else {
-    style=&dstyle ; flag= zero;
-  }
-  if (version_flag() == 0)
+  if (version_flag() == 0){
+    if (Rhs == 3 && m3 * n3 != 1) {
+      style = istk(l3); flag= one;
+    } 
+    else {
+      int col = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+      style = &col;
+      flag= zero;
+    }
+    
     Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
-  else
+  }
+  else{
+    if (Rhs == 3 && m3 * n3 != 1) {
+      style = istk(l3); flag= one;
+    } 
+    else {
+      style = &dstyle ; flag= zero;
+    }
+    
     Xsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  }
   /* NG end */
   LhsVar(1)=0;
   return 0;
