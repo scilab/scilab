@@ -4,7 +4,7 @@
 
 # commons
 ::msgcat::mcset de "Cancel" "Abbrechen"
-::msgcat::mcset de "Cance&l" "&Abbrechen"
+::msgcat::mcset de "Cance&l" "Abbrechen (Ctrl+l)"
 ::msgcat::mcset de "OK" "OK"
 ::msgcat::mcset de "Scilab working" "Scilab arbeitet"
 ::msgcat::mcset de "All files" "Alle Dateien"
@@ -29,7 +29,7 @@
 # db_configureexec.tcl
 ::msgcat::mcset de "Configure execution" "Auführung konfigurieren"
 ::msgcat::mcset de "Function name:" "Funktionsname :"
-::msgcat::mcset de "Obtain" "Obtenir"
+::msgcat::mcset de "Obtain" "Erhält"
 ::msgcat::mcset de "Input arguments:" "Eingabeargumente :"
 ::msgcat::mcset de "Remove" "Entfernen"
 ::msgcat::mcset de "Check function definition: it must be on a single code line." \
@@ -129,15 +129,15 @@
 ::msgcat::mcset de "No match found in the selection for" "Die Zeichenkette"
 ::msgcat::mcset de "\nWould you like to look for it in the entire text?" "konnte im markierten Bereich nicht gefunden werden.\nMöchten Sie in der gesamten Datei danach suchen ?"
 ::msgcat::mcset de "You are searching for an empty string!" "Nach einer leeren Zeichenkette kann nicht gesucht werden!"
-::msgcat::mcset de "Re&place" "Ersetzen"
-::msgcat::mcset de "Find what:" "Suchen nach : "
-::msgcat::mcset de "Replace with:" "Ersetzen durch : "
-::msgcat::mcset de "Find &Next" "&Suche fortsetzen"
-::msgcat::mcset de "Replace &All" "A&lle Ersetzen"
-::msgcat::mcset de "&Upwards" "&Rückwärts"
-::msgcat::mcset de "Downward&s" "&Vorwärts" 
-::msgcat::mcset de "Match &case" "&Groß-/Kleinschreibung beachten"
-::msgcat::mcset de "&Regular expression" "R&egulärer Ausdruck"
+::msgcat::mcset de "Re&place" "Ersetzen (Ctrl+p)"
+::msgcat::mcset de "Find what:" "Suche nach:"
+::msgcat::mcset de "Replace with:" "Ersetze durch:"
+::msgcat::mcset de "Find &Next" "Suche fortsetze&n"
+::msgcat::mcset de "Replace &All" "&Alle Ersetzen"
+::msgcat::mcset de "&Upwards" "R&ueckwärts"
+::msgcat::mcset de "Downward&s" "Vorwärt&s" 
+::msgcat::mcset de "Match &case" "Groß-/Kleins&chreibung beachten"
+::msgcat::mcset de "&Regular expression" "&Regulärer Ausdruck"
 
 
 # helps.tcl
@@ -172,7 +172,7 @@
 ::msgcat::mcset de "&Search" "&Suchen"
 ::msgcat::mcset de "E&xecute" "&Ausführen"
 ::msgcat::mcset de "&Debug" "D&ebug"
-::msgcat::mcset de "S&cheme" "&Sprache"
+::msgcat::mcset de "S&cheme" "S&chema"
 ::msgcat::mcset de "&Options" "&Optionen"
 ::msgcat::mcset de "&Windows" "&Fenster"
 ::msgcat::mcset de "&Help" "&Hilfe"
@@ -208,8 +208,8 @@
 
     # menues.tcl - Search menu
     ::msgcat::mcset de "&Find..." "&Suchen..."
-    ::msgcat::mcset de "Find &Next" "S&uche fortsetzen"
-    ::msgcat::mcset de "&Replace..." "&Ersetzen..."
+    ::msgcat::mcset de "Find &Next" "Suche fortsetze&n"
+    ::msgcat::mcset de "&Replace..." "E&rsetzen..."
     ::msgcat::mcset de "&Goto Line..." "&Gehe zu..."
 
     # menues.tcl - Exec menu
@@ -233,9 +233,9 @@
 
 #    ::msgcat::mcset de "language scheme" "Sprachschema"
     # menues.tcl - Scheme menu
-    ::msgcat::mcset de "S&cilab" "&Scilab"
+    ::msgcat::mcset de "S&cilab" "S&cilab"
     ::msgcat::mcset de "&XML" "&XML"
-    ::msgcat::mcset de "&none" "s&onstige"
+    ::msgcat::mcset de "&none" "kei&ns"
 
     # menues.tcl - Options menu
     ::msgcat::mcset de "&Font size" "&Schriftgröße"
@@ -352,3 +352,5 @@
 ::msgcat::mcset de "Open" "Öffnen"
 ::msgcat::mcset de "Save As" "Speichern unter"
 ::msgcat::mcset de "&Cancel" "&Abbrechen"
+::msgcat::mcset de "&Selection:" "Au&swahl:"
+
