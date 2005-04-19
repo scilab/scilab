@@ -49,6 +49,8 @@ void ON_WM_MBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 void ON_WM_RBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 void ON_WM_RBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 void ON_WM_RBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
+BOOL IsASingleClick(void);
+void SetIsASingleClickToFalse(void);
 
 #endif /*__EVENTS__*/
 /*-----------------------------------------------------------------------------------*/

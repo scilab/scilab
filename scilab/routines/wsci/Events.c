@@ -21,13 +21,16 @@ static BOOL bTimerMiddleSingleClickON=FALSE;
 static struct BCG *LocalScilabGC=NULL;
 static int MOUSEX=0;
 static int MOUSEY=0;
+
+static BOOL SingleClick=FALSE;
 /*-----------------------------------------------------------------------------------*/
 void CALLBACK LeftPressedClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 {
 	KillTimer(hwnd, id);
 	bTimerLeftPressedON=FALSE;
 	LeftPressedON=TRUE;
-	
+	SingleClick=FALSE;
+
 	if (GetKeyState(VK_CONTROL)<0)
 	{
 		/*sciprint("CONTROL + Left Button Pressed\n");*/
@@ -45,6 +48,7 @@ void CALLBACK LeftSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 {
 	KillTimer(hwnd, id);
 	bTimerLeftSingleClickON=FALSE;
+	SingleClick=FALSE;
 	
 	if (GetKeyState(VK_CONTROL)<0)
 	{
@@ -54,6 +58,7 @@ void CALLBACK LeftSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 	else
 	{
 		/*sciprint("Single Left Click\n");*/
+		SingleClick=TRUE;
 		PushClickQueue (LocalScilabGC->CurWindow, MOUSEX+LocalScilabGC->horzsi.nPos,MOUSEY+LocalScilabGC->vertsi.nPos, CLCK_LEFT, 0, 1);
 	}
 	
@@ -64,6 +69,7 @@ void CALLBACK MiddlePressedClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 	KillTimer(hwnd, id);
 	bTimerMiddlePressedON=FALSE;
 	MiddlePressedON=TRUE;
+	SingleClick=FALSE;
 	
 	if (GetKeyState(VK_CONTROL)<0)
 	{
@@ -81,6 +87,7 @@ void CALLBACK MiddleSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 {
 	KillTimer(hwnd, id);
 	bTimerMiddleSingleClickON=FALSE;
+	SingleClick=FALSE;
 	
 	if (GetKeyState(VK_CONTROL)<0)
 	{
@@ -90,6 +97,7 @@ void CALLBACK MiddleSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 	else
 	{
 		/*sciprint("Single Middle Click\n");*/
+		SingleClick=TRUE;
 		PushClickQueue (LocalScilabGC->CurWindow, MOUSEX+LocalScilabGC->horzsi.nPos,MOUSEY+LocalScilabGC->vertsi.nPos, CLCK_MIDDLE, 0, 1);
 	}
 }
@@ -99,7 +107,8 @@ void CALLBACK RightPressedClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 	KillTimer(hwnd, id);
 	bTimerRightPressedON=FALSE;
 	RightPressedON=TRUE;
-	
+	SingleClick=FALSE;
+
 	if (GetKeyState(VK_CONTROL)<0)
 	{
 		/*sciprint("CONTROL + Right Button Pressed\n");*/
@@ -116,7 +125,8 @@ void CALLBACK RightSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 {
 	KillTimer(hwnd, id);
 	bTimerRightSingleClickON=FALSE;
-	
+	SingleClick=FALSE;
+
 	if (GetKeyState(VK_CONTROL)<0)
 	{
 		/*sciprint("CONTROL + Single Right Click\n");*/
@@ -125,6 +135,7 @@ void CALLBACK RightSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 	else
 	{
 		/*sciprint("Single Right Click\n");*/
+		SingleClick=TRUE;
 		PushClickQueue (LocalScilabGC->CurWindow, MOUSEX+LocalScilabGC->horzsi.nPos,MOUSEY+LocalScilabGC->vertsi.nPos, CLCK_RIGHT, 0, 1);
 	}
 }
@@ -134,6 +145,7 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 	int CodeKey=0;
 	int x,y,iwin;
 
+	SingleClick=FALSE;
 	LocalScilabGC=ScilabGC;
 
 	switch(message)
@@ -342,7 +354,7 @@ void ON_WM_LBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			else
 			{
 				bTimerLeftSingleClickON=TRUE;
-				SetTimer(ScilabGC->CWindow, TIMER2LEFTBUTTON, GetDoubleClickTime(),LeftSingleClick);
+				SetTimer(ScilabGC->CWindow, TIMER2LEFTBUTTON, GetDoubleClickTime()/2,LeftSingleClick);
 			}
 		} 
 	}
@@ -438,7 +450,7 @@ void ON_WM_MBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			else
 			{
 				bTimerMiddleSingleClickON=TRUE;
-				SetTimer(ScilabGC->CWindow, TIMER2MIDDLEBUTTON, GetDoubleClickTime(),MiddleSingleClick);
+				SetTimer(ScilabGC->CWindow, TIMER2MIDDLEBUTTON, GetDoubleClickTime()/2,MiddleSingleClick);
 			}
 		} 
 	}
@@ -535,7 +547,7 @@ void ON_WM_RBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			else
 			{
 				bTimerRightSingleClickON=TRUE;
-				SetTimer(ScilabGC->CWindow, TIMER2RIGHTBUTTON, GetDoubleClickTime(),RightSingleClick);
+				SetTimer(ScilabGC->CWindow, TIMER2RIGHTBUTTON, GetDoubleClickTime()/2,RightSingleClick);
 			}
 		} 
 	}
@@ -569,5 +581,15 @@ void ON_WM_RBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 		/*sciprint("Double Right Click\n");*/
 		PushClickQueue (ScilabGC->CurWindow, MOUSEX+ScilabGC->horzsi.nPos,MOUSEY + ScilabGC->vertsi.nPos, DBL_CLCK_RIGHT, 0, 0);
 	}
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL IsASingleClick(void)
+{
+	return (SingleClick);
+}
+/*-----------------------------------------------------------------------------------*/
+void SetIsASingleClickToFalse(void)
+{
+	SingleClick=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
