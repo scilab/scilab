@@ -7,7 +7,7 @@
 int C2F(intClose) _PARAMS((char *fname))
 {
 	char MyTclCommand[2048];
-	BOOL DoCloseFigure=FALSE;
+	int DoCloseFigure=FALSE;
 
 	CheckLhs(1,1);
 	CheckRhs(0,1);
