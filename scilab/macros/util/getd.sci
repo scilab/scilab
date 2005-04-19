@@ -20,11 +20,11 @@ function getd(path)
   nold=size(who('get'),'*')
   prot=funcprot();funcprot(0)
 
-  for k=1:size(lst,'*'); getf(lst(k));  end
+  for k=1:size(lst,'*'); if fileparts(lst(k),"extension")==".sci" then getf(lst(k));end;  end
 
   funcprot(prot)
   new=who('get')
-  new=new(1:(size(new,'*')-nold-2))
+  new=new(1:(size(new,'*')-nold-4))
   if new<>[] then
     execstr('['+strcat(new,',')+']=resume('+strcat(new,',')+')')
   end
