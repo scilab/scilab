@@ -7,6 +7,7 @@
 int C2F(intClose) _PARAMS((char *fname))
 {
 	char MyTclCommand[2048];
+	BOOL DoCloseFigure=FALSE;
 
 	CheckLhs(1,1);
 	CheckRhs(0,1);
@@ -26,17 +27,28 @@ int C2F(intClose) _PARAMS((char *fname))
 
 			if ( (m1 == 1) && (n1 == 1) )
 			{
+				char TestFigureExist[256];
 				param=*istk(l1);
-				if (param >= 0)
+				
+				sprintf(TestFigureExist,"Win(%d)",param);
+				if ( Tcl_GetVar(TCLinterp, TestFigureExist, TCL_GLOBAL_ONLY) )
 				{
-					sprintf(MyTclCommand, "DestroyFigure %d;",param); 
+					DoCloseFigure=TRUE;
+					if (param >= 0)
+					{
+						sprintf(MyTclCommand, "DestroyFigure %d;",param); 
+					}
+					else
+					{
+						Scierror(999,"parameter must be >= 0\n");
+						return 0;
+					}
 				}
 				else
 				{
-					Scierror(999,"parameter must be >= 0\n");
-					return 0;
+					DoCloseFigure=FALSE;
+					sciprint("Warning : Figure %d does not exist.\n",param);
 				}
-				
 			}
 			else
 			{
@@ -51,7 +63,7 @@ int C2F(intClose) _PARAMS((char *fname))
 		}
 	}
 	
-    if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+    if ( DoCloseFigure && ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  ) )
     {
 		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
 		return 0;
