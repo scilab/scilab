@@ -364,7 +364,7 @@ proc fileisopen {file} {
 # file is already opened
     tk_messageBox -type ok -title [concat [mc "Open file"] $file] -message [concat \
       [mc "The file"] $file [mc "is already opened! Save the current opened\
-      file to an another name and reopen it from disk!"] ]
+      file to another name and reopen it from disk!"] ]
 }
 
 proc openoninit {textarea thefile} {

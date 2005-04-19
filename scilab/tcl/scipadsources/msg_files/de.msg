@@ -104,7 +104,7 @@
                     Namen erzeugen ?"
 ::msgcat::mcset de "Open file" "Datei öffnen"
 ::msgcat::mcset de "The file" "Die Datei"
-    ::msgcat::mcset de "is already opened! Save the current opened file to an another name and reopen it from disk!" "wurde bereits geöffnet! Speichern Sie die Datei unter einem anderen Namen und öffnen Sie sie erneut!"
+    ::msgcat::mcset de "is already opened! Save the current opened file to another name and reopen it from disk!" "wurde bereits geöffnet! Speichern Sie die Datei unter einem anderen Namen und öffnen Sie sie erneut!"
 ::msgcat::mcset de "File" "Datei"
     ::msgcat::mcset de "saved" "gespeichert"
 ::msgcat::mcset de "cannot be written!" "ist schreibgeschützt!"

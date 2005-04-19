@@ -102,7 +102,7 @@
                     portant ce nom ?"
 ::msgcat::mcset fr "Open file" "Ouvrir fichier"
 ::msgcat::mcset fr "The file" "Le fichier"
-    ::msgcat::mcset fr "is already opened! Save the current opened file to an another name and reopen it from disk!" "est déjà ouvert! Sauvez-le sous un autre nom et rouvrez-le à partir du disque !"
+    ::msgcat::mcset fr "is already opened! Save the current opened file to another name and reopen it from disk!" "est déjà ouvert! Sauvez-le sous un autre nom et rouvrez-le à partir du disque !"
 ::msgcat::mcset fr "File" "Fichier"
     ::msgcat::mcset fr "saved" "sauvegardé"
 ::msgcat::mcset fr "cannot be written!" "est en lecture seule!"

@@ -112,7 +112,7 @@
                    "finns inte längre. Vill du skapa en tom fil med samma namn?"
 ::msgcat::mcset se "Open file" "Öppna fil"
 ::msgcat::mcset se "The file" "Filen"
-    ::msgcat::mcset se "is already opened! Save the current opened file to an another name and reopen it from disk!" \
+    ::msgcat::mcset se "is already opened! Save the current opened file to another name and reopen it from disk!" \
                        "är redan öppen! Spara den öppna filen till ett annat filnamn och öppna den igen!"
 ::msgcat::mcset se "File" "Fil"
     ::msgcat::mcset se "saved" "sparad"
