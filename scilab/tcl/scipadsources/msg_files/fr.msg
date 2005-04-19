@@ -351,3 +351,4 @@
 ::msgcat::mcset fr "Open" "Ouvrir"
 ::msgcat::mcset fr "Save As" "Enregistrer sous"
 ::msgcat::mcset fr "&Cancel" "&Annuler"
+::msgcat::mcset fr "&Selection:" "&Sélection :"
