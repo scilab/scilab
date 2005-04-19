@@ -116,7 +116,7 @@ proc sciGUIBrowseVarDelete { winId } {
 	set var $sciGUITable(win,$winId,data,cVar)
 	if { $var > 0 } {
 		set varname $sciGUITable(win,$winId,data,$var,3)
-		set answer [sciGUIButtonDialog -1 "Do you really want delete $varname?" "yes|no"]
+		set answer [sciGUIButtonDialog -1 "Do you really want to delete $varname?" "yes|no"]
 		if {$answer==1} { ScilabEval "clear $varname ;browsevar();" }
 	}
 }
@@ -175,64 +175,117 @@ proc sciGUIBrowseVarProcFile { winId } {
 	close $fid
 }
 
-
 # ----------------------------------------------------------------------------
 # Function    : sciGUIBrowseVarDraw
 # Parameters  : winId
 # Description : Display variable information
 # ----------------------------------------------------------------------------
 proc sciGUIBrowseVarDraw { winId } {
-	global sciGUITable
-	set w "[sciGUIName $winId].center.cnv"
-	$w delete all
-	set p 1
-	for {set y 1} {$y <= $sciGUITable(win,$winId,data,nVar)} {incr y} {
-		set yL [expr $p*18+2]
-		if { $y==$sciGUITable(win,$winId,data,cVar) } {
-			set cco "red";set cbb "yellow"
-		} else {
-			set cco "black";set cbb "white"			
-		}
-		switch $sciGUITable(win,$winId,data,$y,0) {
-			1 {set iconName "tp01";set typNam "real or complex"}
-			2 {set iconName "tp02";set typNam "polynomial"}
-			4 {set iconName "tp04";set typNam "boolean"}
-			5 {set iconName "tp05";set typNam "sparce"}
-			6 {set iconName "tp06";set typNam "sparce boolean"}
-			8 {set iconName "tp08";set typNam "integer"}
-			9 {set iconName "tp00";set typNam "graphic handles"}
-			10 {set iconName "tp10";set typNam "string"}
-			11 {set iconName "tp00";set typNam "un-compiled func."}
-			13 {set iconName "tp00";set typNam "compiled func."}
-			14 {set iconName "tp00";set typNam "function lib."}
-			15 {set iconName "tp15";set typNam "list"}
-			16 {set iconName "tp16";set typNam "tlist"}
-			17 {set iconName "tp17";set typNam "mlist"}
-			128 {set iconName "tp00";set typNam "pointer"}
-			default {set iconName "tp00";set typNam "unknow"}
-		}
+    global sciGUITable
+    set w "[sciGUIName $winId].center.cnv"
+    $w delete all
+    set p 1
+    
+    #F.Leray
+    #Browse all the var. to know the max dimension.
+    
+    set y 1
 
-		set putvar 0
-		if { [lsearch $sciGUITable(browse,show) $sciGUITable(win,$winId,data,$y,0)]>-1 } { set putvar 1 }
-		if { $sciGUITable(browse,chshow) } {
-			if { [lsearch $sciGUITable(browse,dshow) $sciGUITable(win,$winId,data,$y,3)]>-1 } { set putvar 0 }
-		}
-		
-		if { $putvar==1 } {
-			set k(0) [$w create rectangle 22 [expr $yL-9] 350 [expr $yL+9] -fill $cbb -outline $cbb]
-			set k(1) [$w create image 0 $yL -image sciGUITable(gif,$iconName) -anchor w]
-			set k(2) [$w create text  22 $yL -text "$sciGUITable(win,$winId,data,$y,3)" -anchor w -fill $cco]
-			set tmno "$sciGUITable(win,$winId,data,$y,1)"
-			set k(3) [$w create text 150 $yL -text "$tmno" -anchor w -fill $cco]
-			set k(4) [$w create text 250 $yL -text "$typNam" -anchor w -fill $cco]
-			set k(5) [$w create text 235 $yL -text "$sciGUITable(win,$winId,data,$y,2)" -anchor e -fill $cco]
-			foreach op {0 1 2 3 4 5} {
-				$w bind $k($op) <1> "set sciGUITable(win,$winId,data,cVar) $y; sciGUIBrowseVarDraw $winId"
-			}
-			incr p
-		}
+    set maxk2 [string length "$sciGUITable(win,$winId,data,$y,3)"]
+    set maxk3 [string length "$sciGUITable(win,$winId,data,$y,1)"]
+    set maxk5 [string length "$sciGUITable(win,$winId,data,$y,2)"]
+    
+#     puts "1ere fois"
+#     puts "maxk2 = $maxk2"
+#     puts "maxk3 = $maxk3"
+#     puts "maxk5 = $maxk5"
+#     puts "$sciGUITable(win,$winId,data,$y,3)"
+#     puts "$sciGUITable(win,$winId,data,$y,1)"
+#     puts "$sciGUITable(win,$winId,data,$y,2)"
+
+    for {set y 2} {$y <= $sciGUITable(win,$winId,data,nVar)} {incr y} {
+	
+	set tmp_maxk2 [string length "$sciGUITable(win,$winId,data,$y,3)"]
+	if { $tmp_maxk2 > $maxk2 } {
+	    set maxk2 $tmp_maxk2
 	}
-	$w config -scrollregion [$w bbox all]
+
+	set tmp_maxk3 [string length "$sciGUITable(win,$winId,data,$y,1)"]
+	if { $tmp_maxk3 > $maxk3 } {
+	    set maxk3 $tmp_maxk3
+	}
+	
+	set tmp_maxk5 [string length "$sciGUITable(win,$winId,data,$y,2)"]
+	if { $tmp_maxk5 > $maxk5 } {
+	    set maxk5 $tmp_maxk5
+	}
+    }
+    
+#     puts "AV x8+1 : "
+#     puts "maxk2 = $maxk2"
+#     puts "maxk3 = $maxk3"
+#     puts "maxk5 = $maxk5"
+    
+    set maxk2 [expr $maxk2*8+1]
+    set maxk3 [expr $maxk3*8+1]
+    set maxk5 [expr $maxk5*8+1]
+    
+#     puts "maxk2 = $maxk2"
+#     puts "maxk3 = $maxk3"
+#     puts "maxk5 = $maxk5"
+    
+#     puts "150 inter1 = [expr 22+$maxk2]"
+#     puts "250 inter2 = [expr 22+$maxk2+$maxk3+$maxk5]"
+#     puts "235 inter3 = [expr 22+$maxk2+$maxk3]"
+
+    
+    for {set y 1} {$y <= $sciGUITable(win,$winId,data,nVar)} {incr y} {
+	set yL [expr $p*18+2]
+	if { $y==$sciGUITable(win,$winId,data,cVar) } {
+	    set cco "red";set cbb "yellow"
+	} else {
+	    set cco "black";set cbb "white"			
+	}
+	switch $sciGUITable(win,$winId,data,$y,0) {
+	    1 {set iconName "tp01";set typNam "real or complex"}
+	    2 {set iconName "tp02";set typNam "polynomial"}
+	    4 {set iconName "tp04";set typNam "boolean"}
+	    5 {set iconName "tp05";set typNam "sparce"}
+	    6 {set iconName "tp06";set typNam "sparce boolean"}
+	    8 {set iconName "tp08";set typNam "integer"}
+	    9 {set iconName "tp00";set typNam "graphic handles"}
+	    10 {set iconName "tp10";set typNam "string"}
+	    11 {set iconName "tp00";set typNam "un-compiled func."}
+	    13 {set iconName "tp00";set typNam "compiled func."}
+	    14 {set iconName "tp00";set typNam "function lib."}
+	    15 {set iconName "tp15";set typNam "list"}
+	    16 {set iconName "tp16";set typNam "tlist"}
+	    17 {set iconName "tp17";set typNam "mlist"}
+	    128 {set iconName "tp00";set typNam "pointer"}
+	    default {set iconName "tp00";set typNam "unknow"}
+		}
+	
+	set putvar 0
+	if { [lsearch $sciGUITable(browse,show) $sciGUITable(win,$winId,data,$y,0)]>-1 } { set putvar 1 }
+	if { $sciGUITable(browse,chshow) } {
+	    if { [lsearch $sciGUITable(browse,dshow) $sciGUITable(win,$winId,data,$y,3)]>-1 } { set putvar 0 }
+	}
+	
+	if { $putvar==1 } {
+	    set k(0) [$w create rectangle 22 [expr $yL-9] 350 [expr $yL+9] -fill $cbb -outline $cbb]
+	    set k(1) [$w create image 0 $yL -image sciGUITable(gif,$iconName) -anchor w]
+	    set k(2) [$w create text  22 $yL -text "$sciGUITable(win,$winId,data,$y,3)" -anchor w -fill $cco]
+	    set tmno "$sciGUITable(win,$winId,data,$y,1)"
+	    set k(3) [$w create text [expr 22+$maxk2] $yL -text "$tmno" -anchor w -fill $cco]
+	    set k(4) [$w create text [expr 22+$maxk2+$maxk3+$maxk5] $yL -text "$typNam" -anchor w -fill $cco]
+	    set k(5) [$w create text [expr 22+$maxk2+$maxk3] $yL -text "$sciGUITable(win,$winId,data,$y,2)" -anchor w -fill $cco]
+	    foreach op {0 1 2 4 5} {
+		$w bind $k($op) <1> "set sciGUITable(win,$winId,data,cVar) $y; sciGUIBrowseVarDraw $winId"
+	    }
+	    incr p
+	}
+    }
+    $w config -scrollregion [$w bbox all]
 }
 
 
@@ -255,7 +308,6 @@ proc sciGUIBrowseVarQuit { winId } {
 	unset sciGUITable(win,$winId,data,tmpPath)
 	sciGUIDestroy $winId
 }
-
 
 # ----------------------------------------------------------------------------
 # Function    : sciGUIBrowseVar
@@ -282,11 +334,21 @@ proc sciGUIBrowseVar { tmpPath } {
 		pack $w.top.logo -side left
 		pack $w.top.mes01 -side right
 		frame $w.center -background white -bd 0
-		canvas $w.center.cnv -width 350 -height 100 -bg white -relief sunken -yscrollcommand "$w.center.sb set"
-		scrollbar $w.center.sb -command "$w.center.cnv yview"
-		pack $w.center.cnv $w.center.sb -side left -fill both -expand 1
-		pack $w.center -side top -expand 1 -fill y
-		frame $w.bottom -background LightGray -bd 2 -relief sunken
+   
+  		canvas $w.center.cnv -width 350 -height 100 -bg white -relief sunken -yscrollcommand "$w.center.sb set"
+  		scrollbar $w.center.sb -command "$w.center.cnv yview"
+  		pack $w.center.cnv $w.center.sb -side left -fill y -expand 1  -anchor w
+
+ 	        pack $w.center -side top -expand 1 -fill both
+
+# F.Leray 19.04.05 : add a canvas to have a scrollbar on x
+	      	frame $w.center2 -background white -bd 0 
+	        canvas $w.center2.cnv2 -width 0 -height 0 -bg white -relief sunken -xscrollcommand "$w.center2.sb2 set"
+  	        scrollbar $w.center2.sb2 -command "$w.center.cnv xview" -orient horizontal
+  	        pack $w.center2.cnv2 $w.center2.sb2 -side left -fill x -expand 1 -anchor n
+     	        pack $w.center2 -side top -fill both
+		
+	        frame $w.bottom -background LightGray -bd 2 -relief sunken
 		button $w.bottom.edit -width 25 -height 25 -image sciGUITable(icon,iconPencil) -command "sciGUIBrowseVarEdit $winId"
 		balloonhelp $w.bottom.edit "Edit variable"
 		button $w.bottom.delete -width 25 -height 25 -image sciGUITable(icon,iconTrash) -command "sciGUIBrowseVarDelete $winId"
