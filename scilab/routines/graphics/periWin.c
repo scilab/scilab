@@ -2195,7 +2195,7 @@ void C2F(setwresize)( integer *num, integer *v2, integer *v3, integer *v4)
   if ( ScilabXgc->CurResizeStatus == num1 ) 
     {
       static int count=0; 
-      wininfo("rien a faire %d %d.....",num1,count++);
+      wininfo(" ");
       return;
     }
   ScilabXgc->CurResizeStatus = num1; /* a faire avant setwindowdim */
