@@ -114,8 +114,8 @@
                     stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
 ::msgcat::mcset it "The file" "Il file"
-    ::msgcat::mcset it "is already opened! Save the current opened file \
-          to an another name and reopen it from disk!" \
+    ::msgcat::mcset it "is already opened! Save the current opened file\
+          to another name and reopen it from disk!" \
  "è già aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
     ::msgcat::mcset it "saved" "salvato"
@@ -377,3 +377,14 @@
 ::msgcat::mcset it "LFUNCOLOR" "Funzioni di libreria"
 ::msgcat::mcset it "PDEFCOLOR" "Variabili predefinite"
 ::msgcat::mcset it "FOUNDTEXTCOLOR" "Testo trovato"
+
+#overriding tcl-core dialogs
+::msgcat::mcset it "&Directory:" "&Cartella"
+::msgcat::mcset it "File &name:" "&Nome del file:"
+::msgcat::mcset it "Files of &type:" "&Tipo di file:"
+#::msgcat::mcset it "&Save" "&Salva" # already included
+::msgcat::mcset it "Save As" "Salva come"
+::msgcat::mcset it "&Open" "A&pri"
+::msgcat::mcset it "Open" "Apri"
+::msgcat::mcset it "&Cancel" "&Annulla"
+::msgcat::mcset it "&Selection:" "&Selezione:"

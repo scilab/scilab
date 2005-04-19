@@ -343,3 +343,12 @@
 ::msgcat::mcset de "PDEFCOLOR" "Vordefinierte Variablen"
 ::msgcat::mcset de "FOUNDTEXTCOLOR" "Suchergebnisse"
 
+#overriding tcl-core dialogs
+::msgcat::mcset de "&Directory:" "&Verzeichnis:"
+::msgcat::mcset de "File &name:" "Datei&name:"
+::msgcat::mcset de "Files of &type:" "Datei&typen:"
+#::msgcat::mcset de "&Save" "&Speichern" # already included
+::msgcat::mcset de "&Open" "&Öffnen"
+::msgcat::mcset de "Open" "Öffnen"
+::msgcat::mcset de "Save As" "Speichern unter"
+::msgcat::mcset de "&Cancel" "&Abbrechen"
