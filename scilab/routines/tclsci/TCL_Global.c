@@ -174,7 +174,7 @@ int MustReturnAMatrix(char *FieldPropertie)
 	strcpy(Propertie,FieldPropertie);
     nocase(Propertie);
 
-	if ( (strcmp(Propertie,"backgroungcolor") == 0) ||
+	if ( (strcmp(Propertie,"backgroundcolor") == 0) ||
 		 (strcmp(Propertie,"fontsize") == 0) ||
 		 (strcmp(Propertie,"listboxtop") == 0) ||
 		 (strcmp(Propertie,"max") == 0) ||
