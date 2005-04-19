@@ -6,44 +6,60 @@
   <TYPE>Scilab Function</TYPE>
   <DATE> 05 June 1998</DATE>
   <SHORT_DESCRIPTION name="uimenu"> Create a menu or a submenu in a figure</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>h=uimenu([prop1,val1] [,prop2, val2] ...)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>parent </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>parent : integer Handle of menu's parent</SP>
+          <SP>: integer Handle of menu's parent</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>prop{1, 2 ...}</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>propi : string character name of a property to set up</SP>
+          <SP>: string character name of a property to set up</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>val{1, 2 ...}</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>vali : scilab object value to affect to the corresponding property</SP>
+          <SP>: scilab object value to affect to the corresponding property</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>h : integer handle of the corresponding menu</SP>
+          <SP>: integer handle of the corresponding menu</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    This allows to create menus in a figure. If 'parent' is a figure, then
+    This allows to create menus in a figure.
+    If <VERB>parent</VERB> is a figure, then
     the menu item will be added to the menu bar of the figure.
-    If 'parent' is a menu item , then the new  item will be added to the parent
+    If <VERB>parent</VERB> is a menu item , then the new item will be added to the parent
     item, allowing to create cascaded submenu.
-    The 'callback' property allows to set up the scilab instruction to call
-    when the item is selected by the user.
-    The 'label' property allows to set up the text appearing for the item.</P>
+    </P>
   </DESCRIPTION>
+  <SECTION label="Properties">
+    <ITEMIZE>
+      <ITEM label="callback">
+        <SP>string: allows to set up the scilab instruction to call when the item is selected by the user.</SP>
+      </ITEM>
+      <ITEM label="label">
+        <SP>string: allows to set up the text appearing for the item.</SP>
+      </ITEM>
+      <ITEM label="tag">
+        <SP>string: this property is generally used to identify the menu. It allows to give it a &quot;name&quot;. Mainly used in conjontion with <LINK>findobj</LINK>.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </SECTION>
   <EXAMPLE>
 <![CDATA[
 f=figure('position', [10 10 300 200]);
