@@ -23,6 +23,7 @@ set StyTrad(menu)       uimenu;
 # menu property name and the tk menu property name
 set MenuPropTrad(label) label;
 set MenuPropTrad(callback)  command;
+set MenuPropTrad(tag)  tag;
 
 proc GetRootMenu { hparent } {
     # is is used to know which is the menu associated 
@@ -506,7 +507,9 @@ proc menuSetField { handle property value } {
 	    set path [set "$parentName\(path)"];
 	    
 	    set tkprop [set "MenuPropTrad\($property)"];
-	    $path entryconfigure $index -$tkprop $value;
+	    if {[string compare $tkprop "tag"] != 0} {
+		$path entryconfigure $index -$tkprop $value;
+	    }
 	    set "$name\($property)" $value; 
 	    #puts "\nSetting $name $property to $value:";
 	    #puts " --> $name parent name : $parentName";
