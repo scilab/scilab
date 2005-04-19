@@ -13,27 +13,27 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>f : integer handle of the figure which will contain the control</SP>
+          <SP>: integer handle of the figure which will contain the control</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>prop{1, 2 ...}</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>prop{1, 2 ...} : character string name of a property to set</SP>
+          <SP>: character string name of a property to set</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>val{1, 2 ...}</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>val{1, 2 ...} : scilab object value to give to the corresponding property</SP>
+          <SP>: scilab object value to give to the corresponding property</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>h : handle of the created object</SP>
+          <SP>: handle of the created object</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -77,6 +77,9 @@
       <ITEM label="fontweight">
         <SP>string : light | {normal} | demi | bold For a control containing some text, this property sets the weight of the used font</SP>
       </ITEM>
+      <ITEM label="Horizontalalignment">
+        <SP>string:  left | {center} | right. Set text horizontal alignment in the uicontrol. This property can only be used with 'text', 'edit' and 'checkbox' styles.</SP>
+      </ITEM>
       <ITEM label="ListboxTop">
         <SP>integer  For a ListBox, this property tells which item of the list appears on the first line of the visible area of the list.</SP>
       </ITEM>
@@ -93,7 +96,7 @@
         <SP>List boxes : if (Max-Min)&gt;1 the list allows multiple selection, Otherwise not.</SP>
       </ITEM>
       <ITEM label="Min">
-        <SP>scalar  Specifies the lowest value the 'value' property can be set to.  It has however differnet meaning on each uicontrol:</SP>
+        <SP>scalar  Specifies the lowest value the 'value' property can be set to.  It has however different meaning on each uicontrol:</SP>
       </ITEM>
       <ITEM label="o">
         <SP>Check Boxes : Min is the value the 'value' property take when  control is unchecked</SP>
@@ -159,7 +162,7 @@
         <SP>scilab object this can be used to associate any scilab object to an uicontrol.</SP>
       </ITEM>
       <ITEM label="Value">
-        <SP>Value of the uicontrol. The eact meaning depends on the style of the uicontrol.</SP>
+        <SP>Value of the uicontrol. The exact meaning depends on the style of the uicontrol.</SP>
       </ITEM>
       <ITEM label="o">
         <SP>Check boxes, Radio buttons value is set to Max (see above) when on and Min when off.</SP>
@@ -169,6 +172,9 @@
       </ITEM>
       <ITEM label="o">
         <SP>Sliders value indicated by the slider bar.</SP>
+      </ITEM>
+      <ITEM label="Verticalalignment">
+        <SP>string:  top | {middle} | bottom. Set text vertical alignment in the uicontrol. This property can only be used with 'text' and 'checkbox' styles.</SP>
       </ITEM>
     </ITEMIZE>
   </SECTION>
