@@ -343,11 +343,11 @@
 
 
 #overriding tcl-core dialogs
-::msgcat::mcset de "&Directory:" "&Répertoire :"
-::msgcat::mcset de "File &name:" "&Nom de fichier :"
-::msgcat::mcset de "Files of &type:" "Fichiers de &type :"
-#::msgcat::mcset de "&Save" "&Enregistrer" # already included
-::msgcat::mcset de "&Open" "&Ouvrir"
-::msgcat::mcset de "Open" "Ouvrir"
-::msgcat::mcset de "Save As" "Enregistrer sous"
-::msgcat::mcset de "&Cancel" "&Annuler"
+::msgcat::mcset fr "&Directory:" "&Répertoire :"
+::msgcat::mcset fr "File &name:" "&Nom de fichier :"
+::msgcat::mcset fr "Files of &type:" "Fichiers de &type :"
+#::msgcat::mcset fr "&Save" "&Enregistrer" # already included
+::msgcat::mcset fr "&Open" "&Ouvrir"
+::msgcat::mcset fr "Open" "Ouvrir"
+::msgcat::mcset fr "Save As" "Enregistrer sous"
+::msgcat::mcset fr "&Cancel" "&Annuler"
