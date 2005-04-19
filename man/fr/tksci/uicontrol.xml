@@ -110,6 +110,10 @@
       <ITEM label="Parent">
         <SP>integer  Handle of the control parent. Changing this property allows to move a control from a figure to another.</SP>
       </ITEM>
+      <ITEM label="Path">
+        <SP>This property is read-only. It allows to get the TK path of the control as a string. 
+	(Useful when creating User Interfaces using uicontrols and TCL/TK scripts.)</SP>
+      </ITEM>
       <ITEM label="Position">
         <SP>[1,4] real vector or string This property is used to set or get the geometrical configuration of a control. It is a real; vector : x y w h where the letters stand for the x location of the left bottom corner, the y location of the left bottom corner, the width and the height of the uicontrol. The unit is determined by the 'Unit' property.  One can also set this property by giving a string where the fields are separated by a '|', ie &quot;x|y|w|h&quot;.</SP>
       </ITEM>

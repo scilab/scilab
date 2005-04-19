@@ -7,7 +7,7 @@
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
-#define NBRPROPERTIES 22
+#define NBRPROPERTIES 23
 static char *UiPropertiesName[NBRPROPERTIES]={
 												"backgroundcolor",
 												"callback",
@@ -30,7 +30,8 @@ static char *UiPropertiesName[NBRPROPERTIES]={
 												"figure_name",
 												"value",
 												"verticalalignment",
-												"horizontalalignment"
+												"horizontalalignment",
+												"path"
 											};
 /*-----------------------------------------------------------------------------------*/
 void nocase (char *s)
@@ -148,7 +149,7 @@ int MustReturnAString(char *FieldPropertie)
 	char Propertie[256];
 
 	strcpy(Propertie,FieldPropertie);
-    nocase(Propertie);
+	nocase(Propertie);
 
 	if ( (strcmp(Propertie,"style") == 0) ||
 		 (strcmp(Propertie,"tag") == 0) ||
@@ -161,7 +162,8 @@ int MustReturnAString(char *FieldPropertie)
 		 (strcmp(Propertie,"label") == 0) ||
 		 (strcmp(Propertie,"figure_name") == 0) ||
 	         (strcmp(Propertie,"verticalalignment") == 0) ||
-	         (strcmp(Propertie,"horizontalalignment") == 0) ) bOK=1;
+	         (strcmp(Propertie,"horizontalalignment") == 0) ||
+	         (strcmp(Propertie,"path") == 0) ) bOK=1;
 
 	return bOK;
 }

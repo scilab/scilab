@@ -52,7 +52,11 @@ proc SetField { handle field value } {
 	    } else {
 		# NO
 		# then just set the array 
-		set "$name\($field)" $value;
+		if {[string compare $field "path"] != 0} {
+		    set "$name\($field)" $value;
+		} else {
+		    ScilabEval "error(\"\"\"path\"\" is a read only property\")";
+		}
 	    }
 	}
 	
@@ -76,7 +80,11 @@ proc SetField { handle field value } {
 	    } else {
 		# NO
 		# then just set the array 
-		set "$name\($field)" $value;
+		if {[string compare $field "path"] != 0} {
+		    set "$name\($field)" $value;
+		} else {
+		    ScilabEval "error(\"\"\"path\"\" is a read only property\")";
+		}
 	    }
 	}
  
