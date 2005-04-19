@@ -340,3 +340,14 @@
 ::msgcat::mcset fr "LFUNCOLOR" "Fonctions de librairie"
 ::msgcat::mcset fr "PDEFCOLOR" "Variables prédéfinies"
 ::msgcat::mcset fr "FOUNDTEXTCOLOR" "Texte trouvé"
+
+
+#overriding tcl-core dialogs
+::msgcat::mcset de "&Directory:" "&Répertoire :"
+::msgcat::mcset de "File &name:" "&Nom de fichier :"
+::msgcat::mcset de "Files of &type:" "Fichiers de &type :"
+#::msgcat::mcset de "&Save" "&Enregistrer" # already included
+::msgcat::mcset de "&Open" "&Ouvrir"
+::msgcat::mcset de "Open" "Ouvrir"
+::msgcat::mcset de "Save As" "Enregistrer sous"
+::msgcat::mcset de "&Cancel" "&Annuler"
