@@ -2392,18 +2392,18 @@ int scixclear(fname,fname_len)
 /*-----------------------------------------------------------
  *   [c_i,c_x,c_y,c_w,c_m]=xclick([flag])
  *-----------------------------------------------------------*/
-static double return_a_nan()
-{
-  static int first = 1;
-  static double nan = 1.0;
+/* static double return_a_nan() */
+/* { */
+/*   static int first = 1; */
+/*   static double nan = 1.0; */
 
-  if ( first )
-    {
-      nan = (nan - (double) first)/(nan - (double) first);
-      first = 0;
-    }
-  return (nan);
-}
+/*   if ( first ) */
+/*     { */
+/*       nan = (nan - (double) first)/(nan - (double) first); */
+/*       first = 0; */
+/*     } */
+/*   return (nan); */
+/* } */
 
 int scixclick(fname,fname_len)
      char *fname;
@@ -2432,11 +2432,11 @@ int scixclick(fname,fname_len)
     istr = 0;
     C2F(dr1)("xclick","xv",&ix,&iflag,&istr,&v,&v,&v,&x,&y,&dv,&dv,7L,3L);
   }
-
+  
   if ( ix < 0 ) {
-    x=y=return_a_nan();
+    x=y=-1; /*return_a_nan(); */ /* to better manage string conversion of the output */ /* F.Leray 20.04.05 */
   }
-    
+  
   if ( Lhs == 1 )
     {
       LhsVar(1) = Rhs+1;
