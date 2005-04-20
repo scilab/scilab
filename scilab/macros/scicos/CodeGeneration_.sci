@@ -263,19 +263,19 @@ function Code=make_edoit1(stalone)
 	if or(fun==act) | or(fun==cap) then
 	  if stalone then
 	    Code=[Code;
-	          '  flag = 1 ;';
-	          '  nevprt='+string(nclock)+';';
-	          ' '+wfunclist(fun);
-	          ' ';
-	          ' '];
+	          '    flag = 1 ;';
+	          '    nevprt='+string(nclock)+';';
+	          '    '+wfunclist(fun);
+	          '    ';
+	          '    '];
           end     
         else
             Code=[Code;
-	         '  flag = 1 ;';
-	         '  nevprt='+string(nclock)+';';
-	         ' '+wfunclist(fun);
-	         ' ';
-	         ' '];
+	         '    flag = 1 ;';
+	         '    nevprt='+string(nclock)+';';
+	         '    '+wfunclist(fun);
+	         '    ';
+	         '    '];
         end 
 	
       end
@@ -1195,12 +1195,14 @@ function [Code,actt,proto]=call_actuator(i)
     if nin==0 then
       uk=0;
       nuk=0;
-      Code=+' args[0]=&(outtb[0]);';
+      Code='if ( strcmp(output,'"Terminal'") == 0){'
+      Code($+1)=+'  args[0]=&(outtb[0]);';
     else
       lprt=inplnk(inpptr(i));
       uk=lnkptr(lprt);
       nuk=(lnkptr(lprt+1))-uk;
-      Code=' args[0]=&(outtb['+string(uk-1)+']);';
+      Code='if ( strcmp(output,'"Terminal'") == 0){'
+      Code($+1)='  args[0]=&(outtb['+string(uk-1)+']);';
     end
   end
   
@@ -1208,11 +1210,12 @@ function [Code,actt,proto]=call_actuator(i)
   //nouveau  z et la taille du port
 
   actt=[i uk nuk bllst(i).ipar]
-  Code($+1)=' block_'+rdnom+'['+string(i-1)+'].nevprt=nevprt;'
+  Code($+1)='  block_'+rdnom+'['+string(i-1)+'].nevprt=nevprt;'
   Code=[Code;
-	 ' nport = '+string(nbact)+';';
-	 ' '+rdnom+'_actuator(&flag, &nport, &block_'+rdnom+'['+string(i-1)+'].nevprt, told, '+..
-	 '(double *)args[0], &nrd_'+string(nuk)+');'];
+	 '  nport = '+string(nbact)+';';
+	 '  '+rdnom+'_actuator(&flag, &nport, &block_'+rdnom+'['+string(i-1)+'].nevprt, told, '+..
+	 '(double *)args[0], &nrd_'+string(nuk)+');'
+	 '}'];
   proto='void '+rdnom+'_actuator(int *, int *, int *, double *,"+...
 	" double *, int *);"
   proto=cformatline(proto,70);
@@ -1423,21 +1426,24 @@ function [Code,capt,proto]=call_sensor(i)
     if nout==0 then
       yk=0;
       nyk=0;
-      Code=+'args[1]=&(outtb[0]);';
+      Code='if ( strcmp(input,'"Terminal'") == 0){' 
+      Code($+1)=+'  args[1]=&(outtb[0]);';
     else
       lprt=outlnk(outptr(i));
       yk=lnkptr(lprt);
       nyk=(lnkptr(lprt+1))-yk;
-      Code='args[1]=&(outtb['+string(yk-1)+']);';
+      Code='if ( strcmp(input,'"Terminal'") == 0){'
+      Code($+1)='  args[1]=&(outtb['+string(yk-1)+']);';
     end
 
   end
   capt=[i yk nyk bllst(i).ipar]
-  Code($+1)=' block_'+rdnom+'['+string(i-1)+'].nevprt=nevprt;'
+  Code($+1)='  block_'+rdnom+'['+string(i-1)+'].nevprt=nevprt;'
   Code=[Code;
-	 'nport = '+string(nbcap)+';'; 
-	 rdnom+'_sensor(&flag, &nport, &block_'+rdnom+'['+string(i-1)+'].nevprt, '+..
-	 'told, (double *)args[1], &nrd_'+string(nyk)+');'];
+	 '  nport = '+string(nbcap)+';'; 
+	 '  '+rdnom+'_sensor(&flag, &nport, &block_'+rdnom+'['+string(i-1)+'].nevprt, '+..
+	 'told, (double *)args[1], &nrd_'+string(nyk)+');'
+	 '}'];
   proto='void '+rdnom+'_sensor(int *, int *, int *, double *,"+...
 	" double *, int *);"
   proto=cformatline(proto,70);
@@ -2704,6 +2710,7 @@ x=cpr.state.x
         '/* from the Scicos Sinks palettes*/'
 	''
 	'#include <stdio.h>';
+	'#include <stdlib.h>';
         '#include <math.h>';
 	'#include <string.h>';
 	'#include <memory.h>';
@@ -2979,10 +2986,6 @@ txt1=mgetl(SCI+'/routines/machine.h');
 mputl(txt1,rpat+'/machine.h');
 txt2=mgetl(SCI+'/routines/scicos/scicos_block.h');
 mputl(txt2,rpat+'/scicos_block.h');
-//txt3=mgetl(SCI+'/routines/integ/rkf45.f');
-//mputl(txt3,rpat+'/rkf45.f');
-//txt4=mgetl(SCI+'/routines/integ/ode.f');
-//mputl(txt4,rpat+'/ode.f');
 
 modptr=cpr.sim.modptr;
 nZ=size(z,'*')+size(outtb,'*')+clkptr($);
@@ -2991,11 +2994,20 @@ nztotal=size(z,1);
   work=zeros(nblk,1)
   iwa=zeros(clkptr($),1),Z=[z;outtb;iwa;work]';
   Code=[ '/*Main program */'
-	 'int main()'
+	 'int main(int argc, char *argv[])'
 	 '{'
-	 '   double tf=10.0;';
-	 '   '+rdnom+'_sim(tf);';
-	 '   return 0;'
+	 '  double tf=30.0;';
+	 '  if(argc < 4){'
+	 '    printf('"error \n'");'
+         '    exit(EXIT_FAILURE);'
+         '  }'
+         '  strcpy(input,argv[1]);'
+         '  strcpy(output,argv[2]);'
+	 '  strcpy(s,argv[3]);'
+         '  dt=strtod(s,p);'
+         '  '
+	 '  '+rdnom+'_sim(tf);';
+	 '  return 0;'
 	 '}'
 	 ''
 	 '/*'+part('-',ones(1,40))+'  External simulation function */ ';
@@ -3004,27 +3016,27 @@ nztotal=size(z,1);
 	 ' '
 	 '     double tf; ';
 	 '{'
-	 '  double t;'
+	 '  double t,temps;'
 	 '  int nevprt=1;'
 	 ''
 	 '  /*Initial values */';
 	 cformatline('  double z[]={'+strcat(string(Z),',')+'};',70);
-	 '/* Note that z[]=[z_initial_condition;outtb;iwa;work]';
-	 cformatline('z_initial_condition= {'+strcat(string(z),",")+'};',70);
-	 cformatline('outtb= {'+strcat(string(outtb),"," )+'};',70);
-	 cformatline('iwa= {'+strcat(string(iwa),"," )+'};',70);
-	 cformatline('work= {'+strcat(string(work),"," )+'};',70);
-	 '*/ ']
+	 '  /* Note that z[]=[z_initial_condition;outtb;iwa;work]';
+	 cformatline('     z_initial_condition= {'+strcat(string(z),",")+'};',70);
+	 cformatline('     outtb= {'+strcat(string(outtb),"," )+'};',70);
+	 cformatline('     iwa= {'+strcat(string(iwa),"," )+'};',70);
+	 cformatline('     work= {'+strcat(string(work),"," )+'};',70);
+	 '  */ ']
   if (x <> []) then
     Code=[Code
           'double tout;'
-          'double h=0.05,he=0.1 /*,temps*/;']
+          'double h=0.05,he=0.1;']
   end
   Code=[Code
-        '/*FILE *fprw,*fprr;*/'
-	'double* block_outtb = z+'+string(nztotal)+';'
-	'void **work;'
-	'work = z+'+string(nZ)+'; ']
+        '  FILE *fprw,*fprr;'
+	'  double* block_outtb = z+'+string(nztotal)+';'
+	'  void **work;'
+	'  work = z+'+string(nZ)+'; ']
   if size(z,1) <> 0 then
     for i=1:(length(zptr)-1) 
       
@@ -3069,103 +3081,111 @@ for kf=1:nblk
       nin=inpptr(kf+1)-inpptr(kf); ///* number of input ports */
       nout=outptr(kf+1)-outptr(kf); ///* number of output ports */
       Code=[Code;
-	    '    block_'+rdnom+'['+string(kf-1)+'].type = '+string(funtyp(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].ztyp = '+string(ztyp(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].ng = '+string(zcptr(kf+1)-zcptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nz = '+string(zptr(kf+1)-zptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nrpar = '+string(rpptr(kf+1)-rpptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nipar = '+string(ipptr(kf+1)-ipptr(kf))+';'
-            '    block_'+rdnom+'['+string(kf-1)+'].nin = '+string(inpptr(kf+1)-inpptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nout = '+string(outptr(kf+1)-outptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nevout = '+string(clkptr(kf+1)-clkptr(kf))+';';
-            '    block_'+rdnom+'['+string(kf-1)+'].nmode = '+string(modptr(kf+1)-modptr(kf))+';';
-	    '    if ((block_'+rdnom+'['+string(kf-1)+'].insz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
-	    '    if ((block_'+rdnom+'['+string(kf-1)+'].inptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
-	    '    if ((block_'+rdnom+'['+string(kf-1)+'].evout=calloc(block_'+rdnom+'['+string(kf-1)+'].nevout,sizeof(double)))== NULL )return 0;'];
+	    '  block_'+rdnom+'['+string(kf-1)+'].type = '+string(funtyp(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].ztyp = '+string(ztyp(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].ng = '+string(zcptr(kf+1)-zcptr(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].nz = '+string(zptr(kf+1)-zptr(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].nrpar = '+string(rpptr(kf+1)-rpptr(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].nipar = '+string(ipptr(kf+1)-ipptr(kf))+';'
+            '  block_'+rdnom+'['+string(kf-1)+'].nin = '+string(inpptr(kf+1)-inpptr(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].nout = '+string(outptr(kf+1)-outptr(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].nevout = '+string(clkptr(kf+1)-clkptr(kf))+';';
+            '  block_'+rdnom+'['+string(kf-1)+'].nmode = '+string(modptr(kf+1)-modptr(kf))+';';
+	    '  if ((block_'+rdnom+'['+string(kf-1)+'].insz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
+	    '  if ((block_'+rdnom+'['+string(kf-1)+'].inptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nin))== NULL ) return 0;';
+	    '  if ((block_'+rdnom+'['+string(kf-1)+'].evout=calloc(block_'+rdnom+'['+string(kf-1)+'].nevout,sizeof(double)))== NULL )return 0;'];
       if nx <> 0 then 
 	Code=[Code;	    
-              '    block_'+rdnom+'['+string(kf-1)+'].nx = '+string(nx)+';';
-	      '    block_'+rdnom+'['+string(kf-1)+'].x=&(x['+string(xptr(kf)-1)+']);'
-              '    block_'+rdnom+'['+string(kf-1)+'].xd=&(xd['+string(xptr(kf)-1)+']);']
+              '  block_'+rdnom+'['+string(kf-1)+'].nx = '+string(nx)+';';
+	      '  block_'+rdnom+'['+string(kf-1)+'].x=&(x['+string(xptr(kf)-1)+']);'
+              '  block_'+rdnom+'['+string(kf-1)+'].xd=&(xd['+string(xptr(kf)-1)+']);']
       end
       for k=1:nin
          lprt=inplnk(inpptr(kf)-1+k);
          Code=[Code
-               '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
-	       '    block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
+               '  block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	       '  block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end 
       Code=[Code
-            '    if ((block_'+rdnom+'['+string(kf-1)+'].outsz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;';
-            '    if ((block_'+rdnom+'['+string(kf-1)+'].outptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;'];
+            '  if ((block_'+rdnom+'['+string(kf-1)+'].outsz=malloc(sizeof(int)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;';
+            '  if ((block_'+rdnom+'['+string(kf-1)+'].outptr=malloc(sizeof(double*)*block_'+rdnom+'['+string(kf-1)+'].nout))== NULL ) return 0;'];
           
       for k=1:nout
         lprt=outlnk(outptr(kf)-1+k);
         Code=[Code
-	      '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
-	      '    block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
+	      '  block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	      '  block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end
       Code=[Code
-	    '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);']
+	    '  block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);']
       if (part(funs(kf),1:7) ~= 'capteur' & part(funs(kf),1:10) ~= 'actionneur' & funs(kf) ~= 'bidon') then 
 	if (rpptr(kf+1)-rpptr(kf)>0) then
 	  Code=[Code;
-	        '      block_'+rdnom+'['+string(kf-1)+'].rpar=&(RPAR1['+string(rpptr(kf)-1)+']);']
+	        '  block_'+rdnom+'['+string(kf-1)+'].rpar=&(RPAR1['+string(rpptr(kf)-1)+']);']
 	end
 	if (ipptr(kf+1)-ipptr(kf)>0) then
 	  Code=[Code;
-	        '      block_'+rdnom+'['+string(kf-1)+'].ipar=&(IPAR1['+string(ipptr(kf)-1)+']);'] 
+	        '  block_'+rdnom+'['+string(kf-1)+'].ipar=&(IPAR1['+string(ipptr(kf)-1)+']);'] 
 	end
       end
       Code=[Code;
-	    '    block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
-    //end
+	    '  block_'+rdnom+'['+string(kf-1)+'].work=(void **)(((double *)work)+'+string(kf-1)+');']
+ 
 end    
 
   Code=[Code;'  t=0.0;'
 	'  '+rdnom+'_init(block_'+rdnom+',z,&t);'
-        '  /* fprw=fopen('"fff.dat'",'"wt'");'
-	'  if( fprw == NULL )'
-        '    {'
-        '      printf('"Error opening file: %s\n'", '"fff.dat'");'
-        '      return;'
-        '    }'
-        '  fprr=fopen('"foo'",'"r'");'
-        '  if( fprr == NULL )'
-        '    {'
-        '      printf('"Error opening file: %s\n'", '"foo'");'
-        '      return;'
-        '    }*/'
+	'  if ( strcmp(output,'"Terminal'") != 0){'
+        '    fprw=fopen('"output'",'"wt'");'
+	'    if( fprw == NULL )'
+        '      {'
+        '        printf('"Error opening file: %s\n'", '"output'");'
+        '        return;'
+        '      }'
+	'  }'
+	'  if ( strcmp(input,'"Terminal'") != 0){'
+        '    fprr=fopen('"input'",'"r'");'
+        '    if( fprr == NULL )'
+        '      {'
+        '        printf('"Error opening file: %s\n'", '"input'");'
+        '        return;'
+        '      }'
+	'  }'
         '  while (t<=tf) {   ';
 	'    sci_time=t;']
-if (x ==[]) then
-  Code=[Code	
-	'    '+rdnom+'_events(&nevprt,&t);'
-	'    set_nevprt(nevprt);'
-	'    '+rdnom+'main1(block_'+rdnom+',z,&t);']
-else
   typ='%lf ';
   for i=1:sum(capt(:,3))
     typ=typ+'%lf ';
   end
-  Code1='    /*fscanf( fprr, '"'+typ+' \n'",&temps' 
+  Code1=['    if ( strcmp(input,'"Terminal'") != 0){'
+	 '      fscanf( fprr, '"'+typ+' \n'",&temps'] 
   for i=1:size(capt,1)
    ni=capt(i,3) // dimension of ith input
    for j=1:ni
-     Code1=Code1+ ' , &(block_outtb['+string(capt(i,2)-1+j-1')+'])';
+     Code1($)=Code1($)+ '  , &(block_outtb['+string(capt(i,2)-1+j-1')+'])';
    end 
   end
+  Code1($)=Code1($)+');'
   Code=[Code
-        Code1+');*/'       	
+        Code1
+	'    }' ]
+if (x ==[]) then
+  Code=[Code	
+	'    /*'+rdnom+'_events(&nevprt,&t);*/'
+	'    set_nevprt(nevprt);'
+	'    '+rdnom+'main1(block_'+rdnom+',z,&t);']
+else
+  Code=[Code	     	
   	'    '+rdnom+'main1(block_'+rdnom+',z,&t);'
         '    neq= '+string(nX)+'; '
         '    tout=t;'
-        '     while (tout<t+0.1){'
+        '     while (tout<t+dt){'
         '       h=0.001;'
         '       ode4(C2F('+rdnom+'simblk),tout,h);'
         '       tout=tout+h;'
         '     }'
         '     tout=tout-h;'
-        '     he=t+0.1-tout+h;'
+        '     he=t+dt-tout+h;'
         '     ode4(C2F('+rdnom+'simblk),tout,he);']
 end
   Code=[Code	
@@ -3174,29 +3194,35 @@ end
   for i=1:sum(actt(:,3))
     typ=typ+'%f ';
   end
-  Code1='    /*fprintf(fprw, '"'+typ+' \n'",t' 
+  Code1=['    if ( strcmp(output,'"Terminal'") != 0){'
+	 '      fprintf(fprw, '"'+typ+' \n'",t' ]
   for i=1:size(actt,1)
     ni=actt(i,3) // dimension of ith output
     for j=1:ni
-      Code1= Code1+ ' ,block_outtb['+string(actt(i,2)-1+j-1')+']'
+      Code1($)=Code1($)+ '   ,block_outtb['+string(actt(i,2)-1+j-1')+']';
     end
   end
+  Code1($)=Code1($)+');';
   Code=[Code;
-        Code1+');*/';
-	'    t=t+0.1;'
+        Code1
+	'    }' 
+	'    t=t+dt;'
 	'  }'
 	'  '+rdnom+'_end(block_'+rdnom+',z,&t);'
-        '  /*fclose(fprw);*/'
+	'  if ( strcmp(output,'"Terminal'") != 0){'
+        '    fclose(fprw);'
+	'    fclose(fprr);'
+	'  }'
 	'  return 0;'
 	'}'  
 	'/*'+part('-',ones(1,40))+'  Lapack messag function */ ';
 	'void'
 	'C2F(xerbla)(SRNAME,INFO,L)'
-	'char *SRNAME;'
-	'int *INFO;'
-	'long int L;'
+	'     char *SRNAME;'
+	'     int *INFO;'
+	'     long int L;'
 	'{'
-	'printf(""** On entry to %s, parameter number %d  had an illegal value\n"",SRNAME,*INFO);'
+	'  printf(""** On entry to %s, parameter number %d  had an illegal value\n"",SRNAME,*INFO);'
 	'}']
 //duplication de main1 et main2 pour le standalone
   Code=[Code
@@ -3402,7 +3428,8 @@ function Code=make_static_standalone()
          'static integer neq;']	
   end
   Code=[Code;	
-	'static double sci_time;'
+	'char input[50], output[50],s[1],**p;'
+	'static double sci_time,dt;'
 	'scicos_block block_'+rdnom+'['+string(nblk)+'];'];
   if size(rpar,1) <> 0 then
     Code=[Code;
