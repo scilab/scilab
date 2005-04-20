@@ -119,6 +119,9 @@ if rhs<=0 then,
   case  5 then
     wtype='hm'
     fpar=[0 0];
+  case  6 then
+    wtype='hn'
+    fpar=[0 0];
   else
     return
   end
