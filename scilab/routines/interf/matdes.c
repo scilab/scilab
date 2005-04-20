@@ -7136,13 +7136,18 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   /***************** graphics mode *******************************/ 
   else if (strncmp(marker,"visible", 7) == 0) {
-    numrow   = 1;
-    numcol   = 3;
-    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-    if (sciGetVisibility((sciPointObj *)pobj))
-      strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-    else 
+    if (sciGetVisibility((sciPointObj *)pobj)){
+      numrow   = 1;
+      numcol   = 2;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strncpy(cstk(outindex),"on", numrow*numcol);
+    }
+    else {
+      numrow   = 1;
+      numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex),"off", numrow*numcol);
+    }
   }
   else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) 
     {
@@ -7159,14 +7164,18 @@ int sciGet(sciPointObj *pobj,char *marker)
     }  
   else if (strncmp(marker,"old_style", 9) == 0)
     {
-      numrow   = 1;
-      numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (versionflag != 0)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
-	strncpy(cstk(outindex),"off", numrow*numcol);      
-		
+      if (versionflag != 0){
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   else if (strncmp(marker,"figure_style", 12) == 0)
     {
@@ -7180,7 +7189,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  else 
 	    strncpy(cstk(outindex),"new", numrow*numcol);      
 	}
-      else
+      else /* what is it usefull for ? F.Leray 20.04.05 */
 	{
 	  numcol   = 10;
 	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
@@ -7189,13 +7198,18 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strncmp(marker,"auto_resize", 10) == 0)
     {
-      numrow   = 1;
-      numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (sciGetResize((sciPointObj *) pobj))
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
+      if (sciGetResize((sciPointObj *) pobj)){
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol); 
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   /************************  figure Properties *****************************/ 
   else if (strncmp(marker,"figure_position", 15) == 0)
@@ -7290,12 +7304,18 @@ int sciGet(sciPointObj *pobj,char *marker)
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
       }
-      numrow = 1;numcol = 8;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle == 0)
-	strncpy(cstk(outindex),"unary", numrow*(numcol-3));
-      else
+      if (pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle == 0){
+	numrow   = 1;
+	numcol   = 5;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"unary", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 8;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"multiple",numrow*numcol);
+      }
     }
   else if (strncmp(marker,"immediate_drawing", 17) == 0) 
     {
@@ -7303,12 +7323,18 @@ int sciGet(sciPointObj *pobj,char *marker)
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
       }
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw == TRUE)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if (pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw == TRUE){
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off",numrow*numcol);
+      }
     }
   /*Ajout A.Djalel*/
   else if (strncmp(marker,"pixmap", 6) == 0) 
@@ -7317,12 +7343,18 @@ int sciGet(sciPointObj *pobj,char *marker)
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
       }
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (pFIGURE_FEATURE(pobj)->pixmap==1)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if (pFIGURE_FEATURE(pobj)->pixmap==1){
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
 
   /********** Handles Properties *********************************************/       
@@ -7479,30 +7511,23 @@ int sciGet(sciPointObj *pobj,char *marker)
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      /* *stk(outindex) = sciGetForeground((sciPointObj *) pobj);*/
+
       *stk(outindex) = sciGetForegroundToDisplay((sciPointObj *) pobj);
     }
-  /*   else if (strncmp(marker,"complete_redraw", 15) == 0)  /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-  /*     { */
-  /*       if (sciGetEntityType (pobj) == SCI_FIGURE){ */
-  /* 	numrow = 1;numcol = 3; */
-  /* 	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex); */
-  /* 	if (pFIGURE_FEATURE(pobj)->allredraw == TRUE) */
-  /* 	  strncpy(cstk(outindex),"on", numrow*(numcol-1)); */
-  /* 	else */
-  /* 	  strncpy(cstk(outindex),"off", numrow*numcol); */
-  /*       } */
-  /*       else */
-  /* 	{ strcpy(error_message,"complete_redraw property does not exist for this handle"); return -1;} */
-  /*     } */
   else if (strncmp(marker,"fill_mode", 9) == 0) 
     {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (sciGetFillFlag((sciPointObj *) pobj)==1)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if (sciGetFillFlag((sciPointObj *) pobj)==1) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   else if (strncmp(marker,"thickness", 9) == 0) 
     {
@@ -7517,24 +7542,36 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   else if (strncmp(marker,"line_mode", 9) == 0)
     {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (sciGetIsLine((sciPointObj *)pobj) == 1)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if (sciGetIsLine((sciPointObj *)pobj) == 1) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {	
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   else if (strncmp(marker,"surface_mode", 12) == 0)
     {
       if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
 	 (sciGetEntityType(pobj) == SCI_FAC3D)  ||
 	 (sciGetEntityType(pobj) == SCI_SURFACE)){
-	numrow = 1;numcol = 3;
-	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	if (sciGetIsLine((sciPointObj *)pobj) == 1)
-	  strncpy(cstk(outindex),"on", numrow*(numcol-1));
-	else
+	if (sciGetIsLine((sciPointObj *)pobj) == 1) {
+	  numrow   = 1;
+	  numcol   = 2;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex),"on", numrow*numcol);
+	}
+	else {
+	  numrow   = 1;
+	  numcol   = 3;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	  strncpy(cstk(outindex),"off", numrow*numcol);
+	}
       }
       else {strcpy(error_message,"Surface_mode value can not be accessed with this object, use line_mode"); return -1;}
     }
@@ -7545,12 +7582,18 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   else if (strncmp(marker,"mark_mode", 9) == 0)
     {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (sciGetIsMark((sciPointObj *)pobj) == 1)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if (sciGetIsMark((sciPointObj *)pobj) == 1) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   else if (strcmp(marker,"mark_size_unit") == 0)
     {
@@ -7679,21 +7722,33 @@ int sciGet(sciPointObj *pobj,char *marker)
 
   else if (strncmp(marker,"auto_clear", 10) == 0)
     {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (!sciGetAddPlot((sciPointObj *)pobj))
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if (!sciGetAddPlot((sciPointObj *)pobj)) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {	
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off",numrow*numcol);
+      }
     }
   else if (strncmp(marker,"auto_scale", 10) == 0)
     {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if ( sciGetAutoScale((sciPointObj *)pobj))
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
+      if ( sciGetAutoScale((sciPointObj *)pobj)) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off",numrow*numcol);
+      }
     }
   else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
     {
@@ -7712,52 +7767,54 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if ((strncmp(marker,"zoom_state", 9) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
     {
-      numrow   = 1;numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (sciGetZooming((sciPointObj *)pobj)) 
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
+      if (sciGetZooming((sciPointObj *)pobj)) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol); 
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   else if (strncmp(marker,"clip_box", 8) == 0) 
     {
       if (sciGetIsClipping ((sciPointObj *) pobj) > 0)
-	{ 
+	{
 	  numrow=1; numcol=4;  
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol;i++)
 	    stk(outindex)[i] =  (sciGetClipping(pobj))[i];
-	  
 	}
-    /*   else if (sciGetIsClipping ((sciPointObj *) pobj) == 0 ) */
-/* 	{ */
-/* 	  sciPointObj * psubwin =  sciGetParentSubwin(pobj); */
-/* 	  numrow=1;numcol=4; */
-/* 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); */
-	  
-/* 	  stk(outindex)[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0];	/\*Check if pobj is a SUBWIN or Other Objects (POLYLINE...) before ! F.Leray 03.03.04 *\/ */
-/* 	  stk(outindex)[1] =  pSUBWIN_FEATURE (psubwin)->FRect[1]; */
-/* 	  stk(outindex)[2] =  pSUBWIN_FEATURE (psubwin)->FRect[2] - pSUBWIN_FEATURE (pobj)->FRect[0];	 */
-/* 	  stk(outindex)[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3] - pSUBWIN_FEATURE (pobj)->FRect[1];	 */
-/* 	} */
       else
 	{ 
 	  numrow=0;numcol=0;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-/* 	  strcpy(error_message,"No clipping info."); */
-/* 	  return -1; */
 	}
     }
   else if (strncmp(marker,"clip_state", 9) == 0) 
     {
-      numrow   = 1;numcol   = 7;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (sciGetIsClipping (pobj) == 0) 
+      if (sciGetIsClipping (pobj) == 0) {
+	numrow   = 1;
+	numcol   = 7;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"clipgrf", numrow*numcol); 
-      else if (sciGetIsClipping (pobj) > 0) 
-	strncpy(cstk(outindex),"on", numrow*(numcol-5));	
-      else 
-	strncpy(cstk(outindex),"off", numrow*(numcol-4));    
+      }
+      else if (sciGetIsClipping (pobj) > 0) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);	
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"off", numrow*numcol);    
+      }
     }
   else if (strcmp(marker,"data") == 0)
     {
@@ -7935,12 +7992,18 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if (strncmp(marker,"tight_limits", 12) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	numrow   = 1;numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if (pSUBWIN_FEATURE (pobj)->tight_limits == 1)
-	  strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-	else 
+	if (pSUBWIN_FEATURE (pobj)->tight_limits == 1) {
+	  numrow   = 1;
+	  numcol   = 2;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex),"on", numrow*numcol);
+	}
+	else {
+	  numrow   = 1;
+	  numcol   = 3;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	  strncpy(cstk(outindex),"off", numrow*numcol);      
+	}
       }
       else
 	{strcpy(error_message,"tight_limits property does not exist for this handle");return -1;}
@@ -8045,7 +8108,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  stk(outindex)[5] = pSUBWIN_FEATURE (pobj)->SRect[5];	
 	}
     }
-    else if (sciGetEntityType (pobj) == SCI_SURFACE) {
+    else if (sciGetEntityType (pobj) == SCI_SURFACE) { /* used for what ? F.Leray 20.04.05 */
       numrow   = 3;numcol   = 2;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       for (i=0;i<numcol*numrow;i++) {
@@ -8106,26 +8169,21 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
     }
-  /* F.Leray 08.04.04 */
-  /* Obsolete property "tics_textsize"*/
-  /*   else if (strncmp(marker,"tics_textsize", 13) == 0)  */
-  /*     { */
-  /*       numrow   = 1;numcol   = 1; */
-  /*       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); */
-  /*       if (sciGetEntityType (pobj) == SCI_AXES) */
-  /* 	*stk(outindex) = pAXES_FEATURE (pobj)->fontsize; */
-  /*       else */
-  /* 	*stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize; */
-  /*     } */
   else if (strncmp(marker,"tics_segment", 12) == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_AXES) {
-	numrow = 1;numcol = 3;
-	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	if (pAXES_FEATURE (pobj)->seg==1)
-	  strncpy(cstk(outindex),"on", numrow*(numcol-1));
-	else
+	if (pAXES_FEATURE (pobj)->seg==1) {
+	  numrow   = 1;
+	  numcol   = 2;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex),"on", numrow*numcol);
+	}
+	else {	
+	  numrow   = 1;
+	  numcol   = 3;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	  strncpy(cstk(outindex),"off", numrow*numcol);
+	}
       }
       else
 	{strcpy(error_message,"tics_segment property does not exist for this handle");return -1;}
@@ -8244,14 +8302,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
     }
   else if ((strncmp(marker,"box", 3) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) {
-    numrow   = 1;
-    numcol   = 3;
-    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-    if (pSUBWIN_FEATURE (pobj)->axes.rect==1)
-      strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-    else 
+    if (pSUBWIN_FEATURE (pobj)->axes.rect==1) {
+      numrow   = 1;
+      numcol   = 2;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      strncpy(cstk(outindex),"on", numrow*numcol); 
+    }
+    else {
+      numrow   = 1;
+      numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex),"off", numrow*numcol);  
-  }  
+    }
+  }
   /**DJ.Abdemouche 2003**/
   else if (strncmp(marker,"grid", 4) == 0) 
     {
@@ -8294,20 +8357,6 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;}
   }
-
-
-  /*     if (sciGetEntityType (pobj) == SCI_SUBWIN) { */
-  /*       numrow   = 1;numcol   = 3; */
-  /*       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex); */
-  /*       if (pSUBWIN_FEATURE (pobj)->isaxes) */
-  /* 	strncpy(cstk(outindex),"on", numrow*(numcol-1));  */
-  /*       else  */
-  /* 	strncpy(cstk(outindex),"off", numrow*numcol);   */
-  /*     } */
-  /*     else */
-  /*       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;} */
-  /*   } */
-  /* DJ.A 2003 */
   else if (strncmp(marker,"hiddencolor", 11) == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
@@ -8328,24 +8377,36 @@ int sciGet(sciPointObj *pobj,char *marker)
   /**DJ.Abdemouche 2003**/
   else if (strncmp(marker,"isoview", 7) == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      numrow   = 1;numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (pSUBWIN_FEATURE (pobj)->isoview)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
+      if (pSUBWIN_FEATURE (pobj)->isoview) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol); 
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);  
+      }
     }
     else
       {strcpy(error_message,"isoview property does not exist for this handle");return -1;}
   }
   else if (strncmp(marker,"cube_scaling", 12) == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      numrow   = 1;numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (pSUBWIN_FEATURE (pobj)->cube_scaling)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
+      if (pSUBWIN_FEATURE (pobj)->cube_scaling) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol); 
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);  
+      }
     }
     else
       {strcpy(error_message,"cube_scaling property does not exist for this handle");return -1;}
@@ -8375,13 +8436,18 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if ((strncmp(marker,"colored", 7) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){
     if (pSEGS_FEATURE (pobj)->ptype != 0)
       { 
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if (pSEGS_FEATURE (pobj)->pcolored != 0)
-	  strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-	else 
+	if (pSEGS_FEATURE (pobj)->pcolored != 0) {
+	  numrow   = 1;
+	  numcol   = 2;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	  strncpy(cstk(outindex),"on", numrow*numcol); 
+	}
+	else {	
+	  numrow   = 1;
+	  numcol   = 3;
+	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	  strncpy(cstk(outindex),"off", numrow*numcol); 
+	}
       }
     else
       {strcpy(error_message,"colored property does not exist for Segs");return -1;} 
@@ -8451,7 +8517,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D) {
-	if (pSURFACE_FEATURE (pobj)->flagcolor==2) {
+	if (pSURFACE_FEATURE (pobj)->flagcolor==2 || pSURFACE_FEATURE (pobj)->flagcolor==4) {
 	  numrow=1;
 	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
