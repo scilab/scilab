@@ -9,19 +9,27 @@ function [tree]=%imp2sci(tree)
 
 // A:B
 if size(tree.operands)==2 then
-  
+
   // Convert all inputs to double because Matlab also accept Strings...
   [A,B] = getoperands(tree)
-  A = convert2double(A)
-  B = convert2double(B)
+ 
+  if A.vtype<>10
+    A = convert2double(A)
+  end
+  if B.vtype<>10
+    B = convert2double(B)
+  end
   tree.operands=list(A,B)
   
-  if is_empty(A) | is_empty(B) then
+  if  is_empty(A) | is_empty(B) then
     set_infos("One operand is an empty matrix in : "+expression2code(tree)+", result set to []",1);
     tree=Cste([])
     tree.dims=list(1,0)
   elseif not_empty(A) & not_empty(B) then
-    if and([typeof(A),typeof(B)]=="cste") then
+  
+    if and([A.vtype,B.vtype]==10) then
+      tree.out(1).dims=list(1,size(asciimat(A.value):asciimat(B.value),"*"))
+    elseif and([typeof(A),typeof(B)]=="cste") then
       tree.out(1).dims=list(1,size(A.value:B.value,"*"))
     else
       tree.out(1).dims=list(1,Unknown)
@@ -37,9 +45,15 @@ else
 
   // Convert all inputs to double because Matlab also accept Strings...
   [A,inc,B]=getoperands(tree)
-  A = convert2double(A)
-  B = convert2double(B)
-  inc = convert2double(inc)
+  if A.vtype<>10 then
+    A = convert2double(A)
+  end
+  if B.vtype<>10 then
+    B = convert2double(B)
+  end
+  if inc.vtype<>10 then
+    inc = convert2double(inc)
+  end
   tree.operands=list(A,inc,B)
 
   if is_empty(A) | is_empty(B) | is_empty(inc) then
