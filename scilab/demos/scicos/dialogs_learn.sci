@@ -13,6 +13,7 @@ function [c_i, c_x, c_y, c_w, str]=xclick()
     C=xclick_comment(c_i, c_x, c_y, c_w)
   else
     [c_i, c_x, c_y, c_w, str] = xclick1();
+    if isnan(c_x)|isnan(c_y) then c_x=0,c_y=0,end
     c_x=round(10*c_x)/10;c_y=round(10*c_y)/10;
     txt = strcat([string([c_i,c_x,c_y,c_w]),sci2exp(str)], ',');
     C=xclick_comment(c_i, c_x, c_y, c_w, str)
