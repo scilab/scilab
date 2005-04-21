@@ -24,7 +24,8 @@
 												'label' ..
 												'figure_name' ..
 											        'verticalalignment' ..
-												'horizontalalignment'];
+												'horizontalalignment' ..
+												'foregroundcolor'];
   //conversion to lower format
   str = convstr(PropertyName);
   k=find(part(TableProperties,1:length(str))==str);

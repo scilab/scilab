@@ -77,6 +77,9 @@
       <ITEM label="fontweight">
         <SP>string : light | {normal} | demi | bold For a control containing some text, this property sets the weight of the used font</SP>
       </ITEM>
+      <ITEM label="ForegroundColor">
+        <SP>[1,3] real vector or string Foreground color of the uicontrol. A color is specified as Red, Green and Blue values. Those values are real in [ 0,1]. The color can be given as a real vector, ie [R,G,B] or a string where each value is separated by a |, ie &quot;R|G|B&quot;</SP>
+      </ITEM>
       <ITEM label="Horizontalalignment">
         <SP>string:  left | {center} | right. Set text horizontal alignment in the uicontrol. This property can only be used with 'text', 'edit' and 'checkbox' styles.</SP>
       </ITEM>

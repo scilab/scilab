@@ -36,7 +36,7 @@ proc SetField { handle field value } {
 	figure {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
-		    fontweight fontunits horizontalalignment listboxtop max min \
+		    fontweight fontunits foregroundcolor horizontalalignment listboxtop max min \
 		    parent position string units value figure_name verticalalignment };
 	    
 	    # is it an implemented?
@@ -60,7 +60,7 @@ proc SetField { handle field value } {
 	default {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
-		    fontweight fontunits horizontalalignment listboxtop max min \
+		    fontweight fontunits foregroundcolor chorizontalalignment listboxtop max min \
 		    parent position string units value figure_name verticalalignment };
 	    
 	    # is it an implemented?
@@ -221,12 +221,53 @@ proc Setbackgroundcolor { name value } {
 	    $path configure -background "#$cr$cg$cb";
 	}
     }
-   
+ }
 
- 
- 
+######################################################################################
+proc Setforegroundcolor { name value } {
 
-}
+    global "$name";
+    set path [set "$name\(path)"];
+    set "$name\(foregroundcolor)" $value;
+    
+    
+    set color [split $value "|"];
+    
+    
+    set r [expr [lindex $color 0] *255];
+    set g [expr [lindex $color 1] *255];
+    set b [expr [lindex $color 2] *255];
+ 
+    set cr [format "%02x" [expr round($r) ]];
+    set cg [format "%02x" [expr round($g) ]];
+    set cb [format "%02x" [expr round($b) ]];
+    
+    
+    set rdis [expr $r/2;];
+    set gdis [expr $g/2;];
+    set bdis [expr $b/2;];
+    
+    set crdis [format "%02x" [expr round($rdis) ]];
+    set cgdis [format "%02x" [expr round($gdis) ]];
+    set cbdis [format "%02x" [expr round($bdis) ]];
+    
+    
+    
+    set "$name\(disableforegroundcolor)" "#$crdis$cgdis$cbdis";
+    
+ 
+    set style [set "$name\(style)"];
+    switch -exact -- $style {
+	listbox {
+	    $path.list configure -foreground "#$cr$cg$cb";
+	    $path configure -foreground "#$cr$cg$cb";
+	}
+	default {
+	    $path configure -foreground "#$cr$cg$cb";
+	}
+    }
+ }
+
 
 ######################################################################################
 proc Setcallback { name callback } {

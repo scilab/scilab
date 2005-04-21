@@ -7,7 +7,7 @@
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
-#define NBRPROPERTIES 23
+#define NBRPROPERTIES 24
 static char *UiPropertiesName[NBRPROPERTIES]={
 												"backgroundcolor",
 												"callback",
@@ -31,7 +31,8 @@ static char *UiPropertiesName[NBRPROPERTIES]={
 												"value",
 												"verticalalignment",
 												"horizontalalignment",
-												"path"
+												"path",
+												"foregroundcolor"
 											};
 /*-----------------------------------------------------------------------------------*/
 void nocase (char *s)
@@ -184,7 +185,8 @@ int MustReturnAMatrix(char *FieldPropertie)
 		 (strcmp(Propertie,"parent") == 0) ||
 		 (strcmp(Propertie,"position") == 0) ||
 		 (strcmp(Propertie,"sliderstep") == 0) ||
-		 (strcmp(Propertie,"value") == 0) ) bOK=1;
+		 (strcmp(Propertie,"value") == 0) ||
+	         (strcmp(Propertie,"foregroundcolor") == 0)) bOK=1;
 
 	return bOK;
 }
