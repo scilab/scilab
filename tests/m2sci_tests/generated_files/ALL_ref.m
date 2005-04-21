@@ -19,7 +19,7 @@ res4 = true
 %res5|1 1|Boolean|Real
 res5 = true
 % TEST 6
-%res6|1 1|Boolean|Real
+%res6|1 1|Boolean|Realzzzzzzrrstjrjuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
 res6 = true
 % TEST 7
 %res7|1 3|Boolean|Real
