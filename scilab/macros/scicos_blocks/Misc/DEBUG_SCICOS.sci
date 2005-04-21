@@ -15,7 +15,7 @@ function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
     textmp=exprs(2)
     ok=%t
     while 1==1
-      [txt]=x_dialog(['Enter scilab instructions for debugging.';
+      [txt]=dialog(['Enter scilab instructions for debugging.';
 		     ' Inputs are block and flag, output is block'],..
 		     textmp);
   
