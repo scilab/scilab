@@ -290,6 +290,10 @@ if type(scs_m.props.context)==10 then
   if ierr  <>0 then
     message(['Error occur when evaluating context:'
 	     lasterror() ])
+  else
+    disablemenus()
+    [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
+    enablemenus()
   end
   xset('window',%now_win)
 else

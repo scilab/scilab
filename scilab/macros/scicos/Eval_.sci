@@ -18,6 +18,7 @@ function Eval_()
     
     xset('window',%now_win)
     if ierr==0 then 
+      do_terminate()
       [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
       if needcompile<>4&size(%cpr)>0 then %state0=%cpr.state,end
       alreadyran=%f

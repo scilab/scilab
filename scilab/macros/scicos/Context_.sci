@@ -27,6 +27,7 @@ function Context_()
       else
 	scs_m.props.context=context;
 	disablemenus()
+	do_terminate()
 	[scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
 	if needcompile<>4&size(%cpr)>0 then %state0=%cpr.state,end
 	edited=%t

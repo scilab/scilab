@@ -8,6 +8,8 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
     do_terminate(),//end current simulation
   end  
 
+  scicos_debug(0)  //set debug level to 0 for new diagram loaded
+  
   current_version=scicos_ver
   scicos_ver='scicos2.2' //default version, for latter version scicos_ver is stored in files
 

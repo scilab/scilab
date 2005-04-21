@@ -40,6 +40,9 @@ function Load_()
 	if ierr  <>0 then
 	  message(['Error occur when evaluating context:'
 		   lasterror() ])
+	else
+	  [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)  // eval
+                                                           // after loading
 	end
 	xset('window',%now_win)
       else

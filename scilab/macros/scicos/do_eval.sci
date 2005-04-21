@@ -16,6 +16,7 @@ deff('[ok,tt]=CFORTR(funam,tt,i,o)','ok=%t')
 deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
 deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
     'dep_ut=model.dep_ut;ok=%t')
+deff('result=dialog(labels,valueini)','result=valueini')
 funcprot(%mprt)
 %nx=lstsize(scs_m.objs)
 
@@ -48,7 +49,7 @@ for %kk=1:%nx
       needcompile1=max(needcompile1,needcompile) // for scifunc_block
       model_n=o.model
       if or(model.blocktype<>model_n.blocktype)|.. // type 'c','d','z','l'
-	        or(model.dep_ut<>model_n.dep_ut)|(model.nzcross<>model_n.nzcross) then 
+	        or(model.dep_ut<>model_n.dep_ut)|(model.nzcross<>model_n.nzcross)|(model.nmode<>model_n.nmode) then 
 	needcompile1=4
       end
       scs_m.objs(%kk)=o
