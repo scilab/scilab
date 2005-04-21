@@ -40,6 +40,8 @@
 EXPORT LRESULT CALLBACK WndPauseProc (HWND, UINT, WPARAM, LPARAM);
 EXPORT LRESULT CALLBACK PauseButtonProc (HWND, UINT, WPARAM, LPARAM);
 
+extern HDC TryToGetDC(HWND hWnd);
+
 /* Create Pause Class */
 /* called from PauseBox the first time a pause window is created */
 
@@ -80,7 +82,7 @@ PauseBox (LPPW lppw)
   if ((lppw->Origin.y == (int) CW_USEDEFAULT) || (lppw->Origin.y == 0))
     lppw->Origin.y = (rect.bottom + rect.top) / 2;
 
-  hdc = GetDC (NULL);
+  hdc = (HDC)TryToGetDC (NULL);
   SelectFont (hdc, GetStockFont (SYSTEM_FIXED_FONT));
   GetTextMetrics (hdc, &tm);
   width = max (24, 4 + strlen (lppw->Message)) * tm.tmAveCharWidth;
@@ -166,7 +168,7 @@ WndPauseProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	lppw = ((CREATESTRUCT FAR *) lParam)->lpCreateParams;
 	SetWindowLong (hwnd, 0, (LONG) lppw);
 	lppw->hWndPause = hwnd;
-	hdc = GetDC (hwnd);
+	hdc = (HDC)TryToGetDC (hwnd);
 	SelectFont (hdc, GetStockFont (SYSTEM_FIXED_FONT));
 	GetTextMetrics (hdc, &tm);
 	cxChar = tm.tmAveCharWidth;

@@ -143,5 +143,7 @@ int GetScreenProperty(char *prop, char *value);
 integer GetCurrentFigureWindows(void);
 void SetCurrentFigureWindows(integer win);
 
+HDC TryToGetDC(HWND hWnd);
+
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

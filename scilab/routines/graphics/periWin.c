@@ -324,7 +324,7 @@ void  SetWinhdc()
       if ( sciGetPixmapStatus() == 1) 
 	hdc = ScilabXgc->hdcCompat;
       else
-	hdc=GetDC(ScilabXgc->CWindow);
+	hdc=TryToGetDC(ScilabXgc->CWindow);
     }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -350,7 +350,7 @@ int MaybeSetWinhdc()
 		}
      else
 		{
-		hdc=GetDC(ScilabXgc->CWindow);
+		hdc=TryToGetDC(ScilabXgc->CWindow);
 		return(1);
 		}
 	}
@@ -400,7 +400,7 @@ void SetGHdc(lhdc,width,height)
 	   && ScilabXgc->CWindow != (HWND) 0 )
 	{
 	  RECT rect;
-	  hdc=GetDC(ScilabXgc->CWindow);
+	  hdc=TryToGetDC(ScilabXgc->CWindow);
 	  /* get back the dimensions   */
 	  GetClientRect(ScilabXgc->CWindow,&rect);
 	  ScilabXgc->CWindowWidthView  = rect.right-rect.left;
@@ -488,7 +488,7 @@ void C2F(show)( integer *v1, integer *v2, integer *v3, integer *v4)
 {
   if ( ScilabXgc->hdcCompat)
     {
-      HDC hdc1=GetDC(ScilabXgc->CWindow);
+      HDC hdc1=TryToGetDC(ScilabXgc->CWindow);
       BitBlt (hdc1,0,0,ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight,
 	      ScilabXgc->hdcCompat,0,0,SRCCOPY);
       /* ScilabXgc->horzsi.nPos,ScilabXgc->vertsi.nPos,SRCCOPY); */
@@ -508,7 +508,7 @@ void sci_pixmap_resize(struct BCG * ScilabGC, int x, int y)
 {
   HDC hdc1;
   HBITMAP hbmTemp;
-  hdc1=GetDC(ScilabGC->CWindow);
+  hdc1=TryToGetDC(ScilabGC->CWindow);
   hbmTemp = CreateCompatibleBitmap (hdc1,x,y);
   ReleaseDC(ScilabGC->CWindow,hdc1);
   if (!hbmTemp)
@@ -1974,7 +1974,7 @@ void C2F(setpixmapOn)(num, v2, v3, v4)
       if ( ScilabXgc->hdcCompat)
 	{
 	  if ( hdc == ScilabXgc->hdcCompat)
-	    hdc=GetDC(ScilabXgc->CWindow);
+	    hdc=TryToGetDC(ScilabXgc->CWindow);
 	  DeleteDC(ScilabXgc->hdcCompat);
 	}
       ScilabXgc->hbmCompat = (HBITMAP) 0;
@@ -2182,7 +2182,7 @@ void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a, integer *
   if ( ScilabXgc->CurPixmapStatus == 1) 
     hdc = Xgc->hdcCompat;
   else
-    hdc=GetDC(Xgc->CWindow); /*?????*/
+    hdc=TryToGetDC(Xgc->CWindow); /*?????*/
 
   /** must be improved for 32bit color display **/
   if ( iBitsPixel > 24 ) iBitsPixel = 24;

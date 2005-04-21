@@ -50,11 +50,7 @@ CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
 static BOOL ConsoleIsMinimized=FALSE;
 static BOOL WriteInKeyBuf=FALSE;
 
-static DWORD Color_Window;
-static DWORD Color_Window_Text;
-static DWORD Color_Highlight;
-static DWORD Color_Highlight_Text;
-
+extern HDC TryToGetDC(HWND hWnd);
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
@@ -71,7 +67,6 @@ EXPORT void WINAPI TextMessage (void)
 static void CreateTextClass (LPTW lptw)
 {
   WNDCLASS wndclass;
-
   wndclass.style = CS_HREDRAW | CS_VREDRAW;
   wndclass.lpfnWndProc = WndTextProc;
   wndclass.cbClsExtra = 0;
@@ -79,12 +74,14 @@ static void CreateTextClass (LPTW lptw)
   wndclass.hInstance = lptw->hInstance;
   wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
   wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-
-  wndclass.hbrBackground = CreateSolidBrush (GetConsoleColorWindow());
-  lptw->hbrBackground = CreateSolidBrush (GetConsoleColorWindow());
+  wndclass.hbrBackground = NULL;
+  /*lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
+				GetSysColor (COLOR_WINDOW) : RGB (0, 0, 0));*/
+  lptw->hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor (COLOR_WINDOW));
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szTextClass;
   RegisterClass (&wndclass);
+
 
   wndclass.style = CS_HREDRAW | CS_VREDRAW;
   wndclass.lpfnWndProc = WndParentProc;
@@ -99,7 +96,7 @@ static void CreateTextClass (LPTW lptw)
     wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
 
   wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-  wndclass.hbrBackground = CreateSolidBrush (GetConsoleColorWindow());
+  wndclass.hbrBackground = (HBRUSH) GetStockObject (COLOR_WINDOWTEXT);
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szParentClass;
   RegisterClass (&wndclass);
@@ -113,11 +110,7 @@ EXPORT int WINAPI TextInit (LPTW lptw)
   RECT rect;
   HMENU sysmenu;
   HGLOBAL hglobal;
-
-  SetConsoleColorWindow(GetSysColor (COLOR_WINDOW));
-  SetConsoleColorWindowText(GetSysColor (COLOR_WINDOWTEXT));
-  SetConsoleColorHighlight(GetSysColor (COLOR_HIGHLIGHT));
-  SetConsoleColorHighlightText(GetSysColor (COLOR_HIGHLIGHTTEXT));
+  
 
   ReadTextIni (lptw);
 
@@ -323,9 +316,20 @@ void UpdateText (LPTW lptw, int count)
   xpos = lptw->CursorPos.x * lptw->CharSize.x - lptw->ScrollPos.x;
   ypos = lptw->CursorPos.y * lptw->CharSize.y - lptw->ScrollPos.y;
   hdc = GetDC (lptw->hWndText);
-  
-  SetTextColor (hdc, GetConsoleColorWindowText());
-  SetBkColor (hdc, GetConsoleColorWindow());
+
+  SetTextColor (hdc, GetSysColor (COLOR_WINDOWTEXT));
+  SetBkColor (hdc, GetSysColor (COLOR_WINDOW));
+
+  //if (lptw->bSysColors)
+  //  {
+  //    SetTextColor (hdc, GetSysColor (COLOR_WINDOWTEXT));
+  //    SetBkColor (hdc, GetSysColor (COLOR_WINDOW));
+  //  }
+  //else
+  //  {
+  //    SetTextColor (hdc, TextFore (lptw->Attr));
+  //    SetBkColor (hdc, TextBack (lptw->Attr));
+  //  }
 
   SelectFont (hdc, lptw->hfont);
   TextOut (hdc, xpos, ypos,
@@ -509,18 +513,29 @@ void DoLine(LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count)
 	MessageBox((HWND)NULL, "panic", "panic", MB_OK | MB_ICONEXCLAMATION);
 	idx = 0;
 	num = count;
-	while (num > 0) {
+	while (num > 0)
+	{
 		attr = *pa;
-		while ((num > 0) && (attr == *pa)) {
+		while ((num > 0) && (attr == *pa))
+		{
 			/* skip over bytes with same attribute */
 			num--;
 			pa++;
 		}
 
-		SetTextColor(hdc, GetConsoleColorWindowText());
-		SetBkColor(hdc, GetConsoleColorWindow());
-		
+		SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
+		SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
 
+		//if (lptw->bSysColors)
+		//{
+		//    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
+		//    SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
+		//}
+		//else
+		//{
+		//    SetTextColor(hdc, TextFore(attr));
+		//    SetBkColor(hdc, TextBack(attr));
+		//}
 		TextOut(hdc,xpos,ypos, (LPSTR)(lptw->ScreenBuffer + offset + idx),
 			count-num-idx);
 		xpos += lptw->CharSize.x * (count-num-idx);
@@ -537,10 +552,21 @@ void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark)
   offset = lptw->ScreenSize.x * pt.y + pt.x;
   hdc = GetDC (lptw->hWndText);
   SelectFont (hdc, lptw->hfont);
-  
-  SetTextColor (hdc, GetConsoleColorHighlightText());
-  SetBkColor (hdc, GetConsoleColorHighlight());
-  
+
+  SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
+  SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
+
+  //if (lptw->bSysColors)
+  //  {
+  //    SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
+  //    SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
+  //  }
+  //else
+  //  {
+  //    SetTextColor (hdc, MARKFORE);
+  //    SetBkColor (hdc, MARKBACK);
+  //  }
+
   while (pt.y < end.y)
     {
       /* multiple lines */
@@ -552,11 +578,20 @@ void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark)
       else
 	{
 	  DoLine (lptw, hdc, xpos, ypos, offset, count);
-	  
-	  SetTextColor (hdc,GetConsoleColorHighlightText());
-	  SetBkColor (hdc,GetConsoleColorHighlight());
-	  
-	  
+
+	  SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
+	  SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
+
+	  //if (lptw->bSysColors)
+	  //  {
+	  //    SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
+	  //    SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
+	  //  }
+	  //else
+	  //  {
+	  //    SetTextColor (hdc, MARKFORE);
+	  //    SetBkColor (hdc, MARKBACK);
+	  //  }
 	}
       offset += count;
       pt.y++;
@@ -832,22 +867,11 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		SendMessage (lptw->hWndText, message, wParam, lParam);
 		/* pass on menu commands */
 		return (0);
-		case WM_SYSCOLORCHANGE:
-		  lptw->hbrBackground =  CreateSolidBrush (GetSysColor (COLOR_HIGHLIGHT));
-		  InvalidateRect (lptw->hWndText, (LPRECT) NULL, 1);
-		  UpdateWindow (lptw->hWndText);
-		return (0);
 		case WM_PAINT:
 		{
 			hdc = BeginPaint (hwnd, &ps);
-			{
-				HBRUSH hbrush;
-				GetClientRect (hwnd, &rect);
-				hbrush = CreateSolidBrush (GetConsoleColorWindow());
-				FillRect (hdc, &rect, hbrush);
-				DeleteBrush (hbrush);
-			}
 
+			
 
 			if (lptw->ButtonHeight)
 			{
@@ -885,20 +909,13 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		case WM_CREATE:
 		{
 
-			TEXTMETRIC tm;
+			
 			lptw = ((CREATESTRUCT *) lParam)->lpCreateParams;
 	
 			SetWindowLong (hwnd, 0, (LONG) lptw);
 			lptw->hWndParent = hwnd;
 			/* get character size */
-			TextMakeFont (lptw);
-			hdc = GetDC (hwnd);
-			SelectFont (hdc, lptw->hfont);
-			GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
-			lptw->CharSize.y = tm.tmHeight;
-			lptw->CharSize.x = tm.tmAveCharWidth;
-			lptw->CharAscent = tm.tmAscent;
-			ReleaseDC (hwnd, hdc);
+			
 			if ((lptw->DragPre != (LPSTR) NULL) && (lptw->DragPost != (LPSTR) NULL)) DragAcceptFiles (hwnd, TRUE);
 	
 			/* Modification Allan CORNET 15/07/03 */
@@ -913,18 +930,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 				SecondOccurence= strtok(NULL,"("); 
     			wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
     		
-    			SetWindowText(hwnd,ScilexWindowName); 
-//				{
-//				typedef BOOL (WINAPI *SLWA_FUNC)(HWND hwnd,COLORREF crKey,BYTE 
-//bAlpha,DWORD dwFlags);
-//					SLWA_FUNC MySetLayeredWindowAttributes;
-//HMODULE hUser32 = GetModuleHandle("USER32.DLL");
-//if (!hUser32) return FALSE;
-//MySetLayeredWindowAttributes = (SLWA_FUNC)GetProcAddress(hUser32, "SetLayeredWindowAttributes");
-//				#define _WIN32_WINNT 0x0500
-//#define LWA_COLORKEY    0x01
-// MySetLayeredWindowAttributes(hwnd, RGB(255, 0, 255), 0, LWA_COLORKEY);
-//}
+    			SetWindowText(hwnd,ScilexWindowName);  
     		}
         }
 		break;
@@ -1518,10 +1524,10 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	    return 0;
 	  case M_SYSCOLORS:
 	    lptw->bSysColors = !lptw->bSysColors;
-	    /*if (lptw->bSysColors)
+	    if (lptw->bSysColors)
 	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_CHECKED);
 	    else
-	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_UNCHECKED);*/
+	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_UNCHECKED);
 	    SendMessage (hwnd, WM_SYSCOLORCHANGE, (WPARAM) 0, (LPARAM) 0);
 	    InvalidateRect (hwnd, (LPRECT) NULL, 1);
 	    UpdateWindow (hwnd);
@@ -1583,7 +1589,10 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 
 	  }
       return (0);
-    
+    case WM_SYSCOLORCHANGE:
+      DeleteBrush (lptw->hbrBackground);
+      lptw->hbrBackground = CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+      return (0);
     case WM_ERASEBKGND:
       return (1);		/* we will erase it ourselves */
     case WM_PAINT:
@@ -1595,14 +1604,15 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 
 	
 	hdc = BeginPaint (hwnd, &ps);
-	if (ps.fErase)
 	{
-		//FillRect (hdc, &ps.rcPaint, lptw->hbrBackground);
-	//	FillRect (hdc, &ps.rcPaint, CreateSolidBrush (GetSysColor (COLOR_WINDOW));
-		
+		HBRUSH hbrush;
+		GetClientRect (hwnd, &rect);
+		hbrush = CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+		FillRect (hdc, &rect, hbrush);
+		DeleteBrush (hbrush);
 	}
-    FillRect (hdc, &ps.rcPaint, CreateSolidBrush (GetConsoleColorWindow())); 
-	
+	if (ps.fErase)  FillRect (hdc, &ps.rcPaint, lptw->hbrBackground);
+
 
 	SelectFont (hdc, lptw->hfont);
 	SetMapMode (hdc, MM_TEXT);
@@ -1664,9 +1674,18 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		count = end - start;
 		if ((count > 0) && (offset < width.x))
 		  {
-			SetTextColor (hdc, GetConsoleColorHighlight());
-			SetBkColor (hdc, GetConsoleColorHighlightText());
-
+			SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
+			SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
+		 //   if (lptw->bSysColors)
+		 //     {
+			//SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
+			//SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
+		 //     }
+		 //   else
+		 //     {
+			//SetTextColor (hdc, MARKFORE);
+			//SetBkColor (hdc, MARKBACK);
+		 //     }
 		    TextOut (hdc, dest.x + lptw->CharSize.x * offset, dest.y,
 			     (LPSTR) (lptw->ScreenBuffer + source.y * lptw->ScreenSize.x
 				      + source.x + offset), count);
@@ -1693,12 +1712,21 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	return 0;
       }
     case WM_CREATE:
-      lptw = ((CREATESTRUCT *) lParam)->lpCreateParams;
-      SetWindowLong (hwnd, 0, (LONG) lptw);
-      lptw->hWndText = hwnd;
-      
-       
-    
+	{
+		TEXTMETRIC tm;
+		lptw = ((CREATESTRUCT *) lParam)->lpCreateParams;
+		SetWindowLong (hwnd, 0, (LONG) lptw);
+		lptw->hWndText = hwnd;
+	  
+		TextMakeFont (lptw);
+		hdc = (HDC)TryToGetDC (hwnd);
+		SelectFont (hdc, lptw->hfont);
+		GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
+		lptw->CharSize.y = tm.tmHeight;
+		lptw->CharSize.x = tm.tmAveCharWidth;
+		lptw->CharAscent = tm.tmAscent;
+		ReleaseDC (hwnd, hdc);
+	}
       break;
     case WM_DESTROY:
       //DeleteBrush (lptw->hbrBackground);
@@ -1907,10 +1935,18 @@ POINT pt;
 	xpos = lptw->CursorPos.x*lptw->CharSize.x - lptw->ScrollPos.x;
 	ypos = lptw->CursorPos.y*lptw->CharSize.y - lptw->ScrollPos.y;
 	hdc = GetDC(lptw->hWndText);
-	
-	SetTextColor(hdc,GetConsoleColorWindowText());
-	SetBkColor(hdc, GetConsoleColorWindow());
-	
+
+	SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
+	SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
+
+	//if (lptw->bSysColors) {
+	//    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
+	//    SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
+	//}
+	//else {
+	//    SetTextColor(hdc, TextFore(lptw->Attr));
+	//    SetBkColor(hdc, TextBack(lptw->Attr));
+	//}
 	SelectObject(hdc, (lptw->hfont));
 	TextOut(hdc,xpos,ypos,
 		(LPSTR)(lptw->ScreenBuffer + lptw->CursorPos.y*lptw->ScreenSize.x + 
@@ -2067,80 +2103,71 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 				{
 				case IDC_LICENCE:
 					{
-						#define LICENCEFR "Licence.txt"
-						#define LICENSEENG "License.txt"
-						#define	PATHBIN "bin\\"
+					#define LICENCEFR "Licence.txt"
+					#define LICENSEENG "License.txt"
+					#define	PATHBIN "bin\\"
 
-						char Chemin[MAX_PATH];
-						char szModuleName[MAX_PATH];
-						LPSTR tail;
-						HINSTANCE hInstance=NULL;
-						int error=0;
-						extern char ScilexWindowName[MAX_PATH];
-						LPTW lptw;
-						if ( IsWindowInterface() ) lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+					char Chemin[MAX_PATH];
+					char szModuleName[MAX_PATH];
+					LPSTR tail;
+					HINSTANCE hInstance=NULL;
+					int error=0;
+					extern char ScilexWindowName[MAX_PATH];
+					LPTW lptw;
+					lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-						hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
-						GetModuleFileName (hInstance,szModuleName, MAX_PATH);
+					hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
+					GetModuleFileName (hInstance,szModuleName, MAX_PATH);
 
-						if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-							{
-								tail++;
-								*tail = '\0';
-							}
-						szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
-						strcpy(Chemin,szModuleName);
-
-						if ( IsWindowInterface() )
+					if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
 						{
-							switch (lptw->lpmw->CodeLanguage)
-							{
-								case 1: /* French */
-								{
-									strcat(Chemin,LICENCEFR);
-								}
-								break;
+						tail++;
+						*tail = '\0';
+						}
+					szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
+					strcpy(Chemin,szModuleName);
 
-								default: case 0: /*English */
+					switch (lptw->lpmw->CodeLanguage)
+						{
+						case 1: /* French */
+							{
+							strcat(Chemin,LICENCEFR);
+							}
+						break;
+
+						default: case 0: /*English */
+							{
+							strcat(Chemin,LICENSEENG);
+							}
+						break;
+						}
+
+					error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
+					if (error<= 32) 
+						{
+						switch (lptw->lpmw->CodeLanguage)
+							{
+							case 1: /* French */
 								{
-									strcat(Chemin,LICENSEENG);
+								MessageBox(NULL,"Impossible d'ouvrir le fichier Licence.txt","Attention",MB_ICONWARNING);
 								}
-								break;
+							break;
+
+							default: case 0: /*English */
+								{
+								MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
+								}
+							break;
 							}
 						}
-						else strcat(Chemin,LICENSEENG);
-
-						error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
-						if (error<= 32) 
-							{
-								if (IsWindowInterface())
-									{
-										switch (lptw->lpmw->CodeLanguage)
-										{
-											case 1: /* French */
-											{
-												MessageBox(NULL,"Impossible d'ouvrir le fichier Licence.txt","Attention",MB_ICONWARNING);
-											}
-											break;
-
-											default: case 0: /*English */
-											{
-												MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
-											}
-											break;
-										}
-									}
-								else MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
-							}
 					}
-					break;
-
+				break;
 				case IDOK:
 					EndDialog (hDlg, LOWORD (wParam));
 					return TRUE;
 
 				}
-			}
+			}	
 		break;
 
 		case WM_DESTROY :
@@ -2167,6 +2194,8 @@ EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
   hdlg = CreateDialog(hdllInstance, "AboutDlgBox", hwnd,AboutDlgProc);
   ShowWindow(	hdlg,SW_SHOW );
 }
+
+/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 void HelpOn(LPTW lptw)
 /* Affiche l'aide concernant la zone de texte selectionnée */
@@ -3354,45 +3383,5 @@ void DisableToolBar(LPTW lptw)
 			ShowWindow( lptw->lpmw->hButton[i] , SW_HIDE );
 		}
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-void SetConsoleColorWindow(DWORD rgb)
-{
-	Color_Window=rgb;
-}
-/*-----------------------------------------------------------------------------------*/
-void SetConsoleColorWindowText(DWORD rgb)
-{
-	Color_Window_Text=rgb;
-}
-/*-----------------------------------------------------------------------------------*/
-void SetConsoleColorHighlight(DWORD rgb)
-{
-	Color_Highlight=rgb;
-}
-/*-----------------------------------------------------------------------------------*/
-void SetConsoleColorHighlightText(DWORD rgb)
-{
-	Color_Highlight_Text=rgb;
-}
-/*-----------------------------------------------------------------------------------*/
-DWORD GetConsoleColorWindow(void)
-{
-	return Color_Window;
-}
-/*-----------------------------------------------------------------------------------*/
-DWORD GetConsoleColorWindowText(void)
-{
-	return Color_Window_Text;
-}
-/*-----------------------------------------------------------------------------------*/
-DWORD GetConsoleColorHighlight(void)
-{
-	return Color_Highlight;
-}
-/*-----------------------------------------------------------------------------------*/
-DWORD GetConsoleColorHighlightText(void)
-{
-	return Color_Highlight_Text;
 }
 /*-----------------------------------------------------------------------------------*/

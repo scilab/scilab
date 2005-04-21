@@ -281,10 +281,10 @@ void ReadTextIni (LPTW lptw)
 	"Version" correspondant à la version de Scilab
 	*/
 	
-	extern void SetConsoleColorWindow(DWORD rgb);
-	extern void SetConsoleColorWindowText(DWORD rgb);
-	extern void SetConsoleColorHighlight(DWORD rgb);
-	extern void SetConsoleColorHighlightText(DWORD rgb);
+	//extern void SetConsoleColorWindow(DWORD rgb);
+	//extern void SetConsoleColorWindowText(DWORD rgb);
+	//extern void SetConsoleColorHighlight(DWORD rgb);
+	//extern void SetConsoleColorHighlightText(DWORD rgb);
 
 	HKEY key;
 	DWORD result,Length,size=4;
@@ -293,10 +293,10 @@ void ReadTextIni (LPTW lptw)
 	int SizeX;
 	int SizeY;
   	int SysColors;
-	DWORD ColorWindow;
-    DWORD ColorWindowText;
-    DWORD ColorHighlight;
-    DWORD ColorHighlightText;
+	//DWORD ColorWindow;
+ //   DWORD ColorWindowText;
+ //   DWORD ColorHighlight;
+ //   DWORD ColorHighlightText;
   	int Toolbar;
   	int Language;
   	char TextFontName[MAX_PATH];
@@ -383,49 +383,49 @@ void ReadTextIni (LPTW lptw)
 		lptw->bSysColors = 1;
 	}
 	
-	if ( RegQueryValueEx(key, "ColorWindow", 0, NULL, (LPBYTE)&ColorWindow, &size) !=  ERROR_SUCCESS )
+	//if ( RegQueryValueEx(key, "ColorWindow", 0, NULL, (LPBYTE)&ColorWindow, &size) !=  ERROR_SUCCESS )
+	//{
+	//	SetConsoleColorWindow(GetSysColor (COLOR_WINDOW));
+	//}
+	//else
+	//{
+	//	SetConsoleColorWindow(ColorWindow);
+	//}
+
+	//if ( RegQueryValueEx(key, "ColorWindowText", 0, NULL, (LPBYTE)&ColorWindowText, &size) !=  ERROR_SUCCESS )
+	//{
+	//	SetConsoleColorWindowText(GetSysColor (COLOR_WINDOWTEXT));
+	//}
+	//else
+	//{
+	//	SetConsoleColorWindowText(ColorWindowText);
+	//}
+
+	//if ( RegQueryValueEx(key, "ColorHighlight", 0, NULL, (LPBYTE)&ColorHighlight, &size) !=  ERROR_SUCCESS )
+	//{
+	//	SetConsoleColorHighlight(GetSysColor (COLOR_HIGHLIGHT));
+	//}
+	//else
+	//{
+	//	SetConsoleColorHighlight(ColorHighlight);
+	//}
+
+	//if ( RegQueryValueEx(key, "ColorHighlightText", 0, NULL, (LPBYTE)&ColorHighlightText, &size) !=  ERROR_SUCCESS )
+	//{
+	//	SetConsoleColorHighlightText(GetSysColor (COLOR_HIGHLIGHTTEXT));
+	//}
+	//else
+	//{
+	//	SetConsoleColorHighlightText(ColorHighlightText);
+	//}
+
+	/*if (lptw->bSysColors)
 	{
 		SetConsoleColorWindow(GetSysColor (COLOR_WINDOW));
-	}
-	else
-	{
-		SetConsoleColorWindow(ColorWindow);
-	}
-
-	if ( RegQueryValueEx(key, "ColorWindowText", 0, NULL, (LPBYTE)&ColorWindowText, &size) !=  ERROR_SUCCESS )
-	{
-		SetConsoleColorWindowText(GetSysColor (COLOR_WINDOWTEXT));
-	}
-	else
-	{
-		SetConsoleColorWindowText(ColorWindowText);
-	}
-
-	if ( RegQueryValueEx(key, "ColorHighlight", 0, NULL, (LPBYTE)&ColorHighlight, &size) !=  ERROR_SUCCESS )
-	{
-		SetConsoleColorHighlight(GetSysColor (COLOR_HIGHLIGHT));
-	}
-	else
-	{
-		SetConsoleColorHighlight(ColorHighlight);
-	}
-
-	if ( RegQueryValueEx(key, "ColorHighlightText", 0, NULL, (LPBYTE)&ColorHighlightText, &size) !=  ERROR_SUCCESS )
-	{
-		SetConsoleColorHighlightText(GetSysColor (COLOR_HIGHLIGHTTEXT));
-	}
-	else
-	{
-		SetConsoleColorHighlightText(ColorHighlightText);
-	}
-
-	if (lptw->bSysColors)
-	{
-		SetConsoleColorWindow(GetSysColor (COLOR_WINDOW));
 		SetConsoleColorWindowText(GetSysColor (COLOR_WINDOWTEXT));
 		SetConsoleColorHighlight(GetSysColor (COLOR_HIGHLIGHT));
 		SetConsoleColorHighlightText(GetSysColor (COLOR_HIGHLIGHTTEXT));
-	}
+	}*/
 	
 	if ( RegQueryValueEx(key, "ToolBar", 0, NULL, (LPBYTE)&Toolbar, &size) !=  ERROR_SUCCESS )
   	{
@@ -462,10 +462,10 @@ void WriteTextIni (LPTW lptw)
 	"Version" correspondant à la version de Scilab
 	Sauvegarde dans HKEY_CURRENT_USER car données dépendant de l'utilisateur
 	*/
-	extern DWORD GetConsoleColorWindow(void);
+	/*extern DWORD GetConsoleColorWindow(void);
 	extern DWORD GetConsoleColorWindowText(void);
 	extern DWORD GetConsoleColorHighlight(void);
-	extern DWORD GetConsoleColorHighlightText(void);
+	extern DWORD GetConsoleColorHighlightText(void);*/
 
 	HKEY key;
 	DWORD result,dwsize=4;
@@ -475,10 +475,10 @@ void WriteTextIni (LPTW lptw)
 	int SizeX;
 	int SizeY;
   	int SysColors;
-	DWORD ColorWindow;
-    DWORD ColorWindowText;
-    DWORD ColorHighlight;
-    DWORD ColorHighlightText;
+	//DWORD ColorWindow;
+ //   DWORD ColorWindowText;
+ //   DWORD ColorHighlight;
+ //   DWORD ColorHighlightText;
   	char TextFontName[MAX_PATH];
   	int TextFontSize;
 	BOOL ShowButtons;
@@ -509,18 +509,18 @@ void WriteTextIni (LPTW lptw)
   	SysColors=lptw->bSysColors;
 	RegSetValueEx(key, "SysColors", 0, REG_DWORD, (LPBYTE)&SysColors, dwsize);
 
-	ColorWindow=GetConsoleColorWindow();
-	RegSetValueEx(key, "ColorWindow", 0, REG_DWORD, (LPBYTE)&ColorWindow, dwsize);
+	//ColorWindow=GetConsoleColorWindow();
+	//RegSetValueEx(key, "ColorWindow", 0, REG_DWORD, (LPBYTE)&ColorWindow, dwsize);
 
-	ColorWindowText=GetConsoleColorWindowText();
-	RegSetValueEx(key, "ColorWindowText", 0, REG_DWORD, (LPBYTE)&ColorWindowText, dwsize);
+	//ColorWindowText=GetConsoleColorWindowText();
+	//RegSetValueEx(key, "ColorWindowText", 0, REG_DWORD, (LPBYTE)&ColorWindowText, dwsize);
 
-    ColorHighlight=GetConsoleColorHighlight();
-	RegSetValueEx(key, "ColorHighlight", 0, REG_DWORD, (LPBYTE)&ColorHighlight, dwsize);
+ //   ColorHighlight=GetConsoleColorHighlight();
+	//RegSetValueEx(key, "ColorHighlight", 0, REG_DWORD, (LPBYTE)&ColorHighlight, dwsize);
 
-    ColorHighlightText=GetConsoleColorHighlightText();
-	RegSetValueEx(key, "ColorHighlightText", 0, REG_DWORD, (LPBYTE)&ColorHighlightText, dwsize);
-	
+ //   ColorHighlightText=GetConsoleColorHighlightText();
+	//RegSetValueEx(key, "ColorHighlightText", 0, REG_DWORD, (LPBYTE)&ColorHighlightText, dwsize);
+	//
 	ShowButtons=lptw->lpmw->ShowToolBar;
 	RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ShowButtons, dwsize);
 	

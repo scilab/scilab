@@ -6,9 +6,6 @@ static BOOL ThreadPasteRunning=FALSE;
 static HANDLE hThreadPaste;
 static char *PasteForThread=NULL; /* Chaine contenant le texte pour la thread Coller */
 
-
-
-
 static BOOL ReadyForAnewLign=FALSE; /* Indique si on peut continuer à coller */
 /* utiliser par les fonctions 
 BOOL IsReadyForAnewLign();
@@ -16,6 +13,8 @@ void SetReadyOrNotForAnewLign(BOOL Ready);
 */
 
 static BOOL SpecialPaste=FALSE;
+
+extern HDC TryToGetDC(HWND hWnd);
 
 /*-----------------------------------------------------------------------------------*/
 void CreateThreadPaste(char *Text)
@@ -124,7 +123,7 @@ void PasteFunction(LPTW lptw,BOOL special)
 	
 	SpecialPaste=special;	
 	/* find out what type to get from clipboard */
-	hdc = GetDC (lptw->hWndText);
+	hdc = (HDC)TryToGetDC (lptw->hWndText);
 	SelectObject(hdc, lptw->hfont);
 	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
 	if (tm.tmCharSet == OEM_CHARSET) type = CF_OEMTEXT;
@@ -156,7 +155,7 @@ BOOL IsEmptyClipboard(LPTW lptw)
 	
 
 	/* find out what type to get from clipboard */
-	hdc = GetDC (lptw->hWndText);
+	hdc = (HDC)TryToGetDC (lptw->hWndText);
 	SelectObject(hdc, lptw->hfont);
 	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
 	if (tm.tmCharSet == OEM_CHARSET) type = CF_OEMTEXT;
@@ -238,7 +237,7 @@ void TextCopyClip(LPTW lptw)
 	GlobalUnlock(hGMem);
 	hGMem = GlobalReAlloc(hGMem, (DWORD)size, GMEM_MOVEABLE);
 	/* find out what type to put into clipboard */
-	hdc = GetDC(lptw->hWndText);
+	hdc = (HDC)TryToGetDC(lptw->hWndText);
 	SelectObject(hdc, lptw->hfont);
 	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
 	if (tm.tmCharSet == OEM_CHARSET)
@@ -409,7 +408,7 @@ char * GetTextFromClipboard(LPTW lptw)
 	
 	
 	/* find out what type to get from clipboard */
-	hdc = GetDC (lptw->hWndText);
+	hdc = (HDC)TryToGetDC (lptw->hWndText);
 	SelectObject(hdc, lptw->hfont);
 	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
 	if (tm.tmCharSet == OEM_CHARSET) type = CF_OEMTEXT;
@@ -450,7 +449,7 @@ void PutTextInClipboard(LPTW lptw,char *Text)
 	strcpy(cbuf,Text);
 
 	/* find out what type to put into clipboard */
-	hdc = GetDC(lptw->hWndText);
+	hdc = (HDC)TryToGetDC(lptw->hWndText);
 	SelectObject(hdc, lptw->hfont);
 	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
 	if (tm.tmCharSet == OEM_CHARSET)

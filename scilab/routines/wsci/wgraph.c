@@ -81,7 +81,7 @@ void NewCopyClip (struct BCG *ScilabGC)
   Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
 
   /** fix hdc in the scilab driver **/
-  scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
+  scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
   scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
 
   hmf = CloseEnhMetaFile (hdc);  
@@ -130,7 +130,7 @@ void CopyClip (struct BCG *ScilabGC)
   BringWindowToTop (hwnd);
   UpdateWindow (hwnd);
   /* get the context */
-  hdc = GetDC (hwnd);
+  hdc = TryToGetDC (hwnd);
   GetClientRect (hwnd, &rect);
   /* make a bitmap and copy it there */
   mem = CreateCompatibleDC (hdc);
@@ -168,7 +168,7 @@ void CopyClip (struct BCG *ScilabGC)
   lpMFP = (LPMETAFILEPICT) GlobalLock (hGMem);
   /* in MM_ANISOTROPIC, xExt & yExt give suggested size in 0.01mm units 
    */
-  hdc = GetDC (hwnd);
+  hdc = TryToGetDC (hwnd);
   lpMFP->mm = MM_ANISOTROPIC;
   lpMFP->xExt = MulDiv (rect.right - rect.left, 2540, GetDeviceCaps 
 			(hdc, LOGPIXELSX));
@@ -268,7 +268,7 @@ int CopyPrint (struct BCG *ScilabGC)
     {
 		/* Redessine si Cancel Impression */
 		GetClientRect (hwnd, &RectRestore);
-		scig_replay_hdc ('W', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+		scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
 		scig_buzy = 0;
 		return TRUE;
     }
@@ -277,7 +277,7 @@ int CopyPrint (struct BCG *ScilabGC)
     {
 		/* Redessine si Cancel Impression */
 		GetClientRect (hwnd, &RectRestore);
-		scig_replay_hdc ('W', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+		scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
 		sciprint ("\r\nCan't print \r\n");
 		scig_buzy = 0;
 		return TRUE;		/* abort */
@@ -351,10 +351,10 @@ PrintAbortProc);
 	  scalef = (int) (10.0 * ((double) xPage * yPage) / (6800.0 * 4725.0));
       GetClientRect (hwnd, &RectRestore);
 	  /* Evite bug lorsque l'on selectionne la fenetre & que l'on imprime apres */
-	  scig_replay_hdc ('P', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+	  scig_replay_hdc ('P', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
 	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,xPage, yPage, scalef);
 	  /* Redessine à l'ecran apres l'impression */
-	  scig_replay_hdc ('W', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+	  scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
 	  if (EndPage (pr.hdcPrn) > 0)  EndDoc (pr.hdcPrn);
 	  else bError = TRUE;
 	}
@@ -782,7 +782,7 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
       HBITMAP hbmTemp;
       HBITMAP  hbmSave;
       HDC hdc1;
-      hdc1 = GetDC (ScilabGC->CWindow);
+      hdc1 = TryToGetDC (ScilabGC->CWindow);
       hbmTemp = CreateCompatibleBitmap (hdc1,ScilabGC->CWindowWidth,
 					ScilabGC->CWindowHeight);
 	  ReleaseDC(ScilabGC->CWindow,hdc1);
@@ -1138,7 +1138,7 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
       return (0);
     case WM_GETMINMAXINFO:
       /*** Eventuellement a changer XXXXXXX  **/
-      hdc = GetDC (hwnd);
+      hdc = TryToGetDC (hwnd);
       SelectFont (hdc, GetStockFont (OEM_FIXED_FONT));
       GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
       ReleaseDC (hwnd, hdc);
@@ -1417,7 +1417,7 @@ BOOL HwndToBmpFile(HWND hwnd, char *pszflname)
     HGDIOBJ hret;
     RECT rct;
 
-    hdc = GetDC(hwnd);
+    hdc = TryToGetDC(hwnd);
 
     if(!hdc) return 0;
 
@@ -1496,7 +1496,7 @@ void ExportBMP(struct BCG *ScilabGC,char *pszflname)
   
   SetActiveWindow(ScilabGC->hWndParent);      
   GetClientRect (hwnd, &rect);
-  scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
+  scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
   HwndToBmpFile(hwnd,pszflname);
 
   SetCurrentFigureWindows (SaveCurrentFigure);
@@ -1536,7 +1536,7 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
   Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
 
   /** fix hdc in the scilab driver **/
-  scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
+  scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
   scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
 
   CloseEnhMetaFile (hdc);  
@@ -1729,5 +1729,30 @@ integer GetCurrentFigureWindows(void)
 void SetCurrentFigureWindows(integer win)
 {
 	scig_sel (win);
+}
+/*-----------------------------------------------------------------------------------*/
+HDC TryToGetDC(HWND hWnd)
+{
+	HDC hDCRet=NULL;
+
+	if (hWnd)
+	{
+		hDCRet=GetDC(hWnd);
+		if (hDCRet == NULL)
+		{
+			#ifdef _DEBUG
+				MessageBox(NULL,"Error : GetDC fails","Error",MB_ICONWARNING);
+			#endif
+		}
+		
+	}
+	else
+	{
+		#ifdef _DEBUG
+			MessageBox(NULL,"Error : GetDC Input don't handle NULL","Error",MB_ICONWARNING);
+		#endif
+	}
+
+	return (HDC)hDCRet;
 }
 /*-----------------------------------------------------------------------------------*/

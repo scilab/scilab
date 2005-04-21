@@ -44,6 +44,8 @@
 LP_PRINT prlist = NULL;
 /** list of selected printers **/
 
+extern HDC TryToGetDC(HWND hWnd);
+
 /********************************************
  * A Dialog Box for choosing the size for graphics 
  * on the printer page 
@@ -137,7 +139,7 @@ PrintSize (HDC printer, HWND hwnd, LPRECT lprect)
   pr.poff.y = 0;
   pr.psize.x = GetDeviceCaps (printer, HORZSIZE);
   pr.psize.y = GetDeviceCaps (printer, VERTSIZE);
-  hdc = GetDC (hwnd);
+  hdc = (HDC)TryToGetDC (hwnd);
   GetClientRect (hwnd, lprect);
   pr.pdef.x = MulDiv (lprect->right - lprect->left, 254, 10 * GetDeviceCaps (hdc, LOGPIXELSX));
   pr.pdef.y = MulDiv (lprect->bottom - lprect->top, 254, 10 * GetDeviceCaps (hdc, LOGPIXELSX));

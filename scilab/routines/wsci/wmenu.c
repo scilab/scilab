@@ -29,6 +29,8 @@
 #define STRICT
 #endif
 
+extern HDC TryToGetDC(HWND hWnd);
+
 /*-----------------------------------------------------------------------------------*/
 void Callback_NEWSCILAB(void)
 {
@@ -1195,7 +1197,7 @@ void LoadMacros (LPTW lptw)
 
 
   /* calculate size of buttons */
-  hdc = GetDC (lptw->hWndParent);
+  hdc = (HDC)TryToGetDC (lptw->hWndParent);
   
   SelectFont (hdc, GetStockFont (SYSTEM_FIXED_FONT));
   GetTextMetrics (hdc, &tm);
@@ -2436,7 +2438,7 @@ void PrintSelection(LPTW lptw,char *Entete)
 	char *MessagePaste=NULL;
 	
 	/*Récupere ce qu'il y a dans le presse papier*/
-	hdc = GetDC (lptw->hWndText);
+	hdc = (HDC)TryToGetDC (lptw->hWndText);
 	SelectFont (hdc, lptw->hfont);
 	GetTextMetrics (hdc, (TEXTMETRIC *) & tm);
 	if (tm.tmCharSet == OEM_CHARSET) type = CF_OEMTEXT;

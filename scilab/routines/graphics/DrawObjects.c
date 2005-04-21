@@ -24,6 +24,10 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 
+#if WIN32
+extern HDC TryToGetDC(HWND hWnd);
+#endif
+
 extern int GetScreenDPI(int *ixres, int *iyres);
 extern double C2F(dsort)();/*DJ.A merge*/ 
 
@@ -176,7 +180,7 @@ sciGetDC (sciPointObj * pobj)
     {
     case SCI_FIGURE:
     case SCI_SUBWIN:
-      return GetDC (sciGetScilabXgc (pobj)->CWindow);
+      return (HDC)TryToGetDC (sciGetScilabXgc (pobj)->CWindow);
       break;
     default:
       return sciGetDC (sciGetParent (pobj));
