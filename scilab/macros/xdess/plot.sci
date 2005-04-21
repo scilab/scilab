@@ -21,18 +21,15 @@ end
 
 if ~rhs
   //LineSpec and PropertySpec examples:
-  scf(); // new figure
-  t=0:%pi/20:2*%pi;
-  subplot(211)
-  plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
-  subplot(212)
-  plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
-  disp("scf(); // open a new figure to play plot examples")
-  disp("t=0:%pi/20:2*%pi;");
-  disp("subplot(211)")
-  disp("plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')");
-  disp("subplot(212)");
-  disp("plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])")
+  s_mat= ["scf(); // new figure";
+      "t=0:%pi/20:2*%pi;";
+      "subplot(211)";
+      "plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')";
+      "subplot(212)";
+      "plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])"];
+  
+  write(%io(2),s_mat);
+  execstr(s_mat);
   return;
 end
 
