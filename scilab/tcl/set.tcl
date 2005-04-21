@@ -52,11 +52,7 @@ proc SetField { handle field value } {
 	    } else {
 		# NO
 		# then just set the array 
-		if {[string compare $field "path"] != 0} {
-		    set "$name\($field)" $value;
-		} else {
-		    ScilabEval "error(\"\"\"path\"\" is a read only property\")";
-		}
+		set "$name\($field)" $value;
 	    }
 	}
 	
@@ -80,11 +76,7 @@ proc SetField { handle field value } {
 	    } else {
 		# NO
 		# then just set the array 
-		if {[string compare $field "path"] != 0} {
-		    set "$name\($field)" $value;
-		} else {
-		    ScilabEval "error(\"\"\"path\"\" is a read only property\")";
-		}
+		set "$name\($field)" $value;
 	    }
 	}
  
@@ -393,7 +385,7 @@ proc Setverticalalignment { name value } {
 	 set hanchor $HorizontalAnchorEq([set "$name\(horizontalalignment)"]);
 	 set anchor $VerticalAnchorEq($value)$hanchor;
      } else {
-	 set anchor $VerticalAnchorEq($value)$hanchor;
+	 set anchor $VerticalAnchorEq($value);
      }
  } else {
      if {[info exist "$name\(horizontalalignment)"] == 1} {
