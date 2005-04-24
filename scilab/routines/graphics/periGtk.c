@@ -312,9 +312,15 @@ void C2F(xpause)(char *str, integer *sec_time, integer *v3, integer *v4, integer
  * Changes the graphic window popupname 
  *-----------------------------------------------------------------*/
 
+/* XXXX */
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
 void Setpopupname(char *string)
 { 
-  gtk_window_set_title(GTK_WINDOW(ScilabXgc->window),string);
+  int alloc ;
+  char *str_new = sci_convert_to_utf8(string,&alloc);
+  gtk_window_set_title(GTK_WINDOW(ScilabXgc->window),str_new);
+  if ( alloc == TRUE ) g_free (str_new);
 }
 
 /* appelle ds Xcall.c */
