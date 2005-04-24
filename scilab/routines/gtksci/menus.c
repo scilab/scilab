@@ -241,17 +241,36 @@ int C2F(delbtn)(int *win_num,char *button_name)
  *  fname;      : name of the action function  
  *----------------------------------------------------------------*/
 
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
 int C2F(addmen)(win_num,button_name,entries,ptrentries,ne,typ,fname,ierr)
      integer *win_num,*entries,*ptrentries,*ne,*ierr,*typ;
      char *button_name,*fname;
 {
+#if GTK_MAJOR_VERSION == 2 
+  int button_alloc,i,*ent_alloc;
+  char *button_name_utf8;
+#endif 
   char ** menu_entries;
   *ierr =0;
   if (*ne!=0) {
     ScilabMStr2CM(entries,ne,ptrentries,&menu_entries,ierr);
     if ( *ierr == 1) return(0);
   }
+#if GTK_MAJOR_VERSION == 2 
+  /* switch to utf8 if necessary */
+  button_name_utf8 = sci_convert_to_utf8(button_name,&button_alloc);
+  ent_alloc = malloc((*ne)*sizeof(int));
+  if ( ent_alloc == NULL) return 0;
+  for (i = 0; i < *ne ; i++)
+    menu_entries[i] = sci_convert_to_utf8(menu_entries[i],&ent_alloc[i]);
+  AddMenu(win_num,button_name_utf8,menu_entries,ne,typ,fname,ierr);
+  if ( button_alloc == TRUE) free(button_name_utf8);
+  for ( i = 0; i < *ne ; i++ ) if (ent_alloc[i]==TRUE) free(menu_entries[i]);
+  free(ent_alloc);
+#else 
   AddMenu(win_num,button_name,menu_entries,ne,typ,fname,ierr);
+#endif
   return(0);
 }
 
