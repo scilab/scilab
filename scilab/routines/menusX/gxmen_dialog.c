@@ -52,6 +52,8 @@ static void sci_dialog_cancel(GtkWidget *widget,scigtk_dialog *answer)
 
 int  DialogWindow(void)
 {
+  char *desc_utf8;
+  int desc_alloc;
   GtkWidget *window = NULL;
   GtkWidget *vbox;
   GtkWidget *hbbox;
@@ -83,7 +85,8 @@ int  DialogWindow(void)
   gtk_widget_show (vbox);
 
   /* label widget description of the dialog */
-  label = gtk_label_new (ScilabDialog.description);
+  desc_utf8 = sci_convert_to_utf8(ScilabDialog.description,&desc_alloc);
+  label = gtk_label_new (desc_utf8);
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
 
@@ -163,6 +166,7 @@ int  DialogWindow(void)
        */
       if ( answer.st != RESET ) break;
     }
+  if ( desc_alloc) g_free(desc_utf8);
   return (answer.st == OK ) ? TRUE : FALSE ;
 }
 

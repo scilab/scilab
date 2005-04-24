@@ -9,6 +9,7 @@
 
 static int num_item_selected = -1 ;
 static GtkWidget *window = NULL; 
+static void choose_menu_to_utf8(ChooseMenu *PCh);
 
 static void item_selected(GtkWidget *widget,
 			  int selected)
@@ -36,6 +37,9 @@ int ExposeChooseWindow(ChooseMenu *PCh)
   /* do not accept a reenter mode */ 
   if ( window != NULL) return FALSE ; 
   /* initialize */
+
+  choose_menu_to_utf8(PCh);
+
   num_item_selected = -1; 
   
   /* the window */
@@ -60,10 +64,14 @@ int ExposeChooseWindow(ChooseMenu *PCh)
   gtk_box_pack_start (GTK_BOX (cbox), label, FALSE, FALSE, 0);
 
   /* the list */
-  
+#if GTK_MAJOR_VERSION == 2 
+  maxl = g_utf8_strlen(PCh->strings[0],-1);
+  for (i = 0; i < PCh->nstrings ; i++) maxl = Max(maxl,g_utf8_strlen(PCh->strings[i],-1));
+#else 
   maxl = strlen(PCh->strings[0]);
   for (i = 0; i < PCh->nstrings ; i++) maxl = Max(maxl,strlen(PCh->strings[i]));
-  
+#endif 
+
   if ( maxl > 50 || PCh->nstrings > 30) 
     {
       /* here we need a scrolled window */ 
@@ -138,4 +146,22 @@ int ExposeChooseWindow(ChooseMenu *PCh)
   window = NULL;
   PCh->choice = num_item_selected;
   return (  PCh->choice >= 0) ? TRUE : FALSE;
+}
+
+
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
+/* note that since the strings were allocated 
+ * if we reallocate them or not they have to be freed 
+ * at the end in all cases thus alloc is not used. 
+ */
+
+static void choose_menu_to_utf8(ChooseMenu *PCh)
+{
+  int alloc,i;
+  PCh->description = sci_convert_to_utf8(PCh->description,&alloc);
+  for (i = 0; i < PCh->nstrings ; i++)
+    PCh->strings[i] = sci_convert_to_utf8(PCh->strings[i],&alloc);
+  for (i = 0; i < PCh->nb ; i++)
+    PCh->buttonname[i] = sci_convert_to_utf8(PCh->buttonname[i],&alloc);
 }
