@@ -434,7 +434,7 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
     PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,1);
   }
 
-  return TRUE;
+  return FALSE; /* want also the menu to receive the key pressed */
 }
 
 
@@ -3945,9 +3945,13 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 		     (GtkSignalFunc) locator_button_motion, (gpointer) dd);
   gtk_signal_connect(GTK_OBJECT(dd->drawing), "realize",
 		     (GtkSignalFunc) realize_event, (gpointer) dd);
-
+  /* 
+  gtk_signal_connect (GTK_OBJECT (dd->drawing), "key_press_event",
+		      (GtkSignalFunc) key_press_event, (gpointer) dd);
+  */
   gtk_widget_set_events(dd->drawing, GDK_EXPOSURE_MASK 
 			| GDK_BUTTON_PRESS_MASK 
+			| GDK_KEY_PRESS_MASK 
 			| GDK_BUTTON_RELEASE_MASK
 			| GDK_POINTER_MOTION_MASK
 			| GDK_POINTER_MOTION_HINT_MASK
