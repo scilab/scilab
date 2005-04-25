@@ -25,13 +25,12 @@ if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
 opts=strcat([opts,"style=style(c)"],',')
 [xc,yc]=contour2di(x,y,z,nz);
 fpf=xget("fpf");if fpf=='' then fpf='%.3f',end
-fstyle=get('figure_style')
 
-k=1;n=yc(k);c=1;level=xc(k)
-if fstyle=='new' then 
+newstyle = get('figure_style')=='new'
+if newstyle then
   fig=gcf();
   autoc=stripblanks(fig.auto_clear)
-  if autoc=="on" then xbasc(),end
+  if autoc=="on" then, xbasc(),end
   a=gca();
   //autoc=stripblanks(a.auto_clear)
   //if autoc=="on" then %h_delete(a.children);a=gca(),end
@@ -40,31 +39,32 @@ if fstyle=='new' then
   fig.auto_clear="off"
   cnt=0
 end
-while k+yc(k)<size(xc,'*')
-  n=yc(k);
-  if xc(k)<>level then 
-    c=c+1;level=xc(k),
-    if fstyle=='new' then 
-      if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
-    end
-  end
-  execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')')
-  if fstyle=='new' then 
-    unglue(a.children(1))
-    cnt=cnt+1
-  end
-  if stripblanks(fpf)<>'' then
-    xstring(xc(k+1+n/2),yc(k+1+n/2),sprintf(fpf,level))
-    if fstyle=='new' then cnt=cnt+1,end
-  end
-  k=k+n+1;
 
+k=1;n=yc(k); c=0; level = %inf;
+while k < length(xc)
+   n = yc(k)
+   if xc(k) ~= level then 
+      c = c+1; level = xc(k),
+      if newstyle then 
+	 if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+      end
+   end
+   execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')')
+   if newstyle then 
+      unglue(a.children(1))
+      cnt = cnt+1
+   end
+   if stripblanks(fpf)<>'' then
+      xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
+      if newstyle then cnt=cnt+1,end
+   end
+   k=k+n+1;
 end
-if fstyle=='new' then 
-  if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+
+if newstyle then 
+   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+   fig.immediate_drawing=v;
+   fig.auto_clear=autoc;
 end
-if fstyle=='new' then
- fig.immediate_drawing=v;
- fig.auto_clear=autoc;
-end
+
 endfunction
