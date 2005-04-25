@@ -25,7 +25,14 @@ CMACMO=nums.cma parseTree.cmo parser.cmo \
        causalityGraph.cmo optimization.cmo scicosCodeGeneration.cmo \
        optimizingCompiler.cmo
 
-all:: step1 step2 step3 step4
+CMXACMX=nums.cmxa parseTree.cmx parser.cmx \
+       lexer.cmx precompilation.cmx compilation.cmx \
+       instantiation.cmx graphNodeSet.cmx symbolicExpression.cmx \
+       squareSparseMatrix.cmx bipartiteGraph.cmx hungarianMethod.cmx \
+       causalityGraph.cmx optimization.cmx scicosCodeGeneration.cmx \
+       optimizingCompiler.cmx	
+
+all:: step1 step2 step3 step4 step5 step6
 
 
 step1: 
@@ -68,8 +75,31 @@ step3:
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c scicosOptimizingCompiler.ml
 	
 step4:
-	@"$(OCAMLPATHBIN)\$(OCAMLC)" -o $(EXEC) $(CMACMO) scicosOptimizingCompiler.ml
-	@copy  $(EXEC) ..\bin\$(EXEC)
+	@"$(OCAMLPATHBIN)\$(OCAMLC)" -o $(EXEC) $(CMACMO)  scicosOptimizingCompiler.ml
+	
+step5:
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c parseTree.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c parser.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c lexer.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c precompilation.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c compilation.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c instantiation.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c graphNodeSet.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c symbolicExpression.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c squareSparseMatrix.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c bipartiteGraph.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c hungarianMethod.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c causalityGraph.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c optimization.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c scicosCodeGeneration.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c optimizingCompiler.ml
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c scicosOptimizingCompiler.ml
+
+	
+step6:
+	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -o $(EXEC) $(CMXACMX)  scicosOptimizingCompiler.ml
+	@copy  $(EXEC) ..\bin\$(EXEC)	
+	
 	
 clean::
 	-$(RM)  *.cmi
