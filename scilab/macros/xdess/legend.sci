@@ -25,7 +25,7 @@ function R=legend(varargin)
   end
   if H==[] then
     //walk subtree to get all proper children
-    H=getvalidchildren(A)
+    H=getvalidchildren(A);
   end
   
   //get all labels
@@ -110,7 +110,7 @@ function R=legend(varargin)
   y=pos(2)-dy/60
   
 
-  drawlater()
+//  drawlater()
   R=[]
   if with_box then xrect(pos(1),pos(2),width,height),R=gce();end
   for k=1:nleg
@@ -125,52 +125,63 @@ function R=legend(varargin)
 	  r.polyline_style=h.polyline_style;
 	  r.line_style=h.line_style;
 	else
-	  if stripblanks(h.mark_mode)=='off'
-	    st=1//h.polyline_style;
-	    //if st==3 then st=0,else st=0;end
-	    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');r=gce();
-	    r.foreground=h.foreground;
-	    r.thickness=h.thickness;
-	    r.polyline_style=max(1,st);
-	    r.line_style=max(h.line_style,1);
-	  else
-	    xpoly(x+drx/2,y-bbx(k,2)/2);r=gce();
-	    r.foreground=h.foreground;
-	    r.thickness=h.thickness;
-	    r.mark_style=h.mark_style;
-	    r.mark_size_unit=h.mark_size_unit;
-	    r.mark_size=h.mark_size;
+	   // part modified by bruno (25 april 05)
+	   line_mode = stripblanks(h.line_mode)
+	   mark_mode = stripblanks(h.mark_mode)
+	   if line_mode == "on" then
+	      xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');
+	   else
+	      xpoly(x+drx/2,y-bbx(k,2)/2);
+	   end
+	   st=1//h.polyline_style;  //if st==3 then st=0,else st=0;end
+	  r=gce();
+	  r.line_mode = line_mode;
+	  r.mark_mode = mark_mode;
+	  if line_mode == "on" then
+	     r.foreground=h.foreground;
+	     r.thickness=h.thickness;
+	     r.polyline_style=max(1,st);
+	     r.line_style=max(h.line_style,1);
 	  end
+	  if mark_mode == "on" then
+	     r.mark_mode=h.mark_mode
+	     r.mark_style=h.mark_style;
+	     r.mark_size_unit=h.mark_size_unit;
+	     r.mark_size=h.mark_size;
+	     r.mark_foreground=h.mark_foreground;	    
+	     r.mark_background=h.mark_background;	    	    
+	  end
+	  // end of the bruno 's modif  
 	end
       else
 	error('Only handle on polyline are allowed')
       end
-    R=[R,r]
+    R=[R,r];
     end
-    xstring(x+drx*1.2,y-bbx(k,2),leg(k))
-    r=gce()
-    R=[R,r]
-    y=y-bbx(k,2)-dh
+    xstring(x+drx*1.2,y-bbx(k,2),leg(k));
+    r=gce();
+    R=[R,r];
+    y=y-bbx(k,2)-dh;
   end
-  glue(R)
-  R=gce()
-  draw(R)
-  set('current_axes',Acur),
-  drawnow()
-  f.immediate_drawing=vis; // doublon ?
+  glue(R);
+  R=gce();
+  draw(R);
+  set('current_axes',Acur);
+  //  drawnow()
+  f.immediate_drawing=vis;
 endfunction
 function h=getvalidchildren(A)
-  h=[]
+  h=[];
   for k=1:size(A,'*')
-    a=A(k)
+    a=A(k);
     select a.type
       case "Polyline" then
-      h=[h;a]
+      h=[h;a];
       case 'Axes'
-      h=[h;getvalidchildren(a.children)]
+      h=[h;getvalidchildren(a.children)];
       case 'Agregation'
       for k=1:size(a.children,'*')
-	h=[h;getvalidchildren(a.children(k))]
+	h=[h;getvalidchildren(a.children(k))];
       end
     end
   end
