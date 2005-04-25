@@ -1510,6 +1510,7 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
   RECT rect;
   HWND hwnd;
   HDC hdc;
+  HENHMETAFILE metafile;
 
   integer SaveCurrentFigure=0; 
 
@@ -1539,7 +1540,8 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
   scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
   scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
 
-  CloseEnhMetaFile (hdc);  
+  metafile = CloseEnhMetaFile(hdc);
+  DeleteEnhMetaFile( metafile );
 
   SetCurrentFigureWindows (SaveCurrentFigure);
 
@@ -1599,7 +1601,7 @@ int GetScreenProperty(char *prop, char *value)
 }
 
 
-
+/*-----------------------------------------------------------------------------------*/
 /* Scilab get the DPI (root properties) */
 /* F.Leray 08.03.05 */
 /* return the x/y DPI */
