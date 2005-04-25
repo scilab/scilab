@@ -17,9 +17,9 @@
 #define RELEASED_MIDDLE -4
 #define RELEASED_RIGHT -3
 
-#define CLCK_LEFT 5
+#define CLCK_LEFT 3
 #define CLCK_MIDDLE 4
-#define CLCK_RIGHT 3
+#define CLCK_RIGHT 5
 
 #define DBL_CLCK_LEFT 10
 #define DBL_CLCK_MIDDLE 11
