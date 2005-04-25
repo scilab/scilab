@@ -61,18 +61,12 @@ function paths=pathconvert(paths,flagtrail,flagexpand,str)
       if part(path,1:4) == 'SCI'+sep then 
 	is_expanded = %t ;
 	paths(i)=sci + part(path,4:length(path)),
-      end
-      //if part(path,1:2) == '.'+sep then 
-      //is_expanded = %t ;
-      //paths(i)=getcwd() + part(path,4:length(path)),
-      //end
-      if part(path,1:2) =='~'+sep then 
+      elseif part(path,1:2) =='~'+sep then 
 	is_expanded = %t ;
-	path=getenv('HOME','/home/')+part(path,2:length(path)),
-      end
-      if part(path,1:5) =='HOME'+sep then 
+	paths(i)=getenv('HOME','/home/')+part(path,2:length(path)),
+      elseif part(path,1:5) =='HOME'+sep then 
 	is_expanded = %t ;
-	path=getenv('HOME','/home/')+part(path,5:length(path)),
+	path(i)=getenv('HOME','/home/')+part(path,5:length(path)),
       end
     end
   end
