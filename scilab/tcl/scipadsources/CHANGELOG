@@ -998,3 +998,12 @@ Francois VOGEL, 18/04/05
    on right-click on selection during debug
  * Some editing in the message files - German version added
  * version --> 4.6
+
+Francois VOGEL, 26/04/05
+ * RamDebugger capability added (MUST be set to "no" for committed
+   files, see at the top of defaults.tcl)
+ * Bug fixed: Replace all could hang Scipad when the string to search was
+   included in the string to replace
+ * Bug fixed: Trying to drag and drop in the call stack area of the watch
+   window produced an error - Now this operation is no more allowed
+ * version --> 4.7

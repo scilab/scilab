@@ -192,8 +192,9 @@ proc ReplaceAll {} {
             set ReplaceItResult [ReplaceIt all]
             set anotherone [lindex $ReplaceItResult 0]
             set NewPos [$textareacur index [lindex $ReplaceItResult 1]]
+            set len [string length $SearchString]
             if {int([$textareacur index $RefPos])==int([$textareacur index $NewPos]) && \
-                [$textareacur compare $NewPos < $RefPos] } {
+                [$textareacur compare $NewPos <= [$textareacur index "$RefPos + $len char + 1c"]] } {
                 set RefPos [$textareacur index "$RefPos+[lindex $ReplaceItResult 2] char"]
             }
             if {$NewPos == $RefPos} {

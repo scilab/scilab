@@ -1,5 +1,16 @@
+# Don't forget to set this setting to no before committing!
+# There is a hard link to the RamDebugger directory here!
+
+set DebugScipadWithRamDebugger no
+
+if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
+    lappend ::auto_path K:/Francois/Developpement/RamDebugger/addons
+    package require commR
+    comm::register Scipad 1
+}
+
 set winTitle "SciPad"
-set version "Version 4.6"
+set version "Version 4.7"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list

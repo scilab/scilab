@@ -45,13 +45,13 @@ proc tkdndbind {w} {
                 return move \
             } \
         }
-        bind Text <Button-1>         { Button1BindText %W %x %y }
-        bind Text <Control-Button-1> { Button1BindText %W %x %y }
-        bind Text <ButtonRelease-1> {
+        bind $w <Button-1>         { Button1BindText %W %x %y }
+        bind $w <Control-Button-1> { Button1BindText %W %x %y }
+        bind $w <ButtonRelease-1> {
             set extendsel "false" ; \
             tk::CancelRepeat \
         }
-        bind Text <Button1-Motion> { \
+        bind $w <Button1-Motion> { \
             if {$extendsel == "true"} { \
                 set tk::Priv(x) %x ; \
                 set tk::Priv(y) %y ; \
