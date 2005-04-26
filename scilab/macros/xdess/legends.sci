@@ -35,10 +35,10 @@ function legends(leg, style, opt, with_box)
   if or(size(style)==1) then, style=matrix(style,1,-1),end
   ns=size(style,2)
 
-  fs=get('figure_style')=='old'
+  old_style=get('figure_style')=='old'
   
   //preserve current graphic context
-  if ~fs then 
+  if ~old_style then 
     f=gcf()
     vis=f.visible;
     old_ax=gca(),
@@ -54,7 +54,7 @@ function legends(leg, style, opt, with_box)
   xsetech(wrect=[r1(1),r1(2),r1(3)/1000,r1(4)/1000],frect=[0 0 1,1]/1000,arect=[0,0,0,0])
   xmin=arect(1);xmax=1-arect(2);ymin=-1+arect(4);ymax=-arect(3);
 
-  if fs then 
+  if old_style then 
     xclip()//no clipping
   else
     cur_ax=gca(),
@@ -84,7 +84,7 @@ function legends(leg, style, opt, with_box)
   //upper left coordinates
   if size(opt,'*')>1 then 
      // fix for bug 1237 (Bruno 9 march 2005)
-     if ~fs then
+     if ~old_style then
 	if old_ax.tight_limits == "on" then  // data_bounds' corresponds to the old frec
 	   r2 = old_ax.data_bounds'
 	else 
@@ -116,8 +116,14 @@ function legends(leg, style, opt, with_box)
   x=pos(1)+drx/5
   y=pos(2)-dy/60
   
-  if fs then
-    if with_box then xrect(pos(1),pos(2),width,height),end
+  if old_style then
+    if with_box then 
+       c = xget("color")
+       xset("color",xget("background"))
+       xfrect(pos(1),pos(2),width,height)
+       xset("color",c)
+       xrect(pos(1),pos(2),width,height)       
+    end
     linestyle=xget('line style')
     clr=xget('color')
     for k=1:nleg
@@ -141,7 +147,13 @@ function legends(leg, style, opt, with_box)
   else
     drawlater()
     R=[]
-    if with_box then xrect(pos(1),pos(2),width,height),R=gce();end
+    if with_box then 
+       xpol = [pos(1), pos(1)+width, pos(1)+width, pos(1)];
+       ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
+       xfpoly(xpol, ypol,1)
+       R = gce();
+       R.children(2).foreground=-2;
+    end
     a=gca()
     a.clip_state='off';
     for k=1:nleg
@@ -152,6 +164,7 @@ function legends(leg, style, opt, with_box)
 	    case "Polyline"
 	    if h.polyline_style==5 then //patch
 	      xfpoly([x;x+drx;x+drx;x;x],[y-bbx(k,2);y-bbx(k,2);y;y;y-bbx(k,2)]);r=gce();
+	      r = unglue(r); // one xfpoly returns 2 polylines -> tmp bug to fix later F.Leray
 	      r.foreground=h.foreground;
 	      r.thickness=h.thickness;
 	      r.polyline_style=h.polyline_style;
@@ -189,7 +202,7 @@ function legends(leg, style, opt, with_box)
 	  end
 	end
       end
-      R=[R,r]
+      R=[R,r']
       xstring(x+drx*1.2,y-bbx(k,2),leg(k))
       r=gce()
       R=[R,r]
