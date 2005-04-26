@@ -111,7 +111,6 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   if (*err > 0) goto ErrL;
   *cur_pos=(int)pos;
 
-
   while(1)
     {
       C2F(mseek) (fd, cur_pos, "set", err);
@@ -138,6 +137,17 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        C2F(mgetnc) (fd, (void*) &rkvalue , &one, typ_int, err);
        if (*err > 0) goto ErrL;
        valeur[col*(hauteur)+row]= NumFromRk2(rkvalue);
+       break;
+     case 515: /*Number*/
+       C2F(mgetnc) (fd, (void*)&row, &one, typ_short, err);
+       if (*err > 0) goto ErrL;
+       C2F(mgetnc) (fd, (void*)&col, &one, typ_short, err);
+       if (*err > 0) goto ErrL;
+       C2F(mgetnc) (fd, (void*)&xf , &one, typ_short, err);
+       if (*err > 0) goto ErrL;
+       C2F(mgetnc) (fd, (void*) &resultat , &one, typ_double, err);
+       if (*err > 0) goto ErrL;
+       valeur[col*(hauteur)+row]=resultat ;
        break;
 
      case 189: /*MULRK*/
