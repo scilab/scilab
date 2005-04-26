@@ -84,7 +84,7 @@ void Objpoly (x,y,n,closed,mark,hdl)
   sciPointObj *psubwin, *pobj;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,0)); 
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1)); 
   pobj = sciGetCurrentObj();
   if (mark <= 0)
     { 
@@ -169,7 +169,7 @@ void Objfpoly (x,y,n,style,hdl)
   else
     contourcolor = sciGetForeground(psubwin);
   
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,0));  /* polyline_style is "interpolated" == 0 */
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1));  /* polyline_style is "interpolated" == 0 */
   pobj = sciGetCurrentObj();
   sciSetForeground (pobj, contourcolor);
 
@@ -559,7 +559,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	 Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
 	sciSetCurrentObj (ConstructPolyline
 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
+			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1));  
 	pobj = sciGetCurrentObj();
 	if ((*n > 0) && (zcol != (double *)NULL)) {
 	  if ((int) zcol[i] > 0){

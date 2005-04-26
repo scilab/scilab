@@ -1584,8 +1584,8 @@ int sciplot2d(fname, fname_len)
       
       break;
     }
-
-    Objplot2d (0,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax,flagNax);
+    
+    Objplot2d (1,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax,flagNax);
     /*sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure())); F.Leray 25.03.04 */
   } 
   else { /* NG end */
@@ -1732,17 +1732,19 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
-
-
+  
+  
   /* NG beg */
-  if (version_flag() == 0)
+  if (version_flag() == 0){
+    if(ptype == 0) ptype = 1;
     Objplot2d (ptype,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend,Rect, Nax, flagNax);
+  }
   else /* NG end */
     (*func)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
 	    4L,strlen(Strf),strlen(Legend));
   LhsVar(1)=0;
   return 0;
-} 
+}
 
 
 
@@ -5854,16 +5856,19 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 
   else if (strncmp(marker,"polyline_style", 14) == 0)
     {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	if ((stk(*value)[0]==1) || (stk(*value)[0]==2) 
-	    || (stk(*value)[0]==3) ||(stk(*value)[0]==4)||(stk(*value)[0]==5))
-	  pPOLYLINE_FEATURE (pobj)->plot = (int)stk(*value)[0];
+      if (sciGetEntityType (pobj) == SCI_POLYLINE){
+	int valeur = (int)stk(*value)[0];
+	if ((valeur==1) || (valeur==2) ||
+	    (valeur==3) || (valeur==4) || (valeur==5)){
+	  pPOLYLINE_FEATURE (pobj)->plot = valeur;
+	}
 	else
 	  {strcpy(error_message,"Style must be 1,2,3,4 or 5");return -1;}
+      }
       else
 	{strcpy(error_message,"Object is not a Polyline");return -1;}
     }
-
+  
   /************* font properties *********/
   else if (strncmp(marker,"font_size", 9) == 0)
     {

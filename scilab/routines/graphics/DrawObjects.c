@@ -7191,9 +7191,10 @@ sciDrawObj (sciPointObj * pobj)
 	    else  
 	      GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
 
-	    frame_clip_off();  
-	    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
-		    &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    frame_clip_off();
+	    /* Remove box drawing : done by axis_draw2 */
+/* 	    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2], */
+/* 		    &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 #ifdef WIN32
 	    if ( flag_DO == 1) ReleaseWinHdc();
 #endif
@@ -7585,7 +7586,7 @@ sciDrawObj (sciPointObj * pobj)
 	  /**DJ.Abdemouche 2003**/
 	  switch (pPOLYLINE_FEATURE (pobj)->plot)
 	    {
-	    case 0:  /* case plot2d, xpoly */
+	    case 1:  /* case plot2d, xpoly */
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
 		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
 		
@@ -7603,20 +7604,20 @@ sciDrawObj (sciPointObj * pobj)
 	      
 	      /**DJ.Abdemouche 2003**/
 	      break; 
-	    case 1:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
-		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
-		
-		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
-		
-		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
-		
-	      }
-	      else
-		/* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   */
-		Plo2d1RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
-	      break;
-	    case 2:
+	      /* 	    case 1: */
+	      /* 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){ */
+	      /* 		/\* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); *\/ */
+	      
+	      /* 		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1); */
+	      
+	      /* 		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]); */
+	      
+	      /* 	      } */
+	      /* 	      else */
+	      /* 		/\* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   *\/ */
+	      /* 		Plo2d1RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags); */
+	      /* 	      break; */
+ 	    case 2:
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
 		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
