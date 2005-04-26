@@ -90,7 +90,6 @@ c     empty field found
       if(istk(il1i).lt.0) il1i=iadr(istk(il1i+1))
       il2i=il2ir
       if(istk(il2i).lt.0) il2i=iadr(istk(il2i+1))
-
       if(info.eq.2.or.info.eq.4) then
 c     .  syntax is arg2(...)(i,j,..)(...)
 c     .  matrix index (i,..) syntax
@@ -113,7 +112,7 @@ c     .     at the top of the stack
             m2i=istk(il2i+1)
          else
 c     .     a matrix  index 
-            if(m1.gt.icount) then
+            if(m1.gt.icount.and.info.eq.4) then
 c     .        arg2(...)(i,j,..)(...) :too many indices in index list
                call error(21)
                return
