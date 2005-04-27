@@ -45,7 +45,7 @@ M5 =    cell.sci struct.sci  \
 	%c_i_st.sci %ce_i_st.sci %p_i_st.sci \
 	%l_i_st.sci %st_i_st.sci %lss_i_st.sci\
 	%spb_i_st.sci %mc_i_st.sci %hm_i_st.sci\
-	%fptr_i_st.sci %h_i_st.sci %ip_i_st.sci %msp_i_st.sci \
+	%fptr_i_st.sci %h_i_st.sci %ip_i_st.sci %msp_i_st.sci %msp_i_s.sci \
 	%st_p.sci %st_e.sci %st_size.sci \
         %ce_e.sci %ce_p.sci %ce_size.sci  \
 	%b_i_ce.sci %ce_i_ce.sci %i_i_ce.sci %p_i_ce.sci  \
@@ -61,7 +61,7 @@ M5 =    cell.sci struct.sci  \
 	%b_d_s.sci %b_l_s.sci %b_p_s.sci %b_r_s.sci %s_d_b.sci %s_l_b.sci \
 	%s_p_b.sci %s_r_b.sci %msp_t.sci %msp_nnz.sci %msp_m_s.sci \
 	%msp_find.sci sci_sparse.sci %msp_e.sci %s_a_msp.sci %msp_a_s.sci \
-	%msp_abs.sci %msp_length.sci	
+	%msp_abs.sci %msp_length.sci %msp_maxi.sci %msp_sparse.sci %s_m_msp.sci
 
 
 PLOT=   mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_grid.sci \
