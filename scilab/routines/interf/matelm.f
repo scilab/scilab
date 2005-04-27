@@ -5419,7 +5419,7 @@ c
          ref=.false.
       endif
 
-      if (istk(il).ne.5 .and. istk(il).ne.6) then
+      if (istk(il).ne.5 .and. istk(il).ne.7) then
          buf=fname//': argument must be a sparse matrix'
          call error(999)
          return
