@@ -641,6 +641,7 @@ void mxSetIr(mxArray *array_ptr, int *ir_data)
 {
   int * start_of_ir;
   int NZMAX;
+  if(ir_data == NULL)return; 
   int *header = Header(array_ptr);
   start_of_ir = (int *) mxGetIr(array_ptr);
   NZMAX = header[4];
@@ -1857,6 +1858,7 @@ mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
   return (mxArray *) C2F(vstk).lstk[lw + Top - Rhs - 1];     /* C2F(intersci).iwhere[lw-1])  */
 }
 
+
 /***************************************************************
  * Create on Scilab Stack a 1x1 string matrix filled with string
  **************************************************************/
@@ -2286,23 +2288,74 @@ void mxSetData(mxArray *array_ptr, void *data_ptr)
   exit(1);  /* TO BE DONE */
 }
 
-void mxSetPr(mxArray *array_ptr, double *pr)
+void mxSetPr(mxArray *array_ptr, double *pr_data)
 {
-  int size;
-  double *value;
-  value = mxGetPr(array_ptr);
-  size=mxGetM(array_ptr)*mxGetN(array_ptr);
-  memcpy(mxGetPr(array_ptr), pr, size*sizeof(double));
+  double *start_of_pr = mxGetPr(array_ptr);
+  unsigned long mem_size;
+  unsigned long mn = mxGetM(array_ptr) * mxGetN(array_ptr);
+  static int warn_cnt = 0; // Number of times to warn for memcpy overwrite.
+  static int warn_cnt2 = 0; // Number of times to warn for oversized NZMAX.
+
+  if(mxIsSparse(array_ptr)){
+    int *header = Header(array_ptr);
+    int NZMAX = header[4];
+    if( NZMAX <= mn ){
+      mem_size = NZMAX * sizeof(double);
+    }
+    else{ // Can't hold more than M*N elements so truncate and warn.  
+      mem_size = mn * sizeof(double);
+      if(warn_cnt2){
+	char *prefix = --warn_cnt2 == 0 ? "Last warning" : "Warning";
+	fprintf(stderr, "%s: mxSetPr (NZMAX=%i) > (M*N=%i).\n", prefix, (int)NZMAX, (int)mn);
+      }
+    }
+  }
+  else{ // Full Matrix
+    mem_size = mn * sizeof(double);
+  }
+  if(warn_cnt){
+    int overwrite = mem_size - sizeof(double)*(pr_data - start_of_pr);
+    if(overwrite > 0){
+      char *prefix = --warn_cnt == 0 ? "Last warning" : "Warning";
+      fprintf(stderr, "%s: mxSetPr overwriting destination by %i bytes.\n", prefix, overwrite);      
+    }
+  }
+  memcpy(start_of_pr, pr_data, mem_size);
 }
 
-void mxSetPi(mxArray *array_ptr, double *pi)
+void mxSetPi(mxArray *array_ptr, double *pi_data)
 {
-  /* TO BE DONE */
-  int size;
-  double *value;
-  value = mxGetPi(array_ptr);
-  size=mxGetM(array_ptr)*mxGetN(array_ptr);
-  memcpy(mxGetPi(array_ptr), pi, size*sizeof(double));
+  double *start_of_pi = mxGetPi(array_ptr);
+  unsigned long mem_size;
+  unsigned long mn = mxGetM(array_ptr) * mxGetN(array_ptr);
+  static int warn_cnt = 0; // Number of times to warn for memcpy overwrite.
+  static int warn_cnt2 = 0; // Number of times to warn for oversized NZMAX.
+
+  if(mxIsSparse(array_ptr)){
+    int *header = Header(array_ptr);
+    int NZMAX = header[4];
+    if( NZMAX <= mn ){
+      mem_size = NZMAX * sizeof(double);
+    }
+    else{ // Can't hold more than M*N elements so truncate and warn.  
+      mem_size = mn * sizeof(double);
+      if(warn_cnt2){
+	char *prefix = --warn_cnt2 == 0 ? "Last warning" : "Warning";
+	fprintf(stderr, "%s: mxSetPi (NZMAX=%i) > (M*N=%i).\n", prefix, (int)NZMAX, (int)mn);
+      }
+    }
+  }
+  else{ // Full Matrix
+    mem_size = mn * sizeof(double);
+  }
+  if(warn_cnt){
+    int overwrite = mem_size - sizeof(double)*(pi_data - start_of_pi);
+    if(overwrite > 0){
+      char *prefix = --warn_cnt == 0 ? "Last warning" : "Warning";
+      fprintf(stderr, "%s: mxSetPi overwriting destination by %i bytes.\n", prefix, overwrite);      
+    }
+  }
+  memcpy(start_of_pi, pi_data, mem_size);
 }
 
 const char *mxGetName(const mxArray *array_ptr)
