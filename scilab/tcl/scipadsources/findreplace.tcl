@@ -32,7 +32,11 @@ proc FindIt {w} {
             }
             if {$SearchPos != "" } {
                 # lineend below to be revisited once 8.5 is used (browse for TIP113)
-                regexp $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                if {$findcase=="1"} {
+                    regexp         -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                } else {
+                    regexp -nocase -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                }
                 set len [string length $res]
             } else {
                 set len [string length $SearchString]
@@ -129,7 +133,11 @@ proc ReplaceIt {once_or_all} {
         } else {
             if {$SearchPos != "" } {
                 # lineend below to be revisited once 8.5 is used (browse for TIP113)
-                regexp $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                if {$findcase=="1"} {
+                    regexp         -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                } else {
+                    regexp -nocase -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                }
                 set len [string length $res]
             } else {
                 set len [string length $SearchString]
@@ -160,7 +168,12 @@ proc ReplaceIt {once_or_all} {
             }         
             setmodified $textareacur
             reshape_bp
-            return [list "Done" $SearchPos [expr $lenR - $len]]
+            if {$SearchDir == "forwards"} {
+                set matchstartpos [$textareacur index "$SearchPos - $lenR char"]
+            } else {
+                set matchstartpos $SearchPos
+            }
+            return [list "Done" [expr $lenR - $len] $matchstartpos]
         } else {
             set SearchPos [$textareacur index "insert"]
             if {$once_or_all == "once"} {
@@ -168,7 +181,7 @@ proc ReplaceIt {once_or_all} {
                     [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
                     -parent $find -title [mc "Replace"]
               }
-            return [list "No_match" $SearchPos 0]
+            return [list "No_match" 0 0]
         }
     } else {
         tk_messageBox -message [mc "You are searching for an empty string!"] \
@@ -177,31 +190,92 @@ proc ReplaceIt {once_or_all} {
 }
 
 proc ReplaceAll {} {
-    global SearchPos SearchString find
+    global SearchPos SearchString find SearchDir
+
+    proc diditwrap {PrecPos NewPos} {
+    # Check whether the most recent replace wrapped (from end of text
+    # to its beginning, or the opposite)
+        global SearchDir
+        set textareacur [gettextareacur]
+        set didwrap "false"
+        if {$SearchDir == "forwards"} {
+            if {[$textareacur compare $NewPos < $PrecPos]} {
+                set didwrap "true"
+            }
+        } else {
+            if {[$textareacur compare $NewPos > $PrecPos]} {
+                set didwrap "true"
+            }
+        }
+        return $didwrap
+    }
+
     set textareacur [gettextareacur]
     if {$SearchString != ""} {
-        # The following has been a little bit reworked to account for the possibility that the user,
-        # without checking the Match case box, tries to replace a string S1 with a string S2 that is
-        # only different from S1 by the character case 
-        set ReplaceItResult [ReplaceIt once]
-        set anotherone [lindex $ReplaceItResult 0]
-        set RefPos [$textareacur index [lindex $ReplaceItResult 1]]
+        set RefPos $SearchPos
+        set anotherone ""
         set NbOfReplaced 0
+        set wrapped "false"
+        set wrappedagain "false"
+        set onetoomuch "false"
+        set NewPos $RefPos
+        set firstmatch "true"
         while {$anotherone != "No_match"} {
-            incr NbOfReplaced
             set ReplaceItResult [ReplaceIt all]
             set anotherone [lindex $ReplaceItResult 0]
-            set NewPos [$textareacur index [lindex $ReplaceItResult 1]]
-            set len [string length $SearchString]
-            if {int([$textareacur index $RefPos])==int([$textareacur index $NewPos]) && \
-                [$textareacur compare $NewPos <= [$textareacur index "$RefPos + $len char + 1c"]] } {
-                set RefPos [$textareacur index "$RefPos+[lindex $ReplaceItResult 2] char"]
-            }
-            if {$NewPos == $RefPos} {
-                set anotherone "No_match"
-                # remove the wrong superfluous replace (two calls to undo_menu_proc needed)
-                undo_menu_proc
-                undo_menu_proc
+            if {$anotherone != "No_match"} {
+                update
+                incr NbOfReplaced
+                set PrecPos $NewPos
+                set NewPos [$textareacur index [lindex $ReplaceItResult 2]]
+                # Save area of the replaced text
+                if {$firstmatch == "true"} {
+                    set reprange [$textareacur tag nextrange replacedtext 1.0]
+                    set firstreplstart [lindex $reprange 0]
+                    set lastreplstart  [lindex $reprange 1]
+                }
+                # Reference position must be ajusted if text has been replaced on the
+                # same line as and before the initial start position.
+                # This reference position is used to detect when all the text has been
+                # searched once, meaning that the replace all must end. This test is
+                # only used when the text to replace is included in the new replacement
+                # text (if not, then the loop ends because $anotherone == "No_match")
+                if {int([$textareacur index $RefPos])==int([$textareacur index $NewPos]) && \
+                    [$textareacur compare $NewPos < $RefPos] } {
+                    set RefPos [$textareacur index "$RefPos+[lindex $ReplaceItResult 1] char"]
+                }
+                if {$wrapped =="false"} {
+                        set wrapped [diditwrap $PrecPos $NewPos]
+                } else {
+                        set wrappedagain [diditwrap $PrecPos $NewPos]
+                }
+                # If the search wrapepd and the newly replaced text is after (or before)
+                # the reference position, then replace all must end
+                if {$SearchDir == "forwards"} {
+                    if {$wrapped == "true" && [$textareacur compare $NewPos > $RefPos]} {
+                        set onetoomuch "true"
+                    }
+                } else {
+                    if {$wrapped == "true" && [$textareacur compare $NewPos < $RefPos]} {
+                        set onetoomuch "true"
+                    }
+                }
+                # If the newly replaced text starts inside the first replaced area, then
+                # it means that there is a single match of the searched text in the buffer
+                # and replace all must end
+                if {[$textareacur compare $firstreplstart <= $NewPos] && \
+                    [$textareacur compare $NewPos < $lastreplstart] && \
+                    $firstmatch == "false"} {
+                    set onetoomuch "true"
+                }
+                if {$onetoomuch == "true" || $wrappedagain == "true"} {
+                    set anotherone "No_match"
+                    # remove the wrong superfluous replace (two calls to undo_menu_proc needed)
+                    undo_menu_proc
+                    undo_menu_proc
+                    incr NbOfReplaced -1
+                }
+                set firstmatch "false"
             }
         }
         showinfo "$NbOfReplaced [mc "replacements done"]"

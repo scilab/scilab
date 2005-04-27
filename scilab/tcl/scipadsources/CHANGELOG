@@ -1007,3 +1007,12 @@ Francois VOGEL, 26/04/05
  * Bug fixed: Trying to drag and drop in the call stack area of the watch
    window produced an error - Now this operation is no more allowed
  * version --> 4.7
+
+Francois VOGEL, 27/04/05
+ * Better fix for the Replace all bug supposedly fixed in 4.7 (there were
+   still cases that could hang Scipad) - Rewrote proc ReplaceAll
+ * Bug fixed: Regexps finds or replaces could produce an error if the
+   search was performed independently of character case (e.g searching
+   for [ab] in a buffer containing xxAxx)
+ * version --> 4.8
+

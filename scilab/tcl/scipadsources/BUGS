@@ -55,6 +55,10 @@ Bugs:
 -Ctrl-F1 on some characters like " ' - or + does not work (different errors in
  the shell. Problem is partly in sciGUI, and partly in Scipad.
 
+-Selection bounds is not well managed during replace (shows up when
+ replacing text by a larger or shorter text
+
+
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
 
