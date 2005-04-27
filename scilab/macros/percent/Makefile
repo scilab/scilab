@@ -181,7 +181,9 @@ SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
 	 %sp_int.sci %sp_inv.sci %sp_norm.sci \
 	 %sp_round.sci %sp_sin.sci %sp_sort.sci %sp_sqrt.sci %sp_sum.sci \
 	 %sp_tril.sci %sp_triu.sci %spb_diag.sci %spb_tril.sci %spb_triu.sci\
-	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci %sp_length.sci
+	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci %sp_length.sci 
+
+MSPFUNS = %msp_spones.sci
 
 IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci %i_length.sci %i_ascii.sci \
 	%i_matrix.sci %i_bezout.sci %i_gcd.sci %i_lcm.sci
@@ -196,6 +198,6 @@ MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
 	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)\
 	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
-	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) $(HFUNS) $(XLSFUNS)
+	$(SFUNS) $(SPFUNS) $(MSPFUNS) $(IFUNS) $(FUNS) $(HFUNS) $(XLSFUNS)
 
 include ../Make.lib

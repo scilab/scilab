@@ -22,7 +22,7 @@ A =     %c_a_c.sci %hm_a_hm.sci %hm_a_s.sci %ip_a_s.sci \
 
 B =      %b_i_b.sci %s_g_b.sci %s_h_b.sci %s_i_b.sci \
 	 %spb_c_b.sci %spb_f_b.sci %spb_g_b.sci %spb_h_b.sci \
-	 %spb_i_b.sci
+	 %spb_i_b.sci %c_b_c.sci %c_b_s.sci
 
 C =      %b_c_spb.sci %c_i_c.sci %hm_c_hm.sci %l_n_c.sci \
 	 %l_o_c.sci %lss_c_lss.sci %lss_c_p.sci %lss_c_r.sci \
@@ -30,7 +30,7 @@ C =      %b_c_spb.sci %c_i_c.sci %hm_c_hm.sci %l_n_c.sci \
 	 %r_c_p.sci %r_c_r.sci %r_c_s.sci %s_c_lss.sci \
 	 %s_c_r.sci %s_c_sp.sci %s_i_c.sci %sp_c_s.sci \
 	 %cblock_c_cblock.sci %s_c_cblock.sci \
-	 %cblock_c_s.sci
+	 %cblock_c_s.sci 
 
 D =      %hm_d_hm.sci %hm_d_s.sci %p_d_p.sci %p_d_r.sci \
 	 %p_d_s.sci %r_d_p.sci %r_d_r.sci %r_d_s.sci %s_d_p.sci \
@@ -184,7 +184,9 @@ SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
 	 %sp_int.sci %sp_inv.sci %sp_norm.sci \
 	 %sp_round.sci %sp_sin.sci %sp_sort.sci %sp_sqrt.sci %sp_sum.sci \
 	 %sp_tril.sci %sp_triu.sci %spb_diag.sci %spb_tril.sci %spb_triu.sci\
-	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci %sp_length.sci
+	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci %sp_length.sci 
+
+MSPFUNS = %msp_spones.sci
 
 IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci %i_length.sci %i_ascii.sci \
 	%i_matrix.sci %i_bezout.sci %i_gcd.sci %i_lcm.sci
@@ -199,6 +201,6 @@ MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
 	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)\
 	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
-	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) $(HFUNS) $(XLSFUNS)
+	$(SFUNS) $(SPFUNS) $(MSPFUNS) $(IFUNS) $(FUNS) $(HFUNS) $(XLSFUNS)
 
 include ../Make.lib.mak
