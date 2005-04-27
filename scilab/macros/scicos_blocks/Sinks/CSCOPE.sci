@@ -93,7 +93,7 @@ case 'define' then
   wdim=[600;400]
   wpos=[-1;-1]
   clrs=[1;3;5;7;9;11;13;15];
-  N=2;
+  N=20;
   ymin=-15;ymax=+15;per=30;
 
   model=scicos_model()

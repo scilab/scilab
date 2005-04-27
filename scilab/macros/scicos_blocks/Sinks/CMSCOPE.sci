@@ -112,7 +112,7 @@ case 'define' then
   wdim=[-1;-1]
   wpos=[-1;-1]
   clrs=[1;3;5;7;9;11;13;15];
-  N=2;
+  N=20;
 
   ymin=[-1;-5];ymax=[1;5];per=30;
   yy=[ymin(:)';ymax(:)']
