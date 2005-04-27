@@ -5418,12 +5418,17 @@ c
       else
          ref=.false.
       endif
-
       if (istk(il).ne.5 .and. istk(il).ne.6) then
-         buf=fname//': argument must be a sparse matrix'
-         call error(999)
+         if (istk(il).eq.7) then
+            call funnam(ids(1,pt+1),'spones',iadr(lstk(top)))
+            fun=-1
+         else
+            buf=fname//': argument must be a sparse matrix'
+            call error(999)
+         endif
          return
       endif
+
       m=istk(il+1)
       nel=istk(il+4)
       lr = sadr(ilr+5+m+nel)
