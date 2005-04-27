@@ -95,6 +95,10 @@ int NumTokens __PARAMS((char *str));
 int int_objprintf(char *fname)
 {
   static int l1, m1, n1, lcount, rval, k, mx, mk, nk;
+  char *ptrFormat=NULL;
+  int i=0;
+  int NumberPercent=0;
+
   Nbvars = 0;
   CheckRhs(1,1000);
   CheckLhs(0,1);
@@ -109,6 +113,21 @@ int int_objprintf(char *fname)
   }
 
   GetRhsVar(1,"c",&m1,&n1,&l1);
+  ptrFormat=cstk(l1
+);
+  for(i=0;i<strlen(ptrFormat);i++)
+  {
+    if (ptrFormat[i]=='%') {
+      NumberPercent++;
+      if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
+    }
+  }
+
+  if (NumberPercent<Rhs-1)
+  {
+	Scierror(999,"mfprintf: Invalid format.\r\n");
+	return 0;
+  }
 
   mx=0;
   if (Rhs>=2) {
@@ -142,6 +161,10 @@ int int_objfprintf(char *fname)
 {
   FILE *f;
   static int l1, m1, n1,l2,m2,n2,lcount,rval, mx, mk, nk, k;
+  char *ptrFormat=NULL;
+  int i=0;
+  int NumberPercent=0;
+
   Nbvars = 0;
   CheckRhs(1,1000);
   CheckLhs(0,1);
@@ -155,11 +178,28 @@ int int_objfprintf(char *fname)
   }
   GetRhsVar(1,"i",&m1,&n1,&l1); /* file id */
   GetRhsVar(2,"c",&m2,&n2,&l2); /* format */
+  ptrFormat=cstk(l2);
+
   if ((f= GetFile(istk(l1))) == (FILE *)0)
     {
-      Scierror(999,"fprintf:\t wrong file descriptor %d\r\n",*istk(l1));
+      Scierror(999,"mfprintf:\t wrong file descriptor %d\r\n",*istk(l1));
       return 0;
     }
+
+  for(i=0;i<strlen(ptrFormat);i++)
+  {
+    if (ptrFormat[i]=='%') {
+      NumberPercent++;
+      if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
+    }
+  }
+
+  if (NumberPercent<Rhs-2)
+  {
+	Scierror(999,"mfprintf: Invalid format.\r\n");
+	return 0;
+  }
+
   mx=0;
   if (Rhs>=3) {
     GetMatrixdims(3,&mx,&nk);
@@ -216,10 +256,13 @@ int int_objsprintf(char *fname)
 
   for(i=0;i<strlen(ptrFormat);i++)
   {
-    if (ptrFormat[i]=='%') NumberPercent++;
+    if (ptrFormat[i]=='%') {
+      NumberPercent++;
+      if (ptrFormat[i+1]=='%') {NumberPercent--;i++;}
+    }
   }
 
-  if (NumberPercent==0)
+  if (NumberPercent<Rhs-1)
   {
 	Scierror(999,"sprintf: Invalid format.\r\n");
 	return 0;
