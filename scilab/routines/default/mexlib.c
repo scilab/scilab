@@ -641,8 +641,9 @@ void mxSetIr(mxArray *array_ptr, int *ir_data)
 {
   int * start_of_ir;
   int NZMAX;
-  if(ir_data == NULL)return; 
   int *header = Header(array_ptr);
+
+  if(ir_data == NULL)return; 
   start_of_ir = (int *) mxGetIr(array_ptr);
   NZMAX = header[4];
   memcpy(start_of_ir, ir_data, NZMAX*sizeof(int));
