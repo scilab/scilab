@@ -3374,7 +3374,18 @@ int GetWinsMaxId(void)
   return(Num);
 }
 
+int GetEventWindow(XEvent* event)
+{
+  WindowList *listptr = The_List;
 
+  while ( listptr != (WindowList  *) 0 ) {
+    if (event->xbutton.window == listptr->winxgc.CWindow) 
+      return(listptr->winxgc.CurWindow);
+    listptr =  (WindowList *)listptr->next;
+  }
+  return(-1);
+
+}
 
 /********************************************
  * Routines for initialization : string is a display name 
