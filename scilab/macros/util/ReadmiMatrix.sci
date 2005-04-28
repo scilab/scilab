@@ -11,6 +11,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     error('Found Datatype='+string(DataType)+', expecting '+ ...
 	  string(miMatrix))
   end
+  if NumberOfBytes==0 then value=[],return,end
   [Flags,Class,NnzMax]=ReadArrayFlags(fd);
   DimensionArray=ReadDimensionArray(fd);
   ArrayName=ReadArrayName(fd)
@@ -64,11 +65,12 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     end
     value=matrix(value,DimensionArray)
   case CellClass 
+   
     entries=list()
     for k=1:prod(DimensionArray)
       entries(k)=ReadmiMatrix(fd)
     end
-    value=mlist(['ce','dims','entries'],DimensionArray,entries)
+    value=mlist(['ce','dims','entries'],int32(DimensionArray),entries)
   case CharClass 
     value=matrix(ReadSimpleElement(fd,prod(DimensionArray)),DimensionArray(1),-1)
     t=[];for v=value',t=[t;stripblanks(ascii(double(v)))];end
@@ -226,7 +228,8 @@ function value=ReadSimpleElement(fd,NumberOfValues,Class)
     if argn(2)==1 then NumberOfValues=NumberOfBytes/8,end
     value=mget(NumberOfValues,md_l,fd)
   case miMatrix
-    pause
+    mseek(pse,fd)
+    [value,ArrayName]=ReadmiMatrix(fd)
   else
     disp("Not implemented DataType: "+string(DataType));
     pause
