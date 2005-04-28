@@ -11,7 +11,7 @@ if ~r&n1>0 then
   k1=definedfields(l1)
   k2=definedfields(l2)
   for i=intersect(k1,k2),
-    if getfield(i,l1)==getfield(i,l2) then r(i)= %t,end
+    if and(getfield(i,l1)==getfield(i,l2)) then r(i)= %t,end
   end
   s1=1:n1;s1(k1)=[];
   s2=1:n1;s2(k2)=[];
