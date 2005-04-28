@@ -367,6 +367,49 @@ clear S;S(4).a=3;
 Sr = mlist(["st","dims","a"],int32([4,1]),list([],[],[],3));   
 if or(S<>Sr) pause,end
 
+
+clear S;
+S(1).a(1,1:4)=1;
+S(1).b(1:3)=5;
+Sr=mlist(["st","dims","a","b"],int32([1,1]),[1,1,1,1],[5;5;5]);
+if or(S<>Sr) pause,end
+
+
+S=struct();
+S.b(1,1)=3;
+Sr=mlist(["st","dims","b"],int32([1,1]),3);
+if or(S<>Sr) pause,end
+
+clear S;
+S(1,1).a(1,1:4)=1;
+S(1,1).b(1,1:3)=5;
+Sr=mlist(["st","dims","a","b"],int32([1,1]),[1,1,1,1],[5,5,5]);
+if or(S<>Sr) pause,end
+
+clear S;
+S(1,1).a(1:4)=1;
+S(1,1).b(1:3)=5;
+Sr=mlist(["st","dims","a","b"],int32([1,1]),[1;1;1;1],[5;5;5]);
+if or(S<>Sr) pause,end
+
+clear S;
+S(1,2).a(1:4)=1;
+S(2,1).b(1:3)=5;
+Sr=mlist(["st","dims","a","b"],int32([2,2]),list([],[],[1,1,1,1]',[]),list([],[5,5,5]',[],[]));
+if or(S<>Sr) pause,end
+
+clear S;
+S(1,2).a(2).b(1,2)=1;
+Sr=mlist(["st","dims","a"],int32([1,2]),list([],mlist(["st","dims","b"],int32([2,1]),list([],[0,1]))));
+if or(S<>Sr) pause,end
+
+clear S;
+S(1,2).a(1,2).b(1,2,3)=4;
+Sr=mlist(["st","dims","a"],int32([1,2]),list([],mlist(["st","dims","b"],..
+	int32([1,2]),list([],mlist(["hm","dims","entries"],int32([1,2,3]),..
+	[0;0;0;0;0;4])))));
+if or(S<>Sr) pause,end
+
 mtlb_mode(%t) 
 clear S;S(1,2).a=3;S(3).a=44 ;
 Sr = mlist(["st","dims","a"],int32([1,3]),list([],3,44));
