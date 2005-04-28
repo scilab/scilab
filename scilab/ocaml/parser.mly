@@ -763,9 +763,20 @@ annotation
 
 %%
 
-let parse token_fun lexbuf = stored_definition_eof token_fun lexbuf
-
-let parse_error_message ch lexbuf =
-  Printf.eprintf
-    "\nsyntax error before: %s\n"
-    (Lexing.lexeme lexbuf)
+let parse filename token_fun lexbuf =
+  try stored_definition_eof token_fun lexbuf with
+    | Parsing.Parse_error ->
+        let linenum, linebeg =
+          Linenum.for_position filename (Lexing.lexeme_start lexbuf)
+        and linenum', linebeg' =
+          Linenum.for_position filename (Lexing.lexeme_end lexbuf)
+        in
+        let first_char = Lexing.lexeme_start lexbuf - linebeg
+        and first_char' = Lexing.lexeme_end lexbuf - linebeg'
+        in
+        Printf.eprintf
+          "Syntax error at line %d, characters %d to %d\n"
+          linenum
+          first_char 
+          ((Lexing.lexeme_end lexbuf - Lexing.lexeme_start lexbuf) + first_char);
+        raise Parsing.Parse_error

@@ -6,6 +6,7 @@ module type CODEGENERATOR =
 
 module type S =
   sig
+    val sccs_id: string
     val version: string
     val run: unit -> unit
   end
@@ -13,7 +14,10 @@ module type S =
 module Make(G: CODEGENERATOR): S =
   struct
 
-    let version = "1.5.4"
+    let sccs_id =
+      "@(#)Modelicac - Copyright (C) 2003-2004 TNI-Valiosys, 2005 Imagine"
+
+    let version = "1.5.6"
 
     let path = ref ""
 
@@ -86,7 +90,7 @@ module Make(G: CODEGENERATOR): S =
       Printf.printf "Input file name = %s\n" !input; flush stdout;
       let lexbuf = Lexing.from_channel ic in
       Printf.printf "Parsing..."; flush stdout;
-      let tree = Parser.parse Lexer.token lexbuf in
+      let tree = Parser.parse !input Lexer.token lexbuf in
       Printf.printf " OK\nPrecompiling..."; flush stdout;
       let root = Precompilation.precompile tree in
       Printf.printf " OK\nCompiling..."; flush stdout;

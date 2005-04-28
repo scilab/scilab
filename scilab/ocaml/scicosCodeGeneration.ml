@@ -428,6 +428,10 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
         bufferize_expression_under (precedence expr + 1) expr'
         (* add one to the precedence to ensure parentheses to be correctly
            placed aroud expr' *)
+      end else if is_integer_num num then begin
+        Printf.bprintf model_info.code_buffer "ipow(";
+        bufferize_expression expr';
+        Printf.bprintf model_info.code_buffer ", %d)" (int_of_num num);
       end else begin
         Printf.bprintf model_info.code_buffer "pow(";
         bufferize_expression expr';
@@ -953,15 +957,35 @@ let generate_code path filename fun_name model with_jac =
     nb_modes
     (List.length model.when_clauses + nb_modes)
     (if model.io_dependency then "true" else "false");
-  Printf.fprintf oc "#include <math.h>\n#include <scicos/scicos_block.h>\n\n";
+  Printf.fprintf oc "#include <math.h>\n#include <scicos/scicos_block.h>\n";
   List.iter
     (fun name ->
       Printf.fprintf oc
         "#include \"%s.h\"\n"
         (String.escaped (Filename.concat path (to_filename name))))
     model.external_functions;
+  Printf.fprintf oc "\n\n/* Utility functions */\n\n";
   Printf.fprintf oc
-    "\nvoid %s(scicos_block *block, int flag)\n"
+    "double ipow_(double x, int n)\n\
+     {\n\
+     \tdouble y;\n\
+     \ty = n %% 2 ? x : 1;\n\
+     \twhile (n >>= 1) {\n\
+     \t\tx = x * x;\n\
+     \t\tif (n %% 2) y = y * x;\n\
+     \t}\n\
+     \treturn y;\n\
+     }\n\
+     \n\
+     double ipow(double x, int n)\n\
+     {\n\
+     \tif (x != x || x == 0.0 && n == 0) return 0.0 / 0.0;\n\
+     \tif (n < 0) return 1.0 / ipow_(x, -n);\n\
+     \treturn ipow_(x, n);\n\
+     }\n";
+  Printf.fprintf oc "\n\n/* Scicos block's entry point */\n\n";
+  Printf.fprintf oc
+    "void %s(scicos_block *block, int flag)\n"
     fun_name;
   Printf.fprintf oc
     "{\n\

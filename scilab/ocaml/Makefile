@@ -9,7 +9,7 @@ OCAMLFLAGS=
 OCAMLOPTFLAGS=
 LFLAGS=
 LIBS=nums.cma
-MLS=parseTree.ml parser.ml lexer.ml\
+MLS=parseTree.ml linenum.ml parser.ml lexer.ml\
 	precompilation.ml compilation.ml instantiation.ml\
 	graphNodeSet.ml symbolicExpression.ml\
 	squareSparseMatrix.ml bipartiteGraph.ml hungarianMethod.ml\
@@ -98,9 +98,9 @@ doc:    $(DOCS)
 
 
 archive: $(DOCS) $(DOCS:.mli=.ml) scicosOptimizingCompiler.ml \
-lexer.mll parser.mly README.txt Makefile
+linenum.mll lexer.mll parser.mly README.txt Makefile
 	@mkdir -p sources
-	@for f in $(DOCS) $(DOCS:.mli=.ml) scicosOptimizingCompiler.ml lexer.mll parser.mly README.txt Makefile;\
+	@for f in $(DOCS) $(DOCS:.mli=.ml) scicosOptimizingCompiler.ml linenum.mll lexer.mll parser.mly README.txt Makefile;\
 	@do\
 		cp $$f sources/$$f;\
 	done

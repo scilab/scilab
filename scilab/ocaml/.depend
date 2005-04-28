@@ -1,7 +1,7 @@
 parseTree.cmo: parseTree.cmi 
 parseTree.cmx: parseTree.cmi 
-parser.cmo: parseTree.cmi 
-parser.cmx: parseTree.cmx 
+parser.cmo: linenum.cmo parseTree.cmi 
+parser.cmx: linenum.cmx parseTree.cmx 
 lexer.cmo: parser.cmo 
 lexer.cmx: parser.cmx 
 precompilation.cmo: parseTree.cmi precompilation.cmi 

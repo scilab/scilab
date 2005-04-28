@@ -861,7 +861,7 @@ let perform_then_propagate_inversion model i =
             | Assign (expr1, expr2) ->
                 Assign (expr1, replace var expr' expr2)
             | Reinit (expr1, expr2) ->
-                Reinit (replace var expr' expr1, replace var expr' expr2))
+                Reinit (expr1, replace var expr' expr2))
           updates)
       clauses
   in
@@ -1009,7 +1009,8 @@ let eliminate_trivial_relations max_simplifs model =
           begin match nature node, nature node' with
             | Variable i, Number _ | Number _, Variable i ->
                 permute_equations i n;
-                perform_then_propagate_inversion model i
+                perform_then_propagate_inversion model i;
+                decr max_simplifs_ref
             | Variable i, Variable j ->
                 let k = choose_variable i j in
                 update_variable_attributes i j;

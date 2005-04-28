@@ -933,14 +933,14 @@ and add_multiplication_to_multiplication_if_possible node node' =
         begin match nodes, nodes' with
           | [], _ -> symbolic_add_if_possible one node'
           | _, [] -> symbolic_add_if_possible one node
-          | node :: nodes, node' :: nodes' ->
+          | node :: nodes2, node' :: nodes2' ->
               begin match node.nature, node'.nature with
                 | Number num, Number num' ->
-                    add_factors_if_possible num nodes num' nodes'
+                    add_factors_if_possible num nodes2 num' nodes2'
                 | Number num, _ ->
-                    add_factors_if_possible num nodes one_num (node' :: nodes')
+                    add_factors_if_possible num nodes2 one_num nodes'
                 | _, Number num' ->
-                    add_factors_if_possible one_num (node :: nodes) num' nodes'
+                    add_factors_if_possible one_num nodes num' nodes2'
                 | _ ->
                     add_factors_if_possible one_num nodes one_num nodes'
               end
@@ -1417,23 +1417,7 @@ and invert_if_possible_with_respect_to node left right =
         invert_if_possible_with_respect_to node node' (symbolic_asinh right)
     | HyperbolicTangent node' ->
         invert_if_possible_with_respect_to node node' (symbolic_atanh right)
-    | If (cond, node', node'') ->
-        begin try
-          let opt = invert_if_possible_with_respect_to node node' right in
-          try
-            let opt' = invert_if_possible_with_respect_to node node'' right in
-            match opt, opt' with
-              | None, _ | _, None -> None
-              | Some node, Some node' -> Some (create_if cond node node')
-          with
-            | Invalid_argument _ -> None
-        with
-          | Invalid_argument _ ->
-              begin
-                match invert_if_possible_with_respect_to node node'' right with
-                  | _ -> None
-              end
-        end
+    | If (cond, node', node'') -> None
     | Logarithm node' ->
         invert_if_possible_with_respect_to node node' (symbolic_exp right)
     | Multiplication nodes ->
@@ -1494,17 +1478,11 @@ and inversion_difficulty node left right =
     | _ -> 2
 
 and replace node node' node'' =
-  let rec rewrite node =
-    if node.count = !global_count then
-      node.replacement
-    else
-      let node' = replace' node in
-      node.count <- !global_count;
-      node.replacement <- node';
-      node'
-  and replace' node = match node.nature with
-    | Addition nodes -> apply_addition (List.rev_map rewrite nodes)
-    | And nodes -> apply_and (List.rev_map rewrite nodes)
+  let rec rewrite node'' =
+    if node'' == node then node'
+    else match node''.nature with
+    | Addition nodes -> apply_addition (List.map rewrite nodes)
+    | And nodes -> apply_and (List.map rewrite nodes)
     | ArcCosine node -> symbolic_acos (rewrite node)
     | ArcHyperbolicCosine node -> symbolic_acosh (rewrite node)
     | ArcHyperbolicSine node -> symbolic_asinh (rewrite node)
@@ -1524,9 +1502,54 @@ and replace node node' node'' =
     | If (node, node', node'') ->
         symbolic_if (rewrite node) (rewrite node') (rewrite node'')
     | Logarithm node -> symbolic_log (rewrite node)
-    | Multiplication nodes -> apply_multiplication (List.rev_map rewrite nodes)
+    | Multiplication nodes -> apply_multiplication (List.map rewrite nodes)
     | Not node -> symbolic_not (rewrite node)
-    | Or nodes -> apply_or (List.rev_map rewrite nodes)
+    | Or nodes -> apply_or (List.map rewrite nodes)
+    | PartialDerivative (node, node') ->
+        create_partialDerivative (rewrite node) (rewrite node')
+    | RationalPower (node, num) -> symbolic_rationalPower (rewrite node) num
+    | Sign node -> symbolic_sgn (rewrite node)
+    | Sine node -> symbolic_sin (rewrite node)
+    | Tangent node -> symbolic_tan (rewrite node)
+    | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
+      Parameter _ | TimeVariable | Variable _ -> node''
+  in
+  rewrite node''
+
+(*and replace node node' node'' =
+  let rec rewrite node =
+    if node.count = !global_count then
+      node.replacement
+    else
+      let node' = replace' node in
+      node.count <- !global_count;
+      node.replacement <- node';
+      node'
+  and replace' node = match node.nature with
+    | Addition nodes -> apply_addition (List.map rewrite nodes)
+    | And nodes -> apply_and (List.map rewrite nodes)
+    | ArcCosine node -> symbolic_acos (rewrite node)
+    | ArcHyperbolicCosine node -> symbolic_acosh (rewrite node)
+    | ArcHyperbolicSine node -> symbolic_asinh (rewrite node)
+    | ArcHyperbolicTangent node -> symbolic_atanh (rewrite node)
+    | ArcSine node -> symbolic_asin (rewrite node)
+    | ArcTangent node -> symbolic_atan (rewrite node)
+    | BlackBox (s, nodes) -> apply_blackBox s (List.map rewrite nodes)
+    | Cosine node -> symbolic_cos (rewrite node)
+    | Derivative (node, num) -> symbolic_derive (rewrite node) num
+    | Equality (node, node') -> symbolic_eq (rewrite node) (rewrite node')
+    | Exponential node -> symbolic_exp (rewrite node)
+    | Floor node -> symbolic_floor (rewrite node)
+    | Greater (node, node') -> symbolic_gt (rewrite node) (rewrite node')
+    | HyperbolicCosine node -> symbolic_cosh (rewrite node)
+    | HyperbolicSine node -> symbolic_sinh (rewrite node)
+    | HyperbolicTangent node -> symbolic_tanh (rewrite node)
+    | If (node, node', node'') ->
+        symbolic_if (rewrite node) (rewrite node') (rewrite node'')
+    | Logarithm node -> symbolic_log (rewrite node)
+    | Multiplication nodes -> apply_multiplication (List.map rewrite nodes)
+    | Not node -> symbolic_not (rewrite node)
+    | Or nodes -> apply_or (List.map rewrite nodes)
     | PartialDerivative (node, node') ->
         create_partialDerivative (rewrite node) (rewrite node')
     | RationalPower (node, num) -> symbolic_rationalPower (rewrite node) num
@@ -1543,3 +1566,4 @@ and replace node node' node'' =
   let rewritten_node = rewrite node'' in
   node.replacement <- node;
   rewritten_node
+*)
