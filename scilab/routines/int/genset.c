@@ -28,6 +28,9 @@ int *dy;
 {
   static integer i, iy;
   switch (*typ) {
+  case 0:
+    SET(double);
+    break;
   case 1:
     SET(integer1);
     break;
