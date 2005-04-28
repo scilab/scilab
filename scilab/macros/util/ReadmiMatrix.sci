@@ -85,14 +85,17 @@ function [value,ArrayName]=ReadmiMatrix(fd)
       Fnams=[Fnams,stripblanks(ascii(double(FieldNames(1:l,k))))];
       Fields(k)=list();
     end
+
     if prod(DimensionArray)==1 then
        for k=1:NumberOfFields
 	 Fields(k)=ReadmiMatrix(fd);
        end
     else
+      Fk=list();for i=1:size(DimensionArray,'*'),Fk(i)=[];end
+      for k=1:NumberOfFields,Fields(k)=Fk,end
       for i=1:prod(DimensionArray)
 	for k=1:NumberOfFields
-	  Fields(k)($+1)=ReadmiMatrix(fd);
+	  Fields(k)(i)=ReadmiMatrix(fd);
 	end
       end
     end
@@ -410,4 +413,18 @@ function b=byte2bits(i)
 //Copyright INRIA  
 //Author Serge Steer  
   b=(iconvert(i,11)&iconvert(2^(0:3),11))<>uint8(0)
+endfunction
+
+function I=columnfirstorder(d)
+  nd=size(d,'*')
+  if nd==2 then
+    I=matrix(matrix(1:prod(d),d)',1,-1)
+  else
+    dd=prod(d(3:$))
+    I1=matrix(1:prod(d),d(1),d(2),dd)
+    I=[]
+    for k=1:dd
+      I=[I matrix(I1(:,:,k)',1,-1)]
+    end
+  end
 endfunction
