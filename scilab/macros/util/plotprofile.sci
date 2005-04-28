@@ -43,7 +43,7 @@ function plotprofile(fun)
   scf(win)
 
   subplot(311)
-  mx=max(count(:,1))+1
+  mx=max(count(:,1))
   plot2d3(1:size(count,1),count(:,1),style=1,rect=[0,0,nm,mx])
   legend('# calls',1)
   xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
@@ -51,14 +51,14 @@ function plotprofile(fun)
 
   
   subplot(312)
-  mx=max(1,max(count(:,3))+1)
+  mx=max(1,max(count(:,3)))
   plot2d3(1:size(count,1),count(:,3),style=2,rect=[0,0,nm,mx])
   legend('Complexity',1)
     
   xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
 
   subplot(313)
-  mx=max(count(:,2))+1
+  mx=max(count(:,2))
   plot2d3(1:size(count,1),count(:,2),style=3,rect=[0,0,nm,mx])
   legend('Cpu Time',1)
   xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
