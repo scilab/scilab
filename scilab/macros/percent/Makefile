@@ -157,7 +157,7 @@ HMFUNS = %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_round.sci %hm_sign.sci %hm_sin.sci %hm_size.sci \
 	 %hm_sqrt.sci %hm_st_deviation.sci %hm_sum.sci \
 	 %hm_zeros.sci %hm_bool2s.sci %hm_find.sci %hm_isnan.sci \
-	 %hm_isreal.sci %hm_iconvert.sci
+	 %hm_isreal.sci %hm_iconvert.sci %hm_and.sci  %hm_or.sci 
 
 BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci %b_iconvert.sci \
 	%b_matrix.sci
@@ -193,7 +193,7 @@ HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci %h_matrix.sci
 FUNS =   %cblock_p.sci %choose.sci %l_isequal.sci
 
 XLSFUNS = %xls_p.sci %xlssheet_p.sci %xls_e.sci %xlssheet_e.sci %xlssheet_size.sci \
-	%xlssheet_string.sci 
+	 %xlssheet_string.sci 
 
 MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
