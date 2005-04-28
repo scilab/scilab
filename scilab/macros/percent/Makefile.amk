@@ -98,7 +98,7 @@ O =      %hm_o_hm.sci %hm_o_s.sci %hm_o_i.sci %ip_o_ip.sci %l_o_p.sci \
 	 %s_o_hm.sci %s_o_lss.sci %s_o_r.sci
 
 P =      %ar_p.sci %hm_p.sci %ip_p.sci %msp_p.sci  %r_p.sci  %h_p.sci\
-	 %p_p_s.sci %r_p_s.sci  %dir_p.sci
+	 %p_p_s.sci %r_p_s.sci  %dir_p.sci 
 
 Q =      %hm_q_hm.sci %p_q_r.sci %p_q_s.sci %r_q_r.sci \
 	 %r_q_s.sci %s_q_hm.sci %s_q_r.sci %s_q_sp.sci \
@@ -195,7 +195,8 @@ HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci %h_matrix.sci
 
 FUNS =   %cblock_p.sci %choose.sci %l_isequal.sci
 
-XLSFUNS = %xls_p.sci %xlssheet_p.sci %xls_e.sci %xlssheet_e.sci 
+XLSFUNS = %xls_p.sci %xlssheet_p.sci %xls_e.sci %xlssheet_e.sci %xlssheet_size.sci \
+	%xlssheet_string.sci 
 
 MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
