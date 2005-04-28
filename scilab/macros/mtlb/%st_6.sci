@@ -5,7 +5,6 @@ function s=%st_6(varargin)
 
   nind=size(varargin)-1; //the number of indexes
   s=varargin($); // the struct
-
   if size(varargin)==2 & type(varargin(1))==10 then  //X.b extraction assumed
     f=getfield(1,s);
     if or(varargin(1)==f(3:$)) then //field exists
@@ -13,7 +12,9 @@ function s=%st_6(varargin)
       s=%st_e(varargin(:));
     else //field does not exists
       // return empty struct 
-      s=mlist(['st','dims'],int32([0 0]))
+      //s=mlist(['st','dims'],int32([0 0]))
+      // return empty matrix
+      s=[]
     end
     
   else //X(i,j,k) extraction assumed
