@@ -63,7 +63,9 @@ Events
 <H3><font color="blue"><A NAME="SECTION00557200000000000000">
 Description</A>
 </font></H3>
-
+Special block similar to If-Then-Else. Input and output are
+synchronized. The incoming event is directed to one of the output
+event ports depending on the value of the regular input. 
 <P>
 
 <H3><font color="blue"><A NAME="SECTION00557300000000000000">
@@ -87,11 +89,13 @@ Dialog Box</A>
 </DIV>
 
 <UL>
-<LI>number of output event ports: YYYY
+<LI>number of output event ports: integer
 </LI>
-<LI>Inherit : YYYY
+<LI>Inherit : 0 or 1; 0 means inheritance so the block has no input
+activation port
 </LI>
-<LI>zero-crossing : YYYY
+<LI>zero-crossing : should zero-crossing be used if the block is
+continuously active.
 </LI>
 </UL>
 

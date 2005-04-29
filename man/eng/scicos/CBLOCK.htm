@@ -61,7 +61,8 @@ Others
 <H3><font color="blue"><A NAME="SECTION00576200000000000000">
 Description</A>
 </font></H3>
-
+This block can be used to write on-line a C interfacing function of
+type 4. 
 <P>
 
 <H3><font color="blue"><A NAME="SECTION00576300000000000000">
@@ -121,33 +122,37 @@ Dialog Box</A>
 </DIV>
 
 <UL>
-<LI>simulation function: YYYY
+<LI>simulation function: the name of the simulation function, either a
+Scilab function or, a C or fortran routine already linked with Scilab
 </LI>
-<LI>is block implicit? : YYYY
+<LI>is block implicit? : for most cases the answer is no
 </LI>
-<LI>input ports sizes: YYYY
+<LI>input ports sizes: the number and sizes of ports, for example 1,3
+means two inputs: the first has size 1 and the other 3.
 </LI>
-<LI>output ports sizes: YYYY
+<LI>output ports sizes: same for outputs
 </LI>
-<LI>input event ports sizes: YYYY
+<LI>input event ports sizes: same but sizes can only be one
 </LI>
-<LI>output events ports sizes: YYYY
+<LI>output events ports sizes: same
 </LI>
-<LI>initial continuous state: YYYY
+<LI>initial continuous state: this must be a column vector
 </LI>
-<LI>number of zero crossing surfaces: YYYY
+<LI>number of zero crossing surfaces: zero if none
 </LI>
-<LI>initial discrete state: YYYY
+<LI>initial discrete state: column vector
 </LI>
-<LI>Real parameters vector: YYYY
+<LI>Real parameters vector: column vector
 </LI>
-<LI>Integer parameters vector: YYYY
+<LI>Integer parameters vector: column vector
 </LI>
-<LI>initial firing vector : YYYY
+<LI>initial firing vector : column vector the size of which must
+correspond to the number of output event ports
 </LI>
-<LI>direct feedthrough : YYYY
+<LI>direct feedthrough : is the output of the block directly affected
+by the input (and not through a delay or integrator)
 </LI>
-<LI>time dependence : YYYY
+<LI>time dependence : is the block always active
 </LI>
 </UL>
 

@@ -63,7 +63,9 @@ Events
 <H3><font color="blue"><A NAME="SECTION00553200000000000000">
 Description</A>
 </font></H3>
-
+One out of every n incoming events gets though. So if the input is
+connected to an event clock, the output behaves as an event clock but
+with frequency divided by n.
 <P>
 
 <H3><font color="blue"><A NAME="SECTION00553300000000000000">
@@ -84,9 +86,9 @@ Dialog Box</A>
 </DIV>
 
 <UL>
-<LI>Phase : YYYY
+<LI>Phase : staring value of the counter
 </LI>
-<LI>Division factor: YYYY
+<LI>Division factor: the count is done modulo this value
 </LI>
 </UL>
 

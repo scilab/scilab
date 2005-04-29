@@ -63,7 +63,7 @@ Others
 <H3><font color="blue"><A NAME="SECTION005715200000000000000">
 Description</A>
 </font></H3>
-
+A generic interfacing function. Useful for testing new computational functions.
 <P>
 
 <H3><font color="blue"><A NAME="SECTION005715300000000000000">
@@ -126,35 +126,38 @@ Dialog Box</A>
 </DIV>
 
 <UL>
-<LI>simulation function: YYYY
+<LI>simulation function: name of the simulation function
 </LI>
-<LI>function type : YYYY
+<LI>function type : currently 4 or 5, less for older types
 </LI>
-<LI>input ports sizes: YYYY
+<LI>input ports sizes: vector giving number and sizes
 </LI>
-<LI>output port sizes: YYYY
+<LI>output port sizes: vector giving number and sizes
 </LI>
-<LI>input event ports sizes: YYYY
+<LI>input event ports sizes: vector giving number and sizes; sizes
+must be 1
 </LI>
-<LI>output events ports sizes: YYYY
+<LI>output events ports sizes: vector giving number and sizes; sizes
+must be 1
 </LI>
-<LI>initial continuous state: YYYY
+<LI>initial continuous state: column vector
 </LI>
-<LI>initial discrete state: YYYY
+<LI>initial discrete state: column vector
 </LI>
-<LI>Real parameters vector: YYYY
+<LI>Real parameters vector: column vector
 </LI>
-<LI>Integer parameters vector: YYYY
+<LI>Integer parameters vector: column vector
 </LI>
-<LI>number of modes: YYYY
+<LI>number of modes: 0 in most cases
 </LI>
-<LI>number of zero_corssings: YYYY
+<LI>number of zero_corssings: number of zero-crossing surfaces
 </LI>
-<LI>initial firing vector : YYYY
+<LI>initial firing vector : vector of times, size must be the same as
+the number of event output ports
 </LI>
-<LI>direct feedthrough : YYYY
+<LI>direct feedthrough : is the output an immediate function of the input
 </LI>
-<LI>time dependence : YYYY
+<LI>time dependence : is block always active
 </LI>
 </UL>
 
