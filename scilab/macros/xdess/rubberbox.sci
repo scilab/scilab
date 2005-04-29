@@ -6,7 +6,7 @@ if argn(2)<1 then
   rect=[]
   while %t
     [btn,xc,yc]=xclick(0)
-    if or(btn==0:5) then break,end
+    if or(btn==(0:5)) then break,end
   end
   rect(1)=xc;rect(2)=yc
   //first=%f
