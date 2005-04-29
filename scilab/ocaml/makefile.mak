@@ -10,7 +10,7 @@ OCAMLLEX=ocamllex
 RM=del
 EXEC=modelicac.exe
 
-MLS=parseTree.ml parser.ml lexer.ml\
+MLS=parseTree.ml linenum.ml parser.ml lexer.ml\
 	precompilation.ml compilation.ml instantiation.ml\
 	graphNodeSet.ml symbolicExpression.ml\
 	squareSparseMatrix.ml bipartiteGraph.ml hungarianMethod.ml\
@@ -18,14 +18,14 @@ MLS=parseTree.ml parser.ml lexer.ml\
 	optimization.ml optimizingCompiler.ml\
 	scicosCodeGeneration.ml scicosOptimizingCompiler.ml
     
-CMACMO=nums.cma parseTree.cmo parser.cmo \
+CMACMO=linenum.cmo nums.cma parseTree.cmo parser.cmo \
        lexer.cmo precompilation.cmo compilation.cmo \
        instantiation.cmo graphNodeSet.cmo symbolicExpression.cmo \
        squareSparseMatrix.cmo bipartiteGraph.cmo hungarianMethod.cmo \
        causalityGraph.cmo optimization.cmo scicosCodeGeneration.cmo \
        optimizingCompiler.cmo
 
-CMXACMX=nums.cmxa parseTree.cmx parser.cmx \
+CMXACMX=linenum.cmx nums.cmxa parseTree.cmx parser.cmx \
        lexer.cmx precompilation.cmx compilation.cmx \
        instantiation.cmx graphNodeSet.cmx symbolicExpression.cmx \
        squareSparseMatrix.cmx bipartiteGraph.cmx hungarianMethod.cmx \
@@ -36,14 +36,18 @@ all:: step1 step2 step3 step4 step5 step6
 
 
 step1: 
+  @"$(OCAMLPATHBIN)\$(OCAMLLEX)" linenum.mll
 	@"$(OCAMLPATHBIN)\$(OCAMLYACC)" parser.mly
 	@$(RM) parser.mli
 	@"$(OCAMLPATHBIN)\$(OCAMLLEX)" lexer.mll
+	
 
 step2:
 	@"$(OCAMLPATHBIN)\$(OCAMLDEP)" $(MLS)
 
 step3: 
+  @echo step3
+  @"$(OCAMLPATHBIN)\$(OCAMLC)" -c linenum.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c parseTree.mli
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c parseTree.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c parser.ml
@@ -75,9 +79,12 @@ step3:
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c scicosOptimizingCompiler.ml
 	
 step4:
+  @echo step4
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -o $(EXEC) $(CMACMO)  scicosOptimizingCompiler.ml
 	
 step5:
+  @echo step5
+  @"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c linenum.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c parseTree.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c parser.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c lexer.ml
