@@ -561,7 +561,7 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
        *         'r' means that tics position are in a range i.e given by a vector of size 3 
        *             [min,max,number_of_intervals] 
        *         'i' means that tics positions are in a range given by four number (integers) 
-       *             [k1,k2,e,number_of intervale] -> [k1*10^e,k2*10^e] */
+       *             [k1,k2,e,number_of intervals] -> [k1*10^e,k2*10^e] */
 
       if(xy_type == 'i') {     /* Adding F.Leray 05.03.04*/
 	/*F.Leray Modification on 09.03.04*/
