@@ -602,17 +602,17 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
  * Objaxis:
  *-----------------------------------------------------------*/
 
-void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag,seg)
+void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels)
      char dir,tics ,*format,flag,*val[]; 
      double *x,*y;
      int *nx,*ny;
-     int subint,font,textcol,ticscol, seg;
+     int subint,font,textcol,ticscol, seg,nb_tics_labels;
 { 
       
   sciSetCurrentObj (ConstructAxes 
 		    ((sciPointObj *)
 		     sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg));  
+		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels));  
   sciDrawObjIfRequired(sciGetCurrentObj ());
      
   /* F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw

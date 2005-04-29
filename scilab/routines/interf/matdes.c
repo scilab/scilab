@@ -4350,7 +4350,8 @@ int nscixaxis(fname, fname_len)
   int fontsize = -1, sub_int=2, seg_flag = 1,textcolor = -1,ticscolor=-1;
   double *x = NULL,*y = NULL;
   int nx=0,ny=0,ntics;
-  
+  int nb_tics_labels = -1;
+
   nopt = NumOpt();
 
   SciWin();
@@ -4470,11 +4471,12 @@ int nscixaxis(fname, fname_len)
     {
       /** sciprint("nombre de tics %d\r\n",ntics); **/
       CheckLength( opts[8].position, opts[8].m*opts[8].n,ntics);
+      nb_tics_labels = opts[8].m*opts[8].n;
     }
      
   /* NG beg */
   if (version_flag() == 0)
-    Objdrawaxis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag);
+    Objdrawaxis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag,nb_tics_labels);
   else
     Xdrawaxis (dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag);
   /* NG end */
@@ -5485,8 +5487,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 {
   int xtmp;
   int  i,num,v=1,na,id,cur,verb=0;
-  double dtmp,dv=0.0; 
-  char  **str, **ptr, ctmp[10];    
+  double dv=0.0; 
+  char  **str, **ptr;
   sciPointObj *psubwin, *figure, *tmpobj;
   struct BCG *XGC;
 
@@ -6326,8 +6328,24 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       strcpy(error_message,"tics must be 'v' or 'r' or 'i'");return -1;
     }
 
-    if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->tics = *cstk(*value);
+    if (sciGetEntityType (pobj) == SCI_AXES){
+      double *vector = NULL;
+      int N = 0;
+      char xy_type = *cstk(*value);
+      
+      if(pAXES_FEATURE (pobj)->str != NULL){
+	if(ComputeXIntervals(pobj,xy_type,&vector,&N,1) != 0){
+	  Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+	  return 0;
+	}
+	if( pAXES_FEATURE (pobj)->nb_tics_labels < N){
+	  Scierror(999,"Warning: tics_labels has been set by user ; you must first increase the size of the tics_labels string vector before switching to '%c' tics_style mode\n",xy_type);
+	  return 0;
+	}
+      }
+      
+      pAXES_FEATURE (pobj)->tics = xy_type;
+    }
     else {
       strcpy(error_message,"tics_style property does not exist for this handle");return -1;
     }
@@ -6408,20 +6426,23 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"labels_font_style property does not exist for this handle");return -1;}
   }	
   else if (strncmp(marker,"tics_labels", 11) == 0) 
-    { 
+    {
       if (*numrow != 1)
 	{strcpy(error_message,"Second argument must be a vector"); return -1;}
       else
 	{
 	  ptr= *(char ***)value; /**DJ.Abdemouche 2003**/
-	  if (Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny) != *numcol)
-	    {sprintf(error_message,"Value must have %d elements",Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny));return -1;}
+	  if (pAXES_FEATURE(pobj)->nb_tics_labels > *numcol)
+	    {sprintf(error_message,"Value must have at least %d elements",pAXES_FEATURE(pobj)->nb_tics_labels);
+	    return -1;}
 	  else
 	    {
 	      if(pAXES_FEATURE(pobj)->str != NULL)
-		for(i=0;i<*numcol;i++) { FREE(pAXES_FEATURE(pobj)->str[i]); pAXES_FEATURE(pobj)->str[i] = NULL;}
+		for(i=0;i<pAXES_FEATURE(pobj)->nb_tics_labels;i++) 
+		  { FREE(pAXES_FEATURE(pobj)->str[i]); pAXES_FEATURE(pobj)->str[i] = NULL;}
 	      FREE(pAXES_FEATURE(pobj)->str);
 	      pAXES_FEATURE(pobj)->str =ptr;
+	      pAXES_FEATURE(pobj)->nb_tics_labels = *numcol; /* could be increased to support xy_type switching (i.e. xy_type='v' -> xy_type='r') */
             }
 	}
     }
@@ -6434,26 +6455,55 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else if (( pAXES_FEATURE(pobj)->nx != 1) &&(*numcol==1))
 	{strcpy(error_message,"Second argument  must be a vector");return -1;}
       else
-	{                       
-	  if ( pAXES_FEATURE(pobj)->nx < *numcol)
-	    {  
-	      if ((str= (char **)realloc(str,(*numcol) * sizeof (char *))) == NULL)
-		return 0; 
-	      for (i=0; i<*numcol;i++)
-		{   
-		  if ((str[i]= (char *) MALLOC(strlen(ctmp) * sizeof (char ))) == NULL)
-		    return 0; 
-		  dtmp=*stk(*value+i);
-		  sprintf(ctmp,"%.2f",dtmp);
-		  strcpy(str[i],ctmp);
-		} 
-	      pAXES_FEATURE(pobj)->str=str;
-	    }
-	  if ((pAXES_FEATURE(pobj)->vx = MALLOC (*numcol * sizeof (double))) == NULL)
-	    return 0;
+	{
+	  int N = 0;
+	  double *vector = NULL;
+	  char c_format[5];
+	  char **foo = (char **) NULL;
+	  
+	  /* what follows remains here as it was */
+	  
+	  FREE(pAXES_FEATURE(pobj)->vx); pAXES_FEATURE(pobj)->vx = NULL;
+	  
+ 	  if ((pAXES_FEATURE(pobj)->vx = MALLOC (*numcol * sizeof (double))) == NULL){
+	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
+	  
 	  pAXES_FEATURE(pobj)->nx= *numcol;
 	  for (i = 0; i < *numcol;i++)
 	    pAXES_FEATURE(pobj)->vx[i]=*stk(*value+i); 
+	  
+	  ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,0);
+	  ComputeC_format(pobj,c_format);
+	  
+	  if(pAXES_FEATURE(pobj)->str != NULL)
+	    for(i=0;i<pAXES_FEATURE(pobj)->nb_tics_labels;i++) 
+	      { FREE(pAXES_FEATURE(pobj)->str[i]); pAXES_FEATURE(pobj)->str[i] = NULL;}
+	  
+	  FREE(pAXES_FEATURE(pobj)->str); pAXES_FEATURE (pobj)->str = NULL;
+	  
+
+	  if((foo=malloc(N*(sizeof(char *))))==NULL){
+	    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+	  for(i=0;i<N;i++){
+	    if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+	  }
+	  
+	  
+	  for(i=0;i<N;i++){
+	    if(pAXES_FEATURE (pobj)->nx < (*numcol))
+	      sprintf(foo[i],c_format,vector[i]);
+	    else
+	      sprintf(foo[i],c_format,vector[i]);
+	  }
+	  
+	  FREE(vector); vector = (double *) NULL;
+	  
+	  /* I recompute the nb_tics_labels and save the new strings */
+	  pAXES_FEATURE (pobj)->nb_tics_labels = N;
+	  pAXES_FEATURE(pobj)->str=foo;
+	  
+	  
 	}
     }
   else if (strncmp(marker,"ytics_coord", 11) == 0) 
@@ -6466,25 +6516,66 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Second argument must be a vector");return -1;}
       else
 	{                       
-	  if ( pAXES_FEATURE(pobj)->ny < *numcol)
-	    { 
-	      if ((str= (char **) realloc(str,(*numcol) * sizeof (char *))) == NULL)
-		return 0; 
-	      for (i=0; i<*numcol;i++)
-		{    
-		  if ((str[i]= (char *) MALLOC(strlen(ctmp) * sizeof (char ))) == NULL)
-		    return 0; 
-		  dtmp=*stk(*value+i);
-		  sprintf(ctmp,"%.2f",dtmp);
-		  strcpy(str[i],ctmp);                                
-		}
-	      pAXES_FEATURE(pobj)->str=str; 
-	    }
+	  int N = 0;
+	  double *vector = NULL;
+	  char c_format[5];
+	  char **foo = (char **) NULL;
+	  
+	  /* what follows remains here as it was */
+	  
+	  FREE(pAXES_FEATURE(pobj)->vy); pAXES_FEATURE(pobj)->vy = NULL;
+	  
 	  if ((pAXES_FEATURE(pobj)->vy = MALLOC (*numcol * sizeof (double))) == NULL)
 	    return 0;
 	  pAXES_FEATURE(pobj)->ny= *numcol; 
 	  for (i = 0; i < *numcol;i++)
 	    pAXES_FEATURE(pobj)->vy[i]=*stk(*value+i);  
+
+	  ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,0);
+	  ComputeC_format(pobj,c_format);
+	  
+	  if(pAXES_FEATURE(pobj)->str != NULL)
+	    for(i=0;i<pAXES_FEATURE(pobj)->nb_tics_labels;i++) 
+	      { FREE(pAXES_FEATURE(pobj)->str[i]); pAXES_FEATURE(pobj)->str[i] = NULL;}
+	  
+	  FREE(pAXES_FEATURE(pobj)->str); pAXES_FEATURE (pobj)->str = NULL;
+	  
+	  if((foo=malloc(N*(sizeof(char *))))==NULL){
+	    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+	  for(i=0;i<N;i++){
+	    if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+	  }
+	  
+	  for(i=0;i<N;i++){
+	    if(pAXES_FEATURE (pobj)->ny < (*numcol))
+	      sprintf(foo[i],c_format,vector[i]);
+	    else
+	      sprintf(foo[i],c_format,vector[i]);
+	  }
+	  
+	  FREE(vector); vector = (double *) NULL;
+	  
+	  /* I recompute the nb_tics_labels and save the new strings */
+	  pAXES_FEATURE (pobj)->nb_tics_labels = N;
+	  pAXES_FEATURE(pobj)->str=foo;
+	  
+
+	/*   if ( pAXES_FEATURE(pobj)->ny < *numcol) */
+/* 	    {  */
+/* 	      if ((str= (char **) realloc(str,(*numcol) * sizeof (char *))) == NULL) */
+/* 		return 0;  */
+/* 	      for (i=0; i<*numcol;i++) */
+/* 		{     */
+/* 		  if ((str[i]= (char *) MALLOC(strlen(ctmp) * sizeof (char ))) == NULL) */
+/* 		    return 0;  */
+/* 		  dtmp=*stk(*value+i); */
+/* 		  sprintf(ctmp,"%.2f",dtmp); */
+/* 		  strcpy(str[i],ctmp);                                 */
+/* 		} */
+/* 	      pAXES_FEATURE(pobj)->str=str;  */
+/* 	    } */
+
 	}
     } 
   else if  (strncmp(marker,"box", 3) == 0) 
@@ -8261,6 +8352,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     {
       char **foo = (char **) NULL;
       int i;
+      int N;
       if (sciGetEntityType (pobj) == SCI_AXES) 
 	{
 	  numrow=1;
@@ -8268,40 +8360,74 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  str = pAXES_FEATURE (pobj)->str;
 	  if (str==NULL){
 	   
-	    if((foo=malloc(numcol*(sizeof(char *))))==NULL){
-	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
-	    for(i=0;i<numcol;i++){
-	      if((foo[i]=malloc(100*(sizeof(char)+1)))==NULL){
-		strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
-	    }
-	    for (i=0;i<numcol;i++){
-	      if(pAXES_FEATURE (pobj)->format==NULL)
-		{
-		  /* we need to compute a c_format */
-		  char c_format[5];
-		  ComputeC_format(pobj,c_format);
-		  if(pAXES_FEATURE (pobj)->nx<numcol) 
-		    sprintf(foo[i],c_format,pAXES_FEATURE (pobj)->vy[i]);
-		  else
-		    sprintf(foo[i],c_format,pAXES_FEATURE (pobj)->vx[i]);
+	    /* 	    for (i=0;i<numcol;i++){ */
+	    if(pAXES_FEATURE (pobj)->format==NULL)
+	      {
+		/* we need to compute a c_format */
+		char c_format[5];
+		double *vector = NULL;
+		
+		if(ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,1) != 0){
+		  Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+		  return 0;
 		}
-	      else
-		{
-		  if(pAXES_FEATURE (pobj)->nx<numcol) 
-		    sprintf(foo[i],pAXES_FEATURE (pobj)->format,pAXES_FEATURE (pobj)->vy[i]);
-		  else
-		    sprintf(foo[i],pAXES_FEATURE (pobj)->format,pAXES_FEATURE (pobj)->vx[i]);
+		
+		ComputeC_format(pobj,c_format);
+		
+		if((foo=malloc(N*(sizeof(char *))))==NULL){
+		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+		for(i=0;i<N;i++){
+		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
-	    }
-	   
-	    CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
+		
+		for(i=0;i<N;i++){
+		  if(pAXES_FEATURE (pobj)->nx<numcol) 
+		    sprintf(foo[i],c_format,vector[i]);
+		  else
+		    sprintf(foo[i],c_format,vector[i]);
+		}
+		FREE(vector); vector = (double *) NULL;
+	      }
+	    else
+	      {
+		double *vector = NULL;
+
+		if(ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,1) != 0){
+		  Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+		  return 0;
+		}
+		
+		if((foo=malloc(N*(sizeof(char *))))==NULL){
+		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+		for(i=0;i<N;i++){
+		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
+		}
+		
+		for(i=0;i<N;i++){
+		  if(pAXES_FEATURE (pobj)->nx<numcol) 
+		    sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i]);
+		  else
+		    sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i]);
+		}
+		FREE(vector); vector = (double *) NULL;
+	      }
+	    /* 	    } */
+	    
+	    /* I recompute the nb_tics_labels */
+	    pAXES_FEATURE (pobj)->nb_tics_labels = N;
+	    
+	    CreateVarFromPtr(Rhs+1,"S",&numrow,&N,foo);
 	   
 	    if(foo != NULL)
-	      for(i=0;i<numcol;i++) { FREE(foo[i]); foo[i] = NULL;}
+	      for(i=0;i<N;i++) { FREE(foo[i]); foo[i] = NULL;}
 	    FREE(foo); foo = NULL;
 	  }
-	  else
-	    CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,str);
+	  else{ /* str has been previously set once */
+	    N = pAXES_FEATURE (pobj)->nb_tics_labels;
+	    CreateVarFromPtr(Rhs+1,"S",&numrow,&N,str);
+	  }
 	}
       else
 	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
@@ -9887,6 +10013,155 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   return 0;
   
 }
+
+
+int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, int * N, int checkdim)
+{
+  int i;
+  sciAxes * ppaxes = pAXES_FEATURE (pobj);
+  /*   double * outvector = NULL; */
+  double * val = NULL; /* reprensents ppaxes->x or ppaxes->y */
+  int nval;
+
+  int n;
+
+  /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
+  BOOL ishoriz = (ppaxes->nx > ppaxes->ny)? TRUE : FALSE; 
+  
+  if(ishoriz == TRUE){
+    val  = ppaxes->vx;
+    nval = ppaxes->nx; 
+  }
+  else{
+    val  = ppaxes->vy;
+    nval = ppaxes->ny;
+  }
+  
+  if(xy_type == 'v')
+    {
+      *N = n = nval;
+	
+      if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
+	strcpy(error_message,"No memory left for allocating temporary tics_labels");
+	return -1;
+      }
+	  
+      for(i=0;i<n;i++)
+	(*vector)[i] = val[i];
+    }
+  else if(xy_type == 'r')
+    {
+      double step = 0;
+      
+      *N = n = val[2]+1; /* intervals number is given by  ppaxes->x or ppaxes->y */
+      
+      if(checkdim){
+	if(nval != 3)
+	  sciprint("Warning: tics_coord must be changed, xy_type is 'r' and tics_coord dimension is not 3\n");
+	
+	if(nval < 3){
+	  sciprint("Error: tics_coord must be changed FIRST, xy_type is 'r' and tics_coord dimension < 3\n");
+	  *vector = (double *) NULL;
+	  return -1;
+	}
+      }
+	  
+      if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
+	strcpy(error_message,"No memory left for allocating temporary tics_labels");
+	return -1;
+      }
+	  
+      step = (val[1] - val[0])/(n-1);
+	  
+      for(i=0;i<n-1;i++)
+	(*vector)[i] = val[0] + i*step;
+	  
+      (*vector)[n-1] = val[1]; /* xmax */
+	  
+    }
+  else if(xy_type == 'i')
+    {
+      double step = 0;
+      
+      *N = n = val[3]+1;
+      
+      if(checkdim){
+	if(nval != 4)
+	  sciprint("Warning: tics_coord must be changed, xy_type is 'i' and tics_coord dimension is not 4\n");
+	
+	if(nval < 4){
+	  sciprint("Error: tics_coord must be changed FIRST, xy_type is 'i' and tics_coord dimension < 4\n");
+	  *vector = (double *) NULL;
+	  return -1;
+	}
+      }
+      
+      if((*vector =(double *)  MALLOC(n*sizeof(double ))) == NULL){
+	strcpy(error_message,"No memory left for allocating temporary tics_labels");
+	return -1;
+      }
+      
+      step = (val[1]*exp10(val[2]) - val[0]*exp10(val[2]))/val[3];
+      
+      
+      for(i=0;i<n-1;i++)
+	(*vector)[i] = val[0]*exp10(val[2]) + i*step;
+      
+      (*vector)[n-1] = val[1]*exp10(val[2]); /* xmax */
+      
+    }
+  
+  
+  /*   /\* I recopy the algo. used inside Axes.c to have exactly the same strings intervals *\/ */
+  /*   /\* START *\/ */
+  /*   if(xy_type == 'i') {     /\* Adding F.Leray 05.03.04*\/ */
+  /*     /\*F.Leray Modification on 09.03.04*\/ */
+  /*     switch ( pos ) { */
+  /*     case 'u' : case 'd' :   */
+  /*       if(ppsubwin->logflags[0] == 'n') */
+  /* 	while (x[3]>10)  x[3]=floor(x[3]/2);  */
+  /*       else{ */
+  /* 	if(x[3] > 12){ /\* F.Leray arbitrary value=12 for the moment *\/ */
+  /* 	  x3=(int)x[3];     /\* if x[3]>12 algo is triggered to search a divisor *\/ */
+  /* 	  for(j=x3-1;j>1;j--) */
+  /* 	    if(x3%j == 0){ */
+  /* 	      x[3]=j;  */
+  /* 	      xpassed = 1; */
+  /* 	    } */
+  /* 	  if(xpassed != 1) x[3] = 1; */
+  /* 	} */
+  /*       } */
+	  
+  /*       break; */
+  /*     case 'r' : case 'l' : */
+  /*       if(ppsubwin->logflags[1] == 'n') */
+  /* 	while (y[3]>10)  y[3]=floor(y[3]/2); */
+  /*       else{ */
+  /* 	if(y[3] > 12){ */
+  /* 	  y3=(int)y[3]; */
+  /* 	  for(j=y3-1;j>1;j--) */
+  /* 	    if(y3%j == 0){ */
+  /* 	      y[3]=j; */
+  /* 	      ypassed = 1; */
+  /* 	    } */
+  /* 	  if(ypassed != 1) y[3] = 1; */
+  /* 	} */
+  /*       } */
+	
+  /*       break; */
+  /*     } */
+  /*   } */
+
+  
+
+  /*   /\* END *\/  */
+
+  
+  return 0;
+}
+
+
+
 
 
 int BuildTListForTicks(double * locations, char ** labels, int nbtics)

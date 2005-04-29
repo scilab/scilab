@@ -1034,6 +1034,7 @@ typedef struct
   double *vz; 
   int nx;
   int ny;
+  int nb_tics_labels; /* F.Leray 29.04.05 : number of tics_labels can be different from Max(nx,ny) if xy_type diff. from 'v' */
   /***/
   int nz;
   char **str ;  /** string vector **/

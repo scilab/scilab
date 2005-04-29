@@ -64,8 +64,7 @@ extern sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,do
 
 extern sciPointObj *ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
                                    int nx, double *vy, int ny, char *str[], int subint, char *format, 
-                                   int fontsize, int textcolor, int ticscolor, char logscale, int seg);  /* BUILD */
-
+                                   int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels);  /* BUILD */
 
 extern sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
 				  double *pfun, int Nnode, int Ntr, double *zminmax, 

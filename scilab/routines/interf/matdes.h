@@ -117,7 +117,7 @@ extern int scixbascsubwin _PARAMS((char *fname, unsigned long fname_len));
 extern int draw _PARAMS((char *fname, unsigned long fname_len));
 
 void Objarc  _PARAMS((int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl));
-void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg));
+void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg,int nb_tics_labels));
 void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax,integer *ExtremesCol, BOOL with_mesh, BOOL flagNax));
 
 

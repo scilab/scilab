@@ -122,6 +122,8 @@ extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 
 
+extern int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, int * N, int checkdim); /* DRAWINGS */ /* inside matdes.c */
+
 /* Other functions coming from Entities.c (old file) */
 
 

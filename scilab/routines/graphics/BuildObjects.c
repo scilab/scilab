@@ -1831,7 +1831,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 sciPointObj *
 ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx, 
 	       int nx, double *vy, int ny,char **str, int subint, char *format,
-	       int fontsize, int textcolor, int ticscolor, char logscale, int seg)  
+	       int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels)  
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciAxes *paxes = (sciAxes *) NULL;
@@ -1925,14 +1925,20 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
      
       pAXES_FEATURE (pobj)->ny =ny;
      
+      pAXES_FEATURE (pobj)->nb_tics_labels = nb_tics_labels; /* F.Leray 29.04.05 */
 
       /* pAXES_FEATURE(pobj)->str = str;*/ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
       if(str != (char **) NULL)
 	{
-	  if ((pAXES_FEATURE(pobj)->str= malloc (Max(nx,ny) * sizeof (char*))) == NULL)
+	  if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
+	    sciprint("Impossible case when buyilding axis\n");
+	    return (sciPointObj *) NULL;
+	  }
+	  
+	  if ((pAXES_FEATURE(pobj)->str= malloc (pAXES_FEATURE (pobj)->nb_tics_labels * sizeof (char*))) == NULL)
 	    return (sciPointObj *) NULL;
 
-	  for(i=0;i<Max(nx,ny);i++) 
+	  for(i=0;i<pAXES_FEATURE (pobj)->nb_tics_labels;i++) 
 	    {
 	      if(str[i] != (char *) NULL)
 		{
