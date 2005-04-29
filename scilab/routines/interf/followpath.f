@@ -89,13 +89,11 @@ c     move pointer to next entry in index list
       voli=istk(ilind+2+count)-istk(ilind+1+count)
       ilindir=ilindi
       if(istk(ilindi).lt.0) ilindi=iadr(istk(ilindi+1))
-
 c     extract infos out of the current sublist
  12   typi=istk(illisti)
       mi=istk(illisti+1)
       llisti=sadr(illisti+mi+3)
       voll=istk(illisti+mi+2)-1+sadr(3+mi)
-
 c     go ahead along the path
 c
       if(istk(ilindi).eq.10) then
@@ -160,6 +158,12 @@ c     .     index is a vector or []
 c     n is the numerical index of the  sublist
 
       if(n.eq.0.or.n.gt.mi) then
+         if (typi.eq.15.and.count.lt.nlist) then
+c     .    current index is out of definable list indices and is not the
+C     .    last of the index list
+            call error(21)
+            return
+         endif
          ind(count)=n
          info=6
          goto 50
