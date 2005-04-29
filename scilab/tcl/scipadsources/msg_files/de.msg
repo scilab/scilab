@@ -27,7 +27,7 @@
 
 
 # db_configureexec.tcl
-::msgcat::mcset de "Configure execution" "Auführung konfigurieren"
+::msgcat::mcset de "Configure execution" "Ausführung konfigurieren"
 ::msgcat::mcset de "Function name:" "Funktionsname :"
 ::msgcat::mcset de "Obtain" "Erhält"
 ::msgcat::mcset de "Input arguments:" "Eingabeargumente :"
@@ -104,7 +104,7 @@
                     Namen erzeugen ?"
 ::msgcat::mcset de "Open file" "Datei öffnen"
 ::msgcat::mcset de "The file" "Die Datei"
-    ::msgcat::mcset de "is already opened! Save the current opened file to another name and reopen it from disk!" "wurde bereits geöffnet! Speichern Sie die Datei unter einem anderen Namen und öffnen Sie sie erneut!"
+    ::msgcat::mcset de "is already opened! Save the current opened file to another name and reopen it from disk!" "wurde bereits geöffnet! Speichern Sie die Datei unter einem anderen Namen und öffnen Sie sie wieder!"
 ::msgcat::mcset de "File" "Datei"
     ::msgcat::mcset de "saved" "gespeichert"
 ::msgcat::mcset de "cannot be written!" "ist schreibgeschützt!"
@@ -161,7 +161,7 @@
 
 
 # inputtext.tcl
-::msgcat::mcset de "No corresponding <" "Kein entsprechendes <"
+::msgcat::mcset de "No corresponding <" "Keine entsprechende <"
     ::msgcat::mcset de "> found!" "> gefunden!"
 ::msgcat::mcset de "Code editing is not allowed during debug!" "Während der Debug-Sitzung kann das Programm nicht verändert werden !"
 
@@ -353,4 +353,6 @@
 ::msgcat::mcset de "Save As" "Speichern unter"
 ::msgcat::mcset de "&Cancel" "&Abbrechen"
 ::msgcat::mcset de "&Selection:" "Au&swahl:"
+::msgcat::mcset de "&Yes" "&Ja"
+::msgcat::mcset de "&No" "&Nein"
 
