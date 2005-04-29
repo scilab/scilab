@@ -609,6 +609,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *x1   =  -1;
 	  *yy1  =  -1;
 	  *ibutton = -100;
+	  set_wait_click(0);
 	  return;
 	}
       if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) {
