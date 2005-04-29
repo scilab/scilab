@@ -10,7 +10,7 @@ include ../../Makefile.incl
 NAME = utillib
 NAM = SCI/macros/util
 
-MACROS = configure_msvc.sci findmsvccompiler.sci sethomedirectory.sci \
+MACROS = loaddefaultbrowser.sci savedefaultbrowser.sci configure_msvc.sci findmsvccompiler.sci sethomedirectory.sci \
   copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
 	datenum.sci perl.sci clipboard.sci with_atlas.sci with_javasci.sci \
 	setlanguage.sci with_lcc.sci VCtoLCCLib.sci \

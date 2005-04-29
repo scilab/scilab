@@ -123,12 +123,8 @@ clear initial_demos_tables demolist
 
 // Set the preferred browser  ==========================================
 global %browsehelp
-if with_tk()& ~with_gtk()
-  %browsehelp="Scilab Browser";
-elseif with_gtk()
-  %browsehelp="help widget";
-end
-clear %browsehelp with_tk with_gtk//remove the local variable
+%browsehelp=loaddefaultbrowser();
+clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variable
       
 // Menu for Help and editor ===========================================
 if grep(args,'scilex')<>[] then

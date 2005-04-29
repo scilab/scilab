@@ -4,7 +4,6 @@ function browsehelp(path,key)
   global %browsehelp
   
   browsehelp_configure()
-  
   // set of possible browsers
   
   if argn(2)==0 then
@@ -38,23 +37,22 @@ function  browsehelp_configure(job)
 		    'Scilab Browser'
 		    'Old Scilab Browser'];
     end
+    
     if with_gtk() then 
       browse_modes=['help widget';browse_modes];
     end
     
-    
     if %browsehelp<>[] then //help mode already selected
       if and(browse_modes<>%browsehelp) then
-	warning('Unhandled  help browser '+%browsehelp)
-	%browsehelp=oldbrowsehelp; // If user select cancel
-	%browsehelp= help_ask(browse_modes);
+	      warning('Unhandled  help browser '+%browsehelp)
+	      %browsehelp=oldbrowsehelp; // If user select cancel
+	      %browsehelp= help_ask(browse_modes);
       end
     else // ask for an help mode
-	%browsehelp=oldbrowsehelp; // If user select cancel
-	%browsehelp= help_ask(browse_modes);
+	    %browsehelp=oldbrowsehelp; // If user select cancel
+	    %browsehelp= help_ask(browse_modes);
     end
   else //for windows 
-    
     if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
     browse_modes=['Default Windows Browser';];
     if with_tk() then 
@@ -62,19 +60,22 @@ function  browsehelp_configure(job)
 		    'Scilab Browser'
 		    'Old Scilab Browser'];
     end
+    
     if %browsehelp<>[] then //help mode already selected
       if and(browse_modes<>%browsehelp) then
-	warning('Unhandled  help browser '+%browsehelp)
-	%browsehelp=oldbrowsehelp; // If user select cancel
-	%browsehelp= help_ask(browse_modes);
+	      warning('Unhandled  help browser '+%browsehelp)
+	      %browsehelp=oldbrowsehelp; // If user select cancel
+	      %browsehelp= help_ask(browse_modes);
       end
     else // ask for an help mode
-	%browsehelp=oldbrowsehelp; // If user select cancel
-	%browsehelp= help_ask(browse_modes);
+	    %browsehelp=oldbrowsehelp; // If user select cancel
+	    %browsehelp= help_ask(browse_modes);
     end
     
+  
     //%browsehelp = 'tcltk'
   end
+  
 endfunction
 
 function run_help(path,key)
@@ -120,6 +121,7 @@ function md=help_ask(modes)
   else
     md=modes(n)
   end
+  savedefaultbrowser(modes(n));    
 endfunction
 
 function tcltk_help(path,key,key1)
