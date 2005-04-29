@@ -352,3 +352,5 @@
 ::msgcat::mcset fr "Save As" "Enregistrer sous"
 ::msgcat::mcset fr "&Cancel" "&Annuler"
 ::msgcat::mcset fr "&Selection:" "&Sélection :"
+::msgcat::mcset fr "&Yes" "&Oui"
+::msgcat::mcset fr "&No" "&Non"
