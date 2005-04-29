@@ -46,7 +46,6 @@ step2:
 	@"$(OCAMLPATHBIN)\$(OCAMLDEP)" $(MLS)
 
 step3: 
-  @echo step3
   @"$(OCAMLPATHBIN)\$(OCAMLC)" -c linenum.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c parseTree.mli
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c parseTree.ml
@@ -79,11 +78,9 @@ step3:
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -c scicosOptimizingCompiler.ml
 	
 step4:
-  @echo step4
 	@"$(OCAMLPATHBIN)\$(OCAMLC)" -o $(EXEC) $(CMACMO)  scicosOptimizingCompiler.ml
 	
 step5:
-  @echo step5
   @"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c linenum.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c parseTree.ml
 	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -c parser.ml
