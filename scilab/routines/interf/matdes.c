@@ -2487,7 +2487,7 @@ int scixend(fname,fname_len)
     xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
     figure = sciGetCurrentFigure();
     sciDrawObj(figure);
-    xinitxend_flag = 1;
+/*     xinitxend_flag = 1; */
   }
   C2F(dr1)("xend","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,2L);
   if(version_flag() == 0) {

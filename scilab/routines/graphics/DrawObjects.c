@@ -31,7 +31,7 @@ extern HDC TryToGetDC(HWND hWnd);
 extern int GetScreenDPI(int *ixres, int *iyres);
 extern double C2F(dsort)();/*DJ.A merge*/ 
 
-int xinitxend_flag;
+int xinitxend_flag = 0;
 /* sciClipTab ptabclip[15]; */
 
 static double xz1,yz1;
@@ -6773,7 +6773,7 @@ sciDrawObj (sciPointObj * pobj)
 
       break;      
       /******************************** 22/05/2002 ***************************/    
-    case SCI_SEGS:    
+    case SCI_SEGS:
       if (!sciGetVisibility(pobj)) break;
       
       sciClip(pobj);
