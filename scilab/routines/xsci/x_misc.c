@@ -591,9 +591,11 @@ void xerror(d, ev)
   Display *d;
   register XErrorEvent *ev;
 {
+ #ifndef NDEBUG
   fprintf(stderr, "%s:  warning, error event receieved:\n", xterm_name);
   (void) XmuPrintDefaultErrorMessage(d, ev, stderr);
   /*sci_clear_and_exit(ERROR_XERROR);*/
+  #endif
 }
 
 /*ARGSUSED*/
