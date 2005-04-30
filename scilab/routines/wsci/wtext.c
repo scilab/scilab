@@ -51,6 +51,7 @@ static BOOL ConsoleIsMinimized=FALSE;
 static BOOL WriteInKeyBuf=FALSE;
 
 extern HDC TryToGetDC(HWND hWnd);
+extern int C2F(sciquit)() ;
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
@@ -61,45 +62,81 @@ EXPORT void WINAPI TextMessage (void)
   return;
 }
 /*-----------------------------------------------------------------------------------*/
+static BOOL RegisterParentWindowClass (LPTW lptw)
+{
+	BOOL bOK=FALSE;
+	WNDCLASS Parentwndclass;
+	Parentwndclass.lpszClassName = szParentClass;
+	Parentwndclass.lpfnWndProc = WndParentProc;
+	Parentwndclass.style = CS_HREDRAW | CS_VREDRAW;
+	Parentwndclass.cbClsExtra = 0;
+	Parentwndclass.cbWndExtra = 2 * sizeof (void FAR *);
+	Parentwndclass.hInstance = lptw->hInstance;
+	Parentwndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
+	Parentwndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
+	Parentwndclass.hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor(COLOR_WINDOW)) ;
+	Parentwndclass.lpszMenuName = NULL;
+
+	if (!RegisterClass(&Parentwndclass))
+	{
+		DWORD dwLastError = GetLastError();
+		char buff1[1000], buff2[1000];
+
+		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwLastError, 0, buff1, sizeof (buff1), NULL);
+		sprintf(buff2, "Parentwndclass Win32 error %ld occured", dwLastError);
+
+		MessageBox(NULL, buff1, buff2, MB_ICONERROR);
+
+		bOK=FALSE;
+	}
+	else bOK=TRUE;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+static BOOL RegisterTextWindowClass (LPTW lptw)
+{
+	BOOL bOK=FALSE;
+	WNDCLASS Textwndclass;
+	Textwndclass.style = CS_HREDRAW | CS_VREDRAW;
+	Textwndclass.lpfnWndProc = WndTextProc;
+	Textwndclass.cbClsExtra = 0;
+	Textwndclass.cbWndExtra = 2 * sizeof (void FAR *);
+	Textwndclass.hInstance = lptw->hInstance;
+	Textwndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
+	Textwndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
+	Textwndclass.hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+	Textwndclass.lpszMenuName = NULL;
+	Textwndclass.lpszClassName = szTextClass;
+	if (!RegisterClass(&Textwndclass))
+	{
+		DWORD dwLastError = GetLastError();
+		char buff1[1000], buff2[1000];
+
+		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwLastError, 0, buff1, sizeof (buff1), NULL);
+		sprintf(buff2, "Textwndclass Win32 error %ld occured", dwLastError);
+
+		MessageBox(NULL, buff1, buff2, MB_ICONERROR);
+
+		bOK=FALSE;
+	}
+	else 
+	{
+		lptw->hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+		bOK=TRUE;
+	}
+
+	return bOK;
+
+}
+/*-----------------------------------------------------------------------------------*/
 /*********************************************
  * text window class 
  *********************************************/
 static void CreateTextClass (LPTW lptw)
-{
-  WNDCLASS wndclass;
-  wndclass.style = CS_HREDRAW | CS_VREDRAW;
-  wndclass.lpfnWndProc = WndTextProc;
-  wndclass.cbClsExtra = 0;
-  wndclass.cbWndExtra = 2 * sizeof (void FAR *);
-  wndclass.hInstance = lptw->hInstance;
-  wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
-  wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-  wndclass.hbrBackground = NULL;
-  /*lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
-				GetSysColor (COLOR_WINDOW) : RGB (0, 0, 0));*/
-  lptw->hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor (COLOR_WINDOW));
-  wndclass.lpszMenuName = NULL;
-  wndclass.lpszClassName = szTextClass;
-  RegisterClass (&wndclass);
-
-
-  wndclass.style = CS_HREDRAW | CS_VREDRAW;
-  wndclass.lpfnWndProc = WndParentProc;
-  wndclass.cbClsExtra = 0;
-  wndclass.cbWndExtra = 2 * sizeof (void FAR *);
-
-  wndclass.hInstance = lptw->hInstance;
-
-  if (lptw->hIcon)
-    wndclass.hIcon = lptw->hIcon;
-  else
-    wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
-
-  wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-  wndclass.hbrBackground = (HBRUSH) GetStockObject (COLOR_WINDOWTEXT);
-  wndclass.lpszMenuName = NULL;
-  wndclass.lpszClassName = szParentClass;
-  RegisterClass (&wndclass);
+{	
+	if (!RegisterParentWindowClass (lptw)) exit(1);
+	if (!RegisterTextWindowClass (lptw)) exit(1);
 }
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
@@ -169,6 +206,7 @@ EXPORT int WINAPI TextInit (LPTW lptw)
 				   lptw->Origin.x, lptw->Origin.y,
 				   lptw->Size.x, lptw->Size.y,
 				   NULL, NULL, lptw->hInstance, lptw);
+
   if (lptw->hWndParent == (HWND) NULL)
     {
       MessageBox ((HWND) NULL, "Couldn't open parent text window", (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
@@ -222,8 +260,7 @@ EXPORT void WINAPI TextClose (LPTW lptw)
   HGLOBAL hglobal;
 
   /* close window */
-  if (lptw->hWndParent)
-    DestroyWindow (lptw->hWndParent);
+  if (lptw->hWndParent)DestroyWindow (lptw->hWndParent);
   TextMessage ();
 
   hglobal = GlobalHandle (lptw->ScreenBuffer);
@@ -248,7 +285,6 @@ EXPORT void WINAPI TextClose (LPTW lptw)
   if (lptw->lpmw)  CloseMacros (lptw);
   lptw->hWndParent = (HWND) NULL;
 }
-/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 /* Bring Cursor into text window */
 EXPORT void WINAPI TextToCursor (LPTW lptw)
@@ -1004,7 +1040,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  /** send number of lines info to scilab **/
       nl = (nl > 5) ? nl : 5;
 	  /** to avoid lines set to 0 when iconified **/
-      C2F (scilines) (&nl, &nc);
+      //C2F (scilines) (&nl, &nc);
       
 	  lptw->ScrollMax.y = max (0, lptw->CharSize.y * lptw->ScreenSize.y - lptw->ClientSize.y);
       lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
@@ -2963,12 +2999,7 @@ void ExitWindow(void)
            	CloseHandle( GetHandleThreadPaste() );
         }
         WriteTextIni (lptw);
-           				           				
-        StoreCommand1 ("abort;", 0);
-        SendCTRLandAKey(CTRLU);
-   		StoreCommand1 ("quit;",1);
-   					
-  
+    	C2F(sciquit)();
         Kill_Scilex();
      }
      else
@@ -2979,9 +3010,8 @@ void ExitWindow(void)
    else
    {
    	WriteTextIni (lptw);
-   	StoreCommand1 ("abort;", 0);
-   	SendCTRLandAKey(CTRLU);
-   	StoreCommand1 ("quit;", 0);
+	C2F(sciquit)();
+	Kill_Scilex();
    }
 	   	
 }

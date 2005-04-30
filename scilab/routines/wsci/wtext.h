@@ -87,6 +87,8 @@ extern int C2F (scilines) (int *nl, int *nc);
 
 EXPORT void WINAPI TextMessage (void);
 static void CreateTextClass (LPTW lptw);
+static BOOL RegisterParentWindowClass (LPTW lptw);
+static BOOL RegisterTextWindowClass (LPTW lptw);
 EXPORT int WINAPI TextInit (LPTW lptw);
 EXPORT void WINAPI TextClose (LPTW lptw);
 EXPORT void WINAPI TextToCursor (LPTW lptw);

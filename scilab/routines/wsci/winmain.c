@@ -98,7 +98,7 @@ int Console_Main(int argc, char **argv)
   /* Load common control library * */
   InitCommonControls ();
 
-  textwin.hInstance = GetModuleHandle (0);
+  textwin.hInstance = GetModuleHandle("LibScilab");
   textwin.hPrevInstance = 0;
   textwin.nCmdShow = 1;
   textwin.Title = "Scilab";

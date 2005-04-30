@@ -190,6 +190,8 @@ static int ReallocVector();
 static void DrawMark(),LoadFonts(), LoadSymbFonts();
 static void C2F(loadfamily_n)();
 static void CreateGraphClass();
+static BOOL RegisterParentWindowGraphClass (void);
+static BOOL RegisterWindowGraphClass (void);
 static void XDrawPoints();
 static BOOL SciPalette(int iNumClr);
 static void set_current_clip (void);
@@ -200,6 +202,7 @@ extern void UpdateFileGraphNameMenu(struct BCG *ScilabGC);
 extern void CreateGraphToolBar(struct BCG * ScilabGC); 
 extern void SetIsASingleClickToFalse(void);
 extern BOOL IsASingleClickToFalse(void);
+extern BOOL IsWindowInterface(void);
 
 /************************************************
  * dealing with hdc : when using the Rec driver 
@@ -4021,43 +4024,79 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 		}
 	CreateGraphToolBar(ScilabXgc);
   }
- 
- 
-  
+   
   ScilabXgc->Inside_init=0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void CreateGraphClass()
 {
-  static WNDCLASS wndclass;
-  /** each Graphic window owns is DC : CS_OWNDC **/
-  wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC |CS_DBLCLKS ;
-  wndclass.lpfnWndProc = WndGraphProc;
-  wndclass.cbClsExtra = 0;
-  wndclass.cbWndExtra = 4 * sizeof(void *);
-  wndclass.hInstance = graphwin.hInstance;
-  wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-  /** should be changed : cursor must be changed when inside xclick **/
-  wndclass.hCursor =  LoadCursor(NULL, IDC_CROSS);
-  wndclass.hbrBackground = NULL; /* GetStockBrush(WHITE_BRUSH);*/
-  wndclass.lpszMenuName = NULL;
-  wndclass.lpszClassName = szGraphClass;
-  RegisterClass(&wndclass);
-  /** The parent window **/
-  wndclass.style = CS_HREDRAW | CS_VREDRAW;
-  wndclass.lpfnWndProc = WndParentGraphProc;
-  wndclass.cbClsExtra = 0;
-  wndclass.cbWndExtra = 4 * sizeof(void *);
-  wndclass.hInstance = graphwin.hInstance;
-  if (textwin.hIcon)
-    wndclass.hIcon = textwin.hIcon;
-  else
-    wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-  wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-  wndclass.hbrBackground = NULL; /* (HBRUSH) GetStockObject(BLACK_BRUSH); */
-  wndclass.lpszMenuName = NULL;
-  wndclass.lpszClassName = szParentGraphClass;
-  RegisterClass(&wndclass);
+  RegisterParentWindowGraphClass();
+  RegisterWindowGraphClass();
+}
+/*-----------------------------------------------------------------------------------*/
+static BOOL RegisterParentWindowGraphClass (void)
+{
+	/** The parent window **/
+	BOOL bOK=FALSE;
+	static WNDCLASS ParentGraphwndclass;
+	
+	ParentGraphwndclass.style = CS_HREDRAW | CS_VREDRAW;
+	ParentGraphwndclass.lpfnWndProc = WndParentGraphProc;
+	ParentGraphwndclass.cbClsExtra = 0;
+	ParentGraphwndclass.cbWndExtra = 4 * sizeof(void *);
+	ParentGraphwndclass.hInstance = graphwin.hInstance;
+	ParentGraphwndclass.hIcon =  LoadIcon (graphwin.hInstance, "texticon");
+	ParentGraphwndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	ParentGraphwndclass.hbrBackground = NULL;
+	ParentGraphwndclass.lpszMenuName = NULL;
+	ParentGraphwndclass.lpszClassName = szParentGraphClass;
+
+	if (!RegisterClass(&ParentGraphwndclass))
+	{
+		DWORD dwLastError = GetLastError();
+		char buff1[1000], buff2[1000];
+
+		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwLastError, 0, buff1, sizeof (buff1), NULL);
+		sprintf(buff2, "ParentGraphwndclass Win32 error %ld occured", dwLastError);
+
+		MessageBox(NULL, buff1, buff2, MB_ICONERROR);
+		bOK=FALSE;
+	}
+	else bOK=TRUE;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+static BOOL RegisterWindowGraphClass (void)
+{
+	BOOL bOK=FALSE;
+	static WNDCLASS Graphwndclass;
+	/** each Graphic window owns is DC : CS_OWNDC **/
+	Graphwndclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC |CS_DBLCLKS ;
+	Graphwndclass.lpfnWndProc = WndGraphProc;
+	Graphwndclass.cbClsExtra = 0;
+	Graphwndclass.cbWndExtra = 4 * sizeof(void *);
+	Graphwndclass.hInstance = graphwin.hInstance;
+	Graphwndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	Graphwndclass.hCursor =  LoadCursor(NULL, IDC_CROSS);
+	Graphwndclass.hbrBackground = NULL;
+	Graphwndclass.lpszMenuName = NULL;
+	Graphwndclass.lpszClassName = szGraphClass;
+
+	if (!RegisterClass(&Graphwndclass))
+	{
+		DWORD dwLastError = GetLastError();
+		char buff1[1000], buff2[1000];
+
+		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwLastError, 0, buff1, sizeof (buff1), NULL);
+		sprintf(buff2, "ParentGraphwndclass Win32 error %ld occured", dwLastError);
+
+		MessageBox(NULL, buff1, buff2, MB_ICONERROR);
+		bOK=FALSE;
+	}
+	else bOK=TRUE;
+
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
 /* Writes a message in the Label info part of the Graphicwindow  */
