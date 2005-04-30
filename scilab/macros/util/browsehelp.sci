@@ -121,7 +121,7 @@ function md=help_ask(modes)
   else
     md=modes(n)
   end
-  savedefaultbrowser(modes(n));    
+  savedefaultbrowser(md);    
 endfunction
 
 function tcltk_help(path,key,key1)
