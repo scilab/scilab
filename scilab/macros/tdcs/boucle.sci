@@ -67,8 +67,7 @@ ylast=[ylast;ylast];
 	  n=n-1;
           if n==-1,
 	    go_on=0;lines(ncnl(1));
-	    [bcl_xdim,
-	     bcl_npts]=resume(bcl_xdim,bcl_npts);
+	    [bcl_xdim,bcl_npts]=resume(bcl_xdim,bcl_npts);
 	  end
           if n==2,
 	    go_on=0;lines(ncnl(1));
