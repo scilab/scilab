@@ -65,14 +65,14 @@ void Initialize()
 				else
 				{
 					*p='\0';
-					set_sci_env(modname,NULL);
+					set_sci_env(modname);
 				}
 			}
 		}
     }
     else 
 	{
-		set_sci_env(p1,NULL);
+		set_sci_env(p1);
 	}
   #else
    sprintf (env, "%s=%s", "SCI",SCI);
