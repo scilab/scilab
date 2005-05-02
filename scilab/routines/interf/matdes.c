@@ -5272,52 +5272,88 @@ int gset(fname,fname_len)
 	GetListRhsVar(3,3,"S",&numrow[1],&numcol[1],&ptrindex[1]);
 
 	if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
-
-      }
-    /* make a test on SCI_SURFACE here*/
-    else if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
-      {
-	if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
-	  Scierror(999,"%s: %s\r\n",fname,error_message);
-	  return 0;
-	}
-      }
-    else
-      {	/* F.Leray Work here*/
-	if (strncmp(cstk(l2),"data",4) !=0) {
-	  sciprint("Impossible case: Handle must be a SCI_SURFACE one and marker must be data\n");
-	  return -1;
-	}
-	if(VarType(3) != 16){
-	  Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-	  return -1;
-	}
-	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 	
-	/* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); 
-	   Not good because 3,1 is the string character "3d x y z [en option col]"*/
-	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
-	GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
-
-	if(m3tl == 4)
-	  {
-	    GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
-	    flagc = 0;
+      }
+    else if(strcmp(cstk(l2),"data") == 0){ /* distinction for "data" treatment for champ and surface objects */
+      if((sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1))
+	{	/* F.Leray Work here*/
+	  int address[4],i;
+	  for(i=0;i<4;i++) address[i] = 0;
+	  
+	  if (strncmp(cstk(l2),"data",4) !=0) {
+	    sciprint("Impossible case: Handle must be a SCI_SEGS (created by a champ call) and marker must be data\n");
+	    return -1;
 	  }
-	else if( m3tl == 5)
-	  {
-	    GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
-	    GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&lxyzcol[3]);
-	    flagc = 1;
-	  }
-	else
-	  {
-	    sciprint("Error m3tl must be equal to 4 or 5\r\n");
+	  if(VarType(3) != 16){
+	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	    return -1;
 	  }
 	
-	if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0)  return 0;
+	  GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+	
+	  if(m3tl != 5 || n3tl != 1){
+	    sciprint("Tlist size must be 1x5\r\n");
+	    return -1;
+	  }
+	
+	  GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
+	  GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
+	  GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
+	  GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&address[3]);
+	
+	  if (setchampdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
+	}
+      else if(sciGetEntityType(pobj) == SCI_SURFACE)
+	{	/* F.Leray Work here*/
+	  if (strncmp(cstk(l2),"data",4) !=0) {
+	    sciprint("Impossible case: Handle must be a SCI_SURFACE one and marker must be data\n");
+	    return -1;
+	  }
+	  if(VarType(3) != 16){
+	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
+	    return -1;
+	  }
+	  GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+	
+	  /* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); 
+	     Not good because 3,1 is the string character "3d x y z [en option col]"*/
+	  GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
+	  GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
+
+	  if(m3tl == 4)
+	    {
+	      GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
+	      flagc = 0;
+	    }
+	  else if( m3tl == 5)
+	    {
+	      GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
+	      GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&lxyzcol[3]);
+	      flagc = 1;
+	    }
+	  else
+	    {
+	      sciprint("Error m3tl must be equal to 4 or 5\r\n");
+	      return -1;
+	    }
+	
+	  if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0)  return 0;
+	}
+      else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
+	{
+	  if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
+	    Scierror(999,"%s: %s\r\n",fname,error_message);
+	    return 0;
+	  }
+	}
+    }
+    else{ /* F.Leray 02.05.05 : main case (using sciGetPoint routine inside GetProperty.c) */
+      if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
+	Scierror(999,"%s: %s\r\n",fname,error_message);
+	return 0;
       }
+    }
+    
     if (!(vis_save==0&&sciGetVisibility(pobj)==0)) {/* do not redraw figure if object remains invisible */
       if ((strncmp(cstk(l2),"figure_style",12) !=0) &&
 	  (strncmp(cstk(l2),"old_style",9) !=0 ) && 
@@ -5455,19 +5491,33 @@ int gget(fname,fname_len)
 	  if(getticks(cstk(l2),pobj)!=0)
 	    return 0;
 	}
-      /* make a test on SCI_SURFACE here*/
-      else if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
+      else if(strcmp(cstk(l2),"data") == 0){ /* distinction for "data" treatment for champ and surface objects */
+	if(sciGetEntityType(pobj) == SCI_SURFACE)
+	  {
+	    if (get3ddata(pobj)!=0)
+	      return 0;
+	  }
+	else if((sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1))
+	  {
+	    if (getchampdata(pobj)!=0)
+	      return 0;
+	  }  
+	else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
+	  {
+	    if (sciGet(pobj, cstk(l2))!=0)
+	      {
+		Scierror(999,"%s: %s\r\n",fname,error_message);
+		return 0;
+	      }
+	  }
+      }
+      else /* F.Leray 02.05.05 : main case (all but "data") (using sciGetPoint routine inside GetProperty.c) */
 	{
 	  if (sciGet(pobj, cstk(l2))!=0)
 	    {
 	      Scierror(999,"%s: %s\r\n",fname,error_message);
 	      return 0;
 	    }
-	}
-      else
-	{
-	  if (get3ddata(pobj)!=0)
-	    return 0;
 	}
     }
     else
@@ -10683,3 +10733,133 @@ int LinearScaling2Colormap(sciPointObj* pobj)
     
   return 0;
 }
+
+
+
+
+
+/* F.Leray 29.04.05 */
+/* the champ data is now given as a tlist (like for surface objects) */
+static int getchampdata(sciPointObj *pobj)
+{
+  char *variable_tlist[] = {"champdata","x","y","fx","fy"};
+  int m_variable_tlist = 0;
+  int n_variable_tlist = 0;
+  /*int n_variable_tlist = 1; */
+  
+  int  numrow, numcol,l;
+  
+  /* F.Leray debug*/
+  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
+  
+  m_variable_tlist = 1;
+  n_variable_tlist = 5;
+    
+  /* Add 'variable' tlist items to stack */
+  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
+  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  
+  numrow = ppsegs->Nbr1;
+  numcol = 1;
+  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppsegs->vx);
+
+  numrow = ppsegs->Nbr2;
+  numcol = 1;
+  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &ppsegs->vy);
+
+  numrow = ppsegs->Nbr1;
+  numcol = ppsegs->Nbr2;
+  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppsegs->vfx);
+
+  /* same numrow and numcol */
+  CreateListVarFromPtr(Rhs+1, 5, "d", &numrow,&numcol, &ppsegs->vfy);
+    
+  return 0;
+}
+
+
+
+/* F.Leray 29.04.05 */
+/* the champ data is now set as a tlist (like for surface objects) */
+/* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
+static int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname)
+{
+  int i=0;
+  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
+  
+  integer m1, n1, l1, m2, n2, l2, m3, n3, l3, m4, n4, l4;
+  
+  double * vx = NULL, * vy = NULL;
+  double * vfx = NULL, * vfy = NULL;
+    
+  m1 = numrow[0];
+  m2 = numrow[1];
+  m3 = numrow[2];
+  m4 = numrow[3];
+  
+  n1 = numcol[0];
+  n2 = numcol[1];
+  n3 = numcol[2];
+  n4 = numcol[3];
+  
+  l1 = value[0];
+  l2 = value[1];
+  l3 = value[2];
+  l4 = value[3];
+  
+  if (n1 != 1 || n2 != 1){
+    Scierror(999,"%s:  Inside the Tlist : the first argument must be columns vectors\r\n",fname);
+    return 0;
+  }
+
+  if (m3 != m1 || n3 != m2 || m4 != m3 || n4 != n3) {
+    Scierror(999,"%s:  Inside the Tlist : incompatible length in the third and/or fourth argument(s)\r\n",fname);
+    return 0;
+  }
+  
+  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 || m4 * n4 == 0) { LhsVar(1)=0; return 0;} 
+
+  /* Update the dimenesions Nbr1 and Nbr2 */
+  ppsegs->Nbr1 = m1;
+  ppsegs->Nbr2 = m2;
+
+  /* Free the old values... */
+  FREE(ppsegs->vx); ppsegs->vx = NULL;
+  FREE(ppsegs->vy); ppsegs->vy = NULL;
+  FREE(ppsegs->vfx); ppsegs->vfx = NULL;
+  FREE(ppsegs->vfy); ppsegs->vfy = NULL;
+  
+  /* allocations:*/
+  if ((vx = MALLOC (m1 * sizeof (double))) == NULL) return -1;
+  if ((vy = MALLOC (m2 * sizeof (double))) == NULL) {
+    FREE(vx); vx = (double *) NULL;
+    return -1;
+  }
+  
+  if ((vfx = MALLOC (m3*n3 * sizeof (double))) == NULL) return -1;
+  if ((vfy = MALLOC (m4*n4 * sizeof (double))) == NULL) {
+    FREE(vfx); vfx = (double *) NULL;
+    return -1;
+  }
+  
+  /* Copy the new values F.Leray */
+  for(i=0;i< m1;i++)
+    vx[i] = stk(l1)[i];
+  
+  for(i=0;i< m2;i++)
+    vy[i] = stk(l2)[i];
+  
+  for(i=0;i< m3*n3;i++){ /* vfx and vfy must have the same dimensions */
+    vfx[i] = stk(l3)[i];
+    vfy[i] = stk(l4)[i];
+  }
+  
+  ppsegs->vx = vx;
+  ppsegs->vy = vy;
+  ppsegs->vfx = vfx;
+  ppsegs->vfy = vfy;
+  
+  return 0;
+}
+
+

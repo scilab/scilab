@@ -249,13 +249,27 @@ function %h_p(h)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)]
       case "Champ"
-      d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+      Data = h.data
+      dx=sci2exp(Data.x,0)
+      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
+
+      dy=sci2exp(Data.y,0)
+      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
+
+      dfx=sci2exp(Data.fx,0)
+      if length(dfx)>70 then dfx="matrix "+strcat(string(size(Data.fx)),'x'), end
+
+       dfy=sci2exp(Data.fy,0)
+      if length(dfy)>70 then dfy="matrix "+strcat(string(size(Data.fy)),'x'), end
+ 
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible) 
-	 "data = "+d
+	 "data.x = "+dx
+	 "data.y = "+dy
+	 "data.fx = "+dfx
+	 "data.fy = "+dfy
 	 "line_style = "+string(h.line_style)
 	 "thickness = "+string(h.thickness)
 	 "colored = "+sci2exp(h.colored)
