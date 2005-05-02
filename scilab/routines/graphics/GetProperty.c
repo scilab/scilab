@@ -3960,6 +3960,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	sciprint("Impossible case: champ object is now treated as a tlist. See set/getchampdata\r\n");
 	return (double *) NULL;
       }
+      return (double*)tab;
       break;
     case SCI_SURFACE:
       /* F.Leray 17.03.04*/
