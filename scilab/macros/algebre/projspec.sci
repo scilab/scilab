@@ -26,7 +26,7 @@ function [S,P,D,index]=projspec(A,tol)
   if dim==0
     P=eye(n,n);S=0*P;D=A;return
   end;
-  Ck=C;Bk=B;write(%io(2),[dim,rcond(C*B)],'(7x,f3.0,6x,e9.3)');
+  Ck=C;Bk=B;//write(%io(2),[dim,rcond(C*B)],'(7x,f3.0,6x,e9.3)');
   tst=rcond(Ck*Bk);
   if size(Ck,1)==1 then tst=norm(Ck*Bk,1);end
   if tst > tol then
