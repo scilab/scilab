@@ -102,8 +102,8 @@ C
 c     form function like call
       fin = 0
       nchar=lin(lpt(4))
-c     if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
       if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) goto 11
+      if (char1.eq.slash.and.lin(lpt(4)).eq.slash) goto 11
       if(lpt(4).ge.2) then
          pchar=lin(lpt(4)-2)
          if(pchar.ne.blank) return
@@ -112,15 +112,16 @@ c     if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
       fin=0
       if(char1.eq.lparen.or.char1.eq.equal) return
       rhs=0
-      if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) sym=char1
       call funs(id)
       if(fin.eq.0) then
          if(comp(1).eq.0) then
             fin=-4
             call funs(id)
             if(fin.eq.0) return
+            sym=char1
             call cmdstr
          else
+            sym=char1
             call cmdstr
             fin=-2
             call stackg(id)
@@ -128,8 +129,14 @@ c     if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
             fun=-1
          endif
       else
-         if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
-         if (char1.eq.slash.and.lin(lpt(4)).eq.slash) return
+         if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) then
+            sym=char1
+            return
+         endif
+         if (char1.eq.slash.and.lin(lpt(4)).eq.slash) then
+            sym=comma
+            return
+         endif
          call cmdstr
       endif
 
