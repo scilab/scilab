@@ -2294,8 +2294,8 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
   double *start_of_pr = mxGetPr(array_ptr);
   unsigned long mem_size;
   unsigned long mn = mxGetM(array_ptr) * mxGetN(array_ptr);
-  static int warn_cnt = 0; // Number of times to warn for memcpy overwrite.
-  static int warn_cnt2 = 0; // Number of times to warn for oversized NZMAX.
+  static int warn_cnt = 0; /* Number of times to warn for memcpy overwrite. */
+  static int warn_cnt2 = 0; /* Number of times to warn for oversized NZMAX. */
 
   if(mxIsSparse(array_ptr)){
     int *header = Header(array_ptr);
@@ -2303,7 +2303,7 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
     if( NZMAX <= mn ){
       mem_size = NZMAX * sizeof(double);
     }
-    else{ // Can't hold more than M*N elements so truncate and warn.  
+    else{ /* Can't hold more than M*N elements so truncate and warn. */
       mem_size = mn * sizeof(double);
       if(warn_cnt2){
 	char *prefix = --warn_cnt2 == 0 ? "Last warning" : "Warning";
@@ -2311,7 +2311,7 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
       }
     }
   }
-  else{ // Full Matrix
+  else{ /* Full Matrix */
     mem_size = mn * sizeof(double);
   }
   if(warn_cnt){
@@ -2329,8 +2329,8 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
   double *start_of_pi = mxGetPi(array_ptr);
   unsigned long mem_size;
   unsigned long mn = mxGetM(array_ptr) * mxGetN(array_ptr);
-  static int warn_cnt = 0; // Number of times to warn for memcpy overwrite.
-  static int warn_cnt2 = 0; // Number of times to warn for oversized NZMAX.
+  static int warn_cnt = 0; /* Number of times to warn for memcpy overwrite.*/
+  static int warn_cnt2 = 0; /* Number of times to warn for oversized NZMAX.*/
 
   if(mxIsSparse(array_ptr)){
     int *header = Header(array_ptr);
@@ -2338,7 +2338,7 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
     if( NZMAX <= mn ){
       mem_size = NZMAX * sizeof(double);
     }
-    else{ // Can't hold more than M*N elements so truncate and warn.  
+    else{ /* Can't hold more than M*N elements so truncate and warn. */
       mem_size = mn * sizeof(double);
       if(warn_cnt2){
 	char *prefix = --warn_cnt2 == 0 ? "Last warning" : "Warning";
@@ -2346,7 +2346,7 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
       }
     }
   }
-  else{ // Full Matrix
+  else{ /* Full Matrix */
     mem_size = mn * sizeof(double);
   }
   if(warn_cnt){
