@@ -3,6 +3,10 @@
 // of a scilab session
 // Copyright INRIA
 // ====================================================================
+
+ // Close multimedia files open with scilab
+ if MSDOS then mcisendstring('close all'),end;
+
  if exists('ge_check_before_quit') then
    ge_check_before_quit()
  end

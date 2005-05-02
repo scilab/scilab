@@ -637,3 +637,4 @@
 {"setlanguagemenu",		IN_intwintools,	14,	2},
 {"console",				IN_intwintools,	15,	2},
 {"about",				IN_intwintools,	16,	2},
+{"mcisendstring",		IN_intwintools,	17,	2},

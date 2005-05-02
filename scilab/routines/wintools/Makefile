@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wintools.a
 
-OBJSC = intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
+OBJSC = intmcisendstring.o intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
         intpathname.o intsetlanguagemenu.o inttoolbar.o \
         intwinopen.o intwinqueryreg.o
 
@@ -32,7 +32,7 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
-
+intmcisendstring.o: ../stack.h intmcisendstring.h
 intwintools.o: ../stack.h intwintools.h
 intabout.o: ../stack.h intabout.h
 intclipboard.o: ../stack.h intclipboard.h

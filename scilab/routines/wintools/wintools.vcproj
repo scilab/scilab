@@ -691,6 +691,9 @@ cd .. &gt;nul
 				RelativePath=".\intdde.c">
 			</File>
 			<File
+				RelativePath=".\intmcisendstring.c">
+			</File>
+			<File
 				RelativePath=".\intpathname.c">
 			</File>
 			<File
@@ -723,6 +726,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intdde.h">
+			</File>
+			<File
+				RelativePath=".\intmcisendstring.h">
 			</File>
 			<File
 				RelativePath=".\intpathname.h">
