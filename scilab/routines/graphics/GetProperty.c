@@ -3942,8 +3942,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       return (double*)NULL;			/* les coordonnees sont (x,0) */
     case SCI_TITLE:
     case SCI_SEGS: 
-      *numrow = pSEGS_FEATURE (pthis)->Nbr1;
       if (pSEGS_FEATURE (pthis)->ptype == 0) {
+	*numrow = pSEGS_FEATURE (pthis)->Nbr1;
 	*numcol = ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) 
 		   && (pSEGS_FEATURE (pthis)->vz != NULL))? 3:2;
 	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -3956,40 +3956,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	      tab[2*(*numrow)+i]= pSEGS_FEATURE (pthis)->vz[i];   
 	  }
       }
-      else {/*djalel je suis la **/
-	*numcol = ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) 
-		   && (pSEGS_FEATURE (pthis)->vz != NULL))? 3 + *numrow*3:2 + *numrow*2;
-	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
-	  return (double*)NULL;
-	for (i=0;i < *numrow;i++)
-	  {
-	    tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
-	    tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];
-	    if (*numcol == 3 + *numrow*3)
-	      tab[2*(*numrow)+i]= pSEGS_FEATURE (pthis)->vz[i];    
-	  }
-	k=*numrow*2;
-	for (i=0;i < *numrow * *numrow;i++)
-	  {
-	    tab[k+i] = pSEGS_FEATURE (pthis)->vfx[i];	
-	  }
-	k=k+*numrow * *numrow;
-	for (i=0;i < *numrow * *numrow;i++)
-	  {
-	    tab[k+i] = pSEGS_FEATURE (pthis)->vfy[i];	
-	  }
-	k=k+2* *numrow * *numrow;
-	if (*numcol == 3 + *numrow*3)
-	  for (i=0;i < 2* *numrow * *numrow;i++)
-	    {
-	      tab[k+i] = pSEGS_FEATURE (pthis)->vfz[i];	
-	    }
+      else {
+	sciprint("Impossible case: champ object is now treated as a tlist. See set/getchampdata\r\n");
+	return (double *) NULL;
       }
-      return (double*)tab;
       break;
     case SCI_SURFACE:
       /* F.Leray 17.03.04*/
-
       sciprint("Impossible case happened ! Check if instruction in matdes.c inside gget function");
       return (double*) NULL;
       break;
@@ -4333,10 +4306,12 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"segs_color", 10) == 0) {return 1;}
   else if (strncmp(marker,"colored", 7) == 0) {return 10;}
   /* else if (strcmp(marker,"data") == 0)            {return 1;}*/ /* F.Leray modif. for SCI_SURFACE case*/
-  else if (strcmp(marker,"data") == 0 && sciGetEntityType(pobj) != SCI_SURFACE)  
-    {return 1;} 
-  else if (strcmp(marker,"data") == 0 && sciGetEntityType(pobj) == SCI_SURFACE) 
-    {return 16;}
+  else if (strcmp(marker,"data") == 0)
+    if((sciGetEntityType(pobj) == SCI_SURFACE) || 
+       (sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1))
+      return 16;
+    else
+      return 1;
   else if (strncmp(marker,"hdl", 3) == 0)         {return 1;}		
   else if (strncmp(marker,"callbackmevent", 14) == 0) {return 1;}
   else if (strncmp(marker,"callback", 8) == 0)    {return 10;} 	
