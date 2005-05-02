@@ -97,9 +97,13 @@ function M=%st_i_st(varargin)
       w=getfield(k+2,N);
       if type(w)<>15 then w=list(w),end
       if type(v2)<>15 then v2=list(v2);end
-      for i=1:size(I,'*'), 
+      for i=1:size(I,'*'),
 	if w<>list() then
-	  v2(I(i))=w(i);
+	  if size(w)==1 then
+	     v2(I(i))=w(1);
+	  else
+	    v2(I(i))=w(i);
+	  end
 	else
 	  v2(I(i))=[];
 	end
