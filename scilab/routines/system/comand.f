@@ -112,7 +112,7 @@ c     if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
       fin=0
       if(char1.eq.lparen.or.char1.eq.equal) return
       rhs=0
-
+      if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) sym=char1
       call funs(id)
       if(fin.eq.0) then
          if(comp(1).eq.0) then
@@ -132,6 +132,7 @@ c     if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
          if (char1.eq.slash.and.lin(lpt(4)).eq.slash) return
          call cmdstr
       endif
+
       return
 C     
  15   if (fin .eq. -1) return
