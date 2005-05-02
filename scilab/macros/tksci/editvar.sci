@@ -15,7 +15,7 @@ function editvar(%_name)
   if (type(%_name)~=10) then error(44), end
   if execstr("%_var="+%_name,'errcatch')~=0 then error(44), end
   %_type=typeof(%_var)
-  if and(type(%_var)~=[1 4 8 16])&%_type~="xlssheet" then error(44), end
+  if and(type(%_var)~=[1 4 8 10 16])&%_type~="xlssheet" then error(44), end
 
   disp("Please wait...");
   [%_ni,%_nj]=size(%_var);
