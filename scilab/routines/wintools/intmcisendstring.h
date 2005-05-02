@@ -23,6 +23,11 @@
 #define FALSE 0
 
 int C2F(intmcisendstring) _PARAMS((char *fname));
+#if WIN32
+	int mcisendstringWindowsfunction _PARAMS((char *fname));
+#else
+	int mcisendstringUnixfunction _PARAMS((char *fname));
+#endif
 
 #endif /* __INTMCISENDSTRING__ */
 /*-----------------------------------------------------------------------------------*/ 
