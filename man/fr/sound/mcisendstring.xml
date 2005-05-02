@@ -10,7 +10,7 @@
   <DATE>May 2005</DATE>
 
   <SHORT_DESCRIPTION name="mcisendstring">sends a command string to an MCI
-  device.</SHORT_DESCRIPTION>
+  device (Windows Only).</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mcisendstring(mcistring)</CALLING_SEQUENCE_ITEM>
