@@ -237,6 +237,29 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+  case "Champ"
+    mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
+    mput(bool2s(h.visible=='on'),'c',fd)
+    x=h.data.x;sz=size(x)
+    mput(sz,'il',fd)
+    mput(x,'dl',fd)
+    y=h.data.y;sz=size(y)
+    mput(sz,'il',fd)
+    mput(y,'dl',fd)
+    fx=h.data.fx;sz=size(fx)
+    mput(sz,'il',fd)
+    mput(fx,'dl',fd)
+    fy=h.data.fy;sz=size(fy)
+    mput(sz,'il',fd)
+    mput(fy,'dl',fd)
+    mput(h.line_style,'c',fd)
+    mput(h.thickness,'sl',fd)
+    mput(bool2s(h.colored=='on'),'c',fd)
+    mput(h.arrow_size,'dl',fd)
+    mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd)
+    end
   case "Segs"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -255,7 +278,7 @@ function save_graphichandle(h,fd)
     mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
-    end
+    end  
   case "Grayplot"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)

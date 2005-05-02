@@ -439,6 +439,25 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"foreground",foreground),
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
+  case "Champ"
+    visible        = toggle(mget(1,'c',fd))
+    sz=mget(2,'il',fd);x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    sz=mget(2,'il',fd);y=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    sz=mget(2,'il',fd);fx=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    sz=mget(2,'il',fd);fy=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    champ(x,y,fx,fy);
+    h=gce();
+        
+    set(h,"line_style",mget(1,'c',fd));
+    set(h,"thickness",mget(1,'sl',fd))
+    set(h,"colored",toggle(mget(1,'c',fd)))
+    set(h,"arrow_size",mget(1,'dl',fd))
+    
+    clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
+    if clip_state=='on' then
+      set(h,"clip_box", mget(4,'dl',fd))
+    end
+    set(h,"clip_state",clip_state);  
   case "Segs"
     visible        = toggle(mget(1,'c',fd))
     sz             = mget(2,'il',fd)
