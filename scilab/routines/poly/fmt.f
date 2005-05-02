@@ -68,7 +68,8 @@ c
       if(a.eq.0.0d+0) goto 26
       m=1-log10(a)
       ndgt=maxc-3+m
-      if(m.ge.maxc-3) goto 25
+
+      if(m.gt.maxc-3) goto 25
       dec=round(a*10.0d+0**ndgt)
    21 if(mod(dec,10.0d+0).ne.0.0d+0) goto 22
       dec=dec/10.0d+0
