@@ -301,7 +301,7 @@ int C2F(parse)()
   }
 
   excnt = 0;
-  if (! C2F(basbrk).iflag) {
+  if (! C2F(basbrk).iflag || C2F(com).comp[0] != 0 ) {
     goto L18;
   }
   /*     Handling of pauses */
