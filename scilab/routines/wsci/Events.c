@@ -289,8 +289,7 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 
 		case WM_MOUSEMOVE:
 		{
-			PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
-			ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, -1, 1, 0);
+			ON_WM_MOVE(wParam,lParam,ScilabGC);
 		}
 		return 0;
 	}
@@ -630,5 +629,119 @@ BOOL IsASingleClick(void)
 void SetIsASingleClickToFalse(void)
 {
 	SingleClick=FALSE;
+}
+/*-----------------------------------------------------------------------------------*/
+void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+{
+	int PosX=(int) LOWORD (lParam);
+	int PosY=(int) HIWORD (lParam);
+
+	if ( (bTimerLeftSingleClickON) || (bTimerMiddleSingleClickON) || (bTimerRightSingleClickON) )
+	{
+		if ( (!LeftPressedON) && (bTimerLeftSingleClickON) )
+		{
+			KillTimer(ScilabGC->CWindow, TIMER2LEFTBUTTON);
+			bTimerLeftSingleClickON=FALSE;
+			SingleClick=FALSE;
+
+			if (GetKeyState(VK_CONTROL)<0)
+			{
+				/*sciprint("CONTROL + Single Left Click\n");*/
+				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_LEFT+CTRL_KEY, 0, 1);
+			}
+			else
+			{
+				/*sciprint("Single Left Click\n");*/
+				SingleClick=TRUE;
+				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_LEFT, 0, 1);
+			}
+		}
+		if ( (!MiddlePressedON) && (bTimerMiddleSingleClickON) )
+		{
+			KillTimer(ScilabGC->CWindow, TIMER2MIDDLEBUTTON);
+			bTimerMiddleSingleClickON=FALSE;
+			SingleClick=FALSE;
+
+			if (GetKeyState(VK_CONTROL)<0)
+			{
+				/*sciprint("CONTROL + Single Middle Click\n");*/
+				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_MIDDLE+CTRL_KEY, 0, 1);
+			}
+			else
+			{
+				/*sciprint("Single Middle Click\n");*/
+				SingleClick=TRUE;
+				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_MIDDLE, 0, 1);
+			}
+		}
+		if ( (!RightPressedON) && (bTimerRightSingleClickON) )
+		{
+			KillTimer(ScilabGC->CWindow, TIMER2RIGHTBUTTON);
+			bTimerRightSingleClickON=FALSE;
+			SingleClick=FALSE;
+
+			if (GetKeyState(VK_CONTROL)<0)
+			{
+				/*sciprint("CONTROL + Single Right Click\n");*/
+				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_RIGHT+CTRL_KEY, 0, 1);
+			}
+			else
+			{
+				/*sciprint("Single Right Click\n");*/
+				SingleClick=TRUE;
+				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_RIGHT, 0, 1);
+			}
+		}
+	}
+	else
+	{
+		if (LeftPressedON)
+		{
+			if (GetKeyState(VK_CONTROL)<0)
+				{
+					/*sciprint("CONTROL + Left Button Pressed\n");*/
+					PushClickQueue (CurrentWindow, PosX+horzsinPos,PosY + vertsinPos, PRESSED_LEFT+CTRL_KEY, 1, 0);
+				}
+			else
+			{
+				/*sciprint("Left Button Pressed\n");*/
+				PushClickQueue (CurrentWindow, PosX+horzsinPos,PosY + vertsinPos, PRESSED_LEFT, 1, 0);
+			}
+		}
+		else
+		if (MiddlePressedON)
+		{
+			if (GetKeyState(VK_CONTROL)<0)
+			{
+				/*sciprint("CONTROL + Middle Button Pressed\n");*/
+				PushClickQueue (CurrentWindow, PosX+horzsinPos,PosY + vertsinPos, PRESSED_MIDDLE+CTRL_KEY, 1, 0);
+			}
+			else
+			{
+				/*sciprint("Middle Button Pressed\n");*/
+				PushClickQueue (CurrentWindow, PosX+horzsinPos,PosY + vertsinPos, PRESSED_MIDDLE, 1, 0);
+			}
+		}
+		else
+		if (RightPressedON)
+		{
+			if (GetKeyState(VK_CONTROL)<0)
+				{
+					/*sciprint("CONTROL + Right Button Pressed\n");*/
+					PushClickQueue (CurrentWindow, PosX+horzsinPos,PosY + vertsinPos, PRESSED_RIGHT+CTRL_KEY, 1, 0);
+				}
+			else
+			{
+				/*sciprint("Right Button Pressed\n");*/
+				PushClickQueue (CurrentWindow, PosX+horzsinPos,PosY + vertsinPos, PRESSED_RIGHT, 1, 0);
+			}
+		}
+		else
+		{
+			PushClickQueue (ScilabGC->CurWindow,(int) PosX +horzsinPos,PosY +vertsinPos, -1, 1, 0);
+		}
+		
+	}
+
 }
 /*-----------------------------------------------------------------------------------*/
