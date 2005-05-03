@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v4.6
+# in sync at least with v4.8
 
 
 # commons
@@ -388,3 +388,5 @@
 ::msgcat::mcset it "Open" "Apri"
 ::msgcat::mcset it "&Cancel" "&Annulla"
 ::msgcat::mcset it "&Selection:" "&Selezione:"
+::msgcat::mcset it "&Yes" "&Si"
+::msgcat::mcset it "&No" "&No"
