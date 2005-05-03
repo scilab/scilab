@@ -22692,7 +22692,7 @@ rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
      PERIX11NOPT=periX11
      GCC=yes
      CC=gcc
-     CC_OPTIONS='-no-cpp-precomp -O2 -DNDEBUG -I/sw/include -L/sw/lib'
+     CC_OPTIONS='-no-cpp-precomp -O2 -DNDEBUG -Ddarwin -I/sw/include -L/sw/lib'
      CC_LDFLAGS='-L/sw/lib'
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
@@ -22704,7 +22704,7 @@ rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
      LD=ld
      LD_LDFLAGS=
      if test "$enable_debug" = yes; then
-       CC_OPTIONS='-g -I/sw/include '
+       CC_OPTIONS='-g -Ddarwin -I/sw/include '
        FC_OPTIONS=-g
      fi
      if test "$WITH_G77" = yes; then
