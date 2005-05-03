@@ -155,6 +155,13 @@ proc ReplaceIt {once_or_all} {
             $textareacur tag remove replacedtext 0.0 end
             set lenR [string length $ReplaceString]
             $textareacur tag add replacedtext $SearchPos  "$SearchPos + $lenR char"
+            # If replacement occurred starting at the first selected character or
+            # up to the last selected character, then fakeselection should be extended
+            # by hand since tags have no gravity in tcl
+            # This is most simply done by always tagging the replaced text as fakeselection
+            if {[$textareacur tag ranges fakeselection] != {}} {
+                $textareacur tag add fakeselection $SearchPos  "$SearchPos + $lenR char"
+            }
             MoveDialogIfFoundHidden
             keyposn $textareacur
             if {$SearchDir == "forwards"} {

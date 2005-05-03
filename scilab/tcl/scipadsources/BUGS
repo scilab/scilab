@@ -42,7 +42,9 @@ Bugs:
 
 -In the debugger, trying to F10 with something like:
     function ...
-                    atest
+                    function_name
+        instruction
+        instruction
     enfunction
  fails. This is due to a bug in tcl/tk itself and will be solved in 8.5
  See: http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
@@ -50,13 +52,18 @@ Bugs:
  on the same code line.
 
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
- at least one Mandrake 10.1 Official Linux.
+ at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
 -Ctrl-F1 on some characters like " ' - or + does not work (different errors in
  the shell. Problem is partly in sciGUI, and partly in Scipad.
 
--Selection bounds is not well managed during replace (shows up when
- replacing text by a larger or shorter text
+-Resizing of the watch window panes can sometimes lead to clipping of these
+ panes. This is Tk bug 1192323 (partially solved in Tk8.5a3 cvs 29/04/05).
+ Tk patch 1124198 should solve the issue once committed into Tk cvs.
+
+-On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
+ usually produces a read-only warning and prevents the user from saving there.
+ This is Tcl bug 1193497.
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -152,7 +159,7 @@ Wishes:
  it includes execute selection, comment/uncomment this line, insert/delete
  breakpoints
  Note: a first step to this has been implemented. During a debug session, 
- the popup menu is the debug menu.
+ the popup menu is a debug menu.
 
 -smart indentation (i.e., for automatically indents the next line, end
  automatically indents back, etc)
@@ -223,6 +230,7 @@ Wishes:
  http://wiki.tcl.tk/9846
  http://pages.infinit.net/cclients/files/tkprint1.1.html
  http://wiki.tcl.tk/2497
+ http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/284848
 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add
@@ -245,3 +253,9 @@ Wishes:
  sciGUI is not localized.
 
 -switch to flexible Alt underlines in dialogs
+
+-Avoid to destroy and recreate the whole watch window when hiding/displaying
+ one of its sub-areas. Would probably require -hide option for panedwindow,
+ but this one is only available from Tk 8.5 (TIP #179)
+
+-Make use of the native Tk Find/Replace dialog available from 8.5

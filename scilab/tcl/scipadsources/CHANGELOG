@@ -1016,3 +1016,19 @@ Francois VOGEL, 27/04/05
    for [ab] in a buffer containing xxAxx)
  * version --> 4.8
 
+Francois VOGEL, 29/04/05
+ * Fixed: selection bounds could miss the first and/or last characters after
+   a replace whose first or last match started or ended at the selection
+   bounds
+ * Watch window made resizable, and with 2 paned windows inside to adjust
+   size of the call stack area and the variables area, and inside the variables
+   area, the respective sizes of the variable names and the variable content.
+   There is still a quirk, which is Tk bug 1192323 (partially solved in
+   Tk8.5a3 cvs 29/04/05), but one can certainly live with it for the moment
+ * Add arg window made resizable
+ * version --> 4.9
+
+Francois VOGEL, 03/05/05
+ * Bug fixed: when in debug mode and there was no mouseoversel before, there
+   was an error
+ * version --> 4.10

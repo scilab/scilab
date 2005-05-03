@@ -6,6 +6,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     toplevel $adda
     wm title $adda [mc "Add/Change"]
     setwingeom $adda
+    wm resizable $adda 1 0
     set selecteditem [$leftwin curselection]
     if {$selecteditem != ""} {
         set argname [$leftwin get $selecteditem]
@@ -20,15 +21,17 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     label $adda.f.f1.label -text $tl -width 10
     entry $adda.f.f1.entry  -textvariable argname -width 20 
     pack $adda.f.f1.label $adda.f.f1.entry -side left
+    pack $adda.f.f1.entry -expand 1 -fill x
     $adda.f.f1.entry selection range 0 end
-    pack $adda.f.f1
+    pack $adda.f.f1 -expand 1 -fill x
     frame $adda.f.f2
     set tl [mc "Value:"]
     label $adda.f.f2.label -text $tl -width 10
     entry $adda.f.f2.entry  -textvariable argvalue -width 20 
     pack $adda.f.f2.label $adda.f.f2.entry -side left
+    pack $adda.f.f2.entry -expand 1 -fill x
     $adda.f.f2.entry selection range 0 end
-    pack $adda.f.f2
+    pack $adda.f.f2 -expand 1 -fill x
     frame $adda.f.f9
     button $adda.f.f9.buttonOK -text "OK" \
            -command "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"\
@@ -39,7 +42,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
            -width 10 -height 1
     pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
     pack $adda.f.f9 -pady 4
-    pack $adda.f
+    pack $adda.f -expand 1 -fill x
     bind $adda <Return> "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"
     bind $adda <Escape> "Canceladda_bp $adda $pos $leftwin"
     if {$selecteditem != ""} {
@@ -49,6 +52,8 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     }
     grab $adda
     focus $focusbut
+    update
+    wm minsize $adda [winfo width $adda] [winfo height $adda]
 }
 
 proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {

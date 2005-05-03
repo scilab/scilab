@@ -14,7 +14,7 @@ catch {
 }
 
 set winTitle "SciPad"
-set version "Version 4.8"
+set version "Version 4.10"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -76,6 +76,7 @@ if {$tcl_platform(platform) != "unix"} {
 } else {
     set cursorblink "false"
 }
+set mouseoversel "false"
 
 # source the user preferences file if any
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl

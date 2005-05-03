@@ -2,24 +2,43 @@ proc showwatch_bp {} {
     global pad watch
     global lbvarname lbvarval scrolly
     global watchvars watchvarsvals buttonAddw
-    global firsttimeinshowwatch watchgeom
+    global firsttimeinshowwatch watchgeom watchmins watchminsinit
     global callstackwidget callstackcontent
     global watchwinicons db_butimages
     global showwatchvariablesarea togglewvabutton
     global showcallstackarea togglecsabutton
+    global watchvpane1mins watchvpane2mins watchvsashcoord
+    global watchhpane1mins watchhpane2mins watchhsashcoord
+
+    # Hardwired size, but how else?
+    set heightofwatchwithnoarea 105 ;# 85 enough for windows, 105 for my Linux
+    set widthofwatchwithnoarea  504 ;# Anyway, could depend on font size, language...
+
     set watch $pad.watch
     catch {destroy $watch}
     toplevel $watch
     wm title $watch [mc "Watch"]
-    if { $firsttimeinshowwatch == "true" } { 
+
+    if { $firsttimeinshowwatch == "true" } {
         setwingeom $watch
+        wm resizable $watch 1 1
     } else {
-        wm resizable $watch 0 0
-        wm geometry $watch $watchgeom
+        if {$showwatchvariablesarea == "false" && $showcallstackarea == "false"} {
+            set watchgeompos [string trimleft $watchgeom 1234567890x=]
+            wm minsize $watch $widthofwatchwithnoarea $heightofwatchwithnoarea
+            wm geometry $watch "=$widthofwatchwithnoarea\x$heightofwatchwithnoarea$watchgeompos"
+            wm resizable $watch 0 0
+        } else {
+            wm resizable $watch 1 1
+            wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]
+            wm geometry $watch $watchgeom
+        }
     }
+
     frame $watch.f
 
     frame $watch.f.f1
+
     frame $watch.f.f1.f1l
     set buttonConfigure $watch.f.f1.f1l.configure
     button $buttonConfigure -command "configurefoo_bp" -image [lindex $db_butimages 4] \
@@ -42,14 +61,18 @@ proc showwatch_bp {} {
     pack $buttonConfigure $buttonToNextBpt $buttonRunToCursor \
          $buttonGoOnIgnor $buttonBreakDebug $buttonCancelDebug \
          -padx 2 -pady 2 -side left
+
     frame $watch.f.f1.f1r
     set buttonshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
     button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text $togglewvabutton -width 20
     set buttonshowcallstackarea $watch.f.f1.f1r.showcallstackarea
     button $buttonshowcallstackarea -command "togglecallstackarea" -text $togglecsabutton -width 20
+
     pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
+
     pack $watch.f.f1 -anchor w
+
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
@@ -67,58 +90,79 @@ proc showwatch_bp {} {
     bind $buttonCancelDebug <Enter> {update_bubble_watch enter 14 [winfo pointerxy $watch]}
     bind $buttonCancelDebug <Leave> {update_bubble_watch leave 14 [winfo pointerxy $watch]}
 
-    frame $watch.f.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
-    frame $watch.f.f2.f2l
+    panedwindow $watch.f.vpw -orient vertical -opaqueresize true
+
+    frame $watch.f.vpw.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
+
+    frame $watch.f.vpw.f2.f2l
     set tl [mc "Watch variables:"]
-    label $watch.f.f2.f2l.label -text $tl
+    label $watch.f.vpw.f2.f2l.label -text $tl
     set bl [mc "Add/Change"]
-    set buttonAddw $watch.f.f2.f2l.buttonAdd
+    set buttonAddw $watch.f.vpw.f2.f2l.buttonAdd
     button $buttonAddw -text $bl -width 20
     set bl [mc "Remove"]
-    set buttonRemove $watch.f.f2.f2l.buttonRemove
+    set buttonRemove $watch.f.vpw.f2.f2l.buttonRemove
     button $buttonRemove -text $bl -width 20
-    pack $watch.f.f2.f2l.label $buttonAddw $buttonRemove -pady 4
-    frame $watch.f.f2.f2r
-    set lbvarname $watch.f.f2.f2r.lbvarname
-    set lbvarval $watch.f.f2.f2r.lbvarval
-    $buttonAddw configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
-                                    closewatch_bp $watch nodestroy}
+
+    pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove -pady 4
+    pack $watch.f.vpw.f2.f2l -anchor n
+
+    frame $watch.f.vpw.f2.f2r
+
+    panedwindow $watch.f.vpw.f2.f2r.hpw -orient horizontal -opaqueresize true
+
+    frame $watch.f.vpw.f2.f2r.hpw.f
+    set lbvarname $watch.f.vpw.f2.f2r.hpw.f.lbvarname
+    set scrolly   $watch.f.vpw.f2.f2r.hpw.f.yscroll
+    set lbvarval  $watch.f.vpw.f2.f2r.hpw.lbvarval
+    $buttonAddw   configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
+                                      closewatch_bp $watch nodestroy}
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
-    set scrolly $watch.f.f2.f2r.yscroll
     scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval"
     listbox $lbvarname -height 6 -width 12 -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -takefocus 0
-    listbox $lbvarval -height 6 -width 40 -yscrollcommand \
-                      "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
-                      -takefocus 0
+    listbox $lbvarval  -height 6 -yscrollcommand \
+                       "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
+                       -takefocus 0
     if {[info exists watchvars]} {
         foreach var $watchvars {
             $lbvarname insert end $var
             $lbvarval insert end $watchvarsvals($var)
         }
     }
-    pack $lbvarname $scrolly $lbvarval -side left \
-            -expand 1 -fill both -padx 2
-    pack $watch.f.f2.f2l $watch.f.f2.f2r -side left -padx 2
+
+    pack $lbvarname -side left -expand 1 -fill both -padx 2
+    pack $scrolly -side left -expand 0 -fill both -padx 2
+
+    $watch.f.vpw.f2.f2r.hpw add $watch.f.vpw.f2.f2r.hpw.f
+    $watch.f.vpw.f2.f2r.hpw add $lbvarval
+
+    pack $watch.f.vpw.f2.f2r.hpw -side left -expand 1 -fill both -padx 2
+    pack $watch.f.vpw.f2.f2l $watch.f.vpw.f2.f2r -side left -padx 2
+    pack $watch.f.vpw.f2.f2r -fill both -expand 1
     if {$showwatchvariablesarea == "true"} {
-        pack $watch.f.f2 -pady 2 -fill x
+        $watch.f.vpw add $watch.f.vpw.f2
     }
 
-    frame $watch.f.f6 -relief groove -borderwidth 2 -padx 2
+    frame $watch.f.vpw.f6 -relief groove -borderwidth 2 -padx 2
     set csl [mc "Call stack:"]
-    label $watch.f.f6.cslabel -text $csl
-    pack $watch.f.f6.cslabel -anchor w -pady 4
-    set callstackwidget $watch.f.f6.callstack
+    label $watch.f.vpw.f6.cslabel -text $csl
+    pack $watch.f.vpw.f6.cslabel -anchor w -pady 4
+    set callstackwidget $watch.f.vpw.f6.callstack
     text $callstackwidget -height 5 -width 81 -state normal -background gray83
-    pack $callstackwidget -fill x
+    pack $callstackwidget -fill both -expand 1
     if {$showcallstackarea == "true"} {
-        pack $watch.f.f6 -pady 2 -fill x
+        $watch.f.vpw add $watch.f.vpw.f6
     }
     $callstackwidget delete 1.0 end
     $callstackwidget insert 1.0 $callstackcontent
     $callstackwidget configure -state disabled
+
+    if {$showwatchvariablesarea == "true" || $showcallstackarea == "true"} {
+        pack $watch.f.vpw -fill both -expand yes
+    }
 
     frame $watch.f.f9
     set bl [mc "Close"]
@@ -127,34 +171,73 @@ proc showwatch_bp {} {
     pack $watch.f.f9.buttonClose
     pack $watch.f.f9 -pady 2
 
-    pack $watch.f -fill x
+    pack $watch.f -fill both -expand 1
+
+    update
+    if { $firsttimeinshowwatch != "true" && $showwatchvariablesarea == "true" && $showcallstackarea == "true"} {
+        $watch.f.vpw            sash place 0 [lindex $watchvsashcoord 0] [lindex $watchvsashcoord 1]
+    }
+    if { $firsttimeinshowwatch != "true" && $showwatchvariablesarea == "true"} {
+        $watch.f.vpw.f2.f2r.hpw sash place 0 [lindex $watchhsashcoord 0] [lindex $watchhsashcoord 1]
+    }
+
     bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                           closewatch_bp $watch nodestroy}
     bind $lbvarname <Double-Button-1> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                                        closewatch_bp $watch nodestroy}
-    bind $watch <Escape> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]; \
-                          closewatch_bp $watch}
+    bind $watch <Escape>    {closewatch_bp $watch}
     bind $watch <BackSpace> {Removearg_bp $lbvarname $lbvarval; \
                              closewatch_bp $watch nodestroy}
-    bind $watch <Delete> {Removearg_bp $lbvarname $lbvarval; \
-                          closewatch_bp $watch nodestroy}
-    bind $lbvarval <<ListboxSelect>> {selectinrightwin_bp $lbvarname $lbvarval}
-    bind $lbvarname <ButtonPress-3> {set itemindex [dragitem_bp $lbvarname %y]}
+    bind $watch <Delete>    {Removearg_bp $lbvarname $lbvarval; \
+                             closewatch_bp $watch nodestroy}
+    bind $lbvarval <<ListboxSelect>>  {selectinrightwin_bp $lbvarname $lbvarval}
+    bind $lbvarname <ButtonPress-3>   {set itemindex [dragitem_bp $lbvarname %y]}
     bind $lbvarname <ButtonRelease-3> {dropitem_bp $lbvarname $lbvarval "" $itemindex %y}
-    bind $watch <Up> {scrollarrows_bp $lbvarname up}
+    bind $watch <Up>   {scrollarrows_bp $lbvarname up  }
     bind $watch <Down> {scrollarrows_bp $lbvarname down}
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
-                                       {scrollarrows_bp $lbvarname up}}
-    bind $watch <Configure> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
+                                        {scrollarrows_bp $lbvarname up}   }
+    bind $watch <Configure> { \
+        if {$showwatchvariablesarea == "true" && $firsttimeinshowwatch == "false"} { \
+            set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]; \
+            set watchminw [expr [lindex $watchminsinit 0] + [lindex $watchhsashcoord 0] - $watchhpane1mins -4]; \
+            set watchmins [lreplace $watchmins 0 0 $watchminw]; \
+            if {$showcallstackarea == "true"} { \
+                set watchvsashcoord [$watch.f.vpw sash coord 0]; \
+                set watchminh [expr [lindex $watchminsinit 1] + [lindex $watchvsashcoord 1] - $watchvpane1mins -4]; \
+                set watchmins [lreplace $watchmins 1 1 $watchminh]; \
+            } ; \
+            wm minsize $watch [lindex $watchmins 0] [lindex $watchmins 1]; \
+        }; \
+        set watchgeom [wm geometry $watch]; \
+    }
+
+    update
     if { $firsttimeinshowwatch == "true" } { 
         if {$showwatchvariablesarea == "true"} {
             focus $buttonAddw
         }
-        set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]
+        wm minsize $watch [winfo width $watch] [winfo height $watch]
+        set watchgeom [wm geometry $watch]
+        set watchmins [wm minsize $watch]
+        set watchminsinit $watchmins
+        set watchvpane1mins [winfo height $watch.f.vpw.f2]
+        set watchvpane2mins [winfo height $watch.f.vpw.f6]
+        set watchvsashcoord [$watch.f.vpw            sash coord 0]
+        set watchhpane1mins [winfo width  $watch.f.vpw.f2.f2r.hpw.f]
+        set watchhpane2mins [winfo width  $lbvarval                ]
+        set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]
         set firsttimeinshowwatch "false"
     }
-#wm resizable $watch 1 1
-wm minsize $watch [winfo reqwidth $watch] [winfo reqheight $watch]
+
+    if {$showwatchvariablesarea == "true"} {
+        $watch.f.vpw paneconfigure $watch.f.vpw.f2 -minsize $watchvpane1mins
+        $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.f -minsize $watchhpane1mins
+        $watch.f.vpw.f2.f2r.hpw paneconfigure $lbvarval                 -minsize $watchhpane2mins
+    }
+    if {$showcallstackarea == "true"} {
+        $watch.f.vpw paneconfigure $watch.f.vpw.f6 -minsize $watchvpane2mins
+    }
 }
 
 proc updatewatch_bp {} {
