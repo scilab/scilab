@@ -84,13 +84,11 @@
     <P>Enter the command <VERB>Sfgrayplot()</VERB> to see a demo.</P>
   </DESCRIPTION>
 <EXAMPLE><![CDATA[
-// functions used in the examples
+// example #1: plot 4 surfaces
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
 function z=surf4(x,y), z=x^2+y^2, endfunction
-
-// example #1: plot the 4 surfaces
 xbasc()
 xset("colormap",[jetcolormap(64);hotcolormap(64)])
 ng = get("figure_style") == "new";
@@ -117,6 +115,7 @@ if ng then, drawnow(), end
 xselect()
 
 // example #2: plot surf3 and add some contour lines 
+function z=surf3(x,y), z=x^3+y^2, endfunction
 xbasc()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
@@ -125,7 +124,6 @@ ng = get("figure_style") == "new";
 if ng then, drawlater(), end
 colorbar(-1,2)
 Sfgrayplot(x,y,surf3,strf="041")
-z = (x')^3*ones(y) + ones(x')*y^2;
 fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2")
 if ng then, drawnow(), end
@@ -133,6 +131,7 @@ xselect()
 
 // example #3: plot surf3 and use zminmax and colout optional arguments
 //             to restrict the plot for -0.5<= z <= 1
+function z=surf3(x,y), z=x^3+y^2, endfunction
 xbasc()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
@@ -142,7 +141,6 @@ if ng then, drawlater(), end
 zminmax = [-0.5 1]; colors=[32 96];
 colorbar(zminmax(1),zminmax(2),colors)
 Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
-z = (x')^3*ones(y) + ones(x')*y^2;
 fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
 if ng then, drawnow(), end
