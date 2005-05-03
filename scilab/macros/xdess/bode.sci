@@ -161,21 +161,21 @@ end
 xtitle('Phase ',' Hz','degrees');
 if mnc>0 then
   xsetech([wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1],[0 0 1 1]);
-  dash=xget('dashes')
+  dash=xget('color')
   y0=0.7;dy=-1/2
   x0=0;dx=1/2
   count=0
   for k=1:mnc
-    xset('dashes',k)
+    xset('color',k)
     xsegs([x0;x0+0.08],[y0;y0])
     rect=xstringl(x0+0.1,y0,comments(k))
-    xset('dashes',dash(1));
+    xset('color',dash(1));
     xstring(x0+0.1,y0-rect(4)/3,comments(k))
     count=count+1
     y0=y0+dy
     if count==3 then x0=x0+dx;y0=0.7,end
   end
-  xset('dashes',dash(1))
+  xset('color',dash(1))
 end
 xsetech(wrect,frect);
 endfunction
