@@ -83,6 +83,7 @@ while %t
     clearglobal pos done
     return
   end
+  xpause(100)
 end
 seteventhandler('')
 xdel(win)

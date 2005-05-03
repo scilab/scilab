@@ -97,6 +97,7 @@ while %t
     clearglobal pos done
     return
   end
+  xpause(100)
 end
 if argn(1)==1 then k1=k,end
 seteventhandler('')
