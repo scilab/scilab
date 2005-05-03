@@ -3941,7 +3941,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_SBH:
       return (double*)NULL;			/* les coordonnees sont (x,0) */
     case SCI_TITLE:
-    case SCI_SEGS: 
+    case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype == 0) {
 	*numrow = pSEGS_FEATURE (pthis)->Nbr1;
 	*numcol = ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) 
