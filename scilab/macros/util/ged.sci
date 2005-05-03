@@ -1106,7 +1106,7 @@ function ged_eventhandler(win,x,y,ibut)
   if ged_handle~=[] then
 
 
-    if ibut==0 | ibut==3 then
+    if ibut==0 | ibut==3 | ibut == 10 then
       //Set(h)
       tkged()
     elseif ibut==2 | ibut==5 then
@@ -1960,3 +1960,34 @@ clearglobal ged_current_figure
 // disp("PASSE PAR DestroyGlobals Scilab");
 endfunctions
 
+
+function out = ConvStrings(items)
+
+disp(items);
+
+// marche ù ë ê £ $ ô ö î ï
+
+items=strsubst(items,'Ãª','ê');
+items=strsubst(items,'Ã¹','ù');
+items=strsubst(items,'Ã§','ç');
+items=strsubst(items,'Ã©','é');
+items=strsubst(items,'Ã¨','è');
+items=strsubst(items,'Ã«','ë');
+items=strsubst(items,'Ã®','î');
+items=strsubst(items,'Ã¯','ï');
+items=strsubst(items,'Ã´','ô');
+items=strsubst(items,'Ã¶','ö');
+items=strsubst(items,'Â£','£');
+items=strsubst(items,'Âµ','µ');
+items=strsubst(items,'Â²','²');
+items=strsubst(items,'Ã¢','â');
+items=strsubst(items,'Ã¤','ä');
+items=strsubst(items,'Ã¢','û');
+items=strsubst(items,'Ã¤','ü');
+
+
+items=strsubst(items,'Ã','à');
+
+
+out = items;
+endfunction
