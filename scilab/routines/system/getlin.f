@@ -193,8 +193,8 @@ c
 c
    70 continue
       if (n.gt.2) then
-         call xscion(iflag)
-         if(iflag.eq.1) then
+         call xscion(iflagx)
+         if(iflagx.eq.1) then
             call cvstr(n-2+10,lin(l),'unix_x('''//buf(3:n)//''');',job)
          else
             call cvstr(n-2+10,lin(l),'unix_w('''//buf(3:n)//''');',job)
