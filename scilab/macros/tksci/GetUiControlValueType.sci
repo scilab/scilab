@@ -11,6 +11,7 @@ function TypeReturn=GetUiControlValueType(PropertyName)
 												'fontsize' ..
 												'fontunits' ..
 												'fontweight' ..
+												'fontname' ..
 												'listboxtop' ..
 												'max' ..
 												'min' ..
@@ -30,6 +31,7 @@ function TypeReturn=GetUiControlValueType(PropertyName)
 				       								type_real ..
 								      				type_real ..
 											      	type_string ..
+												      type_string ..
 												      type_string ..
 												      type_real ..
 												      type_real ..

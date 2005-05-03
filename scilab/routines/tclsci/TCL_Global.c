@@ -7,7 +7,7 @@
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
-#define NBRPROPERTIES 24
+#define NBRPROPERTIES 25
 static char *UiPropertiesName[NBRPROPERTIES]={
 												"backgroundcolor",
 												"callback",
@@ -15,6 +15,7 @@ static char *UiPropertiesName[NBRPROPERTIES]={
 												"fontsize",
 												"fontunits",
 												"fontweight",
+												"fontname",
 												"listboxtop",
 												"max",
 												"min",
@@ -159,12 +160,13 @@ int MustReturnAString(char *FieldPropertie)
 		 (strcmp(Propertie,"fontangle") == 0) ||
 		 (strcmp(Propertie,"fontunits") == 0) ||
 		 (strcmp(Propertie,"fontweight") == 0) ||
+		 (strcmp(Propertie,"fontname") == 0) ||
 		 (strcmp(Propertie,"string") == 0) ||
 		 (strcmp(Propertie,"label") == 0) ||
 		 (strcmp(Propertie,"figure_name") == 0) ||
-	         (strcmp(Propertie,"verticalalignment") == 0) ||
-	         (strcmp(Propertie,"horizontalalignment") == 0) ||
-	         (strcmp(Propertie,"path") == 0) ) bOK=1;
+	     (strcmp(Propertie,"verticalalignment") == 0) ||
+	     (strcmp(Propertie,"horizontalalignment") == 0) ||
+	     (strcmp(Propertie,"path") == 0) ) bOK=1;
 
 	return bOK;
 }
@@ -186,7 +188,7 @@ int MustReturnAMatrix(char *FieldPropertie)
 		 (strcmp(Propertie,"position") == 0) ||
 		 (strcmp(Propertie,"sliderstep") == 0) ||
 		 (strcmp(Propertie,"value") == 0) ||
-	         (strcmp(Propertie,"foregroundcolor") == 0)) bOK=1;
+         (strcmp(Propertie,"foregroundcolor") == 0)) bOK=1;
 
 	return bOK;
 }

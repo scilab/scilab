@@ -9,6 +9,7 @@
 												'fontsize' ..
 												'fontunits' ..
 												'fontweight' ..
+												'fontname' ..
 												'listboxtop' ..
 												'max' ..
 												'min' ..
@@ -23,7 +24,7 @@
 												'value' ..
 												'label' ..
 												'figure_name' ..
-											        'verticalalignment' ..
+											  'verticalalignment' ..
 												'horizontalalignment' ..
 												'foregroundcolor'];
   //conversion to lower format
