@@ -23,6 +23,8 @@
 #define PI0 (integer *) 0
 #define PD0 (double *) 0
 
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
 void menu_entry_show(menu_entry *m);  /* only used for debug */ 
 extern void create_scilab_about(void); 
 extern int prtdlg  __PARAMS((integer *flag, char *printer, integer *colored, integer *orientation, char *file, integer *ok));
@@ -200,6 +202,8 @@ int C2F(delbtn)(int *win_num,char *button_name)
   GtkItemFactory  *item_factory;
   static char btn[64];
   char *p,*but= button_name;
+  char *btn_utf8;
+  int alloc;
   p = btn ; 
   *(p++) = '/';
   while ( *but != '\0' ) {
@@ -220,7 +224,9 @@ int C2F(delbtn)(int *win_num,char *button_name)
       item_factory = dd->item_factory;
       sci_menu_delete(&dd->menu_entries,button_name);
     }
-  gtk_item_factory_delete_item (item_factory,btn);
+  btn_utf8 = sci_convert_to_utf8(btn,&alloc);
+  gtk_item_factory_delete_item (item_factory,btn_utf8);
+  if ( alloc == 1) free(btn_utf8);
   return 0;
 }
 
@@ -241,7 +247,7 @@ int C2F(delbtn)(int *win_num,char *button_name)
  *  fname;      : name of the action function  
  *----------------------------------------------------------------*/
 
-extern char *sci_convert_to_utf8(char *str, int *alloc);
+
 
 int C2F(addmen)(win_num,button_name,entries,ptrentries,ne,typ,fname,ierr)
      integer *win_num,*entries,*ptrentries,*ne,*ierr,*typ;
@@ -425,26 +431,40 @@ int C2F(unsmen)(win_num,button_name,entries,ptrentries,ne,ierr)
 
 static void submenu_entry_set_menu(menu_entry *subs,menu_entry *father);
 
-/* checks that name and name1 are the same taking care of _ */
+/* checks that name1 is a menu name
+ * take care that name can be UTF8 because of previous conversion 
+ * if so we must also convert name1 
+ */
 
-static int is_menu_name(char *name,char *name1) 
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
+
+static int is_menu_name( char *name, char *name1) 
 {
-  while ( *name != 0) 
+  char *name_utf8,*name_kp;
+  char *name1_utf8,*name1_kp;
+  int alloc1,alloc,rep=0;
+  name1_kp = name1_utf8 = sci_convert_to_utf8(name1,&alloc1);
+  name_kp = name_utf8 = sci_convert_to_utf8(name,&alloc);
+  while ( *name_utf8 != 0) 
     {
-      if ( *name == '_' ) 
+      if ( *name_utf8 == '_' ) 
 	{
-	  name++;
-	  if ( *name1 == '_' )  name1++;
+	  name_utf8++;
+	  if ( *name_utf8 == '_' )  name1_utf8++;
 	}
-      else if ( *name != *name1 ) {
-	return 1;
+      else if ( *name_utf8 != *name1_utf8 ) {
+	rep=1; goto end;
       }
       else {
-	name++; name1++;
+	name_utf8++; name1_utf8++;
       }
     }
-  if ( *name1 != 0) return 1;
-  return 0;
+  if ( *name1_utf8 != 0) {rep=1; goto end;};
+ end: 
+  if ( alloc1 == 1) free(name1_kp);
+  if ( alloc == 1) free(name_kp);
+  return rep;
 }
 
 void menu_entry_show(menu_entry *m)
