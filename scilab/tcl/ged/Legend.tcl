@@ -291,7 +291,7 @@ ScilabEval "setFontStyle('$curfontstyle')"
 
 proc setText {} {
 global curtext
-ScilabEval "global ged_handle;ged_handle.text='$curtext'"
+ScilabEval "global ged_handle;ged_handle.text=ConvStrings('$curtext')"
 }
 
 
