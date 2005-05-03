@@ -8813,6 +8813,25 @@ int delete(fname,fname_len)
 	pparentfigure = sciGetParentFigure(pobj);
 	/*}*/
 	sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj)); /* A LAISSER F.Leray 25.03.04*/
+
+	/* test here: we are about to delete a subwindow that could be the selected one */
+	/* We must always have one selected subwindow (if at least one subwindow exists) */
+	if(sciGetEntityType(pobj) == SCI_SUBWIN && pSUBWIN_FEATURE(pobj)->isselected == TRUE)
+	  {
+	    /* we have to select antoher subwindow if one exists at least */
+	    sciSons *psonstmp = sciGetSons (pparentfigure);
+	    if (psonstmp != (sciSons *) NULL)
+	      {
+		while ((psonstmp->pnext != (sciSons *) NULL) && (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN))
+		  psonstmp = psonstmp->pnext;
+		
+		if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) /* we found another valid subwindow */
+		  sciSetSelectedSubWin (psonstmp->pointobj);
+		else
+		  sciSetSelectedSubWin((sciPointObj *) NULL);
+	      }
+	  }
+	
 	sciDelGraphicObj((sciPointObj *)pobj);	
 	sciDrawObj((sciPointObj *)pparentfigure);
       }
