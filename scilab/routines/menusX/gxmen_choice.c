@@ -9,6 +9,10 @@
 #include "men_scilab.h"
 
 extern int AllocAndCopy(char **strh1, char *str2);
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
+static int AllocAndCopyUtf8(char **strh1, char *str2);
+
 static int choices_cmap(void);
 
 static GtkWidget *window = NULL; 
@@ -71,7 +75,8 @@ static void sci_choices_cancel (GtkButton       *button, state * rep)
 
 int SciChoiceI(char *label, int *defval, int nitems)
 {
-  int Nchoices=0, use_scrolled=0, i;
+  char *label_utf8;
+  int Nchoices=0, use_scrolled=0, i,alloc_label=0;
   static state rep = RESET ;
   
   GtkWidget *table;
@@ -107,7 +112,11 @@ int SciChoiceI(char *label, int *defval, int nitems)
   gtk_widget_show (vbox);
 
   /* label widget description of the choices */
-  labelw = gtk_label_new (label);
+
+  label_utf8  = sci_convert_to_utf8(label,&alloc_label);
+  labelw = gtk_label_new (label_utf8);
+  if (alloc_label == 1 ) free(label_utf8);
+
   gtk_box_pack_start (GTK_BOX (vbox), labelw, FALSE, FALSE, 0);
   gtk_widget_show (labelw);
 
@@ -258,7 +267,7 @@ int  SciChoiceCreate( char **items,int defval[],int nitems)
 	{
 	  return(0);
 	}
-      if ( AllocAndCopy(&(choices_data[i]->choice.name),items[0]) == 0) 
+      if ( AllocAndCopyUtf8(&(choices_data[i]->choice.name),items[0]) == 0) 
 	{
 	  return(0);
 	}
@@ -270,7 +279,7 @@ int  SciChoiceCreate( char **items,int defval[],int nitems)
       if ( choices_data[i]->name == NULL)  return(0);
       for ( j = 0 ; j < numch ; j++) 
 	{
-	  if ( AllocAndCopy(& choices_data[i]->name[j] ,items[j+1]) == 0) 
+	  if ( AllocAndCopyUtf8(& choices_data[i]->name[j] ,items[j+1]) == 0) 
 	    {
 	      return(0);
 	    }
@@ -285,6 +294,31 @@ int AllocAndCopy( char **strh1,char *str2)
   *strh1= (char *) MALLOC((strlen(str2)+1)*sizeof(char));
   if ( *strh1 == (char *) NULL) return(0);
   strcpy(*strh1,str2);
+  return(1);
+}
+
+
+
+
+int AllocAndCopyUtf8( char **strh1,char *str2)
+{
+  int alloc=0;
+  char *loc = sci_convert_to_utf8(str2, &alloc);
+  if ( alloc == 1 ) 
+    {
+      /* sci_convert_to_utf8 has allocated the utf8 string */
+      *strh1 = loc;
+    }
+  else 
+    {
+      /* sci_convert_to_utf8 returned str2 without allocation 
+       * which means error or str2 was already utf8 
+       * we just copy
+       */
+      *strh1= (char *) MALLOC((strlen(str2)+1)*sizeof(char));
+      if ( *strh1 == (char *) NULL) return(0);
+      strcpy(*strh1,str2);
+    }
   return(1);
 }
 
