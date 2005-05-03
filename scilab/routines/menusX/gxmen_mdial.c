@@ -14,6 +14,8 @@ extern MDialog SciMDialog;        /** used to stored the mdialog data **/
 #include <stdio.h>
 #include <gtk/gtk.h>
 
+static void table_menu_to_utf8(char **table,int n);
+
 /*---------------------------------------------------------------
  * data and callbacks for print and export menu  
  *---------------------------------------------------------------*/
@@ -54,6 +56,12 @@ int mDialogWindow(void)
   GtkWidget *scrolled_win;
 
   start_sci_gtk(); /* in case gtk was not initialized */
+
+  /* to utf 8 */
+
+  table_menu_to_utf8(&SciMDialog.labels,1);
+  table_menu_to_utf8(SciMDialog.pszName,SciMDialog.nv);
+  table_menu_to_utf8(SciMDialog.pszTitle,SciMDialog.nv);
 
   rep =RESET;
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -184,3 +192,16 @@ int mDialogWindow(void)
   return (rep == pOK) ? TRUE : FALSE  ;
 }
 
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
+/* note that since the strings were allocated 
+ * if we reallocate them or not they have to be freed 
+ * at the end in all cases thus alloc is not used. 
+ */
+
+static void table_menu_to_utf8(char **table,int n)
+{
+  int alloc,i;
+  for (i = 0; i < n ; i++)
+    table[i] = sci_convert_to_utf8(table[i],&alloc);
+}

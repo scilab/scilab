@@ -17,6 +17,7 @@ extern MADialog MAD;
 #include <stdio.h>
 #include <gtk/gtk.h>
 
+static void table_menu_to_utf8(char **table,int n);
 
 /*---------------------------------------------------------------
  * data and callbacks for print and export menu  
@@ -71,6 +72,8 @@ int MatrixDialogWindow(void)
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 10);
 
   gtk_widget_show (vbox);
+
+  table_menu_to_utf8(&MAD.labels,1);
   label = gtk_label_new (MAD.labels);
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
@@ -84,6 +87,13 @@ int MatrixDialogWindow(void)
       /* ierr=1; XXXX */
       return(FALSE);
     } 
+  
+  /* convert to utf8 */
+
+  table_menu_to_utf8(MAD.VDesc,MAD.nl);
+  table_menu_to_utf8(MAD.HDesc,MAD.nc);
+  table_menu_to_utf8(MAD.data,MAD.nl*MAD.nc);
+
 
   /* XXXX faire un label a viewport */
 
@@ -189,4 +199,19 @@ int MatrixDialogWindow(void)
       gtk_widget_destroy(window);
       return(FALSE);
     }
+}
+
+
+extern char *sci_convert_to_utf8(char *str, int *alloc);
+
+/* note that since the strings were allocated 
+ * if we reallocate them or not they have to be freed 
+ * at the end in all cases thus alloc is not used. 
+ */
+
+static void table_menu_to_utf8(char **table,int n)
+{
+  int alloc,i;
+  for (i = 0; i < n ; i++)
+    table[i] = sci_convert_to_utf8(table[i],&alloc);
 }
