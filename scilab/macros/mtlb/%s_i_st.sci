@@ -1,6 +1,7 @@
 function out=%s_i_st(varargin)
 // Copyright INRIA
 // Modified by Vincent COUVERT (16/08/2004) so that insertion of an empty matrix is understood as an element deletion
+// Only one non-colon index can be used 
 
 // Used for struct part deletion
   if lstsize(varargin)>=3 & type(varargin(1))==1 & isempty(varargin($-1)) then
@@ -16,15 +17,19 @@ function out=%s_i_st(varargin)
     end
     
     // Which dim has to be decremented
-    for kd=1:lstsize(varargin)-2
-      if min(size(varargin(kd)))>=0 then
-	dim=kd
-	break
+    if or(size(varargin($))==1) then // Struct vector
+      dim=find(size(varargin($))<>1);
+    else
+      for kd=1:lstsize(varargin)-2
+	if min(size(varargin(kd)))>=0 then
+	  dim=kd
+	  break
+	end
       end
     end
-    out.dims(kd)=out.dims(kd)-1
+    out.dims(dim)=out.dims(dim)-size(I,"*");
     // If one dim is 0 then all dims are set to 0
-    if double(out.dims(kd))==0 then 
+    if double(out.dims(dim))==0 then 
       out.dims=int32([0 0]);
     end
   elseif lstsize(varargin)==3 & type(varargin(1))==10 then // out.i=in
