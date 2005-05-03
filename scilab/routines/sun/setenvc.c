@@ -1,4 +1,5 @@
 /* Allan CORNET INRIA 2005 */
+#include "../machine.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -60,6 +61,8 @@ int setenvtcl(char *string,char *value)
 	char MyTclCommand[2048];
 
 	sprintf(MyTclCommand,"env(%s)",string);
+
+	if (TCLinterp==NULL) return((int)FALSE);
 	
 	if ( !Tcl_SetVar(TCLinterp,MyTclCommand, value, TCL_GLOBAL_ONLY) )
 	{
