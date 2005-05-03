@@ -107,17 +107,23 @@ void ChangeCursorWhenScilabIsReady(void)
 {
   if ( (IsWindowInterface()) && (ScilabIsStarting) )
   {
+	#define DefaultNumMenu 7
 	extern char ScilexWindowName[MAX_PATH];
 	HCURSOR hCursor;
 	LPTW lptw;
+	int NumsMenu = 0;
+	
+
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	hCursor=LoadCursor(  lptw->hInstance,IDC_ARROW);
 	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
 	SetClassLong(lptw->hWndText,GCL_HCURSOR,(LONG) hCursor); 
 	InvalidateCursor(); 
-	EnableMenus(lptw);
+	NumsMenu=GetMenuItemCount (lptw->lpmw->hMenu);
+	if (NumsMenu>=DefaultNumMenu) EnableNMenus(lptw,DefaultNumMenu);
 	EnableToolBar(lptw);
 	ScilabIsStarting=FALSE;
+
   }
 
 }

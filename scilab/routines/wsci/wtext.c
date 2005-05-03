@@ -3367,16 +3367,20 @@ BOOL IsToThePrompt(void)
 	return retour;
 }
 /*-----------------------------------------------------------------------------------*/
-void EnableMenus(LPTW lptw)
+void EnableNMenus(LPTW lptw,int numbermenus)
 {
   int i=0;
-  int Nums = GetMenuItemCount (lptw->lpmw->hMenu);
-
-  for(i=0;i<Nums;i++)
+  for(i=0;i<numbermenus;i++)
   {
 	  EnableMenuItem (lptw->lpmw->hMenu, i, MF_ENABLED| MF_BYPOSITION);
   }
   DrawMenuBar(lptw->hWndParent); 	
+}
+/*-----------------------------------------------------------------------------------*/
+void EnableMenus(LPTW lptw)
+{
+  int Nums = GetMenuItemCount (lptw->lpmw->hMenu);
+  EnableNMenus(lptw,Nums);
 }
 /*-----------------------------------------------------------------------------------*/
 void DisableMenus(LPTW lptw)

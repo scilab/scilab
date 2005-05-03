@@ -196,6 +196,7 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
 /*--------------------------*/
 BOOL IsToThePrompt(void);
+void EnableNMenus(LPTW lptw,int numbermenus);
 void EnableMenus(LPTW lptw);
 void DisableMenus(LPTW lptw);
 void EnableToolBar(LPTW lptw);
