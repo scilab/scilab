@@ -1963,10 +1963,6 @@ endfunctions
 
 function out = ConvStrings(items)
 
-disp(items);
-
-// marche ù ë ê £ $ ô ö î ï
-
 items=strsubst(items,'Ãª','ê');
 items=strsubst(items,'Ã¹','ù');
 items=strsubst(items,'Ã§','ç');
@@ -1984,10 +1980,7 @@ items=strsubst(items,'Ã¢','â');
 items=strsubst(items,'Ã¤','ä');
 items=strsubst(items,'Ã¢','û');
 items=strsubst(items,'Ã¤','ü');
-
-
 items=strsubst(items,'Ã','à');
-
 
 out = items;
 endfunction
