@@ -37,38 +37,46 @@
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 //--- premier exemple
-//  on fixe l'échelle courante 
-xsetech(frect=[0,0,10,10])
-xrect(0,10,10,10)
+
+set figure_style new;
+clf();
+ax=gca();//ax : handle sur le changement de coordonnŽées courant
+ax.data_bounds=[0,0;10,10];//fixe les bornes du graphique
+ax.box='on'; //affiche un rectangle 
 a=5*ones(11,11); a(2:10,2:10)=4; a(5:7,5:7)=2;
 // première matrice dans le rectangle [1,1,3,3]
 Matplot1(a,[1,1,3,3])
 a=ones(10,10); a= 3*tril(a)+ 2*a; 
 // deuxième matrice dans le rectangle [5,6,7,8]
 Matplot1(a,[5,6,7,8])
-xset('default')
-xbasc()
+
 //--- deuxième exemple 
-xsetech(frect=[0,0,10,10])
-xrect(0,10,10,10)
 n=100;
-xset('pixmap',1)
-driver('X11');
+
+set figure_style new;
+clf();
+f=gcf(); //handle sur la figure courante
+f.pixmap='on';//mode a double tampon
+ax=gca();//ax : handle sur le changement de coordonnŽées courant
+ax.data_bounds=[0,0;10,10];//fixe les bornes du graphique
+ax.box='on'; //affiche un rectangle 
+show_pixmap() //envoie le tampon a l'Žécran
 for k=-n:n,
   a=ones(n,n);
   a= 3*tril(a,k)+ 2*a;
   a= a + a';
   k1= 3*(k+100)/200;
+  if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
-  xset('wshow')
-  xset('wwpc')
+  show_pixmap() //envoie le tampon a l'Žécran
 end
-xset('pixmap',0)
-xset('default')
-xbasc()
+
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Matplot</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>Matplot</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>J.Ph.C.  </AUTHOR>
 </MAN>
