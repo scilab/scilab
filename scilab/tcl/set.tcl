@@ -60,7 +60,7 @@ proc SetField { handle field value } {
 	default {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
-		    fontweight fontunits foregroundcolor chorizontalalignment listboxtop max min \
+		    fontweight fontunits foregroundcolor horizontalalignment listboxtop max min \
 		    parent position string units value figure_name verticalalignment };
 	    
 	    # is it an implemented?
@@ -374,7 +374,7 @@ proc Sethorizontalalignment { name value } {
  set path [set "$name\(path)"];
  set "$name\(horizontalalignment)" $value;
  set style [set "$name\(style)"];
-
+ 
  if {[string compare $value "center"] != 0} {
      if {[info exist "$name\(verticalalignment)"] == 1} {
 	 set vanchor $VerticalAnchorEq([set "$name\(verticalalignment)"]);
@@ -402,8 +402,7 @@ proc Sethorizontalalignment { name value } {
      ScilabEval "warning(\"Obsolete horizontal alignment \"\"w\"\", use \"\"left\"\" instead\")";
  }
  
-    
-    switch -exact -- $style {
+     switch -exact -- $style {
 	text {$path configure -anchor $anchor}
 	edit {$path configure -justify $value}
 	checkbox {$path configure -anchor $anchor}
@@ -444,7 +443,7 @@ proc Setverticalalignment { name value } {
  if {[string equal $value "center"] != 0} {
      ScilabEval "warning(\"Obsolete vertical alignment \"\"center\"\", use \"\"middle\"\" instead\")";
  }
-
+ 
     switch -exact -- $style {
 	text {$path configure -anchor $anchor}
 	edit { unset "$name\(verticalalignment)"}
