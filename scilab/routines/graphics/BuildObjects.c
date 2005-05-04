@@ -2289,7 +2289,6 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  psegs->arrowsize = arsize /* * 100 */;
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
-	  psegs->pcolored = colored;
 	  sciSetForeground(pobj,sciGetForeground(sciGetSelectedSubWin (sciGetCurrentFigure ()))); /* set sciGetForeground(psubwin) as the current foreground */
 	  psegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
 	  psegs->parfact = arfact;
