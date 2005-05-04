@@ -198,7 +198,7 @@ end
 
 // calling user initialization =========================================
 // Home dir startup (if any)
-if sciargs()<>'-test' then
+if sciargs()<>'-nouserstartup' then
   if MSDOS then
     startup_path=SCIHOME+'\'
   else

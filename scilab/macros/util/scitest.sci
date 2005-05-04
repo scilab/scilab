@@ -121,11 +121,11 @@ function myexec()
       if fileinfo(tmpfiles+'dia')<>[] then  
 	unix_s('del '+tmpfiles+'dia')
       end
-      unix_s('""'+SCI+'\bin\scilex.exe'+'""'+' -nwni -args -test < '+tmpfiles+'tst')
+      unix_s('""'+SCI+'\bin\scilex.exe'+'""'+' -nwni -args -nouserstartup < '+tmpfiles+'tst')
   else
      if fileinfo(tmpfiles+'dia')<>[] then  
        unix_s('rm -f '+tmpfiles+'dia')
      end
-     unix_s('( '+SCI+'/bin/scilab -nw -args -test <'+tmpfiles+'tst > '+tmpfiles+'res ) 2> '+tmpfiles+'err')
+     unix_s('( '+SCI+'/bin/scilab -nw -args -nouserstartup <'+tmpfiles+'tst > '+tmpfiles+'res ) 2> '+tmpfiles+'err')
   end
 endfunction

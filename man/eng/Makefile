@@ -18,7 +18,7 @@ XSLFILE=html-rev.xsl
 man: 	
 	@echo "Creating html help files" 
 	$(SCIDIR)/bin/scilab -l $(LANGUAGE) \
-		-nwni -e "xmltohtml([],[],'$(XSLFILE)');quit"
+		-nwni  -e "xmltohtml([],[],'$(XSLFILE)');quit" -args -nouserstartup
 
 # running step by step 
 # valid steps are whatis.step html.step index.step contents.step
@@ -27,7 +27,7 @@ man:
 %.step: 
 	@echo "Creating $*" 
 	$(SCIDIR)/bin/scilab -l $(LANGUAGE) \
-		-nwni -e "xmltohtml([],[],'$(XSLFILE)','$*');quit"
+		-nwni  -e "xmltohtml([],[],'$(XSLFILE)','$*');quit" -args  -nouserstartup
 
 
 
