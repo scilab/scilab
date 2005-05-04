@@ -291,9 +291,16 @@ if type(scs_m.props.context)==10 then
     message(['Error occur when evaluating context:'
 	     lasterror() ])
   else
-    disablemenus()
-    [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
-    enablemenus()
+    deff('%fonct()',scs_m.props.context)
+    %outfun=macrovar(%fonct);
+    //perform eval only if context contains functions which may give
+    //different results from one execution to next
+    if or(%outfun(4)=='rand')|or(%outfun(4)=='exec')|or(%outfun(4)=='load') ...
+    then
+      disablemenus()
+      [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
+      enablemenus()
+    end
   end
   xset('window',%now_win)
 else
