@@ -6849,10 +6849,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if ((strncmp(marker,"colored", 7) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
     if (pSEGS_FEATURE (pobj)->ptype != 0){
-      if ((strncmp(cstk(*value),"on", 2) == 0)) 
-	pSEGS_FEATURE (pobj)->pcolored = 1;
+      if ((strncmp(cstk(*value),"on", 2) == 0))
+	pSEGS_FEATURE (pobj)->typeofchamp = 1;
       else if ((strncmp(cstk(*value),"off", 3) == 0))  
-	pSEGS_FEATURE (pobj)->pcolored = 0;
+	pSEGS_FEATURE (pobj)->typeofchamp = 0;
       else
 	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
     }
@@ -8617,7 +8617,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if ((strncmp(marker,"colored", 7) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){
     if (pSEGS_FEATURE (pobj)->ptype != 0)
       { 
-	if (pSEGS_FEATURE (pobj)->pcolored != 0) {
+	if (pSEGS_FEATURE (pobj)->typeofchamp == 1) {
 	  numrow   = 1;
 	  numcol   = 2;
 	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
