@@ -79,7 +79,7 @@ int MatrixDialogWindow()
 	/*return(FALSE);
   else 
     return(FALSE);*/
-  sciprint("Sorry : Matdialog not implemented \r\n");
+  sciprint("Sorry : Matdialog not implemented . See \"help editvar\" \r\n");
   return(FALSE);
 }
 
