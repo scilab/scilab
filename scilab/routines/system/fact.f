@@ -12,7 +12,7 @@ c
       integer id(nsiz),op,fun1
       integer star,dstar,semi,eol,blank,percen
       integer comma,lparen,rparen,hat,dot,equal
-      integer quote,left,right,colon,slash
+      integer quote,left,right,colon,slash,not
       integer num,name,cmt
       integer cconc,extrac,rconc
       logical recurs,compil,first,dotsep,nullarg,ok
@@ -20,7 +20,7 @@ c
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
       data comma/52/,lparen/41/,rparen/42/, hat/62/,dot/51/,equal/50/
-      data quote/53/,left/54/,right/55/,colon/44/,slash/48/
+      data quote/53/,left/54/,right/55/,colon/44/,slash/48/,not/61/
 
       data num/0/,name/1/,cmt/2/
       data cconc/1/,extrac/3/,rconc/4/
@@ -558,6 +558,7 @@ c     *call* matfns
 c     
  60   continue
 c     check for ', .'  **,  ^ and .^
+
       if (sym .ne. quote) go to 63
       i = lpt(3) - 2
       if (abs(lin(i)) .eq. blank) go to 90
@@ -585,6 +586,9 @@ c     *call* allops(quote) or allops(dot+quote)
          call getsym
          fin=dot+quote
          goto 61
+      elseif(sym.eq.not.and.char1.ne.equal) then
+         call error(276)
+         return
       elseif(sym.eq.name.and.psym.eq.num) then
          i = lpt(3) - 2
          if (abs(lin(i)) .ne. blank) then
