@@ -3182,7 +3182,9 @@ c     .  eye op b
             e2i=0.0d+0
             if(it1.eq.1) e1i=stk(l1+mn1+i)
             if(it2.eq.1) e2i=stk(l2+mn2+i)
-            if(e1r.eq.e2r.and.e1i.eq.e2i) then
+            call idcmp(e1r,e2r,1,ir,op)
+            call idcmp(e1i,e2i,1,ii,op)
+            if(ir.eq.1.and.ii.eq.1) then
                istk(il1+3+i)=itrue
             else
                istk(il1+3+i)=1-itrue
