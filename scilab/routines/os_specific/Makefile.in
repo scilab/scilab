@@ -13,7 +13,7 @@ OBJSC  = getenvc.o link.o systemc.o   csignal.o getpidc.o timer.o \
 
 include ../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) $(XFLAGS) @HPPA_OLD@
+CFLAGS = $(CC_OPTIONS) $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH) @HPPA_OLD@
 
 FFLAGS = $(FC_OPTIONS)
 
