@@ -45,7 +45,7 @@ function [ok,Makename]=buildnewblock()
   files=[rdnom rdnom+'_void_io' rdnom+'_Cblocks']
   [fd,ierr]=mopen(rpat+'/'+rdnom+'f.f','r')
   if ierr==0 then mclose(fd),files=[files,rdnom+'f'],end
-    if (archname ~= emptystr())then
+    if (archname ~= emptystr()) then
       archname=pathconvert(archname,%f,%t)
     end
     Makename=gen_make(rdnom,files,archname,rpat+'/'+rdnom+'_Makefile')
