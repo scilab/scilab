@@ -52,7 +52,7 @@ void cossimdaskr(double *);
 void cossim(double *);
 void callf(double *, double *, double *, double *,double *,integer *);
 int C2F(simblk)(integer *, double *, double *, double *);
-int C2F(simblkdaskr)(double *, double *, double *, integer *, double *, integer *, double *, integer *);
+int C2F(simblkdaskr)(double *, double *, double *, double *, double *, integer *, double *, integer *);
 int C2F(grblk)(integer *, double *, double *, integer *, double *);
 int C2F(grblkdaskr)(integer *, double *, double *, double *, integer *, double *, double *, integer *);
 void addevs(double ,integer *,integer *);
@@ -2741,7 +2741,7 @@ int C2F(simblk)(neq1, t, xc, xcdot)
 int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
      integer *ires,*ipar1;
      double *t, *xc, *xcdot, *rpar1, *residual;
-     integer *cj;
+     double *cj;
      
      /* 
 	!purpose 
@@ -2753,6 +2753,7 @@ int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
 	of the state 
      */
 { 
+  CJJ=*cj;
   C2F(dcopy)(neq, xcdot, &c__1, residual, &c__1);
   *ires=0;
   *ierr= 0;
