@@ -6,8 +6,14 @@
 function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode)
 
 //conversion to lower format
-str = convstr(PropertyName);
+err = execstr('str = convstr(PropertyName);','m');
 
+if err <> 0
+  mprintf("plot syntax error (help plot for info)\n");
+  mprintf("Error %d : in getPlotPropertyName called by plot\n",err);
+  ResetFigureDDM(current_figure, cur_draw_mode);
+  return;
+end
 
 Table    = ['clipping' 'color'      'foreground' 'linestyle' 'linewidth' 'thickness' 'marker' ..
 	'markstyle' 'markeredgecolor' 'markforeground' 'markerfacecolor'  'markbackground' ..

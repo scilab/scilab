@@ -1,4 +1,4 @@
-function [nArgOut,vectInput]=check2dFun(funName,func,X)
+function [nArgOut,vectInput]=check2dFun(funName,func,X,current_figure,cur_draw_mode)
 
 // In this function we determine wether the function 'func'
 // has the syntax [y]=func(x) or [x,y]=func(t). 
@@ -19,10 +19,12 @@ nArgIn=max(size(in))
 
 if nArgIn~=1
    error(sprintf('%s : function must accept two input arguments',funName));
+   ResetFigureDDM(current_figure, cur_draw_mode)
 end
 
 if nArgOut~=1 & nArgOut~=2
    error(sprintf('%s : function must have 1 or 2 output arguments',funName));
+   ResetFigureDDM(current_figure, cur_draw_mode)
 end
 
 // Now we test if func accepts vector inputs (we test with the X,Y

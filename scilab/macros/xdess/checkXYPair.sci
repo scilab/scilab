@@ -11,7 +11,7 @@ if type(y)==13 // If y is a function
 
   t=x(:); // to ensure that t is a column vector
 
-  [nArgOut,vectInput]=check2dFun(typeOfPlot,f,t);
+  [nArgOut,vectInput]=check2dFun(typeOfPlot,f,t,current_figure,cur_draw_mode);
 
   if nArgOut==1
     X=t;
@@ -53,6 +53,7 @@ else // "classical" case
     ok=%F
     str='plot error : empty input data';
     error(str);
+    ResetFigureDDM(current_figure, cur_draw_mode)
   end
   
   if and(size(X)==size(Y))  // si les tailles sont egales
