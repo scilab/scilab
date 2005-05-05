@@ -3172,8 +3172,8 @@ c     .  eye op b
             top=top0
             return
          endif
-         itrue=1
-         if(op.eq.less+great) itrue=0
+c         itrue=1
+c         if(op.eq.less+great) itrue=0
          istk(il1)=4
          do 131 i=0,mn1-1
             e1r=stk(l1+i)
@@ -3184,11 +3184,20 @@ c     .  eye op b
             if(it2.eq.1) e2i=stk(l2+mn2+i)
             call idcmp(e1r,e2r,1,ir,op)
             call idcmp(e1i,e2i,1,ii,op)
-            if(ir.eq.1.and.ii.eq.1) then
-               istk(il1+3+i)=itrue
+            if (op.eq.less+great) then
+               if(ir.eq.1.or.ii.eq.1) then
+                  istk(il1+3+i)=1
+               else
+                  istk(il1+3+i)=0
+               endif
             else
-               istk(il1+3+i)=1-itrue
+               if(ir.eq.1.and.ii.eq.1) then
+                  istk(il1+3+i)=1
+               else
+                  istk(il1+3+i)=0
+               endif
             endif
+
  131     continue
          lstk(top+1)=sadr(il1+3+mn1)
       else
