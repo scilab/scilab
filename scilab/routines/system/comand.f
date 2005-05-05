@@ -455,26 +455,9 @@ C     .  break or continue in a  while
       else
          goto 131
       endif
- 132  call getsym
-      if (sym .eq. eol) then
-C     gestion des clause sur plusieurs lignes
-         if (macr.gt.0 .and. lin(lpt(4)+1).eq.eol) then
-            call error(47)
-            return
-         endif
-c     if (rio.eq.rte .and. macr.eq.0.and.kcmd.eq.kbrk) goto 998
-         if (lpt(4) .eq. lpt(6)) then
-            call getlin(1,0)
-         else
-            lpt(4) = lpt(4) + 1
-            char1 = blank
-         endif
-         goto 132
-      endif
-      if (sym .ne. name) goto 132
-      if (eqid(syn,for) .or. eqid(syn,while) .or. eqid(syn,iff) .or.
-     &     eqid(syn,sel)) count = count + 1
-      if (.not. eqid(syn,ennd)) goto 132
+ 132  continue
+c     call getsym
+      call skpins(1)
       count = count - 1
       if (count .gt. 0) goto 132
 C     char1=blank
