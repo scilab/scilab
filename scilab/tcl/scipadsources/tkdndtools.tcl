@@ -49,7 +49,8 @@ proc tkdndbind {w} {
         bind $w <Control-Button-1> { Button1BindText %W %x %y }
         bind $w <ButtonRelease-1> {
             set extendsel "false" ; \
-            tk::CancelRepeat \
+            tk::CancelRepeat ; \
+            keyposn %W \
         }
         bind $w <Button1-Motion> { \
             if {$extendsel == "true"} { \

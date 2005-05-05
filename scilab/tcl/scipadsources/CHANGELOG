@@ -1032,3 +1032,9 @@ Francois VOGEL, 03/05/05
  * Bug fixed: when in debug mode and there was no mouseoversel before, there
    was an error
  * version --> 4.10
+
+Francois VOGEL, 05/05/05
+ * Bug fixed: line/column indication in the bottom bar was no longer updated
+   when the insertion cursor was moved by clicking on the text area. This bug
+   was introduced in Scipad 4.7
+ * version --> 4.11
