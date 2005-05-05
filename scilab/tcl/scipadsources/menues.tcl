@@ -182,7 +182,7 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
         foreach c $fgcolors {
               eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -foreground \[set $c\] \
-                -background $BGCOLOR"
+                -activeforeground \[set $c\] -background $BGCOLOR"
                }
     eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
       -command {refreshQuotedStrings}\

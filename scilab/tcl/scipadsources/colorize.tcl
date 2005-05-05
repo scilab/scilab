@@ -319,7 +319,8 @@ proc colormenuoption {c} {
        foreach c $fgcolors {
            incr i
            $pad.filemenu.options.colors entryconfigure $i \
-              -foreground [set $c] -background $BGCOLOR
+              -foreground [set $c]  -activeforeground [set $c]\
+              -background $BGCOLOR
        }
 # refresh all color settings for all the opened buffers (only one color was
 #  changed)

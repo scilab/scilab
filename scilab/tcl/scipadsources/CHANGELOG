@@ -1038,3 +1038,7 @@ Francois VOGEL, 05/05/05
    when the insertion cursor was moved by clicking on the text area. This bug
    was introduced in Scipad 4.7
  * version --> 4.11
+
+ES, 05/05/05
+ * cosmetic: colored activeforegrounds in menue Options/Colors
+ * version --> 4.12
