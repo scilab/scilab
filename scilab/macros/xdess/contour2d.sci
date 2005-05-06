@@ -1,5 +1,6 @@
-function contour2d(x,y,z,nz,style,strf,leg,rect,nax,void)
+function levels=contour2d(x,y,z,nz,style,strf,leg,rect,nax,void)
 opts=[]
+levels=[]
 if ~exists('style','local')==1 then 
   if size(nz,'*')==1 then
     style=1:nz,
@@ -24,7 +25,7 @@ if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
 opts=strcat([opts,"style=style(c)"],',')
 [xc,yc]=contour2di(x,y,z,nz);
-fpf=xget("fpf");if fpf=='' then fpf='%.3f',end
+fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 
 newstyle = get('figure_style')=='new'
 if newstyle then
@@ -44,7 +45,7 @@ k=1;n=yc(k); c=0; level = %inf;
 while k < length(xc)
    n = yc(k)
    if xc(k) ~= level then 
-      c = c+1; level = xc(k),
+      c = c+1; level = xc(k),levels=[level levels];
       if newstyle then 
 	 if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
       end
