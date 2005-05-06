@@ -839,9 +839,9 @@ int RandI( char* fname)
 		}
 	      ptot += *stk(la+i+m1*j) ;
 	    }
-	  if ( ptot -1.0 > 1.e-6 ) 
+	  if ( fabs(ptot-1.0) > 1e-8 ) 
 	    {
-	      Scierror(999,"Sum of P(%d,1:%d)=%f > 1 \r\n",i+1,n1,ptot);
+	      Scierror(999,"Sum of P(%d,1:%d)=%f ~= 1 \r\n",i+1,n1,ptot);
 	      return 0;
 	    }
 	}
