@@ -242,13 +242,14 @@ void  scig_erase(integer win_num)
  * driver : driver for code generation 
  ********************************************************/
 
-void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
+int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
 {
   char name[4];
-  integer zero=0,un=1;
+  integer zero=0,un=1,ierr;
   integer verb=0,cur,na,screenc;
 
-  if ( scig_buzy  == 1 ) return ;
+  if ( scig_buzy  == 1 ) return 0;
+  ierr = 0;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);  
@@ -260,7 +261,8 @@ void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     /* Rajout F.Leray 06.04.04 */
     bg = sciGetBackground(curFig);
     C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xinit",bufname,&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xinit",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (ierr != 0) goto bad;
     set_version_flag(1);
     sciSetCurrentFigure(curFig);
     C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
@@ -268,7 +270,8 @@ void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
   }
   else {
     C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xinit",bufname,&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xinit",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (ierr != 0)  goto bad;
     if (colored==1) 
       C2F(dr)("xset","use color",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     else
@@ -287,11 +290,13 @@ void scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     setcolordef(screenc);
   }
   C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+bad:
   C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /* to force a reset in the graphic scales */
   SwitchWindow(&cur);
   scig_buzy = 0;
+  return ierr;
 }
 
 int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, char *driver, long int l1, long int l2)
@@ -302,7 +307,7 @@ int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, cha
   else 
     sc= *color;
   scig_tops(*iwin,sc,fname,driver);
-  return(0);
+  return scig_tops(*iwin,sc,fname,driver);
 }
 
 /*******************************************************

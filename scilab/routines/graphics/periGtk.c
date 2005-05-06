@@ -255,8 +255,9 @@ void CPixmapResize1(void)
 void C2F(xselgraphic)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   /* Test not really usefull: see sciwin in matdes.f */
+  integer ierr;
   if ( ScilabXgc == (struct BCG *)0 || ScilabXgc->window ==  NULL) 
-    C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   gdk_window_show(ScilabXgc->window->window);
   gdk_flush();
 }
@@ -758,8 +759,9 @@ static void xget_windowpos(integer *verbose, integer *x, integer *narg, double *
 
 static void xset_windowpos(integer *x, integer *y, integer *v3, integer *v4)
 {
+  integer ierr;
   if (ScilabXgc == NULL || ScilabXgc->window ==  NULL) 
-    C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   gdk_window_move (ScilabXgc->window->window, *x,*y);
 }
 
@@ -861,12 +863,13 @@ static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
 { 
   struct BCG *bcgk;
   bcgk =  ScilabXgc ;
+  integer ierr;
   /** send info to menu **/
   if (v2 != (integer *) 0) MenuFixCurrentWin(*intnum);
   if ( ScilabXgc == (struct BCG *) 0 ) 
     {
       /** First entry or no more graphic window **/
-      C2F(initgraphic)("",intnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
   else 
     {
@@ -902,6 +905,7 @@ void SwitchWindow(integer *intnum)
 {
   /** trying to get window *intnum **/
   struct BCG *SXgc =  GetWindowXgcNumber(*intnum);
+  integer ierr;
   if ( SXgc != (struct BCG *) 0 ) 
     {
       /** Window intnum exists **/
@@ -912,7 +916,7 @@ void SwitchWindow(integer *intnum)
   else 
     {
       /** Create window **/
-      C2F(initgraphic)("",intnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 }
 
@@ -2775,6 +2779,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
   static integer EntryCounter = 0;
   integer WinNum;
+  *v3 = 0;
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
   else

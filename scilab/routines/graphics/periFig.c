@@ -1576,13 +1576,16 @@ void C2F(initgraphicXfig)(char *string, integer *v2, integer *v3, integer *v4, i
   char string1[50];
   static integer EntryCounter = 0;
   integer fnum;
+  *v3 = 0;
   if (EntryCounter >= 1) C2F(xendgraphicXfig)();
   strcpy(string1,string);
   file=fopen(string1,"w");
   if (file == 0) 
     {
-      sciprint("Can't open file %s, I'll use stdout\r\n",string1);
+      /*sciprint("Can't open file %s, I'll use stdout\r\n",string1);*/
       file = stdout;
+      *v3 = 1;
+      return;
     }
   if (EntryCounter == 0)
     { 

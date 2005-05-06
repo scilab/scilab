@@ -33,7 +33,7 @@ extern void scig_loadsg __PARAMS((int ,char *));
 extern void scig_resize __PARAMS((integer )); 
 extern void scig_resize_pixmap __PARAMS((integer )); 
 extern void scig_erase __PARAMS((integer )); 
-extern void scig_tops __PARAMS((integer ,integer colored,char *bufname,char *river)); 
+extern int scig_tops __PARAMS((integer ,integer colored,char *bufname,char *river)); 
 
 /* Alloc.c */
 

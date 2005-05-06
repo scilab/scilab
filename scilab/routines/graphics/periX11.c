@@ -349,9 +349,10 @@ void CPixmapResize1(void)
 
 void C2F(xselgraphic)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
+  integer ierr;
   /** Test not really usefull: see sciwin in matdes.f **/
   if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CBGWindow == (Window ) NULL) 
-    C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   XMapWindow(dpy,ScilabXgc->CBGWindow);
   XRaiseWindow(dpy,ScilabXgc->CBGWindow);
   XFlush(dpy);
@@ -688,9 +689,10 @@ static void xget_windowpos(integer *verbose, integer *x, integer *narg, double *
 
 static void xset_windowpos(integer *x, integer *y, integer *v3, integer *v4)
 {
+  integer ierr;
   /** test Normalement inutile XXXX **/
   if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CBGWindow == (Window) NULL) 
-    C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   XMoveWindow(dpy,ScilabXgc->CBGWindow,(int) *x,(int) *y);
 }
 
@@ -787,13 +789,14 @@ static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
 { 
   XWindowAttributes war;
   struct BCG *bcgk;
+  integer ierr;
   bcgk =  ScilabXgc ;
   /** send info to menu **/
   if (v2 != (integer *) 0) MenuFixCurrentWin(*intnum);
   if ( ScilabXgc == (struct BCG *) 0 ) 
     {
       /** First entry or no more graphic window **/
-      C2F(initgraphic)("",intnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
   else 
     {
@@ -873,6 +876,7 @@ void SwitchWindow(integer *intnum)
 {
   /** trying to get window *intnum **/
   struct BCG *SXgc;
+  integer ierr;
   SXgc = GetWindowXgcNumber(*intnum);
   if ( SXgc != (struct BCG *) 0 ) 
     {
@@ -884,7 +888,7 @@ void SwitchWindow(integer *intnum)
   else 
     {
       /** Create window **/
-      C2F(initgraphic)("",intnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 }
 
@@ -3445,6 +3449,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static int screen;
   static XGCValues gcvalues;
   static Widget toplevel = (Widget) NULL;
+  *v3 = 0;
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
   else

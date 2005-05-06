@@ -1614,6 +1614,7 @@ void C2F(initgraphicPos)(char *string, integer *v2, integer *v3, integer *v4, in
   static integer EntryCounter = 0;
   integer fnum;
 
+  *v3 = 0;
   if (EntryCounter >= 1) C2F(xendgraphicPos)();
   strncpy(string1,string,256);
 
@@ -1623,8 +1624,10 @@ void C2F(initgraphicPos)(char *string, integer *v2, integer *v3, integer *v4, in
   file=fopen(string1,"w");
   if (file == 0) 
     {
-      sciprint("Can't open file %s, I'll use stdout\r\n",string1);
+      /*sciprint("Can't open file %s, I'll use stdout\r\n",string1);*/
       file =stdout;
+      *v3 = 1;
+      return;
     }
   if (EntryCounter == 0)
     { 

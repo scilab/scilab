@@ -1787,7 +1787,7 @@ initgraphicGif)(char *string, integer *v2, integer *v3, integer *v4, integer *v5
   static integer EntryCounter = 0;
   integer  x[2],verbose=0,narg;
   double dummy;
-
+  *v3=0;
   if (EntryCounter >= 1) 
   {
       C2F(xendgraphicGif)();
@@ -1797,7 +1797,8 @@ initgraphicGif)(char *string, integer *v2, integer *v3, integer *v4, integer *v5
   file=fopen(string1,"wb");
   if (file == 0) 
     {
-      sciprint("Can't open file %s\n");
+      /* sciprint("Can't open file %s\n",string1);*/
+      *v3=1;
       return;
     }
   x[0]=640;

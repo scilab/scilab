@@ -567,8 +567,9 @@ void C2F(xselgraphic)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
      double *dv3;
      double *dv4;
 { 
+  integer ierr;
   if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CWindow == (HWND) NULL) 
-    C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (IsIconic(ScilabXgc->hWndParent)) 
     ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
   BringWindowToTop(ScilabXgc->hWndParent);
@@ -1269,13 +1270,14 @@ void C2F(setcurwin)(intnum, v2, v3, v4)
      integer *v4;
 { 
   struct BCG *bcgk;
+  integer ierr;
   bcgk =  ScilabXgc ;
   /** send info to menu **/
   if (v2 != (integer *) 0) MenuFixCurrentWin(*intnum);
   if ( ScilabXgc == (struct BCG *) 0 ) 
     {
       /** First entry or no more graphic window **/
-      C2F(initgraphic)("",intnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
   else 
     {
@@ -1312,6 +1314,7 @@ int SwitchWindow(integer *intnum)
 {
   /** trying to get window *intnum **/
   struct BCG *SXgc;
+  integer ierr;
   SXgc = GetWindowXgcNumber(*intnum);
   if ( SXgc != (struct BCG *) 0 ) 
     {
@@ -1331,7 +1334,7 @@ int SwitchWindow(integer *intnum)
   else 
     {
       /** Create window **/
-      C2F(initgraphic)("",intnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      C2F(initgraphic)("",intnum,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 	return(0);
 }
@@ -3827,6 +3830,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   SCROLLINFO horzsi;
   #ifdef WITH_TK
   integer ne=7, menutyp=2, ierr;
+  *v3 = 0;
   char *EditMenusE[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
   char *EditMenusF[]={"Selectionner","Redessiner","Effacer","Propriétés de la Figure","Propriétés des Axes Courants","Démarrer Sélecteur d'Entitées","Arrêter Sélecteur d'Entitées"};
   #else
