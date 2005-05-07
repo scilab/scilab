@@ -52,10 +52,13 @@ int GetFileWindow(char *filemask,char **file,char *dirname,
  return  sci_get_file_window(filemask,file,dirname,flag,0,ierr,title);
 }
     
+extern char *sci_convert_to_utf8(char *str, int *alloc);
 
 int  sci_get_file_window(char *filemask,char **file,char *dirname,
 			 int flag,int action,int *ierr,char *title)
 {
+  char *title_utf8;
+  int title_alloc;
   static int last_choice = 0;
   GList *cbitems = NULL;
   GtkWidget *combo;
@@ -68,7 +71,10 @@ int  sci_get_file_window(char *filemask,char **file,char *dirname,
 
   start_sci_gtk(); /* in case gtk was not initialized */
 
-  window = gtk_file_selection_new (title);
+  title_utf8 = sci_convert_to_utf8(title,&title_alloc);
+  window = gtk_file_selection_new (title_utf8);
+  if ( title_alloc == TRUE) g_free (title_utf8);
+
 
   if ( strcmp(dirname,".") == 0) 
     gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),"./");
@@ -111,6 +117,8 @@ int  sci_get_file_window(char *filemask,char **file,char *dirname,
        */
       if ( rep != RESET ) break;
     }
+
+
   if ( rep == OK ) 
     {
       int action_length=0;
