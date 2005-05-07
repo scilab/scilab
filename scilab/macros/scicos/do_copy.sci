@@ -71,7 +71,7 @@ function [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     // update and draw block
-    if rep(3)==2 then
+    if or(rep(3)==[2 5]) then
       if pixmap then xset('wshow'),end
       return
     end

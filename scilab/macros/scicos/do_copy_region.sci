@@ -42,7 +42,7 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
   end
 
   driver(dr);xset('pattern',pat)
-  if rep(3)==2 then enablemenus();return,end
+  if or(rep(3)==[2 5]) then enablemenus();return,end
 
   scs_m_save=scs_m,nc_save=needcompile
   n=lstsize(scs_m.objs)
