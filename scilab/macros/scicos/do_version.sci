@@ -49,9 +49,10 @@ function scs_m_new=do_version273(scs_m)
 	setfield($+1,getfield($,omod),omod)
 	setfield($-1,0,omod)
 	omod.rpar=rpar
-      elseif omod.sim(1)=='ifthel'|omod.sim(1)=='eselect' then
+      elseif omod.sim(1)=='ifthel' then // |omod.sim(1)=='eselect' then
 	setfield($+1,getfield($,omod),omod)
 	setfield($-1,1,omod)
+	setfield($-2,1,omod)
       else
 	setfield($+1,getfield($,omod),omod)
 	setfield($-1,0,omod)
