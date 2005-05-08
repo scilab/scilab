@@ -7,7 +7,9 @@
 *     .. Array Arguments ..
       DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), C( LDC, * )
 *     ..
-*
+C     WARNING : this routine has been modified for Scilab (see comments
+C     Cscilab)  because algorithm is not ok if A matrix contains NaN
+C     (NaN*0 should be NaN, not 0)
 *  Purpose
 *  =======
 *
@@ -236,12 +238,12 @@
    60             CONTINUE
                END IF
                DO 80, L = 1, K
-                  IF( B( L, J ).NE.ZERO )THEN
+Cscilab                  IF( B( L, J ).NE.ZERO )THEN
                      TEMP = ALPHA*B( L, J )
                      DO 70, I = 1, M
                         C( I, J ) = C( I, J ) + TEMP*A( I, L )
    70                CONTINUE
-                  END IF
+Cscilab                   END IF
    80          CONTINUE
    90       CONTINUE
          ELSE
@@ -278,12 +280,12 @@
   140             CONTINUE
                END IF
                DO 160, L = 1, K
-                  IF( B( J, L ).NE.ZERO )THEN
+Cscilab                   IF( B( J, L ).NE.ZERO )THEN
                      TEMP = ALPHA*B( J, L )
                      DO 150, I = 1, M
                         C( I, J ) = C( I, J ) + TEMP*A( I, L )
   150                CONTINUE
-                  END IF
+Cscilab                   END IF
   160          CONTINUE
   170       CONTINUE
          ELSE
