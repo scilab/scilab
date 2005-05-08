@@ -708,7 +708,7 @@ void C2F(set_cXfig)(integer i)
   integer j;
   j=Max(Min(i,ScilabGCXfig.Numcolors+1),0);
   ScilabGCXfig.CurColor=j;
-  FPRINTF((file,"\n# %d Setcolor\n",(int)i));
+  FPRINTF((file,"# %d Setcolor\n",(int)i));
 }
 
 /** set and get the number of the background or foreground */
