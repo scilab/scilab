@@ -14,7 +14,7 @@ c
       integer ssym,schar,slpt(6)
       integer first,ierr
       integer iadr,sadr
-      logical maj,isinstring,incomment
+      logical maj,isinstring,incomment,isopened
 
       external getfastcode
       integer  getfastcode
@@ -29,6 +29,7 @@ c     ennd/14,23,13/
       sadr(l)=(l/2)+1
 c
       lmax=iadr(lstk(bot)-1)
+      isopened=.false.
 c     
       if(top-rhs+lhs+1.ge.bot) then
          call error(18)
@@ -278,6 +279,7 @@ c
       il=iadr(lstk(top))
       istk(il)=11
       l=il+2
+      isopened=.true.
       if(l.gt.lmax) then
          ierr=5
          goto 90
@@ -393,7 +395,9 @@ c     fin
       else
          job=1
       endif
- 61   call icopy(6,retu,1,istk(l),1)
+ 61   continue
+      if (.not.isopened) goto 93
+      call icopy(6,retu,1,istk(l),1)
       l=l+6
       istk(l)=eol
       l=l+1
