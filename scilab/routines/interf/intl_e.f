@@ -394,6 +394,10 @@ c     .  check if it is possible to create n new variables
 c     .  create table of pointers on new variables
          do  52 i=1,n
             k=ind(i)
+            if(k.le.0.or.k.gt.istk(illist+1)) then
+               call error(21)
+               return
+            endif
             vol2=istk(illist+2+k)-istk(illist+1+k)
             if(vol2.eq.0) then
                err=k
