@@ -1042,3 +1042,24 @@ Francois VOGEL, 05/05/05
 ES, 05/05/05
  * cosmetic: colored activeforegrounds in menue Options/Colors
  * version --> 4.12
+
+Francois VOGEL, 05/05/05
+ * Proposal for a better activeforeground colorization scheme in Options/Colors
+   menu, using http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/133529
+ * version --> 4.13
+
+Francois VOGEL, 06/05/05
+ * Second proposal for a better activeforeground colorization scheme in
+   Options/Colors menu, now better taking into account 32-bit colors as
+   selected by the user in the color picker
+ * version --> 4.14
+
+Francois VOGEL, 08/05/05
+ * Simplified shading of colors for the activeforeground colorization
+   scheme in Options/Colors menu, following discussion on comp.lang.tcl
+ * Added a checkbutton in the watch window add variable dialog box in order
+   to force acquisition of the current value of this variable from the shell.
+   This is useful during a debug session when the user adds a new watch
+   variable just to check its current value without changing it. Previously,
+   update was only performed after the next breakpoint stop
+ * version --> 4.15

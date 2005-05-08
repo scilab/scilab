@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v4.6
+# in sync at least with v4.15
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -23,6 +23,7 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"
+::msgcat::mcset fr "Get current value from Scilab" "Obtenir la valeur actuelle dans Scilab"
 
 
 # db_configureexec.tcl

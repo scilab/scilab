@@ -200,6 +200,8 @@ Wishes:
  but exists(d(1)) is false!
  Allow to watch a generic expression (bonus: the expression could be e.g.
  a graphical command, so that an array is *plotted* at each breakpoint)
+ Way to go: add a pane with expressions to be executed and result of their
+ evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
 
 -Improve the aesthetics of Scipad (see sciGUI)
 

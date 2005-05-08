@@ -177,13 +177,14 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
         foreach c $bgcolors {
               eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -background \[set $c\]\
-                -foreground $FGCOLOR"
+                -foreground $FGCOLOR -activeforeground $FGCOLOR"
                }
         foreach c $fgcolors {
               eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -foreground \[set $c\] \
                 -activeforeground \[set $c\] -background $BGCOLOR"
                }
+        updateactiveforegroundcolormenu
     eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
       -command {refreshQuotedStrings}\
       -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"

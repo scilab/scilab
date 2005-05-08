@@ -288,7 +288,7 @@ proc getfromshell { {startitem 3} } {
     ScilabEval $fullcomm "seq"
 }
 
-proc getonefromshell {wvar} {
+proc getonefromshell {wvar {opt "seq"}} {
     global watchvars watchvarsvals unklabel
     set fullcomm ""
     set comm1 "if exists(\"$wvar\"),"
@@ -297,7 +297,7 @@ proc getonefromshell {wvar} {
     set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($wvar) \"\"$unklabel\"\"}\");"
     set comm5 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
-    ScilabEval $fullcomm "seq"
+    ScilabEval $fullcomm $opt
 }
 
 proc createsetinscishellcomm {} {

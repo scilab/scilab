@@ -314,7 +314,7 @@ proc colormenuoption {c} {
        foreach c $bgcolors {
            incr i
            $pad.filemenu.options.colors entryconfigure $i \
-              -background [set $c] -foreground $FGCOLOR
+              -background [set $c] -foreground $FGCOLOR  -activeforeground $FGCOLOR
        }
        foreach c $fgcolors {
            incr i
@@ -322,6 +322,7 @@ proc colormenuoption {c} {
               -foreground [set $c]  -activeforeground [set $c]\
               -background $BGCOLOR
        }
+       updateactiveforegroundcolormenu
 # refresh all color settings for all the opened buffers (only one color was
 #  changed)
        foreach i $listoftextarea {
@@ -329,7 +330,6 @@ proc colormenuoption {c} {
            }
    }
 }
-
 
 proc refreshQuotedStrings {} {
     global listoftextarea scilabSingleQuotedStrings
@@ -368,4 +368,62 @@ proc refreshQuotedStrings {} {
             }
         }
     }
+}
+
+proc updateactiveforegroundcolormenu {} {
+    global pad
+    for {set i 0} {$i<=[$pad.filemenu.options.colors index last]} {incr i} {
+        if {[$pad.filemenu.options.colors type $i] != "separator" && [$pad.filemenu.options.colors type $i] != "tearoff"} {
+                $pad.filemenu.options.colors entryconfigure $i -activebackground [shade \
+                        [$pad.filemenu.options.colors entrycget $i -activeforeground] \
+                        [$pad.filemenu.options.colors entrycget $i -background] 0.5]
+        }
+    }
+}
+
+# shade --
+#
+#   Returns a shade between two colors
+#
+# Arguments:
+#   orig    start #rgb color
+#   dest    #rgb color to shade towards
+#   frac    fraction (0.0-1.0) to move $orig towards $dest
+#
+# This proc was copied from http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/133529
+# Since errors were found e.g. for   shade black green2 0.8   when trying to use this color,
+# format "\#%02x%02x%02x"  was changed into  format "\#%4.4x%4.4x%4.4x"
+#
+proc shade {orig dest frac} {
+    global pad
+    if {$frac >= 1.0} { return $dest } elseif {$frac <= 0.0} { return $orig }
+    foreach {origR origG origB} [rgb2dec $orig] \
+            {destR destG destB} [rgb2dec $dest] {
+         set shade [format "\#%4.4x%4.4x%4.4x" \
+            [expr {int($origR+double($destR-$origR)*$frac)}] \
+            [expr {int($origG+double($destG-$origG)*$frac)}] \
+            [expr {int($origB+double($destB-$origB)*$frac)}]]
+    return $shade
+    }
+}
+
+# rgb2dec --
+#
+#   Turns #rgb into 3 elem list of decimal vals.
+#
+# Arguments:
+#   c    The #rgb hex of the color to translate, or a known color name
+# Results:
+#   List of three decimal numbers, corresponding to #RRRRGGGGBBBB color
+#
+# This proc was inspired by http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/133529
+# and changed by Donald Arsenau based on a discussion on comp.lang.tcl. See:
+# http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/83264d872c0f13cc/e65d91f5f4261239
+#
+proc rgb2dec cv {
+    set c [string tolower $cv]
+    if {[catch {winfo rgb . $c} rgb]} {
+        error "bad color value \"$cv\""
+    }
+    return $rgb
 }

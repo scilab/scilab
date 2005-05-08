@@ -1,5 +1,6 @@
 proc Addarg_bp {w focusbut leftwin rightwin} {
     global argname argvalue
+    global adda getvaluefromscilab
     set pos [$leftwin curselection]
     if {$pos == ""} {set pos -1}
     set adda $w.adda
@@ -32,6 +33,14 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     pack $adda.f.f2.entry -expand 1 -fill x
     $adda.f.f2.entry selection range 0 end
     pack $adda.f.f2 -expand 1 -fill x
+    if {[string first listboxinput $leftwin] == -1} {
+        # This checkbutton is only displayed when the dialog is used with the watch window,
+        # not with the configure box
+        eval "checkbutton $adda.f.cbox1 [bl "Get current value from Scilab"] -variable getvaluefromscilab \
+                                                                     -command togglegetvaluefromscilab"
+        pack $adda.f.cbox1 -expand 0 -fill none -anchor w -padx 6
+        $adda.f.cbox1 deselect
+    }
     frame $adda.f.f9
     button $adda.f.f9.buttonOK -text "OK" \
            -command "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"\
@@ -61,6 +70,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     global argname argvalue
     global spin funvars funvarsvals
     global watchvars watchvarsvals
+    global getvaluefromscilab
     if {$argname != ""} {
         set leftwinelts [$leftwin get 0 end]
         set alreadyexists "false"
@@ -83,11 +93,12 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set funvars($funname) [linsert $funvars($funname) $pos $argname]
                 set funvarsvals($funname,$argname) $argvalue
             } else {
-                if {$argvalue == ""} {set argvalue $unklabel}
+                if {$argvalue == "" || $getvaluefromscilab == 1} {set argvalue $unklabel}
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    getonefromshell $argname
+                    getonefromshell $argname "sync"
+                    set argvalue $watchvarsvals($argname)
                 }
             }
             $leftwin insert $pos $argname
@@ -103,9 +114,11 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set funvarsvals($funname,$argname) $argvalue
             } else {
                 if {$argvalue == ""} {set argvalue $unklabel}
+                if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
                 if {$forceget == "true"} {
-                    getonefromshell $argname
+                    getonefromshell $argname "sync"
+                    set argvalue $watchvarsvals($argname)
                 }
             }
             $leftwin selection set $nextone
@@ -141,6 +154,15 @@ proc Removearg_bp {leftwin rightwin} {
         } else {
             $leftwin selection set [expr [$leftwin size] - 1]
         }
+    }
+}
+
+proc togglegetvaluefromscilab {} {
+    global adda getvaluefromscilab
+    if {$getvaluefromscilab == 1} {
+        $adda.f.f2.entry configure -state disabled
+    } else {
+        $adda.f.f2.entry configure -state normal
     }
 }
 
