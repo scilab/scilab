@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v4.8
+# in sync at least with v4.15
 
 
 # commons
@@ -25,7 +25,8 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset it "Variable:" "Variabile:"
 ::msgcat::mcset it "Value:" "Valore:"
-
+::msgcat::mcset it "Get current value from Scilab" \
+                    "Recupera il valore attuale in Scilab"
 
 # db_configureexec.tcl
 ::msgcat::mcset it "Configure execution" "Configura l'esecuzione"
@@ -292,7 +293,7 @@
 
 
 # popupmenus.tcl
-::msgcat::mcset it "Open the source of" "Aprire la sorgente di"
+::msgcat::mcset it "Open the source of" "Apri la sorgente di"
 ::msgcat::mcset it "AddWatch" "Tieni %s sotto controllo"
 
 
@@ -320,7 +321,7 @@
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
                    "La traduzione del file è fallita, vedere la finestra\
-                    Scilab dettagli -- Il bugg può essere riportato a\
+                    Scilab dettagli -- Il baco può essere riportato a\
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi \
                     includendo il file incriminato ed il messagggio di errore."
 ::msgcat::mcset it "Please select destination path for the xml source of the help file" \
