@@ -635,6 +635,9 @@ void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 {
 	int PosX=(int) LOWORD (lParam);
 	int PosY=(int) HIWORD (lParam);
+	horzsinPos=ScilabGC->horzsi.nPos;
+	vertsinPos=ScilabGC->vertsi.nPos;
+
 
 	if ( (bTimerLeftSingleClickON) || (bTimerMiddleSingleClickON) || (bTimerRightSingleClickON) )
 	{
