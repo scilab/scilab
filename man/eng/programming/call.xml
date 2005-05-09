@@ -128,7 +128,6 @@
       the interface routine <VERB>Ex-fort</VERB>. This interface routine is then 
       very similar to an interface (see the source code in the directory
       <VERB>SCIDIR/default/Ex-fort.f</VERB>).</P> 
-    <P>
  
   </DESCRIPTION>
   <EXAMPLE>
