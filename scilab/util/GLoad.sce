@@ -7,8 +7,8 @@
   case "sce" then exec(gl_name),
   case "scg" then xload(gl_name),
   case "bin" then load(gl_name), 
-  case "cos" then scicos(gl_name)
-  case "cosf" then scicos(gl_name)  
+  case "cos" then scicos(gl_name);
+  case "cosf" then scicos(gl_name);  
   else error("Gload : unknown suffix in file name "+gl_name);
   end
 else
