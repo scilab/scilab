@@ -5266,11 +5266,16 @@ int gset(fname,fname_len)
 	  Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	  return -1;
 	}
-	
+
 	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&ptrindex[0]);
 	GetListRhsVar(3,3,"S",&numrow[1],&numcol[1],&ptrindex[1]);
 
+	if(numrow[0] == 0 || numrow[1] == 0 || numcol[0] == 0 || numcol[1] == 0){
+	  Scierror(999,"%s: Incorrect argument, a complete 'ticks' tlist must be defined!\r\n",fname);
+	  return -1;
+	}
+    
 	if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
 	
       }
