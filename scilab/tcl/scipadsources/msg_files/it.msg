@@ -321,7 +321,7 @@
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
                    "La traduzione del file è fallita, vedere la finestra\
-                    Scilab dettagli -- Il baco può essere riportato a\
+                    Scilab per dettagli -- Il baco può essere riportato a\
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi \
                     includendo il file incriminato ed il messagggio di errore."
 ::msgcat::mcset it "Please select destination path for the xml source of the help file" \
