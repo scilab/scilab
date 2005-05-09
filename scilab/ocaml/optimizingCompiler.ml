@@ -17,7 +17,7 @@ module Make(G: CODEGENERATOR): S =
     let sccs_id =
       "@(#)Modelicac - Copyright (C) 2003-2004 TNI-Valiosys, 2005 Imagine"
 
-    let version = "1.5.6"
+    let version = "1.5.8"
 
     let path = ref ""
 

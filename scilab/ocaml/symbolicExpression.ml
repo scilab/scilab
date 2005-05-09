@@ -884,7 +884,6 @@ and symbolic_tanh node =
 and symbolic_add_if_possible node node' =
   if node == zero then Some node'
   else if node' == zero then Some node
-  else if node == node' then Some (create_multiplication (insert two [node]))
   else match node.nature, node'.nature with
     | Number num, Number num' -> Some (create_number (add_num num num'))
     | Number _, Addition nodes' ->
@@ -906,6 +905,7 @@ and symbolic_add_if_possible node node' =
         add_expression_to_multiplication_if_possible node node'
     | _, Addition nodes' ->
         apply_if_possible create_addition symbolic_add_if_possible node nodes'
+    | _ when node == node' -> Some (create_multiplication (insert two [node]))
     | _ -> None
 
 and add_number_to_addition_if_possible node nodes =
@@ -961,7 +961,6 @@ and symbolic_mult_if_possible node node' =
   if node == zero || node' == zero then Some zero
   else if node == one then Some node'
   else if node' == one then Some node
-  else if node == node' then Some (symbolic_rationalPower node two_num)
   else match node.nature, node'.nature with
     | Number num, Number num' -> Some (create_number (mult_num num num'))
     | Number _, Addition nodes' ->
@@ -991,6 +990,7 @@ and symbolic_mult_if_possible node node' =
         mult_power_by_power_if_possible node node'
     | RationalPower _, _ -> mult_expression_by_power_if_possible node' node
     | _, RationalPower _ -> mult_expression_by_power_if_possible node node'
+    |_ when node == node' -> Some (symbolic_rationalPower node two_num)
     | _ -> None
 
 and mult_expression_by_power_if_possible node node' = match node'.nature with

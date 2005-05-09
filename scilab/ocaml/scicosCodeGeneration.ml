@@ -31,6 +31,28 @@ and occurrence_record =
     mutable label: int option
   }
 
+let postprocess_residue model =
+  let rec add_to xs = function
+    | [] -> xs
+    | x' :: xs' when List.memq x' xs -> add_to xs xs'
+    | x' :: xs' -> add_to (x' :: xs) xs'
+  and accumulate_derivatives (ders, nequs) equ =
+    if equ.solved then ders, nequs
+    else match derivatives_of equ.expression with
+      | [] -> ders, nequs
+      | ders' -> add_to ders ders', nequs + 1
+  in
+  let postprocess_residue' () =
+    let cj = create_blackBox "Get_Jacobian_parameter" [] in
+    Array.iter
+      (fun equ ->
+        if not equ.solved && derivatives_of equ.expression = [] then
+          equ.expression <- symbolic_mult cj equ.expression)
+      model.equations
+  in
+  let ders, nequs = Array.fold_left accumulate_derivatives ([], 0) model.equations in
+  if nequs <> 0 && List.length ders = nequs then postprocess_residue' ()
+
 let next_index model_info =
   model_info.current_index <- model_info.current_index + 1;
   model_info.max_index <- max model_info.max_index model_info.current_index;
@@ -920,6 +942,7 @@ let generate_code path filename fun_name model with_jac =
     | s :: ss -> s ^ "/" ^ to_filename ss
   in
   let oc = open_out filename in
+  postprocess_residue model;
   let model_info =
     {
       model = model;
@@ -979,7 +1002,9 @@ let generate_code path filename fun_name model with_jac =
      \n\
      double ipow(double x, int n)\n\
      {\n\
-     \tif (x != x || x == 0.0 && n == 0) return 0.0 / 0.0;\n\
+     \t/* NaNs propagation */\n\
+     \tif (isnan(x) || x == 0.0 && n == 0) return exp(x * log((double)n));\n\
+     \t/* Normal execution */\n\
      \tif (n < 0) return 1.0 / ipow_(x, -n);\n\
      \treturn ipow_(x, n);\n\
      }\n";

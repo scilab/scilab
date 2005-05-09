@@ -1087,7 +1087,7 @@ and instantiate_expression ctx = function
         | IntegerType dims, IntegerType dims' when dims = dims' ->
             {
               tex_type = IntegerType dims;
-              tex_expression = Addition (iexpr, iexpr')
+              tex_expression = Subtraction (iexpr, iexpr')
             }
         | (IntegerType dims | RealType dims),
           (IntegerType dims' | RealType dims') when dims = dims' ->
@@ -1152,13 +1152,16 @@ and check_function_type ctx lccl iexprs =
   match pars, others with
     | [], [] ->
         let input_types = List.map extract_type inputs in
-        if List.for_all2 compare_input_types iexprs input_types then
-          begin match List.map extract_type outputs with
-            | [] -> failwith "check_function_type: no return value"
-            | [t] -> t
-            | ts -> CartesianProduct ts
-          end
-        else failwith "check_function_type: type error"
+        begin try
+          if List.for_all2 compare_input_types iexprs input_types then
+            begin match List.map extract_type outputs with
+              | [] -> failwith "check_function_type: no return value"
+              | [t] -> t
+              | ts -> CartesianProduct ts
+            end
+          else failwith "check_function_type: type error"
+        with _ -> failwith "check_function_type: type error"
+        end
     | _ -> failwith "check_function_type: invalid function declaration"
 
 and instantiate_if_alternatives ctx tex_type alts =

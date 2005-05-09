@@ -519,17 +519,16 @@ relation
     | arithmetic_expression NE arithmetic_expression            { NotEquals ($1, $3) }
     ;
 
-/* Warning: Sign priority must be respected when interpreting the abstract syntax tree */
 arithmetic_expression
-    : arithmetic_expression2                                    { $1 }
-    | PLUS arithmetic_expression2                               { Plus $2 }
-    | MINUS arithmetic_expression2                              { Minus $2 }
+    : signed_term                                               { $1 }
+    | arithmetic_expression PLUS term                           { Addition ($1, $3) }
+    | arithmetic_expression MINUS term                          { Subtraction ($1, $3) }
     ;
 
-arithmetic_expression2
+signed_term
     : term                                                      { $1 }
-    | arithmetic_expression2 PLUS term                          { Addition ($1, $3) }
-    | arithmetic_expression2 MINUS term                         { Subtraction ($1, $3) }
+    | PLUS term                                                 { Plus $2 }
+    | MINUS term                                                { Minus $2 }
     ;
 
 term
@@ -606,140 +605,7 @@ subscripts
 
 subscript
     : CL                                                        { All }
-    | expression_subscript                                      { Subscript $1 }
-    ;
-
-/* We duplicate grammar rules for expressions to avoid shift/reduce conflicts due to END.
-As a good (but unexpected) consequence, END will always be in scope. */
-expression_subscript
-    : simple_expression_subscript                               { $1 }
-    | IF expression_subscript THEN expression_subscript
-      elseifs_option_subscript
-      ELSE expression_subscript                                 { If (($2, $4) :: $5, $7) }
-    ;
-
-elseifs_option_subscript
-    :                                                           { [] }
-    | ELSEIF expression_subscript THEN expression_subscript
-      elseifs_option_subscript                                  { ($2, $4) :: $5 }
-    ;
-
-simple_expression_subscript
-    : logical_expression_subscript                              { $1 }
-    | logical_expression_subscript
-        CL logical_expression_subscript                         { Range ($1, $3, None) }
-    | logical_expression_subscript
-        CL logical_expression_subscript
-        CL logical_expression_subscript                         { Range ($1, $3, Some $5) }
-    ;
-
-logical_expression_subscript
-    : logical_term_subscript                                    { $1 }
-    | logical_expression_subscript OR logical_term_subscript    { Or ($1, $3) }
-    ;
-
-logical_term_subscript
-    : logical_factor_subscript                                  { $1 }
-    | logical_term_subscript AND logical_factor_subscript       { And ($1, $3) }
-    ;
-
-logical_factor_subscript
-    : relation_subscript                                        { $1 }
-    | NOT relation_subscript                                    { Not $2 }
-    ;
-
-relation_subscript
-    : arithmetic_expression_subscript                           { $1 }
-    | arithmetic_expression_subscript
-        LT arithmetic_expression_subscript                      { LessThan ($1, $3) }
-    | arithmetic_expression_subscript
-        GT arithmetic_expression_subscript                      { GreaterThan ($1, $3) }
-    | arithmetic_expression_subscript
-        LE arithmetic_expression_subscript                      { LessEqualThan ($1, $3) }
-    | arithmetic_expression_subscript
-        GE arithmetic_expression_subscript                      { GreaterEqualThan ($1, $3) }
-    | arithmetic_expression_subscript
-        EE arithmetic_expression_subscript                      { Equals ($1, $3) }
-    | arithmetic_expression_subscript
-        NE arithmetic_expression_subscript                      { NotEquals ($1, $3) }
-    ;
-
-/* Warning: Sign priority must be respected when interpreting the abstract syntax tree */
-arithmetic_expression_subscript
-    : arithmetic_expression2_subscript                          { $1 }
-    | PLUS arithmetic_expression2_subscript                     { Plus $2 }
-    | MINUS arithmetic_expression2_subscript                    { Minus $2 }
-    ;
-
-arithmetic_expression2_subscript
-    : term_subscript                                            { $1 }
-    | arithmetic_expression2_subscript PLUS term_subscript      { Addition ($1, $3) }
-    | arithmetic_expression2_subscript MINUS term_subscript     { Subtraction ($1, $3) }
-    ;
-
-term_subscript
-    : factor_subscript                                          { $1 }
-    | term_subscript STAR factor_subscript                      { Multiplication ($1, $3) }
-    | term_subscript SLASH factor_subscript                     { Division ($1, $3) }
-    ;
-
-factor_subscript
-    : primary_subscript                                         { $1 }
-    | primary_subscript EXP primary_subscript                   { Power ($1, $3) }
-    ;
-
-primary_subscript
-    : UNSIGNED_INTEGER                                          { Integer $1 }
-    | UNSIGNED_NUMBER                                           { Real $1 }
-    | STRING                                                    { String $1 }
-    | FALSE                                                     { False }
-    | TRUE                                                      { True }
-    | component_reference                                       { Reference $1 }
-    | component_reference LP RP                                 { FunctionCall ($1, None) }
-    | component_reference LP function_arguments_subscript RP    { FunctionCall ($1, Some $3) }
-    | LP expression_list_subscript RP                           { ExpressionList (Array.of_list $2) }
-    | LSB expression_lists_subscript RSB                        { ArrayConcatenation $2 }
-    | LCB function_arguments_subscript RCB                      { VectorOrRecord $2 }
-    | END                                                       { End }
-    ;
-
-expression_lists_subscript
-    : expression_list_subscript                                 { [$1] }
-    | expression_list_subscript SC expression_lists_subscript   { $1 :: $3 }
-    ;
-
-function_arguments_subscript
-    : expression_subscript FOR for_indices_subscript            { ArgList ([$1], Some $3) }
-    | expression_subscript CM expression_list_subscript
-      FOR for_indices_subscript                                 { ArgList ($1 :: $3, Some $5) }
-    | expression_subscript                                      { ArgList ([$1], None) }
-    | expression_subscript CM expression_list_subscript         { ArgList ($1 :: $3, None) }
-    | named_arguments_subscript FOR for_indices_subscript       { NamedArgList ($1, Some $3) }
-    | named_arguments_subscript                                 { NamedArgList ($1, None) }
-    ;
-
-named_arguments_subscript
-    : named_argument_subscript                                  { [$1] }
-    | named_argument_subscript CM named_arguments_subscript     { $1 :: $3 }
-    ;
-
-named_argument_subscript
-    : IDENT EQ expression_subscript                             { ($1, $3) }
-    ;
-
-expression_list_subscript
-    : expression_subscript                                      { [$1] }
-    | expression_subscript CM expression_list_subscript         { $1 :: $3 }
-    ;
-
-for_indices_subscript
-    : for_index_subscript                                       { [$1] }
-    | for_index_subscript CM for_indices_subscript              { $1 :: $3 }
-    ;
-
-for_index_subscript
-    : IDENT                                                     { ($1, None) }
-    | IDENT IN expression_subscript                             { ($1, Some $3) }
+    | expression                                                { Subscript $1 }
     ;
 
 comment
