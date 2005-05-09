@@ -59,9 +59,12 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     } else {
         focus $adda.f.f1.entry
     }
-    grab $adda
     focus $focusbut
+    # This update is required for the width and height to be taken into account in minsize
+    # It also prevents a "grab failed" error to occur on Linux when double clicking on the
+    # variable name in the watch or configure window
     update
+    grab $adda
     wm minsize $adda [winfo width $adda] [winfo height $adda]
 }
 

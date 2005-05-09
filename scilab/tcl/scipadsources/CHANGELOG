@@ -1050,7 +1050,7 @@ Francois VOGEL, 05/05/05
 
 Francois VOGEL, 06/05/05
  * Second proposal for a better activeforeground colorization scheme in
-   Options/Colors menu, now better taking into account 32-bit colors as
+   Options/Colors menu, now better taking into account 16-bit colors as
    selected by the user in the color picker
  * version --> 4.14
 
@@ -1063,3 +1063,8 @@ Francois VOGEL, 08/05/05
    variable just to check its current value without changing it. Previously,
    update was only performed after the next breakpoint stop
  * version --> 4.15
+
+Francois VOGEL, 09/05/05
+ * Fixed: "grab failed" on Linux happened when the user double-clicked on
+   a variable name in the watch or configure box
+ * version --> 4.16
