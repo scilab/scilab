@@ -10,15 +10,12 @@ MFILECONTENTS="if(true)t=1;end"
 MFILE=TMPDIR+"/bug1123.m"
 SCIFILE=TMPDIR+"/bug1123.sci"
 
-fd=mopen(MFILE,"w");
-mputl(MFILECONTENTS,fd);
-mclose(fd);
+mputl(MFILECONTENTS,MFILE);
+
 
 mfile2sci(MFILE,TMPDIR);
+SCIFILECONTENTS=mgetl(SCIFILE);
 
-fd=mopen(SCIFILE,"r");
-SCIFILECONTENTS=mgetl(fd,-1);
-mclose(fd);
 
 SCIFILECONTENTSREF=["";
 "// Display mode";
