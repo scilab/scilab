@@ -34,8 +34,7 @@
   <DESCRIPTION>
     <P>
     Given a loaded Scilab function pseudo-code fun2string allows to
-    re-generate the code. Note that as comments are not retained in
-    loaded functions the comments cannot be regenerated. The generated
+    re-generate the code. The generated
     code is indented and beautified.</P>
     <P>
     The mechanism is similar, but simpler than the mfile2sci one. It may
