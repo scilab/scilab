@@ -21,7 +21,7 @@ c      implicit undefined (a-z)
       sadr(l)=(l/2)+1
 
       topk = top
-      if (.not.checkrhs(fname,2,4)) return
+      if (.not.checkrhs(fname,3,6)) return
       if (.not.checklhs(fname,1,3)) return
 
 c     checking variable x (number 1)
