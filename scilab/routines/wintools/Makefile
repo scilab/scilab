@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wintools.a
 
-OBJSC = intmcisendstring.o intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
+OBJSC = intOEMconvert.o intmcisendstring.o intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
         intpathname.o intsetlanguagemenu.o inttoolbar.o \
         intwinopen.o intwinqueryreg.o
 

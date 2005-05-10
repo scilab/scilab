@@ -29,6 +29,9 @@ function files= listfiles(paths,flag,flagexpand)
       filesi=unix_g('dir /B /OD ""'+paths(i)+'""');
       if filesi == "" then filesi=[],end
       if filesi<>[] then 
+      	for k=1:size(filesi,'*') 
+					filesi(k)=oemtochar(filesi(k));
+				end;
 	filesi=filesi($:-1:1)
 	// prepend with the path, if required 
 	// when listing a full directory, path is not prepended

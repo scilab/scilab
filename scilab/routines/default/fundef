@@ -638,3 +638,5 @@
 {"console",				IN_intwintools,	15,	2},
 {"about",				IN_intwintools,	16,	2},
 {"mcisendstring",		IN_intwintools,	17,	2},
+{"oemtochar",			IN_intwintools,	18,	2},
+{"chartooem",			IN_intwintools,	19,	2},

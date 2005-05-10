@@ -694,6 +694,9 @@ cd .. &gt;nul
 				RelativePath=".\intmcisendstring.c">
 			</File>
 			<File
+				RelativePath=".\intOEMconvert.c">
+			</File>
+			<File
 				RelativePath=".\intpathname.c">
 			</File>
 			<File
@@ -729,6 +732,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intmcisendstring.h">
+			</File>
+			<File
+				RelativePath=".\intOEMconvert.h">
 			</File>
 			<File
 				RelativePath=".\intpathname.h">

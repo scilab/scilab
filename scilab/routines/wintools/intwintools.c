@@ -20,6 +20,8 @@ extern int C2F(intsetlanguagemenu) _PARAMS((char *fname));
 extern int C2F(intconsoledos) _PARAMS((char *fname));
 extern int C2F(intabout) _PARAMS((char *fname));
 extern int C2F(intmcisendstring) _PARAMS((char *fname));
+extern int C2F(intoemtochar) _PARAMS((char *fname));
+extern int C2F(intchartooem) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
  static WintoolsTable Tab[]=
  {
@@ -39,7 +41,9 @@ extern int C2F(intmcisendstring) _PARAMS((char *fname));
   {C2F(intsetlanguagemenu),"setlanguagemenu"},
   {C2F(intconsoledos),"console"},
   {C2F(intabout),"about"},
-  {C2F(intmcisendstring),"mcisendstring"}
+  {C2F(intmcisendstring),"mcisendstring"},
+  {C2F(intoemtochar),"oemtochar"},
+  {C2F(intchartooem),"chartooem"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwintools)()
