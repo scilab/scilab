@@ -15,7 +15,6 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
 //  - replace_brackets
 
 sciparam();
-
 quote=''''
 dquote=""""
 ctm='.'+'.'+'.' // Continuation mark
@@ -23,13 +22,38 @@ batch=%t
 
 k=0
 first_ncl=[]
+//
+
+
+///////////////////////////
+while k<size(txt,'r')
+k=k+1
+tk=txt(k)
+  if part(stripblanks(tk),1:9) == 'function ' | part(stripblanks(tk),1:9) == 'function[' then
+    eolind=strindex(tk,";")
+      if eolind<>[] then
+        kc=isacomment(tk)
+          if kc<>0 then // Current line has or is a comment
+      // If function prototype immediately followed by a comment on same line
+            if stripblanks(part(tk,eolind(1):kc))<>'' then
+              txt=[txt(1:k-1);part(tk,1:eolind(1)-1);part(tk,eolind(1)+1:length(tk));txt(k+1:size(txt,"*"))]
+            tk=part(tk,1:eolind(1)-1)
+            end
+          elseif stripblanks(part(tk,eolind(1)+1:length(tk)))<>'' then
+            txt=[txt(1:k-1);part(tk,1:eolind(1)-1);part(tk,eolind(1)+1:length(tk));txt(k+1:size(txt,"*"))]
+            tk=part(tk,1:eolind(1)-1) 
+          end
+      end      
+  end
+end
+///////////////////
 
 // Number of lines in txt (i.e. in M-file)
 n=size(txt,'r')
 
 eoltoinsert=0
 firstctm=[]
-
+k=0
 while k<size(txt,'r')
   k=k+1
   kc=strindex(txt(k),ctm)
@@ -77,6 +101,32 @@ helppart=[],endofhelp=%f
 
 for k=1:n
   tk=txt(k)
+  
+  // ifthenelse expression like if (x==1)t=2 becomes if (x==1) t=2
+  // Add a blank between parenthesize expression and the first instruction
+  kif=strindex(tk,"if")
+  if kif<>[] then
+    m=min(strindex(tk,"("))
+      if m<>[] then
+        kcom=isacomment(tk)
+          if (kcom<>0 & m<kcom) | (kcom==0) then
+              if stripblanks(part(tk,kif(1)+2:m-1))=="" then
+                openpar=1
+	        m=m+1
+                while openpar<>0
+	          if or(part(tk,m)=="(") then
+	            openpar=openpar+1
+	          elseif or(part(tk,m)==")") then
+                    openpar=openpar-1
+                  end
+                  m=m+1 
+                end
+                tk=part(tk,1:m-1)+" "+part(tk,m:length(tk))
+              end	      
+	    end 
+        end
+      end
+
   // Parenthesize expressions like 1+-2, 1*-2... which becomes 1+(-2), 1*(-2)...
   // Parentheses are deleted by comp() and will be added one more time by %?2sci function
 kop=strindex(tk,["+","-","*","/","\","^"])
@@ -99,7 +149,7 @@ while l<=size(kop,"*")
       l=l+1
     endoftk=part(tk,ksym+1:length(tk))
   m=min(strindex(endoftk,[ops(:,1)',";"]))
-p=min(strindex(endoftk,["(","["]))
+  p=min(strindex(endoftk,["(","["]))
 
     if p<>[] then
       if m==[] | (m<>[] & p<m) then
@@ -216,15 +266,12 @@ end
 // Looking for comments
 kc=isacomment(tk)
 if kc<>0 then // Current line has or is a comment
-  // A comment is replaced by a call to function comment() or m2scideclare()
-  
-  
   // If function prototype immediately followed by a comment on same line
-  if part(tk,1:9) == 'function ' then 
+  if part(stripblanks(tk),1:9) == 'function ' | part(stripblanks(tk),1:9) == 'function[' then
     first_ncl=k
   end      
-
-  com=part(tk,kc+1:length(tk))
+  com=part(tk,kc+1:length(tk)) 
+  if stripblanks(part(tk,1:kc-1))<>'' &  ~(stripblanks(part(tk,1:9))=='function ' | stripblanks(part(tk,1:9))=='function[')  then endofhelp=%t;end 
   if ~endofhelp & part(tk,1:9) ~= 'function ' then helppart=[helppart;com];end // Get help part placed at the beginning of the file
   if length(com)==0 then com=" ",end
   com=strsubst(com,quote,quote+quote)
@@ -263,17 +310,16 @@ if kc<>0 then // Current line has or is a comment
   end
 
   txt(k)=tkbeg+com
-
-else // Current line has not and is not a comment line
+else // Current line has not and is not a comment line 
   if first then // Function keyword not yet found
     tk=stripblanks(tk)
     if tk<>'' then // Current line is not a blank line
-      if part(tk,1:9) ~= 'function ' then
-      endofhelp=%t;
-      txt(k)=tk; // VC 01/04/2003
-    else
-      first_ncl=k
-      first=%f
+      if ~(part(tk,1:9) == 'function '| part(tk,1:9) == 'function[') then
+        endofhelp=%t;
+        txt(k)=tk; // VC 01/04/2003
+      else
+        first_ncl=k
+        first=%f
     end
   else
     if ~endofhelp then helppart=[helppart;' '],end
@@ -310,7 +356,6 @@ end
 txt(k)=tk
 
 end
-
 end
 
 // When there is just help line in txt
