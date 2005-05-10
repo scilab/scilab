@@ -38,9 +38,6 @@ if H==[] then
   H=getvalidchildren(A)
 end
 
-disp("H vaut:")
-disp(H);
-
 //get all labels
 for k=k0:size(varargin)
   if type(varargin(k))<>10 then break,end
