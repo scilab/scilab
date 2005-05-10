@@ -28,7 +28,7 @@ base_name=part(base_name,k($)+1:ke)
 
 txt=mgetl(fil);
 
-kf=grep(txt,"function")
+kf=grep(txt,["function[","function "])
 
 if isempty(kf) then
   // Batch file
@@ -39,12 +39,12 @@ elseif size(kf,"*")==1 then
 else
   funcdecl=[]
   for kk=kf
-    ind=strindex(txt(kk),"function")
-    if isacomment(txt(kk))==0 & ~isinstring(txt(kk),ind) & part(stripblanks(txt(kk),%T),1:8)=="function" then // function prototype
+    ind=strindex(txt(kk),["function[";"function "])
+    if isacomment(txt(kk))==0 & ~isinstring(txt(kk),ind) & part(stripblanks(txt(kk),%T),1:8)=="function"  then // function prototype
       funcdecl=[funcdecl kk]
     end
   end
-  
+ 
   if isempty(funcdecl) then
     // "function" only exists in comments and strings
     bval=%f
@@ -60,11 +60,12 @@ else
   
   // First split file into as many files as function declared
   funcdecl=[funcdecl size(txt,"*")+1] 
-  
+ 
   tmpfiles=[]
   for k=1:size(funcdecl,"*")-1
-    functxt=txt(funcdecl(k):funcdecl(k+1)-1)
-    funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),"function")+8:strindex(txt(funcdecl(k)),"(")-1))
+  functxt=txt(funcdecl(k):funcdecl(k+1)-1)
+  str=  strindex(txt(funcdecl(k)),"(")-1
+    funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
     keq=strindex(funcname,"=")
     if ~isempty(keq) then
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
@@ -78,6 +79,7 @@ else
 
   // Conversion of each file
   for k=1:size(tmpfiles,"*")
+  txt=mgetl(pathconvert(TMPDIR)+tmpfiles(k)+".m")
     mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
   end
   
@@ -108,6 +110,21 @@ else
   
     mputl(txt,res_path+"m2sci_"+base_name+".log")
   end
+  
+  // Catenation of all resume.log files to have only one output file
+  //if exists("resume_logfile")==0 then
+    //txt=[]
+    //for k=1:size(tmpfiles,"*")
+      //txt=[txt ; mgetl(res_path+"m2sci_"+tmpfiles(k)+"_resume.log")]
+    //end
+    
+    // Delete useless _resume.log files
+    //for k=1:size(tmpfiles,"*")
+      //mdelete(res_path+"m2sci_"+tmpfiles(k)+"_resume.log")
+    //end
+  
+    //mputl(txt,res_path+"m2sci_"+base_name+"_resume.log")
+  //end
   
   // Delete useless .m files
   for k=1:size(tmpfiles,"*")
