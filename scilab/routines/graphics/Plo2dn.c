@@ -663,15 +663,18 @@ int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, 
 {
   int i;
   double pas;
- /*  int tmp_min, tmp_max, tmp_puiss; */
   
- /*  C2F(graduate)(&min, &max,outmin,outmax,&nbtics,&nbsubtics,&tmp_min,&tmp_max,&tmp_puiss) ;  */
-  
-  pas = (*max - *min) / (nbtics -1);
-  
-  for(i=0;i<nbtics;i++) 
-    grads[i] = (*min) + pas*i;
-  
+  if(nbtics <= 1){
+    pas = 0.;
+    grads[0] = (*min);
+  }
+  else{
+    pas = (*max - *min) / (nbtics -1);
+    
+    for(i=0;i<nbtics;i++) 
+      grads[i] = (*min) + pas*i;
+  }
+
   return 0;
 }
 
