@@ -5149,7 +5149,7 @@ void UpdateSubwinScale(sciPointObj * pobj)
  * @author Djalel ABDEMOUCHE
  * 29/11/2002
  */
-/* Note thta clipping is n,ot supported at all in 3D mode for now : */
+/* Note that clipping is not supported at all in 3D mode for now : */
 /* This assertion includes axes (in 3D), surfaces and parametric curves objects. */
 
 void
