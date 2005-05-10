@@ -6047,7 +6047,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else if ((strncmp(cstk(*value),"off", 3) == 0)) 
       sciSetIsClipping( (sciPointObj *)pobj,-1);
     else if ((strncmp(cstk(*value),"on", 2) == 0))
-      if(sciGetClipping(pobj) != NULL){
+/*       if(sciGetClipping(pobj) != NULL){ */
+      if(sciGetIsClipRegionValuated(pobj) == 1){
 	sciSetIsClipping( (sciPointObj *)pobj,1);
       }
       else{
@@ -7935,10 +7936,11 @@ int sciGet(sciPointObj *pobj,char *marker)
     {
       if (sciGetIsClipping ((sciPointObj *) pobj) > 0)
 	{
-	  numrow=1; numcol=4;  
+	  double *cliparea = sciGetClipping(pobj);
+	  numrow=1; numcol=4;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] =  (sciGetClipping(pobj))[i];
+	    stk(outindex)[i] =  cliparea[i];
 	}
       else
 	{ 
