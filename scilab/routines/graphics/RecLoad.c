@@ -768,7 +768,7 @@ int C2F(xloadplots)(fname1,lvx)
   /*if ( LoadVectC(&SciF_version) == 0 )  replaced by the following line to avoid error message*/
   xdr_vector(rxdrs,(char *) &rszof,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int);
   SciF_version = (char *)  MALLOC(rszof);
-  if (( SciF_version == NULL) || (xdr_opaque(rxdrs, SciF_version,rszof)==0))
+  if (( version_flag() == 0||SciF_version == NULL) || (xdr_opaque(rxdrs, SciF_version,rszof)==0))
     {
       char temp[256];
       integer ierr,seq=1;
