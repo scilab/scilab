@@ -9,7 +9,7 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 clearglobal();
 
 // Set stack size   ===================================================
-newstacksize=1000000;
+newstacksize=5000000;
 old=stacksize()
 if old(1)<>newstacksize then stacksize(newstacksize),end
 clear old newstacksize
