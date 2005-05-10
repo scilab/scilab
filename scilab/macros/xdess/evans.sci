@@ -186,13 +186,13 @@ end;
 [n1,n2]=size(racines);
 if gstyle=='new' then
   plot2d(real(racines)',imag(racines)',style=2+(1:n2));
-  legend(legs,1)
+  legend(legs,1);
   xtitle('Evans root locus','Real axis','Imag. axis');
   f=gcf();
   if(cur_im_dr=="on") then f.immediate_drawing = 'on';end
 else
   plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
-  legends(legs,lstyle,1)
+  legends(legs,lstyle,1);
   xtitle('Evans root locus','Real axis','Imag. axis');
   xset("mark",xx(1),xx(2));
 end
