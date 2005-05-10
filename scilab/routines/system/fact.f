@@ -492,6 +492,7 @@ c      if(comp(1).eq.0) then
          if(err.gt.0) return
 c      endif
       if(comp(1).ne.0) goto 47
+
       if(fin.eq.0) then
 c     .  id is not a standard variable
          if (recurs) then
@@ -501,6 +502,7 @@ c     .  id is not a standard variable
          if(err1.gt.0) goto 60
          call funs(id)
          if(err.gt.0) return
+
          if(fun.gt.0)  goto 53
          fin=-2
          call stackg(id)
@@ -515,6 +517,7 @@ c     .  id is not a standard variable
       if(rhs.eq.0) goto 60
 
       call isafunptr(top,id,ifun,ifin)
+ 
       if(ifun.ne.0) then
          top=top-1
          fun=ifun
@@ -560,6 +563,11 @@ c
 c     check for ', .'  **,  ^ and .^
 
       if (sym .ne. quote) go to 63
+      if (lin(lpt(3)-1).ne.quote) then
+c     .  not to admit " as a transposition operator 
+C     .  (remove the equivalence ' ")
+         go to 63
+      endif
       i = lpt(3) - 2
       if (abs(lin(i)) .eq. blank) go to 90
       fin=quote
