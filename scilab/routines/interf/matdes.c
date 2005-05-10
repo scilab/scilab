@@ -3169,6 +3169,16 @@ int scixset(fname,fname_len)
     /* mimic clf(gcf(),'reset') behaviour here */
     sciXbasc();
   }
+  else if((strcmp(cstk(l1),"clipgrf")==0) && (version_flag()==0)) {
+    /* special treatement for xset("cligrf") */
+    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciSetIsClipping(psubwin,0);
+  }
+  else if((strcmp(cstk(l1),"clipoff")==0) && (version_flag()==0)) {
+    /* special treatement for xset("clipoff") */
+    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciSetIsClipping(psubwin,-1);
+  }
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   /* NG beg */
