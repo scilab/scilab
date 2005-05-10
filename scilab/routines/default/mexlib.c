@@ -1825,9 +1825,15 @@ void mxDestroyArray(mxArray *ptr)
 
 void mxFree(void *ptr)
 {
+  double *header;int *iheader;
   /* If we free the last stored object we can decrement Nbvars */
   if ( Nbvars >= 1) { 
-    if ( (vraiptrst) ptr ==  C2F(locptr)(stk(C2F(intersci).lad[Nbvars - 1]))) 
+    iheader = istk(iadr(C2F(intersci).iwhere[Nbvars-1] ) );
+    /*  printf("MxFree iheader,%i %i %i %i\n", iheader[0],iheader[1],iheader[2],iheader[3]);   */
+    if ( !(iheader[0]==1) ) return;
+    header=stk(C2F(intersci).iwhere[Nbvars-1]);
+    /*    if ( !(C2F(locptr)(stk(C2F(intersci).lad[Nbvars - 1])) == C2F(locptr)((&header[2])))) return;  */
+    if ( (vraiptrst) ptr ==  C2F(locptr)(&header[2])) 
       {
 	/* sciprint("XXXX mxfree OK  %d \r\n",Nbvars); */ 
 	Nbvars--;
