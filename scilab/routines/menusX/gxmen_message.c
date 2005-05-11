@@ -27,6 +27,14 @@ char *sci_convert_to_utf8(char *str, int *alloc)
   return str_utf8;
 }
 
+char *sci_convert_from_utf8(char *str, int *alloc,char *code)
+{ 
+  /* to be checked for gtk */
+  gchar *str_utf8 = str;
+  *alloc = FALSE;
+  return str_utf8;
+}
+
 
 static void sci_message_ok(GtkWidget *widget,
 			  int *answer)
@@ -145,6 +153,11 @@ int ExposeMessageWindow(void)
 
 #define DEBUG_STR(x) 
 /* #define DEBUG_STR(x) sciprint(x) */
+
+
+/* convert str to utf8 
+ * str can be utf8, locale or assumed to be ISO-8859-15
+ */
   
 char *sci_convert_to_utf8(char *str, int *alloc)
 { 
@@ -158,7 +171,7 @@ char *sci_convert_to_utf8(char *str, int *alloc)
     {
       if (g_get_charset (NULL)) 
 	{
-	  DEBUG_STR("xname: gtk_window_set_title is used with a non utf8 string and your locale is UTF8\r\n");
+	  DEBUG_STR("xname: non utf8 string and your locale is UTF8\r\n");
 	  DEBUG_STR("       assuming that your string is ISO-8859-15\r\n");
 	  str_utf8 = g_convert (str, -1,"UTF8","ISO-8859-15", NULL, NULL, NULL);
 	  if ( str_utf8 != NULL) 
@@ -187,6 +200,67 @@ char *sci_convert_to_utf8(char *str, int *alloc)
 	}
     }
   return str_utf8;
+}
+
+
+/* if str is utf8 converts str to locale or ISO-8859-15 if (code == NULL)
+ *                             to code if ( code != NULL)
+ */
+
+char *sci_convert_from_utf8(char *str, int *alloc,char *code)
+{ 
+  gchar *str_res = str;
+  *alloc = FALSE;
+  if ( g_utf8_validate(str,-1,NULL) == TRUE ) 
+    {
+      if ( code == NULL) 
+	{
+	  if (g_get_charset (NULL)) 
+	    {
+	      DEBUG_STR("xname: utf8 string and your locale is UTF8\r\n");
+	      DEBUG_STR("       assuming conversion to ISO-8859-15\r\n");
+	      str_res = g_convert (str, -1,"ISO-8859-15","UTF8", NULL, NULL, NULL);
+	      if ( str_res != NULL) 
+		{
+		  *alloc = TRUE; 
+		}
+	      else 
+		{
+		  DEBUG_STR("xname: convertion to UTF-8 failed\r\n");
+		  str_res = str;
+		}
+	    }
+	  else 
+	    {
+	      str_res =g_locale_from_utf8 (str, -1, NULL, NULL, NULL);
+	      DEBUG_STR("xname: from locale to UTF8\r\n");
+	      if ( str_res != NULL)
+		{
+		  *alloc = TRUE; 
+		}
+	      else 
+		{
+		  DEBUG_STR("xname: convertion to UTF-8 failed\r\n");
+		  str_res = str;
+		}
+	    }
+	}
+      else
+	{
+	  str_res = g_convert (str, -1,code,"UTF8", NULL, NULL, NULL);
+	  if ( str_res != NULL) 
+	    {
+	      *alloc = TRUE; 
+	    }
+	  else 
+	    {
+	      DEBUG_STR("xname: convertion to UTF-8 failed\r\n");
+	      str_res = str;
+	    }
+	}
+    }
+
+  return str_res;
 }
 
 
