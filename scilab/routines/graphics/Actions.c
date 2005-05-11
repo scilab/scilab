@@ -10,6 +10,8 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 
+extern int xinitxend_flag;
+
 /********************************************************
  * the functions in this file are called from 
  * callback ( see jpc_SGraph.c ) for the XWindow version 
@@ -247,6 +249,7 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
   char name[4];
   integer zero=0,un=1,ierr;
   integer verb=0,cur,na,screenc;
+  int save_xinitxend_flag = xinitxend_flag;
 
   if ( scig_buzy  == 1 ) return 0;
   ierr = 0;
@@ -266,6 +269,7 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     set_version_flag(1);
     sciSetCurrentFigure(curFig);
     C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
+    xinitxend_flag = 0; /* we force to draw */
     sciDrawObj(curFig);
   }
   else {
@@ -290,6 +294,7 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     setcolordef(screenc);
   }
   C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  if(version_flag() == 0) xinitxend_flag = save_xinitxend_flag; /* put back the xinit_xend value */
 bad:
   C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
