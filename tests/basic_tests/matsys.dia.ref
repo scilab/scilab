@@ -409,7 +409,7 @@ a=y;
 a=stacksize();a=a(1);y=foo(a)
  y  =
  
-    1004000.  
+    5004000.  
  
 return!
  
@@ -443,7 +443,7 @@ a=y;
  
  y  =
  
-    1007000.  
+    5007000.  
  
  
 if y<>a+1000 then bugmes();quit;end
