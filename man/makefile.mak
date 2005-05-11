@@ -8,13 +8,13 @@ check:
 fr	:
 	@cd fr
 	@echo Creation de l'aide (Francais)
-	@..\..\bin\scilex -nb -nwni -l fr -e xmltohtml([],[],'html-rev.xsl');exit;
+	@..\..\bin\scilex -nb -nouserstartup -nwni -l fr -e xmltohtml([],[],'html-rev.xsl');exit;
 	@cd..
 
 eng	:	
 	@cd eng
 	@echo Creation of the help (English)
-	@..\..\bin\scilex -nb -nwni -l eng -e xmltohtml([],[],'html-rev.xsl');exit;
+	@..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e xmltohtml([],[],'html-rev.xsl');exit;
 	@cd..
 
 distclean::	
