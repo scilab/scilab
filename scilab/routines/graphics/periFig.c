@@ -19,6 +19,8 @@
 #include <malloc.h>
 #endif
 
+#include "../machine.h"
+
 #if defined(THINK_C)|| defined(WIN32)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
@@ -1011,11 +1013,20 @@ void C2F(ScilabGCGetorSetXfig)(char *str, integer flag, integer *verbose, intege
  positive when clockwise. If *flag ==1 a framed  box is added 
  around the string.}
 -----------------------------------------------------*/
+
+#ifdef WITH_GTK
+extern char *sci_convert_from_utf8(char *str, int *alloc,char *code);
+#endif 
+
 void C2F(displaystringXfig)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 {    
   integer rect[4], font=-1,font_flag=2;
   integer verbose=0,Dnarg,Dvalue1[10];
   int pen_color;
+#ifdef WITH_GTK
+  int alloc;
+  string = sci_convert_from_utf8(string, &alloc,NULL);
+#endif 
   C2F(boundingboxXfig)(string,x,y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (string[0]== '$') 
     {
@@ -1048,6 +1059,10 @@ void C2F(displaystringXfig)(char *string, integer *x, integer *y, integer *v1, i
       rect[0]=rect[0]-4;rect[2]=rect[2]+6;
       C2F(drawrectangleXfig)(string,rect,rect+1,rect+2,rect+3,PI0,PI0,PD0,PD0,PD0,PD0);
     }
+#ifdef WITH_GTK
+  if ( alloc == 1 ) free(string);
+#endif
+
 }
 
 integer bsizeXfig_[6][4]= {{ 0, -7,  463, 9  },
