@@ -566,7 +566,7 @@ cc      implicit undefined (a-z)
       character*1   type
       logical checkrhs,checklhs,getsmat,checkval,cresmat2,bufstore
       logical flag,getscalar ,getmat,getrhsvar,cremat,lcres
-      logical createvar
+      logical createvar,pulhsvar
       integer gettype,sadr,iadr,top2,tops,topl,topk
 
       parameter (fortname=24)
@@ -624,6 +624,7 @@ C     we call the routine directly
 C     the routine must deal itself with the stack 
 c     ----------------------------------------------------
       call interf1(name(1:nc))
+      nbvars = 0
       return
 c     Now the long form 
 c     -----------------
@@ -861,6 +862,7 @@ c     overlapping object is necessary
             top=topk+lhs
          endif
       endif
+      nbvars = 0
       return
       end
 
