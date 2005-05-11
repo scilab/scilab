@@ -3,25 +3,25 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intwinopen) _PARAMS((char *fname));
-extern int C2F(intwinqueryreg) _PARAMS((char *fname));
-extern int C2F(intgetlongpathname) _PARAMS((char *fname));
-extern int C2F(intgetshortpathname) _PARAMS((char *fname));
-extern int C2F(intddeopen) _PARAMS((char *fname));
-extern int C2F(intddeclose) _PARAMS((char *fname));
-extern int C2F(intddeexec) _PARAMS((char *fname));
-extern int C2F(intddepoke) _PARAMS((char *fname));
-extern int C2F(intddereq) _PARAMS((char *fname));
-extern int C2F(intddeisopen) _PARAMS((char *fname));
-extern int C2F(intclipboard) _PARAMS((char *fname));
-extern int C2F(inthidetoolbar) _PARAMS((char *fname));
-extern int C2F(inttoolbar) _PARAMS((char *fname));
-extern int C2F(intsetlanguagemenu) _PARAMS((char *fname));
-extern int C2F(intconsoledos) _PARAMS((char *fname));
-extern int C2F(intabout) _PARAMS((char *fname));
-extern int C2F(intmcisendstring) _PARAMS((char *fname));
-extern int C2F(intoemtochar) _PARAMS((char *fname));
-extern int C2F(intchartooem) _PARAMS((char *fname));
+extern int C2F(intwinopen) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intwinqueryreg) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intgetlongpathname) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intgetshortpathname) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intddeopen) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intddeclose) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intddeexec) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intddepoke) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intddereq) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intddeisopen) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intclipboard) _PARAMS((char *fname,unsigned long l));
+extern int C2F(inthidetoolbar) _PARAMS((char *fname,unsigned long l));
+extern int C2F(inttoolbar) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intsetlanguagemenu) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intconsoledos) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intabout) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intmcisendstring) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intoemtochar) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intchartooem) _PARAMS((char *fname,unsigned long l));
 /*-----------------------------------------------------------------------------------*/
  static WintoolsTable Tab[]=
  {
