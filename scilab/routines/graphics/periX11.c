@@ -349,8 +349,8 @@ void CPixmapResize1(void)
 
 void C2F(xselgraphic)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  integer ierr;
   /** Test not really usefull: see sciwin in matdes.f **/
+  integer ierr;
   if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CBGWindow == (Window ) NULL) 
     C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   XMapWindow(dpy,ScilabXgc->CBGWindow);
@@ -450,12 +450,6 @@ static void set_client_message_on() { client_message=1;};
 static void set_client_message_off() { client_message=0;};
 int get_xclick_client_message_flag () { return client_message;}
 
-typedef struct but {
-  int win,x,y,ibutton,motion,release;
-} But;
-But SciClickInfo; /* for xclick and xclick_any */
-
-extern But SciClickInfo; /* for xclick and xclick_any */
 extern void set_wait_click(int val); 
 
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
@@ -483,26 +477,23 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 	XDefineCursor(dpy, CW ,crosscursor);
     }
   /** if we already have something on the queue **/
-  win = -1;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
-    {
-      *iwin = win ;
-      return;
-    }
   if ( *iflag ==0 )  ClearClickQueue(-1);
 
   /* ignore the first event if it is a ClientMessage */ 
-  set_wait_click(1);
-
   set_client_message_on();
+
   while (buttons == 0) {
-    C2F(sxevents)();
-    wincount =  GetWinsMaxId()+1;
-    /*    if ( wincount == 0) {
-      *istr = *x1= *yy1 = *iwin = 0;
-      *ibutton = -100;
+    /** first check if an event has been store in the queue while wait_for_click was 0 **/
+    win=-1;
+    if (CheckClickQueue(&win,x1,yy1,ibutton) == 1) {
+      /* the clickqueue does not record move nor release events yet*/
+      *iwin = win ;
       break;
-      }*/
+    }
+    /* get next event */
+    set_wait_click(1);
+    C2F(sxevents)();
+
    /** Check menu activation **/
     if ( *istr==1 && C2F(ismenu)()==1 ) {
       int entry;
@@ -514,18 +505,6 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
       *iwin=-1;
       break;
     }
-     /** Check for click events **/
-    if ( SciClickInfo.win != -1 &&
-	 SciClickInfo.motion == 0 && 
-	 SciClickInfo.release== 0 ) {
-      *iwin =  SciClickInfo.win;
-      *x1   =  SciClickInfo.x;
-      *yy1  =  SciClickInfo.y;
-      *ibutton = SciClickInfo.ibutton;
-
-      if (*istr==1) *istr = 0;
-      break;
-    }
     /* to slow down event loop not to use all cpu when nothing happen*/
     delay.tv_sec = 0; delay.tv_usec = 10;
     select(0, 0, 0, 0, &delay);
@@ -534,7 +513,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   set_client_message_off();
 
   /** Cleanup **/
-
+  wincount =  GetWinsMaxId()+1;
   for (i=0;i < wincount;i++) {
     CW=GetWindowNumber(i);
     if (CW!=(Window ) NULL) 
@@ -583,7 +562,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
 
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
-  integer buttons = 0,win;
+  integer buttons = 0,win,iwin;
   Window SCWindow;
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
@@ -596,14 +575,23 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
     }
   win = ScilabXgc->CurWindow;
   SCWindow = ScilabXgc->CWindow;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1)  return;
+
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
-  set_wait_click(1);
   while (buttons == 0) 
     {
+      /** first check if an event has been store in the queue while wait_for_click was 0 **/
+      if (CheckClickQueue(&win,x1,yy1,ibutton) == 1)  {
+	/* the clickqueue does not record move nor release events yet*/
+	break;
+      }
+      
+      /*set wait_for_click=1 so that next event will be stored  */
+      set_wait_click(1+2*getmouse+4*getrelease);
+      /* make the X and tk event loop */
       C2F(sxevents)();
+
       /** maybe someone decided to destroy scilab Graphic window **/
       if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow != SCWindow)
 	{
@@ -613,6 +601,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  set_wait_click(0);
 	  return;
 	}
+      /** check for dynamic menu  **/
       if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) {
 	int entry;
 	C2F(getmen)(str,lstr,&entry);
@@ -621,31 +610,11 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	*yy1=0;
 	break;
       }
-      if ( SciClickInfo.win == win ) {
-	if ((SciClickInfo.motion == 1) && (getmouse == 1)) {
-	  *x1   =  SciClickInfo.x;
-	  *yy1  =  SciClickInfo.y;
-	  *ibutton = SciClickInfo.ibutton;
-	  break;
-	}
-	if ((SciClickInfo.release == 1) && (getrelease == 1)){
-	  *x1   =  SciClickInfo.x;
-	  *yy1  =  SciClickInfo.y;
-	  *ibutton = SciClickInfo.ibutton;
-	  break;
-	}
-	if ( SciClickInfo.motion == 0 && SciClickInfo.release ==0 ) {
-	  *x1   =  SciClickInfo.x;
-	  *yy1  =  SciClickInfo.y;
-	  *ibutton = SciClickInfo.ibutton;
-	  break;
-	}
-      }
 
-      /* to slow down event loop not to use all cpu when nothing happen*/
+    /* to slow down event loop not to use all cpu when nothing happen*/
       select(0, 0, 0, 0, &delay);
     }
-  set_wait_click(0);
+  set_wait_click(0); 
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
   XSync (dpy, 0);
@@ -689,8 +658,8 @@ static void xget_windowpos(integer *verbose, integer *x, integer *narg, double *
 
 static void xset_windowpos(integer *x, integer *y, integer *v3, integer *v4)
 {
-  integer ierr;
   /** test Normalement inutile XXXX **/
+  integer ierr;
   if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CBGWindow == (Window) NULL) 
     C2F(initgraphic)("",PI0,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   XMoveWindow(dpy,ScilabXgc->CBGWindow,(int) *x,(int) *y);
@@ -3442,6 +3411,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static integer EntryCounter = 0;
   integer WinNum;
   integer ne=7, menutyp=2, ierr;
+  *v3=0;
   char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties",
 		     "Start Entity Picker","Stop  Entity Picker"};
   char *FileMenus[]={"Clear","Select","Print","Export","Save","Load","Close"};
@@ -3449,7 +3419,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static int screen;
   static XGCValues gcvalues;
   static Widget toplevel = (Widget) NULL;
-  *v3 = 0;
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
   else

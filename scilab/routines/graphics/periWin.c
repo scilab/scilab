@@ -740,45 +740,58 @@ int check_pointer_win(int *x1,int *yy1,int *win)
 }
 /*-----------------------------------------------------------------------------------*/
 /* used by xclick_any and xclick */ 
-extern But SciClickInfo; /* for xclick and xclick_any */
 extern void set_wait_click(int val); 
+/*-----------------------------------------------------------------------------------*/
+int GetWinsMaxId(void)
+{
+  WindowList *listptr = The_List;
+  int Num = -1;
+  while ( listptr != (WindowList  *) 0 ) 
+    {
+      Num = Max(listptr->winxgc.CurWindow,Num);
+      listptr =  (WindowList *)listptr->next;
+    }
+  return(Num);
+}
 /*-----------------------------------------------------------------------------------*/
 void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integer *iwin,integer *iflag,integer *istr,double * dv1, double *dv2,double * dv3,double * dv4)
 {
-#ifndef WITH_TK
-  MSG msg;
-#endif
-  int buttons = 0,win = 0;
-  win = -1;
+  integer win;
+  integer wincount;
+  integer lstr ;
 
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
+  wincount =  GetWinsMaxId()+1;
+  if (wincount == 0) 
   {
-    /* we already have something stored in the ClickQueue */
-    *iwin = win ; return;
+     *x1=0;
+     *yy1=0;
+     *iwin=0;
+     *ibutton = -100;
+     *istr = 0;
+     return;
   }
-
+  
+  /** if we already have something on the queue **/
   if ( *iflag ==0 )  ClearClickQueue(-1);
+  /* ignore the first event if it is a ClientMessage */ 
 
-  deleted_win=-1;
-  set_wait_click(1);
-
-#ifdef WITH_TK
-  flushTKEvents();
-#endif
-
-  while ( 1 ) 
+  /** first check if an event has been store in the queue while wait_for_click was 0 **/
+  
+  while (1) 
   {
-#ifdef WITH_TK
-    Sleep(1);
-    if (  tcl_check_one_event() == 1) 
+	win=-1;
+	if (CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
 	{
+		/* the clickqueue does not record move nor release events yet*/
+		*iwin = win ;
+		break;
 	}
-#else 
-    GetMessage(&msg, 0, 0, 0);
-    TranslateMessage(&msg);
-    DispatchMessage(&msg);
-#endif
-    if ( deleted_win != -1 )
+	/* get next event */
+	set_wait_click(1);
+	C2F(sxevents)();
+	Sleep(1);
+
+	if ( deleted_win != -1 )
 	{
 		/* a graphic window was deleted we quit */
 		*iwin = deleted_win;
@@ -788,47 +801,23 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
 		*ibutton    = -100;
 		set_wait_click(0);
 		return ;
-     }
+	}
 
-     if ( *istr==1 && C2F(ismenu)()==1 ) 
-	 {
-		integer lstr ;
+	/** Check menu activation **/
+	if ( *istr==1 && C2F(ismenu)()==1 ) 
+	{
 		int entry;
 		C2F(getmen)(str,&lstr,&entry);
-		*iwin = -1;
 		*ibutton = -2;
 		*istr=lstr;
 		*x1=0;
 		*yy1=0;
-		buttons++;
-		set_wait_click(0);
-		return ;
-	}
-
-    if ( CtrlCHit(&textwin) == 1) 
-	{
-	  *iwin=-1;
-	  *x1= 0 ;
-	  *yy1= 0;
-	  *ibutton=0;
-	  break ;
-	}
-
-    if ( ( SciClickInfo.win != -1 && SciClickInfo.motion == 0 && SciClickInfo.release== 0 ) || IsASingleClick() )
-	{
-		SetIsASingleClickToFalse();
+		*iwin=-1;
 		break;
 	}
-	
-  }
 
-  /* reste les menus XXXXX **/
-  *iwin =  SciClickInfo.win;
-  *x1   =  SciClickInfo.x;
-  *yy1  =  SciClickInfo.y;
-  *ibutton = SciClickInfo.ibutton;
-  if (*istr==1) *istr = 0;
-  set_wait_click(0);
+  }
+ set_wait_click(0);
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
@@ -842,15 +831,15 @@ void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
   integer lstr ;
   SciClick(ibutton,x1, yy1,iflag,0,0,*istr,str,&lstr);
   if ( *istr == 1) 
-    {
-      if (*ibutton == -2) 
+  {
+    if (*ibutton == -2) 
 	{
 	  /*sciprint("Menu activated %s %d",str,lstr);*/
 	  *istr = lstr;
 	}
-      else
-	*istr = 0;
-    }
+    else
+	  *istr = 0;
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F(xgetmouse)(str, ibutton, x1, yy1,iflag, v6, v7, dv1, dv2, dv3, dv4)
@@ -945,98 +934,71 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      char *str;
 {
   int win;
-  /** BOOL flag1= TRUE; **/
-  integer buttons = 0;
-  #ifdef WITH_TK
-  #else
-  MSG msg;
-  #endif
-
+  
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
-    {
-      *ibutton = -100;     return;
-    }
+  {
+	*x1   =  -1;
+    *yy1  =  -1;
+    *ibutton = -100;
+	return;
+  }
+
   win = ScilabXgc->CurWindow;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1, yy1,ibutton) == 1) return ;
+  
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   /** Pas necessaire en fait voir si c'est mieux ou moins bien **/
-  if (IsIconic(ScilabXgc->hWndParent)) 
-    ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
+  if (IsIconic(ScilabXgc->hWndParent)) ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
   BringWindowToTop(ScilabXgc->hWndParent);
-
-  /*  track a mouse click */
-#ifdef WITH_TK
-  flushTKEvents();
-#endif
-
-  set_wait_click(1);
+  
   while ( 1 ) 
-    {
-#ifdef WITH_TK
-		if ( win != ScilabXgc->CurWindow)
-		{
-			win = ScilabXgc->CurWindow;
-			*x1= 0 ;  *yy1= 0;  *ibutton=-100; 
-			set_wait_click(0);
-			return;
-		}
-      Sleep(1);
-      if (  tcl_check_one_event() == 1) 
+  {
+	 /** first check if an event has been store in the queue while wait_for_click was 0 **/
+    if (CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
 	{
+		/* the clickqueue does not record move nor release events yet*/
+		break;
 	}
-#else 
-      GetMessage(&msg, 0, 0, 0); 
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-#endif
-      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
+      
+    /*set wait_for_click=1 so that next event will be stored  */
+    set_wait_click(1+2*getmouse+4*getrelease);
+	/* make the X and tk event loop */
+    C2F(sxevents)();
+	Sleep(1);
+
+    if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
 	{
 	  /* graphic window was deleted */
-	  *x1= 0 ;  *yy1= 0;  *ibutton=-100; 
+	  *x1= 0 ;
+	  *yy1= 0;
+	  *ibutton=-100; 
 	  set_wait_click(0);
 	  return;
 	}
-      if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
+
+    if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
 	{
 	  int entry;
 	  C2F(getmen)(str,lstr,&entry);
-	  *ibutton = -2; *x1=0; *yy1=0;  buttons++;
-	  set_wait_click(0);
+	  *ibutton = -2;
+	  *x1=0;
+	  *yy1=0;
 	  return ;
 	}
-      if ( CtrlCHit(&textwin) == 1) 
-	{
-	  *x1= 0 ;  *yy1= 0;  *ibutton=0; break ;
-	}
 
-      if ( SciClickInfo.win == win ) 
+    if ( CtrlCHit(&textwin) == 1) 
 	{
-	  if ( SciClickInfo.motion == 1 ) {
-	    if ( getmouse == 1) break;
-	  }
-	  if ( SciClickInfo.release == 1 ) {
-	    if ( getrelease == 1) break;
-	  }
-	  if ( ( SciClickInfo.motion == 0 && SciClickInfo.release ==0 )  || IsASingleClick() )
-	  {
-			SetIsASingleClickToFalse();
-			break;
-	  }
+	  *x1= 0 ;
+	  *yy1= 0;
+	  *ibutton=0;
+	  break ;
 	}
-    }
-  *x1   =  SciClickInfo.x;
-  *yy1  =  SciClickInfo.y;
-  *ibutton = SciClickInfo.ibutton;
+  }
+   
   set_wait_click(0);
 }
  
 /*-----------------------------------------------------------------------------------*/
-
-
-
-
-
 /*------------------------------------------------
   \encadre{Clear a rectangle }
 -------------------------------------------------*/

@@ -158,7 +158,6 @@ static Bool wait_dclick = FALSE;
 static Bool dclick = FALSE;
 static Bool lose_up = FALSE;
 static long timerId;
-static XEvent  Sevent;
 static void
 reset_click_counter (XtPointer ptr)
 {
@@ -174,7 +173,10 @@ btn_pressed(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-  if (!get_wait_click()) return;
+  /* The following instruction has been commented out not to lose btn_pressed 
+     emited just before an xclick or xgemouse call
+    if (!get_wait_click()) return;
+  */
   if (wait_dclick) {
    /* If we are waiting for a double-click, we only handle Button events
       in a special fashion.*/
@@ -190,15 +192,16 @@ btn_pressed(widget, event, params, num_params)
   wait_dclick = TRUE;
   lose_up = FALSE;
   dclick = FALSE;
-  Sevent = *event;
-  /* Not so trivial code... I've carefully looked Xt code to find
-     that THIS seq. is the good one!!*/
-  do
-    {
-      if (XtAppPending (app_con))
-	XtAppProcessEvent (app_con, XtIMAll);
-    }
-  while (wait_dclick);
+
+  /*Wait until wait_dclick becomes FALSE 
+    - either because of two consecutive btn press
+    - either because of timeout 
+    - either because of a mouse move  */
+  do {
+    if (XtAppPending (app_con))
+      XtAppProcessEvent (app_con, XtIMAll);
+  }  while (wait_dclick); 
+
   /* So here, dclick&lose_up have correct values.*/
 
   if (dclick ) { /* double click detected [10 11 12]*/
@@ -211,14 +214,18 @@ btn_pressed(widget, event, params, num_params)
       PushClickQueue(GetEventWindow(event),event->xbutton.x,
 		     event->xbutton.y,
 		     event->xbutton.button-1+3,0,0);
+      lose_up = FALSE;
+      
     }
     else { /* button pressed detected [0 1 2]*/
       PushClickQueue(GetEventWindow(event),event->xbutton.x,
-		      event->xbutton.y,
-		      event->xbutton.button-1,0,0);
+		     event->xbutton.y,
+		     event->xbutton.button-1,0,0);
     }
    
  }
+
+
 }
 
 void
@@ -228,7 +235,7 @@ btn_released(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-  if (!get_wait_click()) return;
+
   if (wait_dclick) {
     lose_up = TRUE;
     return;
@@ -252,7 +259,6 @@ ctrl_key(widget, event, params, num_params)
   int ten=10;
   KeySym keysym;
   XComposeStatus compose_status = {NULL, 0};
-  if (!get_wait_click()) return;
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
   /* <Ctrl> key  detected return  )keysym+1000 */
@@ -271,7 +277,6 @@ key_pressed(widget, event, params, num_params)
   int ten=10;
   KeySym keysym;
   XComposeStatus compose_status = {NULL, 0};
-  if (!get_wait_click()) return;
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
   if ((int)keysym <65000){
@@ -291,7 +296,6 @@ key_released(widget, event, params, num_params)
   int ten=10;
   KeySym keysym;
   XComposeStatus compose_status = {NULL, 0};
-  if (!get_wait_click()) return;
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
   if ((int)keysym <65000) {
@@ -307,31 +311,17 @@ mouse_moved(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-  XEvent* es=&Sevent;
   /*ignore_events(widget,&event2, ExposureMask) ;*/
-  if (!get_wait_click()) return;
   if (wait_dclick) { /*move during a double click detection*/
-      if  (lose_up) { /* simple click detected [3 4 5]*/
-	PushClickQueue(GetEventWindow(es),es->xbutton.x,
-		       es->xbutton.y,
-		       es->xbutton.button-1+3,0,0);
-      }
-      else { /* button pressed detected [0 1 2]*/
-	PushClickQueue(GetEventWindow(es),es->xbutton.x,
-		       es->xbutton.y,
-		       es->xbutton.button-1,0,0);
-      }
-    
-      wait_dclick=FALSE;
-      lose_up = FALSE;
-      XtRemoveTimeOut (timerId);
-      return;
-    }
-    
+    wait_dclick=FALSE;
+    XtRemoveTimeOut (timerId);
+    return;
+  }
   PushClickQueue(GetEventWindow(event),event->xbutton.x,
 		 event->xbutton.y,
 		 -1,1,0);
 }
+
 
 /*
 <Btn1Motion>:MouseMoved(1)\n\
@@ -451,10 +441,10 @@ static int AddNewWin( int popupc,   struct BCG *ScilabXgc)
      queue of unused events ok 
   */
 
-  XtAddEventHandler(ScilabXgc->drawbox, 
+ /* XtAddEventHandler(ScilabXgc->drawbox, 
 		    ButtonPressMask|PointerMotionMask|ButtonReleaseMask|
 		    KeyPressMask|KeyReleaseMask,False,
-		    (XtEventHandler) EventProc, (XtPointer) popupc);
+		    (XtEventHandler) EventProc, (XtPointer) popupc); */
 
   XtOverrideTranslations(ScilabXgc->drawbox,
 		 XtParseTranslationTable(event_translations));

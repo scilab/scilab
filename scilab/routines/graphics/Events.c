@@ -13,7 +13,6 @@ typedef struct but
   int  release; /* is it a release event */
 } But;
 
-But SciClickInfo; /* for xclick and xclick_any */
 
 typedef int (*Scig_click_handler) (int,int,int,int,int,int);
 typedef void (*Scig_deletegwin_handler) (int);
@@ -26,6 +25,7 @@ int demo_menu_activate=0; /* add a demo menu in the graphic Window */
 static But ClickBuf[MaxCB];
 static int lastc = 0;
 static int wait_for_click=0;
+
 /* nextused to prevent the user from destroying a graphic window 
  * when acquiring for example a zoom rectangle */
 static int sci_graphic_protect = 0;
@@ -122,25 +122,14 @@ int  get_delete_win_mode(void) {  return sci_graphic_protect;}
 int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
-  /* If we are in xclick_any or xclick then send info */
-  if ( wait_for_click==1)
-    {
-
-      SciClickInfo.win= win;
-      SciClickInfo.x= x;
-      SciClickInfo.y= y;
-      SciClickInfo.ibutton= ibut;
-      SciClickInfo.motion= motion;
-      SciClickInfo.release= release;
-      return 0;
-    }
-     
   /* first let a click_handler do the job  */
   if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
   /* do not record motion events and release button 
    * this is left for a futur release 
    */
-  if ( motion == 1 || release == 1 ) return 0;
+  //if (motion==1) printf("%d ",(wait_for_click&2)&&motion);
+  if (  wait_for_click==0 &&(motion == 1 || release == 1) ) return 0;
+  if (((wait_for_click&2)&&motion)||((wait_for_click&4)&&release)||(wait_for_click%2)&&(motion==0&&release==0)) {
   /* store click event in a queue */
   if ( lastc == MaxCB ) 
     {
@@ -166,6 +155,7 @@ int PushClickQueue(int win,int x,int y,int ibut,
       ClickBuf[lastc].release = release;
       lastc++;
     }
+  }
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -240,8 +230,6 @@ void seteventhandler(int *win_num,char *name,int *ierr)
 void set_wait_click(val)
 {  
   wait_for_click=val;
-  if ( val == 1 ) 
-    SciClickInfo.win=-1; 
 }
 
 /*-----------------------------------------------------------------------------------*/

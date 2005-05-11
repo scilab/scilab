@@ -52,8 +52,5 @@ void ON_WM_RBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 
 void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC);
 
-BOOL IsASingleClick(void);
-void SetIsASingleClickToFalse(void);
-
 #endif /*__EVENTS__*/
 /*-----------------------------------------------------------------------------------*/

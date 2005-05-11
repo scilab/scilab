@@ -1,14 +1,6 @@
-typedef struct but
-{ int win; /* graphic window containing the locator */
-  int x,y; /* Locator position  coordinates */
-  int ibutton; /*mouse button or key*/
-  int motion; /* is it a move event */
-  int  release; /* is it a release event */
-} But;
+
 typedef int (*Scig_click_handler) (int,int,int,int,int,int);
 typedef void (*Scig_deletegwin_handler) (int);
-
-But SciClickInfo; /* for xclick and xclick_any */
 
 extern int PushClickQueue (int win,int x,int y,int ibut,int motion,int release);
 extern int CheckClickQueue (int *win,int *x, int *y, int *ibut);
