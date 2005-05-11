@@ -57,7 +57,7 @@ MACROS = loaddefaultbrowser.sci savedefaultbrowser.sci configure_msvc.sci findms
 	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
 	rhs2code.sci create_palette.sci ndgrid.sci \
 	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci \
-	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci readxls.sci
-
+	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci readxls.sci \
+	xs2eps.sci 
 
 include ../Make.lib
