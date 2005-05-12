@@ -10,20 +10,21 @@ int C2F (deletewin) (integer * number)
   int v_flag = 1;
   double dv=0;
   int v=0;
+  int num = *number;
 
   /* destroying recorded graphic commands */
-  scig_erase (*number);
+  scig_erase (num);
   /* delete the windows and resources */
-  if (version_flag()==0) {DeleteObjs(*number); v_flag = 0;}
-  scig_deletegwin_handler (*number);
-  DeleteSGWin (*number); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
+  if (version_flag()==0) {DeleteObjs(num); v_flag = 0;}
+  scig_deletegwin_handler (num);
+  DeleteSGWin (num); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
                         /*         2) or reset the ScilabXgc to the next one see DeleteSGWin*/
 
   /* That's why we can not use version_flag below because this function uses ScilabXgc->graphicsversion 
      that could have been possibly previously deleted !! */
   
   /* So, we use another flag named v_flag :*/
-  delete_sgwin_entities(*number,v_flag);
+  delete_sgwin_entities(num,v_flag);
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -809,7 +810,7 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
 EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   RECT rect;
-  struct BCG *ScilabGC;
+  struct BCG *ScilabGC = (struct BCG *) NULL;
   int deltax = 0;
   int deltay = 0;
   
@@ -1103,8 +1104,8 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
   HDC hdc;
   PAINTSTRUCT ps;
   RECT rect, rect1, rrect, rrect1;
-  struct BCG *ScilabGC;
-  ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+  struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
   switch (message)
     {
     case WM_SYSCOMMAND:
