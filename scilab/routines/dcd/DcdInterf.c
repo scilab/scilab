@@ -47,8 +47,7 @@ static void cdfchnErr __PARAMS((int status,double bound));
  *                         BETa Distribution
  ***********************************************************************/
 
-int cdfbetI(fname)
-  char* fname;
+int cdfbetI(char* fname,unsigned long l)
 { 
   int minrhs = 5,maxrhs = 6,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -115,8 +114,7 @@ static void cdfbetErr(status,bound)
  ***********************************************************************/
 
 
-int cdfbinI(fname)
-  char* fname;
+int cdfbinI(char* fname,unsigned long l)
 { 
   int minrhs = 5,maxrhs = 6,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -182,8 +180,7 @@ static void cdfbinErr(status,bound)
  ***********************************************************************/
 
 
-int cdfchiI(fname)
-  char* fname;
+int cdfchiI(char* fname,unsigned long l)
 { 
   int minrhs = 3,maxrhs = 4,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -241,8 +238,7 @@ static void cdfchiErr(status,bound)
  ***********************************************************************/
 
 
-int cdffI(fname)
-  char* fname;
+int cdffI(char* fname,unsigned long l)
 { 
   int minrhs = 4,maxrhs = 5,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -307,8 +303,7 @@ static void cdffErr(status,bound)
  ***********************************************************************/
 
 
-int cdffncI(fname)
-  char* fname;
+int cdffncI(char* fname,unsigned long l)
 { 
   int minrhs = 5,maxrhs = 6,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -379,8 +374,8 @@ static void cdffncErr(status,bound)
  ***********************************************************************/
 
 
-int cdfgamI(fname)
-  char* fname;
+int cdfgamI(char* fname,unsigned long l)
+
 { 
   int minrhs = 4,maxrhs = 5,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -445,8 +440,8 @@ static void cdfgamErr(status,bound)
  *               Negative BiNomial distribution
  ***********************************************************************/
 
-int cdfnbnI(fname)
-  char* fname;
+int cdfnbnI(char* fname,unsigned long l)
+
 { 
   int minrhs = 5,maxrhs = 6,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -512,8 +507,8 @@ static void cdfnbnErr(status,bound)
  ***********************************************************************/
 
 
-int cdfnorI(fname)
-  char* fname;
+int cdfnorI(char* fname,unsigned long l)
+  
 { 
   int minrhs = 4,maxrhs = 5,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -577,8 +572,8 @@ static void cdfnorErr(status,bound)
  ***********************************************************************/
 
 
-int cdfpoiI(fname)
-  char* fname;
+int cdfpoiI(char* fname,unsigned long l)
+  
 { 
   int minrhs = 3,maxrhs = 4,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -635,8 +630,8 @@ static void cdfpoiErr(status,bound)
  ***********************************************************************/
 
 
-int cdftI(fname)
-  char* fname;
+int cdftI(char* fname,unsigned long l)
+  
 { 
   int minrhs = 3,maxrhs = 4,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -692,8 +687,7 @@ static void cdftErr(status,bound)
  ***********************************************************************/
 
 
-int cdfchnI(fname)
-  char* fname;
+int cdfchnI(char* fname,unsigned long l)
 { 
   int minrhs = 4,maxrhs = 5,minlhs=1,maxlhs=2,m1,n1,l1;
   Nbvars = 0;
@@ -761,13 +755,13 @@ static TabF Tab[]={
   {cdfnbnI, "cdfnbn"},
   {cdfnorI, "cdfnor"},
   {cdfpoiI, "cdfpoi"},
-  {cdftI, "cdft"},
+  {cdftI, "cdft"}
 };
 
 int C2F(dcd)()
 {
   Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+  (*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   return 0;
 }
 

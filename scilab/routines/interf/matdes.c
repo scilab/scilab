@@ -1834,9 +1834,7 @@ int scigrayplot(fname, fname_len)
  * scimatplot
  *-----------------------------------------------------------*/
 
-int scimatplot(fname, fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scimatplot(char *fname,unsigned long fname_len)
 {
   integer m1, n1, l1;
   int frame_def=8;
@@ -1908,9 +1906,7 @@ int scimatplot(fname, fname_len)
  * Matplot1  
  *-----------------------------------------------------------*/
 
-int scigray2plot(fname, fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scigray2plot(char *fname,unsigned long fname_len)
 {
   integer m1, n1, l1,m2,n2,l2;
   if (Rhs <= 0) {
@@ -1937,10 +1933,7 @@ int scigray2plot(fname, fname_len)
 /*-----------------------------------------------------------
  * driver(driver_name) or  current_driver=driver()
  *-----------------------------------------------------------*/
-
-int scidriver(fname, fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scidriver(char *fname,unsigned long fname_len)
 {
   integer m1=3,n1=1,l1,v ;
   double dv;
@@ -3459,9 +3452,7 @@ int scixtitle(fname,fname_len)
  * xstringb 
  *-----------------------------------------------------------*/
 
-int scixstringb(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixstringb(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
   integer fill =0, i,j,v,ib;
@@ -3519,9 +3510,7 @@ int scixstringb(fname,fname_len)
  *  rect=xstringl(x,y,str [,font_id [,font_size]])
  *-----------------------------------------------------------*/
 
-int scixstringl(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixstringl(char *fname,unsigned long fname_len)
 {
   double rect[4],wc,dv,x,y,yi;
   integer i,j,v,verb,un=1,quatre=4,m4,n4,l4,m1,n1,l1,m2,n2,l2,m3,n3;
@@ -4292,9 +4281,7 @@ int scixname(fname,fname_len)
  * set_posfig_dim(width,height) : give a name to current graphic window 
  *-----------------------------------------------------------*/
 
-int scisetposfig(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scisetposfig(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2;
   CheckRhs(2,2);
@@ -4333,9 +4320,7 @@ int scisetposfig(fname,fname_len)
  *                       according to dir 
  *-------------------------------------------------------------*/
 
-int nscixaxis(fname, fname_len)
-     char *fname;
-     unsigned long fname_len;
+int nscixaxis(char *fname,unsigned long fname_len)
 {
   /** XXXXX : un point en suspens c'est le "S" ou une adresse est 
    *  stockees ds un unsigned long : est ce sufisant ? 
@@ -4610,8 +4595,7 @@ int intmeta(fname, fname_len)
 
 extern void Sci_Help(char *,char *,char *);
 
-static int int_gtkhelp(fname)
-     char *fname;
+static int int_gtkhelp(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3;
   CheckRhs(3,3);
@@ -4630,72 +4614,52 @@ static int int_gtkhelp(fname)
  * utilities 
  *-----------------------------------------------------------*/
 
-int scichamp (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scichamp (char *fname,unsigned long fname_len)
 {
   return scichamp_G(fname,C2F(champ),fname_len);
 }
 
-int scichamp1 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scichamp1 (char *fname,unsigned long fname_len)
 {
   return scichamp_G(fname,C2F(champ1),fname_len);
 }
 
-int sciplot3d (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciplot3d (char *fname,unsigned long fname_len)
 {
   return sciplot3d_G(fname,C2F(plot3d),C2F(fac3d),C2F(fac3d2),C2F(fac3d3),fname_len);
 }
 
-int sciplot3d1 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciplot3d1 (char *fname,unsigned long fname_len)
 {
   return sciplot3d_G(fname,C2F(plot3d1),C2F(fac3d1),C2F(fac3d2),C2F(fac3d3),fname_len);
 }
 
-int sciplot2d1_1 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciplot2d1_1 (char *fname,unsigned long fname_len)
 {
   return sciplot2d1_G("plot2d1",1,C2F(plot2d1),fname_len);/* NG */
 }
 
-int sciplot2d1_2 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciplot2d1_2 (char *fname,unsigned long fname_len)
 {
   return sciplot2d1_G("plot2d2",2,C2F(plot2d2),fname_len); /* NG */
 }
 
-int sciplot2d1_3 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciplot2d1_3 (char *fname,unsigned long fname_len)
 {
   return sciplot2d1_G("plot2d3",3,C2F(plot2d3),fname_len);/* NG */
 }
 
-int sciplot2d1_4 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciplot2d1_4 (char *fname,unsigned long fname_len)
 {
   return sciplot2d1_G("plot2d4",4,C2F(plot2d4),fname_len);/* NG */
 }
 
-int scicontour2d (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scicontour2d (char *fname,unsigned long fname_len)
 {
   return scicontour2d_G(fname, C2F(contour2),fname_len);
 }
 
-int scicontour2d1 (fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scicontour2d1 (char *fname,unsigned long fname_len)
 {
   int flagx=0,nz=10; /* default number of level curves : 10 */
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,l5;
@@ -4752,39 +4716,29 @@ int scicontour2d1 (fname,fname_len)
   LhsVar(2)=7;
   return 0;
 }
-int scixs2ps(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixs2ps(char *fname,unsigned long fname_len)
 {
   return scixg2psofig_G(fname,"Pos",fname_len,3);
 }
 
 /* backward compatibility */
 
-int scixg2ps(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixg2ps(char *fname,unsigned long fname_len)
 {
   return scixg2psofig_G(fname,"Pos",fname_len,3);
 }
 
-int scixs2fig(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixs2fig(char *fname,unsigned long fname_len)
 {
   return scixg2psofig_G(fname,"Fig",fname_len,3);
 }
 
-int scixs2gif(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixs2gif(char *fname,unsigned long fname_len)
 {
   return scixg2psofig_G(fname,"GIF",fname_len,3);
 }
 
-int scixs2ppm(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scixs2ppm(char *fname,unsigned long fname_len)
 {
   return scixg2psofig_G(fname,"PPM",fname_len,3);
 }
@@ -4792,9 +4746,7 @@ int scixs2ppm(fname,fname_len)
  *   rect(x,y,w,h) 
  *-----------------------------------------------------------*/
 
-int scirect(fname,fname_len)
-     char *fname; 
-     unsigned long fname_len;
+int scirect(char *fname,unsigned long fname_len)
 {
   long hdl;
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
@@ -4838,9 +4790,7 @@ int scirect(fname,fname_len)
   scirects
   *-----------------------------------------------------------*/
 
-int scirects(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int scirects(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2;
   long  hdl;
@@ -4897,9 +4847,7 @@ int scirects(fname,fname_len)
   return 0;
 } 
  
-int sciseteventhandler(fname, fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciseteventhandler(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,ierr;
   integer verb=0,win,na,v;
@@ -4918,9 +4866,8 @@ int sciseteventhandler(fname, fname_len)
   LhsVar(1)=0;
   return 0;
 } 
-int scizoomrect(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+
+int scizoomrect(char *fname,unsigned long fname_len)
 {
   int m,n,l;
   CheckRhs(0,1) ;
@@ -4937,9 +4884,7 @@ int scizoomrect(fname,fname_len)
   return 0;
 } 
 
-int sciunzoom(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sciunzoom(char *fname,unsigned long fname_len)
 {
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
@@ -10139,7 +10084,7 @@ int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, int * N,
     {
       double step = 0;
       
-      *N = n = val[2]+1; /* intervals number is given by  ppaxes->x or ppaxes->y */
+      *N = n = (int)val[2]+1; /* intervals number is given by  ppaxes->x or ppaxes->y */
       
       if(checkdim){
 	if(nval != 3)
@@ -10169,7 +10114,7 @@ int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, int * N,
     {
       double step = 0;
       
-      *N = n = val[3]+1;
+      *N = n = (int)val[3]+1;
       
       if(checkdim){
 	if(nval != 4)

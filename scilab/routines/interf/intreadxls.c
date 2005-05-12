@@ -36,9 +36,9 @@ int C2F(intreadxls)(char *fname, long lfn)
 
   /*  checking variable Pos */
   GetRhsVar(1,"d",&m1,&n1,&l1);
-  fd=*stk(l1);
+  fd=(int)*stk(l1);
   GetRhsVar(2,"d",&m1,&n1,&l1);
-  pos=*stk(l1);
+  pos=(int)*stk(l1);
 
   xls_read(&fd,&pos,&data, &ind, &N, &M,  &ierr);
   if (ierr == 1)

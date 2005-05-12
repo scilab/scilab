@@ -206,7 +206,7 @@ static int get_type(TableType *Tab, int dim_table, int *scistr, int strlength)
 } 
 
 
-static int intsplin(char * fname)
+static int intsplin(char *fname,unsigned long fname_len)
 {
   int minrhs=2, maxrhs=4, minlhs=1, maxlhs=1;
 
@@ -315,7 +315,7 @@ static int intsplin(char * fname)
   return 0;
 }
 
-static int intlsq_splin(char * fname)
+static int intlsq_splin(char *fname,unsigned long fname_len)
 {
   /*   interface code for [y, d] = lsq_splin(xd, yd [, wd], x)  */
 
@@ -388,7 +388,7 @@ static int intlsq_splin(char * fname)
   return 0;
 }
 
-static int intinterp1(char * fname)
+static int intinterp1(char *fname,unsigned long fname_len)
 {
   int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;
 
@@ -446,7 +446,7 @@ static int intinterp1(char * fname)
   return 0;
 }
 
-static int intlinear_interpn(char * fname)
+static int intlinear_interpn(char *fname,unsigned long fname_len)
 {
 /*  interpolation lineaire n-dimensionnelle
  *
@@ -575,7 +575,7 @@ static int intlinear_interpn(char * fname)
 }
 
 
-static int intsplin2d(char * fname)
+static int intsplin2d(char *fname,unsigned long fname_len)
 {
   /*    interface pour splin2d :
    *
@@ -668,7 +668,7 @@ static int intsplin2d(char * fname)
   return 0;
 }
 
-static int intinterp2d(char * fname)
+static int intinterp2d(char *fname,unsigned long fname_len)
 {
   /*    interface pour interp2d :
    *
@@ -765,7 +765,7 @@ static int intinterp2d(char * fname)
  *   interface sur le package cshep2d ....
  */
 
-static int intcshep2d(char * fname)
+static int intcshep2d(char *fname,unsigned long fname_len)
 {
   static char *Str[]={"cshep2d", "xyz", "lcell", "lnext", "grdim", "rmax", "rw", "a"};
   int minrhs=1, maxrhs=1, minlhs=1, maxlhs=1;
@@ -830,7 +830,7 @@ static int intcshep2d(char * fname)
   return 0;
 }
 
-static int inteval_cshep2d(char * fname)
+static int inteval_cshep2d(char *fname,unsigned long fname_len)
 {
   /*
    *   [f [,dfdx, dfdy [, dffdxx, dffdxy, dffdyy]]] = eval_cshep2d(xp, yp, tlcoef)  
@@ -944,7 +944,7 @@ static int inteval_cshep2d(char * fname)
   return 0;
 }
 
-static int intsplin3d(char * fname)
+static int intsplin3d(char * fname,unsigned long fname_len)
 {
   /*
    *   [tlist] = splin3d(x, y, z, v [,orderxyz])
@@ -1050,7 +1050,7 @@ static int intsplin3d(char * fname)
   return 0;
 }
 
-static int intinterp3d(char * fname)  /* a suivre */
+static int intinterp3d(char *fname,unsigned long fname_len)  /* a suivre */
 {
   /*
    *   [f [, dfdx, dfdy, dfdz]] = interp3d(xp, yp, zp, tlcoef [,outmode])  
@@ -1151,7 +1151,7 @@ static int intinterp3d(char * fname)  /* a suivre */
   return 0;
 }
 
-static int intbsplin3val(char * fname)
+static int intbsplin3val(char *fname,unsigned long fname_len)
 {
   /*
    *   [fp] = bsplin3val(xp, yp, zp, tlcoef, der)  
@@ -1253,6 +1253,6 @@ static TabF Tab[]={
 int C2F(intinterp)(void)
 {
   Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+  (*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   return 0;
 }

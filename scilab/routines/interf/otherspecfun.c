@@ -89,7 +89,7 @@ static double return_an_inf()
   return (inf);
 }
 
-static int intlegendre(char *fname)
+static int intlegendre(char *fname,unsigned long fname_len)
 {
   /*
    *   Interface onto the (Slatec) dxleg.f code. 
@@ -225,7 +225,7 @@ static int intlegendre(char *fname)
   return 0;
 }
 
-static int intbeta(char *fname)
+static int intbeta(char *fname,unsigned long fname_len)
 {
   /*
    *   z = beta(x, y)
@@ -276,10 +276,8 @@ static int intbeta(char *fname)
 }
 
 
-int intbesselk(fname,fname_len)
-     /* Author Serge Steer, Copyright INRIA 2005 */
-     char *fname;
-     unsigned long fname_len;
+int intbesselk(char *fname,unsigned long fname_len)
+/* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
   int r1,r2,na,nx,kode,lpos;
@@ -294,7 +292,7 @@ int intbesselk(fname,fname_len)
   kode = 1;
   if (Rhs==3) { /* normalized bessel required */
     GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-    kode = *stk(l1)+1;
+    kode = (int)*stk(l1)+1;
   }
 
   GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
@@ -436,10 +434,10 @@ int intbesselk(fname,fname_len)
 
   return 0;
 }  
-int intbesseli(fname,fname_len)
-     /* Author Serge Steer, Copyright INRIA 2005 */
-     char *fname;
-     unsigned long fname_len;
+
+int intbesseli(char *fname,unsigned long fname_len)
+/* Author Serge Steer, Copyright INRIA 2005 */
+     
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
   int r1,r2,na,nx,kode,lpos;
@@ -454,7 +452,7 @@ int intbesseli(fname,fname_len)
   kode = 1;
   if (Rhs==3) { /* normalized bessel required */
     GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-    kode = *stk(l1)+1;
+    kode = (int)*stk(l1)+1;
   }
 
   GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
@@ -476,7 +474,7 @@ int intbesseli(fname,fname_len)
   if (itr==0) {
     isint=1; ispos=1;
     for (i=0;i<m1*n1;i++) {
-      t=*stk(l1+i);
+      t=(int)*stk(l1+i);
       if (t != *stk(l1+i)) {isint=0;break;}
     }
     if (isint==0) {
@@ -605,10 +603,8 @@ int intbesseli(fname,fname_len)
   return 0;
 }  
 
-int intbesselj(fname,fname_len)
-     /* Author Serge Steer, Copyright INRIA 2005 */
-     char *fname;
-     unsigned long fname_len;
+int intbesselj(char *fname,unsigned long fname_len)
+/* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
   int r1,r2,na,nx,kode,lpos;
@@ -622,7 +618,7 @@ int intbesselj(fname,fname_len)
   kode = 1; /* ignored for real cases */
   if (Rhs==3) { /* normalized bessel required */
     GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-    kode = *stk(l1)+1;
+    kode = (int)*stk(l1)+1;
   }
 
   GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
@@ -644,7 +640,7 @@ int intbesselj(fname,fname_len)
   if (itr==0) {
     isint=1;ispos=1;
     for (i=0;i<m1*n1;i++) {
-      t=*stk(l1+i);
+      t=(int)*stk(l1+i);
       if (t != *stk(l1+i)) {isint=0;break;}
     }
     if (isint==0) {
@@ -773,10 +769,8 @@ int intbesselj(fname,fname_len)
   return 0;
 }  
 
-int intbessely(fname,fname_len)
-     /* Author Serge Steer, Copyright INRIA 2005 */
-     char *fname;
-     unsigned long fname_len;
+int intbessely(char *fname,unsigned long fname_len)
+/* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
   int r1,r2,na,nx,kode,lpos;
@@ -791,7 +785,7 @@ int intbessely(fname,fname_len)
   kode = 1; /* ignored for real cases */
   if (Rhs==3) { /* normalized bessel required */
     GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-    kode = *stk(l1)+1;
+    kode = (int)*stk(l1)+1;
   }
 
 
@@ -937,12 +931,10 @@ int intbessely(fname,fname_len)
   return 0;
 }  
 
-int intbesselh(fname,fname_len)
-     /* Author Serge Steer, Copyright INRIA 2005 */
-     char *fname;
-     unsigned long fname_len;
+int intbesselh(char *fname,unsigned long fname_len)
+/* Author Serge Steer, Copyright INRIA 2005 */
 {
-  int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr,rhs1;
+  int m1,n1,l1,m2,n2,it2,l2,/*l2r,*/l2i,mr,nr,itr,lr,li,lwi,lwr,rhs1;
   int r1,r2,na,nx,kode,lpos;
   int un=1,ierr;
   int K;
@@ -955,13 +947,13 @@ int intbesselh(fname,fname_len)
   rhs1 = Rhs;
   if (Rhs==4) { /* normalized bessel required */
     GetRhsVar(4,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-    kode = *stk(l1)+1;
+    kode = (int)*stk(l1)+1;
     rhs1--;
   }
   K = 1; 
   if (Rhs > 2) { /* normalized bessel required */
     GetRhsVar(2,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
-    K = *stk(l1);
+    K = (int)*stk(l1);
   }
 
   GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
@@ -1084,7 +1076,7 @@ int C2F(otherspfunlib)(void)
     Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
     return 0;
   }
-  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+  (*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   C2F(putlhsvar)();
   return 0;
 }

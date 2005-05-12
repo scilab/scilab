@@ -10,22 +10,22 @@ extern initTCLTK(void);
 /*-----------------------------------------------------------------------------------*/
 static int first =0;
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intTclDoOneEvent) _PARAMS((char *fname));
-extern int C2F(intTclEvalFile) _PARAMS((char *fname));
-extern int C2F(intTclEvalStr) _PARAMS((char *fname));
-extern int C2F(intTclGetVar) _PARAMS((char *fname));
-extern int C2F(intTclSetVar) _PARAMS((char *fname));
-extern int C2F(intOpenTk) _PARAMS((char *fname));
-extern int C2F(intClose) _PARAMS((char *fname));
-extern int C2F(intFindObj) _PARAMS((char *fname));
-extern int C2F(intTclSet) _PARAMS((char *fname));
-extern int C2F(intTclGet) _PARAMS((char *fname));
-extern int C2F(intTclGcf) _PARAMS((char *fname));
-extern int C2F(intTclScf) _PARAMS((char *fname));
-extern int C2F(intTclGetVersion) _PARAMS((char *fname));
-extern int C2F(intTclUnsetVar) _PARAMS((char *fname));
-extern int C2F(intTclExistVar) _PARAMS((char *fname));
-extern int C2F(intTclUpVar) _PARAMS((char *fname));
+extern int C2F(intTclDoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclEvalFile) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclEvalStr) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclGetVar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclSetVar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intOpenTk) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intClose) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intFindObj) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclSet) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclGet) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclGcf) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclScf) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclGetVersion) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclUnsetVar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclExistVar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclUpVar) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
  static TCLSCITable Tab[]=
  {

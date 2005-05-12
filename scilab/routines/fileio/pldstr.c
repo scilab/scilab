@@ -132,15 +132,15 @@ char *PLD_strncat( char *dst, const char *src, size_t len )
 
 	/* Locate the end of the current string.*/
 	cc = 0;
-	while ((*dp)&&(cc < len)) { dp++; cc++; }
+	while ((*dp)&&(cc < (int)len)) { dp++; cc++; }
 
 	/* If we have no more buffer space, then return the destination*/
 
-	if (cc >= len) return dst;
+	if (cc >= (int)len) return dst;
 
 	/* While we have more source, and there's more char space left in the buffer*/
 
-	while ((*sp)&&(cc < len))
+	while ((*sp)&&(cc < (int)len))
 	{
 		cc++;
 		*dp = *sp;
@@ -182,11 +182,11 @@ char *PLD_strncate( char *dst, const char *src, size_t len, char *endpoint )
 	/* If endpoint does not relate correctly, then force manual detection*/
 	/* of the endpoint.*/
 
-	if ((!endpoint)||(endpoint == dst)||((endpoint -dst +1)>len))
+	if ((!endpoint)||(endpoint == dst)||((endpoint -dst +1)>(int)len))
 	{
 	  /* Locate the end of the current string.*/
 		cc = 0;
-		while ((*dp != '\0')&&(cc < len)) { dp++; cc++; }
+		while ((*dp != '\0')&&(cc < (int)len)) { dp++; cc++; }
 	}
 	else {
 		cc = endpoint -dst +1;
@@ -195,11 +195,11 @@ char *PLD_strncate( char *dst, const char *src, size_t len, char *endpoint )
 
 	/* If we have no more buffer space, then return the destination*/
 
-	if (cc >= len) return dst;
+	if (cc >= (int)len) return dst;
 
 	/* While we have more source, and there's more char space left in the buffer*/
 
-	while ((*sp)&&(cc < len))
+	while ((*sp)&&(cc < (int)len))
 	{
 		cc++;
 		*dp = *sp;

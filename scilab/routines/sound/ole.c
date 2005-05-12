@@ -630,8 +630,8 @@ int OLE_header_sanity_check( struct OLE_object *ole )
   if (h->sector_shift > 20) insanity++;
   if (h->mini_sector_shift > 10) insanity++;
   if (h->fat_sector_count < 0) insanity++;
-  if (h->fat_sector_count > max_sectors) insanity++;
-  if (h->properties_start_sector > max_sectors) insanity++;
+  if ((int)h->fat_sector_count > max_sectors) insanity++;
+  if ((int)h->properties_start_sector > max_sectors) insanity++;
 
   return insanity;
 }

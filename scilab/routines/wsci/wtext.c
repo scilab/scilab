@@ -3049,7 +3049,7 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int ShowWindowFunction _PARAMS((char *fname))
+int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len))
 {
   static int l1, m1, n1;	
   if (IsWindowInterface())

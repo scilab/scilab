@@ -278,7 +278,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define VarPtr(x) C2F(intersci).lad[x-1] 
 
-typedef int (*interfun) __PARAMS((char *));
+typedef int (*interfun) __PARAMS((char *fname,unsigned long l));
 
 typedef struct tagTabF { 
   interfun f;

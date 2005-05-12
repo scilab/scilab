@@ -92,7 +92,7 @@ int NumTokens __PARAMS((char *str));
  * Scilab printf function OK 
  *********************************************************************/
 
-int int_objprintf(char *fname)
+int int_objprintf(char *fname,unsigned long fname_len)
 {
   static int l1, m1, n1, lcount, rval, k, mx, mk, nk;
   char *ptrFormat=NULL;
@@ -115,7 +115,7 @@ int int_objprintf(char *fname)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   ptrFormat=cstk(l1
 );
-  for(i=0;i<strlen(ptrFormat);i++)
+  for(i=0;i<(int)strlen(ptrFormat);i++)
   {
     if (ptrFormat[i]=='%') {
       NumberPercent++;
@@ -157,7 +157,7 @@ int int_objprintf(char *fname)
  * Scilab fprintf function OK 
  *********************************************************************/
 
-int int_objfprintf(char *fname)
+int int_objfprintf(char *fname,unsigned long fname_len)
 {
   FILE *f;
   static int l1, m1, n1,l2,m2,n2,lcount,rval, mx, mk, nk, k;
@@ -186,7 +186,7 @@ int int_objfprintf(char *fname)
       return 0;
     }
 
-  for(i=0;i<strlen(ptrFormat);i++)
+  for(i=0;i<(int)strlen(ptrFormat);i++)
   {
     if (ptrFormat[i]=='%') {
       NumberPercent++;
@@ -228,7 +228,7 @@ int int_objfprintf(char *fname)
  * Scilab sprintf function OK 
  *********************************************************************/
 
-int int_objsprintf(char *fname)
+int int_objsprintf(char *fname,unsigned long fname_len)
 {
   unsigned long lstr;
   static int l1, m1, n1,n2,lcount,rval,blk=200;
@@ -254,7 +254,7 @@ int int_objsprintf(char *fname)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   ptrFormat=cstk(l1);
 
-  for(i=0;i<strlen(ptrFormat);i++)
+  for(i=0;i<(int)strlen(ptrFormat);i++)
   {
     if (ptrFormat[i]=='%') {
       NumberPercent++;
@@ -352,7 +352,7 @@ int int_objsprintf(char *fname)
 #define MAXSTR 512
 
 
-int int_objscanf(char *fname)
+int int_objscanf(char *fname,unsigned long fname_len)
 {
   static char String[MAXSTR];
   static int l1, m1, n1, len= MAXSTR-1,iarg,maxrow,nrow,rowcount,ncol;
@@ -441,7 +441,7 @@ int int_objscanf(char *fname)
  * Scilab sscanf function
  *********************************************************************/
 
-int int_objsscanf(char *fname)
+int int_objsscanf(char *fname,unsigned long fname_len)
 {
   static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
   int args,retval,retval_s,err,n_count,lw,il1,ild1,skip;
@@ -529,7 +529,7 @@ int int_objsscanf(char *fname)
  * Scilab fscanf function
  *********************************************************************/
 
-int int_objfscanf(char *fname)
+int int_objfscanf(char *fname,unsigned long fname_len)
 {
   static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
   FILE  *f;
@@ -613,7 +613,7 @@ int int_objfscanf(char *fname)
  * Scilab numtokens
  *********************************************************************/
 
-int int_objnumTokens(char *fname)
+int int_objnumTokens(char *fname,unsigned long fname_len)
 {
   static int l1,m1,n1,l2,un=1;
   Nbvars = 0;
@@ -633,7 +633,7 @@ int int_objnumTokens(char *fname)
  * fprintfMat('pipo',rand(2,2),'%f',['comment un';'comment 2'])
  *********************************************************************/
 
-int int_objfprintfMat(char *fname)
+int int_objfprintfMat(char *fname,unsigned long fname_len)
 {
   int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j,mS,nS;
   FILE  *f;
@@ -699,7 +699,7 @@ static char *Info= NULL;
 static int ReadLine __PARAMS((FILE *fd,int *mem));
 
 
-int int_objfscanfMat(char *fname)
+int int_objfscanfMat(char *fname,unsigned long fname_len)
 {
   char **Str;
   int mem=0;

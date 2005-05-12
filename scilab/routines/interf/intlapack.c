@@ -19,8 +19,8 @@ extern int C2F(intlapack)  __PARAMS((void));
 extern int C2F(complexify)  __PARAMS((int *num));
 extern int C2F(issymmetric)  __PARAMS((int *num));
 
-int C2F(intqr)(fname)
-     char *fname;
+int C2F(intqr)(char *fname,unsigned long fname_len)
+     
 {
   int *header1;int *header2;
   int Cmplx;int ret; double *snd; double tol;
@@ -106,8 +106,7 @@ int C2F(intqr)(fname)
 }
 
 
-int C2F(intsvd)(fname)
-     char *fname;
+int C2F(intsvd)(char *fname,unsigned long fname_len)
 {
   int *header1;int *header2;
   int Cmplx;int ret;double tol;
@@ -190,8 +189,7 @@ int C2F(intsvd)(fname)
 }
 
 
-int C2F(intlsq)(fname)
-  char *fname;
+int C2F(intlsq)(char *fname,unsigned long fname_len)
 {
   int *header1;int *header2;
   int CmplxA;int Cmplxb;int ret;int I2;
@@ -250,8 +248,7 @@ int C2F(intlsq)(fname)
   }
 }
 
-int C2F(inteig)(fname)
-  char *fname;
+int C2F(inteig)(char *fname,unsigned long fname_len)
 {
   int *header1, *header2;
   int CmplxA, CmplxB;
@@ -355,8 +352,8 @@ int C2F(inteig)(fname)
   return 0;
 } 
 
-int C2F(intinv)(fname)
-  char *fname;
+int C2F(intinv)(char *fname,unsigned long fname_len)
+
 {
   int *header1;
   int CmplxA;int ret;
@@ -387,8 +384,7 @@ int C2F(intinv)(fname)
   }
 }
 
-int C2F(intrcond)(fname)
-  char *fname;
+int C2F(intrcond)(char *fname,unsigned long fname_len)
 {
   int *header1;
   int CmplxA;int ret;
@@ -420,8 +416,8 @@ int C2F(intrcond)(fname)
   }
 }
 
-int C2F(intchol)(fname)
-  char *fname;
+int C2F(intchol)(char *fname,unsigned long fname_len)
+
 {
   int *header1;
   int CmplxA;int ret;
@@ -452,8 +448,8 @@ int C2F(intchol)(fname)
   }
 }
 
-int C2F(inthess)(fname)
-  char *fname;
+int C2F(inthess)(char *fname,unsigned long fname_len)
+
 {
   int *header1;
   int CmplxA;int ret;
@@ -484,8 +480,7 @@ int C2F(inthess)(fname)
   }
 }
 
-int C2F(intlu)(fname)
-  char *fname;
+int C2F(intlu)(char *fname,unsigned long fname_len)
 {
   int *header1;
   int CmplxA;int ret;
@@ -515,8 +510,7 @@ int C2F(intlu)(fname)
   }
   return 0;
 }
-int C2F(intdet)(fname)
-  char *fname;
+int C2F(intdet)(char *fname,unsigned long fname_len)
 {
   int *header1;
   int CmplxA;int ret;
@@ -548,8 +542,7 @@ int C2F(intdet)(fname)
   return 0;
 }
 
-int C2F(intslash)(fname)
-  char *fname;
+int C2F(intslash)(char *fname,unsigned long fname_len)
 {
   int *header1;int *header2;
   int CmplxA;int CmplxB;int ret;int X;
@@ -606,8 +599,7 @@ int C2F(intslash)(fname)
 }
 
 
-int C2F(intbackslash)(fname)
-  char *fname;
+int C2F(intbackslash)(char *fname,unsigned long fname_len)
 {
   int *header1;int *header2;
   int CmplxA;int CmplxB;int ret;int X;
@@ -663,9 +655,7 @@ int C2F(intbackslash)(fname)
   }
 }
  
-int C2F(intschur)(fname)
-     char *fname;
-
+int C2F(intschur)(char *fname,unsigned long fname_len)
 {
   int *header1;int *header2;int *header3; 
   int Cmplx, CmplxA, CmplxB;
@@ -844,8 +834,7 @@ int C2F(intschur)(fname)
 return 0;
 }
 
-int C2F(intbalanc)(fname)
-  char *fname;
+int C2F(intbalanc)(char *fname,unsigned long fname_len)
 {
   int *header1, *header2;
   int CmplxA, CmplxB;

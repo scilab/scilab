@@ -28,7 +28,9 @@
 #include "malloc.h"
 
 #include "../machine.h"
-
+#if WIN32
+#include <string.h>
+#endif
 typedef int (*PRINTER) __PARAMS((FILE *, char *,...));
 
 
@@ -48,40 +50,6 @@ typedef int (*PRINTER) __PARAMS((FILE *, char *,...));
 /* for switch on number of '*' and type */
 
 #define  AST(num,type)  (5*(num)+(type))
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-The vsprintf_ptr is similar to standard sprintf procedure but the
-argument other than string and format are passed by reference instead
-of by value.
-
-The type of data is determined by the format required for them.
-
-The floating point values pointers are assumed to be pointers on double
-
-This function may be called by a fortran routine.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-#ifdef __STDC__ 
-int C2F(sprintf_ptr)(char *buf,char *format,...) 
-#else 
-     /*VARARGS0*/
-     int C2F(sprintf_ptr)(va_alist) va_dcl
-#endif 
-{
-  va_list ap;
-  int retval;
-#ifdef __STDC__
-  va_start(ap,format);
-#else
-  char *format;
-  char *buf;
-  va_start(ap);
-  buf = va_arg(ap, char *);
-  format = va_arg(ap, char *);
-#endif
-  retval=C2F(vsprintf_ptr)(buf,format,&ap);
-  va_end(ap);
-  return(retval);
-}
 
 
 #ifdef __STDC__ 
@@ -95,7 +63,7 @@ int C2F(vsprintf_ptr)(char * buf, char * format, va_list * ap)
      va_list *ap;
 #endif 
 {
-  int m1;
+/*  int m1;*/
   int *m1p;
   char save;
   char *p, *fmt;
@@ -396,6 +364,43 @@ int C2F(vsprintf_ptr)(char * buf, char * format, va_list * ap)
 }
 
 
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The vsprintf_ptr is similar to standard sprintf procedure but the
+argument other than string and format are passed by reference instead
+of by value.
+
+The type of data is determined by the format required for them.
+
+The floating point values pointers are assumed to be pointers on double
+
+This function may be called by a fortran routine.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+#ifdef __STDC__ 
+int C2F(sprintf_ptr)(char *buf,char *format,...) 
+#else 
+     /*VARARGS0*/
+     int C2F(sprintf_ptr)(va_alist) va_dcl
+#endif 
+{
+  va_list ap;
+  int retval;
+#ifdef __STDC__
+  va_start(ap,format);
+#else
+  char *format;
+  char *buf;
+  va_start(ap);
+  buf = va_arg(ap, char *);
+  format = va_arg(ap, char *);
+#endif
+  retval=C2F(vsprintf_ptr)(buf,format,&ap);
+  va_end(ap);
+  return(retval);
+}
+
+
+
 #ifdef __STDC__ 
 void C2F(fsciprint)(char *fmt,...)
 #else 
@@ -429,4 +434,6 @@ void C2F(fsciprint)(char *fmt,...)
       /*C2F(xscisncr)(s_buf,&lstr,0L);*/
     }
   va_end(ap); 
+
+return 0;
 }

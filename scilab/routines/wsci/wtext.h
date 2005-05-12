@@ -187,7 +187,7 @@ void ExitWindow(void);
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
 /*--------------------------*/
-int ShowWindowFunction _PARAMS((char *fname));
+int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------*/
 void MessageBoxNewGraphicMode(void);
 BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);

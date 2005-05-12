@@ -36,7 +36,7 @@ char filename[FILENAME_MAX];
 int out_n;
 long int lin,lout;
 
-int intssavewave(char *fname)
+int intssavewave(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050;
   int un=1;
@@ -73,7 +73,7 @@ int intssavewave(char *fname)
  * SCILAB function : loadwave, 
  ******************************************/
 
-int intsloadwave(char *fname)
+int intsloadwave(char *fname,unsigned long fname_len)
 {
   WavInfo Wi;
   int m1,n1,l1,m2=1,n2,l2,err=0,un=1,eight=8,l3,m4,n4,l4;
@@ -121,7 +121,7 @@ int intsloadwave(char *fname)
 
 /* Play Sound for windows */
 /* Allan CORNET 18/01/2004 */
-int C2F(playsound)(char * filename)
+int C2F(playsound)(char *fname,unsigned long fname_len)
 {
 	#ifdef WIN32
   /* Stop Playing*/
@@ -140,7 +140,7 @@ int C2F(playsound)(char * filename)
  * SCILAB function : PlaySound
  * Allan CORNET 18/01/2004 
  ******************************************/
-int intPlaysound (char *fname)
+int intPlaysound (char *fname,unsigned long fname_len)
 {
   int m1,n1,l1;
   CheckRhs(1,1);
@@ -151,7 +151,7 @@ int intPlaysound (char *fname)
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
   
-  C2F(playsound)(filename);
+  C2F(playsound)(filename,strlen(filename));
   
   LhsVar(1)=0;
   PutLhsVar();
@@ -181,7 +181,7 @@ void BeepLinuxWindows(void)
  * SCILAB function : beep, 
  ******************************************/
  /* Allan CORNET Aout 2004 */
-int intBeep (char *fname)
+int intBeep (char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 	char *output=NULL ;
@@ -235,7 +235,7 @@ int intBeep (char *fname)
  * SCILAB function : mopen, 
  ******************************************/
 
-int intsmopen(char *fname)
+int intsmopen(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,l5,err;
   int swap = 1,un=1;
@@ -297,7 +297,7 @@ int intsmopen(char *fname)
  * SCILAB function : mputstr, 
  ******************************************/
 
-int intsmputstr(char *fname)
+int intsmputstr(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3,err;
   int fd = -1;
@@ -327,7 +327,7 @@ int intsmputstr(char *fname)
  * SCILAB function : mclose, 
  ******************************************/
 
-int intsmclose(char *fname)
+int intsmclose(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,l2;
   int fd = -1;
@@ -350,7 +350,7 @@ int intsmclose(char *fname)
  * SCILAB function : mput, 
  ******************************************/
 
-int intsmput(char *fname)
+int intsmput(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,err;
   char *type;
@@ -390,7 +390,7 @@ int intsmput(char *fname)
  * SCILAB function : mget, 
  ******************************************/
 
-int intsmget(char *fname)
+int intsmget(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,l4,err;
   char *type;
@@ -448,7 +448,7 @@ int intsmget(char *fname)
  * SCILAB function : mgetstr, 
  ******************************************/
 
-int intsmgetstr(char *fname)
+int intsmgetstr(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,l3,err;
   int fd=-1;
@@ -495,7 +495,7 @@ int intsmgetstr(char *fname)
  * SCILAB function : meof, 
  ******************************************/
 
-int intsmeof(char *fname)
+int intsmeof(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,lr;
   int fd=-1;
@@ -518,7 +518,7 @@ int intsmeof(char *fname)
  * SCILAB function : mseek, 
  ******************************************/
 
-int intsmseek(char *fname)
+int intsmseek(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,err;
   int fd=-1;
@@ -556,7 +556,7 @@ int intsmseek(char *fname)
  * SCILAB function : mtell, 
  ******************************************/
 
-int intsmtell(char *fname)
+int intsmtell(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,l2,err;
   int fd = -1;
@@ -585,7 +585,7 @@ int intsmtell(char *fname)
  * SCILAB function : mclearerr, 
  ******************************************/
 
-int intsmclearerr(char *fname)
+int intsmclearerr(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1;
   int fd = -1;
@@ -607,7 +607,7 @@ int intsmclearerr(char *fname)
  * SCILAB function : merror, 
  ******************************************/
 
-int intsmerror(char *fname)
+int intsmerror(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,lr;
   int fd=-1;
@@ -626,15 +626,15 @@ int intsmerror(char *fname)
   return 0;
 }
 
-extern int int_objprintf __PARAMS((char *));
-extern int int_objfprintf __PARAMS((char *));
-extern int int_objsprintf __PARAMS((char *));
-extern int int_objscanf __PARAMS((char *));
-extern int int_objfscanf __PARAMS((char *));
-extern int int_objsscanf __PARAMS((char *));
-extern int int_objfscanfMat __PARAMS((char *));
-extern int int_objnumTokens __PARAMS((char *));
-extern int int_objfprintfMat __PARAMS((char *));
+extern int int_objprintf __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objfprintf __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objsprintf __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objscanf __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objfscanf __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objsscanf __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objfscanfMat __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objnumTokens __PARAMS((char *fname,unsigned long fname_len));
+extern int int_objfprintfMat __PARAMS((char *fname,unsigned long fname_len));
 
 
 
@@ -673,7 +673,7 @@ static TabF Tab[]={
 int C2F(soundi)(void)
 {
  Rhs=Max(0,Rhs);
- (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+ (*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
  return 0;
 }
 

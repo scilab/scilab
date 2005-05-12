@@ -17,6 +17,9 @@ extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F (tmpdirc) (void);
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
+
+extern void initTCLTK(void);
+
 static void SetSciEnv(void)
 {
   extern void set_sci_env(char *DefaultSCIPATH);
@@ -73,7 +76,7 @@ static void SetSciEnv(void)
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 {
 	int bOK=FALSE;
-	
+
 	char *SCIpathUsed=NULL;
 	char *ScilabStartupUsed=NULL;
 	char *InitStringToScilab=NULL;

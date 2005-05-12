@@ -106,7 +106,7 @@ double C2F(ignuin)(double *a, double *b)
  *  hand written interface for the randlib 
  ***********************************************************************/
 
-int RandI( char* fname)
+int RandI(char *fname,unsigned long fname_len)
 { 
   int minrhs = 1,maxrhs = 10,minlhs=1,maxlhs=2;
   int ResL,ResC,suite,m2,n2,l2,m1,n1,l1,ls,ms,ns,la,lr,lb,lc;
@@ -1043,6 +1043,6 @@ int C2F(randlib)(void)
   sciprint("Inside randlib Fin == %d  %s\r\n",Fin,Tab[Fin-1].name);
 #endif
   Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
+  (*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   return 0;
 }

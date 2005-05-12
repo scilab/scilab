@@ -2306,7 +2306,7 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
   if(mxIsSparse(array_ptr)){
     int *header = Header(array_ptr);
     int NZMAX = header[4];
-    if( NZMAX <= mn ){
+    if( (unsigned long)NZMAX <= mn ){
       mem_size = NZMAX * sizeof(double);
     }
     else{ /* Can't hold more than M*N elements so truncate and warn. */
@@ -2341,7 +2341,7 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
   if(mxIsSparse(array_ptr)){
     int *header = Header(array_ptr);
     int NZMAX = header[4];
-    if( NZMAX <= mn ){
+    if( (unsigned long)NZMAX <= mn ){
       mem_size = NZMAX * sizeof(double);
     }
     else{ /* Can't hold more than M*N elements so truncate and warn. */
