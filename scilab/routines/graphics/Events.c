@@ -39,12 +39,16 @@ int scig_click_handler_none (int win,int x,int y,int ibut,
 int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
 {
   static char buf[256];
-  struct BCG *SciGc;
+  struct BCG *SciGc = (struct BCG *) NULL;
 
   SciGc = GetWindowXgcNumber(win);
+
+  if(SciGc == (struct BCG *) NULL) 
+	  return 0;
+
   if (strlen(SciGc->EventHandler)!=0) {
     sprintf(buf,"%s(%d,%d,%d,%d)",SciGc->EventHandler,win,x,y,ibut);
-    StoreCommand1(buf,2);
+    StoreCommand1(buf,0);
     return 1;}
   else
     return 0;
