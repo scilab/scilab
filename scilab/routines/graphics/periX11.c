@@ -3411,7 +3411,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static integer EntryCounter = 0;
   integer WinNum;
   integer ne=7, menutyp=2, ierr;
-  *v3=0;
   char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties",
 		     "Start Entity Picker","Stop  Entity Picker"};
   char *FileMenus[]={"Clear","Select","Print","Export","Save","Load","Close"};
@@ -3419,6 +3418,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static int screen;
   static XGCValues gcvalues;
   static Widget toplevel = (Widget) NULL;
+  *v3=0;
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
   else
