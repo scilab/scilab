@@ -39,7 +39,13 @@ function [rep,stat]=unix_g(cmd)
   select stat
    case 0 then
     rep=mgetl(tmp)
-    if size(rep,'*')==0 then rep=[],end
+    if size(rep,'*')==0 then
+    	rep=[]
+    else
+     	for k=1:size(rep,'*') 
+					rep(k)=oemtochar(rep(k));
+			end;
+    end
    case -1 then // host failed
     disp('host does not answer...')
     rep=emptystr()
@@ -50,11 +56,21 @@ function [rep,stat]=unix_g(cmd)
        		rep=emptystr()
      	else
      		msg=mgetl(TMPDIR+'\unix.err')
-        	disp(msg(1))
-        	rep=emptystr()
+     		if size(msg,'*')<>0 then
+     		  for k=1:size(msg,'*') 
+					  msg(k)=oemtochar(msg(k));
+				  end
+				end
+        disp(msg(1))
+        rep=emptystr()
      	end
      else 
         msg=mgetl(TMPDIR+'/unix.err')
+        if size(msg,'*')<>0 then
+     		  for k=1:size(msg,'*') 
+					  msg(k)=oemtochar(msg(k));
+				  end
+				end
         disp(msg(1))
         rep=emptystr()
      end 

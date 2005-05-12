@@ -35,7 +35,15 @@ if MSDOS then
 stat=host(cmd1);
 select stat
   case 0 then
-   x_message_modeless(mgetl(tmp))
+  	rep=mgetl(tmp)
+    if size(rep,'*')==0 then
+    	rep=[]
+    else
+     	for k=1:size(rep,'*') 
+					rep(k)=oemtochar(rep(k));
+			end;
+    end
+    x_message_modeless(rep)
 case -1 then // host failed
   error(85)
 else //sh failed
@@ -44,6 +52,13 @@ if MSDOS then
      		error('unix_x: shell error');
      	else
      		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
+     		if size(msg,'*')==0 then
+    	    msg=[]
+        else
+     	    for k=1:size(msg,'*') 
+					  msg(k)=oemtochar(msg(k));
+			    end;
+        end
      		error('unix_x: '+msg(1))
      	end
      else

@@ -35,6 +35,15 @@ function unix_w(cmd)
   
   select stat
    case 0 then
+   	if MSDOS then
+   	  rep=mgetl(tmp);
+   	  if size(rep,'*')<>0 then
+        for k=1:size(rep,'*') 
+			    rep(k)=oemtochar(rep(k));
+		    end
+		  end
+      mputl(rep,tmp);
+    end
     write(%io(2),read(tmp,-1,1,'(a)'))
    case -1 then // host failed
     error(85)
@@ -44,6 +53,11 @@ function unix_w(cmd)
      		error('unix_w: shell error');
      	else
      		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
+     		if size(msg,'*')<>0 then
+          for k=1:size(msg,'*') 
+			      msg(k)=oemtochar(msg(k));
+		      end
+		  	end
      		error('unix_w: '+msg(1))
      	end
      else

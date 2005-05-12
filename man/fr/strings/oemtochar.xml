@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>oemtochar</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>May 2005</DATE>
+
+  <SHORT_DESCRIPTION name="oemtochar">translates a string from the OEM-defined
+  character set into either an ANSI string. (Windows Only)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>str=oemtochar(str1)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>str1</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of OEM-defined character string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of ANSI character string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>oemtochar</VERB> translates a string from the OEM-defined
+    character set into either an ANSI string.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>chartooem</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
