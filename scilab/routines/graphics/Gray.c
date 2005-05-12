@@ -429,8 +429,8 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
       /** Boundaries of the frame **/
     C2F(echelle2d)(xx,yy,xx1,yy1,&nn1,&nn2,"f2i",3L);  
 
-    xm = graphic_alloc(0,*n2,sizeof(int));
-    ym = graphic_alloc(1,*n1,sizeof(int));
+    xm = graphic_alloc(0,(*n2)+1,sizeof(int));
+    ym = graphic_alloc(1,(*n1)+1,sizeof(int));
     if ( xm == 0 || ym == 0 ) {
       Scistring("Xgray: running out of memory\n");return 0;}
     frame_clip_on();
