@@ -36,10 +36,10 @@
   <DESCRIPTION>
     <P><VERB>xs2eps</VERB> saves the recorded graphics of the window
     <VERB>win_num</VERB> to file <VERB>filen</VERB> in Postscript syntax. 
-    Note that <VERB>filen</VERB> must not have extension.</P>. 
+    Note that <VERB>filen</VERB> must not have extension.</P>
 
-    <VERB>xs2eps</VERB> produces a complete encapsulated Postscrip file. 
-    It simply  calls <VERB>xs2eps</VERB> and then <VERB>BEpsf</VERB>.
+    <P><VERB>xs2eps</VERB> produces a complete encapsulated Postscrip file. 
+    It simply  calls <VERB>xs2eps</VERB> and then <VERB>BEpsf</VERB>.</P>
 
     <P>This function works only if the selected driver is <VERB>"Rec"</VERB>
     in the window <VERB>win_num</VERB> or if the window is in "new style". The
