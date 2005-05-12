@@ -127,7 +127,7 @@ int PushClickQueue(int win,int x,int y,int ibut,
   /* do not record motion events and release button 
    * this is left for a futur release 
    */
-  //if (motion==1) printf("%d ",(wait_for_click&2)&&motion);
+  /*if (motion==1) printf("%d ",(wait_for_click&2)&&motion);*/
   if (  wait_for_click==0 &&(motion == 1 || release == 1) ) return 0;
   if (((wait_for_click&2)&&motion)||((wait_for_click&4)&&release)||(wait_for_click%2)&&(motion==0&&release==0)) {
   /* store click event in a queue */
