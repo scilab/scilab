@@ -2191,7 +2191,7 @@ int scixsegs(fname,fname_len)
 
   /* NG beg */
   if (version_flag() == 0){
-    if (Rhs == 3 && m3 * n3 != 1) {
+    if (Rhs == 3) {
       style = istk(l3); flag= one;
     } 
     else {
