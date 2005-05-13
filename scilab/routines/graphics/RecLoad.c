@@ -65,6 +65,7 @@ static int LoadXcall1 __PARAMS((void));
 static int LoadEch __PARAMS((void)); 
 
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
+extern int version_flag();
 
 /*---------------------------------------------------------------------
  * reload a xcall1 statement 

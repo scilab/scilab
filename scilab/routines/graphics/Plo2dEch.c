@@ -1064,7 +1064,7 @@ int zoom_get_rectangle(bbox)
   /* Using the mouse to get the new rectangle to fix boundaries */
   integer th,th1=1;
   integer pixmode,alumode,color,style[10],fg,verbose=0,narg;
-  integer ibutton,in,iwait=0,istr=0, noir=33;
+  integer ibutton,in,iwait=0,istr=0;
   integer modes[2];
   double x0,yy0,x,y,xl,yl;
 /*   int i; */
