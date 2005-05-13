@@ -711,9 +711,7 @@ proc sciCommandData {} {
 proc SelectDataX  {w args} {
     global curdata_x
     variable mycurdata
-    puts "AV"
     set mycurdata $curdata_x
-    puts "APRES"
     set finddbarray -1
     set dbarray "double array"
     set finddbarray [expr [string first $dbarray $mycurdata]]
