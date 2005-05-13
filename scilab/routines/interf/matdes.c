@@ -2206,10 +2206,13 @@ int scixsegs(fname,fname_len)
 
   /* NG beg */
   if (version_flag() == 0){
-    if (Rhs == 3) {
-      style = istk(l3); flag= one;
-    } 
-    else {
+    if (Rhs == 3 && m3 * n3 != 1) {
+      style = istk(l3); flag = one;
+    }
+    else if (Rhs == 3 && m3 * n3 == 1) {
+      style = istk(l3); flag = zero;
+    }
+    else { /* Rhs < 3 => no color specified, use current color (taken from axes parent) */
       int col = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
       style = &col;
       flag= zero;
@@ -2219,10 +2222,10 @@ int scixsegs(fname,fname_len)
   }
   else{
     if (Rhs == 3 && m3 * n3 != 1) {
-      style = istk(l3); flag= one;
+      style = istk(l3); flag = one;
     } 
     else {
-      style = &dstyle ; flag= zero;
+      style = &dstyle ; flag = zero;
     }
     
     Xsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
