@@ -59,7 +59,6 @@ int C2F(intcalendar) _PARAMS((char *fname))
 		Scierror(999,"Invalid argument(s) type.\n");
 		return 0;
 	}
-	
 	CALMONTH=(int *)malloc( (NBRDAY*NBRWEEK)*sizeof(int) );
 	for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
 
@@ -78,16 +77,16 @@ int C2F(intcalendar) _PARAMS((char *fname))
         CALMONTH[a]= day;
 		a++;
     }
-
 	m1=NBRWEEK;
 	n1=NBRDAY;
 	tmpMatrix=CALMONTH;
 
 	CALMONTH=InversionMatrixInt(NBRDAY,NBRWEEK,CALMONTH);
 	if(tmpMatrix) {free(tmpMatrix);tmpMatrix=NULL;}
+	
+	CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&CALMONTH);
+	LhsVar(1)=Rhs+1;
 
-	CreateVarFromPtr(1, "i", &m1, &n1 ,&CALMONTH);
-	LhsVar(1)=1;
 	C2F(putlhsvar)();
 
 	if (CALMONTH) {free(CALMONTH);CALMONTH=NULL;}
