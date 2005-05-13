@@ -78,7 +78,7 @@ c
          endif
          istk(il)=lct(8)-nlc
          il=il+1
-          if (km.le.isiz) then
+         if (km.le.isiz) then
             call namstr(idstk(1,km),istk(il+1),istk(il),1)
             ll=ll+istk(il)
             il=il+1+istk(il)
@@ -185,7 +185,7 @@ c     compute total size of names strings
       do 05 i=1,nn
          n1=istk(il1+1)
          vol=vol+n1
-         il1=il1+1+n1
+         il1=il1+2+n1
  05   continue  
 c     check memory
       ilw=ilm+4+nn+1+vol
