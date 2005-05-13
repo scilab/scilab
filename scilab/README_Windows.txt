@@ -1,5 +1,5 @@
-                Scilab version 3.1-rc1 for Windows (95/98/NT/2000/XP)
-                ***************************************************
+                Scilab version 3.1-rc1 for Windows (98/2000/XP)
+                ***********************************************
  
 ******************************************************************************
 0 - COPYRIGHT NOTICE
@@ -19,11 +19,9 @@ I - TO RUN SCILAB (BINARY VERSION)
     2 - Run Scilab by executing "Scilab 3.1-rc1" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
-	If you want use Visual Studio (6,.NET) with Scilab 3.1-rc1,
-	execute "Scilab 3.1-rc1 (requires Visual Studio)" from the startup menu.
  
     3 - Scilab has been compiled with Visual C++ .NET 2003
-	(Intel C 8.0 & Fortran 8.0, see IV below).
+	      (Intel C 8.0 & Fortran 8.0, see IV below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
@@ -34,7 +32,7 @@ I - TO RUN SCILAB (BINARY VERSION)
     5 - If you have any problems or suggestions concerning Scilab,
         http://www.scilab.org/cgi-bin/bugzilla_bug/index.cgi        
         or better post a message to newsgroup:
-  	comp.soft-sys.math.scilab
+  	    comp.soft-sys.math.scilab
 
 
 ******************************************************************************
@@ -71,17 +69,9 @@ IV - TO COMPILE SCILAB FROM A SOURCE VERSION
     1 - To compile with Visual C++.NET 2003 & Intel Fortran 8.0,
         see Readme_visual.txt 
  
-    2 - To compile with Visual C++ 4.0,  5.0 or 6.0, edit the beginning of the 
-        file "Makefile.incl.mak". Then type "nmake /f Makefile.mak".
+    2 - To compile with Visual C++ 4.0,  5.0 or 6.0
+        type "make all". (use f2c to translate fortran to c.)
  
-        If you want to compile with TCL/TK interface, you need to uncomment
-        the corresponding lines in "Makefile.incl.mak". 
- 
-        If you want to compile with PVM interface, you need to uncomment
-        the corresponding lines in "Makefile.incl.mak". You also need to modify
-        the pathnames of the compiler in the file "conf/WIN32.def" of PVM.
- 
-
  
 ******************************************************************************
 V - DOCUMENTATION
@@ -116,8 +106,6 @@ VI - SOME IMPORTANT FILES AND DIRECTORIES
  
  Makefile.incl.mak: file included by all Makefile's.
  
- Version.incl: contains the scilab version. It is used by a few Makefile.
- 
  Makefile.mak: the main Makefile to make Scilab.
  
  config/Makefile.mak  : directory used by the main Makefile
@@ -147,8 +135,7 @@ VI - SOME IMPORTANT FILES AND DIRECTORIES
 
  		scilex  : executable code of Scilab (Console version).
 		wscilex  : executable code of Scilab (Windows version).
-        	intersci: generator of interface program between Scilab and 
-                           routines.
+    intersci: generator of interface program between Scilab and routines.
  
  intersci/ : Generator of interface program between Scilab and routines.
  
@@ -159,5 +146,4 @@ VI - SOME IMPORTANT FILES AND DIRECTORIES
  tcl/      : TCL/TK for Scilab.
  
  ******************************************************************************
- 			       THAT'S ALL FOLKS
- ******************************************************************************
+			       
