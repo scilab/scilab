@@ -1455,7 +1455,7 @@ int sciplot2d(fname, fname_len)
     /* y */
     GetRhsVar(2+iskip, "d", &m2, &n2, &l2);
     /* if (m2 * n2 == 0) {m1 = 1; n1 = 0;}  */
-
+    
     test = (m1*n1 == 0)||
       ((m1 == 1 || n1 == 1) && (m2 == 1 || n2 ==1) && (m1*n1 == m2*n2))  ||
       ((m1 == m2) && (n1 == n2)) ||
@@ -1633,11 +1633,10 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
     sci_demo(fname,str,&one);
     return 0;
   }
-  CheckRhs(2,9);
+  CheckRhs(1,9); /* to allow plot2dxx(y) */
 
   
   iskip=0;
-
   if ( get_optionals(fname,opts) == 0) return 0;
 
   if (GetType(1)==10) {
@@ -1646,62 +1645,85 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
     iskip=1;
   }
 
-  if ( FirstOpt() < 3+iskip) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
-             fname,3+iskip);
-    Error(999); 
-    return(0);
-  }
+  /* added to support plot2dxx([logflags],y) */
+  if (Rhs == 1+iskip)
+    {
+      if ( FirstOpt() <= Rhs) {
+        sciprint("%s: misplaced optional argument, first must be at position %d\r\n",fname,3+iskip);
+        Error(999); 
+        return(0);
+      }
+  
+      GetRhsVar(1+iskip, "d", &m2, &n2, &l2);
+      /* if (m2 * n2 == 0) { LhsVar(1) = 0; return 0;} */
+      CreateVar(2+iskip,"d",  &m2, &n2, &l1);
+      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
+      m1 = m2;  n1 = n2;
+      for (i = 0; i < m2 ; ++i) 
+        for (j = 0 ; j < n2 ;  ++j)
+          *stk( l1 + i + m2*j) = (double) i+1;
+    }
+  
+  
+  if (Rhs >= 2+iskip) {
+    if ( FirstOpt() < 3+iskip) {
+      sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+	       fname,3+iskip);
+      Error(999); 
+      return(0);
+    }
+  
+    
+    /* x */
+    GetRhsVar(1+iskip, "d", &m1, &n1, &l1);
+    if (iskip==1) 
+      if (Logflags[0]=='e') {m1=0;n1=0;}
+    
+    /* y */
+    GetRhsVar(2+iskip, "d", &m2, &n2, &l2);
+    /* if (m2 * n2 == 0) { m1 = 0; n1 = 0;}  */
+    
+    test = (m1*n1 == 0) /* x = [] */
+      /* x,y vectors of same length */  
+      || ((m1 == 1 || n1 == 1) && (m2 == 1 || n2 ==1) && (m1*n1 == m2*n2))
+      || ((m1 == m2) && (n1 == n2)) /* size(x) == size(y) */
+      /* x vector size(y)==[size(x),.] */
+      || ((m1 == 1 && n1 == m2) || (n1 == 1 && m1 == m2)); 
 
-  /* x */
-  GetRhsVar(1+iskip, "d", &m1, &n1, &l1);
-  if (iskip==1) 
-    if (Logflags[0]=='e') {m1=0;n1=0;}
+    CheckDimProp(1+iskip,2+iskip,!test);
 
-  /* y */
-  GetRhsVar(2+iskip, "d", &m2, &n2, &l2);
-  /* if (m2 * n2 == 0) { m1 = 0; n1 = 0;}  */
-
-  test = (m1*n1 == 0) /* x = [] */
-    /* x,y vectors of same length */  
-    || ((m1 == 1 || n1 == 1) && (m2 == 1 || n2 ==1) && (m1*n1 == m2*n2))
-    || ((m1 == m2) && (n1 == n2)) /* size(x) == size(y) */
-    /* x vector size(y)==[size(x),.] */
-    || ((m1 == 1 && n1 == m2) || (n1 == 1 && m1 == m2)); 
-
-  CheckDimProp(1+iskip,2+iskip,!test);
-
-  if (m1*n1 == 0) { /* default x=1:n */
-    CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
-    if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
-    for (i = 0; i < m2 ; ++i) 
+    if (m1*n1 == 0) { /* default x=1:n */
+      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
+      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
+      for (i = 0; i < m2 ; ++i) 
+	for (j = 0 ; j < n2 ;  ++j)
+	  *stk( lt + i + m2*j) = (double) i+1;
+      m1 = m2;
+      n1 = n2;
+      l1 = lt;
+    }
+    else if ((m1 == 1 || n1 == 1) && (m2 != 1 && n2 != 1) ) {
+      /* a single x vector for mutiple columns for y */
+      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
+      for (i = 0; i < m2 ; ++i) 
+	for (j = 0 ; j < n2 ;  ++j)
+	  *stk( lt + i + m2*j) = *stk(l1 +i);
+      m1 = m2;
+      n1 = n2;
+      l1 = lt;
+    }
+    else if ((m1 == 1 && n1 == 1) && (n2 != 1) ) {
+      /* a single y row vector  for a single x */
+      CreateVar(Rhs+1,"d",  &m1, &n2, &lt);
       for (j = 0 ; j < n2 ;  ++j)
-        *stk( lt + i + m2*j) = (double) i+1;
-    m1 = m2;
-    n1 = n2;
-    l1 = lt;
-  }
-  else if ((m1 == 1 || n1 == 1) && (m2 != 1 && n2 != 1) ) {
-    /* a single x vector for mutiple columns for y */
-    CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
-    for (i = 0; i < m2 ; ++i) 
-      for (j = 0 ; j < n2 ;  ++j)
-        *stk( lt + i + m2*j) = *stk(l1 +i);
-    m1 = m2;
-    n1 = n2;
-    l1 = lt;
-  }
-  else if ((m1 == 1 && n1 == 1) && (n2 != 1) ) {
-    /* a single y row vector  for a single x */
-    CreateVar(Rhs+1,"d",  &m1, &n2, &lt);
-    for (j = 0 ; j < n2 ;  ++j)
-      *stk( lt + j ) = *stk(l1);
-    n1 = n2;
-    l1 = lt;
-  }
-  else {
-    if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
-    if (m1 == 1 && n1 > 1) { m1 = n1; n1 = 1;}
+	*stk( lt + j ) = *stk(l1);
+      n1 = n2;
+      l1 = lt;
+    }
+    else {
+      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
+      if (m1 == 1 && n1 > 1) { m1 = n1; n1 = 1;}
+    }
   }
   
   sciGetStyle(3+iskip,n1,opts);
