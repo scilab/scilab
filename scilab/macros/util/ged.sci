@@ -847,8 +847,14 @@ function ged_champ(h)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
-  d="["+strcat(string(size(h.data)),'x')+" double array]"
-  TCL_SetVar("curdata",d);
+  d="["+strcat(string(size(h.data.x)),'x')+" double array]"
+  TCL_SetVar("curdata_x",d);
+  d="["+strcat(string(size(h.data.y)),'x')+" double array]"
+  TCL_SetVar("curdata_y",d);
+  d="["+strcat(string(size(h.data.fx)),'x')+" double array]"
+  TCL_SetVar("curdata_fx",d);
+  d="["+strcat(string(size(h.data.fy)),'x')+" double array]"
+  TCL_SetVar("curdata_fy",d);
 
   if(h.clip_box==[])
     TCL_SetVar("old_Xclipbox","")
@@ -1574,6 +1580,14 @@ function setGrayplot(X,Y,Z)
   X=[0;X];
   Z=[X Z];
   h.data=Z;
+endfunction
+
+//Champ
+function setchamptlistXYFXFY (X,Y,FX,FY)
+  global ged_handle; h=ged_handle
+  ged_tmp_tlist = tlist(["champdata","x","y","fx","fy"],X,Y,FX,FY)
+  h.data=ged_tmp_tlist;
+  clear ged_tmp_tlist;
 endfunction
 
 
