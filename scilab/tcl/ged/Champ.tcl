@@ -40,7 +40,8 @@ global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
 global curcolored 
 #global nbrow nbcol champVAL
 global scicomint_data
-global curdata
+global curdata_x curdata_y curdata_fx curdata_fy
+global scicomint_dataFX scicomint_dataFY scicomint_dataFX scicomint_dataFY
 
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
@@ -215,23 +216,167 @@ set w3 [Notebook:frame $uf.n Data]
 frame $w3.frame -borderwidth 0
 pack $w3.frame -anchor w -fill both
 
-set mycurdata $curdata
+# set mycurdata $curdata
 
-frame $w3.frame.curdataframe  -borderwidth 0
-pack $w3.frame.curdataframe  -in $w3.frame  -side top  -fill x
+# frame $w3.frame.curdataframe  -borderwidth 0
+# pack $w3.frame.curdataframe  -in $w3.frame  -side top  -fill x
 
-label $w3.frame.polydatalabel  -height 0 -text "Data field:    " -width 0 
-combobox $w3.frame.polydata \
+# label $w3.frame.polydatalabel  -height 0 -text "Data field:    " -width 0 
+# combobox $w3.frame.polydata \
+#     -borderwidth 1 \
+#     -highlightthickness 1 \
+#     -maxheight 0 \
+#     -width 3 \
+#     -textvariable curdata \
+#     -editable true \
+#     -command [list SelectData ]
+# eval $w3.frame.polydata list insert end [list $mycurdata "----" "Edit data..."]
+# pack $w3.frame.polydatalabel -in $w3.frame.curdataframe  -side left
+# pack $w3.frame.polydata   -in $w3.frame.curdataframe  -expand 1 -fill x -pady 2m -padx 2m
+
+
+##############################
+## DATA edit via sciGUI ######
+##############################
+
+frame $w3.frame.curdataframeX  -borderwidth 0
+pack $w3.frame.curdataframeX  -in $w3.frame  -side top  -fill x
+
+label $w3.frame.polydatalabelX  -height 0 -text "     X Data :   " -width 0 
+combobox $w3.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
     -width 3 \
-    -textvariable curdata \
-    -editable true \
-    -command [list SelectData ]
-eval $w3.frame.polydata list insert end [list $mycurdata "----" "Edit data..."]
-pack $w3.frame.polydatalabel -in $w3.frame.curdataframe  -side left
-pack $w3.frame.polydata   -in $w3.frame.curdataframe  -expand 1 -fill x -pady 2m -padx 2m
+    -textvariable curdata_x \
+    -editable false \
+    -command [list SelectDataX ]
+eval $w3.frame.polydataX list insert end [list $curdata_x "----" "Edit data..."]
+pack $w3.frame.polydatalabelX -in $w3.frame.curdataframeX  -side left
+pack $w3.frame.polydataX   -in $w3.frame.curdataframeX  -expand 1 -fill x -pady 2m -padx 2m
+
+
+frame $w3.frame.curdataframeY  -borderwidth 0
+pack $w3.frame.curdataframeY  -in $w3.frame  -side top  -fill x
+
+label $w3.frame.polydatalabelY  -height 0 -text "     Y Data :   " -width 0 
+combobox $w3.frame.polydataY \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata_y \
+    -editable false \
+    -command [list SelectDataY ]
+eval $w3.frame.polydataY list insert end [list $curdata_y "----" "Edit data..."]
+pack $w3.frame.polydatalabelY -in $w3.frame.curdataframeY  -side left
+pack $w3.frame.polydataY   -in $w3.frame.curdataframeY  -expand 1 -fill x -pady 2m -padx 2m
+
+frame $w3.frame.curdataframeFX  -borderwidth 0
+pack $w3.frame.curdataframeFX  -in $w3.frame  -side top  -fill x
+
+label $w3.frame.polydatalabelFX  -height 0 -text "     FX Data :   " -width 0 
+combobox $w3.frame.polydataFX \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata_fx \
+    -editable false \
+    -command [list SelectDataFX ]
+eval $w3.frame.polydataFX list insert end [list $curdata_fx "----" "Edit data..."]
+pack $w3.frame.polydatalabelFX -in $w3.frame.curdataframeFX  -side left
+pack $w3.frame.polydataFX   -in $w3.frame.curdataframeFX  -expand 1 -fill x -pady 2m -padx 2m
+
+
+frame $w3.frame.curdataframeFY  -borderwidth 0
+pack $w3.frame.curdataframeFY  -in $w3.frame  -side top  -fill x
+
+label $w3.frame.polydatalabelFY  -height 0 -text "     FY Data :   " -width 0 
+combobox $w3.frame.polydataFY \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata_fy \
+    -editable false \
+    -command [list SelectDataFY ]
+eval $w3.frame.polydataFY list insert end [list $curdata_fy "----" "Edit data..."]
+pack $w3.frame.polydatalabelFY -in $w3.frame.curdataframeFY  -side left
+pack $w3.frame.polydataFY   -in $w3.frame.curdataframeFY  -expand 1 -fill x -pady 2m -padx 2m
+
+
+
+#######################################################
+## DATA edit via Scilab Command Interface sciGUI ######
+#######################################################
+
+frame $w3.scicom1
+pack $w3.scicom1 -side top -fill x -pady 2m
+
+label $w3.scicom1.label1 -text "Scilab Command Interface for data:"
+pack  $w3.scicom1.label1 -in $w3.scicom1 -side left
+
+frame $w3.scicomX
+pack $w3.scicomX -side top -fill x -pady 2m
+
+label $w3.scicomX.label1 -text "     X Data :   "
+pack  $w3.scicomX.label1 -in $w3.scicomX -side left
+
+entry $w3.scicomX.text1 -relief sunken -textvariable scicomint_dataX
+set_balloon $w3.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector)\n to initialize the \"X data\" field."
+bind  $w3.scicomX.text1 <Return> "sciCommandData"
+bind  $w3.scicomX.text1 <KP_Enter> "sciCommandData"
+
+pack $w3.scicomX.text1  -side left  -fill both -expand yes
+
+
+frame $w3.scicomY
+pack $w3.scicomY -side top -fill x -pady 2m
+
+label $w3.scicomY.label1 -text "     Y Data :   "
+pack  $w3.scicomY.label1 -in $w3.scicomY -side left
+
+entry $w3.scicomY.text1 -relief sunken -textvariable scicomint_dataY
+set_balloon $w3.scicomY.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector)\n to initialize the \"Y data\" field."
+bind  $w3.scicomY.text1 <Return> "sciCommandData"
+bind  $w3.scicomY.text1 <KP_Enter> "sciCommandData"
+
+pack $w3.scicomY.text1  -side left  -fill both -expand yes
+
+
+frame $w3.scicomFX
+pack $w3.scicomFX -side top -fill x -pady 2m
+
+label $w3.scicomFX.label1 -text "     FX Data :   "
+pack  $w3.scicomFX.label1 -in $w3.scicomFX -side left
+
+entry $w3.scicomFX.text1 -relief sunken -textvariable scicomint_dataFX
+set_balloon $w3.scicomFX.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"FX data\" field."
+bind  $w3.scicomFX.text1 <Return> "sciCommandData"
+bind  $w3.scicomFX.text1 <KP_Enter> "sciCommandData"
+
+pack $w3.scicomFX.text1  -side left  -fill both -expand yes
+
+
+
+frame $w3.scicomFY
+pack $w3.scicomFY -side top -fill x -pady 2m
+
+label $w3.scicomFY.label1 -text "     FY Data :   "
+pack  $w3.scicomFY.label1 -in $w3.scicomFY -side left
+
+entry $w3.scicomFY.text1 -relief sunken -textvariable scicomint_dataFY
+set_balloon $w3.scicomFY.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"FY data\" field."
+bind  $w3.scicomFY.text1 <Return> "sciCommandData"
+bind  $w3.scicomFY.text1 <KP_Enter> "sciCommandData"
+
+pack $w3.scicomFY.text1  -side left  -fill both -expand yes
+
+
+
+
+
 
 
 # frame $w3.frame2.fdata -borderwidth 0
@@ -559,4 +704,96 @@ proc SelectData  {w args} {
 
 proc DestroyGlobals { } {
     ScilabEval "DestroyGlobals()" "seq"
+}
+
+
+
+proc sciCommandData {} {
+    global scicomint_dataX scicomint_dataY scicomint_dataFX scicomint_dataFY
+    
+    if { ($scicomint_dataX == "") || ($scicomint_dataY == "") ||
+	 ($scicomint_dataFX == "") || ($scicomint_dataFY == "") } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must fill in all the fields (only color field is optional) using variables defined in Scilab Console\n to initialize the \"data\" field."
+    } else {
+	ScilabEval "setchamptlistXYFXFY($scicomint_dataX,$scicomint_dataY,$scicomint_dataFX,$scicomint_dataFY)" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }   
+}
+
+
+proc SelectDataX  {w args} {
+    global curdata_x
+    variable mycurdata
+    set mycurdata $curdata_x
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+#    puts "finddbarray = $finddbarray"
+
+    puts "mycurdata = $mycurdata"
+
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.x,\"ged_handle.data.x\")" "seq"
+	}
+    }
+}
+
+
+proc SelectDataY  {w args} {
+    global curdata_y
+    variable mycurdata
+    set mycurdata $curdata_y
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+#    puts "finddbarray = $finddbarray"
+
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.y,\"ged_handle.data.y\")" "seq"
+	}
+    }
+}
+
+proc SelectDataFX  {w args} {
+    global curdata_fx
+    variable mycurdata
+    set mycurdata $curdata_fx
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+    #    puts "finddbarray = $finddbarray"
+    
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.fx,\"ged_handle.data.fx\")" "seq"
+	}
+    }
+}
+
+
+proc SelectDataFY  {w args} {
+    global curdata_fy
+    variable mycurdata
+    set mycurdata $curdata_fy
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+    #    puts "finddbarray = $finddbarray"
+    
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.fy,\"ged_handle.data.fy\")" "seq"
+	}
+    }
 }
