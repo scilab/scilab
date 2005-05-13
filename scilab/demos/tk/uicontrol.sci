@@ -19,7 +19,7 @@ function myuidialog()
   m=uimenu(f,'label', 'menu');
   // create an item on the menu bar
   m1=uimenu(m,'label', 'launch plot3d1', 'callback', "plot3d1()");
-  m2=uimenu(m,'label', 'Exit figure', 'callback', "fin=%t;close()");
+  m2=uimenu(m,'label', 'Exit figure', 'callback', "fin=%t;");
   m3=uimenu(m,'label', 'quit scilab', 'callback', "exit");
 
   fr1= uicontrol(f, "Position"  , [5 5 160 100],...
