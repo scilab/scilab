@@ -41,7 +41,7 @@ function h=uicontrol(varargin)
       if ( bOK == %F) then
             error('Incorrect property '+string(varargin(k)),999);
       else
-        if (Rhs<3) then
+        if (Rhs ==1) then
           error('Too many input arguments. ',999);
         else
           k=FindStyleInLine(varargin,1);
