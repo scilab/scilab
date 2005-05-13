@@ -444,20 +444,21 @@ void Legends(style, n1, legend)
 
       for ( i = 0 ; i < *n1 && i < 6 ; i++)
 	{  
-	  integer xs,ys,flag=0,polyx[2],polyy[2],lstyle[1],ni;
+	  integer xs,ys,flag=0,polyx[2],polyy[2],lstyle[1];
 	  double angle=0.0;
-	  if (*n1 == 1) ni=Max(Min(5,style[1]-1),0);else ni=i;
-	  if (ni >= 3)
+	  
+	  if (i >= 3)
 	    { 
 	      /* down left point for string display */
 	      xi= xi1;
-	      yi= yi1 +(ni-3)*yoffset+3*yoffset;}
+	      yi= yi1 +(i-3)*yoffset+3*yoffset;}
 	  else
 	    { 
-	      yi= yi1 + (ni)*yoffset+3*yoffset;
+	      yi= yi1 + (i)*yoffset+3*yoffset;
 	    }
 	  xs=inint(xi+1.2*xoffset);
 	  ys=inint(yi);
+	  
 	  if ( i==0) leg=strtok(loc,"@"); else leg=strtok((char *)0,"@");
 	  if (leg != 0) 
 	    {
