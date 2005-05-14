@@ -226,6 +226,7 @@ btn_pressed(widget, event, params, num_params)
  }
 
 
+
 }
 
 void
@@ -235,7 +236,6 @@ btn_released(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-
   if (wait_dclick) {
     lose_up = TRUE;
     return;
@@ -322,7 +322,6 @@ mouse_moved(widget, event, params, num_params)
 		 -1,1,0);
 }
 
-
 /*
 <Btn1Motion>:MouseMoved(1)\n\
 
@@ -343,8 +342,12 @@ static String	event_translations =
 <MouseMoved>:MouseMoved()\n\
 Ctrl<Key>:CtrlKey()\n\
 !Shift<KeyDown>:KeyPressed(1)\n\
+!Lock<KeyDown>:KeyPressed(1)\n\
+!Lock Shift <KeyDown>:KeyPressed(0)\n\
 None<KeyDown>:KeyPressed(0)\n\
 !Shift<KeyUp>:KeyReleased(1)\n\
+!Lock<KeyUp>:KeyReleased(1)\n\
+!Lock Shift<KeyUp>:KeyReleased(1)\n\
 None<KeyUp>:KeyReleased(0)\n\
 <BtnUp>:BtnReleased()\n\
 <BtnDown>:BtnPressed()\n\
@@ -441,7 +444,7 @@ static int AddNewWin( int popupc,   struct BCG *ScilabXgc)
      queue of unused events ok 
   */
 
- /* XtAddEventHandler(ScilabXgc->drawbox, 
+  /* XtAddEventHandler(ScilabXgc->drawbox, 
 		    ButtonPressMask|PointerMotionMask|ButtonReleaseMask|
 		    KeyPressMask|KeyReleaseMask,False,
 		    (XtEventHandler) EventProc, (XtPointer) popupc); */
