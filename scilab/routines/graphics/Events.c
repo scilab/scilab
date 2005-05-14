@@ -127,13 +127,15 @@ int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
   /* first let a click_handler do the job  */
-  if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
+  if (  wait_for_click==0){
+    if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
+  }
   /* do not record motion events and release button 
    * this is left for a futur release 
    */
   /*if (motion==1) printf("%d ",(wait_for_click&2)&&motion);*/
   if (  wait_for_click==0 &&(motion == 1 || release == 1) ) return 0;
-  if (((wait_for_click&2)&&motion)||((wait_for_click&4)&&release)||(wait_for_click%2)&&(motion==0&&release==0)) {
+  if (((wait_for_click&2)&&motion)||((wait_for_click&4)&&release)||(motion==0&&release==0)) {
   /* store click event in a queue */
   if ( lastc == MaxCB ) 
     {
