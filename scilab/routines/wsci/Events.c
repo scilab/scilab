@@ -633,7 +633,7 @@ void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	if ( (bTimerLeftPressedON) || (bTimerRightPressedON) || (bTimerMiddlePressedON) ||
 		 (bTimerLeftSingleClickON) || (bTimerMiddleSingleClickON) || (bTimerRightSingleClickON) )
 	{
-		if ( (bTimerLeftSingleClickON) || (bTimerLeftSingleClickON) )
+		if ( (bTimerLeftPressedON) || (bTimerLeftSingleClickON) )
 		{
 			if (GetKeyState(VK_CONTROL)<0)
 			{
