@@ -3261,7 +3261,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_SEGS:
-      if (pSEGS_FEATURE (pthis)->ptype == 0) {
+      if (pSEGS_FEATURE (pthis)->ptype <= 0) {
 	if ((*numcol != 3)&&(*numcol != 2)) {
 	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
 	  return -1;
