@@ -10,7 +10,7 @@ dash=33
 symb=[0 0]
 if sd(1)<>'sd' then error('first argument has incorrect data type'),end
 if rhs<3 then orig=['0';'0'],end
-if type(orig)==1 then zoom=string(orig),end
+if type(orig)==1 then orig=string(orig),end
 if rhs<2 then zoom=['1';'1'],end
 if type(zoom)==1 then zoom=string(zoom),end
 if size(zoom,'*')==1 then zoom(2)=zoom(1),end

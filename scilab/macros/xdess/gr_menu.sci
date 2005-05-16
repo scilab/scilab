@@ -1,5 +1,6 @@
 function [sd]=gr_menu(sd,flag,noframe)
 // Copyright INRIA
+  set figure_style old
   getf('SCI/macros/xdess/gr_macros.sci','c');
 
   deff('[modek]=clearmode()',['modek=xget(''alufunction'')';
@@ -42,7 +43,6 @@ function [sd]=gr_menu(sd,flag,noframe)
   if noframe==1;s_t="010";else s_t="012";end
   plot2d(0,0,[1],s_t,' ',cdef);
   curwin=xget('window')
-  set("figure_style","old")
 
   xclip('clipgrf')
 
