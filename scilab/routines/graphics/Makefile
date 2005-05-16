@@ -4,7 +4,7 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/graphics.a
 
-OBJSC = periX11.o periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
+OBJSC = periGtk.o periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
 	GetProperty.o BuildObjects.o CloneObjects.o DestroyObjects.o \
 	DrawObjects.o SetProperty.o HandleManagement.o InitObjects.o \
 	Interaction.o Interaction.o SetProperty.o \
@@ -31,7 +31,7 @@ Format.o: Format.c
 
 # do not optimize periX11.c on darwin 
 
-periX11darwin.o: periX11darwin.c
+periX11.o: periX11.c
 	$(CC) `echo $(CFLAGS) | sed -e "s/-O2//"`  -c $< -o $@
 
 #--- dependencies generated with gcc -MM  ----

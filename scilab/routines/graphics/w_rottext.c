@@ -131,7 +131,7 @@ static struct style_template {
 
 static char            *my_strtok();
 /* HUYNH Olivier 03/09/2004 10:04 
-  static char            *my_strdup();
+  static char            *my_wrot_strdup();
 */
 float                   XRotVersion();
 void                    XRotSetMagnification();
@@ -207,11 +207,11 @@ static char
 /* ---------------------------------------------------------------------- */
 
 /**************************************************************************/
-/* Routine to mimic `my_strdup()' (some machines don't have it)           */
+/* Routine to mimic `my_wrot_strdup()' (some machines don't have it)           */
 /**************************************************************************/
 /* copied from Xfig (f_utils.c) */
 static char
-*my_strdup(str)
+*my_wrot_strdup(str)
     char *str;
 {
     char *s;
@@ -711,7 +711,7 @@ XRotDrawHorizontalString(dpy, font, drawable, gc, x, y, text,
     else
 	yp=y;
     
-    str1=my_strdup(text);
+    str1=my_wrot_strdup(text);
     if (str1==NULL)
 	return 1;
     
@@ -869,11 +869,11 @@ static RotatedTextItem
 	    return NULL;
 
 	/* record what it shows */
-	item->text=my_strdup(text);
+	item->text=my_wrot_strdup(text);
 
 	/* fontname or ID */
 	if (font_name!=NULL) {
-	    item->font_name=my_strdup(font_name);
+	    item->font_name=my_wrot_strdup(font_name);
 	    item->fid=0;
 	}
 	else {
@@ -973,7 +973,7 @@ static RotatedTextItem
 	str2=str2_b;
     
     /* find width of longest section */
-    str1=my_strdup(text);
+    str1=my_wrot_strdup(text);
     if (str1==NULL)
 	return NULL;
     
@@ -1054,7 +1054,7 @@ static RotatedTextItem
 #endif  /* I18N */
     yp=font->ascent;
     
-    str1=my_strdup(text);
+    str1=my_wrot_strdup(text);
     if (str1==NULL)
 	return NULL;
     
@@ -1541,7 +1541,7 @@ XPoint
 	str2=str2_b;
     
     /* find width of longest section */
-    str1=my_strdup(text);
+    str1=my_wrot_strdup(text);
     if (str1==NULL)
 	return NULL;
     
