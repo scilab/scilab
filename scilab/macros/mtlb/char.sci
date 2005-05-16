@@ -14,7 +14,7 @@ function y=char(varargin)
 // Inputs must be string : st1,st2,st3,...
 // Outputs : vector (column) of strings
 // This function returns a vector in  which the rows are st1, st2,st3,...,
-// the length of all strings sti is completed by blanks,to have the same length than the lengthmax of sti.
+// the length of all strings sti is completed by blanks,in order to have the same length for each sti.
 // F.B
 
 rhs=argn(2)
@@ -69,8 +69,7 @@ if rhs==1 then
 	  error("cell elements must be arrays chars")	
 	end
       end
-    end
-    
+    end    
     // Add blank at the length of strings
     bl=' '
     maxstr=max(length(y))
@@ -83,7 +82,9 @@ if rhs==1 then
   elseif type(varargin(1))==1|type(varargin(1))==8 then //Input is a matrix of integers (or reals) 
     y=asciimat(varargin(1))
   elseif type(varargin(1))==10 then //Input is a matrix of strings
-    y=varargin(1)
+    for i=1:size(varargin(1),1)
+    y(i)=strcat(varargin(1)(i,:))
+    end
   elseif typeof(varargin(1))=="hypermat" then //Input is a hypermatrix of strings
     if type(varargin(1).entries)==10 then
       y=varargin(1)
