@@ -244,10 +244,13 @@ extern int ExposeMessageWindow1  __PARAMS((void));
 
 /* "xmen_print-n.c.X1" */
 
+
+#ifndef WITH_GTK
 extern void PrintDlgOk  __PARAMS((Widget w, caddr_t , caddr_t ));  
 extern void SaveDlgOk  __PARAMS((Widget w, caddr_t , caddr_t ));  
 extern void PrintDlgCancel  __PARAMS((Widget w, caddr_t , caddr_t ));  
 extern int ExposePrintdialogWindow  __PARAMS((int flag, int *, int *)); 
+#endif
 
 
 #endif 
