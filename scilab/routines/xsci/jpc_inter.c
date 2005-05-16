@@ -71,7 +71,7 @@ extern void xevents1  __PARAMS((void));
 
 
 static fd_set Select_mask_ref,select_mask,Write_mask_ref,write_mask;
-static int max_plus1 = 0;
+static int inter_max_plus1 = 0;
 Display *the_dpy = (Display *) NULL;
 int BasicScilab = 1;
 XtAppContext app_con;
@@ -215,13 +215,13 @@ static void basic_scilab_mask( Display **dpy)
   /* FD_SET(fd_out,&Write_mask_ref);
      FD_SET(fd_err,&Write_mask_ref);*/
 
-  max_plus1 = Max(fd_in,Xsocket);      
-  max_plus1 = Max(fd_out,max_plus1);
-  max_plus1 = Max(fd_err,max_plus1);
+  inter_max_plus1 = Max(fd_in,Xsocket);      
+  inter_max_plus1 = Max(fd_out,inter_max_plus1);
+  inter_max_plus1 = Max(fd_err,inter_max_plus1);
 #ifdef WITH_TK 
-  max_plus1 = Max(XTKsocket,max_plus1);
+  inter_max_plus1 = Max(XTKsocket,inter_max_plus1);
 #endif 
-  max_plus1++;
+  inter_max_plus1++;
 }  
 
 
@@ -261,7 +261,7 @@ int Xorgetchar(int interrupt)
 
     select_timeout.tv_sec = 0;
     select_timeout.tv_usec = 10;
-    i = select(max_plus1, &select_mask, &write_mask, (fd_set *)NULL,
+    i = select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL,
 	       QLength(the_dpy) ? &select_timeout
 	       : (struct timeval *) NULL);
     if (i < 0) {
