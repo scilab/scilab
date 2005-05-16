@@ -45,7 +45,7 @@ function [ok,Makename]=buildnewblock()
   files=[rdnom rdnom+'_void_io' rdnom+'_Cblocks']
   [fd,ierr]=mopen(rpat+'/'+rdnom+'f.f','r')
   if ierr==0 then mclose(fd),files=[files,rdnom+'f'],end
-    if (archname ~= emptystr()) then
+    if (archname ~= emptystr())then
       archname=pathconvert(archname,%f,%t)
     end
     Makename=gen_make(rdnom,files,archname,rpat+'/'+rdnom+'_Makefile')
@@ -449,6 +449,7 @@ function Code=make_odoit(stalone)
   nZ=size(z,'*')+size(outtb,'*')+clkptr($)
   Code=['';
 	 '/*'+part('-',ones(1,40))+' odoit.c */ ';]
+
 if (stalone & x <> []) then
    Code=[Code
          'int '
@@ -605,7 +606,6 @@ end
 
 endfunction
 
-//nouveau
 function Code=make_zdoit(stalone)
 //les pointeurs de cpr :
   z=cpr.state.z;zcptr=cpr.sim.zcptr;
@@ -888,18 +888,7 @@ function Code=make_ozdoit(stalone)
         end 
 	
       end
-    //end
-    //Code($+1)='    break;';
-  //end
-      //Code($+1)='  }  ';
-      //Code($+1)='  ';
-      //Code($+1)='  switch(kever) {';
-  //for kever=1:maxkeve
-    //Code($+1)='  case '+string(kever)+':';
 
-    //for ii=ordptr(kever):ordptr(kever+1)-1
-      //***********************************
-      //fun=ordclk(ii,1);
       i=fun;
       nevprt=ordclk(ii,2);
       ntvec=clkptr(fun+1)-clkptr(fun);
@@ -915,7 +904,7 @@ function Code=make_ozdoit(stalone)
 		'        ntvecm=2;';
 		'      }';
                 '    }else {';
-                '      ntvecm=block_'+rdnom+'['+string(i-1)+'].mode;';
+                '      ntvecm=block_'+rdnom+'['+string(i-1)+'].mode[0];';
                 '    }']
 	elseif funtyp(fun)==-2 then
 	  Code=[Code;
@@ -924,7 +913,7 @@ function Code=make_ozdoit(stalone)
 		'      if(ntvecm>'+string(ntvec)+'){ntvecm='+string(ntvec)+';}';
 		'      if(ntvecm<1){ntvecm=1;}';
                 '    }else {';
-                '      ntvecm=block_'+rdnom+'['+string(i-1)+'].mode;';
+                '      ntvecm=block_'+rdnom+'['+string(i-1)+'].mode[0];';
                 '    }']
 	else
 	  message('Block '+fun+' has funtyp '+string(funtyp(fun))+': not allowed')
@@ -1203,13 +1192,11 @@ function [Code,actt,proto]=call_actuator(i)
     if nin==0 then
       uk=0;
       nuk=0;
-      Code='if ( strcmp(output,'"Terminal'") == 0){'
       Code($+1)=+'  args[0]=&(outtb[0]);';
     else
       lprt=inplnk(inpptr(i));
       uk=lnkptr(lprt);
       nuk=(lnkptr(lprt+1))-uk;
-      Code='if ( strcmp(output,'"Terminal'") == 0){'
       Code($+1)='  args[0]=&(outtb['+string(uk-1)+']);';
     end
   end
@@ -1222,10 +1209,9 @@ function [Code,actt,proto]=call_actuator(i)
   Code=[Code;
 	 '  nport = '+string(nbact)+';';
 	 '  '+rdnom+'_actuator(&flag, &nport, &block_'+rdnom+'['+string(i-1)+'].nevprt, told, '+..
-	 '(double *)args[0], &nrd_'+string(nuk)+');'
-	 '}'];
+	 '(double *)args[0], &nrd_'+string(nuk)+',bbb);'];
   proto='void '+rdnom+'_actuator(int *, int *, int *, double *,"+...
-	" double *, int *);"
+	" double *, int *,int);"
   proto=cformatline(proto,70);
 endfunction
 
@@ -1434,13 +1420,11 @@ function [Code,capt,proto]=call_sensor(i)
     if nout==0 then
       yk=0;
       nyk=0;
-      Code='if ( strcmp(input,'"Terminal'") == 0){' 
       Code($+1)=+'  args[1]=&(outtb[0]);';
     else
       lprt=outlnk(outptr(i));
       yk=lnkptr(lprt);
       nyk=(lnkptr(lprt+1))-yk;
-      Code='if ( strcmp(input,'"Terminal'") == 0){'
       Code($+1)='  args[1]=&(outtb['+string(yk-1)+']);';
     end
 
@@ -1450,10 +1434,9 @@ function [Code,capt,proto]=call_sensor(i)
   Code=[Code;
 	 '  nport = '+string(nbcap)+';'; 
 	 '  '+rdnom+'_sensor(&flag, &nport, &block_'+rdnom+'['+string(i-1)+'].nevprt, '+..
-	 'told, (double *)args[1], &nrd_'+string(nyk)+');'
-	 '}'];
+	 'told, (double *)args[1], &nrd_'+string(nyk)+',aaa);'];
   proto='void '+rdnom+'_sensor(int *, int *, int *, double *,"+...
-	" double *, int *);"
+	" double *, int *, int);"
   proto=cformatline(proto,70);
 endfunction
 
@@ -1775,7 +1758,7 @@ zcptr=cpr.sim.zcptr;
 		        'Other object files to link with ( if any)'],..
 		        list('str',1,'str',1,'str',1),label1);
     if okk==%f then ok=%f;return; end
-  
+    rpat=stripblanks(rpat);
     dirinfo=fileinfo(rpat)
     if dirinfo==[] then
       ok=mkdir(rpat)    
@@ -2035,10 +2018,22 @@ function ok=gen_ccode();
       return
     end
   end
-  Code=['#include '"scicos_block.h'"';
-	'#include '"machine.h'"';
-	make_actuator(%f)
-	make_sensor(%f)]
+  Code=['/*---------------------------------------- Actuators */ '
+	'void '+rdnom+'_actuator(flag,nport,nevprt,t,u,nu,flag1)'
+     	'     int *flag,*nevprt,*nport;'	
+     	'     int *nu,flag1;'
+	'     double  *t, u[];'
+	'{'
+	'  int k;'
+	'}'
+	'/*---------------------------------------- Sensor */ '
+	'void '+rdnom+'_sensor(flag,nport,nevprt,t,y,ny,flag1)'
+	'     int *flag,*nevprt,*nport;'
+	'     int *ny,flag1;'
+	'     double  *t, y[];'
+	'{'
+	'  int k;'
+	'}']
   ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_void_io.c'')','errcatch')
   if ierr<>0 then
     message(lasterror())
@@ -2058,7 +2053,13 @@ function ok=gen_ccode();
   end
  
   
-  Code=[make_decl_standalone()
+  Code=['#include <stdio.h>'
+	'#include <stdlib.h>'
+	'#include <math.h>'
+	'#include <string.h>'
+	'extern double *'+rdnom+'_block_outtb;'
+	'extern char input[50],output[50];'
+	'FILE *fprr,*fprw;'
 	make_outevents()
 	make_actuator(%t)
 	make_sensor(%t)]
@@ -2292,7 +2293,7 @@ function Code=make_actuator(standalone)
   
 Call=['/*'+part('-',ones(1,40))+' Actuators */ ';
       'void ';
-      rdnom+'_actuator(flag,nport,nevprt,t,u,nu)']
+      rdnom+'_actuator(flag,nport,nevprt,t,u,nu,flag1)']
 comments=['     /*'
 	  '      * To be customized for standalone execution';
 	  '      * flag  : specifies the action to be done'
@@ -2305,10 +2306,11 @@ comments=['     /*'
 	  '      * t     : the current time value'
 	  '      * u     : the vector inputs value'
 	  '      * nu    : the input  vector size'
+	  '      * flag1 : learn mode (0 from terminal,1 from input file'
 	  '      */']
 
-dcl=['     integer *flag,*nevprt,*nport;'
-     '     integer *nu;'
+dcl=['     int *flag,*nevprt,*nport;'
+     '     int *nu,flag1;'
      ''
      '     double  *t, u[];'
      '{'
@@ -2316,29 +2318,58 @@ dcl=['     integer *flag,*nevprt,*nport;'
 
 if standalone then
   a_actuator=['  /* skeleton to be customized */' 
-	      '  switch (*flag) {'
-	      '  case 2 : ' 
-	      '    if(*nevprt>0) {/* get the input value */'
-	      '      for (k=0;k<*nu;k++) printf(""Actuator: time=%f, u(%d) of actuator %d is %f \n"", *t, k, *nport, u[k]);  '
-	      '    } ;'
-	      '    break;'
-	      '  case 4 : /* actuator initialisation */'
-	      '    /* do whatever you want to initialize the actuator */ '
-	      '    break;'
-	      '  case 5 : /* actuator ending */'
-	      '    /* do whatever you want to end the actuator */'
-	      '    break;'
-	      '  }']
+	      '    switch (*flag) {'
+	      '    case 2 : ' 
+	      '      /*if(*nevprt>0) { get the input value */'
+	      '        for (k=0;k<*nu;k++) printf(""Actuator: time=%f, u(%d) of actuator %d is %f \n"", *t, k, *nport, u[k]);  '
+	      '      /*} */'
+	      '      break;'
+	      '    case 4 : /* actuator initialisation */'
+	      '      /* do whatever you want to initialize the actuator */ '
+	      '      break;'
+	      '    case 5 : /* actuator ending */'
+	      '      /* do whatever you want to end the actuator */'
+	      '      break;'
+	      '    }']
 else
  a_actuator=[]
 end
 nc=size(act,'*')
+// pour fprintf
+typ='%f ';
+  for i=1:sum(actt(:,3))
+    typ=typ+'%f ';
+  end
+  Code1='    fprintf(fprw, '"'+typ+' \n'",*t' 
+  for i=1:size(actt,1)
+    ni=actt(i,3) // dimension of ith output
+    for j=1:ni
+      Code1= Code1+ ' ,'+rdnom+'_block_outtb['+string(actt(i,2)-1+j-1')+']'
+    end
+  end
+Code1($)=Code1($)+');'
+
 Code=[]
 if nc==1|~standalone then
   Code=[Call
 	comments
 	dcl
+	'  if (flag1 == 0){'
 	a_actuator
+	'  }else if (flag1 == 1){'
+	'    if (*flag == 4 && *nport == 1){'
+	'      fprw=fopen(output,'"wt'");'
+	'      if( fprw == NULL )'
+        '        {'
+        '          printf('"Error opening file: %s\n'", output);'
+        '          return;'
+        '        }'
+	'    }else if (*flag == 2 /* && *nevprt>0 */){'
+	Code1
+	'    }else if (*flag == 5 && *nport == 1){'
+        '      fclose(fprw);'
+        '    }'
+	'  }'
 	'}']
 elseif nc>1 then
   S='  switch (*nport) {'
@@ -2353,7 +2384,22 @@ elseif nc>1 then
 	Call
 	comments
 	dcl
+	'  if (flag1 == 0){'	
 	S
+	'  }else if (flag1 == 1){'
+	'    if (*flag == 4 && *nport == 1){'
+	'      fprw=fopen(output,'"wt'");'
+	'      if( fprw == NULL )'
+        '        {'
+        '          printf('"Error opening file: %s\n'", output);'
+        '          return;'
+        '        }'
+	'    }else if (*flag == 2 /*&& *nevprt>0*/ ){'
+	Code1
+	'    }else if (*flag == 5 && *nport == 1){'
+        '      fclose(fprw);'
+        '    }'
+	'  }'
 	'}']
 end
 endfunction
@@ -2378,7 +2424,7 @@ function Code=make_computational()
   modptr=cpr.sim.modptr;inplnk=cpr.sim.inplnk;
   nblk=cpr.sim.nblk;outlnk=cpr.sim.outlnk;
   nZ=size(z,'*')+size(outtb,'*')+clkptr($)
-  
+  niwa=size(z,'*')+size(outtb,'*');
 Code=['/*'+part('-',ones(1,40))+' Block Computational function */ ';
       'int  '+rdnom+'(scicos_block *block, int flag)'     
       '{'
@@ -2397,11 +2443,12 @@ Code=['/*'+part('-',ones(1,40))+' Block Computational function */ ';
       '  int* mode = block->mode;' 
       '  void **work = block->work;'
       '  double t;'
-      '  /*  block_outtb is catenated at the end of z*/'
-      '  double* block_outtb = z+'+string(nztotal)+';'
+      '  /*  '+rdnom+'_block_outtb is catenated at the end of z*/'
       '  int kf, phase=get_phase_simulation();' 
       '  int* reentryflag;'
       '  work = z+'+string(nZ)+'; '
+      '  '+rdnom+'_block_outtb = z+'+string(nztotal)+';'
+      '  '+rdnom+'_iwa = (int *)(z+'+string(niwa)+');'
       '  t=get_scicos_time();' 
       ' '];
 Code=[Code;
@@ -2409,7 +2456,7 @@ Code=[Code;
 for i=1:size(capt,1)
    ni=capt(i,3) // dimension of ith input
   Code=[Code;
-        '  block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'] = u['+..
+        '  '+rdnom+'_block_outtb['+string(capt(i,2)-1+(0:ni-1)')+'] = u['+..
 	              string(capt(i,4)-1)+']['+string(0:ni-1)'+'];';]
 end
 
@@ -2428,12 +2475,12 @@ Code=[Code;
         for k=1:nin
           lprt=inplnk(inpptr(kf)-1+k);
           Code=[Code;
-	        '      block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);']
+	        '      block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);']
         end
         for k=1:nout
           lprt=outlnk(outptr(kf)-1+k);
           Code=[Code
-	        '      block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);']
+	        '      block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);']
         end
         Code=[Code
 	      '      block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);']
@@ -2524,7 +2571,7 @@ Code=[Code;
       for k=1:nin
          lprt=inplnk(inpptr(kf)-1+k);
          Code=[Code
-               '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
+               '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);'
 	       '    block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end 
       Code=[Code
@@ -2534,7 +2581,7 @@ Code=[Code;
       for k=1:nout
         lprt=outlnk(outptr(kf)-1+k);
         Code=[Code
-	      '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	      '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);'
 	      '    block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end
       Code=[Code
@@ -2567,12 +2614,12 @@ end
         for k=1:nin
           lprt=inplnk(inpptr(kf)-1+k);
           Code=[Code;
-	        '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);']
+	        '    block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);']
         end
         for k=1:nout
           lprt=outlnk(outptr(kf)-1+k);
           Code=[Code
-	        '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);']
+	        '    block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);']
         end
         Code=[Code
 	      '    block_'+rdnom+'['+string(kf-1)+'].z=&(z['+string(zptr(kf)-1)+']);']
@@ -2634,7 +2681,7 @@ end
 for i=1:size(actt,1)
   ni=actt(i,3) // dimension of ith output
   Code=[Code;
-	'  y['+string(actt(i,4)-1)+']['+string(0:ni-1)'+'] =  block_outtb['+..
+	'  y['+string(actt(i,4)-1)+']['+string(0:ni-1)'+'] =  '+rdnom+'_block_outtb['+..
                              string(actt(i,2)-1+(0:ni-1)')+'];']
 end
 
@@ -2712,11 +2759,7 @@ x=cpr.state.x
 	getversion()+' */';
 	'/*     date : '+date(getdate())+' */';
 	''
-	'/* The command to execute the standalone code is: ./standalone input output dt tf */'
-	'/* If input = Terminal: reading fro, keyboard, else read from input file */'
-	'/* If output = Terminal: write to terminal else  into a output file */'
-	'/* dt is the clock period */'  
-	'/* tf is the final time */' 
+	'/* To learn how to use the standalone code, type '"./standalone -h'" */' 
 	''
 	'#include <stdio.h>';
 	'#include <stdlib.h>';
@@ -2725,8 +2768,6 @@ x=cpr.state.x
 	'#include <memory.h>';
 	'#include '"scicos_block.h'"';
 	'#include '"machine.h'"';
-	'#include <getopt.h>'
-	'#include <unistd.h>'
 	'';
 	cformatline('void '+rdnom+'main0(scicos_block *block_'+rdnom+',double *z, double *t, int phase);',70);
 	'';
@@ -2738,7 +2779,7 @@ x=cpr.state.x
 	'';
 	cformatline('void '+rdnom+'_end(scicos_block *block_'+rdnom+',double *z, double *t) ;',70);
 	''
-	cformatline('int '+rdnom+'_sim(double tf)"+...
+	cformatline('int '+rdnom+'_sim(double, double, double, int)"+...
 		    " ;',70);
 	cformatline('int '+rdnom+'ddoit1(double *, double *, double *, int *);',70);
 	' ';
@@ -2922,7 +2963,7 @@ function Code=make_sensor(standalone)
   
 Call=['/*'+part('-',ones(1,40))+' Sensor */ ';
       'void ';
-      rdnom+'_sensor(flag,nport,nevprt,t,y,ny)']
+      rdnom+'_sensor(flag,nport,nevprt,t,y,ny,flag1)']
 comments=['     /*'
           '      * To be customized for standalone execution';
 	  '      * flag  : specifies the action to be done'
@@ -2935,41 +2976,72 @@ comments=['     /*'
 	  '      * t     : the current time value'
 	  '      * y     : the vector outputs value'
 	  '      * ny    : the output  vector size'
+	  '      * flag1 : learn mode (0 from terminal,1 from input file'
 	  '      */']
-dcl=['     integer *flag,*nevprt,*nport;'
-     '     integer *ny;'
+dcl=['     int *flag,*nevprt,*nport;'
+     '     int *ny,flag1;'
      ''
      '     double  *t, y[];'
      '{'
-     '  int k;'];
+     '  int k;'
+     '  double temps;'];
 if standalone then
 
-  a_sensor=['  switch (*flag) {'
-	    '  case 1 : /* set the output value */'
-	    '    printf(""Require outputs of sensor number %d\n"", *nport);'
-	    '    printf(""time is: %f\n"", *t);'
-	    '    printf(""size of the sensor output is: %d\n"", *ny);'
-	    '    puts(""Please set the sensor output values""); '
-	    '    for (k=0;k<*ny;k++) scanf(""%lf"", &(y[k]));'
-	    '    break;'
-	    '  case 4 : /* sensor initialisation */'
-	    '    /* do whatever you want to initialize the sensor */'
-	    '    break;'
-	    '  case 5 : /* sensor ending */'
-	    '    /* do whatever you want to end the sensor */'
-	    '    break;'
-	    '  }']
+  a_sensor=['    switch (*flag) {'
+	    '    case 1 : /* set the output value */'
+	    '      printf(""Require outputs of sensor number %d\n"", *nport);'
+	    '      printf(""time is: %f\n"", *t);'
+	    '      printf(""size of the sensor output is: %d\n"", *ny);'
+	    '      puts(""Please set the sensor output values""); '
+	    '      for (k=0;k<*ny;k++) scanf(""%lf"", &(y[k]));'
+	    '      break;'
+	    '    case 4 : /* sensor initialisation */'
+	    '      /* do whatever you want to initialize the sensor */'
+	    '      break;'
+	    '    case 5 : /* sensor ending */'
+	    '      /* do whatever you want to end the sensor */'
+	    '      break;'
+	    '    }']
 else
   a_sensor=[]
 end
 nc=size(cap,'*')
+// pour fscanf
+typ='%lf ';
+  for i=1:sum(capt(:,3))
+    typ=typ+'%lf ';
+  end
+  Code1=['      fscanf( fprr, '"'+typ+' \n'",&temps'] 
+  for i=1:size(capt,1)
+   ni=capt(i,3) // dimension of ith input
+   for j=1:ni
+     Code1($)=Code1($)+ '  , &('+rdnom+'_block_outtb['+string(capt(i,2)-1+j-1')+'])';
+   end 
+  end
+  Code1($)=Code1($)+');'
+
 Code=[]
 if nc==1|~standalone then
   Code=[Code;
 	Call
 	comments
 	dcl
+	'  if (flag1 == 0){'
 	a_sensor
+	'  }else if (flag1 == 1){'
+	'    if (*flag == 4 && *nport == 1){'
+        '      fprr=fopen(input,'"r'");'
+        '      if( fprr == NULL )'
+	'        {'
+	'          printf('"Error opening file: %s\n'", input);'
+	'          return ;'
+        '	 }' 
+        '    }else if (*flag == 1){'
+	Code1
+	'    }else if (*flag == 5 && *nport == 1){'
+        '      fclose(fprr);'
+        '    }'
+	'  }'
 	'}'];
 elseif nc>1 then
   S='  switch (*nport) {'
@@ -2984,7 +3056,22 @@ elseif nc>1 then
 	  Call
 	  comments
 	  dcl
+	  '  if (flag1 == 0){'
 	  S
+	  '  }else if (flag1 == 1){'
+	  '    if (*flag == 4 && *nport == 1){'
+          '      fprr=fopen(input,'"r'");'
+          '      if( fprr == NULL )'
+	  '        {'
+	  '          printf('"Error opening file: %s\n'", input);'
+	  '          return ;'
+          '	 }' 
+          '    }else if (*flag == 1){'
+	  Code1
+	  '    }else if (*flag == 5 && *nport == 1){'
+          '      fclose(fprr);'
+          '    }'
+	  '  }'
 	  '}']
 end
 endfunction
@@ -3001,19 +3088,21 @@ mputl(txt2,rpat+'/scicos_block.h');
 modptr=cpr.sim.modptr;
 nZ=size(z,'*')+size(outtb,'*')+clkptr($);
 nztotal=size(z,1);
+niwa=size(z,'*')+size(outtb,'*');
 //Generates simulation routine for standalone simulation
   work=zeros(nblk,1)
   iwa=zeros(clkptr($),1),Z=[z;outtb;iwa;work]';
   Code=[ '/*Main program */'
 	 'int main(int argc, char *argv[])'
 	 '{'
-	 '  double tf=30;';
+	 '  double tf=30,dt=0.1,h=0.001;';
+	 '  int solver=3;'
 	 '  static void usage();'
   	 '  char * progname = argv[0];'
 	 '  int c;' 
-	 '  strcpy(input,'"Terminal'");'
-  	 '  strcpy(output,'"Terminal'");'
-	 '  while ((c = getopt(argc , argv, '"i:o:d:t:hv'")) != -1)'
+	 '  strcpy(input,'"'");'
+  	 '  strcpy(output,'"'");'
+	 '  while ((c = getopt(argc , argv, '"i:o:d:t:e:s:hv'")) != -1)'
          '    switch (c) {'
          '    case ''i'':'
          '      strcpy(input,argv[optind-1]);'
@@ -3029,6 +3118,14 @@ nztotal=size(z,1);
          '      strcpy(sf,argv[optind-1]);'
          '      tf=strtod(sf,p);'
          '      break;'
+	 '    case ''e'':'
+         '      strcpy(se,argv[optind-1]);'
+         '      h=strtod(se,p);'
+         '      break;'
+	 '    case ''s'':'
+         '      strcpy(ss,argv[optind-1]);'
+         '      solver=(int) strtod(ss,p);'
+         '      break;'
          '    case ''h'':'  
          '      usage(progname);'
          '      printf('"Options : \n'");'
@@ -3038,11 +3135,16 @@ nztotal=size(z,1);
          '      printf('"         -o for output file name, by default is Terminal \n'");'
          '      printf('"         -d for the clock period, by default is 0.1 \n'");'
          '      printf('"         -t for the final time, by default is 30 \n'");'
-         '      exit(1);'
+	 '      printf('"         -e for the solvers step size, by default is 0.001 \n'");'
+	 '      printf('"         -s interger parameter for select the numerical solver : \n'");'
+	 '      printf('"            1 for Ehler''s method \n'");'
+	 '      printf('"            2 for Heun''s method \n'");'
+	 '      printf('"            3 (default value) for the Fourth-Order Runge-Kutta (RK4) Formula \n'");'
+         '      return 0;'
          '      break;'
          '    case ''v'':'
          '      printf('" Generated by Code_Generation toolbox of Scicos with '+getversion()+' version \n'");'
-         '      exit(1);'
+         '      return 0;'
          '      break;'
          '    case ''?'':'
          '      errflg++;'
@@ -3050,25 +3152,26 @@ nztotal=size(z,1);
          '    }'
          '    if (errflg){'
          '      usage(progname);'
-         '      exit(1);'
+         '      return 0;'
          '    }'
 	 ' '
-	 '  '+rdnom+'_sim(tf);';
+	 '  '+rdnom+'_sim(tf,dt,h,solver);';
 	 '  return 0;'
 	 '}'
 	 ''
 	 'static void'	
 	 'usage(prog) char *prog;{'
-  	 '  fprintf(stderr, '"Usage: %s [-h] [-v] [-i arg] [-o arg] [-d arg] [-t arg]\n'", prog);'  
+  	 '  fprintf(stderr, '"Usage: %s [-h] [-v] [-i arg] [-o arg] [-d arg] [-t arg] [-e arg] [-s arg]\n'", prog);'  
 	 '}'
 	 ''
 	 '/*'+part('-',ones(1,40))+'  External simulation function */ ';
 	 'int '
-	 rdnom+'_sim(tf)';
+	 rdnom+'_sim(tf,dt,h,solver)';
 	 ' '
-	 '     double tf; ';
+	 '     double tf,dt,h; ';
+	 '     int solver;';
 	 '{'
-	 '  double t,temps;'
+	 '  double t;'
 	 '  int nevprt=1;'
 	 ''
 	 '  /*Initial values */';
@@ -3081,14 +3184,14 @@ nztotal=size(z,1);
 	 '  */ ']
   if (x <> []) then
     Code=[Code
-          'double tout;'
-          'double h=0.05,he=0.1;']
+          '  double tout;'
+          '  double he=0.1;']
   end
   Code=[Code
-        '  FILE *fprw,*fprr;'
-	'  double* block_outtb = z+'+string(nztotal)+';'
 	'  void **work;'
-	'  work = z+'+string(nZ)+'; ']
+	'  work = z+'+string(nZ)+'; '
+	'  '+rdnom+'_block_outtb = z+'+string(nztotal)+';'
+	'  '+rdnom+'_iwa = (int *)(z+'+string(niwa)+');']
   if size(z,1) <> 0 then
     for i=1:(length(zptr)-1) 
       
@@ -3155,7 +3258,7 @@ for kf=1:nblk
       for k=1:nin
          lprt=inplnk(inpptr(kf)-1+k);
          Code=[Code
-               '  block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &(block_outtb['+string(lnkptr(lprt)-1)+']);'
+               '  block_'+rdnom+'['+string(kf-1)+'].inptr['+string(k-1)+'] = &('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);'
 	       '  block_'+rdnom+'['+string(kf-1)+'].insz['+string(k-1)+'] = '+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end 
       Code=[Code
@@ -3165,7 +3268,7 @@ for kf=1:nblk
       for k=1:nout
         lprt=outlnk(outptr(kf)-1+k);
         Code=[Code
-	      '  block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&(block_outtb['+string(lnkptr(lprt)-1)+']);'
+	      '  block_'+rdnom+'['+string(kf-1)+'].outptr['+string(k-1)+']=&('+rdnom+'_block_outtb['+string(lnkptr(lprt)-1)+']);'
 	      '  block_'+rdnom+'['+string(kf-1)+'].outsz['+string(k-1)+']='+string(lnkptr(lprt+1)-lnkptr(lprt))+';'];
       end
       Code=[Code
@@ -3185,88 +3288,67 @@ for kf=1:nblk
  
 end    
 
-  Code=[Code;'  t=0.0;'
+  Code=[Code;
+	'  if (strlen(input) > 0)'
+    	'    aaa=1;'
+  	'  if (strlen(output)> 0)'
+	'    bbb=1;'
+	'  t=0.0;'
 	'  '+rdnom+'_init(block_'+rdnom+',z,&t);'
-	'  if ( strcmp(output,'"Terminal'") != 0){'
-        '    fprw=fopen(output,'"wt'");'
-	'    if( fprw == NULL )'
-        '      {'
-        '        printf('"Error opening file: %s\n'", '"output'");'
-        '        return 0;'
-        '      }'
-	'  }'
-	'  if ( strcmp(input,'"Terminal'") != 0){'
-        '    fprr=fopen(input,'"r'");'
-        '    if( fprr == NULL )'
-        '      {'
-        '        printf('"Error opening file: %s\n'", '"input'");'
-        '        return 0;'
-        '      }'
-	'  }'
-        '  while (t<=tf) {   ';
+	' '
+	'  while (t<=tf) {   ';
 	'    sci_time=t;']
-  typ='%lf ';
-  for i=1:sum(capt(:,3))
-    typ=typ+'%lf ';
-  end
-  Code1=['    if ( strcmp(input,'"Terminal'") != 0){'
-	 '      fscanf( fprr, '"'+typ+' \n'",&temps'] 
-  for i=1:size(capt,1)
-   ni=capt(i,3) // dimension of ith input
-   for j=1:ni
-     Code1($)=Code1($)+ '  , &(block_outtb['+string(capt(i,2)-1+j-1')+'])';
-   end 
-  end
-  Code1($)=Code1($)+');'
-  Code=[Code
-        Code1
-	'    }' ]
+  
 if (x ==[]) then
   Code=[Code	
 	'    /*'+rdnom+'_events(&nevprt,&t);*/'
 	'    set_nevprt(nevprt);'
 	'    '+rdnom+'main1(block_'+rdnom+',z,&t);']
 else
-  Code=[Code	     	
-  	'    '+rdnom+'main1(block_'+rdnom+',z,&t);'
+  Code=[Code
+	'    set_nevprt(nevprt);'
+	'    '+rdnom+'main1(block_'+rdnom+',z,&t);'
         '    neq= '+string(nX)+'; '
         '    tout=t;'
-        '     while (tout<t+dt){'
-        '       h=0.001;'
-        '       ode4(C2F('+rdnom+'simblk),tout,h);'
+        '    while (tout<t+dt){'
+	'      switch (solver) {'
+	'      case 1:'
+        '        ode1(C2F('+rdnom+'simblk),tout,h);'
+	'        break;'
+	'      case 2:'
+	'        ode2(C2F('+rdnom+'simblk),tout,h);'
+	'        break;'
+	'      case 3:'
+	'        ode4(C2F('+rdnom+'simblk),tout,h);'
+	'        break;'
+	'      default :'
+	'        ode4(C2F('+rdnom+'simblk),tout,h);'
+	'        break;'
+	'	}'
         '       tout=tout+h;'
-        '     }'
-        '     tout=tout-h;'
-        '     he=t+dt-tout+h;'
-        '     ode4(C2F('+rdnom+'simblk),tout,he);']
+        '    }'
+        '    tout=tout-h;'
+        '    he=t+dt-tout+h;'
+	'    switch (solver) {'
+	'    case 1:'
+        '      ode1(C2F('+rdnom+'simblk),tout,he);'
+	'      break;'
+	'    case 2:'
+	'      ode2(C2F('+rdnom+'simblk),tout,he);'
+	'      break;'
+	'    case 3:'
+	'      ode4(C2F('+rdnom+'simblk),tout,he);'
+	'      break;'
+	'    default :'
+	'      ode4(C2F('+rdnom+'simblk),tout,he);'
+	'      break;'
+	'    }']
 end
   Code=[Code	
-	'    '+rdnom+'main2(block_'+rdnom+',z,&t);']
-  typ='%f ';
-  for i=1:sum(actt(:,3))
-    typ=typ+'%f ';
-  end
-  Code1=['    if ( strcmp(output,'"Terminal'") != 0){'
-	 '      fprintf(fprw, '"'+typ+' \n'",t' ]
-  for i=1:size(actt,1)
-    ni=actt(i,3) // dimension of ith output
-    for j=1:ni
-      Code1($)=Code1($)+ '   ,block_outtb['+string(actt(i,2)-1+j-1')+']';
-    end
-  end
-  Code1($)=Code1($)+');';
-  Code=[Code;
-        Code1
-	'    }' 
+	'    '+rdnom+'main2(block_'+rdnom+',z,&t);'
 	'    t=t+dt;'
 	'  }'
 	'  '+rdnom+'_end(block_'+rdnom+',z,&t);'
-	'  if ( strcmp(output,'"Terminal'") != 0){'
-        '    fclose(fprw);'
-	'  }'
-	'  if ( strcmp(input,'"Terminal'") != 0){'
-	'    fclose(fprr);'
-	'  }'
 	'  return 0;'
 	'}'  
 	'/*'+part('-',ones(1,40))+'  Lapack messag function */ ';
@@ -3317,6 +3399,72 @@ end
 	'}'
 	'void sciprint (char *fmt){'
         '  return;'
+	'}'
+	' '
+	'int getopt ( int argc, char *argv[], char *optstring )' 
+	'{' 
+  	'  char *group, option, *sopt ;' 
+  	'  int len ;' 
+  	'  option = -1 ;' 
+	'  optarg = NULL ;' 
+	'  while ( optind < argc )' 
+	'    { '
+	'      group = argv[optind] ;' 
+	'      if ( *group != ''-'' )' 
+	'	{' 
+	'	  option = -1 ;' 
+	'	  optarg = group ;' 
+	'	  optind++ ;' 
+	'	  break ;' 
+	'	}' 
+	'      len = strlen (group) ;' 
+	'      group = group + offset ;' 
+	'      if ( *group == ''-'' )' 
+	'	{' 
+	'	  group++ ;' 
+	'	  offset += 2 ;' 
+	'	}' 
+	'      else' 
+	'	 offset++ ;' 
+	'      option = *group ;' 
+	'      sopt = strchr ( optstring, option ) ;' 
+	'      if ( sopt != NULL )' 
+	'	{'  
+	'	  sopt++ ;' 
+	'	  if ( *sopt == '':'' )' 
+	'	    {' 
+	'	      optarg = group + 1 ;' 
+	'	      if ( *optarg == ''\0'' )' 
+	'		optarg = argv[++optind] ;' 
+	'	      if ( *optarg == ''-'' )' 
+	'		{ '
+	'		  fprintf ( stderr, '"\n%s: illegal option -- %c'",'  
+	'			    argv[0], option ) ;' 
+	'		  option = ''?'' ;' 
+	'		  break ;' 
+	'		} '
+	'	      else '
+	'		{ '
+	'		  optind++ ;' 
+	'		  offset = 0 ;' 
+	'		  break ;' 
+	'		} '
+	'	    }' 
+	'	  if ( offset >= len )' 
+	'	    {' 
+	'	      optind++ ;' 
+	'	      offset = 0 ;' 
+	'	    }' 
+	'	  break ;' 
+	'	}' 
+	'      else' 
+	'	{'  
+	'	  fprintf ( stderr, '"\n%s: illegal option -- %c'", argv[0], option ) ;' 
+	'	  option = ''?'' ;' 
+	'	  break ;' 
+	'	} '
+	'    }' 
+	'  return ( option ) ;' 
 	'}']
 if (x <> []) then
 Code=[Code
@@ -3333,11 +3481,11 @@ Code=[Code
       '        of the state' 
       '     */'
       '{ '
-      '  int iwa[1]={0};'
+      '  /* int iwa[1]={0}; */'
       '  int phase=2;'
       '  neq='+string(nX)+';'
       '  C2F(dset)(&neq, &c_b14,xcdot , &c__1);'
-      '  '+rdnom+'odoit(t, xc,iwa,phase,xcdot, xc, xcdot);'
+      '  '+rdnom+'odoit(t, '+rdnom+'_block_outtb,'+rdnom+'_iwa,phase,xcdot, xc, xcdot);'
       ' '
       '  return 0;'
       '}'
@@ -3453,6 +3601,9 @@ function Code=cg_sa_static()
     Code($+1)='static integer pointi=1;';
   end
   Code($+1)='static double w[1];'
+  Code($+1)='double *'+rdnom+'_block_outtb;'
+  Code($+1)='static int *'+rdnom+'_iwa;'
+  Code($+1)='static int aaa=0, bbb=0;'
   Code=[Code;
 	'static void set_nevprt(int nevprt)'
 	'{'
@@ -3482,10 +3633,11 @@ function Code=make_static_standalone()
          'static integer neq;']	
   end
   Code=[Code;	
-	'char input[50], output[50],s[1],sf[1],**p;'
-	'static double sci_time,dt=0.1;'
-	'int errflg = 0;' 
-	'extern int optind;'
+	'char input[50], output[50],s[1],sf[1],se[1],ss[1],**p;'
+	'static double sci_time;'
+	'static int errflg = 0;' 
+	'static char *optarg = NULL ;' 
+	'static int optind = 1, offset = 0 ;'
 	'scicos_block block_'+rdnom+'['+string(nblk)+'];'];
   if size(rpar,1) <> 0 then
     Code=[Code;
