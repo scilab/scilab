@@ -601,7 +601,7 @@ DestroySegs (sciPointObj * pthis)
   FREE (pSEGS_FEATURE (pthis)->vy); 
   if (pSEGS_FEATURE (pthis)->vz != (double *)NULL) 
     FREE (pSEGS_FEATURE (pthis)->vz);  
-  if (pSEGS_FEATURE (pthis)->ptype ==0) 
+  if (pSEGS_FEATURE (pthis)->ptype <=0) 
     {
       FREE(pSEGS_FEATURE (pthis)->pstyle);
     } 
