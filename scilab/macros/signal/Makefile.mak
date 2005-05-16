@@ -15,7 +15,7 @@ NAM = SCI/macros/signal
 
 MACROS = %k.sci %asn.sci %sn.sci analpf.sci bilt.sci \
 	buttmag.sci  casc.sci cheb1mag.sci cheb2mag.sci chepol.sci \
-	cspect.sci czt.sci dft.sci ell1mag.sci eqfir.sci cepstrum.sci \
+	cspect.sci czt.sci detrend.sci dft.sci ell1mag.sci eqfir.sci cepstrum.sci \
 	eqiir.sci faurre.sci ffilt.sci findm.sci find_freq.sci \
 	frfit.sci frmag.sci fsfirlin.sci  group.sci hank.sci \
 	hilb.sci iir.sci iirgroup.sci iirlp.sci iirmod.sci intdec.sci \
