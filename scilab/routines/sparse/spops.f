@@ -15,6 +15,7 @@ c
       integer insert,extrac
       integer top0
       logical isany
+      integer tops,top4
 
 *     the following boolean vars are defined to replace test on m*n == 0 or m*n == 1)
 *     for sparse matrices the product m x n may leads to integer overflow.
