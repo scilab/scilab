@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v4.15
+# in sync at least with v5.0
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -343,7 +343,8 @@
 ::msgcat::mcset fr "FOUNDTEXTCOLOR" "Texte trouvé"
 
 
-#overriding tcl-core dialogs
+#overriding tcl-core dialogs (many are actually already found in 
+#  TKDIR/msgs/fr.msg)
 ::msgcat::mcset fr "&Directory:" "&Répertoire :"
 ::msgcat::mcset fr "File &name:" "&Nom de fichier :"
 ::msgcat::mcset fr "Files of &type:" "Fichiers de &type :"
@@ -355,3 +356,8 @@
 ::msgcat::mcset fr "&Selection:" "&Sélection :"
 ::msgcat::mcset fr "&Yes" "&Oui"
 ::msgcat::mcset fr "&No" "&Non"
+::msgcat::mcset fr "&Red" "&Rouge"
+::msgcat::mcset fr "&Green" "&Vert"
+::msgcat::mcset fr "&Blue" "&Bleu"
+::msgcat::mcset fr "Directory \"%1\$s\" does not exist."\
+        "Le répertoire \"%1\$s\" n'existe pas."
