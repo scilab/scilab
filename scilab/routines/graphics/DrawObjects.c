@@ -7315,8 +7315,8 @@ sciDrawObj (sciPointObj * pobj)
 	      else
 		GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
 	      frame_clip_off();  
-	      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
-		      &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      /*	      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+			      &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 #ifdef WIN32
 	      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
