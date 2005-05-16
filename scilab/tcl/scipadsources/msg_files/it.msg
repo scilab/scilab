@@ -379,7 +379,8 @@
 ::msgcat::mcset it "PDEFCOLOR" "Variabili predefinite"
 ::msgcat::mcset it "FOUNDTEXTCOLOR" "Testo trovato"
 
-#overriding tcl-core dialogs
+#overriding tcl-core dialogs (many are actually already found in 
+#  TKDIR/msgs/it.msg)
 ::msgcat::mcset it "&Directory:" "&Cartella"
 ::msgcat::mcset it "File &name:" "&Nome del file:"
 ::msgcat::mcset it "Files of &type:" "&Tipo di file:"
@@ -391,3 +392,9 @@
 ::msgcat::mcset it "&Selection:" "&Selezione:"
 ::msgcat::mcset it "&Yes" "&Si"
 ::msgcat::mcset it "&No" "&No"
+::msgcat::mcset it "&Blue" "&Blu"
+::msgcat::mcset it "&Green" "&Verde"
+::msgcat::mcset it "&Red" "&Rosso"
+::msgcat::mcset it "Directory \"%1\$s\" does not exist."\
+        "La cartella \"%1\$s\" non esiste."
+ 

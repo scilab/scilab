@@ -1,5 +1,5 @@
 # Scipad texts in German
-# in sync at least with v4.6
+# in sync at least with v5.0
 # provided by Dirk Reusch <reusch@tmb.uni-karlsruhe.de>
 
 # commons
@@ -24,7 +24,7 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset de "Variable:" "Variable :"
 ::msgcat::mcset de "Value:" "Wert :"
-
+::msgcat::mcset de "Get current value from Scilab" "Verwende aktuellen Wert aus Scilab"
 
 # db_configureexec.tcl
 ::msgcat::mcset de "Configure execution" "Ausführung konfigurieren"
@@ -355,4 +355,7 @@
 ::msgcat::mcset de "&Selection:" "Au&swahl:"
 ::msgcat::mcset de "&Yes" "&Ja"
 ::msgcat::mcset de "&No" "&Nein"
+::msgcat::mcset de "&Red" "&Rot"
+::msgcat::mcset de "&Green" "&Grün"
+::msgcat::mcset de "&Blue" "&Blau"
 
