@@ -5,7 +5,7 @@ function [tree]=sci_load(tree)
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
-
+global("varslist")
 tree.name="loadmatfile"
 
 // If no rhs, then load all environnement
@@ -20,5 +20,7 @@ for k=1:rhs
     set_infos(["Option -regexp not yet handled: will be ignored"],2);
   end
 end
+rhstemp=list()
+rhstemp($+1)=tree.rhs(2)
 
 endfunction

@@ -38,7 +38,7 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_atan2.sci sci_balance.sci sci_beep.sci \
 	 sci_beta.sci sci_blanks.sci sci_break.sci \
 	 sci_cd.sci \
-	 sci_cell.sci \
+	 sci_cell.sci sci_char.sci sci_cell2mat.sci sci_cellstr.sci\
 	 sci_chol.sci sci_clc.sci sci_clear.sci sci_clock.sci sci_continue.sci \
 	 sci_conv.sci \
          sci_cputime.sci sci_csc.sci sci_csch.sci sci_date.sci sci_dec2hex.sci \
@@ -54,7 +54,7 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
          sci_fseek.sci sci_ftell.sci sci_full.sci sci_fullfile.sci \
 	 sci_fwrite.sci sci_getenv.sci \
 	 sci_global.sci sci_hankel.sci sci_help.sci sci_helpbrowser.sci sci_helpdesk.sci\
-	 sci_helpwin.sci sci_hess.sci sci_horzcat.sci sci_ifft.sci sci_input.sci \
+	 sci_helpwin.sci sci_hess.sci sci_horzcat.sci sci_ifft.sci sci_input.sci sci_interp1.sci \
          sci_isa.sci sci_iscell.sci sci_ischar.sci sci_isdir.sci \
 	 sci_isempty.sci sci_isequal.sci sci_isfield.sci sci_isfinite.sci sci_isglobal.sci \
 	 sci_ishandle.sci sci_isinf.sci sci_isinteger.sci \
