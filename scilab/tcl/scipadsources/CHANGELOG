@@ -1068,3 +1068,6 @@ Francois VOGEL, 09/05/05
  * Fixed: "grab failed" on Linux happened when the user double-clicked on
    a variable name in the watch or configure box
  * version --> 4.16
+
+ES, 16/05/05
+ * version --> 5.0, incrementing the major for the new scilab release 3.1
