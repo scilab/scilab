@@ -33,7 +33,7 @@ PROTO15 = sci_nargin.sci sci_nargout.sci
 OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_asec.sci sci_asech.sci \
 	 sci_atan2.sci sci_balance.sci sci_beep.sci \
-	 sci_beta.sci sci_blanks.sci sci_break.sci sci_besseli.sci\
+	 sci_beta.sci sci_blanks.sci sci_break.sci sci_besseli.sci sci_besselj.sci sci_besselk.sci  sci_bessely.sci \
 	 sci_cd.sci \
 	 sci_cell.sci sci_char.sci sci_cell2mat.sci sci_cellstr.sci\
 	 sci_chol.sci sci_clc.sci sci_clear.sci sci_clock.sci sci_continue.sci \
