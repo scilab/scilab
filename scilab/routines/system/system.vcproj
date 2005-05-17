@@ -703,7 +703,7 @@ cd .. &gt;nul
 				RelativePath=".\fromjava.c">
 			</File>
 			<File
-				RelativePath=".\getval.c">
+				RelativePath=".\getvalf.c">
 			</File>
 			<File
 				RelativePath=".\inisci-c.c">
