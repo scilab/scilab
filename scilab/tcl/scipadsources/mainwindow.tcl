@@ -23,7 +23,7 @@ wm title $pad "$winTitle - $listoffile("$pad.new$winopened",displayedname)"
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager
-wm protocol $pad WM_DELETE_WINDOW exitapp
+wm protocol $pad WM_DELETE_WINDOW {exitapp yesnocancel}
 ## geometry in what units? The width is more than 65 columns, though it's 
 ## resized proportionally
 #wm geometry $pad 65x24 

@@ -34,9 +34,9 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
     }
     BuildInitialRecentFilesList
     eval "$pad.filemenu.files add command [me "&Close"]\
-                   -command \"closecur\" -accelerator Ctrl+w"
+                   -command \"closecur yesnocancel\" -accelerator Ctrl+w"
     eval "$pad.filemenu.files add command [me "E&xit"] \
-                   -command \"exitapp\" -accelerator Ctrl+q"
+                   -command \"exitapp yesnocancel\" -accelerator Ctrl+q"
 
 #edit menu
 menu $pad.filemenu.edit -tearoff 0 -font $menuFont

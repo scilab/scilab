@@ -1071,3 +1071,8 @@ Francois VOGEL, 09/05/05
 
 ES, 16/05/05
  * version --> 5.0, incrementing the major for the new scilab release 3.1
+
+Francois VOGEL, 17/05/05
+ * Bug 1228 fixed - Cancel button removed when Scipad is exited because of
+   a Scilab quit (but kept when exit is called from Scipad)
+ * version --> still 5.0

@@ -137,12 +137,12 @@ proc setfontscipad {FontSize} {
     showinfo [concat [mc "Font size"] $FontSize ]
 }
 
-proc exitapp {} {
+proc exitapp { {quittype yesno} } {
 # exit app
     global listoftextarea
     if {[getdbstate] == "DebugInProgress"} canceldebug_bp
     foreach textarea $listoftextarea {
-        closecur
+        closecur $quittype
     }
 }
 

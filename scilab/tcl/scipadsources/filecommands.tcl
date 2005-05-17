@@ -80,16 +80,16 @@ proc filesetasnew {} {
 ##################################################
 # procs closing buffers
 ##################################################
-proc closecur {} {
+proc closecur { {quittype yesno} } {
 # remove (in Scilab) the breakpoints initiated from the current buffer
 # unset the variables relative to this buffer, and
 # close current buffer
     removescilabbuffer_bp "with_output" [gettextareacur]
     removefuns_bp [gettextareacur]
-    closefile [gettextareacur]
+    closefile [gettextareacur] $quittype
 }
 
-proc closefile {textarea} {
+proc closefile {textarea {quittype yesno} } {
     global listoftextarea listoffile pad
     # query the modified flag
     if  [ expr [string compare [getmodified $textarea] 1] == 0 ] {
@@ -97,7 +97,7 @@ proc closefile {textarea} {
         set answer [tk_messageBox -message [ concat [mc "The contents of"] \
            $listoffile("$textarea",fullname) \
            [mc "may have changed, do you wish to save your changes?"] ] \
-             -title [mc "Save Confirm?"] -type yesnocancel -icon question]
+             -title [mc "Save Confirm?"] -type $quittype -icon question]
         case $answer {
             yes { filetosave $textarea; byebye $textarea }
             no {byebye $textarea}

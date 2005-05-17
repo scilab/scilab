@@ -40,9 +40,9 @@ bind $textareacur <ButtonRelease> {catch {keyposn %W}}
 
 event delete <<Cut>> <Control-w>
 bind Text <Control-w> {} 
-bind $pad <Control-w> {closecur} 
+bind $pad <Control-w> {closecur yesnocancel} 
 bind $pad <Control-n> {filesetasnew}
-bind $pad <Control-q> {exitapp}
+bind $pad <Control-q> {exitapp yesnocancel}
 bind $pad <Control-g> {gotoline}
 if {"$tcl_platform(platform)" == "unix"} {
     bind $pad <Control-p> {selectprint %W}
