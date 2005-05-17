@@ -88,7 +88,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     end 
     
     [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
-     cliptr,critev]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
+     cliptr,critev,ok]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
+    
+    if ~ok then 
+      cpr=list()
+      return
+    end
     
     clkconnect=cleanup(clkconnect)
     
@@ -1632,8 +1637,7 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,primary)
       if counter2>2*nblock then
 	//améliorer la borne inf!?
 	bouclalg=%t
-	disp('boucle algébrique détectée dans ordo2')
-	disp('le vec ne converge pas...')
+	disp('Algebric loop detected in ordo2')
       end
     end
   end
@@ -2091,8 +2095,8 @@ function [vec_plus]=get_plus2()
 endfunction
 
 function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
-          cliptr,critev]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
-
+          cliptr,critev,ok]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
+  ok=%t
   vec_clk=get_clocks(clkconnect,clkptr);
   vec_clk=gsort(vec_clk,'lr','i')
   vec_clk0=vec_clk(:,1)
@@ -2216,7 +2220,7 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
      cliptr,critev]=ini_ordo(0,0,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev);
     if bouclalg then
       message('Algebrique  loop detected; cannot be compiled.');
-      cpr=list()
+      ok=%f
       disp('activation traitée: bloc 0 - port0')
       return,
     end
@@ -2254,7 +2258,7 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
          cliptr,critev]=ini_ordo(ordoclk(k,1),j,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev);
 	if bouclalg then
 	  message('Algebrique  loop detected; cannot be compiled.');
-	  cpr=list()
+	  ok=%f
 	  disp('activation traitée: bloc '+string(ordoclk(k,1))+' - port '+string(j))
 	  return,
 	end
