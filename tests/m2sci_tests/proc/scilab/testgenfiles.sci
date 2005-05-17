@@ -195,12 +195,7 @@ else
   diafilename=basename(test_files(file_ind))+".dia";
 end  
 
-// Open ref file
-diafile=mopen(GEN_FILES_DIR+diafilename,"w");
-mputl(diafiletxt,diafile);
-
-// Close all opened files
-mclose(diafile);
+mputl(diafiletxt,GEN_FILES_DIR+diafilename);
 
 funname=basename(test_files(file_ind))
 
