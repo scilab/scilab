@@ -1761,7 +1761,8 @@ zcptr=cpr.sim.zcptr;
     rpat=stripblanks(rpat);
     dirinfo=fileinfo(rpat)
     if dirinfo==[] then
-      ok=mkdir(rpat)    
+      [pathrp,fnamerp,extensionrp]=fileparts(rpat)
+      ok=mkdir(pathrp,fnamerp+extensionrp)
       if ~ok then 
 	x_message('Directory '+rpat+' cannot be created');
       end
@@ -3734,14 +3735,14 @@ function Code=make_static_standalone()
   
 endfunction
 
-function ok=mkdir(path)
-  if MSDOS then
-    cmd='mkdir '+strsubst(path,'/','\')
-  else
-    cmd='mkdir '+strsubst(path,'\','/')
-  end
-  ok=0==execstr('unix_s(cmd)','errcatch')
-endfunction
+//function ok=mkdir(path)
+//  if MSDOS then
+//    cmd='mkdir '+strsubst(path,'/','\')
+//  else
+//    cmd='mkdir '+strsubst(path,'\','/')
+//  end
+//  ok=0==execstr('unix_s(cmd)','errcatch')
+//endfunction
 
 function t=filetype(m)
   m=int32(m)
