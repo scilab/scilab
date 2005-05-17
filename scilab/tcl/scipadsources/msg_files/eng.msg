@@ -14,6 +14,7 @@
                     Miscellaneous improvements, particularly debug tools,\
                     by Francois Vogel 2004-2005.\n\
                     Swedish translation by Gunnar Lindholm 2005.\n\
+                    Norwegian translation by Torbjørn Pettersen 2005.\n\
                     German translation by Dirk Reusch 2005."
 
 

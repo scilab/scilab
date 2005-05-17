@@ -170,6 +170,7 @@
                     e da François Vogel (in particolare il debugger) 2004-2005.\n\
                     Traduzioni:\
                     \n   svedese, Gunnar Lindholm 2005;\
+                    \n   norvegese, Torbjørn Pettersen 2005;\
                     \n   tedesco, Dirk Reusch 2005."
 
 
