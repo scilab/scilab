@@ -81,6 +81,9 @@
 ::msgcat::mcset fr "Hide watch variables" "Cacher les variables"
 ::msgcat::mcset fr "Show call stack" "Montrer la pile d'appel"
 ::msgcat::mcset fr "Hide call stack" "Cacher la pile d'appel"
+::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
+::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
+::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"
 
 
 # filecommands.tcl
@@ -147,6 +150,7 @@
                     Amélioré par Enrico Segre 2003-2005.\n\
                     Améliorations diverses, dont outils de débug, par François Vogel 2004-2005.\n\
                     Traduction en Suédois par Gunnar Lindholm 2005.\n\
+                    Traduction en Norvégien par Torbjørn Pettersen 2005.\n\
                     Traduction en Allemand par Dirk Reusch 2005."
 
 
