@@ -124,8 +124,8 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM>
-            <P>The 3 remaining cases (<VERB>color_flag</VERB><VERB> == 2,3 or
-            4</VERB>) are only available only with <VERB>Fac3d</VERB> entity.
+            <P>The 3 remaining cases (<VERB>color_flag</VERB><VERB>== 2,3 or 4</VERB>)
+            are only available only with <VERB>Fac3d</VERB> entity.
             Then, the <VERB>data.color</VERB> value is used to set colors for
             facets (indices in the current colormap) if it exists. If not, the
             current <VERB>color_mode</VERB> is used to paint the facets.</P>

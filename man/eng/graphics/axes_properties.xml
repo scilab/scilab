@@ -88,8 +88,8 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="grid: ">
-            <SP>The field value is a vector <VERB>[x-grid
-            y-grid,z-grid]</VERB> where <VERB>x-grid</VERB> controls a grid
+            <SP>The field value is a vector <VERB>[x-grid,y-grid,z-grid]</VERB>
+            where <VERB>x-grid</VERB> controls a grid
             drawning for the x-axis and <VERB>y-grid, z-grid</VERB> respecting
             to the y-axis, z-axis. The default values is <VERB>-1</VERB> grids
             are not drawn, else the grids are drawn using the color given
@@ -201,8 +201,8 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="margins: ">
-            <SP>A vector <VERB>[margin_left,margin_right,
-            margin_top,margin_bottom]</VERB> specifying the margins portion
+            <SP>A vector <VERB>[margin_left,margin_right,margin_top,margin_bottom]</VERB>
+            specifying the margins portion
             for this axes. This vector is composed of numbers between [0 1]
             with default: [0.125 0.125 0.125 0.125] (these numbers are ratio
             relatives to the corresponding figure <VERB>figure_size</VERB>
@@ -646,3 +646,4 @@
 
   <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>
+

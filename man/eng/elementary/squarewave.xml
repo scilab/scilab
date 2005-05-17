@@ -5,7 +5,7 @@
   <TITLE>squarewave</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>Sept 1999</DATE>
-  <SHORT_DESCRIPTION name="squarewave">  generates a square wave with period 2*%pi</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="squarewave">  generates a square wave with period <VERB>2*%pi</VERB></SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>x=squarewave(t [,percent])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

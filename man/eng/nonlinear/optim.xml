@@ -78,8 +78,8 @@
         <PARAM_NAME>&lt;stop&gt;</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  keyword representing the sequence of optional parameters
-	    controlling the  convergence of the algorithm. <VERB>'ar',nap [,iter [,epsg
-	      [,epsf [,epsx]]]]</VERB></SP> 
+	    controlling the  convergence of the algorithm. 
+            <VERB>'ar',nap [,iter [,epsg [,epsf [,epsx]]]]</VERB></SP> 
           <PARAM_INDENT>
             <PARAM_ITEM>
               <PARAM_NAME>&quot;ar&quot;  </PARAM_NAME>
@@ -127,8 +127,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>&lt;params&gt; </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: keyword representing the sequence of arguments: <VERB>'ti',
-	      valti ,'td', valtd</VERB> which can be used to pass argument to
+          <SP>: keyword representing the sequence of arguments: 
+          <VERB>'ti', valti ,'td', valtd</VERB> which can be used to pass argument to
 	    an external written in C or Fortran (see below).</SP> 
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -227,9 +227,8 @@
 	  </DESCRIPTION_ITEM>
 	  <DESCRIPTION_ITEM label="* C case">
 	    <P>The generic calling sequence for the C procedure is: 
-	      <VERB>void costf(int *ind, int *n, double *x, double *f, double
-		*g, int *ti, float *tr, double *td)</VERB> with the
-	      following declarations:</P>
+	    <VERB>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</VERB>
+             with the following declarations:</P>
 
 	    <P>The argument <VERB>ind</VERB> is described below.</P>
 	    <P>The C procedure <VERB>costf</VERB> must return <VERB>f</VERB>
