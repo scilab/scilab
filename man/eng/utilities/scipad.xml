@@ -278,7 +278,7 @@
         can be included, for instance, in the user .scilab file.
         Currently, the supported
         codes are: "de" (German) ,"eng" (English), "fr" (French),
-        "it" (Italian), "se" (Swedish). 
+        "it" (Italian), "no" (Norwegian), "se" (Swedish). 
         </SP>
         <SP>
         Further languages can be added by creating the proper translation
