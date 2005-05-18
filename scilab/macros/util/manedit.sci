@@ -1,10 +1,22 @@
-function []=manedit(manitem,editor)
+function manedit(manitem,editor)
 // manitem : character string giving a manitem 
 //
 // Copyright INRIA
-[lhs,rhs]=argn(0)
-if rhs<=1, editor ="emacs -geometry 81x50+427+143  -fn 9x15  ";end
-fname='fname=`ls $SCI/man/*/'+manitem+'.man 2>/dev/null `;';
-unixstr=fname+"if [ $fname ] ; then "+editor+" $fname;else echo No man ; fi";
-unix_s(unixstr)
+  path=gethelpfile(manitem)
+
+  if path<>[] then 
+    px=strsubst(path,'.htm','.xml')
+    if fileinfo(px)<>[] then 
+      path=px
+    else
+      ierr=execstr('t=type('+manitem+')','errcatch')
+      if ierr==0&t==13 then
+	path=TMPDIR+'/'+manitem+'.xml'
+	help_skeleton(manitem,TMPDIR)
+      else
+	path=[]
+      end
+    end
+  end
+  if path<>[] then scipad(path),end
 endfunction
