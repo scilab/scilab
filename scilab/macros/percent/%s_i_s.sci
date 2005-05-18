@@ -46,6 +46,7 @@ if Ndims>nd then dims(nd+1:Ndims)=1;end
 del=N==[];count=[]
 dims1=[]
 I=0;I1=0
+iimp=0
 for k=Ndims:-1:1
   ik=varargin(k)//the kth subscript
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
@@ -55,7 +56,16 @@ for k=Ndims:-1:1
     ik=find(ik)
     dims1(k,1)=max(max(ik),dims(k))
   elseif mini(size(ik))<0 then // :
-    ik=1:dims(k)
+    if dims(k)<>0 then
+      ik=1:dims(k)
+    else
+      iimp=iimp+1
+      if iimp<=2 then
+	ik=1:size(N,3-iimp)
+      else
+	ik=1
+      end
+    end
     dims1(k,1)=max(max(ik),dims(k))
     if k==Ndims then
       if k<nd then
@@ -67,6 +77,8 @@ for k=Ndims:-1:1
     ik=round(ik)
     dims1(k,1)=max(max(ik),dims(k))
   end
+  
+  
   if size(ik,'*')>1 then
     ik=ik(:)
     if size(I,'*')>1 then
