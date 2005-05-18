@@ -48,7 +48,7 @@ if type(ListArg(1)) == 9
     sca(ListArg(1));
     ListArg(1) = null(); // remove this parameter from the list
   else
-    disp("Handle should be an Axes handle")
+    warning("Handle should be an Axes handle")
     return;
   end
 end
@@ -103,7 +103,7 @@ if (d==[]) // No data couple found
     end
     
   else
-    disp("Error inside input argument : no data");
+    warning("Error inside input argument : no data");
     return;
   end
   
@@ -120,7 +120,7 @@ else
   // 1. Test if 2 data couples (first : type==1, second : type=[1,13,130]) 
   // are at least separated by 2 indices
   if (d(2:$)-d(1:$-1)<2)
-    disp("Error inside input argument !");
+    warning("Error inside input argument !");
     return;
   end
 
@@ -130,7 +130,7 @@ else
     e=find(Ttmp(i,1)==10 & Ttmp(i+1,1)==10)
     
     if (e<>[]) then
-      disp("Error inside input argument : String argument is an unknown option.");
+      warning("Error inside input argument : String argument is an unknown option.");
       return;
     end
   end
@@ -257,7 +257,7 @@ for i=1:numplot
     if (PName == 'xdata')
       
       if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
-	disp("Xdata value must be a column or row vector.");
+	warning("Xdata value must be a column or row vector.");
 	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
@@ -272,7 +272,7 @@ for i=1:numplot
 	    end
 	  else
 	    str='plot : incompatible dimensions in input arguments';
-	    error(str);
+	    warning(str);
 	    ResetFigureDDM(current_figure, cur_draw_mode);
 	  end
 	end
@@ -282,7 +282,7 @@ for i=1:numplot
     elseif (PName == 'ydata')
       
       if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
-	disp("Ydata value must be a column or row vector.");
+	warning("Ydata value must be a column or row vector.");
 	ResetFigureDDM(current_figure, cur_draw_mode);
 	return;
       else
@@ -297,7 +297,7 @@ for i=1:numplot
 	    end
 	  else
 	    str='plot : incompatible dimensions in input arguments';
-	    error(str);
+	    warning(str);
 	    ResetFigureDDM(current_figure, cur_draw_mode);
 	  end
 	end
@@ -467,7 +467,7 @@ if type(cur_figure == 9)
   if cur_figure.type == "Figure"
     cur_figure.immediate_drawing = cur_draw_mode;
   else
-    disp("Error in ResetFigureDDM : input argument must be a figure graphic handle");
+    warning("Error in ResetFigureDDM : input argument must be a figure graphic handle");
     return;
   end
 end
