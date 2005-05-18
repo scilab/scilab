@@ -2566,8 +2566,11 @@ int scixfpoly(fname,fname_len)
   } 
   mn1 = m1 * n1;
   /* NG beg */
-  if (version_flag() == 0)
+  if (version_flag() == 0){
+    if(close == 0) /* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
+      close = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
     Objfpoly (stk(l1),stk(l2),mn1,close,&hdl);
+  }
   else
     Xfpoly(mn1,close,stk(l1),stk(l2));
   /* NG end */
@@ -2629,11 +2632,13 @@ int scixfpolys(fname,fname_len)
   if (version_flag() == 0) {
     for (i = 0; i < n1; ++i) {
       if (*istk(l3+i) == 0) {
+	/* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
 	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
 	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())));
 	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
       }
       else   
+	/* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
 	/** poly i is drawn using the line style (or color) **/  
 	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,*istk(l3+i),&hdl);
     }
