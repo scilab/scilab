@@ -26,7 +26,7 @@ opt1=[];
 k=find(part(Table,1:length(str))==str);
 
 if (k == [])
-  disp("Error in Property specification : bad argument specified");
+  warning("Error in Property specification : bad argument specified");
   PName=[];
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
@@ -36,18 +36,12 @@ elseif ( size(k,'*') > 1)
   elseif or(find(k==2)) // case PropertyName == 'colordata'
     k=2;
   else
-    disp(k);
-    disp("Ambiguous surface property");
+    warning("Ambiguous surface property");
     PName=[];
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 end
-
-//disp("str=")
-//disp(str)
-//disp("k=")
-//disp(k);
 
 opt = Table(k);
 for i=1:length(str)
@@ -61,13 +55,10 @@ opt1 = [opt1 k];
 str = part(str,i:length(str));
 
 if (size(opt1,'*') > 1)
-  disp("Error in Property specification : too much properties specified");
+  warning("Error in Property specification : too much properties specified");
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
-
-//disp("opt1 vaut")
-//disp(opt1);
 
 PName = TableEQ(opt1);
 

@@ -151,7 +151,7 @@ elseif given_data == 3 //surf(X,Y,Z) with Z giving us data + color info.
   Y = ListArg(2);
   Z = ListArg(3);
   
-  [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z);
+  [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode);
   
 elseif given_data == 4 //surf(X,Y,Z,COLOR)
   // ---------------------------------------------------------- //
@@ -167,7 +167,7 @@ elseif given_data == 4 //surf(X,Y,Z,COLOR)
   Z = ListArg(3);
   C = ListArg(4);
   
-  [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C);
+  [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode);
 end
 
 
@@ -191,7 +191,7 @@ while ((Property <> 0) & (Property <= nv-1))
     end
     
     X = PropertyValue;
-    [XX,tmp2,tmp3] = CreateFacetsFromXYZ(PropertyValue,Y,Z);
+    [XX,tmp2,tmp3] = CreateFacetsFromXYZ(PropertyValue,Y,Z,current_figure, cur_draw_mode);
         
     // Ydata
   elseif (PName == 'ydata')
@@ -203,7 +203,7 @@ while ((Property <> 0) & (Property <= nv-1))
     end
     
     Y = PropertyValue;
-    [tmp1,YY,tmp3] = CreateFacetsFromXYZ(X,PropertyValue,Z);
+    [tmp1,YY,tmp3] = CreateFacetsFromXYZ(X,PropertyValue,Z,current_figure, cur_draw_mode);
         
     // Zdata
   elseif (PName == 'zdata')
@@ -215,7 +215,7 @@ while ((Property <> 0) & (Property <= nv-1))
     end
     
     Z = PropertyValue;
-    [tmp1,tmp2,ZZ] = CreateFacetsFromXYZ(X,Y,PropertyValue);
+    [tmp1,tmp2,ZZ] = CreateFacetsFromXYZ(X,Y,PropertyValue,current_figure, cur_draw_mode);
   
   end
   
@@ -388,14 +388,14 @@ endfunction
 
 
 
-function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z)
+function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)
 
 if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   
   Z = Z';  // here a transposition is needed
   
   if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
-    error('surf : Vectors X, Y must match Z matrix dimensions');
+    warning('surf : Vectors X, Y must match Z matrix dimensions');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -408,7 +408,7 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
 elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
   if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
-    error('surf : Matrices must be the same size');
+    warning('surf : Matrices must be the same size');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -421,7 +421,7 @@ elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
 elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
   if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
-    error('surf : Matrices must be the same size');
+    warning('surf : Matrices must be the same size');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -445,7 +445,7 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
 elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
   if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
-    error('surf : Matrices must be the same size');
+    warning('surf : Matrices must be the same size');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -478,7 +478,7 @@ endfunction
 
 
 
-function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C)
+function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)
 
 if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   
@@ -486,7 +486,7 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   C = C'; // here a transposition is needed
   
   if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
-    error('surf : Vectors X, Y must match Z matrix dimensions');
+    warning('surf : Vectors X, Y must match Z matrix dimensions');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -506,7 +506,7 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
 elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
   if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
-    error('surf : Matrices must be the same size');
+    warning('surf : Matrices must be the same size');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -526,7 +526,7 @@ elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
 elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
   if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
-    error('surf : Matrices must be the same size');
+    warning('surf : Matrices must be the same size');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
@@ -559,7 +559,7 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
 elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
   if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
-    error('surf : Matrices must be the same size');
+    warning('surf : Matrices must be the same size');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 

@@ -69,7 +69,7 @@ while length(str) > 1
   k=find(part(Table,1)==c1);
 
   if (k == [] | (size(k,'*') > 1 & c1 <> 'b'))
-    disp("Error in LineSpec property : bad argument specified");
+    warning("Error in LineSpec property : bad argument specified");
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
@@ -87,12 +87,6 @@ while length(str) > 1
       k=15; // k is set to blue color
     end
   end
-
-//  disp("str=")
-//  disp(str)
-
-//  disp("k=")
-//  disp(k);
 
   opt = Table(k);
   for i=1:length(str)

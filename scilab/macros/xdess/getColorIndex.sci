@@ -30,7 +30,7 @@ k=find(part(Table,1:length(str))==str);
 c1 = part(str,1); // We get the first character
 
 if (k == [] | (size(k,'*') > 1 & c1 <> 'b'))
-  disp("Error in Color property : bad argument specified");
+  warning("Error in Color property : bad argument specified");
   return;
 end
 
@@ -48,12 +48,6 @@ if c1=='b' // special case here : we have to distinguish between black and blue 
   end
 end
 
-//disp("str=")
-//disp(str)
-
-//disp("k=")
-//disp(k);
-
 opt = Table(k);
 for i=1:length(str)
   if part(opt,i) <> part(str,i)
@@ -66,7 +60,7 @@ opt1 = k;
 str = part(str,i:length(str));
 
 if (size(opt1,'*') > 1)  // unreachable case normally
-  disp("Error in Property specification : too much properties specified")
+  warning("Error in Property specification : too much properties specified")
   return;
 end
 

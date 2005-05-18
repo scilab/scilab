@@ -10,7 +10,7 @@ err = execstr('str = convstr(PropertyName);','m');
 
 if err <> 0
   mprintf("plot syntax error (help plot for info)\n");
-  mprintf("Error %d : in getPlotPropertyName called by plot\n",err);
+  warning("Error %d : in getPlotPropertyName called by plot\n");
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
@@ -27,7 +27,7 @@ opt1=[];
 k=find(part(Table,1:length(str))==str);
 
 if (k == [])
-  disp("Error in Property specification : bad argument specified");
+  warning("Error in Property specification : bad argument specified");
   PName=[];
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
@@ -35,17 +35,12 @@ elseif ( size(k,'*') > 1)
   if or(find(k==7)) // case PropertyName == 'marker'
     k=7; // set to PropertyName == 'marker' only
   else
-    disp("Ambiguous line property");
+    warning("Ambiguous line property");
     PName=[];
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
 end
-
-//disp("str=")
-//disp(str)
-//disp("k=")
-//disp(k);
 
 opt = Table(k);
 for i=1:length(str)
@@ -59,13 +54,10 @@ opt1 = [opt1 k];
 str = part(str,i:length(str));
 
 if (size(opt1,'*') > 1)
-  disp("Error in Property specification : too much properties specified");
+  warning("Error in Property specification : too much properties specified");
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
-
-//disp("opt1 vaut")
-//disp(opt1);
 
 PName = TableEQ(opt1);
 
