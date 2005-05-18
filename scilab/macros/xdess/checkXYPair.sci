@@ -7,6 +7,7 @@ if type(y)==13 // If y is a function
   if and(size(x)~=1)  // then x *must* be a vector
     warning(sprintf('%s : x must be a vector',typeOfPlot));
     ResetFigureDDM(current_figure, cur_draw_mode);
+    return;
   end
 
   t=x(:); // to ensure that t is a column vector
@@ -54,6 +55,7 @@ else // "classical" case
     str='plot error : empty input data';
     warning(str);
     ResetFigureDDM(current_figure, cur_draw_mode)
+    return;
   end
   
   if and(size(X)==size(Y))  // si les tailles sont egales

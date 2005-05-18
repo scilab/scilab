@@ -20,11 +20,13 @@ nArgIn=max(size(in))
 if nArgIn~=1
    warning(sprintf('%s : function must accept two input arguments',funName));
    ResetFigureDDM(current_figure, cur_draw_mode)
+   return;
 end
 
 if nArgOut~=1 & nArgOut~=2
    warning(sprintf('%s : function must have 1 or 2 output arguments',funName));
    ResetFigureDDM(current_figure, cur_draw_mode)
+   return;
 end
 
 // Now we test if func accepts vector inputs (we test with the X,Y
