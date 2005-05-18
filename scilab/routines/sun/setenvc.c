@@ -6,53 +6,11 @@
 #ifdef WITH_TK
   #include "../tclsci/TCL_Global.h"
 #endif
-
+#ifdef WIN32
 static char *env=NULL;
-int UpdateEnvVar=0;
-/*-----------------------------------------------------------------------------------*/
-#ifdef WITH_TK
-  int setenvtcl(char *string,char *value);
 #endif
-/*-----------------------------------------------------------------------------------*/
-/* returns 0 if there is a problem else 1 */
-int setenvc(char *string,char *value)
-{
-	#define TRUE  1
-	#define FALSE 0
 
-	int ret=0;
-
-	#if linux
-		if ( setenv(string,value,1) ) ret=FALSE;
-		else 
-		{
-			ret=TRUE;
-			UpdateEnvVar=1;
-		}
-	#else /* others HP Solaris WIN32*/
-		env=(char*)malloc((strlen(string)+strlen(value)+2)*sizeof(char));
-		sprintf(env,"%s=%s",string,value);
-		if ( putenv(env) ) ret=FALSE;
-		else 
-		{
-		  #ifdef WITH_TK
-	        setenvtcl(string,value);
-	      #endif
-
-			ret=TRUE;
-			UpdateEnvVar=1;
-		}
-		#ifdef WIN32
-		if (env)
-		{
-			free(env);
-			env=NULL;
-		}
-        #endif
-	#endif
-
-	return ret;
-}
+int UpdateEnvVar=0;
 /*-----------------------------------------------------------------------------------*/
 #ifdef WITH_TK
 int setenvtcl(char *string,char *value)
@@ -77,3 +35,42 @@ int setenvtcl(char *string,char *value)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
+/* returns 0 if there is a problem else 1 */
+int setenvc(char *string,char *value)
+{
+#define TRUE  1
+#define FALSE 0
+
+  int ret=0;
+
+#if linux
+  if ( setenv(string,value,1) ) ret=FALSE;
+  else 
+    {
+      ret=TRUE;
+      UpdateEnvVar=1;
+    }
+#else /* others HP Solaris WIN32*/
+  env=(char*)malloc((strlen(string)+strlen(value)+2)*sizeof(char));
+  sprintf(env,"%s=%s",string,value);
+  if ( putenv(env) ) ret=FALSE;
+  else 
+    {
+#ifdef WITH_TK
+      setenvtcl(string,value);
+#endif
+
+      ret=TRUE;
+      UpdateEnvVar=1;
+    }
+#ifdef WIN32
+  if (env)
+    {
+      free(env);
+      env=NULL;
+    }
+#endif
+#endif
+
+  return ret;
+}
