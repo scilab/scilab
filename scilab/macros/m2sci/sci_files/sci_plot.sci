@@ -8,7 +8,8 @@ function   tree=sci_plot(tree)
 global("m2sci_to_insert_a")
 if tree.lhs(1).name <> "ans" then
  m2sci_to_insert_a($+1)=Equal(list(tree.lhs(1)),Funcall("gce",1,list(),list()))
- tree.lhs(1)=Variable("ans",tlist(["infer","dims","type","contents"],list(1,1),Type(1,0),Contents()))
- pause
+ tree.lhs(1)=Variable("ans",tlist(["infer","dims","type","contents"],list(1,1),Type(Handle,Unknown),Contents()))
+ else
+ tree.lhs(1).type=Type(Handle,Unknown)
 end
 endfunction
