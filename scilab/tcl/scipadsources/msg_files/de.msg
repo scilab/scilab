@@ -81,6 +81,9 @@
 ::msgcat::mcset de "Hide watch variables" "Beobachtete Variablen verstecken"
 ::msgcat::mcset de "Show call stack" "Ausführungsstapel zeigen"
 ::msgcat::mcset de "Hide call stack" "Ausführungsstapel verstecken"
+#::msgcat::mcset de "Undefined elements are not legal in variable"
+#::msgcat::mcset de ".\nThis variable will not be updated in Scilab."
+#::msgcat::mcset de "Illegal undefined element found"
 
 
 # filecommands.tcl
@@ -148,6 +151,7 @@
                     Überarbeitung durch Enrico Segre 2003-2005.\n\
                     Verbesserungen (insbesondere Debugger) von François Vogel 2004-2005.\n\
                     Schwedische Übersetzung von Gunnar Lindholm 2005.\n\
+                    Norwegische Übersetzung von Torbjørn Pettersen 2005.\n\
                     Deutsche Übersetzung von Dirk Reusch 2005."
 
 
@@ -358,4 +362,5 @@
 ::msgcat::mcset de "&Red" "&Rot"
 ::msgcat::mcset de "&Green" "&Grün"
 ::msgcat::mcset de "&Blue" "&Blau"
+::msgcat::mcset de "Directory \"%1\$s\" does not exist." "Das Verzeichnis \"%1\$s\" existiert nicht."
 
