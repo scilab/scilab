@@ -12,12 +12,10 @@ function [txt,space]=format_txt(txt,instr,prettyprint,nextinstr)
 // - space: indentation margin for control instructions
 
 rhs=argn(2)
+
 // Indentation and EOL in control clauses
 if rhs==3 then
-  if or(typeof(instr)==["ifthenelse","for","while"]) then
-    txt($)=txt($)+";"
-    space="  "
-  elseif instr<>list("EOL") & prettyprint then
+  if instr<>list("EOL") & prettyprint then
     txt = cat_code(txt,"")
     space="  "
   elseif instr<>list("EOL") then
@@ -25,10 +23,7 @@ if rhs==3 then
   else
     space="  "
   end
-  // EOL between instructions
-elseif or(typeof(instr)==["ifthenelse","for","while"]) & nextinstr<>list("EOL") then
-  txt($)=txt($)+";"
-  //space="  "
+// EOL between instructions
 else
   if prettyprint & instr<>list("EOL") & nextinstr<>list("EOL") then
     txt = cat_code(txt,"")

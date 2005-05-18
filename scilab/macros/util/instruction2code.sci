@@ -68,6 +68,7 @@ end
 C = format_txt(C,I.else($),prettyprint); // Add EOL after last else statement if needed
 end
 C=cat_code(C,"end")
+C($)=C($)+";"
 return
 end
 
@@ -116,6 +117,7 @@ end
 C = format_txt(C,I.else($),prettyprint); // Add EOL after last else statement if needed
 end
 C=cat_code(C,"end")
+C($)=C($)+";"
 return
 end
 
@@ -134,6 +136,7 @@ if typeof(I)=="while" then
   end
   C = format_txt(C,I.statements($),prettyprint); // Add EOL after last statement if needed
   C=cat_code(C,"end")
+  C($)=C($)+";"
   return
 end
 
@@ -152,6 +155,7 @@ if typeof(I)=="for" then
   end
   C = format_txt(C,I.statements($),prettyprint); // Add EOL after last statement if needed
   C=cat_code(C,"end")
+  C($)=C($)+";"
   return
 end
 
@@ -198,7 +202,7 @@ else
     C=rhs2code(I.expression)
   end
 end
-C($)=C($)+I.endsymbol;
+C($)=C($)+";";
 return
 end
 
