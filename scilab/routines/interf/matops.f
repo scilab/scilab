@@ -2952,7 +2952,7 @@ c     copy arg3 elements in r
  114     continue
  115  continue
 c     
-      if(lr.ne.l4) then
+      if(lr.ne.l4.or.init4.ne.0) then
          l1=sadr(ilrs+4)
          call unsfdcopy(mnr*(itr+1),stk(lr),1,stk(l1),1)
          istk(ilrs)=1
