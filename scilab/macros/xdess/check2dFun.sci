@@ -18,12 +18,12 @@ nArgOut=max(size(out));
 nArgIn=max(size(in))
 
 if nArgIn~=1
-   error(sprintf('%s : function must accept two input arguments',funName));
+   warning(sprintf('%s : function must accept two input arguments',funName));
    ResetFigureDDM(current_figure, cur_draw_mode)
 end
 
 if nArgOut~=1 & nArgOut~=2
-   error(sprintf('%s : function must have 1 or 2 output arguments',funName));
+   warning(sprintf('%s : function must have 1 or 2 output arguments',funName));
    ResetFigureDDM(current_figure, cur_draw_mode)
 end
 

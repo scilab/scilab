@@ -5,7 +5,7 @@ ok=%F;
 if type(y)==13 // If y is a function
   f=y;
   if and(size(x)~=1)  // then x *must* be a vector
-    error(sprintf('%s : x must be a vector',typeOfPlot));
+    warning(sprintf('%s : x must be a vector',typeOfPlot));
     ResetFigureDDM(current_figure, cur_draw_mode);
   end
 
@@ -52,7 +52,7 @@ else // "classical" case
   if size(X)==[0 0] | size(Y)==[0 0]
     ok=%F
     str='plot error : empty input data';
-    error(str);
+    warning(str);
     ResetFigureDDM(current_figure, cur_draw_mode)
   end
   
@@ -127,7 +127,7 @@ else // "classical" case
   
   if ~ok
     str='plot : incompatible dimensions of data arguments';
-    error(str);
+    warning(str);
     ResetFigureDDM(current_figure, cur_draw_mode)
   end
 
