@@ -273,6 +273,7 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     sciDrawObj(curFig);
   }
   else {
+    struct BCG * XGC = (struct BCG *) NULL;
     C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     C2F(dr)("xinit",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if (ierr != 0)  goto bad;
@@ -288,6 +289,12 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     **/
     setcolordef(colored);
     UseColorFlag(1);
+
+    /* we want to draw something with a driver in old style */
+    /* I force the current ScilabXgc.graphicsversion = 1 */ /* F.Leray 18.05.05 */
+    XGC=(struct BCG *) sciGetCurrentScilabXgc ();
+    XGC->graphicsversion = 1;
+
     C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     /** back to default values **/
     UseColorFlag(0);
