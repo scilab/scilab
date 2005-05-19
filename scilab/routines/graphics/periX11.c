@@ -394,7 +394,7 @@ void C2F(xpause)(char *str, integer *sec_time, integer *v3, integer *v4, integer
       useconds=*sec_time;
       if (useconds != 0)  
 #ifdef HAVE_USLEEP
-       { usleep(useconds); }
+	{ usleep(useconds); }
 #else
 #ifdef HAVE_SLEEP
       {  sleep(useconds/1000000); }
@@ -406,7 +406,7 @@ void C2F(xpause)(char *str, integer *sec_time, integer *v3, integer *v4, integer
   else
     {
       Scierror(999,"xpause: error time must be >0.\r\n");
-      return 0;
+      return;
     }
 }
 
