@@ -202,7 +202,8 @@ else
     C=rhs2code(I.expression)
   end
 end
-C($)=C($)+";";
+C($)=C($)+I.endsymbol
+//C($)=C($)+";";
 return
 end
 
