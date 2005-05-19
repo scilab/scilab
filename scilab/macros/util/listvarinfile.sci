@@ -2,7 +2,7 @@
 //  data file
 // Author: Serge Steer, 31 Jan 2001, reedited by Enrico Segre
 function varargout=listvarinfile(fil)
-  lhs=argn(2)
+  lhs=argn(1)
   u=mopen(fil,'rb')
   typenames=[
       'constant';
