@@ -4,7 +4,7 @@
 #F77	= /opt/fortran/bin/f77
 #AS		= /usr/ccs/bin/as
 # --------------------- Standard Stuff ------------------------
-ARCHCFLAGS	=	-DSYSVSIGNAL -DNOWAIT3 -DNOGETDTBLSIZ \
+ARCHCFLAGS	=	+Z +DAportable -DSYSVSIGNAL -DNOWAIT3 -DNOGETDTBLSIZ \
 				-DRSHCOMMAND=\"/usr/bin/remsh\" -DFDSETISINT
 # remove -DFDSETISINT above for HP-UX 11.0...?
 # replace -DFDSETISINT with -DFDSETNOTSTRUCT for HP-UX 10.20...
