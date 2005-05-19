@@ -20,9 +20,9 @@ MFILECONTENTS=["% i and j do not exist as variables -> Imaginary unit";
 		"  for i=1:10";
 		"    for j=1:10";
 		"      chgt_rampe(k)=2*i-j+1;";
-		"    end";
-		"  end";
-		"end";
+		"    end;";
+		"  end;";
+		"end;";
 		"% Two complex values";
 		"icplxnumber2=1+3i;";
 		"jcplxnumber2=1+3j;";
@@ -37,9 +37,9 @@ MFILECONTENTS=["% i and j do not exist as variables -> Imaginary unit";
 		"      disp(i)";
 		"    else";
 		"      disp(''abcd'')";
-		"    end";
-		"  end";
-		"end"]
+		"    end;";
+		"  end;";
+		"end;"]
 
 MFILE=TMPDIR+"/bug857.m"
 SCIFILE=TMPDIR+"/bug857.sci"
@@ -66,9 +66,9 @@ SCIFILECONTENTSREF=["";
 		"  for i = 1:10";
 		"    for j = 1:10";
 		"      chgt_rampe(1,k) = 2*i-j+1;";
-		"    end";
-		"  end";
-		"end";
+		"    end;";
+		"  end;";
+		"end;";
 		"// Two complex values";
 		"icplxnumber2 = 1+3*%i;";
 		"jcplxnumber2 = 1+3*%i;";
@@ -83,10 +83,10 @@ SCIFILECONTENTSREF=["";
 		"        disp(i)";
 		"      else";
 		"        disp(""abcd"")";
-		"    end";
-		"  end";
-		"end"]
-
+		"    end;";
+		"  end;";
+		"end;"]
+		
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 	affich_result(%F,857);
 else

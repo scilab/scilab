@@ -29,7 +29,7 @@ SCIFILECONTENTSREF=["";
 		"if bool2s(b==0)|bool2s(b(2)>0) then";
 		"  a = 1;";
 		"else a = 0;";
-		"end"]
+		"end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 	affich_result(%F,682);

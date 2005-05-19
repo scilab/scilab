@@ -36,7 +36,7 @@ SCIFILECONTENTSREF=["";
 		"while asciimat(tempstr)~=(-1)";
 		"  tempstr = mgetl(fp,1);  // -1 if eof ";
 		"  disp(tempstr);";
-		"end";
+		"end;";
 		"mclose(fp);"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then

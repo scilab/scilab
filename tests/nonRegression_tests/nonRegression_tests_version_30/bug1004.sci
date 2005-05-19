@@ -26,7 +26,7 @@ SCIFILECONTENTSREF=["";
 		"ieee(1);";
 		"";
 		"for i = 1:5";
-		"end"]
+		"end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 	affich_result(%F,1004);

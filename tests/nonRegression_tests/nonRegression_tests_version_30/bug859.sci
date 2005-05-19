@@ -35,7 +35,7 @@ SCIFILECONTENTSREF=["";
 		"for h = 1:10";
 		"  result_bis(m,1:length(result(h,:))) = result(h,:);";
 		"  m = m+1;";
-		"end"]
+		"end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 	affich_result(%F,859);

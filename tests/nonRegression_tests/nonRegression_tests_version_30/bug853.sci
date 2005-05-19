@@ -33,7 +33,7 @@ SCIFILECONTENTSREF=["";
 		"dir_target = mtlb_dir(dir_name);";
 		"for i = 1:10";
 		"  RC(1,i) = dir_name+""\""+dir_target(i).name;";
-		"end"]
+		"end;"]
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then

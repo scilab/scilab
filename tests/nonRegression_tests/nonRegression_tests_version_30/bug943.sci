@@ -33,7 +33,7 @@ SCIFILECONTENTSREF=["";
 		"if a==1 then J = [1;2;3]; G = [4;5;6];";
 		"elseif a==2 then J = [1;2;3]; G = [4;5;6];";
 		"elseif a==3 then J = [1;2;3]; G = [4;5;6];";
-		"else J = [1;2;3]; G = [4;5;6];end"]
+		"else J = [1;2;3]; G = [4;5;6];end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
 	affich_result(%F,943);

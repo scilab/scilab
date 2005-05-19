@@ -9,7 +9,7 @@ MFILECONTENTS=["A = rand(3,3);"
 ""
 "for ii=1:3; for jj=1:3; disp(A(ii,jj)); end; end"
 ""
-"k=0"
+"k=0;"
 "for ii=1:3;"
 "   for jj=1:3;"
 "      if k>2 then"
@@ -35,7 +35,6 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 
-
 SCIFILECONTENTSREF=["";
 "// Display mode";
 "mode(0);";
@@ -45,9 +44,9 @@ SCIFILECONTENTSREF=["";
 "";
 "A = rand(3,3);"
 ""
-"for ii = 1:3;  for jj = 1:3 disp(A(ii,jj));end;end"
+"for ii = 1:3  for jj = 1:3 disp(A(ii,jj));end;end;"
 ""
-"k = 0"
+"k = 0;"
 "for ii = 1:3"
 "  for jj = 1:3"
 "    if k>2 then"
@@ -55,9 +54,9 @@ SCIFILECONTENTSREF=["";
 "      k = 0;"
 "    else"
 "      k = k+1;"
-"    end"
-"  end"
-"end"
+"    end;"
+"  end;"
+"end;"
 ""
 "C = [A,A,[1;2;3]];"
 ""
