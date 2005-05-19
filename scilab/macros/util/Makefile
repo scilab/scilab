@@ -58,6 +58,6 @@ MACROS = loaddefaultbrowser.sci savedefaultbrowser.sci configure_msvc.sci findms
 	rhs2code.sci create_palette.sci ndgrid.sci \
 	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci \
 	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci readxls.sci \
-	xs2eps.sci 
+	xs2eps.sci listvarinfile.sci
 
 include ../Make.lib
