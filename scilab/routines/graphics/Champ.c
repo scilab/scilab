@@ -340,7 +340,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
+	  zm[j] = inint( ((double) whiteid - 1)*(1.0 - nor/maxx)) +1;
 	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
 
 	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
@@ -475,7 +475,7 @@ extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,type
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
+	  zm[j] = inint( ((double) whiteid -1 )*(1.0 - nor/maxx)) +1;
 	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
 
 	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
