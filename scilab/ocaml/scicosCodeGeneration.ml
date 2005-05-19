@@ -1003,7 +1003,7 @@ let generate_code path filename fun_name model with_jac =
      double ipow(double x, int n)\n\
      {\n\
      \t/* NaNs propagation */\n\
-     \tif (isnan(x) || x == 0.0 && n == 0) return exp(x * log((double)n));\n\
+     \tif ( (x!=x) || x == 0.0 && n == 0) return exp(x * log((double)n));\n\
      \t/* Normal execution */\n\
      \tif (n < 0) return 1.0 / ipow_(x, -n);\n\
      \treturn ipow_(x, n);\n\
