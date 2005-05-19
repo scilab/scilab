@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.115 $)dnl
+AC_REVISION($Revision: 1.116 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -2089,6 +2089,7 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 AC_SUBST(LIBS)
 AC_SUBST(FLIBS)
+AC_SUBST(SONAME)
 #AC_SUBST(CC)
 AC_SUBST(CFLAGS)
 #AC_SUBST(FC_USE_CDEC)
