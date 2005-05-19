@@ -711,7 +711,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   char *Format;
   if ( Info == NULL ) {
     if (( Info =malloc(INFOSIZE*sizeof(char)))==NULL) {
-      Scierror(999,"Error: in function %s, no more memory\r\n",fname);
+      Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
       return 0;
     }
     Info_size = INFOSIZE;
@@ -743,14 +743,20 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   while ( sscanf(Info,"%lf",&x) <= 0 && n != EOF ) 
     { 
       n=ReadLine(f,&mem); 
-      if ( mem == 1) return 0;
+      if ( mem == 1) {
+	free(Info);
+	fclose(f);
+	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
+	return 0;
+      }
       vl++;
     }
   if ( n == EOF )
     {
+      free(Info);
+      fclose(f);
       Scierror(999,"Error: in function %s, cannot read data in file %s\r\n",
 	       fname,cstk(l1));
-      fclose(f);
       return 0;
     }
   cols = NumTokens(Info);
@@ -758,7 +764,12 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   while (1) 
     { 
       n=ReadLine(f,&mem);
-      if ( mem == 1) return 0;
+      if ( mem == 1) {
+	free(Info);
+	fclose(f);
+	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
+	return 0;
+      }
       if ( n == EOF ||  n == 0 ) break;
       if ( sscanf(Info,"%lf",&x) <= 0) break;
       rows++;
@@ -770,7 +781,9 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   /** skip non numeric lines **/
   if ( Lhs >= 2 && vl != 0 ) {
     if ((Str = malloc((vl+1)*sizeof(char *)))==NULL) {
-      Scierror(999,"Error: in function %s, no more memory \r\n", fname);
+      free(Info);
+      fclose(f);
+      Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n", fname);
       return 0;
     }
     Str[vl]=NULL;
@@ -779,12 +792,21 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   for ( i = 0 ; i < vl ; i++) 
     {
       ReadLine(f,&mem);
-      if ( mem == 1) return 0;
+      if ( mem == 1) {
+	free(Info);
+	fclose(f);
+	for (j=0;j<i;j++) free(Str[j]);
+	free(Str);
+	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
+	return 0;
+      }
       if ( Lhs >= 2) {
 	if ((Str[i]=malloc((strlen(Info)+1)*sizeof(char)))==NULL) { 
-	  int j;
-	  for ( j=0 ; j < i; j++) {FREE(Str[i]); FREE(Str);}
-	  Scierror(999,"Error: in function %s, no more memory \r\n", fname);
+	  free(Info);
+	  fclose(f);
+	  for (j=0;j<i;j++) free(Str[j]);
+	  free(Str);
+	  Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n", fname);
 	  return 0;
 	}
 	strcpy(Str[i],Info);
@@ -826,21 +848,18 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 static int ReadLine(FILE *fd,int *mem)
 {
   int n=0;
+  char * Info1;
   while (1)
     {
       char c = (char) getc(fd);
       if ( n > Info_size ) 
 	{
 	  Info_size += INFOSIZE;
-	  if (( Info = realloc(Info,Info_size*sizeof(char)))==NULL) {
-	    Scierror(999,"Error: no more memory\r\n");
+	  if (( Info1 = realloc(Info,Info_size*sizeof(char)))==NULL) {
 	    *mem=1;
 	    return EOF;
 	  }
-	  /* 
-	  sciprint("Error Info buffer is too small (too many columns in your file ?)\r\n");
-	  return EOF ;
-	  */
+	  Info=Info1;
 	}
       Info[n]= c ; 
       if ( c == '\n') { Info[n] = '\0' ; return 1;}
