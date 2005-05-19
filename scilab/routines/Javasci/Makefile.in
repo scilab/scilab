@@ -9,7 +9,7 @@ SCIDIR1=..\..
 JAVAINC=@JAVA_INCL@
 
 #--------------------------------------------------------
-LIBRARY= $(SCIDIR)/bin/libjavasci.so 
+LIBRARY= $(SCIDIR)/bin/libjavasci.$(SONAME) 
 JAVAC=javac
 SOURCESJ=*.java
 OBJSC= javasci_globals.o javasci_Scilab.o javasci_SciReal.o @GCCFIX@
