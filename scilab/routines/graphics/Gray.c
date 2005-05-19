@@ -35,6 +35,9 @@ extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
 extern void GraySquare1_NGreverse(integer *x, integer *y, double *z, 
 				  integer n1, integer n2, sciPointObj * psubwin);
 
+extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
+extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
+
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
@@ -548,4 +551,91 @@ extern void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1
 
 
 
+
+
+extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2)
+{
+  integer i,j,verbose=0,whiteid,narg,fill,cpat,xz[2];
+  integer vertexx[5], vertexy[5];
+  int cinq = 5, un = 1;
+  
+  int *xm = x;
+  int *ym = y;
+
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  for (i = 0 ; i < (n1)-1 ; i++)
+    for (j = 0 ; j < (n2)-1 ; j++)
+      {
+	fill= - (int) z[j+n1*i];
+	C2F(dr)("xset","pattern",&fill,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+ 	
+	vertexx[0] = xm[j+n1*i];
+	vertexx[1] = xm[j+n1*(i+1)];
+	vertexx[2] = xm[j+1+n1*(i+1)];
+	vertexx[3] = xm[j+1+n1*i];
+	vertexx[4] = xm[j+n1*i];
+	
+	vertexy[0] = ym[i+n2*j];
+	vertexy[1] = ym[i+1+n2*j];
+	vertexy[2] = ym[i+1+n2*(j+1)];
+	vertexy[3] = ym[i+n2*(j+1)];
+	vertexy[4] = ym[i+n2*j];
+	
+	C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+		PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
+  
+  C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+}
+
+
+
+extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2)
+{
+  double zmoy,zmax,zmin,zmaxmin;
+  integer i,j,verbose=0,whiteid,narg,fill,cpat,xz[2];
+  integer vertexx[5], vertexy[5];
+  int cinq = 5, un = 1;
+  
+  int *xm = x;
+  int *ym = y;
+  
+  zmin=Mini(z,(n1)*(n2));
+  zmax=Maxi(z,(n1)*(n2));
+  zmaxmin=zmax-zmin;
+  if (zmaxmin <= SMDOUBLE) zmaxmin=SMDOUBLE;
+  
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  for (i = 0 ; i < (n1)-1 ; i++)
+    for (j = 0 ; j < (n2)-1 ; j++)
+      {
+	zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
+	fill= - (1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin)));
+	
+	C2F(dr)("xset","pattern",&fill,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	
+	vertexx[0] = xm[j+n1*i];
+	vertexx[1] = xm[j+n1*(i+1)];
+	vertexx[2] = xm[j+1+n1*(i+1)];
+	vertexx[3] = xm[j+1+n1*i];
+	vertexx[4] = xm[j+n1*i];
+	
+	vertexy[0] = ym[i+n2*j];
+	vertexy[1] = ym[i+1+n2*j];
+	vertexy[2] = ym[i+1+n2*(j+1)];
+	vertexy[3] = ym[i+n2*(j+1)];
+	vertexy[4] = ym[i+n2*j];
+	
+	C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+		PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
+  
+  C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+}
 

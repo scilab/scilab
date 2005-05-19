@@ -45,6 +45,8 @@ extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n
 extern void GraySquare1_NGreverse(integer *x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin);
 
 extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2);
+extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
+extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
 extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf);
 extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));

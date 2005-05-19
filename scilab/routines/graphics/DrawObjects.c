@@ -7171,46 +7171,50 @@ sciDrawObj (sciPointObj * pobj)
      
       switch (pGRAYPLOT_FEATURE (pobj)->type )
 	{
+	
+	  
 	case 0:  /* Grayplot case */
 	  if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
-	    if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
-	    if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
+
+	    /* F.Leray 19.05.05 : Now I use only xliness (not xfrect) */
+	    /* to better manage axes reversing */
+	    if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	return -1;
+	    if ((ym = MALLOC (n2*n1*sizeof (integer))) == NULL){
 	      FREE(xm); xm = (integer *) NULL; return -1; 
 	    }
- 
-	    for ( i =0 ; i < n1 ; i++)  
-	      xm[i]= XScale(pGRAYPLOT_FEATURE (pobj)->pvecx[i]);
-	    for ( i =0 ; i < n2 ; i++)  
-	      ym[i]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[i]);
-	
+
+	    for ( i =0 ; i < n1 ; i++)  /* on x*/
+	      for ( j =0 ; j < n2 ; j++)  /* on y */
+		{
+		  xm[i+j*n1]= XScale(pGRAYPLOT_FEATURE (pobj)->pvecx[i]);
+		  ym[j+i*n2]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[j]);
+		}
+	    
 #ifdef WIN32
 	    flag_DO = MaybeSetWinhdc();
 #endif
-	    frame_clip_on(); 
+	    frame_clip_on();
   
 	    if (strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
-	      GraySquare(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); /* SS 03/01/03 */
-	    else  
-	      GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
+	      GraySquareScaled(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); /* SS 03/01/03 */
+	    else
+	      GraySquareDirect(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);
 
 	    frame_clip_off();
-	    /* Remove box drawing : done by axis_draw2 */
-/* 	    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2], */
-/* 		    &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 #ifdef WIN32
 	    if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-
+	    
 	    /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
 	    FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
 	    FREE(ym); ym = (integer *) NULL;
 
 	  }
 	  else{
-	    /* 3D version */
+	    /*3D version */
 	    double * xvect = NULL;
 	    double * yvect = NULL;
-	    
+	
 	    if ((xvect = MALLOC (n1*sizeof (double))) == NULL) return -1;
 	    if ((yvect = MALLOC (n2*sizeof (double))) == NULL){
 	      FREE(xvect); xvect = (double *) NULL; return -1;
@@ -7258,13 +7262,21 @@ sciDrawObj (sciPointObj * pobj)
 		  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  
-		  /* color for current rectangle */
-		  zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
-		  
-		  fill[0]=1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin));  
-		  
-		  fill[0] = - fill[0]; /* not to have contour with foreground color around the rectangle */
 
+		  if(strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
+		    {
+		      /* color for current rectangle */
+		      zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
+		      
+		      fill[0]=1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin));  
+		      
+		      fill[0] = - fill[0]; /* not to have contour with foreground color around the rectangle */
+		    }
+		  else /* "direct" mode is used */
+		    {
+		      fill[0] = - (int) z[j+n1*i];
+		    }
+		  
 		  vertexx[0] = xm[i+n1*j];
 		  vertexx[1] = xm[i+n1*(j+1)];
 		  vertexx[2] = xm[i+1+n1*(j+1)];
