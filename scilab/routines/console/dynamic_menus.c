@@ -293,11 +293,16 @@ int C2F(intsleep) _PARAMS((char *fname))
 		GetRhsVar(1,"d",&m1,&n1,&l1);
 		CheckScalar(1,m1,n1);
 		sec = (integer) *stk(l1);
+		if (sec <=0)
+		{
+			Scierror(999,"sleep: error time must be >0.\r\n");
+			return; 
+		}
 	
 	#ifdef WIN32
 		{
 			int ms = (sec); /** time is specified in milliseconds in scilab**/
-			if (ms != 0) Sleep(ms); /* Number of milliseconds to sleep. */
+			if (ms > 0) Sleep(ms); /* Number of milliseconds to sleep. */
 		}
 	#else
 		{
