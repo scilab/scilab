@@ -744,7 +744,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     { 
       n=ReadLine(f,&mem); 
       if ( mem == 1) {
-	free(Info);
+	free(Info);Info=NULL;
 	fclose(f);
 	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
 	return 0;
@@ -753,7 +753,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     }
   if ( n == EOF )
     {
-      free(Info);
+      free(Info);Info=NULL;
       fclose(f);
       Scierror(999,"Error: in function %s, cannot read data in file %s\r\n",
 	       fname,cstk(l1));
@@ -765,7 +765,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     { 
       n=ReadLine(f,&mem);
       if ( mem == 1) {
-	free(Info);
+	free(Info);Info=NULL;
 	fclose(f);
 	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
 	return 0;
@@ -781,7 +781,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   /** skip non numeric lines **/
   if ( Lhs >= 2 && vl != 0 ) {
     if ((Str = malloc((vl+1)*sizeof(char *)))==NULL) {
-      free(Info);
+      free(Info);Info=NULL;
       fclose(f);
       Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n", fname);
       return 0;
@@ -793,7 +793,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     {
       ReadLine(f,&mem);
       if ( mem == 1) {
-	free(Info);
+	free(Info);Info=NULL;
 	fclose(f);
 	for (j=0;j<i;j++) free(Str[j]);
 	free(Str);
@@ -802,7 +802,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
       }
       if ( Lhs >= 2) {
 	if ((Str[i]=malloc((strlen(Info)+1)*sizeof(char)))==NULL) { 
-	  free(Info);
+	  free(Info);Info=NULL;
 	  fclose(f);
 	  for (j=0;j<i;j++) free(Str[j]);
 	  free(Str);
