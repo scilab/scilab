@@ -192,7 +192,7 @@
   o //OK
 -2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
 0,214.9,288.3,1000,"void"// Block: 1 toto
-0,220.1,242.1// Block: 2 scifunc_block
+0,220.1,242.1,1000// Block: 2 scifunc_block
 0,217.1,286.8,1000,"void"// Block: 1 toto
 217.1,285.3,-1//xgemouse
 217.1,283.8,-1//xgemouse
@@ -441,7 +441,7 @@
 303.4,190.8,0//xgemouse
 -2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
 0,231.2,222.8,1000,"void"// Block: 2 scifunc_block
-0,307.9,219// Block: 5 CMSCOPE
+0,307.9,219,1000// Block: 5 CMSCOPE
 0,232,221.3,1000,"void"// Block: 2 scifunc_block
 232.7,222,-1//xgemouse
 234.2,222.8,-1//xgemouse

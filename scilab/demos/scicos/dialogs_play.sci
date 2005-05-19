@@ -1,3 +1,12 @@
+function xpause(i)
+  realtimeinit(1d-6),
+  realtime(0),
+  realtime(i),
+endfunction
+
+
+
+
 function rep=x_message(comment,btns)
 // Copyright INRIA
   rep=[]
@@ -35,13 +44,12 @@ function str=x_dialog(comment,default)
   TCL_EvalStr(txt)
 
   TCL_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(default)+''"')
-
-  for t=1:100,  xpause(2000),end
+  for t=1:100,  xpause(1000),end
   TCL_EvalStr('$w.mess delete 0.0 end')
   TCL_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(str)+''"')
   
-  for t=1:min(100*(ln-1),5000),  xpause(2000),end
-  
+  for t=1:min(140*(ln-1),7000),  xpause(2000),end
+disp(timer())
   TCL_EvalStr('destroy $w')
 endfunction
 
@@ -316,14 +324,15 @@ end
 endfunction
 
 function tk_mpop(ll,but,pos)
+  if MSDOS then return,end
   [lhs,rhs]=argn(0)
   if rhs<3 then pos=-1;end
   if length(ll)==0 then return;end
-
+  for i=1:50,xpause(5000),end
   for bb=1:but-1
   [txt,MM]=create_pop(ll,bb,pos)
   ierr=execstr('TCL_EvalStr(txt)','continue')
-  for i=1:10,xpause(5000),end
+  for i=1:50,xpause(5000),end
    txt='catch {destroy .scicoslhb}'
   ierr=execstr('TCL_EvalStr(txt)','continue')
   end

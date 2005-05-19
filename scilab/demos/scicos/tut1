@@ -410,7 +410,7 @@
 358.2,165.8,0//xgemouse
 -2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
 0,304.6,150.9,1000,"void"// Block: 4 INTEGRAL
-0,363.4,178.4// Block: 6 CMSCOPE
+0,363.4,178.4,1000// Block: 6 CMSCOPE
 0,306.1,151.6,1000,"void"// Block: 4 INTEGRAL
 309.8,152.4,-1//xgemouse
 311.3,152.4,-1//xgemouse
@@ -787,7 +787,7 @@
 245.1,129.3,0//xgemouse
 -2,0,0,-1,"execstr(Edit_1000(8))"// Edit/Align
 0,360.4,153.1,1000,"void"// Block: 6 CMSCOPE
-0,289,152.4// Block: 13 CLR_f
+0,289,152.4,1000// Block: 13 CLR_f
 0,289.7,152.4,1000,"void"// Block: 13 CLR_f
 295,152.4,-1//xgemouse
 297.2,152.4,-1//xgemouse
