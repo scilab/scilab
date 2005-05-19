@@ -495,8 +495,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"clip_state",clip_state);
   case "Grayplot"
     visible        = toggle(mget(1,'c',fd))
-    sz             = mget(2,'il',fd)
-    data           = matrix(mget(prod(sz),'dl',fd),sz(1),-1)
+    if version(1)>=3&version(2)>=1 then
+      sz=mget(2,'il',fd);x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+      sz=mget(2,'il',fd);y=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+      sz=mget(2,'il',fd);z=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    else
+      sz = mget(2,'il',fd)
+      data = matrix(mget(prod(sz),'dl',fd),sz(1),-1)
+    end
+    
     data_mapping   = ascii(mget(mget(1,'c',fd),'c',fd))
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then
@@ -504,8 +511,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box=[]
     end
-
-    grayplot(data(2:$,1),data(1,2:$),data(2:$,2:$))
+    
+    if version(1)>=3&version(2)>=1 then
+      grayplot(x,y,z)
+    else
+      grayplot(data(2:$,1),data(1,2:$),data(2:$,2:$))
+    end
+    
     h=get('hdl')
     set(h,"visible",visible)
     set(h,"data_mapping",data_mapping)

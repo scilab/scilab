@@ -282,7 +282,15 @@ function save_graphichandle(h,fd)
   case "Grayplot"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
-    mput(size(h.data),'il',fd);mput(h.data,'dl',fd)
+    x=h.data.x;sz=size(x)
+    mput(sz,'il',fd)
+    mput(x,'dl',fd)
+    y=h.data.y;sz=size(y)
+    mput(sz,'il',fd)
+    mput(y,'dl',fd)
+    z=h.data.z;sz=size(z)
+    mput(sz,'il',fd)
+    mput(z,'dl',fd)
     mput(length(h.data_mapping),'c',fd);mput(ascii(h.data_mapping),'c',fd);
     mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then
