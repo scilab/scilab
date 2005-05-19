@@ -1,6 +1,9 @@
- 
-// Graphics initialisation
-global %graphics
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
 %graphics.type=1
 %graphics.units="pixels"
 

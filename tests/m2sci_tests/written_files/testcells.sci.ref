@@ -1,6 +1,9 @@
 
+// Display mode
+mode(0);
+
 // Display warning for floating point exception
-ieee(1)
+ieee(1);
 
 // Copyright INRIA
 // File used to verify that test data is well converted to Scilab

@@ -1,6 +1,9 @@
 
+// Display mode
+mode(0);
+
 // Display warning for floating point exception
-ieee(1)
+ieee(1);
 
 // Test file for function fseek()
 // Copyright INRIA

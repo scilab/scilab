@@ -5,6 +5,9 @@ mode(0);
 // Display warning for floating point exception
 ieee(1);
 
+// Display warning for floating point exception
+ieee(1);
+
 // Copyright INRIA
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
