@@ -4309,7 +4309,8 @@ int sciType (marker, pobj)
   /* else if (strcmp(marker,"data") == 0)            {return 1;}*/ /* F.Leray modif. for SCI_SURFACE case*/
   else if (strcmp(marker,"data") == 0)
     if((sciGetEntityType(pobj) == SCI_SURFACE) || 
-       (sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1))
+       (sciGetEntityType(pobj) == SCI_SEGS     && pSEGS_FEATURE(pobj)->ptype == 1) || /* a champ */
+       (sciGetEntityType(pobj) == SCI_GRAYPLOT && pGRAYPLOT_FEATURE(pobj)->type == 0))    /* a grayplot (case == 0) */
       return 16;
     else
       return 1;

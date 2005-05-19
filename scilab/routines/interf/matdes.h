@@ -164,6 +164,8 @@ static int get3ddata(sciPointObj *pthis); /* F.Leray Declaration here*/
 static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int colorflag, char *fname);
 static int getchampdata(sciPointObj *pobj);
 static int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
+static int getgrayplotdata(sciPointObj *pobj);
+static int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
 
 extern double  sciFindLogMinSPos(double *x, int n);
 

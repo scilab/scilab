@@ -5270,10 +5270,6 @@ int gset(fname,fname_len)
 	  int address[4],i;
 	  for(i=0;i<4;i++) address[i] = 0;
 	  
-	  if (strncmp(cstk(l2),"data",4) !=0) {
-	    sciprint("Impossible case: Handle must be a SCI_SEGS (created by a champ call) and marker must be data\n");
-	    return -1;
-	  }
 	  if(VarType(3) != 16){
 	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	    return -1;
@@ -5293,12 +5289,31 @@ int gset(fname,fname_len)
 	
 	  if (setchampdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
 	}
-      else if(sciGetEntityType(pobj) == SCI_SURFACE)
+      else if((sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
 	{	/* F.Leray Work here*/
-	  if (strncmp(cstk(l2),"data",4) !=0) {
-	    sciprint("Impossible case: Handle must be a SCI_SURFACE one and marker must be data\n");
+	  int address[4],i;
+	  for(i=0;i<4;i++) address[i] = 0;
+	  
+	  if(VarType(3) != 16){
+	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	    return -1;
 	  }
+	
+	  GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+	
+	  if(m3tl != 4 || n3tl != 1){
+	    sciprint("Tlist size must be 1x4\r\n");
+	    return -1;
+	  }
+	
+	  GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
+	  GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
+	  GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
+	
+	  if (setgrayplotdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
+	}
+      else if(sciGetEntityType(pobj) == SCI_SURFACE)
+	{	/* F.Leray Work here*/
 	  if(VarType(3) != 16){
 	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	    return -1;
@@ -5492,6 +5507,11 @@ int gget(fname,fname_len)
 	    if (getchampdata(pobj)!=0)
 	      return 0;
 	  }  
+	else if((sciGetEntityType(pobj) == SCI_GRAYPLOT)  && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
+	  {
+	    if (getgrayplotdata(pobj)!=0)
+	      return 0;
+	  } 
 	else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
 	  {
 	    if (sciGet(pobj, cstk(l2))!=0)
@@ -10830,7 +10850,7 @@ static int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol,
   
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 || m4 * n4 == 0) { LhsVar(1)=0; return 0;} 
 
-  /* Update the dimenesions Nbr1 and Nbr2 */
+  /* Update the dimensions Nbr1 and Nbr2 */
   ppsegs->Nbr1 = m1;
   ppsegs->Nbr2 = m2;
 
@@ -10873,4 +10893,132 @@ static int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol,
   return 0;
 }
 
+
+
+
+/* F.Leray 29.04.05 */
+/* the grayplot data is now given as a tlist (like for surface and champ objects) */
+static int getgrayplotdata(sciPointObj *pobj)
+{
+  char *variable_tlist[] = {"grayplotdata","x","y","z"};
+  int m_variable_tlist = 0;
+  int n_variable_tlist = 0;
+  /*int n_variable_tlist = 1; */
+  
+  int  numrow, numcol,l;
+  int nx,ny;
+
+  /* F.Leray debug*/
+  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
+  
+  m_variable_tlist = 1;
+  n_variable_tlist = 4;
+    
+  /* Add 'variable' tlist items to stack */
+  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
+  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+
+  if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0)
+    {
+      nx =  ppgrayplot->nx - 1;
+      ny =  ppgrayplot->ny - 1;
+    }
+  else
+    {
+      nx =  ppgrayplot->nx;
+      ny =  ppgrayplot->ny;
+    }
+
+
+  numrow = ppgrayplot->nx;
+  numcol = 1;
+  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppgrayplot->pvecx);
+
+  numrow = ppgrayplot->ny;
+  numcol = 1;
+  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &ppgrayplot->pvecy);
+
+  numrow = ppgrayplot->nx;
+  numcol = ppgrayplot->ny;
+  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppgrayplot->pvecz);
+    
+  return 0;
+}
+
+
+
+/* F.Leray 29.04.05 */
+/* the grayplot data is now set as a tlist (like for surface and champ objects) */
+/* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
+static int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname)
+{
+  int i=0;
+  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
+  
+  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
+  
+  double * pvecx = NULL, * pvecy = NULL;
+  double * pvecz = NULL;
+    
+  m1 = numrow[0];
+  m2 = numrow[1];
+  m3 = numrow[2];
+  
+  n1 = numcol[0];
+  n2 = numcol[1];
+  n3 = numcol[2];
+  
+  l1 = value[0];
+  l2 = value[1];
+  l3 = value[2];
+  
+  if (n1 != 1 || n2 != 1){
+    Scierror(999,"%s:  Inside the Tlist : the first argument must be columns vectors\r\n",fname);
+    return 0;
+  }
+
+  if (m3 != m1 || n3 != m2) {
+    Scierror(999,"%s:  Inside the Tlist : incompatible length in the third argument\r\n",fname);
+    return 0;
+  }
+  
+  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 ) { LhsVar(1)=0; return 0;} 
+
+  /* Update the dimensions nx and ny */
+  ppgrayplot->nx = m1;
+  ppgrayplot->ny = m2;
+
+  /* Free the old values... */
+  FREE(ppgrayplot->pvecx); ppgrayplot->pvecx = NULL;
+  FREE(ppgrayplot->pvecy); ppgrayplot->pvecy = NULL;
+  FREE(ppgrayplot->pvecz); ppgrayplot->pvecz = NULL;
+  
+  /* allocations:*/
+  if ((pvecx = MALLOC (m1 * sizeof (double))) == NULL) return -1;
+  if ((pvecy = MALLOC (m2 * sizeof (double))) == NULL) {
+    FREE(pvecx); pvecx = (double *) NULL;
+    return -1;
+  }
+  
+  if ((pvecz = MALLOC (m3*n3 * sizeof (double))) == NULL)
+    return -1;
+  
+  
+  /* Copy the new values F.Leray */
+  for(i=0;i< m1;i++)
+    pvecx[i] = stk(l1)[i];
+  
+  for(i=0;i< m2;i++)
+    pvecy[i] = stk(l2)[i];
+  
+  for(i=0;i< m3*n3;i++){ /* vfx and vfy must have the same dimensions */
+    pvecz[i] = stk(l3)[i];
+  }
+  
+  ppgrayplot->pvecx = pvecx;
+  ppgrayplot->pvecy = pvecy;
+  ppgrayplot->pvecz = pvecz;
+  
+  return 0;
+}
 
