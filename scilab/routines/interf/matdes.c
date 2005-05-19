@@ -10920,26 +10920,26 @@ static int getgrayplotdata(sciPointObj *pobj)
 
   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0)
     {
-      nx =  ppgrayplot->nx - 1;
-      ny =  ppgrayplot->ny - 1;
-    }
-  else
-    {
       nx =  ppgrayplot->nx;
       ny =  ppgrayplot->ny;
     }
+  else
+    {
+      nx =  ppgrayplot->nx - 1;
+      ny =  ppgrayplot->ny - 1;
+    }
 
 
-  numrow = ppgrayplot->nx;
+  numrow = nx;
   numcol = 1;
   CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppgrayplot->pvecx);
 
-  numrow = ppgrayplot->ny;
+  numrow = ny;
   numcol = 1;
   CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &ppgrayplot->pvecy);
 
-  numrow = ppgrayplot->nx;
-  numcol = ppgrayplot->ny;
+  numrow = nx;
+  numcol = ny;
   CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppgrayplot->pvecz);
     
   return 0;
