@@ -112,6 +112,7 @@ clean::
 	-$(RM)  *.obj
 	-$(RM)  parser.ml
 	-$(RM)  lexer.ml
+	-$(RM)  linenum.ml
 	-$(RM)  *.exe
 	-$(RM)  ..\bin\$(EXEC)
 	
@@ -122,4 +123,5 @@ distclean::
 	-$(RM)  *.obj
 	-$(RM)  parser.ml
 	-$(RM)  lexer.ml
+	-$(RM)  linenum.ml
 	-$(RM)  *.exe
