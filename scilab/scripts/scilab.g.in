@@ -136,6 +136,16 @@ do_save()
 		;;
 		esac
            	;;
+	   PPM)
+		case $1 in
+		-portrait)
+			mv $2 $2.ppm
+		;;
+		-landscape)
+			mv $2 $2.ppm
+		;;
+		esac
+           	;;
 	esac
 }
 
