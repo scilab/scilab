@@ -62,7 +62,7 @@ I =      %b_i_s.sci %b_i_sp.sci %b_i_spb.sci %c_i_lss.sci \
 	 %i_i_hm.sci %i_i_s.sci %b_i_hm.sci %s_i_h.sci %c_i_h.sci \
 	 %i_i_i.sci %hm_i_s.sci %hm_i_p.sci %hm_i_i.sci %hm_i_b.sci \
 	 %c_i_s.sci %mc_i_s.sci %l_i_s.sci %lt_i_s.sci generic_i_s.sci \
-	 %3d_i_h.sci %ticks_i_h.sci
+	 %3d_i_h.sci %ticks_i_h.sci %champdat_i_h.sci %grayplot_i_h.sci
 
 J =      %hm_j_hm.sci %hm_j_s.sci %p_j_s.sci %r_j_s.sci
 

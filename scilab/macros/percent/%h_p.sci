@@ -191,14 +191,24 @@ function %h_p(h)
 	 "visible = "+sci2exp(h.visible)
 	 "rotation_style = "+sci2exp(h.rotation_style)
 	 ]
-      case "Grayplot"
-      d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+     case "Grayplot"
+      Data = h.data
+      dx=sci2exp(Data.x,0)
+      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
+
+      dy=sci2exp(Data.y,0)
+      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
+
+      dz=sci2exp(Data.z,0)
+      if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
+      
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible) 
-	 "data = "+d
+	 "data.x = "+dx
+	 "data.y = "+dy
+	 "data.z = "+dz
 	 "data_mapping = "+sci2exp(h.data_mapping)
 	]
       case "Matplot"
