@@ -2,6 +2,7 @@
 //  data file
 // Author: Serge Steer, 31 Jan 2001, reedited by Enrico Segre
 function varargout=listvarinfile(fil)
+  lhs=argn(2)
   u=mopen(fil,'rb')
   typenames=[
       'constant';
@@ -27,7 +28,7 @@ function varargout=listvarinfile(fil)
   dims=list()
   typs=[];vols=[]
   
-  if argn(2)==1 then
+  if lhs==1 then
   //write the display header
     write(%io(2),part('Name',1:25)+ part('Type',1:15)+part('Size',1:16)+..
     	     part('Bytes',1:10))
@@ -46,7 +47,7 @@ function varargout=listvarinfile(fil)
       typn='size implicit';
     end
 
-    if argn(2)==1 then
+    if lhs==1 then
       write(%io(2),part(nam,1:25)+part(typn,1:15)+..
     	   part(strcat(string(dim),' by '),1:16)+part(string(vol),1:10))
     end
@@ -58,7 +59,7 @@ function varargout=listvarinfile(fil)
   mclose(u)
   
   varargout=list(nams,typs,dims,vols)
-  if argn(2)==1 then varargout=list(); end
+  if lhs==1 then varargout=list([]); end
   
 endfunction
 
