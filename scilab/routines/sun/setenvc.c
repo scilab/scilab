@@ -42,6 +42,7 @@ int setenvc(char *string,char *value)
 #define FALSE 0
 
   int ret=0;
+  char* env;
 
 #if linux
   if ( setenv(string,value,1) ) ret=FALSE;
