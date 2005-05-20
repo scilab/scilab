@@ -525,6 +525,26 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"clip_box",  clip_box)
     end
     set(h,"clip_state",clip_state);
+  case "Matplot"
+    visible        = toggle(mget(1,'c',fd))
+    sz=mget(2,'il',fd); data=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+//    data_mapping   = ascii(mget(mget(1,'c',fd),'c',fd))
+    clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
+    if clip_state=='on' then
+      clip_box     = mget(4,'dl',fd)
+    else
+      clip_box=[]
+    end
+    
+    Matplot(data);
+
+    h=get('hdl')
+    set(h,"visible",visible)
+//    set(h,"data_mapping",data_mapping)
+    if clip_state=='on' then
+      set(h,"clip_box",  clip_box)
+    end
+    set(h,"clip_state",clip_state);
   case "Fec"
     visible        = toggle(mget(1,'c',fd))
     sz             = mget(2,'il',fd)

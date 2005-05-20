@@ -296,6 +296,15 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+  case "Matplot"
+    mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
+    mput(bool2s(h.visible=='on'),'c',fd)
+    mput(size(h.data),'il',fd);mput(h.data,'dl',fd)
+//    mput(length(h.data_mapping),'c',fd);mput(ascii(h.data_mapping),'c',fd);
+    mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd)
+    end
   case "Fec"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
