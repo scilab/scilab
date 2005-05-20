@@ -27,13 +27,12 @@
 
       <DESCRIPTION_ITEM label="data: ">
         <SP>This field defines a <VERB>tlist</VERB> data structure of type
-        <VERB>"scichampdata"</VERB> composed of a row and column indices of
-        each element : the x and y grid coordinates are contained respectively
-        in <VERB>data.x </VERB>and <VERB>data.y</VERB>. The complementary
-        fields named <VERB>data.fx</VERB> and <VERB>data.fy</VERB> are
-        matrices which describe respectively the <VERB>x</VERB> and
-        <VERB>y</VERB> component of the vector field at point
-        <VERB>(x(i),y(j))</VERB>.</SP>
+        <VERB>"champdata"</VERB> composed of a row and column indices of each
+        element : the x and y grid coordinates are contained respectively in
+        <VERB>data.x </VERB>and <VERB>data.y</VERB>. The complementary fields
+        named <VERB>data.fx</VERB> and <VERB>data.fy</VERB> are matrices which
+        describe respectively the <VERB>x</VERB> and <VERB>y</VERB> component
+        of the vector field at point <VERB>(x(i),y(j))</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="line_style: ">

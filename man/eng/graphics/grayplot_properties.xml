@@ -1,46 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>grayplot_properties</TITLE>
+
   <TYPE>Scilab Data type</TYPE>
-  <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="grayplot_properties"> description of the
-   grayplot entities properties</SHORT_DESCRIPTION>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="grayplot_properties">description of the grayplot
+  entities properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-    <P>
-  The Grayplot entity is a leaf of the graphics entities hierarchy. It
-  represents 2D plots of surface using colors and images (see
-  <VERB>Xgrayplot</VERB>, <VERB>Matplot</VERB> and
-  <VERB>Matplot1</VERB>).
-  </P>
+    <P>The Grayplot entity is a leaf of the graphics entities hierarchy. It
+    represents 2D plots of surface using colors and images (see
+    <VERB>Xgrayplot</VERB>, <VERB>Matplot</VERB> and
+    <VERB>Matplot1</VERB>).</P>
+
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB> . By default, 
-   the plot is visible, the value's property is  <VERB>&quot;on&quot;</VERB>. 
-   If <VERB>&quot;off&quot;</VERB> the plot is not drawn on the screen.</SP>
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        By default, the plot is visible, the value's property is
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the plot is not drawn on the
+        screen.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="data: ">
-        <SP>This is a matrix (n1,n2) which constitue the coordinates of a 2D 
-    plots of surface.</SP>
+        <SP>This field defines a <VERB>tlist</VERB> data structure of type
+        <VERB>"grayplotdata"</VERB> composed of a row and column indices of
+        each element : the x and y grid coordinates are contained respectively
+        in <VERB>data.x</VERB> and <VERB>data.y</VERB>. The complementary
+        field named <VERB>data.z</VERB> is the value of the surface at the
+        point <VERB>(x(i),y(j))</VERB> (scaled mode) or the centered value of
+        the surface defined between two consecutive <VERB>x(i)</VERB> and
+        <VERB>y(j)</VERB> (direct mode). If <VERB>data_mapping</VERB> (see
+        below) is set to <VERB>"scaled"</VERB>, the entire z data is used to
+        perform a color interpolation whereas, if <VERB>data_mapping</VERB>'s
+        value is <VERB>"direct"</VERB>, the last line and column of the z data
+        indices are ignored and the color is determined directly in the
+        colormap by the indices of the submatrix
+        <VERB>data.z(1:$-1,1:$-1)</VERB>.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="data_mapping: ">
-        <SP>By default the value of this property <VERB>&quot;scaled&quot;</VERB>, the indices of
-     painting colors are proportional to the value <VERB>z</VERB>
-     coordinates. In another case the property take as value <VERB>&quot;direct&quot;</VERB> 
-     where the plot is a grayplot and the indices of painting colors are
-     given by the data.</SP>
+        <SP>By default the value of this property is <VERB>"scaled"</VERB> :
+        the indices of painting colors are proportional to the value
+        <VERB>z</VERB> coordinates. In the other case, the property takes as
+        value <VERB>"direct"</VERB> where the plot is a grayplot and the
+        indices of painting colors are given by the data (see above).</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the grayplot (Matplot)
-      entity should be of the type <VERB>&quot;Axes&quot;</VERB>.</SP>
+        <SP>This property contains the handle of the parent. The parent of the
+        grayplot (Matplot) entity should be of the type
+        <VERB>"Axes"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
    set("figure_style","new") //create a figure
 
 
@@ -69,30 +90,38 @@
    end
    
 
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>set</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>delete</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>grayplot</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>Matplot</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>Matplot1</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
   <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>
