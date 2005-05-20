@@ -940,7 +940,6 @@ endfunction
 function ged_matplot(h)
   global ged_handle; ged_handle=h
   TCL_SetVar("curvis",h.visible)
-  TCL_SetVar("curdatamapping",h.data_mapping)
 
   d="["+strcat(string(size(h.data)),'x')+" double array]"
   TCL_SetVar("curdata",d);
