@@ -572,18 +572,18 @@ extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, inte
 	fill= - (int) z[j+n1*i];
 	C2F(dr)("xset","pattern",&fill,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
  	
-	vertexx[0] = xm[j+n1*i];
-	vertexx[1] = xm[j+n1*(i+1)];
-	vertexx[2] = xm[j+1+n1*(i+1)];
-	vertexx[3] = xm[j+1+n1*i];
-	vertexx[4] = xm[j+n1*i];
+	vertexx[0] = xm[i+n1*j];
+	vertexx[1] = xm[i+n1*(j+1)];
+	vertexx[2] = xm[i+1+n1*(j+1)];
+	vertexx[3] = xm[i+1+n1*j];
+	vertexx[4] = xm[i+n1*j];
 	
-	vertexy[0] = ym[i+n2*j];
-	vertexy[1] = ym[i+1+n2*j];
-	vertexy[2] = ym[i+1+n2*(j+1)];
-	vertexy[3] = ym[i+n2*(j+1)];
-	vertexy[4] = ym[i+n2*j];
-	
+	vertexy[0] = ym[j+n2*i];
+	vertexy[1] = ym[j+1+n2*i];
+	vertexy[2] = ym[j+1+n2*(i+1)];
+	vertexy[3] = ym[j+n2*(i+1)];
+	vertexy[4] = ym[j+n2*i];
+		  
 	C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
 		PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
@@ -620,18 +620,18 @@ extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, inte
 	
 	C2F(dr)("xset","pattern",&fill,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	
-	vertexx[0] = xm[j+n1*i];
-	vertexx[1] = xm[j+n1*(i+1)];
-	vertexx[2] = xm[j+1+n1*(i+1)];
-	vertexx[3] = xm[j+1+n1*i];
-	vertexx[4] = xm[j+n1*i];
+	vertexx[0] = xm[i+n1*j];
+	vertexx[1] = xm[i+n1*(j+1)];
+	vertexx[2] = xm[i+1+n1*(j+1)];
+	vertexx[3] = xm[i+1+n1*j];
+	vertexx[4] = xm[i+n1*j];
 	
-	vertexy[0] = ym[i+n2*j];
-	vertexy[1] = ym[i+1+n2*j];
-	vertexy[2] = ym[i+1+n2*(j+1)];
-	vertexy[3] = ym[i+n2*(j+1)];
-	vertexy[4] = ym[i+n2*j];
-	
+	vertexy[0] = ym[j+n2*i];
+	vertexy[1] = ym[j+1+n2*i];
+	vertexy[2] = ym[j+1+n2*(i+1)];
+	vertexy[3] = ym[j+n2*(i+1)];
+	vertexy[4] = ym[j+n2*i];
+		  	
 	C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
 		PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
