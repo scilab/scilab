@@ -13,7 +13,7 @@ ieee(1);
 // V.C.
 
 savefile = "save_env";
-savematfile("scilab.mat")
+savematfile("scilab.mat");
 savematfile(savefile+".mat");
 savematfile(savefile+".mat","y");
 // !! L.9: Option -regexp not yet handled: will be ignored

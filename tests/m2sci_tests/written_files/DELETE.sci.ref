@@ -11,15 +11,15 @@ ieee(1);
 // V.C.
 
 // File deleting
-filename = "directory/filename.ext";
-mdelete(filename);
+filename = "directory/filename.ext"
+mdelete(filename)
 
-mdelete("directory/filename.ext");
+mdelete("directory/filename.ext")
 
 // Graphics objects deleting
 
-delete(h);
+delete(h)
 
 // Other inputs
 
-mtlb_delete(h1);
+mtlb_delete(h1)

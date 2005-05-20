@@ -11,11 +11,11 @@ ieee(1);
 // V.C.
 
 // !! L.6: No Scilab equivalent for: diary toggle
-diary;
-diary("filename");
-diary("filename");
-diary("filename");
-diary("off");
-diary("on");
-filename = "diary_filename";
-diary(filename);
+diary
+diary("filename")
+diary("filename")
+diary("filename")
+diary("off")
+diary("on")
+filename = "diary_filename"
+diary(filename)

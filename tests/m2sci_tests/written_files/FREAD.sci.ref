@@ -10,7 +10,7 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-fid = 1;
+fid = 1
 // L.7: No simple equivalent, so mtlb_fread() is called
 s = mtlb_fread(fid,120,"uchar");
 // L.8: No simple equivalent, so mtlb_fread() is called

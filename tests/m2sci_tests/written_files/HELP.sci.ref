@@ -10,12 +10,12 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-help;
+help
 // !! L.7: No Scilab equivalent for: help("/")
-help("/");
-help("function");
+help("/")
+help("function")
 // !! L.9: No Scilab equivalent for: help("toolbox/")
-help("toolbox/");
+help("toolbox/")
 // !! L.10: No Scilab equivalent for: help("toolbox/function")
-help("toolbox/function");
-help("names");
+help("toolbox/function")
+help("names")

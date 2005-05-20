@@ -13,7 +13,7 @@ ieee(1);
 // ! L.6: mtlb(figure) can be replaced by figure() or figure whether figure is an M-file or not
 // !! L.6: Unknown function figure, original calling sequence used
 // L.6: Name conflict: function name changed from figure to %figure
-%figure(1);
+%figure(1)
 x = 0:%pi/15:4*%pi;
 y = exp(2*cos(x));
 mtlb_plot(x,y,"r+");
@@ -21,44 +21,44 @@ mtlb_plot(x,y,"r+");
 // ! L.11: mtlb(figure) can be replaced by figure() or figure whether figure is an M-file or not
 // !! L.11: Unknown function figure, original calling sequence used
 // L.11: Name conflict: function name changed from figure to %figure
-%figure(2);
+%figure(2)
 t = 0:%pi/100:2*%pi;
-y = sin(t);
-mtlb_plot(t,y);
+y = sin(t)
+mtlb_plot(t,y)
 
 // ! L.16: mtlb(figure) can be replaced by figure() or figure whether figure is an M-file or not
 // !! L.16: Unknown function figure, original calling sequence used
 // L.16: Name conflict: function name changed from figure to %figure
-%figure(3);
+%figure(3)
 y2 = sin(t-0.25);
 y3 = sin(t-0.5);
-mtlb_plot(t,y,t,y2,t,y3);
+mtlb_plot(t,y,t,y2,t,y3)
 
 // ! L.21: mtlb(figure) can be replaced by figure() or figure whether figure is an M-file or not
 // !! L.21: Unknown function figure, original calling sequence used
 // L.21: Name conflict: function name changed from figure to %figure
-%figure(4);
+%figure(4)
 t = 0:%pi/100:2*%pi;
 y = sin(t);
 y2 = sin(t-0.25);
 y3 = sin(t-0.5);
-mtlb_plot(t,y,"-",t,y2,"--",t,y3,":");
+mtlb_plot(t,y,"-",t,y2,"--",t,y3,":")
 
 // ! L.28: mtlb(figure) can be replaced by figure() or figure whether figure is an M-file or not
 // !! L.28: Unknown function figure, original calling sequence used
 // L.28: Name conflict: function name changed from figure to %figure
-%figure(5);
+%figure(5)
 x = -%pi:%pi/10:%pi;
 y = tan(sin(x))-sin(tan(x));
 
 
 
-mtlb_plot(x,y,"--sr","LineWidth",2,"MarkerEdgeColor","k","MarkerFaceColor","g","MarkerSize",10);
+mtlb_plot(x,y,"--sr","LineWidth",2,"MarkerEdgeColor","k","MarkerFaceColor","g","MarkerSize",10)
 
 // ! L.36: mtlb(figure) can be replaced by figure() or figure whether figure is an M-file or not
 // !! L.36: Unknown function figure, original calling sequence used
 // L.36: Name conflict: function name changed from figure to %figure
-%figure(6);
+%figure(6)
 x = -%pi:%pi/10:%pi;
 y = tan(sin(x))-sin(tan(x));
-mtlb_plot(x,y,"--sr");
+mtlb_plot(x,y,"--sr")

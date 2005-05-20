@@ -10,5 +10,5 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-meof(1);
-status = meof(1);
+meof(1)
+status = meof(1)

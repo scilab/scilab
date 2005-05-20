@@ -11,11 +11,11 @@ ieee(1);
 // V.C.
 
 dirname = "~";
-dir;
-dir("dirname");
-dir(dirname);
-dir("dirname");
-dir("dirname");
-files = mtlb_dir();
-files1 = mtlb_dir(dirname);
-files2 = mtlb_dir("dirname");
+dir
+dir("dirname")
+dir(dirname)
+dir("dirname")
+dir("dirname")
+files = mtlb_dir()
+files1 = mtlb_dir(dirname)
+files2 = mtlb_dir("dirname")

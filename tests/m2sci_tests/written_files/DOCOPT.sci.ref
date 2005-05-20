@@ -11,4 +11,4 @@ ieee(1);
 // V.C.
 
 global("%browsehelp");
-%browsehelp;
+%browsehelp

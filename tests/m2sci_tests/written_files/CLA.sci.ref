@@ -12,6 +12,6 @@ ieee(1);
 
 // !! L.6: All children will be deleted, no HandleVisibility property in Scilab graphics.
 %v0 = gca();
-delete(%v0.children);
+delete(%v0.children)
 %v0 = gca();
-delete(%v0.children);
+delete(%v0.children)

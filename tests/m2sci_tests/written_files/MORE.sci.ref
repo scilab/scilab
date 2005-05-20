@@ -10,8 +10,8 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-lines(60);
-lines(0);
-lines(10);
-n = 100;
-mtlb_more(n);
+lines(60)
+lines(0)
+lines(10)
+n = 100
+mtlb_more(n)

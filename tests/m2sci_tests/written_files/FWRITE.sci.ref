@@ -10,7 +10,7 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-fid = 1;
+fid = 1
 // L.7: No simple equivalent, so mtlb_fwrite() is called
 mtlb_fwrite(fid,ones(5,5),"integer*4");
 // L.8: No simple equivalent, so mtlb_fwrite() is called

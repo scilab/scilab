@@ -11,9 +11,9 @@ ieee(1);
 // V.C.
 
 fid = 10;
-mclose("all");
-mclose(1);
-mclose(fid);
-status = mclose("all");
-status = mclose(1);
-status = mclose(fid);
+mclose("all")
+mclose(1)
+mclose(fid)
+status = mclose("all")
+status = mclose(1)
+status = mclose(fid)

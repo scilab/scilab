@@ -10,5 +10,5 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-fid = 1;
+fid = 1
 position = mtell(fid);

@@ -10,8 +10,8 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-mtlb_eval("1+1");
-x = mtlb_eval("1+1");
-mtlb_eval("1+1","1+2");
-x = mtlb_eval("1+1","1+2");
-mtlb_eval("[a,b] = size(1)");
+mtlb_eval("1+1")
+x = mtlb_eval("1+1")
+mtlb_eval("1+1","1+2")
+x = mtlb_eval("1+1","1+2")
+mtlb_eval("[a,b] = size(1)")

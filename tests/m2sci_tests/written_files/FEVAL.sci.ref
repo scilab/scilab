@@ -11,8 +11,8 @@ ieee(1);
 // V.C.
 
 // !! L.6: Verify that expression evaluated by execstr() is Scilab compatible
-y1 = evstr("cos"+"(0)");
+y1 = evstr("cos"+"(0)")
 // !! L.7: Verify that expression evaluated by execstr() is Scilab compatible
-y1 = evstr("size"+"(1,1)");
+y1 = evstr("size"+"(1,1)")
 // !! L.8: Verify that expression evaluated by execstr() is Scilab compatible
-execstr("[y1,y2] = "+"size"+"(1)");
+execstr("[y1,y2] = "+("size"+"(1)"))

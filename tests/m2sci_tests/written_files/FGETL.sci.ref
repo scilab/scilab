@@ -16,20 +16,20 @@ fid = 1;
 %v0 = mgetl(fid,1);
 if meof()~=0 then
   %v0 = -1;
-end
+end;
 %v0;
 
 // Example 2
 %v01_1 = mgetl(fid,1);
 if meof()~=0 then
   %v01_1 = -1;
-end
+end;
 if mtlb_logic(mtlb_double(%v01_1),"==",-1) then
   disp("eof");
-end
+end;
 
 // Example 3
 l = mgetl(fid,1);
 if meof()~=0 then
   l = -1;
-end
+end;

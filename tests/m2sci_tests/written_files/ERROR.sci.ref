@@ -12,10 +12,10 @@ ieee(1);
 
 a1 = 0;
 a2 = 0;
-error("message");
+error("message")
 // !! L.9: No Scilab equivalent for: error("message",a1,a2)
-error("message",a1,a2);
+error("message",a1,a2)
 // !! L.10: No Scilab equivalent for: error("message_id","message")
-error("message_id","message");
+error("message_id","message")
 // !! L.11: No Scilab equivalent for: error("message_id","message",a1,a2)
-error("message_id","message",a1,a2);
+error("message_id","message",a1,a2)

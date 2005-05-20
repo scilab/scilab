@@ -18,11 +18,11 @@ ieee(1);
 %v0.box = "on";
 %v0 = gca();
 %v0.box = "off";
-mtlb_box;
+mtlb_box
 
 
 h.box = "on";
 h.box = "off";
 h.box = "on";
 h.box = "off";
-mtlb_box(h);
+mtlb_box(h)

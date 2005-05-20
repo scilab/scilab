@@ -10,17 +10,17 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-clear;
-clear("name");
-clear("name1","name2","name3");
-clearglobal("name");
-clear;
+clear
+clear("name")
+clear("name1","name2","name3")
+clearglobal("name")
+clear
 // !! L.11: No Scilab equivalent for: clear("classes")
-clear("classes");
+clear("classes")
 // !! L.12: No Scilab equivalent for: clear("functions")
-clear("functions");
-clearglobal;
+clear("functions")
+clearglobal
 // !! L.14: No Scilab equivalent for: clear("import")
-clear("import");
-clear;
-clear("name1","name2","name3");
+clear("import")
+clear
+clear("name1","name2","name3")

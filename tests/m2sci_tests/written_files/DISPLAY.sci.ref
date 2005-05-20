@@ -10,6 +10,6 @@ ieee(1);
 // Matlab version: 6.5.0.180913a (R13)
 // V.C.
 
-X = "str";
+X = "str"
 // !! L.7: Verify that overloading functions have been written for inputs in display()
-disp(X);
+disp(X)

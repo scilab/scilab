@@ -10,12 +10,12 @@ ieee(1);
 // Matlab version: 6.5.1.199709 (R13) Service Pack 1
 // V.C.
 
-doc;
+doc
 // !! L.7: No Scilab equivalent for: doc("/")
-doc("/");
-doc("function");
+doc("/")
+doc("function")
 // !! L.9: No Scilab equivalent for: doc("toolbox/")
-doc("toolbox/");
+doc("toolbox/")
 // !! L.10: No Scilab equivalent for: doc("toolbox/function")
-doc("toolbox/function");
-doc("names");
+doc("toolbox/function")
+doc("names")
