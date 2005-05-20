@@ -1,66 +1,75 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>Matplot1  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="Matplot1"> représentation d&apos;une matrice dans le plan en pseudo-couleurs   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>Matplot1(a,rect)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>a  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice réelle de taille (n1,n2).
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>rect  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : <VERB>[xmin;ymin,xmax,ymax]</VERB>
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Les termes de la matrice <VERB>int(a)</VERB> sont utilisés comme indices de couleur dans la table des couleurs courante. <VERB>rect</VERB> spécifie un rectangle dans l&apos;échelle courante et la matrice est dessinée dans ce rectangle.
-    Chaque terme de la matrice est représenté comme un petit rectangle rempli avec la couleur associée. 
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
-//--- premier exemple
+  <LANGUAGE>eng</LANGUAGE>
 
+  <TITLE>Matplot1</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="Matplot1">2D plot of a matrix using
+  colors</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Matplot1(a,rect)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix of size (n1,n2).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>rect</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>[xmin;ymin,xmax,ymax]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>The entries of matrix <VERB>int(a)</VERB> are used as colormap entries
+    in the current colormap. <VERB>rect</VERB> specify a rectangle in the
+    current scale and the matrix is drawn inside this rectangle. Each matrix
+    entry will be rendered as a small rectangle filled with its associated
+    color.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+//--- first example
 set figure_style new;
 clf();
-ax=gca();//ax : handle sur le changement de coordonnŽées courant
-ax.data_bounds=[0,0;10,10];//fixe les bornes du graphique
-ax.box='on'; //affiche un rectangle 
+ax=gca();//get current axes handle
+ax.data_bounds=[0,0;10,10];//set the data_bounds
+ax.box='on'; //draw a box 
 a=5*ones(11,11); a(2:10,2:10)=4; a(5:7,5:7)=2;
-// première matrice dans le rectangle [1,1,3,3]
+// first matrix in rectangle [1,1,3,3]
 Matplot1(a,[1,1,3,3])
 a=ones(10,10); a= 3*tril(a)+ 2*a; 
-// deuxième matrice dans le rectangle [5,6,7,8]
+// second matrix in rectangle [5,6,7,8]
 Matplot1(a,[5,6,7,8])
 
-//--- deuxième exemple 
+//--- second example  (animation)
 n=100;
 
 set figure_style new;
 clf();
-f=gcf(); //handle sur la figure courante
-f.pixmap='on';//mode a double tampon
-ax=gca();//ax : handle sur le changement de coordonnŽées courant
-ax.data_bounds=[0,0;10,10];//fixe les bornes du graphique
-ax.box='on'; //affiche un rectangle 
-show_pixmap() //envoie le tampon a l'Žécran
+f=gcf();//get current figure handle
+f.pixmap='on';//double buffer mode
+ax=gca();//get current axes handle
+ax.data_bounds=[0,0;10,10];//set the data_bounds
+ax.box='on'; //draw a box 
+show_pixmap()
 for k=-n:n,
   a=ones(n,n);
   a= 3*tril(a,k)+ 2*a;
@@ -68,15 +77,33 @@ for k=-n:n,
   k1= 3*(k+100)/200;
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
-  show_pixmap() //envoie le tampon a l'Žécran
+  show_pixmap() //send double buffer to screen
 end
 
- ]]></EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>colormap</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>Matplot</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>colormap</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>plot2d</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>Matplot</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>grayplot</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>Matplot_properties</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
+
+  <AUTHOR>J.Ph.C.</AUTHOR>
 </MAN>

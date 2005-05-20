@@ -1,40 +1,51 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>Matplot1</TITLE>
+
   <TYPE>Scilab Function</TYPE>
+
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="Matplot1"> 2D plot of a matrix using colors</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="Matplot1">2D plot of a matrix using
+  colors</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Matplot1(a,rect)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Matplot1(a,rect)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>a</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: real matrix of size (n1,n2).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>rect</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: <VERB>[xmin;ymin,xmax,ymax]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P>
-    The entries of matrix <VERB>int(a)</VERB> are used as colormap entries in 
-    the current colormap. <VERB>rect</VERB> specify a rectangle in the 
-    current scale and the matrix is drawn inside this rectangle.
-    Each matrix entry will be rendered as a small rectangle filled with its 
-    associated color.</P>
+    <P>The entries of matrix <VERB>int(a)</VERB> are used as colormap entries
+    in the current colormap. <VERB>rect</VERB> specify a rectangle in the
+    current scale and the matrix is drawn inside this rectangle. Each matrix
+    entry will be rendered as a small rectangle filled with its associated
+    color.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
 //--- first example
 set figure_style new;
 clf();
@@ -69,22 +80,30 @@ for k=-n:n,
   show_pixmap() //send double buffer to screen
 end
 
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>colormap</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot2d</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>Matplot</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>grayplot</LINK>
     </SEE_ALSO_ITEM>
 
+    <SEE_ALSO_ITEM>
+      <LINK>Matplot_properties</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
+
+  <AUTHOR>J.Ph.C.</AUTHOR>
 </MAN>
