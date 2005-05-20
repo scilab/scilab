@@ -10906,7 +10906,7 @@ static int getgrayplotdata(sciPointObj *pobj)
   /*int n_variable_tlist = 1; */
   
   int  numrow, numcol,l;
-  int nx,ny;
+/*   int nx,ny; */
 
   /* F.Leray debug*/
   sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);

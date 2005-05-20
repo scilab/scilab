@@ -38,6 +38,7 @@ extern Tk_Window TKmainWindow;
 #endif
 
 double t=0.; /*for xclick_any */
+extern void AddMenu  __PARAMS((integer *win_num, char *button_name, char **entries, integer *ne, integer *typ, char *fname, integer *ierr));
 extern int XRotDrawString();
 /** jpc_SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
@@ -440,18 +441,18 @@ void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer 
 
 /** returns the graphic window number which owns the event **/
 
-static int GraphicWinEvent(XEvent *event, int wincount, int flag)
-{
-  Window CW;
-  int i;
-  for (i=0;i < wincount;i++) 
-    {
-      CW = (flag == 0) ? GetWindowNumber(i) : GetBGWindowNumber(i);
-      if ( CW != (Window ) NULL  &&  event->xany.window == CW)
-	return i;
-    }
-  return -1;
-}
+/* static int GraphicWinEvent(XEvent *event, int wincount, int flag) */
+/* { */
+/*   Window CW; */
+/*   int i; */
+/*   for (i=0;i < wincount;i++)  */
+/*     { */
+/*       CW = (flag == 0) ? GetWindowNumber(i) : GetBGWindowNumber(i); */
+/*       if ( CW != (Window ) NULL  &&  event->xany.window == CW) */
+/* 	return i; */
+/*     } */
+/*   return -1; */
+/* } */
 
 static int client_message=0;
 static void set_client_message_on() { client_message=1;};
@@ -570,7 +571,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
 
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
-  integer buttons = 0,win,iwin;
+  integer buttons = 0,win;
   Window SCWindow;
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
@@ -3421,7 +3422,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   integer ne=7, menutyp=2, ierr;
   char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties",
 		     "Start Entity Picker","Stop  Entity Picker"};
-  char *FileMenus[]={"Clear","Select","Print","Export","Save","Load","Close"};
   GC XCreateGC(Display *, Drawable, long unsigned int, XGCValues *);
   static int screen;
   static XGCValues gcvalues;
