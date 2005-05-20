@@ -11,7 +11,7 @@ extern int cf_type;
 /*-----------------------------------------------------------------------------------*/
 int C2F(intTclGcf) _PARAMS((char *fname))
 {
-	static int l1,n1,m1;
+	static int n1;
 	int *paramoutINT=(int*)malloc(sizeof(int));
 
 	CheckRhs(0,0);
