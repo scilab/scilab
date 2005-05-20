@@ -218,9 +218,7 @@ function %h_p(h)
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible)
-	 "data = "+d
-	 "data_mapping = "+sci2exp(h.data_mapping)]
-     
+	 "data = "+d]
       case "Fec"
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end

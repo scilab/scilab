@@ -31,7 +31,8 @@ global lalist
 global curgedindex
 global curgedobject
 
-global curvis curdatamapping
+global curvis
+#curdatamapping
 global nbrowX nbrowY grayplotXVAL grayplotYVAL grayplotZVAL grayplotCOLORVAL
 #global nbrowZ nbcolZ nbrowCOLOR 
 global nbcolCOLOR ncolors
@@ -142,22 +143,22 @@ pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
 #data_mapping
-frame $w.frame.dtmap  -borderwidth 0
-pack $w.frame.dtmap  -in $w.frame  -side top  -fill x
-
-label $w.frame.dtmapylelabel  -height 0 -text "       Data mapping:   " -width 0 
-combobox $w.frame.dtmapyle \
-    -borderwidth 1 \
-    -highlightthickness 1 \
-    -maxheight 0 \
-    -width 3 \
-    -textvariable curdatamapping \
-    -editable false \
-    -command [list SelectDataMapping ]
-eval $w.frame.dtmapyle list insert end [list "direct" "scaled"]
-pack $w.frame.dtmapylelabel -in $w.frame.dtmap   -side left
-pack $w.frame.dtmapyle   -in $w.frame.dtmap   -expand 1 -fill x -pady 2m -padx 2m
-
+#frame $w.frame.dtmap  -borderwidth 0
+#pack $w.frame.dtmap  -in $w.frame  -side top  -fill x
+#
+#label $w.frame.dtmapylelabel  -height 0 -text "       Data mapping:   " -width 0 
+#combobox $w.frame.dtmapyle \
+#    -borderwidth 1 \
+#    -highlightthickness 1 \
+#    -maxheight 0 \
+#    -width 3 \
+#    -textvariable curdatamapping \
+#    -editable false \
+#    -command [list SelectDataMapping ]
+#eval $w.frame.dtmapyle list insert end [list "direct" "scaled"]
+#pack $w.frame.dtmapylelabel -in $w.frame.dtmap   -side left
+#pack $w.frame.dtmapyle   -in $w.frame.dtmap   -expand 1 -fill x -pady 2m -padx 2m
+#
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both  -pady 5m
@@ -289,10 +290,10 @@ ScilabEval "execstr(\"global ged_handle; ged_handle.data($i+1,$j+1)=$grayplotZVA
 
 
 
-proc SelectDataMapping {w args} {
-global curdatamapping
-ScilabEval "global ged_handle; ged_handle.data_mapping='$curdatamapping'"
-}
+#proc SelectDataMapping {w args} {
+#global curdatamapping
+#ScilabEval "global ged_handle; ged_handle.data_mapping='$curdatamapping'"
+#}
 
 proc sciCommandData {} {
     global scicomint_data
