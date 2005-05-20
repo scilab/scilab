@@ -15,8 +15,8 @@
   <DESCRIPTION>
     <P>The Grayplot entity is a leaf of the graphics entities hierarchy. It
     represents 2D plots of surface using colors and images (see
-    <VERB>Xgrayplot</VERB>, <VERB>Matplot</VERB> and
-    <VERB>Matplot1</VERB>).</P>
+    <VERB>grayplot</VERB>, <VERB>Sgrayplot</VERB>, <VERB>fgrayplot</VERB> and
+    <VERB>Sfgrayplot</VERB>).</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="visible: ">
@@ -54,8 +54,7 @@
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
-        grayplot (Matplot) entity should be of the type
-        <VERB>"Axes"</VERB>.</SP>
+        grayplot entity should be of the type <VERB>"Axes"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
@@ -121,7 +120,11 @@
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>matplot_properties</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE &amp; F.Leray</AUTHOR>
 </MAN>
