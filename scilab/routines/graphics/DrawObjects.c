@@ -7306,9 +7306,11 @@ sciDrawObj (sciPointObj * pobj)
 	  break;
 	case 1: /* Matplot case */
 	  {
+	    /* In this case (and inside Matplot1 too but Matplot and Matplot1 are almost the same), */
+	    /* dim x = n2 and dim y = n1 (cf. scimatplot in matdes.c) */ /* F.Leray 20.05.05 */
 	    sciPointObj * psubwin = sciGetParentSubwin(pobj);
 	    sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-
+	    
 	    if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	      if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
 		return -1;
@@ -7412,6 +7414,9 @@ sciDrawObj (sciPointObj * pobj)
 	  }
 	  break;
 	case 2: /* Matplot1 case */
+	  /* In this case (and inside Matplot too but Matplot and Matplot1 are almost the same), */
+	  /* dim x = n2 and dim y = n1 (cf. scimatplot in matdes.c) */ /* F.Leray 20.05.05 */
+	  
 	  if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	    if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
 	      return -1;
