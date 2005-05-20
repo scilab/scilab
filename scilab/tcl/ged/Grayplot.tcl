@@ -580,7 +580,7 @@ proc sciCommandData {} {
 	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must fill in all the fields using variables defined in Scilab Console\n to initialize the \"data\" field."
     } else {
 	
-	ScilabEval "setGrayplot($scicomint_dataX,$scicomint_dataY,$scicomint_dataZ)" "seq"
+	ScilabEval "setGrayplottlist($scicomint_dataX,$scicomint_dataY,$scicomint_dataZ)" "seq"
 	#Refresh now !
 	ScilabEval "tkged();" "seq"
 	
@@ -602,7 +602,7 @@ proc SelectDataX  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;EditData(ged_handle.data(2:$,1),\"ged_handle.data(2:$,1)\")" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.x,\"ged_handle.data.x\")" "seq"
 	}
     }
 }
@@ -621,7 +621,7 @@ proc SelectDataY  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;EditData(ged_handle.data(1,2:$),\"ged_handle.data(1,2:$)\")" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.y,\"ged_handle.data.y\")" "seq"
 	}
     }
 }
@@ -639,7 +639,7 @@ proc SelectDataZ  {w args} {
 	#	puts "nothing to do"
     } else {
 	if { $mycurdata ==  "Edit data..." } {
-	    ScilabEval "global ged_handle;EditData(ged_handle.data(2:$,2:$),\"ged_handle.data(2:$,2:$)\")" "seq"
+	    ScilabEval "global ged_handle;EditData(ged_handle.data.z,\"ged_handle.data.z\")" "seq"
 	}
     }
 }

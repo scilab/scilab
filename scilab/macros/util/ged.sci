@@ -924,12 +924,13 @@ function ged_grayplot(h)
   global ged_handle; ged_handle=h
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("curdatamapping",h.data_mapping)
-
-  d="["+strcat(string(size(h.data(2:$,1))),'x')+" double array]"
+  
+  
+  d="["+strcat(string(size(h.data.x)),'x')+" double array]"
   TCL_SetVar("curdata_x",d);
-  d="["+strcat(string(size(h.data(1,2:$))),'x')+" double array]"
+  d="["+strcat(string(size(h.data.y)),'x')+" double array]"
   TCL_SetVar("curdata_y",d);
-  d="["+strcat(string(size(h.data(2:$,2:$))),'x')+" double array]"
+  d="["+strcat(string(size(h.data.z)),'x')+" double array]"
   TCL_SetVar("curdata_z",d);
 
   TCL_EvalFile(SCI+'/tcl/ged/Grayplot.tcl')
@@ -1574,12 +1575,11 @@ function set3dtlistXYZC (X,Y,Z,COLOR)
   clear ged_tmp_tlist;
 endfunction
 
-function setGrayplot(X,Y,Z)
+function setGrayplottlist(X,Y,Z)
   global ged_handle; h=ged_handle
-  Z=[Y; Z];
-  X=[0;X];
-  Z=[X Z];
-  h.data=Z;
+  ged_tmp_tlist = tlist(["grayplotdata","x","y","z"],X,Y,Z)
+  h.data=ged_tmp_tlist;
+  clear ged_tmp_tlist;
 endfunction
 
 //Champ
