@@ -175,6 +175,17 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="Matplot: ">
+        <SP>The Matplot entity is a leaf of the graphics entities hierarchy.
+        It represents 2D plots using integer matrices.</SP>
+
+        <P>See <LINK>Matplot_properties</LINK> for details.</P>
+
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="Segs: ">
         <SP>The Segs entity is a leaf of the graphics entities hierarchy. This
         entity defines the parameters for a set of colored segments or colored
@@ -248,7 +259,7 @@
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
 
-  <EXAMPLE>
+  <EXAMPLE><![CDATA[
 
 
   //Play this example line per line
@@ -283,7 +294,7 @@
   plot2d(x,x^3)  //the drawing are sent to the initial figure
 
  
-  </EXAMPLE>
+  ]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
