@@ -308,8 +308,6 @@ E=rand(nx,1)*rand(1,nx);A=rand(nx,nx);
 //         Index 1
  
 [Si,Pi,Di,o]=penlaur(E,A);pp=Si*E;[q,m]=fullrf(pp);
-    rank A^k    rcond
-        1.      0.100D+01
  
 x0=q(:,1);x0d=pinv(E)*A*x0;
  
