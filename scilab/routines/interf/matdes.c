@@ -10918,30 +10918,52 @@ static int getgrayplotdata(sciPointObj *pobj)
   CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
   CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
 
-  if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0)
-    {
-      nx =  ppgrayplot->nx;
-      ny =  ppgrayplot->ny;
-    }
-  else
-    {
-      nx =  ppgrayplot->nx - 1;
-      ny =  ppgrayplot->ny - 1;
-    }
+/*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
+/*     { */
+/*   nx =  ppgrayplot->nx; */
+/*   ny =  ppgrayplot->ny; */
+/*     } */
+/*   else */
+/*     { */
+/*       nx =  ppgrayplot->nx - 1; */
+/*       ny =  ppgrayplot->ny - 1; */
+/*     } */
 
 
-  numrow = nx;
+  numrow = ppgrayplot->nx;
   numcol = 1;
   CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppgrayplot->pvecx);
 
-  numrow = ny;
+  numrow = ppgrayplot->ny;
   numcol = 1;
   CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &ppgrayplot->pvecy);
 
-  numrow = nx;
-  numcol = ny;
+  numrow = ppgrayplot->nx;
+  numcol = ppgrayplot->ny;
+  
+/*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
+/*     { */
   CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppgrayplot->pvecz);
-    
+/*     } */
+/*   else /\* direct *\/ */
+/*     { */
+/*       int i,j; */
+/*       double * vecz = (double *) NULL; */
+/*       if((vecz = MALLOC(nx*ny*sizeof(double))) == NULL){ */
+/* 	sciprint("Error: Can not allocate temp. vecz\n"); */
+/* 	return -1; */
+/*       } */
+      
+/*       for(i=0;i<(ppgrayplot->nx)-1;i++) */
+/* 	for(j=0;j<(ppgrayplot->ny)-1;j++) */
+/* 	  vecz[j+nx*i] = ppgrayplot->pvecz[j+(ppgrayplot->nx)*i]; */
+            
+/*       CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &vecz); */
+      
+/*       FREE(vecz); vecz = (double *) NULL; */
+
+/*     } */
+
   return 0;
 }
 
