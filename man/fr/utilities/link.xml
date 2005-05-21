@@ -113,17 +113,25 @@ link('foo.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foo')
     See <VERB>Intersci</VERB> documentation for interface generation and
     <VERB>addinter</VERB> function.
   </P>
+  <P> To be able to link routines in a system independent way, it is convenient
+      to use the ilib_for_link utility function.
+  </P>
   </DESCRIPTION>
   <SECTION label="Remarks">
     <ITEMIZE>
       <ITEM label="IBM:">
         <SP>For IBM-RS6000 only one program can be dynamically linked.</SP>
       </ITEM>
-      <ITEM label="Demo:">
-        <SP>When running a demo, you may have some trouble with the link due to slight differences between systems. In this case, you modify the demo by adding the needed libraries in the link command.</SP>
-      </ITEM>
       <ITEM label="dlopen:">
-        <SP>For machines using dlopen functionality extended command can be used. a call to <VERB>link</VERB> returns an integer which gives the id of the shared  library which is loaded into Scilab. This number can then be used as the first argument of the link function in order to link additional  function from the linked shared library. The shared library is  removed with the <VERB>ulink</VERB> command.  for example to link functions <VERB>f</VERB> and <VERB>g</VERB> form binary file  <VERB>test.o</VERB> the two following command can be used :</SP>
+        <SP>For machines using dlopen functionality extended command can be
+	  used. a call to <VERB>link</VERB> returns an integer which gives the
+	  id of the shared  library which is loaded into Scilab. This number
+	  can then be used as the first argument of the link function in order
+	  to link additional  function from the linked shared library. The
+	  shared library is  removed with the <VERB>ulink</VERB> command.  for
+	  example to link functions <VERB>f</VERB> and <VERB>g</VERB> form
+	  binary file  <VERB>test.o</VERB> the two following command can be
+	  used :</SP>
         <VERBATIM>
 <![CDATA[
 link('test.o',['f','g'])
@@ -190,9 +198,33 @@ link(" ",['Scilab-entry-point'])
       </ITEM>
     </ITEMIZE>
   </SECTION>
+  <EXAMPLE>
+<![CDATA[
+ ]]>
+    //Example of the use of ilib_for_link with  a simple C code
+    f1=['void fooc(c,a,b,m,n)'
+         'double a[],*b,c[];'
+         'int *m,*n;'
+         '{'
+         '   int i;'
+         '   for ( i =0 ; i < (*m)*(*n) ; i++) '
+         '     c[i] = sin(a[i]) + *b; '
+         '}'];
+
+    mputl(f1,'fooc.c')
+
+    //creating the shared library (a gateway, a Makefile and a loader are 
+    //generated the code is compileda nd a shared library built.
+    ilib_for_link('fooc','fooc.o',[],"c") 
+    
+    // display the loader.sce file which calls <VERB>link</VERB>
+    mprintf('%s\n',mgetl('loader.sce')) 
+    // load the shared library 
+    exec loader.sce 
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>fort</LINK>
+      <LINK>call</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>c_link</LINK>
@@ -200,5 +232,9 @@ link(" ",['Scilab-entry-point'])
     <SEE_ALSO_ITEM>
       <LINK>addinter</LINK>
     </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_for_link</LINK>
+    </SEE_ALSO_ITEM>
+
   </SEE_ALSO>
 </MAN>
