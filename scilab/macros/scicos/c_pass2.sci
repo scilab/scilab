@@ -352,7 +352,7 @@ function [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,..
     if ordclk==[] then
       ordclk=[ordclk;ordoclk0];
       ordptr($+1)=ordptr($)+size(ordoclk0,1);
-      blocs_traites=k
+      blocs_traites=[blocs_traites;k] //k
     else
       m=max(find(blocs_traites==k))
       if j>1 & m~=[] then
