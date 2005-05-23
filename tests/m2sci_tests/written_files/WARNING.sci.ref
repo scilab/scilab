@@ -12,12 +12,12 @@ ieee(1);
 
 s = "on";
 s = "on";
-f = "once"
-warning("on")
-s = warning("backtrace")
-warning("message")
-s = warning("message")
+f = "once";
+warning("on");
+s = warning("backtrace");
+warning("message");
+s = warning("message");
 // !! L.12: message_id ignored in following line
-warning("message_id:message_id message")
+warning("message_id:message_id message");
 // !! L.13: No Scilab equivalent for: warning("message_id:message_id","message",1,2)
-warning("message_id:message_id","message",1,2)
+warning("message_id:message_id","message",1,2);

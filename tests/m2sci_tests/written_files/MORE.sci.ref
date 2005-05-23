@@ -13,5 +13,5 @@ ieee(1);
 lines(60)
 lines(0)
 lines(10)
-n = 100
+n = 100;
 mtlb_more(n)

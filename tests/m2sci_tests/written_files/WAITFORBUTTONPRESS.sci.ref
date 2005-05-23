@@ -11,10 +11,10 @@ ieee(1);
 // V.C.
 
 [%v0,%v1,%v2,%v3,%v4] = xclick();
-w = bool2s(%v0>64);
+w = bool2s(%v0>64)
 
 if w==0 then
-  disp("Button press");
+  disp("Button press")
 else
-  disp("Key press");
+  disp("Key press")
 end;

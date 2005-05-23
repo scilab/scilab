@@ -15,7 +15,7 @@ halt
 // !! L.8: No Scilab equivalent for: pause("on")
 pause("on")
 // !! L.9: No Scilab equivalent for: pause("off")
-pause("off");
+pause("off")
 
 n = 10
 xpause(1000*n)
