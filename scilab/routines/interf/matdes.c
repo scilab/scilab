@@ -5729,10 +5729,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
       else
 	num=(int)stk(*value)[0];
-
+      
       C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-      if (sciSwitchWindow(&num) != 0){
-	strcpy(error_message,"It was not possible to create the requested figure");return -1;
+      
+      if(version_flag() == 0){
+	if (sciSwitchWindow(&num) != 0){
+	  strcpy(error_message,"It was not possible to create the requested figure");return -1;
+	}
       }
       
     }
@@ -7545,8 +7548,23 @@ int sciGet(sciPointObj *pobj,char *marker)
 	C2F(sciwin)();/*SciWin();*/
 	numrow   = 1;
 	numcol   = 1;
-	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	*hstk(outindex) = sciGetHandle(sciGetCurrentFigure());
+	if(version_flag() == 0)
+	  { /* return handle on the current figure */
+	    CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	    *hstk(outindex) = sciGetHandle(sciGetCurrentFigure());
+	  }
+	else
+	  { /* return id of the current figure */
+	    double *XGC,dv=0;
+	    int v=0;
+	    struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
+	    C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
+	    CurrentScilabXgc=(struct BCG *)XGC;
+	    
+	    
+	    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	    *stk(outindex) = (double) CurrentScilabXgc->CurWindow;
+	  }
       }
       else {
 	numrow   = 1;
