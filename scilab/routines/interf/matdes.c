@@ -5688,7 +5688,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	       
   }
   /*************************** Handles Properties ********/
-  else if (strncmp(marker,"current_obj", 11) == 0) 
+  else if ((strncmp(marker,"current_obj", 11) == 0) || (strncmp(marker,"current_entity", 14) == 0))
     {
       tmpobj=(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
       if (tmpobj == (sciPointObj *)NULL) 
@@ -7575,7 +7575,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 #endif
       }
     }
-  else if (strncmp(marker,"current_obj", 11) == 0)
+  else if((strncmp(marker,"current_obj", 11) == 0) || (strncmp(marker,"current_entity", 14) == 0))
     {
       numrow   = 1;
       numcol   = 1;

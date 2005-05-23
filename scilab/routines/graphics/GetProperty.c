@@ -4333,6 +4333,8 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"z_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"current_axes") == 0)    {return 9;}
   else if (strcmp(marker,"current_figure") == 0)    {return 9;}
+  else if (strcmp(marker,"current_obj") == 0)    {return 9;}
+  else if (strcmp(marker,"current_entity") == 0)    {return 9;}
   else if (strcmp(marker,"default_axes") == 0)    {return 9;}/* DJ.A 08/01/04 */
   else if (strcmp(marker,"default_figure") == 0)    {return 9;}/* DJ.A 08/01/04 */
   else if (strcmp(marker,"children") == 0)    {return 9;}
