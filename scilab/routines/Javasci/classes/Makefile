@@ -7,7 +7,7 @@ CLASSES=$(DEST)/Scilab.class $(DEST)/BadDataArgumentException.class $(DEST)/SciR
 JAVAC=javac -d $(CLASSREP) -classpath $(CLASSREP)
 
 all:: $(CLASSES)
-	@echo building java classes
+
 $(DEST)/Scilab.class: Scilab.java
 	@$(JAVAC)  $<	
 
