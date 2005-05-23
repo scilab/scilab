@@ -4,11 +4,6 @@ mode(0);
 
 // Display warning for floating point exception
 ieee(1);
-%graphics.type=1
-%graphics.units="pixels"
-
-// Display warning for floating point exception
-ieee(1)
 
 // Test file for function load()
 // Copyright INRIA
@@ -17,7 +12,7 @@ ieee(1)
 
 savefile = "savefile"
 
-loadmatfile("scilab.mat")
+loadmatfile("scilab.mat");
 loadmatfile(savefile+".mat");
 loadmatfile(savefile+".mat","y");
 loadmatfile(savefile+".asc","y","-ascii","-mat");

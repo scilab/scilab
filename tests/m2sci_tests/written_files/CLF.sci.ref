@@ -11,12 +11,12 @@ ieee(1);
 // V.C.
 
 // !! L.6: All children will be deleted, no HandleVisibility property in Scilab graphics.
-clf;
+clf
 // !! L.7: All properties will be reset.
-clf("reset");
+clf("reset")
 // !! L.8: All children will be deleted, no HandleVisibility property in Scilab graphics.
-clf;
+clf
 figure_handle = gcf();
 // !! L.9: All properties will be reset.
-clf("reset");
+clf("reset")
 figure_handle1 = gcf();
