@@ -9,38 +9,28 @@ SCIDIR1=..\..
 JAVAINC=@JAVA_INCL@
 
 #--------------------------------------------------------
-LIBRARY= $(SCIDIR)/bin/libjavasci.$(SONAME) 
-JAVAC=javac
-SOURCESJ=*.java
+LIBRARY= $(SCIDIR)/bin/libjavasci.@SONAME@
 OBJSC= javasci_globals.o javasci_Scilab.o javasci_SciReal.o @GCCFIX@
+OBJSF =
+OBJS = $(OBJSC)
+CFLAGS = $(CC_OPTIONS) $(JAVAINC)
 
-OBJSF = 
 
 include ../../Makefile.incl
 include ../../Makefile.OBJ
 
-CFLAGS = $(CC_OPTIONS) $(JAVAINC)
-
-OBJS = $(OBJSC)
-
 all:: class all1
 
-all1:: $(LIBRARY)
-# options compilation a modifier sous hp & solaris
-$(LIBRARY): $(OBJS)
-	@echo Creation of $(LIBRARY)
-	@$(RM) $@;
-	@echo "linking";
-	@$(FC) -Wl,-shared -g -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
+include @MAKEFILE_TARGET@
 
 class::	
-	$(JAVAC) -d $(SCIDIR)/bin classes/$(SOURCESJ)
+	@cd classes;$(MAKE) $(MFLAGS) all;cd ..
+
 clean::
 	$(RM) *.o
 
 cleanC :
 	$(RM) $(OBJSC)
-	$(RM) $(SCIDIR)/bin/javasci/*.class
 
 distclean::
 	$(RM) *.o $(LIBRARY)
