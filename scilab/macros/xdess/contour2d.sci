@@ -30,11 +30,9 @@ fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 newstyle = get('figure_style')=='new'
 if newstyle then
   fig=gcf();
-  autoc=stripblanks(fig.auto_clear)
+  autoc=fig.auto_clear;
   if autoc=="on" then, xbasc(),end
   a=gca();
-  //autoc=stripblanks(a.auto_clear)
-  //if autoc=="on" then %h_delete(a.children);a=gca(),end
   v=fig.immediate_drawing;
   fig.immediate_drawing="off"
   fig.auto_clear="off"
@@ -64,6 +62,7 @@ end
 
 if newstyle then 
    if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+   set('current_obj',a);
    fig.immediate_drawing=v;
    fig.auto_clear=autoc;
 end
