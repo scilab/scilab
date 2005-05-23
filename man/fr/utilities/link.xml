@@ -200,14 +200,13 @@ link(" ",['Scilab-entry-point'])
   </SECTION>
   <EXAMPLE>
 <![CDATA[
- ]]>
     //Example of the use of ilib_for_link with  a simple C code
     f1=['void fooc(c,a,b,m,n)'
          'double a[],*b,c[];'
          'int *m,*n;'
          '{'
          '   int i;'
-         '   for ( i =0 ; i < (*m)*(*n) ; i++) '
+         '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
          '     c[i] = sin(a[i]) + *b; '
          '}'];
 
@@ -221,7 +220,8 @@ link(" ",['Scilab-entry-point'])
     mprintf('%s\n',mgetl('loader.sce')) 
     // load the shared library 
     exec loader.sce 
-
+    ]]>
+  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>call</LINK>
