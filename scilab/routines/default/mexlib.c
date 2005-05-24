@@ -2454,7 +2454,7 @@ void mxSetCell(mxArray *array_ptr, int index, mxArray *value)
   return;
 }
 
-int mxGetNzmax(mxArray *ptr)
+int mxGetNzmax(const mxArray *ptr)
 {
   int *header = Header(ptr);
   /* ... N=header[2],  nzmax=header[4]; then Jc,  then Ir   */
