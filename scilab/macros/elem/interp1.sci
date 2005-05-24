@@ -132,10 +132,6 @@ end
 
 //default method : linear method is used
 if size(varargin)==3 then
-  if xi==[] then
-    yi=[]
-    return
-  end
   yi=interp1(x,y,xi,'linear',%nan)
 end
 
@@ -150,12 +146,9 @@ if size(varargin)==4 then
     //-------------------------------------------
     // the values of extrapolation points are nan for linear method  
   case "l"
-    if xi==[] then
-      yi=[]
-      return
-    end
-
+    
     yi=interp1(x,y,xi,'linear',%nan) 
+    
     //-------------------------------------------
     // Spline method  yi=interp1(x,y,xi,'spline')
     //-------------------------------------------
@@ -192,49 +185,66 @@ if size(varargin)==5 then
     // Linear method : yi=linear(x,y,xi,'linear','extrap') or  yi=interp1(x,y,xi,method,extrapval)
     //---------------------------------------------------------------------------------------------
   case "l"    
-    if xi==[] then 
-      if varargin(5)=="extrap"|type(varargin(5))==1 then
-	yi=[]
-	return
-      else
-	error("wrong extrapolation")
-      end
-    end
-
     xitemp=matrix(xi,-1,1)
     // y is a vector
     if isvector(y) then
       yi=hypermat(size(xitemp))
-      yi=interpln([matrix(x,1,-1);matrix(y,1,-1)],xitemp);
+      [x,ind]=gsort(matrix(x,1,-1),"c","i")
+      if varargin(5)==%nan then
+      yi=linear_interpn(xitemp,x,y(ind),"by_nan");
+      end
       if type(varargin(5))==10 then 
 	if varargin(5)<>"extrap" then
 	  error("wrong extrapolation")
+	else
+	yi=linear_interpn(xitemp,x,y(ind),"natural");
 	end
       elseif type(varargin(5))==1  then
-	k=find(xitemp>max(x)|xitemp<min(x)) 
-	yi(k)=varargin(5)
+        yi=linear_interpn(xitemp,x,y(ind),"by_nan");
+	if ~isnan(varargin(5)) then
+	  k=find(xitemp>max(x)|xitemp<min(x)) 
+	  yi(k)=varargin(5)
+        end
       end
       if size(xisize,"*")>=2
 	yi=matrix(yi,xisize)
       else
 	yi=matrix(yi,xisizetemp)
-      end  
-      // y is matrix or hypermatrix
+      end
+        
+     // y is matrix or hypermatrix
     elseif size(size(y),"*")>=2 then
-      ky=size(y)
-      ky=ky(2:$)
+      ysize=size(y)
+      ky=ysize(2:$)
       yi=hypermat([size(xitemp),ky])
-      for l=1:size(y,"*")/size(y,1)
-	yi(:,l)=matrix(interpln([matrix(x,1,-1);y(:,l)'],xitemp),size(xitemp)) 
-      end 
+      [x,ind]=gsort(matrix(x,1,-1),"c","i")
       //extrapolation
       if type(varargin(5))==10 then
 	if varargin(5)<>"extrap" then
 	  error("wrong extrapolation")
+	else
+	if xitemp==[] then 
+	yi=[]
+	return
+	end
+	  for l=1:size(y,"*")/size(y,1)
+	  ytemp=y(:,l)
+	    yi(:,l)=matrix(linear_interpn(xitemp,x,ytemp(ind),"natural"),size(xitemp)) 
+          end 
 	end
       elseif type(varargin(5))==1 then
+        if xitemp==[] then 
+	yi=[]
+	return
+      end
+        for l=1:size(y,"*")/size(y,1)
+	ytemp=y(:,l)
+	    yi(:,l)=matrix(linear_interpn(xitemp,x,ytemp(ind),"by_nan"),size(xitemp)) 
+        end 
+	if ~isnan(varargin(5)) then
 	k=find(xitemp>max(x)|xitemp<min(x)) 
 	yi(k,:)=varargin(5)
+	end
       end  
       yi=matrix(yi,[xisize,ky])
     else 
@@ -420,6 +430,7 @@ if size(varargin)==5 then
       yi=matrix(yi,[xisize,ind])
     else
       error("y must be a vector or a matrix")
-    end   
+    end  
+    else error("wrong interpolation") 
   end
 end
