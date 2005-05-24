@@ -19,7 +19,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
 	       'xbasc()';
 	       'xset(""colormap"",jetcolormap(64))';
 	       'colorbar(-2,2)';
-               'Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf=""031"");';
+               'Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf=""031"",rect=[-1,-1,1,1]);';
 	       'xtitle(''Sfgrayplot demo: f(x,y)=x^3+y'')'];
       write(%io(2),s_mat)
       execstr(s_mat)
