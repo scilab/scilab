@@ -5,6 +5,10 @@ function r=mtlb_ifft(x,n,job)
 // Number of LHS arguments: lhs = 1
 
 [lhs,rhs]=argn(0)
+if size(x,'*')==0 then
+  r=[]
+  return
+end
 if rhs<2 then n=[],end
 if rhs==3 then //row or column-wise fft
   select job

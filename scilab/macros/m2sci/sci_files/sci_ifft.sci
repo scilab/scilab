@@ -45,7 +45,11 @@ elseif rhs==2 then
   
   tree.name="mtlb_ifft"
   
+  if is_empty(X) 
+  tree.lhs(1).dims=list(0,0)
+  else
   tree.lhs(1).dims=allunknown(X.dims)
+  end
   tree.lhs(1).type=Type(Double,Unknown)
   
 // Three input args

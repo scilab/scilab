@@ -3,6 +3,10 @@ function r=mtlb_fft(x,n,job)
 // Translation function for fft() Matlab function
 // V.C.
 [lhs,rhs]=argn(0)
+if size(x,'*')==0 then
+  r=[]
+  return
+end
 if rhs<2 then n=[],end
 if rhs==3 then //row or column-wise fft
   select job

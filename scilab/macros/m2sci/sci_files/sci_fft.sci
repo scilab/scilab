@@ -42,10 +42,12 @@ elseif rhs==2 then
   tree.rhs=Rhs(X,n)
   
   tree.name="mtlb_fft"
-  
+  if is_empty(X) 
+  tree.lhs(1).dims=list(0,0)
+  else
   tree.lhs(1).dims=allunknown(X.dims)
+  end
   tree.lhs(1).type=Type(Double,Unknown)
-  
 // Three input args
 elseif rhs==3 then
   [X,n,dim] = getrhs(tree)
