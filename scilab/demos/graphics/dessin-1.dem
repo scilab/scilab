@@ -142,11 +142,13 @@ str_l(26)=['t=%pi*(-10:10)/10;';
           'xset(''default'');'];
 
 str_l(27)=['exec(''SCI/demos/graphics/sd.sav'');';
+	   'set figure_style old';
            'plot2d();gr_menu(sd_1,1,1);';
-          'title=[''plot2d and gr_menu ''];';
-          'xtitle(title,'' '','' '');'];
+           'title=[''plot2d and gr_menu ''];';
+           'xtitle(title,'' '','' '');'];
 
 str_l(28)=['exec(''SCI/demos/graphics/sd.sav'');';
+	   'set figure_style old';
            'plot3d();gr_menu(sd_2,1,1);';
           'title=[''plot3d and gr_menu ''];';
           'xtitle(title,'' '','' '');'];
