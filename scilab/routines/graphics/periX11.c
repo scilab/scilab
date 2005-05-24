@@ -697,15 +697,13 @@ static void xget_windowdim(integer *verbose, integer *x, integer *narg, double *
 static void xset_windowdim(integer *x, integer *y, integer *v3, integer *v4)
 {
   XWindowAttributes war;
-  if (ScilabXgc->CBGWindow != (Window) NULL) 
-    {
-      GViewportResize(ScilabXgc,x,y) ;
-      /* check dimensions : GViewportResize can set slighly different values */
-      XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
-      ScilabXgc->CWindowWidth  = war.width;
-      ScilabXgc->CWindowHeight = war.height;
-      XFlush(dpy);
-    }
+  if (ScilabXgc == NULL || ScilabXgc->CBGWindow ==  NULL) return ;
+  GViewportResize(ScilabXgc,x,y) ;
+  /* check dimensions : GViewportResize can set slighly different values */
+  XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
+  ScilabXgc->CWindowWidth  = war.width;
+  ScilabXgc->CWindowHeight = war.height;
+  XFlush(dpy);
 }
 
 /** To get the popup  window size **/
