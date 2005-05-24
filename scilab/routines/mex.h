@@ -138,6 +138,7 @@ int mex_gateway __PARAMS((char *fname, GatefuncH F));
 int mxGetElementSize __PARAMS((const mxArray *ptr));
 int mxGetM __PARAMS((const mxArray *ptr));
 int mxGetN __PARAMS((const mxArray *ptr));
+int mxGetNzmax __PARAMS((const mxArray *ptr));
 int mxGetString __PARAMS((const mxArray *ptr, char *str, int strl));
 char *mxArrayToString __PARAMS((const mxArray *array_ptr));
 bool mxIsComplex __PARAMS((const mxArray *ptr));
