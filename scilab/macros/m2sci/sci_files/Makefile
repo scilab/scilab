@@ -12,7 +12,7 @@ NAM = SCI/macros/m2sci/sci_files
 
 PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci \
 	 sci_erfcx.sci sci_gamma.sci sci_gammaln.sci sci_imag.sci sci_real.sci
-PROTO1 = sci_max.sci sci_min.sci
+PROTO1 = sci_max.sci sci_min.sci 
 PROTO2 = sci_cumprod.sci sci_cumsum.sci
 PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci
 PROTO4 = sci_acosh.sci sci_asinh.sci sci_atan.sci sci_conj.sci sci_cot.sci sci_coth.sci \
@@ -65,7 +65,7 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_more.sci \
          sci_ndims.sci sci_norm.sci sci_num2str.sci \
 	 sci_pause.sci sci_pow2.sci sci_qr.sci \
-	 sci_quit.sci sci_rcond.sci sci_rem.sci sci_repmat.sci\
+	 sci_quit.sci sci_rcond.sci sci_rem.sci sci_repmat.sci sci_realmax.sci sci_realmin.sci \
          sci_reshape.sci sci_return.sci sci_save.sci sci_schur.sci sci_setstr.sci \
 	 sci_size.sci sci_sort.sci sci_sparse.sci \
          sci_strcmpi.sci sci_strcmp.sci sci_strfind.sci sci_strrep.sci sci_struct.sci \
