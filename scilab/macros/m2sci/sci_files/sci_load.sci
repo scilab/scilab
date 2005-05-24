@@ -21,6 +21,6 @@ for k=1:rhs
   end
 end
 rhstemp=list()
-rhstemp($+1)=tree.rhs(2)
+rhstemp($+1)=tree.rhs(1)
 
 endfunction
