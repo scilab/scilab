@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.116 $)dnl
+AC_REVISION($Revision: 1.117 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -501,7 +501,7 @@ case "$host" in
     AC_CHECK_LIB(ieee,main,
       [LIEEELIB=-lieee])
     GCC=yes
-    CC=cc
+    CC=gcc
     CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings'
     CC_LDFLAGS=$LIEEELIB
     # find Fortran compiler
@@ -641,7 +641,7 @@ case "$host" in
        LD_LDFLAGS="$LIEEELIB  -Wl,-relax "
     else
        GCC=yes
-       CC=cc
+       CC=gcc
        CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings -DNARROWPROTO'
        CC_LDFLAGS=$LIEEELIB
        CC_PICFLAGS=-fPIC
@@ -712,7 +712,7 @@ case "$host" in
        LD_LDFLAGS="$LIEEELIB -lPEPCF90 -Wl,-relax "
     else
        GCC=yes
-       CC=cc
+       CC=gcc
        # CC_PLAT_OPTIONS is optional, and is used to add CPU specific code generation tuning for Athlon64 presumably Opteron could benefit too but these are not optimized for the Opteron
        CC_PLAT_OPTIONS='-march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 '
        CC_OPTIONS="-O2 -DNDEBUG -Dlinux -fwritable-strings -DNARROWPROTO $CC_PLAT_OPTIONS"
@@ -766,7 +766,7 @@ case "$host" in
   alpha-*-linux-gnu)
     MALLOC=malloc.o
     GCC=yes
-    CC=cc
+    CC=gcc
     CC_OPTIONS='-O -DNDEBUG -mieee-with-inexact -Dlinux -fwritable-strings'
     CC_LDFLAGS='-ldl -rdynamic -mieee-with-inexact'
     CC_PICFLAGS=-fPIC
@@ -815,7 +815,7 @@ case "$host" in
     AC_CHECK_LIB(ieee,main,
       [LIEEELIB=-lieee])
     GCC=yes
-    CC=cc
+    CC=gcc
     CC_OPTIONS='-O -DNDEBUG -D_GNU_SOURCE -Dlinux -fwritable-strings'
     CC_LDFLAGS=$LIEEELIB
     CC_PICFLAGS=-fPIC
@@ -1131,7 +1131,7 @@ case "$host" in
 # FreeBSD  systems (not supported by INRIA)
   *-*-freebsd*)
      GCC=yes
-     CC=cc
+     CC=gcc
      CC_OPTIONS="${CFLAGS} -Dfreebsd"
      CC_LDFLAGS=-lm
      CC_PICFLAGS='-fPIC'
