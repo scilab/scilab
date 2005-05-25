@@ -87,6 +87,7 @@ void CreateSplashscreen(void);
 void Kill_Scilex_Win98(void);
 /* Tue le Process Scilex */
 void Kill_Scilex(void);
+BOOL ForbiddenToUseScilab(void);
 
 int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow);
 int Console_Main(int argc, char **argv);

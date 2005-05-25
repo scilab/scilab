@@ -58,7 +58,9 @@ int Console_Main(int argc, char **argv)
   int i=0;
   my_argc = -1;
 
- SetWindowMode(FALSE);
+  ForbiddenToUseScilab();
+
+  SetWindowMode(FALSE);
   
   for (i=0;i<argc;i++)
   {
@@ -202,6 +204,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
 	char *pPathCmdLine=NULL;
+
+	ForbiddenToUseScilab();
 
 	SetWindowMode(TRUE);
 	ScilabIsStarting=TRUE;
@@ -489,6 +493,9 @@ void InitWindowGraphDll(void)
   	MessageBox(NULL,"Do not find LibScilab.dll","Error",MB_ICONWARNING|MB_OK);
   	exit(1);
   }
+
+  ForbiddenToUseScilab();
+
   hdllInstance=hdllInstanceTmp;
   szModuleName = (LPSTR) malloc (MAXSTR + 1);
   CheckMemory (szModuleName);
@@ -674,5 +681,32 @@ void CreateSplashscreen(void)
 	Sleep(1500);
 
 	DestroyWindow(hdlg);
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL ForbiddenToUseScilab(void)
+{
+	BOOL bOK=FALSE;
+	int WinVer=GetOSVersion();
+	HDC hdc=GetDC(NULL);
+	int BitsByPixel = GetDeviceCaps(hdc, BITSPIXEL);
+
+    ReleaseDC (NULL, hdc);
+
+	if ( (WinVer == OS_WIN32_WINDOWS_NT_3_51) || (WinVer == OS_WIN32_WINDOWS_NT_4_0) )
+	{
+		MessageBox(NULL,"Warning","Scilab doesn''t support Windows NT 3.51 or 4.\n",MB_ICONSTOP);
+		exit(1);
+		return bOK;
+	}
+
+	if ( BitsByPixel < 8 )
+	{
+		MessageBox(NULL,"Warning","Scilab supports only 256 colors or more.\n",MB_ICONSTOP);
+		exit(1);
+		return bOK;
+	}
+
+	bOK=TRUE;
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
