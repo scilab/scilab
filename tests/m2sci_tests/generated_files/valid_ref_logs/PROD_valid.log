@@ -53,11 +53,23 @@
 
 *** TEST 27 PASSED ***
 
-*** TEST 28 PASSED ***
+TEST 28: Scilab and Matlab size do not match for res28
+Matlab: 1 0
+Scilab: 0 0
+Trying to compare results...
+*** TEST 28 FAILED ***
 
-*** TEST 29 PASSED ***
+TEST 29: Scilab and Matlab size do not match for res29
+Matlab: 1 0
+Scilab: 0 0
+Trying to compare results...
+*** TEST 29 FAILED ***
 
-*** TEST 30 PASSED ***
+TEST 30: Scilab and Matlab size do not match for res30
+Matlab: 1 0
+Scilab: 0 0
+Trying to compare results...
+*** TEST 30 FAILED ***
 
 *** TEST 31 PASSED ***
 
@@ -83,23 +95,11 @@
 
 *** TEST 42 PASSED ***
 
-TEST 43: Scilab and Matlab size do not match for res43
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 43 FAILED ***
+*** TEST 43 PASSED ***
 
-TEST 44: Scilab and Matlab size do not match for res44
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 44 FAILED ***
+*** TEST 44 PASSED ***
 
-TEST 45: Scilab and Matlab size do not match for res45
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 45 FAILED ***
+*** TEST 45 PASSED ***
 
 *** TEST 46 PASSED ***
 
@@ -119,11 +119,23 @@ Trying to compare results...
 
 *** TEST 54 PASSED ***
 
-*** TEST 55 PASSED ***
+TEST 55: Scilab and Matlab size do not match for res55
+Matlab: 0 1
+Scilab: 0 0
+Trying to compare results...
+*** TEST 55 FAILED ***
 
-*** TEST 56 PASSED ***
+TEST 56: Scilab and Matlab size do not match for res56
+Matlab: 0 1
+Scilab: 0 0
+Trying to compare results...
+*** TEST 56 FAILED ***
 
-*** TEST 57 PASSED ***
+TEST 57: Scilab and Matlab size do not match for res57
+Matlab: 0 1
+Scilab: 0 0
+Trying to compare results...
+*** TEST 57 FAILED ***
 
 *** TEST 58 PASSED ***
 
@@ -179,23 +191,11 @@ Trying to compare results...
 
 *** TEST 84 PASSED ***
 
-TEST 85: Scilab and Matlab size do not match for res85
-Matlab: 0 1
-Scilab: 0 0
-Trying to compare results...
-*** TEST 85 FAILED ***
+*** TEST 85 PASSED ***
 
-TEST 86: Scilab and Matlab size do not match for res86
-Matlab: 0 1
-Scilab: 0 0
-Trying to compare results...
-*** TEST 86 FAILED ***
+*** TEST 86 PASSED ***
 
-TEST 87: Scilab and Matlab size do not match for res87
-Matlab: 0 1
-Scilab: 0 0
-Trying to compare results...
-*** TEST 87 FAILED ***
+*** TEST 87 PASSED ***
 
 *** TEST 88 PASSED ***
 
@@ -238,209 +238,5 @@ Trying to compare results...
 *** TEST 107 PASSED ***
 
 *** TEST 108 PASSED ***
-
-*** TEST 109 PASSED ***
-
-*** TEST 110 PASSED ***
-
-*** TEST 111 PASSED ***
-
-*** TEST 112 PASSED ***
-
-*** TEST 113 PASSED ***
-
-*** TEST 114 PASSED ***
-
-*** TEST 115 PASSED ***
-
-*** TEST 116 PASSED ***
-
-*** TEST 117 PASSED ***
-
-*** TEST 118 PASSED ***
-
-*** TEST 119 PASSED ***
-
-*** TEST 120 PASSED ***
-
-*** TEST 121 PASSED ***
-
-*** TEST 122 PASSED ***
-
-*** TEST 123 PASSED ***
-
-*** TEST 124 PASSED ***
-
-*** TEST 125 PASSED ***
-
-*** TEST 126 PASSED ***
-
-*** TEST 127 PASSED ***
-
-*** TEST 128 PASSED ***
-
-*** TEST 129 PASSED ***
-
-*** TEST 130 PASSED ***
-
-*** TEST 131 PASSED ***
-
-*** TEST 132 PASSED ***
-
-*** TEST 133 PASSED ***
-
-*** TEST 134 PASSED ***
-
-*** TEST 135 PASSED ***
-
-*** TEST 136 PASSED ***
-
-*** TEST 137 PASSED ***
-
-*** TEST 138 PASSED ***
-
-*** TEST 139 PASSED ***
-
-*** TEST 140 PASSED ***
-
-*** TEST 141 PASSED ***
-
-*** TEST 142 PASSED ***
-
-*** TEST 143 PASSED ***
-
-*** TEST 144 PASSED ***
-
-*** TEST 145 PASSED ***
-
-*** TEST 146 PASSED ***
-
-*** TEST 147 PASSED ***
-
-*** TEST 148 PASSED ***
-
-*** TEST 149 PASSED ***
-
-*** TEST 150 PASSED ***
-
-*** TEST 151 PASSED ***
-
-*** TEST 152 PASSED ***
-
-*** TEST 153 PASSED ***
-
-*** TEST 154 PASSED ***
-
-*** TEST 155 PASSED ***
-
-*** TEST 156 PASSED ***
-
-*** TEST 157 PASSED ***
-
-*** TEST 158 PASSED ***
-
-*** TEST 159 PASSED ***
-
-*** TEST 160 PASSED ***
-
-*** TEST 161 PASSED ***
-
-*** TEST 162 PASSED ***
-
-*** TEST 163 PASSED ***
-
-*** TEST 164 PASSED ***
-
-*** TEST 165 PASSED ***
-
-*** TEST 166 PASSED ***
-
-*** TEST 167 PASSED ***
-
-*** TEST 168 PASSED ***
-
-*** TEST 169 PASSED ***
-
-*** TEST 170 PASSED ***
-
-*** TEST 171 PASSED ***
-
-*** TEST 172 PASSED ***
-
-*** TEST 173 PASSED ***
-
-*** TEST 174 PASSED ***
-
-*** TEST 175 PASSED ***
-
-*** TEST 176 PASSED ***
-
-*** TEST 177 PASSED ***
-
-*** TEST 178 PASSED ***
-
-*** TEST 179 PASSED ***
-
-*** TEST 180 PASSED ***
-
-*** TEST 181 PASSED ***
-
-*** TEST 182 PASSED ***
-
-*** TEST 183 PASSED ***
-
-*** TEST 184 PASSED ***
-
-*** TEST 185 PASSED ***
-
-*** TEST 186 PASSED ***
-
-*** TEST 187 PASSED ***
-
-*** TEST 188 PASSED ***
-
-*** TEST 189 PASSED ***
-
-*** TEST 190 PASSED ***
-
-*** TEST 191 PASSED ***
-
-*** TEST 192 PASSED ***
-
-*** TEST 193 PASSED ***
-
-*** TEST 194 PASSED ***
-
-*** TEST 195 PASSED ***
-
-*** TEST 196 PASSED ***
-
-*** TEST 197 PASSED ***
-
-*** TEST 198 PASSED ***
-
-*** TEST 199 PASSED ***
-
-*** TEST 200 PASSED ***
-
-*** TEST 201 PASSED ***
-
-*** TEST 202 PASSED ***
-
-*** TEST 203 PASSED ***
-
-*** TEST 204 PASSED ***
-
-*** TEST 205 PASSED ***
-
-*** TEST 206 PASSED ***
-
-*** TEST 207 PASSED ***
-
-*** TEST 208 PASSED ***
-
-*** TEST 209 PASSED ***
-
-*** TEST 210 PASSED ***
 
 ****** End of validation of PROD.dia.ref ******

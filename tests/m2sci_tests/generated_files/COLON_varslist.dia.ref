@@ -10,7 +10,7 @@
 //varargout|-1 -1|Cell|Unknown
 //%shortcircuit|1 1|Double|Real
 //res1|1 100|Double|Real
-//res2|1 -1|Double|Real
+//res2|1 10|Double|Real
 //res3|1 -1|Double|Real
 //res4|1 -1|Double|Real
 //res5|1 -1|Double|Real

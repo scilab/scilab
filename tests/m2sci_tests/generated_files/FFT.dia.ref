@@ -238,14 +238,14 @@ res77 = 1
 //res78|1 3|Double|Real
 res78 = [1,0,1]
 // TEST 79
-//res79|5 1|Double|Real
-res79 = [0;0;0;0;0]
+//res79|0 0|Double|Real
+res79 = []
 // TEST 80
-//res80|5 1|Double|Real
-res80 = [0;0;0;0;0]
+//res80|0 0|Double|Real
+res80 = []
 // TEST 81
-//res81|5 1|Double|Real
-res81 = [0;0;0;0;0]
+//res81|0 0|Double|Real
+res81 = []
 // TEST 82
 //res82|1 5|Double|Real
 res82 = [1,1,1,1,1]
@@ -823,14 +823,14 @@ res272 = [1;0;1]
 //res273|2 1|Double|Real
 res273 = [1;1]
 // TEST 274
-//res274|5 1|Double|Real
-res274 = [0;0;0;0;0]
+//res274|0 0|Double|Real
+res274 = []
 // TEST 275
-//res275|5 1|Double|Real
-res275 = [0;0;0;0;0]
+//res275|0 0|Double|Real
+res275 = []
 // TEST 276
-//res276|5 1|Double|Real
-res276 = [0;0;0;0;0]
+//res276|0 0|Double|Real
+res276 = []
 // TEST 277
 //res277|5 1|Double|Real
 res277 = [1;1;1;1;1]
@@ -940,14 +940,14 @@ res311 = [2;0.1909830056251-%i*0.5877852522925;1.3090169943749+%i*0.951056516295
 //res312|5 3|Double|Complex
 res312 = [2,1,1;1.3090169943749-%i*0.9510565162952,0.3090169943749-%i*0.9510565162952,1;0.1909830056251-%i*0.5877852522925,-0.8090169943749-%i*0.5877852522925,1;0.1909830056251+%i*0.5877852522925,-0.8090169943749+%i*0.5877852522925,1;1.3090169943749+%i*0.9510565162952,0.3090169943749+%i*0.9510565162952,1]
 // TEST 313
-//res313|1 5|Double|Real
-res313 = [0,0,0,0,0]
+//res313|0 0|Double|Real
+res313 = []
 // TEST 314
-//res314|1 5|Double|Real
-res314 = [0,0,0,0,0]
+//res314|0 0|Double|Real
+res314 = []
 // TEST 315
-//res315|1 5|Double|Real
-res315 = [0,0,0,0,0]
+//res315|0 0|Double|Real
+res315 = []
 // TEST 316
 //res316|1 5|Double|Real
 res316 = [1,1,1,1,1]

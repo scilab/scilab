@@ -743,15 +743,33 @@ Trying to compare results...
 
 *** TEST 274 PASSED ***
 
-*** TEST 275 PASSED ***
+TEST 275: Scilab and Matlab property do not match for res275
+Matlab: Complex
+Scilab: Real
+TEST 275: Infered property do not match for res275
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 275 FAILED ***
 
 *** TEST 276 PASSED ***
 
-*** TEST 277 PASSED ***
+TEST 277: Scilab and Matlab property do not match for res277
+Matlab: Complex
+Scilab: Real
+Trying to compare results...
+*** TEST 277 FAILED ***
 
 *** TEST 278 PASSED ***
 
-*** TEST 279 PASSED ***
+TEST 279: Scilab and Matlab property do not match for res279
+Matlab: Complex
+Scilab: Real
+TEST 279: Infered property do not match for res279
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 279 FAILED ***
 
 *** TEST 280 PASSED ***
 
@@ -779,15 +797,36 @@ Trying to compare results...
 
 *** TEST 286 PASSED ***
 
-*** TEST 287 PASSED ***
+TEST 287: Scilab and Matlab property do not match for res287
+Matlab: Complex
+Scilab: Real
+TEST 287: Infered property do not match for res287
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 287 FAILED ***
 
 *** TEST 288 PASSED ***
 
-*** TEST 289 PASSED ***
+TEST 289: Scilab and Matlab property do not match for res289
+Matlab: Complex
+Scilab: Real
+TEST 289: Infered property do not match for res289
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 289 FAILED ***
 
 *** TEST 290 PASSED ***
 
-*** TEST 291 PASSED ***
+TEST 291: Scilab and Matlab property do not match for res291
+Matlab: Complex
+Scilab: Real
+TEST 291: Infered property do not match for res291
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+*** TEST 291 FAILED ***
 
 *** TEST 292 PASSED ***
 

@@ -41,1203 +41,210 @@ Trying to compare results...
 
 *** TEST 15 PASSED ***
 
+TEST 16: Infered size do not match for res16
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
 *** TEST 16 PASSED ***
 
+TEST 17: Infered size do not match for res18
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
 *** TEST 17 PASSED ***
 
+TEST 18: Infered size do not match for res20
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
 *** TEST 18 PASSED ***
 
 *** TEST 19 PASSED ***
 
+TEST 20: Infered size do not match for res24
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
 *** TEST 20 PASSED ***
 
 *** TEST 21 PASSED ***
 
+TEST 22: Infered size do not match for res28
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
 *** TEST 22 PASSED ***
 
 *** TEST 23 PASSED ***
 
+TEST 24: Infered size do not match for res32
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
 *** TEST 24 PASSED ***
 
-*** TEST 25 PASSED ***
+TEST 25: Infered property do not match for res34
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 25: Infered property do not match for res35
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 25 FAILED ***
 
-*** TEST 26 PASSED ***
+TEST 26: Infered size do not match for res36
+M2SCI: -1 1
+Matlab: 3 3
+TEST 26: Infered property do not match for res36
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 26: Infered property do not match for res37
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 26 FAILED ***
 
+TEST 27: Infered property do not match for res38
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
 *** TEST 27 PASSED ***
 
+TEST 28: Infered size do not match for res40
+M2SCI: -1 1
+Matlab: 3 3
+TEST 28: Infered property do not match for res40
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
 *** TEST 28 PASSED ***
 
-*** TEST 29 PASSED ***
+TEST 29: Infered property do not match for res42
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 29: Infered property do not match for res43
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 29 FAILED ***
 
-*** TEST 30 PASSED ***
+TEST 30: Infered size do not match for res44
+M2SCI: -1 1
+Matlab: 3 3
+TEST 30: Infered property do not match for res44
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 30: Infered property do not match for res45
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 30 FAILED ***
 
-TEST 31: Scilab and Matlab values do not match for res31
-Scilab value: [355.71212876396;1.3716596565555;7.732390195E-16]
-Matlab value: [355.71212876396;1.3716596565555;2.527597932E-14]
-*** TEST 31 FAILED ***
+TEST 31: Infered size do not match for res46
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
+*** TEST 31 PASSED ***
 
+TEST 32: Infered size do not match for res49
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
 *** TEST 32 PASSED ***
 
+TEST 33: Infered size do not match for res52
+M2SCI: -1 1
+Matlab: 0 0
+Trying to compare results...
 *** TEST 33 PASSED ***
 
 *** TEST 34 PASSED ***
 
+TEST 35: Infered size do not match for res58
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
 *** TEST 35 PASSED ***
 
-TEST 36: Scilab and Matlab values do not match for res36
-Scilab value: [355.71212876396;1.3716596565555;7.732390195E-16]
-Matlab value: [355.71212876396;1.3716596565555;2.527597932E-14]
-*** TEST 36 FAILED ***
+*** TEST 36 PASSED ***
 
+TEST 37: Infered size do not match for res64
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
 *** TEST 37 PASSED ***
 
 *** TEST 38 PASSED ***
 
+TEST 39: Infered size do not match for res70
+M2SCI: -1 1
+Matlab: 3 3
+Trying to compare results...
 *** TEST 39 PASSED ***
 
+TEST 40: Infered property do not match for res73
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 40: Infered property do not match for res74
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
 *** TEST 40 PASSED ***
 
-TEST 41: Scilab and Matlab values do not match for res41
-Scilab value: [355.71212876396;1.3716596565555;7.732390195E-16]
-Matlab value: [355.71212876396;1.3716596565555;2.527597932E-14]
-*** TEST 41 FAILED ***
+TEST 41: Infered size do not match for res76
+M2SCI: -1 1
+Matlab: 3 3
+TEST 41: Infered property do not match for res76
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 41: Infered property do not match for res77
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
+*** TEST 41 PASSED ***
 
+TEST 42: Infered property do not match for res79
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
 *** TEST 42 PASSED ***
 
+TEST 43: Infered size do not match for res82
+M2SCI: -1 1
+Matlab: 3 3
+TEST 43: Infered property do not match for res82
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
 *** TEST 43 PASSED ***
 
+TEST 44: Infered property do not match for res85
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 44: Infered property do not match for res86
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
 *** TEST 44 PASSED ***
 
+TEST 45: Infered size do not match for res88
+M2SCI: -1 1
+Matlab: 3 3
+TEST 45: Infered property do not match for res88
+M2SCI: Real
+Matlab: Complex
+Trying to compare results...
+TEST 45: Infered property do not match for res89
+M2SCI: Complex
+Matlab: Real
+Trying to compare results...
 *** TEST 45 PASSED ***
-
-*** TEST 46 PASSED ***
-
-*** TEST 47 PASSED ***
-
-*** TEST 48 PASSED ***
-
-*** TEST 49 PASSED ***
-
-*** TEST 50 PASSED ***
-
-*** TEST 51 PASSED ***
-
-*** TEST 52 PASSED ***
-
-*** TEST 53 PASSED ***
-
-*** TEST 54 PASSED ***
-
-TEST 55: Infered size do not match for res55
-M2SCI: -1 1
-Matlab: 0 0
-Trying to compare results...
-*** TEST 55 PASSED ***
-
-TEST 56: Infered size do not match for res57
-M2SCI: -1 1
-Matlab: 0 0
-Trying to compare results...
-*** TEST 56 PASSED ***
-
-TEST 57: Infered size do not match for res59
-M2SCI: -1 1
-Matlab: 0 0
-Trying to compare results...
-*** TEST 57 PASSED ***
-
-*** TEST 58 PASSED ***
-
-TEST 59: Scilab and Matlab size do not match for res64
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 59: Scilab and Matlab values do not match for res64
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-*** TEST 59 FAILED ***
-
-*** TEST 60 PASSED ***
-
-TEST 61: Infered size do not match for res67
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 61: Scilab and Matlab size do not match for res68
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 61: Scilab and Matlab values do not match for res68
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-*** TEST 61 FAILED ***
-
-*** TEST 62 PASSED ***
-
-TEST 63: Scilab and Matlab size do not match for res72
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 63: Scilab and Matlab values do not match for res72
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-*** TEST 63 FAILED ***
-
-*** TEST 64 PASSED ***
-
-TEST 65: Infered size do not match for res75
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 65: Scilab and Matlab size do not match for res76
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 65: Scilab and Matlab values do not match for res76
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-*** TEST 65 FAILED ***
-
-*** TEST 66 PASSED ***
-
-TEST 67: Scilab and Matlab size do not match for res80
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 67: Scilab and Matlab values do not match for res80
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-*** TEST 67 FAILED ***
-
-*** TEST 68 PASSED ***
-
-TEST 69: Infered size do not match for res83
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 69: Scilab and Matlab size do not match for res84
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 69: Scilab and Matlab values do not match for res84
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-*** TEST 69 FAILED ***
-
-TEST 70: Infered property do not match for res85
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 70: Infered property do not match for res86
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 70 FAILED ***
-
-TEST 71: Scilab and Matlab size do not match for res88
-Matlab: 1 3
-Scilab: 1 1
-TEST 71: Infered property do not match for res88
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 71: Scilab and Matlab values do not match for res88
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-*** TEST 71 FAILED ***
-
-TEST 72: Infered property do not match for res89
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 72: Infered property do not match for res90
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 72 FAILED ***
-
-TEST 73: Infered size do not match for res91
-M2SCI: -1 1
-Matlab: 2 2
-TEST 73: Infered property do not match for res91
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 73: Scilab and Matlab size do not match for res92
-Matlab: 2 3
-Scilab: 2 2
-TEST 73: Infered property do not match for res92
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 73: Scilab and Matlab values do not match for res92
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-*** TEST 73 FAILED ***
-
-TEST 74: Infered property do not match for res93
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-*** TEST 74 PASSED ***
-
-TEST 75: Scilab and Matlab size do not match for res96
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 75: Scilab and Matlab values do not match for res96
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-*** TEST 75 FAILED ***
-
-TEST 76: Infered property do not match for res97
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-*** TEST 76 PASSED ***
-
-TEST 77: Infered size do not match for res99
-M2SCI: -1 1
-Matlab: 2 2
-TEST 77: Infered property do not match for res99
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 77: Scilab and Matlab size do not match for res100
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 77: Scilab and Matlab values do not match for res100
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-*** TEST 77 FAILED ***
-
-TEST 78: Infered property do not match for res101
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 78: Infered property do not match for res102
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 78 FAILED ***
-
-TEST 79: Scilab and Matlab size do not match for res104
-Matlab: 1 3
-Scilab: 1 1
-TEST 79: Infered property do not match for res104
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 79: Scilab and Matlab values do not match for res104
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-*** TEST 79 FAILED ***
-
-TEST 80: Infered property do not match for res105
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 80: Infered property do not match for res106
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 80 FAILED ***
-
-TEST 81: Infered size do not match for res107
-M2SCI: -1 1
-Matlab: 2 2
-TEST 81: Infered property do not match for res107
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 81: Scilab and Matlab size do not match for res108
-Matlab: 2 3
-Scilab: 2 2
-TEST 81: Infered property do not match for res108
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 81: Scilab and Matlab values do not match for res108
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-*** TEST 81 FAILED ***
-
-*** TEST 82 PASSED ***
-
-TEST 83: Scilab and Matlab size do not match for res112
-Matlab: 1 4
-Scilab: 1 1
-Trying to compare results...
-TEST 83: Scilab and Matlab values do not match for res112
-Scilab value: 205.12922756155
-Matlab value: [205.12922756156,0,0,0]
-*** TEST 83 FAILED ***
-
-TEST 84: Scilab and Matlab size do not match for res114
-Matlab: 1 12
-Scilab: 1 1
-Trying to compare results...
-TEST 84: Scilab and Matlab values do not match for res114
-Scilab value: 355.7147733789
-Matlab value: [355.7147733789,0,0,0,0,0,0,0,0,0,0,0]
-*** TEST 84 FAILED ***
-
-TEST 85: Infered size do not match for res115
-M2SCI: -1 1
-Matlab: 3 3
-Trying to compare results...
-TEST 85: Scilab and Matlab size do not match for res116
-Matlab: 3 4
-Scilab: 3 3
-Trying to compare results...
-TEST 85: Scilab and Matlab values do not match for res116
-Scilab value: [355.71212876396,0,0;0,1.3716596565555,0;0,0,7.732390195E-16]
-Matlab value: [355.71212876396,0,0,0;0,1.3716596565555,0,0;0,0,2.527597932E-14,0]
-*** TEST 85 FAILED ***
-
-TEST 86: Infered size do not match for res117
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 86: Scilab and Matlab size do not match for res118
-Matlab: 2 12
-Scilab: 2 2
-Trying to compare results...
-TEST 86: Scilab and Matlab values do not match for res118
-Scilab value: [503.96462763439,0;0,3.5572592435347]
-Matlab value: [503.9646276344,0,0,0,0,0,0,0,0,0,0,0;0,3.5572592435347,0,0,0,0,0,0,0,0,0,0]
-*** TEST 86 FAILED ***
-
-*** TEST 87 PASSED ***
-
-TEST 88: Scilab and Matlab size do not match for res122
-Matlab: 1 4
-Scilab: 1 1
-Trying to compare results...
-TEST 88: Scilab and Matlab values do not match for res122
-Scilab value: 205.12922756155
-Matlab value: [205.12922756156,0,0,0]
-*** TEST 88 FAILED ***
-
-TEST 89: Scilab and Matlab size do not match for res124
-Matlab: 1 12
-Scilab: 1 1
-Trying to compare results...
-TEST 89: Scilab and Matlab values do not match for res124
-Scilab value: 355.7147733789
-Matlab value: [355.7147733789,0,0,0,0,0,0,0,0,0,0,0]
-*** TEST 89 FAILED ***
-
-TEST 90: Infered size do not match for res125
-M2SCI: -1 1
-Matlab: 3 3
-Trying to compare results...
-TEST 90: Scilab and Matlab size do not match for res126
-Matlab: 3 4
-Scilab: 3 3
-Trying to compare results...
-TEST 90: Scilab and Matlab values do not match for res126
-Scilab value: [355.71212876396,0,0;0,1.3716596565555,0;0,0,7.732390195E-16]
-Matlab value: [355.71212876396,0,0,0;0,1.3716596565555,0,0;0,0,2.527597932E-14,0]
-*** TEST 90 FAILED ***
-
-TEST 91: Infered size do not match for res127
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 91: Scilab and Matlab size do not match for res128
-Matlab: 2 12
-Scilab: 2 2
-Trying to compare results...
-TEST 91: Scilab and Matlab values do not match for res128
-Scilab value: [503.96462763439,0;0,3.5572592435347]
-Matlab value: [503.9646276344,0,0,0,0,0,0,0,0,0,0,0;0,3.5572592435347,0,0,0,0,0,0,0,0,0,0]
-*** TEST 91 FAILED ***
-
-*** TEST 92 PASSED ***
-
-TEST 93: Scilab and Matlab size do not match for res132
-Matlab: 1 4
-Scilab: 1 1
-Trying to compare results...
-TEST 93: Scilab and Matlab values do not match for res132
-Scilab value: 205.12922756155
-Matlab value: [205.12922756156,0,0,0]
-*** TEST 93 FAILED ***
-
-TEST 94: Scilab and Matlab size do not match for res134
-Matlab: 1 12
-Scilab: 1 1
-Trying to compare results...
-TEST 94: Scilab and Matlab values do not match for res134
-Scilab value: 355.7147733789
-Matlab value: [355.7147733789,0,0,0,0,0,0,0,0,0,0,0]
-*** TEST 94 FAILED ***
-
-TEST 95: Infered size do not match for res135
-M2SCI: -1 1
-Matlab: 3 3
-Trying to compare results...
-TEST 95: Scilab and Matlab size do not match for res136
-Matlab: 3 4
-Scilab: 3 3
-Trying to compare results...
-TEST 95: Scilab and Matlab values do not match for res136
-Scilab value: [355.71212876396,0,0;0,1.3716596565555,0;0,0,7.732390195E-16]
-Matlab value: [355.71212876396,0,0,0;0,1.3716596565555,0,0;0,0,2.527597932E-14,0]
-*** TEST 95 FAILED ***
-
-TEST 96: Infered size do not match for res137
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 96: Scilab and Matlab size do not match for res138
-Matlab: 2 12
-Scilab: 2 2
-Trying to compare results...
-TEST 96: Scilab and Matlab values do not match for res138
-Scilab value: [503.96462763439,0;0,3.5572592435347]
-Matlab value: [503.9646276344,0,0,0,0,0,0,0,0,0,0,0;0,3.5572592435347,0,0,0,0,0,0,0,0,0,0]
-*** TEST 96 FAILED ***
-
-*** TEST 97 PASSED ***
-
-TEST 98: Scilab and Matlab size do not match for res142
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 98: Scilab and Matlab values do not match for res142
-Scilab value: 1.4142135623731
-Matlab value: [1.4142135623731,0,0]
-*** TEST 98 FAILED ***
-
-*** TEST 99 PASSED ***
-
-TEST 100: Infered size do not match for res145
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 100: Scilab and Matlab size do not match for res146
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 100: Scilab and Matlab values do not match for res146
-Scilab value: [1.7320508075689,0;0,1]
-Matlab value: [1.7320508075689,0,0;0,1,0]
-*** TEST 100 FAILED ***
-
-*** TEST 101 PASSED ***
-
-TEST 102: Scilab and Matlab size do not match for res150
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 102: Scilab and Matlab values do not match for res150
-Scilab value: 1.4142135623731
-Matlab value: [1.4142135623731,0,0]
-*** TEST 102 FAILED ***
-
-*** TEST 103 PASSED ***
-
-TEST 104: Infered size do not match for res153
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 104: Scilab and Matlab size do not match for res154
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 104: Scilab and Matlab values do not match for res154
-Scilab value: [1.7320508075689,0;0,1]
-Matlab value: [1.7320508075689,0,0;0,1,0]
-*** TEST 104 FAILED ***
-
-*** TEST 105 PASSED ***
-
-TEST 106: Scilab and Matlab size do not match for res158
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 106: Scilab and Matlab values do not match for res158
-Scilab value: 1.4142135623731
-Matlab value: [1.4142135623731,0,0]
-*** TEST 106 FAILED ***
-
-*** TEST 107 PASSED ***
-
-TEST 108: Infered size do not match for res161
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 108: Scilab and Matlab size do not match for res162
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 108: Scilab and Matlab values do not match for res162
-Scilab value: [1.7320508075689,0;0,1]
-Matlab value: [1.7320508075689,0,0;0,1,0]
-*** TEST 108 FAILED ***
-
-TEST 109: Infered size do not match for res163
-M2SCI: -1 1
-Matlab: 0 0
-Trying to compare results...
-*** TEST 109 PASSED ***
-
-TEST 110: Infered size do not match for res166
-M2SCI: -1 1
-Matlab: 0 0
-Trying to compare results...
-*** TEST 110 PASSED ***
-
-TEST 111: Infered size do not match for res169
-M2SCI: -1 1
-Matlab: 0 0
-Trying to compare results...
-*** TEST 111 PASSED ***
-
-*** TEST 112 PASSED ***
-
-TEST 113: Scilab and Matlab size do not match for res176
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 113: Scilab and Matlab values do not match for res176
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-TEST 113: Scilab and Matlab size do not match for res177
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 113: Scilab and Matlab values do not match for res177
-Scilab value: [0.2672612419124;0.5345224838248;0.8017837257373]
-Matlab value: [0.2672612419124,-0.5345224838248,-0.8017837257373;0.5345224838248,0.7745419205884,-0.3381871191173;0.8017837257373,-0.3381871191173,0.492719321324]
-*** TEST 113 FAILED ***
-
-*** TEST 114 PASSED ***
-
-TEST 115: Infered size do not match for res181
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 115: Scilab and Matlab size do not match for res182
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 115: Scilab and Matlab values do not match for res182
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-TEST 115: Scilab and Matlab size do not match for res183
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 115: Scilab and Matlab values do not match for res183
-Scilab value: [-0.4286671335486,0.8059639085893;-0.566306918848,0.1123824140966;-0.7039467041474,-0.5811990803961]
-Matlab value: [-0.4286671335486,0.8059639085893,0.4082482904639;-0.566306918848,0.1123824140966,-0.8164965809277;-0.7039467041474,-0.5811990803961,0.4082482904639]
-*** TEST 115 FAILED ***
-
-*** TEST 116 PASSED ***
-
-TEST 117: Scilab and Matlab size do not match for res188
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 117: Scilab and Matlab values do not match for res188
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-TEST 117: Scilab and Matlab size do not match for res189
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 117: Scilab and Matlab values do not match for res189
-Scilab value: [0.2672612419124;0.5345224838248;0.8017837257373]
-Matlab value: [0.2672612419124,-0.5345224838248,-0.8017837257373;0.5345224838248,0.7745419205884,-0.3381871191173;0.8017837257373,-0.3381871191173,0.492719321324]
-*** TEST 117 FAILED ***
-
-*** TEST 118 PASSED ***
-
-TEST 119: Infered size do not match for res193
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 119: Scilab and Matlab size do not match for res194
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 119: Scilab and Matlab values do not match for res194
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-TEST 119: Scilab and Matlab size do not match for res195
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 119: Scilab and Matlab values do not match for res195
-Scilab value: [-0.4286671335486,0.8059639085893;-0.566306918848,0.1123824140966;-0.7039467041474,-0.5811990803961]
-Matlab value: [-0.4286671335486,0.8059639085893,0.4082482904639;-0.566306918848,0.1123824140966,-0.8164965809277;-0.7039467041474,-0.5811990803961,0.4082482904639]
-*** TEST 119 FAILED ***
-
-*** TEST 120 PASSED ***
-
-TEST 121: Scilab and Matlab size do not match for res200
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 121: Scilab and Matlab values do not match for res200
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-TEST 121: Scilab and Matlab size do not match for res201
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 121: Scilab and Matlab values do not match for res201
-Scilab value: [0.2672612419124;0.5345224838248;0.8017837257373]
-Matlab value: [0.2672612419124,-0.5345224838248,-0.8017837257373;0.5345224838248,0.7745419205884,-0.3381871191173;0.8017837257373,-0.3381871191173,0.492719321324]
-*** TEST 121 FAILED ***
-
-*** TEST 122 PASSED ***
-
-TEST 123: Infered size do not match for res205
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 123: Scilab and Matlab size do not match for res206
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 123: Scilab and Matlab values do not match for res206
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-TEST 123: Scilab and Matlab size do not match for res207
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 123: Scilab and Matlab values do not match for res207
-Scilab value: [-0.4286671335486,0.8059639085893;-0.566306918848,0.1123824140966;-0.7039467041474,-0.5811990803961]
-Matlab value: [-0.4286671335486,0.8059639085893,0.4082482904639;-0.566306918848,0.1123824140966,-0.8164965809277;-0.7039467041474,-0.5811990803961,0.4082482904639]
-*** TEST 123 FAILED ***
-
-TEST 124: Infered property do not match for res208
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 124: Infered property do not match for res209
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 124 PASSED ***
-
-TEST 125: Scilab and Matlab size do not match for res212
-Matlab: 1 3
-Scilab: 1 1
-TEST 125: Infered property do not match for res212
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 125: Scilab and Matlab values do not match for res212
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-TEST 125: Scilab and Matlab size do not match for res213
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 125: Scilab and Matlab values do not match for res213
-Scilab value: [-%i*0.2672612419124;-%i*0.5345224838248;-%i*0.8017837257373]
-Matlab value: [-%i*0.2672612419124,-0.2666666666667-%i*0.4632528193149,-0.4-%i*0.6948792289723;-%i*0.5345224838248,0.7333333333333+%i*0.07126966451,-0.4+%i*0.106904496765;-%i*0.8017837257373,-0.4+%i*0.106904496765,0.4+%i*0.1603567451475]
-*** TEST 125 FAILED ***
-
-TEST 126: Infered property do not match for res214
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 126: Infered property do not match for res215
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 126 PASSED ***
-
-TEST 127: Infered size do not match for res217
-M2SCI: -1 1
-Matlab: 2 2
-TEST 127: Infered property do not match for res217
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 127: Scilab and Matlab size do not match for res218
-Matlab: 2 3
-Scilab: 2 2
-TEST 127: Infered property do not match for res218
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 127: Scilab and Matlab values do not match for res218
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-TEST 127: Scilab and Matlab size do not match for res219
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 127: Scilab and Matlab values do not match for res219
-Scilab value: [%i*0.4286671335486,-3.986798360E-16+%i*0.8059639085893;%i*0.566306918848,%i*0.1123824140966;%i*0.7039467041474,2.347478933E-16-%i*0.5811990803961]
-Matlab value: [3.134015676E-16+%i*0.4286671335486,1.614830644E-15+%i*0.8059639085893,0.3215187735708-%i*0.251579698919;%i*0.566306918848,-3.047188639E-16+%i*0.1123824140966,-0.6430375471417+%i*0.503159397838;%i*0.7039467041474,-7.037146768E-16-%i*0.5811990803961,0.3215187735708-%i*0.251579698919]
-*** TEST 127 FAILED ***
-
-TEST 128: Infered property do not match for res220
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-*** TEST 128 PASSED ***
-
-TEST 129: Scilab and Matlab size do not match for res224
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 129: Scilab and Matlab values do not match for res224
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-TEST 129: Scilab and Matlab size do not match for res225
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 129: Scilab and Matlab values do not match for res225
-Scilab value: [-%i*0.2672612419124;-%i*0.5345224838248;-%i*0.8017837257373]
-Matlab value: [-%i*0.2672612419124,-0.2666666666667-%i*0.4632528193149,-0.4-%i*0.6948792289723;-%i*0.5345224838248,0.7333333333333+%i*0.07126966451,-0.4+%i*0.106904496765;-%i*0.8017837257373,-0.4+%i*0.106904496765,0.4+%i*0.1603567451475]
-*** TEST 129 FAILED ***
-
-TEST 130: Infered property do not match for res226
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-*** TEST 130 PASSED ***
-
-TEST 131: Infered size do not match for res229
-M2SCI: -1 1
-Matlab: 2 2
-TEST 131: Infered property do not match for res229
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 131: Scilab and Matlab size do not match for res230
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 131: Scilab and Matlab values do not match for res230
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-TEST 131: Scilab and Matlab size do not match for res231
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 131: Scilab and Matlab values do not match for res231
-Scilab value: [%i*0.4286671335486,-3.986798360E-16+%i*0.8059639085893;%i*0.566306918848,%i*0.1123824140966;%i*0.7039467041474,2.347478933E-16-%i*0.5811990803961]
-Matlab value: [3.134015676E-16+%i*0.4286671335486,1.614830644E-15+%i*0.8059639085893,0.3215187735708-%i*0.251579698919;%i*0.566306918848,-3.047188639E-16+%i*0.1123824140966,-0.6430375471417+%i*0.503159397838;%i*0.7039467041474,-7.037146768E-16-%i*0.5811990803961,0.3215187735708-%i*0.251579698919]
-*** TEST 131 FAILED ***
-
-TEST 132: Infered property do not match for res232
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 132: Infered property do not match for res233
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 132 PASSED ***
-
-TEST 133: Scilab and Matlab size do not match for res236
-Matlab: 1 3
-Scilab: 1 1
-TEST 133: Infered property do not match for res236
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 133: Scilab and Matlab values do not match for res236
-Scilab value: 3.7416573867739
-Matlab value: [3.7416573867739,0,0]
-TEST 133: Scilab and Matlab size do not match for res237
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 133: Scilab and Matlab values do not match for res237
-Scilab value: [-%i*0.2672612419124;-%i*0.5345224838248;-%i*0.8017837257373]
-Matlab value: [-%i*0.2672612419124,-0.2666666666667-%i*0.4632528193149,-0.4-%i*0.6948792289723;-%i*0.5345224838248,0.7333333333333+%i*0.07126966451,-0.4+%i*0.106904496765;-%i*0.8017837257373,-0.4+%i*0.106904496765,0.4+%i*0.1603567451475]
-*** TEST 133 FAILED ***
-
-TEST 134: Infered property do not match for res238
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 134: Infered property do not match for res239
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-*** TEST 134 PASSED ***
-
-TEST 135: Infered size do not match for res241
-M2SCI: -1 1
-Matlab: 2 2
-TEST 135: Infered property do not match for res241
-M2SCI: Real
-Matlab: Complex
-Trying to compare results...
-TEST 135: Scilab and Matlab size do not match for res242
-Matlab: 2 3
-Scilab: 2 2
-TEST 135: Infered property do not match for res242
-M2SCI: Complex
-Matlab: Real
-Trying to compare results...
-TEST 135: Scilab and Matlab values do not match for res242
-Scilab value: [9.5080320006957,0;0,0.7728696356735]
-Matlab value: [9.5080320006957,0,0;0,0.7728696356735,0]
-TEST 135: Scilab and Matlab size do not match for res243
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 135: Scilab and Matlab values do not match for res243
-Scilab value: [%i*0.4286671335486,-3.986798360E-16+%i*0.8059639085893;%i*0.566306918848,%i*0.1123824140966;%i*0.7039467041474,2.347478933E-16-%i*0.5811990803961]
-Matlab value: [3.134015676E-16+%i*0.4286671335486,1.614830644E-15+%i*0.8059639085893,0.3215187735708-%i*0.251579698919;%i*0.566306918848,-3.047188639E-16+%i*0.1123824140966,-0.6430375471417+%i*0.503159397838;%i*0.7039467041474,-7.037146768E-16-%i*0.5811990803961,0.3215187735708-%i*0.251579698919]
-*** TEST 135 FAILED ***
-
-*** TEST 136 PASSED ***
-
-TEST 137: Scilab and Matlab size do not match for res248
-Matlab: 1 4
-Scilab: 1 1
-Trying to compare results...
-TEST 137: Scilab and Matlab values do not match for res248
-Scilab value: 205.12922756155
-Matlab value: [205.12922756156,0,0,0]
-TEST 137: Scilab and Matlab size do not match for res249
-Matlab: 4 4
-Scilab: 4 1
-Trying to compare results...
-TEST 137: Scilab and Matlab values do not match for res249
-Scilab value: [0.5606222056557;0.565497181357;0.5557472299543;0.2388738093663]
-Matlab value: [0.5606222056557,-0.565497181357,-0.5557472299543,-0.2388738093663;0.565497181357,0.7950900218106,-0.2013770475309,-0.0865568011317;0.5557472299543,-0.2013770475309,0.80209497053,-0.0850644424915;0.2388738093663,-0.0865568011317,-0.0850644424915,0.9634372133151]
-*** TEST 137 FAILED ***
-
-TEST 138: Scilab and Matlab size do not match for res251
-Matlab: 1 12
-Scilab: 1 1
-Trying to compare results...
-TEST 138: Scilab and Matlab values do not match for res251
-Scilab value: 355.7147733789
-Matlab value: [355.7147733789,0,0,0,0,0,0,0,0,0,0,0]
-TEST 138: Scilab and Matlab size do not match for res252
-Matlab: 12 12
-Scilab: 12 1
-Trying to compare results...
-TEST 138: Scilab and Matlab values do not match for res252
-Scilab value: [0.3232927294743;0.3261039706002;0.3204814883484;0.1377508151673;0.3232927294743;0.3261039706002;0.3204814883484;0.1405620562932;0.3232927294743;0.3261039706002;0.3204814883484;0.143373297419]
-Matlab value: [0.3232927294743,-0.3261039706002,-0.3204814883484,-0.1377508151673,-0.3232927294743,-0.3261039706002,-0.3204814883484,-0.1405620562932,-0.3232927294743,-0.3261039706002,-0.3204814883484,-0.143373297419;0.3261039706002,0.9196369803351,-0.0789774503604,-0.0339464479619,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0346392326142,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,0.9223842298183,-0.0333611643764,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.0340420044657,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.034722844555;0.1377508151673,-0.0339464479619,-0.0333611643764,0.985660552154,-0.0336538061691,-0.0339464479619,-0.0333611643764,-0.0146320896388,-0.0336538061691,-0.0339464479619,-0.0333611643764,-0.0149247314315;0.3232927294743,-0.0796702350126,-0.078296610271,-0.0336538061691,0.9210165773582,-0.0796702350126,-0.078296610271,-0.0343406185399,-0.0789834226418,-0.0796702350126,-0.078296610271,-0.0350274309107;0.3261039706002,-0.0803630196649,-0.0789774503604,-0.0339464479619,-0.0796702350126,0.9196369803351,-0.0789774503604,-0.0346392326142,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,-0.0776157701817,-0.0333611643764,-0.078296610271,-0.0789774503604,0.9223842298183,-0.0340420044657,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.034722844555;0.1405620562932,-0.0346392326142,-0.0340420044657,-0.0146320896388,-0.0343406185399,-0.0346392326142,-0.0340420044657,0.985069296287,-0.0343406185399,-0.0346392326142,-0.0340420044657,-0.0152293177873;0.3232927294743,-0.0796702350126,-0.078296610271,-0.0336538061691,-0.0789834226418,-0.0796702350126,-0.078296610271,-0.0343406185399,0.9210165773582,-0.0796702350126,-0.078296610271,-0.0350274309107;0.3261039706002,-0.0803630196649,-0.0789774503604,-0.0339464479619,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0346392326142,-0.0796702350126,0.9196369803351,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,-0.0776157701817,-0.0333611643764,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.0340420044657,-0.078296610271,-0.0789774503604,0.9223842298183,-0.034722844555;0.143373297419,-0.0353320172665,-0.034722844555,-0.0149247314315,-0.0350274309107,-0.0353320172665,-0.034722844555,-0.0152293177873,-0.0350274309107,-0.0353320172665,-0.034722844555,0.984466095857]
-*** TEST 138 FAILED ***
-
-TEST 139: Infered size do not match for res253
-M2SCI: -1 1
-Matlab: 3 3
-Trying to compare results...
-TEST 139: Scilab and Matlab size do not match for res254
-Matlab: 3 4
-Scilab: 3 3
-Trying to compare results...
-TEST 139: Scilab and Matlab values do not match for res254
-Scilab value: [355.71212876396,0,0;0,1.3716596565555,0;0,0,7.732390195E-16]
-Matlab value: [355.71212876396,0,0,0;0,1.3716596565555,0,0;0,0,2.527597932E-14,0]
-TEST 139: Scilab and Matlab size do not match for res255
-Matlab: 4 4
-Scilab: 4 3
-Trying to compare results...
-TEST 139: Scilab and Matlab values do not match for res255
-Scilab value: [-0.5599633339756,0.1405617145267,0.643533441067;-0.564832580358,0.1417839903052,0.1068675275951;-0.5550940875932,0.1393394387482,-0.7579208677521;-0.2434661674406,-0.9699093902586,-3.411635058E-15]
-Matlab value: [-0.5599633339756,0.1405617145267,0.8165023903958,-0.0027047163026;-0.564832580358,0.1417839903052,-0.4094482021591,0.7022916958131;-0.5550940875932,0.1393394387482,-0.4070331881145,-0.7118841608729;-0.2434661674406,-0.9699093902586,2.966123471E-14,3.121580685E-15]
-*** TEST 139 FAILED ***
-
-TEST 140: Infered size do not match for res256
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 140: Scilab and Matlab size do not match for res257
-Matlab: 2 12
-Scilab: 2 2
-Trying to compare results...
-TEST 140: Scilab and Matlab values do not match for res257
-Scilab value: [503.96462763439,0;0,3.5572592435347]
-Matlab value: [503.9646276344,0,0,0,0,0,0,0,0,0,0,0;0,3.5572592435347,0,0,0,0,0,0,0,0,0,0]
-TEST 140: Scilab and Matlab size do not match for res258
-Matlab: 12 12
-Scilab: 12 2
-Trying to compare results...
-TEST 140: Scilab and Matlab values do not match for res258
-Scilab value: [-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1417193460343,0.5596939890017;-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1445255175979,0.5589684321108;-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1473316891616,0.5582428752199]
-Matlab value: [-0.3227097298224,-0.0834390424525,-0.3064578568825,-0.269040052081,-0.3091460836973,-0.311834310512,-0.3064578568825,-0.2717282788958,-0.3091460836973,-0.311834310512,-0.3064578568825,-0.2744165057105;-0.3255159013861,-0.0841645993433,-0.1363132091494,0.5028309222623,-0.1375089390542,-0.138704668959,-0.1363132091494,0.5016351923575,-0.1375089390542,-0.138704668959,-0.1363132091494,0.5004394624527;-0.3199035582587,-0.0827134855616,0.9223002033689,-0.0325745087623,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0332560859257,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0339376630891;-0.1417193460343,0.5596939890017,0.0006815771634,0.6669524079716,0.0006875559105,0.0006935346575,0.0006815771634,-0.3330416132814,0.0006875559105,0.0006935346575,0.0006815771634,-0.3330356345343;-0.3227097298224,-0.0834390424525,-0.0783813737946,-0.0328602500672,0.920931070295,-0.0797564856155,-0.0783813737946,-0.0335478059777,-0.079068929705,-0.0797564856155,-0.0783813737946,-0.0342353618882;-0.3255159013861,-0.0841645993433,-0.079062950958,-0.0331459913722,-0.0797564856155,0.919549979727,-0.079062950958,-0.0338395260297,-0.0797564856155,-0.080450020273,-0.079062950958,-0.0345330606872;-0.3199035582587,-0.0827134855616,-0.0776997966311,-0.0325745087623,-0.0783813737946,-0.079062950958,0.9223002033689,-0.0332560859257,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0339376630891;-0.1445255175979,0.5589684321108,-3.316791286E-15,-0.3333333333333,-2.130240428E-15,-4.093947403E-15,-3.323730180E-15,0.6666666666667,-2.137179322E-15,-4.100886297E-15,-3.323730180E-15,-0.3333333333333;-0.3227097298224,-0.0834390424525,-0.0783813737946,-0.0328602500672,-0.079068929705,-0.0797564856155,-0.0783813737946,-0.0335478059777,0.920931070295,-0.0797564856155,-0.0783813737946,-0.0342353618882;-0.3255159013861,-0.0841645993433,-0.079062950958,-0.0331459913722,-0.0797564856155,-0.080450020273,-0.079062950958,-0.0338395260297,-0.0797564856155,0.919549979727,-0.079062950958,-0.0345330606872;-0.3199035582587,-0.0827134855616,-0.0776997966311,-0.0325745087623,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0332560859257,-0.0783813737946,-0.079062950958,0.9223002033689,-0.0339376630891;-0.1473316891616,0.5582428752199,-0.0006815771634,-0.3336190746383,-0.0006875559105,-0.0006935346575,-0.0006815771634,-0.3336250533853,-0.0006875559105,-0.0006935346575,-0.0006815771634,0.6663689678676]
-*** TEST 140 FAILED ***
-
-*** TEST 141 PASSED ***
-
-TEST 142: Scilab and Matlab size do not match for res263
-Matlab: 1 4
-Scilab: 1 1
-Trying to compare results...
-TEST 142: Scilab and Matlab values do not match for res263
-Scilab value: 205.12922756155
-Matlab value: [205.12922756156,0,0,0]
-TEST 142: Scilab and Matlab size do not match for res264
-Matlab: 4 4
-Scilab: 4 1
-Trying to compare results...
-TEST 142: Scilab and Matlab values do not match for res264
-Scilab value: [0.5606222056557;0.565497181357;0.5557472299543;0.2388738093663]
-Matlab value: [0.5606222056557,-0.565497181357,-0.5557472299543,-0.2388738093663;0.565497181357,0.7950900218106,-0.2013770475309,-0.0865568011317;0.5557472299543,-0.2013770475309,0.80209497053,-0.0850644424915;0.2388738093663,-0.0865568011317,-0.0850644424915,0.9634372133151]
-*** TEST 142 FAILED ***
-
-TEST 143: Scilab and Matlab size do not match for res266
-Matlab: 1 12
-Scilab: 1 1
-Trying to compare results...
-TEST 143: Scilab and Matlab values do not match for res266
-Scilab value: 355.7147733789
-Matlab value: [355.7147733789,0,0,0,0,0,0,0,0,0,0,0]
-TEST 143: Scilab and Matlab size do not match for res267
-Matlab: 12 12
-Scilab: 12 1
-Trying to compare results...
-TEST 143: Scilab and Matlab values do not match for res267
-Scilab value: [0.3232927294743;0.3261039706002;0.3204814883484;0.1377508151673;0.3232927294743;0.3261039706002;0.3204814883484;0.1405620562932;0.3232927294743;0.3261039706002;0.3204814883484;0.143373297419]
-Matlab value: [0.3232927294743,-0.3261039706002,-0.3204814883484,-0.1377508151673,-0.3232927294743,-0.3261039706002,-0.3204814883484,-0.1405620562932,-0.3232927294743,-0.3261039706002,-0.3204814883484,-0.143373297419;0.3261039706002,0.9196369803351,-0.0789774503604,-0.0339464479619,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0346392326142,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,0.9223842298183,-0.0333611643764,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.0340420044657,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.034722844555;0.1377508151673,-0.0339464479619,-0.0333611643764,0.985660552154,-0.0336538061691,-0.0339464479619,-0.0333611643764,-0.0146320896388,-0.0336538061691,-0.0339464479619,-0.0333611643764,-0.0149247314315;0.3232927294743,-0.0796702350126,-0.078296610271,-0.0336538061691,0.9210165773582,-0.0796702350126,-0.078296610271,-0.0343406185399,-0.0789834226418,-0.0796702350126,-0.078296610271,-0.0350274309107;0.3261039706002,-0.0803630196649,-0.0789774503604,-0.0339464479619,-0.0796702350126,0.9196369803351,-0.0789774503604,-0.0346392326142,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,-0.0776157701817,-0.0333611643764,-0.078296610271,-0.0789774503604,0.9223842298183,-0.0340420044657,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.034722844555;0.1405620562932,-0.0346392326142,-0.0340420044657,-0.0146320896388,-0.0343406185399,-0.0346392326142,-0.0340420044657,0.985069296287,-0.0343406185399,-0.0346392326142,-0.0340420044657,-0.0152293177873;0.3232927294743,-0.0796702350126,-0.078296610271,-0.0336538061691,-0.0789834226418,-0.0796702350126,-0.078296610271,-0.0343406185399,0.9210165773582,-0.0796702350126,-0.078296610271,-0.0350274309107;0.3261039706002,-0.0803630196649,-0.0789774503604,-0.0339464479619,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0346392326142,-0.0796702350126,0.9196369803351,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,-0.0776157701817,-0.0333611643764,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.0340420044657,-0.078296610271,-0.0789774503604,0.9223842298183,-0.034722844555;0.143373297419,-0.0353320172665,-0.034722844555,-0.0149247314315,-0.0350274309107,-0.0353320172665,-0.034722844555,-0.0152293177873,-0.0350274309107,-0.0353320172665,-0.034722844555,0.984466095857]
-*** TEST 143 FAILED ***
-
-TEST 144: Infered size do not match for res268
-M2SCI: -1 1
-Matlab: 3 3
-Trying to compare results...
-TEST 144: Scilab and Matlab size do not match for res269
-Matlab: 3 4
-Scilab: 3 3
-Trying to compare results...
-TEST 144: Scilab and Matlab values do not match for res269
-Scilab value: [355.71212876396,0,0;0,1.3716596565555,0;0,0,7.732390195E-16]
-Matlab value: [355.71212876396,0,0,0;0,1.3716596565555,0,0;0,0,2.527597932E-14,0]
-TEST 144: Scilab and Matlab size do not match for res270
-Matlab: 4 4
-Scilab: 4 3
-Trying to compare results...
-TEST 144: Scilab and Matlab values do not match for res270
-Scilab value: [-0.5599633339756,0.1405617145267,0.643533441067;-0.564832580358,0.1417839903052,0.1068675275951;-0.5550940875932,0.1393394387482,-0.7579208677521;-0.2434661674406,-0.9699093902586,-3.411635058E-15]
-Matlab value: [-0.5599633339756,0.1405617145267,0.8165023903958,-0.0027047163026;-0.564832580358,0.1417839903052,-0.4094482021591,0.7022916958131;-0.5550940875932,0.1393394387482,-0.4070331881145,-0.7118841608729;-0.2434661674406,-0.9699093902586,2.966123471E-14,3.121580685E-15]
-*** TEST 144 FAILED ***
-
-TEST 145: Infered size do not match for res271
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 145: Scilab and Matlab size do not match for res272
-Matlab: 2 12
-Scilab: 2 2
-Trying to compare results...
-TEST 145: Scilab and Matlab values do not match for res272
-Scilab value: [503.96462763439,0;0,3.5572592435347]
-Matlab value: [503.9646276344,0,0,0,0,0,0,0,0,0,0,0;0,3.5572592435347,0,0,0,0,0,0,0,0,0,0]
-TEST 145: Scilab and Matlab size do not match for res273
-Matlab: 12 12
-Scilab: 12 2
-Trying to compare results...
-TEST 145: Scilab and Matlab values do not match for res273
-Scilab value: [-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1417193460343,0.5596939890017;-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1445255175979,0.5589684321108;-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1473316891616,0.5582428752199]
-Matlab value: [-0.3227097298224,-0.0834390424525,-0.3064578568825,-0.269040052081,-0.3091460836973,-0.311834310512,-0.3064578568825,-0.2717282788958,-0.3091460836973,-0.311834310512,-0.3064578568825,-0.2744165057105;-0.3255159013861,-0.0841645993433,-0.1363132091494,0.5028309222623,-0.1375089390542,-0.138704668959,-0.1363132091494,0.5016351923575,-0.1375089390542,-0.138704668959,-0.1363132091494,0.5004394624527;-0.3199035582587,-0.0827134855616,0.9223002033689,-0.0325745087623,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0332560859257,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0339376630891;-0.1417193460343,0.5596939890017,0.0006815771634,0.6669524079716,0.0006875559105,0.0006935346575,0.0006815771634,-0.3330416132814,0.0006875559105,0.0006935346575,0.0006815771634,-0.3330356345343;-0.3227097298224,-0.0834390424525,-0.0783813737946,-0.0328602500672,0.920931070295,-0.0797564856155,-0.0783813737946,-0.0335478059777,-0.079068929705,-0.0797564856155,-0.0783813737946,-0.0342353618882;-0.3255159013861,-0.0841645993433,-0.079062950958,-0.0331459913722,-0.0797564856155,0.919549979727,-0.079062950958,-0.0338395260297,-0.0797564856155,-0.080450020273,-0.079062950958,-0.0345330606872;-0.3199035582587,-0.0827134855616,-0.0776997966311,-0.0325745087623,-0.0783813737946,-0.079062950958,0.9223002033689,-0.0332560859257,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0339376630891;-0.1445255175979,0.5589684321108,-3.316791286E-15,-0.3333333333333,-2.130240428E-15,-4.093947403E-15,-3.323730180E-15,0.6666666666667,-2.137179322E-15,-4.100886297E-15,-3.323730180E-15,-0.3333333333333;-0.3227097298224,-0.0834390424525,-0.0783813737946,-0.0328602500672,-0.079068929705,-0.0797564856155,-0.0783813737946,-0.0335478059777,0.920931070295,-0.0797564856155,-0.0783813737946,-0.0342353618882;-0.3255159013861,-0.0841645993433,-0.079062950958,-0.0331459913722,-0.0797564856155,-0.080450020273,-0.079062950958,-0.0338395260297,-0.0797564856155,0.919549979727,-0.079062950958,-0.0345330606872;-0.3199035582587,-0.0827134855616,-0.0776997966311,-0.0325745087623,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0332560859257,-0.0783813737946,-0.079062950958,0.9223002033689,-0.0339376630891;-0.1473316891616,0.5582428752199,-0.0006815771634,-0.3336190746383,-0.0006875559105,-0.0006935346575,-0.0006815771634,-0.3336250533853,-0.0006875559105,-0.0006935346575,-0.0006815771634,0.6663689678676]
-*** TEST 145 FAILED ***
-
-*** TEST 146 PASSED ***
-
-TEST 147: Scilab and Matlab size do not match for res278
-Matlab: 1 4
-Scilab: 1 1
-Trying to compare results...
-TEST 147: Scilab and Matlab values do not match for res278
-Scilab value: 205.12922756155
-Matlab value: [205.12922756156,0,0,0]
-TEST 147: Scilab and Matlab size do not match for res279
-Matlab: 4 4
-Scilab: 4 1
-Trying to compare results...
-TEST 147: Scilab and Matlab values do not match for res279
-Scilab value: [0.5606222056557;0.565497181357;0.5557472299543;0.2388738093663]
-Matlab value: [0.5606222056557,-0.565497181357,-0.5557472299543,-0.2388738093663;0.565497181357,0.7950900218106,-0.2013770475309,-0.0865568011317;0.5557472299543,-0.2013770475309,0.80209497053,-0.0850644424915;0.2388738093663,-0.0865568011317,-0.0850644424915,0.9634372133151]
-*** TEST 147 FAILED ***
-
-TEST 148: Scilab and Matlab size do not match for res281
-Matlab: 1 12
-Scilab: 1 1
-Trying to compare results...
-TEST 148: Scilab and Matlab values do not match for res281
-Scilab value: 355.7147733789
-Matlab value: [355.7147733789,0,0,0,0,0,0,0,0,0,0,0]
-TEST 148: Scilab and Matlab size do not match for res282
-Matlab: 12 12
-Scilab: 12 1
-Trying to compare results...
-TEST 148: Scilab and Matlab values do not match for res282
-Scilab value: [0.3232927294743;0.3261039706002;0.3204814883484;0.1377508151673;0.3232927294743;0.3261039706002;0.3204814883484;0.1405620562932;0.3232927294743;0.3261039706002;0.3204814883484;0.143373297419]
-Matlab value: [0.3232927294743,-0.3261039706002,-0.3204814883484,-0.1377508151673,-0.3232927294743,-0.3261039706002,-0.3204814883484,-0.1405620562932,-0.3232927294743,-0.3261039706002,-0.3204814883484,-0.143373297419;0.3261039706002,0.9196369803351,-0.0789774503604,-0.0339464479619,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0346392326142,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,0.9223842298183,-0.0333611643764,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.0340420044657,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.034722844555;0.1377508151673,-0.0339464479619,-0.0333611643764,0.985660552154,-0.0336538061691,-0.0339464479619,-0.0333611643764,-0.0146320896388,-0.0336538061691,-0.0339464479619,-0.0333611643764,-0.0149247314315;0.3232927294743,-0.0796702350126,-0.078296610271,-0.0336538061691,0.9210165773582,-0.0796702350126,-0.078296610271,-0.0343406185399,-0.0789834226418,-0.0796702350126,-0.078296610271,-0.0350274309107;0.3261039706002,-0.0803630196649,-0.0789774503604,-0.0339464479619,-0.0796702350126,0.9196369803351,-0.0789774503604,-0.0346392326142,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,-0.0776157701817,-0.0333611643764,-0.078296610271,-0.0789774503604,0.9223842298183,-0.0340420044657,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.034722844555;0.1405620562932,-0.0346392326142,-0.0340420044657,-0.0146320896388,-0.0343406185399,-0.0346392326142,-0.0340420044657,0.985069296287,-0.0343406185399,-0.0346392326142,-0.0340420044657,-0.0152293177873;0.3232927294743,-0.0796702350126,-0.078296610271,-0.0336538061691,-0.0789834226418,-0.0796702350126,-0.078296610271,-0.0343406185399,0.9210165773582,-0.0796702350126,-0.078296610271,-0.0350274309107;0.3261039706002,-0.0803630196649,-0.0789774503604,-0.0339464479619,-0.0796702350126,-0.0803630196649,-0.0789774503604,-0.0346392326142,-0.0796702350126,0.9196369803351,-0.0789774503604,-0.0353320172665;0.3204814883484,-0.0789774503604,-0.0776157701817,-0.0333611643764,-0.078296610271,-0.0789774503604,-0.0776157701817,-0.0340420044657,-0.078296610271,-0.0789774503604,0.9223842298183,-0.034722844555;0.143373297419,-0.0353320172665,-0.034722844555,-0.0149247314315,-0.0350274309107,-0.0353320172665,-0.034722844555,-0.0152293177873,-0.0350274309107,-0.0353320172665,-0.034722844555,0.984466095857]
-*** TEST 148 FAILED ***
-
-TEST 149: Infered size do not match for res283
-M2SCI: -1 1
-Matlab: 3 3
-Trying to compare results...
-TEST 149: Scilab and Matlab size do not match for res284
-Matlab: 3 4
-Scilab: 3 3
-Trying to compare results...
-TEST 149: Scilab and Matlab values do not match for res284
-Scilab value: [355.71212876396,0,0;0,1.3716596565555,0;0,0,7.732390195E-16]
-Matlab value: [355.71212876396,0,0,0;0,1.3716596565555,0,0;0,0,2.527597932E-14,0]
-TEST 149: Scilab and Matlab size do not match for res285
-Matlab: 4 4
-Scilab: 4 3
-Trying to compare results...
-TEST 149: Scilab and Matlab values do not match for res285
-Scilab value: [-0.5599633339756,0.1405617145267,0.643533441067;-0.564832580358,0.1417839903052,0.1068675275951;-0.5550940875932,0.1393394387482,-0.7579208677521;-0.2434661674406,-0.9699093902586,-3.411635058E-15]
-Matlab value: [-0.5599633339756,0.1405617145267,0.8165023903958,-0.0027047163026;-0.564832580358,0.1417839903052,-0.4094482021591,0.7022916958131;-0.5550940875932,0.1393394387482,-0.4070331881145,-0.7118841608729;-0.2434661674406,-0.9699093902586,2.966123471E-14,3.121580685E-15]
-*** TEST 149 FAILED ***
-
-TEST 150: Infered size do not match for res286
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 150: Scilab and Matlab size do not match for res287
-Matlab: 2 12
-Scilab: 2 2
-Trying to compare results...
-TEST 150: Scilab and Matlab values do not match for res287
-Scilab value: [503.96462763439,0;0,3.5572592435347]
-Matlab value: [503.9646276344,0,0,0,0,0,0,0,0,0,0,0;0,3.5572592435347,0,0,0,0,0,0,0,0,0,0]
-TEST 150: Scilab and Matlab size do not match for res288
-Matlab: 12 12
-Scilab: 12 2
-Trying to compare results...
-TEST 150: Scilab and Matlab values do not match for res288
-Scilab value: [-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1417193460343,0.5596939890017;-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1445255175979,0.5589684321108;-0.3227097298224,-0.0834390424525;-0.3255159013861,-0.0841645993433;-0.3199035582587,-0.0827134855616;-0.1473316891616,0.5582428752199]
-Matlab value: [-0.3227097298224,-0.0834390424525,-0.3064578568825,-0.269040052081,-0.3091460836973,-0.311834310512,-0.3064578568825,-0.2717282788958,-0.3091460836973,-0.311834310512,-0.3064578568825,-0.2744165057105;-0.3255159013861,-0.0841645993433,-0.1363132091494,0.5028309222623,-0.1375089390542,-0.138704668959,-0.1363132091494,0.5016351923575,-0.1375089390542,-0.138704668959,-0.1363132091494,0.5004394624527;-0.3199035582587,-0.0827134855616,0.9223002033689,-0.0325745087623,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0332560859257,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0339376630891;-0.1417193460343,0.5596939890017,0.0006815771634,0.6669524079716,0.0006875559105,0.0006935346575,0.0006815771634,-0.3330416132814,0.0006875559105,0.0006935346575,0.0006815771634,-0.3330356345343;-0.3227097298224,-0.0834390424525,-0.0783813737946,-0.0328602500672,0.920931070295,-0.0797564856155,-0.0783813737946,-0.0335478059777,-0.079068929705,-0.0797564856155,-0.0783813737946,-0.0342353618882;-0.3255159013861,-0.0841645993433,-0.079062950958,-0.0331459913722,-0.0797564856155,0.919549979727,-0.079062950958,-0.0338395260297,-0.0797564856155,-0.080450020273,-0.079062950958,-0.0345330606872;-0.3199035582587,-0.0827134855616,-0.0776997966311,-0.0325745087623,-0.0783813737946,-0.079062950958,0.9223002033689,-0.0332560859257,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0339376630891;-0.1445255175979,0.5589684321108,-3.316791286E-15,-0.3333333333333,-2.130240428E-15,-4.093947403E-15,-3.323730180E-15,0.6666666666667,-2.137179322E-15,-4.100886297E-15,-3.323730180E-15,-0.3333333333333;-0.3227097298224,-0.0834390424525,-0.0783813737946,-0.0328602500672,-0.079068929705,-0.0797564856155,-0.0783813737946,-0.0335478059777,0.920931070295,-0.0797564856155,-0.0783813737946,-0.0342353618882;-0.3255159013861,-0.0841645993433,-0.079062950958,-0.0331459913722,-0.0797564856155,-0.080450020273,-0.079062950958,-0.0338395260297,-0.0797564856155,0.919549979727,-0.079062950958,-0.0345330606872;-0.3199035582587,-0.0827134855616,-0.0776997966311,-0.0325745087623,-0.0783813737946,-0.079062950958,-0.0776997966311,-0.0332560859257,-0.0783813737946,-0.079062950958,0.9223002033689,-0.0339376630891;-0.1473316891616,0.5582428752199,-0.0006815771634,-0.3336190746383,-0.0006875559105,-0.0006935346575,-0.0006815771634,-0.3336250533853,-0.0006875559105,-0.0006935346575,-0.0006815771634,0.6663689678676]
-*** TEST 150 FAILED ***
-
-*** TEST 151 PASSED ***
-
-TEST 152: Scilab and Matlab size do not match for res293
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 152: Scilab and Matlab values do not match for res293
-Scilab value: 1.4142135623731
-Matlab value: [1.4142135623731,0,0]
-TEST 152: Scilab and Matlab size do not match for res294
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 152: Scilab and Matlab values do not match for res294
-Scilab value: [0.7071067811865;0;0.7071067811865]
-Matlab value: [0.7071067811865,0,-0.7071067811865;0,1,0;0.7071067811865,0,0.7071067811865]
-*** TEST 152 FAILED ***
-
-*** TEST 153 PASSED ***
-
-TEST 154: Infered size do not match for res298
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 154: Scilab and Matlab size do not match for res299
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 154: Scilab and Matlab values do not match for res299
-Scilab value: [1.7320508075689,0;0,1]
-Matlab value: [1.7320508075689,0,0;0,1,0]
-TEST 154: Scilab and Matlab size do not match for res300
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 154: Scilab and Matlab values do not match for res300
-Scilab value: [-0.8164965809277,0;-0.4082482904639,0.7071067811865;-0.4082482904639,-0.7071067811865]
-Matlab value: [-0.8164965809277,0,-0.5773502691896;-0.4082482904639,0.7071067811865,0.5773502691896;-0.4082482904639,-0.7071067811865,0.5773502691896]
-*** TEST 154 FAILED ***
-
-*** TEST 155 PASSED ***
-
-TEST 156: Scilab and Matlab size do not match for res305
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 156: Scilab and Matlab values do not match for res305
-Scilab value: 1.4142135623731
-Matlab value: [1.4142135623731,0,0]
-TEST 156: Scilab and Matlab size do not match for res306
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 156: Scilab and Matlab values do not match for res306
-Scilab value: [0.7071067811865;0;0.7071067811865]
-Matlab value: [0.7071067811865,0,-0.7071067811865;0,1,0;0.7071067811865,0,0.7071067811865]
-*** TEST 156 FAILED ***
-
-*** TEST 157 PASSED ***
-
-TEST 158: Infered size do not match for res310
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 158: Scilab and Matlab size do not match for res311
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 158: Scilab and Matlab values do not match for res311
-Scilab value: [1.7320508075689,0;0,1]
-Matlab value: [1.7320508075689,0,0;0,1,0]
-TEST 158: Scilab and Matlab size do not match for res312
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 158: Scilab and Matlab values do not match for res312
-Scilab value: [-0.8164965809277,0;-0.4082482904639,0.7071067811865;-0.4082482904639,-0.7071067811865]
-Matlab value: [-0.8164965809277,0,-0.5773502691896;-0.4082482904639,0.7071067811865,0.5773502691896;-0.4082482904639,-0.7071067811865,0.5773502691896]
-*** TEST 158 FAILED ***
-
-*** TEST 159 PASSED ***
-
-TEST 160: Scilab and Matlab size do not match for res317
-Matlab: 1 3
-Scilab: 1 1
-Trying to compare results...
-TEST 160: Scilab and Matlab values do not match for res317
-Scilab value: 1.4142135623731
-Matlab value: [1.4142135623731,0,0]
-TEST 160: Scilab and Matlab size do not match for res318
-Matlab: 3 3
-Scilab: 3 1
-Trying to compare results...
-TEST 160: Scilab and Matlab values do not match for res318
-Scilab value: [0.7071067811865;0;0.7071067811865]
-Matlab value: [0.7071067811865,0,-0.7071067811865;0,1,0;0.7071067811865,0,0.7071067811865]
-*** TEST 160 FAILED ***
-
-*** TEST 161 PASSED ***
-
-TEST 162: Infered size do not match for res322
-M2SCI: -1 1
-Matlab: 2 2
-Trying to compare results...
-TEST 162: Scilab and Matlab size do not match for res323
-Matlab: 2 3
-Scilab: 2 2
-Trying to compare results...
-TEST 162: Scilab and Matlab values do not match for res323
-Scilab value: [1.7320508075689,0;0,1]
-Matlab value: [1.7320508075689,0,0;0,1,0]
-TEST 162: Scilab and Matlab size do not match for res324
-Matlab: 3 3
-Scilab: 3 2
-Trying to compare results...
-TEST 162: Scilab and Matlab values do not match for res324
-Scilab value: [-0.8164965809277,0;-0.4082482904639,0.7071067811865;-0.4082482904639,-0.7071067811865]
-Matlab value: [-0.8164965809277,0,-0.5773502691896;-0.4082482904639,0.7071067811865,0.5773502691896;-0.4082482904639,-0.7071067811865,0.5773502691896]
-*** TEST 162 FAILED ***
 
 ****** End of validation of SVD.dia.ref ******

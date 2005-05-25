@@ -38,11 +38,7 @@ TEST 3: Scilab returns Double and Matlab returns Sparse for res3
 
 *** TEST 18 PASSED ***
 
-TEST 19: Scilab and Matlab property do not match for res19
-Matlab: Complex
-Scilab: Real
-Trying to compare results...
-*** TEST 19 FAILED ***
+*** TEST 19 PASSED ***
 
 *** TEST 20 PASSED ***
 
@@ -50,11 +46,7 @@ Trying to compare results...
 
 *** TEST 22 PASSED ***
 
-TEST 23: Scilab and Matlab property do not match for res23
-Matlab: Complex
-Scilab: Real
-Trying to compare results...
-*** TEST 23 FAILED ***
+*** TEST 23 PASSED ***
 
 *** TEST 24 PASSED ***
 
@@ -62,11 +54,7 @@ Trying to compare results...
 
 *** TEST 26 PASSED ***
 
-TEST 27: Scilab and Matlab property do not match for res27
-Matlab: Complex
-Scilab: Real
-Trying to compare results...
-*** TEST 27 FAILED ***
+*** TEST 27 PASSED ***
 
 *** TEST 28 PASSED ***
 
