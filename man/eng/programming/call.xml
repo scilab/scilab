@@ -133,7 +133,8 @@
   <EXAMPLE>
     <![CDATA[
     //Example 1 with  a simple C code
-    f1=['void fooc(c,a,b,m,n)'
+    f1=['#include <math.h>'
+        'void fooc(c,a,b,m,n)'
          'double a[],*b,c[];'
          'int *m,*n;'
          '{'
