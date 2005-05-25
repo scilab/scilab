@@ -131,6 +131,7 @@ str_l(25)=['t=%pi*(-10:10)/10;';
           'xtitle(title,'' '','' '');'];
 
 str_l(26)=['t=%pi*(-10:10)/10;';
+	  'set figure_style old;';
           'deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
           'rect=[-%pi,%pi,-%pi,%pi,-1,1];';
           'z=feval(t,t,Surf);';
@@ -138,9 +139,8 @@ str_l(26)=['t=%pi*(-10:10)/10;';
           'xset(''alufunction'',0);';
           'contour(t,t,z,10,35,45,''X@Y@Z'',[0,1,0],rect);';
           'title=[''plot3d and contour X11 only''];';
-          'xtitle(title,'' '','' '');';
-          'xset(''default'');'];
-
+          'xtitle(title,'' '','' '');'];
+	  
 str_l(27)=['exec(''SCI/demos/graphics/sd.sav'');';
 	   'set figure_style old';
            'plot2d();gr_menu(sd_1,1,1);';
