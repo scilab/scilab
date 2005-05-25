@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.117 $)dnl
+AC_REVISION($Revision: 1.118 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -493,6 +493,7 @@ case "$host" in
         FC_OPTIONS=-g
       fi
     fi
+    AC_F77_LIBRARY_LDFLAGS
     MAKEFILE_TARGET=Makefile.solaris
     ;;
 # Linux, old binary format a.out (NO LONGER SUPPORTED)
@@ -1048,9 +1049,13 @@ case "$host" in
       fi
       FC="$F77"
     fi
-    AC_F77_LIBRARY_LDFLAGS
     FC_OPTIONS='+O2 +Z +DAportable'
     FC_OPTIONS_O0=' +Z +DAportable'
+    #do not call AC_F77_LIBRARY_LDFLAGS because if assumes PA2.0 while Scilab is built with 
+    #DAportable=PA1.1
+    #AC_F77_LIBRARY_LDFLAGS
+    FLIBS='-ldld -lnsl -lU77 -lm'
+
     FC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     LD=ld
     LD_LDFLAGS=
