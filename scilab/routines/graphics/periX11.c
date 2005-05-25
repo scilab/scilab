@@ -697,7 +697,7 @@ static void xget_windowdim(integer *verbose, integer *x, integer *narg, double *
 static void xset_windowdim(integer *x, integer *y, integer *v3, integer *v4)
 {
   XWindowAttributes war;
-  if (ScilabXgc == NULL || ScilabXgc->CBGWindow ==  NULL) return ;
+  if (ScilabXgc == (struct BCG *) NULL || ScilabXgc->CBGWindow ==  (Window) NULL) return ;
   GViewportResize(ScilabXgc,x,y) ;
   /* check dimensions : GViewportResize can set slighly different values */
   XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
