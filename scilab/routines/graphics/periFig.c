@@ -114,7 +114,7 @@ static void set_color  __PARAMS((int c,int *color));
 /** Structure to keep the graphic state  **/
 
 struct BCG  ScilabGCXfig ;
-
+static BOOL ScilabGCXfig_is_initialized = FALSE;
 
 /*-----------------------------------------------------
 \encadre{General routines}
@@ -133,6 +133,7 @@ void C2F(xendgraphicXfig)(void)
     fclose(file);
     file=stdout;
   }
+  ScilabGCXfig_is_initialized = FALSE;
 }
 
 void C2F(xendXfig)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
@@ -240,6 +241,11 @@ void C2F(getcurwinXfig)(integer *verbose, integer *intnum, integer *narg, double
 
 void C2F(setclipXfig)(integer *x, integer *y, integer *w, integer *h)
 {
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   ScilabGCXfig.ClipRegionSet = 1;
   ScilabGCXfig.CurClipRegion[0]= *x;
   ScilabGCXfig.CurClipRegion[1]= *y;
@@ -253,6 +259,12 @@ void C2F(setclipXfig)(integer *x, integer *y, integer *w, integer *h)
 
 void C2F(unsetclipXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
 {
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   ScilabGCXfig.ClipRegionSet = 0;
   ScilabGCXfig.CurClipRegion[0]= -1;
   ScilabGCXfig.CurClipRegion[1]= -1;
@@ -326,6 +338,11 @@ void C2F(setalufunctionXfig)(char *string)
 {     
   integer value;
   
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(idfromnameXfig)(string,&value);
   if ( value != -1)
     {ScilabGCXfig.CurDrawFunction = value;
@@ -379,6 +396,12 @@ void C2F(idfromnameXfig)(char *name1, integer *num)
 void C2F(setalufunction1Xfig)(integer *num, integer *v2, integer *v3, integer *v4)
 {     
   integer value;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   value=AluStrucXfig_[Min(16,Max(0,*num))].id;
   if ( value != -1)
     {
@@ -494,6 +517,12 @@ static integer DashTabStyle[6] = {0,2,4,2,4,8};
 void C2F(set_dash_or_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer maxdash = 6,l3 ;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if ( ScilabGCXfig.CurColorStatus ==1) 
     {
       int i;
@@ -512,12 +541,22 @@ void C2F(setdashXfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer maxdash = 6,l3 ;
 
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   l3 = Max(0,Min(maxdash-1,*value-1));
   ScilabGCXfig.CurDashStyle = l3;
 }
 
 void C2F(set_dash_and_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(setdashXfig)(value, v2, v3, v4); 
   C2F(setpatternXfig)(value+6, v2, v3, v4);
 }
@@ -525,7 +564,13 @@ void C2F(set_dash_and_color_Xfig)(integer *value, integer *v2, integer *v3, inte
 /* style arguments sets either dash style either color */
 void C2F(set_line_style_Xfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
-  integer j;
+  integer j; 
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if (ScilabGCXfig.CurColorStatus == 0) {
     C2F(setdashXfig)(value,PI0,PI0,PI0);
     C2F(setpatternXfig)((j=1,&j),PI0,PI0,PI0);
@@ -544,6 +589,12 @@ void C2F(set_line_style_Xfig)(integer *value, integer *v2, integer *v3, integer 
 void C2F(get_dash_or_color_Xfig)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   *narg =1 ;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if ( ScilabGCXfig.CurColorStatus ==1) 
     {
       *value=ScilabGCXfig.CurColor + 1;
@@ -559,7 +610,12 @@ void C2F(get_dash_or_color_Xfig)(integer *verbose, integer *value, integer *narg
 void C2F(getdashXfig)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   integer i;
-
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   i=ScilabGCXfig.CurDashStyle;
 
   *narg = 3;
@@ -577,6 +633,12 @@ void C2F(getdashXfig)(integer *verbose, integer *value, integer *narg, double *d
 void C2F(get_dash_and_color_Xfig)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
   /*may be improved replacing 6 by narg */
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   C2F(getdashXfig)(verbose, value, narg,dummy);
   C2F(getpatternXfig)(verbose, value+6, narg,dummy);
   *narg = 6;
@@ -586,6 +648,12 @@ void C2F(get_dash_and_color_Xfig)(integer *verbose, integer *value, integer *nar
 void C2F(usecolorXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 {
   integer i;
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   i =  Min(Max(*num,0),1);
   if (  ScilabGCXfig.CurColorStatus != (int) i) 
     {
@@ -623,7 +691,14 @@ void C2F(usecolorXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 
 void C2F(getusecolorXfig)(integer *verbose, integer *num, integer *narg, double *dummy)
 {
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+ 
   *num = ScilabGCXfig.CurColorStatus;
+
   if (*verbose == 1) 
     sciprint("\n Use color %d\r\n",(int)*num);
   *narg=1;
@@ -644,6 +719,12 @@ void setcolormapgXfig(struct  BCG *Xgc,integer *v1,integer *v2, double *a, integ
 void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int i;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+ 
   Scistring("Warning : you will have to move the colors definition\n");
   Scistring(" at the top of the xfig file \n");
 
@@ -684,6 +765,12 @@ void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, in
 
   *v3 = 0;
 
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    *v3 = 1;
+    return;
+  }
+ 
   Scistring("Warning : you will have to move the colors definition\n");
   Scistring(" at the top of the xfig file \n");
   if (*v2 != 3 ||  *v1 < 0) {
@@ -708,6 +795,12 @@ void setcolormapgXfig(struct  BCG *Xgc,integer *m,integer *v2, double *a, intege
 void C2F(set_cXfig)(integer i)
 {
   integer j;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   j=Max(Min(i,ScilabGCXfig.Numcolors+1),0);
   ScilabGCXfig.CurColor=j;
   FPRINTF((file,"# %d Setcolor\n",(int)i));
@@ -717,6 +810,12 @@ void C2F(set_cXfig)(integer i)
 
 void C2F(setbackgroundXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if (ScilabGCXfig.CurColorStatus == 1) 
     {
       ScilabGCXfig.NumBackground = Max(0,Min(*num - 1,ScilabGCXfig.Numcolors+1));
@@ -726,6 +825,12 @@ void C2F(setbackgroundXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 void C2F(getbackgroundXfig)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if ( ScilabGCXfig.CurColorStatus == 1 ) 
     {
       *num = ScilabGCXfig.NumBackground + 1;
@@ -743,6 +848,12 @@ void C2F(getbackgroundXfig)(integer *verbose, integer *num, integer *narg, doubl
 
 void C2F(setforegroundXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if (ScilabGCXfig.CurColorStatus == 1) 
     {
       ScilabGCXfig.NumForeground = Max(0,Min(*num - 1,ScilabGCXfig.Numcolors+1));
@@ -752,6 +863,12 @@ void C2F(setforegroundXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 void C2F(getforegroundXfig)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if ( ScilabGCXfig.CurColorStatus == 1 ) 
     {
       *num = ScilabGCXfig.NumForeground + 1;
@@ -768,6 +885,11 @@ void C2F(getforegroundXfig)(integer *verbose, integer *num, integer *narg, doubl
 
 void C2F(sethidden3dXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if (ScilabGCXfig.CurColorStatus == 1) 
     {
       /* es: Max(0,... -> Max(-1,... */
@@ -779,6 +901,12 @@ void C2F(sethidden3dXfig)(integer *num, integer *v2, integer *v3, integer *v4)
 void C2F(gethidden3dXfig)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
+
+ if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if ( ScilabGCXfig.CurColorStatus == 1 ) 
     {
       *num = ScilabGCXfig.NumHidden3d + 1;
@@ -814,8 +942,15 @@ void C2F(gethidden3dXfig)(integer *verbose, integer *num, integer *narg, double 
 void C2F(xsetfontXfig)(integer *fontid, integer *fontsize, integer *v3, integer *v4)
 { 
   integer i,fsiz;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   i = Min(FONTNUMBER-1,Max(*fontid,0));
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
+
   if ( FontInfoTabXfig_[i].ok !=1 )
     {
       /* currently this case occurs only when i=FONTNUMBER-1 */
@@ -834,6 +969,12 @@ void C2F(xsetfontXfig)(integer *fontid, integer *fontsize, integer *v3, integer 
 void C2F(xgetfontXfig)(integer *verbose, integer *font, integer *nargs, double *dummy)
 {
   *nargs=2;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   font[0]= ScilabGCXfig.FontId ;
   font[1] =ScilabGCXfig.FontSize ;
   if (*verbose == 1) 
@@ -849,6 +990,11 @@ void C2F(xgetfontXfig)(integer *verbose, integer *font, integer *nargs, double *
 
 void C2F(setcursymbolXfig)(integer *number, integer *size, integer *v3, integer *v4)
 { 
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   ScilabGCXfig.CurHardSymb =
     Max(Min(SYMBOLNUMBER-1,*number),0);
   ScilabGCXfig.CurHardSymbSize = 
@@ -860,6 +1006,12 @@ void C2F(setcursymbolXfig)(integer *number, integer *size, integer *v3, integer 
 void C2F(getcursymbolXfig)(integer *verbose, integer *symb, integer *narg, double *dummy)
 {
   *narg =2 ;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   symb[0] = ScilabGCXfig.CurHardSymb ;
   symb[1] = ScilabGCXfig.CurHardSymbSize ;
   if (*verbose == 1) 
@@ -944,6 +1096,7 @@ test(str,flag,verbose,x1,x2,x3,x4,x5)
   C2F(setalufunction1Xfig)(x1,x2,x3,x4);C2F(getalufunctionXfig)(verbose,x1,x2,dv);
   C2F(setclipXfig)(x1,x2,x3,x4);C2F(getclipXfig)(verbose,x1,x2,dv);
   C2F(setdashXfig)(x1,x2,x3,x4);C2F(getdashXfig)(verbose,x1,x2,dv);
+  ScilabGCXfig_is_initialized = TRUE; /* add the flag ScilabGCXfig_is_initialized to test if xinit has been called */
   C2F(InitScilabGCXfig)(x1,x2,x3,x4); C2F(gemptyXfig)(verbose,x1,x2,dv);
   C2F(xsetfontXfig)(x1,x2,x3,x4);C2F(xgetfontXfig)(verbose,x1,x2,dv);
   C2F(absourelXfig)(x1,x2,x3,x4);C2F(getabsourelXfig)(verbose,x1,x2,dv);
@@ -1023,6 +1176,12 @@ void C2F(displaystringXfig)(char *string, integer *x, integer *y, integer *v1, i
   integer rect[4], font=-1,font_flag=2;
   integer verbose=0,Dnarg,Dvalue1[10];
   int pen_color;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
 #ifdef WITH_GTK
   int alloc;
   string = sci_convert_from_utf8(string, &alloc,NULL);
@@ -1077,6 +1236,7 @@ integer bsizeXfig_[6][4]= {{ 0, -7,  463, 9  },
 void C2F(boundingboxXfig)(char *string, integer *x, integer *y, integer *rect, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 {integer verbose,nargs,font[2];
  verbose=0;
+
  C2F(xgetfontXfig)(&verbose,font,&nargs,vdouble);
  rect[0]= (int)(*x+bsizeXfig_[font[1]][0]*((double) prec_fact));
  rect[1]= (int)(*y+bsizeXfig_[font[1]][1]*((double) prec_fact));
@@ -1131,9 +1291,14 @@ void C2F(boundingboxXfigM)(char *string, integer *x, integer *y, integer *rect, 
 /** Unused in fact **/ 
 
 void C2F(drawlineXfig)(integer *x1, integer *yy1, integer *x2, integer *y2)
-{
-    FPRINTF((file,"# %d %d %d %d L\n",(int)*x1,(int)*yy1,(int)*x2,(int)*y2));
+{  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
   }
+  
+  FPRINTF((file,"# %d %d %d %d L\n",(int)*x1,(int)*yy1,(int)*x2,(int)*y2));
+}
 
 /** Draw a set of segments **/
 /** segments are defined by (vx[i],vy[i])->(vx[i+1],vy[i+1]) **/
@@ -1148,6 +1313,12 @@ void C2F(drawsegmentsXfig)(char *str, integer *vx, integer *vy, integer *n, inte
   integer NDvalue,i;
   int l_style,style_val,pen_color,fill_color,areafill;
   integer verbose=0,Dnarg,Dvalue[10],Dvalue1[10];
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /* store the current values */
 
   /* F.Leray 08.03.04 Init. here for Dvalue[0]: Pb here what is the correct value for Dvalue[0] ?? */
@@ -1190,6 +1361,12 @@ void C2F(drawarrowsXfig)(char *str, integer *vx, integer *vy, integer *n, intege
   int i;
   int l_style,style_val,pen_color,fill_color,areafill;
   integer verbose=0,Dnarg,Dvalue[10],Dvalue1[10],NDvalue;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /* store the current values */
   C2F(getdashXfig)(&verbose,Dvalue,&Dnarg,vdouble);
   for ( i = 0 ; i < *n/2 ; i++)
@@ -1230,8 +1407,14 @@ void C2F(drawrectangleXfig)(char *str, integer *x, integer *y, integer *width, i
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;
   fvect[0] = 0;
-  C2F(drawrectanglesXfig)(str,vects,fvect,&i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
   }
+  
+  C2F(drawrectanglesXfig)(str,vects,fvect,&i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+}
 
 /** Draw a filled rectangle **/
 
@@ -1239,6 +1422,12 @@ void C2F(fillrectangleXfig)(char *str, integer *x, integer *y, integer *width, i
 { 
   integer i = 1;
   integer vects[4],verb=0,cpat,num;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height ; 
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
@@ -1256,6 +1445,12 @@ void C2F(drawrectanglesXfig)(char *str, integer *vects, integer *fillvect, integ
 {
   integer cpat,verb,num;
   verb=0;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
   C2F(WriteGenericXfig)("drawbox",*n,(integer)4L,vects,vects,4*(*n),(integer)0L,fillvect);
   C2F(setpatternXfig)(&(cpat),PI0,PI0,PI0);
@@ -1271,6 +1466,13 @@ void C2F(fillarcsXfig_old)(char *str, integer *vects, integer *fillvect, integer
 {
   integer cpat,verb,num;
   verb=0;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
+
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
   C2F(WriteGenericXfig)("drawarc",*n,(integer)6L,vects,vects,6*(*n),(integer)0L,fillvect);
   C2F(setpatternXfig)(&(cpat),PI0,PI0,PI0);
@@ -1280,6 +1482,12 @@ void C2F(fillarcsXfig)(char *str, integer *vects, integer *fillvect, integer *n,
 {
   integer verbose=0,Dnarg,pat;
   int i,i6;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /* store the current values */
   C2F(getpatternXfig)(&verbose,&pat,&Dnarg,vdouble);
   for ( i=0 ; i < *n ; i++) 
@@ -1307,6 +1515,12 @@ void C2F(drawarcsXfig_old)(char *str, integer *vects, integer *style, integer *n
 {
   integer verbose=0,Dnarg,Dvalue[10];
   /* store the current values */
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(getdashXfig)(&verbose,Dvalue,&Dnarg,vdouble);
   C2F(WriteGenericXfig)("Rdrawarc",*n,(integer)6L,vects,vects,6*(*n),(integer)0L,style);
   C2F(setdashXfig)( Dvalue,PI0,PI0,PI0);
@@ -1316,6 +1530,12 @@ void C2F(drawarcsXfig)(char *str, integer *vects, integer *style, integer *n, in
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   int i,i6;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /* store the current values */
   C2F(get_dash_and_color_Xfig)(&verbose,Dvalue,&Dnarg,vdouble);
   for ( i=0 ; i < *n ; i++) 
@@ -1341,6 +1561,12 @@ void C2F(drawarcXfig_old)(char *str, integer *x, integer *y, integer *width, int
   integer i =1;
   integer fvect[1] ;
   integer vects[6];
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;vects[4]= *angle1;vects[5]= *angle2;
   fvect[0] = ScilabGCXfig.IDLastPattern  +2;
@@ -1351,7 +1577,12 @@ void C2F(drawarcXfig)(char *str, integer *x, integer *y, integer *width, integer
 { 
   integer vx[365],vy[365],k,n;
   float alpha,fact= (float) 0.01745329251994330,w,h;
-  integer close = 0;
+  integer close = 0;  
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
 
   w = (float) ((*width)/2.0);
   h = (float) ((*height)/2.0);
@@ -1374,6 +1605,12 @@ void C2F(fillarcXfig_old)(char *str, integer *x, integer *y, integer *width, int
   integer i =1;
   integer verb=0,cpat,num ;
   integer vects[6];
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;vects[4]= *angle1;vects[5]= *angle2;
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
@@ -1385,6 +1622,11 @@ void C2F(fillarcXfig)(char *str, integer *x, integer *y, integer *width, integer
   integer vx[365],vy[365],k,k0,kmax,n;
   float alpha,fact= (float) 0.01745329251994330,w,h;
   integer close = 1;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
 
   n=Min((*angle2/64),360);
 
@@ -1419,7 +1661,15 @@ void C2F(fillarcXfig)(char *str, integer *x, integer *y, integer *width, integer
 /** by vx and vy (vx[i],vy[i]) **/
 
 void C2F(drawpolymarkXfig)(char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
-{ integer keepid,keepsize,  i=1, sz=ScilabGCXfig.CurHardSymbSize;
+{ 
+  integer keepid,keepsize,  i=1, sz;
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
+  sz=ScilabGCXfig.CurHardSymbSize;
   keepid =  ScilabGCXfig.FontId;
   keepsize= ScilabGCXfig.FontSize;
   C2F(xsetfontXfig)(&i,&sz,PI0,PI0);
@@ -1437,6 +1687,12 @@ char symb_listXfig_[] = {
 static void C2F(displaysymbolsXfig)(char *str, integer *n, integer *vx, integer *vy)
 {
   integer fvect[1];
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   fvect[0] = 	  ScilabGCXfig.CurPattern;
   if ( ScilabGCXfig.CurVectorStyle !=  CoordModeOrigin)
     FPRINTF((file,"#/absolu false def\n"));
@@ -1454,6 +1710,12 @@ static void C2F(displaysymbolsXfig)(char *str, integer *n, integer *vx, integer 
 void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer *drawvect, integer *n, integer *p, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 { integer verbose ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,close;
   verbose =0 ;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /* store the current values */
   C2F(getcursymbolXfig)(&verbose,symb,&Mnarg,vdouble);
   C2F(get_dash_and_color_Xfig)(&verbose,Dvalue,&Dnarg,vdouble);
@@ -1493,6 +1755,12 @@ void C2F(fillpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
 {
   integer cpat,verb,num;
   verb=0;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if ( ScilabGCXfig.CurVectorStyle !=  CoordModeOrigin)
     FPRINTF((file,"#/absolu false def\n"));
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
@@ -1514,6 +1782,11 @@ void C2F(drawpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, inte
   integer *vxtmp = NULL;
   integer *vytmp = NULL;
   int j;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
 
   if((vxtmp=MALLOC(((*n)+1)*sizeof(integer)))==0){
     sciprint("Can not allocate vxtmp while exporting to Fig\n");
@@ -1574,6 +1847,12 @@ void C2F(fillpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, inte
 {
   integer i = 1;
   integer cpat,verb=0,num;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
   /** just fill  ==> cpat < 0 **/
   cpat = -cpat;
@@ -1627,6 +1906,7 @@ static void C2F(FileInitXfig)(void)
   verbose = 0; 
   C2F(getwindowdimXfig)(&verbose,x,&narg,vdouble);
   FPRINTF((file,"#FIG 3.1\nPortrait\nCenter\nInches\n1200 2\n"));
+  ScilabGCXfig_is_initialized = TRUE; /* add the flag ScilabGCXfig_is_initialized to test if xinit has been called */
   C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0);
   SetGraphicsVersion();
   if (  CheckColormap(&m) == 1) 
@@ -1789,6 +2069,12 @@ void C2F(drawaxisXfig)(char *str, integer *alpha, integer *nsteps, integer *v2, 
   double xi,yi,xf,yf;
   double cosal,sinal;
   integer verbose=0,Dnarg,Dvalue1[10];
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(getdashXfig)(&verbose,Dvalue1,&Dnarg,vdouble);
   set_dash_or_color(Dvalue1[0],&l_style,&style_val,&pen_color);
   FPRINTF((file,"# Begin Axis \n"));
@@ -1848,6 +2134,12 @@ void C2F(drawaxisXfig)(char *str, integer *alpha, integer *nsteps, integer *v2, 
 void C2F(displaynumbersXfig)(char *str, integer *x, integer *y, integer *v1, integer *v2, integer *n, integer *flag, double *z, double *alpha, double *dx3, double *dx4)
 { integer i ;
   char buf[20];
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   for (i=0 ; i< *n ; i++)
     { 
       sprintf(buf,ScilabGCXfig.CurNumberDispFormat,z[i]);
@@ -1883,6 +2175,11 @@ must check size and cut into pieces big objects}
 
 void set_pattern_or_color(int pat, int *areafill, int *color)
 {
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if (  ScilabGCXfig.CurColorStatus == 1) 
     {
       int m;
@@ -1919,6 +2216,12 @@ void set_pattern_or_color(int pat, int *areafill, int *color)
 static void set_color(int c, int *color)
 {
   int m;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if (  ScilabGCXfig.CurColorStatus == 0) {
     *color=0;
     return;
@@ -1954,7 +2257,13 @@ static void set_dash(int dash, int *l_style, int *style_val)
 
 static void set_dash_or_color(int dash, int *l_style, int *style_val, int *color)
 {
-  int j;
+  int j;  
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if (  ScilabGCXfig.CurColorStatus == 1) 
     {
       j= ScilabGCXfig.CurDashStyle + 1;
@@ -1982,6 +2291,12 @@ void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer 
   integer verbose=0,Dnarg,Dvalue[10],Dvalue1[10];
   integer lg,type=1 ;
   integer areafill,fill_color,pen_color,l_style,style_val;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(getdashXfig)(&verb,Dvalue,&Dnarg,vdouble);
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
   if ( nobj==0|| sizeobj==0) return;
@@ -2233,6 +2548,12 @@ static void MyDraw(integer iib, integer iif, integer *vx, integer *vy)
   integer x1kn,y1kn,x2kn,y2kn;
   integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0;
   integer npts;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   npts= ( iib > 0) ? iif-iib+2  : iif-iib+1;
   if ( iib > 0) 
     {
@@ -2267,6 +2588,12 @@ static void My2draw(integer j, integer *vx, integer *vy)
 {
   /** The segment is out but can cross the box **/
   integer vxn[2],vyn[2],flag,fvect=0,ipoly=1;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   clip_line(vx[j-1],vy[j-1],vx[j],vy[j],&vxn[0],&vyn[0],&vxn[1],&vyn[1],&flag);
   if (flag == 3 ) 
   {
@@ -2280,6 +2607,12 @@ static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer
 { 
   integer iib,iif,ideb=0,vxl[2],vyl[2],fvect=0,ipoly=1,deux=2;
   integer xleft, xright, ybot, ytop;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   xleft=ScilabGCXfig.CurClipRegion[0];
   xright=xleft+ScilabGCXfig.CurClipRegion[2];
   ybot=ScilabGCXfig.CurClipRegion[1];

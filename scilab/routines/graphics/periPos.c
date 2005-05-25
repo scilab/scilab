@@ -95,8 +95,8 @@ void FileInit  __PARAMS((void));
 
 /** Structure to keep the graphic state  **/
 
-struct BCG ScilabGCPos ;
-
+struct BCG  ScilabGCPos ;
+static BOOL ScilabGCPos_is_initialized = FALSE;
 /*-----------------------------------------------------
 \encadre{General routines}
 -----------------------------------------------------*/
@@ -116,6 +116,7 @@ void C2F(xendgraphicPos)(void)
     FPRINTF((file,"\n end saved restore \n"));
     fclose(file);
     file=stdout;}
+  ScilabGCPos_is_initialized = FALSE;
 }
 
 void C2F(xendPos)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
@@ -154,6 +155,12 @@ void C2F(xgetmousePos)(char *str, integer *ibutton, integer *xx1, integer *yy1, 
 
 void C2F(clearareaPos)(char *str, integer *x, integer *y, integer *w, integer *h, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+ }
+  
   FPRINTF((file,"\n [ %d %d %d %d ] clearzone",(int)*x,(int)*y,(int)*w,(int)*h));
 }
 
@@ -219,7 +226,12 @@ void C2F(setwindowdimPos)(integer *x, integer *y, integer *v3, integer *v4)
 /** Select a graphic Window : Empty for Postscript **/
 
 void C2F(setcurwinPos)(integer *intnum, integer *v2, integer *v3, integer *v4)
-{
+{ 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   ScilabGCPos.CurWindow = *intnum;
 }
 
@@ -227,6 +239,11 @@ void C2F(setcurwinPos)(integer *intnum, integer *v2, integer *v3, integer *v4)
 
 void C2F(getcurwinPos)(integer *verbose, integer *intnum, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg =1 ;
   *intnum = ScilabGCPos.CurWindow ;
   if (*verbose == 1) 
@@ -237,6 +254,11 @@ void C2F(getcurwinPos)(integer *verbose, integer *intnum, integer *narg, double 
 
 void C2F(setclipPos)(integer *x, integer *y, integer *w, integer *h)
 {
+ if ( ScilabGCPos_is_initialized == FALSE ) {
+   sciprint("xinit must be called before any action \r\n");
+   return;
+ }
+
   ScilabGCPos.ClipRegionSet = 1;
   ScilabGCPos.CurClipRegion[0]= *x;
   ScilabGCPos.CurClipRegion[1]= *y;
@@ -249,6 +271,11 @@ void C2F(setclipPos)(integer *x, integer *y, integer *w, integer *h)
 
 void C2F(unsetclipPos)(integer *v1, integer *v2, integer *v3, integer *v4)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   ScilabGCPos.ClipRegionSet = 0;
   ScilabGCPos.CurClipRegion[0]= -1;
   ScilabGCPos.CurClipRegion[1]= -1;
@@ -261,6 +288,11 @@ void C2F(unsetclipPos)(integer *v1, integer *v2, integer *v3, integer *v4)
 
 void C2F(getclipPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   x[0] = ScilabGCPos.ClipRegionSet;
   if ( x[0] == 1)
     {
@@ -293,6 +325,11 @@ void C2F(getclipPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 
 void C2F(setabsourelPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if (*num ==  CoordModeOrigin )
     ScilabGCPos.CurVectorStyle =  CoordModeOrigin;
   else 
@@ -303,6 +340,11 @@ void C2F(setabsourelPos)(integer *num, integer *v2, integer *v3, integer *v4)
 
 void C2F(getabsourelPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg = 1;
   *num = ScilabGCPos.CurVectorStyle  ;
   if (*verbose == 1) 
@@ -321,6 +363,11 @@ void C2F(getabsourelPos)(integer *verbose, integer *num, integer *narg, double *
 void C2F(setalufunctionPos)(char *string)
 {    
   integer value;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
   
   C2F(idfromnamePos)(string,&value);
   if ( value != -1)
@@ -354,24 +401,31 @@ struct alinfo {
 };
 
 void C2F(idfromnamePos)(char *name1, integer *num)
-{integer i;
- *num = -1;
- for ( i =0 ; i < 16;i++)
-   if (strcmp(AluStrucPos[i].name,name1)== 0) 
-     *num=AluStrucPos[i].id;
- if (*num == -1 ) 
-   {
-     Scistring("\n Use the following keys :");
-     for ( i=0 ; i < 16 ; i++)
-       sciprint("\nkey %s -> %s\r\n",AluStrucPos[i].name,
-	       AluStrucPos[i].info);
-   }
+{
+  integer i;
+  *num = -1;
+  for ( i =0 ; i < 16;i++)
+    if (strcmp(AluStrucPos[i].name,name1)== 0) 
+      *num=AluStrucPos[i].id;
+  if (*num == -1 ) 
+    {
+      Scistring("\n Use the following keys :");
+      for ( i=0 ; i < 16 ; i++)
+	sciprint("\nkey %s -> %s\r\n",AluStrucPos[i].name,
+		 AluStrucPos[i].info);
+    }
 }
 
 
 void C2F(setalufunction1Pos)(integer *num, integer *v2, integer *v3, integer *v4)
 {     
   integer value;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   value=AluStrucPos[Min(15,Max(0,*num))].id;
   if ( value != -1)
     {
@@ -383,7 +437,12 @@ void C2F(setalufunction1Pos)(integer *num, integer *v2, integer *v3, integer *v4
 /** To get the value of the alufunction **/
 
 void C2F(getalufunctionPos)(integer *verbose, integer *value, integer *narg, double *dummy)
-{ 
+{
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg =1 ;
   *value = ScilabGCPos.CurDrawFunction ;
    if (*verbose ==1 ) 
@@ -399,6 +458,11 @@ void C2F(getalufunctionPos)(integer *verbose, integer *value, integer *narg, dou
 
 void C2F(setthicknessPos)(integer *value, integer *v2, integer *v3, integer *v4)
 { 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   ScilabGCPos.CurLineWidth =Max(0, *value);
   FPRINTF((file,"\n%d Thickness",(int)Max(0,*value*Thick_prec)));
 }
@@ -407,6 +471,11 @@ void C2F(setthicknessPos)(integer *value, integer *v2, integer *v3, integer *v4)
 
 void C2F(getthicknessPos)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg =1 ;
   *value = ScilabGCPos.CurLineWidth ;
   if (*verbose ==1 ) 
@@ -424,7 +493,13 @@ void C2F(getthicknessPos)(integer *verbose, integer *value, integer *narg, doubl
 
 void C2F(setpatternPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
- integer i ; 
+  integer i ;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if ( ScilabGCPos.CurColorStatus ==1) 
     {
       i= Max(0,Min(*num-1,ScilabGCPos.Numcolors+1));
@@ -451,7 +526,11 @@ void C2F(setpatternPos)(integer *num, integer *v2, integer *v3, integer *v4)
 
 void C2F(getpatternPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
-
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg=1;
   if ( ScilabGCPos.CurColorStatus ==1) 
     {
@@ -472,6 +551,11 @@ void C2F(getpatternPos)(integer *verbose, integer *num, integer *narg, double *d
 
 void C2F(getlastPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *num = ScilabGCPos.IDLastPattern +1 ;
   if (*verbose==1) 
     sciprint("\n Id of White Pattern %d\r\n",(int)*num);
@@ -495,7 +579,12 @@ static integer DashTabPos[MAXDASH][4] = {
 void C2F(set_dash_or_color_Pos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer  l2=4,l3 ;
-
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if ( ScilabGCPos.CurColorStatus == 1) 
     {
       int i;
@@ -515,7 +604,12 @@ void C2F(set_dash_or_color_Pos)(integer *value, integer *v2, integer *v3, intege
 void C2F(setdashPos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   static integer l2=4,l3 ;
-
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   l3 = Max(0,Min(MAXDASH - 1,*value - 1));
   C2F(setdashstylePos)(&l3,DashTabPos[l3],&l2);
   ScilabGCPos.CurDashStyle = l3;
@@ -523,6 +617,11 @@ void C2F(setdashPos)(integer *value, integer *v2, integer *v3, integer *v4)
 
 void C2F(set_dash_and_color_Pos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   C2F(setdashPos)(value, v2, v3, v4); 
   C2F(setpatternPos)(value+6, v2, v3, v4);
 }
@@ -532,6 +631,12 @@ void C2F(set_dash_and_color_Pos)(integer *value, integer *v2, integer *v3, integ
 void C2F(set_line_style_Pos)(integer *value, integer *v2, integer *v3, integer *v4)
 {
   integer j;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if (ScilabGCPos.CurColorStatus == 0)
     C2F(setdashPos)(value,PI0,PI0,PI0);
   else {
@@ -549,6 +654,12 @@ void C2F(set_line_style_Pos)(integer *value, integer *v2, integer *v3, integer *
 void C2F(setdashstylePos)(integer *value, integer *xx, integer *n)
 {
   integer i ;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if ( *value == 0) FPRINTF((file,"\n[] 0 setdash"));
   else 
     {
@@ -564,55 +675,74 @@ void C2F(setdashstylePos)(integer *value, integer *xx, integer *n)
 
 /* old version of getdashPos retained for compatibility */
 void C2F(get_dash_or_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy)
-{integer i ;
- *narg =1 ;
- if ( ScilabGCPos.CurColorStatus ==1) 
-   {
-     *value= ScilabGCPos.CurColor + 1;
-     if (*verbose == 1) sciprint("Color %d",(int)*value);
-     return;
-   }
- *value=ScilabGCPos.CurDashStyle+1;
- if ( *value == 1) 
-   { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
- else 
-   {
-     value[1]=4;
-     *narg = value[1]+2;
-     for ( i =0 ; i < value[1]; i++) value[i+2]=DashTabPos[*value-1][i];
-     if (*verbose ==1 ) 
-       {
-	 sciprint("\nDash Style %d:<",(int)*value);
-	 for ( i =0 ; i < value[1]; i++)
-	   sciprint("%d ",(int)value[i+2]);
-	 Scistring(">\n");
-       }
-   }
+{
+  integer i ;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
+  *narg =1 ;
+  if ( ScilabGCPos.CurColorStatus ==1) 
+    {
+      *value= ScilabGCPos.CurColor + 1;
+      if (*verbose == 1) sciprint("Color %d",(int)*value);
+      return;
+    }
+  *value=ScilabGCPos.CurDashStyle+1;
+  if ( *value == 1) 
+    { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+  else 
+    {
+      value[1]=4;
+      *narg = value[1]+2;
+      for ( i =0 ; i < value[1]; i++) value[i+2]=DashTabPos[*value-1][i];
+      if (*verbose ==1 ) 
+	{
+	  sciprint("\nDash Style %d:<",(int)*value);
+	  for ( i =0 ; i < value[1]; i++)
+	    sciprint("%d ",(int)value[i+2]);
+	  Scistring(">\n");
+	}
+    }
 }
 
 void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *dummy)
-{integer i ;
- *narg =1 ;
- *value=ScilabGCPos.CurDashStyle+1;
- if ( *value == 1) 
-   { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
- else 
-   {
-     value[1]=4;
-     *narg = value[1]+2;
-     for ( i =0 ; i < value[1]; i++) value[i+2]=DashTabPos[*value-1][i];
-     if (*verbose ==1 ) 
-       {
-	 sciprint("\nDash Style %d:<",(int)*value);
-	 for ( i =0 ; i < value[1]; i++)
-	   sciprint("%d ",(int)value[i+2]);
-	 Scistring(">\n");
-       }
-   }
+{
+  integer i ;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
+  *narg =1 ;
+  *value=ScilabGCPos.CurDashStyle+1;
+  if ( *value == 1) 
+    { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+  else 
+    {
+      value[1]=4;
+      *narg = value[1]+2;
+      for ( i =0 ; i < value[1]; i++) value[i+2]=DashTabPos[*value-1][i];
+      if (*verbose ==1 ) 
+	{
+	  sciprint("\nDash Style %d:<",(int)*value);
+	  for ( i =0 ; i < value[1]; i++)
+	    sciprint("%d ",(int)value[i+2]);
+	  Scistring(">\n");
+	}
+    }
 }
 
 void C2F(get_dash_and_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   /*may be improved replacing 6 by narg */
   C2F(getdashPos)(verbose, value, narg,dummy);
   C2F(getpatternPos)(verbose, value+6, narg,dummy);
@@ -622,6 +752,12 @@ void C2F(get_dash_and_color_Pos)(integer *verbose, integer *value, integer *narg
 void C2F(usecolorPos)(integer *num, integer *v2, integer *v3, integer *v4)
 {
   integer i;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   i =  Min(Max(*num,0),1);
   FPRINTF((file,"\n%%--use color %d ",i));
   if ( ScilabGCPos.CurColorStatus != (int)i)
@@ -668,7 +804,13 @@ void C2F(usecolorPos)(integer *num, integer *v2, integer *v3, integer *v4)
 
 
 void C2F(getusecolorPos)(integer *verbose, integer *num, integer *narg, double *dummy)
-{
+{ 
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   *num = ScilabGCPos.CurColorStatus;
   if (*verbose == 1) 
     sciprint("\n Use color %d\r\n",(int)*num);
@@ -702,6 +844,11 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int i;
 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
@@ -732,6 +879,12 @@ void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, int
 
   *v3 = 0;
   
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    *v3=1;
+    return;
+  }
+
   if (*v2 != 3 ||  *v1 < 0) {
     Scistring("Colormap must be a m x 3 array \n");
     *v3 = 1;
@@ -755,6 +908,12 @@ static void WriteColorRGB(char *str, double *tab, int ind)
 {
   /* RGB are the columns of tab */ 
   int i;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   FPRINTF((file,"\n/Color%s [",str));
   for ( i=0; i < ScilabGCPos.Numcolors; i++)
     {
@@ -771,6 +930,7 @@ static void WriteColorRGB(char *str, double *tab, int ind)
 void ColorInit(void)
 {
   int   m = DEFAULTNUMCOLORS;
+
   ScilabGCPos.Numcolors = m;
   WriteColorRGBDef("R",default_colors,0);
   WriteColorRGBDef("G",default_colors,1);
@@ -780,6 +940,7 @@ void ColorInit(void)
 static void WriteColorRGBDef(char *str, short unsigned int *tab, int ind)
 {
   int i;
+
   FPRINTF((file,"\n/Color%s [",str));
   for ( i=0; i < ScilabGCPos.Numcolors; i++)
     {
@@ -801,6 +962,11 @@ void C2F(set_cPos)(integer i)
 
 void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if (ScilabGCPos.CurColorStatus == 1) 
     {
       ScilabGCPos.NumBackground = Max(0,Min(*num - 1,ScilabGCPos.Numcolors + 1));
@@ -811,6 +977,12 @@ void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4)
 void C2F(getbackgroundPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
   *narg=1;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if ( ScilabGCPos.CurColorStatus == 1 ) 
     {
       *num = ScilabGCPos.NumBackground + 1;
@@ -828,6 +1000,11 @@ void C2F(getbackgroundPos)(integer *verbose, integer *num, integer *narg, double
 
 void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4)
 { 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   if (ScilabGCPos.CurColorStatus == 1) 
     {
       ScilabGCPos.NumForeground = Max(0,Min(*num - 1,ScilabGCPos.Numcolors + 1));
@@ -836,6 +1013,11 @@ void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4)
 
 void C2F(getforegroundPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg=1;
   if ( ScilabGCPos.CurColorStatus == 1 ) 
     {
@@ -854,7 +1036,12 @@ void C2F(getforegroundPos)(integer *verbose, integer *num, integer *narg, double
 /** set and get the number of the hidden3d color */
 
 void C2F(sethidden3dPos)(integer *num, integer *v2, integer *v3, integer *v4)
-{ 
+{   
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if (ScilabGCPos.CurColorStatus == 1) 
     {
       /* es: Max(0,... -> Max(-1,... */
@@ -865,6 +1052,11 @@ void C2F(sethidden3dPos)(integer *num, integer *v2, integer *v3, integer *v4)
 
 void C2F(gethidden3dPos)(integer *verbose, integer *num, integer *narg, double *dummy)
 { 
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg=1;
   if ( ScilabGCPos.CurColorStatus == 1 ) 
     {
@@ -956,6 +1148,7 @@ static  test(str,flag,verbose,x1,x2,x3,x4,x5)
   C2F(setalufunction1Pos)(x1,x2,x3,x4);C2F(getalufunctionPos)(verbose,x1,x2,dv);
   C2F(setclipPos)(x1,x2,x3,x4);C2F(getclipPos)(verbose,x1,x2,dv);
   C2F(setdashPos)(x1,x2,x3,x4);C2F(getdashPos)(verbose,x1,x2,dv);
+  ScilabGCPos_is_initialized = TRUE; /* add the flag ScilabGCPos_is_initialized to test if xinit has been called */
   InitScilabGCPos(x1,x2,x3,x4); C2F(gemptyPos)(verbose,x1,x2,dv);
   C2F(xsetfontPos)(x1,x2,x3,x4);C2F(xgetfontPos)(verbose,x1,x2,dv);
   C2F(setabsourelPos)(x1,x2,x3,x4);C2F(getabsourelPos)(verbose,x1,x2,dv);
@@ -1032,6 +1225,12 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 {     
   integer i,rect[4] ;
   int yn = (int) (*y + ascentPos());
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
 #ifdef WITH_GTK
   int alloc;
   /* we expect iso-latin1 in postscript */
@@ -1349,8 +1548,13 @@ static double ascentPos()
 /** Draw a single line in current style **/
 void C2F(drawlinePos)(integer *xx1, integer *yy1, integer *x2, integer *y2)
 {
-    FPRINTF((file,"\n %d %d %d %d L",(int)*xx1,(int)*yy1,(int)*x2,(int)*y2));
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
   }
+  
+  FPRINTF((file,"\n %d %d %d %d L",(int)*xx1,(int)*yy1,(int)*x2,(int)*y2));
+}
 
 
 /** Draw a set of segments **/
@@ -1360,6 +1564,12 @@ void C2F(drawsegmentsPos)(char *str, integer *vx, integer *vy, integer *n, integ
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   int i;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   /* store the current values */
   C2F(getpatternPos)(&verbose,Dvalue,&Dnarg,vdouble);
   if ((int)  *iflag == 0 )
@@ -1386,6 +1596,12 @@ void C2F(drawarrowsPos)(char *str, integer *vx, integer *vy, integer *n, integer
 {
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   int i;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   C2F(get_dash_and_color_Pos)(&verbose,Dvalue,&Dnarg,vdouble);
   /* store the current values */
   if ((int)  *iflag == 0 )
@@ -1419,6 +1635,12 @@ void C2F(drawarrowsPos)(char *str, integer *vx, integer *vy, integer *n, integer
 void C2F(drawrectanglesPos)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer cpat,verb=0,num;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble);
   C2F(WriteGenericPos)("drawbox",*n,(integer)4L,vects,vects,4*(*n),(integer)0L,fillvect);
   C2F(setpatternPos)(&(cpat),PI0,PI0,PI0);
@@ -1429,6 +1651,12 @@ void C2F(drawrectanglePos)(char *str, integer *x, integer *y, integer *width, in
   integer i = 1;
   integer fvect[1] ;
   integer vects[4];
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;
   /** fvect set to tell that we only want to draw not to fill  */
@@ -1443,6 +1671,12 @@ void C2F(fillrectanglePos)(char *str, integer *x, integer *y, integer *width, in
   integer i = 1;
   integer vects[4];
   integer cpat,verb=0,num;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height ; 
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble);
@@ -1458,6 +1692,12 @@ void C2F(fillarcsPos)(char *str, integer *vects, integer *fillvect, integer *n, 
 {
   integer cpat,verb,num;
   verb=0;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble);
   C2F(WriteGenericPos)("fillarc",*n,(integer)6L,vects,vects,6*(*n),(integer)0L,fillvect);
   C2F(setpatternPos)(&(cpat),PI0,PI0,PI0);
@@ -1474,6 +1714,12 @@ void C2F(drawarcsPos)(char *str, integer *vects, integer *style, integer *n, int
 {
   integer verbose=0,Dnarg,Dvalue[10];
   int i;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /* store the current values */
   C2F(get_dash_and_color_Pos)(&verbose,Dvalue,&Dnarg,vdouble);
   for ( i=0 ; i < *n ; i++) 
@@ -1498,6 +1744,12 @@ void C2F(drawarcPos)(char *str, integer *x, integer *y, integer *width, integer 
   integer i =1;
   integer fvect[1] ;
   integer vects[6];
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;vects[4]= *angle1;vects[5]= *angle2;
   /** fvect set to tell that we only want to draw not to fill  */
@@ -1512,6 +1764,12 @@ void C2F(fillarcPos)(char *str, integer *x, integer *y, integer *width, integer 
 { 
   integer i =1,vects[6];
   integer cpat,verb=0,num;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;vects[4]= *angle1;vects[5]= *angle2;
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble);
@@ -1529,7 +1787,13 @@ void C2F(fillarcPos)(char *str, integer *x, integer *y, integer *width, integer 
 
 void C2F(drawpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer *drawvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { integer verbose ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,close;
-  verbose =0 ;
+  verbose =0 ;  
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   /* store the current values */
   C2F(xgetmarkPos)(&verbose,symb,&Mnarg,vdouble);
   C2F(get_dash_and_color_Pos)(&verbose,Dvalue,&Dnarg,vdouble);
@@ -1569,6 +1833,12 @@ void C2F(drawpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer 
 void C2F(fillpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer *fillvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   integer cpat,verb=0,num;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   if ( ScilabGCPos.CurVectorStyle !=  CoordModeOrigin)
     FPRINTF((file,"\n/absolu false def"));
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble);
@@ -1584,6 +1854,12 @@ void C2F(fillpolylinesPos)(char *str, integer *vectsx, integer *vectsy, integer 
 void C2F(drawpolylinePos)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { integer i =1;
   integer fvect[1] ;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   /** fvect set to tell that we only want to draw not to fill  */
   fvect[0] = 0;
   if (*closeflag == 1 )
@@ -1599,6 +1875,12 @@ void C2F(fillpolylinePos)(char *str, integer *n, integer *vx, integer *vy, integ
 {
   integer i =1;
   integer cpat,verb=0,num;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   C2F(getpatternPos)(&verb,&cpat,&num,vdouble); 
   /** just fill  ==> cpat < 0 **/
   cpat = -cpat;
@@ -1610,7 +1892,14 @@ void C2F(fillpolylinePos)(char *str, integer *n, integer *vx, integer *vy, integ
 
 void C2F(drawpolymarkPos)(char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
-  integer keepid,keepsize,i=1,sz=ScilabGCPos.CurHardSymbSize;
+  integer keepid,keepsize,i=1,sz;
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
+  sz=ScilabGCPos.CurHardSymbSize;
   keepid =  ScilabGCPos.FontId;
   keepsize= ScilabGCPos.FontSize;
   C2F(xsetfontPos)(&i,&sz,PI0,PI0);
@@ -1677,6 +1966,7 @@ void FileInit(void)
   FPRINTF((file,"\n%% Init driver "));
   FPRINTF((file,"\n/PaintBackground {WhiteLev 2 add background eq {}{ (drawbox) 4 [background 1 add] [0 0 %d %d] dogrey}ifelse } def", x[0],x[1]));
 
+  ScilabGCPos_is_initialized = TRUE; /* add the flag ScilabGCPos_is_initialized to test if xinit has been called */
   InitScilabGCPos(PI0,PI0,PI0,PI0);
   SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
   
@@ -1805,6 +2095,11 @@ $n1$and $n2$ are integer numbers for interval numbers.
 -------------------------------------------------------------*/
 void C2F(drawaxisPos)(char *str, integer *alpha, integer *nsteps, integer *v2, integer *initpoint, integer *v6, integer *v7, double *size, double *dx2, double *dx3, double *dx4)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
   FPRINTF((file,"\n %d [%d %d] [%f %f %f] [%d %d] drawaxis",
 	  (int)*alpha,(int)nsteps[0],(int)nsteps[1],size[0],size[1],size[2],
 	  (int)initpoint[0],(int)initpoint[1]));
@@ -1819,6 +2114,12 @@ void C2F(drawaxisPos)(char *str, integer *alpha, integer *nsteps, integer *v2, i
 void C2F(displaynumbersPos)(char *str, integer *x, integer *y, integer *v1, integer *v2, integer *n, integer *flag, double *z, double *alpha, double *dx3, double *dx4)
 { integer i ;
   char buf[20];
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   for (i=0 ; i< *n ; i++)
     { 
       sprintf(buf,ScilabGCPos.CurNumberDispFormat,z[i]);
@@ -1982,6 +2283,12 @@ void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *
 /* modified by bruno (Jan 2004) */
 { 
   integer i,fsiz;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   i = Min(FONTNUMBER-1,Max(*fontid,0));
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
   if ( FontInfoTabPos[i].ok !=1 )
@@ -2000,7 +2307,12 @@ void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *
 /** To get the values id and size of the current font **/
 
 void C2F(xgetfontPos)(integer *verbose, integer *font, integer *nargs, double *dummy)
-{
+{  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *nargs=2;
   font[0]= ScilabGCPos.FontId ;
   font[1] =ScilabGCPos.FontSize ;
@@ -2017,7 +2329,12 @@ void C2F(xgetfontPos)(integer *verbose, integer *font, integer *nargs, double *d
 /** To set the current mark : using the symbol font of adobe **/
 
 void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4)
-{ 
+{   
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   ScilabGCPos.CurHardSymb =     
     Max(Min(SYMBOLNUMBER-1,*number),0);
   ScilabGCPos.CurHardSymbSize = 
@@ -2028,6 +2345,11 @@ void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4)
 
 void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy)
 {
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   *narg =2 ;
   symb[0] = ScilabGCPos.CurHardSymb ;
   symb[1] = ScilabGCPos.CurHardSymbSize ;
@@ -2047,6 +2369,12 @@ char symb_listPos[] = {
 static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *vy)
 {
   integer fvect[1];
+  
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
   fvect[0] =  ( ScilabGCPos.CurColorStatus ==1) ? ScilabGCPos.CurColor : ScilabGCPos.CurPattern ;
   if ( ScilabGCPos.CurVectorStyle !=  CoordModeOrigin)
     FPRINTF((file,"\n/absolu false def"));
