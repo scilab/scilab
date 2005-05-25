@@ -14,7 +14,7 @@ OBJSC= javasci_globals.o javasci_Scilab.o javasci_SciReal.o @GCCFIX@
 OBJSF =
 OBJS = $(OBJSC)
 CFLAGS = $(CC_OPTIONS) $(JAVAINC)
-
+FLIBS=@FLIBS@
 
 include ../../Makefile.incl
 include ../../Makefile.OBJ
