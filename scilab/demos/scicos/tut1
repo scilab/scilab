@@ -673,10 +673,6 @@
   0.05
   0
   o //OK
-109,370.8,271.4,1000,"void"// Block: 11 CLOCK_f
-371.6,270.7,-1//xgemouse
-372.3,270.7,-1//xgemouse
-372.3,270.7,0//xgemouse
 -2,0,0,-1,"execstr(Misc_1000(15))"// Misc/Comment
 //x_dialog:Enter comments
   Simulation settings can be set by using the

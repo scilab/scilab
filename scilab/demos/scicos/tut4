@@ -22,7 +22,7 @@ diagram3.cos
 0,240.5,258.5,1000,"void"// Block: 32 SUPER_f
 -2,0,0,-1,"execstr(Diagram_1001(11))"// Diagram/Save as Interf Func
 //xgetfile: 
-TEST40/toto.sci
+  toto.sci
 //x_mdialog: Enter the type of Interf. Func. to create
   0
   o //OK
