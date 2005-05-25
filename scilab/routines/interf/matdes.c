@@ -2687,7 +2687,12 @@ int scixget(fname,fname_len)
   return 0;
 
  OK:  
-  if (Rhs == 2) {GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);  flagx = (integer) *stk(l2); }
+  if (Rhs == 2) {
+    GetRhsVar(2,"d",&m2,&n2,&l2); 
+    CheckScalar(2,m2,n2);  
+    flagx = (integer) *stk(l2); }
+  else
+    flagx = 0;
 
   if ( strncmp(cstk(l1),"fpf",3) == 0 || strncmp(cstk(l1),"auto clear",10) == 0) 
     {
