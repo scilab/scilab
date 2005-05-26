@@ -2204,9 +2204,15 @@ c     extraction du nom de la variable muette
          istk(ilr+1)=1
          istk(ilr+2)=1
          istk(ilr+3)=0
-         call icopy(4,istk(il1+4),-1,istk(ilr+6),-1)
+         do 10 ii=4,1,-1
+            if(istk(il1+3+ii).ne.blank) then
+               nv=ii
+               goto 11
+            endif
+ 10      continue
+ 11      call icopy(nv,istk(il1+4),-1,istk(ilr+6),-1)
          istk(ilr+4)=1
-         istk(ilr+5)=5
+         istk(ilr+5)=nv+1
          lstk(top+1)=sadr(ilr+10)
       elseif(rhs.eq.2) then
 c     change formal variable name
