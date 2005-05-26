@@ -3176,6 +3176,7 @@ int scixset(fname,fname_len)
     C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
   }
   else if ( strncmp(cstk(l1),"font size",9) == 0) {
+    verb=0;
     C2F(dr1)("xget","font",&verb,font,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
     font[1]=(int)xx[0];
     C2F(dr1)("xset","font",&(font[0]),&(font[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
@@ -3548,7 +3549,7 @@ int scixstringb(char *fname,unsigned long fname_len)
 int scixstringl(char *fname,unsigned long fname_len)
 {
   double rect[4],wc,dv,x,y,yi;
-  integer i,j,v,verb,un=1,quatre=4,m4,n4,l4,m1,n1,l1,m2,n2,l2,m3,n3;
+  integer i,j,v,verb=0,un=1,quatre=4,m4,n4,l4,m1,n1,l1,m2,n2,l2,m3,n3;
   integer m5,n5,l5;
   int font_[2], cur_font_[2];
   char **Str;
