@@ -338,8 +338,8 @@ if simp_mode()<>%f then pause,end
 
 //varn
 a=1+%s;
-if varn(a)<>'s   ' then pause,end
-if varn(a+0)<>'s   ' then pause,end
+if varn(a)<>'s' then pause,end
+if varn(a+0)<>'s' then pause,end
 if varn(a,'z')<>1+%z then pause,end
 if varn(a+0,'z')<>1+%z then pause,end
 nam='z';

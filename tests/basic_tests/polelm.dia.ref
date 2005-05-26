@@ -663,9 +663,9 @@ if simp_mode()<>%f then bugmes();quit;end
  
 a=1+%s;
  
-if varn(a)<>'s   ' then bugmes();quit;end
+if varn(a)<>'s' then bugmes();quit;end
  
-if varn(a+0)<>'s   ' then bugmes();quit;end
+if varn(a+0)<>'s' then bugmes();quit;end
  
 if varn(a,'z')<>1+%z then bugmes();quit;end
  

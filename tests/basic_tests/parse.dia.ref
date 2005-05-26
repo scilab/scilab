@@ -57,7 +57,7 @@ what
  if        else      for       while     end       select    case      
  quit      exit      return    help      what      who       pause     
  clear     resume    then      do        apropos   abort     break     
- elseif    
+ elseif    pwd       function  endfunction         clc       continue  
  
 :
  ans  =
