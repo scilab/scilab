@@ -87,7 +87,7 @@ deff('Snapshot_()',..
       'rect_=min((rect_(3)-rect_(1))*12/400,12)'
       'txti=[''\begin{center}'';''\includegraphics[angle=270,width=''+string(rect_)+''cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}'']'
       'txti=[''  '';txti;''  '']'
-      'mputl(txti,%J)'
+      '//mputl(txti,%J)'
       'Cmenu=''Replot'''])
 
 deff('GrabPalette_()',..
@@ -107,7 +107,7 @@ deff('GrabPalette_()',..
       'txt2=x_dialog([''Enter caption''],'''');'
       'txti=[''\begin{figure}\begin{center}'';''\fbox{\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
       'txti=[''  '';txti;''  '']'
-      'mputl(txti,%J)'
+      '//mputl(txti,%J)'
       'Cmenu=''Replot'''])
 
 deff('GrabScope_()',..
@@ -128,13 +128,13 @@ deff('GrabScope_()',..
       'txt2=x_dialog([''Enter caption''],'''');'
       'txti=[''\begin{figure}\begin{center}'';''\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
       'txti=[''  '';txti;''  '']'
-      'mputl(txti,%J)'
+      '//mputl(txti,%J)'
       'Cmenu=''Replot'''])
 
 
 deff('Comment_()',..
      ['txt=x_dialog([''Comments''],'''');'
-      'mputl(txt,%J)'
+      '//mputl(txt,%J)'
       'Cmenu=''Open/Set'''])
 
 
@@ -149,9 +149,9 @@ if exists('%scicos_gui_mode') then
   %scicos_gui_mode_back=%scicos_gui_mode
 end
 %scicos_gui_mode=0
-%J=mopen(fil+".tex",'w')
+//%J=mopen(fil+".tex",'w')
 %I=mopen(fil,'r');ierr=execstr('scicos();','errcatch');mclose(%I);
-mclose(%J)
+//mclose(%J)
 
 if exists('%scicos_gui_mode_back') then
   %scicos_gui_mode=%scicos_gui_mode_back
