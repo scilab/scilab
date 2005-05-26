@@ -4,4 +4,4 @@ $(LIBRARY): $(OBJS)
 	@echo Creation of $(LIBRARY)
 	@$(RM) $@;
 	@echo "linking";
-	@$(LD) -b -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS)  $(TERMCAPLIB) $(FLIBS) -lc
+	@$(LD) -G -b -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS)  $(TERMCAPLIB) $(FLIBS) -ldl -lc
