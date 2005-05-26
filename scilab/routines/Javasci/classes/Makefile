@@ -9,13 +9,13 @@ JAVAC=javac -d $(CLASSREP) -classpath $(CLASSREP)
 all:: $(CLASSES)
 
 $(DEST)/Scilab.class: Scilab.java
-	@$(JAVAC)  $<	
+	@$(JAVAC)  Scilab.java
 
 $(DEST)/SciReal.class: SciReal.java
-	@$(JAVAC)  $<	
+	@$(JAVAC)  SciReal.java
 
 $(DEST)/BadDataArgumentException.class: BadDataArgumentException.java
-	@$(JAVAC)  $<	
+	@$(JAVAC)  BadDataArgumentException.java
 
 
 cleanC::
