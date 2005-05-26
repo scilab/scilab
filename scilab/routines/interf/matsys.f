@@ -2978,7 +2978,7 @@ c
       integer iadr
 
       integer cmdl,id(nsiz)
-      parameter (cmdl = 22)
+      parameter (cmdl = 27)
       integer cmd(nsiz,cmdl)
       common/cmds/cmd
 
