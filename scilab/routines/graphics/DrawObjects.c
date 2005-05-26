@@ -696,7 +696,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   char *title = NULL;
   integer rect[4],flag=0,x=0,y=0;
   double ang=0.0, bbox[6];
-  int fontsize=-1,textcolor=-1,ticscolor=-1, doublesize ;
+  int fontsize=-1,textcolor=-1,ticscolor=-1;
   int fontstyle=0; /* F.Leray 08.04.04 */
   sciPointObj *psubwin = NULL;
   sciSubWindow * ppsubwin = NULL;
@@ -762,12 +762,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   fontid[0]= fontstyle;
   fontsize_kp = fontid[1] ;
   if( fontsize == -1 ){ 
-    fontid[1]= 1; doublesize = 2;
+    fontid[1]= 1;
     C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
   else {
     fontid[1] = fontsize ;
-    doublesize = 2*fontsize;
     C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
   if ( textcolor != -1 || ticscolor != -1 ) 
@@ -863,6 +862,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  
 	      /* foo is set above with sprintf(foo,c_format,xtmp); */
 		  
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 	      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      posi[0] = inint( xm+2*barlengthx - rect[2]); 
 	      posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
@@ -1074,7 +1074,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      vy[1]=vy[0]+barlengthy;
 		  
 	      /* foo is set above with sprintf(foo,c_format,xtmp); */
-
+	      
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 	      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      posi[0] = inint( xm+2*barlengthx - rect[2]); 
 	      posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
@@ -1328,6 +1329,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -1567,6 +1569,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -1850,6 +1853,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  /* 	NumberFormat(foo,((integer) (yy[0] + i*ceil((yy[1]-yy[0])/yy[3]))), */
 		  /* 			     ((integer) yy[2])); */
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -2084,6 +2088,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		    
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -2365,6 +2370,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -2600,6 +2606,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		     
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -2873,6 +2880,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		     
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
@@ -3106,8 +3114,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  
 		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
 		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
-		     
+		  
+		  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
 		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  
 		  if (IsDownAxes(psubwin)){
 		    vx[1]=vx[0];
 		    vy[1]=vy[0]+iof/2;
