@@ -215,13 +215,31 @@ pack $uf.n -fill both -expand yes
 ###################################################################
 set w [Notebook:frame $uf.n "X Axis"]
 
+set theframe $w
+
+frame $theframe.frame -borderwidth 0
+pack $theframe.frame -anchor w -fill both
+
+#adding 25.05.2005
+set topflabel  [frame $theframe.frame.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options"]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options"]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side top -fill both -expand yes
+pack $topflabel -fill x -pady 2
+pack $titf1axes  -pady 2 -padx 4 -fill both -expand yes
+
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+#end adding
 
 
 #x label
 frame $w.frame.lbx -borderwidth 0
 pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 2m
+
 
 label $w.frame.xlabel -text "     Label:  "
 entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel 
@@ -249,7 +267,7 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 2m
 
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+    -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0 
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
 pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
@@ -262,7 +280,7 @@ pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 2m
 
 label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0 
+    -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0 
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
 pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 2m -padx 2m
@@ -287,6 +305,12 @@ eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Ital
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
 
+#adding 26.05.2005
+set w [$titf1axes getframe]
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
 
 #Xpos
 frame $w.frame.px  -borderwidth 0
@@ -308,11 +332,11 @@ pack $w.frame.xpos  -in  $w.frame.px  -expand 1 -fill x -pady 2m -padx 2m
 
 #Grid
 frame $w.frame.gridcol  -borderwidth 0
-pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 2m
+ pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 2m
 
 label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
-	 -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0 
+    -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0 
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
 pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
@@ -342,7 +366,7 @@ pack $w.frame.scalesw  -in $w.frame -side top   -fill x  -pady 2m
 
 label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
 radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n"    -command "toggleX" 
-radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable xToggle -value "l" 	  -command "toggleX" 	   
+ radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable xToggle -value "l" 	  -command "toggleX" 	   
 
 set numpage 0
 button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage" 
@@ -371,6 +395,8 @@ pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 #frame $w.sep -height 2 -borderwidth 1 -relief sunken
 #pack $w.sep -fill both -pady 10m  
 
+set w $theframe
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "DestroyGlobals; destroy $ww "
@@ -378,11 +404,28 @@ pack $w.b -side bottom
 
 ########### Y onglet ##############################################
 ###################################################################
- set w [Notebook:frame $uf.n "Y Axis"]
+set w [Notebook:frame $uf.n "Y Axis"]
 
+set theframe $w
+
+frame $theframe.frame -borderwidth 0
+pack $theframe.frame -anchor w -fill both
+
+#adding 25.05.2005
+set topflabel  [frame $theframe.frame.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options"]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options"]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side top -fill both -expand yes
+pack $topflabel -fill x -pady 2
+pack $titf1axes  -pady 2 -padx 4 -fill both -expand yes
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+#end adding
+
 
 #y label
 frame $w.frame.lby -borderwidth 0
@@ -434,9 +477,6 @@ $w.frame.fontsize set $ylabel_fontsize
 
 
 #Fonts Style
-
-
-
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
 
@@ -454,6 +494,12 @@ eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Ital
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
 
+#adding 26.05.2005
+set w [$titf1axes getframe]
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
 
 #Ypos
 frame $w.frame.py  -borderwidth 0
@@ -537,6 +583,8 @@ pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 # frame $w.sep -height 2 -borderwidth 1 -relief sunken
 # pack $w.sep -fill both -pady 10m  
 
+set w $theframe
+
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
@@ -544,11 +592,27 @@ pack $w.b -side bottom
 
 ########### Z onglet ##############################################
 ###################################################################
- set w [Notebook:frame $uf.n "Z Axis"]
+set w [Notebook:frame $uf.n "Z Axis"]
 
+set theframe $w
+
+frame $theframe.frame -borderwidth 0
+pack $theframe.frame -anchor w -fill both
+
+#adding 25.05.2005
+set topflabel  [frame $theframe.frame.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options"]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options"]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side top -fill both -expand yes
+pack $topflabel -fill x -pady 2
+pack $titf1axes  -pady 2 -padx 4 -fill both -expand yes
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+#end adding
 
 #z label
 frame $w.frame.lbz -borderwidth 0
@@ -616,6 +680,13 @@ eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Ital
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
+
+#adding 26.05.2005
+set w [$titf1axes getframe]
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
 
 #Zpos
 # frame $w.frame.pz  -borderwidth 0
@@ -698,7 +769,9 @@ pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
 # #sep bar
 # frame $w.sep -height 2 -borderwidth 1 -relief sunken
-# pack $w.sep -fill both -pady 20m  
+# pack $w.sep -fill both -pady 20m
+
+set w $theframe
 
 #exit button
 frame $w.buttons
