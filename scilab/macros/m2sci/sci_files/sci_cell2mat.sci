@@ -12,13 +12,13 @@ if is_empty(A) then
   tree.lhs(1).type=Type(Double,Real)
 elseif size(A.dims)==2
   if A.dims(1)<> -1 & A.dims(2)<> -1 then
-    lhs_dims1=0;
-    for i=1:A.dims(1)
-      lhs_dims1=A.contents.data(i).dims(1) + lhs_dims1
-    end
     lhs_dims2=0;
     for i=1:A.dims(2)
-      lhs_dims2=A.contents.data(1+(i-1)*tree.rhs(1).dims(1)).dims(2) + lhs_dims2
+      lhs_dims2=A.contents.data(i).dims(2) + lhs_dims2
+    end
+    lhs_dims1=0;
+    for i=1:A.dims(1)
+      lhs_dims1=A.contents.data(1+(i-1)*A.dims(2)).dims(1) + lhs_dims1
     end
     tree.lhs(1).dims=list(lhs_dims1,lhs_dims2)
     tree.lhs(1).type = A.contents.data(1).type
