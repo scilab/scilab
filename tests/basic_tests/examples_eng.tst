@@ -6561,8 +6561,8 @@ param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
  a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
  a.thickness = 2;
  h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
- h(1).children(1).foreground = 3 // first curve
- curve2 = h(2).children(2);
+ h.children(1).foreground = 3 // first curve
+ curve2 = h.children(2);
  curve2.foreground = 6;
  curve2.mark_style = 2;
 
