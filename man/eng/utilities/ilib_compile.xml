@@ -5,16 +5,17 @@
   <TITLE>ilib_compile</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>May 2000</DATE>
-  <SHORT_DESCRIPTION name="ilib_compile"> <VERB>ilib_build</VERB> utility: executes the makefile produced by <VERB>ilib_gen_Make</VERB></SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="ilib_compile"> ilib_build utility: executes the
+    makefile produced by ilib_gen_Make</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>libn=ilib_compile(lib_name,makename)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>libn=ilib_compile(lib_name,makename [,files])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>lib_name</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: : a character string, the generic name of the library without path and extension.</SP>
+          <SP>: a character string, the generic name of the library without path and extension.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -23,6 +24,14 @@
           <SP>: character string. The path of the Makefile file without extension.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>files</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optionnal vector of character strings. If files is given the make is performed on each 
+	    target contained in files then a whole make is performed </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>libn</PARAM_NAME>
         <PARAM_DESCRIPTION>
