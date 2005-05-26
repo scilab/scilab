@@ -65,6 +65,9 @@ addmenu(win,'Ok',list(2,'menu_ok'));
 addmenu(win,'Cancel',list(2,'menu_cancel'));
 
 f.pixmap='on';
+
+k1=[]; //default
+
 while %t
   select done
   case 0 then //click somehere
