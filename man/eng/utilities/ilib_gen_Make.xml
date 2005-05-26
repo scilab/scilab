@@ -7,7 +7,7 @@
   <DATE>May 2000</DATE>
   <SHORT_DESCRIPTION name="ilib_gen_Make"> utility for  <VERB>ilib_build</VERB>: produces a makefile for building shared libraries</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -38,7 +38,29 @@
       <PARAM_ITEM>
         <PARAM_NAME>with_gateway</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a boolean. If true a file with name &lt;lib_name&gt;_gateway is added.</SP>
+          <SP>: a boolean. If true a file with name &lt;lib_name&gt;_gateway is
+	    added. Default value is %t</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ldflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. It can be used to add specific linker options in the
+	    generated Makefile. Default value is ''</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>cflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. It can be used to add specific C compiler options in the
+	    generated Makefile. Default value is ''</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>fflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. It can be used to add specific Fortran compiler options in the
+	    generated Makefile. Default value is ''</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
