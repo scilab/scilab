@@ -655,7 +655,7 @@ void C2F(xpause)(str, sec_time, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
      double *dv4;
 { 
   int ms = (*sec_time)/1000; /** time is specified in microseconds in scilab**/
-  if (ms > 0)
+  if (*sec_time > 0)
     {
 #ifdef WIN32
       {
