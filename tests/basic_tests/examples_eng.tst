@@ -6739,6 +6739,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
+set figure_style new
 // x initialisation 
 x=[0:0.1:2*%pi]';
 //simple plot
@@ -8123,7 +8124,7 @@ xdel(winsid())
 // ../man/eng/gui/browsevar.xml
 //====================================================
 clear;lines(0);
-browsevar();]]>
+browsevar();
 xdel(winsid())
 
 //====================================================
@@ -8132,7 +8133,7 @@ xdel(winsid())
 clear;lines(0);
 answ=buttondialog("This is an example","ok");
 answ=buttondialog("Do the work?","yes|no|maybe","question");
-]]>
+
 xdel(winsid())
 
 //====================================================
@@ -8149,12 +8150,13 @@ delmenu('foo')
 
 xdel(winsid())
 
+// BUG here : unexistant file called by sciGUI (see below demoplay)
 //====================================================
 // ../man/eng/gui/demoplay.xml
 //====================================================
-clear;lines(0);
-demoplay();]]>
-xdel(winsid())
+//clear;lines(0);
+//demoplay();
+//xdel(winsid())
 
 //====================================================
 // ../man/eng/gui/editvar.xml
@@ -8163,7 +8165,7 @@ clear;lines(0);
 a=rand(10,10);
 editvar a;
 b=['hello';'good bye'];
-editvar b;]]>
+editvar b;
 xdel(winsid())
 
 //====================================================
@@ -8199,7 +8201,7 @@ for j=0:0.1:1,
     realtime(3*j);
     progressionbar(winId);
 end
-winclose(winId);]]>
+winclose(winId);
 xdel(winsid())
 
 //====================================================
@@ -8252,7 +8254,7 @@ for j=0:0.1:1,
     realtime(3*j);
     waitbar(j,winId);
 end
-winclose(winId);]]>
+winclose(winId);
 xdel(winsid())
 
 //====================================================
