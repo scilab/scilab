@@ -303,7 +303,10 @@ if test "$rest" = "yes"; then
      if test -n "$debug"; then
        $SCI/bin/zterm $zterm_arg -e gdb $SCI/bin/scilex $sci_args
      else
-       $sci_exe $sci_args &
+       $sci_exe $sci_args 
      fi
   fi
 fi
+
+
+

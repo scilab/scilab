@@ -303,7 +303,7 @@ if test "$rest" = "yes"; then
         $sci_exe $sci_args
     else
         sci_exe="do_scilex"
-        $sci_exe $sci_args &
+        $sci_exe $sci_args 
     fi
   fi
 fi
