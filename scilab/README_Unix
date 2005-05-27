@@ -1,5 +1,5 @@
-                           Scilab version 3.1-rc1
-                         **********************
+                           Scilab version 3.1
+                         ******************
  
  ******************************************************************************
   		         INSTALLATION GUIDE
@@ -15,7 +15,7 @@
  ******************************************************************************
  
  In the following, all the paths are relative to the Scilab directory 
- (scilab-3.1-rc1 directory).
+ (scilab-3.1 directory).
  
  I - TO INSTALL SCILAB
  *********************
@@ -96,7 +96,7 @@
 
         --with-atlas-library=DIR: use the optimized version of BLAS (ATLAS)
 
-        --prefix=DIR: scilab will install itself in DIR/scilab-3.1-rc1
+        --prefix=DIR: scilab will install itself in DIR/scilab-3.1
            and create 3 symlinks in DIR/bin
         By default prefix=/usr
         	 
