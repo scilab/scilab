@@ -1301,6 +1301,7 @@ c
       subroutine depfun(lunit,trace,first)
 c     depile une macro ou un execstr
 c Bug 1091 corrected - Francois VOGEL November 2004
+c Bug 1417 corrected - Francois VOGEL May 2005
       include '../stack.h'
       integer lunit
       logical trace,first,callback
@@ -1340,7 +1341,6 @@ c
             if(first) then
                buf='at line '
                m=11
-               first=.false.
                nlc=0
                call linestore(lct(8))
             else
@@ -1354,7 +1354,10 @@ c
             m=m+13
             if (km.le.isiz) then
                call cvnamel(idstk(1,km),buf(m+1:m+nlgh),1,leng)
-               call funnamestore(buf(m+1:m+nlgh),leng) 
+               if(first) then
+                  call funnamestore(buf(m+1:m+nlgh),leng)
+                  first=.false.
+               endif
                m=m+leng
             endif
          else
@@ -1384,8 +1387,11 @@ c
                call cvstr(m,lin(l1),buf(1:m),1)
                call basout(io,lunit,buf(1:m))
                if(istk(ilk).eq.10) then
-                  if(m.gt.24) m=24
-                  call funnamestore(buf(1:m),m) 
+                  if(first) then
+                     if(m.gt.24) m=24
+                     call funnamestore(buf(1:m),m) 
+                     first=.false.
+                  endif
                endif
             endif
          endif
@@ -1399,6 +1405,7 @@ c
       subroutine depexec(lunit,trace,first,pflag)
 c     pflag ,indique si c'est une pause qui a ete depilee
 c Bug 1091 corrected - Francois VOGEL November 2004
+c Bug 1417 corrected - Francois VOGEL May 2005
       include '../stack.h'
       logical trace,first,pflag
       integer mode(2),lunit,ll
@@ -1415,7 +1422,6 @@ c
             if(first) then
                buf='at line '
                m=11
-               first=.false.
                nlc=0
                call linestore(lct(8))
             else
@@ -1437,8 +1443,11 @@ c
             endif
             call cvstr(m,lin(l1),buf,1)
             call basout(io,lunit,buf(1:m))
-            if(m.gt.24) m=24
-            call funnamestore(buf(1:m),m) 
+            if(first) then
+               if(m.gt.24) m=24
+               call funnamestore(buf(1:m),m) 
+               first=.false.
+            endif
          endif
          mode(1)=0
          call clunit(-rio,buf,mode)
@@ -1461,7 +1470,7 @@ c     current statement
 c!
       include '../stack.h'
 
-      integer sadr
+c      integer sadr
 
 c
       character mg*9,bel*1,line*340
