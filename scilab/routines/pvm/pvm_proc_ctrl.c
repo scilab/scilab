@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.14  2005/05/27 13:52:29  chancelier
+     headers added for Unix
+
      Revision 1.13  2005/01/07 20:49:25  cornet
      update for compilation via makefiles (windows)
 
@@ -100,6 +103,7 @@
      Premier commit pour les control process PVM
 
 ***/
+
 #if defined(__EDG__)
 #include <time.h>
 #endif
@@ -134,7 +138,6 @@
 #ifdef __ABSC__ /* For the definition of _stricmp */
 #include <ctype.h>
 
-
 int _stricmp(const char *s1, const char *s2)
 {
   while (tolower(*s1) == tolower(*s2))
@@ -153,13 +156,10 @@ int _stricmp(const char *s1, const char *s2)
 #define stat _stat 
 #endif 
 
-#ifdef WIN32
+#include <stdarg.h> 
 extern void sciprint_nd (char *fmt,...);
 extern void sciprint (char *fmt,...);
-extern int pvmendtask();
-#endif
-
-
+extern int pvmendtask(void);
 
 typedef char *strings;
 
@@ -260,56 +260,56 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
   argv[1] = (char*)0;
   if (!strcmp(hostfile, "null")) 
     {
-	  /* on ne spécifie pas de hostfile */
+      /* on ne spécifie pas de hostfile */
       /* on essaye de prendre
-	   * $HOME/.pvmd.conf, puis
-	   * $SCI/.pvmd.conf sinon on laisse
-	   *	 faire pvmd...
-	   */ 
+       * $HOME/.pvmd.conf, puis
+       * $SCI/.pvmd.conf sinon on laisse
+       *	 faire pvmd...
+       */ 
       if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
-		if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-		  (void) fprintf(stderr, "Error malloc in pvm_error\n");
-		  *res = PvmNoMem;
-		  return;
-		}
-		strcpy(path, rd);
-		strcat(path, "/.pvmd.conf"); 
-		if (stat(path, &buf) == 0){
-		  argc = 1;
-		  argv[0] = path;
-		  sciprint_nd("The configuration file\n %s\nis used.\n", path);
-		} else {
-		  sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
-		  sciprint_nd("\tbut there exists no configuration file:\r\n");
-		  sciprint_nd("\t%s\r\n", path);
-		  free(path);
-		}
+	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+	  *res = PvmNoMem;
+	  return;
+	}
+	strcpy(path, rd);
+	strcat(path, "/.pvmd.conf"); 
+	if (stat(path, &buf) == 0){
+	  argc = 1;
+	  argv[0] = path;
+	  sciprint_nd("The configuration file\n %s\nis used.\n", path);
+	} else {
+	  sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
+	  sciprint_nd("\tbut there exists no configuration file:\r\n");
+	  sciprint_nd("\t%s\r\n", path);
+	  free(path);
+	}
       } /* PVM_ROOT + HOME */
       if (!argc && (rd = getenv("SCI"))){
-		if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-		  (void) fprintf(stderr, "Error malloc in pvm_error\n");
-		  *res = PvmNoMem;
-		  return;
-		}
-		strcpy(path, rd);
-		strcat(path, "/.pvmd.conf"); 
-		if (stat(path, &buf) == 0){
-	  	  sciprint_nd("The standard configuration file $SCI/.pvmd.conf will be used.\r\n");
-		  sciprint_nd("\tWith SCI=%s\r\n",rd);
-		  sciprint_nd("\tSCI will have to be set on remote hosts \r\n");
-		  sciprint_nd("\tin order to spawn scilab\r\n",rd);
-		  argc = 1;
-		  argv[0] = path;
-		} else {
-		  free(path);
-		  sciprint_nd("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
-		  sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
-		  sciprint_nd("\t (Cf. man pvmd3)\r\n");
-		}
+	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+	  *res = PvmNoMem;
+	  return;
+	}
+	strcpy(path, rd);
+	strcat(path, "/.pvmd.conf"); 
+	if (stat(path, &buf) == 0){
+	  sciprint_nd("The standard configuration file $SCI/.pvmd.conf will be used.\r\n");
+	  sciprint_nd("\tWith SCI=%s\r\n",rd);
+	  sciprint_nd("\tSCI will have to be set on remote hosts \r\n");
+	  sciprint_nd("\tin order to spawn scilab\r\n",rd);
+	  argc = 1;
+	  argv[0] = path;
+	} else {
+	  free(path);
+	  sciprint_nd("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
+	  sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
+	  sciprint_nd("\t (Cf. man pvmd3)\r\n");
+	}
       } /* SCI */
     } else {
       if (stat(hostfile, &buf) == -1){
-		sciprint("%s: No such file or directory\r\n", hostfile);
+	sciprint("%s: No such file or directory\r\n", hostfile);
       } else {
 	argv[0] = hostfile;
 	argc = 1;
