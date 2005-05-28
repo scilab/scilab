@@ -703,6 +703,9 @@ cd .. &gt;nul
 				RelativePath=".\fromjava.c">
 			</File>
 			<File
+				RelativePath=".\getmemorysize.c">
+			</File>
+			<File
 				RelativePath=".\getvalf.c">
 			</File>
 			<File
@@ -762,6 +765,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\fromjava.h">
+			</File>
+			<File
+				RelativePath=".\getmemorysize.h">
 			</File>
 			<File
 				RelativePath="..\system2\intmacr2tree.h">

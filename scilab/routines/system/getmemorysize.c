@@ -1,0 +1,49 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2005 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#include "getmemorysize.h"
+/*-----------------------------------------------------------------------------------*/
+int C2F(intgetmemorysize) _PARAMS((char *fname))
+{
+#define kooctet 1024
+	int memorysizeKO=0;
+	static int l1,n1,m1;
+	int *paramoutINT=NULL;
+
+#if defined(WIN32)
+	MEMORYSTATUS stat;
+#endif
+
+#if defined(hpux)
+	struct pst_static pst;
+#endif
+
+	paramoutINT=(int*)malloc(sizeof(int));
+
+	Rhs=Max(Rhs,0);
+	CheckRhs(0,0) ;
+	CheckLhs(0,1);
+
+#if defined(WIN32)
+	GlobalMemoryStatus (&stat);
+	memorysizeKO=stat.dwTotalPhys/kooctet;
+#else
+	#if defined(hpux)
+		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
+		memorysizeKO=pst.physical_memory/kooctet;
+	#else /* Linux ,Solaris and others */
+		memorysizeKO=sysconf(_SC_AVPHYS_PAGES)/kooctet;
+	#endif
+#endif
+	n1=1;
+	*paramoutINT=memorysizeKO;
+	CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
+	LhsVar(1)=Rhs+1;
+
+	C2F(putlhsvar)();
+	if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
