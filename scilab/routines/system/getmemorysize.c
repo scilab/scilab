@@ -31,9 +31,9 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 #else
 	#if defined(hpux)
 		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
-		memorysizeKO=pst.physical_memory/kooctet;
+		memorysizeKO=(pst.physical_memory*4)/kooctet;
 	#else /* Linux ,Solaris and others */
-		memorysizeKO=sysconf(_SC_AVPHYS_PAGES)/kooctet;
+		memorysizeKO=(sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
 	#endif
 #endif
 	n1=1;
