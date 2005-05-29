@@ -47,7 +47,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       }
       memset(command,'\0',bsiz);
       strncpy(command,argv[1],bsiz-1);
-      sciprint("Warning: ScilabTCLEval command is too long and has been truncated to %d characters!\r\n",bsiz-1);
+      sciprint("Warning: ScilabEval command is too long and has been truncated to %d characters!\r\n",bsiz-1);
     }
 	else
 	{
