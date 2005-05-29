@@ -142,7 +142,8 @@ proc exitapp { {quittype yesno} } {
     global listoftextarea
     if {[getdbstate] == "DebugInProgress"} canceldebug_bp
     foreach textarea $listoftextarea {
-        closecur $quittype
+        set wascanceled [closecur $quittype]
+        if {$wascanceled == "Canceled"} {break}
     }
 }
 

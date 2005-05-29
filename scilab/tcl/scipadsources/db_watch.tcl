@@ -1,4 +1,5 @@
 proc showwatch_bp {} {
+# Create the watch window
     global pad watch
     global lbvarname lbvarval scrolly
     global watchvars watchvarsvals buttonAddw
@@ -9,6 +10,7 @@ proc showwatch_bp {} {
     global showcallstackarea togglecsabutton
     global watchvpane1mins watchvpane2mins watchvsashcoord
     global watchhpane1mins watchhpane2mins watchhsashcoord
+    global debugstateindicator
 
     # Hardwired size, but how else?
     set heightofwatchwithnoarea 105 ;# 85 enough for windows, 105 for my Linux
@@ -71,7 +73,13 @@ proc showwatch_bp {} {
     pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
 
-    pack $watch.f.f1 -anchor w
+    frame $watch.f.f1.f1fr
+    set debugstateindicator $watch.f.f1.f1fr.debugstateindicator
+    canvas $debugstateindicator -relief ridge -width 15 -height 15
+    updatedebugstateindicator_bp
+
+    pack $watch.f.f1.f1fr $debugstateindicator -expand 1
+    pack $watch.f.f1 $watch.f.f1.f1fr -anchor w
 
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
@@ -214,6 +222,7 @@ proc showwatch_bp {} {
 
     update
     if { $firsttimeinshowwatch == "true" } { 
+        getdebuggersciancillaries_bp
         if {$showwatchvariablesarea == "true"} {
             focus $buttonAddw
         }
@@ -241,6 +250,7 @@ proc showwatch_bp {} {
 }
 
 proc updatewatch_bp {} {
+# update the content of the watch window without redrawing it
     global watch watchvars lbvarname lbvarval watchvarsvals
     global callstackwidget callstackcontent
     if {[info exists watch]} {
@@ -278,6 +288,8 @@ proc closewatch_bp {w {dest "destroy"}} {
 }
 
 proc getfromshell { {startitem 3} } {
+# Update the watched variables content by getting their values from Scilab
+# Also update the call stack area and update the watch window display
     global watchvars callstackcontent
     foreach var $watchvars {
         getonefromshell $var
@@ -289,9 +301,11 @@ proc getfromshell { {startitem 3} } {
 }
 
 proc getonefromshell {wvar {opt "seq"}} {
+# Update one single watched variable content by getting its value from Scilab
+# The watch window display is not updated
     global watchvars watchvarsvals unklabel
     set fullcomm ""
-    set comm1 "if exists(\"$wvar\"),"
+    set comm1 "if ext_exists(\"$wvar\"),"
     set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($wvar) \"\"\"+FormatStringsForDebugWatch($wvar)+\"\"\"}\");"
     set comm3 "else"
     set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($wvar) \"\"$unklabel\"\"}\");"
@@ -300,17 +314,99 @@ proc getonefromshell {wvar {opt "seq"}} {
     ScilabEval $fullcomm $opt
 }
 
-proc createsetinscishellcomm {} {
+proc createsetinscishellcomm {setofvars} {
+# Create three command strings used outside of this proc to send to Scilab new values for variables
+# Input:  a list of variable names to consider
+# Output: 1. execstr("var1=var1_value;...;varN=varN_value","errcatch","m");
+#         2. [var1,...,varN]=resume(var1_value,...,varN_value);
+#         3. execstr("var1",...,varN","errcatch","n");
     global watchvars watchvarsvals unklabel
     set fullcomm ""
     set varset ""
     set retcomm ""
-    foreach var $watchvars {
-        if {$watchvarsvals($var) != $unklabel} {
+    set viscomm ""
+    foreach var $setofvars {
+        if {[string first $unklabel $watchvarsvals($var)] == -1} {
+            # Variable is fully known and defined
             set onecomm [duplicatechars "$var=$watchvarsvals($var);" "\""]
             set onecomm [duplicatechars $onecomm "'"]
             set fullcomm [concat $fullcomm $onecomm]
-            set varset [concat $varset $var]
+            set oppar [string first "\(" $var]
+            if {$oppar == -1} {
+                set varset [concat $varset $var]
+            } else {
+                set varset [concat $varset [string range $var 0 [expr $oppar-1]]]
+            }
+        } else {
+            if {$watchvarsvals($var) == $unklabel} {
+                # Variable is fully undefined, nothing to do
+            } else {
+                # Variable is partially undefined (ex: certain elements of a list)
+                # In this case, we're dealing with list(elt1,..,eltn,$unklabel,eltm,..,eltp)
+                # and $unklabel can appear any number of times >1 in the elements list
+                # Result: variable is split into:
+                # $var=list();$var($curind)=elt1; and so on, forgetting the undefined elements
+                # marked as $unklabel. This recreates truly undefined elements in Scilab
+                set oppar [string first "\(" $watchvarsvals($var)]
+                set listtype [string range $watchvarsvals($var) 0 [expr $oppar-1]]
+                if {$listtype != "list"} {
+                    # Undefined elements are forbidden in any variable of type different than "list"
+                    tk_messageBox -message [concat \
+                        [mc "Undefined elements are not legal in variable"] $var \
+                        [mc ".\nThis variable will not be updated in Scilab."] ]\
+                        -icon warning -type ok \
+                        -title [mc "Illegal undefined element found"]
+                    continue
+                }
+                set onecomm "$var=[string range $watchvarsvals($var) 0 $oppar]);"
+                set fullcomm [concat $fullcomm $onecomm]
+                set start [expr $oppar+1]
+                set anotherelt "true"
+                set curind 0
+                while {$anotherelt == "true"} {
+                    # Parse for next element
+                    set i $start
+                    set nestlevel 0
+                    set quotenest 0
+                    set curchar [string index $watchvarsvals($var) $i]
+                    while { !( ($curchar == "," && $nestlevel == 0) || \
+                               $nestlevel == -1 ) } {
+                        if {$curchar == "\"" || $curchar == "'"} {
+                            if {$quotenest == 0} {
+                                incr quotenest
+                            } else {
+                                incr quotenest -1
+                            }
+                        }
+                        if { ($curchar == "\(" || $curchar == "\[") && \
+                              $quotenest == 0 } {incr nestlevel}
+                        if { ($curchar == "\)" || $curchar == "\]") && \
+                              $quotenest == 0 } {incr nestlevel -1}
+                        incr i
+                        set curchar [string index $watchvarsvals($var) $i]
+                    }
+                    if {$nestlevel == -1} {
+                        # We went out of the while because $nestlevel == -1, which means
+                        # that we have just reached the end of the elements list
+                        set anotherelt "false"
+                        incr i -1
+                    }
+                    incr curind
+                    set curval [string range $watchvarsvals($var) $start [expr $i-1]]
+                    if {$curval != $unklabel} { 
+                        set onecomm [duplicatechars "$var\($curind\)=$curval;" "\""]
+                        set onecomm [duplicatechars $onecomm "'"]
+                        set fullcomm [concat $fullcomm $onecomm]
+                    }
+                    set start [expr $i+1]
+                    set oppar [string first "\(" $var]
+                    if {$oppar == -1} {
+                        set varset [concat $varset $var]
+                    } else {
+                        set varset [concat $varset [string range $var 0 [expr $oppar-1]]]
+                    }
+                }
+            }
         }
     }
     if {$fullcomm != ""} {
@@ -318,14 +414,20 @@ proc createsetinscishellcomm {} {
         foreach var $varset {
             set retcomm "$retcomm,$var"
         }
-        set retcomm [string range $retcomm 1 end]
+        set retcomm [string range $retcomm 1 end] ;# remove leading comma
+        # purpose of viscomm: to create a copy that is local to the current context,
+        # otherwise variable visibility problems arise
+        set viscomm "execstr(\"$retcomm\",\"errcatch\",\"n\");"
         set retcomm "\[$retcomm\]=resume($retcomm);"
     }
-    return [list $fullcomm $retcomm]
+    return [list $fullcomm $retcomm $viscomm]
 }
 
 proc duplicatechars {st ch} {
-# warning: $ch must be a single character string (but it works also for the string "\"")
+# Duplicate character $ch in input string $st
+# This is used ease construction of Scilab command strings. Duplication of quotes for
+# instance is done at once after the command string has been constructed.
+# Warning: $ch must be a single character string (but it works also for the string "\"")
     set indquot [string first $ch $st 0]
     while {$indquot != -1} {
         set st [string replace $st $indquot $indquot "$ch$ch"]
@@ -335,6 +437,7 @@ proc duplicatechars {st ch} {
 }
 
 proc update_bubble_watch {type butnum mousexy} {
+# Manage the popup bubbles that display the name and accelerator of the watch window icons
     global pad watchwinicons
     set butname [lindex $watchwinicons $butnum]
     set txt [$pad.filemenu.debug entrycget $butnum -label]
@@ -388,6 +491,7 @@ proc update_bubble {type widgetname mousexy bubbletxt} {
 }
 
 proc togglewatchvariablesarea {} {
+# Show or hide the watch window variables area
     global watch
     global showwatchvariablesarea togglewvabutton
     closewatch_bp $watch
@@ -402,6 +506,7 @@ proc togglewatchvariablesarea {} {
 }
 
 proc togglecallstackarea {} {
+# Show or hide the watch window call stack area
     global watch
     global showcallstackarea togglecsabutton
     closewatch_bp $watch

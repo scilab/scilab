@@ -19,6 +19,7 @@ proc deletetext {} {
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
     reshape_bp
+    $textareacur see insert
 }
 
 proc backspacetext {} {
@@ -42,6 +43,7 @@ proc backspacetext {} {
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
     reshape_bp
+    $textareacur see insert
 }
 
 proc cuttext {} {
@@ -58,6 +60,7 @@ proc cuttext {} {
                               [$textareacur index "$i1 lineend"]
     selection clear
     reshape_bp
+    $textareacur see insert
 }
 
 proc copytext {} {
@@ -83,6 +86,7 @@ proc pastetext {} {
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i2 wordend"]
     reshape_bp
+    $textareacur see insert
 }
 
 proc button2copypaste {w x y} {

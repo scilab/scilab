@@ -77,7 +77,7 @@ proc tonextbreakpoint_bp {} {
 }
 
 proc execfile_bp {} {
-    global funnameargs listoftextarea funsinbuffer waitmessage
+    global funnameargs listoftextarea funsinbuffer waitmessage watchvars
     if {[checkscilabbusy] == "OK"} {
         showinfo $waitmessage
         set removecomm [removescilab_bp "no_output"]
@@ -119,7 +119,7 @@ proc execfile_bp {} {
             }
             if {$setbpcomm != ""} {
                 setdbstate "DebugInProgress"
-                set commnvars [createsetinscishellcomm]
+                set commnvars [createsetinscishellcomm $watchvars]
                 set watchsetcomm [lindex $commnvars 0]
                 if {$watchsetcomm != ""} {
                     ScilabEval "$watchsetcomm"  "seq"
@@ -163,11 +163,11 @@ proc stepbystep_bp {} {
 }
 
 proc resume_bp {} {
-    global funnameargs waitmessage
+    global funnameargs waitmessage watchvars
     if {[checkscilabbusy] == "OK"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
-            set commnvars [createsetinscishellcomm]
+            set commnvars [createsetinscishellcomm $watchvars]
             set watchsetcomm [lindex $commnvars 0]
             if {$watchsetcomm != ""} {
                 ScilabEval "$watchsetcomm" "seq"

@@ -1076,3 +1076,32 @@ Francois VOGEL, 17/05/05
  * Bug 1228 fixed - Cancel button removed when Scipad is exited because of
    a Scilab quit (but kept when exit is called from Scipad)
  * version --> still 5.0
+
+Francois VOGEL, 29/05/05
+ * Bug fixed: Right-click on a variable to add it as a watch did not work if
+   this variable was on a breakpointed line
+ * Fixed: Backspace or the like now scroll the main window to keep the cursor
+   visible
+ * Fixed: If a watch variable is a list containing one or more undefined
+   items, then these items became defined (as a string) when running to the
+   next breakpoint. They now stay as properly undefined items
+ * Fixed: An unknown variable (getvaluefromscilab) error could pop up during
+   quick add watch if the added variable did already exist as a watch
+ * The add variable box now adjusts dynamically its width to be just large
+   enough to hold its content
+ * The debugger now allows for watching an element of a variable, and not
+   only the full variable array (i.e. to watch things like d(1,3) or d(i)
+   or even sub-arrays such as d(1:3) and not only d if d is a matrix or a
+   list) - Warning: it can watch b(16/8+3*2-1) but not b(16/8+(3*2)-1) since
+   only one set of parentheses or brackets is allowed - Expression watching
+   such as a+b or plot(x) still not yet implemented
+ * Duplicated in the watch window the visual indication about the debugger
+   status that is already displayed in the statusbar of the main window
+ * The watch window can now be opened before execution is configured
+ * The watch variables of type poly are now displayed with the unknown
+   variable given by varn. Previously it was OK if and only if degree>0
+ * '' strings in comments are correclty marked as strings if Options/Colorize
+   'Strings' is untagged and retagged (fixed by Enrico)
+ * Cancelling closure of modified buffers does no longer ask multiple times
+   for confirmation
+ * version --> 5.1

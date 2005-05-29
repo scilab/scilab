@@ -13,7 +13,7 @@ proc showpopup2 {} {
         # (constructed from help names in Scilab) then the selection is probably
         # a valid variable to watch and the quick add watch menu should pop up
         if {$mouseoversel == "true"} {
-            if {[$ta tag names sel.first] == "sel" } {
+            if {[lsearch [$ta tag names sel.first] "sel"] != -1} {
                 set watchvar [string trim [$ta get sel.first sel.last]]
                 regexp {\A[\%_\#\!\$\?a-zA-Z][_\#\!\$\?a-zA-Z0-9]*\Z} $watchvar validwatchvar
             }

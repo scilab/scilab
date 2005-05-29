@@ -351,9 +351,11 @@ proc refreshQuotedStrings {} {
                     $w mark set last "$ind + 1c"
                 } else {
                     $w mark set last "$ind + $num c"
-                    # textquoted deletes any other tag
-                    remalltags $w $ind last
-                    $w tag add textquoted $ind last
+                    if {[$w tag names $ind] != "rem2"} {
+                        # textquoted deletes any other tag
+                        remalltags $w $ind last
+                        $w tag add textquoted $ind last
+                    }
                 }          
             } else break
           }

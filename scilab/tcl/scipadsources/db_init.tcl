@@ -1,6 +1,6 @@
 set funnameargs ""
 set funnames ""
-set unklabel "<?>"
+set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly in FormatStringsForDebugWatch.sci
 set curdropind 0
 set dragndroplb ""
 set watchvars ""

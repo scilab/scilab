@@ -37,19 +37,20 @@
 
 proc setdbstate {state} {
     global debugstate
-    if {$state == "NoDebug"} {
-        removeallactive_bp
-    }
     if {$state == "ReadyForDebug"} {
-        if {$debugstate == "NoDebug"} {
-            getdebuggersciancillaries_bp
+        if {[info exists debugstate]} {
+            if {$debugstate == "NoDebug"} {
+                getdebuggersciancillaries_bp
+            }
         }
+    }
+    if {$state == "NoDebug" || $state == "ReadyForDebug"} {
         removeallactive_bp
     }
     # Before this point, $state is the new debug state, and $debugstate is the old one
     set debugstate $state
     setdbmenuentriesstates_bp
-    setdbstatevisualhint_bp
+    setdbstatevisualhints_bp
 }
 
 proc getdbstate {} {
@@ -80,8 +81,8 @@ global dev_debug
         bind all <Control-F11> {}
         $dm entryconfigure  9 -state disabled
         bind all <$Shift_F12> {}
-        $dm entryconfigure 11 -state disabled
-        bind all <Control-F12> {}
+        $dm entryconfigure 11 -state normal
+        bind all <Control-F12> {showwatch_bp}
         $dm entryconfigure 13 -state disabled
         bind all <F12> {}
         $dm entryconfigure 14 -state disabled
@@ -181,9 +182,10 @@ proc getdebuggersciancillaries_bp {} {
     global env
     ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""
     ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/FormatWhereForDebugWatch.sci\""
+    ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/ext_exists.sci\""
 }
 
-proc setdbstatevisualhint_bp {} {
+proc setdbstatevisualhints_bp {} {
     global pad
     global colormen
     if {[getdbstate] == "NoDebug"} {
@@ -195,6 +197,16 @@ proc setdbstatevisualhint_bp {} {
     } elseif {[getdbstate] == "DebugInProgress"} {
         $pad.statusmes configure -background tomato3
         showinfo [mc "Debug in progress"]
+    }
+    updatedebugstateindicator_bp
+}
+
+proc updatedebugstateindicator_bp {} {
+    global watch debugstateindicator pad
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            $debugstateindicator configure -background [$pad.statusmes cget -background]
+        }
     }
 }
 

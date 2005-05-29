@@ -86,7 +86,7 @@ proc closecur { {quittype yesno} } {
 # close current buffer
     removescilabbuffer_bp "with_output" [gettextareacur]
     removefuns_bp [gettextareacur]
-    closefile [gettextareacur] $quittype
+    return [closefile [gettextareacur] $quittype]
 }
 
 proc closefile {textarea {quittype yesno} } {
@@ -101,12 +101,13 @@ proc closefile {textarea {quittype yesno} } {
         case $answer {
             yes { filetosave $textarea; byebye $textarea }
             no {byebye $textarea}
-            cancel {}
+            cancel {return "Canceled"}
         }
     } else {
         # buffer was not modified, so just close it
         byebye $textarea
     }
+    return "Done"
 }
 
 proc byebye {textarea} {

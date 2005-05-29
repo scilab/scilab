@@ -245,7 +245,7 @@ proc OKconf_bp {w} {
         }
     } else {       # .sce case
         set funnameargs ""
-#        setdbstate "ReadyForDebug"
+        setdbstate "ReadyForDebug"
     }
     destroy $w
 }
