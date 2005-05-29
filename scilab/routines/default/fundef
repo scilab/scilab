@@ -264,6 +264,7 @@
 {"fromjava",        IN_matsys,	63,	2},
 {"Calendar",        IN_matsys,	64,	2},
 {"getmemorysize",   IN_matsys,	65,	2},
+{"getfreememory",   IN_matsys,	66,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  

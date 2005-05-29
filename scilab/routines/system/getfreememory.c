@@ -2,9 +2,9 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "getmemorysize.h"
+#include "getfreememory.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(intgetmemorysize) _PARAMS((char *fname))
+int C2F(intgetfreememory) _PARAMS((char *fname))
 {
 #define kooctet 1024
 	int memorysizeKO=0;
@@ -27,13 +27,13 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 
 #if defined(WIN32)
 	GlobalMemoryStatus (&stat);
-	memorysizeKO=stat.dwTotalPhys/kooctet;
+	memorysizeKO=stat.dwAvailPhys/kooctet;
 #else
 	#if defined(hpux)
 		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
-		memorysizeKO=(pst.physical_memory)/kooctet;
+		memorysizeKO=(pst.psd_free)/kooctet;
 	#else /* Linux ,Solaris and others */
-		memorysizeKO=(sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+		memorysizeKO=(sysconf(_SC_AVPHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
 	#endif
 #endif
 	n1=1;
