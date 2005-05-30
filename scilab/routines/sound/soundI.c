@@ -132,12 +132,11 @@ int C2F(playsound)(char *fname,unsigned long fname_len)
   PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
   return 0;
 #else 
-  /* linux and alsa .... 
-   * a player should be detected by configure 
+  /* linux : a player should be detected by configure ?
    */
   char system_cmd[FILENAME_MAX+10];
   int rep ;
-  sprintf(system_cmd,"aplay  %s",filename);
+  sprintf(system_cmd,"play  %s",filename);
   rep = system(system_cmd);
   return rep;
 #endif 
