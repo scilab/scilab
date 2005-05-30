@@ -121,19 +121,27 @@ int intsloadwave(char *fname,unsigned long fname_len)
 
 /* Play Sound for windows */
 /* Allan CORNET 18/01/2004 */
+
 int C2F(playsound)(char *fname,unsigned long fname_len)
 {
-	#ifdef WIN32
+
+#ifdef WIN32
   /* Stop Playing*/
-	PlaySound(NULL,NULL,SND_PURGE);	
-
-	/* Play Wav file	*/
-    PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
-    #endif
-     	
-	return 0;
+  PlaySound(NULL,NULL,SND_PURGE);	
+  /* Play Wav file	*/
+  PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
+  return 0;
+#else 
+  /* linux and alsa .... 
+   * a player should be detected by configure 
+   */
+  char system_cmd[FILENAME_MAX+10];
+  int rep ;
+  sprintf(system_cmd,"aplay  %s",filename);
+  rep = system(system_cmd);
+  return rep;
+#endif 
 }
-
 
 
 /******************************************
@@ -142,18 +150,29 @@ int C2F(playsound)(char *fname,unsigned long fname_len)
  ******************************************/
 int intPlaysound (char *fname,unsigned long fname_len)
 {
-  int m1,n1,l1;
+  int m1,n1,l1,un=1,rep,l2;
   CheckRhs(1,1);
-  
+  CheckLhs(0,1);
   /*  checking variable file */
   GetRhsVar(1,"c",&m1,&n1,&l1);
   /*** first call to get the size **/
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
-  
-  C2F(playsound)(filename,strlen(filename));
-  
-  LhsVar(1)=0;
+  rep = C2F(playsound)(filename,strlen(filename));
+  if ( Lhs == 1 ) 
+    {
+      CreateVar(2,"d",&un,&un,&l2);
+      *stk(l2)= rep;
+      LhsVar(1)=2;
+    }
+  else
+    {
+      if ( rep == -1 ) 
+	{
+	  Scierror(999,"Error in PlaySound\r\n");
+	}
+      LhsVar(1)=0;
+    }
   PutLhsVar();
   return 0;
 }
