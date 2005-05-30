@@ -23,21 +23,29 @@ endfunction
 // Execution du fichier Java
 function ExecJava(filename,buildref)
   currentdir=pwd();
+  repfilename='';
   chdir(SCI+'\bin');
   if ~MSDOS then
     setenv('LD_LIBRARY_PATH',pwd());
     setenv('CLASSPATH','.:'+pwd());
   end
   [path,fname,extension]=fileparts(filename);
-  [rep,stat]=unix_g('java '+fname);
-  chdir(currentdir);
   if (buildref == %T) then
-  	fd=mopen(fname+'.dia.ref','w');
+  	if MSDOS then
+  	  repfilename=currentdir+'\'+fname+'.dia.ref';
+  	else
+  		repfilename=currentdir+'/'+fname+'.dia.ref';
+    end
   else
-  	fd=mopen(fname+'.dia','w');
+  	if MSDOS then
+  		repfilename=currentdir+'\'+fname+'.dia';
+  	else
+  		repfilename=currentdir+'/'+fname+'.dia';
+    end
   end
-  mputl(rep,fd);
-  mclose(fd);
+  commandline='java '+fname +' > '+repfilename;
+  unix(commandline);
+  chdir(currentdir);
 endfunction
 //---------------------------------------------------------------
 // Nettoyage apres tests du fichier .class généré
@@ -46,7 +54,7 @@ function CleanClass(filename)
   chdir(SCI+'\bin');
   [path,fname,extension]=fileparts(filename);
   if MSDOS then
-    unix_s('del '+fname+'.class');
+    //unix_s('del '+fname+'.class');
   else
   	unix_s('rm -f '+fname+'.class');
   end
