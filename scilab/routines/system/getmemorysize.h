@@ -12,7 +12,12 @@
 		#include <sys/param.h>
 		#include <sys/pstat.h>
 	#else
-		#include <unistd.h>
+		#if defined(__APPLE__) 
+			#include <sys/types.h>
+			#include <sys/sysctl.h>
+		#else	 /* Linux ,Solaris and others */
+			#include <unistd.h>
+		#endif
 	#endif
 #endif
 

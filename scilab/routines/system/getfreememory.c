@@ -33,7 +33,23 @@ int C2F(intgetfreememory) _PARAMS((char *fname))
 		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
 		memorysizeKO=(pst.psd_free)/kooctet;
 	#else /* Linux ,Solaris and others */
-		memorysizeKO=(sysconf(_SC_AVPHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+		#if defined(__APPLE__) 
+		{
+			vm_statistics_data_t page_info;
+			vm_size_t pagesize;
+			mach_msg_type_number_t count;
+			kern_return_t kret;
+
+			pagesize = 0;
+			kret = host_page_size (mach_host_self(), &pagesize);
+			count = HOST_VM_INFO_COUNT;
+
+			kret = host_statistics (mach_host_self(), HOST_VM_INFO,(host_info_t)&page_info, &count);
+			memorysizeKO = page_info.free_count*pagesize / 1024;
+		}
+		#else /* Linux ,Solaris and others */
+			memorysizeKO=(sysconf(_SC_AVPHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+		#endif
 	#endif
 #endif
 	n1=1;

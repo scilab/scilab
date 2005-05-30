@@ -12,7 +12,12 @@
 		#include <sys/param.h>
 		#include <sys/pstat.h>
 	#else
-		#include <unistd.h>
+		#if defined(__APPLE__) 
+			#import <mach/host_info.h>
+			#import <mach/mach_host.h>
+		#else
+			#include <unistd.h>
+		#endif
 	#endif
 #endif
 

@@ -32,8 +32,23 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 	#if defined(hpux)
 		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
 		memorysizeKO=(pst.physical_memory)/kooctet;
-	#else /* Linux ,Solaris and others */
-		memorysizeKO=(sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+	#else 
+		#if defined(__APPLE__) 
+		{
+			size_t len;
+			int total;
+			int mib[2];
+
+			mib[0] = CTL_HW;
+			mib[1] = HW_PHYSMEM;
+			len = sizeof (total);
+ 
+			sysctl(mib, 2, &total, &len, NULL, 0);
+			memorysizeKO = total/1024;
+		}
+		#else /* Linux ,Solaris and others */
+			memorysizeKO=(sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+		#endif
 	#endif
 #endif
 	n1=1;
