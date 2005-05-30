@@ -45,10 +45,12 @@ function [y]=toolboxes(path,flag,force)
   end
 
   if contribs<>[] & grep(sciargs(),"-nw")==[] then 
-    delmenu('toolboxes')
-    addmenu('toolboxes',contribs);
-    // If you also want a build meny 
-    //addmenu('build',contribs);
+  	if ~fromjava() then
+    	delmenu('toolboxes')
+    	addmenu('toolboxes',contribs);
+    	// If you also want a build meny 
+    	//addmenu('build',contribs);
+    end
   end
   %toolboxes= contribs;
   %toolboxes_dir= pathconvert(path);
