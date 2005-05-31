@@ -782,6 +782,14 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
   integer wincount;
   integer lstr ;
 
+  // reinitialisation à -1
+  // correction bg
+  // plot2d();  => fermer la fenêtre du plot avec la croix.
+  // plot2d();
+  // [c_i,c_x,c_y,c_w,c_m]=xclick()
+  // ==> xclick renvoie le code -100 pour le bouton ce qui correspond à une fermeture de fenêtre
+  deleted_win = -1;
+
   wincount =  GetWinsMaxId()+1;
   if (wincount == 0) 
     {
