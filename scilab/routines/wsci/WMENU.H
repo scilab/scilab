@@ -290,4 +290,6 @@ void SetLanguageMenu(char *Language);
 /*--------------------------------*/
 extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 /*--------------------------------*/
+extern char *GetScilabDirectory(BOOL UnixStyle);
+/*--------------------------------*/
 #endif /*  __WMENU_H__ */

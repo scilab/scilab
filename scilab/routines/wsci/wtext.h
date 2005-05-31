@@ -212,5 +212,6 @@ DWORD GetConsoleColorWindowText(void);
 DWORD GetConsoleColorHighlight(void);
 DWORD GetConsoleColorHighlightText(void);
 /*--------------------------*/
-
+extern char *GetScilabDirectory(BOOL UnixStyle);
+/*--------------------------*/
 #endif /*  __WTEXT_H__ */

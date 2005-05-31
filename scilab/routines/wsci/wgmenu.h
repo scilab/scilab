@@ -189,6 +189,6 @@ BOOL ExportStyle (struct BCG * ScilabGC);
 void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
 
-
+extern char *GetScilabDirectory(BOOL UnixStyle);
 
 #endif /*__WGMENU__*/

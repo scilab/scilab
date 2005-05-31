@@ -17,59 +17,28 @@ extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F (tmpdirc) (void);
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
-
+extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void initTCLTK(void);
-
+#endif
+/*-----------------------------------------------------------------------------------*/
+#ifdef WIN32
 static void SetSciEnv(void)
 {
   extern void set_sci_env(char *DefaultSCIPATH);
+  
+  char *ScilabDirectory=NULL;
 
-  #define MAXSTR 4096
-  LPSTR tail;
-  int i=0;
-  char szModuleName[MAXSTR];
-  char SCIPATH[MAXSTR];
-  char WSCIPATH[MAXSTR];
+  ScilabDirectory=GetScilabDirectory(TRUE);
 
-  /* Get full name of this program */
-  /* ex : c:\Program Files\scilab-3.0\bin\prog.exe */  
-  GetModuleFileName ((HANDLE)GetModuleHandle(NULL),  (LPSTR) szModuleName, MAXSTR);
-  
-  /* remove prog.exe from szModuleName */ 	
-  /* szModuleName --> c:\Program Files\scilab-3.0\bin\ */  	
-  if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+  if (ScilabDirectory == NULL)
   {
-	tail++;
-	*tail = '\0';
+	MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+	exit(1);
   }
+  set_sci_env(ScilabDirectory);
+
+  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
   
-  szModuleName[strlen(szModuleName)-1]='\0';
-  /* copy szModuleName in WSCIPATH */
-  wsprintf(WSCIPATH,"%s",szModuleName);
-  /* remove bin in WSCIPATH */
-  /* WSCIPATH --> c:\Program Files\scilab-3.0\ */  		
-  if ((tail = strrchr (WSCIPATH, '\\')) != (LPSTR) NULL)
-  {
-	tail++;
-	*tail = '\0';
-  }
-  
-  /* copy WSCIPATH in SCIPATH */
-  wsprintf(SCIPATH,"%s",WSCIPATH);
-	
-  /* convert \ on / in SCIPATH*/	
-  for (i=0;i<(int)strlen(SCIPATH);i++)
-  {
-	if (SCIPATH[i]=='\\') SCIPATH[i]='/';
-  }
-	
-  /* WSCIPATH --> c:\Program Files\scilab-3.0 */  			
-  /* SCIPATH -->  c:/Program Files/scilab-3.0 */  			
-  WSCIPATH[strlen(WSCIPATH)-1]='\0';
-  SCIPATH[strlen(SCIPATH)-1]='\0';
-	
-  /* set scilab variables environment */
-  set_sci_env(SCIPATH);
 }
 #endif
 /*-----------------------------------------------------------------------------------*/

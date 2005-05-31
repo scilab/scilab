@@ -21,8 +21,10 @@
 #define LCCBIN		"\\lcc\\bin" 
 #define LCCINCLUDE	"\\lcc\\include" 
 #define LCCLIB		"\\lcc\\lib" 
+#define MAXSTR 256
 /*-----------------------------------------------------------------------------------*/
-void SciEnv ();
+void SciEnv(void);
+char *GetScilabDirectory(BOOL UnixStyle);
 void set_sci_env(char *DefaultSCIPATH) ;
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);
 BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);

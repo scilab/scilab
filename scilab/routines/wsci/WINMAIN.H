@@ -51,7 +51,6 @@ GW graphwin;
 PW pausewin;
 MW menuwin;
 
-LPSTR szModuleName;
 LPSTR szMenuName;
 LPSTR szGraphMenuName;
 

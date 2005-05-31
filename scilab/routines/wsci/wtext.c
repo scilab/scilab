@@ -2086,7 +2086,6 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 	switch (wMsg)
 		{
 		case WM_INITDIALOG:    
-
 			{
 			char buffer[MAX_PATH];
 			int cpubuild=_M_IX86;
@@ -2141,47 +2140,48 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 					{
 					#define LICENCEFR "Licence.txt"
 					#define LICENSEENG "License.txt"
-					#define	PATHBIN "bin\\"
-
+					
+					char *ScilabDirectory=NULL;
 					char Chemin[MAX_PATH];
-					char szModuleName[MAX_PATH];
-					LPSTR tail;
-					HINSTANCE hInstance=NULL;
+					int Language=0;
+					
 					int error=0;
 					extern char ScilexWindowName[MAX_PATH];
 					LPTW lptw;
 					lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-					hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
-					GetModuleFileName (hInstance,szModuleName, MAX_PATH);
+					ScilabDirectory=GetScilabDirectory(FALSE);
 
-					if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-						{
-						tail++;
-						*tail = '\0';
-						}
-					szModuleName[strlen(szModuleName)-strlen(PATHBIN)]='\0';
-					strcpy(Chemin,szModuleName);
+					if (IsWindowInterface())
+					{
+						Language=lptw->lpmw->CodeLanguage;
+					}
+					else
+					{
+						Language=0; /* English */
+					}
 
-					switch (lptw->lpmw->CodeLanguage)
-						{
+					switch (Language)
+					{
 						case 1: /* French */
-							{
-							strcat(Chemin,LICENCEFR);
-							}
+						{
+							wsprintf(Chemin,"%s\\%s",ScilabDirectory,LICENCEFR);
+						}
 						break;
 
 						default: case 0: /*English */
-							{
-							strcat(Chemin,LICENSEENG);
-							}
-						break;
+						{
+							wsprintf(Chemin,"%s\\%s",ScilabDirectory,LICENSEENG);
 						}
+						break;
+					}
+
+					if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
 
 					error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
 					if (error<= 32) 
 						{
-						switch (lptw->lpmw->CodeLanguage)
+						switch (Language)
 							{
 							case 1: /* French */
 								{
@@ -2225,13 +2225,10 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 /*-----------------------------------------------------------------------------------*/
 EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
 {
-  
   HWND hdlg;
   hdlg = CreateDialog(hdllInstance, "AboutDlgBox", hwnd,AboutDlgProc);
   ShowWindow(	hdlg,SW_SHOW );
 }
-
-/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 void HelpOn(LPTW lptw)
 /* Affiche l'aide concernant la zone de texte selectionnée */
@@ -2246,7 +2243,6 @@ void HelpOn(LPTW lptw)
 	char Command[MAX_PATH];
 		
 	strcpy(Command,"");
-	
 	
 	/* Copie dans le presse papier */
 	/* La zone sélectionnée */
@@ -2286,11 +2282,9 @@ void HelpOn(LPTW lptw)
 			if (MessagePaste[i]=='\n') MessagePaste[i]=' ';
 			if (MessagePaste[i]=='\r') MessagePaste[i]=' ';
 		}	
-		
 
 	}
 	CloseClipboard ();
-	
 	
 	if (MessagePaste)
 	{
@@ -2362,9 +2356,7 @@ void OnRightClickMenu(LPTW lptw)
   	break;
   }
 	SendMessage (lptw->hWndText, WM_LBUTTONUP,0, 0);  
-  
-
-	
+ 	
 }
 /*-----------------------------------------------------------------------------------*/
 void EvaluateSelection(LPTW lptw)

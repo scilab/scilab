@@ -7,28 +7,14 @@
 /* sont définies directement dans scilex */
 /* scilex peut donc etre executé seul */
 /********************************************************************************************************/
-void SciEnv ()
+void SciEnv(void)
 {
-	char *p;
-	char modname[MAX_PATH + 1];
+	char *SCIPathName=NULL;
 
-	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle(NULL), modname, MAX_PATH)) return;
-	if ((p = strrchr (modname, '\\')) == NULL)return;
-	*p = 0;
+	SCIPathName=GetScilabDirectory(TRUE);
+	set_sci_env(SCIPathName);
+	if (SCIPathName) {free(SCIPathName);SCIPathName=NULL;}
 
-	/* Set SCI variable */
-	if ((p = strrchr (modname, '\\')))
-	{
-		*p = 0;
-		for (p = modname ; *p; p++)
-		{
-			if (*p == '\\')	*p = '/';
-		}
-
-		p = modname;
-
-		set_sci_env(p);
-	}
 }
 /*----------------------------------------------------
 * set env variables (used when calling scilab from
@@ -51,6 +37,52 @@ void set_sci_env(char *DefaultSCIPATH)
 		exit(1);
 	}
 
+}
+/*-----------------------------------------------------------------------------------*/
+char *GetScilabDirectory(BOOL UnixStyle)
+{
+	LPSTR ScilabModuleName=NULL;
+	char drive[_MAX_DRIVE];
+	char dir[_MAX_DIR];
+	char fname[_MAX_FNAME];
+	char ext[_MAX_EXT];
+
+	char *SciPathName=NULL;
+	char *DirTmp=NULL;
+
+	ScilabModuleName = (LPSTR) malloc (MAXSTR + 1);
+
+	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle("LibScilab"), (LPSTR) ScilabModuleName, MAX_PATH))
+	{
+		if (ScilabModuleName) {free(ScilabModuleName);ScilabModuleName=NULL;}
+		return NULL;
+	}
+
+	_splitpath(ScilabModuleName,drive,dir,fname,ext);
+	if (ScilabModuleName) {free(ScilabModuleName);ScilabModuleName=NULL;}
+	if (dir[strlen(dir)-1] == '\\') dir[strlen(dir)-1] = '\0';
+
+	DirTmp=strrchr (dir, '\\');
+	if (strlen(dir)-strlen(DirTmp)>0)
+	{
+		dir[strlen(dir)-strlen(DirTmp)] = '\0';
+	}
+	else return NULL;
+
+	SciPathName=(char*)malloc((int)(strlen(drive)+strlen(dir)+5)*sizeof(char));
+	
+	_makepath(SciPathName,drive,dir,NULL,NULL);
+
+	if ( UnixStyle )
+	{	
+		int i=0;
+		for (i=0;i<(int)strlen(SciPathName);i++)
+		{
+			if (SciPathName[i]=='\\') SciPathName[i]='/';
+		}
+	}
+	SciPathName[strlen(SciPathName)-1]='\0';
+	return SciPathName;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)

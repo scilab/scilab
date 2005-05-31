@@ -1072,11 +1072,9 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 {
 #define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
 #define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
-	
-  char szModuleName[MAX_PATH];
-  LPSTR tail;
-	
-  HINSTANCE hInstance=NULL;
+
+  char *ScilabDirectory=NULL;
+
   extern char ScilexWindowName[MAX_PATH];
   LPTW lptw;
   HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
@@ -1094,32 +1092,22 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
   else LangCode=0;
   ScilabGC->lpmw.CodeLanguage=LangCode;
 
-  hInstance=(HINSTANCE) GetModuleHandle("LibScilab");   		
-	
-	
-  GetModuleFileName (hInstance,szModuleName, MAX_PATH);
-	
-  if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-    {
-      tail++;
-      *tail = '\0';
-    }
+  ScilabDirectory=GetScilabDirectory(FALSE);
 	
   if (ScilabGC->lpgw->szMenuName!=NULL) free(ScilabGC->lpgw->szMenuName);
-  ScilabGC->lpgw->szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (FILEGRAPHMENUENGLISH) + 1);
-  strcpy (ScilabGC->lpgw->szMenuName, szModuleName);
-
+  ScilabGC->lpgw->szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) +strlen("\\bin\\")+ strlen (FILEGRAPHMENUENGLISH) + 1);
 	
   switch (LangCode)
-    {
+  {
     case 1:
-      strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUFRENCH);
+	  wsprintf(ScilabGC->lpgw->szMenuName,"%s\\bin\\%s",ScilabDirectory, FILEGRAPHMENUFRENCH);
       break;
     default : case 0:
-      strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUENGLISH);
+	  wsprintf(ScilabGC->lpgw->szMenuName,"%s\\bin\\%s",ScilabDirectory, FILEGRAPHMENUENGLISH);
       break;
-    }
-	
+  }
+
+  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}	
 }
 /*-----------------------------------------------------------------------------------*/
 void NewFigure(struct BCG * ScilabGC)

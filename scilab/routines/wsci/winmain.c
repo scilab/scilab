@@ -51,11 +51,11 @@ int MAIN__ ()
 /*-----------------------------------------------------------------------------------*/
 int Console_Main(int argc, char **argv)
 {
-  LPSTR tail;
   int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
   char *path = NULL;
-  
+  char *ScilabDirectory=NULL;
   int i=0;
+
   my_argc = -1;
 
   ForbiddenToUseScilab();
@@ -68,34 +68,25 @@ int Console_Main(int argc, char **argv)
   }
   my_argc =argc;
 
-  szModuleName = (LPSTR) malloc (MAXSTR + 1);
-  CheckMemory (szModuleName);
+  ScilabDirectory=GetScilabDirectory(FALSE);
 
-  /* get path to EXE */
-  GetModuleFileName (GetModuleHandle (0), (LPSTR) szModuleName, MAXSTR);
-  if (CheckWScilabVersion (WSCILABVERSION))
-    {
-      MessageBox (NULL, "Wrong version of WSCILAB.DLL", szModuleName, MB_ICONSTOP | MB_OK);
-      exit (1);
-    }
+  if (ScilabDirectory == NULL)
+  {
+	MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+	exit(1);
+  }
 
-  if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-    {
-      tail++;
-      *tail = '\0';
-    }
-  szModuleName = realloc (szModuleName, strlen (szModuleName) + 1);
-  CheckMemory (szModuleName);
-
-  szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (MENUNAME) + 1);
+  szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
   CheckMemory (szMenuName);
-  strcpy (szMenuName, szModuleName);
+  strcpy (szMenuName, ScilabDirectory);
   strcat (szMenuName, MENUNAME);
 
-  szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
+  szGraphMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
   CheckMemory (szGraphMenuName);
-  strcpy (szGraphMenuName, szModuleName);
+  strcpy (szGraphMenuName, ScilabDirectory);
   strcat (szGraphMenuName, GRAPHMENUNAME);
+
+  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}
 
   /* Load common control library * */
   InitCommonControls ();
@@ -192,15 +183,15 @@ int Console_Main(int argc, char **argv)
 int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
 {
 	int i=0;
-	LPSTR tail;
 	BOOL ShortCircuitExec=FALSE;
 	BOOL LaunchAFile=FALSE;
 	char FileName[MAX_PATH];
 	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
 	char *path = NULL;
-	
-	HANDLE hOut = NULL;
+	char *ScilabDirectory=NULL;
 
+	HANDLE hOut = NULL;
+	
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
 	char *pPathCmdLine=NULL;
@@ -214,35 +205,26 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	/* New Graphics Mode Warning */
 	MessageBoxNewGraphicMode();
+
+	ScilabDirectory=GetScilabDirectory(FALSE);
+
+	if (ScilabDirectory == NULL)
+	{
+		MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+		exit(1);
+	}	
 	
-	szModuleName = (LPSTR) malloc (MAXSTR + 1);
-	CheckMemory (szModuleName);
-
-	/* get path to EXE */
-	GetModuleFileName (hInstance, (LPSTR) szModuleName, MAXSTR);
-	if (CheckWScilabVersion (WSCILABVERSION))
-	{
-		MessageBox (NULL, "Wrong version of libScilab.DLL", szModuleName, MB_ICONSTOP | MB_OK);
-		exit (1);
-	}
-
-	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-	{
-		tail++;
-		*tail = '\0';
-	}
-	szModuleName = realloc (szModuleName, strlen (szModuleName) + 1);
-	CheckMemory (szModuleName);
-
-	szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (MENUNAME) + 1);
+	szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
 	CheckMemory (szMenuName);
-	strcpy (szMenuName, szModuleName);
+	strcpy (szMenuName, ScilabDirectory);
 	strcat (szMenuName, MENUNAME);
 
-	szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
+	szGraphMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
 	CheckMemory (szGraphMenuName);
-	strcpy (szGraphMenuName, szModuleName);
+	strcpy (szGraphMenuName, ScilabDirectory);
 	strcat (szGraphMenuName, GRAPHMENUNAME);
+
+	if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}
 
 	/* Load common control library * */
 	InitCommonControls ();
@@ -441,22 +423,20 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		}
 	}		
-
-	
 	#ifndef __DLL__
 		/** when we don't use a dll version of the graphic library
 		which is the case up to now **/
 		NoDll (hInstance);
 	#endif
 	atexit (WinExit);
-	SciEnv ();
+	SciEnv();
 
 	/* Splashscreen*/
 	if ( (sci_show_banner) && (LaunchAFile == FALSE) )CreateSplashscreen();
 
 	CreateScilabConsole(sci_show_banner);
 
-	if (TextInit (&textwin))	exit (1);
+	if (TextInit (&textwin)) exit (1);
 
 	textwin.hIcon = LoadIcon (hInstance, "texticon");
 	SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
@@ -483,7 +463,8 @@ void InitWindowGraphDll(void)
 /* Display graphic menus with a call of the DLL Scilab*/
 /* for Interface with Java */
 {
-  
+  char *ScilabDirectory=NULL;
+
   HINSTANCE hdllInstanceTmp=NULL;
   char *p1 = (char*)getenv ("SCI");
   hdllInstanceTmp=(HINSTANCE)GetModuleHandle("libScilab");
@@ -495,25 +476,21 @@ void InitWindowGraphDll(void)
   }
 
   ForbiddenToUseScilab();
-
+  
   hdllInstance=hdllInstanceTmp;
-  szModuleName = (LPSTR) malloc (MAXSTR + 1);
-  CheckMemory (szModuleName);
+  ScilabDirectory=GetScilabDirectory(FALSE);
 
-  strcpy(szModuleName,p1);
-  strcat(szModuleName,"\\bin\\");
+  if (ScilabDirectory == NULL)
+  {
+	MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+	exit(1);
+  }	
 
-  if (CheckWScilabVersion (WSCILABVERSION))
-    {
-      MessageBox (NULL, "Wrong version of LibScilab.dll", szModuleName, MB_ICONSTOP | MB_OK);
-      exit (1);
-    }
-
-   szGraphMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (GRAPHMENUNAME) + 1);
-   CheckMemory (szGraphMenuName);
-   strcpy (szGraphMenuName, szModuleName);
-   strcat (szGraphMenuName, GRAPHMENUNAME);
-    
+  szGraphMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen("\\bin\\")+strlen (GRAPHMENUNAME) + 1);
+  CheckMemory (szGraphMenuName);
+  wsprintf(szGraphMenuName,"%s\\bin\\%s",ScilabDirectory,GRAPHMENUNAME);
+  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
+  
    InitCommonControls ();
   
    graphwin.hInstance = hdllInstance;

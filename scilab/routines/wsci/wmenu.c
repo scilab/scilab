@@ -1872,37 +1872,27 @@ void UpdateFileNameMenu(LPTW lptw)
 {
 	#define FILEMENUFRENCH "wscilabF.mnu"
 	#define FILEMENUENGLISH "wscilabE.mnu"
+
+	char *ScilabDirectory=NULL;
 	
 	LPMW lpmw= lptw->lpmw;
-	char szModuleName[MAX_PATH];
-	LPSTR tail;
 	
-	HINSTANCE hInstance=NULL;
+	ScilabDirectory=GetScilabDirectory(FALSE);
 
-	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
-	
-	
-	GetModuleFileName (hInstance,szModuleName, MAX_PATH);
-	
-	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
-	{
-		tail++;
-		*tail = '\0';
-	}
-	
-	strcpy (lpmw->szMenuName, szModuleName);
-
+	if (lpmw->szMenuName!=NULL) free(lpmw->szMenuName);
+    lpmw->szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) +strlen("\\bin\\") +strlen (FILEMENUENGLISH) + 1);
 	
 	switch (lpmw->CodeLanguage)
 	{
 		case 1:
-			strcat (lpmw->szMenuName, FILEMENUFRENCH);
+			wsprintf(lpmw->szMenuName,"%s\\bin\\%s",ScilabDirectory, FILEMENUFRENCH);
 		break;
 		default : case 0:
-			strcat (lpmw->szMenuName, FILEMENUENGLISH);
+			wsprintf(lpmw->szMenuName,"%s\\bin\\%s",ScilabDirectory,FILEMENUENGLISH);
 		break;
 	}
-	
+
+	if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
 }
 /*-----------------------------------------------------------------------------------*/   
 void SwitchLanguage(LPTW lptw)
