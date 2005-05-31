@@ -9,6 +9,12 @@
 #include <stdarg.h>
 #include <windows.h>
 #include <Winuser.h>
+
+#ifdef WITH_TK
+	#include "tcl.h"
+	#include "tk.h"
+#endif
+
 #include "..\version.h"
 #include "wcommon.h"
 #include "FilesAssociations.h"

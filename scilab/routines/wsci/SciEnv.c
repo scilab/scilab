@@ -26,8 +26,10 @@ void set_sci_env(char *DefaultSCIPATH)
 	{
 		Set_SCI_PATH(DefaultSCIPATH);
 		Set_HOME_PATH(DefaultSCIPATH);
-		Set_TCL_LIBRARY_PATH(DefaultSCIPATH);
-		Set_TK_LIBRARY_PATH(DefaultSCIPATH);
+		#ifdef WITH_TK
+			Set_TCL_LIBRARY_PATH(DefaultSCIPATH);
+			Set_TK_LIBRARY_PATH(DefaultSCIPATH);
+		#endif
 		Set_LCC_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
 	}
@@ -236,12 +238,23 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
+	
+	int major=8;
+	int minor=4; // Par defaut
+	int patchLevel=0;
+	int type=0;
+	
 	char env[MAX_PATH + 1 + 10];
 	
 	char ShortPath[MAX_PATH+1];
 	char *CopyOfDefaultPath=NULL;
 
 	CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
+
+	
+	#ifdef WITH_TK
+	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
+	#endif
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-3.1\tcl\tcl8.4 */
@@ -255,7 +268,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	else
 	{
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4",CopyOfDefaultPath);
+		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
 		
 		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
@@ -279,7 +292,16 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	char ShortPath[MAX_PATH+1];
 	char *CopyOfDefaultPath=NULL;
 
+	int major=8;
+	int minor=4; // Par defaut
+	int patchLevel=0;
+	int type=0;
+
 	CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
+
+	#ifdef WITH_TK
+	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
+	#endif
 
 	/* to be sure that it's windows format */
 	/* c:\progra~1\scilab-3.1\tcl\tk8.4 */
@@ -293,7 +315,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	else
 	{
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4",CopyOfDefaultPath);
+		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
 
 		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
