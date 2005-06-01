@@ -18,5 +18,3 @@ if( (ierr1 == 77) &  (ierr2 == 77) &  (ierr3 == 0) ) then
 else
 	affich_result(%F,790);
 end
-
-clear;

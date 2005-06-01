@@ -1,15 +1,17 @@
 // bug487
 
-mode (-1)
-clear
+mode (-1);
+clear;
 
-//correct=%F
 lvl= -0.0003 + (1:10)*(0.0003-(-0.0003))/(10+1)
 result=execstr("contour2d(1:10,1:10,rand(10,10),lvl,rect=[0,0,11,11])","errcatch","n")  
 xdel()
-affich_result(result == 0, 487)
 
-clear
+if result==0 then
+	affich_result(%T,487);
+else
+	affich_result(%F,487);
+end
 
 // The Error Messages are:
 //   !--error   204 
