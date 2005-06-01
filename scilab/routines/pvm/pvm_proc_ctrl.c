@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.16  2005/06/01 09:18:36  chancelier
+     error messages
+
      Revision 1.15  2005/06/01 09:17:24  chancelier
      arguments returned by reduce are not the proper ones
 
@@ -214,8 +217,6 @@ pvm_geterror(int n)
 
 char *scipvm_error_msg(int err)
 {
-  char *mes=pvm_geterror(err);
-  fprintf(stderr,"error %s\n",mes);
   switch (err)
     {
     case PvmOk:          return Scipvm_error[0];     break;
