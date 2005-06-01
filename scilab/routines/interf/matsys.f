@@ -1816,11 +1816,6 @@ c     .  error(str [,errn])
 c     .  get error number  if given
             if(.not.getscalar('error',topk,top,l)) return
             errn=int(stk(l))
-            if(errn.ge.100000) then
-               err=2
-               call error(116)
-               return
-            endif
             top=top-1
          else
             errn=9999
@@ -1828,6 +1823,12 @@ c     .  get error number  if given
          if(.not.getsmat('error',topk,top,m,n,1,1,il,n1)) return
          buf=' '
          call cvstr(n1,istk(il),buf,1)
+      endif
+
+      if(errn.le.0) then
+         err=2
+         call error(116)
+         return
       endif
       call error(errn)
       return
