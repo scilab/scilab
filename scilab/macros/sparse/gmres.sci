@@ -1,7 +1,7 @@
-// [x, err, iter, flag, res] = gmres( A, b, x, M, restrt, max_it, tol )
+// [x, flag, resNorm, iter, resVec] = gmres( A, b, x, M, restrt, max_it, tol )
 //
 // GMRES solves the linear system Ax=b
-// using the Generalized Minimal residual ( GMRESm ) method with restarts .
+// using the Generalized Minimal RESidual ( GMRES ) method with restarts .
 //
 // input   A        REAL nonsymmetric positive definite matrix or function
 //         x        REAL initial guess vector
@@ -12,11 +12,11 @@
 //         tol      REAL error tolerance
 //
 // output  x        REAL solution vector
-//         err      REAL final residual norm
-//         iter     INTEGER number of iterations performed
 //         flag     INTEGER: 0 = solution found to tolerance
 //                           1 = no convergence given max_it
-//         res      REAL residual vector
+//         resNorm      REAL final residual norm
+//         iter     INTEGER number of iterations performed
+//         resVec      REAL residual vector
 
 //     Details of this algorithm are described in 
 //
@@ -30,7 +30,7 @@
 //     Saad, SIAM Publications, 2003
 //     (ftp ftp.cs.umn.edu; cd dept/users/saad/PS; get all_ps.zip).
 
-function [x, err, iter, flag, res] = gmres(A, varargin)
+function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
 
 // -----------------------
 // Parsing input arguments
@@ -82,7 +82,7 @@ end
 // Parsing of the preconditioner matrix M
 if (rhs >= 4),
   M = varargin(3);
-  select type(precondType)
+  select type(M)
   case 1 then
     precondType=1;
   case 5 then
@@ -150,9 +150,9 @@ end
    bnrm2 = norm(b);
    if (bnrm2 == 0.0), 
      x = zeros(b);
-     err = 0;
+     resNorm = 0;
      iter = 0;
-     res = err;
+     resVec = resNorm;
      flag = 0;
      return
    end
@@ -168,9 +168,9 @@ end
    elseif (precondType == 0),
      r = M(r);
    end
-   err = norm(r)/bnrm2;
-   res = err;
-   if (err < tol), 
+   resNorm = norm(r)/bnrm2;
+   resVec = resNorm;
+   if (resNorm < tol), 
      iter=0; 
      return; 
    end
@@ -233,15 +233,15 @@ end
        s(i)   = temp;
        H(i,i) = cs(i)*H(i,i) + sn(i)*H(i+1,i);
        H(i+1,i) = 0.0;
-       err  = abs(s(i+1)) / bnrm2;
-       res = [res;err];
-       if ( err <= tol ),
+       resNorm  = abs(s(i+1)) / bnrm2;
+       resVec = [res;resNorm];
+       if ( resNorm <= tol ),
 	 y = H(1:i,1:i) \ s(1:i);
 	 x = x + V(:,1:i)*y;
 	 break;
        end
      end
-     if (err <= tol), 
+     if (resNorm <= tol), 
        iter = j-1+it2;
        break; 
      end
@@ -260,10 +260,10 @@ end
        r = M(r);
      end
      s(j+1) = norm(r);
-     err = s(j+1) / bnrm2;
-     res = [res;err];
+     resNorm = s(j+1) / bnrm2;
+     resVec = [resVec; resNorm];
      
-     if ( err <= tol ),
+     if ( resNorm <= tol ),
        iter = j+it2;
        break; 
      end
@@ -271,9 +271,50 @@ end
        iter=j+it2; 
      end
    end
-   if ( err > tol ), 
+   if ( resNorm > tol ), 
      flag = 1; 
      if (lhs < 2),
        warning('GMRES did not converge');
      end
    end
+endfunction
+ 
+
+//
+// Compute the Givens rotation matrix parameters for a and b.
+//
+function [ c, s ] = rotmat( a, b )
+[lhs,rhs]=argn(0);
+if ( rhs== 0 ),
+   error("Scalar is expected");
+end
+if ( rhs >= 1 ),
+  if ( size(a,1) ~= 1 | size(a,2) ~= 1 ),
+    error("a must be scalar");
+  end
+end
+if ( rhs == 2 ),
+   if ( size(b,1) ~= 1 | size(b,2) ~= 1 ),
+      error("b must be a scalar");
+   end
+end
+if ( rhs > 2 ),
+   error("Too input arguments");
+end
+
+// computations
+if ( b == 0.0 ),
+  c = 1.0;
+  s = 0.0;
+elseif ( abs(b) > abs(a) ),
+  temp = a / b;
+  s = 1.0 / sqrt( 1.0 + temp^2 );
+  c = temp * s;
+else
+  temp = b / a;
+  c = 1.0 / sqrt( 1.0 + temp^2 );
+  s = temp * c;
+end
+endfunction //rotmat
+   
+
