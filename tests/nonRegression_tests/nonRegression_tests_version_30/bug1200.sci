@@ -19,9 +19,8 @@ REFFILECONTENTS=["-->disp(J);";
 	"    0.001  ";
 	"-->diary(0);"]
 
-correct=%T
-if or(DIAFILECONTENTS<>REFFILECONTENTS) then
-	correct=%F
+if and(DIAFILECONTENTS==REFFILECONTENTS) then
+	affich_result(%T,1200);
+else
+	affich_result(%F,1200);
 end
-
-affich_result(correct,1200);
