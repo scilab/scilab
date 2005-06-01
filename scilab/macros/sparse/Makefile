@@ -10,6 +10,6 @@ include ../../Makefile.incl
 NAME = sparselib
 NAM = SCI/macros/sparse
 
-MACROS = pcg.sci gmres.sci
+MACROS = pcg.sci gmres.sci qmr.sci
 
 include ../Make.lib
