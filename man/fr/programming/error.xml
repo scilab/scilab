@@ -1,28 +1,80 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
-  <TITLE>error  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="error"> génération d&apos;un message d&apos;erreur  </SHORT_DESCRIPTION>
+  <TITLE>error</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="error">envoi de message d'erreur</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>error(&apos;string&apos; [,n])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>error(m)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>error(message [,n])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>error(n)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>error(n,pos)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>message</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: une chaŽîne de caracteres. Le message a visualiser.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Un entier, le nombre associŽé Žà l'erreur. </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pos</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Un entier, paramŽétrant le message (voir <VERB>error_table</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
   <DESCRIPTION>
-  <P>
-    affiche la chaîne de caractères <VERB>&apos;string&apos;</VERB> dans un message d&apos;erreur et
-    stoppe l&apos;instruction courante.
-  </P>
-  <P>
-    Si <VERB>n</VERB> est donné, il précise le numéro de l&apos;erreur. <VERB>n</VERB> doit être supérieur à <VERB>10000</VERB> (valeur par défaut).
-  </P>
-  <P>
-    <VERB>error(m) </VERB> affiche le message d&apos;erreur numéro <VERB>m</VERB>.
-  </P>
-  </DESCRIPTION>
+    <P> La fonction <VERB>error</VERB> permet d'envoyer Žà l'utilisateur un
+      message d'erreur et de gŽérer cette erreur. Par dŽéfaut <VERB>error</VERB>
+      termine l'Žéxecution courante et revient au niveau du prompt. Ce dŽéfaut
+      peut Žêtre changŽé en utilisant les fonctions <VERB>errcatch</VERB> et
+      <VERB>execstr(...,'errcatch')</VERB>.</P> 
+    <P><VERB>error(message)</VERB> envoit Žà l'utilisateur le message d'erreur
+      donnŽé par la  chaŽîne de caractŽères <VERB>message</VERB>. Le nombre
+      associŽé Žà l'erreur est assignŽé Žà 10000. </P>
+    <P><VERB>error(message,n)</VERB> envoit Žà l'utilisateur le message d'erreur
+      donnŽé par la  chaŽîne de caractŽères <VERB>message</VERB>. Le nombre
+      associŽé Žà l'erreur est donnŽé par <VERB>n</VERB>.</P>
+
+   <P>Certains messages d'erreur prŽédŽéfinis requiŽèrent un paramŽètre entier,
+      (position de l'argument dans la liste d'appel de la fonction,...)
+      (voir <VERB>error_table</VERB>). Dans ce cas l'argument <VERB>pos</VERB>
+      doit contenir ce nombre entier: <VERB>error(n,pos)</VERB>. Dans les autres cas
+      l'argument <VERB>pos</VERB> est ignorŽé.</P>
+   <P>Voir la table des erreurs dans <LINK>error_table</LINK> .</P>
+ </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+error('Mon message')
+error(43)
+error(52,3)
+
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>warning</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>warning</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
