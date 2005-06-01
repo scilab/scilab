@@ -728,7 +728,8 @@ int intspvm_reduce(fname)
   CheckScalar(5,m5,n5);
   CreateVar(6,"i",&un,&un,&res);
   C2F(scipvmreduce)(cstk(l1),&mn1,stk(l2),&m2,&n2,istk(l3),cstk(l4),&mn4,istk(l5),istk(res));
-  LhsVar(1)= 6;
+  LhsVar(1)= 2;
+  LhsVar(2)= 6;
   error_check(fname,*istk(res));
   return 0;
 }

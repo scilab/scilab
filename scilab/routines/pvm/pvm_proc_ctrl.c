@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.15  2005/06/01 09:17:24  chancelier
+     arguments returned by reduce are not the proper ones
+
      Revision 1.14  2005/05/27 13:52:29  chancelier
      headers added for Unix
 
@@ -199,8 +202,20 @@ static strings Scipvm_error[]= {
  * get error message 
  *--------------------------------------------------*/
 
+
+extern char *pvm_errlist[];
+extern int pvm_nerr;
+
+char *
+pvm_geterror(int n)
+{
+  return (n <= 0 && n > -pvm_nerr ? pvm_errlist[-n] : "Unknown Error");
+}
+
 char *scipvm_error_msg(int err)
 {
+  char *mes=pvm_geterror(err);
+  fprintf(stderr,"error %s\n",mes);
   switch (err)
     {
     case PvmOk:          return Scipvm_error[0];     break;
