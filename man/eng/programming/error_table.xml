@@ -7,7 +7,7 @@
   <DATE>june 2005</DATE>
   <SHORT_DESCRIPTION name="error_table">table of error messages</SHORT_DESCRIPTION>
    <DESCRIPTION>
-<P>&nbsp;This page gives the table of the predefined error messages, and their
+<P>This page gives the table of the predefined error messages, and their
       associated error number. Some of these error messages are used by  Scilab
       itself for parser errors or specific builtin errors. Some others are of a 
       more general use and can be used in Scilab
