@@ -20,6 +20,11 @@
 
 #include "dstrings.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*
  *----------------------------------------------------------------------
  *

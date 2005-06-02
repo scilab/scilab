@@ -11,6 +11,11 @@
 
 #include "../machine.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 static int Sed __PARAMS ((int, char *, FILE *, char *, char *, char *, char *, char *, char *));
 static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));
 static void ConvertName __PARAMS ((char *filein, char *fileout));
@@ -32,7 +37,7 @@ ScilabPsToEps (char orientation, char *filein, char *fileout)
   env = getenv ("SCI");
   if (env == NULL)
     {
-      sciprint ("Environment variable SCI must be defined\r\n");
+      sciprint (MSG_ERROR49);
       return (1);
     }
   sprintf (entete, "%s/imp/NperiPos.ps", env);
@@ -46,7 +51,7 @@ ScilabPsToEps (char orientation, char *filein, char *fileout)
 
   if ((fo = fopen (fileout, "w")) == 0)
     {
-      sciprint (" Can't open file %s\r\n", fileout);
+      sciprint (MSG_ERROR50, fileout);
       return 1;
     }
 
@@ -71,7 +76,7 @@ ScilabPsToEps (char orientation, char *filein, char *fileout)
   if (rep >= 1)
     {
       if (rep == 1)
-	sciprint ("input file doesn't need to be changed to epsf \r\n");
+	sciprint (MSG_ERROR51);
       remove (fileout);
       return (0);
     }
@@ -163,7 +168,7 @@ Sed (flag, file, fileo, strin1, strout1, strin2, strout2, strin3, strout3)
     }
   else
     {
-      sciprint ("file %s not found \r\n", file);
+      sciprint (MSG_ERROR52, file);
       return (2);
     }
   return (0);

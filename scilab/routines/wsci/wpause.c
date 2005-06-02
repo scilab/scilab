@@ -36,6 +36,11 @@
 #include "wresource.h"
 #include "wcommon.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /* Pause Window */
 EXPORT LRESULT CALLBACK WndPauseProc (HWND, UINT, WPARAM, LPARAM);
 EXPORT LRESULT CALLBACK PauseButtonProc (HWND, UINT, WPARAM, LPARAM);
@@ -175,14 +180,14 @@ WndPauseProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	cyChar = tm.tmHeight + tm.tmExternalLeading;
 	ReleaseDC (hwnd, hdc);
 	middle = ((LPCREATESTRUCT) lParam)->cx / 2;
-	lppw->hOK = CreateWindow ((LPSTR) "button", (LPSTR) "OK",
+	lppw->hOK = CreateWindow ((LPSTR) "button", (LPSTR) MSG_SCIMSG53,
 				  WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON,
 				  middle - 10 * cxChar, 3 * cyChar,
 				  8 * cxChar, 7 * cyChar / 4,
 				  hwnd, (HMENU) IDOK,
 				((LPCREATESTRUCT) lParam)->hInstance, NULL);
 	lppw->bDefOK = TRUE;
-	lppw->hCancel = CreateWindow ((LPSTR) "button", (LPSTR) "Cancel",
+	lppw->hCancel = CreateWindow ((LPSTR) "button", (LPSTR) MSG_SCIMSG54,
 				      WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
 				      middle + 2 * cxChar, 3 * cyChar,
 				      8 * cxChar, 7 * cyChar / 4,

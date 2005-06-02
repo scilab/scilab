@@ -47,6 +47,11 @@
 #include "wresource.h"
 #include "wcommon.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 extern char input_line[];
 extern jmp_buf env;		/* from plot.c */
 
@@ -73,7 +78,7 @@ alloc (unsigned long size, char *message)
       /* really out of memory */
       if (message != NULL)
 	{
-	  (void) sprintf (errbuf, "out of memory for %s", message);
+	  (void) sprintf (errbuf, MSG_ERROR75, message);
 	  int_error (errbuf, NO_CARET);
 	  /* NOTREACHED */
 	}

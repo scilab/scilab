@@ -4,6 +4,11 @@
 #include "WinConsole.h"
 #include "..\version.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
 char ScilexConsoleName[MAX_PATH];
 

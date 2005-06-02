@@ -1,6 +1,11 @@
 
 /* Allan CORNET INRIA 2004 */
 #include "clipboard.h"
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*-----------------------------------------------------------------------------------*/
 static BOOL ThreadPasteRunning=FALSE;
 static HANDLE hThreadPaste;
@@ -325,7 +330,7 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 	  }
 	  else
 	  {
-		  Scierror(999,"unknown first parameter.\r\n");
+		  Scierror(999,MSG_ERROR7);
 		  return 0;
 	  }
 	}
@@ -375,13 +380,13 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 		  }
 		  else
 		  {
-			  Scierror(999,"type of second parameter incorrect.\r\n");
+			  Scierror(999,MSG_ERROR8);
 			  return 0;
 		  }
 	   }
 	  else
 	   {
-		  Scierror(999,"unknown first parameter.\r\n");
+		  Scierror(999,MSG_ERROR9);
 		  return 0;
 	   }
       LhsVar(1)=0;
@@ -389,7 +394,7 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
   }
   else
   {
-	  Scierror(999,"Only on Windows mode.\r\n");
+	  Scierror(999,MSG_ERROR10);
 	  return 0;
   }
   

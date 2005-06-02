@@ -2,9 +2,10 @@
 /* INRIA 2004 */
 #include "interfdde.h"
 
-#define MsgErrortype1 "Error DDE.\r\n"
-#define MsgErrortype2 "parameter(s) type incorrect.\r\n"
-#define MsgErrortype3 "2 parameters required.\r\n"
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
 /*-----------------------------------------------------------------------------------*/
 int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 {
@@ -49,12 +50,12 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 		}
 		else 
 		{
-			Scierror(999,MsgErrortype2);
+			Scierror(999,MSG_ERROR14);
 		}
 	}
 	else
 	{
-		Scierror(999,MsgErrortype3);
+		Scierror(999,MSG_ERROR15);
 	}
 	return 0;
 }
@@ -111,13 +112,13 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 			}
 			else
 			{
-				Scierror(999,MsgErrortype2);
+				Scierror(999,MSG_ERROR14);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,MsgErrortype2);
+			Scierror(999,MSG_ERROR14);
 			return 0;
 		}
 	}
@@ -157,7 +158,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,MsgErrortype2);
+		Scierror(999,MSG_ERROR14);
 		return 0;
 	}
 
@@ -194,13 +195,13 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 			}
 			else
 			{
-				Scierror(999,MsgErrortype2);
+				Scierror(999,MSG_ERROR14);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,MsgErrortype2);
+			Scierror(999,MSG_ERROR14);
 			return 0;
 		}
 	}
@@ -242,7 +243,7 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,MsgErrortype2);
+		Scierror(999,MSG_ERROR14);
 		return 0;
 	}
 
@@ -278,13 +279,13 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 			}
 			else
 			{
-				Scierror(999,MsgErrortype2);
+				Scierror(999,MSG_ERROR14);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,MsgErrortype2);
+			Scierror(999,MSG_ERROR14);
 			return 0;
 		}
 	}
@@ -323,7 +324,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,MsgErrortype2);
+		Scierror(999,MSG_ERROR14);
 		return 0;
 	}
 

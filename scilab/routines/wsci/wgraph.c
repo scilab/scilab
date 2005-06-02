@@ -2,6 +2,11 @@
 #include "resource.h"
 #include "../graphics/Events.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*-----------------------------------------------------------------------------------*/
 static int scig_buzy = 0;
 /*-----------------------------------------------------------------------------------*/
@@ -148,8 +153,7 @@ void CopyClip (struct BCG *ScilabGC)
   else
     {
       MessageBeep (MB_ICONHAND);
-      MessageBox (hwnd, "Insufficient Memory to Copy Clipboard",
-		  lpgw->Title, MB_ICONHAND | MB_OK);
+      MessageBox (hwnd, MSG_WARNING16,lpgw->Title, MB_ICONHAND | MB_OK);
     }
   DeleteDC (mem);
   ReleaseDC (hwnd, hdc);
@@ -212,7 +216,7 @@ static void PageGDICalls (HDC hdcPrn, int cxPage, int cyPage)
 int CopyPrint (struct BCG *ScilabGC)
 {
   int xPage, yPage;
-  static DOCINFO di = {sizeof (DOCINFO), "Scilab: Printing", NULL};
+  static DOCINFO di = {sizeof (DOCINFO), MSG_SCIMSG12, NULL};
   BOOL bError = FALSE;
   HDC printer;
   LPGW lpgw;
@@ -301,14 +305,14 @@ ScilabGC->CWindow
   if (SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr)) == 0
       && GetLastError () != 0)
     {
-      sciprint ("Can't print : Error in SetWindowLong");
+      sciprint (MSG_ERROR34);
       scig_buzy = 0;
       return TRUE;
     }
   if (SetWindowLong(ScilabGC->hWndParent, 4, (LONG) ((LP_PRINT) & pr)) == 0
       && GetLastError () != 0)
     {
-      sciprint ("Can't print : Error in SetWindowLong");
+      sciprint (MSG_ERROR34);
       scig_buzy = 0;
       return TRUE;
     }
@@ -600,7 +604,7 @@ static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC)
     {
       if (( hdc_compat = CreateCompatibleDC (hdc)) == NULL)
 	{
-	  sciprint("hdc for backing store failed \r\n");
+	  sciprint(MSG_WARNING17);
 	  return ;
 	}
       SetMapMode(hdc_compat, MM_TEXT);
@@ -628,7 +632,7 @@ static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC)
   
   if (!hbmTemp)
     {
-      sciprint("Allocating pixmap for backing store failed \r\n");
+      sciprint(MSG_WARNING18);
       return ; 
     }
   hbmSave = SelectObject ( hdc_compat, hbmTemp);
@@ -789,7 +793,7 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
 	  ReleaseDC(ScilabGC->CWindow,hdc1);
       if (hbmTemp == NULL )
 	{
-	  sciprint("Can't resize pixmap\r\n");
+	  sciprint(MSG_WARNING19);
 	  return FALSE;
 	}
       hbmSave = SelectObject ( ScilabGC->hdcCompat, hbmTemp);
@@ -1276,32 +1280,32 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
   HICON IconButton;
   ScilabGC->lpmw.nButton=0;
 
-  ScilabGC->lpmw.hButton[0]= CreateWindow("button","Zoom",WS_CHILD|WS_VISIBLE|BS_ICON ,
+  ScilabGC->lpmw.hButton[0]= CreateWindow("button",MSG_SCIMSG14,WS_CHILD|WS_VISIBLE|BS_ICON ,
 										  0, 0,
 										  ButtonToolBarWeight, ToolBarHeight,
                                           ScilabGC->CWindow,(HMENU)HMENUIndiceZOOM,
                                           graphwin.hInstance, NULL);
-  IconButton=(HICON)LoadImage( GetModuleHandle("LibScilab"), (LPCSTR)IDI_ZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_ZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
   SendMessage(ScilabGC->lpmw.hButton[0],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
-  CreateMyTooltip (ScilabGC->lpmw.hButton[0], "Zoom"); 
+  CreateMyTooltip (ScilabGC->lpmw.hButton[0], MSG_SCIMSG14); 
 
   ScilabGC->lpmw.nButton++;
-  ScilabGC->lpmw.hButton[1]= CreateWindow("button","UnZoom",WS_CHILD|WS_VISIBLE|BS_ICON ,
+  ScilabGC->lpmw.hButton[1]= CreateWindow("button",MSG_SCIMSG15,WS_CHILD|WS_VISIBLE|BS_ICON ,
 										  ButtonToolBarWeight, 0,
 										  ButtonToolBarWeight, ToolBarHeight,
                                           ScilabGC->CWindow,(HMENU)HMENUIndiceUNZOOM,
                                           graphwin.hInstance, NULL);
-  IconButton=(HICON)LoadImage( GetModuleHandle("LibScilab"), (LPCSTR)IDI_UNZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_UNZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
   SendMessage(ScilabGC->lpmw.hButton[1],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
-  CreateMyTooltip (ScilabGC->lpmw.hButton[1], "UnZoom"); 
+  CreateMyTooltip (ScilabGC->lpmw.hButton[1], MSG_SCIMSG15); 
 
   ScilabGC->lpmw.nButton++;
-  ScilabGC->lpmw.hButton[2]= CreateWindow("button","2D/3D Rotation",WS_CHILD|WS_VISIBLE|BS_ICON ,
+  ScilabGC->lpmw.hButton[2]= CreateWindow("button",MSG_SCIMSG16,WS_CHILD|WS_VISIBLE|BS_ICON ,
 										  ButtonToolBarWeight*2, 0,
 										  ButtonToolBarWeight, ToolBarHeight,
                                           ScilabGC->CWindow,(HMENU)HMENUIndice3DROT,
                                           graphwin.hInstance, NULL);
-  IconButton=(HICON)LoadImage( GetModuleHandle("LibScilab"), (LPCSTR)IDI_3DROT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_3DROT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
   SendMessage(ScilabGC->lpmw.hButton[2],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
   CreateMyTooltip (ScilabGC->lpmw.hButton[2], "2D/3D Rotation"); 
 
@@ -1663,7 +1667,7 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 			}
 			else
 			{
-				Scierror(999,"xsnative: input argument incorrect\r\n");
+				Scierror(999,MSG_ERROR35);
 				LhsVar(1)=0;
 				return 0;
 			}
@@ -1673,7 +1677,7 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 
 	default:
 		{
-			Scierror(999,"xsnative: input argument incorrect\r\n");
+			Scierror(999,MSG_ERROR35);
 			LhsVar(1)=0;
 			return 0;
 		}
@@ -1744,7 +1748,7 @@ HDC TryToGetDC(HWND hWnd)
 		if (hDCRet == NULL)
 		{
 			#ifdef _DEBUG
-				MessageBox(NULL,"Error : GetDC fails","Error",MB_ICONWARNING);
+				MessageBox(NULL,MSG_ERROR36,MSG_ERROR20,MB_ICONWARNING);
 			#endif
 		}
 		
@@ -1752,7 +1756,7 @@ HDC TryToGetDC(HWND hWnd)
 	else
 	{
 		#ifdef _DEBUG
-			MessageBox(NULL,"Error : GetDC Input don't handle NULL","Error",MB_ICONWARNING);
+			MessageBox(NULL,MSG_ERROR37,MSG_ERROR20,MB_ICONWARNING);
 		#endif
 	}
 

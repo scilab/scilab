@@ -41,6 +41,11 @@
 #include "wcommon.h"
 #include <commdlg.h>
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 LP_PRINT prlist = NULL;
 /** list of selected printers **/
 

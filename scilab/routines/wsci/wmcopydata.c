@@ -1,6 +1,11 @@
 /* Allan CORNET 2004 INRIA */
 #include "wmcopydata.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 static char LineFromAnotherScilab[MAX_PATH];
 static BOOL ReceiveDatafromAnotherScilab=FALSE;
 static char TitleScilabSend[MAX_PATH];

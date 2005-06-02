@@ -12,6 +12,11 @@
 #include "winmain.h"
 #include "wcommon.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*-----------------------------------------------------------------------------------*/
 extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
@@ -48,7 +53,7 @@ int MyFGetC (FILE * file)
 /*-----------------------------------------------------------------------------------*/
 char *MyGetS (char *str)
 {
-	TextPutS (&textwin, "\nDANGER: gets() used\n");
+	TextPutS (&textwin,MSG_WARNING4);
 	MyFGetS (str, 80, stdin);
 	if (strlen (str) > 0
 	&& str[strlen (str) - 1] == '\n')

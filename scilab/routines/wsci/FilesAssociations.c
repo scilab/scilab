@@ -1,5 +1,9 @@
 /* Allan CORNET INRIA 2005 */
 #include "FilesAssociations.h"
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
 
 /*-----------------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
@@ -232,21 +236,21 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					if ( IsABinOrSavFile(FinalFileName)== TRUE )
 					{
 						/* C'est un fichier .BIN ou .SAV d'ou load */
-						wsprintf(Cmd,"%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');",PathWScilex,FinalFileName,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG1,PathWScilex,FinalFileName,FinalFileName);
 					}
 					else
 					if  ( IsAScicosFile(fichier)== TRUE )
 					{
 					    ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,"%s -e scicos(getlongpathname('%s'));",PathWScilex,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
 					}
 					else
 					if ( IsAGraphFile(fichier)== TRUE )
 					{
 						ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,"%s -e edit_graph(getlongpathname('%s'));",PathWScilex,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG3,PathWScilex,FinalFileName);
 					}
-					else wsprintf(Cmd,"%s -e exec(getlongpathname('%s'));",PathWScilex,FinalFileName);
+					else wsprintf(Cmd,MSG_SCIMSG4,PathWScilex,FinalFileName);
 				}
 			break;
 			case 2: /* Print -P*/
@@ -260,23 +264,23 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 				{
 					if (! HaveAnotherWindowScilab())
 					{
-						wsprintf(Cmd,"%s -e scipad(getlongpathname('%s')); ",PathWScilex,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
 					}
 					else
 					{
 						char *ScilabDestination=NULL;
-						wsprintf(Cmd,"scipad('%s'); ",FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG6,FinalFileName);
 
 						ScilabDestination=(char*)ChooseAnotherWindowScilab();
 						if (ScilabDestination)
 						{
-							SendCommandToAnotherScilab("Scilab Communication",ScilabDestination,Cmd);
+							SendCommandToAnotherScilab(MSG_SCIMSG7,ScilabDestination,Cmd);
 							free(ScilabDestination);
 							exit(0);
 						}
 						else
 						{
-							wsprintf(Cmd,"%s -e scipad(getlongpathname('%s')); ",PathWScilex,FinalFileName);
+							wsprintf(Cmd,MSG_SCIMSG8,PathWScilex,FinalFileName);
 						}
 						
 					}

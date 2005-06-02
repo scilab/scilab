@@ -17,6 +17,11 @@
 #include <commdlg.h>
 #include <commctrl.h>
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 typedef struct tagPOPUPSTRING
   {
     HMENU hMenu;
@@ -41,7 +46,7 @@ InitStatusBar (HWND hwndParent)
   HWND hwndSB;
   /* Initialize values for WM_MENUSELECT message handling */
   hwndSB = CreateStatusWindow (dwStatusBarStyles,
-			       "Ready",
+			       MSG_SCIMSG55,
 			       hwndParent,
 			       2);
   return hwndSB;

@@ -15,6 +15,12 @@
 #include "wresource.h"
 #include "wcommon.h"
 #include "../machine.h"
+
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 #ifdef WITH_TK
 #include "tcl.h"
 extern void initTCLTK ();

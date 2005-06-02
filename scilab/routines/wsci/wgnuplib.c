@@ -32,6 +32,11 @@
 #include "wresource.h"
 #include "wcommon.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 HINSTANCE hdllInstance;
 LPSTR szParentClass = "wscilab_parent";
 LPSTR szTextClass = "wscilab_text";
@@ -73,8 +78,8 @@ EXPORT BOOL CheckWScilabVersion (LPSTR str)
   version = WSCILABVERSION;
   if (lstrcmp (str, version))
     {
-      wsprintf (mess, "Incorrect DLL version\nExpected version   %s\nThis is version   %s", str, version);
-      MessageBox (NULL, mess, "WSCILAB.DLL", MB_OK | MB_ICONSTOP | MB_TASKMODAL);
+      wsprintf (mess, MSG_ERROR33, str, version);
+      MessageBox (NULL, mess, MSG_SCIMSG11, MB_OK | MB_ICONSTOP | MB_TASKMODAL);
       return TRUE;
     }
   return FALSE;			/* Correct version */

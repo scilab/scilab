@@ -7,6 +7,10 @@
 
 #include "common.h" 
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
 
 static int Sed __PARAMS ((int, char *, FILE *, char *, char *, char *, char *, char *, char *));
 static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));
@@ -29,7 +33,7 @@ ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double 
   env = getenv ("SCI");
   if (env == NULL)
     {
-      sciprint ("Environment variable SCI must be defined\n");
+      sciprint (MSG_ERROR49);
       return (1);
     }
 
@@ -47,7 +51,7 @@ ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double 
 
   if ((fo = fopen (fileout, "w")) == 0)
     {
-      sciprint (" Can't open file %s\n", fileout);
+      sciprint (MSG_ERROR50, fileout);
       return 1;
     }
 
@@ -71,7 +75,7 @@ ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double 
   if (rep >= 1)
     {
       if (rep == 1)
-	sciprint ("input file doesn't need to be converted to Epsf\n");
+	sciprint (MSG_ERROR51);
       remove (fileout);
       return 0;
     }
@@ -108,18 +112,18 @@ ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double 
   FileNameChange (filein, fileout, base, "tex");
   if ((fo = fopen (fileout, "w")) == 0)
     {
-      sciprint (" Can't open file %s\n", fileout);
+      sciprint (MSG_ERROR51, fileout);
       return 1;
     }
 #ifndef DOC
 
   fprintf (fo, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
-  fprintf (fo, "%% Usage: -To include a Figure with a caption, insert the TWO following lines\n");
-  fprintf (fo, "%%        in your Latex file:\n");
-  fprintf (fo, "%% \\input{This_file_name} \n");
-  fprintf (fo, "%% \\dessin{The_caption}{The_label}\n");
-  fprintf (fo, "%%         -To include just a picture, insert the lines \n");
-  fprintf (fo, "%%         between \\fbox{\\begin{picture}...  and \\end{picture}} below \n");
+  fprintf (fo, MSG_SCIMSG46);
+  fprintf (fo, MSG_SCIMSG47);
+  fprintf (fo, MSG_SCIMSG48);
+  fprintf (fo, MSG_SCIMSG49);
+  fprintf (fo, MSG_SCIMSG50);
+  fprintf (fo, MSG_SCIMSG51);
   fprintf (fo, "%%          \n");
   fprintf (fo, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
 
@@ -133,7 +137,7 @@ ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double 
 #endif
   fprintf (fo, "\\begin{figure}[hbtp]\n");
   fprintf (fo, "\\begin{center}\n");
-  fprintf (fo, "%%If you prefer cm use the following two lines\n");
+  fprintf (fo, MSG_SCIMSG52);
   fprintf (fo, "%%\\setlength{\\unitlength}{1mm}\n");
   fprintf (fo, "%%\\fbox{\\begin{picture}(%.2f,%.2f)\n", widecm, highcm);
   fprintf (fo, "\\fbox{\\begin{picture}(%.2f,%.2f)\n", wide, high);
@@ -243,7 +247,7 @@ Sed (flag, file, fileo, strin1, strout1, strin2, strout2, strin3, strout3)
     }
   else
     {
-      sciprint ("file %s not found \n", file);
+      sciprint (MSG_ERROR52, file);
       return (2);
     }
   return (0);

@@ -1,5 +1,10 @@
 #include "FindScilab.h"
 #include "../version.h"
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 #include "resource.h"
 /* Allan CORNET INRIA 2004 */
 /*-----------------------------------------------------------------------------------*/
@@ -87,7 +92,7 @@ char * ChooseScilabBox(void)
 	DLGPROC   MyChooseScilabDlgProc ;
 
 	
-	MyChooseScilabDlgProc = (DLGPROC) GetProcAddress((HINSTANCE)GetModuleHandle("LibScilab"),"ChooseScilabDlgProc");
+	MyChooseScilabDlgProc = (DLGPROC) GetProcAddress((HINSTANCE)GetModuleHandle(MSG_SCIMSG9),"ChooseScilabDlgProc");
 	
 	hWndChooseScilabBox= CreateDialog((HINSTANCE)GetModuleHandle(NULL),(LPCSTR)IDD_CHOOSEASCILAB,NULL,MyChooseScilabDlgProc) ;
 
@@ -127,7 +132,7 @@ BOOL CALLBACK ChooseScilabDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lp
 		{
 			int i=0;
 
-			SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)"New Scilab"));
+			SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)MSG_SCIMSG10));
 			for (i=0; i < NumberScilab  ; i++)
 				{
 				 if (i < NumberScilabMax) SendDlgItemMessage(hdlg, IDC_LISTCHOOSEASCILAB, LB_ADDSTRING, 0, (LPARAM)((LPSTR)ListScilabName[i] ));

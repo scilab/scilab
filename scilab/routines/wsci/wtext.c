@@ -34,6 +34,11 @@
 #include "wmcopydata.h"
 #include "WinConsole.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*-----------------------------------------------------------------------------------*/
 char ScilexWindowName[MAX_PATH];
 
@@ -83,7 +88,7 @@ static BOOL RegisterParentWindowClass (LPTW lptw)
 		char buff1[1000], buff2[1000];
 
 		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwLastError, 0, buff1, sizeof (buff1), NULL);
-		sprintf(buff2, "Parentwndclass Win32 error %ld occured", dwLastError);
+		sprintf(buff2, MSG_ERROR53, dwLastError);
 
 		MessageBox(NULL, buff1, buff2, MB_ICONERROR);
 
@@ -114,7 +119,7 @@ static BOOL RegisterTextWindowClass (LPTW lptw)
 		char buff1[1000], buff2[1000];
 
 		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwLastError, 0, buff1, sizeof (buff1), NULL);
-		sprintf(buff2, "Textwndclass Win32 error %ld occured", dwLastError);
+		sprintf(buff2, MSG_ERROR53, dwLastError);
 
 		MessageBox(NULL, buff1, buff2, MB_ICONERROR);
 
@@ -209,7 +214,7 @@ EXPORT int WINAPI TextInit (LPTW lptw)
 
   if (lptw->hWndParent == (HWND) NULL)
     {
-      MessageBox ((HWND) NULL, "Couldn't open parent text window", (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
+      MessageBox ((HWND) NULL, MSG_ERROR54, (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
       return (1);
     }
   ShowWindow (lptw->hWndParent, lptw->nCmdShow);
@@ -223,19 +228,17 @@ EXPORT int WINAPI TextInit (LPTW lptw)
 			     
   if (lptw->hWndText == (HWND) NULL)
     {
-      MessageBox ((HWND) NULL, "Couldn't open text window", (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
+      MessageBox ((HWND) NULL, MSG_ERROR55, (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
       return (1);
     }
     
   OnRightClickMenu(lptw) ; 
  
   sysmenu = GetSystemMenu (lptw->hWndParent, 0);	/* get the sysmenu */
-  /*AppendMenu (sysmenu, MF_SEPARATOR, 0, NULL);
-  AppendMenu (sysmenu, MF_POPUP, (UINT) lptw->hPopMenu, "&Options");*/
   AppendMenu (sysmenu, MF_SEPARATOR, 0, NULL);
-  AppendMenu (sysmenu, MF_STRING, M_CONSOLE, "&Console");
+  AppendMenu (sysmenu, MF_STRING, M_CONSOLE, MSG_SCIMSG56);
   AppendMenu (sysmenu, MF_SEPARATOR, 0, NULL);
-  AppendMenu (sysmenu, MF_STRING, M_ABOUT, "&About");
+  AppendMenu (sysmenu, MF_STRING, M_ABOUT, MSG_SCIMSG57);
 
   if (lptw->lpmw)    LoadMacros (lptw);
   ReLoadMenus(lptw);
@@ -546,7 +549,7 @@ void DoLine(LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count)
 	int idx, num;
 	pa = lptw->AttrBuffer + offset;
 	if ((offset < 0) || (offset >= lptw->ScreenSize.x*lptw->ScreenSize.y))
-	MessageBox((HWND)NULL, "panic", "panic", MB_OK | MB_ICONEXCLAMATION);
+	MessageBox((HWND)NULL, MSG_ERROR56, MSG_ERROR56, MB_OK | MB_ICONEXCLAMATION);
 	idx = 0;
 	num = count;
 	while (num > 0)
@@ -1589,11 +1592,11 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		 TextCopyClip (lptw);
 		 if (lptw->lpmw->CodeLanguage == 0)
 			{
-				PrintSelection(lptw,"Scilab Command Window");
+				PrintSelection(lptw,MSG_SCIMSG44);
 			}
 		else
 			{
-				PrintSelection(lptw,"Console Scilab");
+				PrintSelection(lptw,MSG_SCIMSG45);
 			}
 	  }
 	   return 0;
@@ -2089,35 +2092,35 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 			{
 			char buffer[MAX_PATH];
 			int cpubuild=_M_IX86;
-			wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
+			wsprintf(buffer,"%s %s",MSG_SCIMSG31,DEFAULT_MES);
 			SetDlgItemText(hDlg,IDC_VERSION_SPLASH,VERSION);
 			SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
 			wsprintf(buffer,"%s %s",__DATE__,__TIME__);
 			SetDlgItemText(hDlg,IDC_BUILD,buffer);
 			#if __MAKEFILEVC__
-				strcpy(buffer,"Makefile VC ");
+				strcpy(buffer,MSG_SCIMSG58);
 			#else
 				#if __ABSC__
-				strcpy(buffer,"Makefile ABSOFT ");
+				strcpy(buffer,MSG_SCIMSG59);
 				#else
 					#if _DEBUG
-					strcpy(buffer,"Debug ");
-					strcat(buffer,"Blend");
+					strcpy(buffer,MSG_SCIMSG60);
+					strcat(buffer,MSG_SCIMSG61);
 					#else
-					strcpy(buffer,"Release ");
+					strcpy(buffer,MSG_SCIMSG62);
 					switch(cpubuild)
 					{
 						case 500: // Pentium
-							strcat(buffer,"Pentium");
+							strcat(buffer,MSG_SCIMSG63);
 						break;
 						case 600: // Pentium Pro
-							strcat(buffer,"Pentium II and more");
+							strcat(buffer,MSG_SCIMSG64);
 						break;
 						case 400: // 486
-							strcat(buffer,"486");
+							strcat(buffer,MSG_SCIMSG65);
 						break;
 						case 300: // 386
-							strcat(buffer,"386");
+							strcat(buffer,MSG_SCIMSG66);
 						break;
 					}
 					#endif
@@ -2185,13 +2188,13 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 							{
 							case 1: /* French */
 								{
-								MessageBox(NULL,"Impossible d'ouvrir le fichier Licence.txt","Attention",MB_ICONWARNING);
+								MessageBox(NULL,MSG_WARNING26,MSG_WARNING21 ,MB_ICONWARNING);
 								}
 							break;
 
 							default: case 0: /*English */
 								{
-								MessageBox(NULL,"Couldn't Open License.txt","Warning",MB_ICONWARNING);
+								MessageBox(NULL,MSG_WARNING27,MSG_WARNING22,MB_ICONWARNING);
 								}
 							break;
 							}
@@ -2326,31 +2329,31 @@ void OnRightClickMenu(LPTW lptw)
   	case 1: /* French */
   	{
   		/*AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_CUT, "&Couper	Ctrl+X");*/
-		AppendMenu (lptw->hPopMenu, MF_STRING|MF_ENABLED, M_SELECT_ALL, "Sélection&ner Tout");
+		AppendMenu (lptw->hPopMenu, MF_STRING|MF_ENABLED, M_SELECT_ALL, MSG_SCIMSG67);
 		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, "Co&pier	Ctrl+C");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, "C&oller	Ctrl+V");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, MSG_SCIMSG68);
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, MSG_SCIMSG69);
   		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "Coller &Special	Shft+V");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Imprimer Selection...");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, MSG_SCIMSG70);
   		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, "&Evaluer Selection");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_OPENSELECTION, "&Ouvrir Selection");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_HELPON, "&Aide sur");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, MSG_SCIMSG71);
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_OPENSELECTION, MSG_SCIMSG72);
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_HELPON, MSG_SCIMSG73);
   	}
   	break;
   	default: case 0: /*English */
   	{
   		/*AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_CUT, "C&ut	Ctrl+X");*/
-		AppendMenu (lptw->hPopMenu, MF_STRING|MF_ENABLED, M_SELECT_ALL, "Select &All");
+		AppendMenu (lptw->hPopMenu, MF_STRING|MF_ENABLED, M_SELECT_ALL, MSG_SCIMSG74);
 		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, "&Copy	Ctrl+C");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, "&Paste	Ctrl+V");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, MSG_SCIMSG75);
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, MSG_SCIMSG76);
   		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "&Special Paste	Shft+V");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Print Selection...");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, MSG_SCIMSG77);
   		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, "&Evaluate Selection");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_OPENSELECTION, "&Open Selection");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_HELPON, "&Help on");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, MSG_SCIMSG78);
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_OPENSELECTION, MSG_SCIMSG79);
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_HELPON, MSG_SCIMSG80);
 
   	}
   	break;
@@ -2503,8 +2506,8 @@ void OpenSelection(LPTW lptw)
 		/*cree un fichier avec l'extension SCI */
 		char Message[MAX_PATH];
 		
-		wsprintf(Message,"File %s does not exist.\nDo you want create it ?",FileNameSCI);
-		if ( MessageBox(lptw->hWndText,Message,"Scilab Editor",MB_YESNO|MB_ICONWARNING)== IDYES )
+		wsprintf(Message,MSG_SCIMSG81,FileNameSCI);
+		if ( MessageBox(lptw->hWndText,Message,MSG_SCIMSG82,MB_YESNO|MB_ICONWARNING)== IDYES )
 		{
 			FILE *fp;
 			char Fichier[MAX_PATH];
@@ -2520,7 +2523,7 @@ void OpenSelection(LPTW lptw)
 			}
 			else
 			{
-				sciprint("\nCannot create file. It does not appear to be a valid name\n");	
+				sciprint(MSG_ERROR57);	
 				SendCTRLandAKey(CTRLL);
 			}
 			
@@ -2592,17 +2595,17 @@ int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 				 }
 				 else
 				 {
-				 	sciprint("\n Not in screen \n");
+				 	sciprint(MSG_WARNING28);
 				 }
 			}	
 			else
 	 		{
-	 			sciprint("Error %d invalid number\n",NbrLineToRemove);
+	 			sciprint(MSG_ERROR58,NbrLineToRemove);
 	 		}
 		}
 		else
 		{
-			sciprint("\n Not in console mode \n");
+			sciprint(MSG_WARNING29);
 		}
 	}
 return 0;	
@@ -2804,7 +2807,7 @@ void HomeFunction _PARAMS((char *fname, unsigned long fname_len))
 //      		InvalidateRect (lptw->hWndText, NULL, TRUE);
       		
       	}
-      	else sciprint("  Only in Graphical Version.\n"); 
+      	else sciprint(MSG_WARNING31); 
 	
 	
 	
@@ -2971,12 +2974,12 @@ void ExitWindow(void)
     switch (lptw->lpmw->CodeLanguage)
     {
     	case 1:
-    		strcpy(Message,"Etes vous sûr de quitter ?");
-    		strcpy(Title,"Quitter");
+    		strcpy(Message,MSG_SCIMSG83);
+    		strcpy(Title,MSG_SCIMSG84);
     	break;
     	case 0:default:
-    		strcpy(Message,"Are you sure to quit ?");
-    		strcpy(Title,"Quit");
+    		strcpy(Message,MSG_SCIMSG85);
+    		strcpy(Title,MSG_SCIMSG86);
     	break;
     }   
     
@@ -3048,7 +3051,7 @@ int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len))
   {
     if (Rhs == 0)
     	{
-    		sciprint("Error no window num.\n");
+    		sciprint(MSG_ERROR80);
     	}
   	else
   	{
@@ -3098,7 +3101,7 @@ int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len))
   }		
   else
  	{
- 		sciprint("Not in Console mode\n");
+ 		sciprint(MSG_WARNING29);
  	}
 return 0;
 }
@@ -3170,18 +3173,16 @@ BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wPa
 		 switch (LanguageCode)
 		{
     		case 1:
-			SetWindowText(hwnd,"Remarque Importante");
-			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,
-"Cette version de Scilab utilise par défaut le nouveau mode graphique.\n\nVous pouvez revenir à l'ancien mode par l'instruction:\n\tset old_style on\n\nCependant les animations doivent être adaptées au nouveau mode graphique.\n\nPour plus d'information, consulter l'aide en ligne de \"graphics_entities\".\n\n\nVeuillez noter que l'ancien mode sera obsolète dans les futures versions.");
+			SetWindowText(hwnd,MSG_SCIMSG87);
+			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,MSG_SCIMSG88);
 
-    		SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Ne plus afficher ce message");
+    		SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,MSG_SCIMSG89);
     		break;
 
     		case 0:default:
-			SetWindowText(hwnd,"Warning:");
-			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,
-"This Scilab version uses, by default, the new graphics mode.\n\nYou can go back to the old graphics entering the instruction:\n\tset old_style on\n\nNote however that the animations should be adapted to the new graphics.\n\nFor more information, see \"graphics_entities\" help page.\n\n\nPlease notice that the old graphics mode will be obsolete in future releases.");
-			SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Don't show this screen at startup");
+			SetWindowText(hwnd,MSG_WARNING22);
+			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,MSG_SCIMSG90);
+			SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,MSG_SCIMSG91);
     		break;
 		}
       return TRUE;

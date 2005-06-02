@@ -20,6 +20,11 @@
 #include "errno.h"
 #endif
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*
  * The following constants specify the type of callback when
  * TraverseWinTree() calls the traverseProc()
@@ -106,7 +111,7 @@ SciCreateDirectory (
 	{
 	  return SCI_OK;
 	}
-      sciprint ("Cannot create directory %s\r\n", path);
+      sciprint (MSG_ERROR12, path);
       return SCI_ERROR;
     }
   return SCI_OK;
@@ -151,7 +156,7 @@ SciRemoveDirectory (
   Sci_DStringInit (&errorPtr);
   if (ScipRemoveDirectory (path, 1, &errorPtr) == SCI_ERROR)
     {
-      sciprint ("Cannot remove directory %s\r\n", errorPtr.string);
+      sciprint (MSG_ERROR12, errorPtr.string);
     }
   Sci_DStringFree (&errorPtr);
   return 0;

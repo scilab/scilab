@@ -5,6 +5,11 @@
 #include <string.h>
 #include "common.h" 
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 HANDLE hChildStdinRd, hChildStdinWr, hChildStdinWrDup, hChildStdoutRd,
   hChildStdoutWr, hInputFile, hSaveStdin, hSaveStdout;
 
@@ -42,7 +47,7 @@ InitSh ()
 
   if (!CreatePipe (&hChildStdoutRd, &hChildStdoutWr, &saAttr, 0))
     {
-      sciprint ("Stdout pipe creation failed\n");
+      sciprint (MSG_ERROR25);
       return (1);
     }
 
@@ -50,7 +55,7 @@ InitSh ()
 
   if (!SetStdHandle (STD_OUTPUT_HANDLE, hChildStdoutWr))
     {
-      sciprint ("Redirecting STDOUT failed\r\n");
+      sciprint (MSG_ERROR26);
       return (1);
     }
 
@@ -72,7 +77,7 @@ InitSh ()
 
   if (!CreatePipe (&hChildStdinRd, &hChildStdinWr, &saAttr, 0))
     {
-      sciprint ("Stdin pipe creation failed\r\n");;
+      sciprint (MSG_ERROR27);
       return (1);
     }
 
@@ -80,7 +85,7 @@ InitSh ()
 
   if (!SetStdHandle (STD_INPUT_HANDLE, hChildStdinRd))
     {
-      sciprint ("Redirecting Stdin failed\r\n");
+      sciprint (MSG_ERROR28);
       return (1);
     }
   /* Duplicate the write handle to the pipe so it is not inherited. */
@@ -91,7 +96,7 @@ InitSh ()
 			      DUPLICATE_SAME_ACCESS);
   if (!fSuccess)
     {
-      sciprint ("DuplicateHandle failed\r\n");
+      sciprint (MSG_ERROR29);
       return (1);
     }
 
@@ -101,20 +106,20 @@ InitSh ()
 
   if (!CreateChildProcess ())
     {
-      sciprint ("Create process failed\r\n");
+      sciprint (MSG_ERROR30);
     }
 
   /* After process creation, restore the saved STDIN and STDOUT. */
 
   if (!SetStdHandle (STD_INPUT_HANDLE, hSaveStdin))
     {
-      sciprint ("Re-redirecting Stdin failed\r\n");
+      sciprint (MSG_ERROR31);
       return (1);
     }
 
   if (!SetStdHandle (STD_OUTPUT_HANDLE, hSaveStdout))
     {
-      sciprint ("Re-redirecting Stdout failed\r\n");
+      sciprint (MSG_ERROR32);
       return (1);
     }
   return (0);

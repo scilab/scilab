@@ -23,6 +23,11 @@
 #include "wresource.h"
 #include "wcommon.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /** 
   Warning : Remove AbortPrinter from 
   b18/H-i386-cygwin32/i386-cygwin32/include/Windows32/Functions.h
@@ -122,7 +127,7 @@ get_queues (void)
   if (!EnumPrinters (PRINTER_ENUM_CONNECTIONS | PRINTER_ENUM_LOCAL, NULL, 1, (LPBYTE) enumbuffer, needed, &needed, &count))
     {
       free (enumbuffer);
-      sciprint ("EnumPrinters() failed, error code = %d", GetLastError ());
+      sciprint (MSG_ERROR70, GetLastError ());
       return NULL;
     }
   prinfo = (PRINTER_INFO_1 *) enumbuffer;
@@ -221,7 +226,7 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
   /* open a printer */
   if (!OpenPrinter (port, &printer, NULL))
     {
-      sciprint ("OpenPrinter() failed for \042%s\042, error code = %d", port, GetLastError ());
+      sciprint (MSG_ERROR71, port, GetLastError ());
       free (buffer);
       return FALSE;
     }
@@ -232,7 +237,7 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
   di.pDatatype = "RAW";		/* for available types see EnumPrintProcessorDatatypes */
   if (!StartDocPrinter (printer, 1, (LPBYTE) & di))
     {
-      sciprint ("StartDocPrinter() failed, error code = %d", GetLastError ());
+      sciprint (MSG_ERROR72, GetLastError ());
       AbortPrinter (printer);
       free (buffer);
       return FALSE;
@@ -253,14 +258,14 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
 
   if (!EndDocPrinter (printer))
     {
-      sciprint ("EndDocPrinter() failed, error code = %d", GetLastError ());
+      sciprint (MSG_ERROR73, GetLastError ());
       AbortPrinter (printer);
       return FALSE;
     }
 
   if (!ClosePrinter (printer))
     {
-      sciprint ("ClosePrinter() failed, error code = %d", GetLastError ());
+      sciprint (MSG_ERROR74, GetLastError ());
       return FALSE;
     }
   return TRUE;

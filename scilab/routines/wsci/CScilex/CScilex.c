@@ -5,6 +5,11 @@
 #include "stdio.h"
 #include "signal.h"
 
+#include "../Messages.h"
+#include "../Warnings.h"
+#include "../Errors.h"
+
+
 extern int Console_Main(int argc, char **argv);
 
 #ifndef SIGIOT
@@ -56,37 +61,37 @@ extern "C" {
 
   static VOID sigfdie(Int n)
   {
-    sig_die("Floating Exception", 1);
+    sig_die(MSG_ERROR1, 1);
   }
 
 
   static VOID sigidie(Int n)
   {
-    sig_die("IOT Trap", 1);
+    sig_die(MSG_ERROR2, 1);
   }
 
 #ifdef SIGQUIT
   static VOID sigqdie(Int n)
   {
-    sig_die("Quit signal", 1);
+    sig_die(MSG_ERROR3, 1);
   }
 #endif
 
 
   static VOID sigindie(Int n)
   {
-    sig_die("Interrupt", 0);
+    sig_die(MSG_ERROR4, 0);
   }
 
   static VOID sigtdie(Int n)
   {
-    sig_die("Killed", 0);
+    sig_die(MSG_ERROR5, 0);
   }
 
 #ifdef SIGTRAP
   static VOID sigtrdie(Int n)
   {
-    sig_die("Trace trap", 1);
+    sig_die(MSG_ERROR6, 1);
   }
 #endif
 

@@ -33,6 +33,10 @@
 #include "winmain.h"
 #include "WinConsole.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
 BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;
 
@@ -72,7 +76,7 @@ int Console_Main(int argc, char **argv)
 
   if (ScilabDirectory == NULL)
   {
-	MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+	MessageBox (NULL, MSG_ERROR20 ,MSG_ERROR38, MB_ICONSTOP | MB_OK);
 	exit(1);
   }
 
@@ -91,14 +95,14 @@ int Console_Main(int argc, char **argv)
   /* Load common control library * */
   InitCommonControls ();
 
-  textwin.hInstance = GetModuleHandle("LibScilab");
+  textwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
   textwin.hPrevInstance = 0;
   textwin.nCmdShow = 1;
-  textwin.Title = "Scilab";
+  textwin.Title = MSG_SCIMSG21;
   textwin.IniFile = "scilab.ini";
   textwin.IniSection = "SCILAB";
   textwin.DragPre = "gl_name='";
-  textwin.DragPost = "';exec('SCI/util/GLoad.sce');\n";
+  textwin.DragPost = MSG_SCIMSG17;
   textwin.lpmw = &menuwin;
   textwin.ScreenSize.x = 120;
   textwin.ScreenSize.y = 80;
@@ -107,21 +111,21 @@ int Console_Main(int argc, char **argv)
   textwin.shutdown = (DLGPROC) ShutDown;
   textwin.AboutText = (LPSTR) malloc (1024);
   CheckMemory (textwin.AboutText);
-  strcpy (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
-  strcat (textwin.AboutText, "developed by Scilab Group (Inria/Enpc)\n\t");
-  strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
+  strcpy (textwin.AboutText, MSG_SCIMSG18);
+  strcat (textwin.AboutText,MSG_SCIMSG19);
+  strcat (textwin.AboutText,MSG_SCIMSG20);
   textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
   CheckMemory (textwin.AboutText);
 
   menuwin.szMenuName = szMenuName;
 
-  pausewin.hInstance = GetModuleHandle (0);
+  pausewin.hInstance = GetModuleHandle(MSG_SCIMSG9);
   pausewin.hPrevInstance = 0;
-  pausewin.Title = "Scilab pause";
+  pausewin.Title = MSG_SCIMSG22;
 
-  graphwin.hInstance = GetModuleHandle (0);
+  graphwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
   graphwin.hPrevInstance = 0;
-  graphwin.Title = "Scilab Graph";
+  graphwin.Title =  MSG_SCIMSG23 ;
   graphwin.szMenuName = szGraphMenuName;
   graphwin.lptw = &textwin;
   graphwin.IniFile = textwin.IniFile;
@@ -175,7 +179,7 @@ int Console_Main(int argc, char **argv)
     }
   else
     {
-        MessageBox(NULL,"-nw or -nwni not found","Error",MB_ICONWARNING);
+        MessageBox(NULL,MSG_ERROR79,MSG_ERROR20,MB_ICONWARNING);
     }
   return 0;
 }
@@ -210,7 +214,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	if (ScilabDirectory == NULL)
 	{
-		MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+		MessageBox (NULL,MSG_ERROR20 , MSG_ERROR38, MB_ICONSTOP | MB_OK);
 		exit(1);
 	}	
 	
@@ -232,11 +236,11 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.hInstance = hInstance;
 	textwin.hPrevInstance = hPrevInstance;
 	textwin.nCmdShow = iCmdShow;
-	textwin.Title = "Scilab";
+	textwin.Title = MSG_SCIMSG21;
 	textwin.IniFile = "scilab.ini";
 	textwin.IniSection = "SCILAB";
 	textwin.DragPre = "gl_name='";
-	textwin.DragPost = "';exec('SCI/util/GLoad.sce');\n";
+	textwin.DragPost = MSG_SCIMSG17;
 	textwin.lpmw = &menuwin;
 	textwin.ScreenSize.x = 120;
 	textwin.ScreenSize.y = 80;
@@ -245,9 +249,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.shutdown = (DLGPROC) ShutDown;
 	textwin.AboutText = (LPSTR) malloc (1024);
 	CheckMemory (textwin.AboutText);
-	strcpy (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
-	strcat (textwin.AboutText, "developed by Scilab Consortium (Inria/Enpc)\n\t");
-	strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
+	strcpy (textwin.AboutText,MSG_SCIMSG18);
+	strcat (textwin.AboutText, MSG_SCIMSG19);
+	strcat (textwin.AboutText, MSG_SCIMSG20);
 	textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
 	CheckMemory (textwin.AboutText);
 
@@ -255,11 +259,11 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	pausewin.hInstance = hInstance;
 	pausewin.hPrevInstance = hPrevInstance;
-	pausewin.Title = "Scilab pause";
+	pausewin.Title = MSG_SCIMSG22;
 
 	graphwin.hInstance = hInstance;
 	graphwin.hPrevInstance = hPrevInstance;
-	graphwin.Title = "Scilab Graph";
+	graphwin.Title = MSG_SCIMSG23;
 	graphwin.szMenuName = szGraphMenuName;
 	graphwin.lptw = &textwin;
 	graphwin.IniFile = textwin.IniFile;
@@ -325,13 +329,13 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			 (strcmp (strupr(ArgTmp), "-HELP") == 0) )
 		{
 			char Msg[1024];
-			strcpy(Msg,"Wscilex <Options> : run Scilab.\n");
-			strcat(Msg,"-ns:if this option is present the startup file SCI/scilab.star is not executed.\n"); 
-			strcat(Msg,"-nb:if this option is present then the scilab welcome banner is not displayed.\n"); 
-			strcat(Msg,"-l lang: it fixes the user language.\nThe possible lang values are 'fr' for french and 'eng' for english.\nThe default language is english. This default value is fixed the scilab.star file.\n"); 
-			strcat(Msg,"-f file: Scilab script file is executed first into Scilab.\n"); 
-			strcat(Msg,"-e instruction: Scilab instruction instruction is executed first into Scilab.");
-			MessageBox(NULL,Msg,"Help",MB_ICONINFORMATION);
+			strcpy(Msg,MSG_SCIMSG24);
+			strcat(Msg,MSG_SCIMSG25); 
+			strcat(Msg,MSG_SCIMSG26); 
+			strcat(Msg,MSG_SCIMSG27); 
+			strcat(Msg,MSG_SCIMSG28); 
+			strcat(Msg,MSG_SCIMSG29);
+			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
 			exit(1);
 		}
 	}
@@ -467,11 +471,11 @@ void InitWindowGraphDll(void)
 
   HINSTANCE hdllInstanceTmp=NULL;
   char *p1 = (char*)getenv ("SCI");
-  hdllInstanceTmp=(HINSTANCE)GetModuleHandle("libScilab");
+  hdllInstanceTmp=(HINSTANCE)GetModuleHandle(MSG_SCIMSG11);
 
   if (hdllInstanceTmp==NULL) 
   {
-  	MessageBox(NULL,"Do not find LibScilab.dll","Error",MB_ICONWARNING|MB_OK);
+  	MessageBox(NULL,MSG_ERROR39,MSG_ERROR20,MB_ICONWARNING|MB_OK);
   	exit(1);
   }
 
@@ -482,7 +486,7 @@ void InitWindowGraphDll(void)
 
   if (ScilabDirectory == NULL)
   {
-	MessageBox (NULL, "Error", "GetScilabDirectory()", MB_ICONSTOP | MB_OK);
+	MessageBox (NULL, MSG_ERROR20, MSG_ERROR38, MB_ICONSTOP | MB_OK);
 	exit(1);
   }	
 
@@ -495,7 +499,7 @@ void InitWindowGraphDll(void)
   
    graphwin.hInstance = hdllInstance;
    graphwin.hPrevInstance = NULL;
-   graphwin.Title = "Scilab Graph";
+   graphwin.Title = MSG_SCIMSG23;
    graphwin.szMenuName = szGraphMenuName;
    graphwin.lptw = &textwin;
    graphwin.IniFile = "scilab.ini";
@@ -548,7 +552,7 @@ static void CheckMemory (LPSTR str)
 #ifndef _DEBUG
 	if (str == (LPSTR) NULL)
 	{
-		MessageBox (NULL, "out of memory", "Scilab", MB_ICONSTOP | MB_OK);
+		MessageBox (NULL,MSG_ERROR40, MSG_ERROR20, MB_ICONSTOP | MB_OK);
 		exit (1);
 	}
 #endif
@@ -639,7 +643,7 @@ void Kill_Scilex(void)
 
 		TerminateProcess(hProcess,0);
 	}
-	else MessageBox(NULL,"Don't Find Scilab Process","Attention",MB_ICONWARNING);
+	else MessageBox(NULL,MSG_WARNING20,MSG_WARNING21,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void CreateSplashscreen(void)
@@ -647,7 +651,7 @@ void CreateSplashscreen(void)
 	HWND hdlg;
 	char buffer[MAX_PATH];
 
-	wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
+	wsprintf(buffer,"%s %s",MSG_SCIMSG31,DEFAULT_MES);
 
 	hdlg = CreateDialog(hdllInstance, "IDD_SPLASH", NULL,NULL);
 	SetDlgItemText(hdlg,IDC_VERSION_SPLASH,VERSION);
@@ -671,14 +675,14 @@ BOOL ForbiddenToUseScilab(void)
 
 	if ( (WinVer == OS_WIN32_WINDOWS_NT_3_51) || (WinVer == OS_WIN32_WINDOWS_NT_4_0) )
 	{
-		MessageBox(NULL,"Warning","Scilab doesn''t support Windows NT 3.51 or 4.\n",MB_ICONSTOP);
+		MessageBox(NULL,MSG_WARNING22,MSG_ERROR41,MB_ICONSTOP);
 		exit(1);
 		return bOK;
 	}
 
 	if ( BitsByPixel < 8 )
 	{
-		MessageBox(NULL,"Warning","Scilab supports only 256 colors or more.\n",MB_ICONSTOP);
+		MessageBox(NULL,MSG_WARNING22,MSG_ERROR42,MB_ICONSTOP);
 		exit(1);
 		return bOK;
 	}

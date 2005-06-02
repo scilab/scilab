@@ -1,3 +1,4 @@
+
 /*
  * command.c : 
  * (1997) : Jean-Philippe Chancelier 
@@ -26,6 +27,12 @@
 /*#include "wgnuplib.h"*/
 #include "wcommon.h"
 #include "plot.h"
+
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 struct hist
 {
     		char *line;
@@ -168,7 +175,7 @@ int read_line (char *prompt, int interrupt)
       if (last < 0)
 	last = 0;		/* stop UAE in Windows */
       if (last + 1 >= MAX_LINE_LEN)
-	int_error ("Input line too long", NO_CARET);
+	int_error (MSG_ERROR68, NO_CARET);
     }
     
   return (0);
@@ -187,7 +194,7 @@ do_shell ()
   if ((comspec = getenv ("COMSPEC")) == (char *) NULL)
     comspec = "\\command.com";
   if (WinExec (comspec, SW_SHOWNORMAL) <= 32)
-    os_error ("unable to spawn shell", NO_CARET);
+    os_error (MSG_ERROR69, NO_CARET);
 }
 
 /**********************************************
@@ -199,7 +206,7 @@ void
 do_system ()
 {
   if (winsystem (input_line + 1, 0))
-    os_error ("system() failed", NO_CARET);
+    os_error (MSG_ERROR11, NO_CARET);
 }
 
 
@@ -249,7 +256,7 @@ winsystem (char *s, int flag)
       execstr = (char *) malloc (strlen (s) + strlen (comspec) + 6);
       if (execstr == NULL)
 	{
-	  sciprint ("Running out of memory\r\n");
+	  sciprint (MSG_WARNING1);
 	  return 1;
 	}
       if (s[0] == '/' && s[1] == '/' && s[3] == '/')
@@ -275,7 +282,7 @@ winsystem (char *s, int flag)
 	    }
 	  res = WinExec (execstr, sw_sci_flag);
 	  if (res <= 31)
-	    sciprint ("WinExec of %s failed \r\n", execstr);
+	    sciprint (MSG_WARNING2, execstr);
 	}
       free (execstr);
     }
@@ -320,6 +327,6 @@ MyWinExec (char *str, int sw_sci_flag)
   else
     return 0;
 error:
-  sciprint (" Could not exec %s\r\n", str);
+  sciprint (MSG_WARNING3, str);
   return 32;
 }

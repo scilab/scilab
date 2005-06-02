@@ -2,6 +2,10 @@
 /* INRIA 2005 */
 
 #include "SciEnv.h"
+
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
 /********************************************************************************************************/
 /* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
 /* sont définies directement dans scilex */
@@ -54,7 +58,7 @@ char *GetScilabDirectory(BOOL UnixStyle)
 
 	ScilabModuleName = (LPSTR) malloc (MAXSTR + 1);
 
-	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle("LibScilab"), (LPSTR) ScilabModuleName, MAX_PATH))
+	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle(MSG_SCIMSG9), (LPSTR) ScilabModuleName, MAX_PATH))
 	{
 		if (ScilabModuleName) {free(ScilabModuleName);ScilabModuleName=NULL;}
 		return NULL;
@@ -139,7 +143,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 
 		if (GetShortPathName(GetSCIpath,ShortPath,MAX_PATH) == 0)
 		{
-			MessageBox(NULL,"Incorrect SCI path. Please verify your SCI environment variable","ERROR",MB_ICONWARNING);
+			MessageBox(NULL,MSG_ERROR19,MSG_ERROR20,MB_ICONWARNING);
 			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 			exit(1);
 			return FALSE;
@@ -193,7 +197,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 		CopyOfDefaultPath=malloc(((int)strlen(GetHOMEpath)+1)*sizeof(char));
 		if (GetShortPathName(GetHOMEpath,ShortPath,MAX_PATH)==0)
 		{
-			MessageBox(NULL,"Incorrect HOME path. Please verify your HOME environment variable","ERROR",MB_ICONWARNING);
+			MessageBox(NULL,MSG_ERROR21,MSG_ERROR20,MB_ICONWARNING);
 			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 			exit(1);
 			return FALSE;
@@ -260,7 +264,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		MessageBox(NULL,"Impossible to define TCL_LIBRARY environment variable","ERROR",MB_ICONWARNING);
+		MessageBox(NULL,MSG_ERROR22,MSG_ERROR20,MB_ICONWARNING);
 		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		exit(1);
 		return FALSE;
@@ -307,7 +311,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		MessageBox(NULL,"Impossible to define TK_LIBRARY environment variable","ERROR",MB_ICONWARNING);
+		MessageBox(NULL,MSG_ERROR23,MSG_ERROR20 ,MB_ICONWARNING);
 		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		exit(1);
 		return FALSE;
@@ -345,7 +349,7 @@ BOOL Set_LCC_PATH(char *DefaultPath)
 
 		if ( PathWsci == NULL )
 		{
-			MessageBox(NULL,"SCI not defined","Error",MB_ICONWARNING);
+			MessageBox(NULL,MSG_ERROR76,MSG_ERROR20,MB_ICONWARNING);
 			exit(1);
 		}
 		else
@@ -375,7 +379,7 @@ BOOL Set_LCC_PATH(char *DefaultPath)
 	}
 	else
 	{
-		MessageBox(NULL,"No PATH environment ...","Error",MB_ICONWARNING);
+		MessageBox(NULL,MSG_ERROR24,MSG_ERROR20,MB_ICONWARNING);
 		exit(1);
 	}
 

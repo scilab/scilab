@@ -3,6 +3,11 @@
 /* Scilab, INRIA 2004 */
 /*-----------------------------------------------------------------------------------*/
 #include "registry.h"
+
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
 /*-----------------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383
@@ -112,7 +117,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 					}
 					else
 					{
-						Scierror(999,"Error.\r\n");
+						Scierror(999,MSG_ERROR16);
 						LhsVar(1)=0;
 						return 0;
 					}
@@ -158,7 +163,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 		}
 		else
 		{
-			Scierror(999,"Cannot query value of this type.\r\n");
+			Scierror(999,MSG_ERROR17);
 			LhsVar(1)=0;
 		}
 	    
@@ -167,7 +172,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 	}
   else
   {
-	Scierror(999,"Two arguments required\r\n");
+	Scierror(999,MSG_ERROR18);
 	LhsVar(1)=0;
   }
   return 0;

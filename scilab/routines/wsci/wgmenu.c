@@ -1,5 +1,11 @@
 #include "wgmenu.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
+
 /*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
@@ -282,7 +288,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 	  if (!(nInc = GetLine (buf, MAXSTR, menufile)))
 	    {
 	      nLine += nInc;
-	      BUGGOTOCLEAN ("Problem on line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_WARNING5);
 	    }
 	  LeftJustify (buf, buf);
 	  if (nMenuLevel < MENUDEPTH)
@@ -291,7 +297,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 	    }
 	  else
 	    {
-	      BUGGOTOCLEAN ("Menu is too deep at line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_WARNING6);
 	    }
 	  hMenu[nMenuLevel] = CreateMenu ();
 	  AppendMenu (hMenu[nMenuLevel > 0 ? nMenuLevel - 1 : 0],
@@ -309,7 +315,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 	  /* menu item */
 	  if (nCountMenu >= NUMMENU)
 	    {
-	      BUGGOTOCLEAN ("Too many menu items at line %d of %s\n");
+	      BUGGOTOCLEAN ( MSG_WARNING7 );
 	    }
 	  LeftJustify (buf, buf);
 	  if (buf[0] == '-')
@@ -330,7 +336,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 	      if (!(nInc = GetLine (buf, MAXSTR, menufile)))
 		{
 		  nLine += nInc;
-		  BUGGOTOCLEAN ("Problem on line %d of %s\n");
+		  BUGGOTOCLEAN (MSG_WARNING8);
 		}
 	      LeftJustify (buf, buf);
 	      TranslateMacro (buf);
@@ -340,7 +346,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 		}
 	      else
 		{
-		  BUGGOTOCLEAN ("Out of space for storing menu macros\n at line %d of %s\n");
+		  BUGGOTOCLEAN (MSG_WARNING9);
 		}
 	      ScilabGC->lpmw.macro[nCountMenu] = macroptr;
 	    }
@@ -357,7 +363,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
   goto cleanup;
 
  nomemory:
-  MessageBox (ScilabGC->hWndParent, "Out of memory",
+  MessageBox (ScilabGC->hWndParent, MSG_ERROR77,
 	      ScilabGC->lpgw->Title, MB_ICONEXCLAMATION);
 
  errorcleanup:
@@ -684,7 +690,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
       nCountMenu = WGFindMenuPos (lpmw->macro);
       if (nCountMenu >= NUMMENU)
 	{
-	  sciprint ("Can't add a menu item in scilab main menu \r\n");
+	  sciprint (MSG_WARNING10);
 	  return;
 	}
     }
@@ -698,8 +704,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
 	  nCountMenu = WGFindMenuPos (lpmw->macro);
 	  if (nCountMenu >= NUMMENU)
 	    {
-	      sciprint ("Can't add a menu item in scilab graphic %d menu \r\n"
-			,*win_num);
+	      sciprint (MSG_WARNING11,*win_num);
 	      return;
 	    }
 	}
@@ -729,7 +734,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
 	}
       else
 	{
-	  sciprint ("Out of space for storing menu macros\n");
+	  sciprint (MSG_WARNING12);
 	  return;
 	}
       lpmw->macro[nCountMenu] = macroptr;
@@ -745,7 +750,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
 	  nCountMenu = WGFindMenuPos (lpmw->macro);
 	  if (nCountMenu >= NUMMENU)
 	    {
-	      sciprint ("Can't add a menu item \r\n");
+	      sciprint (MSG_WARNING13);
 	      return;
 	    }
 	  AppendMenu (hMenu, MF_STRING, nCountMenu, entries[i]);
@@ -769,7 +774,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
 	    }
 	  else
 	    {
-	      sciprint ("Out of space for storing menu macros\n");
+	      sciprint (MSG_WARNING14);
 	      return;
 	    }
 	  lpmw->macro[nCountMenu] = macroptr;
@@ -828,15 +833,15 @@ ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
     {
     case WM_INITDIALOG:
       SendDlgItemMessage (hdlg, PS_COLOR, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) "Black and white"));
+			  (LPARAM) ((LPSTR) MSG_SCIMSG92));
       SendDlgItemMessage (hdlg, PS_COLOR, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) "Color"));
+			  (LPARAM) ((LPSTR) MSG_SCIMSG93));
       SendDlgItemMessage (hdlg, PS_COLOR, CB_SETCURSEL,
 			  ls.colored, 0L);
       SendDlgItemMessage (hdlg, PS_LAND, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) "Portrait"));
+			  (LPARAM) ((LPSTR) MSG_SCIMSG94));
       SendDlgItemMessage (hdlg, PS_LAND, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) "Landscape"));
+			  (LPARAM) ((LPSTR) MSG_SCIMSG95));
       SendDlgItemMessage (hdlg, PS_LAND, CB_SETCURSEL,
 			  ls.land, 0L);
       if (ls.use_printer == 0)
@@ -926,59 +931,59 @@ static void SavePs (struct BCG *ScilabGC)
     case 0:
       /** postscript Epsf file **/
       SetCursor (LoadCursor (NULL, IDC_WAIT));
-      wininfo ("Epsf file generation");
+      wininfo (MSG_SCIMSG96);
       dos2win32 (filename, filename1);
       scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
       ori = (ls.land == 1) ? 'l' : 'p';
       ScilabPsToEps (ori, filename1, filename);
-      wininfo ("end of Epsf generation");
+      wininfo (MSG_SCIMSG97);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 1:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       scig_tops (ScilabGC->CurWindow, ls.colored, filename, "Pos");
-      wininfo ("end of Ps file generation");
+      wininfo (MSG_SCIMSG98);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 2:
       /** Epsf + Tex file **/
       SetCursor (LoadCursor (NULL, IDC_WAIT));
-      wininfo ("Epsf and LaTeX files generation");
+      wininfo (MSG_SCIMSG99);
       dos2win32 (filename, filename1);
       scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
       ori = (ls.land == 1) ? 'l' : 'p';
       ScilabPsToTeX (ori, filename1, filename, 1.0, 1.0);
-      wininfo ("end of Epsf file and LaTeX file generation");
+      wininfo (MSG_SCIMSG100);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 3:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       scig_tops (ScilabGC->CurWindow, ls.colored, filename, "Fig");
-      wininfo ("end of Xfig file generation");
+      wininfo (MSG_SCIMSG101);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 4:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       scig_tops (ScilabGC->CurWindow, ls.colored, filename, "GIF");
-      wininfo ("end of GIF file generation");
+      wininfo (MSG_SCIMSG102);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 5:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       scig_tops (ScilabGC->CurWindow, ls.colored, filename, "PPM");
-      wininfo ("end of PPM file generation");
+      wininfo (MSG_SCIMSG103);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 6:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       ExportBMP(ScilabGC,filename);
-      wininfo ("end of BMP file generation");
+      wininfo (MSG_SCIMSG104);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 7:
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       ExportEMF(ScilabGC,filename);
-      wininfo ("end of EMF file generation");
+      wininfo (MSG_SCIMSG104);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     }
@@ -1017,7 +1022,7 @@ static void PrintPs (struct BCG *ScilabGC)
   /** getting filename **/
   if ((p1 = getenv ("TMPDIR")) == (char *) 0)
     {
-      sciprint ("Cannot find environment variable TMPDIR\r\n");
+      sciprint (MSG_WARNING15);
       return;
     }
   sprintf (filename, "%s/scilab-%d", p1, (int) ScilabGC->CurWindow);
@@ -1029,7 +1034,7 @@ static void PrintPs (struct BCG *ScilabGC)
     {
       if (gp_printfile (hdllInstance, ScilabGC->hWndParent, filename,
 			(char *) 0) == FALSE)
-	sciprint ("Error while printing\r\n");
+	sciprint (MSG_ERROR78);
     }
   /** filename is destroyed when we quit scilab **/
 }

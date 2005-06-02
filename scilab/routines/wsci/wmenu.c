@@ -25,6 +25,10 @@
 #include <ShlObj.h>
 #include "wmenu.h"
 
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
 #ifndef STRICT
 #define STRICT
 #endif
@@ -69,7 +73,7 @@ void Callback_NEWSCILAB(void)
 			CloseHandle (child.hThread);
 			CloseHandle (child.hProcess);
 		}
-		else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
+		else MessageBox(NULL,MSG_WARNING23,MSG_WARNING22,MB_ICONWARNING);
 
 	}
 	else
@@ -80,7 +84,7 @@ void Callback_NEWSCILAB(void)
 			CloseHandle (child.hThread);
 			CloseHandle (child.hProcess);
 		}
-		else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
+		else MessageBox(NULL,MSG_WARNING23,MSG_WARNING22,MB_ICONWARNING);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -98,10 +102,10 @@ void Callback_OPEN(void)
 	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
-			strcpy(TitleText,"Ouvrir");
+			strcpy(TitleText,MSG_SCIMSG32);
 			break;
 		case 0:default:
-			strcpy(TitleText,"Open");
+			strcpy(TitleText,MSG_SCIMSG33);
 			break;
 	}
 	    			
@@ -134,7 +138,7 @@ void Callback_EXEC(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command,"exec('%s');disp('exec done');",Fichier);
+		wsprintf(command,MSG_SCIMSG34,Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -151,7 +155,7 @@ void Callback_GETF(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Getf",TRUE,"Files *.sci\0*.sci\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command,"getf('%s');disp('getf done');",Fichier);
+		wsprintf(command,MSG_SCIMSG35,Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -168,7 +172,7 @@ void Callback_LOAD(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Load",TRUE,"Files *.sav;*.bin\0*.sav;*.bin\0Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-	    wsprintf(command,"load('%s');disp('file loaded');",Fichier);
+	    wsprintf(command,MSG_SCIMSG36,Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -185,7 +189,7 @@ void Callback_SAVE(void)
 	if (OpenSaveSCIFile(lptw->hWndParent,"Save",FALSE,"Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command,"save('%s');disp('file saved');",Fichier);
+		wsprintf(command,MSG_SCIMSG37,Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -214,32 +218,32 @@ void Callback_CHDIR(void)
 		case 1:
 		if (lstrlen(Path) < NumberCharByLineInChdirBox)
 		{
-			wsprintf(TextPath,"%s\n\n%s","Choisir un répertoire :",PathToDisplay);
+			wsprintf(TextPath,"%s\n\n%s",MSG_SCIMSG38,PathToDisplay);
 		}
 		else
 		{
 			if ( lstrlen(Path) > (NumberCharByLineInChdirBox*2) )
 			{
-				wsprintf(TextPath,"%s","Choisir un répertoire :");
+				wsprintf(TextPath,"%s",MSG_SCIMSG38);
 			}
 			else
-			wsprintf(TextPath,"%s\n%s","Choisir un répertoire :",PathToDisplay);
+			wsprintf(TextPath,"%s\n%s",MSG_SCIMSG38,PathToDisplay);
 		}
 		break;
 				
 		case 0:default:
 		if (lstrlen(Path)<NumberCharByLineInChdirBox)
 		{
-			wsprintf(TextPath,"%s\n\n%s","Choose a Directory :",PathToDisplay);
+			wsprintf(TextPath,"%s\n\n%s",MSG_SCIMSG39,PathToDisplay);
 		}
 		else
 		{
 			if ( lstrlen(Path) > (NumberCharByLineInChdirBox*2) )
 			{
-				wsprintf(TextPath,"%s","Choose a Directory :");
+				wsprintf(TextPath,"%s",MSG_SCIMSG39);
 			}
 			else
-			wsprintf(TextPath,"%s\n%s","Choose a Directory :",PathToDisplay);
+			wsprintf(TextPath,"%s\n%s",MSG_SCIMSG39,PathToDisplay);
 		}
 		break;
 	}
@@ -285,11 +289,11 @@ void Callback_MCOPY(void)
 	{
 		if (lptw->lpmw->CodeLanguage == 0)
 		{
-			MessageBox(lptw->hWndParent,"Please Select a zone of text","Info.",MB_ICONINFORMATION);
+			MessageBox(lptw->hWndParent,MSG_SCIMSG40,MSG_SCIMSG42,MB_ICONINFORMATION);
 		}
 		else
 		{
-			MessageBox(lptw->hWndParent,"Veuillez sélectionner une zone de texte","Info.",MB_ICONINFORMATION);
+			MessageBox(lptw->hWndParent,MSG_SCIMSG41,MSG_SCIMSG42,MB_ICONINFORMATION);
 		}
 	}
 }
@@ -305,11 +309,11 @@ void Callback_PASTE(void)
 	{
 		if (lptw->lpmw->CodeLanguage == 0)
 		{
-			MessageBox(lptw->hWndParent,"Clipboard is empty","Info.",MB_ICONINFORMATION);
+			MessageBox(lptw->hWndParent,MSG_SCIMSG43,MSG_SCIMSG42,MB_ICONINFORMATION);
 		}
 		else
 		{
-			MessageBox(lptw->hWndParent,"Le Presse-Papier est vide","Info.",MB_ICONINFORMATION);
+			MessageBox(lptw->hWndParent,MSG_SCIMSG44,MSG_SCIMSG42,MB_ICONINFORMATION);
 		}
 	}
 }
@@ -326,11 +330,11 @@ void Callback_PRINT(void)
 
 	if (lptw->lpmw->CodeLanguage == 0)
 	{
-		PrintSelection(lptw,"Scilab Command Window");
+		PrintSelection(lptw,MSG_SCIMSG44);
 	}
 	else
 	{
-		PrintSelection(lptw,"Console Scilab");
+		PrintSelection(lptw,MSG_SCIMSG45);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -464,19 +468,19 @@ void Callback_DEMOS(void)
 void Callback_WEB(void)
 {
 	int error =(int)ShellExecute(NULL, "open", URL, NULL, NULL, SW_SHOWNORMAL);
-	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+	if (error<= 32) MessageBox(NULL,MSG_WARNING24,MSG_WARNING22,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_CONTRIBUTIONS(void)
 {
 	int error =(int)ShellExecute(NULL, "open", URLCONTRIBUTIONS, NULL, NULL, SW_SHOWNORMAL);
-	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+	if (error<= 32) MessageBox(NULL,MSG_WARNING24,MSG_WARNING22,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_BUGZILLA(void)
 {
 	int error =(int)ShellExecute(NULL, "open", URLBUGZILLA, NULL, NULL, SW_SHOWNORMAL);
-	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+	if (error<= 32) MessageBox(NULL,MSG_WARNING24,MSG_WARNING22,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_EMAIL(void)
@@ -486,13 +490,13 @@ void Callback_EMAIL(void)
 	    		
 	wsprintf(Message,"mailto:%s?Subject=%s&CC=%s&body=%s",MAILTO, SUBJECT,CCMAILTO,"Message to Doctor Scilab");
 	error =(int)ShellExecute(NULL, "open",Message,NULL,NULL,SW_SHOWNORMAL);
-	if (error<= 32) MessageBox(NULL,"Couldn't Open Email Client","Warning",MB_ICONWARNING);
+	if (error<= 32) MessageBox(NULL,MSG_WARNING25,MSG_WARNING22,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_NEWSGROUP(void)
 {
 	int error =(int)ShellExecute(NULL, "open", URLNEWSGROUP, NULL, NULL, SW_SHOWNORMAL);
-	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+	if (error<= 32) MessageBox(NULL,MSG_WARNING24,MSG_WARNING22,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_ABOUT(void)
@@ -1088,7 +1092,7 @@ void LoadMacros (LPTW lptw)
 	    nMenuLevel++;
 	  else
 	    {
-	      BUGGOTOCLEAN ("Menu is too deep at line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR43);
 	    }
 	  hMenu[nMenuLevel] = CreateMenu ();
 	  AppendMenu (hMenu[nMenuLevel > 0 ? nMenuLevel - 1 : 0],
@@ -1105,12 +1109,12 @@ void LoadMacros (LPTW lptw)
 	  /* button macro */
 	  if (lpmw->nButton >= BUTTONMAX)
 	    {
-	      BUGGOTOCLEAN ("Too many buttons at line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR44);
 	    }
 	  if (!(nInc = GetLine (buf, MAXSTR, menufile)))
 	    {
 	      nLine += nInc;
-	      BUGGOTOCLEAN ("Problem on line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR45);
 	    }
 	  LeftJustify (buf, buf);
 	  if ((macroptr = LocalAlloc (LPTR, lstrlen (buf) + 1)) != (BYTE *) NULL)
@@ -1119,13 +1123,13 @@ void LoadMacros (LPTW lptw)
 	    }
 	  else
 	    {
-	      BUGGOTOCLEAN ("Out of space for menu macros at line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR46);
 	    }
 	  ButtonText[lpmw->nButton] = (char *) macroptr;
 	  if (!(nInc = GetLine (buf, MAXSTR, menufile)))
 	    {
 	      nLine += nInc;
-	      BUGGOTOCLEAN ("Problem on line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR45);
 	    }
 	  LeftJustify (buf, buf);
 	  TranslateMacro (buf);
@@ -1133,7 +1137,7 @@ void LoadMacros (LPTW lptw)
 	    lstrcpy ((char *) macroptr, buf);
 	  else
 	    {
-	      BUGGOTOCLEAN ("Out of space for menu macros at line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR46);
 	    }
 	  nCountMenu = WGFindMenuPos (lpmw->macro);
 	  lpmw->nCountMenu++;
@@ -1147,7 +1151,7 @@ void LoadMacros (LPTW lptw)
 	  /* menu item */
 	  if (nCountMenu >= NUMMENU)
 	    {
-	      BUGGOTOCLEAN ("Too many menu items at line %d of %s\n");
+	      BUGGOTOCLEAN (MSG_ERROR44);
 	    }
 	  LeftJustify (buf, buf);
 	  if (buf[0] == '-')
@@ -1167,7 +1171,7 @@ void LoadMacros (LPTW lptw)
 	      if (!(nInc = GetLine (buf, MAXSTR, menufile)))
 		{
 		  nLine += nInc;
-		  BUGGOTOCLEAN ("Problem on line %d of %s\n");
+		  BUGGOTOCLEAN (MSG_ERROR45);
 		}
 	      LeftJustify (buf, buf);
 	      TranslateMacro (buf);
@@ -1225,7 +1229,7 @@ void LoadMacros (LPTW lptw)
   goto cleanup;
 
 nomemory:
-  MessageBox (lptw->hWndParent, "Out of memory", lptw->Title, MB_ICONEXCLAMATION);
+  MessageBox (lptw->hWndParent, MSG_ERROR40, lptw->Title, MB_ICONEXCLAMATION);
 
 errorcleanup:
   if (hmacro)
@@ -1401,8 +1405,8 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                 else
                 {
                         char MsgErr[MAX_PATH];
-                        wsprintf(MsgErr,"Error in .mnu file: %s",ButtonText[index]);
-                        MessageBox(NULL,MsgErr,"Error in .mnu file",MB_ICONEXCLAMATION);
+                        wsprintf(MsgErr,MSG_ERROR47,ButtonText[index]);
+                        MessageBox(NULL,MsgErr,MSG_ERROR48,MB_ICONEXCLAMATION);
                         exit(1);
                 }     
         
@@ -2041,7 +2045,7 @@ int HideToolBarWin32(int WinNum)
   			}
 			else
 			{
- 				sciprint("Not in Console mode\n");
+ 				sciprint(MSG_WARNING29 );
 			}
 		}
 	else
@@ -2286,7 +2290,7 @@ void PrintFile(char *filename)
 	hDCmem = CreateCompatibleDC(PrintDC);
 	memset( &di, 0, sizeof( DOCINFO ) );
 	di.cbSize      = sizeof( DOCINFO );
-	di.lpszDocName = "Scilab Document";
+	di.lpszDocName = MSG_SCIMSG105;
 
 	GetTextMetrics(PrintDC,(TEXTMETRIC *)&tm);
 
@@ -2641,7 +2645,7 @@ int ToolBarWin32(int WinNum,char *onoff)
   			}
 			else
 			{
- 				sciprint("Not in Console mode\n");
+ 				sciprint(MSG_WARNING29);
 				bON=FALSE;
 			}
 		}
@@ -2690,7 +2694,7 @@ int GetStateToolBarWin32(int WinNum)
   			}
 			else
 			{
- 				sciprint("Not in Console mode\n");
+ 				sciprint(MSG_WARNING29);
 				bAns=FALSE;
 			}
 		}

@@ -46,6 +46,12 @@
 #include "wcommon.h"
 #include "../sun/Sun.h"
 #include "../stack-c.h" 
+
+#include "Messages.h"
+#include "Warnings.h"
+#include "Errors.h"
+
+
 /*-----------------------------------------------------------------------------------*/
 extern int C2F (stimer) (void);
 extern void C2F (settmpdir) (void);
@@ -121,33 +127,33 @@ void sci_clear_and_exit(int n) /* used with handlers */
   switch (n)
   {
 	  case SIGINT:
-		  wsprintf(Message,"SIGINT Signal detected");
+		  wsprintf(Message,MSG_ERROR59);
 		  break;
 	  case SIGILL:
-		  wsprintf(Message,"SIGILL Signal detected");
+		  wsprintf(Message,MSG_ERROR60);
 		  break;
 	  case SIGFPE:
-		  wsprintf(Message,"SIGFPE Signal detected");
+		  wsprintf(Message,MSG_ERROR61);
 		  break;
 	  case SIGSEGV:
-		  wsprintf(Message,"SIGSEGV Signal detected");
+		  wsprintf(Message,MSG_ERROR62);
 		  break;
 	  case SIGTERM:
-		  wsprintf(Message,"SIGTERM Signal detected");
+		  wsprintf(Message,MSG_ERROR63);
 		  break;
 	  case SIGBREAK:
-		  wsprintf(Message,"SIGBREAK Signal detected");
+		  wsprintf(Message,MSG_ERROR64);
 		  break;
 	  case SIGABRT:
-		  wsprintf(Message,"SIGABRT Signal detected");
+		  wsprintf(Message,MSG_ERROR65);
 		  break;
 	  default:
-		  wsprintf(Message,"Unknow Signal detected");
+		  wsprintf(Message,MSG_ERROR66);
 		  break;
   }
-  MessageBox(NULL,Message,"Error",MB_ICONWARNING);
+  MessageBox(NULL,Message,MSG_ERROR20,MB_ICONWARNING);
 #else
-  MessageBox(NULL,"Scilab has performed a illegal operation\nand will be shutdown.\n Please save your work ...","Error",MB_ICONWARNING);
+  MessageBox(NULL,MSG_WARNING30,MSG_WARNING22,MB_ICONWARNING);
 #endif
   WinExit();
   C2F(sciquit)();
@@ -263,6 +269,6 @@ void sci_usr1_signal(int n)
  *-------------------------------------------------------*/
 void  sci_sig_tstp(int n)
 {
-  Scierror(999,"SIGSTP: aborting current computation\r\n");
+  Scierror(999,MSG_ERROR67);
 }
 /*-----------------------------------------------------------------------------------*/
