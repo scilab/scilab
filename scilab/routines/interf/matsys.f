@@ -1728,14 +1728,16 @@ c
       num=0
       imode=0
       imess=0
+
+
       do 201 i=1,rhs
          il=iadr(lstk(top))
          if(istk(il).lt.0) il=iadr(istk(il+1))
 
-         if(istk(il).eq.1) then
+         if(istk(il).eq.1.and.i.eq.1) then
             if(.not.getscalar('errcatch',topk,top,l)) return
             num=nint(stk(l))
-         else if(istk(il).eq.10) then
+         else if(istk(il).eq.10.and.i.gt.1) then
             if(.not.getsmat('errcatch',topk,top,m,n,1,1,il1,n1)) return
             if(.not.checkval('errcatch',m*n,1) ) return
             l=abs(istk(il1))
@@ -1744,7 +1746,7 @@ c
             if(l.eq.23) imess=1
             if(l.eq.28) imode=3
          else
-            err=rhs-1+i
+            err=i
             call error(44)
             return
          endif
