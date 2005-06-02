@@ -2510,21 +2510,23 @@ Code=[Code;
       '    }'
       '  }'
       '  if (flag == 0) { /* update continuous state */']
+      block_has_output=%f
       for kf=1:nblk
         nx=xptr(kf+1)-xptr(kf);
         if nx <> 0 then 
            Code=[Code;	    
                  '    block_'+rdnom+'['+string(kf-1)+'].xd=&(xd['+string(xptr(kf)-1)+']);']
-        end		
+        end
+	if part(funs(kf),1:10) == 'actionneur' then block_has_output=%t,end
       end  
+      
       Code=[Code
       '    '+rdnom+'main0(block_'+rdnom+',z,&t,phase);';
       '  } '; 
       '  else if (flag == 1) { /* update outputs */';
       '    '+rdnom+'main1(block_'+rdnom+',z,&t);'; 
       '  }else if (flag == 2) { /* update discrete states */']
-
-      if (outptr(2)-outptr(1) ~=0) then                    
+      if block_has_output then                    
         Code=[Code;
 	'    '+rdnom+'main2(block_'+rdnom+',z,&t);']
       else
@@ -2532,6 +2534,7 @@ Code=[Code;
 	'    /* exception block */';
         '    '+rdnom+'main1(block_'+rdnom+',z,&t);';
 	'    '+rdnom+'main2(block_'+rdnom+',z,&t);']
+	warning("Block has no output")
       end
       Code=[Code;
       '  }else if (flag == 4) { /* initialisation */'
