@@ -1,3 +1,5 @@
+/* Allan CORNET */
+/* INRIA 2005 */
 #ifndef _ERRORSH_
 #define _ERRORSH_
 

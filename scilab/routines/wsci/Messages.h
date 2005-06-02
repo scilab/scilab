@@ -1,3 +1,6 @@
+/* Allan CORNET */
+/* INRIA 2005 */
+
 #ifndef _MESSAGESH_
 #define _MESSAGESH_
 

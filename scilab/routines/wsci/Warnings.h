@@ -1,3 +1,5 @@
+/* Allan CORNET */
+/* INRIA 2005 */
 #ifndef _WARNINGSH_
 #define _WARNINGSH_
 
