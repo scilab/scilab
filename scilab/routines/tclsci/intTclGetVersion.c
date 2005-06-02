@@ -22,20 +22,20 @@ int C2F(intTclGetVersion) _PARAMS((char *fname))
 	switch (type)
 	{
 		case TCL_ALPHA_RELEASE:
-			sprintf(ReleaseType,"Alpha Release");
+			sprintf(ReleaseType,TCL_MSG2);
 			break;
 		case TCL_BETA_RELEASE:
-			sprintf(ReleaseType,"Beta Release");
+			sprintf(ReleaseType,TCL_MSG3);
 			break;
 		case TCL_FINAL_RELEASE:
-			sprintf(ReleaseType,"Final Release");
+			sprintf(ReleaseType,TCL_MSG4);
 			break;
 		default:
-			sprintf(ReleaseType,"Unknow Release");
+			sprintf(ReleaseType,TCL_MSG5);
 			break;
 	}
 
-	sprintf(VersionString,"TCL/TK %d.%d.%d %s",major,minor,patchLevel,ReleaseType);
+	sprintf(VersionString,TCL_MSG6,major,minor,patchLevel,ReleaseType);
 	
 	output=(char*)malloc((strlen(VersionString)+1)*sizeof(char));
 	sprintf(output,"%s",VersionString);

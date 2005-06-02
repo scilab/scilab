@@ -22,7 +22,7 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,"TCL_GetVar : Error TCLinterp not Initialize\r\n");
+			Scierror(999,TCL_ERROR17);
 			return 0;
 		}
 
@@ -42,13 +42,13 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 	  	}
 		else
 		{
-			Scierror(999,"TCL_GetVar : Could not read Tcl Var \r\n");
+			Scierror(999,TCL_ERROR18);
 			return 0;
 		}
 	}
 	else
 	{
-		 Scierror(999,"TCL_GetVar : Argument type must be character string \r\n");
+		 Scierror(999,TCL_ERROR19);
 		 return 0;
 	}
 	

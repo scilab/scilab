@@ -23,12 +23,12 @@ int C2F(intTclSet) _PARAMS((char *fname))
 	{
 		if (GetType(Rhs-1)==sci_strings)
 		{
-			Scierror(999,"Handle must be an integer.\n");
+			Scierror(999,TCL_ERROR21);
 			return 0;
 		}
 		if ( IsAScalar(Rhs-2) )
 		{
-			Scierror(999,"Field parameter must be a string.\n");
+			Scierror(999,TCL_ERROR22);
 			return 0;
 		}
     }

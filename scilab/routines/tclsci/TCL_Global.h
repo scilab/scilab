@@ -17,6 +17,11 @@
 
 #include "tcl.h"
 #include "tk.h"
+
+#include "Errors.h"
+#include "Warnings.h"
+#include "Messages.h"
+
 /*-----------------------------------------------------------------------------------*/
 #ifndef NULL
   #define NULL 0

@@ -749,6 +749,9 @@ cd .. &gt;nul
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath=".\Errors.h">
+			</File>
+			<File
 				RelativePath=".\InitTclTk.h">
 			</File>
 			<File
@@ -800,7 +803,7 @@ cd .. &gt;nul
 				RelativePath=".\intTclUpVar.h">
 			</File>
 			<File
-				RelativePath=".\intUIMenu.h">
+				RelativePath=".\Messages.h">
 			</File>
 			<File
 				RelativePath=".\ScilabEval.h">
@@ -816,6 +819,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\TclUiSet.h">
+			</File>
+			<File
+				RelativePath=".\Warnings.h">
 			</File>
 		</Filter>
 		<File

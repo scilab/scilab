@@ -16,6 +16,11 @@
 #include "../machine.h"
 #include "../stack-c.h"
 
+#include "Errors.h"
+#include "Warnings.h"
+#include "Messages.h"
+
+
 typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 

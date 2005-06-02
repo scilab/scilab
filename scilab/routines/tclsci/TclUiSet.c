@@ -38,7 +38,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 
 	if (LenStr >= CommandLenMax)
 	{
-		Scierror(999,"Tcl Command > %d characters \r\n",CommandLenMax);
+		Scierror(999,TCL_ERROR32,CommandLenMax);
 		return 0;
 	}
 	nocase(PropertieField);
@@ -47,7 +47,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	{
 		if (strcmp(PropertieField,"userdata")==0)
 		{
-			sciprint("Not yet implemented\n");
+			sciprint(TCL_MSG15);
 		}
 		else
 		{
@@ -62,7 +62,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 				}
 				else
 				{
-					Scierror(999,"Invalid parameter(s) type (Style).\n");
+					Scierror(999,TCL_ERROR33);
 					return 0;
 				}
 			}
@@ -73,7 +73,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 
 			if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 			{
-				Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+				Scierror(999,TCL_ERROR4,TCLinterp->result);
 				return 0;
 			}
 
@@ -82,7 +82,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	}
 	else
 	{
-		Scierror(999,"Unknown property %s.\r\n",PropertieField);
+		Scierror(999,TCL_ERROR30,PropertieField);
 		return 0;
 	}
 	
@@ -124,7 +124,7 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 		}
 		else
 		{
-			Scierror(999,"Invalid parameter(s) type.\n");
+			Scierror(999,TCL_ERROR8);
 			return 0;
 		}
 
@@ -137,13 +137,13 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 	{
 		if (Handle <= 0)
 		{
-			Scierror(999,"Invalid Handle. it must be > 0.\n");
+			Scierror(999,TCL_ERROR34);
 			return 0;
 		}
 
 		if (GetType(RhsPropertieField) != sci_strings)
 		{
-			Scierror(999,"Invalid parameter(s) type.\n");
+			Scierror(999,TCL_ERROR8);
 			return 0;
 		}
 	}

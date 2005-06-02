@@ -22,11 +22,11 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 			{
 				if(C2F(iop).err>0)
 				{
-                    Scierror(999,"%s, ScilabTclEval error at line %i \r\n",fname,i+1);
+                    Scierror(999,TCL_ERROR10,fname,i+1);
 				}
 				else
 				{
-					Scierror(999,"%s, %s at line %i \r\n",fname,TCLinterp->result,i+1);
+					Scierror(999,TCL_ERROR11,fname,TCLinterp->result,i+1);
 				}
 				FreeRhsSVar(Str);
 				return 0;
@@ -38,7 +38,7 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,"argument type incorrect: Must be a string or vector of strings");
+		Scierror(999,TCL_ERROR12);
 		return 0;
 	}
 	

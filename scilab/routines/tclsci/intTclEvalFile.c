@@ -22,18 +22,18 @@ int C2F(intTclEvalFile) _PARAMS((char *fname))
 	{
 		if (C2F(iop).err>0) 
 		{
-			sciprint("%s, at line %i of file %s\r\n","ScilabEval",TCLinterp->errorLine,cstk(l1));
+			sciprint(TCL_MSG1,"ScilabEval",TCLinterp->errorLine,cstk(l1));
 		}
         else
 		{
-			Scierror(999,"%s, at line %i of file %s: %s\r\n",fname,TCLinterp->errorLine,cstk(l1),TCLinterp->result);
+			Scierror(999,TCL_MSG1,fname,TCLinterp->errorLine,cstk(l1),TCLinterp->result);
 			return 0;
 		}
     }
   }
   else
   {
-	  Scierror(999,"argument type incorrect: Must be a string");
+	  Scierror(999,TCL_ERROR9);
 	  return 0;
   }
 

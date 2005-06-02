@@ -46,7 +46,7 @@ int GetTclCurrentFigure(void)
 
 	if ( StrHandle == NULL  )
     {
-		Scierror(999,"Tcl Error : GetTclCurrentFigure.\r\n");
+		Scierror(999,TCL_ERROR15);
 		return 0;
 	}
 
@@ -74,7 +74,7 @@ int C2F(intTclScf) _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter type.\n");
+		Scierror(999,TCL_ERROR8);
 		return 0;
 	}
 	
@@ -106,7 +106,7 @@ int SetTclCurrentFigure(int num)
 
 	if ( StrHandle == NULL  )
     {
-		Scierror(999,"Tcl Error : SetTclCurrentFigure.\r\n");
+		Scierror(999,TCL_ERROR16);
 		return 0;
 	}
 

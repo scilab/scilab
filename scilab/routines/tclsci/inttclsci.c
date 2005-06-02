@@ -1,4 +1,5 @@
 #include "inttclsci.h"
+
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
@@ -69,7 +70,7 @@ int ReInitTCL(void)
 		  /* Derniere chance ;) d'initialisation */
 		  if ( TK_Started != 1 ) 
 	      {
-	        Scierror(999,"You have started Scilab in a mode in which TCL/TK not initialized.\n");
+	        Scierror(999,TCL_ERROR20);
 	        return 0;
 		  }
 	    }

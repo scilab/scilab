@@ -21,7 +21,7 @@ int C2F(intTclGet) _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,"Invalid parameter(s) type.\n");
+		Scierror(999,TCL_ERROR8);
 		return 0;
 	}
 

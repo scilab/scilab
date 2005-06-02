@@ -40,32 +40,32 @@ int C2F(intClose) _PARAMS((char *fname))
 					}
 					else
 					{
-						Scierror(999,"parameter must be >= 0\n");
+						Scierror(999,TCL_ERROR5);
 						return 0;
 					}
 				}
 				else
 				{
 					DoCloseFigure=FALSE;
-					sciprint("Warning : Figure %d does not exist.\n",param);
+					sciprint(TCL_WARNING3,param);
 				}
 			}
 			else
 			{
-				Scierror(999,"Invalid parameter type : must be a integer\n");
+				Scierror(999,TCL_ERROR6);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,"Invalid parameter type : must be a integer\n");
+			Scierror(999,TCL_ERROR7);
 			return 0;
 		}
 	}
 	
     if ( DoCloseFigure && ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  ) )
     {
-		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		Scierror(999,TCL_ERROR4,TCLinterp->result);
 		return 0;
 	}
 

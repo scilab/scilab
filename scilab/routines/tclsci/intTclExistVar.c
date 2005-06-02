@@ -24,7 +24,7 @@ int C2F(intTclExistVar) _PARAMS((char *fname))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,"TCL_ExistVar : Error TCLinterp not Initialize\r\n");
+			Scierror(999,TCL_ERROR13);
 			return 0;
 		}
 
@@ -46,7 +46,7 @@ int C2F(intTclExistVar) _PARAMS((char *fname))
 	}
 	else
 	{
-		 Scierror(999,"TCL_ExistVar : Argument type must be character string \r\n");
+		 Scierror(999,TCL_ERROR14);
 		 return 0;
 	}
 	

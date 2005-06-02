@@ -41,7 +41,7 @@ int C2F(intTclUpVar) _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,"TCL_UpVar : Invalid Argument type.\r\n");
+		Scierror(999,TCL_ERROR27);
 		return 0;
 	}
 	

@@ -60,7 +60,7 @@ int OpenTCLsci(void)
   /* test SCI validity */
   if (SciPath==NULL)
     {
-      sciprint("\nThe SCI environment variable is not set.\nTCL initialisation failed !\n");
+      sciprint(TCL_WARNING1);
       return(1);
     }
 
@@ -72,7 +72,7 @@ int OpenTCLsci(void)
   tmpfile = fopen(TkScriptpath,"r");
   if (tmpfile==NULL) 
     {
-      sciprint("\nUnable to find TCL initialisation scripts \n. Check your SCI environment variable.\nTCL initialisation failed !\n");
+      sciprint(TCL_WARNING2);
       return(1);
     }
   else fclose(tmpfile);
@@ -80,7 +80,7 @@ int OpenTCLsci(void)
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL) 
     {
-      sciprint("\nThe SCI environment variable is not set properly.\nTCL initialisation failed !\n");
+      sciprint(TCL_WARNING1);
       return(1);
     }
   else closedir(tmpdir);
@@ -90,7 +90,7 @@ int OpenTCLsci(void)
   tmpfile = fopen(TkScriptpath,"r");
   if (tmpfile==NULL) 
     {
-      sciprint("\nUnable to find TCL initialisation scripts \n. Check your SCI environment variable.\nTCL initialisation failed !\n");
+      sciprint(TCL_WARNING2);
       return(1);
     }
   else fclose(tmpfile);
@@ -101,19 +101,19 @@ int OpenTCLsci(void)
       TCLinterp = Tcl_CreateInterp();
 	  if ( TCLinterp == NULL )
 	  {
-	    Scierror(999,"Tcl Error  : Tcl_CreateInterp\r\n");
+	    Scierror(999,TCL_ERROR1);
 		return (1);
 	  }
 
       if ( Tcl_Init(TCLinterp) == TCL_ERROR)
 	  {
-		Scierror(999,"Tcl Error  : Tcl_Init\r\n");
+		Scierror(999,TCL_ERROR2);
 		return (1);
 	  }
 
       if ( Tk_Init(TCLinterp) == TCL_ERROR)
 	  {
-		Scierror(999,"Tcl Error  : Tk_Init\r\n");
+		Scierror(999,TCL_ERROR3);
 		return (1);
 	  }
 
@@ -121,7 +121,7 @@ int OpenTCLsci(void)
       
 	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	  {
-		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		Scierror(999,TCL_ERROR4,TCLinterp->result);
 		return (1);
 	  }
       
@@ -140,7 +140,7 @@ int OpenTCLsci(void)
 
   	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
 	  {
-		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		Scierror(999,TCL_ERROR4,TCLinterp->result);
 		return (1);
 	  }
 

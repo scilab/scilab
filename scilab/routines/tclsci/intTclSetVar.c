@@ -65,7 +65,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 			sprintf(buffer,"%.10lf",*stk(l1));
 			if (TCLinterp == NULL)
 			{
-				Scierror(999,"TCL_SetVar : Error TCLinterp not Initialize\r\n");
+				Scierror(999,TCL_ERROR23);
 				return 0;
 			}
 
@@ -104,7 +104,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 
 					if (TCLinterp == NULL)
 					{
-						Scierror(999,"TCL_SetVar : Error TCLinterp not Initialize\r\n");
+						Scierror(999,TCL_ERROR23);
 						return 0;
 					}
 
@@ -126,7 +126,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	}
 	else
 	{
-		Scierror(999,"TCL_SetVar : Invalid Argument type.\r\n");
+		Scierror(999,TCL_ERROR24);
 		return 0;
 	}
 	

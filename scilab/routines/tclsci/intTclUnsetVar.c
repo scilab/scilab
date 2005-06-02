@@ -24,7 +24,7 @@ int C2F(intTclUnsetVar) _PARAMS((char *fname))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,"TCL_UnsetVar : Error TCLinterp not Initialize\r\n");
+			Scierror(999,TCL_ERROR25);
 			return 0;
 		}
 
@@ -46,7 +46,7 @@ int C2F(intTclUnsetVar) _PARAMS((char *fname))
 	}
 	else
 	{
-		 Scierror(999,"TCL_UnsetVar : Argument type must be character string \r\n");
+		 Scierror(999,TCL_ERROR26);
 		 return 0;
 	}
 	
