@@ -1,17 +1,23 @@
 Edit Makefile
 modify SCIDIR=/home/cornet/compil/scilab by your current scilab path
 
-Make
+export SCIDIR=<your current scilab path>
+cd $SCIDIR/bin
+make
 
-go to bin directory
-cd /home/cornet/compil/scilab/bin
+go to bin directory :
+cd $SCIDIR/bin
 
-export LD_LIBRARY_PATH=.:/home/cornet/compil/scilab/bin
-export CLASSPATH=.:/home/cornet/compil/scilab/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:$SCIDIR/bin
+export CLASSPATH=$CLASSPATH:.:$SCIDIR/bin
+
+Under solaris platforms:
+xrdb $SCIDIR/Xscilab  (usually, xrdb can be found in /usr/openwin/bin/ directory)
 
 java Exemple1
 java Exemple2
 java Exemple3
+
 java ExempleEvent
 java ExempleEvent2
 
