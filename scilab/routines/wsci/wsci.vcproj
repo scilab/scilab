@@ -2827,6 +2827,9 @@ cd .. &gt;nul
 				RelativePath="errno.h">
 			</File>
 			<File
+				RelativePath=".\Errors.h">
+			</File>
+			<File
 				RelativePath=".\Events.h">
 			</File>
 			<File
@@ -2845,6 +2848,9 @@ cd .. &gt;nul
 				RelativePath=".\interfdde.h">
 			</File>
 			<File
+				RelativePath=".\Messages.h">
+			</File>
+			<File
 				RelativePath="plot.h">
 			</File>
 			<File
@@ -2861,6 +2867,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="wadd.h">
+			</File>
+			<File
+				RelativePath=".\Warnings.h">
 			</File>
 			<File
 				RelativePath="wcommon.h">
