@@ -8,6 +8,7 @@
   <SHORT_DESCRIPTION name="errcatch"> error trapping</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>errcatch(n [,'action'] [,'option'])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>errcatch()   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -60,6 +61,9 @@
     <P>
     Then called in a scilab function the <VERB>errcatch</VERB> is automatically
     reset to the default mode when the function returns.</P>
+
+    <P><VERB>errcatch()</VERB> is an obsolete equivalent of <VERB>errcatch(-1)</VERB>.</P>
+
   </DESCRIPTION>
   <SECTION label="Remarques">
     <P>

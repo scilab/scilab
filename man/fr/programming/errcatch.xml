@@ -8,6 +8,7 @@
   <SHORT_DESCRIPTION name="errcatch"> interception d&apos;erreur  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>errcatch(n [,&apos;action&apos;] [,&apos;option&apos;])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>errcatch()   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -98,6 +99,7 @@
       fonction, le mode d&apos;interception d&apos;erreur est automatiquement
       réinitialisé au mode par défaut lorsque l&apos;on sort de la fonction. 
     </P>
+    <P><VERB>errcatch()</VERB> est un equivalent obsolete de <VERB>errcatch(-1)</VERB>.</P>
   </DESCRIPTION>
   <SECTION label='REMARQUES'>
     <P>
