@@ -1731,9 +1731,9 @@ c
 
 
       do 201 i=1,rhs
+         top=topk-rhs+i
          il=iadr(lstk(top))
          if(istk(il).lt.0) il=iadr(istk(il+1))
-
          if(istk(il).eq.1.and.i.eq.1) then
             if(.not.getscalar('errcatch',topk,top,l)) return
             num=nint(stk(l))
@@ -1750,8 +1750,8 @@ c
             call error(44)
             return
          endif
-         top=top-1
  201  continue
+      top=topk-rhs
       errct=(8*imess+imode)*100000+abs(num)
       catch=max(imode,1)
       if(num.lt.0) errct=-errct
