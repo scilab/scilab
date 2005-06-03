@@ -18,7 +18,8 @@ c     de-activate output control
       lct(1)=0
 c
       errtyp=0
-      if(err1.eq.0.and.err2.eq.0) then
+c      if(err1.eq.0.and.err2.eq.0) then
+      if(err1.eq.0) then
 c     . locate the error in the current statement
         if(trace) call errloc(n)
 c     . output error message
