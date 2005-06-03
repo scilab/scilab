@@ -12,7 +12,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:$SCIDIR/bin
 export CLASSPATH=$CLASSPATH:.:$SCIDIR/bin
 
 Under solaris platforms:
-xrdb $SCIDIR/Xscilab  (usually, xrdb can be found in /usr/openwin/bin/ directory)
+xrdb $SCIDIR/X11_defaults/Xscilab  (usually, xrdb can be found in /usr/openwin/bin/ directory)
 
 java Exemple1
 java Exemple2
