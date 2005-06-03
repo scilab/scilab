@@ -1087,7 +1087,7 @@ if U<>[]|S<>[]|V<>[]|rk<>0  then pause,end
 [U,S,V,rk]=svd([],%eps);
 if U<>[]|S<>[]|V<>[]|rk<>0  then pause,end
 
-if errcatch('[U,S,V,rk]=svd([],'"e'")') == 0 then pause,end
+if execstr('[U,S,V,rk]=svd([],'"e'")','errcatch') == 0 then pause,end
 
 //Small dimension
 //Real Case Fat
@@ -1389,9 +1389,9 @@ if Err(U'*A*U-H1)  >1000*%eps then pause,end
 
 //Empty matrix
 if lsq([],[])<>[] then pause,end
-if errcatch('lsq([],1)','errcatch')==0 then pause,end
-if errcatch('lsq(1,[])','errcatch')==0 then pause,end
-if errcatch('lsq(rand(3,2),rand(2,1))','errcatch')==0 then pause,end
+if execstr('lsq([],1)','errcatch')==0 then pause,end
+if execstr('lsq(1,[])','errcatch')==0 then pause,end
+if execstr('lsq(rand(3,2),rand(2,1))','errcatch')==0 then pause,end
 
 //Small dimensions
 //Real full rank fat
@@ -1492,8 +1492,8 @@ if Err(X-X1)>200*%eps then pause,end
 //Empty matrix
 if chol([])<>[] then pause,end
 
-if errcatch('chol([1 2;3 4])','errcatch')==0 then pause,end
-if errcatch('chol([1 2;3 4]+%i)','errcatch')==0 then pause,end
+if execstr('chol([1 2;3 4])','errcatch')==0 then pause,end
+if execstr('chol([1 2;3 4]+%i)','errcatch')==0 then pause,end
 
 //Small dimension
 //REAL
