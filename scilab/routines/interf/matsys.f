@@ -1741,6 +1741,11 @@ c
          if(istk(il).eq.1.and.i.eq.1) then
             if(.not.getscalar('errcatch',topk,top,l)) return
             num=nint(stk(l))
+            if(dfloat(num).ne.stk(l).or.num.lt.-1) then
+               err=i
+               call error(44)
+               return
+            endif
          else if(istk(il).eq.10.and.i.gt.1) then
             if(.not.getsmat('errcatch',topk,top,m,n,1,1,il1,n1)) return
             if(.not.checkval('errcatch',m*n,1) ) return
