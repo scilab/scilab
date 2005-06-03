@@ -99,10 +99,19 @@ extern int labels2D_draw(sciPointObj * psubwin); /* DRAWINGS */
 
 extern int ComputeC_format(sciPointObj * pobj, char * c_format); /* DRAWINGS */ /* inside matdes.c */
 extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input); /* DRAWINGS */
+extern int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input);
 extern int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */
 extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind); /* DRAWINGS */
-extern int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz); /* DRAWINGS */
-extern int FindGrads(double *grads,int * n_grads); /* DRAWINGS */
+extern int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double zminval, double zmaxval, double fx, double fy, double fz);
+extern int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz);
+extern int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz);
+extern int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz);
+extern int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz);
+
+extern int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect);
+
+extern int IsInsideRectangle(int * rect, int *point);
+
 extern int CheckIfiisNan(int j, int dim, int * tab); /* DRAWINGS */
 extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * psubwin, int * nb_curves, 
 						 double *** xvect, double *** yvect, double *** zvect, int ** curves_size); /* DRAWINGS */
@@ -162,4 +171,6 @@ extern int DrawMark_FullTriangleRight(int xmi, int ymi, int size, int foreground
 extern int DrawMark_FullTriangleLeft(int xmi, int ymi, int size, int foreground, int background);
 extern int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int background);
 extern int GetDPIFromDriver(int * DPI);
+extern int ChoixFormatForOneGrad(char *c_format, double grad);
+
 #endif /* __SCI_DRAWINGS__ */

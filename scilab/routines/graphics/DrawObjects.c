@@ -712,6 +712,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 
   int logrect[4], XX = 0, YY = 0; /* see below */
   double angle=0.0;
+/*   int old_rect[4]; */
 
   /*   printf("DEBUT DE Axes3dStrings2\n"); */
   /*   fflush(NULL); */
@@ -724,8 +725,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   legy = sciGetText(ppsubwin->mon_y_label);
   legz = sciGetText(ppsubwin->mon_z_label);
 
-  /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
-  C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+/*   /\* compute bounding of "10"  string used for log scale ON and auto_ticks ON *\/ */
+/*   C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 */
     
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   xz[0]=Cscale.WIRect1[2] ;
@@ -802,6 +803,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   fontid[1] = fontid_old[1];
 
   size = xz[0]>=xz[1] ? (integer) (xz[1]/50.0) : (integer) (xz[0]/50.0); 
+  
+  /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+  C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+  
 
   /********************/
   /*** le z scaling ***/ /* DISPLAY Z graduations */
@@ -817,6 +822,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
       integer Ticsdir[2];
       Ticsdir[0]=ixbox[3]-ixbox[4]; /* <=> en pixel direction/vecteur non norme(e)s des tics en x */
       Ticsdir[1]=iybox[3]-iybox[4]; /* <=> idem pour y */
+      /* NB: for a default plot3d (simply calling plot3d in siclab console) */
+      /* Ticsdir[0] & Ticsdir[1] are negative : we do min - max here... */
+
       BBoxToval(&fx,&fy,&fz,xind[3],bbox); /* xind[3] <=> en bas a gauche <=> zmin */
       x=ixbox[2]-(xz[0]+xz[1])/20;
       y=(iybox[3]+iybox[2])/2;
@@ -828,7 +836,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  /* we display the z tics specified by the user*/
 	  nbtics = ppsubwin->axes.u_nzgrads;
 	  nbsubtics = ppsubwin->axes.nbsubtics[2];
-
+	  
 	  for(i=0;i<nbtics;i++)
 	    {
 	      char *foo = ppsubwin->axes.u_zlabels[i]; 
@@ -866,6 +874,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      posi[0] = inint( xm+2*barlengthx - rect[2]); 
 	      posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
+
 
 	      if(ppsubwin->axes.axes_visible[2] == TRUE){
 		C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1025,21 +1034,20 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	}
       else /* we display the computed tics */
 	{
+	  AdaptGraduationsOnZ(x,y,size,Ticsdir,fontid,psubwin,zminval,zmaxval,fx,fy,0.);
 
-	  AdaptGraduations('z',psubwin,zminval,zmaxval,fx,fy,0.); /* fait */
 	  lastzindex = ppsubwin->axes.nzgrads - 1;
 	  
-	  ChoixFormatE(c_format,
-		       ppsubwin->axes.zgrads[0],
-		       ppsubwin->axes.zgrads[lastzindex],
-		       ((ppsubwin->axes.zgrads[lastzindex])-(ppsubwin->axes.zgrads[0]))/(lastzindex));
+	  if(lastzindex == 0)
+	    ChoixFormatForOneGrad(c_format,ppsubwin->axes.zgrads[0]);
+	  else
+	    ChoixFormatE(c_format,
+			 ppsubwin->axes.zgrads[0],
+			 ppsubwin->axes.zgrads[lastzindex],
+			 ((ppsubwin->axes.zgrads[lastzindex])-(ppsubwin->axes.zgrads[0]))/(lastzindex));
 	  
-
 	  nbtics = ppsubwin->axes.nzgrads;
 	  nbsubtics = ppsubwin->axes.nbsubtics[2];
-
-	  /* 	  if(nbtics == 3) */
-	  /* 	    sciprint("\n nbtics vaut: %d ", nbtics); */
 	  
 	  for(i=0;i<nbtics;i++)
 	    {
@@ -1079,22 +1087,38 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      posi[0] = inint( xm+2*barlengthx - rect[2]); 
 	      posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
-
+	      
 	      if(ppsubwin->axes.axes_visible[2] == TRUE){
 		C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		if ( ppsubwin->logflags[2] == 'l' )
 		  {
 		    int smallersize = fontid[1]-2;
+		    int old_rect10[4];
+/* 		    char str[2] = "xv"; */
+		    int posi10[2];
+		    
+		    posi10[0] = posi[0] - logrect[2];
+		    posi10[1] = posi[1] + logrect[3];
+
+		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+
+		    C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    
+		    posi[0] = old_rect10[0] + old_rect10[2];
+		    posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+
 		    C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+		    
+		    /* put back the current fontid */
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		    C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-			    (posi[1] += logrect[3],&posi[1]),
-			    PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
 		  }
-		else
+		else{
 		  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+		}
+		
 		C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
 		C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
@@ -1523,14 +1547,17 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	    }
 	  else /* we display the computed tics */
 	    {
-	      AdaptGraduations('x',psubwin,xminval,xmaxval,0.,fy,fz);
-	      
+	      AdaptGraduationsOnXBottomRight(iof,x,y,size,Ticsdir,fontid,psubwin,xminval,xmaxval,0.,fy,fz);
+	      	      
 	      lastxindex = ppsubwin->axes.nxgrads - 1;
 	      
-	      ChoixFormatE(c_format,
-			   ppsubwin->axes.xgrads[0],
-			   ppsubwin->axes.xgrads[lastxindex],
-			   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
+	      if(lastxindex == 0)
+		ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+	      else
+		ChoixFormatE(c_format,
+			     ppsubwin->axes.xgrads[0],
+			     ppsubwin->axes.xgrads[lastxindex],
+			     ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
 	      
 	      nbtics = ppsubwin->axes.nxgrads;
 	      nbsubtics = ppsubwin->axes.nbsubtics[0];
@@ -1588,12 +1615,25 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    if ( ppsubwin->logflags[0] == 'l' )
 		      {
 			int smallersize = fontid[1]-2;
+			int old_rect10[4];
+			int posi10[2];
+			
+			posi10[0] = posi[0] - logrect[2];
+			posi10[1] = posi[1] + logrect[3];
+			
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+			
+			C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			
+			posi[0] = old_rect10[0] + old_rect10[2];
+			posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+			
 			C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			
+			/* put back the current fontid */
 			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-				(posi[1] += logrect[3],&posi[1]),
-				PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
 		      }
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
@@ -1863,7 +1903,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  else{ 
 		    vx[1]=vx[0]+barlengthx;
 		    vy[1]=vy[0]+barlengthy;
-		    posi[0] = inint( xm+2*barlengthx - rect[2]/2);
+/* 		    posi[0] = inint( xm+2*barlengthx - rect[2]/2); */
+/* 		    posi[0] = inint( xm+2*barlengthx - rect[2]); */
+		    posi[0] = inint( xm+2*barlengthx);
 		    posi[1]=inint( ym + 2*barlengthy + rect[3]);}
 
 		  if(ppsubwin->axes.axes_visible[1] == TRUE){
@@ -2043,15 +2085,18 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	    }
 	  else /* we display the computed tics */
 	    {
-	      AdaptGraduations('y',psubwin,yminval,ymaxval,fx,0.,fz);
-	      
+	      AdaptGraduationsOnYBottomRight(iof,x,y,size,Ticsdir,fontid,psubwin,yminval,ymaxval,fx,0.,fz);
+
 	      lastyindex = ppsubwin->axes.nygrads - 1;
 	      
-	      ChoixFormatE(c_format,
-			   ppsubwin->axes.ygrads[0],
-			   ppsubwin->axes.ygrads[lastyindex],
-			   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
-
+	      if(lastyindex == 0)
+		ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+	      else
+		ChoixFormatE(c_format,
+			     ppsubwin->axes.ygrads[0],
+			     ppsubwin->axes.ygrads[lastyindex],
+			     ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
+	      
 	      nbtics = ppsubwin->axes.nygrads;
 	      nbsubtics = ppsubwin->axes.nbsubtics[1];
 	      
@@ -2098,24 +2143,41 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  else{ 
 		    vx[1]=vx[0]+barlengthx;
 		    vy[1]=vy[0]+barlengthy;
-		    posi[0] = inint( xm+2*barlengthx - rect[2]/2);
+/* 		    posi[0] = inint( xm+2*barlengthx - rect[2]/2); */
+/* 		    posi[0] = inint( xm+2*barlengthx - rect[2]); */
+		    posi[0] = inint( xm+2*barlengthx);
 		    posi[1]=inint( ym + 2*barlengthy + rect[3]);}
-
+		  
 		  if(ppsubwin->axes.axes_visible[1] == TRUE){
 		    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    if ( ppsubwin->logflags[1] == 'l' )
 		      {
 			int smallersize = fontid[1]-2;
+			int old_rect10[4];
+			/* 		    char str[2] = "xv"; */
+			int posi10[2];
+			
+			posi10[0] = posi[0] - logrect[2];
+			posi10[1] = posi[1] + logrect[3];
+			
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+			
+			C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			
+			posi[0] = old_rect10[0] + old_rect10[2];
+			posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+			
 			C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			
+			/* put back the current fontid */
 			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-				(posi[1] += logrect[3],&posi[1]),
-				PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
 		      }
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+		    
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
@@ -2563,15 +2625,18 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	    }
 	  else /* we display the computed tics */
 	    {
-	      AdaptGraduations('x',psubwin,xminval,xmaxval,0.,fy,fz);
+	      AdaptGraduationsOnXBottomLeft(iof,x,y,size,Ticsdir,fontid,psubwin,xminval,xmaxval,0.,fy,fz);
 	      
 	      lastxindex = ppsubwin->axes.nxgrads - 1;
 	      
-	      ChoixFormatE(c_format,
-			   ppsubwin->axes.xgrads[0],
-			   ppsubwin->axes.xgrads[lastxindex],
-			   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
-	    
+	      if(lastxindex == 0)
+		ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+	      else
+		ChoixFormatE(c_format,
+			     ppsubwin->axes.xgrads[0],
+			     ppsubwin->axes.xgrads[lastxindex],
+			     ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
+	      
 	      nbtics = ppsubwin->axes.nxgrads;
 	      nbsubtics = ppsubwin->axes.nbsubtics[0];
 	           
@@ -2597,9 +2662,6 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
 		  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
-		  /* 		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
-
-
 
 		  vx[0]=xm;vy[0]=ym;
 
@@ -2625,15 +2687,29 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    if ( ppsubwin->logflags[0] == 'l' )
 		      {
 			int smallersize = fontid[1]-2;
+			int old_rect10[4];
+			int posi10[2];
+			
+			posi10[0] = posi[0] - logrect[2];
+			posi10[1] = posi[1] + logrect[3];
+			
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+			
+			C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			
+			posi[0] = old_rect10[0] + old_rect10[2];
+			posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+			
 			C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			
+			/* put back the current fontid */
 			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-				(posi[1] += logrect[3],&posi[1]),
-				PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
 		      }
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
@@ -2890,7 +2966,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  else{
 		    vx[1]=vx[0]+barlengthx;
 		    vy[1]=vy[0]+barlengthy;
-		    posi[0] = inint( xm+2*barlengthx-rect[2]/2); 
+/* 		    posi[0] = inint( xm+2*barlengthx-rect[2]/2);  */
+		    posi[0] = inint( xm+2*barlengthx-rect[2]); 
 		    posi[1]=inint( ym + 2*barlengthy + rect[3]);}
 		      
 
@@ -3072,15 +3149,17 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	    }
 	  else /* we display the computed tics */
 	    {
-	   
-	      AdaptGraduations('y',psubwin,yminval,ymaxval,fx,0.,fz);
+	      AdaptGraduationsOnYBottomLeft(iof,x,y,size,Ticsdir,fontid,psubwin,yminval,ymaxval,fx,0.,fz);
 	      
 	      lastyindex = ppsubwin->axes.nygrads - 1;
-	      
-	      ChoixFormatE(c_format,
-			   ppsubwin->axes.ygrads[0],
-			   ppsubwin->axes.ygrads[lastyindex],
-			   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
+
+	      if(lastyindex == 0)
+		ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+	      else
+		ChoixFormatE(c_format,
+			     ppsubwin->axes.ygrads[0],
+			     ppsubwin->axes.ygrads[lastyindex],
+			     ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
 	      
 	      nbtics = ppsubwin->axes.nygrads;
 	      nbsubtics = ppsubwin->axes.nbsubtics[1];
@@ -3126,7 +3205,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  else{
 		    vx[1]=vx[0]+barlengthx;
 		    vy[1]=vy[0]+barlengthy;
-		    posi[0] = inint( xm+2*barlengthx-rect[2]/2); 
+/* 		    posi[0] = inint( xm+2*barlengthx-rect[2]/2);  */
+		    posi[0] = inint( xm+2*barlengthx-rect[2]); 
 		    posi[1]=inint( ym + 2*barlengthy + rect[3]);}
 		      
 		  if(ppsubwin->axes.axes_visible[1] == TRUE){
@@ -3135,15 +3215,30 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    if ( ppsubwin->logflags[1] == 'l' )
 		      {
 			int smallersize = fontid[1]-2;
+			int old_rect10[4];
+			/* 		    char str[2] = "xv"; */
+			int posi10[2];
+			
+			posi10[0] = posi[0] - logrect[2];
+			posi10[1] = posi[1] + logrect[3];
+			
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+			
+			C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			
+			posi[0] = old_rect10[0] + old_rect10[2];
+			posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+			
 			C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			
+			/* put back the current fontid */
 			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-				(posi[1] += logrect[3],&posi[1]),
-				PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
 		      }
 		    else
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+		    
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
@@ -4560,114 +4655,132 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
 }
 
 
-int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz)
-{
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-  /*   static int flag = 0; */
-  int xmmin = -1, ymmin = -1;
-  int xmmax = -1, ymmax = -1;
-  int x,y;
-  int pixel_size = -1;
-  int *nbgrads = NULL;
-  double * grads = NULL;
-  int * nbsubtics = NULL;
+/* int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz) */
+/* { */
+/*   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
+/*   /\*   static int flag = 0; *\/ */
+/*   int xmmin = -1, ymmin = -1; */
+/*   int xmmax = -1, ymmax = -1; */
+/*   int x,y; */
+/*   int pixel_size = -1; */
+/*   int *nbgrads = NULL; */
+/*   double * grads = NULL; */
+/*   int * nbsubtics = NULL; */
+/*   int palier1 = 70, palier2 = 120; */
+/*   int driver = GetDriverId(); /\* return the first letter of the driver name (see XCall.c) *\/ */
+
+/*   if(driver == 1) /\* Pos driver : special case *\/ */
+/*     { */
+/*       palier1 = 540; */
+/*       palier2 = 756; */
+/*     } */
   
-  if((xyz=='x') && (ppsubwin->logflags[0] != 'l')){
-    nbgrads = &ppsubwin->axes.nxgrads;
-    nbsubtics = &ppsubwin->axes.nbsubtics[0];
-    grads   = ppsubwin->axes.xgrads;
-    ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /* fx is useless */
-    ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz);
-  }
-  else if ((xyz=='y') && (ppsubwin->logflags[1] != 'l')){
-    nbgrads = &ppsubwin->axes.nygrads;
-    nbsubtics = &ppsubwin->axes.nbsubtics[1];
-    grads   = ppsubwin->axes.ygrads;
-    ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /* fy is useless */
-    ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz);
-  }
-  else if ((xyz=='z') && (ppsubwin->logflags[2] != 'l')){
-    nbgrads = &ppsubwin->axes.nzgrads;
-    nbsubtics = &ppsubwin->axes.nbsubtics[2];
-    grads   = ppsubwin->axes.zgrads;
-    ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /* fz is useless */
-    ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval);
-  }
-  else{
-    /* nothing to try to adapt : if at least one log scale is enabled */
-    /* nothing is done */
+/*   if((xyz=='x') && (ppsubwin->logflags[0] != 'l')){ */
+/*     nbgrads = &ppsubwin->axes.nxgrads; */
+/*     nbsubtics = &ppsubwin->axes.nbsubtics[0]; */
+/*     grads   = ppsubwin->axes.xgrads; */
+/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /\* fx is useless *\/ */
+/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz); */
+/*   } */
+/*   else if ((xyz=='y') && (ppsubwin->logflags[1] != 'l')){ */
+/*     nbgrads = &ppsubwin->axes.nygrads; */
+/*     nbsubtics = &ppsubwin->axes.nbsubtics[1]; */
+/*     grads   = ppsubwin->axes.ygrads; */
+/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /\* fy is useless *\/ */
+/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz); */
+/*   } */
+/*   else if ((xyz=='z') && (ppsubwin->logflags[2] != 'l')){ */
+/*     nbgrads = &ppsubwin->axes.nzgrads; */
+/*     nbsubtics = &ppsubwin->axes.nbsubtics[2]; */
+/*     grads   = ppsubwin->axes.zgrads; */
+/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /\* fz is useless *\/ */
+/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval); */
+/*   } */
+/*   else{ */
+/*     /\* nothing to try to adapt : if at least one log scale is enabled *\/ */
+/*     /\* nothing is done *\/ */
     
-    return 0;
-    /*   sciprint("Error in AdaptGraduations call\n"); */
-    /*     return -1; */
-  }
+/*     return 0; */
+/*     /\*   sciprint("Error in AdaptGraduations call\n"); *\/ */
+/*     /\*     return -1; *\/ */
+/*   } */
     
-  x = xmmax - xmmin;
-  y = ymmax - ymmin;
+/*   x = xmmax - xmmin; */
+/*   y = ymmax - ymmin; */
   
-  pixel_size = (int) sqrt(x*x + y*y);
+/*   pixel_size = (int) sqrt(x*x + y*y); */
 
-  /*   sciprint("ymmax = %d et ymmin = %d",ymmin,ymmax); */
-  /*   sciprint(" pixel_size = %d", pixel_size); */
+/* /\*   printf("Axe %c\n",xyz); *\/ */
+
+/* /\*   printf("Cscale.Wscx1 = %lf\t Cscale.Wscy1 = %lf\n",Cscale.Wscx1,Cscale.Wscy1); *\/ */
+/* /\*   printf("Cscale.frect[0] = %lf\t Cscale.frect[3] = %lf\n",Cscale.frect[0],Cscale.frect[3]); *\/ */
+/* /\*   printf("Cscale.Wxofset1 = %lf\t Cscale.Wyofset1 = %lf\n",Cscale.Wxofset1,Cscale.Wyofset1); *\/ */
   
-  if(pixel_size > 120) /* nothing to adapt : 10 graduations can be displayed */
-    return 0;          /* and the corresponding computed subtics number can be used too */
-  else if(pixel_size <= 70 ) /* 3 graduations only are necessary */
-    {
-      grads[0] = grads[0];
-      grads[1] = (grads[0] + grads[(*nbgrads)-1])/2;
-      grads[2] = grads[(*nbgrads)-1];
-      *nbgrads = 3;
-      if(ppsubwin->flagNax == FALSE) *nbsubtics = 3;
-    }
-  else if(pixel_size > 70)
-    {
-      FindGrads(grads, nbgrads);
-      if(ppsubwin->flagNax == FALSE) *nbsubtics = 2;
+
+/* /\*   printf("xmmin = %d et xmmax = %d\n",xmmin,xmmax); *\/ */
+/* /\*   printf("ymmin = %d et ymmax = %d\n",ymmin,ymmax); *\/ */
+
+
+/* /\*   printf(" pixel_size = %d\n\n", pixel_size); *\/ */
+  
+/*   if(pixel_size > palier2) /\* nothing to adapt : 10 graduations can be displayed *\/ */
+/*     return 0;          /\* and the corresponding computed subtics number can be used too *\/ */
+/*   else if(pixel_size <= palier1 ) /\* 3 graduations only are necessary *\/ */
+/*     { */
+/*       grads[0] = grads[0]; */
+/*       grads[1] = (grads[0] + grads[(*nbgrads)-1])/2; */
+/*       grads[2] = grads[(*nbgrads)-1]; */
+/*       *nbgrads = 3; */
+/*       if(ppsubwin->flagNax == FALSE) *nbsubtics = 3; */
+/*     } */
+/*   else if(pixel_size > palier1) */
+/*     { */
+/*       FindGrads(grads, nbgrads); */
+/*       if(ppsubwin->flagNax == FALSE) *nbsubtics = 2; */
       
-    }
+/*     } */
 
-  /* flag = 0; */
-
-
-  return 0;
-}
+/*   /\* flag = 0; *\/ */
 
 
-int FindGrads(double *grads,int * n_grads)
-{
-  int nbgrads,i;
-  double pas = 0.;
-  double min = -1.;
-  double grads_tmp[20];
-
-  nbgrads = *n_grads;
+/*   return 0; */
+/* } */
 
 
-  for(i=0;i<20;i++) grads_tmp[i] = grads[i];
+/* int FindGrads(double *grads,int * n_grads) */
+/* { */
+/*   int nbgrads,i; */
+/*   double pas = 0.; */
+/*   double min = -1.; */
+/*   double grads_tmp[20]; */
 
-  if((nbgrads % 2)!= 0 ) /* nombre impair de grads */
-    {
-      for(i=0;i<(int) (nbgrads+1)/2;i++) {
-	grads[i] = grads_tmp[2*i];
-      }
+/*   nbgrads = *n_grads; */
+
+
+/*   for(i=0;i<20;i++) grads_tmp[i] = grads[i]; */
+
+/*   if((nbgrads % 2)!= 0 ) /\* nombre impair de grads *\/ */
+/*     { */
+/*       for(i=0;i<(int) (nbgrads+1)/2;i++) { */
+/* 	grads[i] = grads_tmp[2*i]; */
+/*       } */
       
-      *n_grads = (int) (nbgrads+1)/2; /* (7+1)/2 = 4, (9+1)/2 = 5 ...*/
-    }
-  else
-    {
-      min = grads[0];
-      pas = (grads[nbgrads-1] - grads[0]) / ((nbgrads-1) / 2);
+/*       *n_grads = (int) (nbgrads+1)/2; /\* (7+1)/2 = 4, (9+1)/2 = 5 ...*\/ */
+/*     } */
+/*   else */
+/*     { */
+/*       min = grads[0]; */
+/*       pas = (grads[nbgrads-1] - grads[0]) / ((nbgrads-1) / 2); */
       
-      for(i=0;i<(int)(nbgrads/2);i++) {
-	grads[i] = min + i*pas;
-      }
+/*       for(i=0;i<(int)(nbgrads/2);i++) { */
+/* 	grads[i] = min + i*pas; */
+/*       } */
       
-      *n_grads = (int) (nbgrads)/2; /* 6/2=3, 12/2 = 6 ...*/
-    }
+/*       *n_grads = (int) (nbgrads)/2; /\* 6/2=3, 12/2 = 6 ...*\/ */
+/*     } */
     
-  return 0;
-}
+/*   return 0; */
+/* } */
 
 
 /* F.Leray 02.11.04 */
@@ -9137,5 +9250,1232 @@ int GetDPIFromDriver(int * DPI)
   DPI[0] = ixres;
   DPI[1] = iyres;
 
+  return 0;
+}
+
+
+
+/* 1----------4 */
+/* |          | */
+/* |          | */
+/* |          | */
+/* 2----------3 */
+
+int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect) 
+{
+  int rect[4],i;
+  int point[4][2];
+  int logrect[4], XX, YY;
+  
+  if(old_rect[0] == 0 && old_rect[1] == 0 && old_rect[2] == 0 && old_rect[3] == 0)
+    return 1;
+  
+  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+  
+  /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+  C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+  
+  if(logflag == 'n')
+    {
+      C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      rect[3] = fact_h* rect[3]; /* added the 01.06.05 */
+      rect[2] = fact_w* rect[2];
+   }
+  else
+    {
+      int smallersize = fontid[1]-2;
+      int rect10[4];
+      int posi10[2];
+      
+      posi10[0] = posi[0] - logrect[2];
+      posi10[1] = posi[1] + logrect[3];
+      
+      C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+      posi[0] = rect10[0] + rect10[2];
+      posi[1] = (int) (rect10[1] - rect10[3]*.1);
+      
+      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+      rect[2] = fact_w*(rect[2] + rect10[2]);
+      rect[3] = fact_h*(rect[3] + rect10[3] + (int) (rect10[3]*.1)); /* added the 01.06.05 */
+/*       rect[3] = rect[3] + rect10[3] + (int) (rect10[3]*.1); /\* added the 01.06.05 *\/ */
+      rect[0] = rect10[0];
+      rect[1] = rect[1];
+
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  
+  
+  point[0][0] = rect[0]; /* upper left point */
+  point[0][1] = rect[1];
+  
+  point[1][0] = rect[0]; /* lower left point */
+  point[1][1] = rect[1]+rect[3];
+  
+  point[2][0] = rect[0]+rect[2]; /* lower right point */
+  point[2][1] = rect[1]+rect[3];
+  
+  point[3][0] = rect[0]+rect[2]; /* upper right point */
+  point[3][1] = rect[1];
+  
+  for(i=0;i<4;i++)
+    if(IsInsideRectangle(old_rect,point[i]) == 0)
+      return 0; /* If one inside the old_rect, DO NOT display the graduation ! */
+
+
+  return 1;
+}
+
+
+
+/* The unit is the pixel */
+/* return 0 if the point is inside the rect */
+/* 1 if it is actually outside the rect */
+/* (rect[0],rect[1]) : upper left point of the bounding box  in pixel */
+/* (rect[2],rect[3]) : width and height in pixel */
+/* point[0] : x component */
+/* point[1] : y component */
+int IsInsideRectangle(int * rect, int *point)
+{
+
+  if((point[0] >= rect[0] && point[0] <= rect[0]+rect[2]) &&
+     (point[1] >= rect[1] && point[1] <= rect[1]+rect[3]))
+    return 0;
+  
+  return 1;
+}
+
+
+
+int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz)
+{
+  int i;
+  int nbtics, nbsubtics;
+  int lastyindex;
+  int old_rect[4];
+  int nb_grads_max = 0;
+  int vx[2], vy[2];
+  int xm, ym;
+  double grads_tmp[20];
+  char c_format[5];
+  integer barlengthx = 0,barlengthy = 0;
+  integer rect[4],posi[2]; 
+  integer textcolor = -1;
+  int logrect[4],XX,YY;
+  int pas;
+  double fact_h = 1.5, fact_w = 1.5;
+  int compteur = 0;
+
+  int possible_pas, possible_compteur;
+  
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  for(i=0;i<4;i++) old_rect[i] = 0; /* Init. old_rect to force first grad. to be displayed */
+  
+  lastyindex = ppsubwin->axes.nygrads - 1;
+  
+  if(lastyindex == 0)
+    ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+  else
+    ChoixFormatE(c_format,
+		 ppsubwin->axes.ygrads[0],
+		 ppsubwin->axes.ygrads[lastyindex],
+		 ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
+  
+  nbtics = ppsubwin->axes.nygrads;
+  nbsubtics = ppsubwin->axes.nbsubtics[1];
+  
+  
+  for(i=0;i<nbtics;i++) grads_tmp[i] = ppsubwin->axes.ygrads[i];
+
+  for(i=0;i<nbtics;i++)
+    {
+      char foo[256]; 
+      double ytmp = ppsubwin->axes.ygrads[i];
+		  
+/*       if(ytmp<yminval || ytmp>ymaxval)  */
+/* 	{ */
+/* 	  /\*   sciprint("je rejete la valeur: %lf\n\n",xtmp); *\/ */
+/* 	  continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon *\/ */
+/* 	  /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/* 	} */
+		  
+      sprintf(foo,c_format,ytmp);
+
+      /***************************************************************/
+      /************************* COMMON PART *************************/
+      /***************************************************************/
+      if(ppsubwin->axes.reverse[1] == TRUE)
+	ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
+		  
+      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  
+      vx[0]=xm;vy[0]=ym; 
+		  
+      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+
+/*       if (IsDownAxes(psubwin)){ */
+/* 	vx[1]=vx[0]; */
+/* 	vy[1]=vy[0]+iof/2; */
+/* 	posi[0] = inint(xm-rect[2]/2);  */
+/* 	posi[1]=inint( vy[0] + iof + rect[3]);} */
+/*       else{ */
+/* 	vx[1]=vx[0]+barlengthx; */
+/* 	vy[1]=vy[0]+barlengthy; */
+/* 	posi[0] = inint( xm+2*barlengthx); */
+/* 	posi[1]=inint( ym + 2*barlengthy + rect[3]);} */
+		      
+      
+      if (IsDownAxes(psubwin)){
+	vx[1]=vx[0];
+	vy[1]=vy[0]+iof/2;
+	posi[0] = inint(xm-rect[2]/2); 
+	posi[1]=inint( vy[0] + iof + rect[3]);}
+      else{
+	vx[1]=vx[0]+barlengthx;
+	vy[1]=vy[0]+barlengthy;
+/* 	posi[0] = inint( xm+2*barlengthx-rect[2]/2);  */
+	posi[0] = inint( xm+2*barlengthx-rect[2]); 
+	posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+      
+      /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      
+      
+      if(CheckDisplay(fact_h, fact_w, ppsubwin->logflags[1],foo,posi,fontid,old_rect) == 0)
+	continue; /*  graduation too close, DO NOT display the graduation ! */
+      
+      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->logflags[1] == 'l' )
+	{
+	  int smallersize = fontid[1]-2;
+	  int old_rect10[4];
+	  int posi10[2];
+
+	  posi10[0] = posi[0] - logrect[2];
+	  posi10[1] = posi[1] + logrect[3];
+	  
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  posi[0] = old_rect10[0] + old_rect10[2];
+	  posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+	  
+	  C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  /* update old_rect */
+	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
+	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[0] = old_rect10[0];
+	  old_rect[1] = old_rect[1];
+	  
+	  nb_grads_max++;
+	  
+	  /* put back the current fontid */
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
+      else{
+	/* update old_rect */
+	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	old_rect[3] = fact_h* old_rect[3];
+	old_rect[2] = fact_w* old_rect[2];
+	nb_grads_max++;
+      }
+    }
+  
+  if(ppsubwin->logflags[1] != 'l')
+    if(nb_grads_max == 1) /* only one grad. can be displayed : we choose to display the average value (max+min)/2 */
+      {
+	ppsubwin->axes.ygrads[0] = (grads_tmp[0]+grads_tmp[lastyindex])/2.;
+	ppsubwin->axes.nygrads = 1;
+	ppsubwin->axes.nbsubtics[1] = 1;
+	return 0;
+      }
+  
+  
+  pas = nbtics - 2; /* pas == grads number - 2 */
+  
+  possible_pas = -99;
+  possible_compteur = -99;
+  
+  while(pas > 0)
+    {
+      int tmp = 0;
+      compteur = 0;
+      for(;;)
+	{
+	  tmp = tmp + pas;
+	  compteur++;
+	  
+	  if((tmp == (nbtics - 1)) && (compteur < nb_grads_max)){
+	    possible_pas = pas;
+	    possible_compteur = ++compteur;
+	    break;
+	  }
+	  
+	  if(tmp > (nbtics - 1))
+	    break;
+	}
+      
+      pas--;
+    }
+  
+  
+  if(possible_compteur != -99){
+    compteur = possible_compteur;
+    pas = possible_pas;
+    
+    for(i=0;i<compteur;i++)
+      ppsubwin->axes.ygrads[i] = grads_tmp[i*pas];
+    
+    ppsubwin->axes.nygrads = compteur;
+    
+    
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+  }
+  else{
+    ppsubwin->axes.ygrads[0] = grads_tmp[0];
+    ppsubwin->axes.ygrads[1] = grads_tmp[lastyindex];
+    ppsubwin->axes.nygrads = 2;
+    
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    
+    if(ppsubwin->logflags[1] == 'n'){
+      if(nb_grads_max > 4) {
+	/* we could display at least 4 graduations but we did not find a proper interval... */
+	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
+	double pas = (grads_tmp[lastyindex]-grads_tmp[0])/3;
+	for(i=0;i<3;i++){
+	  ppsubwin->axes.ygrads[i] = grads_tmp[0] + i*pas;
+	}
+	
+	ppsubwin->axes.ygrads[3] = grads_tmp[lastyindex]; /* exact max */
+	ppsubwin->axes.nygrads = 4;
+	ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,'n',
+							       ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+      }
+    }
+  }
+  
+  return 0;
+}
+
+
+int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz)
+{
+  int i;
+  int nbtics, nbsubtics;
+  int lastxindex;
+  int old_rect[4];
+  int nb_grads_max = 0;
+  int vx[2], vy[2];
+  int xm, ym;
+  double grads_tmp[20];
+  char c_format[5];
+  integer barlengthx = 0,barlengthy = 0;
+  integer rect[4],posi[2]; 
+  integer textcolor = -1;
+  int logrect[4],XX,YY;
+  int pas;
+  double fact_h = 1.5, fact_w = 1.5;
+  int compteur = 0;
+
+  int possible_pas, possible_compteur;
+  
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  for(i=0;i<4;i++) old_rect[i] = 0; /* Init. old_rect to force first grad. to be displayed */
+  
+  lastxindex = ppsubwin->axes.nxgrads - 1;
+  
+  if(lastxindex == 0)
+    ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+  else
+    ChoixFormatE(c_format,
+		 ppsubwin->axes.xgrads[0],
+		 ppsubwin->axes.xgrads[lastxindex],
+		 ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
+  
+  nbtics = ppsubwin->axes.nxgrads;
+  nbsubtics = ppsubwin->axes.nbsubtics[0];
+  
+  
+  for(i=0;i<nbtics;i++) grads_tmp[i] = ppsubwin->axes.xgrads[i];
+
+  for(i=0;i<nbtics;i++)
+    {
+      char foo[256]; 
+      double xtmp = ppsubwin->axes.xgrads[i];
+		  
+/*       if(xtmp<xminval || xtmp>xmaxval)  */
+/* 	{ */
+/* 	  /\*   sciprint("je rejete la valeur: %lf\n\n",xtmp); *\/ */
+/* 	  continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon *\/ */
+/* 	  /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/* 	} */
+		  
+      sprintf(foo,c_format,xtmp);
+
+      /***************************************************************/
+      /************************* COMMON PART *************************/
+      /***************************************************************/
+      if(ppsubwin->axes.reverse[0] == TRUE)
+	xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
+		  
+      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
+		  
+      vx[0]=xm;vy[0]=ym; 
+		  
+      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+
+/*       if (IsDownAxes(psubwin)){ */
+/* 	vx[1]=vx[0]; */
+/* 	vy[1]=vy[0]+iof/2; */
+/* 	posi[0] = inint(xm-rect[2]/2);  */
+/* 	posi[1]=inint( vy[0] + iof + rect[3]);} */
+/*       else{ */
+/* 	vx[1]=vx[0]+barlengthx; */
+/* 	vy[1]=vy[0]+barlengthy; */
+/* 	posi[0] = inint( xm+2*barlengthx); */
+/* 	posi[1]=inint( ym + 2*barlengthy + rect[3]);} */
+		      
+      if (IsDownAxes(psubwin)){
+	vx[1]=vx[0];
+	vy[1]=vy[0]+iof/2;
+	posi[0] = inint(xm-rect[2]/2); 
+	posi[1]=inint( vy[0] + iof + rect[3]);}
+      else{
+	vx[1]=vx[0]+barlengthx;
+	vy[1]=vy[0]+barlengthy;
+	posi[0] = inint( xm+2*barlengthx-rect[2]); 
+	posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+      
+      /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      
+      
+      if(CheckDisplay(fact_h, fact_w, ppsubwin->logflags[0],foo,posi,fontid,old_rect) == 0)
+	continue; /*  graduation too close, DO NOT display the graduation ! */
+      
+      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->logflags[0] == 'l' )
+	{
+	  int smallersize = fontid[1]-2;
+	  int old_rect10[4];
+	  int posi10[2];
+
+	  posi10[0] = posi[0] - logrect[2];
+	  posi10[1] = posi[1] + logrect[3];
+	  
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  posi[0] = old_rect10[0] + old_rect10[2];
+	  posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+	  
+	  C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  /* update old_rect */
+	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
+	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[0] = old_rect10[0];
+	  old_rect[1] = old_rect[1];
+	  
+	  nb_grads_max++;
+	  
+	  /* put back the current fontid */
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
+      else{
+	/* update old_rect */
+	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	old_rect[3] = fact_h* old_rect[3];
+	old_rect[2] = fact_w* old_rect[2];
+	nb_grads_max++;
+      }
+    }
+  
+  if(ppsubwin->logflags[0] != 'l')
+    if(nb_grads_max == 1) /* only one grad. can be displayed : we choose to display the average value (max+min)/2 */
+      {
+	ppsubwin->axes.xgrads[0] = (grads_tmp[0]+grads_tmp[lastxindex])/2.;
+	ppsubwin->axes.nxgrads = 1;
+	ppsubwin->axes.nbsubtics[0] = 1;
+	return 0;
+      }
+  
+  
+  pas = nbtics - 2; /* pas == grads number - 2 */
+  
+  possible_pas = -99;
+  possible_compteur = -99;
+  
+  while(pas > 0)
+    {
+      int tmp = 0;
+      compteur = 0;
+      for(;;)
+	{
+	  tmp = tmp + pas;
+	  compteur++;
+	  
+	  if((tmp == (nbtics - 1)) && (compteur < nb_grads_max)){
+	    possible_pas = pas;
+	    possible_compteur = ++compteur;
+	    break;
+	  }
+	  
+	  if(tmp > (nbtics - 1))
+	    break;
+	}
+      
+      pas--;
+    }
+  
+  
+  if(possible_compteur != -99){
+    compteur = possible_compteur;
+    pas = possible_pas;
+    
+    for(i=0;i<compteur;i++)
+      ppsubwin->axes.xgrads[i] = grads_tmp[i*pas];
+    
+    ppsubwin->axes.nxgrads = compteur;
+    
+    
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
+							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+  }
+  else{
+    ppsubwin->axes.xgrads[0] = grads_tmp[0];
+    ppsubwin->axes.xgrads[1] = grads_tmp[lastxindex];
+    ppsubwin->axes.nxgrads = 2;
+    
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
+							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    
+    if(ppsubwin->logflags[0] == 'n'){
+      if(nb_grads_max > 4) {
+	/* we could display at least 4 graduations but we did not find a proper interval... */
+	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
+	double pas = (grads_tmp[lastxindex]-grads_tmp[0])/3;
+	for(i=0;i<3;i++){
+	  ppsubwin->axes.xgrads[i] = grads_tmp[0] + i*pas;
+	}
+	
+	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
+	ppsubwin->axes.nxgrads = 4;
+	ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,'n',
+							       ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+      }
+    }
+  }
+  
+  return 0;
+}
+
+
+
+int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz)
+{
+  int i;
+  int nbtics, nbsubtics;
+  int lastyindex;
+  int old_rect[4];
+  int nb_grads_max = 0;
+  int vx[2], vy[2];
+  int xm, ym;
+  double grads_tmp[20];
+  char c_format[5];
+  integer barlengthx = 0,barlengthy = 0;
+  integer rect[4],posi[2]; 
+  integer textcolor = -1;
+  int logrect[4],XX,YY;
+  int pas;
+  double fact_h = 1.5, fact_w = 1.5;
+  int compteur = 0;
+
+  int possible_pas, possible_compteur;
+  
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  for(i=0;i<4;i++) old_rect[i] = 0; /* Init. old_rect to force first grad. to be displayed */
+  
+  lastyindex = ppsubwin->axes.nygrads - 1;
+  
+  if(lastyindex == 0)
+    ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+  else
+    ChoixFormatE(c_format,
+		 ppsubwin->axes.ygrads[0],
+		 ppsubwin->axes.ygrads[lastyindex],
+		 ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
+  
+  nbtics = ppsubwin->axes.nygrads;
+  nbsubtics = ppsubwin->axes.nbsubtics[1];
+  
+  
+  for(i=0;i<nbtics;i++) grads_tmp[i] = ppsubwin->axes.ygrads[i];
+
+  for(i=0;i<nbtics;i++)
+    {
+      char foo[256]; 
+      double ytmp = ppsubwin->axes.ygrads[i];
+		  
+/*       if(ytmp<yminval || ytmp>ymaxval)  */
+/* 	{ */
+/* 	  /\*   sciprint("je rejete la valeur: %lf\n\n",xtmp); *\/ */
+/* 	  continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon *\/ */
+/* 	  /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/* 	} */
+		  
+      sprintf(foo,c_format,ytmp);
+
+      /***************************************************************/
+      /************************* COMMON PART *************************/
+      /***************************************************************/
+      if(ppsubwin->axes.reverse[1] == TRUE)
+	ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
+		  
+      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  
+      vx[0]=xm;vy[0]=ym; 
+		  
+      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+
+      if (IsDownAxes(psubwin)){
+	vx[1]=vx[0];
+	vy[1]=vy[0]+iof/2;
+	posi[0] = inint(xm-rect[2]/2); 
+	posi[1]=inint( vy[0] + iof + rect[3]);}
+      else{
+	vx[1]=vx[0]+barlengthx;
+	vy[1]=vy[0]+barlengthy;
+	posi[0] = inint( xm+2*barlengthx);
+	posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+		      
+      
+      /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      
+      
+      if(CheckDisplay(fact_h, fact_w, ppsubwin->logflags[1],foo,posi,fontid,old_rect) == 0)
+	continue; /*  graduation too close, DO NOT display the graduation ! */
+      
+      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->logflags[1] == 'l' )
+	{
+	  int smallersize = fontid[1]-2;
+	  int old_rect10[4];
+	  int posi10[2];
+
+	  posi10[0] = posi[0] - logrect[2];
+	  posi10[1] = posi[1] + logrect[3];
+	  
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  posi[0] = old_rect10[0] + old_rect10[2];
+	  posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+	  
+	  C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  /* update old_rect */
+	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
+	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[0] = old_rect10[0];
+	  old_rect[1] = old_rect[1];
+	  
+	  nb_grads_max++;
+	  
+	  /* put back the current fontid */
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
+      else{
+	/* update old_rect */
+	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	old_rect[3] = fact_h* old_rect[3];
+	old_rect[2] = fact_w* old_rect[2];
+	nb_grads_max++;
+      }
+    }
+  
+  if(ppsubwin->logflags[1] != 'l')
+    if(nb_grads_max == 1) /* only one grad. can be displayed : we choose to display the average value (max+min)/2 */
+      {
+	ppsubwin->axes.ygrads[0] = (grads_tmp[0]+grads_tmp[lastyindex])/2.;
+	ppsubwin->axes.nygrads = 1;
+	ppsubwin->axes.nbsubtics[1] = 1;
+	return 0;
+      }
+  
+  
+  pas = nbtics - 2; /* pas == grads number - 2 */
+  
+  possible_pas = -99;
+  possible_compteur = -99;
+  
+  while(pas > 0)
+    {
+      int tmp = 0;
+      compteur = 0;
+      for(;;)
+	{
+	  tmp = tmp + pas;
+	  compteur++;
+	  
+	  if((tmp == (nbtics - 1)) && (compteur < nb_grads_max)){
+	    possible_pas = pas;
+	    possible_compteur = ++compteur;
+	    break;
+	  }
+	  
+	  if(tmp > (nbtics - 1))
+	    break;
+	}
+      
+      pas--;
+    }
+  
+  
+  if(possible_compteur != -99){
+    compteur = possible_compteur;
+    pas = possible_pas;
+    
+    for(i=0;i<compteur;i++)
+      ppsubwin->axes.ygrads[i] = grads_tmp[i*pas];
+    
+    ppsubwin->axes.nygrads = compteur;
+    
+    
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+  }
+  else{
+    ppsubwin->axes.ygrads[0] = grads_tmp[0];
+    ppsubwin->axes.ygrads[1] = grads_tmp[lastyindex];
+    ppsubwin->axes.nygrads = 2;
+    
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    
+    if(ppsubwin->logflags[1] == 'n'){
+      if(nb_grads_max > 4) {
+	/* we could display at least 4 graduations but we did not find a proper interval... */
+	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
+	double pas = (grads_tmp[lastyindex]-grads_tmp[0])/3;
+	for(i=0;i<3;i++){
+	  ppsubwin->axes.ygrads[i] = grads_tmp[0] + i*pas;
+	}
+	
+	ppsubwin->axes.ygrads[3] = grads_tmp[lastyindex]; /* exact max */
+	ppsubwin->axes.nygrads = 4;
+	ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,'n',
+							       ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+      }
+    }
+  }
+  
+  return 0;
+}
+
+
+int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz)
+{
+  int i;
+  int nbtics, nbsubtics;
+  int lastxindex;
+  int old_rect[4];
+  int nb_grads_max = 0;
+  int vx[2], vy[2];
+  int xm, ym;
+  double grads_tmp[20];
+  char c_format[5];
+  integer barlengthx = 0,barlengthy = 0;
+  integer rect[4],posi[2]; 
+  integer textcolor = -1;
+  int logrect[4],XX,YY;
+  int pas;
+  double fact_h = 1.5, fact_w = 1.5;
+  int compteur = 0;
+
+  int possible_pas, possible_compteur;
+  
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  for(i=0;i<4;i++) old_rect[i] = 0; /* Init. old_rect to force first grad. to be displayed */
+  
+  lastxindex = ppsubwin->axes.nxgrads - 1;
+  
+  if(lastxindex == 0)
+    ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+  else
+    ChoixFormatE(c_format,
+		 ppsubwin->axes.xgrads[0],
+		 ppsubwin->axes.xgrads[lastxindex],
+		 ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
+  
+  nbtics = ppsubwin->axes.nxgrads;
+  nbsubtics = ppsubwin->axes.nbsubtics[0];
+  
+  
+  for(i=0;i<nbtics;i++) grads_tmp[i] = ppsubwin->axes.xgrads[i];
+
+  for(i=0;i<nbtics;i++)
+    {
+      char foo[256]; 
+      double xtmp = ppsubwin->axes.xgrads[i];
+		  
+/*       if(xtmp<xminval || xtmp>xmaxval)  */
+/* 	{ */
+/* 	  /\*   sciprint("je rejete la valeur: %lf\n\n",xtmp); *\/ */
+/* 	  continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon *\/ */
+/* 	  /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/* 	} */
+		  
+      sprintf(foo,c_format,xtmp);
+
+      /***************************************************************/
+      /************************* COMMON PART *************************/
+      /***************************************************************/
+      if(ppsubwin->axes.reverse[0] == TRUE)
+	xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
+		  
+      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
+		  
+      vx[0]=xm;vy[0]=ym; 
+		  
+      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+
+      if (IsDownAxes(psubwin)){
+	vx[1]=vx[0];
+	vy[1]=vy[0]+iof/2;
+	posi[0] = inint(xm-rect[2]/2); 
+	posi[1]=inint( vy[0] + iof + rect[3]);}
+      else{
+	vx[1]=vx[0]+barlengthx;
+	vy[1]=vy[0]+barlengthy;
+	posi[0] = inint( xm+2*barlengthx);
+	posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+		      
+      
+      /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      
+      
+      if(CheckDisplay(fact_h, fact_w, ppsubwin->logflags[0],foo,posi,fontid,old_rect) == 0)
+	continue; /*  graduation too close, DO NOT display the graduation ! */
+      
+      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->logflags[0] == 'l' )
+	{
+	  int smallersize = fontid[1]-2;
+	  int old_rect10[4];
+	  int posi10[2];
+
+	  posi10[0] = posi[0] - logrect[2];
+	  posi10[1] = posi[1] + logrect[3];
+	  
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  posi[0] = old_rect10[0] + old_rect10[2];
+	  posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+	  
+	  C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  /* update old_rect */
+	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
+	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[0] = old_rect10[0];
+	  old_rect[1] = old_rect[1];
+	  
+	  nb_grads_max++;
+	  
+	  /* put back the current fontid */
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
+      else{
+	/* update old_rect */
+	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	old_rect[3] = fact_h* old_rect[3];
+	old_rect[2] = fact_w* old_rect[2];
+	nb_grads_max++;
+      }
+    }
+  
+  if(ppsubwin->logflags[0] != 'l')
+    if(nb_grads_max == 1) /* only one grad. can be displayed : we choose to display the average value (max+min)/2 */
+      {
+	ppsubwin->axes.xgrads[0] = (grads_tmp[0]+grads_tmp[lastxindex])/2.;
+	ppsubwin->axes.nxgrads = 1;
+	ppsubwin->axes.nbsubtics[0] = 1;
+	return 0;
+      }
+  
+  
+  pas = nbtics - 2; /* pas == grads number - 2 */
+  
+  possible_pas = -99;
+  possible_compteur = -99;
+  
+  while(pas > 0)
+    {
+      int tmp = 0;
+      compteur = 0;
+      for(;;)
+	{
+	  tmp = tmp + pas;
+	  compteur++;
+	  
+	  if((tmp == (nbtics - 1)) && (compteur < nb_grads_max)){
+	    possible_pas = pas;
+	    possible_compteur = ++compteur;
+	    break;
+	  }
+	  
+	  if(tmp > (nbtics - 1))
+	    break;
+	}
+      
+      pas--;
+    }
+  
+  
+  if(possible_compteur != -99){
+    compteur = possible_compteur;
+    pas = possible_pas;
+    
+    for(i=0;i<compteur;i++)
+      ppsubwin->axes.xgrads[i] = grads_tmp[i*pas];
+    
+    ppsubwin->axes.nxgrads = compteur;
+    
+    
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
+							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+  }
+  else{
+    ppsubwin->axes.xgrads[0] = grads_tmp[0];
+    ppsubwin->axes.xgrads[1] = grads_tmp[lastxindex];
+    ppsubwin->axes.nxgrads = 2;
+    
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
+							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    
+    if(ppsubwin->logflags[0] == 'n'){
+      if(nb_grads_max > 4) {
+	/* we could display at least 4 graduations but we did not find a proper interval... */
+	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
+	double pas = (grads_tmp[lastxindex]-grads_tmp[0])/3;
+	for(i=0;i<3;i++){
+	  ppsubwin->axes.xgrads[i] = grads_tmp[0] + i*pas;
+	}
+	
+	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
+	ppsubwin->axes.nxgrads = 4;
+	ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,'n',
+							       ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+      }
+    }
+  }
+  
+  return 0;
+}
+
+int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double zminval, double zmaxval, double fx, double fy, double fz)
+{
+  int i;
+  int nbtics, nbsubtics;
+  int lastzindex;
+  int old_rect[4];
+  int nb_grads_max = 0;
+  int vx[2], vy[2];
+  int xm, ym;
+  double grads_tmp[20];
+  char c_format[5];
+  integer barlengthx = 0,barlengthy = 0;
+  integer rect[4],posi[2]; 
+  integer textcolor = -1;
+  int logrect[4],XX,YY;
+  int pas;
+  double fact_h = 1.5, fact_w = 1.;
+  int compteur;
+
+  int possible_pas, possible_compteur;
+  
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  for(i=0;i<4;i++) old_rect[i] = 0; /* Init. old_rect to force first grad. to be displayed */
+  
+
+
+  lastzindex = ppsubwin->axes.nzgrads - 1;
+  
+  if(lastzindex == 0)
+    ChoixFormatForOneGrad(c_format,ppsubwin->axes.zgrads[0]);
+  else
+    ChoixFormatE(c_format,
+		 ppsubwin->axes.zgrads[0],
+		 ppsubwin->axes.zgrads[lastzindex],
+		 ((ppsubwin->axes.zgrads[lastzindex])-(ppsubwin->axes.zgrads[0]))/(lastzindex));
+  
+  nbtics = ppsubwin->axes.nzgrads;
+  nbsubtics = ppsubwin->axes.nbsubtics[2];
+
+
+  for(i=0;i<nbtics;i++) grads_tmp[i] = ppsubwin->axes.zgrads[i];
+  
+  for(i=0;i<nbtics;i++)
+    {
+      char foo[256];
+      double ztmp = ppsubwin->axes.zgrads[i];
+      
+/*       if(ztmp<zminval || ztmp>zmaxval) */
+/* 	{ */
+/* 	  /\*   sciprint("je rejete la valeur: %lf\n\n",xtmp); *\/ */
+/* 	  continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon *\/ */
+/* 	  /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/* 	} */
+      
+      /*       sprintf(foo,c_format,ztmp); */
+
+      sprintf(foo,c_format,ztmp);
+      
+      /***************************************************************/
+      /************************* COMMON PART *************************/
+      /***************************************************************/
+      if(ppsubwin->axes.reverse[2] == TRUE)
+	ztmp = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp);
+      
+      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
+            
+      
+      vx[0]=xm;vy[0]=ym;
+      
+      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+      vx[1]=vx[0]+barlengthx;
+      vy[1]=vy[0]+barlengthy;
+      
+      /* foo is set above with sprintf(foo,c_format,xtmp); */
+  	      
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      posi[0] = inint( xm+2*barlengthx - rect[2]); 
+      posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
+
+
+      /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      
+      
+      if(CheckDisplay(fact_h, fact_w, ppsubwin->logflags[2],foo,posi,fontid,old_rect) == 0)
+	continue; /*  graduation too close, DO NOT display the graduation ! */
+	      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->logflags[2] == 'l' )
+	{
+	  int smallersize = fontid[1]-2;
+	  int old_rect10[4];
+	  int posi10[2];
+	  
+	  posi10[0] = posi[0] - logrect[2];
+	  posi10[1] = posi[1] + logrect[3];
+	  
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  posi[0] = old_rect10[0] + old_rect10[2];
+	  posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
+	  
+	  C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  /* update old_rect */
+	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
+	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[0] = old_rect10[0];
+	  old_rect[1] = old_rect[1];
+	  
+	  nb_grads_max++;
+	  
+	  
+	  /* put back the current fontid */
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
+      else{
+	/* update old_rect */
+	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	old_rect[3] = fact_h* old_rect[3];
+	old_rect[2] = fact_w* old_rect[2];
+	nb_grads_max++;
+      }
+    }
+  
+  
+  if(ppsubwin->logflags[2] != 'l')
+    if(nb_grads_max == 1) /* only one grad. can be displayed : we choose to display the average value (max+min)/2 */
+      {
+	ppsubwin->axes.zgrads[0] = (grads_tmp[0]+grads_tmp[lastzindex])/2.;
+	ppsubwin->axes.nzgrads = 1;
+	ppsubwin->axes.nbsubtics[2] = 1;
+	return 0;
+      }
+  
+  pas = nbtics - 2; /* pas == grads number - 2 */
+
+  possible_pas = -99;
+  possible_compteur = -99;
+
+  while(pas > 0)
+    {
+      int tmp = 0;
+      compteur = 0;
+      for(;;)
+	{
+	  tmp = tmp + pas;
+	  compteur++;
+	  
+	  if((tmp == (nbtics - 1)) && (compteur < nb_grads_max)){
+	    possible_pas = pas;
+	    possible_compteur = ++compteur;
+	    break;
+	  }
+	  
+	  if(tmp > (nbtics - 1))
+	    break;
+	}
+      
+      pas--;
+    }
+  
+  if(possible_compteur != -99){
+    compteur = possible_compteur;
+    pas = possible_pas;
+    
+    for(i=0;i<compteur;i++)
+      ppsubwin->axes.zgrads[i] = grads_tmp[i*pas];
+    
+    ppsubwin->axes.nzgrads = compteur;
+    
+    
+    ppsubwin->axes.nbsubtics[2] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nzgrads,ppsubwin->logflags[2],
+							   ppsubwin->axes.zgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+  }
+  else{
+    ppsubwin->axes.zgrads[0] = grads_tmp[0];
+    ppsubwin->axes.zgrads[1] = grads_tmp[lastzindex];
+    ppsubwin->axes.nzgrads = 2;
+    
+    ppsubwin->axes.nbsubtics[2] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nzgrads,ppsubwin->logflags[2],
+							   ppsubwin->axes.zgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+  }
+  
+  return 0;
+}
+
+
+
+int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input)
+{
+  int ticsval[] =    {2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+  int subticsval[] = {6,4,4,3,3,3,2,2,2 ,2 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1};
+  int i;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+
+  if(logflag =='l'){
+    if((grads[1]-grads[0])==1) /* intervalle de type ...10^n 10^(n+1)...*/
+      {
+	return 9; /* 9 subtics to have a pretty tics/grid in log.*/
+      }
+    else
+      {
+	return 1; /* no subtics at all (1 but draw on a tics place) */
+      }
+  }
+  else{
+    if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */
+      { 
+	for(i=0;i<19;i++)
+	  if(nbtics == ticsval[i])
+	    {
+	      return subticsval[i];
+	    }
+      }
+    else /* if auto subtics mode == OFF already computed in Plo2dn.c, Champ.c routines... */
+      {  /* or given via a.subtics=[nbsubtics_on_x, nbsubtics_on_y, nbsubtics_on_z] command */
+	return nbsubtics_input;
+      }
+  }
+  
+  return -1;
+}
+
+
+int ChoixFormatForOneGrad(char *c_format, double grad)
+{
+  int compteur = 0;
+  
+  if(10000000 * grad == grad){ /* case where grad is strictly equal to 0. */
+    strcpy(c_format,"%d");
+    return 0;
+  }
+  
+  while((int) grad == 0){
+    compteur++;
+    grad = 10*grad;
+    
+    if(compteur > 100){
+      Scierror(999,"Error in function ChoixFormatForOneGrad\n");
+      return -1;
+    }
+  }
+  
+  sprintf(c_format,"%%.%df",compteur);
+  
   return 0;
 }
