@@ -1706,6 +1706,10 @@ c     Copyright INRIA
       include '../stack.h'
       integer topk,p
       logical checkrhs,checklhs,getscalar,cremat,getsmat,checkval
+      character*9 opt
+      character*(*) pause,cont,kill,stp,nomess
+      parameter (pause='pause',cont='continue',kill='kill',stp='stop')
+      parameter (nomess='nomessage')
       integer iadr
 c
       data local/21/
@@ -1740,11 +1744,23 @@ c
          else if(istk(il).eq.10.and.i.gt.1) then
             if(.not.getsmat('errcatch',topk,top,m,n,1,1,il1,n1)) return
             if(.not.checkval('errcatch',m*n,1) ) return
-            l=abs(istk(il1))
-            if(l.eq.12) imode=1
-            if(l.eq.25) imode=2
-            if(l.eq.23) imess=1
-            if(l.eq.28) imode=3
+            n1=min(n1,9)
+            call cvstr(n1,istk(il1),opt,1)
+            if(opt(1:n1).eq.cont(1:n1)) then
+               imode=1
+            elseif(opt(1:n1).eq.pause(1:n1)) then
+               imode=2
+            elseif(opt(1:n1).eq.nomess(1:n1)) then
+               imess=1
+            elseif(opt(1:n1).eq.stp(1:n1)) then
+               imode=3
+            elseif(opt(1:n1).eq.kill(1:n1)) then
+               imode=0
+            else
+               err=i
+               call error(44)
+               return
+            endif
          else
             err=i
             call error(44)
