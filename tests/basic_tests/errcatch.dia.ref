@@ -756,10 +756,16 @@ a=1;
  
 if %t then
   x
-    !--error     4 
+    !--error 4 
 undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
 end
  
@@ -775,10 +781,16 @@ if or(file()<>of) then bugmes();quit;end
 clear a x ierr;
  
   x
-    !--error     4 
+    !--error 4 
 undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
  
 if a<>5 then bugmes();quit;end
@@ -789,10 +801,16 @@ clear a x ierr;
  
 if execstr(txt,'errcatch')<>0 then bugmes();quit;end
   x
-    !--error     4 
+    !--error 4 
 undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
  
 if a<>5 then bugmes();quit;end
@@ -806,10 +824,16 @@ a=1;
  
 if %t then
   x
-    !--error     4 
+    !--error 4 
 undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
 end
  
@@ -830,10 +854,16 @@ a=1;
  
 if %t then
   x
-    !--error     4 
+    !--error 4 
 undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
 end
  
@@ -851,10 +881,16 @@ a=1;
  
 if %t then
   x
-    !--error     4 
+    !--error 4 
 undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
+  x
+    !--error 4 
+undefined variable : x                       
  
 end
  
@@ -896,10 +932,14 @@ a=1;
  
 if %t then
   a=foo()
- !--error     4 
+ !--error 4 
 undefined variable : x                       
  
+ !--error 4 
+undefined variable : x                       
  
+ !--error 4 
+undefined variable : x                       
  
  a  =
  
