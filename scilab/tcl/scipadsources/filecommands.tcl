@@ -31,6 +31,9 @@
 #     listoffile("$ta",save)
 #       0: file is unmodified
 #       1: file has been modified and should be saved before leaving Scipad
+#      Note: Starting from Scipad 5.3, this setting is deprecated and replaced
+#            by the text widget embedded modified flag associated to the undo
+#            stack - it should be no longer found in the source code
 #
 #     listoffile("$ta",readonly)
 #       0: file can be written
@@ -62,7 +65,6 @@ proc filesetasnew {} {
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
     set listoffile("$pad.new$winopened",displayedname) [mc "Untitled"]$winopened.sce
-    set listoffile("$pad.new$winopened",save) 0
     set listoffile("$pad.new$winopened",new) 1
     set listoffile("$pad.new$winopened",thetime) 0
     set listoffile("$pad.new$winopened",language) "scilab"
@@ -75,6 +77,7 @@ proc filesetasnew {} {
     showinfo [mc "New Script"]
     montretext $pad.new$winopened
     selection clear
+    resetmodified $pad.new$winopened
 }
 
 ##################################################
@@ -92,7 +95,7 @@ proc closecur { {quittype yesno} } {
 proc closefile {textarea {quittype yesno} } {
     global listoftextarea listoffile pad
     # query the modified flag
-    if  [ expr [string compare [getmodified $textarea] 1] == 0 ] {
+    if  {[ismodified $textarea]} {
         # ask the user if buffer should be saved before closing
         set answer [tk_messageBox -message [ concat [mc "The contents of"] \
            $listoffile("$textarea",fullname) \
@@ -124,7 +127,6 @@ proc byebye {textarea} {
         # delete the textarea entry in listoffile
         unset listoffile("$textarea",fullname) 
         unset listoffile("$textarea",displayedname) 
-        unset listoffile("$textarea",save) 
         unset listoffile("$textarea",new) 
         unset listoffile("$textarea",thetime) 
         unset listoffile("$textarea",language) 
@@ -174,7 +176,8 @@ proc openlibfunsource {ind} {
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         if {$curterm!=""} {
-            ScilabEval "scipad(get_function_path(\"$curterm\"))" }
+            ScilabEval_lt "scipad(get_function_path(\"$curterm\"))"
+        }
     }
 }
 
@@ -182,7 +185,6 @@ proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
-#    tk_messageBox -message $filelist
     foreach f $filelist {
         regsub "^file:" $f "" f
 # in unix, .* files are not matched by *, but .* matches . and ..
@@ -285,9 +287,7 @@ proc openfile {file} {
                 set listoffile("$pad.new$winopened",thetime) 0
                 set listoffile("$pad.new$winopened",new) 1
                 lappend listoftextarea $pad.new$winopened
-                unsetmodified $pad.new$winopened
                 montretext $pad.new$winopened
-                update
                 RefreshWindowsMenuLabels
             }
             $pad.new$winopened mark set insert "1.0"
@@ -319,7 +319,7 @@ proc lookiffileisopen {file} {
 
 proc notopenedfile {file} {
 # $file is not opened - this sets the $listoffile area values for that file
-# and adds a entry in the windows menu
+# and adds an entry in the windows menu
     global winopened pad listoffile radiobuttonvalue
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
@@ -342,18 +342,17 @@ proc notopenedfile {file} {
 
 proc shownewbuffer {file} {
     global pad winopened
-    unsetmodified $pad.new$winopened
     openoninit $pad.new$winopened $file
     montretext $pad.new$winopened
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
     update
+    resetmodified $pad.new$winopened
     colorize $pad.new$winopened 1.0 end
 }
 
 proc newfilebind {} {
-    global pad winopened radiobuttonvalue listundo_id
-    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
+    global pad winopened radiobuttonvalue
     bind $pad.new$winopened <KeyRelease> {catch {keyposn %W}}
     bind $pad.new$winopened <ButtonRelease> {catch {keyposn %W}}
     TextStyles $pad.new$winopened
@@ -480,7 +479,7 @@ proc filesaveas {textarea} {
         set listoffile("$textarea",displayedname) \
             [file tail $listoffile("$textarea",fullname)]
         set listoffile("$textarea",new) 0
-        set listoffile("$textarea",save) 0
+        resetmodified $textarea
         $pad.filemenu.wind add radiobutton \
            -label $listoffile("$textarea",displayedname) \
            -value $radiobuttonvalue -variable radiobuttonvalue \
@@ -510,7 +509,7 @@ proc writesave {textarea nametosave} {
         set FileNameToSave [open $nametosave w+]
         puts -nonewline $FileNameToSave [$textarea get 0.0 end]
         close $FileNameToSave
-        unsetmodified $textarea
+        resetmodified $textarea
         set listoffile("$textarea",thetime) [file mtime $nametosave] 
         set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
         showinfo $msgWait
@@ -560,9 +559,8 @@ proc revertsaved {} {
                 $textarea insert end [read -nonewline $oldfile ] 
             }
             close $oldfile
-            set listoffile("$textarea",save) 0
+            resetmodified $textarea
             set listoffile("$textarea",thetime) [file mtime $thefile]
-            modifiedtitle $textarea
             colorize $textarea 1.0 end
         }
     }
@@ -652,9 +650,6 @@ proc RefreshWindowsMenuLabels {} {
             $pad.filemenu.wind entryconfigure $i -label $pn
         }
     }
-    # montretext must have been called before RefreshWindowsMenuLabels
-    # so that $textareacur is up-to-date
-    modifiedtitle [gettextareacur]
 }
 
 proc IsPrunedNameAmbiguous {ta} {

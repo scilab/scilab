@@ -180,9 +180,9 @@ if {$dev_debug=="true"} {
 
 proc getdebuggersciancillaries_bp {} {
     global env
-    ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""
-    ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/FormatWhereForDebugWatch.sci\""
-    ScilabEval "getf \"$env(SCIPATH)/tcl/scipadsources/ext_exists.sci\""
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatWhereForDebugWatch.sci\""
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/ext_exists.sci\""
 }
 
 proc setdbstatevisualhints_bp {} {
@@ -216,5 +216,5 @@ proc checkendofdebug_bp {} {
     set comm3 "TCL_EvalStr(\"scipad eval {setdbstate \"\"ReadyForDebug\"\" }\");"
     set comm4 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4]
-    ScilabEval "$fullcomm" "seq"
+    ScilabEval_lt "$fullcomm" "seq"
 }

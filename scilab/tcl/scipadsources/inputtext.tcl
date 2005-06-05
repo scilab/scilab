@@ -112,6 +112,11 @@ proc inserttab {w} {
 proc puttext {w text} {
     global winTitle
     if {[IsBufferEditable] == "No"} {return}
+    set oldSeparator [$w cget -autoseparators] ;# in case this proc is called from another proc
+    if {$oldSeparator} {
+        $w configure -autoseparators 0 ;# so only one undo is required to undo text replacement
+        $w edit separator
+    }
     set rem 0
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length [gettextareacur]]-1]] == [gettextareacur]} {
@@ -130,25 +135,12 @@ proc puttext {w text} {
     }
     reshape_bp
     $w see insert
-    setmodified [gettextareacur]
+    if {$oldSeparator} {
+        $w edit separator
+        $w configure -autoseparators 1
+    }
 }
 
-proc getmodified {textarea} {
-    global listoffile
-    return $listoffile("$textarea",save)
-}
-
-proc setmodified {textarea} {
-    global listoffile
-    set listoffile("$textarea",save) 1
-    modifiedtitle $textarea
-}
-
-proc unsetmodified {textarea} {
-    global listoffile
-    set listoffile("$textarea",save) 0
-    modifiedtitle $textarea
-}
 
 proc printtime {} {
 #procedure to set the time change %R to %I:%M for 12 hour time display
@@ -156,7 +148,6 @@ proc printtime {} {
     if {[IsBufferEditable] == "No"} {return}
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]
-    setmodified [gettextareacur]
 }
 
 

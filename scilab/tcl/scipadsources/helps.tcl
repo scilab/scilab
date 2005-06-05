@@ -1,6 +1,6 @@
 proc helpme {} {
 # help
-    ScilabEval "help scipad"
+    ScilabEval_lt "help scipad"
 }
 
 proc aboutme {} {
@@ -26,6 +26,6 @@ proc helpword {} {
     }
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
-        if {$curterm!=""} { ScilabEval "help \"$curterm\"" }
+        if {$curterm!=""} { ScilabEval_lt "help \"$curterm\"" }
     }
 }

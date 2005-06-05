@@ -32,14 +32,14 @@ proc runtocursor_bp {} {
             set comm5 "TCL_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
             set comm6 "end;"
             set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
-            ScilabEval "$fullcomm" "seq"
-            ScilabEval "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
-            ScilabEval "flush"
+            ScilabEval_lt "$fullcomm" "seq"
+            ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+            ScilabEval_lt "flush"
             while {$bptcheckresult == "WrongBpt" && [getdbstate] == "DebugInProgress"} {
                 tonextbreakpoint_bp
-                ScilabEval "$fullcomm" "seq"
-                ScilabEval "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
-                ScilabEval "flush"
+                ScilabEval_lt "$fullcomm" "seq"
+                ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+                ScilabEval_lt "flush"
             }
             if {[getdbstate] != "DebugInProgress"} {
                 tk_messageBox -message [mc "Cursor position is out of reach!"] -icon info
@@ -122,19 +122,19 @@ proc execfile_bp {} {
                 set commnvars [createsetinscishellcomm $watchvars]
                 set watchsetcomm [lindex $commnvars 0]
                 if {$watchsetcomm != ""} {
-                    ScilabEval "$watchsetcomm"  "seq"
+                    ScilabEval_lt "$watchsetcomm"  "seq"
                 }
 # <TODO> A ScilabEval "seq" never causes an error, this only happens with "sync"
 #        It would be a good idea to arrange for an error to be reported even with a seq,
 #        but this is outside of Scipad.
-                if {[catch {ScilabEval "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
+                if {[catch {ScilabEval_lt "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
                     scilaberror $funnameargs
                 }
                 updateactivebreakpoint
                 getfromshell
                 checkendofdebug_bp
             } else {
-                if {[catch {ScilabEval "$funnameargs" "seq"}]} {
+                if {[catch {ScilabEval_lt "$funnameargs" "seq"}]} {
                     scilaberror $funnameargs
                 }
             }
@@ -170,11 +170,11 @@ proc resume_bp {} {
             set commnvars [createsetinscishellcomm $watchvars]
             set watchsetcomm [lindex $commnvars 0]
             if {$watchsetcomm != ""} {
-                ScilabEval "$watchsetcomm" "seq"
+                ScilabEval_lt "$watchsetcomm" "seq"
                 set returnwithvars [lindex $commnvars 1]
-                ScilabEval "$returnwithvars" "seq"
+                ScilabEval_lt "$returnwithvars" "seq"
             } else {
-                ScilabEval "resume(0)" "seq"
+                ScilabEval_lt "resume(0)" "seq"
             }
             updateactivebreakpoint
             getfromshell
@@ -183,7 +183,7 @@ proc resume_bp {} {
             # <TODO> .sce case
             # Sending \n is if mode(6) mode(0) is used. If pause, there is no
             # need to distinguish between .sci and .sce (resume is sent for both)
- #           ScilabEval " " "seq"
+ #           ScilabEval_lt " " "seq"
         }
     }
 }
@@ -195,7 +195,7 @@ proc goonwo_bp {} {
         if {$funnameargs != ""} {
             removeallactive_bp
             removescilab_bp "with_output"
-            ScilabEval "resume(0)" "seq"
+            ScilabEval_lt "resume(0)" "seq"
             getfromshell
         }
         setdbstate "ReadyForDebug"
@@ -204,8 +204,8 @@ proc goonwo_bp {} {
 
 proc break_bp {} {
     if {[checkscilabbusy "nomessage"] != "OK"} {
-        ScilabEval "flush"
-        ScilabEval "pause" "seq"
+        ScilabEval_lt "flush"
+        ScilabEval_lt "pause" "seq"
         updateactivebreakpoint 4
         getfromshell 4
 # <TODO> Remove next line and allow to continue debug
@@ -222,9 +222,10 @@ proc canceldebug_bp {} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
             removeallactive_bp
-            ScilabEval "abort" "seq"
+            ScilabEval_lt "abort" "seq"
             removescilab_bp "with_output"
             getfromshell
+            cleantmpdebugfiles
         }
         setdbstate "NoDebug"
     }
@@ -232,13 +233,13 @@ proc canceldebug_bp {} {
 
 proc scilaberror {funnameargs} {
     global errnum errline errmsg errfunc
-    ScilabEval "\[db_str,db_n,db_l,db_func\]=lasterror();\
-                TCL_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
-                                           set errnum  \"+string(db_n)+\"; \
-                                           set errline \"+string(db_l)+\"; \
-                                           set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                           set errmsg  \"\"\"+db_str+\"\"\"}\")" \
-               "sync" "seq"
+    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();\
+                   TCL_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
+                                               set errnum  \"+string(db_n)+\"; \
+                                               set errline \"+string(db_l)+\"; \
+                                               set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
+                                               set errmsg  \"\"\"+db_str+\"\"\"}\")" \
+                  "sync" "seq"
     tk_messageBox -title [mc "Scilab execution error"] \
       -message [concat [mc "The shell reported an error while trying to execute "]\
       $funnameargs ": error " $errnum ", " $errmsg [mc " at line "]\
@@ -259,4 +260,11 @@ proc blinkline {li ma {nb 3}} {
         update idletasks
         after 500
     }
+}
+
+proc cleantmpdebugfiles {} {
+# Try to remove the possibly existing files in tmpdir
+# created by ScilabEval_lt
+    global tmpdir
+    catch {file delete [file join $tmpdir "ScilabEval_command.sce"]}
 }

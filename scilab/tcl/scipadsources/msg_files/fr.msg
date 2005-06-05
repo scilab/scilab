@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.0
+# in sync at least with v5.2
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -303,6 +303,12 @@
 ::msgcat::mcset fr "Existing file" "Fichier existant"
 ::msgcat::mcset fr "New skeleton" "Nouveau squelette d'aide"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to compile the help file." "Scilab est occupé, attendez le prompt pour compiler la page d'aide."
+::msgcat::mcset fr "ScilabEval command cannot be passed to Scilab!" "Une commande ScilabEval ne peut pas être passée à Scilab!"
+::msgcat::mcset fr impossibleScilabEval_message \
+                   "ATTENTION : Une commande n'a pas pu être passée à Scilab et a été ignorée.\n\n \
+                   La raison probable est que vous n'avez pas les droits d'écriture dans le répertoire TMPDIR de Scilab. \
+                   Un comportement imprévisible peut se produire.\n\n \
+                   La commande en cause est:\n\n-->"
 
 
 # scipad.tcl

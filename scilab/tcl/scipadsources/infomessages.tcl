@@ -1,4 +1,5 @@
 proc showinfo {message} {
+# Temporarily display a string in the message area
     global pad
     $pad.statusmes configure -state normal
     $pad.statusmes configure -text " "
@@ -43,8 +44,11 @@ proc keyposn {textarea} {
 }
 
 proc modifiedtitle {textarea} {
-# set the Scipad window title to the name of the file displayed in $textarea
-# add tags (modified, readonly) 
+# Set the Scipad window title to the name of the file displayed in $textarea
+# and add tags (modified, readonly)
+# Update also the visual indications of the modified state of the buffer.
+# This includes title bar, colorization of the windows menu entry and
+# colorization of an area in the status bar
     global pad winTitle listoffile 
     set fname $listoffile("$textarea",displayedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
@@ -52,7 +56,7 @@ proc modifiedtitle {textarea} {
     if {$listoffile("$textarea",readonly) == 1} { 
         set mod1 [mc " \[ReadOnly\]"]
     }
-    if {$listoffile("$textarea",save) == 1} { 
+    if {[ismodified $textarea]} {
         set mod2 [mc " (modified)"]
         if {$ind !=-1} {
             $pad.filemenu.wind entryconfigure $ind -background Salmon \
@@ -67,7 +71,7 @@ proc modifiedtitle {textarea} {
         $pad.statusind configure -background [$pad.filemenu cget -background]
     }
     wm title $pad "$winTitle - $fname$mod1$mod2"
-    if {$listoffile("$textarea",save) ==1 && \
+    if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure 4 -state normal
         bind $pad <Control-R> {revertsaved}

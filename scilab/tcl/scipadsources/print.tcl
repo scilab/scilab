@@ -34,7 +34,7 @@ proc printseupselection {} {
 proc selectprint {textarea} {
 # procedure to print
     global printCommand listoffile
-    if {$listoffile("$textarea",save) == 1} {
+    if {[ismodified $textarea]} {
       set TempPrintFile [open /tmp/tkpadtmpfile w]
       puts -nonewline $TempPrintFile [$textarea get 0.0 end]
       close $TempPrintFile

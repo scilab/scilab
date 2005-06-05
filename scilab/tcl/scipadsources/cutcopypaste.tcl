@@ -14,10 +14,9 @@ proc deletetext {} {
     } else {
         $textareacur delete "insert" "insert +1c"
     }
-    setmodified $textareacur
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
-                              [$textareacur index "$i1 wordend"]
+                          [$textareacur index "$i1 wordend"]
     reshape_bp
     $textareacur see insert
 }
@@ -38,7 +37,6 @@ proc backspacetext {} {
     } else {
         $textareacur delete "insert-1c" "insert"
     }
-    setmodified $textareacur
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
                               [$textareacur index "$i1 wordend"]
@@ -50,14 +48,11 @@ proc cuttext {} {
 # cut text procedure
     global textareacur
     if {[IsBufferEditable] == "No"} {return}
-    # test to avoid setting the modified flag if cut nothing
-    if {[catch {selection get -selection CLIPBOARD}] == 0} {
-        setmodified $textareacur
-    }
+
     tk_textCut $textareacur
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 linestart"] \
-                              [$textareacur index "$i1 lineend"]
+                          [$textareacur index "$i1 lineend"]
     selection clear
     reshape_bp
     $textareacur see insert
@@ -65,28 +60,33 @@ proc cuttext {} {
 
 proc copytext {} {
 # copy text procedure
-      set selowner [selection own]
-      tk_textCopy  $selowner
+    set selowner [selection own]
+    tk_textCopy  $selowner
 }
 
 proc pastetext {} {
 # paste text procedure
     global textareacur
     if {[IsBufferEditable] == "No"} {return}
+    set oldSeparator [$textareacur cget -autoseparators]
+    if {$oldSeparator} {
+        $textareacur configure -autoseparators 0
+        $textareacur edit separator
+    }
     catch {
         $textareacur delete sel.first sel.last
     }
     set i1  [$textareacur index insert]
     tk_textPaste $textareacur 
-    # test to avoid setting the modified flag if paste nothing
-    if {[catch {selection get -selection CLIPBOARD}] == 0} {
-        setmodified $textareacur
-    }
     set  i2 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
-                              [$textareacur index "$i2 wordend"]
+                          [$textareacur index "$i2 wordend"]
     reshape_bp
     $textareacur see insert
+    if {$oldSeparator} {
+        $textareacur edit separator
+        $textareacur configure -autoseparators 1
+    }
 }
 
 proc button2copypaste {w x y} {

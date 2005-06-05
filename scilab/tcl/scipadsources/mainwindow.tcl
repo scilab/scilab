@@ -7,7 +7,6 @@ set listoftextarea $pad.new$winopened
 
 set listoffile("$pad.new$winopened",fullname) "[mc "Untitled"]$winopened.sce"
 set listoffile("$pad.new$winopened",displayedname) "[mc "Untitled"]$winopened.sce"
-set listoffile("$pad.new$winopened",save) 0; # file is unmodified
 set listoffile("$pad.new$winopened",new)  1; # is not an opened file from disk
 set listoffile("$pad.new$winopened",thetime) 0; # set the time of the last modify
 set listoffile("$pad.new$winopened",readonly) 0; # file can be written
@@ -71,7 +70,8 @@ text $pad.new$winopened -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" 
         -yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
-        -selectbackground $SELCOLOR -exportselection 1
+        -selectbackground $SELCOLOR -exportselection 1 \
+        -undo 1 -autoseparators 1
 if {$cursorblink == "true"} {
     $textareacur configure -insertofftime 500 -insertontime 500
 } else {
@@ -103,15 +103,6 @@ pack $pad.statusind2 $pad.statusind -in $pad.bottombottommenu -side right\
 pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
 
 $textareacur mark set insert "1.0"
-
-# here is where the undo stuff begins
-if {![info exists classNewId]} {
-    # work around object creation between multiple include of this file problem
-    set classNewId 0
-}
-
-set undo_id [new textUndoer $textareacur]
-set listundo_id("$textareacur") $undo_id
 
 # the following update makes the initial textarea reactive to dnd!
 update

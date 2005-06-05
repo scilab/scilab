@@ -53,38 +53,38 @@ proc prevbuffer {} {
 }
 
 proc gotoline {} {
-	global textareacur pad
-	set gotln $pad.gotln
-	catch {destroy $gotln}
-	toplevel $gotln
+    global textareacur pad
+    set gotln $pad.gotln
+    catch {destroy $gotln}
+    toplevel $gotln
     wm title $gotln [mc "Goto Line?"]
-	setwingeom $gotln
-	frame $gotln.top 
-	frame $gotln.bottom
+    setwingeom $gotln
+    frame $gotln.top 
+    frame $gotln.bottom
     label $gotln.top.label -text [mc "Goto Line: "]
-	entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10
-	$gotln.top.gotln delete 0 end 
-	button $gotln.bottom.ok -text "OK" -command "addtogotln $gotln"
+    entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10
+    $gotln.top.gotln delete 0 end 
+    button $gotln.bottom.ok -text "OK" -command "addtogotln $gotln"
     button $gotln.bottom.cancel -text [mc "Cancel"] \
-		-command "destroy $gotln"
-	focus $gotln.top.gotln
-	pack $gotln.top -side top -expand 0 
-	pack $gotln.bottom -side bottom -expand 0 
-	pack $gotln.top.label $gotln.top.gotln -in $gotln.top -side left \
-	    -fill x -fill y
-	pack $gotln.bottom.ok $gotln.bottom.cancel -in $gotln.bottom \
-	    -side left -fill x -fill y
-	bind $gotln <Return> "addtogotln $gotln"
-	bind $gotln <Escape> "destroy $gotln"
+        -command "destroy $gotln"
+    focus $gotln.top.gotln
+    pack $gotln.top -side top -expand 0 
+    pack $gotln.bottom -side bottom -expand 0 
+    pack $gotln.top.label $gotln.top.gotln -in $gotln.top -side left \
+        -fill x -fill y
+    pack $gotln.bottom.ok $gotln.bottom.cancel -in $gotln.bottom \
+        -side left -fill x -fill y
+    bind $gotln <Return> "addtogotln $gotln"
+    bind $gotln <Escape> "destroy $gotln"
 
     proc addtogotln {prnt} {
-	global textareacur
-	global gotlnCommand
-	set gotlnCommand [$prnt.top.gotln get]
-	[gettextareacur] mark set insert "$gotlnCommand.0"
-	catch {keyposn [gettextareacur]}
+        global textareacur
+        global gotlnCommand
+        set gotlnCommand [$prnt.top.gotln get]
+        [gettextareacur] mark set insert "$gotlnCommand.0"
+        catch {keyposn [gettextareacur]}
         [gettextareacur] see insert
-	destroy $prnt
+        destroy $prnt
     }
 }
 

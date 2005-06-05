@@ -6,7 +6,7 @@ proc updateactivebreakpoint { {itemno 3} } {
     set comm5 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag 0 \"\"\"\"}\");"
     set comm6 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
-    ScilabEval "$fullcomm" "seq"
+    ScilabEval_lt "$fullcomm" "seq"
 }
 
 proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpos "No"}} {

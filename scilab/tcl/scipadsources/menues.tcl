@@ -43,9 +43,9 @@ menu $pad.filemenu.edit -tearoff 0 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Edit"] \
                -menu $pad.filemenu.edit "
     eval "$pad.filemenu.edit add command [me "&Undo"] \
-               -command \"undo_menu_proc\" -accelerator Ctrl+z"
+               -command {undo \[gettextareacur\]} -accelerator Ctrl+z"
     eval "$pad.filemenu.edit add command [me "&Redo"] \
-               -command \"redo_menu_proc\" -accelerator Ctrl+Z"
+               -command {redo \[gettextareacur\]} -accelerator Ctrl+Z"
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Cu&t"] \
                -command \"cuttext\" -accelerator Ctrl+x"

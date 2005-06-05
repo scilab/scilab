@@ -275,11 +275,11 @@ proc setinscishellone_bp {var} {
             set watchsetcomm [lindex $commnvars 0]
             set visibilitycomm [lindex $commnvars 2]
             if {$watchsetcomm != ""} {
-                ScilabEval "$visibilitycomm;$watchsetcomm" "seq"
+                ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
             }
         } else {
             # <TODO> .sce case
- #           ScilabEval " " "seq"
+ #           ScilabEval_lt " " "seq"
         }
     }
 }

@@ -1,4 +1,4 @@
-# in sync at least with v5.0
+# in sync at least with v5.2
 # English is the original language of Scipad
 # Scipad tcl/tk source should use english texts
 # for instance [mc "your text in english here"]
@@ -20,6 +20,14 @@
 
 # popupmenus.tcl
 ::msgcat::mcset eng "AddWatch" "Add %s as watch"
+
+
+# scilabexec.tcl
+::msgcat::mcset eng impossibleScilabEval_message \
+                    "WARNING: A command could not be passed to Scilab and has been ignored.\n\n \
+                    Most probably you don't have write access to Scilab's TMPDIR. \
+                    Unpredictable results may occur.\n\n \
+                    The offending command was:\n\n-->"
 
 
 #preference variables description

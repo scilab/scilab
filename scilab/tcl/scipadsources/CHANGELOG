@@ -472,7 +472,7 @@ Francois VOGEL, 17/10/04
    this is believed to be less important than having the text strings properly colorized
    regardless of the quote type that sets its limits, since simple quotes are widely used
    in the current Scilab source code especially the oldest parts. Moreover, code lines such
-   as mprintf("%s",'this is a function') brakes the line number counting in functions if
+   as mprintf("%s",'this is a function') breaks the line number counting in functions if
    not properly colorized as textquoted.
  * Fixed a bug in proc checkcontbraceorbracket: lines such as mprintf('['); were detected
    as continued lines, and that resulted in wrong line number in function displayed in
@@ -1105,3 +1105,35 @@ Francois VOGEL, 29/05/05
  * Cancelling closure of modified buffers does no longer ask multiple times
    for confirmation
  * version --> 5.1
+
+Francois VOGEL, 30/05/05
+ * Watching large arrays can quickly lead to ScilabEval commands exceeding the
+   length limit, usually resulting in a shell error and messing the debug. This
+   is now taken into account. Such long commands are saved in a file in tmpdir,
+   the command is splitted in parts whose size is smaller than bsiz, and the
+   file is executed by a ScilabEval. These file accesses are catched to avoid
+   problems with permissions, disk size, etc. If there was such a problem, the
+   user receives a warning. This allows for instance to watch big variables
+   containing thousands of components, or to watch a large number of variables
+ * version --> 5.2
+
+Francois VOGEL, 04/06/05
+ * Undo/Redo mechanism and modified flag replaced by the text widget embedded
+   one (since Tk 8.4). This fixes some bugs and has many side advantages:
+     - Undo/redo stacks were sometimes not consistent with the modified flag,
+       e.g. if the user typed something, saved, undid once and redid once,
+       then the modified flag was still active
+     - Cut, paste, undo, undo did forget the colorization of the text on which
+       it had been applied
+     - More than one single undo (or redo) is no more needed to cancel (or
+       redo) an action that first deleted the selection, e.g. a paste over a
+       selection, or a text move with dnd
+   These are all fixed.
+ * Fixed: If the height of the textarea is an exact multiple of the line height
+   it was not possible to scroll down during a dnd (same issue horizontally)
+ * version --> 5.3
+
+Francois VOGEL, 05/06/05
+ * Fixed a regression introduced in 4.7: Control-Button-1 did no longer extend
+   the selection
+ * version --> 5.4

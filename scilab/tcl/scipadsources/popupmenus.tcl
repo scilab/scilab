@@ -56,7 +56,7 @@ proc showpopupsource {ind} {
             menu $pad.popsource -tearoff 0 -font $menuFont
             set plabel [concat [mc "Open the source of"] $curterm ]
             $pad.popsource add command -label $plabel\
-              -command "ScilabEval $sourcecommand"
+              -command "ScilabEval_lt $sourcecommand"
         }
     }
     tk_popup $pad.popsource $numx $numy

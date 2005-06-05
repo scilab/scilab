@@ -295,9 +295,9 @@ proc getfromshell { {startitem 3} } {
         getonefromshell $var
     }
     set fullcomm "TCL_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch($startitem)+\"\"\"}\");"
-    ScilabEval $fullcomm "seq"
+    ScilabEval_lt $fullcomm "seq"
     set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
-    ScilabEval $fullcomm "seq"
+    ScilabEval_lt $fullcomm "seq"
 }
 
 proc getonefromshell {wvar {opt "seq"}} {
@@ -311,7 +311,7 @@ proc getonefromshell {wvar {opt "seq"}} {
     set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($wvar) \"\"$unklabel\"\"}\");"
     set comm5 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
-    ScilabEval $fullcomm $opt
+    ScilabEval_lt $fullcomm $opt
 }
 
 proc createsetinscishellcomm {setofvars} {

@@ -23,7 +23,7 @@ proc tkdndbind {w} {
             } ; \
             if {$cursorblink == "true"} { \
                 %W configure -insertofftime 500 \
-            } \
+            } ; \
         }
         dnd bindsource $w text/plain { \
             if {[%W tag ranges sel] != ""} { \
@@ -37,7 +37,9 @@ proc tkdndbind {w} {
             %W mark set insert @%x,%y ; \
             %W see insert ; \
             if {%x <= 10} { %W xview scroll -1 units } ; \
+            if {%x >= [expr [winfo width  %W] - 10]} { %W xview scroll 1 units } ; \
             if {%y <= 10} { %W yview scroll -1 units } ; \
+            if {%y >= [expr [winfo height %W] - 10]} { %W yview scroll 1 units } ; \
             update idletasks ; \
             if {"%m" == "Control"} { \
                 return copy \
@@ -46,8 +48,13 @@ proc tkdndbind {w} {
             } \
         }
         bind $w <Button-1>         { Button1BindText %W %x %y }
+        bind $w <Shift-Button-1>   { \
+            tk::TextResetAnchor %W @%x,%y ; \
+            set tk::Priv(selectMode) char ; \
+            tk::TextSelectTo %W %x %y \
+        }
         bind $w <Control-Button-1> { Button1BindText %W %x %y }
-        bind $w <ButtonRelease-1> {
+        bind $w <ButtonRelease-1>  { \
             set extendsel "false" ; \
             tk::CancelRepeat ; \
             keyposn %W \

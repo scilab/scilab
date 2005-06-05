@@ -11,7 +11,7 @@ proc execfile {{buf "current"}} {
         return 2
     }
     set doexec 1
-    if [ expr [string compare [getmodified $textarea] 1] == 0 ] {
+    if {[ismodified $textarea]} {
         set answer [tk_messageBox -message [concat [mc "The contents of"] \
                   $listoffile("$textarea",fullname) \
                   [mc "may have changed, do you wish to save your changes?"] ] \
@@ -31,7 +31,7 @@ proc execfile {{buf "current"}} {
             return 1
         } else {
             set f $listoffile("$textarea",fullname)
-            if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
+            if {[catch {ScilabEval_lt "exec(\"$f\");" "sync" "seq"}]} {
                 scilaberror $listoffile("$textarea",fullname)
                 return -1
             } else {
@@ -109,9 +109,9 @@ proc execselection {} {
                 # above which the string is not displayed. Anyway, more than this is very hard
                 # to read in the Scilab shell.
                 if {[string length $dispcomm1] < 496} {
-                    ScilabEval "mprintf(\"%s\\n\",\"$dispcomm1\")"
+                    ScilabEval_lt "mprintf(\"%s\\n\",\"$dispcomm1\")"
                 }
-                ScilabEval $comm
+                ScilabEval_lt $comm
             }
         }
     }
@@ -142,7 +142,7 @@ proc importmatlab {} {
                    TCL_EvalStr(\"scipad eval {failmatlabimp} \");\
                  end"
             showinfo [mc "Scilab is converting, please hold on..." ]
-            ScilabEval $impcomm "sync" "seq"
+            ScilabEval_lt $impcomm "sync" "seq"
         }
     }
 }
@@ -184,7 +184,7 @@ proc helpskeleton {} {
                 set answer 1
             }
             if $answer {
-                  ScilabEval "help_skeleton(\"$funname\",\"$dir\")" "sync"
+                  ScilabEval_lt "help_skeleton(\"$funname\",\"$dir\")" "sync"
             }
             openfile $xmlfile
         }
@@ -201,6 +201,54 @@ proc xmlhelpfile {} {
             -title [mc "Scilab working"] -type ok -icon info
     } else {
         set filetocomp $listoffile("[gettextareacur]",fullname)
-        ScilabEval "xmlfiletohtml(\"$filetocomp\")"
+        ScilabEval_lt "xmlfiletohtml(\"$filetocomp\")"
+    }
+}
+
+proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
+# ScilabEval with length test
+# This is needed because ScilabEval cannot accept commands longer than bsiz (they
+# are truncated by Scilab). Workaround: Long commands shall be saved into a file
+# that is exec'ed by ScilabEval.
+# This proc checks first the length of the command passed to ScilabEval.
+# If this length is smaller than bsiz-1, pass the command to ScilabEval for execution.
+# If this length is greater than bsiz-1, save the command in a file and do a
+# ScilabEval exec("the_file"). If this fails (wrong permission rights...) then warn the
+# user that something really weird might happen since there is no way to pass the
+# command to Scilab.
+    global tmpdir
+    set bsiz_1 4095   ;# Must be consistent with bsiz defined in routines/stack.h
+    if {[string length $comm] <= $bsiz_1} {
+        # No problem to process this
+        ScilabEval $comm $opt1 $opt2
+    } else {
+        # Command is too long
+        # Create a file in tmpdir, and save the command in it.
+        # Large (>$splitsize) commands are splitted into smaller parts, and trailing dots
+        # are added.
+        # This part is catched to take into account possible access (permissions) errors
+        if {[catch {
+            set fname [file join $tmpdir "ScilabEval_command.sce"]
+            set splitsize 4000 ;# arbitrary but works up to approx. 4095
+            set nbparts [expr [string length $comm] / $splitsize + 1]
+            set fid [open $fname w]
+            puts $fid "mode(-1);"
+            set startpos 0
+            for {set i 1} {$i < $nbparts} {incr i} {
+                set stoppos  [expr $i * $splitsize - 1]
+                # Warning: the string must not be split (.. added) just after a dot!
+                # Here possible endless loop if $comm contains only dots, but why would this happen?
+                while {[string index $comm $stoppos] == "."} {incr stoppos}
+                puts $fid "[string range $comm $startpos $stoppos].."
+                set startpos [incr stoppos]
+            }
+            puts $fid [string range $comm $stoppos end]
+            close $fid
+            ScilabEval "exec(\"$fname\")" $opt1 $opt2
+        }] != 0} {
+            tk_messageBox  -title [mc "ScilabEval command cannot be passed to Scilab!"] -icon warning -type ok \
+                           -message [concat [mc impossibleScilabEval_message] "ScilabEval" $comm $opt1 $opt2]
+        }
+
     }
 }

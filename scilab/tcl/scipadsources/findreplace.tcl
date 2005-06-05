@@ -145,8 +145,17 @@ proc ReplaceIt {once_or_all} {
         }
         if {$SearchPos != ""} {
             $textareacur see $SearchPos
+            set oldSeparator [$textareacur cget -autoseparators]
+            if {$oldSeparator} {
+                $textareacur configure -autoseparators 0
+                $textareacur edit separator
+            }
             $textareacur delete $SearchPos "$SearchPos+$len char"
             $textareacur insert $SearchPos $ReplaceString
+            if {$oldSeparator} {
+                $textareacur edit separator
+                $textareacur configure -autoseparators 1
+            }
             colorize $textareacur \
                 [$textareacur index "$SearchPos linestart"] \
                 [$textareacur index "$SearchPos lineend"]
@@ -173,7 +182,6 @@ proc ReplaceIt {once_or_all} {
                     }
                 }
             }         
-            setmodified $textareacur
             reshape_bp
             if {$SearchDir == "forwards"} {
                 set matchstartpos [$textareacur index "$SearchPos - $lenR char"]
@@ -277,9 +285,8 @@ proc ReplaceAll {} {
                 }
                 if {$onetoomuch == "true" || $wrappedagain == "true"} {
                     set anotherone "No_match"
-                    # remove the wrong superfluous replace (two calls to undo_menu_proc needed)
-                    undo_menu_proc
-                    undo_menu_proc
+                    # remove one wrong superfluous replace
+                    undo $textareacur
                     incr NbOfReplaced -1
                 }
                 set firstmatch "false"

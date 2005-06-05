@@ -17,8 +17,9 @@ bind Text <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <Control-o> {}
 bind $pad <Control-o> {showopenwin}
 
-bind $pad <Control-z> {undo_menu_proc}
-bind $pad <Control-Z> {redo_menu_proc}
+bind Text <Control-z> {undo %W}
+bind Text <Control-Z> {redo %W}
+bind Text <<Modified>> {changedmodified %W}
 
 bind Text <Control-f> {}
 bind $pad <Control-f> {findtext find}

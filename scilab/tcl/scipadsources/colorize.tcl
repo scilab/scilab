@@ -24,7 +24,7 @@ proc load_words {} {
     #  chset(scilab.predef.$) and chset(scilab.libfun.$)
     set chset(scilab.predef) {}
     set chset(scilab.libfun) {}
-    ScilabEval "exec $ownpath/dynamickeywords.sce;" "seq"
+    ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq"
 }
 
 proc remalltags {w begin ende} {
@@ -45,6 +45,8 @@ proc remalltags {w begin ende} {
 }
 
 proc colorize {w cpos iend} {
+# Colorize in textarea w from start position cpos to end position iend
+# Warning: if cpos denotes a position located *after* iend, nothing is done
     global words chset listoffile scilabSingleQuotedStrings
     set textarea [gettextareacur]
     set schema $listoffile("$textarea",language)

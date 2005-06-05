@@ -25,16 +25,6 @@ Bugs:
    some of them containing dots and some other not
  . Nested brackets or braces in continued lines
 
--Undo/redo stacks are sometimes not consistent with the modified flag, e.g. if the user
- types something, then saves, then undo once and redo once, then the modified flag is
- active. Instead of debugging the current code, the best fix would probably be to make
- profit of the undo/redo mechanism embedded in text widgets since tcl/tk 8.4. But this
- supposes that the minimal version is 8.4, which is true only for the binary distribution
- of Scilab. The latest changes in the configure files require now 8.4 however.
-
--Cut, paste, undo, undo does forget the colorization of the text on which it
- has been applied
-
 -Control-k deletes from the insertion cursor to the end of its line; if the insertion
  cursor is already at the end of a line, then Control-k deletes the newline character.
  This is normal, but the buffer should be reported as modified.
@@ -71,20 +61,9 @@ Bugs:
 -When two buffers are opened containing the same function (or function name) to
  debug, then the wrong buffer may be opened to show the active breakpoint
 
--Watching large arrays can quickly lead to ScilabEval commands exceeding the
- length limit, usually resulting in a shell error. This should be catched.
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
-
--if a copy-paste modification on a buffer is undone once too much, a 
- "lifo($id) pop error, empty" results
- -- This is now done, but perhaps not correctly. Just added a catch as I was
-  not proficient enough to find out why the commandStack and the cursorStack
-  gain different last element index only once a paste has been performed.
-  Note: tcl/tk8.4.6 now supports directly undo/redo in text widgets, and takes
-  care of the modified flag. Could therefore get rid of all this code.
 
 - (the text cursor disappears every now and then while moving it around 
   with the arrows, known bug #865 of the linux scilab-tcl combination)
@@ -185,7 +164,7 @@ Wishes:
  the same time, or maybe two different buffers.
 
 -tile or cascade windows inside the pad
- 
+
 -add a 'Go to function...' entry in a menu. Upon selection, a sub-menu would
  open allowing for selection of any function found in all the currently 
  opened buffers.
@@ -204,7 +183,8 @@ Wishes:
 -Conditional breakpoints
 
 -make use of the vector argument for setbpt and delbpt to shorten the
- ScilabEval command
+ ScilabEval command - this is less needed since long ScilabEvals can
+ now be evaluated without errors
 
 -Allow to watch a generic expression (bonus: the expression could be e.g.
  a graphical command, so that an array is *plotted* at each breakpoint)
@@ -241,12 +221,20 @@ Wishes:
  http://pages.infinit.net/cclients/files/tkprint1.1.html
  http://wiki.tcl.tk/2497
  http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/284848
+ Tk request 734625 (Output the contents of a text widget to a (PostScript) file)
+ Tk request 220817 (Direct Print Support for all widgets)
 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add
  some sort of left grey band in which some more information could be
  put (breakpoint pink dot, yellow arrow to show the next instruction
  to be executed like in Visual C++ or Matlab, or wrapped lines sign).
+
+-Block selection, copy/paste, move with dnd, indent/unindent, comment
+ and uncomment. See last snaphot in http://www.winedt.com/ for an
+ example. Add an option to toggle between line mode (current mode) and
+ block mode. In block mode, word wrapping should be disabled. This is
+ part of request 179.
 
 -Colorization progressbar. Could be an overlay on the left status area,
  incrementing over the "Wait seconds for loading..." message.
@@ -259,8 +247,9 @@ Wishes:
 -Add an eventual "revert to defaults button" (colors option menu)
 
 -Carefully study whether the debugger would benefit from using editvar
- or browsevar for the watch window variables. At least one drawback:
- sciGUI is not localized.
+ or browsevar for the watch window variables. Drawbacks:
+   . sciGUI is not localized
+   . lists cannot be used yet with editvar
 
 -switch to flexible Alt underlines in dialogs
 
@@ -269,3 +258,7 @@ Wishes:
  but this one is only available from Tk 8.5 (TIP #179)
 
 -Make use of the native Tk Find/Replace dialog available from 8.5
+
+-Currently any character typed in the buffer is inserted if there is
+ no selection. Add a mode toggled by the Ins key in which characters
+ would replace the existing ones. Add a visual indicator of this state
