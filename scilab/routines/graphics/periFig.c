@@ -147,6 +147,25 @@ void C2F(xendXfig)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5,
 
 void C2F(clearwindowXfig)(char *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 {
+  /* F.Leray : I add a rectangle with  background color*/
+  integer i = 1;
+  int zero = 0, col;
+  integer vects[4], narg;
+  double dv;
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+  
+  vects[0]= zero;
+  vects[1]= zero;
+  C2F(getwindowdimXfig)(&zero,&vects[2],&narg,&dv);
+
+  col = ScilabGCXfig.NumBackground+1;
+  
+  C2F(drawrectanglesXfig)("",vects,&col,&i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);    
+  
 }
 
 /** Flush out the X11-buffer  **/
