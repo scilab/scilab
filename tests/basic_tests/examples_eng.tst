@@ -6799,6 +6799,7 @@ xdel(winsid())
 // ../man/eng/graphics/plot3d1.xml
 //====================================================
 clear;lines(0);
+set figure_style new
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
 plot3d1(t,t,z) 
 // same plot using facets computed by genfac3d 
@@ -6835,6 +6836,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
+set figure_style new
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
@@ -6854,6 +6856,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
+set figure_style new
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
@@ -6944,7 +6947,9 @@ cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32;
 clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
 
 //Available operations using only New Graphics...
+set figure_style new
 delete(gcf());
+set figure_style new
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
