@@ -1707,14 +1707,18 @@ c     Copyright INRIA
       integer topk,p
       logical checkrhs,checklhs,getscalar,cremat,getsmat,checkval
       character*9 opt
-      character*(*) pause,cont,kill,stp,nomess
-      parameter (pause='pause',cont='continue',kill='kill',stp='stop')
-      parameter (nomess='nomessage')
+      character*9 pause,cont,kill,stp,nomess
       integer iadr
 c
       data local/21/
 c    
       iadr(l)=l+l-1
+      pause ='pause    '
+      cont  ='continue '
+      kill  ='kill     '
+      stp   ='stop     '
+      nomess='nomessage'
+
 c
       topk=top
       rhs=max(0,rhs)
