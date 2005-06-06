@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v4.15
+# in sync at least with v5.2
 
 
 # commons
@@ -93,7 +93,12 @@
 ::msgcat::mcset it "Hide watch variables" "Nascondi le variabili"
 ::msgcat::mcset it "Show call stack" "Mostra lo stack"
 ::msgcat::mcset it "Hide call stack" "Nascondi lo stack"
-
+::msgcat::mcset it "Undefined elements are not legal in variable" \
+                   "Gli elementi indefiniti sono illegali in questa variabile"
+::msgcat::mcset it ".\nThis variable will not be updated in Scilab." \
+                   ".\nQuesta variabile non sarà aggiornata in Scilab"
+::msgcat::mcset it "Illegal undefined element found" \
+                   "Trovato un elemento indefinito"
 
 # filecommands.tcl
 ::msgcat::mcset it "New Script" "Nuovo testo"
@@ -123,7 +128,7 @@
 ::msgcat::mcset it "cannot be written!" "non è scrivibile!"
 ::msgcat::mcset it "The contents of " "Il contenuto di"
     ::msgcat::mcset it "has changed on disk, save it anyway?" \
-       "è cambiato sul disco, salvare comunque?"
+                     "è cambiato sul disco, salvare comunque?"
 ::msgcat::mcset it "File has changed!" "Il file è cambiato"
 ::msgcat::mcset it "Save as" "Registra come"
 ::msgcat::mcset it "Scilab files" "Files Scilab"
@@ -336,6 +341,14 @@
 ::msgcat::mcset it "New skeleton" "Crea nuovo scheletro"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to compile the help file." \
       "Scilab è occupato, attendere il prompt per compilare la pagina di aiuto"
+::msgcat::mcset it "ScilabEval command cannot be passed to Scilab!" \
+                "Un comando ScilabEval non ha potuto essere passato a Scilab!"
+::msgcat::mcset it impossibleScilabEval_message \
+        "ATTENZIONE : Un comando non ha potuto essere passato a Scilab. \
+        ed è stato ignorato\n\n \
+        La ragione più probabile è che la cartella TMPDIR di Scilab non sia scrivibile.\
+        Ne può risultare un comportamento imprevedibile.\n\n\
+        Il comando in questione è:\n\n-->"     
 
 # scipad.tcl
 ::msgcat::mcset it "NOT CONNECTED TO SCILAB" "MANCA LA CONNESSIONE A SCILAB"
