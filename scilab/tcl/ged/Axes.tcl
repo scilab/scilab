@@ -69,6 +69,8 @@ global msdos
 global Xlabelfontstyle Ylabelfontstyle Zlabelfontstyle TITLEfontstyle fontstyle
 global RED GREEN BLUE
 
+global hiddencolor
+
 # add for XF init only : to remove after...
 
     #test debug
@@ -961,6 +963,19 @@ pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 2m -p
 $w.frame.bcolor set $bcolor
 
 
+#Color scale hiddencolor
+frame $w.frame.clrh  -borderwidth 0
+pack $w.frame.clrh  -in $w.frame -side top  -fill x -pady 2m
+label $w.frame.hcolorlabel -height 0 -text "Hidden color:" -width 0 
+
+scale $w.frame.hcolor -orient horizontal -from -2 -to $ncolors \
+	 -resolution 1.0 -command "setHiddenColor $w.frame.hcolor" -tickinterval 0 
+
+pack $w.frame.hcolorlabel -in $w.frame.clrh -side left
+pack $w.frame.hcolor -in  $w.frame.clrh -side left -expand 1 -fill x -pady 2m -padx 2m
+$w.frame.hcolor set $hiddencolor
+
+
 #Thickness scale
 frame $w.frame.thk  -borderwidth 0
 pack $w.frame.thk  -side top -fill x -pady 2m
@@ -1513,6 +1528,48 @@ proc setBackColor {w index} {
 	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.background=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+
+    }
+}
+
+proc setHiddenColor {w index} {  
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; ged_handle.hiddencolor=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 

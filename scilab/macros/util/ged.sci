@@ -379,6 +379,8 @@ function ged_axes(h)
   TCL_SetVar("zToggle",part(h.log_flags,3))
   TCL_SetVar("xGrid",string(h.grid(1)))
   TCL_SetVar("yGrid",string(h.grid(2)))
+  
+  TCL_SetVar("hiddencolor",string(h.hiddencolor))
 
   
   select h.view
