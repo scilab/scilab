@@ -188,7 +188,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 			((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			 legend, strlen(legend), n1, styl, &pptabofpointobj)); 
 
-      sciSetMarkSizeUnit(sciGetCurrentObj(),2); /* force switch to tabulated mode : old syntax */
+/*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
       sciSetIsMark(pptabofpointobj, TRUE);
       sciSetMarkStyle (pptabofpointobj, *styl);
 

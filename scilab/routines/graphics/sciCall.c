@@ -568,7 +568,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	    sciSetIsLine(pobj,  TRUE);
 	  }
 	  else {
-	    sciSetMarkSizeUnit(pobj,2); /* force switch to tabulated mode : old syntax */
+/* 	    sciSetMarkSizeUnit(pobj,2); /\* force switch to tabulated mode : old syntax *\/ */
  	    sciSetIsMark(pobj,TRUE);
 	    sciSetIsLine(pobj,FALSE);
 	    sciSetMarkStyle(pobj,(int) -zcol[i]);

@@ -235,7 +235,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         sciSetForeground (sciGetCurrentObj(), style[jj]);
       }
       else {
-	sciSetMarkSizeUnit(sciGetCurrentObj(),2); /* force switch to tabulated mode : old syntax */
+/* 	sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
  	sciSetIsMark(sciGetCurrentObj(),  TRUE);
 	sciSetIsLine(sciGetCurrentObj(), FALSE);
  	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
