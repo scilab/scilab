@@ -24,7 +24,11 @@
   <DESCRIPTION>
   <P>
     <VERB>x=roots(p)</VERB> renvoie dans le vecteur complexe <VERB>x</VERB> les racines du 
-    polynôme <VERB>p</VERB>. Le degré de <VERB>p</VERB> doit être &lt;=100.
+    polynôme <VERB>p</VERB>. Pour les polynŽômes Žà coŽéfficients rŽéels et de
+      degré &lt;=100, l'algorithme rapide RPOLY est utilisŽé. Dans les autres
+      cas les racines sont calculŽées comme valeurs propres de la matrice
+      compagnion du polynŽôme. Pour forcer ce dernier algorithme dans tous les cas
+      utilisez <VERB>x=roots(p,'e')</VERB>.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -35,5 +39,18 @@ spec(A)
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>companion</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>Serge Steer (INRIA)</AUTHORS_ITEM>
+  </AUTHORS>
+  <BIBLIO>
+    <SP>La routine RPOLY est decrite dans ACM TOMS 1 (1975) 178-189</SP>
+  </BIBLIO>
+  <USED_FUNCTIONS>
+    <SP>Le code source de rpoly.f peut Žêtre trouvŽé dans le repertoire
+      routines/control de la distribution source de Scilab. Le calcul des
+      valeurs propores est effectuŽé en utilisant les routines DGEEV et ZGEEV de LAPACK. </SP>
+  </USED_FUNCTIONS>
 </MAN>
