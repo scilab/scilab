@@ -1,0 +1,16 @@
+fd=mopen('Makefile','wt');
+mputl('SOURCES=*.java',fd);
+mputl(' ',fd);
+mputl('SCIDIR='+SCI,fd);
+mputl(' ',fd);
+mputl('JAVAC=javac -deprecation -d $(SCIDIR)/bin -classpath $(SCIDIR)/bin -g ',fd);
+mputl(' ',fd);
+mputl(' ',fd);
+mputl('all:',fd);
+mputl('\t$(JAVAC) $(SOURCES)',fd);
+mputl(' ',fd);
+mputl('clean:',fd);
+mputl('\t$(RM) -f $(SCIDIR)/bin/*.class',fd);
+mputl(' ',fd);	
+mputl(' ',fd);
+mclose(fd);

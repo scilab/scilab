@@ -1,15 +1,19 @@
-Edit Makefile
-modify SCIDIR=/home/cornet/compil/scilab by your current scilab path
+Execute scilab :
+--> cd SCI/examples/callsci/callsciJava/others
+--> exec('builder.sce');
+
+exit from scilab
+
+make (from /examples/callsci/callsciJava/others)
 
 export SCIDIR=<your current scilab path>
-cd $SCIDIR/bin
-make
-
 go to bin directory :
 cd $SCIDIR/bin
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:$SCIDIR/bin
-export CLASSPATH=$CLASSPATH:.:$SCIDIR/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCIDIR/bin:.
+(under HP unix platforms : export SHLIB_PATH=$SHLIB_PATH:$SCIDIR/bin:. )
+
+export CLASSPATH=$CLASSPATH:$SCIDIR/bin:.
 
 Under solaris platforms:
 xrdb $SCIDIR/X11_defaults/Xscilab  (usually, xrdb can be found in /usr/openwin/bin/ directory)
