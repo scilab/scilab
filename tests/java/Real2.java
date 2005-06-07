@@ -12,8 +12,8 @@ public static void main(String[] args)
   F.Send();
   G.Send();
 
-  F.disp();
-  G.disp();
+	Scilab.Exec("disp(''F='');disp(F);");
+	Scilab.Exec("disp(''G='');disp(G);");
       
   Scilab.Exec("H=F*G;");
   DimH.Job("DimH=size(H)");
@@ -22,7 +22,7 @@ public static void main(String[] args)
   SciReal H = new SciReal("H",(int)DxDy[0],(int)DxDy[1]);
 
   H.Get();
-  H.disp();
+  Scilab.Exec("disp(''H='');disp(H);");
 
 }
 /********************************************************************************************************/      

@@ -31,20 +31,20 @@ class Real1
   		SciReal E = new SciReal("E",C);
   		E.Send();
   		
-  		A.disp();
-			B.disp();
-			C.disp();
-    	D.disp();
-    	E.disp();
-    	
+  		
+  		Scilab.Exec("disp(''A='');disp(A);");
+  		Scilab.Exec("disp(''B='');disp(B);");
+			Scilab.Exec("disp(''C='');disp(C);");
+			Scilab.Exec("disp(''E='');disp(E);");
+			
   		Scilab.Exec("C=A+B;");
   		D.Job("Dim=size(C)");
 			
-			A.disp();
-			B.disp();
-			C.disp();
-			D.disp();
-			E.disp();
+			Scilab.Exec("disp(''A='');disp(A);");
+  		Scilab.Exec("disp(''B='');disp(B);");
+			Scilab.Exec("disp(''C='');disp(C);");
+			Scilab.Exec("disp(''Dim='');disp(Dim);");
+			Scilab.Exec("disp(''E='');disp(E);");
 			
 			DisplayResult(A.getName(),A.getData(),A.getRow(),A.getCol());
 			DisplayResult(B.getName(),B.getData(),B.getRow(),B.getCol());

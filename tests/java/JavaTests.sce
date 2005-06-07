@@ -2,7 +2,7 @@
 //---------------------------------------------------------------
 // Tests Interface Scilab Java
 //---------------------------------------------------------------
-tests = ['Exec.java';'Real1.java';'Real2.java'];
+tests = ['clf.java';'disp.java';'Exec.java';'Real1.java';'Real2.java'];
 //---------------------------------------------------------------
 // Compilation du fichier Java
 function ret=BuildJava(filename)
