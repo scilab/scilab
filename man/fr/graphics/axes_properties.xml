@@ -88,12 +88,12 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="grid: ">
-            <SP>The field value is a vector <VERB>[x-grid
-            y-grid,z-grid]</VERB> where <VERB>x-grid</VERB> controls a grid
-            drawning for the x-axis and <VERB>y-grid, z-grid</VERB> respecting
-            to the y-axis, z-axis. The default values is <VERB>-1</VERB> grids
-            are not drawn, else the grids are drawn using the color given
-            indexed by the grid value.</SP>
+            <SP>The field value is a vector
+            <VERB>[x-grid,y-grid,z-grid]</VERB> where <VERB>x-grid</VERB>
+            controls a grid drawning for the x-axis and <VERB>y-grid,
+            z-grid</VERB> respecting to the y-axis, z-axis. The default values
+            is <VERB>-1</VERB> grids are not drawn, else the grids are drawn
+            using the color given indexed by the grid value.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="log_flags: ">
@@ -179,15 +179,17 @@
           <DESCRIPTION_ITEM label="data_bounds: ">
             <SP>This field contains the boundary values for the x,y and z
             coordinates. It is the matrix
-            <VERB>[xmin,ymin,zmin;xmax,ymax,zmax]</VERB>or
-            <VERB>[xmin,ymin;xmax,ymax]</VERB></SP>
+            <VERB>[xmin,ymin,zmin;xmax,ymax,zmax]</VERB> or
+            <VERB>[xmin,ymin;xmax,ymax]</VERB>. Note that, to stricly have the
+            specified data bounds, <VERB>tight_limits</VERB> must be set to
+            <VERB>"on"</VERB> value (see above).</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="zoom_box: ">
-            <SP>This field contains the current zoom box if any. coordinates.
-            It is an empty matrix (no zoom) or the vector
+            <SP>This field contains the current zoom box if any coordinates
+            are given. It is an empty matrix (no zoom) or the vector
             <VERB>[xmin,ymin,xmax,ymax]</VERB> (defines a rectangle given by
-            two opposite corners.</SP>
+            two opposite corners).</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_bounds: ">
@@ -201,12 +203,12 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="margins: ">
-            <SP>A vector <VERB>[margin_left,margin_right,
-            margin_top,margin_bottom]</VERB> specifying the margins portion
-            for this axes. This vector is composed of numbers between [0 1]
-            with default: [0.125 0.125 0.125 0.125] (these numbers are ratio
-            relatives to the corresponding figure <VERB>figure_size</VERB>
-            property values).</SP>
+            <SP>A vector
+            <VERB>[margin_left,margin_right,margin_top,margin_bottom]</VERB>
+            specifying the margins portion for this axes. This vector is
+            composed of numbers between [0 1] with default: [0.125 0.125 0.125
+            0.125] (these numbers are ratio relatives to the corresponding
+            figure <VERB>figure_size</VERB> property values).</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="title: ">
