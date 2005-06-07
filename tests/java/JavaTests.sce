@@ -26,8 +26,9 @@ function ExecJava(filename,buildref)
   repfilename='';
   chdir(SCI+'\bin');
   if ~MSDOS then
-    setenv('LD_LIBRARY_PATH',pwd());
-    setenv('CLASSPATH','.:'+pwd());
+    setenv('LD_LIBRARY_PATH','$LD_LIBRARY_PATH:'+pwd());
+    setenv('CLASSPATH','$CLASSPATH:'+pwd()+':.');
+    setenv('SHLIB_PATH','$SHLIB_PATH:'+pwd()+':.');
   end
   [path,fname,extension]=fileparts(filename);
   if (buildref == %T) then
