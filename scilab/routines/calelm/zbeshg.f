@@ -59,7 +59,7 @@ c     .        alpha and alpha+n are negative
          call dscal((nn-i0+1)/2,-1.0d0,yi(1+i0),2)
       else
 c     .  first alpha is negative non integer,
-c     .  transform to positive value of alpha         
+c     .  transform to positive value of alpha       
          if(alpha-1.0d0+n.ge.0.0d0) then 
 c     .     0 is between alpha and alpha+n
             nn=int(-alpha)+1
@@ -69,10 +69,7 @@ c     .     0 is between alpha and alpha+n
 c     .  compute for negative value of alpha+k, transform problem for
 c     .  a1:a1+(nn-1) with a1 positive  a1+k =abs(alpha+nn-k)
          a1=-(alpha-1.0d0+nn)
-
          call zbesh(xr,xi,a1,kode,k,n,wr,wi,nz1,ierr)
-
-         ierr=max(ierr,ier) 
          nz=max(nz1,nz2)
          if (ierr.eq.0) then
             a=cos(a1*pi)
