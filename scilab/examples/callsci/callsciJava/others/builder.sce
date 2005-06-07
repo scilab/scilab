@@ -7,10 +7,10 @@ mputl('JAVAC=javac -deprecation -d $(SCIDIR)/bin -classpath $(SCIDIR)/bin -g ',f
 mputl(' ',fd);
 mputl(' ',fd);
 mputl('all:',fd);
-mputl('$(JAVAC)  $(SOURCES)',fd);
+mputl('\t$(JAVAC) $(SOURCES)',fd);
 mputl(' ',fd);
 mputl('clean:',fd);
-mputl('$(RM) -f $(SCIDIR)/bin/*.class',fd);
+mputl('\t$(RM) -f $(SCIDIR)/bin/*.class',fd);
 mputl(' ',fd);	
 mputl(' ',fd);
 mclose(fd);
