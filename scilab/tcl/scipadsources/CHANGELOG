@@ -1143,3 +1143,21 @@ ES, 7/6/05
    the known key sequence names, instead of trying the relevant one for each
    platform (useful for Shift-Fn bindings)
  * version --> 5.5
+ 
+Francois VOGEL, 07/06/05
+ * On successful opening of the first file after Scipad launch, the unmodified
+   empty buffer that is opened by default is automatically closed
+ * The default bindings of the text widget correctly report the buffer as
+   modified. This includes Control-k (delete from the insertion cursor to the
+   end of line), Control-t (transpose text), Control-i (insert a tab),
+   Control-h (delete one char) and maybe other default bindings. This feature
+   required no change of the code since it is a benefit from making use of the
+   undo mechanism embedded in the text widget (Scipad 5.3)
+ * Inserting a breakpoint when the cursor is outside of the displayed area
+   moves the text so that the new breakpoint is visible
+ * Bug fixed: The order of the watch variables (that can be changed by drag
+   and drop using button-3) is no longer lost after resuming the debug
+ * Toggling the "Get value from Scilab" flag in the add argument window moves
+   focus to the field of interest
+ * Moved all the debug settings at the top of defaults.tcl
+ * version --> 5.6

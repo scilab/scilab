@@ -34,6 +34,8 @@ proc changedmodified {textarea} {
 # Update the visual indications showing that the buffer was modified or not
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
+    global closeinitialbufferallowed
+    set closeinitialbufferallowed false
     modifiedtitle $textarea
 }
 

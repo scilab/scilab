@@ -169,7 +169,7 @@ proc dragitem_bp {w dragpos} {
 }
 
 proc dropitem_bp {leftwin rightwin spinwidget dragind droppos} {
-    global funvars curdropind
+    global funvars watchvars curdropind
     if {$dragind != "" } {
         set dropind [$leftwin index @0,$droppos]
         set dragitem [$leftwin get $dragind]
@@ -179,6 +179,8 @@ proc dropitem_bp {leftwin rightwin spinwidget dragind droppos} {
             if {$spinwidget != ""} {
                 set funname [$spinwidget get]
                 set funvars($funname) [linsert $funvars($funname) $dropind $dragitem]
+            } else {
+                set watchvars [linsert $watchvars $dropind $dragitem]
             }
             if {$dropind < $dragind} {
                 incr dragind
@@ -191,6 +193,8 @@ proc dropitem_bp {leftwin rightwin spinwidget dragind droppos} {
             $rightwin delete $dragind
             if {$spinwidget != ""} {
                 set funvars($funname) [lreplace $funvars($funname) $dragind $dragind]
+            } else {
+                set watchvars [lreplace $watchvars $dragind $dragind]
             }
         }
         $leftwin itemconfigure $curdropind -background white

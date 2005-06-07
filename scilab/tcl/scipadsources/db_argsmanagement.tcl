@@ -200,8 +200,10 @@ proc togglegetvaluefromscilab {} {
     global adda getvaluefromscilab
     if {$getvaluefromscilab == 1} {
         $adda.f.f2.entry configure -state disabled
+        focus $adda.f.f1.entry
     } else {
         $adda.f.f2.entry configure -state normal
+        focus $adda.f.f2.entry
     }
 }
 

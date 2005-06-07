@@ -38,16 +38,6 @@ if { [info exists pad] } {
     source [file join $sourcedir bindings.tcl]
     source [file join $sourcedir menues.tcl]
 
-    #define ScilabEval to a void function, if it is unknown. This is
-    # useful in order to run scipad outside of scilab (e.g. to debug it)
-    if {[catch {ScilabEval ";"}] != 0} {
-        proc ScilabEval args { 
-            showinfo [mc "NOT CONNECTED TO SCILAB"]
-            puts $args
-        }
-        set sciprompt 0
-    }
-
     load_words
 
     keyposn $textareacur

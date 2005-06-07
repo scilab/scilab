@@ -369,10 +369,11 @@ proc fileisopen {file} {
 
 proc openoninit {textarea thefile} {
 # open/read a file from disk or read a pipe
-    global listoftextarea
+    global listoftextarea pad closeinitialbufferallowed
     set msgWait [mc "Wait seconds while loading and colorizing file"]
     showinfo $msgWait
     lappend listoftextarea $textarea
+    if {$closeinitialbufferallowed == true} {closefile $pad.new1}
     if [string match " " $thefile] {  
         fconfigure stdin -blocking 0
         set incoming [read stdin 1]

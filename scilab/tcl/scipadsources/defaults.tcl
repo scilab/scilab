@@ -1,3 +1,7 @@
+#########################
+#    Debug settings     #
+#########################
+
 # Don't forget to set this setting to no before committing!
 # There is a hard link to the RamDebugger directory here!
 # Anyway, there is a catch to avoid errors in case of lapse of memory...
@@ -13,8 +17,27 @@ catch {
     }
 }
 
+# Define ScilabEval to a void function, if it is unknown. This is
+# useful in order to run scipad outside of scilab (e.g. to debug it)
+if {[catch {ScilabEval ";"}] != 0} {
+    proc ScilabEval args { 
+        showinfo [mc "NOT CONNECTED TO SCILAB"]
+        puts $args
+    }
+    set sciprompt 0
+}
+
+# Committed versions should have this attribute set to false
+# In that case, the Run to Cursor and Break commands are hidden
+# since there are issues with them in the Scilab parsers
+set dev_debug "false"
+
+#########################
+# End of debug settings #
+#########################
+
 set winTitle "SciPad"
-set version "Version 5.5"
+set version "Version 5.6"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -98,3 +121,8 @@ if { [catch {package require tkdnd}] == 0 } {
 } else {
     set TkDnDloaded "false"
 }
+
+# variable used to track changes to the initial buffer
+# so that Scipad can automatically close it if first
+# action in Scipad is a successful file/open
+set closeinitialbufferallowed true

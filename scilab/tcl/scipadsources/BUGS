@@ -25,14 +25,6 @@ Bugs:
    some of them containing dots and some other not
  . Nested brackets or braces in continued lines
 
--Control-k deletes from the insertion cursor to the end of its line; if the insertion
- cursor is already at the end of a line, then Control-k deletes the newline character.
- This is normal, but the buffer should be reported as modified.
- Same issue for Control-t also, as well as for all the default bindings of the TK text
- widget that we did not overload by our own Scipad bindings.
- More precisely, the binded action is performed by the system, the buffer is
- NOT reported as modified by Scipad, but the action can be undone by Ctrl-z.
-
 -In the debugger, trying to F10 with something like:
     function ...
                     function_name
@@ -161,7 +153,7 @@ Wishes:
  Note: a first step to this has been implemented in the debugger watch window.
  
 -paned window, to allow for viewing two different parts of the text buffer at
- the same time, or maybe two different buffers.
+ the same time, or two different buffers.
 
 -tile or cascade windows inside the pad
 
@@ -200,9 +192,6 @@ Wishes:
  never called and could be removed from the Scipad source
 
 -'Matlab' colorization scheme for .m files
-
--On successful opening of the first file after Scipad launch, automatically
- close the unmodified empty buffer that is opened by default
 
 -Scipad defines and uses, mostly for the debugger, some variables in order to
  send values to Scipad. All these variables currently start with the prefix 

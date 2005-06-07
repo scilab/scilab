@@ -1,12 +1,13 @@
 proc insertremove_bp {{buf "current"}} {
-    if {[getdbstate] == "DebugInProgress"} {
-        insertremovedebug_bp $buf
+    if {$buf == "current"} {
+        set textarea [gettextareacur]
     } else {
-        if {$buf == "current"} {
-            set textarea [gettextareacur]
-        } else {
-            set textarea $buf
-        }
+        set textarea $buf
+    }
+    $textarea see insert
+    if {[getdbstate] == "DebugInProgress"} {
+        insertremovedebug_bp $textarea
+    } else {
         set infun [whichfun [$textarea index "insert linestart"] $textarea]
         if {$infun !={}} {
             set i1 "insert linestart"
@@ -22,12 +23,7 @@ proc insertremove_bp {{buf "current"}} {
     }
 }
 
-proc insertremovedebug_bp {{buf "current"}} {
-    if {$buf == "current"} {
-        set textarea [gettextareacur]
-    } else {
-        set textarea $buf
-    }
+proc insertremovedebug_bp {textarea} {
     if {[checkscilabbusy] == "OK"} {
         set i1 "insert linestart"
         set i2 "insert lineend"
