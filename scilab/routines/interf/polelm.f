@@ -312,7 +312,9 @@ c
       double precision t,sr,si
       integer vol
       integer fail
-      logical ref
+      logical ref,eigen
+      integer eig
+      data eig/14/
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -322,11 +324,35 @@ c
          call error(41)
          return
       endif
-      if(rhs.ne.1) then
+      if(rhs.ne.1.and.rhs.ne.2) then
          call error(42)
          return
       endif
 c
+      eigen=.false.
+      if (rhs.eq.2) then
+         ilopt=iadr(lstk(top))
+         if(istk(ilopt).lt.0) ilopt=iadr(istk(ilopt+1))
+         if(istk(ilopt).ne.10) then
+            err=2
+            call error(55)
+            return
+         endif
+         if(istk(ilopt+1).ne.1.or.istk(ilopt+2).ne.1) then
+            err=2
+            call error(89)
+            return
+         endif
+         if(istk(ilopt+5).ne.2.or.istk(ilopt+6).ne.eig) then
+            err=2
+            call error(116)
+            return
+         endif
+         eigen=.true.
+         rhs=rhs-1
+         top=top-1
+      endif
+
       il1=iadr(lstk(top+1-rhs))
       ilr=il1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
@@ -363,9 +389,18 @@ c
       t=abs(stk(lc+n))
       if(it1.eq.1) t=t+abs(stk(lc+n+vol))
       if(t.eq.0.0d+0) goto 21
+
+      if (eigen) goto 22
 c
-c     real polynomial
-      if(it1.eq.0) then
+c     real polynomial: rpoly algorithm 
+c     this alg is much more speedy, but it may happens that it gives
+C     erroneous results without messages : example  
+C     roots(%s^31-8*%s^30+9*%s^29+0.995) should have two real roots near
+C     1.355 and 6.65 and the other ones inside a circle centered in 0
+C     with radius 1
+C     
+
+      if(it1.eq.0.and.n.le.100) then
          lp=max(lw,l1+2*n)
          err=lp+n+1-lstk(bot)
          if(err.gt.0) then
@@ -394,8 +429,10 @@ c     real polynomial
          lstk(top+1)=l1+2*n
          goto 999
       endif
+
+ 22   continue
 c
-c     complex polynomial
+c     Companion matrix method
       lw=lw+n*n*(it1+1)
       err=lw+n*(it1+1)-lstk(bot)
       if(err.gt.0) then
