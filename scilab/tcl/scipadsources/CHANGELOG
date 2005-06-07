@@ -1137,3 +1137,9 @@ Francois VOGEL, 05/06/05
  * Fixed a regression introduced in 4.7: Control-Button-1 did no longer extend
    the selection
  * version --> 5.4
+
+ES, 7/6/05
+ * new proc pbind in the new sourced file platformbind.tcl: tries all
+   the known key sequence names, instead of trying the relevant one for each
+   platform (useful for Shift-Fn bindings)
+ * version --> 5.5

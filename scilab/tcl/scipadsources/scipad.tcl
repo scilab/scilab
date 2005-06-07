@@ -29,6 +29,7 @@ if { [info exists pad] } {
     source [file join $sourcedir debugger.tcl] 
     source [file join $sourcedir localetools.tcl] 
     source [file join $sourcedir tkdndtools.tcl] 
+    source [file join $sourcedir platformbind.tcl] 
 
     # now all the pure main level code
     source [file join $sourcedir defaults.tcl]

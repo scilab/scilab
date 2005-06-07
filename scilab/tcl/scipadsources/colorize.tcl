@@ -290,8 +290,8 @@ proc schememenus {textarea} {
         bind $pad <F10> {}
         bind $pad <Control-F11> {}
         bind $pad <F11> {}
-#       bind $pad <$Shift_F11> {}
-        bind $pad <$Shift_F12> {}
+#       pbind $pad $Shift_F11 {}
+        pbind $pad $Shift_F12 {}
         bind $pad <F12> {}
         bind $pad <Control-F12> {}
     }

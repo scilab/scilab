@@ -99,42 +99,11 @@ bind Text <Control-slash> {set ind [%W index insert]; openlibfunsource $ind}
 bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
 
 # The following are (unfortunately) platform/os-dependent keysyms
-if {"$tcl_platform(platform)" == "unix"} {
-    switch $tcl_platform(os) {
-        Linux {
-            # XF86 4.3 modmap has the following keysyms
-            # these work at least with Red Hat 9 and Mandrake 10.1
-            set Shift_Tab   "ISO_Left_Tab"
-            set Shift_F1    "XF86_Switch_VT_1"
-            set Shift_F8    "XF86_Switch_VT_8"
-            set Shift_F11   "XF86_Switch_VT_11"
-            set Shift_F12   "XF86_Switch_VT_12"
-        }
-        SunOS {
-            # Solaris 2.6 on SunOS 5.8 or 5.9
-            set Shift_Tab   "Shift-Tab"
-            set Shift_F1    "Shift-F1"
-            set Shift_F8    "Shift-F8"
-            set Shift_F11   "Shift-SunF36"
-            set Shift_F12   "Shift-SunF37"
-        }
-        default {
-            # untested for other unices (HP-UX, IRIX64...)
-            set Shift_Tab   "Shift-Tab"
-            set Shift_F1    "Shift-F1"
-            set Shift_F8    "Shift-F8"
-            set Shift_F11   "Shift-F11"
-            set Shift_F12   "Shift-F12"
-        }
-    }
-} else {
-    # $tcl_platform(platform) should be "windows" (tested on XP)
-    # or "macintosh" (untested)
-    set Shift_Tab   "Shift-Tab"
-    set Shift_F1    "Shift-F1"
-    set Shift_F8    "Shift-F8"
-    set Shift_F11   "Shift-F11"
-    set Shift_F12   "Shift-F12"
-}
-bind Text <$Shift_Tab> {UnIndentSel}
-bind $pad <$Shift_F1> {aboutme}
+set Shift_Tab {"ISO_Left_Tab" "Shift-Tab"}
+set Shift_F1  {"XF86_Switch_VT_1" "Shift-F1"}
+set Shift_F8  {"XF86_Switch_VT_8" "Shift-F8"}
+set Shift_F11  {"XF86_Switch_VT_11" "Shift-F11" "Shift-SunF36"}
+set Shift_F12  {"XF86_Switch_VT_12" "Shift-F12" "Shift-SunF37"}
+
+pbind Text $Shift_Tab {UnIndentSel}
+pbind $pad $Shift_F1 {aboutme}
