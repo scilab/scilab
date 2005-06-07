@@ -21,7 +21,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 {
   int ns,ierr,seq;
   char *command;
-
+  
   char *comm[arbitrary_max_queued_callbacks];
   int   seqf[arbitrary_max_queued_callbacks];
   int nc,ncomm=-1;
@@ -37,6 +37,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 
   if (argv[1] != (char *)0)
   {
+  	
     if (strlen(argv[1])>=bsiz)
 	{
       command = (char *) malloc (bsiz * sizeof (char));
@@ -117,7 +118,16 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     else
 	{
       /* seq or no option */
-      StoreCommand(command); 
+	  char *UTF8Command=NULL;
+	  UTF8Command=malloc(sizeof(char)*(strlen(command)+2));
+
+	  /* UTF to ANSI */
+	  Tcl_UtfToExternal(theinterp, NULL, command, strlen(argv[1]), 0, NULL, UTF8Command, strlen(command), NULL, NULL,NULL);
+      /* Add a ; at the end of command */	 
+	  strcat(UTF8Command,";");
+      StoreCommand(UTF8Command); 
+	  if (UTF8Command){free(UTF8Command);UTF8Command=NULL;}
+
       if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
 	  {
         SetCommandflag(1);
@@ -128,6 +138,8 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         Tcl_SetResult(theinterp,NULL,NULL);
 	  }
     }
+
+	
     free(command);
 
   } 
