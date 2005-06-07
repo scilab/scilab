@@ -74,10 +74,6 @@ global TMPDIR
           TCL_EvalStr("scipad eval {openfile """+ filetoopen +"""}")          
         end
       end
-  // close "Untitled.sce" opened as default when scipad is started anew
-      if TCL_GetVar("isscipadopen")=="0" & onevalidfile then
-          TCL_EvalStr("scipad eval {closefile $pad.new1}")
-      end
     end
   else
     error(" Scilab has not been built with tk: scipad unavailable")
