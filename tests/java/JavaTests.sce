@@ -2,7 +2,7 @@
 //---------------------------------------------------------------
 // Tests Interface Scilab Java
 //---------------------------------------------------------------
-tests = ['clf.java';'disp.java';'Exec.java';'Real1.java';'Real2.java'];
+tests = ['clf.java';'disp.java';'Exec.java';'Real1.java';'Real2.java';'Real3.java'];
 //---------------------------------------------------------------
 // Compilation du fichier Java
 function ret=BuildJava(filename)
@@ -54,7 +54,7 @@ function CleanClass(filename)
   chdir(SCI+'\bin');
   [path,fname,extension]=fileparts(filename);
   if MSDOS then
-    //unix_s('del '+fname+'.class');
+    unix_s('del '+fname+'.class');
   else
   	unix_s('rm -f '+fname+'.class');
   end
@@ -75,7 +75,7 @@ function CompareDiary(filename)
   ref=strsubst(ref,' ','');
 
   if or(ref<>dia) then
-    disp('Test Failed SEE : diff -w  '+fname+'.dia '+fname+'.ref ');
+    disp('Test Failed SEE : diff -w  '+fname+'.dia '+fname+'.dia.ref ');
   else
     disp('Test '+fname+' passed');
   end

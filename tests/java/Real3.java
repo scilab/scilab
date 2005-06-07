@@ -1,7 +1,22 @@
 import javasci.* ; 
 /********************************************************************************************************/      
-class Real1 
+class Real3 
 {
+/********************************************************************************************************/  	
+	private static void DisplayResult(String name,double []mat,int r,int c)
+	{
+		int i=0;
+		
+		System.out.println("row= "+r);
+		System.out.println("col= "+c);
+		System.out.println(name+"= ");
+		for(i=0;i<r;i++)
+		{
+			System.out.print(mat[i]+" ");
+		}
+		System.out.println(" ");
+	}
+	
 /********************************************************************************************************/  	
   public static void main(String[] args) 
     {
@@ -16,20 +31,13 @@ class Real1
   		SciReal E = new SciReal("E",C);
   		E.Send();
   		
-  		
-  		Scilab.Exec("disp(''A='');disp(A);");
-  		Scilab.Exec("disp(''B='');disp(B);");
-			Scilab.Exec("disp(''C='');disp(C);");
-			Scilab.Exec("disp(''E='');disp(E);");
-			
   		Scilab.Exec("C=A+B;");
   		D.Job("Dim=size(C)");
 			
-			Scilab.Exec("disp(''A='');disp(A);");
-  		Scilab.Exec("disp(''B='');disp(B);");
-			Scilab.Exec("disp(''C='');disp(C);");
-			Scilab.Exec("disp(''Dim='');disp(Dim);");
-			Scilab.Exec("disp(''E='');disp(E);");
+			DisplayResult(A.getName(),A.getData(),A.getRow(),A.getCol());
+			DisplayResult(B.getName(),B.getData(),B.getRow(),B.getCol());
+			DisplayResult(C.getName(),C.getData(),C.getRow(),C.getCol());
+			DisplayResult(E.getName(),E.getData(),E.getRow(),E.getCol());
 
     }
 /********************************************************************************************************/      
