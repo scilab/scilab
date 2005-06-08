@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,7 +9,7 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="replot">redessine la fenÃªtre graphique courante en
+  <SHORT_DESCRIPTION name="replot">redessine la fenêtre graphique courante en
   changeant les bornes</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -31,7 +31,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: argument optionnel. Handle(s) graphiques de type Axes
-          dÃ©finissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.
+          définissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.
           Option uniquement disponible en nouveau mode graphique.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -39,17 +39,17 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>replot</VERB> est utilisÃ©e pour redessiner la fenÃªtre graphique
-    courante en changeant les bornes, donnÃ©es sous la forme
+    <P><VERB>replot</VERB> est utilisée pour redessiner la fenêtre graphique
+    courante en changeant les bornes, données sous la forme
     <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>. En ancien mode graphique,
     fonctionne uniquement avec le pilote <VERB>"Rec"</VERB>.</P>
 
     <P>En nouveau mode graphique, cette transformation s'applique aux axes
-    spÃ©cifiÃ©s par <VERB>handle</VERB> Si <VERB>handle</VERB> n'est pas
-    renseignÃ©, la transformation s'applique Ã  l'axe courant de la figure
+    spécifiés par <VERB>handle</VERB> Si <VERB>handle</VERB> n'est pas
+    renseigné, la transformation s'applique Ã  l'axe courant de la figure
     courante. La transformation change les valeurs <VERB>data_bounds</VERB>
-    des axes. A noter que la propriÃ©tÃ© <VERB>tight_limits</VERB> de l'axe doit
-    Ãªtre mise Ã  <VERB>"on"</VERB> pour selectionner strictement ces bornes
+    des axes. A noter que la propriété <VERB>tight_limits</VERB> de l'axe doit
+    être mise Ã  <VERB>"on"</VERB> pour selectionner strictement ces bornes
     (voir <LINK>axes_properties</LINK>).<VERB></VERB></P>
   </DESCRIPTION>
 

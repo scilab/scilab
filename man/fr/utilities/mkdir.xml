@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -32,7 +32,7 @@
 
     <P>[status,message] = mkdir(...,'dirname') cree le repertoire dirname dans
     le repertoire existant parentdir, retourne le status, et un message. Ici,
-    status vaut 1 si tout c'est bien passÃ©, 2 si le repertoire existe deja, 0
+    status vaut 1 si tout c'est bien passé, 2 si le repertoire existe deja, 0
     dans un autre cas.</P>
   </DESCRIPTION>
 

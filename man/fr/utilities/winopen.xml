@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -10,7 +10,7 @@
   <DATE>Aout 2004</DATE>
 
   <SHORT_DESCRIPTION name="winopen">Ouvre le fichier avec l'application
-  appropriÃ©e (Windows seulement)</SHORT_DESCRIPTION>
+  appropriée (Windows seulement)</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>winopen('filename')</CALLING_SEQUENCE_ITEM>
@@ -18,7 +18,7 @@
 
   <DESCRIPTION>
     <P><VERB>winopen('filename')</VERB> ouvre le fichier avec l'application
-    appropriÃ©e de Microsoft Windows. winopen effectue la mÃªme action que si
+    appropriée de Microsoft Windows. winopen effectue la même action que si
     vous double-cliquez sur l'icone dans l'explorateur de Windows.</P>
   </DESCRIPTION>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -22,7 +22,7 @@
         <PARAM_NAME>nom</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res contenant le nom de la variable
+          <SP>: chaîne de caractères contenant le nom de la variable
           d'environnement </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -31,7 +31,7 @@
         <PARAM_NAME>valeur</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res contenant la valeur de la variable
+          <SP>: chaîne de caractères contenant la valeur de la variable
           d'environnement</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>

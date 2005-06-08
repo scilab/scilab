@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -27,7 +27,7 @@
   <DESCRIPTION>
     <P><VERB>clipboard('copy',data)</VERB> copie le contenu de data dans le
     presse-papier. Si data n'est pas une chaine de caracteres, sci2exp est
-    utilisÃ© pour convertir data en chaine de caracteres.</P>
+    utilisé pour convertir data en chaine de caracteres.</P>
 
     <P><VERB>str = clipboard('paste') </VERB>retourne le contenu du
     presse-papier dans la variable str, ou [] si le contenu du presse-papier

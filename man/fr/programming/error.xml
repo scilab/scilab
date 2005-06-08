@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -26,7 +26,7 @@
         <PARAM_NAME>message</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: une chaÃ®ne de caractÃ¨res. Le message Ã  visualiser.</SP>
+          <SP>: une chaîne de caractères. Le message Ã  visualiser.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -34,7 +34,7 @@
         <PARAM_NAME>n</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: Un entier, le nombre associÃ© Ã  l'erreur.</SP>
+          <SP>: Un entier, le nombre associé Ã  l'erreur.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -42,7 +42,7 @@
         <PARAM_NAME>pos</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: Un entier, paramÃ©trant le message (voir
+          <SP>: Un entier, paramétrant le message (voir
           <VERB>error_table</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -51,24 +51,24 @@
 
   <DESCRIPTION>
     <P>La fonction <VERB>error</VERB> permet d'envoyer Ã  l'utilisateur un
-    message d'erreur et de gÃ©rer cette erreur. Par dÃ©faut <VERB>error</VERB>
-    termine l'Ã©xecution courante et revient au niveau du prompt. Ce dÃ©faut
-    peut Ãªtre changÃ© en utilisant les fonctions <VERB>errcatch</VERB> et
+    message d'erreur et de gérer cette erreur. Par défaut <VERB>error</VERB>
+    termine l'éxecution courante et revient au niveau du prompt. Ce défaut
+    peut être changé en utilisant les fonctions <VERB>errcatch</VERB> et
     <VERB>execstr(...,'errcatch')</VERB>.</P>
 
     <P><VERB>error(message)</VERB> envoie Ã  l'utilisateur le message d'erreur
-    donnÃ© par la chaÃ®ne de caractÃ¨res <VERB>message</VERB>. Le nombre associÃ©
-    Ã  l'erreur est assignÃ© Ã  10000.</P>
+    donné par la chaîne de caractères <VERB>message</VERB>. Le nombre associé
+    Ã  l'erreur est assigné Ã  10000.</P>
 
     <P><VERB>error(message,n)</VERB> envoie Ã  l'utilisateur le message
-    d'erreur donnÃ© par la chaÃ®ne de caractÃ¨res <VERB>message</VERB>. Le nombre
-    associÃ© Ã  l'erreur est donnÃ© par <VERB>n</VERB>.</P>
+    d'erreur donné par la chaîne de caractères <VERB>message</VERB>. Le nombre
+    associé Ã  l'erreur est donné par <VERB>n</VERB>.</P>
 
-    <P>Certains messages d'erreur prÃ©dÃ©finis requiÃ¨rent un paramÃ¨tre entier,
+    <P>Certains messages d'erreur prédéfinis requièrent un paramètre entier,
     (position de l'argument dans la liste d'appel de la fonction,...) (voir
     <VERB>error_table</VERB>). Dans ce cas l'argument <VERB>pos</VERB> doit
     contenir ce nombre entier : <VERB>error(n,pos)</VERB>. Dans les autres cas
-    l'argument <VERB>pos</VERB> est ignorÃ©.</P>
+    l'argument <VERB>pos</VERB> est ignoré.</P>
 
     <P>Voir la table des erreurs dans <LINK>error_table</LINK> .</P>
   </DESCRIPTION>

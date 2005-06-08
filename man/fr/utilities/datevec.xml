@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -19,8 +19,8 @@
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
-    <P>V = datevec(DT) convertie un nombre (dÃ©fini par datenum) en un vecteur
-    contenant une date dont les Ã©lÃ©ments sont [year, month, day, hour, minute,
+    <P>V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
+    contenant une date dont les éléments sont [year, month, day, hour, minute,
     second]. </P>
 
     <P>[Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date

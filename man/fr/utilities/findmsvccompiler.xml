@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -10,7 +10,7 @@
   <DATE>28-Fev-2005</DATE>
 
   <SHORT_DESCRIPTION name="findmsvccompiler">retourne la version du
-  compilateur Microsoft C detectÃ©</SHORT_DESCRIPTION>
+  compilateur Microsoft C detecté</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>msvc=findmsvccompiler()</CALLING_SEQUENCE_ITEM>
@@ -29,7 +29,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>retourne la version du compilateur Microsoft C detectÃ©.</P>
+    <P>retourne la version du compilateur Microsoft C detecté.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[msvc=findmsvccompiler()
