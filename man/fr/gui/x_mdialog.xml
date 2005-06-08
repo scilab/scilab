@@ -33,7 +33,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: n vecteurs colonnes de chaînes de caractères,
-          <VERB>labels(i)</VERB> est l'intitulé du i-ème paramètre Ã 
+          <VERB>labels(i)</VERB> est l'intitulé du i-ème paramètre à 
           saisir</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -72,7 +72,7 @@
         <PARAM_DESCRIPTION>
           <SP>: matrice n x m de chaînes de caractères,
           <VERB>default_input_matrix(i,j)</VERB> est la valeur initiale du
-          terme (i,j) de la matrice Ã  saisir</SP>
+          terme (i,j) de la matrice à  saisir</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 

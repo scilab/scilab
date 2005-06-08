@@ -46,10 +46,10 @@
 
     <P>En nouveau mode graphique, cette transformation s'applique aux axes
     spécifiés par <VERB>handle</VERB> Si <VERB>handle</VERB> n'est pas
-    renseigné, la transformation s'applique Ã  l'axe courant de la figure
+    renseigné, la transformation s'applique à  l'axe courant de la figure
     courante. La transformation change les valeurs <VERB>data_bounds</VERB>
     des axes. A noter que la propriété <VERB>tight_limits</VERB> de l'axe doit
-    être mise Ã  <VERB>"on"</VERB> pour selectionner strictement ces bornes
+    être mise à  <VERB>"on"</VERB> pour selectionner strictement ces bornes
     (voir <LINK>axes_properties</LINK>).<VERB></VERB></P>
   </DESCRIPTION>
 

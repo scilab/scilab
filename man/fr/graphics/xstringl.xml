@@ -30,7 +30,7 @@
         <PARAM_NAME>x,y</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: scalaires réels, coordonnées du point en bas Ã  gauche des
+          <SP>: scalaires réels, coordonnées du point en bas à  gauche des
           chaînes de caractères.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -63,9 +63,9 @@
 
   <DESCRIPTION>
     <P><VERB>xstringl</VERB> renvoie dans <VERB>rect=[x,y,w,h]</VERB> (point
-    en haut Ã  gauche, largeur, hauteur) les dimensions d'un rectangle dans
+    en haut à  gauche, largeur, hauteur) les dimensions d'un rectangle dans
     l'échelle graphique courante entourant les chaînes de caractères
-    <VERB>str</VERB> dessinées Ã  la position <VERB>x,y</VERB> (point en bas Ã 
+    <VERB>str</VERB> dessinées à  la position <VERB>x,y</VERB> (point en bas Ã 
     gauche).</P>
 
     <P>Le résultat est approximatif avec le pilote PostScript.</P>

@@ -35,7 +35,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>data</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: vecteur (contenant les données Ã  analyser)</SP>
+          <SP>: vecteur (contenant les données à  analyser)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -64,8 +64,8 @@
 
     <P> Les classes sont définies par C1 = [x(1), x(2)] puis  Ci = ] x(i), x(i+1)] pour i = 2,3,...,n.
         En notant Nmax le nombre total de données (Nmax = length(data)) et Ni le nombre de données 
-        se situant dans Ci, la valeur de l'histogramme pour x appartenant Ã  Ci 
-        est égale Ã  <EM>Ni/(Nmax (x(i+1)-x(i)))</EM> quand <VERB>normalization</VERB> est vrai
+        se situant dans Ci, la valeur de l'histogramme pour x appartenant à  Ci 
+        est égale à  <EM>Ni/(Nmax (x(i+1)-x(i)))</EM> quand <VERB>normalization</VERB> est vrai
         (comportement par défaut) et sinon elle vaut simplement <EM>Ni</EM>. Quand l'histogramme
         est normalisé il vérifie la propriété suivante :
     </P> 
@@ -78,7 +78,7 @@
      ]]>
     </VERBATIM>
 
-    <P>N'importe quel paramètre optionnel de <LINK>plot2d</LINK> peut être passé Ã  histplot ; par exemple
+    <P>N'importe quel paramètre optionnel de <LINK>plot2d</LINK> peut être passé à  histplot ; par exemple
        pour dessiner votre histogramme avec la couleur numéro 2 (du bleu si vous utilisez la carte
        des couleurs standard) tout en restreignant le dessin au le rectangle [-3,3]x[0,0.5],
        vous pouvez utiliser <TT>histplot(n,data, style=2, rect=[-3,0,3,0.5])</TT>.

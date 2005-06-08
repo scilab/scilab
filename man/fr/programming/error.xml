@@ -26,7 +26,7 @@
         <PARAM_NAME>message</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: une chaîne de caractères. Le message Ã  visualiser.</SP>
+          <SP>: une chaîne de caractères. Le message à  visualiser.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -34,7 +34,7 @@
         <PARAM_NAME>n</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: Un entier, le nombre associé Ã  l'erreur.</SP>
+          <SP>: Un entier, le nombre associé à  l'erreur.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -50,19 +50,19 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>La fonction <VERB>error</VERB> permet d'envoyer Ã  l'utilisateur un
+    <P>La fonction <VERB>error</VERB> permet d'envoyer à  l'utilisateur un
     message d'erreur et de gérer cette erreur. Par défaut <VERB>error</VERB>
     termine l'éxecution courante et revient au niveau du prompt. Ce défaut
     peut être changé en utilisant les fonctions <VERB>errcatch</VERB> et
     <VERB>execstr(...,'errcatch')</VERB>.</P>
 
-    <P><VERB>error(message)</VERB> envoie Ã  l'utilisateur le message d'erreur
+    <P><VERB>error(message)</VERB> envoie à  l'utilisateur le message d'erreur
     donné par la chaîne de caractères <VERB>message</VERB>. Le nombre associé
-    Ã  l'erreur est assigné Ã  10000.</P>
+    à  l'erreur est assigné Ã  10000.</P>
 
-    <P><VERB>error(message,n)</VERB> envoie Ã  l'utilisateur le message
+    <P><VERB>error(message,n)</VERB> envoie à  l'utilisateur le message
     d'erreur donné par la chaîne de caractères <VERB>message</VERB>. Le nombre
-    associé Ã  l'erreur est donné par <VERB>n</VERB>.</P>
+    associé à  l'erreur est donné par <VERB>n</VERB>.</P>
 
     <P>Certains messages d'erreur prédéfinis requièrent un paramètre entier,
     (position de l'argument dans la liste d'appel de la fonction,...) (voir
