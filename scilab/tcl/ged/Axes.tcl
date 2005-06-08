@@ -1782,7 +1782,7 @@ proc setXGridColor {w index} {
 
 proc setXlabel {} {
 global xlabel
-ScilabEval "global ged_handle;ged_handle.x_label.text=ConvStrings('$xlabel')"
+ScilabEval "global ged_handle;ged_handle.x_label.text='$xlabel'"
 }
 
 proc setXFontLabelSize {w siz} {
@@ -1886,7 +1886,7 @@ proc setYGridColor {w index} {
 
 proc setYlabel {} {
 global ylabel
-ScilabEval "global ged_handle;ged_handle.y_label.text=ConvStrings('$ylabel')"
+ScilabEval "global ged_handle;ged_handle.y_label.text='$ylabel'"
 }
 
 proc setYFontLabelSize {w siz} {
@@ -1985,7 +1985,7 @@ proc setZGridColor {w index} {
 
 proc setZlabel {} {
 global zlabel
-ScilabEval "global ged_handle;ged_handle.z_label.text=ConvStrings('$zlabel')"
+ScilabEval "global ged_handle;ged_handle.z_label.text='$zlabel'"
 }
 
 proc setZFontLabelSize {w siz} {
@@ -2039,7 +2039,7 @@ proc setZFontLabelColor {w  index} {
 # Title
 proc setTitleLabel {} {
 global tlabel
-ScilabEval "global ged_handle;ged_handle.title.text=ConvStrings('$tlabel');"
+ScilabEval "global ged_handle;ged_handle.title.text='$tlabel';"
 }
 
 proc setTitleFontLabelSize {w siz} {
@@ -2092,7 +2092,7 @@ proc setTitleFontLabelColor {w  index} {
 proc setlabels {} {
 global ylabel
 global xlabel
-ScilabEval "global ged_handle;ged_handle.x_label.text=ConvStrings('$xlabel');ged_handle.y_label.text=ConvStrings('$ylabel')"
+ScilabEval "global ged_handle;ged_handle.x_label.text='$xlabel';ged_handle.y_label.text='$ylabel'"
 }
 
 proc SelectXpos {w args} {

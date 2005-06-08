@@ -449,7 +449,7 @@ ScilabEval "global ged_handle;ged_handle.font_angle=$fa;"
 
 proc setText {} {
 global curtext
-ScilabEval "global ged_handle;ged_handle.text=ConvStrings('$curtext')"
+ScilabEval "global ged_handle;ged_handle.text='$curtext'"
 }
 
 

@@ -1974,28 +1974,3 @@ clearglobal ged_current_figure
 
 // disp("PASSE PAR DestroyGlobals Scilab");
 endfunctions
-
-
-function out = ConvStrings(items)
-
-items=strsubst(items,'Ãª','ê');
-items=strsubst(items,'Ã¹','ù');
-items=strsubst(items,'Ã§','ç');
-items=strsubst(items,'Ã©','é');
-items=strsubst(items,'Ã¨','è');
-items=strsubst(items,'Ã«','ë');
-items=strsubst(items,'Ã®','î');
-items=strsubst(items,'Ã¯','ï');
-items=strsubst(items,'Ã´','ô');
-items=strsubst(items,'Ã¶','ö');
-items=strsubst(items,'Â£','£');
-items=strsubst(items,'Âµ','µ');
-items=strsubst(items,'Â²','²');
-items=strsubst(items,'Ã¢','â');
-items=strsubst(items,'Ã¤','ä');
-items=strsubst(items,'Ã¢','û');
-items=strsubst(items,'Ã¤','ü');
-items=strsubst(items,'Ã','à');
-
-out = items;
-endfunction
