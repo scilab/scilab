@@ -51,7 +51,7 @@ function xmltohtml(dirs,titles,xsl,step)
   if step=='all' | step == 'whatis' then 
     for k=1:size(dirs,'*');
       mprintf('Creating whatis.htm in %s\n',dirs(k));
-      dirs(k)=pathconvert(dirs(k),%t,%t)
+      dirs(k)=pathconvert(dirs(k),%f,%t)
       chdir(dirs(k));
       if titles(k) == H then 
 	titles(k) = titles(k)+' ('+dirs(k)+')';
@@ -202,8 +202,10 @@ function gener_index(dirs,txt)
   if rhs <= 0 then 
     dirs=basename(%helps(:,1))
     txt=%helps(:,2)
+  else
+    dirs=basename(dirs);
   end
-       
+  
   line=["<html>"
 	"<head>"
 	"  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
