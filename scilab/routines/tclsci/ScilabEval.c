@@ -37,8 +37,13 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 
   if (argv[1] != (char *)0)
   {
-  	
-    if (strlen(argv[1])>=bsiz)
+	  char *UTF8Arg=NULL;
+	  UTF8Arg=malloc(sizeof(char)*(strlen(argv[1])+2));
+
+	  /* UTF to ANSI */
+	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+1), NULL, NULL,NULL);
+
+    if (strlen(UTF8Arg)>=bsiz)
 	{
       command = (char *) malloc (bsiz * sizeof (char));
       if (command == (char *) 0)
@@ -47,19 +52,20 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
-      strncpy(command,argv[1],bsiz-1);
+      strncpy(command,UTF8Arg,bsiz-1);
       sciprint(TCL_WARNING4,bsiz-1);
     }
 	else
 	{
-      command = (char *) malloc ((strlen (argv[1]) + 1) * sizeof (char));
+      command = (char *) malloc ((strlen (UTF8Arg) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
         sciprint (TCL_ERROR28);
         return TCL_ERROR;
       }
-      strcpy(command,argv[1]);
+      strcpy(command,UTF8Arg);
     }
+	if (UTF8Arg){free(UTF8Arg);UTF8Arg=NULL;}
 
     if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
@@ -118,15 +124,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     else
 	{
       /* seq or no option */
-	  char *UTF8Command=NULL;
-	  UTF8Command=malloc(sizeof(char)*(strlen(command)+2));
-
-	  /* UTF to ANSI */
-	  Tcl_UtfToExternal(theinterp, NULL, command, strlen(argv[1]), 0, NULL, UTF8Command, strlen(command), NULL, NULL,NULL);
-      /* Add a ; at the end of command */	 
-	  strcat(UTF8Command,";");
-      StoreCommand(UTF8Command); 
-	  if (UTF8Command){free(UTF8Command);UTF8Command=NULL;}
+      StoreCommand(command); 
 
       if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
 	  {
@@ -138,8 +136,6 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         Tcl_SetResult(theinterp,NULL,NULL);
 	  }
     }
-
-	
     free(command);
 
   } 
