@@ -30,9 +30,16 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   {
 	/* trace for debugging */
     int argc=1;
-    sciprint(TCL_MSG7,argv[1]);
+	char *UTF8Arg=NULL;
+
+	UTF8Arg=malloc(sizeof(char)*(strlen(argv[1])+2));
+	/* UTF to ANSI */
+	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+1), NULL, NULL,NULL);
+	
+    sciprint(TCL_MSG7,UTF8Arg);
     while (argv[++argc]) sciprint(" %s",argv[argc]);
     sciprint("\n");
+	if (UTF8Arg){free(UTF8Arg);UTF8Arg=NULL;}
   }
 
   if (argv[1] != (char *)0)
