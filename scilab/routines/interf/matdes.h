@@ -100,7 +100,7 @@ extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
 /* NG beg */
 extern int gset _PARAMS((char *fname, unsigned long fname_len));
 extern int gget _PARAMS((char *fname, unsigned long fname_len));
-extern int delete _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_delete _PARAMS((char *fname, unsigned long fname_len));
 extern int addcb _PARAMS((char *fname, unsigned long fname_len));
 extern int copy _PARAMS((char *fname, unsigned long subwinparenttarget));
 /*** 18/03/2002 ***/

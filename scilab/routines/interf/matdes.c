@@ -5017,7 +5017,7 @@ static MatdesTable Tab[]={
   /* NG beg */
   {gset,"set"},
   {gget,"get"},
-  {delete,"delete"},
+  {sci_delete,"delete"},
   {addcb,"addcb"},
   {copy,"copy"},
   {move,"move"},
@@ -8790,10 +8790,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 
   
 
-int delete(fname,fname_len)
+int sci_delete(fname,fname_len)
      char *fname;
      unsigned long fname_len;
-{  
+{
   integer m1,n1,l1,m2,n2,l2,num,cur,na,verb=0, lw;
   unsigned long hdl;
   sciPointObj *pobj, *pparentfigure;
@@ -8801,11 +8801,11 @@ int delete(fname,fname_len)
   CheckRhs(0,1);
   CheckLhs(0,1);
   /*SciWin();*/
-  switch(VarType(1)) 
+  switch(VarType(1))
     {
     case 9: /* delete Entity given by a handle */
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
-      if (m1!=1||n1!=1) { 
+      if (m1!=1||n1!=1) {
 	lw = 1 + Top - Rhs;
 	C2F(overload)(&lw,"delete",6);return 0;}
       if (Rhs == 2)
@@ -8815,11 +8815,11 @@ int delete(fname,fname_len)
     case 10: /* delete("all") */
       CheckRhs(1,1);
       GetRhsVar(1,"c",&m2,&n2,&l2);
-      if (strncmp(cstk(l2),"all", 3) == 0) 
-	{   
+      if (strncmp(cstk(l2),"all", 3) == 0)
+	{
 	  SciWin();
 	  sciXbasc();return 0;
-	} 
+	}
       else
 	{
 	  Scierror(999,"%s :Incorrect argument\r\n",fname);
@@ -8837,14 +8837,14 @@ int delete(fname,fname_len)
     Scierror(999,"%s :the handle is not valid\r\n",fname);
     return 0;
   }
-  num= sciGetNumFigure (pobj); 
+  num= sciGetNumFigure (pobj);
   SciWin();
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ((Rhs == 2) && (strncmp(cstk(l2),"callback", 8) == 0))
     sciDelCallback((sciPointObj *)pobj);
-  else {  
-    if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)  
+  else {
+    if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)
       { /* I added && sciGetEntityType(pobj) != SCI_FIGURE at last !!!!!!!! F.Leray 09.04.04 */
 	pparentfigure = sciGetParentFigure(pobj);
 	/*}*/
@@ -8868,7 +8868,7 @@ int delete(fname,fname_len)
 	      }
 	  }
 	
-	sciDelGraphicObj((sciPointObj *)pobj);	
+	sciDelGraphicObj((sciPointObj *)pobj);
 	sciDrawObj((sciPointObj *)pparentfigure);
       }
     else if(sciGetEntityType(pobj) == SCI_FIGURE) /* F.Leray 13.04.04: We delete the special object Figure !!*/
