@@ -4,13 +4,13 @@ function xs2eps(win_num,filename,colored,orientation)
   //Input arguments checking
   if rhs<3 then
     orientation='portrait'
-    colored=1
+    colored=-1
   elseif rhs==3 then
     if or(type(colored)==[1 4]) then
       orientation='portrait'
     elseif type(colored)==10 then
       orientation=colored
-      colored=1
+      colored=-1
     else
       error('Third argument should be the orientation or the colored flag')
     end
@@ -36,7 +36,11 @@ function xs2eps(win_num,filename,colored,orientation)
   end
   
   //create the postscript file (without header)
-  xs2ps(win_num,filename,bool2s(colored));
+  if colored==-1 then
+    xs2ps(win_num,filename)
+  else
+    xs2ps(win_num,filename,bool2s(colored));
+  end
   //add the Postscript file header and create <filename>.eps file
   if MSDOS then
     fname=pathconvert(filename,%f,%t,'w')
