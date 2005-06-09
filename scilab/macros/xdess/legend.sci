@@ -61,6 +61,9 @@ axleg=gca();
 axleg.clip_state='off';
 axleg.font_style=A.font_style;
 axleg.font_size=A.font_size;
+axleg.foreground=A.foreground
+axleg.background=A.background
+axleg.font_color=A.font_color
 
 dy=ymax-ymin
 drx=(xmax-xmin)/20 //length of the line
@@ -131,7 +134,6 @@ if with_box then
   ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
   xfpoly(xpol, ypol,1)
   R = gce();
-  R.children(1).foreground=A.foreground;
   R.children(2).foreground=A.background;
 end
 for k=1:nleg

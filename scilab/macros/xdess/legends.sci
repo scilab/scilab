@@ -121,8 +121,9 @@ function legends(leg, style, opt, with_box)
        c = xget("color")
        xset("color",xget("background"))
        xfrect(pos(1),pos(2),width,height)
+       xset("color",xget("foreground"))
+       xrect(pos(1),pos(2),width,height)  
        xset("color",c)
-       xrect(pos(1),pos(2),width,height)       
     end
     linestyle=xget('line style')
     clr=xget('color')
@@ -137,7 +138,9 @@ function legends(leg, style, opt, with_box)
 	  xsegs([x;x+drx],[y;y]-bbx(k,2)/2,style(1,k))
 	end
       end
+      xset("color",xget("foreground"))
       xstring(x+drx*1.2,y-bbx(k,2),leg(k))
+      xset("color",clr)
       y=y-bbx(k,2)-dh
     end
     //reset saved graphic context
@@ -146,16 +149,23 @@ function legends(leg, style, opt, with_box)
     xsetech(wrect=r1,frect=r2,arect=arect,logflag=logflag)
   else
     drawlater()
+    a=gca()
+    a.foreground=old_ax.foreground
+    a.background=old_ax.background
+    a.font_color=old_ax.font_color
+    a.font_size =old_ax.font_size;
+    a.font_style=old_ax.font_style;
+
+    a.clip_state='off';
+
     R=[]
     if with_box then 
        xpol = [pos(1), pos(1)+width, pos(1)+width, pos(1)];
        ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
        xfpoly(xpol, ypol,1)
        R = gce();
-       R.children(2).foreground=-2;
+       R.children(2).foreground=a.background;
     end
-    a=gca()
-    a.clip_state='off';
     for k=1:nleg
       if k<=size(style,2) then
 	if type(style)==9 then
