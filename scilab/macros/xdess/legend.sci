@@ -131,7 +131,8 @@ if with_box then
   ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
   xfpoly(xpol, ypol,1)
   R = gce();
-  R.children(2).foreground=-2;
+  R.children(1).foreground=A.foreground;
+  R.children(2).foreground=A.background;
 end
 for k=1:nleg
   if k<=size(H,'*') then
@@ -182,6 +183,7 @@ for k=1:nleg
   end
   xstring(x+drx*1.2,y-bbx(k,2),leg(k))
   r=gce()
+  r.foreground = A.foreground;
   R=[R,r]
   y=y-bbx(k,2)-dh
 end
