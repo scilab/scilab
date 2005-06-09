@@ -33,6 +33,6 @@ MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	plot.sci getColorIndex.sci getLineSpec.sci getPlotPropertyName.sci \
 	setPlotProperty.sci setDefaultColor.sci checkXYPair.sci check2dFun.sci \
 	surf.sci getSurfPropertyName.sci setSurfProperty.sci \
-	ghdl2tree.sci ghdl_fields.sci
+	ghdl2tree.sci ghdl_fields.sci hsv2rgb.sci hsvcolormap.sci
 
 include ../Make.lib
