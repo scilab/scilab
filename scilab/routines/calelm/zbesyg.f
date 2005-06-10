@@ -85,6 +85,10 @@ c     .  a1:a1+(nn-1) with a1 positive  a1+k =abs(alpha+nn-k)
          if (ierr.eq.0) then
             a=sin(a1*pi)
             b=cos(a1*pi)
+c     .     to avoid numerical errors if a is near 0 (or b near 0)  
+c     .     and y is big (or w is big)
+            if(abs(abs(a)-1.0d0).lt.eps)  b=0.0d0
+            if(abs(abs(b)-1.0d0).lt.eps)  a=0.0d0
             call dscal(nn,b,wr,1)
             call dscal(nn,b,wi,1)
             call daxpy(nn,a,yr,1,wr,1)

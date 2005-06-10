@@ -5,12 +5,13 @@ c     x is assumed to be >0 (if negative bessely(alpha,x) is complex)
       double precision x1,alpha,y(n),w(n)
       integer n,nz,ierr
 c
-      double precision a,b,pi,inf,x,a1
+      double precision a,b,pi,inf,x,a1,eps
       integer ier1,ier2
       double precision dlamch
       data pi /3.14159265358979324D0/
 
       inf=dlamch('o')*2.0d0
+      eps=dlamch('p')
       x=x1
       ier2=0
       if (x.ne.x.or.alpha.ne.alpha) then
@@ -62,12 +63,17 @@ c     .     0 is between alpha and alpha+n
 c     .  compute for negative value of alpha+k, transform problem for
 c     .  a1:a1+(nn-1) with a1 positive  a1+k =abs(alpha+nn-k)
          a1=-(alpha-1.0d0+nn)
+
          call dbesj(x,a1,nn,y,nz1,ierr)
          call dbesy(x,a1,nn,w,ier)
          ierr=max(ierr,ier) 
          if (ierr.eq.0) then
             a=sin(a1*pi)
             b=cos(a1*pi)
+c     .     to avoid numerical errors if a is near 0 (or b near 0)  
+c     .     and y is big (or w is big)
+            if(abs(abs(a)-1.0d0).lt.eps)  b=0.0d0
+            if(abs(abs(b)-1.0d0).lt.eps)  a=0.0d0
             call dscal(nn,b,w,1)
             call daxpy(nn,a,y,1,w,1)
          elseif (ierr.eq.2) then
@@ -75,9 +81,10 @@ c     .  a1:a1+(nn-1) with a1 positive  a1+k =abs(alpha+nn-k)
          elseif (ierr.eq.4) then
             call dset(nn,inf-inf,w,1)
          endif
+
 c     .  change sign to take into account that cos((a1+k)*pi) and
 C     .  sin((a1+k)*pi) changes sign with k
-        if (nn.ge.2) call dscal(nn/2,-1.0d0,w(2),2)
+         if (nn.ge.2) call dscal(nn/2,-1.0d0,w(2),2)
 c     .  store the result in the correct order
          call dcopy(nn,w,-1,y,1)
 c     .  compute for positive value of alpha+k is any 
