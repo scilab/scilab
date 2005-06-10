@@ -1,6 +1,6 @@
 path=get_absolute_file_path('specfun.tst');
-function r=testresult()
-  eps=1d-10;
+function r=testresult(eps)
+  if argn(2)<=0 then eps=1d-10;end
   if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
   if or(isnan(imag(y))<>isnan(imag(yref)))  then r=%t,return,end;
   if or(size(y)<>size(yref)) then r=%t,return,end;
@@ -4068,11 +4068,11 @@ alpha=[ -1
 -1.5];
 x=[9.99999999999999955e-08];
 yref=[ 6366197.72367634624
-4.63475776656093441e-06];
+-8.4104417400672E-12];
 y=bessely(alpha,x);
 if testresult() then pause,end
 yref=[ 6366197.72367634624
-4.63475776656093441e-06];
+ -8.4104417400672E-12];
 y=bessely(alpha,x,1);
 if testresult() then pause,end
 alpha=[ -1
