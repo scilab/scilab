@@ -42,10 +42,6 @@ Bugs:
 -Ctrl-F1 on some characters like " ' - or + does not work (different errors in
  the shell. Problem is partly in sciGUI, and partly in Scipad.
 
--Resizing of the watch window panes can sometimes lead to clipping of these
- panes. This is Tk bug 1192323 (partially solved in Tk8.5a3 cvs 29/04/05).
- Tk patch 1124198 should solve the issue once committed into Tk cvs.
-
 -On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
  usually produces a read-only warning and prevents the user from saving there.
  This is Tcl bug 1193497.
@@ -153,7 +149,10 @@ Wishes:
  Note: a first step to this has been implemented in the debugger watch window.
  
 -paned window, to allow for viewing two different parts of the text buffer at
- the same time, or two different buffers.
+ the same time, or two different buffers. Would be nice if the output of .text
+ -dump could be feeded into another text widget, but it's not currently the
+ case. Another approach would be peer text widget as described in TIP #169:
+ http://www.tcl.tk/cgi-bin/tct/tip/169.html (this will be available in Tk 8.5)
 
 -tile or cascade windows inside the pad
 
@@ -250,4 +249,9 @@ Wishes:
 
 -Currently any character typed in the buffer is inserted if there is
  no selection. Add a mode toggled by the Ins key in which characters
- would replace the existing ones. Add a visual indicator of this state
+ would replace the existing ones. Add a visual indicator of this state.
+ Note: this should be manageable in Tk8.4 using a combination of a delete
+ and an insert (or perhaps selecting the next character and then puttext)
+ but there will be a new text widget subcommand .text replace in Tk 8.5
+ that will do it at once and manage the undo/redo stacks at the same time.
+ See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html

@@ -32,12 +32,21 @@ if {[catch {ScilabEval ";"}] != 0} {
 # since there are issues with them in the Scilab parsers
 set dev_debug "false"
 
+# To trace when certain variables are changed
+if {0} {
+    proc tracer {varname args} {
+        upvar #0 $varname var
+        showinfo "$varname was updated to be \"$var\""
+    }
+    trace add variable watchvsashcoord write {tracer watchvsashcoord}
+}
+
 #########################
 # End of debug settings #
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.6"
+set version "Version 5.7"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list

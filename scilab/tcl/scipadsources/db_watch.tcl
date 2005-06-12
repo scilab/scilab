@@ -168,16 +168,20 @@ proc showwatch_bp {} {
     $callstackwidget insert 1.0 $callstackcontent
     $callstackwidget configure -state disabled
 
-    if {$showwatchvariablesarea == "true" || $showcallstackarea == "true"} {
-        pack $watch.f.vpw -fill both -expand yes
-    }
-
     frame $watch.f.f9
     set bl [mc "Close"]
     button $watch.f.f9.buttonClose -text $bl -command "closewatch_bp $watch"\
            -width 10 -height 1
     pack $watch.f.f9.buttonClose
-    pack $watch.f.f9 -pady 2
+
+    # In order to make the Close button visible at all times, it must be packed
+    # first with -side bottom, and the panedwindow must be packed after it with
+    # -side top. This is a feature of the pack command, it is not a bug.
+    # See Tk bug 1217762
+    pack $watch.f.f9 -pady 2 -side bottom
+    if {$showwatchvariablesarea == "true" || $showcallstackarea == "true"} {
+        pack $watch.f.vpw -fill both -expand yes -side top
+    }
 
     pack $watch.f -fill both -expand 1
 

@@ -444,6 +444,7 @@ proc findtext {typ} {
     bind $find <Control-l> "CancelFind $find"
     bind $find <Visibility> {raise $find $pad};
     bind $pad <Expose> {catch {raise $find} }
+    $find.l.f1.entry selection range 0 end
     focus $find.l.f1.entry
     grab $find
 }

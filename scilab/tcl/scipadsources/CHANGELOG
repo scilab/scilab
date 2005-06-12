@@ -1161,3 +1161,16 @@ Francois VOGEL, 07/06/05
    focus to the field of interest
  * Moved all the debug settings at the top of defaults.tcl
  * version --> 5.6
+
+Francois VOGEL, 12/06/05
+ * If there is a preexisting text in the Find dialog, this text is selected on
+   opening of the box
+ * Resizing of the watch window panes could sometimes lead to clipping of these
+   panes. This is Tk bug 1192323. Tk patch 1124198 solves the issue and is part
+   of Tk 8.4.10 and Tk8.5a3. Since Tk 8.4.10 is now shipped with the Scilab
+   binaries for Windows, I consider this issue closed. Anyway, this is outside
+   of Scipad
+ * Fixed the resizing issue in the watch window using information provided in
+   Tk bug 1217762 (the "Close" button could still be clipped after Tk patch
+   1124198)
+ * version --> 5.7
