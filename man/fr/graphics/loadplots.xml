@@ -62,9 +62,9 @@ driver('Rec');xbasc();plot2d([0 1.5 4]) //make a plot
 xsave(TMPDIR+'/foo.scg') //save it in a binary file
 
 rec=loadplots(TMPDIR+'/foo.scg'); //get the associated data structure
-//here rec(9) is the data structure associated with the plot2d instruction
-rec(9).x //the x vector
-rec(9).y //the y vector
+//here rec($) is the data structure associated with the plot2d instruction
+rec($).x //the x vector
+rec($).y //the y vector
 
 string(rec) //the scilab instructions producing the same plot
 
