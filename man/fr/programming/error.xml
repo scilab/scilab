@@ -58,7 +58,7 @@
 
     <P><VERB>error(message)</VERB> envoie à  l'utilisateur le message d'erreur
     donné par la chaîne de caractères <VERB>message</VERB>. Le nombre associé
-    à  l'erreur est assigné Ã  10000.</P>
+    à  l'erreur est assigné à 10000.</P>
 
     <P><VERB>error(message,n)</VERB> envoie à  l'utilisateur le message
     d'erreur donné par la chaîne de caractères <VERB>message</VERB>. Le nombre

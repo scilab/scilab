@@ -65,7 +65,7 @@
     <P><VERB>xstringl</VERB> renvoie dans <VERB>rect=[x,y,w,h]</VERB> (point
     en haut à  gauche, largeur, hauteur) les dimensions d'un rectangle dans
     l'échelle graphique courante entourant les chaînes de caractères
-    <VERB>str</VERB> dessinées à  la position <VERB>x,y</VERB> (point en bas Ã 
+    <VERB>str</VERB> dessinées à  la position <VERB>x,y</VERB> (point en bas à 
     gauche).</P>
 
     <P>Le résultat est approximatif avec le pilote PostScript.</P>
