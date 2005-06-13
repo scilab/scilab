@@ -47,12 +47,7 @@
     f=gcf();f.color_map=hsvcolormap(64);
      plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
   ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
+  
   <AUTHORS>
     <AUTHORS_ITEM label='Serge Steer'>
       INRIA
