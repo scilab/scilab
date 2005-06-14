@@ -10,7 +10,7 @@ inf=%inf;
 A=diag([-inf,inf]);
 B = A*A*A;
 
-if B==[ %nan , %nan ;  %nan , %nan ] then
+if isnan(B) then
 	affich_result(%T,1224);
 else
 	affich_result(%F,1224);

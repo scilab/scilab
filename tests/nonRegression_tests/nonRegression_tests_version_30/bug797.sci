@@ -14,10 +14,8 @@ diary(0);
 
 DIAFILECONTENTS=mgetl(TMPDIR+"/bug797.dia");
 
-REFFILECONTENTS=["-->disp(J);";
-	" ";
-	"    0.001  ";
-	"-->diary(0);"]
+REFFILECONTENTS=[" ";
+	"    0.001  ";]
 
 if and(DIAFILECONTENTS==REFFILECONTENTS) then
 	affich_result(%T,797);
