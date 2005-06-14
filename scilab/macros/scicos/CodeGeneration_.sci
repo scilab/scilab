@@ -3323,7 +3323,8 @@ if (x ==[]) then
   Code=[Code	
 	'    /*'+rdnom+'_events(&nevprt,&t);*/'
 	'    set_nevprt(nevprt);'
-	'    '+rdnom+'main1(block_'+rdnom+',z,&t);']
+	'    '+rdnom+'main1(block_'+rdnom+',z,&t);'
+	'    '+rdnom+'main2(block_'+rdnom+',z,&t);']
 else
   Code=[Code
 	'    set_nevprt(nevprt);'
