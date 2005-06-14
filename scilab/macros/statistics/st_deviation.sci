@@ -4,6 +4,7 @@ function sd=st_deviation(x,cr)
 // 
   if argn(2)<2 then cr='*',end
   if x == [] then sd=%nan;return ;end 
+  if typeof(x)=='hypermat' then sd=%hm_st_deviation(x,cr),return,end
   [m,n]=size(x);
   if cr=='*' then
     n=m*n
