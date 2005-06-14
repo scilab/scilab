@@ -59,26 +59,31 @@ c
 c     lhs analyzed
       if(sym.ne.name) goto 50
 c     
-      if(char1.eq.semi.or.char1.eq.comma) goto 46
       call getsym
-      if(sym.eq.eol.or.sym.eq.cmt) goto 46
-
+      if(sym.eq.eol.or.sym.eq.cmt.or.sym.eq.semi.or.sym.eq.comma) then
+         lpt(4)=lpt(3)
+         goto 46
+      endif
       if(sym.ne.lparen) goto 50
  44   call getsym
       if(sym.ne.name) goto  45
       call getsym
       if(sym.eq.comma) goto  44
  45   if(sym.ne.rparen) goto 50
+c     ok, check is next sym is valid
       call getsym
       if(sym.ne.eol.and.sym.ne.semi.and.
      $     sym.ne.comma.and.sym.ne.cmt) goto 50
+      lpt(4)=lpt(3)
  46   continue
 c     rhs analyzed
-      if(sym.eq.cmt)  then
-         lpt(4)=lpt(6)
-         sym=eol
+      lf=lpt(4)
+      if(sym.ne.eol) lf=lf-1
+      if(sym.eq.cmt) then
+         sym=semi
+         char1=slash
       endif
-      n=lpt(4)-l4
+      n=lf-l4
       goto 60
  50   continue
 c     invalid syntax
@@ -243,7 +248,7 @@ c     . allocate memory for cblock more characters
          goto 71
       endif
 c
- 73   continue
+   73   continue
 c      call getsym
       il=ilc
       ilp1=il+2
