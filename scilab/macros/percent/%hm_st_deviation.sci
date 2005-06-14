@@ -3,7 +3,7 @@ if argn(2)==1 then
   x=st_deviation(m.entries)
   return
 end
-dims=m.dims;
+dims=double(m.dims);
 N=size(dims,'*');
 p1=prod(dims(1:d-1));// step to build one vector on which st_deviation is applied
 p2=p1*dims(d);//step for beginning of next vectors
