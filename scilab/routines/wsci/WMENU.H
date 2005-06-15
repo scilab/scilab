@@ -110,7 +110,7 @@
 #define URLNEWSGROUP "http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab"
 #define URLCONTRIBUTIONS "http://scilabsoft.inria.fr/contrib/index_contrib.php?page=howto.html"
 #define URL "http://www.scilab.org"
-#define URLBUGZILLA "http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug/index.cgi"
+#define URLBUGZILLA "http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi"
 #define MAILTO "Scilab@inria.fr"
 #define CCMAILTO ""
 #define SUBJECT "Doctor Scilab Please Help me"

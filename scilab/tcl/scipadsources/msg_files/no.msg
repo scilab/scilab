@@ -281,11 +281,11 @@
 ::msgcat::mcset no "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
                     offending Matlab file to \
-                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
+                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi" \
                    "Oversettelsen misslyktes, se i Scilab vinduet \
                     etter detaljer. Kanskje skal du rapportere feilmeldingen og\
 					relevante deler av Matlab filen til\
-                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi"
+                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"
 ::msgcat::mcset no "Please select destination path for the xml source of the help file" "Vennligst velg sti til xml kode til hjelpfilen"
 ::msgcat::mcset no "Older version of" "Eldre versjon av"
     ::msgcat::mcset no "found!" "funnet!"

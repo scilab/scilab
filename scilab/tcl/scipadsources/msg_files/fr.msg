@@ -290,11 +290,11 @@
 ::msgcat::mcset fr "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
                     offending Matlab file to \
-                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
+                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi" \
                    "La conversion du ficher a échoué, voyez dans la fenêtre\
                     Scilab pour plus d'informations -- Veuillez communiquer le\
                     message d'erreur et le fichier Matlab incriminé à\
-                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi"
+                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"
 ::msgcat::mcset fr "Please select destination path for the xml source of the help file" "Veuillez choisir le chemin de destination pour le source xml du fichier d'aide"
 ::msgcat::mcset fr "Older version of" "Il existe une version plus ancienne de"
     ::msgcat::mcset fr "found!" "!"

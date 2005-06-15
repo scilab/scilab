@@ -152,7 +152,7 @@ proc failmatlabimp {} {
       -message [mc "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
                     offending Matlab file to \
-                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi"] \
+                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"] \
       -icon error
 }
 
