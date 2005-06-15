@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------
+ /*------------------------------------------------------------------------
  *    X11 interface 
  *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
@@ -25,7 +25,7 @@
 #include <X11/Xaw/Viewport.h>
 #include <X11/Xaw/Panner.h>	
 #include <X11/IntrinsicP.h>
-#include <X11/@XAW@/ViewportP.h>
+#include <X11/Xaw3d/ViewportP.h>
 #include <string.h>
 
 #include "../graphics/GetProperty.h"
