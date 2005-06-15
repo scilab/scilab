@@ -8,31 +8,31 @@ mode(-1);
 
 SCIFILE=TMPDIR+"/bug731.dia";
 
-diary(SCIFILE);
 function y=foo(x)
 	a=sin(x)
 	function y=sq(x), y=x^2,endfunction
 	y=sq(a)+1
 endfunction
+diary(SCIFILE);
 disp(fun2string(foo));
 diary(0);
 
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 REFCONTENTS=[" ";
-		"!function y=ans(x)      !";
-		"!                       !";
-		"!  a = sin(x)           !";
-		"!                       !";
-		"!  function y=sq(x), y  !";
-		"!                       !";
-		"!    y=x^2,             !";
-		"!                       !";
-		"!  endfunction          !";
-		"!                       !";
-		"!  y = sq(a) + 1        !";
-		"!                       !";
-		"!endfunction            !"]
+		"!function y=ans(x)   !";
+		"!                    !";
+		"!  a = sin(x)        !";
+		"!                    !";
+		"!  function y=sq(x)  !";
+		"!                    !";
+		"!    , y=x^2,        !";
+		"!                    !";
+		"!  endfunction       !";
+		"!                    !";
+		"!  y = sq(a) + 1     !";
+		"!                    !";
+		"!endfunction         !"]
 		
 correct=%T
 
