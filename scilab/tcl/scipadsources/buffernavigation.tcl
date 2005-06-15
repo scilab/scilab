@@ -53,7 +53,7 @@ proc prevbuffer {} {
 }
 
 proc gotoline {} {
-    global textareacur pad
+    global textareacur pad textFont menuFont
     set gotln $pad.gotln
     catch {destroy $gotln}
     toplevel $gotln
@@ -61,12 +61,12 @@ proc gotoline {} {
     setwingeom $gotln
     frame $gotln.top 
     frame $gotln.bottom
-    label $gotln.top.label -text [mc "Goto Line: "]
-    entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10
+    label $gotln.top.label -text [mc "Goto Line: "] -font $menuFont
+    entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10 -font $textFont
     $gotln.top.gotln delete 0 end 
-    button $gotln.bottom.ok -text "OK" -command "addtogotln $gotln"
+    button $gotln.bottom.ok -text "OK" -command "addtogotln $gotln" -font $menuFont
     button $gotln.bottom.cancel -text [mc "Cancel"] \
-        -command "destroy $gotln"
+        -command "destroy $gotln" -font $menuFont
     focus $gotln.top.gotln
     pack $gotln.top -side top -expand 0 
     pack $gotln.bottom -side bottom -expand 0 

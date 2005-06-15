@@ -17,7 +17,7 @@ Bugs:
 
 -Ctrl-v copies also inside the find/replace/filename dialogs, but does not
  replace an existing selection. Problem of setting up the proper bindings,
- likely. Note: this happens only on some platforms.
+ likely. Note: this happens only on some platforms (Windows is OK).
 
 -Line number finding in functions may provide wrong results in some pathological
  cases of continued lines, namely:
@@ -48,6 +48,11 @@ Bugs:
 
 -When two buffers are opened containing the same function (or function name) to
  debug, then the wrong buffer may be opened to show the active breakpoint
+
+-When nested functions are used, a breakpoint can be set on a line just after
+ an endfunction but execution will not stop at this point. Workaround: insert
+ an empty line between the line containing endfunction and the next
+ breakpointed line
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -110,7 +115,9 @@ Wishes:
  Step by step execution remains to be implemented, but this requires Scilab
  core support.
 
--default fonts modifiable within the program 
+-default fonts modifiable within the program
+ See TIP 213 for a possible implementation (new tk_chooseFont command
+ possibly available in Tk 8.5)
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -170,6 +177,10 @@ Wishes:
 
 -subwindows (e.g Find.., file choosers, debugger, tk_messageBoxes...)
  should inherit the current font size
+ Note: This is partially implemented. Only the file chooser (for open/save)
+ and the color picker does not follow font changes. Must find the right
+ option add for this! Of course option add *font $textFont userDefault will
+ do it but there are many drawbacks to this brute force way
 
 -Conditional breakpoints
 

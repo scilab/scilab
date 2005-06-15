@@ -11,6 +11,7 @@ proc showwatch_bp {} {
     global watchvpane1mins watchvpane2mins watchvsashcoord
     global watchhpane1mins watchhpane2mins watchhsashcoord
     global debugstateindicator
+    global menuFont textFont
 
     # Hardwired size, but how else?
     set heightofwatchwithnoarea 105 ;# 85 enough for windows, 105 for my Linux
@@ -66,9 +67,9 @@ proc showwatch_bp {} {
 
     frame $watch.f.f1.f1r
     set buttonshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
-    button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text $togglewvabutton -width 20
+    button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text $togglewvabutton -width 20 -font $menuFont
     set buttonshowcallstackarea $watch.f.f1.f1r.showcallstackarea
-    button $buttonshowcallstackarea -command "togglecallstackarea" -text $togglecsabutton -width 20
+    button $buttonshowcallstackarea -command "togglecallstackarea" -text $togglecsabutton -width 20 -font $menuFont
 
     pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
@@ -79,7 +80,7 @@ proc showwatch_bp {} {
     updatedebugstateindicator_bp
 
     pack $watch.f.f1.f1fr $debugstateindicator -expand 1
-    pack $watch.f.f1 $watch.f.f1.f1fr -anchor w
+    pack $watch.f.f1 $watch.f.f1.f1fr -anchor w -expand 1 -fill both
 
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
@@ -104,13 +105,13 @@ proc showwatch_bp {} {
 
     frame $watch.f.vpw.f2.f2l
     set tl [mc "Watch variables:"]
-    label $watch.f.vpw.f2.f2l.label -text $tl
+    label $watch.f.vpw.f2.f2l.label -text $tl -font $menuFont
     set bl [mc "Add/Change"]
     set buttonAddw $watch.f.vpw.f2.f2l.buttonAdd
-    button $buttonAddw -text $bl -width 20
+    button $buttonAddw -text $bl -width 20 -font $menuFont
     set bl [mc "Remove"]
     set buttonRemove $watch.f.vpw.f2.f2l.buttonRemove
-    button $buttonRemove -text $bl -width 20
+    button $buttonRemove -text $bl -width 20 -font $menuFont
 
     pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
@@ -128,10 +129,10 @@ proc showwatch_bp {} {
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
     scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval"
-    listbox $lbvarname -height 6 -width 12 -yscrollcommand \
+    listbox $lbvarname -height 6 -width 12  -font $textFont -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -takefocus 0
-    listbox $lbvarval  -height 6 -yscrollcommand \
+    listbox $lbvarval  -height 6 -font $textFont -yscrollcommand \
                        "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -takefocus 0
     if {[info exists watchvars]} {
@@ -156,10 +157,10 @@ proc showwatch_bp {} {
 
     frame $watch.f.vpw.f6 -relief groove -borderwidth 2 -padx 2
     set csl [mc "Call stack:"]
-    label $watch.f.vpw.f6.cslabel -text $csl
+    label $watch.f.vpw.f6.cslabel -text $csl -font $menuFont
     pack $watch.f.vpw.f6.cslabel -anchor w -pady 4
     set callstackwidget $watch.f.vpw.f6.callstack
-    text $callstackwidget -height 5 -width 81 -state normal -background gray83
+    text $callstackwidget -height 5 -width 81 -font $textFont -state normal -background gray83
     pack $callstackwidget -fill both -expand 1
     if {$showcallstackarea == "true"} {
         $watch.f.vpw add $watch.f.vpw.f6
@@ -171,7 +172,7 @@ proc showwatch_bp {} {
     frame $watch.f.f9
     set bl [mc "Close"]
     button $watch.f.f9.buttonClose -text $bl -command "closewatch_bp $watch"\
-           -width 10 -height 1
+           -width 10 -height 1 -font $menuFont
     pack $watch.f.f9.buttonClose
 
     # In order to make the Close button visible at all times, it must be packed
@@ -452,6 +453,7 @@ proc update_bubble_watch {type butnum mousexy} {
 
 proc update_bubble {type widgetname mousexy bubbletxt} {
 # generic bubble window handler
+    global menuFont
     set bubble $widgetname.bubble
     catch {destroy $bubble}
     if {$type=="enter"} {
@@ -463,7 +465,8 @@ proc update_bubble {type widgetname mousexy bubbletxt} {
         wm withdraw $bubble
         catch {wm attributes $bubble -topmost 1}
         label $bubble.txt -text $bubbletxt -relief flat -bd 0 \
-                          -highlightthickness 0 -bg PaleGoldenrod
+                          -highlightthickness 0 -bg PaleGoldenrod \
+                          -font $menuFont
         if {[$widgetname cget -state] == "disabled"} {
             $bubble.txt configure -state disabled
         }

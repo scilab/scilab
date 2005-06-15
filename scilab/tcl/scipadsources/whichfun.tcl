@@ -1,6 +1,7 @@
 proc whichfun {indexin {buf "current"}} {
     global listoffile
-    #it is implicitely meant that indexin refers to a position in textareacur
+    # it is implicitely meant that indexin refers to a position in buf,
+    # i.e. in textareacur if buf is not passed to whichfun
 
     if {$buf == "current"} {
         set textarea [gettextareacur]
@@ -11,43 +12,49 @@ proc whichfun {indexin {buf "current"}} {
     # return {} if the language is anything but scilab
     if {$listoffile("$textarea",language) != "scilab"} {return {}}
 
+    set indexin [$textarea index $indexin]
     scan $indexin "%d.%d" ypos xpos
 
-    # search for the previous "function" which is not in a comment nor
-    # in a string
-    set precfun [$textarea search -exact -backwards -regexp\
-            "\\mfunction\\M" $indexin 0.0]
-    if {$precfun!=""} {
-        while {[lsearch [$textarea tag names $precfun] "textquoted"] !=-1 | \
-                [lsearch  [$textarea tag names $precfun] "rem2"] !=-1} {
-            set precfun [$textarea search -exact -backwards -regexp\
-                "\\mfunction\\M" $precfun 0.0]
-            if {$precfun==""} break
+    set lfunpos [list]
+    set curpos 1.0
+    set amatch "firstloop"
+    while {$amatch != ""} {
+        # search for the next "function" or "endfunction" which is not in a
+        # comment nor in a string
+        set amatch [$textarea search -exact -regexp "\\m(end)?function\\M" $curpos $indexin]
+        if {$amatch!=""} {
+            while {[lsearch [$textarea tag names $amatch] "textquoted"] !=-1 || \
+                   [lsearch [$textarea tag names $amatch] "rem2"      ] !=-1} {
+                set amatch [$textarea search -exact -regexp "\\m(end)?function\\M" "$amatch+8c" $indexin]
+                if {$amatch==""} break
+            }
         }
-    }
-
-    # search for the previous "endfunction" which is not in a comment nor
-    # in a string
-    set precendfun [$textarea search -exact -backwards -regexp\
-                "\\mendfunction\\M" $indexin 0.0]
-    if {$precendfun!=""} {
-        while {[lsearch [$textarea tag names $precendfun] "textquoted"] !=-1 | \
-                [lsearch  [$textarea tag names $precendfun] "rem2"] !=-1} {
-            set precendfun [$textarea search -exact -backwards -regexp\
-                "\\mendfunction\\M" $precendfun 0.0]
-            if {$precendfun==""} break
+        if {$amatch!=""} {
+            if {[$textarea get $amatch] == "e"} {
+                # "endfunction" found
+                if {![$textarea compare "$indexin-11c" < $amatch]} {
+                    # the 'if' above is to include the "endfunction" word
+                    # into the core of the function
+                    set lfunpos [lreplace $lfunpos end end]
+                }
+            } else {
+                # "function" found
+                lappend lfunpos $amatch
+            }
+            set curpos "$amatch+1c"
         }
     }
 
     set insidefun 1
-    if {$precfun == "" | $precendfun > $precfun} {
+    if {$lfunpos == [list]} {
         set insidefun 0
     } else { 
+        set precfun [lindex $lfunpos end]
         set i1 [$textarea index "$precfun+8c"]
         # look for the end of the function line definition, taking into account
         # continued lines and possible comments after the trailing dots
         # comments are removed from the function definition, and continued
-        # lines are concatenated to for a single line
+        # lines are concatenated to form a single line
         set i2 [$textarea index "$precfun lineend"]
         set firstcommchar [lindex [$textarea tag nextrange "rem2" $i1 $i2] 0]
         if {$firstcommchar == ""} {

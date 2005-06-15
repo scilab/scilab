@@ -2,6 +2,7 @@ proc configurefoo_bp {} {
     global pad conf
     global listboxinput listboxinputval listboxscrolly spin buttonAddc
     global funnames funvars funvarsvals funnameargs
+    global menuFont textFont
     set conf $pad.conf
     catch {destroy $conf}
     toplevel $conf
@@ -11,9 +12,9 @@ proc configurefoo_bp {} {
 
     frame $conf.f.f1
     set tl [mc "Function name:"]
-    label $conf.f.f1.label -text $tl -width 20
+    label $conf.f.f1.label -text $tl -width 20 -font $menuFont
     set spin $conf.f.f1.spinbox
-    spinbox $spin -width 30 -command "spinboxbuttoninvoke" \
+    spinbox $spin -width 30 -font $textFont -command "spinboxbuttoninvoke" \
                   -values $funnames -state readonly -takefocus 0
     set oppar [string first "\(" $funnameargs]
     set funname [string range $funnameargs 0 [expr $oppar-1]]
@@ -25,7 +26,7 @@ proc configurefoo_bp {} {
     }
     set bl [mc "Obtain"]
     button $conf.f.f1.buttonObtain -text $bl -command "Obtainall_bp"\
-           -width 10
+           -width 10 -font $menuFont
     pack $conf.f.f1.label $spin $conf.f.f1.buttonObtain \
          -side left -padx 4
     pack $conf.f.f1
@@ -33,13 +34,13 @@ proc configurefoo_bp {} {
     frame $conf.f.f2
     frame $conf.f.f2.f2l
     set tl [mc "Input arguments:"]
-    label $conf.f.f2.f2l.label -text $tl
+    label $conf.f.f2.f2l.label -text $tl -font $menuFont
     set bl [mc "Add/Change"]
     set buttonAddc $conf.f.f2.f2l.buttonAdd
-    button $buttonAddc -text $bl -width 20
+    button $buttonAddc -text $bl -width 20 -font $menuFont
     set bl [mc "Remove"]
     set buttonRemove $conf.f.f2.f2l.buttonRemove
-    button $buttonRemove -text $bl -width 20
+    button $buttonRemove -text $bl -width 20 -font $menuFont
     pack $conf.f.f2.f2l.label $buttonAddc $buttonRemove -pady 4
     frame $conf.f.f2.f2r
     set listboxinput $conf.f.f2.f2r.listboxinput
@@ -48,10 +49,10 @@ proc configurefoo_bp {} {
     $buttonRemove configure -command "Removearg_bp $listboxinput $listboxinputval"
     set listboxscrolly $conf.f.f2.f2r.yscroll
     scrollbar $listboxscrolly -command "scrollyboth_bp $listboxinput $listboxinputval"
-    listbox $listboxinput -height 6 -yscrollcommand \
+    listbox $listboxinput -height 6 -font $textFont -yscrollcommand \
                           "scrollyrightandscrollbar_bp $listboxscrolly $listboxinput $listboxinputval" \
                           -takefocus 0
-    listbox $listboxinputval -height 6 -yscrollcommand \
+    listbox $listboxinputval -height 6 -font $textFont -yscrollcommand \
                           "scrollyleftandscrollbar_bp $listboxscrolly $listboxinput $listboxinputval" \
                           -takefocus 0
     if {[info exists funvars($funname)]} {
@@ -69,8 +70,8 @@ proc configurefoo_bp {} {
 
     frame $conf.f.f9
     button $conf.f.f9.buttonOK -text "OK" -command "OKconf_bp $conf"\
-           -width 10 -height 1
-    set bl [mc "Cancel"]
+           -width 10 -height 1 -font $menuFont
+#    set bl [mc "Cancel"]
 #    button $conf.f.f9.buttonCancel -text $bl -command "Cancelconf_bp $conf"\
 #           -width 10
 #    pack $conf.f.f9.buttonOK $conf.f.f9.buttonCancel -side left -padx 10

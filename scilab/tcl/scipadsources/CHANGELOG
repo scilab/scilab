@@ -1174,3 +1174,16 @@ Francois VOGEL, 12/06/05
    Tk bug 1217762 (the "Close" button could still be clipped after Tk patch
    1124198)
  * version --> 5.7
+
+Francois VOGEL, 15/06/05
+ * Most of the subwindows (Find/Replace, Debugger windows, tk_dialog, Goto
+   line, Print Setup, tk_messageBox) inherit the current font on Linux.
+   This is not possible on Windows because the dialogs used by Tk on Windows
+   are mative ones. Still to be implemented: file choosers (open/save as)
+   and color picker, i.e. tk_getOpenFile, tk_getSaveFile and tk_chooseColor
+ * Bug fix: Replace all by an empty string did pop a tcl error
+ * Proc whichfun swallows nested function definitions with continued lines.
+   This is important for the debugger, that relies on the correct output of
+   whichfun to display the active breakpoint for instance
+ * Bugzilla url updated
+ * version --> 5.8

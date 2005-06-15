@@ -105,7 +105,7 @@ proc TextStyles { t } {
 
 proc setfontscipad {FontSize} {
     global textFont menuFont pad
-    global listoftextarea
+    global listoftextarea watch firsttimeinshowwatch
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
     set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
@@ -134,6 +134,15 @@ proc setfontscipad {FontSize} {
     $pad.statusind configure -font $menuFont
     $pad.statusind2 configure -font $menuFont
     $pad.statusmes configure -font $menuFont
+    # This sets the font used in all tk_messageBox and tk_dialog
+    option add *Dialog.msg.font $textFont startupFile
+    # If the watch window was open, refresh it
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            set firsttimeinshowwatch "true"
+            showwatch_bp
+        }
+    }
     showinfo [concat [mc "Font size"] $FontSize ]
 }
 

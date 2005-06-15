@@ -24,7 +24,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpo
                 if {$nextfun == ""} {break}
             }
             if {$nextfun != ""} {
-                set infun [whichfun [$textarea index "$nextfun +1l"] $textarea]
+                set infun [whichfun [$textarea index "$nextfun +1c"] $textarea]
                 set funname [lindex $infun 0]
                 if {$funname == $activemacro} {
                     set textareafun $textarea
@@ -45,7 +45,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpo
         # <TODO> This while loop could be improved (proc whichfun takes time to execute)
         # Its purpose is to make the line number in the buffer correspond to $activeline
         # reported by where() in Scilab (see proc updateactivebreakpoint)
-        while {[lindex $infun 0] == $activemacro && [lindex $infun 1] != $activeline} {
+        while {$infun != "" && [lindex $infun 1] != $activeline} {
             incr offset
             set infun [whichfun [$textareafun index "$funstart + $offset l"] $textareafun]
         }

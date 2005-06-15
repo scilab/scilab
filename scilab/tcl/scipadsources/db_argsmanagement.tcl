@@ -3,6 +3,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
 # This dialog can be called from the watch window or from the configure dialog
     global argname argvalue
     global adda getvaluefromscilab
+    global textFont menuFont
     set pos [$leftwin curselection]
     if {$pos == ""} {set pos -1}
     set adda $w.adda
@@ -21,16 +22,16 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     frame $adda.f
     frame $adda.f.f1
     set tl [mc "Variable:"]
-    label $adda.f.f1.label -text $tl -width 10
-    entry $adda.f.f1.entry  -textvariable argname -width 0 
+    label $adda.f.f1.label -text $tl -width 10 -font $menuFont
+    entry $adda.f.f1.entry -textvariable argname -width 0 -font $textFont
     pack $adda.f.f1.label $adda.f.f1.entry -side left
     pack $adda.f.f1.entry -expand 1 -fill x
     $adda.f.f1.entry selection range 0 end
     pack $adda.f.f1 -expand 1 -fill x
     frame $adda.f.f2
     set tl [mc "Value:"]
-    label $adda.f.f2.label -text $tl -width 10
-    entry $adda.f.f2.entry  -textvariable argvalue -width 0 
+    label $adda.f.f2.label -text $tl -width 10 -font $menuFont
+    entry $adda.f.f2.entry -textvariable argvalue -width 0 -font $textFont
     pack $adda.f.f2.label $adda.f.f2.entry -side left
     pack $adda.f.f2.entry -expand 1 -fill x
     $adda.f.f2.entry selection range 0 end
@@ -39,18 +40,19 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
         # This checkbutton is only displayed when the dialog is used with the watch window,
         # not with the configure box
         eval "checkbutton $adda.f.cbox1 [bl "Get current value from Scilab"] -variable getvaluefromscilab \
-                                                                     -command togglegetvaluefromscilab"
+                                                                     -command togglegetvaluefromscilab \
+                                                                     -font $menuFont"
         pack $adda.f.cbox1 -expand 0 -fill none -anchor w -padx 6
         $adda.f.cbox1 deselect
     }
     frame $adda.f.f9
     button $adda.f.f9.buttonOK -text "OK" \
            -command "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"\
-           -width 10 -height 1
+           -width 10 -height 1 -font $menuFont
     set bl [mc "Cancel"]
     button $adda.f.f9.buttonCancel -text $bl \
            -command "Canceladda_bp $adda $pos $leftwin"\
-           -width 10 -height 1
+           -width 10 -height 1 -font $menuFont
     pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
     pack $adda.f.f9 -pady 4
     pack $adda.f -expand 1 -fill x

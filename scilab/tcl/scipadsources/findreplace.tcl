@@ -246,6 +246,10 @@ proc ReplaceAll {} {
                 # Save area of the replaced text
                 if {$firstmatch == "true"} {
                     set reprange [$textareacur tag nextrange replacedtext 1.0]
+                    if {$reprange == ""} {
+                        # The found text was replaced by an empty string
+                        set reprange [list [$textareacur index insert] [$textareacur index insert]]
+                    }
                     set firstreplstart [lindex $reprange 0]
                     set lastreplstart  [lindex $reprange 1]
                 }
@@ -354,6 +358,7 @@ proc ResetFind {} {
 
 proc findtext {typ} {
 # procedure to find text
+    global textFont menuFont
     global SearchString SearchDir ReplaceString findcase find pad regexpcase
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
     set find $pad.find
@@ -363,8 +368,8 @@ proc findtext {typ} {
     setwingeom $find
     frame $find.l
     frame $find.l.f1
-    label $find.l.f1.label -text [mc "Find what:"] -width 11
-    entry $find.l.f1.entry -textvariable SearchString -width 30
+    label $find.l.f1.label -text [mc "Find what:"] -width 15 -font $menuFont
+    entry $find.l.f1.entry -textvariable SearchString -width 30 -font $textFont
     pack $find.l.f1.label $find.l.f1.entry -side left
  # next line commented since it does not sleep with -exportselection 1 on Linux
  #   $find.l.f1.entry selection range 0 end
@@ -375,8 +380,8 @@ proc findtext {typ} {
 #
     if {$typ=="replace"} {
         frame $find.l.f2
-        label $find.l.f2.label2 -text [mc "Replace with:"] -width 11
-        entry $find.l.f2.entry2  -textvariable ReplaceString -width 30 
+        label $find.l.f2.label2 -text [mc "Replace with:"] -width 15 -font $menuFont
+        entry $find.l.f2.entry2 -textvariable ReplaceString -width 30 -font $textFont
         pack $find.l.f2.label2 $find.l.f2.entry2 -side left
         pack $find.l.f1 $find.l.f2 -side top -pady 2
 #            bind $find.l.f2.entry2 <Control-c> {tk_textCopy $find.l.f2.entry2}
@@ -388,11 +393,11 @@ proc findtext {typ} {
         pack $find.l.f1 -pady 4
     }
     frame $find.f2
-    eval "button $find.f2.button1 [bl "Find &Next"] -command \"FindIt $find\" -height 1 -width 15"
-    eval "button $find.f2.button2 [bl "Cance&l"] -command \"CancelFind $find\" -height 1 -width 15"
+    eval "button $find.f2.button1 [bl "Find &Next"] -command \"FindIt $find\" -height 1 -width 15 -font $menuFont"
+    eval "button $find.f2.button2 [bl "Cance&l"] -command \"CancelFind $find\" -height 1 -width 15 -font $menuFont"
     if {$typ=="replace"} {
-        eval "button $find.f2.button3 [bl "Re&place"] -command \"ReplaceIt once\" -height 1 -width 15"
-        eval "button $find.f2.button4 [bl "Replace &All"] -command ReplaceAll -height 1 -width 15"
+        eval "button $find.f2.button3 [bl "Re&place"] -command \"ReplaceIt once\" -height 1 -width 15 -font $menuFont"
+        eval "button $find.f2.button4 [bl "Replace &All"] -command ReplaceAll -height 1 -width 15 -font $menuFont"
         pack $find.f2.button1 $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
     } else {
         pack $find.f2.button1 $find.f2.button2  -pady 4
@@ -400,14 +405,14 @@ proc findtext {typ} {
     frame $find.l.f4
     frame $find.l.f4.f3 -borderwidth 2 -relief groove
     eval "radiobutton $find.l.f4.f3.up [bl "&Upwards"] \
-        -variable SearchDir -value \"backwards\" -command \"ResetFind\" "
+        -variable SearchDir -value \"backwards\" -command \"ResetFind\" -font $menuFont "
     eval "radiobutton $find.l.f4.f3.down [bl "Downward&s"] \
-        -variable SearchDir -value \"forwards\" -command \"ResetFind\" "
+        -variable SearchDir -value \"forwards\" -command \"ResetFind\" -font $menuFont "
     $find.l.f4.f3.down invoke
     pack $find.l.f4.f3.up $find.l.f4.f3.down -side left
     frame $find.l.f4.f5
-    eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] -variable findcase"
-    eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] -variable regexpcase"
+    eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] -variable findcase -font $menuFont "
+    eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] -variable regexpcase -font $menuFont "
     pack $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 -anchor sw
     pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 10
     pack $find.l.f4 -pady 11
