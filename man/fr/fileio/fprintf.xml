@@ -38,15 +38,14 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    The <VERB>fprintf</VERB> function converts, formats, and writes
+   <P> Obsolete function, use preferabily the <LINK>mfprintf</LINK> function
+      which is much more compatible with the C <VERB>fprintf</VERB> functionalities.</P>
+  
+    <P>The <VERB>fprintf</VERB> function converts, formats, and writes
     its <VERB>value</VERB> parameters, under control of the <VERB>format</VERB>
-    parameter, to the file specified by its <VERB>file</VERB> parameter.
-  </P>
-    <P>
-    The <VERB>format</VERB> parameter is a character string that contains two
-    types of objects:
-  </P>
+    parameter, to the file specified by its <VERB>file</VERB> parameter.</P>
+    <P>The <VERB>format</VERB> parameter is a character string that contains two
+    types of objects:</P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Literal characters">
         <SP>: which are copied to the output stream.</SP>
@@ -70,6 +69,9 @@ file('close',u) //close the result file
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>string</LINK>
     </SEE_ALSO_ITEM>

@@ -38,6 +38,8 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+    <P> Obsolete function, use preferabily the <LINK>mfprintf</LINK> function
+      which is much more compatible with the C <VERB>fprintf</VERB> functionalities.</P>
     <P>
     The <VERB>fprintf</VERB> function converts, formats, and writes
     its <VERB>value</VERB> parameters, under control of the <VERB>format</VERB>
@@ -70,6 +72,9 @@ file('close',u) //close the result file
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>string</LINK>
     </SEE_ALSO_ITEM>
