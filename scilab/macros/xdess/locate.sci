@@ -19,41 +19,57 @@ function [x,but]=locate(n,flag)
 [lhs,rhs]=argn(0)
 but=[]
 xselect();
+st=get('figure_style')=='new'
 if rhs<=1,flag=0;end
 if rhs==0;n=-1;end
 
-deff('[]=clearmode(flag)',['modek=xget(''alufunction'')';
-    'xset(''alufunction'',6)';
-    'if flag==1,xpoly(x(1,:),x(2,:),''marks'',0);end';
-    'xset(''alufunction'',modek);';
-    'xset(''mark'',xxx(1),xxx(2))']);
+if ~st then //old graphic mode
+  xxx=xget('mark');
+  xset('mark',2,xxx(2));
 
+  deff('[]=clearmode(flag)',[
+      'modek=xget(''alufunction'')';
+      'xset(''alufunction'',6)';
+      'if flag==1,xpoly(x(1,:),x(2,:),''marks'',0);end';
+      'xset(''alufunction'',modek);';
+      'xset(''mark'',xxx(1),xxx(2))']);
+else
+  ax=gca()
+  mark_style=ax.mark_style;mark_size=ax.mark_size;mark_size_unit=ax.mark_size_unit;
+  ax.mark_style=2;ax.mark_size=0;ax.mark_size_unit = "tabulated"
+  deff('[]=clearmode(flag)',[
+      'npt=size(x,2);'
+      'if npt>0&flag==1 then'
+      '  delete(ax.children(1:npt))'
+      'end'
+      'ax.mark_size_unit=mark_size_unit;'
+      'ax.mark_style=mark_style;'
+      'ax.mark_size=mark_size;']);
+end
 x=[];
-xxx=xget('mark');
-xset('mark',2,xxx(2));
-wc=xget('window')
 if n >= 0 then 
   for i=1:n,
     while %t
-      [i,x1,y1,w,m]=xclick();
-      if w==wc then break,end
+      [ib,x1,y1]=xclick();
+      if or(ib==[0:5 10 11 12]) then break,end
+      if ib==-100 then return,end //the window has been closed
     end
-    if flag==1,xpoly(x1,y1,'marks',0);end
+    if flag==1,xpoly(x1,y1,'marks');end
     x=[x,[x1;y1]];
-    but=[but,i]
+    but=[but,ib]
   end
-else while %t, 
+else 
+  while %t, 
     while %t
-      [i,x1,y1,w,m]=xclick(), 
-      if w==wc then break,end
+      [ib,x1,y1]=xclick(), 
+      if or(ib==[0:5 10 11 12]) then break,end
+      if ib==-100 then return,end //the window has been closed
     end
-    if i==0 then
-      clearmode(flag),return
-    elseif flag==1 then
-      xpoly(x1,y1,'marks',0)
-    end
+    if or(ib==[0 3 10]) then 
+      break //terminate the acquisition loop
+    elseif flag==1 then xpoly(x1,y1,'marks'),end
     x=[x,[x1;y1]];
-    but=[but,i]
+    but=[but,ib]
   end
 end
 clearmode(flag);
