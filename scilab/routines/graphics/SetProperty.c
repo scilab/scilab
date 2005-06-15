@@ -143,7 +143,7 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
   for (k=0;k<m1*n;k++) pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
   pFIGURE_FEATURE ((sciPointObj *) pobj)->numcolors = m1;
   
-  sciRecursiveUpdateBaW(pobj,old_m, m); /* missing line F.Leray */
+   if (pobj != pfiguremdl) sciRecursiveUpdateBaW(pobj,old_m, m); /* missing line F.Leray */
 
   return 0;
 }
