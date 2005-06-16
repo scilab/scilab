@@ -7,10 +7,6 @@ cd [file dirname [info script]]
 variable DEMODIR [pwd]
 cd $pwd
 
-global MySciPath
-set MySciPath [file join  "$env(SCIPATH)"]
-
-
 variable DEMODIR
 
 lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
@@ -19,13 +15,18 @@ package require BWidget
 
 
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+set sourcedir2 [file join "$env(SCIPATH)" "tcl" "ged"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
 source [file join $sourcedir Balloon.tcl]
+source [file join $sourcedir2 ObjectsBrowser.tcl]
 
 package require combobox 2.3
 catch {namespace import combobox::*}
+
+#package require lemonTree
+catch {namespace import LemonTree::*}
 
 global SELOBJECT
 global ged_handle_list_size
@@ -60,12 +61,12 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Figure Editor"
 wm iconname $ww "FE"
-wm geometry $ww 690x650
+wm geometry $ww 570x490
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -86,47 +87,71 @@ set w $uf
 set fra [frame $w.frame -borderwidth 0]
 pack $fra  -anchor w -fill both
 
-#set w $ww
-#frame $w.frame -borderwidth 0
-#pack $w.frame -anchor w -fill both
 
-#Hierarchical selection
-set lalist ""
+#------------------------------------------------
+
+set theframe $fra
+
+#adding 15.06.2005
+set topflabel  [frame $theframe.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side left -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
+
+
+set wfortree $w
+
 for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
-append lalist "\""
-append lalist "$SELOBJECT($i)" 
-append lalist "\" "
+    set OBJECTSARRAY($i) $SELOBJECT($i)
 }
 
 set curgedobject $SELOBJECT($curgedindex)
 
+set tree  [Tree $wfortree.tree \
+	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
+	       -width 20 -height 10 \
+	       -background white -opencmd {LemonTree::open $wfortree.tree} \
+	       -selectbackground blue -selectforeground white ]
 
-#Hiereachical viewer
-set fra [frame $w.frame.view  -borderwidth 0]
-pack $fra -in $w.frame  -side top  -fill x
-#frame $w.frame.view  -borderwidth 0
-#pack $w.frame.view  -in $w.frame  -side top  -fill x
+pack [scrollbar $wfortree.x -orient horiz -command {$wfortree.tree xview}] -side bottom -fill x
+pack [scrollbar $wfortree.y -command {$wfortree.tree yview}] -side right -fill y
+pack $tree -fill both -expand 1 -side left
 
-#label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
-set lab [label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 ]
-pack $lab -in $w.frame.view   -side left
+$tree bindText  <1> {LemonTree::Info $tree}
+$tree bindImage <1> {LemonTree::Info $tree}
 
-set comb [combobox $w.frame.selgedobject \
-	      -borderwidth 2 \
-	      -highlightthickness 3 \
-	      -maxheight 0 \
-	      -width 3 \
-	      -textvariable curgedobject \
-	      -editable false \
-	      -background white \
-	      -command [list SelectObject ]]
-pack $comb  -in $w.frame.view  -fill x
-eval $w.frame.selgedobject list insert end $lalist
-#pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
-#pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+LemonTree::add $tree root FIGURE    currentfigure  "Figure(1)"
+
+# I open the tree to browse all the nodes (to know what nodes I have and what their names are)
+$tree opentree n1
+
+set allnodes [$tree selection get]
+
+#I close quickly the tree because openreeatnode expanded the tree...
+$tree closetree n1
 
 
-Notebook:create  $uf.n -pages {Style Mode Colormap} -pad 20   -height 520 -width 600
+# I directly point onto the current curgedobject (current Axes or Figure or picked entity)
+LemonTree::finddata $tree $allnodes $curgedobject
+
+
+#adding 15.06.2005
+set w [$titf1axes getframe]
+
+set uf $w
+#------------------------------------------------
+
+
+Notebook:create  $uf.n -pages {Style Mode Colormap} -pad 0   -height 380 -width 300
 pack  $uf.n -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -139,24 +164,24 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility: "
+label $w.frame.vislabel  -text "       Visibility: " -font {Arial 9}
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib"
+    -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -pady 2m -padx 2m
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -pady 0m -padx 2m
 
 
 #figure label
 frame $w.frame.lbfig -borderwidth 0
 pack $w.frame.lbfig  -in $w.frame -side top   -fill x
 
-label $w.frame.figlabel -text " Figure name: "
-entry $w.frame.figlabel1 -relief sunken  -textvariable figure_name
+label $w.frame.figlabel -text " Figure name: " -font {Arial 9}
+entry $w.frame.figlabel1 -relief sunken  -textvariable figure_name -font {Arial 9} -width 15
 pack $w.frame.figlabel -in  $w.frame.lbfig -side left
-pack $w.frame.figlabel1  -in  $w.frame.lbfig  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.figlabel1  -in  $w.frame.lbfig  -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.figlabel1 <Return> {setFiglabel} 
 bind  $w.frame.figlabel1 <KP_Enter> {setFiglabel} 
 
@@ -165,19 +190,19 @@ bind  $w.frame.figlabel1 <KP_Enter> {setFiglabel}
 frame $w.frame.lbfigid -borderwidth 0
 pack $w.frame.lbfigid  -in $w.frame -side top   -fill x
 
-label $w.frame.figidlabel -text "     Figure id:"
-label $w.frame.figidlabel1 -textvariable figure_id
-pack $w.frame.figidlabel $w.frame.figidlabel1 -in  $w.frame.lbfigid -side left  -fill x -pady 2m -padx 2m
+label $w.frame.figidlabel -text "     Figure id:" -font {Arial 9}
+label $w.frame.figidlabel1 -textvariable figure_id -font {Arial 9}
+pack $w.frame.figidlabel $w.frame.figidlabel1 -in  $w.frame.lbfigid -side left  -fill x -pady 0m -padx 2m
 
 
 #figure position x
 frame $w.frame.xfigpos -borderwidth 0
 pack $w.frame.xfigpos  -in $w.frame -side top   -fill x
 
-label $w.frame.xfigposlabel -text "   X position : "
-entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition
+label $w.frame.xfigposlabel -text "   X position : " -font {Arial 9}
+entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition -font {Arial 9} -width 10
 pack $w.frame.xfigposlabel -in  $w.frame.xfigpos -side left
-pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 2m -padx 2m -side left 
+pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 0m -padx 2m -side left 
 bind  $w.frame.xfigposlabel1 <Return> {setFigPos} 
 bind  $w.frame.xfigposlabel1 <KP_Enter> {setFigPos} 
 
@@ -185,10 +210,10 @@ bind  $w.frame.xfigposlabel1 <KP_Enter> {setFigPos}
 frame $w.frame.yfigpos -borderwidth 0
 pack $w.frame.yfigpos  -in $w.frame -side top   -fill x
 
-label $w.frame.yfigposlabel -text "   Y position : "
-entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition
+label $w.frame.yfigposlabel -text "   Y position : " -font {Arial 9}
+entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition -font {Arial 9} -width 10
 pack $w.frame.yfigposlabel -in  $w.frame.yfigpos -side left
-pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 2m -padx 2m -side left 
+pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 0m -padx 2m -side left 
 bind  $w.frame.yfigposlabel1 <Return> {setFigPos} 
 bind  $w.frame.yfigposlabel1 <KP_Enter> {setFigPos} 
 
@@ -196,10 +221,10 @@ bind  $w.frame.yfigposlabel1 <KP_Enter> {setFigPos}
 frame $w.frame.xfigsiz -borderwidth 0
 pack $w.frame.xfigsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.xfigsizlabel -text "         X size : "
-entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz
+label $w.frame.xfigsizlabel -text "         X size : " -font {Arial 9}
+entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz -font {Arial 9} -width 10
 pack $w.frame.xfigsizlabel -in  $w.frame.xfigsiz -side left
-pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 2m -padx 2m -side left 
+pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 0m -padx 2m -side left 
 bind  $w.frame.xfigsizlabel1 <Return> {setFigSiz} 
 bind  $w.frame.xfigsizlabel1 <KP_Enter> {setFigSiz} 
 
@@ -207,10 +232,10 @@ bind  $w.frame.xfigsizlabel1 <KP_Enter> {setFigSiz}
 frame $w.frame.yfigsiz -borderwidth 0
 pack $w.frame.yfigsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.yfigsizlabel -text "         Y size : "
-entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz
+label $w.frame.yfigsizlabel -text "         Y size : " -font {Arial 9}
+entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz -font {Arial 9} -width 10
 pack $w.frame.yfigsizlabel -in  $w.frame.yfigsiz -side left
-pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 2m -padx 2m -side left 
+pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 0m -padx 2m -side left 
 bind  $w.frame.yfigsizlabel1 <Return> {setFigSiz} 
 bind  $w.frame.yfigsizlabel1 <KP_Enter> {setFigSiz} 
 
@@ -218,10 +243,10 @@ bind  $w.frame.yfigsizlabel1 <KP_Enter> {setFigSiz}
 frame $w.frame.xaxesiz -borderwidth 0
 pack $w.frame.xaxesiz  -in $w.frame -side top   -fill x
 
-label $w.frame.xaxesizlabel -text "  X axis size : "
-entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz
+label $w.frame.xaxesizlabel -text "  X axis size : " -font {Arial 9}
+entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz -font {Arial 9} -width 10
 pack $w.frame.xaxesizlabel -in  $w.frame.xaxesiz -side left
-pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 2m -padx 2m -side left 
+pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 0m -padx 2m -side left 
 bind  $w.frame.xaxesizlabel1 <Return> {setAxeSiz} 
 bind  $w.frame.xaxesizlabel1 <KP_Enter> {setAxeSiz} 
 
@@ -229,34 +254,34 @@ bind  $w.frame.xaxesizlabel1 <KP_Enter> {setAxeSiz}
 frame $w.frame.yaxesiz -borderwidth 0
 pack $w.frame.yaxesiz  -in $w.frame -side top   -fill x
 
-label $w.frame.yaxesizlabel -text "  Y axis size : "
-entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz
+label $w.frame.yaxesizlabel -text "  Y axis size : " -font {Arial 9}
+entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz -font {Arial 9} -width 10
 pack $w.frame.yaxesizlabel -in  $w.frame.yaxesiz -side left
-pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 2m -padx 2m -side left 
+pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 0m -padx 2m -side left 
 bind  $w.frame.yaxesizlabel1 <Return> {setAxeSiz} 
 bind  $w.frame.yaxesizlabel1 <KP_Enter> {setAxeSiz} 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
 pack $w.frame.clrb  -in $w.frame -side top  -fill x
-label $w.frame.bcolorlabel -height 0 -text "Background\n   color:         " -width 0 
+label $w.frame.bcolorlabel -height 0 -text "Background\n   color:         " -width 0  -font {Arial 9}
 
 scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0
+	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0 -font {Arial 9}
 
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor -in  $w.frame.clrb -side left  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.bcolor -in  $w.frame.clrb -side left  -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.bcolor set $bcolor
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 12m
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
-pack $w.buttons.dismiss  -side bottom -expand 1
+pack $w.buttons -side bottom -fill x -pady 0m
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+pack $w.buttons.dismiss  -side top
 
 
 ########### Mode onglet ###########################################
@@ -270,34 +295,34 @@ pack $w.frame -anchor w -fill both
 #auto resize
 frame $w.frame.autorsz -borderwidth 0
 pack $w.frame.autorsz  -in $w.frame  -side top -fill x
-label $w.frame.autorszlabel  -text "            Auto resize: "
+label $w.frame.autorszlabel  -text "            Auto resize: " -font {Arial 9}
 checkbutton $w.frame.autorszib  -text "on"\
     -variable curautoresize -onvalue "on" -offvalue "off" \
-    -command "toggleResize $w.frame.autorszib"
+    -command "toggleResize $w.frame.autorszib" -font {Arial 9}
 OnOffForeground $w.frame.autorszib $curautoresize
 
 pack $w.frame.autorszlabel -in $w.frame.autorsz  -side left
-pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 2m -padx 2m
+pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 0m -padx 2m
 
 
 #pixmap
 frame $w.frame.pix -borderwidth 0
 pack $w.frame.pix  -in $w.frame  -side top -fill x
-label $w.frame.pixlabel  -text "                  Pixmap: "
+label $w.frame.pixlabel  -text "                  Pixmap: " -font {Arial 9}
 checkbutton $w.frame.pixib  -text "on"\
     -variable curpix  -onvalue "on" -offvalue "off" \
-    -command "togglePix $w.frame.pixib"
+    -command "togglePix $w.frame.pixib" -font {Arial 9}
 OnOffForeground $w.frame.pixib $curpix
 
 pack $w.frame.pixlabel -in $w.frame.pix  -side left
-pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 2m -padx 2m
+pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 0m -padx 2m
 
 
 #pixel drawing mode
 frame $w.frame.pixel  -borderwidth 0
 pack $w.frame.pixel  -in $w.frame -side top -fill x
 
-label $w.frame.pixdmodelbl  -height 0 -text "Pixel drawing mode:  " -width 0 
+label $w.frame.pixdmodelbl  -height 0 -text "Pixel drawing mode:  " -width 0  -font {Arial 9}
 combobox $w.frame.pixdmode \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -305,18 +330,18 @@ combobox $w.frame.pixdmode \
     -width 3 \
     -textvariable curpdm \
     -editable false \
-    -command [list SelectPixelDrawingMode]
+    -command [list SelectPixelDrawingMode] -font {Arial 9}
 eval $w.frame.pixdmode list insert end [list "clear" "and" "andReverse"  "copy" "andInverted"  "noop"  "xor"  "or"  "nor"  "equiv"  "invert"  "orReverse"  "copyInverted"  "orInverted"  "nand"  "set" ]
 
 pack $w.frame.pixdmodelbl -in $w.frame.pixel   -side left
-pack $w.frame.pixdmode -in $w.frame.pixel  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.pixdmode -in $w.frame.pixel  -expand 1 -fill x -pady 0m -padx 2m
 
 
 #rotation style
 frame $w.frame.rotstyle  -borderwidth 0
 pack $w.frame.rotstyle  -in $w.frame -side top -fill x
 
-label $w.frame.rotstylelbl  -height 0 -text "        Rotation style:  " -width 0 
+label $w.frame.rotstylelbl  -height 0 -text "        Rotation style:  " -width 0  -font {Arial 9}
 combobox $w.frame.rotstyl \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -324,21 +349,21 @@ combobox $w.frame.rotstyl \
     -width 3 \
     -textvariable currotation_style \
     -editable false \
-    -command [list SelectRotationStyle]
+    -command [list SelectRotationStyle] -font {Arial 9}
 eval $w.frame.rotstyl list insert end [list "unary" "multiple"]
 
 pack $w.frame.rotstylelbl -in $w.frame.rotstyle   -side left
-pack $w.frame.rotstyl -in $w.frame.rotstyle  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.rotstyl -in $w.frame.rotstyle  -expand 1 -fill x -pady 0m -padx 2m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 40m
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
-pack $w.buttons.dismiss  -side bottom -expand 1
+pack $w.buttons -side bottom -fill x
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+pack $w.buttons.dismiss  -side top
 
 
 ########### Colormap onglet #######################################
@@ -355,25 +380,25 @@ pack $w.frame.fdata  -in $w.frame -side top   -fill x
 scrollbar $w.frame.ysbar -orient vertical -command   {$w.frame.c yview}
 canvas $w.frame.c -width 8i -height 3.5i  -yscrollcommand {$w.frame.ysbar set}
 
-$w.frame.c create text 160 10 -anchor c -text "RED"
-$w.frame.c create text 310 10 -anchor c -text "GREEN"
-$w.frame.c create text 460 10 -anchor c -text "BLUE"
+$w.frame.c create text 50 10 -anchor c -text "RED" -font {Arial 9}
+$w.frame.c create text 130 10 -anchor c -text "GREEN" -font {Arial 9}
+$w.frame.c create text 210 10 -anchor c -text "BLUE" -font {Arial 9}
 
 for {set i 1} {$i<=$ncolors} {incr i} {
     set bb [expr 10+(25*$i)]
-    $w.frame.c create text 10 $bb -anchor c -text $i
+    $w.frame.c create text 10 $bb -anchor c -text $i -font {Arial 9}
 #RED
-    set aa [expr 10+(1*150)]
-    entry  $w.frame.c.reddata$i  -relief sunken  -textvariable RED($i)
+    set aa 50
+    entry  $w.frame.c.reddata$i  -relief sunken  -textvariable RED($i) -width 10 -font {Arial 9}
     bind  $w.frame.c.reddata$i <Return> "setRedColor $w $i "
     bind  $w.frame.c.reddata$i <KP_Enter> "setRedColor $w $i "
-#location help balloon	
+#location help balloon
     set_balloon $w.frame.c.reddata$i "Row: $i Column: 1"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.reddata$i
 
 #GREEN
-    set aa [expr 10+(2*150)]
-    entry  $w.frame.c.gredata$i  -relief sunken  -textvariable GREEN($i)
+    set aa 130
+    entry  $w.frame.c.gredata$i  -relief sunken  -textvariable GREEN($i) -width 10 -font {Arial 9}
     bind  $w.frame.c.gredata$i <Return> "setGreenColor $w $i "
     bind  $w.frame.c.gredata$i <KP_Enter> "setGreenColor $w $i "
 #location help balloon	
@@ -382,8 +407,8 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.gredata$i
 
 #BLUE
-    set aa [expr 10+(3*150)]
-    entry  $w.frame.c.bludata$i  -relief sunken  -textvariable BLUE($i)
+    set aa 210
+    entry  $w.frame.c.bludata$i  -relief sunken  -textvariable BLUE($i) -width 10 -font {Arial 9}
     bind  $w.frame.c.bludata$i <Return> "setBlueColor  $w $i "
     bind  $w.frame.c.bludata$i <KP_Enter> "setBlueColor  $w $i "
 #location help balloon	
@@ -396,7 +421,7 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     set BLUC $BLUE($i) 
     
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
-    set aa [expr 10+(4*150) - 60]
+    set aa 260
     $w.frame.c create rectangle $aa [expr $bb-10] [expr $aa+20] [expr $bb+10] -fill $color
 
 }
@@ -408,20 +433,20 @@ pack  $w.frame.c
 
 
 frame $w.scicom1
-pack $w.scicom1 -side top -fill x -pady 2m
+pack $w.scicom1 -side top -fill x -pady 0m
 
-label $w.scicom1.label1 -text "Scilab Command Interface for colormap:"
+label $w.scicom1.label1 -text "Scilab Command Interface for colormap:" -font {Arial 9}
 pack  $w.scicom1.label1 -in $w.scicom1 -side left
 
 frame $w.scicom
-pack $w.scicom -side top -fill x -pady 2m
+pack $w.scicom -side top -fill x -pady 0m
 
 
-label $w.scicom.label1 -text "Colormap (Nx3 double array) = "
+label $w.scicom.label1 -text "Colormap (Nx3 double array) = " -font {Arial 9}
 pack  $w.scicom.label1 -in $w.scicom -side left
 
 #text $w.scicom.text1 -height 3m -width 50 -relief sunken -yscrollcommand "$w.scicom.scroll set"
-entry $w.scicom.text1 -relief sunken -textvariable scicomint_colormap
+entry $w.scicom.text1 -relief sunken -textvariable scicomint_colormap -width 10 -font {Arial 9}
 set_balloon $w.scicom.text1 "Enter a graycolormap(COLOR_NUMBER), hotcolormap(COLOR_NUMBER)\n or jetcolormap(COLOR_NUMBER) call to initialize the \"colormap\" field."
 bind  $w.scicom.text1 <Return> "sciCommandColormap"
 bind  $w.scicom.text1 <KP_Enter> "sciCommandColormap"
@@ -430,36 +455,18 @@ pack $w.scicom.text1  -side left -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 10m
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
 pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
-pack $w.buttons.dismiss  -side bottom -expand 1
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+pack $w.buttons.dismiss  -side top
 
 
 pack $sw $pw1 -fill both -expand yes
 pack $titf1 -padx 4 -side left -fill both -expand yes
 pack $topf -fill both -pady 2 -expand yes
-
-
-
-#proc associes
-proc SelectObject {w args} {
-    global curgedobject;
-    global ged_handle_list_size;
-    global SELOBJECT
-    
-    set index 1
-
-    for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
-	if {$curgedobject==$SELOBJECT($i)} {
-	    set index $i
-	}
-    }
-    ScilabEval "Get_handle_from_index($index);"
-}
 
 
 

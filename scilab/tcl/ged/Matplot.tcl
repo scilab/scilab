@@ -17,13 +17,18 @@ package require BWidget
 
 
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+set sourcedir2 [file join "$env(SCIPATH)" "tcl" "ged"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
 source [file join $sourcedir Balloon.tcl]
+source [file join $sourcedir2 ObjectsBrowser.tcl]
 
 package require combobox 2.3
 catch {namespace import combobox::*}
+
+#package require lemonTree
+catch {namespace import LemonTree::*}
 
 global SELOBJECT
 global ged_handle_list_size
@@ -55,11 +60,11 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Matplot Object"
 wm iconname $ww "ME"
-wm geometry $ww 435x520
+wm geometry $ww 450x250
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -80,47 +85,71 @@ set uf [$sf getframe]
 set w $uf
 set fra [frame $w.frame -borderwidth 0]
 pack $fra  -anchor w -fill both
-#frame $w.frame -borderwidth 0
-#pack $w.frame -anchor w -fill both
 
-#Hierarchical selection
-set lalist ""
+#------------------------------------------------
+
+set theframe $fra
+
+#adding 15.06.2005
+set topflabel  [frame $theframe.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side left -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
+
+
+set wfortree $w
+
 for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
-append lalist "\""
-append lalist "$SELOBJECT($i)" 
-append lalist "\" "
+    set OBJECTSARRAY($i) $SELOBJECT($i)
 }
 
 set curgedobject $SELOBJECT($curgedindex)
 
+set tree  [Tree $wfortree.tree \
+	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
+	       -width 20 -height 10 \
+	       -background white -opencmd {LemonTree::open $wfortree.tree} \
+	       -selectbackground blue -selectforeground white ]
 
-#Hiereachical viewer
-set fra [frame $w.frame.view  -borderwidth 0]
-pack $fra -in $w.frame  -side top  -fill x
-#frame $w.frame.view  -borderwidth 0
-#pack $w.frame.view  -in $w.frame  -side top  -fill x
+pack [scrollbar $wfortree.x -orient horiz -command {$wfortree.tree xview}] -side bottom -fill x
+pack [scrollbar $wfortree.y -command {$wfortree.tree yview}] -side right -fill y
+pack $tree -fill both -expand 1 -side left
 
-#label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
-set lab [label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 ]
-pack $lab -in $w.frame.view   -side left
+$tree bindText  <1> {LemonTree::Info $tree}
+$tree bindImage <1> {LemonTree::Info $tree}
 
-set comb [ combobox $w.frame.selgedobject \
-	       -borderwidth 2 \
-	       -highlightthickness 3 \
-	       -maxheight 0 \
-	       -width 3 \
-	       -textvariable curgedobject \
-	       -editable false \
-	       -background white \
-	       -command [list SelectObject ]]
-pack $comb  -in $w.frame.view  -fill x
-eval $w.frame.selgedobject list insert end $lalist
-#pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
-#pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+LemonTree::add $tree root FIGURE    currentfigure  "Figure(1)"
+
+# I open the tree to browse all the nodes (to know what nodes I have and what their names are)
+$tree opentree n1
+
+set allnodes [$tree selection get]
+
+#I close quickly the tree because openreeatnode expanded the tree...
+$tree closetree n1
 
 
+# I directly point onto the current curgedobject (current Axes or Figure or picked entity)
+LemonTree::finddata $tree $allnodes $curgedobject
 
-Notebook:create $uf.n -pages {"Style" "Data" } -pad 20 -height 400 -width 350
+
+#adding 15.06.2005
+set w [$titf1axes getframe]
+
+set uf $w
+#------------------------------------------------
+
+
+Notebook:create $uf.n -pages {"Style" "Data" } -pad 0 -height  120 -width 180
 pack $uf.n -in $uf -fill both -expand yes
 
 ########### Style onglet ##########################################
@@ -133,10 +162,10 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "               Visibility:    "
+label $w.frame.vislabel  -text "               Visibility:    " -font {Arial 9}
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib"
+    -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
@@ -157,14 +186,14 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 #    -command [list SelectDataMapping ]
 #eval $w.frame.dtmapyle list insert end [list "direct" "scaled"]
 #pack $w.frame.dtmapylelabel -in $w.frame.dtmap   -side left
-#pack $w.frame.dtmapyle   -in $w.frame.dtmap   -expand 1 -fill x -pady 2m -padx 2m
+#pack $w.frame.dtmapyle   -in $w.frame.dtmap   -expand 1 -fill x -pady 0m -padx 2m
 #
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 5m
+pack $w.sep -fill both
 
 #exit button
-button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww" 
+button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
 pack $w.buttons -side bottom
 
 
@@ -187,7 +216,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.curdataframeX  -borderwidth 0
 pack $w.frame.curdataframeX  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelX  -height 0 -text "       Data :   " -width 0 
+label $w.frame.polydatalabelX  -height 0 -text "       Data :   " -width 0   -font {Arial 9}
 combobox $w.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -195,10 +224,10 @@ combobox $w.frame.polydataX \
     -width 3 \
     -textvariable curdata \
     -editable false \
-    -command [list SelectData ]
+    -command [list SelectData ]  -font {Arial 9}
 eval $w.frame.polydataX list insert end [list $curdata "----" "Edit data..."]
 pack $w.frame.polydatalabelX -in $w.frame.curdataframeX  -side left
-pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 0m -padx 2m
 
 
 #######################################################
@@ -207,18 +236,18 @@ pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 2m
 
 
 frame $w.scicom1
-pack $w.scicom1 -side top -fill x -pady 2m
+pack $w.scicom1 -side top -fill x -pady 0m
 
-label $w.scicom1.label1 -text "Scilab Command Interface for data:"
+label $w.scicom1.label1 -text "Scilab Command Interface for data:"  -font {Arial 9}
 pack  $w.scicom1.label1 -in $w.scicom1 -side left
 
 frame $w.scicomX
-pack $w.scicomX -side top -fill x -pady 2m
+pack $w.scicomX -side top -fill x -pady 0m
 
-label $w.scicomX.label1 -text "matplot_handle.data =      "
+label $w.scicomX.label1 -text "matplot_handle.data =      "  -font {Arial 9}
 pack  $w.scicomX.label1 -in $w.scicomX -side left
 
-entry $w.scicomX.text1 -relief sunken -textvariable scicomint_data
+entry $w.scicomX.text1 -relief sunken -textvariable scicomint_data -width 10  -font {Arial 9}
 set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"data\" field."
 bind  $w.scicomX.text1 <Return> "sciCommandData"
 bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
@@ -228,12 +257,12 @@ pack $w.scicomX.text1  -side left  -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 5m
+pack $w.sep -fill both
 
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
 pack $w.b -side bottom 
 
 
@@ -253,24 +282,6 @@ proc toggleVis { frame } {
 
     OnOffForeground $frame $curvis
 }
-
-
-proc SelectObject {w args} {
-    global curgedobject;
-    global ged_handle_list_size;
-    global SELOBJECT
-    
-    set index 1
-
-    for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
-	if {$curgedobject==$SELOBJECT($i)} {
-	    set index $i
-	}
-    }
-    ScilabEval "Get_handle_from_index($index);"
-}
-
-
 
 proc setXData { i } {
 global grayplotXVAL

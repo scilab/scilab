@@ -17,11 +17,17 @@ package require BWidget
 
 
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+set sourcedir2 [file join "$env(SCIPATH)" "tcl" "ged"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir2 ObjectsBrowser.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
+
+#package require lemonTree
+catch {namespace import LemonTree::*}
 
 global SELOBJECT
 global ged_handle_list_size
@@ -50,12 +56,12 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Legend Object"
 wm iconname $ww "LO"
-wm geometry $ww 530x550
+wm geometry $ww 470x300
 #wm geometry $ww 650x700
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -76,47 +82,71 @@ set uf [$sf getframe]
 set w $uf
 set fra [frame $w.frame -borderwidth 0]
 pack $fra  -anchor w -fill both
-#frame $w.frame -borderwidth 0
-#pack $w.frame -anchor w -fill both
 
-#Hierarchical selection
-set lalist ""
+#------------------------------------------------
+
+set theframe $fra
+
+#adding 15.06.2005
+set topflabel  [frame $theframe.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side left -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
+
+
+set wfortree $w
+
 for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
-append lalist "\""
-append lalist "$SELOBJECT($i)" 
-append lalist "\" "
+    set OBJECTSARRAY($i) $SELOBJECT($i)
 }
 
 set curgedobject $SELOBJECT($curgedindex)
 
+set tree  [Tree $wfortree.tree \
+	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
+	       -width 20 -height 10 \
+	       -background white -opencmd {LemonTree::open $wfortree.tree} \
+	       -selectbackground blue -selectforeground white ]
 
-#Hiereachical viewer
-set fra [frame $w.frame.view  -borderwidth 0]
-pack $fra -in $w.frame  -side top  -fill x
-#frame $w.frame.view  -borderwidth 0
-#pack $w.frame.view  -in $w.frame  -side top  -fill x
+pack [scrollbar $wfortree.x -orient horiz -command {$wfortree.tree xview}] -side bottom -fill x
+pack [scrollbar $wfortree.y -command {$wfortree.tree yview}] -side right -fill y
+pack $tree -fill both -expand 1 -side left
 
-#label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
-set lab [label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 ]
-pack $lab -in $w.frame.view   -side left
+$tree bindText  <1> {LemonTree::Info $tree}
+$tree bindImage <1> {LemonTree::Info $tree}
 
-set comb [ combobox $w.frame.selgedobject \
-	       -borderwidth 2 \
-	       -highlightthickness 3 \
-	       -maxheight 0 \
-	       -width 3 \
-	       -textvariable curgedobject \
-	       -editable false \
-	       -background white \
-	       -command [list SelectObject ]]
-pack $comb  -in $w.frame.view  -fill x
-eval $w.frame.selgedobject list insert end $lalist
-#pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
-#pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+LemonTree::add $tree root FIGURE    currentfigure  "Figure(1)"
+
+# I open the tree to browse all the nodes (to know what nodes I have and what their names are)
+$tree opentree n1
+
+set allnodes [$tree selection get]
+
+#I close quickly the tree because openreeatnode expanded the tree...
+$tree closetree n1
 
 
+# I directly point onto the current curgedobject (current Axes or Figure or picked entity)
+LemonTree::finddata $tree $allnodes $curgedobject
 
-Notebook:create $uf.n -pages {"Style & Data"} -pad 40 -height 350
+
+#adding 15.06.2005
+set w [$titf1axes getframe]
+
+set uf $w
+#------------------------------------------------
+
+
+Notebook:create $uf.n -pages {"Style & Data"} -pad 0 -height 200 -width 200
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -129,10 +159,10 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility: "
+label $w.frame.vislabel  -text "       Visibility: " -font {Arial 9}
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib"
+    -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
@@ -141,12 +171,12 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
 #x label
 frame $w.frame.lbx -borderwidth 0
-pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.xlabel -text "             Text: "
-entry $w.frame.xlabel1 -relief sunken  -textvariable curtext
+label $w.frame.xlabel -text "             Text: " -font {Arial 9}
+entry $w.frame.xlabel1 -relief sunken  -textvariable curtext -width 15 -font {Arial 9}
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
-pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setText} 
 bind  $w.frame.xlabel1 <KP_Enter> {setText} 
 
@@ -154,34 +184,34 @@ bind  $w.frame.xlabel1 <KP_Enter> {setText}
 ###############
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "            Color: " -width 0 
+label $w.frame.fontcolorlabel -height 0 -text "            Color: " -width 0  -font {Arial 9}
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontcolor set $curforeground
 
 
 #Fontsize scale
 frame $w.frame.fontssz  -borderwidth 0
-pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 2m
+pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 0m
 
-label $w.frame.fontsizelabel -height 0 -text "      Font size:  " -width 0 
+label $w.frame.fontsizelabel -height 0 -text "      Font size:  " -width 0  -font {Arial 9}
 scale $w.frame.fontsize -orient horizontal  -from 0 -to 5 \
-	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0
+	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0 -font {Arial 9}
 pack $w.frame.fontsizelabel  -in $w.frame.fontssz -side left
-pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontsize set $curfontsize
 
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
+pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "     Font style:  " -width 0 
+label $w.frame.stylelabel  -height 0 -text "     Font style:  " -width 0  -font {Arial 9}
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -189,20 +219,20 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable curfontstyle \
     -editable false \
-    -command [list SelectFontStyle]
+    -command [list SelectFontStyle] -font {Arial 9}
 eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 2m
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww" 
+pack $w.buttons -side bottom -fill x -pady 0m
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
@@ -218,24 +248,6 @@ proc toggleVis { frame } {
 
     OnOffForeground $frame $curvis
 }
-
-
-proc SelectObject {w args} {
-    global curgedobject;
-    global ged_handle_list_size;
-    global SELOBJECT
-    
-    set index 1
-
-    for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
-	if {$curgedobject==$SELOBJECT($i)} {
-	    set index $i
-	}
-    }
-    ScilabEval "Get_handle_from_index($index);"
-}
-
-
 
 proc setFontColor {w  index} {
     global RED BLUE GREEN

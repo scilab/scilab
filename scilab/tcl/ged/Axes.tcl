@@ -7,7 +7,8 @@ cd [file dirname [info script]]
 variable DEMODIR [pwd]
 cd $pwd
 
-
+#debug info.
+#set env(SCIPATH) "/home/leray/scilab"
 
 variable DEMODIR
 
@@ -17,11 +18,17 @@ namespace inscope :: package require BWidget
 package require BWidget
 
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+set sourcedir2 [file join "$env(SCIPATH)" "tcl" "ged"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+source [file join $sourcedir2 ObjectsBrowser.tcl]
+
 package require combobox 2.3
 catch {namespace import combobox::*}
+
+#package require lemonTree
+catch {namespace import LemonTree::*}
 
 
 global fen1 fen2 fen3
@@ -70,6 +77,21 @@ global Xlabelfontstyle Ylabelfontstyle Zlabelfontstyle TITLEfontstyle fontstyle
 global RED GREEN BLUE
 
 global hiddencolor
+
+
+
+# #debug
+#  set ged_handle_list_size 2
+#  set curgedindex 1
+
+#  set SELOBJECT(1) "Figure"
+#  set SELOBJECT(2) "Axes"
+
+#  set OBJECTSARRAY(1) "dzdz"
+#  set OBJECTSARRAY(2) "dzd"
+#  set curgedobject "dzd"
+
+
 
 # add for XF init only : to remove after...
 
@@ -136,17 +158,19 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 500x750
+wm geometry $ww 580x470
 #wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
+
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
 
 set parent  [$titf1 getframe]
-set pw1  [PanedWindow $parent.pw -side top]
-set pane3  $pw1  
+set pw1  [PanedWindow $parent.pw1 -side top]
+
+set pane3  [$pw1 add -weight 2]
 
 
 # Make a frame scrollable
@@ -161,61 +185,77 @@ set w $uf
 set fra [frame $w.frame -borderwidth 0]
 pack $fra  -anchor w -fill both
 
-#set w $ww
-#frame $w.frame -borderwidth 0
-#pack $w.frame -anchor w -fill both
+#------------------------------------------------
+
+set theframe $fra
+
+#adding 15.06.2005
+set topflabel  [frame $theframe.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side left -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+#end adding
 
 
-#Hierarchical selection
-set lalist ""
-# puts "ged_handle_list_size vaut: $ged_handle_list_size"
-# puts "SELOBJECT(1) = $SELOBJECT(1) "
-# puts "SELOBJECT(2) = $SELOBJECT(2) "
-# puts "SELOBJECT(3) = $SELOBJECT(3) "
-# puts "SELOBJECT(4) = $SELOBJECT(4) "
+set wfortree $w
 
 for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
-append lalist "\""
-append lalist "$SELOBJECT($i)" 
-append lalist "\" "
+    set OBJECTSARRAY($i) $SELOBJECT($i)
 }
 
 set curgedobject $SELOBJECT($curgedindex)
 
-#bind $ww <destroy> {destroy $ww}
-#bind $ww <Maximize> "DestroyGlobals; destroy $ww"
+set tree  [Tree $wfortree.tree \
+	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
+	       -width 20 -height 26 \
+	       -background white -opencmd {LemonTree::open $wfortree.tree} \
+	       -selectbackground blue -selectforeground white ]
 
-#Hiereachical viewer
-set fra [frame $w.frame.view  -borderwidth 0]
-pack $fra -in $w.frame  -side top  -fill x
-#frame $w.frame.view  -borderwidth 0
-#pack $w.frame.view  -in $w.frame  -side top  -fill x
+pack [scrollbar $wfortree.x -orient horiz -command {$wfortree.tree xview}] -side bottom -fill x
+pack [scrollbar $wfortree.y -command {$wfortree.tree yview}] -side right -fill y
+pack $tree -fill both -expand 1 -side left
 
-#label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
-set lab [label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 ]
-pack $lab -in $w.frame.view   -side left
+$tree bindText  <1> {LemonTree::Info $tree}
+$tree bindImage <1> {LemonTree::Info $tree}
 
-set comb [ combobox $w.frame.selgedobject \
-	       -borderwidth 2 \
-	       -highlightthickness 3 \
-	       -maxheight 0 \
-	       -width 3 \
-	       -textvariable curgedobject \
-	       -editable false \
-	       -background white \
-	       -command [list SelectObject ]]
-pack $comb  -in $w.frame.view  -fill x
-eval $w.frame.selgedobject list insert end $lalist
-#pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
-#pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+LemonTree::add $tree root FIGURE    currentfigure  "Figure(1)"
 
-Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis" Title Style Aspect Viewpoint} -pad 20   -height 600 -width 420
-pack $uf.n -fill both -expand yes
+# I open the tree to browse all the nodes (to know what nodes I have and what their names are)
+$tree opentree n1
+
+set allnodes [$tree selection get]
+
+#I close quickly the tree because openreeatnode expanded the tree...
+$tree closetree n1
+
+
+# I directly point onto the current curgedobject (current Axes or Figure or picked entity)
+LemonTree::finddata $tree $allnodes $curgedobject
+
+
+#adding 15.06.2005
+set w [$titf1axes getframe]
+
+set uf $w
+#------------------------------------------------
+
+
+
+Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 0  -height 100 -width 300
+pack $uf.n -fill both -expand yes  -side top
 
 
 ########### X onglet ##############################################
 ###################################################################
-set w [Notebook:frame $uf.n "X Axis"]
+set w [Notebook:frame $uf.n "X"]
 
 set theframe $w
 
@@ -224,14 +264,14 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options"]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options"]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
 
 set w [$titf1label getframe]
 
 pack $titf1label -padx 4 -side top -fill both -expand yes
-pack $topflabel -fill x -pady 2
-pack $titf1axes  -pady 2 -padx 4 -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -240,23 +280,23 @@ pack $w.frame -anchor w -fill both
 
 #x label
 frame $w.frame.lbx -borderwidth 0
-pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 0m
 
 
-label $w.frame.xlabel -text "     Label:  "
-entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel 
+label $w.frame.xlabel -text "     Label:  " -font {Arial 9}
+entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel  -font {Arial 9}
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
-pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setXlabel} 
 bind  $w.frame.xlabel1 <KP_Enter> {setXlabel}
 bind  $w.frame.xlabel1 <FocusOut> {setXlabel}
 
 frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "  Visibility:   "
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.vislablabel  -text "  Visibility:   "  -font {Arial 9}
 checkbutton $w.frame.vislabb \
     -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabx $w.frame.vislabb" -text "on"
+    -command "toggleVisibilitylabx $w.frame.vislabb" -text "on"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $xlabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
@@ -265,35 +305,35 @@ pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
+label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0   -font {Arial 9}
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+    -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontcolor set $xlabel_foreground
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0   -font {Arial 9}
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-    -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0 
+    -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontsize set $xlabel_fontsize
 
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
+pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0   -font {Arial 9}
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -301,11 +341,11 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable Xlabelfontstyle \
     -editable false \
-    -command [list SelectXFontStyle ]
+    -command [list SelectXFontStyle ]  -font {Arial 9}
 eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 
 #adding 26.05.2005
 set w [$titf1axes getframe]
@@ -316,9 +356,9 @@ pack $w.frame -anchor w -fill both
 
 #Xpos
 frame $w.frame.px  -borderwidth 0
-pack $w.frame.px  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.px  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.xposlabel  -height 0 -text "   Location:" -width 0 
+label $w.frame.xposlabel  -height 0 -text "   Location:" -width 0   -font {Arial 9}
 combobox $w.frame.xpos \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -326,31 +366,31 @@ combobox $w.frame.xpos \
     -width 3 \
     -textvariable Xlabelpos \
     -editable false \
-    -command [list SelectXpos ]
+    -command [list SelectXpos ]  -font {Arial 9}
 eval $w.frame.xpos list insert end [list "top" "middle" "bottom"]
 
 pack $w.frame.xposlabel -in  $w.frame.px -side left
-pack $w.frame.xpos  -in  $w.frame.px  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.xpos  -in  $w.frame.px  -expand 1 -fill x -pady 0m -padx 2m
 
 #Grid
 frame $w.frame.gridcol  -borderwidth 0
- pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0   -font {Arial 9}
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
-    -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0 
+    -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.gridcolor set $xGrid
 
 #X Data bounds
 frame $w.frame.datab  -borderwidth 0
-pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.datalabel -text "Data bounds:"
-entry $w.frame.databmin -relief sunken  -textvariable dbxmin 
-entry $w.frame.databmax -relief sunken  -textvariable dbxmax
+label $w.frame.datalabel -text "Data bounds:"  -font {Arial 9}
+entry $w.frame.databmin -relief sunken  -textvariable dbxmin -width 10 -font {Arial 9}
+entry $w.frame.databmax -relief sunken  -textvariable dbxmax -width 10 -font {Arial 9}
 pack $w.frame.datalabel -in  $w.frame.datab -side left
 pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
 pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
@@ -364,14 +404,14 @@ bind  $w.frame.databmax <FocusOut> {setXdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
-pack $w.frame.scalesw  -in $w.frame -side top   -fill x  -pady 2m
+pack $w.frame.scalesw  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
-radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n"    -command "toggleX" 
- radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable xToggle -value "l" 	  -command "toggleX" 	   
+label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0  -font {Arial 9}
+radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n"    -command "toggleX"  -font {Arial 9}
+radiobutton $w.frame.scalesw.radioLOG -text "Log." -variable xToggle -value "l" 	  -command "toggleX"  -font {Arial 9}
 
 set numpage 0
-button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage" 
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage"  -font {Arial 9}
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
@@ -380,33 +420,32 @@ pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
-pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
+pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
+label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0 -font {Arial 9}
 checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Xaxes_reverseToggle -onvalue "on" -offvalue "off" \
-    -command "toggleReverselabx $w.frame.rev.revvalue" 
+    -command "toggleReverselabx $w.frame.rev.revvalue"  -font {Arial 9}
 OnOffForeground $w.frame.rev.revvalue $Xaxes_reverseToggle
 
 pack $w.frame.rev.label -in $w.frame.rev -side left
 pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
 
+set w $theframe
 
 #sep bar
-#frame $w.sep -height 2 -borderwidth 1 -relief sunken
-#pack $w.sep -fill both -pady 10m  
-
-set w $theframe
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww "
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww " -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Y onglet ##############################################
 ###################################################################
-set w [Notebook:frame $uf.n "Y Axis"]
+set w [Notebook:frame $uf.n Y]
 
 set theframe $w
 
@@ -415,14 +454,14 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options"]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options"]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
 
 set w [$titf1label getframe]
 
 pack $titf1label -padx 4 -side top -fill both -expand yes
-pack $topflabel -fill x -pady 2
-pack $titf1axes  -pady 2 -padx 4 -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -431,22 +470,22 @@ pack $w.frame -anchor w -fill both
 
 #y label
 frame $w.frame.lby -borderwidth 0
-pack $w.frame.lby  -in $w.frame -side top   -fill x  -pady 2m
+pack $w.frame.lby  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.ylabel -text "     Label:  "
-entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel 
+label $w.frame.ylabel -text "     Label:  " -font {Arial 9}
+entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel  -font {Arial 9}
 pack $w.frame.ylabel -in  $w.frame.lby -side left
-pack $w.frame.ylabel1  -in  $w.frame.lby  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.ylabel1  -in  $w.frame.lby  -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.ylabel1 <Return> {setYlabel} 
 bind  $w.frame.ylabel1 <KP_Enter> {setYlabel}
 bind  $w.frame.ylabel1 <FocusOut> {setYlabel}
 
 frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "  Visibility:   "
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.vislablabel  -text "  Visibility:   " -font {Arial 9}
 checkbutton $w.frame.vislabb  -text "on"\
     -variable ylabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylaby $w.frame.vislabb" 
+    -command "toggleVisibilitylaby $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $ylabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
@@ -454,35 +493,35 @@ pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x  -pady 2m
+pack $w.frame.fontcol  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
+label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontcolor set $ylabel_foreground
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0  -font {Arial 9}
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0 
+	 -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontsize set $ylabel_fontsize
 
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
+pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9}
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -490,11 +529,11 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable Ylabelfontstyle \
     -editable false \
-    -command [list SelectYFontStyle ]
+    -command [list SelectYFontStyle ] -font {Arial 9}
 eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 
 #adding 26.05.2005
 set w [$titf1axes getframe]
@@ -505,9 +544,9 @@ pack $w.frame -anchor w -fill both
 
 #Ypos
 frame $w.frame.py  -borderwidth 0
-pack $w.frame.py  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.py  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.yposlabel  -height 0 -text "   Location:" -width 0 
+label $w.frame.yposlabel  -height 0 -text "   Location:" -width 0  -font {Arial 9}
 combobox $w.frame.ypos \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -515,31 +554,31 @@ combobox $w.frame.ypos \
     -width 3 \
     -textvariable Ylabelpos \
     -editable false \
-    -command [list SelectYpos ]
+    -command [list SelectYpos ] -font {Arial 9}
 eval $w.frame.ypos list insert end [list "left" "middle" "right"]
 
 pack $w.frame.yposlabel -in  $w.frame.py -side left
-pack $w.frame.ypos  -in  $w.frame.py  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.ypos  -in  $w.frame.py  -expand 1 -fill x -pady 0m -padx 2m
 
 #Grid
 frame $w.frame.gridcol  -borderwidth 0
-pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0  -font {Arial 9}
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
-	 -resolution 1.0 -command "setYGridColor $w.frame.gridcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setYGridColor $w.frame.gridcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.gridcolor set $yGrid
 
 #Y Data bounds
 frame $w.frame.datab  -borderwidth 0
-pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.datalabel -text "Data bounds:"
-entry $w.frame.databmin -relief sunken  -textvariable dbymin 
-entry $w.frame.databmax -relief sunken  -textvariable dbymax
+label $w.frame.datalabel -text "Data bounds:" -font {Arial 9}
+entry $w.frame.databmin -relief sunken  -textvariable dbymin -width 10 -font {Arial 9}
+entry $w.frame.databmax -relief sunken  -textvariable dbymax -width 10 -font {Arial 9}
 pack $w.frame.datalabel -in  $w.frame.datab -side left
 pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
 pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
@@ -553,14 +592,14 @@ bind  $w.frame.databmax <FocusOut> {setYdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
-pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
-radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable yToggle -value "n"    -command "toggleY" 
-radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable yToggle -value "l" 	  -command "toggleY" 	   
+label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0  -font {Arial 9}
+radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable yToggle -value "n"    -command "toggleY"  -font {Arial 9}
+radiobutton $w.frame.scalesw.radioLOG -text "Log." -variable yToggle -value "l" 	  -command "toggleY" 	    -font {Arial 9}
 
 set numpage 1
-button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage"
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage" -font {Arial 9}
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
@@ -569,32 +608,31 @@ pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
-pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
+pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
+label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0 -font {Arial 9}
 checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Yaxes_reverseToggle -onvalue "on" -offvalue "off" \
-    -command "toggleReverselaby $w.frame.rev.revvalue"
+    -command "toggleReverselaby $w.frame.rev.revvalue" -font {Arial 9}
 OnOffForeground $w.frame.rev.revvalue $Yaxes_reverseToggle
 
 pack $w.frame.rev.label -in $w.frame.rev -side left
 pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
-
-# #sep bar
-# frame $w.sep -height 2 -borderwidth 1 -relief sunken
-# pack $w.sep -fill both -pady 10m  
-
 set w $theframe
+
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
-pack $w.b -side bottom 
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+pack $w.b -side bottom
 
 ########### Z onglet ##############################################
 ###################################################################
-set w [Notebook:frame $uf.n "Z Axis"]
+set w [Notebook:frame $uf.n Z]
 
 set theframe $w
 
@@ -603,14 +641,14 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options"]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options"]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
 
 set w [$titf1label getframe]
 
 pack $titf1label -padx 4 -side top -fill both -expand yes
-pack $topflabel -fill x -pady 2
-pack $titf1axes  -pady 2 -padx 4 -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
@@ -618,22 +656,22 @@ pack $w.frame -anchor w -fill both
 
 #z label
 frame $w.frame.lbz -borderwidth 0
-pack $w.frame.lbz  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.lbz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.zlabel -text "     Label:  "
-entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel 
+label $w.frame.zlabel -text "     Label:  " -font {Arial 9}
+entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel  -font {Arial 9}
 pack $w.frame.zlabel -in  $w.frame.lbz -side left
-pack $w.frame.zlabel1  -in  $w.frame.lbz  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.zlabel1  -in  $w.frame.lbz  -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.zlabel1 <Return> {setZlabel} 
 bind  $w.frame.zlabel1 <KP_Enter> {setZlabel}
 bind  $w.frame.zlabel1 <FocusOut> {setZlabel}
 
 frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "  Visibility:   "
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.vislablabel  -text "  Visibility:   " -font {Arial 9}
 checkbutton $w.frame.vislabb  -text "on"\
     -variable zlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabz $w.frame.vislabb" 
+    -command "toggleVisibilitylabz $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $zlabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
@@ -641,35 +679,35 @@ pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
+label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontcolor set $zlabel_foreground
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0  -font {Arial 9}
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0 
+	 -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontsize set $zlabel_fontsize
 
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
+pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9}
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -677,11 +715,11 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable Zlabelfontstyle \
     -editable false \
-    -command [list SelectZFontStyle ]
+    -command [list SelectZFontStyle ] -font {Arial 9}
 eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 
 #adding 26.05.2005
 set w [$titf1axes getframe]
@@ -711,23 +749,23 @@ pack $w.frame -anchor w -fill both
 
 #Grid
 frame $w.frame.gridcol  -borderwidth 0
-pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0  -font {Arial 9}
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
-	 -resolution 1.0 -command "setZGridColor $w.frame.gridcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setZGridColor $w.frame.gridcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.gridcolor set $zGrid
 
 #Z Data bounds
 frame $w.frame.datab  -borderwidth 0
-pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.datalabel -text "Data bounds:"
-entry $w.frame.databmin -relief sunken  -textvariable dbzmin 
-entry $w.frame.databmax -relief sunken  -textvariable dbzmax
+label $w.frame.datalabel -text "Data bounds:" -font {Arial 9}
+entry $w.frame.databmin -relief sunken  -textvariable dbzmin -width 10 -font {Arial 9}
+entry $w.frame.databmax -relief sunken  -textvariable dbzmax -width 10 -font {Arial 9}
 pack $w.frame.datalabel -in  $w.frame.datab -side left
 pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
 pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
@@ -741,14 +779,14 @@ bind  $w.frame.databmax <FocusOut> {setZdb}
 
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
-pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
-radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n"    -command "toggleZ" 
-radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable zToggle -value "l" 	  -command "toggleZ" 	   
+label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0  -font {Arial 9}
+radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n" -command "toggleZ"  -font {Arial 9}
+radiobutton $w.frame.scalesw.radioLOG -text "Log." -variable zToggle -value "l"	  -command "toggleZ" -font {Arial 9}
 
 set numpage 2
-button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage"
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage" -font {Arial 9}
 
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
@@ -758,27 +796,27 @@ pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
-pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 2m
+pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0
+label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0 -font {Arial 9}
 checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Zaxes_reverseToggle -onvalue "on" -offvalue "off" \
-    -command "toggleReverselabz $w.frame.rev.revvalue"
+    -command "toggleReverselabz $w.frame.rev.revvalue" -font {Arial 9}
 OnOffForeground $w.frame.rev.revvalue $Zaxes_reverseToggle
 
 pack $w.frame.rev.label -in $w.frame.rev -side left
 pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
 
-# #sep bar
-# frame $w.sep -height 2 -borderwidth 1 -relief sunken
-# pack $w.sep -fill both -pady 20m
-
 set w $theframe
+
+#sep bar
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
-pack $w.b -side bottom 
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+pack $w.b -side bottom
 
 ########### Title onglet ##########################################
 ###################################################################
@@ -790,23 +828,23 @@ pack $w.frame -anchor w -fill both
 
 #title label
 frame $w.frame.lbtitle -borderwidth 0
-pack $w.frame.lbtitle  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.lbtitle  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.titlelabel -text "     Label:  "
-entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel 
+label $w.frame.titlelabel -text "     Label:  " -font {Arial 9}
+entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel  -font {Arial 9}
 pack $w.frame.titlelabel -in  $w.frame.lbtitle -side left
-pack $w.frame.titlelabel1  -in  $w.frame.lbtitle  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.titlelabel1  -in  $w.frame.lbtitle  -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.titlelabel1 <Return> {setTitleLabel} 
 bind  $w.frame.titlelabel1 <KP_Enter> {setTitleLabel} 
 bind  $w.frame.titlelabel1 <FocusOut> {setTitleLabel} 
 
 #visibility for title
 frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "  Visibility:   "
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.vislablabel  -text "  Visibility:   " -font {Arial 9}
 checkbutton $w.frame.vislabb  -text "on"\
     -variable titlelabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitytitle $w.frame.vislabb"
+    -command "toggleVisibilitytitle $w.frame.vislabb" -font {Arial 9}
 OnOffForeground $w.frame.vislabb $titlelabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
@@ -814,34 +852,34 @@ pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
+label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontcolor set $titlelabel_foreground
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 2m
+pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0  -font {Arial 9}
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0 
+	 -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz  -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontsize set $titlelabel_fontsize
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
+pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9}
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -849,21 +887,21 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable TITLEfontstyle \
     -editable false \
-    -command [list SelectTitleFontStyle]
+    -command [list SelectTitleFontStyle] -font {Arial 9}
 eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst  -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst  -expand 1 -fill x -pady 0m -padx 2m
 
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 35m  
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
-pack $w.b -side bottom 
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+pack $w.b -side bottom
 
 
 ########### Style onglet ##########################################
@@ -875,15 +913,15 @@ pack $w.frame -anchor w -fill both
 
 #visibility
 frame $w.frame.vis -borderwidth 0
-pack $w.frame.vis  -in $w.frame  -side top -fill x -pady 2m
-label $w.frame.vislabel  -text "   Visibility:  "
+pack $w.frame.vis  -in $w.frame  -side top -fill x -pady 0m
+label $w.frame.vislabel  -text "   Visibility:  " -font {Arial 9}
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib"
+    -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 2m -padx 2m
+pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 0m -padx 2m
 
 #fill mode
 # frame $w.frame.mod -borderwidth 0
@@ -897,9 +935,9 @@ pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 2m -padx 2m
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 2m
+pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:  " -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:  " -width 0  -font {Arial 9}
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -907,82 +945,82 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable fontstyle \
     -editable false \
-    -command [list SelectFontStyle]
+    -command [list SelectFontStyle] -font {Arial 9}
 eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 
 
 #FontColor scale
 frame $w.frame.fontclr  -borderwidth 0
-pack $w.frame.fontclr   -in $w.frame -side top  -fill x -pady 2m
-label $w.frame.fontcolorlabel -height 0 -text "Font color:  " -width 0 
+pack $w.frame.fontclr   -in $w.frame -side top  -fill x -pady 0m
+label $w.frame.fontcolorlabel -height 0 -text "Font color:  " -width 0  -font {Arial 9}
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel -in $w.frame.fontclr -side left
-pack $w.frame.fontcolor -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontcolor set $curfontcolor
 
 #Fontsize scale
 frame $w.frame.fontssz  -borderwidth 0
-pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 2m
+pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 0m
 
-label $w.frame.fontsizelabel -height 0 -text "Font size:   " -width 0 
+label $w.frame.fontsizelabel -height 0 -text "Font size:   " -width 0  -font {Arial 9}
 scale $w.frame.fontsize -orient horizontal  -from 0 -to 6 \
-	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0
+	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0 -font {Arial 9}
 pack $w.frame.fontsizelabel  -in $w.frame.fontssz -side left
-pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fontsize set $curfontsize
 
 
 #Color scale foregound
 frame $w.frame.clrf  -borderwidth 0
-pack $w.frame.clrf  -in $w.frame -side top  -fill x -pady 2m
-label $w.frame.fcolorlabel -height 0 -text "Foreground\n   color:      " -width 0 
+pack $w.frame.clrf  -in $w.frame -side top  -fill x -pady 0m
+label $w.frame.fcolorlabel -height 0 -text "Foreground\n   color:      " -width 0  -font {Arial 9}
 
 scale $w.frame.fcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setForeColor $w.frame.fcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setForeColor $w.frame.fcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fcolorlabel -in $w.frame.clrf -side left
-pack $w.frame.fcolor -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fcolor -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.fcolor set $fcolor
 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
-pack $w.frame.clrb  -in $w.frame -side top  -fill x -pady 2m
-label $w.frame.bcolorlabel -height 0 -text "Background\n   color: " -width 0 
+pack $w.frame.clrb  -in $w.frame -side top  -fill x -pady 0m
+label $w.frame.bcolorlabel -height 0 -text "Background\n   color: " -width 0  -font {Arial 9}
 
 scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.bcolor set $bcolor
 
 
 #Color scale hiddencolor
 frame $w.frame.clrh  -borderwidth 0
-pack $w.frame.clrh  -in $w.frame -side top  -fill x -pady 2m
-label $w.frame.hcolorlabel -height 0 -text "Hidden color:" -width 0 
+pack $w.frame.clrh  -in $w.frame -side top  -fill x -pady 0m
+label $w.frame.hcolorlabel -height 0 -text "Hidden color:" -width 0  -font {Arial 9}
 
 scale $w.frame.hcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setHiddenColor $w.frame.hcolor" -tickinterval 0 
+	 -resolution 1.0 -command "setHiddenColor $w.frame.hcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.hcolorlabel -in $w.frame.clrh -side left
-pack $w.frame.hcolor -in  $w.frame.clrh -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.hcolor -in  $w.frame.clrh -side left -expand 1 -fill x -pady 0m -padx 2m
 $w.frame.hcolor set $hiddencolor
 
 
 #Thickness scale
 frame $w.frame.thk  -borderwidth 0
-pack $w.frame.thk  -side top -fill x -pady 2m
+pack $w.frame.thk  -side top -fill x -pady 0m
 
-label $w.frame.scalelabel -height 0 -text "Thickness:   "  -width 0 
+label $w.frame.scalelabel -height 0 -text "Thickness:   "  -width 0  -font {Arial 9}
 scale $w.frame.thickness -orient horizontal -length 284 -from 1 -to 30 \
-	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0
+	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0 -font {Arial 9}
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
 pack  $w.frame.thickness  -in $w.frame.thk -expand yes -fill x
 $w.frame.thickness set $curthick
@@ -992,7 +1030,7 @@ $w.frame.thickness set $curthick
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.linestylelabel  -height 0 -text " Line style:  " -width 0 
+label $w.frame.linestylelabel  -height 0 -text " Line style:  " -width 0  -font {Arial 9}
 combobox $w.frame.linestyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -1000,19 +1038,19 @@ combobox $w.frame.linestyle \
     -width 3 \
     -textvariable curlinestyle \
     -editable false \
-    -command [list SelectLineStyle ]
+    -command [list SelectLineStyle ] -font {Arial 9}
 eval $w.frame.linestyle list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 pack $w.frame.linestylelabel -in $w.frame.linest   -side left
-pack $w.frame.linestyle   -in $w.frame.linest   -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.linestyle   -in $w.frame.linest   -expand 1 -fill x -pady 0m -padx 2m
 
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 5m  
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Aspect onglet #########################################
@@ -1020,88 +1058,84 @@ pack $w.b -side bottom
 set w [Notebook:frame $uf.n Aspect]
 
 frame $w.frame -borderwidth 0
-pack $w.frame  -anchor w -fill both
+pack $w.frame -side top   -fill x
 
+frame $w.frame.line1 -borderwidth 0
+pack $w.frame.line1 -in $w.frame -side top   -fill x
+
+frame $w.frame.line2 -borderwidth 0
+pack $w.frame.line2 -in $w.frame -side top   -fill x
+
+frame $w.frame.line3 -borderwidth 0
+pack $w.frame.line3 -in $w.frame -side top   -fill x
 
 #auto clear
-frame $w.frame.clear -borderwidth 0
-pack $w.frame.clear  -in $w.frame  -side top  -fill x -pady 1.m
-label $w.frame.clearlabel  -text "   Auto clear:  "
+label $w.frame.clearlabel  -text "   Auto clear:  " -font {Arial 9}
 checkbutton $w.frame.clearib  -text "on"\
     -variable curautoclear  -onvalue "on" -offvalue "off" \
-    -command "toggleClear $w.frame.clearib"
+    -command "toggleClear $w.frame.clearib" -font {Arial 9}
 OnOffForeground $w.frame.clearib $curautoclear
 
-pack $w.frame.clearlabel -in $w.frame.clear   -side left
-pack $w.frame.clearib  -in $w.frame.clear    -side left -fill x -pady 1.m -padx 1.m
+pack $w.frame.clearlabel -in $w.frame.line1   -side left
+pack $w.frame.clearib  -in $w.frame.line1    -side left -fill x -pady 0m -padx 1.m
 
-#auto scal
-frame $w.frame.scal -borderwidth 0
-pack $w.frame.scal  -in $w.frame  -side top -fill x -pady 1.m
-label $w.frame.scallabel  -text "   Auto scale:  "
-checkbutton $w.frame.scalib  -text "on"\
-    -variable curautoscale  -onvalue "on" -offvalue "off" \
-    -command "toggleScale $w.frame.scalib"
-OnOffForeground $w.frame.scalib $curautoscale
-
-pack $w.frame.scallabel -in $w.frame.scal  -side left
-pack $w.frame.scalib  -in $w.frame.scal    -side left  -fill x -pady 1.m -padx 1.m
-
-#box
-frame $w.frame.bxd -borderwidth 0
-pack $w.frame.bxd  -in $w.frame  -side top -fill x -pady 1.m
-label $w.frame.boxlabel  -text "         Boxed:  "
-checkbutton $w.frame.box  -text "on"\
-    -variable boxToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleBox $w.frame.box"
-OnOffForeground $w.frame.box $boxToggle
-
-pack $w.frame.boxlabel -in $w.frame.bxd  -side left
-pack $w.frame.box  -in $w.frame.bxd    -side left -fill x -pady 1.m -padx 1.m
-
-#isoview
-frame $w.frame.iso -borderwidth 0
-pack $w.frame.iso  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.isolabel  -text "        Isoview: "
+#Isoview
+label $w.frame.isolabel  -text " Isoview:     " -font {Arial 9}
 checkbutton $w.frame.isob  -text "on"\
     -variable isoToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleIsoview $w.frame.isob"
+    -command "toggleIsoview $w.frame.isob" -font {Arial 9}
 OnOffForeground $w.frame.isob $isoToggle
 
-pack $w.frame.isolabel -in $w.frame.iso -side left
-pack $w.frame.isob  -in $w.frame.iso  -side left -fill x -pady 1.m -padx 1.m
+pack $w.frame.isolabel -in $w.frame.line1 -side left
+pack $w.frame.isob  -in $w.frame.line1  -side left -fill x -pady 0m -padx 1.m
+
+
+#auto scal
+label $w.frame.scallabel  -text "   Auto scale:  " -font {Arial 9}
+checkbutton $w.frame.scalib  -text "on"\
+    -variable curautoscale  -onvalue "on" -offvalue "off" \
+    -command "toggleScale $w.frame.scalib" -font {Arial 9}
+OnOffForeground $w.frame.scalib $curautoscale
+
+pack $w.frame.scallabel -in $w.frame.line2  -side left
+pack $w.frame.scalib  -in $w.frame.line2    -side left  -fill x -pady 0m -padx 1.m
 
 #Tight Limits
-frame $w.frame.lim  -borderwidth 0
-pack $w.frame.lim  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.limitlabel -text "   Tight limits: "
+label $w.frame.limitlabel -text "Tight limits: " -font {Arial 9}
 checkbutton $w.frame.limit  -text "on"\
     -variable limToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleLimits $w.frame.limit"
+    -command "toggleLimits $w.frame.limit" -font {Arial 9}
 OnOffForeground $w.frame.limit $limToggle
 
-pack $w.frame.limitlabel -in $w.frame.lim -side left
-pack $w.frame.limit  -in $w.frame.lim  -side left  -fill x -pady 1.m -padx 1.m
+pack $w.frame.limitlabel -in $w.frame.line2 -side left
+pack $w.frame.limit  -in $w.frame.line2  -side left  -fill x -pady 0m -padx 1.m
 
+#box
+label $w.frame.boxlabel  -text "         Boxed:  " -font {Arial 9}
+checkbutton $w.frame.box  -text "on"\
+    -variable boxToggle  -onvalue "on" -offvalue "off" \
+    -command "toggleBox $w.frame.box" -font {Arial 9}
+OnOffForeground $w.frame.box $boxToggle
+
+pack $w.frame.boxlabel -in $w.frame.line3  -side left
+pack $w.frame.box  -in $w.frame.line3   -side left -fill x -pady 0m -padx 1.m
 
 #cubescaling
-frame $w.frame.cub -borderwidth 0
-pack $w.frame.cub  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.cublabel  -text "Cube scaling: "
+label $w.frame.cublabel  -text "Cube scaling:" -font {Arial 9}
 checkbutton $w.frame.cubb  -text "on"\
     -variable cubToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleCubview $w.frame.cubb"
+    -command "toggleCubview $w.frame.cubb" -font {Arial 9}
 OnOffForeground $w.frame.cubb $cubToggle
 
-pack $w.frame.cublabel -in $w.frame.cub -side left
-pack $w.frame.cubb  -in $w.frame.cub  -side left -fill x -pady 1.m -padx 1.m
+pack $w.frame.cublabel -in $w.frame.line3 -side left
+pack $w.frame.cubb  -in $w.frame.line3  -side left -fill x -pady 0m -padx 1.m
 
 
 #Clip state
 frame $w.frame.clpstat  -borderwidth 0
-pack $w.frame.clpstat  -in $w.frame -side top -fill x -pady 1.m
+pack $w.frame.clpstat  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0 
+label $w.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0  -font {Arial 9}
 combobox $w.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -1109,16 +1143,16 @@ combobox $w.frame.clip \
     -width 3 \
     -textvariable curclipstate\
     -editable false \
-    -command [list SelectClipState ]
+    -command [list SelectClipState ] -font {Arial 9}
 eval $w.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w.frame.cliplabel -in $w.frame.clpstat   -side left
-pack $w.frame.clip -in $w.frame.clpstat   -expand 1 -fill x -pady 1.m -padx 1.m
+pack $w.frame.clip -in $w.frame.clpstat   -expand 1 -fill x -pady 0m -padx 1.m
 
 #clip box
 frame $w.frame.lb1 -borderwidth 0
 pack $w.frame.lb1  -in $w.frame -side top   -fill x
-label $w.frame.labelul -text "  Clip box : upper-left point coordinates "
+label $w.frame.labelul -text "  Clip box : upper-left point coordinates " -font {Arial 9}
 pack $w.frame.labelul -in  $w.frame.lb1 -side left
 
 frame $w.frame.lb2 -borderwidth 0
@@ -1127,16 +1161,13 @@ pack $w.frame.lb2  -in $w.frame -side top   -fill x
 frame $w.frame.lb21 -borderwidth 0
 pack $w.frame.lb21  -in $w.frame -side top   -fill x
 
-frame $w.frame.lb22 -borderwidth 0
-pack $w.frame.lb22  -in $w.frame -side top   -fill x
+label $w.frame.labelx -text "             X: " -font {Arial 9}
+entry $w.frame.datax -relief sunken  -textvariable Xclipbox -width 10 -font {Arial 9}
+label $w.frame.labely -text "             Y: " -font {Arial 9}
+entry $w.frame.datay -relief sunken  -textvariable Yclipbox -width 10 -font {Arial 9}
 
-label $w.frame.labelx -text "             X: "
-entry $w.frame.datax -relief sunken  -textvariable Xclipbox
-label $w.frame.labely -text "             Y: "
-entry $w.frame.datay -relief sunken  -textvariable Yclipbox
-
-pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 1.m -padx 1.m
-pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
+pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 0m -padx 1.m
+pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 0m -padx 1.m 
 bind  $w.frame.datax <Return> {SelectClipBox}
 bind  $w.frame.datax <KP_Enter> {SelectClipBox}
 bind  $w.frame.datay <Return> {SelectClipBox}
@@ -1144,7 +1175,7 @@ bind  $w.frame.datay <KP_Enter> {SelectClipBox}
 #----------------------------#
 frame $w.frame.lb3 -borderwidth 0
 pack $w.frame.lb3  -in $w.frame -side top   -fill x
-label $w.frame.labelwh -text "   Clip box : width and height  "
+label $w.frame.labelwh -text "   Clip box : width and height  " -font {Arial 9}
 pack $w.frame.labelwh -in  $w.frame.lb3 -side left
 
 frame $w.frame.lb4 -borderwidth 0
@@ -1153,13 +1184,13 @@ pack $w.frame.lb4  -in $w.frame -side top   -fill x
 frame $w.frame.lb41 -borderwidth 0
 pack $w.frame.lb41  -in $w.frame -side top   -fill x
 
-label $w.frame.labelw -text "             W: "
-entry $w.frame.dataw -relief sunken  -textvariable Wclipbox
-label $w.frame.labelh -text "             H: "
-entry $w.frame.datah -relief sunken  -textvariable Hclipbox
+label $w.frame.labelw -text "             W: " -font {Arial 9}
+entry $w.frame.dataw -relief sunken  -textvariable Wclipbox -width 10 -font {Arial 9}
+label $w.frame.labelh -text "             H: " -font {Arial 9}
+entry $w.frame.datah -relief sunken  -textvariable Hclipbox -width 10 -font {Arial 9}
 
-pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 1.m -padx 1.m
-pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
+pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 0m -padx 1.m
+pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 0m -padx 1.m
 bind  $w.frame.dataw <Return> {SelectClipBox}
 bind  $w.frame.dataw <KP_Enter> {SelectClipBox}
 bind  $w.frame.datah <Return> {SelectClipBox}
@@ -1168,8 +1199,8 @@ bind  $w.frame.datah <KP_Enter> {SelectClipBox}
 #margins
 frame $w.frame.marg1 -borderwidth 0
 pack $w.frame.marg1  -in $w.frame -side top   -fill x
-label $w.frame.labelmarg -text "  Margins:"
-label $w.frame.labelaxesbounds -text "\t\t\t  Axes bounds:"
+label $w.frame.labelmarg -text "  Margins:" -font {Arial 9}
+label $w.frame.labelaxesbounds -text "\t\t\t  Axes bounds:" -font {Arial 9}
 pack $w.frame.labelmarg $w.frame.labelaxesbounds -in  $w.frame.marg1 -side left
 
 frame $w.frame.marg2 -borderwidth 0
@@ -1178,18 +1209,18 @@ pack $w.frame.marg2  -in $w.frame -side top   -fill x
 frame $w.frame.marg21 -borderwidth 0
 pack $w.frame.marg21  -in $w.frame -side top   -fill x
 
-label $w.frame.labelleft -text  "           Left: "
-entry $w.frame.datamargl -relief sunken  -textvariable Lmargins
-label $w.frame.labelleftaxesbounds -text  "   Left: "
-entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL
+label $w.frame.labelleft -text  "           Left: " -font {Arial 9}
+entry $w.frame.datamargl -relief sunken  -textvariable Lmargins -width 10 -font {Arial 9}
+label $w.frame.labelleftaxesbounds -text  "   Left: " -font {Arial 9}
+entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL  -width 10 -font {Arial 9}
 
-label $w.frame.labelright -text "         Right:"
-entry $w.frame.datamargr -relief sunken  -textvariable Rmargins
-label $w.frame.labelupaxesbounds -text  "      Up: "
-entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU
+label $w.frame.labelright -text "         Right:" -font {Arial 9}
+entry $w.frame.datamargr -relief sunken  -textvariable Rmargins -width 10 -font {Arial 9}
+label $w.frame.labelupaxesbounds -text  "      Up: " -font {Arial 9}
+entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU -width 10 -font {Arial 9}
 
-pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 1.m -padx 1.m
-pack $w.frame.labelright $w.frame.datamargr  $w.frame.labelupaxesbounds $w.frame.dataupaxesbounds -in  $w.frame.marg21 -side left -fill x -pady 1.m -padx 1.m 
+pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 0m -padx 1.m
+pack $w.frame.labelright $w.frame.datamargr  $w.frame.labelupaxesbounds $w.frame.dataupaxesbounds -in  $w.frame.marg21 -side left -fill x -pady 0m -padx 1.m 
 bind  $w.frame.datamargl <Return> {SelectMargins}
 bind  $w.frame.datamargr <Return> {SelectMargins}
 bind  $w.frame.datamargl <KP_Enter> {SelectMargins}
@@ -1205,18 +1236,18 @@ pack $w.frame.marg4  -in $w.frame -side top   -fill x
 frame $w.frame.marg41 -borderwidth 0
 pack $w.frame.marg41  -in $w.frame -side top   -fill x
 
-label $w.frame.labeltop -text    "           Top:"
-entry $w.frame.datamargt -relief sunken  -textvariable Tmargins
-label $w.frame.labelwidthaxesbounds -text    "  Width: "
-entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW
+label $w.frame.labeltop -text    "           Top:" -font {Arial 9}
+entry $w.frame.datamargt -relief sunken  -textvariable Tmargins -width 10 -font {Arial 9}
+label $w.frame.labelwidthaxesbounds -text    "  Width: " -font {Arial 9}
+entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW -width 10 -font {Arial 9}
 
-label $w.frame.labelbottom -text "      Bottom:"
-entry $w.frame.datamargb -relief sunken  -textvariable Bmargins
-label $w.frame.labelheightaxesbounds -text    " Height:"
-entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH
+label $w.frame.labelbottom -text "      Bottom:" -font {Arial 9}
+entry $w.frame.datamargb -relief sunken  -textvariable Bmargins -width 10 -font {Arial 9}
+label $w.frame.labelheightaxesbounds -text    " Height:" -font {Arial 9}
+entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH -width 10 -font {Arial 9}
 
-pack $w.frame.labeltop     $w.frame.datamargt $w.frame.labelwidthaxesbounds  $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 1.m -padx 1.m
-pack $w.frame.labelbottom  $w.frame.datamargb $w.frame.labelheightaxesbounds $w.frame.dataheightaxesbounds -in  $w.frame.marg41 -side left -fill x -pady 1.m -padx 1.m
+pack $w.frame.labeltop     $w.frame.datamargt $w.frame.labelwidthaxesbounds  $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 0m -padx 1.m
+pack $w.frame.labelbottom  $w.frame.datamargb $w.frame.labelheightaxesbounds $w.frame.dataheightaxesbounds -in  $w.frame.marg41 -side left -fill x -pady 0m -padx 1.m
 bind  $w.frame.datamargt <Return> {SelectMargins}
 bind  $w.frame.datamargb <Return> {SelectMargins}
 bind  $w.frame.datawidthaxesbounds   <Return> {SelectAxesbounds}
@@ -1229,11 +1260,11 @@ bind  $w.frame.dataheightaxesbounds  <KP_Enter> {SelectAxesbounds}
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Viewpoint onglet ######################################
@@ -1245,23 +1276,23 @@ pack $w.frame -anchor w -fill both
 
 
 #view
- frame $w.frame.view -borderwidth 0
- pack $w.frame.view  -in $w.frame -side top -fill x -pady 2m
- label $w.frame.viewlabel  -text "                 View:  "
- checkbutton $w.frame.viewb  -textvariable viewToggle  \
-     -variable viewToggle  -onvalue "2d" -offvalue "3d" \
-     -command "toggleView" 
- pack $w.frame.viewlabel -in $w.frame.view -side left
- pack $w.frame.viewb  -in $w.frame.view  -side left  -fill x -pady 2m -padx 2m
+frame $w.frame.view -borderwidth 0
+pack $w.frame.view  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.viewlabel  -text "                 View:  " -font {Arial 9}
+checkbutton $w.frame.viewb  -textvariable viewToggle  \
+    -variable viewToggle  -onvalue "2d" -offvalue "3d" \
+    -command "toggleView"  -font {Arial 9}
+pack $w.frame.viewlabel -in $w.frame.view -side left
+pack $w.frame.viewb  -in $w.frame.view  -side left  -fill x -pady 0m -padx 2m
 
 #rotation_angles
 frame $w.frame.rotang -borderwidth 0
-pack $w.frame.rotang  -in $w.frame -side top -fill x -pady 2m
-label $w.frame.rotanglabel  -text "Rotation angles: "
-entry $w.frame.rotalpha -relief sunken  -textvariable curalpharotation
-entry $w.frame.rottheta -relief sunken  -textvariable curthetarotation
-pack $w.frame.rotanglabel  -in $w.frame.rotang -side left  -pady 2m -padx 2m
-pack $w.frame.rotalpha $w.frame.rottheta -in $w.frame.rotang  -in $w.frame.rotang -side left  -pady 2m -padx 2m
+pack $w.frame.rotang  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.rotanglabel  -text "Rotation angles: " -font {Arial 9}
+entry $w.frame.rotalpha -relief sunken  -textvariable curalpharotation -width 10 -font {Arial 9}
+entry $w.frame.rottheta -relief sunken  -textvariable curthetarotation -width 10 -font {Arial 9}
+pack $w.frame.rotanglabel  -in $w.frame.rotang -side left  -pady 0m -padx 2m
+pack $w.frame.rotalpha $w.frame.rottheta -in $w.frame.rotang  -in $w.frame.rotang -side left  -pady 0m -padx 2m
 bind  $w.frame.rotalpha <Return> {setAlphaAngle} 
 bind  $w.frame.rottheta <Return> {setThetaAngle} 
 bind  $w.frame.rotalpha <KP_Enter> {setAlphaAngle} 
@@ -1272,22 +1303,21 @@ bind  $w.frame.rottheta <FocusOut> {setThetaAngle}
 
 
 
-
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 60m
+pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
 pack $w.b -side bottom
 
 
 
-pack $sw $pw1 -fill both -expand yes
+pack $sw -fill both -expand yes
+pack $pw1 -fill both -expand yes
 pack $titf1 -padx 4 -side left -fill both -expand yes
-pack $topf -fill both -pady 2 -expand yes
-
+pack $topf -fill both -pady 0 -expand yes
 
 
 # les proc associes:
@@ -1394,22 +1424,6 @@ ScilabEval "global ged_handle;ged_handle.view='$viewToggle'"
 	set curalpharotation $old_curalpharotation
 	set curthetarotation $old_curthetarotation
     }
-}
-
-
-proc SelectObject {w args} {
-    global curgedobject;
-    global ged_handle_list_size;
-    global SELOBJECT
-    
-    set index 1
-
-    for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
-	if {$curgedobject==$SELOBJECT($i)} {
-	    set index $i
-	}
-    }
-    ScilabEval "Get_handle_from_index($index);"
 }
 
 proc setXdb {} {
@@ -2186,14 +2200,14 @@ proc PopUp { w numpage} {
     wm deiconify $www
     
     wm title $www  "Edit Axes Ticks"
-    wm geometry $www 405x690
+    wm geometry $www 280x500
 #    wm geometry $www 530x750
     wm iconname $www "TE"
     grab set $www
 #    bell -displayof $w
     
     set topf  [frame $www.topf]
-    set titf1 [TitleFrame $topf.titf1 -text "Ticks Editor"]
+    set titf1 [TitleFrame $topf.titf1 -text "Ticks Editor" -font {Arial 9}]
     
     set parent  [$titf1 getframe]
     set pw1  [PanedWindow $parent.pw -side top]
@@ -2216,7 +2230,7 @@ proc PopUp { w numpage} {
     pack $fra  -anchor w -fill both
 
     
-    Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis"} -pad 20   -height 560 -width 330
+    Notebook:create $uf.n -pages {X Y Z} -pad 20   -height 400 -width 200
     pack $uf.n -in $uf -fill both -expand yes
 
     Notebook:raise.page $uf.n $numpage
@@ -2225,7 +2239,7 @@ proc PopUp { w numpage} {
     
     ########### X onglet ##############################################
     ###################################################################
-    set fen1 [Notebook:frame $uf.n "X Axis"]
+    set fen1 [Notebook:frame $uf.n X]
 
 #meme choix que Mtlb
     set LEI_x $nbticks_x
@@ -2237,47 +2251,47 @@ proc PopUp { w numpage} {
 
     #visibility of X axis
     frame $fen1.frame.vis -borderwidth 0
-    pack $fen1.frame.vis  -in $fen1.frame -side top -fill x -pady 1.m
-    label $fen1.frame.vislabel  -text "           Visibility:  "
+    pack $fen1.frame.vis  -in $fen1.frame -side top -fill x -pady 0m
+    label $fen1.frame.vislabel  -text "           Visibility:  " -font {Arial 9}
     checkbutton $fen1.frame.visb  -text "on"\
         -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-        -command "toggleVisibilityX $fen1.frame.visb"
+        -command "toggleVisibilityX $fen1.frame.visb" -font {Arial 9}
     OnOffForeground $fen1.frame.visb $Xaxes_visibleToggle
 
     pack $fen1.frame.vislabel -in $fen1.frame.vis -side left
     pack $fen1.frame.visb  -in $fen1.frame.vis  -side left  -fill x
 
     frame $fen1.frame.xautoticks -borderwidth 0
-    pack $fen1.frame.xautoticks  -in $fen1.frame -side top -fill x -pady 1.m
-    label $fen1.frame.xautotickslabel  -text "        Auto ticks:  "
+    pack $fen1.frame.xautoticks  -in $fen1.frame -side top -fill x -pady 0m
+    label $fen1.frame.xautotickslabel  -text "        Auto ticks:  " -font {Arial 9}
     checkbutton $fen1.frame.xautoticksb  -text "on"\
 	-variable XautoticksToggle  -onvalue "on" -offvalue "off" \
-	-command "toggleXautoticks $frameaxes $numpage $fen1.frame.xautoticksb"
+	-command "toggleXautoticks $frameaxes $numpage $fen1.frame.xautoticksb" -font {Arial 9}
     OnOffForeground $fen1.frame.xautoticksb $XautoticksToggle
 
     pack $fen1.frame.xautotickslabel -in $fen1.frame.xautoticks -side left
-    pack $fen1.frame.xautoticksb  -in $fen1.frame.xautoticks  -side left  -fill x -pady 1.m -padx 1.m
+    pack $fen1.frame.xautoticksb  -in $fen1.frame.xautoticks  -side left  -fill x -pady 0m -padx 1.m
 
     frame $fen1.frame.step -borderwidth 0
-    pack $fen1.frame.step  -in $fen1.frame -side top -fill x -pady 1.m
-    label $fen1.frame.steplabel  -text "           Step by: "
+    pack $fen1.frame.step  -in $fen1.frame -side top -fill x -pady 0m
+    label $fen1.frame.steplabel  -text "           Step by: " -font {Arial 9}
     entry $fen1.frame.stepe  -relief sunken  -justify right \
-	-background white -textvariable StepEntryX -width 10
+	-background white -textvariable StepEntryX -width 10 -font {Arial 9}
     bind  $fen1.frame.stepe <Return> "SetStep $frameaxes $numpage 1"
     bind  $fen1.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 1"
-    pack $fen1.frame.steplabel $fen1.frame.stepe -in $fen1.frame.step -side left -pady 1.m -padx 1.m
+    pack $fen1.frame.steplabel $fen1.frame.stepe -in $fen1.frame.step -side left -pady 0m -padx 1.m
 
     frame $fen1.frame.subticks -borderwidth 0
-    pack $fen1.frame.subticks  -in $fen1.frame -side top -fill x -pady 1.m
-    label $fen1.frame.subtickslabel  -text "         Sub ticks: "
+    pack $fen1.frame.subticks  -in $fen1.frame -side top -fill x -pady 0m
+    label $fen1.frame.subtickslabel  -text "         Sub ticks: " -font {Arial 9}
 
 #    puts "SubticksEntryX vaut: $SubticksEntryX"
 
     entry $fen1.frame.subtickse  -relief sunken  -justify right \
-	-background white -textvariable SubticksEntryX -width 10
+	-background white -textvariable SubticksEntryX -width 10 -font {Arial 9}
     bind  $fen1.frame.subtickse <Return> "SetSubticksX"
     bind  $fen1.frame.subtickse <KP_Enter> "SetSubticksX"
-    pack $fen1.frame.subtickslabel $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 1.m -padx 1.m
+    pack $fen1.frame.subtickslabel $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 0m -padx 1.m
 
     frame $fen1.frame.fdata -borderwidth 0
     pack $fen1.frame.fdata  -in $fen1.frame -side top   -fill x
@@ -2285,16 +2299,16 @@ proc PopUp { w numpage} {
     scrollbar $fen1.frame.ysbar -orient vertical -command   {$fen1.frame.c yview}
     canvas $fen1.frame.c -width 8i -height 3i  -yscrollcommand {$fen1.frame.ysbar set}
     
-    $fen1.frame.c create text 100 10 -anchor c -text "Locations"
-    $fen1.frame.c create text 230 10 -anchor c -text "Labels"
+    $fen1.frame.c create text 50 10 -anchor c -text "Locations" -font {Arial 9}
+    $fen1.frame.c create text 130 10 -anchor c -text "Labels" -font {Arial 9}
       
     for {set i 1} {$i<=$nbticks_x} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen1.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 100]
-	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right -width 14\
-	    -background white -textvariable LOCATIONS_X($i) 
+	set aa [expr 50]
+	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right -width 10\
+	    -background white -textvariable LOCATIONS_X($i)  -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyX $fen1"
@@ -2303,9 +2317,9 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 230]
-	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left -width 14\
-	    -background white -textvariable LABELS_X($i)
+	set aa [expr 130]
+	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left -width 10\
+	    -background white -textvariable LABELS_X($i) -font {Arial 9}
 	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.labelsdata$i <Return> "TicksApplyX $fen1"
@@ -2321,33 +2335,32 @@ proc PopUp { w numpage} {
     
     #sep bar
     frame $fen1.sep -height 2 -borderwidth 1 -relief sunken
-    pack $fen1.sep -fill both -pady 5m  
-
+    pack $fen1.sep -fill both  
     
      #exit button
     frame $fen1.buttons -borderwidth 0
     pack  $fen1.buttons -anchor w -fill both  -side bottom   -fill x
     
-    button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1"
-    button $fen1.buttons.b -text Quit -command "destroy $old_www"
+    button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1" -font {Arial 9}
+    button $fen1.buttons.b -text Quit -command "destroy $old_www" -font {Arial 9}
     
     pack $fen1.buttons.apply  $fen1.buttons.b -in  $fen1.buttons \
-	-side left   -fill x  -expand 1 -pady 2m
+	-side left   -fill x  -expand 1 -pady 0m
 
     frame $fen1.boutons -borderwidth 0
     pack $fen1.boutons -anchor w -fill both  -side bottom   -fill x
     
     #Insert/ Delete buttons
-    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes "
-    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes "
+    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes " -font {Arial 9}
+    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes " -font {Arial 9}
     pack $fen1.boutons.buttoninsert $fen1.boutons.buttondelete -in  $fen1.boutons \
-	-side left   -fill x  -expand 1 -pady 2m
+	-side left   -fill x  -expand 1 -pady 0m
     
     
 
     ########### Y onglet ##############################################
     ###################################################################
-    set fen2 [Notebook:frame $uf.n "Y Axis"]
+    set fen2 [Notebook:frame $uf.n Y]
     
 #    puts "1. fen2 vaut: $fen2"
     #meme choix que Mtlb
@@ -2360,45 +2373,45 @@ proc PopUp { w numpage} {
 
     #visibility of Y axis
     frame $fen2.frame.vis -borderwidth 0
-    pack $fen2.frame.vis  -in $fen2.frame -side top -fill x -pady 1.m
-    label $fen2.frame.vislabel  -text "           Visibility:  "
+    pack $fen2.frame.vis  -in $fen2.frame -side top -fill x -pady 0m
+    label $fen2.frame.vislabel  -text "           Visibility:  " -font {Arial 9}
     checkbutton $fen2.frame.visb  -text "on"\
         -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-        -command "toggleVisibilityY $fen2.frame.visb" 
+        -command "toggleVisibilityY $fen2.frame.visb"  -font {Arial 9}
     OnOffForeground $fen2.frame.visb $Yaxes_visibleToggle
 
     pack $fen2.frame.vislabel -in $fen2.frame.vis -side left
     pack $fen2.frame.visb  -in $fen2.frame.vis  -side left  -fill x
 
     frame $fen2.frame.yautoticks -borderwidth 0
-    pack $fen2.frame.yautoticks  -in $fen2.frame -side top -fill x -pady 1.m
-    label $fen2.frame.yautotickslabel  -text "        Auto ticks:  "
+    pack $fen2.frame.yautoticks  -in $fen2.frame -side top -fill x -pady 0m
+    label $fen2.frame.yautotickslabel  -text "        Auto ticks:  " -font {Arial 9}
     checkbutton $fen2.frame.yautoticksb  -text "on"\
 	-variable YautoticksToggle  -onvalue "on" -offvalue "off" \
-	-command "toggleYautoticks $frameaxes $numpage $fen2.frame.yautoticksb"
+	-command "toggleYautoticks $frameaxes $numpage $fen2.frame.yautoticksb" -font {Arial 9}
     OnOffForeground $fen2.frame.yautoticksb $YautoticksToggle
 
     pack $fen2.frame.yautotickslabel -in $fen2.frame.yautoticks -side left
-    pack $fen2.frame.yautoticksb  -in $fen2.frame.yautoticks  -side left  -fill x -pady 1.m -padx 1.m
+    pack $fen2.frame.yautoticksb  -in $fen2.frame.yautoticks  -side left  -fill x -pady 0m -padx 1.m
 
     frame $fen2.frame.step -borderwidth 0
-    pack $fen2.frame.step  -in $fen2.frame -side top -fill x -pady 1.m
-    label $fen2.frame.steplabel  -text "           Step by: "
+    pack $fen2.frame.step  -in $fen2.frame -side top -fill x -pady 0m
+    label $fen2.frame.steplabel  -text "           Step by: " -font {Arial 9}
     entry $fen2.frame.stepe  -relief sunken  -justify right \
-	-background white -textvariable StepEntryY -width 10
+	-background white -textvariable StepEntryY -width 10 -font {Arial 9}
     bind  $fen2.frame.stepe <Return> "SetStep $frameaxes $numpage 2"
     bind  $fen2.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 2"
-    pack $fen2.frame.steplabel $fen2.frame.stepe -in $fen2.frame.step -side left -pady 1.m -padx 1.m
+    pack $fen2.frame.steplabel $fen2.frame.stepe -in $fen2.frame.step -side left -pady 0m -padx 1.m
 
     frame $fen2.frame.subticks -borderwidth 0
-    pack $fen2.frame.subticks  -in $fen2.frame -side top -fill x -pady 1.m
-    label $fen2.frame.subtickslabel  -text "         Sub ticks: "
+    pack $fen2.frame.subticks  -in $fen2.frame -side top -fill x -pady 0m
+    label $fen2.frame.subtickslabel  -text "         Sub ticks: " -font {Arial 9}
 
     entry $fen2.frame.subtickse  -relief sunken  -justify right \
-	-background white -textvariable SubticksEntryY -width 10
+	-background white -textvariable SubticksEntryY -width 10 -font {Arial 9}
     bind  $fen2.frame.subtickse <Return> "SetSubticksY"
     bind  $fen2.frame.subtickse <KP_Enter> "SetSubticksY"
-    pack $fen2.frame.subtickslabel $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 1.m -padx 1.m
+    pack $fen2.frame.subtickslabel $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 0m -padx 1.m
 
 
     frame $fen2.frame.fdata -borderwidth 0
@@ -2407,16 +2420,16 @@ proc PopUp { w numpage} {
     canvas $fen2.frame.c -width 8i -height 3i  -yscrollcommand {$fen2.frame.ysbar set}
     scrollbar $fen2.frame.ysbar -orient vertical -command   {$fen2.frame.c yview}
     
-    $fen2.frame.c create text 100 10 -anchor c -text "Locations"
-    $fen2.frame.c create text 230 10 -anchor c -text "Labels"
+    $fen2.frame.c create text 50 10 -anchor c -text "Locations" -font {Arial 9}
+    $fen2.frame.c create text 130 10 -anchor c -text "Labels" -font {Arial 9}
       
     for {set i 1} {$i<=$nbticks_y} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen2.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 100]
-	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right  -width 14\
-	    -background white -textvariable LOCATIONS_Y($i)
+	set aa [expr 50]
+	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right  -width 10\
+	    -background white -textvariable LOCATIONS_Y($i) -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i;"
 	bind  $fen2.frame.c.locationsdata$i <Return> "TicksApplyY $fen2"
@@ -2425,9 +2438,9 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 230]
-	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left  -width 14\
-	    -background white -textvariable LABELS_Y($i)
+	set aa [expr 130]
+	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left  -width 10\
+	    -background white -textvariable LABELS_Y($i) -font {Arial 9}
 	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i;"
 	bind  $fen2.frame.c.labelsdata$i <Return> "TicksApplyY $fen2"
@@ -2442,34 +2455,34 @@ proc PopUp { w numpage} {
     
     #sep bar
     frame $fen2.sep -height 2 -borderwidth 1 -relief sunken
-    pack $fen2.sep -fill both -pady 5m  
+    pack $fen2.sep -fill both
 
     
      #exit button
     frame $fen2.buttons -borderwidth 0
     pack  $fen2.buttons -anchor w -fill both  -side bottom   -fill x
     
-    button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2"
-    button $fen2.buttons.b -text Quit -command "destroy $old_www"
+    button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2" -font {Arial 9}
+    button $fen2.buttons.b -text Quit -command "destroy $old_www" -font {Arial 9}
     
     pack $fen2.buttons.apply  $fen2.buttons.b -in  $fen2.buttons \
-	-side left   -fill x  -expand 1 -pady 2m
+	-side left   -fill x  -expand 1 -pady 0m
     
     frame $fen2.boutons -borderwidth 0
     pack $fen2.boutons -anchor w -fill both  -side bottom   -fill x
     
     #Insert/ Delete buttons
-    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes "
-    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes "
+    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes " -font {Arial 9}
+    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes " -font {Arial 9}
     pack $fen2.boutons.buttoninsert $fen2.boutons.buttondelete -in  $fen2.boutons \
-	-side left   -fill x  -expand 1 -pady 2m
+	-side left   -fill x  -expand 1 -pady 0m
     
     
 
 
      ########### Z onglet ##############################################
      ###################################################################
-     set fen3 [Notebook:frame $uf.n "Z Axis"]
+     set fen3 [Notebook:frame $uf.n Z]
   
     #meme choix que Mtlb
     set LEI_z $nbticks_z
@@ -2481,45 +2494,45 @@ proc PopUp { w numpage} {
 
     #visibility of Z axis
     frame $fen3.frame.vis -borderwidth 0
-    pack $fen3.frame.vis  -in $fen3.frame -side top -fill x -pady 1.m
-    label $fen3.frame.vislabel  -text "           Visibility:  "
+    pack $fen3.frame.vis  -in $fen3.frame -side top -fill x -pady 0m
+    label $fen3.frame.vislabel  -text "           Visibility:  " -font {Arial 9}
     checkbutton $fen3.frame.visb  -text "on"\
         -variable Zaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-        -command "toggleVisibilityZ $fen3.frame.visb"
+        -command "toggleVisibilityZ $fen3.frame.visb" -font {Arial 9}
     OnOffForeground $fen3.frame.visb $Zaxes_visibleToggle
 
     pack $fen3.frame.vislabel -in $fen3.frame.vis -side left
     pack $fen3.frame.visb  -in $fen3.frame.vis  -side left  -fill x
 
     frame $fen3.frame.zautoticks -borderwidth 0
-    pack $fen3.frame.zautoticks  -in $fen3.frame -side top -fill x -pady 1.m
-    label $fen3.frame.zautotickslabel  -text "        Auto ticks:  "
+    pack $fen3.frame.zautoticks  -in $fen3.frame -side top -fill x -pady 0m
+    label $fen3.frame.zautotickslabel  -text "        Auto ticks:  " -font {Arial 9}
     checkbutton $fen3.frame.zautoticksb  -text "on"\
 	-variable ZautoticksToggle  -onvalue "on" -offvalue "off" \
-	-command "toggleZautoticks $frameaxes $numpage $fen3.frame.zautoticksb"
+	-command "toggleZautoticks $frameaxes $numpage $fen3.frame.zautoticksb" -font {Arial 9}
     OnOffForeground $fen3.frame.zautoticksb $ZautoticksToggle
 
     pack $fen3.frame.zautotickslabel -in $fen3.frame.zautoticks -side left
-    pack $fen3.frame.zautoticksb  -in $fen3.frame.zautoticks  -side left  -fill x -pady 1.m -padx 1.m
+    pack $fen3.frame.zautoticksb  -in $fen3.frame.zautoticks  -side left  -fill x -pady 0m -padx 1.m
 
     frame $fen3.frame.step -borderwidth 0
-    pack $fen3.frame.step  -in $fen3.frame -side top -fill x -pady 1.m
-    label $fen3.frame.steplabel  -text "           Step by: "
+    pack $fen3.frame.step  -in $fen3.frame -side top -fill x -pady 0m
+    label $fen3.frame.steplabel  -text "           Step by: " -font {Arial 9}
     entry $fen3.frame.stepe  -relief sunken  -justify right \
-	-background white -textvariable StepEntryZ -width 10
+	-background white -textvariable StepEntryZ -width 10 -font {Arial 9}
     bind  $fen3.frame.stepe <Return> "SetStep $frameaxes $numpage 3"
     bind  $fen3.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 3"
-    pack $fen3.frame.steplabel $fen3.frame.stepe -in $fen3.frame.step -side left -pady 1.m -padx 1.m
+    pack $fen3.frame.steplabel $fen3.frame.stepe -in $fen3.frame.step -side left -pady 0m -padx 1.m
 
     frame $fen3.frame.subticks -borderwidth 0
-    pack $fen3.frame.subticks  -in $fen3.frame -side top -fill x -pady 1.m
-    label $fen3.frame.subtickslabel  -text "         Sub ticks: "
+    pack $fen3.frame.subticks  -in $fen3.frame -side top -fill x -pady 0m
+    label $fen3.frame.subtickslabel  -text "         Sub ticks: " -font {Arial 9}
 
     entry $fen3.frame.subtickse  -relief sunken  -justify right \
-	-background white -textvariable SubticksEntryZ -width 10
+	-background white -textvariable SubticksEntryZ -width 10 -font {Arial 9}
     bind  $fen3.frame.subtickse <Return> "SetSubticksZ"
     bind  $fen3.frame.subtickse <KP_Enter> "SetSubticksZ"
-    pack $fen3.frame.subtickslabel $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 1.m -padx 1.m
+    pack $fen3.frame.subtickslabel $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 0m -padx 1.m
 
 
     frame $fen3.frame.fdata -borderwidth 0
@@ -2528,16 +2541,16 @@ proc PopUp { w numpage} {
     canvas $fen3.frame.c -width 8i -height 3i  -yscrollcommand {$fen3.frame.ysbar set}
     scrollbar $fen3.frame.ysbar -orient vertical -command   {$fen3.frame.c yview}
     
-    $fen3.frame.c create text 100 10 -anchor c -text "Locations"
-    $fen3.frame.c create text 230 10 -anchor c -text "Labels"
+    $fen3.frame.c create text 50 10 -anchor c -text "Locations" -font {Arial 9}
+    $fen3.frame.c create text 130 10 -anchor c -text "Labels" -font {Arial 9}
       
     for {set i 1} {$i<=$nbticks_z} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen3.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 100]
-	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right  -width 14\
-	    -background white -textvariable LOCATIONS_Z($i)
+	set aa [expr 50]
+	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right  -width 10\
+	    -background white -textvariable LOCATIONS_Z($i) -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i;"
 	bind  $fen3.frame.c.locationsdata$i <Return> "TicksApplyZ $fen3"
@@ -2546,9 +2559,9 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 230]
-	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left  -width 14\
-	    -background white -textvariable LABELS_Z($i)
+	set aa [expr 130]
+	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left  -width 10\
+	    -background white -textvariable LABELS_Z($i) -font {Arial 9}
 	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i;"
 	bind  $fen3.frame.c.labelsdata$i <Return> "TicksApplyZ $fen3"
@@ -2564,33 +2577,33 @@ proc PopUp { w numpage} {
     
     #sep bar
     frame $fen3.sep -height 2 -borderwidth 1 -relief sunken
-    pack $fen3.sep -fill both -pady 5m  
+    pack $fen3.sep -fill both
 
     
      #exit button
     frame $fen3.buttons -borderwidth 0
     pack  $fen3.buttons -anchor w -fill both  -side bottom   -fill x
     
-    button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3"
-    button $fen3.buttons.b -text Quit -command "destroy $old_www"
+    button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3" -font {Arial 9}
+    button $fen3.buttons.b -text Quit -command "destroy $old_www" -font {Arial 9}
     
     pack $fen3.buttons.apply  $fen3.buttons.b -in  $fen3.buttons \
-	-side left   -fill x  -expand 1 -pady 2m
+	-side left   -fill x  -expand 1 -pady 0m
     
     frame $fen3.boutons -borderwidth 0
     pack $fen3.boutons -anchor w -fill both  -side bottom   -fill x
     
     #Insert/ Delete buttons
-    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes "
-    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes "
+    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes " -font {Arial 9}
+    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes " -font {Arial 9}
     pack $fen3.boutons.buttoninsert $fen3.boutons.buttondelete -in  $fen3.boutons \
-	-side left   -fill x  -expand 1 -pady 2m
+	-side left   -fill x  -expand 1 -pady 0m
     
 
 
     pack $sw $pw1 -fill both -expand yes
     pack $titf1 -padx 4 -side left -fill both -expand yes
-    pack $topf -fill both -pady 2 -expand yes
+    pack $topf -fill both -pady 0 -expand yes
 
 
 
