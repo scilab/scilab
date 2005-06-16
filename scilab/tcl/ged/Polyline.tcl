@@ -89,12 +89,18 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 320
+set NBwidth  250
+
+set Wheight [expr $NBheight + 170]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 toplevel $ww
 wm title $ww "Polyline Editor"
 wm iconname $ww "PE"
-wm geometry $ww 490x490
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -184,7 +190,7 @@ set uf $w
 
 set largeur 14
 
-Notebook:create $uf.n -pages {Style Data Clipping} -pad 0 -height 320 -width 220
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -fill both -expand yes
 
 ########### Style onglet ##########################################
