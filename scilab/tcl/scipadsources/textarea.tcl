@@ -134,8 +134,12 @@ proc setfontscipad {FontSize} {
     $pad.statusind configure -font $menuFont
     $pad.statusind2 configure -font $menuFont
     $pad.statusmes configure -font $menuFont
-    # This sets the font used in all tk_messageBox and tk_dialog
-    option add *Dialog.msg.font $textFont startupFile
+    # This sets the font used in all dialogs (Unix only - on Windows
+    # native platform dialogs are used by Tk
+    set dialogFont -adobe-helvetica-medium-r-normal--$FontSize-*
+    option add *Dialog.msg.font $dialogFont userDefault  ; # for all tk_messageBox and tk_dialog
+    option add *TkFDialog*Font $dialogFont userDefault   ; # file open / save as dialogs
+    option add *TkColorDialog*Font $menuFont userDefault ; # color picker dialog
     # If the watch window was open, refresh it
     if {[info exists watch]} {
         if {[winfo exists $watch]} {

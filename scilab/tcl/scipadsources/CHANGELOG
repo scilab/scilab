@@ -1187,3 +1187,11 @@ Francois VOGEL, 15/06/05
    whichfun to display the active breakpoint for instance
  * Bugzilla url updated
  * version --> 5.8
+
+Francois VOGEL, 16/06/05
+ * Nasty bug fixed: With many opened buffers, saving one of them from the
+   middle of the windows menu list caused loosing consistency between the
+   tick/entry in the windows menu and the buffer actually displayed
+ * $dialogFont instead of $textFont in the Linux message boxes
+ * file choosers (open/save as) and color picker also use $dialogFont
+ * version --> 5.9

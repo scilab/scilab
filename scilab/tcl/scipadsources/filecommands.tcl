@@ -444,7 +444,7 @@ proc filetosave {textarea} {
 proc filesaveas {textarea} {
 # bring up the Save As... dialog so that the user can pick up a file name
 # and do the save under that filename
-    global listoffile pad radiobuttonvalue winopened
+    global listoffile pad radiobuttonvalue winopened listoftextarea
     global startdir
     showinfo [mc "Save as"]
     # remember the latest path used for opening files
@@ -475,7 +475,14 @@ proc filesaveas {textarea} {
     set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
                     -initialfile $proposedname -initialdir $startdir]
     if { [expr [string compare $myfile ""]] != 0} {
-        $pad.filemenu.wind delete "$listoffile("$textarea",displayedname)"
+        # move the textarea entry at the end of the listoftextarea
+        set listoftextarea [lreplace $listoftextarea [lsearch \
+              $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
+        lappend listoftextarea $textarea
+        # delete the windows menu entry
+        set ilab [extractindexfromlabel $pad.filemenu.wind \
+                  $listoffile("$textarea",displayedname)]
+        $pad.filemenu.wind delete $ilab
         set listoffile("$textarea",fullname) [file normalize $myfile]
         set listoffile("$textarea",displayedname) \
             [file tail $listoffile("$textarea",fullname)]
