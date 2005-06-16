@@ -264,7 +264,11 @@ function [txt,ilst]=cod2sci(lst,ilst)
       if LHS=='ans' then
 	txt=catcode(txt,RHS+ip)
       else
-	txt=catcode(txt,LHS+' = '+RHS+ip)
+	if size(LHS,'*')==1&and(LHS==RHS) then
+	  txt=RHS+ip
+	else
+	  txt=catcode(txt,LHS+' = '+RHS+ip)
+	end
       end
       txt=splitexp(txt)
     case '31' then //comment
