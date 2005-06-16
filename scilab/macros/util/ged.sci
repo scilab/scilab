@@ -85,6 +85,33 @@ handles = Get_handles_list(gcf())
 endfunction
 
 
+// Search the depth level for each handle
+// Usefull for new hierarchical graphic tree.
+function ged_levels = Get_levels(handles);
+
+ged_levels = 1; // for Figure, always 1
+
+f = handles(1);
+
+for i=2:size(handles,1)
+  ged_levels(i) = Get_Depth(f,handles(i));
+end
+
+//disp("les levels sont:")
+//disp(ged_levels);
+
+endfunction
+
+function depth = Get_Depth(f,h)
+
+depth = 2;
+
+while  h.parent <> f
+  h = h.parent;
+  depth = depth + 1;
+end
+
+endfunction
 
 
 
@@ -109,7 +136,15 @@ iAxi = 0; // axis : entity created when using drawaxis method for example
 f=getparfig(h);
 handles = Get_handles_list(f)
 
+ged_levels = Get_levels(handles);
+
 TCL_SetVar("ged_handle_list_size",string(size(handles,1)));
+
+for i=1:size(handles,1)
+  SelObject="LEVELS("+string(i)+")";
+  TCL_EvalStr('set '+SelObject+" "+string(ged_levels(i)));
+end
+
 
 for i=1:size(handles,1)
  SelObject="SELOBJECT("+string(i)+")";
@@ -226,29 +261,29 @@ endfunction
 
 
 function List_handles(h)
-
 global ged_handle_out;
+
 i = 1;
 
 psonstmp = h.children;
 if psonstmp <> [] then
- psonstmp = h.children(1);
+  psonstmp = h.children(1);
 end
 //pause
-while((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
+while ((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
   i = i+1;
   ged_handle_out = [ged_handle_out;  psonstmp];
   List_handles(psonstmp);
-//  disp("Processus recursif RETOUR")
-//  disp("    ici 1");
-//  pause
-  if((i) <=size(psonstmp.parent.children,1)) then
+  //  disp("Processus recursif RETOUR")
+  //  disp("    ici 1");
+  //  pause
+  if ((i) <=size(psonstmp.parent.children,1)) then
     psonstmp = psonstmp.parent.children(i);
-   else
+  else
     psonstmp=[];
   end
-//  disp("    ici 2");
-//  pause
+  //  disp("    ici 2");
+  //  pause
 end
 
 endfunction
