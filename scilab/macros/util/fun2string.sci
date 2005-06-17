@@ -265,7 +265,7 @@ function [txt,ilst]=cod2sci(lst,ilst)
 	txt=catcode(txt,RHS+ip)
       else
 	if size(LHS,'*')==1&and(LHS==RHS) then
-	  txt=catcode(RHS+ip)
+	  txt=catcode(txt,RHS+ip)
 	else
 	  txt=catcode(txt,LHS+' = '+RHS+ip)
 	end
