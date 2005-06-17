@@ -54,13 +54,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 120
+set NBwidth  250
+
+set Wheight [expr $NBheight + 110]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Matplot Object"
 wm iconname $ww "ME"
-wm geometry $ww 450x250
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -148,8 +154,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 18
 
-Notebook:create $uf.n -pages {"Style" "Data" } -pad 0 -height  120 -width 180
+Notebook:create $uf.n -pages {"Style" "Data" } -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand yes
 
 ########### Style onglet ##########################################
@@ -162,14 +169,14 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "               Visibility:    " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
 
 #data_mapping
 #frame $w.frame.dtmap  -borderwidth 0
@@ -216,7 +223,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.curdataframeX  -borderwidth 0
 pack $w.frame.curdataframeX  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelX  -height 0 -text "       Data :   " -width 0   -font {Arial 9}
+label $w.frame.polydatalabelX  -height 0 -text "Data:" -width 0   -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -234,17 +241,18 @@ pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 0m
 ## DATA edit via Scilab Command Interface sciGUI ######
 #######################################################
 
+#set largeur 18
 
 frame $w.scicom1
 pack $w.scicom1 -side top -fill x -pady 0m
 
-label $w.scicom1.label1 -text "Scilab Command Interface for data:"  -font {Arial 9}
+label $w.scicom1.label1 -text "Scilab Command Interface for data:"  -font {Arial 9} -anchor w
 pack  $w.scicom1.label1 -in $w.scicom1 -side left
 
 frame $w.scicomX
 pack $w.scicomX -side top -fill x -pady 0m
 
-label $w.scicomX.label1 -text "matplot_handle.data =      "  -font {Arial 9}
+label $w.scicomX.label1 -text "matplot_handle.data:"  -font {Arial 9} -anchor e -width $largeur
 pack  $w.scicomX.label1 -in $w.scicomX -side left
 
 entry $w.scicomX.text1 -relief sunken -textvariable scicomint_data -width 10  -font {Arial 9}
@@ -252,7 +260,7 @@ set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console represe
 bind  $w.scicomX.text1 <Return> "sciCommandData"
 bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
 
-pack $w.scicomX.text1  -side left  -fill both -expand yes
+pack $w.scicomX.text1  -side left -padx 2m
 
 
 #sep bar

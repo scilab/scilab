@@ -54,14 +54,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 320
+set NBwidth  250
+
+set Wheight [expr $NBheight + 110]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Segs Object"
 wm iconname $ww "SO"
-wm geometry $ww 570x480
-#wm geometry $ww 650x700
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -148,8 +153,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 14
 
-Notebook:create $uf.n -pages {Style Data Color Clipping} -pad 0 -height 380 -width 300
+Notebook:create $uf.n -pages {Style Data Color Clipping} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -162,39 +168,39 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x 
-label $w.frame.vislabel  -text "         Visibility:     " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
 
 #Line mode
 frame $w.frame.linelinemode  -borderwidth 0
 pack $w.frame.linelinemode  -in $w.frame  -side top  -fill x
 
-label $w.frame.linemodelabel -height 0 -text "       Line mode:   " -width 0  -font {Arial 9}
+label $w.frame.linemodelabel -height 0 -text "Line mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.linemode  -text "on" -indicatoron 1 \
     -variable curlinemode -onvalue "on" -offvalue "off" \
     -command "toggleLinemode $w.frame.linemode" -font {Arial 9}
 OnOffForeground $w.frame.linemode $curlinemode
 
 pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
-pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 1m
 
 
 #Line Style
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "                Line:   " -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Line:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 20 \
+    -width 8 \
     -textvariable curlinestyle \
     -editable false \
     -command [list SelectLineStyle ] -font {Arial 9}
@@ -213,16 +219,17 @@ eval $w.frame.thickness list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0
 
 
 pack $w.frame.stylelabel -in $w.frame.linest   -side left
-pack $w.frame.style   -in $w.frame.linest   -side left
-pack $w.frame.thickness  -in $w.frame.linest  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.style   -in $w.frame.linest   -side left -padx 2m
+pack $w.frame.thickness  -in $w.frame.linest  -expand 1 -pady 0m -padx 2m
 
 #Arrow size
 frame $w.frame.ar -borderwidth 0
 pack $w.frame.ar  -in $w.frame -side top   -fill x
 
-label $w.frame.arrowlab -text "      Arrow size:  " -font {Arial 9}
+label $w.frame.arrowlab -text "Arrow size:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.arrow -relief sunken  -textvariable curarrowsize -width 10 -font {Arial 9}
-pack   $w.frame.arrowlab $w.frame.arrow -in $w.frame.ar -side left -fill x -pady 0m -padx 1.m 
+pack  $w.frame.arrowlab -in $w.frame.ar -side left
+pack  $w.frame.arrow -in $w.frame.ar -side left -fill x -pady 0m -padx 2m 
 bind  $w.frame.arrow <Return> {SelectArrowSize}
 bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
 
@@ -231,21 +238,21 @@ bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
 frame $w.frame.linemarkmode  -borderwidth 0
 pack $w.frame.linemarkmode  -in $w.frame  -side top  -fill x
 
-label $w.frame.markmodelabel -height 0 -text "      Mark mode: " -width 0  -font {Arial 9}
+label $w.frame.markmodelabel -height 0 -text "Mark mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.markmode  -text "on" -indicatoron 1 \
     -variable curmarkmode -onvalue "on" -offvalue "off" \
     -command "toggleMarkmode $w.frame.markmode" -font {Arial 9}
 OnOffForeground $w.frame.markmode $curmarkmode
 
 pack $w.frame.markmodelabel  -in $w.frame.linemarkmode  -side left 
-pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left  -fill x -pady 0m -padx 1m
 
 
 #Mark style
 frame $w.frame.linemarkst  -borderwidth 0
 pack $w.frame.linemarkst  -in $w.frame  -side top  -fill x
 
-label $w.frame.markstylelabel  -height 0 -text "      Mark style:  " -width 0  -font {Arial 9}
+label $w.frame.markstylelabel  -height 0 -text "Mark style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.markstyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -265,7 +272,7 @@ pack $w.frame.markstyle   -in $w.frame.linemarkst   -expand 1 -fill x -pady 0m -
 frame $w.frame.mksize  -borderwidth 0
 pack $w.frame.mksize  -side top -fill x
 
-label $w.frame.marksizelabel -height 0 -text "        Mark size: " -width 0  -font {Arial 9}
+label $w.frame.marksizelabel -height 0 -text "Mark size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.marksize \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -278,31 +285,31 @@ eval $w.frame.marksize list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0"
 
 
 #Add Mark size unit
-label $w.frame.marksizeunitlabel  -height 0 -text "        Mark size:   " -width 0 -font {Arial 9}
+label $w.frame.marksizeunitlabel  -height 0 -text "Mark size:" -width 0 -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.marksizeunit \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 20 \
+    -width 8 \
     -textvariable curmarksizeunit \
     -editable false \
     -command [list SelectMarkSizeUnit ] -font {Arial 9}
 eval $w.frame.marksizeunit list insert end [list "point" "tabulated"]
 
 pack  $w.frame.marksizeunitlabel -in $w.frame.mksize -side left
-pack  $w.frame.marksizeunit -in $w.frame.mksize -side left
+pack  $w.frame.marksizeunit -in $w.frame.mksize -side left -padx 2m
 pack  $w.frame.marksize -in $w.frame.mksize -side left  -fill x  -expand 1 -pady 0m -padx 2m
 
 #Mark foreground
 frame $w.frame.markf  -borderwidth 0
 pack $w.frame.markf  -in $w.frame -side top  -fill x
 
-label $w.frame.markflabel -height 0 -text "Mark foreground:   " -width 0 -font {Arial 9}
+label $w.frame.markflabel -height 0 -text "Mark foreground:" -width 0 -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.markforeground -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setMarkForeground $w.frame.markforeground" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.markflabel -in $w.frame.markf -side left
-pack $w.frame.markforeground  -in  $w.frame.markf -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.markforeground  -in  $w.frame.markf -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.markforeground set $curmarkforeground
 
 
@@ -310,12 +317,12 @@ $w.frame.markforeground set $curmarkforeground
 frame $w.frame.markb  -borderwidth 0
 pack $w.frame.markb  -in $w.frame -side top  -fill x
 
-label $w.frame.markblabel -height 0 -text "Mark background:   " -width 0 -font {Arial 9}
+label $w.frame.markblabel -height 0 -text "Mark background:" -width 0 -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.markbackground -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setMarkBackground $w.frame.markbackground" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.markblabel -in $w.frame.markb -side left
-pack $w.frame.markbackground  -in  $w.frame.markb -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.markbackground  -in  $w.frame.markb -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.markbackground set $curmarkbackground
 
 #sep bar
@@ -340,7 +347,7 @@ pack $w.frame2 -anchor w -fill both
 frame $w.frame2.curdataframeX  -borderwidth 0
 pack $w.frame2.curdataframeX  -in $w.frame2  -side top  -fill x
 
-label $w.frame2.polydatalabelX  -height 0 -text " X and Y Data :   " -width 0   -font {Arial 9}
+label $w.frame2.polydatalabelX  -height 0 -text "X and Y Data:" -width 0   -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame2.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -375,10 +382,10 @@ frame $w2.frame2.fdata -borderwidth 0
 pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
 
 
-canvas $w2.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w2.frame2.ysbar set}
+canvas $w2.frame2.c1 -width 8i -height 3i  -yscrollcommand {$w2.frame2.ysbar set}
 scrollbar $w2.frame2.ysbar -orient vertical -command   {$w2.frame2.c1 yview}
 
-$w2.frame2.c1 create text 70 10 -anchor c -text "Segs color" -font {Arial 9}
+$w2.frame2.c1 create text 70 10 -anchor c -text "Segs color" -font {Arial 9} -anchor w
 
 for {set i 1} {$i<=$nbcolsegscolor} {incr i} {
     set bb [expr 10+(25*$i)]
@@ -409,13 +416,13 @@ button $w2.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
 pack $w2.b -side bottom 
 
 
-########### Clipping onglet #########################################
+########### Clipping onglet #######################################
 ###################################################################
 
- set w9 [Notebook:frame $uf.n Clipping]
+set w9 [Notebook:frame $uf.n Clipping]
 
- frame $w9.frame -borderwidth 0
- pack $w9.frame -anchor w -fill both
+frame $w9.frame -borderwidth 0
+pack $w9.frame -anchor w -fill both
 
 set letext ""
 
@@ -425,24 +432,24 @@ set letext ""
 frame $w9.frame.clpstat  -borderwidth 0
 pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0m
 
-label $w9.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0  -font {Arial 9}
+label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w9.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 8 \
     -textvariable curclipstate\
     -editable false \
     -command [list SelectClipState ] -font {Arial 9}
 eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-pack $w9.frame.clip -in $w9.frame.clpstat   -expand 1 -fill x -pady 0m -padx 1.m
+pack $w9.frame.clip -in $w9.frame.clpstat  -side left -pady 0m -padx 2m
 
 #clip box
 frame $w9.frame.lb1 -borderwidth 0
 pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
-label $w9.frame.labelul -text "  Clip box : upper-left point coordinates " -font {Arial 9}
+label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
 pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
 
 frame $w9.frame.lb2 -borderwidth 0
@@ -454,13 +461,15 @@ pack $w9.frame.lb21  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb22 -borderwidth 0
 pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelx -text "             X: " -font {Arial 9}
-entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10 -font {Arial 9}
-label $w9.frame.labely -text "             Y: " -font {Arial 9}
-entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
+entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
+label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -pady 0m -padx 1.m
-pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 0m -padx 1.m 
+pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
+pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
+pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
+pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -469,7 +478,7 @@ bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
 pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
-label $w9.frame.labelwh -text "   Clip box : width and height  " -font {Arial 9}
+label $w9.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
 pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
 
 frame $w9.frame.lb4 -borderwidth 0
@@ -478,13 +487,15 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "            W: " -font {Arial 9}
-entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10 -font {Arial 9}
-label $w9.frame.labelh -text "             H: " -font {Arial 9}
-entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
+label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -pady 0m -padx 1.m
-pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 0m -padx 1.m
+pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
+pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
+pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
+pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
@@ -505,7 +516,7 @@ pack $w9.sep -fill both
 #exit button
 frame $w9.buttons
 button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
-pack $w9.b -side bottom 
+pack $w9.b -side bottom
 
 
 pack $sw $pw1 -fill both -expand yes

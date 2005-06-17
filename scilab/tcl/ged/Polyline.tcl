@@ -450,14 +450,14 @@ combobox $w9.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 8 \
     -textvariable curclipstate\
     -editable false \
     -command [list SelectClipState ] -font {Arial 9}
 eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-pack $w9.frame.clip -in $w9.frame.clpstat   -expand 1 -fill x -pady 0m -padx 2m
+pack $w9.frame.clip -in $w9.frame.clpstat  -side left -pady 0m -padx 2m
 
 #clip box
 frame $w9.frame.lb1 -borderwidth 0
@@ -480,9 +480,9 @@ label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
 entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
 
 pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
-pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
 pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
-pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -506,9 +506,9 @@ label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
 entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
 
 pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
-pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
 pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
-pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"

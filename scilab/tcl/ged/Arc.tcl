@@ -56,14 +56,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 240
+set NBwidth  220
+
+set Wheight [expr $NBheight + 170]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Arc Object"
 wm iconname $ww "AO"
-wm geometry $ww 500x400
-#wm geometry $ww 650x700
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -151,8 +156,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 14
 
-Notebook:create $uf.n -pages {Style Data Clipping} -pad 0  -height  240 -width 220
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 0  -height  $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -165,14 +171,14 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "        Visibility:    " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
 
 
 
@@ -180,7 +186,7 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "      Line style:   " -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Line style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -199,13 +205,13 @@ pack $w.frame.style   -in $w.frame.linest   -expand 1 -fill x -pady 0m -padx 2m
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "             Color:  " -width 0  -font {Arial 9}
+label $w.frame.colorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 #         -foreground $color
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.colorlabel -in $w.frame.clrf -side left
-pack $w.frame.color  -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.color  -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.color set $curcolor
 
 
@@ -213,11 +219,11 @@ $w.frame.color set $curcolor
  frame $w.frame.thk  -borderwidth 0
  pack $w.frame.thk  -side top -fill x
 
- label $w.frame.scalelabel -height 0 -text "      Thickness: " -width 0  -font {Arial 9}
+ label $w.frame.scalelabel -height 0 -text "Thickness:" -width 0  -font {Arial 9} -anchor e -width $largeur
  scale $w.frame.thickness -orient horizontal -length 284 -from 1 -to 20 \
  	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0 -font {Arial 9}
  pack $w.frame.scalelabel -in $w.frame.thk -side left 
- pack $w.frame.thickness  -in $w.frame.thk  -expand 1 -fill x -pady 0m -padx 2m
+ pack $w.frame.thickness  -in $w.frame.thk  -expand 1 -fill x -pady 0m -padx 1m
  $w.frame.thickness set $curthick
 
 
@@ -225,14 +231,14 @@ $w.frame.color set $curcolor
 frame $w.frame.linefillmode  -borderwidth 0
 pack $w.frame.linefillmode  -in $w.frame  -side top  -fill x
 
-label $w.frame.fillmodelabel -height 0 -text "        Fill mode: " -width 0  -font {Arial 9}
+label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
     -variable curfillmode -onvalue "on" -offvalue "off" \
     -command "toggleFill $w.frame.fillmode"  -font {Arial 9}
 OnOffForeground $w.frame.fillmode $curfillmode
 
 pack $w.frame.fillmodelabel  -in $w.frame.linefillmode  -side left 
-pack $w.frame.fillmode   -in $w.frame.linefillmode   -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.fillmode   -in $w.frame.linefillmode   -side left  -fill x -pady 0m -padx 1m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -254,7 +260,7 @@ pack $w.frame -anchor w -fill both
 #x 
 frame $w.frame.lb1 -borderwidth 0
 pack $w.frame.lb1  -in $w.frame -side top   -fill x
-label $w.frame.labelul -text "  Upper-left point coordinates " -font {Arial 9}
+label $w.frame.labelul -text "Upper-left point coordinates:" -font {Arial 9}
 pack $w.frame.labelul -in  $w.frame.lb1 -side left
 
 frame $w.frame.lb2 -borderwidth 0
@@ -266,16 +272,19 @@ pack $w.frame.lb21  -in $w.frame -side top   -fill x
 frame $w.frame.lb22 -borderwidth 0
 pack $w.frame.lb22  -in $w.frame -side top   -fill x
 
-label $w.frame.labelx -text "     X: " -font {Arial 9}
+label $w.frame.labelx -text "X:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.datax -relief sunken  -textvariable Xval -width 10 -font {Arial 9}
-label $w.frame.labely -text "     Y: " -font {Arial 9}
+label $w.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.datay -relief sunken  -textvariable Yval -width 10 -font {Arial 9}
-label $w.frame.labelz -text "     Z: " -font {Arial 9}
+label $w.frame.labelz -text "Z:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.dataz -relief sunken  -textvariable Zval -width 10 -font {Arial 9}
 
-pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 0m -padx 2m
-pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 0m -padx 2m 
-pack $w.frame.labelz  $w.frame.dataz  -in  $w.frame.lb22 -side left -fill x -pady 0m -padx 2m 
+pack $w.frame.labelx  -in  $w.frame.lb2 -side left
+pack $w.frame.datax   -in  $w.frame.lb2 -side left  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.labely  -in  $w.frame.lb21 -side left
+pack $w.frame.datay   -in  $w.frame.lb21 -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.labelz  -in  $w.frame.lb22 -side left 
+pack $w.frame.dataz   -in  $w.frame.lb22 -side left -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.datax <Return> {SelectXval} 
 bind  $w.frame.datay <Return> {SelectYval} 
 bind  $w.frame.dataz <Return> {SelectZval} 
@@ -286,7 +295,7 @@ bind  $w.frame.dataz <KP_Enter> {SelectZval}
 #----------------------------#
 frame $w.frame.lb3 -borderwidth 0
 pack $w.frame.lb3  -in $w.frame -side top   -fill x
-label $w.frame.labelwh -text "  Width and height  " -font {Arial 9}
+label $w.frame.labelwh -text "Width and height:" -font {Arial 9}
 pack $w.frame.labelwh -in  $w.frame.lb3 -side left
 
 frame $w.frame.lb4 -borderwidth 0
@@ -295,13 +304,15 @@ pack $w.frame.lb4  -in $w.frame -side top   -fill x
 frame $w.frame.lb41 -borderwidth 0
 pack $w.frame.lb41  -in $w.frame -side top   -fill x
 
-label $w.frame.labelw -text "    W: " -font {Arial 9}
+label $w.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.dataw -relief sunken  -textvariable Wval  -width 10 -font {Arial 9}
-label $w.frame.labelh -text "     H: " -font {Arial 9}
+label $w.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.datah -relief sunken  -textvariable Hval  -width 10 -font {Arial 9}
 
-pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 0m -padx 2m
-pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 0m -padx 2m
+pack $w.frame.labelw  -in  $w.frame.lb4  -side left
+pack $w.frame.dataw   -in  $w.frame.lb4  -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.labelh  -in  $w.frame.lb41 -side left
+pack $w.frame.datah   -in  $w.frame.lb41 -side left -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.dataw <Return> {SelectWval} 
 bind  $w.frame.datah <Return> {SelectHval} 
 bind  $w.frame.dataw <KP_Enter> {SelectWval} 
@@ -313,7 +324,7 @@ bind  $w.frame.datah <KP_Enter> {SelectHval}
 #a1 and a2 parameters:
 frame $w.frame.lb5 -borderwidth 0
 pack $w.frame.lb5  -in $w.frame -side top   -fill x
-label $w.frame.labela1a2 -text "  a1 and a2 values  " -font {Arial 9}
+label $w.frame.labela1a2 -text "a1 and a2 values:" -font {Arial 9}
 pack $w.frame.labela1a2 -in  $w.frame.lb5 -side left
 
 frame $w.frame.lb6 -borderwidth 0
@@ -322,13 +333,16 @@ pack $w.frame.lb6  -in $w.frame -side top   -fill x
 frame $w.frame.lb61 -borderwidth 0
 pack $w.frame.lb61  -in $w.frame -side top   -fill x
 
-label $w.frame.labela1 -text "    a1: " -font {Arial 9}
+label $w.frame.labela1 -text "a1:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.dataa1 -relief sunken  -textvariable A1val -width 10 -font {Arial 9}
-label $w.frame.labela2 -text "    a2: " -font {Arial 9}
+label $w.frame.labela2 -text "a2:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.dataa2 -relief sunken  -textvariable A2val  -width 10 -font {Arial 9}
 
-pack $w.frame.labela1  $w.frame.dataa1 -in  $w.frame.lb6  -side left -fill x -pady 0m -padx 2m
-pack $w.frame.labela2  $w.frame.dataa2 -in  $w.frame.lb61 -side left -fill x -pady 0m -padx 2m
+
+pack $w.frame.labela1  -in  $w.frame.lb6  -side left
+pack $w.frame.dataa1   -in  $w.frame.lb6  -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.labela2  -in  $w.frame.lb61 -side left
+pack $w.frame.dataa2   -in  $w.frame.lb61 -side left -expand 1 -fill x -pady 0m -padx 2m
 bind  $w.frame.dataa1 <Return> {SelectA1val} 
 bind  $w.frame.dataa2 <Return> {SelectA2val} 
 bind  $w.frame.dataa1 <KP_Enter> {SelectA1val} 
@@ -346,15 +360,13 @@ button $w.b -text Quit -command "destroy $ww" -font {Arial 9}
 pack $w.b -side bottom 
 
 
-
-
 ########### Clipping onglet #######################################
 ###################################################################
 
- set w9 [Notebook:frame $uf.n Clipping]
+set w9 [Notebook:frame $uf.n Clipping]
 
- frame $w9.frame -borderwidth 0
- pack $w9.frame -anchor w -fill both
+frame $w9.frame -borderwidth 0
+pack $w9.frame -anchor w -fill both
 
 set letext ""
 
@@ -364,24 +376,24 @@ set letext ""
 frame $w9.frame.clpstat  -borderwidth 0
 pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0m
 
-label $w9.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0  -font {Arial 9}
+label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w9.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 8 \
     -textvariable curclipstate\
     -editable false \
     -command [list SelectClipState ] -font {Arial 9}
 eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-pack $w9.frame.clip -in $w9.frame.clpstat   -expand 1 -fill x -pady 0m -padx 1.m
+pack $w9.frame.clip -in $w9.frame.clpstat -side left -pady 0m -padx 2m
 
 #clip box
 frame $w9.frame.lb1 -borderwidth 0
 pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
-label $w9.frame.labelul -text "  Clip box : upper-left point coordinates " -font {Arial 9}
+label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
 pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
 
 frame $w9.frame.lb2 -borderwidth 0
@@ -393,13 +405,15 @@ pack $w9.frame.lb21  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb22 -borderwidth 0
 pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelx -text "             X: " -font {Arial 9}
-entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10 -font {Arial 9}
-label $w9.frame.labely -text "             Y: " -font {Arial 9}
-entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
+entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
+label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -pady 0m -padx 1.m
-pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 0m -padx 1.m 
+pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
+pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
+pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
+pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -408,7 +422,7 @@ bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
 pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
-label $w9.frame.labelwh -text "   Clip box : width and height  " -font {Arial 9}
+label $w9.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
 pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
 
 frame $w9.frame.lb4 -borderwidth 0
@@ -417,13 +431,15 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "            W: " -font {Arial 9}
-entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10 -font {Arial 9}
-label $w9.frame.labelh -text "             H: " -font {Arial 9}
-entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
+label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -pady 0m -padx 1.m
-pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 0m -padx 1.m
+pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
+pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
+pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
+pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
@@ -444,9 +460,7 @@ pack $w9.sep -fill both
 #exit button
 frame $w9.buttons
 button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
-pack $w9.b -side bottom 
-
-
+pack $w9.b -side bottom
 
 
 

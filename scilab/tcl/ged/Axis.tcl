@@ -55,15 +55,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 270
+set NBwidth  220
+
+set Wheight [expr $NBheight + 120]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Axis Object"
 wm iconname $ww "SO"
-wm geometry $ww 480x350
-#wm geometry $ww 545x600
-#wm geometry $ww 650x700
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -150,8 +154,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 14
 
-Notebook:create $uf.n -pages {Style Xtics Ytics Clipping} -pad 0 -height  240 -width 220
+Notebook:create $uf.n -pages {Style Xtics Ytics Clipping} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -164,45 +169,44 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "            Visibility:    " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
 
 #tics segment
 frame $w.frame.seg -borderwidth 0
 pack $w.frame.seg  -in $w.frame  -side top -fill x
-label $w.frame.seglabel  -text "    Tics segment:    " -font {Arial 9}
+label $w.frame.seglabel  -text "Tics segment:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.segib  -text "on"\
     -variable curseg  -onvalue "on" -offvalue "off" \
     -command "toggleSeg $w.frame.segib" -font {Arial 9}
 OnOffForeground $w.frame.segib $curseg
 
 pack $w.frame.seglabel -in $w.frame.seg  -side left
-pack $w.frame.segib  -in $w.frame.seg    -side left -fill x
+pack $w.frame.segib  -in $w.frame.seg    -side left -fill x -padx 1m
 
 #Color scale
 frame $w.frame.ticscol  -borderwidth 0
 pack $w.frame.ticscol  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "         Tics color:   " -width 0  -font {Arial 9}
-#         -foreground $color
+label $w.frame.colorlabel -height 0 -text "Tics color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.colorlabel -in $w.frame.ticscol -side left
-pack $w.frame.color  -in  $w.frame.ticscol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.color  -in  $w.frame.ticscol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.color set $curcolor
 
 #Tics Style
 frame $w.frame.ticsst  -borderwidth 0
 pack $w.frame.ticsst  -in $w.frame  -side top  -fill x
 
-label $w.frame.ticsstylelabel  -height 0 -text "         Tics style:   " -width 0  -font {Arial 9}
+label $w.frame.ticsstylelabel  -height 0 -text "Tics style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.ticsstyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -219,12 +223,12 @@ pack $w.frame.ticsstyle   -in $w.frame.ticsst   -expand 1 -fill x -pady 0m -padx
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "Labels font color: " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Labels font color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $curfontcolor
 
 
@@ -232,24 +236,24 @@ $w.frame.fontcolor set $curfontcolor
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text " Labels font size:  " -width 0  -font {Arial 9}
+label $w.frame.fontsizlabel -height 0 -text "Labels font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from -1 -to 6 \
 	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $curfontsize
 
    
 frame $w.frame.cas -borderwidth 0
 pack $w.frame.cas -anchor w -fill both
 
-label $w.frame.subticslab -height 0 -text "            Subtics: " -width 0  -font {Arial 9}
+label $w.frame.subticslab -height 0 -text "Subtics:"  -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.subtics  -relief sunken  -textvariable cursubtics  -width 10 -font {Arial 9}
 bind  $w.frame.subtics  <Return> "SelectSubtics  $w.frame"
 bind  $w.frame.subtics  <KP_Enter> "SelectSubtics  $w.frame"
-pack  $w.frame.subticslab  $w.frame.subtics  -in  $w.frame.cas   -side left -fill x -pady 0m -padx 2m
-
+pack  $w.frame.subticslab  -in  $w.frame.cas  -side left
+pack  $w.frame.subtics     -in  $w.frame.cas  -side left -fill x -pady 0m -padx 2m
 
 
 #sep bar
@@ -300,29 +304,29 @@ if { $nbcolX == 1} {
     frame $w.frame.cas1_0 -borderwidth 0
     pack $w.frame.cas1_0 -anchor w -fill both
 
-    label $w.frame.warning -height 0 -text "  --  Vertical axis case  --" -width 0  -font {Arial 9}
-    pack  $w.frame.warning -in  $w.frame.cas1_0  -expand 1 -fill x -pady 0m -padx 1.m
+    label $w.frame.warning -height 0 -text "  --  Vertical axis case  --" -width 0  -font {Arial 9} -anchor w -width $largeur
+    pack  $w.frame.warning -in  $w.frame.cas1_0  -expand 1 -fill x -pady 0m
     
     frame $w.frame.cas1_1 -borderwidth 0
     pack $w.frame.cas1_1 -anchor w -fill both
 
-    label $w.frame.xcoordlab -height 0 -text "    Xtics coord:   " -width 0  -font {Arial 9}
+    label $w.frame.xcoordlab -height 0 -text "Xtics coord:" -width 0  -font {Arial 9} -anchor e -width $largeur
     entry $w.frame.xcoord  -relief sunken  -textvariable xticscoord -width 10 -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectXticsCoord  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectXticsCoord  $w.frame"
-    pack  $w.frame.xcoordlab  $w.frame.xcoord  -in  $w.frame.cas1_1   -side left -fill x -pady 0m -padx 1.m
-
+    pack  $w.frame.xcoordlab   -in  $w.frame.cas1_1   -side left
+		pack  $w.frame.xcoord      -in  $w.frame.cas1_1   -side left -fill x -pady 0m -padx 2m
 } else {
     frame $w.frame.cas2_0 -borderwidth 0
     pack $w.frame.cas2_0 -anchor w -fill both
 
-    label $w.frame.warning -height 0 -text "  --  Horizontal axis case  --" -width 0 -font {Arial 9}
-    pack  $w.frame.warning -in  $w.frame.cas2_0  -expand 1 -fill x -pady 0m -padx 1.m
+    label $w.frame.warning -height 0 -text "  --  Horizontal axis case  --" -width 0 -font {Arial 9} -anchor w -width $largeur
+    pack  $w.frame.warning -in  $w.frame.cas2_0  -expand 1 -fill x -pady 0m
     
     frame $w.frame.cas2_1 -borderwidth 0
     pack $w.frame.cas2_1 -anchor w -fill both
 
-    label $w.frame.xcoordlab -height 0 -text "    Xtics coord:   " -width 0  -font {Arial 9}
+    label $w.frame.xcoordlab -height 0 -text "Xtics coord:" -width 0  -font {Arial 9} -anchor e -width $largeur
 #    text $w.frame.xcoord  -relief sunken -yscrollcommand "$w.frame.scroll set"
 #    scrollbar $w.frame.scroll -command "$w.frame.xcoord yview"
 #    $w.frame.xcoord insert end $xticscoord
@@ -331,32 +335,32 @@ if { $nbcolX == 1} {
     bind  $w.frame.xcoord  <Return> "SelectXticsCoord2  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectXticsCoord2  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas2_1 -side left
-    pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -expand 1 -fill x -pady 0m -padx 1.m
+    pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -side left -fill x -pady 0m -padx 2m
     
     frame $w.frame.cas2_2 -borderwidth 0
     pack $w.frame.cas2_2 -anchor w -fill both
     
-    label $w.frame.ticslabellab -height 0 -text "    Tics Labels:   " -width 0  -font {Arial 9}
+    label $w.frame.ticslabellab -height 0 -text "Tics Labels:" -width 0  -font {Arial 9} -anchor e -width $largeur
     entry $w.frame.ticslabel  -relief sunken  -textvariable curticslabel -width 10 -font {Arial 9}
     bind  $w.frame.ticslabel  <Return> "SelectTicsLabels  $w.frame"
     bind  $w.frame.ticslabel  <KP_Enter> "SelectTicsLabels  $w.frame"
     pack  $w.frame.ticslabellab  -in  $w.frame.cas2_2   -side left
-    pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 0m -padx 1.m
+    pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 0m -padx 2m
 
     
     #Tics direction
     frame $w.frame.px  -borderwidth 0
     pack $w.frame.px  -in $w.frame -side top   -fill x -pady 0m
     
-    label $w.frame.xposlabel  -height 0 -text "  Tics direction: " -width 0  -font {Arial 9}
+    label $w.frame.xposlabel  -height 0 -text "Tics direction:" -width 0  -font {Arial 9} -anchor e -width $largeur
     combobox $w.frame.xpos \
-	-borderwidth 1 \
-	-highlightthickness 1 \
-	-maxheight 0 \
-	-width 3 \
-	-textvariable curticsdir \
-	-editable false \
-	-command [list SelectTicsdir ] -font {Arial 9}
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curticsdir \
+    -editable false \
+    -command [list SelectTicsdir ] -font {Arial 9}
     eval $w.frame.xpos list insert end [list "top" "bottom"]
     
     pack $w.frame.xposlabel -in  $w.frame.px -side left
@@ -386,59 +390,59 @@ if { $nbcolY == 1} {
     frame $w.frame.cas1_0 -borderwidth 0
     pack $w.frame.cas1_0 -anchor w -fill both
 
-    label $w.frame.warning -height 0 -text "  --  Horizontal axis case  --" -width 0  -font {Arial 9}
-    pack  $w.frame.warning -in  $w.frame.cas1_0  -expand 1 -fill x -pady 0m -padx 1.m
+    label $w.frame.warning -height 0 -text "  --  Horizontal axis case  --" -width 0  -font {Arial 9} -anchor w -width $largeur
+    pack  $w.frame.warning -in  $w.frame.cas1_0  -expand 1 -fill x -pady 0m
     
     frame $w.frame.cas1_1 -borderwidth 0
     pack $w.frame.cas1_1 -anchor w -fill both
 
-    label $w.frame.xcoordlab -height 0 -text "    Ytics coord:   " -width 0  -font {Arial 9}
+    label $w.frame.xcoordlab -height 0 -text "Ytics coord:" -width 0  -font {Arial 9} -anchor e -width $largeur
     entry $w.frame.xcoord  -relief sunken  -textvariable yticscoord -width 10  -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectYticsCoord  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectYticsCoord  $w.frame"
-    pack  $w.frame.xcoordlab  $w.frame.xcoord  -in  $w.frame.cas1_1   -side left -fill x -pady 0m -padx 1.m
- 
+    pack  $w.frame.xcoordlab  -in  $w.frame.cas1_1   -side left
+ 	  pack  $w.frame.xcoord     -in  $w.frame.cas1_1   -side left -fill x -pady 0m -padx 2m
 } else {
     frame $w.frame.cas2_0 -borderwidth 0
     pack $w.frame.cas2_0 -anchor w -fill both
 
-    label $w.frame.warning -height 0 -text "  --  Vertical axis case  --" -width 0  -font {Arial 9}
-    pack  $w.frame.warning -in  $w.frame.cas2_0  -expand 1 -fill x -pady 0m -padx 1.m
-    
+    label $w.frame.warning -height 0 -text "  --  Vertical axis case  --" -width 0  -font {Arial 9} -anchor w -width $largeur
+    pack  $w.frame.warning -in  $w.frame.cas2_0  -expand 1 -fill x -pady 0m
+   
     frame $w.frame.cas2_1 -borderwidth 0
     pack $w.frame.cas2_1 -anchor w -fill both
 
-    label $w.frame.xcoordlab -height 0 -text "    Ytics coord:   " -width 0  -font {Arial 9}
+    label $w.frame.xcoordlab -height 0 -text "Ytics coord:" -width 0  -font {Arial 9} -anchor e -width $largeur
     entry $w.frame.xcoord  -relief sunken  -textvariable yticscoord -width 10 -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectYticsCoord2  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectYticsCoord2  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas2_1 -side left
-    pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -expand 1 -fill x -pady 0m -padx 1.m
+    pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -expand 1 -fill x -pady 0m -padx 2m
     
     frame $w.frame.cas2_2 -borderwidth 0
     pack $w.frame.cas2_2 -anchor w -fill both
 
-    label $w.frame.ticslabellab -height 0 -text "    Tics Labels:   " -width 0  -font {Arial 9}
+    label $w.frame.ticslabellab -height 0 -text "Tics Labels:" -width 0  -font {Arial 9} -anchor e -width $largeur
     entry $w.frame.ticslabel  -relief sunken  -textvariable curticslabel -width 10 -font {Arial 9}
     bind  $w.frame.ticslabel  <Return> "SelectTicsLabels  $w.frame"
     bind  $w.frame.ticslabel  <KP_Enter> "SelectTicsLabels  $w.frame"
     pack  $w.frame.ticslabellab  -in  $w.frame.cas2_2   -side left
-    pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 0m -padx 1.m
+    pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 0m -padx 2m
 
     
     #Tics direction
     frame $w.frame.px  -borderwidth 0
     pack $w.frame.px  -in $w.frame -side top   -fill x -pady 0m
     
-    label $w.frame.xposlabel  -height 0 -text "  Tics direction: " -width 0  -font {Arial 9}
+    label $w.frame.xposlabel  -height 0 -text "Tics direction:" -width 0  -font {Arial 9} -anchor e -width $largeur
     combobox $w.frame.xpos \
-	-borderwidth 1 \
-	-highlightthickness 1 \
-	-maxheight 0 \
-	-width 3 \
-	-textvariable curticsdir \
-	-editable false \
-	-command [list SelectTicsdir ] -font {Arial 9}
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curticsdir \
+    -editable false \
+    -command [list SelectTicsdir ] -font {Arial 9}
     eval $w.frame.xpos list insert end [list "left" "right"]
     
     pack $w.frame.xposlabel -in  $w.frame.px -side left
@@ -473,24 +477,24 @@ set letext ""
 frame $w9.frame.clpstat  -borderwidth 0
 pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0m
 
-label $w9.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0  -font {Arial 9}
+label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w9.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 8 \
     -textvariable curclipstate\
     -editable false \
     -command [list SelectClipState ] -font {Arial 9}
 eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-pack $w9.frame.clip -in $w9.frame.clpstat   -expand 1 -fill x -pady 0m -padx 1.m
+pack $w9.frame.clip -in $w9.frame.clpstat -side left -pady 0m -padx 2m
 
 #clip box
 frame $w9.frame.lb1 -borderwidth 0
 pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
-label $w9.frame.labelul -text "  Clip box : upper-left point coordinates " -font {Arial 9}
+label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
 pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
 
 frame $w9.frame.lb2 -borderwidth 0
@@ -502,13 +506,15 @@ pack $w9.frame.lb21  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb22 -borderwidth 0
 pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelx -text "             X: " -font {Arial 9}
-entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10 -font {Arial 9}
-label $w9.frame.labely -text "             Y: " -font {Arial 9}
-entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
+entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
+label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -pady 0m -padx 1.m
-pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 0m -padx 1.m 
+pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
+pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
+pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
+pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -517,7 +523,7 @@ bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
 pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
-label $w9.frame.labelwh -text "   Clip box : width and height  " -font {Arial 9}
+label $w9.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
 pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
 
 frame $w9.frame.lb4 -borderwidth 0
@@ -526,13 +532,15 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "             W: " -font {Arial 9}
-entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10 -font {Arial 9}
-label $w9.frame.labelh -text "             H: " -font {Arial 9}
-entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
+label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -pady 0m -padx 1.m
-pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 0m -padx 1.m
+pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
+pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
+pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
+pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
@@ -553,7 +561,7 @@ pack $w9.sep -fill both
 #exit button
 frame $w9.buttons
 button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
-pack $w9.b -side bottom 
+pack $w9.b -side bottom
 
 
 pack $sw $pw1 -fill both -expand yes

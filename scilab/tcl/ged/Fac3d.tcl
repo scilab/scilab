@@ -55,13 +55,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 450
+set NBwidth  320
+
+set Wheight [expr $NBheight + 120]
+set Wwidth  [expr $NBwidth  + 250]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Fac3d Object"
 wm iconname $ww "FE"
-wm geometry $ww 560x510
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -149,9 +155,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 14
 
-
-Notebook:create $uf.n -pages {"Style" "Data"} -pad 0 -height 400 -width 300
+Notebook:create $uf.n -pages {"Style" "Data"} -pad 0 -height $NBheight -width $NBwidth
 
 pack $uf.n -in $uf -fill both -expand yes
 
@@ -165,62 +171,62 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "        Visibility:    " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on" \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
 
 #Surface mode
 frame $w.frame.linelinemode  -borderwidth 0
 pack $w.frame.linelinemode  -in $w.frame  -side top  -fill x
 
-label $w.frame.linemodelabel -height 0 -text "Surface mode:  " -width 0  -font {Arial 9}
+label $w.frame.linemodelabel -height 0 -text "Surface mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.linemode  -text "on" -indicatoron 1 \
     -variable curlinemode -onvalue "on" -offvalue "off" \
     -command "toggleLinemode $w.frame.linemode" -font {Arial 9}
 OnOffForeground $w.frame.linemode $curlinemode
 
 pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
-pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 1m
 
 #Color Mode
 frame $w.frame.clrm  -borderwidth 0
 pack $w.frame.clrm  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabelm -height 0 -text "   Color mode: " -width 0  -font {Arial 9}
+label $w.frame.colorlabelm -height 0 -text "Color mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.colorm -orient horizontal -from -$ncolors -to $ncolors \
 	 -resolution 1.0 -command "setColorMode $w.frame.colorm" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.colorlabelm -in $w.frame.clrm -side left
-pack $w.frame.colorm  -in  $w.frame.clrm -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.colorm  -in  $w.frame.clrm -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.colorm set $curcolormode
 
 #Foreground
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "   Foreground: " -width 0  -font {Arial 9}
+label $w.frame.colorlabel -height 0 -text "Foreground:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setForeground $w.frame.color" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.colorlabel -in $w.frame.clrf -side left
-pack $w.frame.color  -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.color  -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.color set $curforeground
 
 #Hidden Color
 frame $w.frame.clrh  -borderwidth 0
 pack $w.frame.clrh  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabelh -height 0 -text " Hidden color: " -width 0  -font {Arial 9}
+label $w.frame.colorlabelh -height 0 -text "Hidden color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.colorh -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setHiddenColor $w.frame.colorh" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.colorlabelh -in $w.frame.clrh -side left
-pack $w.frame.colorh  -in  $w.frame.clrh -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.colorh  -in  $w.frame.clrh -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.colorh set $curhiddencolor
 
 
@@ -228,7 +234,7 @@ $w.frame.colorh set $curhiddencolor
 frame $w.frame.thk  -borderwidth 0
 pack $w.frame.thk  -side top -fill x
 
-label $w.frame.thicklabel -height 0 -text "    Thickness: " -width 0  -font {Arial 9}
+label $w.frame.thicklabel -height 0 -text "Thickness:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.thickness \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -246,7 +252,7 @@ pack $w.frame.thickness  -in $w.frame.thk  -expand 1 -fill x -pady 0m -padx 2m
 frame $w.frame.scalesw  -borderwidth 0
 pack $w.frame.scalesw  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "      Color flag: " -width 0  -font {Arial 9}
+label $w.frame.scalesw.label -height 0 -text "Color flag:" -font {Arial 9} -anchor e -width $largeur
 radiobutton $w.frame.scalesw.radio0 -text "0" -variable colorflagToggle -value 0    -command "toggleColorFlag" -font {Arial 9}
 radiobutton $w.frame.scalesw.radio1 -text "1" -variable colorflagToggle -value 1    -command "toggleColorFlag" -font {Arial 9}
 radiobutton $w.frame.scalesw.radio2 -text "2" -variable colorflagToggle -value 2    -command "toggleColorFlag" -font {Arial 9}
@@ -254,11 +260,11 @@ radiobutton $w.frame.scalesw.radio3 -text "3" -variable colorflagToggle -value 3
 radiobutton $w.frame.scalesw.radio4 -text "4" -variable colorflagToggle -value 4    -command "toggleColorFlag" -font {Arial 9}
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
-pack $w.frame.scalesw.radio0 -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radio1 -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radio2 -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radio3 -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radio4 -in  $w.frame.scalesw -side left 
+pack $w.frame.scalesw.radio0 -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radio1 -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radio2 -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radio3 -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radio4 -in  $w.frame.scalesw -side left -padx 1m
 
 
 
@@ -266,21 +272,21 @@ pack $w.frame.scalesw.radio4 -in  $w.frame.scalesw -side left
 frame $w.frame.linemarkmode  -borderwidth 0
 pack $w.frame.linemarkmode  -in $w.frame  -side top  -fill x
 
-label $w.frame.markmodelabel -height 0 -text "    Mark mode:   " -width 0  -font {Arial 9}
+label $w.frame.markmodelabel -height 0 -text "Mark mode:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.markmode  -text "on" -indicatoron 1 \
     -variable curmarkmode -onvalue "on" -offvalue "off" \
     -command "toggleMarkmode $w.frame.markmode" -font {Arial 9}
 OnOffForeground $w.frame.markmode $curmarkmode
 
 pack $w.frame.markmodelabel  -in $w.frame.linemarkmode  -side left 
-pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left  -fill x -pady 0m -padx 1m
 
 
 #Mark style
 frame $w.frame.linemarkst  -borderwidth 0
 pack $w.frame.linemarkst  -in $w.frame  -side top  -fill x
 
-label $w.frame.markstylelabel  -height 0 -text "    Mark style:    " -width 0  -font {Arial 9}
+label $w.frame.markstylelabel  -height 0 -text "Mark style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.markstyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -300,7 +306,7 @@ pack $w.frame.markstyle   -in $w.frame.linemarkst   -expand 1 -fill x -pady 0m -
 frame $w.frame.mksize  -borderwidth 0
 pack $w.frame.mksize  -side top -fill x
 
-label $w.frame.marksizelabel -height 0 -text "      Mark size:   " -width 0  -font {Arial 9}
+label $w.frame.marksizelabel -height 0 -text "Mark size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.marksize \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -313,7 +319,7 @@ eval $w.frame.marksize list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0"
 
 
 #Add Mark size unit
-label $w.frame.marksizeunitlabel  -height 0 -text "      Mark size:     " -width 0 -font {Arial 9}
+label $w.frame.marksizeunitlabel  -height 0 -text "Mark size:" -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.marksizeunit \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -325,7 +331,7 @@ combobox $w.frame.marksizeunit \
 eval $w.frame.marksizeunit list insert end [list "point" "tabulated"]
 
 pack  $w.frame.marksizeunitlabel -in $w.frame.mksize -side left
-pack  $w.frame.marksizeunit -in $w.frame.mksize -side left
+pack  $w.frame.marksizeunit -in $w.frame.mksize -side left -padx 2m
 pack  $w.frame.marksize -in $w.frame.mksize -side left  -fill x  -expand 1 -pady 0m -padx 2m
 
 
@@ -333,12 +339,12 @@ pack  $w.frame.marksize -in $w.frame.mksize -side left  -fill x  -expand 1 -pady
 frame $w.frame.markf  -borderwidth 0
 pack $w.frame.markf  -in $w.frame -side top  -fill x
 
-label $w.frame.markflabel -height 0 -text "Mark foreground:   " -width 0 -font {Arial 9}
+label $w.frame.markflabel -height 0 -text "Mark foreground:" -width 0 -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.markforeground -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setMarkForeground $w.frame.markforeground" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.markflabel -in $w.frame.markf -side left
-pack $w.frame.markforeground  -in  $w.frame.markf -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.markforeground  -in  $w.frame.markf -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.markforeground set $curmarkforeground
 
 
@@ -346,12 +352,12 @@ $w.frame.markforeground set $curmarkforeground
 frame $w.frame.markb  -borderwidth 0
 pack $w.frame.markb  -in $w.frame -side top  -fill x
 
-label $w.frame.markblabel -height 0 -text "Mark background:   " -width 0 -font {Arial 9}
+label $w.frame.markblabel -height 0 -text "Mark background:" -width 0 -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.markbackground -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setMarkBackground $w.frame.markbackground" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.markblabel -in $w.frame.markb -side left
-pack $w.frame.markbackground  -in  $w.frame.markb -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.markbackground  -in  $w.frame.markb -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.markbackground set $curmarkbackground
 
 
@@ -383,7 +389,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.curdataframeX  -borderwidth 0
 pack $w.frame.curdataframeX  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelX  -height 0 -text "     X Data :   " -width 0  -font {Arial 9}
+label $w.frame.polydatalabelX  -height 0 -text "X Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -400,7 +406,7 @@ pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 0m
 frame $w.frame.curdataframeY  -borderwidth 0
 pack $w.frame.curdataframeY  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelY  -height 0 -text "     Y Data :   " -width 0  -font {Arial 9}
+label $w.frame.polydatalabelY  -height 0 -text "Y Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.polydataY \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -416,7 +422,7 @@ pack $w.frame.polydataY   -in $w.frame.curdataframeY  -expand 1 -fill x -pady 0m
 frame $w.frame.curdataframeZ  -borderwidth 0
 pack $w.frame.curdataframeZ  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelZ  -height 0 -text "     Z Data :   " -width 0  -font {Arial 9}
+label $w.frame.polydatalabelZ  -height 0 -text "Z Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.polydataZ \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -433,7 +439,7 @@ if {$flagCOLOR == 1} {
     frame $w.frame.curdataframeColor  -borderwidth 0
     pack $w.frame.curdataframeColor  -in $w.frame  -side top  -fill x
     
-    label $w.frame.polydatalabelColor  -height 0 -text "Color Data :   " -width 0  -font {Arial 9}
+    label $w.frame.polydatalabelColor  -height 0 -text "Color Data :" -width 0  -font {Arial 9} -anchor e -width $largeur
     combobox $w.frame.polydataColor \
 	-borderwidth 1 \
 	-highlightthickness 1 \
@@ -456,13 +462,13 @@ if {$flagCOLOR == 1} {
 frame $w.scicom1
 pack $w.scicom1 -side top -fill x -pady 0m
 
-label $w.scicom1.label1 -text "Scilab Command Interface for data:" -font {Arial 9}
+label $w.scicom1.label1 -text "Scilab Command Interface for data:" -font {Arial 9} -anchor w
 pack  $w.scicom1.label1 -in $w.scicom1 -side left
 
 frame $w.scicomX
 pack $w.scicomX -side top -fill x -pady 0m
 
-label $w.scicomX.label1 -text "     X Data :   " -font {Arial 9}
+label $w.scicomX.label1 -text "X Data:" -font {Arial 9} -anchor e -width $largeur
 pack  $w.scicomX.label1 -in $w.scicomX -side left
 
 entry $w.scicomX.text1 -relief sunken -textvariable scicomint_dataX -width 10  -font {Arial 9}
@@ -470,13 +476,13 @@ set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console represe
 bind  $w.scicomX.text1 <Return> "sciCommandData"
 bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
 
-pack $w.scicomX.text1  -side left  -fill both -expand yes
+pack $w.scicomX.text1  -side left   -padx 2m
 
 
 frame $w.scicomY
 pack $w.scicomY -side top -fill x -pady 0m
 
-label $w.scicomY.label1 -text "     Y Data :   " -font {Arial 9}
+label $w.scicomY.label1 -text "Y Data:" -font {Arial 9} -anchor e -width $largeur
 pack  $w.scicomY.label1 -in $w.scicomY -side left
 
 entry $w.scicomY.text1 -relief sunken -textvariable scicomint_dataY -width 10  -font {Arial 9}
@@ -484,13 +490,13 @@ set_balloon $w.scicomY.text1 "Enter a variable defined in Scilab Console represe
 bind  $w.scicomY.text1 <Return> "sciCommandData"
 bind  $w.scicomY.text1 <KP_Enter> "sciCommandData"
 
-pack $w.scicomY.text1  -side left  -fill both -expand yes
+pack $w.scicomY.text1  -side left  -padx 2m
 
 
 frame $w.scicomZ
 pack $w.scicomZ -side top -fill x -pady 0m
 
-label $w.scicomZ.label1 -text "     Z Data :   " -font {Arial 9}
+label $w.scicomZ.label1 -text "Z Data:" -font {Arial 9} -anchor e -width $largeur
 pack  $w.scicomZ.label1 -in $w.scicomZ -side left
 
 entry $w.scicomZ.text1 -relief sunken -textvariable scicomint_dataZ -width 10  -font {Arial 9}
@@ -498,13 +504,13 @@ set_balloon $w.scicomZ.text1 "Enter a variable defined in Scilab Console represe
 bind  $w.scicomZ.text1 <Return> "sciCommandData"
 bind  $w.scicomZ.text1 <KP_Enter> "sciCommandData"
 
-pack $w.scicomZ.text1  -side left  -fill both -expand yes
+pack $w.scicomZ.text1  -side left -padx 2m
 
 
 frame $w.scicomCOLOR
 pack $w.scicomCOLOR -side top -fill x -pady 0m
 
-label $w.scicomCOLOR.label1 -text "Color Data :   " -font {Arial 9}
+label $w.scicomCOLOR.label1 -text "Color Data:" -font {Arial 9} -anchor e -width $largeur
 pack  $w.scicomCOLOR.label1 -in $w.scicomCOLOR -side left
 
 entry $w.scicomCOLOR.text1 -relief sunken -textvariable scicomint_dataCOLOR -width 10  -font {Arial 9}
@@ -512,7 +518,7 @@ set_balloon $w.scicomCOLOR.text1 "Enter a variable defined in Scilab Console rep
 bind  $w.scicomCOLOR.text1 <Return> "sciCommandData"
 bind  $w.scicomCOLOR.text1 <KP_Enter> "sciCommandData"
 
-pack $w.scicomCOLOR.text1  -side left  -fill both -expand yes
+pack $w.scicomCOLOR.text1  -side left  -padx 2m
 
 
 #sep bar

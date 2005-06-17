@@ -153,13 +153,18 @@ proc OnOffForeground { frame flag } {
 }
 
 
+set NBheight 300
+set NBwidth  320
+
+set Wheight [expr $NBheight + 170]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 580x470
-#wm geometry $ww 650x700
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 #wm maxsize  $ww 450 560
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
@@ -247,9 +252,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 11
 
-
-Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 0  -height 100 -width 300
+Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 0  -height $NBheight -width $NBwidth
 pack $uf.n -fill both -expand yes  -side top
 
 
@@ -283,7 +288,7 @@ frame $w.frame.lbx -borderwidth 0
 pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 0m
 
 
-label $w.frame.xlabel -text "     Label:  " -font {Arial 9}
+label $w.frame.xlabel -text "Label:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel  -font {Arial 9}
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 0m -padx 2m
@@ -293,26 +298,26 @@ bind  $w.frame.xlabel1 <FocusOut> {setXlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.vislablabel  -text "  Visibility:   "  -font {Arial 9}
+label $w.frame.vislablabel  -text "Visibility:"  -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.vislabb \
     -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
     -command "toggleVisibilitylabx $w.frame.vislabb" -text "on"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $xlabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
 
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0   -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
     -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $xlabel_foreground
 
 
@@ -320,12 +325,12 @@ $w.frame.fontcolor set $xlabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0   -font {Arial 9}
+label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
     -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $xlabel_fontsize
 
 
@@ -333,7 +338,7 @@ $w.frame.fontsize set $xlabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0   -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0   -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -358,7 +363,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.px  -borderwidth 0
 pack $w.frame.px  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.xposlabel  -height 0 -text "   Location:" -width 0   -font {Arial 9}
+label $w.frame.xposlabel  -height 0 -text "Location:" -width 0   -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.xpos \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -376,24 +381,24 @@ pack $w.frame.xpos  -in  $w.frame.px  -expand 1 -fill x -pady 0m -padx 2m
 frame $w.frame.gridcol  -borderwidth 0
 pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0   -font {Arial 9}
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
     -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.gridcolor set $xGrid
 
 #X Data bounds
 frame $w.frame.datab  -borderwidth 0
 pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.datalabel -text "Data bounds:"  -font {Arial 9}
+label $w.frame.datalabel -text "Data bounds:"  -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.databmin -relief sunken  -textvariable dbxmin -width 10 -font {Arial 9}
 entry $w.frame.databmax -relief sunken  -textvariable dbxmax -width 10 -font {Arial 9}
 pack $w.frame.datalabel -in  $w.frame.datab -side left
-pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
-pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x -padx 2m
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x -padx 2m
 bind  $w.frame.databmin <Return> {setXdb}
 bind  $w.frame.databmin <KP_Enter> {setXdb}
 bind  $w.frame.databmin <FocusOut> {setXdb}
@@ -406,30 +411,30 @@ bind  $w.frame.databmax <FocusOut> {setXdb}
 frame $w.frame.scalesw  -borderwidth 0
 pack $w.frame.scalesw  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0  -font {Arial 9}
-radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n"    -command "toggleX"  -font {Arial 9}
+label $w.frame.scalesw.label -height 0 -text "Scale:" -width 0  -font {Arial 9} -anchor e -width $largeur
+radiobutton $w.frame.scalesw.radioLIN -text "Lin." -variable xToggle -value "n"    -command "toggleX"  -font {Arial 9}
 radiobutton $w.frame.scalesw.radioLOG -text "Log." -variable xToggle -value "l" 	  -command "toggleX"  -font {Arial 9}
 
 set numpage 0
 button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage"  -font {Arial 9}
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
-pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
-pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
+pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left -padx 1m
+pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x -padx 2m
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
 pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0 -font {Arial 9}
+label $w.frame.rev.label -height 0 -text "Reverse:" -width 0 -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Xaxes_reverseToggle -onvalue "on" -offvalue "off" \
     -command "toggleReverselabx $w.frame.rev.revvalue"  -font {Arial 9}
 OnOffForeground $w.frame.rev.revvalue $Xaxes_reverseToggle
 
 pack $w.frame.rev.label -in $w.frame.rev -side left
-pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
+pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x -padx 1m
 
 
 set w $theframe
@@ -472,7 +477,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lby -borderwidth 0
 pack $w.frame.lby  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.ylabel -text "     Label:  " -font {Arial 9}
+label $w.frame.ylabel -text "Label:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel  -font {Arial 9}
 pack $w.frame.ylabel -in  $w.frame.lby -side left
 pack $w.frame.ylabel1  -in  $w.frame.lby  -expand 1 -fill x -pady 0m -padx 2m
@@ -482,25 +487,25 @@ bind  $w.frame.ylabel1 <FocusOut> {setYlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.vislablabel  -text "  Visibility:   " -font {Arial 9}
+label $w.frame.vislablabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.vislabb  -text "on"\
     -variable ylabel_visibility  -onvalue "on" -offvalue "off" \
     -command "toggleVisibilitylaby $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $ylabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $ylabel_foreground
 
 
@@ -508,12 +513,12 @@ $w.frame.fontcolor set $ylabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0  -font {Arial 9}
+label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $ylabel_fontsize
 
 
@@ -521,7 +526,7 @@ $w.frame.fontsize set $ylabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -546,7 +551,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.py  -borderwidth 0
 pack $w.frame.py  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.yposlabel  -height 0 -text "   Location:" -width 0  -font {Arial 9}
+label $w.frame.yposlabel  -height 0 -text "   Location:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.ypos \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -564,24 +569,24 @@ pack $w.frame.ypos  -in  $w.frame.py  -expand 1 -fill x -pady 0m -padx 2m
 frame $w.frame.gridcol  -borderwidth 0
 pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0  -font {Arial 9}
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setYGridColor $w.frame.gridcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.gridcolor set $yGrid
 
 #Y Data bounds
 frame $w.frame.datab  -borderwidth 0
 pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.datalabel -text "Data bounds:" -font {Arial 9}
+label $w.frame.datalabel -text "Data bounds:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.databmin -relief sunken  -textvariable dbymin -width 10 -font {Arial 9}
 entry $w.frame.databmax -relief sunken  -textvariable dbymax -width 10 -font {Arial 9}
 pack $w.frame.datalabel -in  $w.frame.datab -side left
-pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
-pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x -padx 2m
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x -padx 2m
 bind  $w.frame.databmin <Return> {setYdb} 
 bind  $w.frame.databmin <KP_Enter> {setYdb}
 bind  $w.frame.databmin <FocusOut> {setYdb}
@@ -594,30 +599,30 @@ bind  $w.frame.databmax <FocusOut> {setYdb}
 frame $w.frame.scalesw  -borderwidth 0
 pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0  -font {Arial 9}
-radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable yToggle -value "n"    -command "toggleY"  -font {Arial 9}
+label $w.frame.scalesw.label -height 0 -text "Scale:" -width 0  -font {Arial 9} -anchor e -width $largeur
+radiobutton $w.frame.scalesw.radioLIN -text "Lin." -variable yToggle -value "n"    -command "toggleY"  -font {Arial 9}
 radiobutton $w.frame.scalesw.radioLOG -text "Log." -variable yToggle -value "l" 	  -command "toggleY" 	    -font {Arial 9}
 
 set numpage 1
 button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup $ww $numpage" -font {Arial 9}
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
-pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
+pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left -padx 1m
+pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x -padx 2m
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
 pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0 -font {Arial 9}
+label $w.frame.rev.label -height 0 -text "Reverse:" -width 0 -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Yaxes_reverseToggle -onvalue "on" -offvalue "off" \
     -command "toggleReverselaby $w.frame.rev.revvalue" -font {Arial 9}
 OnOffForeground $w.frame.rev.revvalue $Yaxes_reverseToggle
 
 pack $w.frame.rev.label -in $w.frame.rev -side left
-pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
+pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x -padx 1m
 
 set w $theframe
 
@@ -658,7 +663,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lbz -borderwidth 0
 pack $w.frame.lbz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.zlabel -text "     Label:  " -font {Arial 9}
+label $w.frame.zlabel -text "Label:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel  -font {Arial 9}
 pack $w.frame.zlabel -in  $w.frame.lbz -side left
 pack $w.frame.zlabel1  -in  $w.frame.lbz  -expand 1 -fill x -pady 0m -padx 2m
@@ -668,25 +673,25 @@ bind  $w.frame.zlabel1 <FocusOut> {setZlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.vislablabel  -text "  Visibility:   " -font {Arial 9}
+label $w.frame.vislablabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.vislabb  -text "on"\
     -variable zlabel_visibility  -onvalue "on" -offvalue "off" \
     -command "toggleVisibilitylabz $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $zlabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $zlabel_foreground
 
 
@@ -694,12 +699,12 @@ $w.frame.fontcolor set $zlabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0  -font {Arial 9}
+label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $zlabel_fontsize
 
 
@@ -707,7 +712,7 @@ $w.frame.fontsize set $zlabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -751,24 +756,24 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.gridcol  -borderwidth 0
 pack $w.frame.gridcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0  -font {Arial 9}
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setZGridColor $w.frame.gridcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.gridcolor set $zGrid
 
 #Z Data bounds
 frame $w.frame.datab  -borderwidth 0
 pack $w.frame.datab  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.datalabel -text "Data bounds:" -font {Arial 9}
+label $w.frame.datalabel -text "Data bounds:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.databmin -relief sunken  -textvariable dbzmin -width 10 -font {Arial 9}
 entry $w.frame.databmax -relief sunken  -textvariable dbzmax -width 10 -font {Arial 9}
 pack $w.frame.datalabel -in  $w.frame.datab -side left
-pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
-pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x -padx 2m
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x -padx 2m
 bind  $w.frame.databmin <Return> {setZdb} 
 bind  $w.frame.databmin <KP_Enter> {setZdb}
 bind  $w.frame.databmin <FocusOut> {setZdb}
@@ -781,8 +786,8 @@ bind  $w.frame.databmax <FocusOut> {setZdb}
 frame $w.frame.scalesw  -borderwidth 0
 pack $w.frame.scalesw  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0  -font {Arial 9}
-radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n" -command "toggleZ"  -font {Arial 9}
+label $w.frame.scalesw.label -height 0 -text "Scale:" -width 0  -font {Arial 9} -anchor e -width $largeur
+radiobutton $w.frame.scalesw.radioLIN -text "Lin." -variable zToggle -value "n" -command "toggleZ"  -font {Arial 9}
 radiobutton $w.frame.scalesw.radioLOG -text "Log." -variable zToggle -value "l"	  -command "toggleZ" -font {Arial 9}
 
 set numpage 2
@@ -790,22 +795,22 @@ button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup 
 
 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
-pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
+pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left -padx 1m
+pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left -padx 1m
 pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
 pack $w.frame.rev  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.rev.label -height 0 -text "      Reverse:  " -width 0 -font {Arial 9}
+label $w.frame.rev.label -height 0 -text "Reverse:" -width 0 -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.rev.revvalue  -text "on"\
     -variable Zaxes_reverseToggle -onvalue "on" -offvalue "off" \
     -command "toggleReverselabz $w.frame.rev.revvalue" -font {Arial 9}
 OnOffForeground $w.frame.rev.revvalue $Zaxes_reverseToggle
 
 pack $w.frame.rev.label -in $w.frame.rev -side left
-pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x
+pack $w.frame.rev.revvalue -in $w.frame.rev  -side left  -fill x -padx 1m
 
 set w $theframe
 
@@ -820,17 +825,34 @@ pack $w.b -side bottom
 
 ########### Title onglet ##########################################
 ###################################################################
- set w [Notebook:frame $uf.n Title]
+set w [Notebook:frame $uf.n Title]
+
+set theframe $w
+
+frame $theframe.frame -borderwidth 0
+pack $theframe.frame -anchor w -fill both
+
+#adding 25.05.2005
+set topflabel  [frame $theframe.frame.topflabel]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
+#set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+
+set w [$titf1label getframe]
+
+pack $titf1label -padx 4 -side top -fill both -expand yes
+pack $topflabel -fill x -pady 0
+pack $titf1axes  -pady 0 -padx 4 -fill both -expand yes
 
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+#end adding
 
 #title label
 frame $w.frame.lbtitle -borderwidth 0
 pack $w.frame.lbtitle  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.titlelabel -text "     Label:  " -font {Arial 9}
+label $w.frame.titlelabel -text "Label:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel  -font {Arial 9}
 pack $w.frame.titlelabel -in  $w.frame.lbtitle -side left
 pack $w.frame.titlelabel1  -in  $w.frame.lbtitle  -expand 1 -fill x -pady 0m -padx 2m
@@ -841,25 +863,25 @@ bind  $w.frame.titlelabel1 <FocusOut> {setTitleLabel}
 #visibility for title
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.vislablabel  -text "  Visibility:   " -font {Arial 9}
+label $w.frame.vislablabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.vislabb  -text "on"\
     -variable titlelabel_visibility  -onvalue "on" -offvalue "off" \
     -command "toggleVisibilitytitle $w.frame.vislabb" -font {Arial 9}
 OnOffForeground $w.frame.vislabb $titlelabel_visibility
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $titlelabel_foreground
 
 
@@ -867,19 +889,19 @@ $w.frame.fontcolor set $titlelabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0  -font {Arial 9}
+label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize  -in  $w.frame.fontsiz  -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $titlelabel_fontsize
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -893,6 +915,7 @@ eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Ital
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -expand 1 -fill x -pady 0m -padx 2m
 
+set w $theframe
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -914,14 +937,14 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x -pady 0m
-label $w.frame.vislabel  -text "   Visibility:  " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 0m -padx 1m
 
 #fill mode
 # frame $w.frame.mod -borderwidth 0
@@ -937,7 +960,7 @@ pack $w.frame.visib  -in $w.frame.vis    -side left  -fill x -pady 0m -padx 2m
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:  " -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -955,62 +978,62 @@ pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 #FontColor scale
 frame $w.frame.fontclr  -borderwidth 0
 pack $w.frame.fontclr   -in $w.frame -side top  -fill x -pady 0m
-label $w.frame.fontcolorlabel -height 0 -text "Font color:  " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Font color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel -in $w.frame.fontclr -side left
-pack $w.frame.fontcolor -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $curfontcolor
 
 #Fontsize scale
 frame $w.frame.fontssz  -borderwidth 0
 pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 0m
 
-label $w.frame.fontsizelabel -height 0 -text "Font size:   " -width 0  -font {Arial 9}
+label $w.frame.fontsizelabel -height 0 -text "Font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal  -from 0 -to 6 \
 	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0 -font {Arial 9}
 pack $w.frame.fontsizelabel  -in $w.frame.fontssz -side left
-pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $curfontsize
 
 
 #Color scale foregound
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x -pady 0m
-label $w.frame.fcolorlabel -height 0 -text "Foreground\n   color:      " -width 0  -font {Arial 9}
+label $w.frame.fcolorlabel -height 0 -text "Fore. color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 
 scale $w.frame.fcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setForeColor $w.frame.fcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fcolorlabel -in $w.frame.clrf -side left
-pack $w.frame.fcolor -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fcolor -in  $w.frame.clrf -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fcolor set $fcolor
 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
 pack $w.frame.clrb  -in $w.frame -side top  -fill x -pady 0m
-label $w.frame.bcolorlabel -height 0 -text "Background\n   color: " -width 0  -font {Arial 9}
+label $w.frame.bcolorlabel -height 0 -text "Back. color: " -width 0  -font {Arial 9} -anchor e -width $largeur
 
 scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.bcolor set $bcolor
 
 
 #Color scale hiddencolor
 frame $w.frame.clrh  -borderwidth 0
 pack $w.frame.clrh  -in $w.frame -side top  -fill x -pady 0m
-label $w.frame.hcolorlabel -height 0 -text "Hidden color:" -width 0  -font {Arial 9}
+label $w.frame.hcolorlabel -height 0 -text "Hidden color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 
 scale $w.frame.hcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setHiddenColor $w.frame.hcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.hcolorlabel -in $w.frame.clrh -side left
-pack $w.frame.hcolor -in  $w.frame.clrh -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.hcolor -in  $w.frame.clrh -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.hcolor set $hiddencolor
 
 
@@ -1018,11 +1041,11 @@ $w.frame.hcolor set $hiddencolor
 frame $w.frame.thk  -borderwidth 0
 pack $w.frame.thk  -side top -fill x -pady 0m
 
-label $w.frame.scalelabel -height 0 -text "Thickness:   "  -width 0  -font {Arial 9}
+label $w.frame.scalelabel -height 0 -text "Thickness:"  -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.thickness -orient horizontal -length 284 -from 1 -to 30 \
 	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0 -font {Arial 9}
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
-pack  $w.frame.thickness  -in $w.frame.thk -expand yes -fill x
+pack  $w.frame.thickness  -in $w.frame.thk -expand yes -fill x  -padx 1m
 $w.frame.thickness set $curthick
 
 
@@ -1030,7 +1053,7 @@ $w.frame.thickness set $curthick
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.linestylelabel  -height 0 -text " Line style:  " -width 0  -font {Arial 9}
+label $w.frame.linestylelabel  -height 0 -text "Line style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.linestyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -1070,89 +1093,89 @@ frame $w.frame.line3 -borderwidth 0
 pack $w.frame.line3 -in $w.frame -side top   -fill x
 
 #auto clear
-label $w.frame.clearlabel  -text "   Auto clear:  " -font {Arial 9}
+label $w.frame.clearlabel  -text "Auto clear:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.clearib  -text "on"\
     -variable curautoclear  -onvalue "on" -offvalue "off" \
     -command "toggleClear $w.frame.clearib" -font {Arial 9}
 OnOffForeground $w.frame.clearib $curautoclear
 
 pack $w.frame.clearlabel -in $w.frame.line1   -side left
-pack $w.frame.clearib  -in $w.frame.line1    -side left -fill x -pady 0m -padx 1.m
+pack $w.frame.clearib  -in $w.frame.line1    -side left -fill x -pady 0m -padx 1m
 
 #Isoview
-label $w.frame.isolabel  -text " Isoview:     " -font {Arial 9}
+label $w.frame.isolabel  -text " Isoview:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.isob  -text "on"\
     -variable isoToggle  -onvalue "on" -offvalue "off" \
     -command "toggleIsoview $w.frame.isob" -font {Arial 9}
 OnOffForeground $w.frame.isob $isoToggle
 
 pack $w.frame.isolabel -in $w.frame.line1 -side left
-pack $w.frame.isob  -in $w.frame.line1  -side left -fill x -pady 0m -padx 1.m
+pack $w.frame.isob  -in $w.frame.line1  -side left -fill x -pady 0m -padx 1m
 
 
 #auto scal
-label $w.frame.scallabel  -text "   Auto scale:  " -font {Arial 9}
+label $w.frame.scallabel  -text "Auto scale:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.scalib  -text "on"\
     -variable curautoscale  -onvalue "on" -offvalue "off" \
     -command "toggleScale $w.frame.scalib" -font {Arial 9}
 OnOffForeground $w.frame.scalib $curautoscale
 
 pack $w.frame.scallabel -in $w.frame.line2  -side left
-pack $w.frame.scalib  -in $w.frame.line2    -side left  -fill x -pady 0m -padx 1.m
+pack $w.frame.scalib  -in $w.frame.line2    -side left  -fill x -pady 0m -padx 1m
 
 #Tight Limits
-label $w.frame.limitlabel -text "Tight limits: " -font {Arial 9}
+label $w.frame.limitlabel -text "Tight limits:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.limit  -text "on"\
     -variable limToggle  -onvalue "on" -offvalue "off" \
     -command "toggleLimits $w.frame.limit" -font {Arial 9}
 OnOffForeground $w.frame.limit $limToggle
 
 pack $w.frame.limitlabel -in $w.frame.line2 -side left
-pack $w.frame.limit  -in $w.frame.line2  -side left  -fill x -pady 0m -padx 1.m
+pack $w.frame.limit  -in $w.frame.line2  -side left  -fill x -pady 0m -padx 1m
 
 #box
-label $w.frame.boxlabel  -text "         Boxed:  " -font {Arial 9}
+label $w.frame.boxlabel  -text "Boxed:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.box  -text "on"\
     -variable boxToggle  -onvalue "on" -offvalue "off" \
     -command "toggleBox $w.frame.box" -font {Arial 9}
 OnOffForeground $w.frame.box $boxToggle
 
 pack $w.frame.boxlabel -in $w.frame.line3  -side left
-pack $w.frame.box  -in $w.frame.line3   -side left -fill x -pady 0m -padx 1.m
+pack $w.frame.box  -in $w.frame.line3   -side left -fill x -pady 0m -padx 1m
 
 #cubescaling
-label $w.frame.cublabel  -text "Cube scaling:" -font {Arial 9}
+label $w.frame.cublabel  -text "Cube scaling:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.cubb  -text "on"\
     -variable cubToggle  -onvalue "on" -offvalue "off" \
     -command "toggleCubview $w.frame.cubb" -font {Arial 9}
 OnOffForeground $w.frame.cubb $cubToggle
 
 pack $w.frame.cublabel -in $w.frame.line3 -side left
-pack $w.frame.cubb  -in $w.frame.line3  -side left -fill x -pady 0m -padx 1.m
+pack $w.frame.cubb  -in $w.frame.line3  -side left -fill x -pady 0m -padx 1m
 
 
 #Clip state
 frame $w.frame.clpstat  -borderwidth 0
 pack $w.frame.clpstat  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0  -font {Arial 9}
+label $w.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 8 \
     -textvariable curclipstate\
     -editable false \
     -command [list SelectClipState ] -font {Arial 9}
 eval $w.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w.frame.cliplabel -in $w.frame.clpstat   -side left
-pack $w.frame.clip -in $w.frame.clpstat   -expand 1 -fill x -pady 0m -padx 1.m
+pack $w.frame.clip -in $w.frame.clpstat  -side left -pady 0m -padx 2m
 
 #clip box
 frame $w.frame.lb1 -borderwidth 0
 pack $w.frame.lb1  -in $w.frame -side top   -fill x
-label $w.frame.labelul -text "  Clip box : upper-left point coordinates " -font {Arial 9}
+label $w.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
 pack $w.frame.labelul -in  $w.frame.lb1 -side left
 
 frame $w.frame.lb2 -borderwidth 0
@@ -1161,21 +1184,27 @@ pack $w.frame.lb2  -in $w.frame -side top   -fill x
 frame $w.frame.lb21 -borderwidth 0
 pack $w.frame.lb21  -in $w.frame -side top   -fill x
 
-label $w.frame.labelx -text "             X: " -font {Arial 9}
-entry $w.frame.datax -relief sunken  -textvariable Xclipbox -width 10 -font {Arial 9}
-label $w.frame.labely -text "             Y: " -font {Arial 9}
-entry $w.frame.datay -relief sunken  -textvariable Yclipbox -width 10 -font {Arial 9}
+frame $w.frame.lb22 -borderwidth 0
+pack $w.frame.lb22  -in $w.frame -side top   -fill x
 
-pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 0m -padx 1.m
-pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 0m -padx 1.m 
-bind  $w.frame.datax <Return> {SelectClipBox}
-bind  $w.frame.datax <KP_Enter> {SelectClipBox}
-bind  $w.frame.datay <Return> {SelectClipBox}
-bind  $w.frame.datay <KP_Enter> {SelectClipBox}
+label $w.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
+label $w.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
+
+pack $w.frame.labelx  -in  $w.frame.lb2 -side left 
+pack $w.frame.datax   -in  $w.frame.lb2 -side left -pady 0m -padx 2m
+pack $w.frame.labely  -in  $w.frame.lb21 -side left 
+pack $w.frame.datay   -in  $w.frame.lb21 -side left -pady 0m -padx 2m
+bind  $w.frame.datax <Return> "SelectClipBox $w.frame"
+bind  $w.frame.datay <Return> "SelectClipBox $w.frame"
+bind  $w.frame.datax <KP_Enter> "SelectClipBox $w.frame"
+bind  $w.frame.datay <KP_Enter> "SelectClipBox $w.frame"
+
 #----------------------------#
 frame $w.frame.lb3 -borderwidth 0
 pack $w.frame.lb3  -in $w.frame -side top   -fill x
-label $w.frame.labelwh -text "   Clip box : width and height  " -font {Arial 9}
+label $w.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
 pack $w.frame.labelwh -in  $w.frame.lb3 -side left
 
 frame $w.frame.lb4 -borderwidth 0
@@ -1184,79 +1213,26 @@ pack $w.frame.lb4  -in $w.frame -side top   -fill x
 frame $w.frame.lb41 -borderwidth 0
 pack $w.frame.lb41  -in $w.frame -side top   -fill x
 
-label $w.frame.labelw -text "             W: " -font {Arial 9}
-entry $w.frame.dataw -relief sunken  -textvariable Wclipbox -width 10 -font {Arial 9}
-label $w.frame.labelh -text "             H: " -font {Arial 9}
-entry $w.frame.datah -relief sunken  -textvariable Hclipbox -width 10 -font {Arial 9}
+label $w.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
+label $w.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
 
-pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 0m -padx 1.m
-pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 0m -padx 1.m
-bind  $w.frame.dataw <Return> {SelectClipBox}
-bind  $w.frame.dataw <KP_Enter> {SelectClipBox}
-bind  $w.frame.datah <Return> {SelectClipBox}
-bind  $w.frame.datah <KP_Enter> {SelectClipBox}
+pack $w.frame.labelw  -in  $w.frame.lb4 -side left 
+pack $w.frame.dataw   -in  $w.frame.lb4 -side left -pady 0m -padx 2m
+pack $w.frame.labelh  -in  $w.frame.lb41 -side left 
+pack $w.frame.datah   -in  $w.frame.lb41 -side left -pady 0m -padx 2m
+bind  $w.frame.dataw <Return> "SelectClipBox $w.frame"
+bind  $w.frame.datah <Return> "SelectClipBox $w.frame"
+bind  $w.frame.dataw <KP_Enter> "SelectClipBox $w.frame"
+bind  $w.frame.datah <KP_Enter> "SelectClipBox $w.frame"
 
-#margins
-frame $w.frame.marg1 -borderwidth 0
-pack $w.frame.marg1  -in $w.frame -side top   -fill x
-label $w.frame.labelmarg -text "  Margins:" -font {Arial 9}
-label $w.frame.labelaxesbounds -text "\t\t\t  Axes bounds:" -font {Arial 9}
-pack $w.frame.labelmarg $w.frame.labelaxesbounds -in  $w.frame.marg1 -side left
 
-frame $w.frame.marg2 -borderwidth 0
-pack $w.frame.marg2  -in $w.frame -side top   -fill x
-
-frame $w.frame.marg21 -borderwidth 0
-pack $w.frame.marg21  -in $w.frame -side top   -fill x
-
-label $w.frame.labelleft -text  "           Left: " -font {Arial 9}
-entry $w.frame.datamargl -relief sunken  -textvariable Lmargins -width 10 -font {Arial 9}
-label $w.frame.labelleftaxesbounds -text  "   Left: " -font {Arial 9}
-entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL  -width 10 -font {Arial 9}
-
-label $w.frame.labelright -text "         Right:" -font {Arial 9}
-entry $w.frame.datamargr -relief sunken  -textvariable Rmargins -width 10 -font {Arial 9}
-label $w.frame.labelupaxesbounds -text  "      Up: " -font {Arial 9}
-entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU -width 10 -font {Arial 9}
-
-pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 0m -padx 1.m
-pack $w.frame.labelright $w.frame.datamargr  $w.frame.labelupaxesbounds $w.frame.dataupaxesbounds -in  $w.frame.marg21 -side left -fill x -pady 0m -padx 1.m 
-bind  $w.frame.datamargl <Return> {SelectMargins}
-bind  $w.frame.datamargr <Return> {SelectMargins}
-bind  $w.frame.datamargl <KP_Enter> {SelectMargins}
-bind  $w.frame.datamargr <KP_Enter> {SelectMargins}
-bind  $w.frame.dataleftaxesbounds <Return> {SelectAxesbounds}
-bind  $w.frame.dataleftaxesbounds <KP_Enter> {SelectAxesbounds}
-bind  $w.frame.dataupaxesbounds   <Return> {SelectAxesbounds}
-bind  $w.frame.dataupaxesbounds   <KP_Enter> {SelectAxesbounds}
-
-frame $w.frame.marg4 -borderwidth 0
-pack $w.frame.marg4  -in $w.frame -side top   -fill x
-
-frame $w.frame.marg41 -borderwidth 0
-pack $w.frame.marg41  -in $w.frame -side top   -fill x
-
-label $w.frame.labeltop -text    "           Top:" -font {Arial 9}
-entry $w.frame.datamargt -relief sunken  -textvariable Tmargins -width 10 -font {Arial 9}
-label $w.frame.labelwidthaxesbounds -text    "  Width: " -font {Arial 9}
-entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW -width 10 -font {Arial 9}
-
-label $w.frame.labelbottom -text "      Bottom:" -font {Arial 9}
-entry $w.frame.datamargb -relief sunken  -textvariable Bmargins -width 10 -font {Arial 9}
-label $w.frame.labelheightaxesbounds -text    " Height:" -font {Arial 9}
-entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH -width 10 -font {Arial 9}
-
-pack $w.frame.labeltop     $w.frame.datamargt $w.frame.labelwidthaxesbounds  $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 0m -padx 1.m
-pack $w.frame.labelbottom  $w.frame.datamargb $w.frame.labelheightaxesbounds $w.frame.dataheightaxesbounds -in  $w.frame.marg41 -side left -fill x -pady 0m -padx 1.m
-bind  $w.frame.datamargt <Return> {SelectMargins}
-bind  $w.frame.datamargb <Return> {SelectMargins}
-bind  $w.frame.datawidthaxesbounds   <Return> {SelectAxesbounds}
-bind  $w.frame.dataheightaxesbounds  <Return> {SelectAxesbounds}
-bind  $w.frame.datamargt <KP_Enter> {SelectMargins}
-bind  $w.frame.datamargb <KP_Enter> {SelectMargins}
-bind  $w.frame.datawidthaxesbounds   <KP_Enter> {SelectAxesbounds}
-bind  $w.frame.dataheightaxesbounds  <KP_Enter> {SelectAxesbounds}
-
+frame $w.frame.warning
+label $w.frame.mesgwarning  -justify left -textvariable letext -font {Arial 9}
+$w.frame.mesgwarning config -foreground red
+pack $w.frame.mesgwarning -in $w.frame.warning
+pack $w.frame.warning -in $w.frame
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -1274,24 +1250,26 @@ set w [Notebook:frame $uf.n Viewpoint]
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
+#update largeur
+set largeur 13
 
 #view
 frame $w.frame.view -borderwidth 0
 pack $w.frame.view  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.viewlabel  -text "                 View:  " -font {Arial 9}
+label $w.frame.viewlabel  -text "View:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.viewb  -textvariable viewToggle  \
     -variable viewToggle  -onvalue "2d" -offvalue "3d" \
     -command "toggleView"  -font {Arial 9}
 pack $w.frame.viewlabel -in $w.frame.view -side left
-pack $w.frame.viewb  -in $w.frame.view  -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.viewb  -in $w.frame.view  -side left  -fill x -pady 0m -padx 1m
 
 #rotation_angles
 frame $w.frame.rotang -borderwidth 0
 pack $w.frame.rotang  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.rotanglabel  -text "Rotation angles: " -font {Arial 9}
+label $w.frame.rotanglabel  -text "Rotation angles:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.rotalpha -relief sunken  -textvariable curalpharotation -width 10 -font {Arial 9}
 entry $w.frame.rottheta -relief sunken  -textvariable curthetarotation -width 10 -font {Arial 9}
-pack $w.frame.rotanglabel  -in $w.frame.rotang -side left  -pady 0m -padx 2m
+pack $w.frame.rotanglabel  -in $w.frame.rotang -side left  -pady 0m
 pack $w.frame.rotalpha $w.frame.rottheta -in $w.frame.rotang  -in $w.frame.rotang -side left  -pady 0m -padx 2m
 bind  $w.frame.rotalpha <Return> {setAlphaAngle} 
 bind  $w.frame.rottheta <Return> {setThetaAngle} 

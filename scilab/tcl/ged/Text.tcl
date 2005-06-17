@@ -53,14 +53,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 260
+set NBwidth  250
+
+set Wheight [expr $NBheight + 110]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Text Object"
 wm iconname $ww "TO"
-wm geometry $ww 470x310
-#wm geometry $ww 650x700
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -148,8 +153,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 12
 
-Notebook:create $uf.n -pages {Style "Data & Mode" "Clipping"} -pad 0 -height 200 -width 200
+Notebook:create $uf.n -pages {Style "Data & Mode" "Clipping"} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -162,26 +168,26 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text " Visibility:   " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
 
 ###############
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $curforeground
 
 
@@ -189,11 +195,11 @@ $w.frame.fontcolor set $curforeground
 frame $w.frame.fontssz  -borderwidth 0
 pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 0m
 
-label $w.frame.fontsizelabel -height 0 -text "Font size:   " -width 0  -font {Arial 9}
+label $w.frame.fontsizelabel -height 0 -text "Font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal  -from 0 -to 5 \
 	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0 -font {Arial 9}
 pack $w.frame.fontsizelabel  -in $w.frame.fontssz -side left
-pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $curfontsize
 
 
@@ -201,7 +207,7 @@ $w.frame.fontsize set $curfontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Font style:  " -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -219,11 +225,11 @@ pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
 frame $w.frame.fontsang  -borderwidth 0
 pack $w.frame.fontsang  -in $w.frame    -side top -fill x -pady 0m
 
-label $w.frame.fontanglelabel -height 0 -text "Font angle:   " -width 0  -font {Arial 9}
+label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
 	 -resolution 1.0 -command "setFontAngle $w.frame.fontangle" -tickinterval 0 -font {Arial 9}
 pack $w.frame.fontanglelabel  -in $w.frame.fontsang -side left
-pack $w.frame.fontangle -in $w.frame.fontsang   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontangle -in $w.frame.fontsang   -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontangle set $curfontangle
 
 #############
@@ -239,7 +245,7 @@ button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -fo
 pack $w.buttons.dismiss  -side bottom -expand 1
 
 
-########### Style onglet ##########################################
+########### Data & Mode onglet ####################################
 ###################################################################
 set w [Notebook:frame $uf.n "Data & Mode"]
 
@@ -249,12 +255,12 @@ pack $w.frame -anchor w -fill both
 
 #x label
 frame $w.frame.lbx -borderwidth 0
-pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 0m
+pack $w.frame.lbx  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.xlabel -text "               Text:  " -font {Arial 9}
-entry $w.frame.xlabel1 -relief sunken  -textvariable curtext -font {Arial 9}
+label $w.frame.xlabel -text "Text:" -font {Arial 9} -anchor e -width $largeur 
+entry $w.frame.xlabel1 -relief sunken  -textvariable curtext -font {Arial 9} -width 15
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
-pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.xlabel1  -in  $w.frame.lbx  -side left -pady 0m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setText} 
 bind  $w.frame.xlabel1 <KP_Enter> {setText} 
 
@@ -263,19 +269,19 @@ bind  $w.frame.xlabel1 <KP_Enter> {setText}
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "Text box mode:  " -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Text box mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 13 \
     -textvariable curtextboxmode \
     -editable false \
     -command [list SelectTextBoxMode] -font {Arial 9}
 eval $w.frame.style list insert end [list "off" "centered" "filled"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.style -in $w.frame.fontsst  -side left -pady 0m -padx 2m
 
 
 #sep bar
@@ -292,10 +298,10 @@ pack $w.buttons.dismiss  -side bottom -expand 1
 ########### Clipping onglet #######################################
 ###################################################################
 
- set w9 [Notebook:frame $uf.n Clipping]
+set w9 [Notebook:frame $uf.n Clipping]
 
- frame $w9.frame -borderwidth 0
- pack $w9.frame -anchor w -fill both
+frame $w9.frame -borderwidth 0
+pack $w9.frame -anchor w -fill both
 
 set letext ""
 
@@ -305,24 +311,24 @@ set letext ""
 frame $w9.frame.clpstat  -borderwidth 0
 pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0m
 
-label $w9.frame.cliplabel  -height 0 -text "   Clip state:  " -width 0  -font {Arial 9}
+label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w9.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 8 \
     -textvariable curclipstate\
     -editable false \
     -command [list SelectClipState ] -font {Arial 9}
 eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-pack $w9.frame.clip -in $w9.frame.clpstat   -expand 1 -fill x -pady 0m -padx 1.m
+pack $w9.frame.clip -in $w9.frame.clpstat  -side left -pady 0m -padx 2m
 
 #clip box
 frame $w9.frame.lb1 -borderwidth 0
 pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
-label $w9.frame.labelul -text "  Clip box : upper-left point coordinates " -font {Arial 9}
+label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
 pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
 
 frame $w9.frame.lb2 -borderwidth 0
@@ -334,13 +340,15 @@ pack $w9.frame.lb21  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb22 -borderwidth 0
 pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelx -text "             X: " -font {Arial 9}
-entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10 -font {Arial 9}
-label $w9.frame.labely -text "             Y: " -font {Arial 9}
-entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
+entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
+label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -pady 0m -padx 1.m
-pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 0m -padx 1.m 
+pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
+pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
+pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
+pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -349,7 +357,7 @@ bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
 pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
-label $w9.frame.labelwh -text "   Clip box : width and height  " -font {Arial 9}
+label $w9.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
 pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
 
 frame $w9.frame.lb4 -borderwidth 0
@@ -358,13 +366,15 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "            W: " -font {Arial 9}
-entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10 -font {Arial 9}
-label $w9.frame.labelh -text "             H: " -font {Arial 9}
-entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10 -font {Arial 9}
+label $w9.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
+label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
+entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
 
-pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -pady 0m -padx 1.m
-pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 0m -padx 1.m
+pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
+pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
+pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
+pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
@@ -384,10 +394,8 @@ pack $w9.sep -fill both
 
 #exit button
 frame $w9.buttons
-pack $w9.buttons -side bottom -fill x -pady 0m
-button $w9.buttons.dismiss -text Quit -command "destroy $ww" -font {Arial 9}
-pack $w9.buttons.dismiss -side bottom 
-
+button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+pack $w9.b -side bottom
 
 
 pack $sw $pw1 -fill both -expand yes

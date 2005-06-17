@@ -46,13 +46,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 90
+set NBwidth  120
+
+set Wheight [expr $NBheight + 170]
+set Wwidth  [expr $NBwidth  + 265]
+
 
 set ww .axes
 catch {destroy $ww}
 toplevel $ww
 wm title $ww "Agregation Editor"
 wm iconname $ww "AE"
-wm geometry $ww 370x250
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
@@ -141,8 +147,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 10
 
-Notebook:create $uf.n -pages {Style} -pad 0 -height 100 -width 100
+Notebook:create $uf.n -pages {Style} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -155,14 +162,14 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility: " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib"  -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
 
 
 #sep bar

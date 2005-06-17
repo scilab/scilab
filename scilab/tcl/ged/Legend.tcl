@@ -50,14 +50,19 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 200
+set NBwidth  200
+
+set Wheight [expr $NBheight + 110]
+set Wwidth  [expr $NBwidth  + 265]
+
 set ww .axes
 catch {destroy $ww}
 
 toplevel $ww
 wm title $ww "Legend Object"
 wm iconname $ww "LO"
-wm geometry $ww 470x300
-#wm geometry $ww 650x700
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -145,8 +150,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 10
 
-Notebook:create $uf.n -pages {"Style & Data"} -pad 0 -height 200 -width 200
+Notebook:create $uf.n -pages {"Style & Data"} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -159,24 +165,24 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility: " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
 
 
 #x label
 frame $w.frame.lbx -borderwidth 0
 pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.xlabel -text "             Text: " -font {Arial 9}
-entry $w.frame.xlabel1 -relief sunken  -textvariable curtext -width 15 -font {Arial 9}
+label $w.frame.xlabel -text "Text:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.xlabel1 -relief sunken  -textvariable curtext -width 20 -font {Arial 9}
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
-pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.xlabel1  -in  $w.frame.lbx  -pady 0m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setText} 
 bind  $w.frame.xlabel1 <KP_Enter> {setText} 
 
@@ -186,12 +192,12 @@ bind  $w.frame.xlabel1 <KP_Enter> {setText}
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "            Color: " -width 0  -font {Arial 9}
+label $w.frame.fontcolorlabel -height 0 -text "Color:" -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $curforeground
 
 
@@ -199,11 +205,11 @@ $w.frame.fontcolor set $curforeground
 frame $w.frame.fontssz  -borderwidth 0
 pack $w.frame.fontssz  -in $w.frame    -side top -fill x -pady 0m
 
-label $w.frame.fontsizelabel -height 0 -text "      Font size:  " -width 0  -font {Arial 9}
+label $w.frame.fontsizelabel -height 0 -text "Font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal  -from 0 -to 5 \
 	 -resolution 1.0 -command "setFontSize $w.frame.fontsize" -tickinterval 0 -font {Arial 9}
 pack $w.frame.fontsizelabel  -in $w.frame.fontssz -side left
-pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.fontsize -in $w.frame.fontssz   -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontsize set $curfontsize
 
 
@@ -211,7 +217,7 @@ $w.frame.fontsize set $curfontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0m
 
-label $w.frame.stylelabel  -height 0 -text "     Font style:  " -width 0  -font {Arial 9}
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \

@@ -55,13 +55,18 @@ proc OnOffForeground { frame flag } {
     }
 }
 
+set NBheight 380
+set NBwidth  320
+
+set Wheight [expr $NBheight + 120]
+set Wwidth  [expr $NBwidth  + 265]
 
 set ww .axes
 catch {destroy $ww}
 toplevel $ww
 wm title $ww "Figure Editor"
 wm iconname $ww "FE"
-wm geometry $ww 570x490
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
@@ -150,8 +155,9 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
+set largeur 14
 
-Notebook:create  $uf.n -pages {Style Mode Colormap} -pad 0   -height 380 -width 300
+Notebook:create  $uf.n -pages {Style Mode Colormap} -pad 0   -height $NBheight -width $NBwidth
 pack  $uf.n -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -164,21 +170,21 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility: " -font {Arial 9}
+label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis $w.frame.visib" -font {Arial 9}
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -pady 0m -padx 2m
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -pady 0m -padx 1m
 
 
 #figure label
 frame $w.frame.lbfig -borderwidth 0
 pack $w.frame.lbfig  -in $w.frame -side top   -fill x
 
-label $w.frame.figlabel -text " Figure name: " -font {Arial 9}
+label $w.frame.figlabel -text " Figure name:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.figlabel1 -relief sunken  -textvariable figure_name -font {Arial 9} -width 15
 pack $w.frame.figlabel -in  $w.frame.lbfig -side left
 pack $w.frame.figlabel1  -in  $w.frame.lbfig  -expand 1 -fill x -pady 0m -padx 2m
@@ -190,16 +196,16 @@ bind  $w.frame.figlabel1 <KP_Enter> {setFiglabel}
 frame $w.frame.lbfigid -borderwidth 0
 pack $w.frame.lbfigid  -in $w.frame -side top   -fill x
 
-label $w.frame.figidlabel -text "     Figure id:" -font {Arial 9}
-label $w.frame.figidlabel1 -textvariable figure_id -font {Arial 9}
-pack $w.frame.figidlabel $w.frame.figidlabel1 -in  $w.frame.lbfigid -side left  -fill x -pady 0m -padx 2m
-
+label $w.frame.figidlabel -text "Figure id:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.figidlabel1 -textvariable figure_id -font {Arial 9} -anchor e
+pack $w.frame.figidlabel  -in  $w.frame.lbfigid -side left
+pack $w.frame.figidlabel1 -in  $w.frame.lbfigid -side left -pady 0m -padx 1m
 
 #figure position x
 frame $w.frame.xfigpos -borderwidth 0
 pack $w.frame.xfigpos  -in $w.frame -side top   -fill x
 
-label $w.frame.xfigposlabel -text "   X position : " -font {Arial 9}
+label $w.frame.xfigposlabel -text " X position:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition -font {Arial 9} -width 10
 pack $w.frame.xfigposlabel -in  $w.frame.xfigpos -side left
 pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 0m -padx 2m -side left 
@@ -210,7 +216,7 @@ bind  $w.frame.xfigposlabel1 <KP_Enter> {setFigPos}
 frame $w.frame.yfigpos -borderwidth 0
 pack $w.frame.yfigpos  -in $w.frame -side top   -fill x
 
-label $w.frame.yfigposlabel -text "   Y position : " -font {Arial 9}
+label $w.frame.yfigposlabel -text "Y position:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition -font {Arial 9} -width 10
 pack $w.frame.yfigposlabel -in  $w.frame.yfigpos -side left
 pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 0m -padx 2m -side left 
@@ -221,7 +227,7 @@ bind  $w.frame.yfigposlabel1 <KP_Enter> {setFigPos}
 frame $w.frame.xfigsiz -borderwidth 0
 pack $w.frame.xfigsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.xfigsizlabel -text "         X size : " -font {Arial 9}
+label $w.frame.xfigsizlabel -text "X size:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz -font {Arial 9} -width 10
 pack $w.frame.xfigsizlabel -in  $w.frame.xfigsiz -side left
 pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 0m -padx 2m -side left 
@@ -232,7 +238,7 @@ bind  $w.frame.xfigsizlabel1 <KP_Enter> {setFigSiz}
 frame $w.frame.yfigsiz -borderwidth 0
 pack $w.frame.yfigsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.yfigsizlabel -text "         Y size : " -font {Arial 9}
+label $w.frame.yfigsizlabel -text "Y size:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz -font {Arial 9} -width 10
 pack $w.frame.yfigsizlabel -in  $w.frame.yfigsiz -side left
 pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 0m -padx 2m -side left 
@@ -243,7 +249,7 @@ bind  $w.frame.yfigsizlabel1 <KP_Enter> {setFigSiz}
 frame $w.frame.xaxesiz -borderwidth 0
 pack $w.frame.xaxesiz  -in $w.frame -side top   -fill x
 
-label $w.frame.xaxesizlabel -text "  X axis size : " -font {Arial 9}
+label $w.frame.xaxesizlabel -text "X axis size:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz -font {Arial 9} -width 10
 pack $w.frame.xaxesizlabel -in  $w.frame.xaxesiz -side left
 pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 0m -padx 2m -side left 
@@ -254,7 +260,7 @@ bind  $w.frame.xaxesizlabel1 <KP_Enter> {setAxeSiz}
 frame $w.frame.yaxesiz -borderwidth 0
 pack $w.frame.yaxesiz  -in $w.frame -side top   -fill x
 
-label $w.frame.yaxesizlabel -text "  Y axis size : " -font {Arial 9}
+label $w.frame.yaxesizlabel -text "Y axis size:" -font {Arial 9} -anchor e -width $largeur
 entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz -font {Arial 9} -width 10
 pack $w.frame.yaxesizlabel -in  $w.frame.yaxesiz -side left
 pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 0m -padx 2m -side left 
@@ -264,13 +270,13 @@ bind  $w.frame.yaxesizlabel1 <KP_Enter> {setAxeSiz}
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
 pack $w.frame.clrb  -in $w.frame -side top  -fill x
-label $w.frame.bcolorlabel -height 0 -text "Background\n   color:         " -width 0  -font {Arial 9}
+label $w.frame.bcolorlabel -height 0 -text "Back. color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 
 scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0 -font {Arial 9}
 
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor -in  $w.frame.clrb -side left  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.bcolor -in  $w.frame.clrb -side left  -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.bcolor set $bcolor
 
 #sep bar
@@ -291,38 +297,40 @@ set w [Notebook:frame  $uf.n Mode]
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
+#update largeur
+set largeur 18
 
 #auto resize
 frame $w.frame.autorsz -borderwidth 0
 pack $w.frame.autorsz  -in $w.frame  -side top -fill x
-label $w.frame.autorszlabel  -text "            Auto resize: " -font {Arial 9}
+label $w.frame.autorszlabel  -text "Auto resize:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.autorszib  -text "on"\
     -variable curautoresize -onvalue "on" -offvalue "off" \
     -command "toggleResize $w.frame.autorszib" -font {Arial 9}
 OnOffForeground $w.frame.autorszib $curautoresize
 
 pack $w.frame.autorszlabel -in $w.frame.autorsz  -side left
-pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 0m -padx 2m
+pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 0m -padx 1m
 
 
 #pixmap
 frame $w.frame.pix -borderwidth 0
 pack $w.frame.pix  -in $w.frame  -side top -fill x
-label $w.frame.pixlabel  -text "                  Pixmap: " -font {Arial 9}
+label $w.frame.pixlabel  -text "Pixmap:" -font {Arial 9} -anchor e -width $largeur
 checkbutton $w.frame.pixib  -text "on"\
     -variable curpix  -onvalue "on" -offvalue "off" \
     -command "togglePix $w.frame.pixib" -font {Arial 9}
 OnOffForeground $w.frame.pixib $curpix
 
 pack $w.frame.pixlabel -in $w.frame.pix  -side left
-pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 0m -padx 2m
+pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 0m -padx 1m
 
 
 #pixel drawing mode
 frame $w.frame.pixel  -borderwidth 0
 pack $w.frame.pixel  -in $w.frame -side top -fill x
 
-label $w.frame.pixdmodelbl  -height 0 -text "Pixel drawing mode:  " -width 0  -font {Arial 9}
+label $w.frame.pixdmodelbl  -height 0 -text "Pixel drawing mode:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.pixdmode \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -341,7 +349,7 @@ pack $w.frame.pixdmode -in $w.frame.pixel  -expand 1 -fill x -pady 0m -padx 2m
 frame $w.frame.rotstyle  -borderwidth 0
 pack $w.frame.rotstyle  -in $w.frame -side top -fill x
 
-label $w.frame.rotstylelbl  -height 0 -text "        Rotation style:  " -width 0  -font {Arial 9}
+label $w.frame.rotstylelbl  -height 0 -text "Rotation style:" -width 0  -font {Arial 9} -anchor e -width $largeur
 combobox $w.frame.rotstyl \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -378,17 +386,17 @@ frame $w.frame.fdata -borderwidth 0
 pack $w.frame.fdata  -in $w.frame -side top   -fill x
 
 scrollbar $w.frame.ysbar -orient vertical -command   {$w.frame.c yview}
-canvas $w.frame.c -width 8i -height 3.5i  -yscrollcommand {$w.frame.ysbar set}
+canvas $w.frame.c -width 8i -height 3i  -yscrollcommand {$w.frame.ysbar set}
 
-$w.frame.c create text 50 10 -anchor c -text "RED" -font {Arial 9}
-$w.frame.c create text 130 10 -anchor c -text "GREEN" -font {Arial 9}
-$w.frame.c create text 210 10 -anchor c -text "BLUE" -font {Arial 9}
+$w.frame.c create text 70 10 -anchor c -text "RED" -font {Arial 9}
+$w.frame.c create text 150 10 -anchor c -text "GREEN" -font {Arial 9}
+$w.frame.c create text 230 10 -anchor c -text "BLUE" -font {Arial 9}
 
 for {set i 1} {$i<=$ncolors} {incr i} {
     set bb [expr 10+(25*$i)]
     $w.frame.c create text 10 $bb -anchor c -text $i -font {Arial 9}
 #RED
-    set aa 50
+    set aa 70
     entry  $w.frame.c.reddata$i  -relief sunken  -textvariable RED($i) -width 10 -font {Arial 9}
     bind  $w.frame.c.reddata$i <Return> "setRedColor $w $i "
     bind  $w.frame.c.reddata$i <KP_Enter> "setRedColor $w $i "
@@ -397,7 +405,7 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.reddata$i
 
 #GREEN
-    set aa 130
+    set aa 150
     entry  $w.frame.c.gredata$i  -relief sunken  -textvariable GREEN($i) -width 10 -font {Arial 9}
     bind  $w.frame.c.gredata$i <Return> "setGreenColor $w $i "
     bind  $w.frame.c.gredata$i <KP_Enter> "setGreenColor $w $i "
@@ -407,7 +415,7 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.gredata$i
 
 #BLUE
-    set aa 210
+    set aa 230
     entry  $w.frame.c.bludata$i  -relief sunken  -textvariable BLUE($i) -width 10 -font {Arial 9}
     bind  $w.frame.c.bludata$i <Return> "setBlueColor  $w $i "
     bind  $w.frame.c.bludata$i <KP_Enter> "setBlueColor  $w $i "
@@ -421,7 +429,7 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     set BLUC $BLUE($i) 
     
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
-    set aa 260
+    set aa 280
     $w.frame.c create rectangle $aa [expr $bb-10] [expr $aa+20] [expr $bb+10] -fill $color
 
 }
