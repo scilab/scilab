@@ -2,14 +2,25 @@
 #
 # About the variables used:
 #
+#   $winopened
+#       Opened buffer ID.
+#       $winopened starts from 1 (1 is the first buffer opened)
+#       It is never decreased
+#       It is increased each time a new file is opened
+#       A file saved as another name keeps its $winopened value
+#       The radionbutton entry in the windows menu has a -value
+#       option containing the $winopened consistent with the name
+#       of the menu entry (see below at the end of this comment)
+#
 #   $pad.new$winopened
 #       Opened buffers (textareas)
-#       $winopened starts from 1 (1 is the first buffer opened)
-#       It is never decreased. It is increased each time a new
-#       file is opened.
+#       This is the unique identifier of the text widget displaying
+#       the content of a given file
 #
 #   listoftextarea
-#       Contains the list of the above opened textarea names
+#       Contains the list of the above opened textarea names.
+#       Order of the elements matters (increasing order mandatory,
+#       i.e. $pad.newX must be placed before $pad.newY if X < Y)
 #
 #
 #   A textarea name $ta can be used as a pointer to file or buffer
@@ -33,11 +44,11 @@
 #       1: file has been modified and should be saved before leaving Scipad
 #      Note: Starting from Scipad 5.3, this setting is deprecated and replaced
 #            by the text widget embedded modified flag associated to the undo
-#            stack - it should be no longer found in the source code
+#            stack - it shouldn't be found any longer in the source code
 #
 #     listoffile("$ta",readonly)
 #       0: file can be written
-#       1: file can be read only
+#       1: file is read only
 #
 #     listoffile("$ta",thetime)
 #       Time of the last file modification on disk
@@ -45,12 +56,14 @@
 #     listoffile("$ta",language)
 #       Language scheme. Currently can be scilab, xml, or none
 #
-#   The Windows menu entries are radionbuttons, with the following
+#   The windows menu entries are radionbuttons, with the following
 #   properties:
 #     -value is $winopened
 #     -label is $listoffile("$ta",displayedname), $ta being $pad.new$winopened
 #     All the labels of the menu are different at any time, except
-#     during ambiguities removal.
+#     during ambiguities removal (In the Options menu, item Filenames does
+#     not propose any option that would lead to ambiguous file names)
+#     It is very important to maintain this property throughout the code.
 #
 #
 #####################################################################
@@ -93,7 +106,7 @@ proc closecur { {quittype yesno} } {
 }
 
 proc closefile {textarea {quittype yesno} } {
-    global listoftextarea listoffile pad
+    global listoffile pad
     # query the modified flag
     if  {[ismodified $textarea]} {
         # ask the user if buffer should be saved before closing
@@ -115,7 +128,7 @@ proc closefile {textarea {quittype yesno} } {
 
 proc byebye {textarea} {
     global listoftextarea listoffile
-    global pad winopened radiobuttonvalue WMGEOMETRY
+    global pad radiobuttonvalue WMGEOMETRY
     if { [ llength $listoftextarea ] > 1 } {
         # delete the textarea entry in the listoftextarea
         set listoftextarea [lreplace $listoftextarea [lsearch \
@@ -131,18 +144,16 @@ proc byebye {textarea} {
         unset listoffile("$textarea",thetime) 
         unset listoffile("$textarea",language) 
         unset listoffile("$textarea",readonly) 
-        # delete the textarea entry in Undoerr
+
 ##ES: the text widget was opened for $pad.new$winopened. If that is destroyed, the 
 ## next change font, new file or open file command causes the window to shrink.
 ## On the other side, the only side
 ## effect of not destroying it which I see is that font changes do not resize
 ## the window (so what? -- the resizing was not exact anyway)
 #        destroy $textarea
-        # place as current textarea the last
-        set tatodisplay [lindex $listoftextarea end]
-        montretext $tatodisplay
-        set lastwin [$pad.filemenu.wind entrycget end -value]
-        set radiobuttonvalue $lastwin
+
+        # place as current textarea the last one
+        $pad.filemenu.wind invoke end
         RefreshWindowsMenuLabels
     } else {
         #save the geometry for the next time
@@ -153,7 +164,7 @@ proc byebye {textarea} {
 #        set PADHEIGHT [eval {winfo height $pad}]
         killwin $pad 
         unset pad
-     }   
+    }
 }
 
 proc killwin {widget} {
@@ -211,7 +222,7 @@ proc showopenwin {} {
 # bring up the open dialog for file selection
 # if file is not already open, open it
 # otherwise just switch buffers to show it
-    global pad winopened textareacur listoftextarea listoffile
+    global pad winopened textareacur listoffile
     global startdir
     showinfo [mc "Open file"]
     # remember the latest path used for opening files
@@ -302,16 +313,17 @@ proc openfile {file} {
 }
 
 proc lookiffileisopen {file} {
-# return zero if $file is not already open, i.e. if the full path
+# Return zero if $file is not already open, i.e. if the full path
 # of $file is not already in some $listoffile("$textarea",fullname)
-    global listoffile listoftextarea
-    set i 0
+# If the file is already open, return the number of the windows menu
+# entry to invoke in order to display this buffer
+    global pad listoffile listoftextarea
     set lab 0
     set fpf [file normalize $file]
     foreach textarea $listoftextarea {
-        incr i
         if {$listoffile("$textarea",fullname)==$fpf} {
-            set lab $i
+            set lab [extractindexfromlabel $pad.filemenu.wind $listoffile("$textarea",displayedname)]
+            break
         }
     }
     return $lab
@@ -343,11 +355,11 @@ proc notopenedfile {file} {
 proc shownewbuffer {file} {
     global pad winopened
     openoninit $pad.new$winopened $file
+    resetmodified $pad.new$winopened
     montretext $pad.new$winopened
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
     update
-    resetmodified $pad.new$winopened
     colorize $pad.new$winopened 1.0 end
 }
 
@@ -373,7 +385,10 @@ proc openoninit {textarea thefile} {
     set msgWait [mc "Wait seconds while loading and colorizing file"]
     showinfo $msgWait
     lappend listoftextarea $textarea
-    if {$closeinitialbufferallowed == true} {closefile $pad.new1}
+    if {$closeinitialbufferallowed == true} {
+        set closeinitialbufferallowed false
+        closefile $pad.new1
+    }
     if [string match " " $thefile] {  
         fconfigure stdin -blocking 0
         set incoming [read stdin 1]
@@ -444,7 +459,7 @@ proc filetosave {textarea} {
 proc filesaveas {textarea} {
 # bring up the Save As... dialog so that the user can pick up a file name
 # and do the save under that filename
-    global listoffile pad radiobuttonvalue winopened listoftextarea
+    global listoffile pad
     global startdir
     showinfo [mc "Save as"]
     # remember the latest path used for opening files
@@ -475,23 +490,15 @@ proc filesaveas {textarea} {
     set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
                     -initialfile $proposedname -initialdir $startdir]
     if { [expr [string compare $myfile ""]] != 0} {
-        # move the textarea entry at the end of the listoftextarea
-        set listoftextarea [lreplace $listoftextarea [lsearch \
-              $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
-        lappend listoftextarea $textarea
-        # delete the windows menu entry
         set ilab [extractindexfromlabel $pad.filemenu.wind \
                   $listoffile("$textarea",displayedname)]
-        $pad.filemenu.wind delete $ilab
         set listoffile("$textarea",fullname) [file normalize $myfile]
         set listoffile("$textarea",displayedname) \
             [file tail $listoffile("$textarea",fullname)]
         set listoffile("$textarea",new) 0
         resetmodified $textarea
-        $pad.filemenu.wind add radiobutton \
-           -label $listoffile("$textarea",displayedname) \
-           -value $radiobuttonvalue -variable radiobuttonvalue \
-           -command "montretext $textarea"
+        $pad.filemenu.wind entryconfigure $ilab \
+           -label $listoffile("$textarea",displayedname)
         writesave $textarea $myfile
         RefreshWindowsMenuLabels
         AddRecentFile [file normalize $myfile]

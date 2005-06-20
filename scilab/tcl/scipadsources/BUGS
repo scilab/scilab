@@ -46,13 +46,16 @@ Bugs:
  usually produces a read-only warning and prevents the user from saving there.
  This is Tcl bug 1193497.
 
+-On Windows, opening files and then closing one of them makes the remaining
+ ones unselectable in the windows menu. This is Tk bug 1224330.
+
 -When two buffers are opened containing the same function (or function name) to
  debug, then the wrong buffer may be opened to show the active breakpoint
 
--When nested functions are used, a breakpoint can be set on a line just after
- an endfunction but execution will not stop at this point. Workaround: insert
- an empty line between the line containing endfunction and the next
- breakpointed line
+-When nested functions are used with comments, a breakpoint can be set on a
+ line just after an endfunction but execution will not stop at this point.
+ Workaround: insert an empty line between the line containing endfunction
+ and the next breakpointed line - This is Scilab bug 1469 (outside of Scipad)
 
 
 Old bugs/whishes which have been hacked but could have been done better:

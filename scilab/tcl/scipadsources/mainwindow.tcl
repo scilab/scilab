@@ -3,7 +3,7 @@ toplevel $pad
 set winopened 1
 set radiobuttonvalue 1
 set textareacur $pad.new$winopened
-set listoftextarea $pad.new$winopened
+set listoftextarea [list $pad.new$winopened]
 
 set listoffile("$pad.new$winopened",fullname) "[mc "Untitled"]$winopened.sce"
 set listoffile("$pad.new$winopened",displayedname) "[mc "Untitled"]$winopened.sce"

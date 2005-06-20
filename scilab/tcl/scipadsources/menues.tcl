@@ -225,7 +225,7 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
     $pad.filemenu.wind add radiobutton \
-               -label "$listoffile("$pad.new$winopened",displayedname)"\
+               -label $listoffile("$pad.new$winopened",displayedname)\
                -value $winopened -variable radiobuttonvalue \
                -command "montretext $pad.new$winopened"
 

@@ -41,12 +41,26 @@ if {0} {
     trace add variable watchvsashcoord write {tracer watchvsashcoord}
 }
 
+# A useful binding triggering a message box
+if {0} {
+    proc dispsthg {} {
+        global pad listoftextarea listoffile
+        set str ""
+        foreach ta $listoftextarea {
+            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+            lappend str "[$pad.filemenu.wind entrycget $i -command]\n"
+        }
+        tk_messageBox -message "$str"
+    }
+    bind all <Control-=> {dispsthg}
+}
+
 #########################
 # End of debug settings #
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.9"
+set version "Version 5.10"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list

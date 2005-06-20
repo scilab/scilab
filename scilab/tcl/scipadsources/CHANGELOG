@@ -1195,3 +1195,9 @@ Francois VOGEL, 16/06/05
  * $dialogFont instead of $textFont in the Linux message boxes
  * file choosers (open/save as) and color picker also use $dialogFont
  * version --> 5.9
+
+Francois VOGEL, 20/06/05
+ * $listoftextarea fixed - Maintaining order of its elements is required
+ * Bug fixed: Opening two files with the same name did not tag one of them
+   as unmodified
+ * version --> 5.10

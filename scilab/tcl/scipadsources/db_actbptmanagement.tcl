@@ -10,7 +10,7 @@ proc updateactivebreakpoint { {itemno 3} } {
 }
 
 proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpos "No"}} {
-    global listoftextarea pad
+    global listoftextarea pad listoffile
     set textareafun ""
     foreach textarea $listoftextarea {
         $textarea tag remove activebreakpoint 1.0 end
@@ -38,7 +38,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpo
         }
     }
     if {$textareafun != "" && $activeline > 0} {
-        set windmenuindex [expr [lsearch $listoftextarea $textareafun] + 1]
+        set windmenuindex [extractindexfromlabel $pad.filemenu.wind $listoffile("$textareafun",displayedname)]
         $pad.filemenu.wind invoke $windmenuindex
         set infun [whichfun [$textareafun index "$funstart + 1c"] $textareafun]
         set offset 0
