@@ -5616,9 +5616,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   int u;
-  double *xtmp = NULL;
-  double *ytmp = NULL;
-  double *ztmp = NULL;
+  /* change to static arrays : indeed, no need to recopy each time the entire data of a given object */
+  double xtmp[10]; /* normally max size is 4 for facets (2 for lines and segs) but may be one day we will manage greater complex patchs (that is why the 10) */
+  double ytmp[10];
+  double ztmp[10];
   
 #ifdef WIN32 
   int hdcflag;
@@ -5656,97 +5657,75 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	l=(int)(index/(n1-1));
 	k=index-l*(n1-1);
 
-
-	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+	xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
+	xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
 	
-	xtmp = MALLOC(n1*sizeof(double)); /* I create tmp array to deal with reverse axes possibility (see Plo3dn.c) */
-	ytmp = MALLOC(n2*sizeof(double));
-	ztmp = MALLOC(n1*n2*sizeof(double));
-	
-	
-	/* I didn't useReverseDataFor3D because dim n1 is not the same for x, y and z  */
-	if(ppsubwin->axes.reverse[0] == TRUE){ 
+	/* I didn't use ReverseDataFor3D because dim n1 is not the same for x, y and z  */
+	if(ppsubwin->axes.reverse[0] == TRUE){
 	  /* agir sur x */
 	  if(ppsubwin->logflags[0]=='l'){
-	    for(u=0;u<n1;u++){
-	      xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	    for(u=0;u<2;u++){
 	      xtmp[u] = log10(xtmp[u]);
 	      xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[u]);
 	      xtmp[u] = exp10(xtmp[u]);
 	    }
 	  }
-	  else
-	    for(u=0;u<n1;u++)
-	      xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],pSURFACE_FEATURE (pobj)->pvecx[u]);
+	  else {
+	    xtmp[0] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[0]);
+	    xtmp[1] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[1]);
+	  }
 	}
-	else{
-	  for(u=0;u<n1;u++)
-	    xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
-	}
-  
+
+	ytmp[0] = pSURFACE_FEATURE (pobj)->pvecy[l];
+	ytmp[1] = pSURFACE_FEATURE (pobj)->pvecy[l+1];
+
 	if(ppsubwin->axes.reverse[1] == TRUE){ 
 	  /* agir sur y */
 	  if(ppsubwin->logflags[1]=='l'){
-	    for(u=0;u<n2;u++){
-	      ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	    for(u=0;u<2;u++){
 	      ytmp[u] = log10(ytmp[u]);
 	      ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[u]);
 	      ytmp[u] = exp10(ytmp[u]);
 	    }
 	  }
-	  else
-	    for(u=0;u<n2;u++)
-	      ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],pSURFACE_FEATURE (pobj)->pvecy[u]);
+	  else{
+	    ytmp[0] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[0]);
+	    ytmp[1] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[1]);
+	  }
 	}
-	else{
-	  for(u=0;u<n2;u++)
-	    ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
-	}
-  
+
+	ztmp[0] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
+	ztmp[1] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
+	ztmp[2] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
+	ztmp[3] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
+
+
 	if(ppsubwin->axes.reverse[2] == TRUE){ 
 	  /* agir sur z */
 	  if(ppsubwin->logflags[2]=='l'){
-	    for(u=0;u<n1*n2;u++){
-	      ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	    for(u=0;u<4;u++){
 	      ztmp[u] = log10(ztmp[u]);
 	      ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
 	      ztmp[u] = exp10(ztmp[u]);
 	    }
 	  }
-	  else
-	    for(u=0;u<n1*n2;u++)
-	      ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],pSURFACE_FEATURE (pobj)->pvecz[u]);
-	}
-	else{
-	  for(u=0;u<n1*n2;u++)
-	    ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	  else{
+	    for(u=0;u<4;u++)
+	      ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
+	  }
 	}
   
-	
-
-	/* 	n2= pSURFACE_FEATURE (pobj)->dimzy; */
-	/* 	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k]; */
-	/* 	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1]; */
-	/* 	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]; */
-	/* 	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1]; */
-	/* 	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1]; */
-	/* 	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1]; */
-	/* 	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l]; */
-	/* 	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1]; */
-
-
 	n2= pSURFACE_FEATURE (pobj)->dimzy;
-	X[0]=X[1]=xtmp[k];
-	X[2]=X[3]=xtmp[k+1];
-	Z[0]=ztmp[k+l*n1];
-	Z[1]=ztmp[k+l*n1+n1];
-	Z[2]=ztmp[k+l*n1+n1+1];
-	Z[3]=ztmp[k+l*n1+1];
+	X[0]=X[1]=xtmp[0];
+	X[2]=X[3]=xtmp[1];
 
-	Y[0]=Y[3]=ytmp[l];
-	Y[1]=Y[2]=ytmp[l+1];
+	Z[0]=ztmp[0];
+	Z[1]=ztmp[1];
+	Z[2]=ztmp[2];
+	Z[3]=ztmp[3];
+
+	Y[0]=Y[3]=ytmp[0];
+	Y[1]=Y[2]=ytmp[1];
 
 	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]);
 	
@@ -5756,27 +5735,19 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       }
       else{ /* facets */
 	p=pSURFACE_FEATURE (pobj)->dimzx;
-	
-	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
-	
-	xtmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
-	ytmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
-	ztmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
-	
-	for(u=0;u<pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;u++){
-	  xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
-	  ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
-	  ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+
+	for(u=0;u<4;u++){
+	  xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[index*p+u];
+	  ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[index*p+u];
+	  ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[index*p+u];
 	}
 	
-	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy);
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,4);
 	
-	x=&(xtmp[index*p]);
-	y=&(ytmp[index*p]);
-	z=&(ztmp[index*p]);
-
+	x=&(xtmp[0]);
+	y=&(ytmp[0]);
+	z=&(ztmp[0]);
+	
 	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
 
       }
@@ -5787,44 +5758,39 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; /* F.Leray 20.01.05 A REVOIR ICI*/
       if (sciGetIsLine((sciPointObj *)pobj) == 1) p=2;
       
-      if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-      if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-      if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+      xtmp[0] = pPOLYLINE_FEATURE (pobj)->pvx[index];
+      xtmp[1] = pPOLYLINE_FEATURE (pobj)->pvx[index+1];
       
-      xtmp = MALLOC(n1*sizeof(double));
-      ytmp = MALLOC(n1*sizeof(double));
+      ytmp[0] = pPOLYLINE_FEATURE (pobj)->pvy[index];
+      ytmp[1] = pPOLYLINE_FEATURE (pobj)->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+      
+      if(pPOLYLINE_FEATURE (pobj)->pvz != NULL){
+	  ztmp[0] = pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  ztmp[1] = pPOLYLINE_FEATURE (pobj)->pvz[index+1];
+	}
+      
       if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
-	ztmp = MALLOC(n1*sizeof(double));
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
       else
-	ztmp=(double *)NULL;
-
-      for(u=0;u<n1;u++){
-	xtmp[u] = pPOLYLINE_FEATURE (pobj)->pvx[u];
-	ytmp[u] = pPOLYLINE_FEATURE (pobj)->pvy[u];
-	if(ztmp != NULL)
-	  ztmp[u] = pPOLYLINE_FEATURE (pobj)->pvz[u];
-      }
+	ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
       
-      ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,n1);
-	     
       switch (pPOLYLINE_FEATURE (pobj)->plot) {
       case 0: case 1: case 4: /*linear interpolation */
-	x=&(xtmp[index]);
-	y=&(ytmp[index]);
-	if (ztmp != (double *) NULL) 
-	  z=&(ztmp[index]);
+	x=&(xtmp[0]);
+	y=&(ytmp[0]);
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
+	  z=&(ztmp[0]);
 	else
 	  z=(double *)NULL;
 	break;
       case 2: /* staircase */ /* just for completion  */
-	p=2;
-	X[0]=xtmp[index];
-	X[1]=xtmp[index+1];
-	Y[0]=ytmp[index];
-	Y[1]=ytmp[index];
-	if (ztmp != (double *) NULL) {
-	  Z[0]=ztmp[index];
-	  Z[1]=ztmp[index];
+	X[0]=xtmp[0];
+	X[1]=xtmp[1];
+	Y[0]=ytmp[0];
+	Y[1]=ytmp[0];
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	  Z[0]=ztmp[0];
+	  Z[1]=ztmp[0];
 	  z=Z;
 	}
 	else 
@@ -5832,108 +5798,62 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	x=X;y=Y;
 	break;
       case 3 : /* vertical bar */ /* just for completion  */
-	X[0]=xtmp[index];
-	X[1]=xtmp[index];
+	X[0]=xtmp[0];
+	X[1]=xtmp[0];
 	Y[0]=0.0;
 	if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
 	  Y[0] = ppsubwin->FRect[1];
-	Y[1]=ytmp[index];
-	if (ztmp != (double *) NULL) {
-	  Z[0]=ztmp[index];
-	  Z[1]=ztmp[index];
+	Y[1]=ytmp[0];
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	  Z[0]=ztmp[0];
+	  Z[1]=ztmp[0];
 	  z=Z;
 	}
 	else 
 	  z=(double *)NULL;
 	x=X;y=Y;
 	break;
-      case 5: /* patch*/
+      case 5: /* patch */
 	x=xtmp;
 	y=ytmp;
-	z=ztmp;
-	p=n1;
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)
+	  z=ztmp;
+	else
+	  z= (double *) NULL;
 	break;
       }
 
-
-      /*    switch (pPOLYLINE_FEATURE (pobj)->plot) { */
-      /*       case 0: case 1: case 4: /\*linear interpolation *\/ */
-      /* 	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]); */
-      /* 	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]); */
-      /* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)  */
-      /* 	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]); */
-      /* 	else */
-      /* 	  z=(double *)NULL; */
-      /* 	break; */
-      /*       case 2: /\* staircase *\/ /\* just for completion  *\/ */
-      /* 	p=2; */
-      /* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
-      /* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1]; */
-      /* 	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
-      /* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
-      /* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
-      /* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-      /* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-      /* 	  z=Z; */
-      /* 	} */
-      /* 	else  */
-      /* 	  z=(double *)NULL; */
-      /* 	x=X;y=Y; */
-      /* 	break; */
-      /*       case 3 : /\* vertical bar *\/ /\* just for completion  *\/ */
-      /* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
-      /* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
-      /* 	Y[0]=0.0; */
-      /* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
-      /* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
-      /* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-      /* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-      /* 	  z=Z; */
-      /* 	} */
-      /* 	else  */
-      /* 	  z=(double *)NULL; */
-      /* 	x=X;y=Y; */
-      /* 	break; */
-      /*       case 5: /\* patch*\/ */
-      /* 	x=pPOLYLINE_FEATURE (pobj)->pvx; */
-      /* 	y=pPOLYLINE_FEATURE (pobj)->pvy; */
-      /* 	z=pPOLYLINE_FEATURE (pobj)->pvz; */
-      /* 	p=n1; */
-      /* 	break; */
-      /*       } */
-      
       break;
     case  SCI_SEGS: 
       p = 2;
       /***************/
-      if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-      if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-      if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+
+      xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index];
+      xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index+1];
+
+      ytmp[0] =  pSEGS_FEATURE (pobj)->vy[2*index];
+      ytmp[1] =  pSEGS_FEATURE (pobj)->vy[2*index+1];
       
-      xtmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
-      ytmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
-      if(pSEGS_FEATURE (pobj)->vz != NULL)
-	ztmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
-      else
-	ztmp=(double *)NULL;
       
-      for(u=0;u<(pSEGS_FEATURE (pobj)->Nbr1);u++){
-	xtmp[u] = pSEGS_FEATURE (pobj)->vx[u];
-	ytmp[u] = pSEGS_FEATURE (pobj)->vy[u];
-	if(ztmp != NULL)
-	  ztmp[u] = pSEGS_FEATURE (pobj)->vz[u];
+      if(pSEGS_FEATURE (pobj)->vz != NULL){
+	ztmp[0] = pSEGS_FEATURE (pobj)->vz[2*index];
+	ztmp[1] = pSEGS_FEATURE (pobj)->vz[2*index+1];
       }
       
-      ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSEGS_FEATURE (pobj)->Nbr1);
+      if(pSEGS_FEATURE (pobj)->vz != NULL)
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
+      else
+	ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
+ 	
       /**************/
 
-      X[0]=xtmp[2*index];
-      X[1]=xtmp[2*index+1];
-      Y[0]=ytmp[2*index];
-      Y[1]=ytmp[2*index+1];
-      if (ztmp != (double *) NULL) {
-	Z[0]=ztmp[2*index];
-	Z[1]=ztmp[2*index+1];
+      X[0]=xtmp[0];
+      X[1]=xtmp[1];
+      Y[0]=ytmp[0];
+      Y[1]=ytmp[1];
+      if (pSEGS_FEATURE (pobj)->vz != (double *) NULL) {
+	Z[0]=ztmp[0];
+	Z[1]=ztmp[1];
 	z=Z;
       }
       else
@@ -5945,7 +5865,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       {
 	double rectx[4],recty[4],rectz[4];
 	p = 5;
-	
 	
 	pstyle=0; /* arevoir */
 	iflag=0; /* arevoir */
@@ -5985,11 +5904,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
     dist[i]=  TRZ(xmoy/p,ymoy/p,zmoy/p);
     max_p=Max(max_p,p);
 
-
-    FREE(ztmp); ztmp = NULL;
-    FREE(xtmp); xtmp = NULL;
-    FREE(ytmp); ytmp = NULL;
-    
   } /* END of FOR here F.Leray 01.12.04 */
 
   /* sort the distance in decreasing order */
@@ -6032,97 +5946,74 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  l=(int)(index/(n1-1));
 	  k=index-l*(n1-1);
 
-
-	  if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-	  if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-	  if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
+	  xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
+	  xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
 	
-	  xtmp = MALLOC(n1*sizeof(double)); /* I create tmp array to deal with reverse axes possibility (see Plo3dn.c) */
-	  ytmp = MALLOC(n2*sizeof(double));
-	  ztmp = MALLOC(n1*n2*sizeof(double));
-	
-	
-	  /* I didn't useReverseDataFor3D because dim n1 is not the same for x, y and z  */
-	  if(ppsubwin->axes.reverse[0] == TRUE){ 
+	  /* I didn't use ReverseDataFor3D because dim n1 is not the same for x, y and z  */
+	  if(ppsubwin->axes.reverse[0] == TRUE){
 	    /* agir sur x */
 	    if(ppsubwin->logflags[0]=='l'){
-	      for(u=0;u<n1;u++){
-		xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
+	      for(u=0;u<2;u++){
 		xtmp[u] = log10(xtmp[u]);
 		xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[u]);
 		xtmp[u] = exp10(xtmp[u]);
 	      }
 	    }
-	    else
-	      for(u=0;u<n1;u++)
-		xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],pSURFACE_FEATURE (pobj)->pvecx[u]);
+	    else {
+	      xtmp[0] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[0]);
+	      xtmp[1] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[1]);
+	    }
 	  }
-	  else{
-	    for(u=0;u<n1;u++)
-	      xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
-	  }
-  
+
+	  ytmp[0] = pSURFACE_FEATURE (pobj)->pvecy[l];
+	  ytmp[1] = pSURFACE_FEATURE (pobj)->pvecy[l+1];
+
 	  if(ppsubwin->axes.reverse[1] == TRUE){ 
 	    /* agir sur y */
 	    if(ppsubwin->logflags[1]=='l'){
-	      for(u=0;u<n2;u++){
-		ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
+	      for(u=0;u<2;u++){
 		ytmp[u] = log10(ytmp[u]);
 		ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[u]);
 		ytmp[u] = exp10(ytmp[u]);
 	      }
 	    }
-	    else
-	      for(u=0;u<n2;u++)
-		ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],pSURFACE_FEATURE (pobj)->pvecy[u]);
+	    else{
+	      ytmp[0] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[0]);
+	      ytmp[1] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[1]);
+	    }
 	  }
-	  else{
-	    for(u=0;u<n2;u++)
-	      ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
-	  }
-  
+
+	  ztmp[0] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
+	  ztmp[1] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
+	  ztmp[2] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
+	  ztmp[3] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
+
+
 	  if(ppsubwin->axes.reverse[2] == TRUE){ 
 	    /* agir sur z */
 	    if(ppsubwin->logflags[2]=='l'){
-	      for(u=0;u<n1*n2;u++){
-		ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	      for(u=0;u<4;u++){
 		ztmp[u] = log10(ztmp[u]);
 		ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
 		ztmp[u] = exp10(ztmp[u]);
 	      }
 	    }
-	    else
-	      for(u=0;u<n1*n2;u++)
-		ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],pSURFACE_FEATURE (pobj)->pvecz[u]);
+	    else{
+	      for(u=0;u<4;u++)
+		ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
+	    }
 	  }
-	  else{
-	    for(u=0;u<n1*n2;u++)
-	      ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
-	  }
-  
-	
-
-	  /* 	n2= pSURFACE_FEATURE (pobj)->dimzy; */
-	  /* 	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k]; */
-	  /* 	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1]; */
-	  /* 	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]; */
-	  /* 	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1]; */
-	  /* 	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1]; */
-	  /* 	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1]; */
-	  /* 	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l]; */
-	  /* 	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1]; */
-
-
-	  n2= pSURFACE_FEATURE (pobj)->dimzy;
-	  X[0]=X[1]=xtmp[k];
-	  X[2]=X[3]=xtmp[k+1];
-	  Z[0]=ztmp[k+l*n1];
-	  Z[1]=ztmp[k+l*n1+n1];
-	  Z[2]=ztmp[k+l*n1+n1+1];
-	  Z[3]=ztmp[k+l*n1+1];
 	  
-	  Y[0]=Y[3]=ytmp[l];
-	  Y[1]=Y[2]=ytmp[l+1];
+	  n2= pSURFACE_FEATURE (pobj)->dimzy;
+	  X[0]=X[1]=xtmp[0];
+	  X[2]=X[3]=xtmp[1];
+	  Z[0]=ztmp[0];
+	  Z[1]=ztmp[1];
+	  Z[2]=ztmp[2];
+	  Z[3]=ztmp[3];
+	  
+	  Y[0]=Y[3]=ytmp[0];
+	  Y[1]=Y[2]=ytmp[1];
 	  
 	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]);
 	  
@@ -6132,29 +6023,20 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	}
 	else{ /* facets */
 	  p=pSURFACE_FEATURE (pobj)->dimzx;
-	
-	  if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-	  if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-	  if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
-	
-	  xtmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
-	  ytmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
-	  ztmp = MALLOC(pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy*sizeof(double));
-	
-	  for(u=0;u<pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;u++){
-	    xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[u];
-	    ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[u];
-	    ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[u];
+	  
+	  for(u=0;u<4;u++){
+	    xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[index*p+u];
+	    ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[index*p+u];
+	    ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[index*p+u];
 	  }
-	
-	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy);
-	
-	  x=&(xtmp[index*p]);
-	  y=&(ytmp[index*p]);
-	  z=&(ztmp[index*p]);
-
+	  
+	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,4);
+	  
+	  x=&(xtmp[0]);
+	  y=&(ytmp[0]);
+	  z=&(ztmp[0]);
+	  
 	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
-
 	}
 	break;
       case  SCI_POLYLINE:
@@ -6162,48 +6044,40 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	p=0;
 	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; /* F.Leray 20.01.05 A REVOIR ICI*/
 	if (sciGetIsLine((sciPointObj *)pobj) == 1) p=2;
- 
-	/* 	p=2; */
-	/*  	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; */
-
-	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
       
-	xtmp = MALLOC(n1*sizeof(double));
-	ytmp = MALLOC(n1*sizeof(double));
-	if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
-	  ztmp = MALLOC(n1*sizeof(double));
-	else
-	  ztmp=(double *)NULL;
-
-	for(u=0;u<n1;u++){
-	  xtmp[u] = pPOLYLINE_FEATURE (pobj)->pvx[u];
-	  ytmp[u] = pPOLYLINE_FEATURE (pobj)->pvy[u];
-	  if(ztmp != NULL)
-	    ztmp[u] = pPOLYLINE_FEATURE (pobj)->pvz[u];
+	xtmp[0] = pPOLYLINE_FEATURE (pobj)->pvx[index];
+	xtmp[1] = pPOLYLINE_FEATURE (pobj)->pvx[index+1];
+      
+	ytmp[0] = pPOLYLINE_FEATURE (pobj)->pvy[index];
+	ytmp[1] = pPOLYLINE_FEATURE (pobj)->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+	
+	if(pPOLYLINE_FEATURE (pobj)->pvz != NULL){
+	  ztmp[0] = pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  ztmp[1] = pPOLYLINE_FEATURE (pobj)->pvz[index+1];
 	}
-      
-	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,n1);
-	     
+	
+	if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
+	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
+	else
+	  ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
+	
 	switch (pPOLYLINE_FEATURE (pobj)->plot) {
 	case 0: case 1: case 4: /*linear interpolation */
-	  x=&(xtmp[index]);
-	  y=&(ytmp[index]);
-	  if (ztmp != (double *) NULL) 
-	    z=&(ztmp[index]);
+	  x=&(xtmp[0]);
+	  y=&(ytmp[0]);
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
+	    z=&(ztmp[0]);
 	  else
 	    z=(double *)NULL;
 	  break;
 	case 2: /* staircase */ /* just for completion  */
-	  p=2;
-	  X[0]=xtmp[index];
-	  X[1]=xtmp[index+1];
-	  Y[0]=ytmp[index];
-	  Y[1]=ytmp[index];
-	  if (ztmp != (double *) NULL) {
-	    Z[0]=ztmp[index];
-	    Z[1]=ztmp[index];
+	  X[0]=xtmp[0];
+	  X[1]=xtmp[1];
+	  Y[0]=ytmp[0];
+	  Y[1]=ytmp[0];
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	    Z[0]=ztmp[0];
+	    Z[1]=ztmp[0];
 	    z=Z;
 	  }
 	  else 
@@ -6211,15 +6085,15 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  x=X;y=Y;
 	  break;
 	case 3 : /* vertical bar */ /* just for completion  */
-	  X[0]=xtmp[index];
-	  X[1]=xtmp[index];
+	  X[0]=xtmp[0];
+	  X[1]=xtmp[0];
 	  Y[0]=0.0;
 	  if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
 	    Y[0] = ppsubwin->FRect[1];
-	  Y[1]=ytmp[index];
-	  if (ztmp != (double *) NULL) {
-	    Z[0]=ztmp[index];
-	    Z[1]=ztmp[index];
+	  Y[1]=ytmp[0];
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	    Z[0]=ztmp[0];
+	    Z[1]=ztmp[0];
 	    z=Z;
 	  }
 	  else 
@@ -6229,48 +6103,71 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	case 5: /* patch*/
 	  x=xtmp;
 	  y=ytmp;
-	  z=ztmp;
-	  p=n1;
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)
+	    z=ztmp;
+	  else
+	    z= (double *) NULL;
 	  break;
 	}
 	break;
       case  SCI_SEGS: 
 	p = 2;
 	/***************/
-	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
-	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
-	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
-      
-	xtmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
-	ytmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
-	if(pSEGS_FEATURE (pobj)->vz != NULL)
-	  ztmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double));
-	else
-	  ztmp=(double *)NULL;
-      
-	for(u=0;u<(pSEGS_FEATURE (pobj)->Nbr1);u++){
-	  xtmp[u] = pSEGS_FEATURE (pobj)->vx[u];
-	  ytmp[u] = pSEGS_FEATURE (pobj)->vy[u];
-	  if(ztmp != NULL)
-	    ztmp[u] = pSEGS_FEATURE (pobj)->vz[u];
+	
+	xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index];
+	xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index+1];
+	
+	ytmp[0] =  pSEGS_FEATURE (pobj)->vy[2*index];
+	ytmp[1] =  pSEGS_FEATURE (pobj)->vy[2*index+1];
+	
+	
+	if(pSEGS_FEATURE (pobj)->vz != NULL){
+	  ztmp[0] = pSEGS_FEATURE (pobj)->vz[2*index];
+	ztmp[1] = pSEGS_FEATURE (pobj)->vz[2*index+1];
 	}
+	
       
-	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSEGS_FEATURE (pobj)->Nbr1);
+	if(pSEGS_FEATURE (pobj)->vz != NULL)
+	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
+	else
+	  ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
+	
 	/**************/
+	
+/* 	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n"); */
+/* 	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n"); */
+/* 	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n"); */
+      
+/* 	xtmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double)); */
+/* 	ytmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double)); */
+/* 	if(pSEGS_FEATURE (pobj)->vz != NULL) */
+/* 	  ztmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double)); */
+/* 	else */
+/* 	  ztmp=(double *)NULL; */
+      
+/* 	for(u=0;u<(pSEGS_FEATURE (pobj)->Nbr1);u++){ */
+/* 	  xtmp[u] = pSEGS_FEATURE (pobj)->vx[u]; */
+/* 	  ytmp[u] = pSEGS_FEATURE (pobj)->vy[u]; */
+/* 	  if(ztmp != NULL) */
+/* 	    ztmp[u] = pSEGS_FEATURE (pobj)->vz[u]; */
+/* 	} */
+      
+/* 	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSEGS_FEATURE (pobj)->Nbr1); */
+/* 	/\**************\/ */
 
-	X[0]=xtmp[2*index];
-	X[1]=xtmp[2*index+1];
-	Y[0]=ytmp[2*index];
-	Y[1]=ytmp[2*index+1];
-	if (ztmp != (double *) NULL) {
-	  Z[0]=ztmp[2*index];
-	  Z[1]=ztmp[2*index+1];
+	X[0]=xtmp[0];
+	X[1]=xtmp[1];
+	Y[0]=ytmp[0];
+	Y[1]=ytmp[1];
+	if (pSEGS_FEATURE (pobj)->vz != (double *) NULL) {
+	  Z[0]=ztmp[0];
+	  Z[1]=ztmp[1];
 	  z=Z;
 	}
 	else
 	  z=(double *)NULL;
 	x=X;y=Y;
-      
+	
 	break;
       case  SCI_RECTANGLE: 
 	{
@@ -6493,11 +6390,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 #ifdef WIN32
 	if ( hdcflag == 1) ReleaseWinHdc ();
 #endif	  
-
-
-    FREE(ztmp); ztmp = NULL;
-    FREE(xtmp); xtmp = NULL;
-    FREE(ytmp); ytmp = NULL;
+  
   }
   FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
 }
