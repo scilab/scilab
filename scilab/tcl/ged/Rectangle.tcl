@@ -199,7 +199,7 @@ combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 20 \
+    -width 8 \
     -textvariable curlinestyle \
     -editable false \
     -command [list SelectLineStyle ] -font {Arial 9}
@@ -219,7 +219,7 @@ eval $w.frame.thickness list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0
 
 pack $w.frame.stylelabel -in $w.frame.rectst   -side left
 pack $w.frame.style   -in $w.frame.rectst   -side left -padx 2m
-pack $w.frame.thickness  -in $w.frame.rectst  -side left -pady 0m -padx 2m
+pack $w.frame.thickness  -in $w.frame.rectst  -side left -expand 1 -fill x -pady 0m -padx 2m
 
 #Color scale
 frame $w.frame.clrf  -borderwidth 0

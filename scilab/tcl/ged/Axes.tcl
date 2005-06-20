@@ -156,7 +156,7 @@ proc OnOffForeground { frame flag } {
 set NBheight 300
 set NBwidth  320
 
-set Wheight [expr $NBheight + 170]
+set Wheight [expr $NBheight + 200]
 set Wwidth  [expr $NBwidth  + 265]
 
 set ww .axes
