@@ -664,7 +664,7 @@ int GraduateWithNax(sciSubWindow * ppsubwin,double *min,double *max,int nbtics, 
   int i;
   double pas;
   
-  if(nbtics <= 1){
+  if(nbtics == 1){
     pas = 0.;
     grads[0] = (*min);
   }
