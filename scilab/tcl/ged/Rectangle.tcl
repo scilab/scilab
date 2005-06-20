@@ -199,7 +199,7 @@ combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 8 \
+    -width 12 \
     -textvariable curlinestyle \
     -editable false \
     -command [list SelectLineStyle ] -font {Arial 9}
