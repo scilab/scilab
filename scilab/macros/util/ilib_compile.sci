@@ -61,12 +61,6 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
       if files<>[] then 
 	files = files + '.obj' ;
       end
-     case 'ABSOFT' then 
-      makename = makename + '.amk ';
-      make_command = 'amake /f '
-      if files<>[] then 
-	files = files + '.obj' ;
-      end
      case 'gcc' then 
        makename = makename;
        make_command = 'make -f '

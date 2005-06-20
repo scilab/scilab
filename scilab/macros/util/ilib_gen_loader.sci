@@ -18,7 +18,6 @@ function ilib_gen_loader(name,tables,libs)
   if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then lib_suf='dll';
-     case 'ABSOFT' then lib_suf='dll';
      case 'gcc' then lib_suf='dll';
     else lib_suf='dll';
     end

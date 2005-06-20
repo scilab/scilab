@@ -46,7 +46,6 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   else if getenv('WIN32','NO')=='OK' then
     	select comp_target
      		case 'VC++'   then lib_suf='dll';
-     		case 'ABSOFT' then lib_suf='dll';
     		else lib_suf='dll';
     	end
   	else
@@ -99,9 +98,6 @@ function ilib_link_gen_Make(names,files,libs,makename,libname,ldflags,cflags,ffl
   else if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then Makename = makename+'.mak'
-      ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
-			       ldflags,cflags,fflags,cc)
-     case 'ABSOFT' then Makename = makename+'.amk'
       ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
 			       ldflags,cflags,fflags,cc)
      case 'gcc' then 

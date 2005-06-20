@@ -2169,8 +2169,6 @@ function ok=gen_loader()
 	 'select COMPILER'
 	 'case ''VC++''   then '
 	 '  Makename = strsubst(Makename,''/'',''\'')+''.mak'';'
-	 'case ''ABSOFT'' then '
-	 '  Makename = strsubst(Makename,''/'',''\'')+''.amk'';'
 	 'end'
 	 '//unlink if necessary'
 	 '[a,b]=c_link(rdnom); while a ;ulink(b);[a,b]=c_link(rdnom);end';
@@ -2291,8 +2289,6 @@ WSCI=strsubst(SCI,'/','\')
   select COMPILER;
     case 'VC++'   then 
     makename = strsubst(Makename,'/','\')+'.mak'
-    case 'ABSOFT' then 
-    makename = strsubst(Makename,'/','\')+'.amk'
   end
   mputl(T,makename)   
 endfunction

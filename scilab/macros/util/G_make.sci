@@ -11,9 +11,6 @@ if getenv('WIN32','NO')=='OK' then
  else if COMPILER=='VC++' then 
     // scilab was build with VC++ 
     host('nmake /nologo /f Makefile.mak '+objects_or_dll);
-  else if COMPILER=='ABSOFT' then 
-      // scilab was build with ABSOFT 
-      host('amake /f Makefile.amk '+objects_or_dll); 
     else  
       // Scilab was built with gcwin32 
       host('make '+objects_or_dll);
