@@ -14,7 +14,7 @@ end
 
 SCI=getenv('SCI')  
 MSDOS = getenv('WIN32','NO')=='OK' & ..
-	or(COMPILER==['VC++' 'ABSOFT' 'gcc'])
+	or(COMPILER==['VC++' 'gcc'])
 
 TMPDIR=getenv('TMPDIR');
 

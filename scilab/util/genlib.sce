@@ -10,7 +10,7 @@ load('SCI/macros/percent/lib')
 
 SCI=getenv('SCI')  
 MSDOS = getenv('WIN32','NO')=='OK' & ..
-	or(COMPILER==['VC++' 'ABSOFT' 'gcc'])
+	or(COMPILER==['VC++' 'gcc'])
 
 names=stripblanks(mgetl('names'));
 args=sciargs()
