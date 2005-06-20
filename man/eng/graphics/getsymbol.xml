@@ -26,12 +26,17 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
+    <P> Obsolete function use <LINK>getmark</LINK> or the interactive graphic
+      properties editor preferabily.</P>
     <P><VERB>getsymbol</VERB> opens a dialog choice box with title <VERB>title</VERB> if
     given where the user can select a
     symbol and its size. <VERB>getsymbol</VERB> returns the id of the mark
     <VERB>n</VERB> and the id of its size <VERB>sz</VERB>.</P>
   </DESCRIPTION>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getmark</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xset</LINK>
     </SEE_ALSO_ITEM>
