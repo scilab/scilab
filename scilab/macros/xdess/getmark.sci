@@ -40,26 +40,30 @@ set('figure_style','new')
 f=gcf();
 cur_drawing_mode = f.immediate_drawing;
 f.immediate_drawing ='off';
+f.auto_resize='off'
+f.axes_size = [610,780]
+
 a=gca();
 
 a.axes_visible='off';
-a.data_bounds=[0 0;10 20];
+a.data_bounds=[0 0;10 30];
 a.font_size=2;
-
+a.mark_size_unit="tabulated"
+a.margins=[0.04 0.06 0.1 0.05];
 xtitle(" Select mark style k and mark size l")
-for k=0:9
+for k=0:14
   xstringb(0,2*k-1,"k = "+msprintf("%2d",k),1.5,2)
   xrect(0, 2*k+1, 1.5, 2);
 end
 
 for l=1:6
-  xstringb(l*1.5, 19,"l = "+msprintf("%2d",l-1),1.5,2)
-  xrect(l*1.5, 21, 1.5, 2);
+  xstringb(l*1.5, 29,"l = "+msprintf("%2d",l-1),1.5,2)
+  xrect(l*1.5, 31, 1.5, 2);
 end
 
 H=[]
 for x=1:6
-  for k=(0:9)
+  for k=(0:19)
     xpoly(1+x*1.5,2*k,'marks');
     p=gce();p.mark_size=x-1;p.mark_style=k;
     H=[H;p];
