@@ -3330,7 +3330,7 @@ int scixset(fname,fname_len)
 	pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
 	sciSetVisibility (subwin, TRUE); 
       }
-      sciRedrawFigure();   
+      if(strncmp(cstk(l1),"window",6) != 0) sciRedrawFigure();   
     }
   /***/
   /* NG end */    
@@ -5102,7 +5102,6 @@ int gset(fname,fname_len)
   int ptrindex[2];
   int flagc = -1;
 
-
   /* F.Leray Init. to 0*/
   for(i=0;i<4;i++){
     numrow[i] = 0;
@@ -5379,6 +5378,7 @@ int gset(fname,fname_len)
 	num= sciGetNumFigure (pobj);    
 	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+
 	sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here*/
 	/* 	EraseAndOrRedraw(pobj); */  /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
 	
