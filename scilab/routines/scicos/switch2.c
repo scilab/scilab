@@ -6,7 +6,7 @@ void  switch2(scicos_block *block,int flag)
   int i,j,phase;
   if (flag == 1) {
     phase=get_phase_simulation();
-    if (phase==1){
+    if (phase==1||block->ng==0){
       i=2;
       if (*block->ipar==0){
 	if (*block->inptr[1]>=*block->rpar) i=0;
