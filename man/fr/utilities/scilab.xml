@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>scilab  </TITLE>
@@ -8,62 +8,100 @@
   <SHORT_DESCRIPTION name="scilab "> script principal d&apos;exécution de Scilab et de divers outils  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>scilab &lt;Options&gt; </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>scilab -link &lt;objects&gt;  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
- 
     <DESCRIPTION_INDENT>
 
-  <DESCRIPTION_ITEM  label='scilab &lt;Options&gt;'> 
-    : exécution de Scilab
-  </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM  label='-args arguments'> 
+	<SP>: si cette option est présente des arguments sont passés à Scilab. Ils
+	  peuvent être récupérés par la fonction <VERB>sciargs</VERB>. Les
+	  arguments multiples doivent être passés dans chaîne de caractères les
+	  contenant, séparés par des espaces  <VERB>scilab -args 'foo1 foo2';</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-display Display">
+	<SP>: Cette option n'est valide que pour les version basŽées sur
+	  Xwindow, elle peut alors Žêtre utilisŽée pour specifier un server X. La
+	  valeur par dŽéfaut est  unix:0.0</SP>
+	<P><VERB>-display</VERB> peut Žêtre remplacŽé par <VERB>-d</VERB></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="-debug">
+	<SP>: Lance Scilab sous  gdb (Unix/linux seulement).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="-e Instruction">
+	<SP>: si cette option est présente l'instruction
+	  <VERB>Instruction</VERB> est exécutée  dans Scilab immŽédiatement
+	  aprŽès les fichiers startup. </SP> 
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='-f File'> 
+	<SP>: si cette option est présente le script <VERB>File</VERB> est
+	  exécuté  dans Scilab mmŽédiatement aprŽès les fichiers startup.  </SP>  
+      </DESCRIPTION_ITEM>
+      
+      <DESCRIPTION_ITEM label="-l lang">
+	<SP>: Cette option permet de sŽélectionner la langue de
+	l'utilisateur. Les valeurs possible pour sont <VERB>-l fr</VERB>
+	pour sŽélectionner le francais et <VERB>-l eng</VERB>
+	pour sŽélectionner l'anglais. La langue par dŽéfaut est l'anglais,
+	ce défaut est fixé dans le fichier <VERB>scilab.star</VERB>.</SP> 
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='scilab -link &lt;objects&gt;'> 
+	<SP>: est utilisé pour générer un <VERB>scilex</VERB> local (exécutable de
+	  Scilab) lié avec les fichiers additionnels donnés dans
+	  <VERB>&lt;objects&gt;</VERB>.   Cette commande
+	  produit aussi un script <VERB>scilab</VERB>, qui lance
+	  l'exécution du nouveau <VERB>scilex</VERB>.</SP> 
+	<P>Par exemple :</P>
+	<VERBATIM><![CDATA[
+	  scilab -link  C/interf.o C/evol.o C/bib.a
+	  ]]></VERBATIM>
+	<P> crée un nouveau <VERB>scilex</VERB> dans le quel le fichier
+	  <VERB>interf.o</VERB>  par défaut sera remplacé par
+	  <VERB>C/interf.o</VERB>.</P>  
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="-mem N">
+	<SP>: SpŽécifie la valeur initiale de la stacksize, cette option est a
+	  utiliser avec l'option -ns. Lorsque Scilab est appelŽé sans l'option
+	  -ns  la valeur initiale de la stacksize est dŽéfinie par le script
+	  scilab.star.</SP> 
+      </DESCRIPTION_ITEM>
  
+      <DESCRIPTION_ITEM label="-nb">
+	<SP>:  si cette option est présente la bannière d'acceuil de Scilab
+	n'est pas affichée.</SP> 
+      </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='-ns'> 
-    : si cette option est présente le script de démarrage <VERB>SCI/scilab.star</VERB> n&apos;est pas exécuté.
-  </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM  label='-ns'> 
+	<SP>: si cette option est présente le script de démarrage
+	  <VERB>SCI/scilab.star</VERB> n&apos;est pas exécuté.</SP>  
+      </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='-nw'> 
-    : si cette option est présente Scilab n&apos;est pas exécuté dans une fenêtre spécifique mais sur la ligne de commande.  
-  </DESCRIPTION_ITEM>
-  <DESCRIPTION_ITEM label="-nb">
-   :  si cette option est présente la bannière d'acceuil de Scilab
-                 n'est pas affichée.
-  </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM label="-nouserstartup">
+	<SP>: Si cette option est fournie, les fichiers startup de
+	  l'utilisateur  <VERB>.scilab</VERB>, <VERB>scilab.ini</VERB> ne sont
+	  pas ŽéxŽécutŽés. </SP> 
+      </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM label="-l lang">
-    : Cette option permet de selectionner la langue de
-    l'utilisateur. Les valeurs possible pour sont <VERB>-l fr</VERB>
-    pour selectionner le francais et <VERB>-l eng</VERB>
-    pour selectionner l'anglais. La langue par defaut est l'anglais,
-    ce défaut est fixé dans le fichier <VERB>scilab.star</VERB>.
-  </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM  label='-nw'> 
+	<SP>: si cette option est présente Scilab n'est pas exécuté dans
+	  une fenêtre spécifique mais sur la ligne de commande.  </SP>  
+      </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='-f file'> 
-    : si cette option est présente le script <VERB>file</VERB> est exécuté en premier dans Scilab. 
-  </DESCRIPTION_ITEM>
-  <DESCRIPTION_ITEM label="-e instruction">
-    : si cette option est présente l'instruction <VERB>instruction</VERB> est exécutée en premier dans Scilab. 
-  </DESCRIPTION_ITEM>
-  <DESCRIPTION_ITEM  label='-args arguments'> 
-    : si cette option est présente des arguments sont passés à Scilab. Ils peuvent être récupérés par la fonction <VERB>sciargs</VERB>. Les arguments multiples doivent être passés dans chaîne de caractères les contenant, séparés par des espaces  <VERB>scilab -args &apos;foo1 foo2&apos;</VERB>
-  </DESCRIPTION_ITEM>
- </DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label='-nwni'> 
+	<SP>: si cette option est présente Scilab n'est pas exécuté dans
+	  une fenêtre spécifique et n'accepte pas d'interaction avec
+	  l'utilisateur. Cette option doit Žêtre utilisŽée avec l'option -e ou
+	  -f .  </SP>  
+      </DESCRIPTION_ITEM>
 
-
-  <DESCRIPTION_ITEM  label='scilab -link &lt;objects&gt;'> 
-    : est utilisé pour générer un <VERB>scilex</VERB> local (exécutable de Scilab) lié avec les fichiers additionnels donnés dans <VERB>&lt;objects&gt;</VERB>.  Si, dans la liste des fichiers objets, certains noms sont connus dans  <VERB>SCIDIR/routines/default</VERB>, les fichiers objets par utilisés par défaut par <VERB>scilex</VERB> sont omis et remplacés par les fichiers précisés.  Cette commande produit aussi un script <VERB>xscilab</VERB>, qui lance l&apos;exécution du nouveau <VERB>scilex</VERB>.
-  </DESCRIPTION_ITEM>
-  <P>
-    Par exemple :
-  </P>
-  <VERBATIM><![CDATA[
-scilab -link  C/interf.o C/evol.o C/bib.a
-   ]]></VERBATIM>
-  <P>
-    crée un nouveau <VERB>scilex</VERB> dans le quel le fichier <VERB>interf.o</VERB> par défaut 
-    sera remplacé par <VERB>C/interf.o</VERB>.
-  </P>
- 
+      <DESCRIPTION_ITEM label="--texmacs">
+	<SP>: Cette option est rŽéservŽée pour TeXMacs.</SP>
+      </DESCRIPTION_ITEM>
+  
+   </DESCRIPTION_INDENT>
   </DESCRIPTION>
 </MAN>
