@@ -16,15 +16,14 @@ function xmlfiletohtml(path,xsl)
 	if newest(path,strsubst(path,".xml",".htm"))==1 then
 	
 		mprintf('  Processing file %s.xml\n',basename(path));
-		
+
 		// build .xml2 file where LINK tags references are solved
 		find_links(path,path+"2")
 		update_date(path,path+"2")
 		in=path+"2"
 		out=strsubst(path,'.xml','.htm')
-		
+    
 		// form the html generatorc command line instruction
-		
 		if  MSDOS then 
 			// sabcmd does not like c:/.. path replace it by file://c:/..
 			xsl='file://'+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
@@ -40,14 +39,13 @@ function xmlfiletohtml(path,xsl)
 			end
 			RM='rm -f '
 		end
-		
+
 		//run html generator
 		if execstr('unix_s('+sci2exp(instr)+')','errcatch')<>0 then 
 			write(%io(2),'     Warning '+path+' does not follow the dtd','(a)')
 		end
 		
 		unix_s(RM+path+"2")
-		
 	end
 endfunction
 

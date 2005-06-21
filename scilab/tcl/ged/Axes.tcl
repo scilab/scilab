@@ -66,7 +66,7 @@ global Lmargins Rmargins Tmargins Bmargins
 #axes_visible has changed !!!
 global Xaxes_visibleToggle Yaxes_visibleToggle Zaxes_visibleToggle
 
-global xGrid yGrid zGrid
+global xGrid yGrid zGrid zGrid_initial
 
 global viewToggle isoToggle cubToggle
 global dbxmin dbxmax dbymin dbymax dbzmin dbzmax
@@ -1926,14 +1926,16 @@ proc setYFontLabelColor {w  index} {
 
 # Z LABEL
 proc setZGridColor {w index} {
-    global RED BLUE GREEN msdos
+    global RED BLUE GREEN msdos zGrid_initial
     variable REDCOL 
     variable GRECOL 
     variable BLUCOL
     
     #ScilabEval "global ged_handle;"
     if { $index == -1 } {
-	ScilabEval "global ged_handle;if ged_handle.grid(3) <> $index then  ged_handle.grid(3)=$index; end;"
+	# Here and in order to avoid intempestive redraw due to 3d mode switching (to know the value of ged_handlde.grid(3)),
+	# we directly take zGrid_initial as default value
+	ScilabEval "global ged_handle;if $zGrid_initial <> $index then  ged_handle.grid(3)=$index; end;"
 	#nothing to draw: grey color used
 	if { $msdos == "F" } {
 	    set color [format \#e6e7e6]
@@ -1944,7 +1946,7 @@ proc setZGridColor {w index} {
     } 
     
     if { $index == 0 } {
-	ScilabEval "global ged_handle;if ged_handle.grid(3) <> $index then  ged_handle.grid(3)=$index; end;"
+	ScilabEval "global ged_handle;if $zGrid_initial <> $index then  ged_handle.grid(3)=$index; end;"
 	#like $index==1: display black color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1956,7 +1958,7 @@ proc setZGridColor {w index} {
     }
     
     if { ( $index != -1) && ( $index != 0) } {
-	ScilabEval "global ged_handle;if ged_handle.grid(3) <> $index then  ged_handle.grid(3)=$index; end;"
+	ScilabEval "global ged_handle;if $zGrid_initial <> $index then  ged_handle.grid(3)=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
