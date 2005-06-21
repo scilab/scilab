@@ -25,7 +25,7 @@ MACROS = errbar.sci fchamp.sci fcontour.sci fplot2d.sci fplot3d.sci \
 	hotcolormap.sci graycolormap.sci getsymbol.sci getcolor.sci \
 	sd2sci.sci contourf.sci polarplot.sci graypolarplot.sci \
 	legends.sci legend.sci dragrect.sci subplot.sci getlinestyle.sci getmark.sci \
-	getfont.sci loadplots.sci rubberbox.sci xclear.sci contour2d.sci \
+	getfont.sci loadplots.sci rubberbox.sci xclear.sci contour2d.sci contour.sci\
 	gca.sci gcf.sci gce.sci gdf.sci gda.sci sdf.sci scf.sci sda.sci sca.sci \
 	colorbar.sci jetcolormap.sci  show_pixmap.sci clear_pixmap.sci \
 	twinkle.sci color.sci name2rgb.sci rgb2name.sci clf.sci \
