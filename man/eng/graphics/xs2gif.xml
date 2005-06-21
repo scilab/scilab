@@ -37,8 +37,22 @@
     This function works only if the selected 
     driver is <VERB>&quot;Rec&quot;</VERB> in the window
     <VERB>win_num</VERB>  or if the window is in &quot;new style&quot;.</P>
+    <P>To convert a sequence of &quot;GIF&quot;  files to an animated GIF file
+      one can use the &quot;convert&quot; program for ImageMagic
+      (http://www.imagemagick.org/)</P>
+
+    <P>For example if one has generated a sequence of Gif files named
+      <VERB>img*.gif</VERB> it is possible to build an animated Gif file (named
+      anim.gif) by</P> 
+    <VERBATIM>
+    <![CDATA[
+    convert -delay 10  img*.gif anim.gif  
+     ]]>
+    </VERBATIM>
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[ 
+    //simple example
     scf(0)
     plot2d()
     xs2gif(0,'foo.gif')
