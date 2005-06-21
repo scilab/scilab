@@ -158,7 +158,7 @@ void C2F(realmain)()
 	} 
       else if ( strcmp(argv[i],"-nb") == 0) { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
-      else if ( strcmp(argv[i],"-mem") == 0) { memory = Max(atoi(argv[++i]),MIN_STACKSIZE );} 
+      else if ( strcmp(argv[i],"-mem") == 0) { i++;memory = Max(atoi(argv[i]),MIN_STACKSIZE );} 
       else if ( strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 
       else if ( strcmp(argv[i],"-e") == 0) 
 	{
