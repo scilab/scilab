@@ -87,7 +87,7 @@
 #define  IN_matdes  7  
 {"champ",		IN_matdes,	1,	2},	
 {"champ1",		IN_matdes,	52,	2},	
-{"contour",		IN_matdes,	2,	2},	
+{"oldcontour",		IN_matdes,	2,	2},	
 {"driver",		IN_matdes,	12,	2},	
 {"fec",			IN_matdes,	44,	2},	
 {"geom3d",		IN_matdes,	43,	2},	
@@ -403,7 +403,7 @@
 {"x_message_modeless",	IN_xawelm,	13,	1},	
 {"xchoicesi",		IN_xawelm,	7,	2},	
 {"xgetfile",		IN_xawelm,	12,	2},
-	
+{"x_print_dialog",	IN_xawelm,	14,	1},
 #define  IN_matimp  26  
 {"dasrt",		IN_matimp,	3,	2},	
 {"dassl",		IN_matimp,	2,	2},	
