@@ -797,7 +797,7 @@ button $w.frame.scalesw.buttonticks -text "Ticks..." -command "Reload_and_popup 
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left -padx 1m
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left -padx 1m
-pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
+pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw   -side left -expand 1 -fill x -padx 2m
 
 #Reverse axis
 frame $w.frame.rev  -borderwidth 0
