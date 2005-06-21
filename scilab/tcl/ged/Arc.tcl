@@ -493,17 +493,17 @@ proc setColor {w index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -513,7 +513,7 @@ proc setColor {w index} {
 	
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -537,7 +537,7 @@ proc toggleFill { frame } {
 
 
 proc setThickness {w thick} {
-ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
+ScilabEval "global ged_handle;if ged_handle.thickness <> $thick then ged_handle.thickness=$thick; end;"
 }
 
 

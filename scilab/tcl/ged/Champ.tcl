@@ -619,7 +619,7 @@ ScilabEval "setLineStyle('$curlinestyle')"
 
 
 proc setThickness {w thick} {
-ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
+ScilabEval "global ged_handle;if ged_handle.thickness <> $thick then ged_handle.thickness=$thick; end;"
 }
 
 

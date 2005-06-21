@@ -669,17 +669,17 @@ proc setColor {w index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle; ged_handle.tics_color=$index;"
+	ScilabEval "global ged_handle; if ged_handle.tics_color <> $index then ged_handle.tics_color=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle; ged_handle.tics_color=$index;"
+	ScilabEval "global ged_handle; if ged_handle.tics_color <> $index then ged_handle.tics_color=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle; ged_handle.tics_color=$index;"
+	ScilabEval "global ged_handle; if ged_handle.tics_color <> $index then ged_handle.tics_color=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -689,7 +689,7 @@ proc setColor {w index} {
 	
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle; ged_handle.tics_color=$index;"
+	ScilabEval "global ged_handle; if ged_handle.tics_color <> $index then ged_handle.tics_color=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -710,7 +710,7 @@ ScilabEval "global ged_handle; ged_handle.tics_style='$curticsstyle'"
 
 
 proc setFontSize {w siz} {
-ScilabEval "global ged_handle;ged_handle.labels_font_size=$siz"
+    ScilabEval "global ged_handle;if ged_handle.labels_font_size <> $siz then ged_handle.labels_font_size=$siz; end;"
 }
 
 
@@ -722,17 +722,17 @@ proc setFontColor {w index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle;ged_handle.labels_font_color=$index"
+	ScilabEval "global ged_handle;if ged_handle.labels_font_color <> $index then ged_handle.labels_font_color=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle;ged_handle.labels_font_color=$index"
+	ScilabEval "global ged_handle;if ged_handle.labels_font_color <> $index then ged_handle.labels_font_color=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle;ged_handle.labels_font_color=$index"
+	ScilabEval "global ged_handle;if ged_handle.labels_font_color <> $index then ged_handle.labels_font_color=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -742,7 +742,7 @@ proc setFontColor {w index} {
 
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle;ged_handle.labels_font_color=$index"
+	ScilabEval "global ged_handle;if ged_handle.labels_font_color <> $index then ged_handle.labels_font_color=$index; end;"
 		
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 

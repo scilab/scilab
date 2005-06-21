@@ -664,17 +664,17 @@ proc setMarkForeground {w index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_foreground <> $index then ged_handle.mark_foreground=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_foreground <> $index then ged_handle.mark_foreground=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_foreground <> $index then ged_handle.mark_foreground=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -684,7 +684,7 @@ proc setMarkForeground {w index} {
 	
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_foreground <> $index then ged_handle.mark_foreground=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -707,17 +707,17 @@ proc setMarkBackground {w index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_background <> $index then ged_handle.mark_background=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_background <> $index then ged_handle.mark_background=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_background <> $index then ged_handle.mark_background=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -727,7 +727,7 @@ proc setMarkBackground {w index} {
 	
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	ScilabEval "global ged_handle; if ged_handle.mark_background <> $index then ged_handle.mark_background=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
