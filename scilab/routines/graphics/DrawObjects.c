@@ -6133,27 +6133,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
 	
 	/**************/
-	
-/* 	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n"); */
-/* 	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n"); */
-/* 	if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n"); */
-      
-/* 	xtmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double)); */
-/* 	ytmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double)); */
-/* 	if(pSEGS_FEATURE (pobj)->vz != NULL) */
-/* 	  ztmp = MALLOC((pSEGS_FEATURE (pobj)->Nbr1)*sizeof(double)); */
-/* 	else */
-/* 	  ztmp=(double *)NULL; */
-      
-/* 	for(u=0;u<(pSEGS_FEATURE (pobj)->Nbr1);u++){ */
-/* 	  xtmp[u] = pSEGS_FEATURE (pobj)->vx[u]; */
-/* 	  ytmp[u] = pSEGS_FEATURE (pobj)->vy[u]; */
-/* 	  if(ztmp != NULL) */
-/* 	    ztmp[u] = pSEGS_FEATURE (pobj)->vz[u]; */
-/* 	} */
-      
-/* 	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,pSEGS_FEATURE (pobj)->Nbr1); */
-/* 	/\**************\/ */
 
 	X[0]=xtmp[0];
 	X[1]=xtmp[1];
@@ -6314,22 +6293,22 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		return;
 	      }
 	      else  {
-		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]= (int) pSURFACE_FEATURE (pobj)->color[index];*/
-
 		/* shade needs (int*) color */
 		integer *cvect = NULL,ik;
-		if((cvect=MALLOC((pSURFACE_FEATURE (pobj)->m3n)*(pSURFACE_FEATURE (pobj)->n3n)*sizeof(integer)))==NULL){
+		sciSurface * ppsurface = pSURFACE_FEATURE (pobj);
+		
+		if((cvect=MALLOC(ppsurface->nc*sizeof(integer)))==NULL){
 		  sciprint("Allocation failed in merge for color matrix\n");
 		  return;
 		}    
 		
-		for(ik=0;ik<(pSURFACE_FEATURE (pobj)->m3n)*(pSURFACE_FEATURE (pobj)->n3n);ik++) 
-		  cvect[ik] = (int) pSURFACE_FEATURE (pobj)->color[ik];
+		for(ik=0;ik<ppsurface->nc;ik++) 
+		  cvect[ik] = (int) ppsurface->color[ik];
 
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
 		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 			
-		shade(polyx,polyy,&(cvect[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
+		shade(polyx,polyy,&(cvect[p*index]),p,ppsurface->flag[0]);
 		FREE(cvect); cvect = NULL;
 		if (sciGetIsMark (pobj))
 		  DrawMarks3D (pobj, p,polyx,polyy,DPI);
