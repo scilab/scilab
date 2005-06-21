@@ -1338,6 +1338,9 @@ sciGetIsLine (sciPointObj * pobj)
     case SCI_SEGS:
       return (sciGetGraphicContext(pobj))->isline;
       break;
+    case SCI_LEGEND:
+      return (sciGetGraphicContext(pobj))->isline;
+      break;
     case SCI_GRAYPLOT:
     case SCI_LIGHT:
     case SCI_MENU:
@@ -1349,7 +1352,7 @@ sciGetIsLine (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_TEXT:
     case SCI_TITLE:
-    case SCI_LEGEND:
+
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no isline\n");
