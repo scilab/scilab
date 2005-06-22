@@ -227,10 +227,17 @@ pack $w.frame.fontsang  -in $w.frame    -side top -fill x -pady 0m
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-	 -resolution 1.0 -command "setFontAngle $w.frame.fontangle" -tickinterval 0 -font {Arial 9}
-pack $w.frame.fontanglelabel  -in $w.frame.fontsang -side left
-pack $w.frame.fontangle -in $w.frame.fontsang   -expand 1 -fill x -pady 0m -padx 1m
+	 -resolution -1.0 -command "setFontAngle $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
 $w.frame.fontangle set $curfontangle
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle2 -font {Arial 9} -width 15
+
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
+bind  $w.frame.fontangle2 <KP_Enter> 	"setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
+
+
+pack $w.frame.fontanglelabel  -in $w.frame.fontsang -side left
+pack $w.frame.fontangle -in $w.frame.fontsang    -side left -padx 1m
+pack $w.frame.fontangle2 -in $w.frame.fontsang   -expand 1 -fill x -pady 0m -padx 2m
 
 #############
 
@@ -464,9 +471,18 @@ ScilabEval "setFontStyle('$curfontstyle')"
 }
 
 proc setFontAngle {w fa} {
+    global curfontangle2
     ScilabEval "global ged_handle;if ged_handle.font_angle <> $fa then ged_handle.font_angle=$fa; end;"
+    set curfontangle2 $fa
 }
 
+proc setEntryFontAngle {w w2 args} {
+    global curfontangle
+    global curfontangle2
+    ScilabEval "global ged_handle;if ged_handle.font_angle <> $curfontangle2 then ged_handle.font_angle=$curfontangle2; end;"
+    set curfontangle $curfontangle2
+    $w2 set $curfontangle
+}
 
 proc setText {} {
 global curtext
