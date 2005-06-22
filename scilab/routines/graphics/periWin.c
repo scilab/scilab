@@ -19,6 +19,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdarg.h>
+//#include <strsafe.h>
 
 #include "../wsci/wresource.h"
 #include "../wsci/resource.h"
@@ -2787,6 +2788,83 @@ void C2F(displaystring)(string, x, y, v1, flag, v6, v7, angle, dv2, dv3, dv4)
       C2F(DispStringAngle)(x,y,string,angle);
     }
 }
+
+/* F.Leray 22/06/05 */
+/* Move here the font structure definition */
+/* I need the definition of the font structure fonttab now to create new rotated fonts */
+
+/***********************************
+ * Fonts for the graphic windows 
+ ***********************************/
+
+#define FONTNUMBER 10 // F.Leray FONTNUMBER set to 10 pb not solved: font Id 9 has always the same size
+                      // and looks like font fId 8 Size 5... Pb here F.Leray 25.04.02
+#define FONTMAXSIZE 6
+#define SYMBOLNUMBER 10
+
+/* structure to keep track of fonts 
+   Dans FontInfoTab : on se garde des information sur les 
+   fonts la fonts i a pour nom fname et ok vaut 1 si 
+   elle a ete chargee ds le serveur 
+   c'est loadfamily qui se charge de charger une font a diverses 
+   taille ds le serveur.
+   The font i at size fsiz is stored at position FontInfoTab[i].hf[fsiz]
+*/
+
+typedef struct tagFontInfo { 
+  integer ok;
+  char fname[100];
+  HFONT hf[FONTMAXSIZE];
+} FontInfoT[FONTNUMBER];
+
+static int scale_font_size = 1;
+static FontInfoT FontInfoTab;           /** for screen **/ 
+static FontInfoT FontInfoTabPrinter;    /** for printer **/ 
+
+static FontInfoT *FontTab = &FontInfoTab;
+
+static char *size_[] = { "08" ,"10","12","14","18","24"};
+static int size_n_[] = {8,10,12,14,18,24};
+
+/** We use the Symbol font  for mark plotting **/
+/** so we want to be able to center a Symbol character at a specified point **/
+
+typedef  struct { integer xoffset[FONTMAXSIZE][SYMBOLNUMBER];
+  integer yoffset[FONTMAXSIZE][SYMBOLNUMBER];} Offset ;
+static Offset ListOffset;
+static Offset ListOffsetPrint;
+static Offset *SymbOffset = &ListOffset;
+
+static char Marks[] = {
+  /*., +,X,*,diamond(filled),diamond,triangle up,triangle down,trefle,circle*/
+  (char)46,(char)43,(char)180,(char)42, (char)168,(char)224,
+  (char)196,(char)209,(char)167,(char)176,};
+
+/** To set the current font id  and size **/
+/** load the fonts into X11 if necessary **/
+
+typedef  struct  {
+  char *alias;  char *name;  char *Winname;
+}  FontAlias;
+
+/** ce qui suit marche sur 75dpi ou 100dpi **/
+
+FontAlias fonttab[] ={
+  {"CourR", "-adobe-courier-medium-r-normal--*-%s0-*-*-m-*-iso8859-1","Courier New"},
+  {"Symb", "-adobe-symbol-medium-r-normal--*-%s0-*-*-p-*-adobe-fontspecific","Symbol"},
+  {"TimR", "-adobe-times-medium-r-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman"},
+  {"TimI", "-adobe-times-medium-i-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Italic"},
+  {"TimB", "-adobe-times-bold-r-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Bold"},
+  {"TimBI", "-adobe-times-bold-i-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Bold Italic"},
+  {"HelvR", "-adobe-helvetica-medium-r-normal--*-%s0-*-*-p-*-iso8859-1","Arial"},
+  {"HelvO", "-adobe-helvetica-medium-o-normal--*-%s0-*-*-p-*-iso8859-1","Arial Italic"},
+  {"HelvB", "-adobe-helvetica-bold-r-normal--*-%s0-*-*-p-*-iso8859-1", "Arial Bold"},
+  {"HelvBO","-adobe-helvetica-bold-o-normal--*-%s0-*-*-p-*-iso8859-1", "Arial Bold Italic"},
+  {(char *) NULL,( char *) NULL}
+};
+
+/* F.Leray: the algo. changed. to allow nicer rotation for the font characters string */
+/* For more explanations, see http://msdn.microsoft.com/library/default.asp?url=/library/en-us/gdi/fontext_2tf8.asp */
 /*-----------------------------------------------------------------------------------*/
 void C2F(DispStringAngle)(x0, yy0, string, angle)
      integer *x0;
@@ -2794,49 +2872,45 @@ void C2F(DispStringAngle)(x0, yy0, string, angle)
      char *string;
      double *angle;
 {
-  int i;
-  integer x,y, rect[4];
-  double sina ,cosa,l;
-  char str1[2];
-  str1[1]='\0';
-  x= *x0;
-  y= *yy0;
-  sina= sin(*angle * M_PI/180.0);
-  cosa= cos(*angle * M_PI/180.0);
-  for ( i = 0 ; i < (int)strlen(string); i++)
-    { 
-      str1[0]=string[i];
-      if ( ScilabXgc->CurDrawFunction ==  GXxor )
-	{
-	  SIZE size ;
-	  GetTextExtentPoint32(hdc,str1,1,&size);
-	  XorString(x,y,str1,size.cx,size.cy);
-	}
-      else
-	{
-	  TextOut(hdc,(int) x,(int) y,str1,1);
-	}
-      C2F(boundingbox)(str1,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      /** C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3); **/
-      if ( cosa <= 0.0 && i < (int)strlen(string)-1)
-	{ char str2[2];
-	/** si le cosinus est negatif le deplacement est a calculer **/
-	/** sur la boite du caractere suivant **/
-	str2[1]='\0';str2[0]=string[i+1];
-	C2F(boundingbox)(str2,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-	}
-      if ( Abs(cosa) >= 1.e-8 )
-	{
-	  if ( Abs(sina/cosa) <= Abs(((double)rect[3])/((double)rect[2])))
-	    l = Abs(rect[2]/cosa);
-	  else 
-	    l = Abs(rect[3]/sina);
-	}
-      else 
-	l = Abs(rect[3]/sina);
-      x +=  inint(cosa*l*1.1);
-      y +=  inint(sina*l*1.1);
-    }
+
+  HFONT hfnt, hfntPrev;
+  size_t pcch;
+  LOGFONT lf;
+  char *p;
+  
+ memset(&lf, 0, sizeof(LOGFONT));
+ strncpy(lf.lfFaceName,(*FontTab)[ScilabXgc->FontId].fname,LF_FACESIZE);
+
+ lf.lfHeight  = - size_n_[ScilabXgc->FontSize]*scale_font_size;
+ lf.lfCharSet = DEFAULT_CHARSET;
+ if ( (p = strstr((*FontTab)[ScilabXgc->FontId].fname," Italic")) != (LPSTR)NULL ) {
+   lf.lfFaceName[ (unsigned int)(p- (*FontTab)[ScilabXgc->FontId].fname) ] = '\0';
+   lf.lfItalic = TRUE;
+ }
+ if ( (p = strstr((*FontTab)[ScilabXgc->FontId].fname," Bold")) != (LPSTR)NULL ) {
+   lf.lfFaceName[ (unsigned int)(p- (*FontTab)[ScilabXgc->FontId].fname) ] = '\0';
+   lf.lfWeight = FW_BOLD;
+ }
+   
+ SetBkMode(hdc, TRANSPARENT); 
+ 
+ hfnt = CreateFontIndirect((LOGFONT FAR *)&lf);
+ 
+ lf.lfEscapement = (int) (-(*angle)*10);
+
+ hfnt = CreateFontIndirect((LOGFONT FAR *)&lf); 
+ hfntPrev = SelectObject(hdc, hfnt);
+	
+ pcch = strlen(string);
+
+ TextOut(hdc, *x0, *yy0, string, pcch); 
+ SelectObject(hdc, hfntPrev); 
+ DeleteObject(hfnt); 
+ 
+ // Reset the background mode to its default. 
+ 
+ SetBkMode(hdc, OPAQUE); 
+ 
 }
 /*-----------------------------------------------------------------------------------*/
 int XorString(x,y,string,fWidth,fHeight)
@@ -4387,76 +4461,6 @@ void C2F(bitmap)(string, w, h)
   **/
 }
 
-/***********************************
- * Fonts for the graphic windows 
- ***********************************/
-
-#define FONTNUMBER 10 // F.Leray FONTNUMBER set to 10 pb not solved: font Id 9 has always the same size
-                      // and looks like font fId 8 Size 5... Pb here F.Leray 25.04.02
-#define FONTMAXSIZE 6
-#define SYMBOLNUMBER 10
-
-/* structure to keep track of fonts 
-   Dans FontInfoTab : on se garde des information sur les 
-   fonts la fonts i a pour nom fname et ok vaut 1 si 
-   elle a ete chargee ds le serveur 
-   c'est loadfamily qui se charge de charger une font a diverses 
-   taille ds le serveur.
-   The font i at size fsiz is stored at position FontInfoTab[i].hf[fsiz]
-*/
-
-typedef struct tagFontInfo { 
-  integer ok;
-  char fname[100];
-  HFONT hf[FONTMAXSIZE];
-} FontInfoT[FONTNUMBER];
-
-static int scale_font_size = 1;
-static FontInfoT FontInfoTab;           /** for screen **/ 
-static FontInfoT FontInfoTabPrinter;    /** for printer **/ 
-
-static FontInfoT *FontTab = &FontInfoTab;
-
-static char *size_[] = { "08" ,"10","12","14","18","24"};
-static int size_n_[] = {8,10,12,14,18,24};
-
-/** We use the Symbol font  for mark plotting **/
-/** so we want to be able to center a Symbol character at a specified point **/
-
-typedef  struct { integer xoffset[FONTMAXSIZE][SYMBOLNUMBER];
-  integer yoffset[FONTMAXSIZE][SYMBOLNUMBER];} Offset ;
-static Offset ListOffset;
-static Offset ListOffsetPrint;
-static Offset *SymbOffset = &ListOffset;
-
-static char Marks[] = {
-  /*., +,X,*,diamond(filled),diamond,triangle up,triangle down,trefle,circle*/
-  (char)46,(char)43,(char)180,(char)42, (char)168,(char)224,
-  (char)196,(char)209,(char)167,(char)176,};
-
-
-/** To set the current font id  and size **/
-/** load the fonts into X11 if necessary **/
-
-typedef  struct  {
-  char *alias;  char *name;  char *Winname;
-}  FontAlias;
-
-/** ce qui suit marche sur 75dpi ou 100dpi **/
-
-FontAlias fonttab[] ={
-  {"CourR", "-adobe-courier-medium-r-normal--*-%s0-*-*-m-*-iso8859-1","Courier New"},
-  {"Symb", "-adobe-symbol-medium-r-normal--*-%s0-*-*-p-*-adobe-fontspecific","Symbol"},
-  {"TimR", "-adobe-times-medium-r-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman"},
-  {"TimI", "-adobe-times-medium-i-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Italic"},
-  {"TimB", "-adobe-times-bold-r-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Bold"},
-  {"TimBI", "-adobe-times-bold-i-normal--*-%s0-*-*-p-*-iso8859-1","Times New Roman Bold Italic"},
-  {"HelvR", "-adobe-helvetica-medium-r-normal--*-%s0-*-*-p-*-iso8859-1","Arial"},
-  {"HelvO", "-adobe-helvetica-medium-o-normal--*-%s0-*-*-p-*-iso8859-1","Arial Italic"},
-  {"HelvB", "-adobe-helvetica-bold-r-normal--*-%s0-*-*-p-*-iso8859-1", "Arial Bold"},
-  {"HelvBO","-adobe-helvetica-bold-o-normal--*-%s0-*-*-p-*-iso8859-1", "Arial Bold Italic"},
-  {(char *) NULL,( char *) NULL}
-};
 /*-----------------------------------------------------------------------------------*/
 /***********************************
  * set current font to font fontid at size 
