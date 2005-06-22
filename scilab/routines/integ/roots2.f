@@ -89,7 +89,8 @@ c-----------------------------------------------------------------------
       integer i, imxold, nxlast,istuck,iunstuck
       double precision t2, tmax, zero
       logical zroot, sgnchg, xroot
-      data zero/0.0d0/
+      DATA ZERO/0.0D0/, TENTH/0.1D0/, HALF/0.5D0/, FIVE/5.0D0/
+
 c
       if (jflag .eq. 1) go to 200
 c jflag .ne. 1.  check for change in sign of g or zero at x1. ----------
@@ -140,12 +141,31 @@ c repeat until the first root in the interval is found.  loop point. ---
       else
          x2 = x1 - (x1-x0)*g1(imax)/(g1(imax) - alpha*g0(imax))
       endif
-      if ((dabs(x2-x0) .lt. hmin) .and.
-     1     (dabs(x1-x0) .gt. 10.0d0*hmin)) x2 = x0 + 0.1d0*(x1-x0)
-      jflag = 1
-      x = x2
-c return to the calling routine to get a value of gx = g(x). -----------
-      return
+      IF (ABS(X2 - X0) .LT. HALF*HMIN) THEN
+        FRACINT = ABS(X1 - X0)/HMIN
+        IF (FRACINT .GT. FIVE) THEN
+          FRACSUB = TENTH
+        ELSE
+          FRACSUB = HALF/FRACINT
+        ENDIF
+        X2 = X0 + FRACSUB*(X1 - X0)
+      ENDIF
+
+      IF (ABS(X1 - X2) .LT. HALF*HMIN) THEN
+        FRACINT = ABS(X1 - X0)/HMIN
+        IF (FRACINT .GT. FIVE) THEN
+          FRACSUB = TENTH
+        ELSE
+          FRACSUB = HALF/FRACINT
+        ENDIF
+        X2 = X1 - FRACSUB*(X1 - X0)
+      ENDIF
+c     ----------------------- Hindmarsh ----------------
+      JFLAG = 1
+      X = X2 
+c     return to the calling routine to get a value of gx = g(x). -----------
+      RETURN
+
 c check to see in which interval g changes sign. -----------------------
  200  imxold = imax
       imax = 0
@@ -193,30 +213,11 @@ c no sign change between x0 and x2.  replace x0 with x2. ---------------
       go to 150
 c
 c return with x1 as the root.  set jroot.  set x = x1 and gx = g1. -----
-
- 300  jflag = 2
-      x = x1
-      call dcopy (ng, g1, 1, gx, 1)
-      do 320 i = 1,ng
-         if(jroot(i).eq.1) then
-            if(dabs(g1(i)).ne. zero) then
-               jroot(i)=sign(2.0d0,g1(i))
-            else
-               jroot(i)=0
-            endif
-         else
-            if (abs(g1(i)) .eq. zero) then
-               jroot(i) = -sign(1.0d0,g0(i))
-            else
-               if (sign(1.0d0,g0(i)) .ne. sign(1.0d0,g1(i))) then
-                  jroot(i) = sign(1.0d0,g1(i) - g0(i))
-               else
-                  jroot(i)=0
-               endif
-            endif
-         endif
- 320  continue
-      return
+ 300  JFLAG = 2
+c     exit with root findings
+      X = X1
+      CALL DCOPY (Ng, g1, 1, gX, 1)
+      RETURN
 c no sign changes in this interval.  set x = x1, return jflag = 4. -----
  420  call dcopy (ng, g1, 1, gx, 1)
       x = x1

@@ -14,7 +14,7 @@ clll. optimize
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround
       double precision rownr3, t0, tlast, toutc
       double precision hming, t1, temp1, temp2, x
-      logical zroot
+      logical zroot, Mroot
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      3   iownd(14), iowns(6),
@@ -88,105 +88,46 @@ c     -------------- masking: disabling masks in cold-major-time-step------
       DO 103 I = 1,ngc
          jroot(i) = 0
  103     iwork(lmask+i)=0
-c     -------------- masking -----------------
-      t0 = tn
-      call g (neq, t0, y, ngc, g0) 
-      if(iero.gt.0) return
-      nge = 1
-      zroot = .false.
-      do 110 i = 1,ngc
-         if (dabs(g0(i)) .le. 0.0d0) THEN
-            zroot = .true.
-            jroot(i)=1
-         endif
- 110  continue    
-      if (.not. zroot) go to 190
-c g has a zero at t.  look at g at t + (small increment). --------------
-      temp1 = dsign(hming,h)
-      t0 = t0 + temp1
-      temp2 = temp1/h
-      do 120 i = 1,n
- 120    y(i) = y(i) + temp2*yh(i,2)
-      call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
-c     -------------- masking: masking really stuck zero -----------------
-      nge = nge + 1
-      do 130 i = 1,ngc
-         if (jroot(i) .eq. 1) then
-            if(abs(g0(i)) .eq. zero) then
-               iwork(lmask+i)=1
-            else
-               irt=2
-               jroot(i)=sign(2.0d0,g0(i))
-            ENDIF
-         ENDIF
- 130  CONTINUE
- 190  CONTINUE
-      RETURN
-c
- 200  continue
-      if (irfnd .eq. 0) go to 260
-c    ----- masking: disabling masks in HOT-major-time-step -----------------
-      DO 203 I = 1,ngc
-          jroot(i) = 0
- 203     iwork(lmask+i)=0
-c     -------------- masking -----------------
-c if a root was found on the previous step, evaluate g0 = g(t0). -------
+
       call intdy (t0, 0, yh, nyh, y, iflag)
       call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
       nge = nge + 1
-      zroot = .false.
-      do 210 i = 1,ngc
-         if (dabs(g0(i)) .le. 0.0d0) then
-            jroot(i)=1
-            zroot = .true.
-         endif
- 210  continue
-      if (.not. zroot) go to 260
-c g has a zero at t0.  look at g at t + (small increment). -------------
-      temp1 = dsign(hming,h)
-      t0 = t0 + temp1
-      if ((t0 - tn)*h .lt. 0.0d0) go to 230
-      temp2 = temp1/h
-      do 220 i = 1,n
- 220    y(i) = y(i) + temp2*yh(i,2)
-      go to 240
- 230  call intdy (t0, 0, yh, nyh, y, iflag)
- 240  call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
-      nge = nge + 1
-      zroot = .false.
-c     ----- masking: checking the stuck zeros after a small time evaluation
-      do 250 i = 1,ngc
-        IF (ABS(G0(I)) .GT. ZERO) GO TO 250
-C If Ri has a zero at both T0+ and T0, return an error flag. -----------
-        IF (JROOT(I) .EQ. 1) THEN
-           IWORK(LMASK+I)=1
-           JROOT(I)=0
-        ELSE
-C If Ri has a zero at T0+, but not at T0, return valid root. -----------
-          JROOT(I) = -SIGN(1.0D0,G0(I))
-          IRT = 1
-        ENDIF
- 250    CONTINUE
-c     -------------- masking -----------------
-      if (irt .eq. 1) return      
-c g0 has no zero components.  proceed to check relevant interval. ------
- 260  if (tn .eq. tlast) return
 
+      DO 110 I = 1,ngc
+         IF (DABS(g0(I)) .EQ. ZERO) THEN
+            iwork(lmask+i)=1
+         ENDIF
+ 110  CONTINUE
+      RETURN
+c     -------------- masking -----------------
+c
+ 200  continue
+
+c     in the previous call there was not a root, so this part can be ignored.
+c      IF (IWORK(LIRFND) .EQ. 0) GO TO 260
+       DO 203 I = 1,ngc
+          JROOT(I) = 0
+ 203      IWORK(LMASK+I)=0
+C     If a root was found on the previous step, evaluate R0 = R(T0). -------
+       call intdy (t0, 0, yh, nyh, y, iflag)
+       call g (neq, t0, y, ngc, g0)
+       nge = nge + 1
+       DO 210 I = 1,ngc
+          IF (dABS(g0(I)) .EQ. ZERO) THEN
+             IWORK(LMASK+I)=1
+          ENDIF
+ 210   CONTINUE
+C     R0 has no zero components.  Proceed to check relevant interval. ------
+ 260   if (tn .eq. tlast) return
+c
 c     -------------- try in manor-time-steps -----
  300  continue
-      if (irfnd .eq. 2) then
-          lirfnd=0  
-          irt=2
-          return
-       endif
+
 c set t1 to tn or toutc, whichever comes first, and get g at t1. -------
       if (itaskc.eq.2 .or. itaskc.eq.3 .or. itaskc.eq.5) go to 310
       if ((toutc - tn)*h .ge. 0.0d0) go to 310
       t1 = toutc
-      if ((t1 - t0)*h .le. 0.0d0) return
+      if ((t1 - t0)*h .le. 0.0d0) go to 390
       call intdy (t1, 0, yh, nyh, y, iflag)
       go to 330
  310  t1 = tn
@@ -195,45 +136,68 @@ c set t1 to tn or toutc, whichever comes first, and get g at t1. -------
  330  call g (neq, t1, y, ngc, g1)
       if(iero.gt.0) return
       nge = nge + 1
-c     ------ masking: 
-      do 331 i = 1,ngc
-          jroot(i)=0
- 331     if(iwork(lmask+i).eq.1)  jroot(i)=1
-c     -------------- masking -----------------
-c call roots to search for root in interval from t0 to t1. -------------
-      jflag = 0
- 350  continue
+
+C     Call DROOTS to search for root in interval from T0 to T1. -----------
+      JFLAG = 0
+      
+      DO 340 I = 1,Ngc
+         JROOT(I)=IWORK(LMASK+I)
+ 340  CONTINUE
+      
+ 350  CONTINUE
       call roots2(ngc,hming, jflag, t0, t1, g0, g1, gx, x, jroot)
-      if (jflag .gt. 1) go to 360
+      IF (JFLAG .GT. 1) GO TO 360
       call intdy (x, 0, yh, nyh, y, iflag)
       call g (neq, x, y, ngc, gx)
       if(iero.gt.0) return
       nge = nge + 1
-      go to 350
- 360  t0 = x
-      call dcopy (ngc, gx, 1, g0, 1)
-c     -------------- masking: demasking: after a minor time step if a
-c     previously stuck zero has a non zero value the mask is lifted.
-      irt=0
-      if (jflag .ne. 4) then
+      GO TO 350
+      
+ 360  CONTINUE
+      if (JFLAG.eq.2) then      ! root found         
+         ZROOT=.false.
+         MROOT=.false.
+         DO 361 I = 1,Ngc          
+            if(IWORK(LMASK+I).eq.1) then
+               if(ABS(g1(i)).ne. ZERO) THEN
+                  JROOT(I)=SIGN(2.0D0,g1(I))
+                  Mroot=.true.
+               ELSE
+                  JROOT(I)=0
+               ENDIF
+            ELSE
+               IF (ABS(g1(I)) .EQ. ZERO) THEN
+                  JROOT(I) = -SIGN(1.0D0,g0(I))
+                  zroot=.true.
+               ELSE
+                  IF (SIGN(1.0D0,g0(I)) .NE. SIGN(1.0D0,g1(I))) THEN
+                     JROOT(I) = SIGN(1.0D0,g1(I) - g0(I))
+                     zroot=.true.
+                  ELSE
+                     JROOT(I)=0
+                  ENDIF
+               ENDIF
+            ENDIF
+ 361     CONTINUE
+         
          call intdy (x, 0, yh, nyh, y, iflag)
-         zroot = .false.
-          do 370 i = 1,ngc
-             if(abs(jroot(i)).eq.1) then 
-                zroot=.true.
-                goto 375
-             endif
- 370      continue
- 375      continue
-          if(zroot) then
-             do 380 i = 1,ngc
-                if(abs(jroot(i)).eq.2) jroot(i)=0
- 380         continue  
-             irt=1
-          else
-             irt=2
-          endif
-       endif
-       return
+
+         if (Zroot) then
+            DO 380 I = 1,Ngc
+               IF(ABS(JROOT(I)).EQ.2) JROOT(I)=0
+ 380        CONTINUE  
+            MROOT=.false.
+            IRT=1
+         endif
+         IF (MROOT) THEN
+            IRT=2
+         ENDIF
+      ENDIF
+      T0 = X
+      CALL DCOPY (Ngc, gx, 1, g0, 1)
+      RETURN
+c     
+ 390  continue
+      return
 c----------------------- end of subroutine rchek -----------------------
       end

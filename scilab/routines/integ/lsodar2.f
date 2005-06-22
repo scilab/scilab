@@ -1435,12 +1435,8 @@ c     --------------------- masking -----------------------
       call rchek2 (1, g, neq, y, rwork(lyh), nyh,
      1   rwork(lg0), rwork(lg1), rwork(lgx), jroot, irt,iwork)
       if (iero.gt.0) return
-      if (irt .eq. 2)  then
-         irfnd = 2
-         go to 270
-      endif
-      if (irt .eq. 0) go to 270
-      go to 632
+c      if (irt .lt. 0) go to 632
+      go to 270
 c-----------------------------------------------------------------------
 c block d.
 c the next code block is for continuation calls only (istate = 2 or 3)
@@ -1461,11 +1457,13 @@ c     --------------------- masking -----------------------
 c     --------------------- masking -----------------------
       if(iero.gt.0) return
       if (irt .lt. 0) go to 632
-      if (irt .ne. 1) go to 205
-      irfnd = 1
-      istate = 3
-      t = t0
-      go to 425
+      if (irt .eq. 1) then
+         irfnd = 1
+         istate = 3
+         t = t0
+         go to 425
+      endif
+      
  205  continue
       irfnd = 0
       if (irfp .eq. 1 .and. tlast .ne. tn .and. itask .eq. 2) go to 400
@@ -1589,9 +1587,7 @@ c     --------------------- masking -----------------------
       call rchek2 (3, g, neq, y, rwork(lyh), nyh,
      1   rwork(lg0), rwork(lg1), rwork(lgx), jroot, irt,iwork)
 c     --------------------- masking -----------------------
-
       if(iero.gt.0) return
-
       if(irt .eq. 2) then
          lirfnd = 2
          istate = 4
