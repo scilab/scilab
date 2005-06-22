@@ -479,7 +479,7 @@ proc setFontAngle {w fa} {
 proc setEntryFontAngle {w w2 args} {
     global curfontangle
     global curfontangle2
-    if { $curfontangle2 == ""} {
+    if { $curfontangle2 == "" || $curfontangle2 < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
 	return
     }
