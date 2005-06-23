@@ -28,6 +28,16 @@ catch {namespace import combobox::*}
 #package require lemonTree
 catch {namespace import LemonTree::*}
 
+global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION msdos
+set ged_listofpref "MAIN_WINDOW_POSITION TICK_WINDOW_POSITION"
+set MAIN_WINDOW_POSITION "+0+0"
+set TICK_WINDOW_POSITION "+0+0"
+set envSCIHOME $env(SCIHOME)
+set preffilename $env(SCIHOME)/.GedPreferences.tcl
+#puts "preffilename vaut: -> $preffilename"
+catch {source $preffilename}
+
+
 global SELOBJECT
 global ged_handle_list_size
 global lalist
@@ -66,7 +76,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Figure Editor"
 wm iconname $ww "FE"
-wm geometry $ww [expr $Wwidth]x[expr $Wheight]
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
@@ -639,6 +649,42 @@ proc sciCommandColormap {} {
 }
 
 
+proc SavePreferences { } {
+    global ged_listofpref
+    global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+    global ww msdos
+    
+    ScilabEval "DestroyGlobals()" "seq"
+        
+    if { $msdos == "F" } {
+#unix mandrake (at least) needs this offset
+#test other unix distribution to see (red hat, suse...)
+	set xoffset -5
+	set yoffset -26
+    } else {
+	set xoffset 0
+	set yoffset 0
+    }
+    
+    set x [eval {winfo x $ww}]
+    set y [eval {winfo y $ww}]
+    set MAIN_WINDOW_POSITION "+[expr $x+$xoffset]+[expr $y+$yoffset]"
+    
+    #save preferences (position...)
+    set preffilename [file join $envSCIHOME .GedPreferences.tcl]
+    catch {
+ 	set preffile [open $preffilename w]
+	foreach opt $ged_listofpref {
+	    global $opt
+	    puts $preffile [concat "set $opt " [set $opt]]
+	    # 	    puts [concat "set $opt" [set $opt]]
+	}
+	close $preffile
+    }
+}
+
 proc DestroyGlobals { } {
     ScilabEval "DestroyGlobals()" "seq"
+
+    SavePreferences
 }

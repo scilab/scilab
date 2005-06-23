@@ -7,7 +7,7 @@
 #global env(SCIPATH)
 global ged_handle_list_size OBJECTSARRAY LEVELS
 global ged_listofpref
-global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION msdos
 global ww
 
 
@@ -307,16 +307,27 @@ set LemonTree::icon(variable) [image create photo -data {
      c2lvbiAyLjUNCqkgRGV2ZWxDb3IgMTk5NywxOTk4LiBBbGwgcmlnaHRzIHJl
      c2VydmVkLg0KaHR0cDovL3d3dy5kZXZlbGNvci5jb20AOw==}]
 
+
 proc SavePreferences { } {
     global ged_listofpref
     global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
-    global ww
+    global ww msdos
     
     ScilabEval "DestroyGlobals()" "seq"
+        
+    if { $msdos == "F" } {
+#unix mandrake (at least) needs this offset
+#test other unix distribution to see (red hat, suse...)
+	set xoffset -5
+	set yoffset -26
+    } else {
+	set xoffset 0
+	set yoffset 0
+    }
     
     set x [eval {winfo x $ww}]
     set y [eval {winfo y $ww}]
-    set MAIN_WINDOW_POSITION "+[expr $x-5]+[expr $y-26]"
+    set MAIN_WINDOW_POSITION "+[expr $x+$xoffset]+[expr $y+$yoffset]"
     
     #save preferences (position...)
     set preffilename [file join $envSCIHOME .GedPreferences.tcl]
