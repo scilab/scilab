@@ -30,6 +30,15 @@ catch {namespace import combobox::*}
 #package require lemonTree
 catch {namespace import LemonTree::*}
 
+global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+set ged_listofpref "MAIN_WINDOW_POSITION TICK_WINDOW_POSITION"
+set MAIN_WINDOW_POSITION "+0+0"
+set TICK_WINDOW_POSITION "+0+0"
+set envSCIHOME $env(SCIHOME)
+set preffilename $env(SCIHOME)/.GedPreferences.tcl
+#puts "preffilename vaut: -> $preffilename"
+catch {source $preffilename}
+
 
 global fen1 fen2 fen3
 global Xaxes_reverseToggle Yaxes_reverseToggle Zaxes_reverseToggle
@@ -164,7 +173,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww [expr $Wwidth]x[expr $Wheight]
+wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
 #wm maxsize  $ww 450 560
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
@@ -2164,6 +2173,13 @@ proc PopUp { w numpage} {
     global StepEntryX StepEntryY StepEntryZ
     global Xaxes_visibleToggle Yaxes_visibleToggle Zaxes_visibleToggle
 
+    global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+#     set TICK_WINDOW_POSITION "+0+0"
+    set envSCIHOME $envSCIHOME
+    set preffilename $envSCIHOME/.GedPreferences.tcl
+    catch {source $preffilename}
+
+
     set frameaxes $w
 
     set www .ticks
@@ -2176,8 +2192,7 @@ proc PopUp { w numpage} {
     wm deiconify $www
     
     wm title $www  "Edit Axes Ticks"
-    wm geometry $www 280x500
-#    wm geometry $www 530x750
+    wm geometry $www 280x500$TICK_WINDOW_POSITION
     wm iconname $www "TE"
     grab set $www
 #    bell -displayof $w
@@ -2318,7 +2333,7 @@ proc PopUp { w numpage} {
     pack  $fen1.buttons -anchor w -fill both  -side bottom   -fill x
     
     button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1" -font {Arial 9}
-    button $fen1.buttons.b -text Quit -command "destroy $old_www" -font {Arial 9}
+    button $fen1.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9}
     
     pack $fen1.buttons.apply  $fen1.buttons.b -in  $fen1.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -2439,7 +2454,7 @@ proc PopUp { w numpage} {
     pack  $fen2.buttons -anchor w -fill both  -side bottom   -fill x
     
     button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2" -font {Arial 9}
-    button $fen2.buttons.b -text Quit -command "destroy $old_www" -font {Arial 9}
+    button $fen2.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9}
     
     pack $fen2.buttons.apply  $fen2.buttons.b -in  $fen2.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -2561,7 +2576,7 @@ proc PopUp { w numpage} {
     pack  $fen3.buttons -anchor w -fill both  -side bottom   -fill x
     
     button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3" -font {Arial 9}
-    button $fen3.buttons.b -text Quit -command "destroy $old_www" -font {Arial 9}
+    button $fen3.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9}
     
     pack $fen3.buttons.apply  $fen3.buttons.b -in  $fen3.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -3153,8 +3168,62 @@ proc SetSubticksZ { } {
     ScilabEval "Subtickstoggle($SubticksEntryZ,3)" "seq"
 }
 
+proc SavePreferences { } {
+    global ged_listofpref
+    global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+    global ww
+    
+    ScilabEval "DestroyGlobals()" "seq"
+    
+    set x [eval {winfo x $ww}]
+    set y [eval {winfo y $ww}]
+    set MAIN_WINDOW_POSITION "+[expr $x-5]+[expr $y-26]"
+    
+    #save preferences (position...)
+    set preffilename [file join $envSCIHOME .GedPreferences.tcl]
+    catch {
+ 	set preffile [open $preffilename w]
+	foreach opt $ged_listofpref {
+	    global $opt
+	    puts $preffile [concat "set $opt " [set $opt]]
+	    # 	    puts [concat "set $opt" [set $opt]]
+	}
+	close $preffile
+    }
+}
+
+proc SavePreferences2 { w } {
+    global ged_listofpref
+    global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+    global ww
+    
+    set x [eval {winfo x $ww}]
+    set y [eval {winfo y $ww}]
+    set MAIN_WINDOW_POSITION "+[expr $x-5]+[expr $y-26]"
+
+    set x [eval {winfo x $w}]
+    set y [eval {winfo y $w}]
+    set TICK_WINDOW_POSITION "+[expr $x-5]+[expr $y-26]"
+    
+    
+    #save preferences (position...)
+    set preffilename [file join $envSCIHOME .GedPreferences.tcl]
+    catch {
+ 	set preffile [open $preffilename w]
+ 	foreach opt $ged_listofpref {
+ 	    global $opt
+  	    puts $preffile [concat "set $opt" [set $opt]]
+# 	    puts [concat "set $opt" [set $opt]]
+ 	}
+	close $preffile
+    }
+    
+}
+
 proc DestroyGlobals { } {
     ScilabEval "DestroyGlobals()" "seq"
+
+    SavePreferences
 }
 
 
