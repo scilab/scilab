@@ -6,6 +6,10 @@
 
 #global env(SCIPATH)
 global ged_handle_list_size OBJECTSARRAY LEVELS
+global ged_listofpref
+global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+global ww
+
 
 package require BWidget
 package provide lemontree
@@ -303,6 +307,30 @@ set LemonTree::icon(variable) [image create photo -data {
      c2lvbiAyLjUNCqkgRGV2ZWxDb3IgMTk5NywxOTk4LiBBbGwgcmlnaHRzIHJl
      c2VydmVkLg0KaHR0cDovL3d3dy5kZXZlbGNvci5jb20AOw==}]
 
+proc SavePreferences { } {
+    global ged_listofpref
+    global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
+    global ww
+    
+    ScilabEval "DestroyGlobals()" "seq"
+    
+    set x [eval {winfo x $ww}]
+    set y [eval {winfo y $ww}]
+    set MAIN_WINDOW_POSITION "+[expr $x-5]+[expr $y-26]"
+    
+    #save preferences (position...)
+    set preffilename [file join $envSCIHOME .GedPreferences.tcl]
+    catch {
+ 	set preffile [open $preffilename w]
+	foreach opt $ged_listofpref {
+	    global $opt
+	    puts $preffile [concat "set $opt " [set $opt]]
+	    # 	    puts [concat "set $opt" [set $opt]]
+	}
+	close $preffile
+    }
+}
+
 # if 0 {This thing is more useful if you can get more information about an item by 
 # clicking on it - for a file, its size and date; for a variable, its value; for a proc, 
 # its full specification, etc. As a small first shot, I selected a "balloon" for that purpose. }
@@ -330,6 +358,8 @@ proc LemonTree::Info {w node} {
 	}
     }
 
+    SavePreferences
+   
     ScilabEval "Get_handle_from_index($i);"
 
     return $indexinlist
