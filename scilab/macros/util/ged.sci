@@ -46,6 +46,8 @@ function ged(k,win)
       TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
     
+    TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+    
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
     ged_figure(gcf())
@@ -64,7 +66,9 @@ function ged(k,win)
       bluname= "BLUE("+string(i)+")";
       TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
-
+    
+    TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+    
     ged_axes(gca())
     case 6 then //start Entity picker
     seteventhandler("ged_eventhandler")
@@ -382,7 +386,6 @@ function ged_axes(h)
   TCL_SetVar("Zlabelfontstyle",ged_fontarray(h.z_label.font_style+1))
   TCL_SetVar("TITLEfontstyle",ged_fontarray(h.title.font_style+1))
   TCL_SetVar("fontstyle",ged_fontarray(h.font_style+1))
-  TCL_SetVar("msdos",string(MSDOS))
   TCL_SetVar("xlabel",h.x_label.text)
   TCL_SetVar("ylabel",h.y_label.text)
   TCL_SetVar("zlabel",h.z_label.text)
@@ -1223,7 +1226,9 @@ function tkged()
     bluname= "BLUE("+string(i)+")";
     TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
   end
-
+  
+  TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+  
   select h.type
     case "Polyline"
      ged_polyline(h)
