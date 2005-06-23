@@ -17,6 +17,6 @@ MACROS = linpro.sci quapro.sci karmarkar.sci pack.sci unpack.sci \
 	lmitool.sci \
 	lmisolver.sci vec2list.sci list2vec.sci pencost.sci \
 	aplat.sci fit_dat.sci leastsq.sci datafit.sci numdiff.sci \
-	NDcost.sci
+	NDcost.sci bvodeS.sci
 
 include ../Make.lib.mak
