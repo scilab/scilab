@@ -12,7 +12,7 @@ int ql0001_(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
 int C2F(intqld)(fname) 
      char *fname;
 { 
-  static int un=1;
+  static int un=1,zero=0;
 
   static int Q, n, nbis;
   static int p, unbis;
@@ -132,7 +132,7 @@ int C2F(intqld)(fname)
 
   C2F(ql0001)(&m, istk(me), &mmax, &n, &n, &mnn, stk(Q), stk(p), stk(C_mmax),
           stk(b_mmax), stk(lb), stk(ub), stk(x), stk(lambda), &iout,
-          &ifail, &un, stk(war), &lwar, istk(iwar), &n, &eps1);
+          &ifail, &zero, stk(war), &lwar, istk(iwar), &n, &eps1);
 
 
   /* LhsVar: [x, lambda, inform] = qld(...) */
