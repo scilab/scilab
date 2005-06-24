@@ -289,19 +289,61 @@ if kc<>0 then // Current line has or is a comment
   // Short circuiting operators
   if ~isempty(strindex(tkbeg,"||")) then
     orexpr=tokens(tkbeg,"|")
-    
+    boolendsymbol=%f
+    orexprtemp=orexpr($)
+    indendsymbol=strindex(orexpr($),[";",","])
+    if indendsymbol<>[] then 
+      if stripblanks(part(orexpr($),indendsymbol($)+1:length(orexpr($))))=='' then
+        boolendsymbol=%t
+	endsymbol=part(orexprtemp,indendsymbol($))
+	indendsymbol=indendsymbol($)
+        orexpr($)=part(orexpr($),1:indendsymbol($)-1)
+      end
+    end   
+    for i=2:size(orexpr,"*")
+      notsymbol=strindex(stripblanks(orexpr(i)),"~")
+      if notsymbol<>[]
+        if notsymbol(1)==1 then
+          orexpr(i)="("+  stripblanks(orexpr(i)) + ")" 
+        end 
+      end
+    end    
     for kk=2:2:size(orexpr,"*")
       orexpr=[orexpr(1:kk);"%shortcircuit";orexpr(kk+1:size(orexpr,"*"))]
     end
     tkbeg=strcat(orexpr,"|")
+    if boolendsymbol then
+      tkbeg=tkbeg+endsymbol
+    end
   end
   if ~isempty(strindex(tkbeg,"&&")) then
     andexpr=tokens(tkbeg,"&")
-    
+    boolendsymbol=%f
+    andexprtemp=andexpr($)
+    indendsymbol=strindex(andexpr($),[";",","])
+    if indendsymbol<>[] then 
+      if stripblanks(part(andexpr($),indendsymbol($)+1:length(andexpr($))))=='' then
+        boolendsymbol=%t
+	endsymbol=part(andexprtemp,indendsymbol($))
+	indendsymbol=indendsymbol($)
+        andexpr($)=part(andexpr($),1:indendsymbol($)-1)
+      end
+    end
+    for i=2:size(andexpr,"*")
+      notsymbol=strindex(stripblanks(andexpr(i)),"~")
+      if notsymbol<>[]
+        if notsymbol(1)==1 then
+          andexpr(i)="("+  stripblanks(andexpr(i)) + ")" 
+        end 
+      end
+    end    
     for kk=2:2:size(andexpr,"*")
       andexpr=[andexpr(1:kk);"%shortcircuit";andexpr(kk+1:size(andexpr,"*"))]
     end
     tkbeg=strcat(andexpr,"&")
+    if boolendsymbol then
+      tkbeg=tkbeg+endsymbol
+    end
   end
   
   // varargout replaced by %varargout so that code can be compiled with varargout considered as a Cell
@@ -332,20 +374,61 @@ end
 
 // Short circuiting operators
 if ~isempty(strindex(tk,"||")) then
-  orexpr=tokens(tk,"|")
-  
+  orexpr=tokens(tk,"|")  
+  indendsymbol=strindex(orexpr($),[";",","])
+  boolendsymbol=%f
+  if indendsymbol<>[] then 
+    if stripblanks(part(orexpr($),indendsymbol($)+1:length(orexpr($))))=='' then
+      boolendsymbol=%t
+      indendsymbol=indendsymbol($)
+      endsymbol=part(orexpr($),indendsymbol($))
+      orexpr($)=part(orexpr($),1:indendsymbol($)-1)
+    end
+  end 
+  for i=2:size(orexpr,"*")
+    notsymbol=strindex(stripblanks(orexpr(i)),"~")
+    if notsymbol<>[]
+      if notsymbol(1)==1 then
+        orexpr(i)="("+  stripblanks(orexpr(i)) + ")" 
+      end 
+    end
+  end
   for kk=2:2:size(orexpr,"*")
     orexpr=[orexpr(1:kk);"%shortcircuit";orexpr(kk+1:size(orexpr,"*"))]
   end
   tk=strcat(orexpr,"|")
+  if boolendsymbol then
+    tk=tk+endsymbol
+  end
 end
 if ~isempty(strindex(tk,"&&")) then
   andexpr=tokens(tk,"&")
-  
+  boolendsymbol=%f
+    andexprtemp=andexpr($)
+    indendsymbol=strindex(andexpr($),[";",","])
+    if indendsymbol<>[] then 
+      if stripblanks(part(andexpr($),indendsymbol($)+1:length(andexpr($))))=='' then
+        boolendsymbol=%t
+	endsymbol=part(andexprtemp,indendsymbol($))
+	indendsymbol=indendsymbol($)
+        andexpr($)=part(andexpr($),1:indendsymbol($)-1)
+      end
+    end
+  for i=2:size(andexpr,"*")
+    notsymbol=strindex(stripblanks(andexpr(i)),"~")
+    if notsymbol<>[]
+      if notsymbol(1)==1 then
+        andexpr(i)="("+  stripblanks(andexpr(i)) + ")" 
+      end 
+    end
+  end    
   for kk=2:2:size(andexpr,"*")
     andexpr=[andexpr(1:kk);"%shortcircuit";andexpr(kk+1:size(andexpr,"*"))]
   end
   tk=strcat(andexpr,"&")
+  if boolendsymbol then
+    tk=tk+endsymbol
+  end
 end
 
 // varargout replaced by %varargout so that code can be compiled with varargout considered as a Cell
@@ -354,7 +437,6 @@ if isempty(strindex(tk,"function")) then
 end
 
 txt(k)=tk
-
 end
 end
 
