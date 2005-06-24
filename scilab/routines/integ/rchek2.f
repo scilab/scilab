@@ -89,7 +89,7 @@ c     -------------- masking: disabling masks in cold-major-time-step------
          jroot(i) = 0
  103     iwork(lmask+i)=0
 
-      call intdy (t0, 0, yh, nyh, y, iflag)
+      t0=tn
       call g (neq, t0, y, ngc, g0)
       nge = nge + 1
 
