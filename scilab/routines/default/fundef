@@ -191,8 +191,10 @@
 {"fsolve",		IN_matopt,	4,	2},
 {"lsqrsolve",		IN_matopt,	5,	2},
 {"optim",		IN_matopt,	1,	2},	
+{"qld",			IN_matopt,	6,	3},	
 {"qpqpqp",		IN_matopt,	2,	2},	
 {"semidef",		IN_matopt,	3,	3},	
+
 #define  IN_matode  12  
 {"ode",			12,	1,	2},	
 #define  IN_matsys  13  
