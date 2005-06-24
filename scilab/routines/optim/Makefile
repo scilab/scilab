@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/optim.a
 
-OBJSC = sp.o
+OBJSC = sp.o 
 
 OBJSF =	ajour.o bfgsd.o calbx.o calmaj.o fmulb1.o fmuls1.o fpq2.o \
 	fremf1.o gcbd.o gcp.o  majysa.o majour.o majz.o \
@@ -24,7 +24,7 @@ OBJSF =	ajour.o bfgsd.o calbx.o calmaj.o fmulb1.o fmuls1.o fpq2.o \
 	qform.o qrfac.o r1mpyq.o r1updt.o\
 	fmc11z.o fajc1.o fretc1.o fmani1.o fcomp1.o \
 	fmlag1.o nlis0.o fcube.o fmc11a.o fmc11b.o fmc11e.o \
-	n1qn3.o n1qn3a.o ddd2.o dcube.o ctonb.o ctcab.o
+	n1qn3.o n1qn3a.o ddd2.o dcube.o ctonb.o ctcab.o ql0001.o
 
 include ../../Makefile.incl
 

@@ -8,7 +8,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/optim.lib
 
-OBJSC = sp.obj
+OBJSC = sp.obj 
 
 OBJSF =	ajour.obj bfgsd.obj calbx.obj calmaj.obj fmulb1.obj fmuls1.obj fpq2.obj \
 	fremf1.obj gcbd.obj gcp.obj  majysa.obj majour.obj majz.obj \
@@ -27,7 +27,7 @@ OBJSF =	ajour.obj bfgsd.obj calbx.obj calmaj.obj fmulb1.obj fmuls1.obj fpq2.obj 
 	qform.obj qrfac.obj r1mpyq.obj r1updt.obj\
 	fmc11z.obj fajc1.obj fretc1.obj fmani1.obj fcomp1.obj \
 	fmlag1.obj nlis0.obj fcube.obj fmc11a.obj fmc11b.obj fmc11e.obj \
-	n1qn3.obj n1qn3a.obj ddd2.obj dcube.obj ctonb.obj ctcab.obj
+	n1qn3.obj n1qn3a.obj ddd2.obj dcube.obj ctonb.obj ctcab.obj ql0001.obj
 
 include ../../Makefile.incl.mak
 
