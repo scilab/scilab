@@ -712,6 +712,9 @@ cd .. &gt;nul
 				RelativePath=".\intorand.c">
 			</File>
 			<File
+				RelativePath=".\intqld.c">
+			</File>
+			<File
 				RelativePath=".\intreadxls.c">
 			</File>
 			<File
