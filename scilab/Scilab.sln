@@ -294,7 +294,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "slicot_f", "routines\slicot
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sound", "routines\sound\sound.vcproj", "{4FC72D4A-80EE-4B1A-8724-0201C1A35621}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fileio", "routines\fileio\fileio.vcproj", "{4FC72D4A-80EE-4B1A-8724-0201C1A35621}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection

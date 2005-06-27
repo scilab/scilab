@@ -2,7 +2,7 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-LIBRARY = $(SCIDIR)/libs/sound.a
+LIBRARY = $(SCIDIR)/libs/fileio.a
 
 RIPOLE= bt-int.o bytedecoders.o logger.o ole.o olestream-unwrap.o pldstr.o ripole.o
 
