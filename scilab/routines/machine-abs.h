@@ -24,7 +24,7 @@
 /* Define if have getwd */
 #define HAVE_GETWD 1
 
-/* Define if have strerror: used in sound/misc.c */
+/* Define if have strerror: used in fileio/misc.c */
 #define HAVE_STRERROR 1
 
 /* Define if have termcap library: used in sun/zzledt.c */

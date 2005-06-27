@@ -23,7 +23,7 @@
 /* Define if have sleep: used in graphics/periX11.c */
 #undef HAVE_SLEEP
 
-/* Define if have strerror: used in sound/misc.c */
+/* Define if have strerror: used in fileio/misc.c */
 #undef HAVE_STRERROR
 
 /* Define if have termcap library: used in sun/zzledt.c */

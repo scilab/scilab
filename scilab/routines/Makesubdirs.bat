@@ -111,8 +111,8 @@ cd scicos
 echo Making %1 in directory  scicos
  nmake /C /f Makefile.mak %1
 cd ..
-cd sound
-echo Making %1 in directory  sound
+cd fileio
+echo Making %1 in directory  fileio
  nmake /C /f Makefile.mak %1
 cd ..
 cd dcd 
@@ -147,6 +147,11 @@ cd int
 echo Making %1 in directory  int
  nmake /C /f Makefile.mak %1
 cd ..
+cd if97
+echo Making %1 in directory  if97
+ nmake /C /f Makefile.mak %1
+cd ..
+
 cd tclsci
 echo Making %1 in directory  tclsci
  nmake /C /f Makefile.mak %1
