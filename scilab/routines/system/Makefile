@@ -120,7 +120,7 @@ banier.o: banier.c ../machine.h ../version.h
 cvstr.o: cvstr.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
-inisci-c.o: inisci-c.c ../machine.h ../sun/Sun.h
+inisci-c.o: inisci-c.c ../machine.h ../os_specific/Os_specific.h
 msgstore.o: msgstore.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h msgstore.h

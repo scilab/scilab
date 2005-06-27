@@ -83,7 +83,7 @@ watan.o: ../stack.h
 ciargc.o: ciargc.c ../machine.h
 cmp.o: cmp.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../sun/Sun.h
+  ../interf/stack2.h ../interf/stack3.h ../os_specific/Os_specific.h
 finite.o: finite.c ../machine.h
 sci_tools.o: sci_tools.c ../machine.h sci_tools.h
 vceil.o: vceil.c ../machine.h

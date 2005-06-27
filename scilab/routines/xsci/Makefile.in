@@ -47,11 +47,11 @@ OBJTEST = x_test_loop.o
 
 # $(SCIDIR)/libs/xgc.a 
 
-test: $(OBJTEST) $(OBJSC) ../sun/zzledt.o ../sun/flags.o  ../sun/men_Sutils.o ../sun/tmpdir.o ../sun/timer.o
+test: $(OBJTEST) $(OBJSC) ../os_specific/zzledt.o ../os_specific/flags.o  ../os_specific/men_Sutils.o ../os_specific/tmpdir.o ../os_specific/timer.o
 	cd ../graphics; make ;cd ../xsci
 	$(RM) $@
-	$(CC) -g -o $@ $(OBJTEST) ../sun/zzledt.o ../sun/flags.o  ../sun/tmpdir.o \
-	../sun/men_Sutils.o ../sun/inffic.o ../sun/timer.o \
+	$(CC) -g -o $@ $(OBJTEST) ../os_specific/zzledt.o ../os_specific/flags.o  ../os_specific/tmpdir.o \
+	../os_specific/men_Sutils.o ../os_specific/inffic.o ../os_specific/timer.o \
 	$(OBJSC) $(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
 	$(SCIDIR)/@TCLSCILIB@ $(CC_LDFLAGS) $(XLIBS) $(TERMCAPLIB) \
 	$(TCLTK_LIBS) -lm
@@ -75,7 +75,7 @@ distclean::
 
 # generated with gcc -MMD 
 jpc_SGraph.o: jpc_SGraph.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../sun/men_Sutils.h ../menusX/men_scilab.h \
+  ../graphics/Graphics.h ../os_specific/men_Sutils.h ../menusX/men_scilab.h \
   All-extern.h All-extern-x1.h ../graphics/bcg.h \
   ../graphics/GetProperty.h ../graphics/DestroyObjects.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
@@ -84,9 +84,9 @@ jpc_coloredit.o: jpc_coloredit.c wf_fig.h wf_figx.h wf_resources.h \
   wf_mode.h wf_w_drawprim.h wf_w_util.h wf_w_setup.h ../machine.h \
   All-extern.h All-extern-x1.h
 jpc_command.o: jpc_command.c jpc_global.h ../machine.h jpc_defs.h \
-  All-extern.h ../sun/Sun.h All-extern-x1.h ../graphics/Graphics.h
+  All-extern.h ../os_specific/Os_specific.h All-extern-x1.h ../graphics/Graphics.h
 jpc_inter.o: jpc_inter.c x_ptyxP.h x_ptyx.h x_data.h ../machine.h \
-  All-extern-x.h All-extern.h ../sun/Sun.h Xscilab.ad.h
+  All-extern-x.h All-extern.h ../os_specific/Os_specific.h Xscilab.ad.h
 jpc_utils.o: jpc_utils.c jpc_global.h ../machine.h jpc_defs.h \
   All-extern.h
 jpc_windows.o: jpc_windows.c x_ptyx.h x_data.h jpc_global.h ../machine.h \
@@ -107,7 +107,7 @@ wf_w_dir.o: wf_w_dir.c wf_w_util.h wf_fig.h wf_figx.h wf_resources.h \
 wf_w_file.o: wf_w_file.c wf_fig.h wf_figx.h wf_resources.h wf_mode.h \
   wf_w_drawprim.h wf_w_dir.h wf_w_util.h wf_w_setup.h ../machine.h \
   All-extern.h ../menusX/men_scilab.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../sun/men_Sutils.h
+  ../graphics/Graphics.h ../os_specific/men_Sutils.h
 wf_w_init.o: wf_w_init.c wf_fig.h wf_figx.h wf_resources.h ../machine.h \
   All-extern.h
 wf_w_msgpanel.o: wf_w_msgpanel.c wf_fig.h wf_figx.h wf_resources.h \
@@ -141,9 +141,9 @@ x_scrollbar.o: x_scrollbar.c x_ptyxP.h x_ptyx.h x_data.h x_error.h \
   x_menu.h ../machine.h All-extern-x.h
 x_tabs.o: x_tabs.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h
 x_test_loop.o: x_test_loop.c ../machine.h ../menusX/men_scilab.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../sun/men_Sutils.h \
+  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h \
   All-extern-x1.h All-extern.h
 x_util.o: x_util.c x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h \
   ../machine.h All-extern-x.h
-x_zzledt.o: x_zzledt.c ../machine.h ../sun/Sun.h x_VTparse.h
+x_zzledt.o: x_zzledt.c ../machine.h ../os_specific/Os_specific.h x_VTparse.h
 zzledt.o: zzledt.c ../machine.h x_VTparse.h

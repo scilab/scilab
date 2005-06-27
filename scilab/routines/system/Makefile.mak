@@ -11,6 +11,7 @@ LIBRARY = $(SCIDIR)/libs/system.lib
 
 
 OBJSC = getfreememory.obj getmemorysize.obj System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
+	Sparse.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj fromjava.obj calendar.obj \
 	CallScilab.obj
@@ -122,7 +123,7 @@ banier.obj: banier.c ../machine.h ../version.h
 cvstr.obj: cvstr.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
-inisci-c.obj: inisci-c.c ../machine.h ../sun/Sun.h
+inisci-c.obj: inisci-c.c ../machine.h ../os_specific/Os_specific.h
 msgstore.obj: msgstore.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h msgstore.h
@@ -132,4 +133,4 @@ storeversion.obj: storeversion.c ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h ../version.h
 tksynchro.obj: tksynchro.c ../machine.h ../tclsci/TCL_Global.h \
-   ../stack-def.h
+ ../stack-def.h

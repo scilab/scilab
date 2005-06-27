@@ -9,7 +9,7 @@
 
 #include "../machine.h"
 #include "../os_specific/addinter.h" /* for DynInterfStart */
-#include "../os_specific/Sun.h" /* for DynInterfStart */
+#include "../os_specific/Os_specific.h" /* for DynInterfStart */
 
 static  jmp_buf jmp_env; 
 

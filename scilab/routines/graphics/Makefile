@@ -107,7 +107,7 @@ Xcall1.o: Xcall1.c Math.h ../machine.h Graphics.h PloEch.h
 dr1Call.o: dr1Call.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
-gsort.o: gsort.c Math.h ../machine.h Graphics.h ../sun/men_Sutils.h \
+gsort.o: gsort.c Math.h ../machine.h Graphics.h ../os_specific/men_Sutils.h \
   gsort-int.h gsort-double.h gsort-string.h
 nues1.o: nues1.c ../machine.h Math.h Graphics.h
 periFig.o: periFig.c Math.h ../machine.h Graphics.h periFig.h color.h \
