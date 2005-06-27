@@ -3,7 +3,8 @@
 #include <math.h>
 
 #include "../machine.h"
-#include "Sun.h"
+#include "Os_specific.h"
+
 
 #ifdef WIN32 
 #ifndef __CYGWIN32__

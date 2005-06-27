@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "../graphics/Math.h"
-#include "Sun.h"
+#include "Os_specific.h"
 
 #define MAX_ENV 256 
 

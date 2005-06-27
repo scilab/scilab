@@ -10,7 +10,7 @@
 #include "men_Sutils.h"
 #include "link.h"
 #include "addinter.h" 
-#include "Sun.h"
+#include "Os_specific.h"
 
 #include "../stack-def.h"
 

@@ -1,7 +1,7 @@
 SHELL = /bin/sh
 SCIDIR=../..
 
-LIBRARY = $(SCIDIR)/libs/sun.a
+LIBRARY = $(SCIDIR)/libs/os_specific.a
 
 OBJSF = bashos.o basin.o basout.o \
 	clunit.o ctrlc.o dbasin.o  \
@@ -27,19 +27,19 @@ dbasin.o: ../stack.h
 sigbas.o: ../stack.h
 
 addinter.o: addinter.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h men_Sutils.h link.h addinter.h Sun.h \
+  ../graphics/Graphics.h men_Sutils.h link.h addinter.h Os_specific.h \
   ../stack-def.h
 cluni0.o: cluni0.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  Sun.h
+  Os_specific.h
 csignal.o: csignal.c ../machine.h
 getarg-hpux.o: getarg-hpux.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h
 getarg.o: getarg.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 getenvc.o: getenvc.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h Sun.h
+  ../graphics/Graphics.h Os_specific.h
 getpidc.o: getpidc.c ../machine.h
 inffic.o: inffic.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
-isanan.o: isanan.c ../machine.h Sun.h
+isanan.o: isanan.c ../machine.h Os_specific.h 
 link.o: link.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   men_Sutils.h link.h link_SYSV.c ../stack-def.h
 link_SYSV.o: link_SYSV.c ../stack-def.h
