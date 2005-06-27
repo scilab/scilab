@@ -148,7 +148,7 @@ intarpack.o: intarpack.c ../mex.h ../stack-c.h ../graphics/Math.h \
   ../interf/stack2.h ../interf/stack3.h
 intfilestat.o: intfilestat.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../sun/Sun.h
+  ../interf/stack2.h ../interf/stack3.h ../os_specific/Os_specific.h
 intlapack.o: intlapack.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
@@ -174,7 +174,7 @@ stack1.o: stack1.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../interf/stack2.h ../interf/stack3.h ../system/msgstore.h
 stack2.o: stack2.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../sun/men_Sutils.h
+  ../interf/stack2.h ../interf/stack3.h ../os_specific/men_Sutils.h
 stack3.o: stack3.c ../stack-c.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
