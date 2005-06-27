@@ -46,7 +46,7 @@ extern int getpid();
 #endif
 
 #include "../graphics/Math.h"
-#include "../sun/men_Sutils.h"
+#include "../os_specific/men_Sutils.h"
 #include "../menusX/men_scilab.h"
 #include "All-extern.h"
 #include "All-extern-x1.h"
