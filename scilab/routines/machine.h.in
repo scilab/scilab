@@ -26,7 +26,7 @@
 /* Define if have strerror: used in fileio/misc.c */
 #undef HAVE_STRERROR
 
-/* Define if have termcap library: used in sun/zzledt.c */
+/* Define if have termcap library: used in os_specific/zzledt.c */
 #undef HAVE_TERMCAP
 
 /* Define if have usleep: used in graphics/periX11.c */

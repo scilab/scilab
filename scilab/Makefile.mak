@@ -89,7 +89,7 @@ LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \
 	libs/scicos.lib libs/signal.lib \
 	libs/poly.lib libs/calelm.lib libs/lapack.lib libs/slicot.lib \
 	libs/graphics.lib \
-	libs/sparse.lib libs/metanet.lib libs/sun.lib \
+	libs/sparse.lib libs/metanet.lib libs/os_specific.lib \
 	libs/intersci.lib libs/wsci.lib libs/graphics.lib libs/menusX.lib \
 	libs/fileio.lib libs/dcd.lib \
 	libs/rand.lib libs/blas.lib libs/xdr.lib  \

@@ -14,7 +14,7 @@ LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/console.a \
         $(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a \
 	$(SCIDIR)/libs/lapack.a $(SCIDIR)/libs/graphics.a \
         $(SCIDIR)/libs/sparse.a $(SCIDIR)/libs/metanet.a \
-	$(SCIDIR)/libs/sun.a $(SCIDIR)/libs/gd.a  \
+	$(SCIDIR)/libs/os_specific.a $(SCIDIR)/libs/gd.a  \
         $(SCIDIR)/libs/intersci.a  $(SCIDIR)/libs/@GUILIB@.a \
 	$(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
 	$(SCIDIR)/libs/fileio.a $(SCIDIR)/libs/dcd.a $(SCIDIR)/libs/rand.a \

@@ -25,7 +25,7 @@
 /* Define if have strerror: used in fileio/misc.c */
 #define HAVE_STRERROR 1
 
-/* Define if have termcap library: used in sun/zzledt.c */
+/* Define if have termcap library: used in os_specific/zzledt.c */
 #define HAVE_TERMCAP 1
 
 /* CNAME(x,y) ==> xy **/

@@ -309,12 +309,12 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "sparse_f", "routines\sparse
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sun", "routines\sun\sun.vcproj", "{7AF6C45E-142F-436C-A23D-1FC79C9599BE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os_specific", "routines\os_specific\os_specific.vcproj", "{7AF6C45E-142F-436C-A23D-1FC79C9599BE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "sun_f", "routines\sun\sun_f\sun_f.vfproj", "{972C50F5-FE25-4FCF-A43F-D5934DAEE634}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "os_specific_f", "routines\os_specific\os_specific_f\os_specific_f.vfproj", "{972C50F5-FE25-4FCF-A43F-D5934DAEE634}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection

@@ -3,7 +3,7 @@ SHELL = /bin/sh
 include ../Makefile.incl.mak
 
 SCIDIRS = graphics calelm control default integ interf intersci lapack \
-	metanet optim poly signal sparse sun system system2 console\
+	metanet optim poly signal sparse os_specific system system2 console\
 	slicot  \
 	menusX scicos fileio wsci xdr  gd int wsci/WScilex wsci/CScilex
 

@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.119 $)dnl
+AC_REVISION($Revision: 1.120 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -154,11 +154,11 @@ SCILAB_GS=sh
 # scilab script file in script directory: default is "scilab.g" for UNIX
 #   for gcwin32 use "scilab-gcwin32.g"
 SCILABSCRIPT=scilab.g
-# Fortran program in routines/sun: default is "fgetarg.f" 
+# Fortran program in routines/os_specific: default is "fgetarg.f" 
 #   for HPUX use "fgetarg-hpux.f"
 FGETARG=fgetarg
 GETARG=getarg
-# For old Hp computer (9.x), used in "routines/sun/Makefile.in"
+# For old Hp computer (9.x), used in "routines/os_specific/Makefile.in"
 #   for choosing the good file between link_std.c and link_SYSV.c
 HPPA_OLD=
 # Scilab main file: default is "mainsci.o" for UNIX
@@ -178,7 +178,7 @@ XDRLIBNAME=
 # objects files in routines/menusX: default is XOBJS for UNIX
 #   for Win32 use WOBJS
 MENUSOBJS=XOBJS
-# use other malloc (in "routines/sun" directory) for some 64 bits machines
+# use other malloc (in "routines/os_specific" directory) for some 64 bits machines
 MALLOC=
 # USE_CDEC directives for Dec Alpha
 FC_USE_CDEC=DEC
@@ -2119,7 +2119,7 @@ AC_SUBST(TERM_LDFLAGS)
 AC_SUBST(JAVASCITARGET)
 AC_SUBST(JAVA_INCL)
 AC_SUBST(GCCFIX)
-AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile) 
+AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile) 
  
 
 

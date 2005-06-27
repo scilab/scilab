@@ -87,8 +87,8 @@ cd sparse
 echo Making %1 in directory  sparse
  nmake /C /f Makefile.mak %1
 cd ..
-cd sun
-echo Making %1 in directory  sun
+cd os_specific
+echo Making %1 in directory  os_specific
  nmake /C /f Makefile.mak %1
 cd ..
 cd system

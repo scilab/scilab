@@ -170,7 +170,7 @@ BINDISTFILES = \
 	$(SCIBASE)/routines/menusX/*.h \
 	$(SCIBASE)/routines/scicos/scicos.h \
 	$(SCIBASE)/routines/scicos/scicos_block.h \
-	$(SCIBASE)/routines/sun/*.h \
+	$(SCIBASE)/routines/os_specific/*.h \
 	$(SCIBASE)/routines/xsci/*.h \
 	$(SCIBASE)/scripts \
 	$(SCIBASE)/tcl \
@@ -251,7 +251,7 @@ INSTBINDISTFILES = \
 	routines/menusX/*.h \
 	routines/scicos/scicos.h \
 	routines/scicos/scicos_block.h \
-	routines/sun/*.h \
+	routines/os_specific/*.h \
 	routines/xsci/*.h \
 	scripts \
 	tcl \
