@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sound", "sound.vcproj", "{51915D42-C027-4238-B348-A3D90A2168C0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fileio", "fileio.vcproj", "{51915D42-C027-4238-B348-A3D90A2168C0}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

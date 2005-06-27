@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="sound"
+	Name="fileio"
 	ProjectGUID="{4FC72D4A-80EE-4B1A-8724-0201C1A35621}"
 	SccProjectName=""
 	SccLocalPath="">
@@ -42,7 +42,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -50,8 +50,8 @@
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -100,7 +100,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -108,8 +108,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -161,7 +161,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -169,8 +169,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -222,7 +222,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -230,8 +230,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -280,7 +280,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -288,8 +288,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -341,7 +341,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -349,8 +349,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -402,7 +402,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -410,8 +410,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -460,7 +460,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -468,8 +468,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -518,7 +518,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -526,8 +526,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -579,7 +579,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -587,8 +587,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -641,7 +641,7 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/sound.lib"
+				OutputFile="../../libs/fileio.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -649,8 +649,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def sound1.def &gt;nul
-copy sound1.def ..\..\..\libs\sound.def &gt;nul
+copy *.def fileio1.def &gt;nul
+copy fileio1.def ..\..\..\libs\fileio.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>

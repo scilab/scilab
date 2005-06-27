@@ -91,7 +91,7 @@ LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \
 	libs/graphics.lib \
 	libs/sparse.lib libs/metanet.lib libs/sun.lib \
 	libs/intersci.lib libs/wsci.lib libs/graphics.lib libs/menusX.lib \
-	libs/sound.lib libs/dcd.lib \
+	libs/fileio.lib libs/dcd.lib \
 	libs/rand.lib libs/blas.lib libs/xdr.lib  \
 	libs/gd.lib libs/int.lib libs/arpack.lib \
 	libs/libf2c.lib libs/wintools.lib $(TCLSCI) $(PVM)
