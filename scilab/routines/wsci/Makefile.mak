@@ -146,7 +146,7 @@ wtest.obj: wtest.c wtloop.c plot.h wtext.h wresource.h wcommon.h \
   ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/bcg.h ../stack-c.h ../stack-def.h \
   ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h wadd.h \
-  common.h ../sun/Sun.h
+  common.h ../os_specific/Os_specific.h
 wtext.obj: wtext.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
@@ -155,7 +155,7 @@ wtloop.obj: wtloop.c plot.h wtext.h wresource.h wcommon.h \
   ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/bcg.h ../stack-c.h ../stack-def.h \
   ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h wadd.h \
-  common.h ../sun/Sun.h
+  common.h ../os_specific/Os_specific.h
 x_zzledt.obj: x_zzledt.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \

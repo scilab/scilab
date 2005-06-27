@@ -58,14 +58,14 @@ distclean::
 about.o: about.c 
 
 command.o: command.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h All-extern.h ../sun/Sun.h
+  ../graphics/Graphics.h All-extern.h ../os_specific/Os_specific.h
 
 helpbrowser.o: helpbrowser.c \
   ../graphics/Math.h ../machine.h ../graphics/Graphics.h All-extern.h \
   queue-gtk2.h uri.h
 
 io.o: io.c ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../sun/Sun.h All-extern.h \
+  ../machine.h ../graphics/Graphics.h ../os_specific/Os_specific.h All-extern.h \
   ../tclsci/TCL_Global.h  ../stack-def.h
 
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \

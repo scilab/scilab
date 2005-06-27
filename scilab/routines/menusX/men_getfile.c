@@ -5,7 +5,7 @@
 #include "men_scilab.h"
 #endif
 
-#include "../os_specific/Sun.h"
+#include "../os_specific/Os_specific.h"
 
 
 /****************************************************

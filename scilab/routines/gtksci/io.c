@@ -20,7 +20,7 @@
 #include <gtk/gtk.h>
 
 #include "../graphics/Math.h"
-#include "../sun/Sun.h"
+#include "../os_specific/Os_specific.h"
 #include "All-extern.h"
 
 /* WITH_TK is eventually define in ../machine.h 
