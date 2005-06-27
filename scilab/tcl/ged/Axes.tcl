@@ -2172,6 +2172,7 @@ proc PopUp { w numpage} {
     global XautoticksToggle YautoticksToggle ZautoticksToggle
     global StepEntryX StepEntryY StepEntryZ
     global Xaxes_visibleToggle Yaxes_visibleToggle Zaxes_visibleToggle
+    global largeur
 
     global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
 #     set TICK_WINDOW_POSITION "+0+0"
@@ -2192,7 +2193,7 @@ proc PopUp { w numpage} {
     wm deiconify $www
     
     wm title $www  "Edit Axes Ticks"
-    wm geometry $www 280x500$TICK_WINDOW_POSITION
+    wm geometry $www 310x520$TICK_WINDOW_POSITION
     wm iconname $www "TE"
     grab set $www
 #    bell -displayof $w
@@ -2221,7 +2222,7 @@ proc PopUp { w numpage} {
     pack $fra  -anchor w -fill both
 
     
-    Notebook:create $uf.n -pages {X Y Z} -pad 20   -height 400 -width 200
+    Notebook:create $uf.n -pages {X Y Z} -pad 20   -height 400 -width 230
     pack $uf.n -in $uf -fill both -expand yes
 
     Notebook:raise.page $uf.n $numpage
@@ -2243,18 +2244,18 @@ proc PopUp { w numpage} {
     #visibility of X axis
     frame $fen1.frame.vis -borderwidth 0
     pack $fen1.frame.vis  -in $fen1.frame -side top -fill x -pady 0m
-    label $fen1.frame.vislabel  -text "           Visibility:  " -font {Arial 9}
+    label $fen1.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
     checkbutton $fen1.frame.visb  -text "on"\
         -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
         -command "toggleVisibilityX $fen1.frame.visb" -font {Arial 9}
     OnOffForeground $fen1.frame.visb $Xaxes_visibleToggle
 
     pack $fen1.frame.vislabel -in $fen1.frame.vis -side left
-    pack $fen1.frame.visb  -in $fen1.frame.vis  -side left  -fill x
+    pack $fen1.frame.visb  -in $fen1.frame.vis  -side left  -fill x -padx 1m
 
     frame $fen1.frame.xautoticks -borderwidth 0
     pack $fen1.frame.xautoticks  -in $fen1.frame -side top -fill x -pady 0m
-    label $fen1.frame.xautotickslabel  -text "        Auto ticks:  " -font {Arial 9}
+    label $fen1.frame.xautotickslabel  -text "Auto ticks:" -font {Arial 9} -anchor e -width $largeur
     checkbutton $fen1.frame.xautoticksb  -text "on"\
 	-variable XautoticksToggle  -onvalue "on" -offvalue "off" \
 	-command "toggleXautoticks $frameaxes $numpage $fen1.frame.xautoticksb" -font {Arial 9}
@@ -2265,16 +2266,17 @@ proc PopUp { w numpage} {
 
     frame $fen1.frame.step -borderwidth 0
     pack $fen1.frame.step  -in $fen1.frame -side top -fill x -pady 0m
-    label $fen1.frame.steplabel  -text "           Step by: " -font {Arial 9}
+    label $fen1.frame.steplabel  -text "Step by:" -font {Arial 9} -anchor e -width $largeur
     entry $fen1.frame.stepe  -relief sunken  -justify right \
 	-background white -textvariable StepEntryX -width 10 -font {Arial 9}
     bind  $fen1.frame.stepe <Return> "SetStep $frameaxes $numpage 1"
     bind  $fen1.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 1"
-    pack $fen1.frame.steplabel $fen1.frame.stepe -in $fen1.frame.step -side left -pady 0m -padx 1.m
+    pack $fen1.frame.steplabel -in $fen1.frame.step -side left
+    pack $fen1.frame.stepe -in $fen1.frame.step -side left -pady 0m -padx 2m
 
     frame $fen1.frame.subticks -borderwidth 0
     pack $fen1.frame.subticks  -in $fen1.frame -side top -fill x -pady 0m
-    label $fen1.frame.subtickslabel  -text "         Sub ticks: " -font {Arial 9}
+    label $fen1.frame.subtickslabel  -text "Sub ticks:" -font {Arial 9} -anchor e -width $largeur
 
 #    puts "SubticksEntryX vaut: $SubticksEntryX"
 
@@ -2282,22 +2284,23 @@ proc PopUp { w numpage} {
 	-background white -textvariable SubticksEntryX -width 10 -font {Arial 9}
     bind  $fen1.frame.subtickse <Return> "SetSubticksX"
     bind  $fen1.frame.subtickse <KP_Enter> "SetSubticksX"
-    pack $fen1.frame.subtickslabel $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 0m -padx 1.m
-
+    pack $fen1.frame.subtickslabel -in $fen1.frame.subticks -side left
+    pack $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 0m -padx 2m
+    
     frame $fen1.frame.fdata -borderwidth 0
     pack $fen1.frame.fdata  -in $fen1.frame -side top   -fill x
     
     scrollbar $fen1.frame.ysbar -orient vertical -command   {$fen1.frame.c yview}
-    canvas $fen1.frame.c -width 8i -height 3i  -yscrollcommand {$fen1.frame.ysbar set}
+    canvas $fen1.frame.c -width 8i -height 2.6i  -yscrollcommand {$fen1.frame.ysbar set}
     
-    $fen1.frame.c create text 50 10 -anchor c -text "Locations" -font {Arial 9}
-    $fen1.frame.c create text 130 10 -anchor c -text "Labels" -font {Arial 9}
+    $fen1.frame.c create text 70 10 -anchor c -text "Locations" -font {Arial 9}
+    $fen1.frame.c create text 150 10 -anchor c -text "Labels" -font {Arial 9}
       
     for {set i 1} {$i<=$nbticks_x} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen1.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 50]
+	set aa [expr 70]
 	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right -width 10\
 	    -background white -textvariable LOCATIONS_X($i)  -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
@@ -2308,7 +2311,7 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 130]
+	set aa [expr 150]
 	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left -width 10\
 	    -background white -textvariable LABELS_X($i) -font {Arial 9}
 	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
@@ -2332,8 +2335,8 @@ proc PopUp { w numpage} {
     frame $fen1.buttons -borderwidth 0
     pack  $fen1.buttons -anchor w -fill both  -side bottom   -fill x
     
-    button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1" -font {Arial 9}
-    button $fen1.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9}
+    button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1" -font {Arial 9} -width 10
+    button $fen1.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
     
     pack $fen1.buttons.apply  $fen1.buttons.b -in  $fen1.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -2342,8 +2345,8 @@ proc PopUp { w numpage} {
     pack $fen1.boutons -anchor w -fill both  -side bottom   -fill x
     
     #Insert/ Delete buttons
-    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes " -font {Arial 9}
-    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes " -font {Arial 9}
+    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes " -font {Arial 9} -width 10
+    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes " -font {Arial 9} -width 10
     pack $fen1.boutons.buttoninsert $fen1.boutons.buttondelete -in  $fen1.boutons \
 	-side left   -fill x  -expand 1 -pady 0m
     
@@ -2365,60 +2368,61 @@ proc PopUp { w numpage} {
     #visibility of Y axis
     frame $fen2.frame.vis -borderwidth 0
     pack $fen2.frame.vis  -in $fen2.frame -side top -fill x -pady 0m
-    label $fen2.frame.vislabel  -text "           Visibility:  " -font {Arial 9}
+    label $fen2.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
     checkbutton $fen2.frame.visb  -text "on"\
         -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
         -command "toggleVisibilityY $fen2.frame.visb"  -font {Arial 9}
     OnOffForeground $fen2.frame.visb $Yaxes_visibleToggle
 
     pack $fen2.frame.vislabel -in $fen2.frame.vis -side left
-    pack $fen2.frame.visb  -in $fen2.frame.vis  -side left  -fill x
+    pack $fen2.frame.visb  -in $fen2.frame.vis  -side left  -fill x -padx 1m
 
     frame $fen2.frame.yautoticks -borderwidth 0
     pack $fen2.frame.yautoticks  -in $fen2.frame -side top -fill x -pady 0m
-    label $fen2.frame.yautotickslabel  -text "        Auto ticks:  " -font {Arial 9}
+    label $fen2.frame.yautotickslabel  -text "Auto ticks:" -font {Arial 9} -anchor e -width $largeur
     checkbutton $fen2.frame.yautoticksb  -text "on"\
 	-variable YautoticksToggle  -onvalue "on" -offvalue "off" \
 	-command "toggleYautoticks $frameaxes $numpage $fen2.frame.yautoticksb" -font {Arial 9}
     OnOffForeground $fen2.frame.yautoticksb $YautoticksToggle
 
     pack $fen2.frame.yautotickslabel -in $fen2.frame.yautoticks -side left
-    pack $fen2.frame.yautoticksb  -in $fen2.frame.yautoticks  -side left  -fill x -pady 0m -padx 1.m
+    pack $fen2.frame.yautoticksb  -in $fen2.frame.yautoticks  -side left  -fill x -pady 0m -padx 1m
 
     frame $fen2.frame.step -borderwidth 0
     pack $fen2.frame.step  -in $fen2.frame -side top -fill x -pady 0m
-    label $fen2.frame.steplabel  -text "           Step by: " -font {Arial 9}
+    label $fen2.frame.steplabel  -text "Step by:" -font {Arial 9} -anchor e -width $largeur
     entry $fen2.frame.stepe  -relief sunken  -justify right \
 	-background white -textvariable StepEntryY -width 10 -font {Arial 9}
     bind  $fen2.frame.stepe <Return> "SetStep $frameaxes $numpage 2"
     bind  $fen2.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 2"
-    pack $fen2.frame.steplabel $fen2.frame.stepe -in $fen2.frame.step -side left -pady 0m -padx 1.m
+    pack $fen2.frame.steplabel -in $fen2.frame.step -side left
+		pack $fen2.frame.stepe -in $fen2.frame.step -side left -pady 0m -padx 2m
 
     frame $fen2.frame.subticks -borderwidth 0
     pack $fen2.frame.subticks  -in $fen2.frame -side top -fill x -pady 0m
-    label $fen2.frame.subtickslabel  -text "         Sub ticks: " -font {Arial 9}
+    label $fen2.frame.subtickslabel  -text "Sub ticks:" -font {Arial 9} -anchor e -width $largeur
 
     entry $fen2.frame.subtickse  -relief sunken  -justify right \
 	-background white -textvariable SubticksEntryY -width 10 -font {Arial 9}
     bind  $fen2.frame.subtickse <Return> "SetSubticksY"
     bind  $fen2.frame.subtickse <KP_Enter> "SetSubticksY"
-    pack $fen2.frame.subtickslabel $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 0m -padx 1.m
-
+    pack $fen2.frame.subtickslabel -in $fen2.frame.subticks -side left
+		pack $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 0m -padx 2m
 
     frame $fen2.frame.fdata -borderwidth 0
     pack $fen2.frame.fdata  -in $fen2.frame -side top   -fill x
   
-    canvas $fen2.frame.c -width 8i -height 3i  -yscrollcommand {$fen2.frame.ysbar set}
+    canvas $fen2.frame.c -width 8i -height 2.6i  -yscrollcommand {$fen2.frame.ysbar set}
     scrollbar $fen2.frame.ysbar -orient vertical -command   {$fen2.frame.c yview}
     
-    $fen2.frame.c create text 50 10 -anchor c -text "Locations" -font {Arial 9}
-    $fen2.frame.c create text 130 10 -anchor c -text "Labels" -font {Arial 9}
+    $fen2.frame.c create text 70 10 -anchor c -text "Locations" -font {Arial 9}
+    $fen2.frame.c create text 150 10 -anchor c -text "Labels" -font {Arial 9}
       
     for {set i 1} {$i<=$nbticks_y} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen2.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 50]
+	set aa [expr 70]
 	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right  -width 10\
 	    -background white -textvariable LOCATIONS_Y($i) -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
@@ -2429,7 +2433,7 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 130]
+	set aa [expr 150]
 	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left  -width 10\
 	    -background white -textvariable LABELS_Y($i) -font {Arial 9}
 	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
@@ -2453,8 +2457,8 @@ proc PopUp { w numpage} {
     frame $fen2.buttons -borderwidth 0
     pack  $fen2.buttons -anchor w -fill both  -side bottom   -fill x
     
-    button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2" -font {Arial 9}
-    button $fen2.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9}
+    button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2" -font {Arial 9} -width 10
+    button $fen2.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
     
     pack $fen2.buttons.apply  $fen2.buttons.b -in  $fen2.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -2463,8 +2467,8 @@ proc PopUp { w numpage} {
     pack $fen2.boutons -anchor w -fill both  -side bottom   -fill x
     
     #Insert/ Delete buttons
-    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes " -font {Arial 9}
-    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes " -font {Arial 9}
+    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes " -font {Arial 9} -width 10
+    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes " -font {Arial 9} -width 10
     pack $fen2.boutons.buttoninsert $fen2.boutons.buttondelete -in  $fen2.boutons \
 	-side left   -fill x  -expand 1 -pady 0m
     
@@ -2486,60 +2490,61 @@ proc PopUp { w numpage} {
     #visibility of Z axis
     frame $fen3.frame.vis -borderwidth 0
     pack $fen3.frame.vis  -in $fen3.frame -side top -fill x -pady 0m
-    label $fen3.frame.vislabel  -text "           Visibility:  " -font {Arial 9}
+    label $fen3.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
     checkbutton $fen3.frame.visb  -text "on"\
         -variable Zaxes_visibleToggle  -onvalue "on" -offvalue "off" \
         -command "toggleVisibilityZ $fen3.frame.visb" -font {Arial 9}
     OnOffForeground $fen3.frame.visb $Zaxes_visibleToggle
 
     pack $fen3.frame.vislabel -in $fen3.frame.vis -side left
-    pack $fen3.frame.visb  -in $fen3.frame.vis  -side left  -fill x
+    pack $fen3.frame.visb  -in $fen3.frame.vis  -side left  -fill x -padx 1m
 
     frame $fen3.frame.zautoticks -borderwidth 0
     pack $fen3.frame.zautoticks  -in $fen3.frame -side top -fill x -pady 0m
-    label $fen3.frame.zautotickslabel  -text "        Auto ticks:  " -font {Arial 9}
+    label $fen3.frame.zautotickslabel  -text "Auto ticks:" -font {Arial 9} -anchor e -width $largeur
     checkbutton $fen3.frame.zautoticksb  -text "on"\
 	-variable ZautoticksToggle  -onvalue "on" -offvalue "off" \
 	-command "toggleZautoticks $frameaxes $numpage $fen3.frame.zautoticksb" -font {Arial 9}
     OnOffForeground $fen3.frame.zautoticksb $ZautoticksToggle
 
     pack $fen3.frame.zautotickslabel -in $fen3.frame.zautoticks -side left
-    pack $fen3.frame.zautoticksb  -in $fen3.frame.zautoticks  -side left  -fill x -pady 0m -padx 1.m
+    pack $fen3.frame.zautoticksb  -in $fen3.frame.zautoticks  -side left  -fill x -pady 0m -padx 1m
 
     frame $fen3.frame.step -borderwidth 0
     pack $fen3.frame.step  -in $fen3.frame -side top -fill x -pady 0m
-    label $fen3.frame.steplabel  -text "           Step by: " -font {Arial 9}
+    label $fen3.frame.steplabel  -text "Step by:" -font {Arial 9} -anchor e -width $largeur
     entry $fen3.frame.stepe  -relief sunken  -justify right \
 	-background white -textvariable StepEntryZ -width 10 -font {Arial 9}
     bind  $fen3.frame.stepe <Return> "SetStep $frameaxes $numpage 3"
     bind  $fen3.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 3"
-    pack $fen3.frame.steplabel $fen3.frame.stepe -in $fen3.frame.step -side left -pady 0m -padx 1.m
+    pack $fen3.frame.steplabel -in $fen3.frame.step -side left
+    pack $fen3.frame.stepe -in $fen3.frame.step -side left -pady 0m -padx 2m
 
     frame $fen3.frame.subticks -borderwidth 0
     pack $fen3.frame.subticks  -in $fen3.frame -side top -fill x -pady 0m
-    label $fen3.frame.subtickslabel  -text "         Sub ticks: " -font {Arial 9}
+    label $fen3.frame.subtickslabel  -text "Sub ticks:" -font {Arial 9} -anchor e -width $largeur
 
     entry $fen3.frame.subtickse  -relief sunken  -justify right \
 	-background white -textvariable SubticksEntryZ -width 10 -font {Arial 9}
     bind  $fen3.frame.subtickse <Return> "SetSubticksZ"
     bind  $fen3.frame.subtickse <KP_Enter> "SetSubticksZ"
-    pack $fen3.frame.subtickslabel $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 0m -padx 1.m
-
+    pack $fen3.frame.subtickslabel -in $fen3.frame.subticks -side left
+		pack $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 0m -padx 2m
 
     frame $fen3.frame.fdata -borderwidth 0
     pack $fen3.frame.fdata  -in $fen3.frame -side top   -fill x
   
-    canvas $fen3.frame.c -width 8i -height 3i  -yscrollcommand {$fen3.frame.ysbar set}
+    canvas $fen3.frame.c -width 8i -height 2.6i  -yscrollcommand {$fen3.frame.ysbar set}
     scrollbar $fen3.frame.ysbar -orient vertical -command   {$fen3.frame.c yview}
     
-    $fen3.frame.c create text 50 10 -anchor c -text "Locations" -font {Arial 9}
-    $fen3.frame.c create text 130 10 -anchor c -text "Labels" -font {Arial 9}
+    $fen3.frame.c create text 70 10 -anchor c -text "Locations" -font {Arial 9}
+    $fen3.frame.c create text 150 10 -anchor c -text "Labels" -font {Arial 9}
       
     for {set i 1} {$i<=$nbticks_z} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen3.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 50]
+	set aa [expr 70]
 	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right  -width 10\
 	    -background white -textvariable LOCATIONS_Z($i) -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
@@ -2550,7 +2555,7 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 130]
+	set aa [expr 150]
 	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left  -width 10\
 	    -background white -textvariable LABELS_Z($i) -font {Arial 9}
 	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
@@ -2575,8 +2580,8 @@ proc PopUp { w numpage} {
     frame $fen3.buttons -borderwidth 0
     pack  $fen3.buttons -anchor w -fill both  -side bottom   -fill x
     
-    button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3" -font {Arial 9}
-    button $fen3.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9}
+    button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3" -font {Arial 9} -width 10
+    button $fen3.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
     
     pack $fen3.buttons.apply  $fen3.buttons.b -in  $fen3.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -2585,8 +2590,8 @@ proc PopUp { w numpage} {
     pack $fen3.boutons -anchor w -fill both  -side bottom   -fill x
     
     #Insert/ Delete buttons
-    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes " -font {Arial 9}
-    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes " -font {Arial 9}
+    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes " -font {Arial 9} -width 10
+    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes " -font {Arial 9} -width 10
     pack $fen3.boutons.buttoninsert $fen3.boutons.buttondelete -in  $fen3.boutons \
 	-side left   -fill x  -expand 1 -pady 0m
     
