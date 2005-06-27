@@ -146,7 +146,7 @@ sciblk2i.o: sciblk2i.c ../machine.h
 sciblk4.o: sciblk4.c ../machine.h ../stack-c.h ../graphics/Math.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h scicos_block.h
-scicos.o: scicos.c ../machine.h ../sun/link.h scicos.h scicos_block.h \
+scicos.o: scicos.c ../machine.h ../os_specific/link.h scicos.h scicos_block.h \
   import.h blocks.h
 scicos_free.o: scicos_free.c scicos_block.h
 scicos_malloc.o: scicos_malloc.c scicos_block.h

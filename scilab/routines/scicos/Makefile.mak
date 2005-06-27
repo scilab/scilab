@@ -149,7 +149,7 @@ sciblk2i.obj: sciblk2i.c ../machine.h
 sciblk4.obj: sciblk4.c ../machine.h ../stack-c.h ../graphics/Math.h \
   ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h scicos_block.h
-scicos.obj: scicos.c ../machine.h ../sun/link.h scicos.h scicos_block.h \
+scicos.obj: scicos.c ../machine.h ../os_specific/link.h scicos.h scicos_block.h \
   import.h blocks.h
 scicos_free.obj: scicos_free.c scicos_block.h
 scicos_malloc.obj: scicos_malloc.c scicos_block.h

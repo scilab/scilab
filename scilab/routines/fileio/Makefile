@@ -30,7 +30,7 @@ Makefile.amk	: Makefile
 
 fileio.o: fileio.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../sun/Sun.h
+  ../interf/stack3.h ../os_specific/Os_specific.h
 libst.o: libst.c libst.h
 misc.o: misc.c st.h wav.h ../machine.h
 raw.o: raw.c st.h wav.h ../machine.h libst.h
