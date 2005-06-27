@@ -214,6 +214,9 @@ if kdot<>[] then
   end
 end
 
+// Modify struct like x.(fieldname) which become x(fieldname)
+tk=strsubst(tk,".(","(")
+
 // Parenthesize calls to pause when pause on or pause off
 kpause=strindex(tk,"pause") 
 kpsav=length(tk) // kpsave is kp value for l-1 index
