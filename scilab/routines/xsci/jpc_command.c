@@ -39,7 +39,7 @@
 #endif
 
 #include "jpc_global.h"
-#include "../sun/Sun.h" 
+#include "../os_specific/Os_specific.h" 
 #include "All-extern-x1.h" 
 #include "../graphics/Graphics.h" 
 

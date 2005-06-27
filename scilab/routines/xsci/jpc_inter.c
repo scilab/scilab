@@ -46,7 +46,7 @@
 #include <malloc.h>
 #endif
 
-#include "../sun/Sun.h"
+#include "../os_specific/Os_specific.h" 
 
 #ifdef WITH_TK
 #include "../tclsci/TCL_Global.h"

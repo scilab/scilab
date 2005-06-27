@@ -115,8 +115,8 @@ gentril.obj: gentril.c ../machine.h
 gentriu.obj: gentriu.c ../machine.h
 genvmul.obj: genvmul.c ../machine.h
 gifimg.obj: gifimg.c ../gd/gd.h ../machine.h
-mgeti.obj: mgeti.c ../machine.h ../sound/st.h ../sound/wav.h
-mputi.obj: mputi.c ../machine.h ../sound/st.h ../sound/wav.h
+mgeti.obj: mgeti.c ../machine.h ../fileio/st.h ../fileio/wav.h
+mputi.obj: mputi.c ../machine.h ../fileio/st.h ../fileio/wav.h
 readgifimg.obj: readgifimg.c ../gd/gd.h ../machine.h
 tpconv.obj: tpconv.c ../machine.h
 

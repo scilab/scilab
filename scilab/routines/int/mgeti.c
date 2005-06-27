@@ -14,7 +14,7 @@ struct soundstream ftf;
 extern FILE *GetFile();
 extern int GetSwap();
 extern void sciprint __PARAMS ((char *fmt,...));
-extern int islittle_endian(void); /* Defined in SCI/routines/sound/sound.c */
+extern int islittle_endian(void); /* Defined in SCI/routines/fileio/sound.c */
 
 #define MGETI(Type,Fswap) {\
 Type *RES;\

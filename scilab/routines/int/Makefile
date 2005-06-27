@@ -112,8 +112,8 @@ gentril.o: gentril.c ../machine.h
 gentriu.o: gentriu.c ../machine.h
 genvmul.o: genvmul.c ../machine.h
 gifimg.o: gifimg.c ../gd/gd.h ../machine.h
-mgeti.o: mgeti.c ../machine.h ../sound/st.h ../sound/wav.h
-mputi.o: mputi.c ../machine.h ../sound/st.h ../sound/wav.h
+mgeti.o: mgeti.c ../machine.h ../fileio/st.h ../fileio/wav.h
+mputi.o: mputi.c ../machine.h ../fileio/st.h ../fileio/wav.h
 readgifimg.o: readgifimg.c ../gd/gd.h ../machine.h
 tpconv.o: tpconv.c ../machine.h
 
