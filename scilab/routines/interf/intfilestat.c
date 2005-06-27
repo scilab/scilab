@@ -7,7 +7,7 @@
 
 #include "../stack-c.h"
 
-#include "../sun/Sun.h" 
+#include "../os_specific/Sun.h" 
 
 int C2F(intfilestat)(fname)
 char * fname;

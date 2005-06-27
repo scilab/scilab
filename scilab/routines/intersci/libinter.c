@@ -1,7 +1,7 @@
 #include <string.h>
 #include "../machine.h"
 #include "../graphics/Math.h"
-#include "../sun/men_Sutils.h"
+#include "../os_specific/men_Sutils.h"
 #include "libinter.h"
 
 extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *job, unsigned long str_len));

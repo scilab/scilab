@@ -5,7 +5,7 @@
 #include <stdlib.h> 
 #include <string.h>
 #include "../machine.h"
-#include "../sun/link.h"
+#include "../os_specific/link.h"
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"

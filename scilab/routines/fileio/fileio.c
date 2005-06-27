@@ -21,7 +21,7 @@
 #include <ctype.h>  /* isdigit */
 #include "../graphics/Math.h"
 #include "../stack-c.h"
-#include "../sun/Sun.h"
+#include "../os_specific/Sun.h"
 
 extern char * SciGetLine __PARAMS((char *));
 extern FILE *GetFile __PARAMS((int *));

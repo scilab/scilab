@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "../stack-c.h" 
-#include "../sun/men_Sutils.h" 
+#include "../os_specific/men_Sutils.h" 
 
 #ifdef WIN32
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */

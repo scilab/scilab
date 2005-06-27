@@ -18,7 +18,7 @@
 /* #include "../wsci/wgnuplib.h"*/
 #include "../wsci/wresource.h"
 #include "../wsci/wcommon.h"
-#include "../sun/men_Sutils.h"
+#include "../os_specific/men_Sutils.h"
 
 #include "../stack-def.h" /* for IMPORT */
 #include <prsht.h>      /* includes the property sheet functionality*/

@@ -9,7 +9,7 @@
 #include "FTables.h"
 #define FTable_H   /* to prevent  a type conflict with GetFuncPtr */ 
 #include "../stack-c.h"
-#include "../sun/link.h"
+#include "../os_specific/link.h"
 
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
 static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));  

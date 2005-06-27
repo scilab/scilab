@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h> /* getenv ! */
 #include "../machine.h" 
-#include "../sun/Sun.h" 
+#include "../os_specific/Sun.h" 
 
 #ifdef WIN32
 	BOOL FileExist(char *filename);

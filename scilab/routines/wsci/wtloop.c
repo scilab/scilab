@@ -44,7 +44,7 @@
 #include "plot.h"
 #include "wresource.h"
 #include "wcommon.h"
-#include "../sun/Sun.h"
+#include "../os_specific/Sun.h"
 #include "../stack-c.h" 
 
 #include "Messages.h"

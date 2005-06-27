@@ -9,7 +9,7 @@
 #include <math.h>
 #include "Math.h"
 
-#include "../sun/men_Sutils.h"
+#include "../os_specific/men_Sutils.h"
 
 extern void sciqsort();
 

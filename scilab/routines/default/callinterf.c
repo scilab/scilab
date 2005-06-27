@@ -8,8 +8,8 @@
 #include <signal.h>
 
 #include "../machine.h"
-#include "../sun/addinter.h" /* for DynInterfStart */
-#include "../sun/Sun.h" /* for DynInterfStart */
+#include "../os_specific/addinter.h" /* for DynInterfStart */
+#include "../os_specific/Sun.h" /* for DynInterfStart */
 
 static  jmp_buf jmp_env; 
 

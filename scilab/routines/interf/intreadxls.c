@@ -82,7 +82,7 @@ int C2F(intreadxls)(char *fname, long lfn)
   return 0;
 }
 
-#include "../sound/ole.h"
+#include "../fileio/ole.h"
 static char *xls_basename (name)
 char *name;
 {
