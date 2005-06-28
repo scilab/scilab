@@ -33,6 +33,7 @@ global lang sourcedir
     ::msgcat::mclocale $lang
     ::msgcat::mcload [file join $sourcedir msg_files]
     createmenues
+    setdbstate [getdbstate]
     modifiedtitle [gettextareacur]
     keyposn [gettextareacur]
 #labels in opened non-modal dialogs are not updated, but let's not 

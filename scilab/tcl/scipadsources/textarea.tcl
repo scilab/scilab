@@ -109,25 +109,21 @@ proc setfontscipad {FontSize} {
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
     set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
-# change the font of all of the entries in the menu tree
-    set allmenus1 $pad.filemenu
+# change the font of all of the entries in the menu tree and status bar
+    set allmenus1 "$pad.statusind $pad.statusind2 $pad.statusmes $pad.filemenu"
     set allmenus ""
     while {$allmenus != $allmenus1} {
-        set allmenus [lsort -unique $allmenus1]
-         foreach m "$allmenus" {
-            append allmenus1 { } [winfo children $m]
-            $m configure -font $menuFont
-        }
+        set allmenus $allmenus1
+        foreach m "$allmenus" { append allmenus1 { } [winfo children $m] }
         set allmenus1 [lsort -unique $allmenus1]
     }
+    foreach m "$allmenus" {$m configure -font $menuFont}
 
     foreach textarea $listoftextarea {
         $textarea configure -font $textFont
         $textarea tag configure activebreakpoint -font $actbptextFont
     }
-    $pad.statusind configure -font $menuFont
-    $pad.statusind2 configure -font $menuFont
-    $pad.statusmes configure -font $menuFont
+
     # This sets the font used in all dialogs (Unix only - on Windows
     # native platform dialogs are used by Tk)
     set dialogFont -adobe-helvetica-medium-r-normal--$FontSize-*
