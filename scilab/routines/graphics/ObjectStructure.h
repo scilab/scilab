@@ -457,6 +457,8 @@ typedef struct
 /*   BOOL force_draw; /\* exclusively used with draw command to force the drawing of the object *\/ */
 
   sciFont fontcontext; /* F.Leray 08.04.04 */
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
   
 }/** */
 sciFigure;  
@@ -493,6 +495,8 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }/** */
 sciText;  
 
@@ -557,6 +561,8 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }/** */
 sciLegend;  
 
@@ -614,6 +620,8 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }/** */
 sciLabel;  
 
@@ -745,6 +753,8 @@ typedef struct
   /*  An internal state used as subtics flag (auto == FALSE, TRUE == manual) named flagNax */
   BOOL flagNax;
   int surfcounter; /* used to merge 3d objects */
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }/** */
 sciSubWindow;  
 
@@ -789,6 +799,8 @@ typedef struct
   double clip_region[4];
   int clip_region_set;
   double z; /**DJ.Abdemouche 2003**/
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }  /** */
 sciArc;
 
@@ -837,6 +849,8 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciPolyline;  /** */
 
@@ -871,6 +885,8 @@ typedef struct
   double z;  /** rectangle */
 
   BOOL flagstring; /* flag used to determine wether the rectangle is used to surround a string : used when axes is reversed */
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciRectangle;  /** */
 
@@ -937,6 +953,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
 
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciSurface;  /** */
 
@@ -951,6 +969,8 @@ typedef struct
   long *from_entity; /* vector of handles on the facet or segment entity*/
   int *index_in_entity;/*index of facet or segment in its entity*/
   int N; /* number of facets or segments */
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciMerge;  /** */
 
@@ -969,6 +989,8 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciLightSource;	 /** */
 
@@ -1054,6 +1076,8 @@ typedef struct
   double clip_region[4]; /* to introduce for axis ? */
   int clip_region_set;
 
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciAxes;  
 
@@ -1094,6 +1118,8 @@ typedef struct
   double *vz; /**DJ.Abdemouche 2003**/
   double *vfz;
 
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciSegs; 
  
@@ -1127,6 +1153,8 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciGrayplot;  
 /** */
@@ -1161,6 +1189,8 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciFec;  /** */
 
@@ -1271,6 +1301,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
 
+  int * user_data; /* adding 27.06.05 */
+  int size_of_user_data;
 }
 sciAgreg;  /** */
 

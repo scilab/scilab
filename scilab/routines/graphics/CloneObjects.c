@@ -83,7 +83,24 @@ CloneText (sciPointObj * pthis)
   if (sciSetFontName(pobj, sciGetFontName (pthis), sciGetFontNameLength(pthis)) == -1)
     return (sciPointObj *)NULL;
   pTEXT_FEATURE (pobj)->wh[0] = pTEXT_FEATURE (pthis)->wh[0];
-  pTEXT_FEATURE (pobj)->wh[1] = pTEXT_FEATURE (pthis)->wh[1];	
+  pTEXT_FEATURE (pobj)->wh[1] = pTEXT_FEATURE (pthis)->wh[1];
+  
+  
+  if((pTEXT_FEATURE (pthis)->size_of_user_data != 0) && (pTEXT_FEATURE (pthis)->user_data != (int *) NULL))
+    {
+      int size = pTEXT_FEATURE (pthis)->size_of_user_data;
+      
+      if((pTEXT_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
+	sciprint("Can not allocate user_data for cloned object.\n");
+	pTEXT_FEATURE (pobj)->user_data = (int *) NULL;
+	pTEXT_FEATURE (pobj)->size_of_user_data = 0;
+      }
+      else{
+	memcpy(pTEXT_FEATURE (pobj)->user_data, pTEXT_FEATURE (pthis)->user_data,  size);
+	pTEXT_FEATURE (pobj)->size_of_user_data = pTEXT_FEATURE (pthis)->size_of_user_data;
+      }
+    }
+  
   return (sciPointObj *)pobj;
 }
 
@@ -170,7 +187,22 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (sciSetFillFlag(pobj, sciGetFillFlag (pthis)) == -1)
     return (sciPointObj *)NULL;
-
+  
+  if((pRECTANGLE_FEATURE (pthis)->size_of_user_data != 0) && (pRECTANGLE_FEATURE (pthis)->user_data != (int *) NULL))
+    {
+      int size = pRECTANGLE_FEATURE (pthis)->size_of_user_data;
+      
+      if((pRECTANGLE_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
+	sciprint("Can not allocate user_data for cloned object.\n");
+	pRECTANGLE_FEATURE (pobj)->user_data = (int *) NULL;
+	pRECTANGLE_FEATURE (pobj)->size_of_user_data = 0;
+      }
+      else{
+	memcpy(pRECTANGLE_FEATURE (pobj)->user_data, pRECTANGLE_FEATURE (pthis)->user_data,  size);
+	pRECTANGLE_FEATURE (pobj)->size_of_user_data = pRECTANGLE_FEATURE (pthis)->size_of_user_data;
+      }
+    }
+  
   return (sciPointObj *)pobj;
 }
 
@@ -208,6 +240,21 @@ ClonePolyline (sciPointObj * pthis)
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
 
+  if((pPOLYLINE_FEATURE (pthis)->size_of_user_data != 0) && (pPOLYLINE_FEATURE (pthis)->user_data != (int *) NULL))
+    {
+      int size = pPOLYLINE_FEATURE (pthis)->size_of_user_data;
+      
+      if((pPOLYLINE_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
+	sciprint("Can not allocate user_data for cloned object.\n");
+	pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
+	pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;
+      }
+      else{
+	memcpy(pPOLYLINE_FEATURE (pobj)->user_data, pPOLYLINE_FEATURE (pthis)->user_data,  size);
+	pPOLYLINE_FEATURE (pobj)->size_of_user_data = pPOLYLINE_FEATURE (pthis)->size_of_user_data;
+      }
+    }
+  
   return (sciPointObj *)pobj;
 }
 
@@ -246,6 +293,21 @@ CloneArc (sciPointObj * pthis)
   if (sciSetFillFlag(pobj, sciGetFillFlag (pthis)) == -1)
     return (sciPointObj *)NULL;
 
+  if((pARC_FEATURE (pthis)->size_of_user_data != 0) && (pARC_FEATURE (pthis)->user_data != (int *) NULL))
+    {
+      int size = pARC_FEATURE (pthis)->size_of_user_data;
+      
+      if((pARC_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
+	sciprint("Can not allocate user_data for cloned object.\n");
+	pARC_FEATURE (pobj)->user_data = (int *) NULL;
+	pARC_FEATURE (pobj)->size_of_user_data = 0;
+      }
+      else{
+	memcpy(pARC_FEATURE (pobj)->user_data, pARC_FEATURE (pthis)->user_data,  size);
+	pARC_FEATURE (pobj)->size_of_user_data = pARC_FEATURE (pthis)->size_of_user_data;
+      }
+    }
+ 
   return (sciPointObj *)pobj;
 }
 

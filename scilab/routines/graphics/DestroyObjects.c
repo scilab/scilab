@@ -219,6 +219,8 @@ DestroyFigure (sciPointObj * pthis)
    */
   FREE ((sciGetFontContext(pthis))->pfontname);
   FREE(pFIGURE_FEATURE(pthis)->pcolormap);
+  FREE(pFIGURE_FEATURE(pthis)->user_data);
+  pFIGURE_FEATURE(pthis)->size_of_user_data = 0;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* delete windows() */
@@ -279,6 +281,9 @@ DestroySubWin (sciPointObj * pthis)
   ppsubwin->axes.nygrads = 0;
   ppsubwin->axes.nzgrads = 0;
 
+  FREE(ppsubwin->user_data);
+  ppsubwin->size_of_user_data = 0;
+
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -336,6 +341,9 @@ int
 DestroyText (sciPointObj * pthis)
 {
   FREE (pTEXT_FEATURE (pthis)->ptextstring);
+  FREE (pTEXT_FEATURE (pthis)->user_data);
+  pTEXT_FEATURE (pthis)->size_of_user_data = 0;
+  
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -379,6 +387,9 @@ DestroyLegend (sciPointObj * pthis)
 {
   FREE(pLEGEND_FEATURE (pthis)->pptabofpointobj);
   FREE (pLEGEND_FEATURE (pthis)->text.ptextstring);
+  FREE (pLEGEND_FEATURE (pthis)->user_data);
+  pLEGEND_FEATURE (pthis)->size_of_user_data = 0;
+
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -401,6 +412,9 @@ DestroyPolyline (sciPointObj * pthis)
   FREE (pPOLYLINE_FEATURE (pthis)->pvector);
   FREE (pPOLYLINE_FEATURE (pthis)->pvx);
   FREE (pPOLYLINE_FEATURE (pthis)->pvy);
+  FREE (pPOLYLINE_FEATURE (pthis)->user_data);
+  pPOLYLINE_FEATURE (pthis)->size_of_user_data = 0;
+
   if (pPOLYLINE_FEATURE (pthis)->pvz != NULL) /**DJ.Abdemouche 2003**/
     FREE (pPOLYLINE_FEATURE (pthis)->pvz);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
@@ -420,6 +434,8 @@ DestroyPolyline (sciPointObj * pthis)
 int
 DestroyArc (sciPointObj * pthis)
 {
+  FREE (pARC_FEATURE (pthis)->user_data);
+  pARC_FEATURE (pthis)->size_of_user_data = 0;
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -439,6 +455,8 @@ DestroyArc (sciPointObj * pthis)
 int
 DestroyRectangle (sciPointObj * pthis)
 {
+  FREE (pRECTANGLE_FEATURE (pthis)->user_data);
+  pRECTANGLE_FEATURE (pthis)->size_of_user_data = 0;
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -462,6 +480,8 @@ DestroySurface (sciPointObj * pthis)
   integer cmpt;
   
   psubwin = (sciPointObj *) sciGetParentSubwin(pthis);
+  FREE (pSURFACE_FEATURE (pthis)->user_data);
+  pSURFACE_FEATURE (pthis)->size_of_user_data = 0;
   FREE(pSURFACE_FEATURE (pthis)->pvecz);
   FREE(pSURFACE_FEATURE (pthis)->pvecy);
   FREE(pSURFACE_FEATURE (pthis)->pvecx);
@@ -501,6 +521,8 @@ DestroySurface (sciPointObj * pthis)
 int DestroyMerge (sciPointObj * pthis)
 {
   pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->facetmerge = FALSE;
+  FREE (pMERGE_FEATURE (pthis)->user_data);
+  pMERGE_FEATURE (pthis)->size_of_user_data = 0;
   FREE(pMERGE_FEATURE (pthis)->index_in_entity);
   FREE(pMERGE_FEATURE (pthis)->from_entity);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
@@ -522,6 +544,8 @@ int
 DestroyGrayplot (sciPointObj * pthis)
 {
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecx);
+  FREE (pGRAYPLOT_FEATURE (pthis)->user_data);
+  pGRAYPLOT_FEATURE (pthis)->size_of_user_data = 0;
   if (pGRAYPLOT_FEATURE (pthis)->type != 2)
     FREE (pGRAYPLOT_FEATURE (pthis)->pvecy);
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecz);
@@ -543,6 +567,9 @@ DestroyAxes (sciPointObj * pthis)
 {
   int i;
   char **str;
+
+  FREE (pAXES_FEATURE (pthis)->user_data);
+  pAXES_FEATURE (pthis)->size_of_user_data = 0;
   
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
@@ -569,6 +596,8 @@ DestroyAxes (sciPointObj * pthis)
 int
 DestroyFec (sciPointObj * pthis)
 {
+  FREE (pFEC_FEATURE (pthis)->user_data);
+  pFEC_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pFEC_FEATURE (pthis)->pvecx);
   FREE (pFEC_FEATURE (pthis)->pvecy);
   FREE (pFEC_FEATURE (pthis)->pnoeud); 
@@ -597,6 +626,8 @@ int
 DestroySegs (sciPointObj * pthis)
 {  
   
+  FREE (pSEGS_FEATURE (pthis)->user_data);
+  pSEGS_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pSEGS_FEATURE (pthis)->vx);
   FREE (pSEGS_FEATURE (pthis)->vy); 
   if (pSEGS_FEATURE (pthis)->vz != (double *)NULL) 
@@ -627,6 +658,8 @@ int
 DestroyAgregation (sciPointObj * pthis)
 {
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  FREE (pAGREG_FEATURE (pthis)->user_data);
+  pAGREG_FEATURE (pthis)->size_of_user_data = 0;
   if (sciDelHandle (pthis) == -1) return -1;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
@@ -688,6 +721,8 @@ sciUnAgregation (sciPointObj * pobj)
 int
 DestroyLabel (sciPointObj * pthis)
 {
+  FREE (pLABEL_FEATURE (pthis)->user_data); 
+  pLABEL_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pLABEL_FEATURE (pthis)->text.ptextstring);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)

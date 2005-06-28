@@ -150,6 +150,8 @@ ConstructFigure (XGC)
   
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
 
+  pFIGURE_FEATURE (pobj)->user_data = (int *) NULL; /* adding 27.06.05 */
+  pFIGURE_FEATURE (pobj)->size_of_user_data = 0;
   pFIGURE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
   pFIGURE_FEATURE (pobj)->pScilabXgc = XGC;
@@ -294,6 +296,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       
       ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
 
+      ppsubwin->user_data = (int *) NULL; /* adding 27.06.05 */
+      ppsubwin->size_of_user_data = 0;
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
       ppsubwin->relationship.psons = (sciSons *) NULL;
       ppsubwin->relationship.plastsons = (sciSons *) NULL;
@@ -746,6 +750,9 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+
+      pTEXT_FEATURE (pobj)->user_data = (int *) NULL;
+      pTEXT_FEATURE (pobj)->size_of_user_data = 0;
       pTEXT_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pTEXT_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -935,6 +942,8 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pLEGEND_FEATURE (pobj)->user_data = (int *) NULL;
+      pLEGEND_FEATURE (pobj)->size_of_user_data = 0;
       pLEGEND_FEATURE (pobj)->text.relationship.psons = (sciSons *) NULL;
       pLEGEND_FEATURE (pobj)->text.relationship.plastsons = (sciSons *) NULL;
       pLEGEND_FEATURE (pobj)->text.callback = (char *)NULL;
@@ -1070,6 +1079,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
+      pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;
       pPOLYLINE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pPOLYLINE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -1207,6 +1218,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pARC_FEATURE (pobj)->user_data = (int *) NULL;
+      pARC_FEATURE (pobj)->size_of_user_data = 0;
       pARC_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pARC_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -1290,6 +1303,8 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pRECTANGLE_FEATURE (pobj)->user_data = (int *) NULL;
+      pRECTANGLE_FEATURE (pobj)->size_of_user_data = 0;
       pRECTANGLE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pRECTANGLE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -1416,6 +1431,8 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pSURFACE_FEATURE (pobj)->user_data = (int *) NULL;
+      pSURFACE_FEATURE (pobj)->size_of_user_data = 0;
       pSURFACE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pSURFACE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -1690,6 +1707,8 @@ ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *fro
       }
 
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pMERGE_FEATURE (pobj)->user_data = (int *) NULL;
+      pMERGE_FEATURE (pobj)->size_of_user_data = 0;
       pMERGE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pMERGE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
       pMERGE_FEATURE (pobj)->index_in_entity=index_in_entity;
@@ -1740,6 +1759,8 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pGRAYPLOT_FEATURE (pobj)->user_data = (int *) NULL;
+      pGRAYPLOT_FEATURE (pobj)->size_of_user_data = 0;
       pGRAYPLOT_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pGRAYPLOT_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -1862,6 +1883,8 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pAXES_FEATURE (pobj)->user_data = (int *) NULL;
+      pAXES_FEATURE (pobj)->size_of_user_data = 0;
       pAXES_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pAXES_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -2034,6 +2057,8 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pFEC_FEATURE (pobj)->user_data = (int *) NULL;
+      pFEC_FEATURE (pobj)->size_of_user_data = 0;
       pFEC_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pFEC_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -2206,6 +2231,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pSEGS_FEATURE (pobj)->user_data = (int *) NULL;
+      pSEGS_FEATURE (pobj)->size_of_user_data = 0;
       pSEGS_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pSEGS_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
 
@@ -2383,6 +2410,8 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
     return NULL;
 
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+  pAGREG_FEATURE (pobj)->user_data = (int *) NULL;
+  pAGREG_FEATURE (pobj)->size_of_user_data = 0;
   pAGREG_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
 
   pAGREG_FEATURE (pobj)->callback = (char *)NULL;
@@ -2588,7 +2617,8 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 	}
       
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      
+      pLABEL_FEATURE (pobj)->user_data = (int *) NULL;
+      pLABEL_FEATURE (pobj)->size_of_user_data = 0;
       pLABEL_FEATURE (pobj)->text.relationship.psons = (sciSons *) NULL;
       pLABEL_FEATURE (pobj)->text.relationship.plastsons = (sciSons *) NULL;
 
