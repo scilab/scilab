@@ -465,7 +465,8 @@ deff('dg=dgsub(i,z)',['dg=[1,0,0,0;0,0,1,0;1,0,0,0;0,0,1,0]';
                       'dg=dg(i,:)'])
 deff('[z,mpar]=guess(x)','z=0;mpar=0')// unused here
 
-deff('u=trusol(x)',[   //for testing purposes
+ //define trusol for testing purposes
+deff('u=trusol(x)',[ 
    'u=0*ones(4,1)';
    'u(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)'
    'u(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)'
