@@ -109,17 +109,17 @@ proc setfontscipad {FontSize} {
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
     set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
-    $pad.filemenu configure -font $menuFont
-    foreach w [winfo children $pad.filemenu] {
-          $w configure -font $menuFont
+# change the font of all of the entries in the menu tree
+    set allmenus1 $pad.filemenu
+    set allmenus ""
+    while {$allmenus != $allmenus1} {
+        set allmenus [lsort -unique $allmenus1]
+         foreach m "$allmenus" {
+            append allmenus1 { } [winfo children $m]
+            $m configure -font $menuFont
+        }
+        set allmenus1 [lsort -unique $allmenus1]
     }
-    foreach w [winfo children $pad.filemenu.options] {
-          $w configure -font $menuFont
-    }
-    # warning! tk_optionMenu added ".menu" to the menu name given on creation!
-    $pad.filemenu.options.tabs.indentspaces.menu configure -font $menuFont
-    $pad.filemenu.options.recent.menu configure -font $menuFont
-    $pad.filemenu.debug.step configure -font $menuFont
 
     foreach textarea $listoftextarea {
         $textarea configure -font $textFont
