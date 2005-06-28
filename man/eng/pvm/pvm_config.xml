@@ -79,10 +79,14 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
+ok=pvm_start()
 res = pvm_config()
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pvm_start</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>pvm_tasks</LINK>
     </SEE_ALSO_ITEM>
