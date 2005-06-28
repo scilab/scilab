@@ -25,3 +25,17 @@ proc bl {mlabel} {
     set clu [amp $tl] 
     return "-text \"[lindex $clu 1]\" -underline [lindex $clu 0]"
 }
+
+proc relocalize {} {
+global lang sourcedir
+# carry on all the changes when the locale is changed on the fly via
+# the Options/Locale menu
+    ::msgcat::mclocale $lang
+    ::msgcat::mcload [file join $sourcedir msg_files]
+    createmenues
+    modifiedtitle [gettextareacur]
+    keyposn [gettextareacur]
+#labels in opened non-modal dialogs are not updated, but let's not 
+# pretend too much... Same for the title of unsaved buffers named 
+# UntitledN.sce
+}

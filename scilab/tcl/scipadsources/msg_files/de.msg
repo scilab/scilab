@@ -258,6 +258,14 @@
         ::msgcat::mcset de "Full path if &ambiguous" "V&ollständiger Pfad (falls mehrdeutig)"
         ::msgcat::mcset de "&Unambiguous pruned path" "&Eindeutig abgekürzter Pfad"
     ::msgcat::mcset de "&Recent files" "Z&uletzt geöffnete Dateien"
+    ::msgcat::mcset de "&Locale" "&Lokale"
+  # locale names (common)
+        ::msgcat::mcset de "de locale (de)" "Deutsch (de)"
+        ::msgcat::mcset de "fr locale (fr)" "Français (fr)"
+        ::msgcat::mcset de "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset de "it locale (it)" "Italiano (it)"
+        ::msgcat::mcset de "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset de "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset de "Opened Files" "Offene Dateien"

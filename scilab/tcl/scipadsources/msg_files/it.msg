@@ -288,6 +288,14 @@
         ::msgcat::mcset it "&Unambiguous pruned path" \
                            "Percorso &ridotto univoco"
     ::msgcat::mcset it "&Recent files" "&Numero files recenti"
+    ::msgcat::mcset it "&Locale" "&Localizzazione"
+  # locale names (common)
+        ::msgcat::mcset it "de locale (de)" "Deutsch (de)"
+        ::msgcat::mcset it "fr locale (fr)" "Français (fr)"
+        ::msgcat::mcset it "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset it "it locale (it)" "Italiano (it)"
+        ::msgcat::mcset it "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset it "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset it "Opened Files" "Files aperti"

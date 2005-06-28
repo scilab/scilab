@@ -251,6 +251,14 @@
         ::msgcat::mcset no "Full path if &ambiguous" "Full path if &ambiguous"
         ::msgcat::mcset no "&Unambiguous pruned path" "&Unambiguous pruned path"
     ::msgcat::mcset no "&Recent files" "Tidligere redigerte filer"
+    ::msgcat::mcset no "&Locale" "&Locale"
+  # locale names (common)
+        ::msgcat::mcset no "de locale (de)" "Deutsch (de)"
+        ::msgcat::mcset no "fr locale (fr)" "Français (fr)"
+        ::msgcat::mcset no "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset no "it locale (it)" "Italiano (it)"
+        ::msgcat::mcset no "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset no "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset no "Opened Files" "Åpne filer"

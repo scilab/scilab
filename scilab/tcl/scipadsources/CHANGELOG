@@ -1201,3 +1201,12 @@ Francois VOGEL, 20/06/05
  * Bug fixed: Opening two files with the same name did not tag one of them
    as unmodified
  * version --> 5.10
+
+ES, 28/6/05
+ * locale can be changed on the fly via the Options/Locale menu.
+ * $lang added to $listofpref, the locale is an option remebered across 
+   sessions
+ * [commented out] menu entries for opening BUGS, CHANGELOG, 
+   AddingTranslations.txt, msg_files/*.msg added as placeholders in the help
+   menu
+ * version --> 5.11

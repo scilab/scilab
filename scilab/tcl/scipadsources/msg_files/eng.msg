@@ -12,10 +12,19 @@
                     Modified by Scilab Consortium.\n\
                     Revised by Enrico Segre 2003-2005.\n\
                     Miscellaneous improvements, particularly debug tools,\
-                    by Francois Vogel 2004-2005.\n\
+                    by François Vogel 2004-2005.\n\
                     Swedish translation by Gunnar Lindholm 2005.\n\
                     Norwegian translation by Torbjørn Pettersen 2005.\n\
                     German translation by Dirk Reusch 2005."
+
+# menues.tcl 
+  # locale names (common)
+        ::msgcat::mcset eng "de locale (de)" "Deutsch (de)"
+        ::msgcat::mcset eng "fr locale (fr)" "Français (fr)"
+        ::msgcat::mcset eng "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset eng "it locale (it)" "Italiano (it)"
+        ::msgcat::mcset eng "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset eng "se locale (se)" "Svenska (se)"
 
 
 # popupmenus.tcl

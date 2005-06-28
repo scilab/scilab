@@ -30,15 +30,23 @@ if { [info exists pad] } {
     source [file join $sourcedir localetools.tcl] 
     source [file join $sourcedir tkdndtools.tcl] 
     source [file join $sourcedir platformbind.tcl] 
+    source [file join $sourcedir menues.tcl]
 
     # now all the pure main level code
     source [file join $sourcedir defaults.tcl]
     source [file join $sourcedir mainwindow.tcl]
     source [file join $sourcedir db_init.tcl]
     source [file join $sourcedir bindings.tcl]
-    source [file join $sourcedir menues.tcl]
 
+#additional initial state operations, now that all the widgets have been set
     load_words
+
+    createmenues
+
+    setfontscipad $FontSize
+
+# set initial debug state
+    setdbstate "NoDebug"
 
     keyposn $textareacur
 

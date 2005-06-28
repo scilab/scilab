@@ -60,7 +60,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.10"
+set version "Version 5.11"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -80,7 +80,7 @@ set colorpref "$bgcolors $fgcolors"
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts"
+       tabinserts lang"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden

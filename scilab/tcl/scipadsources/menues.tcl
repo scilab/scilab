@@ -1,5 +1,16 @@
-#file menu
-menu $pad.filemenu.files -tearoff 0 -font $menuFont
+proc createmenues {} {
+    global pad menuFont tcl_platform bgcolors fgcolors sourcedir
+    global listoffile listoftextarea FontSize
+    foreach c1 "$bgcolors $fgcolors" {global $c1}
+
+    #destroy old menues (used when changing language)
+    foreach w [winfo children $pad.filemenu] {
+        catch {destroy $w}
+    }
+    $pad.filemenu delete 0 end
+
+    #file menu
+    menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu  add cascade [me "&File"] \
 	               -menu $pad.filemenu.files "
     eval "$pad.filemenu.files add command [me "&New"] \
@@ -22,14 +33,14 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Open &function source"] \
-                   -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
+              -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
                    -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
         eval "$pad.filemenu.files add command [me "Print Se&tup"]\
-                   -command \"printseupselection\" -accelerator Ctrl+P"
+              -command \"printseupselection\" -accelerator Ctrl+P"
         eval "$pad.filemenu.files add command [me "&Print"] \
-                   -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
+                -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
         $pad.filemenu.files add separator
     }
     BuildInitialRecentFilesList
@@ -38,8 +49,8 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu.files add command [me "E&xit"] \
                    -command \"exitapp yesnocancel\" -accelerator Ctrl+q"
 
-#edit menu
-menu $pad.filemenu.edit -tearoff 0 -font $menuFont
+    #edit menu
+    menu $pad.filemenu.edit -tearoff 0 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Edit"] \
                -menu $pad.filemenu.edit "
     eval "$pad.filemenu.edit add command [me "&Undo"] \
@@ -58,8 +69,8 @@ menu $pad.filemenu.edit -tearoff 0 -font $menuFont
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Select &All"] \
                -command \"selectall\" -accelerator Ctrl+a"
-#    eval "$pad.filemenu.edit add command [me "Insert &Time/Date"] \
-#               -command \"printtime\" "
+    #    eval "$pad.filemenu.edit add command [me "Insert &Time/Date"] \
+        #               -command \"printtime\" "
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Co&mment selection"] \
                -command \"CommentSel\" -accelerator Ctrl+m"
@@ -71,8 +82,8 @@ menu $pad.filemenu.edit -tearoff 0 -font $menuFont
     eval "$pad.filemenu.edit add command [me "Unin&dent selection"] \
                -command \"UnIndentSel\" -accelerator Ctrl+D"
 
-#search menu
-menu $pad.filemenu.search -tearoff 0 -font $menuFont
+    #search menu
+    menu $pad.filemenu.search -tearoff 0 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Search"] \
                -menu $pad.filemenu.search  "
     eval "$pad.filemenu.search add command [me "&Find..."] \
@@ -84,8 +95,8 @@ menu $pad.filemenu.search -tearoff 0 -font $menuFont
     eval "$pad.filemenu.search add command [me "&Goto Line..."] \
                -command \"gotoline\" -accelerator Ctrl+g"
 
-# exec menu
-menu $pad.filemenu.exec -tearoff 1 -font $menuFont
+    # exec menu
+    menu $pad.filemenu.exec -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "E&xecute"] \
               -menu $pad.filemenu.exec "
     eval "$pad.filemenu.exec add command [me "&Load into Scilab"] \
@@ -93,8 +104,8 @@ menu $pad.filemenu.exec -tearoff 1 -font $menuFont
     eval "$pad.filemenu.exec add command [me "&Evaluate selection"] \
               -command \"execselection\" -accelerator Ctrl+y"
 
-#debug menu
-menu $pad.filemenu.debug -tearoff 1 -font $menuFont
+    #debug menu
+    menu $pad.filemenu.debug -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Debug"] \
                -menu $pad.filemenu.debug "
     eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
@@ -113,21 +124,23 @@ menu $pad.filemenu.debug -tearoff 1 -font $menuFont
                -image menubutnextimage -compound left "
 
     menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
-    eval "$pad.filemenu.debug add cascade [me "&Step by step"] -menu $pad.filemenu.debug.step "
-        eval "$pad.filemenu.debug.step add command [me "Step &into"] \
+    eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
+                  -menu $pad.filemenu.debug.step "
+    eval "$pad.filemenu.debug.step add command [me "Step &into"] \
                  -command \"stepbystep_bp\" -accelerator Shift+F8\
                  -image menubutstepimage -compound left "
-        eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
+    eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
                  -command \"stepbystep_bp\" -accelerator F8\
                  -image menubutstepimage -compound left "
-        eval "$pad.filemenu.debug.step add command [me "Step &out"] \
+    eval "$pad.filemenu.debug.step add command [me "Step &out"] \
                  -command \"stepbystep_bp\" -accelerator Ctrl+F8\
                  -image menubutstepimage -compound left "
 
     eval "$pad.filemenu.debug add command [me "Run to c&ursor"] \
                -command \"runtocursor_bp\" -accelerator Ctrl+F11\
                -image menubutruntocursorimage -compound left "
-    eval "$pad.filemenu.debug add command [me "G&o on ignoring any breakpoint"] \
+    eval "$pad.filemenu.debug add command \
+               [me "G&o on ignoring any breakpoint"] \
                -command \"goonwo_bp\" -accelerator Shift+F12\
                -image menubutgoonignorimage -compound left "
     $pad.filemenu.debug add separator
@@ -142,8 +155,8 @@ menu $pad.filemenu.debug -tearoff 1 -font $menuFont
                -command \"canceldebug_bp\" \
                -image menubutcancelimage -compound left "
 
-# scheme menu
-menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
+    # scheme menu
+    menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
     eval "$pad.filemenu add cascade [me "S&cheme"] \
                -menu $pad.filemenu.scheme "
     eval "$pad.filemenu.scheme add radiobutton [me "S&cilab"] \
@@ -156,35 +169,35 @@ menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
                -command {changelanguage \"none\"} -variable Scheme \
                -value \"none\" "
 
-# options menu
-menu $pad.filemenu.options -tearoff 1 -font $menuFont
+    # options menu
+    menu $pad.filemenu.options -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Options"] \
                -menu $pad.filemenu.options "
     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "&Font size"]\
       -menu $pad.filemenu.options.fontsize "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
               -value 10 -variable FontSize -command \"setfontscipad 10\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\
               -value 12 -variable FontSize -command \"setfontscipad 12\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] \
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] \
               -value 14 -variable FontSize -command \"setfontscipad 14\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] \
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] \
               -value 18 -variable FontSize -command \"setfontscipad 18\" "
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
                -menu $pad.filemenu.options.colors"
-        menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
-        foreach c $bgcolors {
-              eval "$pad.filemenu.options.colors add command [me "$c"] \
+    menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
+    foreach c $bgcolors {
+        eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -background \[set $c\]\
                 -foreground $FGCOLOR -activeforeground $FGCOLOR"
-               }
-        foreach c $fgcolors {
-              eval "$pad.filemenu.options.colors add command [me "$c"] \
+    }
+    foreach c $fgcolors {
+        eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -foreground \[set $c\] \
                 -activeforeground \[set $c\] -background $BGCOLOR"
-               }
-        updateactiveforegroundcolormenu
+    }
+    updateactiveforegroundcolormenu
     eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
       -command {refreshQuotedStrings}\
       -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
@@ -193,23 +206,23 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
       -offvalue none -onvalue word -variable wordWrap"
     eval "$pad.filemenu.options add cascade [me "&Tabs and indentation"] \
                -menu $pad.filemenu.options.tabs"
-        menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
-        eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
+    menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
+    eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
                     -offvalue tabs -onvalue spaces -variable tabinserts"
-        eval "$pad.filemenu.options.tabs add cascade  \
+    eval "$pad.filemenu.options.tabs add cascade  \
                 [me "&Indentation spaces"]\
                 -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
                         indentspaces 1 2 3 4 5 6 7 8 9 10]"
     menu $pad.filemenu.options.filenames -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "File&names"] \
            -menu $pad.filemenu.options.filenames "
-        eval "$pad.filemenu.options.filenames add radiobutton \
+    eval "$pad.filemenu.options.filenames add radiobutton \
             [me "&Full path"] -command {RefreshWindowsMenuLabels}\
              -value full -variable filenamesdisplaytype"
-        eval "$pad.filemenu.options.filenames add radiobutton \
+    eval "$pad.filemenu.options.filenames add radiobutton \
             [me "Full path if &ambiguous"] -command {RefreshWindowsMenuLabels}\
              -value fullifambig -variable filenamesdisplaytype"
-        eval "$pad.filemenu.options.filenames add radiobutton \
+    eval "$pad.filemenu.options.filenames add radiobutton \
                  [me "&Unambiguous pruned path"]\
                  -command {RefreshWindowsMenuLabels}\
                  -value pruned -variable filenamesdisplaytype"
@@ -218,19 +231,34 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
                     maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10]"
     for {set i 0} {$i<=10} {incr i} {
         $pad.filemenu.options.recent.menu entryconfigure $i \
-           -command {UpdateRecentFilesList}
+            -command {UpdateRecentFilesList}
+    }
+    menu $pad.filemenu.options.locale -tearoff 0 -font $menuFont
+    eval "$pad.filemenu.options add cascade [me "&Locale"] \
+           -menu $pad.filemenu.options.locale "
+    set msgsdir [file join $sourcedir msg_files]
+    set msgFiles [lsort [glob -nocomplain -tails -directory $msgsdir *.msg]]
+    foreach m $msgFiles {
+        set l [file rootname $m]
+        eval "$pad.filemenu.options.locale add radiobutton \
+            [me [concat $l locale ($l)]] \
+            -variable lang -value $l -command relocalize"
     }
 
-# window menu
-menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
+    # window menu
+    menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] \
+         -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
-    $pad.filemenu.wind add radiobutton \
-               -label $listoffile("$pad.new$winopened",displayedname)\
-               -value $winopened -variable radiobuttonvalue \
-               -command "montretext $pad.new$winopened"
+    foreach ta $listoftextarea {
+        set winopened [scan $ta $pad.new%d]
+        $pad.filemenu.wind add radiobutton \
+            -label $listoffile("$ta",displayedname)\
+            -value $winopened -variable radiobuttonvalue \
+            -command "montretext $ta"
+    }
 
-# help menu
-menu $pad.filemenu.help -tearoff 0 -font $menuFont
+    # help menu
+    menu $pad.filemenu.help -tearoff 0 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Help"] \
                -menu $pad.filemenu.help "
     eval "$pad.filemenu.help add command [me "&Help..."] \
@@ -239,12 +267,22 @@ menu $pad.filemenu.help -tearoff 0 -font $menuFont
                -command \"helpword\" -accelerator Ctrl+F1"
     eval "$pad.filemenu.help add command [me "&About"] \
                -command \"aboutme\" -accelerator Shift+F1"
+## additional hacker entries, for the moment disabled
+#     $pad.filemenu.help add separator
+#     eval "$pad.filemenu.help add command \
+#             [me "&Adding translations..."] \
+#             -command {openfile [file join $msgsdir AddingTranslations.txt]}"
+#     eval "$pad.filemenu.help add command \
+#             [me "&edit msg file"] \
+#             -command {openfile [file join $msgsdir \$lang.msg]}"
+#     eval "$pad.filemenu.help add command \
+#             [me "&bugs \& wishlist"] \
+#             -command {openfile [file join $sourcedir BUGS]}"
+#     eval "$pad.filemenu.help add command \
+#             [me "&Changelog"] \
+#             -command {openfile [file join $sourcedir CHANGELOG]}"
 
-# now make the menu bar visible
-$pad configure -menu $pad.filemenu 
+    # now make the menu bar visible
+    $pad configure -menu $pad.filemenu 
 
-# remember fontsize
-setfontscipad $FontSize
-
-# set initial debug state
-setdbstate "NoDebug"
+}

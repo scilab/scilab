@@ -273,6 +273,14 @@
                            "Hela sökvägen är tvetydig"
         ::msgcat::mcset se "&Unambiguous pruned path" "&Entydig sökväg"
     ::msgcat::mcset se "&Recent files" "S&enaste filerna"
+    ::msgcat::mcset se "&Locale" "&Locale"
+  # locale names (common)
+        ::msgcat::mcset se "de locale (de)" "Deutsch (de)"
+        ::msgcat::mcset se "fr locale (fr)" "Français (fr)"
+        ::msgcat::mcset se "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset se "it locale (it)" "Italiano (it)"
+        ::msgcat::mcset se "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset se "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset se "Opened Files" "Öppna filer"
