@@ -1,8 +1,17 @@
 proc whichfun {indexin {buf "current"}} {
+# This proc checks whether the text position $indexin provided in buffer $buf
+# is in a function or not.
+# If no  : return an empty list
+# If yes : return a list with the following data:
+#       $funname   : function name
+#       $lineinfun : logical line number of $indexin in function $funname
+#       $funline   : definition line of the function, e.g. [a,b]=foo(c,d)
+#       $precfun   : physical line number where $funname is defined
+#       $contlines : number of continued lines between $precfun and $indexin
     global listoffile
+
     # it is implicitely meant that indexin refers to a position in buf,
     # i.e. in textareacur if buf is not passed to whichfun
-
     if {$buf == "current"} {
         set textarea [gettextareacur]
     } else {
@@ -162,5 +171,75 @@ proc showwhichfun {} {
     } else {
         tk_messageBox -message [mc "The cursor is not currently inside a function body."] \
                       -title [mc "Which function?"]
+    }
+}
+
+proc getallfunsinalltextareas {} {
+# Get all the functions defined in all the opened textareas
+# Result is a string with getallfunsintextarea results:
+# "{textarea1 { $funname11 $funline11 $precfun11  $funname12 $funline12 $precfun12  ... }}
+#  {textarea2 { $funname21 $funline21 $precfun21  ... }}
+# "
+    global listoftextarea
+    set hitslist ""
+    foreach textarea $listoftextarea {
+        set hitslistinbuf [getallfunsintextarea $textarea]
+        set hitslist "$hitslist $hitslistinbuf"
+    }
+    return $hitslist
+}
+
+proc getallfunsintextarea {{buf "current"}} {
+# Get all the functions defined in the given textarea
+# Return a list {$buf $result_of_whichfun}
+# If there is no function in $buf, then $result_of_whichfun is the following list:
+#   { "0NoFunInBuf" 0 0 }
+# Note that the leading zero in "0NoFunInBuf" is here so that the latter cannot
+# be a valid function name in Scilab (they can't start with a number)
+# If there is at least one function definition in $buf, then $result_of_whichfun
+# is a list of proc whichfun results:
+#   { $funname1 $funline1 $precfun1  $funname2 $funline2 $precfun2  ... }
+#       $funname   : function name
+#       $funline   : definition line of the function, e.g. [a,b]=foo(c,d)
+#       $precfun   : physical line number where $funname is defined in $buf
+
+    global listoffile
+
+    if {$buf == "current"} {
+        set textarea [gettextareacur]
+    } else {
+        set textarea $buf
+    }
+
+    # return if the language is anything but scilab
+    if {$listoffile("$textarea",language) != "scilab"} {
+        return {$textarea { "0NoFunInBuf" 0 0 }}
+    }
+
+    set hitslist ""
+    set nextfun [$textarea search -exact -forwards -regexp\
+                 "\\mfunction\\M" 1.0 end ]
+    while {$nextfun != ""} {
+        while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
+               [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
+            set nextfun [$textarea search -exact -forwards -regexp\
+                         "\\mfunction\\M" "$nextfun +8c" end]
+            if {$nextfun == ""} break
+        }
+        if {$nextfun != ""} {
+            set infun [whichfun [$textarea index "$nextfun +1c"] $textarea]
+        } else {
+            set infun {}
+        }
+        if {$infun != {} } {
+            set hitslist "$hitslist [lindex $infun 0] {[lindex $infun 2]} [lindex $infun 3]"
+            set nextfun [$textarea search -exact -forwards -regexp\
+                         "\\mfunction\\M" "$nextfun +8c" end]
+        }
+    }
+    if {$hitslist == ""} {
+        return [list $textarea [list "0NoFunInBuf" 0 0]]
+    } else {
+        return [list $textarea $hitslist]
     }
 }

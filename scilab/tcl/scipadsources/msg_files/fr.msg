@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.2
+# in sync at least with v5.12
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -13,7 +13,12 @@
 
 # buffernavigation.tcl
 ::msgcat::mcset fr "Goto Line?" "Aller à la ligne ?"
-::msgcat::mcset fr "Goto Line: " "Aller à la ligne : "
+::msgcat::mcset fr "Go to:" "Aller à : "
+::msgcat::mcset fr "logical line" "la ligne logique"
+::msgcat::mcset fr "physical line" "la ligne physique"
+::msgcat::mcset fr "in function" "de la function"
+::msgcat::mcset fr "in current file" "du fichier courant"
+::msgcat::mcset fr "Outside of function definition" "Hors de la définition de la fonction"
 
 
 # colorize.tcl
@@ -257,7 +262,7 @@
         ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
         ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
     ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
-    ::msgcat::mcset fr "&Locale" "&Locale"
+    ::msgcat::mcset fr "&Locale" "&Langue"
   # locale names (common)
         ::msgcat::mcset fr "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset fr "fr locale (fr)" "Français (fr)"

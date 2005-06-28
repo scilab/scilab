@@ -109,7 +109,7 @@ proc setfontscipad {FontSize} {
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
     set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
-# change the font of all of the entries in the menu tree and status bar
+    # change the font of all of the entries in the menu tree and status bar
     set allmenus1 "$pad.statusind $pad.statusind2 $pad.statusmes $pad.filemenu"
     set allmenus ""
     while {$allmenus != $allmenus1} {

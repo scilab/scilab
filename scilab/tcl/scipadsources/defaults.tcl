@@ -25,6 +25,7 @@ if {[catch {ScilabEval ";"}] != 0} {
         puts $args
     }
     set sciprompt 0
+    wm withdraw .
 }
 
 # Committed versions should have this attribute set to false
@@ -60,7 +61,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.11"
+set version "Version 5.12"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -149,3 +150,8 @@ if { [catch {package require tkdnd}] == 0 } {
 # so that Scipad can automatically close it if first
 # action in Scipad is a successful file/open
 set closeinitialbufferallowed true
+
+# The following must be unset otherwise the goto line box can produce errors
+# when it is opened again with the same file that was opened before in another
+# textarea
+catch {unset physlogic linetogo curfileorfun funtogoto}

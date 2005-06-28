@@ -1204,7 +1204,7 @@ Francois VOGEL, 20/06/05
 
 ES, 28/6/05
  * locale can be changed on the fly via the Options/Locale menu.
- * $lang added to $listofpref, the locale is an option remebered across 
+ * $lang added to $listofpref, the locale is an option remembered across 
    sessions
  * [commented out] menu entries for opening BUGS, CHANGELOG, 
    AddingTranslations.txt, msg_files/*.msg added as placeholders in the help
@@ -1212,3 +1212,17 @@ ES, 28/6/05
  * textarea.tcl/setfontscipad: the menu tree is automatically traversed
    when changing font
  * version --> 5.11
+
+Francois VOGEL, 28/06/05
+ * Fixed debug menu entries states after locale change
+ * The useless toplevel created by wish when running Scipad outside of Scilab
+   is removed
+ * Go to line... options implemented:
+     - Go to physical line N in current buffer
+     - Go to physical line N in function...
+     - Go to logical line N in function... (takes into account continued lines)
+ * Rationalized the use of proc whichfun by encapsulating it in higher level
+   procs (getallfunsintextarea, getallfunsinalltextareas) and making use of
+   these instead of the loop that regexp-searches for "\\mfunction\\M" and
+   checks whichfun it is in
+ * version --> 5.12

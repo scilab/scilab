@@ -40,7 +40,7 @@ proc createmenues {} {
         eval "$pad.filemenu.files add command [me "Print Se&tup"]\
               -command \"printseupselection\" -accelerator Ctrl+P"
         eval "$pad.filemenu.files add command [me "&Print"] \
-                -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
+              -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
         $pad.filemenu.files add separator
     }
     BuildInitialRecentFilesList
@@ -70,7 +70,7 @@ proc createmenues {} {
     eval "$pad.filemenu.edit add command [me "Select &All"] \
                -command \"selectall\" -accelerator Ctrl+a"
     #    eval "$pad.filemenu.edit add command [me "Insert &Time/Date"] \
-        #               -command \"printtime\" "
+    #               -command \"printtime\" "
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Co&mment selection"] \
                -command \"CommentSel\" -accelerator Ctrl+m"
@@ -126,13 +126,13 @@ proc createmenues {} {
     menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
     eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
                   -menu $pad.filemenu.debug.step "
-    eval "$pad.filemenu.debug.step add command [me "Step &into"] \
+        eval "$pad.filemenu.debug.step add command [me "Step &into"] \
                  -command \"stepbystep_bp\" -accelerator Shift+F8\
                  -image menubutstepimage -compound left "
-    eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
+        eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
                  -command \"stepbystep_bp\" -accelerator F8\
                  -image menubutstepimage -compound left "
-    eval "$pad.filemenu.debug.step add command [me "Step &out"] \
+        eval "$pad.filemenu.debug.step add command [me "Step &out"] \
                  -command \"stepbystep_bp\" -accelerator Ctrl+F8\
                  -image menubutstepimage -compound left "
 
@@ -176,28 +176,28 @@ proc createmenues {} {
     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "&Font size"]\
       -menu $pad.filemenu.options.fontsize "
-    eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
               -value 10 -variable FontSize -command \"setfontscipad 10\" "
-    eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\
               -value 12 -variable FontSize -command \"setfontscipad 12\" "
-    eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] \
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] \
               -value 14 -variable FontSize -command \"setfontscipad 14\" "
-    eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] \
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] \
               -value 18 -variable FontSize -command \"setfontscipad 18\" "
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
                -menu $pad.filemenu.options.colors"
-    menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
-    foreach c $bgcolors {
-        eval "$pad.filemenu.options.colors add command [me "$c"] \
+        menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
+        foreach c $bgcolors {
+            eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -background \[set $c\]\
                 -foreground $FGCOLOR -activeforeground $FGCOLOR"
-    }
-    foreach c $fgcolors {
-        eval "$pad.filemenu.options.colors add command [me "$c"] \
+        }
+        foreach c $fgcolors {
+            eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -foreground \[set $c\] \
                 -activeforeground \[set $c\] -background $BGCOLOR"
-    }
-    updateactiveforegroundcolormenu
+        }
+        updateactiveforegroundcolormenu
     eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
       -command {refreshQuotedStrings}\
       -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
@@ -206,23 +206,23 @@ proc createmenues {} {
       -offvalue none -onvalue word -variable wordWrap"
     eval "$pad.filemenu.options add cascade [me "&Tabs and indentation"] \
                -menu $pad.filemenu.options.tabs"
-    menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
-    eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
+        menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
+        eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
                     -offvalue tabs -onvalue spaces -variable tabinserts"
-    eval "$pad.filemenu.options.tabs add cascade  \
+        eval "$pad.filemenu.options.tabs add cascade  \
                 [me "&Indentation spaces"]\
                 -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
                         indentspaces 1 2 3 4 5 6 7 8 9 10]"
     menu $pad.filemenu.options.filenames -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "File&names"] \
            -menu $pad.filemenu.options.filenames "
-    eval "$pad.filemenu.options.filenames add radiobutton \
+        eval "$pad.filemenu.options.filenames add radiobutton \
             [me "&Full path"] -command {RefreshWindowsMenuLabels}\
              -value full -variable filenamesdisplaytype"
-    eval "$pad.filemenu.options.filenames add radiobutton \
+        eval "$pad.filemenu.options.filenames add radiobutton \
             [me "Full path if &ambiguous"] -command {RefreshWindowsMenuLabels}\
              -value fullifambig -variable filenamesdisplaytype"
-    eval "$pad.filemenu.options.filenames add radiobutton \
+        eval "$pad.filemenu.options.filenames add radiobutton \
                  [me "&Unambiguous pruned path"]\
                  -command {RefreshWindowsMenuLabels}\
                  -value pruned -variable filenamesdisplaytype"
@@ -268,6 +268,7 @@ proc createmenues {} {
     eval "$pad.filemenu.help add command [me "&About"] \
                -command \"aboutme\" -accelerator Shift+F1"
 ## additional hacker entries, for the moment disabled
+# in case they become enabled, entries must be added in the msg files
 #     $pad.filemenu.help add separator
 #     eval "$pad.filemenu.help add command \
 #             [me "&Adding translations..."] \

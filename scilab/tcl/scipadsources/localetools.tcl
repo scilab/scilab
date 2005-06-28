@@ -33,10 +33,10 @@ global lang sourcedir
     ::msgcat::mclocale $lang
     ::msgcat::mcload [file join $sourcedir msg_files]
     createmenues
-    setdbstate [getdbstate]
+    setdbmenuentriesstates_bp
     modifiedtitle [gettextareacur]
     keyposn [gettextareacur]
-#labels in opened non-modal dialogs are not updated, but let's not 
+# labels in opened non-modal dialogs are not updated, but let's not 
 # pretend too much... Same for the title of unsaved buffers named 
 # UntitledN.sce
 }

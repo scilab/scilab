@@ -38,7 +38,7 @@ if { [info exists pad] } {
     source [file join $sourcedir db_init.tcl]
     source [file join $sourcedir bindings.tcl]
 
-#additional initial state operations, now that all the widgets have been set
+# additional initial state operations, now that all the widgets have been set
     load_words
 
     createmenues

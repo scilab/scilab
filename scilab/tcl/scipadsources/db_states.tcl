@@ -101,6 +101,9 @@ global dev_debug
 if {$dev_debug=="true"} {
         $dm entryconfigure  8 -state normal
         bind all <Control-F11> {runtocursor_bp}
+} else {
+        $dm entryconfigure  8 -state disabled
+        bind all <Control-F11> {}
 }
         $dm entryconfigure  9 -state disabled
         pbind all $Shift_F12 {}
@@ -125,6 +128,9 @@ if {$dev_debug=="true"} {
 if {$dev_debug=="true"} {
         $dm entryconfigure  8 -state normal
         bind all <Control-F11> {runtocursor_bp}
+} else {
+        $dm entryconfigure  8 -state disabled
+        bind all <Control-F11> {}
 }
         $dm entryconfigure  9 -state normal
         pbind all $Shift_F12 {goonwo_bp}
@@ -133,6 +139,9 @@ if {$dev_debug=="true"} {
 if {$dev_debug=="true"} {
         $dm entryconfigure 13 -state normal
         bind all <F12> {break_bp}
+} else {
+        $dm entryconfigure 13 -state disabled
+        bind all <F12> {}
 }
         $dm entryconfigure 14 -state normal
 

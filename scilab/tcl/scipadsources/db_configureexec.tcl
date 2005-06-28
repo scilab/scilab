@@ -256,7 +256,7 @@ proc OKconf_bp {w} {
 }
 
 proc checkarglist {funname} {
-# Because the user could add input variables (in the buffer text) to the
+# Because the user could add input variables (in the text buffer) to the
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
     global listoftextarea funvars funvarsvals
@@ -321,41 +321,25 @@ proc checkarglist {funname} {
 #}
 
 proc Obtainall_bp {} {
+# Get all the functions defined in the current buffer only. Function names and
+# argument names are gathered and displayed in the configure box
     global spin listboxinput listboxinputval funnames funvars funvarsvals
     global funsinbuffer
     set textarea [gettextareacur]
     set funsinbuffer($textarea) ""
-    set nextfun [$textarea search -exact -forwards -regexp\
-                 "\\mfunction\\M" 0.0 end ]
-    set firstfuninbuffer "true"
-    while {$nextfun != ""} {
-        while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
-               [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
-            set nextfun [$textarea search -exact -forwards -regexp\
-                         "\\mfunction\\M" "$nextfun +8c" end]
-            if {$nextfun == ""} break
-        }
-        if {$nextfun != ""} {
-            set infun [whichfun [$textarea index "$nextfun +1l"]]
-        } else {
-            set infun {}
-        }
-        if {$infun != {} } {
-            $spin configure -state normal
-            $spin delete 0 end
-            set funname [lindex $infun 0]
-            set precval [$spin cget -values]
-            if {[lsearch $precval $funname] == -1} {
-                $spin configure -values "$precval $funname"
+    set funsinfo [lindex [getallfunsintextarea $textarea] 1]
+    if {[lindex $funsinfo 0] != "0NoFunInBuf"} {
+        # At least one function definition was found in the buffer
+        set funtoset [lindex $funsinfo 0]
+        $spin configure -state normal
+        $spin delete 0 end
+        set spinvalueslist ""
+        $listboxinput delete 0 [$listboxinput size]
+        $listboxinputval delete 0 [$listboxinputval size]
+        foreach {funname funline precfun} $funsinfo {
+            if {[lsearch $spinvalueslist $funname] == -1} {
+                set spinvalueslist "$spinvalueslist $funname"
             }
-            $spin configure -state readonly
-            if {$firstfuninbuffer == "true"} {
-                set firstfuninbuffer "false"
-                set funtoset $funname
-            }
-            set funline [lindex $infun 2]
-            $listboxinput delete 0 [$listboxinput size]
-            $listboxinputval delete 0 [$listboxinputval size]
             set oppar [string first "\(" $funline]
             set clpar [string first "\)" $funline]
             set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
@@ -365,22 +349,18 @@ proc Obtainall_bp {} {
                     set listvars [lreplace $listvars [lsearch $listvars "varargin"] end]
                     break
                 }
-                $listboxinput insert end $var
                 set funvarsvals($funname,$var) ""
-                $listboxinputval insert end $funvarsvals($funname,$var)
             }
-            $listboxinput selection set 0
-            $listboxinput see 0
             set funvars($funname) $listvars
             set funsinbuffer($textarea) "$funsinbuffer($textarea) $funname"
-            set nextfun [$textarea search -exact -forwards -regexp\
-                         "\\mfunction\\M" "$nextfun +8c" end]
         }
-    }
-    set funnames [$spin cget -values]
-    if {[info exists funtoset]} {
+        $spin configure -values $spinvalueslist
+        $spin configure -state readonly
         $spin set $funtoset
+        set funnames [$spin cget -values]
     } else {
+        # No function definition found in the buffer
+        set funnames [$spin cget -values]
         $spin set [lindex $funnames 0]
     }
     spinboxbuttoninvoke

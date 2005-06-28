@@ -466,21 +466,9 @@ proc filesaveas {textarea} {
     if {![info exists startdir]} {set startdir [pwd]}
     # proposedname is the first function name found in the buffer
     set proposedname ""
-    set nextfun [$textarea search -exact -forwards -regexp\
-                 "\\mfunction\\M" 0.0 end ]
-    if {$nextfun != ""} {
-        while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
-               [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
-            set nextfun [$textarea search -exact -forwards -regexp\
-                         "\\mfunction\\M" "$nextfun +8c" end]
-            if {$nextfun == ""} break
-        }
-        if {$nextfun != ""} {
-            set infun [whichfun [$textarea index "$nextfun +1l"]]
-            set proposedname [lindex $infun 0]
-            set nextfun [$textarea search -exact -forwards -regexp\
-                         "\\mfunction\\M" "$nextfun +8c" end]
-        }
+    set firstfuninfo [lindex [getallfunsintextarea $textarea] 1]
+    if {[lindex $firstfuninfo 0] != "0NoFunInBuf"} {
+        set proposedname [lindex $firstfuninfo 0]
     }
     if {$listoffile("$textarea",new)==0 || $proposedname==""} {
         set proposedname $listoffile("$textarea",displayedname)

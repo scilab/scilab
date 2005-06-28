@@ -9,54 +9,47 @@ proc updateactivebreakpoint { {itemno 3} } {
     ScilabEval_lt "$fullcomm" "seq"
 }
 
-proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpos "No"}} {
-    global listoftextarea pad listoffile
-    set textareafun ""
-    foreach textarea $listoftextarea {
-        $textarea tag remove activebreakpoint 1.0 end
-        set nextfun [$textarea search -exact -forwards -regexp\
-                     "\\mfunction\\M" 1.0 end ]
-        while {$nextfun != ""} {
-            while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
-                   [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
-                set nextfun [$textarea search -exact -forwards -regexp\
-                             "\\mfunction\\M" "$nextfun +8c" end]
-                if {$nextfun == ""} {break}
-            }
-            if {$nextfun != ""} {
-                set infun [whichfun [$textarea index "$nextfun +1c"] $textarea]
-                set funname [lindex $infun 0]
-                if {$funname == $activemacro} {
-                    set textareafun $textarea
-                    set funstart [lindex $infun 3]
-                    break
-                }
-                set nextfun [$textarea search -exact -forwards -regexp\
-                             "\\mfunction\\M" "$nextfun +8c" end ]
-                if {$nextfun == ""} {break}
+proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
+# Show the active breakpoint
+# This is done by fooling proc dogotoline
+    global physlogic linetogo curfileorfun funtogoto
+    removeallactive_bp
+    if {$activemacro == ""} {return}
+    if {![info exists physlogic]} {
+        # go to line dialog was never opened before
+        set flag "undefined"
+    } else {
+        # save current values so that they will stay when the user reopens the go to line dialog
+        set flag "they_exist"
+        set temp1 $physlogic
+        set temp2 $linetogo
+        set temp3 $curfileorfun
+        set temp4 $funtogoto
+    }
+    set fundefs [getallfunsinalltextareas]
+    foreach {ta fundefsinta} $fundefs {
+        foreach {funcname funcline funstartline} $fundefsinta {
+            if {$funcname == $activemacro} {
+                set funtogoto [list $funcname $ta $funstartline]
+                break
             }
         }
     }
-    if {$textareafun != "" && $activeline > 0} {
-        set windmenuindex [extractindexfromlabel $pad.filemenu.wind $listoffile("$textareafun",displayedname)]
-        $pad.filemenu.wind invoke $windmenuindex
-        set infun [whichfun [$textareafun index "$funstart + 1c"] $textareafun]
-        set offset 0
-        # <TODO> This while loop could be improved (proc whichfun takes time to execute)
-        # Its purpose is to make the line number in the buffer correspond to $activeline
-        # reported by where() in Scilab (see proc updateactivebreakpoint)
-        while {$infun != "" && [lindex $infun 1] != $activeline} {
-            incr offset
-            set infun [whichfun [$textareafun index "$funstart + $offset l"] $textareafun]
-        }
-        if {[lindex $infun 0] == $activemacro} {
-            set actline [expr $funstart + $offset ]
-            $textareafun tag add activebreakpoint "$actline linestart" "$actline lineend"
-            $textareafun see $actline
-            if {$updatecursorpos != "No"} {
-                $textareafun mark set insert "$funstart + $offset l"
-            }
-        }
+    set physlogic "logical"
+    set linetogo $activeline
+    set curfileorfun "function"
+    if {$funtogoto != {}} {
+        dogotoline
+        set actpos [[lindex $funtogoto 1] index insert]
+        [lindex $funtogoto 1] tag add activebreakpoint "$actpos linestart" "$actpos lineend"
+    }
+    if {$flag == "undefined"} {
+        unset physlogic linetogo curfileorfun funtogoto
+    } else {
+        set physlogic $temp1
+        set linetogo $temp2
+        set curfileorfun $temp3
+        set funtogoto $temp4
     }
 }
 

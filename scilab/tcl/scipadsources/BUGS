@@ -175,16 +175,6 @@ Wishes:
  tool bar. Or a spinbox plus a 'Go' button. The buffer search could be 
  launched only on invocation of the spinbox arrows or on menu selection.
 
--add a "Go to line N in function..." and "Go to logical line", which take into 
- account continued lines, procedures and menu entries.
-
--subwindows (e.g Find.., file choosers, debugger, tk_messageBoxes...)
- should inherit the current font size
- Note: This is partially implemented. Only the file chooser (for open/save)
- and the color picker does not follow font changes. Must find the right
- option add for this! Of course option add *font $textFont userDefault will
- do it but there are many drawbacks to this brute force way
-
 -Conditional breakpoints
 
 -make use of the vector argument for setbpt and delbpt to shorten the
@@ -225,6 +215,8 @@ Wishes:
  http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/284848
  Tk request 734625 (Output the contents of a text widget to a (PostScript) file)
  Tk request 220817 (Direct Print Support for all widgets)
+ http://www.du.edu/~mschwart/tclextensions.html (printer extension)
+ http://www.nyx.net/~mschwart/ (printer extension)
 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add
