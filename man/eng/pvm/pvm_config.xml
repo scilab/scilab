@@ -81,6 +81,7 @@
 <![CDATA[
 ok=pvm_start()
 res = pvm_config()
+pvm_halt()
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
