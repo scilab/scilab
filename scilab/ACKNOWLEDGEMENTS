@@ -94,7 +94,7 @@ sparse: Operations on sparse matrices (S. Steer INRIA)
 	 routines to read .mps file (sparse linear programming) are from 
          J. Gondzio (Hopdm).
 
-os_specicic: system specific Scilab routines (INRIA/ENPC). 
+os_specific: system specific Scilab routines (INRIA/ENPC). 
          link.c ,link*.c: dynamic linking of programs for differents 
          architectures (Erlich,Chancelier) link_linux.c was initiated 
          by B.Lapeyre.
