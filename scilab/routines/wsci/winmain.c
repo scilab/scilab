@@ -208,7 +208,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	strcpy(FileName,"Empty");
 
 	/* New Graphics Mode Warning */
-	MessageBoxNewGraphicMode();
+	/*MessageBoxNewGraphicMode();*/
 
 	ScilabDirectory=GetScilabDirectory(FALSE);
 
