@@ -79,9 +79,10 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-ok=pvm_start()
-res = pvm_config()
-pvm_halt()
+if pvm_start()==0 then
+    res = pvm_config()
+    pvm_halt()
+end
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

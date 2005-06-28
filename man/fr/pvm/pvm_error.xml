@@ -31,9 +31,10 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-pvm_start()  
-a = pvm_error(0)
-pvm_halt()
+if pvm_start()  == 0
+  a = pvm_error(0)
+  pvm_halt()
+end
  ]]>
   </EXAMPLE>
 </MAN>

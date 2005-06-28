@@ -91,13 +91,7 @@
     Once pvm_recv returns, the data in the message can be unpacked
     into the user's memory using the unpack routines.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-[b, info, msgtid, tag] = pvm_recv(pvm_parent(),100)
-g = pvm_recv(pvm_parent(),200)
 
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_send</LINK>
