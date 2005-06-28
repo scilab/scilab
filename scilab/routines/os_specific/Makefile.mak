@@ -3,7 +3,7 @@ SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
 
-LIBRARY = $(SCIDIR)/libs/os_specicic.lib
+LIBRARY = $(SCIDIR)/libs/os_specific.lib
 
 OBJSF = bashos.obj basin.obj basout.obj \
 	clunit.obj ctrlc.obj dbasin.obj  \

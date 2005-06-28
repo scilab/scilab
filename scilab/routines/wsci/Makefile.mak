@@ -48,7 +48,7 @@ test	: $(RESOURCES) wtest.obj ../../libs/wsci.lib
 	 -OUT:"../../bin/test-vc.exe" wtest.obj \
 	$(RESOURCES) ../../libs/wsci.lib ../../libs/graphics.lib \
 	../../libs/wsci.lib ../../libs/menusX.lib \
-	../../libs/sun.lib ../../libs/system.lib ../../libs/xdr.lib \
+	../../libs/os_specific.lib ../../libs/system.lib ../../libs/xdr.lib \
 	$(GTK_LIBS) 
 
 wtest.obj : wtloop.c 
@@ -114,7 +114,7 @@ tclWinError.obj: tclWinError.c
 wgmenu.obj: wgmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h ../sun/men_Sutils.h
+  ../interf/stack3.h wadd.h common.h ../os_specific/men_Sutils.h
 wgnuplib.obj: wgnuplib.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
