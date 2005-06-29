@@ -44,6 +44,7 @@ function scitest(tstfile,force,error_check,keep_prompt)
        +'deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');'..
        +'predef(''all'');'..
        +'diary('''+tmpfiles+'dia'+''');'..
+       +'mprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);'..
        +'driver(''Pos'');xinit('''+tmpfiles+'gr'+''');';
   tail="diary(0);xend();exit;"
   
@@ -59,7 +60,13 @@ function scitest(tstfile,force,error_check,keep_prompt)
   // ----------------------------------
   dia=mgetl(tmpfiles+'dia')
   dia(grep(dia,'exec('))=[];
+  TMP=dia(1);dia(1)=[]
   dia(grep(dia,'diary(0)'))=[];
+  
+  execstr(TMP)
+  
+  dia=strsubst(dia,TMPDIR,'TMPDIR');
+  dia=strsubst(dia,TMPDIR1,'TMPDIR');
 
   //suppress the prompts
   if keep_prompt == %f then 
