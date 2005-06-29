@@ -1,6 +1,6 @@
 function maketests(job)
   path=pwd()
-  cd SCI/tests/Examples/other
+  cd SCI/tests/Examples_eng/other
   lines(0) // to disable line control
   if argn(2)<1 then job='tests',end
   if job=='clean' then //remove .dia files
