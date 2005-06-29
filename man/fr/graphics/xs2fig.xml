@@ -35,7 +35,22 @@
     <P><VERB>xs2fig</VERB> sends the recorded graphics of the
     window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in Xfig syntax.
     This function works only if the selected 
-    driver is <VERB>&quot;Rec&quot;</VERB>  or if the window is in &quot;new style&quot;.</P>
+    driver is <VERB>&quot;Rec&quot;</VERB>  or if the window is in &quot;new
+      style&quot;.</P>
+
+    <P>To convert a sequence of &quot;GIF&quot;  files to an animated GIF file
+      one can use the &quot;convert&quot; program for ImageMagic
+      (http://www.imagemagick.org/)</P>
+
+    <P>For example if one has generated a sequence of Gif files named
+      <VERB>img*.gif</VERB> it is possible to build an animated Gif file (named
+      anim.gif) by</P> 
+    <VERBATIM>
+    <![CDATA[
+    convert -delay 10  img*.gif anim.gif  
+     ]]>
+    </VERBATIM>
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[ 
     scf(0)
