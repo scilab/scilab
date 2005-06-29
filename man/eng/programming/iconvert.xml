@@ -56,7 +56,7 @@
   <EXAMPLE>
 <![CDATA[
 b=int32([1 -120 127 312])
-y=iconvert(b,8)
+y=iconvert(b,1)
 
  ]]>
   </EXAMPLE>
