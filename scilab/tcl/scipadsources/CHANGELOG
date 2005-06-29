@@ -1226,3 +1226,11 @@ Francois VOGEL, 28/06/05
    these instead of the loop that regexp-searches for "\\mfunction\\M" and
    checks whichfun it is in
  * version --> 5.12
+
+Francois VOGEL, 29/06/05
+ * New Go to line... option implemented:
+     - Go to logical line N in current buffer (useful for .sce or mixed files)
+ * Logical line number in buffer is displayed in statusind2 for Scilab files
+   when the cursor is not in a function
+ * Modularity of whichfun further improved - creation of proc countcontlines
+ * version --> 5.13

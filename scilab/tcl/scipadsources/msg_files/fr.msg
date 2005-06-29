@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.12
+# in sync at least with v5.13
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -164,6 +164,7 @@
     ::msgcat::mcset fr "Column:" "Colonne:"
 ::msgcat::mcset fr "Line" "Ligne"
     ::msgcat::mcset fr "in" "de"
+::msgcat::mcset fr "Logical line:" "Ligne logique:"
 ::msgcat::mcset fr " \[ReadOnly\]" " \[LectureSeule\]"
 ::msgcat::mcset fr " (modified)" " (modifié)"
 

@@ -22,8 +22,27 @@ Bugs:
 -Line number finding in functions may provide wrong results in some pathological
  cases of continued lines, namely:
  . "Mixed" continued lines, i.e. a single cont line splitted in many buffer lines,
-   some of them containing dots and some other not
- . Nested brackets or braces in continued lines
+   some of them containing dots and some other not.
+     Example:
+        a1={4 ; 5 ;...
+            7
+            6};..
+            disp(a1)
+     More tricky example:
+        a1=[1;...
+            6]
+        a2=[ 6; //note that the comment here is legal
+             7
+            61
+             8]
+        Line numbers when moving the cursor in a1 are correct.
+        But line numbers when moving the cursor in a2 are not correct.
+        This is a case of mixed continued lines: some with dots some without,
+        in the same file but in different variable declarations
+ . Nested brackets or braces in continued lines.
+     Example:
+        a=[[1,2];
+          [3,4]]
 
 -In the debugger, trying to F10 with something like:
     function ...

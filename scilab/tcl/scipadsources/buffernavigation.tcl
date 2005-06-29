@@ -169,9 +169,9 @@ proc updateOKbuttonstategoto {w {entryfieldvalue "not_given"}} {
 # Note: Scheme or $listoffile("$textarea",language) does not need to be checked since
 # getallfunsintextarea deals with it and does not return functions from anything else
 # than a Scilab scheme buffer
-    global unklabel physlogic curfileorfun linetogo
+    global unklabel physlogic curfileorfun linetogo Scheme
     if {$entryfieldvalue == "not_given"} {set entryfieldvalue $linetogo}
-    if {($curfileorfun == "current_file" && $physlogic == "logical") || \
+    if {($curfileorfun == "current_file" && $physlogic == "logical" && $Scheme != "scilab") || \
         ($curfileorfun == "function" && [$w.f2.mb cget -text] == $unklabel) || \
         ($entryfieldvalue <= 0) || ![string is integer -strict $entryfieldvalue] } {
         $w.ok configure -state disabled
@@ -200,7 +200,22 @@ proc dogotoline {} {
 
         } else {
             # go to logical line in current file
-            # this option has no meaning and is disabled in the goto line dialog
+            # this option enabled in the goto line dialog only for scilab scheme files
+            set ta [gettextareacur]
+            set endpos [$ta index end]
+            set offset 0
+            set curphysline 1.0
+            set curlogicline $curphysline
+            while {$linetogo != $curlogicline && [$ta compare $curphysline < $endpos]} {
+                incr offset
+                set curphysline [$ta index "$offset.0"]
+                set contlines [countcontlines $ta 1.0 $curphysline]
+                set curlogicline [$ta index "$curphysline - $contlines l"]
+            }
+            $ta mark set insert $curphysline
+            catch {keyposn $ta}
+            $ta see insert
+
         }
 
     } else {

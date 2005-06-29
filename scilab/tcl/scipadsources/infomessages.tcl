@@ -22,17 +22,24 @@ proc keyposn {textarea} {
     scan $indexin "%d.%d" ypos xpos
     incr xpos
     $pad.statusind configure -text [concat [mc "Line:"] $ypos [mc "Column:"] $xpos]
-    set infun [whichfun $indexin]
+    set infun [whichfun $indexin $textarea]
     $pad.statusind2 configure -state normal
     $pad.statusind2 configure -text " "
     if {$listoffile("$textarea",language) == "scilab" } {
-        if {$infun !={} } {
-            set funname [lindex $infun 0]
+        if {$infun != {} } {
+            # display logical line number in current function
+            set funname   [lindex $infun 0]
             set lineinfun [lindex $infun 1]
             $pad.statusind2 configure -text [concat [mc "Line"] $lineinfun [mc "in"] $funname]
+            # create help skeleton enabled since we're in a Scilab function
             $pad.filemenu.files entryconfigure 8 -state normal
         } else {
-            $pad.statusind2 configure -text " "
+            # display logical line number in current buffer
+            set contlines [countcontlines $textarea 1.0 $indexin]
+            set logicline [$textarea index "$indexin - $contlines l"]
+            scan $logicline "%d.%d" ylogicpos xlogicpos
+            $pad.statusind2 configure -text [concat [mc "Logical line:"] $ylogicpos]
+            # create help skeleton disabled since we're outside any Scilab function
             $pad.filemenu.files entryconfigure 8 -state disabled
         }
     }

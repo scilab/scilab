@@ -101,54 +101,13 @@ proc whichfun {indexin {buf "current"}} {
     if {$insidefun == 0} {
         return {}
     } else {
-        # check how many continued (...) lines between $indexin and $precfun,
-        #  and derive the current line within the function definition
-        set last $precfun
-        set contlines 0
-        set dottedlineslist {}
-        while {[set ind [$textarea search -regexp "\\.{2,} *(//.*)?\\Z"\
-                $last $indexin]] != {}} {
-            if {[$textarea compare $ind >= $last] } {
-                set last "$ind+1l linestart"
-                if { [lsearch [$textarea tag names $ind] "rem2"] ==-1 &&
-                        [$textarea compare $last <= $indexin] } {
-                    set contlines [expr $contlines+1]
-                    set dottedlineslist [linsert $dottedlineslist end \
-                        [$textarea index "$ind linestart"]]
-                }
-            } else break
-        }
-
-        proc checkcontbraceorbracket {precfun indexin textarea openchar closechar dottedlineslist} {
-            set last $precfun
-            set contlines 0
-            while {[set ind [$textarea search $openchar \
-                             $last $indexin]] != {}} {
-                if {[$textarea compare $ind >= $last] &&
-                    [lsearch $dottedlineslist [$textarea index "$ind linestart"]] == -1 &&
-                    [lsearch [$textarea tag names $ind] "textquoted"] ==-1 } {
-                    set ind2 [$textarea search $closechar $ind end]
-                    if {$ind2 != {}} {
-                        if {[$textarea compare "$ind2 linestart" > "$ind linestart"]} {
-                            incr contlines [expr int([$textarea index "$ind2 linestart"]\
-                                                   - [$textarea index "$ind linestart"]) ]
-                        }
-                        if {[$textarea compare $ind2 > $indexin]} {
-                            incr contlines [expr int([$textarea index "$indexin linestart"]\
-                                                   - [$textarea index "$ind2 linestart"]) ]
-                        }
-                    }
-                    set last "$ind+1l linestart"
-                } else break
-            }
-            return $contlines
-        }
-
-        incr contlines [checkcontbraceorbracket $precfun $indexin $textarea "\{" "\}" $dottedlineslist]
-        incr contlines [checkcontbraceorbracket $precfun $indexin $textarea "\[" "\]" $dottedlineslist]
-
+        # check how many continued (.. or unmatched bracket or brace in a single
+        # physical line) lines between $indexin and $precfun, and derive the
+        # current logical line within the function definition
+        set contlines [countcontlines $textarea $precfun $indexin]
         scan $precfun "%d." beginfunline 
         set lineinfun [expr $ypos-$beginfunline-$contlines+1]
+
 #        tk_messageBox -message [concat \
 #                               [mc "Being at line"] $ypos \
 #                               [mc ", function"] $funname \
@@ -156,9 +115,79 @@ proc whichfun {indexin {buf "current"}} {
 #                               [mc ", and there are"] $contlines \
 #                               [mc "continued lines, i.e. we are at line"] $lineinfun \
 #                               [mc "of"] $funname "\n$funline"]
+
         return [list $funname $lineinfun $funline $precfun $contlines] 
     }
 }
+
+proc countcontlines {textarea indstart indstop} {
+# Count the continued lines in textarea
+# Counting is done between $indstart and $indstop
+# Physical position of these lines is saved in $dottedlineslist
+# Comments are supported
+# <TODO>: These still fool the algorithm:
+#    - Mixed continued lines (i.e. single continued lines splitted in many
+#      buffer lines, some of them containing dots and some other not)
+#    - Nested brackets or braces in continued lines
+
+    set last $indstart
+    set contlines 0
+    # First detect the dotted continued lines between $indstart and $indstop
+    # These lines are indicated as continued by the two or more dots possibly
+    # followed by a comment
+    set dottedlineslist {}
+    while {[set ind [$textarea search -regexp "\\.{2,} *(//.*)?\\Z"\
+            $last $indstop]] != {}} {
+        if {[$textarea compare $ind >= $last] } {
+            set last "$ind+1l linestart"
+            if { [lsearch [$textarea tag names $ind] "rem2"] ==-1 &&
+                    [$textarea compare $last <= $indstop] } {
+                set contlines [expr $contlines+1]
+                set dottedlineslist [linsert $dottedlineslist end \
+                    [$textarea index "$ind linestart"]]
+            }
+        } else break
+    }
+
+    proc checkcontbraceorbracket {indstart indstop textarea openchar closechar dottedlineslist} {
+    # Count the number of continued lines that does not contain dots to indicate they are
+    # continued lines. This is the case e.g. for arrays.
+    # This procedure is general, it checks for unmatched $openchar/$closechar on single lines
+    # Comments in the middle of a declaration are supported
+    # dottedlineslist is used to avoid double counting of lines such as a = [1,2... that would
+    # give two positives (one because of the dots, the other one because of the unmatched bracket)
+        set last $indstart
+        set contlines 0
+        while {[set ind [$textarea search $openchar \
+                         $last $indstop]] != {}} {
+            if {[$textarea compare $ind >= $last] &&
+                [lsearch $dottedlineslist [$textarea index "$ind linestart"]] == -1 &&
+                [lsearch [$textarea tag names $ind] "textquoted"] == -1 } {
+                set ind2 [$textarea search $closechar $ind end]
+                if {$ind2 != {}} {
+                    if {[$textarea compare "$ind2 linestart" > "$ind linestart"]} {
+                        incr contlines [expr int([$textarea index "$ind2 linestart"]\
+                                               - [$textarea index "$ind linestart"]) ]
+                    }
+                    if {[$textarea compare $ind2 > $indstop]} {
+                        incr contlines [expr int([$textarea index "$indstop linestart"]\
+                                               - [$textarea index "$ind2 linestart"]) ]
+                    }
+                }
+                set last "$ind+1l linestart"
+            } else break
+        }
+        return $contlines
+    }
+
+    # Add the number of continued lines indicated by unmatched brackets or braces, that are not
+    # indicated at the same time as continued by the trailing dots + possible comment
+    incr contlines [checkcontbraceorbracket $indstart $indstop $textarea "\{" "\}" $dottedlineslist]
+    incr contlines [checkcontbraceorbracket $indstart $indstop $textarea "\[" "\]" $dottedlineslist]
+
+    return $contlines
+}
+
 
 proc showwhichfun {} {
     set textarea [gettextareacur]

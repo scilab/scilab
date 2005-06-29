@@ -45,12 +45,7 @@ if {0} {
 # A useful binding triggering a message box
 if {0} {
     proc dispsthg {} {
-        global pad listoftextarea listoffile
-        set str ""
-        foreach ta $listoftextarea {
-            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
-            lappend str "[$pad.filemenu.wind entrycget $i -command]\n"
-        }
+        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
         tk_messageBox -message "$str"
     }
     bind all <Control-=> {dispsthg}
@@ -61,7 +56,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.12"
+set version "Version 5.13"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
