@@ -114,3 +114,7 @@ wintools.lib
 wintools.def
 tclsci.def
 tclsci.lib
+os_specific.lib
+fileio.lib
+fileio.def
+os_specific.def
