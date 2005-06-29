@@ -50,7 +50,8 @@
     <P>set the value of an environnment variable.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[ setenv('toto','example')
+  <EXAMPLE><![CDATA[ 
+ setenv('toto','example')
  getenv('toto')
   ]]></EXAMPLE>
 
