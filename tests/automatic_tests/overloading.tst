@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/overloading_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/overloading_data.ref','r');
 //DISPLAY
 %ans = deff('[]=%tab_p(l)', 'disp([['' '';l(3)] [l(2);string(l(4))]])');
 if load_ref('%ans') then   pause,end,

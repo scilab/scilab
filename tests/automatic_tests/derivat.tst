@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/derivat_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/derivat_data.ref','r');
 s = poly(0, 's');
 %ans = derivat(1/s);
 if load_ref('%ans') then   pause,end,

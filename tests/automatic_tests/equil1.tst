@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/equil1_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/equil1_data.ref','r');
 S1 = rand(2, 2);S1 = S1 * S1';
 S2 = rand(2, 2);S2 = S2 * S2';
 S3 = rand(2, 2);S3 = S3 * S3';

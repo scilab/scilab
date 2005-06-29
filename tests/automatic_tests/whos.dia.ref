@@ -3,25 +3,26 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/whos_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/whos_data.ref','r');
  
 %ans = whos();
 Name                     Type           Size           Bytes        
  
 whos                     function                      7688         
 %U                       constant       1 by 1         24           
-%CMP                     function                      15624        
+%CMP                     function                      16016        
 xbasc_run                function                      5448         
 clf_run                  function                      6928         
 xdel_run                 function                      5456         
-reinit_for_test          function                      2672         
+reinit_for_test          function                      2904         
+load_ref_nocheck         function                      1144         
 load_ref                 function                      1264         
 bugmes                   function                      256          
 scicos_pal               string         12 by 2        2048         
 %helps                   string         27 by 2        16           
 home                     string         1 by 1         72           
 SCIHOME                  string         1 by 1         160          
-PWD                      string         1 by 1         192          
+PWD                      string         1 by 1         208          
 TMPDIR                   string         1 by 1         80           
 MSDOS                    boolean        1 by 1         16           
 SCI                      string         1 by 1         112          
@@ -90,7 +91,7 @@ Name                     Type           Size           Bytes
 %_opt                    string         1 by 1         48           
 %_sel                    string         1 by 1         32           
 %U                       constant       1 by 1         24           
-%CMP                     function                      15624        
+%CMP                     function                      16016        
 %helps                   string         27 by 2        16           
 %F                       boolean        1 by 1         24           
 %T                       boolean        1 by 1         24           

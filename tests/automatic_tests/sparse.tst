@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sparse_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/sparse_data.ref','r');
 sp = sparse([1,2;4,5;3,10], [1,2,3]);
 if load_ref('sp') then   pause,end,
 

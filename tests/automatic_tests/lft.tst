@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lft_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lft_data.ref','r');
 s = poly(0, 's');
 P = [1/s,1/(s + 1);1/(s + 2),2/s];K = 1/(s - 1);
 %ans = lft(P, K);

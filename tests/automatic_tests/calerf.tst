@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/calerf_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/calerf_data.ref','r');
 deff('y=f(t)', 'y=exp(-t^2)');
 %ans = calerf(1, 0);
 if load_ref('%ans') then   pause,end,

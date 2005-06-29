@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/mini_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/mini_data.ref','r');
 [m,n] = mini([1,3,1]);
 if load_ref('n') then   pause,end,
 if load_ref('m') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sort_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/sort_data.ref','r');
 [s,p] = sort(rand(1, 10));
 //p  is a random permutation of 1:10
 A = [1,2,5;3,4,2];

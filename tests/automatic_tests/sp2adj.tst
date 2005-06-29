@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sp2adj_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/sp2adj_data.ref','r');
 A = sprand(100, 50, 0.05);
 [xadj,adjncy,anz] = sp2adj(A);
 [n,m] = size(A);

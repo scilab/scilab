@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/polar_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/polar_data.ref','r');
 A = rand(5, 5);
 [Ro,Theta] = polar(A);
 %ans = norm(A - Ro * expm(%i * Theta), 1);

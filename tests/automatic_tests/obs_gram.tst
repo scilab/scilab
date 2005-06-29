@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/obs_gram_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/obs_gram_data.ref','r');
 A = -diag(1:3);C = rand(2, 3);
 Go = obs_gram(A, C, 'c');// <=> w=syslin('c',A,[],C); Go=obs_gram(w);
 %ans = norm(Go * A + A' * Go + C' * C, 1);

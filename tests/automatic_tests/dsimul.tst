@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/dsimul_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/dsimul_data.ref','r');
 z = poly(0, 'z');
 h = (1 - 2 * z)/(z^2 - 0.2 * z + 1);
 sl = tf2ss(h);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_send_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pvm_send_data.ref','r');
 A = rand(5, 5) * (1 + %i);
 %ans = deff('[x]=f(y)', 'x = 1/y');
 if load_ref('%ans') then   pause,end,

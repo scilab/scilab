@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/inv_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/inv_data.ref','r');
 A = rand(3, 3);%ans = inv(A) * A;
 if load_ref('%ans') then   pause,end,
 

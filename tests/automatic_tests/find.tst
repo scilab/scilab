@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/find_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/find_data.ref','r');
 A = rand(1, 20);
 w = find(A < 0.4);
 if load_ref('w') then   pause,end,

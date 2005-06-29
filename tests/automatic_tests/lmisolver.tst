@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lmisolver_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lmisolver_data.ref','r');
 //Find diagonal matrix X (i.e. X=diag(diag(X), p=1) such that
 //A1'*X+X*A1+Q1 < 0, A2'*X+X*A2+Q2 < 0 (q=2) and trace(X) is maximized
 n = 2;A1 = rand(n, n);A2 = rand(n, n);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/time_id_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/time_id_data.ref','r');
 z = poly(0, 'z');
 h = (1 - 2 * z)/(z^2 - 0.5 * z + 5);
 if load_ref('h') then   pause,end,

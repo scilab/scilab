@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/delip_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/delip_data.ref','r');
 ck = 0.5;
 %ans = delip([1,2], ck);
 if load_ref('%ans') then   pause,end,

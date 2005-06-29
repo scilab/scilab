@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/rank_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/rank_data.ref','r');
 %ans = rank([1.00000000000E-80,0;0,1.00000000000E-80]);
 if load_ref('%ans') then   pause,end,
 

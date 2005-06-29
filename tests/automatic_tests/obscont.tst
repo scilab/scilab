@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/obscont_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/obscont_data.ref','r');
 ny = 2;nu = 3;nx = 4;P = ssrand(ny, nu, nx);[A,B,C,D] = abcd(P);
 Kc = -ppol(A, B, [-1,-1,-1,-1]);//Controller gain
 Kf = -ppol(A', C', [-2,-2,-2,-2]);Kf = Kf';//Observer gain

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/ieee_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/ieee_data.ref','r');
 ieee(1);%ans = 1/0;
 if load_ref('%ans') then   pause,end,
 

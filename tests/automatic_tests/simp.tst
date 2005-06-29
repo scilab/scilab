@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/simp_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/simp_data.ref','r');
 s = poly(0, 's');
 [n,d] = simp((s + 1) * (s + 2), (s + 1) * (s - 2));
 if load_ref('d') then   pause,end,

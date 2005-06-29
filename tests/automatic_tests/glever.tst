@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/glever_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/glever_data.ref','r');
 s = %s;F = [-1,s,0,0;0,-1,0,0;0,0,s - 2,0;0,0,0,s - 1];
 [Bfs,Bis,chis] = glever(F);
 if load_ref('chis') then   pause,end,

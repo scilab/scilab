@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_config_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pvm_config_data.ref','r');
 if pvm_start() == 0 then 
   res = pvm_config();
   if load_ref('res') then   pause,end,

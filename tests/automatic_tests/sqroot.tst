@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sqroot_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/sqroot_data.ref','r');
 X = rand(5, 2) * rand(2, 5);X = X * X';
 W = sqroot(X);
 if load_ref('W') then   pause,end,

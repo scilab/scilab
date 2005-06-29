@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/hrmt_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/hrmt_data.ref','r');
 x = poly(0, 'x');
 v = [x * (x + 1),(x^2) * (x + 1),(x - 2) * (x + 1),(3 * (x^2) + 2) * (x + 1)];
 [pg,U] = hrmt(v);U = clean(U);

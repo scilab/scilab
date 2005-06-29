@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/conj_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/conj_data.ref','r');
 x = [1 + %i,-%i;%i,2 * %i];
 %ans = conj(x);
 if load_ref('%ans') then   pause,end,

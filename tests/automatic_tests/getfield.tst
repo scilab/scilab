@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/getfield_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/getfield_data.ref','r');
 l = list(1, 'qwerw', %s);
 if load_ref('l') then   pause,end,
 

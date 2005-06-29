@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sinm_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/sinm_data.ref','r');
 A = [1,2;2,4];
 %ans = sinm(A) + 0.5 * %i * (expm(%i * A) - expm(-%i * A));
 if load_ref('%ans') then   pause,end,

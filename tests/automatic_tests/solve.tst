@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/solve_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/solve_data.ref','r');
 A = ['1','a';'0','2'];//Upper triangular
 b = ['x';'y'];
 w = solve(A, b);

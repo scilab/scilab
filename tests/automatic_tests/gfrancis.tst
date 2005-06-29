@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/gfrancis_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/gfrancis_data.ref','r');
 Plant = ssrand(1, 3, 5);
 [F,G,H,J] = abcd(Plant);
 nw = 4;nuu = 2;A = rand(nw, nw);

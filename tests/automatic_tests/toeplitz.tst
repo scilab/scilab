@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/toeplitz_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/toeplitz_data.ref','r');
 A = toeplitz(1:5);
 //
 T = toeplitz(1:5, 1:2:7);T1 = [1,3,5,7;2,1,3,5;3,2,1,3;4,3,2,1;5,4,3,2];

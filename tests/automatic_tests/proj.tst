@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/proj_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/proj_data.ref','r');
 X1 = rand(5, 2);X2 = rand(5, 3);
 P = proj(X1, X2);
 %ans = norm(P^2 - P, 1);

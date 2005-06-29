@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/null_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/null_data.ref','r');
 l = list(1, 2, 3);
 l(2) = null();
 if load_ref('l') then   pause,end,

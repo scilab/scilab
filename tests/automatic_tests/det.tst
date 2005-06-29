@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/det_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/det_data.ref','r');
 x = poly(0, 'x');
 %ans = det([x,1 + x;2 - x,x^2]);
 if load_ref('%ans') then   pause,end,

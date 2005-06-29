@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/clean_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/clean_data.ref','r');
 x = poly(0, 'x');
 w = [x,1,2 + x;3 + x,2 - x,x^2;1,2,3 + x]/3;
 %ans = w * inv(w);

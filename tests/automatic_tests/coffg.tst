@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/coffg_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/coffg_data.ref','r');
 s = poly(0, 's');
 if load_ref('s') then   pause,end,
 

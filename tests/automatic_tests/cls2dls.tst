@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/cls2dls_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/cls2dls_data.ref','r');
 s = poly(0, 's');z = poly(0, 'z');
 sl = syslin('c', (s + 1)/(s^2 - 5 * s + 2));//Continuous-time system in transfer form
 slss = tf2ss(sl);//Now in state-space form

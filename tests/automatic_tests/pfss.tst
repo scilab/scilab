@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pfss_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pfss_data.ref','r');
 W = ssrand(1, 1, 6);
 elts = pfss(W);
 W1 = 0;for k = 1:size(elts),  W1 = W1 + ss2tf(elts(k));end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/abcd_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/abcd_data.ref','r');
 A = diag([1,2,3]);B = [1;1;1];C = [2,2,2];
 sys = syslin('c', A, B, C);
 %ans = sys('A');

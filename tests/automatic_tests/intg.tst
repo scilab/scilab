@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/intg_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/intg_data.ref','r');
 //Scilab function case
 function y=f(x)
   ,y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),

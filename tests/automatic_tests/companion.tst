@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/companion_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/companion_data.ref','r');
 s = poly(0, 's');
 p = poly([1,2,3,4,1], 's', 'c');
 if load_ref('p') then   pause,end,

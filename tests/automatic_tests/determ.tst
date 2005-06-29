@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/determ_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/determ_data.ref','r');
 s = poly(0, 's');
 w = s * rand(10, 10);
 %ans = determ(w);

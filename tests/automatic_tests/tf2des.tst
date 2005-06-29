@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/tf2des_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/tf2des_data.ref','r');
 s = poly(0, 's');
 G = [1/(s - 1),s;1,2/(s^3)];
 S1 = tf2des(G);%ans = des2tf(S1);

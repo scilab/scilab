@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/svd_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/svd_data.ref','r');
  
 X = rand(4, 2) * rand(2, 4);
  

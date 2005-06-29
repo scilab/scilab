@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/subf_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/subf_data.ref','r');
 %ans = subf('0', 'a');
 if load_ref('%ans') then   pause,end,
 

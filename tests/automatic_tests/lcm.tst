@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lcm_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lcm_data.ref','r');
 //polynomial case
 s = poly(0, 's');
 p = [s,s * ((s + 1)^2),(s^2) * (s + 2)];

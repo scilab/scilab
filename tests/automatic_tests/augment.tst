@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/augment_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/augment_data.ref','r');
 G = ssrand(2, 3, 2);//Plant
 K = ssrand(3, 2, 2);//Compensator
 [P,r] = augment(G, 'T');

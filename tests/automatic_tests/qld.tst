@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/qld_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/qld_data.ref','r');
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1 = [1,-1,1,0,3,1;

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/st_deviation_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/st_deviation_data.ref','r');
 A = [1,2,10;7,7.1,7.01];
 %ans = st_deviation(A);
 if load_ref('%ans') then   pause,end,

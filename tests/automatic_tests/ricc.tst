@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/ricc_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/ricc_data.ref','r');
 //Standard formulas to compute Riccati solutions
 A = rand(3, 3);B = rand(3, 2);C = rand(3, 3);C = C * C';R = rand(2, 2);R = R * R' + eye();
 B = B * inv(R) * B';

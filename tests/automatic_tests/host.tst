@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/host_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/host_data.ref','r');
 //create a getdir function based on host
 function wd=getdir()
         if MSDOS then

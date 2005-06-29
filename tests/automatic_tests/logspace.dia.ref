@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/logspace_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/logspace_data.ref','r');
  
 %ans = logspace(1, 2, 10);
  

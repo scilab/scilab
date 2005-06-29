@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/dir_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/dir_data.ref','r');
 dir;
 if load_ref('dir') then   pause,end,
 

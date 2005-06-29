@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/minreal_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/minreal_data.ref','r');
 A = [-eye(2, 2),rand(2, 2);zeros(2, 2),-2 * eye(2, 2)];
 B = [rand(2, 2);zeros(2, 2)];C = rand(2, 4);
 sl = syslin('c', A, B, C);

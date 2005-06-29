@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/extraction_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/extraction_data.ref','r');
 // MATRIX CASE
 a = [1,2,3;4,5,6];
 if load_ref('a') then   pause,end,

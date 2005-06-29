@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/tokenpos_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/tokenpos_data.ref','r');
 str = 'This is a character string';
 kdf = tokenpos(str);
 if load_ref('kdf') then   pause,end,

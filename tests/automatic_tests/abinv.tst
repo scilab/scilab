@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/abinv_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/abinv_data.ref','r');
 nu = 3;ny = 4;nx = 7;
 nrt = 2;ngt = 3;ng0 = 3;nvt = 5;rk = 2;
 flag = list('on', nrt, ngt, ng0, nvt, rk);

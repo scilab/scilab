@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/boolean_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/boolean_data.ref','r');
 %ans = [1,2] == [1,3];
 if load_ref('%ans') then   pause,end,
 

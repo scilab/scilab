@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/datevec_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/datevec_data.ref','r');
 %ans = datevec(720840);
 if load_ref('%ans') then   pause,end,
 

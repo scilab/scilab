@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/listfiles_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/listfiles_data.ref','r');
 files = listfiles(['SCI/macros/util/*.sci';'SCI/macros/util/*.bin']);
 xdel_run(winsid());
 

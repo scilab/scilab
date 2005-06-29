@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/samwr_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/samwr_data.ref','r');
 a = [0.33,1.24,2.1,1.03];
 if load_ref('a') then   pause,end,
 

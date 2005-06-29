@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/ode_root_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/ode_root_data.ref','r');
 // Integration of the differential equation
 // dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2
 %ans = deff('[ydot]=f(t,y)', 'ydot=y');

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/equal_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/equal_data.ref','r');
 a = sin(3.2);
 if load_ref('a') then   pause,end,
 

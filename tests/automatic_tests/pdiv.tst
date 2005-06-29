@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pdiv_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pdiv_data.ref','r');
 x = poly(0, 'x');
 p1 = (1 + x^2) * (1 - x);p2 = 1 - x;
 [r,q] = pdiv(p1, p2);

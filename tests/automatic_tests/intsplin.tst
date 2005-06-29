@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/intsplin_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/intsplin_data.ref','r');
 t = 0:0.1:%pi;
 if load_ref('t') then   pause,end,
 

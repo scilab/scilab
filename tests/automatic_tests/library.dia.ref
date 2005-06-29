@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/library_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/library_data.ref','r');
  
 // elemlib is a predefined library
  
@@ -26,23 +26,24 @@ who;
 your variables are...
  
  %ans      cosm      A         %U        %CMP      xbasc_run           
- clf_run   xdel_run  reinit_for_test     load_ref  bugmes    
- scicos_pal          %helps    home      SCIHOME   PWD       TMPDIR    
- MSDOS     SCI       sparselib           xdesslib  percentlib          
- polylib   intlib    elemlib   utillib   statslib  alglib    siglib    
- optlib    autolib   roblib    soundlib  metalib   armalib   tkscilib  
- tdcslib   s2flib    mtlblib   %F        %T        %z        %s        
- %nan      %inf      COMPILER  %gtk      %pvm      %tk       $         
- %t        %f        %eps      %io       %i        %e        
- using      11235 elements  out of    5000000.
-          and         57 variables out of       9231
+ clf_run   xdel_run  reinit_for_test     load_ref_nocheck    load_ref  
+ bugmes    scicos_pal          %helps    home      SCIHOME   PWD       
+ TMPDIR    MSDOS     SCI       sparselib           xdesslib  
+ percentlib          polylib   intlib    elemlib   utillib   statslib  
+ alglib    siglib    optlib    autolib   roblib    soundlib  metalib   
+ armalib   tkscilib  tdcslib   s2flib    mtlblib   %F        %T        
+ %z        %s        %nan      %inf      COMPILER  %gtk      %pvm      
+ %tk       $         %t        %f        %eps      %io       %i        
+ %e        
+ using      11458 elements  out of    5000000.
+          and         58 variables out of       9231
  
 your global variables are...
  
  LANGUAGE  %helps    demolist  %browsehelp         LCC       
- %scipad_language    %toolboxes          %toolboxes_dir      
- using       1125 elements  out of      11000.
-          and          8 variables out of        767
+ %scipad_language    
+ using       1105 elements  out of      11000.
+          and          6 variables out of        767
  
  
 if load_ref('who') then   bugmes();quit;end,

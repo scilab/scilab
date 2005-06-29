@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/rat_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/rat_data.ref','r');
 [n,d] = rat(%pi);
 if load_ref('d') then   pause,end,
 if load_ref('n') then   pause,end,

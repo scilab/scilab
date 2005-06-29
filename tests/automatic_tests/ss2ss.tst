@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/ss2ss_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/ss2ss_data.ref','r');
 Sl = ssrand(2, 2, 5);%ans = trzeros(Sl);
 if load_ref('%ans') then   pause,end,
 // zeros are invariant:

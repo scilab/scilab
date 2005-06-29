@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/TK_SetVar_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/TK_SetVar_data.ref','r');
 TK_EvalStr('toplevel .tst2');
 // creates a toplevel TK window.
 TK_EvalStr('label .tst2.l -textvariable tvar');

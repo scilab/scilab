@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/knapsack_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/knapsack_data.ref','r');
 weight = ones(1, 15) .*. (1:4);
 profit = ones(1, 60);
 capa = [15,45,30,60];

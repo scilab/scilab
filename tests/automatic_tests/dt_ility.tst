@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/dt_ility_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/dt_ility_data.ref','r');
 A = [2,1,1;0,-2,1;0,0,3];
 C = [0,0,1];
 X = rand(3, 3);A = inv(X) * A * X;C = C * X;

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lex_sort_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lex_sort_data.ref','r');
 M = round(2 * rand(20, 3));
 
 %ans = lex_sort(M);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/xls_read_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/xls_read_data.ref','r');
 //Decode ole file, extract and open Excel stream
 [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/excel/Test1.xls');
 if load_ref('Sheetpos') then   pause,end,

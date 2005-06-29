@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/bezout_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/bezout_data.ref','r');
 // polynomial case
 x = poly(0, 'x');
 p1 = (x + 1) * ((x - 3)^5);p2 = (x - 2) * ((x - 3)^3);

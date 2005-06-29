@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sci2exp_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/sci2exp_data.ref','r');
 a = [1,2;3,4];
 if load_ref('a') then   pause,end,
 

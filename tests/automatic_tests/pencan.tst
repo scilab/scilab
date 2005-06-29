@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pencan_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pencan_data.ref','r');
 F = randpencil([], [1,2], [1,2,3], []);
 F = rand(6, 6) * F * rand(6, 6);
 [Q,M,i1] = pencan(F);

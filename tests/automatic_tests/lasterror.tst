@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lasterror_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lasterror_data.ref','r');
 ierr = execstr('a=zzzzzzz', 'errcatch');
 if load_ref('ierr') then   pause,end,
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/ddp_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/ddp_data.ref','r');
 rand('seed', 0);nx = 6;nz = 3;nu = 2;ny = 1;
 A = diag(1:6);A(2, 2) = -7;A(5, 5) = -9;B2 = [1,2;0,3;0,4;0,5;0,0;0,0];
 C1 = [zeros(nz, nz),eye(nz, nz)];D12 = [0,1;0,2;0,3];

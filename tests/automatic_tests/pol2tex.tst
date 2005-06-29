@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pol2tex_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pol2tex_data.ref','r');
 s = poly(0, 's');
 p = s^3 + 2 * s - 5;
 %ans = pol2tex(p);

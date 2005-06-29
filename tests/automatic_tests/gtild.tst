@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/gtild_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/gtild_data.ref','r');
 //Continuous time
 s = poly(0, 's');G = [s,s^3;2 + s^3,s^2 - 5];
 if load_ref('G') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/hermit_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/hermit_data.ref','r');
 s = poly(0, 's');
 p = [s,s * ((s + 1)^2),2 * (s^2) + s^3];
 [Ar,U] = hermit(p' * p);

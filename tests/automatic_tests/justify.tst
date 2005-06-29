@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/justify_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/justify_data.ref','r');
 t = ['1234','x','adfdfgdfghfgj';
   '1','354556','dgf';
   'sdfgd','','sdfsf'];

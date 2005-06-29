@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lib_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lib_data.ref','r');
 //define some variables
 function z = myplus(x, y)
   , z = x + y,

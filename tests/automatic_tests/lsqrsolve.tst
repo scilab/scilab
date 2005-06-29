@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lsqrsolve_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lsqrsolve_data.ref','r');
 // A simple example with lsqrsolve
 a = [1,7;
   2,8;

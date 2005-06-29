@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/findAC_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/findAC_data.ref','r');
 //generate data from a given linear system
 A = [0.5,0.1,-0.1,0.2;
   0.1,0,-0.1,-0.1;

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/feval_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/feval_data.ref','r');
 deff('[z]=f(x,y)', 'z=x^2+y^2');
 %ans = feval(1:10, 1:5, f);
 if load_ref('%ans') then   pause,end,

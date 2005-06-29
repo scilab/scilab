@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/log2_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/log2_data.ref','r');
 %ans = 2^log2([1,%i,-1,-%i]);
 if load_ref('%ans') then   pause,end,
 

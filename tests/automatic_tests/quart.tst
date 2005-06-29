@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/quart_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/quart_data.ref','r');
 
 x = [6,7,0,7,10,4,2,2,7,1;
   6,0,5,5,5,2,0,6,8,10;

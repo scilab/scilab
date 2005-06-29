@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/tril_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/tril_data.ref','r');
 s = poly(0, 's');
 %ans = tril([s,s;s,1]);
 if load_ref('%ans') then   pause,end,

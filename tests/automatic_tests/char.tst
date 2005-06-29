@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/char_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/char_data.ref','r');
 //Example with a hypermatrix of ascii codes :
 x = hypermat([4,2,3], 61:84);
 y = char(x);

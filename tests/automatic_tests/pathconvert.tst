@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pathconvert_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pathconvert_data.ref','r');
 %ans = pathconvert('SCI/macros\util/foo.sci', %f, %f, 'u');
 if load_ref('%ans') then   pause,end,
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lqe_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lqe_data.ref','r');
 //Assume the equations
 //.
 //x = Ax + Ge

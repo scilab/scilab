@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/exists_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/exists_data.ref','r');
 %ans = deff('foo(x)', ['disp([exists(''a12''),exists(''a12'',''local'')])';
   'disp([exists(''x''),exists(''x'',''local'')])']);
 if load_ref('%ans') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/inv_coeff_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/inv_coeff_data.ref','r');
 A = int(10 * rand(2, 6));
 if load_ref('A') then   pause,end,
 

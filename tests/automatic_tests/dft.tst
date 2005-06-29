@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/dft_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/dft_data.ref','r');
 n = 8;omega = exp(-2 * %pi * %i/n);
 j = 0:n - 1;F = omega.^(j' * j);//Fourier matrix
 x = 1:8;x = x(:);

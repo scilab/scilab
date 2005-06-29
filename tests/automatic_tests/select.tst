@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/select_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/select_data.ref','r');
 while %t then
   n = round(10 * rand(1, 1));
   if load_ref('n') then   pause,end,

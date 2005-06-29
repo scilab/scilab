@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/cell2mat_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/cell2mat_data.ref','r');
 
 c = makecell([2,2], [1,2,3;6,7,8], [4,5;9,10], [11,12;16,17], [14,13,15;18,19,20]);
 if load_ref('c') then   pause,end,

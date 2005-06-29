@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/grep_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/grep_data.ref','r');
 txt = ['find matches of a string in a vector of strings';
   'search position of a character string in an other string';
   'Compare Strings'];

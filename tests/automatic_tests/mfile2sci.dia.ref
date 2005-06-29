@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/mfile2sci_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/mfile2sci_data.ref','r');
  
 // Create a simple M-file
  
@@ -33,8 +33,8 @@ write(TMPDIR + '/rot90.m', ['function B = rot90(A,k)';
  
 %ans = mfile2sci(TMPDIR + '/rot90.m', TMPDIR);
   ****** Beginning of mfile2sci() session ******
-  File to convert: /tmp/SD_1436_/rot90.m
-  Result file path: /tmp/SD_1436_/
+  File to convert: TMPDIR/rot90.m
+  Result file path: TMPDIR/
   Recursive mode: OFF
   Only double values used in M-file: NO
   Verbose mode: 3

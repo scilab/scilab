@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/srfaur_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/srfaur_data.ref','r');
 //GENERATE SIGNAL
 x = %pi/10:%pi/10:102.4 * %pi;
 rand('seed', 0);rand('normal');

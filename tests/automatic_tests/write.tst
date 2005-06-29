@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/write_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/write_data.ref','r');
 if MSDOS then   unix('del asave');
 else   unix('rm -f asave');end,
 A = rand(5, 3);write('asave', A);A = read('asave', 5, 3);

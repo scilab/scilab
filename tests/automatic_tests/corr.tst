@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/corr_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/corr_data.ref','r');
 x = %pi/10:%pi/10:102.4 * %pi;
 rand('seed');rand('normal');
 y = [0.8 * sin(x) + 0.8 * sin(2 * x) + rand(x);0.8 * sin(x) + 0.8 * sin(1.99 * x) + rand(x)];

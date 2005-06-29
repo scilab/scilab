@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/convol_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/convol_data.ref','r');
 x = 1:3;
 h1 = [1,0,0,0,0];h2 = [0,1,0,0,0];h3 = [0,0,1,0,0];
 x1 = convol(h1, x);

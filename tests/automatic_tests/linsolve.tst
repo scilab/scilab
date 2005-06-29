@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/linsolve_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/linsolve_data.ref','r');
 A = rand(5, 3) * rand(3, 8);
 b = A * ones(8, 1);[x,kerA] = linsolve(A, b);%ans = A * x + b;
 if load_ref('%ans') then   pause,end,

@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/spantwo_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/spantwo_data.ref','r');
  
 A = [1,0,0,4;
   5,6,7,8;

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/percentk_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/percentk_data.ref','r');
 m = 0.4;
 %ans = %asn(1, m);
 if load_ref('%ans') then   pause,end,

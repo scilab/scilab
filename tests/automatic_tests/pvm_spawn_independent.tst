@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_spawn_independent_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pvm_spawn_independent_data.ref','r');
 [tids,numt] = pvm_spawn_independent('a.out', 2);
 if load_ref('numt') then   pause,end,
 if load_ref('tids') then   pause,end,

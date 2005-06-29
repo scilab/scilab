@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/repfreq_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/repfreq_data.ref','r');
 A = diag([-1,-2]);B = [1;1];C = [1,1];
 Sys = syslin('c', A, B, C);
 frq = 0:0.02:5;w = frq * 2 * %pi;//frq=frequencies in Hz ;w=frequencies in rad/sec;

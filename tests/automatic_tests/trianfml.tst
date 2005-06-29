@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/trianfml_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/trianfml_data.ref','r');
 A = ['1','2';'a','b'];
 if load_ref('A') then   pause,end,
 

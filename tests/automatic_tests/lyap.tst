@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lyap_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lyap_data.ref','r');
 A = rand(4, 4);C = rand(A);C = C + C';
 X = lyap(A, C, 'c');
 %ans = A' * X + X * A - C;

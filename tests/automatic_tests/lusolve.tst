@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/lusolve_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/lusolve_data.ref','r');
 non_zeros = [1,2,3,4];rows_cols = [1,1;2,2;3,3;4,4];
 sp = sparse(rows_cols, non_zeros);
 [h,rk] = lufact(sp);x = lusolve(h, [1;1;1;1]);%ans = ludel(h);

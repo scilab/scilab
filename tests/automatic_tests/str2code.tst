@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/str2code_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/str2code_data.ref','r');
 %ans = str2code('Scilab');
 if load_ref('%ans') then   pause,end,
 

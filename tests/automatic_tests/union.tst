@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/union_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/union_data.ref','r');
 A = round(5 * rand(10, 1));
 B = round(5 * rand(7, 1));
 

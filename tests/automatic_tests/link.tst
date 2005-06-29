@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/link_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/link_data.ref','r');
 //Example of the use of ilib_for_link with  a simple C code
 f1 = ['#include <math.h>';
   'void fooc(c,a,b,m,n)';

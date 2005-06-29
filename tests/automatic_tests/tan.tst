@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/tan_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/tan_data.ref','r');
 x = [1,%i,-1,-%i];
 if load_ref('x') then   pause,end,
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/rtitr_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/rtitr_data.ref','r');
 z = poly(0, 'z');
 Num = 1 + z;Den = 1 + z;u = [1,2,3,4,5];
 %ans = rtitr(Num, Den, u) - u;

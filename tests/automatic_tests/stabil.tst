@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/stabil_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/stabil_data.ref','r');
 // Gain:
 Sys = ssrand(0, 2, 5, list('st', 2, 3, 3));
 A = Sys('A');B = Sys('B');F = stabil(A, B);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/hess_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/hess_data.ref','r');
 A = rand(3, 3);[U,H] = hess(A);
 %ans = and(abs(U * H * U' - A) < 0.0000000001);
 if load_ref('%ans') then   pause,end,

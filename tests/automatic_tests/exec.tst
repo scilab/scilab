@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/exec_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/exec_data.ref','r');
 // create a script file
 %ans = mputl('a=1;b=2', TMPDIR + '/myscript');
 if load_ref('%ans') then   pause,end,

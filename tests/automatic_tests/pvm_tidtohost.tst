@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_tidtohost_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/other/pvm_tidtohost_data.ref','r');
 dtid = pvm_tidtohost(pvm_mytid());
 if load_ref('dtid') then   pause,end,
 
