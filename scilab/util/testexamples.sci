@@ -4,10 +4,33 @@ function r=load_ref(name)
   if type(v) == 9 then   v = ghdl2tree(v);end,
   execstr(name+'_ref=v;load(%U,'''+name+'_ref'+''');r=%CMP(v,'+name+'_ref);')
 endfunction
-function r=%xdel(w,opt)
+function r=load_ref_nocheck(name)
+  if exists(name)==0 then r=%f;return,end
+  v=evstr(name)
+  if type(v) == 9 then   v = ghdl2tree(v);end,
+  execstr(name+'_ref=v;load(%U,'''+name+'_ref'+''');r=%f')
+endfunction
+
+function reinit_for_test()
+  //reinitialize some Scilab state to be able to reproduce the same tests
+  sdf();sda()
+  xdel(winsid())
+  grand('setgen','clcg4');grand('setall',11111111,22222222,33333333,44444444);
+  grand('setgen','kiss');grand('setsd',362436069,521288629,123456789,380116160);
+  grand('setgen','clcg2');grand('setsd',1234567890,123456789);
+  grand('setgen','urand');grand('setsd',0);
+  grand('setgen','fsultra');grand('setsd',1234567,7654321);
+  grand('setgen','mt');grand('setsd',5489);
+  rand('seed',0);
+  format('v',10);
+  clearglobal() 
+
+endfunction
+
+function r=xdel_run(w,opt)
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
-//Compare the graphic windows to be cleared with the reference givenin  a Scilab  binary file. 
+//Compare the graphic windows to be cleared with the reference given in a Scilab  binary file. 
 // This function must mirror the  xdel_build one.
   r=%f
   if winsid()==[] then return,end
@@ -39,10 +62,11 @@ function r=%xdel(w,opt)
   end
   if or(winsid()==cur) then xset('window',cur),end
 endfunction
-function r=%clf(w,opt)
+
+function r=clf_run(w,opt)
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
-//Compare the graphic windows to be cleared with the reference givenin  a Scilab  binary file. 
+//Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file. 
 // This function must mirror the  clf_build one.
 
   r=%f
@@ -83,10 +107,10 @@ function r=%clf(w,opt)
   if or(winsid()==cur) then xset('window',cur),end
 endfunction
 
-function r=%xbasc(w)
+function r=xbasc_run(w)
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
-//Compare the graphic windows to be cleared with the reference givenin  a Scilab  binary file. 
+//Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file. 
 // This function must mirror the  xbasc_build one.
   r=%f
   if winsid()==[] then return,end
@@ -119,10 +143,11 @@ function r=%xbasc(w)
   end
   if or(winsid()==cur) then xset('window',cur),end
 endfunction
+
 function r=%CMP(A,B)
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
-// thsi function compares two variables, floating points data are
+// this function compares two variables, floating points data are
 // compared using a relative tolerance
   r=%f
   tol=0.00001
@@ -153,6 +178,7 @@ function r=%CMP(A,B)
     if or(size(A)<>size(B)) then  r=%t,return,end
     if or(A<>B) then  r=%t,return,end
   case 8 then //int
+    if or(inttype(A)<>inttype(B)) then  r=%t,return,end
     if or(size(A)<>size(B)) then  r=%t,return,end
     if or(A<>B) then  r=%t,return,end
   case 9 then //handle
