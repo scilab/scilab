@@ -1,0 +1,8 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/karmarkar_data.ref','r');
+// n=10;p=20;
+// a=rand(n,p);c=rand(p,1);x0=abs(rand(p,1));b=a*x0;x1=karmarkar(a,b,c,x0);
+xdel_run(winsid());
+
+mclose(%U);

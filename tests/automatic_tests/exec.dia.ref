@@ -1,0 +1,147 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/exec_data.ref','r');
+ 
+// create a script file
+ 
+%ans = mputl('a=1;b=2', TMPDIR + '/myscript');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// execute it
+ 
+ b  =
+ 
+    2.  
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+who;
+your variables are...
+ 
+ b         a         mputl     %U        %CMP      xbasc_run           
+ clf_run   xdel_run  reinit_for_test     load_ref  bugmes    
+ scicos_pal          %helps    home      SCIHOME   PWD       TMPDIR    
+ MSDOS     SCI       sparselib           xdesslib  percentlib          
+ polylib   intlib    elemlib   utillib   statslib  alglib    siglib    
+ optlib    autolib   roblib    soundlib  metalib   armalib   tkscilib  
+ tdcslib   s2flib    mtlblib   %F        %T        %z        %s        
+ %nan      %inf      COMPILER  %gtk      %pvm      %tk       $         
+ %t        %f        %eps      %io       %i        %e        
+ using      11615 elements  out of    5000000.
+          and         57 variables out of       9231
+ 
+your global variables are...
+ 
+ LANGUAGE  %helps    demolist  %browsehelp         LCC       
+ %scipad_language    %toolboxes          %toolboxes_dir      
+ using       1125 elements  out of      11000.
+          and          8 variables out of        767
+ 
+ 
+if load_ref('who') then   bugmes();quit;end,
+ 
+ 
+ 
+// create a function
+ 
+%ans = deff('y=foo(x)', 'a=x+1;y=a^2');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = clear('a', 'b');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// call the function
+ 
+%ans = foo(1);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// a is a variable created in the environment of the function foo
+ 
+//    it is destroyed when foo returns
+ 
+who;
+your variables are...
+ 
+ %ans      foo       mputl     %U        %CMP      xbasc_run           
+ clf_run   xdel_run  reinit_for_test     load_ref  bugmes    
+ scicos_pal          %helps    home      SCIHOME   PWD       TMPDIR    
+ MSDOS     SCI       sparselib           xdesslib  percentlib          
+ polylib   intlib    elemlib   utillib   statslib  alglib    siglib    
+ optlib    autolib   roblib    soundlib  metalib   armalib   tkscilib  
+ tdcslib   s2flib    mtlblib   %F        %T        %z        %s        
+ %nan      %inf      COMPILER  %gtk      %pvm      %tk       $         
+ %t        %f        %eps      %io       %i        %e        
+ using      11648 elements  out of    5000000.
+          and         57 variables out of       9231
+ 
+your global variables are...
+ 
+ LANGUAGE  %helps    demolist  %browsehelp         LCC       
+ %scipad_language    %toolboxes          %toolboxes_dir      
+ using       1125 elements  out of      11000.
+          and          8 variables out of        767
+ 
+ 
+if load_ref('who') then   bugmes();quit;end,
+ 
+ 
+ 
+x = 1;
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+//create x to make it known by the script foo
+ 
+ y  =
+ 
+    4.  
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// a and y are created in the current environment
+ 
+who;
+your variables are...
+ 
+ y         a         x         foo       mputl     %U        %CMP      
+ xbasc_run           clf_run   xdel_run  reinit_for_test     load_ref  
+ bugmes    scicos_pal          %helps    home      SCIHOME   PWD       
+ TMPDIR    MSDOS     SCI       sparselib           xdesslib  
+ percentlib          polylib   intlib    elemlib   utillib   statslib  
+ alglib    siglib    optlib    autolib   roblib    soundlib  metalib   
+ armalib   tkscilib  tdcslib   s2flib    mtlblib   %F        %T        
+ %z        %s        %nan      %inf      COMPILER  %gtk      %pvm      
+ %tk       $         %t        %f        %eps      %io       %i        
+ %e        
+ using      11654 elements  out of    5000000.
+          and         59 variables out of       9231
+ 
+your global variables are...
+ 
+ LANGUAGE  %helps    demolist  %browsehelp         LCC       
+ %scipad_language    %toolboxes          %toolboxes_dir      
+ using       1125 elements  out of      11000.
+          and          8 variables out of        767
+ 
+ 
+if load_ref('who') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

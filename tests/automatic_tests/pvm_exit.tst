@@ -1,0 +1,9 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_exit_data.ref','r');
+%ans = pvm_exit();
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/percent_data.ref','r');
+x1 = tlist('x', 1, 2);
+x2 = tlist('x', 2, 3);
+deff('x=%xmx(x1,x2)', 'x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+%ans = x1 * x2;
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,14 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/hermit_data.ref','r');
+s = poly(0, 's');
+p = [s,s * ((s + 1)^2),2 * (s^2) + s^3];
+[Ar,U] = hermit(p' * p);
+%ans = clean(p' * p * U);
+if load_ref('%ans') then   pause,end,
+%ans = det(U);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

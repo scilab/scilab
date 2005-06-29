@@ -1,0 +1,9 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_bcast_data.ref','r');
+info = pvm_bcast('worker', [12 + %i,4,5;3,4 + %i,5], 10);
+if load_ref('info') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

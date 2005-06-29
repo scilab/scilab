@@ -1,0 +1,16 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/median_data.ref','r');
+A = [1,2,10;7,7.1,7.01];
+%ans = median(A);
+if load_ref('%ans') then   pause,end,
+
+%ans = median(A, 'r');
+if load_ref('%ans') then   pause,end,
+
+%ans = median(A, 'c');
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

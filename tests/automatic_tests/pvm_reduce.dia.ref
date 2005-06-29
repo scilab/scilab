@@ -1,0 +1,24 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_reduce_data.ref','r');
+ 
+A = rand(5, 5);msgtag = 1;
+ 
+if load_ref('msgtag') then   bugmes();quit;end,
+ 
+ 
+[buff,info] = pvm_reduce('Max', A, msgtag, 'Workers', 0);
+ 
+if load_ref('info') then   bugmes();quit;end,
+ 
+if load_ref('buff') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

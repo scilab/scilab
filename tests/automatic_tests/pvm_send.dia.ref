@@ -1,0 +1,29 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/pvm_send_data.ref','r');
+ 
+A = rand(5, 5) * (1 + %i);
+ 
+%ans = deff('[x]=f(y)', 'x = 1/y');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+info = pvm_send([262150,262152], A(1:2:5, :), 100);
+ 
+if load_ref('info') then   bugmes();quit;end,
+ 
+ 
+%ans = pvm_send(262146, f, 200);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

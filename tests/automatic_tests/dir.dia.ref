@@ -1,0 +1,44 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/dir_data.ref','r');
+ 
+dir;
+ 
+if load_ref('dir') then   bugmes();quit;end,
+ 
+ 
+%ans = dir('SCI/macros/util/*.sci');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+x = dir('SCI/macros/util/f*.sci');
+ 
+if load_ref('x') then   bugmes();quit;end,
+ 
+ 
+dt = getdate(x('date'));
+ 
+%ans = mprintf('%s: %d-%d-%d %d:%d:%d\n', x('name'), dt(:, [3,2,1,7:9]));
+/usr/local/lib/scilab/macros/util/fileparts.sci: 38-9-2003 13:45:22
+/usr/local/lib/scilab/macros/util/find_links.sci: 5-2-2005 19:5:55
+/usr/local/lib/scilab/macros/util/findmsvccompiler.sci: 8-2-2005 21:49:51
+/usr/local/lib/scilab/macros/util/format_txt.sci: 20-5-2005 18:48:31
+/usr/local/lib/scilab/macros/util/formatman.sci: 13-4-2005 14:51:33
+/usr/local/lib/scilab/macros/util/fprintf.sci: 24-6-2005 10:19:33
+/usr/local/lib/scilab/macros/util/fscanf.sci: 26-6-2001 14:33:52
+/usr/local/lib/scilab/macros/util/fullfile.sci: 31-7-2004 9:36:15
+/usr/local/lib/scilab/macros/util/fun2string.sci: 24-6-2005 8:33:26
+/usr/local/lib/scilab/macros/util/function.sci: 26-6-2001 14:33:53
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

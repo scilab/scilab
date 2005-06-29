@@ -1,0 +1,7 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/browsevar_data.ref','r');
+browsevar();
+xdel_run(winsid());
+
+mclose(%U);

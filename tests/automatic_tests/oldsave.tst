@@ -1,0 +1,16 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/oldsave_data.ref','r');
+a = eye(2, 2);b = ones(a);
+oldsave('TMPDIR/val.dat', a, b);
+%ans = clear('a');
+if load_ref('%ans') then   pause,end,
+
+%ans = clear('b');
+if load_ref('%ans') then   pause,end,
+
+oldload('TMPDIR/val.dat', 'a', 'b');
+
+xdel_run(winsid());
+
+mclose(%U);

@@ -1,0 +1,19 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/nancumsum_data.ref','r');
+a = [1,2,3;4,5,6];
+if load_ref('a') then   pause,end,
+
+s = nancumsum(a);
+if load_ref('s') then   pause,end,
+
+s = nancumsum(a, 'r');
+if load_ref('s') then   pause,end,
+
+s = nancumsum(a, 'c');
+if load_ref('s') then   pause,end,
+
+
+xdel_run(winsid());
+
+mclose(%U);

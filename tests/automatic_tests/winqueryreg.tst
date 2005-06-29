@@ -1,0 +1,20 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/winqueryreg_data.ref','r');
+if MSDOS then 
+  %ans = winqueryreg('HKEY_LOCAL_MACHINE', 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\', 'ProcessorNameString');
+  if load_ref('%ans') then   pause,end,
+
+  lines(-1);
+  mousechar = winqueryreg('name', 'HKEY_CURRENT_USER', 'control panel\mouse');
+  len = size(mousechar);
+  for k = 1:len(1),
+    setting = winqueryreg('HKEY_CURRENT_USER', 'control panel\mouse', mousechar(k));
+    if mousechar(k) == '' then   mousechar(k) = 'default';end,
+    str = sprintf('%s = %s', mousechar(k), string(setting));
+    disp(str);
+  end,
+end,
+xdel_run(winsid());
+
+mclose(%U);

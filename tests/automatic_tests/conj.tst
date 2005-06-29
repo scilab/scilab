@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/conj_data.ref','r');
+x = [1 + %i,-%i;%i,2 * %i];
+%ans = conj(x);
+if load_ref('%ans') then   pause,end,
+
+%ans = x' - conj(x);
+if load_ref('%ans') then   pause,end,
+//x'  is conjugate transpose
+xdel_run(winsid());
+
+mclose(%U);

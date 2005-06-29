@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/fullfile_data.ref','r');
+f = fullfile('/home/', '\scilab', 'macros', '\util', 'fullfile.sci');
+if load_ref('f') then   pause,end,
+
+f = fullfile('C:', '\scilab', 'macros', '\util', 'fullfile.sci');
+if load_ref('f') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

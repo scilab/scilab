@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/spanplus_data.ref','r');
+A = rand(6, 2) * rand(2, 5);// rank(A)=2
+B = [A(:, 1),rand(6, 2)] * rand(3, 3);//two additional independent vectors
+[X,dim,dimA] = spanplus(A, B);
+dimA;
+if load_ref('dimA') then   pause,end,
+
+dim;
+if load_ref('dim') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

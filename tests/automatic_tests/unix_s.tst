@@ -1,0 +1,11 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/unix_s_data.ref','r');
+if MSDOS then 
+  unix_s('del foo');
+else 
+  unix_s('rm -f foo');
+end,
+xdel_run(winsid());
+
+mclose(%U);

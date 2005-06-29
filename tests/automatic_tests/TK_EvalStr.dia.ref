@@ -1,0 +1,67 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/TK_EvalStr_data.ref','r');
+ 
+//with one call
+ 
+%ans = TK_EvalStr(['toplevel0.foo1';
+  'label0.foo1.l -text ""TK married Scilab !!!""';
+  'pack0.foo1.l';
+  'button0.foo1.b -text close -command {destroy0.foo1}';
+  'pack0.foo1.b']);
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+//step by step (debugging)
+ 
+TK_EvalStr('toplevel0.foo2');
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+// creates a toplevel TK window.
+ 
+TK_EvalStr('label0.foo2.l -text ""TK married Scilab !!!""');
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+// create a static label
+ 
+TK_EvalStr('pack0.foo2.l');
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+// pack the label widget. It appears on the screen.
+ 
+text = 'button0.foo2.b -text close -command {destroy0.foo2}';
+ 
+TK_EvalStr(text);
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+TK_EvalStr('pack0.foo2.b');
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+ 
+//kill the windows by program
+ 
+TK_EvalStr('destroy0.foo1');
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+TK_EvalStr('destroy0.foo2');
+
+Warning TK_EvalStr obsolete please use TCL_EvalStr.
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

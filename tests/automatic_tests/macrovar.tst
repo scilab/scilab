@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/macrovar_data.ref','r');
+%ans = deff('y=f(x1,x2)', 'loc=1;y=a*x1+x2-loc');
+if load_ref('%ans') then   pause,end,
+
+vars = macrovar(f);
+if load_ref('vars') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

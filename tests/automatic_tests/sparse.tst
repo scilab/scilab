@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sparse_data.ref','r');
+sp = sparse([1,2;4,5;3,10], [1,2,3]);
+if load_ref('sp') then   pause,end,
+
+%ans = size(sp);
+if load_ref('%ans') then   pause,end,
+
+x = rand(2, 2);%ans = abs(x) - full(abs(sparse(x)));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

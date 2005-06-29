@@ -1,0 +1,12 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/name2rgb_data.ref','r');
+rgb = name2rgb('gold');
+if load_ref('rgb') then   pause,end,
+
+%ans = rgb2name(rgb);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

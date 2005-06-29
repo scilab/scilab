@@ -1,0 +1,14 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/genmarkov_data.ref','r');
+//P has two recurrent classes (with 2 and 1 states) 2 transient states
+P = genmarkov([2,1], 2, 'perm');
+if load_ref('P') then   pause,end,
+
+[perm,rec,tr,indsRec,indsT] = classmarkov(P);
+%ans = P(perm, perm);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

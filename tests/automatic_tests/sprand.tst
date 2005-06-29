@@ -1,0 +1,7 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sprand_data.ref','r');
+W = sprand(100, 1000, 0.001);
+xdel_run(winsid());
+
+mclose(%U);

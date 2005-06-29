@@ -1,0 +1,15 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/disp_data.ref','r');
+%ans = disp([1,2], 3);
+if load_ref('%ans') then   pause,end,
+
+%ans = deff('[]=%t_p(l)', 'disp(l(3),l(2))');
+if load_ref('%ans') then   pause,end,
+
+%ans = disp(tlist('t', 1, 2));
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

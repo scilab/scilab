@@ -1,0 +1,8 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/input_data.ref','r');
+//x=input("How many iterations?")
+//x=input("What is your name?","string")
+xdel_run(winsid());
+
+mclose(%U);

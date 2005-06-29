@@ -1,0 +1,25 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/banner_data.ref','r');
+ 
+clc();%ans = banner();
+
+ Only in Window Mode 
+        -------------------------------------------
+                         Scilab-3.1-CVS
+
+                  Copyright (c) 1989-2005          
+              Consortium Scilab (INRIA, ENPC)      
+        -------------------------------------------
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

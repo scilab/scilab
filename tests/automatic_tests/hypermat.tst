@@ -1,0 +1,9 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/hypermat_data.ref','r');
+M = hypermat([2,3,2,2], 1:24);
+if load_ref('M') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

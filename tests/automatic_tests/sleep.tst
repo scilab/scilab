@@ -1,0 +1,9 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sleep_data.ref','r');
+tic;sleep(6000);toc;
+if load_ref('toc') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

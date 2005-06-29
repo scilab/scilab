@@ -1,0 +1,18 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('/usr/local/lib/scilab/tests/Examples/other/sample_data.ref','r');
+X = ['a','dd','arreu';'ber','car','zon'];
+if load_ref('X') then   pause,end,
+
+s = sample(25, X);
+if load_ref('s') then   pause,end,
+
+s = sample(25, X, 'r');
+if load_ref('s') then   pause,end,
+
+s = sample(25, X, 'c');
+if load_ref('s') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);
