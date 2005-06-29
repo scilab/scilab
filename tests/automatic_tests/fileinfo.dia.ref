@@ -7,12 +7,12 @@ reinit_for_test()
  
 w = fileinfo(SCI + '/scilab.star');
  
-if load_ref('w') then   bugmes();quit;end,
+if load_ref_nocheck('w') then   bugmes();quit;end,
  
  
 %ans = getdate(w(6));
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 xdel_run(winsid());
