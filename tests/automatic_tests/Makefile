@@ -16,8 +16,8 @@ tests:
 	$(SCIDIR)/bin/scilab -nw -f maketests.sce
 
 clean ::
-	@$(RM) *.dia Makelib fun1.* *.c *.o *.obj libext1c.* libfoo* loader.sce *.dat asave foo fooc.* foof.* .libs
-
+	@$(RM) *.dia Makelib fun1.* *.c *.o *.obj libext1c.* libfoo* loader.sce *.dat asave foo fooc.* foof.* 
+	@$(RM) -r .libs
 
 distclean:: clean 
 
