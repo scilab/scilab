@@ -81,7 +81,7 @@ extern void sci_clear_and_exit (int);
 extern void sci_usr1_signal(int);
 extern void start_sci_gtk(void);
 
-/* ../sun/inffic.c */ 
+/* ../os_specific/inffic.c */ 
 extern char *get_sci_data_strings(int n);
 
 /* menu.c */ 

@@ -16,7 +16,7 @@
 #include "../graphics/bcg.h" 
 #include "../graphics/Graphics.h" 
 #include "../os_specific/Os_specific.h" 
-#include "../sun/men_Sutils.h"
+#include "../os_specific/men_Sutils.h"
 #include "../graphics/Events.h"
 #include "All-extern.h"
 

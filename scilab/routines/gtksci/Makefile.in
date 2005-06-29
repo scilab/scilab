@@ -39,11 +39,11 @@ OBJTEST = x_test_loop.o
 
 # test 
 
-test: $(OBJTEST) $(OBJSC) ../sun/zzledt.o ../sun/flags.o ../sun/h_help_data.o ../sun/men_Sutils.o ../sun/tmpdir.o ../sun/timer.o
+test: $(OBJTEST) $(OBJSC) ../os_specific/zzledt.o ../os_specific/flags.o ../os_specific/h_help_data.o ../os_specific/men_Sutils.o ../os_specific/tmpdir.o ../os_specific/timer.o
 	cd ../graphics; make ;cd ../xsci
 	$(RM) $@
-	$(CC) -g -o $@ $(OBJTEST) ../sun/zzledt.o ../sun/flags.o ../sun/h_help_data.o ../sun/tmpdir.o \
-	../sun/men_Sutils.o ../sun/inffic.o ../sun/timer.o \
+	$(CC) -g -o $@ $(OBJTEST) ../os_specific/zzledt.o ../os_specific/flags.o ../os_specific/h_help_data.o ../os_specific/tmpdir.o \
+	../os_specific/men_Sutils.o ../os_specific/inffic.o ../os_specific/timer.o \
 	$(OBJSC) $(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
 	$(SCIDIR)/ $(CC_LDFLAGS) $(XLIBS) $(TERMCAPLIB) \
 	$(TCLTK_LIBS) -lm
