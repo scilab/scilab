@@ -9150,8 +9150,8 @@ int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi
   if(logflag == 'n')
     {
       C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      rect[3] = fact_h* rect[3]; /* added the 01.06.05 */
-      rect[2] = fact_w* rect[2];
+      rect[3] = (integer)(fact_h* rect[3]); /* added the 01.06.05 */
+      rect[2] = (integer)(fact_w* rect[2]);
    }
   else
     {
@@ -9170,8 +9170,8 @@ int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi
       C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       
-      rect[2] = fact_w*(rect[2] + rect10[2]);
-      rect[3] = fact_h*(rect[3] + rect10[3] + (int) (rect10[3]*.1)); /* added the 01.06.05 */
+      rect[2] = (integer)(fact_w*(rect[2] + rect10[2]));
+      rect[3] = (integer)(fact_h*(rect[3] + rect10[3] + (int) (rect10[3]*.1))); /* added the 01.06.05 */
 /*       rect[3] = rect[3] + rect10[3] + (int) (rect10[3]*.1); /\* added the 01.06.05 *\/ */
       rect[0] = rect10[0];
       rect[1] = rect[1];
@@ -9347,8 +9347,8 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
 	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /* update old_rect */
-	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
-	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[2] = (int)(fact_w*(old_rect[2] + (double)old_rect10[2]));
+	  old_rect[3] = (int)(fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1)));
 	  old_rect[0] = old_rect10[0];
 	  old_rect[1] = old_rect[1];
 	  
@@ -9360,8 +9360,8 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
       else{
 	/* update old_rect */
 	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	old_rect[3] = fact_h* old_rect[3];
-	old_rect[2] = fact_w* old_rect[2];
+	old_rect[3] = (int)(fact_h* old_rect[3]);
+	old_rect[2] = (int)(fact_w* old_rect[2]);
 	nb_grads_max++;
       }
     }
@@ -9570,8 +9570,8 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
 	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /* update old_rect */
-	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
-	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[2] = (int)(fact_w*(old_rect[2] + old_rect10[2]));
+	  old_rect[3] = (int)(fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1)));
 	  old_rect[0] = old_rect10[0];
 	  old_rect[1] = old_rect[1];
 	  
@@ -9583,8 +9583,8 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
       else{
 	/* update old_rect */
 	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	old_rect[3] = fact_h* old_rect[3];
-	old_rect[2] = fact_w* old_rect[2];
+	old_rect[3] = (int)(fact_h* old_rect[3]);
+	old_rect[2] = (int)(fact_w* old_rect[2]);
 	nb_grads_max++;
       }
     }
@@ -9784,8 +9784,8 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
 	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /* update old_rect */
-	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
-	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[2] = (int)(fact_w*(old_rect[2] + old_rect10[2]));
+	  old_rect[3] = (int)(fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1)));
 	  old_rect[0] = old_rect10[0];
 	  old_rect[1] = old_rect[1];
 	  
@@ -9797,8 +9797,8 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
       else{
 	/* update old_rect */
 	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	old_rect[3] = fact_h* old_rect[3];
-	old_rect[2] = fact_w* old_rect[2];
+	old_rect[3] = (int)(fact_h* old_rect[3]);
+	old_rect[2] = (int)(fact_w* old_rect[2]);
 	nb_grads_max++;
       }
     }
@@ -9997,8 +9997,8 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
 	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /* update old_rect */
-	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
-	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[2] = (int)(fact_w*(old_rect[2] + old_rect10[2]));
+	  old_rect[3] = (int)(fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1)));
 	  old_rect[0] = old_rect10[0];
 	  old_rect[1] = old_rect[1];
 	  
@@ -10010,8 +10010,8 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
       else{
 	/* update old_rect */
 	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	old_rect[3] = fact_h* old_rect[3];
-	old_rect[2] = fact_w* old_rect[2];
+	old_rect[3] = (int)(fact_h* old_rect[3]);
+	old_rect[2] = (int)(fact_w* old_rect[2]);
 	nb_grads_max++;
       }
     }
@@ -10207,8 +10207,8 @@ int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, s
 	  C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /* update old_rect */
-	  old_rect[2] = fact_w*(old_rect[2] + old_rect10[2]);
-	  old_rect[3] = fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1));
+	  old_rect[2] = (int)(fact_w*(old_rect[2] + old_rect10[2]));
+	  old_rect[3] = (int)(fact_h*(old_rect[3] + old_rect10[3] + (int) (old_rect10[3]*.1)));
 	  old_rect[0] = old_rect10[0];
 	  old_rect[1] = old_rect[1];
 	  
@@ -10221,8 +10221,8 @@ int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, s
       else{
 	/* update old_rect */
 	C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),old_rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	old_rect[3] = fact_h* old_rect[3];
-	old_rect[2] = fact_w* old_rect[2];
+	old_rect[3] = (int)(fact_h* old_rect[3]);
+	old_rect[2] = (int)(fact_w* old_rect[2]);
 	nb_grads_max++;
       }
     }
