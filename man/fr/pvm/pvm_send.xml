@@ -73,9 +73,30 @@
   <EXAMPLE>
 <![CDATA[
 A = rand(5,5)*(1+%i);
-deff('[x]=f(y)','x = 1/y')                       
-info = pvm_send([262150, 262152], A(1:2:5,:), 100)      
-pvm_send(262146,f,200)          
+deff('[x]=f(y)','x = 1/y') 
+
+//create the script to executed by the spawned scilab
+slave_script=[
+  'parent=pvm_parent()'
+  '[a,info] = pvm_recv(parent, -1)'
+  'disp(a)'
+  '[f,info] = pvm_recv(parent, -1)'
+  'disp(f)'
+  'x=f(a)'
+  'pvm_send(parent,x,1)']
+mputl(slave_script,TMPDIR+'/foo.sce')
+
+if pvm_start()>=0 then
+    // start a new Scilab on the same host to execute the script
+    [tids, numt] = pvm_spawn(TMPDIR+'/foo.sce',1);
+    info = pvm_send(tids, A(1:2:5,:), 100)
+    pvm_send(tids,f,200)   
+    x=pvm_recv(tids,1)
+    x-f(A(1:2:5,:))
+    pvm_kill(tids) //terminate the new scilab
+    pvm_halt() // stop pvm
+ end   
+pvm_halt()    
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
