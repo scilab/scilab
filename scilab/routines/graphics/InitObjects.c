@@ -79,6 +79,8 @@ int C2F(graphicsmodels) ()
   
   sciSetCurrentSon (pfiguremdl, (sciPointObj *) NULL);
 
+  pFIGURE_FEATURE (pfiguremdl)->user_data = (int *) NULL; /* adding 30.06.05 */
+  pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0;
   pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS_SCI;
@@ -186,7 +188,11 @@ int C2F(graphicsmodels) ()
       return 0;
     }
   sciSetCurrentSon (paxesmdl, (sciPointObj *) NULL);
+  
   ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
+
+  ppaxesmdl->user_data = (int *) NULL; /* adding 30.06.05 */
+  ppaxesmdl->size_of_user_data = 0;
   ppaxesmdl->relationship.psons = (sciSons *) NULL;
   ppaxesmdl->relationship.plastsons = (sciSons *) NULL;
   ppaxesmdl->callback = (char *)NULL;
@@ -742,6 +748,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB: 
     case SCI_LEGEND: /* Adding a graphic context to legend object F.Leray 21.01.05 */
+    case SCI_TEXT:
       (sciGetGraphicContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
@@ -758,7 +765,6 @@ sciInitGraphicContext (sciPointObj * pobj)
       return 0;
       break;
     case SCI_AGREG:
-    case SCI_TEXT:
     case SCI_TITLE:
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */

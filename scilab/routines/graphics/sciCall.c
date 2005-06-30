@@ -26,17 +26,20 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
  * ensuite il reste qu'appeler la fonction du dessin de l'objet 
  *-----------------------------------------------*/
 
-void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl,flagstring)
-    double *x,*y,*width,*height;
-    int fillflag, fillcolor,n;
-    long *hdl;
-    BOOL flagstring;
+void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flagstring)
+     double *x,*y,*width,*height;
+     int *foreground, *background;
+     BOOL isfilled, isline;
+     int n;
+     long *hdl;
+     BOOL flagstring;
 { 
   sciPointObj *psubwin;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
   sciSetCurrentObj (ConstructRectangle
-		    (psubwin ,*x,*y,*height, *width, 0, 0,fillflag, fillcolor ,n,flagstring));
+		    (psubwin ,*x,*y,*height, *width, 0, 0,
+		     foreground, background, isfilled, isline, n, flagstring));
   
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
@@ -52,10 +55,11 @@ void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl,flagstring)
  * Objarc : 
  *-----------------------------------------------*/
 
-void Objarc (angle1,angle2,x,y,width,height,color,fill,hdl)
+void Objarc (angle1,angle2,x,y,width,height,foreground,background,isfilled,isline,hdl)
     int *angle1,*angle2;
     double *x,*y,*width,*height;
-    int color,fill;
+    int *foreground, *background;
+    BOOL isfilled,isline;
     long *hdl;
 { 
   sciPointObj *psubwin, *pobj;
@@ -63,7 +67,7 @@ void Objarc (angle1,angle2,x,y,width,height,color,fill,hdl)
 
   sciSetCurrentObj (ConstructArc
          (psubwin,*x,*y,
-	  *height, *width, *angle1, *angle2, color, fill));
+	  *height, *width, *angle1, *angle2, foreground, background, isfilled, isline));
   pobj = sciGetCurrentObj();
  
   *hdl=sciGetHandle(pobj);
@@ -84,22 +88,42 @@ void Objpoly (x,y,n,closed,mark,hdl)
   sciPointObj *psubwin, *pobj;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1)); 
-  pobj = sciGetCurrentObj();
+
+
+  
   if (mark <= 0)
     { 
-      sciSetIsMark(pobj, TRUE);
-      sciSetIsLine(pobj,FALSE);
-      sciSetMarkStyle (pobj,abs(mark));
-/*       sciSetForeground (pobj, sciGetForeground (psubwin)); */
+      int absmark = abs(mark);
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1,
+					  NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE));
     }
   else
     {
-      sciSetIsMark(pobj, FALSE);
-      sciSetIsLine(pobj, TRUE);
-/*       sciSetLineStyle(pobj, sciGetLineStyle (psubwin)); */
-      sciSetForeground (pobj, mark);
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1,
+					  &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));
     }
+  
+   pobj = sciGetCurrentObj();
+
+
+
+
+/*   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1));  */
+/*   pobj = sciGetCurrentObj(); */
+/*   if (mark <= 0) */
+/*     {  */
+/*       sciSetIsMark(pobj, TRUE); */
+/*       sciSetIsLine(pobj,FALSE); */
+/*       sciSetMarkStyle (pobj,abs(mark)); */
+/* /\*       sciSetForeground (pobj, sciGetForeground (psubwin)); *\/ */
+/*     } */
+/*   else */
+/*     { */
+/*       sciSetIsMark(pobj, FALSE); */
+/*       sciSetIsLine(pobj, TRUE); */
+/* /\*       sciSetLineStyle(pobj, sciGetLineStyle (psubwin)); *\/ */
+/*       sciSetForeground (pobj, mark); */
+/*     } */
   *hdl=sciGetHandle(pobj); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -120,7 +144,6 @@ void Objfpoly (x,y,n,style,hdl)
      double *x,*y;
      long * hdl;
 { 
-  long hdltab[2];
   int fillcolor, contourcolor;
   sciPointObj *psubwin, *pobj;
   int closed = 1; /* we close the polyline by default */
@@ -132,50 +155,16 @@ void Objfpoly (x,y,n,style,hdl)
   else /* fill with abs(style) */
     fillcolor = abs(style);
   
-  /*   if(style == 0) */
-  /*     closed = 0; */
-  /*   else */
-  /*     closed = 1; */
-  
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,5)); /* polyline_style is "filled" == 5 */
-  pobj = sciGetCurrentObj();
-  
-/*   if (style < 0) */
-/*     { */
-/*       sciSetIsMark(pobj, FALSE); */
-/*       sciSetIsLine(pobj, TRUE); */
-/*       sciSetForeground (pobj, abs(style)); */
-/*       sciSetBackground (pobj, abs(style)); */
-/*     } */
-/*   else if (style > 0) */
-/*     { */
-/*       sciSetIsMark(pobj, FALSE); */
-/*       sciSetIsLine(pobj, TRUE); */
-/*       sciSetBackground (pobj, style); */
-/*     } */
-/*   else */
-/*     { */
-/*       sciSetIsMark(pobj, FALSE); */
-/*       sciSetIsLine(pobj, TRUE); */
-/*       sciSetForeground (pobj, style); */
-/*     } */
-  
-  sciSetForeground (pobj, fillcolor);
-
-  hdltab[0]=sciGetHandle(pobj);
- 
   if (style < 0)
     contourcolor = fillcolor;
   else
     contourcolor = sciGetForeground(psubwin);
   
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1));  /* polyline_style is "interpolated" == 0 */
+  /*   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,5)); /\* polyline_style is "filled" == 5 *\/ */
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
+				      1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE)); 
+  /* polyline_style is "interpolated" by default == 1 AND I put isfilled == TRUE */
   pobj = sciGetCurrentObj();
-  sciSetForeground (pobj, contourcolor);
-
-  hdltab[1]=sciGetHandle(pobj);
-  sciSetCurrentObj(ConstructAgregation (hdltab, 2)); 
-/* } */
   
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -218,13 +207,16 @@ void Objsegs (style,flag,n1,x,y,arsize)
  * Objstring:
  *-----------------------------------------------------------*/
 
-void Objstring(fname,fname_len,str,x,y,angle,box,wh,fill,hdl)
+/* box is an OUTPUT re-used inside matdes.c in scixstring */
+void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,background,isboxed,isfilled,isline)
      char *fname; 
      unsigned long fname_len; 
      integer str;
      double x,y,*angle,*box,*wh;
      int fill;
      long *hdl;
+     int *foreground, *background;
+     BOOL isboxed,isfilled,isline;
 { 
   integer v;
   double dv;
@@ -234,11 +226,11 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,fill,hdl)
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   sciSetCurrentObj (ConstructText
 			(psubwin, fname,
-			 strlen (fname), x, y,wh));
+			 strlen (fname), x, y,wh, fill,foreground,background,isboxed,isfilled,isline));
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 
-  pTEXT_FEATURE (pobj)->fill=fill;
+
 /*   sciSetForeground (pobj, sciGetForeground (psubwin)); */
 /*   sciSetFontStyle(pobj, sciGetFontStyle (psubwin)); */
 /*   sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin)); */
@@ -349,7 +341,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   char * legx = NULL;
   char * legy = NULL;
   char * legz = NULL;
-/*   char * buff = NULL; */
+  /*   char * buff = NULL; */
 
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
@@ -473,10 +465,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
   ok=0;  
- if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) ok=1;
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) ok=1;
 
   if ((sciGetGraphicMode (psubwin)->autoscaling)) {
-     /* compute and merge new specified bounds with psubwin->Srect */
+    /* compute and merge new specified bounds with psubwin->Srect */
     switch (iflag[1])  {
     case 0:  /* do not change psubwin->Srect */
       break;
@@ -500,16 +492,16 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       drect[5] = (double) Maxi(z, mn); /*zmax*/
       break;
     }
-   if (!pSUBWIN_FEATURE(psubwin)->FirstPlot ) { /* merge psubwin->Srect and drect */
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot ) { /* merge psubwin->Srect and drect */
       drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
       drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
       drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       drect[4] = Min(pSUBWIN_FEATURE(psubwin)->SRect[4],drect[4]); /*zmin*/
       drect[5] = Max(pSUBWIN_FEATURE(psubwin)->SRect[5],drect[5]); /*zmax*/
-   }
-   if (iflag[1] != 0) 
-     bounds_changed = update_specification_bounds(psubwin, drect,3);
+    }
+    if (iflag[1] != 0) 
+      bounds_changed = update_specification_bounds(psubwin, drect,3);
   } 
   
   if(iflag[1] != 0)
@@ -553,29 +545,51 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       }
       for (i = 0; i < *n; ++i) { 
 	/* F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
-	 Pb comes when wanting to access the fields "surface_color" or "flag" for example
-	 in function sciSet (cf. matdes.c). 
-	 Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
-	 Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
-	sciSetCurrentObj (ConstructPolyline
-			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1));  
-	pobj = sciGetCurrentObj();
+	   Pb comes when wanting to access the fields "surface_color" or "flag" for example
+	   in function sciSet (cf. matdes.c). 
+	   Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
+	   Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
+
+	/* 	sciSetCurrentObj (ConstructPolyline */
+	/* 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()), */
+	/* 			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1));   */
+
 	if ((*n > 0) && (zcol != (double *)NULL)) {
 	  if ((int) zcol[i] > 0){
-	    sciSetForeground (pobj, (int) zcol[i]);
-	    sciSetIsMark(pobj, FALSE);
-	    sciSetIsLine(pobj,  TRUE);
+	    int intzcol = (int) zcol[i];
+	    sciSetCurrentObj (ConstructPolyline
+			      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1,
+			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));  
 	  }
 	  else {
-/* 	    sciSetMarkSizeUnit(pobj,2); /\* force switch to tabulated mode : old syntax *\/ */
- 	    sciSetIsMark(pobj,TRUE);
-	    sciSetIsLine(pobj,FALSE);
-	    sciSetMarkStyle(pobj,(int) -zcol[i]);
+	    int intzcol = (int) -zcol[i];
+	    sciSetCurrentObj (ConstructPolyline
+			      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1,
+			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE));  
 	  }
 	}
+
+	pobj = sciGetCurrentObj();
+	
 	hdltab[i]=sciGetHandle(pobj); 
-      } 
+      }
+      /* 	if ((*n > 0) && (zcol != (double *)NULL)) { */
+      /* 	  if ((int) zcol[i] > 0){ */
+      /* 	    sciSetForeground (pobj, (int) zcol[i]); */
+      /* 	    sciSetIsMark(pobj, FALSE); */
+      /* 	    sciSetIsLine(pobj,  TRUE); */
+      /* 	  } */
+      /* 	  else { */
+      /* /\* 	    sciSetMarkSizeUnit(pobj,2); /\\* force switch to tabulated mode : old syntax *\\/ *\/ */
+      /*  	    sciSetIsMark(pobj,TRUE); */
+      /* 	    sciSetIsLine(pobj,FALSE); */
+      /* 	    sciSetMarkStyle(pobj,(int) -zcol[i]); */
+      /* 	  } */
+      /* 	} */
+      /* 	hdltab[i]=sciGetHandle(pobj);  */
+      /*       }  */
       /** construct agregation and make it current object**/
       if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
       FREE(hdltab);
@@ -592,7 +606,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * ================================================= */
 
   sciDrawObj(sciGetCurrentFigure ());
-/*   EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ())); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+  /*   EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ())); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
   FREE(loc); loc = NULL;

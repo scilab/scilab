@@ -6329,6 +6329,31 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  }
 	} /* end SCI_SURFACE*/
 	else { /* POLYLINE case starts here ! */
+	  /* special case 5 */
+	  if(sciGetIsFilled(pobj) == TRUE && pPOLYLINE_FEATURE (pobj)->plot != 5) /* No filling if mode plot == 5 is selected */
+	    {
+	      int close=1;
+	      char str[2] = "xv";
+	      
+	      C2F (dr) ("xarea", str, &n1, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	    }
+	  
+	  if(sciGetIsFilled(pobj) == TRUE && pPOLYLINE_FEATURE (pobj)->plot != 5) /* No filling if mode plot == 5 is selected */
+	    {
+	      integer v;
+	      double dv=0;
+	      int x[4],close=1;
+	      char str[2] = "xv";
+	      x[0] = sciGetBackground(pobj);
+	      
+	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			&dv, &dv, &dv, &dv, 5L, 4096);
+	      
+	      C2F (dr) ("xarea", str, &n1, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	    }
+	  
 	  if (sciGetIsMark(pobj) == TRUE){
 	    integer v;
 	    double dv=0;
@@ -6358,10 +6383,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  }
-	  else {/*patch*/
-	    int close=1;
-	    C2F (dr) ("xarea", "v", &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	  }
+/* 	  else {/\*patch*\/ */
+/* 	    int close=1; */
+/* 	    C2F (dr) ("xarea", "v", &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
+/* 	  } */
 	}
       }
     }
@@ -7770,6 +7795,18 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	  if(result_trans3d == 1 && drawline == TRUE)
 	    {
+  	      if(sciGetIsFilled(pobj) == TRUE && pPOLYLINE_FEATURE (pobj)->plot != 5) /* No filling if mode plot == 5 is selected */
+		{
+		  x[0] = sciGetBackground(pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			    &dv, &dv, &dv, &dv, 5L, 4096);
+		  
+		  C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		}
+	      
 	      if (sciGetIsMark(pobj) == TRUE){
 		int x[4], markidsizenew[2];
 		x[0] = sciGetMarkForeground(pobj);
@@ -7858,8 +7895,7 @@ sciDrawObj (sciPointObj * pobj)
 		PI0, PD0, PD0, PD0, PD0, 4L, 9L);
 
       /* load the object foreground and dashes color */
-      
-      x[0] = sciGetForeground (pobj);	
+
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -7869,12 +7905,6 @@ sciDrawObj (sciPointObj * pobj)
       flag_DO = MaybeSetWinhdc ();
 #endif
     
-      
-      
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, 
-		&dv, &dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3,&v, 
-		&dv, &dv, &dv, &dv, 5L, 10L );
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, 
 		PD0, PD0, PD0, PD0, 4L, 9L);   
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, 
@@ -7947,10 +7977,29 @@ sciDrawObj (sciPointObj * pobj)
       flag_DO = MaybeSetWinhdc ();
 #endif
       sciClip(pobj);
-      if (pARC_FEATURE (pobj)->fill  <= 0)
-	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-      else
+      
+      if(sciGetIsFilled(pobj) == TRUE){
+	x[0] = sciGetBackground(pobj);
+	C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+		  &dv, &dv, &dv, &dv, 5L, 6L);
+	C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+		  &dv, &dv, &dv, &dv, 5L, 10L );
 	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+      }
+      
+      if(sciGetIsLine(pobj) == TRUE){
+	x[0] = sciGetForeground(pobj);
+	C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+		  &dv, &dv, &dv, &dv, 5L, 6L);
+	C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+		  &dv, &dv, &dv, &dv, 5L, 10L );
+	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+      }
+      
+/*       if (pARC_FEATURE (pobj)->fill  <= 0) */
+/* 	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L); */
+/*       else */
+/* 	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L); */
       sciUnClip(pobj);
 #ifdef WIN32 
       if ( flag_DO == 1)  ReleaseWinHdc ();
@@ -7961,26 +8010,26 @@ sciDrawObj (sciPointObj * pobj)
      
       /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
       n = 1;
-      if (sciGetFillStyle(pobj) != 0)
-	{      
-	  x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
-	  x[1] = 1;
-	  x[2] = 0;
-	  x[3] = 0;
-	  x[4] = 0;
-	  x[5] = sciGetFillColor(pobj);
-#ifdef WIN32 
-	  flag_DO = MaybeSetWinhdc ();
-#endif
+ /*      if (sciGetFillStyle(pobj) != 0) */
+/* 	{       */
+/* 	  x[0] = 64;	/\*la dash est de la meme couleur que le foreground*\/ */
+/* 	  x[1] = 1; */
+/* 	  x[2] = 0; */
+/* 	  x[3] = 0; */
+/* 	  x[4] = 0; */
+/* 	  x[5] = sciGetFillColor(pobj); */
+/* #ifdef WIN32  */
+/* 	  flag_DO = MaybeSetWinhdc (); */
+/* #endif */
 	 
-	  C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv,
-		     &dv, &dv, &dv, 5L, 4096);
-#ifdef WIN32 
-	  if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-	}
-      /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);
+/* 	  C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv, */
+/* 		     &dv, &dv, &dv, 5L, 4096); */
+/* #ifdef WIN32  */
+/* 	  if ( flag_DO == 1) ReleaseWinHdc (); */
+/* #endif */
+/* 	} */
+      
+      /* load some line properties */
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -7991,10 +8040,6 @@ sciDrawObj (sciPointObj * pobj)
       flag_DO = MaybeSetWinhdc ();
 #endif
 
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-		&dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);    
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
@@ -8042,6 +8087,16 @@ sciDrawObj (sciPointObj * pobj)
 	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(pobj);
+
+	  if(sciGetIsFilled(pobj) == TRUE){
+	    x[0] = sciGetBackground(pobj);
+	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+		      &dv, &dv, &dv, &dv, 5L, 6L);
+	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+		      &dv, &dv, &dv, &dv, 5L, 10L );
+	    C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  }
+	  
 	  if(sciGetIsMark(pobj))
 	    {
 	      x[0] = sciGetMarkForeground(pobj);
@@ -8083,19 +8138,13 @@ sciDrawObj (sciPointObj * pobj)
 	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);
 	      
-	      if (pRECTANGLE_FEATURE (pobj)->str == 1)
-		{
-		  yy1 -= hstr;
-		  C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		}
+
+	      if (pRECTANGLE_FEATURE (pobj)->str == 1){
+		yy1 -= hstr;
+		C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
 	      else
-		if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)
-		  C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		else
-		  if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
-		    C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  else
-		    sciprint("  The value must be 1  or 0\r\n");
+		C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  
 	  sciUnClip(pobj);
@@ -8123,6 +8172,17 @@ sciDrawObj (sciPointObj * pobj)
 	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(pobj);
+
+	  
+	  if(sciGetIsFilled(pobj) == TRUE){
+	    x[0] = sciGetBackground(pobj);
+	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+		      &dv, &dv, &dv, &dv, 5L, 6L);
+	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+		      &dv, &dv, &dv, &dv, 5L, 10L );
+	    C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	  }
+	  
 	  if (sciGetIsMark(pobj)) 
 	    {
 	      x[0] = sciGetMarkForeground(pobj);
@@ -8155,13 +8215,7 @@ sciDrawObj (sciPointObj * pobj)
 	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			PD0, PD0, PD0, 0L, 0L);
 	      
-	      if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)	
-		C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	      else
-		if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
-		  C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-		else
-		  sciprint("  The value must be 1  or 0\r\n");
+	      C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	    }
 	  
 	  sciUnClip(pobj);
@@ -8174,23 +8228,9 @@ sciDrawObj (sciPointObj * pobj)
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
       n = 1;
-      /* load the object foreground and dashes color */
-      x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
-      x[2] = sciGetFontDeciWidth (pobj)/100;
-      x[3] = 0;
-      x[4] = sciGetFontStyle(pobj);
+ 
       v = 0;
       dv = 0;
-#ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
-#endif
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-      C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-      /**DJ.Abdemouche 2003**/
 
       flagx = 0;
 #ifdef WIN32 
@@ -8220,7 +8260,67 @@ sciDrawObj (sciPointObj * pobj)
 	}
 	anglestr = (sciGetFontOrientation (pobj)/10); 	
 	/* *10 parce que l'angle est conserve en 1/10eme de degre*/
+	
+	/* wether or not we draw and/or fill the box */
+	if(sciGetIsBoxed (pobj) == TRUE)
+	  {   
+	    int font_[2], cur_font_[2];
+	    int rect1[4], verb=0;
+	    
+	    C2F(dr1)("xget","font",&verb,font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+	    
+	    cur_font_[0] = font_[0];
+	    cur_font_[1] = font_[1];
+	    	
+	    font_[0] = sciGetFontStyle (pobj);
+	    font_[1] = sciGetFontDeciWidth (pobj)/100;
 
+	    C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F(dr)("xstringl",pTEXT_FEATURE (pobj)->ptextstring,
+		    &x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,pTEXT_FEATURE (pobj)->textlen);
+	    
+	    if(sciGetIsFilled(pobj))
+	      {
+		x[0] = sciGetBackground(pobj);
+		
+		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+		
+		C2F(dr)("xfrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3],
+			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
+	    
+	    if(sciGetIsLine(pobj))
+	      {
+		x[0] = sciGetForeground(pobj);
+		
+		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+		
+		C2F(dr)("xrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3],
+			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
+	    
+	    C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  }
+	
+#ifdef WIN32 
+	flag_DO = MaybeSetWinhdc ();
+#endif
+  	/* load the object foreground and dashes color */
+   	x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
+	x[2] = sciGetFontDeciWidth (pobj)/100;
+	x[3] = 0;
+	x[4] = sciGetFontStyle(pobj);
+	
+	C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+	C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+	C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+	
+#ifdef WIN32 
+	if ( flag_DO == 1) ReleaseWinHdc ();
+#endif
 	C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
       }
       else { /* SS for xstringb should be improved*/

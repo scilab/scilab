@@ -473,7 +473,8 @@ typedef struct
   sciRelationShip relationship;
   /** */
   sciFont fontcontext;
-  /** */
+  sciGraphicContext graphiccontext; /* the only properties used by Text are foreground and background */
+ /** */
   char *ptextstring;
   /** position in scilab window (not pixel) */
   double x;			    
@@ -481,7 +482,10 @@ typedef struct
   double y;
   /***/
   double wh[2];
-  BOOL fill;
+  BOOL fill; /* to distinguish between xstring and xstringb */
+  BOOL isboxed;
+  BOOL isfilled;
+  BOOL isline;
   /** */
   double z; /**DJ.Abdemouche 2003**/
   unsigned int textlen;
@@ -785,7 +789,7 @@ typedef struct
   double alphabegin;		
   /** end at alpha2   */
   double alphaend;
-  int fill;		
+  int fill; /* another flag to specify wether we should have a box around the text */
   /** */
   BOOL isselected;
   /** specifies the text scilab code for the callback associated with this entity */
@@ -801,6 +805,8 @@ typedef struct
   double z; /**DJ.Abdemouche 2003**/
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
+  BOOL isfilled; /* to know if an arc is filled or not */
+  /* the isline property is inside the associated graphiccontext */
 }  /** */
 sciArc;
 
@@ -836,8 +842,8 @@ typedef struct
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
   double *pvz; /**DJ.Abdemouche 2003**/
-  int n1;                       /** number of point */
-  int n2;                       /** numbre of curve if Plot **/ 
+  int n1;                       /** number of points */
+  int n2;                       /** numbre of curves if Plot **/ 
   int closed;                   /** is it a closed polyline */
   int plot;                     /** defines the polyline_style (interpolated, staircase, bar_plot,...) : is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   BOOL isselected;
@@ -851,6 +857,7 @@ typedef struct
   int clip_region_set;
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
+  BOOL isfilled; /* to know if a polyline is filled or not */
 }
 sciPolyline;  /** */
 
@@ -867,7 +874,6 @@ typedef struct
   double width;
   double height;
   int fillflag;
-  int fillcolor;
   int str; 
   integer strwidth;
   integer strheight;
@@ -887,6 +893,7 @@ typedef struct
   BOOL flagstring; /* flag used to determine wether the rectangle is used to surround a string : used when axes is reversed */
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
+  BOOL isfilled; /* to know if a rectangle is filled or not */
 }
 sciRectangle;  /** */
 

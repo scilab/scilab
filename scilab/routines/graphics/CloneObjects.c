@@ -58,6 +58,9 @@ sciPointObj *
 CloneText (sciPointObj * pthis)
 {
   sciPointObj *pobj, *subwinparent;
+  int foreground = sciGetForeground(pthis);
+  int background = sciGetBackground(pthis);
+ 
   subwinparent = pthis;
 
   while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
@@ -65,7 +68,9 @@ CloneText (sciPointObj * pthis)
   if ((int) sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructText (subwinparent, sciGetText(pthis), sciGetTextLength(pthis), 
-			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),0))){
+			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),pTEXT_FEATURE(pthis)->wh,pTEXT_FEATURE(pthis)->fill,
+			      &foreground,&background,pTEXT_FEATURE(pthis)->isboxed,
+			      sciGetIsFilled(pthis), sciGetIsLine(pthis)))){
     return (sciPointObj *)NULL;
   }
   else{
@@ -162,15 +167,20 @@ sciPointObj *
 CloneRectangle (sciPointObj * pthis)
 {
   sciPointObj * pobj, *subwinparent;
+  int foreground = sciGetForeground(pthis);
+  int background = sciGetBackground(pthis);
+ 
   subwinparent = pthis;
-
+  
+  
   while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
 	 && ((int)sciGetEntityType(subwinparent) != -1));
   if ((int)sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructRectangle (subwinparent, pRECTANGLE_FEATURE(pthis)->x, 
 				   pRECTANGLE_FEATURE(pthis)->y, pRECTANGLE_FEATURE(pthis)->height,pRECTANGLE_FEATURE(pthis)->width, 
-				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,0,0,0,pRECTANGLE_FEATURE(pthis)->flagstring))){
+				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,
+				   &foreground,&background,sciGetIsFilled(pthis),sciGetIsLine(pthis),0,pRECTANGLE_FEATURE(pthis)->flagstring))){
     return (sciPointObj *)NULL;
   }
   else {
@@ -185,7 +195,7 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
-  if (sciSetFillFlag(pobj, sciGetFillFlag (pthis)) == -1)
+  if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
     return (sciPointObj *)NULL;
   
   if((pRECTANGLE_FEATURE (pthis)->size_of_user_data != 0) && (pRECTANGLE_FEATURE (pthis)->user_data != (int *) NULL))
@@ -215,15 +225,24 @@ sciPointObj *
 ClonePolyline (sciPointObj * pthis)
 {
   sciPointObj * pobj, *subwinparent;
+  int foreground = sciGetForeground(pthis);
+  int background = sciGetBackground(pthis);
+  int mark_foreground = sciGetMarkForeground(pthis);
+  int mark_background = sciGetMarkBackground(pthis);
+  int mark_style = sciGetMarkStyle(pthis);
+  
   subwinparent = pthis;
-
+  
   while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
 	 && ((int)sciGetEntityType(subwinparent) != -1));
   if ((int)sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
   /* DJ.A 2003 */
   if (!(pobj = ConstructPolyline (subwinparent, pPOLYLINE_FEATURE(pthis)->pvx, pPOLYLINE_FEATURE(pthis)->pvy,pPOLYLINE_FEATURE(pthis)->pvz,
-				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot))){
+				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot,
+				  &foreground, &background,
+				  &mark_style, &mark_foreground, &mark_background,
+				  sciGetIsLine(pthis),  sciGetIsFilled(pthis), sciGetIsMark(pthis)))){
     return (sciPointObj *)NULL;
   }
   else {
@@ -268,14 +287,18 @@ CloneArc (sciPointObj * pthis)
 {
   sciPointObj * pobj, *subwinparent;
   subwinparent = pthis;
-
+  
+  int foreground = sciGetForeground(pthis);
+  int background = sciGetBackground(pthis);
+  
   while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
 	 && ((int)sciGetEntityType(subwinparent) != -1));
   if ((int)sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructArc (subwinparent, pARC_FEATURE(pthis)->x, 
 			     pARC_FEATURE(pthis)->y, pARC_FEATURE(pthis)->height,pARC_FEATURE(pthis)->width,
-			     pARC_FEATURE(pthis)->alphabegin, pARC_FEATURE(pthis)->alphaend,-1,0))){
+			     pARC_FEATURE(pthis)->alphabegin, pARC_FEATURE(pthis)->alphaend,
+			     &foreground,&background,sciGetIsFilled(pthis),sciGetIsLine(pthis)))){
     return (sciPointObj *)NULL;
   }
   else {
@@ -290,7 +313,7 @@ CloneArc (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
-  if (sciSetFillFlag(pobj, sciGetFillFlag (pthis)) == -1)
+  if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
     return (sciPointObj *)NULL;
 
   if((pARC_FEATURE (pthis)->size_of_user_data != 0) && (pARC_FEATURE (pthis)->user_data != (int *) NULL))

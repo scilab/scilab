@@ -290,10 +290,10 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_TEXT:
 	  sciSetForeground(pobj,value);
 	  break;
 	case SCI_AGREG:
-	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_PANNER:		/* pas de context graphics */
@@ -322,10 +322,10 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_MENUCONTEXT:
 	case SCI_STATUSB:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_TEXT:
 	  sciSetBackground(pobj,value);
 	  break;
 	case SCI_AGREG:
-	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_PANNER:		/* pas de context graphics */
@@ -501,7 +501,7 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
       (sciGetGraphicContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_TEXT:
-      (sciGetFontContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      (sciGetGraphicContext(pobj))->backgroundcolor = Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_TITLE:
       (sciGetFontContext (pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
@@ -591,7 +591,7 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
       (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_TEXT:
-      (sciGetFontContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+      (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_TITLE:
       (sciGetFontContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
@@ -1294,6 +1294,10 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
       (sciGetGraphicContext(pobj))->isline = isline;
       return 0;
       break;
+    case SCI_TEXT:
+      pTEXT_FEATURE(pobj)->isline = isline;
+      return 0;
+      break;
     case SCI_FEC:
     case SCI_GRAYPLOT:
     case SCI_MENU:
@@ -1304,7 +1308,6 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
@@ -1385,117 +1388,6 @@ sciSetFillStyle (sciPointObj * pobj, int fillstyle)
     }
   return 0;
 }
-
-
-
-/**sciSetFillColor
- * @memo Sets the fillcolor
- */
-int
-sciSetFillColor (sciPointObj * pobj, int fillcolor)
-{
-
-  if (fillcolor < 0)
-    {
-      sciprint ("the fill width must be equal or greater than 0\n");
-      return -1;
-    }
-  else
-    {
-      switch (sciGetEntityType (pobj))
-	{
-	case SCI_FIGURE:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-	case SCI_SUBWIN:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  /*sciSetFillStyle (sciGetParentFigure (pobj), fillcolor);*/
-	  return 0;
-	  break;
-	case SCI_ARC:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-        case SCI_POLYLINE:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-	case SCI_RECTANGLE:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-	case SCI_SURFACE:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-        case SCI_AXES:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-	case SCI_SEGS: 
-        case SCI_FEC: 
-	case SCI_GRAYPLOT:
-	case SCI_LIGHT:
-	case SCI_PANNER:
-	case SCI_SBH:
-	case SCI_SBV:
-	case SCI_MENU:
-	case SCI_MENUCONTEXT:
-	case SCI_STATUSB:
-	case SCI_AGREG:
-	case SCI_TEXT:
-	case SCI_TITLE:
-	case SCI_LEGEND:
-	case SCI_LABEL: /* F.Leray 28.05.04 */
-	default:
-	  sciprint ("This object have no  line width \n");
-	  return -1;
-	  break;
-	}
-    }
-  return 0;
-}
-
-
-int
-sciSetFillFlag (sciPointObj * pobj, int fillflag)
-{
-	
-  switch (sciGetEntityType (pobj))
-    { 
-    case SCI_RECTANGLE:
-      pRECTANGLE_FEATURE (pobj)->fillflag = fillflag;
-      break;
-    case SCI_ARC:
-      pARC_FEATURE (pobj)->fill = fillflag;
-      break;
-    case SCI_FIGURE:           /* pas de remplissage */
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:  
-    case SCI_PANNER:		
-    case SCI_SBH:		
-    case SCI_SBV:
-    case SCI_LABEL: /* F.Leray 28.05.04 */	
-    default:
-      break;
-    }
-  return 0;
-}
-
 
 
 /**sciSetFontDeciWidth
@@ -3593,5 +3485,101 @@ void set_version_flag(int flag)
   CurrentScilabXgc=(struct BCG *)XGC;
   if (CurrentScilabXgc !=(struct BCG *)NULL) 
     CurrentScilabXgc->graphicsversion = flag; 
+}
+
+
+/**sciSetIsFilled
+ * @memo Sets the filled line existence
+ */
+int
+sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_POLYLINE:
+      pPOLYLINE_FEATURE(pobj)->isfilled = isfilled;
+      return 0;
+      break;
+    case SCI_RECTANGLE:
+      pRECTANGLE_FEATURE(pobj)->fillflag = isfilled;
+      return 0;
+      break;
+    case SCI_ARC:
+      pARC_FEATURE(pobj)->fill = isfilled;
+      return 0;
+      break;
+    case SCI_TEXT:
+      pTEXT_FEATURE(pobj)->isfilled = isfilled;
+      return 0;
+      break;   
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_LEGEND:
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_LIGHT:
+    case SCI_AGREG:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_TITLE:
+    case SCI_LABEL:
+    default:
+      sciprint ("This object have no isfilled \n");
+      return -1;
+      break;
+    }
+  return 0;
+}
+
+
+/**sciSetIsBoxed
+ * @memo Sets the box existence
+ */
+int
+sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_TEXT:
+      pTEXT_FEATURE(pobj)->isboxed = isboxed;
+      return 0;
+      break;
+    case SCI_SUBWIN:
+      pSUBWIN_FEATURE(pobj)->axes.rect = isboxed;
+      return 0;
+      break;
+    case SCI_LABEL:
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_ARC:
+    case SCI_FIGURE:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_LEGEND:
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_LIGHT:
+    case SCI_AGREG:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_TITLE:
+    default:
+      sciprint ("This object have no isboxed \n");
+      return -1;
+      break;
+    }
+  return 0;
 }
 

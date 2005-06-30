@@ -297,6 +297,8 @@ sciGetGraphicContext (sciPointObj * pobj)
       return  &(pLEGEND_FEATURE (pobj)->graphiccontext);
       break;
     case SCI_TEXT:
+      return  &(pTEXT_FEATURE (pobj)->graphiccontext);
+      break;
     case SCI_AGREG:
     case SCI_TITLE:
     case SCI_PANNER:
@@ -385,7 +387,7 @@ sciGetForeground (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_TEXT:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_TITLE:
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
@@ -460,7 +462,7 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_TEXT:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_TITLE:
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
@@ -543,7 +545,7 @@ sciGetBackground (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TEXT:
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TITLE:
       colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
@@ -626,7 +628,7 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TEXT:
-      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TITLE:
       colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
@@ -1341,6 +1343,9 @@ sciGetIsLine (sciPointObj * pobj)
     case SCI_LEGEND:
       return (sciGetGraphicContext(pobj))->isline;
       break;
+    case SCI_TEXT:
+      return pTEXT_FEATURE(pobj)->isline;
+      break;
     case SCI_GRAYPLOT:
     case SCI_LIGHT:
     case SCI_MENU:
@@ -1350,12 +1355,57 @@ sciGetIsLine (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+    case SCI_TITLE:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+    default:
+      sciprint ("This object has no isline\n");
+      return -1;
+      break;
+    }
+  return 0;
+}
+
+/**sciGetIsFilled
+ * @memo Returns the filled line existence
+ */
+BOOL
+sciGetIsFilled (sciPointObj * pobj)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_POLYLINE:
+      return pPOLYLINE_FEATURE(pobj)->isfilled;
+      break;
+    case SCI_RECTANGLE:
+      return pRECTANGLE_FEATURE(pobj)->fillflag;
+      break;
+    case SCI_ARC:
+      return pARC_FEATURE(pobj)->fill;
+      break;  
     case SCI_TEXT:
+      return pTEXT_FEATURE(pobj)->isfilled;
+      break;
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_FEC:
+    case SCI_SEGS:
+    case SCI_LEGEND:
+    case SCI_GRAYPLOT:
+    case SCI_LIGHT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_PANNER:	/* pas de context graphics */
+    case SCI_SBH:		/* pas de context graphics */
+    case SCI_SBV:		/* pas de context graphics */
+    case SCI_AGREG:
     case SCI_TITLE:
 
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("This object has no isline\n");
+      sciprint ("This object has no isfilled\n");
       return -1;
       break;
     }
@@ -1419,107 +1469,6 @@ sciGetFillStyle (sciPointObj * pobj)
     }
   return 0;
 }
-
-
-/**sciGetFillColor
- * @memo Gets the fill color
- */
-int
-sciGetFillColor (sciPointObj * pobj)
-{
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
-    case SCI_SUBWIN:
-      return sciGetFillColor (sciGetParent (pobj));
-      break;
-    case SCI_TEXT:
-      return -1;
-      break;
-    case SCI_TITLE:
-      return -1;
-      break;
-    case SCI_LEGEND:
-      return -1;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_LIGHT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    default:
-      sciprint ("This object has no Fill Color\n");
-      return -1;
-      break;
-    }
-  return 0;
-}
-
-
-
-int
-sciGetFillFlag (sciPointObj * pobj)
-{
-	
-  switch (sciGetEntityType (pobj))
-    { 
-    case SCI_RECTANGLE:
-      return pRECTANGLE_FEATURE (pobj)->fillflag;
-      break;
-    case SCI_ARC:
-      return pARC_FEATURE (pobj)->fill;
-      break;
-    case SCI_FIGURE:           /* pas de remplissage */
-    case SCI_SUBWIN:
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:  
-    case SCI_PANNER:		
-    case SCI_SBH:		
-    case SCI_SBV:
-    case SCI_LABEL: /* F.Leray 28.05.04 */	
-    default:
-      break;
-    }
-  return 0;
-}
-
-
 
 /**sciGetFontContext
  * @memo Returns the structure of the Font Context. Do not use this in the Consturctor Functions !
@@ -4600,4 +4549,45 @@ sciGethPopMenu (sciPointObj * pthis)
   return (HMENU) NULL;
 }
 
+
+/**sciGetIsBoxed
+ * @memo Returns the box existence
+ */
+BOOL
+sciGetIsBoxed (sciPointObj * pobj)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_TEXT:
+      return pTEXT_FEATURE(pobj)->isboxed;
+      break;
+    case SCI_SUBWIN:
+      return pSUBWIN_FEATURE(pobj)->axes.rect;
+    case SCI_LABEL:
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_ARC:
+    case SCI_FIGURE:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_LEGEND:
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_LIGHT:
+    case SCI_AGREG:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_TITLE:
+    default:
+      sciprint ("This object have no isboxed \n");
+      return 0;
+      break;
+    }
+  return 0;
+}
 

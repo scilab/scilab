@@ -27,27 +27,28 @@ extern sciPointObj *ConstructSubWin (sciPointObj * pparentfigure,
 extern sciPointObj *ConstructScrollV (sciPointObj * pparentfigure); /* BUILD */
 extern sciPointObj *ConstructScrollH (sciPointObj * pparentfigure); /* BUILD */
 
-extern sciPointObj *ConstructText (sciPointObj * pparentfigure, char text[],
-				   int n, double x, double y,double *wh); /* BUILD */
-
+extern sciPointObj *ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
+				   double y, double *wh, int fill,int *foreground, int *background, 
+				   BOOL isboxed, BOOL isfilled, BOOL isline); /* BUILD */
+     
 extern sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
 				    int type); /* BUILD */
 
 extern sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char text[],
 				     int n, int nblegends, int *pstyle, sciPointObj **pptabofpointobj);  /* BUILD */
 
-extern sciPointObj *ConstructPolyline (sciPointObj * pparentfigure,
-				       double *pvecx, double *pvecy, double *pvecz,int closed, int n1, int n2, int plot);/*3D constructor*/  /* BUILD */
+extern sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+				       int closed, int n1, int n2,int plot, int *foreground, int *background,
+				       int *mark_style, int *mark_foreground, int *mark_background,
+				       BOOL isline, BOOL isfilled, BOOL ismark); /* BUILD */
+extern sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
+				  double height, double width, double alphabegin, double alphaend, 
+				  int *foreground, int *background, BOOL isfilled, BOOL isline);
 
-extern sciPointObj *ConstructArc (sciPointObj * pparentfigure, double x,
-				  double y, double height, double width,
-				  double alphabegin, double alphaend, int color, int fill); /* BUILD */
-
-extern sciPointObj *ConstructRectangle (sciPointObj * pparentfigure, double x,
-					double y, double height, double width,
-					double horzcurvature,
-					double vertcurvature, int fillflag, int fillcolor, int str, BOOL flagstring);  /* BUILD */
-
+extern sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
+					double height, double width, double horzcurvature,
+					double vertcurvature,  int *foreground, int *background,
+					int isfilled, int isline, int str, BOOL flagstring);
 
 extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				      double * pvecx, double * pvecy, double * pvecz,

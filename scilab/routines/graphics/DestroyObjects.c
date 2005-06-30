@@ -657,9 +657,12 @@ DestroySegs (sciPointObj * pthis)
 int
 DestroyAgregation (sciPointObj * pthis)
 {
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  FREE (pAGREG_FEATURE (pthis)->user_data);
+  sciAgreg * ppagreg = pAGREG_FEATURE (pthis);
+
+  FREE (ppagreg->user_data);
   pAGREG_FEATURE (pthis)->size_of_user_data = 0;
+
+  sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1) return -1;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
@@ -721,6 +724,7 @@ sciUnAgregation (sciPointObj * pobj)
 int
 DestroyLabel (sciPointObj * pthis)
 {
+/*   sciLabel *pplabel = pLABEL_FEATURE (pthis); */
   FREE (pLABEL_FEATURE (pthis)->user_data); 
   pLABEL_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pLABEL_FEATURE (pthis)->text.ptextstring);

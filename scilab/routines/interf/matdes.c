@@ -1996,11 +1996,13 @@ int scixarc(fname,fname_len)
   GetRhsVar(5,"i",&m1,&n1,&l5);CheckScalar(5,m1,n1);
   GetRhsVar(6,"i",&m1,&n1,&l6);CheckScalar(6,m1,n1);
   /* NG beg */
-  if (version_flag() == 0)
-    if (strcmp(fname,"xarc")==0) 
-      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),-1,0,&hdl);
-    else
-      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),-1,1,&hdl);
+  if (version_flag() == 0){
+    int curcolor = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())); /* current color equivalent for new graphics mode */
+    if (strcmp(fname,"xarc")==0)
+      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,FALSE,TRUE,&hdl);
+    else /* xfarc case */
+      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,TRUE,FALSE,&hdl);
+  }
   else
     Xarc(fname,fname_len,istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4));
   /* NG end */
@@ -2050,7 +2052,11 @@ int scixarcs(fname,fname_len)
     {
       int i;
       m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
-      for (i = 0; i < n2; ++i)  *istk(l2 + i) = 0;
+      if (version_flag() == 0)
+	for (i = 0; i < n2; ++i)  *istk(l2 + i) = 
+				    sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+      else
+	for (i = 0; i < n2; ++i)  *istk(l2 + i) = 0;
     }  
   /* NG beg */
   if (version_flag() == 0){ 
@@ -2059,7 +2065,7 @@ int scixarcs(fname,fname_len)
 	a1=(int)(*stk(l1+(6*i)+4));
 	a2=(int)(*stk(l1+(6*i)+5));
 	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
-		stk(l1+(6*i)+2),stk(l1+(6*i)+3),*istk(l2+i),0,&hdl); 
+		stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
       }
     /** construct agregation and make it current object **/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
@@ -2111,11 +2117,11 @@ int scixfarcs(fname,fname_len)
 	a1 = (int)(*stk(l1+(6*i)+4));
 	a2 = (int)(*stk(l1+(6*i)+5));
 	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
-		stk(l1+(6*i)+2),stk(l1+(6*i)+3),*istk(l2+i),1,&hdl); 
+		stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
       }
     /** construct agregation and make it current object **/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
-  }   
+  }
   else
     Xfarcs(fname,fname_len,istk(l2), n1,stk(l1));
   LhsVar(1)=0;
@@ -2632,9 +2638,10 @@ int scixfpolys(fname,fname_len)
   if (version_flag() == 0) {
     for (i = 0; i < n1; ++i) {
       if (*istk(l3+i) == 0) {
-	/* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
+/* 	/\* a revoir quand refonte de xpoly et xfpoly *\/ /\* F.Leray 18.05.05 *\/ */
+/* 	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()))); */
 	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
-	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())));
+	color= sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
       }
       else   
@@ -3350,7 +3357,7 @@ int scixstring(fname,fname_len)
   integer i,j,iv =0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
-  long hdlstr, hdlrect;
+  long hdlstr/* , hdlrect */;
 
   CheckRhs(3,5);
   
@@ -3366,6 +3373,11 @@ int scixstring(fname,fname_len)
   wc = 0.;/* to keep the size of the largest line */
 
   if (version_flag() == 0) {
+    BOOL isboxed = FALSE;
+    
+    if ((flagx == 1) && (*stk(l4) == 0))
+      isboxed = TRUE;
+    
     for (i = m3 -1 ; i >= 0; --i)  {
       int ib = 0;
       for (j = 0 ; j < n3 ; ++j) {
@@ -3373,25 +3385,25 @@ int scixstring(fname,fname_len)
 	ib += strlen(Str[i+ m3*j]);
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,-1,&hdlstr);
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,FALSE,TRUE);
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
 	y += rect[3] * 1.2; 
       else 
-	y += rect[3];      
+	y += rect[3];
     } /* end for(i) */
 
-    if ((flagx == 1) && (*stk(l4) == 0)) {
-      double dx1= y - yi ;
-      Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect,TRUE);
-    }
-    /** construct agregation and make it current object **/ 
-    if ((flagx == 1) && (*stk(l4) == 0))
-      sciSetCurrentObj (ConstructAgregationSeq (m3+1));
-    else  
-      if (m3 > 1) sciSetCurrentObj ( ConstructAgregationSeq (m3));
+    /*    if ((flagx == 1) && (*stk(l4) == 0)) { */
+    /*       double dx1= y - yi ; */
+    /*       Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect,TRUE); */
+    /*     } */
+    /*     /\** construct agregation and make it current object **\/  */
+    /*     if ((flagx == 1) && (*stk(l4) == 0)) */
+    /*       sciSetCurrentObj (ConstructAgregationSeq (m3+1)); */
+    /*     else   */
+    if (m3 > 1) sciSetCurrentObj ( ConstructAgregationSeq (m3));
     
-  } 
+  }
   else {
     for (i = m3 -1 ; i >= 0; --i) {
       int ib = 0;
@@ -3531,7 +3543,7 @@ int scixstringb(char *fname,unsigned long fname_len)
 
   if (version_flag() == 0) {
     wh[0]=w;wh[1]=hx;
-    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,fill,&hdlstr);
+    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,FALSE,TRUE);
   } 
   else { /* NG end */
     C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
@@ -4793,12 +4805,17 @@ int scirect(char *fname,unsigned long fname_len)
     case 1 :
       GetRhsVar(1,"d",&m1,&n1,&l1); 
       CheckLength(1,m1*n1,4);
-      /* version_flag()  == "0" correspond aux graphics de la version 25001 */
       if (version_flag() == 0)
-	if (strcmp(fname,"xrect")==0) 
-	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),0,0,0,&hdl,FALSE);
-	else
-	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),1,0,0,&hdl,FALSE);
+	if (strcmp(fname,"xrect")==0){
+	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
+		   &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+	}
+	else{ /* xfrect case */
+	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
+		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+	}
       else
         Xrect(fname,fname_len,stk(l1),stk(l1+1),stk(l1+2),stk(l1+3));
       break;
@@ -4808,10 +4825,16 @@ int scirect(char *fname,unsigned long fname_len)
       GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3);
       GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
       if (version_flag() == 0)
-	if (strcmp(fname,"xrect")==0) 
-	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),0,0,0,&hdl,FALSE);
-	else
-	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),1,0,0,&hdl,FALSE);
+	if (strcmp(fname,"xrect")==0) {	
+	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
+		   &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+	}
+	else{
+	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
+		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+	}
       else
         Xrect(fname,fname_len,stk(l1),stk(l2),stk(l3),stk(l4));
       break;
@@ -4861,17 +4884,22 @@ int scirects(char *fname,unsigned long fname_len)
   if (version_flag() == 0){
     for (i = 0; i < n1; ++i) { 
 /*       j = (i==0) ? 0 : 1; */
-      if (*istk(l2+i) == 0)  
+      if (*istk(l2+i) == 0){
 	/** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
-	/* F.Leray 18.04.05 : fillcolor == 0 will imply axes parent foreground to be used instead */
-	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,0,0,&hdl,FALSE);
+	/* color setting is done now */
+	int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
+		 &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+      }
       else  
-	if (*istk(l2+i) < 0)  
+	if (*istk(l2+i) < 0)
 	  /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
-	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i),0,&hdl,FALSE);
+	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
+		   istk(l2+i),NULL,FALSE,TRUE,0,&hdl,FALSE);
 	else         
 	  /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
-	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),1,*istk(l2+i),0,&hdl,FALSE);
+	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
+		   NULL,istk(l2+i),TRUE,FALSE,0,&hdl,FALSE);
     }
     /** construct agregation and make it current object **/
     sciSetCurrentObj (ConstructAgregationSeq (n1));  
@@ -5858,9 +5886,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"fill_mode", 9) == 0)
     { 
       if (strncmp(cstk(*value),"on",2)==0 )
-	sciSetFillFlag((sciPointObj *)pobj,1);
+	sciSetIsFilled((sciPointObj *)pobj,TRUE);
       else if (strncmp(cstk(*value),"off",3)==0 )
-	sciSetFillFlag((sciPointObj *)pobj,0);
+	sciSetIsFilled((sciPointObj *)pobj,FALSE);
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     }
   else if (strncmp(marker,"thickness", 9) == 0)  {
@@ -6630,30 +6658,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  pAXES_FEATURE (pobj)->nb_tics_labels = N;
 	  pAXES_FEATURE(pobj)->str=foo;
 	  
-
-	/*   if ( pAXES_FEATURE(pobj)->ny < *numcol) */
-/* 	    {  */
-/* 	      if ((str= (char **) realloc(str,(*numcol) * sizeof (char *))) == NULL) */
-/* 		return 0;  */
-/* 	      for (i=0; i<*numcol;i++) */
-/* 		{     */
-/* 		  if ((str[i]= (char *) MALLOC(strlen(ctmp) * sizeof (char ))) == NULL) */
-/* 		    return 0;  */
-/* 		  dtmp=*stk(*value+i); */
-/* 		  sprintf(ctmp,"%.2f",dtmp); */
-/* 		  strcpy(str[i],ctmp);                                 */
-/* 		} */
-/* 	      pAXES_FEATURE(pobj)->str=str;  */
-/* 	    } */
-
 	}
     } 
   else if  (strncmp(marker,"box", 3) == 0) 
     {
       if ((strncmp(cstk(*value),"on", 2) == 0)) 
-	pSUBWIN_FEATURE (pobj)->axes.rect= 1; 
+	sciSetIsBoxed(pobj,TRUE);
       else if ((strncmp(cstk(*value),"off", 3) == 0))  
-	pSUBWIN_FEATURE (pobj)->axes.rect= 0;
+	sciSetIsBoxed(pobj,FALSE);
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
@@ -7697,7 +7709,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strncmp(marker,"fill_mode", 9) == 0) 
     {
-      if (sciGetFillFlag((sciPointObj *) pobj)==1) {
+      if (sciGetIsFilled((sciPointObj *) pobj)==1) {
 	numrow   = 1;
 	numcol   = 2;
 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
@@ -7836,7 +7848,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     {
       numrow = 1;numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-      *istk(outindex) = sciGetFontForeground((sciPointObj *)pobj);
+      *istk(outindex) = sciGetFontForegroundToDisplay((sciPointObj *)pobj);
     }
   else if (strcmp(marker,"font_color") == 0)	{ /* F.Leray 09.04.04 : Added for FIGURE and SUBWIN objects */
     numrow   = 1;numcol   = 1;
@@ -8518,8 +8530,8 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
     }
-  else if ((strncmp(marker,"box", 3) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) {
-    if (pSUBWIN_FEATURE (pobj)->axes.rect==1) {
+  else if ((strncmp(marker,"box", 3) == 0)) {
+    if (sciGetIsBoxed(pobj)) {
       numrow   = 1;
       numcol   = 2;
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);

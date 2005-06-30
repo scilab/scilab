@@ -116,7 +116,7 @@ extern int scixbascsubwin _PARAMS((char *fname, unsigned long fname_len));
 
 extern int draw _PARAMS((char *fname, unsigned long fname_len));
 
-void Objarc  _PARAMS((int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl));
+void Objarc  _PARAMS((int *angle1,int *angle2,double *x,double *y,double *width,double *height,int *foreground,int *background, BOOL isfilled, BOOL isline, long *hdl));
 void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg,int nb_tics_labels));
 void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax,integer *ExtremesCol, BOOL with_mesh, BOOL flagNax));
 
@@ -130,9 +130,11 @@ void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n
 
 void Objplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,double *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,integer *m3n, integer *n3n));
 void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
-void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl,BOOL flagxtring));
+void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int *foreground,int *background,BOOL isfilled,BOOL isline,int n,long *hdl,BOOL flagxtring));
 void Objsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
-void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double* wh,int fill, long *hdl));
+void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,
+			double *angle,double *box,double* wh, long *hdl, int fill,
+			int *foreground,int *background,BOOL isboxed,BOOL isfilled,BOOL isline));
 void Objtitle _PARAMS((char *str,int n,long *hdl));
 
 void Xarc  _PARAMS((char *fname,unsigned long fname_len,int *a1,int *a2,double *x,double *y,double *width,double *height));

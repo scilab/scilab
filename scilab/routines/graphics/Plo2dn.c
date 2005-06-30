@@ -226,24 +226,40 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       }
     }
     for (jj = 0;jj < *n1; jj++) {/*A.Djalel 3D axes*/
-      sciSetCurrentObj (ConstructPolyline
-                        ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
-                        &(y[jj*(*n2)]),PD0,closeflag,*n2,1,ptype)); 
+      sciPointObj * pobj = NULL;
       if (style[jj] > 0) { 
-        sciSetIsMark(sciGetCurrentObj(), FALSE);
-        sciSetIsLine(sciGetCurrentObj(),  TRUE);
-        sciSetForeground (sciGetCurrentObj(), style[jj]);
+	sciSetCurrentObj (ConstructPolyline
+			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
+			   &(y[jj*(*n2)]),PD0,closeflag,*n2,1,ptype,
+			   &style[jj],NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));
       }
       else {
-/* 	sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
- 	sciSetIsMark(sciGetCurrentObj(),  TRUE);
-	sciSetIsLine(sciGetCurrentObj(), FALSE);
- 	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
-      } 
-      if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
-      sciDrawObjIfRequired(sciGetCurrentObj ());
+	int minusstyle = -style[jj];
+	sciSetCurrentObj (ConstructPolyline
+			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
+			   &(y[jj*(*n2)]),PD0,closeflag,*n2,1,ptype,
+			   NULL,NULL,&minusstyle,NULL,NULL,FALSE,FALSE,TRUE));
+      }
+      pobj = sciGetCurrentObj();
 
-      hdl=sciGetHandle(sciGetCurrentObj ());   
+/*       sciSetCurrentObj (ConstructPolyline */
+/*                         ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]), */
+/*                         &(y[jj*(*n2)]),PD0,closeflag,*n2,1,ptype));  */
+/*       if (style[jj] > 0) {  */
+/*         sciSetIsMark(sciGetCurrentObj(), FALSE); */
+/*         sciSetIsLine(sciGetCurrentObj(),  TRUE); */
+/*         sciSetForeground (sciGetCurrentObj(), style[jj]); */
+/*       } */
+/*       else { */
+/* /\* 	sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\\* force switch to tabulated mode : old syntax *\\/ *\/ */
+/*  	sciSetIsMark(sciGetCurrentObj(),  TRUE); */
+/* 	sciSetIsLine(sciGetCurrentObj(), FALSE); */
+/*  	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj])); */
+/*       } */
+      if (with_leg) pptabofpointobj[jj] = pobj;
+      sciDrawObjIfRequired(pobj);
+
+      hdl=sciGetHandle(pobj);
       hdltab[cmpt]=hdl;
       cmpt++;
     }
@@ -255,9 +271,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- Drawing the Legends ----*/
     if (with_leg) {
       sciSetCurrentObj (ConstructLegend
-                        ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure
-()),
-                         legend, strlen(legend), *n1, style, pptabofpointobj)); 
+                        ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure()),
+			 legend, strlen(legend), *n1, style, pptabofpointobj)); 
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;

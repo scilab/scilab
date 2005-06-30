@@ -721,7 +721,8 @@ ConstructScrollH (sciPointObj * pparentfigure)
  */
 sciPointObj *
 ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
-	       double y, double *wh)
+	       double y, double *wh, int fill, int *foreground, int *background, 
+	       BOOL isboxed, BOOL isfilled, BOOL isline)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -794,6 +795,29 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+      
+      if (sciInitGraphicContext (pobj) == -1)
+	{
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pTEXT_FEATURE (pobj));
+	  FREE(pobj);
+	  sciprint("pas de context");
+	  return (sciPointObj *) NULL;
+	}
+      
+      pTEXT_FEATURE (pobj)->fill=fill; /* to distinguish between xstring and xstringb */
+
+      sciSetIsBoxed(pobj,isboxed);
+      sciSetIsLine(pobj,isline);
+      sciSetIsFilled(pobj,isfilled);
+      
+      if(foreground != NULL)
+	sciSetForeground(pobj,(*foreground));
+      
+      if(background != NULL)
+	sciSetBackground(pobj,(*background));
+      
       return pobj;
     }
   else
@@ -1046,7 +1070,9 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
  */
 sciPointObj *
 ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
-		   int closed, int n1, int n2,int plot)
+		   int closed, int n1, int n2,int plot, int *foreground, int *background,
+		   int *mark_style, int *mark_foreground, int *mark_background,
+		   BOOL isline, BOOL isfilled, BOOL ismark)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciPolyline *ppoly = (sciPolyline *) NULL;
@@ -1154,13 +1180,12 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	    } 
 	  for (i = 0; i < n1; i++)
 	    ppoly->pvz[i] = pvecz[i];
-	  
 	}
 
-      ppoly->n1 = n1;		/* memorisation du nombre des courbes */
-      ppoly->n2 = n2;		/* memorisation du nombre de points */
+      ppoly->n1 = n1;	  /* memorisation du nombre de points */
+      ppoly->n2 = n2;	  /* memorisation du nombre des courbes */
       ppoly->closed = closed;
-      ppoly->plot = plot; 
+      ppoly->plot = plot;
  
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -1173,6 +1198,27 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
+      /* colors and marks setting */
+      sciSetIsMark(pobj,ismark);
+      sciSetIsLine(pobj,isline);
+      sciSetIsFilled(pobj,isfilled);
+      
+      if(foreground != NULL)
+	sciSetForeground(pobj,(*foreground));
+      
+      if(background != NULL)
+	sciSetBackground(pobj,(*background));
+      
+      if(mark_style != NULL)
+	sciSetMarkStyle(pobj,(*mark_style));
+      
+      if(mark_foreground != NULL)
+	sciSetMarkForeground(pobj,(*mark_foreground));
+      
+      if(mark_background != NULL)
+	sciSetMarkBackground(pobj,(*mark_background));
+      
       return pobj;
     }
   else
@@ -1189,7 +1235,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
  */
 sciPointObj *
 ConstructArc (sciPointObj * pparentsubwin, double x, double y,
-	      double height, double width, double alphabegin, double alphaend, int color, int fill)
+	      double height, double width, double alphabegin, double alphaend, 
+	      int *foreground, int *background, BOOL isfilled, BOOL isline)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -1242,7 +1289,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       pARC_FEATURE (pobj)->clip_region_set = 0;
  /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
 
-      pARC_FEATURE (pobj)->fill = fill;
+      sciSetIsFilled(pobj,isfilled);
+      sciSetIsLine(pobj,isline);
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -1253,10 +1301,13 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  sciprint("pas de context");
 	  return (sciPointObj *) NULL;
 	}
-      /** 07/03/2002 **/ 
-      if (color!= -1 )
-	sciSetForeground (pobj,color);
-
+      
+      if(foreground != NULL)
+	sciSetForeground(pobj,(*foreground));
+      
+      if(background != NULL)
+	sciSetBackground(pobj,(*background));
+      
       return pobj;
     }
   else
@@ -1274,7 +1325,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 sciPointObj *
 ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 		    double height, double width, double horzcurvature,
-		    double vertcurvature, int fillflag, int fillcolor, int str, BOOL flagstring)
+		    double vertcurvature,  int *foreground, int *background,
+		    int isfilled, int isline, int str, BOOL flagstring)
 {
   sciPointObj *pobj = (sciPointObj *) NULL; 
  
@@ -1319,8 +1371,6 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->z = 0; 
       pRECTANGLE_FEATURE (pobj)->height = height;
       pRECTANGLE_FEATURE (pobj)->width = width;
-      pRECTANGLE_FEATURE (pobj)->fillflag = fillflag; 
-      pRECTANGLE_FEATURE (pobj)->fillcolor = fillcolor; 
       pRECTANGLE_FEATURE (pobj)->str = str;
       pRECTANGLE_FEATURE (pobj)->strheight = 0;
       pRECTANGLE_FEATURE (pobj)->strwidth = 0;
@@ -1342,13 +1392,23 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if (pRECTANGLE_FEATURE (pobj)->fillcolor < 0)
-	sciSetForeground (pobj,-(pRECTANGLE_FEATURE (pobj)->fillcolor));
-      else	
-	if (pRECTANGLE_FEATURE (pobj)->fillcolor > 0)
-	  sciSetForeground (pobj,pRECTANGLE_FEATURE (pobj)->fillcolor);
-	else 
-	  sciSetForeground (pobj,sciGetForeground (sciGetParent (pobj)) );
+
+      sciSetIsLine(pobj,isline);
+      sciSetIsFilled(pobj,isfilled);
+      
+      if(foreground != NULL)
+	sciSetForeground(pobj,(*foreground));
+      
+      if(background != NULL)
+	sciSetBackground(pobj,(*background));
+      
+      /*       if (pRECTANGLE_FEATURE (pobj)->fillcolor < 0) */
+      /* 	sciSetForeground (pobj,-(pRECTANGLE_FEATURE (pobj)->fillcolor)); */
+      /*       else	 */
+      /* 	if (pRECTANGLE_FEATURE (pobj)->fillcolor > 0) */
+      /* 	  sciSetForeground (pobj,pRECTANGLE_FEATURE (pobj)->fillcolor); */
+      /* 	else  */
+      /* 	  sciSetForeground (pobj,sciGetForeground (sciGetParent (pobj)) ); */
       
       return pobj;
     }
@@ -2546,8 +2606,10 @@ ConstructAgregationSeq (int number)
     sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
 	     sciGetRelationship (stmp->pointobj)->pparent);
    end debug */
-  
+ 
   /* set agregation properties*/
+  ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
+  ppagr->size_of_user_data = 0;
   ppagr->callback = (char *)NULL;
   ppagr->callbacklen = 0;
   ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));

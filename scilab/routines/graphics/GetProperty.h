@@ -35,12 +35,12 @@ extern int sciGetLineWidth (sciPointObj * pobj); /* GET */
 extern BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
 extern int sciGetLineStyle (sciPointObj * pobj); /* GET */
 extern BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
+extern BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
+extern BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
 extern int sciGetMarkStyle (sciPointObj * pobj); /* GET */
 extern int sciGetMarkSize (sciPointObj * pobj); /* GET */
 extern int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
 extern int sciGetFillStyle (sciPointObj * pobj); /* GET */
-extern int sciGetFillColor (sciPointObj * pobj); /* GET */
-extern int sciGetFillFlag (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
 extern sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */

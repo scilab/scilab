@@ -34,14 +34,14 @@ extern int sciSetLineWidth (sciPointObj * pobj, int linewidth);  /* SET */
 extern int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
 extern int sciSetLineStyle (sciPointObj * pobj, int linestyle); /* SET */
 extern int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
+extern int sciSetIsFilled (sciPointObj * pobj, BOOL isfilled);  /* SET */
 extern int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
 extern int sciSetMarkSize (sciPointObj * pobj, int marksize); /* SET */
 extern int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit); /* SET */
 extern int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetFillStyle (sciPointObj * pobj, int fillstyle); /* SET */
-extern int sciSetFillColor (sciPointObj * pobj, int fillcolor); /* SET */
-extern int sciSetFillFlag (sciPointObj * pobj, int fillflag); /* SET */
+extern int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
 
 /* Text Functions */
 extern int sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth); /* SET */
