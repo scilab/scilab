@@ -16,7 +16,6 @@
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
 #endif
 /* Table of constant values */
-
 static integer cx1 = 1;
 static integer cx0 = 0;
 
@@ -3164,6 +3163,23 @@ void *GetData(lw)
   C2F(intersci).iwhere[lw - 1] = l1;
   C2F(intersci).lad[lw - 1] = l1;
   return loci;
+}
+
+int GetDataSize(lw)
+     /* get memory used by the argument lw in double world etc */
+     int lw;
+{
+  int lw1 = lw + Top - Rhs ;
+  int l1 = *Lstk(lw1);
+  int *loci = (int *) stk(l1);
+  int n =  *Lstk(lw1+1)-*Lstk(lw1);
+  if (loci[0] < 0) 
+    {
+      l1 = loci[1];
+      loci = (int *) stk(l1);
+      n=loci[3];
+    }
+  return n;
 }
 
 void *GetRawData(lw)
