@@ -4183,6 +4183,116 @@ sciGetAxes (pparentfigure,psubwin)
     return (sciPointObj *) NULL;
 } 
 
+/**sciGetPointerToToUserData
+ * @memo Returns the pointer to the user_data and size_of_user_data fields associated with 
+   the pobj object 
+ */
+void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr)
+{
+
+  /* perhaps is it necessary to cast the returns value with void* type ! */
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      *user_data_ptr = &(((sciFigure *) pFIGURE_FEATURE (pobj))->user_data);
+      *size_ptr=&(((sciFigure *) pFIGURE_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_SUBWIN:
+      *user_data_ptr = &(((sciSubWindow *) pSUBWIN_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciSubWindow *) pSUBWIN_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_TEXT:
+      *user_data_ptr = &(((sciText *) pTEXT_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciText *) pTEXT_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_TITLE:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_LEGEND:
+      *user_data_ptr = &(((sciLegend *) pLEGEND_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciLegend *) pLEGEND_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_ARC:
+      *user_data_ptr = &(((sciArc *) pARC_FEATURE (pobj))->user_data);
+      *size_ptr = &(((sciArc *) pARC_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_POLYLINE:
+      *user_data_ptr = &(((sciPolyline *) pPOLYLINE_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciPolyline *) pPOLYLINE_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_SEGS:  
+      *user_data_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->user_data); 
+	     *size_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->size_of_user_data );
+      break;
+    case SCI_FEC:
+      *user_data_ptr = &(((sciFec *) pFEC_FEATURE (pobj))->user_data); 
+      *size_ptr =  &(((sciFec *) pFEC_FEATURE (pobj))->size_of_user_data) ;
+      break;
+    case SCI_GRAYPLOT:
+      *user_data_ptr = &(((sciGrayplot *) pGRAYPLOT_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciGrayplot *) pGRAYPLOT_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_RECTANGLE:
+      *user_data_ptr = &(((sciRectangle *) pRECTANGLE_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciRectangle *) pRECTANGLE_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_SURFACE:
+      *user_data_ptr = &(((sciSurface *) pSURFACE_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciSurface *) pSURFACE_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_LIGHT:
+      *user_data_ptr = &(((sciLightSource *) pLIGHT_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciLightSource *) pLIGHT_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_AXES:
+      *user_data_ptr = &(((sciAxes *) pAXES_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciAxes *) pAXES_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_PANNER:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_SBH:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_SBV:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_MENU:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_MENUCONTEXT:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_STATUSB:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =  (int *)NULL;
+      break;
+    case SCI_AGREG:
+      *user_data_ptr = &(((sciAgreg *) pAGREG_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciAgreg *) pAGREG_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_MERGE:
+      *user_data_ptr = &(((sciMerge *) pMERGE_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciMerge *) pMERGE_FEATURE (pobj))->size_of_user_data);
+      break;
+    case SCI_LABEL:
+      *user_data_ptr = &(((sciLabel *) pLABEL_FEATURE (pobj))->user_data);
+      *size_ptr =  &(((sciLabel *) pLABEL_FEATURE (pobj))->size_of_user_data);
+      break;
+    default:
+      *user_data_ptr = (int **)NULL;
+      *size_ptr =   (int *)NULL;
+      break;
+    }
+}
+
+
 
 int sciType (marker, pobj)
      char *marker;

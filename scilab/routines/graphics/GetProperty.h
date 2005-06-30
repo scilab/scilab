@@ -17,6 +17,7 @@
 #define __SCI_GET_PROPERTY__
 
 extern void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
+void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr); /* GET */
 extern sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 extern char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
 
