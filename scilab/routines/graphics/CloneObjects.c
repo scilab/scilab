@@ -286,11 +286,12 @@ sciPointObj *
 CloneArc (sciPointObj * pthis)
 {
   sciPointObj * pobj, *subwinparent;
-  subwinparent = pthis;
-  
   int foreground = sciGetForeground(pthis);
   int background = sciGetBackground(pthis);
+
+  subwinparent = pthis;
   
+ 
   while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
 	 && ((int)sciGetEntityType(subwinparent) != -1));
   if ((int)sciGetEntityType(subwinparent) == -1)
