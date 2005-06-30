@@ -14,8 +14,13 @@
 
 # buffernavigation.tcl
 ::msgcat::mcset it "Goto Line?" "Vai alla linea?"
-::msgcat::mcset it "Goto Line: " "Vai alla linea: "
-
+::msgcat::mcset it "Go to:" "Vai a:"
+::msgcat::mcset it "&logical line" "linea &logica"
+::msgcat::mcset it "&physical line" "linea &fisica"
+::msgcat::mcset it "in &function" "&della funzione"
+::msgcat::mcset it "in &current file" "del file &corrente"
+::msgcat::mcset it "Outside of function definition" \
+                   "fuori dalla definizione della funzione"
 
 # colorize.tcl
 ::msgcat::mcset it "Wait seconds while recolorizing file" \
@@ -122,7 +127,7 @@
 ::msgcat::mcset it "The file" "Il file"
     ::msgcat::mcset it "is already opened! Save the current opened file\
           to another name and reopen it from disk!" \
- "è già aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
+      "è già aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
     ::msgcat::mcset it "saved" "salvato"
 ::msgcat::mcset it "cannot be written!" "non è scrivibile!"
@@ -186,6 +191,7 @@
     ::msgcat::mcset it "in" "di"
 ::msgcat::mcset it " \[ReadOnly\]" " \[SolaLettura\]"
 ::msgcat::mcset it " (modified)" " (modificato)"
+::msgcat::mcset it "Logical line:" "Linea logica:"
 
 
 # inputtext.tcl
