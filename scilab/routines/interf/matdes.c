@@ -5184,16 +5184,59 @@ int gset(fname,fname_len)
       if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) 
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	if ((strncmp(cstk(l2),"old_style",9) !=0) 
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
 	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
+      if (strcmp(cstk(l2),"user_data")==0) {
+	/* set pobj->user_data*/
+	int *size_ptr, data_size;
+	int **user_data_ptr,*data_ptr;
+	int delete_user_data=0;
+	
+	if (VarType(3) == 1) { 
+	  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
+	  if (numrow3==0||numcol3==0) delete_user_data=1;
+	}
+	else if (VarType(3) == 0) delete_user_data=1;
+
+	sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
+
+	if (delete_user_data) {
+	  free(*user_data_ptr);
+	  *user_data_ptr=NULL;
+	  *size_ptr=0;
+	}
+	else {
+	  data_ptr=GetData(3);
+	  data_size=GetDataSize(3)*2;
+
+	  if (*user_data_ptr==NULL) {
+	    if ( (*user_data_ptr=(int *) MALLOC (data_size*sizeof (int))) == NULL) {
+	      strcpy(error_message,"No memory left for allocating user_data");return -1;}
+	    *size_ptr=data_size;
+	    memcpy(*user_data_ptr,data_ptr,data_size*sizeof (int));
+	  }
+	  else if (*size_ptr==data_size) {
+	    memcpy(*user_data_ptr,data_ptr,data_size*sizeof (int));
+	  }
+	  else {
+	    free(*user_data_ptr);
+	    if ( (*user_data_ptr=(int *) MALLOC (data_size * sizeof (int))) == NULL) {
+	      strcpy(error_message,"No memory left for allocating user_data");return -1;}
+	    *size_ptr=data_size;
+	    memcpy(*user_data_ptr,data_ptr,data_size*sizeof(int));
+
+	  }
+	}
+	return 0;
+      }
       t2=sciType(cstk(l2),pobj);
       if (t2<0) {
 	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
 	return 0;} 
-      if (VarType(3) != t2) { /* F.Leray MODIFICATION ICI*/
+      if (VarType(3) != t2) { 
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
@@ -6564,7 +6607,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  
 	  FREE(pAXES_FEATURE(pobj)->vx); pAXES_FEATURE(pobj)->vx = NULL;
 	  
- 	  if ((pAXES_FEATURE(pobj)->vx = MALLOC (*numcol * sizeof (double))) == NULL){
+ 	  if ((pAXES_FEATURE(pobj)->vx = (double *) MALLOC (*numcol * sizeof (double))) == NULL){
 	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
 	  
 	  pAXES_FEATURE(pobj)->nx= *numcol;
@@ -6581,10 +6624,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  FREE(pAXES_FEATURE(pobj)->str); pAXES_FEATURE (pobj)->str = NULL;
 	  
 
-	  if((foo=MALLOC(N*(sizeof(char *))))==NULL){
+	  if((foo=malloc(N*(sizeof(char *))))==NULL){
 	    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  for(i=0;i<N;i++){
-	    if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
+	    if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  }
 	  
@@ -6639,10 +6682,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  
 	  FREE(pAXES_FEATURE(pobj)->str); pAXES_FEATURE (pobj)->str = NULL;
 	  
-	  if((foo=MALLOC(N*(sizeof(char *))))==NULL){
+	  if((foo=malloc(N*(sizeof(char *))))==NULL){
 	    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  for(i=0;i<N;i++){
-	    if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
+	    if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  }
 	  
@@ -7240,7 +7283,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Second argument must have 5 columns ");return -1;}
       if (*numrow !=pFEC_FEATURE (pobj)->Ntr) {
 	pnoeud=pFEC_FEATURE(pobj)->pnoeud;
-	if ((pFEC_FEATURE(pobj)->pnoeud = MALLOC (*numrow * 5* sizeof (int))) == NULL){
+	if ((pFEC_FEATURE(pobj)->pnoeud = malloc (*numrow * 5* sizeof (int))) == NULL){
 	  strcpy(error_message,"Not enough memory");
 	  pFEC_FEATURE(pobj)->pnoeud=pnoeud;
 	  return -1;
@@ -8210,19 +8253,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	int i;
 
 	numrow   = 1;numcol   = 3;
-	if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
+	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] == TRUE)
 	    {
-	      if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	      strcpy(foo[i],"on");
 	    }
 	  else
 	    {
-	      if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	      strcpy(foo[i],"off");
 	    }    
@@ -8240,19 +8283,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	int i;
 
 	numrow   = 1;numcol   = 3;
-	if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
+	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] == TRUE)
 	    {
-	      if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	      strcpy(foo[i],"on");
 	    }
 	  else
 	    {
-	      if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	      strcpy(foo[i],"off");
 	    }    
@@ -8473,10 +8516,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 		
 		ComputeC_format(pobj,c_format);
 		
-		if((foo=MALLOC(N*(sizeof(char *))))==NULL){
+		if((foo=malloc(N*(sizeof(char *))))==NULL){
 		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		for(i=0;i<N;i++){
-		  if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
+		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
 		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
 		
@@ -8497,10 +8540,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 		  return 0;
 		}
 		
-		if((foo=MALLOC(N*(sizeof(char *))))==NULL){
+		if((foo=malloc(N*(sizeof(char *))))==NULL){
 		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		for(i=0;i<N;i++){
-		  if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
+		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
 		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
 		
@@ -8565,18 +8608,18 @@ int sciGet(sciPointObj *pobj,char *marker)
       int i;
 
       numrow   = 1;numcol   = 3;
-      if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
+      if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
       for(i=0;i<numcol;i++)
 	if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] == TRUE)
 	  {
-	    if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
+	    if((foo[i]=malloc(3*(sizeof(char))))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
 	    strcpy(foo[i],"on");
 	  }
 	else
 	  {
-	    if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
+	    if((foo[i]=malloc(4*(sizeof(char))))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
 	    strcpy(foo[i],"off");
 	  }    
@@ -8793,6 +8836,27 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
     else
       {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
+
+  }
+  else if (strcmp(marker,"user_data") == 0) {
+    /* user_data */
+    int *size_ptr, data_size;
+    int **user_data_ptr,*data_ptr;
+    sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
+
+    data_ptr=*user_data_ptr;
+    data_size=0;
+    if (*user_data_ptr==NULL||*size_ptr==0) {
+      numrow=0;
+      numcol=0;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    }
+    else {
+      data_size=(int)((*size_ptr+1)/2);
+      SetWorkSize(Rhs+1,&data_size);
+      data_ptr=GetData(Rhs+1);
+      memcpy(data_ptr,*user_data_ptr,(*size_ptr)*sizeof (int));
+    }
   }
 
   else 
@@ -9990,27 +10054,27 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   xy_type = pAXES_FEATURE (pobj)->tics;
   /* Allocating space before re-copying values to not polluate the good values 
      that will be used inside Axes.c */
-  if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+  if((x=malloc((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   }
 
-  if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+  if((y=malloc((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   }
 
-  if((nx=MALLOC(sizeof(int)))==NULL){
+  if((nx=malloc(sizeof(int)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   }  
   
-  if((ny=MALLOC(sizeof(int)))==NULL){
+  if((ny=malloc(sizeof(int)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   } 
 
-  if((format=MALLOC(5*(sizeof(char ))+1))==NULL){
+  if((format=malloc(5*(sizeof(char ))+1))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   } 
@@ -11080,4 +11144,3 @@ static int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numc
   
   return 0;
 }
-
