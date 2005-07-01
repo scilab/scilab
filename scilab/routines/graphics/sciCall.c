@@ -572,26 +572,37 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE));  
 	  }
 	}
+	else { /* default case, nothing is given */
+	  int curcolor = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())); /* current color equivalent for new graphics mode */
+	  sciSetCurrentObj (ConstructPolyline
+			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1,
+			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));  
+	}
 
 	pobj = sciGetCurrentObj();
 	
 	hdltab[i]=sciGetHandle(pobj); 
       }
-      /* 	if ((*n > 0) && (zcol != (double *)NULL)) { */
-      /* 	  if ((int) zcol[i] > 0){ */
-      /* 	    sciSetForeground (pobj, (int) zcol[i]); */
-      /* 	    sciSetIsMark(pobj, FALSE); */
-      /* 	    sciSetIsLine(pobj,  TRUE); */
-      /* 	  } */
-      /* 	  else { */
-      /* /\* 	    sciSetMarkSizeUnit(pobj,2); /\\* force switch to tabulated mode : old syntax *\\/ *\/ */
-      /*  	    sciSetIsMark(pobj,TRUE); */
-      /* 	    sciSetIsLine(pobj,FALSE); */
-      /* 	    sciSetMarkStyle(pobj,(int) -zcol[i]); */
-      /* 	  } */
-      /* 	} */
-      /* 	hdltab[i]=sciGetHandle(pobj);  */
-      /*       }  */
+
+
+/*       	if ((*n > 0) && (zcol != (double *)NULL)) { */
+/*       	  if ((int) zcol[i] > 0){ */
+/*       	    sciSetForeground (pobj, (int) zcol[i]); */
+/*       	    sciSetIsMark(pobj, FALSE); */
+/*       	    sciSetIsLine(pobj,  TRUE); */
+/*       	  } */
+/*       	  else { */
+/*       /\* 	    sciSetMarkSizeUnit(pobj,2); /\\* force switch to tabulated mode : old syntax *\\/ *\/ */
+/*        	    sciSetIsMark(pobj,TRUE); */
+/*       	    sciSetIsLine(pobj,FALSE); */
+/*       	    sciSetMarkStyle(pobj,(int) -zcol[i]); */
+/*       	  } */
+/*       	} */
+/*       	hdltab[i]=sciGetHandle(pobj); */
+/*             } */
+
+
       /** construct agregation and make it current object**/
       if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
       FREE(hdltab);
