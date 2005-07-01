@@ -84,6 +84,10 @@
         should be an empty matrix if clip_state is "off" or the vector
         <VERB>[x,y,w,h</VERB>] (upper-left point width height).</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	 text data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the

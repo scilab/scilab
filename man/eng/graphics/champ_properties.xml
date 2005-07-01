@@ -34,6 +34,10 @@
         describe respectively the <VERB>x</VERB> and <VERB>y</VERB> component
         of the vector field at point <VERB>(x(i),y(j))</VERB>.</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  champ data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>The <VERB>line_style</VERB> property value should be an integer in

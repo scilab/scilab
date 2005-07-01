@@ -51,6 +51,10 @@
         value <VERB>"direct"</VERB> where the plot is a grayplot and the
         indices of painting colors are given by the data (see above).</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  grayplot  data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the

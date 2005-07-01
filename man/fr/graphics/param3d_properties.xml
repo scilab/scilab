@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -139,6 +139,10 @@
         value. Its value should be an empty matrix if clip_state is
         <VERB>"off"</VERB>. Other case the clipping is given by the vector
         <VERB>[x,y,w,h]</VERB> (upper-left point width height).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  param3d data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">

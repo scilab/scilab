@@ -32,7 +32,10 @@
         associated to <VERB>color(i,j)</VERB> is used do draw a small square
         of length 1 with center at location <VERB>(x=j,y=(m-i+1))</VERB>.</SP>
       </DESCRIPTION_ITEM>
-
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  Matplot data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
         Matplot entity should be of the type <VERB>"Axes"</VERB>.</SP>

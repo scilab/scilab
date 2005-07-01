@@ -80,6 +80,10 @@
         segment. Each element is a color index relative to the current
         colormap.</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  segs data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="clip_state: ">
         <SP>This field contains the <VERB>clip_state</VERB> property value for

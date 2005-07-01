@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -79,6 +79,10 @@
         <SP>This field contains the vector of colors to use to draw each
         segment. Each element is a color index relative to the current
         colormap.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  segs data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="clip_state: ">

@@ -162,6 +162,10 @@
         height) defines the portions of the polyline to display, however
         <VERB>clip_state</VERB> property value will be changed.</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  polyline data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This field contains the handle of the parent. The parent of the

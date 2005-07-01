@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -79,8 +79,8 @@
 
       <DESCRIPTION_ITEM label="mark_size: ">
         <SP>The <VERB>mark_size</VERB> property is used to select the type of
-        size of the marks when <VERB>mark_mode</VERB> property is <VERB>"on"
-        </VERB>. Its value should be an integer in [0 5] whith stands for 8pt,
+        size of the marks when <VERB>mark_mode</VERB> property is <VERB>"on"</VERB>. 
+        Its value should be an integer in [0 5] whith stands for 8pt,
         10pt, 12pt, 14pt, 18pt and 24pt.</SP>
       </DESCRIPTION_ITEM>
 
@@ -138,6 +138,10 @@
         Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width
         height) defines the portions of the rectangle to display, however
         <VERB>clip_state</VERB> property value will be changed.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  rectangle data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">

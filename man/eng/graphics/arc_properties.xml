@@ -15,22 +15,26 @@
   of ellipses and the filled ones.
   </P>
   <DESCRIPTION_INDENT>
-   <DESCRIPTION_ITEM label="visible: ">
-    <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>. 
-   If <VERB>&quot;on&quot;</VERB> the arc is drawn, If
-   <VERB>&quot;off&quot;</VERB> the arc is not displayed on the screen.</SP>
-   </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="visible: ">
+	<SP>This field contains the  <VERB>visible</VERB> property value
+	  for the entity . It should
+	  be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>. 
+	  If <VERB>&quot;on&quot;</VERB> the arc is drawn, If
+	  <VERB>&quot;off&quot;</VERB> the arc is not displayed on the screen.</SP>
+      </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label="data: ">
-    <SP>This property is to return the coordinates of the upper-left point, the
-    width and the height of the inclosing rectangle as well as the
-    boundary angles of the sector. It is the matrix 
-    <VERB>[xleft,yup,[zup],width,height,a1,a2]</VERB> where <VERB>a1/64</VERB>
-    and <VERB>a2/64</VERB> are the sector boundary angles in degree.</SP>
-   </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="data: ">
+	<SP>This property is to return the coordinates of the upper-left point, the
+	  width and the height of the inclosing rectangle as well as the
+	  boundary angles of the sector. It is the matrix 
+	  <VERB>[xleft,yup,[zup],width,height,a1,a2]</VERB> where <VERB>a1/64</VERB>
+	  and <VERB>a2/64</VERB> are the sector boundary angles in degree.</SP>
+      </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  arc data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
     <DESCRIPTION_ITEM label="line_style: ">
      <SP> The  <VERB>line_style</VERB> property value should be an integer in [0 9].

@@ -32,6 +32,10 @@
         <VERB>i</VERB>'th node. <VERB>f(i)</VERB> is the value associated to
         the node <VERB>i</VERB>.</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  fec data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="triangles: ">
         <SP>This is a five column matrix <VERB>[tn,n1,n2,n3,flag]</VERB>.

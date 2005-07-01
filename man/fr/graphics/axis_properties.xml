@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -161,6 +161,10 @@
             (upper-left point width height) defines the portions of the axis
             to display, however <VERB>clip_state</VERB> property value will be
             changed.</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="user_data: ">
+            <SP>This field can be use to store any scilab variable in the
+	      axis data structure, and to retreive it.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="parent: ">

@@ -22,6 +22,10 @@
    If <VERB>&quot;off&quot;</VERB> all children of agregation are not displayed
     on the screen.</SP>
       </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	  figure data structure, and to retreive it.</SP>
+      </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="children: ">
         <SP>A vector containing the handles of all graphics objects children of the agregation
       These graphics objects can be of type  <VERB>&quot;Agregation&quot;</VERB>,

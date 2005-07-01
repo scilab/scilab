@@ -300,7 +300,10 @@
             can act on the <VERB>z_ticks</VERB> <VERB>tlist</VERB> defining a
             corresponding<VERB> z_ticks.locations</VERB> real vector too.</SP>
           </DESCRIPTION_ITEM>
-
+	  <DESCRIPTION_ITEM label="user_data: ">
+            <SP>This field can be use to store any scilab variable in the
+	      axes data structure, and to retreive it.</SP>
+          </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="children: ">
             <SP>A vector containing the handles of all graphics objects
             children of the axes These graphics objects are of type

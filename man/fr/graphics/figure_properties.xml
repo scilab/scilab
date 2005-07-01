@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -39,8 +39,8 @@
 
           <DESCRIPTION_ITEM label="figure_size: ">
             <SP>This property controls the size in pixel of the screen's
-            graphics window. The size is the vector <VERB>[width,height]
-            </VERB>.</SP>
+            graphics window. The size is the vector <VERB>[width,height]</VERB>.
+            </SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_size: ">
@@ -120,7 +120,10 @@
             <VERB>"orInverted"</VERB> , <VERB>"nand"</VERB> ,
             <VERB>"set"</VERB> ,</P>
           </DESCRIPTION_ITEM>
-
+	  <DESCRIPTION_ITEM label="user_data: ">
+            <SP>This field can be use to store any scilab variable in the
+	      figure data structure, and to retreive it.</SP>
+          </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="children: ">
             <SP>This handles represent the vector of the figure's children .
             Note that all figure children are of type <VERB>"Axes"</VERB>.

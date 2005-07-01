@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -20,8 +20,7 @@
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
-        default, the text is visible, the value's property is <VERB>"on"
-        </VERB>. If <VERB>"off"</VERB> the text is not displayed on the
+        default, the text is visible, the value's property is <VERB>"on"</VERB>. If <VERB>"off"</VERB> the text is not displayed on the
         screen.</SP>
       </DESCRIPTION_ITEM>
 
@@ -84,6 +83,10 @@
         <SP>This field contains the <VERB>clip_box</VERB> property. Its value
         should be an empty matrix if clip_state is "off" or the vector
         <VERB>[x,y,w,h</VERB>] (upper-left point width height).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="user_data: ">
+	<SP>This field can be use to store any scilab variable in the
+	 text data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
