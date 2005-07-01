@@ -4,7 +4,7 @@
  * All the generic stuff for dealing with choice widgets.
  * (from xgc) 
  ***********************************************************/
-
+#include "../sci_mem_alloc.h"
 #include "men_scilab.h"
 
 extern int IsPrivateCmap();

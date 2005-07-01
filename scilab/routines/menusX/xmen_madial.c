@@ -1,4 +1,5 @@
 /* Copyright ENPC */
+#include "../sci_mem_alloc.h"
 #include "men_scilab.h"
 
 extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);

@@ -23,6 +23,7 @@
 #include <X11/StringDefs.h>
 #include <X11/Shell.h>
 
+#include "../sci_mem_alloc.h"
 #include "Math.h"
 #include "periX11.h"
 #include "../version.h"

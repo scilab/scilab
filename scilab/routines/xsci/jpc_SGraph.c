@@ -28,6 +28,7 @@
 #include <X11/Xaw3d/ViewportP.h>
 #include <string.h>
 
+#include "../sci_mem_alloc.h"
 #include "../graphics/GetProperty.h"
 #include "../graphics/DestroyObjects.h"
 

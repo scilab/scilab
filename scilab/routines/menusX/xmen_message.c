@@ -1,4 +1,5 @@
 /* Copyright ENPC */
+#include "../sci_mem_alloc.h"
 #include "men_scilab.h"
 
 /*******************************************************
@@ -89,7 +90,7 @@ void MessageOk1(Widget w, XtPointer client_data, caddr_t callData)
   XtDestroyWidget(datas->w);  
   XFlush(datas->dpy);
   XSync(datas->dpy,0);
-  FREE(datas)
+  FREE(datas);
 }
 
 int ExposeMessageWindow1(void)
