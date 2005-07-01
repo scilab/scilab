@@ -11,7 +11,7 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include "wresource.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "wcommon.h"
 #include "plot.h"
 /*-----------------------------------------------------------------------------------*/
@@ -95,7 +95,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
 	
 	  filenamehistory=getfilenamehistory();
 	  write_history( filenamehistory );
-	  free(filenamehistory);
+	  FREE(filenamehistory);
 
 	  NumberOfCommands=0;
   }

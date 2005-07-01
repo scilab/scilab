@@ -8,6 +8,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /*-----------------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383
@@ -107,10 +109,10 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 
 						for (i=0; i<NumbersElm;i++)
 						{
-							free(ListKeysName[i]);
+							FREE(ListKeysName[i]);
 							ListKeysName[i]=NULL;
 						}
-						free(ListKeysName);
+						FREE(ListKeysName);
 
 						LhsVar(1)=Rhs+1;
 						return 0;
@@ -135,8 +137,8 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 			}
 		}
 
-		output=(char*)malloc(MAX_PATH*sizeof(char));
-		paramoutINT=(int*)malloc(sizeof(int));
+		output=(char*)MALLOC(MAX_PATH*sizeof(char));
+		paramoutINT=(int*)MALLOC(sizeof(int));
 
 		if ( Rhs == 3 )
 		{
@@ -167,8 +169,8 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 			LhsVar(1)=0;
 		}
 	    
-		free(output);
-		free(paramoutINT);
+		FREE(output);
+		FREE(paramoutINT);
 	}
   else
   {
@@ -251,7 +253,7 @@ BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **Li
 				else
 				{
 					char *chaine=NULL;
-					chaine=(char*) malloc(sizeof(char)*255);
+					chaine=(char*) MALLOC(sizeof(char)*255);
 					strcpy(chaine,achKey);
 					*ListKeys=chaine;
 					*ListKeys++;

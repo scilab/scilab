@@ -22,7 +22,7 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /**sciAddCallback
  * @memo exec the callback associated with pthis
@@ -36,7 +36,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
   switch (sciGetEntityType (pthis))
     {
     case SCI_SUBWIN:
-      if ((pSUBWIN_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pSUBWIN_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;
@@ -49,7 +49,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	}
       break;
     case SCI_ARC:
-      if ((pARC_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pARC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;
@@ -63,7 +63,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	}
       break;
     case SCI_RECTANGLE:
-      if ((pRECTANGLE_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pRECTANGLE_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;
@@ -77,7 +77,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	}
       break;
     case SCI_SEGS:  
-      if ((pSEGS_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pSEGS_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;
@@ -91,7 +91,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	}
       break;
     case SCI_FEC:  
-      if ((pFEC_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pFEC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;
@@ -105,7 +105,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	}
       break;
     case SCI_GRAYPLOT: 
-      if ((pGRAYPLOT_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pGRAYPLOT_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;
@@ -119,7 +119,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	}
       break;
     case SCI_POLYLINE:
-      if ((pPOLYLINE_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
+      if ((pPOLYLINE_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more Memory allocation !\n");
 	  return -1;

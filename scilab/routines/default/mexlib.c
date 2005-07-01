@@ -33,6 +33,10 @@
  *                 values)
  *     values = vector of doubles or int8-16-32 or char
  --------------------------------------------------------------------------*/
+#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../stack-c.h"
+#include "../calelm/calelm.h"
+
 #include "../mex.h"
 #include <string.h>
 #include <stdio.h>
@@ -49,7 +53,10 @@
 #ifdef WIN32
 	#include <stdlib.h> /*pour exit()*/
 #endif
-#include "../calelm/calelm.h"
+
+
+
+
 static char *the_current_mex_name;
 
 extern void cerro __PARAMS((char *str));
@@ -1354,7 +1361,7 @@ static rec_calloc calloc_table[rec_size]={{0,0}};
 
 void *mxCalloc_m(unsigned int n, unsigned int size) 
 {
-  void *loc = calloc(n,size);
+  void *loc = CALLOC(n,size);
   if ( loc != NULL) {
     int i;
     for ( i = 0 ; i < rec_size ; i++) 
@@ -1367,7 +1374,7 @@ void *mxCalloc_m(unsigned int n, unsigned int size)
 	    return loc ; 
 	  }
       }
-    free(loc);
+    FREE(loc);
     return NULL;
   }
   return NULL;
@@ -1375,7 +1382,7 @@ void *mxCalloc_m(unsigned int n, unsigned int size)
 
 void *mxMalloc_m(unsigned int n)
 {
-  void *loc = malloc(n);
+  void *loc = MALLOC(n);
   if ( loc != NULL) {
     int i;
     for ( i = 0 ; i < rec_size ; i++) 
@@ -1388,7 +1395,7 @@ void *mxMalloc_m(unsigned int n)
 	    return loc ; 
 	  }
       }
-    free(loc);
+    FREE(loc);
     return NULL;
   }
   return NULL;
@@ -1422,7 +1429,7 @@ void mxFree_m(void *ptr){
 	if  (calloc_table[i].keep != 0 ) 
 	  {
 	    /* sciprint("mxFree position %d \r\n",i); */
-	    free(ptr);
+	    FREE(ptr);
 	    calloc_table[i].keep = 0;
 	    calloc_table[i].adr = NULL;
 	    return;
@@ -1441,7 +1448,7 @@ static void mxFree_m_all() {
     if  (calloc_table[i].keep == 1 ) 
       {
 	/* sciprint("mxFree all position %d \r\n",i); */
-        free(calloc_table[i].adr);
+        FREE(calloc_table[i].adr);
 	calloc_table[i].keep = 0;
 	calloc_table[i].adr = NULL;
       }
@@ -2733,7 +2740,7 @@ double  C2F(mxgetscalar)(mxArray *ptr)
 void  C2F(mexprintf)(char *error_msg, int len)
 {
   char * buf;
-  if ((buf = (char *)malloc((unsigned)sizeof(char)*(len+1)))
+  if ((buf = (char *)MALLOC((unsigned)sizeof(char)*(len+1)))
       == NULL) {
     cerro("Running out of memory");
     return;
@@ -2741,7 +2748,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
   buf[len]='\0';
   strncpy(buf, error_msg, (size_t)len);
   sciprint("%s\n\r",buf);
-  free(buf);
+  FREE(buf);
 }
 
 void C2F(mexerrmsgtxt)(char *error_msg, int len)

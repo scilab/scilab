@@ -10,6 +10,9 @@
 #include "import.h"
 #include "blocks.h"
 #include <math.h>
+#include "../graphics/Math.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 
 #ifdef FORDLL 
 #define IMPORT  __declspec (dllimport)
@@ -22,20 +25,20 @@
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #define freeall \
-	      free(rhot);\
-	      free(ihot);\
-	      free(jroot);\
-	      free(W);\
-	      free(zcros);
+	      FREE(rhot);\
+	      FREE(ihot);\
+	      FREE(jroot);\
+	      FREE(W);\
+	      FREE(zcros);
 
 #define freeallx \
-	      free(rhot);\
-	      free(ihot);\
-	      free(jroot);\
-	      free(W);\
-	      free(zcros);\
-	      free(scicos_xproperty);\
-              free(Mode_save);
+	      FREE(rhot);\
+	      FREE(ihot);\
+	      FREE(jroot);\
+	      FREE(W);\
+	      FREE(zcros);\
+	      FREE(scicos_xproperty);\
+              FREE(Mode_save);
 
 void cosini(double *);
 void idoit(double *);
@@ -57,7 +60,7 @@ int C2F(grblk)(integer *, double *, double *, integer *, double *);
 int C2F(grblkdaskr)(integer *, double *, double *, double *, integer *, double *, double *, integer *);
 void addevs(double ,integer *,integer *);
 void putevs(double *,integer *,integer *);
-void free_blocks();
+void FREE_blocks();
 int setmode(double *,double *,double *,integer *,double);
 
 /* Jacobian*/
@@ -332,12 +335,12 @@ int C2F(scicos)
     }
   }
 
-  if((Blocks=malloc(sizeof(scicos_block)*nblk))== NULL ){
+  if((Blocks=MALLOC(sizeof(scicos_block)*nblk))== NULL ){
     *ierr =5;
     return 0;
   }
   if(nmod>0){
-    if((mod=malloc(sizeof(int)*nmod))== NULL ){
+    if((mod=MALLOC(sizeof(int)*nmod))== NULL ){
       *ierr =5;
       return 0;
     }
@@ -357,12 +360,12 @@ int C2F(scicos)
       case 1:
 	sciprint("type 1 function not allowed for scilab blocks\r\n");
 	*ierr =1000+kf+1;
-	free_blocks();
+	FREE_blocks();
 	return 0;
       case 2:
 	sciprint("type 2 function not allowed for scilab blocks\r\n");
 	*ierr =1000+kf+1;
-	free_blocks();
+	FREE_blocks();
 	return 0;
       case 3:
 	Blocks[kf].funpt=sciblk2;
@@ -385,7 +388,7 @@ int C2F(scicos)
       default :
 	sciprint("Undefined Function type\r\n");
 	*ierr =1000+kf+1;
-	free_blocks();
+	FREE_blocks();
 	return 0;
       }
       Blocks[kf].scsptr=-i; /* set scilab function adress for sciblk */
@@ -402,7 +405,7 @@ int C2F(scicos)
       if ( Blocks[kf].funpt == (voidf) 0) {
 	sciprint("Function not found\r\n");
 	*ierr =1000+kf+1;
-	free_blocks();
+	FREE_blocks();
 	return 0;
       }
       Blocks[kf].scsptr=0;   /* this is done for being able to test if a block
@@ -417,13 +420,13 @@ int C2F(scicos)
     Blocks[kf].nipar=ipptr[kf+2]-ipptr[kf+1];
     Blocks[kf].nin=inpptr[kf+2]-inpptr[kf+1]; /* number of input ports */
     Blocks[kf].nout=outptr[kf+2]-outptr[kf+1];/* number of output ports */
-    if ((Blocks[kf].insz=malloc(sizeof(int)*Blocks[kf].nin))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].insz=MALLOC(sizeof(int)*Blocks[kf].nin))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
-    if ((Blocks[kf].inptr=malloc(sizeof(double*)*Blocks[kf].nin))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].inptr=MALLOC(sizeof(double*)*Blocks[kf].nin))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
@@ -432,13 +435,13 @@ int C2F(scicos)
       Blocks[kf].inptr[in]=&(outtb[lnkptr[lprt]-1]);
       Blocks[kf].insz[in]=lnkptr[lprt+1]-lnkptr[lprt];
     }
-    if ((Blocks[kf].outsz=malloc(sizeof(int)*Blocks[kf].nout))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].outsz=MALLOC(sizeof(int)*Blocks[kf].nout))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
-    if ((Blocks[kf].outptr=malloc(sizeof(double*)*Blocks[kf].nout))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].outptr=MALLOC(sizeof(double*)*Blocks[kf].nout))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
@@ -448,8 +451,8 @@ int C2F(scicos)
       Blocks[kf].outsz[out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
     Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
-    if ((Blocks[kf].evout=calloc(Blocks[kf].nevout,sizeof(double)))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].evout=CALLOC(Blocks[kf].nevout,sizeof(double)))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
@@ -458,22 +461,22 @@ int C2F(scicos)
     Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
     Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
 
-    if ((Blocks[kf].res=malloc(sizeof(double)*Blocks[kf].nx))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].res=MALLOC(sizeof(double)*Blocks[kf].nx))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
     
     i1=izptr[kf+2]-izptr[kf+1];
-    if ((Blocks[kf].label=malloc(sizeof(char)*(i1+1)))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].label=MALLOC(sizeof(char)*(i1+1)))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
     Blocks[kf].label[i1]='\0';
     C2F(cvstr)(&i1,&(iz[izptr[kf+1]-1]),Blocks[kf].label,&job,i1);    
-    if ((Blocks[kf].jroot=calloc(Blocks[kf].ng,sizeof(int)))== NULL ){
-      free_blocks();
+    if ((Blocks[kf].jroot=CALLOC(Blocks[kf].ng,sizeof(int)))== NULL ){
+      FREE_blocks();
       *ierr =5;
       return 0;
     }
@@ -486,8 +489,8 @@ int C2F(scicos)
   }
 
 
-  if((iwa=malloc(sizeof(int)*(*nevts)))== NULL ){
-    free_blocks();
+  if((iwa=MALLOC(sizeof(int)*(*nevts)))== NULL ){
+    FREE_blocks();
     *ierr =5;
     return 0;
   }
@@ -535,9 +538,9 @@ int C2F(scicos)
   } else if (*flag__ == 4) {
     idoit(t0);
     if (*ierr == 0) {
-      if((W=malloc(sizeof(double)*nx))== NULL ){
-	free(iwa);
-	free_blocks();
+      if((W=MALLOC(sizeof(double)*nx))== NULL ){
+	FREE(iwa);
+	FREE_blocks();
 	*ierr =5;
 	return 0;
       }
@@ -546,11 +549,11 @@ int C2F(scicos)
       for (i = 0; i < nx; ++i) {
 	x[i] = W[i];
       }
-      free(W);
+      FREE(W);
     }
   }
-  free(iwa);
-  free_blocks(); 
+  FREE(iwa);
+  FREE_blocks(); 
 
   C2F(clearscicosimport)();
   return 0;
@@ -569,7 +572,7 @@ int C2F(scicos)
 
   double *W;
   jj=max(ng,nout);
-  if((W=malloc(sizeof(double)*(jj)))== NULL ){
+  if((W=MALLOC(sizeof(double)*(jj)))== NULL ){
     *ierr =10000;
     return;
   }
@@ -596,7 +599,7 @@ int C2F(scicos)
   }
   if (*ierr != 0) {
     C2F(curblk).kfun = kfune;
-    free(W);
+    FREE(W);
     return;
   }
   /*     initialization (flag 6) */
@@ -609,7 +612,7 @@ int C2F(scicos)
       callf(told, xd, x, x,W,&flag__);
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
-	free(W);
+	FREE(W);
 	return;
       }
     }
@@ -624,7 +627,7 @@ int C2F(scicos)
 	callf(told, xd, x, x,W,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
-	  free(W);
+	  FREE(W);
 	  return;
 	}
       }
@@ -639,7 +642,7 @@ int C2F(scicos)
 	callf(told, xd, x, x,W,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
-	  free(W);
+	  FREE(W);
 	  return;
 	}
       }
@@ -649,14 +652,14 @@ int C2F(scicos)
 	goto L30;
       }
     }
-    free(W);
+    FREE(W);
     return;
   L30:
     C2F(dcopy)(&nout, outtb, &c__1, W, &c__1);
 
   }
   *ierr = 20;
-  free(W);
+  FREE(W);
 } /* cosini_ */
 
 /* Subroutine */ void idoit(told)
@@ -754,7 +757,7 @@ int C2F(scicos)
 
   nrwp = (*neq) * max(16,*neq + 9) + 22 + ng * 3;
   /* +1 below is so that rhot starts from 1; one wasted location */
-  if((rhot=malloc(sizeof(double)*(nrwp+1)))== NULL ){
+  if((rhot=MALLOC(sizeof(double)*(nrwp+1)))== NULL ){
     *ierr =10000;
     return;
   }
@@ -762,30 +765,30 @@ int C2F(scicos)
 				       handle masking */
 
   /* +1 below is so that ihot starts from 1; one wasted location */
-  if((ihot=malloc(sizeof(int)*(niwp+1)))== NULL ){
+  if((ihot=MALLOC(sizeof(int)*(niwp+1)))== NULL ){
     *ierr =10000;
-    free(rhot);
+    FREE(rhot);
     return;
   }
-  if((jroot=malloc(sizeof(int)*ng))== NULL ){
+  if((jroot=MALLOC(sizeof(int)*ng))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
+    FREE(rhot);
+    FREE(ihot);
     return;
   }
-  if((zcros=malloc(sizeof(int)*ng))== NULL ){
+  if((zcros=MALLOC(sizeof(int)*ng))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
-    free(jroot);
+    FREE(rhot);
+    FREE(ihot);
+    FREE(jroot);
     return;
   }
-  if((W=malloc(sizeof(double)*ng))== NULL ){
+  if((W=MALLOC(sizeof(double)*ng))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
-    free(jroot);
-    free(zcros);
+    FREE(rhot);
+    FREE(ihot);
+    FREE(jroot);
+    FREE(zcros);
     return;
   }
   
@@ -1106,55 +1109,55 @@ int C2F(scicos)
   niwp = (*neq) + 40 + (*neq) +ng ; /* + ng is for change in ddaskr to handle masking */ 
 
    /* +1 below is so that rhot starts from 1; one wasted location */
-  if((rhot=malloc(sizeof(double)*(nrwp+1)))== NULL ){
+  if((rhot=MALLOC(sizeof(double)*(nrwp+1)))== NULL ){
     *ierr =10000;
     return;
   }
 /* +1 below is so that ihot starts from 1; one wasted location */
-  if((ihot=malloc(sizeof(int)*(niwp+1)))== NULL ){
-    free(rhot);
+  if((ihot=MALLOC(sizeof(int)*(niwp+1)))== NULL ){
+    FREE(rhot);
     *ierr =10000;
     return;
   }
-  if((jroot=malloc(sizeof(int)*ng))== NULL ){
+  if((jroot=MALLOC(sizeof(int)*ng))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
+    FREE(rhot);
+    FREE(ihot);
     return;
   }
-  if((scicos_xproperty=malloc(sizeof(int)*(*neq)))== NULL ){
+  if((scicos_xproperty=MALLOC(sizeof(int)*(*neq)))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
-    free(jroot);
+    FREE(rhot);
+    FREE(ihot);
+    FREE(jroot);
     return;
   }
   C2F(iset)(neq, &c__1, scicos_xproperty, &c__1);
-  if((zcros=malloc(sizeof(int)*ng))== NULL ){
+  if((zcros=MALLOC(sizeof(int)*ng))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
-    free(jroot);
-    free(scicos_xproperty);
+    FREE(rhot);
+    FREE(ihot);
+    FREE(jroot);
+    FREE(scicos_xproperty);
     return;
   }
-  if((W=malloc(sizeof(double)*ng))== NULL ){
+  if((W=MALLOC(sizeof(double)*ng))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
-    free(jroot);
-    free(scicos_xproperty);
-    free(zcros);
+    FREE(rhot);
+    FREE(ihot);
+    FREE(jroot);
+    FREE(scicos_xproperty);
+    FREE(zcros);
     return;
   }
-  if((Mode_save=malloc(sizeof(double)*nmod))== NULL ){
+  if((Mode_save=MALLOC(sizeof(double)*nmod))== NULL ){
     *ierr =10000;
-    free(rhot);
-    free(ihot);
-    free(jroot);
-    free(scicos_xproperty);
-    free(zcros);
-    free(W);
+    FREE(rhot);
+    FREE(ihot);
+    FREE(jroot);
+    FREE(scicos_xproperty);
+    FREE(zcros);
+    FREE(W);
     return;
   }
 
@@ -2877,45 +2880,45 @@ int C2F(grblk)(neq1, t, xc, ng1, g)
 
 
 
-void free_blocks()
+void FREE_blocks()
 
 {
   int kf;
   for (kf = 0; kf < nblk; ++kf) {
     if (Blocks[kf].insz!=NULL) {
-      free(Blocks[kf].insz);
+      FREE(Blocks[kf].insz);
     }else {
       break;
     }
     if (Blocks[kf].inptr!=NULL){
-      free(Blocks[kf].inptr);
+      FREE(Blocks[kf].inptr);
     }else {
       break;
     }
     if (Blocks[kf].outsz!=NULL){
-      free(Blocks[kf].outsz);
+      FREE(Blocks[kf].outsz);
     }else {
       break;
     }
     if (Blocks[kf].outptr!=NULL){
-      free(Blocks[kf].outptr);
+      FREE(Blocks[kf].outptr);
     }else {
       break;
     }
     if (Blocks[kf].label!=NULL){
-      free(Blocks[kf].label);
+      FREE(Blocks[kf].label);
     }else {
       break;
     }
     if (Blocks[kf].evout!=NULL){
-      free(Blocks[kf].evout);
+      FREE(Blocks[kf].evout);
     }else {
       break;
     }
   }
-  free(Blocks);
+  FREE(Blocks);
   if(nmod>0){
-    free(mod);
+    FREE(mod);
   }
   return;
 }

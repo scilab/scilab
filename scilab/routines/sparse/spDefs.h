@@ -28,8 +28,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2004/08/27 13:55:54 $
- *  $Revision: 1.2 $
+ *  $Date: 2005/07/01 07:08:14 $
+ *  $Revision: 1.3 $
  */
 
 
@@ -447,7 +447,8 @@ extern char *malloc(), *calloc(), *realloc();
 #include <malloc.h>
 #endif
 
-#define ALLOC(type,number)  ((type *)malloc((unsigned)(sizeof(type)*(number))))
+#define MALLOC(x) malloc(((size_t) x))
+#define ALLOC(type,number)  ((type *)MALLOC((unsigned)(sizeof(type)*(number))))
 #define REALLOC(ptr,type,number)  \
            ptr = (type *)realloc((char *)ptr,(unsigned)(sizeof(type)*(number)))
 
@@ -461,12 +462,6 @@ extern char *malloc(), *calloc(), *realloc();
         for(i=(number)-1;i>=0; i--) ptr[i] = (type) 0;  \
 }
 
-
-
-
-
-
-
 /*
  *  REAL NUMBER
  */
@@ -475,13 +470,6 @@ extern char *malloc(), *calloc(), *realloc();
 
 typedef  spREAL  RealNumber, *RealVector;
 
-
-
-
-
-
-
-
 /*
  *  COMPLEX NUMBER DATA STRUCTURE
  *

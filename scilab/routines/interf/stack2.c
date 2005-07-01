@@ -9,8 +9,11 @@
 
 #include <string.h>
 #include <stdio.h>
+
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h" 
 #include "../os_specific/men_Sutils.h" 
+
 
 #ifdef WIN32
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
@@ -3286,9 +3289,9 @@ static int intersci_push()
   int i;
   intersci_list *loc;
   intersci_state *new ;
-  new = malloc( Nbvars * sizeof(intersci_state) );
+  new = MALLOC( Nbvars * sizeof(intersci_state) );
   if (new == 0 ) return 0;
-  loc = malloc( sizeof(intersci_list) );
+  loc = MALLOC( sizeof(intersci_list) );
   if ( loc == NULL ) return 0;
   loc->next = L_intersci;
   loc->state = new; 

@@ -20,8 +20,10 @@
 
 #include <ctype.h>  /* isdigit */
 #include "../graphics/Math.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
 #include "../os_specific/Os_specific.h"
+
 
 extern char * SciGetLine __PARAMS((char *));
 extern FILE *GetFile __PARAMS((int *));
@@ -287,16 +289,16 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	  if (! cat_to_last) { /*add a new line */
 	    if (n==nmax) {
 	      nmax+=blk;
-	      if ( (strs = (char **) realloc(strs,nmax*sizeof(char **))) == NULL) goto mem;
+	      if ( (strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) goto mem;
 	    }
-	    if ((strs[n]=malloc((k+1))) == NULL) goto mem;
+	    if ((strs[n]=MALLOC((k+1))) == NULL) goto mem;
 	    strncpy(strs[n],str1, k);
 	    strs[n][k]='\0';
 	    n++;
 	  }
 	  else { /* cat to previous line */
 	    ll=strlen(strs[n-1]);
-	    if ((strs[n-1]=realloc(strs[n-1],(k+1+ll))) == NULL) goto mem;
+	    if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) goto mem;
 	    strncpy(&(strs[n-1][ll]),str1, k);
 	    strs[n-1][k+ll]='\0';
 	  }
@@ -313,9 +315,9 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	if ((! cat_to_last) || (n == 0)) { /*add a new line */
 	  if (n==nmax) {
 	    nmax+=blk;
-	    if ( (strs = (char **) realloc(strs,nmax*sizeof(char **))) == NULL) goto mem;
+	    if ( (strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) goto mem;
 	  }
-	  if ((strs[n]=malloc((k+1))) == NULL) goto mem;
+	  if ((strs[n]=MALLOC((k+1))) == NULL) goto mem;
 	  strncpy(strs[n],str1, k);
 	  strs[n][k]='\0';
 	  n++;
@@ -323,7 +325,7 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	}
 	else { /* cat to previous line */
 	    ll=strlen(strs[n-1]);
-	    if ((strs[n-1]=realloc(strs[n-1],(k+1+ll))) == NULL) goto mem;
+	    if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) goto mem;
 	    strncpy(&(strs[n-1][ll]),str1, k);
 	    strs[n-1][k+ll]='\0';
 	}
@@ -336,8 +338,8 @@ int int_objsprintf(char *fname,unsigned long fname_len)
   /** Create a Scilab String : lstr must not be freed **/
   n2=1;
   CreateVarFromPtr(Rhs+1, "S", &n, &n2, strs);
-  for (k=0;k<n;k++) free(strs[k]);
-  free(strs);
+  for (k=0;k<n;k++) FREE(strs[k]);
+  FREE(strs);
   LhsVar(1)=Rhs+1;
   PutLhsVar();    
   return 0;
@@ -491,7 +493,7 @@ int int_objsscanf(char *fname,unsigned long fname_len)
       
     args = Rhs; /* args set to Rhs on entry */
     err = do_scanf("sscanf",(FILE *)0,cstk(l2),&args,str,&retval,buf,type);
-    free(str);
+    FREE(str);
     if ( err < 0 )  return 0;
     if ( retval == EOF) {
       /* 
@@ -710,7 +712,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   FILE  *f;
   char *Format;
   if ( Info == NULL ) {
-    if (( Info =malloc(INFOSIZE*sizeof(char)))==NULL) {
+    if (( Info =MALLOC(INFOSIZE*sizeof(char)))==NULL) {
       Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
       return 0;
     }
@@ -744,7 +746,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     { 
       n=ReadLine(f,&mem); 
       if ( mem == 1) {
-	free(Info);Info=NULL;
+	FREE(Info);Info=NULL;
 	fclose(f);
 	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
 	return 0;
@@ -753,7 +755,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     }
   if ( n == EOF )
     {
-      free(Info);Info=NULL;
+      FREE(Info);Info=NULL;
       fclose(f);
       Scierror(999,"Error: in function %s, cannot read data in file %s\r\n",
 	       fname,cstk(l1));
@@ -765,7 +767,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     { 
       n=ReadLine(f,&mem);
       if ( mem == 1) {
-	free(Info);Info=NULL;
+	FREE(Info);Info=NULL;
 	fclose(f);
 	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
 	return 0;
@@ -780,8 +782,8 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   rewind(f);
   /** skip non numeric lines **/
   if ( Lhs >= 2 && vl != 0 ) {
-    if ((Str = malloc((vl+1)*sizeof(char *)))==NULL) {
-      free(Info);Info=NULL;
+    if ((Str = MALLOC((vl+1)*sizeof(char *)))==NULL) {
+      FREE(Info);Info=NULL;
       fclose(f);
       Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n", fname);
       return 0;
@@ -793,19 +795,19 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     {
       ReadLine(f,&mem);
       if ( mem == 1) {
-	free(Info);Info=NULL;
+	FREE(Info);Info=NULL;
 	fclose(f);
-	for (j=0;j<i;j++) free(Str[j]);
-	free(Str);
+	for (j=0;j<i;j++) FREE(Str[j]);
+	FREE(Str);
 	Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n",fname);
 	return 0;
       }
       if ( Lhs >= 2) {
-	if ((Str[i]=malloc((strlen(Info)+1)*sizeof(char)))==NULL) { 
-	  free(Info);Info=NULL;
+	if ((Str[i]=MALLOC((strlen(Info)+1)*sizeof(char)))==NULL) { 
+	  FREE(Info);Info=NULL;
 	  fclose(f);
-	  for (j=0;j<i;j++) free(Str[j]);
-	  free(Str);
+	  for (j=0;j<i;j++) FREE(Str[j]);
+	  FREE(Str);
 	  Scierror(999,"Error: in function %s, cannot allocate enough memory\r\n", fname);
 	  return 0;
 	}
@@ -839,7 +841,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
   if ( Info_size > INFOSIZE ) 
     {
       Info_size = INFOSIZE;
-      Info = realloc(Info,Info_size*sizeof(char));
+      Info = REALLOC(Info,Info_size*sizeof(char));
     }
   return 0;
 }  
@@ -855,7 +857,7 @@ static int ReadLine(FILE *fd,int *mem)
       if ( n > Info_size ) 
 	{
 	  Info_size += INFOSIZE;
-	  if (( Info1 = realloc(Info,Info_size*sizeof(char)))==NULL) {
+	  if (( Info1 = REALLOC(Info,Info_size*sizeof(char)))==NULL) {
 	    *mem=1;
 	    return EOF;
 	  }
@@ -1078,7 +1080,7 @@ static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv
 			   width_val,MAX_STR-1);
 		  return RET_BUG;
 		}
-	      if ((buf[num_conversion].c=malloc(MAX_STR))==NULL) return MEM_LACK;
+	      if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
 	      ptrtab[num_conversion] =  buf[num_conversion].c;
 	      type[num_conversion] = SF_S;
 	      break;
@@ -1094,7 +1096,7 @@ static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv
 			   width_val,MAX_STR-1);
 		  return RET_BUG;
 		}
-	      if ((buf[num_conversion].c=malloc(MAX_STR))==NULL) return MEM_LACK;
+	      if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
 	      ptrtab[num_conversion] =  buf[num_conversion].c;
 	      type[num_conversion] = SF_S;
 	      break;
@@ -1113,7 +1115,7 @@ static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv
 			   width_val,MAX_STR-1);
 		  return RET_BUG;
 		}
-	      if ((buf[num_conversion].c=malloc(MAX_STR))==NULL) return MEM_LACK;
+	      if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
 	      ptrtab[num_conversion] =  buf[num_conversion].c;
 	      type[num_conversion] = SF_C;
 	      break;
@@ -1603,32 +1605,32 @@ static int do_printf (char *fname, FILE *fp, char *format, int nargs, int argcnt
 	{
 	case AST (0, PF_C):
 	  retval += (*printer) ((VPTR) target, p, sval[0]);
-	  free(sval);
+	  FREE(sval);
 	  break;
 
 	case AST (1, PF_C):
 	  retval += (*printer) ((VPTR) target, p, ast[0], sval[0]);
-	  free(sval);
+	  FREE(sval);
 	  break;
 
 	case AST (2, PF_C):
 	  retval += (*printer) ((VPTR) target, p, ast[0], ast[1],sval[0]);
-	  free(sval);
+	  FREE(sval);
 	  break;
 
 	case AST (0, PF_S):
 	  retval += (*printer) ((VPTR) target, p, sval);
-	  free(sval);
+	  FREE(sval);
 	  break;
 
 	case AST (1, PF_S):
 	  retval += (*printer) ((VPTR) target, p, ast[0], sval);
-	  free(sval);
+	  FREE(sval);
 	  break;
 
 	case AST (2, PF_S):
 	  retval += (*printer) ((VPTR) target, p, ast[0], ast[1], sval);
-	  free(sval);
+	  FREE(sval);
 	  break;
 
 	case AST (0, PF_D):
@@ -1818,12 +1820,12 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 
     for ( i=0 ; i < ncol ; i++) { 
       if ( (type[i] == SF_C) || (type[i] == SF_S) ) {
-	if( (temp = (char **) malloc(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
+	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
 	CreateVarFromPtr(++iarg, "S", &nrow, &one, temp);
-	free(temp);
-	for (j=0;j<nrow;j++) free(data[i+ncol*j].s);
+	FREE(temp);
+	for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);
       }
       else {
 	CreateVar(++iarg, "d", &nrow, &one, &l);
@@ -1833,7 +1835,7 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 
       LhsVar(i+2)=iarg;
     }
-    free(data);
+    FREE(data);
     /** we must complete the returned arguments up to Lhs **/
   Complete:
     for ( i = ncol+2; i <= Lhs ; i++) 
@@ -1871,14 +1873,14 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	  if (nrow==0) {
 	    CreateVar(++iarg, "d", &zero, &zero, &l);}
 	  else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
-	    if( (temp = (char **) malloc(nrow*colcount*sizeof(char **)))==NULL) return MEM_LACK;
+	    if( (temp = (char **) MALLOC(nrow*colcount*sizeof(char **)))==NULL) return MEM_LACK;
 	    k=0;
 	    for (i1=cur_i;i1<i;i1++)
 	      for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
 	    CreateVarFromPtr(++iarg, "S", &nrow, &colcount,temp);
-	    free(temp);
+	    FREE(temp);
 	    for (i1=cur_i;i1<i;i1++)
-	      for (j=0;j<nrow;j++) free(data[i1+ncol*j].s);
+	      for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);
 	  }
 	  else {
 	    CreateVar(++iarg, "d", &nrow, &colcount, &l);
@@ -1907,14 +1909,14 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
       if (nrow==0) {
 	CreateVar(Rhs+1, "d", &zero, &zero, &l);}
       else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
-	if( (temp = (char **) malloc(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
+	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (i1=0;i1<ncol;i1++)
 	  for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
 	CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, temp);
-	free(temp);
+	FREE(temp);
 	for (i1=0;i1<ncol;i1++)
-	  for (j=0;j<nrow;j++) free(data[i1+ncol*j].s);
+	  for (j=0;j<nrow;j++) FREE(data[i1+ncol*j].s);
       }
       else {
 	CreateVar(Rhs+1, "d", &nrow, &ncol, &l);
@@ -1954,7 +1956,7 @@ static int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *ret
     if (n==0) {
       return 0;
     }
-    if ( (*data = (entry *) malloc(nc*nr*sizeof(entry)))==NULL) {
+    if ( (*data = (entry *) MALLOC(nc*nr*sizeof(entry)))==NULL) {
       err= MEM_LACK;
       goto bad1;
     }
@@ -1974,11 +1976,11 @@ static int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *ret
 	goto bad2;
       }
 
-    /* check for memory and realloc if necessary*/
+    /* check for memory and REALLOC if necessary*/
     if (rowcount>= nr) {
       nr=nr+blk;
       *nrow=nr;
-      if ( (*data = (entry *) realloc(*data,nc*nr*sizeof(entry)))==NULL) {
+      if ( (*data = (entry *) REALLOC(*data,nc*nr*sizeof(entry)))==NULL) {
 	err= MEM_LACK;
 	goto bad2;
       }
@@ -2022,9 +2024,9 @@ static int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *ret
     } /* rowcount */
   return 0;
  bad1:
-  /* free allocated strings in scan buffer */
+  /* FREE allocated strings in scan buffer */
   for ( j=0 ; j < MAXSCAN ; j++)
-    if ( (type_s[j] ==  SF_C) || (type_s[j] ==  SF_S))  free(buf[j].c);
+    if ( (type_s[j] ==  SF_C) || (type_s[j] ==  SF_S))  FREE(buf[j].c);
   
  bad2: 
   return err;
@@ -2043,11 +2045,11 @@ static void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
       if ( (type_s[j] ==  SF_C) || (type_s[j] ==  SF_S) ) 
 	/* free allocated strings in scan data area */
 	for ( i=0 ; i < nrow ; i++) {
-	  free(Data[j+ncol*i].s);
+	  FREE(Data[j+ncol*i].s);
 	}
   }
   /* free scaned data area */
-  if (ncol>0) free(Data);
+  if (ncol>0) FREE(Data);
 }
 
 /********************************************************
@@ -2064,7 +2066,7 @@ int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh)
   
   li=ptrstrings[0];
   ni=ptrstrings[*nstring] - li + *nstring +1;
-  p=(char *) malloc(ni);
+  p=(char *) MALLOC(ni);
   if (p ==NULL)  return MEM_LACK;
   SciS= Scistring;
   s=p;

@@ -29,6 +29,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #ifndef STRICT
 #define STRICT
 #endif
@@ -59,12 +61,12 @@ void Callback_NEWSCILAB(void)
 		char *VarEnvironmnt=NULL;
 		extern char ScilexWindowName[MAX_PATH];
 
-		VarEnvironmnt=(char*)malloc((strlen("SCILAB_CREATOR=")+strlen(ScilexWindowName)+1)*sizeof(char));
+		VarEnvironmnt=(char*)MALLOC((strlen("SCILAB_CREATOR=")+strlen(ScilexWindowName)+1)*sizeof(char));
 		wsprintf(VarEnvironmnt,"SCILAB_CREATOR=%s",ScilexWindowName);
 		putenv(VarEnvironmnt);
 		if (VarEnvironmnt) 
 		{
-			free(VarEnvironmnt);
+			FREE(VarEnvironmnt);
 			VarEnvironmnt=NULL;
 		}
 		
@@ -1883,8 +1885,8 @@ void UpdateFileNameMenu(LPTW lptw)
 	
 	ScilabDirectory=GetScilabDirectory(FALSE);
 
-	if (lpmw->szMenuName!=NULL) free(lpmw->szMenuName);
-    lpmw->szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) +strlen("\\bin\\") +strlen (FILEMENUENGLISH) + 1);
+	if (lpmw->szMenuName!=NULL) FREE(lpmw->szMenuName);
+    lpmw->szMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) +strlen("\\bin\\") +strlen (FILEMENUENGLISH) + 1);
 	
 	switch (lpmw->CodeLanguage)
 	{
@@ -1896,7 +1898,7 @@ void UpdateFileNameMenu(LPTW lptw)
 		break;
 	}
 
-	if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
+	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
 }
 /*-----------------------------------------------------------------------------------*/   
 void SwitchLanguage(LPTW lptw)
@@ -2198,7 +2200,7 @@ void PrintString(char *lines,char *Entete)
 		if ( StartDoc( PrintDC, &di ) > 0 )
 			{
 				char *LignePrint=NULL;
-				LignePrint=(char*)malloc((NombredeCaracteresparLignes+1)*sizeof(char));
+				LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
 
 				StartPage(PrintDC);
 				PageHeader(PrintDC,Entete);
@@ -2214,10 +2216,10 @@ void PrintString(char *lines,char *Entete)
 							Index1 = 0;
 							if (LignePrint)
 							{
-								free(LignePrint);
+								FREE(LignePrint);
 								LignePrint=NULL;
 							}
-							LignePrint=(char*)malloc((NombredeCaracteresparLignes+1)*sizeof(char));
+							LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
 						}
 						else if ( (lines[i] == '\n') )
 							{
@@ -2228,10 +2230,10 @@ void PrintString(char *lines,char *Entete)
 								Index1 = 0;
 								if (LignePrint)
 								{
-									free(LignePrint);
+									FREE(LignePrint);
 									LignePrint=NULL;
 								}
-								LignePrint=(char*)malloc((NombredeCaracteresparLignes+1)*sizeof(char));
+								LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
 							}
 						else Index1 ++;
 						if (Index2 == NbLigneParPage-4)
@@ -2253,7 +2255,7 @@ void PrintString(char *lines,char *Entete)
 
 				if (LignePrint)
 				{
-					free(LignePrint);
+					FREE(LignePrint);
 					LignePrint=NULL;
 				}
 			}
@@ -2324,7 +2326,7 @@ void PrintFile(char *filename)
 
 						for (i=0;i<subline;i++)
 						{
-							LignePrint=(char*)malloc( (NombredeCaracteresparLignes+1)*sizeof(char));
+							LignePrint=(char*)MALLOC( (NombredeCaracteresparLignes+1)*sizeof(char));
 							for (j=0;j<(NombredeCaracteresparLignes);j++)
 							{
 								if (line[(i*NombredeCaracteresparLignes)+j] == 9) /* == \t */
@@ -2342,7 +2344,7 @@ void PrintFile(char *filename)
 							TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
 							if (LignePrint)
 							{
-								free(LignePrint);
+								FREE(LignePrint);
 								LignePrint=NULL;
 							}
 							Index2 ++;
@@ -2358,7 +2360,7 @@ void PrintFile(char *filename)
 						}
 						if (restsubline>0)
 						{
-							LignePrint=(char*)malloc( (NombredeCaracteresparLignes+1)*sizeof(char));
+							LignePrint=(char*)MALLOC( (NombredeCaracteresparLignes+1)*sizeof(char));
 							for (j=0;j<(restsubline);j++)
 							{
 								if (line[(i*NombredeCaracteresparLignes)+j] == 9) /* == \t */
@@ -2374,7 +2376,7 @@ void PrintFile(char *filename)
 							TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
 							if (LignePrint)
 							{
-								free(LignePrint);
+								FREE(LignePrint);
 								LignePrint=NULL;
 							}
 							Index2 ++;
@@ -2391,12 +2393,12 @@ void PrintFile(char *filename)
 					}
 					else
 					{
-						LignePrint=(char*)malloc( (NombredeCaracteresparLignes+1)*sizeof(char));
+						LignePrint=(char*)MALLOC( (NombredeCaracteresparLignes+1)*sizeof(char));
 						strcpy(LignePrint,line);
 						TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
 						if (LignePrint)
 						{
-							free(LignePrint);
+							FREE(LignePrint);
 							LignePrint=NULL;
 						}
 						Index2 ++;
@@ -2448,7 +2450,7 @@ void PrintSelection(LPTW lptw,char *Entete)
 		
 		lpMem= GlobalLock (hGMem);
 		l=strlen(lpMem);
-		MessagePaste=(char*)malloc( (l+1)*sizeof(char));
+		MessagePaste=(char*)MALLOC( (l+1)*sizeof(char));
 		strcpy(MessagePaste,lpMem);
 		MessagePaste[l]='\0';
 		GlobalUnlock (hGMem);
@@ -2480,7 +2482,7 @@ void Footer(HDC hdc,int number)
 	GetTextMetrics (hdc, (TEXTMETRIC *) & tm);
 	NombredeCaracteresparLignes=tm.tmMaxCharWidth+10;
 	yChar = tm.tmHeight + tm.tmExternalLeading ;
-	ptrLine=(char*)malloc( (NombredeCaracteresparLignes + 1)* sizeof(char));
+	ptrLine=(char*)MALLOC( (NombredeCaracteresparLignes + 1)* sizeof(char));
 
 	hPen = ExtCreatePen(PS_SOLID, 1, &lb, 0, NULL); 
     hPenOld = SelectObject(hdc, hPen);
@@ -2493,7 +2495,7 @@ void Footer(HDC hdc,int number)
 
 	wsprintf(ptrLine,"Page : %d",number);
 	TextOut(hdc,(tm.tmMaxCharWidth+10),CySize-(yChar*3),ptrLine,strlen(ptrLine));
-	free(ptrLine); 
+	FREE(ptrLine); 
 }
 /*-----------------------------------------------------------------------------------*/
 void PageHeader(HDC hdc,LPSTR Entete)
@@ -2526,7 +2528,7 @@ void PageHeader(HDC hdc,LPSTR Entete)
     HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
     NbLigneParPage = GetDeviceCaps(hdc,VERTRES) / HauteurCaractere;
 
-	ptrLine=(char*)malloc( (NombredeCaracteresparLignes + 1)* sizeof(char));
+	ptrLine=(char*)MALLOC( (NombredeCaracteresparLignes + 1)* sizeof(char));
 	wsprintf(ptrLine,"%s %s %s",dbuffer,tbuffer,Entete);
 	
 	TextOut(hdc,(tm.tmMaxCharWidth+10),NombredeLignesOccupeesparEntete*HauteurCaractere,ptrLine,strlen(ptrLine));		
@@ -2541,7 +2543,7 @@ void PageHeader(HDC hdc,LPSTR Entete)
 	SelectObject(hdc, hPenOld); 
     DeleteObject(hPen); 
 	
-	free(ptrLine);     
+	FREE(ptrLine);     
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -2556,7 +2558,7 @@ static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
 		int i=0;
 		char *Buffer=NULL;
 
-		Buffer=(char*)malloc((LenLine+NumberOfLines+1)*sizeof(char));
+		Buffer=(char*)MALLOC((LenLine+NumberOfLines+1)*sizeof(char));
 		for (i=0;i<NumberOfLines+1;i++)
 		{
 			if ( i == 0)
@@ -2575,7 +2577,7 @@ static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
 		}
 		lstrcpy(CutLine,Buffer);
 
-		free(Buffer);
+		FREE(Buffer);
 	}
 	else
 	{

@@ -14,7 +14,7 @@ int C2F(intTclUnsetVar) _PARAMS((char *fname))
 	
 	if (TypeVar1 == sci_strings)
 	{
-		int *paramoutINT=(int*)malloc(sizeof(int));
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 		char *VarName=NULL;
 		char *RetStr=NULL;
@@ -41,7 +41,7 @@ int C2F(intTclUnsetVar) _PARAMS((char *fname))
 		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
 		LhsVar(1)=1;
 		C2F(putlhsvar)();
-		if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 
 	}
 	else

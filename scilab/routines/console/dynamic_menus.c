@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "../machine.h"
-#include "../graphics/Math.h"  /* malloc */
+#include "../sci_mem_alloc.h"  /* malloc */
 #include "../stack-c.h"
 #include "../version.h"
 
@@ -132,17 +132,17 @@ int StoreCommand1 (char *command,int flag)
 			  /** first check if we have a special handler set for commands **/
 			  if (scig_command_handler (command) == 1)  return 0;
 
-			  p = (CommandRec *) malloc (sizeof (CommandRec));
+			  p = (CommandRec *) MALLOC (sizeof (CommandRec));
 			  if (p == (CommandRec *) 0)
 				{
 					sciprint ("send_command : No more memory \r\n");
 					return (1);
 				}
 			  p->flag = 0;
-			  p->command = (char *) malloc ((strlen (command) + 1) * sizeof (char));
+			  p->command = (char *) MALLOC ((strlen (command) + 1) * sizeof (char));
 			  if (p->command == (char *) 0)
 				{
-				  free(p);
+				  FREE(p);
 				  sciprint ("send_command : No more memory \r\n");
 				  return (1);
 				}
@@ -195,8 +195,8 @@ int GetCommand ( char *str)
       flag=p->flag;
 
       commandQueue = p->next;
-      free (p->command);
-      free (p);
+      FREE (p->command);
+      FREE (p);
       if (C2F(iop).ddt==-1) {
         if (flag==0) { sciprint("   Unqueuing %s - No option\r\n",str); }
         else         { sciprint("   Unqueuing %s - seq\r\n",str); }
@@ -296,7 +296,7 @@ int C2F(intsleep) _PARAMS((char *fname))
 		if (sec <=0)
 		{
 			Scierror(999,"sleep: error time must be >0.\r\n");
-			return; 
+			return 0;
 		}
 	
 	#ifdef WIN32
@@ -391,21 +391,21 @@ int C2F(intgetos) _PARAMS((char *fname))
 #endif
 
 	
-	output=(char*)malloc((strlen(OperatinSystem)+1)*sizeof(char));
+	output=(char*)MALLOC((strlen(OperatinSystem)+1)*sizeof(char));
 	sprintf(output,"%s",OperatinSystem);
 	n1=1;
 	CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
-	if (output) {free(output);output=NULL;}
+	if (output) {FREE(output);output=NULL;}
 	LhsVar(1)=1;
 
 	if (Lhs==2)
 	{
 		char *output2=NULL;
-		output2=(char*)malloc((strlen(Release)+1)*sizeof(char));
+		output2=(char*)MALLOC((strlen(Release)+1)*sizeof(char));
 		sprintf(output2,"%s",Release);
 		n1=1;
 		CreateVarFromPtr( 2, "c",(m1=(int)strlen(output2), &m1),&n1,&output2);
-		if (output2) {free(output2);output2=NULL;}
+		if (output2) {FREE(output2);output2=NULL;}
 		LhsVar(2)=2;
 	}
 	

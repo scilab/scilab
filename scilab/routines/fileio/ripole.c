@@ -10,6 +10,9 @@
 #include "pldstr.h"
 #include "ole.h"
 #undef WITHMAIN
+
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 struct ripOLE_object {
 	int debug;
 	int verbose;
@@ -253,8 +256,8 @@ int ROLE_init(struct ripOLE_object *role)
 \------------------------------------------------------------------*/
 int ROLE_done(struct ripOLE_object *role)
 {
-	if (role->inputfile != NULL) free(role->inputfile);
-	if (role->outputdir != NULL) free(role->outputdir);
+	if (role->inputfile != NULL) FREE(role->inputfile);
+	if (role->outputdir != NULL) FREE(role->outputdir);
 
 	return 0;
 }
@@ -285,7 +288,7 @@ int main( int argc, char **argv )
 
 	if (argc == 1) { fprintf (stdout, "%s\n", help); exit(1); }
 
-	ole = malloc(sizeof(struct OLE_object));
+	ole = MALLOC(sizeof(struct OLE_object));
 	if (ole == NULL)
 	{
 		LOGGER_log("ripOLE: Cannot allocate memory for OLE object");
@@ -308,7 +311,7 @@ int main( int argc, char **argv )
 
 	if ((result != 0)&&(role.verbose)) LOGGER_log("ripOLE: decoding of %s resulted in error %d\n", role.inputfile, result );
 
-	if (ole != NULL) free(ole);
+	if (ole != NULL) FREE(ole);
 	ROLE_done(&role);
 	
 	return result;
@@ -341,7 +344,7 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
   struct OLE_object ole;
 	int result = 0;
 
-	/*ole = malloc(sizeof(struct OLE_object));
+	/*ole = MALLOC(sizeof(struct OLE_object));
 	if (ole == NULL)
 	{
 		LOGGER_log("ripOLE: Cannot allocate memory for OLE object");
@@ -365,6 +368,6 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
 	if ((result != 0)&&(verbose==1)) 
 	  LOGGER_log("ripOLE: decoding of %s resulted in error %d\n", inputfile, result );
 
-	/*if (ole != NULL) free(ole);*/
+	/*if (ole != NULL) FREE(ole);*/
 	return result;
 }

@@ -31,14 +31,14 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 		if ( RetStr )
 		{
 			char *output=NULL ;
-			output=(char*)malloc((strlen(RetStr)+1)*sizeof(char));
+			output=(char*)MALLOC((strlen(RetStr)+1)*sizeof(char));
 			sprintf(output,"%s",RetStr);
 			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
 			
 			LhsVar(1) = 1;
 			C2F(putlhsvar)();
 
-			if (output) {free(output);output=NULL;}
+			if (output) {FREE(output);output=NULL;}
 	  	}
 		else
 		{

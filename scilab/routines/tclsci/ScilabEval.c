@@ -32,27 +32,27 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     int argc=1;
 	char *UTF8Arg=NULL;
 
-	UTF8Arg=malloc(sizeof(char)*(strlen(argv[1])+2));
+	UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+2));
 	/* UTF to ANSI */
 	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+1), NULL, NULL,NULL);
 	
     sciprint(TCL_MSG7,UTF8Arg);
     while (argv[++argc]) sciprint(" %s",argv[argc]);
     sciprint("\n");
-	if (UTF8Arg){free(UTF8Arg);UTF8Arg=NULL;}
+	if (UTF8Arg){FREE(UTF8Arg);UTF8Arg=NULL;}
   }
 
   if (argv[1] != (char *)0)
   {
 	  char *UTF8Arg=NULL;
-	  UTF8Arg=malloc(sizeof(char)*(strlen(argv[1])+2));
+	  UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+2));
 
 	  /* UTF to ANSI */
 	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+1), NULL, NULL,NULL);
 
     if (strlen(UTF8Arg)>=bsiz)
 	{
-      command = (char *) malloc (bsiz * sizeof (char));
+      command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
       {
         sciprint (TCL_ERROR28);
@@ -64,7 +64,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     }
 	else
 	{
-      command = (char *) malloc ((strlen (UTF8Arg) + 1) * sizeof (char));
+      command = (char *) MALLOC ((strlen (UTF8Arg) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
         sciprint (TCL_ERROR28);
@@ -72,7 +72,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       }
       strcpy(command,UTF8Arg);
     }
-	if (UTF8Arg){free(UTF8Arg);UTF8Arg=NULL;}
+	if (UTF8Arg){FREE(UTF8Arg);UTF8Arg=NULL;}
 
     if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
@@ -93,7 +93,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       while (C2F(ismenu)() && ncomm<arbitrary_max_queued_callbacks-1)
 	  {
         ncomm++;
-        comm[ncomm] = (char *) malloc (bsiz+1);
+        comm[ncomm] = (char *) MALLOC (bsiz+1);
         if (comm[ncomm] == (char *) 0)
         {
           sciprint (TCL_ERROR28);
@@ -121,7 +121,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         if (C2F(iop).ddt==-1)
         {
           sciprint(TCL_MSG13,comm[nc]);
-          free(comm[nc]);
+          FREE(comm[nc]);
         }
         C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
@@ -143,7 +143,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         Tcl_SetResult(theinterp,NULL,NULL);
 	  }
     }
-    free(command);
+    FREE(command);
 
   } 
   else

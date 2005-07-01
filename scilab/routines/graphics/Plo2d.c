@@ -20,6 +20,8 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern int version_flag();
 
 /*--------------------------------------------------------------------

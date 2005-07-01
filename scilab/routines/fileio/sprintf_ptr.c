@@ -18,6 +18,7 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *************************************************************** */
+#include "../sci_mem_alloc.h" /* MALLOC */
 #ifdef __STDC__
 #include <stdarg.h>
 #else
@@ -27,7 +28,10 @@
 #include <ctype.h>  /* isdigit */
 #include "malloc.h"
 
+
 #include "../machine.h"
+
+
 #if WIN32
 #include <string.h>
 #endif
@@ -84,7 +88,7 @@ int C2F(vsprintf_ptr)(char * buf, char * format, va_list * ap)
   int retval;
 
 
-  if ( (fmt = (char *) malloc(strlen(format) + 1))== NULL) 
+  if ( (fmt = (char *) MALLOC(strlen(format) + 1))== NULL) 
     return MEM_LACK;
   strcpy(fmt,format);
 
@@ -356,7 +360,7 @@ int C2F(vsprintf_ptr)(char * buf, char * format, va_list * ap)
 	*q = save;
     }
  END: 
-  free(fmt);
+  FREE(fmt);
   va_end(*ap);
   printf("%s\n",buf);
   return(retval);

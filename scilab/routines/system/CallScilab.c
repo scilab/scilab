@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "CallScilab.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 static char DefaultScilabStartup[]="SCI/scilab.star";
 static char DefaultScilabQuit[]="SCI/scilab.quit";
@@ -37,7 +38,7 @@ static void SetSciEnv(void)
   }
   set_sci_env(ScilabDirectory);
 
-  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
+  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
   
 }
 #endif
@@ -77,12 +78,12 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	if (ScilabStartup==NULL)
 	{
-		ScilabStartupUsed=(char*)malloc((strlen(DefaultScilabStartup)+1)*sizeof(char));
+		ScilabStartupUsed=(char*)MALLOC((strlen(DefaultScilabStartup)+1)*sizeof(char));
 		sprintf(ScilabStartupUsed,"%s",DefaultScilabStartup);
 	}
 	else
 	{
-		ScilabStartupUsed=(char*)malloc((strlen(DefaultScilabStartup)+1)*sizeof(char));
+		ScilabStartupUsed=(char*)MALLOC((strlen(DefaultScilabStartup)+1)*sizeof(char));
 		sprintf(ScilabStartupUsed,"%s",ScilabStartup);
 	}
 	
@@ -110,14 +111,14 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	/* running the startup */ 
 	C2F(settmpdir)();
 	lengthStringToScilab=(int)(strlen("exec(\"SCI/scilab.star\",-1);quit;")+strlen(ScilabStartupUsed));
-	InitStringToScilab=(char*)malloc(lengthStringToScilab*sizeof(char));
+	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
 
 	
 	C2F(scirun)(InitStringToScilab,strlen(InitStringToScilab));
 
-	if (ScilabStartupUsed) {free(ScilabStartupUsed);ScilabStartupUsed=NULL;}
-	if (InitStringToScilab) {free(InitStringToScilab);InitStringToScilab=NULL;}
+	if (ScilabStartupUsed) {FREE(ScilabStartupUsed);ScilabStartupUsed=NULL;}
+	if (InitStringToScilab) {FREE(InitStringToScilab);InitStringToScilab=NULL;}
 
 	bOK=TRUE;
 	StartScilabIsOK=TRUE;
@@ -137,23 +138,23 @@ int TerminateScilab(char *ScilabQuit)
 
 		if (ScilabQuit==NULL)
 		{
-			ScilabQuitUsed=(char*)malloc((strlen(DefaultScilabQuit)+1)*sizeof(char));
+			ScilabQuitUsed=(char*)MALLOC((strlen(DefaultScilabQuit)+1)*sizeof(char));
 			sprintf(ScilabQuitUsed,"%s",DefaultScilabQuit);
 		}
 		else
 		{
-			ScilabQuitUsed=(char*)malloc((strlen(ScilabQuit)+1)*sizeof(char));
+			ScilabQuitUsed=(char*)MALLOC((strlen(ScilabQuit)+1)*sizeof(char));
 			sprintf(ScilabQuitUsed,"%s",ScilabQuit);
 		}
 
 		lengthStringToScilab=(int)(strlen("exec('SCI/scilab.quit',-1);quit;")+strlen(ScilabQuitUsed));
-		QuitStringToScilab=(char*)malloc(lengthStringToScilab*sizeof(char));
+		QuitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 		sprintf(QuitStringToScilab,"exec(\"%s\",-1);quit;",ScilabQuitUsed);
 
 		C2F(tmpdirc)();
 
-		if (QuitStringToScilab) {free(QuitStringToScilab);QuitStringToScilab=NULL;}
-		if (ScilabQuitUsed) {free(ScilabQuitUsed);ScilabQuitUsed=NULL;}
+		if (QuitStringToScilab) {FREE(QuitStringToScilab);QuitStringToScilab=NULL;}
+		if (ScilabQuitUsed) {FREE(ScilabQuitUsed);ScilabQuitUsed=NULL;}
 
 		StartScilabIsOK=FALSE;
 		bOK=TRUE;

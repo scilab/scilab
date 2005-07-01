@@ -5,6 +5,8 @@
 #include <malloc.h>
 #endif
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern void cerro();
 
 #include "../machine.h"
@@ -15,7 +17,7 @@ int **ns;
 {
   int i;
   *nsize = 0;
-  if ((*ns = (int *)malloc(*n * sizeof(int))) == NULL) {
+  if ((*ns = (int *)MALLOC(*n * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -33,7 +35,7 @@ int **ns;
 {
   int i;
   *nsize = 0;
-  if ((*ns = (int *)malloc(*n * sizeof(int))) == NULL) {
+  if ((*ns = (int *)MALLOC(*n * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }

@@ -23,6 +23,8 @@
 #include "bcg.h"
 #include "PloEch.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 sciPointObj *pfiguremdl = (sciPointObj *) NULL;
 sciPointObj *paxesmdl = (sciPointObj *) NULL;
 
@@ -404,7 +406,7 @@ int C2F(graphicsmodels) ()
   /*   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title))); */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
   
-  if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_title), sciGetParent ((ppobj->mon_title)));
@@ -473,7 +475,7 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
      
 
-  if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_x_label), sciGetParent ((ppobj->mon_x_label)));
@@ -542,7 +544,7 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
   
 
-  if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_y_label), sciGetParent ((ppobj->mon_y_label)));
@@ -610,7 +612,7 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
   
   
-  if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_z_label), sciGetParent ((ppobj->mon_z_label)));
@@ -819,7 +821,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =  (sciGetFontContext(sciGetParent(pobj)))->textorientation;
       (sciGetFontContext(pobj))->fontnamelen    /*  = aa[5] */ =  (sciGetFontContext(sciGetParent(pobj)))->fontnamelen; 
       if (((sciGetFontContext(pobj))->pfontname =
-	   calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	   CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 		   sizeof (char))) == NULL)
 	{
 	  sciprint ("No more Memory for fontname\n"); 
@@ -838,7 +840,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 
 	  if (((sciGetFontContext(pobj))->pfontname =
-	       calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	       CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 		       sizeof (char))) == NULL)
 	    {
 	      sciprint ("No more Memory for fontname\n"); 
@@ -866,7 +868,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontnamelen  /*=     aa[5] */ = (sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
 	  
 	  if (
-	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 							      sizeof (char))) == NULL)
 	    {
 	      sciprint ("No more Memory for fontname\n");
@@ -885,7 +887,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 	  
 	  if (
-	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 							      sizeof (char))) == NULL)
 	    {
 	      sciprint ("No more Memory for fontname\n");
@@ -902,7 +904,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontnamelen /* =     aa[5] */ =(sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
 	  
 	  if (
-	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 							      sizeof (char))) == NULL)
 	    {
 	      sciprint ("No more Memory for fontname\n");
@@ -922,7 +924,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 	  
 	  if (
-	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 							      sizeof (char))) == NULL)
 	    {
 	      sciprint ("No more Memory for fontname\n");
@@ -942,7 +944,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
 	  
 	  if (
-	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
+	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 							      sizeof (char))) == NULL)
 	    {
 	      sciprint ("No more Memory for fontname\n");
@@ -1234,7 +1236,7 @@ int InitAxesModel()
  /*  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title)));  */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
 
-  if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_title), sciGetParent ((ppobj->mon_title)));
@@ -1303,7 +1305,7 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
       
 
-  if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_x_label), sciGetParent ((ppobj->mon_x_label)));
@@ -1372,7 +1374,7 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
     
 
-  if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_y_label), sciGetParent ((ppobj->mon_y_label)));
@@ -1440,7 +1442,7 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
       
 
-  if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =calloc (1, sizeof (char))) == NULL)
+  if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent ((ppobj->mon_z_label), sciGetParent ((ppobj->mon_z_label)));

@@ -16,7 +16,7 @@ int C2F(intTclUpVar) _PARAMS((char *fname))
 	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_strings) )
 	{
 		char *sourceName=NULL,*destName=NULL;
-		int *paramoutINT=(int*)malloc(sizeof(int));
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		sourceName=cstk(l1);
@@ -36,7 +36,7 @@ int C2F(intTclUpVar) _PARAMS((char *fname))
 		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
 		LhsVar(1)=1;
 		C2F(putlhsvar)();
-		if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 
 	}
 	else

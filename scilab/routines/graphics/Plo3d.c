@@ -13,6 +13,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #ifdef __STDC__
 void wininfo(char *format,...);
@@ -1701,10 +1702,10 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
 
         if (n[i]) {
 	
-           x[i]=(integer *)malloc((n[i]+2)*sizeof(integer));
-	   y[i]=(integer *)malloc((n[i]+2)*sizeof(integer)); 
+           x[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer));
+	   y[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer)); 
 	   if (x[i]==NULL || y[i]==NULL) {
-		Scistring("shade : malloc No more Place\n");
+		Scistring("shade : MALLOC No more Place\n");
 		return 0;
 	   }
 		
@@ -1743,8 +1744,8 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
 	     C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
              col--;
 	  }
-	  free(x[0]);
-	  free(y[0]);
+	  FREE(x[0]);
+	  FREE(y[0]);
      }
      
      if (n[1]) {
@@ -1756,13 +1757,13 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
 	     C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
              col--;
 	  }
-          free(x[1]);
-	  free(y[1]);  
+          FREE(x[1]);
+	  FREE(y[1]);  
      }
 
      if (n[2]) {
-        free(x[2]);
-	free(y[2]);
+        FREE(x[2]);
+	FREE(y[2]);
      }
 
    }

@@ -4,6 +4,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
@@ -275,7 +276,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 						if (ScilabDestination)
 						{
 							SendCommandToAnotherScilab(MSG_SCIMSG7,ScilabDestination,Cmd);
-							free(ScilabDestination);
+							FREE(ScilabDestination);
 							exit(0);
 						}
 						else
@@ -302,7 +303,7 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	char *lastdot=NULL;
 	char *ext=NULL;
 	
-	tmpfile=(char*)malloc(strlen(fichier)*sizeof(char));
+	tmpfile=(char*)MALLOC(strlen(fichier)*sizeof(char));
 	strcpy(tmpfile,fichier);
 	
 	buffer=strtok(tmpfile,".");
@@ -315,6 +316,6 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	
 	strcpy(&fichier[strlen(fichier)-strlen(ext)],ext);
 	
-	free(tmpfile);
+	FREE(tmpfile);
 }
 /*-----------------------------------------------------------------------------------*/

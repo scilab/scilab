@@ -15,11 +15,11 @@ int C2F(systemc)(char *command, integer *stat)
 {
   int status;
 #ifdef __ABSC__ 
-  char * cmd = (char *) malloc((strlen(command) + 7) * sizeof(char));
+  char * cmd = (char *) MALLOC((strlen(command) + 7) * sizeof(char));
   strcpy(cmd,"CMD /C ");
   strcat(cmd,command);
   status=system(cmd);
-  free(cmd);
+  FREE(cmd);
 #else
   status=system(command);
 #endif

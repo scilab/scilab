@@ -4,7 +4,9 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h> 
 #include <string.h> 
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
+
 /*-----------------------------------------------------------------------------------*/
 extern int setenvc(char *string,char * value);
 static int ReturnValueSetenv(int value);
@@ -44,7 +46,7 @@ int ReturnValueSetenv(int value)
 	#define TRUE  1
 	#define FALSE 0
 	static int n1;
-	int *paramoutINT=(int*)malloc(sizeof(int));
+	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	if (value == TRUE) *paramoutINT=(int)(TRUE);
 	else  *paramoutINT=(int)(FALSE);
@@ -53,7 +55,7 @@ int ReturnValueSetenv(int value)
 	CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
     LhsVar(1)=1;
 	C2F(putlhsvar)();
-	if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

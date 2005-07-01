@@ -10,6 +10,7 @@
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 struct OLE10_header{
 	unsigned char data[6];
@@ -163,7 +164,7 @@ int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *de
 		result = -1;
 	}
 
-	if (full_name) free(full_name);
+	if (full_name) FREE(full_name);
 	return result;
 }
 
@@ -247,9 +248,9 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 	}
 
 	/* Clean up our previously allocated data*/
-	if (oh.fname_1 != NULL) free(oh.fname_1);
-	if (oh.attach_name != NULL) free(oh.attach_name);
-	if (oh.fname_2 != NULL) free(oh.fname_2);
+	if (oh.fname_1 != NULL) FREE(oh.fname_1);
+	if (oh.attach_name != NULL) FREE(oh.attach_name);
+	if (oh.fname_2 != NULL) FREE(oh.fname_2);
 	
 	return OLEUW_OK;
 }

@@ -16,7 +16,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_strings) )
 	{
 		char *VarName=NULL,*VarValue=NULL;
-		int *paramoutINT=(int*)malloc(sizeof(int));
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
@@ -39,7 +39,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
 		LhsVar(1)=1;
 		C2F(putlhsvar)();
-		if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 
 	}
 	else
@@ -47,7 +47,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	{
 		char *VarName=NULL;
 		char *VarNameWithIndice=NULL;
-		int *paramoutINT=(int*)malloc(sizeof(int));
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		int i=0;
 		int j=0;
 		int bTestTCL_SetVar=(int)(TRUE);
@@ -98,7 +98,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 					lenI=strlen(buffer);
 							
 					len=strlen(VarName)+strlen("(,)")+lenI+lenJ+1;
-					VarNameWithIndice=(char*)malloc(len*sizeof(char));
+					VarNameWithIndice=(char*)MALLOC(len*sizeof(char));
 					sprintf(VarNameWithIndice,"%s(%d,%d)",VarName,j,i);
 					sprintf(buffer,"%.10lf",*stk(l1++));
 
@@ -112,7 +112,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 					{
 						bTestTCL_SetVar=(int)(FALSE);
 					}
-					if (VarNameWithIndice){free(VarNameWithIndice);VarNameWithIndice=NULL;}
+					if (VarNameWithIndice){FREE(VarNameWithIndice);VarNameWithIndice=NULL;}
 				}
             }
 		}
@@ -122,7 +122,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
 		LhsVar(1)=1;
 		C2F(putlhsvar)();
-		if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	}
 	else
 	{

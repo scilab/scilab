@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #include "bt-int.h"
 
 
@@ -33,7 +35,7 @@ int BTI_add( struct bti_node **n, int value )
 	{
 		struct bti_node *leaf;
 
-		leaf = malloc(sizeof(struct bti_node));
+		leaf = MALLOC(sizeof(struct bti_node));
 		if (leaf == NULL)
 		{
 			return -1;
@@ -88,7 +90,7 @@ int BTI_done( struct bti_node **n )
 	
 	if (node->l) BTI_done(&(node->l)); 
 	if (node->r) BTI_done(&(node->r));
-	if (*n) { free(*n); *n = NULL; }
+	if (*n) { FREE(*n); *n = NULL; }
 
 	return 0;
 }

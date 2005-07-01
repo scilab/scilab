@@ -5,6 +5,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
 static BOOL ThreadPasteRunning=FALSE;
@@ -25,7 +26,7 @@ extern HDC TryToGetDC(HWND hWnd);
 void CreateThreadPaste(char *Text)
 {
 	DWORD IdThreadPaste;
-	PasteForThread=(char*)malloc( (strlen(Text)+1)*sizeof(char));
+	PasteForThread=(char*)MALLOC( (strlen(Text)+1)*sizeof(char));
 	strcpy(PasteForThread,Text);
 	PasteForThread[strlen(PasteForThread)]='\0';
 	/* PasteForThread défini en global car passage via CreateThread plante sous Win98 */
@@ -58,11 +59,11 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	ThreadPasteRunning=TRUE;
 	
 	lg=strlen((char*)PasteForThread)+1;
-	TextToSend=(char*)malloc(lg*sizeof(char));
+	TextToSend=(char*)MALLOC(lg*sizeof(char));
 	strcpy(TextToSend,(char*)PasteForThread);
 	TextToSend[strlen(TextToSend)]='\0';
 
-	free(PasteForThread);
+	FREE(PasteForThread);
 	PasteForThread=NULL;
 
 	//if (SpecialPaste==TRUE)CleanPromptFromText(TextToSend); /* Desactiver pour le moment */
@@ -105,7 +106,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	}
 
 	
-	free(TextToSend);
+	FREE(TextToSend);
 	TextToSend=NULL;
 	ThreadPasteRunning=FALSE;
 	CloseHandle( hThreadPaste );
@@ -316,7 +317,7 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 		  if (output)
 		  {
 			  CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
-			  free(output);
+			  FREE(output);
 			  LhsVar(1)=1;
 		  }
 		  else
@@ -427,7 +428,7 @@ char * GetTextFromClipboard(LPTW lptw)
 	if (hGMem)
 		{
 			lpMem  = GlobalLock( hGMem );
-			Text= (char*) malloc (sizeof(char)*strlen(lpMem));
+			Text= (char*) MALLOC (sizeof(char)*strlen(lpMem));
 			strcpy(Text,lpMem);
 			GlobalUnlock (hGMem);
 		}

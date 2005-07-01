@@ -24,6 +24,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+#include "wcommon.h"
 
 /*
  *----------------------------------------------------------------------
@@ -100,12 +102,12 @@ Sci_DStringAppend (dsPtr, string, length)
   if (newSize >= dsPtr->spaceAvl)
     {
       dsPtr->spaceAvl = newSize * 2;
-      newString = (char *) malloc ((unsigned) dsPtr->spaceAvl);
+      newString = (char *) MALLOC ((unsigned) dsPtr->spaceAvl);
       memcpy ((void *) newString, (void *) dsPtr->string,
 	      (size_t) dsPtr->length);
       if (dsPtr->string != dsPtr->staticSpace)
 	{
-	  free (dsPtr->string);
+	  FREE (dsPtr->string);
 	}
       dsPtr->string = newString;
     }
@@ -159,7 +161,7 @@ Sci_DStringSetLength (dsPtr, length)
       char *newString;
 
       dsPtr->spaceAvl = length + 1;
-      newString = (char *) malloc ((unsigned) dsPtr->spaceAvl);
+      newString = (char *) MALLOC ((unsigned) dsPtr->spaceAvl);
 
       /*
        * SPECIAL NOTE: must use memcpy, not strcpy, to copy the string
@@ -171,7 +173,7 @@ Sci_DStringSetLength (dsPtr, length)
 	      (size_t) dsPtr->length);
       if (dsPtr->string != dsPtr->staticSpace)
 	{
-	  free (dsPtr->string);
+	  FREE (dsPtr->string);
 	}
       dsPtr->string = newString;
     }
@@ -203,7 +205,7 @@ Sci_DStringFree (dsPtr)
 {
   if (dsPtr->string != dsPtr->staticSpace)
     {
-      free (dsPtr->string);
+      FREE (dsPtr->string);
     }
   dsPtr->string = dsPtr->staticSpace;
   dsPtr->length = 0;

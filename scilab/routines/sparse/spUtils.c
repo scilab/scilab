@@ -50,7 +50,7 @@
 static char copyright[] =
     "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
 static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spUtils.c,v 1.2 2004/02/28 16:43:21 cornet Exp $";
+    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spUtils.c,v 1.3 2005/07/01 07:08:14 cornet Exp $";
 #endif
 
 
@@ -80,9 +80,6 @@ static void ComplexMatrixMultiply();
 static void ComplexTransposedMatrixMultiply();
 static RealNumber ComplexCondition();
 
-
-
-
 #if MODIFIED_NODAL
 /*
  *  PREORDER MODIFIED NODE ADMITTANCE MATRIX TO REMOVE ZEROS FROM DIAGONAL
@@ -300,14 +297,6 @@ int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
 }
 #endif /* MODIFIED_NODAL */
 
-
-
-
-
-
-
-
-
 #if SCALING
 /*
  *  SCALE MATRIX
@@ -431,14 +420,6 @@ RealNumber  ScaleFactor;
 }
 #endif /* SCALING */
 
-
-
-
-
-
-
-
-
 #if spCOMPLEX AND SCALING
 /*
  *  SCALE COMPLEX MATRIX
@@ -546,13 +527,6 @@ RealNumber  ScaleFactor;
 }
 #endif /* SCALING AND spCOMPLEX */
 
-
-
-
-
-
-
-
 #if MULTIPLICATION
 /*
  *  MATRIX MULTIPLICATION
@@ -637,12 +611,6 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 }
 #endif /* MULTIPLICATION */
 
-
-
-
-
-
-
 #if spCOMPLEX AND MULTIPLICATION
 /*
  *  COMPLEX MATRIX MULTIPLICATION
@@ -737,13 +705,6 @@ register  int  I, *pExtOrder;
 }
 #endif /* spCOMPLEX AND MULTIPLICATION */
 
-
-
-
-
-
-
-
 #if MULTIPLICATION AND TRANSPOSE
 /*
  *  TRANSPOSED MATRIX MULTIPLICATION
@@ -828,12 +789,6 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 }
 #endif /* MULTIPLICATION AND TRANSPOSE */
 
-
-
-
-
-
-
 #if spCOMPLEX AND MULTIPLICATION AND TRANSPOSE
 /*
  *  COMPLEX TRANSPOSED MATRIX MULTIPLICATION
@@ -928,13 +883,6 @@ register  int  I, *pExtOrder;
 }
 #endif /* spCOMPLEX AND MULTIPLICATION AND TRANSPOSE */
 
-
-
-
-
-
-
-
 #if DETERMINANT
 /*
  *  CALCULATE DETERMINANT
@@ -1102,15 +1050,8 @@ ComplexNumber Pivot, cDeterminant;
 }
 #endif /* DETERMINANT */
 
-
-
-
-
-
-
-
 #if STRIP
-
+
 /*
  *  STRIP FILL-INS FROM MATRIX
  *
@@ -1198,12 +1139,6 @@ struct FillinListNodeStruct  *pListNode;
 }
 #endif
 
-
-
-
-
-
-
 #if TRANSLATE AND DELETE
 /*
  *  DELETE A ROW AND COLUMN FROM THE MATRIX
@@ -1326,13 +1261,6 @@ ElementPtr  spcFindElementInCol();
 }
 #endif
 
-
-
-
-
-
-
-
 #if PSEUDOCONDITION
 /*
  *  CALCULATE PSEUDOCONDITION
@@ -1388,13 +1316,6 @@ RealNumber MaxPivot, MinPivot, Mag;
 }
 #endif
 
-
-
-
-
-
-
-
 #if CONDITION
 /*
  *  ESTIMATE CONDITION NUMBER
@@ -1634,10 +1555,6 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
 #endif /* REAL */
 }
 
-
-
-
-
 #if spCOMPLEX
 /*
  *  ESTIMATE CONDITION NUMBER
@@ -1834,10 +1751,6 @@ ComplexNumber Wp, Wm;
 }
 #endif /* spCOMPLEX */
 
-
-
-
-
 /*
  *  L-INFINITY MATRIX NORM 
  *
@@ -1899,11 +1812,6 @@ RealNumber Max = 0.0, AbsRowSum;
 }
 #endif /* CONDITION */
 
-
-
-
-
-
 #if STABILITY
 /*
  *  STABILITY OF FACTORIZATION

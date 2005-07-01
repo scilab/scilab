@@ -7,6 +7,8 @@ char *dialog_str = (char *) 0;
 char *dialog_str = (char *) 0;
 #endif
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 SciDialog ScilabDialog = { NULL,NULL,NULL,-1,0}; 
 
 

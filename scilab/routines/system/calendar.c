@@ -2,6 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "calendar.h"
 /*-----------------------------------------------------------------------------------*/
 int IsAScalar(int RhsNumber);
@@ -59,7 +60,7 @@ int C2F(intcalendar) _PARAMS((char *fname))
 		Scierror(999,"Invalid argument(s) type.\n");
 		return 0;
 	}
-	CALMONTH=(int *)malloc( (NBRDAY*NBRWEEK)*sizeof(int) );
+	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );
 	for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
 
 	/* verification si le mois de fevrier est a 28 jours ou 29 jours */
@@ -82,14 +83,14 @@ int C2F(intcalendar) _PARAMS((char *fname))
 	tmpMatrix=CALMONTH;
 
 	CALMONTH=InversionMatrixInt(NBRDAY,NBRWEEK,CALMONTH);
-	if(tmpMatrix) {free(tmpMatrix);tmpMatrix=NULL;}
+	if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
 	
 	CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&CALMONTH);
 	LhsVar(1)=Rhs+1;
 
 	C2F(putlhsvar)();
 
-	if (CALMONTH) {free(CALMONTH);CALMONTH=NULL;}
+	if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -137,7 +138,7 @@ static long ymd_to_scalar (unsigned annee, unsigned mois, unsigned jour)
 /*-----------------------------------------------------------------------------------*/
 int *InversionMatrixInt(int W,int L,int *Matrix)
 {
-	int *buffer = (int *)malloc( (W*L)*sizeof(int) );
+	int *buffer = (int *)MALLOC( (W*L)*sizeof(int) );
 
 	int i=0;
 	int j=0;

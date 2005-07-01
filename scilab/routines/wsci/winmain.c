@@ -37,6 +37,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;
 
@@ -80,17 +82,17 @@ int Console_Main(int argc, char **argv)
 	exit(1);
   }
 
-  szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
+  szMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
   CheckMemory (szMenuName);
   strcpy (szMenuName, ScilabDirectory);
   strcat (szMenuName, MENUNAME);
 
-  szGraphMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
+  szGraphMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
   CheckMemory (szGraphMenuName);
   strcpy (szGraphMenuName, ScilabDirectory);
   strcat (szGraphMenuName, GRAPHMENUNAME);
 
-  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}
+  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
 
   /* Load common control library * */
   InitCommonControls ();
@@ -109,12 +111,12 @@ int Console_Main(int argc, char **argv)
   textwin.KeyBufSize = 2048;
   textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
   textwin.shutdown = (DLGPROC) ShutDown;
-  textwin.AboutText = (LPSTR) malloc (1024);
+  textwin.AboutText = (LPSTR) MALLOC (1024);
   CheckMemory (textwin.AboutText);
   strcpy (textwin.AboutText, MSG_SCIMSG18);
   strcat (textwin.AboutText,MSG_SCIMSG19);
   strcat (textwin.AboutText,MSG_SCIMSG20);
-  textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
+  textwin.AboutText = REALLOC (textwin.AboutText, strlen (textwin.AboutText) + 1);
   CheckMemory (textwin.AboutText);
 
   menuwin.szMenuName = szMenuName;
@@ -218,17 +220,17 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		exit(1);
 	}	
 	
-	szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
+	szMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
 	CheckMemory (szMenuName);
 	strcpy (szMenuName, ScilabDirectory);
 	strcat (szMenuName, MENUNAME);
 
-	szGraphMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
+	szGraphMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
 	CheckMemory (szGraphMenuName);
 	strcpy (szGraphMenuName, ScilabDirectory);
 	strcat (szGraphMenuName, GRAPHMENUNAME);
 
-	if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}
+	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
 
 	/* Load common control library * */
 	InitCommonControls ();
@@ -247,12 +249,12 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.KeyBufSize = 4096;
 	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
 	textwin.shutdown = (DLGPROC) ShutDown;
-	textwin.AboutText = (LPSTR) malloc (1024);
+	textwin.AboutText = (LPSTR) MALLOC (1024);
 	CheckMemory (textwin.AboutText);
 	strcpy (textwin.AboutText,MSG_SCIMSG18);
 	strcat (textwin.AboutText, MSG_SCIMSG19);
 	strcat (textwin.AboutText, MSG_SCIMSG20);
-	textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
+	textwin.AboutText = REALLOC (textwin.AboutText, strlen (textwin.AboutText) + 1);
 	CheckMemory (textwin.AboutText);
 
 	menuwin.szMenuName = szMenuName;
@@ -297,12 +299,12 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			GetShortPathName(LINE,ShortPath,MAX_PATH);
 			strcat(ShortPath,PathCmdLineCopy);
 		
-			pFullCmdLine=(char*)malloc(sizeof(char)*(strlen(ShortPath)+1));
+			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(ShortPath)+1));
 			strcpy(pFullCmdLine,ShortPath);
 		}
 		else
 		{
-			pFullCmdLine=(char*)malloc(sizeof(char)*(strlen(LineCommandBis)+1));
+			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(LineCommandBis)+1));
 			strcpy(pFullCmdLine,LineCommandBis);
 		}
 		
@@ -363,7 +365,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			if (strcmp (my_argv[1], "-X") == 0) CodeAction=1; 
 			if (strcmp (my_argv[1], "-P") == 0) CodeAction=2;
 
-			Commande=(char*)malloc(MAX_PATH*sizeof(char));
+			Commande=(char*)MALLOC(MAX_PATH*sizeof(char));
 			strcpy(Commande,"empty");
 			CommandByFileExtension(FileName,CodeAction,Commande);
 
@@ -490,10 +492,10 @@ void InitWindowGraphDll(void)
 	exit(1);
   }	
 
-  szGraphMenuName = (LPSTR) malloc (strlen (ScilabDirectory) + strlen("\\bin\\")+strlen (GRAPHMENUNAME) + 1);
+  szGraphMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen("\\bin\\")+strlen (GRAPHMENUNAME) + 1);
   CheckMemory (szGraphMenuName);
   wsprintf(szGraphMenuName,"%s\\bin\\%s",ScilabDirectory,GRAPHMENUNAME);
-  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
+  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
   
    InitCommonControls ();
   
@@ -593,7 +595,7 @@ static void AllGraphWinDelete ()
 {
 	integer iflag = 0, num, *ids = (integer *) 0;
 	C2F (getwins) (&num, ids, &iflag);
-	ids = malloc ((unsigned) num * sizeof (integer));
+	ids = MALLOC ((unsigned) num * sizeof (integer));
 	iflag = 1;
 	if (ids != NULL)
 	{
@@ -601,7 +603,7 @@ static void AllGraphWinDelete ()
 		C2F (getwins) (&num, ids, &iflag);
 		for (i = 0; i < num; i++)
 		C2F (deletewin) (&ids[i]);
-		free (ids);
+		FREE (ids);
 	}
 }
 /*-----------------------------------------------------------------------------------*/

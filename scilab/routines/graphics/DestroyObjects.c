@@ -25,6 +25,7 @@
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /********************* modifier le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure

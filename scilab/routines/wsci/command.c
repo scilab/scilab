@@ -32,6 +32,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 struct hist
 {
@@ -70,9 +71,9 @@ static char * rlgets (char *s, int n, char *prompt, int interrupt)
 {
   static char *line = (char *) NULL;
   
-  /* If we already have a line, first free it */
+  /* If we already have a line, first FREE it */
   if (line != (char *) NULL)
-    free (line);
+    FREE (line);
 
   line = readline_win (prompt,interrupt);
   NewSearchInHistory=TRUE;	
@@ -96,8 +97,8 @@ static char * rlgets_nw (char *s, int n, char *prompt, int interrupt)
 {
   static char *line = (char *) NULL;
 
-  /* If we already have a line, first free it */
-  if (line != (char *) NULL)   free (line);
+  /* If we already have a line, first FREE it */
+  if (line != (char *) NULL)   FREE (line);
   line = readline_nw (prompt, interrupt);
   NewSearchInHistory=TRUE;	
   /* If it's not an EOF */
@@ -253,7 +254,7 @@ winsystem (char *s, int flag)
     {
       /* attempt to run the windows/dos program via windows */
       int res;
-      execstr = (char *) malloc (strlen (s) + strlen (comspec) + 6);
+      execstr = (char *) MALLOC (strlen (s) + strlen (comspec) + 6);
       if (execstr == NULL)
 	{
 	  sciprint (MSG_WARNING1);
@@ -284,7 +285,7 @@ winsystem (char *s, int flag)
 	  if (res <= 31)
 	    sciprint (MSG_WARNING2, execstr);
 	}
-      free (execstr);
+      FREE (execstr);
     }
   /* regardless of the reality return OK - the consequences of */
   /* failure include shutting down Windows */

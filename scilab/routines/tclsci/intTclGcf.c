@@ -12,7 +12,7 @@ extern int cf_type;
 int C2F(intTclGcf) _PARAMS((char *fname))
 {
 	static int n1;
-	int *paramoutINT=(int*)malloc(sizeof(int));
+	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	CheckRhs(0,0);
 	CheckLhs(1,1);
@@ -24,7 +24,7 @@ int C2F(intTclGcf) _PARAMS((char *fname))
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
 
-	if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -58,7 +58,7 @@ int GetTclCurrentFigure(void)
 int C2F(intTclScf) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
-	int *paramoutINT=(int*)malloc(sizeof(int));
+	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
@@ -84,7 +84,7 @@ int C2F(intTclScf) _PARAMS((char *fname))
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
 
-	if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -14,6 +14,8 @@
 
 #include "logger.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #ifndef WIN32
 static int _LOGGER_mode = _LOGGER_SYSLOG;
 static int _LOGGER_syslog_mode = LOG_MAIL|LOG_INFO;
@@ -196,7 +198,7 @@ int LOGGER_clean_output( char *string, char **buffer )
 	int maxsize = slen *2;
 
 	/* First up, allocate maxsize bytes for a temporary new string.*/
-	newstr = malloc(slen *2 +1); 
+	newstr = MALLOC(slen *2 +1); 
 	if ( newstr == NULL )
 	{
 	  /* FIXME - Report an error here ... to -somewhere-*/
@@ -342,7 +344,7 @@ int LOGGER_log( char *format, ...)
 	}
 
 
-	if (output) free(output);
+	if (output) FREE(output);
 
 	return 0;
 }

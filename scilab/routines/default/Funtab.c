@@ -8,15 +8,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../stack-c.h"
 #include "../machine.h"
+
+
+typedef enum {
+	SCIFIND, SCIENTER,SCIDELETE
+} SCIACTION;
+
+
+#define NAMECODE 6
+#define OK 1
+#undef FAILED
+#define FAILED 0
 
 extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
 
 /** size of name code in scilab int id[NAMECODE] */
 
-#define NAMECODE 6
-#define OK 1
-#define FAILED 0
 
 /** maximum number of entries in the htable **/
 /** in fact myhcreate used a prime > MAXTAB **/
@@ -25,14 +36,11 @@ extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int)
 
 #define MAXTAB 900
 
-typedef enum {
-  FIND, ENTER,DELETE
-} ACTION;
 
 
 static int	 myhcreate(unsigned int nel);
 /* static void	 myhdestroy(); */
-static int 	 myhsearch(int *key, int *data, int *level, ACTION action);
+static int 	 myhsearch(int *key, int *data, int *level, SCIACTION action);
 static int Eqid(int *x, int *y);
 static void  Init(void) ;
 static int backsearch(int *key, int *data);
@@ -89,17 +97,17 @@ int C2F(funtab)(int *id, int *fptr, int *job)
     case 0 : /* print */ break;
     case 1 :
       *fptr=0;
-      myhsearch(id,fptr,&level,FIND);
+      myhsearch(id,fptr,&level,SCIFIND);
       break;
     case 2 : 
       backsearch(id,fptr);
       break;
     case 3 : 
-      if ( myhsearch(id,fptr,&level,ENTER) == FAILED );
+      if ( myhsearch(id,fptr,&level,SCIENTER) == FAILED );
       break;
       /** XXX : appeller error **/
     case 4 : 
-      myhsearch(id,fptr,&level,DELETE);
+      myhsearch(id,fptr,&level,SCIDELETE);
       break;
     }
   return(0);
@@ -112,7 +120,7 @@ static int EnterStr(char *str, int *dataI, int *data, int *level)
   int zero=0;
   C2F(cvname)(id,str,&zero,strlen(str));
   ldata= (*dataI)*100+*data;
-  return( myhsearch(id,&ldata,level,ENTER));
+  return( myhsearch(id,&ldata,level,SCIENTER));
 }
 
 static void  Init(void)
@@ -277,7 +285,7 @@ static int myhcreate(unsigned int nel)
     filled = 0;
     /* printf(" Size of hTable %d\n",nel); */
     /* allocate memory and zero out */
-    if ((htable = (_ENTRY *)calloc(hsize+1, sizeof(_ENTRY))) == NULL)
+    if ((htable = (_ENTRY *)CALLOC(hsize+1, sizeof(_ENTRY))) == NULL)
 	return 0;
 
     /* everything went alright */
@@ -294,7 +302,7 @@ static void
 myhdestroy()
 {
     / * free used memory * /
-    free(htable);
+    FREE(htable);
 
     / * the sign for an existing table is a value != NULL in htable * / 
     htable = NULL;
@@ -338,7 +346,7 @@ static int backsearch(int *key, int *data)
  ******************************************************************************/
 
 
-static int myhsearch(int *key, int *data, int *level, ACTION action)
+static int myhsearch(int *key, int *data, int *level, SCIACTION action)
 {
   register unsigned hval;
   register unsigned hval2;
@@ -351,7 +359,7 @@ static int myhsearch(int *key, int *data, int *level, ACTION action)
      * error.
      */
 
-    if (action == ENTER && filled == hsize) 
+    if (action == SCIENTER && filled == hsize) 
         return FAILED;
 
     /* Compute a value for the given string. Perhaps use a better method. */
@@ -379,15 +387,15 @@ static int myhsearch(int *key, int *data, int *level, ACTION action)
 	      {
 		switch (action) 
 		  {
-		  case DELETE :
+		  case SCIDELETE :
 		    htable[idx].used = 0;
 		    filled--;
 		    return OK ;
 		    break;
-		  case ENTER :
+		  case SCIENTER :
 		    htable[idx].entry.data = *data; 
 		    return OK;
-		  case FIND :
+		  case SCIFIND :
 		    *data = htable[idx].entry.data;
 		    return OK;
 		  }
@@ -415,15 +423,15 @@ static int myhsearch(int *key, int *data, int *level, ACTION action)
 		  {
 		    switch (action) 
 		      {
-		      case DELETE :
+		      case SCIDELETE :
 			htable[idx].used = 0;
 			filled--;
 			return OK;
 			break;
-		      case ENTER :
+		      case SCIENTER :
 			htable[idx].entry.data = *data; 
 			return OK;
-		      case FIND :
+		      case SCIFIND :
 			*data = htable[idx].entry.data; 
 			return OK;
 		      }
@@ -434,7 +442,7 @@ static int myhsearch(int *key, int *data, int *level, ACTION action)
     
     /* An empty bucket has been found. */
 
-    if (action == ENTER) 
+    if (action == SCIENTER) 
       {
 	int i;
         htable[idx].used  = hval;

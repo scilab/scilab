@@ -1255,7 +1255,7 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 	   fontsizePos ()/2,
 	   string));
 #ifdef WITH_GTK
-  if ( alloc == 1 ) free(string);
+  if ( alloc == 1 ) FREE(string);
 #endif
  }
 

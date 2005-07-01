@@ -9,8 +9,7 @@
 #include <malloc.h>
 #endif
 
-#define MALLOC(x) malloc(((unsigned) x))
-#define FREE(x) if (x  != NULL) free((char *) x);
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /* Subroutine */ 
 extern int C2F(cvstr) __PARAMS((integer *n, integer *line, char *str, integer *job,long int str_len));

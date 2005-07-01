@@ -1,6 +1,8 @@
 /* Copyright INRIA */
 #include <string.h>
+
 #include "../machine.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
 #include "scicos_block.h"
 
@@ -121,13 +123,13 @@ sciblk4(Blocks,flag)
   C2F(itosci)(Blocks[0].jroot,&Blocks[0].ng,&one);
   if (C2F(scierr)()!=0) goto err;
   
-  if ((str1=malloc(sizeof(char*))) ==NULL )  return ;
-  if ((str1[0]=malloc(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )  return ;
+  if ((str1=MALLOC(sizeof(char*))) ==NULL )  return ;
+  if ((str1[0]=MALLOC(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )  return ;
   (str1[0])[strlen(Blocks[0].label)]='\0';
   strncpy(str1[0],Blocks[0].label,strlen(Blocks[0].label));
   str2sci(str1,1,1);
-  free(str1[0]);
-  free(str1);
+  FREE(str1[0]);
+  FREE(str1);
   if (C2F(scierr)()!=0) goto err; 
   
   C2F(vvtosci)(*Blocks[0].work,&zero);

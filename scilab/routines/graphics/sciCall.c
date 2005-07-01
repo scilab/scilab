@@ -15,6 +15,8 @@
 
 #include "PloEch.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 
 int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax, integer lstr1,integer lstr2);
@@ -539,7 +541,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 		       isfac,m1,n1,m2,n2,m3,n3,m3n,n3n));
   else
     {
-      if ((hdltab = malloc (*n * sizeof (long))) == NULL) {
+      if ((hdltab = MALLOC (*n * sizeof (long))) == NULL) {
 	Scierror(999,"%s: No more memory available\r\n",fname);
 	return; 
       }

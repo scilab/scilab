@@ -4,6 +4,7 @@
  * using functions from a sound library 
  * Copyright ENPC/ Chancelier 
  *********************************************/
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #include <stdio.h>
 #ifdef __STDC__
@@ -17,10 +18,13 @@
 #include <limits.h>
 #include <ctype.h>
 
-#include "../graphics/Math.h"
+
 
 #include "st.h"
 
+
+#include "../graphics/Math.h"
+#include "../stack-c.h" 
 
 #if (defined(sun) && !defined(SYSV)) 
 char *strerror __PARAMS((int errcode));
@@ -67,7 +71,7 @@ void C2F(getfiledesc)( integer *fd)
 void C2F(addfile)(integer *fd, FILE *fa, integer *swap, integer *type, integer *mode, char *filename, integer *ierr)
 {
   char* name;
-  name= (char *) malloc((strlen(filename)+1)*sizeof(char));
+  name= (char *) MALLOC((strlen(filename)+1)*sizeof(char));
   if ( name == (char *) 0) {
     *ierr=1;
     return;
@@ -143,7 +147,7 @@ void C2F(delfile)(integer *fd)
       ftswap[*fd] = 0;
       fttype[*fd] = 0;
       ftmode[*fd] = 0;
-      if ( ftname[*fd]!=  (char *)0) free(ftname[*fd]);
+      if ( ftname[*fd]!=  (char *)0) FREE(ftname[*fd]);
       ftname[*fd] = (char *)0;
     }
 }
@@ -780,7 +784,7 @@ void C2F(mgetstr) (integer *fd, char **start, integer *n, integer *ierr)
   *ierr=0;
   if (fa)
     { 
-      *start= (char *) malloc((*n+1)*sizeof(char));
+      *start= (char *) MALLOC((*n+1)*sizeof(char));
       if ( *start == (char *) 0)
  	{       
 	  sciprint("No more memory \r\n");

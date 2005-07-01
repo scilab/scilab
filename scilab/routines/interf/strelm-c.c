@@ -14,6 +14,9 @@
 #include <ctype.h> 
 #include <string.h>
 #include <stdio.h>
+
+
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
 
 static integer cx1 = 1;
@@ -181,7 +184,7 @@ static int intstrcat(char* fname)
       break;
     case 'c': 
       /* return a column matrix */ 
-      if ( (Str1 = malloc((m1+1)*sizeof(char *)))==NULL) 
+      if ( (Str1 = MALLOC((m1+1)*sizeof(char *)))==NULL) 
 	{
 	  Scierror(999,"%s: Out of memory\r\n",fname);
 	  return 0;
@@ -193,7 +196,7 @@ static int intstrcat(char* fname)
 	for ( j = 0 ; j < n1 ; j++ ) 
 	  nchars += strlen(Str[i+ m1*j]);
 	nchars += (n1-1)*strlen(sep);
-	if ( (Str1[i]=malloc((nchars+1)*sizeof(char)))==NULL) 
+	if ( (Str1[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
 	    Scierror(999,"%s: Out of memory\r\n",fname);
 	    return 0;
@@ -212,7 +215,7 @@ static int intstrcat(char* fname)
       break;
     case 'r': 
       /* return a row matrix */ 
-      if ( (Str1 = malloc((n1+1)*sizeof(char *)))==NULL) 
+      if ( (Str1 = MALLOC((n1+1)*sizeof(char *)))==NULL) 
 	{
 	  Scierror(999,"%s: Out of memory\r\n",fname);
 	  return 0;
@@ -224,7 +227,7 @@ static int intstrcat(char* fname)
 	for ( i = 0 ; i < m1 ; i++ ) 
 	  nchars += strlen(Str[i+ m1*j]);
 	nchars += (m1-1)*strlen(sep);
-	if ( (Str1[j]=malloc((nchars+1)*sizeof(char)))==NULL) 
+	if ( (Str1[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
 	  {
 	    Scierror(999,"%s: Out of memory\r\n",fname);
 	    return 0;
@@ -365,7 +368,7 @@ static char ** subst(char **Str,int n,char *needle,char *replace)
 {
   int i,count,size,j;
   char **Str1;
-  Str1 = malloc( (n+1)*sizeof(char*)); 
+  Str1 = MALLOC( (n+1)*sizeof(char*)); 
   if (Str1 == NULL) 
     {
       return NULL;
@@ -388,7 +391,7 @@ static char ** subst(char **Str,int n,char *needle,char *replace)
 	}
       /* now we know the number of occurences = count */ 
       size = locsize + count*(strlen(replace)-strlen(needle))+1;
-      Str1[i]= malloc( size*sizeof(char));
+      Str1[i]= MALLOC( size*sizeof(char));
       if (Str1 == NULL) 
 	{
 	  /** XXXX */ 
@@ -544,7 +547,7 @@ static char **part(char **Str,int n,int *Ind,int nI)
 {
   int i,j,k;
   char **Str1;
-  Str1 = malloc((n+1)*sizeof(char*)); 
+  Str1 = MALLOC((n+1)*sizeof(char*)); 
   if (Str1 == NULL) 
     {
       return NULL;
@@ -554,7 +557,7 @@ static char **part(char **Str,int n,int *Ind,int nI)
     {
       char *loc = Str[i]; 
       int locsize= strlen(loc);
-      Str1[i]= malloc( (nI+1)*sizeof(char));
+      Str1[i]= MALLOC( (nI+1)*sizeof(char));
       if (Str1 == NULL) 
 	{
 	  return NULL;
@@ -608,7 +611,7 @@ static char **empty(int n)
 {
   int i;
   char **Str1;
-  Str1 = malloc((n+1)*sizeof(char*)); 
+  Str1 = MALLOC((n+1)*sizeof(char*)); 
   if (Str1 == NULL) 
     {
       return NULL;
@@ -616,7 +619,7 @@ static char **empty(int n)
   Str1[n]= NULL;
   for ( i = 0 ; i < n ; i++) 
     {
-      Str1[i]= malloc(sizeof(char));
+      Str1[i]= MALLOC(sizeof(char));
       if (Str1 == NULL) 
 	{
 	  return NULL;

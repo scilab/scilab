@@ -9,6 +9,9 @@
 #include <stdlib.h> /* getenv ! */
 #include "../machine.h" 
 #include "../os_specific/Os_specific.h"
+#include "../graphics/Math.h" 
+
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #ifdef WIN32
 	BOOL FileExist(char *filename);
@@ -134,10 +137,10 @@ BOOL ExistModelicac(void)
 	char *SCIPATH = (char*)getenv ("SCI");
 	char *fullpathModelicac=NULL;
 	
-	fullpathModelicac=(char*)malloc((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
+	fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
 	wsprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacName);
 	bOK=FileExist(fullpathModelicac);
-	if (fullpathModelicac) free(fullpathModelicac);
+	if (fullpathModelicac) FREE(fullpathModelicac);
 	return bOK;
 }
 /*************************************************************************************************/
@@ -149,10 +152,10 @@ BOOL ExistJavaSciWin(void)
 	char *SCIPATH = (char*)getenv ("SCI");
 	char *fullpathJavaSci=NULL;
 	
-	fullpathJavaSci=(char*)malloc((strlen(SCIPATH)+strlen(JavaSCIName)+1)*sizeof(char));
+	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen(JavaSCIName)+1)*sizeof(char));
 	wsprintf(fullpathJavaSci,"%s%s",SCIPATH,JavaSCIName);
 	bOK=FileExist(fullpathJavaSci);
-	if (fullpathJavaSci) free(fullpathJavaSci);
+	if (fullpathJavaSci) FREE(fullpathJavaSci);
 	return bOK;
 }
 #endif
@@ -185,7 +188,7 @@ int ExistJavaSciUnix(void)
 	{
 		strcpy(extension,".so");
 	}
-	fullpathJavaSci=(char*)malloc((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSciName)+strlen(extension)+1)*sizeof(char));
+	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSciName)+strlen(extension)+1)*sizeof(char));
 	sprintf(fullpathJavaSci,"%s/bin/%s%s",SCIPATH,JavaSciName,extension);
 	fp=fopen(fullpathJavaSci,"r");
 	if (fp)
@@ -197,7 +200,7 @@ int ExistJavaSciUnix(void)
 	{
 		bOK=0;
 	}
-	if (fullpathJavaSci) free(fullpathJavaSci);
+	if (fullpathJavaSci) FREE(fullpathJavaSci);
 #endif
 	return bOK;
 }

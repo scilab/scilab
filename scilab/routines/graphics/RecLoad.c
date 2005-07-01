@@ -40,6 +40,8 @@
 #include "Math.h"
 #include "Rec.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #define assert(ex) {if (!(ex)){ sciprint("Graphic Load/Save Error \r\n");return(0);}}
 
 extern void  xdrstdio_create();

@@ -24,6 +24,7 @@
 
 #include "PloEch.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /*#include "GraphicGlobals.h"*/
 
@@ -3766,7 +3767,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_FIGURE:
       *numrow = 2;
       *numcol = 2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
       tab[0] = (double) sciGetFigurePosX (pthis);
       tab[1] = (double) sciGetFigurePosY (pthis);
@@ -3777,7 +3778,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_SUBWIN:
       *numrow = 3;
       *numcol = 2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
       tab[0] =  (double) sciGetSubwindowPosX (pthis);
       tab[1] =  (double) sciGetSubwindowPosY (pthis);
@@ -3797,7 +3798,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       if(*numcol==2 && pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	{
 	  *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
-	  if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL) 
+	  if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL) 
 	    return (double*)NULL;
 	  for (i=0;i < *numrow;i++)
 	    {
@@ -3807,7 +3808,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	    }
 	}
       else{
-	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+	if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	  return (double*)NULL;
 	for (i=0;i < *numrow;i++)
 	  {
@@ -3822,7 +3823,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_RECTANGLE:
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 5: 4;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
       tab[0] = pRECTANGLE_FEATURE (pthis)->x;
       tab[1] = pRECTANGLE_FEATURE (pthis)->y;
@@ -3842,7 +3843,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_ARC:
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 7: 6;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
       tab[0] = pARC_FEATURE (pthis)->x;
       tab[1] =  pARC_FEATURE (pthis)->y;
@@ -3867,7 +3868,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_AGREG:
       /*      *numrow = 2;
       *numcol = 2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
       tab[0] = pAGREG_FEATURE (pthis)->xmin
       tab[1] = pAGREG_FEATURE (pthis)->ymin
@@ -3879,7 +3880,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_TEXT:
       *numrow = 1;
       *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 3: 2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+      if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	return (double*)NULL;
       tab[0] = pTEXT_FEATURE (pthis)->x;
       tab[1] = pTEXT_FEATURE (pthis)->y;
@@ -3898,7 +3899,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	*numrow = pSEGS_FEATURE (pthis)->Nbr1;
 	*numcol = ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) 
 		   && (pSEGS_FEATURE (pthis)->vz != NULL))? 3:2;
-	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+	if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
 	  return (double*)NULL;
 	for (i=0;i < *numrow;i++)
 	  {
@@ -3924,7 +3925,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
 	*numrow = nx+1;
 	*numcol = ny+1;
-	if ((tab = calloc(*numrow * *numcol,sizeof(double))) == NULL)
+	if ((tab = CALLOC(*numrow * *numcol,sizeof(double))) == NULL)
 	  return (double*)NULL;
 	tab[0]=0;
 	for (i=0;i < nx;i++) 
@@ -3939,7 +3940,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       else  {/* Matplot */
 	int ny=pGRAYPLOT_FEATURE (pthis)->ny-1,nx=pGRAYPLOT_FEATURE (pthis)->nx-1;
 	*numrow = nx;	*numcol = ny;
-	if ((tab = calloc(nx*ny,sizeof(double))) == NULL)
+	if ((tab = CALLOC(nx*ny,sizeof(double))) == NULL)
 	  return (double*)NULL;
 	for (i=0;i < nx*ny;i++) 
 	  tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
@@ -3949,7 +3950,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_FEC: 
       *numcol = 3;
       *numrow = pFEC_FEATURE (pthis)->Nnode;
-      if ((tab = calloc(*numrow * 3,sizeof(double))) == NULL)
+      if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
 	return (double*)NULL;
 
       for (i=0;i < *numrow;i++) {

@@ -53,7 +53,7 @@ int C2F(intFindObj) _PARAMS((char *fname))
 		else
 		{
 			/* objet found */
-			paramoutINT=(int*)malloc(sizeof(int));
+			paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)(Handle);
 			n1=1;
 			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
@@ -68,7 +68,7 @@ int C2F(intFindObj) _PARAMS((char *fname))
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
 
-    if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+    if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 
 	return 0;
 }

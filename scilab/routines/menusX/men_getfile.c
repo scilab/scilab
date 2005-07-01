@@ -7,6 +7,7 @@
 
 #include "../os_specific/Os_specific.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /****************************************************
  * Scilab xgetfile command used to get a file name 

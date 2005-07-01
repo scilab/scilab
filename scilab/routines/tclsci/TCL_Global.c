@@ -77,8 +77,8 @@ char *Matrix2String(int RhsMatrix)
 		strl = sz * (ENT * MANT + 2);
 		/* the before the dot, after the dot, the dot and a space */
       
-		retstr = (char*) malloc( (1+strl) * sizeof(char));
-		tmpstr = (char*) malloc( (ENT * MANT + 2) * sizeof(char));
+		retstr = (char*) MALLOC( (1+strl) * sizeof(char));
+		tmpstr = (char*) MALLOC( (ENT * MANT + 2) * sizeof(char));
       
 		strcpy(retstr,"");
         strcpy(tmpstr,"");
@@ -92,11 +92,11 @@ char *Matrix2String(int RhsMatrix)
 		sprintf(tmpstr,"%.10lf", param[i]);
 		strcat( retstr,tmpstr );
       
-        if (tmpstr) {free(tmpstr);tmpstr=NULL;}
+        if (tmpstr) {FREE(tmpstr);tmpstr=NULL;}
     }
 	else
     { 
-      retstr = (char*) malloc( sizeof(char) );
+      retstr = (char*) MALLOC( sizeof(char) );
       strcpy(retstr,"");
     }
   
@@ -123,8 +123,8 @@ double *String2Matrix(char *StringIn,int *nbelemOut)
 
 		nbelem++;
 
-		MatrixReturn=(double*) malloc(nbelem*sizeof(double));
-		tmpstr = (char *)malloc((Stringlen+1) * sizeof(char));
+		MatrixReturn=(double*) MALLOC(nbelem*sizeof(double));
+		tmpstr = (char *)MALLOC((Stringlen+1) * sizeof(char));
 
 		for (elem=0; elem<nbelem; elem++)
 		{
@@ -138,7 +138,7 @@ double *String2Matrix(char *StringIn,int *nbelemOut)
 			begin_elem = end_elem+1;
 			end_elem = begin_elem;
 		}
-        if (tmpstr) {free(tmpstr);tmpstr=NULL;}
+        if (tmpstr) {FREE(tmpstr);tmpstr=NULL;}
 		*nbelemOut=nbelem;
 	}
 

@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "inttoolbar.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
   extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
@@ -46,7 +47,7 @@ int C2F(inttoolbar) _PARAMS((char *fname))
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
-	Output=(char*)malloc(4*sizeof(char));
+	Output=(char*)MALLOC(4*sizeof(char));
 
 	if (Rhs==1)
 	{
@@ -121,7 +122,7 @@ int C2F(inttoolbar) _PARAMS((char *fname))
 	CreateVarFromPtr( 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
-	if (Output) {free(Output);Output=NULL;}
+	if (Output) {FREE(Output);Output=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -16,6 +16,8 @@
 #include "olestream-unwrap.h"
 #include "ole.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /* Main header accessors*/
 #define header_id(x)						((x) +0)
 #define header_clid(x)					((x) +0x08)
@@ -304,7 +306,7 @@ int OLE_get_block( struct OLE_object *ole, unsigned int block_index, unsigned ch
       size_t offset = 0;
       unsigned char *bb = NULL;
 
-      bb = malloc(sizeof(unsigned char) *ole->header.sector_size);
+      bb = MALLOC(sizeof(unsigned char) *ole->header.sector_size);
       if (bb == NULL)
 	{
 	  LOGGER_log("%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block",FL, ole->header.sector_size);
@@ -320,7 +322,7 @@ int OLE_get_block( struct OLE_object *ole, unsigned int block_index, unsigned ch
       fseek_result = fseek(ole->f, offset, SEEK_SET);
       if (fseek_result != 0)
 	{
-	  if (bb != NULL) { free(bb); bb = NULL; }
+	  if (bb != NULL) { FREE(bb); bb = NULL; }
 	  LOGGER_log("%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)",FL, block_index,offset, strerror(errno));
 	  return OLEER_GET_BLOCK_SEEK;
 	}
@@ -330,7 +332,7 @@ int OLE_get_block( struct OLE_object *ole, unsigned int block_index, unsigned ch
       DOLE LOGGER_log("%s:%d:OLE_get_block:DEBUG: Read %d byte of data",FL,read_count);
       if (read_count != (int)ole->header.sector_size)
 	{
-	  if (bb != NULL){ free(bb); bb = NULL; }
+	  if (bb != NULL){ FREE(bb); bb = NULL; }
 	  VOLE LOGGER_log("%s:%d:Mismatch in bytes read. Requested %d, got %d\n", FL, ole->header.sector_size, read_count);
 	  return OLEER_GET_BLOCK_READ;
 	}
@@ -342,7 +344,7 @@ int OLE_get_block( struct OLE_object *ole, unsigned int block_index, unsigned ch
       DOLE LOGGER_log("%s:%d:OLE_get_block:DEBUG: memory block copied to block_buffer",FL);
 
       /* We're now done with BB, dispose of it */
-      if (bb) { free(bb); bb = NULL; }
+      if (bb) { FREE(bb); bb = NULL; }
 
       DOLE LOGGER_log("%s:%d:OLE_get_block:DEBUG: Disposed of temporary bb block",FL);
 
@@ -815,7 +817,7 @@ int OLE_load_FAT( struct OLE_object *ole )
   DOLE LOGGER_log("%s:%d:OLE_load_FAT:DEBUG:Allocating for %d sectors (%d bytes) \n"
 		  ,FL,ole->header.fat_sector_count, FAT_size);
 
-  ole->FAT = malloc( FAT_size *sizeof(unsigned char));
+  ole->FAT = MALLOC( FAT_size *sizeof(unsigned char));
   ole->FAT_limit = ole->FAT +FAT_size;
   if (ole->FAT != NULL)
     {
@@ -872,7 +874,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 
 	  DOLE LOGGER_log("%s:%d:OLE_load_FAT:DEBUG: Allocating %d bytes to fat_block\n",FL, ole->header.sector_size);
 
-	  fat_block = malloc( ole->header.sector_size );
+	  fat_block = MALLOC( ole->header.sector_size );
 
 	  if (fat_block == NULL) 
 	    {
@@ -907,7 +909,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 	      getblock_result = OLE_get_block(ole, current_sector, fat_block);
 	      if (getblock_result != OLE_OK)
 		{
-		  if (fat_block) free(fat_block);
+		  if (fat_block) FREE(fat_block);
 		  return getblock_result;
 		}
 
@@ -931,7 +933,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 			if (getblock_result != OLE_OK)
 			  {
 			    LOGGER_log("%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat position = 0x%x",FL, import_sector, fat_position);
-			    if (fat_block) free(fat_block);
+			    if (fat_block) FREE(fat_block);
 			    return getblock_result;
 			  }
 
@@ -946,14 +948,14 @@ int OLE_load_FAT( struct OLE_object *ole )
 			if (fat_position +ole->header.sector_size > ole->FAT_limit)
 			  { 
 			    /*LOGGER_log("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p",FL,fat_position,FAT_limit); */
-			    if (fat_block) free(fat_block);
+			    if (fat_block) FREE(fat_block);
 			    return OLEER_MEMORY_OVERFLOW;
 			  }
 			tick++;
 			DIF += LEN_ULONG;
 		      }  else {
 			LOGGER_log("%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p",FL,fat_position,ole->FAT_limit); 
-			if (fat_block) free(fat_block);
+			if (fat_block) FREE(fat_block);
 			return OLEER_MEMORY_OVERFLOW;
 		      }
 		  } else {
@@ -978,7 +980,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 		}
 	    } /* For every DIF/XBAT sector we're supposed to read*/
 
-	  if (fat_block) free(fat_block);
+	  if (fat_block) FREE(fat_block);
 	} /* If we have DIF/XBAT sectors to read into the FAT*/
 
     } /* If we managed to allocate memory for our FAT table*/
@@ -1139,7 +1141,7 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
   /* If our chain is 0 length, then there's nothing to return*/
   if (chain_length == 0) return NULL;
 
-  bp = buffer = malloc( chain_length *ole->header.mini_sector_size *sizeof(unsigned char));
+  bp = buffer = MALLOC( chain_length *ole->header.mini_sector_size *sizeof(unsigned char));
   if (buffer != NULL)
     {
       do {
@@ -1201,7 +1203,7 @@ unsigned char *OLE_load_chain( struct OLE_object *ole, int FAT_sector_start )
       size_t offset;
 
       offset = ole->last_chain_size = chain_length << ole->header.sector_shift;
-      bp = buffer = malloc( offset *sizeof(unsigned char));
+      bp = buffer = MALLOC( offset *sizeof(unsigned char));
       if (buffer == NULL)
 	{
 	  LOGGER_log("%s:%d:OLE_load_chain:ERROR: Cannot allocate %d bytes for OLE chain",FL,offset);
@@ -1228,7 +1230,7 @@ unsigned char *OLE_load_chain( struct OLE_object *ole, int FAT_sector_start )
 
 	    bp += ole->header.sector_size;
 	    if (bp > bp_limit) {  
-	      if (buffer != NULL) { free(buffer); bp = buffer = NULL; }
+	      if (buffer != NULL) { FREE(buffer); bp = buffer = NULL; }
 	      VOLE LOGGER_log("%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary",FL); 
 	      return NULL;
 	    };
@@ -1390,7 +1392,7 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
       if (f == NULL)
 	{
 	  LOGGER_log("%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)",FL, full_path, strerror(errno));
-	  if (full_path) free(full_path);
+	  if (full_path) FREE(full_path);
 	  return -1;
 	} else {
 	  size_t written_bytes;
@@ -1409,7 +1411,7 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
 	} /* if file is valid*/
     } /* if full_path is valid*/
 
-  if (full_path) free(full_path);
+  if (full_path) FREE(full_path);
 
   return OLE_OK;
 }
@@ -1480,10 +1482,10 @@ int OLE_decode_file_done( struct OLE_object *ole )
 {
   if (ole->f) fclose(ole->f);
   /** Why weren't these active? (they were commented out ) **/
-  if (ole->FAT) free(ole->FAT);
-  if (ole->miniFAT) free(ole->miniFAT);
-  if (ole->ministream) free(ole->ministream);
-  if (ole->properties) free(ole->properties);
+  if (ole->FAT) FREE(ole->FAT);
+  if (ole->miniFAT) FREE(ole->miniFAT);
+  if (ole->ministream) FREE(ole->ministream);
+  if (ole->properties) FREE(ole->properties);
 
   return 0;
 }
@@ -1691,13 +1693,13 @@ int OLE_decode_file( struct OLE_object *ole, char *fname, char *decode_path )
 		  if (lfname != NULL)
 		    {
 		      OLE_store_stream( ole, lfname, decode_path, stream_data, adir->stream_size );
-		      free(lfname);
+		      FREE(lfname);
 		    } 
 		} /* If we needed to save an unknown stream*/
 
 	      /* Clean up an stream_data which we may have */
 	      /* read in from the chain-loader.*/
-	      if (stream_data) free(stream_data);
+	      if (stream_data) FREE(stream_data);
 
 	    } /* if 1*/
 	} else {
@@ -1717,10 +1719,10 @@ int OLE_decode_file( struct OLE_object *ole, char *fname, char *decode_path )
 
  
   /*if (ole->f) fclose(ole->f);
-  if (ole->FAT) free(ole->FAT);
-  if (ole->miniFAT) free(ole->miniFAT);
-  if (ole->ministream) free(ole->ministream);
-  if (ole->properties) free(ole->properties);
+  if (ole->FAT) FREE(ole->FAT);
+  if (ole->miniFAT) FREE(ole->miniFAT);
+  if (ole->ministream) FREE(ole->ministream);
+  if (ole->properties) FREE(ole->properties);
   */
 
   return OLE_OK;

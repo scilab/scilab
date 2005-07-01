@@ -35,6 +35,8 @@
 #include "scigraphic.h"
 #include "../machine.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #ifdef WITH_TK
 #include "tcl.h"
 #include "tk.h"

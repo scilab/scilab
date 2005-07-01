@@ -14,6 +14,9 @@
 #include "Rec.h"
 #include "PloEch.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
+
 static void GReplay __PARAMS((char *type,char *plot));
 static void ShowPlot __PARAMS((char *type,char *plot));
 static void SCPlot __PARAMS((char *type,char * plot,integer * flag,double * bbox,integer * aaint,

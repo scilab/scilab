@@ -21,6 +21,8 @@
 
 #include "../machine.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #if defined(THINK_C)|| defined(WIN32)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
@@ -1238,7 +1240,7 @@ void C2F(displaystringXfig)(char *string, integer *x, integer *y, integer *v1, i
       C2F(drawrectangleXfig)(string,rect,rect+1,rect+2,rect+3,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 #ifdef WITH_GTK
-  if ( alloc == 1 ) free(string);
+  if ( alloc == 1 ) FREE(string);
 #endif
 
 }

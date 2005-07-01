@@ -7,6 +7,7 @@
 
 
 #include "../machine.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #ifdef WIN32
 extern void cerro __PARAMS((char *str));
@@ -25,64 +26,64 @@ int *lp1,**lpft,*ls1,**lsft,*m,*lsftdim,*lpftdim,*n;
   sdim = (*n * (*n - 1))/2 + 1;
   mftdim = (*n * (*n - 1)) + 1;
 
-  if ((*lpft = (int *)malloc(n1 * isize)) == NULL) {
+  if ((*lpft = (int *)MALLOC(n1 * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((*lsft = (int *)malloc(mftdim * isize)) == NULL) {
+  if ((*lsft = (int *)MALLOC(mftdim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
 
-  if ((cfcl = (int *)malloc(*n * isize)) == NULL) {
+  if ((cfcl = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((cfcp = (int *)malloc(n1 * isize)) == NULL) {
+  if ((cfcp = (int *)MALLOC(n1 * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((cw = (int *)malloc(*n * isize)) == NULL) {
+  if ((cw = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((inf = (int *)malloc(*n * isize)) == NULL) {
+  if ((inf = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((nfcomp = (int *)malloc(*n * isize)) == NULL) {
+  if ((nfcomp = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((nn = (int *)malloc(*n * isize)) == NULL) {
+  if ((nn = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((num = (int *)malloc(*n * isize)) == NULL) {
+  if ((num = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((p = (int *)malloc(*n * isize)) == NULL) {
+  if ((p = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((p1 = (int *)malloc(n1 * isize)) == NULL) {
+  if ((p1 = (int *)MALLOC(n1 * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((pile = (int *)malloc(*n * isize)) == NULL) {
+  if ((pile = (int *)MALLOC(*n * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((s = (int *)malloc(sdim * isize)) == NULL) {
+  if ((s = (int *)MALLOC(sdim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((som = (int *)malloc(n1 * isize)) == NULL) {
+  if ((som = (int *)MALLOC(n1 * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((suc = (int *)malloc(*m * isize)) == NULL) {
+  if ((suc = (int *)MALLOC(*m * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -91,9 +92,9 @@ int *lp1,**lpft,*ls1,**lsft,*m,*lsftdim,*lpftdim,*n;
 	  &mftdim,n,&nc,nfcomp,nn,num,p,p1,pile,s,
 	  &sdim,som,suc);
 
-  free(inf); free(cw); free(nfcomp);free(cfcp); 
-  free(cfcl); free(nn); free(num); free(p); free(p1); 
-  free(pile); free(s); free(som); free(suc);
+  FREE(inf); FREE(cw); FREE(nfcomp);FREE(cfcp); 
+  FREE(cfcl); FREE(nn); FREE(num); FREE(p); FREE(p1); 
+  FREE(pile); FREE(s); FREE(som); FREE(suc);
 
   *lpftdim = n1;
   *lsftdim = (*lpft)[*n] - 1;

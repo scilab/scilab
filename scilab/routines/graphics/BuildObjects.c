@@ -27,6 +27,8 @@
 #include "BuildObjects.h"
 #include "SetProperty.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern int LinearScaling2Colormap(sciPointObj* pobj);
 extern double * AllocUserGrads(double * u_xgrads, int nb);
 extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
@@ -767,7 +769,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       pTEXT_FEATURE (pobj)->clip_region_set = 0;
 /*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
 
-      if ((pTEXT_FEATURE (pobj)->ptextstring = calloc (n+1, sizeof (char))) ==
+      if ((pTEXT_FEATURE (pobj)->ptextstring = CALLOC (n+1, sizeof (char))) ==
 	  NULL)
 	{
 	  sciprint("No more place to allocates text string, try a shorter string");
@@ -875,7 +877,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       pTITLE_FEATURE (pobj)->text.callbacklen = 0; 
       pTITLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
      
-      if ((pTITLE_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
+      if ((pTITLE_FEATURE (pobj)->text.ptextstring =CALLOC (strlen(text)+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more place to allocates text string, try a shorter string");
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -976,7 +978,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       pLEGEND_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
       /* Allocation de la structure sciText */
-      if ((pLEGEND_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
+      if ((pLEGEND_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
 	{
 	  sciprint("\nNo more place to allocates text string, try a shorter string\n");
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -2018,14 +2020,14 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	    return (sciPointObj *) NULL;
 	  }
 	  
-	  if ((pAXES_FEATURE(pobj)->str= malloc (pAXES_FEATURE (pobj)->nb_tics_labels * sizeof (char*))) == NULL)
+	  if ((pAXES_FEATURE(pobj)->str= MALLOC (pAXES_FEATURE (pobj)->nb_tics_labels * sizeof (char*))) == NULL)
 	    return (sciPointObj *) NULL;
 
 	  for(i=0;i<pAXES_FEATURE (pobj)->nb_tics_labels;i++) 
 	    {
 	      if(str[i] != (char *) NULL)
 		{
-		  if((pAXES_FEATURE (pobj)->str[i] = malloc( (strlen(str[i])+1) * sizeof(char))) == NULL)
+		  if((pAXES_FEATURE (pobj)->str[i] = MALLOC( (strlen(str[i])+1) * sizeof(char))) == NULL)
 		    return (sciPointObj *) NULL;
 		  else
 		    strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
@@ -2048,7 +2050,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->logscale=logscale;
 	  if(format != (char *) NULL)
 	  {
-	    if((pAXES_FEATURE (pobj)->format = malloc( (strlen(format)+1) * sizeof(char))) == NULL)
+	    if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
 	      return (sciPointObj *) NULL;
 	    else
 	      strcpy(pAXES_FEATURE (pobj)->format,format);
@@ -2546,7 +2548,7 @@ ConstructAgregationSeq (int number)
   if (sciAddNewHandle (pobj) == -1)
     {
       sciprint("no handle to allocate\n");
-      free(pobj->pfeatures);free(pobj);
+      FREE(pobj->pfeatures);FREE(pobj);
       return (sciPointObj *) NULL;
     }
 
@@ -2555,7 +2557,7 @@ ConstructAgregationSeq (int number)
   /* check if s1 predecessor is null*/
   if (sons->pprev != (sciSons *)NULL) {
     sciprint("Unexpected case, please report\n");
-    free(pobj->pfeatures);free(pobj);
+    FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
   }
 
@@ -2587,7 +2589,7 @@ ConstructAgregationSeq (int number)
   /* attach the agregation to the current subwin */
   /* the subwin children list is now null->A->sn+1->...->null */
   if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) {
-    free(pobj->pfeatures);free(pobj);
+    FREE(pobj->pfeatures);FREE(pobj);
     return (sciPointObj *) NULL;
   }
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
@@ -2688,7 +2690,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       pLABEL_FEATURE (pobj)->text.callbacklen = 0; 
       pLABEL_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      if ((pLABEL_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
+      if ((pLABEL_FEATURE (pobj)->text.ptextstring =CALLOC (strlen(text)+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more place to allocates text string, try a shorter string");
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -2896,7 +2898,7 @@ sciAddLabelMenu (sciPointObj * pthis, char plabel[], int n)
     pscilabelmenutmp = (sciLabelMenu *) pscilabelmenutmp->pnextlabelmenu;
   if ((pscilabelmenutmp = MALLOC (sizeof (sciLabelMenu))) == NULL)
     return -1;
-  if ((pscilabelmenutmp->plabel = calloc (n+1, sizeof (char))) == NULL)
+  if ((pscilabelmenutmp->plabel = CALLOC (n+1, sizeof (char))) == NULL)
     {
       sciprint("\nNo more place to allocates text string, try a shorter string\n");
       return -1;

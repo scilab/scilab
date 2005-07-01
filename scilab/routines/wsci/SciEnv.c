@@ -6,6 +6,8 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+
+#include "../sci_mem_alloc.h" /* MALLOC */
 /********************************************************************************************************/
 /* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
 /* sont définies directement dans scilex */
@@ -17,7 +19,7 @@ void SciEnv(void)
 
 	SCIPathName=GetScilabDirectory(TRUE);
 	set_sci_env(SCIPathName);
-	if (SCIPathName) {free(SCIPathName);SCIPathName=NULL;}
+	if (SCIPathName) {FREE(SCIPathName);SCIPathName=NULL;}
 
 }
 /*----------------------------------------------------
@@ -56,16 +58,16 @@ char *GetScilabDirectory(BOOL UnixStyle)
 	char *SciPathName=NULL;
 	char *DirTmp=NULL;
 
-	ScilabModuleName = (LPSTR) malloc (MAXSTR + 1);
+	ScilabModuleName = (LPSTR) MALLOC (MAXSTR + 1);
 
 	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle(MSG_SCIMSG9), (LPSTR) ScilabModuleName, MAX_PATH))
 	{
-		if (ScilabModuleName) {free(ScilabModuleName);ScilabModuleName=NULL;}
+		if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
 		return NULL;
 	}
 
 	_splitpath(ScilabModuleName,drive,dir,fname,ext);
-	if (ScilabModuleName) {free(ScilabModuleName);ScilabModuleName=NULL;}
+	if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
 	if (dir[strlen(dir)-1] == '\\') dir[strlen(dir)-1] = '\0';
 
 	DirTmp=strrchr (dir, '\\');
@@ -75,7 +77,7 @@ char *GetScilabDirectory(BOOL UnixStyle)
 	}
 	else return NULL;
 
-	SciPathName=(char*)malloc((int)(strlen(drive)+strlen(dir)+5)*sizeof(char));
+	SciPathName=(char*)MALLOC((int)(strlen(drive)+strlen(dir)+5)*sizeof(char));
 	
 	_makepath(SciPathName,drive,dir,NULL,NULL);
 
@@ -139,12 +141,12 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 	{
 		char ShortPath[MAX_PATH+1];
 		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=malloc(((int)strlen(GetSCIpath)+1)*sizeof(char));
+		CopyOfDefaultPath=MALLOC(((int)strlen(GetSCIpath)+1)*sizeof(char));
 
 		if (GetShortPathName(GetSCIpath,ShortPath,MAX_PATH) == 0)
 		{
 			MessageBox(NULL,MSG_ERROR19,MSG_ERROR20,MB_ICONWARNING);
-			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 			exit(1);
 			return FALSE;
 		}
@@ -152,14 +154,14 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 		{
 			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "SCI=%s",CopyOfDefaultPath);
-			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		}
 	}
 	else
 	{
 		char ShortPath[MAX_PATH+1];
 		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
+		CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 		/* to be sure that it's unix format */
 		/* c:/progra~1/scilab-3.1 */
@@ -167,7 +169,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "SCI=%s",ShortPath);
 		
-		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 
 	if (_putenv (env))
@@ -194,11 +196,11 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 	{
 		char ShortPath[MAX_PATH+1];
 		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=malloc(((int)strlen(GetHOMEpath)+1)*sizeof(char));
+		CopyOfDefaultPath=MALLOC(((int)strlen(GetHOMEpath)+1)*sizeof(char));
 		if (GetShortPathName(GetHOMEpath,ShortPath,MAX_PATH)==0)
 		{
 			MessageBox(NULL,MSG_ERROR21,MSG_ERROR20,MB_ICONWARNING);
-			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 			exit(1);
 			return FALSE;
 		}
@@ -208,14 +210,14 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 			/* c:/progra~1/scilab-3.1 */
 			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",CopyOfDefaultPath);
-			if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		}
 	}
 	else
 	{
 		char ShortPath[MAX_PATH+1];
 		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
+		CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 		/* to be sure that it's unix format */
 		/* c:/progra~1/scilab-3.1 */
@@ -223,7 +225,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "HOME=%s",ShortPath);
 		
-		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 
 
@@ -253,7 +255,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	char ShortPath[MAX_PATH+1];
 	char *CopyOfDefaultPath=NULL;
 
-	CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
+	CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 	
 	#ifdef WITH_TK
@@ -265,7 +267,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
 		MessageBox(NULL,MSG_ERROR22,MSG_ERROR20,MB_ICONWARNING);
-		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		exit(1);
 		return FALSE;
 	}
@@ -274,7 +276,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
 		
-		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 
 	if (_putenv (env))
@@ -301,7 +303,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	int patchLevel=0;
 	int type=0;
 
-	CopyOfDefaultPath=malloc(((int)strlen(DefaultPath)+1)*sizeof(char));
+	CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
 
 	#ifdef WITH_TK
 	Tcl_GetVersion(&major, &minor, &patchLevel, &type);
@@ -312,7 +314,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
 		MessageBox(NULL,MSG_ERROR23,MSG_ERROR20 ,MB_ICONWARNING);
-		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		exit(1);
 		return FALSE;
 	}
@@ -321,7 +323,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
 
-		if (CopyOfDefaultPath) {free(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 
 	if (_putenv (env))
@@ -361,7 +363,7 @@ BOOL Set_LCC_PATH(char *DefaultPath)
 			if ( IsAFile(LCCFILE) )
 			{
 				wsprintf(PathsLCC,"%s%s;%s%s;%s%s",PathWsci,LCCBIN,PathWsci,LCCINCLUDE,PathWsci,LCCLIB);
-				NewPath=(char*)malloc( (strlen("PATH=;;")+strlen(PathTemp)+strlen(PathsLCC)+1)*sizeof(char));
+				NewPath=(char*)MALLOC( (strlen("PATH=;;")+strlen(PathTemp)+strlen(PathsLCC)+1)*sizeof(char));
 				wsprintf(NewPath,"PATH=%s;%s;",PathTemp,PathsLCC);
 
 				if (_putenv (NewPath))
@@ -372,7 +374,7 @@ BOOL Set_LCC_PATH(char *DefaultPath)
 				{
 					bOK=TRUE;
 				}
-				if (NewPath){ free(NewPath); NewPath=NULL; }
+				if (NewPath){ FREE(NewPath); NewPath=NULL; }
 			}
 		}
 

@@ -18,6 +18,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 extern int version_flag(void); /* NG */
 

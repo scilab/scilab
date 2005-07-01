@@ -27,6 +27,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /** 
   Warning : Remove AbortPrinter from 
@@ -121,19 +122,19 @@ get_queues (void)
   char *p;
   /* enumerate all available printers */
   EnumPrinters (PRINTER_ENUM_CONNECTIONS | PRINTER_ENUM_LOCAL, NULL, 1, NULL, 0, &needed, &count);
-  enumbuffer = malloc (needed);
+  enumbuffer = MALLOC (needed);
   if (enumbuffer == (char *) NULL)
     return FALSE;
   if (!EnumPrinters (PRINTER_ENUM_CONNECTIONS | PRINTER_ENUM_LOCAL, NULL, 1, (LPBYTE) enumbuffer, needed, &needed, &count))
     {
-      free (enumbuffer);
+      FREE (enumbuffer);
       sciprint (MSG_ERROR70, GetLastError ());
       return NULL;
     }
   prinfo = (PRINTER_INFO_1 *) enumbuffer;
-  if ((buffer = malloc (PORT_BUF_SIZE)) == (char *) NULL)
+  if ((buffer = MALLOC (PORT_BUF_SIZE)) == (char *) NULL)
     {
-      free (enumbuffer);
+      FREE (enumbuffer);
       return NULL;
     }
   /* copy printer names to single buffer */
@@ -147,7 +148,7 @@ get_queues (void)
 	}
     }
   *p = '\0';			/* double null at end */
-  free (enumbuffer);
+  FREE (enumbuffer);
   return buffer;
 }
 
@@ -168,7 +169,7 @@ get_queuename (HINSTANCE hInstance, HWND hwnd, char *portname, char *queue)
       iport = DialogBoxParam (hInstance, "QueueDlgBox", hwnd, SpoolDlgProc, (LPARAM) buffer);
       if (!iport)
 	{
-	  free (buffer);
+	  FREE (buffer);
 	  return FALSE;
 	}
       p = buffer;
@@ -184,7 +185,7 @@ get_queuename (HINSTANCE hInstance, HWND hwnd, char *portname, char *queue)
       strcpy (portname, "\\\\spool\\");
       strcat (portname, queue);
     }
-  free (buffer);
+  FREE (buffer);
   return TRUE;
 }
 
@@ -210,13 +211,13 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
     return FALSE;
   port = portname + 8;		/* skip over \\spool\ */
 
-  if ((buffer = malloc (PRINT_BUF_SIZE)) == (char *) NULL)
+  if ((buffer = MALLOC (PRINT_BUF_SIZE)) == (char *) NULL)
     return FALSE;
   if (filename != (char *) 0)
     {
       if ((f = fopen (filename, "rb")) == (FILE *) NULL)
 	{
-	  free (buffer);
+	  FREE (buffer);
 	  return FALSE;
 	}
     }
@@ -227,7 +228,7 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
   if (!OpenPrinter (port, &printer, NULL))
     {
       sciprint (MSG_ERROR71, port, GetLastError ());
-      free (buffer);
+      FREE (buffer);
       return FALSE;
     }
   /* from here until ClosePrinter, should AbortPrinter on error */
@@ -239,7 +240,7 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
     {
       sciprint (MSG_ERROR72, GetLastError ());
       AbortPrinter (printer);
-      free (buffer);
+      FREE (buffer);
       return FALSE;
     }
 
@@ -247,14 +248,14 @@ gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
     {
       if (!WritePrinter (printer, (LPVOID) buffer, count, &written))
 	{
-	  free (buffer);
+	  FREE (buffer);
 	  fclose (f);
 	  AbortPrinter (printer);
 	  return FALSE;
 	}
     }
   fclose (f);
-  free (buffer);
+  FREE (buffer);
 
   if (!EndDocPrinter (printer))
     {

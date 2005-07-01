@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intmcisendstring.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
 	#include <windows.h>
@@ -41,8 +42,8 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 
 		Error=mciSendString(MCICommand,(LPSTR)ReturnString,sizeof(ReturnString),NULL);
 
-		BoolOutput=(int*)malloc(sizeof(int));
-		CodeOutput=(int*)malloc(sizeof(int));
+		BoolOutput=(int*)MALLOC(sizeof(int));
+		CodeOutput=(int*)MALLOC(sizeof(int));
 
 		*BoolOutput=(int)0;
 		*CodeOutput=(int)Error;
@@ -56,13 +57,13 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 				wsprintf(ErrorText,"%s","Unkown MCI error");
 			}
 
-			Output=(char*)malloc((strlen(ErrorText)+1)*sizeof(char));
+			Output=(char*)MALLOC((strlen(ErrorText)+1)*sizeof(char));
 			wsprintf(Output,"%s",ErrorText);
 		}
 		else
 		{
 			*BoolOutput=(int)TRUE;
-			Output=(char*)malloc((strlen("OK")+1)*sizeof(char));
+			Output=(char*)MALLOC((strlen("OK")+1)*sizeof(char));
 			wsprintf(Output,"%s","OK");
 		}
 
@@ -96,9 +97,9 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 		
 		C2F(putlhsvar)();
 
-		if (Output) {free(Output);Output=NULL;}
-		if (BoolOutput) {free(BoolOutput);BoolOutput=NULL;}
-		if (CodeOutput) {free(CodeOutput);Output=NULL;}
+		if (Output) {FREE(Output);Output=NULL;}
+		if (BoolOutput) {FREE(BoolOutput);BoolOutput=NULL;}
+		if (CodeOutput) {FREE(CodeOutput);Output=NULL;}
 
 		return 0;
 	}
@@ -124,13 +125,13 @@ int mcisendstringUnixfunction _PARAMS((char *fname))
 
 	if (GetType(1) == sci_strings)	
 	{
-		BoolOutput=(int*)malloc(sizeof(int));
-		CodeOutput=(int*)malloc(sizeof(int));
+		BoolOutput=(int*)MALLOC(sizeof(int));
+		CodeOutput=(int*)MALLOC(sizeof(int));
 
 		*BoolOutput=(int)0;
 		*CodeOutput=(int)0;
 
-		Output=(char*)malloc((strlen("Only for Windows.\n")+1)*sizeof(char));
+		Output=(char*)MALLOC((strlen("Only for Windows.\n")+1)*sizeof(char));
 		sprintf(Output,"%s","Only for Windows.\n");
 
 		n1=1;
@@ -163,9 +164,9 @@ int mcisendstringUnixfunction _PARAMS((char *fname))
 		
 		C2F(putlhsvar)();
 
-		if (Output) {free(Output);Output=NULL;}
-		if (BoolOutput) {free(BoolOutput);BoolOutput=NULL;}
-		if (CodeOutput) {free(CodeOutput);Output=NULL;}
+		if (Output) {FREE(Output);Output=NULL;}
+		if (BoolOutput) {FREE(BoolOutput);BoolOutput=NULL;}
+		if (CodeOutput) {FREE(CodeOutput);Output=NULL;}
 
 		return 0;
 	}

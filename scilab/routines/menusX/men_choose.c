@@ -5,6 +5,8 @@
 #include "men_scilab.h"
 #endif
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 int     ExposeChooseWindow(ChooseMenu *);
 
 

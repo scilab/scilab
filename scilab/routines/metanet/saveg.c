@@ -34,6 +34,7 @@
 
 
 #include "../machine.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #define MAXNAM 80
 
@@ -88,7 +89,7 @@ int *ma;
 
   /* check uniqueness of node names */
   if (*node_number != 1) {
-    if ((lar = (char **)malloc(sizeof(char *) * *node_number)) == NULL) {
+    if ((lar = (char **)MALLOC(sizeof(char *) * *node_number)) == NULL) {
       cerro("Running out of memory");
       return;
     }
@@ -99,7 +100,7 @@ int *ma;
 	sprintf(description,
 		"Bad graph file. Node \"%s\" is duplicated",lar[i]);
 	cerro(description);
-	free(lar);
+	FREE(lar);
 	return;
       }
     }
@@ -107,10 +108,10 @@ int *ma;
       sprintf(description,
 	      "Bad graph file. Node \"%s\" is duplicated",lar[*node_number - 2]);
       cerro(description);
-      free(lar);
+      FREE(lar);
       return;
     }
-    free(lar);
+    FREE(lar);
   }
  
   path[*lpath] = '\0';

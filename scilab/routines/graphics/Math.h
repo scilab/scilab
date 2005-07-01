@@ -70,17 +70,6 @@ int finite __PARAMS((double));
 #define int16max   0x7FFF
 #define uns16max   0xFFFF
 
-#ifdef lint5
-#include <sys/stdtypes.h>
-#define MALLOC(x) malloc(((size_t) x))
-#define FREE(x) if (x  != NULL) free((void *) x);
-#define REALLOC(x,y) realloc((void *) x,(size_t) y)
-#else
-#define MALLOC(x) malloc(((unsigned) x))
-#define FREE(x) if (x  != NULL) free((char *) x);
-#define REALLOC(x,y) realloc((char *) x,(unsigned) y)
-#endif
-
 #if (defined(sun) && defined(SYSV)) 
 #include <ieeefp.h>
 #endif

@@ -22,6 +22,8 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern void initsubwin();
 void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
 extern double  sciFindLogMinSPos(double *x, int n);
@@ -213,7 +215,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
     frame_clip_on ();
-    if ((hdltab = malloc ((*n1+2) * sizeof (long))) == NULL) {
+    if ((hdltab = MALLOC ((*n1+2) * sizeof (long))) == NULL) {
       sciprint ("Running out of memory for plot2d\n");
       return 0;   
     }

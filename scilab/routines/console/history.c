@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------*/
 
 #include "history.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 sci_hist *history = NULL;	/* no history yet */
 sci_hist *cur_entry = NULL;
@@ -72,8 +73,8 @@ void AddHistory (char *line)
   	
   }
  
-  entry = (sci_hist *) malloc ((unsigned long) sizeof (sci_hist));
-  entry->line = (char *) malloc ((strlen (line) + 1)*sizeof(char));  
+  entry = (sci_hist *) MALLOC ((unsigned long) sizeof (sci_hist));
+  entry->line = (char *) MALLOC ((strlen (line) + 1)*sizeof(char));  
   strcpy (entry->line, line);
 
   entry->prev = history;
@@ -293,7 +294,7 @@ void write_history(char *filename)
 char * getfilenamehistory(void)
 {
   char  *history_name = get_sci_data_strings(HISTORY_ID);
-  char  *filename= malloc(MAXBUF*sizeof(char));
+  char  *filename= MALLOC(MAXBUF*sizeof(char));
   int out_n;
   if ( filename == NULL ) return NULL;
   C2F(cluni0)(history_name, filename, &out_n,(long)strlen(history_name),MAXBUF);

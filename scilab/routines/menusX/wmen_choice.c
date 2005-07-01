@@ -7,6 +7,8 @@
 
 #include "wmen_scilab.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /* Function prototypes */
 static void FillInPropertyPage( PROPSHEETPAGE* , int, LPSTR, DLGPROC);
 static int  GetVal(HWND hDlg,int i,int j);

@@ -62,7 +62,7 @@ extern  char  *getenv();
 #define GXset 15
 #endif
 
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #define Char2Int(x)   ( x & 0x000000ff )
 #if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(__MSC__)|| defined(__EDG__)
@@ -846,14 +846,14 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
 
   if (m>gdMaxColors-3) {/* reduce the number of colors */
       m1 = gdMaxColors-2;
-      if ( (cmap = (double*) malloc(3*m1 * sizeof(double)))== NULL) {
+      if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) {
 	Scistring("Not enough memory\n");
 	*v3 = 1;
 	return;
       }
-      if ( (ind = (int*) malloc(m * sizeof(int)))== NULL) {
+      if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) {
 	Scistring("Not enough memory\n");
-	free(cmap);
+	FREE(cmap);
 	*v3 = 1;
 	return;
       }
@@ -874,8 +874,8 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
 	c = gdImageColorAllocate(GifIm,r,g,b);
       col_index[i] = c;
       }
-      free(ind);
-      free(cmap);
+      FREE(ind);
+      FREE(cmap);
   }
   else {
     /* create new colormap */
@@ -1703,7 +1703,7 @@ void C2F(fillpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer 
   }
   n1 = *p;
   if (fillpolylines_closeflag) n1++;
-  points = (gdPoint*) malloc(n1 * sizeof(gdPoint));
+  points = (gdPoint*) MALLOC(n1 * sizeof(gdPoint));
   if (points == (gdPoint*) NULL) return;
   for (j = 0; j < *n; j++) {
       o = j * (*p);
@@ -1726,7 +1726,7 @@ void C2F(fillpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer 
 			*p,c,thick,fillpolylines_closeflag);
       }
   }
-  free(points);
+  FREE(points);
 }
 
 /** Only draw one polygon with current line style **/
@@ -1845,7 +1845,7 @@ static void FileInitGif(void)
       col_index[i] = -1;
 
     if (m>gdMaxColors-3) {/* reduce the number of colors */
-      if ( (bigcmap = (double*) malloc(3*m * sizeof(double)))== NULL) {
+      if ( (bigcmap = (double*) MALLOC(3*m * sizeof(double)))== NULL) {
 	Scistring("Not enough memory\n");
 	return;
       }
@@ -1858,15 +1858,15 @@ static void FileInitGif(void)
 	bigcmap[i + 2 * m] = B;
       }
       m1 = gdMaxColors-2;
-      if ( (cmap = (double*) malloc(3*m1 * sizeof(double)))== NULL) {
+      if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) {
 	Scistring("Not enough memory\n");
-	free(bigcmap);
+	FREE(bigcmap);
 	return;
       }
-      if ( (ind = (int*) malloc(m * sizeof(int)))== NULL) {
+      if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) {
 	Scistring("Not enough memory\n");
-	free(bigcmap);
-	free(cmap);
+	FREE(bigcmap);
+	FREE(cmap);
 	return;
       }
 
@@ -1886,9 +1886,9 @@ static void FileInitGif(void)
 	c = gdImageColorAllocate(GifIm,r,g,b);
 	col_index[i] = c;
       }
-      free(ind);
-      free(cmap);
-      free(bigcmap);
+      FREE(ind);
+      FREE(cmap);
+      FREE(bigcmap);
     }
     else {
       /* create new color map */
@@ -2221,7 +2221,7 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
       FontInfoTabGif[*j].ok = 0;
       for (i=0;i<FONTMAXSIZE;i++) {
 	Font = &(FontListGif[*j][i]);
-	  if (Font != NULL) free(Font->data);
+	  if (Font != NULL) FREE(Font->data);
       }
     }
   }

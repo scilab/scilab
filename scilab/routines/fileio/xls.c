@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../machine.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #define  typ_short "s"
 #define  typ_ushort "us"
@@ -196,8 +197,8 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        capacite=hauteur*longueur;
 	
        /*Déclaration des tableaux de synthèse*/
-       if ((valeur=(void*) malloc((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
-       if ((*chainesind=(int *) malloc((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
+       if ((valeur=(void*) MALLOC((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
+       if ((*chainesind=(int *) MALLOC((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
        for (i=0;i<=capacite;i++) {
 	 (*chainesind)[i]=0;
 	 valeur[i]=NaN;
@@ -234,9 +235,9 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   return;
  ErrL:
   {
-    free(sheetname);
-    free(valeur);
-    free(*chainesind);
+    FREE(sheetname);
+    FREE(valeur);
+    FREE(*chainesind);
     if (*err==0)
       *err=1; /* malloc problem */
     else
@@ -456,7 +457,7 @@ static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
     if (*err > 0) goto ErrL;
     *ns=nm;
     if (nm !=0) {
-      if( (*sst=(char **)malloc(nm*sizeof(char*)))==NULL)  goto ErrL;
+      if( (*sst=(char **)MALLOC(nm*sizeof(char*)))==NULL)  goto ErrL;
       for (i=0;i<nm;i++) (*sst)[i]=NULL;
       for(i=0;i<nm;i++) {/* LOOP ON STRINGS */
 	getString(fd,1,&((*sst)[i]),err);
@@ -468,8 +469,8 @@ static void getSST(int *fd,int BIFF,int *ns,char ***sst,int *err)
  ErrL:
   if (*sst != NULL) {
     for (i=0;i<nm;i++)
-      if ( (*sst)[i]!= NULL ) free((*sst)[i]);
-    free(*sst);
+      if ( (*sst)[i]!= NULL ) FREE((*sst)[i]);
+    FREE(*sst);
   }
 
   if (*err==0)
@@ -509,7 +510,7 @@ static void getString(int *fd, int flag,char **str,int *err)
 		
   if(rich==0 && fareast==0) {
     /*Enregistrement du character array*/
-    if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
+    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
     if (*err > 0) goto ErrL;
     (*str)[longueur]='\0';
@@ -522,14 +523,14 @@ static void getString(int *fd, int flag,char **str,int *err)
     if (*err > 0) goto ErrL;
     listlength=4*rt;
     /*Enregistrement du character array*/
-    if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
+    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
     if (*err > 0) goto ErrL;
     (*str)[longueur]='\0';
-    if ((list= (int *) malloc(listlength*sizeof(int)))==NULL)  goto ErrL;
+    if ((list= (int *) MALLOC(listlength*sizeof(int)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)list, &listlength, typ_int, err);
     if (*err > 0) goto ErrL;
-    free(list);list=(int *)NULL;
+    FREE(list);list=(int *)NULL;
   }
   else if(rich==0 && fareast!=0) {
     int sz; /* fareast data size */
@@ -537,15 +538,15 @@ static void getString(int *fd, int flag,char **str,int *err)
     C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
     if (*err > 0) goto ErrL;
     /*Enregistrement du character array*/
-    if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
+    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
     if (*err > 0) goto ErrL;
     (*str)[longueur]='\0';
     /*asian phonetics*/
-    if ((asian = (char *) malloc(sz*sizeof(char)))==NULL)  goto ErrL;
+    if ((asian = (char *) MALLOC(sz*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)asian, &sz, typ_char, err);
     if (*err > 0) goto ErrL;
-    free(asian);asian=(char *)NULL;
+    FREE(asian);asian=(char *)NULL;
   }
   else if(rich!=0 && fareast!=0) {
     short rt;
@@ -557,19 +558,19 @@ static void getString(int *fd, int flag,char **str,int *err)
     listlength=4*rt;
     C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
     if (*err > 0) goto ErrL;
-    if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
+    if ((*str= (char*) MALLOC((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
     if (*err > 0) goto ErrL;
     (*str)[longueur]='\0';
-    if ((list= (int *) malloc(listlength*sizeof(int)))==NULL)  goto ErrL;
+    if ((list= (int *) MALLOC(listlength*sizeof(int)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)list, &listlength, typ_int, err);
     if (*err > 0) goto ErrL;
-    free(list);list=(int *)NULL;
+    FREE(list);list=(int *)NULL;
     /*asian phonetics*/
-    if ((asian= (char *) malloc(sz*sizeof(char)))==NULL)  goto ErrL;
+    if ((asian= (char *) MALLOC(sz*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)asian, &sz, typ_char, err);
     if (*err > 0) goto ErrL;
-    free(asian);asian=(char *)NULL;
+    FREE(asian);asian=(char *)NULL;
   }
   else{
     sciprint("Unhandled case");
@@ -578,8 +579,8 @@ static void getString(int *fd, int flag,char **str,int *err)
   return;
  ErrL:
   if (*err==0) {
-    free(*str);
-    free(list);
+    FREE(*str);
+    FREE(list);
     *err=3; /* malloc problem */
   }
   else
@@ -630,8 +631,8 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
 
   *nsheets=ns;
   /*alloc the Sheetnames ans Abspos arrays */
-   if( (*Sheetnames=(char **)malloc(ns*sizeof(char*)))==NULL)  goto ErrL;
-   if( (*Abspos=(int *)malloc(ns*sizeof(int)))==NULL)  goto ErrL;
+   if( (*Sheetnames=(char **)MALLOC(ns*sizeof(char*)))==NULL)  goto ErrL;
+   if( (*Abspos=(int *)MALLOC(ns*sizeof(int)))==NULL)  goto ErrL;
 
    /* rescan boundsheet sequence to get the data */
    *cur_pos=pos;
@@ -663,10 +664,10 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
  ErrL:
    if (*Sheetnames != NULL) {
      for (i=0;i<ns;i++)
-       if ( (*Sheetnames)[i]!= NULL ) free((*Sheetnames)[i]);
-     free(*Sheetnames);
+       if ( (*Sheetnames)[i]!= NULL ) FREE((*Sheetnames)[i]);
+     FREE(*Sheetnames);
    }
-   free(*Abspos);
+   FREE(*Abspos);
    if (*err==0)
      *err=3; /* malloc problem */
    else

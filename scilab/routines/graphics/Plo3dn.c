@@ -15,6 +15,8 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern double C2F (dsort) ();
 extern int facet_facing_rear (integer facteur, integer * x, integer * y,
                               integer * c, integer * size, integer * xr,

@@ -1,6 +1,7 @@
 #if WIN32
 #include <stdarg.h>
 #endif
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -12,6 +13,7 @@
 #include "logger.h"
 #include "pldstr.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------\
  Function Name	: *PLD_strstr
@@ -55,8 +57,8 @@ char *PLD_strstr(char *haystack, char *needle, int insensitive)
 	if ((result != NULL)&&(insensitive > 0))
 	{
 		result = result -hs +haystack;
-		free(hs);
-		free(ne);
+		FREE(hs);
+		FREE(ne);
 
 		/*		LOGGER_log("%s:%d:HIT - %s",FL, result );*/
 	}
@@ -489,7 +491,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 	
 	/* Allocate the memory required to hold the new string [at least], check to see that*/
 	/*		all went well, if not, then return an error*/
-	new_buffer = malloc( sizeof(char) *size_required);
+	new_buffer = MALLOC( sizeof(char) *size_required);
 	if (new_buffer == NULL)
 	{
 		LOGGER_log("%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform replacement operation", FL, size_required);
@@ -655,7 +657,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
 
 	*new_p = '\0';
 
-	if (replace_details->source != NULL) free (replace_details->source);
+	if (replace_details->source != NULL) FREE (replace_details->source);
 	replace_details->source = new_buffer;
 	return new_buffer;
 }
@@ -725,7 +727,7 @@ char *PLD_dprintf(const char *format, ...)
 	va_list ap;
 
 	/* Attempt to allocate and then check */
-	p = malloc(size *sizeof(char));
+	p = MALLOC(size *sizeof(char));
 	if (p == NULL) return NULL;
 
 	while (1) 
@@ -760,8 +762,8 @@ char *PLD_dprintf(const char *format, ...)
 		{
 			char *tmp_p;
 
-			tmp_p = realloc(p, size);
-			if (tmp_p == NULL){ if (p != NULL) free(p); return NULL; }
+			tmp_p = REALLOC(p, size);
+			if (tmp_p == NULL){ if (p != NULL) FREE(p); return NULL; }
 			else p = tmp_p;
 		}
 	}

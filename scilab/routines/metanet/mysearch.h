@@ -47,8 +47,8 @@ typedef struct entry {
 } ENTRY;
 
 typedef enum {
-	FIND, ENTER
-} ACTION;
+	SCIFIND, SCIENTER
+} SCIACTION;
 
 int	 myhcreate();
 void	 myhdestroy();

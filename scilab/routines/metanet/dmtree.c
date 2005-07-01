@@ -9,6 +9,7 @@
 extern void cerro();
 
 #include "../machine.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #if WIN32
 extern int F2C(arbor)();
@@ -24,35 +25,35 @@ int *i0,*la1,*lp1,*ls1,*m,*n,*pred,*w;
   isize = sizeof(int); dsize = sizeof(double);
 
   nndim = 2 * *n;
-  if ((alphi = (int *)malloc(nndim * isize)) == NULL) {
+  if ((alphi = (int *)MALLOC(nndim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((beta = (int *)malloc(nndim * isize)) == NULL) {
+  if ((beta = (int *)MALLOC(nndim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((f = (int *)malloc(nndim * isize)) == NULL) {
+  if ((f = (int *)MALLOC(nndim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((g = (int *)malloc(nndim * isize)) == NULL) {
+  if ((g = (int *)MALLOC(nndim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((ind = (int *)malloc(nndim * isize)) == NULL) {
+  if ((ind = (int *)MALLOC(nndim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((pred1 = (int *)malloc(nndim * isize)) == NULL) {
+  if ((pred1 = (int *)MALLOC(nndim * isize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((z = (double *)malloc(nndim * dsize)) == NULL) {
+  if ((z = (double *)MALLOC(nndim * dsize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
-  if ((zsom = (double *)malloc(nndim * dsize)) == NULL) {
+  if ((zsom = (double *)MALLOC(nndim * dsize)) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -61,6 +62,6 @@ int *i0,*la1,*lp1,*ls1,*m,*n,*pred,*w;
 
   for (i = 0; i < *n; i++) pred[i] = pred1[i];
 
-  free(alphi); free(beta); free(f); free(g); free(ind);
-  free(pred1); free(z); free(zsom);
+  FREE(alphi); FREE(beta); FREE(f); FREE(g); FREE(ind);
+  FREE(pred1); FREE(z); FREE(zsom);
 }

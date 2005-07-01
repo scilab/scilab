@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #define BITN(x,n) ( (x>>n) & 0x1 ) 
 #define Max(x,y)	(((x)>(y))?(x):(y))
 
@@ -78,11 +80,11 @@ int ReadbdfFont(f,FontPtr,FontName)
       }
       else if (!strcmp(tag,"FONTBOUNDINGBOX")){
 	sscanf(s,"%s %d %d %d %d",tag,&width,&height,&globalleft,&globaltop);
-	Data = (char *)calloc(256*width*height,sizeof(char));
+	Data = (char *)CALLOC(256*width*height,sizeof(char));
 	if (Data == 0) return 1;
-	data = (char *)calloc(width*height+8,sizeof(char));
+	data = (char *)CALLOC(width*height+8,sizeof(char));
 	if (Data == 0) {
-	  free(Data);
+	  FREE(Data);
 	  return 1;
 	}
 	FontPtr->nchars = 256;
@@ -137,7 +139,7 @@ int ReadbdfFont(f,FontPtr,FontName)
 	nrow++;
       }
     }
-  free(data);
+  FREE(data);
   return 0;
 }
 

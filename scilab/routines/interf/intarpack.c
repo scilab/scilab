@@ -1,7 +1,12 @@
-#include "../mex.h"
-#include "../stack-c.h"
 #include <math.h>
 #include <string.h>
+
+
+#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../mex.h"
+#include "../stack-c.h"
+
+
 
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 

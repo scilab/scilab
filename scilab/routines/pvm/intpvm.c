@@ -22,6 +22,8 @@
 #include "../stack-c.h"
 #include "sci_pvm.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /******************************************
  * SCILAB function : pvm_error_mode
  ******************************************/

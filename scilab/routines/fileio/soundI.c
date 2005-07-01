@@ -17,6 +17,7 @@
 #include "../stack-c.h"
 #include "sox.h" 
 #include "stdio.h" 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
 			        long int nams_len));  
@@ -234,14 +235,14 @@ int intBeep (char *fname,unsigned long fname_len)
 	if (BeepON) BeepLinuxWindows();
 	}
 
-	output=(char*)malloc(6*sizeof(char));
+	output=(char*)MALLOC(6*sizeof(char));
 	n1=1;
 
 	if (BeepON) strcpy(output,"on");
 	else strcpy(output,"off");
 
 	CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
-	free(output);
+	FREE(output);
 	output=NULL;
 
 	LhsVar(1) = 1;

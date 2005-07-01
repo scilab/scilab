@@ -1,3 +1,5 @@
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /* C code produced by gperf version 3.0.1 */
 /* Command-line: gperf -C -t -k '2,3,4,$' Xcall1.gperf  */
 #if WIN32
@@ -860,8 +862,8 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
 	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
   }
   if (*v1==2) {
-    px=(integer *)malloc(((*p)+1)*sizeof(integer));
-    py=(integer *)malloc(((*p)+1)*sizeof(integer));
+    px=(integer *)MALLOC(((*p)+1)*sizeof(integer));
+    py=(integer *)MALLOC(((*p)+1)*sizeof(integer));
 	if (px==NULL || py==NULL) {
 		Scistring("fillpolylines_1 : malloc No more Place\n");
 		return;
@@ -875,8 +877,8 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
         py[*p]=py[0];     	 
         shade(px,py,&fillvect[(*p)*i],*p,(fillvect[(*p)*i]));
      }
-     free(px);
-     free(py);
+     FREE(px);
+     FREE(py);
   }
   else C2F(dr)(fname,str,xm,ym,fillvect,n,p,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 

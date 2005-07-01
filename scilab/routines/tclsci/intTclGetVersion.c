@@ -37,11 +37,11 @@ int C2F(intTclGetVersion) _PARAMS((char *fname))
 
 	sprintf(VersionString,TCL_MSG6,major,minor,patchLevel,ReleaseType);
 	
-	output=(char*)malloc((strlen(VersionString)+1)*sizeof(char));
+	output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
 	sprintf(output,"%s",VersionString);
 	n1=1;
 	CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
-	if (output) {free(output);output=NULL;}
+	if (output) {FREE(output);output=NULL;}
 			
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();

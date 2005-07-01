@@ -25,7 +25,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 			GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
 			StrField=cstk(l1);
-			StrValue=(char*)malloc((StrMax+1)*sizeof(char));
+			StrValue=(char*)MALLOC((StrMax+1)*sizeof(char));
 
 			if(!GetScreenProperty(StrField,StrValue))
 			{
@@ -33,15 +33,15 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 				n1=1;
 				m1=nbelem;
 				CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
-				if (MatrixOut) {free(MatrixOut); MatrixOut=NULL;}
+				if (MatrixOut) {FREE(MatrixOut); MatrixOut=NULL;}
 			}
 			else
 			{
-				if (StrValue) {free(StrValue); StrValue=NULL;}
+				if (StrValue) {FREE(StrValue); StrValue=NULL;}
 				Scierror(999,TCL_ERROR30,StrField);
 				return 0;
 			}
-			if (StrValue) {free(StrValue); StrValue=NULL;}
+			if (StrValue) {FREE(StrValue); StrValue=NULL;}
 			bOK=1;
 		}
 		else
@@ -93,7 +93,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						n1=1;
 						m1=nbelem;
 						CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
-						if (MatrixOut) {free(MatrixOut); MatrixOut=NULL;}
+						if (MatrixOut) {FREE(MatrixOut); MatrixOut=NULL;}
 						bOK=1;
 					}
 					else

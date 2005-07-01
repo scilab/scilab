@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intconsoledos.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 int C2F(intconsoledos) _PARAMS((char *fname))
 {
@@ -13,7 +14,7 @@ int C2F(intconsoledos) _PARAMS((char *fname))
 	CheckRhs(0,1);
 	CheckLhs(0,1);
 
-	Output=(char*)malloc(4*sizeof(char));
+	Output=(char*)MALLOC(4*sizeof(char));
 
 	if (Rhs==0)
 	{
@@ -84,7 +85,7 @@ int C2F(intconsoledos) _PARAMS((char *fname))
 	CreateVarFromPtr( 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
-	if (Output) {free(Output);Output=NULL;}
+	if (Output) {FREE(Output);Output=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

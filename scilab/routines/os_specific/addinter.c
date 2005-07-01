@@ -14,6 +14,8 @@
 
 #include "../stack-def.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
 extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job));  
 extern int C2F(error)  __PARAMS((integer *n));  
@@ -72,7 +74,7 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
   files=NULL; /* Initialisation pour Windows */
 
   Use_cpp_code=*lib_cpp;
-  Use_c_cpp = (char *) malloc((strlen(c_cpp) +1) * sizeof(char));
+  Use_c_cpp = (char *) MALLOC((strlen(c_cpp) +1) * sizeof(char));
   strcpy(Use_c_cpp,c_cpp);
 
   if ( *iflag == -1 ) 

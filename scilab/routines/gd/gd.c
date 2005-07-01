@@ -3,7 +3,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "gd.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "mtables.c"
+
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
 /* MONO returns total intensity of r,g,b components */
@@ -20,9 +22,9 @@ gdImagePtr gdImageCreate(sx, sy)
 {
 	int i;
 	gdImagePtr im;
-	im = (gdImage *) malloc(sizeof(gdImage));
+	im = (gdImage *) MALLOC(sizeof(gdImage));
 	/* NOW ROW-MAJOR IN GD 1.3 */
-	im->pixels = (unsigned char **) malloc(sizeof(unsigned char *) * sy);
+	im->pixels = (unsigned char **) MALLOC(sizeof(unsigned char *) * sy);
 	im->polyInts = 0;
 	im->polyAllocated = 0;
 	im->brush = 0;
@@ -30,7 +32,7 @@ gdImagePtr gdImageCreate(sx, sy)
 	im->style = 0;
 	for (i=0; (i<sy); i++) {
 		/* NOW ROW-MAJOR IN GD 1.3 */
-		im->pixels[i] = (unsigned char *) calloc(
+		im->pixels[i] = (unsigned char *) CALLOC(
 			sx, sizeof(unsigned char));
 	}	
 	im->sx = sx;
@@ -55,16 +57,16 @@ void gdImageDestroy(im)
 {
 	int i;
 	for (i=0; (i<im->sy); i++) {
-		free(im->pixels[i]);
+		FREE(im->pixels[i]);
 	}	
-	free(im->pixels);
+	FREE(im->pixels);
 	if (im->polyInts) {
-			free(im->polyInts);
+			FREE(im->polyInts);
 	}
 	if (im->style) {
-		free(im->style);
+		FREE(im->style);
 	}
-	free(im);
+	FREE(im);
 }
 
 int gdImageColorClosest(im, r, g, b)
@@ -2622,8 +2624,8 @@ void gdImageCopyResized(dst, src, dstX, dstY, srcX, srcY, dstW, dstH, srcW, srcH
 	/* We only need to use floating point to determine the correct
 		stretch vector for one line's worth. */
 	double accum;
-	stx = (int *) malloc(sizeof(int) * srcW);
-	sty = (int *) malloc(sizeof(int) * srcH);
+	stx = (int *) MALLOC(sizeof(int) * srcW);
+	sty = (int *) MALLOC(sizeof(int) * srcH);
 	accum = 0;
 	for (i=0; (i < srcW); i++) {
 		int got;
@@ -2692,8 +2694,8 @@ void gdImageCopyResized(dst, src, dstX, dstY, srcX, srcY, dstW, dstH, srcW, srcH
 			toy++;
 		}
 	}
-	free(stx);
-	free(sty);
+	FREE(stx);
+	FREE(sty);
 }
 
 int gdGetWord(result, in)
@@ -2962,14 +2964,14 @@ void gdImageFilledPolygon(im,p,n,c)
 		return;
 	}
 	if (!im->polyAllocated) {
-		im->polyInts = (int *) malloc(sizeof(int) * n);
+		im->polyInts = (int *) MALLOC(sizeof(int) * n);
 		im->polyAllocated = n;
 	}		
 	if (im->polyAllocated < n) {
 		while (im->polyAllocated < n) {
 			im->polyAllocated *= 2;
 		}	
-		im->polyInts = (int *) realloc(im->polyInts,
+		im->polyInts = (int *) REALLOC(im->polyInts,
 			sizeof(int) * im->polyAllocated);
 	}
 	miny = p[0].y;
@@ -3039,10 +3041,10 @@ void gdImageSetStyle(im, style, noOfPixels)
      int noOfPixels;
 {
 	if (im->style) {
-		free(im->style);
+		FREE(im->style);
 	}
 	im->style = (int *) 
-		malloc(sizeof(int) * noOfPixels);
+		MALLOC(sizeof(int) * noOfPixels);
 	memcpy(im->style, style, sizeof(int) * noOfPixels);
 	im->styleLength = noOfPixels;
 	im->stylePos = 0;

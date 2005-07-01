@@ -22,6 +22,8 @@
 #include "Warnings.h"
 #include "Messages.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /*-----------------------------------------------------------------------------------*/
 #ifndef NULL
   #define NULL 0

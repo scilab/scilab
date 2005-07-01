@@ -2,7 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "inttoolbar.h"
+#include "intOEMconvert.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
   extern BOOL IsWindowInterface(void);
@@ -25,7 +26,7 @@ int C2F(intoemtochar) _PARAMS((char *fname))
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		OEMstring=cstk(l1);
 		
-		Output=(char*)malloc((strlen(OEMstring)+1)*sizeof(char));
+		Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
 	#if WIN32
 		if (IsWindowInterface())
 		{
@@ -49,7 +50,7 @@ int C2F(intoemtochar) _PARAMS((char *fname))
 	CreateVarFromPtr( 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
-	if (Output) {free(Output);Output=NULL;}
+	if (Output) {FREE(Output);Output=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -69,7 +70,7 @@ int C2F(intchartooem) _PARAMS((char *fname))
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		Charstring=cstk(l1);
 
-		Output=(char*)malloc((strlen(Charstring)+1)*sizeof(char));
+		Output=(char*)MALLOC((strlen(Charstring)+1)*sizeof(char));
 	#if WIN32
 		if (IsWindowInterface())
 		{
@@ -93,7 +94,7 @@ int C2F(intchartooem) _PARAMS((char *fname))
 	CreateVarFromPtr( 1, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
-	if (Output) {free(Output);Output=NULL;}
+	if (Output) {FREE(Output);Output=NULL;}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

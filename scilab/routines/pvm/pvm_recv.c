@@ -9,7 +9,7 @@
      
    HISTORY
      fleury - Nov 19, 1997: Created.
-     $Id: pvm_recv.c,v 1.5 2005/01/07 20:49:25 cornet Exp $
+     $Id: pvm_recv.c,v 1.6 2005/07/01 07:08:13 cornet Exp $
 ***/
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,6 +24,7 @@
 #include "../calelm/sci_tools.h"
 #include "sci_pvm.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
 		     int *tid,  int *tag, int *res)
@@ -73,7 +74,7 @@ void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
 #endif /* DEBUG */
 
   /* unpack the packing vector */
-  if ((pack = (int *) malloc(n * sizeof(int))) == NULL) {
+  if ((pack = (int *) MALLOC(n * sizeof(int))) == NULL) {
     (void) fprintf(stderr, "Error malloc in pvm_recv\n");
     pvm_freebuf(bufid);
     *res = PvmNoMem;
@@ -145,7 +146,7 @@ void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,
   *res = info;
   *tag = msgtag;
   *tid = msgtid;
-  free(pack);
+  FREE(pack);
 } /* scipvmrecv */
 
 

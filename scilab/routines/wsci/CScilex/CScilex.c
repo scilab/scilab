@@ -8,7 +8,7 @@
 #include "../Messages.h"
 #include "../Warnings.h"
 #include "../Errors.h"
-
+#include "../../sci_mem_alloc.h" /* MALLOC */
 
 extern int Console_Main(int argc, char **argv);
 
@@ -120,7 +120,7 @@ int main (int argc, char **argv)
 	if (FindNW==0)
 	{
 		char *nwparam=NULL;
-		nwparam=(char*)malloc((strlen("-nw")+1)*sizeof(char));
+		nwparam=(char*)MALLOC((strlen("-nw")+1)*sizeof(char));
 		strcpy(nwparam,"-nw");
 		for (i=0;i<argc;i++)
 		{

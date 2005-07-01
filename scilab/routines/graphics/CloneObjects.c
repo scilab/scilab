@@ -23,6 +23,8 @@
 #include "bcg.h"
 #include "SetProperty.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /**sciCloneColormap
  * This function clone a colormap from the figure. It must be FREE a lesat.
  * It's the same for all sons
@@ -36,7 +38,7 @@ sciCloneColormap (sciPointObj * pobj)
   int m = sciGetNumColors (pobj);
   int i;
 
-  if ((rgbmat = malloc (m * 3 * sizeof (double))) == NULL)
+  if ((rgbmat = MALLOC (m * 3 * sizeof (double))) == NULL)
     return (double *) NULL;
 
   for (i = 0; i < m; i++)
@@ -286,6 +288,7 @@ sciPointObj *
 CloneArc (sciPointObj * pthis)
 {
   sciPointObj * pobj, *subwinparent;
+
   int foreground = sciGetForeground(pthis);
   int background = sciGetBackground(pthis);
 

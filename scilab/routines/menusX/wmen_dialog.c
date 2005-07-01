@@ -7,6 +7,8 @@
 
 #include "wmen_scilab.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern SciDialog ScilabDialog;
 
 /****************************************************

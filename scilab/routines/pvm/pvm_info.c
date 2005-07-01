@@ -9,7 +9,7 @@
      PVM task information
    HISTORY
      fleury - Nov 18, 1997: Created.
-     $Id: pvm_info.c,v 1.5 2005/01/07 20:49:25 cornet Exp $
+     $Id: pvm_info.c,v 1.6 2005/07/01 07:08:13 cornet Exp $
 ***/
 
 #include <stdio.h>
@@ -24,6 +24,7 @@
 #include "../stack-c.h" 
 #include "sci_pvm.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*---------------------------------------------------
  * get configuration informations 
  *---------------------------------------------------*/
@@ -47,34 +48,34 @@ void C2F(scipvmconfig)(int *nhost, int *narch, int **dtid,
     *narch = 0;
     return;
   }
-  if (((*name) = (char **) malloc((*nhost+1) * sizeof(char**))) == NULL) {
+  if (((*name) = (char **) MALLOC((*nhost+1) * sizeof(char**))) == NULL) {
     *info = PvmNoMem;
     return;
   }
   (*name)[*nhost]=NULL;
-  if (((*arch) = (char **) malloc((*nhost+1) * sizeof(char**))) == NULL) {
+  if (((*arch) = (char **) MALLOC((*nhost+1) * sizeof(char**))) == NULL) {
     *info = PvmNoMem;
     return;
   }
   (*arch)[*nhost]=NULL;
-  if ((*dtid = (int *) malloc(*nhost * sizeof(int))) == NULL) {
+  if ((*dtid = (int *) MALLOC(*nhost * sizeof(int))) == NULL) {
     *info = PvmNoMem;
     return;
   }
-  if ((*speed = (int *) malloc(*nhost * sizeof(int))) == NULL) {
+  if ((*speed = (int *) MALLOC(*nhost * sizeof(int))) == NULL) {
     *info = PvmNoMem;
     return;
   }
   
   for (i = 0; i < *nhost; ++i) {
-    if (((*name)[i] = (char *) malloc((1+strlen(hostp[i].hi_name)) * 
+    if (((*name)[i] = (char *) MALLOC((1+strlen(hostp[i].hi_name)) * 
 				      sizeof(char*))) == NULL) {
       *info = PvmNoMem;
       return;
     }
     (void) sprintf((*name)[i], "%s", hostp[i].hi_name);
     
-    if (((*arch)[i] = (char *) malloc((1+strlen(hostp[i].hi_arch)) * 
+    if (((*arch)[i] = (char *) MALLOC((1+strlen(hostp[i].hi_arch)) * 
 				      sizeof(char*))) == NULL) {
       *info = PvmNoMem;
       return;
@@ -108,23 +109,23 @@ void C2F(scipvmtasks)(int *where, int *ntask,
     *name = NULL;
     return;
   }
-  if ((*tid = (int *) malloc(*ntask * sizeof(int))) == NULL) {
+  if ((*tid = (int *) MALLOC(*ntask * sizeof(int))) == NULL) {
     *info = PvmNoMem;
     return;
   }
-  if ((*ptid = (int *) malloc(*ntask * sizeof(int))) == NULL) {
+  if ((*ptid = (int *) MALLOC(*ntask * sizeof(int))) == NULL) {
     *info = PvmNoMem;
     return;
   }
-  if ((*dtid = (int *) malloc(*ntask * sizeof(int))) == NULL) {
+  if ((*dtid = (int *) MALLOC(*ntask * sizeof(int))) == NULL) {
     *info = PvmNoMem;
     return;
   }
-  if ((*flag = (int *) malloc(*ntask * sizeof(int))) == NULL) {
+  if ((*flag = (int *) MALLOC(*ntask * sizeof(int))) == NULL) {
     *info = PvmNoMem;
     return;
   }
-  if (((*name) = (char* *) malloc((*ntask+1) * sizeof(char**))) == NULL) {
+  if (((*name) = (char* *) MALLOC((*ntask+1) * sizeof(char**))) == NULL) {
     *info = PvmNoMem;
     return;
   }
@@ -135,7 +136,7 @@ void C2F(scipvmtasks)(int *where, int *ntask,
     (*ptid)[i] =  taskp[i].ti_ptid;
     (*dtid)[i] =  taskp[i].ti_host;
     (*flag)[i] =  taskp[i].ti_flag;
-    if (((*name)[i] = (char *) malloc((1+strlen(taskp[i].ti_a_out)) * 
+    if (((*name)[i] = (char *) MALLOC((1+strlen(taskp[i].ti_a_out)) * 
 				      sizeof(char*))) == NULL) {
       *info = PvmNoMem;
       return;

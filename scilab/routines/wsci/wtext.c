@@ -38,7 +38,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 char ScilexWindowName[MAX_PATH];
 
@@ -2179,7 +2179,7 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 						break;
 					}
 
-					if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}		
+					if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
 
 					error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
 					if (error<= 32) 
@@ -2269,7 +2269,7 @@ void HelpOn(LPTW lptw)
 		
 		lpMem= GlobalLock (hGMem);
 		l=strlen(lpMem);
-		MessagePaste=(char*)malloc( (l+1)*sizeof(char));
+		MessagePaste=(char*)MALLOC( (l+1)*sizeof(char));
 		strcpy(MessagePaste,lpMem);
 		MessagePaste[l]='\0';
 		GlobalUnlock (hGMem);
@@ -2306,7 +2306,7 @@ void HelpOn(LPTW lptw)
 		}
 		
 		if (strcmp (Command,"help \"\"")!=0 ) StoreCommand1 (Command,0);
-		free(MessagePaste);
+		FREE(MessagePaste);
 	}
 	
 }
@@ -2395,7 +2395,7 @@ void EvaluateSelection(LPTW lptw)
 		
 		lpMem= GlobalLock (hGMem);
 		l=strlen(lpMem);
-		MessagePaste=(char*)malloc(l*sizeof(char));
+		MessagePaste=(char*)MALLOC(l*sizeof(char));
 		strcpy(MessagePaste,lpMem);
 		GlobalUnlock (hGMem);
 	}
@@ -2443,7 +2443,7 @@ void OpenSelection(LPTW lptw)
 		
 		lpMem= GlobalLock (hGMem);
 		l=strlen(lpMem);
-		MessagePaste=(char*)malloc(l*sizeof(char));
+		MessagePaste=(char*)MALLOC(l*sizeof(char));
 		strcpy(MessagePaste,lpMem);
 		GlobalUnlock (hGMem);
 		
@@ -2723,7 +2723,7 @@ void CleanPromptFromText(char *Text)
 	int i=0;
 	
 	LenText=strlen(Text)+1;
-	CleanText=(char*)malloc(LenText*sizeof(char));
+	CleanText=(char*)MALLOC(LenText*sizeof(char));
 	strcpy(CleanText,Text);
 	
 	strcpy(prompt,"-->");
@@ -2743,7 +2743,7 @@ void CleanPromptFromText(char *Text)
 	
 	strcpy(Text,CleanText);
 	
-	free(CleanText);
+	FREE(CleanText);
 }
 /*-----------------------------------------------------------------------------------*/
 int ReplacePrompt(char *Text,char *prompt)
@@ -2756,8 +2756,8 @@ int ReplacePrompt(char *Text,char *prompt)
 	
 	char *OccurenceDebutPrompt=NULL;
 	
-	LocalPrompt=(char*)malloc((strlen(prompt)+1)*sizeof(char));
-	TextTMP=(char*)malloc((strlen(Text)+1)*sizeof(char));
+	LocalPrompt=(char*)MALLOC((strlen(prompt)+1)*sizeof(char));
+	TextTMP=(char*)MALLOC((strlen(Text)+1)*sizeof(char));
 	
 	strcpy(TextTMP,Text);
 	strcpy(LocalPrompt,prompt);
@@ -2781,8 +2781,8 @@ int ReplacePrompt(char *Text,char *prompt)
 	
 	strcpy(Text,TextTMP);		
 	
-	free(TextTMP);
-	free(LocalPrompt);
+	FREE(TextTMP);
+	FREE(LocalPrompt);
 	return Retour;
 	
 }
@@ -2856,7 +2856,7 @@ void ReAllocScreenBuffer(LPTW lptw)
 		
 	/* Nombre de caracteres réellement utilisé */
 	NombredeCaracteres=lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
-	CopyOfScreenBuffer=(char*)malloc( (NombredeCaracteres+1)* sizeof(char));
+	CopyOfScreenBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
 	if (CopyOfScreenBuffer == NULL)
     	{
       		MessageBox ((HWND) NULL, szNoMemory, (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
@@ -2890,10 +2890,10 @@ void ReAllocScreenBuffer(LPTW lptw)
   	/* Recopie */
 	memcpy(lptw->ScreenBuffer,CopyOfScreenBuffer,NombredeCaracteres);
 	/* Libération du buffer intermédiaire */
-	free(CopyOfScreenBuffer);
+	FREE(CopyOfScreenBuffer);
 	
 	/* Idem à ci-dessus pour le buffer des couleurs des caracteres */		
-	CopyOfAttribBuffer=(char*)malloc( (NombredeCaracteres+1)* sizeof(char));
+	CopyOfAttribBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
 	if (CopyOfAttribBuffer == NULL)
     	{
       		MessageBox ((HWND) NULL, szNoMemory, (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
@@ -2916,7 +2916,7 @@ void ReAllocScreenBuffer(LPTW lptw)
     	}
   	_fmemset (lptw->AttrBuffer, NOTEXT, lptw->ScreenSize.x * NewScreenSizeY);
   	memcpy(lptw->AttrBuffer,CopyOfAttribBuffer,NombredeCaracteres);
-	free(CopyOfAttribBuffer);
+	FREE(CopyOfAttribBuffer);
 	
 	/* Nouveau Max. de la scrollbar verticale */
 	lptw->ScrollMax.y=lptw->ScrollMax.y+(lptw->CharSize.y*AddLines);
@@ -2939,19 +2939,19 @@ void ReorganizeScreenBuffer(LPTW lptw)
       	DecalageY=lptw->ScreenSize.x*RemoveLines;
 
       	
-	CopyOfScreenBuffer=(char*)malloc( (NombredeCaracteres+1)* sizeof(char));
+	CopyOfScreenBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
 			
       	strncpy(CopyOfScreenBuffer,(LPSTR)(lptw->ScreenBuffer+DecalageY),NombredeCaracteres-DecalageY);
       	_fmemset (lptw->ScreenBuffer, ' ', lptw->ScreenSize.x * lptw->ScreenSize.y);
       	strncpy((LPSTR)lptw->ScreenBuffer,CopyOfScreenBuffer,NombredeCaracteres-DecalageY);
-      	free(CopyOfScreenBuffer);
+      	FREE(CopyOfScreenBuffer);
       			
       			
-      	CopyOfAttribBuffer=(char*)malloc( (NombredeCaracteres+1)* sizeof(char));
+      	CopyOfAttribBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
       	strncpy(CopyOfAttribBuffer,(LPSTR)(lptw->AttrBuffer+DecalageY),NombredeCaracteres-DecalageY);
       	_fmemset (lptw->AttrBuffer, NOTEXT, lptw->ScreenSize.x * lptw->ScreenSize.y);
       	strncpy((LPSTR)lptw->AttrBuffer,CopyOfAttribBuffer,NombredeCaracteres-DecalageY);
-      	free(CopyOfAttribBuffer);
+      	FREE(CopyOfAttribBuffer);
       	
       	
       	lptw->CursorPos.y=lptw->CursorPos.y-RemoveLines;
@@ -3310,11 +3310,11 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand)
 		char *CommandLine=NULL;
 		
 		lg=strlen(StringCommand);
-		CommandLine=(char*)malloc( (lg+1)*sizeof(char) );
+		CommandLine=(char*)MALLOC( (lg+1)*sizeof(char) );
 		wsprintf(CommandLine,"%s\n",StringCommand);
 
 		WriteIntoKeyBuffer(lptw,CommandLine);
-		free(CommandLine);
+		FREE(CommandLine);
 		retour=TRUE;
 	}
 

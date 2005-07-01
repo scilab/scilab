@@ -1,6 +1,6 @@
 #include <string.h>
 #include "../machine.h"
-#include "../graphics/Math.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../os_specific/men_Sutils.h"
 #include "libinter.h"
 
@@ -8,7 +8,7 @@ extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *
 
 #include "cerro.h"
 #include "sparse.h"
-#define FREE(x) if (x  != NULL) free((char *) x);
+
 
 extern void C2F(erro)();
 extern void C2F(out)();
@@ -46,7 +46,7 @@ void C2F(ccharf)(n,ip,op)
   int i = 0;
   if (*n > 0) {
     F2C(cvstr)(n,op,*ip,&i,*n);
-    free(*ip);
+    FREE(*ip);
   }
 }
 
@@ -75,7 +75,7 @@ void C2F(cdoublef)(n,ip,op)
   int i;
   if ( *n >0 ) {
     for (i = 0; i < *n; i++)  op[i]=(*ip)[i];
-    free((char *)(*ip));
+    FREE((char *)(*ip));
   }
 }
 
@@ -105,7 +105,7 @@ void C2F(cintf)(n,ip,op)
   if ( *n > 0 ) {
     for (i = 0; i < *n; i++)
       op[i]=(double)(*ip)[i];
-    free((char *)(*ip));
+    FREE((char *)(*ip));
   }
 }
 
@@ -135,7 +135,7 @@ void C2F(cfloatf)(n,ip,op)
   if ( *n > 0 ) {
     for (i = 0; i < *n; i++)
       op[i]=(double)(*ip)[i];
-    free((char *)(*ip));
+    FREE((char *)(*ip));
   }
 }
 
@@ -165,7 +165,7 @@ void C2F(cboolf)(n,ip,op)
   if ( *n > 0 ) {
     for (i = 0; i < *n; i++)
       op[i]= (*ip)[i];
-    free((char *)(*ip));
+    FREE((char *)(*ip));
   }
 }
 
@@ -226,11 +226,11 @@ void C2F(cstringf)(ip,sciptr,m,n,max,ierr)
         return;
       }
       F2C(cvstr)(&l,&(chars[sciptr[ie+4]-1]),(*ip)[ie],&job,l);
-      free((*ip)[ie]);
+      FREE((*ip)[ie]);
       ie++;
     }
   }
-  free((char *)*ip);
+  FREE((char *)*ip);
 }
 
 
@@ -250,7 +250,7 @@ int C2F(stringc)(sciptr,cptr,ierr)
   
   *ierr=0;
   nstring=sciptr[1]*sciptr[2];
-  strings=(char **) malloc((unsigned) (nstring * sizeof(char *)));
+  strings=(char **) MALLOC((unsigned) (nstring * sizeof(char *)));
   if (strings==0) {
     *ierr=1; return 0;
   }
@@ -290,7 +290,7 @@ void C2F(dbl2cdbl)(n,ip,op)
 void C2F(freeptr)(ip)
      double *ip[];
 { 
-  free((char *)(*ip));
+  FREE((char *)(*ip));
 }
 
 /*--------------------------------------------------------------
@@ -314,7 +314,7 @@ SciSparse *NewSparse(it,m,n,nel)
      int *m,*n,*nel,*it;
 {
   SciSparse *loc;
-  loc = (SciSparse *) malloc((unsigned) sizeof(SciSparse));
+  loc = (SciSparse *) MALLOC((unsigned) sizeof(SciSparse));
   if ( loc == (SciSparse *) 0)
     {
       return((SciSparse *) 0);
@@ -323,20 +323,20 @@ SciSparse *NewSparse(it,m,n,nel)
   loc->n = *n;
   loc->it = *it;
   loc->nel = *nel;
-  loc->mnel = (int*) malloc((unsigned) (*m)*sizeof(int));
+  loc->mnel = (int*) MALLOC((unsigned) (*m)*sizeof(int));
   if ( loc->mnel == (int *) 0)
     {
       FREE(loc);
       return((SciSparse *) 0);
     }
-  loc->icol = (int*) malloc((unsigned) (*nel)*sizeof(int));
+  loc->icol = (int*) MALLOC((unsigned) (*nel)*sizeof(int));
   if ( loc->icol == (int *) 0)
     {
       FREE(loc->mnel);
       FREE(loc);
       return((SciSparse *) 0);
     }
-  loc->R =  (double*) malloc((unsigned) (*nel)*sizeof(double));
+  loc->R =  (double*) MALLOC((unsigned) (*nel)*sizeof(double));
   if ( loc->R == (double *) 0)
     {
       FREE(loc->icol);
@@ -347,7 +347,7 @@ SciSparse *NewSparse(it,m,n,nel)
 
   if ( *it == 1) 
     {
-      loc->I =  (double*) malloc((unsigned) (*nel)*sizeof(double));
+      loc->I =  (double*) MALLOC((unsigned) (*nel)*sizeof(double));
       if ( loc->I == (double *) 0)
 	{
 	  FREE(loc->R);

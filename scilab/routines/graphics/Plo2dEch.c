@@ -17,6 +17,8 @@
 #include "Interaction.h"
 #include "DrawObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /*----------------------------------------------
  * A List for storing Window scaling information 
  *----------------------------------------------*/

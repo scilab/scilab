@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.17  2005/07/01 07:08:13  cornet
+     replace malloc, free, calloc & realloc by MALLOC,FREE,CALLOC & REALLOC defined in SCI/routines/sci_mem_alloc.h
+
      Revision 1.16  2005/06/01 09:18:36  chancelier
      error messages
 
@@ -110,6 +113,8 @@
 
 ***/
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #if defined(__EDG__)
 #include <time.h>
 #endif
@@ -143,6 +148,8 @@
 
 #ifdef __ABSC__ /* For the definition of _stricmp */
 #include <ctype.h>
+
+
 
 int _stricmp(const char *s1, const char *s2)
 {
@@ -283,8 +290,8 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
        *	 faire pvmd...
        */ 
       if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
-	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+	if ((path = (char *) MALLOC(strlen(rd)+12)) == NULL) {
+	  (void) fprintf(stderr, "Error MALLOC in pvm_error\n");
 	  *res = PvmNoMem;
 	  return;
 	}
@@ -298,11 +305,11 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 	  sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
 	  sciprint_nd("\tbut there exists no configuration file:\r\n");
 	  sciprint_nd("\t%s\r\n", path);
-	  free(path);
+	  FREE(path);
 	}
       } /* PVM_ROOT + HOME */
       if (!argc && (rd = getenv("SCI"))){
-	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+	if ((path = (char *) MALLOC(strlen(rd)+12)) == NULL) {
 	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
 	  *res = PvmNoMem;
 	  return;
@@ -317,7 +324,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 	  argc = 1;
 	  argv[0] = path;
 	} else {
-	  free(path);
+	  FREE(path);
 	  sciprint_nd("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
 	  sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
 	  sciprint_nd("\t (Cf. man pvmd3)\r\n");

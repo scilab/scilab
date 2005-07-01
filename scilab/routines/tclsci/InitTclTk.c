@@ -147,7 +147,7 @@ int OpenTCLsci(void)
       flushTKEvents();
     }
 
-  if (SciPath) {free(SciPath);SciPath=NULL;}
+  if (SciPath) {FREE(SciPath);SciPath=NULL;}
   return(0);
 
 }
@@ -163,7 +163,7 @@ char *GetSciPath(void)
 
 	if (SciPathTmp)
 	{
-		PathUnix=(char*)malloc( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
+		PathUnix=(char*)MALLOC( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
 
 		strcpy(PathUnix,SciPathTmp);
 		for (i=0;i<(int)strlen(PathUnix);i++)

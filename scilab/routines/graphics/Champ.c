@@ -15,6 +15,8 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 static double MiniD __PARAMS((double *x,integer n));
 extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
 					 integer *arsize,integer *colored,double *x,double *y,

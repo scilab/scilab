@@ -11,6 +11,8 @@
 #include <string.h> /* in case of dbmalloc use */
 #include "Math.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /*--------------------------------------------
  * void graphic_alloc_info() 
  * void graphic_alloc_free()
@@ -78,7 +80,7 @@ void graphic_alloc_free(void)
   for (i = 0 ; i < S_alloc_max ; i++) 
     if ( Storage[i].init == 1 ) 
       {
-	free(Storage[i].storage);
+	FREE(Storage[i].storage);
 	Storage[i].init = 0;
       }
 }

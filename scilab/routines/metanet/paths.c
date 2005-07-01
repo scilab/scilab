@@ -9,6 +9,8 @@
 
 
 #include "../machine.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 
 extern void cerro();
 
@@ -62,7 +64,7 @@ int **p;
     cerro(str);
     return;
   }
-  if ((nodes = (int *)malloc((*m + 1) * sizeof(int))) == NULL) {
+  if ((nodes = (int *)MALLOC((*m + 1) * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -82,12 +84,12 @@ int **p;
     }
   }
   *psize = nn - 1;
-  if ((*p = (int *)malloc(*psize * sizeof(int))) == NULL) {
+  if ((*p = (int *)MALLOC(*psize * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }
   NodesToPath(nodes,p,psize,la,lp,ls);
-  free(nodes);
+  FREE(nodes);
 }
 
 /* ns2p_ converts a node set into a path:
@@ -101,7 +103,7 @@ int **p;
 {
   int a,i,j,n1,n2;
   *psize = *nsize - 1;
-  if ((*p = (int *)malloc(*psize * sizeof(int))) == NULL) {
+  if ((*p = (int *)MALLOC(*psize * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -144,7 +146,7 @@ int **nodes;
 {
   int ma,a,i,j,k,n1,n2;
   *nsize = *psize + 1;
-  if ((*nodes = (int *)malloc(*nsize * sizeof(int))) == NULL) {
+  if ((*nodes = (int *)MALLOC(*nsize * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -227,7 +229,7 @@ int **tree;
 {
   int i;
   *treesize = *n - 1;
-  if ((*tree = (int *)malloc(*treesize * sizeof(int))) == NULL) {
+  if ((*tree = (int *)MALLOC(*treesize * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }
@@ -249,7 +251,7 @@ int **tree;
 {
   int i,in,j,nt,indic;
   *treesize = *n - 1;
-  if ((*tree = (int *)malloc(*treesize * sizeof(int))) == NULL) {
+  if ((*tree = (int *)MALLOC(*treesize * sizeof(int))) == NULL) {
     cerro("Running out of memory");
     return;
   }

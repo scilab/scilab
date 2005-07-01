@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include "../graphics/Math.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "men_Sutils.h"
 #include "link.h"
 

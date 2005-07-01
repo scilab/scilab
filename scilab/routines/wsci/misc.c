@@ -51,6 +51,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 extern char input_line[];
 extern jmp_buf env;		/* from plot.c */
@@ -65,14 +66,13 @@ extern jmp_buf env;		/* from plot.c */
  * so it depends on this using malloc().
  *****************************************************************/
 
-char *
-alloc (unsigned long size, char *message)
+char * alloc (unsigned long size, char *message)
      /* unsigned long size;     # of bytes */
      /* char *message;           description of what is being allocated */
 {
   char *p;			/* the new allocation */
   char errbuf[100];		/* error message string */
-  p = malloc ((size_t) size);	/* try again */
+  p = MALLOC ((size_t) size);	/* try again */
   if (p == (char *) NULL)
     {
       /* really out of memory */
@@ -92,8 +92,7 @@ alloc (unsigned long size, char *message)
  * if c not in str then p=strlen(str)
  *****************************************************/
 
-int 
-instring (char *str, char c)
+int instring (char *str, char c)
 {
   int pos = 0;
   while (str != NULL && *str != '\0' && c != *str)

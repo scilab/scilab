@@ -9,6 +9,8 @@
 #include "../Warnings.h"
 #include "../Errors.h"
 
+#include "../../sci_mem_alloc.h" /* MALLOC */
+
 extern int WINAPI Windows_Main(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow);
 
 
@@ -113,7 +115,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 
 
 	pFullCmdLine=GetCommandLine();
-	pFullCmdLineTmp=(char *) malloc( sizeof(char)*( strlen(pFullCmdLine)+1 ) );
+	pFullCmdLineTmp=(char *) MALLOC( sizeof(char)*( strlen(pFullCmdLine)+1 ) );
 	strcpy(pFullCmdLineTmp,pFullCmdLine);
 
 	argv[++argc] = strtok (pFullCmdLineTmp, " ");

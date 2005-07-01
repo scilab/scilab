@@ -104,7 +104,7 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 		GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
 		TmpPropertieField=cstk(l1);
 
-		PropertieField=(char*)malloc((strlen(TmpPropertieField)+1)*sizeof(char));
+		PropertieField=(char*)MALLOC((strlen(TmpPropertieField)+1)*sizeof(char));
 		sprintf(PropertieField,"%s",TmpPropertieField);
 
 		if (GetType(RhsPropertieValue) == sci_strings)
@@ -114,12 +114,12 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 			GetRhsVar(RhsPropertieValue,"c",&m1,&n1,&l1);
 			TmpCharValue=cstk(l1);
 
-            PropertieValue=(char*)malloc((strlen(TmpCharValue)+1)*sizeof(char));
+            PropertieValue=(char*)MALLOC((strlen(TmpCharValue)+1)*sizeof(char));
 			sprintf(PropertieValue,"%s",TmpCharValue);
 		}
 		else if (GetType(RhsPropertieValue) == sci_matrix)
 		{
-			if (PropertieValue){free(PropertieValue);PropertieValue=NULL;}
+			if (PropertieValue){FREE(PropertieValue);PropertieValue=NULL;}
 			PropertieValue=Matrix2String(RhsPropertieValue);
 		}
 		else
@@ -130,8 +130,8 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 
 		bOK=TCL_UiSet(Handle,PropertieField,PropertieValue);
 
-		if (PropertieField){free(PropertieField);PropertieField=NULL;}
-		if (PropertieValue){free(PropertieValue);PropertieValue=NULL;}
+		if (PropertieField){FREE(PropertieField);PropertieField=NULL;}
+		if (PropertieValue){FREE(PropertieValue);PropertieValue=NULL;}
 	}
 	else
 	{

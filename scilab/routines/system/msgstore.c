@@ -1,6 +1,9 @@
 #include <string.h>
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
 #include "msgstore.h"
+
+
 
 #define MEM_LACK 3
 #define MAX_LINES 2
@@ -41,7 +44,7 @@ int C2F(msgstore)(str,n)
   int i,count=0;
   if (msg_line_counter >= MAX_MSG_LINES)
     return(MAX_LINES);
-  if ( (line = (char *) malloc((*n + 1)*sizeof(char))) == (char *)0) 
+  if ( (line = (char *) MALLOC((*n + 1)*sizeof(char))) == (char *)0) 
     return(MEM_LACK);
   /* do not store \r\n" */ 
   for ( i= 0 ; i < *n ; i++ ) 
@@ -55,7 +58,7 @@ void C2F(freemsgtable)()
 {
   int k;
   for (k=0 ; k< msg_line_counter ; k++)
-    free(msg_buff[k]);
+    FREE(msg_buff[k]);
   msg_line_counter=0;
   err_n = 0;
 }

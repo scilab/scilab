@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../machine.h"
 
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
 
 /*---------------------------------------------------------------
@@ -70,8 +70,8 @@ int C2F(intreadxls)(char *fname, long lfn)
     {
       CreateVarFromPtr(Rhs+1, "d", &N,&M, &data);
       CreateVarFromPtr(Rhs+2, "i", &N,&M, &ind);
-      free(data);
-      free(ind);
+      FREE(data);
+      FREE(ind);
     }
 
 
@@ -98,6 +98,7 @@ char *name;
 
 int C2F(intopenxls)(char *fname, long lfn)
 {
+#undef IN
   int i,k,m1,n1,l1,l2,one=1,fd,f_swap=0;
   int ierr,ns,result;
   double res;
@@ -189,19 +190,19 @@ int C2F(intopenxls)(char *fname, long lfn)
   if (ns != 0) {
     /* Create a typed list to return the properties */
     CreateVarFromPtr(Rhs+2,"S", &one, &ns, sst);
-    for (k=0;k<ns;k++) free(sst[k]);
-    free(sst);}
+    for (k=0;k<ns;k++) FREE(sst[k]);
+    FREE(sst);}
   else
     CreateVar(Rhs+2,"d",&ns,&ns,&l2);
 
   if (nsheets != 0) {
     /* Create a typed list to return the properties */
     CreateVarFromPtr(Rhs+3,"S", &one, &nsheets, Sheetnames);
-    for (k=0;k<nsheets;k++) free(Sheetnames[k]);
-    free(Sheetnames);
+    for (k=0;k<nsheets;k++) FREE(Sheetnames[k]);
+    FREE(Sheetnames);
     CreateVar(Rhs+4,"d", &one, &nsheets, &l2);
     for (i=0;i<nsheets;i++) *stk(l2+i)=Abspos[i];
-    free(Abspos);
+    FREE(Abspos);
   }
   else {
     CreateVar(Rhs+3,"d",&nsheets,&nsheets,&l2);

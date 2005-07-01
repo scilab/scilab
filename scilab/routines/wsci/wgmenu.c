@@ -4,7 +4,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
 /*********************************
@@ -391,7 +391,7 @@ void LoadGraphMacros (struct BCG *ScilabGC)
 }
 /*-----------------------------------------------------------------------------------*/
 /************************************
- * Find a free position for storing 
+ * Find a FREE position for storing 
  * a new menu data
  ************************************/
 int WGFindMenuPos (BYTE ** macros)
@@ -1099,8 +1099,8 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 
   ScilabDirectory=GetScilabDirectory(FALSE);
 	
-  if (ScilabGC->lpgw->szMenuName!=NULL) free(ScilabGC->lpgw->szMenuName);
-  ScilabGC->lpgw->szMenuName = (LPSTR) malloc (strlen (ScilabDirectory) +strlen("\\bin\\")+ strlen (FILEGRAPHMENUENGLISH) + 1);
+  if (ScilabGC->lpgw->szMenuName!=NULL) FREE(ScilabGC->lpgw->szMenuName);
+  ScilabGC->lpgw->szMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) +strlen("\\bin\\")+ strlen (FILEGRAPHMENUENGLISH) + 1);
 	
   switch (LangCode)
   {
@@ -1112,7 +1112,7 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
       break;
   }
 
-  if (ScilabDirectory){free(ScilabDirectory);ScilabDirectory=NULL;}	
+  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}	
 }
 /*-----------------------------------------------------------------------------------*/
 void NewFigure(struct BCG * ScilabGC)
@@ -1158,7 +1158,7 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
       C2F(getwins)(&num,&ids ,&iflag);
       sizetab=num;
 
-      tab=(integer*)malloc(sizeof(integer)*sizetab);
+      tab=(integer*)MALLOC(sizeof(integer)*sizetab);
       for(i=0;i<sizetab;i++) tab[i]=0;
 
       iflag = 1; 
@@ -1169,7 +1169,7 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
 	  if(FreeNumber<tab[i]) FreeNumber=tab[i];	
 	}
       FreeNumber=FreeNumber+1;
-      free(tab);
+      FREE(tab);
     } 
   return FreeNumber;
 }

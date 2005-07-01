@@ -24,6 +24,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
@@ -1600,28 +1601,28 @@ sciSetText (sciPointObj * pobj, char text[], int n)
     {
     case SCI_TEXT:
       FREE(pTEXT_FEATURE (pobj)->ptextstring);
-      if ((pTEXT_FEATURE (pobj)->ptextstring = calloc (n+1, sizeof (char))) == NULL)
+      if ((pTEXT_FEATURE (pobj)->ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
 	return -1;
       strncpy (pTEXT_FEATURE (pobj)->ptextstring, text, n);
       pTEXT_FEATURE (pobj)->textlen = n;
       break;
     case SCI_TITLE:
       FREE(pTITLE_FEATURE (pobj)->text.ptextstring);
-      if ((pTITLE_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
+      if ((pTITLE_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
 	return -1;
       strncpy (pTITLE_FEATURE (pobj)->text.ptextstring, text, n);
       pTITLE_FEATURE (pobj)->text.textlen = n;
       break;
     case SCI_LEGEND:
       FREE(pLEGEND_FEATURE (pobj)->text.ptextstring);
-      if ((pLEGEND_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
+      if ((pLEGEND_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
 	return -1;
       strncpy (pLEGEND_FEATURE (pobj)->text.ptextstring, text, n);
       pLEGEND_FEATURE (pobj)->text.textlen = n;
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
       FREE(pLABEL_FEATURE (pobj)->text.ptextstring);
-      if ((pLABEL_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
+      if ((pLABEL_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
 	return -1;
       strncpy (pLABEL_FEATURE (pobj)->text.ptextstring, text, n);
       pLABEL_FEATURE (pobj)->text.textlen = n;
@@ -3327,14 +3328,14 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	nx=*numrow-1;
 	ny=*numcol-1;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
-	  if ((pvecx = calloc(nx,sizeof(double))) == NULL) {
+	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
 	    sciprint ("Not enough memory\n");
 	    return -1;}
-	  if ((pvecy = calloc(ny,sizeof(double))) == NULL) {
+	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);
 	    sciprint ("Not enough memory\n");
 	    return -1;}
-	  if ((pvecz = calloc(nx*ny,sizeof(double))) == NULL) {
+	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);FREE(pvecy);
 	    sciprint ("Not enough memory\n");
 	    return -1;}
@@ -3359,7 +3360,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	nx=*numrow;
 	ny=*numcol;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
-	  if ((pvecz = calloc(nx*ny,sizeof(double))) == NULL) {
+	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
 	    sciprint ("Not enough memory\n");
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
@@ -3380,14 +3381,14 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       
 	Nnode = *numrow;
 	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
-	  if ((pvecx = calloc(Nnode,sizeof(double))) == NULL) {
+	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
 	    sciprint ("Not enough memory\n");
 	    return -1;}
-	  if ((pvecy = calloc(Nnode,sizeof(double))) == NULL) {
+	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
 	    sciprint ("Not enough memory\n");
 	    FREE(pvecx);
 	    return -1;}
-	  if ((pfun = calloc(Nnode,sizeof(double))) == NULL) {
+	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
 	    sciprint ("Not enough memory\n");
 	    FREE(pvecx);FREE(pvecy);
 	    return -1;}

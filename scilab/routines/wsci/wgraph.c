@@ -6,6 +6,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
 static int scig_buzy = 0;
@@ -1688,14 +1689,14 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 	{
 		sciGetIdFigure (&ids,&num,&iflag);
 		iflag = 1;
-		ArrayWGraph=(int*)malloc(sizeof(int)*num);
+		ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
 		sciGetIdFigure (ArrayWGraph,&num,&iflag);	
 	}
 	else
 	{
 		C2F(getwins)(&num,&ids ,&iflag);
 		iflag = 1; 
-		ArrayWGraph=(int*)malloc(sizeof(int)*num);
+		ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
 		C2F(getwins)(&num,ArrayWGraph,&iflag);
 	} 
 			
@@ -1714,7 +1715,7 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 		}
 	}
 
-    	free(ArrayWGraph);
+    	FREE(ArrayWGraph);
 		ArrayWGraph=NULL;
 
 

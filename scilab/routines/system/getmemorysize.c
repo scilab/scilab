@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "getmemorysize.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 int C2F(intgetmemorysize) _PARAMS((char *fname))
 {
@@ -19,7 +20,7 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 	struct pst_static pst;
 #endif
 
-	paramoutINT=(int*)malloc(sizeof(int));
+	paramoutINT=(int*)MALLOC(sizeof(int));
 
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0) ;
@@ -57,7 +58,7 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 	LhsVar(1)=Rhs+1;
 
 	C2F(putlhsvar)();
-	if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 
 	return 0;
 }

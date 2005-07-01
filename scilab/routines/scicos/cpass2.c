@@ -1,6 +1,9 @@
 #include <stdlib.h> 
 #include <stdio.h>
 #include <math.h>
+
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #include "../machine.h"
 #include "cc_pass2.h"
 #include <memory.h>
@@ -116,29 +119,29 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   conn_mat(*inplnk,*outlnk,*bllst2ptr,*bllst3ptr,&outoin,&outoinptr,nblk);
   critical_events(*connectmat,*clkconnect,*bllst12,typ_r,typ_l,typ_zx,outoin,outoinptr,*bllst5ptr,critev);
   pak_ersi(clkconnect,typ_r,typ_l,outoin,outoinptr,tblock,typ_cons,*bllst5ptr,&exe_cons,*nblk);
-  free(typ_r);
+  FREE(typ_r);
   typ_r=NULL;
-  free(tblock);
+  FREE(tblock);
   tblock=NULL;
-  free(typ_zx);
+  FREE(typ_zx);
   typ_zx=NULL;
-  free(typ_cons);
+  FREE(typ_cons);
   typ_cons=NULL;
   done=false; 
-  if ((prime_act=malloc(sizeof(int)*2))== NULL ) return 0;
+  if ((prime_act=MALLOC(sizeof(int)*2))== NULL ) return 0;
   prime_act[0]=1;
   prime_act[1]=0;
  
   for (i = 1; i <= nblk1; i++){
     if (!typ_l[i] && ((*bllst5ptr)[i+1]-(*bllst5ptr)[i] != 0)){
-      if ((vec=malloc(sizeof(int)*((*bllst5ptr)[i+1]-(*bllst5ptr)[i]+1)))== NULL ) return 0;
+      if ((vec=MALLOC(sizeof(int)*((*bllst5ptr)[i+1]-(*bllst5ptr)[i]+1)))== NULL ) return 0;
       vec[0]=(*bllst5ptr)[i+1]-(*bllst5ptr)[i];
-      if ((prime_act=(int*)realloc(prime_act,sizeof(int)*(prime_act[0]+vec[0]+1))) == NULL ) return 0;      
+      if ((prime_act=(int*)REALLOC(prime_act,sizeof(int)*(prime_act[0]+vec[0]+1))) == NULL ) return 0;      
       for (l = 1; l <= vec[0]; l++){
 	prime_act[prime_act[0]+l]=(*bllst5ptr)[i]+l-1;
       }
       prime_act[0]=prime_act[0]+vec[0];
-      free(vec);
+      FREE(vec);
     }
   }
   while(!done)
@@ -152,21 +155,21 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       else done=true;
       if(!(*ok)) return 0;
     }
-  free(prime_act);  
-  free(typ_l);
+  FREE(prime_act);  
+  FREE(typ_l);
   typ_l=NULL;
   nombr=((int*) (*bllst10))[0];
   if (nblk1 < nombr) 
     {
-      if (((*typ_x)=(int*)realloc((*typ_x),sizeof(int)*(nombr+1))) == NULL ) return 0;
+      if (((*typ_x)=(int*)REALLOC((*typ_x),sizeof(int)*(nombr+1))) == NULL ) return 0;
       (*typ_x)[0]=nombr;
-      if (((*bllst11ptr)=(int*)realloc((*bllst11ptr),sizeof(int)*((*bllst11ptr)[0]+nombr-nblk1+1))) == NULL ) return 0;
+      if (((*bllst11ptr)=(int*)REALLOC((*bllst11ptr),sizeof(int)*((*bllst11ptr)[0]+nombr-nblk1+1))) == NULL ) return 0;
       (*bllst11ptr)[0]=(*bllst11ptr)[0]+nombr-nblk1;
-      if (((*bllst11)=(double*)realloc((*bllst11),sizeof(double)*(((int*) (*bllst11))[0]+2*(nombr-nblk1)+1))) == NULL ) return 0;
+      if (((*bllst11)=(double*)REALLOC((*bllst11),sizeof(double)*(((int*) (*bllst11))[0]+2*(nombr-nblk1)+1))) == NULL ) return 0;
       ((int*)(*bllst11))[0]=((int*)(*bllst11))[0]+2*(nombr-nblk1);
-      if (((*nmode)=(int*)realloc((*nmode),sizeof(int)*(nombr+1))) == NULL ) return 0;
+      if (((*nmode)=(int*)REALLOC((*nmode),sizeof(int)*(nombr+1))) == NULL ) return 0;
       (*nmode)[0]=nombr;      
-      if (((*bllst13)=(char**)realloc((*bllst13),sizeof(char*)*(nombr+1))) == NULL )  return 0;
+      if (((*bllst13)=(char**)REALLOC((*bllst13),sizeof(char*)*(nombr+1))) == NULL )  return 0;
       ((int*) (*bllst13))[0]=nombr;
       for(i=nblk1+1;i<nombr+1;i++)
 	{	  
@@ -177,19 +180,19 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
 	    {
 	      (*bllst11)[l]=-1;
 	    }
-	  if (( (*bllst13)[i]=(char*) malloc(sizeof(char)*(2))) ==NULL )  return 0;
+	  if (( (*bllst13)[i]=(char*) MALLOC(sizeof(char)*(2))) ==NULL )  return 0;
 	  ((char*) (*bllst13)[i])[1]='\0';
 	  *((*bllst13)[i])=' ';
 	}      
 
     }
-  free(typ_m);
-  free(*inplnk);
-  free(*outlnk);
+  FREE(typ_m);
+  FREE(*inplnk);
+  FREE(*outlnk);
   extract_info(*bllst2,*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
                *bllst11ptr,*connectmat,*clkconnect,lnkptr,inplnk,outlnk,*nzcross,*nmode,
 	       &typ_s,typ_x,&typ_m,&initexe,&bexe,&boptr,&blnk,&blptr,ok,*corinvec,*corinvptr);
-  free(typ_m);
+  FREE(typ_m);
   typ_m=NULL;
   if(!(*ok)) 
     {
@@ -197,52 +200,52 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       return 0;
     }
   
-  free(outoinptr);
-  free(outoin);
+  FREE(outoinptr);
+  FREE(outoin);
   conn_mat(*inplnk,*outlnk,*bllst2ptr,*bllst3ptr,&outoin,&outoinptr,nblk);
   *nblk=nblk1;
   synch_clkconnect(typ_s,*clkconnect,&evoutoin,&evoutoinptr);
   discard(*bllst5ptr,*clkconnect,exe_cons,&ordptr1,execlk,&execlk0,&execlk_cons);
-  free(*clkconnect);
+  FREE(*clkconnect);
   *clkconnect=NULL;
-  free(exe_cons);
+  FREE(exe_cons);
   exe_cons=NULL;
   
   scheduler(*bllst12,*bllst5ptr,*execlk,execlk0,execlk_cons,ordptr1,outoin,outoinptr,evoutoin,
 	    evoutoinptr,&typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr,ordptr,ordclk,cord,iord,oord,zord,ok,*nzcross);
   
-  free(typ_s);
+  FREE(typ_s);
   typ_s=NULL;
-  free(*typ_x);
+  FREE(*typ_x);
   *typ_x=NULL;
-  free(bexe);
+  FREE(bexe);
   bexe=NULL;
-  free(boptr);
+  FREE(boptr);
   boptr=NULL;
-  free(blnk);
+  FREE(blnk);
   blnk=NULL;
-  free(blptr);
+  FREE(blptr);
   blptr=NULL;
-  free(outoinptr);
+  FREE(outoinptr);
   outoinptr=NULL;
-  free(outoin);
+  FREE(outoin);
   outoin=NULL;
-  free(evoutoin);
+  FREE(evoutoin);
   evoutoin=NULL;
-  free(evoutoinptr);
+  FREE(evoutoinptr);
   evoutoinptr=NULL;
-  free(ordptr1);
+  FREE(ordptr1);
   ordptr1=NULL;
-  free(execlk0);
+  FREE(execlk0);
   execlk0=NULL;
-  free(execlk_cons);
+  FREE(execlk_cons);
   execlk_cons=NULL;
   
   if(!(*ok)) return 0;
-  if (((*zcptr)=malloc(sizeof(int)*((nombr+2))))== NULL ) return 0;
+  if (((*zcptr)=MALLOC(sizeof(int)*((nombr+2))))== NULL ) return 0;
   (*zcptr)[0]=nombr+1;
   (*zcptr)[1]=1;
-  if (((*modptr)=malloc(sizeof(int)*((nombr+2))))== NULL ) return 0;
+  if (((*modptr)=MALLOC(sizeof(int)*((nombr+2))))== NULL ) return 0;
   (*modptr)[0]=nombr+1;
   (*modptr)[1]=1;
   for (i=1; i<= nombr; i++)
@@ -251,7 +254,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       a=Sign(typ_z[i]);
       (*modptr)[i+1]=(*modptr)[i]+a*(*nmode)[i];
     }
-  free(typ_z);
+  FREE(typ_z);
   /*completement inutile pour simulation, c'est pour la generation de code*/
   *ztyp=VecEg1(*nzcross); 
   for (i=1;i<=(*ztyp)[0];i++)
@@ -278,11 +281,11 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   *nb=nombr;
   
   init_agenda(initexe,*bllst5ptr,tevts,evtspt,pointi);
-  free(initexe);
+  FREE(initexe);
   initexe=NULL;
-  if (((*outtb)=(int*)calloc((*lnkptr)[(*lnkptr)[0]],sizeof(int)))== NULL ) return 0;
+  if (((*outtb)=(int*)CALLOC((*lnkptr)[(*lnkptr)[0]],sizeof(int)))== NULL ) return 0;
   (*outtb)[0]=(*lnkptr)[(*lnkptr)[0]]-1;
-  if (((*iz0)=(int*)calloc(*nb+1,sizeof(int)))== NULL ) return 0;
+  if (((*iz0)=(int*)CALLOC(*nb+1,sizeof(int)))== NULL ) return 0;
   (*iz0)[0]=*nb;
   
   /* *iz0=NULL; */
@@ -321,14 +324,14 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
     {
       /* compute cord */
       ind=GetPartVect(execlk0,1,execlk0[0]/2);
-      if ((vec=(int*)calloc(ind[0]+1,sizeof(int)))== NULL ) return 0;
+      if ((vec=(int*)CALLOC(ind[0]+1,sizeof(int)))== NULL ) return 0;
       vec[0]=ind[0];
       wec=GetPartVect(execlk0,execlk0[0]/2+1,execlk0[0]/2);
       tree2(vec,vec[0],wec,ind,bllst12,outoin,outoinptr,cord,ok);
-      if (ind) free(ind);
-      if(vec) free(vec);
+      if (ind) FREE(ind);
+      if(vec) FREE(vec);
       vec=NULL;
-      if(wec) free(wec);
+      if(wec) FREE(wec);
       wec=NULL;
     } 
   else 
@@ -340,14 +343,14 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
   if (execlk_cons)
     {
       ind=GetPartVect(execlk_cons,1,execlk_cons[0]/2);
-      if ((vec=(int*)calloc(ind[0]+1,sizeof(int)))== NULL ) return 0;
+      if ((vec=(int*)CALLOC(ind[0]+1,sizeof(int)))== NULL ) return 0;
       vec[0]=ind[0];
       wec=GetPartVect(execlk_cons,execlk_cons[0]/2+1,execlk_cons[0]/2);
       tree2(vec,vec[0],wec,ind,bllst12,outoin,outoinptr,iord,ok);
-      if (ind) free(ind);
-      if(vec) free(vec);
+      if (ind) FREE(ind);
+      if(vec) FREE(vec);
       vec=NULL;
-      if(wec) free(wec);
+      if(wec) FREE(wec);
       wec=NULL;
     } 
   else 
@@ -362,7 +365,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
       (*iord)=NULL;
       return 0;
     }
- if (((*ordclk)=(int*)malloc(sizeof(int)))== NULL ) return 0;
+ if (((*ordclk)=(int*)MALLOC(sizeof(int)))== NULL ) return 0;
  (*ordclk)[0]=0; 
  (*ordptr2)=VecEg1(ordptr1);
  for(o=1;o<bllst5ptr[nblk+1];o++)
@@ -370,14 +373,14 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      ind=GetPartVect(execlk,ordptr1[o],ordptr1[o+1]-ordptr1[o]);
      if (ind)
        {
-	 if ((vec=(int*)calloc(ind[0]+1,sizeof(int)))== NULL ) return 0;
+	 if ((vec=(int*)CALLOC(ind[0]+1,sizeof(int)))== NULL ) return 0;
 	 vec[0]=ind[0];
 	 wec=GetPartVect(execlk,ordptr1[o]+execlk[0]/2,ordptr1[o+1]-ordptr1[o]);
 	 tree2(vec,vec[0],wec,ind,bllst12,outoin,outoinptr,&r,ok);
-	 if (ind) free(ind);
-	 if(vec) free(vec);
+	 if (ind) FREE(ind);
+	 if(vec) FREE(vec);
 	 vec=NULL;
-	 if(wec) free(wec);
+	 if(wec) FREE(wec);
 	 wec=NULL;
 	 if (!(*ok))
 	   {
@@ -389,9 +392,9 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	     return 0;
 	   }
 	 (*ordptr2)[o+1]=r[0]/2+(*ordptr2)[o];
-	 if ((ordclki.col1=(int*)malloc(sizeof(int)*((*ordclk)[0]/2+r[0]/2+1))) == NULL) return 0;
+	 if ((ordclki.col1=(int*)MALLOC(sizeof(int)*((*ordclk)[0]/2+r[0]/2+1))) == NULL) return 0;
 	 ordclki.col1[0]=(*ordclk)[0]/2+r[0]/2;
-	 if ((ordclki.col2=(int*)malloc(sizeof(int)*((*ordclk)[0]/2+r[0]/2+1))) == NULL) return 0;
+	 if ((ordclki.col2=(int*)MALLOC(sizeof(int)*((*ordclk)[0]/2+r[0]/2+1))) == NULL) return 0;
 	 ordclki.col2[0]=(*ordclk)[0]/2+r[0]/2;
 	 pp=&(ordclki.col1)[1];
 	 pp=memcpy(pp,&(*ordclk)[1],sizeof(int)*((*ordclk)[0]/2));
@@ -401,22 +404,22 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	 pp=memcpy(pp,&r[1],sizeof(int)*(r[0]/2));
 	 pp=&(ordclki.col2)[(*ordclk)[0]/2+1];
 	 pp=memcpy(pp,&r[1+r[0]/2],sizeof(int)*(r[0]/2));
-	 if (((*ordclk)=(int*)realloc((*ordclk),sizeof(int)*((*ordclk)[0]+r[0]+1))) == NULL ) return 0;
+	 if (((*ordclk)=(int*)REALLOC((*ordclk),sizeof(int)*((*ordclk)[0]+r[0]+1))) == NULL ) return 0;
 	 (*ordclk)[0]=r[0]+(*ordclk)[0];
 	 pp=&(*ordclk)[1];
 	 pp=memcpy(pp,&(ordclki.col1)[1],sizeof(int)*(ordclki.col1[0]));
 	 pp=&(*ordclk)[(*ordclk)[0]/2+1];
 	 pp=memcpy(pp,&(ordclki.col2)[1],sizeof(int)*(ordclki.col1[0]));
-	 if(ordclki.col1) free(ordclki.col1);
+	 if(ordclki.col1) FREE(ordclki.col1);
 	 ordclki.col1=NULL;
-	 if(ordclki.col2) free(ordclki.col2);
+	 if(ordclki.col2) FREE(ordclki.col2);
 	 ordclki.col2=NULL;
 	 
-	 if(r) free(r);
+	 if(r) FREE(r);
 	 r=NULL; 
        }
    }
- if ((orddif=(int*)malloc(sizeof(int)*(ordptr1[0]+1)))== NULL ) return 0;
+ if ((orddif=(int*)MALLOC(sizeof(int)*(ordptr1[0]+1)))== NULL ) return 0;
  orddif[0]=ordptr1[0];
  for (k=1;k<orddif[0]+1;k++)
    {
@@ -427,14 +430,14 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
    {
      sciprint("serious bug,report0");
    }
- if(orddif) free(orddif);
+ if(orddif) FREE(orddif);
  if (!(*cord))
    {
-    if ((*cord=(int*)malloc(sizeof(int)))== NULL ) return 0;
+    if ((*cord=(int*)MALLOC(sizeof(int)))== NULL ) return 0;
      (*cord)[0]=0; 
    }
  
- if ((vec=(int*)malloc(sizeof(int)*(nblk+1)))== NULL ) return 0;
+ if ((vec=(int*)MALLOC(sizeof(int)*(nblk+1)))== NULL ) return 0;
  vec[0]=nblk;
  Setmem(vec,-1);   
  for(i=1;i<(*cord)[0]/2+1;i++)
@@ -449,9 +452,9 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      if (typ_s[ext_cord1[j]]) {
        for (i=bllst5ptr[ext_cord1[j]]; i< bllst5ptr[ext_cord1[j]+1]; i++){
 	 a=ext_cord1[0]/2+ordptr1[i+1]-ordptr1[i];
-	 if ((ext_cord1i.col1=(int*)malloc(sizeof(int)*(a+1))) == NULL) return 0;
+	 if ((ext_cord1i.col1=(int*)MALLOC(sizeof(int)*(a+1))) == NULL) return 0;
 	 ext_cord1i.col1[0]=a;
-	 if ((ext_cord1i.col2=(int*)malloc(sizeof(int)*(a+1))) == NULL) return 0;
+	 if ((ext_cord1i.col2=(int*)MALLOC(sizeof(int)*(a+1))) == NULL) return 0;
 	 ext_cord1i.col2[0]=a;
 	 pp=&(ext_cord1i.col1)[1];
 	 pp=memcpy(pp,&ext_cord1[1],sizeof(int)*(ext_cord1[0]/2));
@@ -461,15 +464,15 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	 pp=memcpy(pp,&(*ordclk)[ordptr1[i]],sizeof(int)*(ordptr1[i+1]-ordptr1[i]));
 	 pp=&(ext_cord1i.col2)[ext_cord1[0]/2+1];
 	 pp=memcpy(pp,&(*ordclk)[ordptr1[i]+(*ordclk)[0]/2],sizeof(int)*(ordptr1[i+1]-ordptr1[i]));
-	 if ((ext_cord1=(int*)realloc(ext_cord1,sizeof(int)*(2*a+1))) == NULL ) return 0;
+	 if ((ext_cord1=(int*)REALLOC(ext_cord1,sizeof(int)*(2*a+1))) == NULL ) return 0;
 	 ext_cord1[0]=2*a;
 	 pp=&ext_cord1[1];
 	 pp=memcpy(pp,&(ext_cord1i.col1)[1],sizeof(int)*(a));
 	 pp=&ext_cord1[a+1];
 	 pp=memcpy(pp,&(ext_cord1i.col2)[1],sizeof(int)*(a));
-	 if(ext_cord1i.col1) free(ext_cord1i.col1);
+	 if(ext_cord1i.col1) FREE(ext_cord1i.col1);
 	 ext_cord1i.col1=NULL;
-	 if(ext_cord1i.col2) free(ext_cord1i.col2);
+	 if(ext_cord1i.col2) FREE(ext_cord1i.col2);
 	 ext_cord1i.col2=NULL;
        }
      }
@@ -478,7 +481,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
    }
  }
  /* ext_cord=unique(ext_cord1(:,1)') */ 
- if ((ext_cord=(int*)malloc(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
+ if ((ext_cord=(int*)MALLOC(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
  ext_cord[0]=ext_cord1[0]/2;  
  for (i=1; i<ext_cord[0]+1; i++){
    f=0;
@@ -497,29 +500,29 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
  /* adding zero crossing surfaces to cont. time synchros */ 
  
  tree3(vec,vec[0],bllst12,typ_s,bexe,boptr,blnk,blptr,&ext_cord_old,ok);
- if(vec) free(vec);
+ if(vec) FREE(vec);
  vec=NULL; 
- if ((ind=(int*)malloc(sizeof(int)*(ext_cord_old[0]+1))) == NULL ) return 0;
+ if ((ind=(int*)MALLOC(sizeof(int)*(ext_cord_old[0]+1))) == NULL ) return 0;
  ind[0]=ext_cord_old[0];
  C2F(isort)(&ext_cord_old[1],&ext_cord_old[0],&ind[1]);
- free(ind);
- if ((ind=(int*)malloc(sizeof(int)*(ext_cord[0]+1))) == NULL ) return 0;
+ FREE(ind);
+ if ((ind=(int*)MALLOC(sizeof(int)*(ext_cord[0]+1))) == NULL ) return 0;
  ind[0]=ext_cord[0];
  ext_cord2=VecEg1(ext_cord);
  C2F(isort)(&ext_cord2[1],&ext_cord2[0],&ind[1]);
- free(ind);
- if ((vec=(int*)calloc((ext_cord[0]+1),sizeof(int))) == NULL ) return 0;
+ FREE(ind);
+ if ((vec=(int*)CALLOC((ext_cord[0]+1),sizeof(int))) == NULL ) return 0;
  vec[0]=ext_cord[0];
  for (i=1; i<=ext_cord[0]; i++){
    if (ext_cord2[i] != ext_cord_old[i]) vec[i]=1;
  }
- free(ext_cord2);
- if (ext_cord_old) free(ext_cord_old);
+ FREE(ext_cord2);
+ if (ext_cord_old) FREE(ext_cord_old);
  if ( OR(vec)){
-   free(vec);
+   FREE(vec);
    return 0;
  }
- if (vec) free(vec);
+ if (vec) FREE(vec);
  /*pour mettre a zero les typ_z qui ne sont pas dans ext_cord
    noter que typ_z contient les tailles des nzcross (peut etre >1)*/
      
@@ -550,17 +553,17 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      ii=GetPartVect(outoin,outoinptr[iii],outoinptr[iii+1]-outoinptr[iii]);
      if (!ii)
        {
-	 if ((ii=(int*)malloc(sizeof(int)))== NULL ) return 0;
+	 if ((ii=(int*)MALLOC(sizeof(int)))== NULL ) return 0;
 	 ii[0]=0;
        }      
      ppget=GetPartVect(evoutoin,evoutoinptr[iii],evoutoinptr[iii+1]-evoutoinptr[iii]);
      if(ppget)
        {
-	 if ((ii=(int*)realloc(ii,sizeof(int)*(ii[0]+ppget[0]+1)))== NULL ) return 0;
+	 if ((ii=(int*)REALLOC(ii,sizeof(int)*(ii[0]+ppget[0]+1)))== NULL ) return 0;
 	 pp=&ii[ii[0]+1];
 	 pp=memcpy(pp,&(ppget)[1],sizeof(int)*(ppget[0]));
 	 ii[0]=ii[0]+ppget[0];
-	 free(ppget);
+	 FREE(ppget);
        }
      for (j=1;j<ii[0]+1;j++)
        {
@@ -579,15 +582,15 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	 }
 	 if ((*typ_z)[iii] && (*typ_x)[iii]) break;
        }
-     if (ii) free(ii);
+     if (ii) FREE(ii);
    }
  }
  
- free(ext_cord); ext_cord=NULL;
+ FREE(ext_cord); ext_cord=NULL;
  
  if ((*cord)[0] != 0)
    {
-     if ((ppget=(int*)calloc((*cord)[0]/2+1,sizeof(int))) == NULL ) return 0;
+     if ((ppget=(int*)CALLOC((*cord)[0]/2+1,sizeof(int))) == NULL ) return 0;
      ppget[0]=(*cord)[0]/2;
      ppget1=VecEg1(ppget);
      for (i=1; i <= (*cord)[0]/2; i++){
@@ -595,30 +598,30 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
        if ((*typ_x)[(*cord)[i]]) ppget1[i]=1;
      }
      ii=FindDif(ppget,0);
-     free(ppget);
+     FREE(ppget);
      if (ii)
        {
-	 if (((*zord)=(int*)malloc(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
+	 if (((*zord)=(int*)MALLOC(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
 	 (*zord)[0]=2*ii[0];	 
 	 for(i=1;i<ii[0]+1;i++)
 	   {
 	     (*zord)[i]=(*cord)[ii[i]];
 	     (*zord)[i+ii[0]]=(*cord)[ii[i]+(*cord)[0]/2];
 	   }	 
-	 free(ii);
+	 FREE(ii);
        }
      ii=FindDif(ppget1,0);
-     free(ppget1);
+     FREE(ppget1);
      if (ii)
        {
-	 if (((*oord)=(int*)malloc(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
+	 if (((*oord)=(int*)MALLOC(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
 	 (*oord)[0]=2*ii[0];	 
 	 for(i=1;i<ii[0]+1;i++)
 	   {
 	     (*oord)[i]=(*cord)[ii[i]];
 	     (*oord)[i+ii[0]]=(*cord)[ii[i]+(*cord)[0]/2];
 	   }	 
-	 free(ii);
+	 FREE(ii);
        }
    } /* fin de if *cord[0] !=0 */
  else
@@ -627,18 +630,18 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      *zord=NULL;
    }
      
- free(*typ_z);
+ FREE(*typ_z);
  (*typ_z)=VecEg1(typ_z_save);
- free(typ_z_save);
+ FREE(typ_z_save);
  ii=GetPartVect(ext_cord1,1,ext_cord1[0]/2);
- if ((ii=(int*)realloc(ii,sizeof(int)*(ext_cord1[0]/2+(*ordclk)[0]/2+1))) == NULL ) return 0;
+ if ((ii=(int*)REALLOC(ii,sizeof(int)*(ext_cord1[0]/2+(*ordclk)[0]/2+1))) == NULL ) return 0;
  ii[0]=ext_cord1[0]/2+(*ordclk)[0]/2;
  pp=&ii[ext_cord1[0]/2+1];
  pp=memcpy(pp,&(*ordclk)[1],sizeof(int)*((*ordclk)[0]/2));
  maX=Max1(ii)+1;
- free(ii);
+ FREE(ii);
  ii=NULL;
- if ((cordX=(int*)malloc(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
+ if ((cordX=(int*)MALLOC(sizeof(int)*(ext_cord1[0]/2+1))) == NULL ) return 0;
  cordX[0]=ext_cord1[0]/2;
  ii1=GetPartVect(ext_cord1,1,ext_cord1[0]/2);
  ii2=GetPartVect(ext_cord1,ext_cord1[0]/2+1,ext_cord1[0]/2);
@@ -648,17 +651,17 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
        {
 	 cordX[i]=maX*ii1[i]+ii2[i];
        }
-     free(ii1);
-     free(ii2);     
+     FREE(ii1);
+     FREE(ii2);     
    }
- if (ext_cord1) free(ext_cord1);
+ if (ext_cord1) FREE(ext_cord1);
  
  for (i=1;i<bllst5ptr[nblk+1];i++)
    {	 
      for (hh=ordptr1[i];hh<ordptr1[i+1];hh++)
        {
 	 jj=(*ordclk)[hh];
-	 if ((ii=(int*)malloc(sizeof(int)*(cordX[0]+1))) == NULL ) return 0;
+	 if ((ii=(int*)MALLOC(sizeof(int)*(cordX[0]+1))) == NULL ) return 0;
 	 ii[0]=cordX[0];
 	 n=jj*maX+(*ordclk)[hh+(*ordclk)[0]/2];
 	 for (j=1;j<cordX[0]+1;j++)
@@ -670,10 +673,10 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	   {
 	     (*ordclk)[hh+(*ordclk)[0]/2]=-(*ordclk)[hh+(*ordclk)[0]/2];
 	   } /* fin de if OR()*/
-	 if(ii) free(ii);
+	 if(ii) FREE(ii);
        } /* fin de for hh */
    } /* fin de for i */
- if(cordX) free(cordX);
+ if(cordX) FREE(cordX);
  cordX=NULL;
  
  return 0;
@@ -706,10 +709,10 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     {
       vectconnect=GetPartVect((*clkconnect),(*clkconnect)[0]/2+1,(*clkconnect)[0]/4);
       Inv(vectconnect);
-      if ((iVect=(int*)malloc(sizeof(int)*(vectconnect[0]+1))) == NULL ) return 0;
+      if ((iVect=(int*)MALLOC(sizeof(int)*(vectconnect[0]+1))) == NULL ) return 0;
       iVect[0]=vectconnect[0];
       C2F(isort)(&vectconnect[1],&vectconnect[0],&iVect[1]);
-      free(vectconnect);
+      FREE(vectconnect);
       vectconnect=NULL;
       clkconnectind=VecEg1(*clkconnect);
       for(i=1;i<iVect[0]+1;i++)
@@ -719,11 +722,11 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
           (*clkconnect)[i+2*iVect[0]]=clkconnectind[iVect[i]+2*iVect[0]];
           (*clkconnect)[i+3*iVect[0]]=clkconnectind[iVect[i]+3*iVect[0]];      
         }            
-      free(iVect);
+      FREE(iVect);
       iVect=NULL;
-      if(clkconnectind) free(clkconnectind);
+      if(clkconnectind) FREE(clkconnectind);
       clkconnectind=NULL;
-      if ((id=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
+      if ((id=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
       id[0]=(*clkconnect)[0]/4;
       a=(*clkconnect)[0]/2;
       for(i=1;i<(*clkconnect)[0]/4+1;i++)
@@ -732,7 +735,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	}
       id[0]=j-1;
       ltmp=GetCollVect(*clkconnect,id,3);
-      if ((idl=(int*)malloc(sizeof(int)*(3+ltmp[0]))) == NULL ) return 0;
+      if ((idl=(int*)MALLOC(sizeof(int)*(3+ltmp[0]))) == NULL ) return 0;
       idl[1]=1;
       j=2;
       for(i=1;i<ltmp[0];i++)
@@ -741,7 +744,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	}
       idl[0]=j;
       idl[j]=1+ltmp[0];
-      if(ltmp) free(ltmp);
+      if(ltmp) FREE(ltmp);
       ki=0;
       lb=FindEg(typ_l,1);
       for(i=1;i<lb[0]+1;i++)
@@ -756,7 +759,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	      *ok=false;
 	      return 0;
 	    }
-	  if ((tmpvect=(int*)malloc(sizeof(int)*(indx[0]+1))) == NULL ) return 0;
+	  if ((tmpvect=(int*)MALLOC(sizeof(int)*(indx[0]+1))) == NULL ) return 0;
 	  tmpvect[0]=indx[0];
 	  ppget=GetCollVect(*clkconnect,indx,1);
 	  for (l=1;l<ppget[0]+1;l++)
@@ -764,14 +767,14 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	      if (ppget[l]==lb[i]) tmpvect[l]=1;
 	      else tmpvect[l]=0;
 	    }
-	  free (ppget);
+	  FREE (ppget);
 	  if (OR(tmpvect))
 	    {
 	      Message("A algebric loop detected; on activation links");
 	      *ok=false;
 	      return 0;
 	    }         
-	  free(tmpvect);
+	  FREE(tmpvect);
 	  tmpvect=NULL;
 	  *need_newblk=false;
 	  nn=indx[0];
@@ -780,36 +783,36 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	      *need_newblk=true;
 	      ppget=GetPartVect(*clkconnect,1,(*clkconnect)[0]/4);
 	      indxo=FindEg(ppget,lb[i]);
-	      free(ppget);
+	      FREE(ppget);
 	      ppget=GetPartVect(*connectmat,(*connectmat)[0]/2+1,(*connectmat)[0]/4);
 	      indy=FindEg(ppget,lb[i]);
-	      free(ppget);
+	      FREE(ppget);
 	      if (indy[0] > 1) sciprint("Synchro block cannot have more than 1 input");
-	      if (((*bllst2ptr)=(int*)realloc((*bllst2ptr),sizeof(int)*((*bllst2ptr)[0]+nn))) == NULL ) return 0;
-	      if (((*bllst3ptr)=(int*)realloc((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;
-	      if (((*bllst4ptr)=(int*)realloc((*bllst4ptr),sizeof(int)*((*bllst4ptr)[0]+nn))) == NULL ) return 0;
-	      if (((*bllst5ptr)=(int*)realloc((*bllst5ptr),sizeof(int)*((*bllst5ptr)[0]+nn))) == NULL ) return 0;	      
-	      if (((*bllst9ptr)=(int*)realloc((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
-	      if ((*bllst10=(char**)realloc(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
+	      if (((*bllst2ptr)=(int*)REALLOC((*bllst2ptr),sizeof(int)*((*bllst2ptr)[0]+nn))) == NULL ) return 0;
+	      if (((*bllst3ptr)=(int*)REALLOC((*bllst3ptr),sizeof(int)*((*bllst3ptr)[0]+nn))) == NULL ) return 0;
+	      if (((*bllst4ptr)=(int*)REALLOC((*bllst4ptr),sizeof(int)*((*bllst4ptr)[0]+nn))) == NULL ) return 0;
+	      if (((*bllst5ptr)=(int*)REALLOC((*bllst5ptr),sizeof(int)*((*bllst5ptr)[0]+nn))) == NULL ) return 0;	      
+	      if (((*bllst9ptr)=(int*)REALLOC((*bllst9ptr),sizeof(int)*((*bllst9ptr)[0]+nn))) == NULL ) return 0;
+	      if ((*bllst10=(char**)REALLOC(*bllst10,(nblk+nn)*sizeof(char*))) ==NULL )  return 0;
 	      ((int*)(*bllst10))[0]=nblk+nn-1;
-	      if ((*bllst111=(char**)realloc(*bllst111,sizeof(char*)*(nblk+nn))) == NULL )  return 0;
+	      if ((*bllst111=(char**)REALLOC(*bllst111,sizeof(char*)*(nblk+nn))) == NULL )  return 0;
 	      ((int*) (*bllst111))[0]=nblk+nn-1;
-	      if (((*bllst112)=(int*)realloc((*bllst112),sizeof(int)*(nn+nblk))) == NULL ) return 0;
+	      if (((*bllst112)=(int*)REALLOC((*bllst112),sizeof(int)*(nn+nblk))) == NULL ) return 0;
 	      (*bllst112)[0]=nblk+nn-1;
-	      if ((bllst12i.col1=(int*)malloc(sizeof(int)*(nblk+nn))) == NULL ) return 0;
+	      if ((bllst12i.col1=(int*)MALLOC(sizeof(int)*(nblk+nn))) == NULL ) return 0;
 	      bllst12i.col1[0]=nblk+nn-1;
-	      if ((bllst12i.col2=(int*)malloc(sizeof(int)*(nblk+nn))) == NULL ) return 0;
+	      if ((bllst12i.col2=(int*)MALLOC(sizeof(int)*(nblk+nn))) == NULL ) return 0;
 	      bllst12i.col2[0]=nblk+nn-1;
-	      if (((*bllst12)=(int*)realloc((*bllst12),sizeof(int)*(2*(nn+nblk)-1))) == NULL ) return 0;
+	      if (((*bllst12)=(int*)REALLOC((*bllst12),sizeof(int)*(2*(nn+nblk)-1))) == NULL ) return 0;
 	      (*bllst12)[0]=2*(nblk+nn-1);
-	      if (((*corinvptr)=(int*)realloc((*corinvptr),sizeof(int)*((*corinvptr)[0]+nn))) == NULL ) return 0;
-	      if (((*corinvec)=(int*)realloc((*corinvec),sizeof(int)*((*corinvec)[0]+4*nn+1))) == NULL ) return 0;
-	      if (((*nzcross)=(int*)realloc((*nzcross),sizeof(int)*(nblk+nn))) == NULL ) return 0;
+	      if (((*corinvptr)=(int*)REALLOC((*corinvptr),sizeof(int)*((*corinvptr)[0]+nn))) == NULL ) return 0;
+	      if (((*corinvec)=(int*)REALLOC((*corinvec),sizeof(int)*((*corinvec)[0]+4*nn+1))) == NULL ) return 0;
+	      if (((*nzcross)=(int*)REALLOC((*nzcross),sizeof(int)*(nblk+nn))) == NULL ) return 0;
 	      (*nzcross)[0]=nblk+nn-1;
 	      
 	      for(k=2;k<nn+1;k++)
 		{
-		  if (((*critev)=(int*)realloc((*critev),sizeof(int)*((*critev)[0]+(*bllst5ptr)[lb[i]+1]-(*bllst5ptr)[lb[i]]+1))) == NULL ) return 0;
+		  if (((*critev)=(int*)REALLOC((*critev),sizeof(int)*((*critev)[0]+(*bllst5ptr)[lb[i]+1]-(*bllst5ptr)[lb[i]]+1))) == NULL ) return 0;
 		  a=(*critev)[0]-(*bllst5ptr)[lb[i]]+1;
 		  for(l=(*bllst5ptr)[lb[i]]; l<(*bllst5ptr)[lb[i]+1]; l++)
 		    (*critev)[l+a]=(*critev)[l];
@@ -817,14 +820,14 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   
 		  (*clkconnect)[indx[k]+(*clkconnect)[0]/2]=nblk+1;
 		  
-		  if (((*bllst111)[nblk+1]=(char*) malloc(sizeof(char)*(strlen((*bllst111)[lb[i]])+1))) ==NULL )  return 0;
+		  if (((*bllst111)[nblk+1]=(char*) MALLOC(sizeof(char)*(strlen((*bllst111)[lb[i]])+1))) ==NULL )  return 0;
 		  ((char*) (*bllst111)[nblk+1])[strlen((*bllst111)[lb[i]])]='\0';
 		  strcpy((*bllst111)[nblk+1],(*bllst111)[lb[i]]);
 		  (*bllst112)[nblk+1]=(*bllst112)[lb[i]];
 		  
 		  (*bllst2ptr)[(*bllst2ptr)[0]+1]=(*bllst2ptr)[(*bllst2ptr)[0]]+(*bllst2ptr)[lb[i]+1]-(*bllst2ptr)[lb[i]];
 		  (*bllst2ptr)[0]++;
-		  if (((*bllst2)=(int*)realloc((*bllst2),sizeof(int)*((*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1]+1))) == NULL ) return 0;
+		  if (((*bllst2)=(int*)REALLOC((*bllst2),sizeof(int)*((*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1]+1))) == NULL ) return 0;
 		  (*bllst2)[0]=(*bllst2)[0]+(*bllst2ptr)[nblk+2]-(*bllst2ptr)[nblk+1];
 		  a=(*bllst2ptr)[lb[i]]-(*bllst2ptr)[nblk+1];            
 		  for(l=(*bllst2ptr)[nblk+1];l<(*bllst2ptr)[nblk+2];l++)
@@ -833,7 +836,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    }
 		  (*bllst3ptr)[(*bllst3ptr)[0]+1]=(*bllst3ptr)[(*bllst3ptr)[0]]+(*bllst3ptr)[lb[i]+1]-(*bllst3ptr)[lb[i]];
 		  (*bllst3ptr)[0]++;
-		  if (((*bllst3)=(int*)realloc((*bllst3),sizeof(int)*((*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1]+1))) == NULL ) return 0;
+		  if (((*bllst3)=(int*)REALLOC((*bllst3),sizeof(int)*((*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1]+1))) == NULL ) return 0;
 		  (*bllst3)[0]=(*bllst3)[0]+(*bllst3ptr)[nblk+2]-(*bllst3ptr)[nblk+1];
 		  a=(*bllst3ptr)[lb[i]]-(*bllst3ptr)[nblk+1];
 		  for(l=(*bllst3ptr)[nblk+1];l<=(*bllst3ptr)[nblk+2]-1;l++)
@@ -842,7 +845,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    }
 		  (*bllst4ptr)[(*bllst4ptr)[0]+1]=(*bllst4ptr)[(*bllst4ptr)[0]]+(*bllst4ptr)[lb[i]+1]-(*bllst4ptr)[lb[i]];
 		  (*bllst4ptr)[0]++;
-		  if (((*bllst4)=(int*)realloc((*bllst4),sizeof(int)*((*bllst4)[0]+(*bllst4ptr)[nblk+2]-(*bllst4ptr)[nblk+1]+1))) == NULL ) return 0;
+		  if (((*bllst4)=(int*)REALLOC((*bllst4),sizeof(int)*((*bllst4)[0]+(*bllst4ptr)[nblk+2]-(*bllst4ptr)[nblk+1]+1))) == NULL ) return 0;
 		  (*bllst4)[0]=(*bllst4)[0]+(*bllst4ptr)[nblk+2]-(*bllst4ptr)[nblk+1];
 		  a=(*bllst4ptr)[lb[i]]-(*bllst4ptr)[nblk+1];
 		  for(l=(*bllst4ptr)[nblk+1];l<=(*bllst4ptr)[nblk+2]-1;l++)
@@ -851,7 +854,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    }
 		  (*bllst5ptr)[(*bllst5ptr)[0]+1]=(*bllst5ptr)[(*bllst5ptr)[0]]+(*bllst5ptr)[lb[i]+1]-(*bllst5ptr)[lb[i]];
 		  (*bllst5ptr)[0]++;
-		  if (((*bllst5)=(int*)realloc((*bllst5),sizeof(int)*((*bllst5)[0]+(*bllst5ptr)[nblk+2]-(*bllst5ptr)[nblk+1]+1))) == NULL ) return 0;
+		  if (((*bllst5)=(int*)REALLOC((*bllst5),sizeof(int)*((*bllst5)[0]+(*bllst5ptr)[nblk+2]-(*bllst5ptr)[nblk+1]+1))) == NULL ) return 0;
 		  (*bllst5)[0]=(*bllst5)[0]+(*bllst5ptr)[nblk+2]-(*bllst5ptr)[nblk+1];
 		  a=(*bllst5ptr)[lb[i]]-(*bllst5ptr)[nblk+1];
 		  for(l=(*bllst5ptr)[nblk+1];l<=(*bllst5ptr)[nblk+2]-1;l++)
@@ -860,7 +863,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    }
 		  (*bllst9ptr)[(*bllst9ptr)[0]+1]=(*bllst9ptr)[(*bllst9ptr)[0]]+(*bllst9ptr)[lb[i]+1]-(*bllst9ptr)[lb[i]];
 		  (*bllst9ptr)[0]++;
-		  if (((*bllst9)=(int*)realloc((*bllst9),sizeof(int)*((*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1]+1))) == NULL ) return 0;
+		  if (((*bllst9)=(int*)REALLOC((*bllst9),sizeof(int)*((*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1]+1))) == NULL ) return 0;
 		  (*bllst9)[0]=(*bllst9)[0]+(*bllst9ptr)[nblk+2]-(*bllst9ptr)[nblk+1];
 		  a=(*bllst9ptr)[lb[i]]-(*bllst9ptr)[nblk+1];
 		  for(l=(*bllst9ptr)[nblk+1];l<=(*bllst9ptr)[nblk+2]-1;l++)
@@ -868,7 +871,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		      (*bllst9)[l]=(*bllst9)[a+l];
 		    }
 		  
-		  if (((*bllst10)[nblk+1]=(char*)malloc(sizeof(char)*2)) ==NULL )  return 0;
+		  if (((*bllst10)[nblk+1]=(char*)MALLOC(sizeof(char)*2)) ==NULL )  return 0;
 		  *(*bllst10)[nblk+1]=*(*bllst10)[lb[i]];
 		  (*bllst10)[nblk+1][1]='\0';
 		  
@@ -896,7 +899,7 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    }
 		  
 		  
-		  if ((tmp=(int*)malloc(sizeof(int)*(1+4*indxo[0]))) == NULL ) return 0;;
+		  if ((tmp=(int*)MALLOC(sizeof(int)*(1+4*indxo[0]))) == NULL ) return 0;;
 		  tmp[0]=4*indxo[0];
 		  for(l=1;l<indxo[0]+1;l++)
 		    {
@@ -907,13 +910,13 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    }
 		  
 		  leng=(*clkconnect)[0]/4;
-		  if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+tmp[0]/4+1))) == NULL ) return 0;
+		  if ((clkconnecti.col1=(int*)MALLOC(sizeof(int)*(leng+tmp[0]/4+1))) == NULL ) return 0;
 		  clkconnecti.col1[0]=leng+tmp[0]/4;  
-		  if ((clkconnecti.col2=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
+		  if ((clkconnecti.col2=(int*)MALLOC(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
 		  clkconnecti.col2[0]=leng+tmp[0]/4;  
-		  if ((clkconnecti.col3=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
+		  if ((clkconnecti.col3=(int*)MALLOC(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
 		  clkconnecti.col3[0]=leng+tmp[0]/4;
-		  if ((clkconnecti.col4=(int*)malloc(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
+		  if ((clkconnecti.col4=(int*)MALLOC(sizeof(int)*(leng+1+tmp[0]/4))) == NULL ) return 0;
 		  clkconnecti.col4[0]=leng+tmp[0]/4;  
 		  for(l=1;l<leng+1;l++)
 		    {
@@ -929,10 +932,10 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		      clkconnecti.col3[l+leng]=tmp[l+tmp[0]/2];
 		      clkconnecti.col4[l+leng]=tmp[l+3*tmp[0]/4];
 		    }
-		  free(*clkconnect);
-		  if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*leng+tmp[0]+1))) == NULL ) return 0;
+		  FREE(*clkconnect);
+		  if (((*clkconnect)=(int*)MALLOC(sizeof(int)*(4*leng+tmp[0]+1))) == NULL ) return 0;
 		  (*clkconnect)[0]=4*leng+tmp[0];
-		  if(tmp) free(tmp);
+		  if(tmp) FREE(tmp);
 		  for(l=1;l<(*clkconnect)[0]/4+1;l++)
 		    {
 		      (*clkconnect)[l]=clkconnecti.col1[l];
@@ -941,25 +944,25 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		      (*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
 		    }
 		  nblk++;
-		  free(clkconnecti.col1);
+		  FREE(clkconnecti.col1);
 		  clkconnecti.col1=NULL;
-		  free(clkconnecti.col2);
+		  FREE(clkconnecti.col2);
 		  clkconnecti.col2=NULL;
-		  free(clkconnecti.col3);
+		  FREE(clkconnecti.col3);
 		  clkconnecti.col3=NULL;
-		  free(clkconnecti.col4);
+		  FREE(clkconnecti.col4);
 		  clkconnecti.col4=NULL;
 		} /* end for k */
-	      free(bllst12i.col1);
-	      free(bllst12i.col2);
+	      FREE(bllst12i.col1);
+	      FREE(bllst12i.col2);
 	      leng=(*connectmat)[0]/4;
-	      if ((connectmati.col1=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      if ((connectmati.col1=(int*)MALLOC(sizeof(int)*(leng+nn))) == NULL ) return 0;
 	      connectmati.col1[0]=leng+nn-1;  
-	      if ((connectmati.col2=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      if ((connectmati.col2=(int*)MALLOC(sizeof(int)*(leng+nn))) == NULL ) return 0;
 	      connectmati.col2[0]=leng+nn-1;  
-	      if ((connectmati.col3=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      if ((connectmati.col3=(int*)MALLOC(sizeof(int)*(leng+nn))) == NULL ) return 0;
 	      connectmati.col3[0]=leng+nn-1;
-	      if ((connectmati.col4=(int*)malloc(sizeof(int)*(leng+nn))) == NULL ) return 0;
+	      if ((connectmati.col4=(int*)MALLOC(sizeof(int)*(leng+nn))) == NULL ) return 0;
 	      connectmati.col4[0]=leng+nn-1;  
 	      for(l=1;l<leng+1;l++)
 		{              
@@ -975,9 +978,9 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		  connectmati.col3[l+leng]=nblkorg+l;
 		  connectmati.col4[l+leng]=1;
 		}
-	      free(*connectmat);
+	      FREE(*connectmat);
 	      leng=4*connectmati.col1[0];
-	      if (((*connectmat)=(int*)malloc(sizeof(int)*(leng+1))) == NULL ) return 0;
+	      if (((*connectmat)=(int*)MALLOC(sizeof(int)*(leng+1))) == NULL ) return 0;
 	      (*connectmat)[0]=leng;
 	      for(l=1;l<(*connectmat)[0]/4+1;l++)
 		{
@@ -988,40 +991,40 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		}
 	      change=true;
 	      nblkorg=nblk;
-	      free(connectmati.col1);
+	      FREE(connectmati.col1);
 	      connectmati.col1=NULL;
-	      free(connectmati.col2);
+	      FREE(connectmati.col2);
 	      connectmati.col2=NULL;
-	      free(connectmati.col3);
+	      FREE(connectmati.col3);
 	      connectmati.col3=NULL;
-	      free(connectmati.col4);
+	      FREE(connectmati.col4);
 	      connectmati.col4=NULL;
-	      if (indy) {free(indy);
+	      if (indy) {FREE(indy);
 	      indy=NULL;}
-	      if (indxo) {free(indxo);
+	      if (indxo) {FREE(indxo);
 	      indxo=NULL;}
 	    }
-	  free(indx);
+	  FREE(indx);
 	  indx=NULL;
 	} /*fin de for i*/
       if (change) 
 	{
 	  *done=false;
-	  free(lb);
-	  free(idl);
-	  free(id);  
+	  FREE(lb);
+	  FREE(idl);
+	  FREE(id);  
 	  return 0;
 	}
-      if(lb) free(lb);
-      if (idl) {free(idl);
+      if(lb) FREE(lb);
+      if (idl) {FREE(idl);
       idl=NULL;}
-      free(id);  
+      FREE(id);  
     }
   
   clkconnecttmp=VecEg1(*clkconnect);
   a=clkconnecttmp[0]/4;
-  if ((ppget=(int*)malloc(sizeof(int)*(a+1))) == NULL ) return 0;
-  if ((idl=(int*)malloc(sizeof(int)*(a+1))) == NULL ) return 0;   
+  if ((ppget=(int*)MALLOC(sizeof(int)*(a+1))) == NULL ) return 0;
+  if ((idl=(int*)MALLOC(sizeof(int)*(a+1))) == NULL ) return 0;   
   j=k=1;
   for(l=1;l<a+1;l++)
     {
@@ -1030,8 +1033,8 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     }
   ppget[0]=j-1;
   idl[0]=k-1;
-  free(*clkconnect);
-  if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*ppget[0]+1))) == NULL ) return 0;
+  FREE(*clkconnect);
+  if (((*clkconnect)=(int*)MALLOC(sizeof(int)*(4*ppget[0]+1))) == NULL ) return 0;
   (*clkconnect)[0]=4*ppget[0];
   for(l=1;l<ppget[0]+1;l++)
     {
@@ -1040,13 +1043,13 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       (*clkconnect)[l+2*ppget[0]]=clkconnecttmp[ppget[l]+2*a];
       (*clkconnect)[l+3*ppget[0]]=clkconnecttmp[ppget[l]+3*a];
     }
-  free(ppget);
+  FREE(ppget);
   if(!idl)
     {
-      if ((idl=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((idl=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       idl[0]=0;
     }
-  if ((clkconnect0=(int*)malloc(sizeof(int)*(4*idl[0]+1))) == NULL ) return 0;
+  if ((clkconnect0=(int*)MALLOC(sizeof(int)*(4*idl[0]+1))) == NULL ) return 0;
   clkconnect0[0]=4*idl[0];
   for(l=1;l<idl[0]+1;l++)
     {
@@ -1055,37 +1058,37 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       clkconnect0[l+2*idl[0]]=clkconnecttmp[idl[l]+2*a];
       clkconnect0[l+3*idl[0]]=clkconnecttmp[idl[l]+3*a];
     }
-  if(clkconnecttmp) free(clkconnecttmp);
-  free(idl);
+  if(clkconnecttmp) FREE(clkconnecttmp);
+  FREE(idl);
   inter=GetPartVect(clkconnect0,1,clkconnect0[0]/4);
   if(!inter)
     {
-      if ((inter=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((inter=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       inter[0]=0;
     }
   idl=FindEg(inter,0);
-  free(inter);
+  FREE(inter);
   inter=NULL;
   if(!idl)
     {
-      if ((idl=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((idl=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       idl[0]=0;
     }
-  if ((texeclk0=(int*)malloc(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
+  if ((texeclk0=(int*)MALLOC(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
   texeclk0[0]=idl[0];
   a=clkconnect0[0]/2;
   for (l=1;l<idl[0]+1;l++)
    {
      texeclk0[l]=clkconnect0[idl[l]+a];
    } 
-  free(idl);
-  if ((con=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
+  FREE(idl);
+  if ((con=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
   con[0]=(*clkconnect)[0]/4;
   for(l=1;l<con[0]+1;l++)
     {
       con[l]=-((*bllst5ptr)[(*clkconnect)[l]]+(*clkconnect)[l+(*clkconnect)[0]/4]-1);
     } 
-  if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
+  if ((ind=(int*)MALLOC(sizeof(int)*(con[0]+1))) == NULL ) return 0;
   ind[0]=con[0];
   C2F(isort)(&con[1],&con[0],&ind[1]);
   Inv(con);
@@ -1097,18 +1100,18 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       (*clkconnect)[l+2*ind[0]]=clkconnectind[ind[l]+2*ind[0]];
       (*clkconnect)[l+3*ind[0]]=clkconnectind[ind[l]+3*ind[0]];      
     } 
-  free(clkconnectind);
+  FREE(clkconnectind);
   clkconnectind=NULL;  
-  free(ind);
+  FREE(ind);
   bexe=GetPartVect(*clkconnect,(*clkconnect)[0]/2+1,(*clkconnect)[0]/4);
   sbb=(*clkconnect)[0]/4; 
-  if ((idl=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
+  if ((idl=(int*)MALLOC(sizeof(int)*(sbb+1))) == NULL ) return 0;
   idl[0]=sbb;
   for(l=1;l<sbb+1;l++)
     {
       idl[l]=l;
     }
-  if ((w2=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
+  if ((w2=(int*)MALLOC(sizeof(int)*(sbb+1))) == NULL ) return 0;
   w2[0]=sbb;
   w2[1]=(*clkconnect)[1];
   for(l=1;l<sbb;l++)
@@ -1116,10 +1119,10 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       w2[l+1]=(*clkconnect)[l+1]-(*clkconnect)[l];
     }
   boptr=Duplicataa(idl,w2);
-  free(w2);
+  FREE(w2);
   w2=NULL;
-  if(idl) free(idl);
-  if ((boptr=(int*)realloc(boptr,sizeof(int)*(nblk+2))) == NULL ) return 0;
+  if(idl) FREE(idl);
+  if ((boptr=(int*)REALLOC(boptr,sizeof(int)*(nblk+2))) == NULL ) return 0;
   a=sbb+1;  
   for (l=1;l<nblk-boptr[0]+2;l++)
     {
@@ -1128,17 +1131,17 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   boptr[0]=nblk+1;
   ptmp1=GetPartVect(*connectmat,(*connectmat)[0]/4+1,(*connectmat)[0]/4);
   m1=Max1(ptmp1);
-  if ((w1=(int*)malloc(sizeof(int)*((*connectmat)[0]/4+1))) == NULL ) return 0;
+  if ((w1=(int*)MALLOC(sizeof(int)*((*connectmat)[0]/4+1))) == NULL ) return 0;
   w1[0]=(*connectmat)[0]/4;
   for (l=1;l<w1[0]+1;l++)
     {
       w1[l]=-m1*(*connectmat)[l]-(*connectmat)[l+(*connectmat)[0]/4]+1;
     }
-  free (ptmp1);
-  if ((ind=(int*)malloc(sizeof(int)*(w1[0]+1))) == NULL ) return 0;
+  FREE (ptmp1);
+  if ((ind=(int*)MALLOC(sizeof(int)*(w1[0]+1))) == NULL ) return 0;
   ind[0]=w1[0];
   C2F(isort)(&w1[1],&w1[0],&ind[1]);
-  free(w1);
+  FREE(w1);
   w1=NULL;
   connectmatind=VecEg1(*connectmat);
   for(l=1;l<ind[0]+1;l++)
@@ -1148,18 +1151,18 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       (*connectmat)[l+2*ind[0]]=connectmatind[ind[l]+2*ind[0]];
       (*connectmat)[l+3*ind[0]]=connectmatind[ind[l]+3*ind[0]];      
     } 
-  free(connectmatind);
+  FREE(connectmatind);
   connectmatind=NULL;
-  free(ind);     
+  FREE(ind);     
   blnk=GetPartVect(*connectmat,(*connectmat)[0]/2+1,(*connectmat)[0]/4);
   sbb=(*connectmat)[0]/4; 
-  if ((idl=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
+  if ((idl=(int*)MALLOC(sizeof(int)*(sbb+1))) == NULL ) return 0;
   idl[0]=sbb;
   for(l=1;l<sbb+1;l++)
     {
       idl[l]=l;
     }
-  if ((w2=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
+  if ((w2=(int*)MALLOC(sizeof(int)*(sbb+1))) == NULL ) return 0;
   w2[0]=sbb;
   w2[1]=(*connectmat)[1];
   for(l=1;l<sbb;l++)
@@ -1167,28 +1170,28 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       w2[l+1]=(*connectmat)[l+1]-(*connectmat)[l];
     }
   blptr=Duplicataa(idl,w2);
-  free(w2);
-  free(idl);
+  FREE(w2);
+  FREE(idl);
   idl=NULL;
-  if ((blptr=(int*)realloc(blptr,sizeof(int)*(nblk+2))) == NULL ) return 0;
+  if ((blptr=(int*)REALLOC(blptr,sizeof(int)*(nblk+2))) == NULL ) return 0;
   a=sbb+1;
   for (l=1;l<nblk-blptr[0]+2;l++)
     {
       blptr[l+blptr[0]]=a;
     }
   blptr[0]=nblk+1;  
-  if ((w1=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((w1=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
   w1[0]=(*clkconnect)[0]/4;  
   w2=GetPartVect(*clkconnect,1,(*clkconnect)[0]/4);
   for (l=1;l<w1[0]+1;l++)
     {
       w1[l]=typ_l[w2[l]];
     }
-  free(w2);
+  FREE(w2);
   w2=FindEg(w1,0);
-  free(w1);
+  FREE(w1);
   w1=NULL;
-  if ((tclkconnect=(int*)malloc(sizeof(int)*(4*w2[0]+1))) == NULL ) return 0;
+  if ((tclkconnect=(int*)MALLOC(sizeof(int)*(4*w2[0]+1))) == NULL ) return 0;
   tclkconnect[0]=4*w2[0];
   for(l=1;l<w2[0]+1;l++)
     {    
@@ -1197,9 +1200,9 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       tclkconnect[l+2*w2[0]]=(*clkconnect)[w2[l]+(*clkconnect)[0]/2];
       tclkconnect[l+3*w2[0]]=(*clkconnect)[w2[l]+3*(*clkconnect)[0]/4];
     }  
-  if(w2) free(w2);
+  if(w2) FREE(w2);
   w2=NULL;
-  if ((tcon=(int*)malloc(sizeof(int)*(tclkconnect[0]/4+1))) == NULL ) return 0;
+  if ((tcon=(int*)MALLOC(sizeof(int)*(tclkconnect[0]/4+1))) == NULL ) return 0;
   tcon[0]=tclkconnect[0]/4;
   w1=GetPartVect(tclkconnect,1,tclkconnect[0]/4);
   w2=GetPartVect(tclkconnect,tclkconnect[0]/4+1,tclkconnect[0]/4);
@@ -1207,30 +1210,30 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     {
       tcon[l]=(*bllst5ptr)[w1[l]]+w2[l]-1;
     }
-  free(w1);
+  FREE(w1);
   w1=NULL;
-  free(w2);
+  FREE(w2);
   w2=NULL;
   sbb=tcon[0];
-  if ((idl=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
+  if ((idl=(int*)MALLOC(sizeof(int)*(sbb+1))) == NULL ) return 0;
   idl[0]=sbb;
   for(l=1;l<sbb+1;l++)
     {
       idl[l]=l;
     }
-  if ((w2=(int*)malloc(sizeof(int)*(sbb+1))) == NULL ) return 0;
+  if ((w2=(int*)MALLOC(sizeof(int)*(sbb+1))) == NULL ) return 0;
   w2[0]=sbb;
   w2[1]=tcon[1];
   for(l=1;l<sbb;l++)
     {
       w2[l+1]=tcon[l+1]-tcon[l];
     }
-  free(tcon);
+  FREE(tcon);
   ordptr1=Duplicataa(idl,w2);
-  free(w2);
+  FREE(w2);
   w2=NULL;
-  free(idl);
-  if ((ordptr1=(int*)realloc(ordptr1,sizeof(int)*((*bllst5ptr)[(*bllst5ptr)[0]-nn+1]+1))) == NULL ) return 0;
+  FREE(idl);
+  if ((ordptr1=(int*)REALLOC(ordptr1,sizeof(int)*((*bllst5ptr)[(*bllst5ptr)[0]-nn+1]+1))) == NULL ) return 0;
   a=sbb+1;
   for(l=1;l<(*bllst5ptr)[(*bllst5ptr)[0]-nn+1]-ordptr1[0]+1;l++)
     {
@@ -1238,13 +1241,13 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     }
   ordptr1[0]=(*bllst5ptr)[(*bllst5ptr)[0]-nn+1];
   leng=clkconnect0[0]/4;
-  if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((clkconnecti.col1=(int*)MALLOC(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
   clkconnecti.col1[0]=leng+(*clkconnect)[0]/4;  
-  if ((clkconnecti.col2=(int*)malloc(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((clkconnecti.col2=(int*)MALLOC(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
   clkconnecti.col2[0]=leng+(*clkconnect)[0]/4;  
-  if ((clkconnecti.col3=(int*)malloc(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((clkconnecti.col3=(int*)MALLOC(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
   clkconnecti.col3[0]=leng+(*clkconnect)[0]/4;
-  if ((clkconnecti.col4=(int*)malloc(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((clkconnecti.col4=(int*)MALLOC(sizeof(int)*(leng+(*clkconnect)[0]/4+1))) == NULL ) return 0;
   clkconnecti.col4[0]=leng+(*clkconnect)[0]/4;  
 
   for(l=1;l<clkconnect0[0]/4+1;l++)
@@ -1261,8 +1264,8 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       clkconnecti.col3[l+clkconnect0[0]/4]=(*clkconnect)[l+(*clkconnect)[0]/2];
       clkconnecti.col4[l+clkconnect0[0]/4]=(*clkconnect)[l+3*(*clkconnect)[0]/4];
     }
-  free(*clkconnect);
-  if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*clkconnecti.col4[0]+1))) == NULL ) return 0;
+  FREE(*clkconnect);
+  if (((*clkconnect)=(int*)MALLOC(sizeof(int)*(4*clkconnecti.col4[0]+1))) == NULL ) return 0;
   (*clkconnect)[0]=4*clkconnecti.col4[0];
   for(l=1;l<clkconnecti.col4[0]+1;l++)
     {
@@ -1271,22 +1274,22 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       (*clkconnect)[l+(*clkconnect)[0]/2]=clkconnecti.col3[l];
       (*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
     }
-  free(clkconnecti.col1);
-  free(clkconnecti.col2);
-  free(clkconnecti.col3);
-  free(clkconnecti.col4);
+  FREE(clkconnecti.col1);
+  FREE(clkconnecti.col2);
+  FREE(clkconnecti.col3);
+  FREE(clkconnecti.col4);
   con1=VecEg1(con);
-  free(con);
-  if ((con=(int*)malloc(sizeof(int)*(con1[0]+clkconnect0[0]/4+1))) == NULL ) return 0;
+  FREE(con);
+  if ((con=(int*)MALLOC(sizeof(int)*(con1[0]+clkconnect0[0]/4+1))) == NULL ) return 0;
   con[0]=con1[0]+clkconnect0[0]/4;
   pp=&con[clkconnect0[0]/4+1];
   pp=memcpy(pp,&con1[1],sizeof(int)*(con1[0]));
-  free(con1);
+  FREE(con1);
   for(l=1;l<clkconnect0[0]/4+1;l++)
     {
       con[l]=0;     
     }
-  free(clkconnect0);  
+  FREE(clkconnect0);  
   /* ---------------- */
   while ( *prime_pointer <= (*prime_act)[0]){
     o=(*prime_act)[*prime_pointer];
@@ -1294,20 +1297,20 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
     if (o==0)
       {        
 	texeclki=VecEg1(texeclk0);
-	free(texeclk0);
+	FREE(texeclk0);
       }
     else
       {
 	w1=GetPartVect(tclkconnect,tclkconnect[0]/2+1,tclkconnect[0]/4);
 	texeclki=GetPartVect(w1,ordptr1[o],ordptr1[o+1]-ordptr1[o]);
-	if(w1) free(w1);
+	if(w1) FREE(w1);
       }
     if (!texeclki)
       {
-	if ((texeclki=(int*)malloc(sizeof(int))) == NULL ) return 0;
+	if ((texeclki=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
 	texeclki[0]=0;
       }
-    if ((idl=(int*)malloc(sizeof(int)*(texeclki[0]+1))) == NULL ) return 0;
+    if ((idl=(int*)MALLOC(sizeof(int)*(texeclki[0]+1))) == NULL ) return 0;
     idl[0]=texeclki[0];
     for(l=1;l<texeclki[0]+1;l++)
       {
@@ -1315,14 +1318,14 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
       }
     if ( OR(idl) )
       {
-	if ((vec=(int*)malloc(sizeof(int)*(nblk+1))) == NULL ) return 0;
+	if ((vec=(int*)MALLOC(sizeof(int)*(nblk+1))) == NULL ) return 0;
 	vec[0]=nblk;
 	Setmem(vec,-1);
 	for (l=1;l<texeclki[0]+1;l++)
 	  {
 	    vec[texeclki[l]]=0;
 	  }
-	if ((typ_lm=(int*)malloc(sizeof(int)*(typ_l[0]+1))) == NULL ) return 0;
+	if ((typ_lm=(int*)MALLOC(sizeof(int)*(typ_l[0]+1))) == NULL ) return 0;
 	typ_lm[0]=typ_l[0];
 	for(l=1;l<typ_l[0]+1;l++)
 	  {
@@ -1334,8 +1337,8 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 	      }
 	  }
 	tree3(vec,vec[0],*bllst12,typ_lm,bexe,boptr,blnk,blptr,&r,okk);
-	free(typ_lm);
-	free(vec);
+	FREE(typ_lm);
+	FREE(vec);
 	if (!*okk)
 	  {
 	    Message("Algebraic loop detected; cannot be compiled.");
@@ -1353,30 +1356,30 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		*((*bllst10)[r[j]])='s';
 		typ_l[r[j]]=false;
 		
-		if ((vec=malloc(sizeof(int)*((*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]]+1)))== NULL ) return 0;
+		if ((vec=MALLOC(sizeof(int)*((*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]]+1)))== NULL ) return 0;
 		vec[0]=(*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]];
-		if ((*prime_act=(int*)realloc(*prime_act,sizeof(int)*((*prime_act)[0]+vec[0]+1))) == NULL ) return 0;      
+		if ((*prime_act=(int*)REALLOC(*prime_act,sizeof(int)*((*prime_act)[0]+vec[0]+1))) == NULL ) return 0;      
 		for (l = 1; l <= vec[0]; l++){
 		  (*prime_act)[(*prime_act)[0]+l]=(*bllst5ptr)[r[j]]+l-1;
 		}
 		(*prime_act)[0]=(*prime_act)[0]+vec[0];
-		free(vec);		
+		FREE(vec);		
 		
 		w1=GetCollVect(*clkconnect,pointer,3);                            
 		w2=FindDif(w1,r[j]);
 		pointer1=VecEg1(pointer);
-		if(pointer) free(pointer);
+		if(pointer) FREE(pointer);
 		pointer=NULL;
-		if ((pointer=(int*)malloc(sizeof(int)*(w2[0]+1))) == NULL ) return 0;
+		if ((pointer=(int*)MALLOC(sizeof(int)*(w2[0]+1))) == NULL ) return 0;
 		pointer[0]=w2[0];
 		for(l=1;l<w2[0]+1;l++)
 		  {
 		    pointer[l]=pointer1[w2[l]];
 		  }
-		if(w1) free(w1);
+		if(w1) FREE(w1);
 		w1=NULL;
-		if(w2) free(w2);
-		free(pointer1);
+		if(w2) FREE(w2);
+		FREE(pointer1);
 		w1=GetCollVect(*clkconnect,pointer,3);
 		w3=GetCollVect(*clkconnect,pointer,4);        
 		for (l=1;l<pointer[0]+1;l++)
@@ -1386,18 +1389,18 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 		    (*clkconnect)[pointer[l]+(*clkconnect)[0]/2]=w1[l];
 		    (*clkconnect)[pointer[l]+3*(*clkconnect)[0]/4]=w3[l];
 		  }
-		if(w1) free(w1);
-		if(w3) free(w3);
+		if(w1) FREE(w1);
+		if(w3) FREE(w3);
 		for (bl_out=2;bl_out<(*bllst5ptr)[r[j]+1]-(*bllst5ptr)[r[j]]+1;bl_out++)
 		  {
 		    leng=(*clkconnect)[0]/4;
-		    if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
+		    if ((clkconnecti.col1=(int*)MALLOC(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
 		    clkconnecti.col1[0]=leng+pointer[0];  
-		    if ((clkconnecti.col2=(int*)malloc(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
+		    if ((clkconnecti.col2=(int*)MALLOC(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
 		    clkconnecti.col2[0]=leng+pointer[0];  
-		    if ((clkconnecti.col3=(int*)malloc(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
+		    if ((clkconnecti.col3=(int*)MALLOC(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
 		    clkconnecti.col3[0]=leng+pointer[0];
-		    if ((clkconnecti.col4=(int*)malloc(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
+		    if ((clkconnecti.col4=(int*)MALLOC(sizeof(int)*(leng+pointer[0]+1))) == NULL ) return 0;
 		    clkconnecti.col4[0]=leng+pointer[0];  
 		    for(l=1;l<(*clkconnect)[0]/4+1;l++)
 		      {     
@@ -1415,10 +1418,10 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 			clkconnecti.col3[l+(*clkconnect)[0]/4]=w1[l];
 			clkconnecti.col4[l+(*clkconnect)[0]/4]=w3[l];
 		      }
-		    if(w1) free(w1);
-		    if(w3) free(w3);
-		    free(*clkconnect);
-		    if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
+		    if(w1) FREE(w1);
+		    if(w3) FREE(w3);
+		    FREE(*clkconnect);
+		    if (((*clkconnect)=(int*)MALLOC(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
 		    (*clkconnect)[0]=4*clkconnecti.col1[0];
 		    for(l=1;l<(*clkconnect)[0]/4+1;l++)
 		      {
@@ -1427,58 +1430,58 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
 			(*clkconnect)[l+(*clkconnect)[0]/2]=clkconnecti.col3[l];
 			(*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
 		      }
-		    free(clkconnecti.col1);
+		    FREE(clkconnecti.col1);
 		    clkconnecti.col1=NULL;
-		    free(clkconnecti.col2);
+		    FREE(clkconnecti.col2);
 		    clkconnecti.col2=NULL;
-		    free(clkconnecti.col3);
+		    FREE(clkconnecti.col3);
 		    clkconnecti.col3=NULL;
-		    free(clkconnecti.col4);
+		    FREE(clkconnecti.col4);
 		    clkconnecti.col4=NULL;             
 		  }
 		*need_newblk=true;
 		*ok=true;
 		*done=false;
-		free(r);
-		free(pointer);
-		free(idl);
-		free (texeclki);
-		free(bexe);
-		free(blnk);  
-		free(boptr);
-		free(blptr);
-		free(tclkconnect);  
-		free(ordptr1);  
-		free(con);
+		FREE(r);
+		FREE(pointer);
+		FREE(idl);
+		FREE (texeclki);
+		FREE(bexe);
+		FREE(blnk);  
+		FREE(boptr);
+		FREE(blptr);
+		FREE(tclkconnect);  
+		FREE(ordptr1);  
+		FREE(con);
 		return 0;
 	      }
 	    else
 	      {
 		w1=GetCollVect(*clkconnect,pointer,3);
 		w2=FindDif(w1,r[j]);
-		if (w1) free(w1);
+		if (w1) FREE(w1);
 		pointer1=VecEg1(pointer);
-		free(pointer);
-		if ((pointer=(int*)malloc(sizeof(int)*(w2[0]+1))) == NULL ) return 0;
+		FREE(pointer);
+		if ((pointer=(int*)MALLOC(sizeof(int)*(w2[0]+1))) == NULL ) return 0;
 		pointer[0]=w2[0];
 		for(l=1;l<w2[0]+1;l++)
 		  {
 		    pointer[l]=pointer1[w2[l]];
 		  }   
-		free(pointer1);
-		if (w2) free(w2);
+		FREE(pointer1);
+		if (w2) FREE(w2);
 	      }
 	  } /*fin de for bl=r*/
-	free(r);
+	FREE(r);
       }  /* fin de test */
     if (pointer && pointer[0] != 0) 
       {
-	free(pointer);
+	FREE(pointer);
 	sciprint("warning(problem1)");
 	return 0;
       }
-    free(idl);
-    free (texeclki);
+    FREE(idl);
+    FREE (texeclki);
   } /* fin for o */
   if ( OR(typ_l) ) 
     {
@@ -1487,13 +1490,13 @@ int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int** blls
   
   *ok=true;
   *done=true;
-  free(bexe);
-  free(blnk);  
-  free(boptr);
-  free(blptr);
-  free(tclkconnect);  
-  free(ordptr1);  
-  free(con);
+  FREE(bexe);
+  FREE(blnk);  
+  FREE(boptr);
+  FREE(blptr);
+  FREE(tclkconnect);  
+  FREE(ordptr1);  
+  FREE(con);
   
   return 0;
 } /* end function */
@@ -1537,14 +1540,14 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
       a=exe_cons[0]/2;
       ppget=GetPartVect(exe_cons,a+1,a);
       mma=Max1(ppget)+1;
-      free(ppget);
-      if ((con=(int*)malloc(sizeof(int)*(a+1))) == NULL) return 0;
+      FREE(ppget);
+      if ((con=(int*)MALLOC(sizeof(int)*(a+1))) == NULL) return 0;
       con[0]=a;
       for(j=1;j<a+1;j++)
         {
           con[j]=-mma*exe_cons[j]-exe_cons[j+a];
         } 
-      if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
+      if ((ind=(int*)MALLOC(sizeof(int)*(con[0]+1))) == NULL ) return 0;
       ind[0]=con[0];
       C2F(isort)(&con[1],&con[0],&ind[1]); 
       Inv(con);
@@ -1555,13 +1558,13 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
           exe_cons[j+ind[0]]=clkconnectjind[ind[j]+ind[0]];
         }
 
-      free(clkconnectjind);
+      FREE(clkconnectjind);
       clkconnectjind=NULL;
-      free(ind);
+      FREE(ind);
       ind=NULL;
       if (con[0]>=2)
         {
-          if ((con1=(int*)malloc(sizeof(int)*(con[0]))) == NULL) return 0;
+          if ((con1=(int*)MALLOC(sizeof(int)*(con[0]))) == NULL) return 0;
 	  k=1;
           for(j=1; j < con[0]; j++)
            {
@@ -1574,12 +1577,12 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
                {
                  Incr2(exe_cons,con1[j]);
                }
-	     free(con1);con1=NULL;
+	     FREE(con1);con1=NULL;
 	    }      
         }
-      free(con);con=NULL;
+      FREE(con);con=NULL;
       a=exe_cons[0]/2;
-      if ((clkconnectjd=(double*)malloc(sizeof(double)*(a+1))) == NULL) return 0;
+      if ((clkconnectjd=(double*)MALLOC(sizeof(double)*(a+1))) == NULL) return 0;
       clkconnectjd[0]=a;
       for(j=1;j<a+1;j++)
         {
@@ -1587,29 +1590,29 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
           clkconnectjd[j]=powerd(2,exe_cons[j+a]-1);
           exe_cons[j+a]=(int) clkconnectjd[j];
         }
-      free(clkconnectjd);
+      FREE(clkconnectjd);
       clkconnectjd=NULL;
       con=GetPartVect(exe_cons,1,a);  
       if (con[0]>=2)
         {
-          if ((iini=(int*)malloc(sizeof(int)*(con[0]))) == NULL) return 0;
+          if ((iini=(int*)MALLOC(sizeof(int)*(con[0]))) == NULL) return 0;
 	  k=1;
           for(j=1; j < con[0]; j++)
             {
               if((con[j+1]-con[j]) != 0) iini[k++]=j;
             }
 	  iini[0]=k-1;
-          if ((iini=(int*)realloc(iini,sizeof(int)*(iini[0]+2))) == NULL) return 0;
+          if ((iini=(int*)REALLOC(iini,sizeof(int)*(iini[0]+2))) == NULL) return 0;
           iini[iini[0]+1]=a;
           iini[0]++;
 	}
       else
         {
-	  if ((iini=(int*)malloc(sizeof(int)*(2))) == NULL) return 0;
+	  if ((iini=(int*)MALLOC(sizeof(int)*(2))) == NULL) return 0;
           iini[0]=1;
           iini[1]=1;                          
         }
-      if (((*clkconnectj_cons)=(int*)malloc(sizeof(int)*(2*iini[0]+1))) == NULL) return 0;
+      if (((*clkconnectj_cons)=(int*)MALLOC(sizeof(int)*(2*iini[0]+1))) == NULL) return 0;
       (*clkconnectj_cons)[0]=2*iini[0];
       
       for (j=1;j<iini[0]+1;j++)
@@ -1623,16 +1626,16 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	    }   
           
 	  (*clkconnectj_cons)[j+iini[0]]=sum;
-	  free(ind);ind=NULL;  
+	  FREE(ind);ind=NULL;  
         }
-      free(con); con=NULL;
-      free(iini); iini=NULL;
+      FREE(con); con=NULL;
+      FREE(iini); iini=NULL;
     } /* fin de if (exe_cons) */
     else
       {
         if ((*clkconnectj_cons))
           {
-            free((*clkconnectj_cons));
+            FREE((*clkconnectj_cons));
             (*clkconnectj_cons)=NULL;
           }
       }
@@ -1643,8 +1646,8 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
       a=clkconnecttmp[0]/4;
       ppget=GetPartVect(clkconnecttmp,1,a);
       ind=FindDif(ppget,0);
-      free(ppget);
-      if ((clkconnect=(int*)malloc(sizeof(int)*(4*ind[0]+1))) == NULL) return 0;
+      FREE(ppget);
+      if ((clkconnect=(int*)MALLOC(sizeof(int)*(4*ind[0]+1))) == NULL) return 0;
       clkconnect[0]=4*ind[0];
       for(l=1;l<ind[0]+1;l++)
 	{
@@ -1653,14 +1656,14 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	  clkconnect[l+2*ind[0]]=clkconnecttmp[ind[l]+clkconnecttmp[0]/2];
 	  clkconnect[l+3*ind[0]]=clkconnecttmp[ind[l]+3*a];
 	}
-      if(ind) free(ind);
+      if(ind) FREE(ind);
       ind=NULL;
       ppget=GetPartVect(clkconnecttmp,1,a);
       ind=FindEg(ppget,0); 
-      free(ppget);
+      FREE(ppget);
       if (ind)
 	{
-	  if ((clkconnect0=(int*)malloc(sizeof(int)*(4*ind[0]+1))) == NULL) return 0;
+	  if ((clkconnect0=(int*)MALLOC(sizeof(int)*(4*ind[0]+1))) == NULL) return 0;
 	  clkconnect0[0]=4*ind[0];
 	  for(l=1;l<ind[0]+1;l++)
 	    {
@@ -1669,23 +1672,23 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	      clkconnect0[l+2*ind[0]]=clkconnecttmp[ind[l]+clkconnecttmp[0]/2];
 	      clkconnect0[l+3*ind[0]]=clkconnecttmp[ind[l]+3*a];
 	    }
-	  free(ind);
+	  FREE(ind);
 	  ind=NULL;
 	}    
-      free(clkconnecttmp);clkconnecttmp=NULL;
+      FREE(clkconnecttmp);clkconnecttmp=NULL;
       if (clkconnect0 && clkconnect0[0] != 0)
 	{
 	  a=clkconnect0[0]/4;
 	  clkconnectj3=GetPartVect(clkconnect0,a+a+1,a);                      
 	  clkconnectj4=GetPartVect(clkconnect0,3*a+1,a);
 	  mma=Max1(clkconnectj4)+1;
-	  if ((con=(int*)malloc(sizeof(int)*(a+1))) == NULL) return 0;
+	  if ((con=(int*)MALLOC(sizeof(int)*(a+1))) == NULL) return 0;
 	  con[0]=a;
 	  for(j=1;j<a+1;j++)
 	    {
 	      con[j]=-mma*clkconnectj3[j]-clkconnectj4[j];
 	    } 
-	  if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
+	  if ((ind=(int*)MALLOC(sizeof(int)*(con[0]+1))) == NULL ) return 0;
 	  ind[0]=con[0];
 	  C2F(isort)(&con[1],&con[0],&ind[1]); 
 	  Inv(con);
@@ -1696,12 +1699,12 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	      clkconnectj3[j]=clkconnectjind3[ind[j]];
 	      clkconnectj4[j]=clkconnectjind4[ind[j]];
 	    }
-	  free(clkconnectjind3); clkconnectjind3=NULL;
-	  free(clkconnectjind4); clkconnectjind4=NULL;
-	  free(ind); ind=NULL;
+	  FREE(clkconnectjind3); clkconnectjind3=NULL;
+	  FREE(clkconnectjind4); clkconnectjind4=NULL;
+	  FREE(ind); ind=NULL;
 	  if (con[0]>=2)
 	    {
-	      if ((con1=(int*)malloc(sizeof(int)*(con[0]))) == NULL) return 0;
+	      if ((con1=(int*)MALLOC(sizeof(int)*(con[0]))) == NULL) return 0;
 	      k=1;
 	      for (j = 1; j< con[0]; j++)
 		{
@@ -1715,12 +1718,12 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 		      Incr1(clkconnectj3,con1[j]);
 		      Incr1(clkconnectj4,con1[j]);
 		    }
-		  free(con1);con1=NULL;
+		  FREE(con1);con1=NULL;
 		}     
 	    }
 	  a=clkconnectj3[0];
-	  free(con);con=NULL;
-	  if ((clkconnectjd=(double*)malloc(sizeof(double)*(a+1))) == NULL) return 0;
+	  FREE(con);con=NULL;
+	  if ((clkconnectjd=(double*)MALLOC(sizeof(double)*(a+1))) == NULL) return 0;
 	  clkconnectjd[0]=a;
 	  for(j=1;j<a+1;j++)
 	    {
@@ -1728,27 +1731,27 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	      clkconnectj4[j]=(int) clkconnectjd[j];  
 	    }
 	  
-	  free(clkconnectjd); clkconnectjd=NULL;
+	  FREE(clkconnectjd); clkconnectjd=NULL;
 	  if (clkconnectj3[0]>=2)
 	    {
-	      if ((iini=(int*)malloc(sizeof(int)*(a))) == NULL) return 0;
+	      if ((iini=(int*)MALLOC(sizeof(int)*(a))) == NULL) return 0;
 	      k=1;
 	      for(j=1;j<a;j++)
 		{
 		  if ((clkconnectj3[j+1]-clkconnectj3[j]) != 0) iini[k++]=j;
 		}
 	      iini[0]=k-1;
-	      if ((iini=(int*)realloc(iini,sizeof(int)*(iini[0]+2))) == NULL) return 0;
+	      if ((iini=(int*)REALLOC(iini,sizeof(int)*(iini[0]+2))) == NULL) return 0;
 	      iini[iini[0]+1]=a;
 	      iini[0]++;
 	    }
 	  else
 	    {
-	      if ((iini=(int*)malloc(sizeof(int)*(2))) == NULL) return 0;
+	      if ((iini=(int*)MALLOC(sizeof(int)*(2))) == NULL) return 0;
 	      iini[0]=1;
 	      iini[1]=1;                           
 	    }
-	  if (((*clkconnectj0)=(int*)malloc(sizeof(int)*(2*iini[0]+1))) == NULL) return 0;
+	  if (((*clkconnectj0)=(int*)MALLOC(sizeof(int)*(2*iini[0]+1))) == NULL) return 0;
 	  (*clkconnectj0)[0]=2*iini[0];
 	  for (j=1;j<iini[0]+1;j++)
 	    {
@@ -1760,31 +1763,31 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 		  sum+=clkconnectj4[ind[l]];
 		}
 	      (*clkconnectj0)[j+iini[0]]=sum;
-	      free(ind);ind=NULL; 
+	      FREE(ind);ind=NULL; 
 	    }
 	  
-	  free(con);con=NULL;
-	  free(iini);iini=NULL;
-	  free(clkconnectj3);clkconnectj3=NULL;
-	  free(clkconnectj4);clkconnectj4=NULL;
+	  FREE(con);con=NULL;
+	  FREE(iini);iini=NULL;
+	  FREE(clkconnectj3);clkconnectj3=NULL;
+	  FREE(clkconnectj4);clkconnectj4=NULL;
 	} /* fin de if (clkconnect0) */
       else
 	{
 	  if ((*clkconnectj0))
 	    {
-	      free((*clkconnectj0));
+	      FREE((*clkconnectj0));
 	      (*clkconnectj0)=NULL;
 	    }
 	}
-      free(clkconnect0);clkconnect0=NULL;
+      FREE(clkconnect0);clkconnect0=NULL;
       a=clkconnect[0]/4;
-      if ((con=(int*)malloc(sizeof(int)*(a+1))) == NULL) return 0;
+      if ((con=(int*)MALLOC(sizeof(int)*(a+1))) == NULL) return 0;
       con[0]=a;
       for(l=1;l<a+1;l++)
 	{
 	  con[l]=-bllst5ptr[clkconnect[l]]-clkconnect[l+a]+1;
 	}
-      if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
+      if ((ind=(int*)MALLOC(sizeof(int)*(con[0]+1))) == NULL ) return 0;
       ind[0]=con[0];
       C2F(isort)(&con[1],&con[0],&ind[1]); 
       Inv(con);
@@ -1797,16 +1800,16 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	  clkconnect[j+3*ind[0]]=clkconnectjind[ind[j]+3*ind[0]];
 	}
       
-      free(clkconnectjind);
+      FREE(clkconnectjind);
       clkconnectjind=NULL;
-      free(ind);ind=NULL;
+      FREE(ind);ind=NULL;
     } /*fin de if (clkconnect[0]!=0) */
   else
     {
-      if ((con=(int*)malloc(sizeof(int))) == NULL) return 0;
+      if ((con=(int*)MALLOC(sizeof(int))) == NULL) return 0;
       con[0]=0;
     }
-  if (((*ordptr1)=(int*)malloc(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
+  if (((*ordptr1)=(int*)MALLOC(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
   (*ordptr1)[0]=bllst5ptr[bllst5ptr[0]];
   (*ordptr1)[1]=1;
   for (j=1;j<bllst5ptr[bllst5ptr[0]];j++)
@@ -1819,16 +1822,16 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
       else
 	{
 	  (*ordptr1)[j+1]=Max1(con1)+1;
-	  free(con1);con1=NULL;
+	  FREE(con1);con1=NULL;
 	}
       
     }
   
-  if ((new_ordptr1=(int*)malloc(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
+  if ((new_ordptr1=(int*)MALLOC(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
   new_ordptr1[0]=bllst5ptr[bllst5ptr[0]];
   new_ordptr1[1]=1;
-  free(con); con=NULL;
-  if (((*execlk)=(int*)malloc(sizeof(int))) == NULL) return 0;
+  FREE(con); con=NULL;
+  if (((*execlk)=(int*)MALLOC(sizeof(int))) == NULL) return 0;
   (*execlk)[0]=0;
   for (m=1;m<bllst5ptr[bllst5ptr[0]];m++)
     {
@@ -1839,14 +1842,14 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 	  
        /* **************** debut de funct descard1 ************ */
 	  mma=Max1(clkconnectj4)+1;
-	  if ((con=(int*)malloc(sizeof(int)*(clkconnectj4[0]+1))) == NULL) return 0;
+	  if ((con=(int*)MALLOC(sizeof(int)*(clkconnectj4[0]+1))) == NULL) return 0;
 	  con[0]=clkconnectj4[0];
 	  
 	  for(l=1;l<con[0]+1;l++)
 	    {
 	      con[l]=-mma*clkconnectj3[l]-clkconnectj4[l];
 	    } 
-	 if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
+	 if ((ind=(int*)MALLOC(sizeof(int)*(con[0]+1))) == NULL ) return 0;
 	 ind[0]=con[0];
 	 C2F(isort)(&con[1],&con[0],&ind[1]); 
 	 Inv(con);
@@ -1857,12 +1860,12 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
              clkconnectj3[j]=clkconnectjind3[ind[j]];
              clkconnectj4[j]=clkconnectjind4[ind[j]];
            }
-         free(clkconnectjind3); clkconnectjind3=NULL;
-	 free(clkconnectjind4); clkconnectjind4=NULL;
-         free(ind); ind=NULL;
+         FREE(clkconnectjind3); clkconnectjind3=NULL;
+	 FREE(clkconnectjind4); clkconnectjind4=NULL;
+         FREE(ind); ind=NULL;
          if (con[0]>=2)
            {
-             if ((con1=(int*)malloc(sizeof(int)*(con[0]))) == NULL) return 0;
+             if ((con1=(int*)MALLOC(sizeof(int)*(con[0]))) == NULL) return 0;
 	     k=1;
              for(j = 1;j < con[0]; j++)
                {
@@ -1876,39 +1879,39 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
                      Incr1(clkconnectj3,con1[j]);
 		     Incr1(clkconnectj4,con1[j]);
                    }
-		 free(con1);con1=NULL;
+		 FREE(con1);con1=NULL;
                }        
 	   }
-	 free(con);con=NULL;
+	 FREE(con);con=NULL;
          b=clkconnectj3[0];
-         if ((clkconnectjd=(double*)malloc(sizeof(double)*(b+1))) == NULL) return 0;
+         if ((clkconnectjd=(double*)MALLOC(sizeof(double)*(b+1))) == NULL) return 0;
 	 clkconnectjd[0]=b;
          for(j=1;j<b+1;j++)
            {
              clkconnectjd[j]=powerd(2,clkconnectj4[j]-1);
              clkconnectj4[j]=(int) clkconnectjd[j];      
            }
-         free(clkconnectjd); clkconnectjd=NULL;
+         FREE(clkconnectjd); clkconnectjd=NULL;
          if (clkconnectj3[0]>=2)
            {
-             if ((iini=(int*)malloc(sizeof(int)*(clkconnectj3[0]))) == NULL) return 0;
+             if ((iini=(int*)MALLOC(sizeof(int)*(clkconnectj3[0]))) == NULL) return 0;
              k=1;
              for(j=1; j < b; j++)
                {
                  if((clkconnectj3[j+1]-clkconnectj3[j]) != 0) iini[k++]=j;
                }
 	     iini[0]=k-1;
-             if ((iini=(int*)realloc(iini,sizeof(int)*(iini[0]+2))) == NULL) return 0;
+             if ((iini=(int*)REALLOC(iini,sizeof(int)*(iini[0]+2))) == NULL) return 0;
              iini[iini[0]+1]=b;
              iini[0]++;
            }
          else
            {
-             if ((iini=(int*)malloc(sizeof(int)*(2))) == NULL) return 0;
+             if ((iini=(int*)MALLOC(sizeof(int)*(2))) == NULL) return 0;
              iini[0]=1;
              iini[1]=1;                       
            }
-	 if ((clkconnectjj=(int*)malloc(sizeof(int)*(2*iini[0]+1))) == NULL) return 0;
+	 if ((clkconnectjj=(int*)MALLOC(sizeof(int)*(2*iini[0]+1))) == NULL) return 0;
          clkconnectjj[0]=2*iini[0];
          for (j=1;j<iini[0]+1;j++)
            {
@@ -1920,19 +1923,19 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 		 sum+=clkconnectj4[ind[l]];
 	       }
              clkconnectjj[j+iini[0]]=sum;
-	     free(ind); ind=NULL;       
+	     FREE(ind); ind=NULL;       
            }
 	 
-	 free(con);con=NULL;
-	 free(iini);iini=NULL;
-	 free(clkconnectj3);clkconnectj3=NULL;
-	 free(clkconnectj4);clkconnectj4=NULL;
+	 FREE(con);con=NULL;
+	 FREE(iini);iini=NULL;
+	 FREE(clkconnectj3);clkconnectj3=NULL;
+	 FREE(clkconnectj4);clkconnectj4=NULL;
        } /* fin de if */
      else
        {
          if (clkconnectjj)
            {
-             free(clkconnectjj);
+             FREE(clkconnectjj);
              clkconnectjj=NULL;
            }  
        }     
@@ -1940,10 +1943,10 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
      /* *** fin de function discard1 ***** */
      if(clkconnectjj)
        {
-         if (((*execlk)=(int*)realloc((*execlk),sizeof(int)*((*execlk)[0]+clkconnectjj[0]+1))) == NULL ) return 0;
-         if ((execlki.col1=(int*)malloc(sizeof(int)*((*execlk)[0]/2+clkconnectjj[0]/2+1))) == NULL) return 0;
+         if (((*execlk)=(int*)REALLOC((*execlk),sizeof(int)*((*execlk)[0]+clkconnectjj[0]+1))) == NULL ) return 0;
+         if ((execlki.col1=(int*)MALLOC(sizeof(int)*((*execlk)[0]/2+clkconnectjj[0]/2+1))) == NULL) return 0;
          execlki.col1[0]=(*execlk)[0]/2+clkconnectjj[0]/2;
-         if ((execlki.col2=(int*)malloc(sizeof(int)*((*execlk)[0]/2+clkconnectjj[0]/2+1))) == NULL) return 0;
+         if ((execlki.col2=(int*)MALLOC(sizeof(int)*((*execlk)[0]/2+clkconnectjj[0]/2+1))) == NULL) return 0;
          execlki.col2[0]=(*execlk)[0]/2+clkconnectjj[0]/2;
 	 for(l=1;l<(*execlk)[0]/2+1;l++)
            {
@@ -1962,11 +1965,11 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
              (*execlk)[l]=execlki.col1[l];
              (*execlk)[l+(*execlk)[0]/2]=execlki.col2[l];
            }
-         if(execlki.col1) free(execlki.col1);
-         if(execlki.col2) free(execlki.col2);
+         if(execlki.col1) FREE(execlki.col1);
+         if(execlki.col2) FREE(execlki.col2);
          
          new_ordptr1[m+1]=new_ordptr1[m]+clkconnectjj[0]/2;
-         free(clkconnectjj);
+         FREE(clkconnectjj);
          clkconnectjj=NULL;
        }
      else
@@ -1975,9 +1978,9 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
        }
      
     } /* for m */
-  free( *ordptr1);
+  FREE( *ordptr1);
   *ordptr1=new_ordptr1;
-  if (clkconnect[0] != 0) free(clkconnect);
+  if (clkconnect[0] != 0) FREE(clkconnect);
   return NULL;
 }/* fin de funct */
 
@@ -2000,17 +2003,17 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
   clkconnecttmp=NULL;
   *ok=true;
   prt=NULL;
-  if ((fff=(int*)malloc(sizeof(int)*(nbl+1))) == NULL) return 0;
+  if ((fff=(int*)MALLOC(sizeof(int)*(nbl+1))) == NULL) return 0;
   fff[0]=nbl;
   Setmem(fff,1);
 
   *typ_s=VecEg1(fff);
   *typ_m=VecEg1(fff);
-  free(fff); fff=NULL;
+  FREE(fff); fff=NULL;
   adjust_inout(bllst2,bllst3,bllst2ptr,bllst3ptr,nzcross,nmode,connectmat,ok,corinvec,corinvptr,nbl);
   if(!*ok) return 0;
 
-  if (((*initexe)=(double*)malloc(sizeof(double))) == NULL) return 0;
+  if (((*initexe)=(double*)MALLOC(sizeof(double))) == NULL) return 0;
   (*initexe)[0]=0;                
   
   for (j=1;j<nbl+1;j++)
@@ -2032,11 +2035,11 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
             {
 	      prt=FindSupEgd(ll11,0);
 	  
-              if ((initexei.col1=(double*)malloc(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
+              if ((initexei.col1=(double*)MALLOC(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
 	      initexei.col1[0]=(int) ((*initexe)[0])/3+prt[0];
-              if ((initexei.col2=(double*)malloc(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
+              if ((initexei.col2=(double*)MALLOC(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
 	      initexei.col2[0]=(int) ((*initexe)[0])/3+prt[0];
-              if ((initexei.col3=(double*)malloc(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
+              if ((initexei.col3=(double*)MALLOC(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
 	      initexei.col3[0]=(int) ((*initexe)[0])/3+prt[0];
               for(l=1;l<(int) ((*initexe)[0])/3+1;l++)
                 {                                  
@@ -2050,7 +2053,7 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
                   initexei.col2[l+(int) ((*initexe)[0])/3]=prt[l];
                   initexei.col3[l+(int) ((*initexe)[0])/3]=ll11[prt[l]];
                 }
-              if (((*initexe)=(double*)realloc((*initexe),(size_t) (sizeof(double)*(3*initexei.col1[0]+1)))) == NULL ) return 0;
+              if (((*initexe)=(double*)REALLOC((*initexe),(size_t) (sizeof(double)*(3*initexei.col1[0]+1)))) == NULL ) return 0;
 	      ((*initexe)[0])=3*((int) initexei.col1[0]);
               for(l=1;l<(int) (*initexe)[0]/3+1;l++)
                 {
@@ -2058,13 +2061,13 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
                   (*initexe)[l+(int) ((*initexe)[0])/3]=initexei.col2[l];
                   (*initexe)[l+2*(int) ((*initexe)[0])/3]=initexei.col3[l];
                 }
-	      free(initexei.col1);
-	      free(initexei.col2);
-	      free(initexei.col3);
-	      free(prt);prt=NULL;
-	      free(ll11); ll11=NULL;
+	      FREE(initexei.col1);
+	      FREE(initexei.col2);
+	      FREE(initexei.col3);
+	      FREE(prt);prt=NULL;
+	      FREE(ll11); ll11=NULL;
             }
-	  free(fff);
+	  FREE(fff);
         }
     } /* end for j */
   if (clkconnect[0] != 0)
@@ -2072,8 +2075,8 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
   clkconnecttmp=VecEg1(clkconnect);
   ppget=GetPartVect(clkconnecttmp,1,clkconnecttmp[0]/4);
   idl=FindDif(ppget,0);
-  free(ppget);
-  if ((clkconnect=(int*)malloc(sizeof(int)*(4*idl[0]+1))) == NULL ) return 0;
+  FREE(ppget);
+  if ((clkconnect=(int*)MALLOC(sizeof(int)*(4*idl[0]+1))) == NULL ) return 0;
   clkconnect[0]=4*idl[0];
   for(l=1;l<idl[0]+1;l++)
     {
@@ -2082,27 +2085,27 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
       clkconnect[l+2*idl[0]]=clkconnecttmp[idl[l]+clkconnecttmp[0]/2];
       clkconnect[l+3*idl[0]]=clkconnecttmp[idl[l]+3*clkconnecttmp[0]/4];
     }
-  free(clkconnecttmp);clkconnecttmp=NULL;
-  free(idl);idl=NULL;
+  FREE(clkconnecttmp);clkconnecttmp=NULL;
+  FREE(idl);idl=NULL;
   clkconnecttmp=GetPartVect(clkconnect,1,clkconnect[0]/4);
   idl=GetPartVect(clkconnect,clkconnect[0]/4+1,clkconnect[0]/4);
   if (!idl)
     {
-      if ((idl=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((idl=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       idl[0]=0;
     }
-  if ((con=(int*)malloc(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
+  if ((con=(int*)MALLOC(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
   con[0]=idl[0];
   for(l=1;l<clkconnect[0]/4+1;l++)
     {
       con[l]=-bllst5ptr[clkconnecttmp[l]]-idl[l]+1;
     }
-  free(clkconnecttmp);clkconnecttmp=NULL;
-  free(idl);idl=NULL;
-  if ((ind=(int*)malloc(sizeof(int)*(con[0]+1))) == NULL ) return 0;
+  FREE(clkconnecttmp);clkconnecttmp=NULL;
+  FREE(idl);idl=NULL;
+  if ((ind=(int*)MALLOC(sizeof(int)*(con[0]+1))) == NULL ) return 0;
   ind[0]=con[0];
   C2F(isort)(&con[1],&con[0],&ind[1]);
-  free(con);con=NULL;
+  FREE(con);con=NULL;
   clkconnectind=VecEg1(clkconnect);
   for(l=1;l<ind[0]+1;l++)
     {
@@ -2111,19 +2114,19 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
       clkconnect[l+2*ind[0]]=clkconnectind[ind[l]+2*ind[0]];
       clkconnect[l+3*ind[0]]=clkconnectind[ind[l]+3*ind[0]];      
     } 
-  free(clkconnectind);
+  FREE(clkconnectind);
   clkconnectind=NULL;
-  free(ind);ind=NULL;
+  FREE(ind);ind=NULL;
     }
-  if (((*boptr)=(int*)malloc(sizeof(int)*(nbl+2))) == NULL ) return 0;
+  if (((*boptr)=(int*)MALLOC(sizeof(int)*(nbl+2))) == NULL ) return 0;
   (*boptr)[0]=nbl+1;
   (*boptr)[1]=1;
-  if (((*bexe)=(int*)malloc(sizeof(int))) == NULL ) return 0;
+  if (((*bexe)=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
   (*bexe)[0]=0;
   ppget=GetPartVect(clkconnect,1,clkconnect[0]/4);
   if (!ppget)
     {
-      if ((ppget=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((ppget=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       ppget[0]=0;
     }
   for (j=1;j<nbl+1;j++)
@@ -2131,35 +2134,35 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
       idl=FindEg(ppget,j);
       if(idl)
         {
-          if ((ind=(int*)malloc(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
+          if ((ind=(int*)MALLOC(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
           ind[0]=idl[0];
           for (l=1;l<ind[0]+1;l++)
             {
               ind[l]=clkconnect[idl[l]+clkconnect[0]/2];
             }      
-          if (((*bexe)=(int*)realloc((*bexe),sizeof(int)*((*bexe)[0]+ind[0]+1))) == NULL ) return 0;
+          if (((*bexe)=(int*)REALLOC((*bexe),sizeof(int)*((*bexe)[0]+ind[0]+1))) == NULL ) return 0;
           for (l=1;l<ind[0]+1;l++)
             {
               (*bexe)[l+(*bexe)[0]]=ind[l];
             }
           (*bexe)[0]=(*bexe)[0]+ind[0];
           (*boptr)[j+1]=(*boptr)[j]+ind[0];
-	  free(idl);idl=NULL;
-	  free(ind);ind=NULL;
+	  FREE(idl);idl=NULL;
+	  FREE(ind);ind=NULL;
         }
       else (*boptr)[j+1]=(*boptr)[j];
     }
-  free(ppget); ppget=NULL;
-  if (clkconnect[0] != 0) {free(clkconnect);clkconnect=NULL;}
-  if (((*blptr)=(int*)malloc(sizeof(int)*(nbl+2))) == NULL ) return 0;
+  FREE(ppget); ppget=NULL;
+  if (clkconnect[0] != 0) {FREE(clkconnect);clkconnect=NULL;}
+  if (((*blptr)=(int*)MALLOC(sizeof(int)*(nbl+2))) == NULL ) return 0;
   (*blptr)[0]=nbl+1;
   (*blptr)[1]=1;
-  if (((*blnk)=(int*)malloc(sizeof(int))) == NULL ) return 0;
+  if (((*blnk)=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
   (*blnk)[0]=0;
   ppget=GetPartVect(connectmat,1,connectmat[0]/4);
   if(!ppget)
     {
-      if ((ppget=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((ppget=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       ppget[0]=0;
     }
   for (j=1;j<nbl+1;j++)
@@ -2167,33 +2170,33 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
       idl=FindEg(ppget,j);
       if(idl && idl[0] != 0)
         {
-          if ((ind=(int*)malloc(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
+          if ((ind=(int*)MALLOC(sizeof(int)*(idl[0]+1))) == NULL ) return 0;
           ind[0]=idl[0];
           for (l=1;l<ind[0]+1;l++)
             {
               ind[l]=connectmat[idl[l]+connectmat[0]/2];
             }      
-          if (((*blnk)=(int*)realloc((*blnk),sizeof(int)*((*blnk)[0]+ind[0]+1))) == NULL ) return 0;
+          if (((*blnk)=(int*)REALLOC((*blnk),sizeof(int)*((*blnk)[0]+ind[0]+1))) == NULL ) return 0;
           for (l=1;l<ind[0]+1;l++)
             {
               (*blnk)[l+(*blnk)[0]]=ind[l];
             }
           (*blnk)[0]=(*blnk)[0]+ind[0];
           (*blptr)[j+1]=(*blptr)[j]+ind[0];
-	  free(ind);ind=NULL;
+	  FREE(ind);ind=NULL;
         }
       else (*blptr)[j+1]=(*blptr)[j];
-      free(idl);idl=NULL;
+      FREE(idl);idl=NULL;
     }
-  free(ppget);ppget=NULL;  
+  FREE(ppget);ppget=NULL;  
   
   nlnk=connectmat[0]/4;
-  if (((*inplnk)=(int*)calloc(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL ) return 0;
+  if (((*inplnk)=(int*)CALLOC(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL ) return 0;
   (*inplnk)[0]=bllst2ptr[bllst2ptr[0]]-1;
-  if (((*outlnk)=(int*)calloc(bllst3ptr[bllst3ptr[0]],sizeof(int))) == NULL ) return 0;
+  if (((*outlnk)=(int*)CALLOC(bllst3ptr[bllst3ptr[0]],sizeof(int))) == NULL ) return 0;
   (*outlnk)[0]=bllst3ptr[bllst3ptr[0]]-1;
   ptlnk=1; 
-  if ((lnkbsz=(int*)malloc(sizeof(int))) == NULL ) return 0;
+  if ((lnkbsz=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
   lnkbsz[0]=0;
 
   for (jj=1;jj<nlnk+1;jj++)
@@ -2209,19 +2212,19 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
                 {
                   (*outlnk)[ind[l]]=(*outlnk)[ind[l]]-1;
                 }
-              free(ind);ind=NULL;
+              FREE(ind);ind=NULL;
               ind=FindEg(*outlnk,ko);
               for(l=1;l<ind[0]+1;l++)
                 {
                   (*outlnk)[ind[l]]=ki;
                 }
-              free(ind); ind=NULL;
+              FREE(ind); ind=NULL;
               ind=FindSup(*inplnk,ko);
               for(l=1;l<ind[0]+1;l++)
                 {
                   (*inplnk)[ind[l]]=(*inplnk)[ind[l]]-1;
                 }
-              free(ind);ind=NULL;
+              FREE(ind);ind=NULL;
               ind=FindEg(*inplnk,ko);
               for(l=1;l<ind[0]+1;l++)
                 {
@@ -2236,19 +2239,19 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
                 {
                   (*outlnk)[ind[l]]=(*outlnk)[ind[l]]-1;
                 }
-              free(ind); ind=NULL;
+              FREE(ind); ind=NULL;
               ind=FindEg(*outlnk,ki);
               for(l=1;l<ind[0]+1;l++)
                 {
                   (*outlnk)[ind[l]]=ko;
                 }
-              free(ind); ind=NULL;
+              FREE(ind); ind=NULL;
               ind=FindSup(*inplnk,ki);
               for(l=1;l<ind[0]+1;l++)
                 {
                   (*inplnk)[ind[l]]=(*inplnk)[ind[l]]-1;
                 }
-              free(ind); ind=NULL;
+              FREE(ind); ind=NULL;
               ind=FindEg(*inplnk,ki);
               for(l=1;l<ind[0]+1;l++)
                 {
@@ -2270,30 +2273,30 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
           (*outlnk)[bllst3ptr[connectmat[jj]]+connectmat[jj+nlnk]-1]=ptlnk;
           (*inplnk)[bllst2ptr[connectmat[jj+2*nlnk]]+connectmat[jj+3*nlnk]-1]=ptlnk;
 	  ind=GetPartVect(bllst3,bllst3ptr[connectmat[jj]],bllst3ptr[connectmat[jj]+1]-bllst3ptr[connectmat[jj]]);
-          if ((lnkbsz=(int*)realloc(lnkbsz,sizeof(int)*(lnkbsz[0]+2))) == NULL ) return 0;
+          if ((lnkbsz=(int*)REALLOC(lnkbsz,sizeof(int)*(lnkbsz[0]+2))) == NULL ) return 0;
           lnkbsz[lnkbsz[0]+1]=ind[connectmat[jj+nlnk]];
           lnkbsz[0]++;                      
           ptlnk++;
-	  free(ind);ind=NULL;
+	  FREE(ind);ind=NULL;
         }
     } /* fin de for jj */
 
-  if ((ind=(int*)malloc(sizeof(int)*(lnkbsz[0]+2))) == NULL ) return 0;
+  if ((ind=(int*)MALLOC(sizeof(int)*(lnkbsz[0]+2))) == NULL ) return 0;
   ind[0]=lnkbsz[0]+1;
   ind[1]=1;
   for (l=2;l<ind[0]+1;l++)
     {
       ind[l]=lnkbsz[l-1];
     }
-  free(lnkbsz);lnkbsz=NULL;
+  FREE(lnkbsz);lnkbsz=NULL;
   CumSum(ind);
-  if (((*lnkptr)=(int*)malloc(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
+  if (((*lnkptr)=(int*)MALLOC(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
   (*lnkptr)[0]=ind[0];
   for (l = 1; l < ind[0]+1; l++)
     {
       (*lnkptr)[l]=ind[l];
     } 
-  free(ind);ind=NULL;
+  FREE(ind);ind=NULL;
   unco=FindEg(*outlnk,0);
   if (unco && unco[0] !=0)
     {
@@ -2304,31 +2307,31 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
 	  ppget=FindInfEg(bllst3ptr,j);
 	  m1=Max1(ppget);
           n=j-bllst3ptr[m1]+1;
-	  free(ppget);ppget=NULL;
+	  FREE(ppget);ppget=NULL;
           ind=GetPartVect(bllst3,bllst3ptr[m1],bllst3ptr[m1+1]-bllst3ptr[m1]);
           if (ind)
             {
-              if ((idl=(int*)malloc(sizeof(int)*(3))) == NULL ) return 0;
+              if ((idl=(int*)MALLOC(sizeof(int)*(3))) == NULL ) return 0;
               idl[0]=2;
               idl[1]=siz_unco;
               idl[2]=ind[n];
 	      if (ind[n] < 1)
 		{
 		  ppget=GetPartVect(corinvec,corinvptr[m1],corinvptr[m1+1]-corinvptr[m1]);
-		  if ((mm=(int*)malloc(sizeof(int)*(2))) == NULL ) return 0;
+		  if ((mm=(int*)MALLOC(sizeof(int)*(2))) == NULL ) return 0;
 		  mm[0]=1;
 		  mm[1]=-1;
 		  *ok=connection(ppget,mm);
-		  free(ppget);
-		  free(mm);
+		  FREE(ppget);
+		  FREE(mm);
 		  return 0;
 		}
               siz_unco=Max1(idl);
-	      free(idl);idl=NULL;
-	      free(ind);ind=NULL;
+	      FREE(idl);idl=NULL;
+	      FREE(ind);ind=NULL;
             }
         }
-      if (((*lnkptr)=(int*)realloc((*lnkptr),sizeof(int)*((*lnkptr)[0]+2))) == NULL ) return 0; 
+      if (((*lnkptr)=(int*)REALLOC((*lnkptr),sizeof(int)*((*lnkptr)[0]+2))) == NULL ) return 0; 
       (*lnkptr)[(*lnkptr)[0]+1]=(*lnkptr)[(*lnkptr)[0]]+siz_unco;
       (*lnkptr)[0]=(*lnkptr)[0]+1;
       a=Max1(*outlnk)+1;
@@ -2337,7 +2340,7 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
           (*outlnk)[unco[l]]=a;                           
         }
     }
-  free(unco);unco=NULL; 
+  FREE(unco);unco=NULL; 
   return 0;
 } /* end funct*/
      
@@ -2353,21 +2356,21 @@ int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,
   ii=NULL;  
   outoini=NULL;
   *nblk=bllst2ptr[0]-1;
-  if (((*outoinptr)=(int*)malloc(sizeof(int)*(*nblk+2))) == NULL ) return 0;
+  if (((*outoinptr)=(int*)MALLOC(sizeof(int)*(*nblk+2))) == NULL ) return 0;
   (*outoinptr)[0]=*nblk+1;
-  if (((*outoin)=(int*)malloc(sizeof(int))) == NULL ) return 0;
+  if (((*outoin)=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
   (*outoin)[0]=0;
   (*outoinptr)[1]=1;
   for (j=1;j<*nblk+1;j++)
     {
-      if ((k=(int*)malloc(sizeof(int)*(bllst3ptr[j+1]-bllst3ptr[j]+1))) == NULL ) return 0;
+      if ((k=(int*)MALLOC(sizeof(int)*(bllst3ptr[j+1]-bllst3ptr[j]+1))) == NULL ) return 0;
        k[0]=bllst3ptr[j+1]-bllst3ptr[j];
        a=-bllst3ptr[j]+1;
       for (l=bllst3ptr[j];l<bllst3ptr[j+1];l++)
         {
           k[l+a]=l;
         }
-      if ((ii=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((ii=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       ii[0]=0;
       for (l=1;l<k[0]+1;l++)
         {
@@ -2375,35 +2378,35 @@ int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,
           ind=FindEg(inplnk,jjj);
           if (ind)
             {
-              if ((ii=(int*)realloc(ii,sizeof(int)*(ii[0]+ind[0]+1))) == NULL ) return 0;
+              if ((ii=(int*)REALLOC(ii,sizeof(int)*(ii[0]+ind[0]+1))) == NULL ) return 0;
 	      for (ll=1;ll<ind[0]+1;ll++)
                 {
                   ii[ii[0]+ll]=ind[ll];
                 }
 	      
               ii[0]=ii[0]+ind[0];
-	      free(ind); ind=NULL;
+	      FREE(ind); ind=NULL;
             }
 	}
       jj=0;
       if (ii && ii[0] != 0)
 	{
-	  if ((outoini=(int*)malloc(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
+	  if ((outoini=(int*)MALLOC(sizeof(int)*(2*ii[0]+1))) == NULL ) return 0;
 	  outoini[0]=2*ii[0];
 	  for (ll=1;ll<ii[0]+1;ll++)
 	    {
 	      l=ii[ll];
 	      ppget=FindInfEg(bllst2ptr,l);
 	      m1=Max1(ppget);
-	      free(ppget);ppget=NULL;
+	      FREE(ppget);ppget=NULL;
 	      n=l-bllst2ptr[m1]+1;
 	      outoini[ll]=m1;
 	      outoini[ll+ii[0]]=n;
 	      jj++;
 	    }
-	  if ((outoinii.col1=(int*)malloc(sizeof(int)*(outoini[0]/2+(*outoin)[0]/2+1))) == NULL) return 0;
+	  if ((outoinii.col1=(int*)MALLOC(sizeof(int)*(outoini[0]/2+(*outoin)[0]/2+1))) == NULL) return 0;
 	  outoinii.col1[0]=outoini[0]/2+(*outoin)[0]/2;
-	  if ((outoinii.col2=(int*)malloc(sizeof(int)*(outoini[0]/2+(*outoin)[0]/2+1))) == NULL) return 0;
+	  if ((outoinii.col2=(int*)MALLOC(sizeof(int)*(outoini[0]/2+(*outoin)[0]/2+1))) == NULL) return 0;
 	  outoinii.col2[0]=outoini[0]/2+(*outoin)[0]/2;
 	  for(l=1;l<(*outoin)[0]/2+1;l++)
 	    {
@@ -2416,7 +2419,7 @@ int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,
 	      outoinii.col2[l+(*outoin)[0]/2]=outoini[l+outoini[0]/2];
 	    }
 	  
-	  if (((*outoin)=(int*)realloc((*outoin),sizeof(int)*((*outoin)[0]+outoini[0]+1))) == NULL ) return 0;
+	  if (((*outoin)=(int*)REALLOC((*outoin),sizeof(int)*((*outoin)[0]+outoini[0]+1))) == NULL ) return 0;
 	  (*outoin)[0]=(*outoin)[0]+outoini[0];
 	  
 	  for(l=1;l<(*outoin)[0]/2+1;l++)
@@ -2424,13 +2427,13 @@ int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,
 	      (*outoin)[l]=outoinii.col1[l];
 	      (*outoin)[l+(*outoin)[0]/2]=outoinii.col2[l];
 	    }
-	  free(outoinii.col1); outoinii.col1=NULL;
-	  free(outoinii.col2); outoinii.col2=NULL;
-	  free(outoini);outoini=NULL;
+	  FREE(outoinii.col1); outoinii.col1=NULL;
+	  FREE(outoinii.col2); outoinii.col2=NULL;
+	  FREE(outoini);outoini=NULL;
 	}
       (*outoinptr)[j+1]=(*outoinptr)[j]+jj;
-      free(k);k=NULL;
-      free(ii);ii=NULL;
+      FREE(k);k=NULL;
+      FREE(ii);ii=NULL;
     } /* end for */
   return 0;
 } /* end function */
@@ -2446,7 +2449,7 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
   
   typr=VecEg1(typ_r);
   nblk=bllst12[0]/2;
-  if ((typ_c=(int*)malloc(sizeof(int)*(typ_l[0]+1))) == NULL ) return 0;
+  if ((typ_c=(int*)MALLOC(sizeof(int)*(typ_l[0]+1))) == NULL ) return 0;
   typ_c[0]=typ_l[0];
   Setmem(typ_c,0);
   for (i=1; i<=typr[0]; i++){
@@ -2460,13 +2463,13 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
     done1=1;
     mm=Max1(clkconnecttmp)+1;
     a=clkconnecttmp[0]/4;
-    if ((cll=(int*)malloc(sizeof(int)*(a+1))) == NULL ) return 0;
+    if ((cll=(int*)MALLOC(sizeof(int)*(a+1))) == NULL ) return 0;
     cll[0]=a;
     for (i=1; i<=a; i++)
       {
 	cll[i]=-clkconnecttmp[i]*mm-clkconnecttmp[i+a];
       }
-    if ((ind=(int*)malloc(sizeof(int)*(a+2))) == NULL ) return 0;
+    if ((ind=(int*)MALLOC(sizeof(int)*(a+2))) == NULL ) return 0;
     C2F(isort)(&cll[1],&a,&ind[0]);
     clkconnectind=VecEg1(clkconnecttmp);
     for(i=1; i<=a; i++)
@@ -2476,31 +2479,31 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	clkconnecttmp[i+2*a]=clkconnectind[ind[i-1]+2*a];
 	clkconnecttmp[i+3*a]=clkconnectind[ind[i-1]+3*a];      
       }
-    if (ind) free(ind);
-    free(clkconnectind); clkconnectind=NULL;
-    if ((cll=(int*)realloc(cll,sizeof(int)*(a+3))) == NULL ) return 0;
+    if (ind) FREE(ind);
+    FREE(clkconnectind); clkconnectind=NULL;
+    if ((cll=(int*)REALLOC(cll,sizeof(int)*(a+3))) == NULL ) return 0;
     cll[0]=a+2;
     cllind=VecEg1(cll);
     for (j=2;j<cll[0]+1;j++)
       {
 	cll[j]=-cllind[j-1];
       }   
-    if(cllind) free(cllind);
+    if(cllind) FREE(cllind);
     cllind=NULL;
     cll[1]=-1;
     cll[cll[0]]=mm;
     
-    if ((ii=(int*)malloc(sizeof(int)*(a+2))) == NULL ) return 0;
+    if ((ii=(int*)MALLOC(sizeof(int)*(a+2))) == NULL ) return 0;
     ii[0]=a+1;
     for (i=1; i<=ii[0]; i++)
       ii[i]=cll[i+1]-cll[i];
-    if (cll) free(cll);
+    if (cll) FREE(cll);
     
     ind=FindDif(ii,0);
-    if (ii) free(ii);
+    if (ii) FREE(ii);
     if (ind){
       for (i=1; i<ind[0]; i++){
-	if ((vec=(int*)malloc(sizeof(int)*(nblk+1))) == NULL ) return 0;
+	if ((vec=(int*)MALLOC(sizeof(int)*(nblk+1))) == NULL ) return 0;
 	vec[0]=nblk;
 	Setmem(vec,-1);
 	a=clkconnecttmp[0]/4;
@@ -2510,27 +2513,27 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	nd=GetPartVect(outoin,outoin[0]/2+1,outoin[0]/2);
 	if (!nd)
 	  {
-	    if ((nd=(int*)malloc(sizeof(int))) == NULL ) return 0;
+	    if ((nd=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
 	    nd[0]=0;
 	  }
 	max1=Max1(nd);
-	free(nd);
+	FREE(nd);
 	nnd=max1+1;
-	if ((nd=(int*)calloc((nblk*nnd+1),sizeof(int))) == NULL ) return 0;
+	if ((nd=(int*)CALLOC((nblk*nnd+1),sizeof(int))) == NULL ) return 0;
 	nd[0]=nblk*nnd;
 	
 	tree4(vec,nd,nnd,outoin,outoinptr,typr,&r);
-	if(nd) free(nd);
-	if(vec) free(vec); vec=NULL;
+	if(nd) FREE(nd);
+	if(vec) FREE(vec); vec=NULL;
 	
 	if (r) {
-	  if ((clkconnecti.col1=(int*)malloc(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
+	  if ((clkconnecti.col1=(int*)MALLOC(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
 	  clkconnecti.col1[0]=a+r[0]/2;
-	  if ((clkconnecti.col2=(int*)malloc(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
+	  if ((clkconnecti.col2=(int*)MALLOC(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
 	  clkconnecti.col2[0]=a+r[0]/2;
-	  if ((clkconnecti.col3=(int*)malloc(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
+	  if ((clkconnecti.col3=(int*)MALLOC(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
 	  clkconnecti.col3[0]=a+r[0]/2;
-	  if ((clkconnecti.col4=(int*)malloc(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
+	  if ((clkconnecti.col4=(int*)MALLOC(sizeof(int)*(a+r[0]/2+1))) == NULL ) return 0;
 	  clkconnecti.col4[0]=a+r[0]/2;
 	  for(j=1; j<a+1; j++)
 	    {
@@ -2546,8 +2549,8 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	      clkconnecti.col3[j+a]=r[j];
 	      clkconnecti.col4[j+a]=r[j+r[0]/2];
 	    }
-	  free(clkconnecttmp);
-	  if ((clkconnecttmp=(int*)malloc(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
+	  FREE(clkconnecttmp);
+	  if ((clkconnecttmp=(int*)MALLOC(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
 	  clkconnecttmp[0]=4*clkconnecti.col1[0];
 	  for (j=1; j<clkconnecttmp[0]/4+1; j++)
 	    {
@@ -2556,32 +2559,32 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	      clkconnecttmp[j+clkconnecttmp[0]/2]=clkconnecti.col3[j];
 	      clkconnecttmp[j+3*clkconnecttmp[0]/4]=clkconnecti.col4[j];
 	    }
-	  free(clkconnecti.col1);
+	  FREE(clkconnecti.col1);
 	  clkconnecti.col1=NULL;
-	  free(clkconnecti.col2);
+	  FREE(clkconnecti.col2);
 	  clkconnecti.col2=NULL;
-	  free(clkconnecti.col3);
+	  FREE(clkconnecti.col3);
 	  clkconnecti.col3=NULL;
-	  free(clkconnecti.col4);
+	  FREE(clkconnecti.col4);
 	  clkconnecti.col4=NULL;
-	  free(r); r=NULL;
+	  FREE(r); r=NULL;
 	}
       }
-      free(ind);
+      FREE(ind);
     }
     done=0;
     while (!done){
       done=1;
-      if ((vec=(int*)calloc(typ_c[0]+1,sizeof(int))) == NULL ) return 0;
+      if ((vec=(int*)CALLOC(typ_c[0]+1,sizeof(int))) == NULL ) return 0;
       vec[0]=typ_c[0];
       for (i=1; i<=typ_c[0]; i++){
 	if ( typ_l[i] && !(typ_c[i]) )
 	  vec[i]=1;	
       }
       jj=FindEg(vec,1);
-      if (vec) free(vec);
+      if (vec) FREE(vec);
       if (jj[0] != 0){
-	if ((vec=(int*)calloc(clkconnecttmp[0]/4+1,sizeof(int))) == NULL ) return 0;
+	if ((vec=(int*)CALLOC(clkconnecttmp[0]/4+1,sizeof(int))) == NULL ) return 0;
 	vec[0]=clkconnecttmp[0]/4;
 	for (i=1; i<=jj[0]; i++){
 	  for (j=1; j<=clkconnecttmp[0]/4; j++){
@@ -2590,7 +2593,7 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 	  if (!OR(vec)){
 	    oo=GetPartVect(clkconnecttmp,1,clkconnecttmp[0]/4);
 	    ind=FindEg(oo,jj[i]);
-	    if (oo) free(oo);
+	    if (oo) FREE(oo);
 	    if (ind){
 	      for (j=1; j<=ind[0]; j++){
 		typr[clkconnecttmp[ind[j]+clkconnecttmp[0]/2]]=1;
@@ -2606,43 +2609,43 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
 		    val++;
 		}
 	      clkconnecttmp[0]=clkconnecttmp[0]-4*ind[0];
-	      free(ind); ind=NULL;
+	      FREE(ind); ind=NULL;
 	    }
 	    typ_c[jj[i]]=1;
 	    done1=0;
 	    done=0;
 	  }
 	}	
-	if (vec) free(vec);
+	if (vec) FREE(vec);
       }
-      free(jj);
+      FREE(jj);
     }
   }
-  free(typ_c);
-  free(typr);
-  if (((*critev)=(int*)calloc(bllst5ptr[bllst5ptr[0]],sizeof(int))) == NULL ) return 0;
+  FREE(typ_c);
+  FREE(typr);
+  if (((*critev)=(int*)CALLOC(bllst5ptr[bllst5ptr[0]],sizeof(int))) == NULL ) return 0;
   (*critev)[0]=bllst5ptr[bllst5ptr[0]]-1;
   for (i=1; i<bllst5ptr[0]; i++){
     for (j=bllst5ptr[i]; j<bllst5ptr[i+1]; j++){
-      if ((vec=(int*)calloc(clkconnecttmp[0]/4+1,sizeof(int))) == NULL ) return 0;
+      if ((vec=(int*)CALLOC(clkconnecttmp[0]/4+1,sizeof(int))) == NULL ) return 0;
       vec[0]=clkconnecttmp[0]/4;
       for (k=1; k<=clkconnecttmp[0]/4; k++){
 	if ((clkconnecttmp[k] == i) && (clkconnecttmp[k+clkconnecttmp[0]/4] == j-bllst5ptr[i]+1)) vec[k]=1;
       }
       ind=FindEg(vec,1);
       if (ind){
-	if (vec) free(vec);
-	if ((vec=(int*)malloc(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
+	if (vec) FREE(vec);
+	if ((vec=(int*)MALLOC(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
 	vec[0]=ind[0];
 	for (k=1; k<=ind[0]; k++)
 	  vec[k]=typ_zx[clkconnecttmp[ind[k]+clkconnecttmp[0]/2]];
 	if (OR(vec)) (*critev)[j]=1;
-	if (vec) free(vec);
-	free(ind);
+	if (vec) FREE(vec);
+	FREE(ind);
       }
     }
   }
-  free(clkconnecttmp);
+  FREE(clkconnecttmp);
   return 0;
 } /* end function */
 /* ======================================= endfunction critical_events ========================================== */
@@ -2654,9 +2657,9 @@ int make_ptr(char** bllst10,int** typ_l,int** typ_m)
   int *typ_l1,*pp,*typ_m1;
   if (((int *)bllst10)[0]<(*typ_l)[0]+1) return 0;
   ll=((int*)bllst10)[0]-(*typ_l)[0];
-  if ((typ_l1=(int*)calloc((ll+1),sizeof(int))) == NULL ) return 0;
+  if ((typ_l1=(int*)CALLOC((ll+1),sizeof(int))) == NULL ) return 0;
   typ_l1[0]=ll;
-  if ((typ_m1=(int*)calloc((ll+1),sizeof(int))) == NULL ) return 0;
+  if ((typ_m1=(int*)CALLOC((ll+1),sizeof(int))) == NULL ) return 0;
   typ_m1[0]=ll;
   if (*(bllst10[(*typ_l)[0]+1])=='l') typ_l1[1]=1;
   j=1;
@@ -2666,17 +2669,17 @@ int make_ptr(char** bllst10,int** typ_l,int** typ_m)
       if (*(bllst10[ll]) == 'l') typ_l1[j]=1;
       else typ_l1[j]=0;
     }
-  if (((*typ_l)=(int*)realloc((*typ_l),sizeof(int)*((*typ_l)[0]+typ_l1[0]+1))) == NULL ) return 0;
+  if (((*typ_l)=(int*)REALLOC((*typ_l),sizeof(int)*((*typ_l)[0]+typ_l1[0]+1))) == NULL ) return 0;
   pp=&(*typ_l)[1+(*typ_l)[0]];
   pp=memcpy(pp,&typ_l1[1],sizeof(int)*(typ_l1[0]));
   (*typ_l)[0]+=typ_l1[0];
   
-  if (((*typ_m)=(int*)realloc((*typ_m),sizeof(int)*((*typ_m)[0]+typ_m1[0]+1))) == NULL ) return 0;
+  if (((*typ_m)=(int*)REALLOC((*typ_m),sizeof(int)*((*typ_m)[0]+typ_m1[0]+1))) == NULL ) return 0;
   pp=&(*typ_m)[1+(*typ_m)[0]];
   pp=memcpy(pp,&typ_m1[1],sizeof(int)*(typ_m1[0]));
   (*typ_m)[0]+=typ_m1[0];
-  free(typ_l1);typ_l1=NULL;
-  free(typ_m1);typ_m1=NULL;
+  FREE(typ_l1);typ_l1=NULL;
+  FREE(typ_m1);typ_m1=NULL;
   return 0;
 } /* end function */
 /* ======================================= endfunction make_ptr ========================================== */
@@ -2698,10 +2701,10 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
             {
               ww=GetPartVect(bllst3,bllst3ptr[connectmat[jj]],bllst3ptr[connectmat[jj]+1]-bllst3ptr[connectmat[jj]]);
 	      nout=ww[connectmat[jj+connectmat[0]/4]];
-	      free(ww);
+	      FREE(ww);
               ww=GetPartVect(bllst2,bllst2ptr[connectmat[jj+connectmat[0]/2]],bllst2ptr[connectmat[jj+connectmat[0]/2]+1]-bllst2ptr[connectmat[jj+connectmat[0]/2]]);
 	      nin=ww[connectmat[jj+3*connectmat[0]/4]];
-	      free(ww);
+	      FREE(ww);
               if (nout>0 && nin>0)
 		{
                   if (nin != nout)
@@ -2712,8 +2715,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		      prt_in=connectmat[jj+3*connectmat[0]/4];
 		      badconnection(ind1,prt_out,nout,ind,prt_in,nin);
 		      *ok=false;
-		      if(ind1) free (ind1); 
-		      if(ind) free (ind); 
+		      if(ind1) FREE (ind1); 
+		      if(ind) FREE (ind); 
 		      return 0;
                     }
                 } /* fin de if 1 */
@@ -2729,8 +2732,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
                     {
                       bllst2[j]=wwi[j-bllst2ptr[connectmat[jj+connectmat[0]/2]]+1];
                     }
-                  if(wwi) free(wwi);
-                  if(ww) free(ww);
+                  if(wwi) FREE(wwi);
+                  if(ww) FREE(ww);
                   wwi=GetPartVect(bllst3,bllst3ptr[connectmat[jj+connectmat[0]/2]],bllst3ptr[connectmat[jj+connectmat[0]/2]+1]-bllst3ptr[connectmat[jj+connectmat[0]/2]]);
                   if (wwi) 
                     {
@@ -2741,14 +2744,14 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
                             {
                               wwi[ww[j]]=nout;
                             }
-			  free(ww);
+			  FREE(ww);
                           for (j=bllst3ptr[connectmat[jj+connectmat[0]/2]];j<bllst3ptr[connectmat[jj+connectmat[0]/2]+1];j++)
                             {
                               bllst3[j]=wwi[j-bllst3ptr[connectmat[jj+connectmat[0]/2]]+1];
                             }
 			}
                       
-                      free(wwi);
+                      FREE(wwi);
                     }
 		  wwi=GetPartVect(bllst3,bllst3ptr[connectmat[jj+connectmat[0]/2]],bllst3ptr[connectmat[jj+connectmat[0]/2]+1]-bllst3ptr[connectmat[jj+connectmat[0]/2]]);
                   if (wwi)
@@ -2768,9 +2771,9 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
                               bllst3[j]=wwi[j-bllst3ptr[connectmat[jj+connectmat[0]/2]]+1];
                             }
 			}
-		      free(ww);ww=NULL;
-		      free(wwi);wwi=NULL;
-		      if (wwi1) free(wwi1);
+		      FREE(ww);ww=NULL;
+		      FREE(wwi);wwi=NULL;
+		      if (wwi1) FREE(wwi1);
 		      wwi1=NULL;
                     }
 		  if (nzcross[connectmat[jj+connectmat[0]/2]] == nin){
@@ -2792,8 +2795,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		    {
 		      bllst3[j]=wwi[j-bllst3ptr[connectmat[jj]]+1];
 		    }
-		  if(wwi) free(wwi);
-		  if(ww) free(ww);
+		  if(wwi) FREE(wwi);
+		  if(ww) FREE(ww);
 		  
 		  wwi=GetPartVect(bllst2,bllst2ptr[connectmat[jj]],bllst2ptr[connectmat[jj]+1]-bllst2ptr[connectmat[jj]]);
 		  if (wwi)
@@ -2805,18 +2808,18 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			    {
 			      wwi[ww[j]]=nin;
 			    }
-			  if(ww) free(ww);
+			  if(ww) FREE(ww);
 			}
 		      for (j=bllst2ptr[connectmat[jj]];j<bllst2ptr[connectmat[jj]+1];j++)
 			{
 			  bllst2[j]=wwi[j-bllst2ptr[connectmat[jj]]+1];
 			}                 
-		      if(wwi) free(wwi);
+		      if(wwi) FREE(wwi);
 		    }
                   wwi=GetPartVect(bllst2,bllst2ptr[connectmat[jj]],bllst2ptr[connectmat[jj]+1]-bllst2ptr[connectmat[jj]]);
 		  if (!wwi)
 		    {
-		      if ((wwi=(int*)malloc(sizeof(int))) == NULL ) return 0;
+		      if ((wwi=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
 		      wwi[0]=0;
 		    }
                   ww=FindEg(wwi,0);
@@ -2835,10 +2838,10 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
                           bllst2[j]=wwi[j-bllst2ptr[connectmat[jj]]+1];
                         }
 		    }
-		  free(ww);ww=NULL;
-		  if(wwi1) free(wwi1);
+		  FREE(ww);ww=NULL;
+		  if(wwi1) FREE(wwi1);
 		  wwi1=NULL;
-		  if(wwi) free(wwi);
+		  if(wwi) FREE(wwi);
 		  wwi=NULL;
 		  if (nzcross[connectmat[jj]] == nout){
 		    nzcross[connectmat[jj]] = nin;
@@ -2866,13 +2869,13 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  else
 			    {
 			      ind=GetPartVect(corinvec,corinvptr[connectmat[jj+connectmat[0]/2]],corinvptr[connectmat[jj+connectmat[0]/2]+1]-corinvptr[connectmat[jj+connectmat[0]/2]]);
-			      if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+			      if ((ind1=(int*)MALLOC(sizeof(int)*2)) == NULL ) return 0;
 			      ind1[0]=1;
 			      ind1[1]=-1;
 			      badconnection(ind,0,0,ind1,0,0);
 			      *ok=false;
-			      if(ind) free (ind); 
-			      if(ind1) free (ind1);
+			      if(ind) FREE (ind); 
+			      if(ind1) FREE (ind1);
 			      return 0;
 			      }
 			}
@@ -2889,7 +2892,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		  else
 		    {
 		      ind=FindInf(ww,0);
-		      if ((nww=(int*)malloc(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
+		      if ((nww=(int*)MALLOC(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
 		      nww[0]=ind[0];
 		      for (j=1;j<ind[0]+1;j++)
 			{
@@ -2903,7 +2906,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 				bllst2[j]=wwi[j-bllst2ptr[connectmat[jj+connectmat[0]/2]]+1];
 			      }                                           
 			  ind1=FindSup(ww,0);
-			  if ((nww1=(int*)malloc(sizeof(int)*(ind1[0]+1))) == NULL ) return 0;
+			  if ((nww1=(int*)MALLOC(sizeof(int)*(ind1[0]+1))) == NULL ) return 0;
 			  nww1[0]=ind1[0];
 			  for (j=1;j<ind1[0]+1;j++)
 			    {
@@ -2912,8 +2915,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  k1=nout-Sum(nww1);
 			  k=k1/nww[0];
 			  kint=(int) k;
-			  free(nww1);
-			  free(ind1);
+			  FREE(nww1);
+			  FREE(ind1);
 			  if (k == (double) kint && k>0)
 			    {
 			      for (j=1;j<ind[0]+1;j++)
@@ -2928,13 +2931,13 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  else
 			    {
 			      ind=GetPartVect(corinvec,corinvptr[connectmat[jj+connectmat[0]/2]],corinvptr[connectmat[jj+connectmat[0]/2]+1]-corinvptr[connectmat[jj+connectmat[0]/2]]);
-			      if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+			      if ((ind1=(int*)MALLOC(sizeof(int)*2)) == NULL ) return 0;
 			      ind1[0]=1;
 			      ind1[1]=-1;
 			      badconnection(ind,0,0,ind1,0,0);
 			      *ok=false;
-			      if(ind) free (ind); 
-			      if(ind1) free (ind1);
+			      if(ind) FREE (ind); 
+			      if(ind1) FREE (ind1);
 			      return 0; 
 			    }
 			}
@@ -2942,11 +2945,11 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			{
 			  *ok=false;
 			}
-		      free(ind);ind=NULL;
-		      free(nww);
+		      FREE(ind);ind=NULL;
+		      FREE(nww);
 		    }
-		    free(ww);ww=NULL;
-		    free(wwi);wwi=NULL;
+		    FREE(ww);ww=NULL;
+		    FREE(wwi);wwi=NULL;
 		}                               
 	      else if (nout==0)
 		{
@@ -2967,13 +2970,13 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  else
 			      {
 				ind=GetPartVect(corinvec,corinvptr[connectmat[jj]],corinvptr[connectmat[jj]+1]-corinvptr[connectmat[jj]]);
-				if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+				if ((ind1=(int*)MALLOC(sizeof(int)*2)) == NULL ) return 0;
 				ind1[0]=1;
 				ind1[1]=-1;
 				badconnection(ind,0,0,ind1,0,0);
 				*ok=false;
-				if(ind) free (ind); 
-				if(ind1) free (ind1);
+				if(ind) FREE (ind); 
+				if(ind1) FREE (ind1);
 				return 0;
 			      }
 			}
@@ -2990,7 +2993,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		  else
 		    {
 		      ind=FindInf(ww,0);
-		      if ((nww=(int*)malloc(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
+		      if ((nww=(int*)MALLOC(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
 		      nww[0]=ind[0];
 		      for (j=1;j<ind[0]+1;j++)
 			{
@@ -3004,16 +3007,16 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			      bllst3[j]=wwi[j-bllst3ptr[connectmat[jj]]+1];
 			    }
 			  ind1=FindSup(ww,0);
-			  if ((nww1=(int*)malloc(sizeof(int)*(ind1[0]+1))) == NULL ) return 0;
+			  if ((nww1=(int*)MALLOC(sizeof(int)*(ind1[0]+1))) == NULL ) return 0;
 			  nww1[0]=ind1[0];
 			  for (j=1;j<ind1[0]+1;j++)
 			    {
 			      nww1[j]=ww[ind1[j]];
 			    }
-			  free(ind1);
+			  FREE(ind1);
 			  k1=nin-Sum(nww1);
 			  k=k1/nww[0];
-			  free(nww1);
+			  FREE(nww1);
 			  kint=(int)k;
 			  if (k==(double) kint && k>0)
 			    {
@@ -3029,13 +3032,13 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  else
 			    {
 			      ind=GetPartVect(corinvec,corinvptr[connectmat[jj]],corinvptr[connectmat[jj]+1]-corinvptr[connectmat[jj]]);
-			      if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+			      if ((ind1=(int*)MALLOC(sizeof(int)*2)) == NULL ) return 0;
 			      ind1[0]=1;
 			      ind1[1]=-1;
 			      badconnection(ind,0,0,ind1,0,0);
 			      *ok=false;
-			      if(ind) free (ind); 
-			      if(ind1) free (ind1);
+			      if(ind) FREE (ind); 
+			      if(ind1) FREE (ind1);
 			      return 0;
 			    }
 			}
@@ -3043,12 +3046,12 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			{
 			  *ok=false;
 			} 
-		      if(ind) free(ind); ind=NULL;
-		      if(nww) free(nww); nww=NULL;
+		      if(ind) FREE(ind); ind=NULL;
+		      if(nww) FREE(nww); nww=NULL;
 		    }
 		  
-		  if(ww) free(ww); ww=NULL;
-		  if(wwi) free(wwi); wwi=NULL;
+		  if(ww) FREE(ww); ww=NULL;
+		  if(wwi) FREE(wwi); wwi=NULL;
 		}
 	      else
 		{
@@ -3063,10 +3066,10 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
         {
 	  ww=GetPartVect(bllst3,bllst3ptr[connectmat[jj]],bllst3ptr[connectmat[jj]+1]-bllst3ptr[connectmat[jj]]);
 	  nout=ww[connectmat[jj+connectmat[0]/4]];
-	  free(ww);
+	  FREE(ww);
 	  ww=GetPartVect(bllst2,bllst2ptr[connectmat[jj+connectmat[0]/2]],bllst2ptr[connectmat[jj+connectmat[0]/2]+1]-bllst2ptr[connectmat[jj+connectmat[0]/2]]);
 	  nin=ww[connectmat[jj+3*connectmat[0]/4]];
-	  free(ww);
+	  FREE(ww);
 	  if (nout<=0 && nin<=0)
 	    {
 	      findflag=true;
@@ -3074,8 +3077,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 	      ind=GetPartVect(corinvec,corinvptr[connectmat[jj+connectmat[0]/2]],corinvptr[connectmat[jj+connectmat[0]/2]+1]-corinvptr[connectmat[jj+connectmat[0]/2]]);
 	      
 	      ninnout=connection(ind1,ind);
-	      if(ind1) free (ind1); 
-	      if(ind) free (ind); 
+	      if(ind1) FREE (ind1); 
+	      if(ind) FREE (ind); 
 	      if (!(ninnout)) 
 		{
 		  *ok=false;
@@ -3096,8 +3099,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		{
 		  bllst3[j]=wwi[j-bllst3ptr[connectmat[jj]]+1];
 		}
-	      if(wwi) free(wwi);
-	      if(ww) free(ww);
+	      if(wwi) FREE(wwi);
+	      if(ww) FREE(ww);
 	      if (nzcross[connectmat[jj]] == nout){
 		nzcross[connectmat[jj]] = ninnout;
 	      }
@@ -3115,18 +3118,18 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			{
 			  wwi[ww[j]]=ninnout;
 			}
-		      if(ww) free(ww);
+		      if(ww) FREE(ww);
 		    }
 		  for (j=bllst2ptr[connectmat[jj]];j<bllst2ptr[connectmat[jj]+1];j++)
 		    {
 		      bllst2[j]=wwi[j-bllst2ptr[connectmat[jj]]+1];
 		    }                 
-		  if(wwi) free(wwi);
+		  if(wwi) FREE(wwi);
 		}
 	      wwi=GetPartVect(bllst2,bllst2ptr[connectmat[jj]],bllst2ptr[connectmat[jj]+1]-bllst2ptr[connectmat[jj]]);
 	      if (!wwi)
 		{
-		  if ((wwi=(int*)malloc(sizeof(int))) == NULL ) return 0;
+		  if ((wwi=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
 		  wwi[0]=0;
 		}
 	      ww=FindEg(wwi,0);
@@ -3145,10 +3148,10 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		      bllst2[j]=wwi[j-bllst2ptr[connectmat[jj]]+1];
 		    }
 		}
-	      free(ww);ww=NULL;
-	      if(wwi1) free(wwi1);
+	      FREE(ww);ww=NULL;
+	      if(wwi1) FREE(wwi1);
 	      wwi1=NULL;
-	      if(wwi) free(wwi);
+	      if(wwi) FREE(wwi);
 	      wwi=NULL;
 	      
 	      wwi=GetPartVect(bllst2,bllst2ptr[connectmat[jj+connectmat[0]/2]],bllst2ptr[connectmat[jj+connectmat[0]/2]+1]-bllst2ptr[connectmat[jj+connectmat[0]/2]]);
@@ -3161,8 +3164,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 		{
 		  bllst2[j]=wwi[j-bllst2ptr[connectmat[jj+connectmat[0]/2]]+1];
 		}
-	      if(wwi) free(wwi);
-	      if(ww) free(ww);
+	      if(wwi) FREE(wwi);
+	      if(ww) FREE(ww);
 
 	      if (nzcross[connectmat[jj+connectmat[0]/2]] == nin){
 		nzcross[connectmat[jj+connectmat[0]/2]] = ninnout;
@@ -3180,14 +3183,14 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			{
 			  wwi[ww[j]]=ninnout;
 			}
-		      free(ww);
+		      FREE(ww);
 		      for (j=bllst3ptr[connectmat[jj+connectmat[0]/2]];j<bllst3ptr[connectmat[jj+connectmat[0]/2]+1];j++)
 			{
 			  bllst3[j]=wwi[j-bllst3ptr[connectmat[jj+connectmat[0]/2]]+1];
 			}
 		    }
 		  
-		  free(wwi);
+		  FREE(wwi);
 		}
 	      wwi=GetPartVect(bllst3,bllst3ptr[connectmat[jj+connectmat[0]/2]],bllst3ptr[connectmat[jj+connectmat[0]/2]+1]-bllst3ptr[connectmat[jj+connectmat[0]/2]]);
 	      if (wwi)
@@ -3207,9 +3210,9 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  bllst3[j]=wwi[j-bllst3ptr[connectmat[jj+connectmat[0]/2]]+1];
 			}
 		    }
-		  free(ww);ww=NULL;
-		  free(wwi);wwi=NULL;
-		  if (wwi1) free(wwi1);
+		  FREE(ww);ww=NULL;
+		  FREE(wwi);wwi=NULL;
+		  if (wwi1) FREE(wwi1);
 		  wwi1=NULL;
 		}
 	    }
@@ -3236,7 +3239,7 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
   Mat2C all_outi;
   nd=ind=ind1=all_out=vec=cll=ii=oo=r=clkconnectind=cllind=ppget=NULL;
   *exe_cons=NULL;
-  if ((all_out=(int*)malloc(sizeof(int))) == NULL ) return 0;
+  if ((all_out=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
   all_out[0]=0;                       
   for (k=1;k<bllst5ptr[0];k++)
     {
@@ -3245,10 +3248,10 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
           a=bllst5ptr[k+1]-bllst5ptr[k];
 	  if (a >= 1)
 	    {
-	      if ((all_out=(int*)realloc(all_out,sizeof(int)*(all_out[0]+2*a+1))) == NULL ) return 0;
-	      if ((all_outi.col1=(int*)malloc(sizeof(int)*(all_out[0]/2+a+1))) == NULL ) return 0;
+	      if ((all_out=(int*)REALLOC(all_out,sizeof(int)*(all_out[0]+2*a+1))) == NULL ) return 0;
+	      if ((all_outi.col1=(int*)MALLOC(sizeof(int)*(all_out[0]/2+a+1))) == NULL ) return 0;
 	      all_outi.col1[0]=all_out[0]/2+a;
-	      if ((all_outi.col2=(int*)malloc(sizeof(int)*(all_out[0]/2+a+1))) == NULL ) return 0;
+	      if ((all_outi.col2=(int*)MALLOC(sizeof(int)*(all_out[0]/2+a+1))) == NULL ) return 0;
 	      all_outi.col2[0]=all_out[0]/2+a;
 	      for(l=1;l<all_out[0]/2+1;l++)
 		{
@@ -3266,14 +3269,14 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
 		  all_out[l]=all_outi.col1[l];
 		  all_out[l+all_out[0]/2]=all_outi.col2[l];
 		}
-	      free(all_outi.col1); all_outi.col1=NULL;
-	      free(all_outi.col2); all_outi.col2=NULL;
+	      FREE(all_outi.col1); all_outi.col1=NULL;
+	      FREE(all_outi.col2); all_outi.col2=NULL;
 	    }
 	}
     } 
-  if ((all_outi.col1=(int*)malloc(sizeof(int)*(all_out[0]/2+2))) == NULL ) return 0;
+  if ((all_outi.col1=(int*)MALLOC(sizeof(int)*(all_out[0]/2+2))) == NULL ) return 0;
   all_outi.col1[0]=all_out[0]/2+1;
-  if ((all_outi.col2=(int*)malloc(sizeof(int)*(all_out[0]/2+2))) == NULL ) return 0;
+  if ((all_outi.col2=(int*)MALLOC(sizeof(int)*(all_out[0]/2+2))) == NULL ) return 0;
   all_outi.col2[0]=all_out[0]/2+1;
   for(l=1;l<all_out[0]/2+1;l++)
     {
@@ -3282,34 +3285,34 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
     }
   all_outi.col1[all_out[0]/2+1]=0;
   all_outi.col2[all_out[0]/2+1]=0;
-  if ((all_out=(int*)realloc(all_out,sizeof(int)*(2*all_outi.col1[0]+1))) == NULL ) return 0;
+  if ((all_out=(int*)REALLOC(all_out,sizeof(int)*(2*all_outi.col1[0]+1))) == NULL ) return 0;
   all_out[0]=2*all_outi.col1[0];
   for(l=1;l<all_out[0]/2+1;l++)
     {
       all_out[l]=all_outi.col1[l];
       all_out[l+all_out[0]/2]=all_outi.col2[l];
     }
-  free(all_outi.col1);
+  FREE(all_outi.col1);
   all_outi.col1=NULL;
-  free(all_outi.col2);
+  FREE(all_outi.col2);
   all_outi.col2=NULL;
   
   ind=FindEg(tblock,1);
   if (!ind)
     {
-      if ((ind=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((ind=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       ind[0]=0;
     }
   for (j=1;j<ind[0]+1;j++)
     {
       k=ind[j];
-      if ((clkconnecti.col1=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
+      if ((clkconnecti.col1=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
       clkconnecti.col1[0]=(*clkconnect)[0]/4+all_out[0]/2;
-      if ((clkconnecti.col2=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
+      if ((clkconnecti.col2=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
       clkconnecti.col2[0]=(*clkconnect)[0]/4+all_out[0]/2;
-      if ((clkconnecti.col3=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
+      if ((clkconnecti.col3=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
       clkconnecti.col3[0]=(*clkconnect)[0]/4+all_out[0]/2;
-      if ((clkconnecti.col4=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
+      if ((clkconnecti.col4=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+all_out[0]/2+1))) == NULL ) return 0;
       clkconnecti.col4[0]=(*clkconnect)[0]/4+all_out[0]/2;
       for(l=1;l<(*clkconnect)[0]/4+1;l++)
 	{
@@ -3325,8 +3328,8 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
 	  clkconnecti.col3[l+(*clkconnect)[0]/4]=k;
 	  clkconnecti.col4[l+(*clkconnect)[0]/4]=0;
 	}
-      free(*clkconnect);
-      if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
+      FREE(*clkconnect);
+      if (((*clkconnect)=(int*)MALLOC(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
       (*clkconnect)[0]=4*clkconnecti.col1[0];
       for(l=1;l<(*clkconnect)[0]/4+1;l++)
 	{
@@ -3335,33 +3338,33 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
 	  (*clkconnect)[l+(*clkconnect)[0]/2]=clkconnecti.col3[l];
 	  (*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
 	}
-      free(clkconnecti.col1);
+      FREE(clkconnecti.col1);
       clkconnecti.col1=NULL;
-      free(clkconnecti.col2);
+      FREE(clkconnecti.col2);
       clkconnecti.col2=NULL;
-      free(clkconnecti.col3);
+      FREE(clkconnecti.col3);
       clkconnecti.col3=NULL;
-      free(clkconnecti.col4);
+      FREE(clkconnecti.col4);
       clkconnecti.col4=NULL;
     }/* fin de for k */
-  free(all_out);all_out=NULL;
+  FREE(all_out);all_out=NULL;
   ind1=FindEg(typ_cons,1);
   if (ind1)
     {
-      if ((ind=(int*)realloc(ind,sizeof(int)*(ind[0]+ind1[0]+1))) == NULL ) return 0;
+      if ((ind=(int*)REALLOC(ind,sizeof(int)*(ind[0]+ind1[0]+1))) == NULL ) return 0;
       pp=&ind[1+ind[0]];
       pp=memcpy(pp,&ind1[1],ind1[0]*sizeof(int));
       ind[0]=ind[0]+ind1[0];
-      free(ind1); ind1=NULL;
+      FREE(ind1); ind1=NULL;
     }
-  if (((*exe_cons)=(int*)malloc(sizeof(int)*(2*ind[0]+1))) == NULL ) return 0;
+  if (((*exe_cons)=(int*)MALLOC(sizeof(int)*(2*ind[0]+1))) == NULL ) return 0;
   (*exe_cons)[0]=2*ind[0];
   for (j=1;j<ind[0]+1;j++)
     {
       (*exe_cons)[j]=ind[j];
       (*exe_cons)[j+ind[0]]=0;
     }
-  if ((vec=(int*)malloc(sizeof(int)*(nblk+1))) == NULL ) return 0;
+  if ((vec=(int*)MALLOC(sizeof(int)*(nblk+1))) == NULL ) return 0;
   vec[0]=nblk;
   Setmem(vec,-1);
   for (j=1;j<ind[0]+1;j++)
@@ -3371,23 +3374,23 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
   nd=GetPartVect(outoin,outoin[0]/2+1,outoin[0]/2);
   if (!nd)
     {
-      if ((nd=(int*)malloc(sizeof(int))) == NULL ) return 0;
+      if ((nd=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
       nd[0]=0;
     }
   max1=Max1(nd);
-  free(nd);
+  FREE(nd);
   nnd=max1+1;
-  if ((nd=(int*)calloc((nblk*nnd+1),sizeof(int))) == NULL ) return 0;
+  if ((nd=(int*)CALLOC((nblk*nnd+1),sizeof(int))) == NULL ) return 0;
   nd[0]=nblk*nnd;
   
   tree4(vec,nd,nnd,outoin,outoinptr,typ_r,&r);
-  if(nd) free(nd);
-  if(vec) free(vec); vec=NULL;
+  if(nd) FREE(nd);
+  if(vec) FREE(vec); vec=NULL;
   if (r)
     {  
-      if ((exe_consi.col1=(int*)malloc(sizeof(int)*((*exe_cons)[0]/2+r[0]/2+1))) == NULL) return 0;
+      if ((exe_consi.col1=(int*)MALLOC(sizeof(int)*((*exe_cons)[0]/2+r[0]/2+1))) == NULL) return 0;
       
-      if ((exe_consi.col2=(int*)malloc(sizeof(int)*(r[0]/2+(*exe_cons)[0]/2+1))) == NULL) return 0;
+      if ((exe_consi.col2=(int*)MALLOC(sizeof(int)*(r[0]/2+(*exe_cons)[0]/2+1))) == NULL) return 0;
       exe_consi.col2[0]=(*exe_cons)[0]/2+r[0]/2;
       pp=&(exe_consi.col1)[1];
       pp=memcpy(pp,&(*exe_cons)[1],sizeof(int)*((*exe_cons)[0]/2));
@@ -3399,30 +3402,30 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
       pp=&(exe_consi.col2)[(*exe_cons)[0]/2+1];
       pp=memcpy(pp,&r[1+r[0]/2],sizeof(int)*(r[0]/2));
       
-      if (((*exe_cons)=(int*)realloc((*exe_cons),sizeof(int)*((*exe_cons)[0]+r[0]+1))) == NULL ) return 0;
+      if (((*exe_cons)=(int*)REALLOC((*exe_cons),sizeof(int)*((*exe_cons)[0]+r[0]+1))) == NULL ) return 0;
       (*exe_cons)[0]=(*exe_cons)[0]+r[0];
       for(l=1;l<(*exe_cons)[0]/2+1;l++)
 	{
 	  (*exe_cons)[l]=exe_consi.col1[l];
 	  (*exe_cons)[l+(*exe_cons)[0]/2]=exe_consi.col2[l];
 	}
-      free(exe_consi.col1);
+      FREE(exe_consi.col1);
       exe_consi.col1=NULL;
       exe_consi.col1=NULL;
-      free(exe_consi.col2);
+      FREE(exe_consi.col2);
       exe_consi.col2=NULL;
-      free(r); r=NULL;
+      FREE(r); r=NULL;
     }
-  if(ind) free(ind);
+  if(ind) FREE(ind);
   
   mm=Max1(*clkconnect)+1;
-  if ((cll=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((cll=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
   cll[0]=(*clkconnect)[0]/4;
   for(j=1;j<cll[0]+1;j++)
     {
       cll[j]=-(*clkconnect)[j]*mm-(*clkconnect)[j+(*clkconnect)[0]/4];
     }
-  if ((ind=(int*)malloc(sizeof(int)*(cll[0]+1))) == NULL ) return 0;
+  if ((ind=(int*)MALLOC(sizeof(int)*(cll[0]+1))) == NULL ) return 0;
   ind[0]=cll[0];
   C2F(isort)(&cll[1],&cll[0],&ind[1]); 
   clkconnectind=VecEg1(*clkconnect);
@@ -3433,74 +3436,74 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
       (*clkconnect)[j+2*ind[0]]=clkconnectind[ind[j]+2*ind[0]];
       (*clkconnect)[j+3*ind[0]]=clkconnectind[ind[j]+3*ind[0]];      
     }
-  if(ind) free(ind);
+  if(ind) FREE(ind);
   ind=NULL;
-  if(clkconnectind) free(clkconnectind);
+  if(clkconnectind) FREE(clkconnectind);
   clkconnectind=NULL;
-  if ((cll=(int*)realloc(cll,sizeof(int)*((*clkconnect)[0]/4+3))) == NULL ) return 0;
+  if ((cll=(int*)REALLOC(cll,sizeof(int)*((*clkconnect)[0]/4+3))) == NULL ) return 0;
   cll[0]=(*clkconnect)[0]/4+2;
   cllind=VecEg1(cll);
   for (j=2;j<cll[0]+1;j++)
     {
       cll[j]=-cllind[j-1];
     }   
-  if(cllind) free(cllind);
+  if(cllind) FREE(cllind);
   cllind=NULL;
   cll[1]=-1;
   cll[cll[0]]=mm;
-  if ((vec=(int*)malloc(sizeof(int)*(cll[0]))) == NULL ) return 0;
+  if ((vec=(int*)MALLOC(sizeof(int)*(cll[0]))) == NULL ) return 0;
   vec[0]=cll[0]-1;
   for (j=1;j<vec[0]+1;j++)
     {
       vec[j]=cll[j+1]-cll[j];
     }
-  if(cll) free(cll);
+  if(cll) FREE(cll);
   cll=NULL;
   ii=FindDif(vec,0);
-  if(vec) free(vec);
+  if(vec) FREE(vec);
   for (k=1;k<ii[0];k++)
     {
-      if ((oo=(int*)malloc(sizeof(int)*(ii[k+1]-ii[k]+1))) == NULL ) return 0;
+      if ((oo=(int*)MALLOC(sizeof(int)*(ii[k+1]-ii[k]+1))) == NULL ) return 0;
       oo[0]=ii[k+1]-ii[k];
       for (l=ii[k];l<ii[k+1];l++) 
         {
           oo[l-ii[k]+1]=l;
         }
-      if ((vec=(int*)malloc(sizeof(int)*(nblk+1))) == NULL ) return 0;
+      if ((vec=(int*)MALLOC(sizeof(int)*(nblk+1))) == NULL ) return 0;
       vec[0]=nblk;
       Setmem(vec,-1);
       for(j=1;j<oo[0]+1;j++)
         {
           vec[(*clkconnect)[oo[j]+(*clkconnect)[0]/2]]=0;
         }
-      if (oo) free(oo); oo=NULL;
+      if (oo) FREE(oo); oo=NULL;
       ppget=GetPartVect(outoin,outoin[0]/2+1,outoin[0]/2);
       if(!ppget)
 	{
-	  if ((ppget=(int*)malloc(sizeof(int))) == NULL ) return 0;
+	  if ((ppget=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
 	  ppget[0]=0;
 	}
       max1=Max1(ppget);
-      if (ppget) free(ppget);
+      if (ppget) FREE(ppget);
       ppget=NULL;
       nnd=max1+1;
-      if ((nd=(int*)calloc((nblk*nnd+1),sizeof(int))) == NULL ) return 0;
+      if ((nd=(int*)CALLOC((nblk*nnd+1),sizeof(int))) == NULL ) return 0;
       nd[0]=nblk*nnd;
       
       tree4(vec,nd,nnd,outoin,outoinptr,typ_r,&r);
       
-      if (nd) free(nd); nd=NULL;
-      if(vec) free(vec); vec=NULL;
+      if (nd) FREE(nd); nd=NULL;
+      if(vec) FREE(vec); vec=NULL;
       
       if (r)
         {
-          if ((clkconnecti.col1=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
+          if ((clkconnecti.col1=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
           clkconnecti.col1[0]=(*clkconnect)[0]/4+r[0]/2;
-          if ((clkconnecti.col2=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
+          if ((clkconnecti.col2=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
           clkconnecti.col2[0]=(*clkconnect)[0]/4+r[0]/2;
-          if ((clkconnecti.col3=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
+          if ((clkconnecti.col3=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
           clkconnecti.col3[0]=(*clkconnect)[0]/4+r[0]/2;
-          if ((clkconnecti.col4=(int*)malloc(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
+          if ((clkconnecti.col4=(int*)MALLOC(sizeof(int)*((*clkconnect)[0]/4+r[0]/2+1))) == NULL ) return 0;
           clkconnecti.col4[0]=(*clkconnect)[0]/4+r[0]/2;
 	  for(l=1;l<(*clkconnect)[0]/4+1;l++)
             {
@@ -3516,8 +3519,8 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
               clkconnecti.col3[l+(*clkconnect)[0]/4]=r[l];
               clkconnecti.col4[l+(*clkconnect)[0]/4]=r[l+r[0]/2];
             }
-	  free(*clkconnect);
-          if (((*clkconnect)=(int*)malloc(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
+	  FREE(*clkconnect);
+          if (((*clkconnect)=(int*)MALLOC(sizeof(int)*(4*clkconnecti.col1[0]+1))) == NULL ) return 0;
           (*clkconnect)[0]=4*clkconnecti.col1[0];
 	  for(l=1;l<(*clkconnect)[0]/4+1;l++)
             {
@@ -3526,18 +3529,18 @@ int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
               (*clkconnect)[l+(*clkconnect)[0]/2]=clkconnecti.col3[l];
               (*clkconnect)[l+3*(*clkconnect)[0]/4]=clkconnecti.col4[l];
             }
-          free(clkconnecti.col1);
+          FREE(clkconnecti.col1);
           clkconnecti.col1=NULL;
-          free(clkconnecti.col2);
+          FREE(clkconnecti.col2);
           clkconnecti.col2=NULL;
-          free(clkconnecti.col3);
+          FREE(clkconnecti.col3);
           clkconnecti.col3=NULL;
-          free(clkconnecti.col4);
+          FREE(clkconnecti.col4);
           clkconnecti.col4=NULL;
-	  free(r); r=NULL;
+	  FREE(r); r=NULL;
 	}
     }/* fin de for k */
-  if(ii) free(ii);
+  if(ii) FREE(ii);
   ii=NULL;
   
   return 0;
@@ -3553,7 +3556,7 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
   int *inpnum,*cinpnum,*bllst4i,*ind,*fff,*bllst4ptri;
   inpnum=cinpnum=bllst4i=ind=fff=bllst4ptri=NULL;
   *ok=true;     
-  if ((fff=(int*)malloc(sizeof(int)*(nbl+1)))==NULL) return 0;
+  if ((fff=(int*)MALLOC(sizeof(int)*(nbl+1)))==NULL) return 0;
   fff[0]=nbl;   
   Setmem(fff,1);
   (*typ_l)=VecEg1(fff);
@@ -3562,7 +3565,7 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
   (*typ_m)=VecEg1(fff);
   (*typ_zx)=VecEg1(fff);
   (*tblock)=VecEg1(fff);
-  if (fff) {free(fff);
+  if (fff) {FREE(fff);
   fff=NULL;}
   
   for(j=1;j<nbl+1;j++)
@@ -3580,11 +3583,11 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
             {
               if (inpnum)
                 {
-                  if ((cinpnum=(int*)malloc(sizeof(int)*(inpnum[0]+1))) == NULL) return 0;
+                  if ((cinpnum=(int*)MALLOC(sizeof(int)*(inpnum[0]+1))) == NULL) return 0;
                   cinpnum[0]=inpnum[0]; 
                   Setmem(cinpnum,1);
                   bllst4i=VecEg1(*bllst4);
-                  if (((*bllst4)=(int*)realloc((*bllst4),sizeof(int)*((*bllst4)[0]+cinpnum[0]+1))) == NULL ) return 0;
+                  if (((*bllst4)=(int*)REALLOC((*bllst4),sizeof(int)*((*bllst4)[0]+cinpnum[0]+1))) == NULL ) return 0;
                   (*bllst4)[0]=(*bllst4)[0]+cinpnum[0];
                   for(l=j+1;l<(*bllst4ptr)[0]+1;l++) (*bllst4ptr)[l]=bllst4ptri[l]+cinpnum[0];
                   
@@ -3600,7 +3603,7 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
                     {
                       (*bllst4)[l]=bllst4i[l-cinpnum[0]];
                     }
-                  if (bllst4i) free(bllst4i);
+                  if (bllst4i) FREE(bllst4i);
 		}
             }
         } /* if cin */
@@ -3612,14 +3615,14 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
       (*typ_l)[j]=*(bllst10[j]) == 'l';
       (*typ_m)[j]=*(bllst10[j]) == 'm';
       (*typ_cons)[j]=((cinpnum==NULL)&&(inpnum==NULL)&&(!bllst12[j+bllst12[0]/2]));
-      if(bllst4ptri) free(bllst4ptri);
-      if (inpnum) free(inpnum);
-      if (cinpnum) free(cinpnum);
+      if(bllst4ptri) FREE(bllst4ptri);
+      if (inpnum) FREE(inpnum);
+      if (cinpnum) FREE(cinpnum);
     } /* fin de for j */
   
-  if (((*inplnk)=(int*)calloc(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL) return 0;
+  if (((*inplnk)=(int*)CALLOC(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL) return 0;
   (*inplnk)[0]=bllst2ptr[bllst2ptr[0]]-1;       
-  if (((*outlnk)=(int*)calloc(bllst3ptr[bllst3ptr[0]],sizeof(int))) == NULL) return 0;
+  if (((*outlnk)=(int*)CALLOC(bllst3ptr[bllst3ptr[0]],sizeof(int))) == NULL) return 0;
   (*outlnk)[0]=bllst3ptr[bllst3ptr[0]]-1;       
   ptlnk=1;
   for (j=1;j<connectmat[0]/4+1;j++)
@@ -3635,27 +3638,27 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
                 {
                   (*outlnk)[ind[l]]=(*outlnk)[ind[l]]-1;
                 }
-              if(ind) free(ind); ind=NULL;
+              if(ind) FREE(ind); ind=NULL;
               ind=FindEg(*outlnk,ko);
               for (l=1;l<ind[0]+1;l++)
                 {
                   (*outlnk)[ind[l]]=ki;
                 }
 
-              if(ind) free(ind);ind=NULL;
+              if(ind) FREE(ind);ind=NULL;
               ind=FindSup(*inplnk,ko);
               for (l=1;l<ind[0]+1;l++)
                 {
                   (*inplnk)[ind[l]]=(*inplnk)[ind[l]]-1;
                 }
-              if (ind) free(ind);ind=NULL;
+              if (ind) FREE(ind);ind=NULL;
               ind=FindEg(*inplnk,ko);
               for (l=1;l<ind[0]+1;l++)
                 {
                   (*inplnk)[ind[l]]=ki;
                 }
               ptlnk--;
-	      if(ind) free(ind); ind=NULL;
+	      if(ind) FREE(ind); ind=NULL;
             } /* fin du 2i f */
           else if (ki>ko)
             {
@@ -3664,26 +3667,26 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
                 {
                   (*outlnk)[ind[l]]=(*outlnk)[ind[l]]-1;
                 }
-              if(ind) free(ind); ind=NULL;
+              if(ind) FREE(ind); ind=NULL;
               ind=FindEg(*outlnk,ki);
               for (l=1;l<ind[0]+1;l++)
                 {
                   (*outlnk)[ind[l]]=ko;
                 }
-             if(ind) free(ind); ind=NULL;
+             if(ind) FREE(ind); ind=NULL;
              ind=FindSup(*inplnk,ki);
              for (l=1;l<ind[0]+1;l++)
                {
                  (*inplnk)[ind[l]]=(*inplnk)[ind[l]]-1;
                }
-             if (ind) free(ind); ind=NULL;
+             if (ind) FREE(ind); ind=NULL;
              ind=FindEg(*inplnk,ki);
              for (l=1;l<ind[0]+1;l++)
                {
                  (*inplnk)[ind[l]]=ko;
                }
              ptlnk--;
-	     if (ind) free(ind); ind=NULL;
+	     if (ind) FREE(ind); ind=NULL;
             }
         } /*fin du 1 if */
       else if (ko!=0)
@@ -3709,7 +3712,7 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
         {
           (*outlnk)[ind[j]]=ko+1;
         }   
-      free(ind);ind=NULL;
+      FREE(ind);ind=NULL;
     }   
   
   return 0;
@@ -3723,9 +3726,9 @@ int synch_clkconnect(int* typ_s,int* clkconnect,int** evoutoin,int** evoutoinptr
   ind=NULL;
   dd=NULL;
   ppget=NULL;
-  if (((*evoutoin)=(int*)malloc(sizeof(int))) == NULL ) return 0;
+  if (((*evoutoin)=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
   (*evoutoin)[0]=0;
-  if (((*evoutoinptr)=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+  if (((*evoutoinptr)=(int*)MALLOC(sizeof(int)*2)) == NULL ) return 0;
   (*evoutoinptr)[0]=1;
   (*evoutoinptr)[1]=1;
   for (j=1;j<typ_s[0]+1;j++)
@@ -3735,31 +3738,31 @@ int synch_clkconnect(int* typ_s,int* clkconnect,int** evoutoin,int** evoutoinptr
           
 	  ppget=GetPartVect(clkconnect,1,clkconnect[0]/4);
           ind=FindEg(ppget,j);
-	  if (ppget)free(ppget); ppget=NULL;
+	  if (ppget)FREE(ppget); ppget=NULL;
           if (ind) 
             {
-              if ((dd=(int*)malloc(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
+              if ((dd=(int*)MALLOC(sizeof(int)*(ind[0]+1))) == NULL ) return 0;
               dd[0]=ind[0];
               for(l=1;l<ind[0]+1;l++)
                 {
                   dd[l]=clkconnect[ind[l]+clkconnect[0]/2];
                 }
-	      free(ind); ind=NULL;
+	      FREE(ind); ind=NULL;
 	      if (!dd) 
 		{
-		  if ((dd=(int*)malloc(sizeof(int))) == NULL ) return 0;
+		  if ((dd=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
 		  dd[0]=0;
 		}
             }	 
         }
       else 
         {
-          if ((dd=(int*)malloc(sizeof(int))) == NULL ) return 0;
+          if ((dd=(int*)MALLOC(sizeof(int))) == NULL ) return 0;
           dd[0]=0;
         }
               
-      if (((*evoutoin)=(int*)realloc((*evoutoin),sizeof(int)*((*evoutoin)[0]+dd[0]+1))) == NULL ) return 0;
-      if (((*evoutoinptr)=(int*)realloc((*evoutoinptr),sizeof(int)*((*evoutoinptr)[0]+2))) == NULL ) return 0;
+      if (((*evoutoin)=(int*)REALLOC((*evoutoin),sizeof(int)*((*evoutoin)[0]+dd[0]+1))) == NULL ) return 0;
+      if (((*evoutoinptr)=(int*)REALLOC((*evoutoinptr),sizeof(int)*((*evoutoinptr)[0]+2))) == NULL ) return 0;
       for(l=1;l<dd[0]+1;l++)
         {
           (*evoutoin)[l+(*evoutoin)[0]]=dd[l];
@@ -3768,7 +3771,7 @@ int synch_clkconnect(int* typ_s,int* clkconnect,int** evoutoin,int** evoutoinptr
       (*evoutoinptr)[(*evoutoinptr)[0]+1]=(*evoutoinptr)[(*evoutoinptr)[0]]+dd[0];
       (*evoutoin)[0]=(*evoutoin)[0]+dd[0];
       (*evoutoinptr)[0]++;
-      free(dd); dd=NULL;      
+      FREE(dd); dd=NULL;      
     }
   
   return 0;
@@ -3782,14 +3785,14 @@ int cleanup(int** clkconnect)
   ind=vec=NULL;
   cc=NULL;
   mm=Max1(*clkconnect)+1;
-  if ((cc=(double*)malloc(sizeof(double)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
+  if ((cc=(double*)MALLOC(sizeof(double)*((*clkconnect)[0]/4+1))) == NULL ) return 0;
   a=(*clkconnect)[0]/4;
   cc[0]=a;
   for (j=1;j<(*clkconnect)[0]/4+1;j++)
     {
       cc[j]=-(*clkconnect)[j+3*(*clkconnect)[0]/4]-mm*(*clkconnect)[j+(*clkconnect)[0]/2]-power(mm,2)*(*clkconnect)[j+(*clkconnect)[0]/4]-(double) power(mm,3)*(*clkconnect)[j];
     }
-  if ((ind=(int*)malloc(sizeof(int)*(a+1))) == NULL ) return 0;
+  if ((ind=(int*)MALLOC(sizeof(int)*(a+1))) == NULL ) return 0;
   ind[0]=a;
   C2F(dsort)(&cc[1],&a,&ind[1]);
   clkconnectind=VecEg1(*clkconnect);
@@ -3800,17 +3803,17 @@ int cleanup(int** clkconnect)
       (*clkconnect)[j+2*ind[0]]=clkconnectind[ind[j]+2*ind[0]];
       (*clkconnect)[j+3*ind[0]]=clkconnectind[ind[j]+3*ind[0]];      
     }
-  free(clkconnectind); clkconnectind=NULL;
-  if(ind) free(ind);ind=NULL;
-  if ((vec=(int*)malloc((size_t) (sizeof(int)*(cc[0])))) == NULL ) return 0;
+  FREE(clkconnectind); clkconnectind=NULL;
+  if(ind) FREE(ind);ind=NULL;
+  if ((vec=(int*)MALLOC((size_t) (sizeof(int)*(cc[0])))) == NULL ) return 0;
   vec[0]=(int) cc[0]-1;
   for (j=1;j<vec[0]+1;j++)
     {
       vec[j]=(int) (cc[j+1]-cc[j]);
     }
-  if(cc) free(cc); cc=NULL;
+  if(cc) FREE(cc); cc=NULL;
   ind=FindEg(vec,0);
-  if(vec) free(vec); vec=NULL;
+  if(vec) FREE(vec); vec=NULL;
   if (ind)
     {
       for(j=1;j<ind[0]+1;j++)
@@ -3827,7 +3830,7 @@ int cleanup(int** clkconnect)
             val++;
 	}
       (*clkconnect)[0]=(*clkconnect)[0]-4*ind[0];
-      free(ind); ind=NULL;
+      FREE(ind); ind=NULL;
     }
   
   return 0;
@@ -3848,10 +3851,10 @@ int init_agenda(double* initexe,int* bllst5ptr,double** tevts,int** evtspt,int* 
     {
       Invd(timevec);
       a=(int) timevec[0];
-      if ((indtime=(int*)malloc(sizeof(int)*(a+1))) == NULL ) return 0;
+      if ((indtime=(int*)MALLOC(sizeof(int)*(a+1))) == NULL ) return 0;
       indtime[0]=a;
       C2F(dsort)(&timevec[1],&a,&indtime[1]);
-      if ((initexeind=(double*)malloc(sizeof(double)*((int) initexe[0]+1))) == NULL ) return 0; 
+      if ((initexeind=(double*)MALLOC(sizeof(double)*((int) initexe[0]+1))) == NULL ) return 0; 
       initexeind[0]=(int) initexe[0];
       pp=&initexeind[1];
       pp=memcpy(pp,&initexe[1],sizeof(double)*((int) initexe[0]));
@@ -3861,16 +3864,16 @@ int init_agenda(double* initexe,int* bllst5ptr,double** tevts,int** evtspt,int* 
           initexe[j+(int) initexeind[0]/3]=initexeind[indtime[j]+(int) initexeind[0]/3];
           initexe[j+2* (int) initexeind[0]/3]=initexeind[indtime[j]+2* (int) initexeind[0]/3];
         }
-      if(initexeind) free(initexeind);
-      if(indtime) free(indtime);
-      free(timevec);
+      if(initexeind) FREE(initexeind);
+      if(indtime) FREE(indtime);
+      FREE(timevec);
       ninit=(int) initexe[0]/3;
     }
   else {initexe=NULL;ninit=0;}
   
   *pointi=0;
   nevts=bllst5ptr[nblk+1]-1;
-  if (((*tevts)=(double*)calloc((nevts+1),sizeof(double))) == NULL) return 0 ;
+  if (((*tevts)=(double*)CALLOC((nevts+1),sizeof(double))) == NULL) return 0 ;
   ((*tevts)[0])=nevts;
   if ( initexe != NULL)
     {
@@ -3879,7 +3882,7 @@ int init_agenda(double* initexe,int* bllst5ptr,double** tevts,int** evtspt,int* 
           (*tevts)[bllst5ptr[(int) initexe[j]]+(int) initexe[j+ninit]-1]=initexe[j+2*ninit];
         }
     }
-  if (((*evtspt)=(int*)malloc(sizeof(int)*(nevts+1))) == NULL) return 0 ;
+  if (((*evtspt)=(int*)MALLOC(sizeof(int)*(nevts+1))) == NULL) return 0 ;
   (*evtspt)[0]=nevts;
   Setmem(*evtspt,-1);
   if ( ninit > 0 )
@@ -3903,7 +3906,7 @@ int tree4(int* vec,int* nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r
 {
   int i,j,fini=0,k,ii,*ind,*ind1,l,nb=vec[0];
   Mat2C ri;
-  if ((*r=(int*)malloc(sizeof(int))) == NULL) return 0 ;
+  if ((*r=(int*)MALLOC(sizeof(int))) == NULL) return 0 ;
   (*r)[0]=0;
   ind=GetPartVect(outoin,1,outoin[0]/2);
   ind1=GetPartVect(outoin,outoin[0]/2+1,outoin[0]/2);
@@ -3921,9 +3924,9 @@ int tree4(int* vec,int* nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r
 		  if(typ_r[ii] == 1)
                     {
                       if(nd[ind1[k]+1+(ii-1)*nnd] == 0){
-                      if ((ri.col1=(int*)malloc(sizeof(int)*((*r)[0]/2+2))) == NULL ) return 0;
+                      if ((ri.col1=(int*)MALLOC(sizeof(int)*((*r)[0]/2+2))) == NULL ) return 0;
                       ri.col1[0]=(*r)[0]/2+1;
-                      if ((ri.col2=(int*)malloc(sizeof(int)*((*r)[0]/2+2))) == NULL ) return 0;
+                      if ((ri.col2=(int*)MALLOC(sizeof(int)*((*r)[0]/2+2))) == NULL ) return 0;
                       ri.col2[0]=(*r)[0]/2+1;
                       for(l=1;l<(*r)[0]/2+1;l++)
                         {
@@ -3932,17 +3935,17 @@ int tree4(int* vec,int* nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r
                         }
                       ri.col1[(*r)[0]/2+1]=ind[k];
                       ri.col2[(*r)[0]/2+1]=ind1[k];
-                      free(*r);
-                      if ((*r=(int*)malloc(sizeof(int)*(2*ri.col1[0]+1))) == NULL ) return 0;
+                      FREE(*r);
+                      if ((*r=(int*)MALLOC(sizeof(int)*(2*ri.col1[0]+1))) == NULL ) return 0;
                       (*r)[0]=2*ri.col1[0];
                       for(l=1;l<(*r)[0]/2+1;l++)
                         {
                           (*r)[l]=ri.col1[l];
                           (*r)[l+(*r)[0]/2]=ri.col2[l];
                         }
-                      free(ri.col1);
+                      FREE(ri.col1);
                       ri.col1=NULL;
-                      free(ri.col2);
+                      FREE(ri.col2);
                       ri.col2=NULL;
                       vec[ii]=0;
                       fini=0;
@@ -3956,12 +3959,12 @@ int tree4(int* vec,int* nd,int nnd,int* outoin,int* outoinptr,int* typ_r,int** r
     } /* fin de for j*/
   if ((*r)[0]==0) 
     {
-      free(*r);
+      FREE(*r);
       *r=NULL;
     }
-  free(ind1);
+  FREE(ind1);
   ind1=NULL;
-  free(ind);
+  FREE(ind);
   ind=NULL;
   
   return 0;
@@ -4007,17 +4010,17 @@ int *vect,nb,*wec,*ind,*deput,*outoin,*outoinptr,**ord,*ok;
 	}
     }
   Inv(vect);  
-  if ((ord1=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return 0;
+  if ((ord1=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return 0;
   ord1[0]=vect[0];
   C2F(isort)(&vect[1],&vect[0],&ord1[1]);
-  if ((*ord=(int*)malloc(sizeof(int)*(2*nb+1))) == NULL ) return 0;
+  if ((*ord=(int*)MALLOC(sizeof(int)*(2*nb+1))) == NULL ) return 0;
   (*ord)[0]=2*nb;
   for(m=1 ; m <= nb; ++m)
     {
       (*ord)[m]=ind[ord1[m]];
       (*ord)[m+nb]=wec[ord1[m]];
     }
-  if(ord1) free(ord1);
+  if(ord1) FREE(ord1);
   ord1=NULL;
   return 0;
 } 
@@ -4100,18 +4103,18 @@ int tree3(vec, nb, deput, typl, bexe, boptr, blnk, blptr,ord, ok)
 	}
     }
   Inv(vec);
-  if ((ind=(int*)malloc(sizeof(int)*(vec[0]+1))) == NULL ) return 0;
+  if ((ind=(int*)MALLOC(sizeof(int)*(vec[0]+1))) == NULL ) return 0;
   ind[0]=vec[0];
   C2F(isort)(&vec[1],&vec[0],&ind[1]);
   w=FindDif(vec,1);
-  if (((*ord)=(int*)malloc(sizeof(int)*(w[0]+1))) == NULL) return 0;
+  if (((*ord)=(int*)MALLOC(sizeof(int)*(w[0]+1))) == NULL) return 0;
   (*ord)[0]=w[0];
   for (l= 1; l<w[0]+1;l++)
     {
       (*ord)[l]=ind[w[l]];
     }
-  free(w); w=NULL;
-  free(ind); ind=NULL;
+  FREE(w); w=NULL;
+  FREE(ind); ind=NULL;
   return 0;
 }
 /*===========================================   fin de tree3 ======================================== */
@@ -4125,7 +4128,7 @@ int* GetCollVect(int* vect,int* vectid,int numcoll)
 {
   int *vectr;
   int i;
-  if ((vectr=(int*)malloc(sizeof(int)*(vectid[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vectid[0]+1))) == NULL ) return (int*) NULL;
   vectr[0]=vectid[0];
 
   for(i=1;i<vectid[0]+1;i++)
@@ -4139,7 +4142,7 @@ int* FindDif(int* vect,int val)
 {
   int *vectr,i,j=1;
   if (vect[0]==0) return NULL;
-  if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   for(i=1; i<vect[0]+1;i++)
     {
        if(vect[i]!=val) vectr[j++]=i;
@@ -4152,7 +4155,7 @@ int* FindEg(int* vect,int val)
 {     
   int *vectr,i,j=1;
   if (vect[0]==0) return NULL;
-  if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   for(i=1; i<vect[0]+1;i++)
     {
       if(vect[i]==val) vectr[j++]=i;
@@ -4166,7 +4169,7 @@ int* FindSupEgd(double* vect,int val)
   int *vectr;
   register int i,j=1;
   if (vect[0]==0) return NULL;
-  if ((vectr=(int*)malloc(sizeof(int)*((int) vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*((int) vect[0]+1))) == NULL ) return (int*) NULL;
   for(i=1; i<vect[0]+1;i++)
     {
       if((int) vect[i]>=val) vectr[j++]=i;
@@ -4180,7 +4183,7 @@ int* GetPartVect(int* vect,int idebut,int taille)
 {
   int *vectr,*p;
   if (taille < 1) return (int*) NULL;
-  if ((vectr=(int*)malloc(sizeof(int)*(taille+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(taille+1))) == NULL ) return (int*) NULL;
   vectr[0]=taille;
   p=&vectr[1];
   p=memcpy(p,&vect[idebut],sizeof(int)*taille);
@@ -4191,7 +4194,7 @@ double* GetPartVectd(double* vect,int idebut,int taille)
 {
   double *vectr,*p;
   if (taille < 1) return (double*) NULL;
-  if ((vectr=(double*)malloc(sizeof(double)*(taille+1))) == NULL ) return (double*) NULL;
+  if ((vectr=(double*)MALLOC(sizeof(double)*(taille+1))) == NULL ) return (double*) NULL;
   vectr[0]=taille;
   p=&vectr[1];
   p=memcpy(p,&vect[idebut],sizeof(double)*taille);
@@ -4205,13 +4208,13 @@ int* Duplicataa(v,w)
   int *ww;
   register int pp;
   k=1;
-  if ((ww=(int*)malloc(sizeof(int))) == NULL ) return (int*) NULL;
+  if ((ww=(int*)MALLOC(sizeof(int))) == NULL ) return (int*) NULL;
   ww[0]=0;
   for (i=1;i<v[0]+1;i++) 
     {
       if (w[i]!=0)
         {
-          if ((ww=(int*)realloc(ww,sizeof(int)*(w[i]+ww[0]+1))) == NULL ) return (int*) NULL;
+          if ((ww=(int*)REALLOC(ww,sizeof(int)*(w[i]+ww[0]+1))) == NULL ) return (int*) NULL;
           ww[0]=ww[0]+w[i];
           pp=v[i];
           for (j=1;j<w[i]+1;j++) 
@@ -4253,7 +4256,7 @@ int* FindInfEg(int* vect,int val)
 {  
   int *vectr;
   register int i,j=1;
-  if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   for(i=1; i<vect[0]+1;i++)
     {
       if(vect[i]<=val) vectr[j++]=i;
@@ -4266,7 +4269,7 @@ int* FindInf(int* vect,int val)
 {  
   int *vectr;
   register int i,j=1;
-  if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   for(i=1; i<vect[0]+1;i++)
     {
       if(vect[i]<val) vectr[j++]=i;
@@ -4279,7 +4282,7 @@ int* FindSup(int* vect,int val)
 {
   int *vectr;
   register int i,j=1;
-  if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   for(i=1; i<vect[0]+1;i++)
     {
       if(vect[i]>val) vectr[j++]=i;
@@ -4326,7 +4329,7 @@ void CumSum (int* vect)
 int* VecEg1 (int* vect) 
 {  
   int *vectr;        
-  if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
+  if ((vectr=(int*)MALLOC(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   vectr=memcpy(vectr,vect,(vect[0]+1)*sizeof(int));
   return (int*) vectr;
 }

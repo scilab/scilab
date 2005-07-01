@@ -4,8 +4,11 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-
+#include "wcommon.h"
 #include "resource.h"
+
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /* Allan CORNET INRIA 2004 */
 /*-----------------------------------------------------------------------------------*/
 #define LineMax 255
@@ -63,7 +66,7 @@ char * ChooseAnotherWindowScilab(void)
 	char *TitleScilabChoose=NULL;
 	if (NumberScilab == 1)
 	{
-		TitleScilabChoose=malloc( (strlen(ListScilabName[NumberScilab-1])+1) * sizeof(char) );
+		TitleScilabChoose=MALLOC( (strlen(ListScilabName[NumberScilab-1])+1) * sizeof(char) );
 		wsprintf(TitleScilabChoose,"%s",ListScilabName[NumberScilab-1]);
 	}
 	else
@@ -73,7 +76,7 @@ char * ChooseAnotherWindowScilab(void)
 		hWndScilab=FindWindow(NULL,TitleScilabChoose);
 		if (hWndScilab==NULL) /* La fenetre n'existe plus */
 		{
-			free(TitleScilabChoose);
+			FREE(TitleScilabChoose);
 			TitleScilabChoose=NULL;
 		}
 	}
@@ -116,7 +119,7 @@ char * ChooseScilabBox(void)
 	}
 	else
 	{
-		TitleScilabChoose=malloc( (strlen(ListScilabName[ItemChooseScilab-1])+1) * sizeof(char) );
+		TitleScilabChoose=MALLOC( (strlen(ListScilabName[ItemChooseScilab-1])+1) * sizeof(char) );
 		wsprintf(TitleScilabChoose,"%s",ListScilabName[ItemChooseScilab-1]);
 	}
 

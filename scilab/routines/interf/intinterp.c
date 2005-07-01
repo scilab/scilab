@@ -11,6 +11,9 @@
 #include <string.h>
 #endif
 #include <math.h>
+
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #include "../stack-c.h"
 #include "interp.h"
 

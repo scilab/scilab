@@ -5,6 +5,8 @@
 #include "men_scilab.h"
 #endif
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 int MatrixDialogWindow(void);
 
 MADialog MAD = { NULL,NULL,NULL,NULL,-1,0,0,0};

@@ -13,6 +13,7 @@
 #include "Math.h"
 #include "PloEch.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #include "GetProperty.h"
 

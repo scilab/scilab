@@ -52,7 +52,7 @@ int setenvc(char *string,char *value)
       UpdateEnvVar=1;
     }
 #else /* others HP Solaris WIN32*/
-  env=(char*)malloc((strlen(string)+strlen(value)+2)*sizeof(char));
+  env=(char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
   sprintf(env,"%s=%s",string,value);
   if ( putenv(env) ) ret=FALSE;
   else 
@@ -67,7 +67,7 @@ int setenvc(char *string,char *value)
 #ifdef WIN32
   if (env)
     {
-      free(env);
+      FREE(env);
       env=NULL;
     }
 #endif

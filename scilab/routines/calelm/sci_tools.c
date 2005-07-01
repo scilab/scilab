@@ -10,6 +10,9 @@
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
+     Revision 1.4  2005/07/01 07:08:08  cornet
+     replace malloc, free, calloc & realloc by MALLOC,FREE,CALLOC & REALLOC defined in SCI/routines/sci_mem_alloc.h
+
      Revision 1.3  2001/10/16 08:23:38  chanceli
      change in includes
 
@@ -59,7 +62,7 @@
 #include <string.h>
 
 #include "sci_tools.h"
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #ifdef __STDC__
 void 
@@ -82,7 +85,7 @@ C2F(ccomplexf)(n, ip, op)
   SET_TYPE_COMPLEX(op);		        /* type is complex */
   SET_NB_ROW(op,  NB_ROW(op) / 2);	/* nb  row is halfed */
 
-  free((char*) (*ip));
+  FREE((char*) (*ip));
 } /* ccomplexf */
 
 #ifdef __STDC__
@@ -99,7 +102,7 @@ SciToF77(ptr, size, lda)
   int i;
   double *tab;
   
-  if ((tab = (double *) malloc(size * sizeof(double))) == NULL) {
+  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
     (void) fprintf(stderr, "SciToF77: Error malloc\n");
     return;
   }
@@ -115,7 +118,7 @@ SciToF77(ptr, size, lda)
     ptr[2*i+1] = ptr[lda+i];
   }
 
-  free(tab);
+  FREE(tab);
 } /* SciToF77 */
 
 
@@ -133,7 +136,7 @@ F77ToSci(ptr, size, lda)
   int i;
   double *tab;
   
-  if ((tab = (double *) malloc(size * sizeof(double))) == NULL) {
+  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
     (void) fprintf(stderr, "F77ToSci: Error malloc\n");
     return;
   }
@@ -149,7 +152,7 @@ F77ToSci(ptr, size, lda)
   /*     ptr[lda+i] = tab[i]; */
   /*   } */
 
-  free(tab);
+  FREE(tab);
 } /* F77ToSci */
 
 
@@ -171,7 +174,7 @@ double2z(ptr, ptr77z, size, lda)
   int i;
   double *tab;
   
-  if ((tab = (double *) malloc(size * sizeof(double))) == NULL) {
+  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
     (void) fprintf(stderr, "Double2z: Error malloc\n");
     return;
   }
@@ -183,7 +186,7 @@ double2z(ptr, ptr77z, size, lda)
     ptr77z[2*i+1] = ptr[lda+i];
   }
 
-  free(tab);
+  FREE(tab);
 } 
 
 
@@ -201,7 +204,7 @@ z2double(ptrz, ptrsci, size, lda)
   int i;
   double *tab;
   
-  if ((tab = (double *) malloc(size * sizeof(double))) == NULL) {
+  if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL) {
     (void) fprintf(stderr, "z2double: Error malloc\n");
     return;
   }
@@ -213,6 +216,6 @@ z2double(ptrz, ptrsci, size, lda)
 
   memcpy(ptrsci + lda, tab, size * sizeof(double));
 
-  free(tab);
+  FREE(tab);
 } 
 

@@ -11,6 +11,8 @@
 
 #include "../os_specific/men_Sutils.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 extern void sciqsort();
 
 /** swapcode for indices : indices are integers **/

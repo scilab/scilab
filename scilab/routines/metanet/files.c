@@ -12,6 +12,7 @@
 #include <malloc.h>
 #endif
 
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 #define MAXNAM 80
 
@@ -57,7 +58,7 @@ char *name;
 
   s = name;
   i = 0;
-  t = (char *)malloc((unsigned)strlen(name)+1);
+  t = (char *)MALLOC((unsigned)strlen(name)+1);
   while ( (t[i++] = *s++) ) {
     if (*s == '.') {
       if (strcmp(++s,"graph") == 0) {
@@ -100,7 +101,7 @@ char *path;
 	--slash;
       length = slash - path + 1;
     }
-  newpath = (char *)malloc ((unsigned)length + 1);
+  newpath = (char *)MALLOC ((unsigned)length + 1);
   if (newpath == 0)
     return 0;
   strncpy (newpath, path, length);

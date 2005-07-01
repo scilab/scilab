@@ -4,6 +4,7 @@
  *--------------------------------------------*/
 
 #include "../graphics/Math.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
 
 extern int sci_iargc(void);
 extern int sci_getarg(int *,char *,long int ln);

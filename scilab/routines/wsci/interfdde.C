@@ -6,6 +6,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 /*-----------------------------------------------------------------------------------*/
 int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 {
@@ -31,21 +33,21 @@ int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 
 			if ( DDEOpenConnection(param1,param2) )
 			{
-				int *paramoutINT=(int*)malloc(sizeof(int));
+				int *paramoutINT=(int*)MALLOC(sizeof(int));
 				*paramoutINT=(int)(TRUE);
 				n1=1;
 				CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 				LhsVar(1)=1;
-				free(paramoutINT);
+				FREE(paramoutINT);
 			}
 			else
 			{
-				int *paramoutINT=(int*)malloc(sizeof(int));
+				int *paramoutINT=(int*)MALLOC(sizeof(int));
 				*paramoutINT=(int)(FALSE);
 				n1=1;
 				CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 				LhsVar(1)=1;
-				free(paramoutINT);
+				FREE(paramoutINT);
 			}
 		}
 		else 
@@ -69,21 +71,21 @@ int	InterfaceWindowsDDEclose _PARAMS((char *fname))
 
 	if ( DDECloseConnection() )
 	{
-		int *paramoutINT=(int*)malloc(sizeof(int));
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		*paramoutINT=(int)TRUE;
 		n1=1;
 		CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 		LhsVar(1)=1;
-		free(paramoutINT);
+		FREE(paramoutINT);
 	}
 	else
 	{
-		int *paramoutINT=(int*)malloc(sizeof(int));
+		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		*paramoutINT=(int)FALSE;
 		n1=1;
 		CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 		LhsVar(1)=1;
-		free(paramoutINT);
+		FREE(paramoutINT);
 	}
 	
 	return 0;
@@ -125,7 +127,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 
 	if (Rhs == 1)
 	{
-		param2=malloc(sizeof(int));
+		param2=MALLOC(sizeof(int));
 		*param2=-1;
 	}
 
@@ -138,21 +140,21 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 
 		if ( DDEExecute(param1,*param2) )
 		{
-			int *paramoutINT=(int*)malloc(sizeof(int));
+			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)TRUE;
 			n1=1;
 			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 			LhsVar(1)=1;
-			free(paramoutINT);
+			FREE(paramoutINT);
 		}
 		else
 		{
-			int *paramoutINT=(int*)malloc(sizeof(int));
+			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)FALSE;
 			n1=1;
 			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 			LhsVar(1)=1;
-			free(paramoutINT);
+			FREE(paramoutINT);
 		}
 
 	}
@@ -164,7 +166,7 @@ int	InterfaceWindowsDDEexec _PARAMS((char *fname))
 
 	if (Rhs == 1)
 	{
-		if (param2) free(param2);
+		if (param2) FREE(param2);
 		param2=NULL;
 	}
 
@@ -208,7 +210,7 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 
 	if (Rhs == 2)
 	{
-		param3=(int*)malloc(sizeof(int));
+		param3=(int*)MALLOC(sizeof(int));
 		*param3=-1;
 	}
 
@@ -224,21 +226,21 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 
 		if ( DDEPoke(param1,param2,*param3) )
 		{
-			int *paramoutINT=(int*)malloc(sizeof(int));
+			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)TRUE;
 			n1=1;
 			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 			LhsVar(1)=1;
-			free(paramoutINT);
+			FREE(paramoutINT);
 		}
 		else
 		{
-			int *paramoutINT=(int*)malloc(sizeof(int));
+			int *paramoutINT=(int*)MALLOC(sizeof(int));
 			*paramoutINT=(int)FALSE;
 			n1=1;
 			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 			LhsVar(1)=1;
-			free(paramoutINT);
+			FREE(paramoutINT);
 		}
 	}
 	else
@@ -249,7 +251,7 @@ int	InterfaceWindowsDDEpoke _PARAMS((char *fname))
 
 	if (Rhs == 2)
 	{
-		if (param3) free(param3);
+		if (param3) FREE(param3);
 		param3=NULL;
 	}
 	
@@ -292,7 +294,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 
 	if (Rhs == 1)
 	{
-		param2=(int*)malloc(sizeof(int));
+		param2=(int*)MALLOC(sizeof(int));
 		*param2=-1;
 	}
 
@@ -307,10 +309,10 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 		if ( DDERequest(param1,*param2,Buffer) )
 		{
 			char *output=NULL ;
-			output=(char*)malloc((strlen(Buffer)+1)*sizeof(char));
+			output=(char*)MALLOC((strlen(Buffer)+1)*sizeof(char));
 			wsprintf(output,"%s",Buffer);
 			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
-			free(output);
+			FREE(output);
 			LhsVar(1)=1;
 		}
 		else
@@ -330,7 +332,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 
 	if (Rhs == 1)
 	{
-		if (param2) free(param2);
+		if (param2) FREE(param2);
 		param2=NULL;
 	}
 

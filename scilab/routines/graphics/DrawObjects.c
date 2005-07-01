@@ -24,6 +24,8 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 
+#include "../sci_mem_alloc.h" /* MALLOC */
+
 #if WIN32
 extern HDC TryToGetDC(HWND hWnd);
 #endif
@@ -5570,13 +5572,13 @@ void Merge3d(sciPointObj *psubwin)
    * ========================================================================*/
   
   /* q now contains the total number of elements */
-  if ((index_in_entity = (int *) malloc (q * sizeof (int))) == (int *)NULL) {
+  if ((index_in_entity = (int *) MALLOC (q * sizeof (int))) == (int *)NULL) {
     Scistring("Merge3d : not enough memory to allocate \n");
     return;
   }
-  if ((from_entity   = (long *) malloc (q * sizeof (long))) == (long *) NULL) {
+  if ((from_entity   = (long *) MALLOC (q * sizeof (long))) == (long *) NULL) {
     Scistring("Merge3d : not enough memory to allocate \n");
-    free(index_in_entity);
+    FREE(index_in_entity);
   }
   
   /* ========================================================================
@@ -5590,8 +5592,8 @@ void Merge3d(sciPointObj *psubwin)
    * ========================================================================*/
   
   if ((pmerge=ConstructMerge ((sciPointObj *) psubwin,q,index_in_entity,from_entity)) == (sciPointObj *) NULL) {
-    free(index_in_entity);
-    free(from_entity);
+    FREE(index_in_entity);
+    FREE(from_entity);
     sciprint ("\r\n No merge supported");}
   else /* inform the subwindow to display Merge instead of individual children */
     pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
@@ -5629,11 +5631,11 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   N=pMERGE_FEATURE (pmerge)->N; /* total number of elements */
 
   if ((dist=(double *)MALLOC(N*sizeof(double)))==(double *) NULL) {
-    Scistring("DrawMerge3d : malloc No more Place\n");
+    Scistring("DrawMerge3d : MALLOC No more Place\n");
     return;
   }
   if ((locindex=(int *)MALLOC(N*sizeof(int)))==(int *) NULL) {
-    Scistring("DrawMerge3d : malloc No more Place\n");
+    Scistring("DrawMerge3d : MALLOC No more Place\n");
     return;
   }
 
@@ -5918,13 +5920,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   zmax = pSUBWIN_FEATURE (psubwin)->SRect[5];
   if ((polyx=(int *)MALLOC((max_p+1)*sizeof(int)))==(int *) NULL) {
     FREE(dist);FREE(locindex);
-    Scistring("DrawMerge3d : malloc No more Place\n");
+    Scistring("DrawMerge3d : MALLOC No more Place\n");
 
     return;
   }
   if ((polyy=(int *)MALLOC((max_p+1)*sizeof(int)))==(int *) NULL) {
     FREE(dist);FREE(locindex);
-    Scistring("DrawMerge3d : malloc No more Place\n");
+    Scistring("DrawMerge3d : MALLOC No more Place\n");
     return;
   }
   npoly=1; 

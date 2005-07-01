@@ -24,7 +24,7 @@ Cambridge, MA 02139, USA.  */
 #include <malloc.h>
 #endif
 
-
+#include "../sci_mem_alloc.h" /* MALLOC */
 #include "mysearch.h"
 
 /*
@@ -96,7 +96,7 @@ unsigned nel;
     filled = 0;
 
     /* allocate memory and zero out */
-    if ((htable = (_ENTRY *)calloc(hsize+1, sizeof(_ENTRY))) == NULL)
+    if ((htable = (_ENTRY *)CALLOC(hsize+1, sizeof(_ENTRY))) == NULL)
 	return 0;
 
     /* everything went alright */
@@ -113,7 +113,7 @@ void
 myhdestroy()
 {
     /* free used memory */
-    free(htable);
+    FREE(htable);
 
     /* the sign for an existing table is an value != NULL in htable */ 
     htable = NULL;
@@ -139,7 +139,7 @@ myhdestroy()
 ENTRY*
 myhsearch(item, action)
 ENTRY item;
-ACTION action;
+SCIACTION action;
 {
     register unsigned hval;
     register unsigned hval2;
@@ -151,7 +151,7 @@ ACTION action;
      * If table is full and another entry should be entered return with 
      * error.
      */
-    if (action == ENTER && filled == hsize) 
+    if (action == SCIENTER && filled == hsize) 
         return NULL;
       
 
@@ -177,7 +177,7 @@ ACTION action;
         if (htable[idx].used == hval &&
             strcmp(item.key, htable[idx].entry.key) == 0) {
 
-            if (action == ENTER) 
+            if (action == SCIENTER) 
 	        htable[idx].entry.data = item.data;
 
 	    return &htable[idx].entry;
@@ -200,7 +200,7 @@ ACTION action;
             if (htable[idx].used == hval &&
                 strcmp(item.key, htable[idx].entry.key) == 0) {
 
-                if (action == ENTER) 
+                if (action == SCIENTER) 
 	            htable[idx].entry.data = item.data;
 
 	        return &htable[idx].entry;
@@ -211,7 +211,7 @@ ACTION action;
     }
 
     /* An empty bucket has been found. */
-    if (action == ENTER) {
+    if (action == SCIENTER) {
         htable[idx].used  = hval;
         htable[idx].entry = item;
 
