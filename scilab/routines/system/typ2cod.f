@@ -29,6 +29,9 @@ c     look for itype in predefined types
             n=min(nlt,nmax)
             call icopy(n,istk(iltyp),1,name(1),1)
             return
+         elseif(itype.eq.0) then
+            n=1
+            name(1)=0
          else
             n=ln(itype)
             call icopy(n,namrec(ptr(itype)),1,name,1)
