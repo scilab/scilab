@@ -7,6 +7,7 @@
 #ifndef __SCIMATH_H__
 #define __SCIMATH_H__
 #include "../machine.h"
+#include "../sci_mem_alloc.h"
 
 #ifdef __STDC__
 #include <stdlib.h>
