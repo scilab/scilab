@@ -10,7 +10,12 @@
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 struct OLE10_header{
 	unsigned char data[6];

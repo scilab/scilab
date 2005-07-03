@@ -7,7 +7,11 @@ char *dialog_str = (char *) 0;
 char *dialog_str = (char *) 0;
 #endif
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 SciDialog ScilabDialog = { NULL,NULL,NULL,-1,0}; 
 

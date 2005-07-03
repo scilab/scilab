@@ -3,7 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "getmemorysize.h"
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(intgetmemorysize) _PARAMS((char *fname))
 {

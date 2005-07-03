@@ -3,7 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intpathname.h"
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
 typedef  DWORD (WINAPI * GetLongPathNamePROC) (LPCSTR,LPSTR,DWORD); 

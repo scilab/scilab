@@ -1,6 +1,10 @@
 #include <string.h>
 #include "../machine.h"
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif/
 #include "../os_specific/men_Sutils.h"
 #include "libinter.h"
 

@@ -8,7 +8,11 @@
 
 #include "wmen_scilab.h"
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 /** #define MAXSTR 256 **/
 

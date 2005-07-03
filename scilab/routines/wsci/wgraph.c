@@ -6,7 +6,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "win_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
 static int scig_buzy = 0;

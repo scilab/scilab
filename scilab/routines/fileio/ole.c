@@ -16,7 +16,12 @@
 #include "olestream-unwrap.h"
 #include "ole.h"
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 /* Main header accessors*/
 #define header_id(x)						((x) +0)

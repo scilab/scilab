@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------*/
 
 #include "history.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+
+#include "../sci_mem_alloc.h"  /* malloc */
+
 
 sci_hist *history = NULL;	/* no history yet */
 sci_hist *cur_entry = NULL;

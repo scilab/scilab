@@ -22,7 +22,11 @@
 #include "../stack-c.h"
 #include "sci_pvm.h"
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 /******************************************
  * SCILAB function : pvm_error_mode

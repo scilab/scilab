@@ -7,7 +7,11 @@
 
 #include "../os_specific/Os_specific.h"
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 /****************************************************
  * Scilab xgetfile command used to get a file name 

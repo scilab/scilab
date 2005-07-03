@@ -17,7 +17,12 @@
 #include "../stack-c.h"
 #include "sox.h" 
 #include "stdio.h" 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
 			        long int nams_len));  

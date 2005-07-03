@@ -7,7 +7,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "win_mem_alloc.h" /* MALLOC */
 /********************************************************************************************************/
 /* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
 /* sont définies directement dans scilex */

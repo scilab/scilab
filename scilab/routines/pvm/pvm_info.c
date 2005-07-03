@@ -9,7 +9,7 @@
      PVM task information
    HISTORY
      fleury - Nov 18, 1997: Created.
-     $Id: pvm_info.c,v 1.6 2005/07/01 07:08:13 cornet Exp $
+     $Id: pvm_info.c,v 1.7 2005/07/03 18:16:15 cornet Exp $
 ***/
 
 #include <stdio.h>
@@ -24,7 +24,11 @@
 #include "../stack-c.h" 
 #include "sci_pvm.h"
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 /*---------------------------------------------------
  * get configuration informations 
  *---------------------------------------------------*/

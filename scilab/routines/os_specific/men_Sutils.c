@@ -9,7 +9,11 @@
 #include <malloc.h>
 #endif
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 /* Subroutine */ 
 extern int C2F(cvstr) __PARAMS((integer *n, integer *line, char *str, integer *job,long int str_len));

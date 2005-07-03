@@ -3,8 +3,20 @@
 #ifndef __SCI_MEM_ALLOC__
 #define __SCI_MEM_ALLOC__
 
-#ifdef WIN32
-	#include <Windows.h>
+#ifdef MALLOC
+#undef MALLOC
+#endif
+
+#ifdef FREE
+#undef FREE
+#endif
+
+#ifdef CALLOC
+#undef CALLOC
+#endif
+
+#ifdef REALLOC
+#undef REALLOC
 #endif
 
 #ifdef lint5
@@ -14,23 +26,10 @@
 	#define REALLOC(x,y) realloc((void *) x,(size_t) y)
 	#define CALLOC(x,y) calloc(x,(size_t) y)
 #else
-#if WIN32
-	//#define MALLOC(x) VirtualAlloc(NULL,((unsigned) x),MEM_COMMIT,PAGE_READWRITE)
-	//#define FREE(x) if (x  != NULL) VirtualFree((char *) x, 0, MEM_RELEASE);
-	//#define CALLOC(x,y) VirtualAlloc(NULL,(unsigned) (x*sizeof(y)),MEM_COMMIT,PAGE_READWRITE)
-	//#define REALLOC(x,y) VirtualAlloc((char *)x,(unsigned) y,MEM_COMMIT,PAGE_READWRITE)
-
 	#define MALLOC(x) malloc(((unsigned) x))
 	#define FREE(x) if (x  != NULL) free((char *) x);
 	#define REALLOC(x,y) realloc((char *) x,(unsigned) y)
 	#define CALLOC(x,y) calloc( x,(unsigned) y)
-#else
-	#define MALLOC(x) malloc(((unsigned) x))
-	#define FREE(x) if (x  != NULL) free((char *) x);
-	#define REALLOC(x,y) realloc((char *) x,(unsigned) y)
-	#define CALLOC(x,y) calloc( x,(unsigned) y)
-#endif
-	
 #endif
 
 #endif /* __SCI_MEM_ALLOC__ */

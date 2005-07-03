@@ -37,7 +37,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "win_mem_alloc.h" /* MALLOC */
 
 BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;

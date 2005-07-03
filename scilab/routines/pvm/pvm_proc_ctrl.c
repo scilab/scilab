@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.18  2005/07/03 18:16:15  cornet
+     optimisation des MALLOC pour Windows ( A tester avec attention ) --> VirtualAlloc
+
      Revision 1.17  2005/07/01 07:08:13  cornet
      replace malloc, free, calloc & realloc by MALLOC,FREE,CALLOC & REALLOC defined in SCI/routines/sci_mem_alloc.h
 
@@ -113,7 +116,11 @@
 
 ***/
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #if defined(__EDG__)
 #include <time.h>

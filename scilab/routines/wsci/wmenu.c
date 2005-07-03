@@ -29,7 +29,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "win_mem_alloc.h" /* MALLOC */
 
 #ifndef STRICT
 #define STRICT

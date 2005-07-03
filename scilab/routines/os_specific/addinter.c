@@ -13,8 +13,12 @@
 #include "Os_specific.h"
 
 #include "../stack-def.h"
+#ifdef WIN32
+ #include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
+ #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
-#include "../sci_mem_alloc.h" /* MALLOC */
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
 extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job));  

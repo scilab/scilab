@@ -4,7 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #define BITN(x,n) ( (x>>n) & 0x1 ) 
 #define Max(x,y)	(((x)>(y))?(x):(y))

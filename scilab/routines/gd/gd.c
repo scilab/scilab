@@ -3,7 +3,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "gd.h"
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 #include "mtables.c"
 
 #define Min(x,y)	(((x)<(y))?(x):(y))

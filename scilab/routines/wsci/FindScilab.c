@@ -7,7 +7,7 @@
 #include "wcommon.h"
 #include "resource.h"
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "win_mem_alloc.h" /* MALLOC */
 
 /* Allan CORNET INRIA 2004 */
 /*-----------------------------------------------------------------------------------*/

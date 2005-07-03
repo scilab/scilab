@@ -2,7 +2,11 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 #include "calendar.h"
 /*-----------------------------------------------------------------------------------*/
 int IsAScalar(int RhsNumber);

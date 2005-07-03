@@ -4,7 +4,12 @@
  * using functions from a sound library 
  * Copyright ENPC/ Chancelier 
  *********************************************/
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 #include <stdio.h>
 #ifdef __STDC__

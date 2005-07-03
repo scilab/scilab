@@ -3,7 +3,12 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "inttoolbar.h"
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
   extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */

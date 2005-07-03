@@ -5,6 +5,7 @@
 /* V.C. - 2004                                    */
 /**************************************************/
 #include "../sci_mem_alloc.h" /* MALLOC */
+
 #include "intmacr2tree.h"
 
 /* Table to store variable names */
