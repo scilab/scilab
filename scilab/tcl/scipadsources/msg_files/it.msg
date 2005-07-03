@@ -15,10 +15,10 @@
 # buffernavigation.tcl
 ::msgcat::mcset it "Goto Line?" "Vai alla linea?"
 ::msgcat::mcset it "Go to:" "Vai a:"
-::msgcat::mcset it "logical line" "linea logica"
-::msgcat::mcset it "physical line" "linea fisica"
-::msgcat::mcset it "in function" "della funzione"
-::msgcat::mcset it "in current file" "del file corrente"
+::msgcat::mcset it "&logical line" "linea &logica"
+::msgcat::mcset it "&physical line" "linea fisica \\&\[p\\\]"
+::msgcat::mcset it "in &function" "della &funzione"
+::msgcat::mcset it "in &current file" "del file &corrente"
 ::msgcat::mcset it "Outside of function definition" \
                    "fuori dalla definizione della funzione"
 
