@@ -12,6 +12,10 @@
  extern void free();
  extern void exit_();
 #else
+#ifdef WIN32
+#undef max
+#undef min
+#endif
 #include "stdlib.h"
  extern char *F77_aloc(ftnlen, char*);
 #endif
