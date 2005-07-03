@@ -264,8 +264,6 @@ Wishes:
    . sciGUI is not localized
    . lists cannot be used yet with editvar
 
--switch to flexible Alt underlines in dialogs
-
 -Avoid to destroy and recreate the whole watch window when hiding/displaying
  one of its sub-areas. Would probably require -hide option for panedwindow,
  but this one is only available from Tk 8.5 (TIP #179)

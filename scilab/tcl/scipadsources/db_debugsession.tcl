@@ -252,6 +252,8 @@ proc scilaberror {funnameargs} {
 }
 
 proc blinkline {li ma {nb 3}} {
+# Blink $nb times line $li in macro function $ma
+# Warning: This proc is also used from outside of Scipad by edit_error
     for {set i 0} {$i < $nb} {incr i} {
         updateactivebreakpointtag $li $ma
         update idletasks

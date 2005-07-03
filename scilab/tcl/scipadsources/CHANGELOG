@@ -1234,3 +1234,8 @@ Francois VOGEL, 29/06/05
    when the cursor is not in a function
  * Modularity of whichfun further improved - creation of proc countcontlines
  * version --> 5.13
+
+Francois VOGEL, 03/07/05
+ * Alt bindings and underlines added in goto line dialog
+ * The Find/Replace dialog uses Alt bindings instead of Control bindings
+ * version --> 5.14

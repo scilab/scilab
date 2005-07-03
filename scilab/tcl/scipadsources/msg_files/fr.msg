@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.13
+# in sync at least with v5.14
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -14,10 +14,10 @@
 # buffernavigation.tcl
 ::msgcat::mcset fr "Goto Line?" "Aller à la ligne ?"
 ::msgcat::mcset fr "Go to:" "Aller à : "
-::msgcat::mcset fr "logical line" "la ligne logique"
-::msgcat::mcset fr "physical line" "la ligne physique"
-::msgcat::mcset fr "in function" "de la function"
-::msgcat::mcset fr "in current file" "du fichier courant"
+::msgcat::mcset fr "&logical line" "la ligne &logique"
+::msgcat::mcset fr "&physical line" "la ligne &physique"
+::msgcat::mcset fr "in &function" "de la &fonction"
+::msgcat::mcset fr "in &current file" "du fichier &courant"
 ::msgcat::mcset fr "Outside of function definition" "Hors de la définition de la fonction"
 
 
