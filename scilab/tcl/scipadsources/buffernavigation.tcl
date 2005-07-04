@@ -101,21 +101,21 @@ proc gotoline {} {
     pack $gotln.l1 -anchor w -pady 5
 
     frame $gotln.f1
-    eval "radiobutton $gotln.f1.cbox1 [bl "&logical line"]  \
+    eval "radiobutton $gotln.f1.rbut1 [bl "&logical line"]  \
         -variable physlogic -value \"logical\"  -font $menuFont \
         -command \"updateOKbuttonstategoto $gotln\" "
-    eval "radiobutton $gotln.cbox2 [bl "&physical line"] \
+    eval "radiobutton $gotln.rbut2 [bl "&physical line"] \
         -variable physlogic -value \"physical\" -font $menuFont \
         -command \"updateOKbuttonstategoto $gotln\" "
     entry $gotln.f1.en1 -textvariable linetogo -width 8 -font $textFont
-    pack $gotln.f1.cbox1 $gotln.f1.en1 -side left
-    pack $gotln.f1 $gotln.cbox2 -anchor w
+    pack $gotln.f1.rbut1 $gotln.f1.en1 -side left
+    pack $gotln.f1 $gotln.rbut2 -anchor w
 
     frame $gotln.f2
-    eval "radiobutton $gotln.f2.cbox3 [bl "in &function"]  \
+    eval "radiobutton $gotln.f2.rbut3 [bl "in &function"]  \
         -variable curfileorfun -value \"function\"     -font $menuFont \
         -command \"updateOKbuttonstategoto $gotln\" "
-    eval "radiobutton $gotln.cbox4 [bl "in &current file"] \
+    eval "radiobutton $gotln.rbut4 [bl "in &current file"] \
         -variable curfileorfun -value \"current_file\" -font $menuFont \
         -command \"updateOKbuttonstategoto $gotln\" "
     menubutton $gotln.f2.mb -text [lindex $funtogoto 0] -indicatoron 1 \
@@ -128,8 +128,8 @@ proc gotoline {} {
             -variable funtogoto -value [list $funname $ta $funstartline] \
             -command "updatemenubutlabelgoto $gotln"
     }
-    pack $gotln.f2.cbox3 $gotln.f2.mb -side left
-    pack $gotln.f2 $gotln.cbox4 -anchor w
+    pack $gotln.f2.rbut3 $gotln.f2.mb -side left
+    pack $gotln.f2 $gotln.rbut4 -anchor w
 
     button $gotln.ok -text [mc "OK"] -font $menuFont -width 8 \
         -command "dogotoline ; destroy $gotln"
@@ -144,14 +144,19 @@ proc gotoline {} {
                               dogotoline ; destroy [winfo toplevel %W] \
                           }}
     bind $gotln <Escape> {destroy [winfo toplevel %W]}
-    bind $gotln <Alt-l> {[winfo toplevel %W].f1.cbox1 invoke}
-    bind $gotln <Alt-p> {[winfo toplevel %W].cbox2 invoke}
-    bind $gotln <Alt-f> {[winfo toplevel %W].f2.cbox3 invoke}
-    bind $gotln <Alt-c> {[winfo toplevel %W].cbox4 invoke}
- 
+
+    bind $gotln <Alt-[fb $gotln.f1.rbut1]> \
+        {[winfo toplevel %W].f1.rbut1 invoke}
+    bind $gotln <Alt-[fb $gotln.rbut2]> \
+        {[winfo toplevel %W].rbut2 invoke}
+    bind $gotln <Alt-[fb $gotln.f2.rbut3]> \
+        {[winfo toplevel %W].f2.rbut3 invoke}
+    bind $gotln <Alt-[fb $gotln.rbut4]> \
+        {[winfo toplevel %W].rbut4 invoke}
+
     # Default choices
-    if {$physlogic    == ""} {$gotln.f1.cbox1 invoke}
-    if {$curfileorfun == ""} {$gotln.f2.cbox3 invoke}
+    if {$physlogic    == ""} {$gotln.f1.rbut1 invoke}
+    if {$curfileorfun == ""} {$gotln.f2.rbut3 invoke}
 
     # Validation of the entry to prevent the user to enter nasty things
     $gotln.f1.en1 configure -validate all -vcmd "updateOKbuttonstategoto $gotln %P"
@@ -163,7 +168,7 @@ proc updatemenubutlabelgoto {w} {
     global funtogoto
     $w.f2.mb configure -text [lindex $funtogoto 0]
     # if a function has been selected it is likely the goto will use it, hence invoke this choice
-    $w.f2.cbox3 invoke
+    $w.f2.rbut3 invoke
     updateOKbuttonstategoto $w
 }
 

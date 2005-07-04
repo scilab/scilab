@@ -1239,3 +1239,8 @@ Francois VOGEL, 03/07/05
  * Alt bindings and underlines added in goto line dialog
  * The Find/Replace dialog uses Alt bindings instead of Control bindings
  * version --> 5.14
+
+Francois VOGEL, 04/07/05
+ * Alt bindings in dialogs are now "flexible" ones, i.e. they can change
+   with the locale
+ * version --> 5.15

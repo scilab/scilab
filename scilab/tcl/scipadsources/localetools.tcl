@@ -13,7 +13,7 @@ proc me {mlabel} {
 # this provides the -label and -underline options to use in menu commands
 # It also takes care of the locale thanks to the msgcat package
     set tl [mc $mlabel]
-    set clu [amp $tl] 
+    set clu [amp $tl]
     return "-label \"[lindex $clu 1]\" -underline [lindex $clu 0]"
 }
 
@@ -22,8 +22,24 @@ proc bl {mlabel} {
 # this provides the -text and -underline options to use
 # It also takes care of the locale thanks to the msgcat package
     set tl [mc $mlabel]
-    set clu [amp $tl] 
+    set clu [amp $tl]
     return "-text \"[lindex $clu 1]\" -underline [lindex $clu 0]"
+}
+
+proc fb {w} {
+# Flexible binding ancillary
+# Given a widget containing a -text (or -label) and a -underline option,
+# this provides the lower case character to use in (alt) bindings in the
+# dialog that contains the widget
+# In any error case, the returned character is the ampersand, which is the
+# less bad one to return since there will hopefully be no binding to it
+    if { [catch {set blet [string index [$w cget -text] [$w cget -underline]]}] } {
+        if { [catch {set blet [string index [$w cget -label] [$w cget -underline]]}] } {
+            set blet "&"
+        }
+    }
+    if {$blet == ""} {set blet "&"}
+    return [string tolower $blet]
 }
 
 proc relocalize {} {

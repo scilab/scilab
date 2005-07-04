@@ -421,16 +421,16 @@ proc findtext {typ} {
     # each widget must be bound to the events of the other widgets
     proc bindevnt {widgetnm types find} {
         bind $widgetnm <Return> "FindIt $find"
-        bind $widgetnm <Alt-n> "FindIt $find"
+        bind $widgetnm <Alt-[fb $find.f2.button1]> "FindIt $find"
         bind $widgetnm <F3> "FindIt $find"
         if {$types=="replace"} {
-            bind $widgetnm <Alt-p> "ReplaceIt once"
-            bind $widgetnm <Alt-a> "ReplaceAll"
+            bind $widgetnm <Alt-[fb $find.f2.button3]> "ReplaceIt once"
+            bind $widgetnm <Alt-[fb $find.f2.button4]> "ReplaceAll"
         }
-        bind $widgetnm <Alt-c> { $find.l.f4.f5.cbox1 invoke }
-        bind $widgetnm <Alt-r> { $find.l.f4.f5.cbox2 invoke }
-        bind $widgetnm <Alt-u> { $find.l.f4.f3.up invoke }
-        bind $widgetnm <Alt-s> { $find.l.f4.f3.down invoke }
+        bind $widgetnm <Alt-[fb $find.l.f4.f5.cbox1]> { $find.l.f4.f5.cbox1 invoke }
+        bind $widgetnm <Alt-[fb $find.l.f4.f5.cbox2]> { $find.l.f4.f5.cbox2 invoke }
+        bind $widgetnm <Alt-[fb $find.l.f4.f3.up]> { $find.l.f4.f3.up invoke }
+        bind $widgetnm <Alt-[fb $find.l.f4.f3.down]> { $find.l.f4.f3.down invoke }
     }
     if {$typ == "replace"} {
         bindevnt $find.l.f2.entry2 $typ $find
@@ -446,7 +446,7 @@ proc findtext {typ} {
     bindevnt $find.l.f4.f5.cbox2 $typ $find
     bindevnt $find.l.f1.entry $typ $find	
     bind $find <Escape> "CancelFind $find"
-    bind $find <Alt-l> "CancelFind $find"
+    bind $find <Alt-[fb $find.f2.button2]> "CancelFind $find"
     bind $find <Visibility> {raise $find $pad};
     bind $pad <Expose> {catch {raise $find} }
     $find.l.f1.entry selection range 0 end

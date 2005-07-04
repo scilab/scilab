@@ -13,7 +13,7 @@ If you're considering to contribute to the localization of Scipad, here
 is some background information. What we need you to do is to create a 
 "message file" file XX.msg in the directory SCI/tcl/scipadsources/msg_files,
 containing the translation of the text strings used by Scipad, and to submit
-it to us. We'll take care of including it in the current Scilab developement 
+it to us. We'll take care of including it in the current Scilab development 
 tree, so that it becomes publicly available.
 
 In the file name, XX stands for the i18n code of the language you're
@@ -65,7 +65,7 @@ EDITING THE MESSAGE FILE
 
 First of all, choose one of the existing files 
 SCI/tcl/scipadsources/msg_files/*.msg as a template. Such files are found 
-in the CVS version of scilab and in recent unstable versions; we reccommend
+in the CVS version of scilab and in recent unstable versions; we recommend
 starting from the very latest file available on CVS; if you have difficulties
 in getting it (see 
 http://scilabsoft.inria.fr/download/index_download.php?page=CVS.html)
@@ -82,7 +82,7 @@ be looked up in the file eng.msg. You're essentially asked to type in the
 proper "TRANSLATED_STRING" for each case, replacing that of the original file.
 
 Please respect the existing order in the file, as this will be very
-convenient for mantaining it. For the moment, we are not equipped with
+convenient for maintaining it. For the moment, we are not equipped with
 tools for cross checking the consistency of the different localization 
 files, and everything has to be done at hand. Also, do not touch the
 existing english version of "A_STRING": the localization procedure uses 
@@ -91,7 +91,7 @@ inadequate, please report it to us, an eventual change needs to be propagated
 to the main code and to all of the message files. 
 
 In most of the cases, the translation is one to one, in the sense that
-each string will have its immediate transation. In a few more complex
+each string will have its immediate translation. In a few more complex
 cases (e.g. "The contents of" YYYYY "may have changed"), a sequence of
 strings is used to build up a longer message, where some arguments are
 substituted at run time. Such cases allow for some rearrangement, 
@@ -107,13 +107,12 @@ ENCODING ISSUES
 
 Localization files could require a particular encoding for displaying
 correctly latin accented characters, or non-latin ones. We have seen 
-that ISO-8859-15 and UTF-8 work fine, and we have used consistenltly 
+that ISO-8859-15 and UTF-8 work fine, and we have used consistently 
 ISO-8559-15 for French and Italian. As a rule of thumb, everything
 should be fine for Scipad if, opening it, it recognizes the encoding
 you used. Tcl seems to have some ability of doing it by itself. 
 We also have some tools for transcoding, if needed, though our
 systems might lack the proper fonts.
-
 
 
 THE SPECIAL & CHARACTER
@@ -126,11 +125,10 @@ Scipad, meaning that the corresponding entry will be accessible also
 by pressing an appropriate keyboard sequence. In menues, this is 
 a Alt-char-char-... sequence: for example, in the english locale,
 Alt-f-n corresponds to File/New, Alt-f-o to File/Open..., etc.
-In button labels, this is a Ctrl-char accelerator. For menues,
-the choice of the underlined characters is completely free, and
+In button labels, this is a Alt-char accelerator.
+The choice of the underlined characters is completely free, and
 the Alt-char sequence will work in the locale whichever underlined
-character has been chosen. This is unfortunately not yet true for
-button labels.
+character has been chosen.
 
 The & can appear in the translated string in a position different than
 in the original. In any event, you're asked to check that, in your 
@@ -145,28 +143,20 @@ names as well; please check that also them have unique underlined
 characters.
 
 For button labels in dialog boxes (e.g. the Find and Replace dialogs),
-the Ctrl-char equivalent to the button press is, as of now, fixed
-for every locale. This means that you'll have to strive to translate
-the label in a way that the required character appears, and to prepend
-this character with &. If you can't find any senseful translation
-which contains the required character, either just omit the &, or 
-include in the label a reminder like "[Ctrl-&x]". Labels tend to
-loose their readability if you add too much text; up to you to judge
-what is best. Note that for technical reasons the brackets in such a
-label have to be escaped by three backslashes, i.e. "\\\[Ctrl-&x\\\]".
+the Alt-char equivalent to the button press follows the exact same logic
+as for menues. All what is explained above for menues do apply as well
+for button labels, checkboxes, radiobuttons, etc.
 
 
 CHECKING THE TRANSLATION
 ------------------------
 
 After creating the *.msg file and dropping it in its place, you can 
-check the result by opening scilab and typing 
+check the result by opening scilab and changing the locale in the Options
+menu. The locale you just added should appear automatically in that menu. 
 
- global %scipad_language; %scipad_language="XX"; scipad
-
-where XX is the prefix of the language you have used. Unless you have 
-introduced Tcl syntax errors with your editing, Scipad should open in
-the new locale.
+Unless you have introduced Tcl syntax errors with your editing, Scipad
+should display menues and dialogs in this new locale.
 
 Should you have dropped a tcl syntax error (the most common are to
 forget a " or a \), scipad should warn you with an error message 
@@ -176,16 +166,16 @@ installed, it might be more explicative to run scipad.tcl in wish, e.g.
   unix("wish "+SCI+"/tcl/scipadsources/scipad.tcl")
 
 from within scilab. It would be of course more convenient to us if 
-you're able to solve this errors yourself, but we can provide some 
+you're able to solve these errors yourself, but we can provide some 
 assistance otherwise.
 
 Should you have omitted the translation of one string (or changed 
-inadvertently the original, or deleted a line by mistake, etc..),
+inadvertently the original, or deleted a line by mistake, etc.),
 you'll see its english fallback by default.
 
 Please check also that whenever space is limited (for instance in 
 dialogs), your translation is reasonably short and fits within the
-given space contstraints.
+given space constraints.
 
 
 UPDATES
