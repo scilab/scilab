@@ -974,6 +974,48 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\ole.c">
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Pentium_Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\olestream-unwrap.c">
