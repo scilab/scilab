@@ -38,8 +38,9 @@ set preffilename $env(SCIHOME)/.GedPreferences.tcl
 catch {source $preffilename}
 
 
-global  curvis red green blue color filToggle curlinestyle curmarkstyle curmarkmode
+global curvis red green blue color curfillmode curlinestyle curmarkstyle curmarkmode
 global curmarkmode curlinemode curmarksize curmarksizeunit curmarkforeground curmarkbackground
+global curback
 
 global SELOBJECT
 global ged_handle_list_size
@@ -199,6 +200,18 @@ OnOffForeground $w.frame.linemode $curlinemode
 pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
 pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 1m
 
+ #Fill mode
+ frame $w.frame.fillfillmode  -borderwidth 0
+ pack $w.frame.fillfillmode  -in $w.frame  -side top  -fill x
+
+ label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
+ checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
+     -variable curfillmode -onvalue "on" -offvalue "off" \
+     -command "toggleFillmode $w.frame.fillmode" -font {Arial 9}
+ OnOffForeground $w.frame.fillmode $curfillmode
+
+ pack $w.frame.fillmodelabel  -in $w.frame.fillfillmode  -side left 
+ pack $w.frame.fillmode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
 
 #Line Style
 frame $w.frame.rectst  -borderwidth 0
@@ -235,7 +248,7 @@ pack $w.frame.thickness  -in $w.frame.rectst  -side left -expand 1 -fill x -pady
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.colorlabel -height 0 -text "Foreground:" -width 0  -font {Arial 9} -anchor e -width $largeur
 #         -foreground $color
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0  -font {Arial 9}
@@ -244,20 +257,18 @@ pack $w.frame.colorlabel -in $w.frame.clrf -side left
 pack $w.frame.color -in  $w.frame.clrf -side left  -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.color set $curcolor
 
+#Background scale (line)
+frame $w.frame.backg  -borderwidth 0
+pack $w.frame.backg  -in $w.frame -side top  -fill x
 
-#filled
-frame $w.frame.fil  -borderwidth 0
-pack $w.frame.fil  -in $w.frame  -side top  -fill x
+label $w.frame.backlabel -height 0 -text "Background:" -font {Arial 9} -anchor e -width $largeur
+#         -foreground $back
+scale $w.frame.back -orient horizontal -from -2 -to $ncolors \
+	 -resolution 1.0 -command "setBack $w.frame.back" -tickinterval 0  -font {Arial 9}
 
-label $w.frame.filledlabel -height 0 -text "Filled:" -width 0  -font {Arial 9} -anchor e -width $largeur
-checkbutton $w.frame.filled  -text "on" -indicatoron 1 \
-    -variable filToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleFilled $w.frame.filled" -font {Arial 9}
-OnOffForeground $w.frame.filled $filToggle
-
-pack $w.frame.filledlabel  -in $w.frame.fil  -side left
-pack $w.frame.filled  -in $w.frame.fil   -side left -fill x -pady 0m -padx 1m
-
+pack $w.frame.backlabel -in $w.frame.backg -side left
+pack $w.frame.back  -in  $w.frame.backg -side left -expand 1 -fill x -pady 0m -padx 1m
+$w.frame.back set $curback
 
 #Mark mode
 frame $w.frame.rectmarkmode  -borderwidth 0
@@ -581,6 +592,48 @@ proc setColor {w index} {
     }
 }
 
+proc setBack {w index} {   
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+		
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
+
 proc setThickness {w thick} {
 ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
 }
@@ -592,10 +645,10 @@ proc toggleVisibility { frame } {
     OnOffForeground $frame $curvis
 }
 proc toggleFilled { frame } {
-    global filToggle
-    ScilabEval "global ged_handle;ged_handle.fill_mode='$filToggle'"
+    global curfillmode
+    ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
 
-     OnOffForeground $frame $filToggle
+     OnOffForeground $frame $curfillmode
 }
 
 proc SelectLineStyle {w args} {
