@@ -10,6 +10,9 @@
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
+     Revision 1.6  2005/07/04 06:15:28  cornet
+     correction compilation
+
      Revision 1.5  2005/07/03 18:16:10  cornet
      optimisation des MALLOC pour Windows ( A tester avec attention ) --> VirtualAlloc
 
@@ -65,10 +68,11 @@
 #include <string.h>
 
 #include "sci_tools.h"
+
 #ifdef WIN32
- #include "../sci_mem_alloc.h" /* MALLOC */
-#else
  #include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
+ #include "../sci_mem_alloc.h" /* MALLOC */
 #endif
 
 
