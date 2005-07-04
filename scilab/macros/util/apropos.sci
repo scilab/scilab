@@ -7,6 +7,7 @@ function apropos(key)
   global %browsehelp;
   [lhs,rhs]=argn(0);
   // list relevant man for key
+  key=convstr(key)
   provpath =apropos_gener(key);
   browsehelp(provpath,key);
 
@@ -28,8 +29,8 @@ function [provpath]=apropos_gener(key)
       whatis=mgetl(fd);mclose(fd)
       ind=grep(whatis,'</A>');
       whatis=whatis(ind);
-      f=grep(whatis,key);
       if whatis<>[] then
+	f=grep(convstr(whatis),key);
 	lwhatis=strsubst(whatis(f),"HREF=""", "HREF="""+%helps(k,1)+sep)
 	found=[found;lwhatis];
 	for k1=f
@@ -40,7 +41,6 @@ function [provpath]=apropos_gener(key)
       end
     end
   end
- 
   if found==[] then
     select LANGUAGE
      case "eng"

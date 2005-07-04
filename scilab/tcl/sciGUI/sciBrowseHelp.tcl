@@ -143,7 +143,7 @@ proc sciGUIBrowseHelpShowTree { winId } {
                         set toFind $sciGUITable(win,$winId,data,labFind)
                         set st "$sciGUITable(browsehelp,$item,Name) $sciGUITable(browsehelp,$item,Extra)"
                         if { $toFind!="" } {
-                                if { [regexp "$toFind" "$st"] } {
+                                if { [regexp -nocase "$toFind" "$st"] } {
                                         if { $isFolder==1 } { 
                                                 set curIcon "ClosedBook"
                                         } else {
