@@ -517,8 +517,8 @@ int OLE_print_sector( struct OLE_object *ole, unsigned char *sector, unsigned in
 int OLE_is_file_OLE( struct OLE_object *ole )
 {
 
-  if (memcmp(OLE_id_v1, ole->header_block, sizeof(OLE_id_v1))==0) return 1;
-  if (memcmp(OLE_id_v2, ole->header_block, sizeof(OLE_id_v2))==0) return 1;
+  if (memcmp((void*)OLE_id_v1, (void*)(ole->header_block), sizeof(OLE_id_v1))==0) return 1;
+  if (memcmp((void*)OLE_id_v2, (void*)(ole->header_block), sizeof(OLE_id_v2))==0) return 1;
 
   return 0;
 
