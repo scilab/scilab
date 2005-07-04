@@ -1,5 +1,5 @@
 # Scipad texts in German
-# in sync at least with v5.0
+# in sync at least with v5.14
 # provided by Dirk Reusch <reusch@tmb.uni-karlsruhe.de>
 
 # commons
@@ -14,7 +14,12 @@
 
 # buffernavigation.tcl
 ::msgcat::mcset de "Goto Line?" "Gehe zu Zeile?"
-::msgcat::mcset de "Goto Line: " "Gehe zu Zeile : "
+::msgcat::mcset de "Go to:" "Gehe zu : "
+::msgcat::mcset de "&logical line" "&Programmzeile"
+::msgcat::mcset de "&physical line" "&Textzeile"
+::msgcat::mcset de "in &function" "der &Funktion"
+::msgcat::mcset de "in &current file" "der aktuellen &Datei"
+::msgcat::mcset de "Outside of function definition" "Außerhalb der Funktionsdefinition"
 
 
 # colorize.tcl
@@ -81,9 +86,9 @@
 ::msgcat::mcset de "Hide watch variables" "Beobachtete Variablen verstecken"
 ::msgcat::mcset de "Show call stack" "Ausführungsstapel zeigen"
 ::msgcat::mcset de "Hide call stack" "Ausführungsstapel verstecken"
-#::msgcat::mcset de "Undefined elements are not legal in variable"
-#::msgcat::mcset de ".\nThis variable will not be updated in Scilab."
-#::msgcat::mcset de "Illegal undefined element found"
+::msgcat::mcset de "Undefined elements are not legal in variable" "Undefinierte Elemente sind als Variable nicht erlaubt"
+::msgcat::mcset de ".\nThis variable will not be updated in Scilab." ".\n Diese Variable wird in Scilab nicht aktualisiert."
+::msgcat::mcset de "Illegal undefined element found" "Nicht erlaubtes undefiniertes Element gefunden"
 
 
 # filecommands.tcl
@@ -160,6 +165,7 @@
     ::msgcat::mcset de "Column:" "Spalte:"
 ::msgcat::mcset de "Line" "Zeile"
     ::msgcat::mcset de "in" "in"
+::msgcat::mcset de "Logical line:" "Programmzeile:"    
 ::msgcat::mcset de " \[ReadOnly\]" " \[Schreibschutz\]"
 ::msgcat::mcset de " (modified)" " (geändert)"
 
@@ -258,7 +264,7 @@
         ::msgcat::mcset de "Full path if &ambiguous" "V&ollständiger Pfad (falls mehrdeutig)"
         ::msgcat::mcset de "&Unambiguous pruned path" "&Eindeutig abgekürzter Pfad"
     ::msgcat::mcset de "&Recent files" "Z&uletzt geöffnete Dateien"
-    ::msgcat::mcset de "&Locale" "&Lokale"
+    ::msgcat::mcset de "&Locale" "S&prachumgebung"
   # locale names (common)
         ::msgcat::mcset de "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset de "fr locale (fr)" "Français (fr)"
@@ -312,6 +318,13 @@
 ::msgcat::mcset de "Existing file" "Datei existiert"
 ::msgcat::mcset de "New skeleton" "Neues XML-Skelett für Hilfe-Datei"
 ::msgcat::mcset de "Scilab is working, wait for the prompt to compile the help file." "Scilab arbeitet! Bitte warten Sie auf die Eingabeaufforderung, um die Hilfe-Datei zu übersetzen"
+::msgcat::mcset de "ScilabEval command cannot be passed to Scilab!" "Ein \"ScilabEval\"-Befehl kann nicht an Scilab übergeben werden!"
+::msgcat::mcset de impossibleScilabEval_message \
+                   "WARNUNG : Ein Befehl konnte nicht an Scilab übertragen werden und wurde \
+                   deshalb ignoriert.\n\n Die wahrscheinlichste Ursache hierfür ist, daß Sie \
+                   keine Schreibrechte für das Scilab-Verzeichnis TMPDIR besitzen. \
+                   Unvorhersehbare Ergebnisse können die Folge sein. Bei dem Befehl handelte \
+                   es sich um:\n\n-->"
 
 
 # scipad.tcl
