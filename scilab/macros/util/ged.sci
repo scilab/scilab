@@ -476,6 +476,7 @@ function ged_rectangle(h)
   ax=h;while stripblanks(ax.type)<>"Axes" then ax=ax.parent,end
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curcolor",string(h.foreground))
+  TCL_SetVar("curback",string(h.background))
   TCL_SetVar("curthick",string(h.thickness))
   TCL_SetVar("curvis",h.visible)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
@@ -492,6 +493,7 @@ function ged_rectangle(h)
 
  
   TCL_SetVar("curlinemode",h.line_mode)
+  TCL_SetVar("curfillmode",h.fill_mode)
   // Rectangle data
    select ax.view
     case "2d" 
@@ -541,6 +543,7 @@ function ged_polyline(h)
     f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
     TCL_SetVar("ncolors",string(size(f.color_map,1)))
     TCL_SetVar("curcolor",string(h.foreground))
+    TCL_SetVar("curback",string(h.background))
     TCL_SetVar("curthick",string(h.thickness))
     TCL_SetVar("curvis",h.visible)
 
@@ -560,6 +563,7 @@ function ged_polyline(h)
     TCL_SetVar("curmarkbackground",string(h.mark_background))
 
     TCL_SetVar("curlinemode",h.line_mode)
+    TCL_SetVar("curfillmode",h.fill_mode)
     
     d="["+strcat(string(size(h.data)),'x')+" double array]"
     TCL_SetVar("curdata",d);
@@ -789,7 +793,9 @@ function ged_arc(h)
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curcolor",string(h.foreground))
+  TCL_SetVar("curback",string(h.background))
   TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curlinemode",h.line_mode)
   TCL_SetVar("curfillmode",h.fill_mode)
   TCL_SetVar("curthick",string(h.thickness))
 
