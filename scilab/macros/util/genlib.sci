@@ -2,10 +2,33 @@ function genlib(nam,path,force,verbose,names)
 // get all .sci files in the specified directory
 // Copyright Inria/Enpc 
   
-  [lhs,rhs]=argn(0); 
   if exists('force','local')==0 then force = %f,end
   if exists('verbose','local')==0 then verbose = %f,end
   
+  //
+  W=who('get');
+  np=predef();
+  predefined=or(W($-np+1:$)==nam);
+
+  
+  updatelib=%f //true if updating an already defined library
+ 
+
+  //check if a library with the same name exists
+  oldlib=[];old_path=[];old_names=[];
+  if exists(nam)==1 then 
+    execstr('oldlib='+nam)
+    if typeof(oldlib)=='library' then
+      //yes, get its path and function list
+      old_names=string(oldlib);clear oldlib
+      old_path=old_names(1);old_names(1)=[];
+    end
+  end
+  if exists('path','local')==0&old_path<>[] then
+    path=old_path
+    updatelib=%t
+  end
+    
   // convert path according to MSDOS flag 
   // without env variable substitution
   path1 = pathconvert(path,%t,%f); 
@@ -24,6 +47,12 @@ function genlib(nam,path,force,verbose,names)
     files = path+names
     names=strsubst(names,'.sci','')
   end
+  
+  names_changed=%t
+  if updatelib then
+    if and(sort(names)==sort(old_names)) then names_changed=%f,end
+  end
+
   modified=%f
 
   if force == %t then 
@@ -62,24 +91,28 @@ function genlib(nam,path,force,verbose,names)
   end
   
   if modified then 
-    if verbose then 
-      write(%io(2),'Regenerate names and lib');
+    if verbose then write(%io(2),'Regenerate names and lib');end
+    if names_changed
+      mputl(names,path+'names') // write 'names' file in directory 
     end
-    // write 'names' file in directory given by path
-    u=file('open',path+'names','unknown');
-    write(u,names,'(a)');file('close',u)
     // create library
     execstr(nam+'=lib('''+path1+''')')
-    [u,ierr]=mopen(path+'lib','wb')
-    // save library in directory given by path
-    if ierr<>0 then 
-      error(path+'lib file cannot be opened for writing')
+    //save it
+    if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
+      error(path+'lib file cannot be created')
     end
-    execstr('save(u,'+nam+')');mclose(u)
   else
      execstr(nam+'=lib('''+path1+''')')
   end
-  execstr(nam+'=resume('+nam+')')
+  if names_changed
+    if ~predefined then
+      execstr(nam+'=resume('+nam+')')
+    else
+      write(%io(2),[ '   Library file '+path1+'lib'+ ' has been updated, '
+		     '   but cannot be loaded into Scilab,'
+		     '   because '+nam+' is a protected variable.']);
+    end
+  end
 endfunction
 
 
