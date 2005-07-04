@@ -5,9 +5,11 @@ function conflicts=ge_check_names(g)
   [names,k1]=gsort(names,'g','i');
   
   conflicts=list(re);
-  k3=find(names(2:$)==names(1:$-1));
-  if k3<>[] then
-    k3=unique([k3 k3+1])
-    conflicts(2)=k1(k3)
+  if size(names,'*') >1 then
+    k3=find(names(2:$)==names(1:$-1));
+    if k3<>[] then
+      k3=unique([k3 k3+1])
+      conflicts(2)=k1(k3)
+    end
   end
 endfunction
