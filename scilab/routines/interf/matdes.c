@@ -4897,10 +4897,12 @@ int scirects(char *fname,unsigned long fname_len)
 		 &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
       }
       else  
-	if (*istk(l2+i) < 0)
+	if (*istk(l2+i) < 0){
 	  /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
+	  int tmp = - (*istk(l2+i));
 	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-		   istk(l2+i),NULL,FALSE,TRUE,0,&hdl,FALSE);
+		   &tmp,NULL,FALSE,TRUE,0,&hdl,FALSE);
+	}
 	else         
 	  /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
 	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
