@@ -7,31 +7,40 @@
   <DATE>January 2002</DATE>
   <SHORT_DESCRIPTION name="help"> on-line help command</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>help word</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>help(key)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>help</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>key</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string. Gives the help page to be found</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
   <DESCRIPTION>
-    <P>
-    To each documented word corresponds an HTML file usually names
-    <VERB>word.html</VERB> file. This HTML file comes from the translation of a
-    corresponding XML file. These files 
-    are organised within directories (chapters). Each chapter must contain
-    <VERB>*.html</VERB> files and a <VERB>whatis.html</VERB> file with one line for each documented word
-    in the chapter. Each line must have the following format :</P>
-    <VERBATIM>
-<![CDATA[
-<BR><A HREF="word.html">word</A> - quick description
-   ]]>
-    </VERBATIM>
-    <P>
-    The list of chapter directories is given in a scilab variable
-    <VERB>%helps</VERB>. <VERB>%helps</VERB> is a two column matrix of strings. Each line
-    is formed as follow :</P>
-    <VERBATIM>
-<![CDATA[
-chapter_path    chapter_title
-   ]]>
-    </VERBATIM>
-    <P><VERB>%helps</VERB> default value is set by <VERB>scilab.star</VERB> file.</P>
+    <P><VERB>help</VERB> without argument displays the hypertext  page
+      containing the list of help chapters.</P>
+
+    <P><VERB>help(key)</VERB> displays the Scilab help file associated with the
+      given  <VERB>key</VERB>. If no help file is found, <VERB>help(key)</VERB>
+      automatically call <VERB>apropos(key)</VERB>.</P>
+
+    <P> Scilab includes its own simple browser written in TCL/TK. It is possible to choose an other one.
+    The global variable <VERB>%browsehelp</VERB> contains a string defining which browser 
+      must be used: its value may be changed (or redefined in your .scilab file). Note that when you 
+      enter an <VERB>help</VERB> command while <VERB>%browsehelp</VERB> contains the empty matrix
+      <VERB>[]</VERB> then the different browser choice possibilities are
+      displayed (so that you can enter the 2 instructions:
+      <VERB>global  %browsehelp; %browsehelp=[]</VERB> for changing of browser !). 
+      As generally different browsers have differents calling sequences, if
+      your favorite one is not in the list you may  have to adapt the <VERB>browsehelp</VERB> scilab 
+      which can be found in <VERB>SCI/macros/util/browsehelp.sci</VERB>.</P> 
+
+    <P> See  <LINK>man</LINK> for more explanation on how to write new help
+      pages .</P> 
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

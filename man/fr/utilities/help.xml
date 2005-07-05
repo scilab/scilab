@@ -7,37 +7,46 @@
   <DATE>April 1993  </DATE>
   <SHORT_DESCRIPTION name="help"> commande d&apos;aide en ligne  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>help &lt;mot-clé&gt;  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>help(key)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>key</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Une chaŽîne de caractŽères. Donne le nom de la page d'aide Žà visualiser.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
   <DESCRIPTION>
-  <P>
-    A chaque mot-clé documenté correspond un fichier HTML généralement
-    appelé <VERB>mot-clé.html</VERB>. Ce fichier HTML vient de la traduction d&apos;un
-    fichier XML correspondant. Ces fichiers sont organisés dans des
-    répertoires (ou chapitres). Chaque répertoire contient des fichiers
-    <VERB>*.html</VERB> et un fichier <VERB>whatis.html</VERB> contenant une ligne pour chaque
-    mot-clé documenté dans le chapitre correspondant. Chaque ligne doit
-    avoir le format : 
-  </P>
-  <VERBATIM><![CDATA[
-<BR><A HREF="mot-clé.html">mot-clé</A> - description rapide
-   ]]></VERBATIM>
-  <P>
-  </P>
-  <P>
-    La liste des chapitres de l&apos;aide est contenue dans la variable Scilab
-    <VERB>%helps</VERB>. <VERB>%helps</VERB> est une matrice de chaînes de caractères à
-    deux colonnes. Chaque ligne est formée comme ceci 
-  </P>
-  <VERBATIM><![CDATA[
-répertoire_du_chapitre    titre_du_chapitre
-   ]]></VERBATIM>
-  <P>
-    La valeur par défaut de <VERB>%helps</VERB> est initialisée dans le fichier
-    <VERB>SCI+&quot;scilab.star&quot;</VERB>.
-  </P>
+    <P><VERB>help</VERB> sans argument, visualise la page hypertexte contenat la
+      liste des chapitres d'aide.</P>
+
+    <P><VERB>help(key)</VERB> visualise la page d'aide associŽé avec le nom
+      donnŽé par <VERB>key</VERB>. S'il n'y a pas de page d'aide, <VERB>help(key)</VERB>
+      appele automatiquement <VERB>apropos(key)</VERB>.</P>
+
+    <P> Scilab comprend son propre browser html Žécrit en  TCL/TK. Il est
+      possible de choisir un autre browser. La variable globale
+      <VERB>%browsehelp</VERB> contient une chaŽîne de caractŽères dŽéfinissant
+      quel browser doit Žêtre utilisŽé. Sa valeur initiale est fixŽée par le
+      fichier startup <VERB>scilab.star</VERB> est peut Žêtre changŽée. </P>
+
+
+      <P>Si cette variable est affectŽée Žà la matrice vide ( <VERB>global
+	%browsehelp; %browsehelp=[]</VERB>) alors une fenŽêtre de dialogue
+      apparait au lancement du help et permet de  choisir le browser
+      dŽésirŽé. Attention, les differents browsers on des synatxes d'appel
+      diffŽérentes. Aussi si vous souhaitez ajouter un nouveau browser Žà la
+      liste vous devrez modifier la fonction Scilab <VERB>browsehelp</VERB>
+      dont le code source est dans  <VERB>SCI/macros/util/browsehelp.sci</VERB>.</P>
+
+
+    <P> Voir  <LINK>man</LINK> pour apprendre Žà Žécrire de nouvelles pages d'aide.</P> 
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>man</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>   
+     <SEE_ALSO_ITEM> <LINK>man</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

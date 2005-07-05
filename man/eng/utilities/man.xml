@@ -207,28 +207,19 @@
    ]]>
         </VERBATIM>
   </SECTION>
-
-  <SECTION label="Browser choice">
-    <P>
-   Scilab includes its own simple browser written in TCL/TK. On
-   unix/Linux systems it is possible to choose an other one.</P>
-    <P> The global variable <VERB>%browsehelp</VERB> contains a string defining which browser 
-      must be used: its value may be changed (or redefined in your .scilab file). Note that when you 
-      enter an <VERB>help</VERB> command while <VERB>%browsehelp</VERB> contains the empty matrix
-      <VERB>[]</VERB> then the different 
-      browser choice possibilities are displayed (so that you can enter the 2 instructions
-      <VERB>global  %browsehelp; %browsehelp=[]</VERB> for changing of browser !). 
-      As generally different browsers 
-      have differents calling sequences, if your favorite one is not in the list you have to 
-      change somethings in the <VERB>&lt;SCIDIR&gt;/macros/util/browsehelp.sci</VERB> scilab function.</P>
+  <SECTION label="How to create an help chapter">
+    <P> Create a directory and write down a set of xml files build as described
+    above. Then start Scilab and execute <VERB>xmltohtml(dir)</VERB>, where
+      <VERB>dir</VERB> is a character string giving the path of the directory
+      (see <LINK>xmltohtml</LINK> for more details) .</P>
   </SECTION>
 
-  <SECTION label="How to to transform your xml pages in html">
-    <P> See <VERB>&lt;SCIDIR&gt;/examples/man-examples-xml/</VERB> directory where a complete
-      example is given. The method used required some tools (see the README file) but must work
-      on both Unix and Windows.</P>
+
+  <SECTION label="How to make Scilab know a new help chapter">
+    <P>This can be done by the function <LINK>add_help_chapter</LINK>.</P>
   </SECTION>
 
+  
   <EXAMPLE><![CDATA[
     function y=foo(a,b,c),y=a+2*b+c,endfunction
     path=help_skeleton('foo',TMPDIR)
