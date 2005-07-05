@@ -4821,18 +4821,18 @@ int C2F(store_points)(n, vx, vy, onemore)
   if (ReallocVector(n1) == 1)
     {
       for (i = 0; i < n; i++){
-#ifdef DEBUG
-	if ( Abs(vx[i]) > int16max )
-	  {
-	    wsprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
-		    (int) vx[i]);
-	  }
-	if ( Abs(vy[i]) > int16max )
-	  {
-	    wsprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
-		    (int) vy[i]);
-	  }
-#endif
+//#ifdef DEBUG
+//	if ( Abs(vx[i]) > int16max )
+//	  {
+//	    wsprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
+//		    (int) vx[i]);
+//	  }
+//	if ( Abs(vy[i]) > int16max )
+//	  {
+//	    wsprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
+//		    (int) vy[i]);
+//	  }
+//#endif
 	points[i].x =(short) vx[i];
 	points[i].y =(short) vy[i];
       }

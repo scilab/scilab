@@ -20,11 +20,9 @@
 
 #include <ctype.h>  /* isdigit */
 #include "../graphics/Math.h"
-#ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
-#else
 #include "../sci_mem_alloc.h" /* MALLOC */
-#endif
+/* http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vccore98/html/_crt_malloc.asp */
+/* Why I don't optimize this file :s */
 
 #include "../stack-c.h"
 #include "../os_specific/Os_specific.h"
