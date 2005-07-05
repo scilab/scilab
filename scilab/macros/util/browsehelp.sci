@@ -26,6 +26,7 @@ endfunction
 function  browsehelp_configure(job)
   global %browsehelp
   if argn(2)<1 then job='check',end
+  oldbrowsehelp=[];
   if ~MSDOS then
     if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
     browse_modes=['nautilus';

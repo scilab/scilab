@@ -10,7 +10,7 @@ function help(key)
  
   key=stripblanks(key)
   if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
-		      '\','.','<','>','&','^','|','~']) then
+		      '\','.','<','>','&','^','|','~','+','-']) then
     key="symbols";
   end
   path=gethelpfile(key)

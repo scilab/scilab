@@ -7,9 +7,13 @@ function apropos(key)
   global %browsehelp;
   [lhs,rhs]=argn(0);
   // list relevant man for key
-  key=convstr(key)
-  provpath =apropos_gener(key);
-  browsehelp(provpath,key);
+  if %browsehelp=="Scilab Browser" then
+    browsehelp(" ",key);
+  else
+    key=convstr(key)
+    provpath =apropos_gener(key);
+    browsehelp(provpath,key);
+  end
 
 endfunction 
 
