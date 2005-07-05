@@ -9,11 +9,9 @@ function sciGUIhelp(key)
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
-  
   update='0';
   
   sciGUI_init();
-
   nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
   if (size(%helps,1)~=nch) then	
     rescan_helps()
@@ -22,15 +20,15 @@ function sciGUIhelp(key)
   end
   tmpDir=strsubst(TMPDIR,'\','/');
   if (argn(2)==0|key=='index') then
-    TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
+    TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt"" """"');
   elseif (argn(2)==1) then
     key=stripblanks(key)
-    if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
-			'\','.','<','>','&','^','|','~']) then
+    if or(key==['(',')','[',']','{','}','%','''','""',':','*','/', ...
+			'\','.','<','>','&','^','|','~','+','-']) then
       key="symbols";
     end
     nn=string(key);
-    TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt"" '+nn);
+    TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt"" '""+nn+'""');
   else
     error(42);
   end
