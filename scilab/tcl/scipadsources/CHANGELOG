@@ -1244,3 +1244,8 @@ Francois VOGEL, 04/07/05
  * Alt bindings in dialogs are now "flexible" ones, i.e. they can change
    with the locale
  * version --> 5.15
+
+Francois VOGEL, 05/07/05
+ * Proc amp improved to provide the right index of the character to underline
+   when the string contains one or more escape characters (\)
+ * version --> 5.16

@@ -4,8 +4,12 @@ proc amp {s} {
 # n is the char index just after the ampersand
 # clean_str is the string without the ampersand
 # Reference: http://wiki.tcl.tk/3665
+# Improved to provide the right index of the character to underline
+# when the string contains one or more escape characters (\)
+    set s_noescape [string map { "\\" "" } $s]
+    set i_noescape [string first & $s_noescape]
     set i [string first & $s]
-    return [list $i [string replace $s $i $i]]
+    return [list $i_noescape [string replace $s $i $i]]
 }
 
 proc me {mlabel} {
