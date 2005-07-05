@@ -97,7 +97,7 @@
         	--
         Clear &History
 			[CLEARHISTORY]	
-        Clear Command Window	F2
+        Clear Command &Window	F2
 			[CLEARCOMMANDWINDOW]	
 		&Console	F12
 			[CONSOLE]	
@@ -159,16 +159,16 @@
 [Menu]
  &?
  	
-       		Scilab He&lp	F1
+       		&Scilab Help	F1
 			[HELP]
 			&Configure
        		[CONFIGBROWSER]
 		--
-		Scilab De&mos
+		Scilab &Demos
 			[DEMOS]
 		--
 		[Menu]
-			Web Links
+			&Web Links
 				Scilab &Web Site
 					[WEB]
 				--	

@@ -2776,7 +2776,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 { 
   struct BCG *NewXgc ;
   integer ne=7, menutyp=2, ierr;
-  char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
+  char *EditMenus[]={"&Select","&Redraw","&Erase","&Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
   static integer EntryCounter = 0;
   integer WinNum;
   *v3 = 0;
@@ -2812,7 +2812,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
-  AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+  AddMenu(&WinNum,"&Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
   gdk_flush();
 }
 

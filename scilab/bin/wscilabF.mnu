@@ -18,12 +18,12 @@
  	&Sauvegarder ...
  		[SAVE]
  	--
- 	&Changer de répertoire ...
+ 	C&hanger de répertoire ...
  		[CHDIR]
- 	&Répertoire Courant
+ 	&Répertoire courant
 		[GETCWD]
 	--	
-	Im&primer ...
+	&Imprimer ...
 		[PRINT]	
 	--
  	&Quitter
@@ -34,26 +34,26 @@
 
 [Menu]
 	&Edition
-		Sélectio&nner tout
+		Sélectionner &tout
 			[SELECTALL]
 		--
 		&Copier	Ctrl+C
 			[MCOPY]
 		C&oller	Ctrl+V
 			[PASTE]
-		&Vider Presse-papier
+		&Vider presse-papier
 			[EMPTYCLIPBOARD]
 		--	
 		[Menu]
 		&Historique
-			Commande Précédente	Ctrl+P
+			Commande précédente	Ctrl+P
 				[M_CTRL_P]
-			Commande Suivante	Ctrl+N
+			Commande suivante	Ctrl+N
 				[M_CTRL_N]
 			--
-			Reculer d'un caractére	Ctrl+B
+			Reculer d'un caractère	Ctrl+B
 				[M_CTRL_B]
-			Avancé d'un caractére	Ctrl+F
+			Avancer d'un caractère	Ctrl+F
 				[M_CTRL_F]
 			--
 			Début de ligne	Ctrl+A
@@ -61,9 +61,9 @@
 			Fin de ligne	Ctrl+E
 				[M_CTRL_E]
 			--
-			Effacer précédent caractére	Ctrl+H
+			Effacer précédent caractère	Ctrl+H
 				[M_CTRL_H]
-			Effacer caractére courant	Ctrl+D
+			Effacer caractère courant	Ctrl+D
 				[M_CTRL_D]
 			Effacer dernier mot	Ctrl+W
 				[M_CTRL_W]
@@ -83,22 +83,22 @@
  &Préférences
  		[Menu]
  			&Langue
- 				&French
+ 				&Francais
  					[FRENCH]
- 				&Anglais
+ 				&English
  					[ENGLISH]
  		[EndMenu]
  			
  		&Barre d'outils	F3
 				[TOOLBAR]	
-		C&hanger la police ...
+		Changer la &police ...
 			[CHOOSETHEFONT]
 		--
-		Effacer &Historique
+		Effacer &historique
 			[CLEARHISTORY]
-		Effacer la fenêtre ligne de commande	F2
+		Effacer la &fenêtre ligne de commande	F2
 			[CLEARCOMMANDWINDOW]
-		Afficher &Console	F12
+		Afficher &console	F12
 			[CONSOLE]			 		
  
 [EndMenu]
@@ -159,11 +159,11 @@ E&diteur
        		&Configurer
        		[CONFIGBROWSER]
 		--
-		Dé&monstrations Scilab 
+		&Démonstrations Scilab 
 			[DEMOS]
 		--
 		[Menu]
-			Liens Web
+			Liens &Web
 				Site &Internet Scilab
 					[WEB]
 				--	

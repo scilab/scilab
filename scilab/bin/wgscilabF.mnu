@@ -18,7 +18,7 @@
 	&Exporter 
 		[SCIPS]
 	[Menu]
-		&Copier dans le Presse papier
+		Copier dans le &presse papier
 			&EnhMetafile
 				[COPYCLIP]
 			&Metafile + DIB

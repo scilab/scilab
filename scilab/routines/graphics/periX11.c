@@ -3420,8 +3420,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static integer EntryCounter = 0;
   integer WinNum;
   integer ne=7, menutyp=2, ierr;
-  char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties",
-		     "Start Entity Picker","Stop  Entity Picker"};
+  char *EditMenus[]={"&Select","&Redraw","&Erase","&Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
   GC XCreateGC(Display *, Drawable, long unsigned int, XGCValues *);
   static int screen;
   static XGCValues gcvalues;
@@ -3518,7 +3517,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   EntryCounter++;
 #ifdef WITH_TK
   if (!IsTKGraphicalMode()) {
-    AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+    AddMenu(&WinNum,"&Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
   }
 #endif
   XSync(dpy,0);

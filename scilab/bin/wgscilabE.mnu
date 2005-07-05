@@ -7,12 +7,12 @@
 &File
 	&New ...
 		[NEWFIG]
-	Save &Position
+	S&ave position
 		[UPDINI]	
 	--
 	&Load ...
 		[LOADSCG]xload[EOS]*.scg[EOS]
-	S&ave ...
+	&Save ...
 		[SAVESCG]xsave[EOS]*.scg[EOS]
 	
 	--	
@@ -28,9 +28,9 @@
 	--
 	[Menu]
 	&Print
-			&Postscript
+			&Postscript ...
 				[SCIPR]
-			&Windows
+			&Windows ...
 				[PRINT]
 	[EndMenu]
 	--
