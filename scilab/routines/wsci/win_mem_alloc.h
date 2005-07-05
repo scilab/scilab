@@ -23,5 +23,8 @@
 #ifdef REALLOC
 #undef REALLOC
 #endif
-#define REALLOC(x,y) VirtualAlloc((char *)x,(unsigned) y,MEM_COMMIT,PAGE_READWRITE)
+#define REALLOC(x,y) VirtualReAlloc((char *)x, y)
+
+LPVOID VirtualReAlloc(LPVOID lpAddress,SIZE_T dwSize);
+
 #endif /* __WIN_MEM_ALLOC__ */

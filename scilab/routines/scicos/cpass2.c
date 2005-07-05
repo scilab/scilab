@@ -2,7 +2,11 @@
 #include <stdio.h>
 #include <math.h>
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #include "../machine.h"
 #include "cc_pass2.h"

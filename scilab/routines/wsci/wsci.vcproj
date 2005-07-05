@@ -1944,6 +1944,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\win_mem_alloc.c">
+			</File>
+			<File
 				RelativePath=".\WinConsole.c">
 			</File>
 			<File
