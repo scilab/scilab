@@ -515,6 +515,14 @@ static void set_sci_env ()
 	    }
 	}
     }    
+    
+	#if (defined __GNUC__  )
+		putenv ("COMPILER=gcc");
+	#else
+		putenv ("COMPILER=cc or another");
+	#endif
+
+    
 }
 
 /*-------------------------------------------------------

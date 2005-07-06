@@ -136,6 +136,12 @@ void C2F(realmain)()
   static int ini=-1;
   char startup[256];
   char **argv, *display = NULL;
+  
+  #if (defined __GNUC__  )
+		putenv ("COMPILER=gcc");
+	#else
+		putenv ("COMPILER=cc or another");
+	#endif
 
   /* floating point exceptions */
   C2F(nofpex)(); 
