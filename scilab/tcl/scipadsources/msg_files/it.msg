@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.13
+# in sync at least with v5.16
 
 
 # commons
@@ -16,7 +16,7 @@
 ::msgcat::mcset it "Goto Line?" "Vai alla linea?"
 ::msgcat::mcset it "Go to:" "Vai a:"
 ::msgcat::mcset it "&logical line" "linea &logica"
-::msgcat::mcset it "&physical line" "linea fisica \\&\[p\\\]"
+::msgcat::mcset it "&physical line" "linea fi&sica"
 ::msgcat::mcset it "in &function" "della &funzione"
 ::msgcat::mcset it "in &current file" "del file &corrente"
 ::msgcat::mcset it "Outside of function definition" \
@@ -160,14 +160,14 @@
                    "Continuare la ricerca nel resto del testo?"
 ::msgcat::mcset it "You are searching for an empty string!" \
           "La stringa da cercare è vuota!"
-::msgcat::mcset it "Re&place" "Rim&piazza"
+::msgcat::mcset it "Re&place" "&Sostituisci"
 ::msgcat::mcset it "Find what:" "Cerca:"
 ::msgcat::mcset it "Replace with:" "Cambia in:"
 ::msgcat::mcset it "Find &Next" "Trova il segue&nte"
-::msgcat::mcset it "Replace &All" "Rimpi&azza tutti"
-::msgcat::mcset it "&Upwards" "Verso l'alto"
-::msgcat::mcset it "Downward&s" "Verso il ba&sso" 
-::msgcat::mcset it "Match &case" "Rispetta maius&cole"
+::msgcat::mcset it "Replace &All" "Rimpiazza &tutti"
+::msgcat::mcset it "&Upwards" "Verso l'&alto"
+::msgcat::mcset it "Downward&s" "Verso il &basso" 
+::msgcat::mcset it "Match &case" "Rispetta &maiuscole"
 ::msgcat::mcset it "&Regular expression" "Espressione &regolare (regexp)"
 
 
