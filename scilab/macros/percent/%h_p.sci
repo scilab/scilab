@@ -12,8 +12,9 @@ function %h_p(h)
     t='Handle of type ""'+h.type+'"" with properties:'
     t=[t;part('=',ones(1,length(t)))]
     select h.type
-      case "Polyline"
+    case "Polyline"
       d=sci2exp(h.data,0)
+      u=h.user_data;
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
@@ -34,9 +35,12 @@ function %h_p(h)
 	 "mark_foreground = "+string(h.mark_foreground)
 	 "mark_background = "+string(h.mark_background)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box)]
-      case "Patch"
+	 "clip_box = "+sci2exp(h.clip_box)
+	 "user_data = "+fmtuser_data(u)]
+      
+    case "Patch"
       d=sci2exp(h.data,0)
+      u=h.user_data
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
@@ -45,13 +49,16 @@ function %h_p(h)
 	 "data = "+d
 	 "foreground = "+string(h.foreground)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box)]
-      case "Agregation"
+	 "clip_box = "+sci2exp(h.clip_box)
+	 "user_data = "+fmtuser_data(u)]
+    case "Agregation"
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "visible = "+sci2exp(h.visible)]
-      case "Axes"
+	 "visible = "+sci2exp(h.visible)
+	 "user_data = "+fmtuser_data(u)]
+    case "Axes"
 
       T=h.x_ticks
       locx=sci2exp(T.locations,0)
@@ -70,7 +77,7 @@ function %h_p(h)
       if length(locz)>70 then locz="matrix "+strcat(string(size(T.locations)),'x'), end
       labz=sci2exp(T.labels,0)
       if length(labz)>70 then labz="matrix "+strcat(string(size(T.labels)),'x'), end
-   
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -126,9 +133,10 @@ function %h_p(h)
 	 "background = "+string(h.background)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)
 	]
 
-      case "Legend"
+    case "Legend"
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -141,7 +149,8 @@ function %h_p(h)
 	 "text = "+sci2exp(h.text)
 	 "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)]
-      case "Rectangle"
+    case "Rectangle"
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -161,8 +170,10 @@ function %h_p(h)
 	 "data = "+sci2exp(h.data,0)
 	 "visible = "+sci2exp(h.visible)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)]
-      case "Arc"
+	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)]
+    case "Arc"
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -175,9 +186,11 @@ function %h_p(h)
 	 "data = "+sci2exp(h.data,0)
 	 "visible = "+sci2exp(h.visible)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)]
-      case "Figure"
+	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)]
+    case "Figure"
       c=sci2exp(h.children.type,0)
+      u=h.user_data
       if length(c)>70 then c="matrix "+strcat(string(size(h.children)),'x'),end
       t=[t;
 	 "children: "+fmtchildren(h.children)
@@ -196,8 +209,9 @@ function %h_p(h)
 	 " "
 	 "visible = "+sci2exp(h.visible)
 	 "rotation_style = "+sci2exp(h.rotation_style)
-	 ]
-     case "Grayplot"
+	 "user_data = "+fmtuser_data(u)
+	]
+    case "Grayplot"
       Data = h.data
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
@@ -207,7 +221,7 @@ function %h_p(h)
 
       dz=sci2exp(Data.z,0)
       if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
-      
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -216,16 +230,20 @@ function %h_p(h)
 	 "data.y = "+dy
 	 "data.z = "+dz
 	 "data_mapping = "+sci2exp(h.data_mapping)
+	 "user_data = "+fmtuser_data(u)
 	]
-      case "Matplot"
+    case "Matplot"
       d=sci2exp(h.data,0)
+      u=h.user_data
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible)
-	 "data = "+d]
-      case "Fec"
+	 "data = "+d
+	 "user_data = "+fmtuser_data(u)]
+    case "Fec"
+      u=h.user_data
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
       f=sci2exp(h.triangles,0)
@@ -237,13 +255,15 @@ function %h_p(h)
 	 "data = "+d
 	 "triangles = "+f
 	 "z_bounds = "+sci2exp(h.z_bounds,0)
+	 "user_data = "+fmtuser_data(u)
 	]
       
-      case "Segs"
+    case "Segs"
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       c=sci2exp(h.segs_color,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.segs_color)),'x'),end
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -261,8 +281,9 @@ function %h_p(h)
 	 "mark_foreground = "+string(h.mark_foreground)
 	 "mark_background = "+string(h.mark_background)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)]
-      case "Champ"
+	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)]
+    case "Champ"
       Data = h.data
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
@@ -273,9 +294,9 @@ function %h_p(h)
       dfx=sci2exp(Data.fx,0)
       if length(dfx)>70 then dfx="matrix "+strcat(string(size(Data.fx)),'x'), end
 
-       dfy=sci2exp(Data.fy,0)
+      dfy=sci2exp(Data.fy,0)
       if length(dfy)>70 then dfy="matrix "+strcat(string(size(Data.fy)),'x'), end
- 
+      u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -289,8 +310,10 @@ function %h_p(h)
 	 "colored = "+sci2exp(h.colored)
 	 "arrow_size = "+string(h.arrow_size)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)]
-      case "Text"
+	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)]
+    case "Text"
+      u=h.user_data
       T=sci2exp(h.text,0)
       if length(T)>70 then T="string array "+strcat(string(size(h.text)),'x'),end
       t=[t;
@@ -309,8 +332,9 @@ function %h_p(h)
 	 "font_size = "+string(h.font_size)
 	 "font_angle = "+string(h.font_angle)
 	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box,0)]
-      case "Title"
+	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)]
+    case "Title"
       T=sci2exp(h.text,0)
       if length(T)>70 then T="string array "+strcat(string(size(h.text)),'x'),end
       t=[t;
@@ -322,7 +346,7 @@ function %h_p(h)
 	 "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)
 	 "font_angle = "+string(h.font_angle)]
-      case "Label"
+    case "Label"
       T=sci2exp(h.text,0)
       if length(T)>70 then T="string array "+strcat(string(size(h.text)),'x'),end
       t=[t;
@@ -332,8 +356,9 @@ function %h_p(h)
 	 "foreground = "+string(h.foreground)
 	 "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)]
-      case "Plot3d"
+    case "Plot3d"
       Data = h.data
+      u=h.user_data
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
 
@@ -344,55 +369,58 @@ function %h_p(h)
       if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
 
       if size(Data) == 5 then // There is a color
-	 dcolor=sci2exp(Data.color,0)
-	 if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
+	dcolor=sci2exp(Data.color,0)
+	if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
 
 	t=[t;
-	 "parent: "+h.parent.type
-	 "children: "+fmtchildren(h.children)
-	 "visible = "+sci2exp(h.visible) 
-	 "surface_mode = "+sci2exp(h.surface_mode)
-	 "foreground = "+string(h.foreground)
-	 "thickness = "+string(h.thickness)
-	 "mark_mode = "+sci2exp(h.mark_mode)
-	 "mark_style = "+sci2exp(h.mark_style)
-	 "mark_size_unit = "+sci2exp(h.mark_size_unit)
-	 "mark_size = "+string(h.mark_size)
-	 "mark_foreground = "+string(h.mark_foreground)
-	 "mark_background = "+string(h.mark_background)
-	 "data.x = "+dx
-	 "data.y = "+dy
-	 "data.z "+dz  
-	 "data.color (not used) = "+dcolor
-	 "color_mode = "+string(h.color_mode)
-	 "color_flag = "+sci2exp(h.color_flag,0)
-	 "hiddencolor = "+string(h.hiddencolor)
-	]
-        else
-	  t=[t;
-	 "parent: "+h.parent.type
-	 "children: "+fmtchildren(h.children)
-	 "visible = "+sci2exp(h.visible) 
-	 "surface_mode = "+sci2exp(h.surface_mode)
-	 "foreground = "+string(h.foreground)
-	 "thickness = "+string(h.thickness)
-	 "mark_mode = "+sci2exp(h.mark_mode)
-	 "mark_style = "+sci2exp(h.mark_style)
-	 "mark_size_unit = "+sci2exp(h.mark_size_unit)
-	 "mark_size = "+string(h.mark_size)
-	 "mark_foreground = "+string(h.mark_foreground)
-	 "mark_background = "+string(h.mark_background)
-	 "data.x = "+dx
-	 "data.y = "+dy
-	 "data.z = "+dz
-	 "color_mode = "+string(h.color_mode)
-	 "color_flag = "+sci2exp(h.color_flag,0)
-	 "hiddencolor = "+string(h.hiddencolor)
-	]
+	   "parent: "+h.parent.type
+	   "children: "+fmtchildren(h.children)
+	   "visible = "+sci2exp(h.visible) 
+	   "surface_mode = "+sci2exp(h.surface_mode)
+	   "foreground = "+string(h.foreground)
+	   "thickness = "+string(h.thickness)
+	   "mark_mode = "+sci2exp(h.mark_mode)
+	   "mark_style = "+sci2exp(h.mark_style)
+	   "mark_size_unit = "+sci2exp(h.mark_size_unit)
+	   "mark_size = "+string(h.mark_size)
+	   "mark_foreground = "+string(h.mark_foreground)
+	   "mark_background = "+string(h.mark_background)
+	   "data.x = "+dx
+	   "data.y = "+dy
+	   "data.z "+dz  
+	   "data.color (not used) = "+dcolor
+	   "color_mode = "+string(h.color_mode)
+	   "color_flag = "+sci2exp(h.color_flag,0)
+	   "hiddencolor = "+string(h.hiddencolor)
+	   "user_data = "+fmtuser_data(u)
+	  ]
+      else
+	t=[t;
+	   "parent: "+h.parent.type
+	   "children: "+fmtchildren(h.children)
+	   "visible = "+sci2exp(h.visible) 
+	   "surface_mode = "+sci2exp(h.surface_mode)
+	   "foreground = "+string(h.foreground)
+	   "thickness = "+string(h.thickness)
+	   "mark_mode = "+sci2exp(h.mark_mode)
+	   "mark_style = "+sci2exp(h.mark_style)
+	   "mark_size_unit = "+sci2exp(h.mark_size_unit)
+	   "mark_size = "+string(h.mark_size)
+	   "mark_foreground = "+string(h.mark_foreground)
+	   "mark_background = "+string(h.mark_background)
+	   "data.x = "+dx
+	   "data.y = "+dy
+	   "data.z = "+dz
+	   "color_mode = "+string(h.color_mode)
+	   "color_flag = "+sci2exp(h.color_flag,0)
+	   "hiddencolor = "+string(h.hiddencolor)
+	   "user_data = "+fmtuser_data(u)
+	  ]
       end
 
-      case "Fac3d" 
+    case "Fac3d" 
       Data = h.data
+      u=h.user_data;
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
 
@@ -406,55 +434,59 @@ function %h_p(h)
 	dcolor=sci2exp(Data.color,0)
 	if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
 	
+
 	t=[t;
-	    "parent: "+h.parent.type
-	    "children: "+fmtchildren(h.children)
-	    "visible = "+sci2exp(h.visible) 
-	    "surface_mode = "+sci2exp(h.surface_mode)
-	    "foreground = "+string(h.foreground)
-	    "thickness = "+string(h.thickness)
-	    "mark_mode = "+sci2exp(h.mark_mode)
-	    "mark_style = "+sci2exp(h.mark_style)
-	    "mark_size_unit = "+sci2exp(h.mark_size_unit)
-	    "mark_size = "+string(h.mark_size)
-	    "mark_foreground = "+string(h.mark_foreground)
-	    "mark_background = "+string(h.mark_background)
-	    "data.x = "+dx
-	    "data.y = "+dy
-	    "data.z = "+dz  
-	    "data.color = "+dcolor
-	    "color_mode = "+string(h.color_mode)
-	    "color_flag = "+sci2exp(h.color_flag,0)
-	    "cdata_mapping = "+sci2exp(h.cdata_mapping)
-	    "hiddencolor = "+string(h.hiddencolor)
-	    ]
+	   "parent: "+h.parent.type
+	   "children: "+fmtchildren(h.children)
+	   "visible = "+sci2exp(h.visible) 
+	   "surface_mode = "+sci2exp(h.surface_mode)
+	   "foreground = "+string(h.foreground)
+	   "thickness = "+string(h.thickness)
+	   "mark_mode = "+sci2exp(h.mark_mode)
+	   "mark_style = "+sci2exp(h.mark_style)
+	   "mark_size_unit = "+sci2exp(h.mark_size_unit)
+	   "mark_size = "+string(h.mark_size)
+	   "mark_foreground = "+string(h.mark_foreground)
+	   "mark_background = "+string(h.mark_background)
+	   "data.x = "+dx
+	   "data.y = "+dy
+	   "data.z = "+dz  
+	   "data.color = "+dcolor
+	   "color_mode = "+string(h.color_mode)
+	   "color_flag = "+sci2exp(h.color_flag,0)
+	   "cdata_mapping = "+sci2exp(h.cdata_mapping)
+	   "hiddencolor = "+string(h.hiddencolor)
+	   "user_data = "+fmtuser_data(u)
+	  ]
       else
 	t=[t;
-	    "parent: "+h.parent.type
-	    "children: "+fmtchildren(h.children)
-	    "visible = "+sci2exp(h.visible) 
-	    "surface_mode = "+sci2exp(h.surface_mode)
-	    "foreground = "+string(h.foreground)
-	    "thickness = "+string(h.thickness)
-	    "mark_mode = "+sci2exp(h.mark_mode)
-	    "mark_style = "+sci2exp(h.mark_style)
-	    "mark_size_unit = "+sci2exp(h.mark_size_unit)
-	    "mark_size = "+string(h.mark_size)
-	    "mark_foreground = "+string(h.mark_foreground)
-	    "mark_background = "+string(h.mark_background)
-	    "data.x = "+dx
-	    "data.y = "+dy
-	    "data.z = "+dz
-	    "color_mode = "+string(h.color_mode)
-	    "color_flag = "+sci2exp(h.color_flag,0)
-	    "hiddencolor = "+string(h.hiddencolor)
-	    ]
+	   "parent: "+h.parent.type
+	   "children: "+fmtchildren(h.children)
+	   "visible = "+sci2exp(h.visible) 
+	   "surface_mode = "+sci2exp(h.surface_mode)
+	   "foreground = "+string(h.foreground)
+	   "thickness = "+string(h.thickness)
+	   "mark_mode = "+sci2exp(h.mark_mode)
+	   "mark_style = "+sci2exp(h.mark_style)
+	   "mark_size_unit = "+sci2exp(h.mark_size_unit)
+	   "mark_size = "+string(h.mark_size)
+	   "mark_foreground = "+string(h.mark_foreground)
+	   "mark_background = "+string(h.mark_background)
+	   "data.x = "+dx
+	   "data.y = "+dy
+	   "data.z = "+dz
+	   "color_mode = "+string(h.color_mode)
+	   "color_flag = "+sci2exp(h.color_flag,0)
+	   "hiddencolor = "+string(h.hiddencolor)
+	   "user_data = "+fmtuser_data(u)
+	  ]
       end
       
-      case "Param3d" 
+    case "Param3d" 
+      u=h.user_data;
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
-	
+      
       c=sci2exp(h.surface_color,0)
       if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
       t=[t;
@@ -475,8 +507,10 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "surface_color = "+c
-	 ]
-      case "Axis"
+	 "user_data = "+fmtuser_data(u)
+	]
+    case "Axis"
+      u=h.user_data;
       T=sci2exp(h.tics_labels,0)
       if length(T)>70 then T="string array 1x"+string(length(T)),end
       t=[t;
@@ -494,6 +528,7 @@ function %h_p(h)
 	 "labels_font_color = "+string(h.labels_font_color)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
+	 "user_data = "+fmtuser_data(u)
 	]
 
     end
@@ -510,5 +545,25 @@ function t=fmtchildren(c)
     else
       t="matrix "+strcat(string(size(c)),'x')   
     end
+  end
+endfunction
+function t=fmtuser_data(d)
+  td= type(d)
+  if or(td==[1 2 3 4 8 10 15]) then
+    t=sci2exp(d,0)
+    if length(t)>70 then t=typeof(d)+" "+strcat(string(size(d)),'x'),end 
+  elseif or(td==16) then
+    t=typeof(d)+" "+strcat(string(size(d)),'x'),
+  elseif or(td==17) then
+    if typeof(d)=="ce" then
+      t="cell "+strcat(string(size(d)),'x'),
+    elseif typeof(d)=="st" then
+      T=getfield(1,d)
+      t="struct with fields: "+strcat(d(2:$),' '),
+    else
+      t=typeof(d)
+    end
+  else
+    t=typeof(d)
   end
 endfunction
