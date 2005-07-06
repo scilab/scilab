@@ -33,7 +33,7 @@ function fields=ghdl_fields(h)
   case "Fac3d";
     fields=["visible";"surface_mode";"foreground";"thickness";
 	    "mark_mode";"mark_style";"mark_size_unit";"mark_size";
-	    "mark_foreground";"mark_background";"data.x";"data.y";"data.z";
+	    "mark_foreground";"mark_background";"data";
 	    "color_mode";"color_flag";"hiddencolor";"user_data"]';
   case "Agregation"
     fields=["children";"user_data"]';
