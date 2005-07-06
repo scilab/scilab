@@ -39,10 +39,10 @@ proc fb {w} {
 # less bad one to return since there will hopefully be no binding to it
     if { [catch {set blet [string index [$w cget -text] [$w cget -underline]]}] } {
         if { [catch {set blet [string index [$w cget -label] [$w cget -underline]]}] } {
-            set blet "&"
+            set blet "ampersand"
         }
     }
-    if {$blet == ""} {set blet "&"}
+    if {$blet == ""} {set blet "ampersand"}
     return [string tolower $blet]
 }
 

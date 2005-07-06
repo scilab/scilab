@@ -446,7 +446,7 @@ proc findtext {typ} {
     bindevnt $find.l.f4.f5.cbox2 $typ $find
     bindevnt $find.l.f1.entry $typ $find	
     bind $find <Escape> "CancelFind $find"
-    bind $find <Alt-[fb $find.f2.button2]> "CancelFind $find"
+    bind $find <Alt-[fb $find.f2.button2]> "after 0 CancelFind $find"
     bind $find <Visibility> {raise $find $pad};
     bind $pad <Expose> {catch {raise $find} }
     $find.l.f1.entry selection range 0 end

@@ -1249,3 +1249,11 @@ Francois VOGEL, 05/07/05
  * Proc amp improved to provide the right index of the character to underline
    when the string contains one or more escape characters (\)
  * version --> 5.16
+
+ES, 6/7/2005
+ * "&" -> "ampersand" in proc localetools.tcl/fb makes the null underline
+   binding <Alt-&> acceptable in linux too
+ * after 0 at line 449 of findreplace.tcl works around an event sequence 
+   problem in linux, which popped up an error upon <Alt-key> cancellyng 
+   Search/Replace
+ * version --> 5.17
