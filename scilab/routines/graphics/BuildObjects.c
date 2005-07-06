@@ -2564,9 +2564,6 @@ ConstructAgregationSeq (int number)
   /* change parent of all sons s1,...,sn*/
   lastsons=sons;
 
-  pAGREG_FEATURE (pobj)->user_data = (int *) NULL;
-  pAGREG_FEATURE (pobj)->size_of_user_data = 0;
-
   /* debug 
      sciprint("debut\n");
   end debug */
