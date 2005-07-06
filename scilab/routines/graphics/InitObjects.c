@@ -397,7 +397,10 @@ int C2F(graphicsmodels) ()
     }
       
   sciSetCurrentSon ((ppobj->mon_title), (sciPointObj *) NULL);
-      
+  
+  pLABEL_FEATURE ((ppobj->mon_title))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_title))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -465,7 +468,10 @@ int C2F(graphicsmodels) ()
     }
       
   sciSetCurrentSon ((ppobj->mon_x_label), (sciPointObj *) NULL);
-      
+  
+  pLABEL_FEATURE ((ppobj->mon_x_label))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_x_label))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -534,7 +540,10 @@ int C2F(graphicsmodels) ()
     }
       
   sciSetCurrentSon ((ppobj->mon_y_label), (sciPointObj *) NULL);
-      
+
+  pLABEL_FEATURE ((ppobj->mon_y_label))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_y_label))->size_of_user_data = 0;
+ 
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -602,7 +611,10 @@ int C2F(graphicsmodels) ()
     }
       
   sciSetCurrentSon ((ppobj->mon_z_label), (sciPointObj *) NULL);
-      
+
+  pLABEL_FEATURE ((ppobj->mon_z_label))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_z_label))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -981,6 +993,9 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   Cscale2default(); 
   psubwin=sciGetSelectedSubWin (sciGetCurrentFigure ());
   
+  pSUBWIN_FEATURE (psubwin)->user_data = (int *) NULL; /* adding 30.06.05 */
+  pSUBWIN_FEATURE (psubwin)->size_of_user_data = 0;
+  
   pSUBWIN_FEATURE (psubwin)->WRect[0]   = 0;
   pSUBWIN_FEATURE (psubwin)->WRect[1]   = 0;
   pSUBWIN_FEATURE (psubwin)->WRect[2]   = 1;
@@ -1057,6 +1072,9 @@ int InitFigureModel()
   pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->auto_redraw = TRUE; /* by default, we draw live */ /* F.Leray 29.12.04 modified on 04.01.05 */
 
+  pFIGURE_FEATURE (pfiguremdl)->user_data = (int *) NULL; /* pour completude */
+  pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0; /* pour completude */
+
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0;
@@ -1093,6 +1111,9 @@ int InitAxesModel()
   ppaxesmdl->axes.ydir='l';  
   ppaxesmdl->axes.rect  = 0;
   
+  ppaxesmdl->user_data = (int *) NULL; /* to be complete */
+  ppaxesmdl->size_of_user_data = 0;
+
   for (i=0 ; i<7 ; i++)
     ppaxesmdl->axes.limits[i]  = 0;
 
@@ -1227,7 +1248,10 @@ int InitAxesModel()
     }
       
   sciSetCurrentSon ((ppobj->mon_title), (sciPointObj *) NULL);
-      
+  
+  pLABEL_FEATURE ((ppobj->mon_title))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_title))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -1295,7 +1319,10 @@ int InitAxesModel()
     }
       
   sciSetCurrentSon ((ppobj->mon_x_label), (sciPointObj *) NULL);
-      
+  
+  pLABEL_FEATURE ((ppobj->mon_x_label))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_x_label))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -1364,7 +1391,10 @@ int InitAxesModel()
     }
       
   sciSetCurrentSon ((ppobj->mon_y_label), (sciPointObj *) NULL);
-      
+  
+  pLABEL_FEATURE ((ppobj->mon_y_label))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_y_label))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.plastsons = (sciSons *) NULL;
 
@@ -1430,9 +1460,12 @@ int InitAxesModel()
       FREE((ppobj->mon_z_label));
       return -1;
     }
-      
+  
   sciSetCurrentSon ((ppobj->mon_z_label), (sciPointObj *) NULL);
-      
+  
+  pLABEL_FEATURE ((ppobj->mon_z_label))->user_data = (int *) NULL;
+  pLABEL_FEATURE ((ppobj->mon_z_label))->size_of_user_data = 0;
+  
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.psons = (sciSons *) NULL;
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.plastsons = (sciSons *) NULL;
 
