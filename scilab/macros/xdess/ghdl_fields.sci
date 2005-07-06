@@ -12,8 +12,7 @@ function fields=ghdl_fields(h)
   case "Axes" 
     fields=["children";"visible";"axes_visible";"axes_reverse";"grid";"x_location";
 	    "y_location";"title";"x_label";"y_label";"z_label";"auto_ticks";
-	    "x_ticks.locations";"y_ticks.locations";"z_ticks.locations";
-	    "x_ticks.labels";"y_ticks.labels";"z_ticks.labels";"box";"sub_ticks";
+	    "x_ticks";"y_ticks";"z_ticks";"box";"sub_ticks";
 	    "font_style";"font_size";"font_color";"isoview";"cube_scaling";
 	    "view";"rotation_angles";"log_flags";"tight_limits";"data_bounds" ;
 	    "zoom_box";"margins";"axes_bounds";"auto_clear";"auto_scale";
@@ -56,7 +55,7 @@ function fields=ghdl_fields(h)
   case "Fec"
     fields =["visible";"data";"triangles";"z_bounds";"clip_state";"clip_box";"user_data"]';
   case "Legend"
-    fields =["visible";"text";"text_box";"text_box_mode";
+    fields =["visible";"text";
 	     "foreground";"font_style";"font_size";"font_angle";
 	     "clip_state";"clip_box"]';
   case "Text"
