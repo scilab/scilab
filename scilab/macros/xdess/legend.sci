@@ -133,7 +133,6 @@ if with_box then
   xpol = [pos(1), pos(1)+width, pos(1)+width, pos(1)];
   ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
   xfpoly(xpol, ypol,1)
-  pause
   R = gce();
   R.foreground=A.foreground;
   R.background=A.background;

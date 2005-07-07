@@ -164,8 +164,9 @@ function legends(leg, style, opt, with_box)
        ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
        xfpoly(xpol, ypol,1)
        R = gce();
-       R.children(2).foreground=a.background;
-    end
+       R.foreground=a.foreground;
+       R.background=a.background;
+   end
     for k=1:nleg
       if k<=size(style,2) then
 	if type(style)==9 then
