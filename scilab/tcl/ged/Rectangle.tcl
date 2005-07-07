@@ -644,11 +644,11 @@ proc toggleVisibility { frame } {
 
     OnOffForeground $frame $curvis
 }
-proc toggleFilled { frame } {
+proc toggleFillmode { frame } {
     global curfillmode
     ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
-
-     OnOffForeground $frame $curfillmode
+    
+    OnOffForeground $frame $curfillmode
 }
 
 proc SelectLineStyle {w args} {
