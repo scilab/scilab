@@ -10,7 +10,7 @@ wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj Events.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
 	command.obj readcons.obj x_zzledt.obj jpc_Xloop.obj sh.obj \
-	strings.obj files.obj tclWinError.obj 
+	strings.obj files.obj tclWinError.obj win_mem_alloc.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 
@@ -111,6 +111,7 @@ scimain.obj: scimain.c
 sh.obj: sh.c common.h ../machine.h
 strings.obj: strings.c dstrings.h
 tclWinError.obj: tclWinError.c
+win_mem_alloc.obj: win_mem_alloc.c
 wgmenu.obj: wgmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
