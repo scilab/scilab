@@ -2532,7 +2532,7 @@ ConstructAgregationSeq (int number)
   sciPointObj *psubwin;
   sciSubWindow *ppsubwin;
   sciAgreg     *ppagr;
-
+  
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   ppsubwin=pSUBWIN_FEATURE(psubwin);
 
@@ -2564,22 +2564,17 @@ ConstructAgregationSeq (int number)
   /* change parent of all sons s1,...,sn*/
   lastsons=sons;
 
-  /* debug 
-     sciprint("debut\n");
-  end debug */
-
+  
+/*   sciprint("debut\n"); */
+  
   for (i=0;i<number;i++) {
-    /* debug 
-       sciprint("%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext,
-	     sciGetRelationship (lastsons->pointobj)->pparent);
-    end debug */
-    (sciGetRelationship (lastsons->pointobj))->pparent=pobj ;
+   
+/*     sciprint("%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext, */
+/* 	     sciGetRelationship (lastsons->pointobj)->pparent); */
+    
+    (sciGetRelationship (lastsons->pointobj))->pparent=pobj;
     lastsons=lastsons->pnext;
   }
-  /* debug 
-  sciprint("\n%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext,
-	   sciGetRelationship (lastsons->pointobj)->pparent);
-  end debug */
 
   lastsons=lastsons->pprev; /* lastsons is sn */
 
@@ -2595,20 +2590,6 @@ ConstructAgregationSeq (int number)
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
  /* the subwin children list is now null->A->sn+1->...->null */
 
-  /* for debug
-  sciprint("subwin\n");
-  stmp=ppsubwin->relationship.psons;
-  sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
-	     sciGetRelationship (stmp->pointobj)->pparent);
-  stmp=stmp->pnext;
-  sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
-	     sciGetRelationship (stmp->pointobj)->pparent);
-  stmp=stmp->pnext;
-  if (stmp != (sciSons *)NULL)
-    sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
-	     sciGetRelationship (stmp->pointobj)->pparent);
-   end debug */
- 
   /* set agregation properties*/
   ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
   ppagr->size_of_user_data = 0;
@@ -2620,22 +2601,12 @@ ConstructAgregationSeq (int number)
  
   /* re chain A sons lists */
   ppagr->relationship.psons = sons;
-
+  
   ppagr->relationship.plastsons = lastsons;
   ppagr->relationship.plastsons->pnext = (sciSons *)NULL;
   ppagr->relationship.psons->pprev = (sciSons *)NULL; /* this should do nothing*/
   /* the agregation children list is now  null->s1->s2->...->sn->null*/
 
-  /* for debug
-  sciprint("fin\n");
-  stmp=ppagr->relationship.psons;
-  for (i=0;i<number;i++) {
-    sciprint("%8x %8x %8x  |  %8x\n",stmp->pprev,stmp->pointobj,stmp->pnext,
-	     sciGetRelationship (stmp->pointobj)->pparent);
-    (sciGetRelationship (stmp->pointobj))->pparent=pobj ;
-    stmp=stmp->pnext;
-  }
-  end debug */
 
   return (sciPointObj *)pobj;
 }
