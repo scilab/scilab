@@ -5629,7 +5629,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 
   if(sciGetEntityType (psubwin) != SCI_SUBWIN) return;
   N=pMERGE_FEATURE (pmerge)->N; /* total number of elements */
-
+  
   if ((dist=(double *)MALLOC(N*sizeof(double)))==(double *) NULL) {
     Scistring("DrawMerge3d : MALLOC No more Place\n");
     return;
@@ -5931,7 +5931,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   }
   npoly=1; 
   for ( i = N ; i>0 ; i--) { /* loop on elements */
-    int j,nok=0;
+    int j,nok;
     j=locindex[i-1]-1;
     index=pMERGE_FEATURE (pmerge)->index_in_entity[j];
     pobj=(sciPointObj *) sciGetPointerFromHandle (pMERGE_FEATURE (pmerge)->from_entity[j]);
@@ -5950,7 +5950,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 
 	  xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
 	  xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
-	
+	  
 	  /* I didn't use ReverseDataFor3D because dim n1 is not the same for x, y and z  */
 	  if(ppsubwin->axes.reverse[0] == TRUE){
 	    /* agir sur x */
@@ -6042,7 +6042,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	}
 	break;
       case  SCI_POLYLINE:
-	n1= pPOLYLINE_FEATURE (pobj)->n1;
 	p=0;
 	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; /* F.Leray 20.01.05 A REVOIR ICI*/
 	if (sciGetIsLine((sciPointObj *)pobj) == 1) p=2;
@@ -6178,6 +6177,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       default:
 	p = 0;
       }
+      
+      nok = 0;
+
       if (p > 0) {
 	/* project 3D on 2D coordinates */
 	if (z != (double *)NULL) {
@@ -6196,6 +6198,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  }
 	}
 
+	if(nok == 1) continue;
 
 	/* draw element */
 	context[0] = sciGetForeground (pobj);	
@@ -6361,16 +6364,55 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  }
 	}
-	else { /* POLYLINE case starts here ! */
-	  /* special case 5 */
-	  if(sciGetIsFilled(pobj) == TRUE && pPOLYLINE_FEATURE (pobj)->plot != 5) /* No filling if mode plot == 5 is selected */
+	else if(sciGetEntityType (pobj)==SCI_RECTANGLE) { /* RECTANGLE case here ! */
+	  if(sciGetIsFilled(pobj) == TRUE)
 	    {
-	      int close=1;
+	      integer v;
+	      double dv=0;
+	      int x[4],close=1;
 	      char str[2] = "xv";
+	      x[0] = sciGetBackground(pobj);
 	      
-	      C2F (dr) ("xarea", str, &n1, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
+	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			&dv, &dv, &dv, &dv, 5L, 4096);
+	      
+	      C2F (dr) ("xarea", str, &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 	    }
 	  
+	  if (sciGetIsMark(pobj) == TRUE){
+	    integer v;
+	    double dv=0;
+	    int x[4], markidsizenew[2];
+	    
+	    x[0] = sciGetMarkForeground(pobj);
+	    
+	    markidsizenew[0] = sciGetMarkStyle(pobj);
+	    markidsizenew[1] = sciGetMarkSize (pobj);
+	    
+	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+		      &dv, &dv, &dv, 5L, 4096);
+	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+		      &dv, &dv, &dv, &dv, 5L, 4096);
+	    
+	    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+		      PD0, PD0, 0L, 0L);
+	    DrawNewMarks(pobj,p,polyx,polyy,DPI);
+	  }
+	  
+	  if(sciGetIsLine(pobj)){
+	    C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
+		      PD0, PD0, PD0, 5L, 6L);
+	    C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
+		      PD0, PD0, PD0, 5L, 10L);
+	    C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
+	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
+	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  }
+	}
+	else { /* POLYLINE case starts here ! */
+	  /* special case 5 */
 	  if(sciGetIsFilled(pobj) == TRUE && pPOLYLINE_FEATURE (pobj)->plot != 5) /* No filling if mode plot == 5 is selected */
 	    {
 	      integer v;
@@ -6384,7 +6426,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	      
-	      C2F (dr) ("xarea", str, &n1, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	      C2F (dr) ("xarea", str, &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 	    }
 	  
 	  if (sciGetIsMark(pobj) == TRUE){
