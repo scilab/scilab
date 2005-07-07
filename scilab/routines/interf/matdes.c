@@ -2217,6 +2217,8 @@ int scixsegs(fname,fname_len)
 
   /* NG beg */
   if (version_flag() == 0){
+    sciPointObj * psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    
     if (Rhs == 3 && m3 * n3 != 1) {
       style = istk(l3); flag = one;
     }
@@ -2230,6 +2232,14 @@ int scixsegs(fname,fname_len)
     }
     
     Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+
+    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+      /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+      sciDrawObj(sciGetCurrentFigure ());}
+    else
+      sciDrawObjIfRequired(sciGetCurrentObj ()); 
+    
   }
   else{
     if (Rhs == 3 && m3 * n3 != 1) {
@@ -2578,9 +2588,18 @@ int scixfpoly(fname,fname_len)
   mn1 = m1 * n1;
   /* NG beg */
   if (version_flag() == 0){
-    if(close == 0) /* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
+    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    
+    if(close == 0)
       close = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
     Objfpoly (stk(l1),stk(l2),mn1,close,&hdl);
+    
+    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+      /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+      sciDrawObj(sciGetCurrentFigure ());}
+    else
+      sciDrawObjIfRequired(sciGetCurrentObj ());
   }
   else
     Xfpoly(mn1,close,stk(l1),stk(l2));
@@ -2641,6 +2660,7 @@ int scixfpolys(fname,fname_len)
       for (ix = 0 ; ix < n2 ; ++ix) *istk(l3+ix) = 0;
     }
   if (version_flag() == 0) {
+    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) {
       if (*istk(l3+i) == 0) {
 /* 	/\* a revoir quand refonte de xpoly et xfpoly *\/ /\* F.Leray 18.05.05 *\/ */
@@ -2656,6 +2676,13 @@ int scixfpolys(fname,fname_len)
     }
     /** construct agregation and make it current object**/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
+
+    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+      /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+      sciDrawObj(sciGetCurrentFigure ());}
+    else
+      sciDrawObjIfRequired(sciGetCurrentObj ());
   }
   else
     Xfpolys(istk(l3),v1,v2,n2,m2,stk(l1),stk(l2));
@@ -3016,7 +3043,13 @@ int scixpoly(fname,fname_len)
       sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
       sciSetForeground (pobj, sciGetForeground (psubwin));
     }
-    sciDrawObjIfRequired(pobj);
+
+    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
+      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+      /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
+      sciDrawObj(sciGetCurrentFigure ());}
+    else
+      sciDrawObjIfRequired(pobj);
   }
   else
     Xpoly(C2F(cha1).buf,bsiz,mn2,close,stk(l1),stk(l2));
@@ -3056,11 +3089,19 @@ int scixpolys(fname,fname_len)
       for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
     } 
   if (version_flag() == 0) {
+    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) 
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
-      
+    
     /** construct agregation and make it current object**/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
+
+    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
+      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+      /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
+      sciDrawObj(sciGetCurrentFigure ());}
+    else
+      sciDrawObjIfRequired(sciGetCurrentObj ());
   }
   else
     Xpolys(istk(l3),n2,m2,stk(l1),stk(l2));
@@ -4810,7 +4851,8 @@ int scirect(char *fname,unsigned long fname_len)
     case 1 :
       GetRhsVar(1,"d",&m1,&n1,&l1); 
       CheckLength(1,m1*n1,4);
-      if (version_flag() == 0)
+      if (version_flag() == 0){
+	sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	if (strcmp(fname,"xrect")==0){
 	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
@@ -4821,6 +4863,13 @@ int scirect(char *fname,unsigned long fname_len)
 	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
 		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
 	}
+	
+	if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+	  Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+	  sciDrawObj(sciGetCurrentFigure ());}
+	else
+	  sciDrawObjIfRequired(sciGetCurrentObj ());
+      }
       else
         Xrect(fname,fname_len,stk(l1),stk(l1+1),stk(l1+2),stk(l1+3));
       break;
@@ -4887,6 +4936,8 @@ int scirects(char *fname,unsigned long fname_len)
     }  
   /* NG beg */
   if (version_flag() == 0){
+    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    
     for (i = 0; i < n1; ++i) { 
 /*       j = (i==0) ? 0 : 1; */
       if (*istk(l2+i) == 0){
@@ -4910,6 +4961,14 @@ int scirects(char *fname,unsigned long fname_len)
     }
     /** construct agregation and make it current object **/
     sciSetCurrentObj (ConstructAgregationSeq (n1));  
+
+    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+      /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
+      sciDrawObj(sciGetCurrentFigure ());}
+    else
+      sciDrawObjIfRequired(sciGetCurrentObj ());
+    
   }   
   else
     Xrects(fname,fname_len,istk(l2), n1,stk(l1));

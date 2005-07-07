@@ -44,12 +44,6 @@ void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flags
 		     foreground, background, isfilled, isline, n, flagstring));
   
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-    sciDrawObjIfRequired(sciGetCurrentObj ());
 }
 
 
@@ -89,9 +83,6 @@ void Objpoly (x,y,n,closed,mark,hdl)
 { 
   sciPointObj *psubwin, *pobj;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-
-
-
   
   if (mark <= 0)
     { 
@@ -106,34 +97,7 @@ void Objpoly (x,y,n,closed,mark,hdl)
     }
   
    pobj = sciGetCurrentObj();
-
-
-
-
-/*   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1));  */
-/*   pobj = sciGetCurrentObj(); */
-/*   if (mark <= 0) */
-/*     {  */
-/*       sciSetIsMark(pobj, TRUE); */
-/*       sciSetIsLine(pobj,FALSE); */
-/*       sciSetMarkStyle (pobj,abs(mark)); */
-/* /\*       sciSetForeground (pobj, sciGetForeground (psubwin)); *\/ */
-/*     } */
-/*   else */
-/*     { */
-/*       sciSetIsMark(pobj, FALSE); */
-/*       sciSetIsLine(pobj, TRUE); */
-/* /\*       sciSetLineStyle(pobj, sciGetLineStyle (psubwin)); *\/ */
-/*       sciSetForeground (pobj, mark); */
-/*     } */
-  *hdl=sciGetHandle(pobj); 
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-    sciDrawObjIfRequired(pobj);
-  
+   *hdl=sciGetHandle(pobj); 
 }
   
 
@@ -167,15 +131,7 @@ void Objfpoly (x,y,n,style,hdl)
 				      1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE)); 
   /* polyline_style is "interpolated" by default == 1 AND I put isfilled == TRUE */
   pobj = sciGetCurrentObj();
-  
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-  *hdl=sciGetHandle(sciGetCurrentObj ()); 
-  
+  *hdl=sciGetHandle(sciGetCurrentObj ());  
 }
 
 
@@ -189,21 +145,13 @@ void Objsegs (style,flag,n1,x,y,arsize)
 { 
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
-  sciPointObj *psubwin;
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   n2=n1;
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
 				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp)); 
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
-    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-    sciDrawObj(sciGetCurrentFigure ());}
-  else
-    sciDrawObjIfRequired(sciGetCurrentObj ());  
-  
 }
 /*-----------------------------------------------------------
  * Objstring:
