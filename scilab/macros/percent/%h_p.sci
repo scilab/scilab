@@ -515,12 +515,12 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "visible = "+sci2exp(h.visible)
-	 "tics_direction = "+h.tics_direction
+	 "tics_direction = "+sci2exp(h.tics_direction)
 	 "xtics_coord = "+sci2exp(h.xtics_coord,0)
 	 "ytics_coord = "+sci2exp(h.ytics_coord,0)
 	 "tics_color = "+string(h.tics_color)
-	 "tics_segment = "+string(h.tics_segment)
-	 "tics_style = "+h.tics_style
+	 "tics_segment = "+sci2exp(h.tics_segment)
+	 "tics_style = "+sci2exp(h.tics_style)
 	 "sub_tics = "+string(h.sub_tics)
 	 "tics_labels = "+T
 	 "labels_font_size = "+string(h.labels_font_size)
