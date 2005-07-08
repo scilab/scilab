@@ -1,16 +1,20 @@
 // Copyright ENPC INRIA
 function demo_pendulum()
-  npend_build_and_load() ;
+  if ~(haveacompiler()) then
+    x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+  else
+    npend_build_and_load() ;
 
-  n=np();
-  r=ones(1,n);
-  m=ones(1,n);
-  j=ones(1,n);
-  g=9.81;
+    n=np();
+    r=ones(1,n);
+    m=ones(1,n);
+    j=ones(1,n);
+    g=9.81;
   
-  y0=0*ones(2*n,1);tt=0:0.05:10;
-  yt=ode(y0,0,tt,'npend');
-  draw_chain_from_angles(yt(1:$/2,:),r,1);
+    y0=0*ones(2*n,1);tt=0:0.05:10;
+    yt=ode(y0,0,tt,'npend');
+    draw_chain_from_angles(yt(1:$/2,:),r,1);
+  end  
 endfunction
 
 

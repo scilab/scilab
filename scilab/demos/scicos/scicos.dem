@@ -64,11 +64,23 @@ while %t do
   case 'Synchro Block demo' then  
     scicos('SCI/demos/scicos/Ifsub.cosf');
   case 'Electrical circuit: RLC' then  
-    scicos('SCI/demos/scicos/rlc1.cosf');
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+      scicos('SCI/demos/scicos/rlc1.cosf');
+    end
   case 'Electrical circuit: Rectifier' then  
-    scicos('SCI/demos/scicos/Rectifier.cosf');
-   case 'Regulated Thermo Hydraulic plant' then  
-    scicos('SCI/demos/scicos/Hydraulics.cosf');
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+     scicos('SCI/demos/scicos/Rectifier.cosf');
+    end
+  case 'Regulated Thermo Hydraulic plant' then  
+    if ~(haveacompiler()) then
+      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
+    else
+      scicos('SCI/demos/scicos/Hydraulics.cosf');
+    end
    case 'Live tutorials' then
     tuti=['Simple block construction';
 	  'Use of Super block'
