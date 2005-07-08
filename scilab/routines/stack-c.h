@@ -358,6 +358,8 @@ extern void *GetRawData __PARAMS((int lw));
 
 extern void *GetDataFromName __PARAMS(( char *name));
 
+extern int GetDataSize __PARAMS((int lw));
+
 #endif /*  STACK_SCI  */
 
 
