@@ -100,10 +100,10 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 320
+set NBheight 370
 set NBwidth  250
 
-set Wheight [expr $NBheight + 170]
+set Wheight [expr $NBheight + 150]
 set Wwidth  [expr $NBwidth  + 265]
 
 set ww .axes
@@ -167,7 +167,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 26 \
+	       -width 20 -height 28 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 

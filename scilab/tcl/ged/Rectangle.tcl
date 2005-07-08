@@ -63,7 +63,7 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 350
+set NBheight 400
 set NBwidth  300
 
 set Wheight [expr $NBheight + 110]
