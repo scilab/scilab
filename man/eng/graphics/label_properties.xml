@@ -13,16 +13,20 @@
   properties</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>The Label entity is a leaf of the graphics entities hierarchy. This
-    entity defines the parameters for label drawing</P>
+    <P>The Label entity is a child of an <VERB>Axes</VERB> entity. When an
+    Axes entity is built, the Title and Labels handles come with it and are
+    part of the Axes properties. Therefore, the properties of those
+    sub-objects are editable via the Axes handle (see <VERB>gca</VERB> and
+    <VERB>gda</VERB>). This entity defines the parameters for label
+    drawing:</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
-        default, the label is visible, the value's property is 
-        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the label is not displayed on the
-        screen.</SP>
+        default, the label is visible, the value's property is
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the label is not displayed on
+        the screen.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="text: ">
