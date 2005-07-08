@@ -65,6 +65,12 @@ function fields=ghdl_fields(h)
   case "Label"
     fields =["visible";"text";"foreground";"font_style";"font_size"]';
 
+  case "Axis"
+    fields =["visible";"tics_direction";"xtics_coord";"ytics_coord";
+	    "tics_color";"tics_segment";"tics_style";"sub_tics";
+	     "tics_labels";"labels_font_size";"labels_font_color";
+	     "clip_state";"clip_box";"user_data"]';
+
   else
     disp("handle of type "+h.type+" unhandled")
     fields =[]

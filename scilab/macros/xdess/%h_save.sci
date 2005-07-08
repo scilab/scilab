@@ -1,6 +1,6 @@
 function %h_save(h,fd)
   //Author S. Steer Sept 2004, Copyright INRIA
-  version=[3 1 0 0]
+  version=[3 1 0 1]
   mput(version,'c',fd)
   save_graphichandle(h,fd)
 endfunction
@@ -31,6 +31,7 @@ function save_graphichandle(h,fd)
     for k=n:-1:1
       save_graphichandle(c(k),fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Axes" 
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -47,20 +48,20 @@ function save_graphichandle(h,fd)
     mput(l.font_size,'c',fd)
     l=h.x_label
     mput(bool2s(l.visible=='on'),'c',fd)
-    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
+    save_text_vector(l.text,fd)
     mput(l.foreground,'il',fd)
     mput(l.font_style,'c',fd)
     mput(l.font_size,'c',fd)
     l=h.y_label
     mput(bool2s(l.visible=='on'),'c',fd)
-    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
+    save_text_vector(l.text,fd)
     mput(l.foreground,'il',fd)
     mput(l.font_style,'c',fd)
     mput(l.font_size,'c',fd)
     if h.view=='3d' then
       l=h.z_label
       mput(bool2s(l.visible=='on'),'c',fd)
-      mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
+      save_text_vector(l.text,fd)
       mput(l.foreground,'il',fd)
       mput(l.font_style,'c',fd)
       mput(l.font_size,'c',fd)
@@ -119,6 +120,7 @@ function save_graphichandle(h,fd)
     for k=n:-1:1
       save_graphichandle(c(k),fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Polyline"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     
@@ -139,6 +141,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
        mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Plot3d";
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -168,6 +171,7 @@ function save_graphichandle(h,fd)
       mput(clr,'il',fd)
     end
     mput(h.hiddencolor,'il',fd)
+    user_data=h.user_data;save(fd,user_data)
   case "Fac3d";
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -197,6 +201,7 @@ function save_graphichandle(h,fd)
       mput(clr,'il',fd)
     end
     mput(h.hiddencolor,'il',fd)
+    user_data=h.user_data;save(fd,user_data)
   case "Agregation"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
 
@@ -206,6 +211,7 @@ function save_graphichandle(h,fd)
     for k=1:n
       save_graphichandle(h(k),fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Rectangle"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -225,6 +231,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
        mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Arc"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -237,6 +244,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Champ"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -260,6 +268,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Segs"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -279,6 +288,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end  
+    user_data=h.user_data;save(fd,user_data)
   case "Grayplot"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -296,6 +306,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Matplot"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -305,6 +316,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
   case "Fec"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -315,6 +327,7 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
+    user_data=h.user_data;save(fd,user_data)
    case "Legend"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -329,7 +342,7 @@ function save_graphichandle(h,fd)
   case "Text"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
-    mput(length(h.text),'il',fd);mput(ascii(h.text),'c',fd);
+    save_text_vector(h.text,fd)
     mput(size(h.data),'c',fd);mput(h.data,'dl',fd);
     mput(h.text_box,'dl',fd);
     mput(length(h.text_box_mode),'c',fd);mput(ascii(h.text_box_mode),'c',fd);
@@ -342,10 +355,32 @@ function save_graphichandle(h,fd)
     if h.clip_state=='on' then
       mput(h.clip_box,'dl',fd)
     end
-   
+    user_data=h.user_data;save(fd,user_data)
+  case "Axis"  
+    mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
+    mput(bool2s(h.visible=='on'),'c',fd)
+    mput(length(h.tics_direction),'il',fd);mput(ascii(h.tics_direction),'c',fd);
+    mput(size(h.xtics_coord,'*'),'il',fd);mput(h.xtics_coord,'dl',fd)
+    mput(size(h.ytics_coord,'*'),'il',fd);mput(h.ytics_coord,'dl',fd)
+    mput(h.tics_color,'il',fd)
+    mput(bool2s(h.tics_segment=='on'),'c',fd)
+    mput(ascii(h.tics_style),'c',fd)
+    mput(h.sub_tics,'il',fd)
+    save_text_vector(h.tics_labels,fd)
+    mput(h.labels_font_size,'il',fd)
+    mput(h.labels_font_color,'il',fd)
+    mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd)
+    end
+    user_data=h.user_data;save(fd,user_data)
   else
     disp("handle of type "+h.type+" unhandled")
   end
 
 endfunction
 
+function save_text_vector(t,fd)
+    t=strcat(t,ascii(10))
+    mput(length(t),'il',fd);mput(ascii(t),'c',fd);
+endfunction
