@@ -35,7 +35,7 @@ your variables are...
  %z        %s        %nan      %inf      COMPILER  %gtk      %pvm      
  %tk       $         %t        %f        %eps      %io       %i        
  %e        
- using      11458 elements  out of    5000000.
+ using      11628 elements  out of    5000000.
           and         58 variables out of       9231
  
 your global variables are...

@@ -7,7 +7,7 @@ reinit_for_test()
  
 ls;
  
-if load_ref('ls') then   bugmes();quit;end,
+if load_ref('%ans') then   bugmes();quit;end,
  
  
 %ans = ls('SCI/macros/util/*.sci');

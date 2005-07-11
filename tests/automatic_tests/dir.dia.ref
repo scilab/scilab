@@ -7,7 +7,7 @@ reinit_for_test()
  
 dir;
  
-if load_ref('dir') then   bugmes();quit;end,
+if load_ref('%ans') then   bugmes();quit;end,
  
  
 %ans = dir('SCI/macros/util/*.sci');

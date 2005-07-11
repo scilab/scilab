@@ -2,7 +2,7 @@ getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/Examples_eng/other/dir_data.ref','r');
 dir;
-if load_ref('dir') then   pause,end,
+if load_ref('%ans') then   pause,end,
 
 %ans = dir('SCI/macros/util/*.sci');
 if load_ref('%ans') then   pause,end,

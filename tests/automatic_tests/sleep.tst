@@ -2,7 +2,7 @@ getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/Examples_eng/other/sleep_data.ref','r');
 tic;sleep(6000);toc;
-if load_ref('toc') then   pause,end,
+if load_ref('%ans') then   pause,end,
 
 xdel_run(winsid());
 

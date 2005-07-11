@@ -1,8 +1,8 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/Examples_eng/other/ls_data.ref','r');
-%ans=ls();
-if load_ref_nocheck('%ans') then   pause,end,
+ls;
+if load_ref('%ans') then   pause,end,
 
 %ans = ls('SCI/macros/util/*.sci');
 if load_ref('%ans') then   pause,end,
