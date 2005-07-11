@@ -10,13 +10,13 @@ Name                     Type           Size           Bytes
  
 whos                     function                      7688         
 %U                       constant       1 by 1         24           
-%CMP                     function                      16016        
+%CMP                     function                      16024        
 xbasc_run                function                      5448         
 clf_run                  function                      6928         
 xdel_run                 function                      5456         
 reinit_for_test          function                      2904         
-load_ref_nocheck         function                      1144         
-load_ref                 function                      1264         
+load_ref_nocheck         function                      1696         
+load_ref                 function                      1864         
 bugmes                   function                      256          
 scicos_pal               string         12 by 2        2048         
 %helps                   string         27 by 2        16           
@@ -28,7 +28,7 @@ MSDOS                    boolean        1 by 1         16
 SCI                      string         1 by 1         112          
 sparselib                library                       280          
 xdesslib                 library                       2864         
-percentlib               library                       12760        
+percentlib               library                       12952        
 polylib                  library                       880          
 intlib                   library                       1368         
 elemlib                  library                       1784         
@@ -52,7 +52,7 @@ mtlblib                  library                       5552
 %s                       polynomial     1 by 1         56           
 %nan                     constant       1 by 1         24           
 %inf                     constant       1 by 1         24           
-COMPILER                 string         1 by 1         32           
+COMPILER                 string         1 by 1         40           
 %gtk                     boolean        1 by 1         24           
 %pvm                     boolean        1 by 1         24           
 %tk                      boolean        1 by 1         24           
@@ -91,7 +91,7 @@ Name                     Type           Size           Bytes
 %_opt                    string         1 by 1         48           
 %_sel                    string         1 by 1         32           
 %U                       constant       1 by 1         24           
-%CMP                     function                      16016        
+%CMP                     function                      16024        
 %helps                   string         27 by 2        16           
 %F                       boolean        1 by 1         24           
 %T                       boolean        1 by 1         24           

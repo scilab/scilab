@@ -5,8 +5,8 @@ chdir(TMPDIR);
 %ans = pwd();
 if load_ref_nocheck('%ans') then   pause,end,
 
-cd;
-if load_ref_nocheck('cd') then   pause,end,
+cd();
+if load_ref_nocheck('%ans') then   pause,end,
 
 %ans = cd('SCI');
 if load_ref_nocheck('%ans') then   pause,end,

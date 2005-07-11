@@ -12,9 +12,9 @@ chdir(TMPDIR);
 if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
-cd;
+cd();
  
-if load_ref_nocheck('cd') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 %ans = cd('SCI');

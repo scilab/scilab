@@ -7,7 +7,7 @@ reinit_for_test()
  
 timer();A = rand(100, 100);%ans = timer();
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 xdel_run(winsid());

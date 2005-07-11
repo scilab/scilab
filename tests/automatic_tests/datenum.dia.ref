@@ -7,7 +7,7 @@ reinit_for_test()
  
 %ans = datenum();
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
  
