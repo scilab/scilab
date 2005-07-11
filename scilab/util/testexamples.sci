@@ -2,13 +2,26 @@ function r=load_ref(name)
   if exists(name)==0 then r=%f;return,end
   v=evstr(name)
   if type(v) == 9 then   v = ghdl2tree(v);end,
-  execstr(name+'_ref=v;load(%U,'''+name+'_ref'+''');r=%CMP(v,'+name+'_ref);')
+  load(%U,name+'_ref');
+  if exists(name+'_ref')==0 then
+    disp('no variable '+name+'_ref in reference file')
+    r=%t
+    return
+  end
+  execstr('r=%CMP(v,'+name+'_ref);')
 endfunction
+
 function r=load_ref_nocheck(name)
   if exists(name)==0 then r=%f;return,end
   v=evstr(name)
   if type(v) == 9 then   v = ghdl2tree(v);end,
-  execstr(name+'_ref=v;load(%U,'''+name+'_ref'+''');r=%f')
+  load(%U,name+'_ref');
+  if exists(name+'_ref')==0 then
+    disp('no variable '+name+'_ref in reference file')
+    r=%t
+    return
+  end
+  r=%f
 endfunction
 
 function reinit_for_test()
@@ -144,73 +157,73 @@ function r=xbasc_run(w)
   if or(winsid()==cur) then xset('window',cur),end
 endfunction
 
-function r=%CMP(A,B)
+function r=%CMP(%A,%B)
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 // this function compares two variables, floating points data are
 // compared using a relative tolerance
   r=%f
   tol=0.00001
-  if type(A)<>type(B) then r=%t,return,end
-  select type(A)
+  if type(%A)<>type(%B) then r=%t,return,end
+  select type(%A)
   case 1 then //float
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    ka=~isnan(A);kb=~isnan(B);
-    if or(ka<>kb)  then  r=%t,return,end
-    if norm(A(ka)-B(kb))/max(1,norm(A(ka)))>tol then  r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    %ka=~isnan(%A);%kb=~isnan(%B);
+    if or(%ka<>%kb)  then  r=%t,return,end
+    if norm(%A(%ka)-%B(%kb))/max(1,norm(%A(%ka)))>tol then  r=%t,return,end
   case 2 then //polynomial
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    if or(degree(A)<>degree(B)) then r=%t,return,end  
-    for k=1:size(A,'*')
-      if %CMP(coeff(A(k)),coeff(B(k))) then r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    if or(degree(%A)<>degree(%B)) then r=%t,return,end  
+    for k=1:size(%A,'*')
+      if %CMP(coeff(%A(k)),coeff(%B(k))) then r=%t,return,end
     end
   case 4 then //boolean
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    if or(A<>B) then  r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    if or(%A<>%B) then  r=%t,return,end
   case 5 then //sparse
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    [ija,A]=spget(A);[ijb,B]=spget(B);
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    [ija,%A]=spget(%A);[ijb,%B]=spget(%B);
     if or(ija<>ijb) then  r=%t,return,end
-    ka=~isnan(A);kb=~isnan(B);
-    if or(ka<>kb)  then  r=%t,return,end
-    if norm(A(ka)-B(ka))/max(1,norm(A(ka)))>tol then  r=%t,return,end
+    %ka=~isnan(%A);%kb=~isnan(%B);
+    if or(%ka<>%kb)  then  r=%t,return,end
+    if norm(%A(%ka)-%B(%ka))/max(1,norm(%A(%ka)))>tol then  r=%t,return,end
   case 6 then //boolean sparse
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    if or(A<>B) then  r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    if or(%A<>%B) then  r=%t,return,end
   case 8 then //int
-    if or(inttype(A)<>inttype(B)) then  r=%t,return,end
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    if or(A<>B) then  r=%t,return,end
+    if or(inttype(%A)<>inttype(%B)) then  r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    if or(%A<>%B) then  r=%t,return,end
   case 9 then //handle
-    if or(size(A)<>size(B)) then  r=%t,return,end
-//    if or(A<>B) then  r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+//    if or(%A<>%B) then  r=%t,return,end
   case 10 then //string
-    if or(size(A)<>size(B)) then  r=%t,return,end
-    if or(A<>B) then  r=%t,return,end
+    if or(size(%A)<>size(%B)) then  r=%t,return,end
+    if or(%A<>%B) then  r=%t,return,end
   case 13 then //compiled function
-     if A<>B then  r=%t,return,end
+     if %A<>%B then  r=%t,return,end
   case 14 then //library
-     if A<>B then  r=%t,return,end
+     if %A<>%B then  r=%t,return,end
   case 15 then //list
-     if or(lstsize(A)<>lstsize(B)) then  r=%t,return,end
-     if or(definedfields(A)<>definedfields(B)) then r=%t,return,end
-     for k = definedfields(A)
-       if %CMP(A(k),B(k)) then r=%t,return,end
+     if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
+     if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
+     for k = definedfields(%A)
+       if %CMP(%A(k),%B(k)) then r=%t,return,end
      end
   case 16 then //tlist
-     if or(lstsize(A)<>lstsize(B)) then  r=%t,return,end
-     if or(definedfields(A)<>definedfields(B)) then r=%t,return,end
-     for k = definedfields(A)
-       if %CMP(A(k),B(k)) then r=%t,return,end
+     if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
+     if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
+     for k = definedfields(%A)
+       if %CMP(%A(k),%B(k)) then r=%t,return,end
      end
   case 17 then //mlist
-     if or(lstsize(A)<>lstsize(B)) then  r=%t,return,end
-     if or(definedfields(A)<>definedfields(B)) then r=%t,return,end
-     for k = definedfields(A)
-       if %CMP(getfield(k,A),getfield(k,B)) then r=%t,return,end
+     if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
+     if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
+     for k = definedfields(%A)
+       if %CMP(getfield(k,%A),getfield(k,%B)) then r=%t,return,end
      end
   case 130 then
-    if A<>B then  r=%t,return,end
+    if %A<>%B then  r=%t,return,end
   else
     r=%f
   end
