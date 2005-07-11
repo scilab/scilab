@@ -30,7 +30,7 @@
  added by HUYNH Olivier on the 10/06/2004 09:55
  hpux uses time.h instead of select.h
 **/
-#ifdef hpux 
+#ifdef hpuxx 
 	#include <sys/time.h>
 #else 
 #include <sys/select.h>
