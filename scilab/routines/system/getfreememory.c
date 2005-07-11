@@ -20,7 +20,7 @@ int C2F(intgetfreememory) _PARAMS((char *fname))
 	MEMORYSTATUS stat;
 #endif
 
-#if defined(hpux)
+#if defined(hpuxx)
 	struct pst_static pst;
 #endif
 
@@ -34,9 +34,10 @@ int C2F(intgetfreememory) _PARAMS((char *fname))
 	GlobalMemoryStatus (&stat);
 	memorysizeKO=stat.dwAvailPhys/kooctet;
 #else
-	#if defined(hpux)
-		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
-		memorysizeKO=(pst.psd_free)/kooctet;
+	#if defined(hpuxx)
+	/*	pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
+		memorysizeKO=(pst.psd_free)/kooctet;*/
+		memorysizeKO=0;
 	#else /* Linux ,Solaris and others */
 		#if defined(__APPLE__) 
 		{

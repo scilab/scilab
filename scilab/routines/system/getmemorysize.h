@@ -8,11 +8,11 @@
 #ifdef WIN32
 	#include <windows.h>
 #else
-	#if defined(hpux)
+	#if defined(hpuxx)
 		#include <sys/param.h>
 		#include <sys/pstat.h>
 	#else
-		#if defined(__APPLE__) 
+		#if defined(__APPLE__)
 			#include <sys/types.h>
 			#include <sys/sysctl.h>
 		#else	 /* Linux ,Solaris and others */
