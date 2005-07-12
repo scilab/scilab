@@ -163,7 +163,7 @@ int intPlaysound (char *fname,unsigned long fname_len)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   if ( Rhs == 2 ) 
     {
-      GetRhsVar(1,"c",&m2,&n2,&l2);
+      GetRhsVar(2,"c",&m2,&n2,&l2);
       command = cstk(l2);
     }
   /*** first call to get the size **/
