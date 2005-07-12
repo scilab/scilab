@@ -32,8 +32,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/07/11 14:46:13 $
- *  $Revision: 1.5 $
+ *  $Date: 2005/07/12 11:42:08 $
+ *  $Revision: 1.6 $
  */
 
 
@@ -462,7 +462,7 @@
 
 
 /* hp9000 machine constants */
-#ifdef hpuxx
+#ifdef hpux
 /* These values are correct for hp9000/300.  Should be correct for others. */
 #   define  MACHINE_RESOLUTION      8.9e-15
 #   define  LARGEST_REAL            1.79769313486231e+308
