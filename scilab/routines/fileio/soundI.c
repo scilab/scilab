@@ -128,7 +128,7 @@ int intsloadwave(char *fname,unsigned long fname_len)
 /* Play Sound for windows */
 /* Allan CORNET 18/01/2004 */
 
-int C2F(playsound)(char *fname,unsigned long fname_len)
+int C2F(playsound)(char *fname,char *command,unsigned long fname_len)
 {
 
 #ifdef WIN32
@@ -142,7 +142,7 @@ int C2F(playsound)(char *fname,unsigned long fname_len)
    */
   char system_cmd[FILENAME_MAX+10];
   int rep ;
-  sprintf(system_cmd,"play  %s",filename);
+  sprintf(system_cmd,"%s  %s",(command == NULL) ? "play": command, filename);
   rep = system(system_cmd);
   return rep;
 #endif 
@@ -155,15 +155,21 @@ int C2F(playsound)(char *fname,unsigned long fname_len)
  ******************************************/
 int intPlaysound (char *fname,unsigned long fname_len)
 {
-  int m1,n1,l1,un=1,rep,l2;
-  CheckRhs(1,1);
+  char *command=NULL;
+  int m1,n1,l1,un=1,rep,m2,n2,l2;
+  CheckRhs(1,2);
   CheckLhs(0,1);
   /*  checking variable file */
   GetRhsVar(1,"c",&m1,&n1,&l1);
+  if ( Rhs == 2 ) 
+    {
+      GetRhsVar(1,"c",&m2,&n2,&l2);
+      command = cstk(l2);
+    }
   /*** first call to get the size **/
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
-  rep = C2F(playsound)(filename,strlen(filename));
+  rep = C2F(playsound)(filename,command,strlen(filename));
   if ( Lhs == 1 ) 
     {
       CreateVar(2,"d",&un,&un,&l2);
