@@ -20,7 +20,7 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 	MEMORYSTATUS stat;
 #endif
 
-#if defined(hpuxx)
+#if defined(hpux)
 	struct pst_static pst;
 #endif
 
@@ -34,7 +34,7 @@ int C2F(intgetmemorysize) _PARAMS((char *fname))
 	GlobalMemoryStatus (&stat);
 	memorysizeKO=stat.dwTotalPhys/kooctet;
 #else
-	#if defined(hpuxx)
+	#if defined(hpux)
 		pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
 		memorysizeKO=(pst.physical_memory)/kooctet;
 	#else 

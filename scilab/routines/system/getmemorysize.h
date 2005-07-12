@@ -8,7 +8,7 @@
 #ifdef WIN32
 	#include <windows.h>
 #else
-	#if defined(hpuxx)
+	#if defined(hpux)
 		#include <sys/param.h>
 		#include <sys/pstat.h>
 	#else
