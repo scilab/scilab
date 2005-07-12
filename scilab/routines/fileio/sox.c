@@ -149,7 +149,7 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,
  ************************************************************/
 
 int C2F(savewave)(char * filename,double *res,integer * rate,
-		  integer *size_res,integer *ierr)
+		  integer *size_res,integer *nchannels, integer *ierr)
 {
   long buf[BUFSIZ];
   long i,size_max;
@@ -181,7 +181,7 @@ int C2F(savewave)(char * filename,double *res,integer * rate,
   informat.info.size = WORD;
   informat.info.rate = *rate ;
   informat.info.style = SIGN2;
-  informat.info.channels =1;
+  informat.info.channels = *nchannels;
 
   m=1.0;
   /* 

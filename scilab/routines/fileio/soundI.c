@@ -44,7 +44,7 @@ long int lin,lout;
 
 int intssavewave(char *fname,unsigned long fname_len)
 {
-  int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050;
+  int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050,channels;
   int un=1;
   Nbvars=0;
   CheckRhs(2,3);
@@ -63,7 +63,8 @@ int intssavewave(char *fname,unsigned long fname_len)
   CreateVar(Rhs+1, "d", &un,&un, &l4);
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
-  C2F(savewave)(filename,stk(l2),&rate,&mn2,&err);
+  channels = m2;
+  C2F(savewave)(filename,stk(l2),&rate,&mn2,&channels,&err);
   if (err >  0) {
     /*sciprint("%s: Internal Error \r\n",fname);*/
     Error(10000);
@@ -82,7 +83,7 @@ int intssavewave(char *fname,unsigned long fname_len)
 int intsloadwave(char *fname,unsigned long fname_len)
 {
   WavInfo Wi;
-  int m1,n1,l1,m2=1,n2,l2,err=0,un=1,eight=8,l3,m4,n4,l4;
+  int m1,n1,l1,m2=1,n2,nn2,l2,err=0,un=1,eight=8,l3,m4,n4,l4;
   Nbvars=0;
   CheckRhs(1,1);
   CheckLhs(1,3);
@@ -97,7 +98,10 @@ int intsloadwave(char *fname,unsigned long fname_len)
     Error(10000);
     return 0;
   };
-  CreateVar(2,"d",&m2,&n2,&l2);
+  /* using channels */
+  m2 =Wi.wChannels;
+  nn2 = n2/m2;
+  CreateVar(2,"d",&m2,&nn2,&l2);
   CreateVar(3,"d",&un,&eight,&l3);
   
   *stk(l3)   = Wi.wFormatTag;	/* data format */

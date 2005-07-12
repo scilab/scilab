@@ -6,7 +6,7 @@
 /* Allan CORNET 18/01/2004 */
 int C2F(playsound) __PARAMS((char *filename,char *command,unsigned long fname_len));
 int C2F(loadwave) __PARAMS((char *filename, double *res, integer *size_res, integer flag,WavInfo *, integer *ierr));
-int C2F(savewave) __PARAMS((char *filename, double *res, integer *rate, integer *size_res, integer *ierr));
+int C2F(savewave) __PARAMS((char *filename, double *res, integer *rate, integer *size_res,integer *nchannels, integer *ierr));
 
 void C2F(mopen) __PARAMS((int *fd, char *file, char *status, int *f_swap, double *res, int *error));
 void C2F(mclose) __PARAMS((integer *fd, double *res));
