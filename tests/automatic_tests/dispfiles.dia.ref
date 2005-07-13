@@ -8,8 +8,8 @@ reinit_for_test()
 %ans = dispfiles();
 |File name                                                        |Unit|Type|Options       |
 |------------------------------------------------------------------------------------------|
-|TMPDIR/tmp.dia                                            |1   |C   |w b           |
-|/usr/local/lib/scilab/tests/Examples_eng/other/dispfiles_data.ref|2   |C   |r             |
+|TMPDIR/tmp.dia                                           |1   |C   |w b           |
+|SCI/tests/Examples_eng/other/dispfiles_data.ref|2   |C   |r             |
 |Input                                                            |5   |F77 |old formatted |
 |Output                                                           |6   |F77 |new formatted |
  
