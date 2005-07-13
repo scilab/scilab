@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/xgraduate_data.ref','r');
+%U=mopen('SCI/tests/Examples_eng/graphic/xgraduate_data.ref','r');
 [x1,xa,np1,np2,kMinr,kMaxr,ar] = xgraduate(-0.3, 0.2);
 if load_ref('ar') then   pause,end,
 if load_ref('kMaxr') then   pause,end,

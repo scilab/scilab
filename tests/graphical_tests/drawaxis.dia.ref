@@ -88,32 +88,6 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 xdel_run(winsid());
  
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
- handle of type Axis unhandled   
- 
  
 mclose(%U);
  
