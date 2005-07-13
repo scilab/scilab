@@ -41,7 +41,7 @@ elemlib //displays the contents of the library
 A=rand(3,3);
 cosm(A) //loads cosm and executes it
 
-who // now cosm is a variable
+whos -name cosm // now cosm is a variable
 
 elemlib.sinm //loads sinm from the library
 
