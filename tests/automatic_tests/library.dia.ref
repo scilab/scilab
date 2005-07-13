@@ -22,33 +22,14 @@ if load_ref('%ans') then   bugmes();quit;end,
 //loads cosm and executes it
  
  
-who;
-your variables are...
+%ans = whos('-name', 'cosm');
+Name                     Type           Size           Bytes        
  
- %ans      cosm      A         %U        %CMP      xbasc_run           
- clf_run   xdel_run  reinit_for_test     load_ref_nocheck    load_ref  
- bugmes    scicos_pal          %helps    home      SCIHOME   PWD       
- TMPDIR    MSDOS     SCI       sparselib           xdesslib  
- percentlib          polylib   intlib    elemlib   utillib   statslib  
- alglib    siglib    optlib    autolib   roblib    soundlib  metalib   
- armalib   tkscilib  tdcslib   s2flib    mtlblib   %F        %T        
- %z        %s        %nan      %inf      COMPILER  %gtk      %pvm      
- %tk       $         %t        %f        %eps      %io       %i        
- %e        
- using      11628 elements  out of    5000000.
-          and         58 variables out of       9231
+cosm                     function                      2216         
  
-your global variables are...
+if load_ref('%ans') then   bugmes();quit;end,
  
- LANGUAGE  %helps    demolist  %browsehelp         LCC       
- %scipad_language    
- using       1105 elements  out of      11000.
-          and          6 variables out of        767
- 
- 
-if load_ref('who') then   bugmes();quit;end,
- 
-/// now cosm is a variable
+// now cosm is a variable
  
  
 %ans = elemlib('sinm');

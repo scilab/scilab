@@ -10,7 +10,7 @@ if load_ref('%ans') then   pause,end,
 
 
 fd = mopen('SCI/scilab.star', 'r');
-if load_ref('fd') then   pause,end,
+if load_ref_nocheck('fd') then   pause,end,
 
 %ans = mgetl(fd, 10);
 if load_ref('%ans') then   pause,end,

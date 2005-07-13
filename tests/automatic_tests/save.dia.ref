@@ -26,7 +26,7 @@ load('val.dat', 'a', 'b');
  
 fd = mopen('TMPDIR/foo', 'wb');
  
-if load_ref('fd') then   bugmes();quit;end,
+if load_ref_nocheck('fd') then   bugmes();quit;end,
  
  
 for k = 1:4,  x = k^2;%ans = save(fd, x, k);
@@ -40,7 +40,7 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 fd = mopen('TMPDIR/foo', 'rb');
  
-if load_ref('fd') then   bugmes();quit;end,
+if load_ref_nocheck('fd') then   bugmes();quit;end,
  
  
 for i = 1:4,  load(fd, 'x', 'k');x;
@@ -59,7 +59,7 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 fd = mopen('TMPDIR/foo', 'r+');
  
-if load_ref('fd') then   bugmes();quit;end,
+if load_ref_nocheck('fd') then   bugmes();quit;end,
  
  
 %ans = mseek(0, fd, 'end');

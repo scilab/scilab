@@ -16,7 +16,7 @@ A = 1:10;
 
 //create the *.bin files in libdir
 libdir = TMPDIR;
-if load_ref('libdir') then   pause,end,
+if load_ref_nocheck('libdir') then   pause,end,
 
 save(libdir + '/myplus.bin', myplus);
 save(libdir + '/yourplus.bin', yourplus);
@@ -27,7 +27,7 @@ mputl(['myplus';'yourplus';'A'], TMPDIR + '/names');
 
 //build the library containing myplus and yourplus
 xlib = lib(libdir + '/');
-if load_ref('xlib') then   pause,end,
+if load_ref_nocheck('xlib') then   pause,end,
 
 
 //erase the variables

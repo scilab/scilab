@@ -13,7 +13,7 @@ load('val.dat', 'a', 'b');
 
 // sequential save into a file
 fd = mopen('TMPDIR/foo', 'wb');
-if load_ref('fd') then   pause,end,
+if load_ref_nocheck('fd') then   pause,end,
 
 for k = 1:4,  x = k^2;%ans = save(fd, x, k);
   if load_ref('%ans') then   pause,end,
@@ -22,7 +22,7 @@ end,
 if load_ref('%ans') then   pause,end,
 
 fd = mopen('TMPDIR/foo', 'rb');
-if load_ref('fd') then   pause,end,
+if load_ref_nocheck('fd') then   pause,end,
 
 for i = 1:4,  load(fd, 'x', 'k');x;
   if load_ref('x') then   pause,end,
@@ -35,7 +35,7 @@ if load_ref('%ans') then   pause,end,
 
 // appending variables to an old save file
 fd = mopen('TMPDIR/foo', 'r+');
-if load_ref('fd') then   pause,end,
+if load_ref_nocheck('fd') then   pause,end,
 
 %ans = mseek(0, fd, 'end');
 if load_ref('%ans') then   pause,end,

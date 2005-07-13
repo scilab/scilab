@@ -10,9 +10,9 @@ A = rand(3, 3);
 if load_ref('%ans') then   pause,end,
 //loads cosm and executes it
 
-who;
-if load_ref('who') then   pause,end,
-/// now cosm is a variable
+%ans = whos('-name', 'cosm');
+if load_ref('%ans') then   pause,end,
+// now cosm is a variable
 
 %ans = elemlib('sinm');
 if load_ref('%ans') then   pause,end,

@@ -65,9 +65,6 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 if load_ref('%ans') then   bugmes();quit;end,
 Warning :redefining function: A                       
-         inside function: %CMP                    
- 
-Warning :redefining function: A                       
          inside function: norm                    
  
 Warning :redefining function: A                       
@@ -79,9 +76,6 @@ Warning :redefining function: A
 A;
  
 if load_ref('A') then   bugmes();quit;end,
-Warning :redefining function: A                       
-         inside function: %CMP                    
- 
 Warning :redefining function: A                       
          inside function: norm                    
  

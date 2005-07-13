@@ -5,67 +5,9 @@ reinit_for_test()
  
 %U=mopen('SCI/tests/Examples_eng/other/whos_data.ref','r');
  
-%ans = whos();
-Name                     Type           Size           Bytes        
+//%ans = whos(); removed because of varying display
  
-whos                     function                      7688         
-%U                       constant       1 by 1         24           
-%CMP                     function                      16024        
-xbasc_run                function                      5448         
-clf_run                  function                      6928         
-xdel_run                 function                      5456         
-reinit_for_test          function                      2904         
-load_ref_nocheck         function                      1696         
-load_ref                 function                      1864         
-bugmes                   function                      256          
-scicos_pal               string         12 by 2        2048         
-%helps                   string         27 by 2        16           
-home                     string         1 by 1         72           
-SCIHOME                  string         1 by 1         160          
-PWD                      string         1 by 1         208          
-TMPDIR                   string         1 by 1         80           
-MSDOS                    boolean        1 by 1         16           
-SCI                      string         1 by 1         112          
-sparselib                library                       280          
-xdesslib                 library                       2864         
-percentlib               library                       12952        
-polylib                  library                       880          
-intlib                   library                       1368         
-elemlib                  library                       1784         
-utillib                  library                       4472         
-statslib                 library                       1280         
-alglib                   library                       1336         
-siglib                   library                       1720         
-optlib                   library                       608          
-autolib                  library                       2144         
-roblib                   library                       1192         
-soundlib                 library                       464          
-metalib                  library                       3880         
-armalib                  library                       488          
-tkscilib                 library                       824          
-tdcslib                  library                       752          
-s2flib                   library                       1912         
-mtlblib                  library                       5552         
-%F                       boolean        1 by 1         24           
-%T                       boolean        1 by 1         24           
-%z                       polynomial     1 by 1         56           
-%s                       polynomial     1 by 1         56           
-%nan                     constant       1 by 1         24           
-%inf                     constant       1 by 1         24           
-COMPILER                 string         1 by 1         40           
-%gtk                     boolean        1 by 1         24           
-%pvm                     boolean        1 by 1         24           
-%tk                      boolean        1 by 1         24           
-$                        polynomial     1 by 1         56           
-%t                       boolean        1 by 1         24           
-%f                       boolean        1 by 1         24           
-%eps                     constant       1 by 1         24           
-%io                      constant       1 by 2         32           
-%i                       constant       1 by 1         32           
-%e                       constant       1 by 1         24           
-%pi                      constant       1 by 1         24           
- 
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
  
