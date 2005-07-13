@@ -1,3 +1,5 @@
+SHELL = /bin/sh
+SCIDIR=../..
 
 include Path.incl 
 

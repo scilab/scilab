@@ -1,5 +1,5 @@
 SHELL = /bin/sh
-SCIDIR=../../
+SCIDIR=../..
 
 include $(SCIDIR)/Makefile.incl
 
