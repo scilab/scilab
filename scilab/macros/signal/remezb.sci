@@ -1,5 +1,5 @@
-function [an]=remezb(nc,fg,ds,wt)
-//<an>=remezb(nc,fg,ds,wt)
+function an=remezb(nc,fg,ds,wt)
+//an=remezb(nc,fg,ds,wt)
 //Minimax approximation of a frequency domain
 //magnitude response.  The approximation takes
 //the form
@@ -61,4 +61,5 @@ function [an]=remezb(nc,fg,ds,wt)
 //call remez.f
  
    an=remez(iext,ds,fg,wt);
+   an=an(1:nc)
 endfunction
