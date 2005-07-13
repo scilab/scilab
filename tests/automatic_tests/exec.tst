@@ -9,8 +9,8 @@ if load_ref('%ans') then   pause,end,
 %ans = exec(TMPDIR + '/myscript');
 if load_ref('%ans') then   pause,end,
 
-who;
-if load_ref('who') then   pause,end,
+%ans = whos('-name', 'a ');
+if load_ref('%ans') then   pause,end,
 
 
 // create a function
@@ -26,8 +26,9 @@ if load_ref('%ans') then   pause,end,
 
 // a is a variable created in the environment of the function foo
 //    it is destroyed when foo returns
-who;
-if load_ref('who') then   pause,end,
+%ans = whos('-name', 'a ');
+if load_ref('%ans') then   pause,end,
+
 
 
 x = 1;
@@ -37,8 +38,8 @@ if load_ref('x') then   pause,end,
 if load_ref('%ans') then   pause,end,
 
 // a and y are created in the current environment
-who;
-if load_ref('who') then   pause,end,
+%ans = whos('-name', 'a ');
+if load_ref('%ans') then   pause,end,
 
 xdel_run(winsid());
 
