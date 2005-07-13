@@ -5,23 +5,23 @@
   <TITLE>playsnd</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="playsnd">  sound player facility</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="playsnd">sound player facility</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[]=playsnd(y)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[]=playsnd(y,fs,bits)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[]=playsnd(y,rate,bits [,command])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real vector</SP>
+          <SP>: A matrix. Each line descibe a channel</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>fs</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real number, sampling frequency. Unused yet.</SP>
+          <SP>: real number, sampling frequency (default value is 22050).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -30,17 +30,25 @@
           <SP>: real number, number of bits (usually 8 or 16). Unused yet.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>command</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Only used on Unix systems it gives the name of the command to use for playing sound 
+          (wav) files. The defaut value is <VERB>play</VERB>. If set <VERB>/dev/audio</VERB> then 
+          a 8 bits mu-law raw sound file is created and send to <VERB>/dev/audio</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>Redirects a linear signal to <VERB>/dev/audio/</VERB>.</P>
+    <P>Plays a multi channel signal given by a Scilab matrix were sound is sampled at rate given by
+    <VERB>rate</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-  y=wavread('SCI/demos/signal/sound/chimes.wav');
+  // a two channel signal 
+  y=loadwave('SCI/demos/signal/sound/chimes.wav');
   playsnd(y)
-
-
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

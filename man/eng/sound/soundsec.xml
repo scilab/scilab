@@ -9,7 +9,7 @@
 
   <DATE>july 2005</DATE>
 
-  <SHORT_DESCRIPTION name="sound">generates n sampled seconds of time
+  <SHORT_DESCRIPTION name="soundsec">generates n sampled seconds of time
   parameter</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -42,15 +42,12 @@
   </DESCRIPTION>
 
   <EXAMPLE>
-
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 // Then we generate the sound.
-s=sin(440*t);
+s=sin(2*%pi*440*t);
 analyze(s,200,600,22050);
- 
-  </EXAMPLE>
-
+   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>playsnd</LINK>

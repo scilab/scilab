@@ -58,6 +58,15 @@
     <P><VERB>wavwrite(y,Fs,bits,wavfile)</VERB> selects the number of bits in
     the encoder.  Allowable settings are bits=8 and bits=16.</P>
   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+  A=matrix(1:6,2,3);
+  wavwrite(A/6,TMPDIR+'/foo.wav');
+  B=wavread(TMPDIR+'/foo.wav');
+  maxi(abs(A- round(B*6)))
+ ]]>
+  </EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>auread</LINK>

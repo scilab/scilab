@@ -23,7 +23,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>Fs</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: integer, frequency sampling in Hz.</SP>
+          <SP>: integer, frequency sampling in Hz (number of samples per second).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -52,15 +52,12 @@
   <EXAMPLE>
 <![CDATA[
   wavread('SCI/demos/signal/sound/chimes.wav','size')
-
   [y,Fs,bits]=wavread('SCI/demos/signal/sound/chimes.wav');Fs,bits
   subplot(2,1,1)
-  plot2d(y(:,1))
+  plot2d(y(1,:)) // first channel 
   subplot(2,1,2)
-  plot2d(y(:,2))
-  
+  plot2d(y(2,:)) // second channel
   y=wavread('SCI/demos/signal/sound/chimes.wav',[1 5]) //the first five samples
-
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

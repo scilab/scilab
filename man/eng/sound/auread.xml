@@ -59,6 +59,16 @@
     <P><VERB>auread(aufile,'snd')</VERB> returns information about the sample and data
     as a tlist.</P>
   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+  y=wavread('SCI/demos/signal/sound/chimes.wav');
+  // default is 8-bits mu-law
+  auwrite(y,TMPDIR+'/tmp.au');
+  y1=auread(TMPDIR+'/tmp.au');
+  maxi(abs(y-y1))
+ ]]>
+  </EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>savewave</LINK>

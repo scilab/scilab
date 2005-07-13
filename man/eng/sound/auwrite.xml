@@ -53,16 +53,24 @@
     string aufile.  The data should be arranged with one channel
     per column.  Amplitude values outside the range [-1,+1] are
     ignored.
-    Supports multi-channel data for 8-bit mu-law, and 8- and 16-bit linear formats.</P>
+    Supports multi-channel data for 8-bit mu-law, and 8, 16, 32, 64 bits linear formats.</P>
     <P><VERB>auwrite(y,Fs,aufile)</VERB> specifies in <VERB>Fs</VERB> the sample rate of the data
     in Hertz.</P>
     <P><VERB>auwrite(y,Fs,bits,aufile)</VERB> selects the number of bits in
-    the encoder.  Allowable settings are bits=8 and bits=16.
+    the encoder. Allowable settings are bits in [8,16,32,64].
      
     <VERB>auwrite(y,Fs,bits,method,aufile)</VERB> allows selection of the
     encoding method, which can be either 'mu' or 'linear'.
-    Note that mu-law files must be 8-bit. By default, method='mu'.</P>
+    Note that bits must be 8 for 'mu' choice. The default method is 8-bits mu-law enconding.</P>
   </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+  A=matrix(1:6,2,3);
+  auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
+  B=auread(TMPDIR+'/foo.au');
+  maxi(abs(A- round(B*6)))
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>auread</LINK>
