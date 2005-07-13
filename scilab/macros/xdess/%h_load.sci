@@ -89,12 +89,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(title,"font_style"       , mget(1,'c',fd));
     set(title,"font_size"        , mget(1,'c',fd));
     set(x_label,"visible"        , toggle(mget(1,'c',fd)))
-    set(x_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
+    set(x_label,"text"           , ascii(mget(mget(1,'il',fd),'c',fd)))
     set(x_label,"foreground"     , mget(1,'il',fd));
     set(x_label,"font_style"     , mget(1,'c',fd));
     set(x_label,"font_size"      , mget(1,'c',fd));
     set(y_label,"visible"        , toggle(mget(1,'c',fd)))
-    set(y_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
+    set(y_label,"text"           , ascii(mget(mget(1,'il',fd),'c',fd)))
     set(y_label,"foreground"     , mget(1,'il',fd));
     set(y_label,"font_style"     , mget(1,'c',fd));
     set(y_label,"font_size"      , mget(1,'c',fd));
@@ -102,7 +102,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if view=='3d' then
       z_label=a.z_label
       set(z_label,"visible"        , toggle(mget(1,'c',fd)))
-      set(z_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
+      set(z_label,"text"           , ascii(mget(mget(1,'il',fd),'c',fd)))
       set(z_label,"foreground"     , mget(1,'il',fd));
       set(z_label,"font_style"     , mget(1,'c',fd));
       set(z_label,"font_size"      , mget(1,'c',fd));
