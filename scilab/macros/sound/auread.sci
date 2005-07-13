@@ -116,7 +116,7 @@ function [new_snd]=read_sndata(fid,snd,ext)
   data=mget(snd('chans')*nSPCext,dtype,fid);
   // Rearrange data into a matrix with one channel per column:
   // XXXX A finir 
-  data = matrix(data,snd('chans'),nSPCext)';
+  data = matrix(data,snd('chans'),nSPCext);
   // Convert and normalize data range:
   if snd('format')==1 then
     // 8-bit mu-law
