@@ -787,6 +787,11 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 	pTEXT_FEATURE (pobj)->wh[0] = wh[0];
 	pTEXT_FEATURE (pobj)->wh[1] = wh[1];
       }
+      else {
+	pTEXT_FEATURE (pobj)->wh[0] = 0.0;
+	pTEXT_FEATURE (pobj)->wh[1] = 0.0;
+      }
+
       pTEXT_FEATURE (pobj)->z = 0.0; /**DJ.Abdemouche 2003**/
       if (sciInitFontContext (pobj) == -1)
 	{
