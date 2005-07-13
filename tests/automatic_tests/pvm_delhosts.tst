@@ -1,9 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/pvm_delhosts_data.ref','r');
-info = pvm_delhosts(['isostar','loop']);
-if load_ref('info') then   pause,end,
-
-xdel_run(winsid());
-
-mclose(%U);

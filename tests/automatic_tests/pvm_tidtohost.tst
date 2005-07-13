@@ -1,9 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/pvm_tidtohost_data.ref','r');
-dtid = pvm_tidtohost(pvm_mytid());
-if load_ref('dtid') then   pause,end,
-
-xdel_run(winsid());
-
-mclose(%U);
