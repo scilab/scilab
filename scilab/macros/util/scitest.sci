@@ -1,14 +1,15 @@
-function scitest(tstfile,force,error_check,keep_prompt)
+function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
 // if error_check is %t then execution errors are reported 
 // if error_check is %f then only test checked error are detected 
 // (see examples in tests directory) 
 // if keep_prompt is %t the the prompt is kept in the dia file 
 // this can be useful for producing demos 
   [lhs,rhs]=argn(0);
-  if rhs <= 1 then force = %f ; end 
-  if rhs <= 2 then error_check = %f ; end 
-  if rhs <= 3 then keep_prompt = %f ; end 
-  // check suffix in tstfile 
+  if exists('force','local')==0 then force = %f ; end 
+  if exists('error_check','local')==0 then error_check = %f ; end 
+  if exists('keep_prompt','local')==0 then keep_prompt = %f ; end 
+  if exists('postscript_graphics','local')==0 then postscript_graphics = %f ; end 
+
   ind=strindex(tstfile,"."); 
   if ind==[] then 
     diafile = tstfile+'.tst'
@@ -39,14 +40,22 @@ function scitest(tstfile,force,error_check,keep_prompt)
   txt=strsubst(txt,'-->','@#>') 
   //to avoid suppression of input --> with prompts
   txt=strsubst(txt,'halt()','');
-  
+ 
+  if postscript_graphics then 
+    pg1='driver(''Pos'');xinit('''+tmpfiles+'gr'+''');',
+    pg2='xend();'
+  else
+    pg1=''
+    pg2=''
+  end
   head='mode(3);clear;lines(28,72);lines(0);'..
        +'deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');'..
        +'predef(''all'');'..
        +'diary('''+tmpfiles+'dia'+''');'..
        +'mprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);'..
-       +'driver(''Pos'');xinit('''+tmpfiles+'gr'+''');';
-  tail="diary(0);xend();exit;"
+       +pg1;
+  
+  tail="diary(0);"+pg2+"exit;"
   
   txt=[head;
        txt;
@@ -67,6 +76,8 @@ function scitest(tstfile,force,error_check,keep_prompt)
   
   dia=strsubst(dia,TMPDIR,'TMPDIR');
   dia=strsubst(dia,TMPDIR1,'TMPDIR');
+  dia=strsubst(dia,TMPDIR1,'TMPDIR');
+  dia=strsubst(dia,SCI,'SCI');
 
   //suppress the prompts
   if keep_prompt == %f then 
