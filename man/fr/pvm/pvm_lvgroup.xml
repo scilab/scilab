@@ -39,11 +39,6 @@
     may be assigned a new instance number. Old instance
     numbers are reassigned to processes calling pvm_joingroup.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-info = pvm_lvgroup( "worker" )
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_joingroup</LINK>

@@ -96,15 +96,7 @@
     <VERB>pvm_spawn</VERB> will start all
     copies on this single machine using the vendor's underlying routines.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-// create an exec file (script)
-write(TMPDIR+'/foo.sce',['a=1';'plot2d()'])
-// start a new Scilab on the same host to execute the script
-[tids, numt] = pvm_spawn(TMPDIR+'/foo.sce',1)
-pvm_kill(tids) //terminate the new scilab
- ]]>
-  </EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm</LINK>

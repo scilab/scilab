@@ -33,11 +33,6 @@
     the call is successful and will be 
     will be &lt; 0 if some error occurs.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-dtid = pvm_tidtohost(pvm_mytid())
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_config</LINK>

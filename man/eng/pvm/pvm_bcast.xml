@@ -67,11 +67,6 @@
     pvm_bcast may not be an efficient communication method on
     some multiprocessors.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-info = pvm_bcast( "worker",[12+%i,4,5;3,4+%i,5],10)
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_joingroup</LINK>

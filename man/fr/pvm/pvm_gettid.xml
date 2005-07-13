@@ -41,11 +41,6 @@
     the call is successful and will be 
     will be &lt; 0 if some error occurs.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-tid = pvm_gettid("worker",0)
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_joingroup</LINK>

@@ -28,11 +28,6 @@
     then <VERB>tid</VERB> is set to
     <VERB>PvmNoParent=-23</VERB></P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-tid = pvm_parent()
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_spawn</LINK>

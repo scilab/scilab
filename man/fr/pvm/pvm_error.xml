@@ -29,12 +29,4 @@
     <P><VERB>pvm_error</VERB> returns the error message corresponding to an PVM error
     code returned by a PVM call.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-if pvm_start()  == 0
-  a = pvm_error(0)
-  pvm_halt()
-end
- ]]>
-  </EXAMPLE>
 </MAN>

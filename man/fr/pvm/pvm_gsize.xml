@@ -37,11 +37,6 @@
     this routine can only guarantee to return the instantaneous
     size of a given group.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-nb_worker = pvm_gsize( "worker" ) 
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_joingroup</LINK>

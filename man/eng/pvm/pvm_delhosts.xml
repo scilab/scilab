@@ -42,11 +42,6 @@
     It is the responsibility of the application developer to make his
     application tolerant of host failure.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-info = pvm_delhosts(["isostar","loop"])
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_addhosts</LINK>

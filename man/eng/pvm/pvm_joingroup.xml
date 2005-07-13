@@ -47,11 +47,6 @@
     joins a group it will get the lowest available instance number.
     A task can be a member of multiple groups simultaneously.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-inum =  pvm_joingroup( "worker" )
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_lvgroup</LINK>

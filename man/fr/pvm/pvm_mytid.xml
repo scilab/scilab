@@ -47,11 +47,6 @@
     <VERB>pvm_mytid</VERB>, the returned value will be 
     will be &lt; 0.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-tid = pvm_mytid()
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_tidtohost</LINK>

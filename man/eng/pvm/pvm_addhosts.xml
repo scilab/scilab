@@ -47,11 +47,6 @@
     as they become available, for example on a weekend, or if the
     application dynamically determines it could use more computational power.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-info = pvm_addhosts(["isostar","loop"])
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_delhosts</LINK>

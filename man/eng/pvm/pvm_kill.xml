@@ -41,11 +41,6 @@
     To kill yourself in C call <VERB>pvm_exit()</VERB> 
     followed by <VERB>quit()</VERB>.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-info = pvm_kill(262153)
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_exit</LINK>

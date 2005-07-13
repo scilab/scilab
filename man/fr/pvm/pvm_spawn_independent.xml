@@ -84,11 +84,6 @@
     <VERB>pvm_spawn_independent</VERB> will start all
     copies on this single machine using the vendor's underlying routines.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-[tids, numt] = pvm_spawn_independent("a.out",2)
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm</LINK>

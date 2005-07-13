@@ -66,12 +66,6 @@
          pvm_reduce  and  then  leaves  the group before the root has
          called pvm_reduce an error may occur.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-A = rand(5,5); msgtag=1
-[buff, info] = pvm_reduce("Max", A, msgtag, "Workers", 0)
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_bcast</LINK>

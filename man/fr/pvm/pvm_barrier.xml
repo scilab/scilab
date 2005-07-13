@@ -51,11 +51,6 @@
     <VERB>pvm_barrier</VERB> is successful and will be 
     will be &lt; 0 if some error occurs.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-info = pvm_barrier( "worker", pvm_gsize("worker") )
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>pvm_joingroup</LINK>
