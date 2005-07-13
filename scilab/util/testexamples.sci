@@ -2,6 +2,7 @@ function r=load_ref(name)
   if exists(name)==0 then r=%f;return,end
   v=evstr(name)
   if type(v) == 9 then   v = ghdl2tree(v);end,
+  if type(v) == 128 then v=128,end //lu handle
   load(%U,name+'_ref');
   if exists(name+'_ref')==0 then
     disp('no variable '+name+'_ref in reference file')
@@ -15,6 +16,7 @@ function r=load_ref_nocheck(name)
   if exists(name)==0 then r=%f;return,end
   v=evstr(name)
   if type(v) == 9 then   v = ghdl2tree(v);end,
+  if type(v) == 128 then v=128,end //lu handle
   load(%U,name+'_ref');
   if exists(name+'_ref')==0 then
     disp('no variable '+name+'_ref in reference file')
