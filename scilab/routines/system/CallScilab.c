@@ -8,6 +8,7 @@
 #else
 #include "../sci_mem_alloc.h" /* MALLOC */
 #endif
+
 /*-----------------------------------------------------------------------------------*/
 static char DefaultScilabStartup[]="SCI/scilab.star";
 static char DefaultScilabQuit[]="SCI/scilab.quit";
@@ -170,13 +171,34 @@ int TerminateScilab(char *ScilabQuit)
 int SendScilabJob(char *job)
 {
   int m,n,lp;
+  double code=-1;
+
   static char buf[1024];
   char format[]="Err=execstr('%s','errcatch','n');quit;";
   
-  sprintf(buf,format,job);
-  C2F(scirun)(buf,strlen(buf));
-  GetMatrixptr("Err", &m, &n, &lp);
+  if ((strlen(format)+strlen(job))>= 1024)
+  {
+	fprintf(stderr,"Error : SendScilabJob string 'job' too long \n");
+	return (int) code;
+  }
 
-  return (int) *stk(lp);
+  sprintf(buf,format,job);
+
+  C2F(scirun)(buf,strlen(buf));
+
+  if ( ! C2F(cmatptr)("Err", &m, &n, &lp,strlen("Err")))
+  {
+	  fprintf(stderr,"Error : SendScilabJob (cmatptr) 'Err' \n");
+  }
+  else
+  {
+	  if (m*n == 1)
+	  {
+		ReadMatrix("Err", &m, &n, &code);
+	  }
+	  else fprintf(stderr,"Error : SendScilabJob (ReadMatrix Err)\n");
+  }
+
+  return (int) code;
 }
 /*-----------------------------------------------------------------------------------*/
