@@ -33,7 +33,7 @@ function [y,Fs,bits]=auread(aufile,ext)
 
   snd = read_sndhdr(fid);
   
-  Fs = snd('rate');
+  Fs = snd('rate')*snd('chans');
   bits = snd('bits');
   
   // Determine if caller wants data:

@@ -62,8 +62,8 @@ function []=auwrite(y,Fs,nbits,method,aufile)
   if length(size(y)) > 2 then
     error('Data array must have 1- or 2-dimensions, only.');
   end
-  if size(y,1)==1 then
-    y = y(:);
+  if size(y,2)==1 then
+    y = y';
   end
  
   // Clip data to normalized range [-1,+1]:
@@ -106,7 +106,7 @@ function [status]=write_sndata(fid,snd,data)
     return
   end
   total_samples = snd('samples')*snd('chans');
-  mput(matrix(data',total_samples,1),dtype,fid);
+  mput(data,dtype,fid);
 endfunction
 
 function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
@@ -152,7 +152,8 @@ function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
   mput(snd('offset'),'ulb',fid); // data location
   mput(snd('databytes'),'ulb',fid); // size in bytes
   mput(snd('format'),'ulb',fid); // data format
-  mput(snd('rate'),'ulb',fid); // sample rate
+  // 
+  mput(snd('rate')/snd('chans'),'ulb',fid); // sample rate
   mput(snd('chans'),'ulb',fid); // channels
   mput(ascii(snd('info')),'c',fid);  // info
 endfunction
