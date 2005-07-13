@@ -25,7 +25,7 @@ function []=auwrite(y,Fs,nbits,method,aufile)
   
 // Get default:
   [nargout,nargin] = argn(0)
-  Fs_pref = 8000;
+  Fs_pref = 22050;
   nbits_pref = 8;
   method_pref = 'mu';
  
