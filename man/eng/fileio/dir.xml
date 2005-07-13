@@ -60,8 +60,8 @@
   <EXAMPLE>
     <![CDATA[
     dir
-    dir SCI/macros/util/*.sci
-    x=dir('SCI/macros/util/f*.sci')
+    dir SCI/macros/util/base*.sci
+    x=dir('SCI/macros/util/base*.sci')
     dt=getdate(x.date);
     mprintf("%s: %d-%d-%d %d:%d:%d\n",x.name,dt(:,[3 2 1 7:9]))
     ]]>
