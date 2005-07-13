@@ -2,12 +2,12 @@ getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/Examples_eng/other/dir_data.ref','r');
 dir;
+if load_ref_nocheck('%ans') then   pause,end,
+
+%ans = dir('SCI/macros/util/base*.sci');
 if load_ref('%ans') then   pause,end,
 
-%ans = dir('SCI/macros/util/*.sci');
-if load_ref('%ans') then   pause,end,
-
-x = dir('SCI/macros/util/f*.sci');
+x = dir('SCI/macros/util/base*.sci');
 if load_ref('x') then   pause,end,
 
 dt = getdate(x('date'));
