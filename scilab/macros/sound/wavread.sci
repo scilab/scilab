@@ -94,9 +94,9 @@ function [y,Fs,bits]=wavread(wavfile,ext)
 	// Caller just wants data size:
 	samples=read_wavedat(fid, Size ,wFormatTag, nChannels, nBitsPerSample,-1)
 	mclose(fid);
-	y = [samples,nChannels];
+	y = [nChannels,samples];
       else
-	 y=read_wavedat(fid, Size ,wFormatTag, nChannels,nBitsPerSample,ext)
+	 y=read_wavedat(fid, Size ,wFormatTag, nChannels,nBitsPerSample,ext);
 	 mclose(fid);
       end
     else
@@ -266,7 +266,7 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
   if junk-fix(junk./2).*2 then
     mseek(1,fid,'cur');
   end
-  Data=Data';
+  // Data=Data';
   // Normalize data range in [-1 1] (min will hit -1)
   if BytesPerSample==1 then
     Data=(Data-128)/128;

@@ -1,8 +1,7 @@
 function [t]=soundsec (n,rate)
 // Copyright INRIA
-// Return n seconds of t parameter.
-[lhs,rhs]=argn(0);
-defaultrate=22050;
-if rhs <=1 ; rate=defaultrate; end;
-t= 0:2*%pi/rate:2*n*%pi;
+// Return n seconds of t parameter at rate rate (sample/sec)
+  [lhs,rhs]=argn(0);
+  if rhs <=1 ; rate=22050; end;
+  t= linspace(0,n,n*rate);
 endfunction

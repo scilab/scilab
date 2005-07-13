@@ -17,12 +17,12 @@ function []=wavwrite(y,Fs,nbits,wavefile)
   //   See also WAVREAD, AUWRITE.
   
   //   Copyright (c) 1984-98 by The MathWorks, Inc.
-  //   $Revision: 1.3 $  $Date: 2003/03/13 10:13:31 $
+  //   $Revision: 1.4 $  $Date: 2005/07/13 15:04:37 $
   
   //   D. Orofino, 11/95
   
   // Get user default preferences:
-  Fs_pref = 8000;
+  Fs_pref = 22050;
   nbits_pref = 16;
   
   // Parse inputs:
@@ -52,14 +52,13 @@ function []=wavwrite(y,Fs,nbits,wavefile)
   end
   
   // If input is a vector, force it to be a column:
-
-  if size(y,2) > 2 then
-    error('Data array must have 1- or 2-dimensions, only.');
-  end
-  [samples,channels] = size(y);
+  // if size(y,1) > 2 then
+  //  error('Data array must have 1- or 2-dimensions, only.');
+  // end
+  [channels,samples] = size(y);
   if samples==1 then
-    y = y(:);
-    [samples,channels] = size(y);
+    y = y';
+    [channels,samples] = size(y);
   end
   
   // Clip data to normalized range [-1,+1]:
@@ -187,9 +186,9 @@ function [status]=write_wavedat(fid,fmt,data)
     end
     
     // Write data, one row at a time (one sample from each channel):
-    [samples,channels] = size(data);
+    [channels,samples] = size(data);
     total_samples = samples*channels;
-    if mput(matrix(data',total_samples,1),dtype,fid)~=0 then
+    if mput(data,dtype,fid)~=0 then
       status = -1;
       return
     end
