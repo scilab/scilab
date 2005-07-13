@@ -1,0 +1,45 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/Examples_eng/graphic/twinkle_data.ref','r');
+ 
+x = linspace(-2 * %pi, 2 * %pi, 100)';
+ 
+plot2d(x, [sin(x),cos(x)]);
+ 
+e = gce();p1 = e.children(1);p2 = e.children(2);
+ 
+// cos plot twinkle
+ 
+%ans = twinkle(p1);
+ 
+ Type of handle: Polyline   
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// sin plot twinkle 10 times
+ 
+%ans = twinkle(p2, 10);
+ 
+ Type of handle: Polyline   
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+// axes twinkle
+ 
+%ans = twinkle(gca());
+ 
+ Type of handle: Axes   
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

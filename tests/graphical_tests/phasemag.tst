@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/Examples_eng/graphic/phasemag_data.ref','r');
+s = poly(0, 's');
+h = syslin('c', 1/((s + 5) * (s + 10) * (100 + 6 * s + s * s) * (s + 0.3)));
+[frq,rf] = repfreq(h, 0.1, 20, 0.005);
+xbasc_run(0);
+plot2d(frq', phasemag(rf, 'c')');
+xbasc_run(1);
+plot2d(frq', phasemag(rf, 'm')');
+xdel_run(winsid());
+
+mclose(%U);

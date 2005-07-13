@@ -1,0 +1,13 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/Examples_eng/graphic/xgrid_data.ref','r');
+x = (0:0.1:2 * %pi)';
+%ans = plot2d(sin(x));
+if load_ref('%ans') then   pause,end,
+
+%ans = xgrid(2);
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

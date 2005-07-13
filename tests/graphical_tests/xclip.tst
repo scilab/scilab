@@ -1,0 +1,42 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/Examples_eng/graphic/xclip_data.ref','r');
+x = 0:0.2:2 * %pi;
+x1 = [sin(x);100 * sin(x)];
+y1 = [cos(x);100 * cos(x)];
+y1 = y1 + 20 * ones(y1);
+// No clip
+%ans = plot2d([-100,500], [-100,600], [-1,-1], '022');
+if load_ref('%ans') then   pause,end,
+
+%ans = xsegs(10 * x1 + 200 * ones(x1), 10 * y1 + 200 * ones(y1));
+if load_ref('%ans') then   pause,end,
+
+// rectangle clipping zone
+xbasc_run();%ans = plot2d([-100,500], [-100,600], [-1,-1], '022');
+if load_ref('%ans') then   pause,end,
+
+%ans = xrect(150, 460, 100, 150);
+if load_ref('%ans') then   pause,end,
+
+%ans = xclip(150, 460, 100, 150);
+if load_ref('%ans') then   pause,end,
+
+%ans = xsegs(10 * x1 + 200 * ones(x1), 10 * y1 + 200 * ones(y1));
+if load_ref('%ans') then   pause,end,
+
+// usual rectangle boundaries clipping zone
+xbasc_run();%ans = plot2d([-100,500], [-100,600], [-1,-1], '022');
+if load_ref('%ans') then   pause,end,
+
+%ans = xclip('clipgrf');
+if load_ref('%ans') then   pause,end,
+
+xsegs(10 * x1 + 200 * ones(x1), 10 * y1 + 200 * ones(y1));
+// clipping of
+%ans = xclip();
+if load_ref('%ans') then   pause,end,
+
+xdel_run(winsid());
+
+mclose(%U);

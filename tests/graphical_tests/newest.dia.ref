@@ -1,0 +1,22 @@
+ 
+getf SCI/util/testexamples.sci
+ 
+reinit_for_test()
+ 
+%U=mopen('SCI/tests/Examples_eng/graphic/newest_data.ref','r');
+ 
+%ans = newest('SCI/macros/xdess/bode.sci', 'SCI/macros/xdess/bode.bin');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = newest('SCI/macros/xdess/bode.' + ['sci','bin']);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+xdel_run(winsid());
+ 
+ 
+mclose(%U);
+ 

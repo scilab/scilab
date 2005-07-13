@@ -1,0 +1,14 @@
+getf SCI/util/testexamples.sci
+reinit_for_test()
+%U=mopen('SCI/tests/Examples_eng/graphic/color_data.ref','r');
+x = linspace(-2 * %pi, 2 * %pi, 100)';
+// using existing colors
+plot2d(x, [sin(x),cos(x)], style=[color('red'),color('green')]);
+// new colors: there are added to the colormap
+e = gce();p1 = e.children(1);p2 = e.children(2);
+p1('foreground') = color('purple');p2('foreground') = color('navy blue');
+// using RGV values
+p1('foreground') = color(255, 128, 128);
+xdel_run(winsid());
+
+mclose(%U);
