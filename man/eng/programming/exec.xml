@@ -88,7 +88,7 @@
 mputl('a=1;b=2',TMPDIR+'/myscript')
 // execute it
 exec(TMPDIR+'/myscript')
-who
+whos -name "a "
 
 // create a function
 deff('y=foo(x)','a=x+1;y=a^2')
@@ -97,12 +97,13 @@ clear a b
 foo(1)
 // a is a variable created in the environment of the function foo
 //    it is destroyed when foo returns
-who 
+whos -name "a "
+
 
 x=1 //create x to make it known by the script foo
 exec(foo)
 // a and y are created in the current environment
-who
+whos -name "a "
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

@@ -110,7 +110,7 @@
     mputl('a=1;b=2',TMPDIR+'/myscript')
     // on l'exécute
     exec(TMPDIR+'/myscript')
-    who
+    whos -name "a "
 
     // création d'une function
     function y=foo(x),a=x+1;y=a^2,endfunction
@@ -119,12 +119,12 @@
     foo(1)
     // a est une variable créée dans l'environnement de la fonction foo
     // elle est détruite à la sortie de la fonction.
-    who 
+    whos -name "a "
 
     x=1 // on crée la variable x pour qu'elle soit connue à l'exécution de foo
     exec(foo)
     // a et y ont été créées dans l'environnement courant
-    who
+    whos -name "a "
     ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM> 
