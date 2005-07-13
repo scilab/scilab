@@ -110,7 +110,7 @@ function [status]=write_sndata(fid,snd,data)
 endfunction
 
 function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
-
+// write header part 
   if method=='mu' then
     if nbits~=8 then
       error('Mu-law can only be used with 8 bit data.'+' Use method=''linear'' instead.');
@@ -139,8 +139,8 @@ function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
   end
  
   // Define sound header structure:
-  snd('samples')=sz(1)
-  snd('chans')=sz(2)
+  snd('samples')=sz(2)
+  snd('chans')=sz(1)
   total_samples = snd('samples')*snd('chans');
   bytes_per_sample = ceil(snd('bits')/8);
   snd('rate')=Fs
