@@ -8,16 +8,7 @@
 JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this)
 /********************************************************************************************************/
 {
- #if WIN32
-	TextMessage1 (1);
- #else 
-	C2F(sxevents)();
- #endif
-
-  while(C2F(ismenu)()==1 ) 
-  {
-    C2F(scirun)("quit;",(int)strlen("quit;"));
-  }
+	ScilabDoOneEvent();
 }
 /********************************************************************************************************/
 /* public static native int HaveAGraph(); */

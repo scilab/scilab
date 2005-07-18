@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="CallSciVC"
+	Name="Callsci Example "
 	ProjectGUID="{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}"
 	Keyword="Win32Proj">
 	<Platforms>

@@ -108,13 +108,7 @@ void Initialize()
 /********************************************************************************************************/
 int send_scilab_job(char *job) 
 {
-  static char buf[1024],
-  format[]="Err=execstr('%s','errcatch','n');quit;";
-  int m,n,lp;
-  sprintf(buf,format,job);
-  C2F(scirun)(buf,(int)strlen(buf));
-  GetMatrixptr("Err", &m, &n, &lp);
-  return (int) 0; /* *stk(lp); */
+  return (int) SendScilabJob(job); 
 }
 /********************************************************************************************************/
 int MAIN__() 

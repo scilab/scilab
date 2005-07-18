@@ -21,10 +21,16 @@ extern int C2F(inisci)(int *,int *,int *);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F (tmpdirc) (void);
+extern int C2F(ismenu)();
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void initTCLTK(void);
+extern void start_sci_gtk();
+extern void InitWindowGraphDll(void);
+extern void TextMessage1 (int ctrlflag);
+#else
+extern int C2F(sxevents)();
 #endif
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
@@ -115,6 +121,11 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	/* running the startup */ 
 	C2F(settmpdir)();
+#if WIN32
+	InitWindowGraphDll();
+	start_sci_gtk() ;
+#endif
+
 	lengthStringToScilab=(int)(strlen("exec(\"SCI/scilab.star\",-1);quit;")+strlen(ScilabStartupUsed));
 	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
@@ -200,5 +211,19 @@ int SendScilabJob(char *job)
   }
 
   return (int) code;
+}
+/*-----------------------------------------------------------------------------------*/
+void ScilabDoOneEvent(void)
+{
+#if WIN32
+	TextMessage1 (1);
+#else 
+	C2F(sxevents)();
+#endif
+
+	while(C2F(ismenu)()==1 ) 
+	{
+		C2F(scirun)("quit;",(int)strlen("quit;"));
+	}
 }
 /*-----------------------------------------------------------------------------------*/

@@ -33,6 +33,9 @@ int SendScilabJob(char *job);
 /* Send a job to scilab */
 /* returns error code operation */
 
+void ScilabDoOneEvent(void);
+/* This procedure is the entry point to Scilab's event loop */
+
 /*-----------------------------------------------------------------------------------*/
 #endif /* __CALLSCILAB__ */
 /*-----------------------------------------------------------------------------------*/

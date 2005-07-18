@@ -456,6 +456,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildChm", "man\BuildChm\Bu
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1} = {BFE3C796-D755-4BB2-840A-89A98D2A4AC1}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Callsci Example ", "examples\callsci\callsciC\CallSciVC\CallSciVC\CallSciVC.vcproj", "{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -2233,6 +2238,17 @@ Global
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Atlas.ActiveCfg = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Atlas without Java.ActiveCfg = Release|Win32
 		{D319F719-F429-4842-A6F9-B1227FE2A54D}.Release with Debug Information.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Debug.ActiveCfg = Debug|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Debug with Atlas.ActiveCfg = Debug|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Debug with Atlas without Java.ActiveCfg = Debug|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Debug without Java.ActiveCfg = Debug|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Pentium_Release.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.PIV_Release.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.PIV_Release with Atlas.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Release.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Release with Atlas.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Release with Atlas without Java.ActiveCfg = Release|Win32
+		{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}.Release with Debug Information.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
