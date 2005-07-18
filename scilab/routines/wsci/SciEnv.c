@@ -145,10 +145,17 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 
 		if (GetShortPathName(GetSCIpath,ShortPath,MAX_PATH) == 0)
 		{
-			MessageBox(NULL,MSG_ERROR19,MSG_ERROR20,MB_ICONWARNING);
+			fprintf(stderr,"\n%s%s%s.\n",MSG_ERROR19,MSG_ERROR81,DefaultPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-			exit(1);
-			return FALSE;
+			CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
+
+			/* to be sure that it's unix format */
+			/* c:/progra~1/scilab-3.1 */
+			GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
+			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+			sprintf (env, "SCI=%s",ShortPath);
+			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			
 		}
 		else
 		{
@@ -199,10 +206,18 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 		CopyOfDefaultPath=MALLOC(((int)strlen(GetHOMEpath)+1)*sizeof(char));
 		if (GetShortPathName(GetHOMEpath,ShortPath,MAX_PATH)==0)
 		{
-			MessageBox(NULL,MSG_ERROR21,MSG_ERROR20,MB_ICONWARNING);
+			fprintf(stderr,"\n%s%s\n",MSG_ERROR21,MSG_ERROR82);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-			exit(1);
-			return FALSE;
+			CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
+
+			/* to be sure that it's unix format */
+			/* c:/progra~1/scilab-3.1 */
+			GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
+			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+			sprintf (env, "HOME=%s",ShortPath);
+
+			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			
 		}
 		else
 		{
@@ -266,15 +281,18 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		MessageBox(NULL,MSG_ERROR22,MSG_ERROR20,MB_ICONWARNING);
+		fprintf(stderr,"\n%s%s%s.\n",MSG_ERROR22,MSG_ERROR83,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-		exit(1);
-		return FALSE;
+
+		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
+		wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
+
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 	else
 	{
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
+		wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
 		
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
@@ -313,15 +331,19 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		MessageBox(NULL,MSG_ERROR23,MSG_ERROR20 ,MB_ICONWARNING);
+		fprintf(stderr,"\n%s%s%s.\n",MSG_ERROR23,MSG_ERROR84,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-		exit(1);
-		return FALSE;
+
+		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
+		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
+
+		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+		
 	}
 	else
 	{
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
+		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
 
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
