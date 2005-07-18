@@ -36,6 +36,12 @@ static int premier_exemple()
   static double b[]={4,5};  int mb=2,nb=1;
   int m,n,lp,i;
   
+  SendScilabJob("disp(''A='');");
+	SendScilabJob("disp(A);");
+	SendScilabJob("disp(''b='');");
+	SendScilabJob("disp(b);");
+	SendScilabJob("disp(''x=A\\b'');");
+
   WriteMatrix("A", &mA, &nA, A);
   WriteMatrix("b", &mb, &nb, b);
 
@@ -46,8 +52,7 @@ static int premier_exemple()
   else 
     {
       GetMatrixptr("x", &m, &n, &lp);
-      for ( i=0 ; i < m*n ; i++) 
-	fprintf(stdout,"x[%d] = %5.2f\n",i,*stk(i+lp));
+      for ( i=0 ; i < m*n ; i++) fprintf(stdout,"x[%d] = %5.2f\n",i,*stk(i+lp));
     }
   return 1;
 } 
@@ -66,6 +71,7 @@ static int deuxieme_exemple()
       double xi = *stk(lx+i);
       *stk(ly+i) = xi*sin(xi);
     }
+  SendScilabJob("disp(''Click on figure to continue'');");  
   /* plot(x,y);  */
   SendScilabJob("plot(x,y);xclick();quit");
   return 1;
@@ -100,10 +106,15 @@ int MAIN__(void)
     if ( StartScilab(SCI,NULL,NULL) == FALSE ) 
       printf("Error : StartScilab \n");
   #endif
-  
+
+  printf("\nexample 1\n");  
   premier_exemple();
+  
+  printf("\nexample 2\n");  
   deuxieme_exemple() ;
+  printf("\nexample 3\n");  
   troisieme_exemple() ;
+  printf("\n\n");  
   
 	if ( TerminateScilab(NULL) == FALSE ) 
 		  printf("Error : TerminateScilab \n");
