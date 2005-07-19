@@ -8,10 +8,8 @@ function []=updatevarslist(instr_lhs)
 //   In this case, type and dimensions are set to unknown if differ from those already stored in varslist
 //   (Default value is %F)
 // V.C.
-
 // Global variable for M2SCI
 global("varslist")
-
 // level is declared in m2sci.sci and modified in clause2sci.sci
 level;
 
@@ -20,39 +18,79 @@ if rhs==2 then
   in_a_clause=%F
 end
 
-// Special case when end of conversion of a clause
-// Merge infered data from clause and those from level-1
-if instr_lhs=="END OF CLAUSE" then
-  while varslist($).level==level(1)
-    
-    // Search for last variable created in clause which ends here
-    index=[]
-    for k=size(varslist):-1:1
-      if varslist(k).level==level(1) then
-	index=k
-	return
-      end
-    end
-    
-    // Search for same variable created before
-    index_lower_level=[]
-    for k=size(varslist):-1:1
-      if varslist(k).matname==varslist(index) & varslist(k).level==level(1)-1 then
-	index_lower_level=k
-	return
-      end
-    end
-    
-    if index<>[] then // Found a variable created in this clause
-      if index_lower_level<>[] then // Found same variable created before, then merge...
-	merge_vars(index_lower_level,varslist(index))
-        varslist(index)=null()
-      else // Same variable not created before, change level of variable created in clause
-        varslist(index).level=0
-      end
+// Merge infered data from the last two parts of clause which are above the current part
+// if we are in the third part of clause (current), then : merge the first and second part of clause
+// when end of conversion of a clause : merge infered data from the last two parts of clause 
+levelsize=size(level,1)
+changepartclause=%F
+for i=size(varslist):-1:1
+  if size(varslist(i).level,1)==levelsize then
+    varlevel=varslist(i).level
+    if varlevel($)<>level($)
+      changepartclause=%T
     else
+      changepartclause=%F
       break
     end
+  end
+end
+if changepartclause | instr_lhs=="END OF CLAUSE" then
+  index=[] // Search variables from two part above current part clause  
+  for k=size(varslist):-1:1
+    if size(varslist(k).level,1)==levelsize then
+      varlevel=varslist(k).level
+      if and(varlevel(1:$-1)==level(1:$-1)) & varlevel($)==level($)-2 then
+	index=[index;k]
+      end
+    end
+  end  
+  if index<>[] then  // Found variables from the second part above current part of a clause
+    for k=1:size(index,1)
+      boolmerge =%F
+      for i=size(varslist):-1:1 // Search variables from the first part above current part of a clause, and which have the same name than variables from the second part above current part of a clause
+	varlevel=varslist(i).level 
+	if varslist(i).matname==varslist(index(k)).matname & and(varlevel(1:$-1)==level(1:$-1)) &  varlevel($)==level($)-1 then 
+	  boolmerge =%T // Found the same variable name from the last two parts above the current part : Merge
+	  merge_vars(index(k),varslist(i))
+	  varslist(i)=null()
+	  break
+	end  
+      end
+      if ~boolmerge then
+	varslist(index(k)).level=[level(1:$-1);level($)-1]
+      end  
+    end   
+  end        
+end  
+
+// Special case when end of conversion of a clause
+// Merge infered data from clause and those from level-1
+if instr_lhs=="END OF CLAUSE" then // Search variables in the last part of a clause (above end of conversion of a clause) 
+  index=[] // 
+  for k=size(varslist):-1:1 // Search variables from level-1 which have the same name than variables from the last part of current level
+    varlevel=varslist(k).level
+    if varlevel==[level(1:$-1);level($)-1] then
+      index=[index;k]
+    end
+  end
+  if index<>[] then      
+    for j=1:size(index,1)
+      boolmerge=%F
+      for k=size(varslist):-1:1 //
+	varlevel=varslist(k).level
+	if varslist(k).matname==varslist(index(j)).matname  & and(varlevel==level(1:$-1)) then
+	  boolmerge=%T // Found variables from level-1 which have the same name than variables from the last part of current level : Merge
+	  index_lower_level=k       
+	  merge_vars(index_lower_level,varslist(index(j)))
+	  varslist(k).level=level(1:$-1)
+	  varslist(index(j))=null()
+	  break
+	end
+      end	
+      if boolmerge==%F then
+	varslist(index(j)).level=level(1:$-1)
+      end
+    end 
   end
   return
 end
@@ -77,7 +115,6 @@ if size(instr_lhs)==0 then
   return
 end
 
-
 // Update varslist  
 for k=1:size(instr_lhs)
   [bval,index]=isdefinedvar(instr_lhs(k))
@@ -91,51 +128,38 @@ for k=1:size(instr_lhs)
       instr_lhs(k).contents.data(pos)=null()
     end
   end
-
-  if bval then
-    if level(1)>0 then // If in a clause, create a new variable
-      // Search if variable also exists for current level
-      for l=1:size(varslist)
-	if varslist(l).matname==instr_lhs(k).name & varslist(l).level==level(1) then
-	  bval=%T
-	  index=l
-	  break
-	end
+  // If variable exists for the current level in the same part of clause then update exixting variable
+  if bval
+    boolupdate=%F
+    for l=1:size(varslist)
+      if varslist(l).matname==instr_lhs(k).name & varslist(l).level==level then
+	varslist(l)=M2scivar(varslist(l).sciname,..
+	    varslist(l).matname,..
+	    Infer(instr_lhs(k).infer.dims,instr_lhs(k).infer.type,instr_lhs(k).infer.contents),..
+	    varslist(l).level)
+	boolupdate=%T
+	break 
       end
-      
-      // If variable exists for currentlevel then merge all data
-      if bval then
-	newvar=M2scivar(varslist(index).sciname,..
-	    varslist(index).matname,..
-	    instr_lhs(k).infer,..
-	    level(1))
-	merge_vars(index,newvar)
-      else // Create new variable
-	varslist($+1)=M2scivar(varslist(index).sciname,..
-	    varslist(index).matname,..
-	    instr_lhs(k).infer,..
-	    level(1))
-      end
-    else // Else, update existing variable
-      varslist(index)=M2scivar(varslist(index).sciname,..
-	  varslist(index).matname,..
-	  Infer(instr_lhs(k).infer.dims,instr_lhs(k).infer.type,instr_lhs(k).infer.contents),..
-	  varslist(index).level)
     end
+    // If variable exists, but not for the current level or not in the same part of clause then Update variable then create new variable
+    if ~boolupdate then
+      varslist($+1)=M2scivar(varslist(index).sciname,..
+	  varslist(index).matname,..
+	  instr_lhs(k).infer,..
+	  level)
+    end	    
   else
-    // Variable added to varslist if as a name (not done for expressions)
+    // Variable added to varslist if as a name (not done for expressions
     if execstr("f=instr_lhs(k).name","errcatch")<>0 then pause;end;errclear();
     if instr_lhs(k).name<>"ans" then
       varslist($+1)=M2scivar(instr_lhs(k).name,..
 	  instr_lhs(k).name,..
 	  instr_lhs(k).infer,..
-	  level(1))
+	  level)
     end
   end
 end
-
 endfunction
-
 
 function []=merge_vars(oldvarindex,newvar)
 // Copyright INRIA
@@ -148,7 +172,6 @@ function []=merge_vars(oldvarindex,newvar)
 
 // Global variable for M2SCI
 global("varslist")
-
 oldvar=varslist(oldvarindex)
 
 olddims=oldvar.dims
@@ -195,6 +218,5 @@ end
 varslist(oldvarindex)=M2scivar(oldvar.sciname,..
     oldvar.matname,..
     Infer(newdims,Type(newvtype,newprop),newvar.contents),..
-    oldvar.level)
-
+    newvar.level)
 endfunction
