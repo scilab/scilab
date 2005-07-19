@@ -20,10 +20,15 @@ end
 if rhs==2 then Recmode=%f,end
 
 lcount=1;
+
 // Level of clause indentation (used for getting temporary variables and for updating varslist)
-// level(1) = clause level (incremented each time a new clause is found)
-// level(2) = index of clause part (1 for if statements, 2 for first elseif statements...)
-level=[0,0];
+// if there is not a clause then size of level = 1 and the value is 0 (level=0)
+// add one size at level each time a new clause is found
+// if just one clause then size of level = 2,  the value of level(2) : the index of clause part for the first clause (1 for 'if' statements, 2 for first 'elseif' statements, 3 for first 'elseif' statements,...)
+// if there are 2 clauses, then size of level = 3, the value of level(3) : the index of clause part for the second clause (1 for if statements, 2 for first elseif statements, 3 for second elseif statements,...)   
+// for example : level = [0,4,1] : in this case there are 2 clauses the index for the first clause (i.e level(2)) is 4 (4 for second 'elseif' statements), the index for the second clause (i.e level(3)) is 1 (1 for 'if' statements)
+// the first components of level (i.e level(1)) is always 0 (because in the zero level there is no clause, so there is no 'if' no 'elseif' no 'else')
+level=0
 
 // Parameters declaration
 sciparam()
