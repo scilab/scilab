@@ -53,10 +53,11 @@ proc keyposn {textarea} {
 proc modifiedtitle {textarea} {
 # Set the Scipad window title to the name of the file displayed in $textarea
 # and add tags (modified, readonly)
+# Do the same for the pane title if it exists (i.e. if not maximized)
 # Update also the visual indications of the modified state of the buffer.
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
-    global pad winTitle listoffile 
+    global pad winTitle listoffile tilestyle
     set fname $listoffile("$textarea",displayedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
     set mod1 ""; set mod2 ""
@@ -78,6 +79,10 @@ proc modifiedtitle {textarea} {
         $pad.statusind configure -background [$pad.filemenu cget -background]
     }
     wm title $pad "$winTitle - $fname$mod1$mod2"
+    set taid [scan $textarea $pad.new%d]
+    if {$tilestyle != "m"} {
+        $pad.pw.f$taid.panetitle configure -text "$fname$mod1$mod2"
+    }
     if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure 4 -state normal
@@ -87,3 +92,13 @@ proc modifiedtitle {textarea} {
         bind $pad <Control-R> {}
     }
 } 
+
+proc updatepanestitles {} {
+    global listoftextarea
+    # update file names in panes (and in Scipad title bar)
+    foreach ta $listoftextarea {
+        modifiedtitle $ta
+    }
+    # update file name in Scipad title bar (and in the current textarea pane)
+    modifiedtitle [gettextareacur]
+}

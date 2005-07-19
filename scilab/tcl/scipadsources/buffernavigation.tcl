@@ -1,33 +1,176 @@
+proc packnewbuffer {textarea} {
+# This packs a textarea buffer in a new pane added in the existing panedwindow
+# The text widget is packed in a frame $pad.pw.f$winopened
+# This frame name *must* end with the same number as the textarea name
+# This correspondance shall be maintained throughout the code
+    global pad FontSize menuFont tilestyle listoffile
+
+    # taid is the textarea identifier
+    set taid [scan $textarea $pad.new%d]
+
+    # create frames for widget layout
+    # this is the main frame that is added as a pane
+    frame $pad.pw.f$taid -borderwidth 2
+    # this is for the top bar containing the pane title (file name)
+    # and the close button
+    if {$tilestyle != "m"} {
+        frame $pad.pw.f$taid.topbar
+        pack $pad.pw.f$taid.topbar -side top -expand 0 -fill both
+        button $pad.pw.f$taid.clbutton -text [mc "Close"] -font $menuFont \
+            -command "closefile $textarea yesnocancel"
+        pack $pad.pw.f$taid.clbutton -in $pad.pw.f$taid.topbar \
+            -side right -expand 0 -fill none
+    }
+    # this is for the text widget and the y scroll bar
+    frame $pad.pw.f$taid.top
+    pack $pad.pw.f$taid.top -side top -expand 1 -fill both
+    # this is where the text widget is packed
+    frame $pad.pw.f$taid.topleft
+    pack $pad.pw.f$taid.topleft -in $pad.pw.f$taid.top \
+        -side left -expand 1 -fill both
+    # this is where the y scrollbar is packed
+    frame $pad.pw.f$taid.topright
+    pack  $pad.pw.f$taid.topright -in $pad.pw.f$taid.top \
+        -side right -expand 0 -fill both 
+    # this is for the x scroll bar at the bottom of the pane
+    frame $pad.pw.f$taid.bottom
+    pack $pad.pw.f$taid.bottom -before $pad.pw.f$taid.top \
+        -side bottom -expand 0 -fill both
+
+    $pad.pw add $pad.pw.f$taid -minsize [expr $FontSize * 2]
+    pack $pad.pw -side top -expand 1 -fill both
+
+    scrollbar $pad.pw.f$taid.yscroll -command "$textarea yview" -takefocus 0
+    scrollbar $pad.pw.f$taid.xscroll -command "$textarea xview" -takefocus 0 \
+        -orient horizontal
+
+    if {$tilestyle != "m"} {
+        label $pad.pw.f$taid.panetitle -font $menuFont
+        pack $pad.pw.f$taid.panetitle -in $pad.pw.f$taid.topbar
+        bind $pad.pw.f$taid.topbar    <ButtonRelease-1> "focustextarea $pad.new$taid"
+        bind $pad.pw.f$taid.panetitle <ButtonRelease-1> "focustextarea $pad.new$taid"
+    }
+
+    pack $textarea -in $pad.pw.f$taid.topleft \
+        -side left -expand 1 -fill both
+    pack $pad.pw.f$taid.yscroll -in $pad.pw.f$taid.topright \
+        -side right -expand 1 -fill y
+    pack $pad.pw.f$taid.xscroll -in $pad.pw.f$taid.bottom \
+        -side bottom -expand 1 -fill x
+
+    $pad.pw.f$taid.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
+    $pad.pw.f$taid.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
+
+    # space the sashes evenly
+    update
+    set nbpanes [llength [$pad.pw panes]]
+    set paneheight [expr [winfo height $pad.pw] / $nbpanes]
+    set panewidth  [expr [winfo width  $pad.pw] / $nbpanes]
+    for {set i 0} {$i < [expr $nbpanes - 1]} {incr i} {
+        set paneposx [expr $panewidth  * ($i + 1)]
+        set paneposy [expr $paneheight * ($i + 1)]
+        $pad.pw sash place $i $paneposx $paneposy
+    }
+}
+
 proc montretext {textarea} {
 # Display a textarea
 # This textarea becomes the current one
-    global pad listoffile Scheme
-    selection clear
-    pack forget [gettextareacur]
+    global pad tilestyle
+    if {$tilestyle == "m"} {
+        # maximize - there is one single pane
+        set oldwinopened [scan [gettextareacur] $pad.new%d]
+        $pad.pw forget $pad.pw.f$oldwinopened
+        destroy $pad.pw.f$oldwinopened
+        packnewbuffer $textarea
+    } else {
+        # tiled - there might be more than one single plane
+        set allpanes [$pad.pw panes]
+        set winopened [scan $textarea $pad.new%d]
+        if {[lsearch $allpanes $pad.pw.f$winopened] != -1} {
+            # show $textarea in an already displayed pane
+        } else {
+            # the pane where $textarea should be displayed does not exist yet
+            packnewbuffer $textarea
+        }
+    }
+    focustextarea $textarea
+}
+
+proc focustextarea {textarea} {
+# Set all the settings such that $textarea becomes the current one
+    global pad Scheme listoffile textareaid
+    set oldta $pad.new$textareaid
+    # clear the selection when leaving a buffer
+    if {($oldta != $textarea) && [$oldta tag ranges sel] != ""} {
+        $oldta tag remove sel 0.0 end
+        selection clear
+    }
+    # set the new buffer as current
     settextareacur $textarea
-    $pad.yscroll configure -command "[gettextareacur] yview"
-    $pad.xscroll configure -command "[gettextareacur] xview"
-    $pad.xscroll set [lindex [[gettextareacur] xview] 0] [lindex [[gettextareacur] xview] 1]
-    $pad.yscroll set [lindex [[gettextareacur] yview] 0] [lindex [[gettextareacur] yview] 1]
     modifiedtitle $textarea
-    pack  $textarea -in  $pad.bottomleftmenu -side left -expand 1 -fill both
     focus $textarea
     keyposn $textarea
     set Scheme $listoffile("$textarea",language)
     schememenus $textarea
+    highlighttextarea $textarea
+    TextStyles $textarea
+    set textareaid [scan $textarea $pad.new%d]
+}
+
+proc tilebuffers {tileorient} {
+    global pad listoftextarea
+    disablemenuesbinds
+    # Remove the existing tiling
+    foreach pa [$pad.pw panes] {
+        $pad.pw forget $pa
+        destroy $pa
+    }
+    # Configure the panedwindow for the new orientation of panes
+    $pad.pw configure -orient $tileorient
+    # Pack the new panes
+    foreach ta $listoftextarea {
+        packnewbuffer $ta
+    }
+    highlighttextarea [gettextareacur]
+    updatepanestitles
+    restoremenuesbinds
+}
+
+proc maximizebuffer {} {
+    global pad
+    disablemenuesbinds
+    # Remove the existing tiling
+    foreach pa [$pad.pw panes] {
+        $pad.pw forget $pa
+        destroy $pa
+    }
+    # Pack the current buffer only
+    packnewbuffer [gettextareacur]
+    highlighttextarea [gettextareacur]
+    restoremenuesbinds
+}
+
+proc managescroll {scrbar a b} {
+# this is only to add a catch to the normally used command
+# this catch is required because the text widget may trigger scroll commands
+# automatically when it is not packed in a pane,
+# e.g. on $textarea configure -someoption
+    catch {$scrbar set $a $b}
 }
 
 proc nextbuffer {} {
-    global pad listoftextarea listoffile radiobuttonvalue
+    global pad listoftextarea listoffile textareaid
+    global FirstBufferNameInWindowsMenu
     set textarea [gettextareacur]
-    set curbuf [expr [lsearch $listoftextarea $textarea]+1]
-    set curbuf [expr $curbuf+1]
-    set nbuf [llength $listoftextarea]
-    if {$curbuf>$nbuf} {
-        set curbuf 1
+    set curbuf [expr [lsearch $listoftextarea $textarea] + $FirstBufferNameInWindowsMenu]
+    incr curbuf
+    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu]
+    if {$curbuf >= $nbuf} {
+        set curbuf $FirstBufferNameInWindowsMenu
     }
-    set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
-    montretext [lindex $listoftextarea [expr $curbuf-1]]
+    set textareaid [$pad.filemenu.wind entrycget $curbuf -value]
+    montretext [lindex $listoftextarea [expr $curbuf - $FirstBufferNameInWindowsMenu]]
     #keypress must replace the selection if buffers are switched
     set existsSel [[gettextareacur] tag nextrange sel 1.0]
     if {$existsSel != {}} {
@@ -36,16 +179,17 @@ proc nextbuffer {} {
 }
 
 proc prevbuffer {} {
-   global pad listoftextarea listoffile radiobuttonvalue
+   global pad listoftextarea listoffile textareaid
+    global FirstBufferNameInWindowsMenu
     set textarea [gettextareacur]
-    set curbuf [expr [lsearch $listoftextarea $textarea]+1]
-    set curbuf [expr $curbuf-1]
-    set nbuf [llength $listoftextarea]
-    if {$curbuf<1} {
+    set curbuf [expr [lsearch $listoftextarea $textarea] + $FirstBufferNameInWindowsMenu]
+    incr curbuf -1
+    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu - 1]
+    if {$curbuf < $FirstBufferNameInWindowsMenu} {
         set curbuf $nbuf
     }
-    set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
-    montretext [lindex $listoftextarea [expr $curbuf-1]]
+    set textareaid [$pad.filemenu.wind entrycget $curbuf -value]
+    montretext [lindex $listoftextarea [expr $curbuf - $FirstBufferNameInWindowsMenu]]
     #keypress must replace the selection if buffers are switched
     set existsSel [[gettextareacur] tag nextrange sel 1.0]
     if {$existsSel != {}} {

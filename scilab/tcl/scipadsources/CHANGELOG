@@ -1257,3 +1257,43 @@ ES, 6/7/2005
    problem in linux, which popped up an error upon <Alt-key> cancellyng 
    Search/Replace
  * version --> 5.17
+
+Francois VOGEL, 16/07/05
+ * First implementation of panedwindows to display more than one buffer at
+   the same time. Better use it with Tcl/Tk 8.4.10 or higher since Tk bug
+   1192323 is fixed by Tk patch 1124198
+ * Fixed: The title bar is now updated on Options/Filenames change
+ * version --> 5.18
+
+Francois VOGEL, 18/07/05
+ * Minor improvements or bug fixes to the paned window:
+    - clicking on a pane title frame selects this pane
+    - windows menu radiobutton is updated when the user clicks in a pane
+    - close button added in each pane
+    - locale change is propagated to all the panes titles
+    - the horizontal scrollbar of each pane could get clipped when the text
+      widget size was very small - Scipad now clips the text widget first, 
+      until there is nothing else to do than to clip the scrollbar
+    - Drag and drop works between panes - major rewrite of the dnd procs
+ * Fixed: initialisation of funtogoto was missing in updateactivebreakpointtag
+ * version --> 5.19
+
+Francois VOGEL, 18/07/05
+ * Fixed: extend selection with Control-Button-1 works again (this was lost
+   when the user clicked on a selection without moving the mouse)
+ * Fixed: text widget selection is removed in the "old" buffer on buffer switch
+ * Shift-Tab binding corrected to prevent default bindings from triggering
+ * Clicking on a pane title selects this pane
+ * version --> 5.20
+
+Francois VOGEL, 19/07/05
+ * tilestyle is a saved preference
+ * New: dnd: works now when dragging from outside of Scipad and dropping in
+   Scipad (the other way, Scipad -> outside already worked)
+ * Fixed (on Windows only): clicking on [x] or File/Exit to close Scipad works
+   even if Scipad is performing certain other tasks
+ * Bulletproofed File/Close (Control-w), tilebuffers and maximizebuffer so
+   that the user can't trigger them before the previous one is finished -
+   this has been done by disabling certain menues entries and bindings before
+   launching the command, and restoring them after execution
+ * version --> 5.21

@@ -8,7 +8,10 @@ bind Text <KeyPress> { if {{%A} != {{}}} {puttext %W %A}}
 bind Text <Delete> { deletetext}
 bind Text <BackSpace> { backspacetext}
 bind Text <Return> {insertnewline %W}
-bind Text <Tab> {inserttab %W}
+# break prevents from triggering the default Tk
+# binding: bind all <Key-Tab> tk::TabToWindow [tk_focusNext %W], which
+# is harmful when displaying more than one buffer at the same time
+bind Text <Tab> {inserttab %W ; break}
 
 bind Text <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
@@ -37,13 +40,12 @@ bind Text <Button-2> {button2copypaste %W %x %y}
 #listoffile("$textarea",language) has already been unset in proc byebye which
 #is called on ctrl-w to close the current buffer
 bind $textareacur <KeyRelease> {catch {keyposn %W}}
-bind $textareacur <ButtonRelease> {catch {keyposn %W}}
 
 event delete <<Cut>> <Control-w>
 bind Text <Control-w> {} 
 bind $pad <Control-w> {closecur yesnocancel} 
 bind $pad <Control-n> {filesetasnew}
-bind $pad <Control-q> {exitapp yesnocancel}
+bind $pad <Control-q> {idleexitapp}
 bind $pad <Control-g> {gotoline}
 if {"$tcl_platform(platform)" == "unix"} {
     bind $pad <Control-p> {selectprint %W}
@@ -105,5 +107,5 @@ set Shift_F8  {"XF86_Switch_VT_8" "Shift-F8"}
 set Shift_F11  {"XF86_Switch_VT_11" "Shift-F11" "Shift-SunF36"}
 set Shift_F12  {"XF86_Switch_VT_12" "Shift-F12" "Shift-SunF37"}
 
-pbind Text $Shift_Tab {UnIndentSel}
+pbind Text $Shift_Tab {UnIndentSel ; break}
 pbind $pad $Shift_F1 {aboutme}

@@ -16,6 +16,12 @@
 #       Opened buffers (textareas)
 #       This is the unique identifier of the text widget displaying
 #       the content of a given file
+#       This text widget is packed in a frame $pad.pw.f$winopened
+#       that is itself added as a pane in the main panedwindow of
+#       Scipad
+#       This frame name *must* end with the same number as the
+#       textarea name, and the consistency between the two must
+#       be maintained throughout the code
 #
 #   listoftextarea
 #       Contains the list of the above opened textarea names.
@@ -63,7 +69,7 @@
 #     All the labels of the menu are different at any time, except
 #     during ambiguities removal (In the Options menu, item Filenames does
 #     not propose any option that would lead to ambiguous file names)
-#     It is very important to maintain this property throughout the code.
+#     It is very important to maintain this property throughout the code
 #
 #
 #####################################################################
@@ -73,7 +79,7 @@
 ##################################################
 proc filesetasnew {} {
     global winopened listoffile
-    global listoftextarea pad radiobuttonvalue
+    global listoftextarea pad textareaid
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
@@ -84,10 +90,12 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",readonly) 0
     lappend listoftextarea $pad.new$winopened
     $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
-        -value $winopened -variable radiobuttonvalue \
+        -value $winopened -variable textareaid \
         -command "montretext $pad.new$winopened"
     newfilebind
     showinfo [mc "New Script"]
+    $pad.new$winopened configure -xscrollcommand "managescroll $pad.pw.f$winopened.xscroll"
+    $pad.new$winopened configure -yscrollcommand "managescroll $pad.pw.f$winopened.yscroll"
     montretext $pad.new$winopened
     selection clear
     resetmodified $pad.new$winopened
@@ -100,9 +108,12 @@ proc closecur { {quittype yesno} } {
 # remove (in Scilab) the breakpoints initiated from the current buffer
 # unset the variables relative to this buffer, and
 # close current buffer
+    disablemenuesbinds
     removescilabbuffer_bp "with_output" [gettextareacur]
     removefuns_bp [gettextareacur]
-    return [closefile [gettextareacur] $quittype]
+    set outvalue [closefile [gettextareacur] $quittype]
+    catch {restoremenuesbinds} ; # catched because otherwise pad is unknown after last buffer close
+    return $outvalue
 }
 
 proc closefile {textarea {quittype yesno} } {
@@ -128,7 +139,7 @@ proc closefile {textarea {quittype yesno} } {
 
 proc byebye {textarea} {
     global listoftextarea listoffile
-    global pad radiobuttonvalue WMGEOMETRY
+    global pad textareaid
     if { [ llength $listoftextarea ] > 1 } {
         # delete the textarea entry in the listoftextarea
         set listoftextarea [lreplace $listoftextarea [lsearch \
@@ -144,33 +155,45 @@ proc byebye {textarea} {
         unset listoffile("$textarea",thetime) 
         unset listoffile("$textarea",language) 
         unset listoffile("$textarea",readonly) 
-
-##ES: the text widget was opened for $pad.new$winopened. If that is destroyed, the 
-## next change font, new file or open file command causes the window to shrink.
-## On the other side, the only side
-## effect of not destroying it which I see is that font changes do not resize
-## the window (so what? -- the resizing was not exact anyway)
-#        destroy $textarea
+        set oldwinopened [scan $textarea $pad.new%d]
+        $pad.pw forget $pad.pw.f$oldwinopened
+        destroy $pad.pw.f$oldwinopened
 
         # place as current textarea the last one
         $pad.filemenu.wind invoke end
         RefreshWindowsMenuLabels
     } else {
-        #save the geometry for the next time
-        set WMGEOMETRY [eval {wm geometry $pad}] 
-#        set WMGEOMETRY [winfo geometry $pad] 
-#        tk_messageBox -message $WMGEOMETRY
-#        set PADWIDTH [eval {winfo width $pad}]
-#        set PADHEIGHT [eval {winfo height $pad}]
-        killwin $pad 
-        unset pad
+        killwin $pad
     }
 }
 
 proc killwin {widget} {
 # kill main window and save preferences on exit
+    global pad WMGEOMETRY
+    #save the geometry for the next time
+    set WMGEOMETRY [eval {wm geometry $pad}] 
     savepreferences
     destroy $widget
+    catch {console hide}
+    unset pad
+}
+
+proc idleexitapp {} {
+# exitapp will fail for instance when the user tries to close Scipad
+# using [x] or File/Exit when Scipad is opening files at the same time
+# (dnd of a directory with many files)
+    global pad
+    if {[catch {after idle {exitapp yesnocancel}}]} {after idle {killwin $pad}}
+}
+
+proc exitapp { {quittype yesno} } {
+# exit Scipad
+    global listoftextarea
+    if {[getdbstate] == "DebugInProgress"} canceldebug_bp
+    foreach textarea $listoftextarea {
+        set wascanceled [closecur $quittype]
+        if {$wascanceled == "Canceled"} {break}
+    }
 }
 
 ##################################################
@@ -196,6 +219,7 @@ proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
+    disablemenuesbinds
     foreach f $filelist {
         regsub "^file:" $f "" f
 # in unix, .* files are not matched by *, but .* matches . and ..
@@ -216,6 +240,7 @@ proc openlistoffiles {filelist} {
                        you hit a bug of the dnd mechanism." ] ]
         }
     }
+    restoremenuesbinds
 }
 
 proc showopenwin {} {
@@ -332,9 +357,11 @@ proc lookiffileisopen {file} {
 proc notopenedfile {file} {
 # $file is not opened - this sets the $listoffile area values for that file
 # and adds an entry in the windows menu
-    global winopened pad listoffile radiobuttonvalue
+    global winopened pad listoffile textareaid
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
+    $pad.new$winopened configure -xscrollcommand "managescroll $pad.pw.f$winopened.xscroll"
+    $pad.new$winopened configure -yscrollcommand "managescroll $pad.pw.f$winopened.yscroll"
     set listoffile("$pad.new$winopened",fullname) [file normalize $file]
     set listoffile("$pad.new$winopened",displayedname) \
             [file tail $listoffile("$pad.new$winopened",fullname)]
@@ -348,7 +375,7 @@ proc notopenedfile {file} {
     }
     $pad.filemenu.wind add radiobutton \
           -label $listoffile("$pad.new$winopened",displayedname) \
-          -value $winopened -variable radiobuttonvalue \
+          -value $winopened -variable textareaid \
           -command "montretext $pad.new$winopened"
 }
 
@@ -364,11 +391,10 @@ proc shownewbuffer {file} {
 }
 
 proc newfilebind {} {
-    global pad winopened radiobuttonvalue
+    global pad winopened textareaid
     bind $pad.new$winopened <KeyRelease> {catch {keyposn %W}}
-    bind $pad.new$winopened <ButtonRelease> {catch {keyposn %W}}
     TextStyles $pad.new$winopened
-    set radiobuttonvalue $winopened
+    set textareaid $winopened
     tkdndbind $pad.new$winopened
 }
 
@@ -602,7 +628,8 @@ proc extractindexfromlabel {dm labsearched} {
 # It returns the index of entry $label in $menuwidget, even if $label is a
 # number or an index reserved name (see the tcl/tk help for menu indexes)
 # If $label is not found in $menuwidget, it returns -1
-    for {set i 0} {$i<=[$dm index last]} {incr i} {
+    global FirstBufferNameInWindowsMenu
+    for {set i $FirstBufferNameInWindowsMenu} {$i<=[$dm index last]} {incr i} {
        if {[$dm type $i] != "separator" && [$dm type $i] != "tearoff"} {
            set lab [$dm entrycget $i -label]
            if {$lab == $labsearched} {
@@ -653,6 +680,7 @@ proc RefreshWindowsMenuLabels {} {
             $pad.filemenu.wind entryconfigure $i -label $pn
         }
     }
+    updatepanestitles
 }
 
 proc IsPrunedNameAmbiguous {ta} {

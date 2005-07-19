@@ -110,7 +110,6 @@ proc inserttab {w} {
 }
 
 proc puttext {w text} {
-    global winTitle
     if {[IsBufferEditable] == "No"} {return}
     set oldSeparator [$w cget -autoseparators] ;# in case this proc is called from another proc
     if {$oldSeparator} {
@@ -144,7 +143,6 @@ proc puttext {w text} {
 
 proc printtime {} {
 #procedure to set the time change %R to %I:%M for 12 hour time display
-    global textareacur
     if {[IsBufferEditable] == "No"} {return}
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]

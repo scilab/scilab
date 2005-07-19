@@ -50,11 +50,15 @@ proc relocalize {} {
 global lang sourcedir
 # carry on all the changes when the locale is changed on the fly via
 # the Options/Locale menu
+    global pad listoftextarea
     ::msgcat::mclocale $lang
     ::msgcat::mcload [file join $sourcedir msg_files]
     createmenues
     setdbmenuentriesstates_bp
-    modifiedtitle [gettextareacur]
+    updatepanestitles
+    foreach pa [$pad.pw panes] {
+        $pa.clbutton configure -text [mc "Close"]
+    }
     keyposn [gettextareacur]
 # labels in opened non-modal dialogs are not updated, but let's not 
 # pretend too much... Same for the title of unsaved buffers named 

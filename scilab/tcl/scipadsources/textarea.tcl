@@ -104,7 +104,7 @@ proc TextStyles { t } {
 }
 
 proc setfontscipad {FontSize} {
-    global textFont menuFont pad
+    global textFont menuFont pad tilestyle
     global listoftextarea watch firsttimeinshowwatch
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
@@ -122,6 +122,11 @@ proc setfontscipad {FontSize} {
     foreach textarea $listoftextarea {
         $textarea configure -font $textFont
         $textarea tag configure activebreakpoint -font $actbptextFont
+        if {$tilestyle != "m"} {
+            set taid [scan $textarea $pad.new%d]
+            $pad.pw.f$taid.panetitle configure -font $menuFont
+            $pad.pw.f$taid.clbutton  configure -font $menuFont
+        }
     }
 
     # This sets the font used in all dialogs (Unix only - on Windows
@@ -140,16 +145,6 @@ proc setfontscipad {FontSize} {
     showinfo [concat [mc "Font size"] $FontSize ]
 }
 
-proc exitapp { {quittype yesno} } {
-# exit app
-    global listoftextarea
-    if {[getdbstate] == "DebugInProgress"} canceldebug_bp
-    foreach textarea $listoftextarea {
-        set wascanceled [closecur $quittype]
-        if {$wascanceled == "Canceled"} {break}
-    }
-}
-
 proc setwingeom {wintoset} {
 # proc to set child window position
     global pad
@@ -159,4 +154,15 @@ proc setwingeom {wintoset} {
     set myy [expr (([winfo screenheight $pad]/2) - \
                 ([winfo reqheight $wintoset]/2))]
     wm geometry $wintoset +$myx+$myy
+}
+
+proc highlighttextarea {textarea} {
+# Set the visual hint such that $textarea can be recognized as being the
+# active buffer
+    global pad
+    foreach pa [$pad.pw panes] {
+        $pa configure -background gray
+    }
+    set winopened [scan $textarea $pad.new%d]
+    $pad.pw.f$winopened configure -background black
 }

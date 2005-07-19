@@ -11,7 +11,7 @@ set DebugScipadWithRamDebugger no
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
         lappend ::auto_path K:/Francois/Developpement/RamDebugger/addons
-#        lappend ::auto_path D:/RamDebugger/addons
+        lappend ::auto_path D:/RamDebugger/addons
         package require commR
         comm::register Scipad 1
     }
@@ -26,6 +26,7 @@ if {[catch {ScilabEval ";"}] != 0} {
     }
     set sciprompt 0
     wm withdraw .
+    if {$tcl_platform(platform) != "unix"} {console show}
 }
 
 # Committed versions should have this attribute set to false
@@ -56,7 +57,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.17"
+set version "Version 5.21"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -76,7 +77,7 @@ set colorpref "$bgcolors $fgcolors"
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts lang"
+       tabinserts lang tilestyle"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -109,6 +110,7 @@ set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
+set tilestyle m ; # m (maximize) or "h" (horizontal panes) or "v" (vertical panes)
 
 # other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
@@ -119,6 +121,7 @@ if {$tcl_platform(platform) != "unix"} {
     set cursorblink "false"
 }
 set mouseoversel "false"
+set dndinitiated "false"
 
 # source the user preferences file if any
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl

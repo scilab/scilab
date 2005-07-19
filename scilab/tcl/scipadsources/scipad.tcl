@@ -48,7 +48,7 @@ if { [info exists pad] } {
 # set initial debug state
     setdbstate "NoDebug"
 
-    keyposn $textareacur
+    focustextarea [gettextareacur]
 
     update idletasks
 }

@@ -1,6 +1,7 @@
 proc createmenues {} {
     global pad menuFont tcl_platform bgcolors fgcolors sourcedir
-    global listoffile listoftextarea FontSize
+    global listoffile listoftextarea FontSize tilestyle
+    global FirstBufferNameInWindowsMenu
     foreach c1 "$bgcolors $fgcolors" {global $c1}
 
     #destroy old menues (used when changing language)
@@ -47,7 +48,7 @@ proc createmenues {} {
     eval "$pad.filemenu.files add command [me "&Close"]\
                    -command \"closecur yesnocancel\" -accelerator Ctrl+w"
     eval "$pad.filemenu.files add command [me "E&xit"] \
-                   -command \"exitapp yesnocancel\" -accelerator Ctrl+q"
+                   -command \"idleexitapp\" -accelerator Ctrl+q"
 
     #edit menu
     menu $pad.filemenu.edit -tearoff 0 -font $menuFont
@@ -249,11 +250,19 @@ proc createmenues {} {
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] \
          -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
+    eval "$pad.filemenu.wind add radiobutton [me "Tile &horizontally"] \
+               -value h -variable tilestyle -command \"tilebuffers horizontal\" "
+    eval "$pad.filemenu.wind add radiobutton [me "Tile &vertically"] \
+               -value v -variable tilestyle -command \"tilebuffers vertical\" "
+    eval "$pad.filemenu.wind add radiobutton [me "&Maximize"] \
+               -value m -variable tilestyle -command \"maximizebuffer\" "
+    $pad.filemenu.wind add separator
+    set FirstBufferNameInWindowsMenu [expr [$pad.filemenu.wind index last] + 1]
     foreach ta $listoftextarea {
         set winopened [scan $ta $pad.new%d]
         $pad.filemenu.wind add radiobutton \
             -label $listoffile("$ta",displayedname)\
-            -value $winopened -variable radiobuttonvalue \
+            -value $winopened -variable textareaid \
             -command "montretext $ta"
     }
 
@@ -286,4 +295,37 @@ proc createmenues {} {
     # now make the menu bar visible
     $pad configure -menu $pad.filemenu 
 
+}
+
+proc disablemenuesbinds {} {
+# Disable certain menu entries and bindings
+# This is used to avoid event overlapping that would trigger repeated calls
+# to certain procs that do not support multiple instances running at the same
+# time. proc tilebuffer (because of the textarea destroy) is such an example.
+# Scipad exit (File/Exit or clicking on [x]) does not make use of this
+# facility to avoid hangs - the user can always escape out
+    global pad nbrecentfiles FirstBufferNameInWindowsMenu
+    # File/Close
+    set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
+    $pad.filemenu.files entryconfigure $iClose -state disabled
+    bind $pad <Control-w> {}
+    # Windows menu entries
+    set lasttoset [expr $FirstBufferNameInWindowsMenu - 1]
+    for {set i 1} {$i<$lasttoset} {incr i} {
+        $pad.filemenu.wind entryconfigure $i -state disabled
+    }
+}
+
+proc restoremenuesbinds {} {
+# Restore menu entries and bindings disabled previously by proc disablemenuesbinds
+    global pad nbrecentfiles FirstBufferNameInWindowsMenu
+    # File/Close
+    set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
+    $pad.filemenu.files entryconfigure $iClose -state normal
+    bind $pad <Control-w> {closecur yesnocancel}
+    # Windows menu entries
+    set lasttoset [expr $FirstBufferNameInWindowsMenu - 1]
+    for {set i 1} {$i<$lasttoset} {incr i} {
+        $pad.filemenu.wind entryconfigure $i -state normal
+    }
 }

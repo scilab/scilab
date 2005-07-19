@@ -1,8 +1,8 @@
 toplevel $pad
 
 set winopened 1
-set radiobuttonvalue 1
-set textareacur $pad.new$winopened
+set textareaid $winopened
+settextareacur $pad.new$winopened
 set listoftextarea [list $pad.new$winopened]
 
 set listoffile("$pad.new$winopened",fullname) "[mc "Untitled"]$winopened.sce"
@@ -22,7 +22,7 @@ wm title $pad "$winTitle - $listoffile("$pad.new$winopened",displayedname)"
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager
-wm protocol $pad WM_DELETE_WINDOW {exitapp yesnocancel}
+wm protocol $pad WM_DELETE_WINDOW {idleexitapp}
 ## geometry in what units? The width is more than 65 columns, though it's 
 ## resized proportionally
 #wm geometry $pad 65x24 
@@ -47,45 +47,28 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 
 $pad.filemenu configure -font $menuFont
 
-# create frames for widget layout
-# this is for the text widget and the y scroll bar
-frame $pad.bottomTopMenu
-pack $pad.bottomTopMenu  -side top -expand 1 -fill both
-# where the text widget is packed
-frame $pad.bottomleftmenu
-pack $pad.bottomleftmenu -in $pad.bottomTopMenu  -side left -expand 1 \
-    -fill both
-# where the y scrollbar is packed
-frame $pad.bottomrightmenu 
-pack  $pad.bottomrightmenu -in $pad.bottomTopMenu  -side right -expand 0 \
-    -fill both 
-# this is for the x scroll bar at the bottom of the window
-frame $pad.bottombottommenu
-pack $pad.bottombottommenu -side bottom -expand 0 -fill both
+panedwindow $pad.pw -orient vertical -opaqueresize true
 
 set taille [expr [font measure $textFont " "] *3]
 
 # creates the default textarea 
-text $pad.new$winopened -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
-        -yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
-        -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
-        -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
-        -selectbackground $SELCOLOR -exportselection 1 \
-        -undo 1 -autoseparators 1
+text $textareacur -relief sunken -bd 0 \
+    -xscrollcommand "managescroll $pad.pw.f$winopened.xscroll" \
+    -yscrollcommand "managescroll $pad.pw.f$winopened.yscroll" \
+    -wrap $wordWrap -width 1 -height 1 \
+    -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
+    -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
+    -selectbackground $SELCOLOR -exportselection 1 \
+    -undo 1 -autoseparators 1
 if {$cursorblink == "true"} {
     $textareacur configure -insertofftime 500 -insertontime 500
 } else {
     $textareacur configure -insertofftime 0
 }
 
-scrollbar $pad.yscroll -command "$textareacur yview" -takefocus 0
-scrollbar $pad.xscroll -command "$textareacur xview" -orient horizontal\
-       -takefocus 0
-pack $textareacur  -in $pad.bottomleftmenu   -side left  -expand 1 -fill both
-pack $pad.yscroll  -in $pad.bottomrightmenu  -side right -expand 1 -fill both
-pack $pad.xscroll  -in $pad.bottombottommenu -expand 1 -fill x 
-focus $textareacur
-TextStyles $textareacur
+# this is for the status bar at the bottom of the main window
+frame $pad.bottom
+pack $pad.bottom -side bottom -expand 0 -fill both
 
 set colormen [$pad.filemenu cget -background]
 
@@ -98,11 +81,16 @@ label $pad.statusmes -relief groove -state disabled -background $colormen \
 # second status indicator to display the line number in functions
 label $pad.statusind2 -relief groove -state disabled -background $colormen \
     -width 24 -anchor w
-pack $pad.statusind2 $pad.statusind -in $pad.bottombottommenu -side right\
+pack $pad.statusind2 $pad.statusind -in $pad.bottom -side right\
     -expand 0
-pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
+pack $pad.statusmes -in $pad.bottom -side bottom -expand 0 -fill x
 
 $textareacur mark set insert "1.0"
+
+# packing of the bottom line with status info *must* be done before packing
+# anything in the panedwindow otherwise the status area can get clipped on
+# window resize
+packnewbuffer $textareacur
 
 # the following update makes the initial textarea reactive to dnd!
 update

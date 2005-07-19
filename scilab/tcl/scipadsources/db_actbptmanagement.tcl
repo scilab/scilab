@@ -27,6 +27,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
         set temp4 $funtogoto
     }
     set fundefs [getallfunsinalltextareas]
+    set funtogoto ""
     foreach {ta fundefsinta} $fundefs {
         foreach {funcname funcline funstartline} $fundefsinta {
             if {$funcname == $activemacro} {
@@ -38,7 +39,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
     set physlogic "logical"
     set linetogo $activeline
     set curfileorfun "function"
-    if {$funtogoto != {}} {
+    if {$funtogoto != ""} {
         dogotoline
         set actpos [[lindex $funtogoto 1] index insert]
         [lindex $funtogoto 1] tag add activebreakpoint "$actpos linestart" "$actpos lineend"

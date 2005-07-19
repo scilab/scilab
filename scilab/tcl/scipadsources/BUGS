@@ -76,6 +76,9 @@ Bugs:
  Workaround: insert an empty line between the line containing endfunction
  and the next breakpointed line - This is Scilab bug 1469 (outside of Scipad)
 
+-On Linux (not on Windows), clicking [x] during a long drop of files (dnd
+ of a directory) makes Scilab crash
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -89,38 +92,6 @@ Old bugs/whishes which have been hacked but could have been done better:
  exactly the same window geometry as in the previous session, but loses
  some advantages of the previously broken grid management, such as resize
  of the window upon font size changes.
-
--added  "evaluate selection",  i.e.  send to  scilab  only the  selected
- text. It is  done, but: a) I  had has to translate \n  in commas (a very
- long line can result, but I  found that up  to ~16300 char is  ok for
- execstr); b) it used to go amok if the selection contains "function" 
- without "endfunction" [scilab problem - with the latest CVS that should
- be fixed]; c) I hacked that  comments are stripped off, but wasn't
- proficient enough  to treat "xxx//xxx"  strings; d) it  doesn't output
- nicely the strings passed on scilab's shell. Likely all this has to do
- with limitations  of ScilabEval [execstr()].   In at least  one windows
- version (old  ScilabEval? the command  is catched by the  history) the
- first character of the command is  dropped (it was a known issue about
- Copy/Paste).  I  do not hack-prepend a  space, as the  bug lies likely
- there.
-Note: this is continuously changing and platform dependent. scilab 3.0RC1 has
-~4000 chars for linux and ~500 for windows. This has to do with the mechanics
-of ScilabEval and the command queue space.
-A workaround could be to via execstr(TK_GetVar), but then scipad has to be
-launched inside the master tk interpreter (perhaps in a namespace) and not 
-in a slave interpreter.
-
--command for indenting/unindenting. Now I just duplicated the Comment/uncomment
- stuff, which works fine but just for two spaces. This is a "hard indentation":
- physical insertion/removal of spaces; someone made provisions for a tag 
- "indentation". probably a logical one. I think physical is more general.
-
--after a paste (either Ctrl-v or 2nd-button), the selection is cleared. 
- I could as well have left it in the old place with the cursor at 
- the insertion point - but then typing erases the selection even if the 
- cursor is somewhere else. A matter of taste. The two copy paste methods
- are not identical since now the latter is equivalent to a copy-paste 
- operation, so I could even decide a different option for each of the two.
 
 -2nd-button now succeds in importing an X external selection into scipad
  under linux. With one remaining glitch, the insertion cursor zomps back
@@ -177,23 +148,6 @@ Wishes:
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
  
--paned window, to allow for viewing two different parts of the text buffer at
- the same time, or two different buffers. Would be nice if the output of .text
- -dump could be feeded into another text widget, but it's not currently the
- case. Another approach would be peer text widget as described in TIP #169:
- http://www.tcl.tk/cgi-bin/tct/tip/169.html (this will be available in Tk 8.5)
-
--tile or cascade windows inside the pad
-
--add a 'Go to function...' entry in a menu. Upon selection, a sub-menu would
- open allowing for selection of any function found in all the currently 
- opened buffers.
- Could also be displayed in a combobox (but tk does not support combos 
- natively - Note however that BWidgets-1.7.0 is now part of the CVS 
- distribution, and that it includes combos!) which would be part of the 
- tool bar. Or a spinbox plus a 'Go' button. The buffer search could be 
- launched only on invocation of the spinbox arrows or on menu selection.
-
 -Conditional breakpoints
 
 -make use of the vector argument for setbpt and delbpt to shorten the
@@ -278,3 +232,48 @@ Wishes:
  but there will be a new text widget subcommand .text replace in Tk 8.5
  that will do it at once and manage the undo/redo stacks at the same time.
  See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
+
+-paned window to allow for viewing two different parts of the text buffer at
+ the same time. Would be nice if the output of .text -dump could be feeded
+ into another text widget, but it's not currently the case.
+ Another (better) approach would be peer text widget as described in TIP #169:
+ http://www.tcl.tk/cgi-bin/tct/tip/169.html (this will be available in Tk 8.5)
+
+-paned window with mixed orientations, e.g. a top H pane plus a bottom H pane
+ which is itself divided into two V panes
+
+-*maybe* a global undo stack instead of one per buffer
+ advantages: can undo at once a dnd from one pane to another one
+ drawbacks : big big implementation work...
+
+-currently either only one buffer is seen (maximized), or *all* the buffers
+ are seen (tiled). Add the possibility displaying only some of the opened 
+ buffers in tile mode.
+ If possible, implement the emacs logic: the split command creates a new
+ subsplit (a new H or V pane in addition to the current ones); choosing
+ which buffer from menu (or inanother two dozen other possible ways) you
+ display that buffer in the active pane. You switch pane clicking with
+ the mouse as if to focus it. Opening a new file displays it in the
+ current active pane without creating a new one. Closing the buffer
+ leaves what was "under" in some sense: the buffer which was previously
+ visible there, or the scratchbuffer, the *message* buffer, or the
+ minibuffer, if no other buffer is available. 
+ F6/F7 should not ignore hidden buffers but display the next/previous
+ buffer of the full list in the current active pane
+ Find/Replace in opened buffers should search in all the opened buffers,
+ visible or not that they are. The question is, "from the first buffer
+ of the list" or "from the current buffer"? Wraparound?
+
+-implement a way to let the user choose which buffer is piled on top of the
+ panedwindow and which one is at the bottom. Use the selected one for the
+ topmost pane?
+
+-minimal Scipad wm size: Probably it would be wise to make the minimum
+ dependent on the number of tiles, so that all the features (menu, title,
+ textbuffer, scrollbars, remain visible) - take fontsize into account
+ warning: updating minsize on file open or dnd could lead to very large Scipad
+
+-Find/Replace: extend the functionality with a checkbox: "Search in all the
+ opened buffers" (disabled when there is only one - think also about the case
+ when the buffers are maximized: should switch buffers or should the checkbox
+ be disabled?) - warning: search in all opened + in selection

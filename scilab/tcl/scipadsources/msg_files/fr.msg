@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.15
+# in sync at least with v5.19
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -9,6 +9,7 @@
 ::msgcat::mcset fr "All files" "Tous les fichiers"
 ::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Untitled" "SansTitre"
+::msgcat::mcset fr "Close" "Fermer"
 
 
 # buffernavigation.tcl
@@ -81,7 +82,6 @@
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
 ::msgcat::mcset fr "Remove" "Supprimer"
 ::msgcat::mcset fr "Call stack:" "Pile des appels:"
-::msgcat::mcset fr "Close" "Fermer"
 ::msgcat::mcset fr "Show watch variables" "Montrer les variables"
 ::msgcat::mcset fr "Hide watch variables" "Cacher les variables"
 ::msgcat::mcset fr "Show call stack" "Montrer la pile d'appel"
@@ -273,6 +273,9 @@
         ::msgcat::mcset fr "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
+    ::msgcat::mcset fr "Tile &horizontally" "Panneaux &horizontaux"
+    ::msgcat::mcset fr "Tile &vertically" "Panneaux &verticaux"
+    ::msgcat::mcset fr "&Maximize" "&Maximiser"
     ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"
 
     # menues.tcl - Help menu

@@ -1,6 +1,6 @@
 proc deletetext {} {
 # cut text procedure
-    global textareacur
+    set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]] \
@@ -23,7 +23,7 @@ proc deletetext {} {
 
 proc backspacetext {} {
 # cut text procedure
-    global textareacur
+    set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]]\
@@ -46,7 +46,7 @@ proc backspacetext {} {
 
 proc cuttext {} {
 # cut text procedure
-    global textareacur
+    set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
 
     tk_textCut $textareacur
@@ -66,7 +66,7 @@ proc copytext {} {
 
 proc pastetext {} {
 # paste text procedure
-    global textareacur
+    set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set oldSeparator [$textareacur cget -autoseparators]
     if {$oldSeparator} {
