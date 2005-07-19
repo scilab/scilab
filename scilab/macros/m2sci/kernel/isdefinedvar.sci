@@ -37,14 +37,22 @@ else
   end
 end
 
-// Compare with all existing variables in varslist
-for k=1:size(varslist)
-  if varslist(k).matname==varname then
-    if level(1)<=0 | varslist(k).level<=level(1) then
-      boolval=%T
-      index=k
-      return
+// Compare with all existing variables varslist
+levelsize=size(level,1)
+i=0
+while i<levelsize & boolval==%F 
+  for k=1:size(varslist)
+    // Search a variable which has the same name
+    if varslist(k).matname==varname then
+      // Search a variable which is in the same level or in an inferior level
+      if varslist(k).level==level(1:levelsize-i) then 
+        boolval=%T
+        index=k
+        return
+      end
     end
   end
+  i=i+1
 end
+
 endfunction

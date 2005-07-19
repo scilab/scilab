@@ -1,4 +1,4 @@
-function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines)
+function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
 // Copyright INRIA
 // M2SCI function
 // V.C.
@@ -8,18 +8,18 @@ global("m2sci_to_insert_b")
 global("varslist")
 
 // Increment level of clause indentation
-level(1)=level(1)+1
+level
 
 // Temp variable used to store instructions to insert before clause
 to_insert=list()
 select typeof(mtlb_clause)
-  
   // --- IF ---
 case "ifthenelse"
-  level(2)=1  
-  // Convert expression
+  level=[level;1]  
   
+  // Convert expression
   [sci_expr]=expression2sci(mtlb_clause.expression)
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
@@ -28,7 +28,7 @@ case "ifthenelse"
   
   // Convert then statements
   sci_then=list()
-  for k=1:size(mtlb_clause.then)
+ for k=1:size(mtlb_clause.then)   
     if typeof(mtlb_clause.then(k))=="sup_equal" then
       sci_then_temp=list()
       for i=1:size(mtlb_clause.then(k).sup_instr)
@@ -45,10 +45,11 @@ case "ifthenelse"
   // Convert elseifs
 sci_elseifs=list()
   for k=1:size(mtlb_clause.elseifs)
-  level(2)=level(2)+1
+  level($)=level($)+1
   
   // Convert expression
 [sci_exprn]=expression2sci(mtlb_clause.elseifs(k).expression)
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
@@ -75,9 +76,11 @@ end
 
 // Convert else
 sci_else=list()
-  level(2)=level(2)+1 
-  for k=1:size(mtlb_clause.else)
-  if typeof(mtlb_clause.else(k))=="sup_equal" then
+  if size(mtlb_clause.else)<>0 then
+  level($)=level($)+1 
+end 
+for k=1:size(mtlb_clause.else)
+if typeof(mtlb_clause.else(k))=="sup_equal" then
 sci_else_temp=list()
   for i=1:size(mtlb_clause.else(k).sup_instr)
 [instr,nblines]=instruction2sci(mtlb_clause.else(k).sup_instr(i),nblines)
@@ -92,18 +95,20 @@ end
 
 // Create Scilab ifthenelse
 sci_clause=tlist(["ifthenelse","expression","then","elseifs","else"],sci_expr,sci_then,sci_elseifs,sci_else)
+level($)=level($)+1 
 updatevarslist("END OF CLAUSE")
-level(1)=level(1)-1
 
 // --- SELECT ---
 case "selectcase"
-  level(2)=1  
+  level=[level;1] 
+  
   // Convert expression
   sci_expr=list()
   [sci_expr(1)]=expression2sci(mtlb_clause.expression(1))
   if size(mtlb_clause.expression)==2 then
     sci_expr(2)=mtlb_clause.expression(2) // EOL
   end
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
@@ -115,7 +120,7 @@ case "selectcase"
   k=0
   while k<size(mtlb_clause.cases)
     k=k+1
-    level(2)=level(2)+1
+    level($)=level($)+1
     // Convert expression
     if typeof(mtlb_clause.cases(k).expression)=="funcall" then
       if mtlb_clause.cases(k).expression.name=="makecell" then
@@ -156,9 +161,11 @@ case "selectcase"
   
   // Convert else
 sci_else=list()
-  level(2)=level(2)+1 
-  for k=1:size(mtlb_clause.else)
-  if typeof(mtlb_clause.else(k))=="sup_equal" then
+  if size(mtlb_clause.else)<>0 then
+  level($)=level($)+1 
+end 
+for k=1:size(mtlb_clause.else)
+if typeof(mtlb_clause.else(k))=="sup_equal" then
 sci_else_temp=list();
   for i=1:size(mtlb_clause.else(k).sup_instr)
 [instr,nblines]=instruction2sci(mtlb_clause.else(k).sup_instr(i),nblines)
@@ -172,12 +179,12 @@ end
 end
 // Create Scilab selectcase
 sci_clause=tlist(["selectcase","expression","cases","else"],sci_expr,sci_cases,sci_else)
+level($)=level($)+1 
 updatevarslist("END OF CLAUSE")
-level(1)=level(1)-1
 
 // --- WHILE ---
 case "while"
-  level(2)=1  
+  level=[level;1] 
   sci_do=list()
   // Convert expression
   [sci_expr]=expression2sci(mtlb_clause.expression)
@@ -241,10 +248,12 @@ end
 
 // Create Scilab while
 sci_clause=tlist(["while","expression","statements"],sci_expr,sci_do)
+level($)=level($)+1 
+updatevarslist("END OF CLAUSE")
 
 // --- FOR ---
 case "for"
-  level(2)=1  
+  level=[level;1]  
   // Convert expression
   [sci_expr,nblines]=instruction2sci(mtlb_clause.expression,nblines)
   if typeof(sci_expr)=="equal" then
