@@ -879,7 +879,7 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
 		}
         px[*p]=px[0];     	         
         py[*p]=py[0];     	 
-        shade(px,py,&fillvect[(*p)*i],*p,(fillvect[(*p)*i]));
+        scilab_shade(px,py,&fillvect[(*p)*i],*p,(fillvect[(*p)*i]));
      }
      FREE(px);
      FREE(py);

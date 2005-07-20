@@ -435,7 +435,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
  		return;
 	      } else {
        	        for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
-                shade(polyx,polyy,fill,*p,flag[0]);
+                scilab_shade(polyx,polyy,fill,*p,flag[0]);
 		/** draw if requested but just check on the first color **/ 
 /*		if ( cvect[(*p)*locindex[i]] <= 0 ) 
 		  {
@@ -1677,7 +1677,7 @@ int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *
  *       routines 
  *-----------------------------------------------------------------------*/
 
-int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag)
+int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag)
 {
    integer px[5],py[5],fil[4],is[3],ie[3],n[3];
    integer npoly=1,k,col,cols,psize,i,s,e;
@@ -1773,11 +1773,11 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
       px[0]=polyx[0]; px[1]=polyx[1]; px[2]=polyx[2];
       py[0]=polyy[0]; py[1]=polyy[1]; py[2]=polyy[2];
       fil[0]=fill[0]; fil[1]=fill[1]; fil[2]=fill[2];
-      shade(px,py,fil,3,-1);
+      scilab_shade(px,py,fil,3,-1);
       px[0]=polyx[0]; px[1]=polyx[2]; px[2]=polyx[3];
       py[0]=polyy[0]; py[1]=polyy[2]; py[2]=polyy[3];
       fil[0]=fill[0]; fil[1]=fill[2]; fil[2]=fill[3];
-      shade(px,py,fil,3,-1);
+      scilab_shade(px,py,fil,3,-1);
    }
    
    /* If flag>0 then the contour is drawn */

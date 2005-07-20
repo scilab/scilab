@@ -6313,7 +6313,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
 		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 			
-		shade(polyx,polyy,&(cvect[p*index]),p,ppsurface->flag[0]);
+		scilab_shade(polyx,polyy,&(cvect[p*index]),p,ppsurface->flag[0]);
 		FREE(cvect); cvect = NULL;
 		if (sciGetIsMark (pobj))
 		  DrawMarks3D (pobj, p,polyx,polyy,DPI);
