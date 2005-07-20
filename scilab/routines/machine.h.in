@@ -56,6 +56,9 @@
 /* Define if have and use READLINE */
 #undef WITH_READLINE
 
+/* Define if we use f95 GNUFORTRAN */
+#undef G95_FORTRAN
+
 /* CNAME(x,y) ==> xy **/
 
 #if defined(USE_SHARP_SIGN)

@@ -17,11 +17,15 @@ extern int C2F(getarg)(int *,char *,long int ln);
 
 int C2F(sciiargc)() 
 {
-  int val;
+  int val=0;
 #ifdef WIN32
   val=sci_iargc(); /* see wsci/winmain.c */
 #else
+#ifdef G95_FORTRAN
+  val = _gfortran_iargc();
+#else 
   val=C2F(iargc)();
+#endif 
 #endif 
   return Max(val,0);
 }
@@ -31,7 +35,11 @@ int C2F(scigetarg)(int *n,char *str,long int ln)
 #ifdef WIN32
   sci_getarg(n,str,ln); /* see wsci/winmain.c */
 #else 
+#ifdef G95_FORTRAN
+  _gfortran_getarg_i4(n,str,ln);
+#else 
   C2F(getarg)(n,str,ln);
+#endif 
 #endif
   return 0;
 }
