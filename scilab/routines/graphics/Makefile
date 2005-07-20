@@ -4,7 +4,7 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/graphics.a
 
-OBJSC = periX11.o periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
+OBJSC = periGtk.o periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
 	GetProperty.o BuildObjects.o CloneObjects.o DestroyObjects.o \
 	DrawObjects.o SetProperty.o HandleManagement.o InitObjects.o \
 	Interaction.o Interaction.o SetProperty.o \

@@ -932,12 +932,12 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                           if (color_mode >= 0){	
 			    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
 			    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
-			    shade (rear_x, rear_y, rear_col, rear_size, 1);
+			    scilab_shade (rear_x, rear_y, rear_col, rear_size, 1);
 			  }
                           else{
 			    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
 			    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
-			    shade (rear_x, rear_y, rear_col, rear_size, -1);
+			    scilab_shade (rear_x, rear_y, rear_col, rear_size, -1);
 			  }
                         }
                       if (sciGetIsMark (pobj))
@@ -950,7 +950,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                   if (sciGetIsLine (pobj)){
 		    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
 		    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
-		    shade (polyx, polyy, col, front_size, color_mode);
+		    scilab_shade (polyx, polyy, col, front_size, color_mode);
 		  }
                   if (sciGetIsMark (pobj))
                     DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
