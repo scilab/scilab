@@ -51,12 +51,15 @@ for k=1:size(mtlb_instr.lhs)
 end
 
 // Convert expression
+
 [sci_expr]=expression2sci(mtlb_instr.expression,lhslist);
 
 if sci_expr==list() then // Conversion made by inserted instructions or 'm2scideclare'
   sci_instr=list()
 else
+
   sci_instr.expression=sci_expr;
+  
   // Update lhs of instruction
   select typeof(sci_instr.expression)
   case "operation" then
@@ -77,7 +80,7 @@ else
   else
     error("equal2sci: "+typeof(sci_instr.expression)+" is not implemented !");
   end
-  
+ 
   // If lhs are insertion operation, they also have to be converted
   for k=1:size(sci_instr.lhs)
     if typeof(sci_instr.lhs(k))=="operation" then
@@ -100,7 +103,6 @@ else
 	// Verify that there is just one lhs kept
 	if size(sci_instr.lhs(k).operands($).lhs)<>1 then pause;end
       end
-
       // If insertion made in an unknown variable, I add it to varslist
       inservar=sci_instr.lhs(k).operands(1)
       [bval,index]=isdefinedvar(inservar)
@@ -118,7 +120,7 @@ else
 	elseif sci_instr.expression.vtype==Cell then
 	  // Variable is initialized to cell() in converted script is does not already exist
 	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Cell,Unknown)))
-	  m2sci_to_insert_b($+1)=Equal(list(inservar),Funcall("cell",1,list(),list()))
+	  //m2sci_to_insert_b($+1)=Equal(list(inservar),Funcall("cell",1,list(),list()))
 	else
 	  // Variable is initialized to [] in converted script is does not already exist
 	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Double,Real)))
@@ -126,18 +128,16 @@ else
 	end
 	sci_instr.lhs(k).out(1).infer=varslist($).infer
       else
-	sci_instr.lhs(k).out(1).infer=varslist(index).infer
+      	sci_instr.lhs(k).out(1).infer=varslist(index).infer
       end
-
       [sci_instr.lhs(k)]=operation2sci(sci_instr.lhs(k))
-
       if typeof(sci_instr.lhs(k))=="operation" then
 	if or(sci_instr.lhs(k).operands($)<>sci_instr.expression) then // Update expression if has been modified while converting lhs
 	  sci_instr.expression=sci_instr.lhs(k).operands($)
 	end
+	
 	sci_instr.lhs(k).operands($)=null()
 	updatevarslist(sci_instr.lhs(k).out)
-
       else
 	// Insertion done by inserted instruction
 	sci_instr=list()
@@ -147,10 +147,5 @@ else
   end
   // Update varslist
   updatevarslist(sci_instr.lhs);
-
 end
 endfunction
-
-
-
-
