@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.16
+# in sync at least with v5.21
 
 
 # commons
@@ -305,7 +305,10 @@
 
     # menues.tcl - Windows menu
     ::msgcat::mcset it "Opened Files" "Files aperti"
-
+    ::msgcat::mcset it "Tile &horizontally" "&Affianca"
+    ::msgcat::mcset it "Tile &vertically" "&Impila"
+    ::msgcat::mcset it "&Maximize" "&Massimizza"
+ 
     # menues.tcl - Help menu
     ::msgcat::mcset it "&Help..." "&Aiuto..."
     ::msgcat::mcset it "&What's?..." "&Cos'è?..."
