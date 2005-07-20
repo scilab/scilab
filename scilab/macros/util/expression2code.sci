@@ -289,8 +289,8 @@ case "list"
     ind=expression2code(e(k))
     if type(e(k))==15 then // Recursive extraction in recursive extraction
       ind=strsubst(ind,")(",",")
-      ind=strsubst(ind,"(","")
-      ind=strsubst(ind,")","")
+      //ind=strsubst(ind,"(","")
+      //ind=strsubst(ind,")","")
     end
     if ind==""":""" then
       ind=":"
