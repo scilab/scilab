@@ -3,7 +3,7 @@ scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
 "doc"],[600,450,0,0,600,450],["Non_linear","SCI/macros/scicos/"],..
-[0.0001,1.000E-06,1.000E-10,100001,0,0],100000,[],[],..
+[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
@@ -81,8 +81,8 @@ scs_m.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"invblk",-1,-1,[],[],[],[],[],[],"c",[],[%t,%f],"",0,..
-              0,list()),"INVBLK_f",list())
+              "equations"],list("invblk4",4),-1,-1,[],[],[],[],[],[],"c",[],..
+              [%t,%f],"",0,0,list()),"INVBLK",list())
 scs_m.objs(7)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..

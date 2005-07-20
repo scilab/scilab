@@ -15,7 +15,9 @@ MACROS=BIGSOM_f.sci     DLR_f.sci      INTEGRAL_f.sci    TCLSS_f.sci\
 	CLR_f.sci        GAINBLK.sci    SAMPLEHOLD_f.sci  VARIABLE_DELAY.sci\
 	CLSS_f.sci       GAINBLK_f.sci  SOM_f.sci\
 	DELAYV_f.sci     GAIN_f.sci     SUMMATION.sci\
-	DELAY_f.sci      INTEGRAL.sci   SUM_f.sci        DERIV.sci
+	DELAY_f.sci      INTEGRAL.sci   SUM_f.sci        DERIV.sci\
+	TCLSS.sci DLR.sci DLSS.sci CLR.sci CLSS.sci SAMPHOLD.sci \
+	REGISTER.sci 
 
 
 include ../../Make.lib

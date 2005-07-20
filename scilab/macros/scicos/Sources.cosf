@@ -3,7 +3,7 @@ scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
 "doc"],[600,450,0,0,600,450],["Sources","SCI/macros/scicos/"],..
-[0.0001,1.000E-06,1.000E-10,100001,0,0],100000,[],[],..
+[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
@@ -19,8 +19,8 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],list("cstblk",1),[],1,[],[],[],[],1,[],"d",[],[%f,%f],..
-              "",0,0,list()),"CONST_f",list())
+              "equations"],list("cstblk4",4),[],1,[],[],[],[],1,[],"d",[],..
+              [%f,%f],"",0,0,list()),"CONST",list())
 scs_m.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
@@ -75,9 +75,9 @@ scs_m.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"readf",[],1,1,[],[],[1;1;0;0;0],[],..
+              "equations"],list("readf4",4),[],1,1,[],[],[1;1;0;0;0],[],..
               [3;13;0;2;15;24;24;41;7;41;14;1;0;51;3;52;1;33;42;42;0;1],"d",[],..
-              [%f,%f],"",0,0,list()),"RFILE_f",list())
+              [%f,%f],"",0,0,list()),"RFILE",list())
 scs_m.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
@@ -159,7 +159,7 @@ scs_m_1=scicos_diagram()
 scs_m_1.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
 "doc"],[600,450,0,0,600,450],["STEP_FUNCTION","./"],..
-[0.0001;1.000E-06;1.000E-10;100001;0;0],14," ",[],..
+[0.0001;0.000001;1.000E-10;100001;0;0],14," ",[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m_1.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
@@ -214,7 +214,7 @@ scs_m.objs(11)=mlist(..
 scs_m_1=scicos_diagram()
 scs_m_1.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
-"doc"],[600,450,0,0,600,450],"Untitled",[0.0001,1.000E-06,1.000E-10,100001,0,0],..
+"doc"],[600,450,0,0,600,450],"Untitled",[0.0001,0.000001,1.000E-10,100001,0,0],..
 100000,[],[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())

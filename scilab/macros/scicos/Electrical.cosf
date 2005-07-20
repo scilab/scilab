@@ -3,7 +3,7 @@ scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
 "doc"],[600,450,0,0,600,450],["Electrical","SCI/macros/scicos/"],..
-[0.0001,1.000E-06,1.000E-10,100001,0,0],100000,[],[],..
+[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
@@ -250,7 +250,7 @@ scs_m.objs(11)=mlist(["Block","graphics","model","gui","doc"],..
                mlist(..
                ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
                "gr_i","id","in_implicit","out_implicit"],[280,70],[40,20],%t,..
-               ["1.000E-06";"0.04";"15";"1.000E+08"],0,0,[],[],..
+               ["0.000001";"0.04";"15";"1.000E+08"],0,0,[],[],..
                list(..
                ["xset(''thickness'',2)";
                "if orient then";
@@ -264,11 +264,11 @@ scs_m.objs(11)=mlist(["Block","graphics","model","gui","doc"],..
                mlist(..
                ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-               "equations"],"Diode",1,1,[],[],[],[],..
-               [1.000E-06;0.04;15;1.000E+08],[],"c",[],[%t,%f],"",0,0,..
+               "equations"],"Diode",1,1,[],[],[],[],[0.000001;0.04;15;1.000E+08],..
+               [],"c",[],[%t,%f],"",0,0,..
                tlist(["modelica","model","inputs","outputs","parameters"],..
                "Diode","p","n",..
-               list(["Ids","Vt","Maxexp","R"],list(1.000E-06,0.04,15,1.000E+08)),..
+               list(["Ids","Vt","Maxexp","R"],list(0.000001,0.04,15,1.000E+08)),..
                list([],list()))),"Diode",list())
 scs_m.objs(12)=mlist(["Block","graphics","model","gui","doc"],..
                mlist(..
