@@ -15,7 +15,7 @@ to_insert=list()
 select typeof(mtlb_clause)
   // --- IF ---
 case "ifthenelse"
-  level=[level;1]  
+  level=[level;0]  
   
   // Convert expression
   [sci_expr]=expression2sci(mtlb_clause.expression)
@@ -28,6 +28,7 @@ case "ifthenelse"
   
   // Convert then statements
   sci_then=list()
+  level($)=level($)+1
  for k=1:size(mtlb_clause.then)   
     if typeof(mtlb_clause.then(k))=="sup_equal" then
       sci_then_temp=list()
@@ -100,7 +101,7 @@ updatevarslist("END OF CLAUSE")
 
 // --- SELECT ---
 case "selectcase"
-  level=[level;1] 
+  level=[level;0] 
   
   // Convert expression
   sci_expr=list()
@@ -184,7 +185,7 @@ updatevarslist("END OF CLAUSE")
 
 // --- WHILE ---
 case "while"
-  level=[level;1] 
+  level=[level;0] 
   sci_do=list()
   // Convert expression
   [sci_expr]=expression2sci(mtlb_clause.expression)
@@ -198,6 +199,7 @@ case "while"
   end
 
   // Convert all do instructions
+  level($)=level($)+1
   for k=1:size(mtlb_clause.statements)
     if typeof(mtlb_clause.statements(k))=="sup_equal" then
       sci_do_temp=list()
@@ -253,7 +255,7 @@ updatevarslist("END OF CLAUSE")
 
 // --- FOR ---
 case "for"
-  level=[level;1]  
+  //level=[level;1]  
   // Convert expression
   [sci_expr,nblines]=instruction2sci(mtlb_clause.expression,nblines)
   if typeof(sci_expr)=="equal" then
