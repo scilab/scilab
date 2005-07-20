@@ -46,9 +46,13 @@ proc packnewbuffer {textarea} {
 
     if {$tilestyle != "m"} {
         label $pad.pw.f$taid.panetitle -font $menuFont
-        pack $pad.pw.f$taid.panetitle -in $pad.pw.f$taid.topbar
+        pack $pad.pw.f$taid.panetitle -in $pad.pw.f$taid.topbar -expand 1 -fill none
         bind $pad.pw.f$taid.topbar    <ButtonRelease-1> "focustextarea $pad.new$taid"
         bind $pad.pw.f$taid.panetitle <ButtonRelease-1> "focustextarea $pad.new$taid"
+        bind $pad.pw.f$taid.topbar    <Double-Button-1> "focustextarea $pad.new$taid; \
+                                                         $pad.filemenu.wind invoke 1"
+        bind $pad.pw.f$taid.panetitle <Double-Button-1> "focustextarea $pad.new$taid; \
+                                                         $pad.filemenu.wind invoke 1"
     }
 
     pack $textarea -in $pad.pw.f$taid.topleft \

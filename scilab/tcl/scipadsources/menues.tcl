@@ -250,12 +250,15 @@ proc createmenues {} {
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] \
          -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
-    eval "$pad.filemenu.wind add radiobutton [me "Tile &horizontally"] \
-               -value h -variable tilestyle -command \"tilebuffers horizontal\" "
-    eval "$pad.filemenu.wind add radiobutton [me "Tile &vertically"] \
-               -value v -variable tilestyle -command \"tilebuffers vertical\" "
     eval "$pad.filemenu.wind add radiobutton [me "&Maximize"] \
-               -value m -variable tilestyle -command \"maximizebuffer\" "
+               -value m -variable tilestyle -command \"maximizebuffer\" \
+               -accelerator Ctrl+1 "
+    eval "$pad.filemenu.wind add radiobutton [me "Tile &vertically"] \
+               -value v -variable tilestyle -command \"tilebuffers vertical\" \
+               -accelerator Ctrl+2 "
+    eval "$pad.filemenu.wind add radiobutton [me "Tile &horizontally"] \
+               -value h -variable tilestyle -command \"tilebuffers horizontal\" \
+               -accelerator Ctrl+3 "
     $pad.filemenu.wind add separator
     set FirstBufferNameInWindowsMenu [expr [$pad.filemenu.wind index last] + 1]
     foreach ta $listoftextarea {
@@ -313,6 +316,7 @@ proc disablemenuesbinds {} {
     set lasttoset [expr $FirstBufferNameInWindowsMenu - 1]
     for {set i 1} {$i<$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state disabled
+        bind $pad <Control-Key-$i> ""
     }
 }
 
@@ -327,5 +331,6 @@ proc restoremenuesbinds {} {
     set lasttoset [expr $FirstBufferNameInWindowsMenu - 1]
     for {set i 1} {$i<$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
+        bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"
     }
 }

@@ -100,6 +100,10 @@ bind $pad <Control-a> {selectall}
 bind Text <Control-slash> {set ind [%W index insert]; openlibfunsource $ind}
 bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
 
+bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
+bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
+bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
+
 # The following are (unfortunately) platform/os-dependent keysyms
 set Shift_Tab {"ISO_Left_Tab" "Shift-Tab"}
 set Shift_F1  {"XF86_Switch_VT_1" "Shift-F1"}

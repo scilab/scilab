@@ -1297,3 +1297,13 @@ Francois VOGEL, 19/07/05
    this has been done by disabling certain menues entries and bindings before
    launching the command, and restoring them after execution
  * version --> 5.21
+
+Francois VOGEL, 20/07/05
+ * proc updatepanestitles improved to prevent rapid switching of buffer names
+   in the Scipad title bar on closing a buffer when many are opened
+ * Fixed: when previous exit was done in horizontal panes mode, the next
+   restart used vertical orientation
+ * Double-Button-1 on tile title binded to maximization of the clicked buffer
+ * Added accelerators for tile mode in windows menu
+ * Better centering of the label in the tile title
+ * version --> 5.22

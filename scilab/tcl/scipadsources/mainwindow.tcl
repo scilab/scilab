@@ -47,7 +47,12 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 
 $pad.filemenu configure -font $menuFont
 
-panedwindow $pad.pw -orient vertical -opaqueresize true
+if {$tilestyle == "h"} {
+    set initialorient "horizontal"
+} else {
+    set initialorient "vertical"
+}
+panedwindow $pad.pw -orient $initialorient -opaqueresize true
 
 set taille [expr [font measure $textFont " "] *3]
 
