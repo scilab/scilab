@@ -9,7 +9,7 @@ void minmax(scicos_block *block,int flag)
   phase=get_phase_simulation();
   if (flag == 1) {
     if(block->nin==1){
-      if((block->ng==0)|(phase==1)){
+      if((block->ng==0)||(phase==1)){
 	maxmin=block->inptr[0][0];
 	for (i=1;i<block->insz[0];++i){
 	  if(block->ipar[0]==1){
@@ -25,7 +25,7 @@ void minmax(scicos_block *block,int flag)
 
     }else if (block->nin==2){
       for (i=0;i<block->insz[0];++i){
-	if((block->ng==0)|(phase==1)){
+	if((block->ng==0)||(phase==1)){
 	  if(block->ipar[0]==1){
 	    block->outptr[0][i]=min(block->inptr[0][i],block->inptr[1][i]);
 	  } else {

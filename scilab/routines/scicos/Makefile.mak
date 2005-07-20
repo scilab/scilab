@@ -44,7 +44,10 @@ BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj
 	summation.obj multiplex.obj gainblk.obj relationalop.obj modulo_count.obj \
 	hystheresis.obj ratelimiter.obj backlash.obj deadband.obj ramp.obj evaluate_expr.obj \
 	deriv.obj sin_blk.obj cos_blk.obj tan_blk.obj asin_blk.obj acos_blk.obj atan_blk.obj \
-        sinh_blk.obj cosh_blk.obj tanh_blk.obj asinh_blk.obj acosh_blk.obj atanh_blk.obj evtvardly.obj edgetrig.obj
+        sinh_blk.obj cosh_blk.obj tanh_blk.obj asinh_blk.obj acosh_blk.obj atanh_blk.obj \
+	evtvardly.obj edgetrig.obj tcslti4.obj tcsltj4.obj dsslti4.obj \
+	csslti4.obj cstblk4.obj samphold4.obj dollar4.obj invblk4.obj delay4.obj readf4.obj \
+	writef4.obj
 
 OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
@@ -54,7 +57,7 @@ OBJSF=intcos.obj coselm.obj sciblk.obj  \
 OBJSC=scicos.obj import.obj sciblk2.obj sciblk2i.obj  realtime.obj \
 	intrealtime.obj intcscicos.obj blocks.obj cpass2.obj scicosclip.obj \
 	sciblk4.obj str2sci.obj intconnection.obj scicos_malloc.obj \
-	scicos_free.obj $(BLOCKSC)
+	scicos_free.obj tree.obj dmmul.obj dmmul1.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
@@ -113,7 +116,7 @@ cscope.obj: cscope.c scicos_block.h ../machine.h
 deadband.obj: deadband.c scicos_block.h
 deriv.obj: deriv.c scicos_block.h
 extractor.obj: extractor.c scicos_block.h
-gainblk.obj: gainblk.c scicos_block.h ../machine.h
+gainblk.obj: gainblk.c scicos_block.h 
 evaluate_expr.obj:  scicos_block.h
 hystheresis.obj: hystheresis.c scicos_block.h
 import.obj: import.c ../machine.h import.h
@@ -184,3 +187,16 @@ asinh_block.obj: asinh_block.c scicos_block.h
 acosh_block.obj: acosh_block.c scicos_block.h  
 atanh_block.obj: atanh_block.c scicos_block.h  
 evtvardly.obj: evtvardly.c  scicos_block.h  
+tcslti4.obj: tcslti4.c scicos_block.h 
+tcsltj4.obj: tcsltj4.c scicos_block.h 
+dsslti4.obj: dsslti4.c scicos_block.h  	
+csslti4.obj: csslti4.c scicos_block.h
+cstblk4.obj: cstblk4.c scicos_block.h 
+samphold4.obj: samphold4.c scicos_block.h
+dollar4.obj: dollar4.c scicos_block.h
+invblk4.obj: invblk4.c scicos_block.h
+delay4.obj: delay4.c scicos_block.h
+readf4.obj: readf4.c ../machine.h scicos_block.h
+writef4.obj: writef4.c ../machine.h scicos_block.h
+tree.obj: tree.c ../machine.h ../sci_mem_alloc.h
+

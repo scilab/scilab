@@ -129,6 +129,17 @@ extern void acosh_blk __PARAMS((ARGS_scicos));
 extern void atanh_blk __PARAMS((ARGS_scicos));
 extern void evtvardly __PARAMS((ARGS_scicos));
 extern void edgetrig __PARAMS((ARGS_scicos));
+extern void tcslti4 __PARAMS((ARGS_scicos));
+extern void tcsltj4 __PARAMS((ARGS_scicos));
+extern void dsslti4 __PARAMS((ARGS_scicos));
+extern void csslti4 __PARAMS((ARGS_scicos));
+extern void cstblk4 __PARAMS((ARGS_scicos));
+extern void samphold4 __PARAMS((ARGS_scicos));
+extern void dollar4 __PARAMS((ARGS_scicos));
+extern void invblk4 __PARAMS((ARGS_scicos));
+extern void delay4 __PARAMS((ARGS_scicos));
+extern void readf4 __PARAMS((ARGS_scicos));
+extern void writef4 __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -153,17 +164,22 @@ OpTab tabsim[] ={
 {"cosh_blk",(ScicosF) cosh_blk},
 {"cscope",(ScicosF) cscope},
 {"csslti",(ScicosF) F2C(csslti)},
+{"csslti4",(ScicosF) csslti4},
 {"cstblk",(ScicosF) F2C(cstblk)},
+{"cstblk4",(ScicosF) cstblk4},
 {"dband",(ScicosF) F2C(dband)},
 {"deadband",(ScicosF) deadband},
 {"delay",(ScicosF) F2C(delay)},
+{"delay4",(ScicosF) delay4},
 {"delayv",(ScicosF) F2C(delayv)},
 {"demux",(ScicosF) F2C(demux)},
 {"deriv",(ScicosF) deriv},
 {"diffblk",(ScicosF) F2C(diffblk)},
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar",(ScicosF) F2C(dollar)},
+{"dollar4",(ScicosF) dollar4},
 {"dsslti",(ScicosF) F2C(dsslti)},
+{"dsslti4",(ScicosF) dsslti4},
 {"edgetrig",(ScicosF) edgetrig},
 {"eselect",(ScicosF) F2C(eselect)},
 {"evaluate_expr",(ScicosF) evaluate_expr},
@@ -189,6 +205,7 @@ OpTab tabsim[] ={
 {"intrp2",(ScicosF) F2C(intrp2)},
 {"intrpl",(ScicosF) F2C(intrpl)},
 {"invblk",(ScicosF) F2C(invblk)},
+{"invblk4",(ScicosF) invblk4},
 {"iocopy",(ScicosF) F2C(iocopy)},
 {"logblk",(ScicosF) F2C(logblk)},
 {"logicalop",(ScicosF) logicalop},
@@ -219,10 +236,12 @@ OpTab tabsim[] ={
 {"readau",(ScicosF) readau},
 {"readc",(ScicosF) readc},
 {"readf",(ScicosF) F2C(readf)},
+{"readf4",(ScicosF) readf4},
 {"relationalop",(ScicosF) relationalop},
 {"relay",(ScicosF) relay},
 {"rndblk",(ScicosF) F2C(rndblk)},
 {"samphold",(ScicosF) F2C(samphold)},
+{"samphold4",(ScicosF) samphold4},
 {"satur",(ScicosF) satur},
 {"sawtth",(ScicosF) F2C(sawtth)},
 {"scalar2vector",(ScicosF) scalar2vector},
@@ -248,7 +267,9 @@ OpTab tabsim[] ={
 {"tanblk",(ScicosF) F2C(tanblk)},
 {"tanh_blk",(ScicosF) tanh_blk},
 {"tcslti",(ScicosF) F2C(tcslti)},
+{"tcslti4",(ScicosF) tcslti4},
 {"tcsltj",(ScicosF) F2C(tcsltj)},
+{"tcsltj4",(ScicosF) tcsltj4},
 {"timblk",(ScicosF) F2C(timblk)},
 {"time_delay",(ScicosF) time_delay},
 {"trash",(ScicosF) F2C(trash)},
@@ -256,10 +277,11 @@ OpTab tabsim[] ={
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
+{"writef4",(ScicosF) writef4},
 {"zcross",(ScicosF) F2C(zcross)},
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 127 ;
+int ntabsim= 138 ;
 #endif 
 /***********************************/

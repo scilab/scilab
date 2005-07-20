@@ -2,13 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-
-#ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
-#else
 #include "../sci_mem_alloc.h" /* MALLOC */
-#endif
-
 #include "../stack-c.h"
 #include "../machine.h"
 #include "intcscicos.h"
@@ -31,7 +25,11 @@ static intcscicosTable Tab[]={
   {intsetxproperty,"set_xproperty"},
   {intcpass2,"scicos_cpass2"},
   {intsetblockerror,"set_blockerror"},
+  {inttree2,"ctree2"},
+  {inttree3,"ctree3"},
+  {inttree4,"ctree4"},
 };
+
 /* fonction pour recuperer le nombre du champs a partir de son nom */
 int MlistGetFieldNumber(int *ptr, const char *string)
 {
@@ -146,6 +144,105 @@ int intdiffobjs(fname,fname_len)
   }    
   return 0;
 }
+
+int inttree2(fname,fname_len)
+     /* [ord,ok]=ctree2(vec,outoin,outoinptr,dep_u,dep_uptr) */
+     char *fname;
+     unsigned long fname_len;
+{
+  int un=1,ipvec,nvec,mvec,noin,moin,ipoin,noinr,moinr,ipoinr;
+  int ndep,mdep,ipdep,ndepuptr,mdepuptr,ipdepuptr,ipord,ipok,n,nord;
+  
+  CheckRhs(5,5);
+  CheckLhs(2,2);
+
+  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
+  GetRhsVar(2,"i",&noin,&moin,&ipoin);
+  GetRhsVar(3,"i",&noinr,&moinr,&ipoinr);
+  GetRhsVar(4,"i",&ndep,&mdep,&ipdep);
+  GetRhsVar(5,"i",&ndepuptr,&mdepuptr,&ipdepuptr);
+  n=nvec*mvec;
+  CreateVar(6,"i",&n,&un,&ipord);
+  CreateVar(7,"i",&un,&un,&ipok);
+
+  ctree2(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(ipoin),istk(ipoinr),
+	 istk(ipord),&nord,istk(ipok));
+  *istk(iadr(C2F(intersci).iwhere[5])+1)=nord;
+
+  LhsVar(1)=6;
+  LhsVar(2)=7;
+
+  return 0;
+}
+
+int inttree3(fname,fname_len)
+     /* [r2,ok2]=ctree3(vec,dd,dep_uptr,typ_l,bexe,boptr,blnk,blptr)*/
+     char *fname;
+     unsigned long fname_len;
+{
+  int un=1,ipvec,nvec,mvec,ntyp,mtyp,iptyp,nbex,mbex,ipbex;
+  int ndep,mdep,ipdep,ndepuptr,mdepuptr,ipdepuptr,ipord,ipok,n,nord;
+  int nbop,mbop,ipbop,nbln,mbln,ipbln,nblr,mblr,ipblr;
+  
+  CheckRhs(8,8);
+  CheckLhs(2,2);
+
+  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
+  GetRhsVar(2,"i",&ndep,&mdep,&ipdep);
+  GetRhsVar(3,"i",&ndepuptr,&mdepuptr,&ipdepuptr);
+  GetRhsVar(4,"i",&ntyp,&mtyp,&iptyp);
+  GetRhsVar(5,"i",&nbex,&mbex,&ipbex);
+  GetRhsVar(6,"i",&nbop,&mbop,&ipbop);
+  GetRhsVar(7,"i",&nbln,&mbln,&ipbln);
+  GetRhsVar(8,"i",&nblr,&mblr,&ipblr);
+  
+  n=nvec*mvec;
+  CreateVar(9,"i",&n,&un,&ipord);
+  CreateVar(10,"i",&un,&un,&ipok);
+
+  ctree3(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(iptyp),istk(ipbex),
+	 istk(ipbop),istk(ipbln),istk(ipblr),istk(ipord),&nord,istk(ipok));
+  *istk(iadr(C2F(intersci).iwhere[8])+1)=nord;
+
+  LhsVar(1)=9;
+  LhsVar(2)=10;
+
+  return 0;
+}
+
+int inttree4(fname,fname_len)
+     /* [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd) */
+     char *fname;
+     unsigned long fname_len;
+{
+  int un=1,ipvec,nvec,mvec,noin,moin,ipoin,noinr,moinr,ipoinr;
+  int nnd,mnd,ipnd,ntyp,mtyp,iptyp,ipr1,ipr2,n,nr,nn;
+  
+  CheckRhs(5,5);
+  CheckLhs(2,2);
+
+  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
+  GetRhsVar(2,"i",&noin,&moin,&ipoin);
+  GetRhsVar(3,"i",&noinr,&moinr,&ipoinr);
+  GetRhsVar(4,"i",&nnd,&mnd,&ipnd);
+  GetRhsVar(5,"i",&ntyp,&mtyp,&iptyp);
+  n=nvec*mvec;
+  nn=nnd*mnd;
+  CreateVar(6,"i",&un,&nn,&ipr1);
+  CreateVar(7,"i",&un,&nn,&ipr2);
+
+  ctree4(istk(ipvec),n,istk(ipnd),mnd,istk(iptyp),istk(ipoin),
+	 istk(ipoinr),istk(ipr1),istk(ipr2),&nr);
+  
+  LhsVar(1)=6;
+  LhsVar(2)=7;
+  /*      nbcols(6)=nr */
+  *istk(iadr(C2F(intersci).iwhere[5])+2)=nr;
+  /*      nbcols(7)=nr */
+  *istk(iadr(C2F(intersci).iwhere[6])+2)=nr;
+  return 0;
+}
+
 
 int intxproperty(fname,fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
