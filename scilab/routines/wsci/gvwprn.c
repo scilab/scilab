@@ -16,10 +16,9 @@
    1997 : modified for Scilab
    Jean-Philippe Chancelier 
    See gp_printfile : choose a printer and send a file to printer 
+   2005 : Allan CORNET INRIA
  */
 
-#include "gvwin.h"
-/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 
@@ -29,41 +28,7 @@
 
 #include "win_mem_alloc.h" /* MALLOC */
 
-/** 
-  Warning : Remove AbortPrinter from 
-  b18/H-i386-cygwin32/i386-cygwin32/include/Windows32/Functions.h
-  for gc-win32 
-  **/
-
-#ifdef GVW_ALONE
-/* standalone executable for print spool */
-/* get a filename and spool it for printing */
-/* XXXX : a finir en rajoutant des arguments * */
-
-int 
-main (int argc, char *argv[])
-{
-  HWND parent;
-  HANDLE x = GetModuleHandleA (0);
-  parent = GetActiveWindow ();
-  if (argc == 2)
-    gp_printfile (x, parent, argv[1], (char *) 0);
-  else
-    gp_printfile (x, parent, (char *) 0, (char *) 0);
-  return (0);
-}
-
-void 
-sciprint (char *fmt,...)
-{
-  int count;
-  va_list args;
-  va_start (args, fmt);
-  count = vfprintf (stdout, fmt, args);
-}
-
-#endif /* GW_ALONE */
-
+#define MAXSTR 256     /* maximum file name length and general string length */
 /* documented in Device Driver Adaptation Guide */
 
 #define PORT_BUF_SIZE 4096
@@ -72,8 +37,7 @@ sciprint (char *fmt,...)
 
 char printer_port[32];
 
-EXPORT BOOL CALLBACK
-SpoolDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+EXPORT BOOL CALLBACK SpoolDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
   LPSTR entry;
   switch (message)
@@ -196,8 +160,7 @@ get_queuename (HINSTANCE hInstance, HWND hwnd, char *portname, char *queue)
 
 #define PRINT_BUF_SIZE 16384u
 
-int 
-gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
+int gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
 {
   DWORD count;
   char *buffer;

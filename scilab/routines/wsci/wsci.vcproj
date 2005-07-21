@@ -2845,9 +2845,6 @@ cd .. &gt;nul
 				RelativePath=".\GetOS.h">
 			</File>
 			<File
-				RelativePath="gvwin.h">
-			</File>
-			<File
 				RelativePath=".\interfdde.h">
 			</File>
 			<File
