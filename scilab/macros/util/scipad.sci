@@ -1,6 +1,5 @@
 function scipad(varargin)
 // start scipad editor
-global %scipad_language;
 global LANGUAGE
 global TMPDIR
   if with_tk() then
@@ -18,14 +17,6 @@ global TMPDIR
         TCL_EvalStr("scipad eval { set env(SCIHOME) """+pathconvert(SCIHOME,%f,%t)+""" }")
       end
     end
-    if %scipad_language==[] then 
-      if LANGUAGE<>[] then
-        %scipad_language=LANGUAGE
-      else
-        %scipad_language="eng"
-      end
-    end
-    TCL_EvalStr("scipad eval { set lang """+%scipad_language+""" }")
     if MSDOS then
       TCL_EvalStr("scipad eval { set tmpdir """+strsubst(TMPDIR,"\","/")+""" }")
     else
