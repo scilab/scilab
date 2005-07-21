@@ -14,7 +14,6 @@
 
 # buffernavigation.tcl
 ::msgcat::mcset se "Goto Line?" "Gå till rad ?"
-::msgcat::mcset se "Goto Line: " "Gå till rad: "
 ::msgcat::mcset se "Go to:" "Gå till  : "
 ::msgcat::mcset se "&logical line" "logisk rad"
 ::msgcat::mcset se "&physical line" "fysisk rad"
@@ -297,7 +296,6 @@
     ::msgcat::mcset se "Tile &vertically" "Pannorera &vertikalt"
     ::msgcat::mcset se "&Maximize" "&Maximera"
 
-
     # menues.tcl - Help menu
     ::msgcat::mcset se "&Help..." "&Hjälp..."
     ::msgcat::mcset se "&What's?..." "&Vad är ?..."
@@ -348,16 +346,8 @@
 ::msgcat::mcset se "New skeleton" "Ny mall"
 ::msgcat::mcset se "Scilab is working, wait for the prompt to compile the help file."\
                    "Scilab arbetar, vänta på att hjälpfilen ska kompileras."
-
-
 ::msgcat::mcset se "ScilabEval command cannot be passed to Scilab!" "ScilabEval kommando kan inte ges till Scilab!"
-::msgcat::mcset se impossibleScilabEval_message \
-                   "ATTENTION : Une commande n'a pas pu tre passe 
-Scilab et a t ignore.\n\n \
-                   La raison probable est que vous n'avez pas les droits
-d'criture dans le rpertoire TMPDIR de Scilab. \
-                   Un comportement imprvisible peut se produire.\n\n \
-                   La commande en cause est:\n\n-->"
+
 
 # scipad.tcl
 ::msgcat::mcset se "NOT CONNECTED TO SCILAB" "INTE ANSLUTEN TILL SCILAB"
@@ -404,7 +394,7 @@ d'criture dans le rpertoire TMPDIR de Scilab. \
 
 
 #overriding tcl-core dialogs (many are actually already found in 
-#  TKDIR/msgs/fr.msg)
+#  TKDIR/msgs/se.msg)
 ::msgcat::mcset se "&Directory:" "&Katalog :"
 ::msgcat::mcset se "File &name:" "Fil&namn :"
 ::msgcat::mcset se "Files of &type:" "Filer av &typen :"
