@@ -118,3 +118,5 @@ os_specific.lib
 fileio.lib
 fileio.def
 os_specific.def
+os_specific_f.def
+os_specific_f.lib
