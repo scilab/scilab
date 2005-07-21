@@ -75,9 +75,9 @@ scs_m.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],list("readf4",4),[],1,1,[],[],[1;1;0;0;0],[],..
+              "equations"],"readf",[],1,1,[],[],[1;1;0;0;0],[],..
               [3;13;0;2;15;24;24;41;7;41;14;1;0;51;3;52;1;33;42;42;0;1],"d",[],..
-              [%f,%f],"",0,0,list()),"RFILE",list())
+              [%f,%f],"",0,0,list()),"RFILE_f",list())
 scs_m.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..

@@ -138,8 +138,6 @@ extern void samphold4 __PARAMS((ARGS_scicos));
 extern void dollar4 __PARAMS((ARGS_scicos));
 extern void invblk4 __PARAMS((ARGS_scicos));
 extern void delay4 __PARAMS((ARGS_scicos));
-extern void readf4 __PARAMS((ARGS_scicos));
-extern void writef4 __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -236,7 +234,6 @@ OpTab tabsim[] ={
 {"readau",(ScicosF) readau},
 {"readc",(ScicosF) readc},
 {"readf",(ScicosF) F2C(readf)},
-{"readf4",(ScicosF) readf4},
 {"relationalop",(ScicosF) relationalop},
 {"relay",(ScicosF) relay},
 {"rndblk",(ScicosF) F2C(rndblk)},
@@ -277,11 +274,10 @@ OpTab tabsim[] ={
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
-{"writef4",(ScicosF) writef4},
 {"zcross",(ScicosF) F2C(zcross)},
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 138 ;
+int ntabsim= 136 ;
 #endif 
 /***********************************/
