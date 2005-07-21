@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -266,44 +266,47 @@
        <SP>Scipad menues and messages can be translated to several languages.
         By default, they appear in the language of Scilab, which is either 
         English or French (see <LINK>setlanguage</LINK>), but other languages
-        are being added.
-        To this extent, the following commands have to be issued in
-        scilab once per session, before launching Scipad for the first time:
-        </SP>
-        <P>
-        <VERB>global %scipad_language; %scipad_language="XX"</VERB>
-        </P>
-        <SP>
-        where XX stands for the code of the language. Such commands
-        can be included, for instance, in the user .scilab file.
+        are being added. The localization in effect can be selected 
+        with the menu Options/Locale, and is remembered across sessions.
         Currently, the supported
-        codes are: "de" (German) ,"eng" (English), "fr" (French),
+        languages are: "de" (German) ,"eng" (English), "fr" (French),
         "it" (Italian), "no" (Norwegian), "se" (Swedish). 
         </SP>
         <SP>
         Further languages can be added by creating the proper translation
         file and putting it in SCI/tcl/scipadsources/msg_files/. If you plan
-        to do such a job and to contribute it to the community, please 
-        contact the current mantainers for detailed instructions.
+        to do such a job, please check the file 
+        <VERB>SCI/tcl/scipadsources/msg_files/AddingTranslations.txt</VERB>
+        for detailed instructions, and consider to contribute it to the 
+        community.
         </SP>
 
         <P></P>
       </ITEM>
 
       <ITEM label="Drag and drop:">
-        <SP>Drag and drop capability for a file or for a list of files can be
-        achieved in Scipad simply by installing the TkDnD package
+      
+        <SP>DnD has been implemented in Scipad for moving around text, 
+        for dropping selected text from and to external applications, and for 
+        opening files or for list of files.
+        </SP>
+        
+        <P>
+        Dragging one or more
+        files from an explorer and dropping to Scipad will open the file(s) in
+        Scipad. Doing the same with a directory will open recursively all
+        the directory contents (beware!)</P>
+
+        <P>For text selected within the Scipad window, 
+        the possible actions are move (just use mouse button-1) and
+        copy (Control button-1). Text selections can be moved or copied also
+        between differen Scipad subpanes, when tiling is active</P>
+
+         <P>Drag and drop capabilities in Scipad rely on the TkDnD package
         (http://sourceforge.net/projects/tkdnd). Presence of this package
         should be automatically detected by Scipad, enabling the corresponding
-        features at that time. Once TkDnD is intalled, dragging one or more
-        files from an explorer and dropping to Scipad will open the file(s) in
-        Scipad.</SP>
-
-        <P>There is also a drag and drop feature for selected text within the
-        Scipad window. Possible actions are move (just use mouse button-1) and
-        copy (Control button-1).</P>
-
-        <P>Windows and linux-i386 binary versions of Scilab are currently shipped 
+        features at that time.
+        Windows and linux-i386 binary versions of Scilab are currently shipped 
          with Tkdnd. If not, here are some installation instructions:</P>
         <P>Windows platforms: Download the full package
         (currently tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the
@@ -325,10 +328,7 @@
       <ITEM label="Known Issues:">
         <P></P>
 
-        <SP>Execute selection deals only with selections containing less than
-        a reasonable number of characters (~4000 on Linux, or ~500 on
-        Windows). It gets confused if the selection contains a
-        <VERB>function</VERB> not terminated by an <VERB>endfunction</VERB>.
+        <SP>
         The commands passed are output on the Scilab window, but are not
         recorded in the history.</SP>
 
@@ -347,6 +347,12 @@
   <EXAMPLE><![CDATA[
    scipad SCI/scilab.star 
 ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>edit</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>manedit</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>edit_error</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
 
   <AUTHORS>
     <AUTHORS_ITEM>Scipad is derived from <VERB>tknotepad</VERB> written by
