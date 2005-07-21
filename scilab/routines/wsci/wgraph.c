@@ -1752,7 +1752,6 @@ HDC TryToGetDC(HWND hWnd)
 				MessageBox(NULL,MSG_ERROR36,MSG_ERROR20,MB_ICONWARNING);
 			#endif
 		}
-		
 	}
 	else
 	{
@@ -1762,5 +1761,44 @@ HDC TryToGetDC(HWND hWnd)
 	}
 
 	return (HDC)hDCRet;
+}
+/*-----------------------------------------------------------------------------------*/
+int Interface_XS2BMP(int figurenum,char *filename)
+{
+	int bOK=0;
+	struct BCG *ScilabGC=NULL;
+	
+	ScilabGC = GetWindowXgcNumber (figurenum);
+	if (ScilabGC != (struct BCG *) 0)
+	{
+		ExportBMP(ScilabGC,filename);
+		bOK=1;
+	}
+	else
+	{
+		Scierror(999,"xs2bmp : win_num invalid : %d \n",figurenum);
+		bOK=0;
+	}
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int Interface_XS2EMF(int figurenum,char *filename)
+{
+	int bOK=0;
+	struct BCG *ScilabGC=NULL;
+
+	ScilabGC = GetWindowXgcNumber (figurenum);
+	if (ScilabGC != (struct BCG *) 0)
+	{
+		ExportEMF(ScilabGC,filename);
+		bOK=1;
+	}
+	else
+	{
+		Scierror(999,"xs2emf : win_num invalid : %d \n",figurenum);
+		bOK=0;
+	}
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

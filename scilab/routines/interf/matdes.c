@@ -57,6 +57,11 @@ extern int zoom_box(double *bbox);
 extern void unzoom();
 extern void unzoom_one_axes(sciPointObj *psousfen);
 
+#if WIN32
+extern int Interface_XS2BMP(int figurenum,char *filename); /* wgraph.c */
+extern int Interface_XS2EMF(int figurenum,char *filename);
+#endif
+
 #define NUMSETFONC 38
 static char *KeyTab_[] = {
   "alufunction",
@@ -135,6 +140,7 @@ extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,
 				 char *type,char *iord));
 extern void ShowScales  __PARAMS((void));
 extern  void seteventhandler  __PARAMS((int *win_num,char *name,int *ierr));
+extern int IsAScalar(int RhsNumber);
 #ifdef WITH_TK
 extern int GetTclCurrentFigure(void);
 #endif
@@ -4836,6 +4842,102 @@ int scixs2ppm(char *fname,unsigned long fname_len)
 {
   return scixg2psofig_G(fname,"PPM",fname_len,3);
 }
+
+int intxs2bmp(char *fname,unsigned long fname_len)
+{
+	int bOK=0;
+#if WIN32
+	
+	CheckLhs(0,1);
+	CheckRhs(2,2);
+	if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+	{
+		integer m1,n1,l1;
+		int figurenum=-1;
+		GetRhsVar(1,"i",&m1,&n1,&l1);
+		figurenum=*istk(l1);
+		if (figurenum>=0)
+		{
+			char *FileName=NULL;
+			GetRhsVar(2,"c",&m1,&n1,&l1);
+			FileName=cstk(l1);
+			bOK=Interface_XS2BMP(figurenum,FileName);
+		}
+		else
+		{
+			Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
+			return 0;
+		}
+
+	}
+	else
+	{
+		if ( IsAScalar(1) )
+		{
+			Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
+			return 0;
+		}
+		if ( GetType(2) != sci_strings)
+		{
+			Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
+			return 0;
+		}
+	}
+	
+#else
+	Scierror(999,"%s: Only for Windows.\r\n",fname);
+	bOK=0;
+#endif
+	return bOK;
+}
+
+int intxs2emf(char *fname,unsigned long fname_len)
+{
+	int bOK=0;
+#if WIN32
+
+	CheckLhs(0,1);
+	CheckRhs(2,2);
+	if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+	{
+		integer m1,n1,l1;
+		int figurenum=-1;
+		GetRhsVar(1,"i",&m1,&n1,&l1);
+		figurenum=*istk(l1);
+		if (figurenum>=0)
+		{
+			char *FileName=NULL;
+			GetRhsVar(2,"c",&m1,&n1,&l1);
+			FileName=cstk(l1);
+			bOK=Interface_XS2EMF(figurenum,FileName);
+		}
+		else
+		{
+			Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
+			return 0;
+		}
+
+	}
+	else
+	{
+		if ( IsAScalar(1) )
+		{
+			Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
+			return 0;
+		}
+		if ( GetType(2) != sci_strings)
+		{
+			Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
+			return 0;
+		}
+	}
+
+#else
+	Scierror(999,"%s: Only for Windows.\r\n",fname);
+	bOK=0;
+#endif
+	return bOK;
+}
 /*-----------------------------------------------------------
  *   rect(x,y,w,h) 
  *-----------------------------------------------------------*/
@@ -5129,7 +5231,9 @@ static MatdesTable Tab[]={
   {ShowWindowFunction,"show_window"},
   {XSaveNative,"xsnative"},
   {scizoomrect,"zoom_rect"},
-  {sciunzoom,"unzoom"}
+  {sciunzoom,"unzoom"},
+  {intxs2bmp,"xs2bmp"},
+  {intxs2emf,"xs2emf"}
 };
   
 

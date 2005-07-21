@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>xs2emf</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>August 2005</DATE>
+
+  <SHORT_DESCRIPTION name="xs2emf">send graphics to a file in EMF syntax (Only
+  for Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>xs2emf(win_num,filen)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>win_num</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integer scalar.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>filen</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string, file name.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>xs2emf</VERB> sends the recorded graphics of the window
+    <VERB>win_num</VERB> in the file <VERB>filen</VERB> in EMF format. This
+    function works only if the selected driver is <VERB>"Rec"</VERB> in the
+    window <VERB>win_num</VERB> or if the window is in "new style".</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ 
+    //simple example
+    scf(0)
+    plot2d()
+    xs2emf(0,'foo.emf')
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>xs2fig</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xs2ps</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xs2ppm</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xs2bmp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>

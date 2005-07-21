@@ -145,5 +145,9 @@ void SetCurrentFigureWindows(integer win);
 
 HDC TryToGetDC(HWND hWnd);
 
+int Interface_XS2BMP(int figurenum,char *filename);
+int Interface_XS2EMF(int figurenum,char *filename);
+
+
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

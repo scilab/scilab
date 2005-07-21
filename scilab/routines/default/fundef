@@ -175,7 +175,8 @@
 {"xsnative",		IN_matdes,	88,	2},
 {"zoom_rect",		IN_matdes,	89,	2},
 {"unzoom",		IN_matdes,	90,	2},
-
+{"xs2bmp",		IN_matdes,	91,	2},
+{"xs2emf",		IN_matdes,	92,	2},
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
