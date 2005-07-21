@@ -1,6 +1,6 @@
 # Scipad texts in Swedish
-# in sync at least with v4.5
-# provided by Gunnar Lindholm
+# in sync at least with v5.22
+# provided by Gunnar Lindholm -- A new translator is sought!
 
 # commons
 ::msgcat::mcset se "Cancel" "Avbryt"
@@ -15,7 +15,12 @@
 # buffernavigation.tcl
 ::msgcat::mcset se "Goto Line?" "Gå till rad ?"
 ::msgcat::mcset se "Goto Line: " "Gå till rad: "
-
+::msgcat::mcset se "Go to:" "Gå till  : "
+::msgcat::mcset se "&logical line" "logisk rad"
+::msgcat::mcset se "&physical line" "fysisk rad"
+::msgcat::mcset se "in &function" "i funktionen"
+::msgcat::mcset se "in &current file" "i aktuella filen"
+::msgcat::mcset se "Outside of function definition" "Utanför funktionsdefinitionen"
 
 # colorize.tcl
 ::msgcat::mcset se "Wait seconds while recolorizing file" \
@@ -25,6 +30,7 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset se "Variable:" "Variabel :"
 ::msgcat::mcset se "Value:" "Värde :"
+::msgcat::mcset fr "Get current value from Scilab" "Hämta aktuellt värde från Scilab"
 
 
 # db_configureexec.tcl
@@ -90,7 +96,10 @@
 ::msgcat::mcset se "Hide watch variables" "Dölj bevakade variabler"
 ::msgcat::mcset se "Show call stack" "Visa anropsstacken"
 ::msgcat::mcset se "Hide call stack" "Dölj anropsstacken"
-
+::msgcat::mcset se "Undefined elements are not legal in variable" "Odefinierade element är inte giltiga i variabel"
+::msgcat::mcset se ".\nThis variable will not be updated in Scilab."\
+                   ".\nDenna variabel kommer ej uppdateras i Scilab"
+::msgcat::mcset se "Illegal undefined element found" "Ogiltigt odefinierat element funnet"
 
 # filecommands.tcl
 ::msgcat::mcset se "New Script" "Nytt Script"
@@ -144,15 +153,15 @@
                        "\nVill du leta efter det i hela texten?"
 ::msgcat::mcset se "You are searching for an empty string!" \
                        "Du letar efter en tom sträng, toker!"
-::msgcat::mcset se "Re&place" "E&rsätt"
+::msgcat::mcset se "Re&place" "&Ersätt"
 ::msgcat::mcset se "Find what:" "Leta efter :"
 ::msgcat::mcset se "Replace with:" "Ersätt med :"
-::msgcat::mcset se "Find &Next" "Hitta &nästa"
+::msgcat::mcset se "Find &Next" "&Hitta nästa"
 ::msgcat::mcset se "Replace &All" "Ersätt &alla"
 ::msgcat::mcset se "&Upwards" "&Uppåt"
-::msgcat::mcset se "Downward&s" "Ner&åt" 
-::msgcat::mcset se "Match &case" "Skilj på gemener och versaler"
-::msgcat::mcset se "&Regular expression" "Reguljä&rt uttryck"
+::msgcat::mcset se "Downward&s" "&Neråt" 
+::msgcat::mcset se "Match &case" "&Skilj på gemener och versaler"
+::msgcat::mcset se "&Regular expression" "&Reguljärt uttryck"
 
 
 # helps.tcl
@@ -173,7 +182,7 @@
     ::msgcat::mcset se "in" "i"
 ::msgcat::mcset se " \[ReadOnly\]" " \[Skrivskyddad\]"
 ::msgcat::mcset se " (modified)" " (ändrad)"
-
+::msgcat::mcset se "Logical line:" "Logisk rad:"
 
 # inputtext.tcl
 ::msgcat::mcset se "No corresponding <" "Ingen motsvarande <"
@@ -224,7 +233,7 @@
 
     # menues.tcl - Search menu
     ::msgcat::mcset se "&Find..." "&Finn..."
-    ::msgcat::mcset se "Find &Next" "Finn &Nästa"
+    ::msgcat::mcset se "Find &Next" "&Hitta Nästa"
     ::msgcat::mcset se "&Replace..." "E&rsätt..."
     ::msgcat::mcset se "&Goto Line..." "&Gå till rad..."
 
@@ -273,7 +282,7 @@
                            "Hela sökvägen är tvetydig"
         ::msgcat::mcset se "&Unambiguous pruned path" "&Entydig sökväg"
     ::msgcat::mcset se "&Recent files" "S&enaste filerna"
-    ::msgcat::mcset se "&Locale" "&Locale"
+    ::msgcat::mcset se "&Locale" "&Språk"
   # locale names (common)
         ::msgcat::mcset se "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset se "fr locale (fr)" "Français (fr)"
@@ -284,6 +293,10 @@
 
     # menues.tcl - Windows menu
     ::msgcat::mcset se "Opened Files" "Öppna filer"
+	::msgcat::mcset se "Tile &horizontally" "Pannorera &horisontelt"
+    ::msgcat::mcset se "Tile &vertically" "Pannorera &vertikalt"
+    ::msgcat::mcset se "&Maximize" "&Maximera"
+
 
     # menues.tcl - Help menu
     ::msgcat::mcset se "&Help..." "&Hjälp..."
@@ -337,6 +350,15 @@
                    "Scilab arbetar, vänta på att hjälpfilen ska kompileras."
 
 
+::msgcat::mcset se "ScilabEval command cannot be passed to Scilab!" "ScilabEval kommando kan inte ges till Scilab!"
+::msgcat::mcset se impossibleScilabEval_message \
+                   "ATTENTION : Une commande n'a pas pu tre passe 
+Scilab et a t ignore.\n\n \
+                   La raison probable est que vous n'avez pas les droits
+d'criture dans le rpertoire TMPDIR de Scilab. \
+                   Un comportement imprvisible peut se produire.\n\n \
+                   La commande en cause est:\n\n-->"
+
 # scipad.tcl
 ::msgcat::mcset se "NOT CONNECTED TO SCILAB" "INTE ANSLUTEN TILL SCILAB"
 
@@ -379,3 +401,23 @@
 ::msgcat::mcset se "LFUNCOLOR" "Biblioteksrutiner"
 ::msgcat::mcset se "PDEFCOLOR" "Fördefinierade variabler"
 ::msgcat::mcset se "FOUNDTEXTCOLOR" "Funnen text"
+
+
+#overriding tcl-core dialogs (many are actually already found in 
+#  TKDIR/msgs/fr.msg)
+::msgcat::mcset se "&Directory:" "&Katalog :"
+::msgcat::mcset se "File &name:" "Fil&namn :"
+::msgcat::mcset se "Files of &type:" "Filer av &typen :"
+#::msgcat::mcset se "&Save" "&Enregistrer" # already included
+::msgcat::mcset se "&Open" "&Öppna"
+::msgcat::mcset se "Open" "Öppna"
+::msgcat::mcset se "Save As" "Spara som"
+::msgcat::mcset se "&Cancel" "&Avbryt"
+::msgcat::mcset se "&Selection:" "&Slektion :"
+::msgcat::mcset se "&Yes" "&Ja"
+::msgcat::mcset se "&No" "&Nej"
+::msgcat::mcset se "&Red" "&Röd"
+::msgcat::mcset se "&Green" "&Grön"
+::msgcat::mcset se "&Blue" "&Blå"
+::msgcat::mcset se "Directory \"%1\$s\" does not exist."\
+        "Katalogen \"%1\$s\" finns ej."
