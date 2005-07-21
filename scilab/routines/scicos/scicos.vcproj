@@ -727,10 +727,31 @@ cd .. &gt;nul
 				RelativePath=".\cscope.c">
 			</File>
 			<File
+				RelativePath=".\csslti4.c">
+			</File>
+			<File
+				RelativePath=".\cstblk4.c">
+			</File>
+			<File
 				RelativePath=".\deadband.c">
 			</File>
 			<File
+				RelativePath=".\delay4.c">
+			</File>
+			<File
 				RelativePath=".\deriv.c">
+			</File>
+			<File
+				RelativePath=".\dmmul.c">
+			</File>
+			<File
+				RelativePath=".\dmmul1.c">
+			</File>
+			<File
+				RelativePath=".\dollar4.c">
+			</File>
+			<File
+				RelativePath=".\dsslti4.c">
 			</File>
 			<File
 				RelativePath=".\edgetrig.c">
@@ -764,6 +785,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intrealtime.c">
+			</File>
+			<File
+				RelativePath=".\invblk4.c">
 			</File>
 			<File
 				RelativePath=".\logicalop.c">
@@ -802,6 +826,9 @@ cd .. &gt;nul
 				RelativePath=".\readc.c">
 			</File>
 			<File
+				RelativePath=".\readf4.c">
+			</File>
+			<File
 				RelativePath=".\realtime.c">
 			</File>
 			<File
@@ -809,6 +836,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\relay.c">
+			</File>
+			<File
+				RelativePath=".\samphold4.c">
 			</File>
 			<File
 				RelativePath=".\satur.c">
@@ -877,7 +907,16 @@ cd .. &gt;nul
 				RelativePath=".\tanh_blk.c">
 			</File>
 			<File
+				RelativePath=".\tcslti4.c">
+			</File>
+			<File
+				RelativePath=".\tcsltj4.c">
+			</File>
+			<File
 				RelativePath=".\time_delay.c">
+			</File>
+			<File
+				RelativePath=".\tree.c">
 			</File>
 			<File
 				RelativePath=".\variable_delay.c">
@@ -887,6 +926,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\writec.c">
+			</File>
+			<File
+				RelativePath=".\writef4.c">
 			</File>
 			<File
 				RelativePath=".\zcross2.c">

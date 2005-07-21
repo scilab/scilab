@@ -1,5 +1,11 @@
-#include "scicos_block.h"
 #include <math.h>
+#include <memory.h>
+#include "scicos_block.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
+
+#if WIN32
+extern int dmmul(double *a, int *na, double *b, int *nb, double *c__, 		  int *nc, int *l, int *m, int *n);
+#endif
 
 
 void tcsltj4(scicos_block *block,int flag)
@@ -13,7 +19,7 @@ void tcsltj4(scicos_block *block,int flag)
      rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
      rpar(nx*nx+nx*nu+nx*ny+1:nx*nx+nx*nu+nx*ny+ny*nu)=D */
 
-  int un=1,lb,lc,ld;
+  int un=1,lb,lc;
   int nx=block->nx;
   double* x=block->x;
   double* xd=block->xd;

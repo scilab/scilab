@@ -1,4 +1,6 @@
-
+#if WIN32
+#include <stdio.h> /* printf */
+#endif
 /* Table of constant values */
 
 static double c_b4 = 1.;
@@ -45,6 +47,7 @@ int dmmul(double *a, int *na, double *b, int *nb, double *c__,
     /* Function Body */
     dgemm("n", "n", l, n, m, &c_b4, &a[a_offset], na, &b[b_offset], nb, &
 	    c_b5, &c__[c_offset], nc);
+	return 0;
 } /* dmmul */
 
 int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 

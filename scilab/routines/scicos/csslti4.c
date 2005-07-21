@@ -1,5 +1,10 @@
 #include "scicos_block.h"
 
+#if WIN32
+extern int dmmul(double *a, int *na, double *b, int *nb, double *c__,int *nc, int *l, int *m, int *n);
+extern int dmmul1(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
+#endif
+
 void csslti4(scicos_block *block,int flag)
 {
   /*  Copyright INRIA

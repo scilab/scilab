@@ -1,6 +1,13 @@
-#include <memory.h>
 #include "scicos_block.h"
+
 #include <math.h>
+#include <memory.h>
+
+#if WIN32
+extern int dmmul(double *a, int *na, double *b, int *nb, double *c__,int *nc, int *l, int *m, int *n);
+extern int dmmul1(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
+#endif
+
 
 void tcslti4(scicos_block *block,int flag)
 {

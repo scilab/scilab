@@ -3,6 +3,10 @@
 #ifndef __SCI_MEM_ALLOC__
 #define __SCI_MEM_ALLOC__
 
+#if WIN32
+#include <stdlib.h>
+#endif
+
 #ifdef MALLOC
 #undef MALLOC
 #endif

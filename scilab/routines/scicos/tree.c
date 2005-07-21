@@ -26,7 +26,8 @@ void Inver(int* vect, int nb)
 int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
      int *vect,nb,*depu,*depuptr,*outoin,*outoinptr,*ord,*nord,*ok;
 {
-  int fini=0,i,j,k,m,ii,ord1[nb];
+  int fini=0,i,j,k,m,ii,*ord1=NULL;
+  ord1=MALLOC(nb*sizeof(int));
   *ok = 1;
   for (j = 1; (j <= nb+2) && (! fini); j++) 
     {
@@ -73,6 +74,7 @@ int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
       }
     }
   *nord=0;
+  if (ord){FREE(ord);ord=NULL;}
   return 0;
 }
 
@@ -81,8 +83,8 @@ int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
 int ctree3(vec, nb, depu,depuptr, typl, bexe, boptr, blnk, blptr,ord, nord, ok)
      int *vec,nb,*depu,*depuptr,*typl,*bexe,*boptr,*blnk,*blptr,*ord,*nord,*ok;
 {
-  int fini=0,i,j,m,nkk,ord1[nb],kk;
-  
+  int fini=0,i,j,m,nkk,*ord1=NULL,kk;
+  ord1=MALLOC(nb*sizeof(int));
   *ok = 1;
   for( i= 0; i < nb; i++)
     {
@@ -169,6 +171,7 @@ int ctree3(vec, nb, depu,depuptr, typl, bexe, boptr, blnk, blptr,ord, nord, ok)
       }
     }
   *nord=0;  
+  if (ord1){FREE(ord);ord=NULL;}
   return 0;
 }
 /*===========================================   fin de tree3 ======================================== */

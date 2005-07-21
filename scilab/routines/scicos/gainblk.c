@@ -1,5 +1,7 @@
 #include "scicos_block.h"
 
+extern int dmmul(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
+
 void gainblk(scicos_block *block,int flag)
 {
   int i,un=1;

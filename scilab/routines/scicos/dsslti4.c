@@ -1,5 +1,11 @@
 #include <memory.h>
 #include "scicos_block.h"
+#include "../sci_mem_alloc.h" /* MALLOC */
+
+#if WIN32
+extern int dmmul(double *a, int *na, double *b, int *nb, double *c__,int *nc, int *l, int *m, int *n);
+extern int dmmul1(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
+#endif
 
 void dsslti4(scicos_block *block,int flag)
 {
@@ -32,11 +38,11 @@ void dsslti4(scicos_block *block,int flag)
   }
   else if (flag ==2){
     /* x+=a*x+b*u */
-    if ((w=(double*)malloc(sizeof(double)*nz)) == NULL) return;    
+    if ((w=(double*)MALLOC(sizeof(double)*nz)) == NULL) return;    
     memcpy(w,z,nz*sizeof(double));
     dmmul(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
     dmmul1(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
-    free(w);
+    FREE(w);
   }
 }
 

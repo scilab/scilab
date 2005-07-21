@@ -319,6 +319,7 @@ int writef4(scicos_block *block,int flag)
   s_cat(ch__1, a__1, i__4, &c__3, (short)4118);
   basout_(&io, &iop_1.wte, ch__1, lfil + 22);
   iflag = -1;
+  return 0;
 } /* writef_ */
 
 #undef zstk
