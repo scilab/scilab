@@ -17,7 +17,10 @@
 #include <setjmp.h>
 #include "../stack-c.h"
 
-
+#if WIN32
+	#undef min
+	#undef max
+#endif
 
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define max(a,b) ((a) < (b) ? (b) : (a))

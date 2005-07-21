@@ -24,8 +24,6 @@
   #line 1 "Xcall1.gperf"
 #endif
 
-
-
 /*------------------------------------------------------------------------
  *   Graphic library for 2D and 3D plotting 
  *   Copyright (C) 1998-2001 Chancelier Jean-Philippe 
@@ -62,6 +60,13 @@ static double  Dvide;
 #ifndef __STDC__ 
 #define const 
 #endif 
+
+
+#ifdef WIN32
+extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
+#endif
+
+
 
 #if WIN32
   #if NDEBUG

@@ -32,6 +32,7 @@ extern HDC TryToGetDC(HWND hWnd);
 
 extern int GetScreenDPI(int *ixres, int *iyres);
 extern double C2F(dsort)();/*DJ.A merge*/ 
+extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 
 int xinitxend_flag = 0;
 /* sciClipTab ptabclip[15]; */

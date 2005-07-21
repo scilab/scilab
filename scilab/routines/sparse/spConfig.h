@@ -32,8 +32,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/07/12 11:42:08 $
- *  $Revision: 1.6 $
+ *  $Date: 2005/07/21 08:46:03 $
+ *  $Revision: 1.7 $
  */
 
 
@@ -240,9 +240,6 @@
  *      the routines have been integrated in and are running smoothly, this
  *      option should be turned off.
  */
-#ifdef WIN32
-#undef DELETE
-#endif
 /* Begin options. */
 #define  REAL                           YES
 #define  EXPANDABLE                     YES
@@ -251,7 +248,7 @@
 #define  DIAGONAL_PIVOTING              YES
 #define  ARRAY_OFFSET                   NO
 #define  MODIFIED_MARKOWITZ             NO
-#define  DELETE                         YES
+#define  SPARSEDELETE                   YES
 #define  STRIP                          YES
 #define  MODIFIED_NODAL                 YES
 #define  QUAD_ELEMENT                   YES

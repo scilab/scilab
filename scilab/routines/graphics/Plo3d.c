@@ -26,7 +26,7 @@ extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
 extern int version_flag();
-
+extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 /** like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 
 static double xx1,yy1;

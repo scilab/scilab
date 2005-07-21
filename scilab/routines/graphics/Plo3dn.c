@@ -21,6 +21,8 @@ extern double C2F (dsort) ();
 extern int facet_facing_rear (integer facteur, integer * x, integer * y,
                               integer * c, integer * size, integer * xr,
                               integer * yr, integer * cr, integer * rsize);
+extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
+
 
 /*-------------------------------------------------------------------------
  *   plo3dn function  ( 3D Plotting of surfaces given by z=f(x,y)  )

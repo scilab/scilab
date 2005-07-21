@@ -28,8 +28,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/07/01 07:08:14 $
- *  $Revision: 1.3 $
+ *  $Date: 2005/07/21 08:46:03 $
+ *  $Revision: 1.4 $
  */
 
 
@@ -53,7 +53,7 @@
 #undef  EXPANDABLE
 #undef  TRANSLATE
 #undef  INITIALIZE
-#undef  DELETE
+#undef  SPARSEDELETE
 #undef  STRIP
 #undef  MODIFIED_NODAL
 #undef  QUAD_ELEMENT
@@ -72,7 +72,7 @@
 #define  EXPANDABLE                     YES
 #define  TRANSLATE                      YES
 #define  INITIALIZE                     YES
-#define  DELETE                         YES
+#define  SPARSEDELETE                   YES
 #define  STRIP                          YES
 #define  MODIFIED_NODAL                 YES
 #define  QUAD_ELEMENT                   YES
