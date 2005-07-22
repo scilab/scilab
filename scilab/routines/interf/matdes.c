@@ -4885,7 +4885,7 @@ int intxs2bmp(char *fname,unsigned long fname_len)
 	}
 	
 #else
-	Scierror(999,"%s: Only for Windows.\r\n",fname);
+	sciprint("%s: Only for Windows.\r\n",fname);
 	bOK=0;
 #endif
 	return bOK;
@@ -4933,7 +4933,7 @@ int intxs2emf(char *fname,unsigned long fname_len)
 	}
 
 #else
-	Scierror(999,"%s: Only for Windows.\r\n",fname);
+	sciprint("%s: Only for Windows.\r\n",fname);
 	bOK=0;
 #endif
 	return bOK;
