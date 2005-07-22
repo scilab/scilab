@@ -1,9 +1,8 @@
 #include "scicos_block.h"
+#include "../machine.h"
 
-#if WIN32
-extern int dmmul(double *a, int *na, double *b, int *nb, double *c__,int *nc, int *l, int *m, int *n);
-extern int dmmul1(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
-#endif
+extern int C2F(dmmul)();
+extern int C2F(dmmul1)();
 
 void csslti4(scicos_block *block,int flag)
 {
@@ -32,13 +31,13 @@ void csslti4(scicos_block *block,int flag)
   if (flag ==1 || flag ==6){
     /* y=c*x+d*u     */
     ld=lc+nx*outsz[0];
-    dmmul(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
-    dmmul1(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
+    C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
   }
   else if (flag ==0){
     /* xd=a*x+b*u */
-    dmmul(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
-    dmmul1(&rpar[lb],&nx,u,insz,xd,&nx,&nx,insz,&un);
+    C2F(dmmul)(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
+    C2F(dmmul1)(&rpar[lb],&nx,u,insz,xd,&nx,&nx,insz,&un);
   }
 }
 
