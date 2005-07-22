@@ -27,7 +27,7 @@ function routines=create_palette(Path)
     for txt=scicos_pal(:,1)'
       disp('Constructing '+txt)
       if txt=='Sources' then
-	lisf=['CONST_f.sci';'GENSQR_f.sci';'RAMP.sci';  
+	lisf=['CONST.sci';'GENSQR_f.sci';'RAMP.sci';  
 	      'RAND_f.sci';'RFILE_f.sci';
 	      'CLKINV_f.sci'; 'CURV_f.sci';  'INIMPL_f.sci'; ' READAU_f.sci';
 	      'SAWTOOTH_f.sci'; 'STEP_FUNCTION.sci';
@@ -55,7 +55,7 @@ function routines=create_palette(Path)
       elseif txt=='Non_linear' then
 	lisf=['ABS_VALUE.sci'; 'TrigFun.sci'; 
 	      'EXPBLK_f.sci';  'INTRP2BLK_f.sci'; 
-	      'INTRPLBLK_f.sci'; 'INVBLK_f.sci'; 
+	      'INTRPLBLK_f.sci'; 'INVBLK.sci'; 
 	      'LOGBLK_f.sci'; 'LOOKUP_f.sci'; 'MAXMIN.sci'; 
 	      'POWBLK_f.sci'; 'PROD_f.sci';
 	      'PRODUCT.sci';  'QUANT_f.sci';'EXPRESSION.sci';	 
@@ -78,10 +78,10 @@ function routines=create_palette(Path)
 	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block2.sci']
 	
       elseif txt=='Linear' then
-	lisf=['DLR_f.sci';'TCLSS_f.sci';'DOLLAR_f.sci';
-	      'CLINDUMMY_f.sci';'DLSS_f.sci';'REGISTER_f.sci';'TIME_DELAY.sci';
-	      'CLR_f.sci';'GAINBLK.sci';'SAMPLEHOLD_f.sci';'VARIABLE_DELAY.sci';
-	      'CLSS_f.sci';'SUMMATION.sci';'INTEGRAL.sci';'SUM_f.sci';'DERIV.sci']
+	lisf=['DLR.sci';'TCLSS.sci';'DOLLAR.sci';
+	      'CLINDUMMY_f.sci';'DLSS.sci';'REGISTER.sci';'TIME_DELAY.sci';
+	      'CLR.sci';'GAINBLK.sci';'SAMPHOLD.sci';'VARIABLE_DELAY.sci';
+	      'CLSS.sci';'SUMMATION.sci';'INTEGRAL.sci';'SUM_f.sci';'DERIV.sci']
 	
       elseif txt=='OldBlocks' then
 	lisf=['ABSBLK_f.sci'; 'MSCOPE_f.sci';'SCOPE_f.sci';    
@@ -89,8 +89,8 @@ function routines=create_palette(Path)
 	      'CLKSOM_f.sci';'TRASH_f.sci';'GENERAL_f.sci';'DIFF_f.sci';
 	      'BIGSOM_f.sci';'INTEGRAL_f.sci';'GAINBLK_f.sci';
 	      'DELAYV_f.sci';'DELAY_f.sci'; 'DEMUX_f.sci';'MUX_f.sci';
-	     'MFCLCK_f.sci';'MCLOCK_f.sci';'COSBLK_f.sci';   'DLRADAPT_f.sci'; ...
-	      'SINBLK_f.sci'; 'TANBLK_f.sci';'generic_block.sci'	     ]
+	      'MFCLCK_f.sci';'MCLOCK_f.sci';'COSBLK_f.sci';   'DLRADAPT_f.sci';
+	      'SINBLK_f.sci'; 'TANBLK_f.sci';'generic_block.sci']
 
       elseif txt=='DemoBlocks' then
 	lisf=['BOUNCE.sci';'BOUNCEXY.sci']
