@@ -26,8 +26,8 @@ void Inver(int* vect, int nb)
 int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
      int *vect,nb,*depu,*depuptr,*outoin,*outoinptr,*ord,*nord,*ok;
 {
-  int fini=0,i,j,k,m,ii,*ord1=NULL;
-  ord1=MALLOC(nb*sizeof(int));
+  int fini=0,i,j,k,m,ii;
+  
   *ok = 1;
   for (j = 1; (j <= nb+2) && (! fini); j++) 
     {
@@ -58,7 +58,7 @@ int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
 	}
     }
   Inver(vect,nb);  
-  C2F(isort)(vect,&nb,ord1);
+  C2F(isort)(vect,&nb,ord);
   for(m=0 ; m < nb; m++)
     {
       if (vect[m] < 1){
@@ -68,13 +68,12 @@ int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
 	} else {
 	  *nord=nb-m;
 	  for (i=0; i<*nord;i++)
-	    ord[i]=ord1[i+nb-*nord];
+	    ord[i]=ord[i+nb-*nord];
 	  return 0;      
 	}
       }
     }
   *nord=0;
-  if (ord){FREE(ord);ord=NULL;}
   return 0;
 }
 
@@ -83,8 +82,8 @@ int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
 int ctree3(vec, nb, depu,depuptr, typl, bexe, boptr, blnk, blptr,ord, nord, ok)
      int *vec,nb,*depu,*depuptr,*typl,*bexe,*boptr,*blnk,*blptr,*ord,*nord,*ok;
 {
-  int fini=0,i,j,m,nkk,*ord1=NULL,kk;
-  ord1=MALLOC(nb*sizeof(int));
+  int fini=0,i,j,m,nkk,kk;
+  
   *ok = 1;
   for( i= 0; i < nb; i++)
     {
@@ -155,7 +154,7 @@ int ctree3(vec, nb, depu,depuptr, typl, bexe, boptr, blnk, blptr,ord, nord, ok)
 	}
     }
   Inver(vec,nb); 
-  C2F(isort)(vec,&nb,ord1);
+  C2F(isort)(vec,&nb,ord);
   for(m=0 ; m < nb; m++)
     {
       if (vec[m] < 1){
@@ -165,13 +164,12 @@ int ctree3(vec, nb, depu,depuptr, typl, bexe, boptr, blnk, blptr,ord, nord, ok)
 	} else {
 	  *nord=nb-m;
 	  for (i=0; i<*nord;i++)
-	    ord[i]=ord1[i+nb-*nord];
+	    ord[i]=ord[i+nb-*nord];
 	  return 0;      
 	}
       }
     }
   *nord=0;  
-  if (ord1){FREE(ord);ord=NULL;}
   return 0;
 }
 /*===========================================   fin de tree3 ======================================== */
@@ -210,3 +208,5 @@ int ctree4(int* vec,int nb,int* nd,int nnd,int* typ_r,int* outoin,
 } /* end function*/
 
 /* =================== endfunction tree4 ========================================== */
+
+
