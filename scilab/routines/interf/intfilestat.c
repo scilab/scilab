@@ -5,6 +5,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#if WIN32
+#include <Windows.h>
+#endif
+
 #include "../stack-c.h"
 
 #include "../os_specific/Os_specific.h"
@@ -13,16 +17,12 @@ int C2F(intfilestat)(fname)
 char * fname;
 {
 #ifdef WIN32
-#ifndef __GNUC__
-   struct _stat buf;
-#else 
    struct stat buf;
-#endif 
 #else
    struct stat buf;
 #endif
    int result, m1, n1, l1 , l2,one=1,n;
-
+   char DriveTemp[MAX_PATH];
    CheckRhs(1,1);
    CheckLhs(1,2);
    GetRhsVar(1, "c", &m1, &n1, &l1); /* get file name */
@@ -34,6 +34,7 @@ char * fname;
 #ifdef WIN32
    {
 		char *path=cstk(l2);
+		wsprintf(DriveTemp,"%s",path);
 		if (path)
 		{
 			if ( (path[strlen(path)-1]=='/') || (path[strlen(path)-1]=='\\') )
@@ -48,10 +49,57 @@ char * fname;
    result = stat(cstk(l2), &buf );
 #endif
    /* Check if statistics are valid: */
-   if( result != 0 ) {
-     n1=0;
-     CreateVar(2,"d",&n1,&n1,&l2);}
-   else   {
+   if( result != 0 ) 
+   {
+#if WIN32
+	 if ( (strlen(DriveTemp)==2) ||(strlen(DriveTemp)==3) )
+	 {
+		 UINT DriveType=GetDriveType(DriveTemp);
+		 if ( (DriveType==DRIVE_UNKNOWN) || (DriveType==DRIVE_NO_ROOT_DIR) )
+		 {
+			 n1=0;
+			 CreateVar(2,"d",&n1,&n1,&l2);
+		 }
+		 else
+		 {
+			 n1 = 13;
+			 CreateVar(2,"d",&one,&n1,&l2);
+
+			 *stk(l2+0) =  0.0;
+			 *stk(l2+1) =  16895;
+			 *stk(l2+2) =  0.0;
+			 *stk(l2+3) =  0.0;
+			 *stk(l2+4) =  0.0;
+			 *stk(l2+5) =  0.0;
+			 *stk(l2+6) =  0.0;
+			 *stk(l2+7) =  0.0;
+			 *stk(l2+8) =  0.0;
+			 *stk(l2+9) =  0.0;
+			 *stk(l2+10) = 0.0;
+			 *stk(l2+11) = 0.0;
+			 *stk(l2+12) = 0.0;
+		 }
+		 LhsVar(1) = 2;
+		 if (Lhs==2) 
+		 {
+			 CreateVar(3,"d",&one,&one,&l2);
+			 *stk(l2) = (double) result;
+			 LhsVar(2) = 3;
+		 }
+	 }
+	 else
+	 {
+		 n1=0;
+		 CreateVar(2,"d",&n1,&n1,&l2);
+	 }
+     
+#else
+	 n1=0;
+	 CreateVar(2,"d",&n1,&n1,&l2);
+#endif
+   }
+   else
+   {
      n1 = 13;
      CreateVar(2,"d",&one,&n1,&l2);
 
