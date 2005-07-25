@@ -145,6 +145,9 @@ if MSDOS then
   MSDevDir=getenv('MSDevDir','ndef');
   if (MSDevDir =='ndef') then bOK=%F,return,end
   
+  PATH=getenv('PATH','ndef');
+  if (PATH =='ndef') then  bOK=%F,return,end
+  
   err=setenv("PATH",MSVCDir+'\BIN;'+MSDevDir+'\bin;'+';'+WSCI+'\bin;'+PATH);
   if (err == %F) then bOK=%F,return,end
   
