@@ -48,7 +48,7 @@ c     on ne sait pas encore combien il y en a
 c     Begin : reading the string 
       l=ln
       lpt(4) = lpt(3)
-      call getch
+      call fortrangetch
    16 if (abs(char1) .eq. quote) go to 18
    17 ln = l+n
       if (char1 .eq. eol) then
@@ -62,9 +62,9 @@ c     Begin : reading the string
       endif
       if(err1.le.0) istk(ln) = char1
       n = n+1
-      call getch
+      call fortrangetch
       go to 16
-   18 call getch
+   18 call fortrangetch
       if (abs(char1) .eq. quote) go to 17
 c      if (n .le. 0) then
 c         call error(31)

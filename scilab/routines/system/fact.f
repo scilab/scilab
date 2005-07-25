@@ -333,7 +333,7 @@ c     next lines to manage named arguments (..,a=..)
 
       fun=fun1
       lpt4=lpt(4)
-      call getch
+      call fortrangetch
       if(char1.eq.equal) then
 c     check for a==
          lpt(4)=lpt4

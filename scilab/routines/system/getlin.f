@@ -172,7 +172,7 @@ c
 cc_ex      lct(1) = 0
       fin=0
       if(job.eq.2.and.eof) fin=-2
-      call getch
+      call fortrangetch
       return
 c
    50 eof=.true.

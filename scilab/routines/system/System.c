@@ -29,7 +29,7 @@ extern void
       C2F(fact)(),
       C2F(funnam)(),
       C2F(funs)(),
-      C2F(getch)(),
+      C2F(fortrangetch)(),
       C2F(getlin)(),
       C2F(getnum)(),
       C2F(getstr)(),
@@ -119,7 +119,7 @@ void System_contents( int x)
       C2F(fact)();
       C2F(funnam)();
       C2F(funs)();
-      C2F(getch)();
+      C2F(fortrangetch)();
       C2F(getlin)();
       C2F(getnum)();
       C2F(getstr)();

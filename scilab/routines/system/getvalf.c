@@ -4,6 +4,7 @@
 */
 
 #include "f2c.h"
+#include "../machine.h"
 
 /* Common Block Declarations */
 
@@ -103,7 +104,7 @@ logical *dotdet;
     static integer code0;
 #define zstk ((doublecomplex *)&stack_1)
     static integer i__, k;
-    extern /* Subroutine */ int getch_();
+    extern /* Subroutine */ int C2F(fortrangetch)();
     static integer digit[25], ndgrec;
     static logical detdot;
     static integer ndgexp, expcor, sgnexp;
@@ -273,7 +274,7 @@ logical *dotdet;
 /*        1) got the integer part of the mantissa of the pattern */
 /*        1-a) may be there is some 0 at the beginning */
 	while(com_1.char1 == 0) {
-	    getch_();
+	    C2F(fortrangetch)();
 	}
 /*        1-b) now record the digits (inside the digit array) */
 /*             (but we record a maximum of ndgmax digits) */
@@ -283,7 +284,7 @@ logical *dotdet;
 		++ndgrec;
 		digit[ndgrec - 1] = com_1.char1;
 	    }
-	    getch_();
+	    C2F(fortrangetch)();
 	}
 /*        1-c) at this point we have detected something which is not a digit */
 /*             may be a point, may be a d,D,e,E, or something else */
@@ -291,7 +292,7 @@ logical *dotdet;
 /*             to be treated after ... */
 	if (abs(com_1.char1) == dot) {
 	    detdot = TRUE_;
-	    getch_();
+	    C2F(fortrangetch)();
 	}
     }
 /*     first correction for the (future) exponent : if the first part */
@@ -305,7 +306,7 @@ logical *dotdet;
 /*           and may be the number start with .000xxx : so clean up those 0 */
 	    while(com_1.char1 == 0) {
 		--expcor;
-		getch_();
+		C2F(fortrangetch)();
 	    }
 	}
 /*        now we begin to record the digits */
@@ -315,7 +316,7 @@ logical *dotdet;
 		--expcor;
 		digit[ndgrec - 1] = com_1.char1;
 	    }
-	    getch_();
+	    C2F(fortrangetch)();
 	}
     }
 /*     3) at this point the "mantissa" of the string decimal number */
@@ -326,23 +327,23 @@ logical *dotdet;
     if (abs(com_1.char1) == d__ || abs(com_1.char1) == e) {
 /*        the string have an exponent part (which, in Scilab, may be empty or */
 /*        may had only a sign ! => expo = 0) */
-	getch_();
+	C2F(fortrangetch)();
 	if (com_1.char1 == minus || com_1.char1 == plus) {
 	    sgnexp = com_1.char1;
-	    getch_();
+	    C2F(fortrangetch)();
 	} else {
 	    sgnexp = plus;
 	}
 /*        may be the exponent start by some 0 */
 	while(com_1.char1 == 0) {
-	    getch_();
+	    C2F(fortrangetch)();
 	}
 /*        now form the exponent : the var ndgexp is here */
 /*        to treat spurious integer overflow ... */
 	while(abs(com_1.char1) <= 9) {
 	    expo = expo * 10 + com_1.char1;
 	    ++ndgexp;
-	    getch_();
+	    C2F(fortrangetch)();
 	}
     }
 /*     4) Now we can form the double float number s */

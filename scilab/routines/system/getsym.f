@@ -7,7 +7,7 @@
 *     INPUT
 *       The "character flow" of the current line :
 *       the current character is stored in the global (integer) var char1 ; 
-*       the routine getch put the next char in char1 (getch also update 
+*       the routine fortrangetch put the next char in char1 (getch also update 
 *       lpt(4) which points to the following char if char1 is not eol)
 *
 *     OUTPUT (global vars) :
@@ -80,7 +80,7 @@
 
 *     go to the first "no like blank" char
       do while ( isBlank(char1) )
-         call getch
+         call fortrangetch
       end do
 
 *     update some pointers (indices) onto the array lin
@@ -98,13 +98,13 @@
          sym = name 
          chcnt = 1
          namecd(chcnt) = char1
-         call getch
+         call fortrangetch
          do while ( isAlphaNum(char1) )
             if (chcnt.lt.nlgh) then
                chcnt = chcnt + 1
                namecd(chcnt) = char1
             endif
-            call getch
+            call fortrangetch
          end do
 *        encoding of the name
          call namstr(syn,namecd,chcnt,0)
@@ -114,10 +114,10 @@
 *        -> special character (eol, operator, part of an operator, .... 
 *           but in case of a dot following by a digit it is a number)
          sym = abs(char1)
-         call getch
+         call fortrangetch
          if (sym.eq.slash .and. abs(char1).eq.slash) then
             sym=2
-            call getch
+            call fortrangetch
             return
          elseif (sym.eq.dot .and. isDigit(char1)) then
 *           -> it is a number (beginning with a dot => 2d arg of getval : dotdet = .true.)
@@ -129,7 +129,7 @@
 
 *     eat blanks
       do while ( isBlank(char1) )
-         call getch
+         call fortrangetch
       end do
 
       if (ddt .lt. 3) return

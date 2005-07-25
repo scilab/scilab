@@ -18,7 +18,7 @@
 *             this case  dotdet = .true.
 *
 *        On entry, the global var char1 contains the first digit of the number
-*        Getting the next "char" is done by a call to getch (which put the
+*        Getting the next "char" is done by a call to fortrangetch (which put the
 *        next char is the global var char1). 
 *     
 *     MOTIVATION
@@ -176,7 +176,7 @@
 *        1) got the integer part of the mantissa of the pattern
 *        1-a) may be there is some 0 at the beginning
          do while ( char1 .eq. 0 )
-            call getch
+            call fortrangetch
          enddo
 *        1-b) now record the digits (inside the digit array)
 *             (but we record a maximum of ndgmax digits) 
@@ -186,7 +186,7 @@
                ndgrec = ndgrec + 1
                digit(ndgrec) = char1
             endif
-            call getch
+            call fortrangetch
          enddo
 *        1-c) at this point we have detected something which is not a digit
 *             may be a point, may be a d,D,e,E, or something else
@@ -194,7 +194,7 @@
 *             to be treated after ...
          if ( abs(char1) .eq. dot ) then
             detdot = .true.
-            call getch
+            call fortrangetch
          endif
       endif
 
@@ -210,7 +210,7 @@
 *           and may be the number start with .000xxx : so clean up those 0
             do while ( char1 .eq. 0 )
                expcor = expcor - 1
-               call getch
+               call fortrangetch
             enddo
          endif
 *        now we begin to record the digits
@@ -220,7 +220,7 @@
                expcor = expcor - 1
                digit(ndgrec) = char1
             endif
-            call getch
+            call fortrangetch
          enddo
       endif
 
@@ -232,23 +232,23 @@
       if (abs(char1).eq.d .or. abs(char1).eq.e) then
 *        the string have an exponent part (which, in Scilab, may be empty or
 *        may had only a sign ! => expo = 0)
-         call getch
+         call fortrangetch
          if (char1.eq.minus .or. char1.eq.plus) then
             sgnexp = char1
-            call getch
+            call fortrangetch
          else
             sgnexp = plus
          endif
 *        may be the exponent start by some 0
          do while ( char1 .eq. 0 )
-            call getch
+            call fortrangetch
          enddo
 *        now form the exponent : the var ndgexp is here
 *        to treat spurious integer overflow ...
          do while ( isDigit(char1) ) 
             expo = 10*expo + char1
             ndgexp = ndgexp + 1
-            call getch
+            call fortrangetch
          enddo
       endif
 

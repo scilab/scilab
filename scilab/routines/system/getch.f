@@ -1,4 +1,4 @@
-      subroutine getch
+      subroutine fortrangetch
 c
 c     get next character
 c

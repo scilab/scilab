@@ -269,7 +269,7 @@ c     analyse de la ligne de declaration
       lct(1) = 0
 cMAJ  
       fin=0
-      call getch
+      call fortrangetch
 c     
       if(top+2.ge.bot) then
          call error(18)

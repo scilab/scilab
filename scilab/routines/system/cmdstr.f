@@ -32,10 +32,10 @@ c     Compute the length of the current argument
       if(strtyp) then
 c     .  quote delimited string
          l4=lpt(4)
- 05      call getch
+ 05      call fortrangetch
          if (abs(char1) .eq. quote) then
 c     .     one quote found, check for double quote
-            call getch
+            call fortrangetch
             if (abs(char1) .ne. quote) then
 c     .        a simple quote: end of argument
                goto 10
@@ -62,7 +62,7 @@ c     .  comment or a eol
             goto 10
          endif
          n = n+1
-         call getch
+         call fortrangetch
          go to 06
       endif
 
@@ -103,7 +103,7 @@ c     compilation [3 number-of-char chars-vector]
       endif
 
  15   if (abs(char1) .eq. blank) then
-         call getch
+         call fortrangetch
          go to 15
       endif
 
