@@ -22,7 +22,9 @@ char * fname;
    struct stat buf;
 #endif
    int result, m1, n1, l1 , l2,one=1,n;
+#if WIN32
    char DriveTemp[MAX_PATH];
+#endif
    CheckRhs(1,1);
    CheckLhs(1,2);
    GetRhsVar(1, "c", &m1, &n1, &l1); /* get file name */
