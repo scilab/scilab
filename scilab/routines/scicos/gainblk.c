@@ -1,6 +1,9 @@
 #include "scicos_block.h"
+#include "../machine.h"
 
-extern int dmmul(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
+extern int C2F(dmmul)();
+extern int C2F(dmmul1)();
+
 
 void gainblk(scicos_block *block,int flag)
 {
@@ -11,7 +14,7 @@ void gainblk(scicos_block *block,int flag)
       block->outptr[0][i]=block->rpar[0]*block->inptr[0][i];
     }    
   }else{   
-    dmmul(block->rpar,&block->outsz[0],block->inptr[0],
+    C2F(dmmul)(block->rpar,&block->outsz[0],block->inptr[0],
 	  &block->insz[0],block->outptr[0],&block->outsz[0],
 	  &block->outsz[0],&block->insz[0],&un);
   }

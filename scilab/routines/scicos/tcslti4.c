@@ -1,12 +1,12 @@
-#include "scicos_block.h"
 
 #include <math.h>
 #include <memory.h>
 
-#if WIN32
-extern int dmmul(double *a, int *na, double *b, int *nb, double *c__,int *nc, int *l, int *m, int *n);
-extern int dmmul1(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
-#endif
+#include "scicos_block.h"
+#include "../machine.h"
+
+extern int C2F(dmmul)();
+extern int C2F(dmmul1)();
 
 
 void tcslti4(scicos_block *block,int flag)
@@ -37,15 +37,17 @@ void tcslti4(scicos_block *block,int flag)
   if (flag ==1 || flag ==6){
     /* y=c*x+d*u1 */  
     ld=lc+nx*outsz[0];
-    dmmul(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
-    dmmul1(&rpar[ld],outsz,u1,&insz[0],y,outsz,outsz,&insz[0],&un);
+
+    C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
+    C2F(dmmul1)(&rpar[ld],outsz,u1,&insz[0],y,outsz,outsz,&insz[0],&un);
+
   }else if (flag == 2 && block->nevprt == 1){
     /* x+=u2 */
     memcpy(x,u2 ,nx*sizeof(double));
   }else if (flag ==0 && block->nevprt == 0){
     /* xd=a*x+b*u1 */
-    dmmul(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
-    dmmul1(&rpar[lb],&nx,u1,&insz[0],xd,&nx,&nx,&insz[0],&un);
+    C2F(dmmul)(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
+    C2F(dmmul1)(&rpar[lb],&nx,u1,&insz[0],xd,&nx,&nx,&insz[0],&un);
   }
 }
 

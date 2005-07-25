@@ -56,7 +56,7 @@ OBJSF=intcos.obj coselm.obj sciblk.obj  \
 OBJSC=scicos.obj import.obj sciblk2.obj sciblk2i.obj  realtime.obj \
 	intrealtime.obj intcscicos.obj blocks.obj cpass2.obj scicosclip.obj \
 	sciblk4.obj str2sci.obj intconnection.obj scicos_malloc.obj \
-	scicos_free.obj tree.obj dmmul.obj dmmul1.obj $(BLOCKSC)
+	scicos_free.obj tree.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 

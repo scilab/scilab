@@ -1,11 +1,11 @@
 #include <memory.h>
 #include "scicos_block.h"
 #include "../sci_mem_alloc.h" /* MALLOC */
+#include "../machine.h"
 
-#if WIN32
-extern int dmmul(double *a, int *na, double *b, int *nb, double *c__,int *nc, int *l, int *m, int *n);
-extern int dmmul1(double *a, int *na, double *b, int *nb, double *c__, int *nc, int *l, int *m, int *n);
-#endif
+extern int C2F(dmmul)();
+extern int C2F(dmmul1)();
+
 
 void dsslti4(scicos_block *block,int flag)
 {
@@ -33,15 +33,15 @@ void dsslti4(scicos_block *block,int flag)
     /* y=c*x+d*u */
     lc=lb+nz*insz[0];
     ld=lc+nz*outsz[0];
-    dmmul(&rpar[lc],outsz,z,&nz,y,outsz,outsz,&nz,&un);
-    dmmul1(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    C2F(dmmul)(&rpar[lc],outsz,z,&nz,y,outsz,outsz,&nz,&un);
+    C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
   }
   else if (flag ==2){
     /* x+=a*x+b*u */
     if ((w=(double*)MALLOC(sizeof(double)*nz)) == NULL) return;    
     memcpy(w,z,nz*sizeof(double));
-    dmmul(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
-    dmmul1(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
+    C2F(dmmul)(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
+    C2F(dmmul1)(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
     FREE(w);
   }
 }

@@ -742,12 +742,6 @@ cd .. &gt;nul
 				RelativePath=".\deriv.c">
 			</File>
 			<File
-				RelativePath=".\dmmul.c">
-			</File>
-			<File
-				RelativePath=".\dmmul1.c">
-			</File>
-			<File
 				RelativePath=".\dollar4.c">
 			</File>
 			<File
@@ -824,9 +818,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\readc.c">
-			</File>
-			<File
-				RelativePath=".\readf4.c">
 			</File>
 			<File
 				RelativePath=".\realtime.c">
@@ -926,9 +917,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\writec.c">
-			</File>
-			<File
-				RelativePath=".\writef4.c">
 			</File>
 			<File
 				RelativePath=".\zcross2.c">
