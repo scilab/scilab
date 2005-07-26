@@ -61,12 +61,8 @@ MACROS = haveacompiler.sci loaddefaultbrowser.sci savedefaultbrowser.sci  \
 	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
 	rhs2code.sci create_palette.sci ndgrid.sci \
 	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci \
-<<<<<<< Makefile.mak
 	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci readxls.sci \
-	xs2eps.sci listvarinfile.sci
-=======
+	xs2eps.sci listvarinfile.sci \
 	tic.sci toc.sci etime.sci fullfile.sci edit_error.sci readxls.sci listvarinfile.sci
-
->>>>>>> 1.55
 
 include ../Make.lib.mak
