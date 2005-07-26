@@ -10,8 +10,8 @@ bin/LibScilab.dll: $(MAINSCI) $(DEFAULTS) $(LIBRSCI)
 
 bin/WScilex.exe : bin/LibScilab.dll
 	@$(LINKER)  $(LINKER_FLAGS) -OUT:"$*.exe"  $(RESOURCES) \
-	routines/wsci/WScilex/WScilex.obj bin/LibScilab.lib $(XLIBS) 
+	routines/wsci/WScilex/WScilex_f2c.obj bin/LibScilab.lib $(XLIBS) 
 
 bin/scilex.exe : bin/LibScilab.dll
 	@$(LINKER)  $(LINKER_FLAGS) -OUT:"$*.exe"  $(RESOURCES) \
-	routines/wsci/CScilex/CScilex.obj bin/LibScilab.lib $(XLIBS) 
+	routines/wsci/CScilex/CScilex_f2c.obj bin/LibScilab.lib $(XLIBS) 
