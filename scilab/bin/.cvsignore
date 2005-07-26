@@ -45,3 +45,7 @@ atlas
 SetupAtlas.log
 SetupAtlas.ilk
 SetupAtlas.exe
+libf2c.dll
+libf2c.exp
+libf2c.lib
+libf2c.def
