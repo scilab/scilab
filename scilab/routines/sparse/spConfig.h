@@ -32,8 +32,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/07/21 08:46:03 $
- *  $Revision: 1.7 $
+ *  $Date: 2005/07/26 16:09:29 $
+ *  $Revision: 1.8 $
  */
 
 
@@ -535,6 +535,16 @@
 #   define  LARGEST_LONG_INTEGER    LONG_MAX
 #endif
 
+#if defined(__CYGWIN32__)
+#   include <limits.h>
+#   include <float.h>
+#   define  MACHINE_RESOLUTION      DBL_EPSILON
+#   define  LARGEST_REAL            DBL_MAX
+#   define  SMALLEST_REAL           DBL_MIN
+#   define  LARGEST_SHORT_INTEGER   SHRT_MAX
+#   define  LARGEST_LONG_INTEGER    LONG_MAX
+#endif
+
 #endif /* NOT defined(__STDC__) */
 
 
@@ -559,6 +569,7 @@
 #define  FULL			2
 
 #endif /* spINSIDE_SPARSE */
+
 #endif /* spCONFIG_DEFS */
 
 
