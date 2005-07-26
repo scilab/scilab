@@ -256,7 +256,7 @@ cd .. &gt;nul
 			Name="Debug with Atlas|Win32"
 			OutputDirectory=".\Debug with Atlas"
 			IntermediateDirectory=".\Debug with Atlas"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="2">
@@ -279,24 +279,26 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../libs/libf2c.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\libf2c.dll"
+				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
+				ImportLibrary="..\..\..\bin\libf2c.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				ExcludedFromBuild="TRUE"/>
+			<Tool
+				Name="VCPreLinkEventTool"
 				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def libf2c.def &gt;nul
-copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n Libf2c.dll %%f &gt;nul
+copy *.def libf2c1.def &gt;nul
+copy  ..\libf2c.def+ libf2c1.def ..\..\..\..\bin\libf2c.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
+cd.. &gt;nul
 "/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -306,6 +308,8 @@ cd .. &gt;nul
 			<Tool
 				Name="VCXMLDataGeneratorTool"/>
 			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
 				Name="VCManagedWrapperGeneratorTool"/>
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
@@ -314,7 +318,7 @@ cd .. &gt;nul
 			Name="Release with Atlas|Win32"
 			OutputDirectory=".\Release with Atlas"
 			IntermediateDirectory=".\Release with Atlas"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="2">
@@ -340,24 +344,25 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../libs/libf2c.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\libf2c.dll"
+				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
+				ImportLibrary="..\..\..\bin\libf2c.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def libf2c.def &gt;nul
-copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n Libf2c.dll %%f &gt;nul
+copy *.def libf2c1.def &gt;nul
+copy  ..\libf2c.def+ libf2c1.def ..\..\..\..\bin\libf2c.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -367,6 +372,8 @@ cd .. &gt;nul
 			<Tool
 				Name="VCXMLDataGeneratorTool"/>
 			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
 				Name="VCManagedWrapperGeneratorTool"/>
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
@@ -375,7 +382,7 @@ cd .. &gt;nul
 			Name="PIV_Release with Atlas|Win32"
 			OutputDirectory=".\PIV_Release with Atlas"
 			IntermediateDirectory=".\PIV_Release with Atlas"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="2">
@@ -401,24 +408,25 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../libs/libf2c.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\libf2c.dll"
+				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
+				ImportLibrary="..\..\..\bin\libf2c.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def libf2c.def &gt;nul
-copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n Libf2c.dll %%f &gt;nul
+copy *.def libf2c1.def &gt;nul
+copy  ..\libf2c.def+ libf2c1.def ..\..\..\..\bin\libf2c.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -427,6 +435,8 @@ cd .. &gt;nul
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
 			<Tool
 				Name="VCManagedWrapperGeneratorTool"/>
 			<Tool
@@ -494,7 +504,7 @@ cd .. &gt;nul
 			Name="Debug with Atlas without Java|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="2">
@@ -517,24 +527,25 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../libs/libf2c.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\libf2c.dll"
+				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
+				ImportLibrary="..\..\..\bin\libf2c.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def libf2c.def &gt;nul
-copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n Libf2c.dll %%f &gt;nul
+copy *.def libf2c1.def &gt;nul
+copy  ..\libf2c.def+ libf2c1.def ..\..\..\..\bin\libf2c.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -544,6 +555,8 @@ cd .. &gt;nul
 			<Tool
 				Name="VCXMLDataGeneratorTool"/>
 			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
 				Name="VCManagedWrapperGeneratorTool"/>
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
@@ -552,7 +565,7 @@ cd .. &gt;nul
 			Name="Release with Atlas without Java|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="2">
@@ -578,24 +591,25 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../libs/libf2c.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\libf2c.dll"
+				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
+				ImportLibrary="..\..\..\bin\libf2c.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def libf2c.def &gt;nul
-copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n Libf2c.dll %%f &gt;nul
+copy *.def libf2c1.def &gt;nul
+copy  ..\libf2c.def+ libf2c1.def ..\..\..\..\bin\libf2c.def &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -604,6 +618,8 @@ cd .. &gt;nul
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
 			<Tool
 				Name="VCManagedWrapperGeneratorTool"/>
 			<Tool
@@ -4192,6 +4208,9 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Dllmain.c">
 			</File>
 			<File
 				RelativePath="dolio.c">

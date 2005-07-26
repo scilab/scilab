@@ -2,7 +2,6 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
 #include "f2c.h"
 #include "../machine.h"
 
@@ -515,6 +514,7 @@ logical *dotdet;
 	do_lio(&c__5, &c__1, (char *)&(*s), (ftnlen)sizeof(doublereal));
 	e_rsli();
     }
+	return 0;
 } /* getval_ */
 
 #undef zstk

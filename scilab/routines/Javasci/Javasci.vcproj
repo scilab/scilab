@@ -456,6 +456,12 @@ cd ..
 			</File>
 			<File
 				RelativePath="..\f2c\libf2c\main.c">
+				<FileConfiguration
+					Name="Debug with Atlas|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCCLCompilerTool"/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter

@@ -4,7 +4,7 @@ SCIDIR1=..\..\..
 LIBRARY = $(SCIDIR)/libs/wsci.lib
 
 
-OBJSC = WScilex.obj
+OBJSC = WScilex_f2c.obj
 
 OBJSF = 
 
@@ -21,8 +21,8 @@ FFLAGS = $(FC_OPTIONS)
 
 all:: ../../../bin/WScilex.exe
 
-../../../bin/WScilex.exe 	: WScilex.obj
+../../../bin/WScilex.exe 	: WScilex_f2c.obj
 	 
 
 
-WScilex.obj : WScilex.c 
+WScilex_f2c.obj : WScilex_f2c.c 
