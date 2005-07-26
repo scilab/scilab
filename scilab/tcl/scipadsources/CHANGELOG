@@ -1307,3 +1307,20 @@ Francois VOGEL, 20/07/05
  * Added accelerators for tile mode in windows menu
  * Better centering of the label in the tile title
  * version --> 5.22
+
+Francois VOGEL, 26/07/05
+ * Emacs-like implementation of panedwindows (major change wrt to previous
+   version):
+     - the set of displayed buffers is a subset of the overall buffers set
+     - tilestyle does not exist anymore - got rid of the concept of tiling mode
+     - Split commands added, Control-Key-2 and Control-Key-3 bindings changed
+     - Space sashes command added
+     - Tile H and Tile V commands kept (operate on all opened buffers)
+     - File/Open opens a buffer in the current tile
+     - File/Close closes the buffer and displays a previously hidden buffer
+       (or closes a pane if no undisplayed buffer is available)
+ * Disabled close button in tile titles during the close process - Prevents
+   the user from clicking repeatedly, e.g. during confirmation for saving
+ * Fixed expanding of the button bar in the watch window (happened on initial
+   external resizing)
+ * version --> 5.23

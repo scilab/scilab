@@ -57,7 +57,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.22"
+set version "Version 5.23"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -77,7 +77,7 @@ set colorpref "$bgcolors $fgcolors"
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts lang tilestyle"
+       tabinserts lang"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -110,7 +110,6 @@ set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
-set tilestyle m ; # m (maximize) or "h" (horizontal panes) or "v" (vertical panes)
 
 # other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
@@ -122,6 +121,10 @@ if {$tcl_platform(platform) != "unix"} {
 }
 set mouseoversel "false"
 set dndinitiated "false"
+
+# this array will contain frame ids such that $pwframe($textarea) is the
+# frame pathname in which $textarea is packed, or "none" if it is not packed
+array unset pwframe
 
 # source the user preferences file if any
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl

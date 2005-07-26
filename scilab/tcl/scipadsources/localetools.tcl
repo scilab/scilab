@@ -56,8 +56,10 @@ global lang sourcedir
     createmenues
     setdbmenuentriesstates_bp
     updatepanestitles
-    foreach pa [$pad.pw panes] {
-        $pa.clbutton configure -text [mc "Close"]
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            [getpaneframename $ta].clbutton configure -text [mc "Close"]
+        }
     }
     keyposn [gettextareacur]
 # labels in opened non-modal dialogs are not updated, but let's not 

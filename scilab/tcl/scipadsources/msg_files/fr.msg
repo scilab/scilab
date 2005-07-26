@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.19
+# in sync at least with v5.23
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -156,7 +156,8 @@
                     Améliorations diverses, dont outils de débug, par François Vogel 2004-2005.\n\
                     Traduction en Suédois par Gunnar Lindholm 2005.\n\
                     Traduction en Norvégien par Torbjørn Pettersen 2005.\n\
-                    Traduction en Allemand par Dirk Reusch 2005."
+                    Traduction en Allemand par Dirk Reusch 2005.\n\
+                    Traduction en Polonais par Bartosz Kosiorek 2005."
 
 
 # infomessages.tcl
@@ -273,9 +274,12 @@
         ::msgcat::mcset fr "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
-    ::msgcat::mcset fr "Tile &horizontally" "Panneaux &horizontaux"
-    ::msgcat::mcset fr "Tile &vertically" "Panneaux &verticaux"
     ::msgcat::mcset fr "&Maximize" "&Maximiser"
+    ::msgcat::mcset fr "&Split" "&Diviser"
+    ::msgcat::mcset fr "S&plit (side by side)" "Diviser (&côte à côte)"
+    ::msgcat::mcset fr "Tile all &vertically" "Aligner &verticalement"
+    ::msgcat::mcset fr "Tile all &horizontally" "Aligner &horizontalement"
+    ::msgcat::mcset fr "Space sashes &evenly" "Homo&généiser"
     ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"
 
     # menues.tcl - Help menu

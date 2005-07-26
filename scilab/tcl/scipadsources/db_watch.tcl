@@ -80,7 +80,8 @@ proc showwatch_bp {} {
     updatedebugstateindicator_bp
 
     pack $watch.f.f1.f1fr $debugstateindicator -expand 1
-    pack $watch.f.f1 $watch.f.f1.f1fr -anchor w -expand 1 -fill both
+    pack $watch.f.f1 -anchor w -expand 0 -fill both
+    pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both
 
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\

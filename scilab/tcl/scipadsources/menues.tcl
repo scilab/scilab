@@ -1,6 +1,6 @@
 proc createmenues {} {
     global pad menuFont tcl_platform bgcolors fgcolors sourcedir
-    global listoffile listoftextarea FontSize tilestyle
+    global listoffile listoftextarea FontSize
     global FirstBufferNameInWindowsMenu
     foreach c1 "$bgcolors $fgcolors" {global $c1}
 
@@ -250,15 +250,18 @@ proc createmenues {} {
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] \
          -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
-    eval "$pad.filemenu.wind add radiobutton [me "&Maximize"] \
-               -value m -variable tilestyle -command \"maximizebuffer\" \
-               -accelerator Ctrl+1 "
-    eval "$pad.filemenu.wind add radiobutton [me "Tile &vertically"] \
-               -value v -variable tilestyle -command \"tilebuffers vertical\" \
-               -accelerator Ctrl+2 "
-    eval "$pad.filemenu.wind add radiobutton [me "Tile &horizontally"] \
-               -value h -variable tilestyle -command \"tilebuffers horizontal\" \
-               -accelerator Ctrl+3 "
+    eval "$pad.filemenu.wind add command [me "&Maximize"] \
+               -command \"maximizebuffer\" -accelerator Ctrl+1 "
+    eval "$pad.filemenu.wind add command [me "&Split"] \
+               -command \"splitwindow vertical\" -accelerator Ctrl+2 "
+    eval "$pad.filemenu.wind add command [me "S&plit (side by side)"] \
+               -command \"splitwindow horizontal\" -accelerator Ctrl+3 "
+    eval "$pad.filemenu.wind add command [me "Tile all &vertically"] \
+               -command \"tileallbuffers vertical\" "
+    eval "$pad.filemenu.wind add command [me "Tile all &horizontally"] \
+               -command \"tileallbuffers horizontal\" "
+    eval "$pad.filemenu.wind add command [me "Space sashes &evenly"] \
+               -command \"spaceallsashesevenly\" "
     $pad.filemenu.wind add separator
     set FirstBufferNameInWindowsMenu [expr [$pad.filemenu.wind index last] + 1]
     foreach ta $listoftextarea {
@@ -304,10 +307,10 @@ proc disablemenuesbinds {} {
 # Disable certain menu entries and bindings
 # This is used to avoid event overlapping that would trigger repeated calls
 # to certain procs that do not support multiple instances running at the same
-# time. proc tilebuffer (because of the textarea destroy) is such an example.
+# time. proc tileallbuffer (because of the textarea destroy) is such an example.
 # Scipad exit (File/Exit or clicking on [x]) does not make use of this
 # facility to avoid hangs - the user can always escape out
-    global pad nbrecentfiles FirstBufferNameInWindowsMenu
+    global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state disabled
@@ -318,11 +321,17 @@ proc disablemenuesbinds {} {
         $pad.filemenu.wind entryconfigure $i -state disabled
         bind $pad <Control-Key-$i> ""
     }
+    # Close buttons in the tile titles
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            [getpaneframename $ta].clbutton configure -state disabled
+        }
+    }
 }
 
 proc restoremenuesbinds {} {
 # Restore menu entries and bindings disabled previously by proc disablemenuesbinds
-    global pad nbrecentfiles FirstBufferNameInWindowsMenu
+    global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state normal
@@ -332,5 +341,11 @@ proc restoremenuesbinds {} {
     for {set i 1} {$i<$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
         bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"
+    }
+    # Close buttons in the tile titles
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            [getpaneframename $ta].clbutton configure -state normal
+        }
     }
 }

@@ -1,4 +1,4 @@
-# in sync at least with v5.2
+# in sync at least with v5.23
 # English is the original language of Scipad
 # Scipad tcl/tk source should use english texts
 # for instance [mc "your text in english here"]
@@ -15,7 +15,8 @@
                     by François Vogel 2004-2005.\n\
                     Swedish translation by Gunnar Lindholm 2005.\n\
                     Norwegian translation by Torbjørn Pettersen 2005.\n\
-                    German translation by Dirk Reusch 2005."
+                    German translation by Dirk Reusch 2005.\n\
+                    Polish translation by Bartosz Kosiorek 2005."
 
 # menues.tcl 
   # locale names (common)

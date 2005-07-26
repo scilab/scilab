@@ -1,102 +1,114 @@
-proc packnewbuffer {textarea} {
-# This packs a textarea buffer in a new pane added in the existing panedwindow
-# The text widget is packed in a frame $pad.pw.f$winopened
-# This frame name *must* end with the same number as the textarea name
-# This correspondance shall be maintained throughout the code
-    global pad FontSize menuFont tilestyle listoffile
+proc packnewbuffer {textarea targetpw forcetitlebar {where ""}} {
+# this packs a textarea buffer in a new pane that will be added in an existing panedwindow
+    global pad FontSize menuFont
 
-    # taid is the textarea identifier
-    set taid [scan $textarea $pad.new%d]
+    # everything is packed in a frame whose name is provided by createpaneframename
+    set tapwfr [createpaneframename $textarea $targetpw]
 
     # create frames for widget layout
     # this is the main frame that is added as a pane
-    frame $pad.pw.f$taid -borderwidth 2
+    frame $tapwfr -borderwidth 2
+    
     # this is for the top bar containing the pane title (file name)
     # and the close button
-    if {$tilestyle != "m"} {
-        frame $pad.pw.f$taid.topbar
-        pack $pad.pw.f$taid.topbar -side top -expand 0 -fill both
-        button $pad.pw.f$taid.clbutton -text [mc "Close"] -font $menuFont \
-            -command "closefile $textarea yesnocancel"
-        pack $pad.pw.f$taid.clbutton -in $pad.pw.f$taid.topbar \
-            -side right -expand 0 -fill none
-    }
+    frame $tapwfr.topbar
+    button $tapwfr.clbutton -text [mc "Close"] -font $menuFont \
+        -command "focustextarea $textarea; closecur yesnocancel"
+    pack $tapwfr.clbutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
+    
     # this is for the text widget and the y scroll bar
-    frame $pad.pw.f$taid.top
-    pack $pad.pw.f$taid.top -side top -expand 1 -fill both
+    frame $tapwfr.top
+    pack $tapwfr.top -side top -expand 1 -fill both
+    
     # this is where the text widget is packed
-    frame $pad.pw.f$taid.topleft
-    pack $pad.pw.f$taid.topleft -in $pad.pw.f$taid.top \
-        -side left -expand 1 -fill both
+    frame $tapwfr.topleft
+    pack $tapwfr.topleft   -in $tapwfr.top    -side left   -expand 1 -fill both
+    
     # this is where the y scrollbar is packed
-    frame $pad.pw.f$taid.topright
-    pack  $pad.pw.f$taid.topright -in $pad.pw.f$taid.top \
-        -side right -expand 0 -fill both 
+    frame $tapwfr.topright
+    pack  $tapwfr.topright -in $tapwfr.top    -side right  -expand 0 -fill both 
+    
     # this is for the x scroll bar at the bottom of the pane
-    frame $pad.pw.f$taid.bottom
-    pack $pad.pw.f$taid.bottom -before $pad.pw.f$taid.top \
-        -side bottom -expand 0 -fill both
+    frame $tapwfr.bottom
+    pack $tapwfr.bottom  -before $tapwfr.top  -side bottom -expand 0 -fill both
 
-    $pad.pw add $pad.pw.f$taid -minsize [expr $FontSize * 2]
-    pack $pad.pw -side top -expand 1 -fill both
+    $targetpw add $tapwfr -minsize [expr $FontSize * 2]
 
-    scrollbar $pad.pw.f$taid.yscroll -command "$textarea yview" -takefocus 0
-    scrollbar $pad.pw.f$taid.xscroll -command "$textarea xview" -takefocus 0 \
+    if {$targetpw == "$pad.pw0"} {
+        pack $targetpw -side top -expand 1 -fill both
+    }
+
+    $targetpw paneconfigure $tapwfr -after $where
+
+    scrollbar $tapwfr.yscroll -command "$textarea yview" -takefocus 0
+    scrollbar $tapwfr.xscroll -command "$textarea xview" -takefocus 0 \
         -orient horizontal
 
-    if {$tilestyle != "m"} {
-        label $pad.pw.f$taid.panetitle -font $menuFont
-        pack $pad.pw.f$taid.panetitle -in $pad.pw.f$taid.topbar -expand 1 -fill none
-        bind $pad.pw.f$taid.topbar    <ButtonRelease-1> "focustextarea $pad.new$taid"
-        bind $pad.pw.f$taid.panetitle <ButtonRelease-1> "focustextarea $pad.new$taid"
-        bind $pad.pw.f$taid.topbar    <Double-Button-1> "focustextarea $pad.new$taid; \
-                                                         $pad.filemenu.wind invoke 1"
-        bind $pad.pw.f$taid.panetitle <Double-Button-1> "focustextarea $pad.new$taid; \
-                                                         $pad.filemenu.wind invoke 1"
+    label $tapwfr.panetitle -font $menuFont
+    bind $tapwfr.topbar    <ButtonRelease-1> "focustextarea $textarea"
+    bind $tapwfr.panetitle <ButtonRelease-1> "focustextarea $textarea"
+    bind $tapwfr.topbar    <Double-Button-1> "focustextarea $textarea; \
+                                              $pad.filemenu.wind invoke 1"
+    bind $tapwfr.panetitle <Double-Button-1> "focustextarea $textarea; \
+                                              $pad.filemenu.wind invoke 1"
+    pack $tapwfr.panetitle -in $tapwfr.topbar -expand 1 -fill none
+
+    pack $textarea       -in $tapwfr.topleft  -side left   -expand 1 -fill both
+    pack $tapwfr.yscroll -in $tapwfr.topright -side right  -expand 1 -fill y
+    pack $tapwfr.xscroll -in $tapwfr.bottom   -side bottom -expand 1 -fill x
+
+    if {[gettotnbpanes] > 1 || $forcetitlebar == 1} {
+        pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
     }
 
-    pack $textarea -in $pad.pw.f$taid.topleft \
-        -side left -expand 1 -fill both
-    pack $pad.pw.f$taid.yscroll -in $pad.pw.f$taid.topright \
-        -side right -expand 1 -fill y
-    pack $pad.pw.f$taid.xscroll -in $pad.pw.f$taid.bottom \
-        -side bottom -expand 1 -fill x
+    $textarea configure -xscrollcommand "managescroll $tapwfr.xscroll"
+    $textarea configure -yscrollcommand "managescroll $tapwfr.yscroll"
+    $tapwfr.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
+    $tapwfr.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
 
-    $pad.pw.f$taid.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
-    $pad.pw.f$taid.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
+    spacesashesevenly $targetpw
+}
 
-    # space the sashes evenly
-    update
-    set nbpanes [llength [$pad.pw panes]]
-    set paneheight [expr [winfo height $pad.pw] / $nbpanes]
-    set panewidth  [expr [winfo width  $pad.pw] / $nbpanes]
-    for {set i 0} {$i < [expr $nbpanes - 1]} {incr i} {
-        set paneposx [expr $panewidth  * ($i + 1)]
-        set paneposy [expr $paneheight * ($i + 1)]
-        $pad.pw sash place $i $paneposx $paneposy
-    }
+proc packbuffer {textarea} {
+# this packs a textarea buffer in an existing pane of an existing panedwindow
+# this pane is always the current one
+# the text widget is packed in the frame that contained the current textarea
+    global pad pwframe
+
+    pack forget [gettextareacur]
+    set curtapwfr [getpaneframename [gettextareacur]]
+    unset pwframe([gettextareacur])
+
+    $curtapwfr.yscroll configure -command "$textarea yview"
+    $curtapwfr.xscroll configure -command "$textarea xview"
+
+    $curtapwfr.clbutton configure -command "closefile $textarea yesnocancel"
+
+    bind $curtapwfr.topbar    <ButtonRelease-1> "focustextarea $textarea"
+    bind $curtapwfr.panetitle <ButtonRelease-1> "focustextarea $textarea"
+    bind $curtapwfr.topbar    <Double-Button-1> "focustextarea $textarea; \
+                                                 $pad.filemenu.wind invoke 1"
+    bind $curtapwfr.panetitle <Double-Button-1> "focustextarea $textarea; \
+                                                 $pad.filemenu.wind invoke 1"
+
+    pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
+
+    $textarea configure -xscrollcommand "managescroll $curtapwfr.xscroll"
+    $textarea configure -yscrollcommand "managescroll $curtapwfr.yscroll"
+
+    $curtapwfr.xscroll set [lindex [$textarea xview] 0] [lindex [$textarea xview] 1]
+    $curtapwfr.yscroll set [lindex [$textarea yview] 0] [lindex [$textarea yview] 1]
+
+    set pwframe($textarea) $curtapwfr
 }
 
 proc montretext {textarea} {
-# Display a textarea
-# This textarea becomes the current one
-    global pad tilestyle
-    if {$tilestyle == "m"} {
-        # maximize - there is one single pane
-        set oldwinopened [scan [gettextareacur] $pad.new%d]
-        $pad.pw forget $pad.pw.f$oldwinopened
-        destroy $pad.pw.f$oldwinopened
-        packnewbuffer $textarea
-    } else {
-        # tiled - there might be more than one single plane
-        set allpanes [$pad.pw panes]
-        set winopened [scan $textarea $pad.new%d]
-        if {[lsearch $allpanes $pad.pw.f$winopened] != -1} {
-            # show $textarea in an already displayed pane
-        } else {
-            # the pane where $textarea should be displayed does not exist yet
-            packnewbuffer $textarea
-        }
+# display a textarea in the current pane
+# this textarea becomes the current one
+    # prevent from displaying the same buffer in two or more panes
+    # <TODO>: make use of peer text widgets (Tk 8.5) instead
+    if {![isdisplayed $textarea]} {
+        packbuffer $textarea
     }
     focustextarea $textarea
 }
@@ -104,12 +116,14 @@ proc montretext {textarea} {
 proc focustextarea {textarea} {
 # Set all the settings such that $textarea becomes the current one
     global pad Scheme listoffile textareaid
-    set oldta $pad.new$textareaid
+
     # clear the selection when leaving a buffer
+    set oldta [gettextareacur]
     if {($oldta != $textarea) && [$oldta tag ranges sel] != ""} {
         $oldta tag remove sel 0.0 end
         selection clear
     }
+
     # set the new buffer as current
     settextareacur $textarea
     modifiedtitle $textarea
@@ -122,41 +136,258 @@ proc focustextarea {textarea} {
     set textareaid [scan $textarea $pad.new%d]
 }
 
-proc tilebuffers {tileorient} {
+proc maximizebuffer {} {
     global pad listoftextarea
+
     disablemenuesbinds
+
     # Remove the existing tiling
-    foreach pa [$pad.pw panes] {
-        $pad.pw forget $pa
-        destroy $pa
-    }
-    # Configure the panedwindow for the new orientation of panes
-    $pad.pw configure -orient $tileorient
-    # Pack the new panes
     foreach ta $listoftextarea {
-        packnewbuffer $ta
+        if {[isdisplayed $ta]} {
+            destroypaneframe $ta
+        }
+    }
+
+    # Pack the current buffer only
+    packnewbuffer [gettextareacur] $pad.pw0 0
+    highlighttextarea [gettextareacur]
+
+    restoremenuesbinds
+}
+
+proc splitwindow {neworient} {
+# split current window:
+#    add a vertical pane if $neworient is "vertical"
+#    add an horizontal pane if $neworient is "horizontal"
+    global pad pwmaxid FontSize
+
+    disablemenuesbinds
+
+    # retrieve the orientation of the pane in which the current textarea is packed
+    set tacur [gettextareacur]
+    set tapwfr [getpaneframename $tacur]
+    set pwname [getpwname $tapwfr]
+    set curorient [$pwname cget -orient]
+
+    if {$curorient == $neworient} {
+        # no need for a new panedwindow, just add a pane with an empty file inside
+        # <TODO>: use a peer text widget (Tk 8.5) and remove createnewtextarea
+
+        # make sure that the possibly single pane before now shows its title bar
+        pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
+        modifiedtitle $tacur "panesonly"
+
+        # create an empty textarea and pack it
+        set newta [createnewtextarea]
+        packnewbuffer $newta $pwname 1 $tapwfr
+        focustextarea $newta
+
+    } else {
+        # a new panedwindow is needed
+
+        # save position and geometry of current textarea, then remove it
+        set ind [expr [lsearch [$pwname panes] $tapwfr] - 1]
+        if {$ind != -1} {
+            set aftopt [lindex [$pwname panes] $ind]
+            set befopt ""
+        } else {
+            set aftopt ""
+            set befopt [lindex [$pwname panes] 1]
+        }
+        set panewidth [winfo width $tapwfr]
+        set paneheigth [winfo height $tapwfr]
+        destroypaneframe $tacur nohierarchydestroy
+
+        # create the new panedwindow, and pack it at the right position
+        incr pwmaxid
+        set newpw $pwname.pw$pwmaxid
+        panedwindow $newpw -orient $neworient -opaqueresize true
+        $pwname paneconfigure $newpw -after $aftopt -before $befopt \
+            -width $panewidth -height $paneheigth
+
+        # pack the previously existing textarea first, then an empty buffer
+        # <TODO>: use a peer text widget here
+        packnewbuffer $tacur $newpw 1
+        focustextarea $tacur
+        set newta [createnewtextarea]
+        packnewbuffer $newta $newpw 1
+        focustextarea $newta
+    }
+
+    restoremenuesbinds
+}
+
+proc createnewtextarea {} {
+# this is a partial copy of proc filesetasnew that is just here to wait for 8.5 and peer text widgets
+# <TODO>: get rid of this!
+    global winopened listoffile
+    global listoftextarea pad textareaid
+    incr winopened
+    dupWidgetOption [gettextareacur] $pad.new$winopened
+    set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
+    set listoffile("$pad.new$winopened",displayedname) [mc "Untitled"]$winopened.sce
+    set listoffile("$pad.new$winopened",new) 1
+    set listoffile("$pad.new$winopened",thetime) 0
+    set listoffile("$pad.new$winopened",language) "scilab"
+    set listoffile("$pad.new$winopened",readonly) 0
+    lappend listoftextarea $pad.new$winopened
+    $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
+        -value $winopened -variable textareaid \
+        -command "montretext $pad.new$winopened"
+    newfilebind
+    showinfo [mc "New Script"]
+    selection clear
+    return $pad.new$winopened
+}
+
+proc tileallbuffers {tileorient} {
+    global pad listoftextarea
+
+    disablemenuesbinds
+
+    # Remove the existing tiling
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            destroypaneframe $ta
+        }
+    }
+
+    # Configure the main panedwindow for the new orientation of panes
+    $pad.pw0 configure -orient $tileorient
+
+    # Pack the new panes
+    if {[llength $listoftextarea] == 1} {
+        set showtiletitle 0
+    } else {
+        set showtiletitle 1
+    }
+    foreach ta $listoftextarea {
+        packnewbuffer $ta $pad.pw0 $showtiletitle
     }
     highlighttextarea [gettextareacur]
     updatepanestitles
+
     restoremenuesbinds
 }
 
-proc maximizebuffer {} {
-    global pad
-    disablemenuesbinds
-    # Remove the existing tiling
-    foreach pa [$pad.pw panes] {
-        $pad.pw forget $pa
-        destroy $pa
+proc getpwname {tapwfr} {
+# get the paned window name in which the widget $tapwfr is packed
+# tapwfr is usually a frame (pane) of a panedwindow in which a textarea is
+# packed, but it can also be a full panedwindow
+# in fact this proc takes a widget name as an input and returns the winfo
+# parent widget:
+#          .wid1.wid2.wid3.wid4  -->  .wid1.wid2.wid3
+# however, the implementation below is preferred since winfo parent returns
+# errors when the parent has already been destroyed by proc destroypaneframe
+# destroying an already destroyed widget causes no error and this simplifies
+# the hierarchy destruction (see destroypaneframe)
+# hmmm, not quite sure after all... this might hide a bug
+    return [string replace $tapwfr [string last . $tapwfr] end]
+}
+
+proc getpaneframename {textarea} {
+# get the frame name in which $textarea is currently packed
+# or "none" if $textarea is not packed
+    global pwframe
+    if {[info exists pwframe($textarea)]} {
+        return $pwframe($textarea)
+    } else {
+        return "none"
     }
-    # Pack the current buffer only
-    packnewbuffer [gettextareacur]
-    highlighttextarea [gettextareacur]
-    restoremenuesbinds
+}
+
+proc createpaneframename {textarea targetpw} {
+# construct the frame name in which $textarea is to be packed
+# and store this name in the global array pwframe
+    global pad pwframe
+    set id [scan $textarea $pad.new%d]
+    set paneframename $targetpw.f$id
+    set pwframe($textarea) $paneframename
+    return $paneframename
+}
+
+proc destroypaneframe {textarea {hierarchy "destroyit"}} {
+# forget about the frame and pane in which $textarea is packed
+    global pad pwframe
+
+    set tapwfr [getpaneframename $textarea]
+    set pwname [getpwname $tapwfr]
+    $pwname forget $tapwfr
+    destroy $tapwfr
+
+    if {$hierarchy == "destroyit"} {
+        # the containing (parent) panedwindow itself must be destroyed if
+        # there is no remaining panes, but don't destroy the main panedwindow
+        # this check is made up to the main level of paned window
+        while {[$pwname panes] == "" && $pwname != "$pad.pw0"} {
+            destroy $pwname
+            set pwname [getpwname $pwname]
+        }
+        # <TODO> merge remaining panedwindows according to the new geometry
+        #        because after many open/close of tiled buffers the grey
+        #        borders do accumulate
+    }
+
+    unset pwframe($textarea)
+}
+
+proc isdisplayed {textarea} {
+# check whether $textarea is currently packed, i.e. visible
+# return 1 if yes, or 0 otherwise
+    if {[getpaneframename $textarea] != "none"} {
+        return 1
+    } else {
+        return 0
+    }
+}
+
+proc gettotnbpanes {} {
+# compute the total number of panes displaying a textarea
+    global listoftextarea
+    set tot 0
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {incr tot}
+    }
+    return $tot
+}
+
+proc getlistofpw {} {
+# create the list of used paned windows
+    global listoftextarea
+    set pwfound {}
+    foreach ta $listoftextarea {
+        if {![isdisplayed $ta]} {continue}
+        set tapwfr [getpaneframename $ta]
+        set pwname [getpwname $tapwfr]
+        if {[lsearch $pwfound $pwname] == -1} {
+            lappend pwfound $pwname
+        }
+    }
+    return $pwfound
+}
+
+proc spaceallsashesevenly {} {
+# space evenly all the sashes of all the existing paned windows
+    foreach pw [getlistofpw] {
+        spacesashesevenly $pw
+    }
+}
+
+proc spacesashesevenly {pwname} {
+# space evenly the sashes attached to the panes of paned window $pwname
+    update
+    set nbpanes [llength [$pwname panes]]
+    set paneheight [expr [winfo height $pwname] / $nbpanes]
+    set panewidth  [expr [winfo width  $pwname] / $nbpanes]
+    for {set i 0} {$i < [expr $nbpanes - 1]} {incr i} {
+        set paneposx [expr $panewidth  * ($i + 1)]
+        set paneposy [expr $paneheight * ($i + 1)]
+        $pwname sash place $i $paneposx $paneposy
+    }
 }
 
 proc managescroll {scrbar a b} {
-# this is only to add a catch to the normally used command
+# this is only to add a catch to the command normally used
 # this catch is required because the text widget may trigger scroll commands
 # automatically when it is not packed in a pane,
 # e.g. on $textarea configure -someoption

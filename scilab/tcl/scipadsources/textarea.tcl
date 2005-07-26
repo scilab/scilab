@@ -104,7 +104,7 @@ proc TextStyles { t } {
 }
 
 proc setfontscipad {FontSize} {
-    global textFont menuFont pad tilestyle
+    global textFont menuFont pad
     global listoftextarea watch firsttimeinshowwatch
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
@@ -122,10 +122,10 @@ proc setfontscipad {FontSize} {
     foreach textarea $listoftextarea {
         $textarea configure -font $textFont
         $textarea tag configure activebreakpoint -font $actbptextFont
-        if {$tilestyle != "m"} {
-            set taid [scan $textarea $pad.new%d]
-            $pad.pw.f$taid.panetitle configure -font $menuFont
-            $pad.pw.f$taid.clbutton  configure -font $menuFont
+        if {[isdisplayed $textarea]} {
+            set tapwfr [getpaneframename $textarea]
+            $tapwfr.panetitle configure -font $menuFont
+            $tapwfr.clbutton  configure -font $menuFont
         }
     }
 
@@ -160,9 +160,10 @@ proc highlighttextarea {textarea} {
 # Set the visual hint such that $textarea can be recognized as being the
 # active buffer
     global pad
-    foreach pa [$pad.pw panes] {
-        $pa configure -background gray
+    foreach pw [getlistofpw] {
+        foreach pa [$pw panes] {
+            $pa configure -background gray
+        }
     }
-    set winopened [scan $textarea $pad.new%d]
-    $pad.pw.f$winopened configure -background black
+    [getpaneframename $textarea] configure -background black
 }

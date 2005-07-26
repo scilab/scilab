@@ -3,7 +3,7 @@ toplevel $pad
 set winopened 1
 set textareaid $winopened
 settextareacur $pad.new$winopened
-set listoftextarea [list $pad.new$winopened]
+set listoftextarea [list $textareacur]
 
 set listoffile("$pad.new$winopened",fullname) "[mc "Untitled"]$winopened.sce"
 set listoffile("$pad.new$winopened",displayedname) "[mc "Untitled"]$winopened.sce"
@@ -18,7 +18,6 @@ set words()                 {}
 
 # main window settings
 eval destroy [winfo child $pad]
-wm title $pad "$winTitle - $listoffile("$pad.new$winopened",displayedname)"
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager
@@ -47,19 +46,13 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 
 $pad.filemenu configure -font $menuFont
 
-if {$tilestyle == "h"} {
-    set initialorient "horizontal"
-} else {
-    set initialorient "vertical"
-}
-panedwindow $pad.pw -orient $initialorient -opaqueresize true
+panedwindow $pad.pw0 -orient vertical -opaqueresize true
+set pwmaxid 0
 
 set taille [expr [font measure $textFont " "] *3]
 
 # creates the default textarea 
 text $textareacur -relief sunken -bd 0 \
-    -xscrollcommand "managescroll $pad.pw.f$winopened.xscroll" \
-    -yscrollcommand "managescroll $pad.pw.f$winopened.yscroll" \
     -wrap $wordWrap -width 1 -height 1 \
     -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
     -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
@@ -90,12 +83,10 @@ pack $pad.statusind2 $pad.statusind -in $pad.bottom -side right\
     -expand 0
 pack $pad.statusmes -in $pad.bottom -side bottom -expand 0 -fill x
 
-$textareacur mark set insert "1.0"
-
 # packing of the bottom line with status info *must* be done before packing
 # anything in the panedwindow otherwise the status area can get clipped on
 # window resize
-packnewbuffer $textareacur
+packnewbuffer $textareacur $pad.pw0 0
 
 # the following update makes the initial textarea reactive to dnd!
 update

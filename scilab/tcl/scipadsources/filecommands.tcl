@@ -16,12 +16,8 @@
 #       Opened buffers (textareas)
 #       This is the unique identifier of the text widget displaying
 #       the content of a given file
-#       This text widget is packed in a frame $pad.pw.f$winopened
-#       that is itself added as a pane in the main panedwindow of
-#       Scipad
-#       This frame name *must* end with the same number as the
-#       textarea name, and the consistency between the two must
-#       be maintained throughout the code
+#       This text widget is packed in a frame that is itself added
+#       as a pane in possibly nested panedwindows
 #
 #   listoftextarea
 #       Contains the list of the above opened textarea names.
@@ -94,8 +90,6 @@ proc filesetasnew {} {
         -command "montretext $pad.new$winopened"
     newfilebind
     showinfo [mc "New Script"]
-    $pad.new$winopened configure -xscrollcommand "managescroll $pad.pw.f$winopened.xscroll"
-    $pad.new$winopened configure -yscrollcommand "managescroll $pad.pw.f$winopened.yscroll"
     montretext $pad.new$winopened
     selection clear
     resetmodified $pad.new$winopened
@@ -118,6 +112,7 @@ proc closecur { {quittype yesno} } {
 
 proc closefile {textarea {quittype yesno} } {
     global listoffile pad
+    global closeinitialbufferallowed
     # query the modified flag
     if  {[ismodified $textarea]} {
         # ask the user if buffer should be saved before closing
@@ -132,6 +127,7 @@ proc closefile {textarea {quittype yesno} } {
         }
     } else {
         # buffer was not modified, so just close it
+        set closeinitialbufferallowed false
         byebye $textarea
     }
     return "Done"
@@ -139,8 +135,9 @@ proc closefile {textarea {quittype yesno} } {
 
 proc byebye {textarea} {
     global listoftextarea listoffile
-    global pad textareaid
-    if { [ llength $listoftextarea ] > 1 } {
+    global pad FirstBufferNameInWindowsMenu pwframe
+    if { [llength $listoftextarea] > 1 } {
+        focustextarea $textarea
         # delete the textarea entry in the listoftextarea
         set listoftextarea [lreplace $listoftextarea [lsearch \
               $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
@@ -149,19 +146,34 @@ proc byebye {textarea} {
                   $listoffile("$textarea",displayedname)]
         $pad.filemenu.wind delete $ilab
         # delete the textarea entry in listoffile
-        unset listoffile("$textarea",fullname) 
-        unset listoffile("$textarea",displayedname) 
-        unset listoffile("$textarea",new) 
-        unset listoffile("$textarea",thetime) 
-        unset listoffile("$textarea",language) 
-        unset listoffile("$textarea",readonly) 
-        set oldwinopened [scan $textarea $pad.new%d]
-        $pad.pw forget $pad.pw.f$oldwinopened
-        destroy $pad.pw.f$oldwinopened
+        unset listoffile("$textarea",fullname)
+        unset listoffile("$textarea",displayedname)
+        unset listoffile("$textarea",new)
+        unset listoffile("$textarea",thetime)
+        unset listoffile("$textarea",language)
+        unset listoffile("$textarea",readonly)
 
-        # place as current textarea the last one
-        $pad.filemenu.wind invoke end
+        if {[llength $listoftextarea] <= [gettotnbpanes]} {
+            destroypaneframe $textarea
+        }
+
+        # place as current textarea the last one that is not already visible
+        set i [$pad.filemenu.wind index end]
+        while {$i > $FirstBufferNameInWindowsMenu} {
+            if {![isdisplayed $pad.new[$pad.filemenu.wind entrycget $i -value]]} {
+                break
+            }
+            incr i -1
+        }
+        $pad.filemenu.wind invoke $i
         RefreshWindowsMenuLabels
+        
+        # remove tile title if there is a single pane
+        if {[gettotnbpanes] == 1} {
+            set visibletapwfr [lindex [array get pwframe] 1]
+            pack forget $visibletapwfr.topbar
+        }
+    
     } else {
         killwin $pad
     }
@@ -360,8 +372,6 @@ proc notopenedfile {file} {
     global winopened pad listoffile textareaid
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
-    $pad.new$winopened configure -xscrollcommand "managescroll $pad.pw.f$winopened.xscroll"
-    $pad.new$winopened configure -yscrollcommand "managescroll $pad.pw.f$winopened.yscroll"
     set listoffile("$pad.new$winopened",fullname) [file normalize $file]
     set listoffile("$pad.new$winopened",displayedname) \
             [file tail $listoffile("$pad.new$winopened",fullname)]

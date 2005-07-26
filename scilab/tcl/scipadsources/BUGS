@@ -233,36 +233,18 @@ Wishes:
  that will do it at once and manage the undo/redo stacks at the same time.
  See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
 
--paned window to allow for viewing two different parts of the text buffer at
- the same time. Would be nice if the output of .text -dump could be feeded
+-paned window to allow for viewing two different parts of the same text buffer
+ at the same time. Would be nice if the output of .text -dump could be feeded
  into another text widget, but it's not currently the case.
  Another (better) approach would be peer text widget as described in TIP #169:
- http://www.tcl.tk/cgi-bin/tct/tip/169.html (this will be available in Tk 8.5)
-
--paned window with mixed orientations, e.g. a top H pane plus a bottom H pane
- which is itself divided into two V panes
+ http://www.tcl.tk/cgi-bin/tct/tip/169.html (this is already available in
+ Tk 8.5a3)
+ F6/F7 should display the next/previous buffer of the full list in the
+ current active pane only, creating peer widgets as necessary
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
  drawbacks : big big implementation work...
-
--currently either only one buffer is seen (maximized), or *all* the buffers
- are seen (tiled). Add the possibility of displaying only some of the opened
- buffers in tile mode.
- If possible, implement the emacs logic: the split command creates a new
- subsplit (a new H or V pane in addition to the current ones); choosing
- which buffer from menu (or in another two dozen other possible ways) you
- display that buffer in the active pane. You switch pane clicking with
- the mouse as if to focus it. Opening a new file displays it in the
- current active pane without creating a new one. Closing the buffer
- leaves what was "under" in some sense: the buffer which was previously
- visible there, or the scratchbuffer, the *message* buffer, or the
- minibuffer, if no other buffer is available. 
- F6/F7 should not ignore hidden buffers but display the next/previous
- buffer of the full list in the current active pane
- Find/Replace in opened buffers should search in all the opened buffers,
- visible or not that they are. The question is, "from the first buffer
- of the list" or "from the current buffer"? Wraparound?
 
 -implement a way to let the user choose which buffer is piled on top of the
  panedwindow and which one is at the bottom. Use the selected one for the
@@ -278,3 +260,12 @@ Wishes:
  opened buffers" (disabled when there is only one - think also about the case
  when the buffers are maximized: should switch buffers or should the checkbox
  be disabled?) - warning: search in all opened + in selection
+ Find/Replace in opened buffers should search in all the opened buffers,
+ visible or not that they are. The question is, "from the first buffer
+ of the list" or "from the current buffer"? Wraparound?
+
+-Add an option menu about the sorting of the buffers in the Windows menu.
+ Possible options could be:
+   . "Sort by opening order" (which is the current way it is) - keep it?
+   . "Sort alphabetically"
+   . "Sort by MRU" (Most Recently Used)
