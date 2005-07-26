@@ -7,6 +7,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
+#define AddCharacters 4
 /*-----------------------------------------------------------------------------------*/
 static int c_n1 = -1;     
 /*-----------------------------------------------------------------------------------*/
@@ -32,9 +33,9 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     int argc=1;
 	char *UTF8Arg=NULL;
 
-	UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+2));
+	UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 	/* UTF to ANSI */
-	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+1), NULL, NULL,NULL);
+	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 	
     sciprint(TCL_MSG7,UTF8Arg);
     while (argv[++argc]) sciprint(" %s",argv[argc]);
@@ -45,10 +46,10 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   if (argv[1] != (char *)0)
   {
 	  char *UTF8Arg=NULL;
-	  UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+2));
+	  UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
 	  /* UTF to ANSI */
-	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+1), NULL, NULL,NULL);
+	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
     if (strlen(UTF8Arg)>=bsiz)
 	{
