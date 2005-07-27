@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.21
+# in sync at least with v5.23
 
 
 # commons
@@ -179,8 +179,9 @@
                     Migliorato da Enrico Segre 2003-2005\n\
                     e da François Vogel (in particolare il debugger) 2004-2005.\n\
                     Traduzioni:\
-                    \n   svedese, Gunnar Lindholm 2005;\
                     \n   norvegese, Torbjørn Pettersen 2005;\
+                    \n   polacco, Bartosz Kosiorek 2005;\
+                    \n   svedese, Gunnar Lindholm 2005;\
                     \n   tedesco, Dirk Reusch 2005."
 
 
@@ -304,10 +305,13 @@
         ::msgcat::mcset it "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
-    ::msgcat::mcset it "Opened Files" "Files aperti"
-    ::msgcat::mcset it "Tile &horizontally" "&Affianca"
-    ::msgcat::mcset it "Tile &vertically" "&Impila"
+    ::msgcat::mcset it "&Split" "Dividi in &orizzontale"   
+    ::msgcat::mcset it "S&plit (side by side)" "Dividi in &verticale"         
+    ::msgcat::mcset it "Tile all &horizontally" "&Affianca tutte"
+    ::msgcat::mcset it "Tile all &vertically" "&Impila tutte"
     ::msgcat::mcset it "&Maximize" "&Massimizza"
+    ::msgcat::mcset it "Space sashes &evenly" "Spezzatura &uniforme"   
+    ::msgcat::mcset it "Opened Files" "Files aperti"
  
     # menues.tcl - Help menu
     ::msgcat::mcset it "&Help..." "&Aiuto..."
