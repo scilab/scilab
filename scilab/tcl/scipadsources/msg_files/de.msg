@@ -1,5 +1,5 @@
 # Scipad texts in German
-# in sync at least with v5.14
+# in sync at least with v5.23
 # provided by Dirk Reusch <reusch@tmb.uni-karlsruhe.de>
 
 # commons
@@ -274,6 +274,12 @@
         ::msgcat::mcset de "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu
+    ::msgcat::mcset de "&Maximize" "&Maximieren"
+    ::msgcat::mcset de "&Split" "&Teilen"
+    ::msgcat::mcset de "S&plit (side by side)" "Teilen (&senkrecht)"
+    ::msgcat::mcset de "Tile all &vertically" "&‹bereinander"
+    ::msgcat::mcset de "Tile all &horizontally" "&Nebeneinander"
+    ::msgcat::mcset de "Space sashes &evenly" "&Gleichm‰ﬂige Aufteilung"
     ::msgcat::mcset de "Opened Files" "Offene Dateien"
 
     # menues.tcl - Help menu
