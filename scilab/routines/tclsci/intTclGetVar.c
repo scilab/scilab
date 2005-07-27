@@ -18,7 +18,7 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 	{
 		char *VarName=NULL;
 		char *RetStr=NULL;
-		char *UTF8Arg=NULL;
+		char *AsciiFromUTF8=NULL;
 
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
@@ -31,23 +31,23 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 
 		RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
 
-		UTF8Arg=MALLOC(sizeof(char)*(strlen(RetStr)+AddCharacters));
+		AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(RetStr)+AddCharacters));
 
 		/* UTF to ANSI */
-		Tcl_UtfToExternal(TCLinterp, NULL, RetStr, strlen(RetStr), 0, NULL, UTF8Arg, (int)(strlen(RetStr)+AddCharacters), NULL, NULL,NULL);
+		Tcl_UtfToExternal(TCLinterp, NULL, RetStr, strlen(RetStr), 0, NULL, AsciiFromUTF8, (int)(strlen(RetStr)+AddCharacters), NULL, NULL,NULL);
 
-		if ( UTF8Arg )
+		if ( AsciiFromUTF8 )
 		{
 			char *output=NULL ;
-			output=(char*)MALLOC((strlen(UTF8Arg)+1)*sizeof(char));
-			sprintf(output,"%s",UTF8Arg);
+			output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
+			sprintf(output,"%s",AsciiFromUTF8);
 			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
 			
 			LhsVar(1) = 1;
 			C2F(putlhsvar)();
 
 			if (output) {FREE(output);output=NULL;}
-			if (UTF8Arg){FREE(UTF8Arg);UTF8Arg=NULL;}
+			if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
 	  	}
 		else
 		{

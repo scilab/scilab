@@ -31,27 +31,27 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
   {
 	/* trace for debugging */
     int argc=1;
-	char *UTF8Arg=NULL;
+	char *AsciiFromUTF8=NULL;
 
-	UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
+	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 	/* UTF to ANSI */
-	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
+	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 	
-    sciprint(TCL_MSG7,UTF8Arg);
+    sciprint(TCL_MSG7,AsciiFromUTF8);
     while (argv[++argc]) sciprint(" %s",argv[argc]);
     sciprint("\n");
-	if (UTF8Arg){FREE(UTF8Arg);UTF8Arg=NULL;}
+	if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
   }
 
   if (argv[1] != (char *)0)
   {
-	  char *UTF8Arg=NULL;
-	  UTF8Arg=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
+	  char *AsciiFromUTF8=NULL;
+	  AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
 	  /* UTF to ANSI */
-	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, UTF8Arg, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
+	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
-    if (strlen(UTF8Arg)>=bsiz)
+    if (strlen(AsciiFromUTF8)>=bsiz)
 	{
       command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
@@ -60,20 +60,20 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
-      strncpy(command,UTF8Arg,bsiz-1);
+      strncpy(command,AsciiFromUTF8,bsiz-1);
       sciprint(TCL_WARNING4,bsiz-1);
     }
 	else
 	{
-      command = (char *) MALLOC ((strlen (UTF8Arg) + 1) * sizeof (char));
+      command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
         sciprint (TCL_ERROR28);
         return TCL_ERROR;
       }
-      strcpy(command,UTF8Arg);
+      strcpy(command,AsciiFromUTF8);
     }
-	if (UTF8Arg){FREE(UTF8Arg);UTF8Arg=NULL;}
+	if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
 
     if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
