@@ -6,9 +6,9 @@ include ../../../Makefile.incl.mak
 all :: info
 
 info:
-	@echo "Type \"nmake /f Makefile.mak tests\" in tests directory"
-	@echo "  to test the  distribution"
-	@echo " SEE THE README FILE (IMPORTANT) "
+	@echo Type "nmake /f Makefile.mak tests" in tests directory
+	@echo   to test the  distribution
+	@echo  SEE THE README FILE (IMPORTANT)
 	
 tests:
 	$(SCIDIR)\bin\scilex -nw -f maketests.sce
