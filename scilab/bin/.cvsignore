@@ -49,3 +49,8 @@ libf2c.dll
 libf2c.exp
 libf2c.lib
 libf2c.def
+lapack.def
+lapack.exp
+lapack.lib
+lapack.dll
+Javasci.pdb
