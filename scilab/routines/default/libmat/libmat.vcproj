@@ -772,6 +772,9 @@ del libmattemp.def &gt;nul
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath="..\..\..\bin\lapack.lib">
+		</File>
+		<File
 			RelativePath="..\..\..\bin\LibScilab.lib">
 		</File>
 	</Files>
