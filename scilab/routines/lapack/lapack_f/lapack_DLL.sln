@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "lapack_DLL", "lapack_DLL.vfproj", "{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug (fake dll) = Debug (fake dll)
+		Debug (true dll) = Debug (true dll)
+		Release (fake dll) = Release (fake dll)
+		Release (true dll) = Release (true dll)
+		Release PIV (fake dll) = Release PIV (fake dll)
+		Release PIV (true dll) = Release PIV (true dll)
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Debug (fake dll).ActiveCfg = Debug|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Debug (fake dll).Build.0 = Debug|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Debug (true dll).ActiveCfg = Debug (true dll)|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Debug (true dll).Build.0 = Debug (true dll)|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release (fake dll).ActiveCfg = Release (fake dll)|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release (fake dll).Build.0 = Release (fake dll)|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release (true dll).ActiveCfg = Release|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release (true dll).Build.0 = Release|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release PIV (fake dll).ActiveCfg = Release PIV (fake dll)|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release PIV (fake dll).Build.0 = Release PIV (fake dll)|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release PIV (true dll).ActiveCfg = Release PIV|Win32
+		{BB17E9B6-A32B-4379-A7FE-549AE5F6A0DF}.Release PIV (true dll).Build.0 = Release PIV|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
