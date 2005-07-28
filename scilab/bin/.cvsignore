@@ -56,3 +56,7 @@ lapack.dll
 Javasci.pdb
 LIBIFCOREMD.DLL
 LIBMMD.DLL
+arpack.dll
+arpack.def
+arpack.exp
+arpack.lib
