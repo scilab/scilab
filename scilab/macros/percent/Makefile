@@ -168,6 +168,8 @@ BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci %b_iconvert.sci \
 CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci \
 	%c_tril.sci %c_triu.sci %c_matrix.sci
 
+CEFUNS = %ce_matrix.sci
+
 LSSFUNS= %lss_eye.sci %lss_inv.sci %lss_ones.sci %lss_rand.sci %lss_size.sci\
 	 %lss_norm.sci
 
@@ -201,7 +203,7 @@ XLSFUNS = %xls_p.sci %xlssheet_p.sci %xls_e.sci %xlssheet_e.sci %xlssheet_size.s
 MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
 	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)\
-	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
+	$(HMFUNS) $(BFUNS) $(CFUNS) $(CEFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
 	$(SFUNS) $(SPFUNS) $(MSPFUNS) $(IFUNS) $(FUNS) $(HFUNS) $(XLSFUNS)
 
 include ../Make.lib
