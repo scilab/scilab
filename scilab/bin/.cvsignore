@@ -54,3 +54,5 @@ lapack.exp
 lapack.lib
 lapack.dll
 Javasci.pdb
+LIBIFCOREMD.DLL
+LIBMMD.DLL
