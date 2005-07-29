@@ -1,18 +1,21 @@
+/***********************************************************************/
+/* Copyright (C) 2005 INRIA Allan CORNET */
+/***********************************************************************/
 #include <Windows.h>
 #include "stdio.h"
-#include "signal.h"
-
-#include "../Messages.h"
-#include "../Warnings.h"
-#include "../Errors.h"
 #include "../win_mem_alloc.h" /* MALLOC */
-
-extern int Console_Main(int argc, char **argv);
-
+/***********************************************************************/
+typedef int (*MYPROC) (int , char **);
+/***********************************************************************/
 int main (int argc, char **argv)
 {
-
 	#define MAXCMDTOKENS 128
+
+	HINSTANCE hinstLib; 
+	MYPROC Console_Main; 
+
+	BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
+	
 	int argcbis=-1;
 	LPSTR argvbis[MAXCMDTOKENS];
 	int i=0;
@@ -35,8 +38,6 @@ int main (int argc, char **argv)
 		}
 		argvbis[argc]=nwparam;
 		argcbis=argc+1;
-
-
 	}
 	else
 	{
@@ -45,17 +46,30 @@ int main (int argc, char **argv)
 			argvbis[i]=argv[i];
 		}
 		argcbis=argc;
-	
 	}
     	
-    Console_Main(argcbis,argvbis);
-    exit(0);	/* exit(0) rather than return(0) to bypass Cray bug */
-    return 0;	/* For compilers that complain of missing return values; */
-		/* others will complain that this is unreachable code. */
-  }
-#ifdef __cplusplus
+	hinstLib = LoadLibrary(TEXT("Libscilab")); 	
+    
+	if (hinstLib != NULL) 
+	{ 
+		Console_Main = (MYPROC) GetProcAddress(hinstLib, TEXT("Console_Main")); 
+
+		if (NULL != Console_Main) 
+		{
+			fRunTimeLinkSuccess = TRUE;
+			(Console_Main)(argcbis,argvbis);
+		}
+		fFreeResult = FreeLibrary(hinstLib); 
+	} 
+
+	if (! fRunTimeLinkSuccess) 
+	{
+		MessageBox(NULL,"scilex.exe : Libscilab.dll not found !","Warning",MB_ICONERROR); 
+		exit(1);
+	}
+	else exit(0);
+
+    return 0;
+
 }
-#endif
-
-
-
+/***********************************************************************/

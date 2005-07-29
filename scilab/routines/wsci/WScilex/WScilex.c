@@ -1,44 +1,36 @@
+/***********************************************************************/
+/* Copyright (C) 2005 INRIA Allan CORNET */
+/***********************************************************************/
 #include <Windows.h>
-#include "stdio.h"
-#include "signal.h"
-
-#include "../Messages.h"
-#include "../Warnings.h"
-#include "../Errors.h"
-
-#include "../win_mem_alloc.h" /* MALLOC */
-
-extern int WINAPI Windows_Main(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow);
-
-
-
+/***********************************************************************/
+typedef int (*MYPROC) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
+/***********************************************************************/
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
 {
-	#define MAXCMDTOKENS 128
-	int argc=-1;
-	static LPSTR argv[MAXCMDTOKENS];
-	char *pFullCmdLine=NULL;
-	char *pFullCmdLineTmp=NULL;
-
-
-	pFullCmdLine=GetCommandLine();
-	pFullCmdLineTmp=(char *) MALLOC( sizeof(char)*( strlen(pFullCmdLine)+1 ) );
-	strcpy(pFullCmdLineTmp,pFullCmdLine);
-
-	argv[++argc] = strtok (pFullCmdLineTmp, " ");
+	HINSTANCE hinstLib; 
+	MYPROC Windows_Main; 
+	BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
 	
-	while (argv[argc] != NULL)
+	hinstLib = LoadLibrary(TEXT("Libscilab")); 	
+	if (hinstLib != NULL) 
+	{ 
+		Windows_Main = (MYPROC) GetProcAddress(hinstLib, TEXT("Windows_Main")); 
+
+		if (NULL != Windows_Main) 
+		{
+			fRunTimeLinkSuccess = TRUE;
+			(Windows_Main)(hInstance,hPrevInstance,szCmdLine, iCmdShow);
+		}
+		fFreeResult = FreeLibrary(hinstLib); 
+	} 
+
+	if (! fRunTimeLinkSuccess) 
 	{
-		argv[++argc] = strtok(NULL, " ");
+		MessageBox(NULL,"Wscilex.exe : Libscilab.dll not found !","Warning",MB_ICONERROR); 
+		exit(1);
 	}
+	else exit(0);
 
-    Windows_Main(hInstance,hPrevInstance,szCmdLine, iCmdShow);
-    exit(0);	/* exit(0) rather than return(0) to bypass Cray bug */
-    return 0;	/* For compilers that complain of missing return values; */
-		/* others will complain that this is unreachable code. */
-  }
-#ifdef __cplusplus
+    return 0;
 }
-#endif
-
-
+/***********************************************************************/
