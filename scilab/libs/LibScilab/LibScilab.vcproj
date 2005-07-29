@@ -416,6 +416,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile=".\Release with Atlas/LibScilab.pdb"
 				SubSystem="2"
+				SupportUnloadOfDelayLoadedDLL="TRUE"
 				ImportLibrary="../../bin/LibScilab.lib"
 				TargetMachine="1"/>
 			<Tool

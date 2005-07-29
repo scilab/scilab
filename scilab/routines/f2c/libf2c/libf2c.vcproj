@@ -347,6 +347,7 @@ cd.. &gt;nul
 				Name="VCLinkerTool"
 				OutputFile="..\..\..\bin\libf2c.dll"
 				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
+				SupportUnloadOfDelayLoadedDLL="TRUE"
 				ImportLibrary="..\..\..\bin\libf2c.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
