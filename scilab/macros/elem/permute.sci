@@ -10,14 +10,14 @@ function   y=permute(x,dims)
 
 // Verify inputs arguments number
 if argn(2)<>2 then
-error("Bad number of inputs arguments")
+error("Incorrect number of inputs arguments")
 end
 
 // Verify if the size of dims corresponds to dimension of x 
 if ndims(dims)<>2 then
   error("Second input argument must be a vector")
 elseif or(gsort(dims,"c","i")<>(1:prod(size(dims)))) then
-  error("Bad dimensions permutation")
+  error("Incorrect dimensions permutation")
 elseif prod(size(dims))<ndims(x) then
   error("Size of the second input argument must be equal or superior to x dimensions")
 end
@@ -42,7 +42,6 @@ i=prod(size(ysize))
 while i>2 & ysize(i)==1 & i>max(ind1)
  ysize(i)=[]
   i=i-1
-  else
 end
 
 // index vector contains all indices of x 
