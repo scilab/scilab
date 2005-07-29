@@ -79,6 +79,11 @@ Bugs:
 -On Linux (not on Windows), clicking [x] during a long drop of files (dnd
  of a directory) makes Scilab crash - it might be a dnd bug
 
+- After many open/close of buffers, the grey borderline around panes 
+enlarges (depends on the order of buffer closing). I should merge 
+panedwindows that have the same orientation after a close to avoid this 
+artifact
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -241,6 +246,13 @@ Wishes:
  Tk 8.5a3)
  F6/F7 should display the next/previous buffer of the full list in the
  current active pane only, creating peer widgets as necessary
+
+- add something like (but not identical to) emacs C-x 4 C-f, that would
+ open the file chooser and pack the selected file in a window that would
+ be created by splitting the current textarea. Would be named "Open in a
+ new pane..." or the like. This differs slightly from emacs since C-x 4 C-f
+ seems to open in the pane that would be selected by pressing C-x o. I
+ would rather create a new pane with the same orientation as the current one
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one

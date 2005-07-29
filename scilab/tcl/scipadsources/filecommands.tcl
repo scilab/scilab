@@ -158,13 +158,8 @@ proc byebye {textarea} {
         }
 
         # place as current textarea the last one that is not already visible
-        set i [$pad.filemenu.wind index end]
-        while {$i > $FirstBufferNameInWindowsMenu} {
-            if {![isdisplayed $pad.new[$pad.filemenu.wind entrycget $i -value]]} {
-                break
-            }
-            incr i -1
-        }
+        set i [getlasthiddentextareamenuind]
+        if {$i == ""} {set i $FirstBufferNameInWindowsMenu}
         $pad.filemenu.wind invoke $i
         RefreshWindowsMenuLabels
         

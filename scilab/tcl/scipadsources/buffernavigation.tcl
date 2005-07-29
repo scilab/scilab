@@ -30,7 +30,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {where ""}} {
     
     # this is for the x scroll bar at the bottom of the pane
     frame $tapwfr.bottom
-    pack $tapwfr.bottom  -before $tapwfr.top  -side bottom -expand 0 -fill both
+    pack $tapwfr.bottom                       -side bottom -expand 0 -fill both
 
     $targetpw add $tapwfr -minsize [expr $FontSize * 2]
 
@@ -159,7 +159,7 @@ proc splitwindow {neworient} {
 # split current window:
 #    add a vertical pane if $neworient is "vertical"
 #    add an horizontal pane if $neworient is "horizontal"
-    global pad pwmaxid FontSize
+    global pad pwmaxid FontSize listoftextarea
 
     disablemenuesbinds
 
@@ -170,15 +170,23 @@ proc splitwindow {neworient} {
     set curorient [$pwname cget -orient]
 
     if {$curorient == $neworient} {
-        # no need for a new panedwindow, just add a pane with an empty file inside
+        # no need for a new panedwindow, just add a pane with one of the hidden
+        # buffers inside, or an empty file otherwise
         # <TODO>: use a peer text widget (Tk 8.5) and remove createnewtextarea
 
         # make sure that the possibly single pane before now shows its title bar
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
         modifiedtitle $tacur "panesonly"
 
-        # create an empty textarea and pack it
-        set newta [createnewtextarea]
+        # if there is a hidden buffer
+        if {[llength $listoftextarea] > [gettotnbpanes]} {
+            # use it
+            set newta $pad.new[getlasthiddentextareaid]
+        } else {
+            # otherwise create an empty textarea
+            set newta [createnewtextarea]
+        }
+        # and pack it
         packnewbuffer $newta $pwname 1 $tapwfr
         focustextarea $newta
 
@@ -203,13 +211,22 @@ proc splitwindow {neworient} {
         set newpw $pwname.pw$pwmaxid
         panedwindow $newpw -orient $neworient -opaqueresize true
         $pwname paneconfigure $newpw -after $aftopt -before $befopt \
-            -width $panewidth -height $paneheigth
+            -width $panewidth -height $paneheigth -minsize [expr $FontSize * 2]
 
-        # pack the previously existing textarea first, then an empty buffer
+        # pack the previously existing textarea first, then a hidden buffer,
+        # or an empty file otherwise
         # <TODO>: use a peer text widget here
         packnewbuffer $tacur $newpw 1
         focustextarea $tacur
-        set newta [createnewtextarea]
+        # if there is a hidden buffer
+        if {[llength $listoftextarea] > [gettotnbpanes]} {
+            # use it
+            set newta $pad.new[getlasthiddentextareaid]
+        } else {
+            # otherwise create an empty textarea
+            set newta [createnewtextarea]
+        }
+        # and pack it
         packnewbuffer $newta $newpw 1
         focustextarea $newta
     }

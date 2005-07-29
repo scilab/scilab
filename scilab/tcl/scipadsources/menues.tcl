@@ -349,3 +349,37 @@ proc restoremenuesbinds {} {
         }
     }
 }
+
+proc getlasthiddentextareamenuind {} {
+# get the index in the windows menu of the last entry of this menu
+# that is not visible (i.e. packed in a pane), or "" if all buffers
+# are visible
+    global pad FirstBufferNameInWindowsMenu
+    set found 0
+    set i [$pad.filemenu.wind index end]
+    while {$i >= $FirstBufferNameInWindowsMenu} {
+        if {![isdisplayed $pad.new[$pad.filemenu.wind entrycget $i -value]]} {
+            set found 1
+            break
+        }
+        incr i -1
+    }
+    if {$found == 1} {
+        return $i
+    } else {
+        return ""
+    }
+}
+
+proc getlasthiddentextareaid {} {
+# get the -value option ($textareaid) of the last entry of the windows menu
+# that is not visible (i.e. packed in a pane), or "" if all buffers
+# are visible
+    global pad
+    set i [getlasthiddentextareamenuind]
+    if {$i != ""} {
+        return [$pad.filemenu.wind entrycget $i -value]
+    } else {
+        return ""
+    }
+}

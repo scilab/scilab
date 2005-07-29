@@ -1324,3 +1324,11 @@ Francois VOGEL, 26/07/05
  * Fixed expanding of the button bar in the watch window (happened on initial
    external resizing)
  * version --> 5.23
+
+Francois VOGEL, 29/07/05
+ * Fixed clipping of pane title when Scipad window becomes really small
+ * Restored pane minsize on a split (was forgotten)
+ * If there is a hidden buffer at the time the Split command is invoked
+   then this buffer is used for display in the new pane instead of always
+   opening a new empty buffer
+ * version --> 5.24
