@@ -13,9 +13,9 @@ else
   if typeof(c) <> "ce" then //input argument must be a cell
     error('input argument must be a cell')
   end
-  cecomptype=typeof(c.entries(1)) //cecomptype is the type of the first component of the cell
+  cecomptype=typeof(c(1).entries) //cecomptype is the type of the first component of the cell
   for i=1:prod(size(c))
-    if typeof(c.entries(i)) <> cecomptype then //all components of input cell must have the same type
+    if typeof(c(i).entries) <> cecomptype then //all components of input cell must have the same type
       error("all components of input cell must have the same type")
     end
   end
