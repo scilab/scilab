@@ -28,15 +28,9 @@
 #ifndef STRICT
 #define STRICT
 #endif
-/* #include <windows.h>
-   #include <windowsx.h>*/
 
-
-#ifndef __ABSC__
 #include <memory.h>
-#endif
 
-/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include <commdlg.h>

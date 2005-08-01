@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #if ~defined(THINK_C) && ~defined(__MWERKS__)
-#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__) 
+#if !(defined __MSC__) && !(defined __MINGW32__) 
 #include <sys/time.h>
 #else 
 #include <windows.h>
@@ -119,7 +119,7 @@ int C2F(timer)(double *etime)
 #define X_GETTIMEOFDAY(t) 0 
 #else
 #if defined(WIN32)
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__)
 #ifndef  __MINGW32__
 #define X_GETTIMEOFDAY(t) gettimeofday(t, &tmz )
 static struct timezone tmz;
@@ -147,13 +147,13 @@ int C2F(stimer)(void)
         YieldToAnyThread();
         return(0);
 #else 
-#if !(defined __MSC__) && !(defined __ABSC__)&& !(defined __MINGW32__)
+#if !(defined __MSC__) && !(defined __MINGW32__)
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
   return(ctime.tv_usec);
 #else 
   return(stimerwin());
-#endif /* !(defined __MSC__) && !(defined __ABSC__)&& !(defined __MINGW32__) */ 
+#endif /* !(defined __MSC__) && !(defined __MINGW32__) */ 
 #endif /* defined(THINK_C)||defined(__MWERKS__) */
 }
 /*-----------------------------------------------------------------------------------*/
@@ -161,7 +161,7 @@ int C2F(stimer)(void)
  * stimer for non cygwin win32 compilers 
  ****************************/
 
-#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
+#if (defined __MSC__)  || (defined __MINGW32__)
 static int stimerwin(void)
 {
   int i;

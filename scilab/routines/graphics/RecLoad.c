@@ -19,10 +19,8 @@
 #	include "types.h"
 #else /* not macintosh */
 #       ifndef VMS
-#	ifndef __ABSC__
 #   	include <sys/types.h>	/* for <netinet/in.h> on some systems */
-#       endif
-#   	if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
+#   	if !(defined __MSC__) && !(defined __MINGW32__)
 #          include <netinet/in.h>	/* for htonl() */
 #   	endif
 #	endif

@@ -7,9 +7,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#ifdef __ABSC__
-#define getpid() getpid_()
-#endif
 #else 
 extern int getpid();
 #endif

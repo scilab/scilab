@@ -28,8 +28,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/07/21 08:46:03 $
- *  $Revision: 1.4 $
+ *  $Date: 2005/08/01 11:30:37 $
+ *  $Revision: 1.5 $
  */
 
 
@@ -437,9 +437,7 @@ extern char *malloc(), *calloc(), *realloc();
 #if defined(THINK_C) || defined (__MWERKS__)  
 #include <types.h>
 #else
-#ifndef __ABSC__
 #include <sys/types.h> /* pour le malloc.h de dbmalloc */
-#endif
 #endif
 #ifdef __STDC__
 #include <stdlib.h>

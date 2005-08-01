@@ -10,9 +10,6 @@
 extern  char  *getenv();
 #endif
 
-#ifdef __ABSC__
-#define putenv(x) abs_putenv(x)
-#endif
 
 #include "intersci.h"
 

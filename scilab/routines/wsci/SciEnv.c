@@ -421,11 +421,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 	#if (defined __CYGWIN32__ ) || (defined __MINGW32__)
 		putenv ("COMPILER=gcc");
 	#endif
-
-	#ifdef __ABSC__
-		putenv ("COMPILER=ABSOFT");
-	#endif
-
+	
 	/* WIN32 variable Environment */
     #ifdef _WIN32
 		putenv ("WIN32=OK");

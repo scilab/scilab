@@ -17,9 +17,6 @@
 
 #include <windows.h>
 #include <errno.h>
-#ifdef __ABSC__
-#include "errno.h"
-#endif
 
 /*
  * The following table contains the mapping from Win32 errors to

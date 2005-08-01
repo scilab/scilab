@@ -14,15 +14,7 @@ int  system();
 int C2F(systemc)(char *command, integer *stat)
 {
   int status;
-#ifdef __ABSC__ 
-  char * cmd = (char *) MALLOC((strlen(command) + 7) * sizeof(char));
-  strcpy(cmd,"CMD /C ");
-  strcat(cmd,command);
-  status=system(cmd);
-  FREE(cmd);
-#else
   status=system(command);
-#endif
   *stat=(integer)status;
   return(0);
 }

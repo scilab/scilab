@@ -2100,30 +2100,26 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 			#if __MAKEFILEVC__
 				strcpy(buffer,MSG_SCIMSG58);
 			#else
-				#if __ABSC__
-				strcpy(buffer,MSG_SCIMSG59);
+				#if _DEBUG
+				strcpy(buffer,MSG_SCIMSG60);
+				strcat(buffer,MSG_SCIMSG61);
 				#else
-					#if _DEBUG
-					strcpy(buffer,MSG_SCIMSG60);
-					strcat(buffer,MSG_SCIMSG61);
-					#else
-					strcpy(buffer,MSG_SCIMSG62);
-					switch(cpubuild)
-					{
-						case 500: // Pentium
-							strcat(buffer,MSG_SCIMSG63);
-						break;
-						case 600: // Pentium Pro
-							strcat(buffer,MSG_SCIMSG64);
-						break;
-						case 400: // 486
-							strcat(buffer,MSG_SCIMSG65);
-						break;
-						case 300: // 386
-							strcat(buffer,MSG_SCIMSG66);
-						break;
-					}
-					#endif
+				strcpy(buffer,MSG_SCIMSG62);
+				switch(cpubuild)
+				{
+					case 500: // Pentium
+						strcat(buffer,MSG_SCIMSG63);
+					break;
+					case 600: // Pentium Pro
+						strcat(buffer,MSG_SCIMSG64);
+					break;
+					case 400: // 486
+						strcat(buffer,MSG_SCIMSG65);
+					break;
+					case 300: // 386
+						strcat(buffer,MSG_SCIMSG66);
+					break;
+				}
 				#endif
 			#endif
 			SetDlgItemText(hDlg,IDC_COMPILMODE,buffer);

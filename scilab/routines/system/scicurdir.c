@@ -3,18 +3,14 @@
 #include "../machine.h"
 #ifdef WIN32 
 #include <windows.h>
-#if !(defined __CYGWIN32__) && !(defined __ABSC__)
+#if !(defined __CYGWIN32__)
 #include <direct.h>
 #define chdir(x) _chdir(x)
 #define GETCWD(x,y) _getcwd(x,y)
 #else 
-#ifndef __ABSC__
 #include <unistd.h>
 extern void sciprint(char *fmt,...);
 #define GETCWD(x,y) getcwd(x,y)
-#else
-#define GETCWD(x,y) getcwd_(x,y)
-#endif
 #endif 
 #endif 
 
@@ -47,11 +43,8 @@ int C2F(scichdir)(char *path,int *err)
     *cur_dir = '\0';
     return (0);
   }
-#ifndef __ABSC__
+
   if (chdir(path) == -1) {
-#else
-  if (chdir_(path,strlen(path)) != 0) {
-#endif
     sciprint("Can't go to directory %s \r\n", path); 
     /** XXX : a remettre , sys_errlist[errno]); **/
     *err=1;
@@ -69,12 +62,7 @@ int C2F(scichdir)(char *path,int *err)
 
 int C2F(scigetcwd)(char **path,int *lpath,int *err)
 {
-
-#ifndef __ABSC__
     if (GETCWD(cur_dir, 1024) == (char*) 0)
-#else
-    if (GETCWD(cur_dir, 1024) != 0)
-#endif
       {	/* get current working dir */
 	sciprint("Can't get current directory\r\n");
 	*cur_dir = '\0';
@@ -83,14 +71,9 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
       }
     else 
       {
-	#ifndef __ABSC__
 		*path= cur_dir;
 		*lpath=strlen(cur_dir);
-	#else
-		*path=strtok(cur_dir,"  ");
-		*lpath=strlen(*path);	
-	#endif
-	*err=0;
+		*err=0;
       }
     return 0;
 }

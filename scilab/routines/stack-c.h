@@ -4,7 +4,7 @@
 #ifndef STACK_SCI 
 #define STACK_SCI 
 
-#if  !(defined __LCC__) && !(defined __ABSC__) && ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
+#if  !(defined __LCC__) && ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
 #include "graphics/Math.h"
 #else
 #include "machine.h"

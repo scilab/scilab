@@ -1,5 +1,5 @@
 #include <stdio.h>
-#if !(defined __MSC__) && !(defined __ABSC__)&& !(defined __MINGW32__)
+#if !(defined __MSC__)&& !(defined __MINGW32__)
 #if defined(netbsd) || defined(freebsd)
 #include <sys/types.h>
 #endif
@@ -24,7 +24,7 @@ int CheckGraphName(name,dir)
 char *name;
 char *dir;
 {
-#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
+#if (defined __MSC__) || (defined __MINGW32__)
   return(0);
 #else 
   DIR *dirp;

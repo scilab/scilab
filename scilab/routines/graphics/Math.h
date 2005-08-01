@@ -16,7 +16,7 @@
 #endif
 
 #ifdef WIN32 
-#if !(defined __CYGWIN32__) && !(defined __ABSC__)
+#if !(defined __CYGWIN32__)
 #include <float.h>
 #define finite(x) _finite(x) 
 #endif 
@@ -29,7 +29,7 @@ int finite __PARAMS((double));
 #endif /* WIN32 */
 
 #ifdef WIN32 
-#if !(defined __CYGWIN32__) && !(defined __ABSC__)
+#if !(defined __CYGWIN32__)
 #include <float.h>
 #define ISNAN(x) _isnan(x)
 #else 

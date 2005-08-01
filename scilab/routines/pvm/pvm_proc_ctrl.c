@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.19  2005/08/01 11:30:37  cornet
+     Remove ABSOFT reference
+
      Revision 1.18  2005/07/03 18:16:15  cornet
      optimisation des MALLOC pour Windows ( A tester avec attention ) --> VirtualAlloc
 
@@ -144,35 +147,13 @@
 
 
 #ifdef WIN32 
-#ifndef __ABSC__
 #include <sys/utime.h>
-#else
-#include <time.h>
-#endif
 #else 
 #include <sys/time.h>
 #endif /** WIN32 **/
 
-#ifdef __ABSC__ /* For the definition of _stricmp */
-#include <ctype.h>
-
-
-
-int _stricmp(const char *s1, const char *s2)
-{
-  while (tolower(*s1) == tolower(*s2))
-  {
-    if (*s1 == 0)
-      return 0;
-    s1++;
-    s2++;
-  }
-  return (int)tolower(*s1) - (int)tolower(*s2);
-}
-#endif
-
 /* stat function */
-#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
+#if (defined __MSC__) || defined(__MINGW32__) 
 #define stat _stat 
 #endif 
 
@@ -427,13 +408,13 @@ void C2F(scipvmspawn)(char *task,  int *l1,
     where = NULL;
   else
     flag = PvmTaskHost;
-#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
+#if (defined __MSC__)  || defined(__MINGW32__) 
   strcpy(cmd, "scilex.exe");
 #else
   /* I really need scilab here for gtk -version */
   strcpy(cmd, "scilab");
 #endif 
-#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
+#if (defined __MSC__) || defined(__MINGW32__) 
   if ( _stricmp(task,"null") != 0) 
 #else 
   if (strcasecmp(task, "null")) 

@@ -29,7 +29,7 @@
 #if defined(LIBC_SCCS) && !defined(lint)
 /*static char *sccsid = "from: @(#)xdr_rec.c 1.21 87/08/11 Copyr 1984 Sun Micro";*/
 /*static char *sccsid = "from: @(#)xdr_rec.c	2.2 88/08/01 4.0 RPCSRC";*/
-static char *rcsid = "$Id: xdr_rec.c,v 1.1 2001/04/26 07:48:37 scilab Exp $";
+static char *rcsid = "$Id: xdr_rec.c,v 1.2 2005/08/01 11:30:37 cornet Exp $";
 #endif
 
 /*
@@ -57,7 +57,7 @@ static char *rcsid = "$Id: xdr_rec.c,v 1.1 2001/04/26 07:48:37 scilab Exp $";
 #define __MSC__
 #endif 
 
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__)
 #include <netinet/in.h> /** jpc : je met netinet/ avant rpc pour eviter un warning */
 #include <rpc/types.h> 
 #include <rpc/xdr.h>
@@ -313,8 +313,8 @@ xdrrec_getpos(xdrs)
 	register RECSTREAM *rstrm = (RECSTREAM *)xdrs->x_private;
 	register long pos;
 
-#if (defined __MSC__) || (defined __ABSC__)
-  /* XXX : no lseek in msvc++ && Absoft */
+#if (defined __MSC__) 
+  /* XXX : no lseek in msvc++*/
 	fseek((FILE *)(int)rstrm->tcp_handle, (long) 0, 1);
 	pos = ftell((FILE *)(int)rstrm->tcp_handle);
 #else

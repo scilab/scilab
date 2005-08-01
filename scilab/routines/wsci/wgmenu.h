@@ -24,10 +24,6 @@
 #include <process.h>		/* for getpid */
 #endif
 
-#ifdef __ABSC__
-#define getpid() getpid_()
-#endif
-
 #ifdef __STDC__
 #include <stdlib.h>
 #else

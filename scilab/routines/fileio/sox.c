@@ -13,10 +13,6 @@
 
 #include "st.h"
 #include <string.h>
-#ifndef __ABSC__
-#include <sys/types.h>
-#include <sys/stat.h>
-#endif
 #include <ctype.h>
 #include <errno.h>
 #include "../machine.h"

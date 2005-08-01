@@ -30,7 +30,7 @@
 #if defined(LIBC_SCCS) && !defined(lint)
 /*static char *sccsid = "from: @(#)xdr_reference.c 1.11 87/08/11 SMI";*/
 /*static char *sccsid = "from: @(#)xdr_reference.c	2.1 88/07/29 4.0 RPCSRC";*/
-static char *rcsid = "$Id: xdr_reference.c,v 1.1 2001/04/26 07:48:37 scilab Exp $";
+static char *rcsid = "$Id: xdr_reference.c,v 1.2 2005/08/01 11:30:37 cornet Exp $";
 #endif
 
 /*
@@ -49,7 +49,7 @@ static char *rcsid = "$Id: xdr_reference.c,v 1.1 2001/04/26 07:48:37 scilab Exp 
 #define __MSC__
 #endif 
 
-#if !(defined __MSC__) || (defined __ABSC__)
+#if !(defined __MSC__)
 #include <rpc/types.h> 
 #include <rpc/xdr.h>
 #else

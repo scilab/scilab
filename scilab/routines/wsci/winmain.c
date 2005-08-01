@@ -45,13 +45,8 @@ int  sci_show_banner=1;
 /*-----------------------------------------------------------------------------------*/
 int MAIN__ ()
 {
-	#ifndef __ABSC__
 	HANDLE x = GetModuleHandleA (0);
 	Windows_Main  (x, 0, GetCommandLineA (), 1);
-	#else
-	HMODULE x = GetModuleHandle (0);
-	Windows_Main (x, 0, GetCommandLine (), 1);
-	#endif
 	return (0);
 }
 /*-----------------------------------------------------------------------------------*/

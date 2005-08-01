@@ -23,9 +23,6 @@
 #define putenv(x) _putenv(x)
 #endif
 
-#ifdef __ABSC__
-#define putenv(x) abs_putenv(x)
-#endif
 
 /* limits */
 //#define MAXSTR 255

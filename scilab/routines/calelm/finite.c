@@ -11,7 +11,7 @@ int finite(double x)
 }
 
 #else
-#if !(defined HAVE_FINITE) || (defined __MINGW32__) || (defined __ABSC__) 
+#if !(defined HAVE_FINITE) || (defined __MINGW32__)
 
 typedef unsigned int __uint32_t;
 typedef union 

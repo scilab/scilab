@@ -3,7 +3,7 @@
 #include "../machine.h"
 #include <stdio.h>
 
-#if defined(__STDC__) || defined(__MSC__) || defined(__CYGWIN__) ||  (defined __ABSC__)
+#if defined(__STDC__) || defined(__MSC__) || defined(__CYGWIN__)
 #include <stdlib.h>
 #ifndef WIN32
 #include <sys/types.h>
@@ -13,13 +13,8 @@
 extern  char  *getenv();
 #endif
 
-#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
-#ifdef __ABSC__
-#define putenv(x) abs_putenv(x)
-#define getpid() getpid_()
-#else
+#if (defined __MSC__) || defined(__MINGW32__) 
 #define putenv(x) _putenv(x)
-#endif
 #endif
 
 #if defined(__MSC__)

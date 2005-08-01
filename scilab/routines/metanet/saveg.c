@@ -16,15 +16,11 @@
 #include <stdlib.h> /*qsort*/
 #include <direct.h> /*_getcwd _chdir*/
 #endif
-#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__) 
+#if (defined __MSC__) || (defined __MINGW32__) 
 /** only used for x=dir[1024] **/
-#ifndef __ABSC__
 #include <io.h>
 #define  getwd(x) _getcwd(x,1024) 
 #define chdir(x) _chdir(x)
-#else
-#define  getwd(x) getcwd_(x,1024) 
-#endif
 #endif
 
 #if defined(netbsd) || defined(freebsd)
@@ -80,7 +76,7 @@ int *default_edge_hi_width,*default_font_size;
 int *ma;
 {
   FILE *f;
-#if !(defined __MSC__) && !(defined __ABSC__) &&! (defined __MINGW32__)
+#if !(defined __MSC__) &&! (defined __MINGW32__)
   DIR *dirp;
 #else
   int it;
@@ -126,7 +122,7 @@ int *ma;
     strcpy(nname,name);
   }
   else {
-#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
+#if (defined __MSC__) || (defined __MINGW32__)
     getwd(dir);
 #if (defined __MSC__)   || (defined __MINGW32__)
     it= chdir(path);
@@ -150,7 +146,7 @@ int *ma;
       else strcpy(dir,dirname(path));     
     }
   }
-#if !(defined __MSC__) && !(defined __ABSC__) && ! (defined __MINGW32__)
+#if !(defined __MSC__) && ! (defined __MINGW32__)
   if ((dirp=opendir(dir)) == NULL) {
     sprintf(description,"Directory \"%s\" does not exist",dir);
     cerro(description);

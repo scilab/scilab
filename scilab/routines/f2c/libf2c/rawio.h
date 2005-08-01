@@ -1,7 +1,7 @@
 #ifdef KR_headers
 extern FILE *fdopen();
 #else
-#if (defined MSDOS) && !(defined __ABSC__)
+#if (defined MSDOS)
 #include "io.h"
 #define close _close
 #define creat _creat

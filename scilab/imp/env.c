@@ -9,10 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef __ABSC__
-#define putenv(x) abs_putenv(x)
-#endif 
-
 #if (defined __MSC__) || defined(__MINGW32__) 
 #define putenv(x) _putenv(x)
 #endif

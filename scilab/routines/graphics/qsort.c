@@ -39,9 +39,7 @@
 #if defined(THINK_C) || defined (__MWERKS__)  
 #include <types.h>
 #else
-#ifndef __ABSC__
 #include <sys/types.h>
-#endif
 #endif
 #include <stdlib.h>
 

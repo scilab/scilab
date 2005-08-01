@@ -16,9 +16,6 @@
 #include <windows.h>
 #include "dstrings.h"
 #include <errno.h>
-#ifdef __ABSC__
-#include "errno.h"
-#endif
 
 #include "Messages.h"
 #include "Warnings.h"
