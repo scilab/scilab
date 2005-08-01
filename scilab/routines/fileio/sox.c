@@ -13,6 +13,12 @@
 
 #include "st.h"
 #include <string.h>
+
+#ifndef WIN32
+#include <sys/types.h>
+#include <sys/stat.h>
+#endif
+
 #include <ctype.h>
 #include <errno.h>
 #include "../machine.h"
