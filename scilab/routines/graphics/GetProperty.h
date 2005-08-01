@@ -150,4 +150,7 @@ extern sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */
 /* UNUSED ? */
 extern sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
 extern HMENU sciGethPopMenu (sciPointObj * pthis);
+
+extern int *sciGetInterpVector(sciPointObj * pobj);
+
 #endif /* __SCI_GET_PROPERTY__ */

@@ -858,6 +858,9 @@ typedef struct
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
   BOOL isfilled; /* to know if a polyline is filled or not */
+  BOOL isinterpshaded;
+  int *scvector;
+  int dim_icv; /* dimension of the interpolated color vector (3 or 4) */
 }
 sciPolyline;  /** */
 

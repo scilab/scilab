@@ -564,7 +564,9 @@ function ged_polyline(h)
 
     TCL_SetVar("curlinemode",h.line_mode)
     TCL_SetVar("curfillmode",h.fill_mode)
-    
+    TCL_SetVar("curinterpcolormode",h.interp_color_mode)
+    TCL_SetVar("curinterpcolorvector",sci2exp(h.interp_color_vector,0))
+        
     d="["+strcat(string(size(h.data)),'x')+" double array]"
     TCL_SetVar("curdata",d);
 

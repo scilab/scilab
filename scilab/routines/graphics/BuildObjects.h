@@ -40,7 +40,7 @@ extern sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char text[],
 extern sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
 				       int closed, int n1, int n2,int plot, int *foreground, int *background,
 				       int *mark_style, int *mark_foreground, int *mark_background,
-				       BOOL isline, BOOL isfilled, BOOL ismark); /* BUILD */
+				       BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded); /* BUILD */
 extern sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 				  double height, double width, double alphabegin, double alphaend, 
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);

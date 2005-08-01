@@ -1079,7 +1079,7 @@ sciPointObj *
 ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
 		   int closed, int n1, int n2,int plot, int *foreground, int *background,
 		   int *mark_style, int *mark_foreground, int *mark_background,
-		   BOOL isline, BOOL isfilled, BOOL ismark)
+		   BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciPolyline *ppoly = (sciPolyline *) NULL;
@@ -1210,12 +1210,24 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       sciSetIsMark(pobj,ismark);
       sciSetIsLine(pobj,isline);
       sciSetIsFilled(pobj,isfilled);
+/*       sciSetIsInterpShaded(pobj,isinterpshaded); */
+      
+      pPOLYLINE_FEATURE (pobj)->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
       
       if(foreground != NULL)
 	sciSetForeground(pobj,(*foreground));
       
-      if(background != NULL)
-	sciSetBackground(pobj,(*background));
+      pPOLYLINE_FEATURE(pobj)->scvector = (int *) NULL;
+      pPOLYLINE_FEATURE(pobj)->dim_icv = 0;
+      
+      if(background != NULL){
+	if(isinterpshaded == TRUE){ /* 3 or 4 values to store */
+	  pPOLYLINE_FEATURE(pobj)->dim_icv = n1;
+	  sciSetInterpVector(pobj,n1,background);
+	}
+	else
+	  sciSetBackground(pobj,(*background));
+      }
       
       if(mark_style != NULL)
 	sciSetMarkStyle(pobj,(*mark_style));

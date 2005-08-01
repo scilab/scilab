@@ -88,12 +88,12 @@ void Objpoly (x,y,n,closed,mark,hdl)
     { 
       int absmark = abs(mark);
       sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1,
-					  NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE));
+					  NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
     }
   else
     {
       sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,1,
-					  &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));
+					  &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
     }
   
    pobj = sciGetCurrentObj();
@@ -105,8 +105,8 @@ void Objpoly (x,y,n,closed,mark,hdl)
  * Objfpoly : 
  *-----------------------------------------------*/
 
-void Objfpoly (x,y,n,style,hdl)
-     integer n,style;
+void Objfpoly (x,y,n,style,hdl,shading)
+     integer n, *style, shading;
      double *x,*y;
      long * hdl;
 { 
@@ -115,23 +115,33 @@ void Objfpoly (x,y,n,style,hdl)
   int closed = 1; /* we close the polyline by default */
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
-  
-  if(style == 0) /* filled color is the one used for axes background */
-    fillcolor = sciGetBackground(psubwin);
-  else /* fill with abs(style) */
-    fillcolor = abs(style);
-  
-  if (style < 0)
-    contourcolor = fillcolor;
+
+  if(shading == 2)
+    {
+      /* interpolated shading is "on" */
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
+					  1,1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE));
+    }
   else
-    contourcolor = sciGetForeground(psubwin);
-  
-  /*   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,5)); /\* polyline_style is "filled" == 5 *\/ */
-  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-				      1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE)); 
-  /* polyline_style is "interpolated" by default == 1 AND I put isfilled == TRUE */
-  pobj = sciGetCurrentObj();
-  *hdl=sciGetHandle(sciGetCurrentObj ());  
+    {
+      /* flat mode is "on" */
+      if(*style == 0) /* filled color is the one used for axes background */
+	fillcolor = sciGetBackground(psubwin);
+      else /* fill with abs(style) */
+	fillcolor = abs(*style);
+      
+      if (*style < 0)
+	contourcolor = fillcolor;
+      else
+	contourcolor = sciGetForeground(psubwin);
+      
+      /*   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,5)); /\* polyline_style is "filled" == 5 *\/ */
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
+					  1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE));
+      /* polyline_style is "interpolated" by default == 1 AND I put isfilled == TRUE */
+    }
+      pobj = sciGetCurrentObj();
+      *hdl=sciGetHandle(sciGetCurrentObj ());  
 }
 
 
@@ -510,14 +520,14 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	    sciSetCurrentObj (ConstructPolyline
 			      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1,
-			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));  
+			       &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	  }
 	  else {
 	    int intzcol = (int) -zcol[i];
 	    sciSetCurrentObj (ConstructPolyline
 			      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			       &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1,
-			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE));  
+			       NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));  
 	  }
 	}
 	else { /* default case, nothing is given */
@@ -525,7 +535,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	  sciSetCurrentObj (ConstructPolyline
 			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,1,
-			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE));  
+			     &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));  
 	}
 
 	pobj = sciGetCurrentObj();

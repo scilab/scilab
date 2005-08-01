@@ -6459,10 +6459,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  }
-/* 	  else {/\*patch*\/ */
-/* 	    int close=1; */
-/* 	    C2F (dr) ("xarea", "v", &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
-/* 	  } */
+	  /* 	  else {/\*patch*\/ */
+	  /* 	    int close=1; */
+	  /* 	    C2F (dr) ("xarea", "v", &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
+	  /* 	  } */
 	}
       }
     }
@@ -7873,14 +7873,25 @@ sciDrawObj (sciPointObj * pobj)
 	    {
   	      if(sciGetIsFilled(pobj) == TRUE && pPOLYLINE_FEATURE (pobj)->plot != 5) /* No filling if mode plot == 5 is selected */
 		{
-		  x[0] = sciGetBackground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			    &dv, &dv, &dv, &dv, 5L, 4096);
-		  
-		  C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		  if(pPOLYLINE_FEATURE (pobj)->isinterpshaded == FALSE){
+		    /* flat mode */
+		    x[0] = sciGetBackground(pobj);
+		    
+		    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			      &dv, &dv, &dv, 5L, 4096);
+		    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			      &dv, &dv, &dv, &dv, 5L, 4096);
+		    
+		    C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		  }
+		  else{
+		    /* interp. shading */
+		    int *vect = pPOLYLINE_FEATURE (pobj)->scvector;
+		    int n2 = pPOLYLINE_FEATURE (pobj)->n1;
+
+		    scilab_shade (xm, ym, vect, n2, 0);
+		    /* C2F(dr)("xliness","v",&deux,&zero,vect,&n2,&m2,&v,xm,ym,&dv,&dv,8L,2L); */
+		  }
 		}
 	      
 	      if (sciGetIsMark(pobj) == TRUE){

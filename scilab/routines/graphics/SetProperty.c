@@ -3056,7 +3056,8 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  pPOLYLINE_FEATURE (pthis)->pvy=pvy; 
 	  pPOLYLINE_FEATURE (pthis)->pvector=pvector;
 	  pPOLYLINE_FEATURE (pthis)->n1=n1;
-
+	  pPOLYLINE_FEATURE (pthis)->dim_icv=n1;
+	  
 
 	  /* if (*numcol == 3) */
 	  pPOLYLINE_FEATURE (pthis)->pvz=pvz;
@@ -3584,3 +3585,60 @@ sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
   return 0;
 }
 
+
+/* /\**sciSetIsBoxed */
+/*  * @memo Sets the box existence */
+/*  *\/ */
+/* int */
+/* sciSetIsInterpShaded (sciPointObj * pobj, BOOL isinterpshaded) */
+/* { */
+/*   switch (sciGetEntityType (pobj)) */
+/*     { */
+/*     case SCI_POLYLINE: */
+/*       pPOLYLINE_FEATURE(pobj)->isinterpshaded = isinterpshaded; */
+/*       return 0; */
+/*       break; */
+/*     case SCI_SUBWIN: */
+/*     case SCI_LABEL: */
+/*     case SCI_TEXT: */
+/*     case SCI_RECTANGLE: */
+/*     case SCI_ARC: */
+/*     case SCI_FIGURE: */
+/*     case SCI_SURFACE: */
+/*     case SCI_AXES: */
+/*     case SCI_LEGEND: */
+/*     case SCI_SEGS: */
+/*     case SCI_FEC: */
+/*     case SCI_GRAYPLOT: */
+/*     case SCI_MENU: */
+/*     case SCI_MENUCONTEXT: */
+/*     case SCI_STATUSB: */
+/*     case SCI_LIGHT: */
+/*     case SCI_AGREG: */
+/*     case SCI_PANNER: */
+/*     case SCI_SBH: */
+/*     case SCI_SBV: */
+/*     case SCI_TITLE: */
+/*     default: */
+/*       sciprint ("This object have no isboxed \n"); */
+/*       return -1; */
+/*       break; */
+/*     } */
+/*   return 0; */
+/* } */
+
+int
+sciSetInterpVector(sciPointObj * pobj, int size, int * value)
+{
+  int i;
+  
+  if((pPOLYLINE_FEATURE(pobj)->scvector = MALLOC(size*sizeof(int)))==NULL){
+    sciprint("Can not allocate room for shaded color vbector\n");
+    return -1;
+  }
+  
+  for(i=0;i<size;i++)
+    pPOLYLINE_FEATURE(pobj)->scvector[i] = value[i];
+  
+  return 0;
+}

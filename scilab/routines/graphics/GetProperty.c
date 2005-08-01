@@ -4300,6 +4300,8 @@ int sciType (marker, pobj)
      sciPointObj * pobj;
 { 
   if      (strncmp(marker,"background", 10) == 0) { return 1;}	
+  else if (strncmp(marker,"interp_color_vector", 19) == 0) {return 1;}
+  else if (strncmp(marker,"interp_color_mode", 17) == 0) {return 10;}
   else if (strncmp(marker,"foreground", 10) == 0) {return 1;}	
   else if (strncmp(marker,"fill_mode", 9) == 0)   {return 10;}		
   else if (strncmp(marker,"thickness", 9) == 0)   {return 1;}
@@ -4702,3 +4704,12 @@ sciGetIsBoxed (sciPointObj * pobj)
   return 0;
 }
 
+int *
+sciGetInterpVector(sciPointObj * pobj)
+{
+
+  if(sciGetEntityType(pobj) != SCI_POLYLINE)
+    return (int *) NULL;
+
+  return pPOLYLINE_FEATURE(pobj)->scvector;
+}

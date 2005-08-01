@@ -244,12 +244,16 @@ ClonePolyline (sciPointObj * pthis)
 				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot,
 				  &foreground, &background,
 				  &mark_style, &mark_foreground, &mark_background,
-				  sciGetIsLine(pthis),  sciGetIsFilled(pthis), sciGetIsMark(pthis)))){
+				  sciGetIsLine(pthis),  sciGetIsFilled(pthis), 
+				  sciGetIsMark(pthis),pPOLYLINE_FEATURE(pthis)->isinterpshaded))){
     return (sciPointObj *)NULL;
   }
   else {
     sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
 
+  
+  pPOLYLINE_FEATURE(pobj)->dim_icv = pPOLYLINE_FEATURE(pthis)->dim_icv; /* copy the dimension of the interp. color vector */
+  
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)

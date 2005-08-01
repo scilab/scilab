@@ -42,6 +42,7 @@ extern int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetFillStyle (sciPointObj * pobj, int fillstyle); /* SET */
 extern int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
+/* extern int sciSetIsInterpShaded (sciPointObj * pobj, BOOL isinterpshaded); /\* SET *\/ */
 
 /* Text Functions */
 extern int sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth); /* SET */
@@ -96,5 +97,5 @@ extern int sciSetdrawmode(BOOL mode); /* SET */
 extern int sciSwitchWindow(int *winnum); /* SET */
 void set_version_flag(int flag) ; /* SET */
 
-
+extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 #endif /* __SCI_SET_PROPERTY__ */

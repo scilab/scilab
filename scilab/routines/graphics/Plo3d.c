@@ -1774,6 +1774,7 @@ int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize
       py[0]=polyy[0]; py[1]=polyy[1]; py[2]=polyy[2];
       fil[0]=fill[0]; fil[1]=fill[1]; fil[2]=fill[2];
       scilab_shade(px,py,fil,3,-1);
+
       px[0]=polyx[0]; px[1]=polyx[2]; px[2]=polyx[3];
       py[0]=polyy[0]; py[1]=polyy[2]; py[2]=polyy[3];
       fil[0]=fill[0]; fil[1]=fill[2]; fil[2]=fill[3];
