@@ -55,7 +55,7 @@ catch {source $preffilename}
 
 global curvis curthick curpolylinestyle curlinestyle RED GREEN BLUE
 global curmarkmode curlinemode curmarksize curmarksizeunit curmarkforeground curmarkbackground
-global curfillmode
+global curfillmode curinterpcolormode curinterpcolorvector
 #global polyVAL nbcol nbrow
 
 #puts "curmarkmode = $curmarkmode"
@@ -101,7 +101,7 @@ proc OnOffForeground { frame flag } {
 }
 
 set NBheight 370
-set NBwidth  250
+set NBwidth  265
 
 set Wheight [expr $NBheight + 150]
 set Wwidth  [expr $NBwidth  + 265]
@@ -250,6 +250,16 @@ OnOffForeground $w.frame.fillmode $curfillmode
 pack $w.frame.fillmodelabel  -in $w.frame.fillfillmode  -side left 
 pack $w.frame.fillmode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
 
+#Interp. color mode
+label $w.frame.interpcolormodelabel -height 0 -text "Interp. mode:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.interpcolormode  -text "on" -indicatoron 1 \
+    -variable curinterpcolormode -onvalue "on" -offvalue "off" \
+    -command "toggleInterpColormode $w.frame.interpcolormode" -font {Arial 9}
+OnOffForeground $w.frame.fillmode $curinterpcolormode
+
+pack $w.frame.interpcolormodelabel  -in $w.frame.fillfillmode  -side left 
+pack $w.frame.interpcolormode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
+
 #Polyline Style
 frame $w.frame.curvst  -borderwidth 0
 pack $w.frame.curvst  -in $w.frame  -side top  -fill x
@@ -324,6 +334,17 @@ pack $w.frame.backlabel -in $w.frame.backg -side left
 pack $w.frame.back  -in  $w.frame.backg -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.back set $curback
 
+#Background scale (line)
+frame $w.frame.interpvec  -borderwidth 0
+pack $w.frame.interpvec  -in $w.frame -side top  -fill x
+
+label $w.frame.interpveclabel -height 0 -text "Interp. vector:" -font {Arial 9} -anchor e -width $largeur
+
+entry $w.frame.interpvec1 -relief sunken  -textvariable curinterpcolorvector -font {Arial 9} -width 15
+pack $w.frame.interpveclabel -in  $w.frame.interpvec -side left
+pack $w.frame.interpvec1  -in  $w.frame.interpvec  -side left -pady 0m -padx 2m
+bind  $w.frame.interpvec1 <Return> {setInterpColor} 
+bind  $w.frame.interpvec1 <KP_Enter> {setInterpColor} 
 
 #Mark mode
 frame $w.frame.linemarkmode  -borderwidth 0
@@ -661,6 +682,11 @@ proc setBack {w index} {
     }
 }
 
+proc setInterpColor {} {
+global curinterpcolorvector
+ScilabEval "global ged_handle;ged_handle.interp_color_vector=$curinterpcolorvector"
+}
+
 
 proc setThickness {w thick} {
 ScilabEval "global ged_handle;ged_handle.thickness=$thick;"
@@ -716,6 +742,13 @@ proc toggleFillmode { frame } {
     ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
 
     OnOffForeground $frame $curfillmode
+}
+
+proc toggleInterpColormode { frame } {
+    global curinterpcolormode
+    ScilabEval "global ged_handle;ged_handle.interp_color_mode='$curinterpcolormode'"
+
+    OnOffForeground $frame $curinterpcolormode
 }
 
 

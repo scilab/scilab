@@ -2598,7 +2598,7 @@ int scixfpoly(fname,fname_len)
     
     if(close == 0)
       close = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
-    Objfpoly (stk(l1),stk(l2),mn1,close,&hdl);
+    Objfpoly (stk(l1),stk(l2),mn1,&close,&hdl,0);
     
     if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
       Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -2625,7 +2625,7 @@ int scixfpolys(fname,fname_len)
 {
 
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2=0; /* v2 = 0 F.leray 24.02.04 unused flag*/
-  /* v1 is the flag used for flat (v1==1)/interpolated (v1==2) shading */
+  /* v1 is the flag used for flat (v1==1) or interpolated (v1==2) shading */
 
   int i,color;
   long hdl;
@@ -2678,7 +2678,7 @@ int scixfpolys(fname,fname_len)
       else   
 	/* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
 	/** poly i is drawn using the line style (or color) **/  
-	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,*istk(l3+i),&hdl);
+	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+(i*m1)),&hdl,v1);
     }
     /** construct agregation and make it current object**/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
@@ -4845,98 +4845,98 @@ int scixs2ppm(char *fname,unsigned long fname_len)
 
 int intxs2bmp(char *fname,unsigned long fname_len)
 {
-	int bOK=0;
+  int bOK=0;
 #if WIN32
 	
-	CheckLhs(0,1);
-	CheckRhs(2,2);
-	if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+  CheckLhs(0,1);
+  CheckRhs(2,2);
+  if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+    {
+      integer m1,n1,l1;
+      int figurenum=-1;
+      GetRhsVar(1,"i",&m1,&n1,&l1);
+      figurenum=*istk(l1);
+      if (figurenum>=0)
 	{
-		integer m1,n1,l1;
-		int figurenum=-1;
-		GetRhsVar(1,"i",&m1,&n1,&l1);
-		figurenum=*istk(l1);
-		if (figurenum>=0)
-		{
-			char *FileName=NULL;
-			GetRhsVar(2,"c",&m1,&n1,&l1);
-			FileName=cstk(l1);
-			bOK=Interface_XS2BMP(figurenum,FileName);
-		}
-		else
-		{
-			Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
-			return 0;
-		}
+	  char *FileName=NULL;
+	  GetRhsVar(2,"c",&m1,&n1,&l1);
+	  FileName=cstk(l1);
+	  bOK=Interface_XS2BMP(figurenum,FileName);
+	}
+      else
+	{
+	  Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
+	  return 0;
+	}
 
-	}
-	else
+    }
+  else
+    {
+      if ( IsAScalar(1) )
 	{
-		if ( IsAScalar(1) )
-		{
-			Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
-			return 0;
-		}
-		if ( GetType(2) != sci_strings)
-		{
-			Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
-			return 0;
-		}
+	  Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
+	  return 0;
 	}
+      if ( GetType(2) != sci_strings)
+	{
+	  Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
+	  return 0;
+	}
+    }
 	
 #else
-	sciprint("%s: Only for Windows.\r\n",fname);
-	bOK=0;
+  sciprint("%s: Only for Windows.\r\n",fname);
+  bOK=0;
 #endif
-	return bOK;
+  return bOK;
 }
 
 int intxs2emf(char *fname,unsigned long fname_len)
 {
-	int bOK=0;
+  int bOK=0;
 #if WIN32
 
-	CheckLhs(0,1);
-	CheckRhs(2,2);
-	if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+  CheckLhs(0,1);
+  CheckRhs(2,2);
+  if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+    {
+      integer m1,n1,l1;
+      int figurenum=-1;
+      GetRhsVar(1,"i",&m1,&n1,&l1);
+      figurenum=*istk(l1);
+      if (figurenum>=0)
 	{
-		integer m1,n1,l1;
-		int figurenum=-1;
-		GetRhsVar(1,"i",&m1,&n1,&l1);
-		figurenum=*istk(l1);
-		if (figurenum>=0)
-		{
-			char *FileName=NULL;
-			GetRhsVar(2,"c",&m1,&n1,&l1);
-			FileName=cstk(l1);
-			bOK=Interface_XS2EMF(figurenum,FileName);
-		}
-		else
-		{
-			Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
-			return 0;
-		}
+	  char *FileName=NULL;
+	  GetRhsVar(2,"c",&m1,&n1,&l1);
+	  FileName=cstk(l1);
+	  bOK=Interface_XS2EMF(figurenum,FileName);
+	}
+      else
+	{
+	  Scierror(999,"%s: First Argument. Must be >=0.\r\n",fname);
+	  return 0;
+	}
 
-	}
-	else
+    }
+  else
+    {
+      if ( IsAScalar(1) )
 	{
-		if ( IsAScalar(1) )
-		{
-			Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
-			return 0;
-		}
-		if ( GetType(2) != sci_strings)
-		{
-			Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
-			return 0;
-		}
+	  Scierror(999,"%s: First Argument. Must be a integer scalar.\r\n",fname);
+	  return 0;
 	}
+      if ( GetType(2) != sci_strings)
+	{
+	  Scierror(999,"%s: Second Argument. Must be a string.\r\n",fname);
+	  return 0;
+	}
+    }
 
 #else
-	sciprint("%s: Only for Windows.\r\n",fname);
-	bOK=0;
+  sciprint("%s: Only for Windows.\r\n",fname);
+  bOK=0;
 #endif
-	return bOK;
+  return bOK;
 }
 /*-----------------------------------------------------------
  *   rect(x,y,w,h) 
@@ -6092,6 +6092,36 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
       
     }
+  else if (strncmp(marker,"interp_color_vector", 19) == 0)
+    {
+      if(sciGetEntityType(pobj) != SCI_POLYLINE)
+	{strcpy(error_message,"interp_color_vector can only be set on Polyline objects"); return -1;}
+      
+      if(((*numcol) == 3 && pPOLYLINE_FEATURE(pobj)->dim_icv == 3) || 
+	 ((*numcol) == 4 && pPOLYLINE_FEATURE(pobj)->dim_icv == 4))
+	{
+	  int tmp[4];
+	  for(i=0;i<(*numcol);i++) tmp[i] = (int) stk(*value)[i];
+	  
+	  sciSetInterpVector((sciPointObj *)pobj, (*numcol),tmp);
+	}
+      else
+	{strcpy(error_message,"Under interpolated color moden the column dimension of the color vector must match the number of points defining the line (which must be 3 or 4)"); return -1;}
+    }
+  else if (strncmp(marker,"interp_color_mode", 17) == 0)
+    {
+      if((sciGetEntityType(pobj) != SCI_POLYLINE))
+	{strcpy(error_message,"interp_color_mode can only be set on Polyline objects"); return -1;}
+      
+      if(strncmp(cstk(*value),"on",2)==0 ){
+	if(sciGetInterpVector(pobj) == NULL)
+	  {strcpy(error_message,"You must first specify an interp_color_vector for this object"); return -1;}
+      	else
+	  pPOLYLINE_FEATURE (pobj)->isinterpshaded = TRUE;
+      }
+      else
+	pPOLYLINE_FEATURE (pobj)->isinterpshaded = FALSE;
+    } 
   else if (strncmp(marker,"foreground", 10) == 0)
     {
       sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
@@ -7905,6 +7935,43 @@ int sciGet(sciPointObj *pobj,char *marker)
 	    stk(outindex)[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
 	       
 	}
+    }
+  else if (strncmp(marker,"interp_color_vector", 19) == 0)
+    {
+      int * vectmp = sciGetInterpVector((sciPointObj *) pobj);
+      
+      if(sciGetEntityType(pobj) != SCI_POLYLINE)
+	{ strcpy(error_message,"interp_color_vector property does not exist for this handle"); return -1;}
+      
+      if(vectmp != NULL){
+	numrow = 1;
+	numcol = pPOLYLINE_FEATURE(pobj)->dim_icv;
+	
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
+   	for (i=0;i<numcol;i++)
+	  stk(outindex)[i] =  vectmp[i];
+      }
+      else{
+	numrow = 0;
+	numcol = 0;
+	
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
+      }
+    }
+  else if (strncmp(marker,"interp_color_mode", 19) == 0)
+    {
+      if(pPOLYLINE_FEATURE(pobj)->isinterpshaded == TRUE){
+	numrow = 1;
+	numcol = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else{
+	numrow = 1;
+	numcol = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
     }
   else if (strncmp(marker,"background", 10) == 0) /**DJ.Abdemouche 2003**/
     {

@@ -121,7 +121,7 @@ void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *n
 void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax,integer *ExtremesCol, BOOL with_mesh, BOOL flagNax));
 
 
-void Objfpoly  _PARAMS((double *x,double *y,integer rempl,integer closed,long *hdl));
+void Objfpoly  _PARAMS((double *x,double *y,integer rempl,integer *closed,long *hdl, int v1));
 void Objgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint, BOOL flagNax));
 void Objmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint, BOOL flagNax));
 void Objmatplot1  _PARAMS((double *z,integer *n1,integer *n2,double *xrect));
