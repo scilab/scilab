@@ -590,8 +590,12 @@ static void AllGraphWinDelete ()
 {
 	integer iflag = 0, num, *ids = (integer *) 0;
 	C2F (getwins) (&num, ids, &iflag);
-	ids = MALLOC ((unsigned) num * sizeof (integer));
+	if (num > 0)
+	{
+		ids = MALLOC ((unsigned) num * sizeof (integer));
+	}
 	iflag = 1;
+
 	if (ids != NULL)
 	{
 		int i;
