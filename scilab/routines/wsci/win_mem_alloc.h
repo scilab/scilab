@@ -8,7 +8,7 @@
 #ifdef MALLOC
 #undef MALLOC
 #endif
-#define MALLOC(x) VirtualAlloc(NULL,((unsigned) x),MEM_COMMIT,PAGE_READWRITE)
+#define MALLOC(x) VirtualAlloc(NULL,((unsigned) x),MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE)
 
 #ifdef FREE
 #undef FREE
@@ -18,7 +18,7 @@
 #ifdef CALLOC
 #undef CALLOC
 #endif
-#define CALLOC(x,y) VirtualAlloc(NULL,(unsigned) (x*sizeof(y)),MEM_COMMIT,PAGE_READWRITE)
+#define CALLOC(x,y) VirtualAlloc(NULL,(unsigned) (x*sizeof(y)),MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE)
 
 #ifdef REALLOC
 #undef REALLOC
