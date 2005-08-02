@@ -111,6 +111,7 @@ extern int   System_contents __PARAMS((int));
 extern int  Intersci_contents __PARAMS((int));
 extern int  Sparse_contents __PARAMS((int));
 
+#ifndef WIN32
 int ForceLink(void)
 {
   Blas_contents(0);
@@ -123,6 +124,7 @@ int ForceLink(void)
   Sparse_contents(0);
   return 0;
 }
+#endif
 
 /*-------------------------------------
  * long jump to stop interface computation 

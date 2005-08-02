@@ -3,6 +3,7 @@
 #include "../machine.h"
 
 /** only used to force the linker to load all  functions **/
+#ifndef WIN32
 
 extern void 
       C2F(isanan)(),
@@ -125,3 +126,4 @@ void Sun_contents( int x)
       C2F(sigbas)();
     }
 }
+#endif

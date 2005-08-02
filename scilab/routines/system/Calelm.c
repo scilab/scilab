@@ -4,6 +4,8 @@
 
 /** only used to force the linker to load all calelm functions **/
 
+#ifndef WIN32
+
 extern int C2F(dcabs1)(),C2F(arcosh)(),C2F(calerf)(),C2F(ccopy)(),
   C2F(coshin)(),C2F(cupro)(),C2F(cuproi)(),C2F(cusum)(),C2F(dad)(),
 C2F(dadd)(),C2F(ddif)(),C2F(ddpow)(),C2F(ddpow1)(),C2F(ddpowe)(),
@@ -137,3 +139,4 @@ int Calelm_contents(x)
     }
   return 0;
 }
+#endif

@@ -3,6 +3,8 @@
 
 /** only used to force the linker to load  functions **/
 
+#ifndef WIN32
+
 extern int C2F(dspe2)();
 extern int C2F(wspe2)();
 
@@ -16,4 +18,4 @@ int Sparse_contents( int x)
   return 0;
 }
 
-
+#endif

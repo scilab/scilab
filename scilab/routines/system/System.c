@@ -3,6 +3,8 @@
 
 /** only used to force the linker to load all system functions **/
 
+#ifndef WIN32
+
 extern void 
       C2F(intversion)(),
       C2F(scichdir)(),
@@ -181,3 +183,4 @@ void System_contents( int x)
     }
 } 
 
+#endif

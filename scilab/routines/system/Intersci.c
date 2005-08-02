@@ -3,6 +3,7 @@
 #include "../machine.h"
 
 /** only used to force the linker to load all calelm functions **/
+#ifndef WIN32
 
 extern void C2F(cchar)(),
   C2F(ccharf)(),
@@ -50,3 +51,5 @@ void Intersci_contents(int x)
       C2F(out)();
     }
 }
+
+#endif

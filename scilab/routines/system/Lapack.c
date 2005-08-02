@@ -4,6 +4,8 @@
 
 /** only used to force the linker to load all calelm functions **/
 
+#ifndef WIN32
+
 extern void 
 	C2F(dgelqf)(), 
 	C2F(dgels)(), 
@@ -452,3 +454,4 @@ void Lapack_contents(int x)
     }
 }
 
+#endif

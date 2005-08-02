@@ -5,6 +5,8 @@
 /* only used to force the linker to load all calelm functions 
  */ 
 
+#ifndef WIN32
+
 extern void C2F(bint2d)(),
   C2F(bint3d)(),
   C2F(atome)(),
@@ -136,6 +138,7 @@ void System2_contents( int x)
     }
 }
 
+#endif
 
 
 
