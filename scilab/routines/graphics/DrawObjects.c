@@ -35,6 +35,9 @@ extern HDC TryToGetDC(HWND hWnd);
 #endif
 
 extern int GetScreenDPI(int *ixres, int *iyres);
+int WindowsPrintScreen = 0;
+extern int Printer_XRes;
+extern int Printer_YRes;
 extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 
@@ -9278,12 +9281,21 @@ int GetDPIFromDriver(int * DPI)
   switch(driver)
     {
     case 0: 
-      succeed = GetScreenDPI(&ixres,&iyres);
-      if(succeed == -1){
-	/* gtk version <2 enabled */
-	ixres = (int)72.; /* default value*/
-	iyres = (int)72.; /* default value*/
-      }
+	  if(WindowsPrintScreen == 1)
+	   {
+         ixres = Printer_XRes;
+         iyres = Printer_YRes;
+		 succeed = 1;
+	   }
+	  else
+	   {
+        succeed = GetScreenDPI(&ixres,&iyres);
+        if(succeed == -1){
+	    /* gtk version <2 enabled */
+	     ixres = (int)72.; /* default value*/
+	     iyres = (int)72.; /* default value*/
+        }
+	   }
       break;
     case 1: /* Pos */
       /*       printf("DRIVERS POS enabled -- -- -- --\n"); */
