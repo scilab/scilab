@@ -18,7 +18,11 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 extern int version_flag(void); /* NG */
 

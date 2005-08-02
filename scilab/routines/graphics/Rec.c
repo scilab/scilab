@@ -14,7 +14,11 @@
 #include "Rec.h"
 #include "PloEch.h"
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 
 static void GReplay __PARAMS((char *type,char *plot));

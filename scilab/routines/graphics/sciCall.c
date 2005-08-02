@@ -15,7 +15,12 @@
 
 #include "PloEch.h"
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 

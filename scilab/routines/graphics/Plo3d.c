@@ -13,7 +13,11 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #ifdef __STDC__
 void wininfo(char *format,...);

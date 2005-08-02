@@ -25,7 +25,12 @@
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 /********************* modifier le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure

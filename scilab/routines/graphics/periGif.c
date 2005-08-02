@@ -62,7 +62,11 @@ extern  char  *getenv();
 #define GXset 15
 #endif
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #define Char2Int(x)   ( x & 0x000000ff )
 #if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(__MSC__)|| defined(__EDG__)

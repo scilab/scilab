@@ -11,7 +11,12 @@
 #include <string.h> /* in case of dbmalloc use */
 #include "Math.h"
 
+#if WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 /*--------------------------------------------
  * void graphic_alloc_info() 

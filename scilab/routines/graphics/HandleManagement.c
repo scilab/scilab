@@ -20,8 +20,12 @@
 #include "GetProperty.h"
 #include "bcg.h"
 
-#include "../sci_mem_alloc.h" /* MALLOC */
 
+#if WIN32
+	#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 sciHandleTab * PENDOFHANDLETAB;
 sciPointObj * PCURRENTPOBJ;
