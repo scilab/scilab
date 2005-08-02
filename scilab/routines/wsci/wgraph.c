@@ -10,6 +10,9 @@
 
 /*-----------------------------------------------------------------------------------*/
 static int scig_buzy = 0;
+extern int WindowsPrintScreen;
+int Printer_XRes;
+int Printer_YRes;
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
@@ -358,7 +361,11 @@ PrintAbortProc);
       GetClientRect (hwnd, &RectRestore);
 	  /* Evite bug lorsque l'on selectionne la fenetre & que l'on imprime apres */
 	  scig_replay_hdc ('P', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+      WindowsPrintScreen = 1;
+	  Printer_XRes = GetDeviceCaps (pr.hdcPrn, LOGPIXELSX);
+	  Printer_YRes = GetDeviceCaps (pr.hdcPrn, LOGPIXELSY);
 	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,xPage, yPage, scalef);
+	  WindowsPrintScreen = 0;
 	  /* Redessine à l'ecran apres l'impression */
 	  scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
 	  if (EndPage (pr.hdcPrn) > 0)  EndDoc (pr.hdcPrn);
