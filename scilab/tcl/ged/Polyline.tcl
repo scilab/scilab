@@ -100,8 +100,8 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 370
-set NBwidth  265
+set NBheight 380
+set NBwidth  275
 
 set Wheight [expr $NBheight + 150]
 set Wwidth  [expr $NBwidth  + 265]
@@ -167,7 +167,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 28 \
+	       -width 20 -height 29 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -251,14 +251,14 @@ pack $w.frame.fillmodelabel  -in $w.frame.fillfillmode  -side left
 pack $w.frame.fillmode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
 
 #Interp. color mode
-label $w.frame.interpcolormodelabel -height 0 -text "Interp. mode:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.interpcolormodelabel -height 0 -text "Interp. mode:" -font {Arial 9} -anchor w -width 10
 checkbutton $w.frame.interpcolormode  -text "on" -indicatoron 1 \
     -variable curinterpcolormode -onvalue "on" -offvalue "off" \
-    -command "toggleInterpColormode $w.frame.interpcolormode" -font {Arial 9}
+    -command "toggleInterpColormode $w.frame.interpcolormode" -font {Arial 9} -anchor w
 OnOffForeground $w.frame.fillmode $curinterpcolormode
 
 pack $w.frame.interpcolormodelabel  -in $w.frame.fillfillmode  -side left 
-pack $w.frame.interpcolormode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
+pack $w.frame.interpcolormode   -in $w.frame.fillfillmode   -side left  -pady 0m
 
 #Polyline Style
 frame $w.frame.curvst  -borderwidth 0
