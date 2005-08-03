@@ -1588,20 +1588,23 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  for (j = 0;j < nz; j++)
 	    psurf->pvecz[j] = pvecz[j];
 	}
-
+      
       /*Storage of the input Color Matrix or Vector Data */ /* F.Leray 23.03.04*/
       psurf->inputCMoV = NULL;
-      if (((psurf->inputCMoV = MALLOC (( (*m3n)*(*n3n) * sizeof (double)))) == NULL))
-	{
-	  FREE(psurf->pvecy); psurf->pvecy = NULL;
-	  FREE(psurf->pvecx); psurf->pvecx = NULL;
-	  FREE(psurf->pvecz); psurf->pvecz = NULL;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(psurf);
-	  FREE(pobj); pobj = NULL;
-	  return (sciPointObj *) NULL;
-	}
+      
+      if((*m3n)*(*n3n) != 0){
+	if (((psurf->inputCMoV = MALLOC (( (*m3n)*(*n3n) * sizeof (double)))) == NULL))
+	  {
+	    FREE(psurf->pvecy); psurf->pvecy = NULL;
+	    FREE(psurf->pvecx); psurf->pvecx = NULL;
+	    FREE(psurf->pvecz); psurf->pvecz = NULL;
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(psurf);
+	    FREE(pobj); pobj = NULL;
+	    return (sciPointObj *) NULL;
+	  }
+      }
       
       for (j = 0;j < (*m3n)*(*n3n); j++)  
 	psurf->inputCMoV[j] = zcol[j];
