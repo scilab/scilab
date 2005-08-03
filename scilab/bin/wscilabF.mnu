@@ -23,6 +23,9 @@
  	&Répertoire courant
 		[GETCWD]
 	--	
+	Config. Imprimante ...
+			[PRINTSETUP]	
+	
 	&Imprimer ...
 		[PRINT]	
 	--

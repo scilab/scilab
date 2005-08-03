@@ -26,10 +26,11 @@
 				[COPYCLIP1]
 	[EndMenu]
 	--
+	Pr&int Setup ...
+		[PRINTSETUP]
 	[Menu]
 	&Print
-			Pr&int Setup ...
-				[PRINTSETUP]
+			
 			&Postscript ...
 				[SCIPR]
 			&Windows ...
