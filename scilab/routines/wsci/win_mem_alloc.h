@@ -8,7 +8,7 @@
 #ifdef MALLOC
 #undef MALLOC
 #endif
-#define MALLOC(x) VirtualAlloc(NULL,((unsigned) x),MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE)
+#define MALLOC(x) MyVirtualAlloc(x,__FILE__,__LINE__)
 
 #ifdef FREE
 #undef FREE
@@ -18,13 +18,14 @@
 #ifdef CALLOC
 #undef CALLOC
 #endif
-#define CALLOC(x,y) VirtualAlloc(NULL,(unsigned) (x*sizeof(y)),MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE)
+#define CALLOC(x,y) MyVirtualAlloc((unsigned) (x*sizeof(y)),__FILE__,__LINE__)
+
 
 #ifdef REALLOC
 #undef REALLOC
 #endif
-#define REALLOC(x,y) VirtualReAlloc((char *)x, y)
+#define REALLOC(x,y) VirtualReAlloc((char *)x, y,__FILE__,__LINE__)
 
-LPVOID VirtualReAlloc(LPVOID lpAddress,SIZE_T dwSize);
-
+LPVOID VirtualReAlloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne);
+LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne);
 #endif /* __WIN_MEM_ALLOC__ */
