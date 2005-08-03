@@ -42,6 +42,8 @@ typedef void (*func) (char *,char *,integer *,integer *,integer *,integer *,inte
 			       double *,double *,double *,double *,integer,integer );
 extern int C2F(sciwin) (void);
 extern int version_flag();
+extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
+
 static void GSciString (int,integer *x,integer *y,char *StrMat,integer *w,integer *h);
 static void Myalloc1 (integer **xm,integer n,integer *err);
 static void Myalloc (integer **xm,integer **ym, integer n, integer *err);
