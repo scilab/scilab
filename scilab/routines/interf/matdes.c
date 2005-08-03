@@ -4980,7 +4980,8 @@ int scirect(char *fname,unsigned long fname_len)
       GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);
       GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3);
       GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
-      if (version_flag() == 0)
+      if (version_flag() == 0){
+	sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	if (strcmp(fname,"xrect")==0) {	
 	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
@@ -4991,6 +4992,12 @@ int scirect(char *fname,unsigned long fname_len)
 	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
 		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
 	}
+	if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+	  Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+	  sciDrawObj(sciGetCurrentFigure ());}
+	else
+	  sciDrawObjIfRequired(sciGetCurrentObj ());
+      }
       else
         Xrect(fname,fname_len,stk(l1),stk(l2),stk(l3),stk(l4));
       break;
