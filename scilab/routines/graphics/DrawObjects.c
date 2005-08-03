@@ -36,8 +36,9 @@ extern HDC TryToGetDC(HWND hWnd);
 
 extern int GetScreenDPI(int *ixres, int *iyres);
 int WindowsPrintScreen = 0;
-extern int Printer_XRes;
-extern int Printer_YRes;
+int Printer_XRes = 0;
+int Printer_YRes = 0;
+
 extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 

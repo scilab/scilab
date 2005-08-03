@@ -11,8 +11,8 @@
 /*-----------------------------------------------------------------------------------*/
 static int scig_buzy = 0;
 extern int WindowsPrintScreen;
-int Printer_XRes;
-int Printer_YRes;
+extern int Printer_XRes;
+extern int Printer_YRes;
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
