@@ -24,6 +24,9 @@
  		Ge&t Current Directory 
 			[GETCWD]
 		--	
+		Pr&int Setup ...
+			[PRINTSETUP]
+		
 		P&rint ...
 			[PRINT]
 		--

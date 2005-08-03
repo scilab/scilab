@@ -54,8 +54,9 @@ extern TW textwin;
 #define CLOSE   CMDMIN+3
 #define SCIPS   CMDMIN+4
 #define SCIPR   CMDMIN+5
-#define PRINT   CMDMIN+6
-#define UPDINI  CMDMIN+7
+#define PRINTSETUP CMDMIN+6
+#define PRINT   CMDMIN+7
+#define UPDINI  CMDMIN+8
 /**********************/
 #define SCIGSEL UPDINI+1
 #define TOOLBARGRAPH SCIGSEL+1
@@ -84,7 +85,7 @@ static char filename[MAXSTR], filename1[MAXSTR];
 
 static char *keyword[] =
 {
-  "[TOOLBARGRAPH]","[NEWFIG]","[ZOOM]", "[UNZOOM]", "[ROT3D]", "[PRINT]", "[COPYCLIP]", "[COPYCLIP1]",
+  "[TOOLBARGRAPH]","[NEWFIG]","[ZOOM]", "[UNZOOM]", "[ROT3D]", "[PRINTSETUP]", "[PRINT]", "[COPYCLIP]", "[COPYCLIP1]",
   "[REDRAW]", "[LOADSCG]", "[SAVESCG]", "[CLEARWG]", "[SCIPS]", "[SCIPR]",
   "[SCIGSEL]", "[UPDINI]", "[EOS]", "[CLOSE]",
   "{ENTER}", "{ESC}", "{TAB}",
@@ -96,7 +97,7 @@ static char *keyword[] =
 
 static BYTE keyeq[] =
 {
-  TOOLBARGRAPH,NEWFIG,ZOOM, UNZOOM, ROT3D, PRINT, COPYCLIP, COPYCLIP1,
+  TOOLBARGRAPH,NEWFIG,ZOOM, UNZOOM, ROT3D, PRINTSETUP,PRINT, COPYCLIP, COPYCLIP1,
   REDRAW, LOADSCG, SAVESCG, CLEARWG, SCIPS, SCIPR, SCIGSEL, UPDINI, EOS,
   CLOSE,
   13, 27, 9,
@@ -159,6 +160,8 @@ extern void ShowGraphToolBar(struct BCG * ScilabGC);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
 extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 extern void ExportEMF(struct BCG *ScilabGC,char *pszflname);
+extern HDC GetPrinterDC(void);
+extern char GetPrinterOrientation(void);
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);
@@ -186,5 +189,5 @@ void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
 
 extern char *GetScilabDirectory(BOOL UnixStyle);
-
+extern void Callback_PRINTSETUP(void);
 #endif /*__WGMENU__*/

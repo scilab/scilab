@@ -700,6 +700,9 @@ cd .. &gt;nul
 				RelativePath=".\intpathname.c">
 			</File>
 			<File
+				RelativePath=".\intprintbox.c">
+			</File>
+			<File
 				RelativePath=".\intsetlanguagemenu.c">
 			</File>
 			<File
@@ -738,6 +741,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intpathname.h">
+			</File>
+			<File
+				RelativePath=".\intprintbox.h">
 			</File>
 			<File
 				RelativePath=".\intsetlanguagemenu.h">

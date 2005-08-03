@@ -18,148 +18,39 @@
    See gp_printfile : choose a printer and send a file to printer 
    2005 : Allan CORNET INRIA
  */
-
+/*-----------------------------------------------------------------------------------*/
 #include "wresource.h"
 #include "wcommon.h"
-
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
 #include "win_mem_alloc.h" /* MALLOC */
-
+/*-----------------------------------------------------------------------------------*/
 #define MAXSTR 256     /* maximum file name length and general string length */
 /* documented in Device Driver Adaptation Guide */
-
 #define PORT_BUF_SIZE 4096
-
-/* Dialog box to select printer port */
-
+/*-----------------------------------------------------------------------------------*/
 char printer_port[32];
-
-EXPORT BOOL CALLBACK SpoolDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+#define PRINT_BUF_SIZE 16384u
+/*-----------------------------------------------------------------------------------*/
+extern char* GetPrinterName(void);
+/*-----------------------------------------------------------------------------------*/
+BOOL get_queuename (HINSTANCE hInstance, HWND hwnd, char *portname, char *queue)
 {
-  LPSTR entry;
-  switch (message)
-    {
-    case WM_INITDIALOG:
-      entry = (LPSTR) lParam;
-      while (*entry)
-	{
-	  SendDlgItemMessage (hDlg, SPOOL_PORT, LB_ADDSTRING, 0, (LPARAM) entry);
-	  entry += lstrlen (entry) + 1;
-	}
-      if ((printer_port == '\0') ||
-	  (SendDlgItemMessage (hDlg, SPOOL_PORT, LB_SELECTSTRING, 0, (LPARAM) (LPSTR) printer_port)
-	   == LB_ERR))
-	SendDlgItemMessage (hDlg, SPOOL_PORT, LB_SETCURSEL, 0, (LPARAM) 0);
-      return TRUE;
-    case WM_COMMAND:
-      switch (LOWORD (wParam))
-	{
-	case SPOOL_PORT:
-	  if (HIWORD (wParam) == LBN_DBLCLK)
-	    PostMessage (hDlg, WM_COMMAND, IDOK, 0L);
-	  return FALSE;
-	case IDOK:
-	  SendDlgItemMessage (hDlg, SPOOL_PORT, LB_GETTEXT,
-	   (int) SendDlgItemMessage (hDlg, SPOOL_PORT, LB_GETCURSEL, 0, 0L),
-			      (LPARAM) (LPSTR) printer_port);
-	  EndDialog (hDlg, 1 + (int) SendDlgItemMessage (hDlg, SPOOL_PORT, LB_GETCURSEL, 0, 0L));
-	  return TRUE;
-	case IDCANCEL:
-	  EndDialog (hDlg, 0);
-	  return TRUE;
-	}
-    }
-  return FALSE;
+	char *PrinterName=NULL;
+
+	PrinterName=GetPrinterName();
+	if (strcmp(PrinterName,"EMPTY")==0) return FALSE;
+	wsprintf(portname, "\\\\spool\\%s",PrinterName);
+	if (PrinterName) { FREE(PrinterName); PrinterName=NULL;}
+
+	return TRUE;
 }
-
-char *
-get_queues (void)
-{
-  int i;
-  DWORD count, needed;
-  PRINTER_INFO_1 *prinfo;
-  char *enumbuffer;
-  char *buffer;
-  char *p;
-  /* enumerate all available printers */
-  EnumPrinters (PRINTER_ENUM_CONNECTIONS | PRINTER_ENUM_LOCAL, NULL, 1, NULL, 0, &needed, &count);
-  enumbuffer = MALLOC (needed);
-  if (enumbuffer == (char *) NULL)
-    return FALSE;
-  if (!EnumPrinters (PRINTER_ENUM_CONNECTIONS | PRINTER_ENUM_LOCAL, NULL, 1, (LPBYTE) enumbuffer, needed, &needed, &count))
-    {
-      FREE (enumbuffer);
-      sciprint (MSG_ERROR70, GetLastError ());
-      return NULL;
-    }
-  prinfo = (PRINTER_INFO_1 *) enumbuffer;
-  if ((buffer = MALLOC (PORT_BUF_SIZE)) == (char *) NULL)
-    {
-      FREE (enumbuffer);
-      return NULL;
-    }
-  /* copy printer names to single buffer */
-  p = buffer;
-  for (i = 0; i < (int) count; i++)
-    {
-      if ((int) strlen (prinfo[i].pName) + 1 < (PORT_BUF_SIZE - (p - buffer)))
-	{
-	  strcpy (p, prinfo[i].pName);
-	  p += strlen (p) + 1;
-	}
-    }
-  *p = '\0';			/* double null at end */
-  FREE (enumbuffer);
-  return buffer;
-}
-
-/* return TRUE if queuename available */
-/* return FALSE if cancelled or error */
-/* if queue non-NULL, use as suggested queue */
-
-BOOL 
-get_queuename (HINSTANCE hInstance, HWND hwnd, char *portname, char *queue)
-{
-  char *buffer;
-  char *p;
-  int i, iport;
-  buffer = get_queues ();
-  if ((queue == (char *) NULL) || (strlen (queue) == 0))
-    {
-      /* select a queue */
-      iport = DialogBoxParam (hInstance, "QueueDlgBox", hwnd, SpoolDlgProc, (LPARAM) buffer);
-      if (!iport)
-	{
-	  FREE (buffer);
-	  return FALSE;
-	}
-      p = buffer;
-      for (i = 1; i < iport && strlen (p) != 0; i++)
-	p += lstrlen (p) + 1;
-      /* prepend \\spool\ which is used to distinguish */
-      /* real files from queues */
-      strcpy (portname, "\\\\spool\\");
-      strcat (portname, p);
-    }
-  else
-    {
-      strcpy (portname, "\\\\spool\\");
-      strcat (portname, queue);
-    }
-  FREE (buffer);
-  return TRUE;
-}
-
+/*-----------------------------------------------------------------------------------*/
 /******************************************************************
  * Print File to port or queue 
  * port==NULL means prompt for port or queue with dialog box 
  ******************************************************************/
-
-#define PRINT_BUF_SIZE 16384u
-
 int gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
 {
   DWORD count;
@@ -170,12 +61,10 @@ int gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
   DOC_INFO_1 di;
   DWORD written;
 
-  if (!get_queuename (hInstance, hwnd, portname, port))
-    return FALSE;
+  if (!get_queuename (hInstance, hwnd, portname, port))    return FALSE;
   port = portname + 8;		/* skip over \\spool\ */
 
-  if ((buffer = MALLOC (PRINT_BUF_SIZE)) == (char *) NULL)
-    return FALSE;
+  if ((buffer = MALLOC (PRINT_BUF_SIZE)) == (char *) NULL) return FALSE;
   if (filename != (char *) 0)
     {
       if ((f = fopen (filename, "rb")) == (FILE *) NULL)
@@ -234,3 +123,4 @@ int gp_printfile (HINSTANCE hInstance, HWND hwnd, char *filename, char *port)
     }
   return TRUE;
 }
+/*-----------------------------------------------------------------------------------*/

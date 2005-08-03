@@ -54,13 +54,14 @@
 /**********************/
 #define MCOPY 			EXIT+1
 #define PASTE 			MCOPY+1
-#define PRINT 			MCOPY+2
-#define TOOLBAR			MCOPY+3
-#define FRENCH			MCOPY+4
-#define ENGLISH			MCOPY+5
-#define CHOOSETHEFONT	MCOPY+6
-#define EMPTYCLIPBOARD	MCOPY+7
-#define SELECTALL		MCOPY+8
+#define PRINTSETUP		MCOPY+2
+#define PRINT 			MCOPY+3
+#define TOOLBAR			MCOPY+4
+#define FRENCH			MCOPY+5
+#define ENGLISH			MCOPY+6
+#define CHOOSETHEFONT	MCOPY+7
+#define EMPTYCLIPBOARD	MCOPY+8
+#define SELECTALL		MCOPY+9
 /**********************/
 #define RESTART 		SELECTALL+1
 #define PAUSE 			RESTART+1
@@ -138,7 +139,7 @@ char *keyword[] =
 {
   "[EMPTYCLIPBOARD]","[SELECTALL]","[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
-  "[MCOPY]","[PASTE]","[PRINT]","[CHOOSETHEFONT]",
+  "[MCOPY]","[PASTE]","[PRINTSETUP]","[PRINT]","[CHOOSETHEFONT]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
   "[SET]","[RAISE]","[DELETESCIW]","[PLUS]","[MINUS]","[XBASC]",
   "[SCIPAD]",
@@ -154,7 +155,7 @@ BYTE keyeq[] =
 {
   EMPTYCLIPBOARD,SELECTALL,CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,
   TOOLBAR,NEWSGROUP,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
-  MCOPY,PASTE,PRINT,CHOOSETHEFONT,
+  MCOPY,PASTE,PRINTSETUP,PRINT,CHOOSETHEFONT,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
   SCIPAD,
@@ -195,6 +196,7 @@ void Callback_SELECTALL(void);
 void Callback_EMPTYCLIPBOARD(void);
 void Callback_MCOPY(void);
 void Callback_PASTE(void);
+void Callback_PRINTSETUP(void);
 void Callback_PRINT(void);
 void Callback_TOOLBAR(void);
 void Callback_FRENCH(void);
@@ -252,7 +254,6 @@ void PrintSelection(LPTW lptw,char *Entete);
 void PageHeader(HDC hdc,LPSTR Entete);
 void Footer(HDC hdc,int number);
 HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
-HDC GetPrinterDC(void);
 /*--------------------------------*/
 void ResetMenu(void);
 /*--------------------------------*/
@@ -291,5 +292,8 @@ void SetLanguageMenu(char *Language);
 extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 /*--------------------------------*/
 extern char *GetScilabDirectory(BOOL UnixStyle);
+/*--------------------------------*/
+extern HDC GetPrinterDC(void);
+extern BOOL ConfigurePrinterDialogBox(void);
 /*--------------------------------*/
 #endif /*  __WMENU_H__ */

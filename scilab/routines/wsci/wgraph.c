@@ -13,6 +13,7 @@ static int scig_buzy = 0;
 extern int WindowsPrintScreen;
 extern int Printer_XRes;
 extern int Printer_YRes;
+
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
@@ -222,7 +223,7 @@ int CopyPrint (struct BCG *ScilabGC)
   int xPage, yPage;
   static DOCINFO di = {sizeof (DOCINFO), MSG_SCIMSG12, NULL};
   BOOL bError = FALSE;
-  HDC printer;
+  HDC printer=NULL;
   LPGW lpgw;
   ABORTPROC lpfnAbortProc;
   DLGPROC lpfnPrintDlgProc;
@@ -242,46 +243,9 @@ int CopyPrint (struct BCG *ScilabGC)
 
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
-#ifdef __GNUC__
-/** for cygwin and mingwin **/
-/** XXXXX : Bug in cygwin : sizeof(PRINTDLG) gives something wrong (68) 
-**/
-  memset (&pd, 0, 66);
-  pd.lStructSize = 66;
-#else
-  memset (&pd, 0, sizeof (PRINTDLG));
-  pd.lStructSize = sizeof (PRINTDLG);
-#endif
-  pd.hwndOwner = hwnd;
-  pd.hDevMode = NULL;
-  pd.hDevNames = NULL;
-  pd.hDC = NULL;
-  pd.Flags = PD_ALLPAGES | PD_COLLATE | PD_RETURNDC| PD_USEDEVMODECOPIESANDCOLLATE|PD_NOSELECTION|PD_HIDEPRINTTOFILE|PD_NONETWORKBUTTON;
-  /* Allan CORNET */
-  /* PD_USEDEVMODECOPIESANDCOLLATE supports multiple copies and collation */
-  pd.nFromPage = 0;
-  pd.nToPage = 0;
-  pd.nMinPage = 0;
-  pd.nMaxPage = 0;
-  pd.nCopies = 1;
-  pd.hInstance = NULL;
-  pd.lCustData = 0L;
-  pd.lpfnPrintHook = NULL;
-  pd.lpfnSetupHook = NULL;
-  pd.lpPrintTemplateName = NULL;
-  pd.lpSetupTemplateName = NULL;
-  pd.hPrintTemplate = NULL;
-  pd.hSetupTemplate = NULL;
 
-  if (PrintDlg (&pd) == FALSE)
-    {
-		/* Redessine si Cancel Impression */
-		GetClientRect (hwnd, &RectRestore);
-		scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
-		scig_buzy = 0;
-		return TRUE;
-    }
-  printer = pd.hDC;
+  printer = (HDC)GetPrinterDC();
+
   if (NULL == printer)
     {
 		/* Redessine si Cancel Impression */
@@ -321,20 +285,11 @@ ScilabGC->CWindow
       return TRUE;
     }
   PrintRegister ((LP_PRINT) & pr);
-  {
-    /**** Shoud be inserted ? to select the part of the page we want 
-    RECT lprect;
-    PrintSize( printer, hwnd, &lprect);
-    *****/
-  }
   EnableWindow (hwnd, FALSE);
   pr.bUserAbort = FALSE;
-  lpfnPrintDlgProc = (DLGPROC) MyGetProcAddress ("PrintDlgProc", 
-PrintDlgProc);
-  lpfnAbortProc = (ABORTPROC) MyGetProcAddress ("PrintAbortProc", 
-PrintAbortProc);
-  pr.hDlgPrint = CreateDialogParam (hdllInstance, "PrintDlgBox", hwnd,
-				    lpfnPrintDlgProc, (LPARAM) lpgw->Title);
+  lpfnPrintDlgProc = (DLGPROC) MyGetProcAddress ("PrintDlgProc",PrintDlgProc);
+  lpfnAbortProc = (ABORTPROC) MyGetProcAddress ("PrintAbortProc",PrintAbortProc);
+  pr.hDlgPrint = CreateDialogParam (hdllInstance, "PrintDlgBox", hwnd, lpfnPrintDlgProc, (LPARAM) lpgw->Title);
   SetAbortProc (pr.hdcPrn, lpfnAbortProc);
 
   if (StartDoc (pr.hdcPrn, &di) > 0)
@@ -361,7 +316,7 @@ PrintAbortProc);
       GetClientRect (hwnd, &RectRestore);
 	  /* Evite bug lorsque l'on selectionne la fenetre & que l'on imprime apres */
 	  scig_replay_hdc ('P', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
-      WindowsPrintScreen = 1;
+	  WindowsPrintScreen = 1;
 	  Printer_XRes = GetDeviceCaps (pr.hdcPrn, LOGPIXELSX);
 	  Printer_YRes = GetDeviceCaps (pr.hdcPrn, LOGPIXELSY);
 	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,xPage, yPage, scalef);
@@ -379,7 +334,7 @@ PrintAbortProc);
       EnableWindow (hwnd, TRUE);
       DestroyWindow (pr.hDlgPrint);
     }
-  DeleteDC (printer);
+	if (printer) {DeleteDC (printer); printer=NULL;}
   SetWindowLong (hwnd, 4, (LONG) (0L));
   SetWindowLong (ScilabGC->hWndParent, 4, (LONG) (0L));
   PrintUnregister ((LP_PRINT) & pr);
@@ -1281,9 +1236,9 @@ void ShowGraphToolBar(struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 void CreateGraphToolBar(struct BCG * ScilabGC) 
 {
-#define HMENUIndiceZOOM 11
-#define HMENUIndiceUNZOOM 12
-#define HMENUIndice3DROT 13
+#define HMENUIndiceZOOM 12
+#define HMENUIndiceUNZOOM 13
+#define HMENUIndice3DROT 14
 
   HICON IconButton;
   ScilabGC->lpmw.nButton=0;

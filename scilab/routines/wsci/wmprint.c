@@ -28,8 +28,7 @@ extern void sciprint __PARAMS ((char *fmt,...));
 
 static char entete[256];
 
-int 
-ScilabPsToEps (char orientation, char *filein, char *fileout)
+int ScilabPsToEps (char orientation, char *filein, char *fileout)
 {
   int flag = 0, rep;
   FILE *fo;

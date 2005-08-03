@@ -320,6 +320,11 @@ void Callback_PASTE(void)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
+void Callback_PRINTSETUP(void)
+{
+	ConfigurePrinterDialogBox();
+}
+/*-----------------------------------------------------------------------------------*/
 void Callback_PRINT(void)
 {
 	extern char ScilexWindowName[MAX_PATH];
@@ -632,6 +637,10 @@ void SendMacro (LPTW lptw, UINT m)
 				Callback_EMPTYCLIPBOARD();
 				return;
 			break;
+			case PRINTSETUP:
+				Callback_PRINTSETUP();
+				return;
+				break;
 	    	case PRINT:
 	    		Callback_PRINT();
 	    		return;
@@ -2119,41 +2128,6 @@ HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWi
 	RestoreDC (hdc, -1) ;
 	return hFont ;
 }
-/*-----------------------------------------------------------------------------------*/
-HDC GetPrinterDC(void)
-{
-  PRINTDLG prd;
-
-  // Initialize the PRINTDLG structure.
-  memset( &prd, 0, sizeof( PRINTDLG ) );
-
-  // Appelle une Common Dialog Box d'impression.
-  prd.lStructSize = sizeof(PRINTDLG);
-  prd.hDevMode = (HANDLE) NULL;
-  prd.hDevNames = (HANDLE) NULL;
-  prd.Flags = PD_HIDEPRINTTOFILE|PD_NOSELECTION|PD_RETURNDC|PD_USEDEVMODECOPIESANDCOLLATE;
-  prd.hwndOwner = NULL;
-  prd.hDC = (HDC) NULL;
-  prd.nFromPage = 0;
-  prd.nToPage = 0;
-  prd.nMinPage = 0;
-  prd.nMaxPage = 0;
-  prd.nCopies = 1;
-  prd.hInstance = (HINSTANCE) NULL;
-  prd.lCustData = 0L;
-  prd.lpfnPrintHook = (LPPRINTHOOKPROC) NULL;
-  prd.lpfnSetupHook = (LPSETUPHOOKPROC) NULL;
-  prd.lpPrintTemplateName = (LPSTR) NULL;
-  prd.lpSetupTemplateName = (LPSTR)  NULL;
-  prd.hPrintTemplate = (HANDLE) NULL;
-  prd.hSetupTemplate = (HANDLE) NULL;
-
-  PrintDlg(&prd);
-  // Invoke the printer dialog box.
-  // hDC member of the PRINTDLG structure contains
-  // the printer DC.
-  return prd.hDC;
-   }
 /*-----------------------------------------------------------------------------------*/
 void PrintString(char *lines,char *Entete)
 {

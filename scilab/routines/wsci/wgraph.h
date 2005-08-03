@@ -149,5 +149,7 @@ int Interface_XS2BMP(int figurenum,char *filename);
 int Interface_XS2EMF(int figurenum,char *filename);
 
 
+extern HDC GetPrinterDC(void);
+
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

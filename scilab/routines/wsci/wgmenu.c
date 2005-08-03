@@ -61,6 +61,10 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 		  
 	      s++;
 	      break;
+		case PRINTSETUP:
+			Callback_PRINTSETUP();
+			s++;
+			break;
 	    case PRINT:
 	      CopyPrint (ScilabGC);
 	      s++;
@@ -903,7 +907,6 @@ BOOL ExportStyle (struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 static void SavePs (struct BCG *ScilabGC)
 {
-  
 
   char *d, ori;
   BYTE *s;
@@ -951,7 +954,11 @@ static void SavePs (struct BCG *ScilabGC)
       wininfo (MSG_SCIMSG99);
       dos2win32 (filename, filename1);
       scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
+
+
       ori = (ls.land == 1) ? 'l' : 'p';
+
+
       ScilabPsToTeX (ori, filename1, filename, 1.0, 1.0);
       wininfo (MSG_SCIMSG100);
       SetCursor (LoadCursor (NULL, IDC_CROSS));
@@ -1013,30 +1020,36 @@ static void dos2win32 (char *filename, char *filename1)
 /*-----------------------------------------------------------------------------------*/
 static void PrintPs (struct BCG *ScilabGC)
 {
+  HDC hPrinterDC=NULL;
   char *p1;
   char ori;
   /** getting ls flags **/
   ls.use_printer = 1;
-  if (ExportStyle (ScilabGC) == FALSE)
-    return;
+  ls.colored = 1;
+
+  hPrinterDC=GetPrinterDC(); // Just to Configure Printer
+  if (hPrinterDC) {DeleteDC(hPrinterDC);hPrinterDC=NULL;}
+
   /** getting filename **/
   if ((p1 = getenv ("TMPDIR")) == (char *) 0)
-    {
-      sciprint (MSG_WARNING15);
-      return;
-    }
+  {
+     sciprint (MSG_WARNING15);
+     return;
+  }
   sprintf (filename, "%s/scilab-%d", p1, (int) ScilabGC->CurWindow);
-  /** sciprint(" file name [%s] color=%d\r\n",filename,ls.colored); **/
+
   dos2win32 (filename, filename1);
+
   scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
-  ori = (ls.land == 1) ? 'l' : 'p';
+
+  ori =GetPrinterOrientation();
+  
   if (ScilabPsToEps (ori, filename1, filename) == 0)
     {
-      if (gp_printfile (hdllInstance, ScilabGC->hWndParent, filename,
-			(char *) 0) == FALSE)
-	sciprint (MSG_ERROR78);
+      if (gp_printfile (hdllInstance, ScilabGC->hWndParent, filename,(char *) 0) == FALSE)	sciprint (MSG_ERROR78);
     }
   /** filename is destroyed when we quit scilab **/
+
 }
 /*-----------------------------------------------------------------------------------*/
 /* used by command_handler in metanet */

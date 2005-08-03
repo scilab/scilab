@@ -7,8 +7,7 @@ LIBRARY = $(SCIDIR)/libs/wintools.a
 
 OBJSC = intOEMconvert.o intmcisendstring.o intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
         intpathname.o intsetlanguagemenu.o inttoolbar.o \
-        intwinopen.o intwinqueryreg.o
-
+        intwinopen.o intwinqueryreg.o intprintbox.o
 OBJSF =
 
 

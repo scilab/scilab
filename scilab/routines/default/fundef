@@ -648,3 +648,4 @@
 {"mcisendstring",	IN_intwintools,	17,	2},
 {"oemtochar",		IN_intwintools,	18,	2},
 {"chartooem",		IN_intwintools,	19,	2},
+{"printsetupbox",		IN_intwintools,	20,	2},
