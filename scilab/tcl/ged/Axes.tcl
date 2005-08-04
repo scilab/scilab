@@ -1239,6 +1239,85 @@ bind  $w.frame.dataw <KP_Enter> "SelectClipBox $w.frame"
 bind  $w.frame.datah <KP_Enter> "SelectClipBox $w.frame"
 
 
+
+#margins
+frame $w.frame.marg1 -borderwidth 0
+pack $w.frame.marg1  -in $w.frame -side top   -fill x
+label $w.frame.labelmarg -text "Margins:" -font {Arial 9}
+label $w.frame.labelaxesbounds -text "\t\t\tAxes bounds:" -font {Arial 9}
+pack $w.frame.labelmarg -in  $w.frame.marg1 -side left
+pack $w.frame.labelaxesbounds -in  $w.frame.marg1 -side left -pady 0m -padx 2m -fill x
+
+frame $w.frame.marg2 -borderwidth 0
+pack $w.frame.marg2  -in $w.frame -side top   -fill x
+
+frame $w.frame.marg21 -borderwidth 0
+pack $w.frame.marg21  -in $w.frame -side top   -fill x
+
+frame $w.frame.marg4 -borderwidth 0
+pack $w.frame.marg4  -in $w.frame -side top   -fill x
+
+frame $w.frame.marg41 -borderwidth 0
+pack $w.frame.marg41  -in $w.frame -side top   -fill x
+
+label $w.frame.labelleft -text  "Left:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.datamargl -relief sunken  -textvariable Lmargins -width 10 -font {Arial 9}
+label $w.frame.labelleftaxesbounds -text  "Left:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL -width 10 -font {Arial 9}
+
+label $w.frame.labelright -text "Right:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.datamargr -relief sunken  -textvariable Rmargins -width 10 -font {Arial 9}
+label $w.frame.labelupaxesbounds -text  "Up:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU -width 10 -font {Arial 9}
+
+pack $w.frame.labelleft  -in  $w.frame.marg2 -side left
+pack $w.frame.datamargl  -in  $w.frame.marg2 -side left -padx 2m
+pack $w.frame.labelleftaxesbounds -in  $w.frame.marg2 -side left
+pack $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 0m -padx 2m
+pack $w.frame.labelright  -in  $w.frame.marg21 -side left
+pack $w.frame.datamargr   -in  $w.frame.marg21 -side left -padx 2m
+pack $w.frame.labelupaxesbounds  -in  $w.frame.marg21 -side left
+pack $w.frame.dataupaxesbounds -in  $w.frame.marg21 -side left -fill x -pady 0m -padx 2m 
+bind  $w.frame.datamargl <Return> {SelectMargins}
+bind  $w.frame.datamargr <Return> {SelectMargins}
+bind  $w.frame.dataleftaxesbounds <Return> {SelectAxesbounds}
+bind  $w.frame.dataupaxesbounds   <Return> {SelectAxesbounds}
+bind  $w.frame.datamargl <KP_Enter> {SelectMargins}
+bind  $w.frame.datamargr <KP_Enter> {SelectMargins}
+bind  $w.frame.dataleftaxesbounds <KP_Enter> {SelectAxesbounds}
+bind  $w.frame.dataupaxesbounds   <KP_Enter> {SelectAxesbounds}
+
+
+label $w.frame.labeltop -text "Top:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.datamargt -relief sunken  -textvariable Tmargins -width 10 -font {Arial 9}
+label $w.frame.labelwidthaxesbounds -text "Width:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW -width 10 -font {Arial 9}
+
+label $w.frame.labelbottom -text "Bottom:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.datamargb -relief sunken  -textvariable Bmargins -width 10 -font {Arial 9}
+label $w.frame.labelheightaxesbounds -text "Height:" -font {Arial 9}  -anchor e -width $largeur
+entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH -width 10 -font {Arial 9}
+
+pack $w.frame.labeltop  -in  $w.frame.marg4  -side left
+pack $w.frame.datamargt  -in  $w.frame.marg4  -side left -padx 2m
+pack $w.frame.labelwidthaxesbounds   -in  $w.frame.marg4  -side left
+pack $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 0 -padx 2m
+pack $w.frame.labelbottom   -in  $w.frame.marg41 -side left
+pack $w.frame.datamargb  -in  $w.frame.marg41 -side left  -padx 2m
+pack $w.frame.labelheightaxesbounds  -in  $w.frame.marg41 -side left
+pack $w.frame.dataheightaxesbounds -in  $w.frame.marg41 -side left -fill x -pady 0m -padx 2m
+bind  $w.frame.datamargt <Return> {SelectMargins}
+bind  $w.frame.datamargb <Return> {SelectMargins}
+bind  $w.frame.datawidthaxesbounds   <Return> {SelectAxesbounds}
+bind  $w.frame.dataheightaxesbounds  <Return> {SelectAxesbounds}
+bind  $w.frame.datamargt <KP_Enter> {SelectMargins}
+bind  $w.frame.datamargb <KP_Enter> {SelectMargins}
+bind  $w.frame.datawidthaxesbounds   <KP_Enter> {SelectAxesbounds}
+bind  $w.frame.dataheightaxesbounds  <KP_Enter> {SelectAxesbounds}
+
+
+
+
 frame $w.frame.warning
 label $w.frame.mesgwarning  -justify left -textvariable letext -font {Arial 9}
 $w.frame.mesgwarning config -foreground red
