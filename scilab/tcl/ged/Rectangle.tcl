@@ -200,18 +200,18 @@ OnOffForeground $w.frame.linemode $curlinemode
 pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
 pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 1m
 
- #Fill mode
- frame $w.frame.fillfillmode  -borderwidth 0
- pack $w.frame.fillfillmode  -in $w.frame  -side top  -fill x
+#Fill mode
+frame $w.frame.fillfillmode  -borderwidth 0
+pack $w.frame.fillfillmode  -in $w.frame  -side top  -fill x
 
- label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
- checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
-     -variable curfillmode -onvalue "on" -offvalue "off" \
-     -command "toggleFillmode $w.frame.fillmode" -font {Arial 9}
- OnOffForeground $w.frame.fillmode $curfillmode
+label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
+    -variable curfillmode -onvalue "on" -offvalue "off" \
+    -command "toggleFillmode $w.frame.fillmode" -font {Arial 9}
+OnOffForeground $w.frame.fillmode $curfillmode
 
- pack $w.frame.fillmodelabel  -in $w.frame.fillfillmode  -side left 
- pack $w.frame.fillmode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
+pack $w.frame.fillmodelabel  -in $w.frame.fillfillmode  -side left 
+pack $w.frame.fillmode   -in $w.frame.fillfillmode   -side left  -fill x -pady 0m -padx 1m
 
 #Line Style
 frame $w.frame.rectst  -borderwidth 0
