@@ -100,7 +100,7 @@ endfunction
 // -----------------------------------------------------------
 function InternalStyleName=GetInternalStyleName(ExternalStyleName)
   TableInternalStyle = ["button" ..
-                        "checkbutton" ..
+                        "radiobutton" ..
                         "checkbutton" ..
                         "entry" ..
                         "label" ..

@@ -11,6 +11,7 @@
 
 set StyTrad(button)         pushbutton;
 set StyTrad(checkbutton)    checkbox;
+set StyTrad(radiobutton)    radiobutton;
 set StyTrad(entry)          edit;
 set StyTrad(label)          text;
 set StyTrad(scale)          slider;

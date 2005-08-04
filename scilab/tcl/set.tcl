@@ -286,6 +286,7 @@ proc Setcallback { name callback } {
 	
 	edit {$path configure -command $command;}
 	pushbutton {$path configure -command $command;}
+	radiobutton  {$path configure -command $command;}
 	checkbox  {$path configure -command $command;}
 	slider {
 	    set command "SliderSciCallback $name $callback";
@@ -405,6 +406,7 @@ proc Sethorizontalalignment { name value } {
      switch -exact -- $style {
 	text {$path configure -anchor $anchor}
 	edit {$path configure -justify $value}
+	radiobutton {$path configure -anchor $anchor}
 	checkbox {$path configure -anchor $anchor}
 	#listbox {$path.list configure -anchor $AnchorEq($value)}
     }
@@ -447,6 +449,7 @@ proc Setverticalalignment { name value } {
     switch -exact -- $style {
 	text {$path configure -anchor $anchor}
 	edit { unset "$name\(verticalalignment)"}
+	radiobutton {$path configure -anchor $anchor}
 	checkbox {$path configure -anchor $anchor}
 	#listbox {$path.list configure -anchor $AnchorEq($value)}
 
@@ -484,6 +487,7 @@ proc Setmax { name  value} {
   set style [set "$name\(style)"];
 
   switch -exact -- $style {
+    "radiobutton" { $path configure -value $value }
     "checkbox" { $path configure -onvalue $value }
     "slider" { $path configure -to $value }
     "listbox" {
@@ -515,6 +519,7 @@ proc Setmin { name  value} {
   set style [set "$name\(style)"];
 
   switch -exact -- $style {
+    "radiobutton" { $path configure -value $value }
     "checkbox" { $path configure -offvalue $value }
     "slider" { $path configure -from $value }
     "listbox" {
@@ -760,6 +765,7 @@ proc Setstring { name  str} {
 	    $path configure -text [lindex $item 0]
 	}
 	text { $path configure -text $str; }
+	radiobutton { $path configure -text $str; }
 	checkbox { $path configure -text $str; }
 	pushbutton { $path configure -text $str;}
 	default {
