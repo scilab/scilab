@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>printsetupbox</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>4-August-2005</DATE>
+
+  <SHORT_DESCRIPTION name="printsetupbox">Display print dialog box
+  (Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>printsetupbox()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>bOK=printsetupbox()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>bOK=printsetupbox() displays the built-in printing dialogbox for
+    Windows and configure the printer. returns %T if you push 'OK' button</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>toprint</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
