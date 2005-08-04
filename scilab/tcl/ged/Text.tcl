@@ -46,12 +46,12 @@ global curgedindex
 global curgedobject
 
 global curvis
-global curforeground ncolors curfontstyle curfontsize curfontangle curtextbox1 curtextbox2
+global curfontforeground ncolors curfontstyle curfontsize curfontangle curtextbox1 curtextbox2
 global curtextboxmode curtext
 global RED BLUE GREEN
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
-
+global curboxmode curforeground curbackground
 
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
@@ -66,7 +66,7 @@ proc OnOffForeground { frame flag } {
 set NBheight 260
 set NBwidth  250
 
-set Wheight [expr $NBheight + 110]
+set Wheight [expr $NBheight + 155]
 set Wwidth  [expr $NBwidth  + 265]
 
 set ww .axes
@@ -131,7 +131,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 10 \
+	       -width 20 -height 21 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -192,14 +192,13 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontcolorlabel -height 0 -text "Font color:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
 pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
-$w.frame.fontcolor set $curforeground
-
+$w.frame.fontcolor set $curfontforeground
 
 #Fontsize scale
 frame $w.frame.fontssz  -borderwidth 0
@@ -243,6 +242,46 @@ entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle2 -font {Ari
 
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
 bind  $w.frame.fontangle2 <KP_Enter> 	"setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
+
+
+#Box mode
+frame $w.frame.boxmode  -borderwidth 0
+pack $w.frame.boxmode  -in $w.frame -side top   -fill x -pady 0m
+
+label $w.frame.boxmodelabel -height 0 -text "Box :" -width 0  -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.boxmodevalue  -text "on"\
+    -variable curboxmode  -onvalue "on" -offvalue "off" \
+    -command "toggleBoxmode $w.frame.boxmodevalue" -font {Arial 9}
+OnOffForeground $w.frame.boxmodevalue $curboxmode
+
+pack $w.frame.boxmodelabel -in $w.frame.boxmode  -side left
+pack $w.frame.boxmodevalue  -in $w.frame.boxmode    -side left -padx 1m
+
+#Foreground scale
+frame $w.frame.clrf  -borderwidth 0
+pack $w.frame.clrf  -in $w.frame -side top  -fill x
+
+label $w.frame.colorlabel -height 0 -text "Foreground:" -width 0  -font {Arial 9} -anchor e -width $largeur
+#         -foreground $color
+scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
+	 -resolution 1.0 -command "setForeground $w.frame.color" -tickinterval 0  -font {Arial 9}
+
+pack $w.frame.colorlabel -in $w.frame.clrf -side left
+pack $w.frame.color -in  $w.frame.clrf -side left  -expand 1 -fill x -pady 0m -padx 1m
+$w.frame.color set $curforeground
+
+#Background scale (line)
+frame $w.frame.backg  -borderwidth 0
+pack $w.frame.backg  -in $w.frame -side top  -fill x
+
+label $w.frame.backlabel -height 0 -text "Background:" -font {Arial 9} -anchor e -width $largeur
+#         -foreground $back
+scale $w.frame.back -orient horizontal -from -2 -to $ncolors \
+	 -resolution 1.0 -command "setBackground $w.frame.back" -tickinterval 0  -font {Arial 9}
+
+pack $w.frame.backlabel -in $w.frame.backg -side left
+pack $w.frame.back  -in  $w.frame.backg -side left -expand 1 -fill x -pady 0m -padx 1m
+$w.frame.back set $curbackground
 
 
 pack $w.frame.fontanglelabel  -in $w.frame.fontsang -side left
@@ -437,17 +476,17 @@ proc setFontColor {w  index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.font_foreground <> $index then ged_handle.font_foreground=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.font_foreground <> $index then ged_handle.font_foreground=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.font_foreground <> $index then ged_handle.font_foreground=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -457,7 +496,7 @@ proc setFontColor {w  index} {
 
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.font_foreground <> $index then ged_handle.font_foreground=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -509,6 +548,12 @@ global curtextboxmode
 ScilabEval "global ged_handle;ged_handle.text_box_mode='$curtextboxmode'"
 }
 
+proc toggleBoxmode { frame } { #fill mode for text object
+    global curboxmode
+    ScilabEval "global ged_handle;ged_handle.box='$curboxmode'"
+    
+    OnOffForeground $frame $curboxmode
+}
 
 
 #Clipping proc for all entities (clip box and clip state fields)
@@ -586,6 +631,86 @@ proc SavePreferences { } {
 	close $preffile
     }
 }
+
+proc setForeground {w index} {    
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; if ged_handle.foreground <> $index then ged_handle.foreground=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    }
+}
+
+proc setBackground {w index} {   
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+		
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
 
 proc DestroyGlobals { } {
     ScilabEval "DestroyGlobals()" "seq"

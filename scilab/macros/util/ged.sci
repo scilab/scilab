@@ -709,7 +709,7 @@ function ged_text(h)
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
-  TCL_SetVar("curforeground",string(h.foreground))
+  TCL_SetVar("curfontforeground",string(h.font_foreground))
   ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
 	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
 	 "Helvetica Bold" "Helvetica Bold Italic"];
@@ -720,6 +720,9 @@ function ged_text(h)
 //TCL_SetVar("curtextbox2",string(h.textbox(2)))
   TCL_SetVar("curtextboxmode",h.text_box_mode)
   TCL_SetVar("curtext",h.text)
+  TCL_SetVar("curforeground",string(h.foreground))
+  TCL_SetVar("curbackground",string(h.background))
+  TCL_SetVar("curboxmode",h.box)
 
   if (h.clip_box==[])
     TCL_SetVar("old_Xclipbox","")

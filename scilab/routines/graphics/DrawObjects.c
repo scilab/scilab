@@ -41,6 +41,7 @@ int Printer_YRes = 0;
 
 extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
+extern void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
 
 int xinitxend_flag = 0;
 /* sciClipTab ptabclip[15]; */
@@ -4418,9 +4419,11 @@ int labels2D_draw(sciPointObj * psubwin)
   C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
   C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
   
-  if( sciGetVisibility(ppsubwin->mon_title) == TRUE)
-    C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_title),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
-  
+  if( sciGetVisibility(ppsubwin->mon_title) == TRUE){
+    double font_angle = sciGetFontOrientation(ppsubwin->mon_title)/10.;
+    xstringb_angle(sciGetText(ppsubwin->mon_title),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
+    /*     C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_title),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
+  }
   
   /* x label */
   rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2];
@@ -4445,8 +4448,11 @@ int labels2D_draw(sciPointObj * psubwin)
   C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
   C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
   
-  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
-    C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_x_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
+  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE){
+    double font_angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
+    xstringb_angle(sciGetText(ppsubwin->mon_x_label),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
+    /*   C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_x_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
+  }
   
   /* y label */
   
@@ -4471,8 +4477,11 @@ int labels2D_draw(sciPointObj * psubwin)
   C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
   C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
   
-  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
-    C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_y_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
+  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE){
+    double font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
+    xstringb_angle(sciGetText(ppsubwin->mon_y_label),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
+    /*     C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_y_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
+  }
   
   C2F (dr) ("xset", "dashes", &old_foreground, &old_foreground, x+4, x+4, x+4, &v, &dv,
 			  &dv, &dv, &dv, 5L, 4096);
@@ -8375,26 +8384,65 @@ sciDrawObj (sciPointObj * pobj)
 	    C2F(dr)("xstringl",pTEXT_FEATURE (pobj)->ptextstring,
 		    &x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,pTEXT_FEATURE (pobj)->textlen);
 	    
-	    if(sciGetIsFilled(pobj))
-	      {
+/* 	    if(sciGetIsFilled(pobj)) */
+/* 	      { */
+/* 		x[0] = sciGetBackground(pobj); */
+		
+/* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
+/* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
+		
+/* 		C2F(dr)("xfrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3], */
+/* 			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 	      } */
+	    
+/* 	    if(sciGetIsLine(pobj)) */
+/* 	      { */
+/* 		x[0] = sciGetForeground(pobj); */
+		
+/* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
+/* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
+		
+/* 		C2F(dr)("xrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3], */
+/* 			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 	      } */
+	    	  
+	    /* F.Leray 04.08.05 */
+  	    /* For the text object, the box is inked to the IsLine functions (get/set) */
+	    /* and the box is painted inside AND on the contour at the same time */
+	    
+	    
+	    if(sciGetIsLine(pobj))
+	      {  
+/* 		char str[2] = "xv"/\*,locstr*\/; */
+		int xm[4], ym[4],n=4;
+		double cosangle = cos((360-anglestr)*M_PI/180);
+		double sinangle = sin((360-anglestr)*M_PI/180);
+		int close=1;
+		
 		x[0] = sciGetBackground(pobj);
+		
+		xm[0] = x1;
+		xm[1] = x1 + cosangle*rect1[2];
+		xm[2] = x1 + cosangle*rect1[2] + sinangle*(-rect1[3]);
+		xm[3] = x1 + sinangle*(-rect1[3]);
+		
+		ym[0] = yy1;
+		ym[1] = yy1 - sinangle*rect1[2];
+		ym[2] = yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]);
+		ym[3] = yy1 + cosangle*(-rect1[3]);
+		
 		
 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
 		
-		C2F(dr)("xfrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3],
-			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	    
-	    if(sciGetIsLine(pobj))
-	      {
+		C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		
 		x[0] = sciGetForeground(pobj);
 		
 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
 		
-		C2F(dr)("xrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3],
-			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	      }
 	    
 	    C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
