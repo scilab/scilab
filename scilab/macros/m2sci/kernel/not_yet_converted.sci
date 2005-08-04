@@ -1,6 +1,5 @@
 function allnames=not_yet_converted()
-allnames=[
-"abcdchk";
+allnames=["abcdchk";
 "accumarray";
 "acosd";
 "acotd";
@@ -23,7 +22,6 @@ allnames=[
 "and";
 "annotation";
 "anondemo";
-"ans";
 "ardemo";
 "area";
 "arith";
@@ -63,10 +61,6 @@ allnames=[
 "bessel";
 "bessela";
 "besselh";
-"besseli";
-"besselj";
-"besselk";
-"bessely";
 "betacore";
 "betainc";
 "betaln";
@@ -123,7 +117,6 @@ allnames=[
 "camzoom";
 "cart2pol";
 "cart2sph";
-"case";
 "cast";
 "cat";
 "catch";
@@ -133,12 +126,10 @@ allnames=[
 "cdfinfo";
 "cdfread";
 "cdfwrite";
-"cell2mat";
 "cell2struct";
 "celldisp";
 "cellfun";
 "cellplot";
-"cellstr";
 "census";
 "cgs";
 "changeseriestype";
@@ -319,13 +310,9 @@ allnames=[
 "ellipj";
 "ellipke";
 "ellipsoid";
-"else";
-"elseif";
 "emdenbvp";
-"end";
 "enddrag";
 "eomday";
-"eps";
 "eq";
 "erfcinv";
 "erfcore";
@@ -405,14 +392,12 @@ allnames=[
 "flow";
 "fminbnd";
 "fminsearch";
-"for";
 "fplot";
 "frame2im";
 "freeserial";
 "freqspace";
 "fsbvp";
 "func2str";
-"function";
 "function_handle";
 "functions";
 "funfuns";
@@ -536,10 +521,8 @@ allnames=[
 "hthelp";
 "htpp";
 "humps";
-"i";
 "iburgersode";
 "icondisp";
-"if";
 "ifft2";
 "ifftn";
 "ifftshift";
@@ -561,7 +544,6 @@ allnames=[
 "ind2rgb";
 "ind2sub";
 "indexhelper";
-"inf";
 "inferiorto";
 "info";
 "initdesktoputils";
@@ -579,7 +561,6 @@ allnames=[
 "int2str";
 "int64";
 "integerMath";
-"interp1";
 "interp1q";
 "interp2";
 "interp3";
@@ -620,7 +601,6 @@ allnames=[
 "isstrprop";
 "isstudent";
 "isvarname";
-"j";
 "java";
 "javaAddLsnrsToFigure";
 "javaArray";
@@ -765,7 +745,6 @@ allnames=[
 "munlock";
 "namelengthmax";
 "namelengthmax";
-"nan";
 "nargchk";
 "nargoutchk";
 "native2unicode";
@@ -832,7 +811,6 @@ allnames=[
 "ordschur";
 "orient";
 "orth";
-"otherwise";
 "overobj";
 "pack";
 "padecoef";
@@ -872,7 +850,6 @@ allnames=[
 "perms";
 "permute";
 "persistent";
-"pi";
 "pie";
 "pie3";
 "pink";
@@ -1154,7 +1131,6 @@ allnames=[
 "surfl";
 "surfnorm";
 "svds";
-"switch";
 "symamd";
 "symbfact";
 "symmlq";
@@ -1263,8 +1239,6 @@ allnames=[
 "vander";
 "vanderpoldemo";
 "var";
-"varargin";
-"varargout";
 "vdp1";
 "vdp1000";
 "vdpode";
@@ -1305,7 +1279,6 @@ allnames=[
 "what";
 "whatsnew";
 "which";
-"while";
 "white";
 "whitebg";
 "why";

@@ -25,7 +25,7 @@ first_ncl=[]
 //
 
 
-///////////////////////////
+//
 while k<size(txt,'r')
 k=k+1
 tk=txt(k)
@@ -46,7 +46,56 @@ tk=txt(k)
       end      
   end
 end
-///////////////////
+/////////////////////////////////
+k=1
+while k<size(txt,'r')
+  k=k+1
+  tk=txt(k)
+  if length(stripblanks(tk))>3 then
+    tktemp=stripblanks(tk)
+    if part(tktemp,1:3) == 'try' &  length(tktemp) > 4 then
+      if part(tktemp,4)==" " then
+        txt=[txt(1:k-1);part(tktemp,1:3);part(tktemp,5:length(tktemp));txt(k+1:size(txt,"*"))]         
+      end      
+    end
+  end
+end
+////////////////////
+k=1
+while k<size(txt,'r')
+  k=k+1
+  tk=txt(k)
+indcatch=strindex(tk,'catch')
+if indcatch<>[] then
+  tktemp=stripblanks(tk)
+  if length(tktemp)>5 then
+    for i=size(indcatch,2):-1:1
+      if indcatch(i)<>1 then
+        if or(part(tktemp,indcatch(i)-1)==[" ";",";";"]) then
+	  if length(tktemp)==indcatch(i)+4 
+	  txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):length(tktemp));txt(k+1:size(txt,"*"))]
+	  elseif or(stripblanks(part(tktemp,indcatch(i)+5:length(tktemp)))==["";",";";"]) then
+	 txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):length(tktemp));txt(k+1:size(txt,"*"))]
+	    else 
+	    indend=strindex(tktemp,'end')
+          if indend<>[]then
+	  j=max(indend)
+	  if or(part(tktemp,j-1)==["";",";";"]) then
+	  txt=[txt(1:k-1);part(tktemp,1:j-1);part(tktemp,j:j+length(tktemp))]
+	  txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):indcatch(i)+5);part(tktemp,indcatch(i)+6:j-1);txt(k+1:size(txt,"*"))]
+	  else
+	  txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):indcatch(i)+5);part(tktemp,indcatch(i)+6:length(tktemp));txt(k+1:size(txt,"*"))]
+	  end
+	  else
+	      txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):indcatch(i)+5);part(tktemp,indcatch(i)+6:length(tktemp));txt(k+1:size(txt,"*"))]
+	      end
+	    end
+	  end
+	end  
+      end
+    end
+  end
+end
 
 // Number of lines in txt (i.e. in M-file)
 n=size(txt,'r')
@@ -54,6 +103,8 @@ n=size(txt,'r')
 eoltoinsert=0
 firstctm=[]
 k=0
+nbend=0
+nblinecatch=%f
 while k<size(txt,'r')
   k=k+1
   kc=strindex(txt(k),ctm)
@@ -127,6 +178,58 @@ for k=1:n
         end
       end
 
+// try,catch,end
+tktemp=stripblanks(tk)
+ktry=strindex(tktemp,"try")
+if ktry==1 then  
+if length(tktemp)==3
+  tk="mtlb"+tktemp
+elseif and(part(tktemp(4))<>[";",",",""]) then
+  tk="mtlb"+tktemp
+end
+end
+
+tktemp=stripblanks(tk)
+kcatch=strindex(tktemp,"catch")
+
+if kcatch==1 then
+  if length(tktemp)==5 then
+    tk="mtlb"+tktemp
+    nblinecatch=%t
+    nbend=1
+  elseif and(part(tktemp(4))<>[";",",",""]) then
+    tk="mtlb"+tktemp
+    nblinecatch=%t
+    nbend=1
+  end 
+end  
+
+if nblinecatch  then
+  if nbend==0 then
+    if strindex(tktemp=='end') then 
+      tktemp="mtlb"+tktemp
+    end
+  else   
+      kclause=strindex(tk,["if ","while ","for ","case" ])
+      if kclause<>[] then
+        kcom=isacomment(tk)
+        if (kcom<>0 & kif<kcom) | (kcom==0) then
+          nbend=nbend+1    	      
+        end 
+      end
+      kend=strindex(tk,"end") 
+      if kend<>[] then
+        kcom=isacomment(tk)
+        if (kcom<>0 & kend<kcom) | (kcom==0) then
+          nbend=nbend-1	      
+        end 
+	if nbend==0 then
+	tk="mtlb"+tk
+	end
+      end
+  end
+end
+ 
   // Parenthesize expressions like 1+-2, 1*-2... which becomes 1+(-2), 1*(-2)...
   // Parentheses are deleted by comp() and will be added one more time by %?2sci function
 kop=strindex(tk,["+","-","*","/","\","^"])
@@ -439,6 +542,10 @@ if isempty(strindex(tk,"function")) then
   tk=strsubst(tk,"varargout","%varargout")
 end
 
+if nbend==0 & nblinecatch
+nblinecatch=%f
+end
+
 txt(k)=tk
 end
 end
@@ -483,4 +590,42 @@ else
     txt=[txt(first_ncl);txt(1:first_ncl(1)-1);txt(first_ncl($)+1:$)]
   end
 end
+
+ktry=[]
+kcatch=[]
+kend=[]
+for i=1:size(txt,1)
+if strindex(txt(i),'mtlbtry')<>[]
+ktry=[ktry;i]
+end
+if strindex(txt(i),'mtlbcatch')<>[]
+kcatch=[kcatch;i]
+end
+if strindex(txt(i),'mtlbend')<>[]
+kend=[kend;i]
+end
+end
+if ktry<>[] then
+for i=1:size(ktry,1)
+st="ierr=execstr(''"
+for j=ktry(i)+1:kcatch(i)-1
+txt(j)=strsubst(txt(j),"''","''''")
+txt(j)=strsubst(txt(j),"""","""""")
+if j>ktry(i)+1
+st(i)=st(i)+";"+txt(j)
+else
+st(i)=st(i)+txt(j)
+end
+end
+st(i)=st(i)+"'',''errcatch'')"
+txt(kcatch(i))="if ierr<>0 then"
+txt(kcatch(i)+1)=txt(kcatch(i)+1)
+txt(kend(i)-1)=txt(kend(i)-1)
+txt(kend(i))="end"
+end
+end
+for i=size(ktry,1):-1:1
+txt=[txt(1:ktry(i)-1);st(i);txt(kcatch(i):$)]
+end
 endfunction
+

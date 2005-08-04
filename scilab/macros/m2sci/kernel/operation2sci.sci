@@ -27,18 +27,15 @@ if mtlb_expr.operator=="ext" then
       [sci_equiv]=expression2sci(mtlb_expr,lhslist)
       return
     else
-      pause
     end
   end
 end
-
 
 opind=1
 while opind<=nboperands
   [sci_operand]=expression2sci(mtlb_expr.operands(opind))
   mtlb_expr.operands(opind)=sci_operand
   opind=opind+1
-
   // Special case for insertion, is this case, last operand (right expression) is not converted
   if mtlb_expr.operator=="ins" & opind==nboperands then
     break
