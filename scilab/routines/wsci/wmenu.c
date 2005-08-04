@@ -2131,7 +2131,6 @@ HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWi
 /*-----------------------------------------------------------------------------------*/
 void PrintString(char *lines,char *Entete)
 {
-
   	HDC PrintDC;
 	HFONT hFont, hOldFont;
 	HDC hDCmem;
@@ -2149,29 +2148,29 @@ void PrintString(char *lines,char *Entete)
 
 	
 	PrintDC=GetPrinterDC();
-	
-	
-    hFont=EzCreateFont (PrintDC, TEXT ("Courier New"),120, 0, 0, TRUE) ;
+	if (PrintDC != NULL)
+	{
+		hFont=EzCreateFont (PrintDC, TEXT ("Courier New"),120, 0, 0, TRUE) ;
 
-	hOldFont = SelectObject(PrintDC, hFont );
+		hOldFont = SelectObject(PrintDC, hFont );
 
-	hDCmem = CreateCompatibleDC(PrintDC);
-	memset( &di, 0, sizeof( DOCINFO ) );
-	di.cbSize      = sizeof( DOCINFO );
-	di.lpszDocName = "Scilab Document";
+		hDCmem = CreateCompatibleDC(PrintDC);
+		memset( &di, 0, sizeof( DOCINFO ) );
+		di.cbSize      = sizeof( DOCINFO );
+		di.lpszDocName = "Scilab Document";
 
-	TextLength = strlen(lines);
+		TextLength = strlen(lines);
 
-	GetTextMetrics(PrintDC,(TEXTMETRIC *)&tm);
+		GetTextMetrics(PrintDC,(TEXTMETRIC *)&tm);
 
-	NombredeCaracteresparLignes=GetDeviceCaps(PrintDC,HORZRES) / (tm.tmMaxCharWidth+1);
-    // la valeur HauteurCaractere contient hauteur des caractéres + l'interligne
-    HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
-    NbLigneParPage = GetDeviceCaps(PrintDC,VERTRES) / HauteurCaractere;
+		NombredeCaracteresparLignes=GetDeviceCaps(PrintDC,HORZRES) / (tm.tmMaxCharWidth+1);
+		// la valeur HauteurCaractere contient hauteur des caractéres + l'interligne
+		HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
+		NbLigneParPage = GetDeviceCaps(PrintDC,VERTRES) / HauteurCaractere;
 
-    if (TextLength > 0)
-      {
-		if ( StartDoc( PrintDC, &di ) > 0 )
+		if (TextLength > 0)
+		{
+			if ( StartDoc( PrintDC, &di ) > 0 )
 			{
 				char *LignePrint=NULL;
 				LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
@@ -2179,47 +2178,50 @@ void PrintString(char *lines,char *Entete)
 				StartPage(PrintDC);
 				PageHeader(PrintDC,Entete);
 				for (i=0;i < TextLength;i++)
+				{
+					LignePrint[Index1] = lines[i];
+					if ( Index1 == NombredeCaracteresparLignes )
 					{
-						LignePrint[Index1] = lines[i];
-						if ( Index1 == NombredeCaracteresparLignes )
+						Index2 ++;
+						LignePrint[Index1] = '\0';
+						if (LignePrint[Index1-1]== '\r') LignePrint[Index1-1] = '\0';
+						TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
+						Index1 = 0;
+						if (LignePrint)
 						{
-							Index2 ++;
+							FREE(LignePrint);
+							LignePrint=NULL;
+						}
+						LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
+					}
+					else if ( (lines[i] == '\n') )
+					{
+						Index2 ++;
+						if (Index1>0)
+						{
 							LignePrint[Index1] = '\0';
 							if (LignePrint[Index1-1]== '\r') LignePrint[Index1-1] = '\0';
 							TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
 							Index1 = 0;
-							if (LignePrint)
-							{
-								FREE(LignePrint);
-								LignePrint=NULL;
-							}
-							LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
 						}
-						else if ( (lines[i] == '\n') )
-							{
-								Index2 ++;
-								LignePrint[Index1] = '\0';
-								if (LignePrint[Index1-1]== '\r') LignePrint[Index1-1] = '\0';
-								TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
-								Index1 = 0;
-								if (LignePrint)
-								{
-									FREE(LignePrint);
-									LignePrint=NULL;
-								}
-								LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
-							}
-						else Index1 ++;
-						if (Index2 == NbLigneParPage-4)
-							{
-								Footer(PrintDC,numero);
-								EndPage (PrintDC);
-								StartPage(PrintDC);
-								numero++;
-								PageHeader(PrintDC,Entete);
-								Index2 = 3;
-							}
+						if (LignePrint)
+						{
+							FREE(LignePrint);
+							LignePrint=NULL;
+						}
+						LignePrint=(char*)MALLOC((NombredeCaracteresparLignes+1)*sizeof(char));
 					}
+					else Index1 ++;
+					if (Index2 == NbLigneParPage-4)
+					{
+						Footer(PrintDC,numero);
+						EndPage (PrintDC);
+						StartPage(PrintDC);
+						numero++;
+						PageHeader(PrintDC,Entete);
+						Index2 = 3;
+					}
+				}
 				Index2 ++;
 				LignePrint[Index1] = '\0';
 				TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, strlen(LignePrint));
@@ -2233,8 +2235,10 @@ void PrintString(char *lines,char *Entete)
 					LignePrint=NULL;
 				}
 			}
-	  }
-	  SelectObject(PrintDC, hOldFont );
+		}
+		SelectObject(PrintDC, hOldFont );
+	}
+	
 }
 /*-----------------------------------------------------------------------------------*/
 void PrintFile(char *filename)
@@ -2256,29 +2260,30 @@ void PrintFile(char *filename)
 	int NombredeCaracteresparLignes=0;
 	FILE * pFile;
 	char  line[MAXBUF];
-	
 
 	PrintDC=GetPrinterDC();
+	if (PrintDC != NULL)
+	{
 
-    hFont=EzCreateFont (PrintDC, TEXT ("Courier New"),120, 0, 0, TRUE) ;
-	hOldFont = SelectObject(PrintDC, hFont );
+		hFont=EzCreateFont (PrintDC, TEXT ("Courier New"),120, 0, 0, TRUE) ;
+		hOldFont = SelectObject(PrintDC, hFont );
 
-	hDCmem = CreateCompatibleDC(PrintDC);
-	memset( &di, 0, sizeof( DOCINFO ) );
-	di.cbSize      = sizeof( DOCINFO );
-	di.lpszDocName = MSG_SCIMSG105;
+		hDCmem = CreateCompatibleDC(PrintDC);
+		memset( &di, 0, sizeof( DOCINFO ) );
+		di.cbSize      = sizeof( DOCINFO );
+		di.lpszDocName = MSG_SCIMSG105;
 
-	GetTextMetrics(PrintDC,(TEXTMETRIC *)&tm);
+		GetTextMetrics(PrintDC,(TEXTMETRIC *)&tm);
 
-	NombredeCaracteresparLignes=GetDeviceCaps(PrintDC,HORZRES) / (tm.tmMaxCharWidth+1);
-    // la valeur HauteurCaractere contient hauteur des caractéres + l'interligne
-    HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
-    NbLigneParPage = GetDeviceCaps(PrintDC,VERTRES) / HauteurCaractere;
+		NombredeCaracteresparLignes=GetDeviceCaps(PrintDC,HORZRES) / (tm.tmMaxCharWidth+1);
+		// la valeur HauteurCaractere contient hauteur des caractéres + l'interligne
+		HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
+		NbLigneParPage = GetDeviceCaps(PrintDC,VERTRES) / HauteurCaractere;
 
-	pFile = fopen (filename,"rt");
-	if (pFile)
-    {
-		if ( StartDoc( PrintDC, &di ) > 0 )
+		pFile = fopen (filename,"rt");
+		if (pFile)
+		{
+			if ( StartDoc( PrintDC, &di ) > 0 )
 			{
 				char *LignePrint=NULL;
 				StartPage(PrintDC);
@@ -2311,7 +2316,7 @@ void PrintFile(char *filename)
 								{
 									LignePrint[j]=line[(i*NombredeCaracteresparLignes)+j];
 								}
-								
+
 							}
 							LignePrint[j]='\0';
 
@@ -2386,15 +2391,16 @@ void PrintFile(char *filename)
 							Index2 = 3;
 						}
 					}
-	 			}
+				}
 				fclose(pFile);
 
 				Footer(PrintDC,numero);
 				EndPage (PrintDC);
 				EndDoc (PrintDC);
 			}
-    }
-	SelectObject(PrintDC, hOldFont );
+		}
+		SelectObject(PrintDC, hOldFont );
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 void PrintSelection(LPTW lptw,char *Entete)
@@ -2432,7 +2438,7 @@ void PrintSelection(LPTW lptw,char *Entete)
 		
 	}
 	CloseClipboard ();
-	
+	MessageBox(NULL,MessagePaste,"e",MB_OK);
 	PrintString(MessagePaste,Entete);
 }
 /*-----------------------------------------------------------------------------------*/
