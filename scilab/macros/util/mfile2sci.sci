@@ -129,7 +129,10 @@ end
 
 // Make minor changes on syntax
 m2sci_info("Syntax modification...",-1);
+ierr=execstr('load('''+ base_name + '.tree'',''txt'',''helppart'',''batch'')','errcatch','n')
+if ierr<>0 | exists('txt')==0 | exists('batch')==0 then
 [helppart,txt,batch]=m2sci_syntax(txt)
+end
 m2sci_info("Syntax modification: Done",-1);
 
 // Write .cat file and update whatis
@@ -190,7 +193,7 @@ if txt~=[] then
   funcprot(fprot)
 
   // Get Scilab pseudo code of the function
-  m2sci_info("Macro to tree conversion...",-1);
+  m2sci_info("Macro to tree conversion...",-1); 
   macr=evstr(mname)
   mtlbtree=macr2tree(macr);
   if ~batch then
@@ -208,8 +211,7 @@ if txt~=[] then
     mtlbtree.statements(ninstr)=transformtree(mtlbtree.statements(ninstr))
     ninstr=ninstr+1
   end
-  mtlbtree=transformtree(mtlbtree)
-  
+
   // Perform the translation
   [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprint)
   
@@ -303,7 +305,6 @@ mss="****** End of mfile2sci() session ******"
 
 m2sci_info([infos;mss],-1);
 
-
 if Reclevel>1 then
   m2sci_infos=m2sci_infos_save
 end
@@ -314,5 +315,6 @@ clearglobal mtlbref_fun
 clearglobal mtlbtool_fun
 clearglobal not_mtlb_fun
 // For execution called by translatepaths()
-nametbl=resume(nametbl)
+//nametbl=resume(nametbl)
+mdelete(base_name + ".tree")
 endfunction
