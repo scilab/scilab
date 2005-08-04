@@ -709,6 +709,9 @@ cd .. &gt;nul
 				RelativePath=".\inttoolbar.c">
 			</File>
 			<File
+				RelativePath=".\inttoprint.c">
+			</File>
+			<File
 				RelativePath=".\intwinopen.c">
 			</File>
 			<File
@@ -750,6 +753,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\inttoolbar.h">
+			</File>
+			<File
+				RelativePath=".\inttoprint.h">
 			</File>
 			<File
 				RelativePath=".\intwinopen.h">

@@ -23,6 +23,7 @@ extern int C2F(intmcisendstring) _PARAMS((char *fname,unsigned long l));
 extern int C2F(intoemtochar) _PARAMS((char *fname,unsigned long l));
 extern int C2F(intchartooem) _PARAMS((char *fname,unsigned long l));
 extern int C2F(intprintsetupbox) _PARAMS((char *fname,unsigned long l));
+extern int C2F(inttoprint) _PARAMS((char *fname,unsigned long l));
 /*-----------------------------------------------------------------------------------*/
  static WintoolsTable Tab[]=
  {
@@ -45,7 +46,9 @@ extern int C2F(intprintsetupbox) _PARAMS((char *fname,unsigned long l));
   {C2F(intmcisendstring),"mcisendstring"},
   {C2F(intoemtochar),"oemtochar"},
   {C2F(intchartooem),"chartooem"},
-  {C2F(intprintsetupbox),"printsetupbox"}
+  {C2F(intprintsetupbox),"printsetupbox"},
+  {C2F(inttoprint),"toprint"}
+
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwintools)()
