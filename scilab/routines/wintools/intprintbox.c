@@ -110,7 +110,38 @@ HDC GetPrinterDC(void)
 {
 	if (PrinterHDC == NULL)
 	{
-		ConfigurePrinterDialogBox();
+		PRINTDLG pd;
+		LPDEVNAMES lpDev=NULL;
+		LPDEVMODE lpDevMode=NULL;
+		LPCTSTR lpszDevice=NULL;
+
+		int   failed = 0;       
+
+		// Reset printdlg struct 
+		memset( &pd, 0, sizeof(PRINTDLG) ); 
+		pd.Flags = PD_RETURNDEFAULT | PD_RETURNDC; 
+		pd.lStructSize = sizeof( PRINTDLG ); 
+
+
+		failed = ( ! PrintDlg( &pd ) ); 
+		if (failed)
+		{
+			ConfigurePrinterDialogBox();
+		}
+
+		lpDev = (LPDEVNAMES)GlobalLock(pd.hDevNames);
+		lpDevMode = (LPDEVMODE)GlobalLock(pd.hDevMode);
+		lpszDevice = (LPCTSTR)lpDev + lpDev->wDeviceOffset;
+
+		wsprintf(PrinterName,"%s",lpszDevice);
+		GlobalUnlock(pd.hDevNames);
+
+		if (lpDevMode->dmOrientation==DMORIENT_PORTRAIT ) PrinterOrientation='p';
+		else PrinterOrientation='l';
+		GlobalUnlock(pd.hDevMode);
+
+		PrinterHDC=pd.hDC;
+
 	}
 
 	return PrinterHDC;
