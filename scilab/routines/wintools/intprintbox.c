@@ -97,6 +97,7 @@ BOOL ConfigurePrinterDialogBox(void)
 		else PrinterOrientation='l';
 		GlobalUnlock(pd.hDevMode);
 
+		if (PrinterHDC) {DeleteDC(PrinterHDC);PrinterHDC=NULL;}
 		PrinterHDC=pd.hDC;
 		bOK=TRUE;
 	}
@@ -140,6 +141,7 @@ HDC GetPrinterDC(void)
 		else PrinterOrientation='l';
 		GlobalUnlock(pd.hDevMode);
 
+		if (PrinterHDC) {DeleteDC(PrinterHDC);PrinterHDC=NULL;}
 		PrinterHDC=pd.hDC;
 
 	}
