@@ -650,3 +650,5 @@
 {"chartooem",		IN_intwintools,	19,	2},
 {"printsetupbox",	IN_intwintools,	20,	2},
 {"toprint",	IN_intwintools,	21,	2},
+{"settextcolor",	IN_intwintools,	22,	2},
+{"settextbackgroundcolor",	IN_intwintools,	23,	2},

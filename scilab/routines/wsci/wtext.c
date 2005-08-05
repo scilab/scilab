@@ -79,7 +79,7 @@ static BOOL RegisterParentWindowClass (LPTW lptw)
 	Parentwndclass.hInstance = lptw->hInstance;
 	Parentwndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
 	Parentwndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-	Parentwndclass.hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor(COLOR_WINDOW)) ;
+	Parentwndclass.hbrBackground =(HBRUSH) CreateSolidBrush (GetIhmTextBackgroundColor()) ;
 	Parentwndclass.lpszMenuName = NULL;
 
 	if (!RegisterClass(&Parentwndclass))
@@ -110,7 +110,7 @@ static BOOL RegisterTextWindowClass (LPTW lptw)
 	Textwndclass.hInstance = lptw->hInstance;
 	Textwndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
 	Textwndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-	Textwndclass.hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+	Textwndclass.hbrBackground =(HBRUSH) CreateSolidBrush (GetIhmTextBackgroundColor());
 	Textwndclass.lpszMenuName = NULL;
 	Textwndclass.lpszClassName = szTextClass;
 	if (!RegisterClass(&Textwndclass))
@@ -127,7 +127,7 @@ static BOOL RegisterTextWindowClass (LPTW lptw)
 	}
 	else 
 	{
-		lptw->hbrBackground =(HBRUSH) CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+		lptw->hbrBackground =(HBRUSH) CreateSolidBrush (GetIhmTextBackgroundColor());
 		bOK=TRUE;
 	}
 
@@ -140,6 +140,7 @@ static BOOL RegisterTextWindowClass (LPTW lptw)
  *********************************************/
 static void CreateTextClass (LPTW lptw)
 {	
+	InitIhmDefaultColor();
 	if (!RegisterParentWindowClass (lptw)) exit(1);
 	if (!RegisterTextWindowClass (lptw)) exit(1);
 }
@@ -356,8 +357,8 @@ void UpdateText (LPTW lptw, int count)
   ypos = lptw->CursorPos.y * lptw->CharSize.y - lptw->ScrollPos.y;
   hdc = GetDC (lptw->hWndText);
 
-  SetTextColor (hdc, GetSysColor (COLOR_WINDOWTEXT));
-  SetBkColor (hdc, GetSysColor (COLOR_WINDOW));
+  SetTextColor (hdc, GetIhmTextColor());
+  SetBkColor (hdc, GetIhmTextBackgroundColor());
 
   //if (lptw->bSysColors)
   //  {
@@ -562,8 +563,8 @@ void DoLine(LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count)
 			pa++;
 		}
 
-		SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
-		SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
+		SetTextColor(hdc, GetIhmTextColor());
+		SetBkColor(hdc, GetIhmTextBackgroundColor());
 
 		//if (lptw->bSysColors)
 		//{
@@ -882,9 +883,9 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		    					  SWP_NOZORDER | SWP_NOACTIVATE);
 	
     			}	   
-    			InvalidateRect(lptw->hWndParent, (LPRECT) NULL, TRUE);
-    			InvalidateRect(lptw->hWndText, (LPRECT) NULL, TRUE);
-    			UpdateWindow (lptw->hWndText);
+    			//InvalidateRect(lptw->hWndParent, (LPRECT) NULL, TRUE);
+    			//InvalidateRect(lptw->hWndText, (LPRECT) NULL, TRUE);
+    			//UpdateWindow (lptw->hWndText);
 			}
 		return (0);
 
@@ -905,11 +906,23 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		if (IsWindow (lptw->hWndText))SetFocus (lptw->hWndText);
 		SendMessage (lptw->hWndText, message, wParam, lParam);
 		/* pass on menu commands */
-		return (0);
+	return (0);
+
+	case WM_SYSCOLORCHANGE:
+		InitIhmDefaultColor();
+		SetIhmSystemDefaultTextBackgroundColor();
+		SetIhmSystemDefaultTextColor();
+
+		SendMessage (lptw->hWndText, WM_SYSCOLORCHANGE, (WPARAM) 0, (LPARAM) 0);
+	return (0);
 		case WM_PAINT:
 		{
-			hdc = BeginPaint (hwnd, &ps);
+			RECT rect;
 
+			hdc = BeginPaint (hwnd, &ps);
+			GetClientRect (hwnd, &rect);
+			//hbrush = CreateSolidBrush (GetIhmTextBackgroundColor());
+			FillRect (hdc, &rect, lptw->hbrBackground);
 			
 
 			if (lptw->ButtonHeight)
@@ -1629,8 +1642,11 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  }
       return (0);
     case WM_SYSCOLORCHANGE:
-      DeleteBrush (lptw->hbrBackground);
-      lptw->hbrBackground = CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+		InitIhmDefaultColor();
+		SetIhmSystemDefaultTextBackgroundColor();
+		SetIhmSystemDefaultTextColor();
+      /*DeleteBrush (lptw->hbrBackground);
+      lptw->hbrBackground = CreateSolidBrush (GetIhmTextBackgroundColor());*/
       return (0);
     case WM_ERASEBKGND:
       return (1);		/* we will erase it ourselves */
@@ -1644,11 +1660,14 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	
 	hdc = BeginPaint (hwnd, &ps);
 	{
-		HBRUSH hbrush;
+		/*HBRUSH hbrush;
 		GetClientRect (hwnd, &rect);
-		hbrush = CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+		hbrush = CreateSolidBrush (GetIhmTextBackgroundColor());
 		FillRect (hdc, &rect, hbrush);
-		DeleteBrush (hbrush);
+		DeleteBrush (hbrush);*/
+		GetClientRect (hwnd, &rect);
+		FillRect (hdc, &rect, lptw->hbrBackground);
+
 	}
 	if (ps.fErase)  FillRect (hdc, &ps.rcPaint, lptw->hbrBackground);
 
@@ -1975,8 +1994,8 @@ POINT pt;
 	ypos = lptw->CursorPos.y*lptw->CharSize.y - lptw->ScrollPos.y;
 	hdc = GetDC(lptw->hWndText);
 
-	SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
-	SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
+	SetTextColor(hdc, GetIhmTextColor());
+	SetBkColor(hdc, GetIhmTextBackgroundColor());
 
 	//if (lptw->bSysColors) {
 	//    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));

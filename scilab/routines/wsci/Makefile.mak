@@ -10,7 +10,7 @@ wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj Events.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
 	command.obj readcons.obj x_zzledt.obj jpc_Xloop.obj sh.obj \
-	strings.obj files.obj tclWinError.obj win_mem_alloc.obj
+	strings.obj files.obj tclWinError.obj win_mem_alloc.obj ihmcolor.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 
