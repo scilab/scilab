@@ -2438,7 +2438,6 @@ void PrintSelection(LPTW lptw,char *Entete)
 		
 	}
 	CloseClipboard ();
-	MessageBox(NULL,MessagePaste,"e",MB_OK);
 	PrintString(MessagePaste,Entete);
 }
 /*-----------------------------------------------------------------------------------*/
