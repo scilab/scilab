@@ -22,10 +22,6 @@ batch=%t
 
 k=0
 first_ncl=[]
-//
-
-
-//
 while k<size(txt,'r')
 k=k+1
 tk=txt(k)
@@ -46,7 +42,8 @@ tk=txt(k)
       end      
   end
 end
-/////////////////////////////////
+
+// try and catch 
 k=1
 while k<size(txt,'r')
   k=k+1
@@ -60,7 +57,8 @@ while k<size(txt,'r')
     end
   end
 end
-////////////////////
+//
+
 k=1
 while k<size(txt,'r')
   k=k+1
@@ -78,7 +76,7 @@ if indcatch<>[] then
 	 txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):length(tktemp));txt(k+1:size(txt,"*"))]
 	    else 
 	    indend=strindex(tktemp,'end')
-          if indend<>[]then
+          if indend<>[] then
 	  j=max(indend)
 	  if or(part(tktemp,j-1)==["";",";";"]) then
 	  txt=[txt(1:k-1);part(tktemp,1:j-1);part(tktemp,j:j+length(tktemp))]
@@ -99,7 +97,6 @@ end
 
 // Number of lines in txt (i.e. in M-file)
 n=size(txt,'r')
-
 eoltoinsert=0
 firstctm=[]
 k=0
@@ -178,7 +175,7 @@ for k=1:n
         end
       end
 
-// try,catch,end
+// try and catch
 tktemp=stripblanks(tk)
 ktry=strindex(tktemp,"try")
 if ktry==1 then  
@@ -229,7 +226,8 @@ if nblinecatch  then
       end
   end
 end
- 
+//
+
   // Parenthesize expressions like 1+-2, 1*-2... which becomes 1+(-2), 1*(-2)...
   // Parentheses are deleted by comp() and will be added one more time by %?2sci function
 kop=strindex(tk,["+","-","*","/","\","^"])
@@ -543,7 +541,7 @@ if isempty(strindex(tk,"function")) then
 end
 
 if nbend==0 & nblinecatch
-nblinecatch=%f
+  nblinecatch=%f
 end
 
 txt(k)=tk
@@ -552,8 +550,8 @@ end
 
 // When there is just help line in txt
 if ~endofhelp then
-txt=[] 
-return
+  txt=[] 
+  return
 end
 
 // Syntax modification
@@ -591,41 +589,43 @@ else
   end
 end
 
+// try and catch
 ktry=[]
 kcatch=[]
 kend=[]
 for i=1:size(txt,1)
-if strindex(txt(i),'mtlbtry')<>[]
-ktry=[ktry;i]
-end
-if strindex(txt(i),'mtlbcatch')<>[]
-kcatch=[kcatch;i]
-end
-if strindex(txt(i),'mtlbend')<>[]
-kend=[kend;i]
-end
+  if strindex(txt(i),'mtlbtry')<>[]
+    ktry=[ktry;i]
+  end
+  if strindex(txt(i),'mtlbcatch')<>[]
+    kcatch=[kcatch;i]
+  end
+  if strindex(txt(i),'mtlbend')<>[]
+    kend=[kend;i]
+  end
 end
 if ktry<>[] then
-for i=1:size(ktry,1)
-st="ierr=execstr(''"
-for j=ktry(i)+1:kcatch(i)-1
-txt(j)=strsubst(txt(j),"''","''''")
-txt(j)=strsubst(txt(j),"""","""""")
-if j>ktry(i)+1
-st(i)=st(i)+";"+txt(j)
-else
-st(i)=st(i)+txt(j)
-end
-end
-st(i)=st(i)+"'',''errcatch'')"
-txt(kcatch(i))="if ierr<>0 then"
-txt(kcatch(i)+1)=txt(kcatch(i)+1)
-txt(kend(i)-1)=txt(kend(i)-1)
-txt(kend(i))="end"
-end
+  for i=1:size(ktry,1)
+    st="ierr=execstr(''"
+    for j=ktry(i)+1:kcatch(i)-1
+      txt(j)=strsubst(txt(j),"''","''''")
+      txt(j)=strsubst(txt(j),"""","""""")
+      if j>ktry(i)+1
+        st(i)=st(i)+";"+txt(j)
+      else
+        st(i)=st(i)+txt(j)
+      end
+    end
+    st(i)=st(i)+"'',''errcatch'')"
+    txt(kcatch(i))="if ierr<>0 then"
+    txt(kcatch(i)+1)=txt(kcatch(i)+1)
+    txt(kend(i)-1)=txt(kend(i)-1)
+    txt(kend(i))="end"
+  end
 end
 for i=size(ktry,1):-1:1
-txt=[txt(1:ktry(i)-1);st(i);txt(kcatch(i):$)]
+  txt=[txt(1:ktry(i)-1);st(i);txt(kcatch(i):$)]
 end
+//
 endfunction
 
