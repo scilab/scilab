@@ -26,10 +26,12 @@ BOOL SetIhmSystemDefaultTextBackgroundColor(void);
 BOOL SetIhmSystemDefaultTextColor(void);
 void InitIhmDefaultColor(void);
 
-BOOL SetIhmTextBackgroundColor(int R,int G,int B);
-BOOL SetIhmTextColor(int R,int G,int B);
+BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
+BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
 DWORD GetIhmTextColor(void);
 DWORD GetIhmTextBackgroundColor(void);
+
+BOOL ChooseColorBox(int *R,int *G,int *B);
 
 #endif /* __IHMCOLOR__ */
 /*-----------------------------------------------------------------------------------*/ 

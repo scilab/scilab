@@ -382,6 +382,55 @@ void Callback_ENGLISH(void)
 		}
 }
 /*-----------------------------------------------------------------------------------*/
+void Callback_TEXTCOLOR(void)
+{
+	int R,G,B;
+
+	R=GetRValue(GetIhmTextColor());
+	G=GetGValue(GetIhmTextColor());
+	B=GetBValue(GetIhmTextColor());
+
+	if (ChooseColorBox(&R,&G,&B))
+	{
+		extern char ScilexWindowName[MAX_PATH];
+		LPTW lptw;
+		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+		SetIhmTextColor(R,G,B,TRUE);
+		lptw->bSysColors=0;
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_BACKGROUNDCOLOR(void)
+{
+	int R,G,B;
+
+	R=GetRValue(GetIhmTextBackgroundColor());
+	G=GetGValue(GetIhmTextBackgroundColor());
+	B=GetBValue(GetIhmTextBackgroundColor());
+
+	if (ChooseColorBox(&R,&G,&B))
+	{
+		extern char ScilexWindowName[MAX_PATH];
+		LPTW lptw;
+		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+		SetIhmTextBackgroundColor(R,G,B,TRUE);
+		lptw->bSysColors=0;
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void Callback_SYSTEMCOLOR(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	lptw->bSysColors=1;
+	SetIhmSystemDefaultTextColor();
+	SetIhmSystemDefaultTextBackgroundColor();
+}
+/*-----------------------------------------------------------------------------------*/
 void Callback_CHOOSETHEFONT(void)
 {
 	extern char ScilexWindowName[MAX_PATH];
@@ -657,6 +706,17 @@ void SendMacro (LPTW lptw, UINT m)
 	    		Callback_ENGLISH();
 	    		return;
 	    	break;
+			case TEXTCOLOR:
+				Callback_TEXTCOLOR();
+				return;
+			case BACKGROUNDCOLOR:
+				Callback_BACKGROUNDCOLOR();
+				return;
+			case SYSTEMCOLOR:
+				Callback_SYSTEMCOLOR();
+				return;
+
+
 	    	case CHOOSETHEFONT:
 	    		Callback_CHOOSETHEFONT();
 	      		s++;

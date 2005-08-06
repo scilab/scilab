@@ -91,7 +91,18 @@
  				&English
  					[ENGLISH]
  		[EndMenu]
- 			
+ 		
+ 		[Menu]
+ 			C&ouleurs
+ 				&Texte ...
+ 					[TEXTCOLOR]
+ 				&Fond ...
+ 					[BACKGROUNDCOLOR]
+        	    -- 					
+ 				&Couleurs par défaut
+ 					[SYSTEMCOLOR]
+  		[EndMenu]
+ 			 			
  		&Barre d'outils	F3
 				[TOOLBAR]	
 		Changer la &police ...

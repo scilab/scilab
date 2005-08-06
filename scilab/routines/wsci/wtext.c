@@ -140,7 +140,6 @@ static BOOL RegisterTextWindowClass (LPTW lptw)
  *********************************************/
 static void CreateTextClass (LPTW lptw)
 {	
-	InitIhmDefaultColor();
 	if (!RegisterParentWindowClass (lptw)) exit(1);
 	if (!RegisterTextWindowClass (lptw)) exit(1);
 }
@@ -154,8 +153,11 @@ EXPORT int WINAPI TextInit (LPTW lptw)
   HMENU sysmenu;
   HGLOBAL hglobal;
   
+  lptw->hWndParent=NULL;
+  lptw->hWndText=NULL;
 
   ReadTextIni (lptw);
+  if (lptw->bSysColors) InitIhmDefaultColor();
 
   if (!lptw->hPrevInstance)    CreateTextClass (lptw);
 
@@ -360,17 +362,6 @@ void UpdateText (LPTW lptw, int count)
   SetTextColor (hdc, GetIhmTextColor());
   SetBkColor (hdc, GetIhmTextBackgroundColor());
 
-  //if (lptw->bSysColors)
-  //  {
-  //    SetTextColor (hdc, GetSysColor (COLOR_WINDOWTEXT));
-  //    SetBkColor (hdc, GetSysColor (COLOR_WINDOW));
-  //  }
-  //else
-  //  {
-  //    SetTextColor (hdc, TextFore (lptw->Attr));
-  //    SetBkColor (hdc, TextBack (lptw->Attr));
-  //  }
-
   SelectFont (hdc, lptw->hfont);
   TextOut (hdc, xpos, ypos,
       (LPSTR) (lptw->ScreenBuffer + lptw->CursorPos.y * lptw->ScreenSize.x +
@@ -565,17 +556,7 @@ void DoLine(LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count)
 
 		SetTextColor(hdc, GetIhmTextColor());
 		SetBkColor(hdc, GetIhmTextBackgroundColor());
-
-		//if (lptw->bSysColors)
-		//{
-		//    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
-		//    SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
-		//}
-		//else
-		//{
-		//    SetTextColor(hdc, TextFore(attr));
-		//    SetBkColor(hdc, TextBack(attr));
-		//}
+	
 		TextOut(hdc,xpos,ypos, (LPSTR)(lptw->ScreenBuffer + offset + idx),
 			count-num-idx);
 		xpos += lptw->CharSize.x * (count-num-idx);
@@ -596,17 +577,6 @@ void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark)
   SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
   SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
 
-  //if (lptw->bSysColors)
-  //  {
-  //    SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
-  //    SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-  //  }
-  //else
-  //  {
-  //    SetTextColor (hdc, MARKFORE);
-  //    SetBkColor (hdc, MARKBACK);
-  //  }
-
   while (pt.y < end.y)
     {
       /* multiple lines */
@@ -621,17 +591,6 @@ void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark)
 
 	  SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
 	  SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-
-	  //if (lptw->bSysColors)
-	  //  {
-	  //    SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
-	  //    SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-	  //  }
-	  //else
-	  //  {
-	  //    SetTextColor (hdc, MARKFORE);
-	  //    SetBkColor (hdc, MARKBACK);
-	  //  }
 	}
       offset += count;
       pt.y++;
@@ -840,7 +799,6 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 				case M_COPY_CLIP:
 				case M_PASTE:
 				case M_CHOOSE_FONT:
-				case M_SYSCOLORS:
 				case M_WRITEINI:
 				case M_ABOUT:
 						SendMessage (lptw->hWndText, WM_COMMAND, wParam, lParam);
@@ -909,10 +867,12 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 	return (0);
 
 	case WM_SYSCOLORCHANGE:
-		InitIhmDefaultColor();
-		SetIhmSystemDefaultTextBackgroundColor();
-		SetIhmSystemDefaultTextColor();
-
+		if (lptw->bSysColors)
+		{
+			InitIhmDefaultColor();
+			SetIhmSystemDefaultTextBackgroundColor();
+			SetIhmSystemDefaultTextColor();
+		}
 		SendMessage (lptw->hWndText, WM_SYSCOLORCHANGE, (WPARAM) 0, (LPARAM) 0);
 	return (0);
 		case WM_PAINT:
@@ -1574,16 +1534,6 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  case M_CHOOSE_FONT:
 	    TextSelectFont (lptw);
 	    return 0;
-	  case M_SYSCOLORS:
-	    lptw->bSysColors = !lptw->bSysColors;
-	    if (lptw->bSysColors)
-	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_CHECKED);
-	    else
-	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_UNCHECKED);
-	    SendMessage (hwnd, WM_SYSCOLORCHANGE, (WPARAM) 0, (LPARAM) 0);
-	    InvalidateRect (hwnd, (LPRECT) NULL, 1);
-	    UpdateWindow (hwnd);
-	    return 0;
 	  case M_WRITEINI:
 	    WriteTextIni (lptw);
 	    return 0;
@@ -1642,12 +1592,13 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  }
       return (0);
     case WM_SYSCOLORCHANGE:
-		InitIhmDefaultColor();
-		SetIhmSystemDefaultTextBackgroundColor();
-		SetIhmSystemDefaultTextColor();
-      /*DeleteBrush (lptw->hbrBackground);
-      lptw->hbrBackground = CreateSolidBrush (GetIhmTextBackgroundColor());*/
-      return (0);
+		if (lptw->bSysColors)
+		{
+			InitIhmDefaultColor();
+			SetIhmSystemDefaultTextBackgroundColor();
+			SetIhmSystemDefaultTextColor();
+		}
+    return (0);
     case WM_ERASEBKGND:
       return (1);		/* we will erase it ourselves */
     case WM_PAINT:
@@ -1734,16 +1685,6 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		  {
 			SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
 			SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-		 //   if (lptw->bSysColors)
-		 //     {
-			//SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
-			//SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-		 //     }
-		 //   else
-		 //     {
-			//SetTextColor (hdc, MARKFORE);
-			//SetBkColor (hdc, MARKBACK);
-		 //     }
 		    TextOut (hdc, dest.x + lptw->CharSize.x * offset, dest.y,
 			     (LPSTR) (lptw->ScreenBuffer + source.y * lptw->ScreenSize.x
 				      + source.x + offset), count);
@@ -1996,15 +1937,7 @@ POINT pt;
 
 	SetTextColor(hdc, GetIhmTextColor());
 	SetBkColor(hdc, GetIhmTextBackgroundColor());
-
-	//if (lptw->bSysColors) {
-	//    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
-	//    SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
-	//}
-	//else {
-	//    SetTextColor(hdc, TextFore(lptw->Attr));
-	//    SetBkColor(hdc, TextBack(lptw->Attr));
-	//}
+	
 	SelectObject(hdc, (lptw->hfont));
 	TextOut(hdc,xpos,ypos,
 		(LPSTR)(lptw->ScreenBuffer + lptw->CursorPos.y*lptw->ScreenSize.x + 

@@ -92,6 +92,17 @@
  				&English
  					[ENGLISH]
  		[EndMenu]
+ 		
+ 		[Menu]
+ 			C&olors
+ 				&Text ...
+ 					[TEXTCOLOR]
+ 				&Background ...
+ 					[BACKGROUNDCOLOR]
+        	    -- 					
+ 				&Default System Colors
+ 					[SYSTEMCOLOR]
+  		[EndMenu]
  			
  		&Toolbar	F3
 				[TOOLBAR]	
