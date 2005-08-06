@@ -98,9 +98,6 @@ extern EXPORT BOOL CALLBACK  PrintDlgProc(HWND hDlg, UINT message, WPARAM wParam
 extern HWND InitStatusBar (HWND hwndParent);
 
 /* command.c */
-
-extern void do_shell();
-extern void do_system();
 extern int com_line(void);
 extern void switch_rlgets(int);
 extern int read_line (char *prompt, int interrupt);
@@ -117,8 +114,8 @@ extern void WinExit(void);
 extern EXPORT int CALLBACK ShutDown(void);
 extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);
-extern int ReadKey(void);
-extern int WriteStr(char *s, FILE *file);
+
+
 extern int WriteKey(char c, FILE *file);
 
 /* ../menusX */
@@ -163,8 +160,6 @@ extern int gp_printfile(HINSTANCE hInstance,HWND hwnd,char *filename, char *port
 
 extern void SetXsciOn();
 extern int C2F(xscion)(int *i);
-extern void C2F(winsci) (char *pname,int *nos,int *idisp,char *display,
-	     long int dummy1,long int dummy2);
 extern int C2F(getmen)(char *,integer *,integer *);
 extern integer C2F(ismenu)(void);
 extern int GetCommand(char *);
@@ -172,7 +167,6 @@ extern int StoreCommand1(char *,int);
 extern int StoreCommand(char *);
 
 /* misc */
-
 extern char *alloc(unsigned long size,char * message);
 extern void squash_spaces(char *s);
 extern void lower_case(char *s);

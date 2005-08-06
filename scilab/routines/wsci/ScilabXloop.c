@@ -138,31 +138,6 @@ void TextMessage1 (int ctrlflag)
       CtrlCHit (&textwin);
     }
 }
-/** function used in wtext.c in function TextGetCh  must wait for an event **/
-/*-----------------------------------------------------------------------------------*/
-void TextMessage2()
-{
-#ifdef WITH_TK
-  flushTKEvents ();
-#else 
-  MSG msg;
-#endif
-#ifdef WITH_TK
-  if (  tcl_check_one_event() == 1) 
-    {
-      /*sciprint("tcl event %l\r\n",msg.hwnd);*/
-    }
-#else 
-  GetMessage(&msg, 0, 0, 0);
-  TranslateMessage(&msg);
-  DispatchMessage(&msg);
-  while (  PeekMessage(&msg, 0, 0, 0,PM_REMOVE) ) 
-    {
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-    }
-#endif
-}
 /*-----------------------------------------------------------------------------------*/
 int C2F (sxevents) ()
 {
@@ -177,8 +152,6 @@ int C2F (sxevents) ()
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
-
-
 /**********************************************************************
  * For Fortran call 
  **********************************************************************/
@@ -201,29 +174,3 @@ static void strip_blank (source)
 }
 
 /**********************************************************************/
-
-void C2F (winsci) (char *pname, int *nos, int *idisp, char *display,
-		   long int dummy1, long int dummy2)
-{
-  char *argv[10];
-  int argc = 1;
-  strip_blank (pname);
-  argv[0] = pname;
-  if (*idisp == 1)
-    {
-      argv[argc++] = "-display";
-      strip_blank (display);
-      argv[argc++] = display;
-    }
-  if (*nos == 1)
-    argv[argc++] = "-ns";
-  argv[argc++] = "-name";
-  argv[argc++] = "Scilab";
-  /* XXXXXX main_sci(argc,argv); */
-}
-
-void
-sigblock ()
-{
-}
-

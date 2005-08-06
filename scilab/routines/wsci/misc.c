@@ -55,38 +55,36 @@
 
 extern char input_line[];
 extern jmp_buf env;		/* from plot.c */
-
 /****************************************************************
- *alloc:
- * allocate memory 
- * This is a protected version of malloc. It causes an int_error 
- * if there is not enough memory. If message is NULL, we 
- * allow NULL return. Otherwise, we handle the error, using the
- * message to create the int_error string. Note cp/sp_extend uses realloc,
- * so it depends on this using malloc().
- *****************************************************************/
+*alloc:
+* allocate memory 
+* This is a protected version of malloc. It causes an int_error 
+* if there is not enough memory. If message is NULL, we 
+* allow NULL return. Otherwise, we handle the error, using the
+* message to create the int_error string. Note cp/sp_extend uses realloc,
+* so it depends on this using malloc().
+*****************************************************************/
 
 char * alloc (unsigned long size, char *message)
-     /* unsigned long size;     # of bytes */
-     /* char *message;           description of what is being allocated */
+/* unsigned long size;     # of bytes */
+/* char *message;           description of what is being allocated */
 {
-  char *p;			/* the new allocation */
-  char errbuf[100];		/* error message string */
-  p = MALLOC ((size_t) size);	/* try again */
-  if (p == (char *) NULL)
-    {
-      /* really out of memory */
-      if (message != NULL)
+	char *p;			/* the new allocation */
+	char errbuf[100];		/* error message string */
+	p = MALLOC ((size_t) size);	/* try again */
+	if (p == (char *) NULL)
 	{
-	  (void) sprintf (errbuf, MSG_ERROR75, message);
-	  int_error (errbuf, NO_CARET);
-	  /* NOTREACHED */
+		/* really out of memory */
+		if (message != NULL)
+		{
+			(void) sprintf (errbuf, MSG_ERROR75, message);
+			int_error (errbuf, NO_CARET);
+			/* NOTREACHED */
+		}
+		/* else we return NULL */
 	}
-      /* else we return NULL */
-    }
-  return (p);
+	return (p);
 }
-
 /******************************************************
  * find char c in string str; return p such that str[p]==c;
  * if c not in str then p=strlen(str)
@@ -103,21 +101,7 @@ int instring (char *str, char c)
   return (pos);
 }
 
-/******************************************************
- * Error message followed by longjmp 
- *****************************************************/
 
-void 
-os_error (char *str, int t_num)
-{
-  /* reprint line if screen has been written to */
-  if (t_num != NO_CARET)
-    {				/* put caret under error */
-      sciprint ("\n%s%s\n", PROMPT, input_line);
-    }
-  sciprint ("\t%s\n", str);
-  longjmp (env, TRUE);		/* bail out to command line */
-}
 
 void 
 int_error (char *str, int t_num)

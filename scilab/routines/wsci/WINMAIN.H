@@ -45,7 +45,6 @@
 /*-----------------------------------------------------------------------------------*/
 TW textwin;
 GW graphwin;
-PW pausewin;
 MW menuwin;
 
 LPSTR szMenuName;

@@ -23,8 +23,7 @@ static void FileNameChange __PARAMS ((char *filein, char *fileout, char *, char 
 
 static char entete[256], base[54];
 
-int 
-ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double ys)
+int ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, double ys)
 {
   double wide, high, widecm, highcm, hscale, vscale;
   int flag = 0, rep;

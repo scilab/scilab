@@ -11,12 +11,8 @@
    (i.e with _Windows or without)
    with __MINGWIN32__ and other windows compilers 
    #define _Windows is needed
-
-   when  _Windows is activated see 
-   printf.c WriteStr and WriteKey 
-   file add #define UseWIN
-
- */
+ 
+*/
 
 #ifndef  __CYGWIN32__
 #define _Windows

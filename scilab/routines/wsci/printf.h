@@ -53,9 +53,5 @@ extern void Xputchar ();
 void Xputchar (c);
 void Xputstring (str, n);
 void Scisncr (str);
-int ReadKey (void);
-int WriteStr (char *s, FILE * file);
-int WriteKey (char c, FILE * file);
-
 
 #endif /* __PRINTF_H__ */

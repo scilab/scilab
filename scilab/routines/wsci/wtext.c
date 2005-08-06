@@ -1781,17 +1781,8 @@ EXPORT int WINAPI TextGetCh (LPTW lptw)
     if ( (!GetThreadPasteRunning()) && (!WriteInKeyBuf) ) Sleep(1); 
     TextMessage();
   } while (!TextKBHit(lptw));
-
-/*   
-  while (!TextKBHit (lptw))
-    {
-      TextMessage2 ();
-    }
-*/  
   
   ch = *lptw->KeyBufOut++;
-  
-  //if (ch == '\r') ch = '\n';
   
   
   /* Interception de Ctrl+C */

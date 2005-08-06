@@ -5,13 +5,12 @@ LIBRARY = $(SCIDIR)/libs/wsci.lib
 
 OBJSC1 = printf.obj FilesAssociations.obj GetOS.obj SciEnv.obj WinConsole.obj \
 dde.obj interfdde.obj registry.obj FindScilab.obj clipboard.obj wmcopydata.obj \
-wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
+wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wgraph.obj winmain.obj \
 wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj Events.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
-	command.obj readcons.obj x_zzledt.obj ScilabXloop.obj sh.obj \
-	strings.obj win_mem_alloc.obj ihmcolor.obj \
-	TextToPrint.obj
+	command.obj readcons.obj x_zzledt.obj ScilabXloop.obj \
+	win_mem_alloc.obj ihmcolor.obj TextToPrint.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 
@@ -65,8 +64,6 @@ all:: ../../bin/lpr.exe
 
 lpr.obj : gvwprn.c 
 
-#=================== runscilab========================
-
 #================== dependencies
 dde.obj: dde.c
 interfdde.obj: interfdde.c
@@ -106,10 +103,9 @@ readwin.obj: readwin.c readline.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h wadd.h common.h wtext.h
-runscilab.obj: runscilab.c
 scimain.obj: scimain.c
-sh.obj: sh.c common.h ../machine.h
-strings.obj: strings.c dstrings.h
+
+
 win_mem_alloc.obj: win_mem_alloc.c
 wgmenu.obj: wgmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \

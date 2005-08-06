@@ -63,32 +63,6 @@ typedef struct tagPRINT {
 typedef PRINT *  LP_PRINT; 
 
 /*****************************************
- * wpause.c - pause window structure *
- *****************************************/
-
-typedef struct tagPW
-{
-	HINSTANCE	hInstance;		/* required */
-	HINSTANCE	hPrevInstance;	/* required */
-	LPSTR	Title;			/* required */
-	LPSTR	Message;		/* required */
-	POINT	Origin;			/* optional */
-	HWND	hWndParent;		/* optional */
-	HWND	hWndPause;
-	HWND	hOK;
-	HWND	hCancel;
-	BOOL	bPause;
-	BOOL	bPauseCancel;
-	BOOL	bDefOK;
-	WNDPROC	lpfnOK;
-	WNDPROC	lpfnCancel;
-	WNDPROC	lpfnPauseButtonProc;
-} PW;
-typedef PW *  LPPW;
-
-EXPORT int  WINAPI  PauseBox(LPPW lppw);
-
-/*****************************************
  * wmenu.c - menu structure *
  *****************************************/
 
@@ -183,7 +157,6 @@ typedef TW *  LPTW;
  *****************************************/
 
 EXPORT void WINAPI TextMessage(void);
-EXPORT void TextMessage2(void);
 EXPORT void TextMessage1(int);
 EXPORT int  WINAPI  TextInit(LPTW lptw);
 EXPORT void WINAPI  TextClose(LPTW lptw);

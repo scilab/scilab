@@ -954,11 +954,7 @@ static void SavePs (struct BCG *ScilabGC)
       wininfo (MSG_SCIMSG99);
       dos2win32 (filename, filename1);
       scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
-
-
       ori = (ls.land == 1) ? 'l' : 'p';
-
-
       ScilabPsToTeX (ori, filename1, filename, 1.0, 1.0);
       wininfo (MSG_SCIMSG100);
       SetCursor (LoadCursor (NULL, IDC_CROSS));

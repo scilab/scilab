@@ -116,10 +116,7 @@ int Console_Main(int argc, char **argv)
 
   menuwin.szMenuName = szMenuName;
 
-  pausewin.hInstance = GetModuleHandle(MSG_SCIMSG9);
-  pausewin.hPrevInstance = 0;
-  pausewin.Title = MSG_SCIMSG22;
-
+  
   graphwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
   graphwin.hPrevInstance = 0;
   graphwin.Title =  MSG_SCIMSG23 ;
@@ -253,10 +250,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	CheckMemory (textwin.AboutText);
 
 	menuwin.szMenuName = szMenuName;
-
-	pausewin.hInstance = hInstance;
-	pausewin.hPrevInstance = hPrevInstance;
-	pausewin.Title = MSG_SCIMSG22;
 
 	graphwin.hInstance = hInstance;
 	graphwin.hPrevInstance = hPrevInstance;
@@ -553,12 +546,6 @@ static void CheckMemory (LPSTR str)
 		exit (1);
 	}
 #endif
-}
-/*-----------------------------------------------------------------------------------*/
-int Pause (LPSTR str)
-{
-	pausewin.Message = str;
-	return (PauseBox (&pausewin) == IDOK);
 }
 /*-----------------------------------------------------------------------------------*/
 /*---------------------------------------------------

@@ -18,9 +18,6 @@ extern int sciprint2(int v,char *fmt,...);
 extern void WinExit(void);
 extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);
-extern int ReadKey(void);
-int WriteStr(char *s, FILE *file);
-int WriteKey(char c, FILE *file);
 
 /* winmain */ 
 
