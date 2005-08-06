@@ -9,8 +9,9 @@ wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj 
 wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj Events.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
-	command.obj readcons.obj x_zzledt.obj jpc_Xloop.obj sh.obj \
-	strings.obj files.obj tclWinError.obj win_mem_alloc.obj ihmcolor.obj
+	command.obj readcons.obj x_zzledt.obj ScilabXloop.obj sh.obj \
+	strings.obj win_mem_alloc.obj ihmcolor.obj \
+	TextToPrint.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 
@@ -79,12 +80,11 @@ command.obj: command.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h wadd.h common.h plot.h wtext.h
-files.obj: files.c dstrings.h
 gvwprn.obj: gvwprn.c gvwin.h wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h wadd.h common.h
-jpc_Xloop.obj: jpc_Xloop.c wresource.h wcommon.h ../graphics/Math.h \
+ScilabXloop.obj: ScilabXloop.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h wadd.h common.h
@@ -110,7 +110,6 @@ runscilab.obj: runscilab.c
 scimain.obj: scimain.c
 sh.obj: sh.c common.h ../machine.h
 strings.obj: strings.c dstrings.h
-tclWinError.obj: tclWinError.c
 win_mem_alloc.obj: win_mem_alloc.c
 wgmenu.obj: wgmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \

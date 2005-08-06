@@ -8,12 +8,7 @@
 #endif 
 
 #include <windows.h>
-#include <commdlg.h>
-#include <stdio.h>
-#include <ShlObj.h>
-#include <time.h>
 #include <string.h>		/* only use far items */
-#include <math.h>
 #include "wresource.h"
 #include "wcommon.h"
 #include "wtext.h"
@@ -23,14 +18,6 @@
 /*-----------------------------------------------------------------------------------*/
 /* Les Definitions */
 /*-----------------------------------------------------------------------------------*/
-
-/* Allan CORNET */
-/* EzCreateFont */
-/* Fonts Properties */
-#define EZ_ATTR_BOLD 1
-#define EZ_ATTR_ITALIC 2
-#define EZ_ATTR_UNDERLINE 4
-#define EZ_ATTR_STRIKEOUT 8
 
 
 /* limits */
@@ -252,15 +239,6 @@ void SendCTRLandAKey(int code);
 /* Efface la fenetre de "commandes" */
 extern void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 /*--------------------------------*/
-void PrintString(char *lines,char *Entete);
-void PrintFile(char *filename);
-/* Imprime la fenetre courante */
-void PrintSelection(LPTW lptw,char *Entete);
-
-void PageHeader(HDC hdc,LPSTR Entete);
-void Footer(HDC hdc,int number);
-HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
-/*--------------------------------*/
 void ResetMenu(void);
 /*--------------------------------*/
 void ShowToolBar(LPTW lptw);
@@ -291,7 +269,7 @@ extern void ShowGraphToolBar(struct BCG * ScilabGC);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 /*--------------------------------*/
-static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
+void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
 /*--------------------------------*/
 void SetLanguageMenu(char *Language);
 /*--------------------------------*/
@@ -299,7 +277,14 @@ extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 /*--------------------------------*/
 extern char *GetScilabDirectory(BOOL UnixStyle);
 /*--------------------------------*/
-extern HDC GetPrinterDC(void);
+extern DWORD GetIhmTextBackgroundColor(void);
+extern void InitIhmDefaultColor(void);
+extern DWORD GetIhmTextColor(void);
+extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
+extern BOOL SetIhmSystemDefaultTextColor(void);
 extern BOOL ConfigurePrinterDialogBox(void);
+extern BOOL ChooseColorBox(int *R,int *G,int *B);
+extern BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
+extern BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
 /*--------------------------------*/
 #endif /*  __WMENU_H__ */

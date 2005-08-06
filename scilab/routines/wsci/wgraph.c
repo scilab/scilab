@@ -407,7 +407,6 @@ void SciViewportMove (ScilabGC, x, y)
 	  vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, y));
 	  sciSetScrollInfo (ScilabGC, SB_VERT, &vertsi, TRUE);
 	  InvalidateRect (ScilabGC->CWindow, (LPRECT) NULL, FALSE);
-	  /* UpdateWindow (ScilabGC->CWindow); jpc  */
 	}
     }
 }

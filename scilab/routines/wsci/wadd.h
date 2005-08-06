@@ -14,9 +14,7 @@ typedef  METAFILEPICT *LPMETAFILEPICT;
 #define TMPF_DEVICE             0x08
 #define TMPF_TRUETYPE       0x04
 typedef LOGPEN *LPLOGPEN;
-/**** XXXX  was necessary with b17 
-typedef DRAWITEMSTRUCT *LPDRAWITEMSTRUCT;
-*******/
+
 #define HFILE_ERROR ((HFILE)-1)
 #define     GetStockFont(i)      ((HFONT)GetStockObject(i))
 #define     DeletePen(hpen)      DeleteObject((HGDIOBJ)(HPEN)(hpen))

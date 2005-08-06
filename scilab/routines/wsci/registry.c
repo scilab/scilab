@@ -15,6 +15,10 @@
 #define MAX_VALUE_NAME 16383
 /*-----------------------------------------------------------------------------------*/
 extern void SetDefaultShowToolBar(BOOL valShowToolBar);
+extern BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
+extern BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
+extern DWORD GetIhmTextColor(void);
+DWORD GetIhmTextBackgroundColor(void);
 /*-----------------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,int *Number)
 {

@@ -3,6 +3,15 @@
 #include "../machine.h"
 #include <stdio.h>
 
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
+#if WIN32
+#include <windows.h>
+#endif
 #if defined(__STDC__) || defined(__MSC__) || defined(__CYGWIN__)
 #include <stdlib.h>
 #ifndef WIN32
@@ -23,10 +32,6 @@ extern  char  *getenv();
 
 extern void C2F(setprlev) __PARAMS((int*));
 
-#ifdef WIN32
-extern int SciCreateDirectory (char *path);
-extern int SciRemoveDirectory (char *path);
-#endif
 
 static char tmp_dir[256],buf[256];
 
@@ -43,12 +48,22 @@ void C2F(settmpdir)(void)
     {
       first++;
 #ifdef WIN32 
-  if (!getenv("TEMP")) {
-    sprintf(tmp_dir,"C:/tmp/SD_%d_",(int) getpid());
-  } else {
-    sprintf(tmp_dir,"%s\\SD_%d_",getenv("TEMP"),(int) getpid());
+  if (!getenv("TEMP")) 
+  {
+    MessageBox(NULL,"TEMP Directory not found","Error",MB_ICONERROR);
+	exit(1);
+  } 
+  else 
+  {
+    sprintf(tmp_dir,"%s\\SCI_TMP_%d_",getenv("TEMP"),(int) getpid());
   }
-  SciCreateDirectory(tmp_dir);
+  if ( CreateDirectory(tmp_dir,NULL)==FALSE)
+  {
+	  char MsgErr[1024];
+	  wsprintf(MsgErr,"Impossible to create : %s",tmp_dir);
+	  MessageBox(NULL,MsgErr,"Error",MB_ICONERROR);
+	  exit(1);
+  }
 #else 
   sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
   sprintf(buf,"umask 000;if test ! -d %s; then mkdir %s; fi ",tmp_dir,tmp_dir);
@@ -70,6 +85,72 @@ char *get_sci_tmp_dir(void)
   return tmp_dir;
 }
 
+
+#if WIN32
+/* Remove directory and subdirectories */
+/* A.C INRIA 2005 */
+int DeleteDirectory(char *refcstrRootDirectory)
+{
+	BOOL bDeleteSubdirectories=TRUE;
+	BOOL bSubdirectory = FALSE;
+	HANDLE hFile;
+	char *strFilePath=NULL;
+	char *strPattern=NULL;
+	WIN32_FIND_DATA FileInformation;
+	DWORD dwError;
+
+	strPattern = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory)+5));
+	sprintf(strPattern,"%s\\*.*",refcstrRootDirectory);
+
+	hFile = FindFirstFile(strPattern, &FileInformation);
+	if(hFile != INVALID_HANDLE_VALUE)
+	{
+		do
+		{
+			if(FileInformation.cFileName[0] != '.')
+			{
+				if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
+				strFilePath = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory)+5+strlen(FileInformation.cFileName)));
+				sprintf(strFilePath,"%s\\%s",refcstrRootDirectory,FileInformation.cFileName);
+
+				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				{
+					if(bDeleteSubdirectories)
+					{
+						int iRC = DeleteDirectory(strFilePath);
+						if(iRC) return iRC;
+					}
+					else bSubdirectory = TRUE;
+				}
+				else
+				{
+					if(SetFileAttributes(strFilePath,FILE_ATTRIBUTE_NORMAL) == FALSE) return GetLastError();
+					if(DeleteFile(strFilePath) == FALSE) return GetLastError();
+				}
+			}
+		} while(FindNextFile(hFile, &FileInformation) == TRUE);
+
+		FindClose(hFile);
+
+		dwError = GetLastError();
+		if(dwError != ERROR_NO_MORE_FILES) return dwError;
+		else
+		{
+			if(!bSubdirectory)
+			{
+				if(SetFileAttributes(refcstrRootDirectory,FILE_ATTRIBUTE_NORMAL) == FALSE) return GetLastError();
+				if(RemoveDirectory(refcstrRootDirectory) == FALSE)	return GetLastError();
+			}
+		}
+	}
+
+	if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
+	if (strFilePath) {FREE(strFilePath);strFilePath=NULL;}
+
+	return 0;
+}
+#endif
+
 /*************************************************
  * remove TMPDIR and dynamic link temporary files 
  *************************************************/
@@ -82,7 +163,7 @@ void C2F(tmpdirc)(void)
 {
   char *tmp_dir = get_sci_tmp_dir(); 
 #ifdef WIN32 
-  SciRemoveDirectory(tmp_dir);
+  DeleteDirectory(tmp_dir);
 #else 
 #if (defined(hppa))
   hppa_sci_unlink_shared();

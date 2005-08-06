@@ -202,15 +202,11 @@ void DisableMenus(LPTW lptw);
 void EnableToolBar(LPTW lptw);
 void DisableToolBar(LPTW lptw);
 /*--------------------------*/
-void SetConsoleColorWindow(DWORD rgb);
-void SetConsoleColorWindowText(DWORD rgb);
-void SetConsoleColorHighlight(DWORD rgb);
-void SetConsoleColorHighlightText(DWORD rgb);
-/*--------------------------*/
-DWORD GetConsoleColorWindow(void);
-DWORD GetConsoleColorWindowText(void);
-DWORD GetConsoleColorHighlight(void);
-DWORD GetConsoleColorHighlightText(void);
+extern DWORD GetIhmTextBackgroundColor(void);
+extern void InitIhmDefaultColor(void);
+extern DWORD GetIhmTextColor(void);
+extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
+extern BOOL SetIhmSystemDefaultTextColor(void);
 /*--------------------------*/
 extern char *GetScilabDirectory(BOOL UnixStyle);
 /*--------------------------*/

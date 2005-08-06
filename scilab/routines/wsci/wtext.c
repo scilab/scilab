@@ -780,7 +780,6 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 {
   HDC hdc;
   PAINTSTRUCT ps;
-  RECT rect;
   LPTW lptw;
   
   lptw = (LPTW) GetWindowLong (hwnd, 0);
