@@ -281,7 +281,7 @@ HKEY GetHkeyrootFromString(char *string)
 	return hkey;
 }
 /*-----------------------------------------------------------------------------------*/
-void ReadTextIni (LPTW lptw)
+void ReadRegistryTxt (LPTW lptw)
 {
 	/* Modification Restauration depuis la base de registre dans 
 			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Settings
@@ -449,7 +449,7 @@ void ReadTextIni (LPTW lptw)
 }
 /*-----------------------------------------------------------------------------------*/
 /* Sauvegarde la position de la fenetre et la fonte utilisée dans la base de registre */
-void WriteTextIni (LPTW lptw)
+void WriteRegistryTxt (LPTW lptw)
 {
 	/* Modification Sauvegarde dans la base de registre dans 
 			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Settings
@@ -515,7 +515,7 @@ void WriteTextIni (LPTW lptw)
   
 }
 /*-----------------------------------------------------------------------------------*/
-void WriteGraphIni (struct BCG *ScilabGC)
+void WriteRegistryGraph (struct BCG *ScilabGC)
 {
 	/* Modification Sauvegarde dans la base de registre dans 
 			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Graph Settings
@@ -551,7 +551,7 @@ void WriteGraphIni (struct BCG *ScilabGC)
   
 }
 /*-----------------------------------------------------------------------------------*/
-void ReadGraphIni (struct BCG *ScilabGC)
+void ReadRegistryGraph (struct BCG *ScilabGC)
 {
 	/* Modification Restauration depuis la base de registre dans 
 			HKEY_CURRENT_USER\\SOFTWARE\\Scilab\\"VERSION"\\Graph Settings

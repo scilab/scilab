@@ -156,7 +156,7 @@ EXPORT int WINAPI TextInit (LPTW lptw)
   lptw->hWndParent=NULL;
   lptw->hWndText=NULL;
 
-  ReadTextIni (lptw);
+  ReadRegistryTxt (lptw);
   if (lptw->bSysColors) InitIhmDefaultColor();
 
   if (!lptw->hPrevInstance)    CreateTextClass (lptw);
@@ -854,7 +854,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 	case WM_EXITSIZEMOVE :
 		{
 		extern char copycur_line[1024];
-		WriteTextIni(lptw); /* Sauvegarde Position apres deplacement et redimensionnement */
+		WriteRegistryTxt(lptw); /* Sauvegarde Position apres deplacement et redimensionnement */
 		SendCTRLandAKey(CTRLU); /* Scrollbar */
 		WriteIntoKeyBuffer(lptw,copycur_line);
 		
@@ -1535,7 +1535,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	    TextSelectFont (lptw);
 	    return 0;
 	  case M_WRITEINI:
-	    WriteTextIni (lptw);
+	    WriteRegistryTxt (lptw);
 	    return 0;
 	  case M_ABOUT:
 	  
@@ -2941,7 +2941,7 @@ void ExitWindow(void)
            	SetThreadPasteRunning(FALSE);
            	CloseHandle( GetHandleThreadPaste() );
         }
-        WriteTextIni (lptw);
+        WriteRegistryTxt (lptw);
     	C2F(sciquit)();
         Kill_Scilex();
      }
@@ -2952,7 +2952,7 @@ void ExitWindow(void)
    }
    else
    {
-   	WriteTextIni (lptw);
+   	WriteRegistryTxt (lptw);
 	C2F(sciquit)();
 	Kill_Scilex();
    }

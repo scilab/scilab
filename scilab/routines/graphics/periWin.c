@@ -3934,7 +3934,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
     {
       ScilabXgc= NewXgc;
     }
-  /** ReadGraphIni takes care of graphwin.Origin and  graphwin.Size **/
+  /** ReadRegistryGraph takes care of graphwin.Origin and  graphwin.Size **/
   /** ScilabXgc is send to CreateWindow and this information is used 
       in WndGraphProc **/
 
@@ -3943,7 +3943,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   ScilabXgc->lpgw = &graphwin;
 
   sprintf(popupname,"ScilabGraphic%d", (int)WinNum);
-  if (EntryCounter == 0) { ReadGraphIni(ScilabXgc);};
+  if (EntryCounter == 0) { ReadRegistryGraph(ScilabXgc);};
   ScilabXgc->Inside_init=1; /** to know that we are inside init code **/
  
   if (IsTKGraphicalMode())

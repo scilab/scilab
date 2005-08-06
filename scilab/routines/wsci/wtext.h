@@ -96,7 +96,7 @@ void NewLine (LPTW lptw);
 void UpdateText (LPTW lptw, int count);
 EXPORT int WINAPI TextPutCh (LPTW lptw, BYTE ch);
 void TextPutStr (LPTW lptw, LPSTR str);
-void ReadTextIni (LPTW lptw);
+void ReadRegistryTxt (LPTW lptw);
 void LimitMark (LPTW lptw, POINT FAR * lppt);
 void ClearMark (LPTW lptw, POINT pt);
 void DoLine (LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count);

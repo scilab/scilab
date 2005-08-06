@@ -19,10 +19,10 @@ HKEY GetHkeyrootFromString(char *string);
 #define TEXTFONTSIZE 9
 #define TEXTFONTNAME "Terminal"
 /*-----------------------------------------------------------------------------------*/
-void ReadTextIni (LPTW lptw);
-void WriteTextIni (LPTW lptw);
+void ReadRegistryTxt (LPTW lptw);
+void WriteRegistryTxt (LPTW lptw);
 /*-----------------------------------------------------------------------------------*/
-void ReadGraphIni (struct BCG *ScilabGC);
-void WriteGraphIni (struct BCG *ScilabGC);
+void ReadRegistryGraph (struct BCG *ScilabGC);
+void WriteRegistryGraph (struct BCG *ScilabGC);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __REGISTRY__ */

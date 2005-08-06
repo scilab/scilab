@@ -820,8 +820,8 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 				CopyPrint (ScilabGC);
 			return 0;
 			case M_WRITEINI:
-				WriteGraphIni (ScilabGC);
-				if (ScilabGC->lpgw->lptw) WriteTextIni (ScilabGC->lpgw->lptw);
+				WriteRegistryGraph (ScilabGC);
+				if (ScilabGC->lpgw->lptw) WriteRegistryTxt (ScilabGC->lpgw->lptw);
 			return 0;
 			case M_REBUILDTOOLS:
 				DebugGW ("rebuild tools \r\n");
