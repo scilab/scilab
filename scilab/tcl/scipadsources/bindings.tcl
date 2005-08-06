@@ -47,10 +47,8 @@ bind $pad <Control-w> {closecur yesnocancel}
 bind $pad <Control-n> {filesetasnew}
 bind $pad <Control-q> {idleexitapp}
 bind $pad <Control-g> {gotoline}
-if {"$tcl_platform(platform)" == "unix"} {
-    bind $pad <Control-p> {selectprint %W}
-    bind $pad <Control-P> {printseupselection}
-}
+bind $pad <Control-p> {selectprint %W}
+bind $pad <Control-P> {printsetup}
 bind $pad <Control-s> {filetosave %W}
 bind $pad <Control-S> {filesaveascur}
 
@@ -91,7 +89,7 @@ bind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
 
 bind $pad <F4> {importmatlab}
 
-bind $pad <Control-R> {revertsaved}
+bind $pad <Control-R> {revertsaved [gettextareacur]}
 
 bind Text <Control-/> ""
 bind Text <Control-a> ""
@@ -103,6 +101,8 @@ bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource 
 bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
+
+bind $pad <FocusIn> {checkifanythingchangedondisk}
 
 # The following are (unfortunately) platform/os-dependent keysyms
 set Shift_Tab {"ISO_Left_Tab" "Shift-Tab"}

@@ -1,5 +1,23 @@
-proc printseupselection {} {
-# procedure to setup the printer
+proc printsetup {} {
+    global tcl_platform
+    if {$tcl_platform(platform) != "unix"} {
+        printsetup_win
+    } else {
+        printsetup_unix
+    }
+}
+
+proc selectprint {textarea} {
+    global tcl_platform
+    if {$tcl_platform(platform) != "unix"} {
+        selectprint_win $textarea
+    } else {
+        selectprint_unix $textarea
+    }
+}
+
+proc printsetup_unix {} {
+# procedure to setup the printer on unix systems
     global printCommand pad menuFont textFont
     set print $pad.print
     catch {destroy $print}
@@ -31,18 +49,37 @@ proc printseupselection {} {
     }
 }
 
-proc selectprint {textarea} {
-# procedure to print
+proc selectprint_unix {textarea} {
+# procedure to print on unix systems
     global printCommand listoffile
     if {[ismodified $textarea]} {
-      set TempPrintFile [open /tmp/tkpadtmpfile w]
-      puts -nonewline $TempPrintFile [$textarea get 0.0 end]
-      close $TempPrintFile
-      catch {eval exec "$printCommand /tmp/tkpadtmpfile"} result
+        set TempPrintFile [open /tmp/SciPadtmpfile w]
+        puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+        close $TempPrintFile
+        catch {eval exec "$printCommand /tmp/SciPadtmpfile"} result
     } else {
-      catch {eval exec "$printCommand $listoffile("$textarea",fullname)"}\
-               result
+        catch {eval exec "$printCommand $listoffile("$textarea",fullname)"} result
     }
     if {$result != ""} {tk_messageBox -message $result}
-    eval exec rm -f /tmp/tkpadtmpfile
+    eval exec rm -f /tmp/SciPadtmpfile
+}
+
+proc printsetup_win {} {
+# procedure to setup the printer on windows systems
+    ScilabEval_lt "printsetupbox()"
+}
+
+proc selectprint_win {textarea} {
+# procedure to print on windows systems
+    global tmpdir listoffile
+    if {[ismodified $textarea]} {
+        set fname [file join $tmpdir SciPadtmpfile]
+        set TempPrintFile [open $fname w]
+        puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+        close $TempPrintFile
+        ScilabEval_lt "toprint(\"$fname\")" "sync"
+        file delete $fname
+    } else {
+        ScilabEval_lt "toprint $listoffile("$textarea",fullname)"
+    }
 }

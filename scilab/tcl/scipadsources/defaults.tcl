@@ -57,7 +57,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.24"
+set version "Version 5.25"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -156,3 +156,8 @@ set closeinitialbufferallowed true
 # when it is opened again with the same file that was opened before in another
 # textarea
 catch {unset physlogic linetogo curfileorfun funtogoto}
+
+# This is a flag that prevents some procs to be run multiple times at the same
+# time (e.g. binded to an event that is fired many times)
+# Currently it is used only in proc checkifanythingchangedondisk
+set alreadyrunning 0

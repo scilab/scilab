@@ -105,6 +105,22 @@ Old bugs/whishes which have been hacked but could have been done better:
  but has the side effect (with some glitches) to drop at the mouse point the
  selection it is within scipad
 
+-Make printing from Scipad work on Linux and implement it for Windows.
+ Try to preserve the colorization in the process.
+ Possible references for implementation on a Windows box are:
+ http://wiki.tcl.tk/11319
+ http://wiki.tcl.tk/9846
+ http://pages.infinit.net/cclients/files/tkprint1.1.html
+ http://wiki.tcl.tk/2497
+ http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/284848
+ Tk request 734625 (Output the contents of a text widget to a (PostScript) file)
+ Tk request 220817 (Direct Print Support for all widgets)
+ http://www.du.edu/~mschwart/tclextensions.html (printer extension)
+ http://www.nyx.net/~mschwart/ (printer extension)
+ -- Printing works on Linux and now also on Windows. It makes use of Scilab
+    internal new functions that does not preserve colorization. I'm convinced
+    that an internal Tk printing scheme would be better.
+
 
 Wishes:
 -------
@@ -182,19 +198,6 @@ Wishes:
  instantiated by Scipad in not used in Scilab, so that conflicts would 
  always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used.
-
--Make printing from Scipad work on Linux and implement it for Windows.
- Try to preserve the colorization in the process.
- Possible references for implementation on a Windows box are:
- http://wiki.tcl.tk/11319
- http://wiki.tcl.tk/9846
- http://pages.infinit.net/cclients/files/tkprint1.1.html
- http://wiki.tcl.tk/2497
- http://aspn.activestate.com/ASPN/Cookbook/Tcl/Recipe/284848
- Tk request 734625 (Output the contents of a text widget to a (PostScript) file)
- Tk request 220817 (Direct Print Support for all widgets)
- http://www.du.edu/~mschwart/tclextensions.html (printer extension)
- http://www.nyx.net/~mschwart/ (printer extension)
 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add

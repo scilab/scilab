@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.23
+# in sync at least with v5.25
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -117,6 +117,8 @@
 ::msgcat::mcset fr "cannot be written!" "est en lecture seule!"
 ::msgcat::mcset fr "The contents of " "Le contenu de"
     ::msgcat::mcset fr "has changed on disk, save it anyway?" "a changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
+    ::msgcat::mcset fr "has been modified outside of Scipad. Do you want to reload it?" \
+                       "a été modifié hors de Scipad. Voulez-vous le recharger à partir du disque ?"
 ::msgcat::mcset fr "File has changed!" "Le fichier a changé"
 ::msgcat::mcset fr "Save as" "Enregistrer sous"
 ::msgcat::mcset fr "Scilab files" "Fichiers Scilab"

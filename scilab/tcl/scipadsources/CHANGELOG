@@ -1332,3 +1332,10 @@ Francois VOGEL, 29/07/05
    then this buffer is used for display in the new pane instead of always
    opening a new empty buffer
  * version --> 5.24
+
+Francois VOGEL, 06/08/05
+ * Printing on Windows implemented using Scilab instructions (printsetupbox and
+   toprint) - No colorization yet
+ * File changes on disk is now detected on Scipad FocusIn event, not only when
+   trying to save
+ * version --> 5.25

@@ -23,7 +23,7 @@ proc createmenues {} {
     eval "$pad.filemenu.files add command [me "Save &as..."]\
                    -command \"filesaveascur\" -accelerator Ctrl+S"
     eval "$pad.filemenu.files add command [me "&Revert..."] \
-                   -command \"revertsaved\" -state disabled -accelerator Ctrl+R"
+                   -command {revertsaved \[gettextareacur\]} -state disabled -accelerator Ctrl+R"
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Import &Matlab file..."] \
                    -command \"importmatlab\" -accelerator F4"
@@ -37,13 +37,11 @@ proc createmenues {} {
               -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
                    -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
-    if {"$tcl_platform(platform)" == "unix"} {
-        eval "$pad.filemenu.files add command [me "Print Se&tup"]\
-              -command \"printseupselection\" -accelerator Ctrl+P"
-        eval "$pad.filemenu.files add command [me "&Print"] \
+    eval "$pad.filemenu.files add command [me "Print Se&tup"]\
+              -command \"printsetup\" -accelerator Ctrl+P"
+    eval "$pad.filemenu.files add command [me "&Print"] \
               -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
-        $pad.filemenu.files add separator
-    }
+    $pad.filemenu.files add separator
     BuildInitialRecentFilesList
     eval "$pad.filemenu.files add command [me "&Close"]\
                    -command \"closecur yesnocancel\" -accelerator Ctrl+w"

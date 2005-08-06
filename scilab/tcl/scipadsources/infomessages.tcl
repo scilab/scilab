@@ -87,7 +87,7 @@ proc modifiedtitle {textarea {panesonly "false"}} {
     if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure 4 -state normal
-        bind $pad <Control-R> {revertsaved}
+        bind $pad <Control-R> {revertsaved [gettextareacur]}
     } else {
         $pad.filemenu.files entryconfigure 4 -state disabled
         bind $pad <Control-R> {}
