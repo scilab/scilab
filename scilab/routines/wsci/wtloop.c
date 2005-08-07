@@ -41,7 +41,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "plot.h"
+//#include "plot.h"
 #include "wresource.h"
 #include "wcommon.h"
 #include "../os_specific/Os_specific.h" 

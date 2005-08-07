@@ -13,7 +13,7 @@
 #endif
 #include "win_mem_alloc.h" /* MALLOC */
 #include "wcommon.h"
-#include "plot.h"
+#include "wtext.h"
 /*-----------------------------------------------------------------------------------*/
 char save_prompt[10];
 /* Fonction Récuperant la ligne à executer par Scilab */

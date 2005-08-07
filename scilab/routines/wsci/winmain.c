@@ -32,7 +32,7 @@
 
 #include "winmain.h"
 #include "WinConsole.h"
-
+#include "wtext.h"
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
@@ -151,11 +151,9 @@ int Console_Main(int argc, char **argv)
 		{
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );} 
 		}
-#ifndef __DLL__
-  /** when we don't use a dll version of the graphic library 
-    which is the case up to now **/
-  NoDll (GetModuleHandle (0));
-#endif
+
+  hdllInstance = GetModuleHandle(MSG_SCIMSG9);
+
   atexit (WinExit);
   SciEnv ();
   if (nowin == 1)
@@ -175,6 +173,9 @@ int Console_Main(int argc, char **argv)
     {
         MessageBox(NULL,MSG_ERROR79,MSG_ERROR20,MB_ICONWARNING);
     }
+
+  /* Remove TMP Directory */
+  C2F(tmpdirc)();
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -417,11 +418,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		}
 	}		
-	#ifndef __DLL__
-		/** when we don't use a dll version of the graphic library
-		which is the case up to now **/
-		NoDll (hInstance);
-	#endif
+	hdllInstance = hInstance;
 	atexit (WinExit);
 	SciEnv();
 
@@ -447,7 +444,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	CloseScilabConsole();
 	/* Tue ce process pour fermeture correcte sous Windows 98 */
 	Kill_Scilex_Win98();
-	
+
+	/* Remove TMP Directory */
+	C2F(tmpdirc)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

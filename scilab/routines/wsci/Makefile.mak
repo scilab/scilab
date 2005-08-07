@@ -5,7 +5,7 @@ LIBRARY = $(SCIDIR)/libs/wsci.lib
 
 OBJSC1 = printf.obj FilesAssociations.obj GetOS.obj SciEnv.obj WinConsole.obj \
 dde.obj interfdde.obj registry.obj FindScilab.obj clipboard.obj wmcopydata.obj \
-wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wgraph.obj winmain.obj \
+wtext.obj wmenu.obj wprinter.obj wgraph.obj winmain.obj \
 wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj Events.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
@@ -76,33 +76,33 @@ abs_putenv.obj: abs_putenv.c
 command.obj: command.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h plot.h wtext.h
+  ../interf/stack3.h common.h wtext.h
 gvwprn.obj: gvwprn.c gvwin.h wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h
+  ../interf/stack2.h ../interf/stack3.h common.h
 ScilabXloop.obj: ScilabXloop.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h
+  ../interf/stack2.h ../interf/stack3.h common.h
 lpr.obj: lpr.c gvwprn.c gvwin.h wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h
-misc.obj: misc.c plot.h wtext.h wresource.h wcommon.h ../graphics/Math.h \
+  ../interf/stack2.h ../interf/stack3.h common.h
+misc.obj: misc.c wtext.h wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h
+  ../interf/stack2.h ../interf/stack3.h common.h
 rdl-nw-test.obj: rdl-nw-test.c
 readcons.obj: readcons.c readline.c wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h 
+  ../interf/stack2.h ../interf/stack3.h common.h 
 readline.obj: readline.c ../machine.h
 readwin.obj: readwin.c readline.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h wtext.h
+  ../interf/stack3.h common.h wtext.h
 scimain.obj: scimain.c
 
 
@@ -110,49 +110,49 @@ win_mem_alloc.obj: win_mem_alloc.c
 wgmenu.obj: wgmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h ../os_specific/men_Sutils.h
+  ../interf/stack3.h common.h ../os_specific/men_Sutils.h
 wgnuplib.obj: wgnuplib.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h
+  ../interf/stack2.h ../interf/stack3.h common.h
 wgraph.obj: wgraph.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h ../graphics/scigraphic.h wgraph.h
+  ../interf/stack3.h common.h ../graphics/scigraphic.h wgraph.h
 winmain.obj: winmain.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h plot.h wtext.h
+  ../interf/stack3.h common.h wtext.h
 wmenu.obj: wmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h
+  ../interf/stack3.h common.h
 wmprint.obj: wmprint.c ../machine.h
 wmtex.obj: wmtex.c ../machine.h common.h
 wpause.obj: wpause.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h
+  ../interf/stack3.h common.h
 wprinter.obj: wprinter.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h
+  ../interf/stack2.h ../interf/stack3.h common.h
 wstatbar.obj: wstatbar.c
-wtest.obj: wtest.c wtloop.c plot.h wtext.h wresource.h wcommon.h \
+wtest.obj: wtest.c wtloop.c wtext.h wresource.h wcommon.h \
   ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/bcg.h ../stack-c.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h wadd.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
   common.h ../os_specific/Os_specific.h
 wtext.obj: wtext.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h wadd.h common.h
-wtloop.obj: wtloop.c plot.h wtext.h wresource.h wcommon.h \
+  ../interf/stack3.h common.h
+wtloop.obj: wtloop.c wtext.h wresource.h wcommon.h \
   ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/bcg.h ../stack-c.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h wadd.h \
+  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
   common.h ../os_specific/Os_specific.h
 x_zzledt.obj: x_zzledt.c wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h plot.h wtext.h
+  ../interf/stack2.h ../interf/stack3.h common.h wtext.h

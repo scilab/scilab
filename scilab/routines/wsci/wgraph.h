@@ -71,6 +71,7 @@ typedef struct
 SCISEND;
 SCISEND sciSend;
 /*-----------------------------------------------------------------------------------*/
+extern HINSTANCE hdllInstance;
 extern TW textwin;
 extern GW graphwin;
 extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));

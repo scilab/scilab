@@ -19,12 +19,12 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdarg.h>
-//#include <strsafe.h>
 
 #include "../wsci/wresource.h"
 #include "../wsci/resource.h"
 #include "../wsci/wcommon.h"
 #include "../wsci/wgraph.h"
+#include "../wsci/wtext.h"
 #include "Events.h"
 
 #include "bcg.h"
@@ -134,6 +134,8 @@ unsigned short default_colors[] = {
   255, 215,   0  /* Gold */
 };
 
+LPSTR szGraphClass = "wscilab_graph";
+LPSTR szParentGraphClass = "wscilab_parent_graph";
 
 
 #define MAXDASH 5

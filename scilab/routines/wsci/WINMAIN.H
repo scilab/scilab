@@ -10,7 +10,7 @@
 #include "..\version.h"
 
 #include "wcommon.h"
-#include "plot.h"
+//#include "plot.h"
 #include "FilesAssociations.h"
 #include "SciEnv.h"
 
@@ -49,6 +49,8 @@ MW menuwin;
 
 LPSTR szMenuName;
 LPSTR szGraphMenuName;
+
+extern HINSTANCE hdllInstance;
 
 static int startupf = 0; /** 0 if we execute startup else 1 **/
 static int nointeractive = 0;

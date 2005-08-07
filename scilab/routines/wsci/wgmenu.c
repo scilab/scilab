@@ -895,9 +895,7 @@ BOOL ExportStyle (struct BCG * ScilabGC)
   BOOL status = FALSE;
   lpfnExportStyleDlgProc = (DLGPROC) MyGetProcAddress ("ExportStyleDlgProc",
 						       ExportStyleDlgProc);
-  if (DialogBox (hdllInstance,
-		 (ls.use_printer == 0) ? "ExportStyleDlgBox"
-		 : "ExportPrintDlgBox",
+  if (DialogBox (hdllInstance,"ExportStyleDlgBox",
 		 ScilabGC->hWndParent, lpfnExportStyleDlgProc) == IDOK)
     {
       status = TRUE;

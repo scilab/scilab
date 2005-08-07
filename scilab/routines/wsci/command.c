@@ -10,7 +10,7 @@
 #include <setjmp.h>
 #include <stdlib.h>
 #include "wcommon.h"
-#include "plot.h"
+//#include "plot.h"
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"

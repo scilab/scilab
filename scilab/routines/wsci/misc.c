@@ -38,7 +38,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "plot.h"
+//#include "plot.h"
 #ifndef STRICT
 #define STRICT
 #endif
@@ -109,7 +109,7 @@ int_error (char *str, int t_num)
   /* reprint line if screen has been written to */
   if (t_num != NO_CARET)
     {				/* put caret under error */
-      sciprint ("\n%s%s\n", PROMPT, input_line);
+      sciprint ("\n%s%s\n", "-->", input_line);
     }
   sciprint ("\t%s\n\n", str);
   longjmp (env, TRUE);		/* bail out to command line */

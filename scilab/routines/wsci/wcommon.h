@@ -30,24 +30,14 @@
 #ifndef __GNUC__ 
 #include <shellapi.h>
 #endif
-#include "wadd.h" 
+
 
 #include "common.h" 
 
-/* wgnuplib.c */
+#define MAX_LINE_LEN 512	/* maximum number of chars allowed on line */
+#define MAX_ID_LEN 50		/* max length of an identifier */
+#define NO_CARET (-1)
 
-extern HINSTANCE hdllInstance;
-extern LPSTR szParentClass;
-extern LPSTR szTextClass;
-extern LPSTR szPauseClass;
-extern LPSTR szGraphClass;
-extern LPSTR szParentGraphClass;
-extern LPSTR szAboutClass;
-
-extern void * LocalAllocPtr(UINT flags, UINT size);
-extern void LocalFreePtr(void  *ptr);
-extern LPSTR GetInt(LPSTR str, LPINT pval);
-extern LPSTR GetLInt(LPSTR str, long int *pval);
 
 /* wtext.c */
 

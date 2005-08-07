@@ -58,6 +58,11 @@ static BOOL WriteInKeyBuf=FALSE;
 extern HDC TryToGetDC(HWND hWnd);
 extern int C2F(sciquit)() ;
 /*-----------------------------------------------------------------------------------*/
+HINSTANCE hdllInstance;
+LPSTR szParentClass = "wscilab_parent";
+LPSTR szTextClass = "wscilab_text";
+
+/*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
  *********************************************/

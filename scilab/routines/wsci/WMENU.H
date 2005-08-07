@@ -160,6 +160,7 @@ BYTE keyeq[] =
 static integer lab_count = 0;
 static char gwin_name[100], gwin_name1[100];
 
+extern HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/

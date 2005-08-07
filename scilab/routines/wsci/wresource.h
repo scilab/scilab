@@ -83,20 +83,6 @@
 #define SPOOL_PORT      515
 
 /* wgraph.c */
-/* line style dialog box */
-/** 
-#define LS_LINENUM 200
-#define LS_MONOBOX 201
-#define LS_COLORBOX 202
-#define LS_MONOSTYLE 203
-#define LS_MONOWIDTH 204
-#define LS_CHOOSECOLOR 205
-#define LS_COLORSAMPLE 206
-#define LS_COLORSTYLE 207
-#define LS_COLORWIDTH 208
-#define LS_DEFAULT 209
-**/
-
 #define PS_COLOR 200
 #define PS_LAND  201
 #define PS_TYPE  202
@@ -137,8 +123,6 @@
 
 #define DI_TEXT                     408
 #define DI_TIT                      409
-
-//#define IDC_LICENCE		410
 
 #define IDC_STATIC                      -1
 

@@ -23,156 +23,31 @@
  *
  * Modifications for Scilab 
  *   Jean-Philipe Chancelier 
- *   Bugs and mail : Scilab@inria.fr 
+ *   Allan CORNET INRIA 2005
  */
+/*-----------------------------------------------------------------------------------*/
 #ifndef STRICT
 #define STRICT
 #endif
-
+/*-----------------------------------------------------------------------------------*/
 #include <memory.h>
-
 #include "wresource.h"
 #include "wcommon.h"
-#include <commdlg.h>
-
-#include "Messages.h"
-#include "Warnings.h"
-#include "Errors.h"
-
-
-LP_PRINT prlist = NULL;
-/** list of selected printers **/
-
-extern HDC TryToGetDC(HWND hWnd);
-
-/********************************************
- * A Dialog Box for choosing the size for graphics 
- * on the printer page 
- ********************************************/
-
-EXPORT BOOL CALLBACK
-PrintSizeDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
-{
-
-  char buf[8];
-  LP_PRINT lpr;
-  HWND parent;
-  parent = GetParent (hdlg);
-  lpr = (LP_PRINT) GetWindowLong (parent, 4);
-  switch (wmsg)
-    {
-    case WM_INITDIALOG:
-      wsprintf (buf, "%d", lpr->pdef.x);
-      SetDlgItemText (hdlg, PSIZE_DEFX, buf);
-      wsprintf (buf, "%d", lpr->pdef.y);
-      SetDlgItemText (hdlg, PSIZE_DEFY, buf);
-      wsprintf (buf, "%d", lpr->poff.x);
-      SetDlgItemText (hdlg, PSIZE_OFFX, buf);
-      wsprintf (buf, "%d", lpr->poff.y);
-      SetDlgItemText (hdlg, PSIZE_OFFY, buf);
-      wsprintf (buf, "%d", lpr->psize.x);
-      SetDlgItemText (hdlg, PSIZE_X, buf);
-      wsprintf (buf, "%d", lpr->psize.y);
-      SetDlgItemText (hdlg, PSIZE_Y, buf);
-      CheckDlgButton (hdlg, PSIZE_DEF, TRUE);
-      EnableWindow (GetDlgItem (hdlg, PSIZE_X), FALSE);
-      EnableWindow (GetDlgItem (hdlg, PSIZE_Y), FALSE);
-      return TRUE;
-    case WM_COMMAND:
-      switch (wparam)
-	{
-	case PSIZE_DEF:
-	  EnableWindow (GetDlgItem (hdlg, PSIZE_X), FALSE);
-	  EnableWindow (GetDlgItem (hdlg, PSIZE_Y), FALSE);
-	  return FALSE;
-	case PSIZE_OTHER:
-	  EnableWindow (GetDlgItem (hdlg, PSIZE_X), TRUE);
-	  EnableWindow (GetDlgItem (hdlg, PSIZE_Y), TRUE);
-	  return FALSE;
-	case IDOK:
-	  if (SendDlgItemMessage (hdlg, PSIZE_OTHER, BM_GETCHECK, 0, 0L))
-	    {
-	      SendDlgItemMessage (hdlg, PSIZE_X, WM_GETTEXT, 7, (LPARAM) ((LPSTR) buf));
-	      GetLInt (buf, &lpr->psize.x);
-	      SendDlgItemMessage (hdlg, PSIZE_Y, WM_GETTEXT, 7, (LPARAM) ((LPSTR) buf));
-	      GetLInt (buf, &lpr->psize.y);
-	    }
-	  else
-	    {
-	      lpr->psize.x = lpr->pdef.x;
-	      lpr->psize.y = lpr->pdef.y;
-	    }
-	  SendDlgItemMessage (hdlg, PSIZE_OFFX, WM_GETTEXT, 7, (LPARAM) ((LPSTR) buf));
-	  GetLInt (buf, &lpr->poff.x);
-	  SendDlgItemMessage (hdlg, PSIZE_OFFY, WM_GETTEXT, 7, (LPARAM) ((LPSTR) buf));
-	  GetLInt (buf, &lpr->poff.y);
-
-	  if (lpr->psize.x <= 0)
-	    lpr->psize.x = lpr->pdef.x;
-	  if (lpr->psize.y <= 0)
-	    lpr->psize.y = lpr->pdef.y;
-
-	  EndDialog (hdlg, IDOK);
-	  return TRUE;
-	case IDCANCEL:
-	  EndDialog (hdlg, IDCANCEL);
-	  return TRUE;
-	}
-      break;
-    }
-  return FALSE;
-}
-
-
-/* GetWindowLong(hwnd, 4) must be available for use */
-
-BOOL 
-PrintSize (HDC printer, HWND hwnd, LPRECT lprect)
-{
-  HDC hdc;
-  DLGPROC lpfnPrintSizeDlgProc;
-  BOOL status = FALSE;
-  PRINT pr;
-  SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr));
-  pr.poff.x = 0;
-  pr.poff.y = 0;
-  pr.psize.x = GetDeviceCaps (printer, HORZSIZE);
-  pr.psize.y = GetDeviceCaps (printer, VERTSIZE);
-  hdc = (HDC)TryToGetDC (hwnd);
-  GetClientRect (hwnd, lprect);
-  pr.pdef.x = MulDiv (lprect->right - lprect->left, 254, 10 * GetDeviceCaps (hdc, LOGPIXELSX));
-  pr.pdef.y = MulDiv (lprect->bottom - lprect->top, 254, 10 * GetDeviceCaps (hdc, LOGPIXELSX));
-  ReleaseDC (hwnd, hdc);
-  lpfnPrintSizeDlgProc = (DLGPROC) MyGetProcAddress ("PrintSizeDlgProc",
-						     PrintSizeDlgProc);
-  if (DialogBox (hdllInstance, "PrintSizeDlgBox", hwnd, lpfnPrintSizeDlgProc)
-      == IDOK)
-    {
-      lprect->left = MulDiv (pr.poff.x * 10, GetDeviceCaps (printer, LOGPIXELSX), 254);
-      lprect->top = MulDiv (pr.poff.y * 10, GetDeviceCaps (printer, LOGPIXELSY), 254);
-      lprect->right = lprect->left + MulDiv (pr.psize.x * 10, GetDeviceCaps (printer, LOGPIXELSX), 254);
-      lprect->bottom = lprect->top + MulDiv (pr.psize.y * 10, GetDeviceCaps (printer, LOGPIXELSY), 254);
-      status = TRUE;
-    }
-  SetWindowLong (hwnd, 4, (LONG) (0L));
-  return status;
-}
-
+/*-----------------------------------------------------------------------------------*/
+static LP_PRINT prlist = NULL;
+/*-----------------------------------------------------------------------------------*/
 /******************************
  * Deals with a list of printers 
  ******************************/
-
-void
-PrintRegister (LP_PRINT lpr)
+void PrintRegister (LP_PRINT lpr)
 {
   LP_PRINT next;
   next = prlist;
   prlist = lpr;
   lpr->next = next;
 }
-
-LP_PRINT
-PrintFind (HDC hdc)
+/*-----------------------------------------------------------------------------------*/
+LP_PRINT PrintFind (HDC hdc)
 {
   LP_PRINT this;
   this = prlist;
@@ -182,9 +57,8 @@ PrintFind (HDC hdc)
     }
   return this;
 }
-
-void
-PrintUnregister (LP_PRINT lpr)
+/*-----------------------------------------------------------------------------------*/
+void PrintUnregister (LP_PRINT lpr)
 {
   LP_PRINT this, prev;
   prev = (LP_PRINT) NULL;
@@ -203,15 +77,11 @@ PrintUnregister (LP_PRINT lpr)
 	prlist = this->next;
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /******************************
  * PrintDialogBox 
  ******************************/
-
-/* GetWindowLong(GetParent(hDlg), 4) must be available for use */
-
-EXPORT BOOL CALLBACK
-PrintDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+EXPORT BOOL CALLBACK PrintDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
   LP_PRINT lpr;
   HWND parent;
@@ -233,10 +103,8 @@ PrintDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
   return FALSE;
 }
-
-
-EXPORT BOOL CALLBACK
-PrintAbortProc (HDC hdcPrn, int code)
+/*-----------------------------------------------------------------------------------*/
+EXPORT BOOL CALLBACK PrintAbortProc (HDC hdcPrn, int code)
 {
   MSG msg;
   LP_PRINT lpr;
@@ -251,3 +119,4 @@ PrintAbortProc (HDC hdcPrn, int code)
     }
   return (!lpr->bUserAbort);
 }
+/*-----------------------------------------------------------------------------------*/

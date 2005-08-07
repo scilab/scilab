@@ -135,6 +135,7 @@ static char *Print_Formats[] =
   "Enhanced Meta File (.emf)"
 };
 
+extern HINSTANCE hdllInstance;
 
 static void dos2win32 (char *filename, char *filename1);
 static void ExploreMenu (HMENU hmen, BYTE ** macro);

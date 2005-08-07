@@ -1,7 +1,7 @@
 #ifndef __WGNUPLIB_H__
 #define __WGNUPLIB_H__
 
-/* /wgnuplib.h */
+
 /* from GNUPLOT - win/wgnuplib.h */
 /*
  * Copyright (C) 1992   Russell Lang
@@ -21,7 +21,8 @@
  *   Russell Lang
  * 
  * Modified for Scilab (1997)
- *   Jean-Philippe Chancelier 
+ *   Jean-Philippe Chancelier
+ *   Allan CORNET INRIA 2005
  */
 
 #ifdef _WINDOWS
@@ -41,10 +42,6 @@
 #else
 #define MyGetProcAddress(strProc,Proc) Proc 
 #endif
-
-#define WSCILABVERSION  "3.0   2005"
-
-EXPORT BOOL CheckWScilabVersion(LPSTR str);
 
 /*****************************************
  * wprinter.c - windows printer routines 
@@ -195,7 +192,6 @@ typedef struct tagGW {
   POINT	Size;		/* optional */	/* size of graph window */
   LPSTR	IniFile;	/* optional */
   LPSTR	IniSection;	/* optional */
-  /** HWND	hWndGraph;**/	/* window handle */
   HMENU	hPopMenu;	/* popup menu */
   BOOL	resized;	/* has graph window been resized? */
   BOOL	graphtotop;	/* bring graph window to top after every plot? */

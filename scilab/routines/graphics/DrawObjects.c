@@ -8422,14 +8422,14 @@ sciDrawObj (sciPointObj * pobj)
 		x[0] = sciGetBackground(pobj);
 		
 		xm[0] = x1;
-		xm[1] = x1 + cosangle*rect1[2];
-		xm[2] = x1 + cosangle*rect1[2] + sinangle*(-rect1[3]);
-		xm[3] = x1 + sinangle*(-rect1[3]);
+		xm[1] = x1 + (int)(cosangle*rect1[2]);
+		xm[2] = x1 + (int)(cosangle*rect1[2] + sinangle*(-rect1[3]));
+		xm[3] = x1 + (int)(sinangle*(-rect1[3]));
 		
 		ym[0] = yy1;
-		ym[1] = yy1 - sinangle*rect1[2];
-		ym[2] = yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]);
-		ym[3] = yy1 + cosangle*(-rect1[3]);
+		ym[1] = yy1 - (int)(sinangle*rect1[2]);
+		ym[2] = yy1 - (int)(sinangle*rect1[2] + cosangle*(-rect1[3]));
+		ym[3] = yy1 + (int)(cosangle*(-rect1[3]));
 		
 		
 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
