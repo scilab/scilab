@@ -75,6 +75,7 @@ typedef struct {
 extern int SciChoiceCreate();
 extern int SciChoiceFree();
 extern SciStuff **Everything ;
+extern HINSTANCE hdllInstance;
 
 /* Data structure to deal with message */
 
