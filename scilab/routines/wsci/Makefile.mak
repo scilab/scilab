@@ -35,24 +35,6 @@ Rscilab.res: Rscilab.rc wresource.h
 
 GUIFLAGS=-SUBSYSTEM:windows
 
-#===================test ========================
-!IF "$(DTK)" == "-DWITH_TK"
-GTK_LIBS= ../../libs/tclsci.lib ../../libs/intersci.lib ../../libs/libf2c.lib $(XLIBS)
-!ELSE 
-GTK_LIBS= $(XLIBS)
-!ENDIF
-
-test	: $(RESOURCES) wtest.obj ../../libs/wsci.lib 
-	@echo Creation of ../../bin/test-vc.exe
-	@$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) \
-	 -OUT:"../../bin/test-vc.exe" wtest.obj \
-	$(RESOURCES) ../../libs/wsci.lib ../../libs/graphics.lib \
-	../../libs/wsci.lib ../../libs/menusX.lib \
-	../../libs/os_specific.lib ../../libs/system.lib ../../libs/xdr.lib \
-	$(GTK_LIBS) 
-
-wtest.obj : wtloop.c 
-
 #=================== lpr ===========================
 
 all:: ../../bin/lpr.exe
@@ -71,8 +53,6 @@ registry.obj : registry.c
 FindScilab.obj : FindScilab.c
 clipboard.obj : clipboard.c
 wmcopydata.obj: wmcopydata.c
-abs_main.obj: abs_main.c
-abs_putenv.obj: abs_putenv.c
 command.obj: command.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
@@ -93,7 +73,6 @@ misc.obj: misc.c wtext.h wresource.h wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h common.h
-rdl-nw-test.obj: rdl-nw-test.c
 readcons.obj: readcons.c readline.c wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
@@ -103,9 +82,6 @@ readwin.obj: readwin.c readline.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h common.h wtext.h
-scimain.obj: scimain.c
-
-
 win_mem_alloc.obj: win_mem_alloc.c
 wgmenu.obj: wgmenu.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
@@ -138,11 +114,6 @@ wprinter.obj: wprinter.c wresource.h wcommon.h ../graphics/Math.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h common.h
 wstatbar.obj: wstatbar.c
-wtest.obj: wtest.c wtloop.c wtext.h wresource.h wcommon.h \
-  ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../graphics/bcg.h ../stack-c.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
-  common.h ../os_specific/Os_specific.h
 wtext.obj: wtext.c wresource.h wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
