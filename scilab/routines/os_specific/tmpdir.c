@@ -43,26 +43,43 @@ static char tmp_dir[256],buf[256];
 
 void C2F(settmpdir)(void)
 {
+#if WIN32
+	#define PATH_MAX 1024
+	char TmpDirDefault[PATH_MAX];
+#endif
   static int first =0;
   if ( first == 0 ) 
     {
       first++;
 #ifdef WIN32 
-  if (!getenv("TEMP")) 
-  {
-    MessageBox(NULL,"TEMP Directory not found","Error",MB_ICONERROR);
-	exit(1);
-  } 
-  else 
-  {
-    sprintf(tmp_dir,"%s\\SCI_TMP_%d_",getenv("TEMP"),(int) getpid());
-  }
-  if ( CreateDirectory(tmp_dir,NULL)==FALSE)
-  {
-	  char MsgErr[1024];
-	  wsprintf(MsgErr,"Impossible to create : %s",tmp_dir);
-	  MessageBox(NULL,MsgErr,"Error",MB_ICONERROR);
-	  exit(1);
+	  if (!GetTempPath(PATH_MAX,TmpDirDefault))
+	  {
+		  MessageBox(NULL,"Don''t find Windows temporary directory","Error",MB_ICONERROR);
+		  exit(1);
+	  }
+	  else
+	  {
+		  sprintf(tmp_dir,"%s\\SCI_TMP_%d_",TmpDirDefault,(int) getpid());
+	  }
+
+	  if ( CreateDirectory(tmp_dir,NULL)==FALSE)
+      {
+	  
+	  int error;
+	  error = GetLastError ();
+	  if ( (error == ERROR_ACCESS_DENIED)  && (GetFileAttributes (tmp_dir) != FILE_ATTRIBUTE_DIRECTORY) )
+	  {
+		  // Repertoire existant
+	  }
+	  else
+	  {
+		  #ifdef _DEBUG
+		  char MsgErr[1024];
+		  wsprintf(MsgErr,"Impossible to create : %s",tmp_dir);
+		  MessageBox(NULL,MsgErr,"Error",MB_ICONERROR);
+		  exit(1);
+		  #endif
+	  }
   }
 #else 
   sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
