@@ -249,13 +249,9 @@ int ScilabPsToEps(char orientation,char *filein,char *fileout)
 static void ConvertName(char *filein,char *fileout)
 {
   char *p=filein,*p1;
-  p1=strchr(p,'/');
-  while ( p1 != 0 ) 
-    {
-      p=p1+1;
-      p1 = strchr(p,'/');
-    }
-  p = strchr(p,'.');
+  p1= strrchr(p,'/'); /* last occurence of '/' */
+  p = strrchr(p,'.'); /* last occurence of '.' */
+
   if ( p != 0 ) 
     {
       *p = '\0';
