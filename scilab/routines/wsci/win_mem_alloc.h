@@ -18,7 +18,7 @@
 #ifdef CALLOC
 #undef CALLOC
 #endif
-#define CALLOC(x,y) MyVirtualAlloc((unsigned) (x*sizeof(y)),__FILE__,__LINE__)
+#define CALLOC(x,y) MyVirtualAlloc((unsigned) (x*y),__FILE__,__LINE__)
 
 
 #ifdef REALLOC
