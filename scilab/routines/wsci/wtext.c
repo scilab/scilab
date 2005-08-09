@@ -29,7 +29,7 @@
 #define STRICT
 #endif
 
-//#include <WinAble.h>
+/*-----------------------------------------------------------------------------------*/
 #include "WTEXT.h"   
 #include "wmcopydata.h"
 #include "WinConsole.h"
@@ -40,28 +40,56 @@
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
+static BOOL ConsoleIsMinimized=FALSE;
+static BOOL WriteInKeyBuf=FALSE;
+static void CreateTextClass (LPTW lptw);
+static BOOL RegisterParentWindowClass (LPTW lptw);
+static BOOL RegisterTextWindowClass (LPTW lptw);
+/*-----------------------------------------------------------------------------------*/
+extern HDC TryToGetDC(HWND hWnd);
+extern int C2F(sciquit)() ;
+extern void CreateThreadPaste(char *Text);
+extern BOOL IsReadyForAnewLign(void);
+extern void SetReadyOrNotForAnewLign(BOOL Ready);
+extern void PasteFunction(LPTW lptw,BOOL special);
+extern BOOL IsEmptyClipboard(LPTW lptw);
+extern void TextCopyClip(LPTW lptw);
+extern void CleanClipboard(LPTW lptw);
+extern HANDLE GetHandleThreadPaste(void);
+extern BOOL GetThreadPasteRunning(void);
+extern void SetThreadPasteRunning(BOOL Running);
+/* voir fichier winmain.c*/
+extern char ScilexConsoleName[MAX_PATH];
+extern void Kill_Scilex_Win98(void);
+extern void Kill_Scilex(void);
+/* voir fichier wmenu.c*/
+extern void SendCTRLandAKey(int code);
+extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
+extern BOOL IsWindowInterface(void);
+extern void ReplaceSlash(char *pathout,char *pathin);
+extern BOOL IsAFile(char *chainefichier);
+extern void ToolBarOnOff(LPTW lptw);
+extern void ReLoadMenus(LPTW lptw);
+extern void ResetMenu(void);
+extern DWORD GetIhmTextBackgroundColor(void);
+extern void InitIhmDefaultColor(void);
+extern DWORD GetIhmTextColor(void);
+extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
+extern BOOL SetIhmSystemDefaultTextColor(void);
+extern char *GetScilabDirectory(BOOL UnixStyle);
+extern LPTW GetTextWinScilab(void);
+extern int C2F (scilines) (int *nl, int *nc);
+/*-----------------------------------------------------------------------------------*/
 char ScilexWindowName[MAX_PATH];
-
 POINT ScreenMinSize = {16, 4};
 POINT ScrollSize = {80,360}; /* the default is {80,120} */
-
 char szNoMemory[] = "out of memory";
-
-
 /* Utiliser par write_scilab_synchro */
 HANDLE hThreadWrite;
 CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
-
-static BOOL ConsoleIsMinimized=FALSE;
-static BOOL WriteInKeyBuf=FALSE;
-
-extern HDC TryToGetDC(HWND hWnd);
-extern int C2F(sciquit)() ;
-/*-----------------------------------------------------------------------------------*/
 HINSTANCE hdllInstance;
 LPSTR szParentClass = "wscilab_parent";
 LPSTR szTextClass = "wscilab_text";
-
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
@@ -2092,9 +2120,7 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 					int Language=0;
 					
 					int error=0;
-					extern char ScilexWindowName[MAX_PATH];
-					LPTW lptw;
-					lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+					LPTW lptw=GetTextWinScilab();
 
 					ScilabDirectory=GetScilabDirectory(FALSE);
 
@@ -2493,8 +2519,7 @@ int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
         {
 		if ( IsWindowInterface() )
 		{
-			LPTW lptw;
-			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+			LPTW lptw=GetTextWinScilab();
 			ClearCommandWindow(lptw,FALSE);
 		}
 		else
@@ -2520,9 +2545,8 @@ int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 	
 	 		if (NbrLineToRemove>0)
 	 		{
-	 			 LPTW lptw;
 	 			 int i = 0;
-	 			 lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	 			 LPTW lptw=GetTextWinScilab();
 				 
 				 X=lptw->CursorPos.x;
 				 Y=lptw->CursorPos.y-NbrLineToRemove;
@@ -2639,8 +2663,7 @@ void InitScreenBuffer(LPTW lptw)
 /*-----------------------------------------------------------------------------------*/
 void ForceToActiveWindowParent(void)
 {
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	while (GetForegroundWindow()!= lptw->hWndParent)
 	{
@@ -2732,8 +2755,7 @@ int ReplacePrompt(char *Text,char *prompt)
 /*-----------------------------------------------------------------------------------*/
 void HomeFunction _PARAMS((char *fname, unsigned long fname_len))
 {
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	if ( IsWindowInterface() )
 	{
@@ -2906,10 +2928,10 @@ void ReorganizeScreenBuffer(LPTW lptw)
 /*-----------------------------------------------------------------------------------*/
 void ExitWindow(void)
 {
-  LPTW lptw;
   char Message[255];
   char Title[50];
-  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);	
+  LPTW lptw=GetTextWinScilab();
+
   if ( (get_is_reading()==FALSE) || (GetThreadPasteRunning()) )
   {
     if (GetThreadPasteRunning())SuspendThread(GetHandleThreadPaste());
@@ -2969,11 +2991,10 @@ void write_scilab_synchro(char *line)
 DWORD WINAPI WriteTextThread(LPVOID lpParam)
 {
 	#define TEMPOTOUCHE  1
-	LPTW lptw;
 	char *line;
-	
+	LPTW lptw=GetTextWinScilab();
+
 	line=(char *)lpParam;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	
 	
 	EnterCriticalSection(&Sync);
@@ -3007,9 +3028,7 @@ int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len))
   		ScilabGC = GetWindowXgcNumber (num_win);
   		if (num_win == -1)
   		{
-  			extern char ScilexWindowName[MAX_PATH];
-			LPTW lptw;
-			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+  			LPTW lptw=GetTextWinScilab();
 			if ( IsIconic(lptw->hWndParent) )
 			{
 				ShowWindow(lptw->hWndParent,SW_RESTORE);
@@ -3087,13 +3106,13 @@ BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wPa
 {
    int LanguageCode=0;
    extern char ScilexWindowName[MAX_PATH];
-   LPTW lptw;
-   
+    
    HKEY key;
    DWORD result,size=4;
    int Language;
    char Clef[MAX_PATH];
-   lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+   LPTW lptw=GetTextWinScilab();
+
    wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
    result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
@@ -3293,9 +3312,7 @@ void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand)
 BOOL IsToThePrompt(void)
 {
 	BOOL retour=FALSE;
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	if  (( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) ) retour=FALSE;
 	else retour=TRUE;
@@ -3329,29 +3346,5 @@ void DisableMenus(LPTW lptw)
 	  EnableMenuItem (lptw->lpmw->hMenu, i, MF_GRAYED| MF_BYPOSITION);
   }
   DrawMenuBar(lptw->hWndParent); 
-}
-/*-----------------------------------------------------------------------------------*/
-void EnableToolBar(LPTW lptw)
-{
-	int i=0;
-	if (lptw->lpmw->ShowToolBar)
-	{
-		for (i = 0; i < lptw->lpmw->nButton; i++)
-		{
-			ShowWindow( lptw->lpmw->hButton[i] , SW_SHOWNORMAL );
-		}
-	}
-}
-/*-----------------------------------------------------------------------------------*/
-void DisableToolBar(LPTW lptw)
-{
-	int i=0;
-	if (lptw->lpmw->ShowToolBar)
-	{
-		for (i = 0; i < lptw->lpmw->nButton; i++)
-		{
-			ShowWindow( lptw->lpmw->hButton[i] , SW_HIDE );
-		}
-	}
 }
 /*-----------------------------------------------------------------------------------*/

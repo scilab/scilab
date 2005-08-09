@@ -71,23 +71,8 @@ typedef struct
 SCISEND;
 SCISEND sciSend;
 /*-----------------------------------------------------------------------------------*/
-extern HINSTANCE hdllInstance;
-extern TW textwin;
-extern GW graphwin;
-extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
-extern void sci_pixmapclear(HDC hdc_c, struct BCG *ScilabGC );
-extern void sci_pixmapclear_rect(HDC hdc_c, struct BCG *ScilabGC,int w,int h); 
-extern void sci_pixmap_resize(struct BCG * ScilabGC, int x, int y) ;
-extern void   set_no_delete_win_mode() ;
-extern void DebugGW (char *fmt,...);
-extern void DebugGW1 (char *fmt,...);
-extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
-extern void delete_sgwin_entities(int win_num,int v_flag);
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
-
 void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
 void set_delete_win_mode();
-
 int C2F (deletewin) (integer * number);
 EXPORT void WINAPI GraphPrint (struct BCG *ScilabGC);
 EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC);
@@ -96,7 +81,6 @@ void CopyClip (struct BCG *ScilabGC);
 void SciViewportMove (ScilabGC, x, y);
 void SciViewportGet (ScilabXgc, x, y);
 void GPopupResize (struct BCG * ScilabXgc,int * width,int * height);
-
 void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 int sciPeekMessage (MSG * msg);
 static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
@@ -109,9 +93,6 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
 void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
 EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
-/*-----------------------------------------------------------------------------------*/
-static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
 /*-----------------------------------------------------------------------------------*/
 
 
@@ -126,7 +107,7 @@ extern void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
 
 #define ToolBarHeight 24
 #define ButtonToolBarWeight 24
-static BOOL DefaultShowToolBar=TRUE;
+
 void SetDefaultShowToolBar(BOOL valShowToolBar);
 void CreateGraphToolBar(struct BCG * ScilabGC); 
 void HideGraphToolBar(struct BCG * ScilabGC);

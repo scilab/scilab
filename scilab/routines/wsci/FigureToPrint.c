@@ -5,6 +5,7 @@
 #include "FigureToPrint.h"
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
+extern HINSTANCE hdllInstance;
 extern int WindowsPrintScreen;
 extern int Printer_XRes;
 extern int Printer_YRes;

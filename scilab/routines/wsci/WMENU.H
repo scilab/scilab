@@ -157,23 +157,11 @@ BYTE keyeq[] =
   25, 26, 28, 29, 30, 31,
   0 /* NULL */ };
 
-static integer lab_count = 0;
-static char gwin_name[100], gwin_name1[100];
-
-extern HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
 EXPORT BOOL CALLBACK InputBoxDlgProc (HWND, UINT, WPARAM, LPARAM);
 EXPORT LRESULT CALLBACK MenuButtonProc (HWND, UINT, WPARAM, LPARAM);
-
-static void Countp ();
-static void Countm ();
-static void SendCountSet ();
-static void SendCountRaise ();
-static void SendCountDelete ();
-
-
 /*--------------------------------*/
 void Callback_NEWSCILAB(void);
 void Callback_EXEC(void);
@@ -230,15 +218,10 @@ void CloseMacros (LPTW lptw);
 BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *file);
 /* Remplace \ par / dans un chemin */
 void ReplaceSlash(char *pathout,char *pathin);
-/* WTEXT.C*/
-/* extern void PasteFunction(LPTW lptw); */
-extern void SwitchConsole(void);
+
 /*--------------------------------*/
 /* Envoye le signal CTRL+une touche */
 void SendCTRLandAKey(int code);
-
-/* Efface la fenetre de "commandes" */
-extern void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 /*--------------------------------*/
 void ResetMenu(void);
 /*--------------------------------*/
@@ -260,32 +243,10 @@ int GetXPosButton(LPTW lptw,int index,int SizeXButtonText,int SizeXButtonIcon);
 void ConfigureScilabStar(int LangCode);
 int ModifyFile(char *fichier,char *motclef,char *chaine);
 /*--------------------------------*/
-extern void reset_history(void); /* see Console\history.h*/
-/*--------------------------------*/
 int HideToolBarWin32(int WinNum);
-/*--------------------------------*/
-extern void HideGraphToolBar(struct BCG * ScilabGC);
-extern void ShowGraphToolBar(struct BCG * ScilabGC);
-/*--------------------------------*/
-extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
-extern void GetCurrentPrompt(char *CurrentPrompt);
 /*--------------------------------*/
 void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
 /*--------------------------------*/
 void SetLanguageMenu(char *Language);
-/*--------------------------------*/
-extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
-/*--------------------------------*/
-extern char *GetScilabDirectory(BOOL UnixStyle);
-/*--------------------------------*/
-extern DWORD GetIhmTextBackgroundColor(void);
-extern void InitIhmDefaultColor(void);
-extern DWORD GetIhmTextColor(void);
-extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
-extern BOOL SetIhmSystemDefaultTextColor(void);
-extern BOOL ConfigurePrinterDialogBox(void);
-extern BOOL ChooseColorBox(int *R,int *G,int *B);
-extern BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
-extern BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
 /*--------------------------------*/
 #endif /*  __WMENU_H__ */

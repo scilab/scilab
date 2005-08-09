@@ -43,7 +43,7 @@
 
 /* Les Variables Globales */
 /*-----------------------------------------------------------------------------------*/
-TW textwin;
+extern TW textwin;
 GW graphwin;
 MW menuwin;
 
@@ -61,16 +61,6 @@ static int my_argc = -1;
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
-extern void PrintFile(char *filename);
-extern void C2F (tmpdirc) ();
-extern void C2F (getwins) (integer *, integer *, integer *);
-extern void start_sci_gtk();
-extern void sci_tk_activate(void);
-extern void ChangeCursorWhenScilabIsReady(void);
-
-static void CheckMemory (LPSTR str);
-static void AllGraphWinDelete ();
-static LPSTR my_argv[MAXCMDTOKENS];
 EXPORT int CALLBACK  ShutDown (void);
 int Pause (LPSTR str);
 void add_sci_argv(char *p);
@@ -89,6 +79,5 @@ BOOL ForbiddenToUseScilab(void);
 int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow);
 int Console_Main(int argc, char **argv);
 int MAIN__ ();
-
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __WINMAIN_H__ */

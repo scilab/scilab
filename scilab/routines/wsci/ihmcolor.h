@@ -12,7 +12,7 @@
 #include "../machine.h"
 #include "../stack-c.h"
 #include "../version.h"
-
+#include "wgnuplib.h"
 
 #ifndef NULL
   #define NULL 0
@@ -32,6 +32,7 @@ DWORD GetIhmTextColor(void);
 DWORD GetIhmTextBackgroundColor(void);
 
 BOOL ChooseColorBox(int *R,int *G,int *B);
+
 
 #endif /* __IHMCOLOR__ */
 /*-----------------------------------------------------------------------------------*/ 

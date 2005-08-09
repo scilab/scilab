@@ -27,7 +27,10 @@ extern void GetCurrentPrompt(char *CurrentPrompt);
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
 extern void write_history(char *filename);
-
+extern LPTW GetTextWinScilab(void);
+extern void SendCTRLandAKey(int code);
+extern BOOL IsWindowInterface(void);
+/*-----------------------------------------------------------------------------------*/
 char copycur_line[1024];
 BOOL PutLineInBuffer=FALSE;
 void ChangeCursorWhenScilabIsReady(void);
@@ -108,13 +111,10 @@ void ChangeCursorWhenScilabIsReady(void)
   if ( (IsWindowInterface()) && (ScilabIsStarting) )
   {
 	#define DefaultNumMenu 7
-	extern char ScilexWindowName[MAX_PATH];
 	HCURSOR hCursor;
-	LPTW lptw;
+	LPTW lptw=GetTextWinScilab();
 	int NumsMenu = 0;
-	
-
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		
 	hCursor=LoadCursor(  lptw->hInstance,IDC_ARROW);
 	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
 	SetClassLong(lptw->hWndText,GCL_HCURSOR,(LONG) hCursor); 

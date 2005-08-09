@@ -1196,6 +1196,12 @@ cd .. &gt;nul
 				RelativePath=".\TextToPrint.c">
 			</File>
 			<File
+				RelativePath=".\TextWindows.c">
+			</File>
+			<File
+				RelativePath=".\Toolbar.c">
+			</File>
+			<File
 				RelativePath="wgmenu.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -2116,6 +2122,12 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\TextToPrint.h">
+			</File>
+			<File
+				RelativePath=".\TextWindows.h">
+			</File>
+			<File
+				RelativePath=".\Toolbar.h">
 			</File>
 			<File
 				RelativePath="..\version.h">

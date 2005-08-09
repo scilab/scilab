@@ -13,8 +13,7 @@
 #ifndef STRICT
 #define STRICT
 #endif
-/*#include <windows.h>
-  #include <windowsx.h>*/
+
 #include <string.h>		/* only use  items */
 
 #ifdef __CYGWIN32__
@@ -80,9 +79,6 @@ extern TW textwin;
       goto errorcleanup;
 
 
-
-
-
 static char *keyword[] =
 {
   "[TOOLBARGRAPH]","[NEWFIG]","[ZOOM]", "[UNZOOM]", "[ROT3D]", "[PRINTSETUP]", "[PRINT]", "[COPYCLIP]", "[COPYCLIP1]",
@@ -135,7 +131,7 @@ static char *Print_Formats[] =
   "Enhanced Meta File (.emf)"
 };
 
-extern HINSTANCE hdllInstance;
+
 
 void dos2win32 (char *filename, char *filename1);
 static void ExploreMenu (HMENU hmen, BYTE ** macro);
@@ -148,19 +144,6 @@ static void SavePs (struct BCG *ScilabGC);
 static void TranslateMacro (char *string);
 static void ExploreMenu (HMENU hmen, BYTE ** hmacro);
 static void scig_command_scilabgc (int number, void f (struct BCG *));
-
-extern BOOL IsWindowInterface();
-extern void Write_Scilab_Console (char *buf);
-extern void Write_Scilab_Window (char *buf);
-extern void ResetMenu(void);
-extern struct BCG *GetWindowXgcNumber (integer i);
-extern void HideGraphToolBar(struct BCG * ScilabGC);
-extern void ShowGraphToolBar(struct BCG * ScilabGC);
-extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
-extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
-extern void ExportEMF(struct BCG *ScilabGC,char *pszflname);
-extern HDC GetPrinterDC(void);
-extern char GetPrinterOrientation(void);
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);
@@ -187,7 +170,5 @@ BOOL ExportStyle (struct BCG * ScilabGC);
 void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
 
-extern void PrintPs (struct BCG *ScilabGC);
-extern char *GetScilabDirectory(BOOL UnixStyle);
-extern void Callback_PRINTSETUP(void);
+
 #endif /*__WGMENU__*/

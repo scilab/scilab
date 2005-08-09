@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "../machine.h"
 
-#include "common.h" 
+#include "wcommon.h" 
 
 #include "Messages.h"
 #include "Warnings.h"

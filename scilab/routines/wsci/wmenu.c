@@ -34,8 +34,42 @@
 #ifndef STRICT
 #define STRICT
 #endif
-
+/*-----------------------------------------------------------------------------------*/
+extern HINSTANCE hdllInstance;
 extern HDC TryToGetDC(HWND hWnd);
+/* WTEXT.C*/
+extern void SwitchConsole(void);
+/* Efface la fenetre de "commandes" */
+extern void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
+extern void reset_history(void); /* see Console\history.h*/
+extern void HideGraphToolBar(struct BCG * ScilabGC);
+extern void ShowGraphToolBar(struct BCG * ScilabGC);
+extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
+extern void GetCurrentPrompt(char *CurrentPrompt);
+extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
+extern char *GetScilabDirectory(BOOL UnixStyle);
+extern DWORD GetIhmTextBackgroundColor(void);
+extern void InitIhmDefaultColor(void);
+extern DWORD GetIhmTextColor(void);
+extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
+extern BOOL SetIhmSystemDefaultTextColor(void);
+extern BOOL ConfigurePrinterDialogBox(void);
+extern BOOL ChooseColorBox(int *R,int *G,int *B);
+extern BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
+extern BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
+extern LPTW GetTextWinScilab(void);
+extern BOOL IsEmptyClipboard(LPTW lptw);
+extern void PasteFunction(LPTW lptw,BOOL special);
+extern BOOL IsAFile(char *chainefichier);
+extern BOOL IsWindowInterface(void);
+/*-----------------------------------------------------------------------------------*/
+static integer lab_count = 0;
+static char gwin_name[100], gwin_name1[100];
+static void Countp ();
+static void Countm ();
+static void SendCountSet ();
+static void SendCountRaise ();
+static void SendCountDelete ();
 
 /*-----------------------------------------------------------------------------------*/
 void Callback_NEWSCILAB(void)
@@ -96,10 +130,9 @@ void Callback_OPEN(void)
 	char ShortFile[MAX_PATH];
 	char command[MAX_PATH];
 	char TitleText[32];
+
+	LPTW lptw=GetTextWinScilab();
 	
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	switch (lptw->lpmw->CodeLanguage)
 	{
@@ -132,9 +165,7 @@ void Callback_EXEC(void)
 	char Fichier[MAX_PATH];
 	char command[MAX_PATH];
 	
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	    			
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
@@ -150,9 +181,7 @@ void Callback_GETF(void)
 	char Fichier[MAX_PATH];
 	char command[MAX_PATH];
 	
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	    			
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Getf",TRUE,"Files *.sci\0*.sci\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
@@ -167,9 +196,7 @@ void Callback_LOAD(void)
 	char Fichier[MAX_PATH];
 	char command[MAX_PATH];
 	    			
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	    			
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Load",TRUE,"Files *.sav;*.bin\0*.sav;*.bin\0Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
@@ -184,9 +211,7 @@ void Callback_SAVE(void)
 	char Fichier[MAX_PATH];
 	char command[MAX_PATH];
 	
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	    			
 	if (OpenSaveSCIFile(lptw->hWndParent,"Save",FALSE,"Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
@@ -207,9 +232,7 @@ void Callback_CHDIR(void)
 	
 	LPITEMIDLIST pidl; 
 			
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 		
 	GetCurrentDirectory(MAX_PATH,Path);
 	CutLineForDisplay(PathToDisplay,Path,NumberCharByLineInChdirBox);		
@@ -282,9 +305,7 @@ void Callback_GETCWD(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_MCOPY(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	if ( HasAZoneTextSelected(lptw) == TRUE )TextCopyClip (lptw);
 	else 
@@ -302,9 +323,7 @@ void Callback_MCOPY(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_PASTE(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	if ( !IsEmptyClipboard(lptw) ) PasteFunction(lptw,FALSE);
 	else 
@@ -327,9 +346,7 @@ void Callback_PRINTSETUP(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_PRINT(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	SelectAll(lptw,FALSE);
 	TextCopyClip (lptw);
 	UnSelect(lptw);
@@ -347,9 +364,7 @@ void Callback_PRINT(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_TOOLBAR(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	if (lptw->lpmw->LockToolBar == FALSE)
 		{
@@ -360,9 +375,7 @@ void Callback_TOOLBAR(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_FRENCH(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	if (lptw->lpmw->CodeLanguage!=1)
 		{
@@ -372,9 +385,7 @@ void Callback_FRENCH(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_ENGLISH(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	if (lptw->lpmw->CodeLanguage!=0)
 		{
@@ -392,9 +403,7 @@ void Callback_TEXTCOLOR(void)
 
 	if (ChooseColorBox(&R,&G,&B))
 	{
-		extern char ScilexWindowName[MAX_PATH];
-		LPTW lptw;
-		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		LPTW lptw=GetTextWinScilab();
 
 		SetIhmTextColor(R,G,B,TRUE);
 		lptw->bSysColors=0;
@@ -411,9 +420,7 @@ void Callback_BACKGROUNDCOLOR(void)
 
 	if (ChooseColorBox(&R,&G,&B))
 	{
-		extern char ScilexWindowName[MAX_PATH];
-		LPTW lptw;
-		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		LPTW lptw=GetTextWinScilab();
 
 		SetIhmTextBackgroundColor(R,G,B,TRUE);
 		lptw->bSysColors=0;
@@ -422,9 +429,7 @@ void Callback_BACKGROUNDCOLOR(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_SYSTEMCOLOR(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	lptw->bSysColors=1;
 	SetIhmSystemDefaultTextColor();
@@ -433,18 +438,14 @@ void Callback_SYSTEMCOLOR(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_CHOOSETHEFONT(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	TextSelectFont (lptw);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_RESTART(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	SendCTRLandAKey(CTRLU);
 
@@ -513,9 +514,7 @@ void Callback_HELP(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	SendCTRLandAKey(CTRLU);
 	WriteIntoScilab(lptw,"exec('SCI/demos/alldems.dem');");
@@ -564,9 +563,7 @@ void Callback_ABOUT(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_CLEARCOMMANDWINDOW(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	ClearCommandWindow(lptw,TRUE);
 }
@@ -584,17 +581,13 @@ void Callback_CLEARHISTORY(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_SELECTALL(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	SelectAll(lptw,TRUE);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_EMPTYCLIPBOARD(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	CleanClipboard(lptw);
 
 }
@@ -1810,58 +1803,7 @@ void SendCTRLandAKey(int code)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ShowToolBar(LPTW lptw)
-{
-	int i=0;	      		
-	LPMW lpmw;      		
-	RECT rect;
-	lpmw = lptw->lpmw;
-   	
-   	GetClientRect (lptw->hWndParent, &rect);
-   	SetWindowPos (lptw->hWndText, (HWND) NULL, 0, lptw->ButtonHeight,
-   		      rect.right, rect.bottom - lptw->ButtonHeight,SWP_NOZORDER | SWP_NOACTIVATE);	
-	for (i = 0; i < lpmw->nButton; i++)
-	{
-		ShowWindow( lpmw->hButton[i] , SW_SHOWNORMAL );
-    	}
-    	InvalidateRect(lptw->hWndParent, (LPRECT) NULL, TRUE);
-    	InvalidateRect(lptw->hWndText, (LPRECT) NULL, TRUE);
-    	UpdateWindow (lptw->hWndText);
-}
-/*-----------------------------------------------------------------------------------*/   
-void HideToolBar(LPTW lptw)
-{
-	int i=0;	      		
-	LPMW lpmw;      		
-	RECT rect;
-	lpmw = lptw->lpmw;
-   	
-   	GetClientRect (lptw->hWndParent, &rect);
-   	SetWindowPos (lptw->hWndText, (HWND) NULL,0,0,
-		      rect.right, rect.bottom,SWP_NOZORDER | SWP_NOACTIVATE);
-	for (i = 0; i < lpmw->nButton; i++)
-	{
-		ShowWindow( lpmw->hButton[i] , SW_HIDE );
-    	}
-    	InvalidateRect(lptw->hWndParent, (LPRECT) NULL, TRUE);
-    	InvalidateRect(lptw->hWndText, (LPRECT) NULL, TRUE);
-    	UpdateWindow (lptw->hWndText);
-    	
-}
-/*-----------------------------------------------------------------------------------*/   
-void ToolBarOnOff(LPTW lptw)
-{
-	BOOL ON=lptw->lpmw->ShowToolBar;
-	if  (ON)
-	{
-		ShowToolBar(lptw);
-	}
-	else
-	{
-		HideToolBar(lptw);
-	}
-}
-/*-----------------------------------------------------------------------------------*/   
+
 void ReLoadMenus(LPTW lptw)
 {
 	int i=0;	      		
@@ -1883,65 +1825,6 @@ void ReLoadMenus(LPTW lptw)
 	ToolBarOnOff(lptw);
 }
 /*-----------------------------------------------------------------------------------*/   
-void CreateMyTooltip (HWND hwnd,char ToolTipString[30])
-{
-    INITCOMMONCONTROLSEX iccex; 
-    HWND hwndTT;                 // handle to the ToolTip control
-          
-    TOOLINFO ti; // struct specifying info about tool in ToolTip control
-    unsigned int uid = 0;       // for ti initialization
-    
-    LPTSTR lptstr = ToolTipString;
-    RECT rect;                  // for client area coordinates
-
-    /* INITIALIZE COMMON CONTROLS */
-    iccex.dwICC = ICC_WIN95_CLASSES;
-    iccex.dwSize = sizeof(INITCOMMONCONTROLSEX);
-    InitCommonControlsEx(&iccex);
-
-    /* CREATE A TOOLTIP WINDOW */
-    hwndTT = CreateWindowEx(WS_EX_TOPMOST,
-        TOOLTIPS_CLASS,
-        NULL,
-        WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP,		
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        hwnd,
-        NULL,
-        NULL,
-        NULL
-        );
-
-    SetWindowPos(hwndTT,
-        HWND_TOPMOST,
-        0,
-        0,
-        0,
-        0,
-        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-
-    /* GET COORDINATES OF THE MAIN CLIENT AREA */
-    GetClientRect (hwnd, &rect);
-
-    /* INITIALIZE MEMBERS OF THE TOOLINFO STRUCTURE */
-    ti.cbSize = sizeof(TOOLINFO);
-    ti.uFlags = TTF_SUBCLASS;
-    ti.hwnd = hwnd;
-    ti.hinst = NULL;
-    ti.uId = uid;
-    ti.lpszText = lptstr;
-        // ToolTip control will cover the whole window
-    ti.rect.left = rect.left;    
-    ti.rect.top = rect.top;
-    ti.rect.right = rect.right;
-    ti.rect.bottom = rect.bottom;
-
-    /* SEND AN ADDTOOL MESSAGE TO THE TOOLTIP CONTROL WINDOW */
-    SendMessage(hwndTT, TTM_ADDTOOL, 0, (LPARAM) (LPTOOLINFO) &ti);	
-
-} 
 /*-----------------------------------------------------------------------------------*/   
 void UpdateFileNameMenu(LPTW lptw)
 {
@@ -2000,9 +1883,7 @@ void SwitchLanguage(LPTW lptw)
 /*-----------------------------------------------------------------------------------*/
 void ResetMenu(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	ReLoadMenus(lptw);
 }   
 /*-----------------------------------------------------------------------------------*/
@@ -2100,48 +1981,14 @@ int ModifyFile(char *fichier,char *motclef,char *chaine)
 		return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
-int HideToolBarWin32(int WinNum)
-{
-   	if (WinNum == -1)
- 		{
-			if (IsWindowInterface())
-			{
-				extern char ScilexWindowName[MAX_PATH];
-				LPTW lptw;
-				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-				HideToolBar(lptw);
-				lptw->lpmw->ShowToolBar=FALSE;
-				lptw->lpmw->LockToolBar=TRUE;
-  			}
-			else
-			{
- 				sciprint(MSG_WARNING29 );
-			}
-		}
-	else
-		{
-			struct BCG *ScilabGC=NULL;
-			ScilabGC = GetWindowXgcNumber (WinNum);
-			if (ScilabGC != (struct BCG *) 0)
-			{
-				HideGraphToolBar(ScilabGC);
-				ScilabGC->lpmw.LockToolBar=TRUE;
-  			}
-		}
-
- return 0;
-}
-/*-----------------------------------------------------------------------------------*/
 void SetLanguageMenu(char *Language)
 {
 	if (IsWindowInterface())
 	{
 		int LanguageCode=0;
 
-		extern char ScilexWindowName[MAX_PATH];
-		LPTW lptw;
-		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		LPTW lptw=GetTextWinScilab();
 		if (strcmp(Language,"fr") == 0) LanguageCode=1;
 		if (strcmp(Language,"eng") == 0) LanguageCode=0;
 
@@ -2160,105 +2007,5 @@ void SetLanguageMenu(char *Language)
  		// sciprint("Not in Console mode\n");
 		// No Message
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-int ToolBarWin32(int WinNum,char *onoff)
-{
-	int bON;
-   	if (WinNum == -1)
- 		{
-			if (IsWindowInterface())
-			{
-				extern char ScilexWindowName[MAX_PATH];
-				LPTW lptw;
-				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-
-				if (strcmp(onoff,"off")==0)
-				{
-					if (!lptw->lpmw->LockToolBar)
-					{
-						lptw->lpmw->ShowToolBar=FALSE;
-						ToolBarOnOff(lptw);
-					}
-				}
-
-				if (strcmp(onoff,"on")==0)
-				{
-					if (!lptw->lpmw->LockToolBar)
-					{
-						lptw->lpmw->ShowToolBar=TRUE;
-						ToolBarOnOff(lptw);
-					}
-				}
-				
-				bON=lptw->lpmw->ShowToolBar;
-  			}
-			else
-			{
- 				sciprint(MSG_WARNING29);
-				bON=FALSE;
-			}
-		}
-	else
-		{
-			struct BCG *ScilabGC=NULL;
-			ScilabGC = GetWindowXgcNumber (WinNum);
-			if (ScilabGC != (struct BCG *) 0)
-			{
-				if (strcmp(onoff,"off")==0)
-				{
-					if (!ScilabGC->lpmw.LockToolBar)
-					{
-						HideGraphToolBar(ScilabGC);
-					}
-					
-				}
-
-				if (strcmp(onoff,"on")==0)
-				{
-					if (!ScilabGC->lpmw.LockToolBar)
-					{
-						ShowGraphToolBar(ScilabGC);
-					}
-				}
-
-				bON=(ScilabGC->lpmw.ShowToolBar);
-  			}
-			else bON=FALSE;
-		}
- return bON;
-}
-/*-----------------------------------------------------------------------------------*/
-int GetStateToolBarWin32(int WinNum)
-{
-	int bAns;
-   	if (WinNum == -1)
- 		{
-			if (IsWindowInterface())
-			{
-				extern char ScilexWindowName[MAX_PATH];
-				LPTW lptw;
-				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-
-				bAns=lptw->lpmw->ShowToolBar;
-  			}
-			else
-			{
- 				sciprint(MSG_WARNING29);
-				bAns=FALSE;
-			}
-		}
-	else
-		{
-			struct BCG *ScilabGC=NULL;
-			ScilabGC = GetWindowXgcNumber (WinNum);
-			if (ScilabGC != (struct BCG *) 0)
-			{
-				bAns=(ScilabGC->lpmw.ShowToolBar);
-  			}
-			else bAns=FALSE;
-		}
-
-	return bAns;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -5,7 +5,12 @@
 #include "Errors.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
-
+/*-----------------------------------------------------------------------------------*/
+extern void ReplaceSlash(char *pathout,char *pathin);
+extern void PrintFile(char *filename);
+extern BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
+extern BOOL HaveAnotherWindowScilab(void);
+extern char * ChooseAnotherWindowScilab(void);
 /*-----------------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
 /* retourne TRUE si c'est le cas sinon FALSE */

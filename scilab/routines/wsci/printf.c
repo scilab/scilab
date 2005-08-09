@@ -18,9 +18,9 @@
 
 
 /*-----------------------------------------------------------------------------------*/
+extern void Xputchar ();
 extern int getdiary();
-void C2F(diary) __PARAMS((char *str,int *n));
-void diary_nnl __PARAMS((char *str,int *n));
+extern void diary_nnl(char *str,int *n);
 /*-----------------------------------------------------------------------------------*/
 int MyPutCh (int ch)
 {

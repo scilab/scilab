@@ -4,7 +4,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
+#include "wgnuplib.h"
 #include "win_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
@@ -19,9 +19,9 @@ void SetReadyOrNotForAnewLign(BOOL Ready);
 */
 
 static BOOL SpecialPaste=FALSE;
-
+/*-----------------------------------------------------------------------------------*/
 extern HDC TryToGetDC(HWND hWnd);
-
+extern LPTW GetTextWinScilab(void);
 /*-----------------------------------------------------------------------------------*/
 void CreateThreadPaste(char *Text)
 {
@@ -53,8 +53,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	
 	char *TextToSend=NULL;
 	
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	ThreadPasteRunning=TRUE;
 	
@@ -308,10 +307,8 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 	  if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
 	  {
 		  char *output=NULL ;
-		  extern char ScilexWindowName[MAX_PATH];
-		  LPTW lptw;
+		  LPTW lptw=GetTextWinScilab();
 
-		  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 		  output=GetTextFromClipboard(lptw);
 
 		  if (output)
@@ -364,13 +361,11 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 	  else
 	  if ( strcmp(param1,"copy") == 0 )
 	  {
-		  extern char ScilexWindowName[MAX_PATH];
-		  LPTW lptw;
-			
+		  LPTW lptw=GetTextWinScilab();
 		  char *TextToPutInClipboard=NULL;
 		  int TypeVar=GetType(2);
 
-		  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);  
+		  
 
 		  if (TypeVar == sci_strings)
 		  {

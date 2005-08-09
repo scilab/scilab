@@ -120,7 +120,7 @@ void RestoreConsoleColors(void)
 	SetConsoleTextAttribute(hConsole,csbiInfoSave.wAttributes);
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL IsWindowInterface()
+BOOL IsWindowInterface(void)
 {
 	return WindowMode;
 }

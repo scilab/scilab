@@ -5,7 +5,25 @@
 #include "Errors.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
-
+/*-----------------------------------------------------------------------------------*/
+extern HINSTANCE hdllInstance;
+/*-----------------------------------------------------------------------------------*/
+extern BOOL IsWindowInterface();
+extern void Write_Scilab_Console (char *buf);
+extern void Write_Scilab_Window (char *buf);
+extern void ResetMenu(void);
+extern struct BCG *GetWindowXgcNumber (integer i);
+extern void HideGraphToolBar(struct BCG * ScilabGC);
+extern void ShowGraphToolBar(struct BCG * ScilabGC);
+extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
+extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
+extern void ExportEMF(struct BCG *ScilabGC,char *pszflname);
+extern HDC GetPrinterDC(void);
+extern char GetPrinterOrientation(void);
+extern void PrintPs (struct BCG *ScilabGC);
+extern char *GetScilabDirectory(BOOL UnixStyle);
+extern void Callback_PRINTSETUP(void);
+extern LPTW GetTextWinScilab(void);
 /*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
@@ -1049,11 +1067,9 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 {
 #define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
 #define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
-
+  extern char ScilexWindowName[MAX_PATH];
   char *ScilabDirectory=NULL;
 
-  extern char ScilexWindowName[MAX_PATH];
-  LPTW lptw;
   HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
   int LangCode=0; /*English*/
 
@@ -1061,7 +1077,7 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
     {
       if (hWndTmpScilex)
 	{
-	  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	  LPTW lptw=GetTextWinScilab();
 	  LangCode=lptw->lpmw->CodeLanguage;
 	}
       else LangCode=0;

@@ -41,7 +41,18 @@
 
 BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;
-
+/*-----------------------------------------------------------------------------------*/
+extern void PrintFile(char *filename);
+extern void C2F (tmpdirc) ();
+extern void C2F (getwins) (integer *, integer *, integer *);
+extern void start_sci_gtk();
+extern void sci_tk_activate(void);
+extern void ChangeCursorWhenScilabIsReady(void);
+extern TW InitTWStruct(void);
+/*-----------------------------------------------------------------------------------*/
+static void CheckMemory (LPSTR str);
+static void AllGraphWinDelete ();
+static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
 int MAIN__ ()
 {
@@ -91,6 +102,8 @@ int Console_Main(int argc, char **argv)
 
   /* Load common control library * */
   InitCommonControls ();
+
+  textwin=InitTWStruct();
 
   textwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
   textwin.hPrevInstance = 0;
@@ -227,6 +240,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	/* Load common control library * */
 	InitCommonControls ();
+
+	textwin=InitTWStruct();
 
 	textwin.hInstance = hInstance;
 	textwin.hPrevInstance = hPrevInstance;

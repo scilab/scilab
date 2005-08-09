@@ -32,11 +32,6 @@ BOOL IsAScicosFileCOSF(char *chainefichier);
 
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
 void ExtensionFileIntoLowerCase(char *fichier);
-extern void ReplaceSlash(char *pathout,char *pathin);
-extern void PrintFile(char *filename);
-extern BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
-extern BOOL HaveAnotherWindowScilab(void);
-extern char * ChooseAnotherWindowScilab(void);
 
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __FILEASSOCIATION_H__ */

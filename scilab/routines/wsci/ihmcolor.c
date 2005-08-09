@@ -9,6 +9,8 @@
 static DWORD CurrentIHMTextColor=0;
 static DWORD CurrentIHMTextBackgroundColor=16666667;
 /*-----------------------------------------------------------------------------------*/
+extern LPTW GetTextWinScilab(void);
+/*-----------------------------------------------------------------------------------*/
 BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh)
 {
 	BOOL bOK=FALSE;
@@ -17,10 +19,7 @@ BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh)
 
 	if (Refresh)
 	{
-		extern char ScilexWindowName[MAX_PATH];
-		LPTW lptw;
-		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-
+		LPTW lptw=GetTextWinScilab();
 		if (InvalidateRect (lptw->hWndText, NULL, TRUE)) bOK=TRUE;
 
 	}
@@ -38,10 +37,7 @@ BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh)
 	if (Refresh)
 	{
 		HBRUSH NewHbrBackground=NULL;
-		extern char ScilexWindowName[MAX_PATH];
-		LPTW lptw;
-
-		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		LPTW lptw=GetTextWinScilab();
 
 		CurrentIHMTextBackgroundColor=RGB(R,G,B);
 		NewHbrBackground=CreateSolidBrush (CurrentIHMTextBackgroundColor);
@@ -67,10 +63,7 @@ BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh)
 BOOL SetIhmSystemDefaultTextColor(void)
 {
 	BOOL bOK=FALSE;
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	CurrentIHMTextColor=GetSysColor(COLOR_WINDOWTEXT);
 	if (InvalidateRect (lptw->hWndText, NULL, TRUE)) bOK=TRUE;
@@ -83,9 +76,7 @@ BOOL SetIhmSystemDefaultTextBackgroundColor(void)
 	BOOL bOK=FALSE;
 
 	HBRUSH NewHbrBackground=NULL;
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 	
 	CurrentIHMTextBackgroundColor=GetSysColor(COLOR_WINDOW);
 
@@ -130,10 +121,7 @@ BOOL ChooseColorBox(int *R,int *G,int *B)
 	CHOOSECOLOR cc;                 // common dialog box structure 
 	static COLORREF acrCustClr[16]; // array of custom colors 
 	static DWORD rgbCurrent;        // initial color selection
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	LPTW lptw=GetTextWinScilab();
 
 	ZeroMemory(&cc, sizeof(cc));
 	cc.lStructSize = sizeof(cc);

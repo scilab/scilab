@@ -7,8 +7,6 @@
 #include "wcommon.h"
 #include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern char ScilexWindowName[MAX_PATH];
-/*-----------------------------------------------------------------------------------*/
 extern BOOL IsWindowInterface(void);
 extern void Callback_EMPTYCLIPBOARD(void);
 extern void Callback_MCOPY(void);
@@ -28,4 +26,5 @@ HANDLE GetHandleThreadPaste(void);
 BOOL GetThreadPasteRunning(void);
 void SetThreadPasteRunning(BOOL Running);
 /*-----------------------------------------------------------------------------------*/
+
 #endif /*__CLIPBOARD__*/

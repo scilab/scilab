@@ -76,6 +76,7 @@
 #define BACKSPACE 0x08		/* ^H */
 #define SPACE	' '
 #define isterm(f) ((f==stdin && InteractiveMode()==0)|| f==stdout || f==stderr)
+#define SV_BUF_SIZE 5000
 /*-----------------------------------------------------------------------------------*/
 struct sci_hist
 {
@@ -84,19 +85,25 @@ struct sci_hist
     		struct sci_hist *next;
 };
 /*-----------------------------------------------------------------------------------*/
-extern int MyGetCh (void);
-extern LPTW Backuplptw;	
-extern TW textwin;
-
-extern struct sci_hist *history;	/* voir history.c */
-extern struct sci_hist *cur_entry;
-
 extern BOOL PutLineInBuffer;
 extern char copycur_line[MAXBUF];
 char cur_line[MAXBUF];	/* current contents of the line */
+extern struct sci_hist *history;	/* voir history.c */
+extern struct sci_hist *cur_entry;
+extern LPTW Backuplptw;	
+extern TW textwin;
+/*-----------------------------------------------------------------------------------*/
+extern int MyGetCh (void);
+extern BOOL IsWindowInterface(void);
+extern struct sci_hist * SearchBackwardInHistory(char *line);
+extern void GetCurrentPrompt(char *CurrentPrompt);
+extern int C2F(ismenu) ();
+/*-----------------------------------------------------------------------------------*/
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
-
+static int sendprompt=1;
+static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
+/*-----------------------------------------------------------------------------------*/
 static char msdos_getch ();
 static char Windows_getch ();
 static void fix_line ();
@@ -104,13 +111,6 @@ static void redraw_line ();
 static void clear_line ();
 static void clear_eoline ();
 static void copy_line ();
-extern int C2F(ismenu) ();
-static int sendprompt=1;
-#define SV_BUF_SIZE 5000
-static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
-
-extern struct sci_hist * SearchBackwardInHistory(char *line);
-extern void GetCurrentPrompt(char *CurrentPrompt);
 /*-----------------------------------------------------------------------------------*/
 /************************************
  * Send a string to scilab interaction window

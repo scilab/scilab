@@ -80,35 +80,15 @@
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
 EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-
 EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
-extern int C2F (scilines) (int *nl, int *nc);
-
 EXPORT void WINAPI TextMessage (void);
-static void CreateTextClass (LPTW lptw);
-static BOOL RegisterParentWindowClass (LPTW lptw);
-static BOOL RegisterTextWindowClass (LPTW lptw);
 EXPORT int WINAPI TextInit (LPTW lptw);
 EXPORT void WINAPI TextClose (LPTW lptw);
 EXPORT void WINAPI TextToCursor (LPTW lptw);
-void NewLine (LPTW lptw);
-void UpdateText (LPTW lptw, int count);
 EXPORT int WINAPI TextPutCh (LPTW lptw, BYTE ch);
-void TextPutStr (LPTW lptw, LPSTR str);
-void ReadRegistryTxt (LPTW lptw);
-void LimitMark (LPTW lptw, POINT FAR * lppt);
-void ClearMark (LPTW lptw, POINT pt);
-void DoLine (LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count);
-void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark);
-void UpdateMark (LPTW lptw, POINT pt);
-void DragFunc (LPTW lptw, HDROP hdrop);
-void TextCopyClip (LPTW lptw);
-void TextMakeFont (LPTW lptw);
-void TextSelectFont (LPTW lptw);
 EXPORT int WINAPI TextKBHit (LPTW lptw);
 EXPORT int WINAPI TextGetCh (LPTW lptw);
-int CtrlCHit (LPTW lptw);
 EXPORT int WINAPI TextGetChE (LPTW lptw);
 EXPORT LPSTR WINAPI TextGetS (LPTW lptw, LPSTR str, unsigned int size);
 EXPORT int WINAPI TextPutS (LPTW lptw, LPSTR str);
@@ -121,42 +101,26 @@ EXPORT void WINAPI TextClearEOS (LPTW lptw);
 EXPORT void WINAPI TextInsertLine (LPTW lptw);
 EXPORT void WINAPI TextDeleteLine (LPTW lptw);
 EXPORT void WINAPI TextScrollReverse (LPTW lptw);
-
-
-extern void CreateThreadPaste(char *Text);
-extern BOOL IsReadyForAnewLign(void);
-extern void SetReadyOrNotForAnewLign(BOOL Ready);
-extern void PasteFunction(LPTW lptw,BOOL special);
-extern BOOL IsEmptyClipboard(LPTW lptw);
-extern void TextCopyClip(LPTW lptw);
-extern void CleanClipboard(LPTW lptw);
-extern HANDLE GetHandleThreadPaste(void);
-extern BOOL GetThreadPasteRunning(void);
-extern void SetThreadPasteRunning(BOOL Running);
-
-
-
-/*--------------------------*/
-/* voir fichier winmain.c*/
-extern char ScilexConsoleName[MAX_PATH];
-extern void Kill_Scilex_Win98(void);
-extern void Kill_Scilex(void);
-/* voir fichier wmenu.c*/
-extern void SendCTRLandAKey(int code);
+void NewLine (LPTW lptw);
+void UpdateText (LPTW lptw, int count);
+void TextPutStr (LPTW lptw, LPSTR str);
+void ReadRegistryTxt (LPTW lptw);
+void LimitMark (LPTW lptw, POINT FAR * lppt);
+void ClearMark (LPTW lptw, POINT pt);
+void DoLine (LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count);
+void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark);
+void UpdateMark (LPTW lptw, POINT pt);
+void DragFunc (LPTW lptw, HDROP hdrop);
+void TextCopyClip (LPTW lptw);
+void TextMakeFont (LPTW lptw);
+void TextSelectFont (LPTW lptw);
+int CtrlCHit (LPTW lptw);
 /*--------------------------*/
 void HomeFunction _PARAMS((char *fname, unsigned long fname_len));
 void ResizeScreenBuffer(LPTW lptw);
 void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);
 void ReorganizeScreenBuffer(LPTW lptw);
-
-extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
-extern BOOL IsWindowInterface(void);
-extern void ReplaceSlash(char *pathout,char *pathin);
-extern BOOL IsAFile(char *chainefichier);
-extern void ToolBarOnOff(LPTW lptw);
-extern void ReLoadMenus(LPTW lptw);
-extern void ResetMenu(void);
 int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
 void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 void CleanClipboard(LPTW lptw);
@@ -168,46 +132,28 @@ void CutSelection(LPTW lptw);
 void EvaluateSelection(LPTW lptw);
 void OnRightClickMenu(LPTW lptw);
 void InvalidateCursor( void ); 
-/*--------------------------*/
 BOOL HasAZoneTextSelected(LPTW lptw);
-/*--------------------------*/
 DWORD WINAPI SendInputText(LPVOID lpParam );
-/*--------------------------*/
 void CleanPromptFromText(char *Text);
 /*--------------------------*/
 int ReplacePrompt(char *Text,char *prompt);
 /* retourne TRUE si Text a été modifié */
 /*--------------------------*/
 void ForceToActiveWindowParent(void);
-/*--------------------------*/
 void PrintSelection(LPTW lptw,char *Entete);
-/*--------------------------*/
 void ExitWindow(void);
-/*--------------------------*/
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
-/*--------------------------*/
 int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len));
-/*--------------------------*/
 void MessageBoxNewGraphicMode(void);
 BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
-/*--------------------------*/
 BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
-/*--------------------------*/
 BOOL IsToThePrompt(void);
 void EnableNMenus(LPTW lptw,int numbermenus);
 void EnableMenus(LPTW lptw);
 void DisableMenus(LPTW lptw);
 void EnableToolBar(LPTW lptw);
 void DisableToolBar(LPTW lptw);
-/*--------------------------*/
-extern DWORD GetIhmTextBackgroundColor(void);
-extern void InitIhmDefaultColor(void);
-extern DWORD GetIhmTextColor(void);
-extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
-extern BOOL SetIhmSystemDefaultTextColor(void);
-/*--------------------------*/
-extern char *GetScilabDirectory(BOOL UnixStyle);
 /*--------------------------*/
 #endif /*  __WTEXT_H__ */
