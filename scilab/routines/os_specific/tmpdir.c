@@ -64,22 +64,26 @@ void C2F(settmpdir)(void)
 
 	  if ( CreateDirectory(tmp_dir,NULL)==FALSE)
       {
-	  
-	  int error;
-	  error = GetLastError ();
-	  if ( (error == ERROR_ACCESS_DENIED)  && (GetFileAttributes (tmp_dir) != FILE_ATTRIBUTE_DIRECTORY) )
-	  {
+		DWORD attribs=GetFileAttributes (tmp_dir); 
+
+		if (attribs & FILE_ATTRIBUTE_DIRECTORY)
+		{
 		  // Repertoire existant
-	  }
-	  else
-	  {
+		}
+		else
+		{
 		  #ifdef _DEBUG
 		  char MsgErr[1024];
 		  wsprintf(MsgErr,"Impossible to create : %s",tmp_dir);
 		  MessageBox(NULL,MsgErr,"Error",MB_ICONERROR);
 		  exit(1);
 		  #endif
-	  }
+
+		  GetTempPath(PATH_MAX,TmpDirDefault);
+		  sprintf(tmp_dir,"%s",TmpDirDefault);
+		  tmp_dir[strlen(tmp_dir)-1]='\0'; /* Remove last \ */
+
+		}
   }
 #else 
   sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
