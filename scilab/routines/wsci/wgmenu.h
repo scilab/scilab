@@ -81,7 +81,7 @@ extern TW textwin;
 
 
 
-static char filename[MAXSTR], filename1[MAXSTR];
+
 
 static char *keyword[] =
 {
@@ -120,7 +120,7 @@ typedef struct tagLS
 }
 LS;
 
-static LS ls =
+LS ls =
 {1, 0, 0, 0};
 
 static char *Print_Formats[] =
@@ -137,7 +137,7 @@ static char *Print_Formats[] =
 
 extern HINSTANCE hdllInstance;
 
-static void dos2win32 (char *filename, char *filename1);
+void dos2win32 (char *filename, char *filename1);
 static void ExploreMenu (HMENU hmen, BYTE ** macro);
 static void SciDelMenu (LPMW lpmw, char *name);
 static void SciChMenu (LPMW lpmw, char *name, char *new_name);
@@ -145,10 +145,8 @@ static void SciSetMenu (HMENU hmen, char *name, int num, int flag);
 static void SciChMenu (LPMW lpmw, char *name, char *new_name);
 static void SciDelMenu (LPMW lpmw, char *name);
 static void SavePs (struct BCG *ScilabGC);
-static void PrintPs (struct BCG *ScilabGC);
 static void TranslateMacro (char *string);
 static void ExploreMenu (HMENU hmen, BYTE ** hmacro);
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
 static void scig_command_scilabgc (int number, void f (struct BCG *));
 
 extern BOOL IsWindowInterface();
@@ -189,6 +187,7 @@ BOOL ExportStyle (struct BCG * ScilabGC);
 void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
 
+extern void PrintPs (struct BCG *ScilabGC);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void Callback_PRINTSETUP(void);
 #endif /*__WGMENU__*/

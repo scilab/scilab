@@ -10,7 +10,7 @@ wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj Events.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
 	command.obj readcons.obj x_zzledt.obj ScilabXloop.obj \
-	win_mem_alloc.obj ihmcolor.obj TextToPrint.obj
+	win_mem_alloc.obj ihmcolor.obj TextToPrint.obj FigureToPrint.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 

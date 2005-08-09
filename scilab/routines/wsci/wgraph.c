@@ -10,10 +10,6 @@
 
 /*-----------------------------------------------------------------------------------*/
 static int scig_buzy = 0;
-extern int WindowsPrintScreen;
-extern int Printer_XRes;
-extern int Printer_YRes;
-
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
@@ -71,8 +67,8 @@ void NewCopyClip (struct BCG *ScilabGC)
 
   SaveCurrentWindow=GetCurrentFigureWindows();
 
-  if (scig_buzy == 1) return;
-  scig_buzy = 1;
+  if (Getscig_buzyState() == 1) return;
+  Setscig_buzyState(1);
 
   SetCurrentFigureWindows (ScilabGC->CurWindow);
   lpgw = ScilabGC->lpgw;
@@ -104,7 +100,7 @@ void NewCopyClip (struct BCG *ScilabGC)
 
   SetCurrentFigureWindows (SaveCurrentWindow);
 
-  scig_buzy = 0;
+  Setscig_buzyState(0);
   return;
 
 }
@@ -128,8 +124,8 @@ void CopyClip (struct BCG *ScilabGC)
 
   SaveCurrentWindow=GetCurrentFigureWindows();
 
-  if (scig_buzy == 1) return;
-  scig_buzy = 1;
+  if (Getscig_buzyState() == 1) return;
+  Setscig_buzyState(1);
 
   SetCurrentFigureWindows (ScilabGC->CurWindow);
 
@@ -195,7 +191,7 @@ void CopyClip (struct BCG *ScilabGC)
   
   SetCurrentFigureWindows (SaveCurrentWindow);
   
-  scig_buzy = 0;
+  Setscig_buzyState(0);
 
   return;
 }
@@ -218,132 +214,6 @@ static void PageGDICalls (HDC hdcPrn, int cxPage, int cyPage)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-int CopyPrint (struct BCG *ScilabGC)
-{
-  int xPage, yPage;
-  static DOCINFO di = {sizeof (DOCINFO), MSG_SCIMSG12, NULL};
-  BOOL bError = FALSE;
-  HDC printer=NULL;
-  LPGW lpgw;
-  ABORTPROC lpfnAbortProc;
-  DLGPROC lpfnPrintDlgProc;
-  static PRINTDLG pd;
-  HWND hwnd;
-  RECT rect,RectRestore;
-  PRINT pr;
-
-  integer SaveCurrentWindow=0;
-
-  SaveCurrentWindow=GetCurrentFigureWindows();
-
-  if (scig_buzy == 1) return TRUE;
-  scig_buzy = 1;
-
-  SetCurrentFigureWindows (ScilabGC->CurWindow);
-
-  lpgw = ScilabGC->lpgw;
-  hwnd = ScilabGC->CWindow;
-
-  printer = (HDC)GetPrinterDC();
-
-  if (NULL == printer)
-    {
-		/* Redessine si Cancel Impression */
-		GetClientRect (hwnd, &RectRestore);
-		scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
-		sciprint ("\r\nCan't print \r\n");
-		scig_buzy = 0;
-		return TRUE;		/* abort */
-    }
-
-  pr.hdcPrn = printer;
-  xPage = GetDeviceCaps (pr.hdcPrn, HORZRES);
-  yPage = GetDeviceCaps (pr.hdcPrn, VERTRES);
-
-  GetClientRect (hwnd, &rect);
-  SetLastError (0);
-  /** Warning : 
-    inside PrintDlgProg we use GetWindowLong(GetParent(hdlg), 4);
-    to get the parent window of the print dialog box 
-    GetParent(hdlg) returns ScilabGC->hWndParent and not hwnd = 
-ScilabGC->CWindow 
-    as we would expect ? 
-    So we call SetwindowLong with ScilabGC->hWndParent also 
-    **/
-  if (SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr)) == 0
-      && GetLastError () != 0)
-    {
-      sciprint (MSG_ERROR34);
-      scig_buzy = 0;
-      return TRUE;
-    }
-  if (SetWindowLong(ScilabGC->hWndParent, 4, (LONG) ((LP_PRINT) & pr)) == 0
-      && GetLastError () != 0)
-    {
-      sciprint (MSG_ERROR34);
-      scig_buzy = 0;
-      return TRUE;
-    }
-  PrintRegister ((LP_PRINT) & pr);
-  EnableWindow (hwnd, FALSE);
-  pr.bUserAbort = FALSE;
-  lpfnPrintDlgProc = (DLGPROC) MyGetProcAddress ("PrintDlgProc",PrintDlgProc);
-  lpfnAbortProc = (ABORTPROC) MyGetProcAddress ("PrintAbortProc",PrintAbortProc);
-  pr.hDlgPrint = CreateDialogParam (hdllInstance, "PrintDlgBox", hwnd, lpfnPrintDlgProc, (LPARAM) lpgw->Title);
-  SetAbortProc (pr.hdcPrn, lpfnAbortProc);
-
-  if (StartDoc (pr.hdcPrn, &di) > 0)
-    {
-      if (StartPage (pr.hdcPrn) > 0)
-	{
-	  int scalef = 1;
-	  SetMapMode (pr.hdcPrn, MM_TEXT);
-	  SetBkMode (pr.hdcPrn, TRANSPARENT);
-	  SetTextAlign (pr.hdcPrn, TA_LEFT | TA_BOTTOM);
-	  /** changes the origin 
-	    we should duse this to get into account the margins 
-	    that can be specified with the print dialog 
-	    But I don't know how to get back the values ???
-	    Rectangle(pr.hdcPrn,0,0,xPage,yPage);
-	    SetViewportOrgEx(pr.hdcPrn,xPage/8,yPage/8,NULL);
-	    Rectangle(pr.hdcPrn,0,0,xPage -xPage/4,yPage-yPage/4);
-	    **/
-	  /**
-	    put the apropriate scale factor according to printer 
-	    resolution and redraw with the printer as hdc 
-	  **/
-	  scalef = (int) (10.0 * ((double) xPage * yPage) / (6800.0 * 4725.0));
-      GetClientRect (hwnd, &RectRestore);
-	  /* Evite bug lorsque l'on selectionne la fenetre & que l'on imprime apres */
-	  scig_replay_hdc ('P', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
-	  WindowsPrintScreen = 1;
-	  Printer_XRes = GetDeviceCaps (pr.hdcPrn, LOGPIXELSX);
-	  Printer_YRes = GetDeviceCaps (pr.hdcPrn, LOGPIXELSY);
-	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,xPage, yPage, scalef);
-	  WindowsPrintScreen = 0;
-	  /* Redessine à l'ecran apres l'impression */
-	  scig_replay_hdc ('W', ScilabGC->CurWindow, TryToGetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
-	  if (EndPage (pr.hdcPrn) > 0)  EndDoc (pr.hdcPrn);
-	  else bError = TRUE;
-	}
-    }
-  else
-    bError = TRUE;
-  if (!pr.bUserAbort)
-    {
-      EnableWindow (hwnd, TRUE);
-      DestroyWindow (pr.hDlgPrint);
-    }
-	if (printer) {DeleteDC (printer); printer=NULL;}
-  SetWindowLong (hwnd, 4, (LONG) (0L));
-  SetWindowLong (ScilabGC->hWndParent, 4, (LONG) (0L));
-  PrintUnregister ((LP_PRINT) & pr);
-
-  SetCurrentFigureWindows (SaveCurrentWindow);
-
-  scig_buzy = 0;
-  return bError || pr.bUserAbort;
-}
 /*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Debug Function 
@@ -648,12 +518,12 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   HDC hdc;
   PAINTSTRUCT ps;
   hdc = BeginPaint(hwnd, &ps);  
-  if (scig_buzy == 1)  
+  if (Getscig_buzyState() == 1)  
     {
       EndPaint(hwnd, &ps);
       return; 
     }
-  scig_buzy = 1;
+  Setscig_buzyState(1);
   
   if (ScilabGC->Inside_init == 1) goto paint_end;
   /* 
@@ -725,7 +595,7 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   paint_end : 
     {
       EndPaint(hwnd, &ps);
-      scig_buzy = 0;
+      Setscig_buzyState(0);
     }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1016,7 +886,7 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
  *    a redraw can occurs while we are using a alufunction 
  *    in a graphic mode without xtape )
  ********************************************************/
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale)
+void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale)
 {
   integer verb = 0, cur, na;
   char name[4];
@@ -1443,33 +1313,36 @@ relHwndDc:
 /*-----------------------------------------------------------------------------------*/
 void ExportBMP(struct BCG *ScilabGC,char *pszflname)
 {
-  RECT rect;
-  integer SaveCurrentFigure=0; 
-  HWND hwnd;
+	RECT rect;
+	integer SaveCurrentFigure=0; 
+	HWND hwnd;
+	HDC hDCfromhWnd=NULL;
 
-  SaveCurrentFigure=GetCurrentFigureWindows();
+	SaveCurrentFigure=GetCurrentFigureWindows();
 
-  if (scig_buzy == 1) return;
-  scig_buzy = 1;
+	if (scig_buzy == 1) return;
+	scig_buzy = 1;
 
-  SetCurrentFigureWindows (ScilabGC->CurWindow);
+	SetCurrentFigureWindows (ScilabGC->CurWindow);
+	hwnd = ScilabGC->CWindow;
 
-  hwnd = ScilabGC->CWindow;
-  
-  /* view the window */
-  if (IsIconic (hwnd)) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
-  BringWindowToTop (ScilabGC->hWndParent);
-  UpdateWindow (ScilabGC->hWndParent);
-  
-  SetActiveWindow(ScilabGC->hWndParent);      
-  GetClientRect (hwnd, &rect);
-  scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
-  HwndToBmpFile(hwnd,pszflname);
+	/* view the window */
+	if (IsIconic (hwnd)) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
+	BringWindowToTop (ScilabGC->hWndParent);
+	UpdateWindow (ScilabGC->hWndParent);
 
-  SetCurrentFigureWindows (SaveCurrentFigure);
+	SetActiveWindow(ScilabGC->hWndParent);      
+	GetClientRect (hwnd, &rect);
 
-  scig_buzy = 0;
-  
+	hDCfromhWnd=TryToGetDC (hwnd);
+	scig_replay_hdc ('C', ScilabGC->CurWindow, hDCfromhWnd,rect.right - rect.left, rect.bottom - rect.top, 1);
+	HwndToBmpFile(hwnd,pszflname);
+	ReleaseDC (hwnd, hDCfromhWnd);
+	SetCurrentFigureWindows (SaveCurrentFigure);
+
+	scig_buzy = 0;
+	InvalidateRect(hwnd,NULL,TRUE);
+
 }
 /*-----------------------------------------------------------------------------------*/
 void ExportEMF(struct BCG *ScilabGC,char *pszflname)
@@ -1483,10 +1356,10 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
 
   SaveCurrentFigure=GetCurrentFigureWindows();
 
-  if (scig_buzy == 1) return;
-  scig_buzy = 1;
+  if (Getscig_buzyState() == 1) return;
 
   SetCurrentFigureWindows (ScilabGC->CurWindow);
+  Setscig_buzyState(1);
 
   hwnd = ScilabGC->CWindow;
 
@@ -1512,7 +1385,7 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
 
   SetCurrentFigureWindows (SaveCurrentFigure);
 
-  scig_buzy = 0;
+  Setscig_buzyState(0);
   return;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1761,5 +1634,15 @@ int Interface_XS2EMF(int figurenum,char *filename)
 		bOK=0;
 	}
 	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int Getscig_buzyState(void)
+{
+	return scig_buzy;
+}
+/*-----------------------------------------------------------------------------------*/
+void Setscig_buzyState(int state)
+{
+	scig_buzy=state;
 }
 /*-----------------------------------------------------------------------------------*/

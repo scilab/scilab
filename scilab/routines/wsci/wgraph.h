@@ -85,7 +85,7 @@ extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 extern void delete_sgwin_entities(int win_num,int v_flag);
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
+void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
 void set_delete_win_mode();
 
 int C2F (deletewin) (integer * number);
@@ -93,7 +93,6 @@ EXPORT void WINAPI GraphPrint (struct BCG *ScilabGC);
 EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC);
 void NewCopyClip (struct BCG *ScilabGC);
 void CopyClip (struct BCG *ScilabGC);
-int CopyPrint (struct BCG *ScilabGC);
 void SciViewportMove (ScilabGC, x, y);
 void SciViewportGet (ScilabXgc, x, y);
 void GPopupResize (struct BCG * ScilabXgc,int * width,int * height);
@@ -107,7 +106,7 @@ static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC);
 static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC);
 static void ScilabNoPaint (HWND hwnd, struct BCG *ScilabGC);
 static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
+void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
 EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
@@ -148,7 +147,8 @@ HDC TryToGetDC(HWND hWnd);
 
 int Interface_XS2BMP(int figurenum,char *filename);
 int Interface_XS2EMF(int figurenum,char *filename);
-
+int Getscig_buzyState(void);
+void Setscig_buzyState(int state);
 
 extern HDC GetPrinterDC(void);
 

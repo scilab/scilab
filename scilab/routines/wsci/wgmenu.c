@@ -907,6 +907,7 @@ static void SavePs (struct BCG *ScilabGC)
 {
 
   char *d, ori;
+  char filename[MAXSTR],filename1[MAXSTR];
   BYTE *s;
   char str[] = "[SAVESCG]XScilab Postscript[EOS]*[EOS]";
   int flag, ierr = 0;
@@ -924,8 +925,6 @@ static void SavePs (struct BCG *ScilabGC)
       return;
     }
   *d = '\0';
-
-  
 
   switch (ls.ps_type)
     {
@@ -992,7 +991,7 @@ static void SavePs (struct BCG *ScilabGC)
 	
 }
 /*-----------------------------------------------------------------------------------*/
-static void dos2win32 (char *filename, char *filename1)
+void dos2win32 (char *filename, char *filename1)
 {
 #ifdef CVT_PATH_BEG
   if (filename[1] == ':')
@@ -1010,40 +1009,6 @@ static void dos2win32 (char *filename, char *filename1)
 	*(filename1 - 1) = '/';
     }
   *filename1 = '\0';
-}
-/*-----------------------------------------------------------------------------------*/
-static void PrintPs (struct BCG *ScilabGC)
-{
-  HDC hPrinterDC=NULL;
-  char *p1;
-  char ori;
-  /** getting ls flags **/
-  ls.use_printer = 1;
-  ls.colored = 1;
-
-  hPrinterDC=GetPrinterDC(); // Just to Configure Printer
-  if (hPrinterDC) {DeleteDC(hPrinterDC);hPrinterDC=NULL;}
-
-  /** getting filename **/
-  if ((p1 = getenv ("TMPDIR")) == (char *) 0)
-  {
-     sciprint (MSG_WARNING15);
-     return;
-  }
-  sprintf (filename, "%s/scilab-%d", p1, (int) ScilabGC->CurWindow);
-
-  dos2win32 (filename, filename1);
-
-  scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
-
-  ori =GetPrinterOrientation();
-  
-  if (ScilabPsToEps (ori, filename1, filename) == 0)
-    {
-      if (gp_printfile (hdllInstance, ScilabGC->hWndParent, filename,(char *) 0) == FALSE)	sciprint (MSG_ERROR78);
-    }
-  /** filename is destroyed when we quit scilab **/
-
 }
 /*-----------------------------------------------------------------------------------*/
 /* used by command_handler in metanet */

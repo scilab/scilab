@@ -15,9 +15,11 @@
 	extern void PrintFile(char *filename);
 	extern void PrintString(char *lines,char *Entete);
 	extern BOOL FileExist(char *filename);
+	extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
+	extern int IsAScalar(int RhsNumber);
 #endif
 /*-----------------------------------------------------------------------------------*/
-/* Print from scilab (Windows) for Scipad */
+/* Print from scilab (Windows) for Scipad and figure */
 int C2F(inttoprint) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
@@ -57,8 +59,37 @@ int C2F(inttoprint) _PARAMS((char *fname))
 		}
 		else
 		{
-			Scierror(999,"parameter incorrect must be a string (a filename).");
-			return 0;
+			
+			if (GetType(1) == sci_matrix)
+			{
+				if (IsAScalar(1))
+				{
+					int num_win=-2;
+					GetRhsVar(1,"i",&m1,&n1,&l1);
+					num_win=*istk(l1);
+					if (num_win>=0)
+					{
+						
+						*paramoutINT=(int)FigureToPrint(num_win,FALSE);
+					}
+					else
+					{
+						Scierror(999,"parameter must be >= 0.");
+						return 0;
+					}
+					
+				}
+				else
+				{
+					Scierror(999,"parameter incorrect --> see help toprint.");
+					return 0;
+				}
+			}
+			else
+			{
+				Scierror(999,"parameter incorrect --> see help toprint.");
+				return 0;
+			}
 		}
 	}
 	else
@@ -122,8 +153,48 @@ int C2F(inttoprint) _PARAMS((char *fname))
 		}
 		else
 		{
-			Scierror(999,"parameter(s) incorrect must be strings (string(s),header).");
-			return 0;
+			if ( (GetType(1) == sci_matrix) && (GetType(2) == sci_strings) )
+			{
+				if (IsAScalar(1))
+				{
+					int num_win=-2;
+					char *param=NULL;
+
+					GetRhsVar(1,"i",&m1,&n1,&l1);
+					num_win=*istk(l1);
+
+					GetRhsVar(2,"c",&m1,&n1,&l1);
+					param=cstk(l1);
+
+					if ( (strcmp(param,"pos")==0) || (strcmp(param,"gdi")==0) )
+					{
+						if ( strcmp(param,"pos")==0 )
+						{
+							*paramoutINT=(int)FigureToPrint(num_win,TRUE);
+						}
+						else
+						{
+							*paramoutINT=(int)FigureToPrint(num_win,FALSE);
+						}
+					}
+					else
+					{
+						Scierror(999,"2nd parameter incorrect --> see help toprint ('pos' or 'gdi').");
+						return 0;
+					}
+				}
+				else
+				{
+					Scierror(999,"1st parameter incorrect --> see help toprint.");
+					return 0;
+				}
+
+			}
+			else
+			{
+				Scierror(999,"parameter(s) incorrect --> see help toprint.");
+				return 0;
+			}
 		}
 	}
 
