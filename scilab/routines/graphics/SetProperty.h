@@ -98,4 +98,6 @@ extern int sciSwitchWindow(int *winnum); /* SET */
 void set_version_flag(int flag) ; /* SET */
 
 extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
+extern int sciSetPosition (sciPointObj * pobj, double x, double y);
+
 #endif /* __SCI_SET_PROPERTY__ */

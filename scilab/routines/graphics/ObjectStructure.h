@@ -626,6 +626,9 @@ typedef struct
   int clip_region_set;
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
+  BOOL isfilled; /* to know if a label has a colored frame as background */
+  BOOL auto_position; /* automatic or manual position selection for label */
+  double position[2]; /* the (x,y) coord. of the label's position */
 }/** */
 sciLabel;  
 
@@ -759,6 +762,13 @@ typedef struct
   int surfcounter; /* used to merge 3d objects */
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
+  
+  int YGradMostOnLeft;
+  int YGradMostOnRight;
+  int XGradMostOnTop;
+  int XGradMostOnBottom;
+
+  BOOL firsttime;
 }/** */
 sciSubWindow;  
 

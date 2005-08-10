@@ -811,7 +811,7 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  line width \n");
+	  sciprint ("This object has no  line width \n");
 	  return -1;
 	  break;
 	}
@@ -879,7 +879,7 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       /* pas de context graphics */
-      sciprint ("This object have no  ismark \n");
+      sciprint ("This object has no  ismark \n");
       return -1;
       break;
     }
@@ -1095,7 +1095,7 @@ sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object have no mark \n");
+	  sciprint ("This object has no mark \n");
 	  return -1;
 	  break;
 	}
@@ -1172,7 +1172,7 @@ sciSetMarkSize (sciPointObj * pobj, int marksize)
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object have no mark \n");
+	  sciprint ("This object has no mark \n");
 	  return -1;
 	  break;
 	}
@@ -1248,7 +1248,7 @@ sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit)
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object have no mark \n");
+	  sciprint ("This object has no mark \n");
 	  return -1;
 	  break;
 	}
@@ -1318,7 +1318,7 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       /* pas de context graphics */
-      sciprint ("This object have no  isline \n");
+      sciprint ("This object has no  isline \n");
       return -1;
       break;
     }
@@ -1387,7 +1387,7 @@ sciSetFillStyle (sciPointObj * pobj, int fillstyle)
 	case SCI_LEGEND:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	default:
-	  sciprint ("This object have no  line style \n");
+	  sciprint ("This object has no  line style \n");
 	  return -1;
 	  break;
 	}
@@ -1414,14 +1414,14 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
 	{
 	  case SCI_FIGURE: /* Adding F.Leray 08.04.04 */
 	  /* pas de context graphics */
-	  /*  sciprint ("This object have no  Font width \n");
+	  /*  sciprint ("This object has no  Font width \n");
 	      return -1;*/
 	  (sciGetFontContext(pobj))->fontdeciwidth = fontdeciwidth;
 	  return 0;
 	  break;
 	case SCI_SUBWIN:
 	  /* pas de context graphics */
-	  /*sciprint ("This object have no  Font width \n");
+	  /*sciprint ("This object has no  Font width \n");
 	    return -1;*/
 	  /* Adding F.Leray 08.04.04 */
 	  (sciGetFontContext(pobj))->fontdeciwidth = fontdeciwidth;
@@ -1443,27 +1443,27 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
 	  break;
 	case SCI_ARC:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  Font width \n");
+	  sciprint ("This object has no  Font width \n");
 	  return -1;
 	  break;
 	case SCI_POLYLINE:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  Font width \n");
+	  sciprint ("This object has no  Font width \n");
 	  return -1;
 	  break;
 	case SCI_RECTANGLE:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  Font width \n");
+	  sciprint ("This object has no  Font width \n");
 	  return -1;
 	  break;
 	case SCI_SURFACE:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  font width \n");
+	  sciprint ("This object has no  font width \n");
 	  return -1;
 	  break;
 	case SCI_LIGHT:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  font width \n");
+	  sciprint ("This object has no  font width \n");
 	  return -1;
 	  break;
         case SCI_AXES:
@@ -1475,7 +1475,7 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
 	case SCI_SBH:
 	case SCI_SBV:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  font width \n");
+	  sciprint ("This object has no  font width \n");
 	  return -1;
 	  break;
 	case SCI_MENU:
@@ -1579,7 +1579,7 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
 	case SCI_AGREG:
 	default:
 	  /* pas de context graphics */
-	  sciprint ("This object have no  font width \n");
+	  sciprint ("This object has no  font width \n");
 	  return -1;
 	  break;
 
@@ -3519,6 +3519,10 @@ sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
       pTEXT_FEATURE(pobj)->isfilled = isfilled;
       return 0;
       break;   
+    case SCI_LABEL:
+      pLABEL_FEATURE(pobj)->isfilled = isfilled;
+      return 0;
+      break;   
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_SURFACE:
@@ -3536,9 +3540,8 @@ sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_TITLE:
-    case SCI_LABEL:
-    default:
-      sciprint ("This object have no isfilled \n");
+   default:
+      sciprint ("This object has no isfilled \n");
       return -1;
       break;
     }
@@ -3583,7 +3586,7 @@ sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
     case SCI_SBV:
     case SCI_TITLE:
     default:
-      sciprint ("This object have no isboxed \n");
+      sciprint ("This object has no isboxed \n");
       return -1;
       break;
     }
@@ -3625,7 +3628,7 @@ sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
 /*     case SCI_SBV: */
 /*     case SCI_TITLE: */
 /*     default: */
-/*       sciprint ("This object have no isboxed \n"); */
+/*       sciprint ("This object has no isboxed \n"); */
 /*       return -1; */
 /*       break; */
 /*     } */
@@ -3645,5 +3648,48 @@ sciSetInterpVector(sciPointObj * pobj, int size, int * value)
   for(i=0;i<size;i++)
     pPOLYLINE_FEATURE(pobj)->scvector[i] = value[i];
   
+  return 0;
+}
+
+
+/**sciSetPosition
+ * @memo Sets the position (in pixels) for the label object
+ */
+int
+sciSetPosition (sciPointObj * pobj, double x, double y)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_LABEL:
+      pLABEL_FEATURE(pobj)->position[0] = x;
+      pLABEL_FEATURE(pobj)->position[1] = y;
+      return 0;
+      break;
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_ARC:
+    case SCI_TEXT:
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_FEC:
+    case SCI_SEGS:
+    case SCI_LEGEND:
+    case SCI_GRAYPLOT:
+    case SCI_LIGHT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_PANNER:	/* pas de context graphics */
+    case SCI_SBH:		/* pas de context graphics */
+    case SCI_SBV:		/* pas de context graphics */
+    case SCI_AGREG:
+    case SCI_TITLE:
+    default:
+      sciprint ("This object has no position\n");
+      return -1;
+      break;
+    }
   return 0;
 }

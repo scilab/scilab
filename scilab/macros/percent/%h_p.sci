@@ -355,8 +355,13 @@ function %h_p(h)
 	 "visible = "+sci2exp(h.visible) 
 	 "text = "+T
 	 "foreground = "+string(h.foreground)
+	 "background = "+string(h.background)
+	 "fill_mode = "+sci2exp(h.fill_mode)
 	 "font_style = "+string(h.font_style)
-	 "font_size = "+string(h.font_size)]
+	 "font_size = "+string(h.font_size)
+	 "font_angle = "+string(h.font_angle)
+	 "auto_position = "+sci2exp(h.auto_position)
+	 "position = "+sci2exp(h.position,0)]
     case "Plot3d"
       Data = h.data
       u=h.user_data

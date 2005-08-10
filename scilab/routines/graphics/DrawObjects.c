@@ -9,10 +9,11 @@
  *    This file contains all functions used to Draw the content of a window.
  *    The main functions is sciDrawObj that draws the objects recursively.
  --------------------------------------------------------------------------*/
+#include <math.h>
 
 #include <stdio.h> 
 #include <string.h>
-#include <math.h>
+#include "fig.h"
 #include <stdlib.h>
 #include <stdarg.h>
 #include <time.h>
@@ -4350,6 +4351,16 @@ int labels2D_draw(sciPointObj * psubwin)
   
   int flagx = 0;
   int old_foreground;
+
+  int xm[4], ym[4],n=4;
+  double cosangle;
+  double sinangle;
+  int close=1;
+  int zero = 0;
+  double font_angle;
+  int largeur, hauteur;
+  int x1, yy1;
+  char str[2] = "xv";
   
   if (!sciGetVisibility(psubwin)) return 0;
   /*sciSetCurrentObj (pobj);       F.Leray 25.03.04*/
@@ -4420,7 +4431,7 @@ int labels2D_draw(sciPointObj * psubwin)
   C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
   
   if( sciGetVisibility(ppsubwin->mon_title) == TRUE){
-    double font_angle = sciGetFontOrientation(ppsubwin->mon_title)/10.;
+    font_angle = sciGetFontOrientation(ppsubwin->mon_title)/10.;
     xstringb_angle(sciGetText(ppsubwin->mon_title),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
     /*     C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_title),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
   }
@@ -4449,42 +4460,281 @@ int labels2D_draw(sciPointObj * psubwin)
   C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
   
   if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE){
-    double font_angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
+    font_angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
     xstringb_angle(sciGetText(ppsubwin->mon_x_label),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
     /*   C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_x_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
   }
-  
+
   /* y label */
   
-  tmp = locx-(ppsubwin->FRect[2]-ppsubwin->FRect[0])/12;
-  if(ppsubwin->axes.reverse[0] == TRUE){
-    double xmin = ppsubwin->SRect[0];
-    double xmax = ppsubwin->SRect[1];
-    tmp= (tmp-xmin)/(xmax-xmin)*xmin + (tmp-xmax)/(xmin-xmax)*xmax;
-  }
-
-  rect1[0]= XScale(tmp);
-  rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24;
-  rect1[2]= Cscale.WIRect1[2]/6;
-  rect1[3]= Cscale.WIRect1[3]/12;
-  
-  x[0] = sciGetFontForeground (ppsubwin->mon_y_label);
-  x[2] = sciGetFontDeciWidth (ppsubwin->mon_y_label)/100;
-  x[3] = 0;
-  x[4] = sciGetFontStyle(ppsubwin->mon_y_label);
-  
-  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-  C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-  C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+  /* F.Leray 04.08.05 */
+  /* New implementation */
   
   if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE){
-    double font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
-    xstringb_angle(sciGetText(ppsubwin->mon_y_label),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
-    /*     C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_y_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L); */
+
+    x[0] = sciGetFontForeground (ppsubwin->mon_y_label);
+    x[2] = sciGetFontDeciWidth (ppsubwin->mon_y_label)/100;
+    x[3] = 0;
+    x[4] = sciGetFontStyle(ppsubwin->mon_y_label);
+  
+    font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
+  
+    C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+    C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+    C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+  
+
+    if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position == TRUE)
+      {
+/* 	char * string = sciGetText(ppsubwin->mon_y_label); */
+/* 	char * loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char)); */
+/* 	strcpy(loc,string); */
+ 
+/* /\* 	printf("string vaut %s\n",string); *\/ */
+/* /\* 	fflush(NULL); *\/ */
+
+/* 	if ( loc != (char *) NULL) */
+/* 	  { */
+/* 	    int wmax = 0, htot = 0,i; */
+/* 	    char * loc1 = strtok(loc,"@"); */
+
+/* 	    for(i=0;i<4;i++) rect1[i] = 0; /\* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 *\/ */
+	    
+/* 	    while ( loc1 != ( char * ) 0)  */
+/* 	      {   */
+/* 		C2F(dr)("xstringl",loc1, */
+/* 			&zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L); */
+/* 		if ( rect1[2] >= wmax ) wmax=rect1[2]; */
+/* 		htot += (int) (1.2*((double) rect1[3])); */
+/* 		loc1=strtok((char *) 0,"@"); */
+/* 	      } */
+	    
+/* 	    rect1[2] = wmax; */
+/* 	    rect1[3] = htot; */
+
+/* 	    printf("--- 1\n"); */
+/* 	    printf("rect1[2] = %d\n",rect1[2]); */
+/* 	    printf("rect1[3] = %d\n",rect1[3]); */
+
+/* 	    FREE(loc); loc = NULL; */
+/* 	    /\* 	    C2F(dr)("xstringl",sciGetText(ppsubwin->mon_y_label), *\/ */
+/* 	    /\* 		    &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_y_label)); *\/ */
+/* 	  } */
+/* 	else */
+/* 	  { */
+/* 	    C2F(dr)("xstringl","", */
+/* 		    &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_y_label)); */
+	    
+/* 	  } */
+	
+	C2F(dr)("xstringl",sciGetText(ppsubwin->mon_y_label),
+		&zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_y_label));
+	
+	
+	/*     printf("rect1[0] = %d \t rect1[1] = %d \t rect1[2] = %d \t rect1[3] = %d \n", */
+	/* 	   rect1[0],rect1[1],rect1[2],rect1[3]); */
+    
+	cosangle = cos((360-font_angle)*M_PI/180);
+	sinangle = sin((360-font_angle)*M_PI/180);
+  
+	xm[0] = 0;
+	xm[1] = cosangle*rect1[2];
+	xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
+	xm[3] = sinangle*(-rect1[3]);
+  
+	ym[0] = 0;
+	ym[1] = -sinangle*rect1[2];
+	ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
+	ym[3] = cosangle*(-rect1[3]);
+  
+	/* computation of the bounding box even when the string is turned */
+  
+	largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
+	hauteur = Max(abs(ym[3] - ym[1]),abs(ym[2] - ym[0]));
+    
+	if(ppsubwin->axes.ydir != 'r'){
+	  /* the y axis is on the left or centered on 0 (grads are also on the left in this case...) */
+	  x1 = ppsubwin->YGradMostOnLeft - (Cscale.WIRect1[3]/50.0);
+
+
+	  /*     printf("Le driver est: %c\n -----------------------\n",GetDriver()); */
+	  /*     printf("ppsubwin->YGradMostOnLeft vaut %d\n",ppsubwin->YGradMostOnLeft); */
+	  /*     printf("x1 vaut: %d\n",x1); */
+    
+	  /* largeur */
+	  if((font_angle>=0 && font_angle <= 90)  || (font_angle>270 && font_angle <= 360)){
+	    x1 = x1 - largeur;
+	    /*      printf("largeur vaut: %d\n",largeur); */
+	    /*       printf("x1 - largeur vaut: %d\n",x1); */
+	    /*       printf("------------------------------------\n"); */
+	  }
+	  else if(font_angle>=180 && font_angle <= 360){
+	    int xm[4], ym[4];
+	    double cosangle, sinangle;
+	    cosangle = cos((360-179)*M_PI/180);
+	    sinangle = sin((360-179)*M_PI/180);
+    
+	    xm[0] = 0;
+	    xm[1] = cosangle*rect1[2];
+	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
+	    xm[3] = sinangle*(-rect1[3]);
+    
+	    ym[0] = 0;
+	    ym[1] = -sinangle*rect1[2];
+	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
+	    ym[3] = cosangle*(-rect1[3]);
+    
+	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
+	  }
+	  else if(font_angle>90 && font_angle < 180){
+	    int xm[4], ym[4];
+	    double cosangle, sinangle;
+	    cosangle = cos((360-89)*M_PI/180);
+	    sinangle = sin((360-89)*M_PI/180);
+    
+	    xm[0] = 0;
+	    xm[1] = cosangle*rect1[2];
+	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
+	    xm[3] = sinangle*(-rect1[3]);
+    
+	    ym[0] = 0;
+	    ym[1] = -sinangle*rect1[2];
+	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
+	    ym[3] = cosangle*(-rect1[3]);
+    
+	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
+    
+	    x1 = x1 - largeur;
+	  }
+	}
+	else{
+	  /* the y axis is on the right */
+	  x1 = ppsubwin->YGradMostOnRight + (Cscale.WIRect1[3]/50.0);
+	  /*       printf("ppsubwin->YGradMostOnRight vaut %d\n",ppsubwin->YGradMostOnRight); */
+      
+	  if((font_angle>=0 && font_angle <= 90)){
+	    /* do nothing more */
+	  }
+	  else if(font_angle>270 && font_angle <= 360){
+	    int xm[4], ym[4];
+
+	    xm[0] = 0;
+	    xm[1] = cosangle*rect1[2];
+	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
+	    xm[3] = sinangle*(-rect1[3]);
+    
+	    ym[0] = 0;
+	    ym[1] = -sinangle*rect1[2];
+	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
+	    ym[3] = cosangle*(-rect1[3]);
+    
+	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
+    
+	    x1 = x1 - xm[3];
+	
+	  }
+	  else {
+	    int xm[4], ym[4];
+
+	    xm[0] = 0;
+	    xm[1] = cosangle*rect1[2];
+	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
+	    xm[3] = sinangle*(-rect1[3]);
+    
+	    ym[0] = 0;
+	    ym[1] = -sinangle*rect1[2];
+	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
+	    ym[3] = cosangle*(-rect1[3]);
+    
+	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
+    
+	    /* 	printf("x1 = %d\n",x1); */
+	    x1 = x1 + largeur;
+	    /* 	printf("x1 + largeur = %d\n",x1); */
+	    /* 	fflush(NULL); */
+	  }
+	}
+	/* hauteur */
+	/*     printf("Cscale.WIRect1[0] = %d\tCscale.WIRect1[1] = %d\tCscale.WIRect1[2] = %d\tCscale.WIRect1[3] = %d\n", */
+	/* 	   Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Cscale.WIRect1[3]); */
+
+	if((font_angle>=0 && font_angle <= 180)){
+	  yy1 = Cscale.WIRect1[1] + Cscale.WIRect1[3]/2 - hauteur/2;
+	}
+	else{
+	  yy1 = Cscale.WIRect1[1] + Cscale.WIRect1[3]/2 + hauteur/2;
+	} 
+
+	/* new automatic position values */
+	sciSetPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	
+	xm[0] = round(x1);
+	xm[1] = round(x1 + cosangle*rect1[2]);
+	xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
+	xm[3] = round(x1 + sinangle*(-rect1[3]));
+	
+	ym[0] = round(yy1);
+	ym[1] = round(yy1 - sinangle*rect1[2]);
+	ym[2] = round(yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]));
+	ym[3] = round(yy1 + cosangle*(-rect1[3]));
+      }
+    else /* manual position selected (unit is the user coord.) */
+      {
+	double tmp[2];
+	sciGetPosition(ppsubwin->mon_y_label,&tmp[0],&tmp[1]);
+	
+	x1  = XDouble2Pixel(tmp[0]);
+	yy1 = YDouble2Pixel(tmp[1]);
+	
+	C2F(dr)("xstringl",sciGetText(ppsubwin->mon_y_label),
+		&zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_y_label));
+	
+	cosangle = cos((360-font_angle)*M_PI/180);
+	sinangle = sin((360-font_angle)*M_PI/180);
+	
+	xm[0] = round(x1);
+	xm[1] = round(x1 + cosangle*rect1[2]);
+	xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
+	xm[3] = round(x1 + sinangle*(-rect1[3]));
+  
+	ym[0] = round(yy1);
+	ym[1] = round(yy1 - sinangle*rect1[2]);
+	ym[2] = round(yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]));
+	ym[3] = round(yy1 + cosangle*(-rect1[3]));
+ 	
+      }
+    
+    if(sciGetIsFilled(ppsubwin->mon_y_label) == TRUE){
+      x[0] = sciGetBackground(ppsubwin->mon_y_label);
+      
+      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+      
+      C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+      
+      x[0] = sciGetForeground(ppsubwin->mon_y_label);
+      
+      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+      
+      C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+    }
+    
+    x[0] = sciGetFontForeground(ppsubwin->mon_y_label);
+    
+    C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+    C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+    
+ /*    printf("--- 2\n"); */
+/*     printf("rect1[2] = %d\n",rect1[2]); */
+/*     printf("rect1[3] = %d\n",rect1[3]); */
+/*     printf("###########\n"); */
+/*     fflush(NULL); */
+    xstringb_angle(sciGetText(ppsubwin->mon_y_label),xm[0],ym[0],rect1[2],rect1[3],font_angle);
   }
   
   C2F (dr) ("xset", "dashes", &old_foreground, &old_foreground, x+4, x+4, x+4, &v, &dv,
-			  &dv, &dv, &dv, 5L, 4096);
+	    &dv, &dv, &dv, 5L, 4096);
   C2F (dr) ("xset", "foreground", &old_foreground, &old_foreground, x+4, x+4, x+4, &v,
 	    &dv, &dv, &dv, &dv, 5L, 4096);
   
@@ -4966,13 +5216,14 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
     {
       int cmpteur = 0;
       /* Allocating arrays x, y and zvect */
-      if (( (*xvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
-      if (( (*yvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
-      if(pppolyline->pvz == NULL)
-	(*zvect)[i] = NULL;
-      else
-	if (( (*zvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
-      
+      if(store_data[2][i] > 0){
+	if (( (*xvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+	if (( (*yvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+	if(pppolyline->pvz == NULL)
+	  (*zvect)[i] = NULL;
+	else
+	  if (( (*zvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+      }
       for(j=store_data[0][i];j<store_data[1][i];j++)
 	{
 	  (*xvect)[i][cmpteur] = pppolyline->pvx[j];
@@ -6740,10 +6991,10 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	  /* 	 if (sciGetVisibility(pobj)) */
 	  /* 	   { */
-	  labels2D_draw(pobj); /* F.Leray 17.01.05 : no isaxes any more */
-	  
 	  rebuild_strflag(pobj,STRFLAG);
 	  axis_draw2 (STRFLAG);
+	  
+	  labels2D_draw(pobj); /* F.Leray 08.08.05 : labels' drawing at the end */
 	  
 #ifdef WIN32
 	  if ( flag_DO == 1) ReleaseWinHdc();
@@ -7907,7 +8158,7 @@ sciDrawObj (sciPointObj * pobj)
 		    int n2 = pPOLYLINE_FEATURE (pobj)->n1;
 
 		    scilab_shade (xm, ym, vect, n2, 0);
-		    /* C2F(dr)("xliness","v",&deux,&zero,vect,&n2,&m2,&v,xm,ym,&dv,&dv,8L,2L); */
+		    /* C2Fd(dr)("xliness","v",&deux,&zero,vect,&n2,&m2,&v,xm,ym,&dv,&dv,8L,2L); */
 		  }
 		}
 	      
@@ -8422,14 +8673,14 @@ sciDrawObj (sciPointObj * pobj)
 		x[0] = sciGetBackground(pobj);
 		
 		xm[0] = x1;
-		xm[1] = x1 + (int)(cosangle*rect1[2]);
-		xm[2] = x1 + (int)(cosangle*rect1[2] + sinangle*(-rect1[3]));
-		xm[3] = x1 + (int)(sinangle*(-rect1[3]));
+		xm[1] = x1 + cosangle*rect1[2];
+		xm[2] = x1 + cosangle*rect1[2] + sinangle*(-rect1[3]);
+		xm[3] = x1 + sinangle*(-rect1[3]);
 		
 		ym[0] = yy1;
-		ym[1] = yy1 - (int)(sinangle*rect1[2]);
-		ym[2] = yy1 - (int)(sinangle*rect1[2] + cosangle*(-rect1[3]));
-		ym[3] = yy1 + (int)(cosangle*(-rect1[3]));
+		ym[1] = yy1 - sinangle*rect1[2];
+		ym[2] = yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]);
+		ym[3] = yy1 + cosangle*(-rect1[3]);
 		
 		
 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);

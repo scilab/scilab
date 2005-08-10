@@ -607,6 +607,19 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 /*       sciSetVisibility(ppsubwin->mon_z_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
       
       
+      /* labels auto_position modes */
+      pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position = 
+	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_position;
+
+      pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position = 
+	pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_position;
+
+      pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_position = 
+	pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_position;
+
+      pLABEL_FEATURE(ppsubwin->mon_title)->auto_position = 
+	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_position;
+      
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       ppsubwin->surfcounter = 0;
       return (sciPointObj *)pobj;
@@ -2677,6 +2690,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 	}
       
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      sciSetIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
       pLABEL_FEATURE (pobj)->user_data = (int *) NULL;
       pLABEL_FEATURE (pobj)->size_of_user_data = 0;
       pLABEL_FEATURE (pobj)->text.relationship.psons = (sciSons *) NULL;

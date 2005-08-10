@@ -152,5 +152,6 @@ extern sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
 extern HMENU sciGethPopMenu (sciPointObj * pthis);
 
 extern int *sciGetInterpVector(sciPointObj * pobj);
+extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 
 #endif /* __SCI_GET_PROPERTY__ */

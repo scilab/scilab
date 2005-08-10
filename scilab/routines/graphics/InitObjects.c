@@ -413,6 +413,9 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_title))->text.callbacklen = 0;
   /*   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title))); */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
+  pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_title)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_title)->position[1] = 0;
   
   if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
@@ -484,7 +487,9 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.callbacklen = 0;
  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label))); */
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
-     
+  pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_x_label)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_x_label)->position[1] = 0;
 
   if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
@@ -556,7 +561,9 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.callbacklen = 0;
  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label))); */
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
-  
+  pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_y_label)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_y_label)->position[1] = 0;
 
   if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
@@ -627,7 +634,9 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0;
  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label))); */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
-  
+  pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_z_label)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_z_label)->position[1] = 0;
   
   if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
@@ -1264,6 +1273,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_title))->text.callbacklen = 0; 
  /*  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title)));  */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
+  pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_title)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_title)->position[1] = 0;
 
   if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
@@ -1335,7 +1347,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.callbacklen = 0; 
  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label)));  */
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
-      
+  pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_x_label)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_x_label)->position[1] = 0;
 
   if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
@@ -1407,8 +1421,10 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.callbacklen = 0; 
  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label)));  */
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
-    
-
+  pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_y_label)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_y_label)->position[1] = 0;
+  
   if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
@@ -1478,7 +1494,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0; 
  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label)));  */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
-      
+  pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_z_label)->position[0] = 0;
+  pLABEL_FEATURE (ppobj->mon_z_label)->position[1] = 0;
 
   if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
     {

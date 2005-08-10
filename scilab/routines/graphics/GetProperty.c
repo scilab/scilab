@@ -1391,6 +1391,9 @@ sciGetIsFilled (sciPointObj * pobj)
     case SCI_TEXT:
       return pTEXT_FEATURE(pobj)->isfilled;
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      return pLABEL_FEATURE(pobj)->isfilled;
+      break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_SURFACE:
@@ -1408,8 +1411,6 @@ sciGetIsFilled (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     case SCI_TITLE:
-
-    case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("This object has no isfilled\n");
       return -1;
@@ -4305,6 +4306,8 @@ int sciType (marker, pobj)
      sciPointObj * pobj;
 { 
   if      (strncmp(marker,"background", 10) == 0) { return 1;}	
+  else if (strncmp(marker,"position", 8) == 0) {return 1;}
+  else if (strncmp(marker,"auto_position", 13) == 0)   {return 10;}		
   else if (strncmp(marker,"interp_color_vector", 19) == 0) {return 1;}
   else if (strncmp(marker,"interp_color_mode", 17) == 0) {return 10;}
   else if (strncmp(marker,"foreground", 10) == 0) {return 1;}	
@@ -4702,7 +4705,7 @@ sciGetIsBoxed (sciPointObj * pobj)
     case SCI_SBV:
     case SCI_TITLE:
     default:
-      sciprint ("This object have no isboxed \n");
+      sciprint ("This object has no isboxed \n");
       return 0;
       break;
     }
@@ -4717,4 +4720,47 @@ sciGetInterpVector(sciPointObj * pobj)
     return (int *) NULL;
 
   return pPOLYLINE_FEATURE(pobj)->scvector;
+}
+
+
+/**sciGetPosition
+ * @memo Returns the position (in pixels) for the label object
+ */
+int
+sciGetPosition (sciPointObj * pobj, double *x, double *y)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_LABEL:
+      *x = pLABEL_FEATURE(pobj)->position[0];
+      *y = pLABEL_FEATURE(pobj)->position[1];
+      return 0;
+      break;
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_ARC:
+    case SCI_TEXT:
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_FEC:
+    case SCI_SEGS:
+    case SCI_LEGEND:
+    case SCI_GRAYPLOT:
+    case SCI_LIGHT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_PANNER:	/* pas de context graphics */
+    case SCI_SBH:		/* pas de context graphics */
+    case SCI_SBV:		/* pas de context graphics */
+    case SCI_AGREG:
+    case SCI_TITLE:
+    default:
+      sciprint ("This object has no position\n");
+      return -1;
+      break;
+    }
+  return 0;
 }
