@@ -168,7 +168,7 @@ proc OnOffForeground { frame flag } {
 }
 
 
-set NBheight 300
+set NBheight 340
 set NBwidth  320
 
 set Wheight [expr $NBheight + 210]
@@ -235,7 +235,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 28 \
+	       -width 20 -height 31 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -1401,6 +1401,8 @@ eval $w.frame.clip list insert end [list "on" "off" "clipgrf"]
 pack $w.frame.cliplabel -in $w.frame.clpstat   -side left
 pack $w.frame.clip -in $w.frame.clpstat  -side left -pady 0m -padx 2m
 
+set largeur 8
+
 #clip box
 frame $w.frame.lb1 -borderwidth 0
 pack $w.frame.lb1  -in $w.frame -side top   -fill x
@@ -1462,7 +1464,7 @@ bind  $w.frame.datah <KP_Enter> "SelectClipBox $w.frame"
 frame $w.frame.marg1 -borderwidth 0
 pack $w.frame.marg1  -in $w.frame -side top   -fill x
 label $w.frame.labelmarg -text "Margins:" -font {Arial 9}
-label $w.frame.labelaxesbounds -text "\t\t\tAxes bounds:" -font {Arial 9}
+label $w.frame.labelaxesbounds -text "\t\tAxes bounds:" -font {Arial 9}
 pack $w.frame.labelmarg -in  $w.frame.marg1 -side left
 pack $w.frame.labelaxesbounds -in  $w.frame.marg1 -side left -pady 0m -padx 2m -fill x
 
