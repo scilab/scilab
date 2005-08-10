@@ -40,7 +40,6 @@ extern TW textwin;
 /* limits */
 #define MAXSTR 255
 #define MACROLEN 5000
-/* #define NUMMENU 256  defined in wresourc.h */
 #define MENUDEPTH 3
 
 /* menu tokens */

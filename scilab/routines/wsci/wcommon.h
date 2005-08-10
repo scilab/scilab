@@ -158,8 +158,6 @@ extern void  SignalCtrC(void);
 /*-----------------------------------------------------------------------------------*/
 /** wgraph */
 extern void DebugGW (char *fmt, ...);
-extern EXPORT void WINAPI  GraphPrint(struct BCG *ScilabGC);
-extern EXPORT void WINAPI  GraphRedraw(struct BCG *ScilabGC);
 extern int C2F(deletewin)(integer *number) ;
 extern void NewCopyClip(struct BCG *ScilabGC);
 extern void CopyClip(struct BCG *ScilabGC);

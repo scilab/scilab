@@ -10,8 +10,6 @@
 #ifndef STRICT
 #define STRICT
 #endif
-/*#include <windows.h>
-  #include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include "../machine.h"

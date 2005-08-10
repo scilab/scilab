@@ -9,6 +9,7 @@
 #include "Errors.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
+#include "wresource.h"
 
 /*-----------------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255

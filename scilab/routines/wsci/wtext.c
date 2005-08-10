@@ -715,6 +715,7 @@ void DragFunc (LPTW lptw, HDROP hdrop)
 	SendMessage (lptw->hWndText, WM_CHAR, *p, 1L);
     }
   DragFinish (hdrop);
+
 }
 /*-----------------------------------------------------------------------------------*/
 void TextMakeFont (LPTW lptw)
@@ -740,8 +741,7 @@ void TextMakeFont (LPTW lptw)
       lf.lfFaceName[(unsigned int) (p - lptw->fontname)] = '\0';
       lf.lfWeight = FW_BOLD;
     }
-  if (lptw->hfont != 0)
-    DeleteFont (lptw->hfont);
+  if (lptw->hfont != 0)DeleteFont (lptw->hfont);
   lptw->hfont = CreateFontIndirect ((LOGFONT FAR *) & lf);
   /* get text size */
   SelectFont (hdc, lptw->hfont);
@@ -749,8 +749,7 @@ void TextMakeFont (LPTW lptw)
   lptw->CharSize.y = tm.tmHeight;
   lptw->CharSize.x = tm.tmAveCharWidth;
   lptw->CharAscent = tm.tmAscent;
-  if (lptw->bFocus)
-    CreateCaret (lptw->hWndText, 0, lptw->CharSize.x, 2 + lptw->CaretHeight);
+  if (lptw->bFocus) CreateCaret (lptw->hWndText, 0, lptw->CharSize.x, 2 + lptw->CaretHeight);
   ReleaseDC (lptw->hWndText, hdc);
   return;
 }

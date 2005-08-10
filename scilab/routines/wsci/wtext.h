@@ -63,9 +63,6 @@
 /* Taille du buffer circulaire des touches*/
 #define KeyBufferSize 256
 
-/* font stuff */
-#define TEXTFONTSIZE 9
-#define TEXTFONTNAME "Terminal"
 
 /* Definition des codes touche */
 #define VK_V        86

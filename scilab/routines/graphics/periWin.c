@@ -208,7 +208,7 @@ extern void CreateGraphToolBar(struct BCG * ScilabGC);
 extern void SetIsASingleClickToFalse(void);
 extern BOOL IsASingleClickToFalse(void);
 extern BOOL IsWindowInterface(void);
-
+extern void RefreshGraphToolBar(struct BCG * ScilabGC) ;
 /************************************************
  * dealing with hdc : when using the Rec driver 
  * each command in xcall is ``encadree'' with 

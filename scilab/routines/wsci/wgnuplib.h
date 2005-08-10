@@ -202,9 +202,6 @@ typedef struct tagGW {
 
 typedef GW *  LPGW;
 
-#define WINFONTSIZE 10
-#define WIN30FONT "Courier"
-#define WINFONT "Arial"
 
 #ifndef LEFT
 #define LEFT 0
