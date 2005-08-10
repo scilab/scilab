@@ -62,8 +62,13 @@ global  xToggle yToggle zToggle red green blue color
 global  xlabel ylabel zlabel tlabel
 global  curvis cubToggle viewToggle
 
+#global xlabel_fontforeground ylabel__fontforeground zlabel__fontforeground titlelabel__fontforeground
 global xlabel_foreground ylabel_foreground zlabel_foreground titlelabel_foreground
+global xlabel_background ylabel_background zlabel_background titlelabel_background
+global Xfillmode Yfillmode Zfillmode Titlefillmode
 global xlabel_fontsize ylabel_fontsize zlabel_fontsize  titlelabel_fontsize
+global curfontangle_x curfontangle_x2 curfontangle_y curfontangle_y2
+global curfontangle_z curfontangle_z2 curfontangle_title curfontangle_title2
 
 global ncolors fcolor curthick curvis curfontsize curfontcolor
 global curalpharotation curthetarotation old_curalpharotation old_curthetarotation
@@ -87,7 +92,8 @@ global RED GREEN BLUE
 
 global hiddencolor
 
-
+global xauto_position yauto_position zauto_position titleauto_position
+global x_position y_position z_position title_position
 
 # #debug
 #  set ged_handle_list_size 2
@@ -165,7 +171,7 @@ proc OnOffForeground { frame flag } {
 set NBheight 300
 set NBwidth  320
 
-set Wheight [expr $NBheight + 200]
+set Wheight [expr $NBheight + 210]
 set Wwidth  [expr $NBwidth  + 265]
 
 set ww .axes
@@ -175,7 +181,7 @@ wm title $ww "Axes Editor"
 wm iconname $ww "AE"
 wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
 #wm maxsize  $ww 450 560
-wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
+wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals"
 
 
 set topf  [frame $ww.topf]
@@ -229,7 +235,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 26 \
+	       -width 20 -height 28 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -261,7 +267,7 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
-set largeur 11
+set largeur 14
 
 Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 0  -height $NBheight -width $NBwidth
 pack $uf.n -fill both -expand yes  -side top
@@ -307,34 +313,96 @@ bind  $w.frame.xlabel1 <FocusOut> {setXlabel}
 
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0m
-label $w.frame.vislablabel  -text "Visibility:"  -font {Arial 9} -anchor e -width $largeur
-checkbutton $w.frame.vislabb \
+label $w.frame.vislablabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.vislabb  -text "on"\
     -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabx $w.frame.vislabb" -text "on"  -font {Arial 9}
+    -command "toggleVisibilitylabx $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $xlabel_visibility
 
+label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
+    -variable Xfillmode -onvalue "on" -offvalue "off" \
+    -command "XtoggleFillmode $w.frame.fillmode" -font {Arial 9}
+OnOffForeground $w.frame.fillmode $Xfillmode
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
+pack $w.frame.vislabb -in $w.frame.vislab -side left
+pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
+pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
+
+#Auto position & Position
+frame $w.frame.poslab -borderwidth 0
+pack $w.frame.poslab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.poslablabel  -text "Auto position:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.poslabb  -text "on"\
+    -variable xauto_position  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoPositionx $w.frame.poslabb"  -font {Arial 9}
+OnOffForeground $w.frame.poslabb $xauto_position
+
+label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.posmode -relief sunken  -textvariable x_position -font {Arial 9} -width 15
+
+bind  $w.frame.posmode <Return> {setPosition_x}
+bind  $w.frame.posmode <KP_Enter> {setPosition_x}
+
+pack $w.frame.poslablabel -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.posmodelabel -in $w.frame.poslab -side left
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+
+#Font Angle
+frame $w.frame.font  -borderwidth 0
+pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
+
+label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
+scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
+	 -resolution -1.0 -command "setFontAngle_x $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
+$w.frame.fontangle set $curfontangle_x
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font {Arial 9} -width 5
+
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x $w.frame.fontangle2 $w.frame.fontangle"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x $w.frame.fontangle2 $w.frame.fontangle"
+
+pack $w.frame.fontanglelabel -in $w.frame.font -side left
+pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0   -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontcolorlabel -height 0 -text "Fore / Back colors:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
     -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font {Arial 9}
 
-pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
-$w.frame.fontcolor set $xlabel_foreground
+scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setXBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font {Arial 9}
 
+pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
+pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
+$w.frame.fontcolor set $xlabel_foreground
+$w.frame.bfontcolor set $xlabel_background
+
+
+# #Foreground
+# frame $w.frame.foreground  -borderwidth 0
+# pack $w.frame.foreground  -in $w.frame -side top   -fill x -pady 0m
+
+# label $w.frame.foregroundlabel -height 0 -text "Foreground:" -width 0   -font {Arial 9} -anchor e -width $largeur
+# scale $w.frame.foreground -orient horizontal -from -2 -to $ncolors \
+#     -resolution 1.0 -command "setXForeground $w.frame.foreground" -tickinterval 0   -font {Arial 9}
+
+# pack $w.frame.foregroundlabel  -in  $w.frame.foreground -side left 
+# pack $w.frame.foreground -in  $w.frame.foreground -side left -expand 1 -fill x -pady 0m -padx 1m
+# $w.frame.foregroundor set $xlabel_foreground
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0   -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
     -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0   -font {Arial 9}
 
@@ -456,7 +524,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww " -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Y onglet ##############################################
@@ -504,27 +572,77 @@ checkbutton $w.frame.vislabb  -text "on"\
     -command "toggleVisibilitylaby $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $ylabel_visibility
 
+label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
+    -variable Yfillmode -onvalue "on" -offvalue "off" \
+    -command "YtoggleFillmode $w.frame.fillmode" -font {Arial 9}
+OnOffForeground $w.frame.fillmode $Yfillmode
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
+pack $w.frame.vislabb -in $w.frame.vislab  -side left
+pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
+pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
+
+#Auto position & Position
+frame $w.frame.poslab -borderwidth 0
+pack $w.frame.poslab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.poslablabel  -text "Auto position:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.poslabb  -text "on"\
+    -variable yauto_position  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoPositiony $w.frame.poslabb"  -font {Arial 9}
+OnOffForeground $w.frame.poslabb $yauto_position
+
+label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.posmode -relief sunken  -textvariable y_position -font {Arial 9} -width 15
+
+bind  $w.frame.posmode <Return> {setPosition_y}
+bind  $w.frame.posmode <KP_Enter> {setPosition_y}
+
+pack $w.frame.poslablabel -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.posmodelabel -in $w.frame.poslab -side left
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+
+#Font Angle
+frame $w.frame.font  -borderwidth 0
+pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
+
+label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
+scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
+	 -resolution -1.0 -command "setFontAngle_y $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
+$w.frame.fontangle set $curfontangle_y
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font {Arial 9} -width 5
+
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y $w.frame.fontangle2 $w.frame.fontangle"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y $w.frame.fontangle2 $w.frame.fontangle"
+
+pack $w.frame.fontanglelabel -in $w.frame.font -side left
+pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x  -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontcolorlabel -height 0 -text "Fore / Back colors:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
+    -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font {Arial 9}
+
+scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setYBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
+pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $ylabel_foreground
+$w.frame.bfontcolor set $ylabel_background
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
@@ -643,7 +761,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Z onglet ##############################################
@@ -690,27 +808,77 @@ checkbutton $w.frame.vislabb  -text "on"\
     -command "toggleVisibilitylabz $w.frame.vislabb"  -font {Arial 9}
 OnOffForeground $w.frame.vislabb $zlabel_visibility
 
+label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
+    -variable Zfillmode -onvalue "on" -offvalue "off" \
+    -command "ZtoggleFillmode $w.frame.fillmode" -font {Arial 9}
+OnOffForeground $w.frame.fillmode $Zfillmode
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left
+pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
+pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
+
+#Auto position & Position
+frame $w.frame.poslab -borderwidth 0
+pack $w.frame.poslab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.poslablabel  -text "Auto position:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.poslabb  -text "on"\
+    -variable zauto_position  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoPositionz $w.frame.poslabb"  -font {Arial 9}
+OnOffForeground $w.frame.poslabb $zauto_position
+
+label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.posmode -relief sunken  -textvariable z_position -font {Arial 9} -width 15
+
+bind  $w.frame.posmode <Return> {setPosition_z}
+bind  $w.frame.posmode <KP_Enter> {setPosition_z}
+
+pack $w.frame.poslablabel -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.posmodelabel -in $w.frame.poslab -side left
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+
+#Font Angle
+frame $w.frame.font  -borderwidth 0
+pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
+
+label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
+scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
+	 -resolution -1.0 -command "setFontAngle_z $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
+$w.frame.fontangle set $curfontangle_z
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font {Arial 9} -width 5
+
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z $w.frame.fontangle2 $w.frame.fontangle"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z $w.frame.fontangle2 $w.frame.fontangle"
+
+pack $w.frame.fontanglelabel -in $w.frame.font -side left
+pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontcolorlabel -height 0 -text "Fore / Back colors:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
+    -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font {Arial 9}
+
+scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setZBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
+pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $zlabel_foreground
+$w.frame.bfontcolor set $zlabel_background
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
@@ -831,7 +999,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Title onglet ##########################################
@@ -880,27 +1048,77 @@ checkbutton $w.frame.vislabb  -text "on"\
     -command "toggleVisibilitytitle $w.frame.vislabb" -font {Arial 9}
 OnOffForeground $w.frame.vislabb $titlelabel_visibility
 
+label $w.frame.fillmodelabel -height 0 -text "Fill mode:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
+    -variable Titlefillmode -onvalue "on" -offvalue "off" \
+    -command "TitletoggleFillmode $w.frame.fillmode" -font {Arial 9}
+OnOffForeground $w.frame.fillmode $Titlefillmode
+
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x -padx 1m
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left
+pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
+pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
+
+#Auto position & Position
+frame $w.frame.poslab -borderwidth 0
+pack $w.frame.poslab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.poslablabel  -text "Auto position:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.poslabb  -text "on"\
+    -variable titleauto_position  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoPositiontitle $w.frame.poslabb"  -font {Arial 9}
+OnOffForeground $w.frame.poslabb $titleauto_position
+
+label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
+entry $w.frame.posmode -relief sunken  -textvariable title_position -font {Arial 9} -width 15
+
+bind  $w.frame.posmode <Return> {setPosition_title}
+bind  $w.frame.posmode <KP_Enter> {setPosition_title}
+
+pack $w.frame.poslablabel -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.posmodelabel -in $w.frame.poslab -side left
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+
+#Font Angle
+frame $w.frame.font  -borderwidth 0
+pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
+
+label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
+scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
+	 -resolution -1.0 -command "setFontAngle_title $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
+$w.frame.fontangle set $curfontangle_title
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font {Arial 9} -width 5
+
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
+
+pack $w.frame.fontanglelabel -in $w.frame.font -side left
+pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
 pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontcolorlabel -height 0 -text "Color:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontcolorlabel -height 0 -text "Fore / Back colors:" -width 0   -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0  -font {Arial 9}
+    -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font {Arial 9}
+
+scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setTitleBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font {Arial 9}
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
+pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.fontcolor set $titlelabel_foreground
+$w.frame.bfontcolor set $titlelabel_background
 
 
 #Font size
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontsizlabel -height 0 -text "Size:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0  -font {Arial 9}
 
@@ -934,7 +1152,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 
@@ -1084,7 +1302,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Aspect onglet #########################################
@@ -1330,7 +1548,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 ########### Viewpoint onglet ######################################
@@ -1347,11 +1565,13 @@ set largeur 13
 frame $w.frame.view -borderwidth 0
 pack $w.frame.view  -in $w.frame -side top -fill x -pady 0m
 label $w.frame.viewlabel  -text "View:" -font {Arial 9} -anchor e -width $largeur
-checkbutton $w.frame.viewb  -textvariable viewToggle  \
-    -variable viewToggle  -onvalue "2d" -offvalue "3d" \
-    -command "toggleView"  -font {Arial 9}
+
+radiobutton $w.frame.view.radio0 -text "2d" -variable viewToggle -value "2d" -command "toggleView" -font {Arial 9}
+radiobutton $w.frame.view.radio1 -text "3d" -variable viewToggle -value "3d" -command "toggleView" -font {Arial 9}
+
 pack $w.frame.viewlabel -in $w.frame.view -side left
-pack $w.frame.viewb  -in $w.frame.view  -side left  -fill x -pady 0m -padx 1m
+pack $w.frame.view.radio0 -in  $w.frame.view -side left -padx 1m
+pack $w.frame.view.radio1 -in  $w.frame.view -side left -padx 1m
 
 #rotation_angles
 frame $w.frame.rotang -borderwidth 0
@@ -1377,7 +1597,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals" -font {Arial 9}
 pack $w.b -side bottom
 
 
@@ -1907,6 +2127,46 @@ proc setXFontLabelColor {w  index} {
     }
 }
 
+proc setXBackLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; if ged_handle.x_label.background <> $index then ged_handle.x_label.background=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; if ged_handle.x_label.background <> $index then ged_handle.x_label.background=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; if ged_handle.x_label.background <> $index then ged_handle.x_label.background=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; if ged_handle.x_label.background <> $index then ged_handle.x_label.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
 
 # Y LABEL
 proc setYGridColor {w index} {
@@ -1969,6 +2229,7 @@ proc setYFontLabelSize {w siz} {
     ScilabEval "global ged_handle;if ged_handle.y_label.font_size <> $siz then ged_handle.y_label.font_size=$siz; end;"
 }
 
+
 proc setYFontLabelColor {w  index} {
     global RED BLUE GREEN
     variable REDCOL 
@@ -2011,6 +2272,47 @@ proc setYFontLabelColor {w  index} {
     }
 }
 
+proc setYBackLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle;if ged_handle.y_label.background <> $index then ged_handle.y_label.background=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle;if ged_handle.y_label.background <> $index then  ged_handle.y_label.background=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle;if ged_handle.y_label.background <> $index then  ged_handle.y_label.background=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle;if ged_handle.y_label.background <> $index then  ged_handle.y_label.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
 
 # Z LABEL
 proc setZGridColor {w index} {
@@ -2070,6 +2372,8 @@ proc setZFontLabelSize {w siz} {
     ScilabEval "global ged_handle;if ged_handle.z_label.font_size <> $siz then ged_handle.z_label.font_size=$siz; end;"
 }
 
+
+
 proc setZFontLabelColor {w  index} {
     global RED BLUE GREEN
     variable REDCOL 
@@ -2112,6 +2416,47 @@ proc setZFontLabelColor {w  index} {
 }
 
 
+proc setZBackLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle;if ged_handle.z_label.background <> $index then ged_handle.z_label.background=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle;if ged_handle.z_label.background <> $index then  ged_handle.z_label.background=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle;if ged_handle.z_label.background <> $index then  ged_handle.z_label.background=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle;if ged_handle.z_label.background <> $index then  ged_handle.z_label.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
 
 
 # Title
@@ -2123,6 +2468,7 @@ ScilabEval "global ged_handle;ged_handle.title.text='$tlabel';"
 proc setTitleFontLabelSize {w siz} {
     ScilabEval "global ged_handle;if ged_handle.title.font_size <> $siz then ged_handle.title.font_size=$siz; end;"
 }
+
 
 proc setTitleFontLabelColor {w  index} {
     global RED BLUE GREEN
@@ -2163,6 +2509,48 @@ proc setTitleFontLabelColor {w  index} {
 	
     }
 }
+
+
+proc setTitleBackLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle;if ged_handle.title.background <> $index then  ged_handle.title.background=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle;if ged_handle.title.background <> $index then  ged_handle.title.background=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle;if ged_handle.title.background <> $index then  ged_handle.title.background=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle;if ged_handle.title.background <> $index then  ged_handle.title.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
 
 
 
@@ -3257,7 +3645,7 @@ proc SavePreferences { } {
     global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
     global ww msdos
     
-    ScilabEval "DestroyGlobals()" "seq"
+#    ScilabEval "DestroyGlobals()" "seq"
         
     if { $msdos == "F" } {
 #unix mandrake (at least) needs this offset
@@ -3325,9 +3713,12 @@ proc SavePreferences2 { w } {
 }
 
 proc DestroyGlobals { } {
+    global ww
     ScilabEval "DestroyGlobals()" "seq"
 
     SavePreferences
+    
+    ScilabEval "TCL_EvalStr(\"destroy $ww\")" "seq"
 }
 
 
@@ -3364,3 +3755,368 @@ proc toggleReverselabz { frame } {
 
     OnOffForeground $frame $Zaxes_reverseToggle
 }
+
+
+
+proc SelectFontStyle {w args} {
+global curfontstyle
+ScilabEval "setFontStyle('$curfontstyle')"
+}
+
+proc setFontAngle_x {w fa} {
+    global curfontangle_x2
+    ScilabEval "global ged_handle;if ged_handle.x_label.font_angle <> $fa then ged_handle.x_label.font_angle=$fa; end;"
+    set curfontangle_x2 $fa
+}
+
+proc setEntryFontAngle_x {w w2 args} {
+    global curfontangle_x
+    global curfontangle_x2
+    if { $curfontangle_x2 == "" || $curfontangle_x2 < 0} {
+	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
+	return
+    }
+    ScilabEval "global ged_handle;if ged_handle.x_label.font_angle <> $curfontangle_x2 then ged_handle.x_label.font_angle=$curfontangle_x2; end;"
+    set curfontangle_x $curfontangle_x2
+    $w2 set $curfontangle_x
+}
+
+
+proc setFontAngle_y {w fa} {
+    global curfontangle_y2
+    global ii
+    ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $fa then ged_handle.y_label.font_angle=$fa; end;"
+    set curfontangle_y2 $fa
+#    ScilabEval "TCL_SetVar(\"ii\",sci2exp(ged_handle.y_label.position,0)); TCL_EvalStr(\"set x_position $ii\")"
+#    ScilabEval "TCL_EvalStr(\"set x_position sci2exp(ged_handle.y_label.position,0)\")"
+#    puts "ii vaut $ii"
+}
+
+proc setEntryFontAngle_y {w w2 args} {
+    global curfontangle_y
+    global curfontangle_y2
+    if { $curfontangle_y2 == "" || $curfontangle_y2 < 0} {
+	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
+	return
+    }
+    ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $curfontangle_y2 then ged_handle.y_label.font_angle=$curfontangle_y2; end;"
+    set curfontangle_y $curfontangle_y2
+    $w2 set $curfontangle_y
+}
+
+
+proc setFontAngle_z {w fa} {
+    global curfontangle_z2
+    ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $fa then ged_handle.z_label.font_angle=$fa; end;"
+    set curfontangle_z2 $fa
+}
+
+proc setEntryFontAngle_z {w w2 args} {
+    global curfontangle_z
+    global curfontangle_z2
+    if { $curfontangle_z2 == "" || $curfontangle_z2 < 0} {
+	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
+	return
+    }
+    ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $curfontangle_z2 then ged_handle.z_label.font_angle=$curfontangle_z2; end;"
+    set curfontangle_z $curfontangle_z2
+    $w2 set $curfontangle_z
+}
+
+
+proc setFontAngle_title {w fa} {
+    global curfontangle_title2
+    ScilabEval "global ged_handle;if ged_handle.title_label.font_angle <> $fa then ged_handle.title_label.font_angle=$fa; end;"
+    set curfontangle_title2 $fa
+}
+
+proc setEntryFontAngle_title {w w2 args} {
+    global curfontangle_title
+    global curfontangle_title2
+    if { $curfontangle_title2 == "" || $curfontangle_title2 < 0} {
+	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
+	return
+    }
+    ScilabEval "global ged_handle;if ged_handle.title_label.font_angle <> $curfontangle_title2 then ged_handle.title_label.font_angle=$curfontangle_title2; end;"
+    set curfontangle_title $curfontangle_title2
+    $w2 set $curfontangle_title
+}
+
+
+proc XtoggleFillmode { frame } {
+    global Xfillmode
+    ScilabEval "global ged_handle;ged_handle.x_label.fill_mode='$Xfillmode'"
+
+    OnOffForeground $frame $Xfillmode
+}
+
+
+proc YtoggleFillmode { frame } {
+    global Yfillmode
+    ScilabEval "global ged_handle;ged_handle.y_label.fill_mode='$Yfillmode'"
+
+    OnOffForeground $frame $Yfillmode
+}
+
+
+proc ZtoggleFillmode { frame } {
+    global Zfillmode
+    ScilabEval "global ged_handle;ged_handle.z_label.fill_mode='$Zfillmode'"
+
+    OnOffForeground $frame $Zfillmode
+}
+
+
+proc TitletoggleFillmode { frame } {
+    global Titlefillmode
+    ScilabEval "global ged_handle;ged_handle.title_label.fill_mode='$Titlefillmode'"
+
+    OnOffForeground $frame $Titlefillmode
+}
+
+
+proc toggleAutoPositionx { frame } {
+    global xauto_position
+    ScilabEval "global ged_handle;ged_handle.x_label.auto_position='$xauto_position'"
+
+    OnOffForeground $frame $xauto_position
+}
+
+proc toggleAutoPositiony { frame } {
+    global yauto_position
+    ScilabEval "global ged_handle;ged_handle.y_label.auto_position='$yauto_position'"
+
+    OnOffForeground $frame $yauto_position
+}
+
+proc toggleAutoPositionz { frame } {
+    global zauto_position
+    ScilabEval "global ged_handle;ged_handle.z_label.auto_position='$zauto_position'"
+
+    OnOffForeground $frame $zauto_position
+}
+
+proc toggleAutoPositiontitle { frame } {
+    global titleauto_position
+    ScilabEval "global ged_handle;ged_handle.title_label.auto_position='$titleauto_position'"
+
+    OnOffForeground $frame $titleauto_position
+}
+
+
+proc setPosition_x { } {
+    global x_position
+    if { $x_position == ""} {
+	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
+	return
+    }
+    ScilabEval "global ged_handle;ged_handle.x_label.position = $x_position"
+#    ScilabEval "global ged_handle;if ged_handle.z_label.position <> $z_position then ged_handle.z_label.position=$z_position; end;"
+}
+
+
+proc setPosition_y { } {
+    global y_position
+    if { $y_position == ""} {
+	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
+	return
+    } 
+    
+    ScilabEval "global ged_handle;ged_handle.y_label.position = $y_position"
+#     puts "av. y_position = $y_position"
+#     ScilabEval "global ged_handle;if ged_handle.y_label.position <> $y_position then disp(\"y_label.position CHANGED\");ged_handle.y_label.position=$y_position; end;"
+#     puts "ap. y_position = $y_position"
+}
+
+
+proc setPosition_z { } {
+    global z_position
+    if { $z_position == ""} {
+	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
+	return
+    }
+    ScilabEval "global ged_handle;ged_handle.z_label.position = $z_position"
+#     ScilabEval "global ged_handle;if ged_handle.z_label.position <> $z_position then ged_handle.z_label.position=$z_position; end;"
+}
+
+
+proc setPosition_title { } {
+    global titleposition
+    if { $title_position == ""} {
+	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
+	return
+    }
+    ScilabEval "global ged_handle;ged_handle.title_label.position = $title_position"
+#     ScilabEval "global ged_handle;if ged_handle.title_label.position <> $title_position then ged_handle.title_label.position=$title_position; end;"
+}
+
+
+# F.Leray Other proc. maybe for futur update...
+# NOT TAKEN INTO ACCOUNT (no distinction made between font_foregroun and foreground for now (08.08.05))
+
+
+# proc setXFontLabelColor {w  index} {
+#     global RED BLUE GREEN
+#     variable REDCOL 
+#     variable GRECOL 
+#     variable BLUCOL
+    
+#     #ScilabEval "global ged_handle;"
+#     if { $index == -2 } {
+# 	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+# 	#like $index==-2: display white color
+# 	set color [format \#%02x%02x%02x 255 255 255]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == -1 } {
+# 	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+# 	#like $index==-1: display black color
+# 	set color [format \#%02x%02x%02x 0 0 0]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == 0 } {
+# 	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+# 	#like $index==1: display first color
+# 	set REDCOL $RED(1) 
+# 	set GRECOL $GREEN(1) 
+# 	set BLUCOL $BLUE(1) 
+
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+# 	$w config  -activebackground $color -troughcolor $color
+#     } else { 
+# 	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+	
+# 	set REDCOL $RED($index) 
+# 	set GRECOL $GREEN($index) 
+# 	set BLUCOL $BLUE($index) 
+
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+# 	$w config  -activebackground $color -troughcolor $color
+	
+#     }
+# }
+
+
+# proc setYFontLabelColor {w  index} {
+#     global RED BLUE GREEN
+#     variable REDCOL 
+#     variable GRECOL 
+#     variable BLUCOL
+    
+#     #ScilabEval "global ged_handle;"
+#     if { $index == -2 } {
+# 	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then ged_handle.y_label.font_foreground=$index; end;"
+# 	#like $index==-2: display white color
+# 	set color [format \#%02x%02x%02x 255 255 255]
+# 	$w config  -activebackground $color -troughcolor $color
+
+#     } elseif { $index == -1 } {
+# 	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then  ged_handle.y_label.font_foreground=$index; end;"
+# 	#like $index==-1: display black color
+# 	set color [format \#%02x%02x%02x 0 0 0]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == 0 } {
+# 	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then  ged_handle.y_label.font_foreground=$index; end;"
+# 	#like $index==1: display first color
+# 	set REDCOL $RED(1) 
+# 	set GRECOL $GREEN(1) 
+# 	set BLUCOL $BLUE(1) 
+
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+# 	$w config  -activebackground $color -troughcolor $color
+#     } else { 
+# 	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then  ged_handle.y_label.font_foreground=$index; end;"
+	
+# 	set REDCOL $RED($index) 
+# 	set GRECOL $GREEN($index) 
+# 	set BLUCOL $BLUE($index) 
+
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+# 	$w config  -activebackground $color -troughcolor $color
+	
+#     }
+# }
+
+# proc setZFontLabelColor {w  index} {
+#     global RED BLUE GREEN
+#     variable REDCOL 
+#     variable GRECOL 
+#     variable BLUCOL
+    
+#     #ScilabEval "global ged_handle;"
+#     if { $index == -2 } {
+# 	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then ged_handle.z_label.font_foreground=$index; end;"
+# 	#like $index==-2: display white color
+# 	set color [format \#%02x%02x%02x 255 255 255]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == -1 } {
+# 	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then  ged_handle.z_label.font_foreground=$index; end;"
+# 	#like $index==-1: display black color
+# 	set color [format \#%02x%02x%02x 0 0 0]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == 0 } {
+# 	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then  ged_handle.z_label.font_foreground=$index; end;"
+# 	#like $index==1: display first color
+# 	set REDCOL $RED(1) 
+# 	set GRECOL $GREEN(1) 
+# 	set BLUCOL $BLUE(1) 
+
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+# 	$w config  -activebackground $color -troughcolor $color
+#     } else { 
+# 	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then  ged_handle.z_label.font_foreground=$index; end;"
+	
+# 	set REDCOL $RED($index) 
+# 	set GRECOL $GREEN($index) 
+# 	set BLUCOL $BLUE($index) 
+
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+# 	$w config  -activebackground $color -troughcolor $color
+	
+#     }
+# }
+
+
+# proc setTitleFontLabelColor {w  index} {
+#     global RED BLUE GREEN
+#     variable REDCOL 
+#     variable GRECOL 
+#     variable BLUCOL
+    
+#     #ScilabEval "global ged_handle;"
+#     if { $index == -2 } {
+# 	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+# 	#like $index==-2: display white color
+# 	set color [format \#%02x%02x%02x 255 255 255]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == -1 } {
+# 	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+# 	#like $index==-1: display black color
+# 	set color [format \#%02x%02x%02x 0 0 0]
+# 	$w config  -activebackground $color -troughcolor $color
+#     } elseif { $index == 0 } {
+# 	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+# 	#like $index==1: display first color
+# 	set REDCOL $RED(1) 
+# 	set GRECOL $GREEN(1) 
+# 	set BLUCOL $BLUE(1) 
+	
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+# 	$w config  -activebackground $color -troughcolor $color
+#     } else { 
+# 	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+	
+# 	set REDCOL $RED($index) 
+# 	set GRECOL $GREEN($index) 
+# 	set BLUCOL $BLUE($index) 
+# 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+# 	$w config  -activebackground $color -troughcolor $color
+	
+#     }
+# }
