@@ -2,7 +2,8 @@ function ged(k,win)
   //xset, xget used because ged should handle both old and new style
 
   global ged_current_figure
-
+  global ged_cur_fig_handle
+  
   ged_current_figure=xget('window')
   xset('window',win) 
   isold=get('figure_style')=='old'
@@ -13,6 +14,10 @@ function ged(k,win)
     clear ged_current_figure
     return
   end
+  
+  scf(win);
+  ged_cur_fig_handle=gcf();
+  
   if k>3 then
     TCL_EvalStr("set isgedinterp [interp exists ged]")
     if TCL_GetVar("isgedinterp")=='0' then    
@@ -32,11 +37,11 @@ function ged(k,win)
     case 4 then //edit current figure properties
 
    // hierarchical viewer
-    TK_send_handles_list(gcf())
-    TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(gcf())))
+    TK_send_handles_list(ged_cur_fig_handle)
+    TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(ged_cur_fig_handle)))
 
     //color_map array for color sample display
-    f=gcf();
+    f=ged_cur_fig_handle;
     for i=1:size(f.color_map,1)
       redname= "RED("+string(i)+")";
       TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
@@ -50,14 +55,14 @@ function ged(k,win)
     
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
-    ged_figure(gcf())
+    ged_figure(ged_cur_fig_handle)
     case 5 then //edit current axes
     // hierarchical viewer
-    TK_send_handles_list(gcf())
+    TK_send_handles_list(ged_cur_fig_handle)
     TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(gca())))
 
     //color_map array for color sample display
-    f=gcf();
+    f=ged_cur_fig_handle;
     for i=1:size(f.color_map,1)
       redname= "RED("+string(i)+")";
       TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
@@ -80,12 +85,14 @@ endfunction
 
 
 function curgedindex = Get_handle_pos_in_list(h)
-handles = Get_handles_list(gcf())
- for i=1:size(handles,1)
-  if(h==handles(i))
-   curgedindex = i;
+global ged_cur_fig_handle
+
+handles = Get_handles_list(ged_cur_fig_handle)
+for i=1:size(handles,1)
+  if (h==handles(i))
+    curgedindex = i;
   end
- end
+end
 endfunction
 
 
@@ -226,7 +233,9 @@ endfunction
 //function h=Get_handle_from_index(index)
 function Get_handle_from_index(index)
    global ged_handle;
-   hl = Get_handles_list(gcf());
+   global ged_cur_fig_handle
+
+   hl = Get_handles_list(ged_cur_fig_handle);
 
    ged_handle = hl(index);
 //   h=ged_handle;
@@ -240,6 +249,7 @@ function  hfig= getparfig( h )
 
 htmp = h;
 hfig= []
+
 while htmp.type<>'Figure' do
   htmp=htmp.parent
 end
@@ -1245,10 +1255,12 @@ endfunction
 
 function tkged()
   global ged_handle
+  global ged_cur_fig_handle
+
   h=ged_handle
 
   // hierarchical viewer
-  TK_send_handles_list(gcf())
+  TK_send_handles_list(ged_cur_fig_handle)
   TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
 
   //color_map array for color sample display
@@ -1448,19 +1460,6 @@ function LogtoggleZ( tog)
 //   disp 'Warning: Z bounds must be strictly positive'
 //end
 
-endfunction
-
-
-
-function  hfig= getparfig( h )
-
-htmp = h;
-hfig= []
-while htmp.type<>'Figure' do
-  htmp=htmp.parent
-end
-
-hfig = htmp;
 endfunction
 
 
