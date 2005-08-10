@@ -6140,7 +6140,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else if (strncmp(cstk(*value),"off",3)==0 )
 	sciSetIsFilled((sciPointObj *)pobj,FALSE);
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
-    }
+    }  
   else if (strncmp(marker,"thickness", 9) == 0)  {
     sciSetLineWidth((sciPointObj *) pobj,(int) *stk(*value));
   }
@@ -6458,6 +6458,24 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pSUBWIN_FEATURE (pobj)->tight_limits=TRUE;
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+    }  
+  else if (strncmp(marker,"auto_position", 13) == 0)
+    { 
+      if(sciGetEntityType(pobj) != SCI_LABEL)
+	{strcpy(error_message,"auto_position does not exist for this handle");return -1;}
+      
+      if (strncmp(cstk(*value),"on",2)==0 )
+	pLABEL_FEATURE(pobj)->auto_position = TRUE;
+      else if (strncmp(cstk(*value),"off",3)==0 )
+	pLABEL_FEATURE(pobj)->auto_position = FALSE;
+      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+    }  
+  else if (strncmp(marker,"position", 8) == 0) 
+    { 
+      if(sciGetEntityType(pobj) != SCI_LABEL)
+	{strcpy(error_message,"position does not exist for this handle");return -1;}
+      
+      sciSetPosition(pobj,stk(*value)[0],stk(*value)[1]);
     }
   /* F.Leray adding auto_ticks flags */
   else if (strncmp(marker,"auto_ticks", 10) == 0) 
@@ -8488,6 +8506,38 @@ int sciGet(sciPointObj *pobj,char *marker)
       }
       else
 	{strcpy(error_message,"tight_limits property does not exist for this handle");return -1;}
+    }  
+  else if (strncmp(marker,"auto_position", 13) == 0) 
+    { 
+      if(sciGetEntityType(pobj) != SCI_LABEL)
+	{strcpy(error_message,"auto_position does not exist for this handle");return -1;}
+      
+      if (pLABEL_FEATURE(pobj)->auto_position == TRUE) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
+    }  
+  else if (strncmp(marker,"position", 8) == 0) 
+    {
+      if(sciGetEntityType(pobj) != SCI_LABEL)
+	{strcpy(error_message,"position does not exist for this handle");return -1;}
+      
+      numrow = 1;
+      numcol = 2;
+      
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      sciGetPosition(pobj,&stk(outindex)[0],&stk(outindex)[1]);
+
+/*       /\* switch to manual mode for label position *\/ */
+/*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
     }
   else if (strncmp(marker,"auto_ticks", 10) == 0)
     {
