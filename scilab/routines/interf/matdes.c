@@ -5133,7 +5133,7 @@ int sciunzoom(char *fname,unsigned long fname_len)
   else {
     int m,n,l,i;
     GetRhsVar(1,"h",&m,&n,&l); 
-    for (i=0;i<m*n;i++) unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle(*hstk(l+i))); /** Correction Bug 1083 Compilation avec VC++ 6.0 **/
+    for (i=0;i<m*n;i++) unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle((long) *hstk(l+i))); /** Correction Bug 1476 + Warning Windows **/
   }
   LhsVar(1)=0; 
   return 0;
@@ -5862,6 +5862,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      XGC->mafigure = (sciPointObj *)NULL; 
 	    }
 	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
+
+		/* Add xclear to refresh toolbar for Windows */
+		C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
+			PD0, 0L, 0L);
 	  }
 	}
 	else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
@@ -5876,7 +5880,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      sciSetCurrentObj(figure);
 	      XGC->mafigure = (sciPointObj *) figure;
 	      XGC->graphicsversion = 0;   /* new graphic mode */
-	      cf_type=1;
+		  cf_type=1;
+		  /* Add xclear to refresh toolbar for Windows */
+		  C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
 		sciSetCurrentObj(psubwin);
 		sciSetOriginalSubWin (figure, psubwin);}
