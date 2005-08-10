@@ -34,6 +34,8 @@
 #define IDI_OPEN                        141
 #define IDD_CHOOSEASCILAB               142
 #define IDD_MDIALOG                     144
+#define IDI_ICON2                       145
+#define IDI_GED                         145
 #define IDC_VERSION_SPLASH              1000
 #define IDC_COPYRIGHT_SPLASH            1001
 #define IDC_STATIC_ABOUT_HTTP           1002
@@ -88,7 +90,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        145
+#define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1047
 #define _APS_NEXT_SYMED_VALUE           101

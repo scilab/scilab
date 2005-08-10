@@ -115,4 +115,5 @@
 #define MSG_SCIMSG104 "end of BMP file generation"
 
 #define MSG_SCIMSG105 "Scilab Document"
+#define MSG_SCIMSG106 "Graphical Editor"
 #endif /*_MESSAGESH_*/

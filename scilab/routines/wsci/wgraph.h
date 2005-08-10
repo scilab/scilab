@@ -74,8 +74,6 @@ SCISEND sciSend;
 void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
 void set_delete_win_mode();
 int C2F (deletewin) (integer * number);
-EXPORT void WINAPI GraphPrint (struct BCG *ScilabGC);
-EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC);
 void NewCopyClip (struct BCG *ScilabGC);
 void CopyClip (struct BCG *ScilabGC);
 void SciViewportMove (ScilabGC, x, y);
@@ -102,18 +100,8 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
 static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
 /* static COLORREF DefaultBackground = RGB(255,255,255); define in periwin.c */
 
-extern void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
-
-
-#define ToolBarHeight 24
-#define ButtonToolBarWeight 24
-
-void SetDefaultShowToolBar(BOOL valShowToolBar);
-void CreateGraphToolBar(struct BCG * ScilabGC); 
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);
-void RefreshGraphToolBar(struct BCG * ScilabGC) ;
-
 
 BOOL HdcToBmpFile(HDC hdc, char *pszflname);
 BOOL HwndToBmpFile(HWND hwnd, char *pszflname);

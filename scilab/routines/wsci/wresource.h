@@ -35,35 +35,33 @@
 #define ID_ANSWER 302
 #define NUMMENU   256
 
-/* wpause.c */
-
-/* wtext.c */
-#define AB_ICON  250
-#define AB_TEXT1 251
-#define AB_TEXT2 252
-#define AB_TEXT3 253
 
 /* wgraph.c */
-#define M_GRAPH_TO_TOP		NUMMENU+1
-#define M_CHOOSE_FONT		NUMMENU+2
-#define M_BACKGROUND		NUMMENU+3
-#define M_COLOR				NUMMENU+4
-#define M_COPY_CLIP			NUMMENU+5
-#define M_LINESTYLE			NUMMENU+6
-#define M_PRINT				NUMMENU+7
-#define M_WRITEINI			NUMMENU+8
-#define M_PASTE				NUMMENU+9
-#define M_ABOUT				NUMMENU+10
-#define M_REBUILDTOOLS		NUMMENU+11
+#define TOOLBAR_ZOOM		0x8801
+#define TOOLBAR_UNZOOM		0x8802
+#define TOOLBAR_ROTATE3D	0x8803
+#define TOOLBAR_GED			0x8804
+
+#define M_ABOUT				NUMMENU+1
+#define M_COPY_CLIP			NUMMENU+2
+#define M_CHOOSE_FONT		NUMMENU+3
+#define M_WRITEINI			NUMMENU+4
+#define M_PASTE				NUMMENU+5
+
 /* wtext.c */
-#define M_HELPON			NUMMENU+12
-#define M_CONSOLE			NUMMENU+13
-#define M_PRINTSELECTION	NUMMENU+14
-#define M_SPECIALPASTE		NUMMENU+15
-#define M_OPENSELECTION		NUMMENU+16
-#define M_CUT				NUMMENU+17
-#define M_EVALSELECTION		NUMMENU+18
-#define M_SELECT_ALL		NUMMENU+19
+
+/* font stuff */
+#define TEXTFONTSIZE 11
+#define TEXTFONTNAME "Lucida Console"
+
+#define M_HELPON			NUMMENU+6
+#define M_CONSOLE			NUMMENU+7
+#define M_PRINTSELECTION	NUMMENU+8
+#define M_SPECIALPASTE		NUMMENU+9
+#define M_OPENSELECTION		NUMMENU+10
+#define M_CUT				NUMMENU+11
+#define M_EVALSELECTION		NUMMENU+12
+#define M_SELECT_ALL		NUMMENU+13
 
 /* wprinter.c */
 #define PSIZE_SBOX 100

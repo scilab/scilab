@@ -51,21 +51,6 @@ int C2F (deletewin) (integer * number)
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
-/******************************************
- * Printing and redrawing graphic window 
- ******************************************/
-EXPORT void WINAPI GraphPrint (struct BCG *ScilabGC)
-{
-  if (ScilabGC->CWindow && IsWindow (ScilabGC->CWindow))
-    SendMessage (ScilabGC->CWindow, WM_COMMAND, M_PRINT, 0L);
-}
-/*-----------------------------------------------------------------------------------*/
-EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC)
-{
-  if (ScilabGC->CWindow && IsWindow (ScilabGC->CWindow))
-    SendMessage (ScilabGC->CWindow, WM_COMMAND, M_REBUILDTOOLS, 0L);
-}
-/*-----------------------------------------------------------------------------------*/
 /****************************************
  * copy graph window to clipboard 
  * with the EnHmetafile format (win95/winNT)
@@ -543,20 +528,7 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   Setscig_buzyState(1);
   
   if (ScilabGC->Inside_init == 1) goto paint_end;
-  /* 
-  {
-    static int paint=0; 
-    paint++; 
-    wininfo("Painting %d move=%d",paint,ScilabGC->in_sizemove);
-    wininfo("%d erase=%d, [w=%d,h=%d,wv=%d,hv=%d,hn=%d,vn=%d],rcPaint=[%d,%d,%d,%d]",
-	    paint,ps.fErase,
-	    ScilabGC->CWindowWidth, ScilabGC->CWindowHeight,
-	    ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView,
-	    ScilabGC->horzsi.nPos,ScilabGC->vertsi.nPos,
-	    ps.rcPaint.left,ps.rcPaint.top,ps.rcPaint.right,ps.rcPaint.bottom
-	    );
-  }
-  */
+  
   if ( ScilabGC->in_sizemove == 1) goto paint_end;
 
   SetMapMode (hdc, MM_TEXT);
@@ -662,7 +634,6 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
  ****************************************************/
 EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  RECT rect;
   struct BCG *ScilabGC = (struct BCG *) NULL;
   int deltax = 0;
   int deltay = 0;
@@ -676,47 +647,35 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 
   switch (message)
     {
-      case WM_SYSCOMMAND:
-      switch (LOWORD (wParam))
-		{
-			case M_GRAPH_TO_TOP: case M_COLOR:  case M_COPY_CLIP: case M_PRINT:
-			case M_WRITEINI: case M_REBUILDTOOLS:
-				SendMessage (hwnd, WM_COMMAND, wParam, lParam);
-			break;
-
-			case M_ABOUT:
-				if (ScilabGC != (struct BCG *) 0 && ScilabGC->lpgw->lptw) AboutBox (hwnd, ScilabGC->lpgw->lptw->AboutText);
-			return 0;
-		}
-     break;
 	 case WM_COMMAND:
 
       if (LOWORD (wParam) < NUMMENU) SendGraphMacro (ScilabGC, LOWORD (wParam));
-      else
-		switch (LOWORD (wParam))
+      else switch (LOWORD (wParam))
 		{
-			case M_GRAPH_TO_TOP:
-				ScilabGC->lpgw->graphtotop = !ScilabGC->lpgw->graphtotop;
-				SendMessage (hwnd, WM_COMMAND, M_REBUILDTOOLS, 0L);
-			return (0);
-			case M_COPY_CLIP:
-				CopyClip (ScilabGC);
-			return 0;
-			case M_PRINT:
-				CopyPrint (ScilabGC);
-			return 0;
-			case M_WRITEINI:
-				WriteRegistryGraph (ScilabGC);
-				if (ScilabGC->lpgw->lptw) WriteRegistryTxt (ScilabGC->lpgw->lptw);
-			return 0;
-			case M_REBUILDTOOLS:
-				DebugGW ("rebuild tools \r\n");
-				/** wininfo("rebuild tools \r\n"); **/
-				GetClientRect (hwnd, &rect);
-				InvalidateRect (hwnd, (LPRECT) & rect, FALSE);
-				/* UpdateWindow (hwnd); */
-			return 0;
-	   }
+			case TOOLBAR_ROTATE3D:
+				scig_3drot (ScilabGC->CurWindow);
+			break;
+
+			case TOOLBAR_ZOOM:
+				scig_2dzoom (ScilabGC->CurWindow);
+			break;
+
+			case TOOLBAR_UNZOOM:
+				scig_unzoom (ScilabGC->CurWindow);
+			break;
+
+			case TOOLBAR_GED:
+			{
+				if (ScilabGC->graphicsversion == 0)
+				{
+					char command[1024];
+					wsprintf(command,"ged(4,%d);",ScilabGC->CurWindow);
+					StoreCommand(command);
+				}
+			}
+			
+			break;
+        }
      return 0;
 	 
 	 
