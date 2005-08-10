@@ -13,7 +13,6 @@
 
 #include <stdio.h> 
 #include <string.h>
-#include "fig.h"
 #include <stdlib.h>
 #include <stdarg.h>
 #include <time.h>
@@ -34,6 +33,8 @@
 #if WIN32
 extern HDC TryToGetDC(HWND hWnd);
 #endif
+
+#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 
 extern int GetScreenDPI(int *ixres, int *iyres);
 int WindowsPrintScreen = 0;
@@ -4538,14 +4539,14 @@ int labels2D_draw(sciPointObj * psubwin)
 	sinangle = sin((360-font_angle)*M_PI/180);
   
 	xm[0] = 0;
-	xm[1] = cosangle*rect1[2];
-	xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
-	xm[3] = sinangle*(-rect1[3]);
+	xm[1] = round(cosangle*rect1[2]);
+	xm[2] = round(cosangle*rect1[2] + sinangle*(-rect1[3]));
+	xm[3] = round(sinangle*(-rect1[3]));
   
 	ym[0] = 0;
-	ym[1] = -sinangle*rect1[2];
-	ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
-	ym[3] = cosangle*(-rect1[3]);
+	ym[1] = round(-sinangle*rect1[2]);
+	ym[2] = round(-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	ym[3] = round(cosangle*(-rect1[3]));
   
 	/* computation of the bounding box even when the string is turned */
   
@@ -4554,7 +4555,7 @@ int labels2D_draw(sciPointObj * psubwin)
     
 	if(ppsubwin->axes.ydir != 'r'){
 	  /* the y axis is on the left or centered on 0 (grads are also on the left in this case...) */
-	  x1 = ppsubwin->YGradMostOnLeft - (Cscale.WIRect1[3]/50.0);
+	  x1 = round(ppsubwin->YGradMostOnLeft - (Cscale.WIRect1[3]/50.0));
 
 
 	  /*     printf("Le driver est: %c\n -----------------------\n",GetDriver()); */
@@ -4575,14 +4576,14 @@ int labels2D_draw(sciPointObj * psubwin)
 	    sinangle = sin((360-179)*M_PI/180);
     
 	    xm[0] = 0;
-	    xm[1] = cosangle*rect1[2];
-	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
-	    xm[3] = sinangle*(-rect1[3]);
+	    xm[1] = round(cosangle*rect1[2]);
+	    xm[2] = round(cosangle*rect1[2] + sinangle*(-rect1[3]));
+	    xm[3] = round(sinangle*(-rect1[3]));
     
 	    ym[0] = 0;
-	    ym[1] = -sinangle*rect1[2];
-	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
-	    ym[3] = cosangle*(-rect1[3]);
+	    ym[1] = round(-sinangle*rect1[2]);
+	    ym[2] = round(-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	    ym[3] = round(cosangle*(-rect1[3]));
     
 	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
 	  }
@@ -4593,14 +4594,14 @@ int labels2D_draw(sciPointObj * psubwin)
 	    sinangle = sin((360-89)*M_PI/180);
     
 	    xm[0] = 0;
-	    xm[1] = cosangle*rect1[2];
-	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
-	    xm[3] = sinangle*(-rect1[3]);
+	    xm[1] = round(cosangle*rect1[2]);
+	    xm[2] = round(cosangle*rect1[2] + sinangle*(-rect1[3]));
+	    xm[3] = round(sinangle*(-rect1[3]));
     
 	    ym[0] = 0;
-	    ym[1] = -sinangle*rect1[2];
-	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
-	    ym[3] = cosangle*(-rect1[3]);
+	    ym[1] = round(-sinangle*rect1[2]);
+	    ym[2] = round(-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	    ym[3] = round(cosangle*(-rect1[3]));
     
 	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
     
@@ -4609,7 +4610,7 @@ int labels2D_draw(sciPointObj * psubwin)
 	}
 	else{
 	  /* the y axis is on the right */
-	  x1 = ppsubwin->YGradMostOnRight + (Cscale.WIRect1[3]/50.0);
+	  x1 = round(ppsubwin->YGradMostOnRight + (Cscale.WIRect1[3]/50.0));
 	  /*       printf("ppsubwin->YGradMostOnRight vaut %d\n",ppsubwin->YGradMostOnRight); */
       
 	  if((font_angle>=0 && font_angle <= 90)){
@@ -4619,14 +4620,14 @@ int labels2D_draw(sciPointObj * psubwin)
 	    int xm[4], ym[4];
 
 	    xm[0] = 0;
-	    xm[1] = cosangle*rect1[2];
-	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
-	    xm[3] = sinangle*(-rect1[3]);
+	    xm[1] = round(cosangle*rect1[2]);
+	    xm[2] = round(cosangle*rect1[2] + sinangle*(-rect1[3]));
+	    xm[3] = round(sinangle*(-rect1[3]));
     
 	    ym[0] = 0;
-	    ym[1] = -sinangle*rect1[2];
-	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
-	    ym[3] = cosangle*(-rect1[3]);
+	    ym[1] = round(-sinangle*rect1[2]);
+	    ym[2] = round(-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	    ym[3] = round(cosangle*(-rect1[3]));
     
 	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
     
@@ -4637,14 +4638,14 @@ int labels2D_draw(sciPointObj * psubwin)
 	    int xm[4], ym[4];
 
 	    xm[0] = 0;
-	    xm[1] = cosangle*rect1[2];
-	    xm[2] = cosangle*rect1[2] + sinangle*(-rect1[3]);
-	    xm[3] = sinangle*(-rect1[3]);
+	    xm[1] = round(cosangle*rect1[2]);
+	    xm[2] = round(cosangle*rect1[2] + sinangle*(-rect1[3]));
+	    xm[3] = round(sinangle*(-rect1[3]));
     
 	    ym[0] = 0;
-	    ym[1] = -sinangle*rect1[2];
-	    ym[2] = -sinangle*rect1[2] + cosangle*(-rect1[3]);
-	    ym[3] = cosangle*(-rect1[3]);
+	    ym[1] = round(-sinangle*rect1[2]);
+	    ym[2] = round(-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	    ym[3] = round(cosangle*(-rect1[3]));
     
 	    largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
     
@@ -4659,10 +4660,10 @@ int labels2D_draw(sciPointObj * psubwin)
 	/* 	   Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Cscale.WIRect1[3]); */
 
 	if((font_angle>=0 && font_angle <= 180)){
-	  yy1 = Cscale.WIRect1[1] + Cscale.WIRect1[3]/2 - hauteur/2;
+	  yy1 = round(Cscale.WIRect1[1] + Cscale.WIRect1[3]/2 - hauteur/2);
 	}
 	else{
-	  yy1 = Cscale.WIRect1[1] + Cscale.WIRect1[3]/2 + hauteur/2;
+	  yy1 = round(Cscale.WIRect1[1] + Cscale.WIRect1[3]/2 + hauteur/2);
 	} 
 
 	/* new automatic position values */
@@ -8673,14 +8674,14 @@ sciDrawObj (sciPointObj * pobj)
 		x[0] = sciGetBackground(pobj);
 		
 		xm[0] = x1;
-		xm[1] = x1 + cosangle*rect1[2];
-		xm[2] = x1 + cosangle*rect1[2] + sinangle*(-rect1[3]);
-		xm[3] = x1 + sinangle*(-rect1[3]);
+		xm[1] = round(x1 + cosangle*rect1[2]);
+		xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
+		xm[3] = round(x1 + sinangle*(-rect1[3]));
 		
 		ym[0] = yy1;
-		ym[1] = yy1 - sinangle*rect1[2];
-		ym[2] = yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]);
-		ym[3] = yy1 + cosangle*(-rect1[3]);
+		ym[1] = round(yy1 - sinangle*rect1[2]);
+		ym[2] = round(yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]));
+		ym[3] = round(yy1 + cosangle*(-rect1[3]));
 		
 		
 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
