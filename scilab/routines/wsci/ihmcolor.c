@@ -7,7 +7,7 @@
 #include "wgnuplib.h"
 /*-----------------------------------------------------------------------------------*/
 static DWORD CurrentIHMTextColor=0;
-static DWORD CurrentIHMTextBackgroundColor=16666667;
+static DWORD CurrentIHMTextBackgroundColor=16777215;
 /*-----------------------------------------------------------------------------------*/
 extern LPTW GetTextWinScilab(void);
 /*-----------------------------------------------------------------------------------*/

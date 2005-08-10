@@ -16,7 +16,6 @@ TW InitTWStruct(void)
 {
 	TW TWStruct;
 
-
 	TWStruct.lpr=NULL;
 	TWStruct.hInstance=NULL;
 	TWStruct.hPrevInstance=NULL;
@@ -55,8 +54,8 @@ TW InitTWStruct(void)
 	TWStruct.bGetCh=FALSE;
 	TWStruct.bSysColors=FALSE;
 	TWStruct.hbrBackground=NULL;
-	wsprintf(TWStruct.fontname,"");
-	TWStruct.fontsize=0;
+	wsprintf(TWStruct.fontname,"Lucida Console");
+	TWStruct.fontsize=11;
 	TWStruct.hfont=NULL;
 	TWStruct.CharAscent=0;
 	TWStruct.ButtonHeight=0;
