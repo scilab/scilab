@@ -180,7 +180,7 @@ toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
 wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
-#wm maxsize  $ww 450 560
+wm maxsize  $ww $Wwidth $Wheight
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals"
 
 
@@ -2663,6 +2663,7 @@ proc PopUp { w numpage} {
     
     wm title $www  "Edit Axes Ticks"
     wm geometry $www 310x520$TICK_WINDOW_POSITION
+    wm maxsize  $www 310 520
     wm iconname $www "TE"
     grab set $www
 #    bell -displayof $w

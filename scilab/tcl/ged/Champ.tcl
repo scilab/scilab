@@ -82,6 +82,7 @@ wm title $ww "Champ Object"
 wm iconname $ww "CO"
 
 wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
+wm maxsize  $ww $Wwidth $Wheight
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 

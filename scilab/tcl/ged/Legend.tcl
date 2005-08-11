@@ -73,6 +73,7 @@ toplevel $ww
 wm title $ww "Legend Object"
 wm iconname $ww "LO"
 wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
+wm maxsize  $ww $Wwidth $Wheight
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]

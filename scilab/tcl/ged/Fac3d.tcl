@@ -78,6 +78,7 @@ toplevel $ww
 wm title $ww "Fac3d Object"
 wm iconname $ww "FE"
 wm geometry $ww [expr $Wwidth]x[expr $Wheight]$MAIN_WINDOW_POSITION
+wm maxsize  $ww $Wwidth $Wheight
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
