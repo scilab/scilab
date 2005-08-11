@@ -1570,7 +1570,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	    return 0;
 	  case M_ABOUT:
 	  
-	    AboutBox (hwnd, lptw->AboutText);
+	    AboutBox (hwnd);
 	    
 	    return 0;
 	    

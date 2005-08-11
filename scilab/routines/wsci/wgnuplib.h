@@ -171,7 +171,7 @@ EXPORT void WINAPI  TextInsertLine(LPTW lptw);
 EXPORT void WINAPI  TextDeleteLine(LPTW lptw);
 EXPORT void WINAPI  TextScrollReverse(LPTW lptw);
 EXPORT void WINAPI  TextAttr(LPTW lptw, BYTE attr);
-EXPORT void WINAPI  AboutBox(HWND hwnd, LPSTR str);
+EXPORT void WINAPI  AboutBox(HWND hwnd);
 
 /*****************************************
  * wgraph.c - graphics window *

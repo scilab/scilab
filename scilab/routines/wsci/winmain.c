@@ -110,12 +110,7 @@ int Console_Main(int argc, char **argv)
   textwin.KeyBufSize = 2048;
   textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
   textwin.shutdown = (DLGPROC) ShutDown;
-  textwin.AboutText = (LPSTR) MALLOC (1024);
-  strcpy (textwin.AboutText, MSG_SCIMSG18);
-  strcat (textwin.AboutText,MSG_SCIMSG19);
-  strcat (textwin.AboutText,MSG_SCIMSG20);
-  textwin.AboutText = REALLOC (textwin.AboutText, strlen (textwin.AboutText) + 1);
-
+ 
   menuwin=InitMWStruct();
   menuwin.szMenuName = GetszMenuName();
 
@@ -235,11 +230,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.KeyBufSize = 4096;
 	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
 	textwin.shutdown = (DLGPROC) ShutDown;
-	textwin.AboutText = (LPSTR) MALLOC (1024);
-	strcpy (textwin.AboutText,MSG_SCIMSG18);
-	strcat (textwin.AboutText, MSG_SCIMSG19);
-	strcat (textwin.AboutText, MSG_SCIMSG20);
-	textwin.AboutText = REALLOC (textwin.AboutText, strlen (textwin.AboutText) + 1);
 
 	menuwin=InitMWStruct();
 	menuwin.szMenuName = GetszMenuName();

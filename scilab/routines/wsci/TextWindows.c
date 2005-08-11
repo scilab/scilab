@@ -31,7 +31,6 @@ TW InitTWStruct(void)
 	TWStruct.nCmdShow=0;
 	TWStruct.shutdown=NULL;
 	TWStruct.hIcon=NULL;
-	TWStruct.AboutText=NULL;
 	TWStruct.hPopMenu=NULL;
 	TWStruct.hWndText=NULL;
 	TWStruct.hWndParent=NULL;
