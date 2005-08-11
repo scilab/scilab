@@ -55,7 +55,6 @@ static int my_argc = -1;
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
-EXPORT int CALLBACK  ShutDown (void);
 int Pause (LPSTR str);
 void add_sci_argv(char *p);
 int sci_iargc();

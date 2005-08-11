@@ -29,7 +29,6 @@ TW InitTWStruct(void)
 	TWStruct.DragPre=NULL;
 	TWStruct.DragPost=NULL;
 	TWStruct.nCmdShow=0;
-	TWStruct.shutdown=NULL;
 	TWStruct.hIcon=NULL;
 	TWStruct.hPopMenu=NULL;
 	TWStruct.hWndText=NULL;

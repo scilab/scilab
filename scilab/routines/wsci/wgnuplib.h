@@ -110,7 +110,6 @@ typedef struct tagTW
   LPSTR	DragPre;		/* optional */
   LPSTR	DragPost;		/* optional */
   int		nCmdShow;	/* optional */
-  FARPROC shutdown;		/* optional */
   HICON	hIcon;			/* optional */
   HMENU	hPopMenu;
   HWND	hWndText;
@@ -197,16 +196,6 @@ typedef struct tagGW {
 
 typedef GW *  LPGW;
 
-
-#ifndef LEFT
-#define LEFT 0
-#endif
-#ifndef CENTRE
-#define CENTRE 1
-#endif
-#ifndef RIGHT
-#define RIGHT 2
-#endif
 
 /*************************/
 

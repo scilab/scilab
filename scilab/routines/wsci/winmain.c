@@ -109,7 +109,6 @@ int Console_Main(int argc, char **argv)
   textwin.ScreenSize.y = 80;
   textwin.KeyBufSize = 2048;
   textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
-  textwin.shutdown = (DLGPROC) ShutDown;
  
   menuwin=InitMWStruct();
   menuwin.szMenuName = GetszMenuName();
@@ -229,7 +228,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.ScreenSize.y = 80;
 	textwin.KeyBufSize = 4096;
 	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
-	textwin.shutdown = (DLGPROC) ShutDown;
 
 	menuwin=InitMWStruct();
 	menuwin.szMenuName = GetszMenuName();
@@ -557,14 +555,6 @@ static void AllGraphWinDelete ()
 		C2F (deletewin) (&ids[i]);
 		FREE (ids);
 	}
-}
-/*-----------------------------------------------------------------------------------*/
-/* call back function from Text Window WM_CLOSE */
-
-EXPORT int CALLBACK  ShutDown (void)
-{
-	exit (0);
-	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 /* Modification Correction Bug Win 9x Winoldap */

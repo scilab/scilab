@@ -95,7 +95,6 @@ extern void sciprint_nd(char *fmt, ...);
 extern int sciprint2(int v,char *fmt,...);
 extern int Pause(LPSTR mess); 
 extern void WinExit(void);
-extern EXPORT int CALLBACK ShutDown(void);
 extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);
 /*-----------------------------------------------------------------------------------*/
