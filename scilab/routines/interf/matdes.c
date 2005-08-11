@@ -2012,7 +2012,7 @@ int scixarc(fname,fname_len)
     if (strcmp(fname,"xarc")==0)
       Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,FALSE,TRUE,&hdl);
     else /* xfarc case */
-      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,TRUE,FALSE,&hdl);
+      Objarc (istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4),NULL,&curcolor,TRUE,FALSE,&hdl);
   }
   else
     Xarc(fname,fname_len,istk(l5),istk(l6),stk(l1),stk(l2),stk(l3),stk(l4));
@@ -2532,7 +2532,7 @@ int scixend(fname,fname_len)
     xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
     figure = sciGetCurrentFigure();
     sciDrawObj(figure);
-/*     xinitxend_flag = 1; */
+    /*     xinitxend_flag = 1; */
   }
   C2F(dr1)("xend","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,2L);
   if(version_flag() == 0) {
@@ -2669,8 +2669,8 @@ int scixfpolys(fname,fname_len)
     sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) {
       if (*istk(l3+i) == 0) {
-/* 	/\* a revoir quand refonte de xpoly et xfpoly *\/ /\* F.Leray 18.05.05 *\/ */
-/* 	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()))); */
+	/* 	/\* a revoir quand refonte de xpoly et xfpoly *\/ /\* F.Leray 18.05.05 *\/ */
+	/* 	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()))); */
 	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
 	color= sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
@@ -5048,7 +5048,7 @@ int scirects(char *fname,unsigned long fname_len)
     sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     
     for (i = 0; i < n1; ++i) { 
-/*       j = (i==0) ? 0 : 1; */
+      /*       j = (i==0) ? 0 : 1; */
       if (*istk(l2+i) == 0){
 	/** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
 	/* color setting is done now */
@@ -5852,7 +5852,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {
 	if ((strncmp(cstk(*value),"old", 3) == 0)) {
 	  if (version_flag() == 0)  {
-/* 	    versionflag = 1; */
+	    /* 	    versionflag = 1; */
 
 	    sciXbasc();
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
@@ -5863,9 +5863,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    }
 	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
 
-		/* Add xclear to refresh toolbar for Windows */
-		C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
-			PD0, 0L, 0L);
+	    /* Add xclear to refresh toolbar for Windows */
+	    C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
+		      PD0, 0L, 0L);
 	  }
 	}
 	else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
@@ -5880,9 +5880,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      sciSetCurrentObj(figure);
 	      XGC->mafigure = (sciPointObj *) figure;
 	      XGC->graphicsversion = 0;   /* new graphic mode */
-		  cf_type=1;
-		  /* Add xclear to refresh toolbar for Windows */
-		  C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
+	      cf_type=1;
+	      /* Add xclear to refresh toolbar for Windows */
+	      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
 		sciSetCurrentObj(psubwin);
 		sciSetOriginalSubWin (figure, psubwin);}
@@ -6345,7 +6345,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else if ((strncmp(cstk(*value),"off", 3) == 0)) 
       sciSetIsClipping( (sciPointObj *)pobj,-1);
     else if ((strncmp(cstk(*value),"on", 2) == 0))
-/*       if(sciGetClipping(pobj) != NULL){ */
+      /*       if(sciGetClipping(pobj) != NULL){ */
       if(sciGetIsClipRegionValuated(pobj) == 1){
 	sciSetIsClipping( (sciPointObj *)pobj,1);
       }
@@ -7445,9 +7445,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 
 	    FREE(pSURFACE_FEATURE (pobj)->color); pSURFACE_FEATURE (pobj)->color = NULL;
 	    
-/* 	    printf("pSURFACE_FEATURE (pobj)->color = %d\n",pSURFACE_FEATURE (pobj)->color); */
-/* 	    printf("nc = %d\n",nc); */
-/* 	    fflush(NULL); */
+	    /* 	    printf("pSURFACE_FEATURE (pobj)->color = %d\n",pSURFACE_FEATURE (pobj)->color); */
+	    /* 	    printf("nc = %d\n",nc); */
+	    /* 	    fflush(NULL); */
 
 	    if(nc>0){
 	      if ((pSURFACE_FEATURE (pobj)->color = MALLOC (nc * sizeof (double))) == NULL)
@@ -8542,8 +8542,8 @@ int sciGet(sciPointObj *pobj,char *marker)
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       sciGetPosition(pobj,&stk(outindex)[0],&stk(outindex)[1]);
 
-/*       /\* switch to manual mode for label position *\/ */
-/*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
+      /*       /\* switch to manual mode for label position *\/ */
+      /*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
     }
   else if (strncmp(marker,"auto_ticks", 10) == 0)
     {
@@ -11154,7 +11154,7 @@ int LinearScaling2Colormap(sciPointObj* pobj)
       double B = (min*indexmax-indexmin*max)/(min-max);
       for(i=0;i<nc;i++)
 	psurf->color[i] = A*psurf->zcol[i] + B + 0.1;
-     }
+    }
   else
     {
       double C = (indexmin+indexmax)/2;
@@ -11306,7 +11306,7 @@ static int getgrayplotdata(sciPointObj *pobj)
   /*int n_variable_tlist = 1; */
   
   int  numrow, numcol,l;
-/*   int nx,ny; */
+  /*   int nx,ny; */
 
   /* F.Leray debug*/
   sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
@@ -11318,16 +11318,16 @@ static int getgrayplotdata(sciPointObj *pobj)
   CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
   CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
 
-/*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
-/*     { */
-/*   nx =  ppgrayplot->nx; */
-/*   ny =  ppgrayplot->ny; */
-/*     } */
-/*   else */
-/*     { */
-/*       nx =  ppgrayplot->nx - 1; */
-/*       ny =  ppgrayplot->ny - 1; */
-/*     } */
+  /*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
+  /*     { */
+  /*   nx =  ppgrayplot->nx; */
+  /*   ny =  ppgrayplot->ny; */
+  /*     } */
+  /*   else */
+  /*     { */
+  /*       nx =  ppgrayplot->nx - 1; */
+  /*       ny =  ppgrayplot->ny - 1; */
+  /*     } */
 
 
   numrow = ppgrayplot->nx;
@@ -11341,28 +11341,28 @@ static int getgrayplotdata(sciPointObj *pobj)
   numrow = ppgrayplot->nx;
   numcol = ppgrayplot->ny;
   
-/*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
-/*     { */
+  /*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
+  /*     { */
   CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppgrayplot->pvecz);
-/*     } */
-/*   else /\* direct *\/ */
-/*     { */
-/*       int i,j; */
-/*       double * vecz = (double *) NULL; */
-/*       if((vecz = MALLOC(nx*ny*sizeof(double))) == NULL){ */
-/* 	sciprint("Error: Can not allocate temp. vecz\n"); */
-/* 	return -1; */
-/*       } */
+  /*     } */
+  /*   else /\* direct *\/ */
+  /*     { */
+  /*       int i,j; */
+  /*       double * vecz = (double *) NULL; */
+  /*       if((vecz = MALLOC(nx*ny*sizeof(double))) == NULL){ */
+  /* 	sciprint("Error: Can not allocate temp. vecz\n"); */
+  /* 	return -1; */
+  /*       } */
       
-/*       for(i=0;i<(ppgrayplot->nx)-1;i++) */
-/* 	for(j=0;j<(ppgrayplot->ny)-1;j++) */
-/* 	  vecz[j+nx*i] = ppgrayplot->pvecz[j+(ppgrayplot->nx)*i]; */
+  /*       for(i=0;i<(ppgrayplot->nx)-1;i++) */
+  /* 	for(j=0;j<(ppgrayplot->ny)-1;j++) */
+  /* 	  vecz[j+nx*i] = ppgrayplot->pvecz[j+(ppgrayplot->nx)*i]; */
             
-/*       CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &vecz); */
+  /*       CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &vecz); */
       
-/*       FREE(vecz); vecz = (double *) NULL; */
+  /*       FREE(vecz); vecz = (double *) NULL; */
 
-/*     } */
+  /*     } */
 
   return 0;
 }
