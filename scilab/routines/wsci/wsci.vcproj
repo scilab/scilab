@@ -795,6 +795,9 @@ cd .. &gt;nul
 				RelativePath=".\GetOS.c">
 			</File>
 			<File
+				RelativePath=".\GraphWindows.c">
+			</File>
+			<File
 				RelativePath="gvwprn.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -894,6 +897,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\interfdde.C">
+			</File>
+			<File
+				RelativePath=".\MenuWindows.c">
 			</File>
 			<File
 				RelativePath="misc.c">
@@ -2103,10 +2109,16 @@ cd .. &gt;nul
 				RelativePath=".\GetOS.h">
 			</File>
 			<File
+				RelativePath=".\GraphWindows.h">
+			</File>
+			<File
 				RelativePath=".\ihmcolor.h">
 			</File>
 			<File
 				RelativePath=".\interfdde.h">
+			</File>
+			<File
+				RelativePath=".\MenuWindows.h">
 			</File>
 			<File
 				RelativePath=".\Messages.h">

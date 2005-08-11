@@ -10,7 +10,6 @@
 #include "..\version.h"
 
 #include "wcommon.h"
-//#include "plot.h"
 #include "FilesAssociations.h"
 #include "SciEnv.h"
 
@@ -29,8 +28,6 @@
 #define MAXPRINTF 512
 
 
-#define MENUNAME "wscilabE.mnu"
-#define GRAPHMENUNAME "wgscilabE.mnu"
 
 #define MIN_STACKSIZE 180000
 
@@ -44,11 +41,8 @@
 /* Les Variables Globales */
 /*-----------------------------------------------------------------------------------*/
 extern TW textwin;
-GW graphwin;
-MW menuwin;
-
-LPSTR szMenuName;
-LPSTR szGraphMenuName;
+extern GW graphwin;
+extern MW menuwin;
 
 extern HINSTANCE hdllInstance;
 

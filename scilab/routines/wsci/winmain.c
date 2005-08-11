@@ -36,6 +36,8 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+#include "GraphWindows.h"
+#include "MenuWindows.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 
@@ -50,7 +52,6 @@ extern void sci_tk_activate(void);
 extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
 /*-----------------------------------------------------------------------------------*/
-static void CheckMemory (LPSTR str);
 static void AllGraphWinDelete ();
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
@@ -88,16 +89,8 @@ int Console_Main(int argc, char **argv)
 	exit(1);
   }
 
-  szMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
-  CheckMemory (szMenuName);
-  strcpy (szMenuName, ScilabDirectory);
-  strcat (szMenuName, MENUNAME);
-
-  szGraphMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
-  CheckMemory (szGraphMenuName);
-  strcpy (szGraphMenuName, ScilabDirectory);
-  strcat (szGraphMenuName, GRAPHMENUNAME);
-
+  InitszGraphMenuName(ScilabDirectory);
+ 
   if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
 
   /* Load common control library * */
@@ -109,8 +102,6 @@ int Console_Main(int argc, char **argv)
   textwin.hPrevInstance = 0;
   textwin.nCmdShow = 1;
   textwin.Title = MSG_SCIMSG21;
-  textwin.IniFile = "scilab.ini";
-  textwin.IniSection = "SCILAB";
   textwin.DragPre = "gl_name='";
   textwin.DragPost = MSG_SCIMSG17;
   textwin.lpmw = &menuwin;
@@ -120,23 +111,20 @@ int Console_Main(int argc, char **argv)
   textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
   textwin.shutdown = (DLGPROC) ShutDown;
   textwin.AboutText = (LPSTR) MALLOC (1024);
-  CheckMemory (textwin.AboutText);
   strcpy (textwin.AboutText, MSG_SCIMSG18);
   strcat (textwin.AboutText,MSG_SCIMSG19);
   strcat (textwin.AboutText,MSG_SCIMSG20);
   textwin.AboutText = REALLOC (textwin.AboutText, strlen (textwin.AboutText) + 1);
-  CheckMemory (textwin.AboutText);
 
-  menuwin.szMenuName = szMenuName;
+  menuwin=InitMWStruct();
+  menuwin.szMenuName = GetszMenuName();
 
-  
+  graphwin=InitGWStruct();  
   graphwin.hInstance = GetModuleHandle(MSG_SCIMSG9);
   graphwin.hPrevInstance = 0;
   graphwin.Title =  MSG_SCIMSG23 ;
-  graphwin.szMenuName = szGraphMenuName;
+  graphwin.szMenuName = GetszGraphMenuName();
   graphwin.lptw = &textwin;
-  graphwin.IniFile = textwin.IniFile;
-  graphwin.IniSection = textwin.IniSection;
   argcount = my_argc;
   while (argcount > 0)
     {
@@ -225,16 +213,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		MessageBox (NULL,MSG_ERROR20 , MSG_ERROR38, MB_ICONSTOP | MB_OK);
 		exit(1);
 	}	
-	
-	szMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (MENUNAME) + 1);
-	CheckMemory (szMenuName);
-	strcpy (szMenuName, ScilabDirectory);
-	strcat (szMenuName, MENUNAME);
-
-	szGraphMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen (GRAPHMENUNAME) + 1);
-	CheckMemory (szGraphMenuName);
-	strcpy (szGraphMenuName, ScilabDirectory);
-	strcat (szGraphMenuName, GRAPHMENUNAME);
+	InitszMenuName(ScilabDirectory);
+	InitszGraphMenuName(ScilabDirectory);
 
 	if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
 
@@ -247,8 +227,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.hPrevInstance = hPrevInstance;
 	textwin.nCmdShow = iCmdShow;
 	textwin.Title = MSG_SCIMSG21;
-	textwin.IniFile = "scilab.ini";
-	textwin.IniSection = "SCILAB";
 	textwin.DragPre = "gl_name='";
 	textwin.DragPost = MSG_SCIMSG17;
 	textwin.lpmw = &menuwin;
@@ -258,22 +236,20 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.CursorFlag = 1;	/* scroll to cursor after \n & \r */
 	textwin.shutdown = (DLGPROC) ShutDown;
 	textwin.AboutText = (LPSTR) MALLOC (1024);
-	CheckMemory (textwin.AboutText);
 	strcpy (textwin.AboutText,MSG_SCIMSG18);
 	strcat (textwin.AboutText, MSG_SCIMSG19);
 	strcat (textwin.AboutText, MSG_SCIMSG20);
 	textwin.AboutText = REALLOC (textwin.AboutText, strlen (textwin.AboutText) + 1);
-	CheckMemory (textwin.AboutText);
 
-	menuwin.szMenuName = szMenuName;
+	menuwin=InitMWStruct();
+	menuwin.szMenuName = GetszMenuName();
 
+	graphwin=InitGWStruct();
 	graphwin.hInstance = hInstance;
 	graphwin.hPrevInstance = hPrevInstance;
 	graphwin.Title = MSG_SCIMSG23;
-	graphwin.szMenuName = szGraphMenuName;
+	graphwin.szMenuName = GetszGraphMenuName();
 	graphwin.lptw = &textwin;
-	graphwin.IniFile = textwin.IniFile;
-	graphwin.IniSection = textwin.IniSection;
 
 	pFullCmdLineTmp=GetCommandLine();
 	{
@@ -494,20 +470,17 @@ void InitWindowGraphDll(void)
 	exit(1);
   }	
 
-  szGraphMenuName = (LPSTR) MALLOC (strlen (ScilabDirectory) + strlen("\\bin\\")+strlen (GRAPHMENUNAME) + 1);
-  CheckMemory (szGraphMenuName);
-  wsprintf(szGraphMenuName,"%s\\bin\\%s",ScilabDirectory,GRAPHMENUNAME);
+  InitszGraphMenuName(ScilabDirectory);
   if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
   
    InitCommonControls ();
   
+   graphwin=InitGWStruct();
    graphwin.hInstance = hdllInstance;
    graphwin.hPrevInstance = NULL;
    graphwin.Title = MSG_SCIMSG23;
-   graphwin.szMenuName = szGraphMenuName;
+   graphwin.szMenuName = GetszGraphMenuName();
    graphwin.lptw = &textwin;
-   graphwin.IniFile = "scilab.ini";
-   graphwin.IniSection = "SCILAB";
    sci_tk_activate();
     
 }
@@ -549,17 +522,6 @@ int InteractiveMode ()
 int C2F(showlogo) ()
 {
 	return show_logo;
-}
-/*-----------------------------------------------------------------------------------*/
-static void CheckMemory (LPSTR str)
-{
-#ifndef _DEBUG
-	if (str == (LPSTR) NULL)
-	{
-		MessageBox (NULL,MSG_ERROR40, MSG_ERROR20, MB_ICONSTOP | MB_OK);
-		exit (1);
-	}
-#endif
 }
 /*-----------------------------------------------------------------------------------*/
 /*---------------------------------------------------

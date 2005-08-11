@@ -2194,7 +2194,7 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 	return FALSE;
 	}
 /*-----------------------------------------------------------------------------------*/
-EXPORT void WINAPI AboutBox (HWND hwnd, LPSTR str)
+EXPORT void WINAPI AboutBox (HWND hwnd)
 {
   HWND hdlg;
   hdlg = CreateDialog(hdllInstance, "AboutDlgBox", hwnd,AboutDlgProc);

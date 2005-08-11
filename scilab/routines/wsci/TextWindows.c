@@ -26,8 +26,6 @@ TW InitTWStruct(void)
 	TWStruct.ScreenSize.y=0;
 
 	TWStruct.KeyBufSize=0;
-	TWStruct.IniFile=NULL;
-	TWStruct.IniSection=NULL;
 	TWStruct.DragPre=NULL;
 	TWStruct.DragPost=NULL;
 	TWStruct.nCmdShow=0;

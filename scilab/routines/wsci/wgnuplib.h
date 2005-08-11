@@ -107,14 +107,11 @@ typedef struct tagTW
   LPMW	lpmw;			/* optional */
   POINT	ScreenSize;		/* optional */
   unsigned int KeyBufSize;	/* optional */
-  LPSTR	IniFile;		/* optional */
-  LPSTR	IniSection;		/* optional */
   LPSTR	DragPre;		/* optional */
   LPSTR	DragPost;		/* optional */
   int		nCmdShow;	/* optional */
   FARPROC shutdown;		/* optional */
   HICON	hIcon;			/* optional */
-  LPSTR   AboutText;		/* optional */
   HMENU	hPopMenu;
   HWND	hWndText;
   HWND	hWndParent;
@@ -190,8 +187,6 @@ typedef struct tagGW {
   LPTW	lptw;		/* optional */  /* associated text window */
   POINT	Origin;		/* optional */	/* origin of graph window */
   POINT	Size;		/* optional */	/* size of graph window */
-  LPSTR	IniFile;	/* optional */
-  LPSTR	IniSection;	/* optional */
   HMENU	hPopMenu;	/* popup menu */
   BOOL	resized;	/* has graph window been resized? */
   BOOL	graphtotop;	/* bring graph window to top after every plot? */
