@@ -273,6 +273,7 @@
         ::msgcat::mcset fr "eng locale (eng)" "English (eng)"
         ::msgcat::mcset fr "it locale (it)" "Italiano (it)"
         ::msgcat::mcset fr "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset fr "pl locale (pl)" "Polski (pl)"
         ::msgcat::mcset fr "se locale (se)" "Svenska (se)"
 
     # menues.tcl - Windows menu

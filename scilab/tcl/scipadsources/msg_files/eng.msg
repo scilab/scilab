@@ -25,6 +25,7 @@
         ::msgcat::mcset eng "eng locale (eng)" "English (eng)"
         ::msgcat::mcset eng "it locale (it)" "Italiano (it)"
         ::msgcat::mcset eng "no locale (no)" "Norsk (no)"
+        ::msgcat::mcset eng "pl locale (pl)" "Polski (pl)"
         ::msgcat::mcset eng "se locale (se)" "Svenska (se)"
 
 
