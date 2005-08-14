@@ -1,3 +1,94 @@
+#####################################################################
+#
+# About the implementation of paned windows:
+#
+#   $textareaid
+#       This is the unique identifier of the text widget displaying
+#       the content of a given file. It is the same as $winopened
+#
+#   $pad.new$textareaid
+#       Buffer name. This is the unique pathname of the text widget
+#       displaying the content of a file. This is usually referred to
+#       as $textarea, or $ta for short
+#
+#   A main paned window is created in mainwindow.tcl, whose name is
+#   $pad.pw0. This panedwindow is the root of the paned windows tree
+#   and is never destroyed
+#
+#   At the time a textarea must be packed (displayed in Scipad), it
+#   is packed in an existing pane of an existing paned window (proc
+#   packbuffer). More precisely, the textarea is packed into a frame
+#   which was previously added as a pane of the panedwindow
+#
+#   On invocation of the Split or Tile commands, textareas are packed
+#   in new panes (more precisely frames added as panes) of possibly
+#   new paned windows. These new paned windows are nested in the
+#   existing hierarchy (proc packnewbuffer). Nesting paned windows
+#   is required because a panedwindow has a single orientation which
+#   is common to all its panes
+#
+#   The hierarchy is partially coded in a global array: pwframe
+#   This array is such that $pwframe($textarea) contains the widget
+#   into which $textarea is packed. This is always a frame (that was
+#   itself added as a pane in a panedwindow)
+#   There is no variable fully describing the hierarchical tree: this
+#   is managed by the packing algorithm of Tk
+#
+#   proc getpaneframename allows to retrieve the frame name in which
+#   a textarea is currently packed. It returns "none" if the textarea
+#   passed as argument is not visible (displayed). This allows for an
+#   easy check of whether a textarea is displayed or not (proc isdisplayed)
+#   or to get the total number of panes in Scipad (proc gettotnbpanes)
+#
+#   proc getpwname allows to retrieve the paned window name in which
+#   a widget is packed. This widget is usually a frame (pane) of a
+#   panedwindow in which a textarea is packed, but it can also be a
+#   full panedwindow
+#
+#   proc createpaneframename constructs the frame name in which a
+#   textarea is to be packed and stores this name in pwframe. If
+#   possible, $pad.new$textareaid will be packed in a frame whose
+#   name is $targetpw.f$textareaid
+#
+#   Example:
+#   Consider a simple tiling of Scipad: one upper pane, and a lower
+#   pane itself divided into two horizontal panes:
+#
+#       -------------------------------------------------
+#       |                Upper pane                     |
+#       |                                               |
+#       ------------------------------------------------- 
+#       |                Lower pane                     |
+#       |-----------------------|-----------------------|
+#       ||  Lower left pane     |   Lower right pane   ||
+#       ||                      |                      ||
+#       |-----------------------------------------------|
+#       -------------------------------------------------
+#
+#   $pad.pw0 contains the whole thing. It has a vertical orientation and
+#   contains two panes:
+#      $pad.pw0.f1
+#         This ends with f$textareaid, therefore this is a frame.
+#         It is the frame added to $pad.pw0 as the first pane
+#         It displays a textarea since it is a frame, and this frame is
+#         $pad.new1 since $pwframe($pad.new1)=$pad.pw0.f1
+#      $pad.pw0.pw1
+#         This ends with pw$somenumber, therefore this is a panedwindow.
+#         It was added as the second pane of $pad.pw0. It is not a frame
+#         but a nested paned window whose orientation is horizontal. This
+#         paned window contains again two panes:
+#            $pad.pw0.pw1.f2
+#               This is a frame containing $pad.new2 since
+#               $pwframe($pad.new2)=$pad.pw0.pw1.f2
+#            $pad.pw0.pw1.f3
+#               This is again a frame containing $pad.new3 since
+#               $pwframe($pad.new3)=$pad.pw0.pw1.f3
+#
+#   Note that in this example $pad.pw0.pw1.f$X contains $pad.new$Y
+#   where $X == $Y, but this is not always the case
+#
+#####################################################################
+
 proc packnewbuffer {textarea targetpw forcetitlebar {where ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
     global pad FontSize menuFont
@@ -169,10 +260,16 @@ proc splitwindow {neworient} {
     set pwname [getpwname $tapwfr]
     set curorient [$pwname cget -orient]
 
+    # if there is a single existing pane, this prevents from creating an unnecessary
+    # level of nested panedwindows
+    if {$curorient != $neworient && [llength [$pwname panes]] == 1} {
+        set curorient $neworient
+        $pwname configure -orient $curorient
+    }
+
     if {$curorient == $neworient} {
         # no need for a new panedwindow, just add a pane with one of the hidden
         # buffers inside, or an empty file otherwise
-        # <TODO>: use a peer text widget (Tk 8.5) and remove createnewtextarea
 
         # make sure that the possibly single pane before now shows its title bar
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
@@ -184,6 +281,7 @@ proc splitwindow {neworient} {
             set newta $pad.new[getlasthiddentextareaid]
         } else {
             # otherwise create an empty textarea
+            # <TODO>: use a peer text widget (Tk 8.5) and remove createnewtextarea
             set newta [createnewtextarea]
         }
         # and pack it
@@ -298,7 +396,6 @@ proc getpwname {tapwfr} {
 # errors when the parent has already been destroyed by proc destroypaneframe
 # destroying an already destroyed widget causes no error and this simplifies
 # the hierarchy destruction (see destroypaneframe)
-# hmmm, not quite sure after all... this might hide a bug
     return [string replace $tapwfr [string last . $tapwfr] end]
 }
 
@@ -313,12 +410,30 @@ proc getpaneframename {textarea} {
     }
 }
 
+proc gettafromwidget {w} {
+# get the textarea name that is currently packed into $w
+# (if $w is a frame, otherwise return "none")
+    global pwframe listoftextarea
+    foreach ta $listoftextarea {
+        if {[isdisplayed $ta]} {
+            if {$pwframe($ta) == $w} {
+                return $ta
+            }
+        }
+    }
+    return "none"
+}
+
 proc createpaneframename {textarea targetpw} {
 # construct the frame name in which $textarea is to be packed
 # and store this name in the global array pwframe
     global pad pwframe
     set id [scan $textarea $pad.new%d]
     set paneframename $targetpw.f$id
+    while {[winfo exists $paneframename]} {
+        incr id
+        set paneframename $targetpw.f$id
+    }
     set pwframe($textarea) $paneframename
     return $paneframename
 }
@@ -340,12 +455,57 @@ proc destroypaneframe {textarea {hierarchy "destroyit"}} {
             destroy $pwname
             set pwname [getpwname $pwname]
         }
-        # <TODO> merge remaining panedwindows according to the new geometry
-        #        because after many open/close of tiled buffers the grey
-        #        borders do accumulate
     }
 
+    mergepanedwindows $pwname
+
     unset pwframe($textarea)
+}
+
+proc mergepanedwindows {pwname} {
+# merge remaining panedwindows according to the new geometry
+# because otherwise after many open/close of tiled buffers the grey
+# borders do accumulate
+
+    set pa [$pwname panes]
+    if {[llength $pa] == 1} {
+        # merge only when there is one single pane
+
+        set pa [lindex $pa 0]
+        set lastelt [lindex [split $pa .] end]
+        scan $lastelt pw%d id
+        if {[info exists id]} {
+            # and only when this single pane contains a panedwindow (not a frame)
+
+            $pwname configure -orient [$pa cget -orient]
+
+            # create list of impacted textareas, i.e. those that need to be repacked
+            set torepack [$pa panes]
+            set talist {}
+            foreach widg $torepack {
+                set talist [lappend talist [gettafromwidget $widg]]
+            }
+
+            # if panedwindows must be repacked, give up and do nothing!
+            # <TODO>: make merging work even in this recursive case!
+            if {[lsearch $talist "none"] != - 1} { return }
+
+            # forget the old packing
+            foreach ta $talist {
+                destroypaneframe $ta nohierarchydestroy
+            }
+
+            # forget the superfluous level
+            $pwname forget $pa
+            destroy $pa
+
+            # pack in the panedwindow one level above
+            foreach ta $talist {
+                packnewbuffer $ta $pwname 1
+                focustextarea $ta
+            }
+        }
+    }
 }
 
 proc isdisplayed {textarea} {

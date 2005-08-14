@@ -463,7 +463,7 @@ proc filetosave {textarea} {
 # the file on disk?) since last loading in Scipad
 # and ask the user if he still wants to save in that case
 # if yes or if there was no change on disk, perform the save on disk
-# note: the modification check is normally pointless since now
+# note: the modification check is normally pointless now since
 # Scipad performs this check each time it gets focus
     global listoffile
     set msgChanged [concat [mc "The contents of "] \
@@ -627,17 +627,18 @@ proc checkiffilechangedondisk {textarea} {
     }
 }
 
-proc checkifanythingchangedondisk {} {
+proc checkifanythingchangedondisk {w} {
 # check if any opened buffer has changed on disk
-    global listoftextarea alreadyrunning
-    # Variable alreadyrunning prevents from asking the confirmation question
+    global listoftextarea pad
+    # The test on $w below prevents from asking the confirmation question
     # multiple times since more than one single FocusIn event can be fired
-    if {$alreadyrunning} {return}
-    set alreadyrunning 1
+    # e.g when focus is set to Scipad by clicking on a text widget: the binding
+    # fires for .scipad but also for .scipad.newX because .scipad is in the
+    # bindtags list for .scipad.newX
+    if {$w != $pad} return
     foreach ta $listoftextarea {
         checkiffilechangedondisk $ta
     }
-    set alreadyrunning 0
 }
 
 ##################################################

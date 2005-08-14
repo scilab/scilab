@@ -1339,3 +1339,12 @@ Francois VOGEL, 06/08/05
  * File changes on disk is now detected on Scipad FocusIn event, not only when
    trying to save
  * version --> 5.25
+
+Francois VOGEL, 14/08/05
+ * Better prevention of multiple binding fires for FocusIn event
+ * Fixed: The following sequence triggered a bug: open Scipad, type something
+   in the empty buffer, open another buffer, and then split
+ * Documented paned windows implementation in buffernavigation.tcl
+ * Implemented merging of panedwindows to prevent the grey border from growing
+   on buffer close/reopen/split - this is not finished yet
+ * version --> 5.26

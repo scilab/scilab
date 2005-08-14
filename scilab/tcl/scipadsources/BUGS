@@ -231,6 +231,8 @@ Wishes:
  but this one is only available from Tk 8.5 (TIP #179)
 
 -Make use of the native Tk Find/Replace dialog available from 8.5
+ Hmmm... is this such a good idea since now we would like to search in all
+ the opened buffers, which function requires a dedicated checkbox?
 
 -Currently any character typed in the buffer is inserted if there is
  no selection. Add a mode toggled by the Ins key in which characters

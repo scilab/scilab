@@ -102,7 +102,7 @@ bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
 
-bind $pad <FocusIn> {checkifanythingchangedondisk}
+bind $pad <FocusIn> {checkifanythingchangedondisk %W}
 
 # The following are (unfortunately) platform/os-dependent keysyms
 set Shift_Tab {"ISO_Left_Tab" "Shift-Tab"}
