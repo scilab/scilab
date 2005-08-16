@@ -1,4 +1,4 @@
-      double precision function round(x1)
+      double precision function sciround(x1)
 c!
 c     Copyright INRIA
       double precision x1,x,y,z,e,h
@@ -6,7 +6,7 @@ c     Copyright INRIA
 c
       x=x1
       if (x.eq.0d0) then 
-         round=x
+         sciround=x
          return
       endif
       if ((2.0d0*x).eq.dble(int(2.d0*x))) then
@@ -17,12 +17,12 @@ c     changing the signs gives round(0.5)=0 round(-0.5)=0
       z = abs(x)
 c     -----testing Nans 
       if (isanan(x).eq.1) then 
-         round=x
+         sciround=x
          return
       endif
       y = z + 1.0d+0
       if (y .eq. z) then 
-         round=x
+         sciround=x
          return
       endif
       y = 0.0d+0
@@ -38,6 +38,6 @@ c     -----testing Nans
  30   z = int(z + 0.50d+0)
       y = y + z
       if (x .lt. 0.0d+0) y = -y
-      round = y
+      sciround = y
       return
       end

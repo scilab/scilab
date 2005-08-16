@@ -28,7 +28,7 @@ c     z(6)=height
       integer wid
 
       integer cur,v
-      double precision dv,round,ur
+      double precision dv,sciround,ur
       character*40 drv
       data cur/0/
 
@@ -38,7 +38,7 @@ c
       if(flag.eq.2) then
 c     state evolution
          ur=10.0d0**ipar(6)
-         ur=round(u(1)*ur)/ur
+         ur=sciround(u(1)*ur)/ur
          if (ur.eq.z(1)) return
          wid=z(2)
          if(wid.lt.0) return
