@@ -1,10 +1,10 @@
 # Scipad texts in Polish
 # in sync at least with v5.23
-# Created by Bartosz Kosiorek <gang65@poczta.onet.pl>
+# Created by Bartosz Kosiorek <gang65@poczta.onet.pl>, 2005
 
 # commons
 ::msgcat::mcset pl "Cancel" "Anuluj"
-::msgcat::mcset pl "Cance&l" "Anu&luj"
+::msgcat::mcset pl "Cance&l" "&Anuluj"
 ::msgcat::mcset pl "OK" "OK"
 ::msgcat::mcset pl "Scilab working" "Scilab pracuje"
 ::msgcat::mcset pl "All files" "Wszystkie pliki"
@@ -15,11 +15,11 @@
 
 # buffernavigation.tcl
 ::msgcat::mcset pl "Goto Line?" "I\u015b\u0107 do linii?"
-::msgcat::mcset pl "Go to:" "IdŸ do:"
+::msgcat::mcset pl "Go to:" "Id\u017a do:"
 ::msgcat::mcset pl "&logical line" "&linia logiczna"
 ::msgcat::mcset pl "&physical line" "linia &fizyczna"
 ::msgcat::mcset pl "in &function" "w &funkcji"
-::msgcat::mcset pl "in &current file" "w bie¿\u0105&cym pliku"
+::msgcat::mcset pl "in &current file" "w bie\u017c\u0105&cym pliku"
 ::msgcat::mcset pl "Outside of function definition" "Poza definicj\u0105 funkcji"
 
 # colorize.tcl
@@ -47,11 +47,11 @@
                         \nArguments order can be changed using drag and drop with\
                         right mouse button in the arguments listbox." \
                        "w pliku!\n\n\
-                        Sprawdz nazw\u0119 i argumenty funkcji w oknie konfiguracji.\
+                        Sprawd\u017a nazw\u0119 i argumenty funkcji w oknie konfiguracji.\
                         \nKolejno\u015b\u0107 argument\u00f3w mo\u017ce zosta\u0107 zmieniona przy pomocy metody \
                         przeci\u0105gnij i upu\u015b\u0107 (prawym klawiszem myszy na li\u015bcie argument\u00f3w)"
 ::msgcat::mcset pl "Error in selected function name or arguments" "B\u0142\u0105d w nazwie zaznaczonej funkcji, lub jej parametrach"
-::msgcat::mcset pl "Debugger is not yet developed for sce scripts!" "Debugger nie jest jeszcze rozwijany dla skrypt\u00f3w sce!"
+::msgcat::mcset pl "Debugger is not yet developed for sce scripts!" "Odpluskwiacz nie jest jeszcze rozwijany dla skrypt\u00f3w sce!"
 
 
 # db_debugsession.tcl
@@ -140,10 +140,10 @@
 ::msgcat::mcset pl "Find what:" "Znajd\u017a :"
 ::msgcat::mcset pl "Replace with:" "Zamie\u0144 na :"
 ::msgcat::mcset pl "Find &Next" "Z&najd\u017a nast\u0119pne"
-::msgcat::mcset pl "Replace &All" "Z&amie\u0144 wszystko"
+::msgcat::mcset pl "Replace &All" "&Zamie\u0144 wszystko"
 ::msgcat::mcset pl "&Upwards" "&Do przodu"
 ::msgcat::mcset pl "Downward&s" "D&o ty\u0142u" 
-::msgcat::mcset pl "Match &case" "Uwzgl\u0119dnij wielko\u015b\u0107 &liter"
+::msgcat::mcset pl "Match &case" "U&wzgl\u0119dnij wielko\u015b\u0107 liter"
 ::msgcat::mcset pl "&Regular expression" "&Uwzgl\u0119dnij tylko ca\u0142e wyrazy"
 
 
@@ -173,7 +173,7 @@
 # inputtext.tcl
 ::msgcat::mcset pl "No corresponding <" "Nie znaleziono odpowiednich dla <"
     ::msgcat::mcset pl "> found!" "> !"
-::msgcat::mcset fr "Code editing is not allowed during debug!" "Impossible de modifier le code durant le débug !"
+::msgcat::mcset pl "Code editing is not allowed during debug!" "Edycja kodu podczas odpluskwiania jest niedozwolone!"
 
 
 # menues.tcl
@@ -182,10 +182,10 @@
 ::msgcat::mcset pl "&Search" "&Szukaj"
 ::msgcat::mcset pl "E&xecute" "&Wykonaj"
 ::msgcat::mcset pl "&Debug" "O&dpluskwianie"
-::msgcat::mcset pl "S&cheme" "S&chemat"
+::msgcat::mcset pl "S&cheme" "Sc&hemat"
 ::msgcat::mcset pl "&Options" "&Opcje"
 ::msgcat::mcset pl "&Windows" "O&kna"
-::msgcat::mcset pl "&Help" "&Pomoc"
+::msgcat::mcset pl "&Help" "Pomo&c"
 
     # menues.tcl - File menu
     ::msgcat::mcset pl "&New" "&Nowy"
@@ -195,11 +195,11 @@
     ::msgcat::mcset pl "&Revert..." "&Przywr\u00f3\u0107..."
     ::msgcat::mcset pl "Import &Matlab file..."  "Importuj plik &Matlab-a..."
     ::msgcat::mcset pl "Create help s&keleton..." "Utw\u00f3rz sz&kielet pomocy..."
-    ::msgcat::mcset pl "Compile as &help page" "K&ompiluj jako strona pomocy"
+    ::msgcat::mcset pl "Compile as &help page" "Kompi&luj jako strona pomocy"
     ::msgcat::mcset pl "Open &function source" "Otw\u00f3rz \u017ar\u00f3d\u0142o &funkcji"
     ::msgcat::mcset pl "Print Se&tup" "&Ustawienia drukowania"
     ::msgcat::mcset pl "&Print" "&Drukuj"
-    ::msgcat::mcset pl "&Close" "Zamk&nij"
+    ::msgcat::mcset pl "&Close" "&Zamknij"
     ::msgcat::mcset pl "E&xit" "Zako\u0144&cz"
 
     # menues.tcl - Edit menu
@@ -232,13 +232,13 @@
     ::msgcat::mcset pl "&Configure execution..." "&Konfiguruj wykonanie..."
     ::msgcat::mcset pl "Go to next b&reakpoint" "Id\u017a do nast\u0119pnej &pu\u0142apki"
     ::msgcat::mcset pl "&Step by step" "K&rok po kroku"
-    ::msgcat::mcset fr "Step &into" "Pas à pas &principal"
-    ::msgcat::mcset fr "Step o&ver" "Pas à pas &détaillé"
-    ::msgcat::mcset fr "Step &out" "Pas à pas &sortant"
+    ::msgcat::mcset pl "Step &into" "&Wskocz do"
+    ::msgcat::mcset pl "Step o&ver" "&Przeskocz"
+    ::msgcat::mcset pl "Step &out" "Wy&skocz"
     ::msgcat::mcset pl "Run to c&ursor" "Uruchom do kur&sora"
-    ::msgcat::mcset fr "G&o on ignoring any breakpoint" "&Continuer sans aucun point d'arr\u0119t"
+    ::msgcat::mcset pl "G&o on ignoring any breakpoint" "&Kontynuuj ignoruj\u0105c wszystkie pu\u0142apki"
     ::msgcat::mcset pl "Show &watch" "Poka\u017c zmienne &obserwowane"
-    ::msgcat::mcset pl "&Break" "&Przerwij"
+    ::msgcat::mcset pl "&Break" "Pr&zerwij"
     ::msgcat::mcset pl "Cance&l debug" "&Anuluj odpluskwianie"
 
 #    ::msgcat::mcset pl "language scheme" "motyw j\u0119zykowy"
@@ -261,8 +261,8 @@
     ::msgcat::mcset pl "Word &Wrap" "&Zawijanie wierszy"
     ::msgcat::mcset pl "File&names" "&Nazwy plik\u00f3w"
         ::msgcat::mcset pl "&Full path" "&Pe\u0142na \u015bcie\u017cka"
-        ::msgcat::mcset pl "Full path if &ambiguous" "Pe\u0142n&a \u015bcie¿ka je¿eli jest niejednoznaczna"
-        ::msgcat::mcset  "&Unambiguous pruned path" "&Jednoznaczna obci\u0119ta \u015bcie¿ka"
+        ::msgcat::mcset pl "Full path if &ambiguous" "Pe\u0142n&a \u015bcie\u017cka je\u017celi jest niejednoznaczna"
+        ::msgcat::mcset pl "&Unambiguous pruned path" "&Jednoznaczna obci\u0119ta \u015bcie\u017cka"
     ::msgcat::mcset pl "&Recent files" "O&statnie pliki"
     ::msgcat::mcset pl "&Locale" "&J\u0119zyk"
   # locale names (common)
@@ -317,7 +317,7 @@
                     aby uzyska\u0107 szczeg\u00f3\u0142y -- Spr\u00f3buj wys\u0142a\u0107 tekst z b\u0142\u0119dem\
                     oraz niedzia\u0142aj\u0105cy plik Matlab-a na stron\u0119\
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"
-::msgcat::mcset pl "Please select destination path for the xml source of the help file" "Wska¿ \u015bcie¿k\u0119 docelow\u0105, Ÿr\u00f3d\u0142a xml pliku pomocy"
+::msgcat::mcset pl "Please select destination path for the xml source of the help file" "Wska\u017c \u015bcie\u017ck\u0119 docelow\u0105, \u017ar\u00f3d\u0142a xml pliku pomocy"
 ::msgcat::mcset pl "Older version of" "Znaleziono starsz\u0105 wersj\u0119"
     ::msgcat::mcset pl "found!" "!"
 ::msgcat::mcset pl "An old version of" "Starsza wersja pliku"
@@ -326,11 +326,11 @@
 ::msgcat::mcset pl "New skeleton" "Nowy szkielet"
 ::msgcat::mcset pl "Scilab is working, wait for the prompt to compile the help file." "Scilab pracuje, poczekaj na znak zach\u0119ty, aby skompilowa\u0107 plik pomocy."
 ::msgcat::mcset pl "ScilabEval command cannot be passed to Scilab!" "Polecenie ScilabEval nie mog\u0142o by\u0107 przetworzone przez program Scilab!"
-::msgcat::mcset fr impossibleScilabEval_message \
-                   "ATTENTION : Une commande n'a pas pu \u0119tre passée à Scilab et a été ignorée.\n\n \
-                   La raison probable est que vous n'avez pas les droits d'écriture dans le répertoire TMPDIR de Scilab. \
-                   Un comportement imprévisible peut se produire.\n\n \
-                   La commande en cause est:\n\n-->"
+::msgcat::mcset pl impossibleScilabEval_message \
+                   "UWAGA : Polecenie nie mo\u017ce zosta\u0107 wykonane przez program Scilab i zostanie zignorowane.\n\n \
+                   Prawdopodobnie nie masz uprawnie\u0144 zapisu do katalogu TMPDIR Scilab-a. \
+                   Mog\u0105 wyst\u0105pi\u0107 trudne do przewidzenia rezultaty.\n\n \
+                   Wadliwe polecenie ma posta\u0107:\n\n-->"
 
 
 # scipad.tcl
@@ -342,12 +342,12 @@
 
 
 # whichfun.tcl
-::msgcat::mcset fr "Being at line" "Etant à la ligne"
-    ::msgcat::mcset fr ", function" ", la fonction"
-    ::msgcat::mcset fr "begins at" "débute en"
-    ::msgcat::mcset fr ", and there are" ", et il y a"
+::msgcat::mcset pl "Being at line" "Jeste\u015b w linii"
+    ::msgcat::mcset pl ", function" ", funkcja"
+    ::msgcat::mcset pl "begins at" "zaczyna si\u0119"
+    ::msgcat::mcset pl ", and there are" ", i jest tu"
     ::msgcat::mcset fr "continued lines, i.e. we are at line" "lignes multiples, i.e. nous sommes à la ligne"
-    ::msgcat::mcset fr "of" "de"
+    ::msgcat::mcset pl "of" "na"
 ::msgcat::mcset pl "Function" "Funkcja"
     ::msgcat::mcset pl "line" "linia"
 ::msgcat::mcset pl "The cursor is not currently inside a function body." "Kursor nie znajduje si\u0119 w ciele funkcji."
