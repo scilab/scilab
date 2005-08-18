@@ -4,7 +4,7 @@
 
 # commons
 ::msgcat::mcset de "Cancel" "Abbrechen"
-::msgcat::mcset de "Cance&l" "Abbrechen (Ctrl+l)"
+::msgcat::mcset de "Cance&l" "A&bbrechen"
 ::msgcat::mcset de "OK" "OK"
 ::msgcat::mcset de "Scilab working" "Scilab arbeitet"
 ::msgcat::mcset de "All files" "Alle Dateien"
@@ -137,15 +137,15 @@
 ::msgcat::mcset de "No match found in the selection for" "Die Zeichenkette"
 ::msgcat::mcset de "\nWould you like to look for it in the entire text?" "konnte im markierten Bereich nicht gefunden werden.\nMöchten Sie in der gesamten Datei danach suchen ?"
 ::msgcat::mcset de "You are searching for an empty string!" "Nach einer leeren Zeichenkette kann nicht gesucht werden!"
-::msgcat::mcset de "Re&place" "Ersetzen (Ctrl+p)"
+::msgcat::mcset de "Re&place" "&Ersetzen"
 ::msgcat::mcset de "Find what:" "Suche nach:"
 ::msgcat::mcset de "Replace with:" "Ersetze durch:"
-::msgcat::mcset de "Find &Next" "Suche fortsetze&n"
+::msgcat::mcset de "Find &Next" "Suche &fortsetzen"
 ::msgcat::mcset de "Replace &All" "&Alle Ersetzen"
-::msgcat::mcset de "&Upwards" "R&ueckwärts"
-::msgcat::mcset de "Downward&s" "Vorwärt&s" 
-::msgcat::mcset de "Match &case" "Groß-/Kleins&chreibung beachten"
-::msgcat::mcset de "&Regular expression" "&Regulärer Ausdruck"
+::msgcat::mcset de "&Upwards" "&Rückwärts"
+::msgcat::mcset de "Downward&s" "&Vorwärts" 
+::msgcat::mcset de "Match &case" "&Groß-/Kleinschreibung beachten"
+::msgcat::mcset de "&Regular expression" "Reg&ulärer Ausdruck"
 
 
 # helps.tcl
@@ -157,7 +157,8 @@
                     Verbesserungen (insbesondere Debugger) von François Vogel 2004-2005.\n\
                     Schwedische Übersetzung von Gunnar Lindholm 2005.\n\
                     Norwegische Übersetzung von Torbjørn Pettersen 2005.\n\
-                    Deutsche Übersetzung von Dirk Reusch 2005."
+                    Deutsche Übersetzung von Dirk Reusch 2005.\n\
+                    Polnische Übersetzung von Bartosz Kosiorek 2005."
 
 
 # infomessages.tcl
@@ -218,8 +219,8 @@
 
     # menues.tcl - Search menu
     ::msgcat::mcset de "&Find..." "&Suchen..."
-    ::msgcat::mcset de "Find &Next" "Suche fortsetze&n"
-    ::msgcat::mcset de "&Replace..." "E&rsetzen..."
+    ::msgcat::mcset de "Find &Next" "Suche &fortsetzen"
+    ::msgcat::mcset de "&Replace..." "&Ersetzen..."
     ::msgcat::mcset de "&Goto Line..." "&Gehe zu..."
 
     # menues.tcl - Exec menu
