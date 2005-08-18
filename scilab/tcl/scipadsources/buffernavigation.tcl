@@ -32,7 +32,10 @@
 #   into which $textarea is packed. This is always a frame (that was
 #   itself added as a pane in a panedwindow)
 #   There is no variable fully describing the hierarchical tree: this
-#   is managed by the packing algorithm of Tk
+#   is managed by the packing algorithm of Tk. This tree can however
+#   be retrieved in a nested list (proc getpwtree), which is used during
+#   the merging process of the panedwindows, i.e. during removal of
+#   superfluous nest levels of panedwindows
 #
 #   proc getpaneframename allows to retrieve the frame name in which
 #   a textarea is currently packed. It returns "none" if the textarea
@@ -250,6 +253,9 @@ proc splitwindow {neworient} {
 # split current window:
 #    add a vertical pane if $neworient is "vertical"
 #    add an horizontal pane if $neworient is "horizontal"
+# splitting always starts from the current textarea, i.e
+# everything appears to happen as if the *current* textarea
+# is split
     global pad pwmaxid FontSize listoftextarea
 
     disablemenuesbinds
@@ -275,16 +281,17 @@ proc splitwindow {neworient} {
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
         modifiedtitle $tacur "panesonly"
 
-        # if there is a hidden buffer
+        # select the buffer to pack
         if {[llength $listoftextarea] > [gettotnbpanes]} {
-            # use it
+            # if there is a hidden buffer, use it
             set newta $pad.new[getlasthiddentextareaid]
         } else {
             # otherwise create an empty textarea
             # <TODO>: use a peer text widget (Tk 8.5) and remove createnewtextarea
             set newta [createnewtextarea]
         }
-        # and pack it
+
+        # pack it
         packnewbuffer $newta $pwname 1 $tapwfr
         focustextarea $newta
 
@@ -316,15 +323,17 @@ proc splitwindow {neworient} {
         # <TODO>: use a peer text widget here
         packnewbuffer $tacur $newpw 1
         focustextarea $tacur
-        # if there is a hidden buffer
+
+        # select the buffer to pack
         if {[llength $listoftextarea] > [gettotnbpanes]} {
-            # use it
+            # if there is a hidden buffer, use it
             set newta $pad.new[getlasthiddentextareaid]
         } else {
             # otherwise create an empty textarea
             set newta [createnewtextarea]
         }
-        # and pack it
+
+        # pack it
         packnewbuffer $newta $newpw 1
         focustextarea $newta
     }
@@ -455,9 +464,8 @@ proc destroypaneframe {textarea {hierarchy "destroyit"}} {
             destroy $pwname
             set pwname [getpwname $pwname]
         }
+        mergepanedwindows $pwname
     }
-
-    mergepanedwindows $pwname
 
     unset pwframe($textarea)
 }
@@ -472,27 +480,17 @@ proc mergepanedwindows {pwname} {
         # merge only when there is one single pane
 
         set pa [lindex $pa 0]
-        set lastelt [lindex [split $pa .] end]
-        scan $lastelt pw%d id
-        if {[info exists id]} {
+        if {[isapanedwindow $pa]} {
             # and only when this single pane contains a panedwindow (not a frame)
 
             $pwname configure -orient [$pa cget -orient]
 
-            # create list of impacted textareas, i.e. those that need to be repacked
-            set torepack [$pa panes]
-            set talist {}
-            foreach widg $torepack {
-                set talist [lappend talist [gettafromwidget $widg]]
-            }
-
-            # if panedwindows must be repacked, give up and do nothing!
-            # <TODO>: make merging work even in this recursive case!
-            if {[lsearch $talist "none"] != - 1} { return }
+            # create list of impacted widgets, i.e. those that need to be repacked
+            set torepack [getpwtree $pa]
 
             # forget the old packing
-            foreach ta $talist {
-                destroypaneframe $ta nohierarchydestroy
+            foreach w $torepack {
+                destroywidget $w
             }
 
             # forget the superfluous level
@@ -500,14 +498,111 @@ proc mergepanedwindows {pwname} {
             destroy $pa
 
             # pack in the panedwindow one level above
-            foreach ta $talist {
-                packnewbuffer $ta $pwname 1
-                focustextarea $ta
+            foreach w $torepack {
+                repackwidget $w $pwname
             }
+			spaceallsashesevenly
         }
     }
 }
 
+proc destroywidget {w} {
+# recursive ancillary for proc mergepanedwindows
+
+    if {[llength $w] == 2 && [isaframe [lindex $w 0]]} {
+        # $w is a frame node list
+        destroypaneframe [gettafromwidget [lindex $w 0]] nohierarchydestroy
+
+    } elseif {[llength $w] == 3 && [isapanedwindow [lindex $w 0]]} {
+        # $w is a panedwindow node list (see format in getpwtree)
+        foreach sw [lindex $w 2] {
+            destroywidget $sw
+        }
+
+    } else {
+        # can't happen in principle
+		tk_messageBox -message "Unexpected widget in proc destroywidget ($w): please report"
+    }
+}
+
+proc repackwidget {w pwname} {
+# recursive ancillary for proc mergepanedwindows
+	global pwmaxid FontSize
+
+    if {[llength $w] == 2 && [isaframe [lindex $w 0]]} {
+        # $w is a frame node list, just pack it
+        set ta [lindex $w 1]
+        packnewbuffer $ta $pwname 1
+        focustextarea $ta
+
+    } elseif {[llength $w] == 3 && [isapanedwindow [lindex $w 0]]} {
+        # $w is a panedwindow node list (see format in getpwtree)
+
+        # insert a new paned window after last existing pane in current paned window
+        set lastexistingpane [lindex [$pwname panes] end]
+        incr pwmaxid
+        set newpw $pwname.pw$pwmaxid
+        panedwindow $newpw -orient [lindex $w 1] -opaqueresize true
+        $pwname paneconfigure $newpw -after $lastexistingpane -minsize [expr $FontSize * 2]
+
+		# repack anything that was previously in this paned window
+        foreach sw [lindex $w 2] {
+			repackwidget $sw $newpw
+        }
+
+    } else {
+        # can't happen in principle
+		tk_messageBox -message "Unexpected widget in proc repackwidget ($w): please report"
+    }
+}
+
+proc getpwtree {root} {
+# get the panedwindow hierarchical (sub-)tree in a nested list whose
+# elements are either:
+#    a list with two elements: { frame name textarea } if the child 
+# is a frame;
+# or a list of three elements: { pw_pathname orientation {sub-nodes} }
+# in case the child is a paned window.
+# The tree traversal starts from the panedwindow node $root
+
+    set res {}
+    foreach w [winfo child $root] {
+        if {[isapanedwindow $w]} {
+            lappend res [list $w [$w cget -orient] [getpwtree $w]]
+        } elseif {[isaframe $w]} {
+            lappend res [list $w [gettafromwidget $w]]
+        } else {
+            # sub-elements of a frame, such as panetitle, they are not
+            # interesting parts of the tree - nothing to do, just go on
+        }
+    }
+    return $res
+}
+
+proc isaframe {w} {
+# check whether the widget passed as an argument is a frame or not
+# return 1 if yes, or 0 otherwise
+    return [isasomething $w f]
+}
+
+proc isapanedwindow {w} {
+# check whether the widget passed as an argument is a paned window or not
+# return 1 if yes, or 0 otherwise
+    return [isasomething $w pw]
+}
+
+proc isasomething {w something} {
+# check whether the widget passed as an argument is a "something" or not
+# return 1 if yes, or 0 otherwise
+# "something" can be "pw" for a paned window, or "f" for a frame
+    set lastelt [lindex [split $w .] end]
+    scan $lastelt $something%d somethingid
+    if {[info exists somethingid]} {
+        return 1
+    } else {
+        return 0
+    }
+}
 proc isdisplayed {textarea} {
 # check whether $textarea is currently packed, i.e. visible
 # return 1 if yes, or 0 otherwise
@@ -540,7 +635,7 @@ proc getlistofpw {} {
             lappend pwfound $pwname
         }
     }
-    return $pwfound
+    return [lsort $pwfound]
 }
 
 proc spaceallsashesevenly {} {

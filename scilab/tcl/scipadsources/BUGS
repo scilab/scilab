@@ -79,11 +79,6 @@ Bugs:
 -On Linux (not on Windows), clicking [x] during a long drop of files (dnd
  of a directory) makes Scilab crash - it might be a dnd bug
 
-- After many open/close of buffers, the grey borderline around panes 
-enlarges (depends on the order of buffer closing). I should merge 
-panedwindows that have the same orientation after a close to avoid this 
-artifact
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

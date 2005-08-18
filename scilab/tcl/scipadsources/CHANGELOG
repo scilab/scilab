@@ -1348,3 +1348,14 @@ Francois VOGEL, 14/08/05
  * Implemented merging of panedwindows to prevent the grey border from growing
    on buffer close/reopen/split - this is not finished yet
  * version --> 5.26
+
+Francois VOGEL, 18/08/05
+ * Fixed: merging of panedwindows should not be executed if destroypaneframe
+   is called with nohierarchydestoy argument
+ * Continued implementation of panedwindows merging - not yet absolutely
+   perfect but we can certainly live with this
+ * Fixed: When launching Scipad in wish, the wish process was still alive in
+   the computer after Scipad close
+ * Slightly better Space sashes evenly command since getlistofpw now sorts
+   its output
+ * version --> 5.27

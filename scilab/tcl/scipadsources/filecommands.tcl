@@ -181,7 +181,17 @@ proc killwin {widget} {
     set WMGEOMETRY [eval {wm geometry $pad}] 
     savepreferences
     destroy $widget
-    catch {console hide}
+    # The following line is needed in case Scipad is launched directly
+    # in wish (debug purposes)
+    # The two instructions *must* be in this order, and in a single catch
+    # structure:
+    # Scipad in Scilab: console hide throws an error (catched), destroy . is
+    # not executed (it must not be executed because otherwise Scipad cannot
+    # be launched again after first close)
+    # Scipad in wish: both instructions are executed and are needed, especially
+    # the destroy . because this kills the wish process that would still be
+    # alive in the computer otherwise
+    catch {console hide ; destroy .}
     unset pad
 }
 
