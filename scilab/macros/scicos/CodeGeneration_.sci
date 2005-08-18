@@ -3687,7 +3687,7 @@ function Code=make_static_standalone()
 	  end
 	  Code=[Code;'rpar= '];
 	  Code($+1)='*/';
-	  Code=[Code;cformatline(strcat(string(rpar(rpptr(i):rpptr(i+1)-1))+','),70)];
+	  Code=[Code;cformatline(strcat(msprintf('%.16g,\n',rpar(rpptr(i):rpptr(i+1)-1))),70)];
 	//end
       end
     end
