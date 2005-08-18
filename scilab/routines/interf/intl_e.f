@@ -24,6 +24,7 @@ c
 c
       if(rstk(pt).eq.403) goto 45
       if(rstk(pt).eq.405) goto 35
+      if(rstk(pt).eq.404) goto 36
 
 
       rhs1=rhs
@@ -85,11 +86,11 @@ c     empty field found
          call error(117)
          return
       endif
-
       il1i=il1ir
       if(istk(il1i).lt.0) il1i=iadr(istk(il1i+1))
       il2i=il2ir
       if(istk(il2i).lt.0) il2i=iadr(istk(il2i+1))
+
       if(info.eq.2.or.info.eq.4) then
 c     .  syntax is arg2(...)(i,j,..)(...)
 c     .  matrix index (i,..) syntax
@@ -113,12 +114,17 @@ c     .     at the top of the stack
          else
 c     .     a matrix  index 
             if(m1.gt.icount.and.info.eq.4) then
-c     .        arg2(...)(i,j,..)(...) :too many indices in index list
-               call error(21)
-               return
+c     .        arg2(...)(i,j,..)(...)
+               if(istk(il2i).ne.9) then
+c     .            too many indices in index list
+                   call error(21)
+                   return
+                endif
             endif
-c     .     arg2(...)(i,j,..) a matrix single index, use standard extraction to finish the job
-c     .     copy it at the top of the stack (may possible to put a pointer)
+c     .     arg2(...)(i,j,..) a matrix single index, 
+c     .     use standard extraction to finish the job
+
+c     .     copy index at the top of the stack 
             top=top2
             call copyvar(il1ir,vol1)
             rhs=2
@@ -178,7 +184,7 @@ c     .              set the index
          endif
          return
       elseif(info.eq.5) then
-c     .  end of arg1 list reached 
+c     .  end of arg1 list (index list) reached 
 c     .  copy the designed sublist at the top of the stack
          top=top-1
          call copyvar(il2ir,vol2)
@@ -189,14 +195,15 @@ c     .  index is out of bounds
          return
       elseif(info.eq.1) then
 c     .  current index is a name which is not an explicit field name
+
          if(icount.eq.1.and.m1.eq.1) then
-c     .     syntax is arg2('xxx')
+c     .     syntax is arg2.xxx
             fin=-fin
             top=top2
             rhs1=rhs
             return
          else
-c     .     syntax is arg2(...)('xxx')(...)
+c     .     syntax is arg2(...).xxx(...)
 c     .     set the index
             top=top2
             call copyvar(il1ir,vol1)
@@ -211,7 +218,7 @@ c     escape from standard list algorithm to handle  special cases:
 c     (matrix/vector extraction, method..)
 
       if(istk(il2i).ge.15.and.istk(il2i).le.17) goto 40
-
+c
 c     standard matrix extraction
       call createref(il2i,0,vol2)
 c
@@ -219,31 +226,97 @@ c
 c     back to allops for  standard extraction
       if (ptover(1,psiz)) return
       icall=4
+      ids(1,pt)=icount
+      ids(2,pt)=m1
+      ids(4,pt)=lhs
+
       rstk(pt)=405
 c     *call* allops
       return
  35   continue
       icall=0
-c     move results at its correct location
+
       if(err1.ne.0) then
          pt=pt-1
          return
       endif
-      vol=lstk(top+1)-lstk(top)
-      call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-2)),1)
-      top=top-2
-      lstk(top+1)=lstk(top)+vol
+      icount=ids(1,pt)
+      m1=ids(2,pt)
+      lhs=ids(4,pt)
       pt=pt-1
-c     nothing more to do here
+      if (m1.le.icount) then
+c     .  nothing more to do here but to move results at its correct location
+         vol=lstk(top+1)-lstk(top)
+         call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-2)),1)
+         top=top-2
+         lstk(top+1)=lstk(top)+vol
+         fin=0
+         return
+      endif
+
+c     m1 > icount handle, ... case
+c     finish extraction using overloading
+
+c     build new index list using the remaining entries of the 
+c     original index list
+      ilind=iadr(lstk(top-2))
+      if(istk(ilind).lt.0) ilind=iadr(istk(ilind+1))
+      nlist=istk(ilind+1)
+      ll=sadr(ilind+3+nlist)
+      if(m1-icount.eq.1) then
+         il1i=iadr(ll+istk(ilind+1+icount+1)-1)
+         if (istk(il1i).ne.15) then
+            vol=istk(ilind+2+icount+1)-istk(ilind+1+icount+1)
+            call copyvar(il1i,vol)
+            rhs=2
+         else
+c     .     transform index list(i,j,...) in the list in sequence of variables 
+c     .     at the top of the stack
+            m1i=istk(il1i+1)
+            ll1=sadr(il1i+m1i+3)
+            call unsfdcopy(istk(il1i+m1i+2)-1,stk(ll1),1,
+     $           stk(lstk(top+1)),1)
+            do  k1=1,m1i
+               top=top+1
+               lstk(top+1)=lstk(top)+istk(il1i+2+k1)-istk(il1i+1+k1)
+            enddo
+            rhs=1+m1i
+            m2i=istk(il2i+1)
+         endif
+      else
+         do i=1,m1-icount
+            ilindi=iadr(ll+istk(ilind+1+icount+i)-1)
+            vol=istk(ilind+2+icount+i)-istk(ilind+1+icount+i)
+            call copyvar(ilindi,vol)
+         enddo
+         if(m1-icount.gt.1) call mklist(m1-icount)
+         rhs=2
+      endif
+c     create a reference on the handle
+      call createref1(top-rhs+1)
+      if (ptover(1,psiz)) return
+      fun=0
+      fin=3
+      icall=4
+      rstk(pt)=404
+c     *call* allops
+      return
+
+ 36   continue
+      pt=pt-1
+c     move results at its correct location
+      vol=lstk(top+1)-lstk(top)
+      call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-3)),1)
+      top=top-3
+      lstk(top+1)=lstk(top)+vol
       fin=0
       return
+
 
  40   continue
 c     list mlist or tlist coded matrix extraction or other method
 c     .  form the sublist
       call copyvar(il2i,vol2)
-
-
       if (ptover(1,psiz)) return
       ids(1,pt)=icount
       ids(2,pt)=m1

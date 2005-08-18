@@ -18,6 +18,12 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
+      if (ddt .eq. 4) then
+         write(buf(1:8),'(2i4)') pt,rstk(pt)
+         call basout(io,wte,' intl_i   pt:'//buf(1:4)//' rstk(pt):'
+     &        //buf(5:8))
+      endif
+c
  01   icall=0
 c     handle recursion
       if(rstk(pt).eq.406.or.rstk(pt).eq.407) then
@@ -32,14 +38,9 @@ c     handle recursion
          top1=istk(ilrec+4)
          il3i=istk(ilrec+5)
          vol3=istk(ilrec+6)
-         goto(35,45,65,55) istk(ilrec)
+         goto(35,45,65,55,81,84) istk(ilrec)
       endif
       fun=0
-c
-      if (ddt .eq. 4) then
-         call basout(io,wte,' intl_i')
-      endif
-c
  05   lw=lstk(top+1)
 c
       if(rhs.ge.4) then
@@ -137,6 +138,9 @@ c     .     syntax is arg3('xxx')=arg2 or  arg3(i)=arg2
             else
                goto 40
             endif
+         elseif(istk(il3i).eq.9) then
+c     .     handle case
+            goto 80
          else
             goto 30
          endif
@@ -171,14 +175,14 @@ c     .  variables at the top of the stack
          if(err.gt.0) return
          rhs=2+m1i
       else 
-c     .  a matrix  index 
+c     .  a matrix single index 
          if(m1.gt.icount) then
-c     .     arg3(...)(i,j,..)(...)=arg1 :too many indices in index list
+c     .     arg3(...)(i,j,..)(...)=arg2 :too many indices in index list
             call error(21)
             return
          endif
-c     .  arg3(...)(i,j,..)=arg1: a matrix single  index 
-c     .  copy it at the top of the stack (may possible to put a pointer)
+c     .  arg3(...)(i,j,..)=arg2: a matrix single  index 
+c     .  copy it at the top of the stack (may be possible to put a pointer)
          call copyvar(il1ir,vol1)
          if(err.gt.0) return
          rhs=3
@@ -210,8 +214,8 @@ c     *call* allops
       return
  35   continue
       ilv=iadr(lstk(top))
-      if(istk(ilv).lt.0) then
-c     .  matrix has been modified in place, nothing more to be done
+      if(istk(ilv).lt.0.or.istk(il3i).eq.9)  then
+c     .  matrix or handle has been modified in place, nothing more to be done
          top=top-3
          pt=pt-1
          info=0
@@ -397,6 +401,93 @@ c     realize insertion A3(i1)..(ik)=Temp1
       top=top-3
       goto 90
 
+ 80   continue
+c     special case for property assignation of a handle field of a list
+c     handle case ...h.property...=arg2
+c     or ...h(i,j).property...=arg2
+c     change the property value of the entity pointed to by
+c     handle and does not change the list
+c
+      top=top3
+c     case ...h(i,j).property...=arg2 or ...h(i).property...=arg2
+c     first extract the handle or  sub handle
+
+      if (istk(il1i).eq.10) then
+c     .  handle case ...h.property...=arg2
+         icount=icount-1
+         call createref(il3i,0,vol3)
+         goto 82
+      elseif (istk(il1i).eq.15) then
+c     .  sub handle case ...h(i,j).property...=arg2
+         call lst2vars(il1i,m1i)
+         if(err.gt.0) return
+         rhs=1+m1i
+      else
+c     .  sub handle case ...h(i).property...=arg2
+         call copyvar(il1ir,vol1)
+         rhs=2
+      endif
+c     create a pointer on the matrix of handle
+      call createref(il3i,0,vol3)
+      fin=3
+c     back to allops for h(i) or h(i,j)  extraction
+      if (ptover(1,psiz)) return
+      icall=4
+      pstk(pt)=ilrec
+      istk(ilrec)=5
+      rstk(pt)=406
+c     *call* allops
+      return
+c
+ 81   continue
+
+      icall=0
+      if(err1.ne.0) then
+         pt=pt-1
+         return
+      endif
+      il1=iadr(lstk(top1))
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      m1=istk(il1+1)
+      top2=top1+1
+      top3=top2+1
+      pt=pt-1
+
+ 82   continue
+c     change handle property
+c     build new index list using the remaining entries of the 
+c     original index list
+      ll=sadr(il1+3+m1)
+
+      do i=1,m1-icount
+         ilindi=iadr(ll+istk(il1+1+icount+i)-1)
+         volv=istk(il1+2+icount+i)-istk(il1+1+icount+i)
+         call copyvar(ilindi,volv)
+      enddo
+
+      if (m1-icount.gt.1) call mklist(m1-icount)
+      rhs=3
+ 83   call createref1(top2)
+
+      call createref1(top3+1)
+      fun=0
+      fin=-2
+      if (ptover(1,psiz)) return
+      istk(ilrec)=6
+      pstk(pt)=ilrec
+      rstk(pt)=406
+c     *call* allops
+      return
+
+ 84   continue
+      pt=pt-1
+      top3=top1+2
+c     notify that result has already been stored
+      k1=istk(iadr(lstk(top3))+2)
+      top=top3-3
+      call setref(k1)
+      fin=2
+      return
 
  90   continue
 

@@ -13,7 +13,7 @@ c
       
 
 c     handle recursion
-      if(rstk(pt).eq.403.or.rstk(pt).eq.405) goto 10
+      if(rstk(pt).ge.403.and.rstk(pt).le.405) goto 10
       if(rstk(pt).eq.406.or.rstk(pt).eq.407) goto 50
 c
       if (ddt .eq. 4) then

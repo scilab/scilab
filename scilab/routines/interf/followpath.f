@@ -107,9 +107,8 @@ c            return
          endif
          ilname=ilindi+6
          nname=istk(ilindi+5)-istk(ilindi+4)
-
 c     .  check if it is an explicit field name
-         if(typi.ne.16.and.typi.ne.17) then
+         if  (typi.ne.16.and.typi.ne.17) then
 c     .     list with no explicit fields names
             info=1
             goto 50
@@ -121,6 +120,7 @@ c     .     first field may contain the fields names
             lfn=ilptr+nn
 c     .     look for corresponding index if any
             n=strpos(istk(ilptr),nn-1,istk(lfn),istk(ilname),nname)
+
             if(n.le.0) then
 c     .        no such name in the field names
                info=1
@@ -201,6 +201,7 @@ c     move pointer to next entry in index list
       voli=istk(ilind+2+count)-istk(ilind+1+count)
       ilindir=ilindi
       if(istk(ilindi).lt.0) ilindi=iadr(istk(ilindi+1))
+      typi=istk(illisti)
       info=4
       goto 50
 

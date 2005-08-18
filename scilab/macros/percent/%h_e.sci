@@ -1,4 +1,5 @@
 function r=%h_e(i,h)
+h=h
   if type(i)==10 then
     r=get(h,i)
   elseif type(i)==15 then
@@ -21,6 +22,8 @@ function r=%h_e(i,h)
       end
     end
     r=h
+  elseif type(i)==1 then
+    r=h(i)
   else
     error('Invalid path')
   end
