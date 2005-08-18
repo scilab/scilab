@@ -1,7 +1,7 @@
       subroutine ref2val
 c     Copyright INRIA
       INCLUDE '../stack.h'
-      integer vol,topk
+      integer vol,topk,volk
       logical ref
       integer iadr,sadr
 c
@@ -15,13 +15,19 @@ c
       ref=.false.
       topk=top+1-rhs
       do 10 i=0,rhs-1
-         k=topk
          il=iadr(lstk(topk))
          if(istk(il).lt.0) then
             ref=.true.
             k=istk(il+2)
+            if (k.eq.0) then
+               volk=istk(il+3)
+            else
+               volk=lstk(k+1)-lstk(k)
+            endif
+         else
+            volk=lstk(topk+1)-lstk(topk)
          endif
-         vol=vol+lstk(k+1)-lstk(k)
+         vol=vol+volk
          topk=topk+1
  10   continue
       if(.not.ref) return
@@ -34,14 +40,26 @@ c
       endif
       topk=top
       do 20 i=0,rhs-1
-         k=topk
          il=iadr(lstk(topk))
-         if(istk(il).lt.0) k=istk(il+2)
-         vol=lstk(k+1)-lstk(k)
+         if(istk(il).lt.0) then
+            k=istk(il+2)
+            if (k.eq.0) then
+               volk=istk(il+3)
+               lk=istk(il+1)
+            else
+               volk=lstk(k+1)-lstk(k)
+               lk=lstk(k)
+            endif
+         else
+            volk=lstk(topk+1)-lstk(topk)
+            lk=lstk(topk)
+         endif
+c         if(istk(il).lt.0) k=istk(il+2)
+c         volk=lstk(k+1)-lstk(k)
          lstk(topk+1)=le
-         lk=lstk(k)
-         le=le-vol
-         if(lk.ne.le) call unsfdcopy(vol,stk(lk),-1,stk(le),-1)
+c         lk=lstk(k)
+         le=le-volk
+         if(lk.ne.le) call unsfdcopy(volk,stk(lk),-1,stk(le),-1)
          topk=topk-1
  20   continue
       return
