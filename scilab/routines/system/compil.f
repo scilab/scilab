@@ -123,7 +123,7 @@ c     affectation <29,n,print,name1,rhs1,...,name,rhsn>
          enddo
          comp(1)=li
       elseif(code.eq.30) then
-c     affectation <30,it,n>
+c     logical expression shortcircuit <30,it,n>
          if (val2.eq.0) then
             err=sadr(l+3)-lstk(bot)
             if(err.gt.0) goto 90

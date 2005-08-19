@@ -138,7 +138,7 @@ c     call getsym
          pstk(pt)=ou
          if(ifexpr()) then
 c     .     checking for possible logical 'if expression' 
-c     .     evaluation shortcut
+c     .     evaluation shortcircuit
             if(comp(1).ne.0) then
                if (compil(30,1,0,0,0)) then 
                   if (err.gt.0) return
@@ -183,7 +183,7 @@ c     *call* allops(ou)
       return
  74   continue
       kount=pstk(pt)
-      if(comp(1).ne.0) then
+      if(comp(1).ne.0.and.ids(1,pt).ne.0) then
          if (compil(30,0,ids(1,pt)-1,0,0)) then 
             if (err.gt.0) return
          endif
@@ -205,9 +205,10 @@ c     in-line lterm
       ids(2,pt)=err1
       if(sym.eq.et) then
          pstk(pt)=et
+         ids(1,pt)=0
          if(ifexpr()) then
 c          . if expression evaluation, checking for possible
-c          . logical expression evaluation shortcut
+c          . logical expression evaluation shortcircuit
             if(comp(1).ne.0) then
                if (compil(30,0,0,0,0)) then 
                   if (err.gt.0) return
@@ -253,7 +254,7 @@ c     *call* allops(et)
       return
  83   continue
       kount=pstk(pt)
-      if(comp(1).ne.0) then
+      if(comp(1).ne.0.and.ids(1,pt).ne.0) then
          if (compil(30,0,ids(1,pt)-1,0,0)) then 
             if (err.gt.0) return
          endif
