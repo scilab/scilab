@@ -6,7 +6,11 @@ function [tree]=sci_error(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
-if rhs>1 then
-  no_equiv(expression2code(tree))
+if rhs==1 then
+  //Scilab error is equivalent to the Matlab one
+  return
+else
+  tree.name="mtlb_error"
+  return
 end
 endfunction
