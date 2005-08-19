@@ -18,7 +18,8 @@ bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
 
 bind Text <Control-o> {}
-bind $pad <Control-o> {showopenwin}
+bind $pad <Control-o> {showopenwin "currenttile"}
+bind $pad <Control-Key-4> {showopenwin "newtile"}
 
 bind Text <Control-z> {undo %W}
 bind Text <Control-Z> {redo %W}

@@ -19,10 +19,10 @@ proc CommentSel {} {
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
-        if [catch {selection get -selection PRIMARY} sel] {	    
+        if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} CommentSel
         } else {
-            set uctext [selection get]	    
+            set uctext [selection get]
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
             # I thought this shouldn't match a newline as last character of the string...
@@ -53,10 +53,10 @@ proc UnCommentSel {} {
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
-        if [catch {selection get -selection PRIMARY} sel] {	    
+        if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {UnCommentSel}
         } else {
-            set ctext [selection get]	    
+            set ctext [selection get]
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
             if { $i2<$i1 } {
@@ -86,7 +86,7 @@ proc IndentSel {} {
         if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {IndentSel}
         } else {
-            set uctext [selection get]	    
+            set uctext [selection get]
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
             # I thought this shouldn't match a newline as last character of the string...
@@ -120,10 +120,10 @@ proc UnIndentSel {} {
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != ""} {
-        if [catch {selection get -selection PRIMARY} sel] {	    
+        if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {UnIndentSel}
         } else {
-            set ctext [selection get]	    
+            set ctext [selection get]
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
             if { $i2<$i1 } {

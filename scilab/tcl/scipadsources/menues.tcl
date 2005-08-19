@@ -2,6 +2,7 @@ proc createmenues {} {
     global pad menuFont tcl_platform bgcolors fgcolors sourcedir
     global listoffile listoftextarea FontSize
     global FirstBufferNameInWindowsMenu
+    global FirstMRUFileNameInFileMenu LastMRUFileNameInFileMenu
     foreach c1 "$bgcolors $fgcolors" {global $c1}
 
     #destroy old menues (used when changing language)
@@ -11,13 +12,20 @@ proc createmenues {} {
     $pad.filemenu delete 0 end
 
     #file menu
+############### WARNING ###############
+# File menu items are accessed by their hardcoded entry number
+# in many places in the code. Moving, adding or deleting entries
+# must be done with extreme care!
+#######################################
     menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu  add cascade [me "&File"] \
-	               -menu $pad.filemenu.files "
+                   -menu $pad.filemenu.files "
     eval "$pad.filemenu.files add command [me "&New"] \
                    -command \"filesetasnew\" -accelerator Ctrl+n"
     eval "$pad.filemenu.files add command [me "&Open..."] \
-                   -command \"showopenwin\" -accelerator Ctrl+o"
+                   -command \"showopenwin currenttile\" -accelerator Ctrl+o"
+    eval "$pad.filemenu.files add command [me "Open in new t&ile..."] \
+                   -command \"showopenwin newtile\" -accelerator Ctrl+4"
     eval "$pad.filemenu.files add command [me "&Save"] \
                    -command \"filetosavecur\" -accelerator Ctrl+s"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
@@ -42,7 +50,9 @@ proc createmenues {} {
     eval "$pad.filemenu.files add command [me "&Print"] \
               -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
     $pad.filemenu.files add separator
+    set FirstMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] + 1]
     BuildInitialRecentFilesList
+    set LastMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] - 1]
     eval "$pad.filemenu.files add command [me "&Close"]\
                    -command \"closecur yesnocancel\" -accelerator Ctrl+w"
     eval "$pad.filemenu.files add command [me "E&xit"] \
@@ -314,7 +324,7 @@ proc disablemenuesbinds {} {
     $pad.filemenu.files entryconfigure $iClose -state disabled
     bind $pad <Control-w> {}
     # Windows menu entries
-    set lasttoset [expr $FirstBufferNameInWindowsMenu - 1]
+    set lasttoset 3
     for {set i 1} {$i<$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state disabled
         bind $pad <Control-Key-$i> ""
@@ -335,7 +345,7 @@ proc restoremenuesbinds {} {
     $pad.filemenu.files entryconfigure $iClose -state normal
     bind $pad <Control-w> {closecur yesnocancel}
     # Windows menu entries
-    set lasttoset [expr $FirstBufferNameInWindowsMenu - 1]
+    set lasttoset 3
     for {set i 1} {$i<$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
         bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"

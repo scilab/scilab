@@ -8,9 +8,9 @@ array set watchvarsvals {}
 set callstackcontent ""
 set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"
-set togglewvabutton [mc "Hide watch variables"]
+set togglewvabutton "Hide watch variables" ; # localization is done in proc showwatch_bp
 set showcallstackarea "true"
-set togglecsabutton [mc "Hide call stack"]
+set togglecsabutton "Hide call stack" ; # localization is done in proc showwatch_bp
 # FV, 17/06/04, better do it in scipad.sci
 #ScilabEval_lt "TCL_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"
 set waitmessage [mc "Please wait..."]

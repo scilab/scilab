@@ -5,7 +5,7 @@ proc deletetext {} {
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]] \
             == $textareacur} {
-        if [catch {selection get -selection PRIMARY} sel] {   	
+        if [catch {selection get -selection PRIMARY} sel] {
             $textareacur delete "insert" "insert +1c"
         } else {
             $cuttexts delete sel.first sel.last
@@ -28,7 +28,7 @@ proc backspacetext {} {
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]]\
              == $textareacur} {
-        if [catch {selection get -selection PRIMARY} sel] {   	
+        if [catch {selection get -selection PRIMARY} sel] {
             $textareacur delete "insert-1c" "insert"
         } else {
             $cuttexts delete sel.first sel.last

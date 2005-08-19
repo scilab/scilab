@@ -112,7 +112,7 @@ proc colorize {w cpos iend} {
     # number can contain +-. so follows operator (?)
     # (the regexp has to be perfectioned -- it matches e.g. single e6)
     set numregexp {\m\d*\.?\d*([deDE][+\-]?\d{1,3})?\M}
-    #	set numregexp {\m(\d+|\.\d+|\d+\.\d*)([deDE][+\-]?\d{1,3})?\M}
+    #   set numregexp {\m(\d+|\.\d+|\d+\.\d*)([deDE][+\-]?\d{1,3})?\M}
     $w mark set last begin
     while {[set ind [$w search -regexp $numregexp last ende]] != {}} {
         if {[$w compare $ind >= last]} {
@@ -280,7 +280,7 @@ proc schememenus {textarea} {
             }
         }
         #disable "create help skeleton"
-        $pad.filemenu.files entryconfigure 8 -state disabled
+        $pad.filemenu.files entryconfigure 9 -state disabled
         # remove bindings
         bind $pad <Control-l> {}
         bind $pad <F5> {}
@@ -296,9 +296,9 @@ proc schememenus {textarea} {
         bind $pad <Control-F12> {}
     }
     if {$listoffile("$textarea",language) == "xml"} {
-        $pad.filemenu.files entryconfigure 9 -state normal
+        $pad.filemenu.files entryconfigure 10 -state normal
     } else {
-        $pad.filemenu.files entryconfigure 9 -state disabled
+        $pad.filemenu.files entryconfigure 10 -state disabled
     }
 }
 

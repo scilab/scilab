@@ -59,7 +59,7 @@ Bugs:
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
 -Ctrl-F1 on some characters like " ' - or + does not work (different errors in
- the shell. Problem is partly in sciGUI, and partly in Scipad.
+ the shell). Problem is partly in sciGUI, and partly in Scipad.
 
 -On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
  usually produces a read-only warning and prevents the user from saving there.
@@ -69,7 +69,8 @@ Bugs:
  ones unselectable in the windows menu. This is Tk bug 1224330.
 
 -When two buffers are opened containing the same function (or function name) to
- debug, then the wrong buffer may be opened to show the active breakpoint
+ debug, then the wrong buffer may become the active one to show the active
+ breakpoint
 
 -When nested functions are used with comments, a breakpoint can be set on a
  line just after an endfunction but execution will not stop at this point.
@@ -209,8 +210,6 @@ Wishes:
 -Colorization progressbar. Could be an overlay on the left status area,
  incrementing over the "Wait seconds for loading..." message.
 
--Add underlined numbers in the Windows menu, as for the File menu.
-
 -The find/replace entries in the dialog could be comboboxes retaining
  the strings previously searched or replaced
 
@@ -247,20 +246,9 @@ Wishes:
  F6/F7 should display the next/previous buffer of the full list in the
  current active pane only, creating peer widgets as necessary
 
-- add something like (but not identical to) emacs C-x 4 C-f, that would
- open the file chooser and pack the selected file in a window that would
- be created by splitting the current textarea. Would be named "Open in a
- new pane..." or the like. This differs slightly from emacs since C-x 4 C-f
- seems to open in the pane that would be selected by pressing C-x o. I
- would rather create a new pane with the same orientation as the current one
-
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
  drawbacks : big big implementation work...
-
--implement a way to let the user choose which buffer is piled on top of the
- panedwindow and which one is at the bottom. Use the selected one for the
- topmost pane?
 
 -minimal Scipad wm size: Probably it would be wise to make the minimum
  dependent on the number of tiles, so that all the features (menu, title,
@@ -281,3 +269,5 @@ Wishes:
    . "Sort by opening order" (which is the current way it is) - keep it?
    . "Sort alphabetically"
    . "Sort by MRU" (Most Recently Used)
+
+-Add underlined numbers in the Windows menu, as for the File menu.

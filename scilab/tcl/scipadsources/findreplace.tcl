@@ -444,7 +444,7 @@ proc findtext {typ} {
     bindevnt $find.l.f4.f3.down $typ $find
     bindevnt $find.l.f4.f5.cbox1 $typ $find
     bindevnt $find.l.f4.f5.cbox2 $typ $find
-    bindevnt $find.l.f1.entry $typ $find	
+    bindevnt $find.l.f1.entry $typ $find
     bind $find <Escape> "CancelFind $find"
     # after 0 in the following Alt binding is mandatory for Linux only
     # This is Tk bug 1236306

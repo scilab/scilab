@@ -15,7 +15,7 @@ proc execfile {{buf "current"}} {
         set answer [tk_messageBox -message [concat [mc "The contents of"] \
                   $listoffile("$textarea",fullname) \
                   [mc "may have changed, do you wish to save your changes?"] ] \
-	            -title [mc "Save Confirm?"] -type yesnocancel -icon question]
+                -title [mc "Save Confirm?"] -type yesnocancel -icon question]
         case $answer {
             yes { filetosave $textarea; set doexec 1 }
             no { set doexec 0 }
@@ -45,13 +45,13 @@ proc execfile {{buf "current"}} {
 proc execselection {} {
     global sciprompt textareacur tcl_platform
     if [ expr [string compare $sciprompt -1] == 0 ] {
-	   tk_messageBox -message \
+       tk_messageBox -message \
                [mc "Scilab is working, wait for the prompt to execute the selection."] \
-	       -title [mc "Scilab working"] -type ok -icon info
+            -title [mc "Scilab working"] -type ok -icon info
      } else {
         set seltexts [selection own]
         if {$seltexts != "" } {
-            if [catch {selection get -selection PRIMARY} sel] {	    
+            if [catch {selection get -selection PRIMARY} sel] {
             } else {
                 set f [selection get]
                 #SciEval does not digest multilines, nor comments. The following hacks are 

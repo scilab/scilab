@@ -1,18 +1,18 @@
 proc blinkbrace {w pos brace} {
-    global	bracefind fno
+    global bracefind fno
 
     switch $brace {
-        \{	{ set findbs {[{}]}; set bs "\}";\
+        \{ { set findbs {[{}]}; set bs "\}";\
                             set dir {-forwards}; set bn brace }
-        \}	{ set findbs {[{}]}; set bs "\{"; \
+        \} { set findbs {[{}]}; set bs "\{"; \
                             set dir {-backwards}; set bn brace }
-        \[	{ set findbs {[][]}; set bs "\]"; \
+        \[ { set findbs {[][]}; set bs "\]"; \
                             set dir {-forwards}; set bn bracket }
-        \]	{ set findbs {[][]}; set bs "\["; \
+        \] { set findbs {[][]}; set bs "\["; \
                             set dir {-backwards}; set bn bracket }
-        \(	{ set findbs {[()]}; set bs "\)"; set dir {-forwards};\
+        \( { set findbs {[()]}; set bs "\)"; set dir {-forwards};\
                             set bn parenthesis }
-        \)	{ set findbs {[()]}; set bs "\("; \
+        \) { set findbs {[()]}; set bs "\("; \
                             set dir {-backwards}; set bn parenthesis }
     }
     set p [set i [$w index $pos-1c]]
@@ -125,7 +125,7 @@ proc puttext {w text} {
             $cuttexts delete sel.first sel.last
             selection clear
         }
-    }	
+    }
     set i1 [$w index insert]
     $w insert insert $text
     set i2 [$w index insert]

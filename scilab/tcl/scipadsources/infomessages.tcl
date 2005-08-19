@@ -32,7 +32,7 @@ proc keyposn {textarea} {
             set lineinfun [lindex $infun 1]
             $pad.statusind2 configure -text [concat [mc "Line"] $lineinfun [mc "in"] $funname]
             # create help skeleton enabled since we're in a Scilab function
-            $pad.filemenu.files entryconfigure 8 -state normal
+            $pad.filemenu.files entryconfigure 9 -state normal
         } else {
             # display logical line number in current buffer
             set contlines [countcontlines $textarea 1.0 $indexin]
@@ -40,13 +40,13 @@ proc keyposn {textarea} {
             scan $logicline "%d.%d" ylogicpos xlogicpos
             $pad.statusind2 configure -text [concat [mc "Logical line:"] $ylogicpos]
             # create help skeleton disabled since we're outside any Scilab function
-            $pad.filemenu.files entryconfigure 8 -state disabled
+            $pad.filemenu.files entryconfigure 9 -state disabled
         }
     }
     if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1} {
-        $pad.filemenu.files entryconfigure 11 -state normal
+        $pad.filemenu.files entryconfigure 12 -state normal
     } else {
-        $pad.filemenu.files entryconfigure 11 -state disabled
+        $pad.filemenu.files entryconfigure 12 -state disabled
     }
 }
 
@@ -86,10 +86,10 @@ proc modifiedtitle {textarea {panesonly "false"}} {
     }
     if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
-        $pad.filemenu.files entryconfigure 4 -state normal
+        $pad.filemenu.files entryconfigure 5 -state normal
         bind $pad <Control-R> {revertsaved [gettextareacur]}
     } else {
-        $pad.filemenu.files entryconfigure 4 -state disabled
+        $pad.filemenu.files entryconfigure 5 -state disabled
         bind $pad <Control-R> {}
     }
 }

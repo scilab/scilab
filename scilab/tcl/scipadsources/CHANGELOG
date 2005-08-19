@@ -1179,7 +1179,7 @@ Francois VOGEL, 15/06/05
  * Most of the subwindows (Find/Replace, Debugger windows, tk_dialog, Goto
    line, Print Setup, tk_messageBox) inherit the current font on Linux.
    This is not possible on Windows because the dialogs used by Tk on Windows
-   are mative ones. Still to be implemented: file choosers (open/save as)
+   are native ones. Still to be implemented: file choosers (open/save as)
    and color picker, i.e. tk_getOpenFile, tk_getSaveFile and tk_chooseColor
  * Bug fix: Replace all by an empty string did pop a tcl error
  * Proc whichfun swallows nested function definitions with continued lines.
@@ -1254,7 +1254,7 @@ ES, 6/7/2005
  * "&" -> "ampersand" in proc localetools.tcl/fb makes the null underline
    binding <Alt-&> acceptable in linux too
  * after 0 at line 449 of findreplace.tcl works around an event sequence 
-   problem in linux, which popped up an error upon <Alt-key> cancellyng 
+   problem in linux, which popped up an error upon <Alt-key> cancelling 
    Search/Replace
  * version --> 5.17
 
@@ -1359,3 +1359,18 @@ Francois VOGEL, 18/08/05
  * Slightly better Space sashes evenly command since getlistofpw now sorts
    its output
  * version --> 5.27
+
+Francois VOGEL, 19/08/05
+ * Replaced tabs by 4 spaces in the source code (sorry!)
+ * Fixed: "Space sashes evenly" ignored the root paned window
+ * Fixed: Tcl bug could pop up on "Tile all" with certain tiling pictures
+ * Automatic relocalization of the hide/show buttons in the watch window
+ * The current buffer becomes the top-(or left-)most buffer on a Tile All
+   command (previously it was the first in the windows menu list, i.e. no
+   way to change the order of tiling)
+ * Button-2 on a tile title switches the tile content to a hidden buffer
+ * Added "Open in new tile" command.
+ * Potential bug fixed in extractindexfromlabel when used with anything
+   else than the windows menu, namely the file menu. An entry with the same
+   name as a menu label would have fooled this proc
+ * version --> 5.28

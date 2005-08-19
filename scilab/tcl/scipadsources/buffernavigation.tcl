@@ -145,6 +145,8 @@ proc packnewbuffer {textarea targetpw forcetitlebar {where ""}} {
                                               $pad.filemenu.wind invoke 1"
     bind $tapwfr.panetitle <Double-Button-1> "focustextarea $textarea; \
                                               $pad.filemenu.wind invoke 1"
+    bind $tapwfr.topbar    <Button-2>        {switchbuffersinpane %W}
+    bind $tapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
     pack $tapwfr.panetitle -in $tapwfr.topbar -expand 1 -fill none
 
     pack $textarea       -in $tapwfr.topleft  -side left   -expand 1 -fill both
@@ -184,6 +186,8 @@ proc packbuffer {textarea} {
                                                  $pad.filemenu.wind invoke 1"
     bind $curtapwfr.panetitle <Double-Button-1> "focustextarea $textarea; \
                                                  $pad.filemenu.wind invoke 1"
+    bind $curtapwfr.topbar    <Button-2>        {switchbuffersinpane %W}
+    bind $curtapwfr.panetitle <Button-2>        {switchbuffersinpane %W}
 
     pack $textarea -in $curtapwfr.topleft -side left -expand 1 -fill both
 
@@ -249,7 +253,7 @@ proc maximizebuffer {} {
     restoremenuesbinds
 }
 
-proc splitwindow {neworient} {
+proc splitwindow {neworient {tatopack ""}} {
 # split current window:
 #    add a vertical pane if $neworient is "vertical"
 #    add an horizontal pane if $neworient is "horizontal"
@@ -274,21 +278,27 @@ proc splitwindow {neworient} {
     }
 
     if {$curorient == $neworient} {
-        # no need for a new panedwindow, just add a pane with one of the hidden
-        # buffers inside, or an empty file otherwise
+        # no need for a new panedwindow, just add a pane with the textarea whose
+        # name was provided as argument, or a hidden buffer, or an empty file
+        # <TODO>: use a peer text widget if no textarea name was provided
 
         # make sure that the possibly single pane before now shows its title bar
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
         modifiedtitle $tacur "panesonly"
 
         # select the buffer to pack
-        if {[llength $listoftextarea] > [gettotnbpanes]} {
-            # if there is a hidden buffer, use it
-            set newta $pad.new[getlasthiddentextareaid]
+        if {$tatopack != ""} {
+            # if the name of the textarea to pack was provided, use it
+            set newta $tatopack
         } else {
-            # otherwise create an empty textarea
-            # <TODO>: use a peer text widget (Tk 8.5) and remove createnewtextarea
-            set newta [createnewtextarea]
+            # <TODO>: use a peer text widget (Tk 8.5) and remove the if below as well as createnewtextarea
+            if {[llength $listoftextarea] > [gettotnbpanes]} {
+                # if there is a hidden buffer, use it
+                set newta $pad.new[getlasthiddentextareaid]
+            } else {
+                # otherwise create an empty textarea
+                set newta [createnewtextarea]
+            }
         }
 
         # pack it
@@ -318,19 +328,25 @@ proc splitwindow {neworient} {
         $pwname paneconfigure $newpw -after $aftopt -before $befopt \
             -width $panewidth -height $paneheigth -minsize [expr $FontSize * 2]
 
-        # pack the previously existing textarea first, then a hidden buffer,
-        # or an empty file otherwise
-        # <TODO>: use a peer text widget here
+        # pack the previously existing textarea first, then the textarea whose
+        # name was provided as argument, or a hidden buffer, or an empty file
+        # <TODO>: use a peer text widget if no textarea name was provided
         packnewbuffer $tacur $newpw 1
         focustextarea $tacur
 
         # select the buffer to pack
-        if {[llength $listoftextarea] > [gettotnbpanes]} {
-            # if there is a hidden buffer, use it
-            set newta $pad.new[getlasthiddentextareaid]
+        if {$tatopack != ""} {
+            # if the name of the textarea to pack was provided, use it
+            set newta $tatopack
         } else {
-            # otherwise create an empty textarea
-            set newta [createnewtextarea]
+            # <TODO>: use a peer text widget (Tk 8.5) and remove the if below as well as createnewtextarea
+            if {[llength $listoftextarea] > [gettotnbpanes]} {
+                # if there is a hidden buffer, use it
+                set newta $pad.new[getlasthiddentextareaid]
+            } else {
+                # otherwise create an empty textarea
+                set newta [createnewtextarea]
+            }
         }
 
         # pack it
@@ -379,19 +395,42 @@ proc tileallbuffers {tileorient} {
     # Configure the main panedwindow for the new orientation of panes
     $pad.pw0 configure -orient $tileorient
 
-    # Pack the new panes
+    # Decide whether the tile title should be displayed
     if {[llength $listoftextarea] == 1} {
         set showtiletitle 0
     } else {
         set showtiletitle 1
     }
-    foreach ta $listoftextarea {
+
+    # Arrange the list of textareas in such a way that the current one
+    # will be packed first
+    set tacur [gettextareacur]
+    set talisttopack [sortlistofta $tacur]
+
+    # Pack the new panes
+    foreach ta $talisttopack {
         packnewbuffer $ta $pad.pw0 $showtiletitle
     }
-    highlighttextarea [gettextareacur]
+    highlighttextarea $tacur
     updatepanestitles
 
     restoremenuesbinds
+}
+
+proc sortlistofta {ta} {
+# Arrange the list of textareas in such a way that textarea $ta
+# comes first. Example: If the 3rd one is the current one:
+#     $listoftextarea: a b c d e f
+#     output ($talist): c d e f a b
+# $ta must be an element of listoftextarea
+    global listoftextarea
+    set posta [lsearch -sorted $listoftextarea $ta]
+    set talist [lrange $listoftextarea $posta end]
+    set eltstomove [lrange $listoftextarea 0 [expr $posta - 1]]
+    foreach elt $eltstomove {
+        lappend talist $elt
+    }
+    return $talist
 }
 
 proc getpwname {tapwfr} {
@@ -464,10 +503,13 @@ proc destroypaneframe {textarea {hierarchy "destroyit"}} {
             destroy $pwname
             set pwname [getpwname $pwname]
         }
-        mergepanedwindows $pwname
     }
 
     unset pwframe($textarea)
+
+    if {$hierarchy == "destroyit"} {
+        mergepanedwindows $pwname
+    }
 }
 
 proc mergepanedwindows {pwname} {
@@ -501,7 +543,7 @@ proc mergepanedwindows {pwname} {
             foreach w $torepack {
                 repackwidget $w $pwname
             }
-			spaceallsashesevenly
+            spaceallsashesevenly
         }
     }
 }
@@ -521,13 +563,13 @@ proc destroywidget {w} {
 
     } else {
         # can't happen in principle
-		tk_messageBox -message "Unexpected widget in proc destroywidget ($w): please report"
+        tk_messageBox -message "Unexpected widget in proc destroywidget ($w): please report"
     }
 }
 
 proc repackwidget {w pwname} {
 # recursive ancillary for proc mergepanedwindows
-	global pwmaxid FontSize
+    global pwmaxid FontSize
 
     if {[llength $w] == 2 && [isaframe [lindex $w 0]]} {
         # $w is a frame node list, just pack it
@@ -545,14 +587,14 @@ proc repackwidget {w pwname} {
         panedwindow $newpw -orient [lindex $w 1] -opaqueresize true
         $pwname paneconfigure $newpw -after $lastexistingpane -minsize [expr $FontSize * 2]
 
-		# repack anything that was previously in this paned window
+        # repack anything that was previously in this paned window
         foreach sw [lindex $w 2] {
-			repackwidget $sw $newpw
+            repackwidget $sw $newpw
         }
 
     } else {
         # can't happen in principle
-		tk_messageBox -message "Unexpected widget in proc repackwidget ($w): please report"
+        tk_messageBox -message "Unexpected widget in proc repackwidget ($w): please report"
     }
 }
 
@@ -574,6 +616,7 @@ proc getpwtree {root} {
         } else {
             # sub-elements of a frame, such as panetitle, they are not
             # interesting parts of the tree - nothing to do, just go on
+            tk_messageBox -message "Unexpected widget in proc getpwtree ($w): please report"
         }
     }
     return $res
@@ -603,6 +646,7 @@ proc isasomething {w something} {
         return 0
     }
 }
+
 proc isdisplayed {textarea} {
 # check whether $textarea is currently packed, i.e. visible
 # return 1 if yes, or 0 otherwise
@@ -611,6 +655,18 @@ proc isdisplayed {textarea} {
     } else {
         return 0
     }
+}
+
+proc getlistofhiddenta {} {
+# retrieve the list of currently hidden textareas
+    global listoftextarea
+    set listofhidden {}
+    foreach ta $listoftextarea {
+        if {![isdisplayed $ta]} {
+            lappend listofhidden $ta
+        }
+    }
+    return $listofhidden
 }
 
 proc gettotnbpanes {} {
@@ -640,6 +696,8 @@ proc getlistofpw {} {
 
 proc spaceallsashesevenly {} {
 # space evenly all the sashes of all the existing paned windows
+    global pad
+    spacesashesevenly $pad.pw0
     foreach pw [getlistofpw] {
         spacesashesevenly $pw
     }
@@ -664,6 +722,20 @@ proc managescroll {scrbar a b} {
 # automatically when it is not packed in a pane,
 # e.g. on $textarea configure -someoption
     catch {$scrbar set $a $b}
+}
+
+proc switchbuffersinpane {w} {
+# switch buffers inside a single pane - only the hidden buffers are switched
+    event generate $w <ButtonRelease-1>
+    set talist [getlistofhiddenta]
+    set tacur [gettextareacur]
+    lappend talist $tacur
+    set talist [lsort $talist]
+    set toshow [expr [lsearch -sorted $talist $tacur] + 1]
+    if {$toshow == [llength $talist]} {
+        set toshow 0
+    }
+    montretext [lindex $talist $toshow]
 }
 
 proc nextbuffer {} {

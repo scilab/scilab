@@ -57,7 +57,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.27"
+set version "Version 5.28"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list

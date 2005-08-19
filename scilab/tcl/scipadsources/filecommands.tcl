@@ -260,10 +260,13 @@ proc openlistoffiles {filelist} {
     restoremenuesbinds
 }
 
-proc showopenwin {} {
+proc showopenwin {tiledisplay} {
 # bring up the open dialog for file selection
 # if file is not already open, open it
 # otherwise just switch buffers to show it
+# the new buffer is displayed in the current tile if
+# $tiledisplay == "currenttile", otherwise in a new tile
+# created by splitting the current one
     global pad winopened textareacur listoffile
     global startdir
     showinfo [mc "Open file"]
@@ -277,7 +280,7 @@ proc showopenwin {} {
         if {$res == 0} {
             notopenedfile $file
             set listoffile("$pad.new$winopened",thetime) [file mtime $file]
-            shownewbuffer $file
+            shownewbuffer $file $tiledisplay
             reshape_bp
             showinfo " "
             newfilebind
@@ -335,7 +338,7 @@ proc openfile {file} {
             if [ file exists $file ] {
                 set listoffile("$pad.new$winopened",thetime) [file mtime $file]
                 set listoffile("$pad.new$winopened",new) 0
-                shownewbuffer $file
+                shownewbuffer $file "currenttile"
             } else {
                 set listoffile("$pad.new$winopened",thetime) 0
                 set listoffile("$pad.new$winopened",new) 1
@@ -394,11 +397,22 @@ proc notopenedfile {file} {
           -command "montretext $pad.new$winopened"
 }
 
-proc shownewbuffer {file} {
-    global pad winopened
-    openoninit $pad.new$winopened $file
+proc shownewbuffer {file tiledisplay} {
+    global pad winopened closeinitialbufferallowed
+    openoninit $pad.new$winopened $file $tiledisplay
     resetmodified $pad.new$winopened
-    montretext $pad.new$winopened
+    if {$tiledisplay == "currenttile"} {
+        montretext $pad.new$winopened
+    } else {
+        set closeinitialbufferallowed false
+        # retrieve the orientation of the pane in which the current textarea is packed
+        set tacur [gettextareacur]
+        set tapwfr [getpaneframename $tacur]
+        set pwname [getpwname $tapwfr]
+        set curorient [$pwname cget -orient]
+        # pack the new buffer in the splitted window
+        splitwindow $curorient $pad.new$winopened
+    }
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
     update
@@ -420,13 +434,13 @@ proc fileisopen {file} {
       file to another name and reopen it from disk!"] ]
 }
 
-proc openoninit {textarea thefile} {
+proc openoninit {textarea thefile tiledisplay} {
 # open/read a file from disk or read a pipe
     global listoftextarea pad closeinitialbufferallowed
     set msgWait [mc "Wait seconds while loading and colorizing file"]
     showinfo $msgWait
     lappend listoftextarea $textarea
-    if {$closeinitialbufferallowed == true} {
+    if {$closeinitialbufferallowed == true && $tiledisplay == "currenttile" } {
         set closeinitialbufferallowed false
         closefile $pad.new1
     }
@@ -684,8 +698,18 @@ proc extractindexfromlabel {dm labsearched} {
 # It returns the index of entry $label in $menuwidget, even if $label is a
 # number or an index reserved name (see the tcl/tk help for menu indexes)
 # If $label is not found in $menuwidget, it returns -1
-    global FirstBufferNameInWindowsMenu
-    for {set i $FirstBufferNameInWindowsMenu} {$i<=[$dm index last]} {incr i} {
+    global pad FirstBufferNameInWindowsMenu
+    global FirstMRUFileNameInFileMenu LastMRUFileNameInFileMenu
+    if {$dm == "$pad.filemenu.wind"} {
+        set startpoint $FirstBufferNameInWindowsMenu
+        set stoppoint  [$dm index last]
+    } elseif {$dm == "$pad.filemenu.files"} {
+        set startpoint $FirstMRUFileNameInFileMenu
+        set stoppoint  $LastMRUFileNameInFileMenu
+    } else {
+        tk_message -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
+    }
+    for {set i $startpoint} {$i<=$stoppoint} {incr i} {
        if {[$dm type $i] != "separator" && [$dm type $i] != "tearoff"} {
            set lab [$dm entrycget $i -label]
            if {$lab == $labsearched} {
@@ -832,6 +856,7 @@ proc AddRecentFile {filename} {
 # if there is already the max number of entries, then shift them
 # one line down and insert $filename at the top
     global pad listofrecent maxrecentfiles nbrecentfiles
+    global LastMRUFileNameInFileMenu
     if {$maxrecentfiles == 0} {return}
     # first check if the new entry is already present
     set present "false"
@@ -856,6 +881,7 @@ proc AddRecentFile {filename} {
             $pad.filemenu.files insert $rec1ind command \
                        -label [file tail [lindex $listofrecent 0] ] \
                        -command "openfileifexists \"[lindex $listofrecent 0]\""
+            incr LastMRUFileNameInFileMenu
             # update menu entries (required to update the numbers)
             UpdateRecentLabels $rec1ind
         } else {
@@ -875,11 +901,8 @@ proc AddRecentFile {filename} {
 
 proc GetFirstRecentInd {} {
 # get index of first recent file item in the file menu
-    global pad nbrecentfiles
-    set entrylabel [lindex [amp [mc "&Close"]] 1]
-    set rec1ind [expr [extractindexfromlabel $pad.filemenu.files $entrylabel] \
-                      - 1 - $nbrecentfiles]
-    return $rec1ind
+    global FirstMRUFileNameInFileMenu
+    return $FirstMRUFileNameInFileMenu
 }
 
 proc UpdateRecentLabels {rec1ind} {
@@ -940,6 +963,7 @@ proc showinfo_menu {w} {
 
 proc UpdateRecentFilesList {} {
     global pad listofrecent maxrecentfiles nbrecentfiles
+    global LastMRUFileNameInFileMenu
     if {$maxrecentfiles >= [llength $listofrecent]} {
         # nothing to do, maxrecentfiles was just increased
         # this is handled by AddRecentFile
@@ -953,6 +977,7 @@ proc UpdateRecentFilesList {} {
         $pad.filemenu.files delete $firstind $lastind
         set listofrecent [lreplace $listofrecent $maxrecentfiles end]
         incr nbrecentfiles [expr - ($lastind - $firstind + 1)]
+        incr LastMRUFileNameInFileMenu [expr - ($lastind - $firstind + 1)]
         if {$maxrecentfiles == 0} {
             # remove the separator
             $pad.filemenu.files delete $firstind

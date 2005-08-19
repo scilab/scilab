@@ -67,9 +67,9 @@ proc showwatch_bp {} {
 
     frame $watch.f.f1.f1r
     set buttonshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
-    button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text $togglewvabutton -width 20 -font $menuFont
+    button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text [mc $togglewvabutton] -width 20 -font $menuFont
     set buttonshowcallstackarea $watch.f.f1.f1r.showcallstackarea
-    button $buttonshowcallstackarea -command "togglecallstackarea" -text $togglecsabutton -width 20 -font $menuFont
+    button $buttonshowcallstackarea -command "togglecallstackarea" -text [mc $togglecsabutton] -width 20 -font $menuFont
 
     pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
@@ -500,30 +500,32 @@ proc update_bubble {type widgetname mousexy bubbletxt} {
 
 proc togglewatchvariablesarea {} {
 # Show or hide the watch window variables area
+# Localization of the button label is done in proc showwatch_bp
     global watch
     global showwatchvariablesarea togglewvabutton
     closewatch_bp $watch
     if {$showwatchvariablesarea == "true"} {
         set showwatchvariablesarea "false"
-        set togglewvabutton [mc "Show watch variables"]
+        set togglewvabutton "Show watch variables"
     } else {
         set showwatchvariablesarea "true"
-        set togglewvabutton [mc "Hide watch variables"]
+        set togglewvabutton "Hide watch variables"
     }
     showwatch_bp
 }
 
 proc togglecallstackarea {} {
 # Show or hide the watch window call stack area
+# Localization of the button label is done in proc showwatch_bp
     global watch
     global showcallstackarea togglecsabutton
     closewatch_bp $watch
     if {$showcallstackarea == "true"} {
         set showcallstackarea "false"
-        set togglecsabutton [mc "Show call stack"]
+        set togglecsabutton "Show call stack"
     } else {
         set showcallstackarea "true"
-        set togglecsabutton [mc "Hide call stack"]
+        set togglecsabutton "Hide call stack"
     }
     showwatch_bp
 }
