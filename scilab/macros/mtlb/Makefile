@@ -34,10 +34,11 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_lower.sci mtlb_l.sci mtlb_more.sci mtlb_num2str.sci mtlb_qr.sci \
 	mtlb_randn.sci mtlb_rcond.sci mtlb_repmat.sci mtlb_setstr.sci mtlb_size.sci \
 	mtlb_sort.sci mtlb_s.sci mtlb_strcmp.sci mtlb_strcmpi.sci \
-	mtlb_strfind.sci mtlb_strrep.sci mtlb_toeplitz.sci mtlb_tril.sci mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
+	mtlb_strfind.sci mtlb_strrep.sci mtlb_toeplitz.sci mtlb_tril.sci \
+	mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
 	mtlb_type.sci mtlb_uint8.sci mtlb_uint16.sci mtlb_uint32.sci mtlb_upper.sci \
 	mtlb_delete.sci mtlb_beta.sci mtlb_conv.sci mtlb_dec2hex.sci \
-	mtlb_echo.sci mtlb_realmin.sci mtlb_realmax.sci
+	mtlb_echo.sci mtlb_error.sci mtlb_realmin.sci mtlb_realmax.sci
 
 M5 =    cell.sci struct.sci  \
 	%ce_string.sci %st_string.sci generic_i_st.sci\
