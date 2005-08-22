@@ -2,7 +2,7 @@ proc createmenues {} {
     global pad menuFont tcl_platform bgcolors fgcolors sourcedir
     global listoffile listoftextarea FontSize
     global FirstBufferNameInWindowsMenu
-    global FirstMRUFileNameInFileMenu LastMRUFileNameInFileMenu
+    global FirstMRUFileNameInFileMenu
     foreach c1 "$bgcolors $fgcolors" {global $c1}
 
     #destroy old menues (used when changing language)
@@ -52,7 +52,6 @@ proc createmenues {} {
     $pad.filemenu.files add separator
     set FirstMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] + 1]
     BuildInitialRecentFilesList
-    set LastMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] - 1]
     eval "$pad.filemenu.files add command [me "&Close"]\
                    -command \"closecur yesnocancel\" -accelerator Ctrl+w"
     eval "$pad.filemenu.files add command [me "E&xit"] \

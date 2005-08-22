@@ -1374,3 +1374,8 @@ Francois VOGEL, 19/08/05
    else than the windows menu, namely the file menu. An entry with the same
    name as a menu label would have fooled this proc
  * version --> 5.28
+
+Francois VOGEL, 22/08/05
+ * Fixed a Tcl bug introduced in 5.28 when there is zero recent files in the
+   MRU files list
+ * version --> 5.29

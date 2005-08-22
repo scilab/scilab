@@ -699,13 +699,13 @@ proc extractindexfromlabel {dm labsearched} {
 # number or an index reserved name (see the tcl/tk help for menu indexes)
 # If $label is not found in $menuwidget, it returns -1
     global pad FirstBufferNameInWindowsMenu
-    global FirstMRUFileNameInFileMenu LastMRUFileNameInFileMenu
+    global FirstMRUFileNameInFileMenu nbrecentfiles
     if {$dm == "$pad.filemenu.wind"} {
         set startpoint $FirstBufferNameInWindowsMenu
         set stoppoint  [$dm index last]
     } elseif {$dm == "$pad.filemenu.files"} {
         set startpoint $FirstMRUFileNameInFileMenu
-        set stoppoint  $LastMRUFileNameInFileMenu
+        set stoppoint  [expr $FirstMRUFileNameInFileMenu + $nbrecentfiles]
     } else {
         tk_message -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
     }
@@ -856,7 +856,6 @@ proc AddRecentFile {filename} {
 # if there is already the max number of entries, then shift them
 # one line down and insert $filename at the top
     global pad listofrecent maxrecentfiles nbrecentfiles
-    global LastMRUFileNameInFileMenu
     if {$maxrecentfiles == 0} {return}
     # first check if the new entry is already present
     set present "false"
@@ -881,7 +880,6 @@ proc AddRecentFile {filename} {
             $pad.filemenu.files insert $rec1ind command \
                        -label [file tail [lindex $listofrecent 0] ] \
                        -command "openfileifexists \"[lindex $listofrecent 0]\""
-            incr LastMRUFileNameInFileMenu
             # update menu entries (required to update the numbers)
             UpdateRecentLabels $rec1ind
         } else {
@@ -901,8 +899,12 @@ proc AddRecentFile {filename} {
 
 proc GetFirstRecentInd {} {
 # get index of first recent file item in the file menu
-    global FirstMRUFileNameInFileMenu
-    return $FirstMRUFileNameInFileMenu
+    global FirstMRUFileNameInFileMenu nbrecentfiles
+    if {$nbrecentfiles == 0} {
+        return [expr $FirstMRUFileNameInFileMenu - 1]
+    } else {
+        return $FirstMRUFileNameInFileMenu
+    }
 }
 
 proc UpdateRecentLabels {rec1ind} {
@@ -963,7 +965,6 @@ proc showinfo_menu {w} {
 
 proc UpdateRecentFilesList {} {
     global pad listofrecent maxrecentfiles nbrecentfiles
-    global LastMRUFileNameInFileMenu
     if {$maxrecentfiles >= [llength $listofrecent]} {
         # nothing to do, maxrecentfiles was just increased
         # this is handled by AddRecentFile
@@ -977,7 +978,6 @@ proc UpdateRecentFilesList {} {
         $pad.filemenu.files delete $firstind $lastind
         set listofrecent [lreplace $listofrecent $maxrecentfiles end]
         incr nbrecentfiles [expr - ($lastind - $firstind + 1)]
-        incr LastMRUFileNameInFileMenu [expr - ($lastind - $firstind + 1)]
         if {$maxrecentfiles == 0} {
             # remove the separator
             $pad.filemenu.files delete $firstind
