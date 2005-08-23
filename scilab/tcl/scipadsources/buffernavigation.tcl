@@ -92,7 +92,7 @@
 #
 #####################################################################
 
-proc packnewbuffer {textarea targetpw forcetitlebar {where ""}} {
+proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
     global pad FontSize menuFont
 
@@ -132,7 +132,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {where ""}} {
         pack $targetpw -side top -expand 1 -fill both
     }
 
-    $targetpw paneconfigure $tapwfr -after $where
+    $targetpw paneconfigure $tapwfr -after $whereafter -before $wherebefore
 
     scrollbar $tapwfr.yscroll -command "$textarea yview" -takefocus 0
     scrollbar $tapwfr.xscroll -command "$textarea xview" -takefocus 0 \
@@ -239,6 +239,8 @@ proc maximizebuffer {} {
 
     disablemenuesbinds
 
+    set curta [gettextareacur]
+
     # Remove the existing tiling
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
@@ -247,8 +249,8 @@ proc maximizebuffer {} {
     }
 
     # Pack the current buffer only
-    packnewbuffer [gettextareacur] $pad.pw0 0
-    highlighttextarea [gettextareacur]
+    packnewbuffer $curta $pad.pw0 0
+    highlighttextarea $curta
 
     restoremenuesbinds
 }
@@ -508,14 +510,27 @@ proc destroypaneframe {textarea {hierarchy "destroyit"}} {
     unset pwframe($textarea)
 
     if {$hierarchy == "destroyit"} {
-        mergepanedwindows $pwname
+        mergepanedwindows1 $pwname
+        mergepanedwindows2 $pwname
     }
 }
 
-proc mergepanedwindows {pwname} {
+proc mergepanedwindows1 {pwname} {
 # merge remaining panedwindows according to the new geometry
 # because otherwise after many open/close of tiled buffers the grey
 # borders do accumulate
+#
+# Step 1: this proc merges panedwindows in the sense that it removes
+# superfluous levels of panedwindow nesting
+#
+# Example:
+#   If getpwtree outputs:
+# {.scipad.pw0.pw1 horizontal {{.scipad.pw0.pw1.f2 .scipad.new2}
+#                              {.scipad.pw0.pw1.f3 .scipad.new3}}}
+#   then it means that there is a single panedwindow pw1 that is
+# packed in $pad.pw0. This level pw1 can (must) be removed and this
+# is what this proc is performing by repacking directly in pw0 all
+# what was in pw1
 
     set pa [$pwname panes]
     if {[llength $pa] == 1} {
@@ -548,6 +563,88 @@ proc mergepanedwindows {pwname} {
     }
 }
 
+
+proc mergepanedwindows2 {pwname} {
+# merge remaining panedwindows according to the new geometry
+# because otherwise after many open/close of tiled buffers the grey
+# borders do accumulate
+#
+# Step 2: this proc merges panedwindows in the sense that it removes
+# superfluous panedwindows
+#
+# Example:
+#   If getpwtree outputs:
+# {.scipad.pw0.pw1 horizontal {{.scipad.pw0.pw1.f2 .scipad.new2}}}
+# {.scipad.pw0.pw2 horizontal {{.scipad.pw0.pw2.f1 .scipad.new1}}}
+#   then it means that there are two panedwindows pw1 and pw2 that are
+# packed in $pad.pw0. These levels pw1 and pw2 can be removed because
+# they contain each one single pane. Removal of pw1 and pw2 and
+# repacking their content directly into $pad.pw0 is what this proc is
+# performing
+
+    global pad
+
+    # merge only when [$pwname panes] contains simple elements, i.e
+    # frames or panedwindows with one single pane
+    set pwinside "false"
+    set doit "true"
+    foreach pa [$pwname panes] {
+        if {[isapanedwindow $pa]} {
+            set pwinside "false"
+            if {[llength [$pa panes]] != 1} {
+                set doit "false"
+                break
+            }
+        } else {
+            # $pa is a frame, nothing to do, keep $doit value
+        }
+    }
+
+    # if there is no panedwindow in $pwname children list,
+    # and if there is more than one pane,
+    # i.e. if all the children are frames and if they is more than one child,
+    # then don't merge
+    if {$pwinside == "false" && [llength [$pwname panes]] != 1} {
+        set doit "false"
+    }
+
+    # determine parent panedwindow name
+    set parpw [getpwname $pwname]
+    if {$parpw == $pad} {
+        set doit "false"
+    }
+
+    if {$doit == "true"} {
+        # save position (in the packing order) of the panedwindow to destroy
+        set ind [expr [lsearch [$parpw panes] $pwname] - 1]
+        if {$ind != -1} {
+            set aftopt [lindex [$parpw panes] $ind]
+            set befopt ""
+        } else {
+            set aftopt ""
+            set befopt [lindex [$parpw panes] 1]
+        }
+
+        # create list of impacted widgets, i.e. those that need to be repacked
+        set torepack [getpwtree $pwname]
+
+        # forget the old packing
+        foreach w $torepack {
+            destroywidget $w
+        }
+
+        # forget the superfluous level
+        $parpw forget $pwname
+        destroy $pwname
+
+        # pack in the panedwindow one level above
+        foreach w $torepack {
+            repackwidget $w $parpw $aftopt $befopt
+        }
+        spaceallsashesevenly
+    }
+}
+
 proc destroywidget {w} {
 # recursive ancillary for proc mergepanedwindows
 
@@ -567,14 +664,14 @@ proc destroywidget {w} {
     }
 }
 
-proc repackwidget {w pwname} {
+proc repackwidget {w pwname {aftopt ""} {befopt ""}} {
 # recursive ancillary for proc mergepanedwindows
     global pwmaxid FontSize
 
     if {[llength $w] == 2 && [isaframe [lindex $w 0]]} {
         # $w is a frame node list, just pack it
         set ta [lindex $w 1]
-        packnewbuffer $ta $pwname 1
+        packnewbuffer $ta $pwname 1 $aftopt $befopt
         focustextarea $ta
 
     } elseif {[llength $w] == 3 && [isapanedwindow [lindex $w 0]]} {
@@ -598,17 +695,21 @@ proc repackwidget {w pwname} {
     }
 }
 
-proc getpwtree {root} {
+proc getpwtree {{root ""}} {
 # get the panedwindow hierarchical (sub-)tree in a nested list whose
 # elements are either:
 #    a list with two elements: { frame name textarea } if the child 
 # is a frame;
 # or a list of three elements: { pw_pathname orientation {sub-nodes} }
 # in case the child is a paned window.
-# The tree traversal starts from the panedwindow node $root
+# The tree traversal starts from the panedwindow node $root and is
+# ordered thanks to the use of [$root panes] ([winfo children $root]
+# does not order the children in the packing order!)
 
+    global pad
+    if {$root == ""} {set root $pad.pw0}
     set res {}
-    foreach w [winfo child $root] {
+    foreach w [$root panes] {
         if {[isapanedwindow $w]} {
             lappend res [list $w [$w cget -orient] [getpwtree $w]]
         } elseif {[isaframe $w]} {
@@ -638,6 +739,7 @@ proc isasomething {w something} {
 # check whether the widget passed as an argument is a "something" or not
 # return 1 if yes, or 0 otherwise
 # "something" can be "pw" for a paned window, or "f" for a frame
+# well, I could have used [winfo class ] instead...
     set lastelt [lindex [split $w .] end]
     scan $lastelt $something%d somethingid
     if {[info exists somethingid]} {
@@ -679,25 +781,21 @@ proc gettotnbpanes {} {
     return $tot
 }
 
-proc getlistofpw {} {
+proc getlistofpw {{root ""}} {
 # create the list of used paned windows
-    global listoftextarea
-    set pwfound {}
-    foreach ta $listoftextarea {
-        if {![isdisplayed $ta]} {continue}
-        set tapwfr [getpaneframename $ta]
-        set pwname [getpwname $tapwfr]
-        if {[lsearch $pwfound $pwname] == -1} {
-            lappend pwfound $pwname
+    global pad
+    if {$root == ""} {set root $pad.pw0}
+    set res $root
+    foreach w [$root panes] {
+        if {[isapanedwindow $w]} {
+            set res [concat $res [getlistofpw $w]]
         }
     }
-    return [lsort $pwfound]
+    return $res
 }
 
 proc spaceallsashesevenly {} {
 # space evenly all the sashes of all the existing paned windows
-    global pad
-    spacesashesevenly $pad.pw0
     foreach pw [getlistofpw] {
         spacesashesevenly $pw
     }

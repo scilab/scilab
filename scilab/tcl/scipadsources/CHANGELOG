@@ -1379,3 +1379,13 @@ Francois VOGEL, 22/08/05
  * Fixed a Tcl bug introduced in 5.28 when there is zero recent files in the
    MRU files list
  * version --> 5.29
+
+Francois VOGEL, 23/08/05
+ * Fixed: Space sashes evenly did forget to move sashes of certain paned
+   windows (fixed in proc getlistofpw)
+ * Fixed: The output of getpwtree is now correctly ordered in the packing
+   order
+ * Better merging of panedwindows (step 2)
+ * Tiles keep their relative sizes on external resizing of Scipad
+ * Open in new tile has an H and a V variation
+ * version --> 5.30

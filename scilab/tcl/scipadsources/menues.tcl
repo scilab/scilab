@@ -24,8 +24,13 @@ proc createmenues {} {
                    -command \"filesetasnew\" -accelerator Ctrl+n"
     eval "$pad.filemenu.files add command [me "&Open..."] \
                    -command \"showopenwin currenttile\" -accelerator Ctrl+o"
-    eval "$pad.filemenu.files add command [me "Open in new t&ile..."] \
-                   -command \"showopenwin newtile\" -accelerator Ctrl+4"
+    menu $pad.filemenu.files.openintile -tearoff 0 -font $menuFont
+    eval "$pad.filemenu.files add cascade [me "Open &in new"]\
+      -menu $pad.filemenu.files.openintile"
+        eval "$pad.filemenu.files.openintile add command [me "&horizontal tile"] \
+                       -command \"showopenwin horizontal\" -accelerator Ctrl+4"
+        eval "$pad.filemenu.files.openintile add command [me "&vertical tile"] \
+                       -command \"showopenwin vertical\" -accelerator Ctrl+5"
     eval "$pad.filemenu.files add command [me "&Save"] \
                    -command \"filetosavecur\" -accelerator Ctrl+s"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
@@ -183,7 +188,7 @@ proc createmenues {} {
                -menu $pad.filemenu.options "
     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "&Font size"]\
-      -menu $pad.filemenu.options.fontsize "
+      -menu $pad.filemenu.options.fontsize"
         eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
               -value 10 -variable FontSize -command \"setfontscipad 10\" "
         eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\

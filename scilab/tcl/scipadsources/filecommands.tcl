@@ -266,7 +266,9 @@ proc showopenwin {tiledisplay} {
 # otherwise just switch buffers to show it
 # the new buffer is displayed in the current tile if
 # $tiledisplay == "currenttile", otherwise in a new tile
-# created by splitting the current one
+# created by splitting the current one horizontally
+# in which case $tiledisplay == "horizontal", or
+# vertically in which case $tiledisplay == "vertical"
     global pad winopened textareacur listoffile
     global startdir
     showinfo [mc "Open file"]
@@ -405,13 +407,8 @@ proc shownewbuffer {file tiledisplay} {
         montretext $pad.new$winopened
     } else {
         set closeinitialbufferallowed false
-        # retrieve the orientation of the pane in which the current textarea is packed
-        set tacur [gettextareacur]
-        set tapwfr [getpaneframename $tacur]
-        set pwname [getpwname $tapwfr]
-        set curorient [$pwname cget -orient]
         # pack the new buffer in the splitted window
-        splitwindow $curorient $pad.new$winopened
+        splitwindow $tiledisplay $pad.new$winopened
     }
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]

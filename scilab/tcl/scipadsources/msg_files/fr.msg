@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.28
+# in sync at least with v5.30
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -192,7 +192,9 @@
     # menues.tcl - File menu
     ::msgcat::mcset fr "&New" "&Nouveau"
     ::msgcat::mcset fr "&Open..." "&Ouvrir..."
-    ::msgcat::mcset fr "Open in new t&ile..." "Ouvrir (nouveau &panneau)"
+    ::msgcat::mcset fr "Open &in new" "O&uvrir dans une nouvelle fenêtre"
+        ::msgcat::mcset fr "&horizontal tile" "&horizontale"
+        ::msgcat::mcset fr "&vertical tile" "&verticale"
     ::msgcat::mcset fr "&Save" "&Enregistrer"
     ::msgcat::mcset fr "Save &as..." "En&registrer sous..."
     ::msgcat::mcset fr "&Revert..." "Re&venir..."

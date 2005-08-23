@@ -19,7 +19,8 @@ bind Text <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
 
 bind Text <Control-o> {}
 bind $pad <Control-o> {showopenwin "currenttile"}
-bind $pad <Control-Key-4> {showopenwin "newtile"}
+bind $pad <Control-Key-4> {showopenwin "horizontal"}
+bind $pad <Control-Key-5> {showopenwin "vertical"}
 
 bind Text <Control-z> {undo %W}
 bind Text <Control-Z> {redo %W}
@@ -102,6 +103,7 @@ bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource 
 bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
+bind $pad <Configure> {if {"%W"=="$pad"} {spaceallsashesevenly}}
 
 bind $pad <FocusIn> {checkifanythingchangedondisk %W}
 

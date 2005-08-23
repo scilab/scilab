@@ -264,6 +264,8 @@ Wishes:
  visible or not that they are. The question is, "from the first buffer
  of the list" or "from the current buffer"? Wraparound?
 
+-Find/Replace: add showinfo [mc "Wrapped around"] in relevant cases
+
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:
    . "Sort by opening order" (which is the current way it is) - keep it?
@@ -271,3 +273,16 @@ Wishes:
    . "Sort by MRU" (Most Recently Used)
 
 -Add underlined numbers in the Windows menu, as for the File menu.
+
+-Most entries of the EDIT menu should be disabled/enabled according to
+ 1) undo/redo-buffer (empty or not)
+ 2) cut/paste-buffer (empty or not)
+ 3) selection (something is selected or not)
+ Hovewer, "comment selection" or "Indent selection" should not be disabled
+ on empty buffers, as we decided that the behaviour with no selection is to
+ affect the current line
+
+-It should be possible to tear-off all Scipad menues.
+ Maybe add a preference to allow or not for menu tear-off?
+ Warning: this is a work that should be carefully done since menu entries
+ are currently referred to by their hard number in many places in the code
