@@ -1249,22 +1249,22 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="C:\Program Files\Intel\Fortran\compiler80\IA32\LIB\IFCONSOL.LIB">
+			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\ifconsol.lib">
 		</File>
 		<File
 			RelativePath="..\..\pvm3\lib\WIN32\libgpvm3.lib">
 		</File>
 		<File
-			RelativePath="C:\Program Files\Intel\Fortran\compiler80\IA32\LIB\LIBIFCORE.LIB">
+			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libifcore.lib">
 		</File>
 		<File
-			RelativePath="C:\Program Files\Intel\Fortran\compiler80\IA32\LIB\LIBIFPORT.LIB">
+			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libifport.lib">
 		</File>
 		<File
-			RelativePath="C:\Program Files\Intel\Fortran\compiler80\IA32\LIB\LIBIRC.LIB">
+			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libirc.lib">
 		</File>
 		<File
-			RelativePath="C:\Program Files\Intel\Fortran\compiler80\IA32\LIB\LIBM.LIB">
+			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libm.lib">
 		</File>
 		<File
 			RelativePath="..\..\pvm3\lib\WIN32\libpvm3.lib">

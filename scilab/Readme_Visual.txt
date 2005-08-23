@@ -1,9 +1,9 @@
-How to compile with visual studio C++ .Net 2003 and Intel Fortran 8.0 ?
+How to compile with visual studio C++ .Net 2003 and Intel Fortran 9.0 ?
 
 Pre-requirements:
 
 Install Visual Studio C++ .NET 2003
-Install Intel Fortran 8.0
+Install Intel Fortran 9.0
 Install TCL/TK 8.4(.6)
 Install Java 2 JDK
 
