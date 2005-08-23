@@ -41,7 +41,6 @@ void ShowGraphToolBar(struct BCG * ScilabGC)
 	}
 
 	if (ScilabGC->graphicsversion!=0)  ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton-1],SW_HIDE);
-	else ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton-1],SW_SHOWNORMAL);
 }
 /*-----------------------------------------------------------------------------------*/
 void CreateGraphToolBar(struct BCG * ScilabGC) 
@@ -107,7 +106,6 @@ void RefreshGraphToolBar(struct BCG * ScilabGC)
 	int i=0;
 
 	if (ScilabGC->graphicsversion!=0)  ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton-1],SW_HIDE);
-	else ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton-1],SW_SHOWNORMAL);
 
 	for (i=0;i<ScilabGC->lpmw.nButton;i++)
 	{
