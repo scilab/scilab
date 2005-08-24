@@ -1367,11 +1367,13 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
     Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 and 19.03.04*/
   else{
     integer *cvect = NULL,i;
-    if((cvect=MALLOC((m3n)*(n3n)*sizeof(integer)))==NULL){
-      Scierror(999,"Allocation failed for color matrix in %s\r\n",fname);
-      return 0;
+    if((m3n)*(n3n) != 0){
+      if((cvect=MALLOC((m3n)*(n3n)*sizeof(integer)))==NULL){
+	Scierror(999,"Allocation failed for color matrix in %s\r\n",fname);
+	return 0;
+      }
     }
-    
+
     for(i=0;i<m3n*n3n;i++) cvect[i] = (int) zcol[i];
 
     Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),cvect,&m3,&n3,theta,alpha,Legend,iflag,ebox);
