@@ -17,7 +17,7 @@ proc createmenues {} {
 # in many places in the code. Moving, adding or deleting entries
 # must be done with extreme care!
 #######################################
-    menu $pad.filemenu.files -tearoff 0 -font $menuFont
+    menu $pad.filemenu.files -tearoff 1 -font $menuFont
     eval "$pad.filemenu  add cascade [me "&File"] \
                    -menu $pad.filemenu.files "
     eval "$pad.filemenu.files add command [me "&New"] \
@@ -63,7 +63,7 @@ proc createmenues {} {
                    -command \"idleexitapp\" -accelerator Ctrl+q"
 
     #edit menu
-    menu $pad.filemenu.edit -tearoff 0 -font $menuFont
+    menu $pad.filemenu.edit -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Edit"] \
                -menu $pad.filemenu.edit "
     eval "$pad.filemenu.edit add command [me "&Undo"] \
@@ -96,7 +96,7 @@ proc createmenues {} {
                -command \"UnIndentSel\" -accelerator Ctrl+D"
 
     #search menu
-    menu $pad.filemenu.search -tearoff 0 -font $menuFont
+    menu $pad.filemenu.search -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Search"] \
                -menu $pad.filemenu.search  "
     eval "$pad.filemenu.search add command [me "&Find..."] \
@@ -136,7 +136,7 @@ proc createmenues {} {
                -command \"tonextbreakpoint_bp\" -accelerator F11\
                -image menubutnextimage -compound left "
 
-    menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
+    menu $pad.filemenu.debug.step -tearoff 1 -font $menuFont
     eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
                   -menu $pad.filemenu.debug.step "
         eval "$pad.filemenu.debug.step add command [me "Step &into"] \
@@ -169,7 +169,7 @@ proc createmenues {} {
                -image menubutcancelimage -compound left "
 
     # scheme menu
-    menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
+    menu $pad.filemenu.scheme -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "S&cheme"] \
                -menu $pad.filemenu.scheme "
     eval "$pad.filemenu.scheme add radiobutton [me "S&cilab"] \
@@ -285,7 +285,7 @@ proc createmenues {} {
     }
 
     # help menu
-    menu $pad.filemenu.help -tearoff 0 -font $menuFont
+    menu $pad.filemenu.help -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Help"] \
                -menu $pad.filemenu.help "
     eval "$pad.filemenu.help add command [me "&Help..."] \
@@ -313,6 +313,9 @@ proc createmenues {} {
     # now make the menu bar visible
     $pad configure -menu $pad.filemenu 
 
+    # create array of menu entries identifiers
+    # this array allows to avoid to refer to menu entries by their hardcoded id
+    createarrayofmenuentriesid $pad.filemenu
 }
 
 proc disablemenuesbinds {} {
@@ -393,5 +396,59 @@ proc getlasthiddentextareaid {} {
         return [$pad.filemenu.wind entrycget $i -value]
     } else {
         return ""
+    }
+}
+
+proc extractindexfromlabel {dm labsearched} {
+# extractindexfromlabel is here to cure bugs with special filenames
+# This proc should be used as a replacement for [$menuwidget index $label]
+# It returns the index of entry $label in $menuwidget, even if $label is a
+# number or an index reserved name (see the tcl/tk help for menu indexes)
+# If $label is not found in $menuwidget, it returns -1
+    global pad FirstBufferNameInWindowsMenu
+    global FirstMRUFileNameInFileMenu nbrecentfiles
+    if {$dm == "$pad.filemenu.wind"} {
+        set startpoint $FirstBufferNameInWindowsMenu
+        set stoppoint  [$dm index last]
+    } elseif {$dm == "$pad.filemenu.files"} {
+        set startpoint $FirstMRUFileNameInFileMenu
+        set stoppoint  [expr $FirstMRUFileNameInFileMenu + $nbrecentfiles]
+    } else {
+        tk_message -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
+    }
+    for {set i $startpoint} {$i<=$stoppoint} {incr i} {
+        if {[$dm type $i] != "separator" && [$dm type $i] != "tearoff"} {
+            set lab [$dm entrycget $i -label]
+            if {$lab == $labsearched} {
+                return $i
+            }
+        }
+    }
+    return -1
+}
+
+proc createarrayofmenuentriesid {root} {
+# create a global array containing the menu entries index
+# $MenuEntryId($menu_pathname.$entry_label) == menu entry id in $menu_pathname
+# note: $entry_label is localized (it is the label that appears in the menu)
+# For instance, in french locale, we have:
+#         $MenuEntryId($pad.filemenu.files.Nouveau) == 0
+    global MenuEntryId
+    foreach w [winfo children $root] {
+        if {[catch {set temp [$w index last]}] != 0} {
+            # this is to handle the case of the tk_optionMenu menues
+            set w $w.menu
+        }
+        for {set id 0} {$id<=[$w index last]} {incr id} {
+            if {[$w type $id] == "command" || \
+                [$w type $id] == "radiobutton" || \
+                [$w type $id] == "checkbutton" || \
+                [$w type $id] == "cascade"} {
+                set MenuEntryId($w.[$w entrycget $id -label]) $id
+            }
+            if {[$w type $id] == "cascade"} {
+                createarrayofmenuentriesid $w
+            }
+        }
     }
 }

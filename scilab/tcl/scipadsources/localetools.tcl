@@ -30,6 +30,15 @@ proc bl {mlabel} {
     return "-text \"[lindex $clu 1]\" -underline [lindex $clu 0]"
 }
 
+proc mcra {mlabel} {
+# Given a menu entry label containing an ampersand,
+# this provides the localized -label text
+# It is equivalent to a mc command followed by removing the ampersand
+    set tl [mc $mlabel]
+    set clu [amp $tl]
+    return [lindex $clu 1]
+}
+
 proc fb {w} {
 # Flexible binding ancillary
 # Given a widget containing a -text (or -label) and a -underline option,

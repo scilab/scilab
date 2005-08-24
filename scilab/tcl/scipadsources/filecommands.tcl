@@ -58,6 +58,9 @@
 #     listoffile("$ta",language)
 #       Language scheme. Currently can be scilab, xml, or none
 #
+#     listoffile("$ta",redostackdepth)
+#       Depth of the redo stack. Used for enabling/disabling the redo menu entry
+#
 #   The windows menu entries are radionbuttons, with the following
 #   properties:
 #     -value is $winopened
@@ -84,6 +87,7 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",thetime) 0
     set listoffile("$pad.new$winopened",language) "scilab"
     set listoffile("$pad.new$winopened",readonly) 0
+    set listoffile("$pad.new$winopened",redostackdepth) 0
     lappend listoftextarea $pad.new$winopened
     $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
         -value $winopened -variable textareaid \
@@ -152,6 +156,7 @@ proc byebye {textarea} {
         unset listoffile("$textarea",thetime)
         unset listoffile("$textarea",language)
         unset listoffile("$textarea",readonly)
+        unset listoffile("$textarea",redostackdepth)
 
         if {[llength $listoftextarea] <= [gettotnbpanes]} {
             destroypaneframe $textarea
@@ -393,6 +398,7 @@ proc notopenedfile {file} {
     } else {
         set listoffile("$pad.new$winopened",readonly) 0
     }
+    set listoffile("$pad.new$winopened",redostackdepth) 0
     $pad.filemenu.wind add radiobutton \
           -label $listoffile("$pad.new$winopened",displayedname) \
           -value $winopened -variable textareaid \
@@ -687,34 +693,6 @@ proc extenstolang {file} {
     } else {
         return "none"
     }
-}
-
-proc extractindexfromlabel {dm labsearched} {
-# extractindexfromlabel is here to cure bugs with special filenames
-# This proc should be used as a replacement for [$menuwidget index $label]
-# It returns the index of entry $label in $menuwidget, even if $label is a
-# number or an index reserved name (see the tcl/tk help for menu indexes)
-# If $label is not found in $menuwidget, it returns -1
-    global pad FirstBufferNameInWindowsMenu
-    global FirstMRUFileNameInFileMenu nbrecentfiles
-    if {$dm == "$pad.filemenu.wind"} {
-        set startpoint $FirstBufferNameInWindowsMenu
-        set stoppoint  [$dm index last]
-    } elseif {$dm == "$pad.filemenu.files"} {
-        set startpoint $FirstMRUFileNameInFileMenu
-        set stoppoint  [expr $FirstMRUFileNameInFileMenu + $nbrecentfiles]
-    } else {
-        tk_message -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
-    }
-    for {set i $startpoint} {$i<=$stoppoint} {incr i} {
-       if {[$dm type $i] != "separator" && [$dm type $i] != "tearoff"} {
-           set lab [$dm entrycget $i -label]
-           if {$lab == $labsearched} {
-               return $i
-           }
-       }
-    }
-    return -1
 }
 
 ##################################################

@@ -16,6 +16,9 @@ proc delinfo {} {
 proc keyposn {textarea} {
 # this proc gets the posn and sets the statusbar, enables context menues, etc.
     global pad listoffile
+    global MenuEntryId
+
+    # update the status bars data
     $pad.statusind configure -state normal
     set indexin [$textarea index insert]
     $pad.statusind configure -text " "
@@ -32,7 +35,7 @@ proc keyposn {textarea} {
             set lineinfun [lindex $infun 1]
             $pad.statusind2 configure -text [concat [mc "Line"] $lineinfun [mc "in"] $funname]
             # create help skeleton enabled since we're in a Scilab function
-            $pad.filemenu.files entryconfigure 9 -state normal
+            $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state normal
         } else {
             # display logical line number in current buffer
             set contlines [countcontlines $textarea 1.0 $indexin]
@@ -40,13 +43,57 @@ proc keyposn {textarea} {
             scan $logicline "%d.%d" ylogicpos xlogicpos
             $pad.statusind2 configure -text [concat [mc "Logical line:"] $ylogicpos]
             # create help skeleton disabled since we're outside any Scilab function
-            $pad.filemenu.files entryconfigure 9 -state disabled
+            $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled
         }
     }
+
+    # enable Open function source contextually
     if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1} {
-        $pad.filemenu.files entryconfigure 12 -state normal
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state normal
     } else {
-        $pad.filemenu.files entryconfigure 12 -state disabled
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state disabled
+    }
+
+    # enable Undo if the buffer was modified
+    if {[ismodified $textarea]} {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state normal
+        bind Text <Control-z> {undo %W}
+    } else {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state disabled
+        bind Text <Control-z> {}
+    }
+
+    # enable Redo if the redo stack is not empty
+    if {$listoffile("$textarea",redostackdepth) == 0} {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Redo"]) -state disabled
+        bind Text <Control-Z> {}
+    } else {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Redo"]) -state normal
+        bind Text <Control-Z> {redo %W}
+    }
+
+    # enable Cut and Copy if there is a selection
+    if {[catch {selection get -selection PRIMARY}] == 1} {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state disabled
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state disabled
+        bind Text <Control-x> {}
+        bind $pad <Control-c> {}
+    } else {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state normal
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state normal
+        bind Text <Control-x> {cuttext}
+        bind $pad <Control-c> {copytext}
+    }
+
+    # enable Paste if the clipboard contains something
+    if {[catch {clipboard get}] == 1} {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state disabled
+        bind Text <Control-v> {}
+        bind Text <Button-2> {}
+    } else {
+        $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state normal
+        bind Text <Control-v> {pastetext}
+        bind Text <Button-2> {button2copypaste %W %x %y}
     }
 }
 
@@ -58,6 +105,7 @@ proc modifiedtitle {textarea {panesonly "false"}} {
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
     global pad winTitle listoffile
+    global MenuEntryId
     set fname $listoffile("$textarea",displayedname)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
     set mod1 ""; set mod2 ""
@@ -86,10 +134,10 @@ proc modifiedtitle {textarea {panesonly "false"}} {
     }
     if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
-        $pad.filemenu.files entryconfigure 5 -state normal
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state normal
         bind $pad <Control-R> {revertsaved [gettextareacur]}
     } else {
-        $pad.filemenu.files entryconfigure 5 -state disabled
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state disabled
         bind $pad <Control-R> {}
     }
 }

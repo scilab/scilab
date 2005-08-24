@@ -87,18 +87,42 @@ proc showwatch_bp {} {
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
     setdbmenuentriesstates_bp
-    bind $buttonConfigure   <Enter> {update_bubble_watch enter  4 [winfo pointerxy $watch]}
-    bind $buttonConfigure   <Leave> {update_bubble_watch leave  4 [winfo pointerxy $watch]}
-    bind $buttonToNextBpt   <Enter> {update_bubble_watch enter  6 [winfo pointerxy $watch]}
-    bind $buttonToNextBpt   <Leave> {update_bubble_watch leave  6 [winfo pointerxy $watch]}
-    bind $buttonRunToCursor <Enter> {update_bubble_watch enter  8 [winfo pointerxy $watch]}
-    bind $buttonRunToCursor <Leave> {update_bubble_watch leave  8 [winfo pointerxy $watch]}
-    bind $buttonGoOnIgnor   <Enter> {update_bubble_watch enter  9 [winfo pointerxy $watch]}
-    bind $buttonGoOnIgnor   <Leave> {update_bubble_watch leave  9 [winfo pointerxy $watch]}
-    bind $buttonBreakDebug  <Enter> {update_bubble_watch enter 13 [winfo pointerxy $watch]}
-    bind $buttonBreakDebug  <Leave> {update_bubble_watch leave 13 [winfo pointerxy $watch]}
-    bind $buttonCancelDebug <Enter> {update_bubble_watch enter 14 [winfo pointerxy $watch]}
-    bind $buttonCancelDebug <Leave> {update_bubble_watch leave 14 [winfo pointerxy $watch]}
+    bind $buttonConfigure   <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "&Configure execution..."]) \
+        [winfo pointerxy $watch]}
+    bind $buttonConfigure   <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "&Configure execution..."]) \
+        [winfo pointerxy $watch]}
+    bind $buttonToNextBpt   <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Go to next b&reakpoint"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonToNextBpt   <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Go to next b&reakpoint"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonRunToCursor <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Run to c&ursor"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonRunToCursor <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Run to c&ursor"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonGoOnIgnor   <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "G&o on ignoring any breakpoint"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonGoOnIgnor   <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "G&o on ignoring any breakpoint"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonBreakDebug  <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "&Break"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonBreakDebug  <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "&Break"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonCancelDebug <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Cance&l debug"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonCancelDebug <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "Cance&l debug"]) \
+        [winfo pointerxy $watch]}
 
     panedwindow $watch.f.vpw -orient vertical -opaqueresize true
 

@@ -1,7 +1,9 @@
 proc deletetext {} {
 # cut text procedure
+    global listoffile
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    set listoffile("$textareacur",redostackdepth) 0
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]] \
             == $textareacur} {
@@ -19,12 +21,16 @@ proc deletetext {} {
                           [$textareacur index "$i1 wordend"]
     reshape_bp
     $textareacur see insert
+    # update menues contextually
+    keyposn $textareacur
 }
 
 proc backspacetext {} {
 # cut text procedure
+    global listoffile
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    set listoffile("$textareacur",redostackdepth) 0
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]]\
              == $textareacur} {
@@ -39,16 +45,19 @@ proc backspacetext {} {
     }
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 wordstart"] \
-                              [$textareacur index "$i1 wordend"]
+                          [$textareacur index "$i1 wordend"]
     reshape_bp
     $textareacur see insert
+    # update menues contextually
+    keyposn $textareacur
 }
 
 proc cuttext {} {
 # cut text procedure
+    global listoffile
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
-
+    set listoffile("$textareacur",redostackdepth) 0
     tk_textCut $textareacur
     set  i1 [$textareacur index insert]
     colorize $textareacur [$textareacur index "$i1 linestart"] \
@@ -56,6 +65,8 @@ proc cuttext {} {
     selection clear
     reshape_bp
     $textareacur see insert
+    # update menues contextually
+    keyposn $textareacur
 }
 
 proc copytext {} {
@@ -66,8 +77,10 @@ proc copytext {} {
 
 proc pastetext {} {
 # paste text procedure
+    global listoffile
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
+    set listoffile("$textareacur",redostackdepth) 0
     set oldSeparator [$textareacur cget -autoseparators]
     if {$oldSeparator} {
         $textareacur configure -autoseparators 0
@@ -87,14 +100,17 @@ proc pastetext {} {
         $textareacur edit separator
         $textareacur configure -autoseparators 1
     }
+    # update menues contextually
+    keyposn $textareacur
 }
 
 proc button2copypaste {w x y} {
 ##ES 16/11/04 -- strange I have to write a full proc for this!
 ## am I missing something?
-    global textareacur
+    global textareacur listoffile
     if {[IsBufferEditable] == "No"} {return}
     if {[catch {selection get}] == 0} {
+        set listoffile("$textareacur",redostackdepth) 0
         clipboard clear
         set ct [selection get]
         clipboard append $ct

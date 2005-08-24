@@ -4,21 +4,21 @@ bind All <Alt-E> {}
 bind All <Alt-S> {}
 bind ALL <Alt-H> {}
 
-bind Text <KeyPress> { if {{%A} != {{}}} {puttext %W %A}}
-bind Text <Delete> { deletetext}
-bind Text <BackSpace> { backspacetext}
-bind Text <Return> {insertnewline %W}
+bind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
+bind Text <Delete>    {deletetext}
+bind Text <BackSpace> {backspacetext}
+bind Text <Return>    {insertnewline %W}
 # break prevents from triggering the default Tk
 # binding: bind all <Key-Tab> tk::TabToWindow [tk_focusNext %W], which
 # is harmful when displaying more than one buffer at the same time
-bind Text <Tab> {inserttab %W ; break}
+bind Text <Tab>       {inserttab %W ; break}
 
-bind Text <parenright> { if {{%A} != {{}}} {insblinkbrace %W %A}}
-bind Text <bracketright> { if {{%A} != {{}}} {insblinkbrace %W %A}} 
-bind Text <braceright>  { if {{%A} != {{}}} {insblinkbrace %W %A}}
+bind Text <parenright>   {if {{%A} != {{}}} {insblinkbrace %W %A}}
+bind Text <bracketright> {if {{%A} != {{}}} {insblinkbrace %W %A}} 
+bind Text <braceright>   {if {{%A} != {{}}} {insblinkbrace %W %A}}
 
 bind Text <Control-o> {}
-bind $pad <Control-o> {showopenwin "currenttile"}
+bind $pad <Control-o>     {showopenwin "currenttile"}
 bind $pad <Control-Key-4> {showopenwin "horizontal"}
 bind $pad <Control-Key-5> {showopenwin "vertical"}
 
@@ -37,6 +37,9 @@ bind Text <Control-v> {}
 bind Text <Control-v> {pastetext}
 event delete <<Paste>> <Button-2>
 bind Text <Button-2> {button2copypaste %W %x %y}
+bind Text <Control-/> ""
+bind Text <Control-a> ""
+bind $pad <Control-a> {selectall}
 
 #Added catch {} is here to avoid error popup message in case
 #listoffile("$textarea",language) has already been unset in proc byebye which
@@ -93,10 +96,6 @@ bind $pad <F4> {importmatlab}
 
 bind $pad <Control-R> {revertsaved [gettextareacur]}
 
-bind Text <Control-/> ""
-bind Text <Control-a> ""
-bind $pad <Control-a> {selectall}
-
 bind Text <Control-slash> {set ind [%W index insert]; openlibfunsource $ind}
 bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
 
@@ -104,6 +103,8 @@ bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
 bind $pad <Configure> {if {"%W"=="$pad"} {spaceallsashesevenly}}
+bind Panedwindow <Double-Button-1> {spacesashesevenly %W}
+
 
 bind $pad <FocusIn> {checkifanythingchangedondisk %W}
 

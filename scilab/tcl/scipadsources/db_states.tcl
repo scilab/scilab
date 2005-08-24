@@ -61,89 +61,90 @@ proc getdbstate {} {
 proc setdbmenuentriesstates_bp {} {
     global pad watch watchwinicons
     global Shift_F12
+    global MenuEntryId
 global dev_debug
 
     set errmess "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
 
     set dm $pad.filemenu.debug
     if {[getdbstate] == "NoDebug"} {
-        $dm entryconfigure  1 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
         bind all <F9> {insertremove_bp}
-        $dm entryconfigure  2 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
         bind all <Control-F9> {removeall_bp}
-        $dm entryconfigure  4 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
         bind all <F10> {configurefoo_bp}
-        $dm entryconfigure  6 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state disabled
         bind all <F11> {}
-        $dm entryconfigure  7 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state disabled
         bind all <F8> {}
-        $dm entryconfigure  8 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
         bind all <Control-F11> {}
-        $dm entryconfigure  9 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
         pbind all $Shift_F12 {}
-        $dm entryconfigure 11 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
         bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure 13 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
         bind all <F12> {}
-        $dm entryconfigure 14 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state disabled
 
     } elseif {[getdbstate] == "ReadyForDebug"} {
-        $dm entryconfigure  1 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
         bind all <F9> {insertremove_bp}
-        $dm entryconfigure  2 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
         bind all <Control-F9> {removeall_bp}
-        $dm entryconfigure  4 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
         bind all <F10> {configurefoo_bp}
-        $dm entryconfigure  6 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
         bind all <F11> {tonextbreakpoint_bp}
-        $dm entryconfigure  7 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state disabled
         bind all <F8> {}
 if {$dev_debug=="true"} {
-        $dm entryconfigure  8 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
 } else {
-        $dm entryconfigure  8 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
         bind all <Control-F11> {}
 }
-        $dm entryconfigure  9 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
         pbind all $Shift_F12 {}
-        $dm entryconfigure 11 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
         bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure 13 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
         bind all <F12> {}
-        $dm entryconfigure 14 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state disabled
 
     } elseif {[getdbstate] == "DebugInProgress"} {
-        $dm entryconfigure  1 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
         bind all <F9> {insertremove_bp}
-        $dm entryconfigure  2 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
         bind all <Control-F9> {removeall_bp}
-        $dm entryconfigure  4 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state disabled
         bind all <F10> {}
-        $dm entryconfigure  6 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
         bind all <F11> {tonextbreakpoint_bp}
-        $dm entryconfigure  7 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state disabled
 #        bind all <F8> {stepbystep_bp}
         bind all <F8> {}
 if {$dev_debug=="true"} {
-        $dm entryconfigure  8 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
 } else {
-        $dm entryconfigure  8 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
         bind all <Control-F11> {}
 }
-        $dm entryconfigure  9 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state normal
         pbind all $Shift_F12 {goonwo_bp}
-        $dm entryconfigure 11 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
         bind all <Control-F12> {showwatch_bp}
 if {$dev_debug=="true"} {
-        $dm entryconfigure 13 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state normal
         bind all <F12> {break_bp}
 } else {
-        $dm entryconfigure 13 -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
         bind all <F12> {}
 }
-        $dm entryconfigure 14 -state normal
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
 
     } else {
         tk_messageBox -message $errmess
@@ -153,32 +154,32 @@ if {$dev_debug=="true"} {
         if {[winfo exists $watch]} {
             set wi $watchwinicons
             if {[getdbstate] == "NoDebug"} {
-                [lindex $wi  4] configure -state normal
-                [lindex $wi  6] configure -state disabled
-                [lindex $wi  8] configure -state disabled
-                [lindex $wi  9] configure -state disabled
-                [lindex $wi 13] configure -state disabled
-                [lindex $wi 14] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
             } elseif {[getdbstate] == "ReadyForDebug"} {
-                [lindex $wi  4] configure -state normal
-                [lindex $wi  6] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
 if {$dev_debug=="true"} {
-                [lindex $wi  8] configure -state normal
-} else {[lindex $wi  8] configure -state disabled}
-                [lindex $wi  9] configure -state disabled
-                [lindex $wi 13] configure -state disabled
-                [lindex $wi 14] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
+} else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
+                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
             } elseif {[getdbstate] == "DebugInProgress"} {
-                [lindex $wi  4] configure -state disabled
-                [lindex $wi  6] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
 if {$dev_debug=="true"} {
-                [lindex $wi  8] configure -state normal
-} else {[lindex $wi  8] configure -state disabled}
-                [lindex $wi  9] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
+} else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
+                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
 if {$dev_debug=="true"} {
-                [lindex $wi 13] configure -state normal
-} else {[lindex $wi 13] configure -state disabled}
-                [lindex $wi 14] configure -state normal
+                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
+} else {[lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled}
+                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
             } else {
                 tk_messageBox -message $errmess
             }

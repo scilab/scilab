@@ -3,12 +3,20 @@
 
 proc undo {textarea} {
 # Performs an undo
-    undoredo $textarea <<Undo>> 
+    global listoffile
+    undoredo $textarea <<Undo>>
+    incr listoffile("$textarea",redostackdepth)
+    # update menues contextually
+    keyposn $textarea
 }
 
 proc redo {textarea} {
 # Performs a redo
-    undoredo $textarea <<Redo>> 
+    global listoffile
+    undoredo $textarea <<Redo>>
+    incr listoffile("$textarea",redostackdepth) -1
+    # update menues contextually
+    keyposn $textarea
 }
 
 proc undoredo {textarea action} {
@@ -45,7 +53,9 @@ proc changedmodified {textarea} {
 proc resetmodified {textarea} {
 # Reset the modified flag and the undo/redo stacks for the given textarea,
 # and update the visual indications relative to the modified state
+    global listoffile
     $textarea edit reset
+    set listoffile("$textarea",redostackdepth) 0
     $textarea edit modified false ;# <<Modified>> event is automatically generated
 }
 

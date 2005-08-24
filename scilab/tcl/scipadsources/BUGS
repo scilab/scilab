@@ -245,6 +245,16 @@ Wishes:
  Tk 8.5a3)
  F6/F7 should display the next/previous buffer of the full list in the
  current active pane only, creating peer widgets as necessary
+ -- Waiting for Scilab's adoption of 8.5, maybe Scipad could implement it
+    in advance in order to be ready for the transition to 8.5 and make use
+    of its functions without delay. Something like
+        if { [package vcompare [package present Tcl] 8.5] >= 0 } {
+          # we use 8.5 or greater
+        } else {
+          # this is for 8.4
+        }
+    could be used to make Scipad work both with 8.4 and 8.5 (and use peer
+    widgets of 8.5)
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
@@ -273,16 +283,3 @@ Wishes:
    . "Sort by MRU" (Most Recently Used)
 
 -Add underlined numbers in the Windows menu, as for the File menu.
-
--Most entries of the EDIT menu should be disabled/enabled according to
- 1) undo/redo-buffer (empty or not)
- 2) cut/paste-buffer (empty or not)
- 3) selection (something is selected or not)
- Hovewer, "comment selection" or "Indent selection" should not be disabled
- on empty buffers, as we decided that the behaviour with no selection is to
- affect the current line
-
--It should be possible to tear-off all Scipad menues.
- Maybe add a preference to allow or not for menu tear-off?
- Warning: this is a work that should be carefully done since menu entries
- are currently referred to by their hard number in many places in the code

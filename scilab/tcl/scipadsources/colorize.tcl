@@ -260,10 +260,11 @@ proc changelanguage {newlanguage} {
 proc schememenus {textarea} {
     global pad listoffile
     global Shift_F11 Shift_F12
+    global MenuEntryId
     set dm $pad.filemenu.debug
     if {$listoffile("$textarea",language) == "scilab"} {
         #enable "Load into scilab"
-        $pad.filemenu.exec entryconfigure 1 -state normal
+        $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state normal
         # restore bindings
         bind $pad <Control-l> {execfile}
         bind $pad <F5> {filetosave %W; execfile}
@@ -272,7 +273,7 @@ proc schememenus {textarea} {
         setdbmenuentriesstates_bp
     } else {
         #disable "Load into scilab"
-        $pad.filemenu.exec entryconfigure 1 -state disabled
+        $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state disabled
         #disable all the Debug entries
         for {set i 1} {$i<=[$dm index last]} {incr i} {
             if {[$dm type $i] == "command"} {
@@ -280,7 +281,7 @@ proc schememenus {textarea} {
             }
         }
         #disable "create help skeleton"
-        $pad.filemenu.files entryconfigure 9 -state disabled
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled
         # remove bindings
         bind $pad <Control-l> {}
         bind $pad <F5> {}
@@ -296,9 +297,9 @@ proc schememenus {textarea} {
         bind $pad <Control-F12> {}
     }
     if {$listoffile("$textarea",language) == "xml"} {
-        $pad.filemenu.files entryconfigure 10 -state normal
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Compile as &help page"]) -state normal
     } else {
-        $pad.filemenu.files entryconfigure 10 -state disabled
+        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Compile as &help page"]) -state disabled
     }
 }
 

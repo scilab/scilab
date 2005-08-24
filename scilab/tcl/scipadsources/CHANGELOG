@@ -1389,3 +1389,15 @@ Francois VOGEL, 23/08/05
  * Tiles keep their relative sizes on external resizing of Scipad
  * Open in new tile has an H and a V variation
  * version --> 5.30
+
+Francois VOGEL, 24/08/05
+ * Double-click with Button-1 on a sash evenly spaces the sashes of the
+   panedwindow containing this sash
+ * Removed hardwired menu entry ids used with entryconfigure to enable or
+   disable contextually certain menu entries. Array MenuEntryId contains
+   now the entry index of the argument in the relevant menu
+ * All the main menues can be torn off. This feature is not felt as being
+   necessary for sub-menues
+ * Undo, Redo, Cut, Copy and Paste commands are enabled/disabled contextually
+   in the Edit menu, and the corresponding bindings are set accordingly
+ * version --> 5.31

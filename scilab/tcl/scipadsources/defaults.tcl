@@ -10,8 +10,8 @@ set DebugScipadWithRamDebugger no
 
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
-        lappend ::auto_path K:/Francois/Developpement/RamDebugger/addons
-        lappend ::auto_path D:/RamDebugger/addons
+        lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
+        lappend ::auto_path D:/RamDebugger5.5/addons
         package require commR
         comm::register Scipad 1
     }
@@ -57,7 +57,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.30"
+set version "Version 5.31"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list

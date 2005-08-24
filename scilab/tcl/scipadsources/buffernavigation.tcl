@@ -372,6 +372,7 @@ proc createnewtextarea {} {
     set listoffile("$pad.new$winopened",thetime) 0
     set listoffile("$pad.new$winopened",language) "scilab"
     set listoffile("$pad.new$winopened",readonly) 0
+    set listoffile("$pad.new$winopened",redostackdepth) 0
     lappend listoftextarea $pad.new$winopened
     $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
         -value $winopened -variable textareaid \
