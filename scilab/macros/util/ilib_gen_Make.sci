@@ -27,9 +27,6 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
     select comp_target
      case 'VC++'   then Makename = makename+'.mak'
       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
-     case 'ABSOFT' then Makename = makename+'.amk'
-      ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway, ...
-			  ldflags,cflags,fflags)
      case 'gcc' then 
       Makename = makename;
       ilib_gen_Make_unix(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
