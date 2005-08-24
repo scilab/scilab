@@ -153,13 +153,6 @@ clear LCC
 // Protect variable previously defined  ================================
 predef('all') 
 
-// Set LANGUAGE for Scipad ============================================
-global LANGUAGE
-global %scipad_language
-%scipad_language=LANGUAGE
-clear %scipad_language
-clear  LANGUAGE
-
 // Graphic mode and Startup info ======================================
 set old_style off
 // show_startupinfo();clear show_startupinfo
