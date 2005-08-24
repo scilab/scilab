@@ -1,9 +1,13 @@
+@echo off
+if EXIST *.bin del *.bin > nul
+if EXIST lib del lib > nul
 if EXIST names del names > nul
+
 echo mode(0);>tmp_Macros
 for %%f in (*.sci) do echo %%~nf>>names
 for %%f in (*.sci) do echo getf('%%f'),save('%%~nf.bin'),clear ;>>tmp_Macros
 echo exit;>>tmp_Macros
 ..\..\bin\scilex.exe -ns -nwni -f tmp_Macros
 ..\..\bin\scilex.exe -ns -nwni -e utillib=lib('SCI/macros/util/');save('SCI/macros/util/lib',utillib);exit
-echo utillib=lib('SCI/macros/util/');save('SCI/macros/util/lib',utillib);exit>genlib
-del tmp_Macros > nul
+
+if EXIST tmp_Macros del tmp_Macros > nul

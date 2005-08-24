@@ -1,5 +1,5 @@
 
-all:: algebre arma auto calpol elem int metanet mtlb optim percent robust sci2for signal sound statistics tdcs texmacs tksci util xdess scicos scicos_blocks m2sci sparse
+all:: util percent algebre arma auto calpol elem int metanet mtlb optim robust sci2for signal sound statistics tdcs texmacs tksci xdess sparse scicos scicos_blocks m2sci
 
 algebre	:
 	@cd algebre

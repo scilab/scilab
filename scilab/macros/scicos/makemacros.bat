@@ -1,9 +1,16 @@
+@echo off
+if EXIST *.bin del *.bin > nul
+if EXIST lib del lib > nul
 if EXIST names del names > nul
-echo mode(0);>tmp_Macros
-for %%f in (*.sci) do echo %%~nf>>names
-for %%f in (*.sci) do echo getf('%%f'),save('%%~nf.bin'),clear ;>>tmp_Macros
-echo exit;>>tmp_Macros
-..\..\bin\scilex.exe -ns -nwni -f tmp_Macros
-..\..\bin\scilex.exe -ns -nwni -e scicoslib=lib('SCI/macros/scicos/');save('SCI/macros/scicos/lib',scicoslib);exit
-echo scicoslib=lib('SCI/macros/scicos/');save('SCI/macros/scicos/lib',scicoslib);exit>genlib
-del tmp_Macros > nul
+
+echo SCI=getenv('SCI'); > tmp_BuildMacros
+echo mode(0); >> tmp_BuildMacros
+echo load('SCI/macros/util/lib'); >> tmp_BuildMacros
+echo load('SCI/macros/percent/lib'); >> tmp_BuildMacros
+echo MSDOS = (getos() == "Windows"); >> tmp_BuildMacros
+echo TMPDIR=getenv('TMPDIR'); >> tmp_BuildMacros
+echo genlib('scicoslib','SCI/macros/scicos'); >> tmp_BuildMacros
+echo exit; >> tmp_BuildMacros
+..\..\bin\scilex.exe -ns -nwni -f tmp_BuildMacros
+
+if EXIST tmp_BuildMacros del tmp_BuildMacros > nul
