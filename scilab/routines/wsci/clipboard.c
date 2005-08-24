@@ -22,6 +22,7 @@ static BOOL SpecialPaste=FALSE;
 /*-----------------------------------------------------------------------------------*/
 extern HDC TryToGetDC(HWND hWnd);
 extern LPTW GetTextWinScilab(void);
+extern int IsAScalar(int RhsNumber);
 /*-----------------------------------------------------------------------------------*/
 void CreateThreadPaste(char *Text)
 {
@@ -335,65 +336,176 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 	else
 	if (Rhs == 2)
 	{
-	  GetRhsVar(1,"c",&m1,&n1,&l1);
-	  param1=cstk(l1);
-
-	  if ( strcmp(param1,"do") == 0 )
-	  {
-		  GetRhsVar(2,"c",&m1,&n1,&l1);
-		  param2=cstk(l1);
-
-		  if ( strcmp(param2,"paste") == 0 )
+		if (IsAScalar(1))
+		{
+			if (GetType(2)==sci_strings)
 			{
-				Callback_PASTE();
-			}
+				GetRhsVar(2,"c",&m1,&n1,&l1);
+				param2=cstk(l1);
 
-     	  if ( strcmp(param2,"copy") == 0 )
+				if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+				{
+					int num_win=-2;
+					GetRhsVar(1,"i",&m1,&n1,&l1);
+					num_win=*istk(l1);
+
+					if (num_win>=0)
+					{
+						struct BCG *ScilabGC=NULL;
+						ScilabGC = GetWindowXgcNumber (num_win);
+
+						if (ScilabGC)
+						{
+							if ( strcmp(param2,"EMF") == 0 )
+							{
+								NewCopyClip (ScilabGC);
+							}
+							else
+							{
+								CopyClip (ScilabGC);
+							}
+						}
+						else
+						{
+							Scierror(999,"Invalid Windows number.");
+							return 0;
+						}
+					}
+					else
+					{
+						Scierror(999,"parameter must be >= 0.");
+						return 0;
+					}
+				}
+				else
+				{
+					Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+					return 0;
+				}
+			}
+			else
 			{
-				Callback_MCOPY();
+				Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+				return 0;
 			}
+		}
+		else
+		if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
+		{
+			GetRhsVar(1,"c",&m1,&n1,&l1);
+			param1=cstk(l1);
 
-		  if ( strcmp(param2,"empty") == 0 )
+			if ( strcmp(param1,"do") == 0 )
 			{
-				Callback_EMPTYCLIPBOARD();
+				GetRhsVar(2,"c",&m1,&n1,&l1);
+				param2=cstk(l1);
+
+				if ( strcmp(param2,"paste") == 0 )
+				{
+					Callback_PASTE();
+				}
+				else
+				if ( strcmp(param2,"copy") == 0 )
+				{
+					Callback_MCOPY();
+				}
+				else
+				if ( strcmp(param2,"empty") == 0 )
+				{
+					Callback_EMPTYCLIPBOARD();
+				}
+				else
+				{
+					Scierror(999,"Incorrect second parameter.");
+					return 0;
+				}
 			}
-	  }
-	  else
-	  if ( strcmp(param1,"copy") == 0 )
-	  {
-		  LPTW lptw=GetTextWinScilab();
-		  char *TextToPutInClipboard=NULL;
-		  int TypeVar=GetType(2);
+			else
+			if ( strcmp(param1,"copy") == 0 )
+			{
+				LPTW lptw=GetTextWinScilab();
+				char *TextToPutInClipboard=NULL;
 
-		  
+				GetRhsVar(2,"c",&m1,&n1,&l1);
+				TextToPutInClipboard=cstk(l1);
 
-		  if (TypeVar == sci_strings)
-		  {
-			  GetRhsVar(2,"c",&m1,&n1,&l1);
-			  TextToPutInClipboard=cstk(l1);
-
-			  PutTextInClipboard(lptw,TextToPutInClipboard);
-		  }
-		  else
-		  {
-			  Scierror(999,MSG_ERROR8);
-			  return 0;
-		  }
-	   }
-	  else
-	   {
-		  Scierror(999,MSG_ERROR9);
-		  return 0;
-	   }
+				PutTextInClipboard(lptw,TextToPutInClipboard);
+			}
+			else
+			{
+				Scierror(999,MSG_ERROR9);
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999,"Incorrect parameters. See : help clipboard");
+			return 0;
+		}
       LhsVar(1)=0;
 	}
   }
   else
   {
-	  Scierror(999,MSG_ERROR10);
-	  return 0;
+	  if ( IsAScalar(1) && (Rhs == 2) )
+	  {
+		  if (GetType(2)==sci_strings)
+		  {
+			  GetRhsVar(2,"c",&m1,&n1,&l1);
+			  param2=cstk(l1);
+
+			  if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+			  {
+				  int num_win=-2;
+				  GetRhsVar(1,"i",&m1,&n1,&l1);
+				  num_win=*istk(l1);
+
+				  if (num_win>=0)
+				  {
+					  struct BCG *ScilabGC=NULL;
+					  ScilabGC = GetWindowXgcNumber (num_win);
+
+					  if (ScilabGC)
+					  {
+						  if ( strcmp(param2,"EMF") == 0 )
+						  {
+							  NewCopyClip (ScilabGC);
+						  }
+						  else
+						  {
+							  CopyClip (ScilabGC);
+						  }
+					  }
+					  else
+					  {
+						  Scierror(999,"Invalid Windows number.");
+						  return 0;
+					  }
+				  }
+				  else
+				  {
+					  Scierror(999,"parameter must be >= 0.");
+					  return 0;
+				  }
+			  }
+			  else
+			  {
+				  Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+				  return 0;
+			  }
+		  }
+		  else
+		  {
+			  Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+			  return 0;
+		  }
+	  }
+	  else
+	  {
+		  Scierror(999,MSG_ERROR10);
+		  return 0;
+	  }
   }
-  
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/

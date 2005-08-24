@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -22,12 +22,16 @@
     <CALLING_SEQUENCE_ITEM>clipboard('do','copy')</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>clipboard('do','empty')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'EMF')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'DIB')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
     <P><VERB>clipboard('copy',data)</VERB> copie le contenu de data dans le
     presse-papier. Si data n'est pas une chaine de caracteres, sci2exp est
-    utilis� pour convertir data en chaine de caracteres.</P>
+    utilisé pour convertir data en chaine de caracteres.</P>
 
     <P><VERB>str = clipboard('paste') </VERB>retourne le contenu du
     presse-papier dans la variable str, ou [] si le contenu du presse-papier
@@ -39,6 +43,14 @@
 
     <P>Note : <VERB>clipboard(...) </VERB>ne fonctionne que pour Windows et
     qu'en mode interface graphique.</P>
+
+    <P><VERB>clipboard(winnum,'EMF')</VERB> copie, au format EMF, dans le
+    presse papier le graphe correspondant au numero de la fenetre
+    associée.</P>
+
+    <P><VERB>clipboard(winnum,'DIB')</VERB>copie, au format DIB, dans le
+    presse papier le graphe correspondant au numero de la fenetre
+    associée.</P>
   </DESCRIPTION>
 
   <AUTHORS>
