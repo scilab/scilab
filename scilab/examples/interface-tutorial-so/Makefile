@@ -3,7 +3,7 @@ SCIDIR=../../
 include $(SCIDIR)/Makefile.incl
 
 
-all	:: Makelib job message
+all	:: Makelib message
 	make -f Makelib
 
 Makelib : builder.sce

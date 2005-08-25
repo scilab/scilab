@@ -3,7 +3,7 @@ include Path.incl
 
 include $(SCIDIR)/Makefile.incl
 
-all	:: Makelib job 
+all	:: Makelib
 	cd lib ; make all
 	make -f Makelib
 
