@@ -1825,7 +1825,6 @@ void ReLoadMenus(LPTW lptw)
 	ToolBarOnOff(lptw);
 }
 /*-----------------------------------------------------------------------------------*/   
-/*-----------------------------------------------------------------------------------*/   
 void UpdateFileNameMenu(LPTW lptw)
 {
 	#define FILEMENUFRENCH "wscilabF.mnu"
@@ -1924,16 +1923,13 @@ void ConfigureScilabStar(int LangCode)
 		if (CodeRetour == 0 )
 		{
 			DeleteFile(scilabstarfullpath);
-			MoveFile(scilabstartmpfullpath,scilabstarfullpath);
+			if ( ! MoveFile(scilabstartmpfullpath,scilabstarfullpath) ) DeleteFile(scilabstartmpfullpath);
 		}
 		else
 		{
 		//	MessageBox(NULL,"Couldn't Modify Scilab.star","Error",MB_ICONWARNING);
 		}
-	
 	}
-	
-	
 }
 /*-----------------------------------------------------------------------------------*/
 int ModifyFile(char *fichier,char *motclef,char *chaine)
@@ -1987,8 +1983,9 @@ void SetLanguageMenu(char *Language)
 	if (IsWindowInterface())
 	{
 		int LanguageCode=0;
-
+		char *LanguageInScilabDotStar=NULL;
 		LPTW lptw=GetTextWinScilab();
+
 		if (strcmp(Language,"fr") == 0) LanguageCode=1;
 		if (strcmp(Language,"eng") == 0) LanguageCode=0;
 
@@ -2007,5 +2004,64 @@ void SetLanguageMenu(char *Language)
  		// sciprint("Not in Console mode\n");
 		// No Message
 	}
+}
+/*-----------------------------------------------------------------------------------*/
+char *GetLanguageInScilabDotStar(void)
+{
+	char *ReturnLanguage=NULL;
+	char *WSCIPath=NULL;
+	WSCIPath=getenv("SCI");
+
+	if (WSCIPath)
+	{
+		#define SCILABSTAR		"scilab.star"
+		#define MOTCLEF			"LANGUAGE="""
+
+		FILE *fileR=NULL;
+		char wscitmp[MAX_PATH+1];
+		char Ligne[MAX_PATH];
+		char scilabstarfullpath[MAX_PATH];
+		char cmpchaine[MAX_PATH];
+
+		ConvertPathUnixToWindowsFormat(WSCIPath,wscitmp);
+
+		strcpy(scilabstarfullpath,wscitmp);
+		strcat(scilabstarfullpath,"\\");
+		strcat(scilabstarfullpath,SCILABSTAR);
+
+		fileR= fopen(scilabstarfullpath, "rt");
+		if (fileR)
+		{
+			while( fgets(Ligne, MAX_PATH, fileR) != NULL)
+			{
+				strncpy(cmpchaine,Ligne,strlen(MOTCLEF));
+				cmpchaine[strlen(MOTCLEF)]='\0';
+				if (strcmp(cmpchaine,MOTCLEF)==0)
+				{
+					int i=0,j=0;
+					char LanguageTemp[MAX_PATH];
+
+					strcpy(LanguageTemp,"\0");
+					
+					for (i=(int)strlen(MOTCLEF)+1;i<(int)strlen(Ligne)-2;i++)
+					{
+						LanguageTemp[j]=Ligne[i];
+						j++;
+					}
+					LanguageTemp[j]='\0';
+
+					ReturnLanguage=MALLOC(strlen(LanguageTemp)*sizeof(char));
+					strcpy(ReturnLanguage,LanguageTemp);
+
+					fclose(fileR);
+					return ReturnLanguage;
+				}
+				
+				strcpy(Ligne,"\0");
+			}
+		}
+		fclose(fileR);
+	}
+	return ReturnLanguage;
 }
 /*-----------------------------------------------------------------------------------*/
