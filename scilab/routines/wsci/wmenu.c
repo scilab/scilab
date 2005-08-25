@@ -62,6 +62,8 @@ extern BOOL IsEmptyClipboard(LPTW lptw);
 extern void PasteFunction(LPTW lptw,BOOL special);
 extern BOOL IsAFile(char *chainefichier);
 extern BOOL IsWindowInterface(void);
+extern void AddHistory (char *line);
+extern void GetCommentDateSession(char *line,int BeginSession);
 /*-----------------------------------------------------------------------------------*/
 static integer lab_count = 0;
 static char gwin_name[100], gwin_name1[100];
@@ -576,7 +578,14 @@ void Callback_CONFIGUREBROWSER(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_CLEARHISTORY(void)
 {
+	#define MAXBUF	1024
+	char Commentline[MAXBUF];
+
 	reset_history();
+
+	GetCommentDateSession(Commentline,TRUE);		
+	AddHistory (Commentline);
+
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_SELECTALL(void)

@@ -4,28 +4,27 @@
  *--------------------------------------------------------------------------*/
 
 #include "history.h"
-
 #include "../sci_mem_alloc.h"  /* malloc */
+#include  "../stack-c.h"
+#define HISTORY_ID 3
 
+#ifndef Max 
+#define Max(x,y)	(((x)>(y))?(x):(y))
+#endif
+
+#define MaxHistorySize  450*1024 /* 450 ko limitation history size in memory */
 
 sci_hist *history = NULL;	/* no history yet */
 sci_hist *cur_entry = NULL;
 /* Use for SearchInHistory --> ! */
 sci_hist *research_knot_last = NULL;
+
+static int HistorySizeInMemory=0;
+
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 
-/* static char *HistoryFileNamePath = "~/history.scilab"; supposed to be in inffic.c !!! */
-#define HISTORY_ID 3
 extern char *get_sci_data_strings(int n);
-
-#include  "../stack-c.h"
-#ifndef Max 
-#define Max(x,y)	(((x)>(y))?(x):(y))
-#endif 
-
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
-			        long int nams_len));  
-
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 /*-----------------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
@@ -49,7 +48,7 @@ static char *ASCIItime(const struct tm *timeptr)
     return result;
 }
 /*-----------------------------------------------------------------------------------*/
-static void GetCommentDateSession(char *line,int BeginSession)
+void GetCommentDateSession(char *line,int BeginSession)
 {
 	time_t timer;
   	timer=time(NULL);
@@ -64,7 +63,13 @@ static void GetCommentDateSession(char *line,int BeginSession)
  */
 void AddHistory (char *line)
 {
-  sci_hist *entry;
+  sci_hist *entry=NULL;
+
+  if ( (HistorySizeInMemory-MaxHistorySize) > 0 )
+  {
+	  	  reset_history();
+		  AddHistory ("// -- Unknown date --");
+  }
   
   if (history)
   {
@@ -72,27 +77,39 @@ void AddHistory (char *line)
   	{
   		return;
   	}
-  	
   }
- 
-  entry = (sci_hist *) MALLOC ((unsigned long) sizeof (sci_hist));
-  entry->line = (char *) MALLOC ((strlen (line) + 1)*sizeof(char));  
-  strcpy (entry->line, line);
-
-  entry->prev = history;
-  entry->next = NULL;
-  if (history != NULL)
-    {
-      history->next = entry;
-    }
-  history = entry;
   
+  entry = (sci_hist *) MALLOC ((unsigned long) sizeof (sci_hist));
+  
+  if (entry)
+  {
+	  entry->line = (char *) MALLOC ((strlen (line) + 1)*sizeof(char));  
+	  if (entry->line)
+	  {
+		  HistorySizeInMemory=HistorySizeInMemory+( ((int)(strlen (line)) + 1)*sizeof(char) );
+		  strcpy (entry->line, line);
+		  entry->prev = history;
+		  entry->next = NULL;
+		  if (history != NULL)
+		  {
+			  history->next = entry;
+		  }
+		  history = entry;
+	  }
+	  else
+	  {
+		  reset_history();
+	  }
+  }
+  else
+  {
+	  reset_history();
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 /* Backward search in history (used by key ! ) */
 sci_hist * SearchBackwardInHistory(char *line)
 {
-
 	sci_hist *Parcours=NULL;
 	char LineComp[MAXBUF];
 	
@@ -162,10 +179,8 @@ sci_hist * SearchForwardInHistory(char *line)
 		}
 		Parcours=GoNextKnot(Parcours);
 	}
-
 	research_knot_last=NULL;
 	return (sci_hist *)NULL;
-
 }
 /*-----------------------------------------------------------------------------------*/
 sci_hist * GoFirstKnot(sci_hist * CurrentKnot)
@@ -204,7 +219,6 @@ int C2F(savehistory) _PARAMS((char *fname))
   Rhs=Max(Rhs,0);
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
-
 	
   if (Rhs == 0)
   {
@@ -214,7 +228,6 @@ int C2F(savehistory) _PARAMS((char *fname))
   }
   else
   {
-    
 	if ( GetType(1) == 1 ) 
 	{
 		GetRhsVar(1,"i",&m1,&n1,&l1);
@@ -227,7 +240,6 @@ int C2F(savehistory) _PARAMS((char *fname))
 
 		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
 		write_history (line);
-		
 	}
   }
 
@@ -313,29 +325,27 @@ void reset_history(void)
     {
       sci_hist *Parcours = history;
       sci_hist *PrevParcours=NULL;
-      char Commentline[MAXBUF];
 
       Parcours=GoFirstKnot(Parcours);
 				
       while(Parcours->next)
 	{
 	  PrevParcours=Parcours;
-	  free(Parcours->line);
+	  FREE(Parcours->line);
 	  Parcours->line=NULL;
 	  Parcours=GoNextKnot(Parcours); 
 	  PrevParcours->next=NULL;
 	  PrevParcours->prev=NULL;
 	}
+	  FREE(history);
       history=NULL;
+	  FREE(cur_entry);
       cur_entry=NULL;
-
-      GetCommentDateSession(Commentline,TRUE);		
-      AddHistory (Commentline);
+	  HistorySizeInMemory=0;
     }
 
 }
 #else 
-
 void reset_history(void)
 {
   register HIST_ENTRY **the_list;
@@ -350,25 +360,30 @@ void reset_history(void)
 	  HIST_ENTRY *entry = remove_history (i);
 	  if (entry)
 	    {
-	      free (entry->line);
-	      free (entry);
+	      FREE (entry->line);
+	      FREE (entry);
 	    }
 	}
     }
+  HistorySizeInMemory=0;
 }
 
 #endif 
 
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function resethistory  */
-
-
 int C2F(resethistory) _PARAMS((char *fname))
 {
+  char Commentline[MAXBUF];	
+
   Rhs=Max(Rhs,0);
   CheckRhs(0,0) ;
   CheckLhs(0,1) ;
   reset_history();
+
+  GetCommentDateSession(Commentline,TRUE);		
+  AddHistory (Commentline);
+
   LhsVar(1)=0;
   C2F(putlhsvar)();
   return 0;
