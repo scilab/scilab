@@ -102,7 +102,7 @@ bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource 
 bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
-bind $pad <Configure> {if {"%W"=="$pad"} {spaceallsashesevenly}}
+bind $pad <Configure> {if {"%W"=="$pad"} {catch {spaceallsashesevenly} }}
 bind Panedwindow <Double-Button-1> {spacesashesevenly %W}
 
 

@@ -273,8 +273,7 @@ Wishes:
  Find/Replace in opened buffers should search in all the opened buffers,
  visible or not that they are. The question is, "from the first buffer
  of the list" or "from the current buffer"? Wraparound?
-
--Find/Replace: add showinfo [mc "Wrapped around"] in relevant cases
+ -- Done for Replace All only
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:
@@ -283,3 +282,11 @@ Wishes:
    . "Sort by MRU" (Most Recently Used)
 
 -Add underlined numbers in the Windows menu, as for the File menu.
+
+-Make use of ::msgcat::mcmax ?src-string src-string ...?
+ Given several source strings, ::msgcat::mcmax returns the length of the 
+ longest translated string. This is useful when designing localized GUIs, 
+ which may require that all buttons, for example, be a fixed width (which 
+ will be the width of the widest button).
+ -- Currently some button labels are truncated in certain locales
+ -- Once done, update AddingTranslations.txt starting at line 176

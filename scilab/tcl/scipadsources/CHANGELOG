@@ -1401,3 +1401,14 @@ Francois VOGEL, 24/08/05
  * Undo, Redo, Cut, Copy and Paste commands are enabled/disabled contextually
    in the Edit menu, and the corresponding bindings are set accordingly
  * version --> 5.31
+
+Francois VOGEL, 25/08/05
+ * Binding on $pad <Configure> for spaceallsashesevenly catched because it
+   can be triggered on Scipad exit, which caused a Tcl error 
+ * Documented Find/Replace procedures
+ * Find/Replace informs that it has wrapped around in relevant cases
+ * Changed a bit the geometry of the Find/Replace box to make better use of
+   the available space
+ * Added a checkbox in the Find/Replace dialog for searching in all the
+   opened buffers - Only replace all is working now
+ * version --> 5.32

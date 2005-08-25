@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.30
+# in sync at least with v5.32
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -138,6 +138,7 @@
 ::msgcat::mcset fr "No match found in the selection for" "La chaîne"
     ::msgcat::mcset fr "\nWould you like to look for it in the entire text?" "n'a pu être trouvée dans la sélection.\nVoulez-vous rechercher dans la totalité du texte ?"
 ::msgcat::mcset fr "You are searching for an empty string!" "La chaîne à rechercher est vide!"
+::msgcat::mcset fr "Wrapped around" "Rebouclé"
 ::msgcat::mcset fr "Re&place" "&Remplacer"
 ::msgcat::mcset fr "Find what:" "Rechercher :"
 ::msgcat::mcset fr "Replace with:" "Remplacer par :"
@@ -147,6 +148,7 @@
 ::msgcat::mcset fr "Downward&s" "Vers le &bas" 
 ::msgcat::mcset fr "Match &case" "Respecter la &casse"
 ::msgcat::mcset fr "&Regular expression" "E&xpression régulière"
+::msgcat::mcset fr "In all &opened files" "Dans tous les fichiers &ouverts"
 
 
 # helps.tcl
