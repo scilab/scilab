@@ -10,11 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
-#ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../sci_mem_alloc.h" /* MALLOC */
-#endif
+
 #include "../graphics/bcg.h"
 #include "../stack-c.h"
 #include "../graphics/Math.h"
@@ -32,6 +28,12 @@
 /* Constructors should NOT be called at this level (not inside matdes.c) */
 #include "../graphics/BuildObjects.h"
 #include "../graphics/DestroyObjects.h"
+
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #define SciWin() if(C2F(sciwin)() !=0)\
         {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
@@ -8331,10 +8333,11 @@ int sciGet(sciPointObj *pobj,char *marker)
       /*  if(sciGetEntityType (pobj) != SCI_SURFACE){ */
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       k=0;
-      for (j=0;j < numcol*numrow;j++)
+	  for (j=0;j < numcol*numrow;j++)
 	stk(outindex)[j] = tab[j];
-      FREE(tab);
-      
+	  
+	  FREE(tab); tab = NULL;
+   
     }
   
   /**************** callback *********************/
