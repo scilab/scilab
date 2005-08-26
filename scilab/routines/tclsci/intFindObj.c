@@ -39,7 +39,7 @@ int C2F(intFindObj) _PARAMS((char *fname))
 			return 0;
 		}
 		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
-
+		
 		Handle = (int)atoi(StrHandle);
 
 		if (Handle == -1)  
@@ -57,6 +57,7 @@ int C2F(intFindObj) _PARAMS((char *fname))
 			*paramoutINT=(int)(Handle);
 			n1=1;
 			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
+			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 		}
 	}
 	else

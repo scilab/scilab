@@ -57,6 +57,12 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		
 		GetRhsVar(2,"d",&m1,&n1,&l1);
 
+		if ( (m1==0) && (n1==0) )
+		{
+			Scierror(999,"[] doesn''t work with TCL");
+			return 0;
+		}
+
 		if ( (m1==1) && (n1==1) )
 		{
 			/* just a scalar */

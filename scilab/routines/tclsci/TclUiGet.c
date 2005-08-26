@@ -81,7 +81,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					return 0;
 				}
 				StrValue = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
-
+				
 				if (StrValue)
 				{
 					if ( MustReturnAMatrix(StrField) )
@@ -110,6 +110,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						Scierror(999,TCL_ERROR30,StrField);
 						return 0;
 					}
+					Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 				}
 				else
 				{

@@ -50,7 +50,9 @@ int GetTclCurrentFigure(void)
 		return 0;
 	}
 
+	
 	ValRet=(int)atoi(StrHandle);
+	Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 
 	return ValRet;
 }
@@ -109,10 +111,11 @@ int SetTclCurrentFigure(int num)
 		Scierror(999,TCL_ERROR16);
 		return 0;
 	}
-
+	
 	cf_type=0; /* Current handle is a TCL Handle */
 
 	ValRet=(int)atoi(StrHandle);
+	Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 
 	return ValRet;
 
