@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.23
+# in sync at least with v5.32
 
 
 # commons
@@ -134,6 +134,9 @@
 ::msgcat::mcset it "The contents of " "Il contenuto di"
     ::msgcat::mcset it "has changed on disk, save it anyway?" \
                      "è cambiato sul disco, salvare comunque?"
+    ::msgcat::mcset it "has been modified outside of Scipad. Do you want \
+                        to reload it?" \
+                     "è stato cambiato fuori da Scipad. Ricaricarlo dal disco?"
 ::msgcat::mcset it "File has changed!" "Il file è cambiato"
 ::msgcat::mcset it "Save as" "Registra come"
 ::msgcat::mcset it "Scilab files" "Files Scilab"
@@ -160,6 +163,7 @@
                    "Continuare la ricerca nel resto del testo?"
 ::msgcat::mcset it "You are searching for an empty string!" \
           "La stringa da cercare è vuota!"
+::msgcat::mcset it "Wrapped around" "Continuato oltre la fine"       
 ::msgcat::mcset it "Re&place" "&Sostituisci"
 ::msgcat::mcset it "Find what:" "Cerca:"
 ::msgcat::mcset it "Replace with:" "Cambia in:"
@@ -169,7 +173,7 @@
 ::msgcat::mcset it "Downward&s" "Verso il &basso" 
 ::msgcat::mcset it "Match &case" "Rispetta &maiuscole"
 ::msgcat::mcset it "&Regular expression" "Espressione &regolare (regexp)"
-
+::msgcat::mcset it "In all &opened files" "In tutti i &files aperti" 
 
 # helps.tcl
 ::msgcat::mcset it "About" "A proposito"
@@ -216,7 +220,10 @@
     # menues.tcl - File menu
     ::msgcat::mcset it "&New" "&Nuovo"
     ::msgcat::mcset it "&Open..." "&Apri..."
-    ::msgcat::mcset it "&Save" "&Salva"
+    ::msgcat::mcset it "Open &in new" "Apri &in un nuovo pannello"
+        ::msgcat::mcset it "&horizontal tile" "a &fianco"
+        ::msgcat::mcset it "&vertical tile" "di &sotto"
+     ::msgcat::mcset it "&Save" "&Salva"
     ::msgcat::mcset it "Save &as..." "Salva &come..."
     ::msgcat::mcset it "&Revert..." "&Recupera..."
     ::msgcat::mcset it "Import &Matlab file..."  "Importa file &Matlab..."
@@ -226,7 +233,7 @@
     ::msgcat::mcset it "Open &function source" \
            "Apri la sorgente della &funzione"
     ::msgcat::mcset it "Print Se&tup" "Confi&gura stampante"
-    ::msgcat::mcset it "&Print" "S&tampa"
+    ::msgcat::mcset it "&Print" "Stam&pa"
     ::msgcat::mcset it "&Close" "C&hiudi"
     ::msgcat::mcset it "E&xit" "&Esci"
 
