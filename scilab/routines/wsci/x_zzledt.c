@@ -122,8 +122,13 @@ void ChangeCursorWhenScilabIsReady(void)
 	NumsMenu=GetMenuItemCount (lptw->lpmw->hMenu);
 	if (NumsMenu>=DefaultNumMenu) EnableNMenus(lptw,DefaultNumMenu);
 	EnableToolBar(lptw);
+
 	ScilabIsStarting=FALSE;
 
+	ShowWindow (lptw->hWndParent,SW_SHOWDEFAULT);
+	BringWindowToTop (lptw->hWndParent);
+	SetFocus(lptw->hWndParent);
+	SetFocus(lptw->hWndText);
   }
 
 }

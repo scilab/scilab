@@ -1443,6 +1443,22 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
     
     break;
     case WM_MOUSEMOVE:
+	 if (lptw->bGetCh) 
+	 {
+		 if ( ! lptw->bFocus )
+		 {
+			 BringWindowToTop (lptw->hWndParent);
+			 BringWindowToTop (lptw->hWndText);
+			 SetFocus(lptw->hWndParent);
+			 SetFocus(lptw->hWndText);
+		 }
+		 
+		 if (!ShowCaret(lptw->hWndText))
+		 {
+			CreateCaret (lptw->hWndText, 0, lptw->CharSize.x, 2 + lptw->CaretHeight);
+			ShowCaret(lptw->hWndText);
+		 }
+	 }
 
 		 
       if ((wParam & MK_LBUTTON) && lptw->Marking)
