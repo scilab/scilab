@@ -31,7 +31,7 @@
   <DESCRIPTION>
     <P><VERB>clipboard('copy',data)</VERB> copie le contenu de data dans le
     presse-papier. Si data n'est pas une chaine de caracteres, sci2exp est
-    utilisÃ© pour convertir data en chaine de caracteres.</P>
+    utilisé pour convertir data en chaine de caracteres.</P>
 
     <P><VERB>str = clipboard('paste') </VERB>retourne le contenu du
     presse-papier dans la variable str, ou [] si le contenu du presse-papier
@@ -46,11 +46,11 @@
 
     <P><VERB>clipboard(winnum,'EMF')</VERB> copie, au format EMF, dans le
     presse papier le graphe correspondant au numero de la fenetre
-    associÃ©e.</P>
+    associée.</P>
 
     <P><VERB>clipboard(winnum,'DIB')</VERB>copie, au format DIB, dans le
     presse papier le graphe correspondant au numero de la fenetre
-    associÃ©e.</P>
+    associée.</P>
   </DESCRIPTION>
 
   <AUTHORS>
