@@ -307,8 +307,7 @@ int intsmopen(char *fname,unsigned long fname_len)
 	  return 0;
 	}
 	else if ( err == 2) {
-	  sciprint("%s:  Could not open the file!\r\n",fname);
-	  Error(999);
+	  Scierror(999,"%s:  Could not open the file!\r\n",fname);
 	  return 0;
 	}
 	else {
