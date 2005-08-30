@@ -670,7 +670,12 @@ static int CopyVectLI(integer **nx, integer *x, int l)
   int i;
   if ( x != (integer *) 0) 
     {
-      *nx = (integer *)  MALLOC(l*sizeof(integer));
+      if(l>0) /* check the length */
+	*nx = (integer *)  MALLOC(l*sizeof(integer));
+      else{
+	*nx = NULL;
+	return(1);
+      }
       if ( *nx == NULL) return(0);
       for ( i=0 ; i < l ; i++) (*nx)[i]= x[i];
     }
@@ -682,7 +687,12 @@ static int CopyVectF(double **nx, double *x, integer l)
   int i;
   if ( x != (double *) 0) 
     {
-      *nx = (double *)  MALLOC(l*sizeof(double));
+      if(l>0) /* check the length */
+	*nx = (double *)  MALLOC(l*sizeof(double));
+      else{
+	*nx = NULL;
+	return(1);
+      }
       if ( *nx == NULL) return(0);
       for ( i=0 ; i < l ; i++) (*nx)[i]= x[i];
     }
@@ -694,7 +704,12 @@ static int CopyVectC(char **nx, char *x, int l)
   int i;
   if ( x != (char *) 0) 
     {
-      *nx = (char *)  MALLOC(l*sizeof(char));
+      if(l>0) /* check the length */
+	*nx = (char *)  MALLOC(l*sizeof(char));
+      else{
+	*nx = NULL;
+	return(1);
+      }
       if ( *nx == NULL) return(0);
       for ( i=0 ; i < l ; i++) (*nx)[i]= x[i];
     }
