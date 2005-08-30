@@ -5488,8 +5488,8 @@ int gset(fname,fname_len)
       }
       break;
     default:
-      Scierror(999,"%s: First argument must be a scalar a handle or a string\r\n",fname);
-      return 0;
+      lw = 1 + Top - Rhs;
+      C2F(overload)(&lw,"set",3);return 0;
       break;
     }
 
@@ -5732,7 +5732,9 @@ int gget(fname,fname_len)
     
       break;
     default:
-      Scierror(999,"%s: Incorrect argument\r\n",fname);
+      lw = 1 + Top - Rhs;
+      C2F(overload)(&lw,"get",3);return 0;
+      /*Scierror(999,"%s: Incorrect argument\r\n",fname);*/
       return 0;
       break;
     }
