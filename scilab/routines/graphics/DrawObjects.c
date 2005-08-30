@@ -44,6 +44,10 @@ int Printer_YRes = 0;
 extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 extern void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
+extern int GlobalFlag_Zoom3dOn;
+
+extern int index_vertex;
+int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z);
 
 int xinitxend_flag = 0;
 /* sciClipTab ptabclip[15]; */
@@ -3535,14 +3539,17 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 
 	      xm[i]= TX3D(tmpx,tmpy,0.0);
 	      ym[i]= TY3D(tmpx,tmpy,0.0);
-
+	      
+	      if(GlobalFlag_Zoom3dOn==1)
+		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,0.); /* stockage des xm, ym pour le zoom */
+	
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
 		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return(0);
 	      }
 	    }
 	else /* z != NULL */
-	  for ( i=0 ; i < n ; i++)
+	  for ( i=0 ; i < n ; i++) /* cas 3d le + general */
 	    {
 
 	      /* F.Leray 19.10.04 */
@@ -3583,6 +3590,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		  
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
+	      
+	      if(GlobalFlag_Zoom3dOn==1)
+		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,tmpz); /* stockage des xm, ym pour le zoom */
+	      
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
 		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return(0);
@@ -3623,6 +3634,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
+
+	      if(GlobalFlag_Zoom3dOn==1)
+		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,tmpz); /* stockage des xm, ym pour le zoom */
+	
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
 		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return(0);
@@ -3656,7 +3671,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
-
+	      
+	      if(GlobalFlag_Zoom3dOn==1)
+		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,tmpz); /* stockage des xm, ym pour le zoom */
+	      
 	      /*    xm[i]= TX3D(tmpx,tmpy,tmpz); */
 	      /* 	      ym[i]= TY3D(tmpx,tmpy,tmpz); */
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
@@ -4128,9 +4146,8 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
     ymin= ppsubwin->ZRect[1]; 
     xmax= ppsubwin->ZRect[2];
     ymax= ppsubwin->ZRect[3];
-    
-    zmin= ppsubwin->SRect[4]; /* ZRect[4] and ZRect[5] do not exist */
-    zmax= ppsubwin->SRect[5];
+    zmin= ppsubwin->ZRect[4];
+    zmax= ppsubwin->ZRect[5];
   }
   else {
     xmin=ppsubwin->SRect[0];
@@ -5764,6 +5781,9 @@ int Merge3dDimension(sciPointObj *pparent)
     q+=N;
     psonstmp = psonstmp->pnext;
   }
+
+/*   pSUBWIN_FEATURE(pparent)->nb_vertices_in_merge = q; */
+
   return q;
 }
 
@@ -6830,6 +6850,8 @@ sciDrawObj (sciPointObj * pobj)
   char STRFLAG[4];
   int DPI[2];
 
+/*   int nb_vertices=0; */
+
   subwin[0]    = 0;
   subwin[1]    = 0;
   subwin[2]   = 1;
@@ -6893,7 +6915,7 @@ sciDrawObj (sciPointObj * pobj)
       if (sciGetVisibility(pobj) == FALSE) break;
 
       ppsubwin = pSUBWIN_FEATURE (pobj);
-     
+
       sciSetSelectedSubWin(pobj); 
      
       set_scale ("tttftt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
@@ -6929,14 +6951,13 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	  axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside : REMOVED F.Leray 21.01.05 */
 	  /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
-
+	  
 	  psonstmp = sciGetLastSons (pobj);
 	  while (psonstmp != (sciSons *) NULL) {
 	    sciDrawObj (psonstmp->pointobj);
 	    psonstmp = psonstmp->pprev;
 	  }
-	 
-	  /* 	 if (sciGetVisibility(pobj)) */
+
 	  triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
 	 
 	  wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
@@ -10852,6 +10873,141 @@ int ChoixFormatForOneGrad(char *c_format, double grad)
   }
   
   sprintf(c_format,"%%.%df",compteur);
+  
+  return 0;
+}
+
+
+/* Vertices * Tete = NULL; */
+
+int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z)
+{
+
+  sciPointObj * psubwin = sciGetParentSubwin(pobj);
+  sciSubWindow *ppsubwin = pSUBWIN_FEATURE(psubwin);
+  int ii;
+
+  if(GlobalFlag_Zoom3dOn == 1){
+/*     Vertices *NewVertices = (Vertices *) NULL; */
+    Vertices * pCurrent = ppsubwin->vertices_list;
+    
+    if (pCurrent != NULL) {
+      
+      /*pCurrent = Tete; */
+      ii = 0;
+      while (pCurrent->pNext != NULL) {
+	pCurrent = pCurrent->pNext;
+	ii++;
+      }
+      
+      if(( pCurrent->pNext = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
+	printf("Allocation failed for vertices when zoom called\n");
+	return -1;
+      }
+      
+      /*       pCurrent->pNext = NewVertices; */
+      
+      pCurrent->pNext->pNext = NULL;
+      
+      pCurrent->pNext->value_xm = xm;
+      pCurrent->pNext->value_ym = ym;
+      pCurrent->pNext->value_x = x;
+      pCurrent->pNext->value_y = y;
+      pCurrent->pNext->value_z = z;
+    }
+    else
+      { /* first element is created */
+	if((ppsubwin->vertices_list = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
+	  printf("Allocation failed for vertices when zoom called\n");
+	  return -1;
+	}
+	
+	ppsubwin->vertices_list->value_xm = xm;
+	ppsubwin->vertices_list->value_ym = ym;
+	ppsubwin->vertices_list->value_x = x;
+	ppsubwin->vertices_list->value_y = y;
+	ppsubwin->vertices_list->value_z = z;
+	
+	ppsubwin->vertices_list->pNext = NULL;
+      }
+    index_vertex++;
+  }
+  
+  return 0;
+}
+
+
+int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, double *zmin,double *xmax, double *ymax, double *zmax)
+{ 
+  Vertices * pCurrent = vertices_list;
+
+  *xmin = *xmax = vertices_list->value_x;
+  *ymin = *ymax = vertices_list->value_y;
+  *zmin = *zmax = vertices_list->value_z;
+  
+  while (pCurrent != NULL) {
+    if(pCurrent->value_x >  *xmin) *xmin = pCurrent->value_x;
+    if(pCurrent->value_x >  *ymin) *ymin = pCurrent->value_y;
+    if(pCurrent->value_x >  *zmin) *zmin = pCurrent->value_z;
+    
+    if(pCurrent->value_x <  *xmax) *xmax = pCurrent->value_x;
+    if(pCurrent->value_x <  *ymax) *ymax = pCurrent->value_y;
+    if(pCurrent->value_x <  *zmax) *zmax = pCurrent->value_z;
+    
+    pCurrent = pCurrent->pNext;
+  }
+  
+  return 0;
+}
+
+int GetVerticesAt(Vertices *vertices_list, int index, int *xm, int *ym, double *x, double *y, double *z)
+{
+  Vertices * pCurrent = vertices_list;
+  int i;
+
+  for(i=0;i<index;i++){
+    pCurrent = pCurrent->pNext;
+    if(pCurrent == NULL){
+      /*       printf("pCurrent est nul et i vaut: %d\n",i); */
+      return -1;
+    }
+  }
+  
+  *xm = pCurrent->value_xm;
+  *ym = pCurrent->value_ym;
+  *x  = pCurrent->value_x;
+  *y  = pCurrent->value_y;
+  *z  = pCurrent->value_z;
+  
+  return 0;
+}     
+
+
+int RemoveNext(Vertices *pCurrent)
+{
+  Vertices * DeletedElement = pCurrent->pNext;
+  Vertices * pNextNext =  pCurrent->pNext->pNext;
+
+  FREE(DeletedElement); DeletedElement = (Vertices *) NULL;
+  
+  pCurrent->pNext = pNextNext;
+
+  return 0;
+}
+
+int FreeVertices(sciPointObj * psubwin)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  Vertices * pCurrent = ppsubwin->vertices_list;
+  
+  if (pCurrent != NULL) {
+    
+    /*pCurrent = Tete; */
+    while (pCurrent->pNext != NULL){
+      RemoveNext(pCurrent);
+    }
+    FREE(ppsubwin->vertices_list); ppsubwin->vertices_list = (Vertices *) NULL;
+  }
   
   return 0;
 }

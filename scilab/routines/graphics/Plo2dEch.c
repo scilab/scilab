@@ -23,13 +23,24 @@
 #include "../sci_mem_alloc.h" /* MALLOC */
 #endif
 
+int GlobalFlag_Zoom3dOn=0;
+int index_vertex=0;
+/* static double xz1,yz1; */
+/* #define pixel2TRX(x) xz1= Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1) */
+/* #define pixel2TRY(y) yz1= Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1) */
+
+extern void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
+extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
+extern int StoreCommand( char *command);
+extern int C2F(scirun)(char * startup, int lstartup);
+
 /*----------------------------------------------
  * A List for storing Window scaling information 
  *----------------------------------------------*/
 
 static void scale_copy __PARAMS((WCScaleList *s1, WCScaleList *s2));
 static integer curwin __PARAMS((void));
-static void zoom_rect __PARAMS((double,double,double,double));
+static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin);
 static void set_scale_win __PARAMS((ScaleList **listptr, integer i, WCScaleList *s));
 static WCScaleList *new_wcscale __PARAMS(( WCScaleList *val));
 static WCScaleList *check_subwin_wcscale __PARAMS((WCScaleList *listptr, double *));
@@ -43,48 +54,48 @@ static ScaleList *The_List = NULL;
 /* Current Scale */
 
 WCScaleList  Cscale = 
-{ 
-  0,
-  {600,400},
-  {0.0,0.0,1.0,1.0},
-  {0.0,0.0,1.0,1.0},
-  {1/8.0,1/8.0,1/8.0,1/8.0},
-  {0.0,1.0,0.0,10},
-  {0.0,1.0,0.0,10},
-  75.0,53.0,450.0,318.0,
-  {'n','n'},
-  {75,53,450,318},
-  {2,10,2,10},
-  {{1.0,0.0,0.0},{0.0,1.0,0.0},{0.0,0.0,1.0}},
-  {0.0,1.0,0.0,1.0,0.0,1.0},
-  35.0,45.0,
-  1,                 /* added by es */
-  (WCScaleList *) 0, /*unused */
-  (WCScaleList *) 0  /*unused */  
-};
+  { 
+    0,
+    {600,400},
+    {0.0,0.0,1.0,1.0},
+    {0.0,0.0,1.0,1.0},
+    {1/8.0,1/8.0,1/8.0,1/8.0},
+    {0.0,1.0,0.0,10},
+    {0.0,1.0,0.0,10},
+    75.0,53.0,450.0,318.0,
+    {'n','n'},
+    {75,53,450,318},
+    {2,10,2,10},
+    {{1.0,0.0,0.0},{0.0,1.0,0.0},{0.0,0.0,1.0}},
+    {0.0,1.0,0.0,1.0,0.0,1.0},
+    35.0,45.0,
+    1,                 /* added by es */
+    (WCScaleList *) 0, /*unused */
+    (WCScaleList *) 0  /*unused */  
+  };
 
 /** default values **/
 
 WCScaleList  Defscale = 
-{ 
-  0,
-  {600,400},
-  {0.0,0.0,1.0,1.0},
-  {0.0,0.0,1.0,1.0},
-  {1/8.0,1/8.0,1/8.0,1/8.0},
-  {0.0,1.0,0.0,10},
-  {0.0,1.0,0.0,10},
-  75.0,53.0,450.0,318.0,
-  {'n','n'},
-  {75,53,450,318},
-  {2,10,2,10},
-  {{1.0,0.0,0.0},{0.0,1.0,0.0},{0.0,0.0,1.0}},
-  {0.0,1.0,0.0,1.0,0.0,1.0},
-  35.0,45.0,
-  1,                 /* added by es */
-  (WCScaleList *) 0, /*unused */
-  (WCScaleList *) 0 /*unused */  
-};
+  { 
+    0,
+    {600,400},
+    {0.0,0.0,1.0,1.0},
+    {0.0,0.0,1.0,1.0},
+    {1/8.0,1/8.0,1/8.0,1/8.0},
+    {0.0,1.0,0.0,10},
+    {0.0,1.0,0.0,10},
+    75.0,53.0,450.0,318.0,
+    {'n','n'},
+    {75,53,450,318},
+    {2,10,2,10},
+    {{1.0,0.0,0.0},{0.0,1.0,0.0},{0.0,0.0,1.0}},
+    {0.0,1.0,0.0,1.0,0.0,1.0},
+    35.0,45.0,
+    1,                 /* added by es */
+    (WCScaleList *) 0, /*unused */
+    (WCScaleList *) 0 /*unused */  
+  };
 
 /*----------------------------------------------------------
  * Back to defaults values : fills current scale (Scale)
@@ -509,12 +520,12 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
   else WRect = Cscale.subwin_rect; 
   if (version_flag() == 0)
     if (FRect != NULL)
-	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
-	      pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
-	      pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
-	      pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
-	      pSUBWIN_FEATURE (masousfen)->SRect[3]   = FRect[3];
-	    }
+      { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+      pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
+      pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
+      pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
+      pSUBWIN_FEATURE (masousfen)->SRect[3]   = FRect[3];
+      }
   if ( FRect != NULL) flag[2]='t'; else FRect = Cscale.frect;
 
   if (version_flag() == 0)
@@ -724,16 +735,16 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
 	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 	  
 	  /*	  F.Leray 12.10.04 : MODIF named scale_modification*/
-	    if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-	      {
-		Cscale.WIRect1[0] = XScale( Cscale.frect[2]);
-		Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-	      }
-	    else
-	      {
-		Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
-		Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-	      }
+	  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+	    {
+	      Cscale.WIRect1[0] = XScale( Cscale.frect[2]);
+	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+	    }
+	  else
+	    {
+	      Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
+	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+	    }
 	  
 	  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
 	    {
@@ -847,7 +858,7 @@ int C2F(xechelle2d)(x,x1,n1,dir,lstr)
 	for ( i=0 ; i < (*n1) ; i++) x[i]= exp10(XPi2R( x1[i]));
     }
   else 
-   sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
+    sciprint(" Wrong dir %s argument in echelle2d\r\n",dir);
   
   return(0);
 }
@@ -1064,8 +1075,7 @@ extern int EchCheckSCPlots();
 
 /** get a rectangle interactively **/
 
-int zoom_get_rectangle(bbox)
-     double bbox[4];
+int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
 {
   /* Using the mouse to get the new rectangle to fix boundaries */
   integer th,th1=1;
@@ -1073,7 +1083,9 @@ int zoom_get_rectangle(bbox)
   integer ibutton,in,iwait=0,istr=0;
   integer modes[2];
   double x0,yy0,x,y,xl,yl;
-/*   int i; */
+  int pixel_x, pixel_y;
+  int pixel_x0, pixel_y0;
+  /*   int i; */
 
   modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/
 
@@ -1095,45 +1107,33 @@ int zoom_get_rectangle(bbox)
  
   /** XXXXXX : a regler pour Win32 in = 6 **/
   C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
+  /*  C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L); */
+  xclick_2("xclick","one",&ibutton,&iwait,&istr,&x_pixel[0],&y_pixel[0],PI0,&x0,&yy0,PD0,PD0,0L,0L);
 
 
   x=x0;y=yy0;
-  
-/*   if(version_flag() == 0) */
-/*     { */
-/*       sciPointObj * tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE(tmpsousfen); */
-      
-/*       if(ppsubwin->axes.reverse[0] == TRUE){ */
-/* 	double xmin = ppsubwin->SRect[0]; */
-/* 	double xmax = ppsubwin->SRect[1]; */
-/* 	x0= (x0-xmin)/(xmax-xmin)*xmin + (x0-xmax)/(xmin-xmax)*xmax; */
-/*       } */
-/*       if(ppsubwin->axes.reverse[1] == TRUE){ */
-/* 	double ymin = ppsubwin->SRect[2]; */
-/* 	double ymax = ppsubwin->SRect[3]; */
-/* 	yy0= (yy0-ymin)/(ymax-ymin)*ymin + (yy0-ymax)/(ymin-ymax)*ymax;	 */
-/*       } */
-      
-/*     } */
-  
 
+  pixel_x = pixel_x0 = x_pixel[0];
+  pixel_y = pixel_y0 = y_pixel[0];
 
   ibutton=-1;
   while ( ibutton == -1 ) 
     {
       /* dessin d'un rectangle */
       /* following line commented to solve bug 1314 */
-/*       C2F (dr) ("xset", "color",&noir,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0, PD0,0L,0L); */
-      zoom_rect(x0,yy0,x,y);
+      /*       C2F (dr) ("xset", "color",&noir,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0, PD0,0L,0L); */
+      zoom_rect2(pixel_x0,pixel_y0,pixel_x,pixel_y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
+      xgetmouse2("xgetmouse","one",&ibutton,&iwait,&x_pixel[1],&y_pixel[1],modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
+      
       if (ibutton==-100) return 1; /* the window has been closed */
       /* effacement du rectangle */
-      zoom_rect(x0,yy0,x,y);
+      zoom_rect2(pixel_x0,pixel_y0,pixel_x,pixel_y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       x=xl;y=yl;
+      
+      pixel_x = x_pixel[1];
+      pixel_y = y_pixel[1];
     }   
 #ifndef WIN32
   /** XXXX */
@@ -1145,64 +1145,13 @@ int zoom_get_rectangle(bbox)
   /* F.Leray With the new graphic standard, driver has not to be Rec*/
 
 
-/*   printf("JE SORS et...\n"); */
+  /*   printf("JE SORS et...\n"); */
  
+  bbox[0]=Min(x0,x);
+  bbox[1]=Min(yy0,y);
+  bbox[2]=Max(x0,x);
+  bbox[3]=Max(yy0,y);
 
-
-
-
-/*   if(version_flag() == 0) */
-/*     { */
-/*       sciPointObj * tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE(tmpsousfen); */
-      
-/*       if(ppsubwin->axes.reverse[0] == TRUE){ */
-/* 	double xmin = ppsubwin->SRect[0]; */
-/* 	double xmax = ppsubwin->SRect[1]; */
-/* 	x= (x-xmin)/(xmax-xmin)*xmin + (x-xmax)/(xmin-xmax)*xmax; */
-/* /\* 	bbox[0]=Max(x0,x); *\/ */
-/* /\* 	bbox[2]=Min(x0,x); *\/ */
-/* 	printf("x0= %lf \t  x= %lf\n",x0,x); */
-/* 	fflush(NULL); */
-/* 	bbox[0]=Min(x0,x); */
-/* 	bbox[2]=Max(x0,x); */
-/*       } */
-/*       else{ */
-/* 	bbox[0]=Min(x0,x); */
-/* 	bbox[2]=Max(x0,x); */
-/*       } */
-/*       if(ppsubwin->axes.reverse[1] == TRUE){ */
-/* 	double ymin = ppsubwin->SRect[2]; */
-/* 	double ymax = ppsubwin->SRect[3]; */
-/* 	y= (y-ymin)/(ymax-ymin)*ymin + (y-ymax)/(ymin-ymax)*ymax;	 */
-/* /\* 	bbox[1]=Max(yy0,y); *\/ */
-/* /\* 	bbox[3]=Min(yy0,y); *\/ */
-/* 	printf("yy0= %lf \t y= %lf\n",yy0,y); */
-/* 	fflush(NULL); */
-/* 	bbox[1]=Min(yy0,y); */
-/* 	bbox[3]=Max(yy0,y); */
-/*       } */
-/*       else{ */
-/* 	bbox[1]=Min(yy0,y); */
-/* 	bbox[3]=Max(yy0,y); */
-/*       } */
-/*     } */
-/*   else{ */
-    bbox[0]=Min(x0,x);
-    bbox[1]=Min(yy0,y);
-    bbox[2]=Max(x0,x);
-    bbox[3]=Max(yy0,y);
- /*  } */
-
- /*  printf("\nles bbox\n"); */
-  
-/*   for(i=0;i<4;i++) */
-/*     printf("bbox[%d]= %lf\n",i,bbox[i]); */
-
-/*   fflush(NULL); */
-
-
-/*   while(1); */
 
   C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","thickness",&th,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1218,7 +1167,7 @@ int zoom_get_rectangle(bbox)
 
 
 
-int zoom_box(double *bbox)
+int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 {
   integer min,max,puiss,deux=2,dix=10,box[4],box1[4],section[4];
   if (version_flag() == 0){
@@ -1240,64 +1189,263 @@ int zoom_box(double *bbox)
       {
 	if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
 	  {
+	    /* 	    int i; */
 	    psousfen= (sciPointObj *)psonstmp->pointobj;
+	    /* 	    printf("******* psousfen = %p\n",psousfen); */
+	    /* 	    printf("11111111111111111111111\n"); */
+	    /* 	    for(i=0;i<4;i++) */
+	    /* 	      printf("pSUBWIN_FEATURE (psousfen)->WRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->WRect[i]); */
+	    
+	    /* 	    for(i=0;i<4;i++) */
+	    /* 	      printf("pSUBWIN_FEATURE (psousfen)->FRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->FRect[i]); */
+	    /* 	    printf("11111111111111111111111\n"); */
+	    
+	    
 	    if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
-	      sciprint("3D zoom is not yet implemented for new graphic style\n");
-	      return 0;
-	    }
-	    sciSetSelectedSubWin(psousfen);
-	    ppsubwin = pSUBWIN_FEATURE (psousfen);
+	      /* 	      double TRX_value[2], TRY_value[2]; */
+	      double xmin, ymin;
+	      double xmax, ymax;
+	      double zmin, zmax;
+	      int un=1;
+	      sciSons *psonstmp = (sciSons *) NULL;
+	      double epsilon = 1e-16;
+	      
+	      int box3d[4];
+	      int section3d[4];
 
+	      sciSetSelectedSubWin(psousfen);
+	      ppsubwin = pSUBWIN_FEATURE (psousfen);
+	      /* 	      printf("******* psousfen = %p\n",psousfen); */
+	      /* 	      printf("22222222222222222222222\n"); */
+	      /* 	      for(i=0;i<4;i++) */
+	      /* 		printf("pSUBWIN_FEATURE (psousfen)->WRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->WRect[i]); */
+	      
+	      /* 	      for(i=0;i<4;i++) */
+	      /* 		printf("pSUBWIN_FEATURE (psousfen)->FRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->FRect[i]); */
+	      /* 	      printf("22222222222222222222222\n"); */
+	      
+	      /* 	      printf("x_pixel[0] = %d \t y_pixel[0] = %d\n",x_pixel[0],y_pixel[0]); */
+	      /* 	      printf("x_pixel[1] = %d \t y_pixel[1] = %d\n",x_pixel[1],y_pixel[1]); */
 
-	    box1[0]= Cscale.WIRect1[0];
-	    box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-	    box1[1]= Cscale.WIRect1[1];
-	    box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+	      /* 	      TRX_value[0] = XPixel2Double(x_pixel[0]); */
+	      /* 	      TRY_value[0] = YPixel2Double(y_pixel[0]); */
+	      
+	      /* 	      TRX_value[1] = XPixel2Double(x_pixel[1]); */
+	      /* 	      TRY_value[1] = YPixel2Double(y_pixel[1]); */
+	      
+	      box3d[0] = x_pixel[0];
+	      box3d[2] = x_pixel[1];
+	      box3d[1] = y_pixel[0];
+	      box3d[3] = y_pixel[1];
+	      
+	      box1[0]= Cscale.WIRect1[0];
+	      box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+	      box1[1]= Cscale.WIRect1[1];
+	      box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+	      
+	      if (sciIsAreaZoom(box3d,box1,section3d))
+		{
+		  int tmp[4],i;
 
-	    if (sciIsAreaZoom(box,box1,section))
-	      {
-		bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));
-		bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
-		bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3]));
-		bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3]));
+		  for(i=0;i<4;i++) tmp[i] = section3d[i];
 
-		if (!(sciGetZooming(psousfen)))
-		  {
-		    sciSetZooming(psousfen, 1);
-	/* 	    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
-/* 		    pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
-/* 		    pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
-/* 		    pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
+		  section3d[0] = Min(tmp[0],tmp[2]);
+		  section3d[2] = Max(tmp[0],tmp[2]);
+		  section3d[1] = Min(tmp[1],tmp[3]);
+		  section3d[3] = Max(tmp[1],tmp[3]);
+		  		  
+		  /* determine how many vertices we will have to draw */
+		  /* this is used for 3d zoom (to know size of the global vector) */
+		  index_vertex = 0;
+
+		  /* this flag is used inside trans3d called many times by sciDrawObj */
+		  GlobalFlag_Zoom3dOn=1;
+	      
+		  psonstmp = sciGetLastSons (psousfen);
+	      
+		  /* to avoid re-drawing on screen (at least)... */
+		  C2F(dr)("xset","pixmap",&un,PI0,PI0,PI0,PI0,PI0,PD0,
+			  PD0,PD0,PD0,0L,0L);
+		  
+		  /* 	  while (psonstmp != (sciSons *) NULL) { */
+		  /* 		    sciDrawObj (psonstmp->pointobj); */
+		  /* 		    psonstmp = psonstmp->pprev; */
+		  /* 		  } */
+
+		  /* 		  sciDrawObj(sciGetCurrentFigure()); */
+		  
+
+		  /* 		  printf("----------> nb_vertices reel : %d\n",index_vertex); */
+		  
+		  /* 		  printf("Plo2dEch.c apres scidrawobj\n"); */
+		  /* 		  printf("Cscale.Wscx1 = %lf \t Cscale.frect[0] = %lf \t Cscale.Wxofset1 = %lf\n", */
+		  /* 			 Cscale.Wscx1,Cscale.frect[0],Cscale.Wxofset1); */
+		  /* 		  printf("Cscale.Wscy1 = %lf \t Cscale.frect[3] = %lf \t Cscale.Wyofset1 = %lf\n", */
+		  /* 			 Cscale.Wscy1,Cscale.frect[3],Cscale.Wyofset1); */
+
+		  /* 		  printf("ALORS-> index_vertex = %d\n",index_vertex); */
+
+		  /* 		  fflush(NULL); */
+	  
+		  sciDrawObj(sciGetCurrentFigure());
+
+		  C2F(dr)("xset","pixmap",&pFIGURE_FEATURE(sciGetCurrentFigure())->pixmap,PI0,PI0,PI0,PI0,PI0,PD0,
+			  PD0,PD0,PD0,0L,0L);
+
+		  GlobalFlag_Zoom3dOn=0;
+
+		  SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
+		  
+
+		  /* 		  printf("x_pixel[0] = %d \t y_pixel[0] = %d\n",x_pixel[0],y_pixel[0]); */
+		  /* 		  printf("x_pixel[1] = %d \t y_pixel[1] = %d\n",x_pixel[1],y_pixel[1]); */
+		  
+		  /* 		  printf("xmin = %d \t ymin = %d\n",section3d[0],section3d[1]); */
+		  /* 		  printf("xmax = %d \t ymax = %d\n",section3d[2],section3d[3]); */
+
+		  for(i=0;i<index_vertex;i++)
+		    {
+		      int xp,yp;
+		      double x,y,z;
+		      
+		      if(GetVerticesAt(pSUBWIN_FEATURE(psousfen)->vertices_list, i, &xp, &yp, &x, &y, &z)==-1) 
+			break; /* all the vertices have been scanned inside the current psubwin */
+		      
+		      if(xp >= section3d[0] && xp <= section3d[2] && yp >= section3d[1] && yp <= section3d[3])
+			{
+			  /* 			  printf("ICI => xp = %d \t yp = %d et x = %lf \t y = %lf \t z = %lf\n",xp,yp,x,y,z); */
+			  if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+			  if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+			  if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+			}
+		    }
+		    
+		  if(ppsubwin->axes.reverse[0] == TRUE) {
+		    double tmp;
+		    tmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmin);
+		    xmin = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmax);
+		    xmax = tmp;
+		  }
+		  
+		  if(ppsubwin->axes.reverse[1] == TRUE) {
+		    double tmp;
+		    tmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymin);
+		    ymin = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymax);
+		    ymax = tmp;
+		  }
+		  
+		  if(ppsubwin->axes.reverse[2] == TRUE) {
+		    double tmp;
+		    tmp = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmin);
+		    zmin = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmax);
+		    zmax = tmp;
 		  }
 
 
-		/** regraduation de l'axe des axes ***/
-		fmin=  bbox[0];
-		fmax=  bbox[2];
-		if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
-		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;}
-		else {
-		  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
+		  /* 		  printf("xmin = %lf \t xmax = %lf\n",xmin,xmax); */
+		  /* 		  printf("ymin = %lf \t ymax = %lf\n",ymin,ymax); */
+		  /* 		  printf("zmin = %lf \t zmax = %lf\n\n",zmin,zmax); */
+		  /* 		  fflush(NULL); */
+		  
+		  FreeVertices(psousfen);
+
+
+		  /* case where no vertex has been selected : */
+		  /* no zoom is performed */
+		  if(xmin > xmax || ymin > ymax || zmin > zmax)
+		    {
+		      xmin = ppsubwin->SRect[0];
+		      xmax = ppsubwin->SRect[1];
+		      
+		      ymin = ppsubwin->SRect[2];
+		      ymax = ppsubwin->SRect[3];
+		      
+		      zmin = ppsubwin->SRect[4];
+		      zmax = ppsubwin->SRect[5];
+		    }
+
+		  /* 	  FREE(ppsubwin->value_xm); ppsubwin->value_xm = (int *) NULL; */
+		  /* 		  FREE(ppsubwin->value_ym); ppsubwin->value_ym = (int *) NULL; */
+		  /* 		  FREE(ppsubwin->value_x); ppsubwin->value_x = (double *) NULL; */
+		  /* 		  FREE(ppsubwin->value_y); ppsubwin->value_y = (double *) NULL; */
+		  /* 		  FREE(ppsubwin->value_z); ppsubwin->value_z = (double *) NULL; */
+	      
+		  if (!(sciGetZooming(psousfen)))
+		    sciSetZooming(psousfen, 1);
+	      
+
+		  /* case where a 3d rotated plot2d is zoomed */
+		  if(fabs(zmin) < epsilon && fabs(zmax) < epsilon){
+		    zmin = pSUBWIN_FEATURE (psousfen)->SRect[4];
+		    zmax = pSUBWIN_FEATURE (psousfen)->SRect[5];
+		  }
+		  
+		  pSUBWIN_FEATURE (psousfen)->ZRect[0] = xmin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[2] = xmax;
+
+		  pSUBWIN_FEATURE (psousfen)->ZRect[1] = ymin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[3] = ymax;
+
+		  pSUBWIN_FEATURE (psousfen)->ZRect[4] = zmin;
+		  pSUBWIN_FEATURE (psousfen)->ZRect[5] = zmax;
+		
+ 		}
+	    }
+
+
+
+
+
+
+
+	    sciSetSelectedSubWin(psousfen);
+	    ppsubwin = pSUBWIN_FEATURE (psousfen);
+
+	    if ( pSUBWIN_FEATURE (psousfen)->is3d == FALSE) {
+	      
+	      box1[0]= Cscale.WIRect1[0];
+	      box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+	      box1[1]= Cscale.WIRect1[1];
+	      box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+	      
+	      if (sciIsAreaZoom(box,box1,section))
+		{
+		  bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));
+		  bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
+		  bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3]));
+		  bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3]));
+		  
+		  if (!(sciGetZooming(psousfen)))
+		    sciSetZooming(psousfen, 1);
+		  
+		  /** regraduation de l'axe des axes ***/
+		  fmin=  bbox[0];
+		  fmax=  bbox[2];
+		  if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
+		    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;}
+		  else {
+		    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
+		  }
+		  
+		  
+		  fmin= bbox[1]; 
+		  fmax= bbox[3];
+		  if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
+		    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+		    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;}
+		  else {
+		    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
+		    pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;}
 		}
-
-
-		fmin= bbox[1]; 
-		fmax= bbox[3];
-		if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
-		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;}
-		else {
-		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;}
-	      }
+	    }
 	  }
 	psonstmp = psonstmp->pnext;
       }
@@ -1323,25 +1471,26 @@ int zoom_box(double *bbox)
 int zoom()
 {
   double bbox[4];
+  int x_pixel[2], y_pixel[2];
 
   if (version_flag() == 0){
-    if (zoom_get_rectangle(bbox)==1) return 1;
+    if (zoom_get_rectangle(bbox,x_pixel,y_pixel)==1) return 1;
   }
   else {
     integer ierr;
     char driver[4];
  
-     GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+    GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     if (strcmp("Rec",driver) != 0)
       {
 	Scistring("\n Use the Rec driver to zoom " );
 	return 0;
       }
-    ierr=zoom_get_rectangle(bbox);
+    ierr=zoom_get_rectangle(bbox,x_pixel,y_pixel);
     C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     if (ierr != 0) return 1;
- }
-    zoom_box(bbox);
+  }
+  zoom_box(bbox,x_pixel,y_pixel);
   return 0;
 }
 
@@ -1368,26 +1517,26 @@ extern void unzoom()
       C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       if (version_flag() == 0){
-         /***** 02/10/2002 ****/
+	/***** 02/10/2002 ****/
         psonstmp = sciGetSons (sciGetCurrentFigure());
         while (psonstmp != (sciSons *) NULL)
           {
-           if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-             {
+	    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
+	      {
                 psousfen= (sciPointObj *)psonstmp->pointobj;
         	if (sciGetZooming(psousfen))
-	            {
-		      sciSetZooming(psousfen, 0);
+		  {
+		    sciSetZooming(psousfen, 0);
 		    /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
-/* 		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
-/* 		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
-/* 		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
+		    /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
+		    /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
+		    /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
 		      
-		      pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
-		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
-		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
-		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
-		    }
+		    pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
+		    pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
+		    pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
+		    pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
+		  }
 
 		/** regraduation de l'axe des axes ***/
 		fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
@@ -1400,16 +1549,16 @@ extern void unzoom()
 		C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
 		/*****/
-               }
-              psonstmp = psonstmp->pnext;
-            }
+	      }
+	    psonstmp = psonstmp->pnext;
+	  }
 
-          sciSetReplay(1);
-	  sciDrawObj(sciGetCurrentFigure());
-	  sciSetReplay(0);
-    }
-   else
-    Tape_ReplayUndoScale("v",&ww);
+	sciSetReplay(1);
+	sciDrawObj(sciGetCurrentFigure());
+	sciSetReplay(0);
+      }
+      else
+	Tape_ReplayUndoScale("v",&ww);
     }
 }
 
@@ -1419,100 +1568,35 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
   integer min,max,puiss,deux=2,dix=10;
 
   if (sciGetEntityType (psousfen) == SCI_SUBWIN) {
-      if (sciGetZooming(psousfen)) 	{
-	  sciSetZooming(psousfen, 0);
-	/*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
-/* 	  pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
-/* 	  pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
-/* 	  pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
+    if (sciGetZooming(psousfen)) 	{
+      sciSetZooming(psousfen, 0);
+      /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
+      /* 	  pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
+      /* 	  pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
+      /* 	  pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
 
-	  pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
-	  pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
-	  pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
-	  pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
+      pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
+      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
+      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
+      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
 
-	}
-
-      /** regraduation de l'axe des axes ***/
-      fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
-      fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
-      C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-      pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-
-      fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
-      fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
-      C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-      pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-
-      sciSetReplay(1);
-      sciDrawObj(sciGetCurrentFigure());
-      sciSetReplay(0);
     }
-}
 
+    /** regraduation de l'axe des axes ***/
+    fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
+    fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
+    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
 
-/**
-  Win32, warning when using xor mode
-  colors are changed and black is turned to white
-  so we must use an other pattern than the black one
-  inside dbox
-  **/
+    fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
+    fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
+    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
 
-static void zoom_rect(x0, yy0, x, y)
-     double x0;
-     double yy0;
-     double x;
-     double y;
-{
-  double xi,yi,w,h;
-
-#ifdef WIN32
-  integer verbose=0,pat,pat1=3,narg;
-  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif
-
-/*   printf("x = %lf\t y = %lf\n",x,y); */
-/*   fflush(NULL); */
-
-  if(version_flag() == 0)
-    {
-      sciPointObj * tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE(tmpsousfen);
-      
-      if(ppsubwin->axes.reverse[0] == FALSE)
-	xi=Min(x0,x);
-      else
-	xi=Max(x0,x);
-      
-      if(ppsubwin->axes.reverse[1] == FALSE)
-	yi=Max(yy0,y);
-      else
-	yi=Min(yy0,y);
-      
-      w=Abs(x0-x);
-      h=Abs(yy0-y);
-    }
-  else
-    {
-      xi=Min(x0,x);
-      w=Abs(x0-x);
-      yi=Max(yy0,y);
-      h=Abs(yy0-y);
-    }
-  
-  
-  
-/*   printf("x0= %lf \t  xi= %lf\n",x0,xi); */
-/*   printf("yy0= %lf \t yi= %lf\n",yy0,yi); */
-/*   fflush(NULL); */
-
-
-
-  C2F(dr1)("xrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&xi,&yi,&w,&h,0L,0L);
-#ifdef WIN32
-  C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif
+    sciSetReplay(1);
+    sciDrawObj(sciGetCurrentFigure());
+    sciSetReplay(0);
+  }
 }
 
 /* 
@@ -1537,23 +1621,23 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
 
   /** 18/06/2002 **/
   if (version_flag() == 0){
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      for (i=0;i<4 ; i++)
-	pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];}
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    for (i=0;i<4 ; i++)
+      pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];}
      
     
   if (logf[0] == 'n') 
     { 
       if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->tight_limits == FALSE))
-         {
+	{
           C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
 	  FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
-         }
+	}
         
       else
-      {
-         C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
-      }
+	{
+	  C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
+	}
     }
   else
     {
@@ -1563,15 +1647,15 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
     }
   if (logf[1] == 'n') 
     {
-     if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->tight_limits == FALSE))
-         {
-            C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
-            FRectI[1]=FRectO[1];FRectI[3]=FRectO[3];
-         } 
-     else
-      {
-         C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
-      }
+      if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->tight_limits == FALSE))
+	{
+	  C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
+	  FRectI[1]=FRectO[1];FRectI[3]=FRectO[3];
+	} 
+      else
+	{
+	  C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
+	}
     }
   else
     {
@@ -1719,5 +1803,130 @@ double YPi2R(int y)
   sciprint("Error in YScale\n");
   return -9000;
 }
+
+
+
+
+double Zoom3d_XPi2R(int x)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+      
+      if(ppsubwin->axes.reverse[0]==TRUE) /* difference is HERE */
+	return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+      else
+	return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+    }
+  
+
+  sciprint("Error in Zoom3d_XScale\n");
+  return -9000;
+}
+
+
+double Zoom3d_YPi2R(int y)
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+      
+      if(ppsubwin->axes.reverse[1]==TRUE) /* difference is HERE */
+	return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+      else
+	return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+    }
+  
+  
+  sciprint("Error in Zoom3d_YScale\n");
+  return -9000;
+}
+
+
+
+
+
+
+
+/**
+   Win32, warning when using xor mode
+   colors are changed and black is turned to white
+   so we must use an other pattern than the black one
+   inside dbox
+**/
+
+static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
+{
+  int closeflag=0;
+  int cinq=5;
+  
+  int xm[5], ym[5];
+
+  if(xpix_ini < xpix_fin){
+    xm[0] = xpix_ini;
+    xm[1] = xpix_ini;
+    xm[4] = xpix_ini;
+
+    xm[2] = xpix_fin;
+    xm[3] = xpix_fin;
+  }
+  else{
+    xm[0] = xpix_fin;
+    xm[1] = xpix_fin;
+    xm[4] = xpix_fin;
+
+    xm[2] = xpix_ini;
+    xm[3] = xpix_ini;
+  }
+
+  if(ypix_ini < ypix_fin){
+    ym[0] = ypix_ini;
+    ym[3] = ypix_ini;
+    ym[4] = ypix_ini;
+
+    ym[1] = ypix_fin;
+    ym[2] = ypix_fin;
+  }
+  else{
+    ym[0] = ypix_fin;
+    ym[3] = ypix_fin;
+    ym[4] = ypix_fin;
+    
+    ym[1] = ypix_ini;
+    ym[2] = ypix_ini;
+  }
+  
+  
+  
+#ifdef WIN32
+  integer verbose=0,pat,pat1=3,narg;
+  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#endif
+
+
+  /*   C2F(dr1)("xrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&xi,&yi,&w,&h,0L,0L); */
+
+
+  C2F (dr) ("xlines", "xv", &cinq, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+
+
+
+#ifdef WIN32
+  C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#endif
+}
+
+
+
+
 
 

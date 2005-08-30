@@ -187,6 +187,19 @@ typedef enum
 sciEntityType;	
 
 
+typedef struct _Vertices 
+{
+  int value_xm;
+  int value_ym;
+  double value_x;
+  double value_y;
+  double value_z;
+  
+  struct _Vertices * pNext;
+} 
+Vertices;
+
+
 /**@name sciPointObj
  * Used to determine the feature and the type of the entity
  */
@@ -716,7 +729,7 @@ typedef struct
   double ARect[4]; /* margins*/
   int zoomy_kp;
   /* ZRect_kp is now useless : when unzooming we deal with SRect values */
-  double ZRect[4]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
+  double ZRect[6]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
 
   char logflags[3]; /* Z has a logflag now F.Leray 03.11.04 */
   int grid[3];
@@ -769,6 +782,8 @@ typedef struct
   int XGradMostOnBottom;
 
   BOOL firsttime;
+
+  Vertices * vertices_list; /* F.Leray 30.08.05 : stores the (x,y) coord. in term of user data coord. + pixel value on screen */
 }/** */
 sciSubWindow;  
 

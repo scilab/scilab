@@ -777,6 +777,15 @@ void xclick_1(char *fname, char *str, integer *ibutton, integer *iflag, integer 
   if (*ibutton != -100) C2F(echelle2d)(x,y,&x1,&yy1,&n,&n,"i2f",3L);
 }
 /*-----------------------------------------------------------------------------
+ * click2  returns also the value in pixels (usefull for 3d zoom)
+ *-----------------------------------------------------------------------------*/
+void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
+{ 
+  integer n=1;
+  C2F(dr)(fname,str,ibutton,x1,yy1,iflag,istr,x7,PD0,PD0,dx3,dx4,lx0,lx1);
+  if (*ibutton != -100) C2F(echelle2d)(x,y,x1,yy1,&n,&n,"i2f",3L);
+}
+/*-----------------------------------------------------------------------------
  *  click_any
  *-----------------------------------------------------------------------------*/
 void xclick_any_1(char *fname, char *str, integer *ibutton, integer *iwin, integer *iflag, integer *x5, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
@@ -800,6 +809,17 @@ void xgetmouse_1(char *fname, char *str, integer *ibutton, integer *iflag, integ
   integer x1,yy1,n=1;
   C2F(dr)(fname,str,ibutton,&x1,&yy1,iflag,x6,x7,PD0,PD0,dx3,dx4,lx0,lx1);
   if (*ibutton != -100) C2F(echelle2d)(x,y,&x1,&yy1,&n,&n,"i2f",3L);
+}
+
+/*-----------------------------------------------------------------------------
+ *   xgetmouse2 returns also the value in pixels (usefull for 3d zoom)
+ *-----------------------------------------------------------------------------*/
+void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
+{
+  integer n=1;
+  C2F(dr)(fname,str,ibutton,x1,yy1,iflag,x6,x7,PD0,PD0,dx3,dx4,lx0,lx1);
+  
+  if (*ibutton != -100) C2F(echelle2d)(x,y,x1,yy1,&n,&n,"i2f",3L);
 }
 
 /*-----------------------------------------------------------------------------

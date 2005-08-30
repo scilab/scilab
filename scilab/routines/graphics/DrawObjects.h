@@ -172,5 +172,8 @@ extern int DrawMark_FullTriangleLeft(int xmi, int ymi, int size, int foreground,
 extern int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int background);
 extern int GetDPIFromDriver(int * DPI);
 extern int ChoixFormatForOneGrad(char *c_format, double grad);
-
+extern int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, double *zmin, double *xmax, double *ymax, double *zmax);
+extern int GetVerticesAt(Vertices *vertices_list, int index, int *xm, int *ym, double *x, double *y, double *z);
+extern int RemoveNext(Vertices *pCurrent);
+extern int FreeVertices(sciPointObj * psubwin);
 #endif /* __SCI_DRAWINGS__ */

@@ -149,7 +149,7 @@ extern void C2F(ellipse2d)  __PARAMS((double *,integer *,integer *,char *));
 extern void C2F(rect2d)  __PARAMS((double *,integer *,integer *,char *)); 
 extern void C2F(axis2d)  __PARAMS((double *,double *,double *,integer *,double *)); 
 extern int zoom  __PARAMS((void)); 
-extern int zoom_get_rectangle    __PARAMS((double bbox[]));
+extern int zoom_get_rectangle    __PARAMS((double bbox[], int *x_pixel, int *y_pixel));
 
 extern void unzoom  __PARAMS((void)); 
 extern void Gr_Rescale  __PARAMS((char *,double *,integer *,integer *,integer *,integer *)); 
