@@ -6923,7 +6923,18 @@ sciDrawObj (sciPointObj * pobj)
 		 pSUBWIN_FEATURE (pobj)->ARect); 
 
       if (pSUBWIN_FEATURE (pobj)->is3d) 
-	{  /* 3D Coordinates */ /* verifier si c'est encore utile SS */
+	{  
+	  /* to avoid re-drawing on screen during computation of the vertices (at least)... */
+	  /* see zoom_box function in Plo2dEch.c*/
+	  if(GlobalFlag_Zoom3dOn == 1)
+	    {
+	      int un=1;
+	      C2F(dr)("xset","pixmap",&un,PI0,PI0,PI0,PI0,PI0,PD0,
+		      PD0,PD0,PD0,0L,0L);
+	      C2F (dr) ("xset","wwpc", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
+	    }
+	  
+	  /* 3D Coordinates */ /* verifier si c'est encore utile SS */
 	  /*To have directly all the possible ISOVIEW Modes*/
 	  isoflag = (long)(pSUBWIN_FEATURE (pobj)->axes.flag[1]+1)/2; 
 	 

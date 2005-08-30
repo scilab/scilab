@@ -1189,50 +1189,20 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
       {
 	if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
 	  {
-	    /* 	    int i; */
 	    psousfen= (sciPointObj *)psonstmp->pointobj;
-	    /* 	    printf("******* psousfen = %p\n",psousfen); */
-	    /* 	    printf("11111111111111111111111\n"); */
-	    /* 	    for(i=0;i<4;i++) */
-	    /* 	      printf("pSUBWIN_FEATURE (psousfen)->WRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->WRect[i]); */
-	    
-	    /* 	    for(i=0;i<4;i++) */
-	    /* 	      printf("pSUBWIN_FEATURE (psousfen)->FRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->FRect[i]); */
-	    /* 	    printf("11111111111111111111111\n"); */
-	    
-	    
 	    if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
-	      /* 	      double TRX_value[2], TRY_value[2]; */
 	      double xmin, ymin;
 	      double xmax, ymax;
 	      double zmin, zmax;
 	      sciSons *psonstmp = (sciSons *) NULL;
 	      double epsilon = 1e-16;
-	      int pixmap_mode=0;
 
 	      int box3d[4];
 	      int section3d[4];
 
 	      sciSetSelectedSubWin(psousfen);
 	      ppsubwin = pSUBWIN_FEATURE (psousfen);
-	      /* 	      printf("******* psousfen = %p\n",psousfen); */
-	      /* 	      printf("22222222222222222222222\n"); */
-	      /* 	      for(i=0;i<4;i++) */
-	      /* 		printf("pSUBWIN_FEATURE (psousfen)->WRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->WRect[i]); */
-	      
-	      /* 	      for(i=0;i<4;i++) */
-	      /* 		printf("pSUBWIN_FEATURE (psousfen)->FRect[%d] = %lf\n",i,pSUBWIN_FEATURE (psousfen)->FRect[i]); */
-	      /* 	      printf("22222222222222222222222\n"); */
-	      
-	      /* 	      printf("x_pixel[0] = %d \t y_pixel[0] = %d\n",x_pixel[0],y_pixel[0]); */
-	      /* 	      printf("x_pixel[1] = %d \t y_pixel[1] = %d\n",x_pixel[1],y_pixel[1]); */
-
-	      /* 	      TRX_value[0] = XPixel2Double(x_pixel[0]); */
-	      /* 	      TRY_value[0] = YPixel2Double(y_pixel[0]); */
-	      
-	      /* 	      TRX_value[1] = XPixel2Double(x_pixel[1]); */
-	      /* 	      TRY_value[1] = YPixel2Double(y_pixel[1]); */
-	      
+		      
 	      box3d[0] = x_pixel[0];
 	      box3d[2] = x_pixel[1];
 	      box3d[1] = y_pixel[0];
@@ -1262,12 +1232,8 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		  GlobalFlag_Zoom3dOn=1;
 	      
 		  psonstmp = sciGetLastSons (psousfen);
-	      
-		  /* to avoid re-drawing on screen (at least)... */
-		  pixmap_mode = pFIGURE_FEATURE(pfigure)->pixmap;
-		  pFIGURE_FEATURE(pfigure)->pixmap = 1;
-		  sciDrawObj(pfigure);
-		  pFIGURE_FEATURE(pfigure)->pixmap = pixmap_mode;
+		  
+		  sciDrawObj(psousfen); /* see GlobalFlag_Zoom3dOn impact flag in sciDrawObj & trans3d functions */
 		  
 		  GlobalFlag_Zoom3dOn=0;
 
@@ -1318,14 +1284,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		    zmax = tmp;
 		  }
 
-
-		  /* 		  printf("xmin = %lf \t xmax = %lf\n",xmin,xmax); */
-		  /* 		  printf("ymin = %lf \t ymax = %lf\n",ymin,ymax); */
-		  /* 		  printf("zmin = %lf \t zmax = %lf\n\n",zmin,zmax); */
-		  /* 		  fflush(NULL); */
-		  
 		  FreeVertices(psousfen);
-
 
 		  /* case where no vertex has been selected : */
 		  /* no zoom is performed */
@@ -1340,12 +1299,6 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		      zmin = ppsubwin->SRect[4];
 		      zmax = ppsubwin->SRect[5];
 		    }
-
-		  /* 	  FREE(ppsubwin->value_xm); ppsubwin->value_xm = (int *) NULL; */
-		  /* 		  FREE(ppsubwin->value_ym); ppsubwin->value_ym = (int *) NULL; */
-		  /* 		  FREE(ppsubwin->value_x); ppsubwin->value_x = (double *) NULL; */
-		  /* 		  FREE(ppsubwin->value_y); ppsubwin->value_y = (double *) NULL; */
-		  /* 		  FREE(ppsubwin->value_z); ppsubwin->value_z = (double *) NULL; */
 	      
 		  if (!(sciGetZooming(psousfen)))
 		    sciSetZooming(psousfen, 1);
@@ -1368,13 +1321,6 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		
  		}
 	    }
-
-
-
-
-
-
-
 	    sciSetSelectedSubWin(psousfen);
 	    ppsubwin = pSUBWIN_FEATURE (psousfen);
 
