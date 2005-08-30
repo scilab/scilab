@@ -1,6 +1,7 @@
 function tests=testslist()
   tests = ['parse.tst'
 	   'clause.tst';
+	   'trycatch.tst';
 	   'comment.tst';
 	   'comand.tst';
 	   'global.tst';
