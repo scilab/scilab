@@ -89,6 +89,7 @@ c     rhs analyzed
 c     invalid syntax
       err=lct(8)
       call error(37)
+      lct(8)=1
       return
 
  60   if(comp(1).ne.0) then 
