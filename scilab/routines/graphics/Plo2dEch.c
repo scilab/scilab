@@ -1173,17 +1173,17 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
   if (version_flag() == 0){
     double fmin,fmax,lmin,lmax;
     sciPointObj *psousfen,*tmpsousfen;
+    sciPointObj * pfigure = NULL;
     sciSons *psonstmp;
     sciSubWindow * ppsubwin = NULL; /* debug */
-
 
     box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
     box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
     box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
     box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
 
-
-    tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
+    pfigure = sciGetCurrentFigure();
+    tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (pfigure);
     psonstmp = sciGetSons (sciGetCurrentFigure());
     while (psonstmp != (sciSons *) NULL)
       {
@@ -1206,10 +1206,10 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 	      double xmin, ymin;
 	      double xmax, ymax;
 	      double zmin, zmax;
-	      int un=1;
 	      sciSons *psonstmp = (sciSons *) NULL;
 	      double epsilon = 1e-16;
-	      
+	      int pixmap_mode=0;
+
 	      int box3d[4];
 	      int section3d[4];
 
@@ -1264,34 +1264,11 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		  psonstmp = sciGetLastSons (psousfen);
 	      
 		  /* to avoid re-drawing on screen (at least)... */
-		  C2F(dr)("xset","pixmap",&un,PI0,PI0,PI0,PI0,PI0,PD0,
-			  PD0,PD0,PD0,0L,0L);
+		  pixmap_mode = pFIGURE_FEATURE(pfigure)->pixmap;
+		  pFIGURE_FEATURE(pfigure)->pixmap = 1;
+		  sciDrawObj(pfigure);
+		  pFIGURE_FEATURE(pfigure)->pixmap = pixmap_mode;
 		  
-		  /* 	  while (psonstmp != (sciSons *) NULL) { */
-		  /* 		    sciDrawObj (psonstmp->pointobj); */
-		  /* 		    psonstmp = psonstmp->pprev; */
-		  /* 		  } */
-
-		  /* 		  sciDrawObj(sciGetCurrentFigure()); */
-		  
-
-		  /* 		  printf("----------> nb_vertices reel : %d\n",index_vertex); */
-		  
-		  /* 		  printf("Plo2dEch.c apres scidrawobj\n"); */
-		  /* 		  printf("Cscale.Wscx1 = %lf \t Cscale.frect[0] = %lf \t Cscale.Wxofset1 = %lf\n", */
-		  /* 			 Cscale.Wscx1,Cscale.frect[0],Cscale.Wxofset1); */
-		  /* 		  printf("Cscale.Wscy1 = %lf \t Cscale.frect[3] = %lf \t Cscale.Wyofset1 = %lf\n", */
-		  /* 			 Cscale.Wscy1,Cscale.frect[3],Cscale.Wyofset1); */
-
-		  /* 		  printf("ALORS-> index_vertex = %d\n",index_vertex); */
-
-		  /* 		  fflush(NULL); */
-	  
-		  sciDrawObj(sciGetCurrentFigure());
-
-		  C2F(dr)("xset","pixmap",&pFIGURE_FEATURE(sciGetCurrentFigure())->pixmap,PI0,PI0,PI0,PI0,PI0,PD0,
-			  PD0,PD0,PD0,0L,0L);
-
 		  GlobalFlag_Zoom3dOn=0;
 
 		  SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
