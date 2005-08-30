@@ -33,6 +33,7 @@ static int c_n1 = -1;
 #define great  60
 #define dot  51
 #define name  1
+#define num  0
 #define cmt  2
 #define insert  2
 #define extrac  3
@@ -127,6 +128,8 @@ int C2F(parse)()
   static int ans[6] = { 672929546,673720360,673720360,673720360,
 			    673720360,673720360 };
   static int varargout[6] = { 169544223,504893467,673720349,673720360,
+				  673720360,673720360 };
+  static int catch[6] = {203229708,673720337,673720360,673720360,
 				  673720360,673720360 };
 
   static int *Ids     = C2F(recu).ids-nsiz-1;
@@ -786,8 +789,24 @@ int C2F(parse)()
   if (C2F(com).sym == semi || C2F(com).sym == comma || C2F(com).sym == eol|| C2F(com).sym == cmt) {
     goto L70;
   }
-  SciError(276);
-  goto L98;
+  if (Rstk[Pt - Lhs] == 808) {/* syntax error while in try */
+    /* set back the standard error handling ++++*/
+    Pt=Pt-Lhs;
+    C2F(errgst).errct = Ids[2 + Pt * nsiz]; 	
+    C2F(errgst).errpt = Ids[5 + Pt * nsiz]; 
+    /* forgot the catch error */
+    C2F(errgst).err1 = Ids[3 + Pt * nsiz];
+    C2F(errgst).err2 = Ids[4 + Pt * nsiz];
+    C2F(com).comp[0] = 0;
+    Lpt[2] = Lpt[3]+1;
+    SciError(276);
+    Pt = Pt - 1;
+    goto L98;
+  } else {
+    Lpt[2] = Lpt[3]+1;
+    SciError(276);
+    goto L98;
+  }
 
   /*     store results */
   /* ------------------- */
@@ -936,12 +955,8 @@ int C2F(parse)()
   C2F(com).fin = 0;
   p = 0;
   r = 0;
-  if (Pt > 0) {
-    p = Pstk[Pt];
-  }
-  if (Pt > 0) {
-    r = Rstk[Pt];
-  }
+  if (Pt > 0) p = Pstk[Pt];
+  if (Pt > 0) r = Rstk[Pt];
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," finish  pt:%d rstk(pt):%d  pstk(pt):%d lpt(1): %d niv: %d macr:%d, paus:%d",
 	    Pt,r,p, Lpt[1],C2F(recu).niv,C2F(recu).macr,C2F(recu).paus);
@@ -949,15 +964,18 @@ int C2F(parse)()
   }
   if (C2F(errgst).err1 != 0) {
     /* a catched error has occured */
-    if (Ids[1 + (Pt - 1) * nsiz] != 0) {
+    if (r == 808) { 
+      /* in try instructions */
+      goto L80;
+    } else if (Ids[1 + (Pt - 1) * nsiz] != 0) {
       /* execution is explicitly required to be stopped */
-      if (Rstk[Pt] == 502 && Rstk[Pt - 1] == 903) {
+      if (r == 502 && Rstk[Pt - 1] == 903) {
 	/* in an execstr(...,'errcatch') instruction */
 	goto L88;
-      } else if (Rstk[Pt] == 502 && Rstk[Pt - 1] == 909) {
+      } else if (r == 502 && Rstk[Pt - 1] == 909) {
 	/* in an exec(function,'errcatch') instruction */
 	goto L88;
-      } else if (Rstk[Pt] == 503 && Rstk[Pt - 1] == 902) {
+      } else if (r == 503 && Rstk[Pt - 1] == 902) {
 	/* in an exec(file,'errcatch') instruction */
 	goto L88;
       }
@@ -1418,20 +1436,30 @@ int C2F(parse)()
       C2F(com).comp[0] = 0;
       goto L12;
     }
-    /*     added 16/04/97 */
-    if (C2F(errgst).err1 != 0 && Rstk[Pt] == 502) {
-      /*     catched error while compiling */
+    if (C2F(errgst).err1 != 0 && Rstk[Pt] == 502) { /* catched error while compiling */
       goto L88;
     }
   }
-  /*     error in an external */
-  if (C2F(recu).niv > 0) {
+ 
+  if (C2F(recu).niv > 0) { /*     error in an external */
     C2F(com).fun = 99;
     return 0;
-  } else {
-    /*     error in a  pause */
+  } 
+  else if (C2F(recu).paus>0) {/*     error in a  pause */
     C2F(com).comp[0] = 0;
     goto L5;
+  }
+  else if (Err>0) {
+    Pt=0;
+    C2F(errgst).errct=-1;
+    C2F(errgst).errpt=0;
+    C2F(com).comp[0] = 0;
+    goto L5;
+  }
+  else
+    {
+      C2F(com).comp[0] = 0;
+      goto L5;
   }
 
  L99:

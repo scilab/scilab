@@ -44,12 +44,12 @@ c
          call error(34)
          return
       endif
-      go to (02,30,30,55,30,55,55),r
+      go to (02,30,30,55,30,55,55,70,80),r
 c     
  01   r = rstk(pt)
       ir=r/100
       if(ir.ne.8) goto 99
-      goto(05,15,40,45,55,65,46),r-800
+      goto(05,15,40,45,55,65,46,75),r-800
       goto 99
 c     
 c     for
@@ -77,7 +77,7 @@ c     .  for matlab compatiblity  for (k=1:n)
       call getsym
       if(comp(1).ne.0) then
          rstk(pt) = 800
-         call compcl
+         call compcl(0)
          if(err.gt.0) return
       endif
       rstk(pt) = 801
@@ -86,7 +86,7 @@ c     *call* expr
       return
  05   continue
       if(err1.gt.0) goto 20
-      if(comp(1).ne.0) call compcl
+      if(comp(1).ne.0) call compcl(0)
       if(err.gt.0) return
       if (pstk(pt-1).eq.1) then
 c     .  for matlab compatiblity: for (k=1:n)
@@ -149,7 +149,7 @@ c     .  remove variable associated to the expression and skip to the end
          goto 20
       endif
       if(comp(1).eq.0) goto 10
-      call compcl
+      call compcl(0)
       if(err.gt.0) return
 c     
 c     fin for
@@ -183,7 +183,7 @@ c     .  while, look for the end to be sure all lines are loaded
       char1 = blank
       call getsym
       rstk(pt)=803
-      if(comp(1).ne.0) call compcl
+      if(comp(1).ne.0) call compcl(0)
       if(err.gt.0) return
       goto 37
  36   rstk(pt) = 803
@@ -221,7 +221,7 @@ c     looking for the "case" keyword
       if(sym.eq.name.and.eqid(syn,cas)) then
          rstk(pt)=807
          if(comp(1).ne.0) then
-            call compcl
+            call compcl(0)
             if(err.gt.0) return
          endif
       elseif(lin(lpt(3)-2).eq.blank) then
@@ -306,7 +306,7 @@ c     comparaison ...
          if(eqid(syn,ennd)) goto 66
       endif
  48   rstk(pt)=804
-      call  compcl
+      call  compcl(0)
       if(err.gt.0) return
 c     
 c     then
@@ -323,7 +323,7 @@ c     *call* parse
             if(err.gt.0) return
          endif
       else
-         call compcl
+         call compcl(0)
          if(err.gt.0) return
          if(eqid(syn,else)) goto 60
          if(eqid(syn,elsif)) goto 36
@@ -338,7 +338,7 @@ c     ---------
 c     *call parse*
       return
  65   if(comp(1).ne.0) then
-         call compcl
+         call compcl(0)
          if(err.gt.0) return
       endif
       goto 66
@@ -349,6 +349,129 @@ c------------------------------
       pt=pt-1
       icall=7
       return
+c     
+c     try
+c---------
+ 70   continue
+      if ( eptover(1,psiz)) return
+      rstk(pt)=808
+      if(comp(1).ne.0) then
+         call compcl(1)
+         if(err.gt.0) return
+      else
+c     .  set error control mode
+         pstk(pt)=top
+         ids(2,pt)=errct
+         ids(3,pt)=err2
+         ids(4,pt)=err1
+         ids(5,pt)=errpt
+         ids(6,pt)=(lct(4)+100)+10000*sym
+         errpt=pt
+         ids(1,pt)=1
+         imode=1
+         imess=1
+         errct=-((8*imess+imode)*100000+1)
+      endif
+      
+      ic=char1
+      isym=sym
+      call getsym
+c     end of line reached?
+      if(sym.eq.eol.or.sym.eq.cmt) then
+         if(sym.eq.cmt) call parsecomment
+         if(comp(1).ne.0) call seteol()
+c    .    get the following line
+         if(lpt(4).eq.lpt(6))  then
+            call getlin(1,0)
+         else
+            lpt(4)=lpt(4)+1
+            char1=blank
+         endif
+      else
+c     ones symbol back
+         lpt(4)=lpt(3)
+         sym=isym
+         char1=ic
+      endif
+      icall=7
+c     *call* parse (for the try instructions)
+      return
+ 75   continue
+
+c     end of try reached or an error occurred
+      if (max(err2,err1).gt.0) then
+c     .  an error occured in the try part 
+c     .  skip remaining instructions up to catch or end keywords
+         call skpins(0)
+         errct=ids(2,pt)
+         err2=ids(3,pt)
+         err1=ids(4,pt)
+         errpt=ids(5,pt)
+         sym=ids(6,pt)/10000
+         lct(4)=ids(6,pt)-10000*sym-100
+         if(eqid(syn,ennd)) then
+c     .     no catch keyword  "try catch" finished
+            goto 76
+         endif
+c     .  execute catch  instructions
+         icall=7
+c     * call* parse
+         return
+      endif
+
+      if(comp(1).eq.0) then
+         errct=ids(2,pt)
+         err2=ids(3,pt)
+         err1=ids(4,pt)
+         errpt=ids(5,pt)
+         sym=ids(6,pt)/10000
+         lct(4)=ids(6,pt)-10000*sym-100
+      else
+         call compcl(3)
+         if(err.gt.0) return
+      endif
+ 76   pt=pt-1
+
+      icall=7
+c     *call* parse
+      return
+
+c     
+c     catch
+c---------
+ 80   continue
+      if(rstk(pt).ne.808) then
+         call error(34)
+         return
+      endif
+      if(comp(1).ne.0) then
+         call compcl(2)
+         if(err.gt.0) return
+         icall=7
+c     *call* parse
+         return
+      endif
+
+C       if (max(err2,err1).gt.0) then
+C c     .  an error occured in the try part, execute next instructions
+C          errct=ids(2,pt)
+C          err2=ids(3,pt)
+C          err1=ids(4,pt)
+C          errpt=ids(5,pt)
+C          icall=7
+
+C c     *call* parse
+C          return
+C       else
+
+c     .  no error occured in the try part, skip next instructions
+         if(.not.eqid(syn,ennd)) then
+            call skpins(1)
+            if(err.gt.0) return
+            goto 75
+         endif
+C       endif
+
 c
  99   call error(22)
       if (err .gt. 0) return

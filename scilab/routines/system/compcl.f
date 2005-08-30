@@ -1,4 +1,4 @@
-      subroutine compcl
+      subroutine compcl(job)
 c     ======================================================================
 c     compilation des structures de controle
 c     ======================================================================
@@ -10,6 +10,8 @@ c
       logical eqid
       integer else(nsiz),r,cas(nsiz),elsif(nsiz)
       integer sadr
+c     job is used for try catch
+      integer job
 
       data else/236721422,nz1*673720360/
       data cas/236718604,nz1*673720360/
@@ -27,7 +29,7 @@ c
       endif
 
       if(ids(1,pt).eq.iselect) goto 10
-      goto(02,03,04,05,06,08),r
+      goto(02,03,04,05,06,08,10,20),r
 c
 c for : <7 l.boucle boucle.ops l.ops varn(1:nsiz) for.ops>
 c
@@ -142,7 +144,7 @@ c fin if/while
       return
 c
 c
-c select case
+c select case <10,???>
    10 continue
       goto(11,13,14,15,12),r-2
       goto 99
@@ -221,6 +223,41 @@ c fin selec
       call setlnb
       return
 c
+c     try <11 l.try l.catch try.ops catch.ops >
+ 20   continue
+      goto (21,22,23) job
+ 21   continue
+c     initialize the try structure
+      err=sadr(l+3)-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
+      istk(l)=11
+      istk(l+1)=-1
+      istk(l+2)=comp(2)
+      comp(2)=l+2
+      comp(1)=l+3
+      return
+ 22   continue
+c     end of try instructions
+      l0=comp(2)
+      istk(l0-1)=l-(l0+1)
+      return
+ 23   continue
+
+c     end of catch instructions
+      l0=comp(2)
+      comp(2)=istk(l0)
+      if (istk(l0-1).eq.-1) then
+c     .  no catch keyword,
+         istk(l0-1)=l-(l0+1)
+         istk(l0)=0
+      else
+         istk(l0)=l-(l0+1)-istk(l0-1)
+      endif
+      return
+
    99 call error(22)
       return
       end

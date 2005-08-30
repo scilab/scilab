@@ -4,7 +4,7 @@ c     ce sous programme permet de sauter les instructions suivantes
 c     d'une clause j'usqu'a l'un des  mots clef "end" ou
 c     "else","elseif","case" de la clause courante
 c     si job=1 on recherche le "end"
-c     si job=0 on recherche le "end" ou "else","elseif","case" 
+c     si job=0 on recherche le "end" ou "else","elseif","case", "catch"
 c     
 c     attention skpins modifie la valeur de lpt en particulier lpt(4)
 c     et lpt(6)
@@ -14,7 +14,7 @@ c     Copyright INRIA
       parameter (nz1=nsiz-1,nz2=nsiz-2)
 c     
       integer for(nsiz),while(nsiz),iff(nsiz),else(nsiz),ennd(nsiz)
-      integer cas(nsiz),sel(nsiz),elsif(nsiz)
+      integer cas(nsiz),sel(nsiz),elsif(nsiz),try(nsiz),catchkey(nsiz)
       integer clcnt,strcnt,qcount,bcount
       integer rparen,left,right,quote,percen,dot
       integer eol,blank,name,num,cmt,psym,pchar
@@ -30,6 +30,8 @@ c
       data while/353505568,673720334,nz2*673720360/
       data cas/236718604,nz1*673720360/
       data sel/236260892,673717516,nz2*673720360/
+      data try/ 673323805,nz1*673720360/
+      data catchkey/203229708,673720337,nz2*673720360/
 c     
       l4=lpt(4)
       
@@ -88,10 +90,11 @@ c            endif
                if(clcnt.eq.0) goto 20
                clcnt=clcnt-1
             elseif (eqid(syn,for) .or. eqid(syn,while) .or.
-     $              eqid(syn,iff) .or. eqid(syn,sel)) then
+     $              eqid(syn,iff) .or. eqid(syn,sel) .or.
+     $              eqid(syn,try)) then
                clcnt = clcnt+1
             elseif(clcnt.eq.0.and.job.eq.0.and.
-     $              (eqid(syn,else).or. 
+     $              (eqid(syn,else).or. eqid(syn,catchkey).or.
      $              eqid(syn,cas).or.eqid(syn,elsif))) then
                goto 20
             endif

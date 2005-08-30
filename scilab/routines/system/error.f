@@ -79,6 +79,10 @@ c        . looking if error has occurred in execstr deff getf or comp
 c     .     error has occurred in an external
             errtyp=0
             pt0=p
+         elseif(rstk(p).eq.808) then
+c     .     error has occurred in a try instructions
+            errtyp=0
+            pt0=p
          elseif(rstk(p).eq.501.and.catch.eq.0) then
             if (rstk(p-1).eq.909) then
 c     .        exec of a function
@@ -1256,6 +1260,7 @@ C     errors from semidef
       goto 999
  276  continue
       call msgout(io,lunit, 'Missing operator, comma, or semicolon')
+      errtyp=1
       goto 999
  277  continue
       call msgout(io,lunit, 'Too many commands defined')

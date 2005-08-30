@@ -178,14 +178,17 @@ int C2F(run)()
     goto L91;
   }
   if (C2F(errgst).err1 != 0 ) {
+    if ((C2F(errgst).errpt >0) && (Pt >= C2F(errgst).errpt) && (Rstk[C2F(errgst).errpt]==618)) {
+      /* error under try catch */
+      Pt = C2F(errgst).errpt;
+      goto L271;
+    }
    /* errcatch in exec(function,'errcatch') 
      * or catched error in an external 
      * or errcatch in execstr('foo()','errcatch') */
     if (C2F(errgst).errcatch == 0) goto L999;
     /* error under errcatch(....,'continue') */
-    if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001 || Rstk[Pt] == 1002) {
-      return 0;
-    }
+    if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001 || Rstk[Pt] == 1002)  return 0;
   }
   if (lc - l0 == nc) { /* is current opcodes block (if, for, .. structure) finished ?*/
     /* yes */
@@ -197,6 +200,8 @@ int C2F(run)()
     case 4:  goto L56;
     case 5:  goto L57;
     case 6:  goto L61;
+    case 8:  goto L271;
+    case 9:  goto L272;
     }
   }
 
@@ -215,7 +220,7 @@ int C2F(run)()
   case 8:  goto L49;
   case 9:  goto L49;
   case 10:  goto L55;
-  case 11:  goto L15;
+  case 11:  goto L270;/* try */
   case 12:  goto L90;
   case 13:  goto L95;
   case 14:  goto L100;
@@ -663,6 +668,8 @@ int C2F(run)()
   goto L70;
 
  L70:
+  /* re entering run to continue macro evaluation */
+
   if (inxsci == 1) {
     ntimer = C2F(stimer)() / itime;
     if (ntimer != otimer) {
@@ -673,49 +680,54 @@ int C2F(run)()
       }
     }
   }
+ L71:
+  /* reset proper values for l0 and nc if a control structure had been escaped*/
   r = Rstk[Pt] - 610;
   switch ((int)r) {
-  case 1:  goto L74;
-  case 2:  goto L71;
-  case 3:  goto L72;
-  case 4:  goto L73;
-  case 5:  goto L73;
-  case 6:  goto L73;
-  }
-  goto L10;
-  /*     retour d'une boucle interne ou d'une macro vers un for */
- L71:
-  j = Pstk[Pt];
-  l0 = Ids[1 + Pt * nsiz];
-  nc = Istk[l0 - 7];
-  goto L10;
-  /*     retour  d'une boucle interne ou d'une macro vers un if/while */
- L72:
-  li = Ids[1 + Pt * nsiz];
-  kc = Ids[2 + Pt * nsiz];
-  nc = Istk[2 + li];
-  l0 = li + 5;
-  if (kc == 0) {
+  case 1: 
+    l0 = Ids[1 + Pt * nsiz];
+    nc = Ids[2 + Pt * nsiz];
+    goto L10;
+  case 2: /* back to a for */
+    j = Pstk[Pt];
+    l0 = Ids[1 + Pt * nsiz];
+    nc = Istk[l0 - 7];
+    goto L10;
+  case 3: /* back to an if or a while */
+    li = Ids[1 + Pt * nsiz];
+    kc = Ids[2 + Pt * nsiz];
+    nc = Istk[2 + li];
+    l0 = li + 5;
+    if (kc == 0) {
+      goto L10;
+    }
+    l0 += nc;
+    nc = Istk[3 + li];
+    if (kc == 1) {
+      goto L10;
+    }
+    l0 += nc;
+    nc = Istk[4 + li];
+    goto L10;
+  case 4: 
+  case 5: 
+  case 6: 
+  /*    back to a select case   */
+    l0 = Ids[1 + Pt * nsiz];
+    nc = Ids[2 + Pt * nsiz];
+    goto L10;
+  case 8: /*back to a try*/
+    l0 = Ids[1 + Pt * nsiz];
+    nc = Istk[l0 - 2];
+    goto L10;
+  case 9:  /*back to a catch*/
+    l0 = Ids[1 + Pt * nsiz];
+    nc = Istk[l0 - 1];
+    l0 = l0 + Istk[l0 - 2];
+    goto L10;
+  default : 
     goto L10;
   }
-  l0 += nc;
-  nc = Istk[3 + li];
-  if (kc == 1) {
-    goto L10;
-  }
-  l0 += nc;
-  nc = Istk[4 + li];
-  goto L10;
-  /*     retour d'une boucle interne vers une clause select */
- L73:
-  l0 = Ids[1 + Pt * nsiz];
-  nc = Ids[2 + Pt * nsiz];
-  goto L10;
-
- L74:
-  l0 = Ids[1 + Pt * nsiz];
-  nc = Ids[2 + Pt * nsiz];
-  goto L10;
 
  L80:
   C2F(com).fun = op / 100;
@@ -975,7 +987,8 @@ int C2F(run)()
   tref = Ids[4 + Pt * nsiz];
   --Top;
   --Pt;
-  r = Rstk[Pt] - 610;
+  goto L71;
+    /*  r = Rstk[Pt] - 610;
   switch ((int)r) {
   case 1:  goto L74;
   case 2:  goto L71;
@@ -984,7 +997,7 @@ int C2F(run)()
   case 5:  goto L73;
   case 6:  goto L73;
   }
-  goto L10;
+  goto L10;*/
 
   /*     quit */
 
@@ -1231,6 +1244,63 @@ int C2F(run)()
 
   lc += 2+Istk[1 + lc];
   goto L10;
+
+ /*     try catch */
+ L270:
+  nc = Istk[1 + lc];
+  lc += 3;
+  l0 = lc;
+  if (Ptover(1)) {
+    lc += nc;
+    lc += nsiz + Istk[lc];
+    goto L10;
+  }
+  Rstk[Pt] = 618;
+  Ids[1 + Pt * nsiz] = l0;
+  /* preserve current error modes */
+  Ids[2 + Pt * nsiz] = C2F(errgst).errct;
+  Ids[3 + Pt * nsiz] = C2F(errgst).err2;
+  Ids[4 + Pt * nsiz] = C2F(errgst).err1;
+  Ids[5 + Pt * nsiz] = C2F(errgst).errpt;
+  Ids[6 + Pt * nsiz] = (Lct[4]+100)+10000*C2F(com).sym;
+  /* set error recovery mode without message*/
+  C2F(errgst).errct = -(900000+1);
+  C2F(errgst).errpt = Pt;
+  Pstk[Pt] = Top;
+  goto L10;
+ L271:  
+  /* try op-codes finished*/
+  l0 = Ids[1 + Pt * nsiz];
+  /*check if an error occured*/
+  ok = max(C2F(errgst).err2,C2F(errgst).err1)<=0;
+  /* restore preserved error modes */
+  C2F(errgst).errct = Ids[2 + Pt * nsiz];
+  C2F(errgst).err2  = Ids[3 + Pt * nsiz];
+  C2F(errgst).err1  = Ids[4 + Pt * nsiz];
+  C2F(errgst).errpt = Ids[5 + Pt * nsiz];
+  C2F(com).sym      = Ids[6 + Pt * nsiz]/10000;
+  Lct[4]            = Ids[6 + Pt * nsiz]-10000*C2F(com).sym-100;
+  if (ok) {
+    /* no error occured in the try part*/
+    nc = Istk[l0-1];
+    lc += nc; /*skip catch  instructions*/
+    /* finish try catch context and continue*/
+    --Pt;
+    goto L70;
+  }
+  /*an error occured in the try part*/
+  lc = l0+Istk[l0-2];/*skip remaining try instruction*/
+  nc = Istk[l0-1];
+  /*execute catch instructions (next op-codes)*/
+  l0 = lc;
+  Rstk[Pt] = 619;
+  goto L10;
+ L272: 
+  /* catch op-codes finished*/
+  /* close "try catch" context and continue*/
+  --Pt;
+  goto L70;
+ 
 
  L998:
   Lhs = 0;

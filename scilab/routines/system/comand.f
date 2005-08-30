@@ -10,7 +10,7 @@ C
       integer lunit,mode(2)
 C     
       integer cmdl
-      parameter (cmdl = 27)
+      parameter (cmdl = 29)
       parameter (nz1 = nsiz-1, nz2 = nsiz-2, nz3 = nsiz-3)
       parameter (iif=1,iwhile=2,iselect=3)
 C     
@@ -34,18 +34,8 @@ C
       data for/672864271,nz1*673720360/
       data func/202841615,387453469,nz2*673720360/
       data endfunc/252516110,487331614,672602130,nz3*673720360/ 
-C     ------command names--------
-C     if        else      for
-C     while     end       select
-C     case      quit      exit
-C     return    help      what
-C     who       
-C     pause     clear     resume
-C     then      do
-C     apropos   abort     break
-C     elseif    pwd       clc
-C     continue
-C     
+   
+C     if, else, for, while, end, select, case, quit, return
       data ((cmd(i,j), i = 1,nsiz), j = 1,10)/
      &     673713938,nz1*673720360,
      &     236721422,nz1*673720360,
@@ -57,6 +47,7 @@ C
      $     487726618,nz1*673720360,
      &     487727374,nz1*673720360,
      $     505220635,673715995,nz2*673720360/
+C     help, what, who, pause, clear, resume, then, do, apropos, abort
       data ((cmd(i,j), i = 1,nsiz), j = 11,20)/
      &     420810257,nz1*673720360,
      &     487199008,nz1*673720360,
@@ -68,14 +59,17 @@ C
      &     673716237,nz1*673720360,
      &     404429066,672929817,nz2*673720360,
      &     454560522,673720349,nz2*673720360/
-      data ((cmd(i,j), i = 1,nsiz), j = 21,27)/
+C     break, elseif, pwd, function, endfunction, clc, continue, try, catch 
+      data ((cmd(i,j), i = 1,nsiz), j = 21,29)/
      &     168696587,673720340,nz2*673720360,
      &     236721422,673713938,nz2*673720360,
      &     671948825,nz1*673720360,
      &     202841615,387453469,nz2*673720360,
      &     252516110,487331614,672602130,nz3*673720360,
      &     671880460,nz1*673720360,
-     &     488052748,236853010,nz2*673720360/
+     &     488052748,236853010,nz2*673720360,
+     &     673323805,nz1*673720360,
+     &     203229708,673720337,nz2*673720360/
 C     
 
       iadr(l) = l + l - 1
@@ -150,7 +144,7 @@ C     mots cles if  then else for do  while end case selec
       goto (42,42) k-16
 C     
       goto (50,55,45,16,16,16,20,16,45,16,
-     &     16,16,120,130,38,140,150,16,16,130) k-7
+     &     16,16,120,130,38,140,150,16,16,130,160,170) k-7
  16   call error(16)
       return
 C     
@@ -199,7 +193,7 @@ C
       if (pt .eq. 0) then
          goto 42
       elseif (abs(rstk(pt)).ne.805 .and. abs(rstk(pt)).ne.802 .and.
-     &        abs(rstk(pt)).ne.806) then
+     &        abs(rstk(pt)).ne.806 .and. abs(rstk(pt)).ne.808 ) then
          goto 42
       endif
       goto 999
@@ -491,6 +485,16 @@ c     .
          go to 999
       endif
 
+c
+ 160  continue
+c     try
+      fin = -18
+      goto 999
+c
+ 170  continue
+c     catch
+      fin = -19
+      goto 999
 
 C     
 C     
