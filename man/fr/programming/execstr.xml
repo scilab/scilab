@@ -5,70 +5,62 @@
   <TITLE>execstr  </TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="execstr"> exécution d&apos;instructions Scilab contenues dans des chaînes de caractères  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="execstr"> exécution d'instructions Scilab contenues dans des chaînes de caractères</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>execstr(instr)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>ierr=execstr(instr,&apos;errcatch&apos; [,msg])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>execstr(instr)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ierr=execstr(instr,'errcatch' [,msg])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>instr  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur de chaînes de caractères
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>ierr  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, 0 ou numéro de l&apos;erreur
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>msg  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères (<VERB>&apos;m&apos;</VERB> ou <VERB>&apos;n&apos;</VERB>). La valeur par défaut est <VERB>&apos;n&apos;</VERB>.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>instr  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: vecteur de chaînes de caractères</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>ierr  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: entier, 0 ou numéro de l'erreur</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>msg  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: chaîne de caractères (<VERB>'m'</VERB> ou <VERB>'n'</VERB>). La valeur
+	    par défaut est <VERB>'n'</VERB>. </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-    Exécute les instructions Scilab données dans l&apos;argument <VERB>instr</VERB>.
-  </P>
-  <P>
-    Si &apos;errcatch&apos; n&apos;est pas présent dans les arguments, les erreurs sont contrôlées comme d&apos;habitude.
-  </P>
-  <P>
-    Si &apos;errcatch&apos; est présent dans les arguments, et qu&apos;une erreur est rencontrée lors de l&apos;évaluation d&apos;un élément de <VERB>instr</VERB>, <VERB>execstr</VERB>
-    ne produit aucun message d&apos;erreur, mais stoppe l&apos;exécution des instructions stockées dans <VERB>instr</VERB> (au point où l&apos;erreur s&apos;est produite), et renvoie dans
-    <VERB>ierr</VERB> le numéro de l&apos;erreur. Dans ce cas l&apos;affichage du message d&apos;erreur est contrôlé par l&apos;option <VERB>msg</VERB> :
-  </P>
-  <DESCRIPTION_INDENT>
+    <P>Exécute les instructions Scilab données dans l'argument <VERB>instr</VERB>. </P>
+    <P>Si 'errcatch' n'est pas présent dans les arguments, les erreurs sont contrôlées comme d'habitude.</P>
+    <P>Si 'errcatch' est présent dans les arguments, et qu'une erreur est
+      rencontrée lors de l'évaluation d'un élément de <VERB>instr</VERB>,
+      <VERB>execstr</VERB> ne produit aucun message d'erreur, mais stoppe
+      l'exécution des instructions stockées dans <VERB>instr</VERB> (au point
+      où l'erreur s'est produite), et renvoie dans <VERB>ierr</VERB> le numéro
+      de l'erreur. Dans ce cas l'affichage du message d'erreur est contrôlé par
+      l'option <VERB>msg</VERB> : </P>
 
-
-  <DESCRIPTION_ITEM label='&quot;m&quot;'> 
-  <SP>
-    : le message d&apos;erreur est affiché et enregistré
-</SP>
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM  label='&quot;n&quot;'> 
-  <SP>
-    : le message d&apos;erreur n&apos;est pas affiché mais il est enregistré (voir <VERB>lasterror</VERB>). Il s&apos;agit du comportement par défaut. 
-</SP>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
-
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label='&quot;m&quot;'> 
+	<SP>: le message d'erreur est affiché et enregistré</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM  label='&quot;n&quot;'> 
+	<SP>: le message d'erreur n'est pas affiché mais il est enregistré
+	  (voir <VERB>lasterror</VERB>). Il s'agit du comportement par
+	  défaut. </SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P> ierr=execstr(instr,'errcatch') peut gŽérer les erreurs de syntaxes. Ceci
+      peut Žêtre utile pour Žévaluer les instructions obtenues par une requŽète Žà
+      l'utilisateur (interface homme-machine).</P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 execstr('a=1') // affecte a=1.
+
 execstr('1+1') // ne fait rien de particulier (alors que evstr('1+1') renvoie 2)
 
 execstr(['if %t then';
@@ -78,13 +70,33 @@ execstr(['if %t then';
          ' b=0'
          'end'])
 
+// rŽécupŽération des erreurs d'exŽécution
 execstr('a=zzzzzzz','errcatch')
 execstr('a=zzzzzzz','errcatch','m')
+
+// rŽécupŽération des erreurs de syntaxe
+execstr('a=1?02','errcatch')
+lasterror(%t)
+
+execstr('a=[1 2 3)','errcatch')
+lasterror(%t)
+
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM>
-      <LINK>lasterror</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM>
-      <LINK>error</LINK> </SEE_ALSO_ITEM>
-
+    <SEE_ALSO_ITEM>
+      <LINK>try</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errclear</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>iserror</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>whereami</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

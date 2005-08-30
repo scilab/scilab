@@ -102,8 +102,8 @@
     <P><VERB>errcatch()</VERB> est un equivalent obsolete de <VERB>errcatch(-1)</VERB>.</P>
   </DESCRIPTION>
   <SECTION label='REMARQUES'>
-    <P>
-      Il est préférable d'utiliser  <VERB>execstr(...,'errcatch')</VERB>  à
+    <P> <VERB>errcatch</VERB> est obsolete.
+      Il est préférable d'utiliser  <LINK>try</LINK> ou <VERB>execstr(...,'errcatch')</VERB>  à
       la place de <VERB>errcatch</VERB> lorsque c'est possible.
     </P>
   </SECTION>

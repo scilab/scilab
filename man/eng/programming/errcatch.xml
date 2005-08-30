@@ -65,12 +65,15 @@
     <P><VERB>errcatch()</VERB> is an obsolete equivalent of <VERB>errcatch(-1)</VERB>.</P>
 
   </DESCRIPTION>
-  <SECTION label="Remarques">
-    <P>
- Use <VERB>execstr(...,'errcatch')</VERB>  instead of <VERB>errcatch</VERB> when
+  <SECTION label="Remark">
+    <P>  <VERB>errcatch</VERB> is obsolete. 
+ Use <LINK>try</LINK> or <VERB>execstr(...,'errcatch')</VERB>  instead of <VERB>errcatch</VERB> when
  possible.</P>
   </SECTION>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>try</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>errclear</LINK>
     </SEE_ALSO_ITEM>
