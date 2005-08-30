@@ -89,6 +89,11 @@ c
       return
 c     
  40   fin=l
+      if(err1.ne.0) then
+         fun=0
+         fin=0
+         return
+      endif
 c     
 c     load it in the variables stack
       
