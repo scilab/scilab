@@ -564,7 +564,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       /*                                       x,y,ztmp,i,j,npolyok,p,dc,fg1); */
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
-                                       zmin, zmax, xtmp, y, ztmp, i, j,
+                                       zmin, zmax, xtmp, ytmp, ztmp, i, j,
                                        npolyok, p, dc, fg1);
                     }
                   if (npolyok != 0)
