@@ -303,6 +303,15 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       
       ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
 
+      ppsubwin->vertices_list = (Vertices*) NULL;
+
+ /*      ppsubwin->value_xm = (int *) NULL; */
+/*       ppsubwin->value_ym = (int *) NULL; */
+/*       ppsubwin->value_x = (double *) NULL; */
+/*       ppsubwin->value_y = (double *) NULL; */
+/*       ppsubwin->value_z = (double *) NULL; */
+  
+/*       ppsubwin->nb_vertices_in_merge = 0; */
       ppsubwin->user_data = (int *) NULL; /* adding 27.06.05 */
       ppsubwin->size_of_user_data = 0;
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
