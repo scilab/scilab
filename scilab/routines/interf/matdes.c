@@ -2682,7 +2682,7 @@ int scixfpolys(fname,fname_len)
       else   
 	/* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
 	/** poly i is drawn using the line style (or color) **/  
-	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+(i*m1)),&hdl,v1);
+	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i),&hdl,v1);
     }
     /** construct agregation and make it current object**/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
