@@ -133,6 +133,18 @@ function txt=cla2sci(clause)
       txt=catcode(txt,catcode('else',indentsci(t1)));
     end
     txt=catcode(tg,catcode(txt,'end,'))
+  case 'try' then
+    if size(clause(2))==0 then
+      t1=catcode('try',';')
+    else
+      t1=catcode('try',indentsci(ins2sci(clause(2),1)))
+    end
+    if size(clause(3))==0 then
+      t2='end,'
+    else
+      t2=catcode(catcode('catch',indentsci(ins2sci(clause(3),1))),'end,')
+    end
+    txt=catcode(txt,catcode(t1,t2))
   end
 endfunction
 

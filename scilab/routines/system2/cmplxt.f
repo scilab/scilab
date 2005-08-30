@@ -78,6 +78,11 @@ c     select
             nc=istk(lc+1)
             lc=lc+nc
             goto 10
+         elseif(op.eq.11) then
+c     try/catch
+            nc=istk(lc+1)+istk(lc+2)
+            lc=lc+3+nc
+            goto 10
          elseif((op.ge.12.and.op.le.15).or.op.eq.28) then
 c     pause,break,abort,eol,continue
             lc=lc+1

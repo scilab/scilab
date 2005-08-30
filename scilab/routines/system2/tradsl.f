@@ -22,7 +22,7 @@ c
 
       integer id(nsiz),iadr,sadr,cmplxt,pt0
 c
-      integer for(3),while(5),iff(2),sel(6)
+      integer for(3),while(5),iff(2),sel(6),try(3)
       integer ops(nops)
       external getendian
       integer getendian
@@ -31,6 +31,7 @@ c
       data iff/18,15/
       data while/32,17,18,21,14/
       data sel/28,14,21,14,12,29/
+      data try/29,27,34/
 c                            +  -  * .*  *. .*.  / ./  /. ./.  
       data (ops(i),i=1,10) /45,46,47,98,200,149,48,99,201,150/
 c                            \ .\   \. .\. ** =  <  >  <=  >=  <>
@@ -136,7 +137,8 @@ c
 c     nouvelle 'operation'
  10   continue
       if(lc.gt.lcf) then
-         goto(11,11,11,46,47,11,51,54,55,11,61,63,64,65),rstk(pt)
+         goto(11,11,11,46,47,11,51,54,55,11,61,63,64,65,11,
+     $        121,122),rstk(pt)
  11      nlist=iadr(lr)-illist
          pt=pt0
          return
@@ -145,7 +147,7 @@ c     nouvelle 'operation'
 c     
       if(ddt.lt.-1) write(6,'(i7)') op
       goto(20,25,40,42,30,41,45,50,50,60,
-     &     15,90,90,90,90,100,12,101,102,90,
+     &     120,90,90,90,90,100,12,101,102,90,
      &     103,104,105,106,107,108,110,90,115,116,
      &     117) ,op
 c     
@@ -363,7 +365,7 @@ c     Nan
             if(ie.lt.0) ie=ie-1
             xx=x/(10.0d0**ie)
             nf=2
-            write(form,120) maxc,15
+            write(form,200) maxc,15
             write(strg,form) xx
             ls=lnblnk(strg)
             if(abs(x).lt.1.d-99) then
@@ -372,12 +374,12 @@ c     Nan
                write(strg(ls+1:),'(''D'',i3)') ie
             endif
          else
-            write(form,130) maxc,maxc-7
+            write(form,201) maxc,maxc-7
             write(strg,form) x
          endif
       elseif(ifmt.ge.0) then
          nf=2
-         write(form,120) n1,n2
+         write(form,200) n1,n2
          write(strg,form) x
       endif
       i1=0
@@ -1252,7 +1254,6 @@ c
  115  continue
 c     affectation
       nlhs=istk(lc+1)
-c      print *, 'affectation'
       il=iadr(lr)
       istk(il)=10
       istk(il+1)=1
@@ -1321,8 +1322,140 @@ c
       lc=lc+2+n
       goto 10
 c
-  120 format('(f',i2,'.',i2,')')
-  130 format('(1pd',i2,'.',i2,')')
+ 120   continue
+c     try/catch
+      if(ddt.le.-1) write(6,'(a10,5i5)') 'try',pt,lcf,ilr,lr,l-lr
+      il=iadr(lr)
+c     on preserve les pointeurs de la liste courante
+      pt=pt+1
+      rstk(pt)=15
+      ids(1,pt)=ilr
+      ids(2,pt)=lr
+      istk(ilr)=lcf
+      lc0=lc
+c
+c     Initialize the   "try catch" list
+c     list('try',try_instructions,catch_instructions)
+      istk(il)=15
+      istk(il+1)=3
+      istk(il+2)=1
+      lr=sadr(il+6)
+      ilr=il+3
+
+c     adding the string 'try'
+      il=iadr(lr)
+      istk(il)=10
+      istk(il+1)=1
+      istk(il+2)=1
+      istk(il+3)=0
+      istk(il+4)=1
+      l=il+6
+      call icopy(3,try,1,istk(l),1)
+      istk(il+5)=istk(il+4)+3
+      l=l+3
+      l=sadr(l)
+      istk(ilr)=istk(ilr-1)+l-lr
+      ilr=ilr+1
+      lr=l
+
+c     adding  "try instructions"
+      lc=lc+3
+      il=iadr(lr)
+c     preserve pointers on the   "try catch" list
+      pt=pt+1
+      if(pt.gt.psiz) then
+         call error(26)
+         return
+      endif
+      rstk(pt)=16
+      ids(1,pt)=ilr
+      ids(2,pt)=lr
+      ids(3,pt)=lc0
+      istk(ilr)=lc
+      long=istk(lc0+1)
+      lcf=lc+long-1
+      ni=cmplxt(istk(lc),long)
+c     Initialize the   "try_instructions" list : list(try_ops)
+         
+      istk(il)=15
+      istk(il+1)=ni
+      istk(il+2)=1
+      lr=sadr(il+3+ni)
+      l=lr
+      ilr=il+3
+      if(long.eq.0) then
+c     . no try ops
+         goto 121
+      endif
+c     re-enter tradsl for coding the try_ops
+      goto 10
+ 121  continue
+c     end of try_ops coding
+c     recall the pointers on "try catch" list
+      ilr=ids(1,pt)
+      lr=ids(2,pt)
+      lc0=ids(3,pt)
+c     add info on "try instruction" into  "try catch" list
+      istk(ilr)=istk(ilr-1)+l-lr
+      ilr=ilr+1
+      lr=l
+c
+c     adding  "catch instructions"
+      il=iadr(lr)
+c     preserve pointers on the   "try catch" list
+
+      rstk(pt)=17
+      ids(1,pt)=ilr
+      ids(2,pt)=lr
+      ids(3,pt)=lc0
+      istk(ilr)=lc
+      long=istk(lc0+2) 
+      lcf=lc+long-1
+
+      ni=cmplxt(istk(lc),long)
+      istk(il)=15
+      istk(il+1)=ni
+      istk(il+2)=1
+      lr=sadr(il+3+ni)
+      l=lr
+      ilr=il+3
+      if(long.eq.0) then
+c     . no catch ops
+         goto 122
+      endif
+c     re-enter tradsl for coding the catch_ops
+      goto 10
+
+ 122  continue
+c     end of catch_ops coding
+c     recall the pointers on the "try catch" list
+      ilr=ids(1,pt)
+      lr=ids(2,pt)
+      lc0=ids(3,pt)
+c     add info on "catch instruction" into  "try catch" list
+      istk(ilr)=istk(ilr-1)+l-lr
+      ilr=ilr+1
+      lr=l
+      pt=pt-1
+      if(ddt.le.-1) write(6,'(a10,5i5)') 'catch end',pt,lcf,ilr,lr,l-lr
+c     recall the pointers on the current list
+      ilr=ids(1,pt)
+      lr=ids(2,pt)
+      lcf=istk(ilr)
+
+c     add info on "try catch" into  current list
+      istk(ilr)=istk(ilr-1)+l-lr
+      lr=l
+      ilr=ilr+1
+      pt=pt-1
+      if(ddt.le.-1) write(6,'(a10,5i5)') 'try end',pt,lcf,ilr,lr,l-lr
+      goto 10
+c   
+
+c
+
+  200 format('(f',i2,'.',i2,')')
+  201 format('(1pd',i2,'.',i2,')')
 
 c     
       end
