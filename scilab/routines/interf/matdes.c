@@ -2803,7 +2803,14 @@ int scixget(fname,fname_len)
   /*     LhsVar(1)=Rhs+1; */
   /*   } */
   else if ( strcmp(cstk(l1),"line style") == 0) {
-    C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+    if(version_flag() == 0){
+      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      x1[0] = sciGetLineStyle(subwin);
+    }
+    else
+      C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+    
+    x2=1;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
     *stk(l3 ) = (double) x1[0];      
     LhsVar(1)=Rhs+1;
