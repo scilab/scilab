@@ -31,16 +31,15 @@ extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
 extern int version_flag();
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
-/** like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 
+/** PGEOX and PGEOY are like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 static double xx1,yy1;
-
 #define PGEOX(x1,y1,z1) inint(xx1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
 #define PGEOY(x1,y1,z1) inint(yy1= Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1);
 
 static void C2F(plot3dg) __PARAMS(( char *name,int (*func)(), double *x, double *y,double *z,
-				   integer *p, integer *q, double *teta,double *alpha,char *legend,
-				   integer *flag,double *bbox));
+				    integer *p, integer *q, double *teta,double *alpha,char *legend,
+				    integer *flag,double *bbox));
 
 static void C2F(fac3dg) __PARAMS(( char *name, int iflag, double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox));
 
@@ -190,8 +189,8 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 	  int npolyok=0;
 	  for ( j =0 ; j < (*q)-1 ; j++)
 	    {
-	     npolyok += (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
-				x,y,z,i,j,npolyok,p,dc,fg1);
+	      npolyok += (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
+				 x,y,z,i,j,npolyok,p,dc,fg1);
 	    }
 	  if ( npolyok != 0) 
 	    C2F(dr)("xliness","str",polyx,polyy,fill,&npolyok,&polysize
@@ -206,7 +205,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 	    {
 	      npolyok += (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
 				 x,y,z,i,(*q)-2-j,npolyok,p,dc,fg1);
-	   }
+	    }
 	  if ( npolyok != 0) 
 	    C2F(dr)("xliness","str",polyx,polyy,fill,&npolyok,&polysize
 		    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -218,9 +217,9 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 	  int npolyok=0;
 	  for ( j = 0 ; j < (*q)-1 ; j++)
 	    {
-	     npolyok +=     (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
-				    x,y,z,i,(*q)-2-j,npolyok,p,dc,fg1);
-	   }
+	      npolyok +=     (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
+				     x,y,z,i,(*q)-2-j,npolyok,p,dc,fg1);
+	    }
 	  if ( npolyok != 0) 
 	    C2F(dr)("xliness","str",polyx,polyy,fill,&npolyok,&polysize
 		    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -232,9 +231,9 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 	  int npolyok=0;
 	  for ( j =0 ; j < (*q)-1 ; j++)
 	    {
-	     npolyok += (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
-				x,y,z,i,j,npolyok,p,dc,fg1);
-	   }
+	      npolyok += (*func)(polyx,polyy,fill,whiteid,zmin,zmax,
+				 x,y,z,i,j,npolyok,p,dc,fg1);
+	    }
 	  if ( npolyok != 0) 
 	    C2F(dr)("xliness","str",polyx,polyy,fill,&npolyok,&polysize
 		    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -376,43 +375,43 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	     
 	     The new added function are located at the end of thecurrent file (Plo3d.c) */
 		 
-      if (*p > 2) { /* Detection of facet orientation,    */
-        double determ;     /* improved by Mottelet 25/01/2005    */ 
-        determ =         /* to take in account quadrilaterals. */
-          ((polyx[1] - polyx[0]) * (polyy[2] - polyy[0]) -
-           (polyy[1] - polyy[0]) * (polyx[2] - polyx[0]));
-        flag_det1 = (determ < 0); /* First test for a triangle */
-        if (*p > 3) { /* Second test for the quadrilateral case */
-          determ =
-            ((polyx[2] - polyx[0]) * (polyy[3] - polyy[0]) -
-             (polyy[2] - polyy[0]) * (polyx[3] - polyx[0]));
-          flag_det3 = (determ < 0);
-          determ =
-            ((polyx[2] - polyx[1]) * (polyy[3] - polyy[1]) -
-             (polyy[2] - polyy[1]) * (polyx[3] - polyx[1]));
-          flag_det2 = (determ < 0);
-          determ =
-            ((polyx[3] - polyx[1]) * (polyy[0] - polyy[1]) -
-             (polyy[3] - polyy[1]) * (polyx[0] - polyx[1]));
-          flag_det0 = (determ < 0);
-        }
-/*        printf("%d %d %d %d\n",flag_det0,flag_det1,flag_det2,flag_det3); */
+	  if (*p > 2) { /* Detection of facet orientation,    */
+	    double determ;     /* improved by Mottelet 25/01/2005    */ 
+	    determ =         /* to take in account quadrilaterals. */
+	      ((polyx[1] - polyx[0]) * (polyy[2] - polyy[0]) -
+	       (polyy[1] - polyy[0]) * (polyx[2] - polyx[0]));
+	    flag_det1 = (determ < 0); /* First test for a triangle */
+	    if (*p > 3) { /* Second test for the quadrilateral case */
+	      determ =
+		((polyx[2] - polyx[0]) * (polyy[3] - polyy[0]) -
+		 (polyy[2] - polyy[0]) * (polyx[3] - polyx[0]));
+	      flag_det3 = (determ < 0);
+	      determ =
+		((polyx[2] - polyx[1]) * (polyy[3] - polyy[1]) -
+		 (polyy[2] - polyy[1]) * (polyx[3] - polyx[1]));
+	      flag_det2 = (determ < 0);
+	      determ =
+		((polyx[3] - polyx[1]) * (polyy[0] - polyy[1]) -
+		 (polyy[3] - polyy[1]) * (polyx[0] - polyx[1]));
+	      flag_det0 = (determ < 0);
+	    }
+	    /*        printf("%d %d %d %d\n",flag_det0,flag_det1,flag_det2,flag_det3); */
 	  }
 	  flag_det=flag_det0+flag_det1+flag_det2+flag_det3;
-      if ((flag_det > 3 || (flag_det==1 && (*p)==3)) && (fg1>=0)) {	      
+	  if ((flag_det > 3 || (flag_det==1 && (*p)==3)) && (fg1>=0)) {	      
 	    fill[0] = (flag[0] > 0 ) ? fg1 : -fg1 ;
-	      /* 
-		 The following test fixes a bug : when flag[0]==0 then only the
-		 wire frame has to be drawn, and the "shadow" of the surface does
-		 not have to appear. polpoth 4/5/2000
-		 */
+	    /* 
+	       The following test fixes a bug : when flag[0]==0 then only the
+	       wire frame has to be drawn, and the "shadow" of the surface does
+	       not have to appear. polpoth 4/5/2000
+	    */
 	      
-	      if (flag[0]==0) fill[0]=0;
-	      /* modification du to E Segre to avoid drawing of hidden facets */
-		  if (fg1>0)
- 		  	C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,
-			  PI0,PD0,PD0,PD0,PD0,0L,0L); 
-	    }
+	    if (flag[0]==0) fill[0]=0;
+	    /* modification du to E Segre to avoid drawing of hidden facets */
+	    if (fg1>0)
+	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,
+		      PI0,PD0,PD0,PD0,PD0,0L,0L); 
+	  }
 	  else if ( iflag == 1) 
 	    {
 	      /* color according to z-level */
@@ -432,24 +431,24 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  else if (iflag ==3) { /* colors are given by cvect of size (*p) times (*q) */
-	      int k;
+	    int k;
               
-	      if ( (*p) != 3 && (*p) !=4 ) {
-                Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
- 		return;
-	      } else {
-       	        for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
-                scilab_shade(polyx,polyy,fill,*p,flag[0]);
-		/** draw if requested but just check on the first color **/ 
-/*		if ( cvect[(*p)*locindex[i]] <= 0 ) 
-		  {
-		    fill[0]=0;
-		    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }*/
+	    if ( (*p) != 3 && (*p) !=4 ) {
+	      Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
+	      return;
+	    } else {
+	      for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
+	      scilab_shade(polyx,polyy,fill,*p,flag[0]);
+	      /** draw if requested but just check on the first color **/ 
+	      /*		if ( cvect[(*p)*locindex[i]] <= 0 ) 
+				{
+				fill[0]=0;
+				C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,PI0,PD0,PD0,PD0,PD0,0L,0L);
+				}*/
 
 
 
-	      }
+	    }
 	  }
 	  else C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /* End of modified code by polpoth 4/5/2000 */
@@ -787,41 +786,41 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 
 
   /**DJ.Abdemouche 2003**/
-   if (version_flag() != 0) {
-     /** le triedre vu **/
-     C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  if (version_flag() != 0) {
+    /** le triedre vu **/
+    C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (zbox[InsideU[0]] > zbox[InsideD[0]])
+      DrawAxis(xbox,ybox,InsideU,fg);
+    else 
+      DrawAxis(xbox,ybox,InsideD,fg);
+    C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (fg1==-1) fg1=0;
+    /** Le triedre cache **/
+    if (zbox[InsideU[0]] > zbox[InsideD[0]])
+      DrawAxis(xbox,ybox,InsideD,fg1);
+    else 
+      DrawAxis(xbox,ybox,InsideU,fg1);
+  }
+  else
+    {
+      C2F (dr) ("xset","thickness",&m,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
       if (zbox[InsideU[0]] > zbox[InsideD[0]])
-       DrawAxis(xbox,ybox,InsideU,fg);
-     else 
-       DrawAxis(xbox,ybox,InsideD,fg);
-     C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-     if (fg1==-1) fg1=0;
-     /** Le triedre cache **/
-     if (zbox[InsideU[0]] > zbox[InsideD[0]])
-       DrawAxis(xbox,ybox,InsideD,fg1);
-     else 
-       DrawAxis(xbox,ybox,InsideU,fg1);
-   }
-   else
-     {
-       C2F (dr) ("xset","thickness",&m,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-       if (zbox[InsideU[0]] > zbox[InsideD[0]])
-	 DrawAxis(xbox,ybox,InsideU,2);
-       else 
-	 DrawAxis(xbox,ybox,InsideD,2);    
-       if (zbox[InsideU[0]] > zbox[InsideD[0]])
-	 DrawAxis(xbox,ybox,InsideD,2);
-       else 
-	 DrawAxis(xbox,ybox,InsideU,2);
+	DrawAxis(xbox,ybox,InsideU,2);
+      else 
+	DrawAxis(xbox,ybox,InsideD,2);    
+      if (zbox[InsideU[0]] > zbox[InsideD[0]])
+	DrawAxis(xbox,ybox,InsideD,2);
+      else 
+	DrawAxis(xbox,ybox,InsideU,2);
     
-       ixbox[0]=XScale(xbox[0]);ixbox[1]=XScale(xbox[2]);
-       ixbox[2]=XScale(xbox[1]);ixbox[3]=XScale(xbox[3]);
-       iybox[0]=YScale(ybox[0]); iybox[1]=YScale(ybox[2]);
-       iybox[2]=YScale(ybox[1]); iybox[3]=YScale(ybox[3]);
-       C2F(dr)("xpolys","v",ixbox,iybox,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-       C2F(dr)("xpolys","v",ixbox+2,iybox+2,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+      ixbox[0]=XScale(xbox[0]);ixbox[1]=XScale(xbox[2]);
+      ixbox[2]=XScale(xbox[1]);ixbox[3]=XScale(xbox[3]);
+      iybox[0]=YScale(ybox[0]); iybox[1]=YScale(ybox[2]);
+      iybox[2]=YScale(ybox[1]); iybox[3]=YScale(ybox[3]);
+      C2F(dr)("xpolys","v",ixbox,iybox,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+      C2F(dr)("xpolys","v",ixbox+2,iybox+2,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 
-     }
+    }
 
   return(0);
 }
@@ -834,15 +833,68 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 int C2F(geom3d)(double *x, double *y, double *z, integer *n)
 {
   integer j;
-  for ( j =0 ; j < (*n) ; j++)	 
-    {
-      double x1,y1;
-      x1=TRX(x[j],y[j],z[j]);
-      y1=TRY(x[j],y[j],z[j]);
-      z[j]=TRZ(x[j],y[j],z[j]);
-      x[j]=x1;
-      y[j]=y1;
-    }
+
+  if(version_flag() == 0){
+    sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+    
+    if(ppsubwin->logflags[0] =='l')
+      for ( j =0 ; j < (*n) ; j++) {
+	if(x[j] <= 0.){
+	  sciprint("geom3d error : Operation can not be performed because X axis is in logscale mode and the specified x vector has a negative value\n");
+	  return -1;
+	}
+	x[j] = log10(x[j]);
+      }
+
+    if(ppsubwin->logflags[1] =='l')
+      for ( j =0 ; j < (*n) ; j++) {
+	if(y[j] <= 0.){
+	  sciprint("geom3d error : Operation can not be performed because Y axis is in logscale mode and the specified y vector has a negative value\n");
+	  return -1;
+	}
+	y[j] = log10(y[j]);
+      }
+
+    if(ppsubwin->logflags[2] =='l')
+      for ( j =0 ; j < (*n) ; j++) {
+	if(z[j] <= 0.){
+	  sciprint("geom3d error : Operation can not be performed because Z axis is in logscale mode and the specified z vector has a negative value\n");
+	  return -1;
+	}
+	z[j] = log10(z[j]);
+      }
+   
+    if(ppsubwin->axes.reverse[0] == TRUE)
+      for ( j =0 ; j < (*n) ; j++) x[j] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],x[j]);
+    
+    if(ppsubwin->axes.reverse[1] == TRUE)
+      for ( j =0 ; j < (*n) ; j++) y[j] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],y[j]);
+    
+    if(ppsubwin->axes.reverse[2] == TRUE)
+      for ( j =0 ; j < (*n) ; j++) z[j] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],z[j]);
+
+    for ( j =0 ; j < (*n) ; j++)
+      {
+	double x1,y1;
+	x1=TRX(x[j],y[j],z[j]);
+	y1=TRY(x[j],y[j],z[j]);
+	z[j]=TRZ(x[j],y[j],z[j]);
+	x[j]=x1;
+	y[j]=y1;
+      }
+  }
+  else{
+    for ( j =0 ; j < (*n) ; j++)	 
+      {
+	double x1,y1;
+	x1=TRX(x[j],y[j],z[j]);
+	y1=TRY(x[j],y[j],z[j]);
+	z[j]=TRZ(x[j],y[j],z[j]);
+	x[j]=x1;
+	y[j]=y1;
+      }
+  }
   return(0);
 }
 
@@ -875,13 +927,13 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   Teta=*teta;
   Alpha=*alpha;
   /*  if (flag==0) {
-    Alpha=Cscale.alpha;
-    Teta=Cscale.theta;
+      Alpha=Cscale.alpha;
+      Teta=Cscale.theta;
       }
-  else {
-    Cscale.alpha = Alpha;
-    Cscale.theta = Teta;
-    }*/
+      else {
+      Cscale.alpha = Alpha;
+      Cscale.theta = Teta;
+      }*/
   Cscale.alpha = Alpha;
   Cscale.theta = Teta;
   cost=cos((Teta)*M_PI/180.0);
@@ -936,7 +988,7 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   /* code added by es: isoview scaling */
   if ( flag == 2 || flag == 3 )
     {
-/* get current window size */
+      /* get current window size */
       C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,
               PD0,PD0,PD0,PD0,0L,0L);
       getscale2d(WRect,FRect,logf,ARect);
@@ -945,7 +997,7 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
     }
   if ( flag == 2 )
     {
-/* radius and center of the sphere circumscribing the box */
+      /* radius and center of the sphere circumscribing the box */
       dx=bbox[1]-bbox[0]; dy=bbox[3]-bbox[2]; dz=bbox[5]-bbox[4];
       R= (double) sqrt(dx*dx + dy*dy + dz*dz)/2;
       xo= (double) (xbox[0]+xbox[6])/2 ;
@@ -958,7 +1010,7 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
     }
   if (flag==2 || flag==3)
     {
-/* adjust limits (code adapted from Plo2d.c & Stephane's patch) */
+      /* adjust limits (code adapted from Plo2d.c & Stephane's patch) */
       hx=xmmax-xmmin;
       hy=ymmax-ymmin;
       if ( hx/(double)wmax  < hy/(double)hmax ) 
@@ -973,15 +1025,15 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
           ymmin=ymmin-(hy1-hy)/2.0;
           ymmax=ymmax+(hy1-hy)/2.0;
         }
-     }
+    }
   if (flag !=0 )
-     {
+    {
       FRect[0]=xmmin;FRect[1]= -ymmax;FRect[2]=xmmax;FRect[3]= -ymmin;
       set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
       Cscale.metric3d=flag; /* the metric mode is stored into the
                              * List of Scales */
-     }
-/* end of code added by es */
+    }
+  /* end of code added by es */
 }
 
 /*----------------------------------------------------------------
@@ -1011,7 +1063,7 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
     else
       j=sciGetLineStyle (psubwin);
   }	
-    /***/  
+  /***/  
   C2F(dr)("xset","line style",&j,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsegs","v",ixbox,iybox,&npoly,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",lstyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1053,10 +1105,10 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
     {
       MaxiInd(xbox,8L,&ind,xmaxi);
       if ( ind > 3)
-	  {
-	    xind[0]=ind;
-	    break;
-	  }
+	{
+	  xind[0]=ind;
+	  break;
+	}
     }
   if (ind < 0 || ind > 8) 
     {
@@ -1079,38 +1131,38 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
   xind[3]=ind2-4;
   DownNext(xind[3],&ind2,&ind3);
   if (ybox[ind2] < ybox[ind3]) 
-   {
-     xind[4]=ind2;InsideD[0]=ind3;
-   }
- else  
-   {
-     xind[4]=ind3;InsideD[0]=ind2;
-   }
+    {
+      xind[4]=ind2;InsideD[0]=ind3;
+    }
+  else  
+    {
+      xind[4]=ind3;InsideD[0]=ind2;
+    }
   DownNext(ind2,&ind2,&ind3);
   InsideD[1]=xind[3];
   InsideD[2]=ind2;
   InsideD[3]=InsideD[0]+4;
   xind[5]=ind2;
   for (i=0; i < 6 ; i++)
-   {
-     ixbox[i]=XScale(xbox[xind[i]]);
-     iybox[i]=YScale(ybox[xind[i]]);
-   }
+    {
+      ixbox[i]=XScale(xbox[xind[i]]);
+      iybox[i]=YScale(ybox[xind[i]]);
+    }
   ixbox[6]=ixbox[0];iybox[6]=iybox[0];
   p=7,n=1;
   /**DJ.Abdemouche 2003**/
   if (version_flag() != 0) 
     C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   else
-   dvect[0]=2;       
-     /** On trace l'enveloppe cvxe **/
+    dvect[0]=2;       
+  /** On trace l'enveloppe cvxe **/
   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdemouche 2003**/	   
   if (flag[2]>=3){
     C2F(dr)("xpolys","v",ixbox,iybox,dvect,&n,&p
-        ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    }
+	    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",dvect,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   if (flag[2]>=3)
@@ -1130,7 +1182,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   integer verbose=0,narg,xz[2];
   integer iof;
   char *loc = NULL;
-/*   char * buff = NULL; */
+  /*   char * buff = NULL; */
   char * legx = NULL;
   char * legy = NULL;
   char * legz = NULL;
@@ -1145,9 +1197,9 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
     }
   
   strcpy(loc,legend);
-/*   legx=strtok_r(loc,"@",&buff); */
-/*   legy=strtok_r(NULL,"@",&buff); */
-/*   legz=strtok_r(NULL,"@",&buff); */
+  /*   legx=strtok_r(loc,"@",&buff); */
+  /*   legy=strtok_r(NULL,"@",&buff); */
+  /*   legz=strtok_r(NULL,"@",&buff); */
  
   legx=strtok(loc,"@");
   legy=strtok(NULL,"@");
@@ -1160,7 +1212,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
     {x=ixbox[2]-iof ;y=iybox[2]-iof;}
   else
     {x = (integer) (ixbox[2]-(xz[0]+xz[1])/20) ; y = (integer) (0.5*iybox[3]+0.5*iybox[2]);}
- /*** le z scaling ***/
+  /*** le z scaling ***/
   if ( axflag>=4)
     {
       double fx,fy,fz,lx,ly,lz;
@@ -1178,7 +1230,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
     {
       C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xstring",legz,(x=x - rect[2],&x),&y,PI0,&flag
-          ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
     }
   /** le cot\^e en bas \`a gauche **/
   if (version_flag() != 0) {
@@ -1207,7 +1259,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 
 	  C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
-	      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+		  ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
 	}
     }
   else 
@@ -1230,7 +1282,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 
 	  C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xstring",legy,(x=x-rect[2],&x),&y,PI0,&flag
-	      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+		  ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
 	}
     }
   /** le cot\'e en bas a droite **/
@@ -1327,7 +1379,7 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
   barlength=inint(1.2*size);
   dx= ((double) LPoint[0]-FPoint[0])/((double)nax[1]);
   dy= ((double) LPoint[1]-FPoint[1])/((double)nax[1]);
-   if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
+  if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
     {
       ticsx= ticsy = 0;
     }
@@ -1340,24 +1392,24 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
     }
   for (i=0; i <= nax[1];i++)
     { double angle=0.0;
-      integer flag1=0;
-      integer xx=0,yy=0, posi[2],rect[4];
-      char foo[100];/*** JPC : must be cleared properly **/
-      double lp;
-      lp = xp + i*(LPval-FPval)/((double)nax[1]);
-      sprintf(foo,fornum,lp);   
-      C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      posi[0]=inint(FPoint[0]+ i*dx + 2*ticsx );
-      posi[1]=inint(FPoint[1]+ i*dy + 2*ticsy +rect[3]/2 );
-      switch ( flag)
-	{
-	case 1: posi[0] -= rect[2];
-	  /** pour separer ;e 1er arg de l'axe des z de l'axe voisin **/
-	  if ( i== nax[1]) posi[1] -= rect[3]/2;
-	  break;
-	case 2: posi[0] -= rect[2];break;
-	}
-      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag1,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+    integer flag1=0;
+    integer xx=0,yy=0, posi[2],rect[4];
+    char foo[100];/*** JPC : must be cleared properly **/
+    double lp;
+    lp = xp + i*(LPval-FPval)/((double)nax[1]);
+    sprintf(foo,fornum,lp);   
+    C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    posi[0]=inint(FPoint[0]+ i*dx + 2*ticsx );
+    posi[1]=inint(FPoint[1]+ i*dy + 2*ticsy +rect[3]/2 );
+    switch ( flag)
+      {
+      case 1: posi[0] -= rect[2];
+	/** pour separer ;e 1er arg de l'axe des z de l'axe voisin **/
+	if ( i== nax[1]) posi[1] -= rect[3]/2;
+	break;
+      case 2: posi[0] -= rect[2];break;
+      }
+    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag1,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
     } 
 }
 
@@ -1518,10 +1570,10 @@ int I3dRotation(void)
 		    }
 		}
 	      else
-              {
-		wininfo("No 3d object selected");
-		return 0;
-	      }
+		{
+		  wininfo("No 3d object selected");
+		  return 0;
+		}
 	    }
           else
 	    {                  
@@ -1683,117 +1735,117 @@ int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *
 
 int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag)
 {
-   integer px[5],py[5],fil[4],is[3],ie[3],n[3];
-   integer npoly=1,k,col,cols,psize,i,s,e;
-   integer polyxs[4],polyys[4],fills[4],*x[3],*y[3];
-   double dx,dy;
+  integer px[5],py[5],fil[4],is[3],ie[3],n[3];
+  integer npoly=1,k,col,cols,psize,i,s,e;
+  integer polyxs[4],polyys[4],fills[4],*x[3],*y[3];
+  double dx,dy;
 
-   if (polysize == 3) { /* The triangle case */
+  if (polysize == 3) { /* The triangle case */
  
-     triangleSort(polyx,polyy,fill,polyxs,polyys,fills);
+    triangleSort(polyx,polyy,fill,polyxs,polyys,fills);
   
-     is[0]=0; ie[0]=1;
-     is[1]=1; ie[1]=2;
-     is[2]=0; ie[2]=2;
+    is[0]=0; ie[0]=1;
+    is[1]=1; ie[1]=2;
+    is[2]=0; ie[2]=2;
      
-     /* Computation of coordinates of elementary polygons for each side */
+    /* Computation of coordinates of elementary polygons for each side */
      
-     for(i=0;i<3;i++) {
+    for(i=0;i<3;i++) {
 
-        s=is[i];
-	e=ie[i];
-	n[i]=fills[s]-fills[e];
+      s=is[i];
+      e=ie[i];
+      n[i]=fills[s]-fills[e];
 
-        if (n[i]) {
+      if (n[i]) {
 	
-           x[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer));
-	   y[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer)); 
-	   if (x[i]==NULL || y[i]==NULL) {
-		Scistring("shade : MALLOC No more Place\n");
-		return 0;
-	   }
+	x[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer));
+	y[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer)); 
+	if (x[i]==NULL || y[i]==NULL) {
+	  Scistring("shade : MALLOC No more Place\n");
+	  return 0;
+	}
 		
-           dx=((double)(polyxs[e]-polyxs[s]))/(double)n[i];
-	   dy=((double)(polyys[e]-polyys[s]))/(double)n[i];
+	dx=((double)(polyxs[e]-polyxs[s]))/(double)n[i];
+	dy=((double)(polyys[e]-polyys[s]))/(double)n[i];
 
-           x[i][0]=polyxs[s];
-	   y[i][0]=polyys[s];
+	x[i][0]=polyxs[s];
+	y[i][0]=polyys[s];
 	   
-           for(k=0;k<n[i];k++) {
-             x[i][k+1]=linint((double)polyxs[s] + (0.5+k)*dx);
-	     y[i][k+1]=linint((double)polyys[s] + (0.5+k)*dy);
-           }
+	for(k=0;k<n[i];k++) {
+	  x[i][k+1]=linint((double)polyxs[s] + (0.5+k)*dx);
+	  y[i][k+1]=linint((double)polyys[s] + (0.5+k)*dy);
+	}
 	   
-           x[i][n[i]+1]=polyxs[e];
-           y[i][n[i]+1]=polyys[e];
-        }
-     }
+	x[i][n[i]+1]=polyxs[e];
+	y[i][n[i]+1]=polyys[e];
+      }
+    }
      
-     /* Fill the whole triangle with color fill[1] if all colors are equal */
+    /* Fill the whole triangle with color fill[1] if all colors are equal */
          
-     if (!n[0] && !n[1]) {
+    if (!n[0] && !n[1]) {
 
-          psize=3;
-          col=fills[0];
-          C2F(dr)("xliness","str",polyxs,polyys,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-/*          return(0);*/
-     }
+      psize=3;
+      col=fills[0];
+      C2F(dr)("xliness","str",polyxs,polyys,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      /*          return(0);*/
+    }
      
-     if (n[0]) {
-          psize=4;
-	  col=fills[0];  
-          for(i=0;i<=n[0];i++) {
-	     px[0]=x[2][i]; px[1]=x[0][i]; px[2]=x[0][i+1]; px[3]=x[2][i+1];
-	     py[0]=y[2][i]; py[1]=y[0][i]; py[2]=y[0][i+1]; py[3]=y[2][i+1];
-	     C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-             col--;
-	  }
-	  FREE(x[0]);
-	  FREE(y[0]);
-     }
+    if (n[0]) {
+      psize=4;
+      col=fills[0];  
+      for(i=0;i<=n[0];i++) {
+	px[0]=x[2][i]; px[1]=x[0][i]; px[2]=x[0][i+1]; px[3]=x[2][i+1];
+	py[0]=y[2][i]; py[1]=y[0][i]; py[2]=y[0][i+1]; py[3]=y[2][i+1];
+	C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	col--;
+      }
+      FREE(x[0]);
+      FREE(y[0]);
+    }
      
-     if (n[1]) {
-          psize=4;
-	  col=fills[1];
-          for(i=0;i<=n[1];i++) {
-	     px[0]=x[2][n[0]+i]; px[1]=x[1][i]; px[2]=x[1][i+1]; px[3]=x[2][n[0]+i+1];
-	     py[0]=y[2][n[0]+i]; py[1]=y[1][i]; py[2]=y[1][i+1]; py[3]=y[2][n[0]+i+1];
-	     C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-             col--;
-	  }
-          FREE(x[1]);
-	  FREE(y[1]);  
-     }
+    if (n[1]) {
+      psize=4;
+      col=fills[1];
+      for(i=0;i<=n[1];i++) {
+	px[0]=x[2][n[0]+i]; px[1]=x[1][i]; px[2]=x[1][i+1]; px[3]=x[2][n[0]+i+1];
+	py[0]=y[2][n[0]+i]; py[1]=y[1][i]; py[2]=y[1][i+1]; py[3]=y[2][n[0]+i+1];
+	C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	col--;
+      }
+      FREE(x[1]);
+      FREE(y[1]);  
+    }
 
-     if (n[2]) {
-        FREE(x[2]);
-	FREE(y[2]);
-     }
+    if (n[2]) {
+      FREE(x[2]);
+      FREE(y[2]);
+    }
 
-   }
+  }
    
-   else { /* The 4 vertices case  */
+  else { /* The 4 vertices case  */
      
-      px[0]=polyx[0]; px[1]=polyx[1]; px[2]=polyx[2];
-      py[0]=polyy[0]; py[1]=polyy[1]; py[2]=polyy[2];
-      fil[0]=fill[0]; fil[1]=fill[1]; fil[2]=fill[2];
-      scilab_shade(px,py,fil,3,-1);
+    px[0]=polyx[0]; px[1]=polyx[1]; px[2]=polyx[2];
+    py[0]=polyy[0]; py[1]=polyy[1]; py[2]=polyy[2];
+    fil[0]=fill[0]; fil[1]=fill[1]; fil[2]=fill[2];
+    scilab_shade(px,py,fil,3,-1);
 
-      px[0]=polyx[0]; px[1]=polyx[2]; px[2]=polyx[3];
-      py[0]=polyy[0]; py[1]=polyy[2]; py[2]=polyy[3];
-      fil[0]=fill[0]; fil[1]=fill[2]; fil[2]=fill[3];
-      scilab_shade(px,py,fil,3,-1);
-   }
+    px[0]=polyx[0]; px[1]=polyx[2]; px[2]=polyx[3];
+    py[0]=polyy[0]; py[1]=polyy[2]; py[2]=polyy[3];
+    fil[0]=fill[0]; fil[1]=fill[2]; fil[2]=fill[3];
+    scilab_shade(px,py,fil,3,-1);
+  }
    
-   /* If flag>0 then the contour is drawn */
+  /* If flag>0 then the contour is drawn */
    
-   if (flag > 0) { 
-       fil[0]=0;
-       polysize+=1;
-	   C2F (dr) ("xliness", "str", polyx, polyy, fil, &npoly,
-                    &polysize, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-   }
-   return 0;
+  if (flag > 0) { 
+    fil[0]=0;
+    polysize+=1;
+    C2F (dr) ("xliness", "str", polyx, polyy, fil, &npoly,
+	      &polysize, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+  }
+  return 0;
 }     
 
 
