@@ -2743,7 +2743,7 @@ int scixget(fname,fname_len)
   else
     flagx = 0;
 
-  if ( strncmp(cstk(l1),"fpf",3) == 0 || strncmp(cstk(l1),"auto clear",10) == 0) 
+  if ( strcmp(cstk(l1),"fpf") == 0 || strcmp(cstk(l1),"auto clear") == 0) 
     {
       int bufl;
       /*     special case for global variables set */
@@ -2753,7 +2753,7 @@ int scixget(fname,fname_len)
       LhsVar(1)=Rhs+1;
       return 0;
     }
-  else if ( strncmp(cstk(l1),"colormap",8) == 0) 
+  else if ( strcmp(cstk(l1),"colormap") == 0) 
     {
       /*     special case for colormap : must allocate space */
       int m3,n3=3;
@@ -2763,9 +2763,30 @@ int scixget(fname,fname_len)
       C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,stk(l3),&dv,&dv,&dv,5L,bsiz);
       LhsVar(1)=Rhs+1;
     }
-  else if ( strncmp(cstk(l1),"mark size",9) == 0) {
+  else if ( strcmp(cstk(l1),"mark") == 0) {
     int i;
-    C2F(dr1)("xget","mark",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+    if(version_flag() == 0){
+      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      x1[0] = sciGetMarkStyle(subwin);
+      x1[1] = sciGetMarkSize(subwin);
+    }
+    else
+      C2F(dr1)("xget","mark",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+    
+    x2=2;
+    CreateVar(Rhs+1,"d",&one,&x2,&l3);
+    for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
+    LhsVar(1)=Rhs+1;
+  }
+  else if ( strcmp(cstk(l1),"mark size") == 0) {
+    int i;
+    if(version_flag() == 0){
+      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      x1[0] = x1[1] = sciGetMarkSize(subwin);
+    }
+    else
+      C2F(dr1)("xget","mark",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+    
     x1[0]=x1[1];
     x2=1;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
@@ -2781,14 +2802,14 @@ int scixget(fname,fname_len)
   /*     for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];       */
   /*     LhsVar(1)=Rhs+1; */
   /*   } */
-  else if ( strncmp(cstk(l1),"line style",10) == 0) {
+  else if ( strcmp(cstk(l1),"line style") == 0) {
     C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
     *stk(l3 ) = (double) x1[0];      
     LhsVar(1)=Rhs+1;
   } 
   /* NG beg */
-  else if ( strncmp(cstk(l1),"old_style",9) == 0) 
+  else if ( strcmp(cstk(l1),"old_style") == 0) 
     {
       x2=1;
       CreateVar(Rhs+1,"d",&one,&x2,&l3);
@@ -3215,7 +3236,7 @@ int scixset(fname,fname_len)
       C2F(msgs)(&i,&v);
     }
   }
-
+  
   if (strncmp(cstk(l1),"clipping",8) == 0) 
     C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
   else if ( strncmp(cstk(l1),"colormap",8) == 0) {
@@ -3231,7 +3252,7 @@ int scixset(fname,fname_len)
       C2F(dr1)("xset","color",&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
     }
   }
-  else if ( strncmp(cstk(l1),"mark size",9) == 0) {
+  else if ( strcmp(cstk(l1),"mark size") == 0) {
     C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
     
     if(version_flag() == 0){
@@ -3240,9 +3261,24 @@ int scixset(fname,fname_len)
     }
     
     mark[1]=(int)xx[0];
-    C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
+    if(version_flag() == 0){
+      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSetMarkSize(subwin,mark[1]);
+    }
+    else
+      C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
   }
-  else if ( strncmp(cstk(l1),"font size",9) == 0) {
+  else if ( strcmp(cstk(l1),"mark") == 0) {
+    if(version_flag() == 0){
+      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
+      sciSetMarkStyle(subwin,(int) xx[0]);
+      sciSetMarkSize(subwin,(int) xx[1]);
+    }
+    else
+      C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
+  }
+  else if ( strcmp(cstk(l1),"font size") == 0) {
     verb=0;
     C2F(dr1)("xget","font",&verb,font,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
     font[1]=(int)xx[0];
