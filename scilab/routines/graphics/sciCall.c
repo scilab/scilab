@@ -167,6 +167,7 @@ void Objsegs (style,flag,n1,x,y,arsize)
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
 				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp)); 
+  sciDrawObjIfRequired(sciGetCurrentObj ()); 
 }
 /*-----------------------------------------------------------
  * Objstring:
