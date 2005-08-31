@@ -2814,6 +2814,10 @@ int scixget(fname,fname_len)
 	  x1[0] = sciGetLineStyle(psubwin);
 	  x2 = 1;
 	}
+	else if(strcmp(cstk(l1),"hidden3d")==0){
+	  x1[0] = pSUBWIN_FEATURE(psubwin)->hiddencolor;
+	  x2 = 1;
+	}
 	else
 	  C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       }
@@ -3270,6 +3274,11 @@ int scixset(fname,fname_len)
     /* special treatement for xset("clipoff") */
     sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     sciSetIsClipping(psubwin,-1);
+  }
+  else if((strcmp(cstk(l1),"hidden3d")==0) && (version_flag()==0)) {
+    /* special treatement for xset("hidden3d") */
+    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
   }
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
