@@ -4,6 +4,10 @@
  #include "../sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#include "ObjectStructure.h"
+#include "GetProperty.h"
+#include "SetProperty.h"
+
 /* C code produced by gperf version 3.0.1 */
 /* Command-line: gperf -C -t -k '2,3,4,$' Xcall1.gperf  */
 #if WIN32
@@ -555,10 +559,20 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
     }
   else if ( strcmp(str,"auto clear")==0) 
     {
-      if (strcmp(str1,"on")==0 )
+      if (strcmp(str1,"on")==0 ){
 	Autoclear = 1;
-      else
+	if(version_flag() == 0){
+	  sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+	  sciSetAddPlot((sciPointObj *) subwin,FALSE);
+	}
+      }
+      else{
 	Autoclear = 0;
+	if(version_flag() == 0){
+	  sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+	  sciSetAddPlot((sciPointObj *) subwin,TRUE);
+	}
+      }
     }
   else if ( strcmp(str,"default")==0)
     {
@@ -581,16 +595,33 @@ int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
     }
   else if ( strcmp(str,"auto clear")==0) 
     {
-      if ( Autoclear == 1) 
-	{
-	  strncpy(str1,"on",2);
-	  *len=2;
-	}
-      else 
-	{
-	  strncpy(str1,"off",3);
-	  *len=3;
-	}
+      if(version_flag() == 0){
+	int autoclear;
+	sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+	autoclear = !(sciGetAddPlot(subwin));
+	if (autoclear == 1) 
+	  {
+	    strncpy(str1,"on",2);
+	    *len=2;
+	  }
+	else 
+	  {
+	    strncpy(str1,"off",3);
+	    *len=3;
+	  }
+      }
+      else{
+	if ( Autoclear == 1) 
+	  {
+	    strncpy(str1,"on",2);
+	    *len=2;
+	  }
+	else 
+	  {
+	    strncpy(str1,"off",3);
+	    *len=3;
+	  }
+      }
     }
   return 0;
 }
