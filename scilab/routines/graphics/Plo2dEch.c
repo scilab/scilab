@@ -1792,6 +1792,10 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
   int cinq=5;
   
   int xm[5], ym[5];
+  
+  #ifdef WIN32
+    integer verbose=0,pat,pat1=3,narg;
+  #endif
 
   if(xpix_ini < xpix_fin){
     xm[0] = xpix_ini;
@@ -1827,14 +1831,10 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
     ym[2] = ypix_ini;
   }
   
-  
-  
 #ifdef WIN32
-  integer verbose=0,pat,pat1=3,narg;
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
-
 
   /*   C2F(dr1)("xrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&xi,&yi,&w,&h,0L,0L); */
 
