@@ -24,6 +24,12 @@ if exists('logflag','local')==1 then opts=[opts,'logflag=logflag'],end
 if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
 opts=strcat([opts,"style=style(c)"],',')
+
+if or(type(z)==[11 13]) then 
+  fun=z;comp(fun);clear z //to avoid redfinition warning
+  z=eval3d(fun,x,y),
+end
+
 [xc,yc]=contour2di(x,y,z,nz);
 fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 
