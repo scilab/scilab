@@ -263,7 +263,7 @@ function %h_p(h)
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       c=sci2exp(h.segs_color,0)
-      if length(d)>70 then d="matrix "+strcat(string(size(h.segs_color)),'x'),end
+      if length(c)>70 then d="matrix "+strcat(string(size(h.segs_color)),'x'),end
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
