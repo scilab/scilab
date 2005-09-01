@@ -2042,7 +2042,7 @@ int scixarcs(fname,fname_len)
   CheckRhs(1,2);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
-  if ( strncmp(fname,"xarcs",fname_len) == 0) {
+  if ( strcmp(fname,"xarcs") == 0) {
     if (m1 != 6) {
       Scierror(999,"%s: arcs has a wrong size (6,n) expected \r\n",fname);
       return 0;
@@ -2312,7 +2312,7 @@ int scixchange(fname,fname_len)
   CheckSameDims(1,2,m1,n1,m2,n2);
 
   SciWin();
-  if ( strncmp(cstk(l3),"i2f",3) == 0) 
+  if ( strcmp(cstk(l3),"i2f") == 0) 
     {
       GetRhsVar(1,"i",&m1,&n1,&l1);
       GetRhsVar(2,"i",&m2,&n2,&l2);
@@ -2793,15 +2793,6 @@ int scixget(fname,fname_len)
     for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
     LhsVar(1)=Rhs+1;
   }
-  /*   else if ( strncmp(cstk(l1),"font size",9) == 0) { */
-  /*     int i; */
-  /*     C2F(dr1)("xget","font",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L); */
-  /*     x1[0]=x1[1]; */
-  /*     x2=1; */
-  /*     CreateVar(Rhs+1,"d",&one,&x2,&l3); */
-  /*     for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];       */
-  /*     LhsVar(1)=Rhs+1; */
-  /*   } */
   else if ( strcmp(cstk(l1),"line style") == 0) {
     if(version_flag() == 0){
       sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
@@ -3046,10 +3037,10 @@ int scixpoly(fname,fname_len)
   if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
   if (Rhs >= 3) {
     GetRhsVar(3,"c",&m3,&n3,&l3);
-    if ( strncmp(cstk(l3),"lines",5) == 0) {
+    if ( strcmp(cstk(l3),"lines") == 0) {
       strcpy(C2F(cha1).buf,"xlines"); 
       mark=1; /* NG */
-    } else if (strncmp(cstk(l3),"marks",5) == 0) {
+    } else if (strcmp(cstk(l3),"marks") == 0) {
       strcpy(C2F(cha1).buf,"xmarks"); 
       mark=0; /* NG */
     } else {
@@ -3199,7 +3190,7 @@ int scixset(fname,fname_len)
  OK:
   /* Allan CORNET Avril 2004 */
   /* Bloque la commande xset('window') sans numero de fenetre */
-  if (Rhs == 1 && (strncmp(cstk(l1),"window",6L) == 0) )
+  if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
     {
       sciprint("xset(\"window\",window-number): window-number must be set\r\n");
       LhsVar(1)=0; return 0;
@@ -3213,7 +3204,7 @@ int scixset(fname,fname_len)
       LhsVar(1)=0; return 0;
     }
 
-  if (Rhs == 1 && strncmp(cstk(l1),"default",7) == 0) 
+  if (Rhs == 1 && strcmp(cstk(l1),"default") == 0) 
     {
       /* first treatment for xsetg : then we continue */
       C2F(xsetg)(cstk(l1),"void",m1,4L);
@@ -3230,11 +3221,11 @@ int scixset(fname,fname_len)
    * only once 
    */
   isdc = 0;
-  if (strncmp(cstk(l1),"colormap",8) == 0 || strncmp(cstk(l1),"default",7) == 0) C2F(sedeco)(&isdc);
-  if (strncmp(cstk(l1),"window",6L) != 0) SciWin();
+  if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) C2F(sedeco)(&isdc);
+  if (strcmp(cstk(l1),"window") != 0) SciWin();
   isdc = 1;
-  if (strncmp(cstk(l1),"colormap",8) == 0 || strncmp(cstk(l1),"default",7) == 0) C2F(sedeco)(&isdc);
-  if (strncmp(cstk(l1),"wdim",8) == 0 || strncmp(cstk(l1),"wpdim",7) == 0) {
+  if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) C2F(sedeco)(&isdc);
+  if (strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0) {
     /* Xwindows limits dimensions to 2^16 */
     if ( (x[0]>65535)||(x[1]>65535)) {
       x[0]=Min(x[0],65535);
@@ -3244,9 +3235,9 @@ int scixset(fname,fname_len)
     }
   }
   
-  if (strncmp(cstk(l1),"clipping",8) == 0) 
+  if (strcmp(cstk(l1),"clipping") == 0) 
     C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
-  else if ( strncmp(cstk(l1),"colormap",8) == 0) {
+  else if ( strcmp(cstk(l1),"colormap") == 0) {
 
     if (version_flag() == 0)
       {
@@ -3292,7 +3283,7 @@ int scixset(fname,fname_len)
     C2F(dr1)("xset","font",&(font[0]),&(font[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
   } 
   /* NG beg */
-  else if ( strncmp(cstk(l1),"old_style",9) == 0) {
+  else if ( strcmp(cstk(l1),"old_style") == 0) {
     if (*stk(lr) == 0) 
       versionflag = (int) *stk(lr);
     else if (*stk(lr) == 1)
@@ -3326,7 +3317,7 @@ int scixset(fname,fname_len)
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   /* NG beg */
-  if ((version_flag() == 0) && (strncmp(cstk(l1),"window",6L) == 0))
+  if ((version_flag() == 0) && (strcmp(cstk(l1),"window") == 0))
     if (sciSwitchWindow(&x[0]) != 0){
       Scierror(999,"%s: It was not possible to create the requested figure",fname);
     }
@@ -3334,7 +3325,7 @@ int scixset(fname,fname_len)
   if (version_flag() == 0&&strcmp(cstk(l1),"wshow")!=0)
     {
       subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      if (( strncmp(cstk(l1),"foreground",10) == 0) || (strcmp(cstk(l1),"color") == 0) ||( strncmp(cstk(l1),"pattern",7) == 0) ) {
+      if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) ) {
         sciSetForeground(subwin, x[0]); 
 	if (sciGetSons((sciPointObj *) subwin) == (sciSons *)NULL) {/* added SS 20.04.04 */
 	  /* if subwin is empty, set also the ticscolor and fontforeground */
@@ -3343,33 +3334,33 @@ int scixset(fname,fname_len)
 	}
 	/*sciSetForeground(sciGetParent(subwin), x[0]);*/ /* TO DELETE F.Leray 02.04.04*/
       } 
-      else if ( strncmp(cstk(l1),"background",10) == 0) {
+      else if ( strcmp(cstk(l1),"background") == 0) {
         sciSetBackground(subwin, x[0]); 
         /*sciSetBackground(sciGetParent(subwin), x[0]); */ /* TO DELETE F.Leray 02.04.04*/
       }  
-      else if ( strncmp(cstk(l1),"thickness",9) == 0) {
+      else if ( strcmp(cstk(l1),"thickness") == 0) {
         sciSetLineWidth(subwin, x[0]); 
         sciSetLineWidth(sciGetParent(subwin), x[0]);   
       } 
-      else if ( strncmp(cstk(l1),"line style",10) == 0) {
+      else if ( strcmp(cstk(l1),"line style") == 0) {
         sciSetLineStyle(subwin, x[0]); 
         sciSetLineStyle(sciGetParent(subwin), x[0]);   
       }  
-      else if ( strncmp(cstk(l1),"mark",4) == 0) {
+      else if ( strcmp(cstk(l1),"mark") == 0) {
 	sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */
 	sciSetIsMark(sciGetParent(subwin),1);
 	sciSetMarkStyle(subwin,x[0]); 
         sciSetMarkStyle(sciGetParent(subwin),x[0]);   
       } 
-      else if ( strncmp(cstk(l1),"colormap",8) == 0) {
+      else if ( strcmp(cstk(l1),"colormap") == 0) {
         sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
       }
-      else if ( strncmp(cstk(l1),"font size",9) == 0) {
+      else if ( strcmp(cstk(l1),"font size") == 0) {
 	int fontsize_ = 100*font[1];
         sciSetFontDeciWidth(subwin, fontsize_); 
         sciSetFontDeciWidth(sciGetParent(subwin), fontsize_);
       }     
-      else if ( strncmp(cstk(l1),"dashes",6) == 0) {
+      else if ( strcmp(cstk(l1),"dashes") == 0) {
         sciSetLineStyle(subwin, x[0]); 
         sciSetLineStyle(sciGetParent(subwin), x[0]);   
       }  
@@ -3379,11 +3370,11 @@ int scixset(fname,fname_len)
         sciSetFontStyle(sciGetParent(subwin), x[0]); 
 	sciSetFontDeciWidth(sciGetParent(subwin),x[1]*100);  
       } 
-      else if ( strncmp(cstk(l1),"alufunction",11) == 0) {
+      else if ( strcmp(cstk(l1),"alufunction") == 0) {
         sciSetXorMode(subwin, x[0]); 
         sciSetXorMode(sciGetParent(subwin), x[0]);   
       }
-      else if ( strncmp(cstk(l1),"auto clear",10) == 0) {
+      else if ( strcmp(cstk(l1),"auto clear") == 0) {
         if ( x[0] == 1 )
 	  {
 	    sciSetAddPlot(subwin, TRUE); 
@@ -3395,7 +3386,7 @@ int scixset(fname,fname_len)
 	    sciSetAddPlot(sciGetParent(subwin), FALSE);  
           } 
       } 
-      else if ( strncmp(cstk(l1),"auto scale",10) == 0) {
+      else if ( strcmp(cstk(l1),"auto scale") == 0) {
 	if ( x[0] == 1 )
 	  {
 	    sciSetAutoScale(subwin, TRUE); 
@@ -3407,7 +3398,7 @@ int scixset(fname,fname_len)
 	    sciSetAutoScale(sciGetParent(subwin), FALSE);  
 	  } 
       }
-      else if ( strncmp(cstk(l1),"wresize",6) == 0) {
+      else if ( strcmp(cstk(l1),"wresize") == 0) {
         if ( x[0] == 1 )
 	  {
 	    sciSetResize(subwin, TRUE); 
@@ -3419,21 +3410,21 @@ int scixset(fname,fname_len)
 	    sciSetResize(sciGetParent(subwin), FALSE);  
           }
       }
-      else if ( strncmp(cstk(l1),"wpos",4) == 0) {
+      else if ( strcmp(cstk(l1),"wpos") == 0) {
         sciSetFigurePos (sciGetParent(subwin), x[0], x[1]);
 	 
       }
-      else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
+      else if ( strcmp(cstk(l1),"wpdim") == 0) {
 	pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
 	pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
       
       } 
-      else if ( strncmp(cstk(l1),"wdim",4) == 0) {
+      else if ( strcmp(cstk(l1),"wdim") == 0) {
 	pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
 	pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
 	
       } /*Ajout A.Djalel le 10/11/03 */
-      else if ( strncmp(cstk(l1),"pixmap",6) == 0) {
+      else if ( strcmp(cstk(l1),"pixmap") == 0) {
 	pFIGURE_FEATURE(sciGetParent(subwin))->pixmap=x[0];
 	/*if(x[0] == 1) 
 	  sciSetVisibility (sciGetParent(subwin), FALSE);
@@ -3441,11 +3432,11 @@ int scixset(fname,fname_len)
 	  sciSetVisibility (sciGetParent(subwin), TRUE);
 	  pFIGURE_FEATURE(sciGetParent(subwin))->wshow=0;}*/
       }  
-      else if ( strncmp(cstk(l1),"wshow",5) == 0) { /* a supprimer ce n'est pas une propriete mais une action */
+      else if ( strcmp(cstk(l1),"wshow") == 0) { /* a supprimer ce n'est pas une propriete mais une action */
 	pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
 	sciSetVisibility (subwin, TRUE); 
       }
-      if(strncmp(cstk(l1),"window",6) != 0) sciRedrawFigure();   
+      if(strcmp(cstk(l1),"window") != 0) sciRedrawFigure();   
     }
   /***/
   /* NG end */    
@@ -3630,7 +3621,7 @@ int scixstringb(char *fname,unsigned long fname_len)
   
   if (Rhs == 6) {
     GetRhsVar(6,"c",&m6,&n6,&l6);
-    if ( m6*n6 !=0 && strncmp(cstk(l6),"fill",4) == 0) 
+    if ( m6*n6 !=0 && strcmp(cstk(l6),"fill") == 0) 
       fill =1;
     else {
       Scierror(999,"%s: optional argument has a wrong value 'fill' expected\r\n",
@@ -4375,7 +4366,7 @@ int C2F(scigerase)()
   double dv;
   char str[4];
   C2F(xgetg)("auto clear",str,&lstr,11L,4L);
-  if (strncmp(str,"on",2) == 0) {
+  if (strcmp(str,"on") == 0) {
     C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
     C2F(dr1)("xclear",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
     C2F(dr1)("xstart",C2F(cha1).buf,&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
@@ -5418,9 +5409,9 @@ int gset(fname,fname_len)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) 
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
-	if ((strncmp(cstk(l2),"old_style",9) !=0) 
-	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
-	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
+	if ((strcmp(cstk(l2),"old_style") !=0) 
+	    &&(strcmp(cstk(l2),"default_figure") !=0) 
+	    && (strcmp(cstk(l2),"default_axes") !=0) ) SciWin();
       if (strcmp(cstk(l2),"user_data")==0) {
 	/* set pobj->user_data*/
 	int *size_ptr, data_size;
@@ -5474,10 +5465,10 @@ int gset(fname,fname_len)
       if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
       if (VarType(3) == 9)  GetRhsVar(3,"h",&numrow3,&numcol3,&l3);
       if (VarType(3) == 10) 
-	{ if ((strncmp(cstk(l2),"tics_labels",11) !=0)
-	      && ((strncmp(cstk(l2),"auto_ticks",10)) !=0)
-	      && ((strncmp(cstk(l2),"axes_visible",12)) !=0)
-	      && ((strncmp(cstk(l2),"axes_reverse",12)) !=0))
+	{ if ((strcmp(cstk(l2),"tics_labels") !=0)
+	      && ((strcmp(cstk(l2),"auto_ticks")) !=0)
+	      && ((strcmp(cstk(l2),"axes_visible")) !=0)
+	      && ((strcmp(cstk(l2),"axes_reverse")) !=0))
 	  {GetRhsVar(3,"c",&numrow3,&numcol3,&l3);} 
 	else
 	  GetRhsVar(3,"S",&numrow3,&numcol3,&l3); }
@@ -5485,10 +5476,10 @@ int gset(fname,fname_len)
     case 10:/* first is a string argument so it's a gset("command",[param]) */ 
       CheckRhs(2,2);
       GetRhsVar(1,"c",&m2,&n2,&l2);
-      if (strncmp(cstk(l2),"default_figure",14) !=0 && strncmp(cstk(l2),"default_axes",12) !=0 )
+      if (strcmp(cstk(l2),"default_figure") !=0 && strcmp(cstk(l2),"default_axes") !=0 )
 	{
-	  if ((strncmp(cstk(l2),"old_style",9) ==0) || 
-	      (strncmp(cstk(l2),"current_figure",14) ==0)) {
+	  if ((strcmp(cstk(l2),"old_style") ==0) || 
+	      (strcmp(cstk(l2),"current_figure") ==0)) {
 	    hdl = (unsigned long)0;
 	    pobj = (sciPointObj *) NULL;
 	  }
@@ -5496,9 +5487,9 @@ int gset(fname,fname_len)
 	    {
 	      SciWin();
 	      if (version_flag() == 0 )
-		if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
-		    (strncmp(cstk(l2),"auto_",5) !=0) && 
-		    (strncmp(cstk(l2),"clip_box",8) !=0) )   
+		if ((strcmp(cstk(l2),"zoom_") !=0) && 
+		    (strcmp(cstk(l2),"auto_") !=0) && 
+		    (strcmp(cstk(l2),"clip_box") !=0) )   
 		  hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ; 
 		else  
 		  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
@@ -5520,7 +5511,7 @@ int gset(fname,fname_len)
 	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if (VarType(2) != t2)
-	if(strncmp(cstk(l2),"current_figure",14) != 0 && VarType(2) !=1 ){  
+	if(strcmp(cstk(l2),"current_figure") != 0 && VarType(2) !=1 ){  
 	  /* F.Leray : special unique case here set("current_figure", HANDLE);*/
 	  /* HANDLE type is 9 */
 	  Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
@@ -5530,10 +5521,10 @@ int gset(fname,fname_len)
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 10) ) {
-	if ((strncmp(cstk(l2),"tics_labels",11) !=0)
-	    && ((strncmp(cstk(l2),"auto_ticks",10)) !=0)
-	    && ((strncmp(cstk(l2),"axes_visible",12)) !=0)
-	    && ((strncmp(cstk(l2),"axes_reverse",12)) !=0))
+	if ((strcmp(cstk(l2),"tics_labels") !=0)
+	    && ((strcmp(cstk(l2),"auto_ticks")) !=0)
+	    && ((strcmp(cstk(l2),"axes_visible")) !=0)
+	    && ((strcmp(cstk(l2),"axes_reverse")) !=0))
 	  {GetRhsVar(2,"c",&numrow3,&numcol3,&l3);} 
 	else 
 	  GetRhsVar(2,"S",&numrow3,&numcol3,&l3);
@@ -5669,11 +5660,11 @@ int gset(fname,fname_len)
     }
     
     if (!(vis_save==0&&sciGetVisibility(pobj)==0)) {/* do not redraw figure if object remains invisible */
-      if ((strncmp(cstk(l2),"figure_style",12) !=0) &&
-	  (strncmp(cstk(l2),"old_style",9) !=0 ) && 
-	  (strncmp(cstk(l2),"current_axes",12) !=0) &&
-	  (strncmp(cstk(l2),"default_figure",14) !=0) && 
-	  (strncmp(cstk(l2),"default_axes",12) !=0) &&
+      if ((strcmp(cstk(l2),"figure_style") !=0) &&
+	  (strcmp(cstk(l2),"old_style") !=0 ) && 
+	  (strcmp(cstk(l2),"current_axes") !=0) &&
+	  (strcmp(cstk(l2),"default_figure") !=0) && 
+	  (strcmp(cstk(l2),"default_axes") !=0) &&
 	  (pobj != pfiguremdl) && (pobj != paxesmdl)
 	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
 	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
@@ -5739,9 +5730,9 @@ int gget(fname,fname_len)
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
 	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	{
-	  if ((strncmp(cstk(l2),"old_style",9) !=0)
-	      &&(strncmp(cstk(l2),"default_figure",14) !=0) 
-	      && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
+	  if ((strcmp(cstk(l2),"old_style") !=0)
+	      &&(strcmp(cstk(l2),"default_figure") !=0) 
+	      && (strcmp(cstk(l2),"default_axes") !=0) ) SciWin();
 	  if (version_flag() ==0)
 	    hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle */
 	  else
@@ -5753,9 +5744,9 @@ int gget(fname,fname_len)
     case 10:/* string argument (string) */
       CheckRhs(1,1);
       GetRhsVar(1,"c",&numrow2,&numcol2,&l2);
-      if (strncmp(cstk(l2),"default_figure",14) !=0 && strncmp(cstk(l2),"default_axes",12) !=0 )
+      if (strcmp(cstk(l2),"default_figure") !=0 && strcmp(cstk(l2),"default_axes") !=0 )
 	{
-	  if (strncmp(cstk(l2),"old_style",9) == 0 || strncmp(cstk(l2),"current_figure",14) ==0) {
+	  if (strcmp(cstk(l2),"old_style") == 0 || strcmp(cstk(l2),"current_figure") ==0) {
 	    hdl = (unsigned long)0;
 	  }
 	  else
@@ -5765,10 +5756,10 @@ int gget(fname,fname_len)
 		{
 		  /* Test debug F.Leray 13.04.04 */
 		  sciPointObj * ppobj;
-		  if ((strncmp(cstk(l2),"children",8) != 0) &&  
-		      (strncmp(cstk(l2),"zoom_",5) !=0) && 
-		      (strncmp(cstk(l2),"clip_box",8) !=0) && 
-		      (strncmp(cstk(l2),"auto_",5) !=0)) 
+		  if ((strcmp(cstk(l2),"children") != 0) &&  
+		      (strcmp(cstk(l2),"zoom_") !=0) && 
+		      (strcmp(cstk(l2),"clip_box") !=0) && 
+		      (strcmp(cstk(l2),"auto_") !=0)) 
 		    {
 		      ppobj = sciGetCurrentObj();
 		      hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());}
@@ -5867,7 +5858,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /* debug F.Leray 28.04.04 */
   /* sciSubWindow * ppsubwin = NULL;*/
   
-  if ((strncmp(marker,"figure_model",12) !=0) && (strncmp(marker,"axes_model",10) !=0)
+  if ((strcmp(marker,"figure_model") !=0) && (strcmp(marker,"axes_model") !=0)
       && (pobj  != pfiguremdl)  && (pobj  != paxesmdl)
       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
@@ -5880,9 +5871,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
       
       if ((pobj == (sciPointObj *)NULL) && 
-	  (strncmp(marker,"old_style", 9) !=0 ) && 
-	  (strncmp(marker,"figure_style", 12) != 0) && 
-	  (strncmp(marker,"current_figure", 14) != 0)) 
+	  (strcmp(marker,"old_style") !=0 ) && 
+	  (strcmp(marker,"figure_style") != 0) && 
+	  (strcmp(marker,"current_figure") != 0)) 
 	{
 	  if (version_flag() == 0)
 	    strcpy(error_message,"handle not valid");
@@ -5893,22 +5884,22 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   
   /***************** graphics mode *******************************/ 
-  if (strncmp(marker,"color_map", 9) == 0)
+  if (strcmp(marker,"color_map") == 0)
     sciSetColormap((sciPointObj *)pobj, stk(*value), *numrow, *numcol);
-  else if (strncmp(marker,"old_style", 9) == 0) {
-    if ((strncmp(cstk(*value),"on", 3) == 0)) 
+  else if (strcmp(marker,"old_style") == 0) {
+    if ((strcmp(cstk(*value),"on") == 0)) 
       versionflag = 1;
-    else if ((strncmp(cstk(*value),"off", 3) == 0))
+    else if ((strcmp(cstk(*value),"off") == 0))
       versionflag = 0; 
     else {
       strcpy(error_message,"old_style must be 'on' or 'off'");
       return -1;
     }
   }
-  else if (strncmp(marker,"figure_style", 12) == 0) {
+  else if (strcmp(marker,"figure_style") == 0) {
     if (pobj != pfiguremdl)
       {
-	if ((strncmp(cstk(*value),"old", 3) == 0)) {
+	if ((strcmp(cstk(*value),"old") == 0)) {
 	  if (version_flag() == 0)  {
 	    /* 	    versionflag = 1; */
 
@@ -5926,7 +5917,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		      PD0, 0L, 0L);
 	  }
 	}
-	else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
+	else if ((strcmp(cstk(*value),"new") == 0)) {   
 	  if (version_flag() == 1)  {
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);      
 	    C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
@@ -5957,7 +5948,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       return -1;
     }  
   }  
-  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) {
+  else if (strcmp(marker,"pixel_drawing_mode") == 0) {
     if (sciGetEntityType (pobj) == SCI_FIGURE) {
       v=-1;
       for (i=0;i<16;i++) {
@@ -5973,7 +5964,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"pixel_drawing_mode: unknown property for this handle");return -1;}
   }  
-  else if (strncmp(marker,"default_values", 14) == 0) {
+  else if (strcmp(marker,"default_values") == 0) {
     if (*stk(*value) == 1)
       {
 	if (pobj == pfiguremdl)
@@ -5988,32 +5979,32 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       return -1;
     }
   }  
-  else if (strncmp(marker,"visible", 7) == 0) {
-    if ((strncmp(cstk(*value),"on", 2) == 0)) 
+  else if (strcmp(marker,"visible") == 0) {
+    if ((strcmp(cstk(*value),"on") == 0)) 
       sciSetVisibility((sciPointObj *)pobj, TRUE); 
-    else if ((strncmp(cstk(*value),"off", 3) == 0))  
+    else if ((strcmp(cstk(*value),"off") == 0))  
       sciSetVisibility((sciPointObj *)pobj, FALSE); 
     else
       {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
   } 
-  else if (strncmp(marker,"auto_resize", 10) == 0)  { 
-    if ((strncmp(cstk(*value),"on", 2) == 0)) 
+  else if (strcmp(marker,"auto_resize") == 0)  { 
+    if ((strcmp(cstk(*value),"on") == 0)) 
       sciSetResize((sciPointObj *) pobj, TRUE); 
-    else if ((strncmp(cstk(*value),"off", 3) == 0))  
+    else if ((strcmp(cstk(*value),"off") == 0))  
       sciSetResize((sciPointObj *) pobj, FALSE);
     else
       {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
 	       
   }
   /*************************** Handles Properties ********/
-  else if ((strncmp(marker,"current_obj", 11) == 0) || (strncmp(marker,"current_entity", 14) == 0))
+  else if ((strcmp(marker,"current_obj") == 0) || (strcmp(marker,"current_entity") == 0))
     {
       tmpobj=(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
       if (tmpobj == (sciPointObj *)NULL) 
 	{strcpy(error_message,"Object is not valid");return -1;}
       sciSetCurrentObj(tmpobj);
     }
-  else if (strncmp(marker,"current_axes", 12) == 0) 
+  else if (strcmp(marker,"current_axes") == 0) 
     {
       tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
       if (tmpobj == (sciPointObj *) NULL)
@@ -6035,7 +6026,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Object is not an Axes Entity");return -1;}
     }
-  else if (strncmp(marker,"current_figure", 14) == 0) 
+  else if (strcmp(marker,"current_figure") == 0) 
     {
       if (VarType(2) != 1) {
 	tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
@@ -6059,11 +6050,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
 	
   /************************  figure Properties *****************************/ 
-  else if (strncmp(marker,"figure_position", 15) == 0)
+  else if (strcmp(marker,"figure_position") == 0)
     {
       sciSetFigurePos ((sciPointObj *)pobj, (int)stk(*value)[0], (int)stk(*value)[1]);
     } 
-  else if (strncmp(marker,"axes_size", 9) == 0)
+  else if (strcmp(marker,"axes_size") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -6082,7 +6073,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
     } 
-  else if (strncmp(marker,"figure_size", 11) == 0)
+  else if (strcmp(marker,"figure_size") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -6102,10 +6093,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
 
     }
-  else if (strncmp(marker,"figure_name", 11) == 0) {
+  else if (strcmp(marker,"figure_name") == 0) {
     sciSetName((sciPointObj *) pobj, cstk(*value), (*numcol)*(*numrow));
   }
-  else if (strncmp(marker,"figure_id", 9) == 0){
+  else if (strcmp(marker,"figure_id") == 0){
     if (sciGetEntityType (pobj) != SCI_FIGURE) {
       sprintf(error_message,"%s property undefined for this object",marker);
       return -1;
@@ -6121,49 +6112,49 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       sciSetNum(pfiguremdl, &id);
   }
-  else if (strncmp(marker,"rotation_style", 14) == 0)
+  else if (strcmp(marker,"rotation_style") == 0)
     { 
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
       }
-      if (strncmp(cstk(*value),"unary",5)==0 )
+      if (strcmp(cstk(*value),"unary")==0 )
 	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 0 ;
-      else if (strncmp(cstk(*value),"multiple",8)==0 )
+      else if (strcmp(cstk(*value),"multiple")==0 )
 	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 1 ;
       else  {strcpy(error_message,"Nothing to do (value must be 'unary/multiple')"); return -1;}
     }
-  else if (strncmp(marker,"immediate_drawing", 17) == 0)
+  else if (strcmp(marker,"immediate_drawing") == 0)
     { 
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
       }
-      if (strncmp(cstk(*value),"on",2)==0 )
+      if (strcmp(cstk(*value),"on")==0 )
 	pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = TRUE ;
-      else if (strncmp(cstk(*value),"off",3)==0 )
+      else if (strcmp(cstk(*value),"off")==0 )
 	pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = FALSE ;
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     }
-  else if (strncmp(marker,"pixmap", 6) == 0){
+  else if (strcmp(marker,"pixmap") == 0){
     if (sciGetEntityType (pobj) != SCI_FIGURE) {
       sprintf(error_message,"%s property undefined for this object",marker);
       return -1;
     }
-    if (strncmp(cstk(*value),"on",2)==0 )
+    if (strcmp(cstk(*value),"on")==0 )
       pFIGURE_FEATURE(pobj)->pixmap =1;
-    else if (strncmp(cstk(*value),"off",3)==0 )
+    else if (strcmp(cstk(*value),"off")==0 )
       pFIGURE_FEATURE(pobj)->pixmap =0;
     else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
   }
   /********************** context graphique ******************************/
-  else if (strncmp(marker,"background", 10) == 0)
+  else if (strcmp(marker,"background") == 0)
     {
       /* I add this line under:*/
       sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
       
     }
-  else if (strncmp(marker,"interp_color_vector", 19) == 0)
+  else if (strcmp(marker,"interp_color_vector") == 0)
     {
       if(sciGetEntityType(pobj) != SCI_POLYLINE)
 	{strcpy(error_message,"interp_color_vector can only be set on Polyline objects"); return -1;}
@@ -6179,12 +6170,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Under interpolated color moden the column dimension of the color vector must match the number of points defining the line (which must be 3 or 4)"); return -1;}
     }
-  else if (strncmp(marker,"interp_color_mode", 17) == 0)
+  else if (strcmp(marker,"interp_color_mode") == 0)
     {
       if((sciGetEntityType(pobj) != SCI_POLYLINE))
 	{strcpy(error_message,"interp_color_mode can only be set on Polyline objects"); return -1;}
       
-      if(strncmp(cstk(*value),"on",2)==0 ){
+      if(strcmp(cstk(*value),"on")==0 ){
 	if(sciGetInterpVector(pobj) == NULL)
 	  {strcpy(error_message,"You must first specify an interp_color_vector for this object"); return -1;}
       	else
@@ -6193,81 +6184,81 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	pPOLYLINE_FEATURE (pobj)->isinterpshaded = FALSE;
     } 
-  else if (strncmp(marker,"foreground", 10) == 0)
+  else if (strcmp(marker,"foreground") == 0)
     {
       sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
     }
-  else if (strncmp(marker,"fill_mode", 9) == 0)
+  else if (strcmp(marker,"fill_mode") == 0)
     { 
-      if (strncmp(cstk(*value),"on",2)==0 )
+      if (strcmp(cstk(*value),"on")==0 )
 	sciSetIsFilled((sciPointObj *)pobj,TRUE);
-      else if (strncmp(cstk(*value),"off",3)==0 )
+      else if (strcmp(cstk(*value),"off")==0 )
 	sciSetIsFilled((sciPointObj *)pobj,FALSE);
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     }  
-  else if (strncmp(marker,"thickness", 9) == 0)  {
+  else if (strcmp(marker,"thickness") == 0)  {
     sciSetLineWidth((sciPointObj *) pobj,(int) *stk(*value));
   }
-  else if (strncmp(marker,"line_style", 10) == 0) {
+  else if (strcmp(marker,"line_style") == 0) {
     sciSetLineStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
-  else if (strncmp(marker,"line_mode", 9) == 0) {
-    if (strncmp(cstk(*value),"on",2)==0 )
+  else if (strcmp(marker,"line_mode") == 0) {
+    if (strcmp(cstk(*value),"on")==0 )
       sciSetIsLine((sciPointObj *) pobj,1);
-    else if (strncmp(cstk(*value),"off",3)==0 )
+    else if (strcmp(cstk(*value),"off")==0 )
       sciSetIsLine((sciPointObj *) pobj,0);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
-  else if (strncmp(marker,"surface_mode", 12) == 0) {
+  else if (strcmp(marker,"surface_mode") == 0) {
     if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
        (sciGetEntityType(pobj) == SCI_FAC3D)  ||
        (sciGetEntityType(pobj) == SCI_SURFACE)){
-      if (strncmp(cstk(*value),"on",2)==0 )
+      if (strcmp(cstk(*value),"on")==0 )
 	sciSetIsLine((sciPointObj *) pobj,1);
-      else if (strncmp(cstk(*value),"off",3)==0 )
+      else if (strcmp(cstk(*value),"off")==0 )
 	sciSetIsLine((sciPointObj *) pobj,0);
       else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
     }
     else {strcpy(error_message,"Surface_mode can not be set with this object, use line_mode"); return -1;}
   }
-  else if (strncmp(marker,"mark_style", 10) == 0) {
+  else if (strcmp(marker,"mark_style") == 0) {
     sciSetIsMark((sciPointObj *) pobj, TRUE);
     sciSetMarkStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
-  else if (strncmp(marker,"mark_mode", 9) == 0) {
-    if (strncmp(cstk(*value),"on",2)==0 )
+  else if (strcmp(marker,"mark_mode") == 0) {
+    if (strcmp(cstk(*value),"on")==0 )
       sciSetIsMark((sciPointObj *) pobj,1);
-    else if (strncmp(cstk(*value),"off",3)==0 )
+    else if (strcmp(cstk(*value),"off")==0 )
       sciSetIsMark((sciPointObj *) pobj,0);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
-  else if (strncmp(marker,"mark_size_unit", 14) == 0) {
-    if (strncmp(cstk(*value),"point",5)==0 )
+  else if (strcmp(marker,"mark_size_unit") == 0) {
+    if (strcmp(cstk(*value),"point")==0 )
       sciSetMarkSizeUnit((sciPointObj *) pobj, 1); /* 1 : points, 2 : tabulated */
-    else if (strncmp(cstk(*value),"tabulated",9)==0 )
+    else if (strcmp(cstk(*value),"tabulated")==0 )
       sciSetMarkSizeUnit((sciPointObj *) pobj, 2);
     else  {strcpy(error_message,"Value must be 'point/tabulated'"); return -1;}
   }
-  else if (strncmp(marker,"mark_size", 9) == 0) {
+  else if (strcmp(marker,"mark_size") == 0) {
     /* sciSetIsMark((sciPointObj *) pobj, TRUE); */ 
     /* F.Leray 27.01.05 commented because mark_size is automatically launched */
     /* in tcl/tk editor (which causes marks appearance even when unwanted). */
     sciSetMarkSize((sciPointObj *) pobj, (int)*stk(*value));
   }
-  else if (strncmp(marker,"mark_foreground", 15) == 0) {
+  else if (strcmp(marker,"mark_foreground") == 0) {
     /*    sciSetIsMark((sciPointObj *) pobj, TRUE); */
     /* F.Leray 27.01.05 commented because mark_size is automatically launched */
     /* in tcl/tk editor (which causes marks appearance even when unwanted). */
     sciSetMarkForeground((sciPointObj *) pobj, (int)*stk(*value));
   }
-  else if (strncmp(marker,"mark_background", 15) == 0) {
+  else if (strcmp(marker,"mark_background") == 0) {
     /*   sciSetIsMark((sciPointObj *) pobj, TRUE); */
     /* F.Leray 27.01.05 commented because mark_size is automatically launched */
     /* in tcl/tk editor (which causes marks appearance even when unwanted). */
     sciSetMarkBackground((sciPointObj *) pobj, (int)*stk(*value));
   }
 
-  else if (strncmp(marker,"polyline_style", 14) == 0)
+  else if (strcmp(marker,"polyline_style") == 0)
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE){
 	int valeur = (int)stk(*value)[0];
@@ -6283,17 +6274,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   
   /************* font properties *********/
-  else if (strncmp(marker,"font_size", 9) == 0)
+  else if (strcmp(marker,"font_size") == 0)
     {
       xtmp = (int)stk(*value)[0];
       sciSetFontDeciWidth((sciPointObj *) pobj, xtmp*100);
     }
-  else if (strncmp(marker,"font_angle", 10) == 0)
+  else if (strcmp(marker,"font_angle") == 0)
     {
       xtmp = (int)stk(*value)[0];
       sciSetFontOrientation((sciPointObj *) pobj,(int) (*stk(*value)*10));
     }
-  else if (strncmp(marker,"font_foreground", 15) == 0) 
+  else if (strcmp(marker,"font_foreground") == 0)
     {
       xtmp = (int) *stk(*value);
       sciSetFontForeground((sciPointObj *) pobj, xtmp);
@@ -6306,7 +6297,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"font_color property does not exist for this handle");return -1;}
   }	
-  else if (strncmp(marker,"font_style", 10) == 0)
+  else if (strcmp(marker,"font_style") == 0)
     {
       xtmp = (int) *stk(*value);
       if ( (xtmp > 9) || xtmp < 0)
@@ -6314,18 +6305,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	sciSetFontStyle((sciPointObj *) pobj, xtmp);
     }
-  else if (strncmp(marker,"font_name", 9) == 0) {
+  else if (strcmp(marker,"font_name") == 0) {
     sciSetFontName((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
   }
 
-  else if (strncmp(marker,"text_box_mode", 13) == 0)
+  else if (strcmp(marker,"text_box_mode") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_TEXT) {
-	if (strncmp(cstk(*value),"off", 3) == 0)
+	if (strcmp(cstk(*value),"off") == 0)
 	  pTEXT_FEATURE (pobj)->fill =  -1;
-	else if  (strncmp(cstk(*value),"centered", 8) == 0)
+	else if  (strcmp(cstk(*value),"centered") == 0)
 	  pTEXT_FEATURE (pobj)->fill =  0;
-	else if  (strncmp(cstk(*value),"filled",6) ==  0)
+	else if  (strcmp(cstk(*value),"filled") ==  0)
 	  pTEXT_FEATURE (pobj)->fill =  1;
 	else  
 	  {strcpy(error_message,"Value must be 'off', 'centered' or 'filled'");
@@ -6335,7 +6326,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"text_box_mode property does not exist for this handle");
 	return -1;}
     }
-  else if (strncmp(marker,"text_box", 8) == 0)
+  else if (strcmp(marker,"text_box") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_TEXT) {
 	pTEXT_FEATURE (pobj)->wh[0]=*stk(*value);
@@ -6344,25 +6335,25 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"text_box property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"text", 4) == 0) {
+  else if (strcmp(marker,"text") == 0) {
     sciSetText((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
   }
   /******************/
-  else if (strncmp(marker,"auto_clear", 10) == 0) {
-    if (strncmp(cstk(*value),"on",2)==0 )
+  else if (strcmp(marker,"auto_clear") == 0) {
+    if (strcmp(cstk(*value),"on")==0 )
       sciSetAddPlot((sciPointObj *) pobj,FALSE);
-    else if (strncmp(cstk(*value),"off",3)==0 )
+    else if (strcmp(cstk(*value),"off")==0 )
       sciSetAddPlot((sciPointObj *) pobj,TRUE);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
-  else if (strncmp(marker,"auto_scale", 10) == 0) {
-    if (strncmp(cstk(*value),"on",2)==0 )
+  else if (strcmp(marker,"auto_scale") == 0) {
+    if (strcmp(cstk(*value),"on")==0 )
       sciSetAutoScale((sciPointObj *) pobj, TRUE);
-    else if (strncmp(cstk(*value),"off",3)==0 )
+    else if (strcmp(cstk(*value),"off")==0 )
       sciSetAutoScale((sciPointObj *) pobj, FALSE);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
-  else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) { 
+  else if ((strcmp(marker,"zoom_box") == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) { 
     /* On doit avoir avoir une matrice 4x1 */
     if (*numcol * *numrow == 4)
       scizoom(stk(*value),pobj);  
@@ -6372,15 +6363,15 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
     
   } 
-  else if ((strncmp(marker,"zoom_state", 9) == 0)  && (sciGetEntityType (pobj) == SCI_SUBWIN)){
-    if ((strncmp(cstk(*value),"on", 3) == 0))
+  else if ((strcmp(marker,"zoom_state") == 0)  && (sciGetEntityType (pobj) == SCI_SUBWIN)){
+    if ((strcmp(cstk(*value),"on") == 0))
       { 
 	if (!sciGetZooming((sciPointObj *)pobj))
 	  {strcpy(error_message,"set zoom box ( set('zoom_box',[xmin ymin xmax ymax]))");return -1;}
 	else
 	  {strcpy(error_message,"Object is already zoomed");return -1;}
       }
-    else if ((strncmp(cstk(*value),"off", 3) == 0)) 
+    else if ((strcmp(cstk(*value),"off") == 0)) 
       { unzoom();
       sciSetZooming((sciPointObj *)pobj,FALSE);
       } 
@@ -6388,7 +6379,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"Value must be 'on/off'");       return -1;}
   }  
   /***********************************************/
-  else if (strncmp(marker,"clip_box", 8) == 0)  { 
+  else if (strcmp(marker,"clip_box") == 0)  { 
     /* On doit avoir avoir une matrice 4x1 */
     if (*numcol * *numrow == 4){
       sciSetClipping((sciPointObj *)pobj, stk(*value));
@@ -6397,12 +6388,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
 	      
   } 
-  else if (strncmp(marker,"clip_state", 9) == 0) {
-    if ((strncmp(cstk(*value),"clipgrf", 7) == 0))
+  else if (strcmp(marker,"clip_state") == 0) {
+    if ((strcmp(cstk(*value),"clipgrf") == 0))
       sciSetIsClipping( (sciPointObj *)pobj,0);
-    else if ((strncmp(cstk(*value),"off", 3) == 0)) 
+    else if ((strcmp(cstk(*value),"off") == 0)) 
       sciSetIsClipping( (sciPointObj *)pobj,-1);
-    else if ((strncmp(cstk(*value),"on", 2) == 0))
+    else if ((strcmp(cstk(*value),"on") == 0))
       /*       if(sciGetClipping(pobj) != NULL){ */
       if(sciGetIsClipRegionValuated(pobj) == 1){
 	sciSetIsClipping( (sciPointObj *)pobj,1);
@@ -6417,10 +6408,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     sciSetPoint((sciPointObj *)pobj, stk(*value), numrow, numcol);
      
   /**************** callback *********************/
-  else if (strncmp(marker,"callbackmevent", 14) == 0) {
+  else if (strcmp(marker,"callbackmevent") == 0) {
     sciSetCallbackMouseEvent((sciPointObj *)pobj,(int) *stk(*value));
   }
-  else if (strncmp(marker,"callback", 8) == 0) {
+  else if (strcmp(marker,"callback") == 0) {
     sciAddCallback((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow),1);
   }
 	   
@@ -6428,7 +6419,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 
 
   /******** AXES *******************************/
-  else if (strncmp(marker,"x_label", 7) == 0)
+  else if (strcmp(marker,"x_label") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"x_label property undefined for this object");return -1;}
@@ -6436,7 +6427,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"can not set directly a label object");return -1;}
       }
     }
-  else if (strncmp(marker,"y_label", 7) == 0)
+  else if (strcmp(marker,"y_label") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"y_label property undefined for this object");return -1;}
@@ -6444,7 +6435,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"can not set directly a label object");return -1;}
       }
     }
-  else if (strncmp(marker,"z_label", 7) == 0)
+  else if (strcmp(marker,"z_label") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"z_label property undefined for this object");return -1;}
@@ -6452,7 +6443,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"can not set directly a label object");return -1;}
       }
     }
-  else if (strncmp(marker,"title", 5) == 0)
+  else if (strcmp(marker,"title") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"title property undefined for this object");return -1;}
@@ -6461,35 +6452,35 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
     }
 
-  else if (strncmp(marker,"tics_direction", 14) == 0)
+  else if (strcmp(marker,"tics_direction") == 0)
     {   
       if (pAXES_FEATURE (pobj)->ny == 1)
 	{ 
-	  if(strncmp(cstk(*value),"top",3) == 0) 
+	  if(strcmp(cstk(*value),"top") == 0) 
 	    strncpy(&(pAXES_FEATURE (pobj)->dir),"u",1);
-	  else if (strncmp(cstk(*value),"bottom",6) == 0)
+	  else if (strcmp(cstk(*value),"bottom") == 0)
 	    strncpy(&(pAXES_FEATURE (pobj)->dir),"d",1);
 	  else
 	    {strcpy(error_message,"Second argument must be 'top' or 'bottom'");return -1;}
 	} 
       else
 	{
-	  if(strncmp(cstk(*value),"right",5) == 0)
+	  if(strcmp(cstk(*value),"right") == 0)
 	    strncpy(&(pAXES_FEATURE (pobj)->dir),"r",1);
-	  else if  (strncmp(cstk(*value),"left",4) == 0)
+	  else if  (strcmp(cstk(*value),"left") == 0)
 	    strncpy(&(pAXES_FEATURE (pobj)->dir),"l",1);
 	  else
 	    {strcpy(error_message,"Second argument must be 'right' or 'left' ");return -1;}
 	}
     }
-  else if (strncmp(marker,"x_location", 10) == 0)
+  else if (strcmp(marker,"x_location") == 0)
     {  
       char loc;
-      if(strncmp(cstk(*value),"top",3) == 0)
+      if(strcmp(cstk(*value),"top") == 0)
 	loc='u';
-      else if  (strncmp(cstk(*value),"bottom",6) == 0)
+      else if  (strcmp(cstk(*value),"bottom") == 0)
 	loc='d';
-      else if (strncmp(cstk(*value),"middle",6) == 0)
+      else if (strcmp(cstk(*value),"middle") == 0)
 	loc='c';
       else  
 	{strcpy(error_message,"Second argument must be 'top', 'bottom' or 'middle'");return -1;}
@@ -6498,14 +6489,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"y_location", 10) == 0)
+  else if (strcmp(marker,"y_location") == 0)
     {   
       char loc;
-      if(strncmp(cstk(*value),"left",4) == 0)
+      if(strcmp(cstk(*value),"left") == 0)
 	loc='l';
-      else if  (strncmp(cstk(*value),"right",5) == 0)
+      else if  (strcmp(cstk(*value),"right") == 0)
 	loc='r';
-      else if (strncmp(cstk(*value),"middle",6) == 0)
+      else if (strcmp(cstk(*value),"middle") == 0)
 	loc='c';
       else  
 	{strcpy(error_message,"Second argument must be 'left', 'right' or 'middle'");return -1;}
@@ -6514,27 +6505,27 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"tight_limits", 12) == 0) 
+  else if (strcmp(marker,"tight_limits") == 0) 
     {                   
-      if ((strncmp(cstk(*value),"off", 3) == 0)) 
+      if ((strcmp(cstk(*value),"off") == 0)) 
 	pSUBWIN_FEATURE (pobj)->tight_limits=FALSE;
-      else if ((strncmp(cstk(*value),"on", 2) == 0))
+      else if ((strcmp(cstk(*value),"on") == 0))
 	pSUBWIN_FEATURE (pobj)->tight_limits=TRUE;
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }  
-  else if (strncmp(marker,"auto_position", 13) == 0)
+  else if (strcmp(marker,"auto_position") == 0)
     { 
       if(sciGetEntityType(pobj) != SCI_LABEL)
 	{strcpy(error_message,"auto_position does not exist for this handle");return -1;}
       
-      if (strncmp(cstk(*value),"on",2)==0 )
+      if (strcmp(cstk(*value),"on")==0 )
 	pLABEL_FEATURE(pobj)->auto_position = TRUE;
-      else if (strncmp(cstk(*value),"off",3)==0 )
+      else if (strcmp(cstk(*value),"off")==0 )
 	pLABEL_FEATURE(pobj)->auto_position = FALSE;
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     }  
-  else if (strncmp(marker,"position", 8) == 0) 
+  else if (strcmp(marker,"position") == 0) 
     { 
       if(sciGetEntityType(pobj) != SCI_LABEL)
 	{strcpy(error_message,"position does not exist for this handle");return -1;}
@@ -6542,19 +6533,19 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       sciSetPosition(pobj,stk(*value)[0],stk(*value)[1]);
     }
   /* F.Leray adding auto_ticks flags */
-  else if (strncmp(marker,"auto_ticks", 10) == 0) 
+  else if (strcmp(marker,"auto_ticks") == 0) 
     {
       if(*numcol == 1){
 	
 	ptr= *(char ***)value;
 	
-	if ((strncmp(ptr[0],"off", 3) == 0)) 
+	if ((strcmp(ptr[0],"off") == 0)) 
 	  {
 	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[0]=FALSE;
 	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[1]=FALSE;
 	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[2]=FALSE;
 	  }
-	else if ((strncmp(ptr[0],"on", 2) == 0))
+	else if ((strcmp(ptr[0],"on") == 0))
 	  {
 	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[0]=TRUE;
 	    pSUBWIN_FEATURE (pobj)->axes.auto_ticks[1]=TRUE;
@@ -6569,9 +6560,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	
 	for (i = 0; i < *numcol; i++ )
 	  {
-	    if ((strncmp(ptr[i],"off", 3) == 0)) 
+	    if ((strcmp(ptr[i],"off") == 0)) 
 	      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i]=FALSE;
-	    else if ((strncmp(ptr[i],"on", 2) == 0))
+	    else if ((strcmp(ptr[i],"on") == 0))
 	      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i]=TRUE;
 	    else
 	      {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
@@ -6580,19 +6571,19 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Number of the second argument must be taken between 1 to 3");return -1;}
     }
-  else if (strncmp(marker,"axes_reverse", 12) == 0) 
+  else if (strcmp(marker,"axes_reverse") == 0) 
     {
       if(*numcol == 1){
 	
 	ptr= *(char ***)value;
 	
-	if ((strncmp(ptr[0],"off", 3) == 0)) 
+	if ((strcmp(ptr[0],"off") == 0)) 
 	  {
 	    pSUBWIN_FEATURE (pobj)->axes.reverse[0]=FALSE;
 	    pSUBWIN_FEATURE (pobj)->axes.reverse[1]=FALSE;
 	    pSUBWIN_FEATURE (pobj)->axes.reverse[2]=FALSE;
 	  }
-	else if ((strncmp(ptr[0],"on", 2) == 0))
+	else if ((strcmp(ptr[0],"on") == 0))
 	  {
 	    pSUBWIN_FEATURE (pobj)->axes.reverse[0]=TRUE;
 	    pSUBWIN_FEATURE (pobj)->axes.reverse[1]=TRUE;
@@ -6607,9 +6598,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	
 	for (i = 0; i < *numcol; i++ )
 	  {
-	    if ((strncmp(ptr[i],"off", 3) == 0)) 
+	    if ((strcmp(ptr[i],"off") == 0)) 
 	      pSUBWIN_FEATURE (pobj)->axes.reverse[i]=FALSE;
-	    else if ((strncmp(ptr[i],"on", 2) == 0))
+	    else if ((strcmp(ptr[i],"on") == 0))
 	      pSUBWIN_FEATURE (pobj)->axes.reverse[i]=TRUE;
 	    else
 	      {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
@@ -6619,11 +6610,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Number of the second argument must be taken between 1 to 3");return -1;}
     }
 
-  else if (strncmp(marker,"view", 4) == 0) 
+  else if (strcmp(marker,"view") == 0) 
     { 
       /* DJ.A 2003 */
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {                  
-	if ((strncmp(cstk(*value),"2d", 2) == 0)) 
+	if ((strcmp(cstk(*value),"2d") == 0)) 
 	  {  
 	    if(pSUBWIN_FEATURE (pobj)->is3d == FALSE) return 0;  /* Adding F.Leray 18.0604 */
 	    if (sciGetSurface(pobj) == (sciPointObj *) NULL)
@@ -6640,7 +6631,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    /* 	    sciRedrawFigure(); /\* F.Leray 10.06.04 Adding 2 lines here... *\/ */
 	    pSUBWIN_FEATURE (pobj)->is3d = FALSE; /*...and here */
 	  } 
-	else if ((strncmp(cstk(*value),"3d", 2) == 0)){
+	else if ((strcmp(cstk(*value),"3d") == 0)){
 	  if(pSUBWIN_FEATURE (pobj)->is3d == TRUE) return 0; /* Adding F.Leray 18.0604 */
 	  pSUBWIN_FEATURE (pobj)->is3d = TRUE;
 	  Obj_RedrawNewAngle(pobj,pSUBWIN_FEATURE (pobj)->theta_kp,pSUBWIN_FEATURE (pobj)->alpha_kp);
@@ -6741,7 +6732,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"margins property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"tics_color", 10) == 0) {   
+  else if (strcmp(marker,"tics_color") == 0) {   
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->ticscolor = (int)stk(*value)[0];
     else if (sciGetEntityType (pobj) == SCI_SUBWIN){
@@ -6751,10 +6742,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"tics_color property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"tics_style", 10) == 0) { 
-    if((strncmp(cstk(*value),"v",1) != 0)&&
-       (strncmp(cstk(*value),"r",1) != 0)&&
-       (strncmp(cstk(*value),"i",1) != 0)) { 
+  else if (strcmp(marker,"tics_style") == 0) { 
+    if((strcmp(cstk(*value),"v") != 0)&&
+       (strcmp(cstk(*value),"r") != 0)&&
+       (strcmp(cstk(*value),"i") != 0)) { 
       strcpy(error_message,"tics must be 'v' or 'r' or 'i'");return -1;
     }
 
@@ -6781,7 +6772,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   }
   /*Dj.A 17/12/2003*/
-  else if ((strncmp(marker,"sub_tics", 8) == 0) || (strncmp(marker,"sub_ticks", 9) == 0)) {
+  else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0)) {
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->subint= (int) *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN) {
@@ -6806,25 +6797,15 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
     
   }
-  /* F.Leray 08.04.04 */
-  /* Obsolete property "tics_textsize"*/
-  /*  else if (strncmp(marker,"tics_textsize", 13) == 0) {    */
-  /*     if (sciGetEntityType (pobj) == SCI_AXES) */
-  /*       pAXES_FEATURE (pobj)->fontsize= (int) stk(*value)[0];  */
-  /*     else if (sciGetEntityType (pobj) == SCI_SUBWIN) */
-  /*       pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) stk(*value)[0]; */
-  /*     else */
-  /*       {strcpy(error_message,"tics_textsize property does not exist for this handle");return -1;} */
-  /*   } */
-  else if (strncmp(marker,"format_n", 8) == 0)
+  else if (strcmp(marker,"format_n") == 0)
     {
       strncpy(pAXES_FEATURE (pobj)->format,cstk(*value),1);   
     }
-  else if (strncmp(marker,"tics_segment", 12) == 0) 
+  else if (strcmp(marker,"tics_segment") == 0) 
     {
-      if (strncmp(cstk(*value),"on",2)==0 )
+      if (strcmp(cstk(*value),"on")==0 )
 	pAXES_FEATURE (pobj)->seg=1;
-      else if (strncmp(cstk(*value),"off",3)==0 )
+      else if (strcmp(cstk(*value),"off")==0 )
 	pAXES_FEATURE (pobj)->seg=0;
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')");
       return -1;}
@@ -6855,7 +6836,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"labels_font_style property does not exist for this handle");return -1;}
   }	
-  else if (strncmp(marker,"tics_labels", 11) == 0) 
+  else if (strcmp(marker,"tics_labels") == 0) 
     {
       if (*numrow != 1)
 	{strcpy(error_message,"Second argument must be a vector"); return -1;}
@@ -6876,7 +6857,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
             }
 	}
     }
-  else if (strncmp(marker,"xtics_coord", 11) == 0) 
+  else if (strcmp(marker,"xtics_coord") == 0) 
     { 
       if (*numrow != 1)
 	{strcpy(error_message,"Second argument must be a row vector");return -1;}
@@ -6936,7 +6917,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  
 	}
     }
-  else if (strncmp(marker,"ytics_coord", 11) == 0) 
+  else if (strcmp(marker,"ytics_coord") == 0) 
     {
       if (*numrow != 1)
 	{strcpy(error_message,"Second argument must be a row vector");return -1;}
@@ -6992,16 +6973,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  
 	}
     } 
-  else if  (strncmp(marker,"box", 3) == 0) 
+  else if  (strcmp(marker,"box") == 0) 
     {
-      if ((strncmp(cstk(*value),"on", 2) == 0)) 
+      if ((strcmp(cstk(*value),"on") == 0))
 	sciSetIsBoxed(pobj,TRUE);
-      else if ((strncmp(cstk(*value),"off", 3) == 0))  
+      else if ((strcmp(cstk(*value),"off") == 0))  
 	sciSetIsBoxed(pobj,FALSE);
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
-  else if (strncmp(marker,"grid", 4) == 0) {/**DJ.Abdemouche 2003**/
+  else if (strcmp(marker,"grid") == 0) {/**DJ.Abdemouche 2003**/
     for (i = 0; i < *numcol; i++ )
       {
 	if (stk(*value)[i] < -1)
@@ -7010,20 +6991,20 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  {pSUBWIN_FEATURE (pobj)->grid[i]=(int) stk(*value)[i];}
       }   
   }
-  else if  (strncmp(marker,"axes_visible", 12) == 0) 
+  else if  (strcmp(marker,"axes_visible") == 0) 
     {
       if(*numcol == 1){
 	
 	ptr= *(char ***)value;
 	
-	if ((strncmp(ptr[0],"off", 3) == 0)) 
+	if ((strcmp(ptr[0],"off") == 0)) 
 	  {
 	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[0]=FALSE;
 	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[1]=FALSE;
 	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[2]=FALSE;
 	    /* 	    pSUBWIN_FEATURE (pobj)->isaxes= FALSE; */
 	  }
-	else if ((strncmp(ptr[0],"on", 2) == 0))
+	else if ((strcmp(ptr[0],"on") == 0))
 	  {
 	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[0]=TRUE;
 	    pSUBWIN_FEATURE (pobj)->axes.axes_visible[1]=TRUE;
@@ -7039,11 +7020,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	
 	for (i = 0; i < *numcol; i++ )
 	  {
-	    if ((strncmp(ptr[i],"off", 3) == 0)) {
+	    if ((strcmp(ptr[i],"off") == 0)) {
 	      pSUBWIN_FEATURE (pobj)->axes.axes_visible[i]=FALSE;
 	      /*   pSUBWIN_FEATURE (pobj)->isaxes= FALSE; */ /* DO NOT PUT at all !*/
 	    }
-	    else if ((strncmp(ptr[i],"on", 2) == 0)){
+	    else if ((strcmp(ptr[i],"on") == 0)){
 	      pSUBWIN_FEATURE (pobj)->axes.axes_visible[i]=TRUE;
 	      /* 	      pSUBWIN_FEATURE (pobj)->isaxes= TRUE; */
 	    }
@@ -7054,21 +7035,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Number of the second argument must be taken between 1 to 3");return -1;}
     }
-
-
-
-
-
-  /*     { */
-  /*       if ((strncmp(cstk(*value),"on", 2) == 0))  */
-  /* 	pSUBWIN_FEATURE (pobj)->isaxes= TRUE;  */
-  /*       else if ((strncmp(cstk(*value),"off", 3) == 0))   */
-  /* 	pSUBWIN_FEATURE (pobj)->isaxes= FALSE; */
-  /*       else */
-  /* 	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;} */
-  /*     }  */
-  /* DJ.A 2003 */
-  else if (strncmp(marker,"hiddencolor", 11) == 0)
+  else if (strcmp(marker,"hiddencolor") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN)
 	pSUBWIN_FEATURE (pobj)->hiddencolor=(int) stk(*value)[0];
@@ -7079,12 +7046,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     
     }
   /**DJ.Abdemouche 2003**/
-  else if  (strncmp(marker,"isoview", 7) == 0) 
+  else if  (strcmp(marker,"isoview") == 0) 
     {  /* DJ.A 2003 */
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	if ((strncmp(cstk(*value),"on", 2) == 0)) 
+	if ((strcmp(cstk(*value),"on") == 0)) 
 	  pSUBWIN_FEATURE (pobj)->isoview= TRUE; 
-	else if ((strncmp(cstk(*value),"off", 3) == 0))  
+	else if ((strcmp(cstk(*value),"off") == 0))  
 	  pSUBWIN_FEATURE (pobj)->isoview= FALSE;
 	else
 	  {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
@@ -7093,15 +7060,15 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"isoview property does not exist for this handle");return -1;}
      
     }  /**/
-  else if  (strncmp(marker,"cube_scaling", 12) == 0)  /* F.Leray 22.04.04 */
+  else if  (strcmp(marker,"cube_scaling") == 0)  /* F.Leray 22.04.04 */
     {  
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	if(pSUBWIN_FEATURE (pobj)->is3d == FALSE)
 	  sciprint("Warning: cube_scaling property is only used in 3D mode\n");
 	
-	if ((strncmp(cstk(*value),"on", 2) == 0)) 
+	if ((strcmp(cstk(*value),"on") == 0)) 
 	  pSUBWIN_FEATURE (pobj)->cube_scaling= TRUE; 
-	else if ((strncmp(cstk(*value),"off", 3) == 0))  
+	else if ((strcmp(cstk(*value),"off") == 0))
 	  pSUBWIN_FEATURE (pobj)->cube_scaling= FALSE;
 	else
 	  {strcpy(error_message,"Value must be 'on' or 'off' / Only use for 3D mode");return -1;}
@@ -7110,7 +7077,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"cube_scaling property does not exist for this handle");return -1;}
      
     }  /**/
-  else if (strncmp(marker,"log_flags", 9) == 0)
+  else if (strcmp(marker,"log_flags") == 0)
     {
       char *flags;
       flags=cstk(*value);
@@ -7184,13 +7151,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"log_flags property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"arrow_size", 10) == 0) {
+  else if (strcmp(marker,"arrow_size") == 0) {
     if(sciGetEntityType (pobj) == SCI_SEGS)
       pSEGS_FEATURE (pobj)->arrowsize = *stk(*value);      
     else
       {strcpy(error_message,"arrow_size property does not exist for this handle");return -1;}
   }  
-  else if ((strncmp(marker,"segs_color", 10) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
+  else if ((strcmp(marker,"segs_color") == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
     if (pSEGS_FEATURE (pobj)->ptype == 0){
       if ((*numrow)* (*numcol)==1) {
 	pSEGS_FEATURE (pobj)->iflag=0;
@@ -7211,11 +7178,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"segs_color property does not exist for this handle");return -1;}
   }
-  else if ((strncmp(marker,"colored", 7) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
+  else if ((strcmp(marker,"colored") == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){
     if (pSEGS_FEATURE (pobj)->ptype != 0){
-      if ((strncmp(cstk(*value),"on", 2) == 0))
+      if ((strcmp(cstk(*value),"on") == 0))
 	pSEGS_FEATURE (pobj)->typeofchamp = 1;
-      else if ((strncmp(cstk(*value),"off", 3) == 0))  
+      else if ((strcmp(cstk(*value),"off") == 0))  
 	pSEGS_FEATURE (pobj)->typeofchamp = 0;
       else
 	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
@@ -7224,9 +7191,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"colored property does not exist for Segs");return -1;}
   }
   /**************** Matplot Grayplot *********************/
-  else if (strncmp(marker,"data_mapping", 12) == 0) {
+  else if (strcmp(marker,"data_mapping") == 0) {
     if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
-      if ((strncmp(cstk(*value),"scaled", 6) == 0)||(strncmp(cstk(*value),"direct", 6) == 0)) 
+      if ((strcmp(cstk(*value),"scaled") == 0)||(strcmp(cstk(*value),"direct") == 0)) 
 	strncpy(pGRAYPLOT_FEATURE (pobj)->datamapping,cstk(*value),6);
       else
 	{strcpy(error_message,"Value must be 'direct' or 'scaled'");return -1;}
@@ -7491,13 +7458,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"cdata_mapping") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
       if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
-	if ((strncmp(cstk(*value),"scaled", 6) == 0)){
+	if ((strcmp(cstk(*value),"scaled") == 0)){
 	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 0){ /* not already scaled */
 	    LinearScaling2Colormap(pobj);
 	    pSURFACE_FEATURE (pobj)->cdatamapping = 0;
 	  }
 	} 
-	else if ((strncmp(cstk(*value),"direct", 6) == 0)){
+	else if ((strcmp(cstk(*value),"direct") == 0)){
 	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 1){ /* not already direct */
 	    int nc = pSURFACE_FEATURE (pobj)->nc;
 
@@ -7625,18 +7592,18 @@ int sciGet(sciPointObj *pobj,char *marker)
     Etype=sciGetEntityType (pobj);}
   
   if ((pobj == (sciPointObj *)NULL) && 
-      (strncmp(marker,"old_style", 9) !=0 ) && 
-      (strncmp(marker,"figure_style", 12) != 0) && 
-      (strncmp(marker,"current_figure", 14) != 0) &&
-      (strncmp(marker,"default_figure",14) !=0) && 
-      (strncmp(marker,"default_axes",12) !=0))
+      (strcmp(marker,"old_style") !=0 ) && 
+      (strcmp(marker,"figure_style") != 0) && 
+      (strcmp(marker,"current_figure") != 0) &&
+      (strcmp(marker,"default_figure") !=0) && 
+      (strcmp(marker,"default_axes") !=0))
     {
       if (version_flag() == 0)
 	{strcpy(error_message,"handle is not valid");return -1;}
       else
 	{strcpy(error_message,"function not valid under old graphics style");return -1;}
     }
-  else if (strncmp(marker,"figures_id", 10) == 0){
+  else if (strcmp(marker,"figures_id") == 0){
     sciGetIdFigure (&ids,&numcol,&iflag);
     numrow   = 1;
     CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
@@ -7645,7 +7612,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 
   }
   /***************** graphics mode *******************************/ 
-  else if (strncmp(marker,"visible", 7) == 0) {
+  else if (strcmp(marker,"visible") == 0) {
     if (sciGetVisibility((sciPointObj *)pobj)){
       numrow   = 1;
       numcol   = 2;
@@ -7659,7 +7626,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       strncpy(cstk(outindex),"off", numrow*numcol);
     }
   }
-  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) 
+  else if (strcmp(marker,"pixel_drawing_mode") == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_FIGURE) {
 	numrow = 1;
@@ -7672,7 +7639,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	{strcpy(error_message,"pixel_drawing_mode do not exist for this handle");return -1;}
 
     }  
-  else if (strncmp(marker,"old_style", 9) == 0)
+  else if (strcmp(marker,"old_style") == 0)
     {
       if (versionflag != 0){
 	numrow   = 1;
@@ -7687,7 +7654,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
-  else if (strncmp(marker,"figure_style", 12) == 0)
+  else if (strcmp(marker,"figure_style") == 0)
     {
       numrow   = 1;
       if (pobj != pfiguremdl)
@@ -7706,7 +7673,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  strncpy(cstk(outindex),"customised", numrow*numcol);
 	}
     }
-  else if (strncmp(marker,"auto_resize", 10) == 0)
+  else if (strcmp(marker,"auto_resize") == 0)
     {
       if (sciGetResize((sciPointObj *) pobj)){
 	numrow   = 1;
@@ -7722,7 +7689,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       }
     }
   /************************  figure Properties *****************************/ 
-  else if (strncmp(marker,"figure_position", 15) == 0)
+  else if (strcmp(marker,"figure_position") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7746,7 +7713,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  stk(outindex)[1] = pFIGURE_FEATURE (pobj)->inrootposy;
 	}
     }  
-  else if (strncmp(marker,"axes_size", 9) == 0)
+  else if (strcmp(marker,"axes_size") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7766,7 +7733,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  stk(outindex)[1] = pFIGURE_FEATURE (pobj)->windowdimheight; 
 	}
     } 
-  else if (strncmp(marker,"figure_size", 15) == 0)
+  else if (strcmp(marker,"figure_size") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7790,7 +7757,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       stk(outindex)[0] = pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth;  
       stk(outindex)[1] = pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight;  
     }
-  else if (strncmp(marker,"figure_name", 11) == 0)
+  else if (strcmp(marker,"figure_name") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7801,14 +7768,14 @@ int sciGet(sciPointObj *pobj,char *marker)
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), sciGetName((sciPointObj *) pobj), numrow*numcol);
     }
-  else if (strncmp(marker,"figure_id", 9) == 0)
+  else if (strcmp(marker,"figure_id") == 0)
     {
       numrow = 1;
       numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = sciGetNum((sciPointObj *)pobj);
     }
-  else if (strncmp(marker,"rotation_style", 14) == 0) 
+  else if (strcmp(marker,"rotation_style") == 0) 
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7827,7 +7794,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"multiple",numrow*numcol);
       }
     }
-  else if (strncmp(marker,"immediate_drawing", 17) == 0) 
+  else if (strcmp(marker,"immediate_drawing") == 0) 
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7847,7 +7814,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       }
     }
   /*Ajout A.Djalel*/
-  else if (strncmp(marker,"pixmap", 6) == 0) 
+  else if (strcmp(marker,"pixmap") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7868,21 +7835,21 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
 
   /********** Handles Properties *********************************************/       
-  else if (strncmp(marker,"type", 4) == 0)
+  else if (strcmp(marker,"type") == 0)
     {
       numrow = 1;  
       numcol = strlen(sciGetCharEntityType((sciPointObj *) pobj));
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), sciGetCharEntityType((sciPointObj *) pobj), numrow*numcol);
     }
-  else if (strncmp(marker,"parent", 6) == 0)
+  else if (strcmp(marker,"parent") == 0)
     {
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
       *hstk(outindex) = sciGetHandle(sciGetParent((sciPointObj *)pobj));
     }
-  else if (strncmp(marker,"current_axes", 12) == 0)
+  else if (strcmp(marker,"current_axes") == 0)
     {
       /*       sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure()); */
       numrow   = 1;
@@ -7891,7 +7858,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       *hstk(outindex) = sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure()));
     }
   
-  else if (strncmp(marker,"current_figure", 14) == 0)
+  else if (strcmp(marker,"current_figure") == 0)
     {
       
       if (cf_type==1) {
@@ -7925,14 +7892,14 @@ int sciGet(sciPointObj *pobj,char *marker)
 #endif
       }
     }
-  else if((strncmp(marker,"current_obj", 11) == 0) || (strncmp(marker,"current_entity", 14) == 0))
+  else if((strcmp(marker,"current_obj") == 0) || (strcmp(marker,"current_entity") == 0))
     {
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
       *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
     }
-  else if (strncmp(marker,"children", 8) == 0)
+  else if (strcmp(marker,"children") == 0)
     { 
       i = 0;
       toto = sciGetSons((sciPointObj *) pobj);
@@ -7965,7 +7932,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  }
       }
     }
-  else if (strncmp(marker,"hdl", 3) == 0)
+  else if (strcmp(marker,"hdl") == 0)
     {
       numrow   = 1;
       numcol   = 1;
@@ -7973,7 +7940,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
     }
   /* DJ.A 08/01/04 */
-  else if (strncmp(marker,"default_figure", 14) == 0)
+  else if (strcmp(marker,"default_figure") == 0)
     {
       if (pfiguremdl != (sciPointObj *) NULL) 
 	{
@@ -7988,7 +7955,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  return -1;
 	}
     }
-  else if (strncmp(marker,"default_axes", 12) == 0)
+  else if (strcmp(marker,"default_axes") == 0)
     { 
       if (paxesmdl != (sciPointObj *) NULL) 
 	{
@@ -8005,7 +7972,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   /******************************** context graphique  *****************************************/
 
-  else if (strncmp(marker,"color_map", 9) == 0)
+  else if (strcmp(marker,"color_map") == 0)
     { 
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
@@ -8025,7 +7992,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	       
 	}
     }
-  else if (strncmp(marker,"interp_color_vector", 19) == 0)
+  else if (strcmp(marker,"interp_color_vector") == 0)
     {
       int * vectmp = sciGetInterpVector((sciPointObj *) pobj);
       
@@ -8047,7 +8014,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
       }
     }
-  else if (strncmp(marker,"interp_color_mode", 19) == 0)
+  else if (strcmp(marker,"interp_color_mode") == 0)
     {
       if(pPOLYLINE_FEATURE(pobj)->isinterpshaded == TRUE){
 	numrow = 1;
@@ -8062,21 +8029,21 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
-  else if (strncmp(marker,"background", 10) == 0) /**DJ.Abdemouche 2003**/
+  else if (strcmp(marker,"background") == 0) /**DJ.Abdemouche 2003**/
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       
       *stk(outindex) = sciGetBackgroundToDisplay((sciPointObj *) pobj);
     }
-  else if (strncmp(marker,"foreground", 10) == 0) 
+  else if (strcmp(marker,"foreground") == 0) 
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 
       *stk(outindex) = sciGetForegroundToDisplay((sciPointObj *) pobj);
     }
-  else if (strncmp(marker,"fill_mode", 9) == 0) 
+  else if (strcmp(marker,"fill_mode") == 0) 
     {
       if (sciGetIsFilled((sciPointObj *) pobj)==1) {
 	numrow   = 1;
@@ -8091,18 +8058,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
-  else if (strncmp(marker,"thickness", 9) == 0) 
+  else if (strcmp(marker,"thickness") == 0) 
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       *stk(outindex) = sciGetLineWidth((sciPointObj *) pobj);
     }
-  else if (strncmp(marker,"line_style",10) == 0)	{
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    *stk(outindex) = sciGetLineStyle((sciPointObj *) pobj);
-  }
-  else if (strncmp(marker,"line_mode", 9) == 0)
+  else if (strcmp(marker,"line_style") == 0)
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = sciGetLineStyle((sciPointObj *) pobj);
+    }
+  else if (strcmp(marker,"line_mode") == 0)
     {
       if (sciGetIsLine((sciPointObj *)pobj) == 1) {
 	numrow   = 1;
@@ -8117,7 +8085,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
-  else if (strncmp(marker,"surface_mode", 12) == 0)
+  else if (strcmp(marker,"surface_mode") == 0)
     {
       if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
 	 (sciGetEntityType(pobj) == SCI_FAC3D)  ||
@@ -8137,12 +8105,13 @@ int sciGet(sciPointObj *pobj,char *marker)
       }
       else {strcpy(error_message,"Surface_mode value can not be accessed with this object, use line_mode"); return -1;}
     }
-  else if (strncmp(marker,"mark_style", 10) == 0)	{
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    *stk(outindex) = sciGetMarkStyle((sciPointObj *) pobj);
-  }
-  else if (strncmp(marker,"mark_mode", 9) == 0)
+  else if (strcmp(marker,"mark_style") == 0)
+    {
+      numrow   = 1;numcol   = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      *stk(outindex) = sciGetMarkStyle((sciPointObj *) pobj);
+    }
+  else if (strcmp(marker,"mark_mode") == 0)
     {
       if (sciGetIsMark((sciPointObj *)pobj) == 1) {
 	numrow   = 1;
@@ -8190,7 +8159,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       *stk(outindex) = sciGetMarkBackgroundToDisplay((sciPointObj *) pobj);
     }
 
-  else if (strncmp(marker,"polyline_style", 14) == 0)
+  else if (strcmp(marker,"polyline_style") == 0)
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
@@ -8201,19 +8170,19 @@ int sciGet(sciPointObj *pobj,char *marker)
     } 
 
   /****************************************************/
-  else if (strncmp(marker,"font_size", 9) == 0)
+  else if (strcmp(marker,"font_size") == 0)
     {
       numrow = 1;numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = sciGetFontDeciWidth((sciPointObj *)pobj)/100;
     }
-  else if (strncmp(marker,"font_angle", 10) == 0)
+  else if (strcmp(marker,"font_angle") == 0)
     {
       numrow = 1; numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = (sciGetFontOrientation((sciPointObj *)pobj))/10;
     }
-  else if (strncmp(marker,"font_foreground", 15) == 0)
+  else if (strcmp(marker,"font_foreground") == 0)
     {
       numrow = 1;numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
@@ -8229,20 +8198,20 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"font_color property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"font_style", 10) == 0)
+  else if (strcmp(marker,"font_style") == 0)
     {
       numrow = 1; numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = sciGetFontStyle((sciPointObj *)pobj);
     }
-  else if (strncmp(marker,"font_name", 9) == 0)
+  else if (strcmp(marker,"font_name") == 0)
     {
       numrow = 1;
       numcol = sciGetFontNameLength((sciPointObj *)pobj);
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), sciGetFontName((sciPointObj *)pobj), numrow*numcol);
     }
-  else if (strncmp(marker,"text_box_mode", 13) == 0)
+  else if (strcmp(marker,"text_box_mode") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_TEXT) {
 	numrow = 1;
@@ -8262,7 +8231,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"text_box_mode property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"text_box", 8) == 0)
+  else if (strcmp(marker,"text_box") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_TEXT) {
 	numrow = 1;
@@ -8274,7 +8243,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"text_box property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"text", 4) == 0)
+  else if (strcmp(marker,"text") == 0)
     {
       numrow = 1;
       numcol = sciGetTextLength((sciPointObj *)pobj);
@@ -8282,7 +8251,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
     }
 
-  else if (strncmp(marker,"auto_clear", 10) == 0)
+  else if (strcmp(marker,"auto_clear") == 0)
     {
       if (!sciGetAddPlot((sciPointObj *)pobj)) {
 	numrow   = 1;
@@ -8297,7 +8266,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off",numrow*numcol);
       }
     }
-  else if (strncmp(marker,"auto_scale", 10) == 0)
+  else if (strcmp(marker,"auto_scale") == 0)
     {
       if ( sciGetAutoScale((sciPointObj *)pobj)) {
 	numrow   = 1;
@@ -8312,7 +8281,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off",numrow*numcol);
       }
     }
-  else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
+  else if ((strcmp(marker,"zoom_box") == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
     {
       if (!sciGetZooming((sciPointObj *)pobj))
 	{
@@ -8327,7 +8296,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	    stk(outindex)[i] =  pSUBWIN_FEATURE(pobj)->ZRect[i];			
 	} 
     }
-  else if ((strncmp(marker,"zoom_state", 9) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
+  else if ((strcmp(marker,"zoom_state") == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
     {
       if (sciGetZooming((sciPointObj *)pobj)) {
 	numrow   = 1;
@@ -8342,7 +8311,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
-  else if (strncmp(marker,"clip_box", 8) == 0) 
+  else if (strcmp(marker,"clip_box") == 0) 
     {
       if (sciGetIsClipping ((sciPointObj *) pobj) > 0)
 	{
@@ -8358,7 +8327,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	}
     }
-  else if (strncmp(marker,"clip_state", 9) == 0) 
+  else if (strcmp(marker,"clip_state") == 0) 
     {
       if (sciGetIsClipping (pobj) == 0) {
 	numrow   = 1;
@@ -8395,13 +8364,13 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   
   /**************** callback *********************/
-  else if (strncmp(marker,"callbackmevent", 14) == 0)
+  else if (strcmp(marker,"callbackmevent") == 0)
     {
       numrow = 1;numcol = 1;
       CreateVar(Rhs+1,"i", &numrow, &numcol, &outindex);
       istk(outindex)[0] = sciGetCallbackMouseEvent((sciPointObj *)pobj);
     }
-  else if (strncmp(marker,"callback", 8) == 0)
+  else if (strcmp(marker,"callback") == 0)
     {
       numrow = 1;
       numcol = sciGetCallbackLen((sciPointObj *)pobj);
@@ -8412,7 +8381,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 
 
   /**************************** AXES *************/
-  else if (strncmp(marker,"x_label", 7) == 0) /* we send back a handle on the x_label object */
+  else if (strcmp(marker,"x_label") == 0) /* we send back a handle on the x_label object */
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"x_label property undefined for this object");return -1;}
@@ -8424,7 +8393,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	
       }
     }
-  else if (strncmp(marker,"y_label", 7) == 0)
+  else if (strcmp(marker,"y_label") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"y_label property undefined for this object");return -1;}
@@ -8435,7 +8404,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_y_label);
       }
     }
-  else if (strncmp(marker,"z_label", 7) == 0)
+  else if (strcmp(marker,"z_label") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"z_label property undefined for this object");return -1;}
@@ -8446,7 +8415,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_z_label);
       }
     }
-  else if (strncmp(marker,"title", 5) == 0)
+  else if (strcmp(marker,"title") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"title property undefined for this object");return -1;}
@@ -8457,7 +8426,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_title);
       }
     }
-  else if (strncmp(marker,"log_flags", 9) == 0)
+  else if (strcmp(marker,"log_flags") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	numrow = 1;numcol   = 3;
@@ -8471,7 +8440,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	{strcpy(error_message,"log_flag property undefined for this object");return -1;}
 
     }
-  else if (strncmp(marker,"tics_direction", 14) == 0)
+  else if (strcmp(marker,"tics_direction") == 0)
     {
       numrow = 1;
       switch (pAXES_FEATURE (pobj)->dir)
@@ -8497,7 +8466,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  break;
 	}
     }
-  else if (strncmp(marker,"x_location", 10) == 0) 
+  else if (strcmp(marker,"x_location") == 0) 
     {
       char loc;
       numrow = 1;
@@ -8525,7 +8494,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  break;
 	}
     }  
-  else if (strncmp(marker,"y_location", 10) == 0)
+  else if (strcmp(marker,"y_location") == 0)
     {
       char loc;
       numrow = 1;
@@ -8553,7 +8522,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  break;
 	}
     } 
-  else if (strncmp(marker,"tight_limits", 12) == 0)
+  else if (strcmp(marker,"tight_limits") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	if (pSUBWIN_FEATURE (pobj)->tight_limits == 1) {
@@ -8572,7 +8541,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"tight_limits property does not exist for this handle");return -1;}
     }  
-  else if (strncmp(marker,"auto_position", 13) == 0) 
+  else if (strcmp(marker,"auto_position") == 0) 
     { 
       if(sciGetEntityType(pobj) != SCI_LABEL)
 	{strcpy(error_message,"auto_position does not exist for this handle");return -1;}
@@ -8590,7 +8559,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }  
-  else if (strncmp(marker,"position", 8) == 0) 
+  else if (strcmp(marker,"position") == 0) 
     {
       if(sciGetEntityType(pobj) != SCI_LABEL)
 	{strcpy(error_message,"position does not exist for this handle");return -1;}
@@ -8604,7 +8573,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       /*       /\* switch to manual mode for label position *\/ */
       /*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
     }
-  else if (strncmp(marker,"auto_ticks", 10) == 0)
+  else if (strcmp(marker,"auto_ticks") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	char ** foo = (char **) NULL;
@@ -8634,7 +8603,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"auto_ticks property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"axes_reverse",12) == 0)
+  else if (strcmp(marker,"axes_reverse") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	char ** foo = (char **) NULL;
@@ -8664,7 +8633,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"reverse property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"view", 4) == 0)
+  else if (strcmp(marker,"view") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	numrow   = 1;numcol   = 2;
@@ -8728,7 +8697,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
   } 
-  else if (strncmp(marker,"tics_color", 9) == 0) 
+  else if (strcmp(marker,"tics_color") == 0) 
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
@@ -8741,14 +8710,14 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"tics_color property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"tics_style", 10) == 0)
+  else if (strcmp(marker,"tics_style") == 0)
     {
       numrow = 1; numcol = 1;
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
     }
   /*Dj.A 17/12/2003*/
-  else if ((strncmp(marker,"sub_tics", 8) == 0) || (strncmp(marker,"sub_ticks", 9) == 0))
+  else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))
     {
       numrow   = 1;
       numcol   = (sciGetEntityType (pobj) == SCI_AXES) ? 1:2;
@@ -8765,7 +8734,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"tics_segment", 12) == 0) 
+  else if (strcmp(marker,"tics_segment") == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_AXES) {
 	if (pAXES_FEATURE (pobj)->seg==1) {
@@ -8815,7 +8784,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"labels_font_style property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"format_n", 9) == 0)	{
+  else if (strcmp(marker,"format_n") == 0)	{
     if (sciGetEntityType (pobj) == SCI_AXES) {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
@@ -8824,7 +8793,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"format_n property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"xtics_coord", 11) == 0)
+  else if (strcmp(marker,"xtics_coord") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_AXES) {
 	numrow=1;
@@ -8836,7 +8805,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"xtics_coord property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"ytics_coord", 11) == 0)
+  else if (strcmp(marker,"ytics_coord") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_AXES) {
 	numrow=1;
@@ -8848,7 +8817,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"ytics_coord property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"tics_labels", 11) == 0)
+  else if (strcmp(marker,"tics_labels") == 0)
     {
       char **foo = (char **) NULL;
       int i;
@@ -8932,7 +8901,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
     }
-  else if ((strncmp(marker,"box", 3) == 0)) {
+  else if ((strcmp(marker,"box") == 0)) {
     if (sciGetIsBoxed(pobj)) {
       numrow   = 1;
       numcol   = 2;
@@ -8947,7 +8916,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   }
   /**DJ.Abdemouche 2003**/
-  else if (strncmp(marker,"grid", 4) == 0) 
+  else if (strcmp(marker,"grid") == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) 
 	{
@@ -8960,7 +8929,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"grid property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"axes_visible", 12) == 0) {
+  else if (strcmp(marker,"axes_visible") == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       char ** foo = (char **) NULL;
       int i;
@@ -8988,7 +8957,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"hiddencolor", 11) == 0) 
+  else if (strcmp(marker,"hiddencolor") == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	numrow   = 1;numcol   = 1;
@@ -9006,7 +8975,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       }
     }
   /**DJ.Abdemouche 2003**/
-  else if (strncmp(marker,"isoview", 7) == 0) {
+  else if (strcmp(marker,"isoview") == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       if (pSUBWIN_FEATURE (pobj)->isoview) {
 	numrow   = 1;
@@ -9024,7 +8993,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"isoview property does not exist for this handle");return -1;}
   }
-  else if (strncmp(marker,"cube_scaling", 12) == 0) {
+  else if (strcmp(marker,"cube_scaling") == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       if (pSUBWIN_FEATURE (pobj)->cube_scaling) {
 	numrow   = 1;
@@ -9043,7 +9012,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       {strcpy(error_message,"cube_scaling property does not exist for this handle");return -1;}
   }
   /**************** SEGS  *********************/
-  else if (strncmp(marker,"arrow_size", 10) == 0)
+  else if (strcmp(marker,"arrow_size") == 0)
     {    
       if (sciGetEntityType (pobj) == SCI_SEGS) {
 	numrow = 1;numcol = 1;
@@ -9053,7 +9022,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"arrow_size property does not exist for this handle");return -1;}
     } 
-  else if ((strncmp(marker,"segs_color", 10) == 0) && (sciGetEntityType (pobj) == SCI_SEGS))
+  else if ((strcmp(marker,"segs_color") == 0) && (sciGetEntityType (pobj) == SCI_SEGS))
     {
       if (pSEGS_FEATURE (pobj)->ptype == 0)
 	{
@@ -9064,7 +9033,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  }
 	}
     }  
-  else if ((strncmp(marker,"colored", 7) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){
+  else if ((strcmp(marker,"colored") == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){
     if (pSEGS_FEATURE (pobj)->ptype != 0)
       { 
 	if (pSEGS_FEATURE (pobj)->typeofchamp == 1) {
@@ -9084,7 +9053,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       {strcpy(error_message,"colored property does not exist for Segs");return -1;} 
   }
   /**************** Matplot Grayplot *********************/
-  else if (strncmp(marker,"data_mapping", 12) == 0) {
+  else if (strcmp(marker,"data_mapping") == 0) {
     if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
       numrow = 1;numcol = 6;
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
@@ -9250,7 +9219,7 @@ int sci_delete(fname,fname_len)
     case 10: /* delete("all") */
       CheckRhs(1,1);
       GetRhsVar(1,"c",&m2,&n2,&l2);
-      if (strncmp(cstk(l2),"all", 3) == 0)
+      if (strcmp(cstk(l2),"all") == 0)
 	{
 	  SciWin();
 	  sciXbasc();return 0;
@@ -9276,7 +9245,7 @@ int sci_delete(fname,fname_len)
   SciWin();
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if ((Rhs == 2) && (strncmp(cstk(l2),"callback", 8) == 0))
+  if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
     sciDelCallback((sciPointObj *)pobj);
   else {
     if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)
@@ -9435,7 +9404,7 @@ int move(fname,fname_len)
   opt = FALSE;
   if (Rhs ==3) {
     GetRhsVar(3,"c",&m3,&n3,&l3);
-    if (strncmp(cstk(l3),"alone", 5) == 0) opt = TRUE;
+    if (strcmp(cstk(l3),"alone") == 0) opt = TRUE;
     else {
       Scierror(999,"%s: invalid option \r\n",fname); 
       return 0;
@@ -9602,45 +9571,6 @@ int drawnow(fname,fname_len)
 	return 0;
 	
       }
-      /*       else */
-      /*         switch(VarType(1))  */
-      /* 	  { */
-      /* 	  case 9: /\* first is a handle argument so it's a drawnow(subwin) *\/ */
-      /* 	    GetRhsVar(1,"h",&m,&n,&l);  */
-      /* 	    for (i = 0; i < n*m; i++) */
-      /* 	      { */
-      /* 		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i));  */
-      /* 		if (subwin == NULL) { */
-      /* 		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname); */
-      /* 		  return 0; */
-      /* 		} */
-      /* 		if (sciGetEntityType (subwin) != SCI_SUBWIN) { */
-      /* 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname); */
-      /* 		  return 0; */
-      /* 		} */
-      /* 		else  */
-      /* 		  {	 */
-      /* 		    sciSetDrawLater (subwin,FALSE); */
-      /* 		    sciDrawObj(sciGetCurrentFigure ()); */
-      /* 		  } */
-      /* 	      } */
-      /* 	    break; */
-      /* 	  case 10:/\* first is a string argument so it's a drawnow('all') *\/ */
-      /* 	    GetRhsVar(1,"c",&m,&n,&l); */
-      /* 	    if (strncmp(cstk(l),"all", 3) == 0){  */
-      /* 	      sciSetDrawLater (sciGetCurrentFigure (),FALSE);   */
-      /* 	      sciDrawObj(sciGetCurrentFigure ()); */
-      /* 	      LhsVar(1) = 0; */
-      /* 	      return 0;} */
-      /* 	    else{ */
-      /*               Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
-      /*               return 0;} */
-      /* 	    break;  */
-      /* 	  default:  */
-      /* 	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
-      /* 	    return 0; */
-      /* 	    break; */
-      /*           } */
     }
   LhsVar(1) = 0;
   return 0;
@@ -9665,47 +9595,7 @@ int drawlater(fname,fname_len)
 	
 	LhsVar(1) = 0;
 	return 0;
-	
       }
-      /*       else */
-      /*         switch(VarType(1))  */
-      /* 	  { */
-      /* 	  case 9: /\* first is a handle argument so it's a drawnow(subwin) *\/ */
-      /* 	    GetRhsVar(1,"h",&m,&n,&l);  */
-      /* 	    for (i = 0; i < n*m; i++) */
-      /* 	      { */
-      /* 		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i));  */
-      /* 		if (subwin == NULL) { */
-      /* 		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname); */
-      /* 		  return 0; */
-      /* 		} */
-      /* 		if (sciGetEntityType (subwin) != SCI_SUBWIN) { */
-      /* 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname); */
-      /* 		  return 0; */
-      /* 		} */
-      /* 		else  */
-      /* 		  {	 */
-      /* 		    sciSetDrawLater (subwin,TRUE); */
-      /* 		    sciDrawObj(sciGetCurrentFigure ()); */
-      /* 		  } */
-      /* 	      } */
-      /* 	    break; */
-      /* 	  case 10:/\* first is a string argument so it's a drawnow('all') *\/ */
-      /* 	    GetRhsVar(1,"c",&m,&n,&l); */
-      /* 	    if (strncmp(cstk(l),"all", 3) == 0){  */
-      /* 	      sciSetDrawLater (sciGetCurrentFigure (),TRUE);   */
-      /* 	      sciDrawObj(sciGetCurrentFigure ()); */
-      /* 	      LhsVar(1) = 0; */
-      /* 	      return 0;} */
-      /* 	    else{ */
-      /*               Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
-      /*               return 0;} */
-      /* 	    break;  */
-      /* 	  default:  */
-      /* 	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname); */
-      /* 	    return 0; */
-      /* 	    break; */
-      /*           } */
     }
   
   LhsVar(1) = 0;
@@ -9761,7 +9651,7 @@ int scixclearsubwin(fname,fname_len)
 	break;
       case 10:/*  clearsubwin('all') */
 	GetRhsVar(1,"c",&m,&n,&l);
-	if (strncmp(cstk(l),"all", 3) == 0){ 
+	if (strcmp(cstk(l),"all") == 0){ 
 	  sciXclear();  
 	  LhsVar(1) = 0;
 	  return 0;}
@@ -9846,7 +9736,7 @@ int scixbascsubwin(fname,fname_len)
 	break;
       case 10:/* first is a string argument so it's a drawnow('all') */
 	GetRhsVar(1,"c",&m,&n,&l);
-	if (strncmp(cstk(l),"all", 3) == 0)  {   
+	if (strcmp(cstk(l),"all") == 0){
 	  sciXbasc();
 	  return 0;
 	}  
@@ -11377,18 +11267,6 @@ static int getgrayplotdata(sciPointObj *pobj)
   CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
   CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
 
-  /*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
-  /*     { */
-  /*   nx =  ppgrayplot->nx; */
-  /*   ny =  ppgrayplot->ny; */
-  /*     } */
-  /*   else */
-  /*     { */
-  /*       nx =  ppgrayplot->nx - 1; */
-  /*       ny =  ppgrayplot->ny - 1; */
-  /*     } */
-
-
   numrow = ppgrayplot->nx;
   numcol = 1;
   CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppgrayplot->pvecx);
@@ -11400,28 +11278,7 @@ static int getgrayplotdata(sciPointObj *pobj)
   numrow = ppgrayplot->nx;
   numcol = ppgrayplot->ny;
   
-  /*   if (strncmp(ppgrayplot->datamapping,"scaled", 6) == 0) */
-  /*     { */
   CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppgrayplot->pvecz);
-  /*     } */
-  /*   else /\* direct *\/ */
-  /*     { */
-  /*       int i,j; */
-  /*       double * vecz = (double *) NULL; */
-  /*       if((vecz = MALLOC(nx*ny*sizeof(double))) == NULL){ */
-  /* 	sciprint("Error: Can not allocate temp. vecz\n"); */
-  /* 	return -1; */
-  /*       } */
-      
-  /*       for(i=0;i<(ppgrayplot->nx)-1;i++) */
-  /* 	for(j=0;j<(ppgrayplot->ny)-1;j++) */
-  /* 	  vecz[j+nx*i] = ppgrayplot->pvecz[j+(ppgrayplot->nx)*i]; */
-            
-  /*       CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &vecz); */
-      
-  /*       FREE(vecz); vecz = (double *) NULL; */
-
-  /*     } */
 
   return 0;
 }

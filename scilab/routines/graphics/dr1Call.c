@@ -270,7 +270,7 @@ void Xplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
    if (*isfac== 1) 
     { 
        if (*izcol == 0) 
-	 { if (strncmp(fname,"plot3d1",7)==0)
+	 { if (strcmp(fname,"plot3d1")==0)
 	   C2F(fac3d1)(x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,bsiz); 
            else
 	     C2F(fac3d)(x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,bsiz);
@@ -281,7 +281,7 @@ void Xplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
 	 C2F(fac3d2)(x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,bsiz);
      } 
    else if  (*isfac== 0) 
-    { if (strncmp(fname,"plot3d1",7)==0)
+    { if (strcmp(fname,"plot3d1")==0)
       C2F(plot3d1)(x,y,z,m,n,theta,alpha,legend,iflag,ebox,bsiz);
       else
         C2F(plot3d)(x,y,z,m,n,theta,alpha,legend,iflag,ebox,bsiz);

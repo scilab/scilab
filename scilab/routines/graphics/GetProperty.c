@@ -4305,81 +4305,80 @@ int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;
 { 
-  if      (strncmp(marker,"background", 10) == 0) { return 1;}	
-  else if (strncmp(marker,"position", 8) == 0) {return 1;}
-  else if (strncmp(marker,"auto_position", 13) == 0)   {return 10;}		
-  else if (strncmp(marker,"interp_color_vector", 19) == 0) {return 1;}
-  else if (strncmp(marker,"interp_color_mode", 17) == 0) {return 10;}
-  else if (strncmp(marker,"foreground", 10) == 0) {return 1;}	
-  else if (strncmp(marker,"fill_mode", 9) == 0)   {return 10;}		
-  else if (strncmp(marker,"thickness", 9) == 0)   {return 1;}
-  else if (strncmp(marker,"line_style", 10) == 0) {return 1;}
-  else if (strncmp(marker,"line_mode", 9) == 0) {return 10;}
-  else if (strncmp(marker,"surface_mode", 12) == 0) {return 10;}
-  else if (strncmp(marker,"mark_style", 10) == 0) {return 1;}	
+  if      (strcmp(marker,"background") == 0) { return 1;}	
+  else if (strcmp(marker,"position") == 0) {return 1;}
+  else if (strcmp(marker,"auto_position") == 0)   {return 10;}		
+  else if (strcmp(marker,"interp_color_vector") == 0) {return 1;}
+  else if (strcmp(marker,"interp_color_mode") == 0) {return 10;}
+  else if (strcmp(marker,"foreground") == 0) {return 1;}	
+  else if (strcmp(marker,"fill_mode") == 0)   {return 10;}		
+  else if (strcmp(marker,"thickness") == 0)   {return 1;}
+  else if (strcmp(marker,"line_style") == 0) {return 1;}
+  else if (strcmp(marker,"line_mode") == 0) {return 10;}
+  else if (strcmp(marker,"surface_mode") == 0) {return 10;}
+  else if (strcmp(marker,"mark_style") == 0) {return 1;}	
   else if (strcmp(marker,"mark_size") == 0) {return 1;}
   else if (strcmp(marker,"mark_size_unit") == 0) {return 10;}
-  else if (strncmp(marker,"mark_mode", 9) == 0)   {return 10;}
-  else if (strncmp(marker,"mark_foreground", 15) == 0)   {return 1;}
-  else if (strncmp(marker,"mark_background", 15) == 0)   {return 1;}
-  else if (strncmp(marker,"figure_position", 15) == 0) {return 1;}	 
-  else if (strncmp(marker,"axes_size", 9) == 0)   {return 1;}
-  else if (strncmp(marker,"axes_visible", 12) == 0)   {return 10;}
-  else if (strncmp(marker,"hiddencolor", 11) == 0)   {return 1;}/* DJ.A 2003 */
-  else if (strncmp(marker,"isoview", 7) == 0)   {return 10;}/**DJ.Abdemouche 2003**/
-  else if (strncmp(marker,"view", 4) == 0)   {return 10;}/**DJ.Abdemouche 2003**/	
-  else if (strncmp(marker,"figure_size", 11) == 0){return 1;}	
-  else if (strncmp(marker,"figure_id", 9) == 0)   {return 1;}	
-  else if (strncmp(marker,"figure_name", 11) == 0){return 10;}   
-  else if (strncmp(marker,"figures_id", 10) == 0)   {return 1;}
-  else if (strncmp(marker,"pixmap", 10) == 0)   {return 10;}/*Ajout A.Djalel*/
-  else if (strncmp(marker,"polyline_style", 14) == 0){return 1;} 
-  else if (strncmp(marker,"font_size", 9) == 0)   {return 1;}	
-  else if (strncmp(marker,"font_angle", 10) == 0) {return 1;}		
-  else if (strncmp(marker,"font_foreground", 15) == 0){return 1;}
-  else if (strncmp(marker,"font_color", 10) == 0)   {return 1;} /* F.Leray 09.04.04 : Adding to support font_color user interface */
-  else if (strncmp(marker,"font_style", 10) == 0) {return 1;}	      
-  else if (strncmp(marker,"font_name", 9) == 0)   {return 10;}
-  else if (strncmp(marker,"textcolor", 9) == 0)   {return 1;}
+  else if (strcmp(marker,"mark_mode") == 0)   {return 10;}
+  else if (strcmp(marker,"mark_foreground") == 0)   {return 1;}
+  else if (strcmp(marker,"mark_background") == 0)   {return 1;}
+  else if (strcmp(marker,"figure_position") == 0) {return 1;}	 
+  else if (strcmp(marker,"axes_size") == 0)   {return 1;}
+  else if (strcmp(marker,"axes_visible") == 0)   {return 10;}
+  else if (strcmp(marker,"hiddencolor") == 0)   {return 1;}/* DJ.A 2003 */
+  else if (strcmp(marker,"isoview") == 0)   {return 10;}/**DJ.Abdemouche 2003**/
+  else if (strcmp(marker,"view") == 0)   {return 10;}/**DJ.Abdemouche 2003**/	
+  else if (strcmp(marker,"figure_size") == 0){return 1;}	
+  else if (strcmp(marker,"figure_id") == 0)   {return 1;}	
+  else if (strcmp(marker,"figure_name") == 0){return 10;}   
+  else if (strcmp(marker,"figures_id") == 0)   {return 1;}
+  else if (strcmp(marker,"pixmap") == 0)   {return 10;}/*Ajout A.Djalel*/
+  else if (strcmp(marker,"polyline_style") == 0){return 1;} 
+  else if (strcmp(marker,"font_size") == 0)   {return 1;}	
+  else if (strcmp(marker,"font_angle") == 0) {return 1;}		
+  else if (strcmp(marker,"font_foreground") == 0){return 1;}
+  else if (strcmp(marker,"font_color") == 0)   {return 1;} /* F.Leray 09.04.04 : Adding to support font_color user interface */
+  else if (strcmp(marker,"font_style") == 0) {return 1;}	      
+  else if (strcmp(marker,"font_name") == 0)   {return 10;}
+  else if (strcmp(marker,"textcolor") == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_size") == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_color") == 0)   {return 1;}
   else if (strcmp(marker,"text") == 0)        {return 10;}	 
   else if (strcmp(marker,"text_box") == 0)     {return 1;}	
   else if (strcmp(marker,"text_box_mode") == 0){return 10;}	
-  else if (strncmp(marker,"old_style", 9) == 0)   {return 10;}
-  else if (strncmp(marker,"figure_style", 12) == 0)   {return 10;}        
-  else if (strncmp(marker,"visible", 7) == 0)     {return 10;} 
-  else if (strncmp(marker,"auto_resize", 10) == 0){return 10;}
-  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0)    {return 10;}    
-  else if (strncmp(marker,"default_values", 14) == 0) {return 1;} 
-  else if (strncmp(marker,"color_map", 9) == 0)   {return 1;}    
-  else if (strncmp(marker,"x_location", 10) == 0) {return 10;} 
-  else if (strncmp(marker,"y_location", 10) == 0) {return 10;}   
-  else if (strncmp(marker,"tics_direction", 14) == 0)  {return 10;}   
-  else if (strncmp(marker,"tight_limits", 12) == 0){return 10;} 
-  else if (strncmp(marker,"box", 3) == 0)         {return 10;}
-  else if (strncmp(marker,"tics_color", 10) == 0) {return 1;}	 
-  else if (strncmp(marker,"tics_textcolor", 14) == 0) {return 1;}	  
-  else if (strncmp(marker,"tics_textsize", 13) == 0)  {return 1;}
-  else if (strncmp(marker,"xtics_coord", 11) == 0){return 1;}	
-  else if (strncmp(marker,"ytics_coord", 11) == 0){return 1;}	 
-  else if (strncmp(marker,"grid", 4) == 0)        {return 1;}   
-  else if (strncmp(marker,"tics_segment", 12) == 0) {return 10;} 
-  else if (strncmp(marker,"tics_style", 10) == 0) {return 10;} 
-  else if (strncmp(marker,"format_n", 9) == 0)    {return 10;}    
-  else if (strncmp(marker,"tics_labels", 11) == 0){return 10;}  
-  else if (strncmp(marker,"sub_tics", 8) == 0)    {return 1;}
-  else if (strncmp(marker,"sub_ticks",9) == 0)    {return 1;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
-  else if (strncmp(marker,"zoom_box", 8) == 0)    {return 1;}	
-  else if (strncmp(marker,"zoom_state", 9) == 0)  {return 10;}  
-  else if (strncmp(marker,"clip_box", 8) == 0)    {return 1;}	
-  else if (strncmp(marker,"clip_state", 9) == 0)  {return 10;} 
-  else if (strncmp(marker,"auto_clear", 10) == 0) {return 10;}		
-  else if (strncmp(marker,"auto_scale", 10) == 0) {return 10;}		  	 
-  else if (strncmp(marker,"arrow_size", 10) == 0) {return 1;}
-  else if (strncmp(marker,"segs_color", 10) == 0) {return 1;}
-  else if (strncmp(marker,"colored", 7) == 0) {return 10;}
-  /* else if (strcmp(marker,"data") == 0)            {return 1;}*/ /* F.Leray modif. for SCI_SURFACE case*/
+  else if (strcmp(marker,"old_style") == 0)   {return 10;}
+  else if (strcmp(marker,"figure_style") == 0)   {return 10;}        
+  else if (strcmp(marker,"visible") == 0)     {return 10;} 
+  else if (strcmp(marker,"auto_resize") == 0){return 10;}
+  else if (strcmp(marker,"pixel_drawing_mode") == 0)    {return 10;}    
+  else if (strcmp(marker,"default_values") == 0) {return 1;} 
+  else if (strcmp(marker,"color_map") == 0)   {return 1;}    
+  else if (strcmp(marker,"x_location") == 0) {return 10;} 
+  else if (strcmp(marker,"y_location") == 0) {return 10;}   
+  else if (strcmp(marker,"tics_direction") == 0)  {return 10;}   
+  else if (strcmp(marker,"tight_limits") == 0){return 10;} 
+  else if (strcmp(marker,"box") == 0)         {return 10;}
+  else if (strcmp(marker,"tics_color") == 0) {return 1;}	 
+  else if (strcmp(marker,"tics_textcolor") == 0) {return 1;}	  
+  else if (strcmp(marker,"tics_textsize") == 0)  {return 1;}
+  else if (strcmp(marker,"xtics_coord") == 0){return 1;}	
+  else if (strcmp(marker,"ytics_coord") == 0){return 1;}	 
+  else if (strcmp(marker,"grid") == 0)        {return 1;}   
+  else if (strcmp(marker,"tics_segment") == 0) {return 10;} 
+  else if (strcmp(marker,"tics_style") == 0) {return 10;} 
+  else if (strcmp(marker,"format_n") == 0)    {return 10;}    
+  else if (strcmp(marker,"tics_labels") == 0){return 10;}  
+  else if (strcmp(marker,"sub_tics") == 0)    {return 1;}
+  else if (strcmp(marker,"sub_ticks") == 0)    {return 1;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
+  else if (strcmp(marker,"zoom_box") == 0)    {return 1;}	
+  else if (strcmp(marker,"zoom_state") == 0)  {return 10;}  
+  else if (strcmp(marker,"clip_box") == 0)    {return 1;}	
+  else if (strcmp(marker,"clip_state") == 0)  {return 10;} 
+  else if (strcmp(marker,"auto_clear") == 0) {return 10;}		
+  else if (strcmp(marker,"auto_scale") == 0) {return 10;}		  	 
+  else if (strcmp(marker,"arrow_size") == 0) {return 1;}
+  else if (strcmp(marker,"segs_color") == 0) {return 1;}
+  else if (strcmp(marker,"colored") == 0) {return 10;}
   else if (strcmp(marker,"data") == 0)
     if((sciGetEntityType(pobj) == SCI_SURFACE) || 
        (sciGetEntityType(pobj) == SCI_SEGS     && pSEGS_FEATURE(pobj)->ptype == 1) || /* a champ */
@@ -4387,10 +4386,10 @@ int sciType (marker, pobj)
       return 16;
     else
       return 1;
-  else if (strncmp(marker,"hdl", 3) == 0)         {return 1;}		
-  else if (strncmp(marker,"callbackmevent", 14) == 0) {return 1;}
-  else if (strncmp(marker,"callback", 8) == 0)    {return 10;} 	
-  else if (strncmp(marker,"log_flags", 9) == 0)   {return 10;}
+  else if (strcmp(marker,"hdl") == 0)         {return 1;}		
+  else if (strcmp(marker,"callbackmevent") == 0) {return 1;}
+  else if (strcmp(marker,"callback") == 0)    {return 10;} 	
+  else if (strcmp(marker,"log_flags") == 0)   {return 10;}
   else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
   else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
@@ -4419,11 +4418,9 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"x_ticks") == 0)    {return 16;} 
   else if (strcmp(marker,"y_ticks") == 0)    {return 16;} 
   else if (strcmp(marker,"z_ticks") == 0)    {return 16;} 
-  else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;}
-  else if (strncmp(marker,"axes_reverse",12) == 0){return 10;}
-  else if (strncmp(marker,"immediate_drawing",17) == 0){return 10;}
-/*   else if (strncmp(marker,"complete_redraw",15) == 0){return 10;} */
-
+  else if (strcmp(marker,"auto_ticks") == 0){return 10;}
+  else if (strcmp(marker,"axes_reverse") == 0){return 10;}
+  else if (strcmp(marker,"immediate_drawing") == 0){return 10;}
   else {return -1;}
 }
 
