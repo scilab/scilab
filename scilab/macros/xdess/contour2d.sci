@@ -26,8 +26,9 @@ if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
 opts=strcat([opts,"style=style(c)"],',')
 
 if or(type(z)==[11 13]) then 
-  fun=z;comp(fun);clear z //to avoid redfinition warning
-  z=eval3d(fun,x,y),
+  fun=z;clear z //to avoid redfinition warning
+  if type(fun)==11 then comp(fun),end
+  z=feval(x,y,fun)
 end
 
 [xc,yc]=contour2di(x,y,z,nz);

@@ -26,7 +26,7 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
   if or(type(z)==[11 13]) then 
     fun=z;clear z //to avoid redfinition warning
     if type(fun)==11 then comp(fun),end
-    z=eval3d(fun,x,y),
+    z=feval(x,y,fun)
   end
   
   job=flag(1)
