@@ -13,10 +13,14 @@ function %h_p(h)
     t=[t;part('=',ones(1,length(t)))]
     select h.type
     case "Polyline"
-      d=sci2exp(h.data,0)
-      u=h.user_data;
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
-      t=[t;
+      if size(h.data,'*') > 10 then 
+       d="matrix "+strcat(string(size(h.data)),'x')
+     else
+       d=sci2exp(h.data,0)
+       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+     end
+     u=h.user_data;
+     t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible)
@@ -39,11 +43,15 @@ function %h_p(h)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box)
 	 "user_data = "+fmtuser_data(u)]
-      
     case "Patch"
-      d=sci2exp(h.data,0)
+      if size(h.data,'*') > 10 then 
+       d="matrix "+strcat(string(size(h.data)),'x')
+     else
+       d=sci2exp(h.data,0)
+       if length(d)>70 then 
+       d="matrix "+strcat(string(size(h.data)),'x'),end
+     end
       u=h.user_data
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -63,22 +71,38 @@ function %h_p(h)
     case "Axes"
 
       T=h.x_ticks
-      locx=sci2exp(T.locations,0)
-      if length(locx)>70 then locx="matrix "+strcat(string(size(T.locations)),'x'), end
-      labx=sci2exp(T.labels,0)
-      if length(labx)>70 then labx="matrix "+strcat(string(size(T.labels)),'x'), end
-
+      if size(T.locations,'*')>9 then
+       locx="matrix "+strcat(string(size(T.locations)),'x')
+       labx="matrix "+strcat(string(size(T.labels)),'x')
+      else
+       locx=sci2exp(T.locations,0)
+       labx=sci2exp(T.labels,0)
+       if length(locx)>70 then locx="matrix "+strcat(string(size(T.locations)),'x'), end
+       if length(labx)>70 then labx="matrix "+strcat(string(size(T.labels)),'x'), end
+      end
+     
       T=h.y_ticks
-      locy=sci2exp(T.locations,0)
-      if length(locy)>70 then locy="matrix "+strcat(string(size(T.locations)),'x'), end
-      laby=sci2exp(T.labels,0)
-      if length(laby)>70 then laby="matrix "+strcat(string(size(T.labels)),'x'), end
-
+      if size(T.locations,'*')>9 then
+       locy="matrix "+strcat(string(size(T.locations)),'x')
+       laby="matrix "+strcat(string(size(T.labels)),'x')
+      else
+       locy=sci2exp(T.locations,0)
+       laby=sci2exp(T.labels,0)
+       if length(locy)>70 then locx="matrix "+strcat(string(size(T.locations)),'x'), end
+       if length(laby)>70 then labx="matrix "+strcat(string(size(T.labels)),'x'), end
+      end
+      
       T=h.z_ticks
-      locz=sci2exp(T.locations,0)
-      if length(locz)>70 then locz="matrix "+strcat(string(size(T.locations)),'x'), end
-      labz=sci2exp(T.labels,0)
-      if length(labz)>70 then labz="matrix "+strcat(string(size(T.labels)),'x'), end
+      if size(T.locations,'*')>9 then
+       locz="matrix "+strcat(string(size(T.locations)),'x')
+       labz="matrix "+strcat(string(size(T.labels)),'x')
+      else
+       locz=sci2exp(T.locations,0)
+       labz=sci2exp(T.labels,0)
+       if length(locz)>70 then locx="matrix "+strcat(string(size(T.locations)),'x'), end
+       if length(labz)>70 then labx="matrix "+strcat(string(size(T.labels)),'x'), end
+      end
+      
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
@@ -190,9 +214,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "user_data = "+fmtuser_data(u)]
     case "Figure"
-      c=sci2exp(h.children.type,0)
       u=h.user_data
-      if length(c)>70 then c="matrix "+strcat(string(size(h.children)),'x'),end
       t=[t;
 	 "children: "+fmtchildren(h.children)
 	 "figure_style = "+sci2exp(h.figure_style,0)
@@ -214,14 +236,27 @@ function %h_p(h)
 	]
     case "Grayplot"
       Data = h.data
-      dx=sci2exp(Data.x,0)
-      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
-
-      dy=sci2exp(Data.y,0)
-      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
-
-      dz=sci2exp(Data.z,0)
-      if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
+      if size(Data.x,'*') > 10 then 
+       dx="matrix "+strcat(string(size(Data.x)),'x')
+      else
+       dx=sci2exp(Data.x,0)
+       if length(dx)>70 then d="matrix "+strcat(string(size(Data.x)),'x'),end
+      end
+       
+      if size(Data.y,'*') > 10 then 
+       dy="matrix "+strcat(string(size(Data.y)),'x')
+      else
+       dy=sci2exp(Data.y,0)
+       if length(dy)>70 then d="matrix "+strcat(string(size(Data.y)),'x'),end
+      end
+ 
+      if size(Data.z,'*') > 10 then 
+       dz="matrix "+strcat(string(size(Data.z)),'x')
+      else
+       dz=sci2exp(Data.z,0)
+       if length(dz)>70 then d="matrix "+strcat(string(size(Data.z)),'x'),end
+      end
+      
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
@@ -234,9 +269,13 @@ function %h_p(h)
 	 "user_data = "+fmtuser_data(u)
 	]
     case "Matplot"
-      d=sci2exp(h.data,0)
+      if size(h.data,'*') > 10 then 
+       d="matrix "+strcat(string(size(h.data)),'x')
+      else     
+       d=sci2exp(h.data,0)
+       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+      end
       u=h.user_data
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -245,10 +284,20 @@ function %h_p(h)
 	 "user_data = "+fmtuser_data(u)]
     case "Fec"
       u=h.user_data
-      d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
-      f=sci2exp(h.triangles,0)
-      if length(f)>70 then f="matrix "+strcat(string(size(h.triangles)),'x'),end
+      if size(h.data,'*') > 10 then 
+       d="matrix "+strcat(string(size(h.data)),'x')
+      else     
+       d=sci2exp(h.data,0)
+       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+      end
+
+      if size(h.triangles,'*') > 10 then 
+       f="matrix "+strcat(string(size(h.triangles)),'x')
+      else     
+       f=sci2exp(h.triangles,0)
+       if length(f)>70 then f="matrix "+strcat(string(size(h.triangles)),'x'),end
+      end
+      
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -260,10 +309,20 @@ function %h_p(h)
 	]
       
     case "Segs"
-      d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
-      c=sci2exp(h.segs_color,0)
-      if length(c)>70 then d="matrix "+strcat(string(size(h.segs_color)),'x'),end
+      if size(h.data,'*') > 10 then 
+       d="matrix "+strcat(string(size(h.data)),'x')
+      else
+       d=sci2exp(h.data,0)
+       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+      end     
+      
+     if size(h.segs_color,'*') > 10 then 
+       c="matrix "+strcat(string(size(h.segs_color)),'x')
+      else
+       c=sci2exp(h.segs_color,0)
+       if length(c)>70 then c="matrix "+strcat(string(size(h.segs_color)),'x'),end
+      end     
+
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
@@ -286,17 +345,34 @@ function %h_p(h)
 	 "user_data = "+fmtuser_data(u)]
     case "Champ"
       Data = h.data
-      dx=sci2exp(Data.x,0)
-      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
+      if size(Data.x,'*') > 10 then 
+       dx="matrix "+strcat(string(size(Data.x)),'x')
+      else
+       dx=sci2exp(Data.x,0)
+       if length(dx)>70 then d="matrix "+strcat(string(size(Data.x)),'x'),end
+      end
+       
+      if size(Data.y,'*') > 10 then 
+       dy="matrix "+strcat(string(size(Data.y)),'x')
+      else
+       dy=sci2exp(Data.y,0)
+       if length(dy)>70 then d="matrix "+strcat(string(size(Data.y)),'x'),end
+      end
 
-      dy=sci2exp(Data.y,0)
-      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
+      if size(Data.fx,'*') > 10 then 
+       dfx="matrix "+strcat(string(size(Data.fx)),'x')
+      else
+       dfx=sci2exp(Data.fx,0)
+       if length(dfx)>70 then d="matrix "+strcat(string(size(Data.fx)),'x'),end
+      end
 
-      dfx=sci2exp(Data.fx,0)
-      if length(dfx)>70 then dfx="matrix "+strcat(string(size(Data.fx)),'x'), end
-
-      dfy=sci2exp(Data.fy,0)
-      if length(dfy)>70 then dfy="matrix "+strcat(string(size(Data.fy)),'x'), end
+      if size(Data.fy,'*') > 10 then 
+       dfy="matrix "+strcat(string(size(Data.fy)),'x')
+      else
+       dfy=sci2exp(Data.fy,0)
+       if length(dfy)>70 then d="matrix "+strcat(string(size(Data.fy)),'x'),end
+      end
+ 
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
@@ -364,20 +440,37 @@ function %h_p(h)
 	 "position = "+sci2exp(h.position,0)]
     case "Plot3d"
       Data = h.data
+      if size(Data.x,'*') > 10 then 
+       dx="matrix "+strcat(string(size(Data.x)),'x')
+      else
+       dx=sci2exp(Data.x,0)
+       if length(dx)>70 then d="matrix "+strcat(string(size(Data.x)),'x'),end
+      end
+       
+      if size(Data.y,'*') > 10 then 
+       dy="matrix "+strcat(string(size(Data.y)),'x')
+      else
+       dy=sci2exp(Data.y,0)
+       if length(dy)>70 then d="matrix "+strcat(string(size(Data.y)),'x'),end
+      end
+ 
+      if size(Data.z,'*') > 10 then 
+       dz="matrix "+strcat(string(size(Data.z)),'x')
+      else
+       dz=sci2exp(Data.z,0)
+       if length(dz)>70 then d="matrix "+strcat(string(size(Data.z)),'x'),end
+      end
+
       u=h.user_data
-      dx=sci2exp(Data.x,0)
-      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
-
-      dy=sci2exp(Data.y,0)
-      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
-
-      dz=sci2exp(Data.z,0)
-      if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
 
       if size(Data) == 5 then // There is a color
-	dcolor=sci2exp(Data.color,0)
-	if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
-
+	if size(Data.color,'*') > 10 then 
+	 dcolor="matrix "+strcat(string(size(Data.color)),'x')
+        else
+	 dcolor=sci2exp(Data.color,0)
+	 if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'),end
+        end
+	
 	t=[t;
 	   "parent: "+h.parent.type
 	   "children: "+fmtchildren(h.children)
@@ -426,20 +519,36 @@ function %h_p(h)
 
     case "Fac3d" 
       Data = h.data
+      if size(Data.x,'*') > 10 then 
+       dx="matrix "+strcat(string(size(Data.x)),'x')
+      else
+       dx=sci2exp(Data.x,0)
+       if length(dx)>70 then d="matrix "+strcat(string(size(Data.x)),'x'),end
+      end
+       
+      if size(Data.y,'*') > 10 then 
+       dy="matrix "+strcat(string(size(Data.y)),'x')
+      else
+       dy=sci2exp(Data.y,0)
+       if length(dy)>70 then d="matrix "+strcat(string(size(Data.y)),'x'),end
+      end
+ 
+      if size(Data.z,'*') > 10 then 
+       dz="matrix "+strcat(string(size(Data.z)),'x')
+      else
+       dz=sci2exp(Data.z,0)
+       if length(dz)>70 then d="matrix "+strcat(string(size(Data.z)),'x'),end
+      end
+
       u=h.user_data;
-      dx=sci2exp(Data.x,0)
-      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
-
-      dy=sci2exp(Data.y,0)
-      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
-
-      dz=sci2exp(Data.z,0)
-      if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
-
+ 
       if size(Data) == 5 then // There is a color
-	dcolor=sci2exp(Data.color,0)
-	if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
-	
+	if size(Data.color,'*') > 10 then 
+	 dcolor="matrix "+strcat(string(size(Data.color)),'x')
+        else
+	 dcolor=sci2exp(Data.color,0)
+	 if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'),end
+        end
 
 	t=[t;
 	   "parent: "+h.parent.type
@@ -490,11 +599,20 @@ function %h_p(h)
       
     case "Param3d" 
       u=h.user_data;
-      d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
+      if size(h.data,'*') > 10 then 
+       d="matrix "+strcat(string(size(h.data)),'x')
+      else
+       d=sci2exp(h.data,0)
+       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
+      end
       
-      c=sci2exp(h.surface_color,0)
-      if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
+      if size(h.surface_color,'*') > 10 then 
+       c="matrix "+strcat(string(size(h.surface_color)),'x')
+      else
+       c=sci2exp(h.surface_color,0)
+       if length(c)>70 then c="matrix "+strcat(string(size(h.surface_color)),'x'),end
+      end
+  
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
