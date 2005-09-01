@@ -1,10 +1,7 @@
-function ge_do_information()
+function ge_do_information(GraphList)
 //Copyright INRIA
 //Author : Serge Steer 2002
 // Shows the information about the graph
-
-  execstr(['global EGdata_'+w
-	   'GraphList=EGdata_'+w+'.GraphList'])
 
   r=x_choices('Information can be displayed or sent to file',..
 	      list(list('',1,['Display','Send to text file','Send to TeX file'])))

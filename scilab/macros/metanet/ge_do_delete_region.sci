@@ -1,7 +1,7 @@
 function GraphList=ge_do_delete_region(GraphList,xc,yc)
 //Copyright INRIA
 //Author : Serge Steer 2002
-
+// EGData is passed by context
 // Copyright INRIA
 xinfo('Click, drag to select region and click to fix the selection')
 
@@ -37,13 +37,13 @@ if edited then
  end
 
  //erase deleted and renumbered objects 
- execstr('NodeId=EGdata_'+string(win)+'.NodeId') 
+ NodeId=EGdata.NodeId
  if NodeId==1 then 
    ge_drawnodes(min(del):$),// deleted and renumbered
  else
    ge_drawnodes(del)// deleted
  end
- execstr('ArcId=EGdata_'+string(win)+'.ArcId')
+ ArcId=EGdata.ArcId
  if ArcId==1 then 
    ge_drawarcs(min(del_arcs):$),// deleted and renumbered
  else

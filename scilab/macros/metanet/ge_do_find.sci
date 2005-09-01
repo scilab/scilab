@@ -1,4 +1,4 @@
-function ge_do_find(key)
+function ge_do_find(key,GraphList)
 //Copyright INRIA
 //Author : Serge Steer 2002
   
@@ -7,8 +7,6 @@ function ge_do_find(key)
     r=x_dialog('Enter a Node number or a Node name:','')
     if r<>[] then
       ierr=execstr('n='+r,'errcatch')
-      w=string(win)
-      execstr('global EGdata_'+w+';GraphList=EGdata_'+w+'.GraphList')
       if ierr==0 then // a node number
 	if n<1|n>size(GraphList.node_x,'*') then
 	  x_message('Incorrect node number:'+r)
@@ -31,8 +29,6 @@ function ge_do_find(key)
     r=x_dialog('Enter an Arc number or an Arc name:','')
     if r<>[] then
       ierr=execstr('n='+r,'errcatch')
-      w=string(win)
-      execstr('global EGdata_'+w+';GraphList=EGdata_'+w+'.GraphList')
       if ierr==0 then // a node number
 	if n<1|n>size(GraphList.tail,'*') then
 	  x_message('Incorrect arc number:'+r)

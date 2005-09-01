@@ -162,9 +162,9 @@ function ge_drawnodes_3(sel,id)
 endfunction
 
 function Ids=ge_get_nodes_id(sel)
-  execstr('NodeId=EGdata_'+string(win)+'.NodeId')
+  //EGdata and GraphList are passed by context
   Ids=[]
-  select NodeId
+  select EGdata.NodeId
     case 1 then Ids=string(sel)
     case 2 then Ids=GraphList.node_name(sel)
     case 3 then Ids=string(GraphList.node_demand(sel))

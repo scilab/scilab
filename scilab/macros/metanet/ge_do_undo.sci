@@ -1,12 +1,11 @@
-function ge_do_undo(op)
+function GraphList=ge_do_undo(GraphList,op)
 //Copyright INRIA
 //Author : Serge Steer 2002
-  if argn(2)<1 then
+  if argn(2)<2 then
     ierr=execstr('global EGhist_'+w+';op=EGhist_'+w+'($);'+..
 		 'EGhist_'+w+'($)=null()','errcatch')
     if ierr<>0 then return,end
   end
-   execstr('global EGdata_'+w+'; GraphList=EGdata_'+w+'.GraphList')
    xset('alufunction',6)   
    select  op(1)
    case "add_node" then
@@ -94,7 +93,7 @@ function ge_do_undo(op)
      ge_drawnodes(min(op(2)):size(GraphList.node_x,'*'))
    case "compound" then
      for k=2:size(op)
-       ge_do_undo(op(k))
+       GraphList=ge_do_undo(GraphList,op(k))
      end
    case "move_region" then
      keep=op(2); karcs=[]
@@ -126,10 +125,7 @@ function ge_do_undo(op)
    end
 
    xset('alufunction',3)
-   if op(1)<> "compound" then 
-     execstr('EGdata_'+w+'.GraphList=GraphList')
-   end
-   edited=return(%t)
+  edited=return(%t)
 
 endfunction
 

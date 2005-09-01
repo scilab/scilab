@@ -1,9 +1,8 @@
-function ge_do_zoom()
+function EGdata=ge_do_zoom(EGdata)
 //Copyright INRIA
 //Author : Serge Steer 2002
 
    Z=[12.5 25:25:400]
-   execstr('global EGdata_'+w+';EGdata=EGdata_'+w)
    c=x_choose(['Other value',string(Z)+'%'],'Choose a a zoom factor')
    if c==0 then return,end
    c=c-1;
@@ -19,14 +18,5 @@ function ge_do_zoom()
    
    EGdata.Zoom=c/100;
    EGdata.Edited=%t
-   GraphList=EGdata.GraphList
-   
-   execstr('EGdata_'+w+'=EGdata')
-   
-   xbasc()
-   ge_set_winsize()
-   ge_drawobjs(GraphList),
-   
-   
-
+   ge_do_replot(EGdata.GraphList)
 endfunction

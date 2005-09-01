@@ -1,9 +1,8 @@
-function ge_do_shortestpath()
+function ge_do_shortestpath(GraphList)
 //Copyright INRIA
 //Author : Serge Steer 2002
 
   // Copyright INRIA
-  execstr('global EGdata_'+w+'; GraphList=EGdata_'+w+'.GraphList')
   GraphList.node_number=size(GraphList.node_x,'*')
   k1=[]
   while k1==[]
@@ -37,7 +36,4 @@ function ge_do_shortestpath()
   old=GraphList.edge_color(p)
   GraphList.edge_color(p)=rep(2)
   ge_drawarcs(p)
-  
-  //ge_add_history(list("shortestpath",p,old))
-  //execstr('EGdata_'+w+'.GraphList=GraphList')
-endfunction
+ endfunction

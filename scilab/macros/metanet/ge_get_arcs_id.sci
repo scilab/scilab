@@ -1,8 +1,7 @@
 function  Ids=ge_get_arcs_id(sel)
 //Copyright INRIA
 //Author : Serge Steer 2002
-
-  execstr('ArcId=EGdata_'+string(win)+'.ArcId')
+  ArcId=EGdata.ArcId
   Ids=[]
   select ArcId
     case 1 then 

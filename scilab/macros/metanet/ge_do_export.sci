@@ -1,4 +1,4 @@
-function ge_do_export()   
+function ge_do_export(GraphList)   
 //Copyright INRIA
 //Author : Serge Steer 2002
 
@@ -8,9 +8,6 @@ function ge_do_export()
 // Copyright INRIA
   old=xget('window')
   win=max(winsid()+1)
-  execstr(['global EGdata_'+w
-	   'EGdata_'+string(win)+'=EGdata_'+w
-	   'GraphList=EGdata_'+w+'.GraphList'])
 
   xset('window',win)
   

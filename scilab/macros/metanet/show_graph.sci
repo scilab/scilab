@@ -46,7 +46,8 @@ function win=show_graph(GraphList,smode,scale,winsize)
     GraphList=ge_complete_defaults(GraphList)
     
     w=string(win)
-    ge_do_new(GraphList)
+    ge_show_new(GraphList)
+    
     clear ge_eventhandler 
     seteventhandler("ge_eventhandler"),
     if old<>[] then xset('window',old),end

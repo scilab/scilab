@@ -4,6 +4,7 @@ function GraphList=ge_do_delete(GraphList,xc,yc)
 
 // ge_do_delete - delete a scicos object
 // get first object to delete
+  //EGdata is passed by context
 //!
 // Copyright INRIA
   edited =%f
@@ -31,8 +32,8 @@ function GraphList=ge_do_delete(GraphList,xc,yc)
     else
       ge_add_history(list("compound",Histn,Hista))
     end
-    execstr('ArcId=EGdata_'+string(win)+'.ArcId')
-    execstr('NodeId=EGdata_'+string(win)+'.NodeId')
+    ArcId=EGdata.ArcId
+    NodeId=EGdata.NodeId
     if ArcId==1 then 
       ge_drawarcs(min(karcs):$),// deleted and renumbered
     else
@@ -64,7 +65,7 @@ function GraphList=ge_do_delete(GraphList,xc,yc)
     sel=find((GraphList.head==nt&GraphList.tail==nh)|..
 	     (GraphList.head==nh&GraphList.tail==nt))
     
-    execstr('ArcId=EGdata_'+string(win)+'.ArcId')
+    ArcId=EGdata.ArcId
     if ArcId==1 then 
       ge_drawarcs(sel(sel<K))
       ge_drawarcs(K:$),// deleted and renumbered

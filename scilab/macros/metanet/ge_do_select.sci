@@ -1,7 +1,6 @@
-function ge_do_select(GraphList,xc,yc)
+function [k_nodes,k_arcs]=ge_do_select(GraphList,xc,yc)
 //Copyright INRIA
 //Author : Serge Steer 2002
-
   ge_disablemenus()
   rect=[]
   [rect,btn]=rubberbox([xc,yc])
@@ -20,9 +19,6 @@ function ge_do_select(GraphList,xc,yc)
   end
   ge_hilite_nodes(k_nodes,GraphList)
   ge_hilite_arcs(k_arcs,GraphList)
-  execstr(['global EGdata_'+w
-	   'EGdata_'+w+'.Sel.Nodes=k_nodes'
-	   'EGdata_'+w+'.Sel.Arcs=k_arcs'])
   ge_enablemenus()
   
 endfunction

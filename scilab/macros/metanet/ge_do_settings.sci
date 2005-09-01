@@ -1,14 +1,13 @@
-function ge_do_settings()
+function GraphList=ge_do_settings(GraphList)
 //Copyright INRIA
 //Author : Serge Steer 2002
 
-  execstr('global EGdata_'+w+';EGdata=EGdata_'+w)
-  default_node_diam=EGdata.GraphList.default_node_diam
-  default_node_border=EGdata.GraphList.default_node_border
-  default_edge_width=EGdata.GraphList.default_edge_width
-  default_edge_hi_width=EGdata.GraphList.default_edge_hi_width
-  default_font_size=EGdata.GraphList.default_font_size
-  if EGdata.GraphList.directed==0 then directed='no',else directed='yes',end
+  default_node_diam=GraphList.default_node_diam
+  default_node_border=GraphList.default_node_border
+  default_edge_width=GraphList.default_edge_width
+  default_edge_hi_width=GraphList.default_edge_hi_width
+  default_font_size=GraphList.default_font_size
+  if GraphList.directed==0 then directed='no',else directed='yes',end
   while %t 
     [ok,default_node_diam,default_node_border,default_edge_width,default_font_size,directed]=getvalue('Default parameters',..
 						  ['Default Node diameter','Default Border node width',..
@@ -39,14 +38,9 @@ function ge_do_settings()
       break
     end
   end
-  EGdata.GraphList.default_node_diam = default_node_diam
-  EGdata.GraphList.default_node_border = default_node_border
-  EGdata.GraphList.default_edge_width =default_edge_width 
-  EGdata.GraphList.default_font_size = default_font_size 
-  EGdata.GraphList.directed=find(directed==['no','yes'])-1
-  execstr('EGdata_'+w+'=EGdata')
-  GraphList=EGdata.GraphList
-  xbasc()
-  ge_set_winsize()
-  ge_drawobjs(GraphList),
+  GraphList.default_node_diam = default_node_diam
+  GraphList.default_node_border = default_node_border
+  GraphList.default_edge_width =default_edge_width 
+  GraphList.default_font_size = default_font_size 
+  GraphList.directed=find(directed==['no','yes'])-1
 endfunction
