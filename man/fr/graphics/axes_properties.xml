@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -300,10 +300,12 @@
             can act on the <VERB>z_ticks</VERB> <VERB>tlist</VERB> defining a
             corresponding<VERB> z_ticks.locations</VERB> real vector too.</SP>
           </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="user_data: ">
-            <SP>This field can be use to store any scilab variable in the
-	      axes data structure, and to retreive it.</SP>
+
+          <DESCRIPTION_ITEM label="user_data: ">
+            <SP>This field can be use to store any scilab variable in the axes
+            data structure, and to retreive it.</SP>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="children: ">
             <SP>A vector containing the handles of all graphics objects
             children of the axes These graphics objects are of type
@@ -568,7 +570,7 @@
    a.isoview="on"; // isoview mode
    xrect([-2 0.25 4 0.5]);
    a.children(1).fill_mode="on";
-   a.axes_visibles="off";
+   a.axes_visible="off";
    a.children(1).data=[-2 0.25 -1 4 0.5];
    a.children(2).data=[-4 0.5 1 8 1];
    x=2*%pi*(0:7)/8;

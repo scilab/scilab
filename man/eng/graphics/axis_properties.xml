@@ -162,9 +162,10 @@
             to display, however <VERB>clip_state</VERB> property value will be
             changed.</SP>
           </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="user_data: ">
-            <SP>This field can be use to store any scilab variable in the
-	      axis data structure, and to retreive it.</SP>
+
+          <DESCRIPTION_ITEM label="user_data: ">
+            <SP>This field can be use to store any scilab variable in the axis
+            data structure, and to retreive it.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="parent: ">
@@ -195,7 +196,7 @@
   drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
   a2=get("hdl")
   a2.sub_tics=0;
-  a2.tics_segments="off";
+  a2.tics_segment="off";
   a2.ytics_coord=4;
   
   drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
