@@ -9,15 +9,22 @@
 
   <DATE>Jul 2005</DATE>
 
-  <SHORT_DESCRIPTION name="savewave">save data into a sound
-  &#60;&#60;wav&#62;&#62; file.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="savewave">save data into a sound  wav file.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>savewave(&#39;file-name&#39;,x [, rate ]);</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savewave(filename,x [, rate ]);</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
+    <PARAM_ITEM>
+        <PARAM_NAME>filename</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string. The path of the output wav file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>x</PARAM_NAME>
 
@@ -50,7 +57,7 @@ t=soundsec(0.5);
 s=sin(2*%pi*440*t)+sin(2*%pi*220*t)/2+sin(2*%pi*880*t)/2;
 [nr,nc]=size(t);
 s(nc/2:nc)=sin(2*%pi*330*t(nc/2:nc));
-savewave(TMPDIR+&#39;/foo.wav&#39;,s);
+savewave(TMPDIR+'/foo.wav',s);
   </EXAMPLE>
 
   <SEE_ALSO>

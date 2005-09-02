@@ -5,12 +5,19 @@
   <TITLE>savewave</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="savewave"> save data into a sound &lt;&lt;wav&gt;&gt; file.  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="savewave"> save data into a sound wav file.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>savewave('file-name',x [, rate ]);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savewave(filename,x [, rate ]);  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>filename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. The path of the output wav file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
