@@ -7,9 +7,7 @@
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="sound">sound player facility</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>sound(y)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sound(y,fs)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>sound(y,fs,bits)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>sound(y [,fs,bits,command)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -29,6 +27,14 @@
         <PARAM_NAME>bits</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number, number of bits (unused)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>command</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Only used on Unix systems it gives the name of the command to use for playing sound 
+          (wav) files. The defaut value is <VERB>aplay</VERB>. If set <VERB>/dev/audio</VERB> then 
+          a 8 bits mu-law raw sound file is created and send to <VERB>/dev/audio</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
