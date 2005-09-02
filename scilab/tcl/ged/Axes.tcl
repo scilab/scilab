@@ -340,7 +340,7 @@ checkbutton $w.frame.poslabb  -text "on"\
 OnOffForeground $w.frame.poslabb $xauto_position
 
 label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
-entry $w.frame.posmode -relief sunken  -textvariable x_position -font {Arial 9} -width 15
+entry $w.frame.posmode -relief sunken  -textvariable x_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_x}
 bind  $w.frame.posmode <KP_Enter> {setPosition_x}
@@ -348,7 +348,7 @@ bind  $w.frame.posmode <KP_Enter> {setPosition_x}
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
-pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
 
 #Font Angle
 frame $w.frame.font  -borderwidth 0
@@ -361,7 +361,7 @@ radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_x -val
 radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_x -value 180 -command "setFontAngle_x" -font {Arial 9}
 radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_x -value 270 -command "setFontAngle_x" -font {Arial 9}
 
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font {Arial 9} -width 5
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font {Arial 9}
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x"
 
@@ -370,7 +370,7 @@ pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
-pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 2m
 
 
 #Font color
@@ -598,7 +598,7 @@ checkbutton $w.frame.poslabb  -text "on"\
 OnOffForeground $w.frame.poslabb $yauto_position
 
 label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
-entry $w.frame.posmode -relief sunken  -textvariable y_position -font {Arial 9} -width 15
+entry $w.frame.posmode -relief sunken  -textvariable y_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_y}
 bind  $w.frame.posmode <KP_Enter> {setPosition_y}
@@ -606,7 +606,7 @@ bind  $w.frame.posmode <KP_Enter> {setPosition_y}
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
-pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
 
 #Font Angle
 frame $w.frame.font  -borderwidth 0
@@ -619,7 +619,7 @@ radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_y -val
 radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_y -value 180 -command "setFontAngle_y " -font {Arial 9}
 radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_y -value 270 -command "setFontAngle_y " -font {Arial 9}
 
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font {Arial 9} -width 5
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font {Arial 9} 
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y"
 
@@ -628,7 +628,7 @@ pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
-pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 2m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -839,7 +839,7 @@ checkbutton $w.frame.poslabb  -text "on"\
 OnOffForeground $w.frame.poslabb $zauto_position
 
 label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
-entry $w.frame.posmode -relief sunken  -textvariable z_position -font {Arial 9} -width 15
+entry $w.frame.posmode -relief sunken  -textvariable z_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_z}
 bind  $w.frame.posmode <KP_Enter> {setPosition_z}
@@ -847,7 +847,7 @@ bind  $w.frame.posmode <KP_Enter> {setPosition_z}
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
-pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
 
 #Font Angle
 frame $w.frame.font  -borderwidth 0
@@ -860,7 +860,7 @@ radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_z -val
 radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_z -value 180 -command "setFontAngle_z" -font {Arial 9}
 radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_z -value 270 -command "setFontAngle_z" -font {Arial 9}
 
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font {Arial 9} -width 5
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font {Arial 9}
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z"
 
@@ -869,7 +869,7 @@ pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
-pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 2m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -1084,7 +1084,7 @@ checkbutton $w.frame.poslabb  -text "on"\
 OnOffForeground $w.frame.poslabb $titleauto_position
 
 label $w.frame.posmodelabel -height 0 -text "Position:" -font {Arial 9} -anchor e -width $largeur
-entry $w.frame.posmode -relief sunken  -textvariable title_position -font {Arial 9} -width 15
+entry $w.frame.posmode -relief sunken  -textvariable title_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_title}
 bind  $w.frame.posmode <KP_Enter> {setPosition_title}
@@ -1092,7 +1092,7 @@ bind  $w.frame.posmode <KP_Enter> {setPosition_title}
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
-pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
+pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
 
 #Font Angle
 #frame $w.frame.font  -borderwidth 0
