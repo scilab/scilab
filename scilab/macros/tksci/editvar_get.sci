@@ -20,23 +20,23 @@ function outvar=editvar_get(winId)
   outvar=[];
   select varType
   case "constant" then
-    outvar=zeros(varnj,varni)
+    outvar=zeros(varni,varnj)
     for j=1:varnj,
       for i=1:varni,
-	outvar(j,i)=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
+	outvar(i,j)=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
       end
     end
   case "boolean" then
-    outvar(varnj,varni)=%f;
+    outvar(varni,varnj)=%f;
     for j=1:varnj,
       for i=1:varni,
-	outvar(j,i)=convstr(TCL_GetVar(base+','+string(i)+','+string(j)+')')=='t')
+	outvar(i,j)=convstr(TCL_GetVar(base+','+string(i)+','+string(j)+')')=='t')
       end
     end
   case "string" then
     for j=1:varnj,
       for i=1:varni,
-	outvar(j,i)=TCL_GetVar(base+','+string(i)+','+string(j)+')')
+	outvar(i,j)=TCL_GetVar(base+','+string(i)+','+string(j)+')')
       end
     end
   case "xlssheet" then
@@ -56,11 +56,11 @@ function outvar=editvar_get(winId)
     outvar=mlist(["xlssheet","name","text","value"],sheetname,T,V)
   else
     if or(varType==["int8","int16","int32","uint8","uint16","uint32"]) then
-      execstr('outvar='+varType+'(zeros(varnj,varni))')
+      execstr('outvar='+varType+'(zeros(varni,varnj))')
       for j=1:varnj,
 	for i=1:varni,
 	  q=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
-	  execstr('outvar(j,i)='+varType+'(q)')
+	  execstr('outvar(i,j)='+varType+'(q)')
 	end
       end
     end
