@@ -80,8 +80,8 @@ if %nargin==1 then
   k = 1;
 else
   k = mtlb_double(k)-fix(mtlb_double(k)0./4)0.*4;
-  if mtlb_logic(mtlb_double(k),"<",0) then
-    k = mtlb_a(mtlb_double(k),4);
+  if mtlb_logic(k,"<",0) then
+    k = mtlb_a(k,4);
   end;
 end;
 if mtlb_logic(mtlb_double(k),"==",1) then
