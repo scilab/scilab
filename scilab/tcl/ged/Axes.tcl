@@ -354,17 +354,22 @@ pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
 frame $w.frame.font  -borderwidth 0
 pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
 
-label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
-scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-	 -resolution -1.0 -command "setFontAngle_x $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
-$w.frame.fontangle set $curfontangle_x
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font {Arial 9} -width 5
+label $w.frame.fontanglelabel -height 0 -text "Font angle:"  -font {Arial 9} -anchor e -width $largeur
 
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x $w.frame.fontangle2 $w.frame.fontangle"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x $w.frame.fontangle2 $w.frame.fontangle"
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_x -value 0 -command "setFontAngle_x" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_x -value 90 -command "setFontAngle_x" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_x -value 180 -command "setFontAngle_x" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_x -value 270 -command "setFontAngle_x" -font {Arial 9}
+
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font {Arial 9} -width 5
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
-pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 
@@ -608,16 +613,21 @@ frame $w.frame.font  -borderwidth 0
 pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
-scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-	 -resolution -1.0 -command "setFontAngle_y $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
-$w.frame.fontangle set $curfontangle_y
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font {Arial 9} -width 5
 
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y $w.frame.fontangle2 $w.frame.fontangle"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y $w.frame.fontangle2 $w.frame.fontangle"
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_y -value 0 -command "setFontAngle_y" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_y -value 90 -command "setFontAngle_y" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_y -value 180 -command "setFontAngle_y " -font {Arial 9}
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_y -value 270 -command "setFontAngle_y " -font {Arial 9}
+
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font {Arial 9} -width 5
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
-pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 #Font color
@@ -844,16 +854,21 @@ frame $w.frame.font  -borderwidth 0
 pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
-scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-	 -resolution -1.0 -command "setFontAngle_z $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
-$w.frame.fontangle set $curfontangle_z
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font {Arial 9} -width 5
 
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z $w.frame.fontangle2 $w.frame.fontangle"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z $w.frame.fontangle2 $w.frame.fontangle"
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_z -value 0 -command "setFontAngle_z" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_z -value 90 -command "setFontAngle_z" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_z -value 180 -command "setFontAngle_z" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_z -value 270 -command "setFontAngle_z" -font {Arial 9}
+
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font {Arial 9} -width 5
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
-pack $w.frame.fontangle  -in $w.frame.font  -side left
+pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
 pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 #Font color
@@ -1080,21 +1095,23 @@ pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
 
 #Font Angle
-frame $w.frame.font  -borderwidth 0
-pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
+#frame $w.frame.font  -borderwidth 0
+#pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
+#
+#label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
 
-label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
-scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-	 -resolution -1.0 -command "setFontAngle_title $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
-$w.frame.fontangle set $curfontangle_title
-entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font {Arial 9} -width 5
+#scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
+#	 -resolutino -1.0 -command "setFontAngle_title $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
+#$w.frame.fontangle set $curfontangle_title
 
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
+#entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font {Arial 9} -width 5
 
-pack $w.frame.fontanglelabel -in $w.frame.font -side left
-pack $w.frame.fontangle  -in $w.frame.font  -side left
-pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
+#bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
+#bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
+
+#pack $w.frame.fontanglelabel -in $w.frame.font -side left
+#pack $w.frame.fontangle  -in $w.frame.font  -side left
+#pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -3766,13 +3783,16 @@ global curfontstyle
 ScilabEval "setFontStyle('$curfontstyle')"
 }
 
-proc setFontAngle_x {w fa} {
+proc setFontAngle_x { } {
     global curfontangle_x2
+    global curfontangle_x
+
+    set fa $curfontangle_x
     ScilabEval "global ged_handle;if ged_handle.x_label.font_angle <> $fa then ged_handle.x_label.font_angle=$fa; end;"
     set curfontangle_x2 $fa
 }
 
-proc setEntryFontAngle_x {w w2 args} {
+proc setEntryFontAngle_x { } {
     global curfontangle_x
     global curfontangle_x2
     if { $curfontangle_x2 == "" || $curfontangle_x2 < 0} {
@@ -3781,13 +3801,15 @@ proc setEntryFontAngle_x {w w2 args} {
     }
     ScilabEval "global ged_handle;if ged_handle.x_label.font_angle <> $curfontangle_x2 then ged_handle.x_label.font_angle=$curfontangle_x2; end;"
     set curfontangle_x $curfontangle_x2
-    $w2 set $curfontangle_x
 }
 
 
-proc setFontAngle_y {w fa} {
+proc setFontAngle_y { } {
+    global curfontangle_y
     global curfontangle_y2
     global ii
+    
+    set fa $curfontangle_y
     ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $fa then ged_handle.y_label.font_angle=$fa; end;"
     set curfontangle_y2 $fa
 #    ScilabEval "TCL_SetVar(\"ii\",sci2exp(ged_handle.y_label.position,0)); TCL_EvalStr(\"set x_position $ii\")"
@@ -3795,7 +3817,7 @@ proc setFontAngle_y {w fa} {
 #    puts "ii vaut $ii"
 }
 
-proc setEntryFontAngle_y {w w2 args} {
+proc setEntryFontAngle_y { } {
     global curfontangle_y
     global curfontangle_y2
     if { $curfontangle_y2 == "" || $curfontangle_y2 < 0} {
@@ -3804,17 +3826,19 @@ proc setEntryFontAngle_y {w w2 args} {
     }
     ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $curfontangle_y2 then ged_handle.y_label.font_angle=$curfontangle_y2; end;"
     set curfontangle_y $curfontangle_y2
-    $w2 set $curfontangle_y
 }
 
 
-proc setFontAngle_z {w fa} {
+proc setFontAngle_z { } {
+    global curfontangle_z
     global curfontangle_z2
+    
+    set fa $curfontangle_z
     ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $fa then ged_handle.z_label.font_angle=$fa; end;"
     set curfontangle_z2 $fa
 }
 
-proc setEntryFontAngle_z {w w2 args} {
+proc setEntryFontAngle_z { } {
     global curfontangle_z
     global curfontangle_z2
     if { $curfontangle_z2 == "" || $curfontangle_z2 < 0} {
@@ -3823,17 +3847,19 @@ proc setEntryFontAngle_z {w w2 args} {
     }
     ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $curfontangle_z2 then ged_handle.z_label.font_angle=$curfontangle_z2; end;"
     set curfontangle_z $curfontangle_z2
-    $w2 set $curfontangle_z
 }
 
 
-proc setFontAngle_title {w fa} {
+proc setFontAngle_title { } {
+    global curfontangle_title
     global curfontangle_title2
+
+    set fa $curfontangle_title
     ScilabEval "global ged_handle;if ged_handle.title_label.font_angle <> $fa then ged_handle.title_label.font_angle=$fa; end;"
     set curfontangle_title2 $fa
 }
 
-proc setEntryFontAngle_title {w w2 args} {
+proc setEntryFontAngle_title { } {
     global curfontangle_title
     global curfontangle_title2
     if { $curfontangle_title2 == "" || $curfontangle_title2 < 0} {
@@ -3842,7 +3868,6 @@ proc setEntryFontAngle_title {w w2 args} {
     }
     ScilabEval "global ged_handle;if ged_handle.title_label.font_angle <> $curfontangle_title2 then ged_handle.title_label.font_angle=$curfontangle_title2; end;"
     set curfontangle_title $curfontangle_title2
-    $w2 set $curfontangle_title
 }
 
 
