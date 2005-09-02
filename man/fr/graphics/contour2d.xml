@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -32,7 +32,8 @@
         <PARAM_NAME>z</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: real matrix of size (n1,n2), the values of the function on the grid.</SP>
+          <SP>: real matrix of size (n1,n2), the values of the function on the
+	    grid or a  Scilab function which defines the surface  <VERB>z=f(x,y)</VERB>. </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -150,25 +151,11 @@ xtitle("Some level curves of the function cos(x)cos(y)")
     <SEE_ALSO_ITEM>
       <LINK>contour</LINK>
     </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>fcontour</LINK>
-    </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>fcontour2d</LINK>
-    </SEE_ALSO_ITEM>
-
     <SEE_ALSO_ITEM>
       <LINK>contour2di</LINK>
     </SEE_ALSO_ITEM>
-
     <SEE_ALSO_ITEM>
       <LINK>plot2d</LINK>
-    </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>xset</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
