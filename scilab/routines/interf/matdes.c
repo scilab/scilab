@@ -10085,11 +10085,13 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       else
 	nc=0;
       
-      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL) {
-	FREE(pvecx); pvecx = (double *) NULL;
-	FREE(pvecy); pvecy = (double *) NULL;
-	FREE(pvecz); pvecz = (double *) NULL;
-	return -1;
+      if(nc>0){
+	if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL) {
+	  FREE(pvecx); pvecx = (double *) NULL;
+	  FREE(pvecy); pvecy = (double *) NULL;
+	  FREE(pvecz); pvecz = (double *) NULL;
+	  return -1;
+	}
       }
 
       /* case flagcolor == 2*/
