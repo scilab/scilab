@@ -9,20 +9,26 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="loadwave">load a sound &#60;&#60;wav&#62;&#62; file
+  <SHORT_DESCRIPTION name="loadwave">load a sound wav file
   into scilab</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>x=loadwave(&#39;file-name&#39;);</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x=loadwave(filename);</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>[x,y]=loadwave(&#39;file-name&#39;);</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x,y]=loadwave(filename);</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>filename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. The path of the wav file to be loaded</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
 
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a matrix one line for each channel</SP>
         </PARAM_DESCRIPTION>
