@@ -169,7 +169,7 @@ proc OnOffForeground { frame flag } {
 
 
 set NBheight 340
-set NBwidth  320
+set NBwidth  360
 
 set Wheight [expr $NBheight + 210]
 set Wwidth  [expr $NBwidth  + 265]
@@ -326,7 +326,7 @@ checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
 OnOffForeground $w.frame.fillmode $Xfillmode
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb -in $w.frame.vislab -side left
+pack $w.frame.vislabb -in $w.frame.vislab -side left -padx 1m
 pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
 pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
 
@@ -346,7 +346,7 @@ bind  $w.frame.posmode <Return> {setPosition_x}
 bind  $w.frame.posmode <KP_Enter> {setPosition_x}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
-pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
 
@@ -584,7 +584,7 @@ checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
 OnOffForeground $w.frame.fillmode $Yfillmode
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb -in $w.frame.vislab  -side left
+pack $w.frame.vislabb -in $w.frame.vislab  -side left -padx 1m
 pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
 pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
 
@@ -604,7 +604,7 @@ bind  $w.frame.posmode <Return> {setPosition_y}
 bind  $w.frame.posmode <KP_Enter> {setPosition_y}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
-pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
 
@@ -825,7 +825,7 @@ checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
 OnOffForeground $w.frame.fillmode $Zfillmode
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left -padx 1m
 pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
 pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
 
@@ -845,7 +845,7 @@ bind  $w.frame.posmode <Return> {setPosition_z}
 bind  $w.frame.posmode <KP_Enter> {setPosition_z}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
-pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
 
@@ -1070,7 +1070,7 @@ checkbutton $w.frame.fillmode  -text "on" -indicatoron 1 \
 OnOffForeground $w.frame.fillmode $Titlefillmode
 
 pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left -padx 1m
 pack $w.frame.fillmodelabel -in $w.frame.vislab -side left
 pack $w.frame.fillmode -in $w.frame.vislab -side left -fill x -padx 1m
 
@@ -1090,7 +1090,7 @@ bind  $w.frame.posmode <Return> {setPosition_title}
 bind  $w.frame.posmode <KP_Enter> {setPosition_title}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
-pack $w.frame.poslabb -in $w.frame.poslab -side left
+pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 1m
 
