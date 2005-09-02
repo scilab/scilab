@@ -1,4 +1,4 @@
-function []=sound(y,fs,bits)
+function []=sound(y,fs,bits,aplay)
 //SOUND Play vector as sound.
 //   SOUND(Y,FS) sends the signal in vector Y (with sample frequency
 //   FS) out to the speaker on platforms that support sound. Values in
@@ -22,6 +22,7 @@ function []=sound(y,fs,bits)
   if nargin<3 then
     bits = 16;
   end
+  if nargin < 4 aplay='aplay'; end 
   // Make sure y is in the range +/- 1
   y = max(-1,min(y,1));
   // Make sure that there's one column
@@ -32,5 +33,5 @@ function []=sound(y,fs,bits)
   if size(y,1)==1 then
     y = y.';
   end
-  playsnd(y,fs,bits);
+  playsnd(y,fs,bits,aplay);
 endfunction
