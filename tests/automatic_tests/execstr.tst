@@ -23,6 +23,22 @@ if load_ref('%ans') then   pause,end,
 %ans = execstr('a=zzzzzzz', 'errcatch', 'm');
 if load_ref('%ans') then   pause,end,
 
+
+//syntax errors
+%ans = execstr('a=1?02', 'errcatch');
+if load_ref('%ans') then   pause,end,
+
+%ans = lasterror(%t);
+if load_ref('%ans') then   pause,end,
+
+
+%ans = execstr('a=[1 2 3)', 'errcatch');
+if load_ref('%ans') then   pause,end,
+
+%ans = lasterror(%t);
+if load_ref('%ans') then   pause,end,
+
+
 xdel_run(winsid());
 
 mclose(%U);

@@ -43,6 +43,31 @@ undefined variable : zzzzzzz
 if load_ref('%ans') then   bugmes();quit;end,
  
  
+ 
+//syntax errors
+ 
+%ans = execstr('a=1?02', 'errcatch');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = lasterror(%t);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+%ans = execstr('a=[1 2 3)', 'errcatch');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = lasterror(%t);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
 xdel_run(winsid());
  
  
