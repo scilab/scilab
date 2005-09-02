@@ -10,7 +10,6 @@ reinit_for_test()
 if load_ref('%ans') then   bugmes();quit;end,
  
  
- 
 [y,Fs,bits] = wavread('SCI/demos/signal/sound/chimes.wav');Fs;
  
 if load_ref('Fs') then   bugmes();quit;end,
@@ -25,28 +24,28 @@ if load_ref('bits') then   bugmes();quit;end,
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-%ans = plot2d(y(:, 1));
+%ans = plot2d(y(1, :));
  
 if load_ref('%ans') then   bugmes();quit;end,
  
+// first channel
  
 %ans = subplot(2, 1, 2);
  
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-%ans = plot2d(y(:, 2));
+%ans = plot2d(y(2, :));
  
 if load_ref('%ans') then   bugmes();quit;end,
  
- 
+// second channel
  
 y = wavread('SCI/demos/signal/sound/chimes.wav', [1,5]);
  
 if load_ref('y') then   bugmes();quit;end,
  
 //the first five samples
- 
  
 xdel_run(winsid());
  
