@@ -134,8 +134,7 @@
 ::msgcat::mcset it "The contents of " "Il contenuto di"
     ::msgcat::mcset it "has changed on disk, save it anyway?" \
                      "è cambiato sul disco, salvare comunque?"
-    ::msgcat::mcset it "has been modified outside of Scipad. Do you want \
-                        to reload it?" \
+    ::msgcat::mcset it "has been modified outside of Scipad. Do you want to reload it?" \
                      "è stato cambiato fuori da Scipad. Ricaricarlo dal disco?"
 ::msgcat::mcset it "File has changed!" "Il file è cambiato"
 ::msgcat::mcset it "Save as" "Registra come"
