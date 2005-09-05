@@ -1,418 +1,940 @@
-proc FindIt {w} {
-    global SearchString SearchPos SearchDir findcase regexpcase
-    global pad SearchEnd
+proc findtextdialog {typ} {
+# display the find or replace dialog box
+    global find pad textFont menuFont
+    global SearchString SearchDir ReplaceString caset regexpcase
+    global searchinsel wholeword multiplefiles indoffirstmatch
+    global listoftextarea
 
-    set textareacur [gettextareacur]
-    if {[winfo exists $w]} {
-        set pw $w
+    if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
+
+    set find $pad.find
+    catch {destroy $find}
+    toplevel $find
+    wm title $find [mc "Find"]
+    setwingeom $find
+
+    # entry fields
+    frame $find.l
+    frame $find.l.f1
+    label $find.l.f1.label -text [mc "Find what:"] \
+        -width 15 -font $menuFont
+    entry $find.l.f1.entry -textvariable SearchString \
+        -validate key -validatecommand {resetfind $find [gettextareacur] ; return 1} \
+        -width 30 -font $textFont
+    pack $find.l.f1.label $find.l.f1.entry -side left
+    pack configure $find.l.f1.entry -expand 1 -fill x
+    if {$typ=="replace"} {
+        frame $find.l.f2
+        label $find.l.f2.label2 -text [mc "Replace with:"] \
+            -width 15 -font $menuFont
+        entry $find.l.f2.entry2 -textvariable ReplaceString \
+            -width 30 -font $textFont
+        pack $find.l.f2.label2 $find.l.f2.entry2 -side left
+        pack configure $find.l.f2.entry2 -expand 1 -fill x
+        pack $find.l.f1 $find.l.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
     } else {
-        set pw $pad
+        pack $find.l.f1 -pady 4 -padx 8 -expand 1 -fill x
     }
-    if {$SearchString == ""} {
-        tk_messageBox -message [mc "You are searching for an empty string!"] \
-                      -parent $pw -title [mc "Find"]
+
+    # buttons
+    frame $find.f2
+    eval "button $find.f2.button1 [bl "Find &Next"] \
+        -command \"multiplefilesfindreplace $find findit\" \
+        -height 1 -width 15 -font $menuFont"
+    eval "button $find.f2.button2 [bl "Cance&l"] \
+        -command \"cancelfind $find\" \
+        -height 1 -width 15 -font $menuFont"
+    if {$typ == "replace"} {
+        eval "button $find.f2.button3 [bl "Re&place"] \
+            -command \"multiplefilesfindreplace $find replaceit\" \
+            -height 1 -width 15 -font $menuFont"
+        eval "button $find.f2.button4 [bl "Replace &All"] \
+            -command \"multiplefilesreplaceall $find\" \
+            -height 1 -width 15 -font $menuFont"
+        pack $find.f2.button1 $find.f2.button3 $find.f2.button4 \
+            $find.f2.button2 -pady 4
+    } else {
+        pack $find.f2.button1 $find.f2.button2 -pady 4
+    }
+
+    # up/down radiobutton
+    frame $find.l.f4
+    frame $find.l.f4.f3 -borderwidth 2 -relief groove
+    eval "radiobutton $find.l.f4.f3.up [bl "&Upwards"] \
+        -variable SearchDir -value \"backwards\" \
+        -command \"unset -nocomplain -- indoffirstmatch\" \
+        -font $menuFont "
+    eval "radiobutton $find.l.f4.f3.down [bl "&Downwards"] \
+        -variable SearchDir -value \"forwards\" \
+        -command \"unset -nocomplain -- indoffirstmatch\" \
+        -font $menuFont "
+    pack $find.l.f4.f3.up $find.l.f4.f3.down -anchor w
+
+    # whole word, case, regexp, all files, and in selection checkboxes
+    frame $find.l.f4.f5
+    eval "checkbutton $find.l.f4.f5.cbox0 [bl "Match &whole word only"] \
+        -variable wholeword  \
+        -command \"resetfind $find \[gettextareacur\] ; togglewholeword $find \" \
+        -font $menuFont "
+    eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] \
+        -variable caset -onvalue \"-exact\" -offvalue \"-nocase\" \
+        -command \"resetfind $find \[gettextareacur\]\" -font $menuFont "
+    eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] \
+        -variable regexpcase  -onvalue \"regexp\" -offvalue \"standard\" \
+        -command \"resetfind $find \[gettextareacur\]\" -font $menuFont "
+    eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] \
+        -variable multiplefiles \
+        -command \"resetfind $find \[gettextareacur\] ; $find.l.f4.f5.cbox4 deselect\" \
+         -font $menuFont "
+    eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
+        -variable searchinsel \
+        -command \"resetfind $find \[gettextareacur\] ; $find.l.f4.f5.cbox3 deselect\" \
+        -font $menuFont "
+    pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
+        $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 \
+        -anchor sw
+
+    pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 5
+    pack $find.l.f4 -pady 5 -anchor w
+    pack $find.l $find.f2 -side left -padx 1
+
+    bind $find <Return> "multiplefilesfindreplace $find findit"
+    bind $find <Alt-[fb $find.f2.button1]> "multiplefilesfindreplace $find findit"
+    bind $find <F3> "multiplefilesfindreplace $find findit"
+    if {$typ=="replace"} {
+        bind $find <Alt-[fb $find.f2.button3]> "multiplefilesfindreplace $find replaceit"
+        bind $find <Alt-[fb $find.f2.button4]> "multiplefilesreplaceall $find"
+    }
+    bind $find <Alt-[fb $find.l.f4.f5.cbox0]> { $find.l.f4.f5.cbox0 invoke }
+    bind $find <Alt-[fb $find.l.f4.f5.cbox1]> { $find.l.f4.f5.cbox1 invoke }
+    bind $find <Alt-[fb $find.l.f4.f5.cbox2]> { $find.l.f4.f5.cbox2 invoke }
+    bind $find <Alt-[fb $find.l.f4.f5.cbox3]> { $find.l.f4.f5.cbox3 invoke }
+    bind $find <Alt-[fb $find.l.f4.f5.cbox4]> { $find.l.f4.f5.cbox4 invoke }
+    bind $find <Alt-[fb $find.l.f4.f3.up]>    { $find.l.f4.f3.up    invoke }
+    bind $find <Alt-[fb $find.l.f4.f3.down]>  { $find.l.f4.f3.down  invoke }
+    bind $find <Escape> "cancelfind $find"
+    # after 0 in the following Alt binding is mandatory for Linux only
+    # This is Tk bug 1236306
+    bind $find <Alt-[fb $find.f2.button2]> "after 0 cancelfind $find"
+    bind $find <Visibility> {raise $find $pad ; focus $find.l.f1.entry}
+    bind $pad  <Expose>     {catch {raise $find ; focus $find.l.f1.entry}}
+
+    # preselect the entry field -
+    # warning: this does not work on Linux if the entry has -exportselection 1
+    $find.l.f1.entry selection range 0 end
+
+    focus $find.l.f1.entry
+    grab $find
+
+    # initial settings for direction
+    $find.l.f4.f3.down invoke
+
+    # initial settings for regexp searching
+    togglewholeword $find
+
+    # initial settings for searching in selection
+    set tahasnosel [catch {[gettextareacur] get sel.first sel.last}]
+    if {$tahasnosel} {
+        $find.l.f4.f5.cbox4 deselect
+        $find.l.f4.f5.cbox4 configure -state disabled
+    } else {
+        $find.l.f4.f5.cbox4 select
+    }
+
+    # initial settings for searching in multiple files
+    if {!$tahasnosel} {
+        $find.l.f4.f5.cbox3 deselect
+    }
+    if {[llength $listoftextarea] == 1} {
+        $find.l.f4.f5.cbox3 configure -state disabled
+    }
+
+    # call resetfind to initialize all the settings
+    resetfind $find [gettextareacur]
+}
+
+proc togglewholeword {w} {
+# toggle regexp settings when searching for whole words only
+    global wholeword
+   if {$wholeword} {
+       $w.l.f4.f5.cbox2 select
+       $w.l.f4.f5.cbox2 configure -state disabled
+   } else {
+       $w.l.f4.f5.cbox2 configure -state normal
+       $w.l.f4.f5.cbox2 deselect
+   }
+}
+
+proc findnext {} {
+# proc for find next without opening the dialog if possible
+    global SearchString find
+    if {[info exists SearchString]} {
+        if {$SearchString != ""} {
+            multiplefilesfindreplace $find findit
+        } else {
+            findtextdialog "find"
+        }
+    } else {
+        findtextdialog "find"
+    }
+}
+
+proc multiplefilesfindreplace {w frit} {
+# search and maybe replace in all the opened buffers, or in the current one
+# depending on the state of the "search in all files" checkbox
+# $frit contains the proc name that will be called to perform the action
+# to find, $frit must be "findit"
+# to replace, $frit must be "replaceit"
+    global SearchString SearchDir wholeword regexpcase
+    global listofmatch indoffirstmatch indofcurrentmatch
+    global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
+    global prevfindres
+
+    set pw [setparentwname $w]
+
+    # get rid of the empty search string case
+    if {[issearchstringempty $SearchString $pw]} {
         return
     }
 
-    # save the initial searching position so that wraparound can be later detected
-    set OldPos $SearchPos
-    delinfo
+    # whole word searching: set regexp mode and string to search for
+    foreach {tosearchfor reg} [setwholewordstring $wholeword $SearchString $regexpcase] {}
 
-    # set case option for $textareacur search
-    if {$findcase=="1"} {
-        set caset "-exact"
-    } else {
-        set caset "-nocase"
+    if {$multiplefiles == 0} {
+        # search in current buffer only
+        $frit $w $pw [gettextareacur] $tosearchfor $reg
+        return
     }
 
-    # do the search
-    if {$regexpcase != "1"} {
-        # standard case, no regexp
+    # if we did not return before this point, we are searching in all the
+    # opened buffers for a non-empty string
 
-        if {$SearchEnd == "No_end"} {
-            # search in whole buffer
-            set SearchPos [ $textareacur search $caset -$SearchDir \
-                            -- $SearchString $SearchPos]
-        } else {
-            # search in a selection
-            set SearchPos [ $textareacur search $caset -$SearchDir \
-                            -- $SearchString $SearchPos $SearchEnd]
-        }
-        # compute the length of the matched string
-        set len [string length $SearchString]
+    if {![info exists indofcurrentbuf]} {
+        # this is the first search in multiple buffers
+
+        # start from the current buffer
+        set curta [gettextareacur]
+        set indoffirstbuf [lsearch $listoftextarea $curta]
+        set indofcurrentbuf $indoffirstbuf
 
     } else {
-        # regexp case
+        # this is not the first search in multiple buffers
 
-        if {$SearchEnd == "No_end"} {
-            # search in whole buffer
-            set SearchPos [ $textareacur search $caset -$SearchDir \
-                            -regexp -- $SearchString $SearchPos]
-        } else {
-            # search in a selection
-            set SearchPos [ $textareacur search $caset -$SearchDir \
-                            -regexp -- $SearchString $SearchPos $SearchEnd]
-        }
-        # compute the length of the matched string
-        if {$SearchPos != "" } {
-            # lineend below to be revisited once 8.5 is used (browse for TIP113)
-            if {$findcase=="1"} {
-                regexp         -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
-            } else {
-                regexp -nocase -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+        # switch to next buffer if there is no more match in this one
+        if {$prevfindres != "searchagain"} {
+            incr indofcurrentbuf
+            if {$indofcurrentbuf == [llength $listoftextarea] } {
+                set indofcurrentbuf 0
             }
-            set len [string length $res]
-        } else {
-            set len [string length $SearchString]
+            set newta [lindex $listoftextarea $indofcurrentbuf]
+            montretext $newta
+            # set insertion cursor at the beginning or end of buffer
+            # this is required when looping through buffers for proc
+            # getnextmatch to work correctly: on first match search in
+            # a buffer, when there is no selection (which is the case
+            # when searching multiple files) getnextmatch returns the
+            # first match after the insertion cursor
+            if {$SearchDir == "forwards"} {
+                $newta mark set insert 1.0
+            } else {
+                $newta mark set insert end
+            }
+            if {$indofcurrentbuf == $indoffirstbuf} {
+                # the search has looped on all the buffers
+                showinfo [mc "Back at the first file searched!"]
+            }
+            # erase listofmatch so that the next call to $frit will
+            # reconstruct it
+            unset -nocomplain -- listofmatch
+            unset -nocomplain -- indoffirstmatch
+            unset -nocomplain -- indofcurrentmatch
         }
+
     }
 
-    # analyze the search results and prepare for next search
-    if {$SearchPos != ""} {
-        # a match has been found
+    # perform a search
+    set prevfindres [$frit $w $pw [lindex $listoftextarea $indofcurrentbuf] \
+                            $tosearchfor $reg]
 
-        # if search wrapped, tell the user
-        if {[diditwrap $OldPos $SearchPos] == "true"} {
-            showinfo [mc "Wrapped around"]
-        }
+    if {$prevfindres == "mustswitchnow"} {
+        multiplefilesfindreplace $w $frit
+    }
 
-        # arrange for this match to be visible and tag it
-        $textareacur see $SearchPos
-        $textareacur mark set insert $SearchPos
-        $textareacur tag remove foundtext 0.0 end
-        $textareacur tag remove replacedtext 0.0 end
-        $textareacur tag add foundtext $SearchPos  "$SearchPos + $len char"
-        # <TODO>: these bindings are required to remove the foundtext tag after a find
-        #         next triggered by F3. Once set, they will live in the textarea forever!
-        bind $textareacur <KeyPress>    {+$textareacur tag remove foundtext 0.0 end}
-        bind $textareacur <ButtonPress> {+$textareacur tag remove foundtext 0.0 end}
+}
 
-        # prevent the dialog box from hiding the matched string
-        if {[winfo exists $w]} {
-            MoveDialogIfFoundHidden $w
-        }
+proc findit {w pw textarea tosearchfor reg} {
+# find a match in $textarea and display this match
+# output result can be "bufferdone", i.e. there is no more match to look for,
+# or searchagain, meaning that a further search will provide a new result,
+# or mustswitchnow, meaning that a buffer switch followed by a search should be
+# performed now (see end of proc multiplefilesfindreplace)
+# or noextend, which is returned when there was no match in selection and the
+# user didn't want to extend the search to the entire buffer
 
-        # update status bar data
-        keyposn $textareacur
+    global SearchString caset multiplefiles SearchDir searchinsel
+    global listoffile listofmatch listoftextarea
 
-        # set the start position for the next search
-        # backwards case: nothing to do since .text search returns the position of
-        # the first matching character, therefore $SearchPos is already well set
-        if {$SearchDir == "forwards"} {
-            set SearchPos [$textareacur index "$SearchPos + $len char"]
-        }
+    # do the search and get the match positions and the length of the matches
+    # and do it only once (per buffer) in a search session
+    if {![info exists listofmatch]} {
+        set listofmatch [searchforallmatches $textarea $tosearchfor \
+                             $caset $reg $searchinsel]
+    }
 
-        # <TODO> this is for search in multiple files - make it work!
-        return "matchfound"
-                 
-    } else {
+    # analyze the search results:
+    #   look if the search failed and ask for extending if possible
+    if {$listofmatch == {}} {
         # no match has been found
 
         # inform the user that the search has failed
-        if {$SearchEnd == "No_end"} {
+        if {!$searchinsel} {
 
             # no match in whole buffer
-            tk_messageBox -message \
-                [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
-                -parent $pw -title [mc "Find"]
-            set SearchPos [$textareacur index "insert"]
-
-            # <TODO> this is for search in multiple files - make it work!
-            return "nomatchfound"
+            notfoundmessagebox $SearchString $textarea $pw "Find"
+            return "bufferdone"
 
         } else {
 
             # no match in selection, ask for extending search
             set answer [tk_messageBox -message \
-                [concat [mc "No match found in the selection for"] $SearchString [mc "\nWould you like to look for it in the entire text?"] ] \
+                [concat [mc "No match found in the selection for"] $SearchString \
+                        [mc "\nWould you like to look for it in the entire text?"] ] \
                 -parent $pw -title [mc "Find"] -type yesno -icon question]
 
-            # set the start position for the next search
-            if {![string compare $answer "yes"]} {
-
-                # extend search
-                if {$SearchDir == "forwards"} {
-                    set SearchPos [$textareacur index "insert + $len char"]
-                } else {
-                    set SearchPos [$textareacur index "insert"]
-                }
-                set SearchEnd "No_end"
-                $textareacur tag remove sel 0.0 end
-
-                # <TODO> this is for search in multiple files - make it work!
-                return "matchfound" ; # because we should do a find in the same buffer before switching
-
+            if {$answer == "yes"} {
+                # extend search simply by removing the selection tag in the textarea
+                # therefore the next call to findit will do a search in the full buffer
+                # the selection will be restored later on by proc cancelfind
+                $textarea tag remove sel 0.0 end
+                # no search in selection allowed once search has been extended
+                $w.l.f4.f5.cbox4 deselect
+                $w.l.f4.f5.cbox4 configure -state disabled
+                resetfind $w $textarea
+                set findres [findit $w $pw $textarea $tosearchfor $reg]
             } else {
-
-                # don't extend search
-                if {$SearchDir=="forwards"} {
-                    set SearchPos [$textareacur index sel.first]
-                } else {
-                    set SearchPos [$textareacur index sel.last]
-                }
-
-                # <TODO> this is for search in multiple files - make it work!
-                return "nomatchfound"
-
+                # don't extend search, nothing to do
+                set findres "noextend"
             }
+            return $findres
 
         }
-
     }
+
+    # analyze the search results:
+    #    if we did not return before this point, then there is at least one match
+    
+    # select the match to display from the list of matches
+    foreach {mpos mlen wraparound looped alreadyreplaced} \
+            [getnextmatch $textarea $SearchDir $searchinsel] {}
+
+    if {$alreadyreplaced} {
+        showinfo [mc "No more matches"]
+        return "mustswitchnow"
+    }
+
+    # if search looped, then we have already displayed
+    # all the matches in this textarea
+    # if we're searching in a single file, just go on redisplaying matches
+    # otherwise return so that a new textarea can be searched
+    if {$looped == "true" && $multiplefiles} {
+        # return here to avoid processing of the repeated match
+        return "mustswitchnow"
+    }
+
+    if {$looped == "true"} {
+        set findres "bufferdone"
+    } else {
+        set findres "searchagain"
+    }
+
+    # if search wrapped, tell the user
+    if {$wraparound == "true"} {
+        showinfo [mc "Wrapped around"]
+    } else {
+        delinfo
+    }
+
+    # arrange for this match to be visible and tag it
+    $textarea see $mpos
+    $textarea mark set insert $mpos
+    foreach ta $listoftextarea {
+        # this must be done for each ta, not only for $textarea
+        # because of the switch buffer case in tile mode
+        $ta tag remove foundtext 0.0 end
+        $ta tag remove replacedtext 0.0 end
+    }
+    $textarea tag add foundtext $mpos  "$mpos + $mlen char"
+    # <TODO>: these bindings are required to remove the foundtext tag after a find
+    #         next triggered by F3. Once set, they will live in the textarea forever,
+    #         and there will be one such binding added for each successful search!!
+    bind $textarea <KeyPress>    {+%W tag remove foundtext 1.0 end}
+    bind $textarea <ButtonPress> {+%W tag remove foundtext 1.0 end}
+    bind $textarea <Button-1>    {+%W tag remove foundtext 1.0 end}
+
+    # prevent the dialog box from hiding the match string
+    if {[winfo exists $w]} {
+        MoveDialogIfTaggedTextHidden $w $textarea foundtext
+    }
+
+    # update status bar data
+    keyposn $textarea
+
+    return $findres
 }
 
-proc ReplaceIt {once_or_all} {
-    global SearchString SearchDir ReplaceString SearchPos findcase regexpcase
-    global find SearchEnd
+proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
+# find a match in $textarea, and replace this match
+# output result can be "bufferdone", i.e. there is no more match to look for,
+# or searchagain, meaning that a further search will provide a new result,
+# or mustswitchnow, meaning that a buffer switch followed by a search should be
+# performed now (see end of proc multiplefilesfindreplace)
+# or noextend, which is returned when there was no match in selection and the
+# user didn't want to extend the search to the entire buffer
+# $replacesingle toggles the popup messageboxes and infos in the status bar
 
-    set textareacur [gettextareacur]
+    global SearchString ReplaceString caset multiplefiles SearchDir searchinsel
+    global listoffile listofmatch listoftextarea
 
-    if {$SearchString == ""} {
-        tk_messageBox -message [mc "You are searching for an empty string!"] \
-                      -parent $find -title [mc "Replace"]
-        return
+    # if there is no already found matching text (Find Next was not hit)
+    # therefore perform a search first get the match positions and
+    # the length of the matches
+    # and do it only once (per buffer) in a search session
+    if {![info exists listofmatch]} {
+        set listofmatch [searchforallmatches $textarea $tosearchfor \
+                             $caset $reg $searchinsel]
     }
 
-    # save the initial searching position so that wraparound can be later detected
-    set OldPos $SearchPos
-    delinfo
-
-    set foundtextrange [$textareacur tag ranges foundtext]
-    if {$foundtextrange == {}} {
-
-        # there is no already found matching text (Find Next was not hit)
-        # therefore perform a search first
-        if {$findcase=="1"} {
-            set caset "-exact"
-        } else {
-            set caset "-nocase"
-        }
-        if {$regexpcase != "1"} {
-            if {$SearchEnd == "No_end"} {
-                set SearchPos [ $textareacur search $caset -$SearchDir \
-                                -- $SearchString $SearchPos]
-            } else {
-                set SearchPos [ $textareacur search $caset -$SearchDir \
-                                -- $SearchString $SearchPos $SearchEnd]
-            }
-        } else {
-            if {$SearchEnd == "No_end"} {
-                set SearchPos [ $textareacur search $caset -$SearchDir \
-                                -regexp -- $SearchString $SearchPos]
-            } else {
-                set SearchPos [ $textareacur search $caset -$SearchDir \
-                                -regexp -- $SearchString $SearchPos $SearchEnd]
-            }
-        }
-
-    } else {
-        # there is already some matching text found (Find Next was hit)
-        # therefore just set the location where the replace should occur
-        set SearchPos [lindex $foundtextrange 0]
-    }
-
-    # compute the length of the matched string
-    if {$regexpcase != "1"} {
-        set len [string length $SearchString]
-    } else {
-        if {$SearchPos != "" } {
-            # lineend below to be revisited once 8.5 is used (browse for TIP113)
-            if {$findcase=="1"} {
-                regexp         -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
-            } else {
-                regexp -nocase -- $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
-            }
-            set len [string length $res]
-        } else {
-            set len [string length $SearchString]
-        }
-    }
-
-    # analyze the search results, replace the match and prepare for next search
-    if {$SearchPos != ""} {
-        # a match has been found
-
-        # if search wrapped, tell the user
-        if {[diditwrap $OldPos $SearchPos] == "true"} {
-            showinfo [mc "Wrapped around"]
-        }
-
-        # arrange for this match to be visible, replace it, colorize and tag it
-        $textareacur see $SearchPos
-        set oldSeparator [$textareacur cget -autoseparators]
-        if {$oldSeparator} {
-            $textareacur configure -autoseparators 0
-            $textareacur edit separator
-        }
-        $textareacur delete $SearchPos "$SearchPos+$len char"
-        $textareacur insert $SearchPos $ReplaceString
-        if {$oldSeparator} {
-            $textareacur edit separator
-            $textareacur configure -autoseparators 1
-        }
-        colorize $textareacur \
-            [$textareacur index "$SearchPos linestart"] \
-            [$textareacur index "$SearchPos lineend"]
-        $textareacur mark set insert $SearchPos
-        $textareacur tag remove foundtext 0.0 end
-        $textareacur tag remove replacedtext 0.0 end
-        set lenR [string length $ReplaceString]
-        $textareacur tag add replacedtext $SearchPos  "$SearchPos + $lenR char"
-
-        # If replacement occurred starting at the first selected character or
-        # up to the last selected character, then fakeselection should be extended
-        # by hand since tags have no gravity in tcl
-        # This is most simply done by always tagging the replaced text as fakeselection
-        if {[$textareacur tag ranges fakeselection] != {}} {
-            $textareacur tag add fakeselection $SearchPos  "$SearchPos + $lenR char"
-        }
-
-        # prevent the dialog box from hiding the matched string
-        MoveDialogIfFoundHidden $find
-
-        # update status bar data
-        keyposn $textareacur
-
-        # set the start position for the next search
-        # backwards case: nothing to do since .text search returns the position of
-        # the first matching character, therefore $SearchPos is already well set
-        if {$SearchDir == "forwards"} {
-            set SearchPos [$textareacur index "$SearchPos+$lenR char"]
-            # $SearchEnd must be adjusted for the search to occur in the new selection
-            if {$SearchEnd != "No_end" } {
-                if {int([$textareacur index $SearchEnd])==int([$textareacur index $SearchPos]) } {
-                    set SearchEnd [$textareacur index "$SearchEnd+[expr $lenR - $len] char"]
-                }
-            }
-        }
-
-        reshape_bp
-
-        # save the matched start position
-        if {$SearchDir == "forwards"} {
-            set matchstartpos [$textareacur index "$SearchPos - $lenR char"]
-        } else {
-            set matchstartpos $SearchPos
-        }
-
-        return [list "Done" [expr $lenR - $len] $matchstartpos]
-
-    } else {
+    # analyze the search results
+    #   look if the search failed
+    if {$listofmatch == {}} {
         # no match has been found
 
         # inform the user that the search has failed
-        set SearchPos [$textareacur index "insert"]
-        if {$once_or_all == "once"} {
-            tk_messageBox -message \
-                [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
-                -parent $find -title [mc "Replace"]
-          }
+        if {!$searchinsel} {
 
-        return [list "No_match" 0 0]
-
-    }
-}
-
-proc ReplaceAll {} {
-    global SearchPos SearchString SearchDir
-
-    set textareacur [gettextareacur]
-
-    set RefPos $SearchPos
-    set anotherone ""
-    set NbOfReplaced 0
-    set wrapped "false"
-    set wrappedagain "false"
-    set onetoomuch "false"
-    set NewPos $RefPos
-    set firstmatch "true"
-
-    # loop on matches
-    while {$anotherone != "No_match"} {
-
-        # perform a replace
-        set ReplaceItResult [ReplaceIt all]
-        set anotherone [lindex $ReplaceItResult 0]
-
-        # if there was a match
-        if {$anotherone != "No_match"} {
-
-            # prepare for next replace iteration
-            update
-            incr NbOfReplaced
-            set PrecPos $NewPos
-            set NewPos [$textareacur index [lindex $ReplaceItResult 2]]
-
-            # Save area of the replaced text
-            if {$firstmatch == "true"} {
-                set reprange [$textareacur tag nextrange replacedtext 1.0]
-                if {$reprange == ""} {
-                    # The found text was replaced by an empty string
-                    set reprange [list [$textareacur index insert] [$textareacur index insert]]
-                }
-                set firstreplstart [lindex $reprange 0]
-                set lastreplstart  [lindex $reprange 1]
+            # no match in whole buffer
+            if {$replacesingle} {
+                notfoundmessagebox $SearchString $textarea $pw "Replace"
             }
-
-            # Reference position must be ajusted if text has been replaced on the
-            # same line as and before the initial start position.
-            # This reference position is used to detect when all the text has been
-            # searched once, meaning that the replace all must end. This test is
-            # only used when the text to replace is included in the new replacement
-            # text (if not, then the loop ends because $anotherone == "No_match")
-            if {int([$textareacur index $RefPos])==int([$textareacur index $NewPos]) && \
-                [$textareacur compare $NewPos < $RefPos] } {
-                set RefPos [$textareacur index "$RefPos+[lindex $ReplaceItResult 1] char"]
-            }
-
-            # detect simple and double wraparound
-            if {$wrapped =="false"} {
-                    set wrapped [diditwrap $PrecPos $NewPos]
-            } else {
-                    set wrappedagain [diditwrap $PrecPos $NewPos]
-            }
-
-            # If the search wrapped and the newly replaced text is after (or before)
-            # the reference position, then replace all must end
-            if {$SearchDir == "forwards"} {
-                if {$wrapped == "true" && [$textareacur compare $NewPos > $RefPos]} {
-                    set onetoomuch "true"
-                }
-            } else {
-                if {$wrapped == "true" && [$textareacur compare $NewPos < $RefPos]} {
-                    set onetoomuch "true"
-                }
-            }
-
-            # If the newly replaced text starts inside the first replaced area, then
-            # it means that there is a single match of the searched text in the buffer
-            # and replace all must end
-            if {[$textareacur compare $firstreplstart <= $NewPos] && \
-                [$textareacur compare $NewPos < $lastreplstart] && \
-                $firstmatch == "false"} {
-                set onetoomuch "true"
-            }
-
-            # loop end test
-            if {$onetoomuch == "true" || $wrappedagain == "true"} {
-                set anotherone "No_match"
-                # remove one wrong superfluous replace
-                undo $textareacur
-                incr NbOfReplaced -1
-            }
-
-            set firstmatch "false"
+            return "bufferdone"
 
         } else {
-            # no match found, nothing to do, the while loop will stop
-            # since $anotherone == "No_match"
+
+            # no match in selection, ask for extending search
+            set answer [tk_messageBox -message \
+                [concat [mc "No match found in the selection for"] $SearchString \
+                        [mc "\nWould you like to look for it in the entire text?"] ] \
+                -parent $pw -title [mc "Replace"] -type yesno -icon question]
+
+            if {$answer == "yes"} {
+                # extend search simply by removing the selection tag in the textarea
+                # therefore the next call to replaceit will do a search in the full buffer
+                # the selection will be restored later on by proc cancelfind
+                $textarea tag remove sel 0.0 end
+                # no search in selection allowed once search has been extended
+                $w.l.f4.f5.cbox4 deselect
+                $w.l.f4.f5.cbox4 configure -state disabled
+                resetfind $w $textarea
+                set replres [replaceit $w $pw $textarea $tosearchfor $reg 1]
+            } else {
+                # don't extend search, nothing to do
+                set replres "noextend"
+            }
+            return $replres
+
         }
     }
 
-    showinfo "$NbOfReplaced [mc "replacements done"]"
+    # analyze the search results:
+    #    if we did not return before this point, then there is at least one match
+
+    # select the match to replace from the list of matches
+    set foundtextrange [$textarea tag ranges foundtext]
+    if {$foundtextrange == {} || !$replacesingle} {
+        # there is no already found matching text (Find Next was not hit)
+        # therefore get next match
+        foreach {mpos mlen wraparound looped alreadyreplaced} \
+            [getnextmatch $textarea $SearchDir $searchinsel] {}
+    } else {
+        # there is an already found matching text (Find Next was hit before)
+        # therefore take this one for the replace process
+        foreach {mpos mlen wraparound looped alreadyreplaced} [getcurrentmatch $textarea] {}
+    }
+
+    # if we have already replaced all the matches in this textarea,
+    # we don't want to replace further therefore just return so that
+    # a new textarea can be searched
+    if {$alreadyreplaced} {
+        # tell the user there is no more matches in this buffer
+        if {$replacesingle} {
+            showinfo [mc "No more matches"]
+        }
+        # return here to avoid processing of the repeated match
+       return "mustswitchnow"
+    }
+
+    if {$looped == "true"} {
+        set replres "bufferdone"
+    } else {
+        set replres "searchagain"
+    }
+
+    # if search wrapped, tell the user
+    if {$wraparound == "true"} {
+        showinfo [mc "Wrapped around"]
+    } else {
+        delinfo
+    }
+
+    # arrange for this match to be visible, replace it, colorize it and tag it
+    $textarea see $mpos
+    set oldSeparator [$textarea cget -autoseparators]
+    if {$oldSeparator} {
+        $textarea configure -autoseparators 0
+        $textarea edit separator
+    }
+    $textarea delete $mpos "$mpos + $mlen char"
+    # the test on ReplaceString shouldn't be needed and is only here to
+    # work around Tk bug 1275237
+    if {$ReplaceString != ""} {
+        $textarea insert $mpos $ReplaceString
+    }
+    if {$oldSeparator} {
+        $textarea edit separator
+        $textarea configure -autoseparators 1
+    }
+    colorize $textarea \
+        [$textarea index "$mpos linestart"] \
+        [$textarea index "$mpos lineend"]
+    $textarea mark set insert $mpos
+    foreach ta $listoftextarea {
+        # this must be done for each ta, not only for $textarea
+        # because of the switch buffer case in tile mode
+        $ta tag remove foundtext 0.0 end
+        $ta tag remove replacedtext 0.0 end
+    }
+    set lenR [string length $ReplaceString]
+    $textarea tag add replacedtext $mpos  "$mpos + $lenR char"
+    # If replacement occurred starting at the first selected character or
+    # up to the last selected character, then fakeselection should be extended
+    # by hand since tags have no gravity in tcl
+    # This is most simply done by always tagging the replaced text as fakeselection
+    # for all replace positions located in the selection
+    if {[$textarea tag ranges fakeselection] != {}} {
+        if {[$textarea compare fakeselection.first <= $mpos] && \
+            [$textarea compare $mpos <= fakeselection.last]} {
+                $textarea tag add fakeselection $mpos  "$mpos + $lenR char"
+        }
+    }
+
+    # tag the current match as now being replaced, and shift the
+    # remaining not yet replaced matches on the same line
+    setcurmatchasreplaced $textarea $lenR
+
+    # prevent the dialog box from hiding the match string
+    MoveDialogIfTaggedTextHidden $w $textarea replacedtext
+
+    # update status bar data
+    keyposn $textarea
+    
+    # update breakpoint tags
+    reshape_bp
+
+    return $replres
 }
 
-proc CancelFind {w} {
+proc multiplefilesreplaceall {w} {
+# search and replace all matches in all the opened buffers, or in the current one
+# depending on the state of the "search in all files" checkbox
+    global SearchString SearchDir wholeword regexpcase
+    global listofmatch indoffirstmatch indofcurrentmatch
+    global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
+    global prevfindres
+
+    set pw [setparentwname $w]
+
+    # get rid of the empty search string case
+    if {[issearchstringempty $SearchString $pw]} {
+        return
+    }
+
+    # whole word searching: set regexp mode and string to search for
+    foreach {tosearchfor reg} [setwholewordstring $wholeword $SearchString $regexpcase] {}
+
+    if {$multiplefiles == 0} {
+        # search in current buffer only
+        replaceall $w $pw [gettextareacur] $tosearchfor $reg
+        return
+    }
+
+    # if we did not return before this point, we are searching in all the
+    # opened buffers for a non-empty string
+
+    set totreplaced 0
+    foreach ta $listoftextarea {
+        incr totreplaced [replaceall $w $pw $ta $tosearchfor $reg]
+    }
+
+    showinfo "$totreplaced [mc "replacements done"]"
+    if {$totreplaced == 0} {
+        notfoundinallmessagebox $SearchString $pw "Replace"
+    }
+
+}
+
+proc replaceall {w pw textarea tosearchfor reg} {
+# find all matches in $textarea, and replace these matches
+
+    global SearchString SearchDir
+    global listofmatch indoffirstmatch indofcurrentmatch
+    global listoffile multiplefiles
+
+    # erase listofmatch so that the first call to replaceit will
+    # reconstruct it
+    unset -nocomplain -- listofmatch
+    unset -nocomplain -- indoffirstmatch
+    unset -nocomplain -- indofcurrentmatch
+
+    set nbofreplaced 0
+
+    # loop on matches
+    set prevfindres "searchagain"
+    while {$prevfindres == "searchagain"} {
+        set prevfindres [replaceit $w $pw $textarea $tosearchfor $reg 0]
+        incr nbofreplaced
+    }
+    incr nbofreplaced -1
+
+    if {!$multiplefiles} {
+        showinfo "$nbofreplaced [mc "replacements done"]"
+        if {$nbofreplaced == 0 && $prevfindres != "noextend"} {
+            notfoundmessagebox $SearchString $textarea $pw "Replace"
+        }
+    }
+
+    # erase listofmatch so that the next call to a find/replace command
+    # will reconstruct it - needed if for instance the user hits find next
+    # after a replace all: find next gets the next match regardless of its
+    # "alreadyreplaced" status
+    unset -nocomplain -- listofmatch
+    unset -nocomplain -- indoffirstmatch
+    unset -nocomplain -- indofcurrentmatch
+
+    return $nbofreplaced
+}
+
+proc searchforallmatches {textarea str cas reg ssel} {
+# search for the matches in the provided $textarea for the string $str
+# taking into account the case argument $cas and the regexp argument $reg
+# the search occurs in the selection if $ssel == 1, or in the full
+# textarea otherwise
+# all matches are returned in a list, and always in the "forwards" order
+# each element of the return list follows the format described in proc
+# doonesearch
+# an empty $matchlist return result means there is no match in $textarea 
+    set matchlist {}
+
+    foreach {start stop} [getsearchlimits $textarea $ssel] {}
+
+    set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg]
+    while {[lindex $match 0] != ""} {
+        lappend matchlist $match
+        set start [$textarea index "[lindex $match 0] + [lindex $match 1]c"]
+        set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg]
+    }
+    return $matchlist
+}
+
+proc getsearchlimits {textarea ssel} {
+# decide about the start and stop positions of a forwards search:
+# if there is a selection then start = sel.first and stop = sel.last
+#                         otherwise start = 1.0 and stop = last char
+# of $textarea
+    if {!$ssel} {
+        # there is no existing selection
+        set sta 1.0
+        set sto [$textarea index end]
+    } else {
+        set sta [$textarea index sel.first]
+        set sto [$textarea index sel.last]
+    }
+    return [list $sta $sto]
+}
+
+proc doonesearch {textarea sta sto str dir cas reg} {
+# perform one search operation in $textarea between start position $sta
+# and stop position $sto, taking into account the case argument $cas,
+# the regexp argument $reg, and the direction $dir
+# the searched string is $str
+# return value: a list containing:
+#   if found:
+#     the position of the match, the length of the match in character counts
+#     and the number 0 (this flag is used by replaceit and is set to 1 when
+#     the match has been replaced)
+#   if not found:
+#     the three elements "" 0 0
+# note:
+#   the match length is specific to each match and cannot be considered as
+#   a constant for all the matches - for instance, regexp searching for
+#   \m(\w)*\M (i.e. any word) can provide different match lengths
+    global Tk85
+
+    # create the options list
+    set optlist [list $cas -$dir -count MatchLength]
+    if {$reg == "regexp"} {
+        lappend optlist -regexp
+    }
+    lappend optlist -count MatchLength
+    if {$Tk85} {
+        # <TODO> it seems that this option doesn't work as expected
+        #        see http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/e80f2586408ab598/2a3660c107cd21ba?lnk=raot&hl=fr#2a3660c107cd21ba
+        #        and Tk bug 1281228
+        lappend optlist -strictlimits
+    }
+
+    set MatchPos [ eval "$textarea search $optlist -- $str $sta $sto" ]
+
+    if {$MatchPos == ""} {
+        set MatchLength 0
+    }
+    return [list $MatchPos $MatchLength 0]
+}
+
+proc getcurrentmatch {textarea} {
+# get current match position and length in an already existing (non empty) list
+# of matches
+# return value is a list:
+#    { match_position match_length has_wrapped_flag has_looped_flag alreadyreplaced_flag}
+#    has_wrapped_flag is always false
+#    has_looped_flag is always false
+    global listofmatch indoffirstmatch indofcurrentmatch
+    set currentmatch [lindex $listofmatch $indofcurrentmatch]
+    set curmatchpos [lindex $currentmatch 0]
+    set curmatchlen [lindex $currentmatch 1]
+    set haswrapped false
+    set haslooped false
+    set alreadyreplaced [lindex $currentmatch 2]
+    return [list $curmatchpos $curmatchlen $haswrapped $haslooped $alreadyreplaced]
+}
+
+proc getnextmatch {textarea dir ssel} {
+# get next match position and length in an already existing (non empty) list
+# of matches. Only matches that are not yet tagged as already replaced ones
+# are returned
+# direction $dir of searching is taken into account, as well as the possibly
+# existing selection ($ssel is 1 if there is a selection)
+# return value is a list:
+#    { match_position match_length has_wrapped_flag has_looped_flag alreadyreplaced_flag}
+#    has_wrapped_flag is true if and only if to get the next match we had
+#        to pass the end of the file or selection ("forwards" case), or the
+#        beginning of the file or selection ("backwards" case)
+#    has_looped_flag is true if and only if the entire list of matches has
+#        been traversed. In this case $match_position is again the first
+#        match position
+#    alreadyreplaced_flag is 1 if and only if there is no more not yet
+#        replaced matches in $listofmatch - in this case the other output
+#        values should be ignored by the calling procedure
+
+    foreach {mpos mlen alreadyreplaced wraparound looped} \
+            [getnextmatchany $textarea $dir $ssel] {}
+
+    set firstpos $mpos
+    while {$alreadyreplaced} {
+        foreach {mpos mlen alreadyreplaced wraparound looped} \
+                [getnextmatchany $textarea $dir $ssel] {}
+        if {$mpos == $firstpos} {
+            break
+        }
+
+    }
+
+    return [list $mpos $mlen $wraparound $looped $alreadyreplaced]
+}
+
+proc getnextmatchany {textarea dir ssel} {
+# return the next match and ignores the alreadyreplaced tag value
+# see proc getnextmatch for details
+    global listofmatch indoffirstmatch indofcurrentmatch haswrappedbefore
+
+    if {![info exists indoffirstmatch]} {
+        # this is the first request for a match in the listofmatch
+
+        # get the match located just after or before...
+        if {!$ssel} {
+            #... the insertion cursor if there is no selection
+            set pos [$textarea index insert]
+        } else {
+            #... the selection start or end if there is a selection
+            if {$dir == "forwards"} {
+                set pos [$textarea index sel.first]
+            } else {
+                set pos [$textarea index sel.last]
+            }
+        }
+
+        set indoffirstmatch [getnexteltid $textarea $pos $listofmatch $dir]
+        set haswrapped false
+        set haswrappedbefore false
+
+        if {$indoffirstmatch == [llength $listofmatch]} {
+            set indoffirstmatch 0
+            set haswrapped true
+        }
+        if {$indoffirstmatch == -1} {
+            set indoffirstmatch [expr [llength $listofmatch] - 1]
+            set haswrapped true
+        }
+
+        if {$haswrapped == "true"} {
+            set haswrappedbefore true
+        }
+
+        set indofcurrentmatch $indoffirstmatch
+        set haslooped false
+
+    } else {
+        # this is not the first request for a match in the listofmatch
+
+        set haswrapped false
+        if {$dir == "forwards"} {
+            incr indofcurrentmatch
+            if {$indofcurrentmatch == [llength $listofmatch]} {
+                set indofcurrentmatch 0
+                set haswrapped true
+            }
+        } else {
+            incr indofcurrentmatch -1
+            if {$indofcurrentmatch == -1} {
+                set indofcurrentmatch [expr [llength $listofmatch] - 1]
+                set haswrapped true
+            }
+        }
+
+        set haslooped false
+        if {$indofcurrentmatch == $indoffirstmatch} {
+            set haslooped true
+        }
+
+        # haswrappedbefore is now used to set haslooped
+        # the test on $indofcurrentmatch above is not enough when playing
+        # with the Find Next button during a replace session
+        if {$haswrappedbefore == "true" && $haswrapped == "true"} {
+            set haslooped true
+        }
+
+        if {$haswrapped == "true"} {
+            set haswrappedbefore true
+        }
+
+    }
+
+    set currentmatch [lindex $listofmatch $indofcurrentmatch]
+    set curmatchpos [lindex $currentmatch 0]
+    set curmatchlen [lindex $currentmatch 1]
+    set curmatchrep [lindex $currentmatch 2]
+    return [list $curmatchpos $curmatchlen $curmatchrep $haswrapped $haslooped]
+}
+
+proc getnexteltid {textarea aval alist dir} {
+# get the index in $alist of the element that comes after or before $aval
+# (depending on the search direction $dir: respectively "forwards" and
+# "backwards")
+# comparison is performed with .text compare, i.e. as text widget indices
+# $alist has the format described in proc searchforallmatches, it is already
+# ordered by match position in forward order
+# $aval does not need to be an element of $alist
+    if {$dir == "forwards"} {
+        set id 0
+        set lval [lindex [lindex $alist $id] 0]
+        set compres [$textarea compare $aval >= $lval]
+        while {$compres == 1 && $id < [expr [llength $alist] - 1]} {
+            incr id
+            set lval [lindex [lindex $alist $id] 0]
+            set compres [$textarea compare $aval >= $lval]
+        }
+        if {$compres == 0} {
+            return $id
+        } else {
+            # for all the elements of $alist, $aval >= $lval is wrong
+            return [expr $id + 1] ; # i.e. [llength $alist]
+        }
+    } else {
+        set id [expr [llength $alist] - 1]
+        set lval [lindex [lindex $alist $id] 0]
+        set compres [$textarea compare $aval <= $lval]
+        while {$compres == 1 && $id > 0} {
+            incr id -1
+            set lval [lindex [lindex $alist $id] 0]
+            set compres [$textarea compare $aval <= $lval]
+        }
+        if {$compres == 0} {
+            return $id
+        } else {
+            # for all the elements of $alist, $aval <= $lval is wrong
+            return [expr $id - 1] ; # i.e. -1
+        }
+    }
+}
+
+proc setcurmatchasreplaced {textarea lenR} {
+# tag the current match as now being replaced, and shift the
+# remaining not yet replaced matches on the same line
+# this must be done otherwise $listofmatch items could be
+# out of sync with the positions of the matches in the text
+# widget after a replace
+# the amount of shift is $lenR (length of the replacement
+# string) minus the length of the match
+    global listofmatch indofcurrentmatch
+
+    # tag the current match as a replaced match
+    set curmatch [lindex $listofmatch $indofcurrentmatch]
+    set curmatch [lreplace $curmatch 2 2 1]
+    set listofmatch [lreplace $listofmatch $indofcurrentmatch $indofcurrentmatch $curmatch]
+
+    # shift certain matches
+    set lendiff [expr $lenR - [lindex $curmatch 1]]
+    scan [lindex $curmatch 0] "%d.%d" curmatchlin curmatchcol
+    set lm $listofmatch
+    set i 0
+    foreach mat $lm {
+        scan [lindex $mat 0] "%d.%d" malin macol
+        if {$malin == $curmatchlin && $macol > $curmatchcol} {
+            # shift only the matches located on the same line and after $curmatch
+            set newpos $malin.[expr $macol + $lendiff]
+            set listofmatch [lreplace $listofmatch $i $i [lreplace $mat 0 0 $newpos]]
+        }
+        incr i
+    }
+}
+
+proc resetfind {w textarea} {
+# reset the find/replace settings to their initial default values
+    global searchinsel
+    global listofmatch indoffirstmatch indofcurrentmatch
+    global indoffirstbuf indofcurrentbuf
+
+    # save the possibly existing selection
+    if {$searchinsel} {
+        # there is a selection
+        # fakeselection is a copy of the sel tag, required
+        # because the sel tag is not visible when focus is out of $pad
+        $textarea tag add fakeselection sel.first sel.last
+        $textarea tag raise foundtext fakeselection
+        $textarea tag raise replacedtext fakeselection
+    }
+
+    # reset the search data (current buffer)
+    unset -nocomplain -- listofmatch
+    unset -nocomplain -- indoffirstmatch
+    unset -nocomplain -- indofcurrentmatch
+
+    # reset the search data (multi-buffer search)
+    unset -nocomplain -- indoffirstbuf
+    unset -nocomplain -- indofcurrentbuf
+}
+
+proc cancelfind {w} {
+# end of a find/replace session
     global pad listoftextarea
 
     foreach textarea $listoftextarea {
@@ -432,311 +954,156 @@ proc CancelFind {w} {
     destroy $w
 }
 
-proc ResetFind {w} {
-# set the start ($SearchPos) and stop ($SearchEnd) positions
-# according to the different search modes available
-    global SearchPos SearchEnd SearchDir SearchString
-    global listoftextarea findresult findrefpos
-
-    set textareacur [gettextareacur]
-
-    # check whether there is a pre-existing selection
-    catch {[$textareacur get sel.first sel.last]} sel
-    if {$sel == "text doesn't contain any characters tagged with \"sel\""} {
-        # there is no selection
-
-        if {$SearchDir=="forwards" && [$textareacur tag ranges foundtext]!=""} {
-            set len [string length $SearchString]
-            set SearchPos [$textareacur index "insert + $len char"]
-        } else {
-            set SearchPos [$textareacur index insert]
-        }
-
-        set SearchEnd "No_end"
-
+proc setparentwname {w} {
+# set the window pathname that will be used as parent for the messageboxes
+    # if the dialog is open (this is always true for replace or replaceall
+    # but may be false for find because of the F3 - Find Next case)...
+    global pad
+    if {[winfo exists $w]} {
+        #... use it as parent for the messageboxes
+        set pw $w
     } else {
-        # there is a selection
-
-        # fakeselection is the copied sel tag, required
-        # because the sel tag is not visible when focus is out of $pad
-        $textareacur tag add fakeselection sel.first sel.last
-        $textareacur tag raise foundtext fakeselection
-        $textareacur tag raise replacedtext fakeselection
-
-        if {$SearchDir=="forwards"} {
-            if {[$textareacur tag ranges foundtext]!=""} {
-                set len [string length $SearchString]
-                set SearchPos [$textareacur index "insert + $len char"]
-            } else {
-                set SearchPos [$textareacur index sel.first]
-            }
-
-            set SearchEnd [$textareacur index sel.last]
-
-        } else {
-            if {[$textareacur tag ranges foundtext]!=""} {
-                set SearchPos [$textareacur index "insert"]
-            } else {
-                set SearchPos [$textareacur index sel.last]
-            }
-
-            set SearchEnd [$textareacur index sel.first]
-
-        }
+        #... else use the toplevel
+        set pw $pad
     }
-
-    # initial settings for searching in multiple files
-    if {[llength $listoftextarea] == 1} {
-        $w.l.f4.f5.cbox3 configure -state disabled
-    }
-    # <TODO> this is for search in multiple files - make it work!
-    set findresult "matchfound"
-    catch {unset findrefpos}
+    return $pw
 }
 
-proc findtext {typ} {
-# display the find or replace dialog box
-    global textFont menuFont
-    global SearchString SearchDir ReplaceString findcase find pad regexpcase
-    global multiplefiles
-
-    if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
-
-    set find $pad.find
-    catch {destroy $find}
-    toplevel $find
-    wm title $find [mc "Find"]
-    setwingeom $find
-
-    # entry fields
-    frame $find.l
-    frame $find.l.f1
-    label $find.l.f1.label -text [mc "Find what:"] -width 15 -font $menuFont
-    entry $find.l.f1.entry -textvariable SearchString -width 30 -font $textFont
-    pack $find.l.f1.label $find.l.f1.entry -side left
-    pack configure $find.l.f1.entry -expand 1 -fill x
- # next line commented since it does not sleep with -exportselection 1 on Linux
- #   $find.l.f1.entry selection range 0 end
-#        bind $find.l.f1.entry <Control-c> {tk_textCopy $find.l.f1.entry}
-#        bind $find.l.f1.entry <Control-v> {tk_textPaste $find.l.f1.entry}
-# this doesn't work?
-#        bind $find.l.f1.entry <Control-x> {tk_textCut $find.l.f1.entry}
-#
-
-    if {$typ=="replace"} {
-        frame $find.l.f2
-        label $find.l.f2.label2 -text [mc "Replace with:"] -width 15 -font $menuFont
-        entry $find.l.f2.entry2 -textvariable ReplaceString -width 30 -font $textFont
-        pack $find.l.f2.label2 $find.l.f2.entry2 -side left
-        pack configure $find.l.f2.entry2 -expand 1 -fill x
-        pack $find.l.f1 $find.l.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
-#            bind $find.l.f2.entry2 <Control-c> {tk_textCopy $find.l.f2.entry2}
-#            bind $find.l.f2.entry2 <Control-v> {tk_textPaste $find.l.f2.entry2}
-# this doesn't work?
-#            bind $find.l.f2.entry2 <Control-x> {tk_textCut $find.l.f2.entry2}
-#
-    } else {
-        pack $find.l.f1 -pady 4 -padx 8 -expand 1 -fill x
-    }
-
-    # buttons
-    frame $find.f2
-    eval "button $find.f2.button1 [bl "Find &Next"] -command \"FindIt $find\" -height 1 -width 15 -font $menuFont"
-# <TODO> 1 line temporary here since only replace all works with multiple files
-#    eval "button $find.f2.button1 [bl "Find &Next"] -command \"multiplefilesfind $find\" -height 1 -width 15 -font $menuFont"
-    eval "button $find.f2.button2 [bl "Cance&l"] -command \"CancelFind $find\" -height 1 -width 15 -font $menuFont"
-    if {$typ=="replace"} {
-        eval "button $find.f2.button3 [bl "Re&place"] -command \"ReplaceIt once\" -height 1 -width 15 -font $menuFont"
-# <TODO> 5 lines temporary here since only replace all works with multiple files
-global listoftextarea
-bind $find.f2.button1 <Enter> {if {[llength $listoftextarea] != 1} {$find.l.f4.f5.cbox3 configure -state disabled}}
-bind $find.f2.button1 <Leave> {if {[llength $listoftextarea] != 1} {$find.l.f4.f5.cbox3 configure -state normal}}
-bind $find.f2.button3 <Enter> {if {[llength $listoftextarea] != 1} {$find.l.f4.f5.cbox3 configure -state disabled}}
-bind $find.f2.button3 <Leave> {if {[llength $listoftextarea] != 1} {$find.l.f4.f5.cbox3 configure -state normal}}
-        eval "button $find.f2.button4 [bl "Replace &All"] -command \"multiplefilesreplaceall $find\" -height 1 -width 15 -font $menuFont"
-        pack $find.f2.button1 $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
-    } else {
-        pack $find.f2.button1 $find.f2.button2  -pady 4
-    }
-
-    # up/down radiobutton
-    frame $find.l.f4
-    frame $find.l.f4.f3 -borderwidth 2 -relief groove
-    eval "radiobutton $find.l.f4.f3.up [bl "&Upwards"] \
-        -variable SearchDir -value \"backwards\" -command \"ResetFind $find\" -font $menuFont "
-    eval "radiobutton $find.l.f4.f3.down [bl "Downward&s"] \
-        -variable SearchDir -value \"forwards\" -command \"ResetFind $find\" -font $menuFont "
-    pack $find.l.f4.f3.up $find.l.f4.f3.down -anchor w
-
-    # case and regexp checkboxes
-    frame $find.l.f4.f5
-    eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] -variable findcase -font $menuFont "
-    eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] -variable regexpcase -font $menuFont "
-    eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] -variable multiplefiles -font $menuFont "
-    pack $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 $find.l.f4.f5.cbox3 -anchor sw
-
-    pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 10
-    pack $find.l.f4 -pady 11
-    pack $find.l $find.f2 -side left -padx 1
-
-    # each widget must be bound to the events of the other widgets
-        proc bindevnt {widgetnm types find} {
-            bind $widgetnm <Return> "FindIt $find"
-            bind $widgetnm <Alt-[fb $find.f2.button1]> "FindIt $find"
-            bind $widgetnm <F3> "FindIt $find"
-            if {$types=="replace"} {
-                bind $widgetnm <Alt-[fb $find.f2.button3]> "ReplaceIt once"
-                bind $widgetnm <Alt-[fb $find.f2.button4]> "ReplaceAll"
-            }
-            bind $widgetnm <Alt-[fb $find.l.f4.f5.cbox1]> { $find.l.f4.f5.cbox1 invoke }
-            bind $widgetnm <Alt-[fb $find.l.f4.f5.cbox2]> { $find.l.f4.f5.cbox2 invoke }
-            bind $widgetnm <Alt-[fb $find.l.f4.f3.up]> { $find.l.f4.f3.up invoke }
-            bind $widgetnm <Alt-[fb $find.l.f4.f3.down]> { $find.l.f4.f3.down invoke }
-        }
-    if {$typ == "replace"} {
-        bindevnt $find.l.f2.entry2 $typ $find
-        bindevnt $find.f2.button3 $typ $find
-        bindevnt $find.f2.button4 $typ $find
-    } else {
-        bindevnt $find.f2.button1 $typ $find
-        bindevnt $find.f2.button2 $typ $find
-    }
-    bindevnt $find.l.f4.f3.up  $typ $find
-    bindevnt $find.l.f4.f3.down $typ $find
-    bindevnt $find.l.f4.f5.cbox1 $typ $find
-    bindevnt $find.l.f4.f5.cbox2 $typ $find
-    bindevnt $find.l.f1.entry $typ $find
-    bind $find <Escape> "CancelFind $find"
-    # after 0 in the following Alt binding is mandatory for Linux only
-    # This is Tk bug 1236306
-    bind $find <Alt-[fb $find.f2.button2]> "after 0 CancelFind $find"
-    bind $find <Visibility> {raise $find $pad};
-    bind $pad <Expose> {catch {raise $find} }
-
-    $find.l.f1.entry selection range 0 end
-    focus $find.l.f1.entry
-    grab $find
-
-    # call ResetFind to initialize all the settings
-    $find.l.f4.f3.down invoke
-# <TODO> 3 lines temporary here since only replace all works with multiple files
-if {$typ!="replace"} {
-$find.l.f4.f5.cbox3 configure -state disabled
-}
-}
-
-proc findnext {typof} {
-# proc for find next
-    global SearchString find
-    if [catch {expr [string compare $SearchString "" ] }] {
-        findtext $typof
-    } else {
-        FindIt $find
-    }
-}
-
-proc multiplefilesreplaceall {w} {
-# replace all in current buffer, or in all the opened buffers
-    global SearchString listoftextarea multiplefiles
-
+proc issearchstringempty {SearchString pw} {
+# check whether SearchString is empty or not
     if {$SearchString == ""} {
         tk_messageBox -message [mc "You are searching for an empty string!"] \
-                      -parent $w -title [mc "Replace"]
-        return
-    }
-
-    if {$multiplefiles == 1} {
-        # replace all in all the opened buffers
-        set tacur [gettextareacur]
-        foreach ta $listoftextarea {
-            montretext $ta
-            ReplaceAll
-        }
-        montretext $tacur
+                      -parent $pw -title [mc "Find"]
+        return 1
     } else {
-        # replace all in the current buffer only
-        ReplaceAll
+        return 0
     }
 }
 
-proc multiplefilesfind {w} {
-# search in all the opened buffers
-# <TODO> this does not work!
-    global listoftextarea findresult findrefpos SearchPos
-    # save initial search start position in current buffer
-    if {![info exists findrefpos]} {
-        set findrefpos $SearchPos
-    }
-    if {$findresult == "nomatchfound" || [diditwrap $findrefpos $SearchPos]} {
-        nextbuffer
-        unset findrefpos
-    }
-    set findresult [FindIt $w]
-}
-
-proc diditwrap {PrecPos NewPos} {
-# Check whether the most recent replace or find wrapped (from end of text
-# to its beginning, or the opposite)
-    global SearchDir
-    set textareacur [gettextareacur]
-    set didwrap "false"
-    if {$SearchDir == "forwards"} {
-        if {[$textareacur compare $NewPos < $PrecPos]} {
-            set didwrap "true"
-        }
+proc setwholewordstring {wholeword SearchString regexpcase} {
+# whole word searching: set regexp mode and add \m at the beginning of
+# $SearchString and \M at the end
+# double escape of the backslash is needed because of the eval in proc
+# doonesearch
+    if {$wholeword} {
+        set tosearchfor "\\\\m$SearchString\\\\M"
+        set reg "regexp"
     } else {
-        if {[$textareacur compare $NewPos > $PrecPos]} {
-            set didwrap "true"
-        }
+        set tosearchfor $SearchString
+        set reg $regexpcase
     }
-    return $didwrap
+    return [list $tosearchfor $reg]
 }
 
-proc MoveDialogIfFoundHidden {w} {
-    global pad
-    # offsets in pixels to take into account the window border and title bar sizes
-    # <TODO>: values are probably platform-dependent
-    set bordsize  3
-    set titlsize 29
-    set filemenusize [$pad.filemenu yposition 1]
-    # coordinates of the dialog - left, right, top, bottom - screen coordinate system
-    set ld [expr [winfo rootx $w] - $bordsize]
-    set rd [expr $ld + [winfo width $w] + 2*$bordsize]
-    set td [expr [winfo rooty $w] - $titlsize]
-    set bd [expr $td + [winfo height $w] + $titlsize + $bordsize]
-    # coordinates of the main window - screen coordinate system
-    set lt [expr [winfo rootx $pad] - $bordsize]
-    set rt [expr $lt + [winfo width $pad] + 2*$bordsize]
-    set tt [expr [winfo rooty $pad] - $titlsize - $filemenusize]
-    set bt [expr $tt + [winfo height $pad] + $titlsize + $filemenusize + $bordsize]
-    # get found text area coordinates relative to the main window coordinate system
-    set textareacur [gettextareacur]
-    if {[catch {set foundlcoord [$textareacur dlineinfo foundtext.first]} ]} {
-        if {[catch {set foundlcoord [$textareacur dlineinfo replacedtext.first]} ]} {
-            set foundlcoord [$textareacur dlineinfo insert]
-        }
+proc notfoundmessagebox {SearchString textarea pw mbtitle} {
+# display a message box telling that the searched string could not be found
+    global listoffile
+    tk_messageBox -message \
+        [concat [mc "The string"] $SearchString [mc "could not be found in"] \
+                $listoffile("$textarea",fullname) ] \
+        -parent $pw -title [mc $mbtitle]
+}
+
+proc notfoundinallmessagebox {SearchString pw mbtitle} {
+# display a message box telling that the searched string could not be found
+#in all the opened buffers
+    tk_messageBox -message \
+        [concat [mc "The string"] $SearchString \
+                [mc "could not be found in any of the opened files !"] ] \
+        -parent $pw -title [mc $mbtitle]
+}
+
+proc MoveDialogIfTaggedTextHidden {w textarea tagname} {
+# this proc checks whether the intersection between a dialog and a rectangular
+# area of text is empty or not
+# if the intersection is empty, it does nothing
+# otherwise it moves the dialog in such a way that it does not hide the tagged
+# text anymore
+# the dialog is identified by its pathname $w
+# the text area is identified by its textarea name and a tag name, and this tag
+# *must* extend onto a single line
+# it is assumed that only one contiguous portion of text is tagged with $tagname
+# if no character in $textarea is tagged by $tagname, then the text span considered
+# defaults to the insertion cursor location
+    global pad textFont
+
+    # coordinates of the _d_ialog - left, right, top, bottom - screen coordinate system
+    foreach {ww wh wdl wdt} [totalGeometry $w] {}
+    set ld $wdl
+    set rd [expr $wdl + $ww]
+    set td $wdt
+    set bd [expr $wdt + $wh]
+
+    # get _t_agged text area coordinates relative to the $textarea coordinate system
+    if {[catch {set taggedlcoord [$textarea dlineinfo $tagname.first]} ]} {
+        set taggedlcoord [$textarea dlineinfo insert]
     }
-    set lf1 [lindex $foundlcoord 0]
-    set rf1 [expr $lf1 + [lindex $foundlcoord 2]]
-    set tf1 [lindex $foundlcoord 1]
-    set bf1 [expr $tf1 + [lindex $foundlcoord 3]]
-    # convert found text coordinates to screen coordinate system
-    set lf [expr $lt + $bordsize + $lf1]
-    set rf [expr $lt + $bordsize + $rf1]
-    set tf [expr $tt + $titlsize + $filemenusize + $bordsize + $tf1]
-    set bf [expr $tt + $titlsize + $filemenusize + $bordsize + $bf1]
-    # check if the dialog overlaps the text found (intersection of two rectangles)
-    if { ! ( ($ld > $rf) || ($lf > $rd) || ($td > $bf) || ($tf > $bd) ) } {
+    foreach {taggedtextpos taggedtextend} [$textarea tag ranges $tagname] {}
+    if {![info exists taggedtextpos]} {
+        set taggedtextpos [$textarea index insert]
+        set taggedtextend $taggedtextpos
+    }
+    scan $taggedtextpos "%d.%d" ypos xpos
+    set taggedtext  [$textarea get $taggedtextpos $taggedtextend]
+    set startofline [$textarea get $ypos.0 $taggedtextpos]
+    set taggedtextwidth  [font measure $textFont $taggedtext]
+    set startoflinewidth [font measure $textFont $startofline]
+    set lineheight [lindex $taggedlcoord 3]
+    set lt1 [expr [lindex $taggedlcoord 0] + $startoflinewidth]
+    set rt1 [expr $lt1 + $taggedtextwidth]
+    set tt1 [lindex $taggedlcoord 1]
+    set bt1 [expr $tt1 + $lineheight]
+
+    # convert tagged text coordinates into screen coordinate system
+    set lta [winfo rootx $textarea]
+    set tta [winfo rooty $textarea]
+    set lt [expr $lt1 + $lta]
+    set rt [expr $rt1 + $lta]
+    set tt [expr $tt1 + $tta]
+    set bt [expr $bt1 + $tta]
+
+    # check if the dialog overlaps the tagged text (intersection of two rectangles)
+    if { ! ( ($ld > $rt) || ($lt > $rd) || ($td > $bt) || ($tt > $bd) ) } {
         # the two rectangles intersect, move the dialog
-        scan [wm geometry $w] "%dx%d+%d+%d" cw ch cx cy
-        set newx [expr $cx - ($rd - $ld)]
+        set newx [expr $ld - ($rd - $ld)]
         if {$newx < 1} {
             set newx [expr [winfo screenwidth $w] - ($rd - $ld)]
         }
-        set newy [expr $cy - ($bd - $td)]
+        set newy [expr $td - ($bd - $td)]
         if {$newy < 1} {
             set newy [expr [winfo screenheight $w] - ($bd - $td)]
         }
         wm geometry $w "+$newx+$newy"
     }
+}
+
+proc totalGeometry {{w .}} {
+# compute the total width and height of a window, as well as its top left
+# corner position
+# this differs from wm geometry in that it includes the decorations width
+# and height
+# this proc was initially copied from http://wiki.tcl.tk/11291
+# related information can be found in http://wiki.tcl.tk/11502
+# it has been slightly modified to accomodate for negative values coming
+# from wm geometry
+# this improvement has been propagated to the wiki
+    set geom [wm geometry $w]
+ #   regexp -- {([0-9]+)x([0-9]+)\+([0-9]+)\+([0-9]+)} $geom -> \
+      width height decorationLeft decorationTop
+    scan $geom "%dx%d+%d+%d" width height decorationLeft decorationTop
+    set contentsTop [winfo rooty $w]
+    set contentsLeft [winfo rootx $w]
+
+    # Measure left edge, and assume all edges except top are the
+    # same thickness
+    set decorationThickness [expr {$contentsLeft - $decorationLeft}]
+
+    # Find titlebar and menubar thickness
+    set menubarThickness [expr {$contentsTop - $decorationTop}]
+
+    incr width [expr {2 * $decorationThickness}]
+    incr height $decorationThickness
+    incr height $menubarThickness
+
+    return [list $width $height $decorationLeft $decorationTop]
 }

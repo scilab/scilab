@@ -27,9 +27,9 @@ bind Text <Control-Z> {redo %W}
 bind Text <<Modified>> {changedmodified %W}
 
 bind Text <Control-f> {}
-bind $pad <Control-f> {findtext find}
-bind $pad <Control-r> {findtext replace}
-bind $pad <F3> {findnext find}
+bind $pad <Control-f> {findtextdialog find}
+bind $pad <Control-r> {findtextdialog replace}
+bind $pad <F3> {findnext}
 
 bind Text <Control-x> {cuttext}
 bind $pad <Control-c> {copytext}
@@ -102,7 +102,15 @@ bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource 
 bind $pad <Control-Key-1> "$pad.filemenu.wind invoke 1"
 bind $pad <Control-Key-2> "$pad.filemenu.wind invoke 2"
 bind $pad <Control-Key-3> "$pad.filemenu.wind invoke 3"
-bind $pad <Configure> {if {"%W"=="$pad"} {catch {spaceallsashesevenly} }}
+# For Tk 8.5 and above, the behavior on external resize is driven by
+# the option -stretch always
+# For Tk before 8.5, proc spaceallsasheskeeprelsizes tries to emulate
+# this option (with more or less success)
+bind $pad <Configure> {if {"%W"=="$pad"} {
+                           if {!$Tk85} {
+                               catch {spaceallsasheskeeprelsizes}
+                           }
+                       }}
 bind Panedwindow <Double-Button-1> {spacesashesevenly %W}
 
 

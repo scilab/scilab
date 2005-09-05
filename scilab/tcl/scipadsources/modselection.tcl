@@ -1,5 +1,6 @@
 proc selectall {} {
     [gettextareacur] tag add sel 1.0 end
+    [gettextareacur] mark set insert end
 }
 
 proc selectline {} {

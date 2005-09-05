@@ -1412,3 +1412,37 @@ Francois VOGEL, 25/08/05
  * Added a checkbox in the Find/Replace dialog for searching in all the
    opened buffers - Only replace all is working now
  * version --> 5.32
+
+Francois VOGEL, 05/09/05
+ * Completely rewrote Find/Replace procedures to allow to search and replace
+   in more than one buffer
+ * Fixed: the foundtext tag that stayed forever after a find next triggered
+   by F3 is now removed on buttonpress event (was fixed in 3.42 but broken
+   again later when additional bindings for dnd were implemented)
+ * Fixed: Moving of the Find/Replace dialog when it hides a match works also
+   when Scipad has splitted windows
+ * Improved the overlapping detection in proc MoveDialogIfTaggedTextHidden:
+   previously the find dialog was said to overlap whenever any part of the
+   full line containing the match overlapped the dialog; now the overlap
+   detection is precisely reduced to only the exact matched characters area
+ * Tk bug 1275237 worked around - occurred when replacing a string by an empty
+   one (Find/Replace)
+ * Total number of replaces is displayed after a Replace all in all opened
+   buffers
+ * Added the missing Alt binding for Find/Replace in all opened files
+ * New Find/Replace function: toggle on/off search in selection
+ * New Find/Replace function: match whole word only
+ * Replace in selection can be extended to the whole buffer when no match
+   is found in the selection
+ * Select all moves the cursor at the end of the selection (fixed by Enrico)
+ * Added global variable Tk85 which is true if Tk version is at least 8.5
+   This is useful to prepare the transition of Scipad to Tcl/Tk 8.5. Currently
+   Scipad works as well under 8.4 or 8.5, but certain options or commands
+   available only in 8.5 are used when Tk 8.5 is present, for instance:
+     - $panedwindow paneconfigure $pane -stretch always
+     - $text search -strictlimits  (but this one is bugged: Tk bug 1281228)
+ * External resizing of Scipad does no more space all sashes evenly but
+   rather move the sashes in such a way that the relative size of panes
+   are maintained (uses -stretch always in 8.5, which is emulated in 8.4
+   but result is not always perfect in 8.4)
+ * version --> 5.33

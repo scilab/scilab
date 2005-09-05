@@ -95,6 +95,7 @@
 proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
     global pad FontSize menuFont
+    global Tk85
 
     # everything is packed in a frame whose name is provided by createpaneframename
     set tapwfr [createpaneframename $textarea $targetpw]
@@ -127,6 +128,9 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     pack $tapwfr.bottom                       -side bottom -expand 0 -fill both
 
     $targetpw add $tapwfr -minsize [expr $FontSize * 2]
+    if {$Tk85} {
+        $targetpw paneconfigure $tapwfr -stretch always
+    }
 
     if {$targetpw == "$pad.pw0"} {
         pack $targetpw -side top -expand 1 -fill both
@@ -813,6 +817,42 @@ proc spacesashesevenly {pwname} {
         set paneposy [expr $paneheight * ($i + 1)]
         $pwname sash place $i $paneposx $paneposy
     }
+}
+
+proc spaceallsasheskeeprelsizes {} {
+# space all the sashes of all the existing paned windows
+# while keeping their relative sizes in each panedwindow
+# this proc is only used with Tk < 8.5 since in Tk 8.5
+# this behavior is better obtained with -stretch always
+# option for all panes
+
+    set pwlist [getlistofpw]
+
+    # save the current sashes positions before updating the display
+    foreach pw $pwlist {
+        set nbpanes($pw) [llength [$pw panes]]
+        for {set i 0} {$i < [expr $nbpanes($pw) - 1]} {incr i} {
+            set sashxy($pw,$i) [$pw sash coord $i]
+        }
+        set pwheight($pw) [winfo height $pw]
+        set pwwidth($pw)  [winfo width  $pw]
+    }
+
+    update
+
+    # set new panes sizes and sashes positions
+    foreach pw $pwlist {
+        set pwheight2 [winfo height $pw]
+        set pwwidth2  [winfo width  $pw]
+        set incfacty [expr $pwheight2. / $pwheight($pw)]
+        set incfactx [expr $pwwidth2.  / $pwwidth($pw) ]
+        for {set i 0} {$i < [expr $nbpanes($pw) - 1]} {incr i} {
+            set newx [expr round([lindex $sashxy($pw,$i) 0] * $incfactx)]
+            set newy [expr round([lindex $sashxy($pw,$i) 1] * $incfacty)]
+            $pw sash place $i $newx $newy
+        }
+    }
+
 }
 
 proc managescroll {scrbar a b} {

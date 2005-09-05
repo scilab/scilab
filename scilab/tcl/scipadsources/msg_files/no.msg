@@ -119,7 +119,7 @@
 
 # findreplace.tcl
 ::msgcat::mcset no "The string" "Strengen"
-    ::msgcat::mcset no "could not be found" "ble ikke funnet"
+    ::msgcat::mcset no "could not be found in" "ble ikke funnet"
 ::msgcat::mcset no "replacements done" "erstattninger utført"
 ::msgcat::mcset no "Find" "Søk"
 ::msgcat::mcset no "No match found in the selection for" "Ingen treff i den markerte delen av"
@@ -131,7 +131,7 @@
 ::msgcat::mcset no "Find &Next" "Finn &neste"
 ::msgcat::mcset no "Replace &All" "Erstatt &alle"
 ::msgcat::mcset no "&Upwards" "&Oppover"
-::msgcat::mcset no "Downward&s" "&Nedover" 
+::msgcat::mcset no "&Downwards" "&Nedover" 
 ::msgcat::mcset no "Match &case" "Skill på store og små bokstaver"
 ::msgcat::mcset no "&Regular expression" "&Regulært uttrykk (regexp)"
 

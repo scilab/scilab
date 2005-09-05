@@ -224,10 +224,6 @@ Wishes:
  one of its sub-areas. Would probably require -hide option for panedwindow,
  but this one is only available from Tk 8.5 (TIP #179)
 
--Make use of the native Tk Find/Replace dialog available from 8.5
- Hmmm... is this such a good idea since now we would like to search in all
- the opened buffers, which function requires a dedicated checkbox?
-
 -Currently any character typed in the buffer is inserted if there is
  no selection. Add a mode toggled by the Ins key in which characters
  would replace the existing ones. Add a visual indicator of this state.
@@ -266,14 +262,10 @@ Wishes:
  warning: updating minsize on file open or dnd could lead to a very large
  window
 
--Find/Replace: extend the functionality with a checkbox: "Search in all the
- opened buffers" (disabled when there is only one - think also about the case
- when the buffers are maximized: should switch buffers or should the checkbox
- be disabled?) - warning: search in all opened + in selection
- Find/Replace in opened buffers should search in all the opened buffers,
- visible or not that they are. The question is, "from the first buffer
- of the list" or "from the current buffer"? Wraparound?
- -- Done for Replace All only
+-Find in an unopened file, or in a directory
+ Matches are reported in a results window
+ Clicking on a match opens the file (if not yet opened) at the correct line
+ or text index
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:

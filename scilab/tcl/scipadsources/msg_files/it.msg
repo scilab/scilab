@@ -153,7 +153,7 @@
 
 # findreplace.tcl
 ::msgcat::mcset it "The string" "La stringa"
-    ::msgcat::mcset it "could not be found" "non è stata trovata"
+    ::msgcat::mcset it "could not be found in" "non è stata trovata"
 ::msgcat::mcset it "replacements done" "sostituzioni effettuate"
 ::msgcat::mcset it "Find" "Cerca"
 ::msgcat::mcset it "No match found in the selection for" \
@@ -169,7 +169,7 @@
 ::msgcat::mcset it "Find &Next" "Trova il segue&nte"
 ::msgcat::mcset it "Replace &All" "Rimpiazza &tutti"
 ::msgcat::mcset it "&Upwards" "Verso l'&alto"
-::msgcat::mcset it "Downward&s" "Verso il &basso" 
+::msgcat::mcset it "&Downwards" "Verso il &basso" 
 ::msgcat::mcset it "Match &case" "Rispetta &maiuscole"
 ::msgcat::mcset it "&Regular expression" "Espressione &regolare (regexp)"
 ::msgcat::mcset it "In all &opened files" "In tutti i &files aperti" 

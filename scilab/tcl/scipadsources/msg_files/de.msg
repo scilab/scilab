@@ -131,7 +131,7 @@
 
 # findreplace.tcl
 ::msgcat::mcset de "The string" "Die Zeichenkette"
-    ::msgcat::mcset de "could not be found" "konnte nicht gefunden werden"
+    ::msgcat::mcset de "could not be found in" "konnte nicht gefunden werden in"
 ::msgcat::mcset de "replacements done" "Ersetzungen ausgeführt"
 ::msgcat::mcset de "Find" "Suchen"
 ::msgcat::mcset de "No match found in the selection for" "Die Zeichenkette"
@@ -143,7 +143,7 @@
 ::msgcat::mcset de "Find &Next" "Suche &fortsetzen"
 ::msgcat::mcset de "Replace &All" "&Alle Ersetzen"
 ::msgcat::mcset de "&Upwards" "&Rückwärts"
-::msgcat::mcset de "Downward&s" "&Vorwärts" 
+::msgcat::mcset de "&Downwards" "&Vorwärts" 
 ::msgcat::mcset de "Match &case" "&Groß-/Kleinschreibung beachten"
 ::msgcat::mcset de "&Regular expression" "Reg&ulärer Ausdruck"
 

@@ -130,7 +130,7 @@
 
 # findreplace.tcl
 ::msgcat::mcset pl "The string" "Ci\u0105g znak\u00f3w"
-    ::msgcat::mcset pl "could not be found" "nie zosta\u0142 znaleziony"
+    ::msgcat::mcset pl "could not be found in" "nie zosta\u0142 znaleziony"
 ::msgcat::mcset pl "replacements done" "Zamienianie zako\u0144czone"
 ::msgcat::mcset pl "Find" "Znajd\u017a"
 ::msgcat::mcset pl "No match found in the selection for" "Nie znaleziono w zaznaczeniu"
@@ -142,7 +142,7 @@
 ::msgcat::mcset pl "Find &Next" "Z&najd\u017a nast\u0119pne"
 ::msgcat::mcset pl "Replace &All" "&Zamie\u0144 wszystko"
 ::msgcat::mcset pl "&Upwards" "&Do przodu"
-::msgcat::mcset pl "Downward&s" "D&o ty\u0142u" 
+::msgcat::mcset pl "&Downwards" "D&o ty\u0142u" 
 ::msgcat::mcset pl "Match &case" "U&wzgl\u0119dnij wielko\u015b\u0107 liter"
 ::msgcat::mcset pl "&Regular expression" "&Uwzgl\u0119dnij tylko ca\u0142e wyrazy"
 

@@ -100,11 +100,11 @@ proc createmenues {} {
     eval "$pad.filemenu add cascade [me "&Search"] \
                -menu $pad.filemenu.search  "
     eval "$pad.filemenu.search add command [me "&Find..."] \
-               -command \"findtext find\" -accelerator Ctrl+f"
+               -command \"findtextdialog find\" -accelerator Ctrl+f"
     eval "$pad.filemenu.search add command [me "Find &Next"] \
-               -command \"findnext find\" -accelerator F3"
+               -command \"findnext\" -accelerator F3"
     eval "$pad.filemenu.search add command [me "&Replace..."] \
-               -command \"findtext replace\" -accelerator Ctrl+r"
+               -command \"findtextdialog replace\" -accelerator Ctrl+r"
     eval "$pad.filemenu.search add command [me "&Goto Line..."] \
                -command \"gotoline\" -accelerator Ctrl+g"
 

@@ -143,7 +143,7 @@
 
 # findreplace.tcl
 ::msgcat::mcset se "The string" "Strängen"
-    ::msgcat::mcset se "could not be found" "kan inte hittas"
+    ::msgcat::mcset se "could not be found in" "kan inte hittas"
 ::msgcat::mcset se "replacements done" "ersättningar utförda"
 ::msgcat::mcset se "Find" "Finn"
 ::msgcat::mcset se "No match found in the selection for" \
@@ -158,7 +158,7 @@
 ::msgcat::mcset se "Find &Next" "&Hitta nästa"
 ::msgcat::mcset se "Replace &All" "Ersätt &alla"
 ::msgcat::mcset se "&Upwards" "&Uppåt"
-::msgcat::mcset se "Downward&s" "&Neråt" 
+::msgcat::mcset se "&Downwards" "&Neråt" 
 ::msgcat::mcset se "Match &case" "&Skilj på gemener och versaler"
 ::msgcat::mcset se "&Regular expression" "&Reguljärt uttryck"
 

@@ -17,16 +17,26 @@ catch {
     }
 }
 
-# Define ScilabEval to a void function, if it is unknown. This is
-# useful in order to run scipad outside of scilab (e.g. to debug it)
+# if Scipad is launched outside of Scilab, e.g. from wish:
 if {[catch {ScilabEval ";"}] != 0} {
+
+    # Define ScilabEval to a void function, if it is unknown. This is
+    # useful in order to run scipad outside of scilab (e.g. to debug it)
     proc ScilabEval args { 
         showinfo [mc "NOT CONNECTED TO SCILAB"]
         puts $args
     }
     set sciprompt 0
+
+    # hide the superfluous toplevel created by wish by default
     wm withdraw .
-    if {$tcl_platform(platform) != "unix"} {console show}
+
+    # show the console in a fixed screen position and size
+    if {$tcl_platform(platform) != "unix"} {
+        console show
+        console eval {wm geometry . 67x20+0+0}
+        console title "Scipad debug"
+    }
 }
 
 # Committed versions should have this attribute set to false
@@ -57,7 +67,17 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.32"
+set version "Version 5.33"
+
+
+# detect Tk version and set a global flag to true if this version is >= 8.5
+# this is used to improve Scipad when used with recent Tks without preventing
+# use with older ladies (ex: -strictlimits option in find/replace)
+if { [package vcompare $tk_version 8.5] >= 0 } {
+    set Tk85 1
+} else {
+    set Tk85 0
+}
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list

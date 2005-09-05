@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.32
+# in sync at least with v5.33
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -132,23 +132,28 @@
 
 # findreplace.tcl
 ::msgcat::mcset fr "The string" "La chaîne"
-    ::msgcat::mcset fr "could not be found" "n'a pu être trouvée"
+    ::msgcat::mcset fr "could not be found in" "n'a pu être trouvée dans"
+    ::msgcat::mcset fr "could not be found in any of the opened files !" "n'a pu être trouvée dans aucun des fichiers ouverts !"
 ::msgcat::mcset fr "replacements done" "remplacements effectués"
 ::msgcat::mcset fr "Find" "Rechercher"
 ::msgcat::mcset fr "No match found in the selection for" "La chaîne"
     ::msgcat::mcset fr "\nWould you like to look for it in the entire text?" "n'a pu être trouvée dans la sélection.\nVoulez-vous rechercher dans la totalité du texte ?"
 ::msgcat::mcset fr "You are searching for an empty string!" "La chaîne à rechercher est vide!"
-::msgcat::mcset fr "Wrapped around" "Rebouclé"
 ::msgcat::mcset fr "Re&place" "&Remplacer"
 ::msgcat::mcset fr "Find what:" "Rechercher :"
 ::msgcat::mcset fr "Replace with:" "Remplacer par :"
 ::msgcat::mcset fr "Find &Next" "Rechercher &suivant"
 ::msgcat::mcset fr "Replace &All" "Remplacer &tout"
 ::msgcat::mcset fr "&Upwards" "Vers le &haut"
-::msgcat::mcset fr "Downward&s" "Vers le &bas" 
+::msgcat::mcset fr "&Downwards" "Vers le &bas" 
+::msgcat::mcset fr "Match &whole word only" "Mot &entier seulement"
 ::msgcat::mcset fr "Match &case" "Respecter la &casse"
 ::msgcat::mcset fr "&Regular expression" "E&xpression régulière"
 ::msgcat::mcset fr "In all &opened files" "Dans tous les fichiers &ouverts"
+::msgcat::mcset fr "In &selection only" "Da&ns la sélection seulement"
+::msgcat::mcset fr "Wrapped around" "Rebouclé"
+::msgcat::mcset fr "Back at the first file searched!" "Revenu au premier fichier !"
+::msgcat::mcset fr "No more matches" "Pas d'autre correspondance"
 
 
 # helps.tcl
