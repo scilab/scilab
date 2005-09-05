@@ -47,7 +47,7 @@ static int DrawXGrid(sciPointObj * psubwin);
 static int DrawYGrid(sciPointObj * psubwin);
 
 static void YGradPosition(sciPointObj * psubwin, int xx, int rect2);
-static void XGradPosition(sciPointObj * psubwin, int yy);
+static void XGradPosition(sciPointObj * psubwin, int yy, int rect3);
 
 int SciDrawLines(char pos, sciPointObj * psubwin, double xy, int textcolor,int ticscolor);
 
@@ -1794,6 +1794,8 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
  
   barlength =  (integer) (Cscale.WIRect1[3]/50.0);
   
+  ppsubwin->firsttime_x = TRUE;
+  
   if(ppsubwin->axes.auto_ticks[0] == FALSE)
     {
       /* we display the x tics specified by the user*/
@@ -1835,6 +1837,7 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	  XGradPosition(psubwin,posi[1],rect[3]);
 /* 	  if ( logflag == 'l' ) */
 /* 	    { */
 /* 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
@@ -1916,12 +1919,14 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	  XGradPosition(psubwin,posi[1],rect[3]);
 	  if ( logflag == 'l' )
 	    {
 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
 		      (posi[1] += logrect[3],&posi[1]),
 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+	      XGradPosition(psubwin,posi[1],rect[3]);
 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -2164,7 +2169,7 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   
   barlength =  (integer) (Cscale.WIRect1[2]/75.0);
   
-  ppsubwin->firsttime = TRUE;
+  ppsubwin->firsttime_y = TRUE;
 
   if(ppsubwin->axes.auto_ticks[1] == FALSE)
     {
@@ -2491,11 +2496,11 @@ void YGradPosition(sciPointObj * psubwin, int xx, int rect2)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   
-  if(ppsubwin->firsttime == TRUE)
+  if(ppsubwin->firsttime_y == TRUE)
     {
       ppsubwin->YGradMostOnLeft = xx;
       ppsubwin->YGradMostOnRight = xx + rect2;
-      ppsubwin->firsttime = FALSE;
+      ppsubwin->firsttime_y = FALSE;
     }
   else
     {
@@ -2504,19 +2509,19 @@ void YGradPosition(sciPointObj * psubwin, int xx, int rect2)
     }
 }
 
-void XGradPosition(sciPointObj * psubwin, int yy)
+void XGradPosition(sciPointObj * psubwin, int yy, int rect3)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   
-  if(ppsubwin->firsttime == TRUE)
+  if(ppsubwin->firsttime_x == TRUE)
     {
       ppsubwin->XGradMostOnTop = yy;
-      ppsubwin->XGradMostOnBottom = yy;
-      ppsubwin->firsttime = FALSE;
+      ppsubwin->XGradMostOnBottom = yy + rect3;
+      ppsubwin->firsttime_x = FALSE;
     }
   else
     {
       if(yy < ppsubwin->XGradMostOnBottom) ppsubwin->XGradMostOnBottom  = yy;
-      if(yy > ppsubwin->XGradMostOnTop)    ppsubwin->XGradMostOnTop     = yy;
+      if(yy + rect3 > ppsubwin->XGradMostOnTop) ppsubwin->XGradMostOnTop = yy + rect3;
     }
 }
