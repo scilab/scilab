@@ -511,22 +511,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
-
-      if (sciInitFontContext (ppsubwin->mon_title) == -1)
-	{
-	  DestroyLabel(ppsubwin->mon_title);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);	  
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
       
       sciSetText(ppsubwin->mon_title, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.textlen);
-/*       sciSetFontStyle(ppsubwin->mon_title, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_title)); */
-/*       sciSetFontDeciWidth(ppsubwin->mon_title,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_title)); */
-/*       sciSetVisibility(ppsubwin->mon_title, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_title)); */
       
       /*------------------------------------*/
       if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
@@ -538,21 +525,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	return (sciPointObj *) NULL;
       }
       
-      if (sciInitFontContext (ppsubwin->mon_x_label) == -1)
-	{
-	  DestroyLabel(ppsubwin->mon_title);
-	  DestroyLabel(ppsubwin->mon_x_label);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
       sciSetText(ppsubwin->mon_x_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.textlen);
-/*       sciSetFontStyle(ppsubwin->mon_x_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)); */
-/*       sciSetFontDeciWidth(ppsubwin->mon_x_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)); */
-/*       sciSetVisibility(ppsubwin->mon_x_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)); */
 
       /*------------------------------------*/
       if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
@@ -565,24 +539,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	return (sciPointObj *) NULL;
       }
   
-      if (sciInitFontContext (ppsubwin->mon_y_label) == -1)
-	{
-	  DestroyLabel(ppsubwin->mon_title);
-	  DestroyLabel(ppsubwin->mon_x_label);
-	  DestroyLabel(ppsubwin->mon_y_label);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
       sciSetText(ppsubwin->mon_y_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.textlen);
-/*       sciSetFontStyle(ppsubwin->mon_y_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)); */
-/*       sciSetFontDeciWidth(ppsubwin->mon_y_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)); */
-/*       sciSetVisibility(ppsubwin->mon_y_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)); */
-
 
       /*------------------------------------*/
       if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
@@ -596,25 +554,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	return (sciPointObj *) NULL;
       }
 
-      if (sciInitFontContext (ppsubwin->mon_z_label) == -1)
-	{
-	  DestroyLabel(ppsubwin->mon_title);
-	  DestroyLabel(ppsubwin->mon_x_label);
-	  DestroyLabel(ppsubwin->mon_y_label);
-	  DestroyLabel(ppsubwin->mon_z_label);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
       sciSetText(ppsubwin->mon_z_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.textlen);
-/*       sciSetFontStyle(ppsubwin->mon_z_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
-/*       sciSetFontDeciWidth(ppsubwin->mon_z_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
-/*       sciSetVisibility(ppsubwin->mon_z_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)); */
-      
       
       /* labels auto_position modes */
       pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position = 
@@ -2672,7 +2613,6 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
-
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
       if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
@@ -2737,6 +2677,10 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+      
+      if(type == 3 && pSUBWIN_FEATURE(pparentsubwin)->is3d == FALSE) /* F.Leray 02.09.05 : y label is vertical by default when created by a 2D plot */
+	sciSetFontOrientation(pobj,2700);
+      
       return (sciPointObj *) pobj;
     }
   else
