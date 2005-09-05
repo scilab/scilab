@@ -1,9 +1,12 @@
-      SUBROUTINE ANFM05(H,IH,R,IR,Z,IZ,P,W,IPVT,X,N,M,NP,IND,MODO,IO)
+C
+C -Subprograma: anfm05
+      subroutine anfm05(h,ih,r,ir,z,iz,p,w,ipvt,x,n,m,np,ind,modo,io)
+C     SUBROUTINE ANFM05(H,IH,R,IR,Z,IZ,P,W,IPVT,X,N,M,NP,IND,MODO,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,estadistica y Computacion          *
@@ -11,6 +14,7 @@ C       -----------------------------------------------------          *
 C                       UNIVERSIDAD DE CANTABRIA                       *
 C                       ------------------------                       *
 C                             ENERO  1988                              *
+C                             JULIO  2005                              * 
 C                                                                      *
 C***********************************************************************
 C
@@ -19,7 +23,7 @@ C        Esta subrutina modifica la factorizacion  de Cholesky  (LL') de
 C        una matriz de la forma   PAP' , (P es una matriz de permutacion
 C        de filas y  A  es de la forma  Z'HZ,  donde las columnas de  Z
 C        forman una base del nucleo de un conjunto activo en un problema
-C        de  optimizacion  con  restricciones ),   cuando  se aðade una
+C        de  optimizacion  con  restricciones ),   cuando  se a¤ade una
 C        restriccion al conjunto  activo.
 C        La matriz de entrada puede encontrarse parcialmente factorizada
 C
@@ -141,7 +145,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: anfm03,dcopy,ddot,dipvtf,dswap,dlamch,
+C     SUBPROGRAMAS AUXILIARES: anfm03,dcopy,ddot,dipvtf,dswap,d1mach,
 C                              zthz
 C     FUNCIONES FORTRAN INTRINSECAS: abs,max,mod,sqrt
 C
@@ -151,11 +155,11 @@ C
 C
 C     Se comprueba si los valores de las variables son correctos
 C
-CX      if(ih.lt.np .or. ir.le.n .or. iz.lt.np .or. n.lt.1 .or. m.lt.0 .or
-CX     &. np.le.1) then
-CX         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM05.'
-CX         stop
-CX      end if
+      if(ih.lt.np .or. ir.le.n .or. iz.lt.np .or. n.lt.1 .or. m.lt.0 .or
+     &. np.le.1) then
+         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM05.'
+         stop
+      end if
 C
 C     Se inicializan algnunas variables de trabajo
 C
@@ -286,7 +290,8 @@ C
          if(j.ne.m2) call dipvtf(r,ir,ipvt,m2,m2,j)
       end if
       if(ind.ge.0 .and. ind.le.n1) then
-         if(ind.gt.0 .and. r(m2,m2).gt.epsmch) ind=ind-1
+C modified 15-july-2005.Before:if(ind.gt.0 .and. r(m2,m2).gt.epsmch) ind=ind-1. But see anrs01.
+         if(ind.gt.0 .and. r(m2,m2).gt.epsmch**0.9) ind=ind-1
          return
        end if
 C
@@ -311,3 +316,4 @@ C
       end if
       if(iibeta.eq.1) ind=ind-10*iz
       end
+C
