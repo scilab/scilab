@@ -28,7 +28,7 @@ f = e('data');
  
 TL = tlist(['3d','x','y','z','color'], f('x'), f('y'), f('z'), 10 * f('z') + 1);
  
-e('data') = TL;
+//e.data=TL;
  
 e('color_flag') = 2;
  

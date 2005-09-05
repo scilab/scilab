@@ -24,7 +24,7 @@ a2 = get('hdl');
 if load_ref('a2') then   pause,end,
 
 a2('sub_tics') = 0;
-a2('tics_segments') = 'off';
+a2('tics_segment') = 'off';
 a2('ytics_coord') = 4;
 
 %ans = drawaxis(x=-1, y=0:1:7, dir='r', fontsize=10, textcolor=5, ticscolor=6, sub_int=10);

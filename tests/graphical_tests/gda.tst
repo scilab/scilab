@@ -9,7 +9,7 @@ if load_ref('a') then   pause,end,
 a('background') = 31;
 a('box') = 'off';
 a('rotation_angles') = [70,10];
-a('tics_color') = 2;
+a('foreground') = 2;
 a('labels_font_size') = 3;
 a('labels_font_color') = 5;
 a('sub_tics') = [5,5,3];
@@ -29,7 +29,7 @@ if load_ref('%ans') then   pause,end,
 %ans = plot3d1();
 if load_ref('%ans') then   pause,end,
 //create a second axes entity
-a('grids') = [5,5,5];// setting other model's properties
+a('grid') = [5,5,5];// setting other model's properties
 %ans = clf_run();
 if load_ref('%ans') then   pause,end,
 

@@ -45,7 +45,7 @@ if load_ref('a2') then   bugmes();quit;end,
  
 a2('sub_tics') = 0;
  
-a2('tics_segments') = 'off';
+a2('tics_segment') = 'off';
  
 a2('ytics_coord') = 4;
  
