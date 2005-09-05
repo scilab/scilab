@@ -3855,7 +3855,7 @@ proc setFontAngle_title { } {
     global curfontangle_title2
 
     set fa $curfontangle_title
-    ScilabEval "global ged_handle;if ged_handle.title_label.font_angle <> $fa then ged_handle.title_label.font_angle=$fa; end;"
+    ScilabEval "global ged_handle;if ged_handle.title.font_angle <> $fa then ged_handle.title.font_angle=$fa; end;"
     set curfontangle_title2 $fa
 }
 
@@ -3866,7 +3866,7 @@ proc setEntryFontAngle_title { } {
 	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
 	return
     }
-    ScilabEval "global ged_handle;if ged_handle.title_label.font_angle <> $curfontangle_title2 then ged_handle.title_label.font_angle=$curfontangle_title2; end;"
+    ScilabEval "global ged_handle;if ged_handle.title.font_angle <> $curfontangle_title2 then ged_handle.title.font_angle=$curfontangle_title2; end;"
     set curfontangle_title $curfontangle_title2
 }
 
@@ -3897,7 +3897,7 @@ proc ZtoggleFillmode { frame } {
 
 proc TitletoggleFillmode { frame } {
     global Titlefillmode
-    ScilabEval "global ged_handle;ged_handle.title_label.fill_mode='$Titlefillmode'"
+    ScilabEval "global ged_handle;ged_handle.title.fill_mode='$Titlefillmode'"
 
     OnOffForeground $frame $Titlefillmode
 }
@@ -3926,7 +3926,7 @@ proc toggleAutoPositionz { frame } {
 
 proc toggleAutoPositiontitle { frame } {
     global titleauto_position
-    ScilabEval "global ged_handle;ged_handle.title_label.auto_position='$titleauto_position'"
+    ScilabEval "global ged_handle;ged_handle.title.auto_position='$titleauto_position'"
 
     OnOffForeground $frame $titleauto_position
 }
@@ -3974,8 +3974,8 @@ proc setPosition_title { } {
 	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
 	return
     }
-    ScilabEval "global ged_handle;ged_handle.title_label.position = $title_position"
-#     ScilabEval "global ged_handle;if ged_handle.title_label.position <> $title_position then ged_handle.title_label.position=$title_position; end;"
+    ScilabEval "global ged_handle;ged_handle.title.position = $title_position"
+#     ScilabEval "global ged_handle;if ged_handle.title.position <> $title_position then ged_handle.title.position=$title_position; end;"
 }
 
 
