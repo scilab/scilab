@@ -431,8 +431,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
   ok=0;  
-  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) ok=1;
-
+  if (ChildrenCounter(psubwin)>0) ok=1;
+  
   if ((sciGetGraphicMode (psubwin)->autoscaling)) {
     /* compute and merge new specified bounds with psubwin->Srect */
     switch (iflag[1])  {

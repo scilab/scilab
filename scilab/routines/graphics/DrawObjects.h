@@ -176,4 +176,5 @@ extern int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin
 extern int GetVerticesAt(Vertices *vertices_list, int index, int *xm, int *ym, double *x, double *y, double *z);
 extern int RemoveNext(Vertices *pCurrent);
 extern int FreeVertices(sciPointObj * psubwin);
+extern int ChildrenCounter(sciPointObj *pparent);
 #endif /* __SCI_DRAWINGS__ */

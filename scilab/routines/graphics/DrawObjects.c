@@ -5910,6 +5910,37 @@ int Merge3dDimension(sciPointObj *pparent)
   return q;
 }
 
+int ChildrenCounter(sciPointObj *pparent)
+{
+  int N,q=0;
+  sciSons * psonstmp = sciGetSons (pparent);
+  
+  while (psonstmp != (sciSons *) NULL) {   
+    switch (sciGetEntityType (psonstmp->pointobj)) {  
+    case SCI_SURFACE:
+      N=1;
+      break;
+    case  SCI_POLYLINE:
+      N = 1; 
+      break;
+    case  SCI_SEGS: 
+      N=1;
+      break;
+    case  SCI_RECTANGLE: 
+      N = 1;
+      break;
+    case SCI_AGREG:
+      N = ChildrenCounter(psonstmp->pointobj);
+      break;
+    default:
+      N=0;
+    }
+    q+=N;
+    psonstmp = psonstmp->pnext;
+  }
+
+  return q;
+}
 
 
 void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos)
