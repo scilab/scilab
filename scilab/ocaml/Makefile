@@ -14,16 +14,17 @@ MLS=parseTree.ml linenum.ml parser.ml lexer.ml\
 	graphNodeSet.ml symbolicExpression.ml\
 	squareSparseMatrix.ml bipartiteGraph.ml hungarianMethod.ml\
 	causalityGraph.ml\
-	optimization.ml optimizingCompiler.ml\
+	optimization.ml  xMLCodeGeneration.ml optimizingCompiler.ml\
 	scicosCodeGeneration.ml scicosOptimizingCompiler.ml
 MLIS=
 DOCS=parseTree.mli\
 	precompilation.mli compilation.mli instantiation.mli\
-	graphNodeSet.mli symbolicExpression.mli\
-	squareSparseMatrix.mli bipartiteGraph.mli hungarianMethod.mli\
-	causalityGraph.mli\
+	graphNodeSet.mli symbolicExpression.mli \
+	squareSparseMatrix.mli bipartiteGraph.mli hungarianMethod.mli \
+	causalityGraph.mli \
 	optimization.mli \
-	optimizingCompiler.mli\
+	xMLCodeGeneration.mli \
+	optimizingCompiler.mli \
 	scicosCodeGeneration.mli 
 PLATFORM=$(shell uname -s)
 
