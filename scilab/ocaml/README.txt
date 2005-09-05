@@ -67,6 +67,11 @@ Other options include:
                     generated C code.
 -keep-all-variables: Do not remove any variable from the initial system.
 -jac: Generate analytic jacobian matrix code.
+-no-parameter-removal: Do not remove any parameter
+-no-simplifs: Same as -keep-all-variables -no-parameter-removal
+-trace <filename>: Generate tracing information for external function calls
+                   into <filename>
+-xml: Generate an XML version of the model instead of target code
 
 Examples
 -------

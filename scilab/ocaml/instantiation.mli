@@ -43,7 +43,7 @@ and typed_when_expression =
 
 and typed_expression = {
   tex_type: expression_type;
-  tex_expression: expression;
+  tex_expression: expression option;
 }
 
 and expression_type =

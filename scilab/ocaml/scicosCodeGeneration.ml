@@ -314,6 +314,10 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
     try
       let record = ExpressionTable.find model_info.occurrence_table expr in
       match record.label with
+        | None when model_info.model.trace <> None ->
+            Printf.bprintf model_info.code_buffer "%s_trace(" name;
+            bufferize_arguments_under 0 ", " exprs';
+            Printf.bprintf model_info.code_buffer ")"            
         | None ->
             Printf.bprintf model_info.code_buffer "%s(" name;
             bufferize_arguments_under 0 ", " exprs';
@@ -864,25 +868,29 @@ let bufferize_surfaces model_info =
         Printf.bprintf model_info.code_buffer "\t\t}\n"
 
 let bufferize_initializations model_info =
+  let start_value = function
+    | None -> zero
+    | Some expr -> expr
+  in
   ExpressionTable.clear model_info.occurrence_table;
   Array.iter
     (fun discrete_variable ->
       add_to_occurrence_table
         false
-        discrete_variable.d_start_value
+        (start_value discrete_variable.d_start_value)
         model_info.occurrence_table)
     model_info.model.discrete_variables;
   Array.iter
     (fun discrete_variable ->
       add_to_occurrence_table
         false
-        discrete_variable.start_value
+        (start_value discrete_variable.start_value)
         model_info.occurrence_table)
     model_info.model.variables;
   Array.iteri
     (fun i discrete_variable ->
       let lhs = "z[" ^ (string_of_int i) ^ "] = " in
-      bufferize_rhs model_info 2 false lhs discrete_variable.d_start_value;
+      bufferize_rhs model_info 2 false lhs (start_value discrete_variable.d_start_value);
       Printf.bprintf
         model_info.code_buffer
         "; /* %s"
@@ -900,7 +908,7 @@ let bufferize_initializations model_info =
       if not equation.solved then
         let j = model_info.final_index_of_variables.(i) in
         let lhs = "x[" ^ (string_of_int j) ^ "] = " in
-        bufferize_rhs model_info 2 true lhs variable.start_value;
+        bufferize_rhs model_info 2 true lhs (start_value variable.start_value);
         Printf.bprintf model_info.code_buffer "; /* %s" variable.v_name;
         if variable.v_comment <> "" then
           Printf.bprintf model_info.code_buffer " = %s" variable.v_comment;
@@ -934,6 +942,66 @@ let bufferize_variable_nature model_info =
       model_info.model.variables;
     Printf.bprintf model_info.code_buffer "\t\tset_pointer_xproperty(property);\n"
   end
+
+
+let rec last = function
+  | [] -> failwith "last"
+  | [x] -> x
+  | _ :: xs -> last xs
+
+let generate_trace_info oc model_info = match model_info.model.trace with
+  | None -> ()
+  | Some filename ->
+      Printf.fprintf oc
+        "#include <stdio.h>\n\
+        \n\
+        \n/* Tracing code */\n";
+      List.iter
+        (fun (name, arity) ->
+          Printf.fprintf oc
+            "\n\
+            double %s_trace("
+            (last name);
+          for i = 1 to arity - 1 do
+            Printf.fprintf oc "double arg%d, " i
+          done;
+          if arity > 0 then Printf.fprintf oc "double arg%d" arity;
+          Printf.fprintf oc
+            ")\n\
+            {\n\
+            \tdouble res;\n\
+            \tFILE *fd;\n\
+            \tfd = fopen(\"%s\",\"a\");\n\
+            \tfprintf(fd, \"%s("
+            filename
+            (last name);
+          for i = 1 to arity - 1 do
+            Printf.fprintf oc "%%g, "
+          done;
+          if arity > 0 then Printf.fprintf oc "%%g";
+          Printf.fprintf oc ")\", ";
+          for i = 1 to arity - 1 do
+            Printf.fprintf oc "arg%d, " i
+          done;
+          if arity > 0 then Printf.fprintf oc "arg%d" arity;
+          Printf.fprintf oc
+            ");\n\
+            \tfclose(fd);\n\
+            \tres = %s("
+            (last name);
+          for i = 1 to arity - 1 do
+            Printf.fprintf oc "arg%d, " i
+          done;
+          if arity > 0 then Printf.fprintf oc "arg%d" arity;
+          Printf.fprintf oc
+            ");\n\
+            \tfd = fopen(\"%s\",\"a\");\n\
+            \tfprintf(fd, \" -> %%g\\n\", res);\n\
+            \tfclose(fd);\n\
+            \treturn res;\n\
+            }\n"
+            filename)
+      model_info.model.external_functions
 
 let generate_code path filename fun_name model with_jac =
   let rec to_filename = function
@@ -982,11 +1050,12 @@ let generate_code path filename fun_name model with_jac =
     (if model.io_dependency then "true" else "false");
   Printf.fprintf oc "#include <math.h>\n#include <scicos/scicos_block.h>\n";
   List.iter
-    (fun name ->
+    (fun (name, _) ->
       Printf.fprintf oc
         "#include \"%s.h\"\n"
         (String.escaped (Filename.concat path (to_filename name))))
     model.external_functions;
+  generate_trace_info oc model_info;
   Printf.fprintf oc "\n\n/* Utility functions */\n\n";
   Printf.fprintf oc
     "double ipow_(double x, int n)\n\
@@ -1003,7 +1072,7 @@ let generate_code path filename fun_name model with_jac =
      double ipow(double x, int n)\n\
      {\n\
      \t/* NaNs propagation */\n\
-     \tif ( (x!=x) || x == 0.0 && n == 0) return exp(x * log((double)n));\n\
+     \tif (x != x || x == 0.0 && n == 0) return exp(x * log((double)n));\n\
      \t/* Normal execution */\n\
      \tif (n < 0) return 1.0 / ipow_(x, -n);\n\
      \treturn ipow_(x, n);\n\
@@ -1036,6 +1105,15 @@ let generate_code path filename fun_name model with_jac =
     "\t} else if (flag == 2 && nevprt < 0) {\n";
   bufferize_when_equations model_info;
   Printf.bprintf model_info.code_buffer "\t} else if (flag == 4) {\n";
+  begin match model.trace with
+    | None -> ()
+    | Some filename ->
+        Printf.bprintf model_info.code_buffer
+          "\t\tFILE *fd;\n\
+          \t\tfd = fopen(\"%s\", \"w\");\n\
+          \t\tfclose(fd);\n"
+          filename
+  end;
   bufferize_initializations model_info;
   if with_jac then begin
     Printf.bprintf model_info.code_buffer "\t\tSet_Jacobian_flag(1);\n";

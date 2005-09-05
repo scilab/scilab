@@ -64,7 +64,7 @@ and variable =
   {
     variable_id: int;
     variable_comment: string;
-    variable_start: t Lazy.t
+    variable_start: t Lazy.t option
   }
 
 and model =
@@ -77,7 +77,8 @@ and model =
     mutable reinitializable_variables: t list;
     mutable when_clauses: (t * when_expression list) list;
     mutable io_dependency: bool;
-    mutable external_functions: string list list
+    mutable external_functions: (string list * int) list;
+    trace: string option
   }
 
 and parameter_description =
@@ -93,7 +94,7 @@ and discrete_variable_description =
     mutable d_output: int option;
     mutable d_v_name: string;
     mutable d_v_comment: string;
-    mutable d_start_value: t
+    mutable d_start_value: t option
   }
 
 and variable_description =
@@ -102,7 +103,7 @@ and variable_description =
     mutable state: bool;
     mutable v_name: string;
     mutable v_comment: string;
-    mutable start_value: t
+    mutable start_value: t option
   }
 
 and equation_description =
@@ -152,11 +153,16 @@ let get_parameter_start id parameters_map =
 
 let get_start_value id variables_map =
   let variable = StringMap.find id variables_map in
-  Lazy.force variable.variable_start
+  match variable.variable_start with
+    | None -> zero
+    | Some lexpr -> Lazy.force lexpr
 
-let rec symbolic_expression_of_expression maps iexpr =
+let rec symbolic_expression_of_expression inl_par maps iexpr =
   let rec symbolic_expression_of_expression' iexpr =
     match iexpr.Instantiation.tex_expression with
+      | None -> assert false
+      | Some expr -> symbolic_expression_of_expression'' expr
+  and symbolic_expression_of_expression'' = function
       | Instantiation.Abs iexpr ->
           let expr = symbolic_expression_of_expression' iexpr in
           symbolic_if
@@ -257,13 +263,17 @@ let rec symbolic_expression_of_expression maps iexpr =
           symbolic_or
             (symbolic_expression_of_expression' iexpr)
             (symbolic_expression_of_expression' iexpr')
-      | Instantiation.ParameterValue (_, iref) ->
+      | Instantiation.ParameterValue (_, iref) when inl_par ->
           let id = string_of_reference iref in
           if is_main_parameter id (Lazy.force maps.parameters_map) then
             create_parameter
               (StringMap.find id (Lazy.force maps.parameters_map)).parameter_id
           else
             get_parameter_start id (Lazy.force maps.parameters_map)
+      | Instantiation.ParameterValue (_, iref) ->
+          let id = string_of_reference iref in
+            create_parameter
+              (StringMap.find id (Lazy.force maps.parameters_map)).parameter_id
       | Instantiation.Power (iexpr, iexpr') ->
           symbolic_power
             (symbolic_expression_of_expression' iexpr)
@@ -319,10 +329,10 @@ let rec symbolic_expression_of_expression maps iexpr =
   in symbolic_expression_of_expression' iexpr
 
 let collect_external_function_names iequs =
-  let rec add_if_not_in name = function
-    | [] -> [name]
-    | (name' :: _) as names when name = name' -> names
-    | name' :: names -> name' :: add_if_not_in name names
+  let rec add_if_not_in (name, arity) = function
+    | [] -> [name, arity]
+    | ((name', _) :: _) as names when name = name' -> names
+    | name'_arity :: names -> name'_arity :: add_if_not_in (name, arity) names
   in
   let rec collect_in_equations funcalls = function
     | [] -> funcalls
@@ -362,6 +372,9 @@ let collect_external_function_names iequs =
         in collect_in_when_clauses funcalls iwhen_clauses
   and collect_in_expressions funcalls iexpr =
     match iexpr.Instantiation.tex_expression with
+      | None -> funcalls
+      | Some expr -> collect_in_expressions' funcalls expr
+  and collect_in_expressions' funcalls = function
       | Instantiation.Addition (iexpr, iexpr') |
         Instantiation.And (iexpr, iexpr') |
         Instantiation.Division (iexpr, iexpr') |
@@ -377,7 +390,7 @@ let collect_external_function_names iequs =
           let funcalls = collect_in_expressions funcalls iexpr in
           collect_in_expressions funcalls iexpr'
       | Instantiation.ExternalFunctionCall (name, iexprs) ->
-          let funcalls = add_if_not_in name funcalls in
+          let funcalls = add_if_not_in (name, List.length iexprs) funcalls in
           List.fold_left collect_in_expressions funcalls iexprs
       | Instantiation.If (iif_exprs, iexpr) ->
           let funcalls =
@@ -470,12 +483,12 @@ let separate_whens_from_equations iequs =
       Instantiation.FlowConnection _ :: _ -> assert false
   in separate_whens_from_equations' [] [] iequs
 
-let symbolic_equation maps = function
+let symbolic_equation inl_par maps = function
   | Instantiation.Equation (iexpr, iexpr') ->
       let expr =
         symbolic_sub
-          (symbolic_expression_of_expression maps iexpr)
-          (symbolic_expression_of_expression maps iexpr')
+          (symbolic_expression_of_expression inl_par maps iexpr)
+          (symbolic_expression_of_expression inl_par maps iexpr')
       in
       {
         solved = false;
@@ -486,24 +499,24 @@ let symbolic_equation maps = function
       }
   | _ -> assert false
 
-let symbolic_surfaces maps when_clauses =
+let symbolic_surfaces inl_par maps when_clauses =
   List.map
     (fun (iexpr, surfaces) ->
-      symbolic_expression_of_expression maps iexpr,
+      symbolic_expression_of_expression inl_par maps iexpr,
       List.map
         (function
           | Instantiation.Reinit (iexpr, iexpr') ->
-            let var = symbolic_expression_of_expression maps iexpr in
+            let var = symbolic_expression_of_expression inl_par maps iexpr in
             begin match nature var with
               | Variable i ->
-                  Reinit (var, symbolic_expression_of_expression maps iexpr')
+                  Reinit (var, symbolic_expression_of_expression inl_par maps iexpr')
               | _ -> assert false
             end
           | Instantiation.Assign (iexpr, iexpr') ->
-            let var = symbolic_expression_of_expression maps iexpr in
+            let var = symbolic_expression_of_expression inl_par maps iexpr in
             begin match nature var with
               | DiscreteVariable i ->
-                  Assign (var, symbolic_expression_of_expression maps iexpr')
+                  Assign (var, symbolic_expression_of_expression inl_par maps iexpr')
               | _ -> assert false
             end)
         surfaces)
@@ -583,7 +596,11 @@ let propagate_noEvent expr =
       (propagate_noEvent' no_event expr'')
   in propagate_noEvent' false expr
 
-let create_model iexpr =
+let create_model' trace inl_par iexpr =
+  let lazy_symbolic_expression_of_expression maps iexpr = match iexpr.Instantiation.tex_expression with
+    | None -> None
+    | Some _ -> Some (lazy (symbolic_expression_of_expression inl_par maps iexpr))
+  in
   let get_parameter_info maps s i = function
     | Instantiation.InstantiatedParameter (
         Instantiation.InstantiatedIntegerParameter (s', kind, iexpr)) |
@@ -593,7 +610,7 @@ let create_model iexpr =
           parameter_kind = kind;
           parameter_id = i;
           parameter_comment = s';
-          parameter_start = lazy (symbolic_expression_of_expression maps iexpr)
+          parameter_start = lazy (symbolic_expression_of_expression inl_par maps iexpr)
         }
     | _ -> assert false
   and get_input_info maps s i = function
@@ -615,7 +632,7 @@ let create_model iexpr =
         {
           variable_id = i;
           variable_comment = s';
-          variable_start = lazy (symbolic_expression_of_expression maps iexpr)
+          variable_start = lazy_symbolic_expression_of_expression maps iexpr
         }
     | _ -> assert false
   in
@@ -686,7 +703,7 @@ let create_model iexpr =
             d_output = None;
             d_v_name = "";
             d_v_comment = "";
-            d_start_value = zero
+            d_start_value = Some zero
           })
     and variables_array =
       Array.init
@@ -697,7 +714,7 @@ let create_model iexpr =
             state = true;
             v_name = "";
             v_comment = "";
-            start_value = zero
+            start_value = Some zero
           })
     and equations_array =
       Array.init
@@ -722,7 +739,7 @@ let create_model iexpr =
       List.fold_left
         (fun i equ ->
           assert (i < Array.length equations_array);
-          equations_array.(i) <- symbolic_equation maps equ; i + 1)
+          equations_array.(i) <- symbolic_equation inl_par maps equ; i + 1)
         0
         equations
     in ();
@@ -754,7 +771,10 @@ let create_model iexpr =
         variable.d_output <- output_index s outputs;
         variable.d_v_name <- s;
         variable.d_v_comment <- dvar.variable_comment;
-        variable.d_start_value <- Lazy.force dvar.variable_start)
+        variable.d_start_value <-
+          match dvar.variable_start with
+            | None -> None
+            | Some lexpr -> Some (Lazy.force lexpr))
       (Lazy.force maps.discrete_variables_map);
     StringMap.iter
       (fun s var ->
@@ -765,9 +785,12 @@ let create_model iexpr =
           List.memq (create_variable var.variable_id) derived_variables;
         variable.v_name <- s;
         variable.v_comment <- var.variable_comment;
-        variable.start_value <- Lazy.force var.variable_start)
+        variable.start_value <-
+          match var.variable_start with
+            | None -> None
+            | Some lexpr -> Some (Lazy.force lexpr))
       (Lazy.force maps.variables_map);
-    let when_clauses_list = symbolic_surfaces maps when_clauses in
+    let when_clauses_list = symbolic_surfaces inl_par maps when_clauses in
     let reinitializable_variables =
       let add_non_discrete_variables vars = function
         | Reinit (var, _) when not (List.memq var vars) -> var :: vars
@@ -792,8 +815,13 @@ let create_model iexpr =
       reinitializable_variables = reinitializable_variables;
       when_clauses = when_clauses_list;
       io_dependency = false;
-      external_functions = function_names
+      external_functions = function_names;
+      trace = trace
     }
+
+let create_model_with_parameters trace iexpr = create_model' trace false iexpr
+
+let create_model trace iexpr = create_model' trace true iexpr
 
 let print_model oc model =
   Printf.fprintf
@@ -934,6 +962,9 @@ let perform_hungarian_method model =
     let var = create_variable m in
     if not (List.memq var model.equations.(n).assignable_variables) then
       IntegerElement.Infinity
+    else if model.variables.(m).start_value <> None then
+      IntegerElement.Int (size * size + 1)
+      (* The user wants to see the variable in the generated code *)
     else match inversion_difficulty var model.equations.(n).expression zero with
         | 0 -> IntegerElement.zero
         | 1 -> IntegerElement.Int 1
@@ -976,8 +1007,8 @@ let eliminate_trivial_relations max_simplifs model =
       | _ ->
           let svi = model.variables.(i).start_value
           and svj = model.variables.(j).start_value in
-          begin match nature svi, nature svj with
-            | _, Number (Num.Int 0) -> i
+          begin match svi, svj with
+            | _, None -> i
             | _ -> j
           end
   in
@@ -998,8 +1029,8 @@ let eliminate_trivial_relations max_simplifs model =
       | true, false -> model.variables.(j).start_value <- svi
       | false, true -> model.variables.(i).start_value <- svj
       | _ ->
-          begin match nature svi, nature svj with
-            | _, Number (Num.Int 0) -> model.variables.(j).start_value <- svi
+          begin match svi, svj with
+            | _, None -> model.variables.(j).start_value <- svi
             | _ -> model.variables.(i).start_value <- svj
           end
   in
@@ -1011,16 +1042,11 @@ let eliminate_trivial_relations max_simplifs model =
                 permute_equations i n;
                 perform_then_propagate_inversion model i;
                 decr max_simplifs_ref
-            | Variable i, Variable j ->
-                let k = choose_variable i j in
-                update_variable_attributes i j;
-                permute_equations k n;
-                perform_then_propagate_inversion model k;
-                decr max_simplifs_ref
             | Variable i, Multiplication [node; node'] |
               Multiplication [node; node'], Variable i ->
                 begin match nature node, nature node' with
-                  | Number _, Variable j | Variable j, Number _ ->
+                  | Number (Num.Int (-1)), Variable j |
+                    Variable j, Number (Num.Int (-1)) ->
                       let k = choose_variable i j in
                       update_variable_attributes i j;
                       permute_equations k n;

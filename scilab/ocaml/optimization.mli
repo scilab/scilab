@@ -18,7 +18,7 @@ type discrete_variable_description =
     mutable d_v_name: string; (** The discrete variable's user name *)
     mutable d_v_comment: string; (** The comment associated to the discrete
       variable. *)
-    mutable d_start_value: SymbolicExpression.t
+    mutable d_start_value: SymbolicExpression.t option
   }
 
 (** The type of the records used to store information about variables. *)
@@ -29,7 +29,7 @@ type variable_description = {
     variable *)
   mutable v_name : string; (** The variable's user name *)
   mutable v_comment : string; (** The comment associated to the variable. *)
-  mutable start_value : SymbolicExpression.t;
+  mutable start_value : SymbolicExpression.t option;
 }
 
 (** The type of the records used to store information about equations. *)
@@ -69,18 +69,31 @@ type model = {
       reinitializations. *)
   mutable io_dependency : bool; (** [true] = there is a direct dependency
     between inputs and outputs in the model. *)
-  mutable external_functions : string list list; (** The list of the paths
-    where to find external function bodies. *)
+  mutable external_functions : (string list * int) list; (** The list of the paths
+    where to find external function bodies and their respective arity. *)
+  trace: string option (** The file where optional tracing information of
+    external function calls is generated *)
 }
 
 and when_expression =
   | Assign of SymbolicExpression.t * SymbolicExpression.t
   | Reinit of SymbolicExpression.t * SymbolicExpression.t
 
-val create_model: Instantiation.typed_expression -> model
-(** [create_model iexpr] builds a model given the instantiated Modelica model
-[iexpr]. The resulting data structure can be used to perform various
+val create_model_with_parameters: string option ->
+  Instantiation.typed_expression -> model
+(** [create_model trace iexpr] builds a model given the instantiated Modelica
+model [iexpr]. [trace], if not [None], indicates a filename where tracing
+information of external functions calls can be generated.
+The generated model includes all the parameters present in the original
+specification (i.e., no parameter inlining is performed).
+The resulting data structure can be used to perform various
 optimization passes over it. *)
+
+val create_model: string option -> Instantiation.typed_expression -> model
+(** [create_model trace iexpr] builds a model given the instantiated Modelica
+model [iexpr]. The resulting data structure can be used to perform various
+optimization passes over it. [trace], if not [None], indicates a filename
+where tracing information of external functions calls can be generated. *)
 
 val eliminate_trivial_relations: int -> model -> int
 (** [eliminate_trivial_relations max_simplifs model] eliminates at most

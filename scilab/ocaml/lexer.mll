@@ -61,6 +61,7 @@ let check_reserved = function
 let blank = [' ' '\t' '\r']
 let digit = ['0'-'9']
 let nondigit = ['_' 'A'-'Z' 'a'-'z']
+let nondigit2 =  ['_' 'A'-'Z' 'a'-'z' '[' ']' '.']
 let schar = [^'\"' '\\']
 let sescape = "\\\'" | "\\\"" | "\\?" | "\\\\" | "\\a" | "\\b" | "\\f" |
               "\\n" | "\\r" | "\\t" | "\\v"
@@ -99,6 +100,10 @@ rule token = parse
     | nondigit (nondigit | digit)*
                 { let lxm = Lexing.lexeme lexbuf in
                     check_reserved lxm }
+
+    | '`' (nondigit2 | digit)+ '`'
+                { let lxm = Lexing.lexeme lexbuf in
+                    IDENT (String.sub lxm 1 (String.length lxm - 2)) }
 
     | '\"' (schar | sescape)* '\"'
                 { let lxm = Lexing.lexeme lexbuf in

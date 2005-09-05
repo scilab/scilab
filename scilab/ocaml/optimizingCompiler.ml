@@ -17,15 +17,21 @@ module Make(G: CODEGENERATOR): S =
     let sccs_id =
       "@(#)Modelicac - Copyright (C) 2003-2004 TNI-Valiosys, 2005 Imagine"
 
-    let version = "1.5.8"
+    let version = "1.7.3"
 
     let path = ref ""
+
+    let no_parameter_removal = ref false
 
     let keep_variables = ref false
 
     let compile_only = ref false
 
     let with_jac = ref false
+
+    let trace = ref None
+
+    let gen_xml = ref false
 
     let directories = ref [""]
 
@@ -37,6 +43,9 @@ module Make(G: CODEGENERATOR): S =
 
     let add_lib_path s =
       directories := !directories @ [s]
+
+    let trace_filename s =
+      trace := Some s
 
     let check_filename () =
       if Filename.check_suffix !input "mo" then ()
@@ -56,6 +65,10 @@ module Make(G: CODEGENERATOR): S =
 
     let set_max_simplifs i =
       max_simplifs := i
+
+    let set_no_simplifs () =
+      no_parameter_removal := true;
+      keep_variables := true
 
     let construct_output_filename () =
       if !output = "" then begin
@@ -77,9 +90,18 @@ module Make(G: CODEGENERATOR): S =
           "<path>  Specify a path to be added to #include directives");
         ("-keep-all-variables", Arg.Set keep_variables,
           "Don\'t remove alias variables");
+        ("-no-parameter-removal", Arg.Set no_parameter_removal,
+          "Do not remove any parameter");
+        ("-no-simplifs", Arg.Unit set_no_simplifs,
+          "Same as -keep-all-variables -no-parameter-removal");
         ("-max-simplifs", Arg.Int set_max_simplifs,
-         "<passes> Max number of simplifications");
-        ("-jac", Arg.Set with_jac, "Generate symbolic jacobian matrix")]
+          "<passes> Max number of simplifications");
+        ("-jac", Arg.Set with_jac, "Generate symbolic jacobian matrix");
+        ("-trace", Arg.String trace_filename,
+          "<filename> Generate tracing information for external function calls into \
+          <filename>");
+        ("-xml", Arg.Set gen_xml,
+          "Generate an XML version of the model instead of target code")]
         set_input
         ("usage: modelicac [-c] [-o <outputfile>] <inputfile> [other options]")
 
@@ -111,7 +133,10 @@ module Make(G: CODEGENERATOR): S =
                 []
                 ccl
             in
-            let model = Optimization.create_model iexpr in
+            let model =
+              if !no_parameter_removal then
+                Optimization.create_model_with_parameters !trace iexpr
+              else Optimization.create_model !trace iexpr in
             Printf.printf
               " OK\n%d variable(s) in model.\n"
               (Array.length model.Optimization.variables);
@@ -145,7 +170,8 @@ module Make(G: CODEGENERATOR): S =
                 compnts;
             end;
             Printf.printf "Generating code..."; flush stdout;
-            G.generate_code !path filename fun_name model !with_jac
+            if !gen_xml then XMLCodeGeneration.generate_XML filename fun_name model
+            else G.generate_code !path filename fun_name model !with_jac
         | Compilation.CompiledFunction _ ->
             failwith "Attempt to generate code for a function"
       end;
