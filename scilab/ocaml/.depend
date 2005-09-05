@@ -28,6 +28,10 @@ optimization.cmo: bipartiteGraph.cmi causalityGraph.cmi compilation.cmi \
 optimization.cmx: bipartiteGraph.cmx causalityGraph.cmx compilation.cmx \
     hungarianMethod.cmx instantiation.cmx squareSparseMatrix.cmx \
     symbolicExpression.cmx optimization.cmi 
+xMLCodeGeneration.cmo: optimization.cmi symbolicExpression.cmi \
+    xMLCodeGeneration.cmi 
+xMLCodeGeneration.cmx: optimization.cmx symbolicExpression.cmx \
+    xMLCodeGeneration.cmi 
 optimizingCompiler.cmo: compilation.cmi instantiation.cmi lexer.cmo \
     optimization.cmi parser.cmo precompilation.cmi xMLCodeGeneration.cmi \
     optimizingCompiler.cmi 
