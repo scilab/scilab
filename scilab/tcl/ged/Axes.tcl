@@ -1975,21 +1975,21 @@ proc toggleVisibilityZ { frame } {
 
 proc toggleVisibilitylabx { frame } {
     global xlabel_visibility
-    ScilabEval "global ged_handle;ged_handle.x_labels.visible='$xlabel_visibility'"
+    ScilabEval "global ged_handle;ged_handle.x_label.visible='$xlabel_visibility'"
     
     OnOffForeground $frame $xlabel_visibility
 }
 
 proc toggleVisibilitylaby { frame } {
     global ylabel_visibility
-    ScilabEval "global ged_handle;ged_handle.y_labels.visible='$ylabel_visibility'"
+    ScilabEval "global ged_handle;ged_handle.y_label.visible='$ylabel_visibility'"
     
     OnOffForeground $frame $ylabel_visibility
 }
 
 proc toggleVisibilitylabz { frame } {
     global zlabel_visibility
-    ScilabEval "global ged_handle;ged_handle.z_labels.visible='$zlabel_visibility'"
+    ScilabEval "global ged_handle;ged_handle.z_label.visible='$zlabel_visibility'"
     
     OnOffForeground $frame $zlabel_visibility
 }
