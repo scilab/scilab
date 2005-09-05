@@ -53,6 +53,7 @@ static void Myalloc1 (integer **xm,integer n,integer *err);
 static void Myalloc (integer **xm,integer **ym, integer n, integer *err);
 static void xstringb ( char *string,integer x, integer y, integer w, integer h);
 void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
+void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox);
 
 static f_xcall1 xset_1, drawarc_1, fillarcs_1  ,drawarcs_1  ,fillpolyline_1  ,drawarrows_1  ;
 static f_xcall1 drawaxis_1  ,cleararea_1  ,xclick_1  ,xclick_any_1  ,xgetmouse_1  ,fillarc_1  ;
@@ -1134,6 +1135,48 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
   else
     {
       Scistring("xstring : No more Place  \n");
+    }
+}
+
+/*-----------------------------------------------------------------------------
+ * Return the corresponding bounding box with parameters:
+ * entry is a set of lines coded with 'line1@line2@.....@'
+ * centered in the rectangle [x,y,w=wide,h=height] 
+ * BUT also allow angle selection for string rotation
+ *-----------------------------------------------------------------------------*/
+
+void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox)
+{
+  char *loc,*loc1;
+  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
+  int compteur = 1;
+  int hauteur=0;
+
+  if ( loc != 0)
+    {
+      integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
+      strcpy(loc,string);
+      loc1=strtok(loc,"@");
+
+      for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
+
+      while ( loc1 != ( char * ) 0) 
+	{  
+	  C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if ( rect[2] >= wmax ) wmax=rect[2];
+	  htot += (int) (1.2*((double) rect[3]));
+	  loc1=strtok((char *) 0,"@");
+	  if(compteur==1) hauteur = rect[3];
+	  compteur++;
+	}
+      
+      x1=x+ (w- wmax)/2;
+      yy1=y - h + ( h - htot)/2 + rect[3];
+      
+      bbox[0] = x1;
+      bbox[1] = yy1 - hauteur;
+      bbox[2] = wmax;
+      bbox[3] = htot;
     }
 }
 
