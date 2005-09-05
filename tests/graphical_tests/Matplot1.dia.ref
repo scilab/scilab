@@ -86,6 +86,10 @@ xdel_run(winsid());
  
  handle of type Matplot unhandled   
  
+ handle of type Matplot unhandled   
+ 
+ handle of type Matplot unhandled   
+ 
  
 mclose(%U);
  

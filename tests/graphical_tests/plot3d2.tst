@@ -13,7 +13,7 @@ e = gce();
 e('color_mode') = 4;// change color
 f = e('data');
 TL = tlist(['3d','x','y','z','color'], f('x'), f('y'), f('z'), 10 * f('z') + 1);
-e('data') = TL;
+//e.data=TL;
 e('color_flag') = 2;
 xdel_run(winsid());
 
