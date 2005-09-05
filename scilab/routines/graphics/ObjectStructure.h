@@ -781,7 +781,8 @@ typedef struct
   int XGradMostOnTop;
   int XGradMostOnBottom;
 
-  BOOL firsttime;
+  BOOL firsttime_x;
+  BOOL firsttime_y;
 
   Vertices * vertices_list; /* F.Leray 30.08.05 : stores the (x,y) coord. in term of user data coord. + pixel value on screen */
 }/** */
