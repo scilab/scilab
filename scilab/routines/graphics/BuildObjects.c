@@ -2678,9 +2678,6 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 	  return (sciPointObj *) NULL;
 	}
       
-      if(type == 3 && pSUBWIN_FEATURE(pparentsubwin)->is3d == FALSE) /* F.Leray 02.09.05 : y label is vertical by default when created by a 2D plot */
-	sciSetFontOrientation(pobj,2700);
-      
       return (sciPointObj *) pobj;
     }
   else
