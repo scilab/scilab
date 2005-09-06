@@ -865,6 +865,11 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->textorientation = 0;
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
 
+	  if(pLABEL_FEATURE(pobj)->ptype != 3)
+	    (sciGetFontContext(pobj))->textorientation = 0;
+	  else
+	    (sciGetFontContext(pobj))->textorientation = 2700;
+
 	  if (((sciGetFontContext(pobj))->pfontname =
 	       CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
 		       sizeof (char))) == NULL)
@@ -890,8 +895,8 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(plabelmdl))->foregroundcolor;
 	  (sciGetFontContext(pobj))->fonttype  /*=        aa[2] */ = (sciGetFontContext(plabelmdl))->fonttype;
  	  (sciGetFontContext(pobj))->fontdeciwidth  /*=   aa[3] */ = (sciGetFontContext(plabelmdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ = (sciGetFontContext(plabelmdl))->textorientation;
 	  (sciGetFontContext(pobj))->fontnamelen  /*=     aa[5] */ = (sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
+	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ = (sciGetFontContext(plabelmdl))->textorientation;
 	  
 	  if (
 	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
