@@ -30,8 +30,5 @@ function []=sound(y,fs,bits,aplay)
   if length(size(y)) > 2 then
     error('Requires 2-D values only.');
   end
-  if size(y,1)==1 then
-    y = y.';
-  end
   playsnd(y,fs,bits,aplay);
 endfunction
