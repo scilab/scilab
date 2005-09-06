@@ -1148,10 +1148,10 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
 void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox)
 {
   char *loc,*loc1;
-  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
   int compteur = 1;
   int hauteur=0;
-
+  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
+  
   if ( loc != 0)
     {
       integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
