@@ -52,4 +52,10 @@ if pos ~= [] then
     end
 end
 
+// Special case : the dollar sign must be escaped otherwise what follows it is
+// interpreted as a Tcl variable
+// A dollar can be found in txt when debugging a function whose name starts
+// with $
+txt = strsubst(txt,"$","\$")
+
 endfunction

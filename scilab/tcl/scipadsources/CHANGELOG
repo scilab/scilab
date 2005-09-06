@@ -1446,3 +1446,22 @@ Francois VOGEL, 05/09/05
    are maintained (uses -stretch always in 8.5, which is emulated in 8.4
    but result is not always perfect in 8.4)
  * version --> 5.33
+
+Francois VOGEL, 06/09/05
+ * Fixed (hopefully): grab failed Tcl error on opening the Find/Replace box
+   on Linux
+ * Fixed: the selection doesn't disappear any more in Linux when opening
+   the Find/Replace box, thus allowing to search in selection (was broken
+   (by me!) since Scipad 5.7)
+ * Fixed: a Tcl error "no character tagged with 'sel'" could pop up on
+   opening again the find dialog with no selection after having canceled
+   a search in selection
+ * Fixed: Find/Replace works when strings contain spaces
+ * Fixed: Find/Replace works when strings contain quotes or antislashes
+ * New (Find/Replace): Regxep compilation errors are catched and the user
+   is warned
+ * Fixed: Scilab legal function names starting with a Tcl special character
+   such as % _ # !, ? or even $ are fully supported in the debugger
+ * Fixed: Scilab legal variable names starting with a $ are fully supported
+   in the debugger
+ * version --> 5.34

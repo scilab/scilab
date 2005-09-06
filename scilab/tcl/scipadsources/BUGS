@@ -117,6 +117,13 @@ Old bugs/whishes which have been hacked but could have been done better:
     internal new functions that does not preserve colorization. I'm convinced
     that an internal Tk printing scheme would be better.
 
+-The bindings in findreplace.tcl used for the F3 case live in the textarea
+ forever. Find a solution to get rid of these!
+
+-Find a way to have the existing search string selected on opening the Find
+ dialog. Warning: don't use $find.l.f1.entry selection range 0 end since
+ this makes the Scipad selection vanish (see email discussion on 09 March 05)
+
 
 Wishes:
 -------
@@ -177,6 +184,7 @@ Wishes:
  evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
 
 -Improve the aesthetics of Scipad (see sciGUI)
+   . Find dialog
 
 -Blink (single or double) quotes. Must find a way to distinguish between 
  opening and closing quotes in proc blinkbrace. This is not that easy since
@@ -266,6 +274,10 @@ Wishes:
  Matches are reported in a results window
  Clicking on a match opens the file (if not yet opened) at the correct line
  or text index
+
+-Improvements for find/replace:
+  . Search among tagged text only, e.g. among comments
+  . Popup menu providing a list of ready cooked regepxs
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:

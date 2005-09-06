@@ -1,7 +1,11 @@
 proc updateactivebreakpoint { {itemno 3} } {
     set comm1 "\[db_l,db_m\]=where();"
     set comm2 "if size(db_l,1)>=$itemno then"
-    set comm3 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag  \"+string(db_l($itemno))+\" \"+string(db_m($itemno))+\"}\");"
+    # the curly braces around string(db_m($itemno)) below are required
+    # to avoid TCL_EvalStr to try to evaluate string(db_m($itemno))
+    # this is useful for instance when the function name where the
+    # breakpoint stop occurs starts with a dollar sign $
+    set comm3 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag \"+string(db_l($itemno))+\" {\"+string(db_m($itemno))+\"} }\");"
     set comm4 "else"
     set comm5 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag 0 \"\"\"\"}\");"
     set comm6 "end;"

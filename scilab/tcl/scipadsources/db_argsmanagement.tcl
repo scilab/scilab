@@ -100,6 +100,13 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         if {[string first listboxinput $leftwin] != -1} {
             set funname [$spin get]
         }
+        # if the argument name starts with a $ (allowed in Scilab),
+        # this character must be escaped
+        if {[string index $argname 0] == "\$"} {
+            set escargname "\\$argname"
+        } else {
+            set escargname $argname
+        }
         if {$alreadyexists == "false"} {
             # a new variable was added in the add box
             set pos [expr $pos + 1]
@@ -113,7 +120,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    getonefromshell $argname "sync"
+                    getonefromshell $escargname "sync"
                     set argvalue $watchvarsvals($argname)
                 }
             }
@@ -136,7 +143,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
                 if {$forceget == "true"} {
-                    getonefromshell $argname "sync"
+                    getonefromshell $escargname "sync"
                     set argvalue $watchvarsvals($argname)
                 }
             }

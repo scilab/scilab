@@ -261,15 +261,34 @@ proc checkarglist {funname} {
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
     global listoftextarea funvars funvarsvals
-    # In tcl<8.5, this does not match multiple lines. This is a tcl/tk bug.
+
+    # A starting question mark in the function name must
+    # be escaped otherwise the regexp compilation fails
+    # A starting dollar must be escaped as well
+    # (Scilab function names can start in particular with a ? or $)
+    if {[string index $funname 0] == "?" || \
+        [string index $funname 0] == "\$"} {
+        set escfunname "\\$funname"
+    } else {
+        set escfunname $funname
+    }
+
+    # In Scilab, a function name can start with any of these special
+    # characters: %_#!?$
+    # Since word characters in Tcl are [[:alnum:]_], the \m character-entry
+    # escape that specifies to match at the beginning of a word cannot be
+    # used and must be replaced by [^[:alnum:]_%#!\?\$\]
+#    set pat "\\mfunction\\M.*\\m$escfunname\\M"
+    set pat "\\mfunction\\M.*\[^\[:alnum:\]_%#!\?\$\]$escfunname\\M"
+    # In Tcl<8.5, this does not match multiple lines. This is a Tcl/Tk bug.
     # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
     # <TODO>: once using 8.5, the messageBox below can be removed
-    set pat "\\mfunction\\M.*\\m$funname\\M"
-#    set pat "\\mfunction\\M\[.\\n\\r\\t\]*\\m$funname\\M"
+#    set pat "\\mfunction\\M\[.\\n\\r\\t\]*[^\[:alnum:\]_%#!\?\$\]$escfunname\\M"
+
     set orderOK "false"
     set found "false"
     foreach textarea $listoftextarea {
-        set ex [$textarea search -regexp $pat 0.0 end]
+        set ex [$textarea search -regexp -- $pat 0.0 end]
         if {$ex != "" } {
             while {[lsearch [$textarea tag names $ex] "textquoted"] != -1 || \
                    [lsearch [$textarea tag names $ex] "rem2"] != -1 } {
@@ -338,7 +357,15 @@ proc Obtainall_bp {} {
         $listboxinput delete 0 [$listboxinput size]
         $listboxinputval delete 0 [$listboxinputval size]
         foreach {funname funline precfun} $funsinfo {
-            if {[lsearch $spinvalueslist $funname] == -1} {
+            # if $funname starts with a question mark, this character
+            # must be escaped for lsearch to work as expected,
+            # otherwise this ? matches any character
+            if {[string index $funname 0] == "?"} {
+                set escfunname "\\$funname"
+            } else {
+                set escfunname $funname
+            }
+            if {[lsearch $spinvalueslist $escfunname] == -1} {
                 set spinvalueslist "$spinvalueslist $funname"
             }
             set oppar [string first "\(" $funline]

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.33
+# in sync at least with v5.34
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -154,6 +154,8 @@
 ::msgcat::mcset fr "Wrapped around" "Rebouclé"
 ::msgcat::mcset fr "Back at the first file searched!" "Revenu au premier fichier !"
 ::msgcat::mcset fr "No more matches" "Pas d'autre correspondance"
+::msgcat::mcset fr "The string to regexp search for cannot be compiled by Tcl.\nCheck again, maybe certain characters should be escaped." \
+                   "L'expression régulière entrée est invalide (impossible à compiler).\nVérifiez, il se peut que certains caractères doivent être précédés du caractère d'échappement \\"
 
 
 # helps.tcl

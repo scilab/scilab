@@ -19,7 +19,6 @@ proc findtextdialog {typ} {
     label $find.l.f1.label -text [mc "Find what:"] \
         -width 15 -font $menuFont
     entry $find.l.f1.entry -textvariable SearchString \
-        -validate key -validatecommand {resetfind $find [gettextareacur] ; return 1} \
         -width 30 -font $textFont
     pack $find.l.f1.label $find.l.f1.entry -side left
     pack configure $find.l.f1.entry -expand 1 -fill x
@@ -121,9 +120,11 @@ proc findtextdialog {typ} {
 
     # preselect the entry field -
     # warning: this does not work on Linux if the entry has -exportselection 1
-    $find.l.f1.entry selection range 0 end
+    # which is the default
+#    $find.l.f1.entry selection range 0 end
 
     focus $find.l.f1.entry
+    update
     grab $find
 
     # initial settings for direction
@@ -140,6 +141,12 @@ proc findtextdialog {typ} {
     } else {
         $find.l.f4.f5.cbox4 select
     }
+
+    # this must be done here and not before because the validatecommand is
+    # called and resetfind uses the searchinsel value set by the test on
+    # $tahasnosel above
+    $find.l.f1.entry configure -validate key \
+        -validatecommand {resetfind $find [gettextareacur] ; return 1}
 
     # initial settings for searching in multiple files
     if {!$tahasnosel} {
@@ -199,6 +206,11 @@ proc multiplefilesfindreplace {w frit} {
 
     # whole word searching: set regexp mode and string to search for
     foreach {tosearchfor reg} [setwholewordstring $wholeword $SearchString $regexpcase] {}
+
+    # check if the regexp given or constructed in setwholewordstring is valid
+    if {$reg == "regexp" && ![isregexpstringvalid $tosearchfor $pw]} {
+        return
+    }
 
     if {$multiplefiles == 0} {
         # search in current buffer only
@@ -561,6 +573,11 @@ proc multiplefilesreplaceall {w} {
     # whole word searching: set regexp mode and string to search for
     foreach {tosearchfor reg} [setwholewordstring $wholeword $SearchString $regexpcase] {}
 
+    # check if the regexp given or constructed is valid
+    if {$reg == "regexp" && ![isregexpstringvalid $tosearchfor $pw]} {
+        return
+    }
+
     if {$multiplefiles == 0} {
         # search in current buffer only
         replaceall $w $pw [gettextareacur] $tosearchfor $reg
@@ -692,7 +709,8 @@ proc doonesearch {textarea sta sto str dir cas reg} {
         lappend optlist -strictlimits
     }
 
-    set MatchPos [ eval "$textarea search $optlist -- $str $sta $sto" ]
+    # quotes around $str are mandatory to find strings that include spaces
+    set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
 
     if {$MatchPos == ""} {
         set MatchLength 0
@@ -983,16 +1001,44 @@ proc issearchstringempty {SearchString pw} {
 proc setwholewordstring {wholeword SearchString regexpcase} {
 # whole word searching: set regexp mode and add \m at the beginning of
 # $SearchString and \M at the end
-# double escape of the backslash is needed because of the eval in proc
-# doonesearch
+
+    # escape the quote char " and the escape char \ so that one can
+    # search for these characters
+    set str [string map {"\\" "\\\\"} $SearchString]
+    set str [string map {"\"" "\\\""} $str]
+
     if {$wholeword} {
-        set tosearchfor "\\\\m$SearchString\\\\M"
+        # double escape of the backslash is needed because of the eval
+        # in proc doonesearch
+        # <TODO> a "word" is defined here in the Tcl sense, not the Scilab sense
+        #        Scilab special characters (%!?#$) are part of word for Scilab
+        #        but are word separators in Tcl
+        #        --> improve to search for Scilab words
+        set tosearchfor "\\\\m$str\\\\M"
         set reg "regexp"
     } else {
-        set tosearchfor $SearchString
+        set tosearchfor $str
         set reg $regexpcase
     }
     return [list $tosearchfor $reg]
+}
+
+proc isregexpstringvalid {tosearchfor pw} {
+# possible errors in regexp compilation are detected at this point
+# this can happen easily since the user can enter any expression and
+# call for a regexp search
+
+    # attempt to regexp search
+    # what is inside the catch{} should be identical (i.e. the eval is needed)
+    # to the line actually performing the search in proc doonesearch
+    if {[catch { eval "[gettextareacur] search -regexp -- \"$tosearchfor\" 1.0 end" } ]} {
+        tk_messageBox -message \
+            [mc "The string to regexp search for cannot be compiled by Tcl.\nCheck again, maybe certain characters should be escaped."] \
+            -parent $pw -title [mc "Find"] -icon error
+        return 0
+    } else {
+        return 1
+    }
 }
 
 proc notfoundmessagebox {SearchString textarea pw mbtitle} {
