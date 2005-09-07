@@ -158,16 +158,17 @@
 
 
 # findreplace.tcl
-::msgcat::mcset it "The string" "La stringa"
-    ::msgcat::mcset it "could not be found in" "non è stata trovata"
+::msgcat::mcset it "The string" "La stringa \["
+    ::msgcat::mcset it "could not be found in" "\] non è stata trovata"
 ::msgcat::mcset it "could not be found in any of the opened files !"\
-      "non è stata trovata in nessuno dei files aperti!"
+      "\] non è stata trovata in nessuno dei files aperti!"
 ::msgcat::mcset it "replacements done" "sostituzioni effettuate"
 ::msgcat::mcset it "Find" "Cerca"
 ::msgcat::mcset it "No match found in the selection for" \
-         "Nessuna corrispondenza trovata all'interno della selezione."
- ::msgcat::mcset it "\nWould you like to look for it in the entire text?" \
-                   "Continuare la ricerca nel resto del testo?"
+                   "Nessuna occorrenza di \["
+::msgcat::mcset it "\nWould you like to look for it in the entire text?" \
+                   "\] trovata all'interno della selezione. Continuare la\
+                     ricerca nel resto del testo?"
 ::msgcat::mcset it "You are searching for an empty string!" \
           "La stringa da cercare è vuota!"
 ::msgcat::mcset it "Wrapped around" "Continuato oltre la fine"       
@@ -187,7 +188,12 @@
 ::msgcat::mcset it "Back at the first file searched!" \
              "Di nuovo al primo file esaminato!"
 ::msgcat::mcset it "No more matches" "Nessuna altra corrispondenza"
-
+::msgcat::mcset it "The string to regexp search for cannot be compiled by\
+                    Tcl.\nCheck again, maybe certain characters should be\
+                    escaped." \
+                   "La stringa da cercare come espressione regolare non\
+                    ha potuto essere compilata. Controllare. Per esempio,\
+                    alcuni caratteri speciali vanno preceduti da \\."
 
 # helps.tcl
 ::msgcat::mcset it "About" "A proposito"
