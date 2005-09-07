@@ -1465,3 +1465,13 @@ Francois VOGEL, 06/09/05
  * Fixed: Scilab legal variable names starting with a $ are fully supported
    in the debugger
  * version --> 5.34
+
+Francois VOGEL, 07/09/05
+ * Fixed further search in selection bugs on Linux: the entry fields of the
+   Find/Replace dialog don't exportselection anymore
+ * New (Find/Replace): After having agreed to extend the search to the
+   entire text, the user can again search in the selection without closing
+   the dialog
+ * If there is a preexisting text in the Find dialog, this text is selected
+   on opening of the box
+ * version --> 5.35

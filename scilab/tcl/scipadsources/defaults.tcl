@@ -67,7 +67,7 @@ if {0} {
 #########################
 
 set winTitle "SciPad"
-set version "Version 5.34"
+set version "Version 5.35"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5

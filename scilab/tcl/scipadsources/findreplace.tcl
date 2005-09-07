@@ -19,7 +19,7 @@ proc findtextdialog {typ} {
     label $find.l.f1.label -text [mc "Find what:"] \
         -width 15 -font $menuFont
     entry $find.l.f1.entry -textvariable SearchString \
-        -width 30 -font $textFont
+        -width 30 -font $textFont -exportselection 0
     pack $find.l.f1.label $find.l.f1.entry -side left
     pack configure $find.l.f1.entry -expand 1 -fill x
     if {$typ=="replace"} {
@@ -27,7 +27,7 @@ proc findtextdialog {typ} {
         label $find.l.f2.label2 -text [mc "Replace with:"] \
             -width 15 -font $menuFont
         entry $find.l.f2.entry2 -textvariable ReplaceString \
-            -width 30 -font $textFont
+            -width 30 -font $textFont -exportselection 0
         pack $find.l.f2.label2 $find.l.f2.entry2 -side left
         pack configure $find.l.f2.entry2 -expand 1 -fill x
         pack $find.l.f1 $find.l.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
@@ -87,7 +87,7 @@ proc findtextdialog {typ} {
          -font $menuFont "
     eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
         -variable searchinsel \
-        -command \"resetfind $find \[gettextareacur\] ; $find.l.f4.f5.cbox3 deselect\" \
+        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find \[gettextareacur\] ; $find.l.f4.f5.cbox3 deselect\" \
         -font $menuFont "
     pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
         $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 \
@@ -121,7 +121,7 @@ proc findtextdialog {typ} {
     # preselect the entry field -
     # warning: this does not work on Linux if the entry has -exportselection 1
     # which is the default
-#    $find.l.f1.entry selection range 0 end
+    $find.l.f1.entry selection range 0 end
 
     focus $find.l.f1.entry
     update
@@ -170,6 +170,18 @@ proc togglewholeword {w} {
        $w.l.f4.f5.cbox2 configure -state normal
        $w.l.f4.f5.cbox2 deselect
    }
+}
+
+proc tryrestoreseltag {textarea} {
+# restore the sel tag in $textarea if there is a fakeselection in
+# this textarea, and if the search in selection checkbox is checked
+    global searchinsel
+    if {$searchinsel} {
+        set fsrange [$textarea tag ranges fakeselection]
+        if {$fsrange != {}} {
+            $textarea tag add sel [lindex $fsrange 0] [lindex $fsrange 1]
+        }
+    }
 }
 
 proc findnext {} {
@@ -317,10 +329,10 @@ proc findit {w pw textarea tosearchfor reg} {
                 # extend search simply by removing the selection tag in the textarea
                 # therefore the next call to findit will do a search in the full buffer
                 # the selection will be restored later on by proc cancelfind
+                # or by checking again the "search in selection only" box
                 $textarea tag remove sel 0.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
-                $w.l.f4.f5.cbox4 configure -state disabled
                 resetfind $w $textarea
                 set findres [findit $w $pw $textarea $tosearchfor $reg]
             } else {
@@ -442,10 +454,10 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
                 # extend search simply by removing the selection tag in the textarea
                 # therefore the next call to replaceit will do a search in the full buffer
                 # the selection will be restored later on by proc cancelfind
+                # or by checking again the "search in selection only" box
                 $textarea tag remove sel 0.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
-                $w.l.f4.f5.cbox4 configure -state disabled
                 resetfind $w $textarea
                 set replres [replaceit $w $pw $textarea $tosearchfor $reg 1]
             } else {
