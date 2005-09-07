@@ -37,7 +37,7 @@
     solution with at at most <VERB>rank(A)</VERB>  nonzero components per column.</P>
   </DESCRIPTION>
   <SECTION label="References">
-    <P><VERB>lsq</VERB> function is  based on the LApack functions DGELSY for real matrices and WGELSY for complex matrices.</P>
+    <P><VERB>lsq</VERB> function is  based on the LApack functions DGELSY for real matrices and ZGELSY for complex matrices.</P>
   </SECTION>
   <EXAMPLE>
 <![CDATA[
