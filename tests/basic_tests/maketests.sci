@@ -1,5 +1,6 @@
 function tests=testslist()
-  tests = ['parse.tst'
+  tests = ['TCL_SetGet.tst';
+  	 'parse.tst';
 	   'clause.tst';
 	   'trycatch.tst';
 	   'comment.tst';
@@ -66,6 +67,10 @@ function tests=testslist()
 	   'opcode.tst';
 	   'specfun.tst';
 	   ];
+	   
+if ~with_tk() then
+	tests(find(tests=='links.tst'))=[]
+end
 
 if MSDOS then
   comp_target = getenv('COMPILER','NO');

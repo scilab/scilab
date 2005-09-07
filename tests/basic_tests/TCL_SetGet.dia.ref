@@ -1,0 +1,192 @@
+ 
+//--------------------------------------------------------------------------------------------------
+ 
+// Tests Interface TCL
+ 
+// Allan CORNET
+ 
+//--------------------------------------------------------------------------------------------------
+ 
+test=TCL_SetVar("ScalarA",1.1112)
+ test  =
+ 
+  T  
+ 
+if (test==%F) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar("ScalarA")
+ test  =
+ 
+ 1.1112000000   
+ 
+if (test<>"1.1112000000") then bugmes();quit;end
+ 
+//--------------------------------------------------------------------------------------------------
+ 
+test=TCL_SetVar("StringB","Test")
+ test  =
+ 
+  T  
+ 
+if (test==%F) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar("StringB")
+ test  =
+ 
+ Test   
+ 
+if (test<>"Test") then bugmes();quit;end
+ 
+//--------------------------------------------------------------------------------------------------
+ 
+b=[6.1,4.1,1.1;2.1,3.1,5.1];
+ 
+stringb=["6.1000000000","4.1000000000","1.1000000000";"2.1000000000","3.1000000000","5.1000000000"];
+ 
+ 
+test=TCL_SetVar("B",b)
+ test  =
+ 
+  T  
+ 
+if (test==%F) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('B(1,1)')
+ test  =
+ 
+ 6.1000000000   
+ 
+if (test<>stringb(1,1)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('B(1,2)')
+ test  =
+ 
+ 4.1000000000   
+ 
+if (test<>stringb(1,2)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('B(1,3)')
+ test  =
+ 
+ 1.1000000000   
+ 
+if (test<>stringb(1,3)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('B(2,1)')
+ test  =
+ 
+ 2.1000000000   
+ 
+if (test<>stringb(2,1)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('B(2,2)')
+ test  =
+ 
+ 3.1000000000   
+ 
+if (test<>stringb(2,2)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('B(2,3)')
+ test  =
+ 
+ 5.1000000000   
+ 
+if (test<>stringb(2,3)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar("B")
+ test  =
+ 
+!6.1000000000  4.1000000000  1.1000000000  !
+!                                          !
+!2.1000000000  3.1000000000  5.1000000000  !
+ 
+if (test<>stringb) then bugmes();quit;end
+ 
+ 
+//--------------------------------------------------------------------------------------------------
+ 
+a=['A','B','C';'D','E','F']
+ a  =
+ 
+!A  B  C  !
+!         !
+!D  E  F  !
+ 
+ 
+test=TCL_SetVar("A",a)
+ test  =
+ 
+  T  
+ 
+if (test==%F) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('A(1,1)')
+ test  =
+ 
+ A   
+ 
+if (test<>a(1,1)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('A(1,2)')
+ test  =
+ 
+ B   
+ 
+if (test<>a(1,2)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('A(1,3)')
+ test  =
+ 
+ C   
+ 
+if (test<>a(1,3)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('A(2,1)')
+ test  =
+ 
+ D   
+ 
+if (test<>a(2,1)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('A(2,2)')
+ test  =
+ 
+ E   
+ 
+if (test<>a(2,2)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar('A(2,3)')
+ test  =
+ 
+ F   
+ 
+if (test<>a(2,3)) then bugmes();quit;end
+ 
+ 
+test=TCL_GetVar("A")
+ test  =
+ 
+!A  B  C  !
+!         !
+!D  E  F  !
+ 
+if (test<>a) then bugmes();quit;end
+ 
+//--------------------------------------------------------------------------------------------------
+ 
+ 
