@@ -1233,10 +1233,11 @@ Zoom(w, number, client_data)
   SetUnsetMenu(&win_num,"3D Rot.",&ne,False);
   SetUnsetMenu(&win_num,"UnZoom",&ne,False);
   SetUnsetMenu(&win_num,"File",&ne,False);
-  scig_2dzoom(win_num);
-  iargs = 0;
-  XtSetArg(args[iargs], XtNsensitive,True); iargs++;
-  XtSetValues(w, args, iargs);
+  if(scig_2dzoom(win_num) != 1){ /* ==1 <=> zoom failed (the window has been closed while zooming ) */
+    iargs = 0;
+    XtSetArg(args[iargs], XtNsensitive,True); iargs++;
+    XtSetValues(w, args, iargs);
+  }
   SetUnsetMenu(&win_num,"3D Rot.",&ne,True);
   SetUnsetMenu(&win_num,"UnZoom",&ne,True);
   SetUnsetMenu(&win_num,"File",&ne,True);
