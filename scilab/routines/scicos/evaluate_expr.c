@@ -23,28 +23,12 @@ double acosh(double x)
   return log(x+sqrt(x*x-1));
 }
 
-/* atanh(x)
- *      For x>=0.5
- *                  1              2x                          x
- *	atanh(x) = --- * log(1 + -------) = 0.5 * log1p(2 * --------)
- *                  2             1 - x                      1 - x
- *	
- * 	For x<0.5
- *	atanh(x) = 0.5*log1p(2x+2x*x/(1-x))
- *
- */
-
+/*
+Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 – x)) / 2 
+*/
 double atanh(double x)
 {
-	if (x >=0.5) 
-	{
-		return 0.5*log((1+x)/(1-x));
-	}
-	else
-	{
-		return 0.5*log((2*x)+(2*x)*x/(1-x));
-	}
-  
+	return (double)(log ((1.+x)/(1.-x))/2);
 }
 #endif
 
