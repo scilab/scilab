@@ -3481,6 +3481,7 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 {
   integer i;
   double tmpx,tmpy,tmpz;
+  double  tmpx1,tmpy1,tmpz1;
   /* TEST F.Leray 20.04.04: I fix HERE temporarily BOOL cube_scaling = FALSE; */
   BOOL cube_scaling;
   /* Test to enable reverse axis in 3D */ /* F.Leray 14.10.04 */
@@ -3571,24 +3572,6 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      else
 		tmpz = z[i];
 
-	      /* Test to enable reverse axis in 3D */ /* F.Leray 14.10.04 */
-	      /* suite */
-	      /*    ppsubwin->axes.reverse[0] = TRUE; */
-	      
-	      /* 	      if(ppsubwin->axes.reverse[0] == TRUE) */
-	      /* 		{ */
-		
-	      /* 		  xm[i]= TX3D(xtmp[i],y[i],z[i]); */
-	      /* 		  ym[i]= TY3D(xtmp[i],y[i],z[i]); */
-	      /* 		  if ( finite(xz1)==0||finite(yz1)==0 ){
-				  FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
-				  return(0);
-				  } */
-		  
-	      /* 		} */
-	      /* 	      else */
-	      /* 		{ */
-		  
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
 	      
@@ -3628,6 +3611,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return 0;
 	      }
+ 	     
+	      tmpx1 = tmpx;
+	      tmpy1 = tmpy;
+	      tmpz1 = 0.;
 
 	      tmpx=(tmpx-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]);
 	      tmpy=(tmpy-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
@@ -3637,8 +3624,8 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
 
 	      if(GlobalFlag_Zoom3dOn==1)
-		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,tmpz); /* stockage des xm, ym pour le zoom */
-	
+		Store3DPixelValues(pobj,xm[i],ym[i],tmpx1,tmpy1,tmpz1); /* stockage des xm, ym pour le zoom */
+	     
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
 		FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
 		return(0);
@@ -3665,17 +3652,25 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 		tmpz = log10(z[i]);
 	      else
 		tmpz = z[i];
-	      
+	     
+	      tmpx1 = tmpx;
+	      tmpy1 = tmpy;
+	      tmpz1 = tmpz;
+
 	      tmpx= (tmpx-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]);
 	      tmpy= (tmpy-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
 	      tmpz= (tmpz-pSUBWIN_FEATURE (pobj)->FRect[4])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]); /* Adding F.Leray 28.04.04 */
 
+/* 	      tmpx= (tmpx-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]); */
+/* 	      tmpy= (tmpy-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]); */
+/* 	      tmpz= (tmpz-pSUBWIN_FEATURE (pobj)->FRect[4])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]); /\* Adding F.Leray 28.04.04 *\/ */
+
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
-	      
+	          
 	      if(GlobalFlag_Zoom3dOn==1)
-		Store3DPixelValues(pobj,xm[i],ym[i],tmpx,tmpy,tmpz); /* stockage des xm, ym pour le zoom */
-	      
+		Store3DPixelValues(pobj,xm[i],ym[i],tmpx1,tmpy1,tmpz1); /* stockage des xm, ym pour le zoom */
+	   
 	      /*    xm[i]= TX3D(tmpx,tmpy,tmpz); */
 	      /* 	      ym[i]= TY3D(tmpx,tmpy,tmpz); */
 	      if ( finite(xz1)==0||finite(yz1)==0 ){
