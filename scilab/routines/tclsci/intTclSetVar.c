@@ -4,9 +4,15 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclSetVar.h"
 /*-----------------------------------------------------------------------------------*/
+int SetVarStrings(char *VarName,char **Str,int m,int n);
+int SetVarAString(char *VarName,char **Str);
+int SetVarMatrix(char *VarName,int ptrValues,int m,int n);
+int SetVarScalar(char *VarName,double VarValue);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclSetVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
+	int *paramoutINT=(int*)MALLOC(sizeof(int));
 	int TypeVar1=GetType(1);
 	int TypeVar2=GetType(2);
 
@@ -15,42 +21,31 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 
 	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_strings) )
 	{
-		char *VarName=NULL,*VarValue=NULL;
-		int *paramoutINT=(int*)MALLOC(sizeof(int));
+		char *VarName=NULL;
+		char **Str=NULL;
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
-			
-		GetRhsVar(2,"c",&m1,&n1,&l1);
-		VarValue=cstk(l1);
+		
+		GetRhsVar(2,"S",&m1,&n1,&Str);
 
 		/* Efface valeur precedente */
 		Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
 
-		if ( !Tcl_SetVar(TCLinterp, VarName, VarValue, TCL_GLOBAL_ONLY) )
+		if ( (m1==1) && (n1==1) )
 		{
-			*paramoutINT=(int)(FALSE);
+			*paramoutINT=SetVarAString(VarName,Str);
 		}
 		else
 		{
-			*paramoutINT=(int)(TRUE);
+			*paramoutINT=SetVarStrings(VarName,Str,m1,n1);
 		}
-		n1=1;
-		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
-		LhsVar(1)=1;
-		C2F(putlhsvar)();
-		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-
+		FreeRhsSVar(Str);
 	}
 	else
 	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_matrix) )
 	{
 		char *VarName=NULL;
-		char *VarNameWithIndice=NULL;
-		int *paramoutINT=(int*)MALLOC(sizeof(int));
-		int i=0;
-		int j=0;
-		int bTestTCL_SetVar=(int)(TRUE);
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
@@ -65,77 +60,158 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 
 		if ( (m1==1) && (n1==1) )
 		{
-			/* just a scalar */
-			char buffer[2048];
+			*paramoutINT=SetVarScalar(VarName,(double)*stk(l1));
+		}
+		else 
+		{
+			*paramoutINT=SetVarMatrix(VarName,l1,m1,n1);
+		}
+	}
+	else
+	{
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+		Scierror(999,TCL_ERROR24);
+		return 0;
+	}
+	
+	m1=1;
+	n1=1;
+	l1=0;
+	CreateVar(Rhs+1,"b",  &m1, &n1, &l1);
+	*istk(l1)=*paramoutINT;
 
-			sprintf(buffer,"%.10lf",*stk(l1));
+	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+	LhsVar(1)=Rhs+1;
+	C2F(putlhsvar)();
+	
+	
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int SetVarMatrix(char *VarName,int ptrValues,int m,int n)
+{
+	int bOK=TRUE;
+	int i=0,j=0;
+	int k=0;
+
+	double *MatrixDouble=(double*)MALLOC((m*n)*sizeof(double));
+
+	/* Efface valeur precedente */
+	Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
+	
+	for (i=0;i<m*n;i++)
+	{
+		MatrixDouble[i]=*stk(ptrValues++);
+	}
+
+	k=0;
+	for (i=1;i<m+1;i++)
+	{
+		char VarValueWithIndice[2048];
+		char VarNameWithIndice[2048];
+		
+		for (j=1;j<n+1;j++)
+		{	
+			int bOKsprintf1=0;
+			int bOKsprintf2=0;
+
+			bOKsprintf1=sprintf(VarNameWithIndice,"%s(%d,%d)",VarName,i,j);
+			bOKsprintf2=sprintf(VarValueWithIndice,"%.10lf",MatrixDouble[(i-1)+m*(j-1)]);
+
+			if ( (bOKsprintf1 == -1) || (bOKsprintf2 == -1) )
+			{
+				Scierror(999,"Variable too long");
+				return 0;
+			}
+
 			if (TCLinterp == NULL)
 			{
 				Scierror(999,TCL_ERROR23);
 				return 0;
 			}
 
-			/* Efface valeur precedente */
-			Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
-
-			if (!Tcl_SetVar(TCLinterp,VarName,buffer,TCL_GLOBAL_ONLY))
+			if (!Tcl_SetVar(TCLinterp,VarNameWithIndice,VarValueWithIndice,0))
 			{
-				bTestTCL_SetVar=(int)(FALSE);
+				bOK=(int)(FALSE);
 			}
 		}
-		else 
-		{
-			/* Efface valeur precedente */
-			Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
+	}
+		if (MatrixDouble) {FREE(MatrixDouble);MatrixDouble=NULL;}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int SetVarScalar(char *VarName,double VarValue)
+{
+	int bOK=FALSE;
 
-			for (j=1;j<n1+1;j++)
-			{
-				char buffer[2048];
-				int lenJ=0;
-				int lenI=0;
+	/* just a scalar */
+	char buffer[2048];
 
-				sprintf(buffer,"%d",j);
-				lenJ=strlen(buffer);
+	sprintf(buffer,"%.10lf", VarValue);
 
-				for (i=1;i<m1+1;i++)
-				{	
-					int len=0;
-					sprintf(buffer,"%d",i);
-					lenI=strlen(buffer);
-							
-					len=strlen(VarName)+strlen("(,)")+lenI+lenJ+1;
-					VarNameWithIndice=(char*)MALLOC(len*sizeof(char));
-					sprintf(VarNameWithIndice,"%s(%d,%d)",VarName,j,i);
-					sprintf(buffer,"%.10lf",*stk(l1++));
+	if (TCLinterp == NULL)
+	{
+		Scierror(999,TCL_ERROR23);
+		return 0;
+	}
 
-					if (TCLinterp == NULL)
-					{
-						Scierror(999,TCL_ERROR23);
-						return 0;
-					}
+	/* Efface valeur precedente */
+	Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
 
-					if (!Tcl_SetVar(TCLinterp,VarNameWithIndice,buffer,0))
-					{
-						bTestTCL_SetVar=(int)(FALSE);
-					}
-					if (VarNameWithIndice){FREE(VarNameWithIndice);VarNameWithIndice=NULL;}
-				}
-            }
-		}
-		
-		*paramoutINT=bTestTCL_SetVar;
-		n1=1;
-		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
-		LhsVar(1)=1;
-		C2F(putlhsvar)();
-		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+	if (!Tcl_SetVar(TCLinterp,VarName,buffer,TCL_GLOBAL_ONLY))
+	{
+		bOK=(int)(FALSE);
 	}
 	else
 	{
-		Scierror(999,TCL_ERROR24);
-		return 0;
+		bOK=(int)(TRUE);
+	}
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int SetVarStrings(char *VarName,char **Str,int m,int n)
+{
+	int bOK=FALSE;
+
+	int i=0,j=0;
+	int l=0;
+	int TestOnAllTcl_SetVar=TRUE;
+
+	for (j=1;j<n+1;j++)
+	{
+		for (i=1;i<m+1;i++)
+		{	
+			char VarArrayName[1024];
+			sprintf(VarArrayName,"%s(%d,%d)",VarName,i,j);
+			if (Tcl_SetVar(TCLinterp, VarArrayName, Str[l++], TCL_GLOBAL_ONLY))
+			{
+				if (TestOnAllTcl_SetVar) TestOnAllTcl_SetVar=TRUE;
+			}
+			else
+			{
+				TestOnAllTcl_SetVar=FALSE;
+			}
+		}
+	}
+	bOK=(int)(TestOnAllTcl_SetVar);
+	
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int SetVarAString(char *VarName,char **Str)
+{
+	int bOK=FALSE;
+
+	if ( !Tcl_SetVar(TCLinterp, VarName, Str[0], TCL_GLOBAL_ONLY) )
+	{
+		bOK=(int)(FALSE);
+	}
+	else
+	{
+		bOK=(int)(TRUE);
 	}
 	
-	return 0;
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

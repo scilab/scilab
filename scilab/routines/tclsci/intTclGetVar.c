@@ -4,8 +4,6 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclGetVar.h"
 /*-----------------------------------------------------------------------------------*/
-#define AddCharacters 4
-/*-----------------------------------------------------------------------------------*/
 int TCL_ArrayExist(char *VarName);
 int TCL_ArraySize(char *VarName);
 int TCL_ArrayDim(char *VarName,int *m,int *n);
@@ -22,8 +20,6 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 	if (TypeVar1 == sci_strings)
 	{
 		char *VarName=NULL;
-		char *RetStr=NULL;
-		
 
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
@@ -39,36 +35,43 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 			int i=0,j=0;
 			int nrow=0,ncol=0;
 			int k=0;
+
 			char **ReturnArrayString=NULL;
 
 			TCL_ArrayDim(VarName,&ncol,&nrow);
 			ReturnArrayString = (char **) MALLOC(ncol*nrow*sizeof(char **));
-			
 			k=0;
-			for (i=1;i<ncol+1;i++)	for (j=1;j<nrow+1;j++) ReturnArrayString[k++]=TCL_ArrayGetVar(VarName,i,j);
-			
+			for (j=1;j<ncol+1;j++)	for (i=1;i<nrow+1;i++)
+			{
+				char *RetStr=NULL;
+				char *AsciiFromUTF8=NULL;
+
+				RetStr=TCL_ArrayGetVar(VarName,i,j);
+				AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
+				if (RetStr){FREE(RetStr);RetStr=NULL;}
+				
+				ReturnArrayString[k++]=AsciiFromUTF8;
+			}
+
 			CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, ReturnArrayString);
-			
-			for (i=0;i<ncol;i++) for (j=0;j<nrow;j++) FREE(ReturnArrayString[i+ncol*j]);
-			FREE(ReturnArrayString);
 
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
-			
+
+			for (i=0;i<ncol;i++) for (j=0;j<nrow;j++) { FREE(ReturnArrayString[i+ncol*j]);ReturnArrayString[i+ncol*j]=NULL; }
+			FREE(ReturnArrayString);
 		}
 		else
 		{
-			RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
+			char *RetStr=NULL;
 
+			RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
 			if ( RetStr )
 			{
 				char *AsciiFromUTF8=NULL;
 				char *output=NULL ;
 
-				AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(RetStr)+AddCharacters));
-
-				/* UTF to ANSI */
-				Tcl_UtfToExternal(TCLinterp, NULL, RetStr, strlen(RetStr), 0, NULL, AsciiFromUTF8, (int)(strlen(RetStr)+AddCharacters), NULL, NULL,NULL);
+				AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
 
 				output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 				sprintf(output,"%s",AsciiFromUTF8);
@@ -184,13 +187,23 @@ int TCL_ArrayDim(char *VarName,int *m,int *n)
 			{
 				int loop=0;
 				if (token[0]==' ') token=&token[1];
-				for(loop=0;loop<strlen(token);loop++) if (token[loop] == ',') token[loop]=' ';
+				for(loop=0;loop<(int)strlen(token);loop++) if (token[loop] == ',') token[loop]=' ';
 				sprintf(StrDimensions,"%s",token);
 				sscanf(StrDimensions,"%d %d",&DimX,&DimY);
-				*m=DimX;
-				*n=DimY;
+				*n=DimX;
+				*m=DimY;
+			}
+			else /* just a element */
+			{
+				int loop=0;
+				for(loop=0;loop<(int)strlen(StrArrayDims);loop++) if ( StrArrayDims[loop] == ',')  StrArrayDims[loop]=' ';
+				sprintf(StrDimensions,"%s", StrArrayDims);
+				sscanf(StrDimensions,"%d %d",&DimX,&DimY);
+				*n=DimX;
+				*m=DimY;
 			}
 			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
+			Bok=TRUE;
 		}
 	}
 	return Bok;
@@ -208,6 +221,11 @@ char *TCL_ArrayGetVar(char *VarName,int i,int j)
 	{
 		StrValue=MALLOC(strlen(RetStr)*sizeof(char));
 		sprintf(StrValue,"%s",RetStr);
+	}
+	else
+	{
+		StrValue=MALLOC(strlen("#NOT DEF.#")*sizeof(char));
+		sprintf(StrValue,"%s","#NOT DEF.#");
 	}
 
 	return StrValue;

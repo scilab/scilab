@@ -223,3 +223,16 @@ int CheckPropertyField(char *FieldPropertie)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
+char *UTF8toANSI(Tcl_Interp *TCLinterp,char *StringUTF8)
+{
+	#define AddCharacters 4
+	char *ReturnANSIString=NULL;
+	if (StringUTF8)
+	{
+		ReturnANSIString=MALLOC(sizeof(char)*(strlen(StringUTF8)+AddCharacters));
+		/* UTF to ANSI */
+		Tcl_UtfToExternal(TCLinterp, NULL, StringUTF8, strlen(StringUTF8), 0, NULL, ReturnANSIString, (int)(strlen(StringUTF8)+AddCharacters), NULL, NULL,NULL);
+	}
+	return ReturnANSIString;
+}
+/*-----------------------------------------------------------------------------------*/

@@ -54,6 +54,7 @@ int MustReturnAString(char *FieldPropertie);
 int ValueMustBeAMatrix(char *FieldPropertie);
 int ValueMustBeAString(char *FieldPropertie);
 int CheckPropertyField(char *FieldPropertie);
+char *UTF8toANSI(Tcl_Interp *TCLinterp,char *StringUTF8);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __TCLGLOBAL__ */
 /*-----------------------------------------------------------------------------------*/ 

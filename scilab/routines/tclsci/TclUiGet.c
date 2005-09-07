@@ -84,12 +84,15 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 				
 				if (StrValue)
 				{
+					char *AsciiFromUTF8=NULL;
+					AsciiFromUTF8=UTF8toANSI(TCLinterp,StrValue);
+
 					if ( MustReturnAMatrix(StrField) )
 					{
 						int nbelem=0;
 						double *MatrixOut=NULL;
 
-						MatrixOut=String2Matrix(StrValue,&nbelem);
+						MatrixOut=String2Matrix(AsciiFromUTF8,&nbelem);
 						n1=1;
 						m1=nbelem;
 						CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
@@ -99,10 +102,10 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					else
 					if ( MustReturnAString(StrField) )
 					{
-						m1=strlen(StrValue);
+						m1=strlen(AsciiFromUTF8);
 						n1=1;
 						CreateVar(Rhs+1, "c", &m1,&n1,&l1);
-						sprintf(cstk(l1),"%s",StrValue);
+						sprintf(cstk(l1),"%s",AsciiFromUTF8);
 						bOK=1;
 					}
 					else
@@ -110,7 +113,10 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						Scierror(999,TCL_ERROR30,StrField);
 						return 0;
 					}
+					if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
+
 					Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
+					
 				}
 				else
 				{
@@ -124,8 +130,6 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 			Scierror(999,TCL_ERROR30,StrField);
 			return 0;
 		}
-
-	
 	}
 
 	return bOK;
