@@ -1110,7 +1110,12 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
   /*  C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L); */
   xclick_2("xclick","one",&ibutton,&iwait,&istr,&x_pixel[0],&y_pixel[0],PI0,&x0,&yy0,PD0,PD0,0L,0L);
 
-
+  
+  if(ibutton == -100){
+    sciprint("Error: window closed while zooming\t\n");
+    return 1; /* error catch : no need to go further F.Leray 07.09.05 */
+  }
+  
   x=x0;y=yy0;
 
   pixel_x = pixel_x0 = x_pixel[0];
@@ -1126,7 +1131,7 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       xgetmouse2("xgetmouse","one",&ibutton,&iwait,&x_pixel[1],&y_pixel[1],modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
       
-      if (ibutton==-100) return 1; /* the window has been closed */
+      if (ibutton==-100) return 1; /* the window has been closed */  /* error catch : no need to go further F.Leray 07.09.05 */
       /* effacement du rectangle */
       zoom_rect2(pixel_x0,pixel_y0,pixel_x,pixel_y);
       if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1236,15 +1241,8 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		  sciDrawObj(psousfen); /* see GlobalFlag_Zoom3dOn impact flag in sciDrawObj & trans3d functions */
 		  
 		  GlobalFlag_Zoom3dOn=0;
-
+		  
 		  SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
-		  
-
-		  /* 		  printf("x_pixel[0] = %d \t y_pixel[0] = %d\n",x_pixel[0],y_pixel[0]); */
-		  /* 		  printf("x_pixel[1] = %d \t y_pixel[1] = %d\n",x_pixel[1],y_pixel[1]); */
-		  
-		  /* 		  printf("xmin = %d \t ymin = %d\n",section3d[0],section3d[1]); */
-		  /* 		  printf("xmax = %d \t ymax = %d\n",section3d[2],section3d[3]); */
 
 		  for(i=0;i<index_vertex;i++)
 		    {
@@ -1256,13 +1254,19 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		      
 		      if(xp >= section3d[0] && xp <= section3d[2] && yp >= section3d[1] && yp <= section3d[3])
 			{
-			  /* 			  printf("ICI => xp = %d \t yp = %d et x = %lf \t y = %lf \t z = %lf\n",xp,yp,x,y,z); */
+/* 			  printf("ICI => xp = %d \t yp = %d et x = %lf \t y = %lf \t z = %lf\n",xp,yp,x,y,z); */
 			  if(x < xmin) xmin=x; if(x > xmax) xmax=x;
 			  if(y < ymin) ymin=y; if(y > ymax) ymax=y;
 			  if(z < zmin) zmin=z; if(z > zmax) zmax=z;
 			}
 		    }
-		    
+		    	
+/* 		  printf("------------------------\n"); */
+/* 		  printf("xmin = %lf \t xmax = %lf\n",xmin,xmax); */
+/* 		  printf("ymin = %lf \t ymax = %lf\n",ymin,ymax); */
+/* 		  printf("zmin = %lf \t zmax = %lf\n",zmin,zmax); */
+/* 		  printf("------------------------\n\n"); */
+		  
 		  if(ppsubwin->axes.reverse[0] == TRUE) {
 		    double tmp;
 		    tmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmin);
