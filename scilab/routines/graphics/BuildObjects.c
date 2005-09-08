@@ -569,6 +569,19 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       pLABEL_FEATURE(ppsubwin->mon_title)->auto_position = 
 	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_position;
+ 
+      /* labels auto_rotation modes */
+      pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation = 
+	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_rotation;
+
+      pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation = 
+	pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_rotation;
+
+      pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation = 
+	pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_rotation;
+
+      pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation = 
+	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
       
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       ppsubwin->surfcounter = 0;

@@ -731,6 +731,15 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 
   int logrect[4], XX = 0, YY = 0; /* see below */
   double angle=0.0;
+  
+  double cosangle, sinangle;
+  int bboxtitle[4];
+  int xm4[4], ym4[4];
+  char str[2] = "xv";
+  int close=1;
+  int largeur, hauteur;
+  int zero=0;
+  int rect1[4];
 /*   int old_rect[4]; */
 
   /*   printf("DEBUT DE Axes3dStrings2\n"); */
@@ -807,15 +816,51 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   fontid_old[0] = fontid[0];
   fontid_old[1] = fontid[1];
 
-  textcolor = sciGetFontForeground(ppsubwin->mon_title);
-  fontid[0] = sciGetFontStyle(ppsubwin->mon_title);
-  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_title)/100;
   
-  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  
-  if((title != NULL) && (sciGetVisibility(ppsubwin->mon_title) == TRUE))
+  if((title != NULL) && (sciGetVisibility(ppsubwin->mon_title) == TRUE)){
+   
+    /* bounding box of the title (could be on multiple lines separated by @ */
+    fontid[0] = sciGetFontStyle(ppsubwin->mon_title);
+    fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_title)/100;
+
+    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    xstringb_bbox (title, rect[0], rect[1], rect[2], rect[3],
+		   0., bboxtitle);
+    
+    bboxtitle[0] = bboxtitle[0]-1; /* better display */
+    bboxtitle[1] = bboxtitle[1]-2; /* better display */
+
+    xm4[0] = bboxtitle[0];
+    xm4[1] = bboxtitle[0] + bboxtitle[2];
+    xm4[2] = bboxtitle[0] + bboxtitle[2];
+    xm4[3] = bboxtitle[0];
+    
+    ym4[0] = bboxtitle[1];
+    ym4[1] = bboxtitle[1];
+    ym4[2] = bboxtitle[1] + bboxtitle[3];
+    ym4[3] = bboxtitle[1] + bboxtitle[3];
+    
+    if(sciGetIsFilled(ppsubwin->mon_title) == TRUE){
+      int background = sciGetBackground(ppsubwin->mon_title);
+      int foreground = sciGetForeground(ppsubwin->mon_title);
+      int n = 4;
+
+      C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+      C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+    
+      C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+       
+      C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+    }
+    
+    textcolor = sciGetFontForeground(ppsubwin->mon_title);
+    
+    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
     C2F(dr1)("xstringtt",title,&rect[0],&rect[1],&rect[2],&rect[3],PI0,PI0,PD0,PD0,PD0,PD0,10L,0L);
+  }
   
   textcolor = textcolor_old;
   fontid[0] = fontid_old[0];
@@ -1294,30 +1339,88 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   
   if ((legz != 0) && (sciGetVisibility(ppsubwin->mon_z_label) == TRUE))
     {
+      int x1, yy1;
+      int rect1[4];
+      
+      if(pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation == TRUE){
+	angle =  270.;
+	sciSetFontOrientation(ppsubwin->mon_z_label,angle*10);
+      }
+      else {
+	angle = sciGetFontOrientation(ppsubwin->mon_z_label)/10.;
+      }
+      
       /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
       /* legend to be the same as those used for the numbers for the axes*/
-	  
-      textcolor_old = textcolor;
-      fontid_old[0] = fontid[0];
-      fontid_old[1] = fontid[1];
-	  
-      textcolor = sciGetFontForeground(ppsubwin->mon_z_label);
+      
       fontid[0] = sciGetFontStyle(ppsubwin->mon_z_label);
       fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_z_label)/100;
-	  
-      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
       C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if( sciGetVisibility(ppsubwin->mon_z_label) == TRUE)
-	C2F(dr)("xstring",legz,(x=x - rect[3],&x),&y,PI0,&flag
-		,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
-	  
+      
+      C2F(dr)("xstringl",legz,&zero,&zero,rect1,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+      cosangle = cos((360-angle)*M_PI/180);
+      sinangle = sin((360-angle)*M_PI/180);
+      
+      if(pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_position == TRUE){
+	x1  = x; /* c est bien le rect[3] relatif au Cscale  <=> rect[3]= Cscale.WIRect1[3]/6; */
+	yy1 = round(y+rect1[2]/2);
+      }
+      else{
+	double tmp[2];
+	sciGetPosition(ppsubwin->mon_z_label,&tmp[0],&tmp[1]);
+	
+	x1  = XDouble2Pixel(tmp[0]);
+	yy1 = YDouble2Pixel(tmp[1]);
+      }
+      
+      /* new automatic position values */
+      sciSetPosition(ppsubwin->mon_z_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+      
+      xm4[0] = x1;
+      xm4[1] = round(x1+cosangle*rect1[2]);
+      xm4[2] = round(x1+cosangle*rect1[2] + sinangle*(-rect1[3]));
+      xm4[3] = round(x1+sinangle*(-rect1[3]));
+      
+      ym4[0] = yy1;
+      ym4[1] = round(yy1-sinangle*rect1[2]);
+      ym4[2] = round(yy1-sinangle*rect1[2] + cosangle*(-rect1[3]));
+      ym4[3] = round(yy1+cosangle*(-rect1[3]));
+      
+      /* computation of the bounding box even when the string is turned */
+      
+      largeur = Max(abs(xm4[3] - xm4[1]),abs(xm4[2] - xm4[0]));
+      hauteur = Max(abs(ym4[3] - ym4[1]),abs(ym4[2] - ym4[0]));
+      
+      if(sciGetIsFilled(ppsubwin->mon_z_label) == TRUE){
+	int background = sciGetBackground(ppsubwin->mon_z_label);
+	int foreground = sciGetForeground(ppsubwin->mon_z_label);
+	int n = 4;
+	
+	C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	
+	C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	
+	C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	
+	C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+      }
+      
+      textcolor = sciGetFontForeground(ppsubwin->mon_z_label);
+      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      
+      xstringb_angle(legz,xm4[0],ym4[0],rect1[2],rect1[3],angle);
+      
       textcolor = textcolor_old;
       fontid[0] = fontid_old[0];
       fontid[1] = fontid_old[1];
+      
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
-   
-
+  
 
   /***********************/ /** bottom right side ***/
   /*** le  x-y scaling ***/ /* DISPLAY x or y graduations */
@@ -1334,7 +1437,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  integer Ticsdir[2]; 
 	  Ticsdir[0]=ixbox[4]-ixbox[3];
 	  Ticsdir[1]=iybox[4]-iybox[3];
-	  BBoxToval(&fx,&fy,&fz,xind[4],bbox);
+      	  BBoxToval(&fx,&fy,&fz,xind[4],bbox);
 	  x=inint((ixbox[4]+ixbox[5])/2+1.5*rect[2] +iof);
 	  y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+1.5*rect[3]+iof);
   	  
@@ -1835,29 +1938,83 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	}
       if (legx != 0 && (sciGetVisibility(ppsubwin->mon_x_label) == TRUE))
 	{
+	  int x1, yy1;
+	  if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
+	    angle =  0.;
+	    sciSetFontOrientation(ppsubwin->mon_x_label,angle*10);
+	  }
+	  else 
+	    angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
+	  
 	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
-	  /* legend to be the same as those used for the numbers for the axes*/
+	  /* legend to be the same as those used for the numbers for the axes */
 	  
-	  textcolor_old = textcolor;
-	  fontid_old[0] = fontid[0];
-	  fontid_old[1] = fontid[1];
-	  
-	  textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
 	  fontid[0] = sciGetFontStyle(ppsubwin->mon_x_label);
 	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_x_label)/100;
 	  
-	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
-	  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
-	    C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
-		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",legx,&zero,&zero,rect1,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  cosangle = cos((360-angle)*M_PI/180);
+	  sinangle = sin((360-angle)*M_PI/180);
+	  
+	  if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position == TRUE){
+	    x1  = x;
+	    yy1 = y;
+	  }
+	  else{
+	    double tmp[2];
+	    sciGetPosition(ppsubwin->mon_x_label,&tmp[0],&tmp[1]);
+	    
+	    x1  = XDouble2Pixel(tmp[0]);
+	    yy1 = YDouble2Pixel(tmp[1]);
+	  }
+	  
+	  /* new automatic position values */
+	  sciSetPosition(ppsubwin->mon_x_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	  
+	  xm4[0] = x1;
+	  xm4[1] = round(x1+cosangle*rect1[2]);
+	  xm4[2] = round(x1+cosangle*rect1[2] + sinangle*(-rect1[3]));
+	  xm4[3] = round(x1+sinangle*(-rect1[3]));
+	  
+	  ym4[0] = yy1;
+	  ym4[1] = round(yy1-sinangle*rect1[2]);
+	  ym4[2] = round(yy1-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	  ym4[3] = round(yy1+cosangle*(-rect1[3]));
+	  
+	  /* computation of the bounding box even when the string is turned */
+	  
+	  largeur = Max(abs(xm4[3] - xm4[1]),abs(xm4[2] - xm4[0]));
+	  hauteur = Max(abs(ym4[3] - ym4[1]),abs(ym4[2] - ym4[0]));
+	  
+	  if(sciGetIsFilled(ppsubwin->mon_x_label) == TRUE){
+	    int background = sciGetBackground(ppsubwin->mon_x_label);
+	    int foreground = sciGetForeground(ppsubwin->mon_x_label);
+	    int n = 4;
+	    
+	    C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	    
+	    C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	  }
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  xstringb_angle(legx,xm4[0],ym4[0],rect1[2],rect1[3],angle);
 	  
 	  textcolor = textcolor_old;
 	  fontid[0] = fontid_old[0];
 	  fontid[1] = fontid_old[1];
-	  
+
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
     }
   else
@@ -2374,28 +2531,87 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	}
       if (legy != 0 && (sciGetVisibility(ppsubwin->mon_y_label) == TRUE))
 	{ 
+	  int x1, yy1;
+	  if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
+	    angle =  0.;
+	    sciSetFontOrientation(ppsubwin->mon_y_label,angle);
+	  }
+	  else 
+	    angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
+	  
 	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
-	  /* legend to be the same as those used for the numbers for the axes*/
+	  /* legend to be the same as those used for the numbers for the axes */
 	  
-	  textcolor_old = textcolor;
-	  fontid_old[0] = fontid[0];
-	  fontid_old[1] = fontid[1];
-	  
-	  textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
 	  fontid[0] = sciGetFontStyle(ppsubwin->mon_y_label);
 	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_y_label)/100;
 	  
-	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* Adding F.Leray too */
-	  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
-	    C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl",legy,&zero,&zero,rect1,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  cosangle = cos((360-angle)*M_PI/180);
+	  sinangle = sin((360-angle)*M_PI/180);
+	  
+	  if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position == TRUE){
+	    x1  = x;
+	    yy1 = y;
+	  }
+	  else{
+	    double tmp[2];
+	    sciGetPosition(ppsubwin->mon_y_label,&tmp[0],&tmp[1]);
+	    
+	    x1  = XDouble2Pixel(tmp[0]);
+	    yy1 = YDouble2Pixel(tmp[1]);
+	  }
+	  
+	  /* new automatic position values */
+	  sciSetPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	  
+	  xm4[0] = x1;
+	  xm4[1] = round(x1+cosangle*rect1[2]);
+	  xm4[2] = round(x1+cosangle*rect1[2] + sinangle*(-rect1[3]));
+	  xm4[3] = round(x1+sinangle*(-rect1[3]));
+	  
+	  ym4[0] = yy1;
+	  ym4[1] = round(yy1-sinangle*rect1[2]);
+	  ym4[2] = round(yy1-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	  ym4[3] = round(yy1+cosangle*(-rect1[3]));
+	  
+	  /* computation of the bounding box even when the string is turned */
+	  
+	  largeur = Max(abs(xm4[3] - xm4[1]),abs(xm4[2] - xm4[0]));
+	  hauteur = Max(abs(ym4[3] - ym4[1]),abs(ym4[2] - ym4[0]));
+	  
+	  if(sciGetIsFilled(ppsubwin->mon_y_label) == TRUE){
+	    int background = sciGetBackground(ppsubwin->mon_y_label);
+	    int foreground = sciGetForeground(ppsubwin->mon_y_label);
+	    int n = 4;
+	    
+	    C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	    
+	    C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	  }
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  xstringb_angle(legy,xm4[0],ym4[0],rect1[2],rect1[3],angle);
 	  
 	  textcolor = textcolor_old;
 	  fontid[0] = fontid_old[0];
 	  fontid[1] = fontid_old[1];
+
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
     }
+  
+  
   
   /***********************/ /** bottom left side ***/
   /*** le  x-y scaling ***/ /* DISPLAY x or y graduations */
@@ -2903,27 +3119,84 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	}
 
       if (legx != 0&& (sciGetVisibility(ppsubwin->mon_x_label) == TRUE))
-	{ /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	{ 
+	  int x1, yy1;
+	  if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
+	    angle =  0.;
+	    sciSetFontOrientation(ppsubwin->mon_x_label,angle);
+	  }
+	  else 
+	    angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
+	  
+	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	  /* legend to be the same as those used for the numbers for the axes*/
-	  
-	  textcolor_old = textcolor;
-	  fontid_old[0] = fontid[0];
-	  fontid_old[1] = fontid[1];
-	  
-	  textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	   
 	  fontid[0] = sciGetFontStyle(ppsubwin->mon_x_label);
 	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_x_label)/100;
 	  
-	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
-	    C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
-		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl",legx,&zero,&zero,rect1,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  cosangle = cos((360-angle)*M_PI/180);
+	  sinangle = sin((360-angle)*M_PI/180);
+	  
+	  if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position == TRUE){
+	    x1  = x-rect1[2];
+	    yy1 = y;
+	  }
+	  else{
+	    double tmp[2];
+	    sciGetPosition(ppsubwin->mon_x_label,&tmp[0],&tmp[1]);
+	    
+	    x1  = XDouble2Pixel(tmp[0]);
+	    yy1 = YDouble2Pixel(tmp[1]);
+	  }
+	  
+	  /* new automatic position values */
+	  sciSetPosition(ppsubwin->mon_x_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	  
+	  xm4[0] = x1;
+	  xm4[1] = round(x1+cosangle*rect1[2]);
+	  xm4[2] = round(x1+cosangle*rect1[2] + sinangle*(-rect1[3]));
+	  xm4[3] = round(x1+sinangle*(-rect1[3]));
+	  
+	  ym4[0] = yy1;
+	  ym4[1] = round(yy1-sinangle*rect1[2]);
+	  ym4[2] = round(yy1-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	  ym4[3] = round(yy1+cosangle*(-rect1[3]));
+	  
+	  /* computation of the bounding box even when the string is turned */
+	  
+	  largeur = Max(abs(xm4[3] - xm4[1]),abs(xm4[2] - xm4[0]));
+	  hauteur = Max(abs(ym4[3] - ym4[1]),abs(ym4[2] - ym4[0]));
+	  
+	  if(sciGetIsFilled(ppsubwin->mon_x_label) == TRUE){
+	    int background = sciGetBackground(ppsubwin->mon_x_label);
+	    int foreground = sciGetForeground(ppsubwin->mon_x_label);
+	    int n = 4;
+	    
+	    C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	    
+	    C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	  }
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  xstringb_angle(legx,xm4[0],ym4[0],rect1[2],rect1[3],angle);
 	  
 	  textcolor = textcolor_old;
 	  fontid[0] = fontid_old[0];
 	  fontid[1] = fontid_old[1];
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
     }
   else 
@@ -3431,27 +3704,84 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	}
       
       if (legy != 0 && (sciGetVisibility(ppsubwin->mon_y_label) == TRUE))
-	{  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	{  
+	  int x1, yy1;
+	  if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
+	    angle =  0.;
+	    sciSetFontOrientation(ppsubwin->mon_y_label,angle);
+	  }
+	  else 
+	    angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
+
+	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
 	  /* legend to be the same as those used for the numbers for the axes*/
 	  
-	  textcolor_old = textcolor;
-	  fontid_old[0] = fontid[0];
-	  fontid_old[1] = fontid[1];
-	  
-	  textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
 	  fontid[0] = sciGetFontStyle(ppsubwin->mon_y_label);
 	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_y_label)/100;
 	  
-	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
-	    C2F(dr)("xstring",legy,(x=x-rect[2],&x),&y,PI0,&flag
-		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstringl",legy,&zero,&zero,rect1,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  cosangle = cos((360-angle)*M_PI/180);
+	  sinangle = sin((360-angle)*M_PI/180);
+	  
+	  if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position == TRUE){
+	    x1  = x-rect1[2];
+	    yy1 = y;
+	  }
+	  else{
+	    double tmp[2];
+	    sciGetPosition(ppsubwin->mon_y_label,&tmp[0],&tmp[1]);
+	    
+	    x1  = XDouble2Pixel(tmp[0]);
+	    yy1 = YDouble2Pixel(tmp[1]);
+	  }
+	  
+	  /* new automatic position values */
+	  sciSetPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	  
+	  xm4[0] = x1;
+	  xm4[1] = round(x1+cosangle*rect1[2]);
+	  xm4[2] = round(x1+cosangle*rect1[2] + sinangle*(-rect1[3]));
+	  xm4[3] = round(x1+sinangle*(-rect1[3]));
+	  
+	  ym4[0] = yy1;
+	  ym4[1] = round(yy1-sinangle*rect1[2]);
+	  ym4[2] = round(yy1-sinangle*rect1[2] + cosangle*(-rect1[3]));
+	  ym4[3] = round(yy1+cosangle*(-rect1[3]));
+	  
+	  /* computation of the bounding box even when the string is turned */
+	  
+	  largeur = Max(abs(xm4[3] - xm4[1]),abs(xm4[2] - xm4[0]));
+	  hauteur = Max(abs(ym4[3] - ym4[1]),abs(ym4[2] - ym4[0]));
+	  
+	  if(sciGetIsFilled(ppsubwin->mon_y_label) == TRUE){
+	    int background = sciGetBackground(ppsubwin->mon_y_label);
+	    int foreground = sciGetForeground(ppsubwin->mon_y_label);
+	    int n = 4;
+	    
+	    C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	    
+	    C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    
+	    C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	  }
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  xstringb_angle(legy,xm4[0],ym4[0],rect1[2],rect1[3],angle);
 	  
 	  textcolor = textcolor_old;
 	  fontid[0] = fontid_old[0];
 	  fontid[1] = fontid_old[1];
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
     }
   /* reset font to its current size & to current color*/ 
@@ -3660,10 +3990,6 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      tmpx= (tmpx-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]);
 	      tmpy= (tmpy-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
 	      tmpz= (tmpz-pSUBWIN_FEATURE (pobj)->FRect[4])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]); /* Adding F.Leray 28.04.04 */
-
-/* 	      tmpx= (tmpx-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]); */
-/* 	      tmpy= (tmpy-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]); */
-/* 	      tmpz= (tmpz-pSUBWIN_FEATURE (pobj)->FRect[4])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]); /\* Adding F.Leray 28.04.04 *\/ */
 
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
@@ -4433,7 +4759,7 @@ int labels2D_draw(sciPointObj * psubwin)
   rect1[3]= Cscale.WIRect1[3]/6;
   
   if(sciGetVisibility(ppsubwin->mon_title) == TRUE){
-     int bboxtitle[4];
+    int bboxtitle[4];
     
     x[0] = sciGetFontForeground (ppsubwin->mon_title);
     x[2] = sciGetFontDeciWidth (ppsubwin->mon_title)/100;
@@ -4494,19 +4820,24 @@ int labels2D_draw(sciPointObj * psubwin)
     x[2] = sciGetFontDeciWidth (ppsubwin->mon_x_label)/100;
     x[3] = 0;
     x[4] = sciGetFontStyle(ppsubwin->mon_x_label);
-  
-    font_angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
-  
+    
+    if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
+      font_angle =  0.;
+      sciSetFontOrientation(ppsubwin->mon_x_label,font_angle);
+    }
+    else 
+      font_angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
+    
     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-  
+    
 
     if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position == TRUE)
       {
 	C2F(dr)("xstringl",sciGetText(ppsubwin->mon_x_label),
 		&zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_x_label));
-
+	
 	cosangle = cos((360-font_angle)*M_PI/180);
 	sinangle = sin((360-font_angle)*M_PI/180);
 	
@@ -4532,9 +4863,6 @@ int labels2D_draw(sciPointObj * psubwin)
 	  /* hauteur */
 	  if((font_angle>=180 && font_angle <= 360)){
 	    yy1 = yy1 + hauteur;
-	    /*      printf("hauteur vaut: %d\n",largeur); */
-	    /*       printf("x1 - hauteur vaut: %d\n",x1); */
-	    /*       printf("------------------------------------\n"); */
 	  }
 	  else {
 	    int xm[4], ym[4];
@@ -4671,14 +4999,19 @@ int labels2D_draw(sciPointObj * psubwin)
     x[2] = sciGetFontDeciWidth (ppsubwin->mon_y_label)/100;
     x[3] = 0;
     x[4] = sciGetFontStyle(ppsubwin->mon_y_label);
-  
-    font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
-  
+
+    if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
+      font_angle =  270.;
+      sciSetFontOrientation(ppsubwin->mon_y_label,font_angle*10);
+    }
+    else 
+      font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
+    
     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-  
-
+    
+    
     if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position == TRUE)
       {
 	C2F(dr)("xstringl",sciGetText(ppsubwin->mon_y_label),
@@ -4709,9 +5042,6 @@ int labels2D_draw(sciPointObj * psubwin)
 	  /* largeur */
 	  if((font_angle>=0 && font_angle <= 90)  || (font_angle>270 && font_angle <= 360)){
 	    x1 = x1 - largeur;
-	    /*      printf("largeur vaut: %d\n",largeur); */
-	    /*       printf("x1 - largeur vaut: %d\n",x1); */
-	    /*       printf("------------------------------------\n"); */
 	  }
 	  else if(font_angle>=180 && font_angle <= 360){
 	    int xm[4], ym[4];

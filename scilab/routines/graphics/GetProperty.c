@@ -4308,6 +4308,7 @@ int sciType (marker, pobj)
   if      (strcmp(marker,"background") == 0) { return 1;}	
   else if (strcmp(marker,"position") == 0) {return 1;}
   else if (strcmp(marker,"auto_position") == 0)   {return 10;}		
+  else if (strcmp(marker,"auto_rotation") == 0)   {return 10;}		
   else if (strcmp(marker,"interp_color_vector") == 0) {return 1;}
   else if (strcmp(marker,"interp_color_mode") == 0) {return 10;}
   else if (strcmp(marker,"foreground") == 0) {return 1;}	

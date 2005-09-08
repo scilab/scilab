@@ -641,6 +641,7 @@ typedef struct
   int size_of_user_data;
   BOOL isfilled; /* to know if a label has a colored frame as background */
   BOOL auto_position; /* automatic or manual position selection for label */
+  BOOL auto_rotation; /* automatic or manual rotation selection for label (depends on the current view mode 2d or 3d mainly for y and z labels) */
   double position[2]; /* the (x,y) coord. of the label's position */
 }/** */
 sciLabel;  

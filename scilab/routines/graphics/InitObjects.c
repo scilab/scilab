@@ -414,6 +414,7 @@ int C2F(graphicsmodels) ()
   /*   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title))); */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_title)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_title)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_title)->position[1] = 0;
   
@@ -488,6 +489,7 @@ int C2F(graphicsmodels) ()
  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label))); */
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_x_label)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_x_label)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_x_label)->position[1] = 0;
 
@@ -562,6 +564,7 @@ int C2F(graphicsmodels) ()
  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label))); */
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_y_label)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_y_label)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_y_label)->position[1] = 0;
 
@@ -635,6 +638,7 @@ int C2F(graphicsmodels) ()
  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label))); */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_z_label)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_z_label)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_z_label)->position[1] = 0;
   
@@ -864,11 +868,7 @@ sciInitFontContext (sciPointObj * pobj)
 	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
 	  (sciGetFontContext(pobj))->textorientation = 0;
 	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-
-	  if(pLABEL_FEATURE(pobj)->ptype != 3)
-	    (sciGetFontContext(pobj))->textorientation = 0;
-	  else
-	    (sciGetFontContext(pobj))->textorientation = 2700;
+	  (sciGetFontContext(pobj))->textorientation = 0;
 
 	  if (((sciGetFontContext(pobj))->pfontname =
 	       CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
@@ -1279,6 +1279,7 @@ int InitAxesModel()
  /*  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title)));  */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_title)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_title)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_title)->position[1] = 0;
 
@@ -1353,6 +1354,7 @@ int InitAxesModel()
  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label)));  */
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_x_label)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_x_label)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_x_label)->position[1] = 0;
 
@@ -1427,6 +1429,7 @@ int InitAxesModel()
  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label)));  */
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_y_label)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_y_label)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_y_label)->position[1] = 0;
   
@@ -1500,6 +1503,7 @@ int InitAxesModel()
  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label)));  */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
+  pLABEL_FEATURE (ppobj->mon_z_label)->auto_rotation = TRUE;
   pLABEL_FEATURE (ppobj->mon_z_label)->position[0] = 0;
   pLABEL_FEATURE (ppobj->mon_z_label)->position[1] = 0;
 
