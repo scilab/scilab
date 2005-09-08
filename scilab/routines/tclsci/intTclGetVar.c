@@ -48,8 +48,7 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 
 				RetStr=TCL_ArrayGetVar(VarName,i,j);
 				AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
-				if (RetStr){FREE(RetStr);RetStr=NULL;}
-				
+		
 				ReturnArrayString[k++]=AsciiFromUTF8;
 			}
 
