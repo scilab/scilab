@@ -3546,7 +3546,7 @@ int scixtitle(fname,fname_len)
     sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Titre';'Principal'],'x','y');",&one);
     return 0;
   }
-  CheckRhs(1,3);
+  CheckRhs(1,4);
   SciWin();
 
   if (version_flag() == 0) 
@@ -3576,6 +3576,9 @@ int scixtitle(fname,fname_len)
 	    break;
 	  case 3:
 	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_y_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
+	    break;
+	  case 4:
+	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_z_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
 	    break;
 	  }
 	  /*  sciRedrawFigure(); */
@@ -6525,6 +6528,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pLABEL_FEATURE(pobj)->auto_position = FALSE;
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     }  
+  else if (strcmp(marker,"auto_rotation") == 0)
+    { 
+      if(sciGetEntityType(pobj) != SCI_LABEL)
+	{strcpy(error_message,"auto_rotation does not exist for this handle");return -1;}
+      
+      if (strcmp(cstk(*value),"on")==0 )
+	pLABEL_FEATURE(pobj)->auto_rotation = TRUE;
+      else if (strcmp(cstk(*value),"off")==0 )
+	pLABEL_FEATURE(pobj)->auto_rotation = FALSE;
+      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+    } 
   else if (strcmp(marker,"position") == 0) 
     { 
       if(sciGetEntityType(pobj) != SCI_LABEL)
@@ -8558,7 +8572,25 @@ int sciGet(sciPointObj *pobj,char *marker)
 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
-    }  
+    }
+  else if (strcmp(marker,"auto_rotation") == 0) 
+    { 
+      if(sciGetEntityType(pobj) != SCI_LABEL)
+	{strcpy(error_message,"auto_rotation does not exist for this handle");return -1;}
+      
+      if (pLABEL_FEATURE(pobj)->auto_rotation == TRUE) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
+    }
   else if (strcmp(marker,"position") == 0) 
     {
       if(sciGetEntityType(pobj) != SCI_LABEL)
