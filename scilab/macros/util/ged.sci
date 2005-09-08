@@ -80,7 +80,7 @@ function ged(k,win)
     case 7 then //stop Entity picker
     seteventhandler("")
   end
-  //xset('window',cur)
+  xset('window',ged_current_figure)
 endfunction
 
 
@@ -420,6 +420,9 @@ function ged_axes(h)
   TCL_SetVar("yauto_position",h.y_label.auto_position)
   TCL_SetVar("zauto_position",h.z_label.auto_position)
   TCL_SetVar("titleauto_position",h.title.auto_position)
+  TCL_SetVar("xauto_rotation",h.x_label.auto_rotation)
+  TCL_SetVar("yauto_rotation",h.y_label.auto_rotation)
+  TCL_SetVar("zauto_rotation",h.z_label.auto_rotation)
   TCL_SetVar("Xfillmode",h.x_label.fill_mode)
   TCL_SetVar("Yfillmode",h.y_label.fill_mode)
   TCL_SetVar("Zfillmode",h.z_label.fill_mode)

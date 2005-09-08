@@ -95,6 +95,9 @@ global hiddencolor
 global xauto_position yauto_position zauto_position titleauto_position
 global x_position y_position z_position title_position
 
+global xauto_rotation yauto_rotation zauto_rotation
+
+
 # #debug
 #  set ged_handle_list_size 2
 #  set curgedindex 1
@@ -349,6 +352,19 @@ pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
+
+
+#Auto Rotation
+frame $w.frame.rotlab -borderwidth 0
+pack $w.frame.rotlab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.rotlablabel  -text "Auto rotation:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.rotlabb  -text "on"\
+    -variable xauto_rotation  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoRotationx $w.frame.rotlabb"  -font {Arial 9}
+OnOffForeground $w.frame.rotlabb $xauto_rotation
+
+pack $w.frame.rotlablabel -in $w.frame.rotlab -side left
+pack $w.frame.rotlabb -in $w.frame.rotlab -side left -padx 1m
 
 #Font Angle
 frame $w.frame.font  -borderwidth 0
@@ -608,6 +624,18 @@ pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
 
+#Auto Rotation
+frame $w.frame.rotlab -borderwidth 0
+pack $w.frame.rotlab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.rotlablabel  -text "Auto rotation:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.rotlabb  -text "on"\
+    -variable yauto_rotation  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoRotationy $w.frame.rotlabb"  -font {Arial 9}
+OnOffForeground $w.frame.rotlabb $yauto_rotation
+
+pack $w.frame.rotlablabel -in $w.frame.rotlab -side left
+pack $w.frame.rotlabb -in $w.frame.rotlab -side left -padx 1m
+
 #Font Angle
 frame $w.frame.font  -borderwidth 0
 pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
@@ -848,6 +876,18 @@ pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
+
+#Auto Rotation
+frame $w.frame.rotlab -borderwidth 0
+pack $w.frame.rotlab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.rotlablabel  -text "Auto rotation:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.rotlabb  -text "on"\
+    -variable zauto_rotation  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoRotationz $w.frame.rotlabb"  -font {Arial 9}
+OnOffForeground $w.frame.rotlabb $zauto_rotation
+
+pack $w.frame.rotlablabel -in $w.frame.rotlab -side left
+pack $w.frame.rotlabb -in $w.frame.rotlab -side left -padx 1m
 
 #Font Angle
 frame $w.frame.font  -borderwidth 0
@@ -3976,6 +4016,28 @@ proc setPosition_title { } {
     }
     ScilabEval "global ged_handle;ged_handle.title.position = $title_position"
 #     ScilabEval "global ged_handle;if ged_handle.title.position <> $title_position then ged_handle.title.position=$title_position; end;"
+}
+
+
+proc toggleAutoRotationx { frame } {
+    global xauto_rotation
+    ScilabEval "global ged_handle;ged_handle.x_label.auto_rotation='$xauto_rotation'"
+
+    OnOffForeground $frame $xauto_rotation
+}
+
+proc toggleAutoRotationy { frame } {
+    global yauto_rotation
+    ScilabEval "global ged_handle;ged_handle.y_label.auto_rotation='$yauto_rotation'"
+
+    OnOffForeground $frame $yauto_rotation
+}
+
+proc toggleAutoRotationz { frame } {
+    global zauto_rotation
+    ScilabEval "global ged_handle;ged_handle.z_label.auto_rotation='$zauto_rotation'"
+
+    OnOffForeground $frame $zauto_rotation
 }
 
 
