@@ -5535,7 +5535,7 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   int valeur = 0;
   int nb = 0;
   
-  int **store_data = (int) NULL;
+  int **store_data = (int **) NULL;
 
   if ((store_data = (int **) MALLOC ((3)*sizeof (int *))) == NULL) return -1;
   for(i=0;i<3;i++) 
@@ -6379,7 +6379,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   sciPointObj *pobj; 
   int *locindex;
   int *polyx,*polyy,fill[20];/* here we suppose there is no more than 20 edge in a facet */
-  int k1, pstyle,iflag;
+  int k1, pstyle=0,iflag;
   int whiteid,verbose=0,narg;
   static double zmin,zmax,xmoy,ymoy,zmoy,zl;
   int context[6];
@@ -7219,6 +7219,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  }
 	  
 	  if(sciGetIsLine(pobj)){
+        context[3] = 0;
+
 	    C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
 		      PD0, PD0, PD0, 5L, 6L);
 	    C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
