@@ -214,6 +214,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     visible=toggle(mget(1,'c',fd))
     sz=mget(2,'il',fd); data=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     line_mode      = toggle(mget(1,'c',fd))
+    if is_higher_than([3 1 0 0]) then  
+      fill_mode      = toggle(mget(1,'c',fd))
+    else
+      fill_mode = %F;
+    end
     line_style     = mget(1,'c',fd);
     thickness      = mget(1,'sl',fd);
     polyline_style = mget(1,'c',fd);
@@ -224,12 +229,16 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
       foreground     = mget(1,'il',fd);
+      if is_higher_than([3 1 0 0]) then  
+	background     = mget(1,'il',fd);
+      end
       mark_foreground=mget(1,'il',fd)
       mark_background=mget(1,'il',fd)
     else
       foreground     = mget(1,'il',fd);
       mark_foreground=-1
       mark_background=-2
+      background     =-2;
     end
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then
@@ -252,6 +261,8 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"mark_background",mark_background)
     set(h,"mark_mode",mark_mode)
     set(h,"foreground",foreground),
+    set(h,"background",background),
+    set(h,"fill_mode",fill_mode)
 
     if clip_state =='' then clip_state='clipgrf',end
     if clip_state=='on' then set(h,"clip_box",clip_box),end
