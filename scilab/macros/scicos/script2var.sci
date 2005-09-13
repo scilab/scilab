@@ -27,7 +27,12 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
   %mm=%mm(1:%nww2-%nww)
   for %mi=%mm(:)'
     if type(evstr(%mi)) <> 13 then
-      %ll(%mi)=evstr(%mi)
+      if %mi=="scs_m" then
+	disp('the name scs_m is reseved; it cannot be used as block"+...
+	     " parameter')
+      else
+	%ll(%mi)=evstr(%mi)
+      end
     end
   end
 endfunction
