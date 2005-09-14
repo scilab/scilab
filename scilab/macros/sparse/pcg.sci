@@ -1,4 +1,4 @@
-// [x, flag, err, iter, res] = pcg(A, b, tol, maxIter, M, x)
+// [x, flag, resNorm, iter, resVec] = pcg(A, b, tol, maxIter, M, M2, x)
 //
 // PCG solves the symmetric positive definite linear system Ax=b 
 // using the Preconditionned Conjugate Gradient.
@@ -8,14 +8,15 @@
 //         tol      REAL error tolerance (default: 1e-8)
 //         maxIter  INTEGER maximum number of iterations (default: 50)
 //         M        REAL preconditioner matrix (default: none)
+//         M2       REAL preconditioner matrix (default: none)
 //         x        REAL initial guess vector
 //
 // output  x        REAL solution vector
 //         flag     INTEGER: 0 = solution found to tolerance
 //                           1 = no convergence given maxIter
-//         err      REAL final relative norm of the residual
+//         resNorm  REAL final relative norm of the residual
 //         iter     INTEGER number of iterations performed
-//         res      REAL residual vector
+//         resVec   REAL residual vector
 
 //     Details of this algorithm are described in 
 //
@@ -31,14 +32,14 @@
 
 // Sage Group (IRISA, 2004)
 
-function [x, flag, err, iter, res] = pcg(A, varargin)
+function [x, flag, resNorm, iter, resVec] = pcg(A, varargin)
 
 // -----------------------
 // Parsing input arguments
 // -----------------------
 [lhs,rhs] = argn(0);
 if (rhs < 2),
-  error("pcg: not enough input arguments"); // error 77 ??
+  error("pcg: not enough input arguments");
 end
 
 // Parsing the matrix A
@@ -116,9 +117,34 @@ else
   precondType = 0; //no preconditionner
 end
 
+// Parsing the preconditioner M
+if (rhs >=6),
+  M2 = varargin(5);
+  select type(M2)
+  case 1 then
+    precondBis = 1;
+  case 5 then
+    precondBis = 1;
+  case 13 then
+    precondBis = 2;
+  else
+    error("pcg: unknown type for preconditionner");
+  end 
+  if (precondBis == 1),
+    if (size(M2,1) ~= size(M2,2)),
+      error("pcg: preconditionner matrix M2 must be square");
+    end 
+    if ( size(M2,1) ~= size(b,1) ),
+      error("pcg: preconditionner matrix M2 must have the size of b");
+    end
+  end
+else
+  precondBis = 0; //no preconditionner
+end
+
 // Parsing the initial vector x
-if (rhs >= 6),
-   x=varargin(5);
+if (rhs >= 7),
+   x=varargin(6);
    if (size(x,2) ~= 1),
       error("pcg: initial guess x0 must be a column vector");
    end
@@ -140,12 +166,12 @@ end
 
 // initialization
 flag = 0; 
+iter = 0;
 bnrm2 = norm(b);
 if  (bnrm2 == 0), 
   x = zeros(b);
-  err = 0;
-  iter = 0;
-  res = err;
+  resNorm = 0;
+  resVec = resNorm;
 end
 
 // r = b - A*x;
@@ -154,20 +180,27 @@ if (matrixType ==1),
 else
   r = b - A(x);
 end
-err = norm(r) / bnrm2;
-res = err;
-if (err < tol),
-  iter = 0;
+resNorm = norm(r) / bnrm2;
+resVec = resNorm;
+if (resNorm < tol),
   return; 
 end
 
 // begin iteration
-for i = 1:maxIter,
+for i = 1:maxIter-1,
   // z  = M \ r;
   if (precondType == 1),
     z = M \ r;
   elseif (precondType == 2),
     z = M(r);
+  else
+    z = r;
+  end
+  // z  = M2 \ r;
+  if (precondBis == 1),
+    z = M2 \ r;
+  elseif (precondBis == 2),
+    z = M2(r);
   else
     z = r;
   end
@@ -188,9 +221,9 @@ for i = 1:maxIter,
   alp = rho / (p'*q );
   x = x + alp*p;
   r = r - alp*q;
-  err = norm(r) / bnrm2;
-  res = [res;err];
-  if (err <= tol),
+  resNorm = norm(r) / bnrm2;
+  resVec = [resVec;resNorm];
+  if (resNorm <= tol),
     iter=i; 
     break;
   end 
@@ -201,7 +234,7 @@ for i = 1:maxIter,
 end
 
 // test for convergence
-if (err > tol),
+if (resNorm > tol),
   flag = 1; 
   if (lhs < 2),
     warning('PCG did not converge');

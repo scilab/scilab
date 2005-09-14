@@ -66,35 +66,54 @@ if (matrixType==1),
   end 
 end
 
-// Parsing of the initial vector x
+// Number of iterations between restarts
 if (rhs >= 3),
-  x=varargin(2);
-  if (size(x,2) ~= 1),
-    error("Initial guess x0 must be a column vector");
-  end
-  if ( size(x,1) ~= size(b,1) ),
-    error("gmres: initial guess x0 must have the size of the matrix A");
+  restrt=varargin(2);
+  if (size(restrt) ~= [1 1]),
+    error("gmres: restart must be a scalar");
   end 
 else
-  x=zeros(b);
+  restrt=20;
+end
+
+// Error tolerance tol
+if (rhs >= 4),
+  tol=varargin(3);
+  if (size(tol) ~= [1 1]);
+    error("gmres: tol must be a scalar");
+  end
+else
+  tol = 1e-6;
+end
+
+// Maximum number of iterations max_it
+if (rhs >= 5),
+  max_it=varargin(4);
+  if (size(max_it) ~= [1 1]),
+    error("gmres: max_it must be a scalar");
+  end 
+else
+  max_it=size(b,1);
 end
 
 // Parsing of the preconditioner matrix M
-if (rhs >= 4),
-  M = varargin(3);
+if (rhs >= 6),
+  M = varargin(5);
   select type(M)
   case 1 then
-    precondType=1;
+    precondType = 1;
   case 5 then
-    precondType=1;
+    precondType = 1;
   case 13 then
-    precondType=0;
+    precondType = 0;
   end 
   if (precondType == 1),
     if (size(M,1) ~= size(M,2)),
       error("gmres: preconditionner matrix M must be square");
     end 
-    if ( size(M,1) ~= size(b,1) ), 
+    if (size(M,1) == 0),
+      precondType = 2; // no preconditionning
+    elseif ( size(M,1) ~= size(b,1) ), 
       error("Preconditionner matrix M must have same size as the problem");
     end
   end
@@ -105,34 +124,17 @@ else
   precondType = 2; // no preconditionning
 end
 
-// Number of iterations between restarts
-if (rhs >= 5),
-  restrt=varargin(4);
-  if (size(restrt) ~= [1 1]),
-    error("gmres: restart must be a scalar");
-  end 
-else
-  restrt=20;
-end
-
-// Maximum number of iterations max_it
-if (rhs >= 6),
-  max_it=varargin(5);
-  if (size(max_it) ~= [1 1]),
-    error("gmres: max_it must be a scalar");
-  end 
-else
-  max_it=size(b,1);
-end
-
-// Error tolerance tol
+// Parsing of the initial vector x
 if (rhs >= 7),
-  tol=varargin(6);
-  if (size(tol) ~= [1 1]);
-    error("gmres: tol must be a scalar");
+  x=varargin(6);
+  if (size(x,2) ~= 1),
+    error("Initial guess x0 must be a column vector");
   end
+  if ( size(x,1) ~= size(b,1) ),
+    error("gmres: initial guess x0 must have the size of the matrix A");
+  end 
 else
-  tol = 1e-6;
+  x=zeros(b);
 end
 
 if (rhs > 7),
@@ -234,7 +236,7 @@ end
        H(i,i) = cs(i)*H(i,i) + sn(i)*H(i+1,i);
        H(i+1,i) = 0.0;
        resNorm  = abs(s(i+1)) / bnrm2;
-       resVec = [res;resNorm];
+       resVec = [resVec;resNorm];
        if ( resNorm <= tol ),
 	 y = H(1:i,1:i) \ s(1:i);
 	 x = x + V(:,1:i)*y;
@@ -284,25 +286,6 @@ endfunction
 // Compute the Givens rotation matrix parameters for a and b.
 //
 function [ c, s ] = rotmat( a, b )
-[lhs,rhs]=argn(0);
-if ( rhs== 0 ),
-   error("Scalar is expected");
-end
-if ( rhs >= 1 ),
-  if ( size(a,1) ~= 1 | size(a,2) ~= 1 ),
-    error("a must be scalar");
-  end
-end
-if ( rhs == 2 ),
-   if ( size(b,1) ~= 1 | size(b,2) ~= 1 ),
-      error("b must be a scalar");
-   end
-end
-if ( rhs > 2 ),
-   error("Too input arguments");
-end
-
-// computations
 if ( b == 0.0 ),
   c = 1.0;
   s = 0.0;
