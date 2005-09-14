@@ -7,7 +7,7 @@
   <DATE>March 2000  </DATE>
   <SHORT_DESCRIPTION name="gmres"> generalized minimum residual method with restarts  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[x,err,iter,flag,res] = gmres(A,b,x0,M,rstr,maxi,tol)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x,flag,err,iter,res] = gmres(A,b,rstr,tol,maxi,M,x0)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
