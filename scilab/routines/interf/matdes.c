@@ -244,7 +244,7 @@ static int get_rect(fname,pos,opts)
      int pos;
      rhs_opts opts[];
 {
-  int m,n,l,first_opt=FirstOpt(),kopt;
+  int m,n,l,first_opt=FirstOpt(),kopt,i;
 
   if (pos < first_opt) 
     { 
@@ -254,7 +254,13 @@ static int get_rect(fname,pos,opts)
 	  Scierror(999,"%s: rect has wrong size (%d), 4 expected \r\n",fname,m*n); 
 	  return 0;
 	}
-	Rect = stk(l); 
+	Rect = stk(l);
+	
+	for(i=0;i<4;i++)
+	  if(finite(Rect[i]) == 0){
+	    Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected \r\n",fname,m*n); 
+	    return 0;
+	  }
       }
       else 
 	{
@@ -270,7 +276,13 @@ static int get_rect(fname,pos,opts)
       Scierror(999,"%s: rect has wrong size (%d), 4 expected \r\n",fname,m*n); 
       return 0;
     }
-    Rect = stk(l); 
+    Rect = stk(l);
+    
+    for(i=0;i<4;i++)
+      if(finite(Rect[i]) == 0){
+	Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected \r\n",fname,m*n); 
+	return 0;
+      }
   }
   else
     {
