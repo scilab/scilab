@@ -4305,7 +4305,8 @@ int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;
 { 
-  if      (strcmp(marker,"background") == 0) { return 1;}	
+  if      (strcmp(marker,"closed") == 0) { return 10;}	
+  else if (strcmp(marker,"background") == 0) { return 1;}	
   else if (strcmp(marker,"position") == 0) {return 1;}
   else if (strcmp(marker,"auto_position") == 0)   {return 10;}		
   else if (strcmp(marker,"auto_rotation") == 0)   {return 10;}		

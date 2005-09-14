@@ -6516,7 +6516,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pSUBWIN_FEATURE (pobj)->tight_limits=TRUE;
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
-    }  
+    } 
+  else if (strcmp(marker,"closed") == 0)
+    { 
+      if(sciGetEntityType(pobj) != SCI_POLYLINE)
+	{strcpy(error_message,"closed property does not exist for this handle");return -1;}
+      
+      if (strcmp(cstk(*value),"on")==0 )
+	pPOLYLINE_FEATURE(pobj)->closed = 1;
+      else if (strcmp(cstk(*value),"off")==0 )
+	pPOLYLINE_FEATURE(pobj)->closed = 0;
+      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+    } 
   else if (strcmp(marker,"auto_position") == 0)
     { 
       if(sciGetEntityType(pobj) != SCI_LABEL)
@@ -8554,7 +8565,25 @@ int sciGet(sciPointObj *pobj,char *marker)
       }
       else
 	{strcpy(error_message,"tight_limits property does not exist for this handle");return -1;}
-    }  
+    }
+  else if (strcmp(marker,"closed") == 0) 
+    { 
+      if(sciGetEntityType(pobj) != SCI_POLYLINE)
+	{strcpy(error_message,"closed property does not exist for this handle");return -1;}
+      
+      if (pPOLYLINE_FEATURE(pobj)->closed == 1) {
+	numrow   = 1;
+	numcol   = 2;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"on", numrow*numcol);
+      }
+      else {
+	numrow   = 1;
+	numcol   = 3;
+	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	strncpy(cstk(outindex),"off", numrow*numcol);
+      }
+    }
   else if (strcmp(marker,"auto_position") == 0) 
     { 
       if(sciGetEntityType(pobj) != SCI_LABEL)
