@@ -1,6 +1,6 @@
       subroutine ddpowe(v,p,rr,ri,ierr,iscmpl)
 c!purpose
-c     computes v^p with p and v double preision
+c     computes v^p with p and v double precision
 c!calling sequence
 c     subroutine ddpowe(v,p,rr,ri,ierr,iscmpl)
 c     integer ierr
@@ -39,7 +39,7 @@ c
             rr=sr*cos(si)
             ri=sr*sin(si)
             iscmpl=1
-         else
+         elseif(v.eq.0.d0) then
             if(p.lt.0.0d+0) then
                ri=0.0d0
                rr=infinity(ri)
@@ -48,10 +48,18 @@ c
 c               ierr=1
                rr=1.0d0
                ri=0.0d0
-            else
+            elseif(p.gt.0.d0) then
                rr=0.0d0
                ri=0.0d0
+            else
+c              p is nan
+               rr = p
+               ri = 0.d0
             endif
+         else
+c           v is nan
+            rr = v
+            ri = 0.d0
          endif
       endif
 c     
