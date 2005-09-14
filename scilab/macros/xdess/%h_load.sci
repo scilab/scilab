@@ -86,30 +86,83 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(title,"visible"          , toggle(mget(1,'c',fd)))
     set(title,"text"             , ascii(mget(mget(1,'c',fd),'c',fd)))
     set(title,"foreground"       , mget(1,'il',fd));
+    if is_higher_than([3 1 0 0]) then
+      set(title,"background"       , mget(1,'il',fd));
+      set(title,"fill_mode"        , toggle(mget(1,'c',fd)));
+    end
+    
     set(title,"font_style"       , mget(1,'c',fd));
     set(title,"font_size"        , mget(1,'c',fd));
+
+    if is_higher_than([3 1 0 0]) then
+      set(title,"auto_rotation"         , toggle(mget(1,'c',fd)))
+      set(title,"font_angle"            , mget(1,'dl',fd));
+      set(title,"auto_position"         , toggle(mget(1,'c',fd)))
+      set(title,"position"              , mget(2,'dl',fd));
+    end
+    //     disp(mtell(fd));
+    
     set(x_label,"visible"        , toggle(mget(1,'c',fd)))
-    set(x_label,"text"           , ascii(mget(mget(1,'il',fd),'c',fd)))
+    set(x_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
+    
     set(x_label,"foreground"     , mget(1,'il',fd));
+    if is_higher_than([3 0 0 0]) then
+      set(x_label,"background"       , mget(1,'il',fd));
+      set(x_label,"fill_mode"        , toggle(mget(1,'c',fd)));
+    end
     set(x_label,"font_style"     , mget(1,'c',fd));
     set(x_label,"font_size"      , mget(1,'c',fd));
+    
+    if is_higher_than([3 0 0 0]) then
+      set(x_label,"auto_rotation"         , toggle(mget(1,'c',fd)))
+      set(x_label,"font_angle"            , mget(1,'dl',fd));
+      set(x_label,"auto_position"         , toggle(mget(1,'c',fd)))
+      set(x_label,"position"              , mget(2,'dl',fd));
+    end
+    
     set(y_label,"visible"        , toggle(mget(1,'c',fd)))
-    set(y_label,"text"           , ascii(mget(mget(1,'il',fd),'c',fd)))
+    set(y_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
+    
     set(y_label,"foreground"     , mget(1,'il',fd));
+    if is_higher_than([3 0 0 0]) then
+      set(y_label,"background"       , mget(1,'il',fd));
+      set(y_label,"fill_mode"        , toggle(mget(1,'c',fd)));
+    end
     set(y_label,"font_style"     , mget(1,'c',fd));
     set(y_label,"font_size"      , mget(1,'c',fd));
-
+    
+    if is_higher_than([3 0 0 0]) then
+      set(y_label,"auto_rotation"         , toggle(mget(1,'c',fd)))
+      set(y_label,"font_angle"            , mget(1,'dl',fd));
+      set(y_label,"auto_position"         , toggle(mget(1,'c',fd)))
+      set(y_label,"position"              , mget(2,'dl',fd));
+    end
+    
     if view=='3d' then
       z_label=a.z_label
       set(z_label,"visible"        , toggle(mget(1,'c',fd)))
-      set(z_label,"text"           , ascii(mget(mget(1,'il',fd),'c',fd)))
+      set(z_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
       set(z_label,"foreground"     , mget(1,'il',fd));
+      if is_higher_than([3 0 0 0]) then
+	set(z_label,"background"       , mget(1,'il',fd));
+	set(z_label,"fill_mode"        , toggle(mget(1,'c',fd)));
+      end
       set(z_label,"font_style"     , mget(1,'c',fd));
       set(z_label,"font_size"      , mget(1,'c',fd));
+      
+      if is_higher_than([3 0 0 0]) then
+	set(z_label,"auto_rotation"         , toggle(mget(1,'c',fd)))
+	set(z_label,"font_angle"            , mget(1,'dl',fd));
+	set(z_label,"auto_position"         , toggle(mget(1,'c',fd)))
+	set(z_label,"position"              , mget(2,'dl',fd));
+      end
     end
+    
+    
+    
     if is_higher_than([3 0 0 0]) then
       auto_ticks=toggle(mget(mget(1,'c',fd),'c',fd));
-
+      
       ticks=['ticks','locations','labels']
       sz=mget(1,'sl',fd)
       x_ticks_locations=mget(sz,'dl',fd)'
@@ -191,8 +244,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(a,"mark_background"      , mget(1,'il',fd)),
     else
       set(a,"mark_size_unit"     , 'tabulated')
-      set(a,"mark_foreground"      , -1),
-      set(a,"mark_background"      , -2),
     end
     set(a,"foreground"           , mget(1,'il',fd)),
     set(a,"background"           , mget(1,'il',fd)),
@@ -213,11 +264,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
   case 'Polyline'
     visible=toggle(mget(1,'c',fd))
     sz=mget(2,'il',fd); data=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    if is_higher_than([3 1 0 0]) then  
+      closed      = toggle(mget(1,'c',fd))
+    end
     line_mode      = toggle(mget(1,'c',fd))
     if is_higher_than([3 1 0 0]) then  
       fill_mode      = toggle(mget(1,'c',fd))
-    else
-      fill_mode = %F;
     end
     line_style     = mget(1,'c',fd);
     thickness      = mget(1,'sl',fd);
@@ -228,19 +280,21 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     msu='tabulated'
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
-      foreground     = mget(1,'il',fd);
-      if is_higher_than([3 1 0 0]) then  
-	background     = mget(1,'il',fd);
-      end
+    end
+
+    foreground     = mget(1,'il',fd);
+    
+    if is_higher_than([3 1 0 0]) then  
+      background     = mget(1,'il',fd);
+    end
+  
+    if is_higher_than([3 0 0 0]) then  
       mark_foreground=mget(1,'il',fd)
       mark_background=mget(1,'il',fd)
-    else
-      foreground     = mget(1,'il',fd);
-      mark_foreground=-1
-      mark_background=-2
-      background     =-2;
     end
+    
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
+    
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd)
     else
@@ -256,14 +310,19 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"polyline_style",max(1,polyline_style)),
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
-    set(h,"mark_size_unit",msu),
-    set(h,"mark_foreground",mark_foreground),
-    set(h,"mark_background",mark_background)
-    set(h,"mark_mode",mark_mode)
+    set(h,"mark_mode",mark_mode),
     set(h,"foreground",foreground),
-    set(h,"background",background),
-    set(h,"fill_mode",fill_mode)
-
+    if is_higher_than([3 0 0 0]) then
+      set(h,"mark_size_unit",msu)
+      set(h,"mark_foreground",mark_foreground),
+      set(h,"mark_background",mark_background)
+    end
+    if is_higher_than([3 1 0 0]) then
+      set(h,"background",background)
+      set(h,"fill_mode",fill_mode)
+      set(h,"closed",closed);
+    end
+    
     if clip_state =='' then clip_state='clipgrf',end
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
@@ -281,9 +340,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       mark_foreground=mget(1,'il',fd)
       mark_background=mget(1,'il',fd)
     else
-      msu='tabulated'
-      mark_foreground=-1
-      mark_background=-2
+      msu='tabulated'  
     end
     color_mode     = mget(1,'c',fd);
     color_flag     = mget(1,'c',fd);
@@ -317,9 +374,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"color_mode",color_mode),
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
-    set(h,"mark_size_unit",msu),
-    set(h,"mark_foreground",mark_foreground),
-    set(h,"mark_background",mark_background)
+    if is_higher_than([3 0 0 0]) then
+      set(h,"mark_size_unit",msu),
+      set(h,"mark_foreground",mark_foreground),
+      set(h,"mark_background",mark_background)
+    end
     set(h,"mark_mode",mark_mode)
     set(h,"color_flag",color_flag),
     set(h,"hiddencolor",hiddencolor),
@@ -336,10 +395,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if ascii(mget(1,'c',fd))=='t' then msu='tabulated',else msu='point';end
       mark_foreground=mget(1,'il',fd)
       mark_background=mget(1,'il',fd)
-    else
-      msu='tabulated'
-      mark_foreground=-1
-      mark_background=-2
     end
     color_mode     = mget(1,'c',fd);
     color_flag     = mget(1,'c',fd);
@@ -375,10 +430,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"hiddencolor",hiddencolor),
     set(h,"mark_style",mark_style),
     set(h,"mark_size",mark_size),
-    set(h,"mark_size_unit",msu),
     set(h,"mark_mode",mark_mode)
-    set(h,"mark_foreground",mark_foreground),
-    set(h,"mark_background",mark_background)
+    if is_higher_than([3 0 0 0]) then
+      set(h,"mark_size_unit",msu),
+      set(h,"mark_foreground",mark_foreground),
+      set(h,"mark_background",mark_background)
+    end
     load_user_data(fd)
   case "Agregation"
     n=mget(1,'il',fd)
@@ -401,8 +458,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       mark_background=mget(1,'il',fd)
     else
       msu='tabulated'
-      mark_foreground=-1
-      mark_background=-2
     end
     line_mode   = toggle(mget(1,'c',fd))
     line_style     = mget(1,'c',fd);      
@@ -501,8 +556,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"mark_background"    , mget(1,'il',fd)),
     else
       set(h,"mark_size_unit"     , 'tabulated')
-      set(h,"mark_foreground"    , -1),
-      set(h,"mark_background"    , -2),
     end
     
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
@@ -650,7 +703,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       load_user_data(fd)
     end
   else
-      disp('type " +typ+" unhandled");pause
+      disp("type " +typ+" unhandled");pause
   end
 
 endfunction

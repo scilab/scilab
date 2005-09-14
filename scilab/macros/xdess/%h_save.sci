@@ -44,27 +44,57 @@ function save_graphichandle(h,fd)
     mput(bool2s(l.visible=='on'),'c',fd)
     mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
     mput(l.foreground,'il',fd)
+    mput(l.background,'il',fd)
+    mput(bool2s(l.fill_mode=='on'),'c',fd)
     mput(l.font_style,'c',fd)
     mput(l.font_size,'c',fd)
+      
+    mput(bool2s(l.auto_rotation=='on'),'c',fd)
+    mput(l.font_angle,'dl',fd)
+    mput(bool2s(l.auto_position=='on'),'c',fd)  
+    mput(l.position,'dl',fd)
+    
     l=h.x_label
     mput(bool2s(l.visible=='on'),'c',fd)
-    save_text_vector(l.text,fd)
+    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
     mput(l.foreground,'il',fd)
+    mput(l.background,'il',fd)
+    mput(bool2s(l.fill_mode=='on'),'c',fd)
     mput(l.font_style,'c',fd)
     mput(l.font_size,'c',fd)
+  
+    mput(bool2s(l.auto_rotation=='on'),'c',fd)
+    mput(l.font_angle,'dl',fd)
+    mput(bool2s(l.auto_position=='on'),'c',fd)
+    mput(l.position,'dl',fd)
+  
     l=h.y_label
     mput(bool2s(l.visible=='on'),'c',fd)
-    save_text_vector(l.text,fd)
+    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
     mput(l.foreground,'il',fd)
+    mput(l.background,'il',fd)
+    mput(bool2s(l.fill_mode=='on'),'c',fd)
     mput(l.font_style,'c',fd)
     mput(l.font_size,'c',fd)
+    
+    mput(bool2s(l.auto_rotation=='on'),'c',fd)
+    mput(l.font_angle,'dl',fd)
+    mput(bool2s(l.auto_position=='on'),'c',fd)
+    mput(l.position,'dl',fd)
+    
     if h.view=='3d' then
       l=h.z_label
       mput(bool2s(l.visible=='on'),'c',fd)
-      save_text_vector(l.text,fd)
+      mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd);
       mput(l.foreground,'il',fd)
+      mput(l.background,'il',fd)
+      mput(bool2s(l.fill_mode=='on'),'c',fd)
       mput(l.font_style,'c',fd)
       mput(l.font_size,'c',fd)
+      mput(bool2s(l.auto_rotation=='on'),'c',fd)
+      mput(l.font_angle,'dl',fd)
+      mput(bool2s(l.auto_position=='on'),'c',fd)
+      mput(l.position,'dl',fd)
     end
     mput(size(h.auto_ticks,'*'),'c',fd);mput(bool2s(h.auto_ticks=='on'),'c',fd)
     
@@ -87,7 +117,7 @@ function save_graphichandle(h,fd)
     mput(h.font_style,'c',fd)
     mput(h.font_size,'c',fd)
     mput(h.font_color,'il',fd)
-    mput(bool2s(h.isoview=='on'),'c',fd)
+    mput(bool2s(h.isoview=='on'),'c',fd)   
     mput(bool2s(h.cube_scaling=='on'),'c',fd)
     mput(h.rotation_angles,'dl',fd)
     mput(ascii(h.log_flags),'c',fd)
@@ -126,6 +156,7 @@ function save_graphichandle(h,fd)
     
     mput(bool2s(h.visible=='on'),'c',fd)
     mput(size(h.data),'il',fd);mput(h.data,'dl',fd)
+    mput(bool2s(h.closed=='on'),'c',fd)
     mput(bool2s(h.line_mode=='on'),'c',fd)
     mput(bool2s(h.fill_mode=='on'),'c',fd)
     mput(h.line_style,'c',fd)
