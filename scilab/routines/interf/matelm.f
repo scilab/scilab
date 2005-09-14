@@ -4127,8 +4127,10 @@ c     argument is passed by reference
                stk(lr+i)=1.d0
             elseif(stk(l+i).lt.0.d0) then
                stk(lr+i)=-1.d0
-            else
+            elseif (stk(l+i).eq.0.d0) then
                stk(lr+i)=0.0d0
+            else ! nan
+               stk(lr+i)=stk(l+i)
             endif
  10      continue
       else
