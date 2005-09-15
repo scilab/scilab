@@ -262,28 +262,25 @@ proc checkarglist {funname} {
 # rely on the latest Obtainall_bp
     global listoftextarea funvars funvarsvals
 
-    # A starting question mark in the function name must
+    # A question mark or dollar sign in the function name must
     # be escaped otherwise the regexp compilation fails
-    # A starting dollar must be escaped as well
-    # (Scilab function names can start in particular with a ? or $)
-    if {[string index $funname 0] == "?" || \
-        [string index $funname 0] == "\$"} {
-        set escfunname "\\$funname"
-    } else {
-        set escfunname $funname
-    }
+    # (Scilab function names can contain in particular ? or $)
+    set escfunname [string map {"\?" "\\\?"} $funname]
+    set escfunname [string map {"\$" "\\\$"} $escfunname]
 
-    # In Scilab, a function name can start with any of these special
+    # In Scilab, a function name can contain any of these special
     # characters: %_#!?$
+    # They can be anywhere in the function name, but % can only appear
+    # as the first character of the name
     # Since word characters in Tcl are [[:alnum:]_], the \m character-entry
     # escape that specifies to match at the beginning of a word cannot be
-    # used and must be replaced by [^[:alnum:]_%#!\?\$\]
-#    set pat "\\mfunction\\M.*\\m$escfunname\\M"
-    set pat "\\mfunction\\M.*\[^\[:alnum:\]_%#!\?\$\]$escfunname\\M"
+    # used (same for \M, i.e. end of word)
+    # A more complex regexp pattern shall therefore be used
+    set pat "\\mfunction\\M\[\[:blank:\]\]+(\\\[(\[\\w,\]|\[\[:blank:\]\])*\\\])?\[\[:blank:\]\]*=?\[\[:blank:\]\]*($escfunname)\[\[:blank:\]\]*(\[;\\n\\(\])"
+
     # In Tcl<8.5, this does not match multiple lines. This is a Tcl/Tk bug.
     # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
     # <TODO>: once using 8.5, the messageBox below can be removed
-#    set pat "\\mfunction\\M\[.\\n\\r\\t\]*[^\[:alnum:\]_%#!\?\$\]$escfunname\\M"
 
     set orderOK "false"
     set found "false"

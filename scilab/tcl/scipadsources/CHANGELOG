@@ -1461,7 +1461,7 @@ Francois VOGEL, 06/09/05
  * New (Find/Replace): Regxep compilation errors are catched and the user
    is warned
  * Fixed: Scilab legal function names starting with a Tcl special character
-   such as % _ # !, ? or even $ are fully supported in the debugger
+   such as % _ # ! ? or even $ are fully supported in the debugger
  * Fixed: Scilab legal variable names starting with a $ are fully supported
    in the debugger
  * version --> 5.34
@@ -1475,3 +1475,13 @@ Francois VOGEL, 07/09/05
  * If there is a preexisting text in the Find dialog, this text is selected
    on opening of the box
  * version --> 5.35
+
+Francois VOGEL, 15/09/05
+ * Fixed: Find/Replace search string can contain $ or [ ] signs
+ * Better regexp in proc checkarglist to check for function names containing
+   special characters
+ * New implementation of Find/Replace for whole words - allows to search for
+   whole words starting or ending with non Tcl word characters such as Scilab
+   special characters ($ % _ # ! ?) - regexp mode can now be simultaneously
+   selected
+ * version --> 5.36

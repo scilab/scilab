@@ -73,7 +73,7 @@ proc findtextdialog {typ} {
     frame $find.l.f4.f5
     eval "checkbutton $find.l.f4.f5.cbox0 [bl "Match &whole word only"] \
         -variable wholeword  \
-        -command \"resetfind $find \[gettextareacur\] ; togglewholeword $find \" \
+        -command \"resetfind $find \[gettextareacur\] \" \
         -font $menuFont "
     eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] \
         -variable caset -onvalue \"-exact\" -offvalue \"-nocase\" \
@@ -130,9 +130,6 @@ proc findtextdialog {typ} {
     # initial settings for direction
     $find.l.f4.f3.down invoke
 
-    # initial settings for regexp searching
-    togglewholeword $find
-
     # initial settings for searching in selection
     set tahasnosel [catch {[gettextareacur] get sel.first sel.last}]
     if {$tahasnosel} {
@@ -158,18 +155,6 @@ proc findtextdialog {typ} {
 
     # call resetfind to initialize all the settings
     resetfind $find [gettextareacur]
-}
-
-proc togglewholeword {w} {
-# toggle regexp settings when searching for whole words only
-    global wholeword
-   if {$wholeword} {
-       $w.l.f4.f5.cbox2 select
-       $w.l.f4.f5.cbox2 configure -state disabled
-   } else {
-       $w.l.f4.f5.cbox2 configure -state normal
-       $w.l.f4.f5.cbox2 deselect
-   }
 }
 
 proc tryrestoreseltag {textarea} {
@@ -216,17 +201,17 @@ proc multiplefilesfindreplace {w frit} {
         return
     }
 
-    # whole word searching: set regexp mode and string to search for
-    foreach {tosearchfor reg} [setwholewordstring $wholeword $SearchString $regexpcase] {}
+    # escape the characters that have a meaning in a Tcl string or a regexp
+    set tosearchfor [escapespecialchars $SearchString]
 
-    # check if the regexp given or constructed in setwholewordstring is valid
-    if {$reg == "regexp" && ![isregexpstringvalid $tosearchfor $pw]} {
+    # check if the regexp given or constructed is valid
+    if {$regexpcase == "regexp" && ![isregexpstringvalid $tosearchfor $pw]} {
         return
     }
 
     if {$multiplefiles == 0} {
         # search in current buffer only
-        $frit $w $pw [gettextareacur] $tosearchfor $reg
+        $frit $w $pw [gettextareacur] $tosearchfor $regexpcase
         return
     }
 
@@ -278,7 +263,7 @@ proc multiplefilesfindreplace {w frit} {
 
     # perform a search
     set prevfindres [$frit $w $pw [lindex $listoftextarea $indofcurrentbuf] \
-                            $tosearchfor $reg]
+                            $tosearchfor $regexpcase]
 
     if {$prevfindres == "mustswitchnow"} {
         multiplefilesfindreplace $w $frit
@@ -295,14 +280,14 @@ proc findit {w pw textarea tosearchfor reg} {
 # or noextend, which is returned when there was no match in selection and the
 # user didn't want to extend the search to the entire buffer
 
-    global SearchString caset multiplefiles SearchDir searchinsel
+    global SearchString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
 
     # do the search and get the match positions and the length of the matches
     # and do it only once (per buffer) in a search session
     if {![info exists listofmatch]} {
         set listofmatch [searchforallmatches $textarea $tosearchfor \
-                             $caset $reg $searchinsel]
+                             $caset $reg $searchinsel $wholeword]
     }
 
     # analyze the search results:
@@ -416,7 +401,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
 # user didn't want to extend the search to the entire buffer
 # $replacesingle toggles the popup messageboxes and infos in the status bar
 
-    global SearchString ReplaceString caset multiplefiles SearchDir searchinsel
+    global SearchString ReplaceString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
 
     # if there is no already found matching text (Find Next was not hit)
@@ -425,7 +410,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     # and do it only once (per buffer) in a search session
     if {![info exists listofmatch]} {
         set listofmatch [searchforallmatches $textarea $tosearchfor \
-                             $caset $reg $searchinsel]
+                             $caset $reg $searchinsel $wholeword]
     }
 
     # analyze the search results
@@ -582,17 +567,17 @@ proc multiplefilesreplaceall {w} {
         return
     }
 
-    # whole word searching: set regexp mode and string to search for
-    foreach {tosearchfor reg} [setwholewordstring $wholeword $SearchString $regexpcase] {}
+    # escape the characters that have a meaning in a Tcl string or a regexp
+    set tosearchfor [escapespecialchars $SearchString]
 
     # check if the regexp given or constructed is valid
-    if {$reg == "regexp" && ![isregexpstringvalid $tosearchfor $pw]} {
+    if {$regexpcase == "regexp" && ![isregexpstringvalid $tosearchfor $pw]} {
         return
     }
 
     if {$multiplefiles == 0} {
         # search in current buffer only
-        replaceall $w $pw [gettextareacur] $tosearchfor $reg
+        replaceall $w $pw [gettextareacur] $tosearchfor $regexpcase
         return
     }
 
@@ -601,7 +586,7 @@ proc multiplefilesreplaceall {w} {
 
     set totreplaced 0
     foreach ta $listoftextarea {
-        incr totreplaced [replaceall $w $pw $ta $tosearchfor $reg]
+        incr totreplaced [replaceall $w $pw $ta $tosearchfor $regexpcase]
     }
 
     showinfo "$totreplaced [mc "replacements done"]"
@@ -652,9 +637,10 @@ proc replaceall {w pw textarea tosearchfor reg} {
     return $nbofreplaced
 }
 
-proc searchforallmatches {textarea str cas reg ssel} {
+proc searchforallmatches {textarea str cas reg ssel whword} {
 # search for the matches in the provided $textarea for the string $str
-# taking into account the case argument $cas and the regexp argument $reg
+# taking into account the case argument $cas, the regexp argument $reg
+# and the "whole word" flag
 # the search occurs in the selection if $ssel == 1, or in the full
 # textarea otherwise
 # all matches are returned in a list, and always in the "forwards" order
@@ -665,11 +651,11 @@ proc searchforallmatches {textarea str cas reg ssel} {
 
     foreach {start stop} [getsearchlimits $textarea $ssel] {}
 
-    set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg]
+    set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword]
     while {[lindex $match 0] != ""} {
         lappend matchlist $match
         set start [$textarea index "[lindex $match 0] + [lindex $match 1]c"]
-        set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg]
+        set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword]
     }
     return $matchlist
 }
@@ -690,10 +676,10 @@ proc getsearchlimits {textarea ssel} {
     return [list $sta $sto]
 }
 
-proc doonesearch {textarea sta sto str dir cas reg} {
+proc doonesearch {textarea sta sto str dir cas reg whword} {
 # perform one search operation in $textarea between start position $sta
 # and stop position $sto, taking into account the case argument $cas,
-# the regexp argument $reg, and the direction $dir
+# the regexp argument $reg, the direction $dir and the "whole word" flag
 # the searched string is $str
 # return value: a list containing:
 #   if found:
@@ -721,9 +707,28 @@ proc doonesearch {textarea sta sto str dir cas reg} {
         lappend optlist -strictlimits
     }
 
-    # quotes around $str are mandatory to find strings that include spaces
-    set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
+    if {!$whword} {
+        # normal search mode (no whole word)
+        # quotes around $str are mandatory to find strings that include spaces
+        set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
 
+    } else {
+        # whole word search mode
+        set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
+        if {$MatchPos != ""} {
+            # check if the match found is actually a whole word
+            while {![iswholeword $textarea $MatchPos $MatchLength]} {
+                set sta [$textarea index "$MatchPos + $MatchLength c"]
+                set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
+                if {$MatchPos == ""} {
+                    # no match candidates left
+                    break
+                }
+            }
+        }
+    }
+
+    # if no match found, return zero length
     if {$MatchPos == ""} {
         set MatchLength 0
     }
@@ -1010,29 +1015,55 @@ proc issearchstringempty {SearchString pw} {
     }
 }
 
-proc setwholewordstring {wholeword SearchString regexpcase} {
-# whole word searching: set regexp mode and add \m at the beginning of
-# $SearchString and \M at the end
-
-    # escape the quote char " and the escape char \ so that one can
-    # search for these characters
-    set str [string map {"\\" "\\\\"} $SearchString]
+proc escapespecialchars {str} {
+# escape certain special characters that have a meaning in a Tcl string,
+# or in a regexp
+# these chars are \ " $ [ ]
+    set str [string map {"\\" "\\\\"} $str]
     set str [string map {"\"" "\\\""} $str]
+    set str [string map {"\$" "\\\$"} $str]
+    set str [string map {"\[" "\\\["} $str]
+    set str [string map {"\]" "\\\]"} $str]
+    return $str
+}
 
-    if {$wholeword} {
-        # double escape of the backslash is needed because of the eval
-        # in proc doonesearch
-        # <TODO> a "word" is defined here in the Tcl sense, not the Scilab sense
-        #        Scilab special characters (%!?#$) are part of word for Scilab
-        #        but are word separators in Tcl
-        #        --> improve to search for Scilab words
-        set tosearchfor "\\\\m$str\\\\M"
-        set reg "regexp"
-    } else {
-        set tosearchfor $str
-        set reg $regexpcase
+proc iswholeword {textarea mpos mlen} {
+# return true is the match given in argument is a "whole word", i.e.
+# if the character before it and the character after it is a blank
+# character (space or tab), or a newline, or beginning or end of the text
+
+    set OKleft 0
+    set OKright 0
+    set pat "\[ \n\t\]"
+
+    set prevc [$textarea index "$mpos - 1c"]
+    set nextc [$textarea index "$mpos + $mlen c"]
+
+    # check if the match starts at the first character
+    if {[$textarea compare $prevc == $mpos]} {
+        set OKleft 1
     }
-    return [list $tosearchfor $reg]
+
+    # check if the match ends at the last character
+    if {$nextc == ""} {
+        set OKright 1
+    }
+
+    # check previous character against "whole word" boundaries class
+    if {[string match $pat [$textarea get $prevc]]} {
+        set OKleft 1
+    }
+
+    # check next character against "whole word" boundaries class
+    if {[string match $pat [$textarea get $nextc]]} {
+        set OKright 1
+    }
+
+    if {$OKleft && $OKright} {
+        return 1
+    } else {
+        return 0
+    }
 }
 
 proc isregexpstringvalid {tosearchfor pw} {

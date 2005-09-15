@@ -18,6 +18,12 @@ Bugs:
 -Ctrl-v copies also inside the find/replace/filename dialogs, but does not
  replace an existing selection. Problem of setting up the proper bindings,
  likely. Note: this happens only on some platforms (Windows is OK).
+ More precise report:
+    the selected text is deleted once typing new text;
+    that text is not copy-pasted outside by 2nd-click (instead, the current
+    buffer selection is); it is cut by ctrl-x, copied by ctrl-c, but it is
+    NOT replaced by the clipboard issuing Ctrl-v (instead, the clipboard is
+    inserted at the cursor position)
 
 -Line number finding in functions may provide wrong results in some pathological
  cases of continued lines, namely:
@@ -119,10 +125,6 @@ Old bugs/whishes which have been hacked but could have been done better:
 
 -The bindings in findreplace.tcl used for the F3 case live in the textarea
  forever. Find a solution to get rid of these!
-
--Find a way to have the existing search string selected on opening the Find
- dialog. Warning: don't use $find.l.f1.entry selection range 0 end since
- this makes the Scipad selection vanish (see email discussion on 09 March 05)
 
 
 Wishes:
