@@ -600,6 +600,7 @@ function ged_polyline(h)
     TCL_SetVar("curmarkbackground",string(h.mark_background))
 
     TCL_SetVar("curlinemode",h.line_mode)
+    TCL_SetVar("curclosedmode",h.closed)
     TCL_SetVar("curfillmode",h.fill_mode)
     TCL_SetVar("curinterpcolormode",h.interp_color_mode)
     TCL_SetVar("curinterpcolorvector",sci2exp(h.interp_color_vector,0))

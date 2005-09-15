@@ -54,7 +54,7 @@ catch {source $preffilename}
 
 
 global curvis curthick curpolylinestyle curlinestyle RED GREEN BLUE
-global curmarkmode curlinemode curmarksize curmarksizeunit curmarkforeground curmarkbackground
+global curmarkmode curlinemode curclosedmode curmarksize curmarksizeunit curmarkforeground curmarkbackground
 global curfillmode curinterpcolormode curinterpcolorvector
 #global polyVAL nbcol nbrow
 
@@ -237,6 +237,16 @@ OnOffForeground $w.frame.linemode $curlinemode
 
 pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
 pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 0m -padx 1m
+
+#Closed
+label $w.frame.closedmodelabel -height 0 -text "Closed:" -font {Arial 9} -anchor e -width 10
+checkbutton $w.frame.closedmode  -text "on" -indicatoron 1 \
+    -variable curclosedmode -onvalue "on" -offvalue "off" \
+    -command "toggleClosedmode $w.frame.closedmode" -font {Arial 9} -anchor w
+OnOffForeground $w.frame.closedmode $curclosedmode
+
+pack $w.frame.closedmodelabel  -in $w.frame.linelinemode  -side left 
+pack $w.frame.closedmode   -in $w.frame.linelinemode  -side left  -pady 0m
 
 #Fill mode
 frame $w.frame.fillfillmode  -borderwidth 0
@@ -736,6 +746,14 @@ proc toggleLinemode { frame } {
     ScilabEval "global ged_handle;ged_handle.line_mode='$curlinemode'"
 
     OnOffForeground $frame $curlinemode
+}
+
+#Added on the 15.09.05
+proc toggleClosedmode { frame } {
+    global curclosedmode
+    ScilabEval "global ged_handle;ged_handle.closed='$curclosedmode'"
+
+    OnOffForeground $frame $curclosedmode
 }
 
 proc toggleFillmode { frame } {
