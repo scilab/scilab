@@ -3155,7 +3155,7 @@ void C2F(drawrectangles)(str, vects, fillvect, n, v5, v6, v7, dv1, dv2, dv3, dv4
 	  C2F(fillrectangle)(str,vects+4*i,vects+4*i+1,vects+4*i+2,vects+4*i+3,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
     }
-  C2F(set_dash_and_color)(&(cd),PI0,PI0,PI0);
+  C2F(set_dash_and_color)(&(cd[0]),PI0,PI0,PI0);
 }
 /*-----------------------------------------------------------------------------------*/
 /** Draw one rectangle with current line style **/
