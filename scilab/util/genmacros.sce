@@ -62,47 +62,47 @@ function BuildMinimalMacros()
   
   cmd=scilabstart+'getf(SCI+''/macros/util/OS_Version.sci'');save(SCI+''/macros/util/OS_Version.bin'');'+scilabquit
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/OS_Version.sci'');save(SCI+''/macros/util/OS_Version.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/mputl.sci'');save(SCI+''/macros/util/mputl.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
   
   cmd=scilabstart+'getf(SCI+''/macros/util/basename.sci'');save(SCI+''/macros/util/basename.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/percent/%c_a_c.sci'');save(SCI+''/macros/percent/%c_a_c.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
   
   cmd=scilabstart+'getf(SCI+''/macros/util/isdir.sci'');save(SCI+''/macros/util/isdir.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/unix_g.sci'');save(SCI+''/macros/util/unix_g.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
   
   cmd=scilabstart+'getf(SCI+''/macros/util/listfiles.sci'');save(SCI+''/macros/util/listfiles.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/stripblanks.sci'');save(SCI+''/macros/util/stripblanks.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
   
   cmd=scilabstart+'getf(SCI+''/macros/util/pathconvert.sci'');save(SCI+''/macros/util/pathconvert.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/genlib.sci'');save(SCI+''/macros/util/genlib.bin'');'+scilabquit;
   unix(startline+cmd+endline);
-  unix(SCI+LinesToDo);
+  unix(SCI+LineToDo);
 
   clear cmd
   clear scilabstart;
