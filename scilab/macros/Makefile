@@ -5,46 +5,15 @@ include ../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) 
 
-SUBDIRS = algebre arma auto calpol \
-	elem metanet optim percent robust sci2for \
-	signal tdcs util xdess scicos sound \
-	m2sci mtlb int statistics tksci texmacs scicos_blocks sparse
-
 all:: Progs 
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in $(SUBDIRS) ;\
-	do \
-		(cd $$i ; echo "making all in macros/$$i..."; \
-		$(MAKE) $(MFLAGS) all); \
-	done
-
+	../bin/scilab -nwni -ns -f buildmacros.sce
+	
 release : Progs
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in $(SUBDIRS) ;\
-	do \
-		(cd $$i ; echo "making all in macros/$$i..."; \
-		$(MAKE) $(MFLAGS) release ); \
-	done
-
+	../bin/scilab -nwni -ns -f buildmacros.sce
 distclean::
 	$(RM) Lib Name Gengatsce Gensosce Gensomex Tomake Forwin
 	$(RM) Lib.o Name.o Gengatsce.o Gensosce.o Gesomex.o Tomake.o Forwin.o
 
-distclean::
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in $(SUBDIRS) ;\
-	do \
-		(cd $$i ; echo "making distclean in macros/$$i..."; \
-		$(MAKE) $(MFLAGS)  distclean); \
-	done
-
-clean::
-	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in $(SUBDIRS) ;\
-	do \
-		(cd $$i ; echo "making clean in macros/$$i..."; \
-		$(MAKE) $(MFLAGS) clean); \
-	done
 
 Progs : Lib Name Gengatsce Gensosce Gensomex Tomake Forwin
 
