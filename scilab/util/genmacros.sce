@@ -47,9 +47,9 @@ function BuildMinimalMacros()
   startline='';
   endline='';
   if MSDOS then
-    LinesToDo='/bin/scilex -ns -nwni -f cmd.sce';
+    LineToDo='/bin/scilex -ns -nwni -f cmd.sce';
     startline='echo ';
-    endline=' > cmd.sce';
+    endline='>cmd.sce';
   else
     LineToDo='/bin/scilab -ns -nwni -f cmd.sce';
     startline='echo ""';
@@ -63,7 +63,7 @@ function BuildMinimalMacros()
   cmd=scilabstart+'getf(SCI+''/macros/util/OS_Version.sci'');save(SCI+''/macros/util/OS_Version.bin'');'+scilabquit
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
-
+  
   cmd=scilabstart+'getf(SCI+''/macros/util/OS_Version.sci'');save(SCI+''/macros/util/OS_Version.bin'');'+scilabquit;
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
@@ -116,6 +116,7 @@ function BuildMinimalMacros()
   else
     unix('rm -f cmd.sce');
   end
+  
   clear MSDOS
   
 endfunction
