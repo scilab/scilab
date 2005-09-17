@@ -15,7 +15,7 @@ else
   unix('rm -f lib');  
 end
 //------------------------------------
-genlib('scshydraulicslib','SCI/macros/scicos_blocks/hydraulics'); 
+genlib('scshydraulicslib','SCI/macros/scicos_blocks/Hydraulics'); 
 //------------------------------------
 if MSDOS then
   unix("dir /B *.mo >models");
