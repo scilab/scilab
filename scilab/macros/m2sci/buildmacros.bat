@@ -1,1 +1,0 @@
-nmake /f buildmacros.mak /a
