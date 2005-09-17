@@ -593,14 +593,9 @@ void Kill_Scilex(void)
 void CreateSplashscreen(void)
 {
 	HWND hdlg;
-	char buffer[MAX_PATH];
-
-	wsprintf(buffer,"%s %s",MSG_SCIMSG31,DEFAULT_MES);
 
 	hdlg = CreateDialog(hdllInstance, "IDD_SPLASH", NULL,NULL);
-	SetDlgItemText(hdlg,IDC_VERSION_SPLASH,VERSION);
-	SetDlgItemText(hdlg,IDC_COPYRIGHT_SPLASH,buffer);
-	
+
 	ShowWindow(hdlg, SW_SHOWNORMAL);
 	UpdateWindow(hdlg);
 	Sleep(1500);
