@@ -125,8 +125,10 @@ function getsave(fl)
 
   ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
   if ierr<>0 then
+  	clear ierr
     warning(['Error in file '+fl+' :""'+lasterror()+'""; file ignored'])
   else
+    clear ierr
     // lookfor names of the functions defined in file 'fl'
     new=who('get')
     new=new(1:(size(new,'*')-nold-1))
@@ -135,10 +137,12 @@ function getsave(fl)
     // save all functions in the output file
     [u,ierr]=mopen(fl,'wb')
     if ierr<>0 then 
+      clear ierr
       nf=length(fl)
       if nf>40 then fl='...'+part(fl,nf-40:nf),end
       error('Impossible to open file '+fl+' for writing, ')
     end
+    clear ierr
     if new<>[] then 
       execstr('save(u,'+strcat(new($:-1:1),',')+')'); 
     else 
