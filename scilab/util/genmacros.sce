@@ -42,68 +42,82 @@ function RemoveMinimalMacros()
 endfunction
 //------------------------------------
 function BuildMinimalMacros()
+  MSDOS=(getos()=='Windows');
+  LineToDo='';
+  startline='';
+  endline='';
+  if MSDOS then
+    LinesToDo='/bin/scilex -ns -nwni -f cmd.sce';
+    startline='echo ';
+    endline=' > cmd.sce';
+  else
+    LineToDo='/bin/scilab -ns -nwni -f cmd.sce';
+    startline='echo ""';
+    endline='"">cmd.sce';
+  end
+  
   SCI=getenv('SCI');
   scilabstart="SCI=getenv(''SCI'');MSDOS=(getos()==''Windows'');TMPDIR=getenv(''TMPDIR'');"
   scilabquit='clear;quit;'
   
   cmd=scilabstart+'getf(SCI+''/macros/util/OS_Version.sci'');save(SCI+''/macros/util/OS_Version.bin'');'+scilabquit
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/OS_Version.sci'');save(SCI+''/macros/util/OS_Version.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/mputl.sci'');save(SCI+''/macros/util/mputl.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
   
   cmd=scilabstart+'getf(SCI+''/macros/util/basename.sci'');save(SCI+''/macros/util/basename.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/percent/%c_a_c.sci'');save(SCI+''/macros/percent/%c_a_c.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
   
-
   cmd=scilabstart+'getf(SCI+''/macros/util/isdir.sci'');save(SCI+''/macros/util/isdir.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/unix_g.sci'');save(SCI+''/macros/util/unix_g.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
   
-
   cmd=scilabstart+'getf(SCI+''/macros/util/listfiles.sci'');save(SCI+''/macros/util/listfiles.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/stripblanks.sci'');save(SCI+''/macros/util/stripblanks.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
   
-
   cmd=scilabstart+'getf(SCI+''/macros/util/pathconvert.sci'');save(SCI+''/macros/util/pathconvert.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/genlib.sci'');save(SCI+''/macros/util/genlib.bin'');'+scilabquit;
-  unix('echo ""'+cmd+'"">cmd.sce');
-  unix(SCI+'/bin/scilab -ns -nwni -f cmd.sce');
+  unix(startline+cmd+endline);
+  unix(SCI+LinesToDo);
 
   clear cmd
   clear scilabstart;
   clear scilabquit;
+  clear LineToDo
+  clear startline
+  clear endline
   
-  MSDOS=(getos()=='Windows');
   if MSDOS then
     unix('if EXIST ""'+'cmd.sce'+'"" del /F ""'+'cmd.sce');
   else
     unix('rm -f cmd.sce');
   end
   clear MSDOS
+  
 endfunction
 //------------------------------------
 RemoveMinimalMacros();

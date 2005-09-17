@@ -23,7 +23,7 @@
 				Name="VCNMakeTool"
 				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
 				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
-				CleanCommandLine="CleanMacros.bat"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -35,9 +35,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -49,9 +49,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -63,9 +63,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -77,9 +77,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -91,9 +91,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -105,9 +105,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -119,9 +119,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -133,9 +133,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -147,9 +147,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 		<Configuration
@@ -161,9 +161,9 @@
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
-				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
 	</Configurations>
