@@ -22,5 +22,5 @@ if MSDOS then
 else
   unix("ls *.mo >models");
 end
-exec("../../../util/genmoc.sce");
+if with_ocaml() then exec("../../../util/genmoc.sce");end;
 //------------------------------------

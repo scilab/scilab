@@ -22,9 +22,8 @@ CurrentDirectory=pwd();
  "xdess",
  "sparse",
  "scicos",
- "scicos_blocks",
- "m2sci"
-];
+ "m2sci",
+ "scicos_blocks"];
  
 Dim=size(Directories);
 for i=1:Dim(1) do 
