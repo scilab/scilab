@@ -4,6 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclGet.h"
 /*-----------------------------------------------------------------------------------*/
+extern void flushTKEvents(void);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclGet) _PARAMS((char *fname))
 {
 	CheckLhs(1,1);
@@ -18,6 +20,7 @@ int C2F(intTclGet) _PARAMS((char *fname))
 		Handle=*istk(l1);
 
 		TCL_UiGet(Handle,Rhs);
+		flushTKEvents ();
 	}
 	else
 	{

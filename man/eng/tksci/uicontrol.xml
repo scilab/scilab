@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -245,8 +245,8 @@
       </ITEM>
 
       <ITEM label="Userdata">
-        <SP>scilab object this can be used to associate any scilab object to
-        an uicontrol. (not yet implemented in current version)</SP>
+        <SP>this can be used to associate some scilab objects (string,string
+        matrix, matrix mxn) to an uicontrol. </SP>
       </ITEM>
 
       <ITEM label="Value">
@@ -277,7 +277,7 @@
     </ITEMIZE>
   </SECTION>
 
-  <EXAMPLE><![CDATA[f=figure();
+  <EXAMPLE>f=figure();
 // create a figure
 h=uicontrol(f,'style','listbox', ...
  'position', [10 10 150 160]);
@@ -288,7 +288,7 @@ set(h, 'value', [1 3]);
 // select item 1 and 3 in the list
 close(f);
 // close the figure
-  ]]></EXAMPLE>
+  </EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

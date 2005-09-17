@@ -4,12 +4,14 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclSet.h"
 /*-----------------------------------------------------------------------------------*/
+extern void flushTKEvents(void);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclSet) _PARAMS((char *fname))
 {
 	CheckLhs(1,1);
 	CheckRhs(3,3);
 
-	if ( IsAScalar(Rhs-2) && (GetType(Rhs-1)==sci_strings) )
+	if ( IsAScalar(1) )
 	{
 		static int l1,n1,m1;
 		int Handle=0;
@@ -18,6 +20,7 @@ int C2F(intTclSet) _PARAMS((char *fname))
 		Handle=*istk(l1);
 		
 		InterfaceScilabToUiSet(Handle,Rhs-1,Rhs);
+		flushTKEvents ();
 	}
 	else
 	{

@@ -31,7 +31,13 @@ function h=uicontrol(varargin)
             end
             TCL_scf(TCL_gcf());
             for i=2:2:Rhs do
-    			    set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
+            	if (k<>i) then
+            	  if ( (GetUiControlPropertyName(varargin(i))=='value') & (IsAScalar(varargin(i+1))==%T) ) then
+            	    set(h,GetUiControlPropertyName(varargin(i)),string(varargin(i+1)));
+            	  else
+    			        set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
+    			      end
+    			    end
     			  end
           end
         end
@@ -52,7 +58,13 @@ function h=uicontrol(varargin)
           end
     			TCL_scf(TCL_gcf());
     			for i=1:2:Rhs do
-    			  set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
+    				if (k<>i) then
+    				  if ( (GetUiControlPropertyName(varargin(i))=='value') & (IsAScalar(varargin(i+1))==%T) ) then
+       				    set(h,GetUiControlPropertyName(varargin(i)),string(varargin(i+1)));
+    				  else
+    			      set(h,GetUiControlPropertyName(varargin(i)),varargin(i+1));
+    			    end
+    			  end
     			end
         end
       end
@@ -68,6 +80,7 @@ function h=CreateUiControl(FigureHandle,Style)
                  "];"
     TCL_EvalStr(TCL_Command);
     h=evstr(TCL_GetVar('TclScilabTmpVar'));
+    TCL_UnsetVar('TclScilabTmpVar');
   else
     error(string(FigureHandle)+' Value must be numeric.',999);
   end
@@ -100,7 +113,7 @@ endfunction
 // -----------------------------------------------------------
 function InternalStyleName=GetInternalStyleName(ExternalStyleName)
   TableInternalStyle = ["button" ..
-                        "radiobutton" ..
+                        "checkbutton" ..
                         "checkbutton" ..
                         "entry" ..
                         "label" ..

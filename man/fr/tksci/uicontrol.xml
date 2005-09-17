@@ -245,8 +245,7 @@
       </ITEM>
 
       <ITEM label="Userdata">
-        <SP>scilab object this can be used to associate any scilab object to
-        an uicontrol. (not yet implemented in current version)</SP>
+        <SP>this can be used to associate some scilab objects (string,string matrix, matrix mxn)  to an uicontrol.</SP>
       </ITEM>
 
       <ITEM label="Value">
