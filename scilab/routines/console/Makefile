@@ -18,13 +18,10 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 history.o: history.c history.h ../stack-c.h
 zzledt.o: zzledt.c ../machine.h

@@ -14,13 +14,10 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 bdftogd.o: bdftogd.c gd.h ../machine.h
 gd.o: gd.c gd.h ../machine.h mtables.c

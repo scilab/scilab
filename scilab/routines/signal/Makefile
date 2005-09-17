@@ -25,13 +25,10 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 datatf.o: ../stack.h
 sigelm.o: ../stack.h

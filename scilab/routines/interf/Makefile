@@ -42,13 +42,10 @@ include ../Make.lib
 
 
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 # some versions of g77 on sparc will compile intmgetl.f
 # but the code does not execute properly.

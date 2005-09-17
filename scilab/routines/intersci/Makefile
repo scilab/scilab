@@ -27,10 +27,7 @@ libinter.o: libinter.c ../machine.h ../graphics/Math.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile

@@ -62,7 +62,7 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 dlamch.o: dlamch.f
 	$(FC) @FC_OPTIONS1@ -c dlamch.f -o dlamch.o
@@ -76,8 +76,3 @@ Makefile.mak	: Makefile
 
 #	$(SCIDIR)/util/Mak2VCMak Makefile
 
-Makefile.amk	: Makefile
-	@echo "===================================="
-	@echo "You must update Makefile.amk by hand" 
-	@echo "or type touch Makefile.amk to get rid of this message"
-	@echo "===================================="

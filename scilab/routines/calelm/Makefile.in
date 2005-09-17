@@ -53,7 +53,7 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak Makefile.amk
+all:: Makefile.mak
 
 
 Makefile.mak	: Makefile
@@ -63,12 +63,6 @@ Makefile.mak	: Makefile
 	@echo "===================================="
 
 #	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	@echo "===================================="
-	@echo "You must update Makefile.amk by hand" 
-	@echo "or type touch Makefile.amk to get rid of this message"
-	@echo "===================================="
 
 # according to compiler, do not optimize the following files
 
