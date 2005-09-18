@@ -43,6 +43,9 @@ extern TW textwin;
 #define MENUDEPTH 3
 
 /* menu tokens */
+#undef  CMDMAX
+#undef  CMDMIN
+#undef  EOS
 #define CMDMIN 131
 /**********************/
 /** Warning must be like OPEN and SAVE in the wmenu.c file */

@@ -27,7 +27,8 @@
  *   CORNET Allan 2004
  *   Bugs and mail : Scilab@inria.fr 
  */
-/*-----------------------------------------------------------------------------------*/#ifndef __WGRAPH__
+/*-----------------------------------------------------------------------------------*/
+#ifndef __WGRAPH__
 #define __WGRAPH__
 
 #ifndef STRICT
@@ -85,12 +86,10 @@ static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
 static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC);
 static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
 static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC);
-static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC);
+void ScilabPaint (HWND hwnd, struct BCG *ScilabGC);
 static void ScilabNoPaint (HWND hwnd, struct BCG *ScilabGC);
-static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
+int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
 void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
-EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 /*-----------------------------------------------------------------------------------*/
 
 

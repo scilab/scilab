@@ -652,3 +652,4 @@
 {"toprint",	IN_intwintools,	21,	2},
 {"settextcolor",	IN_intwintools,	22,	2},
 {"settextbackgroundcolor",	IN_intwintools,	23,	2},
+{"filesassociationbox",	IN_intwintools,	24,	2},

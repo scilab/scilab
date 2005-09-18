@@ -64,9 +64,6 @@
 #define KeyBufferSize 256
 
 
-/* Definition des codes touche */
-#define VK_V        86
-#define VK_C        67
 
 /* limits */
 #define MAXSTR 256
@@ -76,9 +73,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
-EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
+
 EXPORT void WINAPI TextMessage (void);
 EXPORT int WINAPI TextInit (LPTW lptw);
 EXPORT void WINAPI TextClose (LPTW lptw);
@@ -142,8 +137,6 @@ void ExitWindow(void);
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
 int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len));
-void MessageBoxNewGraphicMode(void);
-BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
 BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
 BOOL IsToThePrompt(void);

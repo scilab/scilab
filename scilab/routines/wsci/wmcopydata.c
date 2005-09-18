@@ -61,20 +61,11 @@ BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowN
    return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL ReceiveFromAnotherScilab(WPARAM wParam, LPARAM lParam)
+BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct)
 {
    BOOL Retour=FALSE;
-  
-   PCOPYDATASTRUCT pMyCopyDataStructure;
-   HWND hWndSend=NULL;
-
-  
-
-   pMyCopyDataStructure = (PCOPYDATASTRUCT) lParam;
-
-   if (wsprintf(LineFromAnotherScilab,"%s",(LPSTR) ((MYREC *)(pMyCopyDataStructure->lpData))->CommandFromAnotherScilab)  <= 0) return FALSE;
-
-   hWndSend=(HWND) wParam;
+ 
+   if (wsprintf(LineFromAnotherScilab,"%s",(LPSTR) ((MYREC *)(MyCopyDataStruct->lpData))->CommandFromAnotherScilab)  <= 0) return FALSE;
    
    GetWindowText(hWndSend,TitleScilabSend,MAX_PATH);
    ReceiveDatafromAnotherScilab=TRUE;

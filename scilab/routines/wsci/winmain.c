@@ -51,6 +51,7 @@ extern void start_sci_gtk();
 extern void sci_tk_activate(void);
 extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
+extern void CreateSplashscreen(void);
 /*-----------------------------------------------------------------------------------*/
 static void AllGraphWinDelete ();
 static LPSTR my_argv[MAXCMDTOKENS];
@@ -74,6 +75,7 @@ int Console_Main(int argc, char **argv)
   ForbiddenToUseScilab();
 
   SetWindowMode(FALSE);
+  ScilabIsStarting=TRUE;
   
   for (i=0;i<argc;i++)
   {
@@ -588,19 +590,6 @@ void Kill_Scilex(void)
 		TerminateProcess(hProcess,0);
 	}
 	else MessageBox(NULL,MSG_WARNING20,MSG_WARNING21,MB_ICONWARNING);
-}
-/*-----------------------------------------------------------------------------------*/
-void CreateSplashscreen(void)
-{
-	HWND hdlg;
-
-	hdlg = CreateDialog(hdllInstance, "IDD_SPLASH", NULL,NULL);
-
-	ShowWindow(hdlg, SW_SHOWNORMAL);
-	UpdateWindow(hdlg);
-	Sleep(1500);
-
-	DestroyWindow(hdlg);
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL ForbiddenToUseScilab(void)

@@ -18,14 +18,24 @@ static BOOL bTimerMiddlePressedON=FALSE;
 static BOOL MiddlePressedON=FALSE;
 static BOOL bTimerMiddleSingleClickON=FALSE;
 
-static struct BCG *LocalScilabGC=NULL;
-
 static int CurrentWindow=0;
 static int MOUSEX=0;
 static int MOUSEY=0;
 static int horzsinPos=0;
 static int vertsinPos=0;
-
+/*-----------------------------------------------------------------------------------*/
+void ON_EVENT_GRAPH_WM_KEYUP(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags);
+void ON_EVENT_GRAPH_WM_KEYDOWN(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags);
+void ON_EVENT_GRAPH_WM_LBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_LBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_LBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_RBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_RBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_RBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_MBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_MBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_MBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags);
+void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags);
 /*-----------------------------------------------------------------------------------*/
 void CALLBACK LeftPressedClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 {
@@ -136,166 +146,131 @@ void CALLBACK RightSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+BOOL GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 {
-	int CodeKey=0;
-	int x,y,iwin;
-
-	LocalScilabGC=ScilabGC;
-
 	switch(message)
 	{
-		case WM_KEYDOWN:
-		/*http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/WindowsUserInterface/UserInput/VirtualKeyCodes.asp*/
-		{
-			int RetToAscii=0;
-			BYTE KeyState[256]; // address of key-state array
-			WORD Char; // buffer for translated key
-			GetKeyboardState(KeyState);
+		HANDLE_MSG(ScilabGC->CWindow,WM_KEYDOWN,ON_EVENT_GRAPH_WM_KEYDOWN);
+		HANDLE_MSG(ScilabGC->CWindow,WM_KEYUP,ON_EVENT_GRAPH_WM_KEYUP);
+		
+		HANDLE_MSG(ScilabGC->CWindow,WM_LBUTTONDOWN,ON_EVENT_GRAPH_WM_LBUTTONDOWN);
+		HANDLE_MSG(ScilabGC->CWindow,WM_LBUTTONUP,ON_EVENT_GRAPH_WM_LBUTTONUP);
+		HANDLE_MSG(ScilabGC->CWindow,WM_LBUTTONDBLCLK,ON_EVENT_GRAPH_WM_LBUTTONDBLCLK);
 
-			RetToAscii=ToAscii ( wParam, 0, KeyState, &Char, 0 );
-			if (RetToAscii == 1)
-			{
-				if ( (GetKeyState (VK_CONTROL) < 0) && (GetKeyState (VK_SHIFT) <0) )
-				{
-					CodeKey=MapVirtualKey(wParam,2)+CTRL_KEY;
-				}
-				else
-				if (GetKeyState (VK_CONTROL) < 0)
-				{
-					CodeKey=tolower((char)MapVirtualKey(wParam,2))+CTRL_KEY;
-				}
-				else
-				if (GetKeyState (VK_SHIFT) < 0)
-				{
-					CodeKey=MapVirtualKey(wParam,2);
-				}
-				else
-				{
-					CodeKey= tolower((char)Char);
-				}
-				check_pointer_win(&x,&y,&iwin);
-				PushClickQueue (ScilabGC->CurWindow, x,y,(int)CodeKey,0,0);
-			}
-			else
-			{
-				/* Not a character */
-				/* A key */
-			}
-		}
-		return (0);
+		HANDLE_MSG(ScilabGC->CWindow,WM_RBUTTONDOWN,ON_EVENT_GRAPH_WM_RBUTTONDOWN);
+		HANDLE_MSG(ScilabGC->CWindow,WM_RBUTTONUP,ON_EVENT_GRAPH_WM_RBUTTONUP);
+		HANDLE_MSG(ScilabGC->CWindow,WM_RBUTTONDBLCLK,ON_EVENT_GRAPH_WM_RBUTTONDBLCLK);
 
-		case WM_KEYUP:
-		{
-			int RetToAscii=0;
-			BYTE KeyState[256]; // address of key-state array
-			WORD Char; // buffer for translated key
-			GetKeyboardState(KeyState);
+		HANDLE_MSG(ScilabGC->CWindow,WM_MBUTTONDOWN,ON_EVENT_GRAPH_WM_MBUTTONDOWN);
+		HANDLE_MSG(ScilabGC->CWindow,WM_MBUTTONUP,ON_EVENT_GRAPH_WM_MBUTTONUP);
+		HANDLE_MSG(ScilabGC->CWindow,WM_MBUTTONDBLCLK,ON_EVENT_GRAPH_WM_MBUTTONDBLCLK);
 
-			RetToAscii=ToAscii ( wParam, 0, KeyState, &Char, 0 );
-			if (RetToAscii == 1)
-			{
-				if ( (GetKeyState (VK_CONTROL) < 0) && (GetKeyState (VK_SHIFT) <0) )
-				{
-					CodeKey=MapVirtualKey(wParam,2)+CTRL_KEY;
-				}
-				else
-				if (GetKeyState (VK_CONTROL) < 0)
-				{
-					CodeKey=tolower((char)MapVirtualKey(wParam,2))+CTRL_KEY;
-				}
-				else
-				if (GetKeyState (VK_SHIFT) < 0)
-				{
-					CodeKey=MapVirtualKey(wParam,2);
-				}
-				else
-				{
-					CodeKey= tolower((char)Char);
-				}
-				check_pointer_win(&x,&y,&iwin);
-				PushClickQueue (ScilabGC->CurWindow, x,y,-(int)CodeKey,0,1);
-			}
-			else
-			{
-				/* Not a character */
-				/* A key */
-			}
-		}
-		return (0);
+		HANDLE_MSG(ScilabGC->CWindow,WM_MOUSEMOVE,ON_EVENT_GRAPH_WM_MOUSEMOVE);
 
-		case WM_LBUTTONDOWN:
-		{
-			ON_WM_LBUTTONDOWN(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_LBUTTONUP:
-		{
-			ON_WM_LBUTTONUP(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_LBUTTONDBLCLK:
-		{
-			ON_WM_LBUTTONDBLCLK(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_RBUTTONDOWN:
-		{
-			ON_WM_RBUTTONDOWN(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_RBUTTONUP:
-		{
-			ON_WM_RBUTTONUP(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_RBUTTONDBLCLK:
-		{
-			ON_WM_RBUTTONDBLCLK(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_MBUTTONDOWN:
-		{
-			ON_WM_MBUTTONDOWN(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_MBUTTONUP:
-		{
-			ON_WM_MBUTTONUP(wParam,lParam,ScilabGC);
-		}
-    	return (0);
-
-		case WM_MBUTTONDBLCLK:
-		{
-			ON_WM_MBUTTONDBLCLK(wParam,lParam,ScilabGC);
-		}
-		return (0);
-
-		case WM_MOUSEMOVE:
-		{
-			ON_WM_MOVE(wParam,lParam,ScilabGC);
-		}
-		return 0;
 	}
-	
- 	return CodeKey;
+	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_LBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_KEYUP(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 {
+	int CodeKey=0;
+	int RetToAscii=0;
+	BYTE KeyState[256]; // address of key-state array
+	WORD Char; // buffer for translated key
+	GetKeyboardState(KeyState);
+
+	RetToAscii=ToAscii ( vk, 0, KeyState, &Char, 0 );
+	if (RetToAscii == 1)
+	{
+		int x,y,iwin;
+		struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
+		if ( (GetKeyState (VK_CONTROL) < 0) && (GetKeyState (VK_SHIFT) <0) )
+		{
+			CodeKey=MapVirtualKey(vk,2)+CTRL_KEY;
+		}
+		else
+		{
+			if (GetKeyState (VK_CONTROL) < 0)
+			{
+				CodeKey=tolower((char)MapVirtualKey(vk,2))+CTRL_KEY;
+			}
+			else if (GetKeyState (VK_SHIFT) < 0)
+			{
+				CodeKey=MapVirtualKey(vk,2);
+			}
+			else
+			{
+				CodeKey= tolower((char)Char);
+			}
+		}
+		check_pointer_win(&x,&y,&iwin);
+		PushClickQueue (ScilabGC->CurWindow, x,y,-(int)CodeKey,0,1);
+	}
+	else
+	{
+		/* Not a character */
+		/* A key */
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void ON_EVENT_GRAPH_WM_KEYDOWN(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
+{
+	/*http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/WindowsUserInterface/UserInput/VirtualKeyCodes.asp*/
+	int CodeKey=0;
+	
+	int RetToAscii=0;
+	BYTE KeyState[256]; // address of key-state array
+	WORD Char; // buffer for translated key
+	GetKeyboardState(KeyState);
+
+	RetToAscii=ToAscii ( vk, 0, KeyState, &Char, 0 );
+	if (RetToAscii == 1)
+	{
+		struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+		int x,y,iwin;
+
+		if ( (GetKeyState (VK_CONTROL) < 0) && (GetKeyState (VK_SHIFT) <0) )
+		{
+			CodeKey=MapVirtualKey(vk,2)+CTRL_KEY;
+		}
+		else
+		{
+			if (GetKeyState (VK_CONTROL) < 0)
+			{
+				CodeKey=tolower((char)MapVirtualKey(vk,2))+CTRL_KEY;
+			}
+			else if (GetKeyState (VK_SHIFT) < 0)
+			{
+				CodeKey=MapVirtualKey(vk,2);
+			}
+			else
+			{
+				CodeKey= tolower((char)Char);
+			}
+		}
+
+		check_pointer_win(&x,&y,&iwin);
+		PushClickQueue (ScilabGC->CurWindow, x,y,(int)CodeKey,0,0);
+		
+	}
+	else
+	{
+		/* Not a character */
+		/* A key */
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void ON_EVENT_GRAPH_WM_LBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
+{
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (bTimerLeftPressedON) 
 	{
@@ -310,14 +285,16 @@ void ON_WM_LBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_LBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_LBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (LeftPressedON)
 	{
@@ -337,7 +314,7 @@ void ON_WM_LBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			/*sciprint("Left Button Released\n");*/
 			PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, RELEASED_LEFT, 0, -1);
 		}
-				
+
 		LeftPressedON=FALSE;
 	}
 	else
@@ -347,7 +324,7 @@ void ON_WM_LBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			KillTimer(ScilabGC->CWindow, TIMER1LEFTBUTTON);
 			bTimerLeftPressedON=FALSE;
 			LeftPressedON=FALSE;
-					
+
 			if (bTimerLeftSingleClickON)
 			{
 				KillTimer(ScilabGC->CWindow, TIMER2LEFTBUTTON);
@@ -362,14 +339,16 @@ void ON_WM_LBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_LBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_LBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (bTimerLeftSingleClickON)
 	{
@@ -383,7 +362,7 @@ void ON_WM_LBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 		bTimerLeftPressedON=FALSE;
 		LeftPressedON=FALSE;
 	}
-			
+
 	if (GetKeyState(VK_CONTROL)<0)
 	{
 		/*sciprint("CONTROL + Double Left Click\n");*/
@@ -396,14 +375,16 @@ void ON_WM_LBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_MBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_MBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (bTimerMiddlePressedON) 
 	{
@@ -418,14 +399,16 @@ void ON_WM_MBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_MBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_MBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (MiddlePressedON)
 	{
@@ -445,7 +428,7 @@ void ON_WM_MBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			/*sciprint("Middle Button Released\n");*/
 			PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, RELEASED_MIDDLE, 0, -1);
 		}
-				
+
 		MiddlePressedON=FALSE;
 	}
 	else
@@ -455,7 +438,7 @@ void ON_WM_MBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			KillTimer(ScilabGC->CWindow, TIMER1MIDDLEBUTTON);
 			bTimerMiddlePressedON=FALSE;
 			MiddlePressedON=FALSE;
-					
+
 			if (bTimerMiddleSingleClickON)
 			{
 				KillTimer(ScilabGC->CWindow, TIMER2MIDDLEBUTTON);
@@ -470,14 +453,15 @@ void ON_WM_MBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_MBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_MBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (bTimerMiddleSingleClickON)
 	{
@@ -491,7 +475,7 @@ void ON_WM_MBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 		bTimerMiddlePressedON=FALSE;
 		MiddlePressedON=FALSE;
 	}
-			
+
 	if (GetKeyState(VK_CONTROL)<0)
 	{
 		/*sciprint("CONTROL + Double Middle Click\n");*/
@@ -504,14 +488,16 @@ void ON_WM_MBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_RBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_RBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (bTimerRightPressedON) 
 	{
@@ -526,14 +512,16 @@ void ON_WM_RBUTTONDOWN(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_RBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_RBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (RightPressedON)
 	{
@@ -553,7 +541,7 @@ void ON_WM_RBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			/*sciprint("Right Button Released\n");*/
 			PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, RELEASED_RIGHT, 0, -1);
 		}
-				
+
 		RightPressedON=FALSE;
 	}
 	else
@@ -563,7 +551,7 @@ void ON_WM_RBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			KillTimer(ScilabGC->CWindow, TIMER1RIGHTBUTTON);
 			bTimerRightPressedON=FALSE;
 			RightPressedON=FALSE;
-					
+
 			if (bTimerRightSingleClickON)
 			{
 				KillTimer(ScilabGC->CWindow, TIMER2RIGHTBUTTON);
@@ -578,14 +566,16 @@ void ON_WM_RBUTTONUP(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_RBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_RBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	CurrentWindow=ScilabGC->CurWindow;
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
-	MOUSEX= ((int) LOWORD (lParam));
-	MOUSEY= ((int) HIWORD (lParam));
+	MOUSEX= x;
+	MOUSEY= y;
 
 	if (bTimerRightSingleClickON)
 	{
@@ -599,7 +589,7 @@ void ON_WM_RBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 		bTimerRightPressedON=FALSE;
 		RightPressedON=FALSE;
 	}
-			
+
 	if (GetKeyState(VK_CONTROL)<0)
 	{
 		/*sciprint("CONTROL + Double Right Click\n");*/
@@ -612,8 +602,10 @@ void ON_WM_RBUTTONDBLCLK(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
+void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 {
+	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
@@ -621,17 +613,17 @@ void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	KillTimer(ScilabGC->CWindow, TIMER2LEFTBUTTON);
 	KillTimer(ScilabGC->CWindow, TIMER1LEFTBUTTON);
 	LeftPressedON=FALSE;
-	
+
 	KillTimer(ScilabGC->CWindow, TIMER2MIDDLEBUTTON);
 	KillTimer(ScilabGC->CWindow, TIMER1MIDDLEBUTTON);
 	MiddlePressedON=FALSE;
-	
+
 	KillTimer(ScilabGC->CWindow, TIMER2RIGHTBUTTON);
 	KillTimer(ScilabGC->CWindow, TIMER1RIGHTBUTTON);
 	RightPressedON=FALSE;
-	
+
 	if ( (bTimerLeftPressedON) || (bTimerRightPressedON) || (bTimerMiddlePressedON) ||
-		 (bTimerLeftSingleClickON) || (bTimerMiddleSingleClickON) || (bTimerRightSingleClickON) )
+		(bTimerLeftSingleClickON) || (bTimerMiddleSingleClickON) || (bTimerRightSingleClickON) )
 	{
 		if ( (bTimerLeftPressedON) || (bTimerLeftSingleClickON) )
 		{
@@ -659,7 +651,7 @@ void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			{
 				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_MIDDLE, 0, 0);
 			}
-			
+
 			bTimerMiddlePressedON=FALSE;
 			bTimerMiddleSingleClickON=FALSE;
 			return;
@@ -675,7 +667,7 @@ void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 			{
 				PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY+vertsinPos, CLCK_RIGHT, 0, 0);
 			}
-			
+
 			bTimerRightPressedON=FALSE;
 			bTimerRightSingleClickON=FALSE;
 			return;
@@ -683,10 +675,7 @@ void ON_WM_MOVE(WPARAM wParam, LPARAM lParam,struct BCG *ScilabGC)
 	}
 	else
 	{
-		int PosX=(int) LOWORD (lParam);
-		int PosY=(int) HIWORD (lParam);
-		PushClickQueue (ScilabGC->CurWindow,(int) PosX +horzsinPos,PosY +vertsinPos, -1, 1, 0);
+		PushClickQueue (ScilabGC->CurWindow,(int) x +horzsinPos,y +vertsinPos, -1, 1, 0);
 	}
 }
-
 /*-----------------------------------------------------------------------------------*/

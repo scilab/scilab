@@ -14,7 +14,7 @@ MYREC;
 
 BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
 BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
-BOOL ReceiveFromAnotherScilab(WPARAM wParam, LPARAM lParam); 
+BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct); 
 /*see wtext.c case WM_COPYDATA: in CALLBACK WndParentProc */
 
 #endif /*__WMCOPYDATA__*/

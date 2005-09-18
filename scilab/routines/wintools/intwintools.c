@@ -26,6 +26,7 @@ extern int C2F(intprintsetupbox) _PARAMS((char *fname,unsigned long l));
 extern int C2F(inttoprint) _PARAMS((char *fname,unsigned long l));
 extern int C2F(intsettextcolor) _PARAMS((char *fname,unsigned long l));
 extern int C2F(intsettextbackgroundcolor) _PARAMS((char *fname,unsigned long l));
+extern int C2F(intfilesassociationbox) _PARAMS((char *fname,unsigned long l));
 /*-----------------------------------------------------------------------------------*/
  static WintoolsTable Tab[]=
  {
@@ -51,8 +52,8 @@ extern int C2F(intsettextbackgroundcolor) _PARAMS((char *fname,unsigned long l))
   {C2F(intprintsetupbox),"printsetupbox"},
   {C2F(inttoprint),"toprint"},
   {C2F(intsettextcolor),"settextcolor"},
-  {C2F(intsettextbackgroundcolor),"settextbackgroundcolor"}
-
+  {C2F(intsettextbackgroundcolor),"settextbackgroundcolor"},
+  {C2F(intfilesassociationbox),"filesassociationbox"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwintools)()

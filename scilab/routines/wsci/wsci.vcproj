@@ -679,6 +679,9 @@ cd .. &gt;nul
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath=".\AboutBox.c">
+			</File>
+			<File
 				RelativePath=".\clipboard.c">
 			</File>
 			<File
@@ -784,6 +787,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\FigureToPrint.c">
+			</File>
+			<File
+				RelativePath=".\FilesAssociationBox.c">
 			</File>
 			<File
 				RelativePath=".\FilesAssociations.c">
@@ -900,6 +906,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\MenuWindows.c">
+			</File>
+			<File
+				RelativePath=".\MessageBoxNewGraphicMode.c">
 			</File>
 			<File
 				RelativePath="misc.c">
@@ -1197,6 +1206,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\ScilabXloop.c">
+			</File>
+			<File
+				RelativePath=".\Splashscreen.c">
 			</File>
 			<File
 				RelativePath=".\TextToPrint.c">
@@ -1787,6 +1799,18 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\WndConsoleParentProc.c">
+			</File>
+			<File
+				RelativePath=".\WndConsoleTextProc.c">
+			</File>
+			<File
+				RelativePath=".\WndGraphProc.c">
+			</File>
+			<File
+				RelativePath=".\WndParentGraphProc.c">
+			</File>
+			<File
 				RelativePath=".\wprinter.c">
 			</File>
 			<File
@@ -2082,6 +2106,9 @@ cd .. &gt;nul
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath=".\AboutBox.h">
+			</File>
+			<File
 				RelativePath=".\clipboard.h">
 			</File>
 			<File
@@ -2098,6 +2125,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\FigureToPrint.h">
+			</File>
+			<File
+				RelativePath=".\FilesAssociationBox.h">
 			</File>
 			<File
 				RelativePath=".\FilesAssociations.h">
@@ -2121,6 +2151,9 @@ cd .. &gt;nul
 				RelativePath=".\MenuWindows.h">
 			</File>
 			<File
+				RelativePath=".\MessageBoxNewGraphicMode.h">
+			</File>
+			<File
 				RelativePath=".\Messages.h">
 			</File>
 			<File
@@ -2131,6 +2164,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\SciEnv.h">
+			</File>
+			<File
+				RelativePath=".\Splashscreen.h">
 			</File>
 			<File
 				RelativePath=".\TextToPrint.h">
@@ -2170,6 +2206,18 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\Wmenu.h">
+			</File>
+			<File
+				RelativePath=".\WndConsoleParentProc.h">
+			</File>
+			<File
+				RelativePath=".\WndConsoleTextProc.h">
+			</File>
+			<File
+				RelativePath=".\WndGraphProc.h">
+			</File>
+			<File
+				RelativePath=".\WndParentGraphProc.h">
 			</File>
 			<File
 				RelativePath="wresource.h">

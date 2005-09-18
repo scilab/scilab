@@ -34,8 +34,9 @@
 #define IDI_OPEN                        141
 #define IDD_CHOOSEASCILAB               142
 #define IDD_MDIALOG                     144
-#define IDI_ICON2                       145
 #define IDI_GED                         145
+#define IDD_FILEASSOCIATION             147
+#define ABOUTDLGBOX                     148
 #define IDC_VERSION_SPLASH              1000
 #define IDC_COPYRIGHT_SPLASH            1001
 #define IDC_STATIC_ABOUT_HTTP           1002
@@ -84,16 +85,36 @@
 #define IDC_STATIC_LIN2                 1044
 #define IDC_STATIC_LIN3                 1045
 #define IDC_STATIC_LIN4                 1046
-#define IDC_STATICLOGO                  1047
+#define IDC_ICONSCE                     1047
+#define IDC_ICONSCI                     1048
+#define IDC_ICONDEM                     1050
+#define IDC_ICONBIN                     1051
+#define IDC_ICONCOS                     1052
+#define IDC_ICONCOSF                    1053
+#define IDC_ICONGRAPH                   1054
+#define IDC_ICONSAV                     1055
+#define IDC_ICONGRAPHB                  1056
+#define IDC_CHECKSCE                    1057
+#define IDC_CHECKSCI                    1058
+#define IDC_CHECKTST                    1059
+#define IDC_CHECKDEM                    1060
+#define IDC_CHECKBIN                    1061
+#define IDC_CHECKCOS                    1062
+#define IDC_CHECKCOSF                   1063
+#define IDC_CHECKGRAPH                  1064
+#define IDC_CHECKSAV                    1065
+#define IDC_CHECKGRAPHB                 1066
+#define IDC_STATICLOGO                  1067
+
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        146
+#define _APS_NEXT_RESOURCE_VALUE        149
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1048
+#define _APS_NEXT_CONTROL_VALUE         1068
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

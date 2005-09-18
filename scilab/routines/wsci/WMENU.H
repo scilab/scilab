@@ -26,6 +26,9 @@
 /* #define NUMMENU 256  defined in wresourc.h */
 #define MENUDEPTH 3
 
+#undef CMDMIN
+#undef CMDMAX
+#undef EOS
 /* menu tokens */
 #define CMDMIN 			129
 /**********************/
@@ -37,48 +40,14 @@
 #define SAVE 			CMDMIN+5
 #define GETCWD 			CMDMIN+6
 #define CHDIR 			CMDMIN+7
-#define EXIT   			CMDMIN+8
+#define PRINTSETUP		CMDMIN+8
+#define PRINT 			CMDMIN+9
+#define EXIT   			CMDMIN+10
 /**********************/
-#define MCOPY 			EXIT+1
-#define PASTE 			MCOPY+1
-#define PRINTSETUP		MCOPY+2
-#define PRINT 			MCOPY+3
-#define TOOLBAR			MCOPY+4
-#define FRENCH			MCOPY+5
-#define ENGLISH			MCOPY+6
-#define TEXTCOLOR		MCOPY+7
-#define BACKGROUNDCOLOR MCOPY+8
-#define SYSTEMCOLOR		MCOPY+9
-#define CHOOSETHEFONT	MCOPY+10
-#define EMPTYCLIPBOARD	MCOPY+11
-#define SELECTALL		MCOPY+12
-/**********************/
-#define RESTART 		SELECTALL+1
-#define PAUSE 			RESTART+1
-#define RESUME 			RESTART+2
-#define ABORT 			RESTART+3
-#define CONSOLE 		RESTART+4
-/**********************/
-#define SET  			CONSOLE+1
-#define RAISE 			SET+1
-#define DELETESCIW 		SET+2
-#define PLUS 			SET+3
-#define MINUS 			SET+4
-#define XBASC 			SET+5
-/**********************/
-#define SCIPAD 			XBASC+1
-/**********************/
-#define HELP 			SCIPAD+1
-#define CONFIGBROWSER   HELP+1
-#define DEMOS 			HELP+2
-#define NEWSGROUP		HELP+3
-#define EMAIL 			HELP+4
-#define WEB  			HELP+5
-#define CONTRIBUTIONS	HELP+6
-#define BUGZILLA		HELP+7
-#define ABOUT 			HELP+8
-/**********************/
-#define EOS 			ABOUT+1
+#define SELECTALL		EXIT+1
+#define MCOPY 			SELECTALL+1
+#define PASTE 			SELECTALL+2
+#define EMPTYCLIPBOARD	SELECTALL+3
 /**********************/
 #define M_CTRL_C		EOS+1
 #define M_CTRL_U		M_CTRL_C+1
@@ -94,9 +63,38 @@
 #define M_CTRL_L		M_CTRL_C+11
 #define M_CTRL_N		M_CTRL_C+12
 /**********************/
-#define CLEARCOMMANDWINDOW	M_CTRL_N+1
-#define CLEARHISTORY		CLEARCOMMANDWINDOW+1
-#define CMDMAX 			CLEARHISTORY
+#define FRENCH				EMPTYCLIPBOARD+1
+#define ENGLISH				FRENCH+1
+#define TEXTCOLOR			FRENCH+2
+#define BACKGROUNDCOLOR		FRENCH+3
+#define SYSTEMCOLOR			FRENCH+4
+#define FILESASSOCIATION	FRENCH+5
+#define TOOLBAR				FRENCH+6
+#define CHOOSETHEFONT		FRENCH+7
+#define CLEARHISTORY		FRENCH+8
+#define CLEARCOMMANDWINDOW	FRENCH+9
+#define CONSOLE 			FRENCH+10
+/**********************/
+#define RESTART 		CONSOLE+1
+#define PAUSE 			RESTART+1
+#define RESUME 			RESTART+2
+#define ABORT 			RESTART+3
+/**********************/
+#define SCIPAD 			ABORT+1
+/**********************/
+#define HELP 			SCIPAD+1
+#define CONFIGBROWSER   HELP+1
+#define DEMOS 			HELP+2
+#define NEWSGROUP		HELP+3
+#define EMAIL 			HELP+4
+#define WEB  			HELP+5
+#define CONTRIBUTIONS	HELP+6
+#define BUGZILLA		HELP+7
+#define ABOUT 			HELP+8
+/**********************/
+#define EOS 			ABOUT+1
+/**********************/
+#define CMDMAX 			M_CTRL_N
 /**********************/
 #define URLNEWSGROUP "http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab"
 #define URLCONTRIBUTIONS "http://scilabsoft.inria.fr/contrib/index_contrib.php?page=howto.html"
@@ -129,9 +127,8 @@ char *keyword[] =
 {
   "[EMPTYCLIPBOARD]","[SELECTALL]","[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
-  "[MCOPY]","[PASTE]","[PRINTSETUP]","[PRINT]","[CHOOSETHEFONT]","[TEXTCOLOR]","[BACKGROUNDCOLOR]","[SYSTEMCOLOR]",
+  "[MCOPY]","[PASTE]","[PRINTSETUP]","[PRINT]","[CHOOSETHEFONT]","[TEXTCOLOR]","[BACKGROUNDCOLOR]","[SYSTEMCOLOR]","[FILESASSOCIATION]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
-  "[SET]","[RAISE]","[DELETESCIW]","[PLUS]","[MINUS]","[XBASC]",
   "[SCIPAD]",
   "[HELP]","[DEMOS]","[WEB]","[EMAIL]","[CONTRIBUTIONS]","[BUGZILLA]","[ABOUT]",
   "{ENTER}", "{ESC}", "{TAB}",
@@ -145,9 +142,8 @@ BYTE keyeq[] =
 {
   EMPTYCLIPBOARD,SELECTALL,CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,
   TOOLBAR,NEWSGROUP,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
-  MCOPY,PASTE,PRINTSETUP,PRINT,CHOOSETHEFONT,TEXTCOLOR,BACKGROUNDCOLOR,SYSTEMCOLOR,
+  MCOPY,PASTE,PRINTSETUP,PRINT,CHOOSETHEFONT,TEXTCOLOR,BACKGROUNDCOLOR,SYSTEMCOLOR,FILESASSOCIATION,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
-  SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
   SCIPAD,
   HELP,DEMOS,WEB,EMAIL,CONTRIBUTIONS,BUGZILLA,ABOUT,
   13, 27, 9,
@@ -183,6 +179,7 @@ void Callback_ENGLISH(void);
 void Callback_TEXTCOLOR(void);
 void Callback_BACKGROUNDCOLOR(void);
 void Callback_SYSTEMCOLOR(void);
+void Callback_FILESASSOCIATIONBOX(void);
 void Callback_CHOOSETHEFONT(void);
 void Callback_RESTART(void);
 void Callback_ABORT(void);

@@ -64,6 +64,7 @@ extern BOOL IsAFile(char *chainefichier);
 extern BOOL IsWindowInterface(void);
 extern void AddHistory (char *line);
 extern void GetCommentDateSession(char *line,int BeginSession);
+extern void WINAPI FilesAssociationBox (HWND hwnd);
 /*-----------------------------------------------------------------------------------*/
 static integer lab_count = 0;
 static char gwin_name[100], gwin_name1[100];
@@ -438,6 +439,19 @@ void Callback_SYSTEMCOLOR(void)
 	SetIhmSystemDefaultTextBackgroundColor();
 }
 /*-----------------------------------------------------------------------------------*/
+void Callback_FILESASSOCIATIONBOX(void)
+{
+	if (IsWindowInterface())
+	{
+		LPTW lptw=GetTextWinScilab();
+		FilesAssociationBox(lptw->hWndParent);
+	}
+	else
+	{
+		FilesAssociationBox(NULL);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
 void Callback_CHOOSETHEFONT(void)
 {
 	LPTW lptw=GetTextWinScilab();
@@ -558,9 +572,12 @@ void Callback_NEWSGROUP(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_ABOUT(void)
 {
-	DLGPROC lpfnAboutDlgProc;
-  	lpfnAboutDlgProc = (DLGPROC) MyGetProcAddress ("AboutDlgProc", AboutDlgProc);
-	DialogBox (hdllInstance, "AboutDlgBox", NULL,lpfnAboutDlgProc);
+	if (IsWindowInterface())
+	{
+		LPTW lptw=GetTextWinScilab();
+		AboutBox(lptw->hWndParent);
+	}
+	else AboutBox(NULL);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_CLEARCOMMANDWINDOW(void)
@@ -618,13 +635,13 @@ void SendMacro (LPTW lptw, UINT m)
   char *d;
   char *buf;
   BOOL flag = TRUE;
-/*  int i;*/
  
   LPMW lpmw = lptw->lpmw;
-  if ((buf = LocalAlloc (LPTR, MAXSTR + 1)) == (char *) NULL)
-    return;
-  if (m >= NUMMENU || (int)m < 0)
-    return;
+
+  if ((buf = LocalAlloc (LPTR, MAXSTR + 1)) == (char *) NULL) return;
+
+  if (m >= NUMMENU || (int)m < 0) return;
+
   s = lpmw->macro[m];
   d = buf;
   *d = '\0';
@@ -717,8 +734,9 @@ void SendMacro (LPTW lptw, UINT m)
 			case SYSTEMCOLOR:
 				Callback_SYSTEMCOLOR();
 				return;
-
-
+			case FILESASSOCIATION:
+				Callback_FILESASSOCIATIONBOX();
+				return;
 	    	case CHOOSETHEFONT:
 	    		Callback_CHOOSETHEFONT();
 	      		s++;
@@ -743,30 +761,7 @@ void SendMacro (LPTW lptw, UINT m)
 	      		Callback_CONSOLE();
 	      		return;
 	    	break;
-	    	case SET:
-	    		SendCountSet ();
-	      		s++;
-	    	break;
-	    	case RAISE:
-	    		SendCountRaise ();
-	      		s++;
-	    	break;
-	    	case DELETESCIW:
-	    		SendCountDelete ();
-	      		s++;
-	    	break;
-	    	case PLUS:
-	    		Countp ();
-	      		s++;
-	    	break;
-	    	case MINUS:
-	    		Countm ();
-	      		s++;
-	    	break;
-	    	case XBASC:
-	    		return;
-	    	break;
-	    	case SCIPAD:
+	       	case SCIPAD:
 				SaveCurrentLine(TRUE);
 	    		Callback_SCIPAD();
 	    		return;
