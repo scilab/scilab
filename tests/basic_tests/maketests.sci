@@ -1,5 +1,6 @@
 function tests=testslist()
-  tests = ['TCL_SetGet.tst';
+  tests = ['filesassocation.tst';
+     'TCL_SetGet.tst';
   	 'parse.tst';
 	   'clause.tst';
 	   'trycatch.tst';
@@ -67,7 +68,11 @@ function tests=testslist()
 	   'opcode.tst';
 	   'specfun.tst';
 	   ];
-	   
+
+if ~MSDOS then
+	tests(find(tests=='filesassocation.tst'))=[]
+end
+
 if ~with_tk() then
 	tests(find(tests=='links.tst'))=[]
 end
