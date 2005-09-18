@@ -8,14 +8,14 @@
 	&New ...
 		[NEWFIG]
 	S&ave position
-		[UPDINI]	
+		[UPDINI]
 	--
 	&Load ...
 		[LOADSCG]xload[EOS]*.scg[EOS]
 	&Save ...
 		[SAVESCG]xsave[EOS]*.scg[EOS]
 	
-	--	
+	--
 	&Export 
 		[SCIPS]
 	[Menu]
@@ -38,10 +38,8 @@
 	[EndMenu]
 	--
 	Cl&ose 
-		[CLOSE]									
-	
+		[CLOSE]
 
- 
 [EndMenu]
 	
 
@@ -54,7 +52,7 @@
 		[ZOOM]
 	&UnZoom
 		[UNZOOM]
-	--	
+	--
 	2D/3D &Rotation
 		[ROT3D]
 [EndMenu]
