@@ -8,8 +8,8 @@ function [PathOut,OptionsOut]=GetPathAndOptionsInThisString(StringIn)
   PathOut=part(StringIn,[IndexGuillemets(1)+1:IndexGuillemets(2)-1]); 
   PathOut=convstr(getlongpathname(PathOut),'u');
   OptionsOut=part(StringIn,[IndexGuillemets(2):IndexGuillemets(4)]); 
-  clear IndexGuillemets
-endfunction
+  clear IndexGuillemets;
+endfunction;
 //---------------------------------------------------------------------------------
 PATHREF=convstr(getlongpathname(strsubst(SCI,'/','\'))+'\bin\wscilex.exe','u');
 NBRTESTOK=0;
@@ -18,227 +18,246 @@ SCE1DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\open\command');
 [PATHSCE1DIA,OPTIONSSCE1DIA]=GetPathAndOptionsInThisString(SCE1DIA);
 OPTIONSSCE1REF='""'+' -O ""%1""'; 
 if ( (PATHSCE1DIA==PATHREF) & (OPTIONSSCE1DIA==OPTIONSSCE1REF) ) then
-  disp('.SCE open OK');
+  disp('SCE open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.SCE open NOK');
-end
-clear SCE1DIA PATHSCE1DIA OPTIONSSCE1DIA OPTIONSSCE1REF
+  disp('SCE open NOK');
+  pause;
+end;
+clear SCE1DIA PATHSCE1DIA OPTIONSSCE1DIA OPTIONSSCE1REF;
 //---------------------------------------------------------------------------------
 SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Execution\command');
 [PATHSCE2DIA,OPTIONSSCE2DIA]=GetPathAndOptionsInThisString(SCE2DIA);
 OPTIONSSCE2REF='""'+' -X ""%1""'; 
 if ( (PATHSCE2DIA==PATHREF) & (OPTIONSSCE2DIA==OPTIONSSCE2REF) ) then
-  disp('.SCE execute OK');
+  disp('SCE execute OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.SCE execute NOK');
-end
-clear SCE2DIA PATHSCE2DIA OPTIONSSCE2DIA OPTIONSSCE2REF
+  disp('SCE execute NOK');
+  pause;
+end;
+clear SCE2DIA PATHSCE2DIA OPTIONSSCE2DIA OPTIONSSCE2REF;
 //---------------------------------------------------------------------------------
 SCE3DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\print\command');
 [PATHSCE3DIA,OPTIONSSCE3DIA]=GetPathAndOptionsInThisString(SCE3DIA);
 OPTIONSSCE3REF='""'+' -P ""%1""'; 
 if ( (PATHSCE3DIA==PATHREF) & (OPTIONSSCE3DIA==OPTIONSSCE3REF) ) then
-  disp('.SCE print OK');
+  disp('SCE print OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.SCE print NOK');
-end
-clear SCE3DIA PATHSCE3DIA OPTIONSSCE3DIA OPTIONSSCE3REF
+  disp('SCE print NOK');
+  pause;
+end;
+clear SCE3DIA PATHSCE3DIA OPTIONSSCE3DIA OPTIONSSCE3REF;
 //---------------------------------------------------------------------------------
 SCI1DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\open\command');
 [PATHSCI1DIA,OPTIONSSCI1DIA]=GetPathAndOptionsInThisString(SCI1DIA);
 OPTIONSSCI1REF='""'+' -O ""%1""'; 
 if ( (PATHSCI1DIA==PATHREF) & (OPTIONSSCI1DIA==OPTIONSSCI1REF) ) then
-  disp('.SCI open OK');
+  disp('SCI open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.SCI open NOK');
-end
-clear SCI1DIA PATHSCI1DIA OPTIONSSCI1DIA OPTIONSSCI1REF
+  disp('SCI open NOK');
+  pause;
+end;
+clear SCI1DIA PATHSCI1DIA OPTIONSSCI1DIA OPTIONSSCI1REF;
 //---------------------------------------------------------------------------------
 SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Execution\command');
 [PATHSCI2DIA,OPTIONSSCI2DIA]=GetPathAndOptionsInThisString(SCI2DIA);
 OPTIONSSCI2REF='""'+' -X ""%1""'; 
 if ( (PATHSCI2DIA==PATHREF) & (OPTIONSSCI2DIA==OPTIONSSCI2REF) ) then
-  disp('.SCI execute OK');
+  disp('SCI execute OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.SCI execute NOK');
-end
-clear SCI2DIA PATHSCI2DIA OPTIONSSCI2DIA OPTIONSSCI2REF
+  disp('SCI execute NOK');
+  pause;
+end;
+clear SCI2DIA PATHSCI2DIA OPTIONSSCI2DIA OPTIONSSCI2REF;
 //---------------------------------------------------------------------------------
 SCI3DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\print\command');
 [PATHSCI3DIA,OPTIONSSCI3DIA]=GetPathAndOptionsInThisString(SCI3DIA);
 OPTIONSSCI3REF='""'+' -P ""%1""'; 
 if ( (PATHSCI3DIA==PATHREF) & (OPTIONSSCI3DIA==OPTIONSSCI3REF) ) then
-  disp('.SCI print OK');
+  disp('SCI print OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.SCI print NOK');
-end
-clear SCI3DIA PATHSCI3DIA OPTIONSSCI3DIA OPTIONSSCI3REF
+  disp('SCI print NOK');
+  pause;
+end;
+clear SCI3DIA PATHSCI3DIA OPTIONSSCI3DIA OPTIONSSCI3REF;
 //---------------------------------------------------------------------------------
 TST1DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\open\command');
 [PATHTST1DIA,OPTIONSTST1DIA]=GetPathAndOptionsInThisString(TST1DIA);
 OPTIONSTST1REF='""'+' -O ""%1""'; 
 if ( (PATHTST1DIA==PATHREF) & (OPTIONSTST1DIA==OPTIONSTST1REF) ) then
-  disp('.TST open OK');
+  disp('TST open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.TST open NOK');
-end
-clear TST1DIA PATHTST1DIA OPTIONSTST1DIA OPTIONSTST1REF
+  disp('TST open NOK');
+  pause;
+end;
+clear TST1DIA PATHTST1DIA OPTIONSTST1DIA OPTIONSTST1REF;
 //---------------------------------------------------------------------------------
 TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Execution\command');
 [PATHTST2DIA,OPTIONSTST2DIA]=GetPathAndOptionsInThisString(TST2DIA);
 OPTIONSTST2REF='""'+' -X ""%1""'; 
 if ( (PATHTST2DIA==PATHREF) & (OPTIONSTST2DIA==OPTIONSTST2REF) ) then
-  disp('.TST execute OK');
+  disp('TST execute OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.TST execute NOK');
-end
-clear TST2DIA PATHTST2DIA OPTIONSTST2DIA OPTIONSTST2REF
+  disp('TST execute NOK');
+  pause;
+end;
+clear TST2DIA PATHTST2DIA OPTIONSTST2DIA OPTIONSTST2REF;
 //---------------------------------------------------------------------------------
 TST3DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\print\command');
 [PATHTST3DIA,OPTIONSTST3DIA]=GetPathAndOptionsInThisString(TST3DIA);
 OPTIONSTST3REF='""'+' -P ""%1""'; 
 if ( (PATHTST3DIA==PATHREF) & (OPTIONSTST3DIA==OPTIONSTST3REF) ) then
-  disp('.TST print OK');
+  disp('TST print OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.TST print NOK');
-end
-clear TST3DIA PATHTST3DIA OPTIONSTST3DIA OPTIONSTST3REF
+  disp('TST print NOK');
+  pause;
+end;
+clear TST3DIA PATHTST3DIA OPTIONSTST3DIA OPTIONSTST3REF;
 //---------------------------------------------------------------------------------
 DEM1DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\open\command');
 [PATHDEM1DIA,OPTIONSDEM1DIA]=GetPathAndOptionsInThisString(DEM1DIA);
 OPTIONSDEM1REF='""'+' -O ""%1""'; 
 if ( (PATHDEM1DIA==PATHREF) & (OPTIONSDEM1DIA==OPTIONSDEM1REF) ) then
-  disp('.DEM open OK');
+  disp('DEM open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.DEM open NOK');
-end
-clear DEM1DIA PATHDEM1DIA OPTIONSDEM1DIA OPTIONSDEM1REF
+  disp('DEM open NOK');
+  pause;
+end;
+clear DEM1DIA PATHDEM1DIA OPTIONSDEM1DIA OPTIONSDEM1REF;
 //---------------------------------------------------------------------------------
 DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Execution\command');
 [PATHDEM2DIA,OPTIONSDEM2DIA]=GetPathAndOptionsInThisString(DEM2DIA);
 OPTIONSDEM2REF='""'+' -X ""%1""'; 
 if ( (PATHDEM2DIA==PATHREF) & (OPTIONSDEM2DIA==OPTIONSDEM2REF) ) then
-  disp('.DEM execute OK');
+  disp('DEM execute OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.DEM execute NOK');
-end
-clear DEM2DIA PATHDEM2DIA OPTIONSDEM2DIA OPTIONSDEM2REF
+  disp('DEM execute NOK');
+  pause;
+end;
+clear DEM2DIA PATHDEM2DIA OPTIONSDEM2DIA OPTIONSDEM2REF;
 //---------------------------------------------------------------------------------
 DEM3DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\print\command');
 [PATHDEM3DIA,OPTIONSDEM3DIA]=GetPathAndOptionsInThisString(DEM3DIA);
 OPTIONSDEM3REF='""'+' -P ""%1""'; 
 if ( (PATHDEM3DIA==PATHREF) & (OPTIONSDEM3DIA==OPTIONSDEM3REF) ) then
-  disp('.DEM print OK');
+  disp('DEM print OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.DEM print NOK');
-end
-clear DEM3DIA PATHDEM3DIA OPTIONSDEM3DIA OPTIONSDEM3REF
+  disp('DEM print NOK');
+  pause;
+end;
+clear DEM3DIA PATHDEM3DIA OPTIONSDEM3DIA OPTIONSDEM3REF;
 //---------------------------------------------------------------------------------  
 GRAPH1DIA=winqueryreg('HKEY_CLASSES_ROOT','GRAPH_scilab_file\shell\open\command');
 [PATHGRAPH1DIA,OPTIONSGRAPH1DIA]=GetPathAndOptionsInThisString(GRAPH1DIA);
 OPTIONSGRAPH1REF='""'+' -X ""%1""'; 
 if ( (PATHGRAPH1DIA==PATHREF) & (OPTIONSGRAPH1DIA==OPTIONSGRAPH1REF) ) then
-  disp('.graph open OK');
+  disp('graph open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.graph open NOK');
-end
-clear GRAPH1DIA PATHGRAPH1DIA OPTIONSGRAPH1DIA OPTIONSGRAPH1REF
+  disp('graph open NOK');
+  pause;
+end;
+clear GRAPH1DIA PATHGRAPH1DIA OPTIONSGRAPH1DIA OPTIONSGRAPH1REF;
 //---------------------------------------------------------------------------------  
 GRAPH2DIA=winqueryreg('HKEY_CLASSES_ROOT','GRAPHB_scilab_file\shell\open\command');
 [PATHGRAPH2DIA,OPTIONSGRAPH2DIA]=GetPathAndOptionsInThisString(GRAPH2DIA);
 OPTIONSGRAPH2REF='""'+' -X ""%1""'; 
 if ( (PATHGRAPH2DIA==PATHREF) & (OPTIONSGRAPH2DIA==OPTIONSGRAPH2REF) ) then
-  disp('.graphb open OK');
+  disp('graphb open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.graphb open NOK');
-end
-clear GRAPH2DIA PATHGRAPH2DIA OPTIONSGRAPH2DIA OPTIONSGRAPH2REF
+  disp('graphb open NOK');
+  pause;
+end;
+clear GRAPH2DIA PATHGRAPH2DIA OPTIONSGRAPH2DIA OPTIONSGRAPH2REF;
 //---------------------------------------------------------------------------------  
 SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\open\command');
 [PATHSCICOS1DIA,OPTIONSSCICOS1DIA]=GetPathAndOptionsInThisString(SCICOS1DIA);
 OPTIONSSCICOS1REF='""'+' -X ""%1""'; 
 if ( (PATHSCICOS1DIA==PATHREF) & (OPTIONSSCICOS1DIA==OPTIONSSCICOS1REF) ) then
-  disp('.cos execute OK');
+  disp('cos execute OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.cos execute NOK');
-end
-clear SCICOS1DIA PATHSCICOS1DIA OPTIONSSCICOS1DIA OPTIONSSCICOS1REF
+  disp('cos execute NOK');
+  pause;
+end;
+clear SCICOS1DIA PATHSCICOS1DIA OPTIONSSCICOS1DIA OPTIONSSCICOS1REF;
 //---------------------------------------------------------------------------------  
 SCICOS2DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\open\command');
 [PATHSCICOS2DIA,OPTIONSSCICOS2DIA]=GetPathAndOptionsInThisString(SCICOS2DIA);
 OPTIONSSCICOS2REF='""'+' -O ""%1""'; 
 if ( (PATHSCICOS2DIA==PATHREF) & (OPTIONSSCICOS2DIA==OPTIONSSCICOS2REF) ) then
-  disp('.cosf open OK');
+  disp('cosf open OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.cosf open NOK');
-end
-clear SCICOS2DIA PATHSCICOS2DIA OPTIONSSCICOS2DIA OPTIONSSCICOS2REF
+  disp('cosf open NOK');
+  pause;
+end;
+clear SCICOS2DIA PATHSCICOS2DIA OPTIONSSCICOS2DIA OPTIONSSCICOS2REF;
 //---------------------------------------------------------------------------------  
 SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Execution\command');
 [PATHSCICOS3DIA,OPTIONSSCICOS3DIA]=GetPathAndOptionsInThisString(SCICOS3DIA);
 OPTIONSSCICOS3REF='""'+' -X ""%1""'; 
 if ( (PATHSCICOS3DIA==PATHREF) & (OPTIONSSCICOS3DIA==OPTIONSSCICOS3REF) ) then
-  disp('.cosf execute OK');
+  disp('cosf execute OK');
   NBRTESTOK=NBRTESTOK+1;
 else
-  disp('.cosf execute NOK');
-end
-clear SCICOS3DIA PATHSCICOS3DIA OPTIONSSCICOS3DIA OPTIONSSCICOS3REF
+  disp('cosf execute NOK');
+  pause;
+end;
+clear SCICOS3DIA PATHSCICOS3DIA OPTIONSSCICOS3DIA OPTIONSSCICOS3REF;
 //---------------------------------------------------------------------------------
 execstr('SAVDIA=winqueryreg(''HKEY_CLASSES_ROOT'',''SAV_scilab_file\shell\open\command'');','errcatch');
 if isdef('SAVDIA') then
   [PATHSAVDIA,OPTIONSSAVDIA]=GetPathAndOptionsInThisString(SAVDIA);
   OPTIONSSAVREF='""'+' -X ""%1""'; 
   if ( (PATHSAVDIA==PATHREF) & (OPTIONSSAVDIA==OPTIONSSAVREF) ) then
-    disp('.sav execute OK');
+    disp('sav execute OK');
     NBRTESTOK=NBRTESTOK+1;
   else
-    disp('.sav execute NOK');
-  end
+    disp('sav execute NOK');
+    pause;
+  end;
 else
-  disp('.sav not associate (Default)');
-end  
+  disp('sav not associate (Default)');
+end;
 //---------------------------------------------------------------------------------  
 execstr('BINDIA=winqueryreg(''HKEY_CLASSES_ROOT'',''BIN_scilab_file\shell\open\command'');','errcatch');
 if isdef('BINDIA') then
   [PATHBINDIA,OPTIONSBINDIA]=GetPathAndOptionsInThisString(BINDIA);
   OPTIONSBINREF='""'+' -X ""%1""'; 
   if ( (PATHBINDIA==PATHREF) & (OPTIONSBINDIA==OPTIONSBINREF) ) then
-    disp('.bin execute OK');
+    disp('bin execute OK');
     NBRTESTOK=NBRTESTOK+1;
   else
-    disp('.bin execute NOK');
-  end
+    disp('bin execute NOK');
+    pause;
+  end;
 else
-  disp('.bin not associate (Default)');  
-end
+  disp('bin not associate (Default)');  
+end;
 //---------------------------------------------------------------------------------  
 if ( (NBRTESTOK==17) | (NBRTESTOK==18) | (NBRTESTOK==19) ) then
   if (NBRTESTOK==17) then
     disp('Entries in Regitry OK (Default Installation)');
   else
     disp('Entries in Regitry OK (Not Default Installation)');
-  end
+  end;
 else
   disp('Entries in Regitry NOK');
-  pause
-end
+  pause;
+end;
 //---------------------------------------------------------------------------------  
-clear GetPathAndOptionsInThisString PATHREF
+clear GetPathAndOptionsInThisString PATHREF;
 //---------------------------------------------------------------------------------
