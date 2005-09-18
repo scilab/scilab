@@ -4,39 +4,36 @@
 ; Allan CORNET Juillet 2004
 
 [Menu]
- &Fichier
-        &Nouveau Scilab
-        	[NEWSCILAB]
- 	--
- 	&Exec ...
- 		[EXEC]
- 	--	
-  	&Ouvrir ...
- 		[OPEN]
- 	&Charger ...
- 		[LOAD]
- 	&Sauvegarder ...
- 		[SAVE]
- 	--
- 	C&hanger de répertoire ...
- 		[CHDIR]
- 	&Répertoire courant
-		[GETCWD]
-	--	
-	Config. Imprimante ...
-			[PRINTSETUP]	
-	
-	&Imprimer ...
-		[PRINT]	
-	--
- 	&Quitter
- 		[EXIT]
- 		
- 
+&Fichier
+		&Nouveau Scilab
+			[NEWSCILAB]
+		--
+		&Exec ...
+			[EXEC]
+		--
+		&Ouvrir ...
+			[OPEN]
+		&Charger ...
+			[LOAD]
+		&Sauvegarder ...
+			[SAVE]
+		--
+		C&hanger de répertoire ...
+			[CHDIR]
+		&Répertoire courant
+			[GETCWD]
+		--	
+		Config. Imprimante ...
+			[PRINTSETUP]
+		&Imprimer
+			[PRINT]
+		--
+		&Quitter
+			[EXIT]
 [EndMenu]
 
 [Menu]
-	&Edition
+&Edition
 		Sélectionner &tout
 			[SELECTALL]
 		--
@@ -78,33 +75,33 @@
 			Réécrire ligne	Ctrl+L
 				[M_CTRL_L]
 		[EndMenu]
-		
-
 [EndMenu]
 
 [Menu]
- &Préférences
- 		[Menu]
- 			&Langue
- 				&Francais
- 					[FRENCH]
- 				&English
- 					[ENGLISH]
- 		[EndMenu]
- 		
- 		[Menu]
- 			C&ouleurs
- 				&Texte ...
- 					[TEXTCOLOR]
- 				&Fond ...
- 					[BACKGROUNDCOLOR]
-        	    -- 					
- 				&Couleurs par défaut
- 					[SYSTEMCOLOR]
-  		[EndMenu]
- 			 			
- 		&Barre d'outils	F3
-				[TOOLBAR]	
+&Préférences
+		[Menu]
+			&Langue
+				&Francais
+					[FRENCH]
+				&English
+					[ENGLISH]
+		[EndMenu]
+
+		[Menu]
+			C&ouleurs
+				&Texte ...
+					[TEXTCOLOR]
+				&Fond ...
+					[BACKGROUNDCOLOR]
+				--
+				&Couleurs par défaut
+					[SYSTEMCOLOR]
+		[EndMenu]
+
+		&Associations des fichiers
+			[FILESASSOCIATION]
+		&Barre d'outils	F3
+				[TOOLBAR]
 		Changer la &police ...
 			[CHOOSETHEFONT]
 		--
@@ -113,8 +110,8 @@
 		Effacer la &fenêtre ligne de commande	F2
 			[CLEARCOMMANDWINDOW]
 		Afficher &console	F12
-			[CONSOLE]			 		
- 
+			[CONSOLE]
+
 [EndMenu]
 
 [Menu]
@@ -127,60 +124,43 @@
 			[ABORT]
 		&Interrompre	Ctrl+C
 			[M_CTRL_C]
- 
+
 [EndMenu]
-
-;[Menu]
-;	&Graphic Window 0
-;		&Set (Créer) Fenêtre
-;			[SET]
-;		&Raise (Créer) Fenêtre
-;			[RAISE]
-;		&Détruire Fenêtre Graphique
-;			[DELETESCIW]
-;		&+ (Augmenter indice courant)
-;			[PLUS]
-;		&- (Diminuer indice couant)
-;			[MINUS]
-;		--
-;		&Effacer Fenêtre Graphique Courante
-;			[XBASC]
-;[EndMenu]
-
 
 E&diteur
-        	[SCIPAD]
-        	
+	[SCIPAD]
+
 [Menu]
-	 &Applications
-	 	&Scicos
-	 		scicos();
-	 	--	
-	 	&EditGraph
-	 		edit_graph();
-	 	--	
-	 	m&2sci
-	 		mfile2sci();
-	 	--
-	 	E&diteur de variables
-	 		browsevar();	
+	&Applications
+		&Scicos
+			scicos();
+		--
+		&EditGraph
+			edit_graph();
+		--
+		m&2sci
+			mfile2sci();
+		--
+		E&diteur de variables
+			browsevar();
 [EndMenu]
+
 [Menu]
- &?
- 	
-       		Aide &Scilab 	F1
-       		[HELP]
-       		&Configurer
-       		[CONFIGBROWSER]
-		--
-		&Démonstrations Scilab 
-			[DEMOS]
-		--
+&?
+
+			Aide &Scilab 	F1
+				[HELP]
+			&Configurer
+				[CONFIGBROWSER]
+			--
+			&Démonstrations Scilab 
+				[DEMOS]
+			--
 		[Menu]
 			Liens &Web
 				Site &Internet Scilab
 					[WEB]
-				--	
+				--
 				&Contributions
 					[CONTRIBUTIONS]
 				--
@@ -189,15 +169,10 @@ E&diteur
 				--
 				&Newsgroup Scilab
 					[NEWSGROUP]
- 		[EndMenu]
+		[EndMenu]
 		--
 		&A propos
 			[ABOUT]
-[EndMenu]
-;		E-mail to &Doctor Scilab
-;			[EMAIL]
-;		--
-
 [EndMenu]
 
 ;Exemple de bouton avec chemin de l'icone 
@@ -216,13 +191,13 @@ E&diteur
 		[SCIPAD]
 [Button]
 	|Ouvrir fichier|OPEN_ICON|
-		[OPEN]		
+		[OPEN]
 [Button]
 	|Copier|COPY_ICON|
 		[MCOPY]
 [Button]
 	|Coller|PASTE_ICON|
-		[PASTE]				
+		[PASTE]
 [Button]
 	|Changer de Répertoire|DIRECTORY_ICON|
 		[CHDIR]
@@ -237,10 +212,10 @@ E&diteur
 		[PRINT]
 [Button]
 	|Aide|HELP_ICON|
-		[HELP]		
+		[HELP]
 ;[Button]
 ;	|Scicos|SCICOS_ICON|
-;		scicos();		
+;		scicos();
 ;[Button]
 ;	|Metanet|METANET_ICON|
 ;		edit_graph();

@@ -4,50 +4,47 @@
 ; Allan CORNET Juillet 2003
 
 [Menu]
- &File
- 	
-        	&New Scilab
-        		[NEWSCILAB]
- 		--
- 		&Exec ...
- 			[EXEC]
- 		--
- 		&Open ...
- 			[OPEN]
- 		&Load ...
- 			[LOAD]
- 		&Save ...
- 			[SAVE]
- 		--
- 		&Change Directory
- 			[CHDIR]
- 		Ge&t Current Directory 
-			[GETCWD]
-		--	
+&File
+		&New Scilab
+			[NEWSCILAB]
+		--
+		&Exec ...
+			[EXEC]
+		--
+		&Open ...
+			[OPEN]
+		&Load ...
+			[LOAD]
+		&Save ...
+			[SAVE]
+		--
+		&Change Directory
+			[CHDIR]
+		Ge&t Current Directory 
+		[GETCWD]
+		--
 		Pr&int Setup ...
 			[PRINTSETUP]
 		
-		P&rint ...
+		P&rint
 			[PRINT]
 		--
- 		E&xit
- 			[EXIT]
- 	
- 
+		E&xit
+			[EXIT]
 [EndMenu]
 
 [Menu]
  &Edit
 		Select &All
 			[SELECTALL]
-		-- 	
-        &Copy	Ctrl+C
+		--
+    &Copy	Ctrl+C
 			[MCOPY]
 		&Paste	Ctrl+V
 			[PASTE]
 		&Empty Clipboard
-			[EMPTYCLIPBOARD]	
-		--	
+			[EMPTYCLIPBOARD]
+		--
 		[Menu]
 		&History
 			Previous command	Ctrl+P
@@ -79,48 +76,46 @@
 			Redraw the line	Ctrl+L
 				[M_CTRL_L]
 		[EndMenu]
- 	
- 
 [EndMenu]
 
 [Menu]
- &Preferences
- 		[Menu]
- 			&Language
- 				&Francais
- 					[FRENCH]
- 				&English
- 					[ENGLISH]
- 		[EndMenu]
- 		
- 		[Menu]
- 			C&olors
- 				&Text ...
- 					[TEXTCOLOR]
- 				&Background ...
- 					[BACKGROUNDCOLOR]
-        	    -- 					
- 				&Default System Colors
- 					[SYSTEMCOLOR]
-  		[EndMenu]
- 			
- 		&Toolbar	F3
-				[TOOLBAR]	
-		Choose &Font ...
-				[CHOOSETHEFONT]
-        	--
-        Clear &History
-			[CLEARHISTORY]	
-        Clear Command &Window	F2
-			[CLEARCOMMANDWINDOW]	
+&Preferences
+		[Menu]
+			&Language
+				&Francais
+					[FRENCH]
+				&English
+					[ENGLISH]
+		[EndMenu]
+
+		[Menu]
+			C&olors
+				&Text
+					[TEXTCOLOR]
+				&Background
+					[BACKGROUNDCOLOR]
+				--
+				&Default System Colors
+					[SYSTEMCOLOR]
+		[EndMenu]
+
+		&Toolbar	F3
+				[TOOLBAR]
+		&Files Association
+			[FILESASSOCIATION]
+		Choose &Font
+			[CHOOSETHEFONT]
+		--
+		Clear &History
+			[CLEARHISTORY]
+		Clear Command &Window	F2
+			[CLEARCOMMANDWINDOW]
 		&Console	F12
-			[CONSOLE]	
- 		
- 
+			[CONSOLE]
 [EndMenu]
 
 [Menu]
- &Control
+&Control
 ;		Re&start
 ;			[RESTART]
 		&Resume
@@ -129,63 +124,41 @@
 			[ABORT]
 		&Interrupt	Ctrl+C
 			[M_CTRL_C]
-		
- 	
- 
 [EndMenu]
 
-;[Menu]
-;	&Graphic Window 0
-;		&Set (Create) Window
-;			[SET]
-;		&Raise (Create) Window
-;			[RAISE]
-;		&Delete Graphic Window 
-;			[DELETESCIW]
-;		&+ (increase current num)
-;			[PLUS]
-;		&- (decrease current num)
-;			[MINUS]
-;		--
-;		&Clear Current Window
-;			[XBASC]
-;[EndMenu]
+E&ditor
+			[SCIPAD]
 
- E&ditor
-        	[SCIPAD]
-        	
 [Menu]
-	 &Applications
-	 	&Scicos
-	 		scicos();
-	 	--	
-	 	&EditGraph
-	 		edit_graph();
-	 	--	
-	 	m&2sci
-	 		mfile2sci();
-	 	--
-	 	&Browser Variables
-	 		browsevar();	
-	 		
+	&Applications
+		&Scicos
+			scicos();
+		--
+		&EditGraph
+			edit_graph();
+		--
+		m&2sci
+			mfile2sci();
+		--
+		&Browser Variables
+			browsevar();
 [EndMenu]
 
 [Menu]
- &?
- 	
-       		&Scilab Help	F1
+&?
+	&Scilab Help	F1
 			[HELP]
-			&Configure
-       		[CONFIGBROWSER]
-		--
-		Scilab &Demos
+	&Configure
+			[CONFIGBROWSER]
+	--
+	Scilab &Demos
 			[DEMOS]
-		--
-		[Menu]
+	--
+	[Menu]
 			&Web Links
 				Scilab &Web Site
 					[WEB]
-				--	
+				--
 				&Contributions
 					[CONTRIBUTIONS]
 				--
@@ -194,17 +167,13 @@
 				--
 				Scilab &Newsgroup
 					[NEWSGROUP]
- 		[EndMenu]
-		--	
-		&About
-			[ABOUT]
-[EndMenu]
+;		--	
 ;		E-mail to &Doctor Scilab
 ;			[EMAIL]
-;		--
-
- 	
- 
+	[EndMenu]
+	--
+	&About
+			[ABOUT]
 [EndMenu]
 
 ;Example add a button with a icon file
@@ -223,13 +192,13 @@
 		[SCIPAD]
 [Button]
 	|Open file|OPEN_ICON|
-		[OPEN]				
+		[OPEN]
 [Button]
 	|Copy|COPY_ICON|
 		[MCOPY]
 [Button]
 	|Paste|PASTE_ICON|
-		[PASTE]				
+		[PASTE]
 [Button]
 	|Change Directory|DIRECTORY_ICON|
 		[CHDIR]
