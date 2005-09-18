@@ -12,11 +12,6 @@ proc createmenues {} {
     $pad.filemenu delete 0 end
 
     #file menu
-############### WARNING ###############
-# File menu items are accessed by their hardcoded entry number
-# in many places in the code. Moving, adding or deleting entries
-# must be done with extreme care!
-#######################################
     menu $pad.filemenu.files -tearoff 1 -font $menuFont
     eval "$pad.filemenu  add cascade [me "&File"] \
                    -menu $pad.filemenu.files "
@@ -326,6 +321,8 @@ proc disablemenuesbinds {} {
 # Scipad exit (File/Exit or clicking on [x]) does not make use of this
 # facility to avoid hangs - the user can always escape out
     global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
+    global tileprocalreadyrunning
+    set tileprocalreadyrunning true
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state disabled
@@ -347,6 +344,7 @@ proc disablemenuesbinds {} {
 proc restoremenuesbinds {} {
 # Restore menu entries and bindings disabled previously by proc disablemenuesbinds
     global pad nbrecentfiles FirstBufferNameInWindowsMenu listoftextarea
+    global tileprocalreadyrunning
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state normal
@@ -363,6 +361,7 @@ proc restoremenuesbinds {} {
             [getpaneframename $ta].clbutton configure -state normal
         }
     }
+    set tileprocalreadyrunning false
 }
 
 proc getlasthiddentextareamenuind {} {
@@ -414,7 +413,7 @@ proc extractindexfromlabel {dm labsearched} {
         set startpoint $FirstMRUFileNameInFileMenu
         set stoppoint  [expr $FirstMRUFileNameInFileMenu + $nbrecentfiles]
     } else {
-        tk_message -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
+        tk_messageBox -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
     }
     for {set i $startpoint} {$i<=$stoppoint} {incr i} {
         if {[$dm type $i] != "separator" && [$dm type $i] != "tearoff"} {

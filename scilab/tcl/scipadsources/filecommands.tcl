@@ -106,6 +106,8 @@ proc closecur { {quittype yesno} } {
 # remove (in Scilab) the breakpoints initiated from the current buffer
 # unset the variables relative to this buffer, and
 # close current buffer
+    global tileprocalreadyrunning
+    if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
     removescilabbuffer_bp "with_output" [gettextareacur]
     removefuns_bp [gettextareacur]
@@ -181,7 +183,7 @@ proc byebye {textarea} {
 
 proc killwin {widget} {
 # kill main window and save preferences on exit
-    global pad WMGEOMETRY
+    global pad WMGEOMETRY debuglog Scipaddebuglogfileid
     #save the geometry for the next time
     set WMGEOMETRY [eval {wm geometry $pad}] 
     savepreferences
@@ -197,6 +199,7 @@ proc killwin {widget} {
     # the destroy . because this kills the wish process that would still be
     # alive in the computer otherwise
     catch {console hide ; destroy .}
+    if {$debuglog} {close $Scipaddebuglogfileid}
     unset pad
 }
 
@@ -241,6 +244,8 @@ proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
+    global tileprocalreadyrunning
+    if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
     foreach f $filelist {
         regsub "^file:" $f "" f
@@ -276,6 +281,8 @@ proc showopenwin {tiledisplay} {
 # vertically in which case $tiledisplay == "vertical"
     global pad winopened textareacur listoffile
     global startdir
+    global tileprocalreadyrunning
+    if {$tileprocalreadyrunning} {return}
     showinfo [mc "Open file"]
     # remember the latest path used for opening files
     if {![info exists startdir]} {set startdir [pwd]}
@@ -306,6 +313,8 @@ proc openfileifexists {file} {
 # if file is already open, action is the same as hitting the entry in the windows
 # menu
     global listoftextarea listoffile pad
+    global tileprocalreadyrunning
+    if {$tileprocalreadyrunning} {return}
     set alreadyopen "false"
     foreach ta $listoftextarea {
         if {$listoffile("$ta",fullname) == $file} {

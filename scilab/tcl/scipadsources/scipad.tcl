@@ -10,7 +10,10 @@ if { [info exists pad] } {
 
     set sourcedir [file join "$env(SCIPATH)" "tcl" "scipadsources"]
 
-    # load first all the proc source files
+    # load first some debug settings
+    source [file join $sourcedir scipaddebug1.tcl]
+
+    # now all the proc source files
     source [file join $sourcedir popupmenus.tcl]
     source [file join $sourcedir scilabexec.tcl]
     source [file join $sourcedir whichfun.tcl]
@@ -51,6 +54,10 @@ if { [info exists pad] } {
     focustextarea [gettextareacur]
 
     update idletasks
+
+    # finally source debug settings that must be executed after the procs définition
+    source [file join $sourcedir scipaddebug2.tcl]
+
 }
 
 

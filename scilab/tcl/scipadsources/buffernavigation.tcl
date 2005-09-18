@@ -239,8 +239,9 @@ proc focustextarea {textarea} {
 }
 
 proc maximizebuffer {} {
-    global pad listoftextarea
+    global pad listoftextarea tileprocalreadyrunning
 
+    if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
 
     set curta [gettextareacur]
@@ -266,8 +267,9 @@ proc splitwindow {neworient {tatopack ""}} {
 # splitting always starts from the current textarea, i.e
 # everything appears to happen as if the *current* textarea
 # is split
-    global pad pwmaxid FontSize listoftextarea
+    global pad pwmaxid FontSize listoftextarea tileprocalreadyrunning
 
+    if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
 
     # retrieve the orientation of the pane in which the current textarea is packed
@@ -388,8 +390,9 @@ proc createnewtextarea {} {
 }
 
 proc tileallbuffers {tileorient} {
-    global pad listoftextarea
+    global pad listoftextarea tileprocalreadyrunning
 
+    if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
 
     # Remove the existing tiling

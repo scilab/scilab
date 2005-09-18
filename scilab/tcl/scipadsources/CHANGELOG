@@ -1485,3 +1485,20 @@ Francois VOGEL, 15/09/05
    special characters ($ % _ # ! ?) - regexp mode can now be simultaneously
    selected
  * version --> 5.36
+
+Francois VOGEL, 17/09/05
+ * Added automatic log file capability for Scipad debug purposes
+ * version --> 5.37
+
+Francois VOGEL, 18/09/05
+ * Improved log file stuff:
+    - Explicit close of the log file on Scipad exit
+    - Added a messageBox in case of a bgerror
+    - The log file is overwritten each time Scipad is started
+    - Whenever a bgerror is triggered, the log file is saved as another
+      filename, which is never erased by Scipad
+    - Binding triggers are logged
+ * Prevented the tile procs (maximizebuffer and splitwindow) to run
+   concurrently thanks to a guard variable - Removing the bindings in proc
+   disablemenuesbinds was not enough (why? it should have been enough!)
+ * version --> 5.38

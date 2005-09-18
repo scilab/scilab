@@ -1,0 +1,75 @@
+#################################
+#    Debug settings - Part 2    #
+#################################
+
+
+#############
+# Code related to the Scipad debug log file
+
+if {$debuglog} {
+
+    # list of Scipad procs that won't be logged
+    set excludedScipadprocs [list \
+    mc amp mcra keyposn ismodified whichfun modifiedtitle \
+    showinfo delinfo showinfo_menu \
+    GetFirstRecentInd extractindexfromlabel \
+    checkifanythingchangedondisk checkiffilechangedondisk \
+    TextStyles scipadindent managescroll \
+    schememenus setdbmenuentriesstates_bp getdbstate pbind \
+    Button1BindTextArea IsBufferEditable changedmodified \
+    gettextareacur settextareacur countcontlines reshape_bp colorize remalltags \
+    undoredo srevert commonPrefix \
+    ]
+
+    # for each Scipad proc not excluded in the list above, this surrounds the existing
+    # proc with log info: proc called with input arguments, and proc return value
+    foreach pr [info procs] {
+        if {[lsearch $nologprocs $pr] == -1 && [lsearch $excludedScipadprocs $pr] == -1} {
+            rename $pr _$pr
+            eval "proc $pr {args} {log \"Level \[info level\]: \[info level 0\]\"; \
+                                   set ret \[uplevel 1 _$pr \$args\]; \
+                                   log \"Return value (level \[info level\] - \[info level 0\]):!!\$ret!!\"; \
+                                   return \$ret \
+                                  }"
+        }
+    }
+
+    # for each Scipad menu item, this surrounds the existing command with log info
+    proc logmenues {men} {
+        foreach w [winfo children $men] {
+            for {set i 0} {$i<=[$w index last]} {incr i} {
+                if {[$w type $i] != "separator" && [$w type $i] != "tearoff" && [$w type $i] != "cascade"} {
+                    $w entryconfigure $i -command " \
+                            log \"\n-----------------------------------------\" ; \
+                            log \"Menu command:[$w entrycget $i -label]\"; \
+                            [$w entrycget $i -command]; \
+                            log \"End of menu command:[$w entrycget $i -label]\"; \
+                            log \"\n-----------------------------------------\n\" "
+                }
+            }
+            if {[$w type $i] == "cascade"} {
+                catch {logmenues $w}
+            }
+        }
+    }
+    logmenues $pad.filemenu
+
+    # for each Scipad binding, this surrounds the existing command with log info
+    foreach sequ [bind $pad] {
+        set script [bind $pad $sequ]
+        bind $pad $sequ "log \"\n----------------------\" ; \
+                         log \"Bind $pad $sequ triggered!\"; \
+                         $script; \
+                         log \"End of bind $pad $sequ\"; \
+                         log \"\n----------------------\n\" "
+    }
+
+}
+
+# End of code related to the Scipad debug log file
+#############
+
+
+##################################
+# End of debug settings - Part 2 #
+##################################

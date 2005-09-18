@@ -1,73 +1,5 @@
-#########################
-#    Debug settings     #
-#########################
-
-# Don't forget to set this setting to no before committing!
-# There is a hard link to the RamDebugger directory here!
-# Anyway, there is a catch to avoid errors in case of lapse of memory...
-
-set DebugScipadWithRamDebugger no
-
-catch {
-    if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
-        lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
-        lappend ::auto_path D:/RamDebugger5.5/addons
-        package require commR
-        comm::register Scipad 1
-    }
-}
-
-# if Scipad is launched outside of Scilab, e.g. from wish:
-if {[catch {ScilabEval ";"}] != 0} {
-
-    # Define ScilabEval to a void function, if it is unknown. This is
-    # useful in order to run scipad outside of scilab (e.g. to debug it)
-    proc ScilabEval args { 
-        showinfo [mc "NOT CONNECTED TO SCILAB"]
-        puts $args
-    }
-    set sciprompt 0
-
-    # hide the superfluous toplevel created by wish by default
-    wm withdraw .
-
-    # show the console in a fixed screen position and size
-    if {$tcl_platform(platform) != "unix"} {
-        console show
-        console eval {wm geometry . 67x20+0+0}
-        console title "Scipad debug"
-    }
-}
-
-# Committed versions should have this attribute set to false
-# In that case, the Run to Cursor and Break commands are hidden
-# since there are issues with them in the Scilab parsers
-set dev_debug "false"
-
-# To trace when certain variables are changed
-if {0} {
-    proc tracer {varname args} {
-        upvar #0 $varname var
-        showinfo "$varname was updated to be \"$var\""
-    }
-    trace add variable watchvsashcoord write {tracer watchvsashcoord}
-}
-
-# A useful binding triggering a message box
-if {0} {
-    proc dispsthg {} {
-        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
-        tk_messageBox -message "$str"
-    }
-    bind all <Control-=> {dispsthg}
-}
-
-#########################
-# End of debug settings #
-#########################
-
 set winTitle "SciPad"
-set version "Version 5.36"
+set version "Version 5.38"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -176,3 +108,9 @@ set closeinitialbufferallowed true
 # when it is opened again with the same file that was opened before in another
 # textarea
 catch {unset physlogic linetogo curfileorfun funtogoto}
+
+# variable used to prevent more than one single isntance of any of the tile
+# procs from running concurrently, e.g. maximize and splitwindow
+# for some unknown reason, disabling the bindings in proc disablemenuesbinds
+# does not *always* prevent concurrent running, so this was needed
+set tileprocalreadyrunning false

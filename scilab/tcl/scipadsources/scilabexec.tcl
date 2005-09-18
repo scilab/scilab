@@ -119,6 +119,8 @@ proc execselection {} {
 
 proc importmatlab {} {
     global pad listoffile sciprompt
+    global tileprocalreadyrunning
+    if {$tileprocalreadyrunning} {return}
     if [ expr [string compare $sciprompt -1] == 0 ] {
         tk_messageBox -message \
                 [mc "Scilab is working, wait for the prompt to convert a Matlab file."] \
@@ -164,6 +166,8 @@ proc helpskeleton {} {
     # NB: execing the file can have far-reaching consequences
     #  if the file does more than just defining functions. 
     # Responsibility left to the user.   
+    global tileprocalreadyrunning
+    if {$tileprocalreadyrunning} {return}
     set indexin [[gettextareacur] index insert]
     scan $indexin "%d.%d" ypos xpos
     set infun [whichfun $indexin]
