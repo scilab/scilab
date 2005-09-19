@@ -158,7 +158,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 					}
 					else
 					{
-						// doit une chaine ou matrice de chaine
+						/* doit une chaine ou matrice de chaine */
 						Scierror(999,TCL_ERROR9);
 						return 0;
 					}
@@ -166,7 +166,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 				}
 				else
 				{
-					// Cas general
+					/* Cas general */
 					char *PropertieField=NULL;
 					char *PropertieValue=NULL;
 
@@ -202,14 +202,14 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 		}
 		else
 		{
-			// champ propertie doit etre une chaine
+			/* champ propertie doit etre une chaine */
 			Scierror(999,TCL_ERROR22);
 			return 0;
 		}
 	}
 	else
 	{
-		// Handle numero incorrect
+		/* Handle numero incorrect */
 		Scierror(999,TCL_ERROR34);
 		return 0;
 	}
