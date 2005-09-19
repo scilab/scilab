@@ -11,7 +11,7 @@ end
 
 if typeof(mtlb_instr)=="equal" then
   [converted_instr]=equal2sci(mtlb_instr)
-elseif or(typeof(mtlb_instr)==["ifthenelse","selectcase","for","while"]) then
+elseif or(typeof(mtlb_instr)==["ifthenelse","selectcase","for","while","trycatch"]) then
   [converted_instr,nblines]=clause2sci(mtlb_instr,nblines)
 elseif or(typeof(mtlb_instr)==["funcall","cste","operation","variable"]) then
   [converted_instr]=expression2sci(mtlb_instr)

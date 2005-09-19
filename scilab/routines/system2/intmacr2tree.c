@@ -487,8 +487,9 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     GetControlInstruction(data,index,nblines);
     *addinstr=1;
     break;
-  case 11: /* NOT AFFECTED */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
+  case 11: /* 'try-catch' control instruction */
+    GetControlInstruction(data,index,nblines);
+    *addinstr=1;
     break;
   case 12: /* pause */
   case 13: /* break */
@@ -591,6 +592,11 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
 ****************************************************************/
 static int GetControlInstruction(int *data,int *index,int *nblines)
 {
+  /* try-catch */
+  char *trycatch_tlist[] = {"trycatch","trystat","catchstat"};
+  int m_trycatch_tlist = 1;
+  int n_trycatch_tlist = 3;
+  
   /* if */
   char *if_tlist[] = {"ifthenelse","expression","then","elseifs","else"};
   int m_if_tlist = 1;
@@ -696,6 +702,54 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
       name[0]=NULL;
       FREE(name);
       name=NULL;
+    }
+    /* TRYCATCH */
+  else if(data[*index]==11)
+    {  
+      index0 = *index;
+      
+      str2sci(trycatch_tlist,m_trycatch_tlist,n_trycatch_tlist);
+      
+      /* index now point to first code to use as an instruction code */
+      *index += 3;
+      
+      codelgth = data[index0+1];
+      endindex = *index + codelgth - 1;
+      
+      TopSave = Top;
+      /* Get try instructions */
+      while(*index<=endindex)
+	{
+	  GetInstruction(data,index,nblines,&newinstr);
+	  (*index)++;
+	}
+	
+      nbinstr = Top - TopSave;
+  
+      /* Create list of try instructions */
+      C2F(mklist)(&nbinstr);
+      last_eol_pos = -10; 
+      
+      codelgth = data[index0+2];
+      endindex = *index + codelgth - 1;
+      
+      TopSave = Top;
+      /* Get catch instructions */
+      while(*index<=endindex)
+	{
+	  GetInstruction(data,index,nblines,&newinstr);
+	  (*index)++;
+	}  
+      
+      nbinstr = Top - TopSave;
+  
+      /* Create list of catch instructions */
+      C2F(mklist)(&nbinstr);
+      
+     (*index)--;
+      
+      /* Create trycatch tlist */
+      C2F(mktlist)(&n_trycatch_tlist);
     }
   /* IF - WHILE - SELECT */
   else
@@ -1814,7 +1868,9 @@ int complexity(int *data,int *index,int *lgth)
 	  cur_ind = cur_ind + data[cur_ind+1];
 	  count++;
 	  break;
-	case 11: /* NOT AFFECTED */
+	case 11: /* 'try-catch' control instruction */
+	  cur_ind = cur_ind + data[cur_ind+1] + data[cur_ind+2] + 3;
+	  count++;
 	  break;
 	case 12: /* pause */
 	  cur_ind++;

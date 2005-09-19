@@ -25,6 +25,34 @@ if I==list("EOL") then
 end
 
 // ---------------------------------------------
+// Generate code corresponding to a TRY-CATCH
+// ---------------------------------------------
+if typeof(I)=="trycatch" then
+
+  //TRYCATCH
+C="try "
+  [C,indent_space] = format_txt(C,I.trystat(1),prettyprint); // Add EOL after while if needed and returns indent_space
+  for k=1:size(I.trystat)
+  C=cat_code(C,indent_space+instruction2code(I.trystat(k))) 
+    if k<size(I.trystat) then // Add EOL between statements if needed
+      C = format_txt(C,I.trystat(k),prettyprint,I.trystat(k+1));
+    end
+  end
+  C = format_txt(C,I.trystat($),prettyprint); // Add EOL after last statement if needed
+  C=cat_code(C,"catch ")
+  for k=1:size(I.catchstat)
+  C=cat_code(C,indent_space+instruction2code(I.catchstat(k))) 
+    if k<size(I.catchstat) then // Add EOL between statements if needed
+      C = format_txt(C,I.catchstat(k),prettyprint,I.catchstat(k+1));
+    end
+  end
+  C = format_txt(C,I.catchstat($),prettyprint); // Add EOL after last statement if needed 
+  C=cat_code(C,"end")
+  C($)=C($)+";"
+  return
+end
+
+// ---------------------------------------------
 // Generate code corresponding to a IF-THEN-ELSE
 // ---------------------------------------------
 if typeof(I)=="ifthenelse" then

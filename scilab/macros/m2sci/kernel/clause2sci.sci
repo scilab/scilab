@@ -13,6 +13,55 @@ level
 // Temp variable used to store instructions to insert before clause
 to_insert=list()
 select typeof(mtlb_clause)
+  // --- TRYCATCH ---
+case "trycatch"
+  level=[level;0]  
+  
+  // Get instructions to insert if there are
+  if m2sci_to_insert_b<>list() then
+    to_insert=m2sci_to_insert_b
+    m2sci_to_insert_b=list()
+  end
+  
+  // Convert try
+  sci_try=list()
+  level($)=level($)+1
+ for k=1:size(mtlb_clause.trystat)   
+    if typeof(mtlb_clause.trystat(k))=="sup_equal" then
+      sci_try_temp=list()
+      for i=1:size(mtlb_clause.trystat(k).sup_instr)
+	[instr,nblines]=instruction2sci(mtlb_clause.trystat(k).sup_instr(i),nblines)
+	sci_try_temp=update_instr_list(sci_try_temp,instr)
+      end
+      sci_try($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_try_temp,mtlb_clause.trystat(k).nb_opr)
+    else
+      [instr,nblines]=instruction2sci(mtlb_clause.trystat(k),nblines)
+      sci_try=update_instr_list(sci_try,instr)
+    end
+  end
+    
+  // Convert catch
+  sci_catch=list()
+  level($)=level($)+1
+ for k=1:size(mtlb_clause.catchstat)   
+    if typeof(mtlb_clause.catchstat(k))=="sup_equal" then
+      sci_catch_temp=list()
+      for i=1:size(mtlb_clause.catchstat(k).sup_instr)
+	[instr,nblines]=instruction2sci(mtlb_clause.catchstat(k).sup_instr(i),nblines)
+	sci_catch_temp=update_instr_list(sci_catch_temp,instr)
+      end
+      sci_catch($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_catch_temp,mtlb_clause.catchstat(k).nb_opr)
+    else
+      [instr,nblines]=instruction2sci(mtlb_clause.catchstat(k),nblines)
+      sci_catch=update_instr_list(sci_catch,instr)
+    end
+  end
+  
+// Create Scilab trycatch
+sci_clause=tlist(["trycatch","trystat","catchstat"],sci_try,sci_catch)
+level($)=level($)+1 
+updatevarslist("END OF CLAUSE")
+
   // --- IF ---
 case "ifthenelse"
   level=[level;0]  
