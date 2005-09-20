@@ -39,9 +39,10 @@ BOOL ON_WND_CONSOLE_WM_GETMINMAXINFO(HWND hwnd, LPMINMAXINFO lpMinMaxInfo);
 BOOL ON_WND_CONSOLE_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus);
 BOOL ON_WND_CONSOLE_WM_SYSCOMMAND(HWND hwnd, WPARAM wParam, LPARAM lParam);
 /*-----------------------------------------------------------------------------------*/
-#if (MSC_VER >= 1200) && (MSC_VER < 1300) /* Visual Studio 6 */
+#if (_MSC_VER >= 1200) && (_MSC_VER < 1300) /* Visual Studio 6 */
 
 #ifndef HANDLE_WM_COPYDATA
+
 #define HANDLE_WM_COPYDATA(hwnd, wParam, lParam, fn) \
     ((fn)((hwnd), (HWND)(wParam), (PCOPYDATASTRUCT)lParam), 0L)
 #endif    

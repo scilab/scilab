@@ -64,6 +64,15 @@ void ON_WND_TEXT_WM_KILLFOCUS(HWND hwnd, HWND hwndNewFocus);
 void ON_WND_TEXT_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus);
 BOOL ON_WND_TEXT_WM_SETCURSOR(HWND hwnd, HWND hwndCursor, UINT codeHitTest, UINT msg);
 /*-----------------------------------------------------------------------------------*/
+#if (_MSC_VER >= 1200) && (_MSC_VER < 1300) /* Visual Studio 6 */
+
+#ifndef HANDLE_WM_MOUSEWHEEL   
+#define HANDLE_WM_MOUSEWHEEL(hwnd, wParam, lParam, fn) \
+    ((fn)((hwnd), (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam), (int)(short)HIWORD(wParam), (UINT)(short)LOWORD(wParam)), 0L)
+#endif  
+
+#endif
+/*-----------------------------------------------------------------------------------*/
 /* child text window */
 EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

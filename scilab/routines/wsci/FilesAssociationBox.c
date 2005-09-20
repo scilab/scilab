@@ -147,7 +147,9 @@ BOOL ON_FILESASSOCIATIONBOX_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT cod
 			UpdateFromCheckBox(hControl[8],&UpdateGRAPH,&DeleteGRAPH);
 			UpdateFromCheckBox(hControl[9],&UpdateGRAPHB,&DeleteGRAPHB);
 
+			#if (_MSC_VER >= 1300)  /* >  Visual Studio 6 */
 			RegDisablePredefinedCache();
+			#endif
 
 			EndDialog(hwnd, IDOK);
 			return TRUE;
