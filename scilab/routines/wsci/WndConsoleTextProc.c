@@ -350,11 +350,8 @@ void ON_WND_TEXT_WM_CHAR(HWND hwnd, TCHAR ch, int cRepeat)
 		if (ch==10) ch=13;
 		*lptw->KeyBufIn++ = ch;
 
-		if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)
-			lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
-
+		if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)	lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 	}
-
 }
 /*-----------------------------------------------------------------------------------*/
 void ON_WND_TEXT_WM_SETTEXT(HWND hwnd, LPCTSTR lpszText)
@@ -591,19 +588,23 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 		{
 			switch (vk)
 			{
-			case VK_UP:case VK_DOWN: case VK_LEFT:  case VK_RIGHT: case VK_DELETE:
+			case VK_UP: case VK_DOWN: case VK_LEFT: case VK_RIGHT:
+			case VK_HOME: case VK_END: case VK_PRIOR:
+			case VK_NEXT: case VK_DELETE:
 				{			/* store key in circular buffer */
 					long count;
+
 					count = lptw->KeyBufIn - lptw->KeyBufOut;
+
 					if (count < 0) count += lptw->KeyBufSize;
+
 					if (count < (int) lptw->KeyBufSize - 2)
 					{
 						*lptw->KeyBufIn++ = 0;
-						if (lptw->KeyBufIn - lptw->KeyBuf >= (int) lptw->KeyBufSize)
-							lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
+						if (lptw->KeyBufIn - lptw->KeyBuf >= (int) lptw->KeyBufSize) lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
+
 						*lptw->KeyBufIn++ = flags;
-						if (lptw->KeyBufIn - lptw->KeyBuf >= (int) lptw->KeyBufSize)
-							lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
+						if (lptw->KeyBufIn - lptw->KeyBuf >= (int) lptw->KeyBufSize) lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 					}
 				}
 				break;
