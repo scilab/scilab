@@ -3,6 +3,8 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "FilesAssociationBox.h"
+#include <ShlObj.h>
+#pragma comment(lib, "shell32.lib")
 /*-----------------------------------------------------------------------------------*/
 typedef int (*fptr)(void);
 /*-----------------------------------------------------------------------------------*/
@@ -147,9 +149,7 @@ BOOL ON_FILESASSOCIATIONBOX_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT cod
 			UpdateFromCheckBox(hControl[8],&UpdateGRAPH,&DeleteGRAPH);
 			UpdateFromCheckBox(hControl[9],&UpdateGRAPHB,&DeleteGRAPHB);
 
-			#if (_MSC_VER >= 1300)  /* >  Visual Studio 6 */
-			RegDisablePredefinedCache();
-			#endif
+			SHChangeNotify(SHCNE_ASSOCCHANGED,SHCNF_IDLIST,NULL,NULL);
 
 			EndDialog(hwnd, IDOK);
 			return TRUE;
