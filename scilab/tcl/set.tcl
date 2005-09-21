@@ -5,6 +5,52 @@
 #
 # -->   set.tcl
 
+proc GetGoodValue { h val} {
+    global Win
+    global STRING_$h
+    
+    set mystring STRING_$h
+    if {[array exists $mystring] == 1} {
+  	set size [array size $mystring]
+  	set tmp ""
+	set tab $mystring
+	
+	set sizlist [array size $mystring]
+        set sortedlist [lsort [array names $mystring]]
+	
+	set index [expr $sizlist-1]
+	set aa [lindex $sortedlist $index]
+
+	set aa [split $aa ',']
+	
+	set xsize [lindex $aa 0]
+	set ysize [lindex $aa 1]
+	
+	if { $xsize == 1} {
+	    for {set i 1} {$i<=$size} {incr i} { 
+		set aa $mystring\(1,$i\)
+		set bb $$aa
+		lappend tmp [expr $bb]
+	    }
+	    set tmp [join $tmp "|"]
+	    return $tmp
+	} elseif {  $ysize == 1} {
+	    for {set i 1} {$i<=$size} {incr i} { 
+		set aa $mystring\($i,1\)
+		set bb $$aa
+		lappend tmp [expr $bb]
+	    }
+	    set tmp [join $tmp "|"]
+	    return $tmp
+	} else {
+	    ScilabEval "disp(\'wrong input : a matrix has been entered\')";
+	    return $val
+	}
+    } else {
+	return $val
+    }
+}
+
 
 ######################################################################################
 proc SetField { handle field value } {
@@ -18,6 +64,10 @@ proc SetField { handle field value } {
     global Win;
     set name $Win($handle);
     global "$name";
+    
+    if { $field == "string" } {
+	set value [GetGoodValue $handle $value]
+    }
     
     set control [set "$name\(control)"];
     set handle [GetRealParent $handle $control];
@@ -69,7 +119,7 @@ proc SetField { handle field value } {
 	    if { $idx != -1} {
 		# YES there is a specific behaviour
 		# call the specific setfield
-		"Set$field" $name $value;    
+		"Set$field" $name $value;    # param = (name, str) dans Setstring 
 		
 		set path [set "$name\(path)"];
 		bind $path <Configure> {ChgConfigure %W %w %h};
