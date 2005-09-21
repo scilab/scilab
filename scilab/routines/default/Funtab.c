@@ -90,11 +90,19 @@ Funcs SciFuncs[]={
 
 int C2F(funtab)(int *id, int *fptr, int *job)
 {
-  int level=0;
+  int level=0, j=0;
   Init();
   switch ( *job) 
     {
-    case 0 : /* print */ break;
+    case 0 : /* print */ 
+      sciprint("Internal functions: \n\n");      
+      /* the scilab function what() is so far the only user of this case */
+      while ( SciFuncs[j].name != (char *) 0 ) {
+        sciprint("%s",SciFuncs[j].name); j++;
+        if (j%5==0) sciprint("\n"); else sciprint(" ");
+      }
+      sciprint("\n\n");      
+    break;
     case 1 :
       *fptr=0;
       myhsearch(id,fptr,&level,SCIFIND);
