@@ -9,6 +9,8 @@ int SetTclCurrentFigure(int num);
 /*-----------------------------------------------------------------------------------*/
 extern int cf_type;
 /*-----------------------------------------------------------------------------------*/
+extern void flushTKEvents(void);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclGcf) _PARAMS((char *fname))
 {
 	static int n1;
@@ -73,6 +75,7 @@ int C2F(intTclScf) _PARAMS((char *fname))
 		Handle=istk(l1);
 
 		*paramoutINT=SetTclCurrentFigure(*Handle);
+		flushTKEvents();
 	}
 	else
 	{
