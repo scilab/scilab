@@ -1502,3 +1502,22 @@ Francois VOGEL, 18/09/05
    concurrently thanks to a guard variable - Removing the bindings in proc
    disablemenuesbinds was not enough (why? it should have been enough!)
  * version --> 5.38
+
+ES, 20/09/05
+ * outside scipad: hack to the function what(), which prints the names
+   of all Scilab internal functions
+ * script makewordfile2.sce, to be run manually for now, generates a 
+   "words" file containing the internal functions and the scilab commands.
+   Scicos functions and syltem variables used by scilab.star (e.g. LANG,
+   %toolboxes, demolist,...) are no more included.
+ *the "words" file is subdivided in two groups, "intf" and "comms"
+   -old tag "keywords" suppressed, superseded by "intf" and "comms"
+   -colorization, preferences, etc supports the two new tags
+ * QTXTCOLOR reverted to "darkred"
+ * trap for proc blinkbrace called with $brace not one of {")" "]" "}"} 
+   (bad keymodmap problem reported)
+ * Execute/Evaluate selection contextually activated when a selection
+   is present; Button-2 paste no more (wrongly) contextually dependent
+   on the clipboard state
+ * version --> 5.39
+ 

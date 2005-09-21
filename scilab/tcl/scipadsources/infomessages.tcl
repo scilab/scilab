@@ -72,15 +72,17 @@ proc keyposn {textarea} {
         bind Text <Control-Z> {redo %W}
     }
 
-    # enable Cut and Copy if there is a selection
+    # enable Cut and Copy and Evaluate selection if there is a selection
     if {[catch {selection get -selection PRIMARY}] == 1} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state disabled
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state disabled
+        $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state disabled
         bind Text <Control-x> {}
         bind $pad <Control-c> {}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state normal
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state normal
+        $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state normal
         bind Text <Control-x> {cuttext}
         bind $pad <Control-c> {copytext}
     }
@@ -89,11 +91,9 @@ proc keyposn {textarea} {
     if {[catch {clipboard get}] == 1} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state disabled
         bind Text <Control-v> {}
-        bind Text <Button-2> {}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state normal
         bind Text <Control-v> {pastetext}
-        bind Text <Button-2> {button2copypaste %W %x %y}
     }
 }
 

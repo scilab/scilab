@@ -34,7 +34,8 @@ proc remalltags {w begin ende} {
     $w tag remove punct $begin $ende
     $w tag remove operator $begin $ende
     $w tag remove number $begin $ende
-    $w tag remove keywords $begin $ende
+    $w tag remove intfun $begin $ende
+    $w tag remove command $begin $ende
     $w tag remove predef $begin $ende
     $w tag remove libfun $begin $ende
     $w tag remove text $begin $ende
@@ -136,10 +137,16 @@ proc colorize {w cpos iend} {
                     $w mark set last $ind
                     $w mark set next "$ind + $num c"
                     set initial [string range $kword 0 0]
-                    if {[string first $initial $chset(scilab.col1)]>=0} {
-                        if {[lsearch -exact $words(scilab.col1.$initial) \
+                    if {[string first $initial $chset(scilab.intfun)]>=0} {
+                        if {[lsearch -exact $words(scilab.intfun.$initial) \
                                     $kword] != -1} {
-                            $w tag add keywords last next
+                            $w tag add intfun last next
+                        }
+                    }
+                    if {[string first $initial $chset(scilab.comm)]>=0} {
+                        if {[lsearch -exact $words(scilab.comm.$initial) \
+                                    $kword] != -1} {
+                            $w tag add command last next
                         }
                     }
                     if {[string first $initial $chset(scilab.predef)]>=0} {

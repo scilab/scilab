@@ -1,6 +1,6 @@
 proc blinkbrace {w pos brace} {
     global bracefind fno
-
+    if {[regexp \\$brace "\{\}\[\]\(\)"] == 0} return
     switch $brace {
         \{ { set findbs {[{}]}; set bs "\}";\
                             set dir {-forwards}; set bn brace }
