@@ -57,7 +57,7 @@ function [status,msg]=mkdir(varargin)
         if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
           batchlog = ' >'+ TMPDIR+'\mkdir.out';
         else
-          batchlog = ' >'+ TMPDIR+'\mkdir.out' +' 2>'+TMPDIR+'\mkdir.err';
+          batchlog = ' >""'+ TMPDIR+'\mkdir.out""' +' 2>""'+TMPDIR+'\mkdir.err""';
         end
         cmd='mkdir '+NewDirectory;
         cmdline=cmd+batchlog;
