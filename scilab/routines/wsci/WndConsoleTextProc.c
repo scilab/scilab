@@ -591,7 +591,7 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 		{
 			switch (vk)
 			{
-				case VK_UP:case VK_DOWN: case VK_LEFT:  case VK_RIGHT:
+			case VK_UP:case VK_DOWN: case VK_LEFT:  case VK_RIGHT: case VK_DELETE:
 				{			/* store key in circular buffer */
 					long count;
 					count = lptw->KeyBufIn - lptw->KeyBufOut;
