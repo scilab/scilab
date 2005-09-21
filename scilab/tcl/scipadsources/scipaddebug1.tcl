@@ -86,7 +86,7 @@ if {0} {
         set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
         tk_messageBox -message "$str"
     }
-    bind all <Control-=> {dispsthg}
+    bind all <Control-equal> {dispsthg}
 }
 
 # End of useful binding triggering a message box
