@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.34
+# in sync at least with v5.39
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -376,7 +376,8 @@
 ::msgcat::mcset fr "BRAKCOLOR" "Crochets \\\[\\\]"
 ::msgcat::mcset fr "BRACCOLOR" "Accolades {}"
 ::msgcat::mcset fr "PUNCOLOR"  "Ponctuation"
-::msgcat::mcset fr "KEYWCOLOR" "Mots-clés Scilab"
+::msgcat::mcset fr "INTFCOLOR" "Fonctions internes"
+::msgcat::mcset fr "COMMCOLOR" "Commandes Scilab"
 ::msgcat::mcset fr "OPCOLOR"   "Opérateurs"
 ::msgcat::mcset fr "QTXTCOLOR"  "Chaîne de caractères"
 ::msgcat::mcset fr "REMCOLOR" "Commentaires"
