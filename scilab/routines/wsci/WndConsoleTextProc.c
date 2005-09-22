@@ -523,42 +523,37 @@ void ON_WND_TEXT_WM_RBUTTONDOWN(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT
 /*-----------------------------------------------------------------------------------*/
 void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 {
-	LPTW lptw=GetTextWinScilab();
 	if (GetKeyState (VK_SHIFT) < 0)
 	{
 		switch (vk)
 		{
-		case VK_HOME:
-			SendMessage (hwnd, WM_VSCROLL, SB_TOP, (LPARAM) 0);
+			case VK_UP:
+				{
+				}
 			break;
-		case VK_END:
-			SendMessage (hwnd, WM_VSCROLL, SB_BOTTOM, (LPARAM) 0);
+
+			case VK_DOWN:
+				{
+				}
 			break;
-		case VK_PRIOR:
-			SendMessage (hwnd, WM_VSCROLL, SB_PAGEUP, (LPARAM) 0);
+
+			case VK_LEFT:
+				{
+				}
 			break;
-		case VK_NEXT:
-			SendMessage (hwnd, WM_VSCROLL, SB_PAGEDOWN, (LPARAM) 0);
+
+			case VK_RIGHT:
+				{
+				}
 			break;
-		case VK_UP:
-			SendMessage (hwnd, WM_VSCROLL, SB_LINEUP, (LPARAM) 0);
-			break;
-		case VK_DOWN:
-			SendMessage (hwnd, WM_VSCROLL, SB_LINEDOWN, (LPARAM) 0);
-			break;
-		case VK_LEFT:
-			SendMessage (hwnd, WM_HSCROLL, SB_LINELEFT, (LPARAM) 0);
-			break;
-		case VK_RIGHT:
-			SendMessage (hwnd, WM_HSCROLL, SB_LINERIGHT, (LPARAM) 0);
-			break;
-		case VK_INSERT:
+		
+			case VK_INSERT:
 			/* Modification Allan CORNET 09/07/03 */
 			/* Touches Shift-Insert effectue un "coller" du presse papier */
 			{
 				SendMessage (hwnd, WM_COMMAND,M_PASTE, (LPARAM) 0);
 			}
-		break;	
+			break;	
 		}
 	}
 	else
@@ -567,6 +562,31 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 		{
 			switch (vk)
 			{
+				case VK_HOME:
+					SendMessage (hwnd, WM_VSCROLL, SB_TOP, (LPARAM) 0);
+				break;
+				case VK_END:
+					SendMessage (hwnd, WM_VSCROLL, SB_BOTTOM, (LPARAM) 0);
+				break;
+				case VK_PRIOR:
+					SendMessage (hwnd, WM_VSCROLL, SB_PAGEUP, (LPARAM) 0);
+				break;
+				case VK_NEXT:
+					SendMessage (hwnd, WM_VSCROLL, SB_PAGEDOWN, (LPARAM) 0);
+				break;
+				case VK_UP:
+					SendMessage (hwnd, WM_VSCROLL, SB_LINEUP, (LPARAM) 0);
+				break;
+				case VK_DOWN:
+					SendMessage (hwnd, WM_VSCROLL, SB_LINEDOWN, (LPARAM) 0);
+				break;
+				case VK_LEFT:
+					SendMessage (hwnd, WM_HSCROLL, SB_LINELEFT, (LPARAM) 0);
+				break;
+				case VK_RIGHT:
+					SendMessage (hwnd, WM_HSCROLL, SB_LINERIGHT, (LPARAM) 0);
+				break;
+
 				/* Touches Control-V effectue un "coller" du presse papier */
 				case VK_V :
 				{
@@ -576,6 +596,7 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 				/* Touches Control-Insert Control-C effectue un "copier" dans presse papier */
 				case VK_INSERT : 
 				{
+					LPTW lptw=GetTextWinScilab();
 					if ( HasAZoneTextSelected(lptw) == TRUE ) TextCopyClip (lptw);
 				}
 				break;
@@ -588,10 +609,11 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 		{
 			switch (vk)
 			{
-			case VK_UP: case VK_DOWN: case VK_LEFT: case VK_RIGHT:
-			case VK_HOME: case VK_END: case VK_PRIOR:
-			case VK_NEXT: case VK_DELETE:
+				case VK_UP: case VK_DOWN: case VK_LEFT: case VK_RIGHT:
+				case VK_HOME: case VK_END: case VK_PRIOR:
+				case VK_NEXT: case VK_DELETE:
 				{			/* store key in circular buffer */
+					LPTW lptw=GetTextWinScilab();
 					long count;
 
 					count = lptw->KeyBufIn - lptw->KeyBufOut;
@@ -619,12 +641,14 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 				/* Efface la fenetre de commandes */
 				case VK_F2:
 				{
+					LPTW lptw=GetTextWinScilab();
 					ClearCommandWindow(lptw,TRUE);
 				}
 				break;
 
 				case VK_F3:
 				{
+					LPTW lptw=GetTextWinScilab();
 					if (lptw->lpmw->LockToolBar == FALSE)
 					{
 						lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
@@ -764,7 +788,8 @@ void ON_WND_TEXT_WM_HSCROLL(HWND hwnd, HWND hwndCtl, UINT code, int pos)
 /*-----------------------------------------------------------------------------------*/
 void ON_WND_TEXT_WM_MOUSEWHEEL(HWND hwnd, int xPos, int yPos, int zDelta, UINT fwKeys)
 {
-	int steps=yPos/120;
+	int steps=yPos/zDelta;
+	
 	if( steps > 0 ) 
 	{
 		SendMessage (hwnd, WM_VSCROLL, SB_LINEUP, (LPARAM) 0);
