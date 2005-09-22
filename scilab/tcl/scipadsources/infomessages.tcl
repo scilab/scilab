@@ -50,7 +50,7 @@ proc keyposn {textarea} {
     }
 
     # enable Open function source contextually
-    if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1 | \
+    if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1 || \
         [lsearch [$textarea tag names $indexin] "scicos"]!=-1 } {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state normal
     } else {
