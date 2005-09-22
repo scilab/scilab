@@ -145,6 +145,7 @@
 ::msgcat::mcset it "File has changed!" "Il file è cambiato"
 ::msgcat::mcset it "Save as" "Registra come"
 ::msgcat::mcset it "Scilab files" "Files Scilab"
+::msgcat::mcset it "Scicos files" "Files Scicos"
 ::msgcat::mcset it "XML files" "Files XML"
 ::msgcat::mcset it "Wait seconds while loading and colorizing file" \
           "Attendere - apertura e colorazione del file in corso"
@@ -438,6 +439,7 @@
 ::msgcat::mcset it "PUNCOLOR"  "Punteggiatura"
 ::msgcat::mcset it "INTFCOLOR" "Funzioni interne"
 ::msgcat::mcset it "COMMCOLOR" "Comandi Scilab"
+::msgcat::mcset it "SCICCOLOR" "Funzioni Scicos"
 ::msgcat::mcset it "OPCOLOR"   "Operatori"
 ::msgcat::mcset it "QTXTCOLOR"  "Stringhe"
 ::msgcat::mcset it "REMCOLOR" "Commenti"

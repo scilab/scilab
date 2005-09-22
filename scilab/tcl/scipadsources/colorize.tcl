@@ -38,6 +38,7 @@ proc remalltags {w begin ende} {
     $w tag remove command $begin $ende
     $w tag remove predef $begin $ende
     $w tag remove libfun $begin $ende
+    $w tag remove scicos $begin $ende
     $w tag remove text $begin $ende
     $w tag remove rem2 $begin $ende
     $w tag remove xmltag $begin $ende
@@ -159,6 +160,12 @@ proc colorize {w cpos iend} {
                         if {[lsearch -exact $words(scilab.libfun.$initial) \
                                     $kword] != -1} {
                             $w tag add libfun last next
+                        }
+                    }
+                    if {[string first $initial $chset(scilab.scicos)]>=0} {
+                        if {[lsearch -exact $words(scilab.scicos.$initial) \
+                                    $kword] != -1} {
+                            $w tag add scicos last next
                         }
                     }
                     $w mark set last next+1c

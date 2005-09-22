@@ -86,6 +86,7 @@ proc TextStyles { t } {
     $t tag configure intfun -foreground $INTFCOLOR
     $t tag configure command -foreground $COMMCOLOR
     $t tag configure libfun -foreground $LFUNCOLOR
+    $t tag configure scicos -foreground $SCICCOLOR
     $t tag configure predef -foreground $PDEFCOLOR
     $t tag configure operator -foreground $OPCOLOR
     $t tag configure text -foreground $FGCOLOR

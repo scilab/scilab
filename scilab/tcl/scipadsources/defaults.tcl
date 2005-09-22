@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.39"
+set version "Version 5.40"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -22,7 +22,7 @@ if { [package vcompare $tk_version 8.5] >= 0 } {
 set bgcolors {BGCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR}
 set fgcolors {FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR INTFCOLOR COMMCOLOR OPCOLOR QTXTCOLOR \
-       REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR}
+       REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR SCICCOLOR}
 set colorpref "$bgcolors $fgcolors"
 
 # those are the preferences which are going to be saved
@@ -44,7 +44,8 @@ set PUNCOLOR "turquoise4"
 set INTFCOLOR "blue2"
 set COMMCOLOR "RoyalBlue1"
 set PDEFCOLOR "purple"
-set LFUNCOLOR \#006874
+set LFUNCOLOR "cyan4"
+set SCICCOLOR "OrangeRed"
 set OPCOLOR "blue4"
 set QTXTCOLOR "darkred"
 set REMCOLOR "green4"

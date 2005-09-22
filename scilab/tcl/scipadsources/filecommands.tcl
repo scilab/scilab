@@ -226,16 +226,33 @@ proc exitapp { {quittype yesno} } {
 ##################################################
 
 proc openlibfunsource {ind} {
-    global textareacur
-    # exit if the cursor is not by a libfun keyword
-    if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
-    set lrange [$textareacur tag prevrange libfun "$ind+1c"]
-    if {$lrange==""} {set lrange [$textareacur tag nextrange libfun $ind]}
+    global textareacur env
+    # exit if the cursor is not by a libfun or a scicos keyword
+    set keywtype ""
+    if {[lsearch [$textareacur tag names $ind] "scicos"] !=-1} \
+       {set keywtype scicos}
+    if {[lsearch [$textareacur tag names $ind] "libfun"] !=-1} \
+       {set keywtype libfun}
+    if {$keywtype==""} return
+    set lrange [$textareacur tag prevrange $keywtype "$ind+1c"]
+    if {$lrange==""} {set lrange [$textareacur tag nextrange $keywtype $ind]}
     set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         if {$curterm!=""} {
-            ScilabEval_lt "scipad(get_function_path(\"$curterm\"))"
+            switch $keywtype {
+              "libfun" {
+                 ScilabEval_lt "scipad(get_function_path(\"$curterm\"))"
+                 }
+              "scicos" {
+                 set scicosdir [file join "$env(SCIPATH)" macros scicos \
+                                 $curterm.sci]
+                 set blocksdir [file join "$env(SCIPATH)" macros \
+                                scicos_blocks "*" $curterm.sci]
+                 set filetoopen [glob $scicosdir $blocksdir]
+                 ScilabEval_lt "scipad(\"$filetoopen\")"
+              }
+            }
         }
     }
 }
@@ -683,10 +700,12 @@ proc checkifanythingchangedondisk {w} {
 proc knowntypes {} {
 # list of known file types - used for filtering items is the Open and Save dialogs
     set scifiles [mc "Scilab files"]
+    set cosfiles [mc "Scicos files"]
     set xmlfiles [mc "XML files"]
     set allfiles [mc "All files"]
     set types [concat "{\"$scifiles\"" "{*.sce *.sci *.tst *.dem}}" \
-                      "{\"$xmlfiles\"" "{*.xml }}" \
+                      "{\"$cosfiles\"" "{*.cosf}}" \
+                      "{\"$xmlfiles\"" "{*.xml}}" \
                       "{\"$allfiles\"" "{*.* *}}" ]
     return $types
 }
@@ -696,7 +715,7 @@ proc extenstolang {file} {
     set extens [string tolower [file extension $file]] 
     if {$extens == ".xml"} {
         return "xml"
-    } elseif {$extens == ".sce" | $extens == ".sci" | \
+    } elseif {$extens == ".sce" | $extens == ".sci" | $extens == ".cosf" | \
               $extens == ".tst" | $extens == ".dem"} {
         return "scilab"
     } else {

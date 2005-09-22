@@ -24,7 +24,8 @@ proc keyposn {textarea} {
     $pad.statusind configure -text " "
     scan $indexin "%d.%d" ypos xpos
     incr xpos
-    $pad.statusind configure -text [concat [mc "Line:"] $ypos [mc "Column:"] $xpos]
+    $pad.statusind configure -text [concat [mc "Line:"] \
+        $ypos [mc "Column:"] $xpos]
     set infun [whichfun $indexin $textarea]
     $pad.statusind2 configure -state normal
     $pad.statusind2 configure -text " "
@@ -33,7 +34,8 @@ proc keyposn {textarea} {
             # display logical line number in current function
             set funname   [lindex $infun 0]
             set lineinfun [lindex $infun 1]
-            $pad.statusind2 configure -text [concat [mc "Line"] $lineinfun [mc "in"] $funname]
+            $pad.statusind2 configure -text [concat [mc "Line"]\
+                 $lineinfun [mc "in"] $funname]
             # create help skeleton enabled since we're in a Scilab function
             $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state normal
         } else {
@@ -48,7 +50,8 @@ proc keyposn {textarea} {
     }
 
     # enable Open function source contextually
-    if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1} {
+    if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1 | \
+        [lsearch [$textarea tag names $indexin] "scicos"]!=-1 } {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state normal
     } else {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Open &function source"]) -state disabled
@@ -130,14 +133,17 @@ proc modifiedtitle {textarea {panesonly "false"}} {
         wm title $pad "$winTitle - $fname$mod1$mod2"
     }
     if {[isdisplayed $textarea]} {
-        [getpaneframename $textarea].panetitle configure -text "$fname$mod1$mod2"
+        [getpaneframename $textarea].panetitle configure \
+          -text "$fname$mod1$mod2"
     }
     if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
-        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state normal
+        $pad.filemenu.files entryconfigure \
+          $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state normal
         bind $pad <Control-R> {revertsaved [gettextareacur]}
     } else {
-        $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state disabled
+        $pad.filemenu.files entryconfigure \
+          $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state disabled
         bind $pad <Control-R> {}
     }
 }

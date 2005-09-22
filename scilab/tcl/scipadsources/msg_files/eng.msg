@@ -51,6 +51,7 @@
 ::msgcat::mcset eng "PUNCOLOR"  "Punctuation"
 ::msgcat::mcset eng "INTFCOLOR" "Internal functions"
 ::msgcat::mcset eng "COMMCOLOR" "Commands"
+::msgcat::mcset eng "SCICCOLOR" "Scicos functions"
 ::msgcat::mcset eng "OPCOLOR"   "Operators"
 ::msgcat::mcset eng "QTXTCOLOR"  "String text"
 ::msgcat::mcset eng "REMCOLOR" "Comments"
