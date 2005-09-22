@@ -199,7 +199,6 @@ proc killwin {widget} {
     # the destroy . because this kills the wish process that would still be
     # alive in the computer otherwise
     catch {console hide ; destroy .}
-    if {$debuglog} {close $Scipaddebuglogfileid}
     unset pad
 }
 
@@ -882,7 +881,7 @@ proc AddRecentFile {filename} {
             set listofrecent [linsert $listofrecent 0 $filename]
             $pad.filemenu.files insert $rec1ind command \
                        -label [file tail [lindex $listofrecent 0] ] \
-                       -command "openfileifexists \"[lindex $listofrecent 0]\""
+                       -command "openfileifexists {[lindex $listofrecent 0]}"
             # update menu entries (required to update the numbers)
             UpdateRecentLabels $rec1ind
         } else {
@@ -918,7 +917,7 @@ proc UpdateRecentLabels {rec1ind} {
         set ind [expr $rec1ind + $i]
         $pad.filemenu.files entryconfigure $ind \
                    -label $lab \
-                   -command "openfileifexists \"[lindex $listofrecent $i]\""
+                   -command "openfileifexists {[lindex $listofrecent $i]}"
         if {$i<9} {
             $pad.filemenu.files entryconfigure $ind \
                    -underline 0
@@ -939,7 +938,7 @@ proc BuildInitialRecentFilesList {} {
         set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
         $pad.filemenu.files add command \
                    -label $lab \
-                   -command "openfileifexists \"[lindex $listofrecent $i]\""
+                   -command "openfileifexists {[lindex $listofrecent $i]}"
         if {$i<9} {
             set ind [$pad.filemenu.files index end]
             $pad.filemenu.files entryconfigure $ind \

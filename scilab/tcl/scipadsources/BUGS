@@ -86,6 +86,13 @@ Bugs:
 -On Linux (not on Windows), clicking [x] during a long drop of files (dnd
  of a directory) makes Scilab crash - it might be a dnd bug
 
+-Dnd bug: When the NumLock key is pressed, ctrl dnd does not work on Linux
+ (but works on Windows)
+
+-Dnd bug: select something, and click in the selection without moving the
+ mouse -> blinking stops but does not restart. This is on Windows only since
+ on Linux the cursor does not blink
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

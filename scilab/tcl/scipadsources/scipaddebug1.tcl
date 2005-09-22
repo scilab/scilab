@@ -124,8 +124,11 @@ if {$debuglog} {
                 set filename "SciPadDebug"
                 set Scipaddebuglogfilename [file join $rootpath $filename.log]
                 set Scipaddebuglogfileid [open $Scipaddebuglogfilename w]
+            } else {
+                set Scipaddebuglogfileid [open $Scipaddebuglogfilename a]
             }
             puts $Scipaddebuglogfileid "[clock format $seconds -format "%d/%m/%y|%T|"]$value"
+            close $Scipaddebuglogfileid
         }
     }
 
@@ -134,7 +137,6 @@ if {$debuglog} {
         log "\n-----------------------------------------"
         log "\BGERROR!:\n'$message'\n$errorInfo"
         log "\n-----------------------------------------\n"
-        close $Scipaddebuglogfileid
         set savelogid 0
         set savelogname "$Scipaddebuglogfilename.BGERROR$savelogid.log"
         while {[file exists $savelogname]} {
@@ -142,15 +144,20 @@ if {$debuglog} {
             set savelogname "$Scipaddebuglogfilename.BGERROR$savelogid.log"
         }
         file copy -force -- $Scipaddebuglogfilename $savelogname
-        set Scipaddebuglogfileid [open $Scipaddebuglogfilename a+]
         tk_messageBox -message "An unexpected error occurred.\n\
                                 The log file can be found in $savelogname\n\
                                 Please report this issue!" -icon error
     }
 
     # all the procs sourced before this point will not take part in the log file
-    # but see also scipaddebug2.tcl)
-    set nologprocs [info procs]
+    # (but see also scipaddebug2.tcl)
+    # nologprocs must be set only once in a Scilab session (on reopening Scipad
+    # during the same Scilab session, because the Tcl interpreter doesn't die
+    # between Scipad sessions, info procs contains all the Scipad procs, which
+    # is not desired)
+    if {![info exists nologprocs]} {
+        set nologprocs [info procs]
+    }
 }
 
 # End of procs and main level code related to the Scipad debug log file
