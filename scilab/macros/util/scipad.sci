@@ -23,7 +23,7 @@ global TMPDIR
       TCL_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
     end
 //    TCL_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
-    TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
+//    TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
     TCL_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
     nfiles=argn(2)
     if nfiles>0 then
