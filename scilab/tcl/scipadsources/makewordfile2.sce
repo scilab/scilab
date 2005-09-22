@@ -28,11 +28,24 @@ for j=(i+1):size(whatlines,1)
   end
 end
 
+//scicos functions (derived from the listing od SCI/macro/scicos,
+// assuming 1:1 filename correspondance
+curdir=pwd();
+chdir("SCI/macros/scicos/");
+scicosfun=strsubst(listfiles("*.bin"),".bin","");
+chdir("SCI/macros/scicos_blocks/");
+scicosblocks=basename(listfiles("*/*.bin"));
+scicosblocks=strsubst(scicosblocks,".bin","");
+chdir(curdir);
+
 
 allfun=lineform(allfun);
 allcom=lineform(allcomm);
+allscicos=lineform([scicosfun;scicosblocks]);
 
-allwords=["#MODE scilab";"#TAG intfun";allfun;"#TAG comm";allcom];
+allwords=["#MODE scilab";"#TAG intfun";allfun;..
+                         "#TAG comm";allcom;
+                         "#TAG scicos";allscicos];
 
 mdelete words;
 fd=mopen("words","w");

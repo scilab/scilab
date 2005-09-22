@@ -24,8 +24,8 @@ proc load_words {} {
     #  chset(scilab.predef.$) and chset(scilab.libfun.$)
     set chset(scilab.predef) {}
     set chset(scilab.libfun) {}
-    ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq"
-}
+    ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq" 
+ }
 
 proc remalltags {w begin ende} {
     $w tag remove parenthesis $begin $ende

@@ -35,19 +35,8 @@ function dynamickeywords()
        libfun=[libfun;libstring(2:$)];
     end
   end
-
-  //scicos functions (derived from the listing od SCI/macro/scicos,
-  // assuming 1:1 filename correspondance
-  curdir=pwd();
-  chdir("SCI/macros/scicos/");
-  scicosfun=strsubst(listfiles("*.bin"),".bin","");
-  chdir("SCI/macros/scicos_blocks/");
-  scicosblocks=basename(listfiles("*/*.bin"));
-  scicosblocks=strsubst(scicosblocks,".bin","");
-  chdir(curdir);
   
   setscipadwords([libfun],"libfun")
-  setscipadwords([scicosfun;scicosblocks],"scicos")
 
 
   //TCL_EvalStr("scipad eval {tk_messageBox -message $words(scilab.predef.%)}")
