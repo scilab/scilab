@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.33
+# in sync at least with v5.40
 
 
 # commons

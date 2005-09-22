@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.39
+# in sync at least with v5.40
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -122,6 +122,7 @@
 ::msgcat::mcset fr "File has changed!" "Le fichier a changé"
 ::msgcat::mcset fr "Save as" "Enregistrer sous"
 ::msgcat::mcset fr "Scilab files" "Fichiers Scilab"
+::msgcat::mcset fr "Scicos files" "Fichiers Scicos"
 ::msgcat::mcset fr "XML files" "Fichiers XML"
 ::msgcat::mcset fr "Wait seconds while loading and colorizing file" "Patientez un instant le temps du chargement et de la colorisation"
 ::msgcat::mcset fr "The contents of this file may have changed, do you wish to save your changes?" "Voulez-vous enregistrer les modifications apportées à ce fichier ?"
@@ -378,6 +379,7 @@
 ::msgcat::mcset fr "PUNCOLOR"  "Ponctuation"
 ::msgcat::mcset fr "INTFCOLOR" "Fonctions internes"
 ::msgcat::mcset fr "COMMCOLOR" "Commandes Scilab"
+::msgcat::mcset fr "SCICCOLOR" "Fonctions Scicos"
 ::msgcat::mcset fr "OPCOLOR"   "Opérateurs"
 ::msgcat::mcset fr "QTXTCOLOR"  "Chaîne de caractères"
 ::msgcat::mcset fr "REMCOLOR" "Commentaires"
