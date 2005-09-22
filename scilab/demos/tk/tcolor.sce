@@ -5,6 +5,7 @@ while %t //wait for toplevel to disapear
   if or(RGB<>RGB1) then disp(RGB);RGB1=RGB;end
   TCL_EvalStr('set h [winfo exists .foo]');
   if TCL_GetVar("h")=='0' then break,end
+  sleep(1);
 end
 
 TCL_UnsetVar('label1');

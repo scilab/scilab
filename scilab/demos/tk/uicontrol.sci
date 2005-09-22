@@ -83,7 +83,7 @@ function myuidialog()
 		 "String"    , "popup|item1|item2|item3|toto|truc|bidule");
 
   fin=%f
-  while ~fin,end
+  while ~fin,sleep(1),end
   close(f)
 
   return

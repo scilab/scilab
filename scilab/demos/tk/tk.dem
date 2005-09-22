@@ -24,6 +24,6 @@ while %t then
      return
   else
      demoex(num)
-
-  end,
+  end
+  sleep(1);
 end
