@@ -26,6 +26,7 @@ rToDo=TCL_GetVar("rToDo");
 while rToDo=="0" & rWindowKilled=="0"
   rWindowKilled=TCL_GetVar("rWindowKilled");
   rToDo=TCL_GetVar("rToDo");
+  sleep(1);
 end
 
 if rToDo=="1" then
