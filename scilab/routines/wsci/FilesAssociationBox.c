@@ -56,6 +56,7 @@ char * GetWhereIsThisExe(void);
 /*-----------------------------------------------------------------------------------*/
 extern BOOL IsWindowInterface(void);
 extern LPTW GetTextWinScilab(void);
+extern int GetCurrentLanguage(void);
 /*-----------------------------------------------------------------------------------*/
 #define PATH_MAX 512
 /*-----------------------------------------------------------------------------------*/
@@ -87,14 +88,8 @@ BOOL CALLBACK FilesAssociationDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPAR
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_FILESASSOCIATIONBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 {
-	int CodeLanguage=0;
-
-	if (IsWindowInterface())
-	{
-		LPTW lptw=GetTextWinScilab();
-		CodeLanguage=lptw->lpmw->CodeLanguage;
-	}
-
+	int CodeLanguage=GetCurrentLanguage();
+	
 	switch (CodeLanguage)
 	{
 		case 0:default:
@@ -281,6 +276,10 @@ BOOL UpdateSCE(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+	int Language=GetCurrentLanguage();
+	char KeyRegistryWithLanguage[1024];
+
+	DeleteSCE();
 
 	bOK=UpdateAKey(".sce","SCE_scilab_file");
 	if (bOK) bOK=UpdateAKey("SCE_scilab_file","SCE_scilab_file");
@@ -292,7 +291,17 @@ BOOL UpdateSCE(void)
 	if (bOK) bOK=UpdateAKey("SCE_scilab_file\\shell\\open\\command",Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -X \"%%1\"",path);
-	if (bOK) bOK=UpdateAKey("SCE_scilab_file\\shell\\Execution\\command",Line);
+	switch (Language)
+	{
+		case 1:
+			wsprintf(KeyRegistryWithLanguage,"SCE_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		break;
+
+		default :case 0:
+			wsprintf(KeyRegistryWithLanguage,"SCE_scilab_file\\shell\\Run with %s\\command",VERSION);
+		break;
+	}
+	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -P \"%%1\"",path);
 	if (bOK) bOK=UpdateAKey("SCE_scilab_file\\shell\\print\\command",Line);
@@ -306,6 +315,10 @@ BOOL UpdateSCI(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+	int Language=GetCurrentLanguage();
+	char KeyRegistryWithLanguage[1024];
+
+	DeleteSCI();
 
 	bOK=UpdateAKey(".sci","SCI_scilab_file");
 	if (bOK) bOK=UpdateAKey("SCI_scilab_file","SCI_scilab_file");
@@ -317,7 +330,18 @@ BOOL UpdateSCI(void)
 	if (bOK) bOK=UpdateAKey("SCI_scilab_file\\shell\\open\\command",Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -X \"%%1\"",path);
-	if (bOK) bOK=UpdateAKey("SCI_scilab_file\\shell\\Execution\\command",Line);
+	switch (Language)
+	{
+	case 1:
+		wsprintf(KeyRegistryWithLanguage,"SCI_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		break;
+
+	default :case 0:
+		wsprintf(KeyRegistryWithLanguage,"SCI_scilab_file\\shell\\Run with %s\\command",VERSION);
+		break;
+	}
+	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
+
 
 	wsprintf(Line,"\"%sWscilex.exe\" -P \"%%1\"",path);
 	if (bOK) bOK=UpdateAKey("SCI_scilab_file\\shell\\print\\command",Line);
@@ -331,6 +355,10 @@ BOOL UpdateTST(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+	int Language=GetCurrentLanguage();
+	char KeyRegistryWithLanguage[1024];
+
+	DeleteTST();
 
 	bOK=UpdateAKey(".tst","TST_scilab_file");
 	if (bOK) bOK=UpdateAKey("TST_scilab_file","TST_scilab_file");
@@ -342,7 +370,18 @@ BOOL UpdateTST(void)
 	if (bOK) bOK=UpdateAKey("TST_scilab_file\\shell\\open\\command",Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -X \"%%1\"",path);
-	if (bOK) bOK=UpdateAKey("TST_scilab_file\\shell\\Execution\\command",Line);
+	switch (Language)
+	{
+	case 1:
+		wsprintf(KeyRegistryWithLanguage,"TST_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		break;
+
+	default :case 0:
+		wsprintf(KeyRegistryWithLanguage,"TST_scilab_file\\shell\\Run with %s\\command",VERSION);
+		break;
+	}
+	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
+
 
 	wsprintf(Line,"\"%sWscilex.exe\" -P \"%%1\"",path);
 	if (bOK) bOK=UpdateAKey("TST_scilab_file\\shell\\print\\command",Line);
@@ -356,6 +395,10 @@ BOOL UpdateDEM(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+	int Language=GetCurrentLanguage();
+	char KeyRegistryWithLanguage[1024];
+
+	DeleteDEM();
 
 	bOK=UpdateAKey(".dem","DEM_scilab_file");
 	if (bOK) bOK=UpdateAKey("DEM_scilab_file","DEM_scilab_file");
@@ -367,7 +410,18 @@ BOOL UpdateDEM(void)
 	if (bOK) bOK=UpdateAKey("DEM_scilab_file\\shell\\open\\command",Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -X \"%%1\"",path);
-	if (bOK) bOK=UpdateAKey("DEM_scilab_file\\shell\\Execution\\command",Line);
+	switch (Language)
+	{
+	case 1:
+		wsprintf(KeyRegistryWithLanguage,"DEM_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		break;
+
+	default :case 0:
+		wsprintf(KeyRegistryWithLanguage,"DEM_scilab_file\\shell\\Run with %s\\command",VERSION);
+		break;
+	}
+	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
+
 
 	wsprintf(Line,"\"%sWscilex.exe\" -P \"%%1\"",path);
 	if (bOK) bOK=UpdateAKey("DEM_scilab_file\\shell\\print\\command",Line);
@@ -381,6 +435,10 @@ BOOL UpdateCOS(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+	int Language=GetCurrentLanguage();
+	char KeyRegistryWithLanguage[1024];
+
+	DeleteCOS();
 
 	bOK=UpdateAKey(".cos","COS_scilab_file");
 	if (bOK) bOK=UpdateAKey("COS_scilab_file","COS_scilab_file");
@@ -389,7 +447,18 @@ BOOL UpdateCOS(void)
 	if (bOK) bOK=UpdateAKey("COS_scilab_file\\DefaultIcon",Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -X \"%%1\"",path);
-	if (bOK) bOK=UpdateAKey("COS_scilab_file\\shell\\open\\command",Line);
+	switch (Language)
+	{
+	case 1:
+		wsprintf(KeyRegistryWithLanguage,"COS_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		break;
+
+	default :case 0:
+		wsprintf(KeyRegistryWithLanguage,"COS_scilab_file\\shell\\Run with %s\\command",VERSION);
+		break;
+	}
+	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
+
 
 	FREE(path);
 	return bOK;
@@ -400,6 +469,10 @@ BOOL UpdateCOSF(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+	int Language=GetCurrentLanguage();
+	char KeyRegistryWithLanguage[1024];
+
+	DeleteCOSF();
 
 	bOK=UpdateAKey(".cosf","COSF_scilab_file");
 	if (bOK) bOK=UpdateAKey("COSF_scilab_file","COSF_scilab_file");
@@ -411,7 +484,18 @@ BOOL UpdateCOSF(void)
 	if (bOK) bOK=UpdateAKey("COSF_scilab_file\\shell\\open\\command",Line);
 
 	wsprintf(Line,"\"%sWscilex.exe\" -X \"%%1\"",path);
-	if (bOK) bOK=UpdateAKey("COSF_scilab_file\\shell\\Execution\\command",Line);
+	switch (Language)
+	{
+	case 1:
+		wsprintf(KeyRegistryWithLanguage,"COSF_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		break;
+
+	default :case 0:
+		wsprintf(KeyRegistryWithLanguage,"COSF_scilab_file\\shell\\Run with %s\\command",VERSION);
+		break;
+	}
+	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
+
 
 	FREE(path);
 	return bOK;
@@ -422,6 +506,8 @@ BOOL UpdateSAV(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+
+	DeleteSAV();
 
 	bOK=UpdateAKey(".sav","SAV_scilab_file");
 	if (bOK) bOK=UpdateAKey("SAV_scilab_file","SAV_scilab_file");
@@ -442,6 +528,8 @@ BOOL UpdateBIN(void)
 	char Line[512];
 	char *path=GetWhereIsThisExe();
 
+	DeleteBIN();
+
 	bOK=UpdateAKey(".bin","BIN_scilab_file");
 	if (bOK) bOK=UpdateAKey("BIN_scilab_file","BIN_scilab_file");
 
@@ -461,6 +549,8 @@ BOOL UpdateGRAPH(void)
 	char Line[512];
 	char *path=GetWhereIsThisExe();
 
+	DeleteGRAPH();
+
 	bOK=UpdateAKey(".graph","GRAPH_scilab_file");
 	if (bOK) bOK=UpdateAKey("GRAPH_scilab_file","GRAPH_scilab_file");
 
@@ -479,6 +569,8 @@ BOOL UpdateGRAPHB(void)
 	BOOL bOK=TRUE;
 	char Line[512];
 	char *path=GetWhereIsThisExe();
+
+	DeleteGRAPHB();
 
 	bOK=UpdateAKey(".graphb","GRAPHB_scilab_file");
 	if (bOK) bOK=UpdateAKey("GRAPHB_scilab_file","GRAPHB_scilab_file");
@@ -630,6 +722,8 @@ void InitCheckSCI(HWND hDlgParent)
 {
 	BOOL bOK[5];
 	char Key[PATH_MAX];
+	char KeyENG[PATH_MAX];
+	char KeyFR[PATH_MAX];
 	char GoodValue[PATH_MAX];
 	char *path=GetWhereIsThisExe();
 	HWND hControlCheckBoxSCI = GetDlgItem(hDlgParent, IDC_CHECKSCI );
@@ -646,9 +740,11 @@ void InitCheckSCI(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%swscilex.exe\" -O \"%%1\"",path);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(Key,"%s","SCI_scilab_file\\shell\\Execution\\command");
+	wsprintf(KeyFR,"SCI_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+	wsprintf(KeyENG,"SCI_scilab_file\\shell\\Run with %s\\command",VERSION);
 	wsprintf(GoodValue,"\"%swscilex.exe\" -X \"%%1\"",path);
-	bOK[3]=TestRegistryKey(Key,GoodValue);
+	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
+    if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
 
 	wsprintf(Key,"%s","SCI_scilab_file\\shell\\print\\command");
 	wsprintf(GoodValue,"\"%swscilex.exe\" -P \"%%1\"",path);
@@ -666,6 +762,8 @@ void InitCheckSCE(HWND hDlgParent)
 {
 	BOOL bOK[5];
 	char Key[PATH_MAX];
+	char KeyENG[PATH_MAX];
+	char KeyFR[PATH_MAX];
 	char GoodValue[PATH_MAX];
 	char *path=GetWhereIsThisExe();
 	HWND hControlCheckBoxSCE = GetDlgItem(hDlgParent, IDC_CHECKSCE );
@@ -682,9 +780,11 @@ void InitCheckSCE(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%swscilex.exe\" -O \"%%1\"",path);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(Key,"%s","SCE_scilab_file\\shell\\Execution\\command");
+	wsprintf(KeyFR,"SCE_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+	wsprintf(KeyENG,"SCE_scilab_file\\shell\\Run with %s\\command",VERSION);
 	wsprintf(GoodValue,"\"%swscilex.exe\" -X \"%%1\"",path);
-	bOK[3]=TestRegistryKey(Key,GoodValue);
+	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
+	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
 
 	wsprintf(Key,"%s","SCE_scilab_file\\shell\\print\\command");
 	wsprintf(GoodValue,"\"%swscilex.exe\" -P \"%%1\"",path);
@@ -702,6 +802,8 @@ void InitCheckTST(HWND hDlgParent)
 {
 	BOOL bOK[5];
 	char Key[PATH_MAX];
+	char KeyENG[PATH_MAX];
+	char KeyFR[PATH_MAX];
 	char GoodValue[PATH_MAX];
 	char *path=GetWhereIsThisExe();
 	HWND hControlCheckBoxTST = GetDlgItem(hDlgParent, IDC_CHECKTST );
@@ -718,9 +820,11 @@ void InitCheckTST(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%swscilex.exe\" -O \"%%1\"",path);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(Key,"%s","TST_scilab_file\\shell\\Execution\\command");
+	wsprintf(KeyFR,"TST_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+	wsprintf(KeyENG,"TST_scilab_file\\shell\\Run with %s\\command",VERSION);
 	wsprintf(GoodValue,"\"%swscilex.exe\" -X \"%%1\"",path);
-	bOK[3]=TestRegistryKey(Key,GoodValue);
+	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
+	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
 
 	wsprintf(Key,"%s","TST_scilab_file\\shell\\print\\command");
 	wsprintf(GoodValue,"\"%swscilex.exe\" -P \"%%1\"",path);
@@ -738,6 +842,8 @@ void InitCheckDEM(HWND hDlgParent)
 {
 	BOOL bOK[5];
 	char Key[PATH_MAX];
+	char KeyENG[PATH_MAX];
+	char KeyFR[PATH_MAX];
 	char GoodValue[PATH_MAX];
 	char *path=GetWhereIsThisExe();
 	HWND hControlCheckBoxDEM = GetDlgItem(hDlgParent, IDC_CHECKDEM );
@@ -754,9 +860,11 @@ void InitCheckDEM(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%swscilex.exe\" -O \"%%1\"",path);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(Key,"%s","DEM_scilab_file\\shell\\Execution\\command");
+	wsprintf(KeyFR,"DEM_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+	wsprintf(KeyENG,"DEM_scilab_file\\shell\\Run with %s\\command",VERSION);
 	wsprintf(GoodValue,"\"%swscilex.exe\" -X \"%%1\"",path);
-	bOK[3]=TestRegistryKey(Key,GoodValue);
+	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
+	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
 
 	wsprintf(Key,"%s","DEM_scilab_file\\shell\\print\\command");
 	wsprintf(GoodValue,"\"%swscilex.exe\" -P \"%%1\"",path);
@@ -774,6 +882,8 @@ void InitCheckCOS(HWND hDlgParent)
 {
 	BOOL bOK[3];
 	char Key[PATH_MAX];
+	char KeyENG[PATH_MAX];
+	char KeyFR[PATH_MAX];
 	char GoodValue[PATH_MAX];
 	char *path=GetWhereIsThisExe();
 	HWND hControlCheckBoxCOS = GetDlgItem(hDlgParent, IDC_CHECKCOS );
@@ -786,9 +896,11 @@ void InitCheckCOS(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%swscilex.exe\",4",path);
 	bOK[1]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(Key,"%s","COS_scilab_file\\shell\\open\\command");
+	wsprintf(KeyFR,"COS_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+	wsprintf(KeyENG,"COS_scilab_file\\shell\\Run with %s\\command",VERSION);
 	wsprintf(GoodValue,"\"%swscilex.exe\" -X \"%%1\"",path);
-	bOK[2]=TestRegistryKey(Key,GoodValue);
+	bOK[2]=TestRegistryKey(KeyENG,GoodValue);
+	if (!bOK[2]) bOK[2]=TestRegistryKey(KeyFR,GoodValue);
 	
 	if ( bOK[0] && bOK[1] && bOK[2])
 		SendMessage(hControlCheckBoxCOS,(UINT) BM_SETCHECK,(WPARAM) BST_CHECKED,0);
@@ -802,6 +914,8 @@ void InitCheckCOSF(HWND hDlgParent)
 {
 	BOOL bOK[4];
 	char Key[PATH_MAX];
+	char KeyENG[PATH_MAX];
+	char KeyFR[PATH_MAX];
 	char GoodValue[PATH_MAX];
 	char *path=GetWhereIsThisExe();
 	HWND hControlCheckBoxCOSF = GetDlgItem(hDlgParent, IDC_CHECKCOSF );
@@ -818,9 +932,11 @@ void InitCheckCOSF(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%swscilex.exe\" -O \"%%1\"",path);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(Key,"%s","COSF_scilab_file\\shell\\Execution\\command");
+	wsprintf(KeyFR,"COSF_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+	wsprintf(KeyENG,"COSF_scilab_file\\shell\\Run with %s\\command",VERSION);
 	wsprintf(GoodValue,"\"%swscilex.exe\" -X \"%%1\"",path);
-	bOK[3]=TestRegistryKey(Key,GoodValue);
+	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
+	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
 	
 	if ( bOK[0] && bOK[1] && bOK[2] && bOK[3])
 		SendMessage(hControlCheckBoxCOSF,(UINT) BM_SETCHECK,(WPARAM) BST_CHECKED,0);

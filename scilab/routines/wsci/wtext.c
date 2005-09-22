@@ -69,6 +69,7 @@ extern char *GetScilabDirectory(BOOL UnixStyle);
 extern LPTW GetTextWinScilab(void);
 extern int C2F (scilines) (int *nl, int *nc);
 extern void MessageBoxNewGraphicMode(void);
+extern char *GetLanguageInScilabDotStar(void);
 
 extern EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -2120,5 +2121,30 @@ void DisableMenus(LPTW lptw)
 	  EnableMenuItem (lptw->lpmw->hMenu, i, MF_GRAYED| MF_BYPOSITION);
   }
   DrawMenuBar(lptw->hWndParent); 
+}
+/*-----------------------------------------------------------------------------------*/
+int GetCurrentLanguage(void)
+{
+	int ReturnLanguage=0;
+
+	if (IsWindowInterface())
+	{
+		LPTW lptw=GetTextWinScilab();
+		int IHMLanguage=lptw->lpmw->CodeLanguage;
+		ReturnLanguage=IHMLanguage;
+	}
+	else
+	{
+		int SCILanguague=0;
+		char *Language=GetLanguageInScilabDotStar();
+
+		if (strcmp(Language,"fr")==0) SCILanguague=1;
+		if (strcmp(Language,"eng")==0) SCILanguague=0;
+
+		ReturnLanguage=SCILanguague;
+		FREE(Language);
+	}
+	
+	return ReturnLanguage;
 }
 /*-----------------------------------------------------------------------------------*/

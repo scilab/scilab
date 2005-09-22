@@ -146,4 +146,6 @@ void DisableMenus(LPTW lptw);
 void EnableToolBar(LPTW lptw);
 void DisableToolBar(LPTW lptw);
 /*--------------------------*/
+int GetCurrentLanguage(void);
+/*--------------------------*/
 #endif /*  __WTEXT_H__ */
