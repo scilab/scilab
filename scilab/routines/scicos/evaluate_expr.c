@@ -8,6 +8,9 @@
 #include <ieeefp.h>
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
+#if defined(__alpha)
+int isinf(double x) { return !finite(x) && x==x; }
+#endif
 
 #if WIN32
 /*
