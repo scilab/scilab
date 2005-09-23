@@ -3,6 +3,8 @@
 // Tests files Association by Inno Setup in registry
 // Tests for Default Installation
 //---------------------------------------------------------------------------------
+global LANGUAGE;
+//---------------------------------------------------------------------------------
 function [PathOut,OptionsOut]=GetPathAndOptionsInThisString(StringIn)
   IndexGuillemets=strindex(StringIn,'""');
   PathOut=part(StringIn,[IndexGuillemets(1)+1:IndexGuillemets(2)-1]); 
@@ -26,7 +28,11 @@ else
 end;
 clear SCE1DIA PATHSCE1DIA OPTIONSSCE1DIA OPTIONSSCE1REF;
 //---------------------------------------------------------------------------------
-SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Execution\command');
+if (LANGUAGE=='fr') then
+  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Executer avec '+getversion()+'\command');
+else
+  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Run with '+getversion()+'\command');
+end  
 [PATHSCE2DIA,OPTIONSSCE2DIA]=GetPathAndOptionsInThisString(SCE2DIA);
 OPTIONSSCE2REF='""'+' -X ""%1""'; 
 if ( (PATHSCE2DIA==PATHREF) & (OPTIONSSCE2DIA==OPTIONSSCE2REF) ) then
@@ -62,7 +68,11 @@ else
 end;
 clear SCI1DIA PATHSCI1DIA OPTIONSSCI1DIA OPTIONSSCI1REF;
 //---------------------------------------------------------------------------------
-SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Execution\command');
+if (LANGUAGE=='fr') then
+  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Executer avec '+getversion()+'\command');
+else
+  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Run with '+getversion()+'\command');
+end
 [PATHSCI2DIA,OPTIONSSCI2DIA]=GetPathAndOptionsInThisString(SCI2DIA);
 OPTIONSSCI2REF='""'+' -X ""%1""'; 
 if ( (PATHSCI2DIA==PATHREF) & (OPTIONSSCI2DIA==OPTIONSSCI2REF) ) then
@@ -98,7 +108,11 @@ else
 end;
 clear TST1DIA PATHTST1DIA OPTIONSTST1DIA OPTIONSTST1REF;
 //---------------------------------------------------------------------------------
-TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Execution\command');
+if (LANGUAGE=='fr') then
+  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Executer avec '+getversion()+'\command');
+else
+  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Run with '+getversion()+'\command');
+end  
 [PATHTST2DIA,OPTIONSTST2DIA]=GetPathAndOptionsInThisString(TST2DIA);
 OPTIONSTST2REF='""'+' -X ""%1""'; 
 if ( (PATHTST2DIA==PATHREF) & (OPTIONSTST2DIA==OPTIONSTST2REF) ) then
@@ -134,7 +148,11 @@ else
 end;
 clear DEM1DIA PATHDEM1DIA OPTIONSDEM1DIA OPTIONSDEM1REF;
 //---------------------------------------------------------------------------------
-DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Execution\command');
+if (LANGUAGE=='fr') then
+  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Executer avec '+getversion()+'\command');
+else
+  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Run with '+getversion()+'\command');
+end  
 [PATHDEM2DIA,OPTIONSDEM2DIA]=GetPathAndOptionsInThisString(DEM2DIA);
 OPTIONSDEM2REF='""'+' -X ""%1""'; 
 if ( (PATHDEM2DIA==PATHREF) & (OPTIONSDEM2DIA==OPTIONSDEM2REF) ) then
@@ -182,7 +200,11 @@ else
 end;
 clear GRAPH2DIA PATHGRAPH2DIA OPTIONSGRAPH2DIA OPTIONSGRAPH2REF;
 //---------------------------------------------------------------------------------  
-SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\open\command');
+if (LANGUAGE=='fr') then
+  SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Executer avec '+getversion()+'\command');
+else
+  SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Run with '+getversion()+'\command');
+end  
 [PATHSCICOS1DIA,OPTIONSSCICOS1DIA]=GetPathAndOptionsInThisString(SCICOS1DIA);
 OPTIONSSCICOS1REF='""'+' -X ""%1""'; 
 if ( (PATHSCICOS1DIA==PATHREF) & (OPTIONSSCICOS1DIA==OPTIONSSCICOS1REF) ) then
@@ -206,7 +228,11 @@ else
 end;
 clear SCICOS2DIA PATHSCICOS2DIA OPTIONSSCICOS2DIA OPTIONSSCICOS2REF;
 //---------------------------------------------------------------------------------  
-SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Execution\command');
+if (LANGUAGE=='fr') then
+  SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Executer avec '+getversion()+'\command');
+else
+  SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Run with '+getversion()+'\command');
+end  
 [PATHSCICOS3DIA,OPTIONSSCICOS3DIA]=GetPathAndOptionsInThisString(SCICOS3DIA);
 OPTIONSSCICOS3REF='""'+' -X ""%1""'; 
 if ( (PATHSCICOS3DIA==PATHREF) & (OPTIONSSCICOS3DIA==OPTIONSSCICOS3REF) ) then
