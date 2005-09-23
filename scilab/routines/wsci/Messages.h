@@ -29,6 +29,7 @@
 #define MSG_SCIMSG23 "Scilab Graph"
 
 #define MSG_SCIMSG24 "Wscilex <Options> : run Scilab.\n"
+#define MSG_SCIMSG24B "scilex <Options> : run Scilab.\n"
 #define MSG_SCIMSG25 "-ns:if this option is present the startup file SCI/scilab.star is not executed.\n"
 #define MSG_SCIMSG26 "-nb:if this option is present then the scilab welcome banner is not displayed.\n"
 #define MSG_SCIMSG27 "-l lang: it fixes the user language.\nThe possible lang values are 'fr' for french and 'eng' for english.\nThe default language is english. This default value is fixed the scilab.star file.\n" 

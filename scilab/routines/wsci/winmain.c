@@ -146,8 +146,23 @@ int Console_Main(int argc, char **argv)
 		}
       else if ( strcmp(my_argv[argcount],"-mem") == 0 && argcount + 1 < my_argc)
 		{
-			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );} 
-		}
+			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
+		} 
+	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
+		  (stricmp (my_argv[argcount],"-?")==0) ||
+		  (stricmp (my_argv[argcount],"-HELP")==0) )
+	  {
+		  printf(MSG_SCIMSG24B);
+		  printf(MSG_SCIMSG25); 
+		  printf(MSG_SCIMSG26); 
+		  printf(MSG_SCIMSG27); 
+		  printf(MSG_SCIMSG28); 
+		  printf(MSG_SCIMSG29);
+		  printf("\n");
+		  exit(1);
+	  }
+	}
+		
 
   hdllInstance = GetModuleHandle(MSG_SCIMSG9);
 
