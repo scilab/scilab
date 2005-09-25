@@ -100,13 +100,9 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         if {[string first listboxinput $leftwin] != -1} {
             set funname [$spin get]
         }
-        # if the argument name starts with a $ (allowed in Scilab),
-        # this character must be escaped
-        if {[string index $argname 0] == "\$"} {
-            set escargname "\\$argname"
-        } else {
-            set escargname $argname
-        }
+        # certain special characters are allowed in Scilab names,
+        # these must be escaped
+        set escargname [escapespecialchars $argname]
         if {$alreadyexists == "false"} {
             # a new variable was added in the add box
             set pos [expr $pos + 1]

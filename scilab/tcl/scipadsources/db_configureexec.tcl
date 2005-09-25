@@ -276,7 +276,7 @@ proc checkarglist {funname} {
     # escape that specifies to match at the beginning of a word cannot be
     # used (same for \M, i.e. end of word)
     # A more complex regexp pattern shall therefore be used
-    set pat "\\mfunction\\M\[\[:blank:\]\]+(\\\[(\[\\w,\]|\[\[:blank:\]\])*\\\])?\[\[:blank:\]\]*=?\[\[:blank:\]\]*($escfunname)\[\[:blank:\]\]*(\[;\\n\\(\])"
+    set pat "\\mfunction\\M\[\[:blank:\]\]+((\\\[(\[\\w%_#!\?$,\]|\[\[:blank:\]\])*\\\])|(\[\\w%_#!\?$\]+))?\[\[:blank:\]\]*=?\[\[:blank:\]\]*($escfunname)\[\[:blank:\]\]*(\[;\\n\\(\])"
 
     # In Tcl<8.5, this does not match multiple lines. This is a Tcl/Tk bug.
     # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html

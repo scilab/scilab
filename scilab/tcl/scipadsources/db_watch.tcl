@@ -334,13 +334,9 @@ proc getonefromshell {wvar {opt "seq"}} {
 # Update one single watched variable content by getting its value from Scilab
 # The watch window display is not updated
     global watchvars watchvarsvals unklabel
-    # if the watch variable name starts with a $ (allowed in Scilab),
-    # this character must be escaped
-    if {[string index $wvar 0] == "\$"} {
-        set escwvar "\\$wvar"
-    } else {
-        set escwvar $wvar
-    }
+    # certain special characters are allowed in Scilab names,
+    # these must be escaped
+    set escwvar [escapespecialchars $wvar]
     set fullcomm ""
     set comm1 "if ext_exists(\"$wvar\"),"
     set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($escwvar) \"\"\"+FormatStringsForDebugWatch($wvar)+\"\"\"}\");"

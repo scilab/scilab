@@ -1537,3 +1537,12 @@ Francois VOGEL, 22/09/05
  * Fixed: Files containing Tcl special chars such as [] could not be opened
    through the most recent list of files (file menu)
  * version --> 5.41
+
+Francois VOGEL, 25/09/05
+ * Fixed: even if help function doesn't tell it function v=foo() is allowed
+   (no bracket around v) - this syntax is now supported
+ * Variable names (including functions) with special characters better
+   handled. The debugger now swallows things nobody will probably do but
+   which are required for Scilab full compatibility, e.g.
+     function [a$va?r,%an!#va_#!?$r] = %foo#t!u?t$o_u(%ze!$?_#)
+ * version --> 5.42

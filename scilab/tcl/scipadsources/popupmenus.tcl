@@ -70,6 +70,6 @@ proc showpopupdebugwsel {watchvar} {
     menu $pad.popdebugwsel -tearoff 0 -font $menuFont
     set plabel [mc AddWatch $watchvar]
     $pad.popdebugwsel add command -label $plabel\
-        -command "quickAddWatch_bp $watchvar"
+        -command "quickAddWatch_bp {$watchvar}"
     tk_popup $pad.popdebugwsel $numx $numy
 }

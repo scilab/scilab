@@ -93,6 +93,10 @@ Bugs:
  mouse -> blinking stops but does not restart. This is on Windows only since
  on Linux the cursor does not blink
 
+-Trying to get a variable current value in Scilab (through the little dialog
+ called from the watch window) fails. This is probably bug 1550 (outside of
+ Scipad)
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
