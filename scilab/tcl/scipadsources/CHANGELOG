@@ -1523,8 +1523,9 @@ ES, 21/09/05
 
 ES, 22/09/05
  * added colorization of scicos functions and block names.
+   makewordfile2.sce now appends them to the words file (#TAG scicos).
  * proc openlibfunsource extended to scicos functions and blocks,
-   command contextualized
+   menu entry command contextualized
  * some default colors changed.
  * *.cosf Scicos file type added in Open/Save choosers.
  * version --> 5.40
