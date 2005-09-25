@@ -34,6 +34,6 @@ function DefaultBrowser=loaddefaultbrowser()
 	DefaultBrowser=Default
       end
     end
+    mclose(fd);
   end
-  mclose(fd);
 endfunction
