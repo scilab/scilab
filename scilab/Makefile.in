@@ -174,7 +174,6 @@ BINDISTFILES = \
 	$(SCIBASE)/routines/xsci/*.h \
 	$(SCIBASE)/scripts \
 	$(SCIBASE)/tcl \
-	$(SCIBASE)/tests \
 	$(SCIBASE)/util
 
 tarbindist:
