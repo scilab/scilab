@@ -21,9 +21,9 @@ function files= listfiles(paths,flag,flagexpand)
   
   //redefining  disp to avoid message when no file are found
   prot=funcprot();funcprot(0);deff('disp(txt)',' ');funcprot(prot)
-  
+  files=[];
+
   if MSDOS then
-    files=[];
     for i=1:size(paths,'*') 
       // dir returns names without the dirname 
       filesi=unix_g('dir /B /OD ""'+paths(i)+'""');
@@ -54,11 +54,13 @@ function files= listfiles(paths,flag,flagexpand)
       end
       files=[files;filesi];
     end
-  else
+  else  
     paths=strsubst(stripblanks(paths),' ','\ ')
-    paths=stripblanks(strcat(paths,' '))
-    files=unix_g('ls  -t1 '+paths);
-    if files== "" then files=[],end
+    for i=1:size(paths,'*') 
+      filesi=unix_g('ls  -t1 '+paths(i));
+      if filesi== "" then filesi=[],end
+      files=[files;filesi]
+    end
   end
 endfunction
 
