@@ -788,16 +788,19 @@ void ON_WND_TEXT_WM_HSCROLL(HWND hwnd, HWND hwndCtl, UINT code, int pos)
 /*-----------------------------------------------------------------------------------*/
 void ON_WND_TEXT_WM_MOUSEWHEEL(HWND hwnd, int xPos, int yPos, int zDelta, UINT fwKeys)
 {
-	int steps=yPos/zDelta;
+	if (zDelta!=0)
+	{
+		int steps=yPos/zDelta;
 	
-	if( steps > 0 ) 
-	{
-		SendMessage (hwnd, WM_VSCROLL, SB_LINEUP, (LPARAM) 0);
-	}
+		if( steps > 0 ) 
+		{
+			SendMessage (hwnd, WM_VSCROLL, SB_LINEUP, (LPARAM) 0);
+		}
 
-	if( steps < 0 ) 
-	{
-		SendMessage (hwnd, WM_VSCROLL, SB_LINEDOWN, (LPARAM) 0);
+		if( steps < 0 ) 
+		{
+			SendMessage (hwnd, WM_VSCROLL, SB_LINEDOWN, (LPARAM) 0);
+		}
 	}
 }
 /*-----------------------------------------------------------------------------------*/
