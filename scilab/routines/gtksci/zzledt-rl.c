@@ -231,7 +231,7 @@ static char **scilab_completion (const char * text,int start,int end)
 {
   char **matches = NULL ; 
 
-  if (start != 0)
+  if (end != 0)
     {
       matches = rl_completion_matches (text, command_generator);
       if (matches == NULL) 
