@@ -67,7 +67,7 @@ AfromTCL=TCL_GetVar('A')
 //----------------------------------------------------
 b=[6,4,1;2,3,5];
 TCL_SetVar("B",b)
-BfromTCL=TCL_GetVar('b')
+BfromTCL=TCL_GetVar('B')
 //----------------------------------------------------
 TCL_SetVar("StringTCL","string")
 StringFromTCL=TCL_GetVar("StringTCL")
