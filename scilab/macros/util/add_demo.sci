@@ -9,7 +9,7 @@ function add_demo(title,path)
   if k==[] then
     demolist=[demolist;title,path]
   else
-    k1=find(demolist(k,1)==path)
+    k1=find(demolist(k,2)==path)
     if k1==[] then demolist=[demolist;title+' ('+string(size(k,'*'))+')',path],end
   end
 endfunction
