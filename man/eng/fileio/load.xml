@@ -67,6 +67,9 @@ load('vals.dat','a','b');
       <LINK>listvarinfile</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
+      <LINK>save_format</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>getf</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
