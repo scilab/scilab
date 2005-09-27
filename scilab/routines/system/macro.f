@@ -62,6 +62,9 @@ c     a macro
 c     .        see run to explain the following
                lcn=pstk(pt)-4-(nsiz+3)+1
                call putid(id,istk(lcn))
+            elseif(rstk(pt).eq.707) then
+c     .        function without argument list
+               call putid(id,syn)
             else
                call putid(id,ids(1,pt))
             endif
