@@ -588,11 +588,9 @@ c     ------simple case one argument which is a matrix or vector
       if(gettype(top).ne.1) then
          top=topk
          if(fin.eq.17) then
-         il=iadr(lstk(top-rhs+1))
-         if(istk(il).lt.0) il=iadr(istk(il+1))
-            call funnam(ids(1,pt+1),'mini',il)
+            call funnam(ids(1,pt+1),'mini',iadr(lstk(top-rhs+1)))
          else
-            call funnam(ids(1,pt+1),'maxi',il)
+            call funnam(ids(1,pt+1),'maxi',iadr(lstk(top-rhs+1)))
          endif
          fun=-1
          return
