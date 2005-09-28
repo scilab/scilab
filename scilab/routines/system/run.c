@@ -158,8 +158,8 @@ int C2F(run)()
   case 5:  goto L58;
   case 6:  goto L116;
   case 7:  goto L250;
-  case 8:  Rstk[Pt]=1101;goto L251;
-  case 9:  Rstk[Pt]=1101;goto L240;
+  case 8:  /*Rstk[Pt]=1101;*/ goto L254;
+  case 9:  /*Rstk[Pt]=1101;*/ goto L240;
 
   }
 
@@ -270,7 +270,7 @@ int C2F(run)()
     lc += Istk[1 + lc];
     goto L11;
   }
- L15:
+
   SciError(60);
   return 0;
 
@@ -1131,13 +1131,34 @@ int C2F(run)()
     /* fin points on the newly saved variable */
     if (!(Lct[4] >= 0 && ip != semi && C2F(com).fin != 0)) goto L253;
     ifin=C2F(com).fin;
+  L232:
     C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
     if (Rstk[Pt]!=1101) goto L253;
+    ++Pt;
+    Pstk[Pt] = li;
+    Ids[1 + Pt * nsiz] = ndel;
+    Ids[2 + Pt * nsiz] = lastindpos;
+    Ids[3 + Pt * nsiz] = tref;
+    Ids[4 + Pt * nsiz] = l0;
+    Ids[5 + Pt * nsiz] = Lhs;
+    Ids[6 + Pt * nsiz] = nc;
     Rstk[Pt]=609;
     return 0;
   L240:
-    goto L253;
+    li = Pstk[Pt];
+    ip = Istk[li-1];
+    ndel =       Ids[1 + Pt * nsiz];
+    lastindpos = Ids[2 + Pt * nsiz];
+    tref =       Ids[3 + Pt * nsiz];
+    l0 =         Ids[4 + Pt * nsiz];
+    Lhs =        Ids[5 + Pt * nsiz];
+    nc =         Ids[6 + Pt * nsiz];
+    --Pt;
+    /*goto L253;*/
+    goto L232;
+
   }
+
   /*     take rhs (number of indices) computed at runtime into account */
   C2F(adjustrhs)();
   /*     partial variable affectation (insertion) */
@@ -1207,8 +1228,27 @@ int C2F(run)()
  L251:
   C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
   if (Rstk[Pt]!=1101) goto L252;
+  ++Pt;
+  Pstk[Pt] = li;
+  Ids[1 + Pt * nsiz] = ndel;
+  Ids[2 + Pt * nsiz] = lastindpos;
+  Ids[3 + Pt * nsiz] = tref;
+  Ids[4 + Pt * nsiz] = l0;
+  Ids[5 + Pt * nsiz] = Lhs;
+  Ids[6 + Pt * nsiz] = nc;
   Rstk[Pt]=608;
   return 0;
+ L254:
+  li = Pstk[Pt];
+  ip = Istk[li-1];
+  ndel =       Ids[1 + Pt * nsiz];
+  lastindpos = Ids[2 + Pt * nsiz];
+  tref =       Ids[3 + Pt * nsiz];
+  l0 =         Ids[4 + Pt * nsiz];
+  Lhs =        Ids[5 + Pt * nsiz];
+  nc =         Ids[6 + Pt * nsiz];
+  --Pt;
+  goto L251;
 
  L252:
   /*     remove variable containing the value if required */
