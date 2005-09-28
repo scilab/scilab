@@ -198,7 +198,7 @@ c
          if(istk(il2).ne.10) then 
             fun=-1
             top=tops
-            call funnam(ids(1,pt+1),'strcat',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'strcat',il2)
             return
          endif
          if(istk(il2+1)*istk(il2+2).ne.1) then
@@ -231,7 +231,7 @@ c
       if(istk(il1).ne.10) then
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'strcat',iadr(lstk(top+1-rhs)))
+         call funnam(ids(1,pt+1),'strcat',il1)
          return
       endif
 
@@ -311,7 +311,7 @@ c
       if(istk(il2).ne.10) then 
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'strindex',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'strindex',il2)
          return
       endif
       mn2=istk(il2+1)*istk(il2+2)
@@ -350,7 +350,7 @@ c
       if(istk(il1).ne.10) then
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'strindex',iadr(lstk(top+1-rhs)))
+         call funnam(ids(1,pt+1),'strindex',il1)
          return
       endif
       if(istk(il1+1)*istk(il1+2).ne.1) then
@@ -511,7 +511,7 @@ c
       if(istk(il3).ne.10) then 
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'strsubst',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'strsubst',il3)
          return
       endif
       if(istk(il3+1)*istk(il3+2).ne.1) then
@@ -528,7 +528,7 @@ c
       if(istk(il2).ne.10) then 
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'strsubst',iadr(lstk(top-1)))
+         call funnam(ids(1,pt+1),'strsubst',il2)
          return
       endif
       if(istk(il2+1)*istk(il2+2).ne.1) then
@@ -563,7 +563,7 @@ c
       if(istk(il1).ne.10) then
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'strsubst',iadr(lstk(top-2)))
+         call funnam(ids(1,pt+1),'strsubst',il1)
          return
       endif
 
@@ -711,7 +711,7 @@ c
          lstk(top+1)=l+mn1
       else
          fun=-1
-         call funnam(ids(1,pt+1),'length',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'length',il1)
          return
       endif
       return
@@ -741,7 +741,7 @@ c
 
       if(istk(il1).ne.10) then
          fun=-1
-         call funnam(ids(1,pt+1),'part',iadr(lstk(top+1-rhs)))
+         call funnam(ids(1,pt+1),'part',il1)
          return
       endif
 c
@@ -1047,7 +1047,7 @@ c
         goto 999
       else
          fun=-1
-         call funnam(ids(1,pt+1),'string',iadr(lstk(top+1-rhs)))
+         call funnam(ids(1,pt+1),'string',il)
          return
       endif
  999  return
@@ -1102,10 +1102,12 @@ c     conversion flag
 c
    51 continue
       il1=iadr(lstk(top))
-      if(abs(istk(il1)).ne.10) then
-         if(abs(istk(il1)).eq.1) then
-            if(istk(il1).lt.0) il1=iadr(istk(il1+1))
-            if(istk(il1+1)*istk(il1+2).eq.0) then
+      
+      il=il1
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      if(istk(il).ne.10) then
+         if(istk(il1).eq.1) then
+            if(istk(il+1)*istk(il+2).eq.0) then
 c              convstr([])
                lgq=cremat('convstr', top, 0, 0, 0, lr, lc)
                return
@@ -1113,7 +1115,7 @@ c              convstr([])
          endif
          top=tops
          fun=-1
-         call funnam(ids(1,pt+1),'convstr',iadr(lstk(top+1-rhs)))
+         call funnam(ids(1,pt+1),'convstr',il)
          return
       endif
 
@@ -1211,13 +1213,14 @@ c
          m=int(stk(sadr(il+4)))
       elseif(rhs.eq.1) then
          il=iadr(lstk(top))
-         if(abs(istk(il)).gt.10) then
+         ilr=il
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+
+         if(istk(il).gt.10) then
             fun=-1
             call funnam(ids(1,pt+1),'emptystr',il)
             return
          endif
-         ilr=il
-         if(istk(il).lt.0) il=iadr(istk(il+1))
          ref=ilr.ne.il
          m=istk(il+1)
          n=istk(il+2)
@@ -1273,7 +1276,7 @@ c
       ref=ilr.ne.il1
       if (istk(il1) .ne. 10) then
          fun=-1
-         call funnam(ids(1,pt+1),'str2code',ilr)
+         call funnam(ids(1,pt+1),'str2code',il1)
          return
       endif
 
@@ -1326,7 +1329,7 @@ c
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       if (istk(il1) .ne. 1) then
          fun=-1
-         call funnam(ids(1,pt+1),'code2str2',ilr)
+         call funnam(ids(1,pt+1),'code2str2',il1)
          return
       endif
       ref=ilr.ne.il1
@@ -1572,7 +1575,7 @@ c     argument is a scilab string return a vector of ascii codes
          lstk(top+1)=lr+n
       else
          fun=-1
-         call funnam(ids(1,pt+1),'ascii',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'ascii',il)
       endif
       end
 
@@ -1605,7 +1608,7 @@ c
       if(istk(il2).ne.10) then 
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'grep',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'grep',il2)
          return
       endif
       mn2=istk(il2+1)*istk(il2+2)
@@ -1636,7 +1639,7 @@ c
       if(istk(il1).ne.10) then
          fun=-1
          top=tops
-         call funnam(ids(1,pt+1),'grep',iadr(lstk(top+1-rhs)))
+         call funnam(ids(1,pt+1),'grep',il1)
          return
       endif
 c
@@ -1814,7 +1817,7 @@ c        get the separators sep
          if (istk(il2).ne.10) then 
             fun=-1
             top=tops
-            call funnam(ids(1,pt+1),'tokens',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'tokens',il2)
             return
          endif
          m2 = istk(il2+1)
@@ -1852,7 +1855,7 @@ c     get the string str
       if(istk(il1).ne.10) then 
          fun = -1
          top = tops
-         call funnam(ids(1,pt+1),'tokens',iadr(lstk(top-1)))
+         call funnam(ids(1,pt+1),'tokens',il1)
          return
       endif
       if(istk(il1+1)*istk(il1+2).ne.1) then 

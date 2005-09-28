@@ -1186,16 +1186,22 @@ c
       lw=lstk(top+1)
 c
       iln=iadr(lstk(top+1-rhs))
-      if(abs(istk(iln)).gt.2) then
+
+      il=iln
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      if(istk(il).gt.2) then
          fun=-1
-         call funnam(ids(1,pt+1),'pdiv',iln)
+         call funnam(ids(1,pt+1),'pdiv',il)
          return
       endif
 c
       ild=iadr(lstk(top))
-      if(abs(istk(ild)).gt.2) then 
+
+      il=ild
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      if(istk(il).gt.2) then
          fun=-1
-         call funnam(ids(1,pt+1),'pdiv',ild)
+         call funnam(ids(1,pt+1),'pdiv',il)
          return
       endif
 c
@@ -1642,16 +1648,22 @@ c
       endif
 c
       ila=iadr(lstk(top+1-rhs))
-      if(abs(istk(ila)).gt.2) then
+
+      il=ila
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      if(istk(il).gt.2) then
          fun=-1
-         call funnam(ids(1,pt+1),'simp',ila)
+         call funnam(ids(1,pt+1),'simp',il)
          return
       endif
 c
       ilb=iadr(lstk(top))
-      if(abs(istk(ilb)).gt.2) then 
+
+      il=ilb
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      if(istk(il).gt.2) then
          fun=-1
-         call funnam(ids(1,pt+1),'simp',ilb)
+         call funnam(ids(1,pt+1),'simp',il)
          return
       endif
 c
@@ -2056,7 +2068,7 @@ c
       ref=ilr.ne.il1
       if(istk(il1).ne.2) then
          fun=-1
-         call funnam(ids(1,pt+1),'sfact',ilb)
+         call funnam(ids(1,pt+1),'sfact',il1)
          return
       endif
       m1=istk(il1+1)
