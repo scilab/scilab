@@ -1,4 +1,4 @@
-function p=tk_getfile(file_mask,path,title,foo)
+function p=tk_getfile(file_mask,path,title,multip)
   if ~with_tk() then error('Tcl/Tk interface not defined'),end
   arg=''
   if exists('file_mask','local')==1 then 
@@ -6,38 +6,62 @@ function p=tk_getfile(file_mask,path,title,foo)
     arg=arg+' -filetypes $ftypes'
   end
   if exists('path','local')==1 then 
-   	if MSDOS then
-    		path=pathconvert(path,%f,%t,'w')
-    		path=strsubst(path,"\","/")
-    		if strindex(path,' ')<>[] then
-    			path='""'+path+'""'
-    			arg=arg+' -initialdir '+path
-    		else
-    			arg=arg+' -initialdir  ""'+path +'""'
-    		end
-    	else
-    		path=pathconvert(path,%f,%t)
-    		if strindex(path,' ')<>[] then path='""'+path+'""',end
-    		arg=arg+' -initialdir  ""'+path +'""'
-    	end
+    if MSDOS then
+      path=pathconvert(path,%f,%t,'w')
+      path=strsubst(path,"\","/")
+      if strindex(path,' ')<>[] then
+        path='""'+path+'""'
+        arg=arg+' -initialdir '+path
+      else
+        arg=arg+' -initialdir ""'+path +'""'
+      end
+     else
+       path=pathconvert(path,%f,%t)
+       if strindex(path,' ')<>[] then path='""'+path+'""',end
+       arg=arg+' -initialdir ""'+path +'""'
+     end
   else
-      	if MSDOS then
-    		global %tk_getfile_defaultpath
-    		if exists('%tk_getfile_defaultpath','global') == 1 then
-    			strsubst(%tk_getfile_defaultpath,'\','/')
-    			arg=arg+' -initialdir  ""'+%tk_getfile_defaultpath +'""'
-    		end
-    	end
+    if MSDOS then
+      global %tk_getfile_defaultpath
+      if exists('%tk_getfile_defaultpath','global') == 1 then
+        strsubst(%tk_getfile_defaultpath,'\','/')
+        arg=arg+' -initialdir ""'+%tk_getfile_defaultpath +'""'
+      end
+    end
   end
-  if exists('title','local')==1 then 
+  if exists('title','local')==1 then
     arg=arg+' -title ""'+title+'""',
   end
+  if ~exists('multip','local')==1 then
+    multip="0"
+  end
+  if multip<>"1" then
+    multip="0"
+  end
+  arg=arg+' -multiple '+multip,
   TCL_EvalStr('set scifilepath [tk_getOpenFile'+arg+']')
-  p=TCL_GetVar('scifilepath')
+  // the output of tk_getOpenFile with -multiple 1 and -multiple 0 is not
+  // the same wrt to escaping special chars such as spaces - therefore two cases
+  if multip=="1" then
+    // since TCL_GetVar does not handle lists,
+    // let TCL parse the list output from tk_getOpenFile
+    TCL_EvalStr('array set sfpa {};...
+                 set sfpai 1;...
+                 foreach sfpae $scifilepath {set sfpa($sfpai,1) $sfpae;incr sfpai};...
+                 if {$scifilepath==""""} {array unset sfpa;set sfpa """"}...
+                ')
+    // and get back a column matrix of string
+    p=TCL_GetVar('sfpa')
+    TCL_EvalStr('unset -nocomplain sfpa')
+  else
+    // -multiple 0 case, just recover the string output from tk_getOpenFile
+    p=TCL_GetVar('scifilepath')
+  end
   if MSDOS then
-  	if ~( p=='' ) then
-  		global %tk_getfile_defaultpath;
-   		%tk_getfile_defaultpath=dirname(p);
-   	end
+   if ~( p=='' ) then
+     global %tk_getfile_defaultpath;
+     %tk_getfile_defaultpath=dirname(p(1));
+    end
   end
 endfunction
+
