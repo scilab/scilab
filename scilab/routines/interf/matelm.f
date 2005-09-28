@@ -233,7 +233,9 @@ c     ** non integer power of square matrices or  scalar^matrix
 c     
  200  continue
       fun=-1
-      call funnam(ids(1,pt+1),'pow',iadr(lstk(top-rhs+1)))
+      il=iadr(lstk(top-rhs+1))
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      call funnam(ids(1,pt+1),'pow',il)
       goto 900
 c     
 c     sign
@@ -437,7 +439,9 @@ c     .        ask for result of the same real/complex type
             endif
          else
             top=tops
-            call funnam(ids(1,pt+1),'rand',iadr(lstk(top-rhs+1)))
+            il=iadr(lstk(top-rhs+1))
+            if(istk(il).lt.0) il=iadr(istk(il+1))
+            call funnam(ids(1,pt+1),'rand',il)
             fun=-1
             return
          endif
@@ -556,10 +560,13 @@ c        *call* spelm
       if(itype.ne.1) then
 c     ------call macro 
          top=topk
+         il=iadr(lstk(top))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+
          if(fin.eq.17) then
-            call funnam(ids(1,pt+1),'mini',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'mini',il)
          else
-            call funnam(ids(1,pt+1),'maxi',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'maxi',il)
          endif
          fun=-1
          return
@@ -581,9 +588,11 @@ c     ------simple case one argument which is a matrix or vector
       if(gettype(top).ne.1) then
          top=topk
          if(fin.eq.17) then
-            call funnam(ids(1,pt+1),'mini',iadr(lstk(top-rhs+1)))
+         il=iadr(lstk(top-rhs+1))
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+            call funnam(ids(1,pt+1),'mini',il)
          else
-            call funnam(ids(1,pt+1),'maxi',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'maxi',il)
          endif
          fun=-1
          return
@@ -692,10 +701,12 @@ c     check argument and compute dimension of the result.
       do 101 i=1,rhs
          if(gettype(topk-rhs+i).ne.1) then
             top=topk
+            il=iadr(lstk(top-rhs+i))
+            if(istk(il).lt.0) il=iadr(istk(il+1))
             if(fin.eq.17) then
-               call funnam(ids(1,pt+1),'mini',iadr(lstk(topk-rhs+i)))
+               call funnam(ids(1,pt+1),'mini',il)
             else
-               call funnam(ids(1,pt+1),'maxi',iadr(lstk(topk-rhs+i)))
+               call funnam(ids(1,pt+1),'maxi',il)
             endif
             fun=-1
             return
@@ -890,7 +901,7 @@ c
          lr=sadr(ilr+9+m*n)
          head=9+m*n
       else
-         call funnam(ids(1,pt+1),'abs',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'abs',il)
          fun=-1
          return
       endif
@@ -1048,7 +1059,7 @@ c
          istk(ilr+3) = 0 ! it = 0
          lstk(top+1)=lr+nelr
       else
-         call funnam(ids(1,pt+1),'real',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'real',il)
          fun=-1
          return
       endif
@@ -1198,7 +1209,7 @@ c
          istk(ilr+3) = 0 ! it = 0
          lstk(top+1)=lr+nelr
       else
-         call funnam(ids(1,pt+1),'imag',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'imag',il)
          fun=-1
          return
       endif
@@ -1224,8 +1235,10 @@ c
       endif
       
       il=iadr(lstk(top))
-      if(abs(istk(il)).gt.2) then
-         call funnam(ids(1,pt+1),'conj',iadr(lstk(top)))
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(abs(istk(il1)).gt.2) then
+         call funnam(ids(1,pt+1),'conj',il1)
          fun=-1
          return
       endif
@@ -1315,7 +1328,7 @@ c
             call icopy(9+m*n,istk(il),1,istk(ilr),1)
          endif
       else
-         call funnam(ids(1,pt+1),'round',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'round',il)
          fun=-1
          return
       endif
@@ -1386,7 +1399,7 @@ c
             call icopy(9+m*n,istk(il),1,istk(ilr),1)
          endif
       else
-         call funnam(ids(1,pt+1),'int',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'int',il)
          fun=-1
          return
       endif
@@ -1458,7 +1471,7 @@ c
             call icopy(9+m*n,istk(il),1,istk(ilr),1)
          endif
       else
-         call funnam(ids(1,pt+1),'floor',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'floor',il)
          fun=-1
          return
       endif
@@ -1526,7 +1539,7 @@ c
             call icopy(9+m*n,istk(il),1,istk(ilr),1)
          endif
       else
-         call funnam(ids(1,pt+1),'ceil',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'ceil',il)
          fun=-1
          return
       endif
@@ -1573,7 +1586,7 @@ c     ------------------
      +           istk(ilt+7+mnt).eq.28))) then
 c     size of  'lss' or 'r' typed list
                top=tops
-               call funnam(ids(1,pt+1),'size',iadr(lstk(top-rhs+1)))
+               call funnam(ids(1,pt+1),'size',il)
                fun=-1
                return
             endif
@@ -1669,7 +1682,7 @@ c     -------------------------
 c     other cases
 c     -----------
          top=tops
-         call funnam(ids(1,pt+1),'size',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'size',il)
          fun=-1
       endif
       return
@@ -1798,7 +1811,7 @@ c     .  *call* polelm
          endif
          if(sel.ne.0) then
             top=tops
-            call funnam(ids(1,pt+1),'sum',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'sum',il0)
             fun=-1
             return
          endif
@@ -1822,7 +1835,7 @@ c     sparse matrix case
       else
 c     other cases
          top=tops
-         call funnam(ids(1,pt+1),'sum',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'sum',il0)
          fun=-1
       endif
       return
@@ -1858,7 +1871,7 @@ c
 c
       if(istk(il0).ne.1) then
          top=tops
-         call funnam(ids(1,pt+1),'cumsum',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'cumsum',il0)
          fun=-1
          return
       endif
@@ -1951,7 +1964,7 @@ c
 c
       if(istk(il0).ne.1) then
          top=tops
-         call funnam(ids(1,pt+1),'cumprod',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'cumprod',il0)
          fun=-1
          return
       endif
@@ -2141,7 +2154,7 @@ c     sparse matrix case
          endif
          if(sel.ne.0) then
             top=tops
-            call funnam(ids(1,pt+1),'prod',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'prod',il0)
             fun=-1
             return
          endif
@@ -2190,7 +2203,7 @@ c
          return
       else
          top=tops
-         call funnam(ids(1,pt+1),'prod',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'prod',il0)
          fun=-1
       endif
       return
@@ -2387,7 +2400,7 @@ c       *call* polelm
          top=tops
       else
          top=tops
-         call funnam(ids(1,pt+1),'diag',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'diag',il)
          fun=-1
       endif
       return
@@ -2485,7 +2498,7 @@ c       *call* polelm
          fin=11
       else
          top=tops
-         call funnam(ids(1,pt+1),'triu',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'triu',il)
          fun=-1
       endif
       return
@@ -2582,7 +2595,7 @@ c     .  *call* polelm
          return
       else
          top=tops
-         call funnam(ids(1,pt+1),'tril',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'tril',il)
          fun=-1
          return
       endif
@@ -2703,7 +2716,8 @@ c     ones sans argument
          n=1
       elseif(rhs.eq.1) then
          il=iadr(lstk(top))
-         if(abs(istk(il)).gt.10) then
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).gt.10) then
             call funnam(ids(1,pt+1),'ones',il)
             fun=-1
             return
@@ -2777,7 +2791,8 @@ c     ones sans argument
          n=1
       elseif(rhs.eq.1) then
          il=iadr(lstk(top))
-         if(abs(istk(il)).gt.10) then
+         if(istk(il).lt.0) il=iadr(istk(il+1))
+         if(istk(il).gt.10) then
             call funnam(ids(1,pt+1),'zeros',il)
             fun=-1
             return
@@ -2839,15 +2854,15 @@ c
          return
       endif
       il=iadr(lstk(top+1-rhs))
-
-      if(abs(istk(il)).eq.10) then
+      if(istk(il).lt.0) il=iadr(istk(il+1))
+      if(istk(il).eq.10) then
 c     *call* strelm
          fun=21
          fin=8
          return
       endif
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'sort',iadr(lstk(top-rhs+1)))
+      if(istk(il).ne.1) then
+         call funnam(ids(1,pt+1),'sort',il)
          fun=-1
          return
       endif
@@ -2863,7 +2878,7 @@ c     select type of sort to perform
       if(sel.eq.2) then
 c        sort(a,'c')   <=>  sort(a,2)   The lazy way...
          top=tops
-         call funnam(ids(1,pt+1),'sort',iadr(lstk(top-rhs+1)))
+         call funnam(ids(1,pt+1),'sort',il)
          fun=-1
          return
       endif
@@ -3010,11 +3025,11 @@ c
       if(istk(il).lt.0) il=iadr(istk(il+1))
       if(istk(il).ne.1) then
          if(fin.eq.19) then
-            call funnam(ids(1,pt+1),'kronm',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'kronm',il)
          elseif(fin.eq.20) then
-            call funnam(ids(1,pt+1),'kronr',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'kronr',il)
          else
-            call funnam(ids(1,pt+1),'kronl',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'kronl',il)
          endif
          fun=-1
          return
@@ -3033,11 +3048,11 @@ c
       if(istk(il).ne.1) then
          top=tops
          if(fin.eq.19) then
-            call funnam(ids(1,pt+1),'kronm',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'kronm',il)
          elseif(fin.eq.20) then
-            call funnam(ids(1,pt+1),'kronr',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'kronr',il)
          else
-            call funnam(ids(1,pt+1),'kronl',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'kronl',il)
          endif
          fun=-1
          return
@@ -3207,7 +3222,7 @@ c$$$c        *call* spelm
 c$$$         return
 c$$$      endif
 
-      ityp=abs(istk(il))
+      ityp=istk(il2)
 
 * next line modified by bruno (added  sparse and sparse boolean)
       if(ityp.ne.1.and.ityp.ne.2.and.ityp.ne.5.and.ityp.ne.6
@@ -3459,9 +3474,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'sin',iadr(lstk(top)))
+
+      il2=il
+      if(istk(il2).lt.0) il2=iadr(istk(il2+1))
+      if(istk(il2).ne.1) then
+         call funnam(ids(1,pt+1),'sin',il2)
          fun=-1
          return
       endif
@@ -3525,9 +3542,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'cos',iadr(lstk(top)))
+
+      il2=il
+      if(istk(il2).lt.0) il2=iadr(istk(il2+1))
+      if(istk(il2).ne.1) then
+         call funnam(ids(1,pt+1),'cos',il2)
          fun=-1
          return
       endif
@@ -3594,9 +3613,11 @@ c
       tops=top
 
       il=iadr(lstk(top+1-rhs))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'atan',iadr(lstk(top-rhs+1)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'atan',il1)
          fun=-1
          return
       endif
@@ -3653,13 +3674,14 @@ c correction (Bruno) : les points singuliers de atan sont +- i
          if(istk(il2).lt.0) il2=iadr(istk(il2+1))
          l2=sadr(il2+4)
          top=top-1
-         il1=iadr(lstk(top))
-         if(abs(istk(il1)).ne.1.or.istk(il2).ne.1) then
+         if(istk(il2).ne.1) then
             top=tops
-            call funnam(ids(1,pt+1),'atan',iadr(lstk(top-rhs+1)))
+            call funnam(ids(1,pt+1),'atan',il1)
             fun=-1
             return
          endif
+         il1=iadr(lstk(top))
+
          if(istk(il1).lt.0) then
 c     .     first argument is passed by reference
             ilr=il1
@@ -3726,9 +3748,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'exp',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'exp',il1)
          fun=-1
          return
       endif
@@ -3792,9 +3816,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'expm',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'expm',il1)
          fun=-1
          return
       endif
@@ -3876,9 +3902,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'sqrt',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+          call funnam(ids(1,pt+1),'sqrt',il1)
          fun=-1
          return
       endif
@@ -3966,9 +3994,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'log',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'log',il1)
          fun=-1
          return
       endif
@@ -4089,9 +4119,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'sign',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'sign',il1)
          fun=-1
          return
       endif
@@ -4169,19 +4201,20 @@ c
       endif
 
       ilp=iadr(lstk(top+1-rhs))
-      if(abs(istk(ilp)).eq.2) then
+      if(istk(ilp).lt.0) ilp=iadr(istk(ilp+1))
+      if(istk(ilp).eq.2) then
          fin=17
          fun=16
 c        *call* polelm
          return
-      elseif(abs(istk(ilp)).eq.5) then
+      elseif(istk(ilp).eq.5) then
          call ref2val
          fin=8
          fun=27
 c        *call* spelm
          return
-      elseif(abs(istk(ilp)).ne.1) then
-         call funnam(ids(1,pt+1),'clean',iadr(lstk(top-rhs+1)))
+      elseif(istk(ilp).ne.1) then
+         call funnam(ids(1,pt+1),'clean',ilp)
          fun=-1
          return
       endif
@@ -4500,7 +4533,7 @@ c
             call icopy(4,istk(il),1,istk(ilr),1)
          endif
       else
-         call funnam(ids(1,pt+1),'frexp',iadr(lstk(top)))
+         call funnam(ids(1,pt+1),'frexp',il)
          fun=-1
          return
       endif
@@ -4516,6 +4549,7 @@ c
       call vfrexp(mn,stk(l),1,stk(lr),1,stk(lr1),1)
       return
       end
+
       subroutine inttan(id)
       INCLUDE '../stack.h'
 c     
@@ -4539,8 +4573,10 @@ c
 
       il=iadr(lstk(top))
 
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'tan',iadr(lstk(top)))
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'tan',il1)
          fun=-1
          return
       endif
@@ -4604,9 +4640,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'imult',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'imult',il1)
          fun=-1
          return
       endif
@@ -4688,9 +4726,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'log1p',iadr(lstk(top)))
+ 
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'log1p',il1)
          fun=-1
          return
       endif
@@ -4769,9 +4809,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'asin',iadr(lstk(top)))
+ 
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'asin',il1)
          fun=-1
          return
       endif
@@ -4858,9 +4900,11 @@ c
       endif
 
       il=iadr(lstk(top))
-      
-      if(abs(istk(il)).ne.1) then
-         call funnam(ids(1,pt+1),'acos',iadr(lstk(top)))
+
+      il1=il
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if(istk(il1).ne.1) then
+         call funnam(ids(1,pt+1),'acos',il1)
          fun=-1
          return
       endif
@@ -5275,9 +5319,15 @@ c
       if (.not.checkrhs(fname,2,2000000)) return
       if (.not.checklhs(fname,1,1)) return
 c first check the types
-      typ=abs(istk(iadr(lstk(top1))))
+
+      il1=iadr(lstk(top1))
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      typ=istk(il1)
+
       do 10 k=1,rhs-1
-        if (abs(istk(iadr(lstk(top1+k)))).ne.typ) goto 60
+         ilk=iadr(lstk(top1+k))
+         if(istk(ilk).lt.0) ilk=iadr(istk(ilk+1))
+         if (istk(ilk).ne.typ) goto 60
  10   continue
 c
       if (typ.ge.15.and.typ.le.17) then
@@ -5287,7 +5337,7 @@ c
       endif
 
       if(typ.gt.14) then
-         call funnam(ids(1,pt+1),'isequal',iadr(lstk(top1)))
+         call funnam(ids(1,pt+1),'isequal',typ)
          fun=-1
          return
       endif
@@ -5422,7 +5472,7 @@ c
       endif
       if (istk(il).ne.5 .and. istk(il).ne.6) then
          if (istk(il).eq.7) then
-            call funnam(ids(1,pt+1),'spones',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'spones',il)
             fun=-1
          else
             buf=fname//': argument must be a sparse matrix'
