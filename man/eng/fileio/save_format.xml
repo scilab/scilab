@@ -22,127 +22,104 @@
      </P>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Floating matrices (type 1)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer), it (long integer);</P>
-     data (8*n*m*(it+1) bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Floating matrices (type 1)">
+           <P>row size m (long integer), column size n (long integer), it (long integer);</P>
+           <P>data (8*n*m*(it+1) bytes)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Polynomials (type 2) and 
-                              Size implicit indices (?) (type 129)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer), it (long integer);</P>
-     <P>formal variable name (16 bytes); pointer table (m*n+1 long integers);</P>
-     data (8*(N-1)*(it+1) bytes, where N is the last entry of the pointer table)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Polynomials (type 2) and Size implicit indices (?) (type 129)">
+           <P>row size m (long integer), column size n (long integer), it (long integer);</P>
+           <P>formal variable name (16 bytes); pointer table (m*n+1 long integers);</P>
+           <P>data (8*(N-1)*(it+1) bytes, where N is the last entry of the pointer table)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Booleans (type 4)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer);</P>
-     data (4*n*m bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Booleans (type 4)">
+           <P>row size m (long integer), column size n (long integer);</P>
+           <P>data (4*n*m bytes)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Floating sparse matrices (type 5)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer),
-        it (long integer), nel (long integer); </P>
-     <P>index (4*m+nel bytes);</P>
-     non-zero values (8*nel*(it+1) bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Floating sparse matrices (type 5)">
+           <P>row size m (long integer), column size n (long integer),
+           it (long integer), nel (long integer); </P>
+           <P>index (4*m+nel bytes);</P>
+           <P>non-zero values (8*nel*(it+1) bytes)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Boolean sparse matrices (type 6)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer),
-        it (long integer), nel (long integer);</P>
-     <P>index (4*m+nel bytes);</P>
-     non-zero values (4*nel*(it+1) bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Boolean sparse matrices (type 6)">
+           <P>row size m (long integer), column size n (long integer),
+            it (long integer), nel (long integer);</P>
+           <P>index (4*m+nel bytes);</P>
+           <P> non-zero values (4*nel*(it+1) bytes)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Integer matrices (type 8)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer),</P>
-     <P>integer type (long integer): 1,2,4, or 11,12,14 for signed and unsigned
-        1,2,4 bytes integers; </P>
-     data (n*m*(it modulo 10) bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Integer matrices (type 8)">
+           <P>row size m (long integer), column size n (long integer),</P>
+           <P>integer type (long integer): 1,2,4, or 11,12,14 for signed and unsigned
+              1,2,4 bytes integers;</P>
+           <P>data (n*m*(it modulo 10) bytes)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="handles (type 9)">
-     <SP>
-     ??
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="handles (type 9)">
+           <SP>
+           ??
+          </SP>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Strings (type 10)">
-     <SP>
-     <P>row size m (long integer), column size n (long integer),</P>
-     <P>total number of characters nc+1 (long integer);</P>
-     <P>pointer table (n*m+1 bytes);</P>
-     data (4*nc bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Strings (type 10)">
+           <P>row size m (long integer), column size n (long integer),</P>
+           <P>total number of characters nc+1 (long integer);</P>
+           <P>pointer table (n*m+1 bytes);</P>
+           <P>data (4*nc bytes)</P>
+           </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Uncompiled functions (type 11)">
-     <SP>
-     <P>nout (long integer), lhs names (24*nout bytes),</P>
-     <P>nin (long integer), rhs names (24*nin bytes);</P>
-     <P>code length N (long integer),</P>
-     code (4*N bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Uncompiled functions (type 11)">
+           <P>nout (long integer), lhs names (24*nout bytes),</P>
+           <P>nin (long integer), rhs names (24*nin bytes);</P>
+           <P>code length N (long integer),</P>
+           <P>code (4*N bytes)</P>
+          </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Compiled functions (type 13)">
-     <SP>
-     <P>nout (long integer), lhs names (24*nout bytes),</P>
-     <P>nin (long integer), rhs names (24*nin bytes);</P>
-     <P>code length N (long integer),</P>
-     pseudocode (4*N bytes)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Compiled functions (type 13)">
+           <P>nout (long integer), lhs names (24*nout bytes),</P>
+           <P>nin (long integer), rhs names (24*nin bytes);</P>
+           <P>code length N (long integer),</P>
+           <P>pseudocode (4*N bytes)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
 
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Libraries (type 14)">
-     <SP>
-     <P>path length np (long integer), path name (4*np bytes),</P>
-     <P>number of names nn (long integer),</P>
-     <P>class pointers (120 bytes);</P>
-     names (24*nn bytes);
-     </SP>
-     </DESCRIPTION_ITEM>
+           <DESCRIPTION_ITEM label="Libraries (type 14)">
+           <P>path length np (long integer), path name (4*np bytes),</P>
+           <P>number of names nn (long integer),</P>
+           <P>class pointers (120 bytes);</P>
+           <P>names (24*nn bytes);</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
 
      <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM label="Lists (type 15), tlists (type 16), mlists (type 17)">
-     <SP>
-     <P>number of fields n (long integer),</P>
-     <P>pointers (4*(n+1) bytes);</P>
-     variables (each one written according to its format)
-     </SP>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_ITEM label="Lists (type 15), tlists (type 16), mlists (type 17)">
+           <P>number of fields n (long integer),</P>
+           <P>pointers (4*(n+1) bytes);</P>
+           <P>variables (each one written according to its format)</P>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      
      <DESCRIPTION_INDENT>
