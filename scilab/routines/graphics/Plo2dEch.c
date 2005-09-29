@@ -1249,7 +1249,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		      int xp,yp;
 		      double x,y,z;
 		      
-		      if(GetVerticesAt(pSUBWIN_FEATURE(psousfen)->vertices_list, i, &xp, &yp, &x, &y, &z)==-1) 
+		      if(GetVerticesAt(pSUBWIN_FEATURE(psousfen)->vertices_list, &xp, &yp, &x, &y, &z)==-1) 
 			break; /* all the vertices have been scanned inside the current psubwin */
 		      
 		      if(xp >= section3d[0] && xp <= section3d[2] && yp >= section3d[1] && yp <= section3d[3])
