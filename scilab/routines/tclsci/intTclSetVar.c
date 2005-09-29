@@ -53,7 +53,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		header = (int *) GetData(2);   Cmplx=header[3];
 		if (Cmplx==COMPLEX)
 		{
-			Scierror(999,"doesn''t work with Complex");
+			Scierror(999,"doesn't work with Complex");
 			return 0;
 		}
 		
@@ -61,11 +61,10 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		VarName=cstk(l1);
 		
 		GetRhsVar(2,"d",&m1,&n1,&l1);
-		
 
 		if ( (m1==0) && (n1==0) )
 		{
-			Scierror(999,"[] doesn''t work with TCL");
+			Scierror(999,"[] doesn't work with TCL");
 			return 0;
 		}
 
