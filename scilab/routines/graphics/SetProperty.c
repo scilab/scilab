@@ -1650,7 +1650,8 @@ sciSetText (sciPointObj * pobj, char text[], int n)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
-      default:
+    default:
+      sciprint ("This object has no text !\n");
       return -1;
       break;
     }
@@ -1956,7 +1957,7 @@ sciSetTextPosX (sciPointObj * pobj, double x)
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
-      sciprint ("This object has no text !\n");
+      sciprint ("This object has no text position!\n");
       return 0;
       break;
     }
@@ -2001,7 +2002,7 @@ sciSetTextPosY (sciPointObj * pobj, double y)
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
     default:
-      sciprint ("This object has no text !\n");
+      sciprint ("This object has no text position!\n");
       return 0;
       break;
     }
