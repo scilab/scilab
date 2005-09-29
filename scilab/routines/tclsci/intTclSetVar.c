@@ -45,12 +45,23 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	else
 	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_matrix) )
 	{
+		#define COMPLEX 1
 		char *VarName=NULL;
+		int *header=NULL;
+		int Cmplx;
+
+		header = (int *) GetData(2);   Cmplx=header[3];
+		if (Cmplx==COMPLEX)
+		{
+			Scierror(999,"doesn''t work with Complex");
+			return 0;
+		}
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
 		
 		GetRhsVar(2,"d",&m1,&n1,&l1);
+		
 
 		if ( (m1==0) && (n1==0) )
 		{
