@@ -469,7 +469,6 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
 sciPointObj *
 sciGetParent (sciPointObj * pobj)
 {
-  sciPointObj *tmp;
   switch (sciGetEntityType (pobj))
     {
     case SCI_LEGEND:
