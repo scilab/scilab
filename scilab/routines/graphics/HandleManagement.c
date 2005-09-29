@@ -472,73 +472,30 @@ sciGetParent (sciPointObj * pobj)
   sciPointObj *tmp;
   switch (sciGetEntityType (pobj))
     {
-    case SCI_FIGURE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
-    case SCI_SUBWIN:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
-    case SCI_TEXT:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
-    case SCI_TITLE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_LEGEND:
-      tmp = (pLEGEND_FEATURE (pobj)->text.relationship).pparent;
-      return (sciPointObj *) tmp;
+      return (sciPointObj *) (pLEGEND_FEATURE (pobj)->text.relationship).pparent;
       break;
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_TEXT:
+    case SCI_TITLE:
     case SCI_ARC:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_SEGS:  
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break; 
     case SCI_FEC: 
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break; 
     case SCI_GRAYPLOT:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break; 
     case SCI_POLYLINE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_RECTANGLE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_SURFACE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_LIGHT:
-      return (sciPointObj *)(sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_AXES:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_PANNER:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_SBH:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_SBV:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_MENU:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_MENUCONTEXT:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_STATUSB:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_AGREG:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_MERGE:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break; 
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
       break; 
