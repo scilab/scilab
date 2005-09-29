@@ -16,6 +16,7 @@ if "%1" == "macros" goto macros
 if "%1" == "clean" goto clean
 if "%1" == "distclean" goto distclean
 if "%1" == "modelicac" goto modelicac
+if "%1" == "xmlint" goto xmlint
 if "%1" == "check" goto check
 if "%1" == "tests" goto tests
 if "%1" == "tests-clean" goto tests-clean
@@ -59,6 +60,10 @@ goto Make
 rem /**********************************************************/
 :tests
 set PARAMS_COMPILE=scitests
+goto Make
+rem /**********************************************************/
+:xmlint
+set PARAMS_COMPILE=xmlint
 goto Make
 rem /**********************************************************/
 :tests-clean
