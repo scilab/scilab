@@ -49,6 +49,8 @@ extern int GlobalFlag_Zoom3dOn;
 
 extern int index_vertex;
 int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z);
+static Vertices * pHead = (Vertices *) NULL;
+static Vertices * pHead2 = (Vertices *) NULL;
 
 int xinitxend_flag = 0;
 /* sciClipTab ptabclip[15]; */
@@ -1103,7 +1105,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  lastzindex = ppsubwin->axes.nzgrads - 1;
 	  
 	  if(lastzindex == 0)
-	    ChoixFormatForOneGrad(c_format,ppsubwin->axes.zgrads[0]);
+	    ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.zgrads[0]));
 	  else
 	    ChoixFormatE(c_format,
 			 ppsubwin->axes.zgrads[0],
@@ -1674,7 +1676,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      lastxindex = ppsubwin->axes.nxgrads - 1;
 	      
 	      if(lastxindex == 0)
-		ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+		ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.xgrads[0]));
 	      else
 		ChoixFormatE(c_format,
 			     ppsubwin->axes.xgrads[0],
@@ -2266,7 +2268,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      lastyindex = ppsubwin->axes.nygrads - 1;
 	      
 	      if(lastyindex == 0)
-		ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+		ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.ygrads[0]));
 	      else
 		ChoixFormatE(c_format,
 			     ppsubwin->axes.ygrads[0],
@@ -2865,7 +2867,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      lastxindex = ppsubwin->axes.nxgrads - 1;
 	      
 	      if(lastxindex == 0)
-		ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+		ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.xgrads[0]));
 	      else
 		ChoixFormatE(c_format,
 			     ppsubwin->axes.xgrads[0],
@@ -3446,7 +3448,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      lastyindex = ppsubwin->axes.nygrads - 1;
 
 	      if(lastyindex == 0)
-		ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+		ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.ygrads[0]));
 	      else
 		ChoixFormatE(c_format,
 			     ppsubwin->axes.ygrads[0],
@@ -10266,7 +10268,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
   lastyindex = ppsubwin->axes.nygrads - 1;
   
   if(lastyindex == 0)
-    ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+    ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.ygrads[0]));
   else
     ChoixFormatE(c_format,
 		 ppsubwin->axes.ygrads[0],
@@ -10491,7 +10493,7 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
   lastxindex = ppsubwin->axes.nxgrads - 1;
   
   if(lastxindex == 0)
-    ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+    ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.xgrads[0]));
   else
     ChoixFormatE(c_format,
 		 ppsubwin->axes.xgrads[0],
@@ -10715,7 +10717,7 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
   lastyindex = ppsubwin->axes.nygrads - 1;
   
   if(lastyindex == 0)
-    ChoixFormatForOneGrad(c_format,ppsubwin->axes.ygrads[0]);
+    ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.ygrads[0]));
   else
     ChoixFormatE(c_format,
 		 ppsubwin->axes.ygrads[0],
@@ -10928,7 +10930,7 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
   lastxindex = ppsubwin->axes.nxgrads - 1;
   
   if(lastxindex == 0)
-    ChoixFormatForOneGrad(c_format,ppsubwin->axes.xgrads[0]);
+    ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.xgrads[0]));
   else
     ChoixFormatE(c_format,
 		 ppsubwin->axes.xgrads[0],
@@ -11142,7 +11144,7 @@ int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, s
   lastzindex = ppsubwin->axes.nzgrads - 1;
   
   if(lastzindex == 0)
-    ChoixFormatForOneGrad(c_format,ppsubwin->axes.zgrads[0]);
+    ChooseFormatForOneGrad(c_format,&(ppsubwin->axes.zgrads[0]));
   else
     ChoixFormatE(c_format,
 		 ppsubwin->axes.zgrads[0],
@@ -11345,21 +11347,23 @@ int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, doubl
 }
 
 
-int ChoixFormatForOneGrad(char *c_format, double grad)
+int ChooseFormatForOneGrad(char *c_format, double *grad)
 {
   int compteur = 0;
+  double epsilon = 1e-16;
   
-  if(10000000 * grad == grad){ /* case where grad is strictly equal to 0. */
+  if(abs(*grad) < epsilon){ /* case where grad is strictly equal to 0. */
+    *grad = 0.;
     strcpy(c_format,"%d");
     return 0;
   }
   
-  while((int) grad == 0){
+  while((int) (*grad) == 0){
     compteur++;
-    grad = 10*grad;
+    *grad = 10*(*grad);
     
     if(compteur > 100){
-      Scierror(999,"Error in function ChoixFormatForOneGrad\n");
+      Scierror(999,"Error in function ChooseFormatForOneGrad\n");
       return -1;
     }
   }
@@ -11377,20 +11381,13 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
 
   sciPointObj * psubwin = sciGetParentSubwin(pobj);
   sciSubWindow *ppsubwin = pSUBWIN_FEATURE(psubwin);
-  int ii;
 
   if(GlobalFlag_Zoom3dOn == 1){
-/*     Vertices *NewVertices = (Vertices *) NULL; */
     Vertices * pCurrent = ppsubwin->vertices_list;
     
     if (pCurrent != NULL) {
       
-      /*pCurrent = Tete; */
-      ii = 0;
-      while (pCurrent->pNext != NULL) {
-	pCurrent = pCurrent->pNext;
-	ii++;
-      }
+      pCurrent = pHead;
       
       if(( pCurrent->pNext = (Vertices*) MALLOC(sizeof(Vertices))) == NULL){
 	printf("Allocation failed for vertices when zoom called\n");
@@ -11406,6 +11403,9 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
       pCurrent->pNext->value_x = x;
       pCurrent->pNext->value_y = y;
       pCurrent->pNext->value_z = z;
+
+      pHead = pCurrent->pNext;
+
     }
     else
       { /* first element is created */
@@ -11421,6 +11421,9 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
 	ppsubwin->vertices_list->value_z = z;
 	
 	ppsubwin->vertices_list->pNext = NULL;
+
+	pHead = ppsubwin->vertices_list;
+
       }
     index_vertex++;
   }
@@ -11452,24 +11455,29 @@ int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, doubl
   return 0;
 }
 
-int GetVerticesAt(Vertices *vertices_list, int index, int *xm, int *ym, double *x, double *y, double *z)
+int GetVerticesAt(Vertices *vertices_list, int *xm, int *ym, double *x, double *y, double *z)
 {
   Vertices * pCurrent = vertices_list;
-  int i;
+/*   int i; */
 
-  for(i=0;i<index;i++){
-    pCurrent = pCurrent->pNext;
-    if(pCurrent == NULL){
-      /*       printf("pCurrent est nul et i vaut: %d\n",i); */
-      return -1;
-    }
-  }
+ /*  for(i=0;i<index;i++){ */
+/*     pCurrent = pCurrent->pNext; */
+/*     if(pCurrent == NULL){ */
+/*       /\*       printf("pCurrent est nul et i vaut: %d\n",i); *\/ */
+/*       return -1; */
+/*     } */
+/*   } */
   
-  *xm = pCurrent->value_xm;
-  *ym = pCurrent->value_ym;
-  *x  = pCurrent->value_x;
-  *y  = pCurrent->value_y;
-  *z  = pCurrent->value_z;
+  if(pHead2 == (Vertices *) NULL)
+    pHead2 = pCurrent;
+  
+  *xm = pHead2->value_xm;
+  *ym = pHead2->value_ym;
+  *x  = pHead2->value_x;
+  *y  = pHead2->value_y;
+  *z  = pHead2->value_z;
+  
+  pHead2 = pHead2->pNext;
   
   return 0;
 }     
@@ -11501,5 +11509,8 @@ int FreeVertices(sciPointObj * psubwin)
     FREE(ppsubwin->vertices_list); ppsubwin->vertices_list = (Vertices *) NULL;
   }
   
+  pHead = (Vertices *) NULL;
+  pHead2 = (Vertices *) NULL;
+
   return 0;
 }
