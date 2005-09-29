@@ -729,13 +729,13 @@ void scizoom(bbox,pobj)
     pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
     pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;
   }
-  /*****/
-  
-  /* sciprint("DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");
-     sciprint(" ppsubwin->ZRect[0] = xmin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[0]);
-     sciprint(" ppsubwin->ZRect[1] = ymin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[1]);
-     sciprint(" ppsubwin->ZRect[2] = xmax = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[2]);
-     sciprint(" ppsubwin->ZRect[3] = ymax = %f\n\n",pSUBWIN_FEATURE (psousfen)->ZRect[3]);
-     sciprint("fin DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");*/
+
+  if(pSUBWIN_FEATURE (psousfen)->is3d){
+    /* default values when zooming in 3d */
+    /* and scizoom takes only xmin ymin xmax ymax AND not zmin zmax (for now at least) */
+    /* F.Leray 29.09.05 */
+    pSUBWIN_FEATURE (psousfen)->ZRect[4] = pSUBWIN_FEATURE (psousfen)->SRect[4];
+    pSUBWIN_FEATURE (psousfen)->ZRect[5] = pSUBWIN_FEATURE (psousfen)->SRect[5];
+  }
   
 }
