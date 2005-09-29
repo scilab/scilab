@@ -7329,6 +7329,10 @@ sciDrawObj (sciPointObj * pobj)
   double **zvect = (double **) NULL;
   int result_trans3d = 1;
   BOOL drawline = TRUE;
+  int nb_curves_bar = 0;
+  /* get the number of curves/polylines created */
+  /* by ONE call to plot2d (property pPOLYLINE_FEATURE ->n2) */
+  /* to help the drawing of the bar (case 6 ONLY) in case POLYLINE */
 
   char STRFLAG[4];
   int DPI[2];
@@ -8458,7 +8462,8 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       n1 = pPOLYLINE_FEATURE (pobj)->n1;
-      n2 = pPOLYLINE_FEATURE (pobj)->n2;
+      /* n2 = 1; */ /* the number of curves is always 1 since we draw each one line at a given time */
+      nb_curves_bar = pPOLYLINE_FEATURE (pobj)->n2;
       closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
       
       /***/
@@ -8476,11 +8481,11 @@ sciDrawObj (sciPointObj * pobj)
 
 	  if(n1==0) continue;
 	  
-	  if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-	  if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-	  if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
-	  if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
-	  if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	  if ((xm = MALLOC ((2*n1)*sizeof (integer))) == NULL)	return -1;
+	  if ((ym = MALLOC ((2*n1)*sizeof (integer))) == NULL)	return -1;
+	  if ((xzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	return -1;
+	  if ((yzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	return -1;
+	  if ((zzz = MALLOC ((2*n1)*sizeof (double))) == NULL)	return -1;
 	  
 	  /**DJ.Abdemouche 2003**/
 	  switch (pPOLYLINE_FEATURE (pobj)->plot)
@@ -8496,7 +8501,7 @@ sciDrawObj (sciPointObj * pobj)
 	      else{
 		drawline = TRUE;
 		/* In 2d, the axes reverse is done inside XScale, YScale... routines. */
-		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L); 
+		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &un, "f2i",3L); 
 	      }
 	      break; 
 	    case 2:
@@ -8508,12 +8513,12 @@ sciDrawObj (sciPointObj * pobj)
 		  
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
-		  Plo2dTo3d(2,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  Plo2dTo3d(2,&un,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
 	      else
 		{
-		  Plo2d2RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+		  Plo2d2RealToPixel(&un,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
 		}
 	      n1=n1*2;
 	      break;
@@ -8524,49 +8529,43 @@ sciDrawObj (sciPointObj * pobj)
 		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
 		    FREE(zzz); zzz = (double *) NULL;
 		  
-		  /* 	  Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
-		  
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
-		  Plo2dTo3d(3,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  Plo2dTo3d(3,&un,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
 	      else
 		{
-		  /* 		  Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
-		  Plo2d3RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+		  Plo2d3RealToPixel(&un,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
 		}
 	      if(result_trans3d == 1)
-		for ( j = 0 ; j < n2 ; j++)
-		  {
-		    nn1= n1*2;
-		    /* add mark support even for bar plot lines */
-		    if (sciGetIsMark(pobj) == TRUE){
-		      int x[4], markidsizenew[2];
-		      x[0] = sciGetMarkForeground(pobj);
-		      
-		      markidsizenew[0] = sciGetMarkStyle(pobj);
-		      markidsizenew[1] = sciGetMarkSize (pobj);
-		      
-		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-				&dv, &dv, &dv, &dv, 5L, 4096);
-		      
-		      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-				PD0, PD0, 0L, 0L);   
-		      
-		      DrawNewMarks(pobj,nn1,&xm[2*n1*j],&ym[2*n1*j],DPI);
-		    }
-		    
-		    if (sciGetIsLine(pobj) == TRUE){
-		      lstyle=sciGetForeground(pobj);
-		      iflag=0; 
-		      C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		    }
-		  }
+		nn1= n1*2;
+	      /* add mark support even for bar plot lines */
+	      if (sciGetIsMark(pobj) == TRUE){
+		int x[4], markidsizenew[2];
+		x[0] = sciGetMarkForeground(pobj);
+		
+		markidsizenew[0] = sciGetMarkStyle(pobj);
+		markidsizenew[1] = sciGetMarkSize (pobj);
+		
+		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
+		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			  &dv, &dv, &dv, &dv, 5L, 4096);
+		
+		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			  PD0, PD0, 0L, 0L);   
+		
+		DrawNewMarks(pobj,nn1,&xm[0],&ym[0],DPI);
+	      }
+	      
+	      if (sciGetIsLine(pobj) == TRUE){
+		lstyle=sciGetForeground(pobj);
+		iflag=0; 
+		C2F(dr)("xsegs","v",&xm[0],&ym[0],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
 	      /**DJ.Abdemouche 2003**/
-	      n1=n2;
+	      n1=un;
 	      break;
 	    case 4:
 	      drawline = FALSE;
@@ -8577,58 +8576,56 @@ sciDrawObj (sciPointObj * pobj)
 		  
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
-		  Plo2dTo3d(4,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  Plo2dTo3d(4,&un,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
 	      else
 		{
-		  Plo2d4RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags); 
+		  Plo2d4RealToPixel(&un,&n1,xvect[jk],yvect[jk],xm,ym,logflags); 
 		}
 	      nn2=2*(n1)-1;
 	      arsize1= Cscale.WIRect1[2]/70.0;arsize2= Cscale.WIRect1[3]/70.0;
 	      arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
 	      
-	      if(result_trans3d == 1)
-		for ( j = 0 ; j < n2 ; j++)
-		  {  
-		    integer lstyle=sciGetForeground(pobj) ,iflag=0;
-		    
-		    /* add mark support even for arrow line style */
-		    if (sciGetIsMark(pobj) == TRUE){
-		      int x[4], markidsizenew[2];
-		      x[0] = sciGetMarkForeground(pobj);
-		      
-		      markidsizenew[0] = sciGetMarkStyle(pobj);
-		      markidsizenew[1] = sciGetMarkSize (pobj);
-		      
-		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	      if(result_trans3d == 1){
+		integer lstyle=sciGetForeground(pobj) ,iflag=0;
+		
+		/* add mark support even for arrow line style */
+		if (sciGetIsMark(pobj) == TRUE){
+		  int x[4], markidsizenew[2];
+		  x[0] = sciGetMarkForeground(pobj);
+		  
+		  markidsizenew[0] = sciGetMarkStyle(pobj);
+		  markidsizenew[1] = sciGetMarkSize (pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			    &dv, &dv, &dv, &dv, 5L, 4096);
+		  
+		  C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+			    PD0, PD0, 0L, 0L);   
+		  
+		  DrawNewMarks(pobj,nn2,&xm[0],&ym[0],DPI);
+		}
+		
+		if (sciGetIsLine(pobj) == TRUE){
+		  x[0] = sciGetForeground(pobj);
+		  x[2] = sciGetLineWidth (pobj);
+		  x[3] = sciGetLineStyle (pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 				&dv, &dv, &dv, &dv, 5L, 4096);
-		      
-		      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-				PD0, PD0, 0L, 0L);   
-		      
-		      DrawNewMarks(pobj,nn2,&xm[2*n1*j],&ym[2*n1*j],DPI);
-		    }
-		    
-		    if (sciGetIsLine(pobj) == TRUE){
-		      x[0] = sciGetForeground(pobj);
-		      x[2] = sciGetLineWidth (pobj);
-		      x[3] = sciGetLineStyle (pobj);
-		      
-		      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-				&dv, &dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-				PD0, PD0, PD0, 0L, 0L);
-		      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-				PD0, PD0, PD0, 0L, 0L);
-
-		      C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L);
-		    }
-		  } 
+		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			    PD0, PD0, PD0, 0L, 0L);
+		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			    PD0, PD0, PD0, 0L, 0L);
+		  
+		  C2F(dr)("xarrow","v",&xm[0],&ym[0],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L);
+		}
+	      }
 	      break;
 	    case 5: /* case xfpoly */
 	      drawline = TRUE;
@@ -8637,7 +8634,7 @@ sciDrawObj (sciPointObj * pobj)
 		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
 	      }
 	      else
-		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L);
+		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &un, "f2i",3L);
 	      
 	      sciClip(pobj);
 	      
@@ -8671,10 +8668,9 @@ sciDrawObj (sciPointObj * pobj)
 		  else{
 		    /* interp. shading */
 		    int *vect = pPOLYLINE_FEATURE (pobj)->scvector;
-		    int n2 = pPOLYLINE_FEATURE (pobj)->n1;
+		    int nn = pPOLYLINE_FEATURE (pobj)->n1;
 
-		    scilab_shade (xm, ym, vect, n2, 0);
-		    /* C2Fd(dr)("xliness","v",&deux,&zero,vect,&n2,&m2,&v,xm,ym,&dv,&dv,8L,2L); */
+		    scilab_shade (xm, ym, vect, nn, 0);
 		  }
 		}
 	      
@@ -8727,7 +8723,6 @@ sciDrawObj (sciPointObj * pobj)
 	}
       
 
-      
       for(i=0;i<nb_curves;i++){
 	int nn;
 	nn = curves_size[i];
