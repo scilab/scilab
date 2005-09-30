@@ -703,6 +703,9 @@ cd .. &gt;nul
 				RelativePath=".\intfilestat.c">
 			</File>
 			<File
+				RelativePath=".\intgraphics.c">
+			</File>
+			<File
 				RelativePath=".\intinterp.c">
 			</File>
 			<File
@@ -754,6 +757,9 @@ cd .. &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\intgraphics.h">
+			</File>
 			<File
 				RelativePath="matdes.h">
 			</File>

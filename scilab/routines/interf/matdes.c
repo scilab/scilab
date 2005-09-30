@@ -1,12 +1,13 @@
-/*------------------------------------------------------------------------
- *    Graphic library
- *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
- *    jpc@cereve.enpc.fr 
- --------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------
- * Graphic subroutines interface 
- *-------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
+/* Graphic interface
+   Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
+   Fabrice LERAY 2003 INRIA
+*/
+/*-----------------------------------------------------------------------------------*/
 
+/*-----------------------------------------------------------------------------------*/
+ /* Graphic subroutines interface */
+ /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
@@ -34,37 +35,186 @@
 #else
 #include "../sci_mem_alloc.h" /* MALLOC */
 #endif
+/*-----------------------------------------------------------------------------------*/
 
-#define SciWin() if(C2F(sciwin)() !=0)\
-        {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
-
-#if WIN32
-#if _MSC_VER <=1200
-#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
-#else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
-#else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
+extern int sciplot3d_G _PARAMS(( char *fname,
+							   int (*func) _PARAMS((double *,double *,double *,integer *p,integer *q,
+							   double *,double *,char *,integer *,double *,integer)),
+							   int (*func1)  _PARAMS((double *,double *,double *,integer *cvect,integer *p,
+							   integer *q,double *,double *,char *,integer *,double *,integer)),
+							   int (*func2) _PARAMS((double *,double *,double *,integer *cvect,integer *p,
+							   integer *q,double *,double *,char *,integer *,double *,integer)),
+							   int (*func3) _PARAMS((double *,double *,double *,integer *cvect,integer *p,
+							   integer *q,double *,double *,char *,integer *,double *,integer)),
+							   unsigned long fname_len));
 
 
-/* The following NUMSETFONC and KeyTab_ definition should be coherent
-   with those defined in the drivers They are used in scixset to check
-   for invalid keys ("old_style" has been added). A better way should be to make drivers return an
-   error indicator in order to skip recording*/
+
+
+
+extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
+extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
+
+extern int C2F(matdes)  _PARAMS((void));
+extern int scicontour2d  _PARAMS((char *fname, unsigned long fname_len));
+
+extern int scic2dex  _PARAMS((char *fname, unsigned long fname_len));
+extern int sciparam3d1  _PARAMS((char *fname, unsigned long fname_len));
+
+
+
+extern int sciplot2d1_G  _PARAMS((char *fname,int ptype,
+								 int (*func) _PARAMS((char *,double *,double *,integer *,integer *, integer *,
+								 char *, char *, double *,integer *,integer,integer, integer)),
+								 unsigned long fname_len));
+
+extern int scigray1plot  _PARAMS((char *fname, unsigned long fname_len));
+
+extern int sci_demo  _PARAMS((char *fname, char *chaine, integer *flag));
+
+extern int scixfarcs  _PARAMS((char *fname,  unsigned long fname_len));
+
+
+extern int scixaxis  _PARAMS((char *fname, unsigned long fname_len));
+
+extern int entier2d  _PARAMS((integer *n, double *d__, integer *s));
+extern int simple2d  _PARAMS((integer *n, double *d__, float *s));
+
+
+
+
+
+
+extern int scixgetg  _PARAMS((char *fname, unsigned long fname_len));
+
+
+
+
+extern int scixsetg  _PARAMS((char *fname, char *str, unsigned long fname_len, unsigned long str_len));
+
+
+extern int scixstrbi  _PARAMS((char *fname, unsigned long fname_len));
+
+
+
+extern int C2F(sciwin)  _PARAMS((void));
+
+
+
+extern int scixg2psofig  _PARAMS((char *fname, char *dr, unsigned long fname_len, unsigned long dr_len));
+extern int scixsort  _PARAMS((char *fname, unsigned long fname_len));
+extern int scissort  _PARAMS((char *fname, unsigned long fname_len));
+
+extern int C2F(scigerase)  _PARAMS((void));
+
+
+extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
+extern int scixclear _PARAMS((char *fname, unsigned long fname_len));
+extern int scixclearsubwin _PARAMS((char *fname, unsigned long fname_len));
+extern int scixbascsubwin _PARAMS((char *fname, unsigned long fname_len));
+
+extern int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
+extern int LinearScaling2Colormap(sciPointObj* pobj);
+extern double  sciFindLogMinSPos(double *x, int n);
 extern void  C2F(msgs)(int *i, int *v);
 extern int zoom();
 extern int zoom_box(double *bbox);
 extern void unzoom();
 extern void unzoom_one_axes(sciPointObj *psousfen);
-
 #if WIN32
 extern int Interface_XS2BMP(int figurenum,char *filename); /* wgraph.c */
 extern int Interface_XS2EMF(int figurenum,char *filename);
 #endif
 
+extern int C2F(dsort) _PARAMS((double *count, int *n, int *index));
+extern void setposfig __PARAMS((integer *i,integer *j));
+extern int C2F (deletewin) __PARAMS((integer *number));  
+extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *n,char *type,char *iord));
+extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,char *type,char *iord));
+extern void ShowScales  __PARAMS((void));
+extern  void seteventhandler  __PARAMS((int *win_num,char *name,int *ierr));
+extern int IsAScalar(int RhsNumber);
+#ifdef WITH_TK
+extern int GetTclCurrentFigure(void);
+#endif
+
+
+int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
+void Objarc  _PARAMS((int *angle1,int *angle2,double *x,double *y,double *width,double *height,int *foreground,int *background, BOOL isfilled, BOOL isline, long *hdl));
+void Objdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg,int nb_tics_labels));
+void Objfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax,integer *ExtremesCol, BOOL with_mesh, BOOL flagNax));
+void Objfpoly  _PARAMS((double *x,double *y,integer rempl,integer *closed,long *hdl, int v1));
+void Objgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint, BOOL flagNax));
+void Objmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint, BOOL flagNax));
+void Objmatplot1  _PARAMS((double *z,integer *n1,integer *n2,double *xrect));
+void Objnumb _PARAMS((char *fname,unsigned long fname_len,integer n,integer flag,double *x,double *y,double *angle,double *box));
+void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax));
+
+void Objplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,double *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,integer *m3n, integer *n3n));
+void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
+void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int *foreground,int *background,BOOL isfilled,BOOL isline,int n,long *hdl,BOOL flagxtring));
+void Objsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
+void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,
+					   double *angle,double *box,double* wh, long *hdl, int fill,
+					   int *foreground,int *background,BOOL isboxed,BOOL isfilled,BOOL isline));
+void Objtitle _PARAMS((char *str,int n,long *hdl));
+void Xarc  _PARAMS((char *fname,unsigned long fname_len,int *a1,int *a2,double *x,double *y,double *width,double *height));
+void Xarcs  _PARAMS((char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2));
+void Xdrawaxis  _PARAMS((char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int sub_int,char *format,int fontsize,int textcolor,int ticscolor,char flag,int seg_flag));
+void Xfarcs  _PARAMS((char *fname,unsigned long fname_len,int *vect1,int n,double *vect2));
+void Xfec  _PARAMS((double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax,integer *ColOut, BOOL with_mesh));
+void Xfpoly  _PARAMS((integer rempl,integer closed,double *x,double *y));
+void Xfpolys  _PARAMS((int *vect,integer val1,integer val2,integer n,integer m,double *x,double *y));
+void Xgrayplot  _PARAMS((double *x,double *y,double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Xmatplot  _PARAMS((double *z,integer *n1,integer *n2,char *strflag,double *brect,integer *aaint));
+void Xmatplot1  _PARAMS((double *z,integer *n1,integer *n2,double *xrect) );
+void Xnumb  _PARAMS((char *fname,unsigned long fname_len,integer flag,double *x,double *y,double *angle,double *box));
+void Xplot2d  _PARAMS((double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint));
+void Xplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox));
+void Xpoly  _PARAMS((char *fname,unsigned long fname_len,int n,int close,double *x,double *y));
+void Xpolys  _PARAMS((integer *vect,integer n,integer m,double *x,double *y));
+void Xrect  _PARAMS((char *fname,unsigned long fname_len,double *x,double *y,double *width,double *height));
+void Xrects  _PARAMS((char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2));
+void Xsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
+void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box));
+void Xtitle  _PARAMS((char *str,int n));
+
+static int sciSet (sciPointObj * pobj, char *marker, int *value, int *numrow, int *numcol); /* Move into matdes.h */
+static int sciGet (sciPointObj * pobj, char *marker); ; /* Move into matdes.h */
+static int get3ddata(sciPointObj *pthis); /* F.Leray Declaration here*/
+static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int colorflag, char *fname);
+static int getchampdata(sciPointObj *pobj);
+static int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
+static int getgrayplotdata(sciPointObj *pobj);
+static int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
+static int BuildTListForTicks(double * locations, char ** labels, int nbtics);
+static int getticks(char * xyztick, sciPointObj* psubwin);
+static int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow, int * numcol);
+static char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int * u_nxgrads, char ** u_xlabels);
+static char ** CaseLogflagN2L(int * u_nxgrads,double *u_xgrads, char ** u_xlabels);
+static double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads);
+/*-----------------------------------------------------------------------------------*/
+#ifndef NULL
+	#define NULL 0
+#endif 
 #define NUMSETFONC 38
+#define DEFSTRF "081" 
+#define DEFSTRFN "099" 
+#define DEFLOGFLAGS "gnn" 
+#define SciWin() if(C2F(sciwin)() !=0) { Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
+#define sciGetStyle(pos,n1,opts) if ( get_style(fname,pos,n1,opts) == 0) return 0;
+#define GetRect(pos,opts) if ( get_rect(fname,pos,opts) == 0) return 0;
+#define GetStrf(pos,opts) if ( get_strf(fname,pos,opts) == 0) return 0;
+#define GetLegend(pos,opts) if ( get_legend(fname,pos,opts) == 0) return 0;
+#define GetNax(pos,opts) if ( get_nax(pos,opts)==0 ) return 0;
+#define GetZminmax(pos,opts) if ( get_zminmax(fname,pos,opts) == 0) return 0;
+#define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
+#define GetColOut(pos,opts) if ( get_colout(fname,pos,opts)==0 ) return 0;
+#define GetWithMesh(pos,opts) if ( get_with_mesh(fname,pos,opts)==0 ) return 0;
+#define GetLogflags(pos,opts) if ( get_logflags(fname,pos,opts) == 0) return 0;
+#define GetOptionalDoubleArg(pos,name,value,sz,opts) if ( get_optional_double_arg(fname,pos,name,value,sz,opts) == 0) return 0;
+#define GetOptionalIntArg(pos,name,value,sz,opts) if ( get_optional_int_arg(fname,pos,name,value,sz,opts) == 0) return 0;
+/*-----------------------------------------------------------------------------------*/
 static char *KeyTab_[] = {
   "alufunction",
   "auto clear",
@@ -107,7 +257,6 @@ static char *KeyTab_[] = {
   " ", /* added */
 };
 
-int cf_type=1; /* used by gcf to determine if current figure is a graphic (1) or a tclsci (0) one */
 static char *pmodes[] =
   { 
     "clear", 
@@ -128,45 +277,54 @@ static char *pmodes[] =
     "set" ,
   };
 
-#ifndef NULL
-#define NULL 0
-#endif 
-
-extern int C2F(dsort) _PARAMS((double *count, int *n, int *index));
-
-extern void setposfig __PARAMS((integer *i,integer *j));
-extern int C2F (deletewin) __PARAMS((integer *number));  
-extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *n,
-				   char *type,char *iord));
-extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
-				 char *type,char *iord));
-extern void ShowScales  __PARAMS((void));
-extern  void seteventhandler  __PARAMS((int *win_num,char *name,int *ierr));
-extern int IsAScalar(int RhsNumber);
-#ifdef WITH_TK
-extern int GetTclCurrentFigure(void);
-#endif
-extern sciPointObj *pfiguremdl; /* DJ.A 08/01/04 */
-extern sciPointObj *paxesmdl;/* DJ.A 08/01/04 */
-static integer one = 1, zero = 0;
-/* NG beg */
+int cf_type=1; /* used by gcf to determine if current figure is a graphic (1) or a tclsci (0) one */
 int versionflag = 1; /* old mode */
-/* sciClipTab ptabclip[15]; /\* pourquoi n'est pas une prop de la figure *\/ */
+static integer one = 1, zero = 0;
+static BOOL TKModeON=FALSE;
 static char error_message[70];
-/* NG end */
+static int * Style;
+
+static double def_rect[4]  = {0.,0.,0.0,0.0}; 
+static double *Rect ; 
+
+static char def_strf[]  = DEFSTRF;
+static char *Strf ; 
+
+static char def_legend[]  = "X@Y@Z";
+static char *Legend ; 
+
+static double def_zminmax[2]  = {0.,0.};
+static double *Zminmax ; 
+
+static int def_nax[]={2,10,2,10};
+static int *Nax;
+static BOOL flagNax = FALSE; /* F.Leray : to know weither or not we use Nax */
+
+static int def_colminmax[]={0,0};
+static int *Colminmax;
+
+static int def_colout[]={-1,-1};
+static int *ColOut;
+
+static BOOL def_with_mesh=FALSE;
+static BOOL WithMesh;
+
+static char def_logflags[]  = DEFLOGFLAGS;
+static char *Logflags; 
+static char logflags[3];
 
 extern int xinitxend_flag;
+extern sciPointObj *pfiguremdl; /* DJ.A 08/01/04 */
+extern sciPointObj *paxesmdl;/* DJ.A 08/01/04 */
 
-static BOOL TKModeON=FALSE;
 
+
+
+
+/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------
  * get_style
  *-----------------------------------------------------------*/
-
-static int * Style;
-
-#define sciGetStyle(pos,n1,opts) if ( get_style(fname,pos,n1,opts) == 0) return 0;
-
 static int get_style(fname,pos,n1,opts) 
      char *fname;
      int pos;
@@ -232,13 +390,6 @@ static int get_style(fname,pos,n1,opts)
 /*-----------------------------------------------------------
  * get_rect
  *-----------------------------------------------------------*/
-
-#define GetRect(pos,opts) if ( get_rect(fname,pos,opts) == 0) return 0;
-
-/* static double def_rect[4]  = {0.,0.,10.0,10.0};  */  /* F.Leray 29.04.04 */
-static double def_rect[4]  = {0.,0.,0.0,0.0}; 
-static double *Rect ; 
-
 static int get_rect(fname,pos,opts) 
      char *fname;
      int pos;
@@ -297,13 +448,6 @@ static int get_rect(fname,pos,opts)
   return 1;
 }
 
-#define GetStrf(pos,opts) if ( get_strf(fname,pos,opts) == 0) return 0;
-
-#define DEFSTRF "081" 
-#define DEFSTRFN "099" 
-
-static char def_strf[]  = DEFSTRF;
-static char *Strf ; 
 
 static int get_strf(fname,pos,opts) 
      char *fname;
@@ -350,11 +494,6 @@ static int get_strf(fname,pos,opts)
   return 1;
 }
 
-#define GetLegend(pos,opts) if ( get_legend(fname,pos,opts) == 0) return 0;
-
-static char def_legend[]  = "X@Y@Z";
-static char *Legend ; 
-
 static int get_legend(fname,pos,opts) 
      char *fname;
      int pos;
@@ -384,11 +523,6 @@ static int get_legend(fname,pos,opts)
   return 1;
 }
 
-#define GetNax(pos,opts) if ( get_nax(pos,opts)==0 ) return 0;
-
-static int def_nax[]={2,10,2,10};
-static int *Nax;
-static BOOL flagNax = FALSE; /* F.Leray : to know weither or not we use Nax */
 static int get_nax(pos,opts) 
      int pos;
      rhs_opts opts[];
@@ -424,11 +558,6 @@ static int get_nax(pos,opts)
   return 1;
 }
 
-/* added by bruno 1/02/2001 from the model of GetRect */
-#define GetZminmax(pos,opts) if ( get_zminmax(fname,pos,opts) == 0) return 0;
-
-static double def_zminmax[2]  = {0.,0.};
-static double *Zminmax ; 
 
 static int get_zminmax(fname,pos,opts) 
      char *fname;
@@ -472,12 +601,6 @@ static int get_zminmax(fname,pos,opts)
   return 1;
 }
 
-
-/* added by bruno 1/02/2001 on the model of get_nax */
-#define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
-
-static int def_colminmax[]={0,0};
-static int *Colminmax;
 static int get_colminmax(fname,pos,opts) 
      char *fname;
      int pos;
@@ -515,11 +638,6 @@ static int get_colminmax(fname,pos,opts)
   return 1;
 }
 
-/* added by bruno 04 Nov 2004 on the model of get_nax */
-#define GetColOut(pos,opts) if ( get_colout(fname,pos,opts)==0 ) return 0;
-
-static int def_colout[]={-1,-1};
-static int *ColOut;
 static int get_colout(fname,pos,opts) 
      char *fname;
      int pos;
@@ -556,11 +674,6 @@ static int get_colout(fname,pos,opts)
     } 
   return 1;
 }
-/* added by bruno 08 Nov 2004 on the model of get_nax */
-#define GetWithMesh(pos,opts) if ( get_with_mesh(fname,pos,opts)==0 ) return 0;
-
-static BOOL def_with_mesh=FALSE;
-static BOOL WithMesh;
 static int get_with_mesh(fname,pos,opts) 
      char *fname;
      int pos;
@@ -598,12 +711,6 @@ static int get_with_mesh(fname,pos,opts)
   return 1;
 }
 
-#define DEFLOGFLAGS "gnn" 
-static char def_logflags[]  = DEFLOGFLAGS;
-static char *Logflags; 
-static char logflags[3];
-
-#define GetLogflags(pos,opts) if ( get_logflags(fname,pos,opts) == 0) return 0;
 static int get_logflags(fname,pos,opts) 
      char *fname;
      int pos;
@@ -676,7 +783,7 @@ static int get_logflags(fname,pos,opts)
   return 1;
 }
 
-#define GetOptionalDoubleArg(pos,name,value,sz,opts) if ( get_optional_double_arg(fname,pos,name,value,sz,opts) == 0) return 0;
+
 static int get_optional_double_arg(fname,pos,name,value,sz,opts) 
      char *fname, *name;
      int pos,sz;
@@ -700,7 +807,7 @@ static int get_optional_double_arg(fname,pos,name,value,sz,opts)
   }
   return 1;
 }
-#define GetOptionalIntArg(pos,name,value,sz,opts) if ( get_optional_int_arg(fname,pos,name,value,sz,opts) == 0) return 0;
+
 static int get_optional_int_arg(fname,pos,name,value,sz,opts) 
      char *fname, *name;
      int pos,sz;
@@ -4757,7 +4864,7 @@ int intmeta(fname, fname_len)
 
 extern void Sci_Help(char *,char *,char *);
 
-static int int_gtkhelp(char *fname,unsigned long fname_len)
+int int_gtkhelp(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,m3,n3,l3;
   CheckRhs(3,3);
@@ -5201,121 +5308,6 @@ int sciunzoom(char *fname,unsigned long fname_len)
   return 0;
 } 
 
-typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct {
-  des_interf f;    /** function **/
-  char *name;      /** its name **/
-} MatdesTable;
-
- 
-static MatdesTable Tab[]={
-  {scichamp,"champ"},
-  {scicontour,"contour"},
-  {sciparam3d,"param3d"},
-  {sciplot3d,"plot3d"},
-  {sciplot3d1,"plot3d1"},
-  {sciplot2d,"plot2d"},
-  {sciplot2d1_1,"plot2d1"},
-  {sciplot2d1_2,"plot2d2"},
-  {sciplot2d1_3,"plot2d3"},
-  {sciplot2d1_4,"plot2d4"},
-  {scigrayplot,"grayplot"},
-  {scidriver,"driver"},
-  {scixarc,"xfarc"},
-  {scixarc,"xarc"},
-  {scixarcs,"xarcs"},
-  {scirects,"xrects"},/* NG */
-  {sciarrows,"xarrows"},
-  {scixsegs,"xsegs"},
-  {nscixaxis,"drawaxis"},
-  {scixchange,"xchange"},
-  {scixclea,"xclea"},
-  {scirect,"xrect"},/* NG */
-  {scirect,"xfrect"},/* NG */
-  {scixclear,"xclear"},
-  {scixclick,"xclick"},
-  {scixend,"xend"},
-  {scixfpoly,"xfpoly"},
-  {scixfpolys,"xfpolys"},
-  {scixget,"xget"},
-  {scixinit,"xinit"},
-  {scixlfont,"xlfont"},
-  {scixnumb,"xnumb"},
-  {scixpause,"xpause"},
-  {scixpoly,"xpoly"},
-  {scixpolys,"xpolys"},
-  {scixselect,"xselect"},
-  {scixset,"xset"},
-  {scixstring,"xstring"},
-  {scixstringl,"xstringl"},
-  {scixtape,"xtape"},
-  {scixsetech,"xsetech"},
-  {scixgetech,"xgetech"},
-  {scigeom3d,"geom3d"},
-  {scifec,"scifec"},
-  {scixgetmouse,"xgetmouse"},
-  {scixinfo,"xinfo"},
-  {scixtitle,"xtitle"},
-  {scixgrid,"xgrid"},
-  {scixfarcs,"xfarcs"},
-  {scixsave,"xsave"},
-  {scixload,"xload"},
-  {scichamp1,"champ1"},
-  {scidelw,"xdel"},
-  {scicontour2d,"contour2d"},
-  {scixg2ps,"xg2ps"},
-  {scixs2fig,"xg2fig"},
-  {scixsort,"gsort"},
-  {sciwinsid,"winsid"},
-  {sciparam3d1,"param3d1"},
-  {scixstringb,"xstringb"},
-  {scimatplot,"Matplot"},
-  {scicontour2d1,"contour2di"},
-  {scic2dex,"c2dex"},
-  {scigray2plot,"Matplot1"}, 
-  {scixgraduate,"xgraduate"},
-  {scixname,"xname"},
-  {scixaxis,"xaxis"},
-  {sciseteventhandler,"seteventhandler"},
-  {int_gtkhelp,"help_gtk"},
-  /* NG beg */
-  {gset,"set"},
-  {gget,"get"},
-  {sci_delete,"delete"},
-  {addcb,"addcb"},
-  {copy,"copy"},
-  {move,"move"},
-  {glue,"glue"},
-  {unglue,"unglue"}, 
-  {drawnow,"drawnow"},
-  {drawlater,"drawlater"},  
-  {draw,"draw"}, /* NG end */
-  {scixs2gif,"xs2gif"},
-  {scixs2ppm,"xs2ppm"},
-  {scixs2ps,"xs2ps"},
-  {ClearScreenConsole,"clc"},
-  {HomeFunction,"tohome"},
-  {scisetposfig,"set_posfig_dim"},
-  {ShowWindowFunction,"show_window"},
-  {XSaveNative,"xsnative"},
-  {scizoomrect,"zoom_rect"},
-  {sciunzoom,"unzoom"},
-  {intxs2bmp,"xs2bmp"},
-  {intxs2emf,"xs2emf"},
-  {intUImenu,"UImenu"}
-};
-  
-
-/* interface for the previous function Table */ 
-
-int C2F(matdes)()
-{  
-  Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  C2F(putlhsvar)();
-  return 0;
-}
 
 /*-----------------------------------------------------------
  * Utility function for demo 
