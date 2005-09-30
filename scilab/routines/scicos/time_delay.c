@@ -10,7 +10,7 @@ extern void sciprint __PARAMS((char *fmt,...));
 
 void time_delay(scicos_block *block,int flag)
 {/*  rpar[0]=delay, rpar[1]=init value, ipar[0]=buffer length */
-  double* pw,del,t,td;
+  double* pw,del,t,td,eps;
   int* iw;
   int i,j,k;
   if (flag == 4){/* the workspace is used to store previous values */
@@ -20,18 +20,28 @@ void time_delay(scicos_block *block,int flag)
       set_block_error(-16);
       return;
     }
+    eps=1.0e-9; /* shift times to left to avoid replacing 0 */
     pw=*block->work; 
-    pw[0]=-block->rpar[0]*block->ipar[0];
+    pw[0]=-block->rpar[0]*(block->ipar[0]-1)-eps;
+    for(j=1;j< block->insz[0]+1;j++){
+	pw[block->ipar[0]*j]=block->rpar[1];
+    }
+
     for(i=1;i< block->ipar[0];i++){
-      pw[i]=pw[i-1]+block->rpar[0];
+      pw[i]=pw[i-1]+block->rpar[0]-eps;
       for(j=1;j< block->insz[0]+1;j++){
 	pw[i+block->ipar[0]*j]=block->rpar[1];
       }
     }
+    
     iw=(int *)(pw+block->ipar[0]*(1+block->insz[0]));
     *iw=0;
+    for (k=0;k<block->insz[0];k++){
+	block->outptr[0][k]=block->rpar[1];
+    }
   }else  if (flag == 5){
     scicos_free(*block->work);
+
   } else if (flag==0||flag==2) {
     if (flag==2) do_cold_restart();
     pw=*block->work; 
@@ -83,7 +93,8 @@ void time_delay(scicos_block *block,int flag)
     i=(i+*iw)%block->ipar[0];
     j=(j+*iw)%block->ipar[0];
     del=pw[j]-pw[i];
-    /*sciprint("time is %f. interpolating %d and %d, i.e. %f, %f\r\n", t,i,j,pw[i],pw[j]);*/
+    /*    sciprint("time is %f. interpolating %d and %d, i.e. %f, %f\r\n", t,i,j,pw[i],pw[j]);
+	  sciprint("values are  %f   %f.\r\n",pw[i+block->ipar[0]],pw[j+block->ipar[0]]);*/
     if(del!=0.0){
       for (k=1;k<block->insz[0]+1;k++){
 	block->outptr[0][k-1]=((pw[j]-td)*pw[i+block->ipar[0]*k] +
