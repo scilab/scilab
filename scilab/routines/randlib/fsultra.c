@@ -157,6 +157,7 @@ int set_state_fsultra_simple(double s1, double s2)
       swb_index = 0;
       swb_flag = 0;
       advance_state_swb();  /* pour retrouver la même séquence que ds scilab V3.0 */
+      is_init = 1;
       return 1;
     }
   else
@@ -199,6 +200,7 @@ int set_state_fsultra(double *s)
   for (i = 0 ; i < N ; i++) 
     swb_state[i] = (long) (((unsigned long) s[i+3]) & 0xffffffff);
 
+  is_init = 1;
   return 1;
 }
 
@@ -209,10 +211,8 @@ void get_state_fsultra(double s[])
   int i;
 
   if ( ! is_init )
-    {
-      set_state_fsultra_simple(DEFAULT_SEED1, DEFAULT_SEED2);
-      is_init = 1;
-    }
+    set_state_fsultra_simple(DEFAULT_SEED1, DEFAULT_SEED2);
+
   s[0] = (double)  swb_index;
   s[1] = (double)  swb_flag;
   s[2] = (double)  cong_state;
@@ -225,10 +225,7 @@ unsigned long fsultra()
   if (swb_index >= N)  /* generate N words at one time */
     { 
       if ( ! is_init )
-	{
-	  set_state_fsultra_simple(DEFAULT_SEED1, DEFAULT_SEED2);
-	  is_init = 1;
-	}
+	set_state_fsultra_simple(DEFAULT_SEED1, DEFAULT_SEED2);
       else
 	advance_state_swb();
     }

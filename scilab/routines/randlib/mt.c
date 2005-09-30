@@ -46,6 +46,8 @@
  *
  *     2/ Following the modif in the new version of this generator I have
  *       changed the simple initialisation (but not put the init via array)
+ *
+ *     Sept 2005 : fix for bug 1568
  */
 
 #include <math.h>
@@ -85,10 +87,7 @@ unsigned long randmt()
         int kk;
 
 	if ( ! is_init )
-	  {
-            set_state_mt_simple(DEFAULT_SEED);
-	    is_init = 1;
-	  }
+	  set_state_mt_simple(DEFAULT_SEED);
 
         for (kk=0;kk<N-M;kk++) {
             y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
@@ -132,6 +131,7 @@ int set_state_mt_simple(double s)
 	  /* 2002/01/09 modified by Makoto Matsumoto             */
 	  mt[mti] &= 0xffffffffUL;   /* for >32 bit machines */
 	}
+      is_init = 1;
       return ( 1 );
     }
   else
@@ -166,6 +166,7 @@ int set_state_mt(double seed_array[])
 	sciprint("\n\r the first component of the mt state mt, must be an integer in [1, 624] \n\r");
 	return ( 0 );
       }
+    is_init = 1;
     mti = mti_try;
     for (i=0;i<N;i++) 
       mt[i] = ((unsigned long) seed_array[i+1]) & 0xffffffff;
@@ -179,10 +180,7 @@ void get_state_mt(double state[])
     int i;
 
     if ( ! is_init )
-      {
-	set_state_mt_simple(DEFAULT_SEED);
-	is_init = 1;
-      }
+      set_state_mt_simple(DEFAULT_SEED);
     
     state[0] = (double) mti;
     for (i=0;i<N;i++) 
