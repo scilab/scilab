@@ -2975,8 +2975,9 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
       else
 	dep_uptr($+1)=dep_uptr($);
       end
-    else      
-      dep_u=[dep_u;ll.dep_ut(1:$-1)];
+    else  
+      dep_u_i=ll.dep_ut(1:$-1);
+      dep_u=[dep_u;dep_u_i(:)];
       dep_uptr($+1)=dep_uptr($)+sizenin;
     end
   
