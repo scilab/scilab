@@ -48,6 +48,7 @@ extern int sciUnAgregation (sciPointObj * pobj); /* DESTROY */
 extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
 extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
+extern int DestroyUimenu (sciPointObj * pthis); /* DESTROY */
 
 /* UNUSED : */
 

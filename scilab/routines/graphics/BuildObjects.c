@@ -2930,3 +2930,79 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
   return -1;
 }
 
+/**ConstructUimenu
+* @memo This function creates Uimenu structure.
+* @param  sciPointObj *pparentfigure
+* @param  char label[] : intial label string.
+* @param  char callback[] : intial text callback string .
+* @return  : pointer sciPointObj if ok , NULL if not
+*/
+sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback)
+{
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciUimenu *ppobj=NULL;
+	if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
+	{
+		if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
+
+		sciSetEntityType (pobj, SCI_UIMENU);
+
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciUimenu)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		ppobj=pUIMENU_FEATURE (pobj);
+		if (sciAddNewHandle (pobj) == -1)
+		{
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/*  sciSetParent (pobj, pparentsubwin); */
+		if (!(sciAddThisToItsParent (pobj, pparentfigure)))
+		{
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+		
+		pUIMENU_FEATURE (pobj)->label.relationship.psons = (sciSons *) NULL;
+		pUIMENU_FEATURE (pobj)->label.relationship.plastsons = (sciSons *) NULL;
+
+		if ((pUIMENU_FEATURE (pobj)->label.callback = CALLOC(strlen(callback)+1,sizeof(char))) == NULL )
+		{
+			sciprint("No more place to allocates text string, try a shorter string");
+			(sciPointObj *) NULL;
+		}
+
+		strcpy(pUIMENU_FEATURE (pobj)->label.callback,callback);
+		pUIMENU_FEATURE (pobj)->label.callbacklen = strlen(callback); 
+
+		pUIMENU_FEATURE (pobj)->visible = TRUE; /* A changer */ 
+
+		if ((pUIMENU_FEATURE (pobj)->label.ptextstring =CALLOC (strlen(label)+1, sizeof (char))) == NULL)
+		{
+			sciprint("No more place to allocates label string, try a shorter string");
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pUIMENU_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/* on copie le texte du label dans le champs specifique de l'objet */
+		strcpy (pUIMENU_FEATURE (pobj)->label.ptextstring, label);
+
+		pUIMENU_FEATURE (pobj)->label.textlen = strlen(label);
+
+		return (sciPointObj *) pobj;
+	}
+	else
+	{
+		sciprint ("The parent has to be a FIGURE \n");
+		return (sciPointObj *) NULL;
+	}
+}

@@ -4,6 +4,19 @@
 /* Allan CORNET le 20/08/03 */
 /* voir wsci\wtext.c */
 /* & voir xsc/x_screen.c */
+
+#if WIN32
+#if _MSC_VER <=1200
+#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+
+
+
 extern int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len)); /* wtext.c (wsci)*/
 extern int HomeFunction _PARAMS((char *fname, unsigned long fname_len));
 extern int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
@@ -15,7 +28,7 @@ extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
 int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
 
-
+extern int intUImenu(char *fname,unsigned long fname_len);
 
 extern int C2F(matdes)  _PARAMS((void));
 extern int scichamp  _PARAMS((char *fname,unsigned long fname_len));

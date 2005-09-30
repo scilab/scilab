@@ -802,6 +802,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -996,6 +997,7 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1716,6 +1718,7 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object haven't any graphic mode\n");
       return -1;

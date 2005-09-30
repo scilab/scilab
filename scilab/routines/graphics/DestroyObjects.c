@@ -144,6 +144,10 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       DestroyLabel (pthis);
       return 0;
       break;
+	case SCI_UIMENU:
+	  DestroyUimenu (pthis);
+	  return 0;
+	  break;
     default:
       sciprint ("Entity with type %d cannot be destroyed\n",sciGetEntityType (pthis));
       return -1;
@@ -183,6 +187,7 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_TEXT:
     case SCI_MERGE: 
     case SCI_LABEL:
+	case SCI_UIMENU:
       DestroyAllGraphicsSons (pthis);
       return 0;
       break;
@@ -727,8 +732,7 @@ sciUnAgregation (sciPointObj * pobj)
  * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
-int
-DestroyLabel (sciPointObj * pthis)
+int DestroyLabel (sciPointObj * pthis)
 {
 /*   sciLabel *pplabel = pLABEL_FEATURE (pthis); */
   FREE (pLABEL_FEATURE (pthis)->user_data); 
@@ -742,6 +746,19 @@ DestroyLabel (sciPointObj * pthis)
   FREE (pthis);
   /* on peut alors destroyer le parent */
   return 0;
+}
+
+int DestroyUimenu (sciPointObj * pthis)
+{
+	FREE (pUIMENU_FEATURE (pthis)->label.ptextstring);
+	FREE (pUIMENU_FEATURE (pthis)->label.callback);
+
+	sciDelThisToItsParent (pthis, sciGetParent (pthis));
+	if (sciDelHandle (pthis) == -1) return -1;
+	FREE (sciGetPointerToFeature (pthis));
+	FREE (pthis);
+	/* on peut alors destroyer le parent */
+	return 0;
 }
 
 

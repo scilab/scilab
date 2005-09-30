@@ -69,6 +69,7 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
       case SCI_AGREG:
       case SCI_MERGE:
       case SCI_LABEL: /* F.Leray 28.05.04 */
+	  case SCI_UIMENU:
 	(sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
 	break;
       default:
@@ -140,6 +141,7 @@ sciGetHandleTabPointer (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE: 
     case SCI_LABEL:
+	case SCI_UIMENU:
       return (sciHandleTab *) ((sciGetRelationship (pobj))->phandle);
     default:
       return (sciHandleTab *) NULL;
@@ -154,8 +156,8 @@ sciGetHandleTabPointer (sciPointObj * pobj)
 /**sciDelHandle
  * @memo Removes this pointed handle from the handle table
  */
-extern int
-sciDelHandle (sciPointObj * pobj)
+extern int sciDelHandle
+ (sciPointObj * pobj)
 {
   int tmp = 0;
   sciHandleTab *phandletabtodel;	/* point to a handle structure (prev, value, next) */
@@ -209,8 +211,7 @@ sciDelHandle (sciPointObj * pobj)
 /**sciGetHandle
  * @memo Returns the handle 
  */
-long
-sciGetHandle (sciPointObj * pobj)
+long sciGetHandle (sciPointObj * pobj)
 {
   switch (sciGetEntityType (pobj))
     {
@@ -237,6 +238,7 @@ sciGetHandle (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:  
     case SCI_LABEL: /* F.Leray 27.05.04 */
+	case SCI_UIMENU:
       return (sciGetRelationship (pobj))->phandle->index;
       break;
     default:
@@ -293,6 +295,7 @@ sciGetPointerFromHandle (long handle)
 sciRelationShip *
 sciGetRelationship (sciPointObj * pobj)
 {
+sciRelationShip *tmp=NULL;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -365,6 +368,10 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return  &(pLABEL_FEATURE (pobj)->text.relationship);
       break;
+	case SCI_UIMENU: 
+	  tmp=&(pUIMENU_FEATURE (pobj)->label.relationship);
+	  return  &(pUIMENU_FEATURE (pobj)->label.relationship);
+	  break;
     default:
       return (sciRelationShip *) NULL;
       break;
@@ -455,6 +462,9 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
     case SCI_LABEL: /* F.Leray 27.05.04 */
       (sciGetRelationship (pson))->pparent = pparent;
       break;
+	case SCI_UIMENU: 
+	  (sciGetRelationship (pson))->pparent = pparent;
+	  break;
     default:
       return -1;
       break;
@@ -496,8 +506,10 @@ sciGetParent (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_UIMENU:
       return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
       break; 
+	
     default:
       break;
     }
@@ -583,7 +595,10 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
       break;  
     case SCI_LABEL: /* F.Leray 28.05.04 */
       (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;  
+      break; 
+    case SCI_UIMENU:
+      (sciGetRelationship (pparent))->pcurrentson = pson;
+	  break; 
     default:
       break;
     }
@@ -667,6 +682,9 @@ sciGetCurrentSon (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
       return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
       break;
+	case SCI_UIMENU:
+	  return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
+	  break;
     default:
       return (sciPointObj *) NULL;
       break;
@@ -714,6 +732,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_AGREG:
     case SCI_MERGE: 
     case SCI_LABEL: /* F.Leray 27.05.04 */
+	case SCI_UIMENU:
       /* Si c'est null alors il n'y a pas encore de fils d'affecte */
       if ((sciSons *) (sciGetRelationship (pparent)->psons) != NULL)
 	{			
@@ -788,13 +807,14 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_ARC:
     case SCI_MERGE:
     case SCI_LABEL:
+	case SCI_UIMENU:
       /* recherche de l'objet a effacer*/
       OneSon = (sciGetRelationship (pparent)->psons);
       OneSonprev = OneSon;
       tmp = 0;
       while ( (OneSon != NULL) &&  (OneSon->pointobj != pthis) )
 	{
-	  OneSonprev = OneSon;/* on garde une trace du precedant */
+	  OneSonprev = OneSon;/* on garde une trace du precedent*/
 	  OneSon = (sciSons *) OneSon->pnext;
 	}/* fin du while */
       /* dans quel cas de figure somme nous ? */
@@ -932,6 +952,10 @@ sciGetSons (sciPointObj * pobj)
       
       return (sciSons *) (sciGetRelationship (pobj)->psons);
       break;
+	case SCI_UIMENU:
+	  return (sciSons *) (sciGetRelationship (pobj)->psons);
+	  break;
+
     default:
       return (sciSons *) NULL;
       break;
@@ -1018,6 +1042,9 @@ sciGetLastSons (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
+	case SCI_UIMENU:
+	  return (sciSons *)sciGetRelationship (pobj)->plastsons;
+	  break;
     default:
       return (sciSons *) NULL;
       break;

@@ -169,7 +169,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) != SCI_MENU)        &&
      (sciGetEntityType(pobj) != SCI_MENUCONTEXT) &&
      (sciGetEntityType(pobj) != SCI_STATUSB)    &&
-     (sciGetEntityType(pobj) != SCI_LABEL))
+     (sciGetEntityType(pobj) != SCI_LABEL)      &&
+	 (sciGetEntityType(pobj) != SCI_UIMENU) )
     {
       if(old_m +1 == sciGetForeground(pobj)) {   /* 0 => deals with Foreground */
 	sciSetNumColors (pobj,m);
@@ -299,6 +300,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_TEXT:
 	  sciSetForeground(pobj,value);
 	  break;
+	case SCI_UIMENU:
 	case SCI_AGREG:
 	case SCI_TITLE:
 	case SCI_LEGEND:
@@ -331,6 +333,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_TEXT:
 	  sciSetBackground(pobj,value);
 	  break;
+	case SCI_UIMENU:
 	case SCI_AGREG:
 	case SCI_TITLE:
 	case SCI_LEGEND:
@@ -377,6 +380,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	  sciSetFontBackground(pobj,value);
 	  break;
+	case SCI_UIMENU:
 	default:
 	  return -1;
 	  break;
@@ -396,6 +400,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_SEGS: 
 	  sciSetMarkForeground(pobj,value); /* F.Leray 21.01.05 */
 	  break;
+	case SCI_UIMENU:
 	default:
 	  return -1;
 	  break;
@@ -415,6 +420,7 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_SEGS: 
 	  sciSetMarkBackground(pobj,value); /* F.Leray 21.01.05 */
 	  break;
+	case SCI_UIMENU:
 	default:
 	  return -1;
 	  break;
@@ -552,7 +558,7 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
-  
+    case SCI_UIMENU:
     default:
       break;
     }
@@ -644,6 +650,7 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
+	case SCI_UIMENU:
     default:
       break;
     }
@@ -726,6 +733,7 @@ sciSetLineWidth (sciPointObj * pobj, int linewidth)
 	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no  line width \n");
@@ -809,6 +817,7 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no  line width \n");
@@ -877,6 +886,7 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       /* pas de context graphics */
       sciprint ("This object has no  ismark \n");
@@ -946,6 +956,7 @@ sciSetMarkForeground (sciPointObj * pobj, int colorindex)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1015,6 +1026,7 @@ sciSetMarkBackground (sciPointObj * pobj, int colorindex)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1093,6 +1105,7 @@ sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no mark \n");
@@ -1170,6 +1183,7 @@ sciSetMarkSize (sciPointObj * pobj, int marksize)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no mark \n");
@@ -1246,6 +1260,7 @@ sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit)
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no mark \n");
@@ -1316,6 +1331,7 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
     case SCI_SBV:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       /* pas de context graphics */
       sciprint ("This object has no  isline \n");
@@ -1386,6 +1402,7 @@ sciSetFillStyle (sciPointObj * pobj, int fillstyle)
 	case SCI_TITLE:
 	case SCI_LEGEND:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
 	default:
 	  sciprint ("This object has no  line style \n");
 	  return -1;
@@ -1499,7 +1516,8 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
         case SCI_SEGS: 
 	case SCI_FEC: 
 	case SCI_GRAYPLOT:
-        case SCI_AGREG:
+    case SCI_AGREG:
+	case SCI_UIMENU:
 	default:
 	  break;
 	}
@@ -1577,6 +1595,7 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
 	case SCI_SBH:
 	case SCI_SBV:
 	case SCI_AGREG:
+	case SCI_UIMENU:
 	default:
 	  /* pas de context graphics */
 	  sciprint ("This object has no  font width \n");
@@ -1627,11 +1646,16 @@ sciSetText (sciPointObj * pobj, char text[], int n)
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
       FREE(pLABEL_FEATURE (pobj)->text.ptextstring);
-      if ((pLABEL_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
-	return -1;
+      if ((pLABEL_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL) return -1;
       strncpy (pLABEL_FEATURE (pobj)->text.ptextstring, text, n);
       pLABEL_FEATURE (pobj)->text.textlen = n;
       break;
+	case SCI_UIMENU:
+		FREE(pUIMENU_FEATURE(pobj)->label.ptextstring);
+		if ((pUIMENU_FEATURE(pobj)->label.ptextstring = CALLOC (n+1, sizeof (char))) == NULL) return -1;
+		strncpy (pUIMENU_FEATURE(pobj)->label.ptextstring, text, n);
+		pUIMENU_FEATURE(pobj)->label.textlen = n;
+	break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -1714,6 +1738,7 @@ sciSetFontBackground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->backgroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
+	case SCI_UIMENU:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -1787,6 +1812,7 @@ sciSetFontForeground (sciPointObj * pobj, int colorindex)
       (sciGetFontContext(pobj))->foregroundcolor =
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
+	case SCI_UIMENU:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -1829,6 +1855,7 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes)
     case SCI_LABEL: /* F.Leray 10.06.04 */
       (sciGetFontContext(pobj))->fonttype =iAttributes;
       break;
+	case SCI_UIMENU:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -1910,6 +1937,7 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1956,6 +1984,7 @@ sciSetTextPosX (sciPointObj * pobj, double x)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text position!\n");
       return 0;
@@ -2001,6 +2030,7 @@ sciSetTextPosY (sciPointObj * pobj, double y)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text position!\n");
       return 0;
@@ -2045,6 +2075,7 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("Your are not using a title object !\n");
       return -1;
@@ -2147,6 +2178,7 @@ sciSetLegendPos (sciPointObj * pobj, int x, int y)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("Your are not using a legend object !\n");
       return -1;
@@ -2208,6 +2240,7 @@ sciSetIsClipping (sciPointObj * pobj, int value)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       break;
     }
@@ -2280,7 +2313,8 @@ sciSetClipping (sciPointObj * pobj, double *pclip)
     case SCI_AGREG:
     case SCI_FEC: 
     case SCI_GRAYPLOT:
-    case SCI_FIGURE: 
+    case SCI_FIGURE:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -2324,11 +2358,10 @@ sciSetHighLight (sciPointObj * pobj, BOOL value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("We cannot highlight this object\n");
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("We cannot highlight this object\n");
-      break;
+    break;
     }
 }
 
@@ -2365,6 +2398,7 @@ sciSetAddPlot (sciPointObj * pobj, BOOL value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object cannot be addploted\n");
       break;
@@ -2407,11 +2441,9 @@ sciSetAutoScale (sciPointObj * pobj, BOOL value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("This object cannot be autoscaled 1 sciSetAutoScale\n");
-      break;
-      break;
+	case SCI_UIMENU:
     default:
-      sciprint ("This object cannot be autoscaled 2 sciSetAutoScale\n");
+      sciprint ("This object cannot be autoscaled\n");
       break;
     }
 }
@@ -2450,8 +2482,7 @@ sciSetZooming (sciPointObj * pobj, BOOL value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("\r\nThis object cannot be zoomed\r\n");
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nThis object cannot be zoomed\r\n");
       break;
@@ -2509,8 +2540,7 @@ sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("\r\nNothing to do\n");
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNothing to do\n");
       break;
@@ -2555,8 +2585,7 @@ sciSetXorMode (sciPointObj * pobj, int value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("\r\nNothing to do\n");
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNothing to do\n");
       break;
@@ -2637,6 +2666,9 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       pLABEL_FEATURE (pobj)->visible = value;
       break;
+	case SCI_UIMENU:
+		pUIMENU_FEATURE(pobj)->visible=value;
+	  break;
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -2713,6 +2745,7 @@ sciSetResize (sciPointObj * pobj, BOOL value)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object cannot be resized\n");
       return;
@@ -3424,6 +3457,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no possibility to set points !\n");
       return -1;
@@ -3541,6 +3575,7 @@ sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_TITLE:
+	case SCI_UIMENU:
    default:
       sciprint ("This object has no isfilled \n");
       return -1;
@@ -3586,6 +3621,7 @@ sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_TITLE:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no isboxed \n");
       return -1;
@@ -3687,6 +3723,7 @@ sciSetPosition (sciPointObj * pobj, double x, double y)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     case SCI_TITLE:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no position\n");
       return -1;

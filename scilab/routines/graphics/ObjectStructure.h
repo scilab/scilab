@@ -85,6 +85,8 @@
 
 #define pLABEL_FEATURE(pointobj)       ((sciLabel         *)pointobj->pfeatures)/** */
 
+#define pUIMENU_FEATURE(pointobj)       ((sciUimenu       *)pointobj->pfeatures)/** */
+
 #ifndef WIN32
 typedef unsigned short HMENU;
 typedef void *HFONT;                                         
@@ -181,7 +183,9 @@ typedef enum
   /**Entity type AGREGATION */
   SCI_AGREG,			
   /**Entity type LABEL created by F.Leray 26.05.04 */
-  SCI_LABEL
+  SCI_LABEL,
+  /**Entity type UIMENU created by A.C 28.09.05 **/
+  SCI_UIMENU
 }
 /**Struct of Entity type*/
 sciEntityType;	
@@ -645,6 +649,20 @@ typedef struct
   double position[2]; /* the (x,y) coord. of the label's position */
 }/** */
 sciLabel;  
+
+typedef struct
+{
+	sciRelationShip relationship;
+	/** */
+	sciText label; /* Callback in sciText struct. */
+	/** specifies if this object is visble             */
+	BOOL visible;
+
+	int HANDLEMENU;
+
+}/** */
+sciUimenu;
+
 
 
 typedef struct 

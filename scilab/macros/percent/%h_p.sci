@@ -654,7 +654,13 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "user_data = "+fmtuser_data(u)
 	]
-
+  case "Uimenu"
+  t=[t;
+  "parent: "+h.parent.type
+  "visible = "+sci2exp(h.visible)
+  "text = "+h.text 
+  "callback = "+h.callback 
+    ]
     end
   end
   write(%io(2),t)

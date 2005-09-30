@@ -177,6 +177,7 @@
 {"unzoom",		IN_matdes,	90,	2},
 {"xs2bmp",		IN_matdes,	91,	2},
 {"xs2emf",		IN_matdes,	92,	2},
+{"UImenu",		IN_matdes,	93,	2},
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
@@ -521,6 +522,7 @@
 #ifdef WITH_TK
 #include "../tclsci/fundef.tclsci"
 #endif
+
 #define  IN_lstelmi  41
 {"getfield",		IN_lstelmi,	1,	1},	
 {"setfield",		IN_lstelmi,	2,	1},	

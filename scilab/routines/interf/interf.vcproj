@@ -724,6 +724,9 @@ cd .. &gt;nul
 				RelativePath=".\intslicot.c">
 			</File>
 			<File
+				RelativePath=".\intUImenu.c">
+			</File>
+			<File
 				RelativePath=".\matdes.c">
 			</File>
 			<File

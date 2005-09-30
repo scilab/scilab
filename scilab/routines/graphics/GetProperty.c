@@ -131,6 +131,9 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_LABEL:
       return (sciLabel *) pLABEL_FEATURE (pobj);
       break;
+	case SCI_UIMENU:
+	  return (sciUimenu *) pUIMENU_FEATURE (pobj);
+	  break;
     default:
       return (void *) NULL;
       break;
@@ -241,6 +244,10 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return "Label";
       break;
+	case SCI_UIMENU: 
+		return "Uimenu";
+		break;
+
     default:
       return (char *)NULL;
       break;
@@ -311,6 +318,7 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return (sciGraphicContext *) NULL;
       break;
@@ -434,6 +442,7 @@ sciGetForeground (sciPointObj * pobj)
     case SCI_SEGS:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
+	case SCI_UIMENU:
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:
@@ -506,6 +515,7 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
     case SCI_LABEL:
       colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
       break;
+	case SCI_UIMENU:
     case SCI_SEGS:
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -599,7 +609,7 @@ sciGetBackground (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:
-   
+   case SCI_UIMENU:
     default:
       break;
     }
@@ -679,6 +689,7 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNo Background is associated with this Entity");
       return -1;
@@ -746,6 +757,7 @@ sciGetMarkForeground (sciPointObj * pobj)
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
+	case SCI_UIMENU:
     default:
       break;
     }
@@ -807,6 +819,7 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNo Mark Foreground is associated with this Entity");
       return -1;
@@ -867,6 +880,7 @@ sciGetMarkBackground (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_LIGHT:
     case SCI_LABEL:
+	case SCI_UIMENU:
     case SCI_TITLE:
     case SCI_TEXT:
     case SCI_FEC: 
@@ -930,6 +944,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_LIGHT:
     case SCI_LABEL:
+	case SCI_UIMENU:
     case SCI_TITLE:
     case SCI_TEXT:
     case SCI_FEC: 
@@ -1012,6 +1027,7 @@ sciGetLineWidth (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no Line Width\n");
       return -1;
@@ -1075,6 +1091,7 @@ sciGetLineStyle (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no Line Style\n");
       return -1;
@@ -1132,6 +1149,7 @@ sciGetIsMark (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no ismark\n");
       return -1;
@@ -1189,7 +1207,8 @@ sciGetMarkStyle (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_TEXT:
     case SCI_TITLE:
-     case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1247,6 +1266,7 @@ sciGetMarkSize (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1304,6 +1324,7 @@ sciGetMarkSizeUnit (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1363,6 +1384,7 @@ sciGetIsLine (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no isline\n");
       return -1;
@@ -1411,6 +1433,7 @@ sciGetIsFilled (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     case SCI_TITLE:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no isfilled\n");
       return -1;
@@ -1469,6 +1492,7 @@ sciGetFillStyle (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no Fill Style\n");
       return -1;
@@ -1530,6 +1554,7 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
+	case SCI_UIMENU:
     default:
       return (sciFont *)NULL;
       break;
@@ -1603,6 +1628,7 @@ sciGetFontDeciWidth (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no fontdeciwidth\n");
       return -1;
@@ -1668,6 +1694,7 @@ sciGetFontOrientation (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no textorientation\n");
       return 0;
@@ -1704,6 +1731,9 @@ sciGetText (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return pLABEL_FEATURE (pobj)->text.ptextstring;
       break;
+	case SCI_UIMENU:
+	  return pUIMENU_FEATURE (pobj)->label.ptextstring;
+	  break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -1754,6 +1784,9 @@ sciGetTextLength (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return pLABEL_FEATURE (pobj)->text.textlen;
       break;
+	case SCI_UIMENU:
+	  return pUIMENU_FEATURE (pobj)->label.textlen;
+	  break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -1818,6 +1851,7 @@ sciGetFontBackground (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1863,6 +1897,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
        sciprint ("\r\nNo FontBackground is associated with this Entity");
       return -1;
@@ -1915,6 +1950,7 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1960,6 +1996,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNo FontForeground is associated with this Entity");
       return -1;
@@ -2014,6 +2051,7 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -2066,6 +2104,7 @@ sciGetFontName (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       return (char *) NULL;
       break;
@@ -2119,6 +2158,7 @@ sciGetFontNameLength (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_AGREG:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -2163,6 +2203,7 @@ sciGetTextPosX (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -2208,6 +2249,7 @@ sciGetTextPosWidth (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -2253,6 +2295,7 @@ sciGetTextPosHeight (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -2297,6 +2340,7 @@ sciGetTextPosY (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* None for the moment F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no text !\n");
       return 0;
@@ -2414,6 +2458,7 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_UIMENU:
       return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;  
       break;                                                     
     default:  
@@ -2459,6 +2504,7 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_UIMENU:
       while (sciGetEntityType(subwin) != SCI_SUBWIN)
 	subwin=sciGetParent(subwin);      
       return (sciPointObj *) subwin;  
@@ -2504,6 +2550,7 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+    case SCI_UIMENU:
       while (sciGetEntityType(figure) != SCI_FIGURE)
 	figure=sciGetParent(figure);      
       return sciGetNum(figure); 
@@ -2548,6 +2595,7 @@ sciGetScilabXgc (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:  
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
       /* on recherche la root par recursivite 
 	 puisque scilabxgc n'est connu que par le parent */
       return (struct BCG *) sciGetScilabXgc (sciGetParent (pobj));	
@@ -2595,6 +2643,7 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
     case SCI_SBV:
     case SCI_LEGEND:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return (scigMode *) NULL;
       break;
@@ -2649,6 +2698,7 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -2;
       break;
@@ -2702,6 +2752,7 @@ sciGetIsClipping (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return -2;
       break;
@@ -2770,6 +2821,7 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_LABEL:
       return pLABEL_FEATURE (pobj)->clip_region;
       break;
+	case SCI_UIMENU:
     case SCI_SURFACE:
     case SCI_LEGEND: 
     case SCI_TITLE:    
@@ -2820,6 +2872,7 @@ sciGetHighLight (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object cannot be highlighted\n");
       return FALSE;
@@ -2863,6 +2916,7 @@ sciGetAddPlot (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object cannot be addploted\n");
       return FALSE;
@@ -2902,11 +2956,9 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("This object cannot be autoscaled 1 sciGetAutoScale\n");
-      return FALSE;
-      break;
+    case SCI_UIMENU:
     default:
-      sciprint ("This object cannot be autoscaled 2 sciGetAutoScale\n");
+      sciprint ("This object cannot be autoscaled\n");
       return FALSE;
       break;
     }
@@ -2944,10 +2996,8 @@ sciGetZooming (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
+	case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("\r\nThis object cannot be zoomed \r\n");
-      return FALSE;
-      break;
     default:
       sciprint ("\r\nThis object cannot be zoomed \r\n");
       return FALSE;
@@ -2988,9 +3038,7 @@ sciGetGraphicsStyle (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("\r\nNothing to do\n");
-      return FALSE;
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNothing to do\n");
       return FALSE;
@@ -3034,9 +3082,7 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("\r\nNothing to do\n");
-      return FALSE;
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("\r\nNothing to do\n");
       return FALSE;
@@ -3100,6 +3146,9 @@ sciGetVisibility (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return pLABEL_FEATURE (pobj)->visible;
       break;
+	case SCI_UIMENU:
+	  return pUIMENU_FEATURE (pobj)->visible;
+	  break;
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -3147,9 +3196,7 @@ sciGetResize (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      sciprint ("This object cannot be resized\n");
-      return FALSE;
-      break;
+	case SCI_UIMENU:
     default:
       sciprint ("This object cannot be resized\n");
       return FALSE;
@@ -3477,6 +3524,7 @@ sciGetIsSelected (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return FALSE;
       break;
@@ -3974,6 +4022,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no points Y\n");
       return (double*)NULL;
@@ -4138,6 +4187,7 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_LABEL: /* F.Leray 28.05.04 */
+	case SCI_UIMENU:
     default:
       return FALSE;
       break;
@@ -4292,6 +4342,8 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *user_data_ptr = &(((sciLabel *) pLABEL_FEATURE (pobj))->user_data);
       *size_ptr =  &(((sciLabel *) pLABEL_FEATURE (pobj))->size_of_user_data);
       break;
+
+	case SCI_UIMENU:
     default:
       *user_data_ptr = (int **)NULL;
       *size_ptr =   (int *)NULL;
@@ -4305,7 +4357,9 @@ int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;
 { 
-  if      (strcmp(marker,"closed") == 0) { return 10;}	
+  if (strcmp(marker,"label") == 0) { return 10;}
+  else if (strcmp(marker,"callback") == 0) { return 10;}
+  else if (strcmp(marker,"closed") == 0) { return 10;}	
   else if (strcmp(marker,"background") == 0) { return 1;}	
   else if (strcmp(marker,"position") == 0) {return 1;}
   else if (strcmp(marker,"auto_position") == 0)   {return 10;}		
@@ -4588,6 +4642,7 @@ int CheckForAgregation(long *handelsvalue, int number)
 	case SCI_SBV:
 	case SCI_SBH:
 	case SCI_LABEL: /* F.Leray 28.05.04 A REVOIR...*/
+	case SCI_UIMENU:
 	default:
 	  return -(i+1); /* not a basic entity*/
 	}
@@ -4662,6 +4717,7 @@ sciGethPopMenu (sciPointObj * pthis)
   case SCI_STATUSB:
   case SCI_AGREG:
   case SCI_LABEL: /* F.Leray 28.05.04 */
+  case SCI_UIMENU:
   default: 
     return (HMENU) NULL ;
     break;
@@ -4703,6 +4759,7 @@ sciGetIsBoxed (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_TITLE:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no isboxed \n");
       return 0;
@@ -4756,6 +4813,7 @@ sciGetPosition (sciPointObj * pobj, double *x, double *y)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     case SCI_TITLE:
+	case SCI_UIMENU:
     default:
       sciprint ("This object has no position\n");
       return -1;

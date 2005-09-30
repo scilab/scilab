@@ -5302,7 +5302,8 @@ static MatdesTable Tab[]={
   {scizoomrect,"zoom_rect"},
   {sciunzoom,"unzoom"},
   {intxs2bmp,"xs2bmp"},
-  {intxs2emf,"xs2emf"}
+  {intxs2emf,"xs2emf"},
+  {intUImenu,"UImenu"}
 };
   
 
