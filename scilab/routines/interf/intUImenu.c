@@ -5,27 +5,22 @@
 #include <stdio.h> 
 #include <string.h> 
 /*-----------------------------------------------------------------------------------*/
-#include "../graphics/ObjectStructure.h"
-/*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
 #include "../wsci/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../sci_mem_alloc.h" /* MALLOC */
 #endif
-#include "../stack-c.h"
+
+#include "intcommongraphics.h"
+#include "../graphics/ObjectStructure.h"
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
-#if _MSC_VER <=1200
-#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
-#else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
-#else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
-/*-----------------------------------------------------------------------------------*/
-#define SciWin() if(C2F(sciwin)() !=0)\
-		{Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
+extern void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
+extern sciPointObj *sciGetCurrentFigure ();
+extern sciPointObj *sciGetPointerFromHandle (long handle);
+extern sciEntityType sciGetEntityType (sciPointObj * pobj);
+extern long sciGetHandle (sciPointObj * pobj);
+extern sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback);
+extern int version_flag();
 /*-----------------------------------------------------------------------------------*/
 int intUImenu(char *fname,unsigned long fname_len)
 {
@@ -76,7 +71,7 @@ int intUImenu(char *fname,unsigned long fname_len)
 		if ( (VarType(1) == sci_handles) && (VarType(2) == sci_strings) && (VarType(3) == sci_strings) )
 		{
 			GetRhsVar(1,"h",&m1,&n1,&l1);
-			pParent=sciGetPointerFromHandle(*hstk(l1));
+			pParent=sciGetPointerFromHandle((long)*hstk(l1));
 			if ( (sciGetEntityType (pParent) != SCI_FIGURE) || (sciGetEntityType (pParent) != SCI_UIMENU) )
 			{
 				Scierror(999,"Must be a figure or a uimenu parent.");

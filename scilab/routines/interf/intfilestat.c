@@ -17,7 +17,7 @@ int C2F(intfilestat)(fname)
 char * fname;
 {
 #ifdef WIN32
-   struct stat buf;
+   struct _stat buf;
 #else
    struct stat buf;
 #endif

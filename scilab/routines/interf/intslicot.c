@@ -1,7 +1,8 @@
-#include "../mex.h"
-#include "../stack-c.h"
 #include <math.h>
 #include <string.h>
+
+#include "../mex.h"
+#include "../stack-c.h"
 
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 #define MIN(x,y)	(((x)<(y))?(x):(y))
@@ -120,9 +121,10 @@ static GenericTable Tab[]={
 };
  
 int C2F(intslicot)()
-{  Rhs = Max(0, Rhs);
- (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
- return 0;
+{
+	Rhs = Max(0, Rhs);
+	(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+	return 0;
 }
 
 
