@@ -38,8 +38,26 @@ function dynamickeywords()
   
   setscipadwords([libfun],"libfun")
 
+  //scicos basic functions: read the lib
+  [l,s,b]=listvarinfile(SCI+"/macros/scicos/lib");
+  load(SCI+"/macros/scicos/lib");
+  n=string(eval(l)); scicosfun=(n(2:$));
+  execstr("clear "+l);
+
+  //scicos palettes: read each lib
+  scicosblocks=[];
+  blocklibs=listfiles("SCI/macros/scicos_blocks/*/lib");
+  for i=1:size(blocklibs,2)
+    [l,s,b]=listvarinfile(blocklibs(i));
+    load(blocklibs(i));
+    n=string(eval(l)); scicosblocks=[scicosblocks;(n(2:$))];
+    execstr("clear "+l);
+  end
+
+  setscipadwords([scicosfun;scicosblocks],"scicos")
 
   //TCL_EvalStr("scipad eval {tk_messageBox -message $words(scilab.predef.%)}")
+  
 endfunction
 
 dynamickeywords()
