@@ -177,6 +177,7 @@ for k=1:nleg
 	  rb.mark_size=h.mark_size;
 	  rb.mark_foreground=h.mark_foreground;	    
 	  rb.mark_background=h.mark_background;	    	    
+	  rb.thickness=h.thickness;
 	end
 	// end of the bruno 's modif ******************** 
       end
