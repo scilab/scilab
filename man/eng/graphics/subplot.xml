@@ -32,7 +32,7 @@
     into an m-by-n matrix of sub-windows and selects the p-th sub-window
     for drawing  the current plot.  The number of a sub-window into the
     matrices is counted row by row ie the sub-window corresponding to element
-    (i,j) of the matrix has number (i-1)*m + j.</P>
+    (i,j) of the matrix has number (i-1)*n + j.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

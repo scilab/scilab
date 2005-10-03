@@ -36,7 +36,7 @@
     en une matrice m x n matrice de sous fenêtres et sélectionne la p-ième sous-fenêtre
     comme emplacement de dessin par défaut.  Le numéro de la sous-fenêtre
     est compté ligne par ligne, c&apos;est à dire que l&apos;emplacement
-    (i,j) de la matrice porte le numéro (i-1)*m + j.
+    (i,j) de la matrice porte le numéro (i-1)*n + j.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
