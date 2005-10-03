@@ -23,7 +23,7 @@ void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
 #ifndef NDEBUG
       printf("REALLOC Error File %s Line %d \n",fichier,ligne);
       fflush(NULL);
-      exit(1);
+      /* exit(1); */
 #endif
     }
   
@@ -43,7 +43,7 @@ void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
 #ifndef NDEBUG
 	  printf("MALLOC Error File %s Line %d \n",fichier,ligne);
 	  fflush(NULL);
-	  exit(1);
+	  /* exit(1); */
 #endif
 	}
     }
@@ -52,7 +52,7 @@ void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
 #ifndef NDEBUG
       printf("MALLOC Error File %s Line %d \n",fichier,ligne);
       fflush(NULL);
-      exit(1);
+      /* exit(1); */
 #endif
     }
   
@@ -75,7 +75,7 @@ void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
 #ifndef NDEBUG
 	  printf("CALLOC Error File %s Line %d \n",fichier,ligne);
 	  fflush(NULL);
-	  exit(1);
+	  /* exit(1); */
 #endif
 	}
     }
@@ -84,7 +84,7 @@ void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
 #ifndef NDEBUG
 	  printf("CALLOC Error File %s Line %d \n",fichier,ligne);
 	  fflush(NULL);
-	  exit(1);
+	  /* exit(1); */
 #endif
     }
 
