@@ -9,11 +9,7 @@ function M=%st_i_st(varargin)
   M=varargin($)
   N=varargin($-1)//inserted matrix
   dims=double(matrix(M.dims,1,-1));
-  // Dimensions modified so that convertindex works correctly
-  if mtlb_mode()&dims(1)~=1 then 
-    dims=[dims(2) dims(1) dims(3:$)];
-  end  
-  
+
   if type(varargin(1))==10 //addind a new field
     flds=getfield(1,M);flds=[flds,varargin(1)];
     setfield(1,flds,M);setfield($+1,N,M);
