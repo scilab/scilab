@@ -66,7 +66,6 @@ xpoly(x,y,"lines",1) // by default closed
 
 // News graphics only
 e=gce(); // get the current entity (the last created: here the polyline)
-e.fill_mode='off'
 e.closed = 'off' // the polyline is now open
   ]]></EXAMPLE>
 
