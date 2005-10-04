@@ -284,7 +284,7 @@ combobox $w.frame.polystyle \
     -textvariable curpolylinestyle \
     -editable false \
     -command [list SelectPolylineStyle ] -font {Arial 9}
-eval $w.frame.polystyle list insert end [list "interpolated" "staircase" "barplot" "arrowed" "filled"]
+eval $w.frame.polystyle list insert end [list "interpolated" "staircase" "barplot" "arrowed" "filled" "bar"]
 pack $w.frame.polystylelabel -in $w.frame.curvst   -side left
 pack $w.frame.polystyle   -in $w.frame.curvst   -expand 1 -fill x -pady 0m -padx 2m
 

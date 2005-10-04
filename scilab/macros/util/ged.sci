@@ -584,7 +584,7 @@ function ged_polyline(h)
     TCL_SetVar("curthick",string(h.thickness))
     TCL_SetVar("curvis",h.visible)
 
-    ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled"];
+    ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled" "bar"];
     TCL_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
     ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
     TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
@@ -1319,7 +1319,7 @@ endfunction
 function setStyle(sty)
   global ged_handle; h=ged_handle
   h.polyline_style=find(sty==['interpolated','staircase', ...
-		    'barplot','arrowed','filled'])
+		    'barplot','arrowed','filled' 'bar'])
 endfunction
 function setLineStyle(sty)
   global ged_handle; h=ged_handle
