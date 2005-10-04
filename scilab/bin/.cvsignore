@@ -60,3 +60,6 @@ arpack.dll
 arpack.def
 arpack.exp
 arpack.lib
+Atlas
+Atlas.dll
+Atlas.lib
