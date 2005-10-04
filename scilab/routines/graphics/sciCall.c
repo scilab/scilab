@@ -130,23 +130,26 @@ void Objfpoly (x,y,n,style,hdl,shading)
   else
     {
       /* flat mode is "on" */
-      if(*style == 0) /* filled color is the one used for axes background */
-	fillcolor = sciGetBackground(psubwin);
-      else /* fill with abs(style) */
+      if (*style < 0){
 	fillcolor = abs(*style);
-      
-      if (*style < 0)
-	contourcolor = fillcolor;
-      else
+	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
+					    1,1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE));
+      }
+      else if (*style == 0){
 	contourcolor = sciGetForeground(psubwin);
+	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
+					    1,1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+      }
+      else{ /* *style > 0*/
+	fillcolor = *style;
+	contourcolor = sciGetForeground(psubwin);
+	sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
+					    1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE));
+      }
       
-      /*   sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,5)); /\* polyline_style is "filled" == 5 *\/ */
-      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,
-					  1,1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE));
-      /* polyline_style is "interpolated" by default == 1 AND I put isfilled == TRUE */
-    }
       pobj = sciGetCurrentObj();
       *hdl=sciGetHandle(sciGetCurrentObj ());  
+    }
 }
 
 

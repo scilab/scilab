@@ -7300,7 +7300,7 @@ sciDrawObj (sciPointObj * pobj)
   integer x[6], v;
   integer xold[5], vold = 0, flagx = 0;
   sciSons *psonstmp;
-  integer itmp[5];		
+  integer itmp[5];
   integer markidsizeold[2], markidsizenew[2];
   sciPointObj /* *psubwin, */ *currentsubwin;
   /*   double locx,locy,loctit; */
@@ -8464,7 +8464,7 @@ sciDrawObj (sciPointObj * pobj)
       n1 = pPOLYLINE_FEATURE (pobj)->n1;
       /* n2 = 1; */ /* the number of curves is always 1 since we draw each one line at a given time */
       nb_curves_bar = pPOLYLINE_FEATURE (pobj)->n2;
-      closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
+      closeflag = pPOLYLINE_FEATURE (pobj)->closed; /* 0 or 1 */
       
       /***/
       sciClip(pobj);
@@ -8642,6 +8642,101 @@ sciDrawObj (sciPointObj * pobj)
 		C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 	      
 	      break;
+	    case 6: // 'Matlab' bar
+	      drawline = TRUE;
+	      x[2] = sciGetLineWidth (pobj);
+	      x[3] = sciGetLineStyle (pobj);
+	      
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		{
+		  double myX[4], myY[4], myZ[4];
+		  int pix_X[4], pix_Y[4];
+		  int quatre = 4;
+		  double shift = pPOLYLINE_FEATURE(pobj)->bar_shift;
+		  double width = pPOLYLINE_FEATURE(pobj)->bar_width;
+		  
+		  
+		  for(i=0;i<n1;i++)
+		    {
+		      
+		      myX[0] = myX[1] = xvect[jk][i] + shift - width/2;
+		      myX[2] = myX[3] = xvect[jk][i] + shift + width/2;
+		      
+		      /* cas log a gerer */
+		      myY[0] = myY[3] = 0.;
+		      myY[1] = myY[2] = yvect[jk][i];
+		      
+		      if(zvect[jk] == (double *) NULL)
+			myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
+		      else		      
+			myZ[0] = myZ[1] = myZ[2] = myZ[3] = zvect[jk][i];
+		      
+		      ReverseDataFor3D(sciGetParentSubwin(pobj),myX,myY,myZ,quatre);
+		      result_trans3d = trans3d(sciGetParentSubwin(pobj),quatre,pix_X,pix_Y,myX,myY,myZ);
+		      
+		      x[0] = sciGetBackground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		      
+		      x[0] = sciGetForeground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		    }
+		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+		}
+	      else
+		{
+		  double myX[4], myY[4];
+		  int pix_X[4], pix_Y[4];
+		  int quatre = 4;
+		  double shift = pPOLYLINE_FEATURE(pobj)->bar_shift;
+		  double width = pPOLYLINE_FEATURE(pobj)->bar_width;
+
+		  
+		  for(i=0;i<n1;i++)
+		    {
+		      
+		      myX[0] = myX[1] = xvect[jk][i] + shift - width/2;
+		      myX[2] = myX[3] = xvect[jk][i] + shift + width/2;
+		      
+		      /* cas log a gerer */
+		      myY[0] = myY[3] = 0.;
+		      myY[1] = myY[2] = yvect[jk][i];
+
+		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
+
+		      x[0] = sciGetBackground(pobj);
+	      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+
+		      x[0] = sciGetForeground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		    }
+		  C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &un, "f2i",3L); 
+		}
+	      break;
 	    default:
 	      sciprint ("This Polyline cannot be drawn !\n");
 /* #ifdef WIN32  */
@@ -8704,7 +8799,7 @@ sciDrawObj (sciPointObj * pobj)
 			  PD0, PD0, PD0, 0L, 0L);
 		C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			  PD0, PD0, PD0, 0L, 0L);
-		
+
 		C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	      }
 	    }
@@ -9381,8 +9476,9 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
 
   int thick;
   int linestyle[6];
-  int tabulated_marksize[] = {8,10,12,14,18,24}; /* {3,5,7,9,11,13}; */
-
+  int tabulated_marksize[] = {8,10,12,14,18,24};
+  /*   int tabulated_marksize[] = {3,5,7,9,11,13}; */
+  
   integer verbose = 0,old_thick, old_linestyle[6],narg = 0;
   int ixres = DPI[0]; /* only the x DPI is used here : */
     

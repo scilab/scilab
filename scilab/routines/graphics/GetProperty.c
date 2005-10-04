@@ -4357,7 +4357,10 @@ int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;
 { 
-  if (strcmp(marker,"label") == 0) { return 10;}
+  if (strcmp(marker,"bar_shift") == 0) { return 1;}	
+  else if(strcmp(marker,"bar_width") == 0) { return 1;}
+  else if(strcmp(marker,"closed") == 0) { return 10;}	
+  else if (strcmp(marker,"label") == 0) { return 10;}
   else if (strcmp(marker,"callback") == 0) { return 10;}
   else if (strcmp(marker,"closed") == 0) { return 10;}	
   else if (strcmp(marker,"background") == 0) { return 1;}	

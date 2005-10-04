@@ -7,9 +7,9 @@
  *    Fabrice Leray,     INRIA 2004-xxxx
  *    Comment:
  *    This file contains all functions used to BUILD new objects : 
-      - allocating memory
-      - setting default value
-      - binding the newly created object tyo the entire existing hierarchy
+ - allocating memory
+ - setting default value
+ - binding the newly created object tyo the entire existing hierarchy
  --------------------------------------------------------------------------*/
 
 #include <stdio.h> 
@@ -168,7 +168,7 @@ ConstructFigure (XGC)
   m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
   /* try to install the colormap in the graphic context */
   C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
-	 pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
+	  pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
   
   if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
     sciprint ("Failed to load default colormap : Allocation failed or missing xinit detected\n");
@@ -276,7 +276,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
-         /*if (sciInitChildWin (pparentfigure, pwinname) == -1)
+      /*if (sciInitChildWin (pparentfigure, pwinname) == -1)
 	return NULL;*/
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
@@ -305,13 +305,13 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       ppsubwin->vertices_list = (Vertices*) NULL;
 
- /*      ppsubwin->value_xm = (int *) NULL; */
-/*       ppsubwin->value_ym = (int *) NULL; */
-/*       ppsubwin->value_x = (double *) NULL; */
-/*       ppsubwin->value_y = (double *) NULL; */
-/*       ppsubwin->value_z = (double *) NULL; */
+      /*      ppsubwin->value_xm = (int *) NULL; */
+      /*       ppsubwin->value_ym = (int *) NULL; */
+      /*       ppsubwin->value_x = (double *) NULL; */
+      /*       ppsubwin->value_y = (double *) NULL; */
+      /*       ppsubwin->value_z = (double *) NULL; */
   
-/*       ppsubwin->nb_vertices_in_merge = 0; */
+      /*       ppsubwin->nb_vertices_in_merge = 0; */
       ppsubwin->user_data = (int *) NULL; /* adding 27.06.05 */
       ppsubwin->size_of_user_data = 0;
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
@@ -480,8 +480,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       ppsubwin->isselected = ppaxesmdl->isselected;  
       ppsubwin->visible = ppaxesmdl->visible;
-/*       /\*       ppsubwin->drawlater = ppaxesmdl->drawlater; *\/ */
-/*       ppsubwin->drawlater = sciGetDrawLater(sciGetParentFigure(pobj)); */
+      /*       /\*       ppsubwin->drawlater = ppaxesmdl->drawlater; *\/ */
+      /*       ppsubwin->drawlater = sciGetDrawLater(sciGetParentFigure(pobj)); */
       
       ppsubwin->isclip = ppaxesmdl->isclip;
       ppsubwin->clip_region_set = 0;
@@ -748,7 +748,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       pTEXT_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pTEXT_FEATURE (pobj)->clip_region_set = 0;
-/*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
+      /*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       if ((pTEXT_FEATURE (pobj)->ptextstring = CALLOC (n+1, sizeof (char))) ==
 	  NULL)
@@ -1093,6 +1093,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pPOLYLINE_FEATURE (pobj)->bar_shift = 0.;
+      pPOLYLINE_FEATURE (pobj)->bar_width = 0.;
       pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
       pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;
       pPOLYLINE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
@@ -1106,7 +1108,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
-/*       pPOLYLINE_FEATURE (pobj)->clip_region = (double *) NULL; */
+      /*       pPOLYLINE_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
       ppoly = pPOLYLINE_FEATURE (pobj);
@@ -1172,7 +1174,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
       ppoly->n1 = n1;	  /* memorisation du nombre de points */
       ppoly->n2 = n2;	  /* memorisation du nombre des courbes */
-      ppoly->closed = closed;
+      ppoly->closed = (closed > 0) ? 1 : 0;
       ppoly->plot = plot;
  
       if (sciInitGraphicContext (pobj) == -1)
@@ -1191,7 +1193,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       sciSetIsMark(pobj,ismark);
       sciSetIsLine(pobj,isline);
       sciSetIsFilled(pobj,isfilled);
-/*       sciSetIsInterpShaded(pobj,isinterpshaded); */
+      /*       sciSetIsInterpShaded(pobj,isinterpshaded); */
       
       pPOLYLINE_FEATURE (pobj)->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
       
@@ -1287,7 +1289,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       pARC_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pARC_FEATURE (pobj)->clip_region_set = 0;
- /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
+      /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       sciSetIsFilled(pobj,isfilled);
       sciSetIsLine(pobj,isline);
@@ -1382,7 +1384,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pRECTANGLE_FEATURE (pobj)->clip_region_set = 0;
-  /*     pRECTANGLE_FEATURE (pobj)->clip_region = (double *) NULL; */
+      /*     pRECTANGLE_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -1447,7 +1449,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       nc=nz; /* one color per facet */    /* nc = dimzx * dimzy */
     else if (flagcolor == 3)
       nc=nz*4; /*one color per edge */    /* nc = 4* dimzx * dimzy ?????? */ /* 3 or 4 vectices are needed: 
-									I think we take 4 to have enough allocated memory*/ 
+										I think we take 4 to have enough allocated memory*/ 
     /* made by Djalel : comes from the genfac3d case*/
     else 
       nc=0;
@@ -1590,23 +1592,23 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf->color = NULL;
       
       /*
-      if (izc !=0&&nc>0 ) {
+	if (izc !=0&&nc>0 ) {
 	if (((psurf->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
-	  {
-	    FREE(psurf->pvecy); psurf->pvecy = NULL;
-	    FREE(psurf->pvecx); psurf->pvecx = NULL;
-	    FREE(psurf->pvecz); psurf->pvecz = NULL;
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(psurf);
-	    FREE(pobj); pobj = NULL;
-	    return (sciPointObj *) NULL;
-	  }
+	{
+	FREE(psurf->pvecy); psurf->pvecy = NULL;
+	FREE(psurf->pvecx); psurf->pvecx = NULL;
+	FREE(psurf->pvecz); psurf->pvecz = NULL;
+	sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	sciDelHandle (pobj);
+	FREE(psurf);
+	FREE(pobj); pobj = NULL;
+	return (sciPointObj *) NULL;
+	}
 	else
-	  {
-	    if (izcol !=0)
-	      for (j = 0;j < nc; j++)  
-	      psurf->zcol[j]= zcol[j];  */ /* DJ.A 2003 */
+	{
+	if (izcol !=0)
+	for (j = 0;j < nc; j++)  
+	psurf->zcol[j]= zcol[j];  */ /* DJ.A 2003 */
       /*}
 	} */
       
@@ -1634,7 +1636,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	      /* We have just enough information to fill the psurf->zcol array*/
 	      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
 		psurf->zcol[j]= psurf->inputCMoV[j];  /* DJ.A 2003 */
-		  }
+	    }
 	  else if(flagcolor==2 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	    {
 	      /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
@@ -1659,7 +1661,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	      for(i = 0; i< dimzy; i++){
 		for (j = 0;j < dimzx; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
 		  psurf->zcol[dimzx*i+j]= psurf->inputCMoV[i];  /* DJ.A 2003 */
-		    }
+	      }
 	    }
 	  else if(flagcolor==3 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	    {
@@ -1957,10 +1959,10 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-       pAXES_FEATURE (pobj)->isclip = -1;  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
-       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-       pAXES_FEATURE (pobj)->clip_region_set = 0;
- /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
+      pAXES_FEATURE (pobj)->isclip = -1;  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      pAXES_FEATURE (pobj)->clip_region_set = 0;
+      /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
      
       pAXES_FEATURE (pobj)->dir =dir;
       pAXES_FEATURE (pobj)->tics =tics;
@@ -2049,15 +2051,15 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->seg =seg;    
       /*    pAXES_FEATURE (pobj)->format =format; */ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
       pAXES_FEATURE (pobj)->logscale=logscale;
-	  if(format != (char *) NULL)
-	  {
-	    if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
-	      return (sciPointObj *) NULL;
-	    else
-	      strcpy(pAXES_FEATURE (pobj)->format,format);
-	  }
+      if(format != (char *) NULL)
+	{
+	  if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
+	    return (sciPointObj *) NULL;
 	  else
-	    pAXES_FEATURE (pobj)->format = (char *) NULL;
+	    strcpy(pAXES_FEATURE (pobj)->format,format);
+	}
+      else
+	pAXES_FEATURE (pobj)->format = (char *) NULL;
 	  
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -2309,7 +2311,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pSEGS_FEATURE (pobj)->clip_region_set = 0;
- /*       pSEGS_FEATURE (pobj)->clip_region = (double *) NULL; */
+      /*       pSEGS_FEATURE (pobj)->clip_region = (double *) NULL; */
    
       psegs = pSEGS_FEATURE (pobj); 
       psegs->ptype = type;
@@ -2518,10 +2520,10 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
  * @memo constructes an agregation of with the last n entities created in the current subwindow
  on entry subwin children list is
  null->s1->s2->...->sn->sn+1->...->null
-  on exit it is
-  null->A->sn+1->...->null
-  with A an agregation whose children list is:
-  null->s1->s2->...->sn->null
+ on exit it is
+ null->A->sn+1->...->null
+ with A an agregation whose children list is:
+ null->s1->s2->...->sn->null
 */
 sciPointObj *
 ConstructAgregationSeq (int number) 
@@ -2566,12 +2568,12 @@ ConstructAgregationSeq (int number)
   lastsons=sons;
 
   
-/*   sciprint("debut\n"); */
+  /*   sciprint("debut\n"); */
   
   for (i=0;i<number;i++) {
    
-/*     sciprint("%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext, */
-/* 	     sciGetRelationship (lastsons->pointobj)->pparent); */
+    /*     sciprint("%8x %8x %8x  |  %8x\n",lastsons->pprev,lastsons->pointobj,lastsons->pnext, */
+    /* 	     sciGetRelationship (lastsons->pointobj)->pparent); */
     
     (sciGetRelationship (lastsons->pointobj))->pparent=pobj;
     lastsons=lastsons->pnext;
@@ -2589,7 +2591,7 @@ ConstructAgregationSeq (int number)
     return (sciPointObj *) NULL;
   }
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
- /* the subwin children list is now null->A->sn+1->...->null */
+  /* the subwin children list is now null->A->sn+1->...->null */
 
   /* set agregation properties*/
   ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
@@ -2642,7 +2644,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-     /*  sciSetParent (pobj, pparentsubwin); */
+      /*  sciSetParent (pobj, pparentsubwin); */
       if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
 	{
 	  sciDelHandle (pobj);
@@ -2679,7 +2681,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       
       pLABEL_FEATURE (pobj)->text.fontcontext.textorientation = 0; 
 
-    /*   pLABEL_FEATURE (pobj)->titleplace = SCI_LABEL_IN_TOP; */
+      /*   pLABEL_FEATURE (pobj)->titleplace = SCI_LABEL_IN_TOP; */
       pLABEL_FEATURE (pobj)->isselected = TRUE;
       if (sciInitFontContext (pobj) == -1)
 	{
@@ -2931,78 +2933,78 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
 }
 
 /**ConstructUimenu
-* @memo This function creates Uimenu structure.
-* @param  sciPointObj *pparentfigure
-* @param  char label[] : intial label string.
-* @param  char callback[] : intial text callback string .
-* @return  : pointer sciPointObj if ok , NULL if not
-*/
+ * @memo This function creates Uimenu structure.
+ * @param  sciPointObj *pparentfigure
+ * @param  char label[] : intial label string.
+ * @param  char callback[] : intial text callback string .
+ * @return  : pointer sciPointObj if ok , NULL if not
+ */
 sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback)
 {
-	sciPointObj *pobj = (sciPointObj *) NULL;
-	sciUimenu *ppobj=NULL;
-	if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
+  sciPointObj *pobj = (sciPointObj *) NULL;
+  sciUimenu *ppobj=NULL;
+  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
+    {
+      if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
+
+      sciSetEntityType (pobj, SCI_UIMENU);
+
+      if ((pobj->pfeatures = MALLOC ((sizeof (sciUimenu)))) == NULL)
 	{
-		if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      ppobj=pUIMENU_FEATURE (pobj);
+      if (sciAddNewHandle (pobj) == -1)
+	{
+	  FREE(pobj->pfeatures);
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      /*  sciSetParent (pobj, pparentsubwin); */
+      if (!(sciAddThisToItsParent (pobj, pparentfigure)))
+	{
+	  sciDelHandle (pobj);
+	  FREE(pobj->pfeatures);
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
 
-		sciSetEntityType (pobj, SCI_UIMENU);
-
-		if ((pobj->pfeatures = MALLOC ((sizeof (sciUimenu)))) == NULL)
-		{
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		ppobj=pUIMENU_FEATURE (pobj);
-		if (sciAddNewHandle (pobj) == -1)
-		{
-			FREE(pobj->pfeatures);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		/*  sciSetParent (pobj, pparentsubwin); */
-		if (!(sciAddThisToItsParent (pobj, pparentfigure)))
-		{
-			sciDelHandle (pobj);
-			FREE(pobj->pfeatures);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-
-		sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
 		
-		pUIMENU_FEATURE (pobj)->label.relationship.psons = (sciSons *) NULL;
-		pUIMENU_FEATURE (pobj)->label.relationship.plastsons = (sciSons *) NULL;
+      pUIMENU_FEATURE (pobj)->label.relationship.psons = (sciSons *) NULL;
+      pUIMENU_FEATURE (pobj)->label.relationship.plastsons = (sciSons *) NULL;
 
-		if ((pUIMENU_FEATURE (pobj)->label.callback = CALLOC(strlen(callback)+1,sizeof(char))) == NULL )
-		{
-			sciprint("No more place to allocates text string, try a shorter string");
-			(sciPointObj *) NULL;
-		}
-
-		strcpy(pUIMENU_FEATURE (pobj)->label.callback,callback);
-		pUIMENU_FEATURE (pobj)->label.callbacklen = strlen(callback); 
-
-		pUIMENU_FEATURE (pobj)->visible = TRUE; /* A changer */ 
-
-		if ((pUIMENU_FEATURE (pobj)->label.ptextstring =CALLOC (strlen(label)+1, sizeof (char))) == NULL)
-		{
-			sciprint("No more place to allocates label string, try a shorter string");
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pUIMENU_FEATURE(pobj));
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		/* on copie le texte du label dans le champs specifique de l'objet */
-		strcpy (pUIMENU_FEATURE (pobj)->label.ptextstring, label);
-
-		pUIMENU_FEATURE (pobj)->label.textlen = strlen(label);
-
-		return (sciPointObj *) pobj;
-	}
-	else
+      if ((pUIMENU_FEATURE (pobj)->label.callback = CALLOC(strlen(callback)+1,sizeof(char))) == NULL )
 	{
-		sciprint ("The parent has to be a FIGURE \n");
-		return (sciPointObj *) NULL;
+	  sciprint("No more place to allocates text string, try a shorter string");
+	  return (sciPointObj *) NULL;
 	}
+
+      strcpy(pUIMENU_FEATURE (pobj)->label.callback,callback);
+      pUIMENU_FEATURE (pobj)->label.callbacklen = strlen(callback); 
+
+      pUIMENU_FEATURE (pobj)->visible = TRUE; /* A changer */ 
+
+      if ((pUIMENU_FEATURE (pobj)->label.ptextstring =CALLOC (strlen(label)+1, sizeof (char))) == NULL)
+	{
+	  sciprint("No more place to allocates label string, try a shorter string");
+	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	  sciDelHandle (pobj);
+	  FREE(pUIMENU_FEATURE(pobj));
+	  FREE(pobj);
+	  return (sciPointObj *) NULL;
+	}
+      /* on copie le texte du label dans le champs specifique de l'objet */
+      strcpy (pUIMENU_FEATURE (pobj)->label.ptextstring, label);
+
+      pUIMENU_FEATURE (pobj)->label.textlen = strlen(label);
+
+      return (sciPointObj *) pobj;
+    }
+  else
+    {
+      sciprint ("The parent has to be a FIGURE \n");
+      return (sciPointObj *) NULL;
+    }
 }
