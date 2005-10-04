@@ -71,7 +71,19 @@
           <DESCRIPTION_ITEM>
             <SP>If the value is 5 the polyline is filled (patch).</SP>
           </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM>
+            <SP>If the value is 6 the polyline is a Matlab-like bar object.
+            The properties <VERB>bar_shift</VERB> and <VERB>bar_width</VERB>
+            command its appearance.</SP>
+          </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="closed: ">
+        <SP>This field determines wether the polyline is closed or not: its
+        value can be <VERB>"on"</VERB> or <VERB>"off"</VERB> (no default
+        value, it depends on the primitive used to create the polyline).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="line_mode: ">
@@ -102,7 +114,7 @@
         directly given in points. When <VERB>mark_size_unit</VERB> is set to
         <VERB>"tabulated"</VERB>, <VERB>mark_size</VERB> is computed relative
         to the font size array: therefore, its value should be an integer in
-        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+        [0 5] which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
         <LINK>plot2d</LINK> and pure scilab functions use
         <VERB>tabulated</VERB> mode as default ; when using <LINK>plot</LINK>
         function, the <VERB>point</VERB> mode is automatically enabled.</SP>
@@ -131,6 +143,34 @@
         <SP>This field contains the default <VERB>foreground</VERB> property
         used to draw the polyline. Its value should be a color index (relative
         to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="interp_color_mode: ">
+        <SP>This field determines if we are usiong the interpolated shading
+        mode to fill the polyline : its value can be <VERB>"on"</VERB> or
+        <VERB>"off"</VERB>. Note that an <VERB>interp_color_vector</VERB> must
+        be defined before switching to "on" value (see below).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="interp_color_vector: ">
+        <SP>This field contains the vector of color indices used to fill in
+        the polyline when the <VERB>interp_color_mode</VERB> property is set
+        to <VERB>"on"</VERB>. It is only applicable if the polyline is defined
+        by 3 or 4 points. Therefore, the size of the vector must match this
+        dimension.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="bar_shift: ">
+        <SP>This field contains the offset computed by a call to the
+        <LINK>bar</LINK> function and is only used when the polyline's
+        <VERB>polyline_style</VERB> is set to bar mode (case 6): the unit is
+        expressed in user coordinates.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="bar_width: ">
+        <SP>This field determines the width of the selected polyline when its
+        <VERB>polyline_style</VERB> is set to bar mode (case 6) : the unit is
+        expressed in user coordinates.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="clip_state: ">
@@ -162,9 +202,10 @@
         height) defines the portions of the polyline to display, however
         <VERB>clip_state</VERB> property value will be changed.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	  polyline data structure, and to retreive it.</SP>
+        <SP>This field can be use to store any scilab variable in the polyline
+        data structure, and to retrieve it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
