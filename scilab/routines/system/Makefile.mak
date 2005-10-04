@@ -14,7 +14,7 @@ OBJSC = getfreememory.obj getmemorysize.obj System.obj System2.obj Calelm.obj Su
 	Sparse.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj fromjava.obj calendar.obj \
-	CallScilab.obj
+	CallScilab.obj intwhat.obj
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \

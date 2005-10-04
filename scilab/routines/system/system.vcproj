@@ -721,6 +721,9 @@ cd .. &gt;nul
 				RelativePath="..\system2\intmacr2tree.c">
 			</File>
 			<File
+				RelativePath=".\intwhat.c">
+			</File>
+			<File
 				RelativePath=".\Lapack.c">
 			</File>
 			<File
@@ -777,6 +780,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="..\system2\intmacr2tree.h">
+			</File>
+			<File
+				RelativePath=".\intwhat.h">
 			</File>
 			<File
 				RelativePath="msgstore.h">

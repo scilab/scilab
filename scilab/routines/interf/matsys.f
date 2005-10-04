@@ -63,7 +63,7 @@ c     53         54        55          56         57          58        59
 c     sleep getos
 c     60    61 
 c     banner fromjava Calendar getmemorysize getfreememory
-c     62     63       64        65           66
+c     62     63       64        65           66           
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -276,7 +276,7 @@ c     mtlb_mode
  710  call intgetmemorysize('getmemorysize')
       goto 999     
  711  call intgetfreememory('getfreememory')
-      goto 999          
+      goto 999
  998  continue
 c     fake calls : only to force the 
 c     linker to load the following functions
@@ -2999,39 +2999,6 @@ c
       if(.not.cremat('type',top,0,1,1,l,lc)) return
       stk(l)=dble(k)
       return
-      end
-      subroutine intwhat(fname)
-c     
-c     Copyright INRIA
-      include '../stack.h'
-c     
-      character*(*) fname
-      logical checklhs,checkrhs
-      integer iadr
-
-      integer cmdl,id(nsiz)
-      parameter (cmdl = 27)
-      integer cmd(nsiz,cmdl)
-      common/cmds/cmd
-
-
-      iadr(l)=l+l-1
-c
-      rhs=max(0,rhs)
-c
-      if(.not.checklhs(fname,1,1)) return
-      if(.not.checkrhs(fname,0,0)) return
-c
-      call funtab(id,0,0)
-c     comandes
-      fin = 1
-      call msgs(41,0)
-      call prntid(cmd,cmdl,wte)
-c     
-      top=top+1
-      il = iadr(lstk(top))
-      istk(il) = 0
-      lstk(top+1) = lstk(top) + 1
       end
       subroutine intwhereis
 c     Copyright INRIA
