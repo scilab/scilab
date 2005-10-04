@@ -2,15 +2,17 @@
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>comments</TITLE>
+
   <TYPE>Scilab Function</TYPE>
+
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="comments"> comments</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="comments">comments</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-    <P>
-    Command lines which begin by <VERB> // </VERB> are not interpreted
-    by Scilab.</P>
-    <P>
-    Comments must not begin with <VERB> //end</VERB> !</P>
+    <P>Command lines which begin by <VERB> // </VERB> are not interpreted by
+    Scilab.</P>
   </DESCRIPTION>
 </MAN>

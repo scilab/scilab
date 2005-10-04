@@ -2,18 +2,19 @@
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
-  <TITLE>comments  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="comments"> commentaires  </SHORT_DESCRIPTION>
+
+  <TITLE>comments</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="comments">commentaires</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-  <P>
-    Les lignes de commandes commençant par <VERB> // </VERB> ne sont pas interprétées par Scilab.
-  </P>
-  <P>
-    Les commentaires ne doivent pas commencer par <VERB> //end </VERB> !
-  </P>
-  <P>
-  </P>
+    <P>Les lignes de commandes commençant par <VERB> // </VERB> ne sont pas
+    interprétées par Scilab.</P>
+
+
   </DESCRIPTION>
 </MAN>
