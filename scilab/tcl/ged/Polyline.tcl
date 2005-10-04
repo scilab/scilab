@@ -266,7 +266,7 @@ label $w.frame.interpcolormodelabel -height 0 -text "Interp. mode:" -font {Arial
 checkbutton $w.frame.interpcolormode  -text "on" -indicatoron 1 \
     -variable curinterpcolormode -onvalue "on" -offvalue "off" \
     -command "toggleInterpColormode $w.frame.interpcolormode" -font {Arial 9} -anchor w
-OnOffForeground $w.frame.fillmode $curinterpcolormode
+OnOffForeground $w.frame.interpcolormode $curinterpcolormode
 
 pack $w.frame.interpcolormodelabel  -in $w.frame.fillfillmode  -side left 
 pack $w.frame.interpcolormode   -in $w.frame.fillfillmode   -side left  -pady 0m
