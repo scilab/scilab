@@ -22,9 +22,9 @@
 
 
 #if WIN32
-	#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
 #else
-	#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../sci_mem_alloc.h" /* MALLOC */
 #endif
 
 sciHandleTab * PENDOFHANDLETAB;
@@ -69,7 +69,7 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
       case SCI_AGREG:
       case SCI_MERGE:
       case SCI_LABEL: /* F.Leray 28.05.04 */
-	  case SCI_UIMENU:
+      case SCI_UIMENU:
 	(sciGetRelationship (pobj))->phandle = pvalue;		/** put the new index handle */
 	break;
       default:
@@ -141,7 +141,7 @@ sciGetHandleTabPointer (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE: 
     case SCI_LABEL:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
       return (sciHandleTab *) ((sciGetRelationship (pobj))->phandle);
     default:
       return (sciHandleTab *) NULL;
@@ -157,7 +157,7 @@ sciGetHandleTabPointer (sciPointObj * pobj)
  * @memo Removes this pointed handle from the handle table
  */
 extern int sciDelHandle
- (sciPointObj * pobj)
+(sciPointObj * pobj)
 {
   int tmp = 0;
   sciHandleTab *phandletabtodel;	/* point to a handle structure (prev, value, next) */
@@ -238,7 +238,7 @@ long sciGetHandle (sciPointObj * pobj)
     case SCI_AGREG:
     case SCI_MERGE:  
     case SCI_LABEL: /* F.Leray 27.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
       return (sciGetRelationship (pobj))->phandle->index;
       break;
     default:
@@ -295,7 +295,7 @@ sciGetPointerFromHandle (long handle)
 sciRelationShip *
 sciGetRelationship (sciPointObj * pobj)
 {
-sciRelationShip *tmp=NULL;
+  sciRelationShip *tmp=NULL;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -368,10 +368,10 @@ sciRelationShip *tmp=NULL;
     case SCI_LABEL: /* F.Leray 27.05.04 */
       return  &(pLABEL_FEATURE (pobj)->text.relationship);
       break;
-	case SCI_UIMENU: 
-	  tmp=&(pUIMENU_FEATURE (pobj)->label.relationship);
-	  return  &(pUIMENU_FEATURE (pobj)->label.relationship);
-	  break;
+    case SCI_UIMENU: 
+      tmp=&(pUIMENU_FEATURE (pobj)->label.relationship);
+      return  &(pUIMENU_FEATURE (pobj)->label.relationship);
+      break;
     default:
       return (sciRelationShip *) NULL;
       break;
@@ -462,9 +462,9 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
     case SCI_LABEL: /* F.Leray 27.05.04 */
       (sciGetRelationship (pson))->pparent = pparent;
       break;
-	case SCI_UIMENU: 
-	  (sciGetRelationship (pson))->pparent = pparent;
-	  break;
+    case SCI_UIMENU: 
+      (sciGetRelationship (pson))->pparent = pparent;
+      break;
     default:
       return -1;
       break;
@@ -598,7 +598,7 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
       break; 
     case SCI_UIMENU:
       (sciGetRelationship (pparent))->pcurrentson = pson;
-	  break; 
+      break; 
     default:
       break;
     }
@@ -682,9 +682,9 @@ sciGetCurrentSon (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
       return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
       break;
-	case SCI_UIMENU:
-	  return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-	  break;
+    case SCI_UIMENU:
+      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
+      break;
     default:
       return (sciPointObj *) NULL;
       break;
@@ -732,7 +732,7 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_AGREG:
     case SCI_MERGE: 
     case SCI_LABEL: /* F.Leray 27.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
       /* Si c'est null alors il n'y a pas encore de fils d'affecte */
       if ((sciSons *) (sciGetRelationship (pparent)->psons) != NULL)
 	{			
@@ -784,7 +784,7 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
       /* on ne fait rien puisqu'il ne peut y avoir un parent dans ce cas */
       return TRUE;
     case SCI_POLYLINE:
- /*      printf("je vais detruire le lien entre polyline et subwin\n"); fflush(NULL); */
+      /*      printf("je vais detruire le lien entre polyline et subwin\n"); fflush(NULL); */
     case SCI_AGREG:
     case SCI_SUBWIN:
     case SCI_PANNER:
@@ -807,7 +807,7 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_ARC:
     case SCI_MERGE:
     case SCI_LABEL:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
       /* recherche de l'objet a effacer*/
       OneSon = (sciGetRelationship (pparent)->psons);
       OneSonprev = OneSon;
@@ -952,9 +952,9 @@ sciGetSons (sciPointObj * pobj)
       
       return (sciSons *) (sciGetRelationship (pobj)->psons);
       break;
-	case SCI_UIMENU:
-	  return (sciSons *) (sciGetRelationship (pobj)->psons);
-	  break;
+    case SCI_UIMENU:
+      return (sciSons *) (sciGetRelationship (pobj)->psons);
+      break;
 
     default:
       return (sciSons *) NULL;
@@ -1042,9 +1042,9 @@ sciGetLastSons (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 : normally useless... */
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
-	case SCI_UIMENU:
-	  return (sciSons *)sciGetRelationship (pobj)->plastsons;
-	  break;
+    case SCI_UIMENU:
+      return (sciSons *)sciGetRelationship (pobj)->plastsons;
+      break;
     default:
       return (sciSons *) NULL;
       break;
@@ -1095,9 +1095,9 @@ sciSetCurrentObj (sciPointObj * pobj)
   
   PCURRENTPOBJ = pobj;
   /*
-  sciprint (" IN sciSetCurrentObj, AFTER setting, *PCURRENTPOBJ = %d\r\n",&(*PCURRENTPOBJ));
-  sciprint (" IN sciSetCurrentObj, AFTER setting, *PCURRENTPOBJ->EntityType = %s\r\n",sciGetCharEntityType(PCURRENTPOBJ));
-  sciprint ("------------------------------------------------------------------------\n");*/
+    sciprint (" IN sciSetCurrentObj, AFTER setting, *PCURRENTPOBJ = %d\r\n",&(*PCURRENTPOBJ));
+    sciprint (" IN sciSetCurrentObj, AFTER setting, *PCURRENTPOBJ->EntityType = %s\r\n",sciGetCharEntityType(PCURRENTPOBJ));
+    sciprint ("------------------------------------------------------------------------\n");*/
   return 0;
 }
 

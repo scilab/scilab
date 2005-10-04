@@ -136,18 +136,18 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
                         
 	}
       break;
-	case SCI_UIMENU:
-		if ((pUIMENU_FEATURE (pthis)->label.callback = CALLOC (len+1, sizeof (char))) == NULL)
-		{
-			sciprint("No more Memory allocation !\n");
-			return -1;
-		}
-		else 
-		{
-			strncpy(pUIMENU_FEATURE (pthis)->label.callback, code, len);
-			pUIMENU_FEATURE (pthis)->label.callbacklen = len;
-		}
-	break;
+    case SCI_UIMENU:
+      if ((pUIMENU_FEATURE (pthis)->label.callback = CALLOC (len+1, sizeof (char))) == NULL)
+	{
+	  sciprint("No more Memory allocation !\n");
+	  return -1;
+	}
+      else 
+	{
+	  strncpy(pUIMENU_FEATURE (pthis)->label.callback, code, len);
+	  pUIMENU_FEATURE (pthis)->label.callbacklen = len;
+	}
+      break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -212,9 +212,9 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_AXES:	
       return (char *)(pAXES_FEATURE(pthis)->callback);
       break;
-	case SCI_UIMENU:
-		return (char *)(pUIMENU_FEATURE(pthis)->label.callback);
-	break;
+    case SCI_UIMENU:
+      return (char *)(pUIMENU_FEATURE(pthis)->label.callback);
+      break;
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_PANNER:
@@ -273,7 +273,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_AXES:	
       return pAXES_FEATURE(pthis)->callbackevent;
       break;
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_PANNER:
@@ -340,7 +340,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_SBH:
     case SCI_LIGHT:
     case SCI_AGREG:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
@@ -382,9 +382,9 @@ sciGetCallbackLen (sciPointObj * pthis)
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pthis)->callbacklen;
       break;    
-	case SCI_UIMENU:
-	  return pUIMENU_FEATURE(pthis)->label.callbacklen;
-	  break;
+    case SCI_UIMENU:
+      return pUIMENU_FEATURE(pthis)->label.callbacklen;
+      break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -460,11 +460,11 @@ sciDelCallback (sciPointObj * pthis)
       FREE(pPOLYLINE_FEATURE (pthis)->callback);
       pPOLYLINE_FEATURE (pthis)->callback = NULL;
       break;
-	case SCI_UIMENU:
-		pUIMENU_FEATURE(pthis)->label.callbacklen=0;
-		FREE(pUIMENU_FEATURE(pthis)->label.callback);
-		pUIMENU_FEATURE(pthis)->label.callback=NULL;
-	  break;
+    case SCI_UIMENU:
+      pUIMENU_FEATURE(pthis)->label.callbacklen=0;
+      FREE(pUIMENU_FEATURE(pthis)->label.callback);
+      pUIMENU_FEATURE(pthis)->label.callback=NULL;
+      break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -536,7 +536,7 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_LIGHT:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       sciprint ("\r\nNo Callback is associated with this Entity");
       return -1;
@@ -626,7 +626,7 @@ int Objmove (hdl,x,y,opt)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       sciprint ("This object can not be moved\r\n");
       return -1;
@@ -636,7 +636,7 @@ int Objmove (hdl,x,y,opt)
     sciDrawObjIfRequired(pobj);
   else
     sciDrawObj(sciGetParentFigure(pobj));
-    /* sciDrawObj(sciGetParentFigure(sciGetCurrentObj ()));*/
+  /* sciDrawObj(sciGetParentFigure(sciGetCurrentObj ()));*/
     
   return 0;
 }
@@ -726,10 +726,10 @@ void scizoom(bbox,pobj)
   if (!(sciGetZooming(psousfen)))
     {
       sciSetZooming(psousfen, 1);
-   /*    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
-/*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
-/*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
-/*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
+      /*    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
+      /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
+      /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
+      /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
     }
   /** regraduation de l'axe des axes ***/
   fmin=  bbox[0];

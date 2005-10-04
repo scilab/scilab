@@ -7,10 +7,10 @@
  *    Fabrice Leray,     INRIA 2004-xxxx
  *    Comment:
  *    This file contains all functions used to BUILD new objects : 
-        - break the binding between the deleted object and its parent in the 
-          existing hierarchy
-        - freeing memory
-  --------------------------------------------------------------------------*/
+ - break the binding between the deleted object and its parent in the 
+ existing hierarchy
+ - freeing memory
+ --------------------------------------------------------------------------*/
 
 #include <stdio.h> 
 #include <string.h>
@@ -144,10 +144,10 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       DestroyLabel (pthis);
       return 0;
       break;
-	case SCI_UIMENU:
-	  DestroyUimenu (pthis);
-	  return 0;
-	  break;
+    case SCI_UIMENU:
+      DestroyUimenu (pthis);
+      return 0;
+      break;
     default:
       sciprint ("Entity with type %d cannot be destroyed\n",sciGetEntityType (pthis));
       return -1;
@@ -187,7 +187,7 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_TEXT:
     case SCI_MERGE: 
     case SCI_LABEL:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
       DestroyAllGraphicsSons (pthis);
       return 0;
       break;
@@ -649,9 +649,9 @@ DestroySegs (sciPointObj * pthis)
     } 
   else 
     {
-	FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
-	FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
-	FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
+      FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
+      FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
+      FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
     } 
   sciDelThisToItsParent (pthis, sciGetParent (pthis)); 
   if (sciDelHandle (pthis) == -1)
@@ -734,7 +734,7 @@ sciUnAgregation (sciPointObj * pobj)
  */
 int DestroyLabel (sciPointObj * pthis)
 {
-/*   sciLabel *pplabel = pLABEL_FEATURE (pthis); */
+  /*   sciLabel *pplabel = pLABEL_FEATURE (pthis); */
   FREE (pLABEL_FEATURE (pthis)->user_data); 
   pLABEL_FEATURE (pthis)->size_of_user_data = 0;
   FREE (pLABEL_FEATURE (pthis)->text.ptextstring);
@@ -750,15 +750,15 @@ int DestroyLabel (sciPointObj * pthis)
 
 int DestroyUimenu (sciPointObj * pthis)
 {
-	FREE (pUIMENU_FEATURE (pthis)->label.ptextstring);
-	FREE (pUIMENU_FEATURE (pthis)->label.callback);
+  FREE (pUIMENU_FEATURE (pthis)->label.ptextstring);
+  FREE (pUIMENU_FEATURE (pthis)->label.callback);
 
-	sciDelThisToItsParent (pthis, sciGetParent (pthis));
-	if (sciDelHandle (pthis) == -1) return -1;
-	FREE (sciGetPointerToFeature (pthis));
-	FREE (pthis);
-	/* on peut alors destroyer le parent */
-	return 0;
+  sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  if (sciDelHandle (pthis) == -1) return -1;
+  FREE (sciGetPointerToFeature (pthis));
+  FREE (pthis);
+  /* on peut alors destroyer le parent */
+  return 0;
 }
 
 

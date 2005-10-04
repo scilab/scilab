@@ -136,57 +136,57 @@ POINT3D;
  * @memo SCI_STATUSB,
  */
 typedef enum
-{/**Entity type FIGURE*/
-  SCI_FIGURE,		
-  /**Entity type SUBWINDOW*/
-  SCI_SUBWIN,		
-  /**Entity type TEXT*/
-  SCI_TEXT,			
-  /**Entity type TITLE */
-  SCI_TITLE,		
-  /**Entity type LEGEND */
-  SCI_LEGEND,		
-  /**Entity type ARC */
-  SCI_ARC,			
-  /**Entity type POLYLINE*/
-  SCI_POLYLINE,	    
-  /**Entity type RECTANGLE*/
-  SCI_RECTANGLE,    
-  /**Entity type SURFACE*/
-  SCI_SURFACE,
-  /**Entity type MERGE*/  /* DJ.A 30/12 */
-  SCI_MERGE,
-  /**Entity type LIGHT*/
-  SCI_LIGHT,		
-  /**Entity type AXIS*/
-  SCI_AXIS,	
-  /**Entity type AXES*/
-  SCI_AXES,	  
-  /**Entity type SEGS*/
-  SCI_SEGS,	
-  /**Entity type GRAYPLOT*/
-  SCI_GRAYPLOT, 
-  /**Entity type FEC*/
-  SCI_FEC,				
-  /**Entity type PANNER*/
-  SCI_PANNER,		
-  /**Entity type HORIZONTALL SCROLL BAR */
-  SCI_SBH,			
-  /**Entity type VERTICALL SCROLL BAR*/
-  SCI_SBV,			
-  /**Entity type MENU*/
-  SCI_MENU,			
-  /**Entity type CONTEXT MENU*/
-  SCI_MENUCONTEXT,	
-  /**Entity type STATUS BAR*/
-  SCI_STATUSB,	    
-  /**Entity type AGREGATION */
-  SCI_AGREG,			
-  /**Entity type LABEL created by F.Leray 26.05.04 */
-  SCI_LABEL,
-  /**Entity type UIMENU created by A.C 28.09.05 **/
-  SCI_UIMENU
-}
+  {/**Entity type FIGURE*/
+    SCI_FIGURE,		
+    /**Entity type SUBWINDOW*/
+    SCI_SUBWIN,		
+    /**Entity type TEXT*/
+    SCI_TEXT,			
+    /**Entity type TITLE */
+    SCI_TITLE,		
+    /**Entity type LEGEND */
+    SCI_LEGEND,		
+    /**Entity type ARC */
+    SCI_ARC,			
+    /**Entity type POLYLINE*/
+    SCI_POLYLINE,	    
+    /**Entity type RECTANGLE*/
+    SCI_RECTANGLE,    
+    /**Entity type SURFACE*/
+    SCI_SURFACE,
+    /**Entity type MERGE*/  /* DJ.A 30/12 */
+    SCI_MERGE,
+    /**Entity type LIGHT*/
+    SCI_LIGHT,		
+    /**Entity type AXIS*/
+    SCI_AXIS,	
+    /**Entity type AXES*/
+    SCI_AXES,	  
+    /**Entity type SEGS*/
+    SCI_SEGS,	
+    /**Entity type GRAYPLOT*/
+    SCI_GRAYPLOT, 
+    /**Entity type FEC*/
+    SCI_FEC,				
+    /**Entity type PANNER*/
+    SCI_PANNER,		
+    /**Entity type HORIZONTALL SCROLL BAR */
+    SCI_SBH,			
+    /**Entity type VERTICALL SCROLL BAR*/
+    SCI_SBV,			
+    /**Entity type MENU*/
+    SCI_MENU,			
+    /**Entity type CONTEXT MENU*/
+    SCI_MENUCONTEXT,	
+    /**Entity type STATUS BAR*/
+    SCI_STATUSB,	    
+    /**Entity type AGREGATION */
+    SCI_AGREG,			
+    /**Entity type LABEL created by F.Leray 26.05.04 */
+    SCI_LABEL,
+    /**Entity type UIMENU created by A.C 28.09.05 **/
+    SCI_UIMENU
+  }
 /**Struct of Entity type*/
 sciEntityType;	
 
@@ -245,12 +245,12 @@ sciHandleTab;
 
 /**@name Sons
  * Used to determine the hierarchy
-  sciPointObj *pointobj;
-  sciSons     *pnext;
- */
+ sciPointObj *pointobj;
+ sciSons     *pnext;
+*/
 typedef struct tagSons
 {
-	/** */
+  /** */
   struct tagSons *pprev;	  
   /**  is the pointer of next the son's structure      */
   sciPointObj *pointobj;	
@@ -344,8 +344,8 @@ sciGraphicContext;
   ----------------------*/
 
 /* Changing those lines, be carreful that
- the new attribut is update in the sciset and sciget routines
- */
+   the new attribut is update in the sciset and sciget routines
+*/
 /** */
 #define SCI_DONT_CARE          0
 /** */
@@ -471,7 +471,7 @@ typedef struct
   int wshow ;
   
   BOOL allredraw;
-/*   BOOL force_draw; /\* exclusively used with draw command to force the drawing of the object *\/ */
+  /*   BOOL force_draw; /\* exclusively used with draw command to force the drawing of the object *\/ */
 
   sciFont fontcontext; /* F.Leray 08.04.04 */
   int * user_data; /* adding 27.06.05 */
@@ -491,7 +491,7 @@ typedef struct
   /** */
   sciFont fontcontext;
   sciGraphicContext graphiccontext; /* the only properties used by Text are foreground and background */
- /** */
+  /** */
   char *ptextstring;
   /** position in scilab window (not pixel) */
   double x;			    
@@ -528,22 +528,22 @@ sciText;
  * Enumeration used to specify the title place 
  */
 typedef enum
-{
-  /** */
-  SCI_LEGEND_OUTSIDE = -1,
-  /** */
-  SCI_LEGEND_IN_INSIDE = 0,
-  /** */
-  SCI_LEGEND_IN_UPPER_LEFT = 1,
-  /** */
-  SCI_LEGEND_IN_UPPER_RIGHT = 2,
-  /** */
-  SCI_LEGEND_IN_LOWER_LEFT = 3,
-  /** */
-  SCI_LEGEND_IN_LOWER_RIGHT = 4,
-  /** */
-  SCI_LEGEND_IN_SPECIFIED = 5
-}  /** */
+  {
+    /** */
+    SCI_LEGEND_OUTSIDE = -1,
+    /** */
+    SCI_LEGEND_IN_INSIDE = 0,
+    /** */
+    SCI_LEGEND_IN_UPPER_LEFT = 1,
+    /** */
+    SCI_LEGEND_IN_UPPER_RIGHT = 2,
+    /** */
+    SCI_LEGEND_IN_LOWER_LEFT = 3,
+    /** */
+    SCI_LEGEND_IN_LOWER_RIGHT = 4,
+    /** */
+    SCI_LEGEND_IN_SPECIFIED = 5
+  }  /** */
 sciLegendPlace;
 
 
@@ -566,7 +566,7 @@ typedef struct
   int width;		     
   /** specifies the frame's height */
   int height;		     
-   /** */
+  /** */
   BOOL isselected;
   /** specifies if the legend is surrounded */
   BOOL issurround;	     
@@ -592,12 +592,12 @@ sciLegend;
  * Enumeration used to specify the title place 
  */
 typedef enum
-{
-  /** */
-  SCI_TITLE_IN_TOP = 0,
-  /** */
-  SCI_TITLE_IN_BOTTOM = 1,
-}/** */
+  {
+    /** */
+    SCI_TITLE_IN_TOP = 0,
+    /** */
+    SCI_TITLE_IN_BOTTOM = 1,
+  }/** */
 sciTitlePlace;	
 
 
@@ -652,13 +652,13 @@ sciLabel;
 
 typedef struct
 {
-	sciRelationShip relationship;
-	/** */
-	sciText label; /* Callback in sciText struct. */
-	/** specifies if this object is visble             */
-	BOOL visible;
+  sciRelationShip relationship;
+  /** */
+  sciText label; /* Callback in sciText struct. */
+  /** specifies if this object is visble             */
+  BOOL visible;
 
-	int HANDLEMENU;
+  int HANDLEMENU;
 
 }/** */
 sciUimenu;
@@ -698,7 +698,7 @@ typedef struct
   double  limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
   integer flag[3]; /* 3d options */
   
-   /* F.Leray 07.10.04 REMOVE AAINT*/
+  /* F.Leray 07.10.04 REMOVE AAINT*/
   int nbsubtics[3]; /* Don't touch to subint because also deals with drawaxis: AXES structure has multiple uses... */ /* F.Leray 07.10.04 */
 
   BOOL reverse[3]; /* if TRUE, it means that the corresponding axe is reversed */
@@ -722,7 +722,7 @@ typedef struct
   /** */
   /** specifies the title for this window  */
   char name[sizeof ("ScilabGraphic") + 4];	    
-    /** */
+  /** */
   int namelen;
   /** specifies the number for this window                   */
   int number;			
@@ -906,6 +906,9 @@ typedef struct
   BOOL isinterpshaded;
   int *scvector;
   int dim_icv; /* dimension of the interpolated color vector (3 or 4) */
+
+  double bar_shift;
+  double bar_width;
 }
 sciPolyline;  /** */
 
@@ -947,13 +950,13 @@ sciRectangle;  /** */
 
 
 typedef enum
-{
-	SCI_FAC3D,
-	SCI_CONTOUR,
-	SCI_PARAM3D,
-	SCI_PARAM3D1,
-	SCI_PLOT3D,
-}
+  {
+    SCI_FAC3D,
+    SCI_CONTOUR,
+    SCI_PARAM3D,
+    SCI_PARAM3D1,
+    SCI_PLOT3D,
+  }
 sciTypeOf3D;
 
 
@@ -997,8 +1000,8 @@ typedef struct
   integer flag[3];
   double ebox[6];
   int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
-                        0: uniformed color
-			1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */
+		    0: uniformed color
+		    1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */
   sciTypeOf3D typeof3d;
   int hiddencolor;
   BOOL isselected;
@@ -1303,7 +1306,7 @@ sciLabelMenu;  /** */
 
 /**@name Menu
  * Structure used to specify a menu 
-  */
+ */
 typedef struct
 {
   sciRelationShip relationship;
@@ -1318,13 +1321,13 @@ sciMenu /** */ , sciMenuContext;/** */
 /**@name MenuContext
  * Structure used to specify popupmenu called with the right mouse button
  *
-typedef struct {
-  sciRelationShip    relationship;
-  sciGraphicContext graphiccontext;
-  sciText           text;
-  sciLabelMenu      *plabelmenu;
-} sciMenuContext ;
-ATTENTION DECLARE SI DESSUS */
+ typedef struct {
+ sciRelationShip    relationship;
+ sciGraphicContext graphiccontext;
+ sciText           text;
+ sciLabelMenu      *plabelmenu;
+ } sciMenuContext ;
+ ATTENTION DECLARE SI DESSUS */
 
 /**@name StatusBar
  * Structure used to specify 
@@ -1341,7 +1344,7 @@ sciStatusBar;  /** */
 
 /**@name Panner
  * Structure used to specify 
-  */
+ */
 typedef struct
 {
   sciRelationShip relationship;

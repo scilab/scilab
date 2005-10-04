@@ -48,7 +48,7 @@ int C2F(graphicsmodels) ()
   sciSubWindow * ppobj = NULL;
   double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
   sciSubWindow * ppaxesmdl = NULL;
- /*  sciSubWindow * ppaxesmdl = NULL; */
+  /*  sciSubWindow * ppaxesmdl = NULL; */
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
@@ -270,7 +270,7 @@ int C2F(graphicsmodels) ()
   dir= 'l'; ppaxesmdl->axes.ydir=dir;      
 
   /* BU HERE */
-/*   ppaxesmdl = ppaxesmdl; */
+  /*   ppaxesmdl = ppaxesmdl; */
   for (i=0 ; i<4 ; i++){  
     ppaxesmdl->axes.xlim[i]=  Cscale.xtics[i];
     ppaxesmdl->axes.ylim[i]=  Cscale.ytics[i]; }
@@ -362,7 +362,7 @@ int C2F(graphicsmodels) ()
   ppaxesmdl->isselected = FALSE;
 
   ppaxesmdl->visible = sciGetVisibility(pfiguremdl);
-/*   ppaxesmdl->drawlater = FALSE; */
+  /*   ppaxesmdl->drawlater = FALSE; */
   ppaxesmdl->isclip = -1;
   
   ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
@@ -486,7 +486,7 @@ int C2F(graphicsmodels) ()
 
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.callbacklen = 0;
- /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label))); */
+  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label))); */
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_x_label)->auto_rotation = TRUE;
@@ -561,7 +561,7 @@ int C2F(graphicsmodels) ()
 
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.callbacklen = 0;
- /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label))); */
+  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label))); */
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_y_label)->auto_rotation = TRUE;
@@ -635,7 +635,7 @@ int C2F(graphicsmodels) ()
 
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0;
- /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label))); */
+  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label))); */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_z_label)->auto_rotation = TRUE;
@@ -690,9 +690,9 @@ sciInitGraphicContext (sciPointObj * pobj)
 
   /* F.Leray debug 30.03.04*/
   /*
-  sciGraphicContext * psciGC_pobj = sciGetGraphicContext(pobj); 
-  sciGraphicContext * psciGC_paxe = sciGetGraphicContext(paxesmdl);
-  sciGraphicContext * psciGC_pfig = sciGetGraphicContext(pfiguremdl);
+    sciGraphicContext * psciGC_pobj = sciGetGraphicContext(pobj); 
+    sciGraphicContext * psciGC_paxe = sciGetGraphicContext(paxesmdl);
+    sciGraphicContext * psciGC_pfig = sciGetGraphicContext(pfiguremdl);
   */
   switch (sciGetEntityType (pobj))
     {
@@ -802,7 +802,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -819,7 +819,7 @@ sciInitGraphicContext (sciPointObj * pobj)
 int
 sciInitFontContext (sciPointObj * pobj)
 {
-   /*   int aa[5]; */ /* for debug purpose only F.Leray 13.01.05 */
+  /*   int aa[5]; */ /* for debug purpose only F.Leray 13.01.05 */
 
   /* 
    * initialisation du contexte font par defaut 
@@ -997,7 +997,7 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_SURFACE:
     case SCI_LIGHT:
     case SCI_AGREG:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       return -1;
       break;
@@ -1052,7 +1052,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   pSUBWIN_FEATURE (psubwin)->axes.subint[2] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.limits[0]  = 0;  
   pSUBWIN_FEATURE (psubwin)->visible = TRUE;
-/*   pSUBWIN_FEATURE (psubwin)->drawlater = FALSE; */
+  /*   pSUBWIN_FEATURE (psubwin)->drawlater = FALSE; */
   pSUBWIN_FEATURE (psubwin)->is3d = FALSE;  
   pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
   pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
@@ -1217,8 +1217,8 @@ int InitAxesModel()
   ppaxesmdl->FRect[5]   = 1.0;   /* zmax */
   ppaxesmdl->isselected = FALSE;
   ppaxesmdl->visible = sciGetVisibility(pfiguremdl); 
-/* /\*   ppaxesmdl->drawlater = sciGetDrawLater(pfiguremdl); *\/ */
-/*   ppaxesmdl->drawlater = FALSE; */
+  /* /\*   ppaxesmdl->drawlater = sciGetDrawLater(pfiguremdl); *\/ */
+  /*   ppaxesmdl->drawlater = FALSE; */
 
   ppaxesmdl->isclip = -1;  
   ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
@@ -1278,7 +1278,7 @@ int InitAxesModel()
 
   pLABEL_FEATURE ((ppobj->mon_title))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_title))->text.callbacklen = 0; 
- /*  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title)));  */
+  /*  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title)));  */
   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_title)->auto_rotation = TRUE;
@@ -1353,7 +1353,7 @@ int InitAxesModel()
 
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.callbacklen = 0; 
- /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label)));  */
+  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label)));  */
   pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_x_label)->auto_rotation = TRUE;
@@ -1428,7 +1428,7 @@ int InitAxesModel()
 
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.callbacklen = 0; 
- /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label)));  */
+  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label)));  */
   pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_y_label)->auto_rotation = TRUE;
@@ -1502,7 +1502,7 @@ int InitAxesModel()
 
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callback = (char *)NULL;
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0; 
- /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label)));  */
+  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label)));  */
   pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
   pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
   pLABEL_FEATURE (ppobj->mon_z_label)->auto_rotation = TRUE;
@@ -1565,7 +1565,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
   /* try to install the colormap in the graphic context */
   C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
-	 pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
+	  pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
 
   if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
     sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
@@ -1718,7 +1718,7 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       sciprint ("This object haven't any graphic mode\n");
       return -1;

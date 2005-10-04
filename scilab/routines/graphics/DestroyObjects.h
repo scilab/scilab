@@ -7,10 +7,10 @@
  *    Fabrice Leray,     INRIA 2004-xxxx
  *    Comment:
  *    This file contains all functions used to BUILD new objects : 
-        - break the binding between the deleted object and its parent in the 
-          existing hierarchy
-        - freeing memory
-  --------------------------------------------------------------------------*/
+ - break the binding between the deleted object and its parent in the 
+ existing hierarchy
+ - freeing memory
+ --------------------------------------------------------------------------*/
 
 #include "ObjectStructure.h"
 #include "HandleManagement.h"

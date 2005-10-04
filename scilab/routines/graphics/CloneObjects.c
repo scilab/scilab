@@ -155,7 +155,7 @@ sciCloneObj (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       sciprint ("This object cannot be cloned !\n");
       return (sciPointObj *)NULL;
