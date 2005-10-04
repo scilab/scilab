@@ -80,7 +80,7 @@ if MSDOS then
     setenv("PVM_ARCH","WIN32")
     setenv("PVM_TMP",getenv("TEMP"))
   end
-  clear pathconvert
+  clear pathconvert with_pvm
 else
   if getenv('PRINTERS','ndef')=="ndef" then
     setenv("PRINTERS","lp")
