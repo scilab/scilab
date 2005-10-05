@@ -72,7 +72,7 @@ int intUImenu(char *fname,unsigned long fname_len)
 	{
 	  GetRhsVar(1,"h",&m1,&n1,&l1);
 	  pParent=sciGetPointerFromHandle((long)*hstk(l1));
-	  if ( (sciGetEntityType (pParent) != SCI_FIGURE) || (sciGetEntityType (pParent) != SCI_UIMENU) )
+	  if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
 	    {
 	      Scierror(999,"Must be a figure or a uimenu parent.");
 	      return 0;

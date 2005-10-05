@@ -2939,11 +2939,12 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
  * @param  char callback[] : intial text callback string .
  * @return  : pointer sciPointObj if ok , NULL if not
  */
-sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback)
+sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciUimenu *ppobj=NULL;
-  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
+
+  if ( (sciGetEntityType (pparent) == SCI_FIGURE) || (sciGetEntityType (pparent) == SCI_UIMENU) )
     {
       if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
 
@@ -2962,7 +2963,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *ca
 	  return (sciPointObj *) NULL;
 	}
       /*  sciSetParent (pobj, pparentsubwin); */
-      if (!(sciAddThisToItsParent (pobj, pparentfigure)))
+      if (!(sciAddThisToItsParent (pobj, pparent)))
 	{
 	  sciDelHandle (pobj);
 	  FREE(pobj->pfeatures);
@@ -3004,7 +3005,7 @@ sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *ca
     }
   else
     {
-      sciprint ("The parent has to be a FIGURE \n");
+      sciprint ("The parent has to be a FIGURE or a UIMENU\n");
       return (sciPointObj *) NULL;
     }
 }

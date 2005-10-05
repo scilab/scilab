@@ -660,6 +660,7 @@ function %h_p(h)
   case "Uimenu"
   t=[t;
   "parent: "+h.parent.type
+  "children: "+fmtchildren(h.children)
   "visible = "+sci2exp(h.visible)
   "text = "+h.text 
   "callback = "+h.callback 
