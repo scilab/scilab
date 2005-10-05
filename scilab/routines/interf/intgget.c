@@ -596,7 +596,8 @@ int sciGet(sciPointObj *pobj,char *marker)
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
 	  numcol = 3;
-	  CheckColormap(&numrow);
+/* 	  CheckColormap(&numrow); */
+	  numrow = sciGetNumColors (pobj);
 	  if ( numrow == 0) numcol=0;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  C2F(dr1)("xget", "colormap",&flagx,x1,&x2,PI0,PI0,PI0,stk(outindex),PD0,PD0,PD0,5L,bsiz);
