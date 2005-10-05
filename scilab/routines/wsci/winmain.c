@@ -52,6 +52,7 @@ extern void sci_tk_activate(void);
 extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
 extern void CreateSplashscreen(void);
+extern void settexmacs(void);
 /*-----------------------------------------------------------------------------------*/
 static void AllGraphWinDelete ();
 static LPSTR my_argv[MAXCMDTOKENS];
@@ -148,6 +149,10 @@ int Console_Main(int argc, char **argv)
 		{
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		} 
+	  else if ( strcmp(my_argv[argcount],"-texmacs") == 0 && argcount + 1 < my_argc)
+	  {
+		  settexmacs();
+	  }
 	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
 		  (stricmp (my_argv[argcount],"-?")==0) ||
 		  (stricmp (my_argv[argcount],"-HELP")==0) )
@@ -162,7 +167,6 @@ int Console_Main(int argc, char **argv)
 		  exit(1);
 	  }
 	}
-		
 
   hdllInstance = GetModuleHandle(MSG_SCIMSG9);
 
@@ -303,17 +307,15 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	for (i=1;i<my_argc;i++)
 	{
-		char ArgTmp[MAX_PATH];
-		strcpy(ArgTmp,my_argv[i]);
-		if  ( (strcmp (strupr(ArgTmp), "-NW") == 0) || (strcmp (strupr(ArgTmp), "-NWI") == 0) )
+		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) )
 		{
 			MessageBox(NULL,"Not with Windows Console","Error",MB_ICONINFORMATION);
 			exit(1);
 		}
 
-		if ( (strcmp (strupr(ArgTmp), "-H") == 0) ||
-			 (strcmp (strupr(ArgTmp), "-?") == 0) ||
-			 (strcmp (strupr(ArgTmp), "-HELP") == 0) )
+		if ( (stricmp (strupr(my_argv[i]), "-H") == 0) ||
+			 (stricmp (strupr(my_argv[i]), "-?") == 0) ||
+			 (stricmp (strupr(my_argv[i]), "-HELP") == 0) )
 		{
 			char Msg[1024];
 			strcpy(Msg,MSG_SCIMSG24);
