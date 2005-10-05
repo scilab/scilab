@@ -773,6 +773,10 @@ cd .. &gt;nul
 				RelativePath=".\intgget.h">
 			</File>
 			<File
+				RelativePath=".\intgetmemory.h">
+			</File>
+
+			<File
 				RelativePath=".\intgraphics.h">
 			</File>
 			<File
