@@ -7329,7 +7329,11 @@ sciDrawObj (sciPointObj * pobj)
   double **zvect = (double **) NULL;
   int result_trans3d = 1;
   BOOL drawline = TRUE;
+  
+  /* for bar polyline case only */
   int nb_curves_bar = 0;
+  int bar_number = 0;
+  
   /* get the number of curves/polylines created */
   /* by ONE call to plot2d (property pPOLYLINE_FEATURE ->n2) */
   /* to help the drawing of the bar (case 6 ONLY) in case POLYLINE */
@@ -8647,14 +8651,18 @@ sciDrawObj (sciPointObj * pobj)
 	      x[2] = sciGetLineWidth (pobj);
 	      x[3] = sciGetLineStyle (pobj);
 	      
+	      /* get the number of polylines sisters with bar property "on" */
+	      
+	      bar_number = GetBarNumber(pobj);
+	      
+	      width = FindWidth(pobj,n1,bar_number,xvect[jk]);
+
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
 		  double myX[4], myY[4], myZ[4];
 		  int pix_X[4], pix_Y[4];
 		  int quatre = 4;
 		  double shift = pPOLYLINE_FEATURE(pobj)->bar_shift;
-		  double width = pPOLYLINE_FEATURE(pobj)->bar_width;
-		  
 		  
 		  for(i=0;i<n1;i++)
 		    {
@@ -11604,4 +11612,49 @@ int FreeVertices(sciPointObj * psubwin)
   pHead2 = (Vertices *) NULL;
 
   return 0;
+}
+
+int GetBarNumber(sciPointObj * pobj)
+{
+  int bar_number = 0;
+  sciSons *psonstmp;
+  
+  sciPointObj * parent = sciGetParent(pobj);
+  
+  if(sciGetEntityType(parent) != SCI_AGREG && sciGetEntityType(parent) != SCI_SUBWIN)
+    {
+      sciprint("Error in GetBarNumber\n");
+      return 0;
+    }
+  
+  psonstmp = sciGetSons(parent);
+  
+  while(psonstmp != (sciSons *) NULL)
+    {   
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_POLYLINE &&
+	 pPOLYLINE_FEATURE(psonstmp->pointobj)->plot == 6)
+	bar_number++;
+      psonstmp = psonstmp->pnext;
+    }
+ 
+  return bar_number;
+}
+
+
+double FindWidth(sciPointObj *pobj, int n1, int bar_number, double *x)
+{
+  double inter = 0.;
+  int i;
+
+  if(n1>1)
+    {
+      inter = x[1] - x[0];
+      for(i=1;i<n1;i++)
+	inter = Min(inter,x[i] - x[i-1]);
+    }
+  else
+    inter = 1;
+  
+  inter = inter*.9;
+  return (double) ((inter/bar_number) * pPOLYLINE_FEATURE(pobj)->bar_width);
 }

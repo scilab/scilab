@@ -177,4 +177,6 @@ extern int GetVerticesAt(Vertices *vertices_list, int *xm, int *ym, double *x, d
 extern int RemoveNext(Vertices *pCurrent);
 extern int FreeVertices(sciPointObj * psubwin);
 extern int ChildrenCounter(sciPointObj *pparent);
+extern int GetBarNumber(sciPointObj * pobj);
+extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
 #endif /* __SCI_DRAWINGS__ */
