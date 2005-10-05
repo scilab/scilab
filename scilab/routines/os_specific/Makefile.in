@@ -9,7 +9,7 @@ OBJSF = bashos.o basin.o basout.o \
 
 OBJSC  = getenvc.o link.o systemc.o   csignal.o getpidc.o timer.o \
 	flags.o men_Sutils.o addinter.o  tmpdir.o cluni0.o setenvc.o \
-	inffic.o isanan.o  texmacs.o sci_mem_alloc.o @GETARG@.o @MALLOC@ 
+	inffic.o isanan.o  texmacs.o sci_mem_alloc.o getmemory.o @GETARG@.o @MALLOC@ 
 
 include ../../Makefile.incl
 
@@ -51,3 +51,4 @@ texmacs.o: texmacs.c ../machine.h ../stack-def.h
 timer.o: timer.c ../machine.h
 tmpdir.o: tmpdir.c ../machine.h
 sci_mem_alloc.o: sci_mem_alloc.c ../sci_mem_alloc.h
+getmemory.o: getmemory.c  getmemory.h

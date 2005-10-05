@@ -8,8 +8,9 @@ LIBRARY = $(SCIDIR)/libs/interf.a
 OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
 	intlapack.o intslicot.o intarpack.o matdes.o intorand.o stcreate.o \
 	intfilestat.o strelm-c.o  matdsr.o otherspecfun.o hmops.o \
-	intinterp.o intsetenv.o intreadxls.o dassl.o intqld.o \
+	intinterp.o intsetenv.o intreadxls.o dassl.o intqld.o intgetmemory.o\
 	intUImenu.o intgraphics.o intgget.o intgset.o
+
 
 OBJSF = lstelm.o lstelmi.o matelm.o matold.o lstops.o intl_e.o intl_i.o \
 	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o \
@@ -43,10 +44,11 @@ include ../Make.lib
 
 
 
-all:: Makefile.mak
+all:: Makefile.mak 
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
+
 
 # some versions of g77 on sparc will compile intmgetl.f
 # but the code does not execute properly.

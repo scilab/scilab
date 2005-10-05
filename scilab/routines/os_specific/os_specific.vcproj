@@ -697,6 +697,9 @@ cd .. &gt;nul
 				RelativePath=".\getenvc.c">
 			</File>
 			<File
+				RelativePath=".\getmemory.c">
+			</File>
+			<File
 				RelativePath=".\getpidc.c">
 			</File>
 			<File

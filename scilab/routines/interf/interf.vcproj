@@ -703,6 +703,9 @@ cd .. &gt;nul
 				RelativePath=".\intfilestat.c">
 			</File>
 			<File
+				RelativePath=".\intgetmemory.c">
+			</File>
+			<File
 				RelativePath=".\intgget.c">
 			</File>
 			<File

@@ -10,7 +10,7 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/system.lib
 
 
-OBJSC = getfreememory.obj getmemorysize.obj System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
+OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
 	Sparse.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj fromjava.obj calendar.obj \
@@ -45,9 +45,6 @@ include ../Make.lib.mak
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
 
 allops.obj:  ../stack.h
 bexec.obj:  ../stack.h

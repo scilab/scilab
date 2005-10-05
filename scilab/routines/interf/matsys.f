@@ -62,8 +62,8 @@ c     lasterror version loadhistory savehistory gethistory resethistory macr2tre
 c     53         54        55          56         57          58        59
 c     sleep getos
 c     60    61 
-c     banner fromjava Calendar getmemorysize getfreememory
-c     62     63       64        65           66           
+c     banner fromjava Calendar getmemory
+c     62     63       64        65       
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -78,7 +78,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      694,695,697,698,699,700,701,702,703,
-     +      705,706,707,708,709,710,711),fin
+     +      705,706,707,708,709,710),fin
 c     
 c     debug
  10   call intdebug()
@@ -273,10 +273,8 @@ c     mtlb_mode
       goto 999
  709  call intcalendar('Calendar')
       goto 999
- 710  call intgetmemorysize('getmemorysize')
+ 710  call intgetmemory('getmemory')
       goto 999     
- 711  call intgetfreememory('getfreememory')
-      goto 999
  998  continue
 c     fake calls : only to force the 
 c     linker to load the following functions
