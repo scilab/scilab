@@ -89,32 +89,32 @@ int sci_demo (char *fname,char *code,integer *flagx);
 int C2F(scigerase)();
 int scixg2psofig_G(char *fname,char *dr,unsigned long fname_len,unsigned long dr_len);
 int scicontour2d_G(char *fname,int (*func) (),unsigned long fname_len);
-int sciplot2d1_G(char *fname,int ptype,int (*func)
-		 __PARAMS((char *,double *,double *,integer *,integer *,
-			   integer *,char *,char *,double *,integer *,
-			   integer,integer,integer)),unsigned long fname_len);
-		 int sciplot3d_G(char *fname,
-				 int (*func) __PARAMS((double *,double *,double *,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
-				 int (*func1)  __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
-				 int (*func2) __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
-				 int (*func3) __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
-				 unsigned long fname_len);
-		 int scichamp_G(char *fname,int (*func) (),unsigned long fname_len);
-		 int scisetposfig(char *fname,unsigned long fname_len);
-		 /*-----------------------------------------------------------------------------------*/
-		 static int get_style(char *fname,int pos, int n1,rhs_opts opts[]);
-		 static int get_rect(char *fname,int pos,rhs_opts opts[]);
-		 static int get_strf(char *fname,int pos,rhs_opts opts[]);
-		 static int get_legend(char *fname,int pos,rhs_opts opts[]);
-		 static int get_nax(int pos,rhs_opts opts[]);
-		 static int get_zminmax(char *fname,int pos,rhs_opts opts[]);
-		 static int get_colminmax(char *fname,int pos,rhs_opts opts[]);
-		 static int get_colout(char *fname,int pos,rhs_opts opts[]);
-		 static int get_with_mesh(char *fname,int pos,rhs_opts opts[]);
-		 static int get_logflags(char *fname,int pos,rhs_opts opts[]);
-		 static int get_optional_double_arg();
-		 static get_optional_int_arg();
-		 /*-----------------------------------------------------------------------------------*/
+int sciplot2d1_G(char *fname, int ptype,
+		 int (*func) __PARAMS((char *,double *,double *,integer *,integer *,
+				       integer *,char *,char *,double *,integer *,
+				       integer,integer,integer)),unsigned long fname_len);
+int sciplot3d_G(char *fname,
+		int (*func) __PARAMS((double *,double *,double *,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
+		int (*func1)  __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
+		int (*func2) __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
+		int (*func3) __PARAMS((double *,double *,double *,integer *cvect,integer *p,integer *q,double *,double *,char *,integer *,double *,integer)), 
+		unsigned long fname_len);
+int scichamp_G(char *fname,int (*func) (),unsigned long fname_len);
+int scisetposfig(char *fname,unsigned long fname_len);
+/*-----------------------------------------------------------------------------------*/
+static int get_style(char *fname,int pos, int n1,rhs_opts opts[]);
+static int get_rect(char *fname,int pos,rhs_opts opts[]);
+static int get_strf(char *fname,int pos,rhs_opts opts[]);
+static int get_legend(char *fname,int pos,rhs_opts opts[]);
+static int get_nax(int pos,rhs_opts opts[]);
+static int get_zminmax(char *fname,int pos,rhs_opts opts[]);
+static int get_colminmax(char *fname,int pos,rhs_opts opts[]);
+static int get_colout(char *fname,int pos,rhs_opts opts[]);
+static int get_with_mesh(char *fname,int pos,rhs_opts opts[]);
+static int get_logflags(char *fname,int pos,rhs_opts opts[]);
+static int get_optional_double_arg();
+static int get_optional_int_arg();
+/*-----------------------------------------------------------------------------------*/
 #define sciGetStyle(pos,n1,opts) if ( get_style(fname,pos,n1,opts) == 0) return 0;
 #define GetRect(pos,opts) if ( get_rect(fname,pos,opts) == 0) return 0;
 #define GetStrf(pos,opts) if ( get_strf(fname,pos,opts) == 0) return 0;
@@ -127,7 +127,7 @@ int sciplot2d1_G(char *fname,int ptype,int (*func)
 #define GetLogflags(pos,opts) if ( get_logflags(fname,pos,opts) == 0) return 0;
 #define GetOptionalDoubleArg(pos,name,value,sz,opts) if ( get_optional_double_arg(fname,pos,name,value,sz,opts) == 0) return 0;
 #define GetOptionalIntArg(pos,name,value,sz,opts) if ( get_optional_int_arg(fname,pos,name,value,sz,opts) == 0) return 0;
-		 /*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/
 #ifndef NULL
 #define NULL 0
 #endif 
@@ -136,26 +136,26 @@ int sciplot2d1_G(char *fname,int ptype,int (*func)
 #define DEFSTRFN "099" 
 #define DEFLOGFLAGS "gnn" 
 #define SciWin() if(C2F(sciwin)() !=0) { Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
-		 /*-----------------------------------------------------------------------------------*/
-		 char *pmodes[] =
-		   { 
-		     "clear", 
-		     "and" ,
-		     "andReverse" ,
-		     "copy", 
-		     "andInverted" ,
-		     "noop" ,
-		     "xor" ,
-		     "or" ,
-		     "nor" ,
-		     "equiv" ,
-		     "invert" ,
-		     "orReverse" ,
-		     "copyInverted" ,
-		     "orInverted" ,
-		     "nand" ,
-		     "set" ,
-		   };
+/*-----------------------------------------------------------------------------------*/
+char *pmodes[] =
+  { 
+    "clear", 
+    "and" ,
+    "andReverse" ,
+    "copy", 
+    "andInverted" ,
+    "noop" ,
+    "xor" ,
+    "or" ,
+    "nor" ,
+    "equiv" ,
+    "invert" ,
+    "orReverse" ,
+    "copyInverted" ,
+    "orInverted" ,
+    "nand" ,
+    "set" ,
+  };
 
 static char *KeyTab_[] = {
   "alufunction",
