@@ -88,8 +88,7 @@ extern void
       C2F(xerbla)(),
       C2F(intfromjava)(),
 	  C2F(intcalendar)(),
-	  C2F(intgetmemorysize)(),
-	  C2F(intgetfreememory)(),
+	  C2F(intgetmemory)(),
 	  C2F(intwhat)();
 
 
@@ -179,8 +178,7 @@ void System_contents( int x)
       C2F(xerbla)();
       C2F(intfromjava)();
 	  C2F(intcalendar)();
-	  C2F(intgetmemorysize)();
-	  C2F(intgetfreememory)();
+	  C2F(intgetmemory)();
 	  C2F(intwhat)();
     }
 } 
