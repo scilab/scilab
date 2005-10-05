@@ -506,7 +506,7 @@ double *mxGetPi(const mxArray *ptr)
     }
   case SPARSEMATRIX:
     if (header[3]==0) return NULL;
-    return &value[ i2sadr(5+header[2] +header[4]) + header[1]*header[2]];
+    return &value[ i2sadr(5+header[2] +header[4]) + header[4]];
   default:
     return 0;
  }
