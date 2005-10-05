@@ -843,6 +843,7 @@ void setcolormapgPos(struct  BCG *Xgc,integer *v1,integer *v2, double *a, intege
 void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int i;
+  int mm;
 
   if ( ScilabGCPos_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
@@ -871,6 +872,68 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
   C2F(setpatternPos)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
   C2F(setforegroundPos)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
   C2F(setbackgroundPos)((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
+
+  /* -------------------------------------------------------- */
+  /* store the colormap for the get command too */
+  /* F.Leray 04.10.05 */
+  FREE(Xgc->Red);
+  FREE(Xgc->Green);
+  FREE(Xgc->Blue);
+  
+  /* don't forget black and white */
+  mm = m + 2;
+  if (!(Xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
+    Scistring("XgcAllocColors: unable to alloc\n");
+    return;
+  }
+  if (!(Xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
+    Scistring("XgcAllocColors: unable to alloc\n");
+    FREE(Xgc->Red);
+    return;
+  }
+  if (!(Xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
+    Scistring("XgcAllocColors: unable to alloc\n");
+    FREE(Xgc->Red);
+    FREE(Xgc->Green);
+    return;
+  }
+
+
+  for(i=0;i<m;i++){
+    Xgc->Red[i] = (float)a[i];
+    Xgc->Green[i] = (float)a[i+m];
+    Xgc->Blue[i] = (float)a[i+2*m]; 
+  }
+  /* -------------------------------------------------------- */
+}
+
+void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val)
+{
+  int m;
+  *v3 = 0;
+  int i;
+
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    *v3=1;
+    return;
+  }
+
+  m = ScilabGCPos.Numcolors;
+
+  for (i = 0; i < m; i++) {
+    val[i] = (double)ScilabGCPos.Red[i];
+    val[i+m] = (double)ScilabGCPos.Green[i];
+    val[i+2*m] = (double)ScilabGCPos.Blue[i];
+  }
+
+/*   if (*v2 != 3 ||  *v1 < 0) { */
+/*     Scistring("Colormap must be a m x 3 array \n"); */
+/*     *v3 = 1; */
+/*     return; */
+/*   } */
+/*   m = *v1; */
+/*   C2F(setgccolormapPos)(&ScilabGCPos,m, a, v3); */
 }
 
 void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
@@ -1106,7 +1169,7 @@ struct bgc { char *name ;
     {"clipoff",C2F(unsetclipPos),C2F(getclipPos)},
     {"clipping",C2F(setclipPos),C2F(getclipPos)},
     {"color",C2F(setpatternPos),C2F(getpatternPos)},
-    {"colormap",C2F(setcolormapPos),C2F(gemptyPos)},
+    {"colormap",C2F(setcolormapPos),C2F(getcolormapPos)},
     {"dashes",C2F(set_dash_or_color_Pos),C2F(get_dash_or_color_Pos)},
     {"default",InitScilabGCPos, C2F(gemptyPos)},
     {"figure",C2F(setscilabFigurePos),C2F(getscilabFigurePos)},/* NG */
