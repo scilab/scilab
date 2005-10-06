@@ -1,5 +1,5 @@
 function Undo_()
-    Cmenu='Open/Set'
+    Cmenu=[]
     %pt=[]
     if enable_undo then
       disablemenus()

@@ -1,21 +1,12 @@
-function [%pt,scs_m]=do_move(%pt,scs_m)
+function [scs_m]=do_move(%pt,scs_m)
 // Copyright INRIA
 // get a scicos object to move, and move it with connected objects
 //!
 //get block to move
-  while %t
-    if %pt==[] then
-      [btn,%pt,win,Cmenu]=cosclick()
-      if Cmenu<>[] then
-	[%win,Cmenu]=resume(win,Cmenu)
-      end
-    else
-      win=%win;
-    end
-    xc=%pt(1);yc=%pt(2);%pt=[]
-    [k,wh]=getobj(scs_m,[xc;yc])
-    if k<>[] then break,end
-  end
+  win=%win;
+  xc=%pt(1);yc=%pt(2);
+  [k,wh]=getobj(scs_m,[xc;yc])
+  if k==[] then return,end
 
   scs_m_save=scs_m
   if typeof(scs_m.objs(k))=='Block'|typeof(scs_m.objs(k))=='Text' then

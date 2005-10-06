@@ -1,4 +1,4 @@
 function Palettes_()
-    Cmenu='Open/Set'
+    Cmenu=[]
     [palettes,windows]=do_palettes(palettes,windows)
 endfunction

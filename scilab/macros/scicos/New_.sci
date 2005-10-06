@@ -1,5 +1,5 @@
 function New_()
-    Cmenu='Open/Set'
+    Cmenu=[]
     %r=2
     if edited then
       %r=message(['Diagram has not been saved';

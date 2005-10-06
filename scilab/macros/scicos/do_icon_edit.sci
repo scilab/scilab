@@ -1,19 +1,10 @@
 function [%pt,scs_m]=do_icon_edit(%pt,scs_m)
 // do_block - edit a block icon
 // Copyright INRIA
-  while %t
-    if %pt==[] then
-      [btn,%pt,win,Cmenu]=cosclick()
-      if Cmenu<>[] then
-	[%win,Cmenu]=resume(win,Cmenu)
-      end
-    else
-      win=%win;
-    end
-    xc=%pt(1);yc=%pt(2);%pt=[];
-    K=getblock(scs_m,[xc;yc])
-    if K<>[] then break,end
-  end
+  win=%win;
+  xc=%pt(1);yc=%pt(2);%pt=[];
+  K=getblock(scs_m,[xc;yc])
+  if K==[] then return,end
   
 gr_i=scs_m.objs(K).graphics.gr_i
 

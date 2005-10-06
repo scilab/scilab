@@ -1,5 +1,5 @@
 function Load_()
-    Cmenu='Open/Set'
+    Cmenu=[]
     if edited&~super_block then
       num=x_message(['Diagram has not been saved'],['OK','Go Back'])
       if num==2 then return;end

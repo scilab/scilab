@@ -175,6 +175,10 @@ end
 %R=strsubst(%R,'-','');
 %cor_item_exec=[%cor_item_exec, %R];
 
+//add fixed menu items not visible 
+%cor_item_exec=[%cor_item_exec;'MoveLink','MoveLink_'];
+
+
 menus=tlist('xxx')
 for %Y=1:length(%scicos_menu)
   menus(1)=[menus(1),%scicos_menu(%Y)(1)];
@@ -309,40 +313,77 @@ end
 drawobjs(scs_m)
 
 if pixmap then xset('wshow'),end
-%pt=[];%win=curwin;
-Cmenu='Open/Set'
-while %t
-  while %t do
-    [%stack]=stacksize()
-    if %stack(2)/%stack(1)>.3 then
-      stacksize(2*%stack(1))
-      disp('stacksize increased to '+string(2*%stack(1)))
-    end
-    if Cmenu==[]&%pt==[] then
-      [btn,%pt,%win,Cmenu]=cosclick()
-      if Cmenu<> [] then 
-	break
-      end
-    else
-      break
-    end
-  end
-  
-  if Cmenu=='Quit' then do_exit();break;end
-  
-  %koko=find(Cmenu==%cor_item_exec(:,1));
-  if size(%koko,'*')==1 then
-    execstr('exec('+%cor_item_exec(%koko,2)+',-1)')
-  else
-    Cmenu=[];%pt=[]
-  end
-  if Cmenu=='Quit' then do_exit();break;end
-  if pixmap then xset('wshow'),end
-end
-  set('old_style',stripblanks(olds))
 
-  
+
+//
+%pt = [];Cmenu = [];%win = curwin;      // state machine variables 
+while ( Cmenu <> 'Quit' ) 
+ 
+
+  [CmenuType,mess] = CmType(Cmenu);
+  //** clear the %pt information for backward compatibility 
+  if ( %pt <> [] & Cmenu==[] ) then %pt=[]; end 
+  if (Cmenu<>[] & CmenuType==0) then %pt=[];end  // no argument needed
+                                                 // for action
+  xinfo(mess);
+  if ( Cmenu==[] | (CmenuType == 1 & %pt==[]) ) then // need MORE information
+    [btn_n,%pt_n,win_n,Cmenu_n] = cosclick()   
+    if Cmenu_n<>[] then Cmenu = Cmenu_n; end    
+    if %pt_n <> [] then %pt = %pt_n; end       
+    %win=win_n
+  else   
+    %koko=find(Cmenu==%cor_item_exec(:,1));
+    if size(%koko,'*')==1 then
+      disp(Cmenu),disp(%pt)
+      execstr('exec('+%cor_item_exec(%koko,2)+',-1)')
+    else
+      Cmenu=[];%pt=[]
+    end
+  end 
+end 
+do_exit()
+if pixmap then xset('wshow'),end
+set('old_style',stripblanks(olds))
 endfunction
+
+function [itype,mess] = CmType(Cmenu)
+// should not be here !
+CmenuTypeOneVector =..
+    ['Region to Super Block',' Click, drag region and click (left to fix, right to cancel)';
+     'Smart Move','Click object to move, drag and click (left to fix, right to cancel)';
+     'Move','Click object to move, drag and click (left to fix, right to cancel)';
+     'Copy','Click on the object to copy, drag, click (left to copy, right to cancel)';
+     'Copy Region','Copy Region: Click, drag region, click (left to fix, right to cancel)'; 
+     'Replace','Click on new object , click on object to be replaced'; 
+     'Align','Click on an a port , click on a port of object to be moved'; 
+     'Link','Click link origin, drag, click left for final or intermediate points or right to cancel'; 
+     'Delete','Delete: Click on the object to delete'; 
+     'Delete Region','Delete Region: Click, drag region and click (left to delete, right to cancel)'; 
+     'Flip','Click on block to be flipped'; 
+     'Open/Set','Click to open block or make a link'; 
+     'MoveLink','';
+     'Label', 'Click block to label';
+     'Get Info','Click on object  to get information on it';
+     'Code Generation','Click on a Superblock (without activation output) t"+...
+     "o obtain a coded block!';
+     'Icon', 'Click on block to edit its icon';
+     'Color', 'Click on object to paint';
+     'Help', 'Click on object or menu to get help'
+     'Identification','Click on an object to set or get identification';
+     'Resize','Click block to resize';
+     'Documentation','Click on a block to set or get it''s documentation'
+    ]
+  
+  k=find (Cmenu == CmenuTypeOneVector(:,1));
+  if k==[] then itype=0;mess=''; return ; end
+  if size(k,'*')>1 then 
+    message('Warning '+string( size(k,'*'))+' menus have identical name '+Cmenu);
+    k=k(1);
+  end
+  itype = 1
+  mess=CmenuTypeOneVector(k,2)
+endfunction 
+
 function [x,k]=gunique(x)
     [x,k]=gsort(x);
     keq=find(x(2:$)==x(1:$-1))

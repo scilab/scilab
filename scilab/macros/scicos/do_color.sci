@@ -1,19 +1,11 @@
 function [%pt,scs_m]=do_color(%pt,scs_m)
 // do_block - edit a block icon
 // Copyright INRIA
-  while %t
-    if %pt==[] then
-      [btn,%pt,win,Cmenu]=cosclick()
-      if Cmenu<>[] then
-	[%win,Cmenu]=resume(win,Cmenu)
-      end
-    else
-      win=%win;
-    end
-    xc=%pt(1);yc=%pt(2);%pt=[]
-    K=getobj(scs_m,[xc;yc])
-    if K<>[] then break,end
-  end
+  win=%win;
+  xc=%pt(1);yc=%pt(2);%pt=[]
+  K=getobj(scs_m,[xc;yc])
+  if K==[] then return,end
+  //
   o=scs_m.objs(K)
   if typeof(o)=='Link' then
     [nam,pos,ct]=(o.id,o.thick,o.ct)

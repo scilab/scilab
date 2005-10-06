@@ -1,24 +1,20 @@
-function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
+function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 //edition of a link from an output block to an input  block
 // Copyright INRIA
   dash=xget('dashes')
   outin=['out','in']
   //----------- get link origin --------------------------------------
   //------------------------------------------------------------------
-    while %t
-    if %pt==[] then
-      [btn,%pt,win,Cmenu]=cosclick()
-      if Cmenu<>[] then
-	[%win,Cmenu]=resume(win,Cmenu)
-      end
-    else
-      win=%win;
-    end
-    xc1=%pt(1);yc1=%pt(2);%pt=[]
-    [kfrom,wh]=getblocklink(scs_m,[xc1;yc1])
-
-    if kfrom<>[] then o1=scs_m.objs(kfrom);break,end
+  win=%win;
+  xc1=%pt(1);yc1=%pt(2);
+  [kfrom,wh]=getblocklink(scs_m,[xc1;yc1])
+  
+  if kfrom<>[] then 
+    o1=scs_m.objs(kfrom),
+  else
+    return
   end
+  
   
   //kfrom  is the number of selected block or link
   scs_m_save=scs_m,nc_save=needcompile

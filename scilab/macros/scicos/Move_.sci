@@ -1,6 +1,5 @@
 function Move_()
-    xinfo('Click object to move, drag and click (left to fix, right to cancel)')
-
-    [%pt,scs_m]=do_stupidmove(%pt,scs_m)
-    xinfo(' ')
+  Cmenu=[];// Cmenu Quit can come out
+  [scs_m]=do_stupidmove(%pt,scs_m)
+  %pt=[];
 endfunction

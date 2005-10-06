@@ -2,10 +2,6 @@ function [scs_m,needcompile]=do_delete_region(scs_m,needcompile)
 // Copyright INRIA
 xinfo('Click, drag to select region and click to fix the selection')
 
-[btn,%pt,win,Cmenu]=cosclick()
-if Cmenu<>[] then
-  Cmenu=resume(Cmenu)
-end
 xc=%pt(1);yc=%pt(2);
 disablemenus()
 [ox,oy,w,h,ok]=get_rectangle(xc,yc)
