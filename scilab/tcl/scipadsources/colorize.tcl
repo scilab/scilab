@@ -1,29 +1,14 @@
 proc load_words {} {
     global words chset env
-
     set ownpath "$env(SCIPATH)/tcl/scipadsources"
-    #load the keywords which cannot be yet derived from scilab, from 
-    #  the "word" file (control keywords, internal functions, scicos palettes)
-    set type {}
-    set col {}
-    set f [open $ownpath/words r]
-    while {[gets $f line] > 0} {
-        if {[lindex $line 0] == {#MODE}} {
-            set type [lindex $line 1]
-        } elseif {[lindex $line 0] == {#TAG}} {
-            set col [lindex $line 1]
-            set chset($type.$col) {}
-        } else {
-            set ch [string range $line 0 0]
-            append chset($type.$col) $ch
-            set words($type.$col.$ch) $line
-        }
-    }
-    close $f
-    # ask to scilab about keywords: the scripts sets at run time
-    #  chset(scilab.predef.$) and chset(scilab.libfun.$)
+# empty initialization of the keyword arrays, for the 
+#  detached invocation of scipad (and for early-bird colorization requests)    
+    set chset(scilab.comm) {}
+    set chset(scilab.intfun) {}
     set chset(scilab.predef) {}
     set chset(scilab.libfun) {}
+    set chset(scilab.scicos) {}
+# ask to scilab about keywords:
     ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq" 
  }
 

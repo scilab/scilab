@@ -22,6 +22,11 @@ function dynamickeywords()
     end
   endfunction
 
+  //commands and primitives
+  [primitives,commands]=what();
+  setscipadwords(commands,"comm")
+  setscipadwords(primitives,"intfun")
+
   //predefined variables
   names=who("get"); p=names(($-predef())+1:$);
   setscipadwords(p,"predef")
@@ -36,7 +41,7 @@ function dynamickeywords()
     end
   end
   
-  setscipadwords([libfun],"libfun")
+  setscipadwords(libfun,"libfun")
 
   //scicos basic functions: read the lib
   [l,s,b]=listvarinfile(SCI+"/macros/scicos/lib");

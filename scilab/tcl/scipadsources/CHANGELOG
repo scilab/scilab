@@ -1546,3 +1546,10 @@ Francois VOGEL, 25/09/05
    which are required for Scilab full compatibility, e.g.
      function [a$va?r,%an!#va_#!?$r] = %foo#t!u?t$o_u(%ze!$?_#)
  * version --> 5.42
+
+ES, 6/10/05
+ * Fixed: missing initialization of chset(scicos) caused errors when
+   invoking scipad from wish and when typing in scipad during its opening 
+ * proc load_words, which uses dynamickeywords exploits Scilab's new what()
+ * keyword list now completely dynamical, file words removed.
+ * version --> 5.43
