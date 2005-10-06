@@ -2965,7 +2965,7 @@ int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow)
 	  for(i=0;i<size_x_old;i++)
 	    new_bar[i] = ppolyline->bar_shift_stacked[i];
 	  
-	  for(i=size_x_old+1;i<numrow;i++)
+	  for(i=size_x_old;i<numrow;i++)
 	    new_bar[i] = 0.;
 	  
 	  FREE(ppolyline->bar_shift_stacked);
