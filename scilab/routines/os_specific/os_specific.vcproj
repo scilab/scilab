@@ -737,7 +737,7 @@ cd .. &gt;nul
 				RelativePath="addinter.h">
 			</File>
 			<File
-				RelativePath="getmemory.h">
+				RelativePath=".\getmemory.h">
 			</File>
 			<File
 				RelativePath="link.h">
