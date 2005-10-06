@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,7 +9,7 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="xpoly">dessine une ligne brisÃ©e ou un
+  <SHORT_DESCRIPTION name="xpoly">dessine une ligne brisée ou un
   polygone</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -23,7 +23,7 @@
         <PARAM_NAME>xv,yv</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrices de mÃªme taille (points de la ligne brisÃ©e).</SP>
+          <SP>: matrices de même taille (points de la ligne brisée).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -31,7 +31,7 @@
         <PARAM_NAME>dtype</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res (style de dessin, valeur par dÃ©faut :
+          <SP>: chaîne de caractères (style de dessin, valeur par défaut :
           "lines").</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -40,20 +40,20 @@
         <PARAM_NAME>close</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: entier. Si close=1, la ligne brisÃ©e est fermÃ©e (valeur par
-          dÃ©faut : 0).</SP>
+          <SP>: entier. Si close=1, la ligne brisée est fermée (valeur par
+          défaut : 0).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>xpoly</VERB> dessine une ligne brisÃ©e dÃ©crite par les vecteurs de
-    coordonnÃ©es <VERB>xv</VERB> et <VERB>yv</VERB>. Si <VERB>xv</VERB> et
-    <VERB>yv</VERB> sont des matrices elles sont considÃ©rÃ©es comme des
-    vecteurs (par concatÃ©nation de leurs colonnes). Si close=1 un segment
-    supplÃ©mentaire est ajoutÃ© entre le premier et le dernier point de la ligne
-    brisÃ©e. <VERB>dtype</VERB> peut Ãªtre Ã©gal Ã &#160; <VERB>"lines"</VERB>
+    <P><VERB>xpoly</VERB> dessine une ligne brisée décrite par les vecteurs de
+    coordonnées <VERB>xv</VERB> et <VERB>yv</VERB>. Si <VERB>xv</VERB> et
+    <VERB>yv</VERB> sont des matrices elles sont considérées comme des
+    vecteurs (par concaténation de leurs colonnes). Si close=1 un segment
+    supplémentaire est ajouté entre le premier et le dernier point de la ligne
+    brisée. <VERB>dtype</VERB> peut être égal à &#160; <VERB>"lines"</VERB>
     pour utiliser le style de ligne courant ou <VERB>"marks"</VERB> pour
     utiliser des marqueurs.</P>
   </DESCRIPTION>

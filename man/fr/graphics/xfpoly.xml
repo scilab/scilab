@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -21,7 +21,7 @@
         <PARAM_NAME>xv,yv</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: deux vecteurs de mÃªme taille (les points du polygone).</SP>
+          <SP>: deux vecteurs de même taille (les points du polygone).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -29,8 +29,8 @@
         <PARAM_NAME>close</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: entier. Si close=1, la ligne brisÃ©e est fermÃ©e (valeur par
-          dÃ©faut : 0).</SP>
+          <SP>: entier. Si close=1, la ligne brisée est fermée (valeur par
+          défaut : 0).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -38,8 +38,8 @@
 
   <DESCRIPTION>
     <P><VERB>xfpoly</VERB> remplit un polygone avec la couleur courante. Si
-    <VERB>close</VERB> est Ã©gal Ã  1, un point est ajoutÃ© Ã  la ligne brisÃ©e
-    <VERB>xv,yv</VERB> pour dÃ©finir un polygone.</P>
+    <VERB>close</VERB> est égal à  1, un point est ajouté à  la ligne brisée
+    <VERB>xv,yv</VERB> pour définir un polygone.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
