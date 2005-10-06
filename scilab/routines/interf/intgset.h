@@ -9,8 +9,11 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include "../graphics/ObjectStructure.h"
+
 
 int gset(char *fname,unsigned long fname_len);
+int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow);
 
 #endif /*__INTGSET__*/
 /*-----------------------------------------------------------------------------------*/

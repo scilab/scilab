@@ -7329,15 +7329,13 @@ sciDrawObj (sciPointObj * pobj)
   double **zvect = (double **) NULL;
   int result_trans3d = 1;
   BOOL drawline = TRUE;
-  
-  /* for bar polyline case only */
   int nb_curves_bar = 0;
   int bar_number = 0;
   
   /* get the number of curves/polylines created */
   /* by ONE call to plot2d (property pPOLYLINE_FEATURE ->n2) */
   /* to help the drawing of the bar (case 6 ONLY) in case POLYLINE */
-
+  
   char STRFLAG[4];
   int DPI[2];
 
@@ -8650,30 +8648,41 @@ sciDrawObj (sciPointObj * pobj)
 	      drawline = TRUE;
 	      x[2] = sciGetLineWidth (pobj);
 	      x[3] = sciGetLineStyle (pobj);
-	      
 	      /* get the number of polylines sisters with bar property "on" */
 	      
 	      bar_number = GetBarNumber(pobj);
-	      
 	      width = FindWidth(pobj,n1,bar_number,xvect[jk]);
+
 
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
 		  double myX[4], myY[4], myZ[4];
 		  int pix_X[4], pix_Y[4];
 		  int quatre = 4;
-		  double shift = pPOLYLINE_FEATURE(pobj)->bar_shift;
-		  
+		  int barlayout = pPOLYLINE_FEATURE(pobj)->bar_layout;
+		  double shiftgrouped = pPOLYLINE_FEATURE(pobj)->bar_shift_grouped;
+		  double * shiftstacked = pPOLYLINE_FEATURE(pobj)->bar_shift_stacked;
+
 		  for(i=0;i<n1;i++)
 		    {
+		      if (barlayout == 0)
+			{
+			  myX[0] = myX[1] = xvect[jk][i] + shiftgrouped - width/2;
+			  myX[2] = myX[3] = xvect[jk][i] + shiftgrouped + width/2;
 		      
-		      myX[0] = myX[1] = xvect[jk][i] + shift - width/2;
-		      myX[2] = myX[3] = xvect[jk][i] + shift + width/2;
-		      
-		      /* cas log a gerer */
-		      myY[0] = myY[3] = 0.;
-		      myY[1] = myY[2] = yvect[jk][i];
-		      
+			  /* cas log a gerer */
+			  myY[0] = myY[3] = 0.;
+			  myY[1] = myY[2] = yvect[jk][i];
+			}	
+		      else if (barlayout == 1)
+			{
+			  myX[0] = myX[1] = xvect[jk][i] - width/2;
+			  myX[2] = myX[3] = xvect[jk][i] + width/2;
+			  
+			  myY[0] = myY[3] =  shiftstacked[i];
+			  myY[1] = myY[2] =  yvect[jk][i] + shiftstacked[i];
+			}
+
 		      if(zvect[jk] == (double *) NULL)
 			myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
 		      else		      
@@ -8706,22 +8715,34 @@ sciDrawObj (sciPointObj * pobj)
 	      else
 		{
 		  double myX[4], myY[4];
-		  int pix_X[4], pix_Y[4];
+		  int pix_X[4], pix_Y[4],i;
 		  int quatre = 4;
-		  double shift = pPOLYLINE_FEATURE(pobj)->bar_shift;
+		  double shiftgrouped = pPOLYLINE_FEATURE(pobj)->bar_shift_grouped;
+		  double * shiftstacked = pPOLYLINE_FEATURE(pobj)->bar_shift_stacked;
+		  int barlayout = pPOLYLINE_FEATURE(pobj)->bar_layout;
 		  double width = pPOLYLINE_FEATURE(pobj)->bar_width;
-
+		  
 		  
 		  for(i=0;i<n1;i++)
 		    {
+		      if (barlayout == 0)
+			{ 
+			  myX[0] = myX[1] = xvect[jk][i] + shiftgrouped - width/2;
+			  myX[2] = myX[3] = xvect[jk][i] + shiftgrouped + width/2;
+			  
+			  /* cas log a gerer */
+			  myY[0] = myY[3] = 0.;
+			  myY[1] = myY[2] = yvect[jk][i];
+			}
+		      else if (barlayout == 1)
+			{
+			  myX[0] = myX[1] = xvect[jk][i] - width/2;
+			  myX[2] = myX[3] = xvect[jk][i] + width/2;
+			  
+			  myY[0] = myY[3] = shiftstacked[i];
+			  myY[1] = myY[2] =  yvect[jk][i] + shiftstacked[i];
+			}
 		      
-		      myX[0] = myX[1] = xvect[jk][i] + shift - width/2;
-		      myX[2] = myX[3] = xvect[jk][i] + shift + width/2;
-		      
-		      /* cas log a gerer */
-		      myY[0] = myY[3] = 0.;
-		      myY[1] = myY[2] = yvect[jk][i];
-
 		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
 
 		      x[0] = sciGetBackground(pobj);

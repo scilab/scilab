@@ -1093,7 +1093,9 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pPOLYLINE_FEATURE (pobj)->bar_shift = 0.;
+      pPOLYLINE_FEATURE (pobj)->bar_layout = 0;
+      pPOLYLINE_FEATURE (pobj)->bar_shift_grouped = 0.;
+      pPOLYLINE_FEATURE (pobj)->bar_shift_stacked = (double *) NULL;
       pPOLYLINE_FEATURE (pobj)->bar_width = 0.;
       pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
       pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;

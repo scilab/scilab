@@ -778,6 +778,28 @@ int sciGet(sciPointObj *pobj,char *marker)
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       *stk(outindex) = sciGetMarkBackgroundToDisplay((sciPointObj *) pobj);
     }
+  else if (strcmp(marker,"bar_layout") == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_POLYLINE)
+	{   
+	  numrow   = 1;
+	  numcol   = 7;
+
+	  if(pPOLYLINE_FEATURE (pobj)->bar_layout == 0)
+	    { /* 0 grouped; 1 stacked */
+	      
+	      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	      strncpy(cstk(outindex),"grouped", numrow*numcol);
+	    }
+	  else
+	    {
+	      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+	      strncpy(cstk(outindex),"stacked", numrow*numcol);
+	    }
+	}
+      else
+	{ strcpy(error_message,"Unknown polyline property"); return -1;}
+    }
   else if (strcmp(marker,"bar_width") == 0)
     {
       numrow   = 1;numcol   = 1;
@@ -786,13 +808,36 @@ int sciGet(sciPointObj *pobj,char *marker)
 	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->bar_width;
       else
 	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    } 
-   else if (strcmp(marker,"bar_shift") == 0)
+    }
+  else if (strcmp(marker,"bar_shift_grouped") == 0)
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
       if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->bar_shift;
+	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->bar_shift_grouped;
+      else
+	{ strcpy(error_message,"Unknown polyline property"); return -1;}
+    } 
+  else if (strcmp(marker,"bar_shift_stacked") == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_POLYLINE)
+	{
+	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
+
+	  if(ppolyline->bar_shift_stacked == (double *) NULL)
+	    {
+	      numrow = numcol = 0;
+	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+	    }
+	  else
+	    {
+	      numrow   = 1;numcol   = ppolyline->n1;
+	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+	      
+	      for (i=0;i<numcol;i++)
+		stk(outindex)[i] = ppolyline->bar_shift_stacked[i];
+	    }
+	}
       else
 	{ strcpy(error_message,"Unknown polyline property"); return -1;}
     } 
@@ -800,12 +845,12 @@ int sciGet(sciPointObj *pobj,char *marker)
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->plot;
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
+  if (sciGetEntityType (pobj) == SCI_POLYLINE)
+    *stk(outindex) = pPOLYLINE_FEATURE (pobj)->plot;
+  else
+    { strcpy(error_message,"Unknown polyline property"); return -1;}
     } 
-
+  
   /****************************************************/
   else if (strcmp(marker,"font_size") == 0)
     {

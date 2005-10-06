@@ -11,7 +11,6 @@ OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
 	intinterp.o intsetenv.o intreadxls.o dassl.o intqld.o intgetmemory.o\
 	intUImenu.o intgraphics.o intgget.o intgset.o
 
-
 OBJSF = lstelm.o lstelmi.o matelm.o matold.o lstops.o intl_e.o intl_i.o \
 	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o \
 	intgetf.o \

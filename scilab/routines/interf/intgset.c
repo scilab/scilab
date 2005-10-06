@@ -1392,11 +1392,60 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Object has no bar shift");return -1;}
     }
-  else if (strcmp(marker,"bar_shift") == 0)
+  else if (strcmp(marker,"bar_layout") == 0)
+    {  
+      if (sciGetEntityType (pobj) == SCI_POLYLINE){
+	if(strcmp(cstk(*value),"grouped") == 0)
+	  pPOLYLINE_FEATURE (pobj)->bar_layout = 0;
+	else if(strcmp(cstk(*value),"stacked") == 0)
+	  pPOLYLINE_FEATURE (pobj)->bar_layout = 1;
+	else
+	  {strcpy(error_message,"Bad property specified for bar_layout");return -1;}
+      }
+      else
+	{strcpy(error_message,"Object has no bar style");return -1;}
+    }
+  else if (strcmp(marker,"bar_shift_stacked") == 0)
+    {  
+      if (sciGetEntityType (pobj) == SCI_POLYLINE){
+	int num = 0;
+	if(*numcol > 1 && *numrow > 1){
+	  strcpy(error_message,"Bad input,bar_shift_stacked should be a row or column vector.");
+	  return -1;
+	}
+	num = (*numrow)*(*numcol);
+
+	if (num!=pPOLYLINE_FEATURE (pobj)->n1)
+	  {
+	    strcpy(error_message,"Wrong size for input vector.");
+	    return -1;
+	  }
+      
+	FREE(pPOLYLINE_FEATURE (pobj)->bar_shift_stacked);
+	pPOLYLINE_FEATURE (pobj)->bar_shift_stacked = (double *) NULL;
+	
+	if ((pPOLYLINE_FEATURE (pobj)->bar_shift_stacked = (double *) MALLOC (num * sizeof (double))) == NULL){
+	  strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
+	
+	for (i=0;i<num;i++)
+	  pPOLYLINE_FEATURE (pobj)->bar_shift_stacked[i] = *stk(*value+i);
+      }
+      else
+	{strcpy(error_message,"Object has no bar shift");return -1;}
+    }
+  else if (strcmp(marker,"bar_shift_grouped") == 0)
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE){
 	double valeur = stk(*value)[0];
-	pPOLYLINE_FEATURE (pobj)->bar_shift = valeur;
+	int num = (*numrow)*(*numcol);
+
+	if (num!=1)
+	  {
+	    strcpy(error_message,"Wrong size : should be a scalar.");
+	    return -1;
+	  }
+	
+	pPOLYLINE_FEATURE (pobj)->bar_shift_grouped = valeur;
       }
       else
 	{strcpy(error_message,"Object has no bar shift");return -1;}
@@ -1547,8 +1596,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"Value must be 'clipgrf', 'on' or 'off'"); return -1;}
   }		
-  else if (strcmp(marker,"data") == 0)
+  else if (strcmp(marker,"data") == 0){
+    CheckAndUpdateBarStacked(pobj,*numrow); /* used only on Polyline */
+    
     sciSetPoint((sciPointObj *)pobj, stk(*value), numrow, numcol);
+    
+  }
 
   /**************** callback *********************/
   else if (strcmp(marker,"callbackmevent") == 0) {
@@ -2861,5 +2914,68 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 
   return u_xlabels;
 }
+
+
+int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow)
+{
+  sciPolyline * ppolyline = NULL;
+  int i;
+
+  if(sciGetEntityType(pobj) != SCI_POLYLINE)
+    return 0;
+  
+  ppolyline = pPOLYLINE_FEATURE(pobj);
+
+
+  if(ppolyline->bar_shift_stacked == (double *) NULL)
+    return 0;
+  else
+    {
+      int size_x_old = ppolyline->n1; /* number of x data */
+      if(size_x_old == numrow)
+	return 0;
+      else if(size_x_old > numrow)
+	{
+	  double * new_bar = NULL;
+	  
+	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
+	    {
+	      strcpy(error_message,"No more place to allocate new_bar");
+	      return -1;
+	    }
+	  
+	  for(i=0;i<numrow;i++)
+	    new_bar[i] = ppolyline->bar_shift_stacked[i];
+	  
+	  FREE(ppolyline->bar_shift_stacked);
+	  
+	  ppolyline->bar_shift_stacked = new_bar;
+	  
+	}
+      else /* case where size_x_old < numrow */
+	{
+	  double * new_bar = NULL;
+	  
+	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
+	    {
+	      strcpy(error_message,"No more place to allocate new_bar");
+	      return -1;
+	    }
+	  
+	  for(i=0;i<size_x_old;i++)
+	    new_bar[i] = ppolyline->bar_shift_stacked[i];
+	  
+	  for(i=size_x_old+1;i<numrow;i++)
+	    new_bar[i] = 0.;
+	  
+	  FREE(ppolyline->bar_shift_stacked);
+	  
+	  ppolyline->bar_shift_stacked = new_bar;
+	}
+    }
+  
+  return 0;
+}
+
 /*-----------------------------------------------------------------------------------*/
 

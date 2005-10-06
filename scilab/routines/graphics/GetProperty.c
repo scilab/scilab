@@ -4357,7 +4357,9 @@ int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;
 { 
-  if (strcmp(marker,"bar_shift") == 0) { return 1;}	
+  if (strcmp(marker,"bar_layout") == 0) { return 10;}
+  else if(strcmp(marker,"bar_shift_grouped") == 0) { return 1;}	
+  else if (strcmp(marker,"bar_shift_stacked") == 0) { return 1;}
   else if(strcmp(marker,"bar_width") == 0) { return 1;}
   else if(strcmp(marker,"closed") == 0) { return 10;}	
   else if (strcmp(marker,"label") == 0) { return 10;}

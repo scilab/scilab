@@ -906,8 +906,9 @@ typedef struct
   BOOL isinterpshaded;
   int *scvector;
   int dim_icv; /* dimension of the interpolated color vector (3 or 4) */
-
-  double bar_shift;
+  int bar_layout;
+  double bar_shift_grouped;
+  double *  bar_shift_stacked;
   double bar_width;
 }
 sciPolyline;  /** */
