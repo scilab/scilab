@@ -1,5 +1,5 @@
 function scipad(varargin)
-// start scipad editor
+// start Scipad editor
 global LANGUAGE
 global TMPDIR
   if with_tk() then
@@ -22,12 +22,9 @@ global TMPDIR
     else
       TCL_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
     end
-//    TCL_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
-//    TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
     TCL_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
     nfiles=argn(2)
     if nfiles>0 then
-      onevalidfile=%f
       for i=1:nfiles
         validfile=%f;
         f=varargin(i)
@@ -49,24 +46,22 @@ global TMPDIR
 //                 filetoopen=pathconvert(libpath+funname+".sci",%f)
 //              else
 //                 warning("Function "+funname+"is not contained in a loaded library, "..
-//                         +"scipad doesn''t know where to find its source")
+//                         +"Scipad doesn''t know where to find its source")
 //              end
 //            end
           else
-            warning("scipad cannot open a "+typeof(f)+" object!")
+            warning("Scipad cannot open a "+typeof(f)+" object!")
         end
         if validfile then 
-          onevalidfile=%t
+          filetoopen=pathconvert(filetoopen,%f,%t);
           if MSDOS then 
             filetoopen=strsubst(filetoopen,"\","/"); 
-          else
-            filetoopen=pathconvert(filetoopen,%f,%t);
           end
           TCL_EvalStr("scipad eval {openfile """+ filetoopen +"""}")          
         end
       end
     end
   else
-    error(" Scilab has not been built with tk: scipad unavailable")
+    error(" Scilab has not been built with tk: Scipad unavailable")
   end
 endfunction
