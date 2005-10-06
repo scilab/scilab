@@ -2506,20 +2506,24 @@ int scixfpolys(char *fname,unsigned long fname_len)
       int un=1,ix;
       CreateVar(3,"i",&un,&n2,&l3);
       for (ix = 0 ; ix < n2 ; ++ix) *istk(l3+ix) = 0;
+      m3 = n3 = 1;
     }
   if (version_flag() == 0) {
     sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) {
-      if (*istk(l3+i) == 0) {
-	/* 	/\* a revoir quand refonte de xpoly et xfpoly *\/ /\* F.Leray 18.05.05 *\/ */
-	/* 	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()))); */
-	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
-	color= sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
-	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
-      }
-      else   
-	/* a revoir quand refonte de xpoly et xfpoly */ /* F.Leray 18.05.05 */
-	/** poly i is drawn using the line style (or color) **/  
+      if(m3 == 1 || n3 == 1) /* color vector specified */
+	{
+	  if (*istk(l3+i) == 0)
+	    {
+	      color= sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+	      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
+	    }
+	  else
+	    {
+	      Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i),&hdl,v1); /* F.Leray fix bug 04.10.05 */
+	    }
+	}
+      else /* we have a color matrix used for interpolated shading : one color per vertex */
 	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i*m3),&hdl,v1); /* F.Leray fix bug 04.10.05 */
     }
     /** construct agregation and make it current object**/
