@@ -12,7 +12,7 @@
 /*-----------------------------------------------------------------------------------*/
 const int nbrCommands=27;
 /*-----------------------------------------------------------------------------------*/
-char *commands[]={
+static char *CommandWords[]={
 	"if","else",
 	"for","while",
 	"end","select",
@@ -76,7 +76,7 @@ int C2F(intwhat) _PARAMS((char *fname))
 		CreateVarFromPtr(Rhs+1, "S", &nrowFunctions, &ncol, StringFunctions);
 		LhsVar(1)=Rhs+1;
 
-		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, commands);
+		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, CommandWords);
 		LhsVar(2)=Rhs+2;
 
 		for (i=0;i<nrowFunctions;i++) { FREE(StringFunctions[i]);StringFunctions[i]=NULL; }
@@ -114,7 +114,7 @@ static void DispCommands(void)
 	sciprint("\n Commands: \n\n");
 	for (i=1;i<nbrCommands+1;i++)
 	{
-		sciprint("%s\t",commands[i-1]);
+		sciprint("%s\t",CommandWords[i-1]);
 		if (i%5==0) sciprint("\n");
 	}
 	sciprint("\n");
