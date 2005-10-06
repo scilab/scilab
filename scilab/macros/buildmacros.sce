@@ -1,4 +1,6 @@
 lines(0);
+MSDOS=(getos()=='Windows');
+
 CurrentDirectory=pwd();
  Directories=["util",
  "percent",
@@ -26,6 +28,8 @@ CurrentDirectory=pwd();
  "scicos_blocks"];
  
 Dim=size(Directories);
+timer();
+
 for i=1:Dim(1) do 
   chdir(Directories(i));
   disp('-------- Creation of '+Directories(i)+' (Macros) --------');
