@@ -10,6 +10,24 @@ proc load_words {} {
     set chset(scilab.scicos) {}
 # ask to scilab about keywords:
     ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq" 
+# old code to load a word file with additional keywords: maybe someday it will
+# turn useful...
+#     set type {}
+#     set col {} 
+#     set f [open $ownpath/words r]
+#     while {[gets $f line] > 0} { 
+#         if {[lindex $line 0] == {#MODE}} {
+#             set type [lindex $line 1]
+#         } elseif {[lindex $line 0] == {#TAG}} {
+#             set col [lindex $line 1]
+#             set chset($type.$col) {}
+#         } else {
+#             set ch [string range $line 0 0]
+#             append chset($type.$col) $ch
+#             set words($type.$col.$ch) $line
+#         }
+#     }
+#     close $f    
  }
 
 proc remalltags {w begin ende} {
