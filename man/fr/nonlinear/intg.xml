@@ -39,7 +39,7 @@
 	<PARAM_NAME>ea  </PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
-	    : erreur absolue désirée (0 par défaut)
+	    : erreur absolue désirée (1.d-14 par défaut)
 	  </SP>
 	</PARAM_DESCRIPTION> 
       </PARAM_ITEM>

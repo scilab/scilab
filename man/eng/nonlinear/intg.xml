@@ -32,7 +32,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>ea</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: absolute error required on the result. Default value: 0</SP>
+          <SP>: absolute error required on the result. Default value: 1.d-14</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>

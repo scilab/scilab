@@ -39,7 +39,7 @@ c
          epsa=stk(lr)
          top=top-1
       else
-         epsa=0.0d+0
+         epsa=1.0d-14
       endif
 c     cas standard
       if (.not.getexternal(fname,topk,top,namef,type,
