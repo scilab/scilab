@@ -19,6 +19,14 @@ function %h_p(h)
        d=sci2exp(h.data,0)
        if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
      end
+     
+     if size(h.bar_shift_stacked,'*') > 10 then 
+       bs="matrix "+strcat(string(size(h.bar_shift_stacked)),'x')
+     else
+       bs=sci2exp(h.bar_shift_stacked,0)
+       if length(bs)>70 then bs="matrix "+strcat(string(size(h.bar_shift_stacked)),'x'),end
+     end
+          
      u=h.user_data;
      t=[t;
 	 "parent: "+h.parent.type
@@ -41,7 +49,9 @@ function %h_p(h)
 	 "mark_size = "+string(h.mark_size)
 	 "mark_foreground = "+string(h.mark_foreground)
 	 "mark_background = "+string(h.mark_background)
-	 "bar_shift = "+sci2exp(h.bar_shift)
+	 "bar_layout = "+sci2exp(h.bar_layout)
+	 "bar_shift_grouped = "+sci2exp(h.bar_shift_grouped)
+	 "bar_shift_stacked = "+bs
 	 "bar_width = "+sci2exp(h.bar_width)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box)
