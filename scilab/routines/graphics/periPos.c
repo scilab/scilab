@@ -910,8 +910,8 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
 void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val)
 {
   int m;
-  *v3 = 0;
   int i;
+  *v3 = 0;
 
   if ( ScilabGCPos_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
