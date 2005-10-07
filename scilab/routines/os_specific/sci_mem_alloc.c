@@ -21,9 +21,8 @@ void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
   if(NewPointer == NULL)
     {
 #ifndef NDEBUG
-      printf("REALLOC Error File %s Line %d \n",fichier,ligne);
+      printf("REALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
       fflush(NULL);
-      /* exit(1); */
 #endif
     }
   
@@ -41,18 +40,17 @@ void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
       if (NewPointer == NULL)
 	{
 #ifndef NDEBUG
-	  printf("MALLOC Error File %s Line %d \n",fichier,ligne);
+	  printf("MALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
 	  fflush(NULL);
-	  /* exit(1); */
 #endif
 	}
     }
   else
-    {
+    { 
+      NewPointer = malloc(dwSize);
 #ifndef NDEBUG
-      printf("MALLOC Error File %s Line %d \n",fichier,ligne);
+      printf("MALLOC incorrect Size Error File %s Line %d \n",fichier,ligne);
       fflush(NULL);
-      /* exit(1); */
 #endif
     }
   
@@ -73,18 +71,17 @@ void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
       if (NewPointer == NULL)
 	{
 #ifndef NDEBUG
-	  printf("CALLOC Error File %s Line %d \n",fichier,ligne);
+	  printf("CALLOC returns NULL Error File %s Line %d \n",fichier,ligne);
 	  fflush(NULL);
-	  /* exit(1); */
 #endif
 	}
     }
   else
     {
+         NewPointer = calloc(x,y);
 #ifndef NDEBUG
-	  printf("CALLOC Error File %s Line %d \n",fichier,ligne);
+	  printf("CALLOC incorrect size Error File %s Line %d \n",fichier,ligne);
 	  fflush(NULL);
-	  /* exit(1); */
 #endif
     }
 
