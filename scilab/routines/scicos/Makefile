@@ -47,12 +47,12 @@ BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 
 OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
-	list2vars.o dtosci.o itosci.o scitoi.o scitod.o vvtosci.o \
+	list2vars.o scitoi.o scitod.o vvtosci.o \
 	scitovv.o  $(BLOCKS_CODE)
 
 OBJSC=scicos.o import.o sciblk2.o sciblk2i.o  realtime.o \
 	intrealtime.o intcscicos.o blocks.o cpass2.o scicosclip.o \
-	sciblk4.o str2sci.o intconnection.o scicos_malloc.o \
+	sciblk4.o intconnection.o scicos_malloc.o \
 	scicos_free.o tree.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
@@ -82,9 +82,7 @@ distclean::
 # fortran code
 affich.o: affich.f ../stack.h
 coselm.o: coselm.f ../stack.h
-dtosci.o: dtosci.f  ../stack.h
 intcos.o: intcos.f  ../stack.h
-itosci.o: itosci.f  ../stack.h
 list2vars.o: list2vars.f ../stack.h
 readf.o: readf.f ../stack.h
 sciblk.o: sciblk.f  ../stack.h ../callinter.h
@@ -156,9 +154,6 @@ selector.o: selector.c ../machine.h
 signum.o: signum.c scicos_block.h
 slider.o: slider.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 step_func.o: step_func.c scicos_block.h
-str2sci.o: str2sci.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
 sum.o: sum.c ../machine.h
 summation.o: summation.c scicos_block.h
 switch2.o: switch2.c scicos_block.h

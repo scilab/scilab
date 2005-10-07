@@ -14,7 +14,7 @@ OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.o
 	Sparse.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj fromjava.obj calendar.obj \
-	CallScilab.obj intwhat.obj
+	CallScilab.obj str2sci.obj intwhat.obj
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \
@@ -31,7 +31,7 @@ OBJSF = allops.obj  banier.obj\
 	mrknmd.obj mkindx.obj mklist.obj cmdstr.obj setgetmode.obj\
 	typ2cod.obj israt.obj funnam.obj dspdsp.obj lspdsp.obj wspdsp.obj \
 	xerbla.obj algebre.obj storeglobal.obj setippty.obj allowptr.obj copyvar.obj \
-	lst2vars.obj createref.obj getfunction.obj varfunptr.obj tksynchro.obj 
+	lst2vars.obj createref.obj getfunction.obj varfunptr.obj tksynchro.obj dtosci.obj itosci.obj
 
 include ../../Makefile.incl.mak
 

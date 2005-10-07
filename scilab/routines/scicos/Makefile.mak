@@ -50,12 +50,12 @@ BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj
 
 OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
-	list2vars.obj dtosci.obj itosci.obj scitoi.obj scitod.obj vvtosci.obj \
+	list2vars.obj scitoi.obj scitod.obj vvtosci.obj \
 	scitovv.obj  $(BLOCKS_CODE)
 
 OBJSC=scicos.obj import.obj sciblk2.obj sciblk2i.obj  realtime.obj \
 	intrealtime.obj intcscicos.obj blocks.obj cpass2.obj scicosclip.obj \
-	sciblk4.obj str2sci.obj intconnection.obj scicos_malloc.obj \
+	sciblk4.obj intconnection.obj scicos_malloc.obj \
 	scicos_free.obj tree.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
@@ -87,9 +87,7 @@ distclean::
 # fortran code
 affich.obj: affich.f ../stack.h
 coselm.obj: coselm.f ../stack.h
-dtosci.obj: dtosci.f  ../stack.h
 intcos.obj: intcos.f  ../stack.h
-itosci.obj: itosci.f  ../stack.h
 list2vars.obj: list2vars.f ../stack.h
 readf.obj: readf.f ../stack.h
 sciblk.obj: sciblk.f  ../stack.h ../callinter.h
@@ -161,9 +159,6 @@ selector.obj: selector.c ../machine.h
 signum.obj: signum.c scicos_block.h
 slider.obj: slider.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 step_func.obj: step_func.c scicos_block.h
-str2sci.obj: str2sci.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
 sum.obj: sum.c ../machine.h
 summation.obj: summation.c scicos_block.h
 switch2.obj: switch2.c scicos_block.h
