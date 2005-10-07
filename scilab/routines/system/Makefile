@@ -7,11 +7,11 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/system.a
 
 
-OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
+OBJSC = getfreememory.o getmemorysize.o System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	Sparse.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
 	inisci-c.o diary.o  parse.o run.o Sparse.o fromjava.o calendar.o \
-	CallScilab.o str2sci.o intwhat.o
+	CallScilab.o intwhat.o
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \
@@ -28,7 +28,7 @@ OBJSF = allops.o  banier.o\
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \
-	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o dtosci.o itosci.o
+	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o 
 
 include ../../Makefile.incl
 
