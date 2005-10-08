@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.40
+# in sync at least with v5.44
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -152,11 +152,36 @@
 ::msgcat::mcset fr "&Regular expression" "E&xpression régulière"
 ::msgcat::mcset fr "In all &opened files" "Dans tous les fichiers &ouverts"
 ::msgcat::mcset fr "In &selection only" "Da&ns la sélection seulement"
+::msgcat::mcset fr "In a director&y" "Dans un réper&toire"
+::msgcat::mcset fr "Directory r&ecurse search" "Recherche ré&cursive"
+::msgcat::mcset fr "File types:" "Types de fichiers :"
+::msgcat::mcset fr "In directory:" "Dans le répertoire :"
 ::msgcat::mcset fr "Wrapped around" "Rebouclé"
 ::msgcat::mcset fr "Back at the first file searched!" "Revenu au premier fichier !"
 ::msgcat::mcset fr "No more matches" "Pas d'autre correspondance"
 ::msgcat::mcset fr "The string to regexp search for cannot be compiled by Tcl.\nCheck again, maybe certain characters should be escaped." \
                    "L'expression régulière entrée est invalide (impossible à compiler).\nVérifiez, il se peut que certains caractères doivent être précédés du caractère d'échappement \\"
+
+
+# findinfiles.tcl
+::msgcat::mcset fr "Directory access issue" "Erreur d'accès à un répertoire"
+::msgcat::mcset fr "The directory you specified cannot be reached. The search won't bring any result." \
+                   "Scipad ne peut pas accéder au répertoire spécifié. La recherche ne donnera aucun résultat."
+::msgcat::mcset fr "Some directories or files could not be open and will be ignored during search.\n\
+                    You might miss read access to them.\n\n\
+                    The following ones will be ignored" \
+                   "Certains répertoires ou fichiers n'ont pas pu être ouverts et seront ignorés durant la recherche.\n\
+                    Vous n'avez peut-être pas les droits de lecture sur eux.\n\n\
+                    Les éléments suivants seront ignorés"
+::msgcat::mcset fr "Ignored files" "Fichiers ignorés"
+::msgcat::mcset fr "Searching in file:" "Recherche dans :"
+::msgcat::mcset fr "End of file search:" "Fin de la recherche:"
+::msgcat::mcset fr "matches found" "correspondances trouvées"
+::msgcat::mcset fr "Constructing file list:" "Construction de la liste des fichiers:"
+::msgcat::mcset fr "&Previous" "&Précédent"
+::msgcat::mcset fr "&Next" "&Suivant"
+::msgcat::mcset fr "&Close" "&Fermer"
+::msgcat::mcset fr "Scipad search results" "Résultats de recherche Scipad"
 
 
 # helps.tcl

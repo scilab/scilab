@@ -362,6 +362,7 @@ proc openfile {file} {
 # if file is not already open, open it
 # otherwise just switch buffers to show it
     global pad winopened listoftextarea listoffile
+    global closeinitialbufferallowed
     if [string compare $file ""] {
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
@@ -375,6 +376,10 @@ proc openfile {file} {
                 set listoffile("$pad.new$winopened",thetime) 0
                 set listoffile("$pad.new$winopened",new) 1
                 lappend listoftextarea $pad.new$winopened
+                if {$closeinitialbufferallowed == true} {
+                    set closeinitialbufferallowed false
+                    closefile $pad.new1
+                }
                 montretext $pad.new$winopened
                 RefreshWindowsMenuLabels
             }
@@ -697,7 +702,8 @@ proc checkifanythingchangedondisk {w} {
 # ancillaries for file commands
 ##################################################
 proc knowntypes {} {
-# list of known file types - used for filtering items is the Open and Save dialogs
+# list of known file types - used for filtering items in the Open and Save dialogs
+# and in the Find dialog
     set scifiles [mc "Scilab files"]
     set cosfiles [mc "Scicos files"]
     set xmlfiles [mc "XML files"]
@@ -720,6 +726,17 @@ proc extenstolang {file} {
     } else {
         return "none"
     }
+}
+
+proc direxists {dir} {
+# check whether $dir is an existing directory
+    set ret 0
+    if {[file exists $dir]} {
+        if {[file isdirectory $dir]} {
+            set ret 1
+        }
+    }
+    return $ret
 }
 
 ##################################################
@@ -879,9 +896,10 @@ proc AddRecentFile {filename} {
             incr nbrecentfiles
             # insert new entry
             set listofrecent [linsert $listofrecent 0 $filename]
+            # [list [lindex $listofrecent $i]] automatically escapes special characters
             $pad.filemenu.files insert $rec1ind command \
                        -label [file tail [lindex $listofrecent 0] ] \
-                       -command "openfileifexists {[lindex $listofrecent 0]}"
+                       -command "openfileifexists [list [lindex $listofrecent 0]]"
             # update menu entries (required to update the numbers)
             UpdateRecentLabels $rec1ind
         } else {
@@ -915,9 +933,10 @@ proc UpdateRecentLabels {rec1ind} {
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
         set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
         set ind [expr $rec1ind + $i]
+        # [list [lindex $listofrecent $i]] automatically escapes special characters
         $pad.filemenu.files entryconfigure $ind \
                    -label $lab \
-                   -command "openfileifexists {[lindex $listofrecent $i]}"
+                   -command "openfileifexists [list [lindex $listofrecent $i]]"
         if {$i<9} {
             $pad.filemenu.files entryconfigure $ind \
                    -underline 0
@@ -936,9 +955,10 @@ proc BuildInitialRecentFilesList {} {
     set nbrecentfiles [llength $listofrecent]
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
         set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+        # [list [lindex $listofrecent $i]] automatically escapes special characters
         $pad.filemenu.files add command \
                    -label $lab \
-                   -command "openfileifexists {[lindex $listofrecent $i]}"
+                   -command "openfileifexists [list [lindex $listofrecent $i]]"
         if {$i<9} {
             set ind [$pad.filemenu.files index end]
             $pad.filemenu.files entryconfigure $ind \

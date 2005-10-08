@@ -819,6 +819,7 @@ proc spacesashesevenly {pwname} {
         set paneposx [expr $panewidth  * ($i + 1)]
         set paneposy [expr $paneheight * ($i + 1)]
         $pwname sash place $i $paneposx $paneposy
+        update idletasks
     }
 }
 
@@ -853,6 +854,7 @@ proc spaceallsasheskeeprelsizes {} {
             set newx [expr round([lindex $sashxy($pw,$i) 0] * $incfactx)]
             set newy [expr round([lindex $sashxy($pw,$i) 1] * $incfacty)]
             $pw sash place $i $newx $newy
+            update idletasks
         }
     }
 

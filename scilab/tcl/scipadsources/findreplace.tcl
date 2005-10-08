@@ -4,6 +4,7 @@ proc findtextdialog {typ} {
     global SearchString SearchDir ReplaceString caset regexpcase
     global searchinsel wholeword multiplefiles indoffirstmatch
     global listoftextarea
+    global searchindir initdir fileglobpat searchinfilesalreadyrunning
 
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
@@ -69,7 +70,7 @@ proc findtextdialog {typ} {
         -font $menuFont "
     pack $find.l.f4.f3.up $find.l.f4.f3.down -anchor w
 
-    # whole word, case, regexp, all files, and in selection checkboxes
+    # whole word, case, regexp, all files, in selection, and in directory checkboxes
     frame $find.l.f4.f5
     eval "checkbutton $find.l.f4.f5.cbox0 [bl "Match &whole word only"] \
         -variable wholeword  \
@@ -83,15 +84,76 @@ proc findtextdialog {typ} {
         -command \"resetfind $find \[gettextareacur\]\" -font $menuFont "
     eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] \
         -variable multiplefiles \
-        -command \"resetfind $find \[gettextareacur\] ; $find.l.f4.f5.cbox4 deselect\" \
+        -command \"resetfind $find \[gettextareacur\] ; \
+                   $find.l.f4.f5.cbox4 deselect ; \
+                   $find.l.f4.f5.cbox5 deselect ; searchindirdisabled\" \
          -font $menuFont "
     eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
         -variable searchinsel \
-        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find \[gettextareacur\] ; $find.l.f4.f5.cbox3 deselect\" \
+        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find \[gettextareacur\] ; \
+                   $find.l.f4.f5.cbox3 deselect ; \
+                   $find.l.f4.f5.cbox5 deselect ; searchindirdisabled\" \
         -font $menuFont "
+    if {$typ == "find"} {
+        eval "checkbutton $find.l.f4.f5.cbox5 [bl "In a director&y"] \
+            -variable searchindir \
+            -command \"resetfind $find \[gettextareacur\] ; togglesearchindir\" \
+            -font $menuFont "
+    }
+    if {$typ == "find"} {
+        pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
+            $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 $find.l.f4.f5.cbox5 \
+            -anchor sw
+    } else {
     pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
         $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 \
         -anchor sw
+    }
+
+    if {$typ == "find"} {
+        # settings for search in files
+        frame $find.b
+        frame $find.b.f6 -borderwidth 2 -relief groove
+        eval "checkbutton $find.b.f6.cbox6 [bl "Directory r&ecurse search"] \
+            -variable recursesearchindir \
+            -command \"resetfind $find \[gettextareacur\]\" \
+            -font $menuFont "
+        pack $find.b.f6.cbox6 -anchor w
+        frame $find.b.f6.f1
+        label $find.b.f6.f1.labelt -text [mc "File types:"] \
+            -width 15 -font $menuFont
+        entry $find.b.f6.f1.entryt -textvariable fileglobpat \
+            -width 30 -font $textFont -exportselection 0
+        menubutton $find.b.f6.f1.mbselectpat -text "..." -indicatoron 0 \
+            -relief raised -font $textFont
+        menu $find.b.f6.f1.mbselectpat.pat -tearoff 0 -font $menuFont
+        $find.b.f6.f1.mbselectpat configure -menu $find.b.f6.f1.mbselectpat.pat
+        set predefsearchinfilespatterns [knowntypes]
+        foreach item $predefsearchinfilespatterns {
+            foreach {patname patlist} $item {
+                $find.b.f6.f1.mbselectpat.pat add command -label $patname \
+                -font $menuFont -command "getsearchpattern [list $patlist]"
+            }
+        }
+        frame $find.b.f6.f2
+        label $find.b.f6.f2.labeld -text [mc "In directory:"] \
+            -width 15 -font $menuFont
+        entry $find.b.f6.f2.entryd -textvariable initdir \
+            -width 30 -font $textFont -exportselection 0
+        button $find.b.f6.f2.buttonselectdir -text "..." \
+            -command \"getinitialdirforsearch\" \
+            -font $menuFont
+
+        pack $find.b.f6.f1.labelt $find.b.f6.f1.entryt $find.b.f6.f1.mbselectpat \
+            -side left -padx 2
+        pack $find.b.f6.f1 -anchor w
+        pack $find.b.f6.f2.labeld $find.b.f6.f2.entryd $find.b.f6.f2.buttonselectdir \
+            -side left -padx 2
+        pack $find.b.f6.f2 -anchor w
+        pack configure $find.b.f6.f1.entryt -expand 1 -fill x -padx 5 -pady 5
+        pack configure $find.b.f6.f2.entryd -expand 1 -fill x -padx 5 -pady 5
+        pack $find.b.f6
+    }
 
     pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 5
     pack $find.l.f4 -pady 5 -anchor w
@@ -109,6 +171,10 @@ proc findtextdialog {typ} {
     bind $find <Alt-[fb $find.l.f4.f5.cbox2]> { $find.l.f4.f5.cbox2 invoke }
     bind $find <Alt-[fb $find.l.f4.f5.cbox3]> { $find.l.f4.f5.cbox3 invoke }
     bind $find <Alt-[fb $find.l.f4.f5.cbox4]> { $find.l.f4.f5.cbox4 invoke }
+    if {$typ=="find"} {
+        bind $find <Alt-[fb $find.l.f4.f5.cbox5]> { $find.l.f4.f5.cbox5 invoke }
+        bind $find <Alt-[fb $find.b.f6.cbox6]> { $find.b.f6.cbox6 invoke }
+    }
     bind $find <Alt-[fb $find.l.f4.f3.up]>    { $find.l.f4.f3.up    invoke }
     bind $find <Alt-[fb $find.l.f4.f3.down]>  { $find.l.f4.f3.down  invoke }
     bind $find <Escape> "cancelfind $find"
@@ -153,7 +219,28 @@ proc findtextdialog {typ} {
         $find.l.f4.f5.cbox3 configure -state disabled
     }
 
-    # call resetfind to initialize all the settings
+    # initial settings for search in files from a directory
+    if {$typ == "find"} {
+        if {$fileglobpat == ""} {
+            $find.b.f6.f1.mbselectpat.pat invoke 0
+        }
+        if {$initdir == ""} {
+            set initdir [file normalize "."]
+        }
+        if {$searchindir} {
+            searchindirenabled
+        } else {
+            searchindirdisabled
+        }
+        if {$multiplefiles || $searchinsel || $searchinfilesalreadyrunning} {
+            $find.l.f4.f5.cbox5 deselect ; searchindirdisabled
+        }
+        if {$searchinfilesalreadyrunning} {
+            $find.l.f4.f5.cbox5 configure -state disabled
+        }
+    }
+
+    # initialize all the settings
     resetfind $find [gettextareacur]
 }
 
@@ -169,11 +256,63 @@ proc tryrestoreseltag {textarea} {
     }
 }
 
+proc togglesearchindir {} {
+    global find searchindir
+    if {$searchindir} {
+        searchindirenabled
+    } else {
+        searchindirdisabled
+    }
+}
+
+proc searchindirenabled {} {
+    global find
+    $find.l.f4.f5.cbox3 deselect
+    $find.l.f4.f5.cbox4 deselect
+    $find.b.f6.cbox6 configure -state normal
+    $find.b.f6.f1.labelt configure -state normal
+    $find.b.f6.f1.entryt configure -state normal
+    $find.b.f6.f1.mbselectpat configure -state normal
+    $find.b.f6.f2.labeld configure -state normal
+    $find.b.f6.f2.entryd configure -state normal
+    $find.b.f6.f2.buttonselectdir configure -state normal
+    $find.l.f4.f3.up configure -state disabled
+    $find.l.f4.f3.down invoke
+    pack $find.b -before $find.l -side bottom -padx 25 -pady 4 -anchor w
+}
+
+proc searchindirdisabled {} {
+    global find 
+    $find.b.f6.cbox6 configure -state disabled
+    $find.b.f6.f1.labelt configure -state disabled
+    $find.b.f6.f1.entryt configure -state disabled
+    $find.b.f6.f1.mbselectpat configure -state disabled
+    $find.b.f6.f2.labeld configure -state disabled
+    $find.b.f6.f2.entryd configure -state disabled
+    $find.b.f6.f2.buttonselectdir configure -state disabled
+    $find.l.f4.f3.up configure -state normal
+    pack forget $find.b
+}
+
+proc getinitialdirforsearch {} {
+    global find initdir
+    set initdir [tk_chooseDirectory -parent $find -mustexist 1]
+    if {$initdir == ""} {
+        set initdir [file normalize "."]
+    }
+}
+
+proc getsearchpattern {pat} {
+    global fileglobpat
+    set fileglobpat "$pat"
+}
+
 proc findnext {} {
 # proc for find next without opening the dialog if possible
-    global SearchString find
+# (only for find in already opened files)
+    global SearchString find searchindir
     if {[info exists SearchString]} {
-        if {$SearchString != ""} {
+        if {$SearchString != "" && !$searchindir} {
             multiplefilesfindreplace $find findit
         } else {
             findtextdialog "find"
@@ -189,10 +328,12 @@ proc multiplefilesfindreplace {w frit} {
 # $frit contains the proc name that will be called to perform the action
 # to find, $frit must be "findit"
 # to replace, $frit must be "replaceit"
-    global SearchString SearchDir wholeword regexpcase
+    global SearchString SearchDir regexpcase
     global listofmatch indoffirstmatch indofcurrentmatch
     global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
     global prevfindres
+    global find searchindir caset wholeword recursesearchindir fileglobpat initdir
+    global searchinfilesalreadyrunning
 
     set pw [setparentwname $w]
 
@@ -209,7 +350,14 @@ proc multiplefilesfindreplace {w frit} {
         return
     }
 
-    if {$multiplefiles == 0} {
+    if {$searchindir && !$searchinfilesalreadyrunning} {
+        # search in files from a directory
+        cancelfind $find
+        findinfiles $tosearchfor $caset $regexpcase $wholeword $initdir $fileglobpat $recursesearchindir
+        return
+    }
+
+    if {!$multiplefiles} {
         # search in current buffer only
         $frit $w $pw [gettextareacur] $tosearchfor $regexpcase
         return
@@ -555,7 +703,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
 proc multiplefilesreplaceall {w} {
 # search and replace all matches in all the opened buffers, or in the current one
 # depending on the state of the "search in all files" checkbox
-    global SearchString SearchDir wholeword regexpcase
+    global SearchString SearchDir regexpcase
     global listofmatch indoffirstmatch indofcurrentmatch
     global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
     global prevfindres
@@ -575,7 +723,7 @@ proc multiplefilesreplaceall {w} {
         return
     }
 
-    if {$multiplefiles == 0} {
+    if {!$multiplefiles} {
         # search in current buffer only
         replaceall $w $pw [gettextareacur] $tosearchfor $regexpcase
         return
@@ -1019,6 +1167,13 @@ proc escapespecialchars {str} {
 # escape certain special characters that have a meaning in a Tcl string,
 # or in a regexp
 # these chars are \ " $ [ ]
+# use of this proc:
+#    - find/replace strings
+#    - watched variable names (debugger)
+#    - Scilab function arguments in the configure box (debugger)
+# note: braces {} are not dealt with in this proc because:
+#    - they can be found or replaced without escaping
+#    - they can't be part of Scilab variables names
     set str [string map {"\\" "\\\\"} $str]
     set str [string map {"\"" "\\\""} $str]
     set str [string map {"\$" "\\\$"} $str]
@@ -1028,7 +1183,7 @@ proc escapespecialchars {str} {
 }
 
 proc iswholeword {textarea mpos mlen} {
-# return true is the match given in argument is a "whole word", i.e.
+# return true if the match given in argument is a "whole word", i.e.
 # if the character before it and the character after it is a blank
 # character (space or tab), or a newline, or beginning or end of the text
 

@@ -1553,3 +1553,31 @@ ES, 6/10/05
  * proc load_words, which uses dynamickeywords exploits Scilab's new what()
  * keyword list now completely dynamical, file words removed.
  * version --> 5.43
+
+Francois VOGEL, 08/10/05
+ * Little fix in Obtainall_bp for function names containing question marks ?
+   in their name
+ * Fix in FormatStringsForDebugWatch for strings containing special TCL
+   characters such as "${}[]
+ * Again a better regexp for function names checking in the debugger
+   configure box (function foo followed by nothing triggered a "check
+   function definition")
+   Side effect benefit: the keyword "function" and the function name now
+   can be on different code (continued) lines
+ * Dnd bug fixed: select something, and click in the selection without moving
+   the mouse -> blinking stopped but did not restart. This was on Windows
+   only since on Linux the cursor does not blink
+ * Dnd bug fixed: the selection in Scipad could be copied/moved by dragging
+   the character just after it
+ * The cursor is moved at the drop position after a dnd
+ * Space sashes evenly as well as external resizing work better (added update
+   idletasks)
+ * Better support for files containing Tcl special chars (braces), that could
+   not be opened through the most recent list of files (file menu)
+ * Fixed an "invalid command name "none"" error when launching Scipad from
+   Scilab with at least one non existing file in the command line, and when
+   this non existing file preceded existing files in the command line
+ * New function: find in a directory, in files matching a glob pattern
+   During search in files, which can be a lengthy process, Scipad is still
+   fully active
+ * version --> 5.44

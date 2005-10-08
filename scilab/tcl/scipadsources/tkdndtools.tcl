@@ -2,7 +2,7 @@ proc tkdndbind {w} {
 # Drag and drop feature using TkDnD
 
     global TkDnDloaded pad dndinitiated sourcetextarea
-    global savedsel savedseli1 savedseli2
+    global savedsel savedseli1 savedseli2 dnddroppos
 
     # Abort if TkDnD package is not available
     if {$TkDnDloaded != "true"} {return}
@@ -47,8 +47,12 @@ proc tkdndbind {w} {
             %W tag remove sel 0.0 end
             puttext %W %D   
         }
-        restorecursorblink
+        restorecursorblink ; # needed for drags from the outside
         set dndinitiated "false"
+        if {[info exists dnddroppos]} {
+            %W mark set insert $dnddroppos
+            unset dnddroppos
+        }
     }
 
     dnd bindsource $w text/plain {
@@ -59,6 +63,7 @@ proc tkdndbind {w} {
     dnd bindtarget $w text/plain <Drag> {
         %W mark set insert @%x,%y
         %W see insert
+        set dnddroppos [%W index @%x,%y]
         if {%x <= 10} { %W xview scroll -1 units }
         if {%x >= [expr [winfo width  %W] - 10]} { %W xview scroll 1 units }
         if {%y <= 10} { %W yview scroll -1 units }
@@ -81,10 +86,15 @@ proc tkdndbind {w} {
         return %a
     }
 
-    bind $w <Button-1>         { Button1BindTextArea %W %x %y }
-    bind $w <Control-Button-1> { Button1BindTextArea %W %x %y }
-    bind $w <ButtonRelease-1>  { set dndinitiated "false" ; focustextarea %W }
     # break prevents class binding from triggering
+    bind $w <Button-1>         { if {[Button1BindTextArea %W %x %y] == "true"} {break} }
+    bind $w <Control-Button-1> { if {[Button1BindTextArea %W %x %y] == "true"} {break} }
+    bind $w <ButtonRelease-1>  { if {$dndinitiated == "true"} { \
+                                     set dndinitiated "false" ; \
+                                 } else { \
+                                     focustextarea %W ; \
+                                 } \
+                               }
     bind $w <Button1-Leave>    { if {$dndinitiated == "true"} {break} }
     bind $w <Double-Button-1>  { if {$dndinitiated == "true"} {break} }
     bind $w <Triple-Button-1>  { if {$dndinitiated == "true"} {break} }
@@ -98,17 +108,26 @@ proc tkdndbind {w} {
 proc Button1BindTextArea { w x y } {
     global dndinitiated savedsel savedseli1 savedseli2
     $w mark set insert @$x,$y
+    set retvalue "false"
     if {[$w tag ranges sel] != ""} {
         if { [$w compare sel.first <= [$w index @$x,$y]] && \
-             [$w compare [$w index @$x,$y] <= sel.last] } {
+             [$w compare [$w index @$x,$y] < sel.last] } {
             set dndinitiated "true"
+            set retvalue "true"
             set savedseli1 [$w index sel.first]
             set savedseli2 [$w index sel.last ]
             set savedsel [$w get sel.first sel.last]
             stopcursorblink
             dnd drag $w -actions {copy move}
+            # (Windows) dnd drag returns only after the drop action (in case
+            # mouse has moved) or after button release (if no mouse move)
+            # if drop has been called by dnd drag, cursor blinking is already
+            # restored but if the mouse did not move then drop has not been
+            # called and cursor blinking must be restored here
+            restorecursorblink
         }
     }
+    return $retvalue
 }
 
 proc stopcursorblink {} {

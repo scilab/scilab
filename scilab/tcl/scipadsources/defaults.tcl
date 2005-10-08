@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.43"
+set version "Version 5.44"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -111,8 +111,12 @@ set closeinitialbufferallowed true
 # textarea
 catch {unset physlogic linetogo curfileorfun funtogoto}
 
-# variable used to prevent more than one single isntance of any of the tile
+# variable used to prevent more than one single instance of any of the tile
 # procs from running concurrently, e.g. maximize and splitwindow
 # for some unknown reason, disabling the bindings in proc disablemenuesbinds
 # does not *always* prevent concurrent running, so this was needed
 set tileprocalreadyrunning false
+
+# variable used to prevent launching simultaneously multiple searches in files
+# during search in file, the other functionalities of Scipad are however enabled
+set searchinfilesalreadyrunning 0

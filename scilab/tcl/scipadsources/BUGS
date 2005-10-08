@@ -50,17 +50,6 @@ Bugs:
         a=[[1,2];
           [3,4]]
 
--In the debugger, trying to F10 with something like:
-    function ...
-                    function_name
-        instruction
-        instruction
-    enfunction
- fails. This is due to a bug in tcl/tk itself and will be solved in 8.5
- See: http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
- For the time being, the keyword "function" and the function name MUST be
- on the same code line.
-
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
@@ -88,14 +77,6 @@ Bugs:
 
 -Dnd bug: When the NumLock key is pressed, ctrl dnd does not work on Linux
  (but works on Windows)
-
--Dnd bug: select something, and click in the selection without moving the
- mouse -> blinking stops but does not restart. This is on Windows only since
- on Linux the cursor does not blink
-
--Trying to get a variable current value in Scilab (through the little dialog
- called from the watch window) fails. This is probably bug 1550 (outside of
- Scipad)
 
 -Some "primitive" text editing actions bypass the input text parsing,
  which takes care of thrills and bells. For instance, they do not update
@@ -298,7 +279,8 @@ Wishes:
  or text index
 
 -Improvements for find/replace:
-  . Search among tagged text only, e.g. among comments
+  . Search among tagged text only, e.g. among comments (must be consistent
+    with the language scheme)
   . Popup menu providing a list of ready cooked regepxs
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
@@ -316,3 +298,16 @@ Wishes:
  will be the width of the widest button).
  -- Currently some button labels are truncated in certain locales
  -- Once done, update AddingTranslations.txt starting at line 176
+
+-automatic completion of words in the textarea, a la readline: could be
+ bound to Ctrl-tab (the binding tab is already used). There is
+ http://tclreadline.sourceforge.net/tclreadline.html, but that would
+ imply binding another additional package to scipad; perhaps it is
+ possible to put together something minimal from scratch with reasonable
+ effort.
+
+-I miss a quick "open the source of function xxxx". I have to type
+ either "scipad("get_function_path("xxxx")) or "edit xxxx scipad" in the
+ shell, or xxxx in an empty buffer in scipad and Ctrl-/. Too much! I miss
+ something like a dialog where I could type the first characters of xxx
+ and immediately see the completions and choose them.

@@ -21,6 +21,7 @@ if { [info exists pad] } {
     source [file join $sourcedir print.tcl]
     source [file join $sourcedir cutcopypaste.tcl]
     source [file join $sourcedir findreplace.tcl]
+    source [file join $sourcedir findinfiles.tcl]
     source [file join $sourcedir buffernavigation.tcl]
     source [file join $sourcedir colorize.tcl]
     source [file join $sourcedir modselection.tcl]
@@ -55,7 +56,7 @@ if { [info exists pad] } {
 
     update idletasks
 
-    # finally source debug settings that must be executed after the procs définition
+    # finally source debug settings that must be executed after the procs definition
     source [file join $sourcedir scipaddebug2.tcl]
 
 }
