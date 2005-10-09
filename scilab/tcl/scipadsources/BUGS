@@ -121,8 +121,8 @@ Old bugs/whishes which have been hacked but could have been done better:
     internal new functions that does not preserve colorization. I'm convinced
     that an internal Tk printing scheme would be better.
 
--The bindings in findreplace.tcl used for the F3 case live in the textarea
- forever. Find a solution to get rid of these!
+-The bindings in findreplace.tcl used for the F3 case and for find in files live
+ in the textarea forever. Find a solution to get rid of these!
 
 
 Wishes:
@@ -221,9 +221,6 @@ Wishes:
 -Colorization progressbar. Could be an overlay on the left status area,
  incrementing over the "Wait seconds for loading..." message.
 
--The find/replace entries in the dialog could be comboboxes retaining
- the strings previously searched or replaced
-
 -Add an eventual "revert to defaults button" (colors option menu)
 
 -Carefully study whether the debugger would benefit from using editvar
@@ -273,12 +270,9 @@ Wishes:
  warning: updating minsize on file open or dnd could lead to a very large
  window
 
--Find in an unopened file, or in a directory
- Matches are reported in a results window
- Clicking on a match opens the file (if not yet opened) at the correct line
- or text index
-
 -Improvements for find/replace:
+  . The find/replace entries in the dialog could be comboboxes retaining
+    the strings previously searched or replaced
   . Search among tagged text only, e.g. among comments (must be consistent
     with the language scheme)
   . Popup menu providing a list of ready cooked regepxs

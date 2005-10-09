@@ -883,7 +883,7 @@ proc switchbuffersinpane {w} {
 }
 
 proc nextbuffer {} {
-    global pad listoftextarea listoffile textareaid
+    global pad listoftextarea textareaid
     global FirstBufferNameInWindowsMenu
     set textarea [gettextareacur]
     set curbuf [expr [lsearch $listoftextarea $textarea] + $FirstBufferNameInWindowsMenu]
@@ -902,7 +902,7 @@ proc nextbuffer {} {
 }
 
 proc prevbuffer {} {
-   global pad listoftextarea listoffile textareaid
+   global pad listoftextarea textareaid
     global FirstBufferNameInWindowsMenu
     set textarea [gettextareacur]
     set curbuf [expr [lsearch $listoftextarea $textarea] + $FirstBufferNameInWindowsMenu]

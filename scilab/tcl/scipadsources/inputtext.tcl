@@ -156,6 +156,7 @@ proc printtime {} {
 proc IsBufferEditable {} {
     if {[getdbstate]=="DebugInProgress"} {
         showinfo [mc "Code editing is not allowed during debug!"]
+        bell
         return "No"
     } else {
         return "Yes"

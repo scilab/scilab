@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.44
+# in sync at least with v5.45
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -10,6 +10,7 @@
 ::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Untitled" "SansTitre"
 ::msgcat::mcset fr "Close" "Fermer"
+::msgcat::mcset fr "&Close" "&Fermer"
 
 
 # buffernavigation.tcl
@@ -180,7 +181,6 @@
 ::msgcat::mcset fr "Constructing file list:" "Construction de la liste des fichiers:"
 ::msgcat::mcset fr "&Previous" "&Précédent"
 ::msgcat::mcset fr "&Next" "&Suivant"
-::msgcat::mcset fr "&Close" "&Fermer"
 ::msgcat::mcset fr "Scipad search results" "Résultats de recherche Scipad"
 
 
@@ -239,7 +239,6 @@
     ::msgcat::mcset fr "Open &function source" "Ouvrir le source &de la fonction"
     ::msgcat::mcset fr "Print Se&tup" "Mise en pa&ge"
     ::msgcat::mcset fr "&Print" "&Imprimer"
-    ::msgcat::mcset fr "&Close" "&Fermer"
     ::msgcat::mcset fr "E&xit" "&Quitter"
 
     # menues.tcl - Edit menu

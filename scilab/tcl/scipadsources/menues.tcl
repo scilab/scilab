@@ -56,6 +56,7 @@ proc createmenues {} {
                    -command \"closecur yesnocancel\" -accelerator Ctrl+w"
     eval "$pad.filemenu.files add command [me "E&xit"] \
                    -command \"idleexitapp\" -accelerator Ctrl+q"
+    bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu_file %W}
 
     #edit menu
     menu $pad.filemenu.edit -tearoff 1 -font $menuFont
@@ -278,6 +279,7 @@ proc createmenues {} {
             -value $winopened -variable textareaid \
             -command "montretext $ta"
     }
+    bind $pad.filemenu.wind <<MenuSelect>> {+showinfo_menu_wind %W}
 
     # help menu
     menu $pad.filemenu.help -tearoff 1 -font $menuFont
@@ -449,5 +451,35 @@ proc createarrayofmenuentriesid {root} {
                 createarrayofmenuentriesid $w
             }
         }
+    }
+}
+
+proc showinfo_menu_file {w} {
+# display full pathname of a recent file entry of the file menu
+# as a showinfo
+    global pad nbrecentfiles listofrecent
+    if {$nbrecentfiles > 0} {
+        set rec1ind [GetFirstRecentInd]
+        set recnind [expr $rec1ind + $nbrecentfiles - 1]
+        set mouseentry [$w index active]
+        if {$rec1ind<=$mouseentry && $mouseentry<=$recnind} {
+            showinfo [lindex $listofrecent [expr $mouseentry - $rec1ind]]
+        }
+    }
+}
+
+proc showinfo_menu_wind {w} {
+# display full pathname of a recent file entry of the windows menu
+# as a showinfo
+    global pad FirstBufferNameInWindowsMenu listoffile listoftextarea
+    set mouseentry [$w index active]
+    if {$FirstBufferNameInWindowsMenu<=$mouseentry} {
+        foreach ta $listoftextarea {
+            set ind [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+            if {$ind==$mouseentry} {
+                break
+            }
+        }
+        showinfo $listoffile("$ta",fullname)
     }
 }

@@ -965,23 +965,8 @@ proc BuildInitialRecentFilesList {} {
                    -underline 0
         }
     }
-    bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu %W}
     if {$nbrecentfiles > 0} {
         $pad.filemenu.files add separator
-    }
-}
-
-proc showinfo_menu {w} {
-# display full pathname of a recent file entry of the file menu
-# as a showinfo
-    global pad nbrecentfiles listofrecent
-    if {$nbrecentfiles > 0} {
-        set rec1ind [GetFirstRecentInd]
-        set recnind [expr $rec1ind + $nbrecentfiles - 1]
-        set mouseentry [$w index active]
-        if {$rec1ind<=$mouseentry && $mouseentry<=$recnind} {
-            showinfo [lindex $listofrecent [expr $mouseentry - $rec1ind]]
-        }
     }
 }
 

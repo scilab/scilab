@@ -16,7 +16,7 @@ if {$debuglog} {
     tk_optionMenu \
     escapespecialchars \
     mc amp mcra keyposn ismodified whichfun modifiedtitle \
-    showinfo delinfo showinfo_menu \
+    showinfo delinfo showinfo_menu_file showinfo_menu_wind \
     GetFirstRecentInd extractindexfromlabel \
     checkifanythingchangedondisk checkiffilechangedondisk \
     TextStyles scipadindent managescroll \

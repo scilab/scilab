@@ -1581,3 +1581,11 @@ Francois VOGEL, 08/10/05
    During search in files, which can be a lengthy process, Scipad is still
    fully active
  * version --> 5.44
+
+Francois VOGEL, 09/10/05
+ * Scipad rings a bell when the user tries to modify a buffer during a debug
+   session
+ * The full path of the file is displayed in the status bar when passing over
+   the entries of the Windows menu, analogously to the File menu
+ * 
+ * version --> 5.45
