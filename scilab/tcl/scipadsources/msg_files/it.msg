@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.40
+# in sync at least with v5.45
 
 
 # commons
@@ -185,6 +185,10 @@
 ::msgcat::mcset it "&Regular expression" "Espressione &regolare (regexp)"
 ::msgcat::mcset it "In all &opened files" "In tutti i &files aperti"
 ::msgcat::mcset it "In &selection only" "Solo nella sele&zione"
+::msgcat::mcset it "In a director&y" "In una &directory:"
+::msgcat::mcset it "Directory r&ecurse search" "Ricerca ri&corsiva"
+::msgcat::mcset it "File types:" "Files di tipo:"
+::msgcat::mcset it "In directory:" "Nella directory:"
 ::msgcat::mcset it "Wrapped around" "Da capo!"
 ::msgcat::mcset it "Back at the first file searched!" \
              "Di nuovo al primo file esaminato!"
@@ -195,6 +199,25 @@
                    "La stringa da cercare come espressione regolare non\
                     ha potuto essere compilata. Controllare. Per esempio,\
                     alcuni caratteri speciali vanno preceduti da \\."
+
+# findinfiles.tcl
+::msgcat::mcset it "Directory access issue" "Errore di accesso alla directory"
+::msgcat::mcset it "The directory you specified cannot be reached. The search won't bring any result." \
+                   "Scipad non può accedere alla directory specificata. La ricerca non darà risultato"
+::msgcat::mcset it "Some directories or files could not be open and will be ignored during search.\n\
+                    You might miss read access to them.\n\n\
+                    The following ones will be ignored" \
+                   "Certe directories o certi files non possono essere aperti (probabilmente sono protetti in lettura) e saranno ignorati durante la ricerca. I seguenti saranno ignorati:"
+::msgcat::mcset it "Ignored files" "Files ignorati"
+::msgcat::mcset it "Searching in file:" "Ricerca in:"
+::msgcat::mcset it "End of file search:" "Fine della ricerca:"
+::msgcat::mcset it "matches found" "corrispondenze trovate"
+::msgcat::mcset it "Constructing file list:" "Costruzione della lista dei files:"
+::msgcat::mcset it "&Previous" "&Precedente"
+::msgcat::mcset it "&Next" "&Successivo"
+# the following is doubly defined
+::msgcat::mcset it "&Close" "&Chiudi"
+::msgcat::mcset it "Scipad search results" "Risultati della ricerca"
 
 # helps.tcl
 ::msgcat::mcset it "About" "A proposito"
