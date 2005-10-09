@@ -70,6 +70,7 @@ extern LPTW GetTextWinScilab(void);
 extern int C2F (scilines) (int *nl, int *nc);
 extern void MessageBoxNewGraphicMode(void);
 extern char *GetLanguageInScilabDotStar(void);
+extern void ScilabFxFadeOut(void);
 
 extern EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -1843,6 +1844,7 @@ void ExitWindow(void)
            	SetThreadPasteRunning(FALSE);
            	CloseHandle( GetHandleThreadPaste() );
         }
+		ScilabFxFadeOut();
         WriteRegistryTxt (lptw);
     	C2F(sciquit)();
         Kill_Scilex();
@@ -1854,6 +1856,7 @@ void ExitWindow(void)
    }
    else
    {
+	ScilabFxFadeOut();
    	WriteRegistryTxt (lptw);
 	C2F(sciquit)();
 	Kill_Scilex();

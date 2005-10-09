@@ -18,7 +18,8 @@ extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
 extern void Kill_Scilex_Win98(void);
 extern BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct);
 extern BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
-BOOL SetIhmSystemDefaultTextColor(void);
+extern BOOL ActivateTransparencyMode(HWND hWnd);
+extern BOOL SetIhmSystemDefaultTextColor(void);
 /*-----------------------------------------------------------------------------------*/
 extern POINT ScreenMinSize;
 extern char ScilexConsoleName[MAX_PATH];
@@ -136,6 +137,7 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 
 		SetWindowText(hwnd,ScilexWindowName);  
 	}
+	ActivateTransparencyMode(hwnd);
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

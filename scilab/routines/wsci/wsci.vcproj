@@ -1220,6 +1220,9 @@ cd .. &gt;nul
 				RelativePath=".\Toolbar.c">
 			</File>
 			<File
+				RelativePath=".\Transparency.c">
+			</File>
+			<File
 				RelativePath="wgmenu.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -2176,6 +2179,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\Toolbar.h">
+			</File>
+			<File
+				RelativePath=".\Transparency.h">
 			</File>
 			<File
 				RelativePath="..\version.h">

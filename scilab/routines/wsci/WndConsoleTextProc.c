@@ -42,6 +42,9 @@ extern void DoLine(LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count
 extern void ResizeScreenBuffer(LPTW lptw);
 extern BOOL SetIhmSystemDefaultTextColor(void);
 extern LPTW GetTextWinScilab(void);
+extern BOOL ActivateTransparencyMode(HWND hWnd);
+extern void IncreaseAlphaLevel(void);
+extern void DecreaseAlphaLevel(void);
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_TEXT_WM_DESTROY(HWND hwnd);
 BOOL ON_WND_TEXT_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct);
@@ -126,6 +129,10 @@ BOOL ON_WND_TEXT_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 	lptw->CharSize.x = tm.tmAveCharWidth;
 	lptw->CharAscent = tm.tmAscent;
 	ReleaseDC (hwnd, hdc);
+
+	ActivateTransparencyMode(hwnd);
+
+
 
 	return TRUE;
 }
@@ -601,6 +608,13 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 				}
 				break;
 
+				case VK_ADD :
+					IncreaseAlphaLevel();
+				break;
+				case VK_SUBTRACT:
+					DecreaseAlphaLevel();
+				break;
+
 				default:
 				break;
 			}
@@ -655,7 +669,6 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 
 						ToolBarOnOff(lptw);
 					}
-
 				}
 				break;
 

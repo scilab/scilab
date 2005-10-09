@@ -13,7 +13,8 @@ command.obj readcons.obj x_zzledt.obj ScilabXloop.obj \
 win_mem_alloc.obj ihmcolor.obj TextToPrint.obj FigureToPrint.obj \
 TextWindows.obj Toolbar.obj GraphWindows.obj MenuWindows.obj \
 FilesAssociationBox.obj AboutBox.obj Splashscreen.obj MessageBoxNewGraphicMode.obj \
-WndParentGraphProc.obj WndGraphProc.obj WndConsoleParentProc.obj WndConsoleTextProc.obj
+WndParentGraphProc.obj WndGraphProc.obj WndConsoleParentProc.obj WndConsoleTextProc.obj \
+Transparency.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 
