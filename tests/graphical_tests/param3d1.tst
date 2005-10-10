@@ -23,7 +23,7 @@ a('data_bounds') = [-1,-1,-1;1,1,2];//boundaries given by data_bounds
 a('thickness') = 2;
 h = a('children');
 if load_ref('h') then   pause,end,
-//get the handle of the param3d entity: an agregation composed of 2 curves
+//get the handle of the param3d entity: an Compound composed of 2 curves
 h.children(1).foreground = 3;
 if load_ref('h') then   pause,end,
 // first curve

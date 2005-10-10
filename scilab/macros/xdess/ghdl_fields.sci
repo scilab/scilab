@@ -35,7 +35,7 @@ function fields=ghdl_fields(h)
 	    "mark_mode";"mark_style";"mark_size_unit";"mark_size";
 	    "mark_foreground";"mark_background";"data";
 	    "color_mode";"color_flag";"hiddencolor";"user_data"]';
-  case "Agregation"
+  case "Compound"
     fields=["children";"user_data"]';
   case "Rectangle"
    fields=["mark_mode";"mark_style";"mark_size_unit";"mark_size";

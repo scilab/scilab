@@ -203,7 +203,7 @@ current_figure.immediate_drawing = 'off';
 //disp("ListArg=")
 //disp(ListArg)
 
-FinalAgreg=[]; // Final Agregation containing all the new created plots.
+FinalAgreg=[]; // Final Compound containing all the new created plots.
 
 //for i=numplot:-1:1
 for i=1:numplot
@@ -342,7 +342,7 @@ for i=1:numplot
     return;
   end
   
-  agreg=gce();  // when using plot2d, we always have an agregation as the current entity
+  agreg=gce();  // when using plot2d, we always have an Compound as the current entity
 
   FinalAgreg = [agreg FinalAgreg];
 
@@ -409,12 +409,12 @@ end
 // Those properties will be applied to Agreg children
 Agreg = glue(FinalAgreg(1:$))
 
-k=find(Agreg.children.type=="Agregation")
+k=find(Agreg.children.type=="Compound")
 
 while (k<>[])
   k=k(1);
   unglue(Agreg.children(k));
-  k=find(Agreg.children.type=="Agregation")
+  k=find(Agreg.children.type=="Compound")
 end
 
 

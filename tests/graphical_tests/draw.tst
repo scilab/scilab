@@ -28,7 +28,7 @@ e.children(1).visible = 'off';// We can choose to make a line invisible
 
 %ans = draw(e);
 if load_ref('%ans') then   pause,end,
-// draw agregation and its children <=> draw all the visible polylines
+// draw Compound and its children <=> draw all the visible polylines
 
 
 

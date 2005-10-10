@@ -272,8 +272,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       FREE(pptabofpointobj);
     }
 
-    /*---- construct agregation ----*/
-    sciSetCurrentObj(ConstructAgregation (hdltab, cmpt)); 
+    /*---- construct Compound ----*/
+    sciSetCurrentObj(ConstructCompound (hdltab, cmpt)); 
     FREE(hdltab);
     if (ok==1) {
       Merge3d(psubwin);

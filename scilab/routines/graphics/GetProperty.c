@@ -236,7 +236,7 @@ sciGetCharEntityType (sciPointObj * pobj)
       return "Statut_bar";
       break;
     case SCI_AGREG:
-      return "Agregation";
+      return "Compound";
       break;
     case SCI_MERGE:
       return "Merge";
@@ -4043,7 +4043,7 @@ sciPointObj
   sciPointObj *result;
 
   /* 06/11/2002 */
-  if (sciGetEntityType(pthis) != SCI_AGREG)/* We stop the recursivity at agregation */
+  if (sciGetEntityType(pthis) != SCI_AGREG)/* We stop the recursivity at Compound */
     {
       sons = sciGetSons (pthis);
       while ((sons != (sciSons *) NULL) && (sons->pointobj != (sciPointObj *) NULL))
@@ -4584,8 +4584,8 @@ sciPointObj *CheckClickedSubwin(integer x, integer y)
 
 
 
-/************************************ Agregation *******************************************/
-int CheckForAgregation(long *handelsvalue, int number)
+/************************************ Compound *******************************************/
+int CheckForCompound(long *handelsvalue, int number)
 {
   sciPointObj *prevpparent;
   int i;
@@ -4623,7 +4623,7 @@ int CheckForAgregation(long *handelsvalue, int number)
 	    }
 	  break;
 	case SCI_AGREG:
-	  /* We verify  if the agregation is packed, associated to a subwindow or have the same parent */
+	  /* We verify  if the Compound is packed, associated to a subwindow or have the same parent */
 	  if (
 	      (
 	       (sciGetEntityType(sciGetParent(sciGetPointerFromHandle(xtmp))) != SCI_SUBWIN)

@@ -26,7 +26,7 @@ function [rects,btn]=dragrect(rects)
   else
     f=gcf();pix=f.pixmap;f.pixmap='on';
     xrects(rects) 
-    R=gce(); //agregation of rectangles
+    R=gce(); //Compound of rectangles
     rep=[rects(1),rects(2),-1]
     while rep(3)==-1 then
       show_pixmap()

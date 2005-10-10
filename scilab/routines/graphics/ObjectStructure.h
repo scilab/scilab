@@ -180,7 +180,7 @@ typedef enum
     SCI_MENUCONTEXT,	
     /**Entity type STATUS BAR*/
     SCI_STATUSB,	    
-    /**Entity type AGREGATION */
+    /**Entity type Compound */
     SCI_AGREG,			
     /**Entity type LABEL created by F.Leray 26.05.04 */
     SCI_LABEL,

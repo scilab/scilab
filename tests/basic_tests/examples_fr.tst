@@ -4756,7 +4756,7 @@ xdel(winsid())
 //====================================================
 
 //====================================================
-// ../man/fr/graphics/agregation_properties.xml
+// ../man/fr/graphics/Compound_properties.xml
 //====================================================
 clear;lines(0);
    
@@ -5701,7 +5701,7 @@ xdel(winsid())
 clear;lines(0);
 x=0:0.1:10;
 plot2d(x,sin(x))
-e=gce(); // store the agregation containing the plot
+e=gce(); // store the Compound containing the plot
 e.children(1).line_style = getlinestyle();
 
 xdel(winsid())
@@ -5715,7 +5715,7 @@ set("figure_style","new")
 plot2d(x,sin(x),style=-mark);
 clf();
 plot2d(x,sin(x))
-e=gce(); // store the agregation containing the plot
+e=gce(); // store the Compound containing the plot
 [mark,mrkSize]=getmark();
 e.children(1).mark_style = mark;
 
@@ -5806,7 +5806,7 @@ clear;lines(0);
   f=get("current_figure") 
   a=f.children // the handle on the Axes child
   x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
-  e=a.children //Agregation of 2 polylines
+  e=a.children //Compound of 2 polylines
 
   p1=e.children(1) //the last drawn polyline properties
   p1.foreground=5;  // change the polyline color
@@ -6208,7 +6208,7 @@ param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
  a.rotation_angles=[65,75]; 
  a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
  a.thickness = 2;
- h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
+ h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
  h.children(1).foreground = 3 // first curve
  curve2 = h.children(2);
  curve2.foreground = 6;
@@ -6230,7 +6230,7 @@ clear;lines(0);
    a.rotation_angles=[65,75]; 
    a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
    a.thickness = 2;
-   h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
+   h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
    h.children(1).foreground = 3 // first curve
    curve2 = h.children(2);
    curve2.foreground = 6;
@@ -6424,7 +6424,7 @@ a.y_location = "middle";
 // Some operations on entities created by plot2d ...
 a=gca();
 a.isoview='on'; 
-a.children // list the children of the axes : here it is an Agregation child composed of 2 entities 
+a.children // list the children of the axes : here it is an Compound child composed of 2 entities 
 poly1= a.children.children(2); //store polyline handle into poly1 
 poly1.foreground = 4; // another way to change the style...
 poly1.thickness = 3;  // ...and the tickness of a curve.

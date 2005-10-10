@@ -144,7 +144,7 @@ extern sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
 /* extern BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
 extern BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
 
-extern int CheckForAgregation (long *tabpointobj, int number); /* GET */
+extern int CheckForCompound (long *tabpointobj, int number); /* GET */
 extern sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */
 
 /* UNUSED ? */

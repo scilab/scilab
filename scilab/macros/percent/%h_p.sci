@@ -74,7 +74,7 @@ function %h_p(h)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box)
 	 "user_data = "+fmtuser_data(u)]
-    case "Agregation"
+    case "Compound"
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type

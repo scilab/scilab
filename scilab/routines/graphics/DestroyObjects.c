@@ -133,7 +133,7 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       return 0;
       break;
     case SCI_AGREG:
-      DestroyAgregation (pthis);
+      DestroyCompound (pthis);
       return 0;
       break; 
     case SCI_MERGE:
@@ -662,11 +662,11 @@ DestroySegs (sciPointObj * pthis)
   return 0;
 }
 
-/**DestroyAgregation
- * @memo This function destroies the agregation and the elementaries structures and only this to destroy all sons use DelGraphicsSon
+/**DestroyCompound
+ * @memo This function destroies the Compound and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  */
 int
-DestroyAgregation (sciPointObj * pthis)
+DestroyCompound (sciPointObj * pthis)
 {
   sciAgreg * ppagreg = pAGREG_FEATURE (pthis);
 
@@ -696,11 +696,11 @@ void DeleteObjs(integer win_num)
 }
 
 
-/**sciUnAgregation
- * @memo This function destroies the agregation and  and unpackes the elementaries structures to associates them to its parent
+/**sciUnCompound
+ * @memo This function destroies the Compound and  and unpackes the elementaries structures to associates them to its parent
  */
 int
-sciUnAgregation (sciPointObj * pobj)
+sciUnCompound (sciPointObj * pobj)
 {
   sciPointObj *pparent, *pobjson;
   sciSons *psons = (sciSons *)NULL;
@@ -723,7 +723,7 @@ sciUnAgregation (sciPointObj * pobj)
 
   sciSetCurrentObj(pparent); /* pparent is the new current object */
 
-  DestroyAgregation(pobj);
+  DestroyCompound(pobj);
   return 0;
 }
 

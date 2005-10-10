@@ -235,7 +235,7 @@ function save_graphichandle(h,fd)
     end
     mput(h.hiddencolor,'il',fd)
     user_data=h.user_data;save(fd,user_data)
-  case "Agregation"
+  case "Compound"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
 
     h=h.children

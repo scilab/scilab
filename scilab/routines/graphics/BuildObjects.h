@@ -75,8 +75,8 @@ extern sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, integer type,dou
                integer Nbr2, double *vfx, double *vfy, integer flag, 
               integer *style, double arsize1,  integer colored, double arfact, int typeofchamp);  /* BUILD */
 
-extern sciPointObj *ConstructAgregation (long *tabpointobj, int number); /* BUILD */
-extern sciPointObj *ConstructAgregationSeq (int number); /* BUILD */
+extern sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
+extern sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
 
 extern sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
 

@@ -208,7 +208,7 @@ for k=1:size(A,'*')
     h=[h;a]
   case 'Axes'
     h=[h;getvalidchildren(a.children)]
-  case 'Agregation'
+  case 'Compound'
     for k=1:size(a.children,'*')
       h=[h;getvalidchildren(a.children(k))]
     end

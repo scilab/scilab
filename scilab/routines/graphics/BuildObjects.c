@@ -2444,13 +2444,13 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 }
 
 
-/**sciConstructAgregation
- * @memo constructes an agregation of entities
+/**sciConstructCompound
+ * @memo constructes an Compound of entities
  * @memo do only a association with a parent and a handle reservation !
- * @memo check for valid handle can be done using CheckForAgregation
+ * @memo check for valid handle can be done using CheckForCompound
  */
 sciPointObj *
-ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with definition */
+ConstructCompound (long *handelsvalue, int number) /* Conflicting types with definition */
 {
   sciSons *sons, *sonsnext;
   sciPointObj *pobj;
@@ -2471,7 +2471,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
       return (sciPointObj *) NULL;
     }
 
-  /* the parent of the agregation will be the parent of the sons entities */
+  /* the parent of the Compound will be the parent of the sons entities */
   if (!(sciAddThisToItsParent (pobj, (sciPointObj *)sciGetParent(
 								 sciGetPointerFromHandle((long) handelsvalue[0])))))
     return NULL;
@@ -2499,7 +2499,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
       xtmp = handelsvalue[i];
       sons->pointobj      = sciGetPointerFromHandle(xtmp);
 
-      /* Nous changeons le parent de l'entite qui devient alors l'agregation */
+      /* Nous changeons le parent de l'entite qui devient alors l'Compound */
       if (sons->pointobj != NULL)
 	{
 	  sciDelThisToItsParent (sons->pointobj, sciGetParent(sons->pointobj));
@@ -2518,17 +2518,17 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
   return (sciPointObj *)pobj;
 }
 
-/**sciConstructAgregationSeq
- * @memo constructes an agregation of with the last n entities created in the current subwindow
+/**sciConstructCompoundSeq
+ * @memo constructes an Compound of with the last n entities created in the current subwindow
  on entry subwin children list is
  null->s1->s2->...->sn->sn+1->...->null
  on exit it is
  null->A->sn+1->...->null
- with A an agregation whose children list is:
+ with A an Compound whose children list is:
  null->s1->s2->...->sn->null
 */
 sciPointObj *
-ConstructAgregationSeq (int number) 
+ConstructCompoundSeq (int number) 
 {
   sciSons *sons, *lastsons;
   sciPointObj *pobj;
@@ -2541,7 +2541,7 @@ ConstructAgregationSeq (int number)
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   ppsubwin=pSUBWIN_FEATURE(psubwin);
 
-  /* initialize the A agregation data structure */
+  /* initialize the A Compound data structure */
   if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
     return (sciPointObj *) NULL;
 
@@ -2586,7 +2586,7 @@ ConstructAgregationSeq (int number)
   /* disconnect chain s1->s2->...->sn out of subwin children list */
   ppsubwin->relationship.psons = lastsons->pnext;
   ppsubwin->relationship.psons->pprev = (sciSons *)NULL;
-  /* attach the agregation to the current subwin */
+  /* attach the Compound to the current subwin */
   /* the subwin children list is now null->A->sn+1->...->null */
   if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) {
     FREE(pobj->pfeatures);FREE(pobj);
@@ -2595,7 +2595,7 @@ ConstructAgregationSeq (int number)
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
   /* the subwin children list is now null->A->sn+1->...->null */
 
-  /* set agregation properties*/
+  /* set Compound properties*/
   ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
   ppagr->size_of_user_data = 0;
   ppagr->callback = (char *)NULL;
@@ -2610,7 +2610,7 @@ ConstructAgregationSeq (int number)
   ppagr->relationship.plastsons = lastsons;
   ppagr->relationship.plastsons->pnext = (sciSons *)NULL;
   ppagr->relationship.psons->pprev = (sciSons *)NULL; /* this should do nothing*/
-  /* the agregation children list is now  null->s1->s2->...->sn->null*/
+  /* the Compound children list is now  null->s1->s2->...->sn->null*/
 
 
   return (sciPointObj *)pobj;

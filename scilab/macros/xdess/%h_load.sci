@@ -437,7 +437,16 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"mark_background",mark_background)
     end
     load_user_data(fd)
-  case "Agregation"
+  case "Compound"
+    n=mget(1,'il',fd)
+    H=[]
+    for k=1:n
+      htmp = load_graphichandle(fd)
+      H=[H htmp]
+    end
+    h=glue(H)
+    load_user_data(fd)
+  case "Agregation" // for compatibility with old save
     n=mget(1,'il',fd)
     H=[]
     for k=1:n

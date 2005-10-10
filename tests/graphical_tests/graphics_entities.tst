@@ -21,7 +21,7 @@ if load_ref('%ans') then   pause,end,
 
 e = a('children');
 if load_ref('e') then   pause,end,
-//Agregation of 2 polylines
+//Compound of 2 polylines
 
 p1 = e.children(1);
 if load_ref('p1') then   pause,end,

@@ -40,10 +40,10 @@ extern int DestroyGrayplot (sciPointObj * pthis); /* DESTROY */
 extern int DestroyAxes (sciPointObj * pthis); /* DESTROY */
 extern int DestroyFec (sciPointObj * pthis); /* DESTROY */
 extern int DestroySegs (sciPointObj * pthis); /* DESTROY */
-extern int DestroyAgregation (sciPointObj * pthis);
+extern int DestroyCompound (sciPointObj * pthis);
 
 extern void DeleteObjs(int win); /* DESTROY */
-extern int sciUnAgregation (sciPointObj * pobj); /* DESTROY */
+extern int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 
 extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 

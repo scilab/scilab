@@ -39,7 +39,7 @@ e = a('children');
  
 if load_ref('e') then   bugmes();quit;end,
  
-//Agregation of 2 polylines
+//Compound of 2 polylines
  
  
 p1 = e.children(1);

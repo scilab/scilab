@@ -88,7 +88,7 @@ a = gca();
 a('isoview') = 'on';
 %ans = a('children');
 if load_ref('%ans') then   pause,end,
-// list the children of the axes : here it is an Agregation child composed of 2 entities
+// list the children of the axes : here it is an Compound child composed of 2 entities
 poly1 = a.children.children(2);//store polyline handle into poly1
 poly1('foreground') = 4;// another way to change the style...
 poly1('thickness') = 3;// ...and the tickness of a curve.

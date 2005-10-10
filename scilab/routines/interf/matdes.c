@@ -1122,8 +1122,8 @@ int scixarcs(char *fname,unsigned long fname_len)
 	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
 		stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
       }
-    /** construct agregation and make it current object **/
-    sciSetCurrentObj (ConstructAgregationSeq (n1));
+    /** construct Compound and make it current object **/
+    sciSetCurrentObj (ConstructCompoundSeq (n1));
   }   
   else
     Xarcs(fname,fname_len,istk(l2), n1,stk(l1));
@@ -1171,8 +1171,8 @@ int scixfarcs(char *fname,unsigned long fname_len)
 	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
 		stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
       }
-    /** construct agregation and make it current object **/
-    sciSetCurrentObj (ConstructAgregationSeq (n1));
+    /** construct Compound and make it current object **/
+    sciSetCurrentObj (ConstructCompoundSeq (n1));
   }
   else
     Xfarcs(fname,fname_len,istk(l2), n1,stk(l1));
@@ -1651,8 +1651,8 @@ int scixpolys(char *fname,unsigned long fname_len)
     for (i = 0; i < n1; ++i) 
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
 
-    /** construct agregation and make it current object**/
-    sciSetCurrentObj (ConstructAgregationSeq (n1));
+    /** construct Compound and make it current object**/
+    sciSetCurrentObj (ConstructCompoundSeq (n1));
 
     if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
       Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -2013,11 +2013,11 @@ int scixstring(char *fname,unsigned long fname_len)
     /*       double dx1= y - yi ; */
     /*       Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect,TRUE); */
     /*     } */
-    /*     /\** construct agregation and make it current object **\/  */
+    /*     /\** construct Compound and make it current object **\/  */
     /*     if ((flagx == 1) && (*stk(l4) == 0)) */
-    /*       sciSetCurrentObj (ConstructAgregationSeq (m3+1)); */
+    /*       sciSetCurrentObj (ConstructCompoundSeq (m3+1)); */
     /*     else   */
-    if (m3 > 1) sciSetCurrentObj ( ConstructAgregationSeq (m3));
+    if (m3 > 1) sciSetCurrentObj ( ConstructCompoundSeq (m3));
 
   }
   else {
@@ -2526,8 +2526,8 @@ int scixfpolys(char *fname,unsigned long fname_len)
       else /* we have a color matrix used for interpolated shading : one color per vertex */
 	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,istk(l3+i*m3),&hdl,v1); /* F.Leray fix bug 04.10.05 */
     }
-    /** construct agregation and make it current object**/
-    sciSetCurrentObj (ConstructAgregationSeq (n1));
+    /** construct Compound and make it current object**/
+    sciSetCurrentObj (ConstructCompoundSeq (n1));
 
     if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
       Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -4481,8 +4481,8 @@ int scirects(char *fname,unsigned long fname_len)
 	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
 		   NULL,istk(l2+i),TRUE,FALSE,0,&hdl,FALSE);
     }
-    /** construct agregation and make it current object **/
-    sciSetCurrentObj (ConstructAgregationSeq (n1));  
+    /** construct Compound and make it current object **/
+    sciSetCurrentObj (ConstructCompoundSeq (n1));  
 
     if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
       Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -4905,7 +4905,7 @@ int glue(char *fname,unsigned long fname_len)
       }
     }
   }
-  /* we must change the pobj to the agregation type */
+  /* we must change the pobj to the Compound type */
   handelsvalue = MALLOC(n*sizeof(long));
   for (i = 0; i < n;i++)
     {
@@ -4925,7 +4925,7 @@ int glue(char *fname,unsigned long fname_len)
 	}
 
     }
-  ret = CheckForAgregation (handelsvalue, n);
+  ret = CheckForCompound (handelsvalue, n);
   if (ret>0) {
     Scierror(999,"%s: handle %d cannot be glued (invalid parent)\r\n",fname,ret);
     return 0;
@@ -4934,7 +4934,7 @@ int glue(char *fname,unsigned long fname_len)
     Scierror(999,"%s: handle %d cannot be glued (invalid type)\r\n",fname,-ret);
     return 0;
   }
-  sciSetCurrentObj ((sciPointObj *)ConstructAgregation (handelsvalue, n));
+  sciSetCurrentObj ((sciPointObj *)ConstructCompound (handelsvalue, n));
 
   numrow = 1;
   numcol = 1;
@@ -4987,11 +4987,11 @@ int unglue(char *fname,unsigned long fname_len)
 	  i++;
 	}
       LhsVar(1) = Rhs+1;
-      sciUnAgregation ((sciPointObj *)pobj);
+      sciUnCompound ((sciPointObj *)pobj);
     }
   else
     {
-      Scierror(999,"%s: Object must be an agregation\r\n",fname);
+      Scierror(999,"%s: Object must be an Compound\r\n",fname);
     }
   return 0;
 }

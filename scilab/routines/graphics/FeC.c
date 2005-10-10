@@ -197,7 +197,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
       cmpt++;
     }
-    sciSetCurrentObj(ConstructAgregation (hdltab, cmpt));  /** construct agregation **/
+    sciSetCurrentObj(ConstructCompound (hdltab, cmpt));  /** construct Compound **/
   }
   else { /* NG end */
     /** Boundaries of the frame **/

@@ -169,9 +169,9 @@ for i=1:size(handles,1)
     iAxe = iAxe+1;
     axename= "Axes("+string(iAxe)+")";
     TCL_EvalStr('set '+SelObject+" "+axename);
-   case "Agregation"
+   case "Compound"
     iAgr = iAgr+1;
-    agrname= "Agregation("+string(iAgr)+")";
+    agrname= "Compound("+string(iAgr)+")";
     TCL_EvalStr('set '+SelObject+" "+agrname);
    case "Polyline"
     iPol = iPol+1;
@@ -304,10 +304,10 @@ endfunction
 
 
 
-function ged_agregation(h)
+function ged_Compound(h)
   global ged_handle;ged_handle=h;
   TCL_SetVar("curvis",h.visible)
-  TCL_EvalFile(SCI+'/tcl/ged/Agregation.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Compound.tcl')
 endfunction
 
 
@@ -1120,7 +1120,7 @@ function h=ged_loop(a)
       dx=(xv(1,:)-xv(2,:))
       dy=(yv(1,:)-yv(2,:))
       d_d=dx.^2+dy.^2
-      case "Agregation"
+      case "Compound"
       h=ged_loop(ck.children)
       if h<>[] then return,end
       case "Axes"
@@ -1289,8 +1289,8 @@ function tkged()
      ged_axes(h)
     case "Figure"
      ged_figure(h)
-    case "Agregation"
-     ged_agregation(h)
+    case "Compound"
+     ged_Compound(h)
 
     case "Plot3d"
      ged_plot3d(h)

@@ -570,8 +570,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 /*             } */
 
 
-      /** construct agregation and make it current object**/
-      if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
+      /** construct Compound and make it current object**/
+      if ( *n>1 ) sciSetCurrentObj (ConstructCompound (hdltab, *n));  
       FREE(hdltab);
     }
 
