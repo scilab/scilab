@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.45
+# in sync at least with v5.46
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -155,7 +155,7 @@
 ::msgcat::mcset fr "In &selection only" "Da&ns la sélection seulement"
 ::msgcat::mcset fr "In a director&y" "Dans un réper&toire"
 ::msgcat::mcset fr "Directory r&ecurse search" "Recherche ré&cursive"
-::msgcat::mcset fr "File types:" "Types de fichiers :"
+::msgcat::mcset fr "In files/file types:" "Dans les fichiers/types :"
 ::msgcat::mcset fr "In directory:" "Dans le répertoire :"
 ::msgcat::mcset fr "Wrapped around" "Rebouclé"
 ::msgcat::mcset fr "Back at the first file searched!" "Revenu au premier fichier !"

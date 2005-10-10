@@ -61,9 +61,10 @@ proc tkdndbind {w} {
     }
 
     dnd bindtarget $w text/plain <Drag> {
-        %W mark set insert @%x,%y
-        %W see insert
+        set dndreallystarted "true"
         set dnddroppos [%W index @%x,%y]
+        %W mark set insert $dnddroppos
+        %W see insert
         if {%x <= 10} { %W xview scroll -1 units }
         if {%x >= [expr [winfo width  %W] - 10]} { %W xview scroll 1 units }
         if {%y <= 10} { %W yview scroll -1 units }
@@ -88,7 +89,12 @@ proc tkdndbind {w} {
 
     # break prevents class binding from triggering
     bind $w <Button-1>         { if {[Button1BindTextArea %W %x %y] == "true"} {break} }
-    bind $w <Control-Button-1> { if {[Button1BindTextArea %W %x %y] == "true"} {break} }
+    bind $w <Control-Button-1> { if {[Button1BindTextArea %W %x %y] == "true"} { \
+                                     break ; \
+                                 } else { \
+                                     %W tag remove sel 0.0 end ; \
+                                 } \
+                               }
     bind $w <ButtonRelease-1>  { if {$dndinitiated == "true"} { \
                                      set dndinitiated "false" ; \
                                  } else { \
@@ -106,14 +112,13 @@ proc tkdndbind {w} {
 }
 
 proc Button1BindTextArea { w x y } {
-    global dndinitiated savedsel savedseli1 savedseli2
+    global dndinitiated savedsel savedseli1 savedseli2 dndreallystarted
     $w mark set insert @$x,$y
-    set retvalue "false"
+    set dndreallystarted "false"
     if {[$w tag ranges sel] != ""} {
         if { [$w compare sel.first <= [$w index @$x,$y]] && \
              [$w compare [$w index @$x,$y] < sel.last] } {
             set dndinitiated "true"
-            set retvalue "true"
             set savedseli1 [$w index sel.first]
             set savedseli2 [$w index sel.last ]
             set savedsel [$w get sel.first sel.last]
@@ -127,7 +132,7 @@ proc Button1BindTextArea { w x y } {
             restorecursorblink
         }
     }
-    return $retvalue
+    return $dndreallystarted
 }
 
 proc stopcursorblink {} {

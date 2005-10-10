@@ -1587,5 +1587,11 @@ Francois VOGEL, 09/10/05
    session
  * The full path of the file is displayed in the status bar when passing over
    the entries of the Windows menu, analogously to the File menu
- * 
  * version --> 5.45
+
+Francois VOGEL, 10/10/05
+ * Clicking in an existing selection deletes this selection again (this bug
+   was introduced in 5.44)
+ * Changed a label for find in files, in order to emphasize that filenames
+   may be given and not only file patterns
+ * version --> 5.46

@@ -120,8 +120,8 @@ proc findtextdialog {typ} {
             -font $menuFont "
         pack $find.b.f6.cbox6 -anchor w
         frame $find.b.f6.f1
-        label $find.b.f6.f1.labelt -text [mc "File types:"] \
-            -width 15 -font $menuFont
+        label $find.b.f6.f1.labelt -text [mc "In files/file types:"] \
+            -width 20 -font $menuFont
         entry $find.b.f6.f1.entryt -textvariable fileglobpat \
             -width 30 -font $textFont -exportselection 0
         menubutton $find.b.f6.f1.mbselectpat -text "..." -indicatoron 0 \
@@ -137,7 +137,7 @@ proc findtextdialog {typ} {
         }
         frame $find.b.f6.f2
         label $find.b.f6.f2.labeld -text [mc "In directory:"] \
-            -width 15 -font $menuFont
+            -width 20 -font $menuFont
         entry $find.b.f6.f2.entryd -textvariable initdir \
             -width 30 -font $textFont -exportselection 0
         button $find.b.f6.f2.buttonselectdir -text "..." \
