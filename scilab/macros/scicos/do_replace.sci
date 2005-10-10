@@ -2,6 +2,7 @@ function [scs_m,needcompile]=do_replace(scs_m,needcompile,%pt)
 // Copyright INRIA
 // get replacement block
   xc=%pt(1);yc=%pt(2);
+  win=%win
   kc=find(win==windows(:,2))
   if kc==[] then
     message('This window is not an active palette')
@@ -30,7 +31,7 @@ function [scs_m,needcompile]=do_replace(scs_m,needcompile,%pt)
   xset('window',curwin);
   while %t do
     [btn,%pt,win,Cmenu]=cosclick()
-    if Cmenu<>[] then
+    if Cmenu<>[]&Cmenu<>'SelectLink' then
       [Cmenu,%pt]=resume(Cmenu,%pt)
     end
     xc=%pt(1);yc=%pt(2);
