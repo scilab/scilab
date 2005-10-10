@@ -1,15 +1,19 @@
       SUBROUTINE CALERF(ARG,RESULT,JINT)
 C------------------------------------------------------------------
 C
+C DERF  --> DERFF
+C DERFC --> DERFCF
+C because DERF and DERFC already defined in libf2c
+C
 C This packet evaluates  erf(x),  erfc(x),  and  exp(x*x)*erfc(x)
 C   for a real argument  x.  It contains three FUNCTION type
-C   subprograms: ERF, ERFC, and ERFCX (or DERF, DERFC, and DERFCX),
+C   subprograms: ERF, ERFC, and ERFCX (or DERFF, DERFCF, and DERFCX),
 C   and one SUBROUTINE type subprogram, CALERF.  The calling
 C   statements for the primary entries are:
 C
-C                   Y=ERF(X)     (or   Y=DERF(X)),
+C                   Y=ERF(X)     (or   Y=DERFF(X)),
 C
-C                   Y=ERFC(X)    (or   Y=DERFC(X)),
+C                   Y=ERFC(X)    (or   Y=DERFCF(X)),
 C   and
 C                   Y=ERFCX(X)   (or   Y=DERFCX(X)).
 C
@@ -273,7 +277,7 @@ C------------------------------------------------------------------
 C---------- Last card of CALERF ----------
       END
 CS    REAL FUNCTION ERF(X)
-      DOUBLE PRECISION FUNCTION DERF(X)
+      DOUBLE PRECISION FUNCTION DERFF(X)
 C--------------------------------------------------------------------
 C
 C This subprogram computes approximate values for erf(x).
@@ -289,12 +293,12 @@ C------------------------------------------------------------------
       JINT = 0
       CALL CALERF(X,RESULT,JINT)
 CS    ERF = RESULT
-      DERF = RESULT
+      DERFF = RESULT
       RETURN
-C---------- Last card of DERF ----------
+C---------- Last card of DERFF ----------
       END
 CS    REAL FUNCTION ERFC(X)
-      DOUBLE PRECISION FUNCTION DERFC(X)
+      DOUBLE PRECISION FUNCTION DERFCF(X)
 C--------------------------------------------------------------------
 C
 C This subprogram computes approximate values for erfc(x).
@@ -310,9 +314,9 @@ C------------------------------------------------------------------
       JINT = 1
       CALL CALERF(X,RESULT,JINT)
 CS    ERFC = RESULT
-      DERFC = RESULT
+      DERFCF = RESULT
       RETURN
-C---------- Last card of DERFC ----------
+C---------- Last card of DERFCF ----------
       END
 CS    REAL FUNCTION ERFCX(X)
       DOUBLE PRECISION FUNCTION DERFCX(X)
