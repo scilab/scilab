@@ -17,9 +17,10 @@ function [t] = cosh(z)
   //
   //     2/ in the complex case use :   cosh(z) = cos(i z)
   //
-  if type(z)<>1 then error(53),end
+  if type(z)<>1 then error(53,1),end
   if isreal(z) then
     y = exp(abs(z)) ; t = 0.5*(y + 1 ./y)
   else
     t = cos(imult(z))
   end
+endfunction

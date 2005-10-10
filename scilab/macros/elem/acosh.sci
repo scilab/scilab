@@ -14,7 +14,7 @@ function [t] = acosh(z)
   //
   //     sign(-x) = 2*(0.5 - bool2s(x>0))
   //
-  if type(z)<>1 then error(53),end
+  if type(z)<>1 then error(53,1),end
   if isreal(z) then
     if min(z) < 1 then
       // result is complex
@@ -28,3 +28,4 @@ function [t] = acosh(z)
     u = acos(z)
     t = 2*(0.5 - bool2s(imag(u)>0)).*imult(u)
   end
+endfunction

@@ -6,7 +6,7 @@ function [t] = atanh(z)
   //  METHOD 
   //     based on the formula  atanh(z) = i atan(-i z)
   //
-  if type(z)<>1 then error(53),end
+  if type(z)<>1 then error(53,1),end
   if isreal(z) then 
     if max(abs(z)) > 1 then  // il faut faire le test ds ce sens pour
                              // les Nan (sinon on obtient NaN + i NaN ! )

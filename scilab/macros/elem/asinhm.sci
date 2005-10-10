@@ -6,11 +6,11 @@ function t=asinhm(x)
 //                      and    [ 0  ,inf[ x [ pi/2]
 //!
 // Copyright INRIA
-if type(x)<>1 then error(53),end
-[m,n]=size(x)
-if m<>n then 
-  error(20)
-else 
-  t=logm(x+sqrtm(x*x+eye()))
-end
+  if type(x)<>1 then error(53,1),end
+  [m,n]=size(x)
+  if m<>n then 
+    error(20)
+  else 
+    t=logm(x+sqrtm(x*x+eye()))
+  end
 endfunction
