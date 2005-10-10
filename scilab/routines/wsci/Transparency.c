@@ -65,7 +65,6 @@ void ScilabFxFadeOut(void)
 		{
 			SetCurrentAlphaLevel(lptw->hWndParent ,i);
 			SetCurrentAlphaLevel(lptw->hWndText ,i);
-			Sleep(5);
 		}
 	}
 }
