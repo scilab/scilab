@@ -87,7 +87,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>hl</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a handle, points to the agregation containing all the legend .</SP>
+          <SP>: a handle, points to the Compound containing all the legend .</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

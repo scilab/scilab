@@ -37,7 +37,7 @@
   <EXAMPLE><![CDATA[set("figure_style","new")
 x=0:0.1:10;
 plot2d(x,sin(x))
-e=gce(); // store the agregation containing the plot
+e=gce(); // store the Compound containing the plot
 e.children(1).line_style = getlinestyle();
 
 ]]></EXAMPLE>

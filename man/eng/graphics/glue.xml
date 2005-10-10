@@ -6,7 +6,7 @@
   <TYPE>Scilab Function</TYPE>
   <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="glue"> 
-   glue a set of graphics entities into an agregation.
+   glue a set of graphics entities into an Compound.
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>glue(H) </CALLING_SEQUENCE_ITEM>
@@ -23,7 +23,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>h_agreg</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a handle, the handle on the agregation entity.</SP>
+          <SP>: a handle, the handle on the Compound entity.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -31,7 +31,7 @@
   <DESCRIPTION>
     <P>
     Given a vector of handles, this function glue the corresponding
-    entities in a single agregation and returns the handle on this new
+    entities in a single Compound and returns the handle on this new
     entity.</P>
   </DESCRIPTION>
   <EXAMPLE>

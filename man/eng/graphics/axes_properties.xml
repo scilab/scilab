@@ -309,10 +309,10 @@
           <DESCRIPTION_ITEM label="children: ">
             <SP>A vector containing the handles of all graphics objects
             children of the axes These graphics objects are of type
-            <VERB>"Agregation"</VERB>, <VERB>"Rectangle"</VERB>,
+            <VERB>"Compound"</VERB>, <VERB>"Rectangle"</VERB>,
             <VERB>"Polyline"</VERB>, <VERB>"Segs"</VERB>, <VERB>"Arc"</VERB>,
             <VERB>"Grayplot"</VERB>,.. (see
-            <LINK>agregation_properties</LINK>,
+            <LINK>Compound_properties</LINK>,
             <LINK>rectangle_properties</LINK>, <LINK>champ_properties</LINK>,
             <LINK>axis_properties</LINK>, <LINK>polyline_properties</LINK>,
             <LINK>segs_properties</LINK>, <LINK>grayplot_properties</LINK>,
