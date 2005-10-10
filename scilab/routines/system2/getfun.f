@@ -132,7 +132,7 @@ c     comments mark (//)
          endif
          jj=jj+1
          if(buf(jj:jj).eq.buf(j:j))goto 22
-         if(buf(jj:jj).eq.' ') goto 22
+         if(buf(jj:jj).eq.' '.or.buf(jj:jj).eq.char(9)) goto 22
          if(buf(jj:jj).eq.'/'.and.buf(jj+1:jj+1).eq.'/') then
             icount=icount+1
             goto 11
