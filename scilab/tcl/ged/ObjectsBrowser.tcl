@@ -178,8 +178,8 @@ proc LemonTree::build_list {w node} {
 	if { $LEVELS($i) < [expr $levelparent+1] } break
 	
 	if { $LEVELS($i) == [expr $levelparent+1] } {
-	    if { [string match "Agregation*" $OBJECTSARRAY($i)] } {
-		lappend axeschildren AGREGATION  $OBJECTSARRAY($i) 
+	    if { [string match "Compound*" $OBJECTSARRAY($i)] } {
+		lappend axeschildren COMPOUND  $OBJECTSARRAY($i) 
 	    } else {
 		lappend axeschildren LEAF $OBJECTSARRAY($i) 
 	    }
@@ -191,7 +191,7 @@ proc LemonTree::build_list {w node} {
 }
 
 
-proc LemonTree::kids(AGREGATION) {w node} {
+proc LemonTree::kids(COMPOUND) {w node} {
     global OBJECTSARRAY
     global ged_handle_list_size
 
@@ -243,7 +243,7 @@ set path "$env(SCIPATH)/tcl/ged/images"
 
 #set LemonTree::icon(widget) [image create photo -file $path/folder.gif]
 
-set LemonTree::icon(AGREGATION) [image create photo -file $path/agregation.gif]
+set LemonTree::icon(COMPOUND) [image create photo -file $path/compound.gif]
 set LemonTree::icon(AXES) [image create photo -file $path/axes.gif]
 
 set LemonTree::icon(LEAF) [image create photo -file $path/leaf.gif]
@@ -412,7 +412,7 @@ proc LemonTree::info(AXES) {w node} {
     return $i
 }
 
-proc LemonTree::info(AGREGATION) {w node} {
+proc LemonTree::info(COMPOUND) {w node} {
     global OBJECTSARRAY
     global ged_handle_list_size
     
@@ -584,7 +584,7 @@ proc LemonTree::finddata {w node data} {
 
 # puts "ii VAUT: $ii"
 # .t closetree n6
-# LemonTree::finddata .t $ii "Agregation(2)"
+# LemonTree::finddata .t $ii "Compound(2)"
 
 
 # #"(Array)"
