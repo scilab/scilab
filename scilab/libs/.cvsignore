@@ -120,3 +120,5 @@ fileio.def
 os_specific.def
 os_specific_f.def
 os_specific_f.lib
+Wintools.lib
+Wintools.def
