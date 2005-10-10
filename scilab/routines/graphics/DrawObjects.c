@@ -8644,7 +8644,7 @@ sciDrawObj (sciPointObj * pobj)
 		C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 	      
 	      break;
-	    case 6: // 'Matlab' bar
+	    case 6: /* 'Matlab' bar */
 	      drawline = TRUE;
 	      x[2] = sciGetLineWidth (pobj);
 	      x[3] = sciGetLineStyle (pobj);
