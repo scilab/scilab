@@ -1535,7 +1535,9 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   static int *Lstk = C2F(vstk).lstk-1;
   static int *Infstk  = C2F(vstk).infstk-1;
 
-   C2F(basbrk).interruptible = *seq != 0;
+  Pt = max(Pt,0);
+  Top = max(Top,0);
+  C2F(basbrk).interruptible = *seq != 0;
   C2F(bexec)(str, ns, ierr, (*ns));
   if (*ierr != 0) {
     goto L9998;
@@ -1554,13 +1556,15 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
 
   /* code translated from callinterf.h */
  L60:
+
    C2F(parse)();
+  if (C2F(iop).err > 0) {
+    goto L9999;
+  }
+
   if (C2F(com).fun == 99) {
     C2F(com).fun = 0;
     goto L200;
-  }
-  if (C2F(iop).err > 0) {
-    goto L9999;
   }
 
   if (Rstk[Pt] / 100 == 9) {
