@@ -1,0 +1,2 @@
+clean:
+	-del /S *.bin
