@@ -5,7 +5,7 @@ wh=[];
 x=pt(1);y=pt(2)
 data=[]
 k=[]
-eps=4
+eps=6
 for i=1:n //loop on objects
   o=scs_m.objs(i)
   if typeof(o)=='Block'|typeof(o)=='Text' then

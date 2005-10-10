@@ -1,6 +1,19 @@
-function hilite_obj(o)
+function hilite_obj(o,win)
 //
 // Copyright INRIA
+
+rhs=argn(2)
+if rhs>1 then
+  if or(winsid()==win) then
+    winback=xget('window')
+    xset('window',win)
+    alu=xget('alufunction')
+    xset('alufunction',6)
+  else
+    return
+  end
+end
+
 dr=driver()
 if dr=='Rec' then driver('X11'),end
 if typeof(o)=='Block' then
@@ -17,4 +30,9 @@ elseif typeof(o)=='Link' then
   if pixmap then xset('wshow'),end
 end
 driver(dr)  
+if rhs>1 then 
+  xset('alufunction',alu)
+  xset('window',winback)
+end
+
 endfunction

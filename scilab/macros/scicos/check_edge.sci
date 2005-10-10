@@ -1,9 +1,9 @@
 
-function Cmenu=check_edge(o,Cmenu)
+function Cmenu=check_edge(o,Cmenu,%pt)
   if windows(find(%win==windows(:,2)),1)==100000 then
     return // navigator
   end
-  
+  %xc=%pt(1);%yc=%pt(2)
   if typeof(o)=='Block' then
     orig=o.graphics.orig;sz=o.graphics.sz;
     orig=orig(:);sz=sz(:);

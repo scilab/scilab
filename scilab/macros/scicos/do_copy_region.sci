@@ -1,5 +1,6 @@
 function [scs_m,needcompile]=do_copy_region(scs_m,needcompile,%pt)
   xc=%pt(1);yc=%pt(2);
+  win=%win
   disablemenus()
   [reg,rect]=get_region(xc,yc,win)
   // Copyright INRIA

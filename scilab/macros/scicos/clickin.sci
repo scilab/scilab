@@ -9,7 +9,7 @@ function [o,modified,newparameters,needcompile,edited]=clickin(o)
 // Copyright INRIA
 
 modified=%f;newparameters=list();needcompile=0;
-Cmenu=check_edge(o,Cmenu)
+Cmenu=check_edge(o,Cmenu,%pt)
 if Cmenu==('Link') then
   //we have clicked near a port
   [Cmenu]=resume('Link')

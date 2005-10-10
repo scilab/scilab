@@ -1,93 +1,103 @@
 function [btn,%pt,win,Cmenu]=cosclick(flag)
   [lhs,rhs] = argn(0)
+  btn=0 // not used anyway
   Cmenu_orig = Cmenu
   Cmenu=[]; %pt=[]; //** Clear the variables
   if ~or(winsid()==curwin) then  win=xget('window');Cmenu='Quit',return,end   
-
+  
   if rhs==1 then
     [btn,xc,yc,win,str]=xclick(flag)
   else
     [btn,xc,yc,win,str]=xclick()
   end
-  
   %pt=[xc,yc]
-//** -----------------------------------------------------------
+  //** -----------------------------------------------------------
   if or(btn==[2 5]) then // button 2 (right) pressed or clicked
-    if win == curwin then
-      [k,wh]=getobj(scs_m,[xc;yc])
-      
-      if k<>[] then
-	        j=1
-	        hilite_obj(scs_m.objs(k));
-	        xpause(300000)
-	        hilite_obj(scs_m.objs(k));
-      else
-	        j=2
-      end
-      
-    else
-         j=3
-    end
-
-    Cmenu=mpopup(%scicos_lhb_list(j));
-
-    if Cmenu==[] then %pt=[];end
     
-//**------------------------------------------------------------
-  elseif btn==-100 then  // The window has been closed 
-      if win==curwin then
-	        Cmenu='Quit',
-      else
-	        Cmenu=[]
-	        %pt=[]
-      end
-      return
+    
+    Cmenu='Popup',return
+//    if win == curwin then
+//      [k,wh]=getobj(scs_m,[xc;yc])
       
-//**-------------------------------------------------------------    
-  elseif btn==-2 then   //** A (dynamic) menu has been selected  
-  // click in a dynamic menu
-  win=curwin
-  if strindex(str,'_'+string(curwin)+'(')<>[] then
-   // click in a scicos dynamic menu
-   %pt=[]
-     execstr('Cmenu='+part(str,9:length(str)-1))
-     execstr('Cmenu='+Cmenu)
-     return
+//      if k<>[] then
+//	j=1
+//	hilite_obj(scs_m.objs(k));
+//	xpause(200000)
+//	hilite_obj(scs_m.objs(k));
+ //     else
+//	j=2
+//      end
+      
+//    else
+//      j=3
+//    end
+//    
+//    Cmenu=mpopup(%scicos_lhb_list(j));
+//    
+//    if Cmenu==[] then %pt=[];end
+    
+    //**------------------------------------------------------------
+  elseif btn==-100 then  // The window has been closed 
+    if win==curwin then
+      Cmenu='Quit',
+    else
+      Cmenu=[]
+      %pt=[]
+    end
+    return
+    
+    //**-------------------------------------------------------------    
+  elseif btn==-2 then  			// click in a dynamic menu
+    win=curwin
+    if strindex(str,'_'+string(curwin)+'(')<>[] then
+      // click in a scicos dynamic menu
+      %pt=[]
+      execstr('Cmenu='+part(str,9:length(str)-1))
+      execstr('Cmenu='+Cmenu)
+      return
     else // click in an other dynamic menu
       execstr(str,'errcatch')
       return
     end
-
-//**-------------------------------------------------------------    
-  elseif (btn==0|btn==3)&(win<>curwin) then //** left or right button clicked (in the pallet(s))
+    
+    //**-------------------------------------------------------------    
+  elseif (btn==0)&(win<>curwin) then //** left or right button clicked (in the pallet(s))
     jj=find(windows(:,2)==win)
     if jj <> [] then
       if Cmenu_orig=='Copy Region' then
-        	Cmenu=[]
+	Cmenu=[]
       else
-	        Cmenu='Copy' //btn=99  //mode copy
+	Cmenu='Duplicate' //btn=99  //mode copy
       end
       if or(windows(jj,1)==100000) then
-	        Cmenu='Open/Set'//btn=111  //mode open-set (cliquer dans navigator)
+	Cmenu='Open/Set'//btn=111  //mode open-set (cliquer dans navigator)
       end
     else
       %pt=[]
     end
     
-//**-------------------------------------------------------------    
+    //**-------------------------------------------------------------    
   elseif (btn==10) & (win==curwin) then
-       Cmenu='Open/Set'
+    Cmenu='Open/Set'
+  elseif btn==3 then
+    Cmenu='SelectLink'
   elseif  (btn==0) & (win==curwin) then
-       Cmenu='MoveLink'
+    Cmenu='MoveLink'
     
-//** -----------------------------------------------------------
-//** Single key Shortcut 
+    //** -----------------------------------------------------------
+    //** Single key Shortcut 
   elseif btn>31 then
-    Cmenu=%tableau(min(100,btn-31));
-    if Cmenu==emptystr() then Cmenu=[];%pt=[];end
+    if btn==1120 then 
+      Cmenu='Cut';%pt=[];
+    elseif btn==1099 then
+       Cmenu='Copy';%pt=[];
+    elseif btn==1118 then
+       Cmenu='Paste';%pt=[];
+    else
+      Cmenu=%tableau(min(100,btn-31));
+      if Cmenu==emptystr() then Cmenu=[];%pt=[];end
+    end
   end
-//  disp(Cmenu)
-  
 endfunction
 
 

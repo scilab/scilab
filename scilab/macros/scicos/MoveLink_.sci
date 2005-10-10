@@ -5,14 +5,13 @@ function MoveLink_()
     %pt=[]
     return
   elseif %win<>curwin then
-    Cmenu="Copy"
+    Cmenu="Duplicate"
   else
     %kk=getobj(scs_m,[%xc;%yc])
-    %Path=list('objs',%kk) 
     if %kk<>[] then
-      Cmenu=check_edge(scs_m(%Path),'Move')
+      Cmenu=check_edge(scs_m.objs(%kk),'Move',%pt)
     else
-      Cmenu=[]
+      Cmenu=[];%ppt=%pt;%pt=[];
     end
   end
 endfunction
