@@ -46,7 +46,7 @@ include ../Make.lib
 all:: Makefile.mak 
 
 Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
+#	$(SCIDIR)/util/Mak2VCMak Makefile
 
 
 # some versions of g77 on sparc will compile intmgetl.f
