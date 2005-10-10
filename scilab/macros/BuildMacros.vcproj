@@ -79,8 +79,7 @@
 				Name="VCNMakeTool"
 				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
 				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
-				CleanCommandLine="cleanmacros.bat"
-				Output="BuildMacros.exe"/>
+				CleanCommandLine="cleanmacros.bat"/>
 		</Configuration>
 		<Configuration
 			Name="Release with Atlas|Win32"
