@@ -62,8 +62,8 @@
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
-        legend entity should be of the type <VERB>"Agregation"</VERB>. This
-        agregation entity contains also the remainder of the graph's
+        legend entity should be of the type <VERB>"Compound"</VERB>. This
+        Compound entity contains also the remainder of the graph's
         entities.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>

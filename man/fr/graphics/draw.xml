@@ -52,7 +52,7 @@
 
     e.children(1).visible='off'; // We can choose to make a line invisible
 
-    draw(e) // draw agregation and its children <=> draw all the visible polylines
+    draw(e) // draw Compound and its children <=> draw all the visible polylines
     
     
   

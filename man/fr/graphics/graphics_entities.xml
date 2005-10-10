@@ -20,7 +20,7 @@
     entities. The hierachy top level is the Figure. Each Figure defines at
     least one child of type Axes. Each Axes entity contains a set of leaf
     entities which are the basic graphics objects like Polylines, Rectangles,
-    Arcs, Segs,... It can also contain an Agregation type which are recursive
+    Arcs, Segs,... It can also contain an Compound type which are recursive
     sets of entities. The main interest of the new graphic mode is to make
     property change easier. This new graphics'mode provides a set of
     high-level graphing routines (see <LINK>set</LINK>, <LINK>get</LINK>) used
@@ -82,13 +82,13 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Agregation: ">
-        <SP>The agregation entity is just a vector of children and with a
+      <DESCRIPTION_ITEM label="Compound: ">
+        <SP>The Compound entity is just a vector of children and with a
         single property (visibility property). It is used to glue a set of
         entities together.</SP>
 
         <P>See <LINK>glue</LINK>, <LINK>unglue</LINK> and
-        <LINK>agregation_properties</LINK> functions.</P>
+        <LINK>Compound_properties</LINK> functions.</P>
 
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
@@ -270,7 +270,7 @@
   f=get("current_figure") 
   a=f.children // the handle on the Axes child
   x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
-  e=a.children //Agregation of 2 polylines
+  e=a.children //Compound of 2 polylines
 
   p1=e.children(1) //the last drawn polyline properties
   p1.foreground=5;  // change the polyline color

@@ -91,7 +91,7 @@
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
         2D vector field entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Agregation"</VERB>.</SP>
+        <VERB>"Compound"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

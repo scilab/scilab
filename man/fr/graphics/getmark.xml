@@ -48,7 +48,7 @@ set("figure_style","new")
 plot2d(x,sin(x),style=-mark);
 clf();
 plot2d(x,sin(x))
-e=gce(); // store the agregation containing the plot
+e=gce(); // store the Compound containing the plot
 [mark,mrkSize]=getmark();
 e.children(1).mark_style = mark;
 

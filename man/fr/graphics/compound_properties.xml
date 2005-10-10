@@ -2,14 +2,14 @@
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>agregation_properties</TITLE>
+  <TITLE>Compound_properties</TITLE>
   <TYPE>Scilab Data type</TYPE>
   <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="agregation_properties"> description of the
-   Agregation entity properties</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="Compound_properties"> description of the
+   Compound entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
-  The Agregation entity is a third of the graphics entities hierarchy.
+  The Compound entity is a third of the graphics entities hierarchy.
   This entity defines interdependencies of the various graphics entities 
   and their global visibility property.
   </P>
@@ -18,8 +18,8 @@
         <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>.
    By default, value is <VERB>&quot;on&quot; </VERB> where graphics entities children 
-   of the agregation are drawn according to their visibility property. 
-   If <VERB>&quot;off&quot;</VERB> all children of agregation are not displayed
+   of the Compound are drawn according to their visibility property. 
+   If <VERB>&quot;off&quot;</VERB> all children of Compound are not displayed
     on the screen.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="user_data: ">
@@ -27,8 +27,8 @@
 	  figure data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="children: ">
-        <SP>A vector containing the handles of all graphics objects children of the agregation
-      These graphics objects can be of type  <VERB>&quot;Agregation&quot;</VERB>,
+        <SP>A vector containing the handles of all graphics objects children of the Compound
+      These graphics objects can be of type  <VERB>&quot;Compound&quot;</VERB>,
       <VERB>&quot;Rectangle&quot;</VERB>, <VERB>&quot;Polyline&quot;</VERB>, <VERB>&quot;Patch&quot;</VERB>,
      <VERB>&quot;Segs&quot;</VERB>, <VERB>&quot;Arc&quot;</VERB>,
       <VERB>&quot;Grayplot&quot;</VERB>,..</SP>

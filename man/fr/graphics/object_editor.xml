@@ -21,7 +21,7 @@
     top level is the Figure. Each Figure defines at least one child of type
     Axes. Each Axes entity contains a set of leaf entities which are the basic
     graphics objects like Polylines, Rectangles, Arcs, Segs,... It can also
-    contain an Agregation type which are recursive sets of entities.</P>
+    contain an Compound type which are recursive sets of entities.</P>
 
     <P>The main interest of the new graphic mode is to make property change
     easier. This new graphics'mode provides a set of high-level graphing

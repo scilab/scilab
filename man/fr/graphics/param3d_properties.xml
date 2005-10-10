@@ -148,7 +148,7 @@
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
         3D curves entity should be of type <VERB>"Axes"</VERB> or
-        <VERB>"Agregation"</VERB>.</SP>
+        <VERB>"Compound"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
@@ -164,7 +164,7 @@
    a.rotation_angles=[65,75]; 
    a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
    a.thickness = 2;
-   h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
+   h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
    h.children(1).foreground = 3 // first curve
    curve2 = h.children(2);
    curve2.foreground = 6;
