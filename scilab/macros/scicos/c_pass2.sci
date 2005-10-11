@@ -2261,7 +2261,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   //critev: vecteur indiquant si evenement est important pour tcrit
   //Donc les blocks indiques sont des blocks susceptibles de produire
   //des discontinuites quand l'evenement se produit
-  maX=max([ext_cord1(:,1);ordclk(:,1)])+1;
+  maX=max([ext_cord1(:,2);ordclk(:,2)])+1;
   cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
 
   // 1: important; 0:non
