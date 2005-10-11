@@ -146,7 +146,7 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="interp_color_mode: ">
-        <SP>This field determines if we are usiong the interpolated shading
+        <SP>This field determines if we are using the interpolated shading
         mode to fill the polyline : its value can be <VERB>"on"</VERB> or
         <VERB>"off"</VERB>. Note that an <VERB>interp_color_vector</VERB> must
         be defined before switching to "on" value (see below).</SP>
