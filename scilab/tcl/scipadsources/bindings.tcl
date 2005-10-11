@@ -4,6 +4,14 @@ bind All <Alt-E> {}
 bind All <Alt-S> {}
 bind ALL <Alt-H> {}
 
+#delete "native" text bindings in the textarea -- we want all text
+# manipulation to pass through our procs, so that e.g. colorization and
+# edit while debug are correctly treated
+bind Text <Control-h> {backspacetext}
+bind Text <Control-k> {}
+bind Text <Control-t> {}
+bind Text <Control-i> {}
+
 bind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
 bind Text <Delete>    {deletetext}
 bind Text <BackSpace> {backspacetext}
@@ -35,8 +43,8 @@ bind Text <Control-x> {cuttext}
 bind $pad <Control-c> {copytext}
 bind Text <Control-v> {}
 bind Text <Control-v> {pastetext}
-event delete <<Paste>> <Button-2>
-bind Text <Button-2> {button2copypaste %W %x %y}
+bind Text <ButtonRelease-2> {button2copypaste %W %x %y}
+
 bind Text <Control-/> ""
 bind Text <Control-a> ""
 bind $pad <Control-a> {selectall}

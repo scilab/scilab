@@ -78,12 +78,6 @@ Bugs:
 -Dnd bug: When the NumLock key is pressed, ctrl dnd does not work on Linux
  (but works on Windows)
 
--Some "primitive" text editing actions bypass the input text parsing,
- which takes care of thrills and bells. For instance, they do not update
- the colorization, check for matched parentheses, auto-indent, etc.
- Examples: Ctrl-h deletes backward, Ctrl-k deletes to eol, without updating 
- colorization; some mouse copy-paste-undo-redo too (which? don't remember).
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

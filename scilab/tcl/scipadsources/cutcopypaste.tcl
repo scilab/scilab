@@ -105,8 +105,8 @@ proc pastetext {} {
 }
 
 proc button2copypaste {w x y} {
-##ES 16/11/04 -- strange I have to write a full proc for this!
-## am I missing something?
+##ES 16/11/04 -- we have to write a full proc for this because we need
+# to take care of colorization, insert only when editable, etc
     global textareacur listoffile
     if {[IsBufferEditable] == "No"} {return}
     if {[catch {selection get}] == 0} {

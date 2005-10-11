@@ -1595,3 +1595,11 @@ Francois VOGEL, 10/10/05
  * Changed a label for find in files, in order to emphasize that filenames
    may be given and not only file patterns
  * version --> 5.46
+
+ES, 11/10/05
+ * default bindings Control-h,k,i,t in textarea removed, to prevent
+   text modification without passing through our procs (to recolorize,
+   take into account editing modes, etc)
+ * button2copypaste bound to <ButtonRelease-2> (not <Button-2>). Avoids
+   overlaps with the default <<PasteSelection>>, which caused odd behaviors.
+ * version --> 5.47
