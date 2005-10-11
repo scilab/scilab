@@ -7,19 +7,19 @@ function xbasc(win_num)
 //!
 // Copyright ENPC
 
-[lhs,rhs]=argn(0);
-vvv=xget("old_style");
-if vvv==0 then
-  if rhs==0, win_num=xget("window"), delete('all') ;end
-  [n1,n2]=size(win_num);
-  yyy=xget('window');
-  for xxx=win_num, xset('window',xxx);delete('all');end
-  xset('window',yyy);
-else
-  if rhs==0,win_num=xget("window");end
-  [n1,n2]=size(win_num);
-  for xxx=win_num,xclear(xxx);xtape('clear',xxx);end
-end
-
+  [lhs,rhs]=argn(0);
+  vvv=xget("old_style");
+  if vvv==0 then
+    if rhs==0, win_num=xget("window"), delete('all') ;end
+    [n1,n2]=size(win_num);
+    yyy=xget('window');
+    for xxx=win_num, xset('window',xxx);delete('all');end
+    xset('window',yyy);
+  else
+    if rhs==0,win_num=xget("window");end
+    [n1,n2]=size(win_num);
+    for xxx=win_num,xclear(xxx);xtape('clear',xxx);end
+  end
+endfunction 
 
 
