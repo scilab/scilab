@@ -1603,3 +1603,8 @@ ES, 11/10/05
  * button2copypaste bound to <ButtonRelease-2> (not <Button-2>). Avoids
    overlaps with the default <<PasteSelection>>, which caused odd behaviors.
  * version --> 5.47
+
+Francois VOGEL, 11/10/05
+ * Fixed an error popup when opening the Replace box, typing a string and
+   launching a search
+ * version --> 5.48

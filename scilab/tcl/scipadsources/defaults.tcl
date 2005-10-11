@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.47"
+set version "Version 5.48"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5

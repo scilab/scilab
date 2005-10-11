@@ -238,6 +238,10 @@ proc findtextdialog {typ} {
         if {$searchinfilesalreadyrunning} {
             $find.l.f4.f5.cbox5 configure -state disabled
         }
+    } else {
+        # needed otherwise searchindir does not exist when hitting Find Next
+        # in the replace box
+        set searchindir 0
     }
 
     # initialize all the settings
