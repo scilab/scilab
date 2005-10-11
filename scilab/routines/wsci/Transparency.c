@@ -61,7 +61,7 @@ void ScilabFxFadeOut(void)
 		(OS!=OS_WIN32_WINDOWS_98) &&
 		(OS!=OS_WIN32_WINDOWS_Me) )
 	{
-		for (i=GetCurrentAlphaLevel();i>=0;i--)
+		for (i=GetCurrentAlphaLevel();i>=0;i=i-3)
 		{
 			SetCurrentAlphaLevel(lptw->hWndParent ,i);
 			SetCurrentAlphaLevel(lptw->hWndText ,i);
