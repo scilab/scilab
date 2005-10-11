@@ -123,10 +123,12 @@ function getsave(fl)
   prot=funcprot();funcprot(0)
   nold=size(who('get'),'*')
 
-  ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
+//  ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
+  ierr=exec(fl,'errcatch',-1)
   if ierr<>0 then
   	clear ierr
-    mprintf('Warning: Error in file '+fl+' :""'+lasterror()+'""; file ignored')
+    mprintf('  Warning: Error in file '+fl+' :\n    ""'+lasterror()+'""\n"+...
+	    '  file ignored')
   else
     clear ierr
     // lookfor names of the functions defined in file 'fl'
@@ -146,7 +148,7 @@ function getsave(fl)
     if new<>[] then 
       execstr('save(u,'+strcat(new($:-1:1),',')+')'); 
     else 
-      write(%io(2),'function ""'+fl+'"" does not contain any functions');
+      mprintf('  function ""'+fl+'"" does not contain any functions');
     end
     mclose(u)
   end
