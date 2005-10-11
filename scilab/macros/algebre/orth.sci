@@ -3,7 +3,7 @@ function [Q]=orth(A)
 // Range(Q) = Range(A) and Q'*Q=eye
 //!
 // Copyright INRIA
-[X,n]=rowcomp(A);X=X';
-Q=X(:,1:n);
-
+  [X,n]=rowcomp(A);X=X';
+  Q=X(:,1:n);
+endfunction
 

@@ -6,18 +6,24 @@ function [Bk,Ck]=fullrfk(A,k)
 // F.D (1990)
 //!
 // Copyright INRIA
-[lhs,rhs]=argn(0);
-if rhs==1,
-    k=1;end
-[n,n]=size(A);
-//k=0
-if k==0,
-   Bk=eye(n,n);Ck=Bk;return;end
-//k=1
-if k==1,
-   [Bk,Ck]=fullrf(A);return;end
-[Bk,Ck]=fullrf(A);B=Bk;C=Ck;
-for l=2:k
-  [B,C,dim]=fullrf(C*B);
-  Bk=Bk*B;Ck=C*Ck;     // Bk*Ck = A^k  (Full rank factorization)
-end;
+  [lhs,rhs]=argn(0);
+  if rhs==1,
+    k=1;
+  end
+  [n,n]=size(A);
+  //k=0
+  if k==0,
+    Bk=eye(n,n);Ck=Bk;
+    return;
+  end
+  //k=1
+  if k==1,
+    [Bk,Ck]=fullrf(A);
+    return;
+  end
+  [Bk,Ck]=fullrf(A);B=Bk;C=Ck;
+  for l=2:k
+    [B,C,dim]=fullrf(C*B);
+    Bk=Bk*B;Ck=C*Ck;     // Bk*Ck = A^k  (Full rank factorization)
+  end;
+endfunction

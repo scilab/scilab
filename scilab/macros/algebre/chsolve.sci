@@ -6,7 +6,7 @@ function sol=chsolve(spcho,rhs)
 // A=A*A'+speye(A);
 // sol=(1:N)'; rhs=A*sol;
 // spcho=chfact(A); sol=chsolve(spcho,rhs)
-perm=spcho('perm');
-sol=blkslv(spcho,rhs(perm));
-sol(perm)=sol
-
+  perm=spcho('perm');
+  sol=blkslv(spcho,rhs(perm));
+  sol(perm)=sol
+endfunction
