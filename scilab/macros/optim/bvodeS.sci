@@ -119,4 +119,6 @@ function [z,LhS]=%ystart(x)
    [z,LhS]=%RR(ystart,x)
 endfunction
 
-function [z,LS]=%ystart1(x), z=0; LS=0; endfunction
+function [z,LS]=%ystart1(x), 
+  z=0; LS=0; 
+endfunction

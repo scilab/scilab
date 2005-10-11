@@ -3,9 +3,10 @@ function y=mtlb_a(a,b)
 // Emulation function for Matlab addition
 // V.C.
 
-if a==[] | b==[] then
-  y=[];
-else
-  y=a+b;
-end
+  if a==[] | b==[] then
+    y=[];
+  else
+    y=a+b;
+  end
+endfunction
 
