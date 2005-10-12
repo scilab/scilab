@@ -7358,6 +7358,7 @@ sciDrawObj (sciPointObj * pobj)
   BOOL drawline = TRUE;
   int nb_curves_bar = 0;
   
+  double bar_width = 0.;
   double * x_shift = NULL;
   double * y_shift = NULL;
   double * z_shift = NULL;
@@ -8684,7 +8685,7 @@ sciDrawObj (sciPointObj * pobj)
 	      x[3] = sciGetLineStyle (pobj);
 	      /* get the number of polylines sisters with bar property "on" */
 	      
-	      width =  pPOLYLINE_FEATURE(pobj)->bar_width;
+	      bar_width =  pPOLYLINE_FEATURE(pobj)->bar_width;
 	      
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
@@ -8694,41 +8695,41 @@ sciDrawObj (sciPointObj * pobj)
 		  
 		  for(i=0;i<n1;i++)
 		    {
-		      myX[0] = myX[1] = xvect[jk][i] - width/2;
-		      myX[2] = myX[3] = xvect[jk][i] + width/2;
+		      myX[0] = myX[1] = xvect[jk][i] - bar_width/2;
+		      myX[2] = myX[3] = xvect[jk][i] + bar_width/2;
 		      if(y_shift == (double *) NULL)
 			myY[0] = myY[3] =  0.;
 		      else
 			myY[0] = myY[3] =  y_shift[i];
 		      myY[1] = myY[2] =  yvect[jk][i];
+		      
+		      if(zvect[jk] == (double *) NULL)
+			myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
+		      else		      
+			myZ[0] = myZ[1] = myZ[2] = myZ[3] = zvect[jk][i];
+		      
+		      ReverseDataFor3D(sciGetParentSubwin(pobj),myX,myY,myZ,quatre);
+		      result_trans3d = trans3d(sciGetParentSubwin(pobj),quatre,pix_X,pix_Y,myX,myY,myZ);
+		      
+		      x[0] = sciGetBackground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		      
+		      x[0] = sciGetForeground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 		    }
-		  
-		  if(zvect[jk] == (double *) NULL)
-		    myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
-		  else		      
-		    myZ[0] = myZ[1] = myZ[2] = myZ[3] = zvect[jk][i];
-		  
-		  ReverseDataFor3D(sciGetParentSubwin(pobj),myX,myY,myZ,quatre);
-		  result_trans3d = trans3d(sciGetParentSubwin(pobj),quatre,pix_X,pix_Y,myX,myY,myZ);
-		  
-		  x[0] = sciGetBackground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			    &dv, &dv, &dv, &dv, 5L, 4096);
-		  
-		  C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-		  
-		  x[0] = sciGetForeground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			    &dv, &dv, &dv, &dv, 5L, 4096);
-		  
-		  C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-		  
+
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
 		}
@@ -8740,36 +8741,35 @@ sciDrawObj (sciPointObj * pobj)
 		  
 		  for(i=0;i<n1;i++)
 		    {
-		      myX[0] = myX[1] = xvect[jk][i] - width/2;
-		      myX[2] = myX[3] = xvect[jk][i] + width/2;
+		      myX[0] = myX[1] = xvect[jk][i] - bar_width/2;
+		      myX[2] = myX[3] = xvect[jk][i] + bar_width/2;
 		      
 		      if(y_shift == (double *) NULL)
 			myY[0] = myY[3] =  0.;
 		      else
 			myY[0] = myY[3] =  y_shift[i];
 		      myY[1] = myY[2] =  yvect[jk][i];
+		      
+		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
+		      
+		      x[0] = sciGetBackground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		      
+		      x[0] = sciGetForeground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 		    }
-		  
-		  C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
-		  
-		  x[0] = sciGetBackground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			    &dv, &dv, &dv, &dv, 5L, 4096);
-		  
-		  C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-		  
-		  x[0] = sciGetForeground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			    &dv, &dv, &dv, &dv, 5L, 4096);
-		  
-		  C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-		  
 		  C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &un, "f2i",3L); 
 		}
 	      break;
