@@ -8696,8 +8696,10 @@ sciDrawObj (sciPointObj * pobj)
 		    {
 		      myX[0] = myX[1] = xvect[jk][i] - width/2;
 		      myX[2] = myX[3] = xvect[jk][i] + width/2;
-		      
-		      myY[0] = myY[3] =  y_shift[i];
+		      if(y_shift == (double *) NULL)
+			myY[0] = myY[3] =  0.;
+		      else
+			myY[0] = myY[3] =  y_shift[i];
 		      myY[1] = myY[2] =  yvect[jk][i];
 		    }
 		  
@@ -8741,7 +8743,10 @@ sciDrawObj (sciPointObj * pobj)
 		      myX[0] = myX[1] = xvect[jk][i] - width/2;
 		      myX[2] = myX[3] = xvect[jk][i] + width/2;
 		      
-		      myY[0] = myY[3] =  y_shift[i];
+		      if(y_shift == (double *) NULL)
+			myY[0] = myY[3] =  0.;
+		      else
+			myY[0] = myY[3] =  y_shift[i];
 		      myY[1] = myY[2] =  yvect[jk][i];
 		    }
 		  
