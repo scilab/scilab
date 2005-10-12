@@ -550,20 +550,23 @@ void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer
 }
 
 void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
-{
-  SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],0,(char *) 0,(integer *)0);
+{  /* v7 is used to indicate if lhs is 1 or 2. lhs=1=> v7=0, lhs=2=> v7=1;*/
+  SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],*v7,(char *) 0,(integer *)0);
 }
+
 
 /*****************************************
  * general function for mouse click or 
  * dynamic menu activation 
  * 
  * if iflag = 0 : clear previous mouse click 
- * if iflag = 1 : don't 
+ * if iflag = 1 : doesn't
+ * iflag is also used to output window number in case of lhs=2 
  * if getmouse = 1 : check also mouse move 
  * if getrelease=1 : check also mouse release 
  * if dyn_men = 1 ; check also dynamic menus 
  *              ( return the buton code in str )
+ * dyn_men as input is used to indicate lhs
  * return value : 0,1,2 ButtonPressed 
  *                -5,-4,-3: ButtonReleased
  *                -100 : error 
@@ -572,10 +575,12 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
 
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
-  integer buttons = 0,win;
+  integer buttons = 0,win,choice;
   Window SCWindow;
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
+
+  choice=dyn_men; /* depending on lhs */
 
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {
@@ -592,7 +597,9 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   while (buttons == 0) 
     {
       /** first check if an event has been store in the queue while wait_for_click was 0 **/
+      if (choice) win=-1;
       if (CheckClickQueue(&win,x1,yy1,ibutton) == 1)  {
+	*iflag=win;
 	/* the clickqueue does not record move nor release events yet*/
 	break;
       }

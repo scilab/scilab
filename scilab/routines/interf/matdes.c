@@ -2947,17 +2947,18 @@ int scifec(char *fname,unsigned long fname_len)
 }
 
 /*-----------------------------------------------------------------------------------*/
-/* rep = xgetmouse([flag],[sel]) */
+/* [rep,win] = xgetmouse([flag],[sel]) */
 /*-----------------------------------------------------------------------------------*/
 int scixgetmouse(char *fname,unsigned long fname_len)
 {
-  integer  m1=1,n1=3,l1,button,v;
+  integer  m1=1,n1=3,l1,l2,button,v;
   integer iflag;
-  integer sel[2],m,n;
+  integer sel[2],m,n,v2;
   double x,y,dv;
 
   CheckRhs(0,2);
-  CheckLhs(1,1);
+  CheckLhs(1,2);
+  
   if (Rhs<=0) {
     iflag=0;sel[0]=1;sel[1]=0;
   }
@@ -2980,12 +2981,29 @@ int scixgetmouse(char *fname,unsigned long fname_len)
   }
 
   SciWin();
-  C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v,&x,&y,&dv,&dv,10L,3L);
+  
 
-  CreateVar(Rhs+1,"d",&m1,&n1,&l1);
-  *stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
-  LhsVar(1) = Rhs+1;
-  return 0;
+
+  switch (Lhs) {
+  case 1: 
+    v2=0;
+    C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L); 
+    CreateVar(Rhs+1,"d",&m1,&n1,&l1);
+    *stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
+    LhsVar(1) = Rhs+1;
+    return 0;
+  case 2:
+    v2=1;
+    C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L);
+    CreateVar(Rhs+1,"d",&m1,&n1,&l1);
+    *stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
+    LhsVar(1) = Rhs+1;
+
+    CreateVar(Rhs+2,"d",&m1,&m1,&l2);
+    *stk(l2) = iflag; /* this is the window number */
+    LhsVar(2) = Rhs+2;
+    return 0;
+  }
 } 
 
 /*-----------------------------------------------------------------------------------*/
