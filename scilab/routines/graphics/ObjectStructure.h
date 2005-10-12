@@ -907,8 +907,11 @@ typedef struct
   int *scvector;
   int dim_icv; /* dimension of the interpolated color vector (3 or 4) */
   int bar_layout;
-  double bar_shift_grouped;
-  double *  bar_shift_stacked;
+
+  double * x_shift;
+  double * y_shift;
+  double * z_shift;
+  
   double bar_width;
 }
 sciPolyline;  /** */

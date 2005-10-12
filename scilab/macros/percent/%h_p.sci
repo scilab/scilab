@@ -20,13 +20,27 @@ function %h_p(h)
        if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
      end
      
-     if size(h.bar_shift_stacked,'*') > 10 then 
-       bs="matrix "+strcat(string(size(h.bar_shift_stacked)),'x')
+     if size(h.x_shift,'*') > 10 then 
+       bxs="matrix "+strcat(string(size(h.x_shift)),'x')
      else
-       bs=sci2exp(h.bar_shift_stacked,0)
-       if length(bs)>70 then bs="matrix "+strcat(string(size(h.bar_shift_stacked)),'x'),end
+       bxs=sci2exp(h.x_shift,0)
+       if length(bxs)>70 then bxs="matrix "+strcat(string(size(h.x_shift)),'x'),end
      end
-          
+        
+     if size(h.y_shift,'*') > 10 then 
+       bys="matrix "+strcat(string(size(h.y_shift)),'x')
+     else
+       bys=sci2exp(h.y_shift,0)
+       if length(bys)>70 then bys="matrix "+strcat(string(size(h.y_shift)),'x'),end
+     end
+     
+     if size(h.z_shift,'*') > 10 then 
+       bzs="matrix "+strcat(string(size(h.z_shift)),'x')
+     else
+       bzs=sci2exp(h.z_shift,0)
+       if length(bzs)>70 then bzs="matrix "+strcat(string(size(h.z_shift)),'x'),end
+     end
+           
      u=h.user_data;
      t=[t;
 	 "parent: "+h.parent.type
@@ -49,9 +63,9 @@ function %h_p(h)
 	 "mark_size = "+string(h.mark_size)
 	 "mark_foreground = "+string(h.mark_foreground)
 	 "mark_background = "+string(h.mark_background)
-	 "bar_layout = "+sci2exp(h.bar_layout)
-	 "bar_shift_grouped = "+sci2exp(h.bar_shift_grouped)
-	 "bar_shift_stacked = "+bs
+	 "x_shift = "+bxs
+	 "y_shift = "+bys
+	 "z_shift = "+bzs
 	 "bar_width = "+sci2exp(h.bar_width)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box)

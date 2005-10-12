@@ -1405,51 +1405,97 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else
 	{strcpy(error_message,"Object has no bar style");return -1;}
     }
-  else if (strcmp(marker,"bar_shift_stacked") == 0)
+  else if (strcmp(marker,"x_shift") == 0)
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE){
 	int num = 0;
 	if(*numcol > 1 && *numrow > 1){
-	  strcpy(error_message,"Bad input,bar_shift_stacked should be a row or column vector.");
+	  strcpy(error_message,"Bad input, x_shift should be a row or column vector.");
 	  return -1;
 	}
 	num = (*numrow)*(*numcol);
 
-	if (num!=pPOLYLINE_FEATURE (pobj)->n1)
+	if (num != 0 && num!=pPOLYLINE_FEATURE (pobj)->n1) /* we can specify [] (null vector) to reset to default */
 	  {
 	    strcpy(error_message,"Wrong size for input vector.");
 	    return -1;
 	  }
       
-	FREE(pPOLYLINE_FEATURE (pobj)->bar_shift_stacked);
-	pPOLYLINE_FEATURE (pobj)->bar_shift_stacked = (double *) NULL;
+	FREE(pPOLYLINE_FEATURE (pobj)->x_shift);
+	pPOLYLINE_FEATURE (pobj)->x_shift = (double *) NULL;
 	
-	if ((pPOLYLINE_FEATURE (pobj)->bar_shift_stacked = (double *) MALLOC (num * sizeof (double))) == NULL){
-	  strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
-	
-	for (i=0;i<num;i++)
-	  pPOLYLINE_FEATURE (pobj)->bar_shift_stacked[i] = *stk(*value+i);
+	if(num != 0){
+	  if ((pPOLYLINE_FEATURE (pobj)->x_shift = (double *) MALLOC (num * sizeof (double))) == NULL){
+	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
+	  
+	  for (i=0;i<num;i++)
+	    pPOLYLINE_FEATURE (pobj)->x_shift[i] = *stk(*value+i);
+	}
       }
       else
-	{strcpy(error_message,"Object has no bar shift");return -1;}
+	{strcpy(error_message,"Object has no x_shift");return -1;}
     }
-  else if (strcmp(marker,"bar_shift_grouped") == 0)
+  else if (strcmp(marker,"y_shift") == 0)
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	double valeur = stk(*value)[0];
-	int num = (*numrow)*(*numcol);
+	int num = 0;
+	if(*numcol > 1 && *numrow > 1){
+	  strcpy(error_message,"Bad input, y_shift should be a row or column vector.");
+	  return -1;
+	}
+	num = (*numrow)*(*numcol);
 
-	if (num!=1)
+	if (num != 0 && num!=pPOLYLINE_FEATURE (pobj)->n1) /* we can specify [] (null vector) to reset to default */
 	  {
-	    strcpy(error_message,"Wrong size : should be a scalar.");
+	    strcpy(error_message,"Wrong size for input vector.");
 	    return -1;
 	  }
-	
-	pPOLYLINE_FEATURE (pobj)->bar_shift_grouped = valeur;
+      
+	FREE(pPOLYLINE_FEATURE (pobj)->y_shift);
+	pPOLYLINE_FEATURE (pobj)->y_shift = (double *) NULL;
+
+	if(num != 0){
+	  if ((pPOLYLINE_FEATURE (pobj)->y_shift = (double *) MALLOC (num * sizeof (double))) == NULL){
+	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
+	  
+	  for (i=0;i<num;i++)
+	    pPOLYLINE_FEATURE (pobj)->y_shift[i] = *stk(*value+i);
+	}
       }
       else
-	{strcpy(error_message,"Object has no bar shift");return -1;}
+	{strcpy(error_message,"Object has no y_shift");return -1;}
     }
+  else if (strcmp(marker,"z_shift") == 0)
+    {  
+      if (sciGetEntityType (pobj) == SCI_POLYLINE){
+	int num = 0;
+	if(*numcol > 1 && *numrow > 1){
+	  strcpy(error_message,"Bad input, z_shift should be a row or column vector.");
+	  return -1;
+	}
+	num = (*numrow)*(*numcol);
+
+	if (num != 0 && num!=pPOLYLINE_FEATURE (pobj)->n1) /* we can specify [] (null vector) to reset to default */
+	  {
+	    strcpy(error_message,"Wrong size for input vector.");
+	    return -1;
+	  }
+      
+	FREE(pPOLYLINE_FEATURE (pobj)->z_shift);
+	pPOLYLINE_FEATURE (pobj)->z_shift = (double *) NULL;
+	
+	if(num != 0){
+	  if ((pPOLYLINE_FEATURE (pobj)->z_shift = (double *) MALLOC (num * sizeof (double))) == NULL){
+	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
+	  
+	  for (i=0;i<num;i++)
+	    pPOLYLINE_FEATURE (pobj)->z_shift[i] = *stk(*value+i);
+	}
+      }
+      else
+	{strcpy(error_message,"Object has no z_shift");return -1;}
+    }
+
   else if (strcmp(marker,"polyline_style") == 0)
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE){
@@ -1597,7 +1643,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"Value must be 'clipgrf', 'on' or 'off'"); return -1;}
   }		
   else if (strcmp(marker,"data") == 0){
-    CheckAndUpdateBarStacked(pobj,*numrow); /* used only on Polyline */
+    CheckAndUpdate_x_shift(pobj,*numrow); /* used only on Polyline */
+    CheckAndUpdate_y_shift(pobj,*numrow); /* used only on Polyline */
+    CheckAndUpdate_z_shift(pobj,*numrow); /* used only on Polyline */
     
     sciSetPoint((sciPointObj *)pobj, stk(*value), numrow, numcol);
     
@@ -2916,7 +2964,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 }
 
 
-int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow)
+int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = NULL;
   int i;
@@ -2927,7 +2975,7 @@ int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow)
   ppolyline = pPOLYLINE_FEATURE(pobj);
 
 
-  if(ppolyline->bar_shift_stacked == (double *) NULL)
+  if(ppolyline->x_shift == (double *) NULL)
     return 0;
   else
     {
@@ -2945,11 +2993,11 @@ int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow)
 	    }
 	  
 	  for(i=0;i<numrow;i++)
-	    new_bar[i] = ppolyline->bar_shift_stacked[i];
+	    new_bar[i] = ppolyline->x_shift[i];
 	  
-	  FREE(ppolyline->bar_shift_stacked);
+	  FREE(ppolyline->x_shift);
 	  
-	  ppolyline->bar_shift_stacked = new_bar;
+	  ppolyline->x_shift = new_bar;
 	  
 	}
       else /* case where size_x_old < numrow */
@@ -2963,19 +3011,140 @@ int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow)
 	    }
 	  
 	  for(i=0;i<size_x_old;i++)
-	    new_bar[i] = ppolyline->bar_shift_stacked[i];
+	    new_bar[i] = ppolyline->x_shift[i];
 	  
 	  for(i=size_x_old;i<numrow;i++)
 	    new_bar[i] = 0.;
 	  
-	  FREE(ppolyline->bar_shift_stacked);
+	  FREE(ppolyline->x_shift);
 	  
-	  ppolyline->bar_shift_stacked = new_bar;
+	  ppolyline->x_shift = new_bar;
 	}
     }
   
   return 0;
 }
 
+int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
+{
+  sciPolyline * ppolyline = NULL;
+  int i;
+
+  if(sciGetEntityType(pobj) != SCI_POLYLINE)
+    return 0;
+  
+  ppolyline = pPOLYLINE_FEATURE(pobj);
+
+
+  if(ppolyline->y_shift == (double *) NULL)
+    return 0;
+  else
+    {
+      int size_x_old = ppolyline->n1; /* number of x data */
+      if(size_x_old == numrow)
+	return 0;
+      else if(size_x_old > numrow)
+	{
+	  double * new_bar = NULL;
+	  
+	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
+	    {
+	      strcpy(error_message,"No more place to allocate new_bar");
+	      return -1;
+	    }
+	  
+	  for(i=0;i<numrow;i++)
+	    new_bar[i] = ppolyline->y_shift[i];
+	  
+	  FREE(ppolyline->y_shift);
+	  
+	  ppolyline->y_shift = new_bar;
+	  
+	}
+      else /* case where size_x_old < numrow */
+	{
+	  double * new_bar = NULL;
+	  
+	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
+	    {
+	      strcpy(error_message,"No more place to allocate new_bar");
+	      return -1;
+	    }
+	  
+	  for(i=0;i<size_x_old;i++)
+	    new_bar[i] = ppolyline->y_shift[i];
+	  
+	  for(i=size_x_old;i<numrow;i++)
+	    new_bar[i] = 0.;
+	  
+	  FREE(ppolyline->y_shift);
+	  
+	  ppolyline->x_shift = new_bar;
+	}
+    }
+  
+  return 0;
+}
+
+int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
+{
+  sciPolyline * ppolyline = NULL;
+  int i;
+
+  if(sciGetEntityType(pobj) != SCI_POLYLINE)
+    return 0;
+  
+  ppolyline = pPOLYLINE_FEATURE(pobj);
+
+
+  if(ppolyline->z_shift == (double *) NULL)
+    return 0;
+  else
+    {
+      int size_x_old = ppolyline->n1; /* number of x data */
+      if(size_x_old == numrow)
+	return 0;
+      else if(size_x_old > numrow)
+	{
+	  double * new_bar = NULL;
+	  
+	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
+	    {
+	      strcpy(error_message,"No more place to allocate new_bar");
+	      return -1;
+	    }
+	  
+	  for(i=0;i<numrow;i++)
+	    new_bar[i] = ppolyline->z_shift[i];
+	  
+	  FREE(ppolyline->z_shift);
+	  
+	  ppolyline->z_shift = new_bar;
+	  
+	}
+      else /* case where size_x_old < numrow */
+	{
+	  double * new_bar = NULL;
+	  
+	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
+	    {
+	      strcpy(error_message,"No more place to allocate new_bar");
+	      return -1;
+	    }
+	  
+	  for(i=0;i<size_x_old;i++)
+	    new_bar[i] = ppolyline->z_shift[i];
+	  
+	  for(i=size_x_old;i<numrow;i++)
+	    new_bar[i] = 0.;
+	  
+	  FREE(ppolyline->z_shift);
+	  
+	  ppolyline->x_shift = new_bar;
+	}
+    }
+  
+  return 0;
+}
 /*-----------------------------------------------------------------------------------*/
 

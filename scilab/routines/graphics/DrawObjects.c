@@ -5538,6 +5538,54 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   int nb = 0;
   
   int **store_data = (int **) NULL;
+  double * pvx_plus_x_shift = NULL;
+  double * pvy_plus_y_shift = NULL;
+  double * pvz_plus_z_shift = NULL;
+
+  double * x_shift = pppolyline->x_shift;
+  double * y_shift = pppolyline->y_shift;
+  double * z_shift = pppolyline->z_shift;
+ 
+  
+  if ((pvx_plus_x_shift = MALLOC ((pppolyline->n1)*sizeof (double))) == NULL) return -1;
+  if(x_shift != (double *) NULL){ /* if shift is not NULL, its size is n1 */
+    for(i=0;i<pppolyline->n1;i++)
+      pvx_plus_x_shift[i] = pppolyline->pvx[i] + x_shift[i];
+  }
+  else{
+    for(i=0;i<pppolyline->n1;i++)
+      pvx_plus_x_shift[i] = pppolyline->pvx[i];
+  }
+  
+    
+  if ((pvy_plus_y_shift = MALLOC ((pppolyline->n1)*sizeof (double))) == NULL) return -1;
+  if(y_shift != (double *) NULL){ /* if shift is not NULL, its size is n1 */
+    for(i=0;i<pppolyline->n1;i++)
+      pvy_plus_y_shift[i] = pppolyline->pvy[i] + y_shift[i];
+  }
+  else{
+    for(i=0;i<pppolyline->n1;i++)
+      pvy_plus_y_shift[i] = pppolyline->pvy[i];
+  }
+    
+  
+  if(pppolyline->pvz != (double *) NULL || z_shift != (double *) NULL){
+    if ((pvz_plus_z_shift = MALLOC ((pppolyline->n1)*sizeof (double))) == NULL) return -1;
+
+    if(z_shift != (double *) NULL && pppolyline->pvz != (double *) NULL){ /* if shift is not NULL, its size is n1 */
+      for(i=0;i<pppolyline->n1;i++)
+	pvz_plus_z_shift[i] = pppolyline->pvz[i] + z_shift[i];
+    }
+    else if(z_shift != (double *) NULL && pppolyline->pvz == (double *) NULL){
+      for(i=0;i<pppolyline->n1;i++)
+	pvz_plus_z_shift[i] = z_shift[i];
+    }
+    else if(z_shift == (double *) NULL && pppolyline->pvz != (double *) NULL){
+      for(i=0;i<pppolyline->n1;i++)
+	pvz_plus_z_shift[i] = pppolyline->pvz[i];
+    }
+  }
+  
 
   if ((store_data = (int **) MALLOC ((3)*sizeof (int *))) == NULL) return -1;
   for(i=0;i<3;i++) 
@@ -5551,19 +5599,19 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   /*  we search for != %nan */
   for(i=0;i<pppolyline->n1;i++)
     {
-      if (pppolyline->pvz == (double *) NULL)
+      if (pvz_plus_z_shift == (double *) NULL)
 	{
-	  if((finite(pppolyline->pvx[i]) == 1) &&
-	     (finite(pppolyline->pvy[i]) == 1))
+	  if((finite(pvx_plus_x_shift[i]) == 1) &&
+	     (finite(pvy_plus_y_shift[i]) == 1))
 	    indexGoodPoints[i] = 1;  /* x and y are finite numbers */
 	  else
 	    indexGoodPoints[i] = -1;
 	} 
       else
 	{
-	  if((finite(pppolyline->pvx[i]) == 1) &&
-	     (finite(pppolyline->pvy[i]) == 1) &&
-	     (finite(pppolyline->pvz[i]) == 1))
+	  if((finite(pvx_plus_x_shift[i]) == 1) &&
+	     (finite(pvy_plus_y_shift[i]) == 1) &&
+	     (finite(pvz_plus_z_shift[i]) == 1))
 	    indexGoodPoints[i] = 1;
 	  else
 	    indexGoodPoints[i] = -1;
@@ -5577,20 +5625,20 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
     {
       if(ppsubwin->logflags[0] == 'l')
 	{
-	  if((indexGoodPoints[i] == 1) && (pppolyline->pvx[i] <= 0))
+	  if((indexGoodPoints[i] == 1) && (pvx_plus_x_shift[i] <= 0))
 	    indexGoodPoints[i] = -1;
 	}
       
       if(ppsubwin->logflags[1] == 'l') 
 	{
-	  if((indexGoodPoints[i] == 1) && (pppolyline->pvy[i] <= 0))
+	  if((indexGoodPoints[i] == 1) && (pvy_plus_y_shift[i] <= 0))
 	    indexGoodPoints[i] = -1;
 	}
       
       if(pppolyline->pvz != NULL)
 	if(ppsubwin->logflags[2] == 'l') 
 	  {
-	    if((indexGoodPoints[i] == 1) && (pppolyline->pvz[i] <= 0))
+	    if((indexGoodPoints[i] == 1) && (pvz_plus_z_shift[i] <= 0))
 	      indexGoodPoints[i] = -1;
 	  }
       
@@ -5671,15 +5719,8 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   /* XYZ vect building */
   if (( (*xvect) = (double **) MALLOC ((nb)*sizeof (double *))) == NULL) return -1;
   if (( (*yvect) = (double **) MALLOC ((nb)*sizeof (double *))) == NULL) return -1;
-  
-  /*  if (pppolyline->pvz == (double *) NULL) */
-  /*     (*zvect) = (double **) NULL; */
-  /*   else */
   if (( (*zvect) = (double **) MALLOC ((nb)*sizeof (double *))) == NULL) return -1;
-  
-
-  
-  
+    
   for(i=0;i<nb;i++)
     {
       int cmpteur = 0;
@@ -5687,39 +5728,22 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
       if(store_data[2][i] > 0){
 	if (( (*xvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
 	if (( (*yvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
-	if(pppolyline->pvz == NULL)
+	if(pvz_plus_z_shift == NULL)
 	  (*zvect)[i] = NULL;
 	else
 	  if (( (*zvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
       }
       for(j=store_data[0][i];j<store_data[1][i];j++)
 	{
-	  (*xvect)[i][cmpteur] = pppolyline->pvx[j];
-	  (*yvect)[i][cmpteur] = pppolyline->pvy[j];
-	  if(pppolyline->pvz != NULL)
-	    (*zvect)[i][cmpteur] = pppolyline->pvz[j];
+	  (*xvect)[i][cmpteur] = pvx_plus_x_shift[j];
+	  (*yvect)[i][cmpteur] = pvy_plus_y_shift[j];
+	  if(pvz_plus_z_shift != NULL)
+	    (*zvect)[i][cmpteur] = pvz_plus_z_shift[j];
 	  
 	  cmpteur++;
 	  
 	}
     }
-  
-  
-  /*   for(i=0;i<nb;i++) */
-  /*     { */
-  /*       printf("Broken line %d\n",i); */
-  /*       printf("Les X\n"); */
-  /*       for(j=0;j<store_data[2][i];j++){ */
-  /* 	printf("xvect[%d][%d] = %lf\n",i,j,(*xvect)[i][j]); */
-  /* 	//	printf("zvect[%d][%d] = %lf\n",i,j); */
-  /*       } */
-
-  /*       printf("Les Y\n"); */
-  /*       for(j=0;j<store_data[2][i];j++){ */
-  /* 	printf("yvect[%d][%d] = %lf\n",i,j,(*yvect)[i][j]); */
-  /* 	//	printf("zvect[%d][%d] = %lf\n",i,j); */
-  /*       } */
-  /*     } */
   
   if (( (*curves_size) = (int *) MALLOC ((nb)*sizeof (int))) == NULL) return -1;
   
@@ -5736,6 +5760,9 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   
   FREE(store_data); store_data = (int **) NULL;
   FREE(indexGoodPoints); indexGoodPoints = (int *) NULL;
+  FREE(pvx_plus_x_shift); pvx_plus_x_shift = (double *) NULL;
+  FREE(pvy_plus_y_shift); pvy_plus_y_shift = (double *) NULL;
+  FREE(pvz_plus_z_shift); pvz_plus_z_shift = (double *) NULL;
   return 0;
 }
 
@@ -7330,8 +7357,11 @@ sciDrawObj (sciPointObj * pobj)
   int result_trans3d = 1;
   BOOL drawline = TRUE;
   int nb_curves_bar = 0;
-  int bar_number = 0;
   
+  double * x_shift = NULL;
+  double * y_shift = NULL;
+  double * z_shift = NULL;
+
   /* get the number of curves/polylines created */
   /* by ONE call to plot2d (property pPOLYLINE_FEATURE ->n2) */
   /* to help the drawing of the bar (case 6 ONLY) in case POLYLINE */
@@ -8441,6 +8471,10 @@ sciDrawObj (sciPointObj * pobj)
       logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
       logflags[3]='\0';
      
+
+      x_shift = pPOLYLINE_FEATURE (pobj)->x_shift;
+      y_shift = pPOLYLINE_FEATURE (pobj)->y_shift;
+      z_shift = pPOLYLINE_FEATURE (pobj)->z_shift;
     
 
       /* //////////////////////////////////////////////////////////////// */
@@ -8650,65 +8684,49 @@ sciDrawObj (sciPointObj * pobj)
 	      x[3] = sciGetLineStyle (pobj);
 	      /* get the number of polylines sisters with bar property "on" */
 	      
-	      bar_number = GetBarNumber(pobj);
-	      width = FindWidth(pobj,n1,bar_number,xvect[jk]);
-
-
+	      width =  pPOLYLINE_FEATURE(pobj)->bar_width;
+	      
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
 		  double myX[4], myY[4], myZ[4];
 		  int pix_X[4], pix_Y[4];
 		  int quatre = 4;
-		  int barlayout = pPOLYLINE_FEATURE(pobj)->bar_layout;
-		  double shiftgrouped = pPOLYLINE_FEATURE(pobj)->bar_shift_grouped;
-		  double * shiftstacked = pPOLYLINE_FEATURE(pobj)->bar_shift_stacked;
-
+		  
 		  for(i=0;i<n1;i++)
 		    {
-		      if (barlayout == 0)
-			{
-			  myX[0] = myX[1] = xvect[jk][i] + shiftgrouped - width/2;
-			  myX[2] = myX[3] = xvect[jk][i] + shiftgrouped + width/2;
+		      myX[0] = myX[1] = xvect[jk][i] - width/2;
+		      myX[2] = myX[3] = xvect[jk][i] + width/2;
 		      
-			  /* cas log a gerer */
-			  myY[0] = myY[3] = 0.;
-			  myY[1] = myY[2] = yvect[jk][i];
-			}	
-		      else if (barlayout == 1)
-			{
-			  myX[0] = myX[1] = xvect[jk][i] - width/2;
-			  myX[2] = myX[3] = xvect[jk][i] + width/2;
-			  
-			  myY[0] = myY[3] =  shiftstacked[i];
-			  myY[1] = myY[2] =  yvect[jk][i] + shiftstacked[i];
-			}
-
-		      if(zvect[jk] == (double *) NULL)
-			myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
-		      else		      
-			myZ[0] = myZ[1] = myZ[2] = myZ[3] = zvect[jk][i];
-		      
-		      ReverseDataFor3D(sciGetParentSubwin(pobj),myX,myY,myZ,quatre);
-		      result_trans3d = trans3d(sciGetParentSubwin(pobj),quatre,pix_X,pix_Y,myX,myY,myZ);
-		      
-		      x[0] = sciGetBackground(pobj);
-		      
-		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-				&dv, &dv, &dv, &dv, 5L, 4096);
-		      
-		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-		      
-		      x[0] = sciGetForeground(pobj);
-		      
-		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-				&dv, &dv, &dv, &dv, 5L, 4096);
-		      
-		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		      myY[0] = myY[3] =  y_shift[i];
+		      myY[1] = myY[2] =  yvect[jk][i];
 		    }
+		  
+		  if(zvect[jk] == (double *) NULL)
+		    myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
+		  else		      
+		    myZ[0] = myZ[1] = myZ[2] = myZ[3] = zvect[jk][i];
+		  
+		  ReverseDataFor3D(sciGetParentSubwin(pobj),myX,myY,myZ,quatre);
+		  result_trans3d = trans3d(sciGetParentSubwin(pobj),quatre,pix_X,pix_Y,myX,myY,myZ);
+		  
+		  x[0] = sciGetBackground(pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			    &dv, &dv, &dv, &dv, 5L, 4096);
+		  
+		  C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		  
+		  x[0] = sciGetForeground(pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			    &dv, &dv, &dv, &dv, 5L, 4096);
+		  
+		  C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		  
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
 		}
@@ -8717,52 +8735,36 @@ sciDrawObj (sciPointObj * pobj)
 		  double myX[4], myY[4];
 		  int pix_X[4], pix_Y[4],i;
 		  int quatre = 4;
-		  double shiftgrouped = pPOLYLINE_FEATURE(pobj)->bar_shift_grouped;
-		  double * shiftstacked = pPOLYLINE_FEATURE(pobj)->bar_shift_stacked;
-		  int barlayout = pPOLYLINE_FEATURE(pobj)->bar_layout;
-		  double width = pPOLYLINE_FEATURE(pobj)->bar_width;
-		  
 		  
 		  for(i=0;i<n1;i++)
 		    {
-		      if (barlayout == 0)
-			{ 
-			  myX[0] = myX[1] = xvect[jk][i] + shiftgrouped - width/2;
-			  myX[2] = myX[3] = xvect[jk][i] + shiftgrouped + width/2;
-			  
-			  /* cas log a gerer */
-			  myY[0] = myY[3] = 0.;
-			  myY[1] = myY[2] = yvect[jk][i];
-			}
-		      else if (barlayout == 1)
-			{
-			  myX[0] = myX[1] = xvect[jk][i] - width/2;
-			  myX[2] = myX[3] = xvect[jk][i] + width/2;
-			  
-			  myY[0] = myY[3] = shiftstacked[i];
-			  myY[1] = myY[2] =  yvect[jk][i] + shiftstacked[i];
-			}
+		      myX[0] = myX[1] = xvect[jk][i] - width/2;
+		      myX[2] = myX[3] = xvect[jk][i] + width/2;
 		      
-		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
-
-		      x[0] = sciGetBackground(pobj);
-	      
-		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-				&dv, &dv, &dv, &dv, 5L, 4096);
-		      
-		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-
-		      x[0] = sciGetForeground(pobj);
-		      
-		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-				&dv, &dv, &dv, 5L, 4096);
-		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-				&dv, &dv, &dv, &dv, 5L, 4096);
-		      
-		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		      myY[0] = myY[3] =  y_shift[i];
+		      myY[1] = myY[2] =  yvect[jk][i];
 		    }
+		  
+		  C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
+		  
+		  x[0] = sciGetBackground(pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			    &dv, &dv, &dv, &dv, 5L, 4096);
+		  
+		  C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		  
+		  x[0] = sciGetForeground(pobj);
+		  
+		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			    &dv, &dv, &dv, 5L, 4096);
+		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			    &dv, &dv, &dv, &dv, 5L, 4096);
+		  
+		  C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		  
 		  C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &un, "f2i",3L); 
 		}
 	      break;
@@ -11633,49 +11635,4 @@ int FreeVertices(sciPointObj * psubwin)
   pHead2 = (Vertices *) NULL;
 
   return 0;
-}
-
-int GetBarNumber(sciPointObj * pobj)
-{
-  int bar_number = 0;
-  sciSons *psonstmp;
-  
-  sciPointObj * parent = sciGetParent(pobj);
-  
-  if(sciGetEntityType(parent) != SCI_AGREG && sciGetEntityType(parent) != SCI_SUBWIN)
-    {
-      sciprint("Error in GetBarNumber\n");
-      return 0;
-    }
-  
-  psonstmp = sciGetSons(parent);
-  
-  while(psonstmp != (sciSons *) NULL)
-    {   
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_POLYLINE &&
-	 pPOLYLINE_FEATURE(psonstmp->pointobj)->plot == 6)
-	bar_number++;
-      psonstmp = psonstmp->pnext;
-    }
- 
-  return bar_number;
-}
-
-
-double FindWidth(sciPointObj *pobj, int n1, int bar_number, double *x)
-{
-  double inter = 0.;
-  int i;
-
-  if(n1>1)
-    {
-      inter = x[1] - x[0];
-      for(i=1;i<n1;i++)
-	inter = Min(inter,x[i] - x[i-1]);
-    }
-  else
-    inter = 1;
-  
-  inter = inter*.9;
-  return (double) ((inter/bar_number) * pPOLYLINE_FEATURE(pobj)->bar_width);
 }

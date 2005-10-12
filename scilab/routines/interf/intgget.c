@@ -809,22 +809,13 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{ strcpy(error_message,"Unknown polyline property"); return -1;}
     }
-  else if (strcmp(marker,"bar_shift_grouped") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->bar_shift_grouped;
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    } 
-  else if (strcmp(marker,"bar_shift_stacked") == 0)
+  else if (strcmp(marker,"x_shift") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_POLYLINE)
 	{
 	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
-
-	  if(ppolyline->bar_shift_stacked == (double *) NULL)
+	  
+	  if(ppolyline->x_shift == (double *) NULL)
 	    {
 	      numrow = numcol = 0;
 	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
@@ -835,7 +826,53 @@ int sciGet(sciPointObj *pobj,char *marker)
 	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
 	      
 	      for (i=0;i<numcol;i++)
-		stk(outindex)[i] = ppolyline->bar_shift_stacked[i];
+		stk(outindex)[i] = ppolyline->x_shift[i];
+	    }
+	}
+      else
+	{ strcpy(error_message,"Unknown polyline property"); return -1;}
+    } 
+  else if (strcmp(marker,"y_shift") == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_POLYLINE)
+	{
+	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
+	  
+	  if(ppolyline->y_shift == (double *) NULL)
+	    {
+	      numrow = numcol = 0;
+	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+	    }
+	  else
+	    {
+	      numrow   = 1;numcol   = ppolyline->n1;
+	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+	      
+	      for (i=0;i<numcol;i++)
+		stk(outindex)[i] = ppolyline->y_shift[i];
+	    }
+	}
+      else
+	{ strcpy(error_message,"Unknown polyline property"); return -1;}
+    } 
+  else if (strcmp(marker,"z_shift") == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_POLYLINE)
+	{
+	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
+	  
+	  if(ppolyline->z_shift == (double *) NULL)
+	    {
+	      numrow = numcol = 0;
+	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+	    }
+	  else
+	    {
+	      numrow   = 1;numcol   = ppolyline->n1;
+	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
+	      
+	      for (i=0;i<numcol;i++)
+		stk(outindex)[i] = ppolyline->z_shift[i];
 	    }
 	}
       else

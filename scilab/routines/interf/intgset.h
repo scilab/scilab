@@ -13,7 +13,9 @@
 
 
 int gset(char *fname,unsigned long fname_len);
-int CheckAndUpdateBarStacked(sciPointObj * pobj, int numrow);
+int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow);
+int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow);
+int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow);
 
 #endif /*__INTGSET__*/
 /*-----------------------------------------------------------------------------------*/
