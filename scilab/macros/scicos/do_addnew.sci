@@ -84,7 +84,7 @@ function [scs_m,fct]=do_addnew(scs_m)
   if pixmap then xset('wshow'),end
   while rep(3)==-1 , //move loop
     // get new position
-    rep=xgetmouse(0)
+    rep=xgetmouse(0,[%,%t])
     if rep(3)==-100 then //active window has been closed
       driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')

@@ -170,6 +170,7 @@ if ~super_block then // global variables
 
 end
 //
+
 if rhs>=1 then
   if type(scs_m)==10 then //diagram is given by its filename
     %fil=scs_m
@@ -186,6 +187,8 @@ if rhs>=1 then
   else //diagram is given by its data structure
     if ~super_block then 
       %cpr=list();needcompile=4;alreadyran=%f,%state0=list()
+    else
+      if needcompile==4 then %cpr=list(),alreadyran=%f,%state0=list(), end
     end
   end
 else

@@ -42,11 +42,13 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     i=connected(l);
     oi=scs_m.objs(i)
     driver(dr)
+    drawobj(oi) //erase link
     if pixmap then xset('wshow'),end
     [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
     
     nl=prod(size(xl))
     if dr=='Rec' then driver('X11'),end
+    xpolys(xl,yl,ct(1))// redraw thin link
     if from(1)==k then
       xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
       draw_link_seg(oi,1:2) //erase link
@@ -80,7 +82,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       // draw moving links
       xpolys(xmt,ymt,clr)// draw moving part of links get new position
       if pixmap then xset('wshow'),end    
-      rep=xgetmouse(0);
+      rep=xgetmouse(0,[%t,%t]);
       if rep(3)==-100 then //active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
@@ -142,7 +144,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       xrect(xc,yc+sz(2),sz(1),sz(2))// draw block shape
       if pixmap then xset('wshow'),end
       // get new position
-      rep=xgetmouse(0)
+      rep=xgetmouse(0,[%t,%t])
       if rep(3)==-100 then //active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
@@ -186,7 +188,7 @@ function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
 
   while rep(3)==-1 do
     xpolys(x1,y1,ct(1))//draw moving part of the link
-    rep=xgetmouse(0);
+    rep=xgetmouse(0,[%t,%t]);
     if rep(3)==-100 then //active window has been closed
       driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')

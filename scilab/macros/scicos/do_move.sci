@@ -174,7 +174,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
 
       // get new position
       if pixmap then xset('wshow'),end    
-      rep=xgetmouse( 0);
+      rep=xgetmouse(0,[%t,%t]);
       if rep(3)==-100 then //active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
@@ -273,7 +273,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       // draw block shape
       xrect(xc,yc+sz(2),sz(1),sz(2))
       // get new position
-      rep=xgetmouse(0)
+      rep=xgetmouse(0,[%t,%t])
       if rep(3)==-100 then //active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
@@ -325,7 +325,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       rep(3)=-1
       while rep(3)==-1 do
 	xpolys(x1,y1,ct(1))//draw moving part of the link
-	rep=xgetmouse(0);
+	rep=xgetmouse(0,[%t,%t]);
 	if rep(3)==-100 then //active window has been closed
 	  driver(dr);
 	  [%win,Cmenu]=resume(curwin,'Quit')
@@ -367,7 +367,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       rep(3)=-1
       while rep(3)==-1 do
 	xpolys(x1,y1,ct(1))//draw moving part of the link
-	rep=xgetmouse(0);
+	rep=xgetmouse(0,[%t,%t]);
 	if rep(3)==-100 then //active window has been closed
 	  driver(dr);
 	  [%win,Cmenu]=resume(curwin,'Quit')
@@ -407,7 +407,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
     rep(3)=-1
     while rep(3)==-1 do
       xpolys(x1,y1,ct(1))//draw moving part of the link
-      rep=xgetmouse(0);
+      rep=xgetmouse(0,[%t,%t]);
       if rep(3)==-100 then //active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
@@ -453,7 +453,7 @@ function scs_m=movelink4(scs_m)
   while rep(3)==-1 do
     xpolys(x1,y1,ct(1))//draw moving part of the link
     if pixmap then xset('wshow'),end
-    rep=xgetmouse(0);
+    rep=xgetmouse(0,[%t,%t]);
     if rep(3)==-100 then //active window has been closed
       driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
@@ -491,7 +491,7 @@ function scs_m=movelink1(scs_m)
   while rep(3)==-1 do
     xpolys(xx,yy,ct(1))  //draw  the link
     if pixmap then xset('wshow'),end
-    rep=xgetmouse(0);
+    rep=xgetmouse(0,[%t,%t]);
     if rep(3)==-100 then //active window has been closed
       driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
@@ -594,7 +594,7 @@ function scs_m=movelink2(scs_m)
   while rep(3)==-1 do
     xpolys(x1,y1,ct(1))  //draw moving part of the link
     if pixmap then xset('wshow'),end
-    rep=xgetmouse(0);
+    rep=xgetmouse(0,[%t,%t]);
     if rep(3)==-100 then //active window has been closed
       driver(dr)
       [%win,Cmenu]=resume(curwin,'Quit')
@@ -693,7 +693,7 @@ function scs_m=movelink3(scs_m)
   rep(3)=-1
   while rep(3)==-1 do
     xpolys(x1,y1,ct(1))//draw moving part of the link
-    rep=xgetmouse(0);
+    rep=xgetmouse(0,[%t,%t]);
     if rep(3)==-100 then //active window has been closed
       driver(dr)
       [%win,Cmenu]=resume(curwin,'Quit')
@@ -782,7 +782,7 @@ function scs_m=movecorner(scs_m,k,xc,yc,wh)
 
   while rep(3)==-1 do
     xpolys(x1,y1,ct(1))//draw moving part of the link
-    rep=xgetmouse(0);
+    rep=xgetmouse(0,[%t,%t]);
     if rep(3)==-100 then //active window has been closed
       driver(dr)
       [%win,Cmenu]=resume(curwin,'Quit')

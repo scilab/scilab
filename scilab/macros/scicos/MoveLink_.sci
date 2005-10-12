@@ -11,7 +11,9 @@ function MoveLink_()
     if %kk<>[] then
       Cmenu=check_edge(scs_m.objs(%kk),'Move',%pt)
     else
-      Cmenu=[];%ppt=%pt;%pt=[];
+      //Cmenu=[];%ppt=%pt;%pt=[];
+      Cmenu="Region to Super Block"
+      %ppt=[];Select=[]
     end
   end
 endfunction

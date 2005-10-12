@@ -17,9 +17,9 @@ while rep(3)==-1 do
   xrect(ox,oy,w,h)
   if pixmap then xset('wshow'),end  
   if first then 
-    rep=xgetmouse();
+    rep=xgetmouse([%t,%t]);
   else 
-    rep=xgetmouse(0),
+    rep=xgetmouse(0,[%t,%t]),
   end
   if rep(3)==-100 then //active window has been closed
     driver(dr);

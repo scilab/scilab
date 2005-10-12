@@ -13,28 +13,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
   %pt=[xc,yc]
   //** -----------------------------------------------------------
   if or(btn==[2 5]) then // button 2 (right) pressed or clicked
-    
-    
     Cmenu='Popup',return
-//    if win == curwin then
-//      [k,wh]=getobj(scs_m,[xc;yc])
-      
-//      if k<>[] then
-//	j=1
-//	hilite_obj(scs_m.objs(k));
-//	xpause(200000)
-//	hilite_obj(scs_m.objs(k));
- //     else
-//	j=2
-//      end
-      
-//    else
-//      j=3
-//    end
-//    
-//    Cmenu=mpopup(%scicos_lhb_list(j));
-//    
-//    if Cmenu==[] then %pt=[];end
     
     //**------------------------------------------------------------
   elseif btn==-100 then  // The window has been closed 
