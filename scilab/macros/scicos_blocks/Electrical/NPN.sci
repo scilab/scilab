@@ -89,3 +89,4 @@ case 'define' then
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I';'I']
 end
+endfunction

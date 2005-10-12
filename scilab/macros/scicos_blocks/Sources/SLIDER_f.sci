@@ -82,4 +82,4 @@ case 'define' then
   gr_i=' '
   x=standard_define([3 1],model,exprs,gr_i)
 end
-
+endfunction

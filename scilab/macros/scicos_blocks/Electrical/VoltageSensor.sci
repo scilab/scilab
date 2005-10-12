@@ -43,6 +43,8 @@ case 'define' then
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I';'E']
 end
+endfunction
+
 function sensor_draw_ports(o)
 [orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
     xset('pattern',default_color(0))
@@ -132,5 +134,4 @@ end
 y=[orig(2)+sz(2)-(sz(2)/2) ,orig(2)-sz(2)*2/8]
 x=[(x1+dx2)  orig(1)+sz(1)/2]
 typ=[2 1]
-
 endfunction

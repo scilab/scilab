@@ -99,7 +99,7 @@ if to<>"xml" then
     mputl(gsort(WH,'g','i'),path+whatis)
   end
 end
-
+endfunction
 
 function txt=man2ascii(man,ind)
 if argn(2)<2 then ind=1,end
@@ -138,6 +138,7 @@ while k<n
   else
   end
 end
+endfunction
 
 function txt=man2tex(man)
 txt=[];k=0
@@ -199,6 +200,7 @@ while k<n
   else
   end
 end
+endfunction
 
 function txt=man2html(man)
 txt=[];k=0
@@ -260,6 +262,7 @@ while k<n
   else
   end
 end
+endfunction
 
 function txt=man2xml(man)
 k=0;txt=[];lang="eng";
@@ -722,6 +725,7 @@ while k<size(com,'*')
   end
 end
 if tp>0 then man($+1)=list('end_indent'),tp=tp-1,end
+endfunction
 
 function tab=gettable(txt,to)
 //given troff instruction defining a table this function returns a 
@@ -740,6 +744,7 @@ for k=1:size(txt,1)-2
     tab(k,i-1)=part(tk,c(i-1)+1:c(i)-1)
   end
 end
+endfunction
 
 function wh=asciiwhatis(path,fnam)
 txt=mgetl(path)
@@ -757,9 +762,11 @@ if k<>[] then wh(k)=[];end
 wh=stripblanks(wh)
 k=find(wh=='');if k<>[] then wh(k)=[];end
 wh=wh+'  @'+fnam
+endfunction
 
 function wh=texwhatis(path,fnam)
 wh='\input '+fnam
+endfunction
 
 function wh=htmlwhatis(path,fnam)
 txt=mgetl(path)
@@ -783,6 +790,7 @@ for k=1:size(wh,1)
   whk=part(whk,1:p-1)+'</a>'+part(whk,p:length(whk))
   wh(k)='<br><a href=""'+fnam+'"">'+whk+'<br>'
 end
+endfunction
 
 function txt=replacefonts(txt,to)
 if to<>"xml" then
@@ -796,12 +804,14 @@ for i=l
 end
 if to<>"xml" then txt=strsubst(txt,'\\','\'); end
 txt=txt
+endfunction
 
 function t=maketable(tab,ind)
 t=part(' ',ones(1,sum(ind)))+emptystr(size(tab,1),1)+'|'
 for k=1:size(tab,2)
   t=t+part(tab(:,k),1:max(length(tab(:,k))))+'|'
 end
+endfunction
 
 function t=justify_text(item,txt,ind,tp)
 curind=sum(ind)
@@ -838,6 +848,7 @@ end
 t=[t;part(txt,k0:length(txt))]
 if tp then k1=2,else k1=1,end
 t(k1:$)=part(' ',ones(1,curind+1))+t(k1:$)
+endfunction
 
 function t=texsubstitute(t)
     t=strsubst(t,'_','\_')
@@ -845,9 +856,11 @@ function t=texsubstitute(t)
     t=strsubst(t,'&','\&')
     t=strsubst(t,'<','$<$')
     t=strsubst(t,'>','$>$')
+endfunction
 
 function t=htmlsubstitute(t)
     t=strsubst(t,'<','&lt ')
+endfunction
 
 function t=xmlsubstitute(t)
     t=strsubst(t,'&','&amp;');
@@ -862,6 +875,7 @@ function t=xmlsubstitute(t)
     t=strsubst(t,'\fI','<VERB>');
     t=strsubst(t,'\f(CR',' ');
     t=strsubst(t,'\fR','</VERB>');
+endfunction
 
 function t=xmlsubstituteforlabel(t)
     t=strsubst(t,'&','&amp;');
@@ -876,6 +890,7 @@ function t=xmlsubstituteforlabel(t)
     t=strsubst(t,'\fI','');
     t=strsubst(t,'\f(CR',' ');
     t=strsubst(t,'\fR','');
+endfunction
 
 function t=xmlsubstituteforcdata(t)
     t=strsubst(t,'\fV','');
@@ -885,7 +900,8 @@ function t=xmlsubstituteforcdata(t)
     t=strsubst(t,'\fI','');
     t=strsubst(t,'\f(CR',' ');
     t=strsubst(t,'\fR','');
-    
+endfunction
+
 function t=gethtmlref(nm)
 global %helps
 nm=stripblanks(nm)
@@ -909,6 +925,7 @@ end
 undef=find(t=='')
 t(undef)=nm(undef)
 t=t+'.htm'
+endfunction
 
 function t=table2html(tab)
 t='<table BORDER NOSAVE >'
@@ -919,6 +936,7 @@ for l=1:size(tab,1)
   t=[t;'</tr>']
 end
 t=[t;'</table>']
+endfunction
 
 function t=table2xml(tab)
 t='<TABLE>'
@@ -928,3 +946,4 @@ for l=1:size(tab,1)
   t=[t;'</TABLE_NEW_ROW>']
 end
 t=[t;'</TABLE>']
+endfunction

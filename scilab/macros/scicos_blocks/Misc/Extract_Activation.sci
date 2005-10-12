@@ -90,3 +90,4 @@ scs_m_1,[],"h",[],[%f,%f],"",0,0,list())
   gr_i='xstringb(orig(1),orig(2),[''Extract'';''Activation''],sz(1),sz(2),''fill'')';
   x=standard_define([3 2],model,[],gr_i)
 end
+endfunction

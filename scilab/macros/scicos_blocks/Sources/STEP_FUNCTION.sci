@@ -129,3 +129,4 @@ case 'define' then
 	  'xset(''font'',fnt(1),fnt(2))']
   x=standard_define([2 2],model,[],gr_i)
 end
+endfunction

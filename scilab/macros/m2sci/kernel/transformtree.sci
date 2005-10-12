@@ -74,3 +74,4 @@ elseif typeof(instr)=="equal" then
     end
   end 
 end
+endfunction

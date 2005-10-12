@@ -5,3 +5,4 @@ if or(getfield(1,o.model)=='equations') then
 else
   r=%f
 end
+endfunction
