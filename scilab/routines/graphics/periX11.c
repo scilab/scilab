@@ -551,7 +551,8 @@ void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer
 
 void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {  /* v7 is used to indicate if lhs is 1 or 2. lhs=1=> v7=0, lhs=2=> v7=1;*/
-  SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],*v7,(char *) 0,(integer *)0);
+
+  SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],(v7==NULL)?0:*v7,(char *) 0,(integer *)0);
 }
 
 
@@ -561,12 +562,14 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
  * 
  * if iflag = 0 : clear previous mouse click 
  * if iflag = 1 : doesn't
- * iflag is also used to output window number in case of lhs=2 
+ * iflag is also used to output window number in case win is required
  * if getmouse = 1 : check also mouse move 
  * if getrelease=1 : check also mouse release 
- * if dyn_men = 1 ; check also dynamic menus 
- *              ( return the buton code in str )
- * dyn_men as input is used to indicate lhs
+ * if dyn_men = 1 ; check also dynamic menus, win not required
+ *              ( return the button code in str )
+ * if dyn_men = 0 ; don't check dynamic menus, win not required
+ * if dyn_men = 2 ; don't check dynamic menus and win is required
+ * if dyn_men = 3 ; check dynamic menus and win is required
  * return value : 0,1,2 ButtonPressed 
  *                -5,-4,-3: ButtonReleased
  *                -100 : error 
@@ -580,7 +583,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
 
-  choice=dyn_men; /* depending on lhs */
+  choice=(dyn_men>1); /* depending on lhs */
 
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {
@@ -619,7 +622,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  return;
 	}
       /** check for dynamic menu  **/
-      if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) {
+      if ( (dyn_men == 1||dyn_men==3) &&  C2F(ismenu)()==1 ) {
 	int entry;
 	C2F(getmen)(str,lstr,&entry);
 	*ibutton = -2;

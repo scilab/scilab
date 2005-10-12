@@ -2993,7 +2993,7 @@ int scixgetmouse(char *fname,unsigned long fname_len)
     LhsVar(1) = Rhs+1;
     return 0;
   case 2:
-    v2=1;
+    v2=2;
     C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L);
     CreateVar(Rhs+1,"d",&m1,&n1,&l1);
     *stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
