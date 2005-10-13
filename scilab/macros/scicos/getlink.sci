@@ -143,13 +143,15 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     xe=xo;ye=yo
     xpoly([xo;xe],[yo;ye],'lines')
     rep(3)=-1
-    while rep(3)==-1 do //get a new point
-      rep=xgetmouse(0)
-      if rep(3)==-100 then //active window has been closed
+    while 1 do
+      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
+      //get a new point
+      rep=xgetmouse(0,[%t,%t])
+      if xget('window')<>curwin|rep(3)==-100 then
+	//active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
- 
       if or(rep(3)==[2 5]) then 
 	xpoly([xl;xe],[yl;ye],'lines')
 	if pixmap then xset('wshow'),end
@@ -308,7 +310,12 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       end
     end
   end //loop on link segments
-
+  if xget('window')<>curwin|rep(3)==-100 then //active window has been closed
+    driver(dr);
+    [%win,Cmenu]=resume(curwin,'Quit')
+  end
+  
+  
   //make last segment horizontal or vertical
   typ=typo
   to=[kto,port_number,bool2s(typpto=='in'|typpto=='evtin')]

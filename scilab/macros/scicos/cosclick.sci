@@ -40,19 +40,16 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
     end
     
     //**-------------------------------------------------------------    
-  elseif (btn==0)&(win<>curwin) then //** left or right button clicked (in the pallet(s))
+  elseif (btn==10) & (win<>curwin) then //** button event (in a palette or navigator)
     jj=find(windows(:,2)==win)
     if jj <> [] then
-      if Cmenu_orig=='Copy Region' then
-	Cmenu=[]
-      else
-	Cmenu='Duplicate' //btn=99  //mode copy
-      end
       if or(windows(jj,1)==100000) then
-	Cmenu='Open/Set'//btn=111  //mode open-set (cliquer dans navigator)
+	Cmenu='Open/Set'  //mode open-set (cliquer dans navigator)
+      else
+	Cmenu='Duplicate'
       end
     else
-      %pt=[]
+      Cmenu=[];%pt=[];
     end
     
     //**-------------------------------------------------------------    
@@ -60,7 +57,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
     Cmenu='Open/Set'
   elseif btn==3 then
     Cmenu='SelectLink'
-  elseif  (btn==0) & (win==curwin) then
+  elseif  (btn==0) then
     Cmenu='MoveLink'
     
     //** -----------------------------------------------------------
@@ -72,6 +69,8 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
        Cmenu='Copy';%pt=[];
     elseif btn==1118 then
        Cmenu='Paste';%pt=[];
+    elseif btn==65288|btn==255 then
+      Cmenu='Delete';%pt=[];
     else
       Cmenu=%tableau(min(100,btn-31));
       if Cmenu==emptystr() then Cmenu=[];%pt=[];end

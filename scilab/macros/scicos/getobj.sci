@@ -16,7 +16,7 @@ for i=1:n //loop on objects
   elseif typeof(o)=='Link' then
     xx=o.xx;yy=o.yy;
     [d,ptp,ind]=dist2polyline(xx,yy,pt)
-    if d<eps then k=i,wh=ind,break,end
+    if d<eps/2 then k=i,wh=ind,break,end
   end
 end
 endfunction

@@ -34,7 +34,7 @@ function Popup_()
       xpause(200000)
       execstr('hilite_obj(scs_m_'+string(windows(kc,1))+'.objs(k),%"+...
 	      "win)')
-      Select=[k,%win];
+      Select=[k,%win];j=3
     else
       Cmenu==[];%pt=[];%ppt=[];Select=[];return
     end

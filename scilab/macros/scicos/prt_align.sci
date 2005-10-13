@@ -11,7 +11,9 @@ function [scs_m]=prt_align(%pt,scs_m)
   //
   while %t
     [btn,%pt2,win,Cmenu]=cosclick()
-    if Cmenu<>[] then [%win,Cmenu,%pt]=resume(win,Cmenu,%pt2),end
+    if Cmenu<>[]&Cmenu<>'SelectLink' then 
+      [%win,Cmenu,%pt]=resume(win,Cmenu,%pt2),
+    end
     xc2=%pt2(1);yc2=%pt2(2);
     k2=getblock(scs_m,[xc2;yc2])
     if k2<>[] then o2=scs_m.objs(k2);break,end

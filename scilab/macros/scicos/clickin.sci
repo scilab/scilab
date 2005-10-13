@@ -8,6 +8,8 @@ function [o,modified,newparameters,needcompile,edited]=clickin(o)
 //!
 // Copyright INRIA
 
+if needcompile==4 then %cpr=list(),end  // for standard_document to work
+
 modified=%f;newparameters=list();needcompile=0;
 Cmenu=check_edge(o,Cmenu,%pt)
 if Cmenu==('Link') then

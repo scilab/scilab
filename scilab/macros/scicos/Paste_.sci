@@ -7,6 +7,7 @@ function Paste_()
     drawobj(blk)
     edited=%t
     enable_undo=%t
+    Select=[size(scs_m.objs),%win]
   end
   Cmenu=[];%pt=[];%ppt=[]
 endfunction
