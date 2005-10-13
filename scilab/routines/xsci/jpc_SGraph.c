@@ -7,6 +7,9 @@
 #include <stdio.h>			/* For the Syntax message */
 #include <signal.h>
 
+#include <X11/keysym.h>
+#include <X11/DECkeysym.h>
+
 #include <X11/Xatom.h>
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
@@ -280,7 +283,7 @@ key_pressed(widget, event, params, num_params)
   XComposeStatus compose_status = {NULL, 0};
   XLookupString((XKeyEvent *)&(event->xkey), buf, 
 		ten, &keysym,&compose_status);
-  if ((int)keysym <65000){
+  if ((int)keysym < XK_Shift_L ||(int)keysym ==XK_Delete ){
     /* regular key pressed detected. return  keysym */
     PushClickQueue(GetEventWindow(event),event->xkey.x,
 		   event->xkey.y,(int)keysym,0,0);
