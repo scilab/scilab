@@ -41,9 +41,9 @@ typedef struct
 /*-----------------------------------------------------------------------------------*/
 extern Funcs SciFuncs[];
 /*-----------------------------------------------------------------------------------*/
-static BOOL CreateLocalFunctionsTab(void);
-static BOOL GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands);
-static BOOL IsACommand(char *primitive);
+static int CreateLocalFunctionsTab(void);
+static int GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands);
+static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
 /*-----------------------------------------------------------------------------------*/
@@ -87,9 +87,9 @@ int C2F(intwhat) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static BOOL GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands)
+static int GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands)
 {
-	BOOL bOK=TRUE;
+	int bOK=TRUE;
 	int i=0;
 	int Size=0;
 	while ( SciFuncs[i].name != (char *) 0 )
@@ -130,9 +130,9 @@ static void DispCommands(void)
 	sciprint("\n");
 }
 /*-----------------------------------------------------------------------------------*/
-static BOOL IsACommand(char *primitive)
+static int IsACommand(char *primitive)
 {
-	BOOL bOK=FALSE;
+	int bOK=FALSE;
 	int i=0;
 	for (i=0;i<nbrCommands;i++)
 	{
@@ -144,7 +144,7 @@ static BOOL IsACommand(char *primitive)
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-static BOOL CreateLocalFunctionsTab(void)
+static int CreateLocalFunctionsTab(void)
 {
 	int SizeTab=0;
 	int SizeTabWithoutCommands=0;
