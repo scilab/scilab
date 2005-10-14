@@ -5545,7 +5545,6 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   double * x_shift = pppolyline->x_shift;
   double * y_shift = pppolyline->y_shift;
   double * z_shift = pppolyline->z_shift;
- 
   
   if ((pvx_plus_x_shift = MALLOC ((pppolyline->n1)*sizeof (double))) == NULL) return -1;
   if(x_shift != (double *) NULL){ /* if shift is not NULL, its size is n1 */
@@ -7362,6 +7361,7 @@ sciDrawObj (sciPointObj * pobj)
   double * x_shift = NULL;
   double * y_shift = NULL;
   double * z_shift = NULL;
+  double tempvect = 0.;
 
   /* get the number of curves/polylines created */
   /* by ONE call to plot2d (property pPOLYLINE_FEATURE ->n2) */
@@ -8749,6 +8749,108 @@ sciDrawObj (sciPointObj * pobj)
 		      else
 			myY[0] = myY[3] =  y_shift[i];
 		      myY[1] = myY[2] =  yvect[jk][i];
+		      
+		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
+		      
+		      x[0] = sciGetBackground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		      
+		      x[0] = sciGetForeground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		    }
+		  C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &un, "f2i",3L); 
+		}
+	      break;
+	    case 7: /* 'Matlab' barh */
+	      drawline = TRUE;
+	      x[2] = sciGetLineWidth (pobj);
+	      x[3] = sciGetLineStyle (pobj);
+	      /* get the number of polylines sisters with bar property "on" */
+	      
+	      bar_width =  pPOLYLINE_FEATURE(pobj)->bar_width;
+	      
+	      for(i=0;i<n1;i++)
+		{
+		  tempvect=xvect[jk][i];
+		  xvect[jk][i]=yvect[jk][i];
+		  yvect[jk][i]=tempvect;
+		}
+
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		{
+		  double myX[4], myY[4], myZ[4];
+		  int pix_X[4], pix_Y[4];
+		  int quatre = 4;
+		  
+		  for(i=0;i<n1;i++)
+		    {
+		      myY[0] = myY[1] = yvect[jk][i] + bar_width/2;
+		      myY[2] = myY[3] = yvect[jk][i] - bar_width/2;
+		      
+		      if(y_shift == (double *) NULL)
+			myX[0] = myX[3] =  0.;
+		      else 
+			myX[0] = myX[3] =  y_shift[i];
+		      myX[1] = myX[2] =  xvect[jk][i];
+		      
+		      if(zvect[jk] == (double *) NULL)
+			myZ[0] = myZ[1] = myZ[2] = myZ[3] = 0.; /* cas log a revoir */
+		      else		      
+			myZ[0] = myZ[1] = myZ[2] = myZ[3] = zvect[jk][i];
+		      
+		      ReverseDataFor3D(sciGetParentSubwin(pobj),myX,myY,myZ,quatre);
+		      result_trans3d = trans3d(sciGetParentSubwin(pobj),quatre,pix_X,pix_Y,myX,myY,myZ);
+		      
+		      x[0] = sciGetBackground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xarea", str, &quatre, pix_X, pix_Y, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+		      
+		      x[0] = sciGetForeground(pobj);
+		      
+		      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+				&dv, &dv, &dv, 5L, 4096);
+		      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+				&dv, &dv, &dv, &dv, 5L, 4096);
+		      
+		      C2F (dr) ("xlines", "xv", &quatre, pix_X, pix_Y, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+		    }
+
+		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+		}
+	      else
+		{
+		  double myX[4], myY[4];
+		  int pix_X[4], pix_Y[4],i;
+		  int quatre = 4;
+		  
+		  for(i=0;i<n1;i++)
+		    {
+		      myY[0] = myY[1] = yvect[jk][i] + bar_width/2;
+		      myY[2] = myY[3] = yvect[jk][i] - bar_width/2;
+		      
+		      if(y_shift == (double *) NULL)
+			myX[0] = myX[3] =  0.;
+		      else 
+			myX[0] = myX[3] =  y_shift[i];
+		      myX[1] = myX[2] =  xvect[jk][i];
 		      
 		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
 		      
