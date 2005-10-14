@@ -28,6 +28,8 @@ static char *CommandWords[]={
 	"endfunction","clc",
 	"continue"  
 };
+static char **LocalFunctionsTab=NULL;
+static int SizeLocalFunctionsTab=0;
 /*-----------------------------------------------------------------------------------*/
 typedef struct 
 {
@@ -39,22 +41,23 @@ typedef struct
 /*-----------------------------------------------------------------------------------*/
 extern Funcs SciFuncs[];
 /*-----------------------------------------------------------------------------------*/
-static int GetFunTabSize(void);
+static BOOL CreateLocalFunctionsTab(void);
+static BOOL GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands);
+static BOOL IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
-static char **CreateStringsInternalFunctions(int MaxStrings);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwhat) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int i=0;
-	int SizeTabFun=0;
+	int Size=0;
 
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
 	CheckLhs(1,2);
-	
-	SizeTabFun=GetFunTabSize();
+
+	CreateLocalFunctionsTab();
 
 	if (Lhs == 1)
 	{
@@ -64,44 +67,51 @@ int C2F(intwhat) _PARAMS((char *fname))
 	}
 	else /* Lhs == 2 */
 	{
-		int i=0,j=0;
-		int nrowFunctions=SizeTabFun;
+		int i=0;
+
+		int ncol=1;	
+		int nrowFunctions=SizeLocalFunctionsTab;
 		int nrowCommands=nbrCommands;
-		
-		int ncol=1;
-		char **StringFunctions=NULL;
 
-		StringFunctions=CreateStringsInternalFunctions(SizeTabFun);
-
-		CreateVarFromPtr(Rhs+1, "S", &nrowFunctions, &ncol, StringFunctions);
+		CreateVarFromPtr(Rhs+1, "S", &nrowFunctions, &ncol, LocalFunctionsTab);
 		LhsVar(1)=Rhs+1;
 
 		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, CommandWords);
 		LhsVar(2)=Rhs+2;
 
-		for (i=0;i<nrowFunctions;i++) { FREE(StringFunctions[i]);StringFunctions[i]=NULL; }
-		FREE(StringFunctions);
+		for (i=0;i<nrowFunctions;i++) { FREE(LocalFunctionsTab[i]);LocalFunctionsTab[i]=NULL; }
+		FREE(LocalFunctionsTab);
 	}
 		
 	C2F(putlhsvar)();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int GetFunTabSize(void)
+static BOOL GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands)
 {
+	BOOL bOK=TRUE;
+	int i=0;
 	int Size=0;
-	while ( SciFuncs[Size].name != (char *) 0 ) Size++;
-	return (Size);
+	while ( SciFuncs[i].name != (char *) 0 )
+	{
+		if (!IsACommand(SciFuncs[i].name)) Size++;
+		i++;
+	}
+
+	*MaxSize=i;
+	*MaxSizeWithoutCommands=Size;
+
+	return (bOK);
 }
 /*-----------------------------------------------------------------------------------*/
 static void DispInternalFunctions(void)
 {
 	int i=0;
-	int SizeTabFun=GetFunTabSize();
+	
 	sciprint("\n Internal Functions: \n\n");
-	for (i=1;i<SizeTabFun+1;i++)
+	for (i=1;i<SizeLocalFunctionsTab-1;i++)
 	{
-		sciprint("%s\t",SciFuncs[i-1].name);
+		sciprint("%s\t",LocalFunctionsTab[i-1]);
 		if (i%5==0) sciprint("\n");
 	}
 	sciprint("\n");
@@ -120,20 +130,41 @@ static void DispCommands(void)
 	sciprint("\n");
 }
 /*-----------------------------------------------------------------------------------*/
-static char **CreateStringsInternalFunctions(int MaxStrings)
+static BOOL IsACommand(char *primitive)
 {
-	char **StringsFunctions=NULL;
+	BOOL bOK=FALSE;
 	int i=0;
-
-	StringsFunctions=(char **)MALLOC(MaxStrings*sizeof(char **));
-	
-	for(i=0;i<MaxStrings;i++)
+	for (i=0;i<nbrCommands;i++)
 	{
-		StringsFunctions[i]=(char*)MALLOC((strlen(SciFuncs[i].name)+1)*sizeof(char));
-		sprintf(StringsFunctions[i],"%s",SciFuncs[i].name);
+		if (strcmp(CommandWords[i],primitive)==0)
+		{
+			return TRUE;
+		}
 	}
-
-	return (char **)StringsFunctions;
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
+static BOOL CreateLocalFunctionsTab(void)
+{
+	int SizeTab=0;
+	int SizeTabWithoutCommands=0;
+	int i=0;
+	int j=0;
 
+	GetFunTabSizes(&SizeTab,&SizeTabWithoutCommands);
+	SizeLocalFunctionsTab=SizeTabWithoutCommands;
+	LocalFunctionsTab=(char **)MALLOC(SizeLocalFunctionsTab*sizeof(char **));
+	
+	j=0;
+	for(i=0;i<SizeTab;i++)
+	{
+		if (!IsACommand(SciFuncs[i].name))
+		{
+			LocalFunctionsTab[j]=(char*)MALLOC((strlen(SciFuncs[i].name)+1)*sizeof(char));
+			sprintf(LocalFunctionsTab[j],"%s",SciFuncs[i].name);
+			j++;
+		}
+	}
+	return TRUE;
+}
+/*-----------------------------------------------------------------------------------*/
