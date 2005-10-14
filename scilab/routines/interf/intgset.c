@@ -1501,11 +1501,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if (sciGetEntityType (pobj) == SCI_POLYLINE){
 	int valeur = (int)stk(*value)[0];
 	if ((valeur==1) || (valeur==2) ||
-	    (valeur==3) || (valeur==4) || (valeur==5) || (valeur==6)){
+	    (valeur==3) || (valeur==4) ||
+	    (valeur==5) || (valeur==6) ||
+	    (valeur==7)){
 	  pPOLYLINE_FEATURE (pobj)->plot = valeur;
 	}
 	else
-	  {strcpy(error_message,"Style must be 1,2,3,4 or 5");return -1;}
+	  {strcpy(error_message,"Style must be 1,2,3,4,5,6 or 7");return -1;}
       }
       else
 	{strcpy(error_message,"Object is not a Polyline");return -1;}
