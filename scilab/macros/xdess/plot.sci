@@ -463,7 +463,7 @@ endfunction
 // immediate_drawing is set to its input value.
 function ResetFigureDDM(cur_figure, cur_draw_mode)
 
-if type(cur_figure == 9)
+if type(cur_figure) == 9
   if cur_figure.type == "Figure"
     cur_figure.immediate_drawing = cur_draw_mode;
   else
