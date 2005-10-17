@@ -1,11 +1,11 @@
 function  bar(varargin)
 // Copyright INRIA
 // bar(x,y,width,style,color)
-// This function  
+// This function  ...
 // 
 // Intput :
 // x : a real scalar or a vector
-// y : a real sclar, or a vector ,
+// y : a real sclar, or a vector
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)
 // style : a string 'grouped' or 'stacked' (default: style='grouped')
 // F.B
@@ -156,6 +156,7 @@ if size(X,"*")>1 then
     inter=inter*0.9
   end
 else
+  Xtemp=X
   inter=1
 end
 
