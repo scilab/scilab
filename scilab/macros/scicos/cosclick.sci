@@ -10,6 +10,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
   else
     [btn,xc,yc,win,str]=xclick()
   end
+
   %pt=[xc,yc]
   //** -----------------------------------------------------------
   if or(btn==[2 5]) then // button 2 (right) pressed or clicked

@@ -1,12 +1,6 @@
 function SelectLink_()
-
-//  if Select<>[] then
-//    [pt1,win1,o]=get_selection(Select,%pt,%win)
-//    Select=[]  // unselect
-//    unhilite_obj(o,win1)
-//  end
   
-  Select=[]
+  Select=[];SelectRegion=list()
   //  At this point Select=[]
   if windows(find(%win==windows(:,2)),1)==100000 then
     Cmenu=[]
@@ -22,10 +16,7 @@ function SelectLink_()
     palette=palettes(kpal)
     k=getobj(palette,%pt)
     if k<>[] then 
-      hilite_obj(palette.objs(k),%win)
-      xpause(200000)
-      unhilite_obj(palette.objs(k),%win)
-      Select=[k,%win];Cmenu='Duplicate';
+      Select=[k,%win];Cmenu=[];
       %pt=[];return
     else
       Cmenu==[];%pt=[];return
@@ -35,9 +26,6 @@ function SelectLink_()
     if k<>[] then
       Cmenu=check_edge(scs_m.objs(k),[],%pt)
       if Cmenu==[] then
-	hilite_obj(scs_m.objs(k),%win)
-	xpause(200000)
-	unhilite_obj(scs_m.objs(k),%win)
 	Select=[k,%win];Cmenu==[];
 	%pt=[]
 	return
@@ -48,11 +36,9 @@ function SelectLink_()
   elseif slevel>1 then
     execstr('k=getobj(scs_m_'+string(windows(kc,1))+',%pt)')
     if k<>[] then
-      execstr('hilite_obj(scs_m_'+string(windows(kc,1))+'.objs(k),%"+...
-	      "win)')
-      xpause(200000)
-      execstr('hilite_obj(scs_m_'+string(windows(kc,1))+'.objs(k),%"+...
-	      "win)')
+      //execstr(' hilite_image=select_hilite(scs_m_'+string(windows(kc,1))+'.objs(k),%win)')
+      //xpause(200000)
+      //execstr('select_hilite(hilite_image,win)')
       
       Select=[k,%win];Cmenu=[];return
     else

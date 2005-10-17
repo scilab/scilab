@@ -1,17 +1,23 @@
 function Copy_()
   if Select<>[] then
     [pt1,win1,o]=get_selection(Select,%pt,%win)
-    if ~isequal(o,[]) then  // block may no longer exist
-      o=disconnect_ports(o)
+    if typeof(o)=='Block' then  // block may no longer exist
       Clipboard=o
-      Cmenu=[];
-      %pt=[];
     else
-      message('No block is selected; click on a block first.')
-      Cmenu=[]; %pt=[];
+      message(['No block or region is selected'; 
+	       'click on a block or select a region first.'])
     end
+    Cmenu=[];
+    %pt=[];
+    %ppt=[]
+  elseif  SelectRegion<>list() then
+    Clipboard=get_inside(SelectRegion)
+    Cmenu=[];
+    %pt=[]
+    %ppt=[]
   else
-    message('No block is selected; click on a block first.')
-    Cmenu=[]; %pt=[];
+    message(['No block or region is selected'; 
+	     'click on a block or select a region first.'])
+    Cmenu=[]; %pt=[]; %ppt=[]
   end
 endfunction

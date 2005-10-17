@@ -20,8 +20,8 @@ function MoveLink_()
       Cmenu="Duplicate"
        Select=[%kk,%win]
     else
-      Cmenu="Copy Region"
-       Select=[]
+      Cmenu="SelectRegion"
+       Select=[];
     end
   else
     %kk=getobj(scs_m,%pt)
@@ -30,7 +30,7 @@ function MoveLink_()
       Select=[%kk,%win]
     else
       //Cmenu=[];%ppt=%pt;%pt=[];
-      Cmenu="Region to Super Block"
+      Cmenu="SelectRegion"
       %ppt=[];Select=[]
     end
   end

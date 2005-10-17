@@ -10,12 +10,22 @@ function [%pt,%win,o]=get_selection(Select,%pt,%win)
   elseif slevel>1 then
     execstr('scs_m=scs_m_'+string(windows(kc,1)))
   end
+  if num>size(scs_m.objs) then
+    o=[];return // no longer exists
+  end
   o=scs_m.objs(num)
-  if typeof(o)=='Block'|typeof(o)=='Text'  then  
+  if typeof(o)=='Block' then
+    o=disconnect_ports(o)
+    [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    %pt=orig+sz/2
+  elseif typeof(o)=='Text'  then  
     [orig,sz]=(o.graphics.orig,o.graphics.sz)
     %pt=orig+sz/2
   elseif typeof(o)=='Link' then  
-    %pt=[(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] //middle of first segment
+    %pt=[(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] //middle of first
+                                                  //segment
+  else
+    o=[]  // perhaps deleted
   end
   %win=win
 endfunction

@@ -5,5 +5,10 @@ function Cut_()
       [%pt,win1]=get_selection(Select,%pt,%win)
       Cmenu='Delete'
     end
+  elseif SelectRegion<>list() then
+     Clipboard=get_inside(SelectRegion)
+     %pt=[0,0],
+     Cmenu='Delete Region'
   end
 endfunction
+
