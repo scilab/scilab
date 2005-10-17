@@ -46,6 +46,7 @@ static int GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands);
 static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
+static void SortStrings(char **Strs,int SizeOfStrs);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwhat) _PARAMS((char *fname))
 {
@@ -57,8 +58,11 @@ int C2F(intwhat) _PARAMS((char *fname))
 	CheckRhs(0,0);
 	CheckLhs(1,2);
 
+	SortStrings(CommandWords,nbrCommands);
 	CreateLocalFunctionsTab();
+	SortStrings(LocalFunctionsTab,SizeLocalFunctionsTab);
 
+	
 	if (Lhs == 1)
 	{
 		DispInternalFunctions();
@@ -111,8 +115,8 @@ static void DispInternalFunctions(void)
 	sciprint("\n Internal Functions: \n\n");
 	for (i=1;i<SizeLocalFunctionsTab-1;i++)
 	{
-		sciprint("%s\t",LocalFunctionsTab[i-1]);
-		if (i%5==0) sciprint("\n");
+		sciprint("%+24s ",LocalFunctionsTab[i-1]);
+		if (i%4==0) sciprint("\n");
 	}
 	sciprint("\n");
 }
@@ -124,8 +128,8 @@ static void DispCommands(void)
 	sciprint("\n Commands: \n\n");
 	for (i=1;i<nbrCommands+1;i++)
 	{
-		sciprint("%s\t",CommandWords[i-1]);
-		if (i%5==0) sciprint("\n");
+		sciprint("%+24s ",CommandWords[i-1]);
+		if (i%4==0) sciprint("\n");
 	}
 	sciprint("\n");
 }
@@ -165,6 +169,28 @@ static int CreateLocalFunctionsTab(void)
 			j++;
 		}
 	}
+	
 	return TRUE;
+}
+/*-----------------------------------------------------------------------------------*/
+static void SortStrings(char **Strs,int SizeOfStrs)
+{
+	int fin,i;
+	for(fin=SizeOfStrs-1;fin>0;fin--)
+	{
+		int Sorted=FALSE;
+		for(i=0;i<fin;i++)
+		{
+			if(strcmp(Strs[i],Strs[i+1])>0)
+			{
+				char *tmp;
+				memcpy(&tmp,Strs+i,sizeof(char *));
+				memcpy(Strs+i,Strs+(i+1),sizeof(char *));
+				memcpy(Strs+(i+1),&tmp,sizeof(char *));
+				Sorted=TRUE;
+			}
+		}
+		if(!Sorted)break;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
