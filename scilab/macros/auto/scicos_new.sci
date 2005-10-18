@@ -27,7 +27,7 @@ if ~super_block then
    %scicos_display_mode_0,modelica_libs_0,scicos_pal_libs_0]=initial_scicosnew_tables()
    //
   write(%io(2),['Waring:'
-		This is the development version'
+		'This is the development version'
 		'of the new Scicos editor (scicos_new).'
 		'The stable editor is scicos.'
 		'The new editor has not been fully tested'
