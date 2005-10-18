@@ -19,7 +19,7 @@ LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/console.a \
 	$(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
 	$(SCIDIR)/libs/fileio.a $(SCIDIR)/libs/dcd.a $(SCIDIR)/libs/rand.a \
         $(BLAS) \
-	$(SCIDIR)/libs/int.a \
+	$(SCIDIR)/libs/int.a $(SCIDIR)/libs/maxplus.a \
         $(SCIDIR)/libs/slicot.a  $(SCIDIR)/libs/arpack.a \
         $(SCIDIR)/libs/wintools.a @PVMSCILIB@ @XDRLIBNAME@ @TCLSCILIB@ 
 

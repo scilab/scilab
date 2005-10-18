@@ -147,6 +147,10 @@ cd int
 echo Making %1 in directory  int
  nmake /C /f Makefile.mak %1
 cd ..
+cd maxplus
+echo Making %1 in directory  maxplus
+ nmake /C /f Makefile.mak %1
+cd ..
 REM cd if97
 REM echo Making %1 in directory  if97
 REM  nmake /C /f Makefile.mak %1
