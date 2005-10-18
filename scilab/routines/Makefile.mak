@@ -4,7 +4,7 @@ include ../Makefile.incl.mak
 
 SCIDIRS = graphics calelm control default integ interf intersci lapack \
 	metanet optim poly signal sparse os_specific system system2 console\
-	slicot  \
+	slicot  maxplus \
 	menusX scicos fileio wsci xdr  gd int wsci/WScilex wsci/CScilex
 
 SUBDIRS = $(XAW_LOCAL_SUBDIR) $(DLD_SUBDIR) $(SCIDIRS)
