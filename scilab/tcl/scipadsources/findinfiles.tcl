@@ -1,7 +1,9 @@
-proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir} {
+proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir searchforfilesonly} {
 # search in the selected directory, in all the files that match
 # the selected pattern, taking into account all the possible options (case
 # type, regexp/standard, whole word, recurse search)
+# if $searchforfilesonly is true, then files themselves are searched wrt
+# to matching the glob pattern
     global allthematches cancelsearchflag openerrorfiles searchinfilesalreadyrunning
 
     set searchinfilesalreadyrunning 1
@@ -31,15 +33,26 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir}
             -icon warning -title [mc "Ignored files"] -type ok
     }
 
-    # search for matches in each file
-    set allthematches {}
-    foreach filename $filenames {
-        updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
-        set filematches [findinonefile $filename $tosearchfor $cas $reg $whword]
-        foreach amatch $filematches {
-            lappend allthematches $amatch
+    if {!$searchforfilesonly} {
+        # search for matches in each file
+        set allthematches {}
+        foreach filename $filenames {
+            updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
+            set filematches [findinonefile $filename $tosearchfor $cas $reg $whword]
+            foreach amatch $filematches {
+                lappend allthematches $amatch
+            }
+            if {$cancelsearchflag} {break}
         }
-        if {$cancelsearchflag} {break}
+    } else {
+        # search for files themselves - display the matched files
+        set allthematches {}
+        foreach filename $filenames {
+            updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
+            lappend allthematches [constructfilematchresult $filename]
+            update
+            if {$cancelsearchflag} {break}
+        }
     }
     updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"]]
     enablesearchresultsbuttons
@@ -145,6 +158,24 @@ proc findinonefile {fname str cas reg whword} {
     close $fid
     destroy $pad.fake
 
+    return $filematchlist
+}
+
+proc constructfilematchresult {fname} {
+# output is a match, i.e. a list of 4 elements:
+#    - the full file name that matched the glob pattern
+#    - 1.0 (index of first character in file)
+#    - 0 (length of the match - to fool the display match procs)
+#    - 0 (match not yet replaced - not used for find in files)
+# each match is displayed in a search results window
+    global pad matchres
+    set pos "1.0"
+    set len 0
+    set zero 0
+    set filematchlist [list $fname $pos $len $zero]
+    $matchres.f1.resarea configure -state normal
+    $matchres.f1.resarea insert end "$fname\n"
+    $matchres.f1.resarea configure -state disabled
     return $filematchlist
 }
 

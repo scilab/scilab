@@ -5,6 +5,7 @@ proc findtextdialog {typ} {
     global searchinsel wholeword multiplefiles indoffirstmatch
     global listoftextarea
     global searchindir initdir fileglobpat searchinfilesalreadyrunning
+    global searchforfilesonly
 
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
@@ -243,6 +244,7 @@ proc findtextdialog {typ} {
         # in the replace box
         set searchindir 0
     }
+    set searchforfilesonly 0
 
     # initialize all the settings
     resetfind $find [gettextareacur]
@@ -337,13 +339,20 @@ proc multiplefilesfindreplace {w frit} {
     global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
     global prevfindres
     global find searchindir caset wholeword recursesearchindir fileglobpat initdir
-    global searchinfilesalreadyrunning
+    global searchinfilesalreadyrunning searchforfilesonly
 
     set pw [setparentwname $w]
 
     # get rid of the empty search string case
-    if {[issearchstringempty $SearchString $pw]} {
-        return
+    if {$SearchString == ""} {
+        if {$searchindir} {
+            # an empty search string with search in files/dir set means that
+            # we want to search for files themselves, not for a string in files
+            set searchforfilesonly 1
+        } else {
+            searchstringemptymessagebox $pw
+            return
+        }
     }
 
     # escape the characters that have a meaning in a Tcl string or a regexp
@@ -357,7 +366,7 @@ proc multiplefilesfindreplace {w frit} {
     if {$searchindir && !$searchinfilesalreadyrunning} {
         # search in files from a directory
         cancelfind $find
-        findinfiles $tosearchfor $caset $regexpcase $wholeword $initdir $fileglobpat $recursesearchindir
+        findinfiles $tosearchfor $caset $regexpcase $wholeword $initdir $fileglobpat $recursesearchindir $searchforfilesonly
         return
     }
 
@@ -715,7 +724,8 @@ proc multiplefilesreplaceall {w} {
     set pw [setparentwname $w]
 
     # get rid of the empty search string case
-    if {[issearchstringempty $SearchString $pw]} {
+    if {$SearchString == ""} {
+        searchstringemptymessagebox $pw
         return
     }
 
@@ -853,9 +863,9 @@ proc doonesearch {textarea sta sto str dir cas reg whword} {
     }
     lappend optlist -count MatchLength
     if {$Tk85} {
-        # <TODO> it seems that this option doesn't work as expected
-        #        see http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/e80f2586408ab598/2a3660c107cd21ba?lnk=raot&hl=fr#2a3660c107cd21ba
-        #        and Tk bug 1281228
+        # this option doesn't work as expected before Tk cvs of 10/10/05
+        # see http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/e80f2586408ab598/2a3660c107cd21ba?lnk=raot&hl=fr#2a3660c107cd21ba
+        # and Tk bug 1281228 - solved in the final 8.5 release
         lappend optlist -strictlimits
     }
 
@@ -1156,17 +1166,6 @@ proc setparentwname {w} {
     return $pw
 }
 
-proc issearchstringempty {SearchString pw} {
-# check whether SearchString is empty or not
-    if {$SearchString == ""} {
-        tk_messageBox -message [mc "You are searching for an empty string!"] \
-                      -parent $pw -title [mc "Find"]
-        return 1
-    } else {
-        return 0
-    }
-}
-
 proc escapespecialchars {str} {
 # escape certain special characters that have a meaning in a Tcl string,
 # or in a regexp
@@ -1241,6 +1240,12 @@ proc isregexpstringvalid {tosearchfor pw} {
     } else {
         return 1
     }
+}
+
+proc searchstringemptymessagebox {pw} {
+# display a message box telling that the string to search for is empty
+    tk_messageBox -message [mc "You are searching for an empty string!"] \
+                  -parent $pw -title [mc "Find"]
 }
 
 proc notfoundmessagebox {SearchString textarea pw mbtitle} {

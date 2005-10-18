@@ -267,9 +267,16 @@ Wishes:
 -Improvements for find/replace:
   . The find/replace entries in the dialog could be comboboxes retaining
     the strings previously searched or replaced
+      o combobox 2.3 and BWidgets 1.7.0 are currently in the Scilab distro
+        and both provide comboboxes. We could link Scipad to them, but
+        apparently the Tile package, which also provides combos, is now
+        included in Tk and will be part of Tk 8.5.
   . Search among tagged text only, e.g. among comments (must be consistent
     with the language scheme)
   . Popup menu providing a list of ready cooked regepxs
+  . Multiline find/replace and find in files (must wait Tk8.5 since .text
+    search searches on a per line basis) - Automatically expand the entry
+    widgets size according to the length of what is pasted inside them
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:

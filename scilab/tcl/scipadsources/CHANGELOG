@@ -1440,7 +1440,8 @@ Francois VOGEL, 05/09/05
    Scipad works as well under 8.4 or 8.5, but certain options or commands
    available only in 8.5 are used when Tk 8.5 is present, for instance:
      - $panedwindow paneconfigure $pane -stretch always
-     - $text search -strictlimits  (but this one is bugged: Tk bug 1281228)
+     - $text search -strictlimits  (this one was bugged: Tk bug 1281228
+       but is solved in Tk cvs since 10/10/05)
  * External resizing of Scipad does no more space all sashes evenly but
    rather move the sashes in such a way that the relative size of panes
    are maintained (uses -stretch always in 8.5, which is emulated in 8.4
@@ -1608,3 +1609,8 @@ Francois VOGEL, 11/10/05
  * Fixed an error popup when opening the Replace box, typing a string and
    launching a search
  * version --> 5.48
+
+Francois VOGEL, 18/10/05
+ * Searching for an empty entry in case the Find in files box is checked
+   now searches for files that match the glob pattern
+ * version --> 5.49
