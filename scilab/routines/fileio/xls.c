@@ -72,7 +72,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   char *sheetname;   /*Nom de la feuille*/
   int rkvalue; /*RK value*/
   /*for RK */
-  short row, col, xf;/*Index to row, to column, and to XF record*/
+  unsigned short row, col, xf;/*Index to row, to column, and to XF record*/
   /*for MULRK */
   unsigned short ixfe;
   short colFirst,colLast,ncol;/*Index to rox, to first column (fc)*/
@@ -81,9 +81,8 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   int indsst;/*Index to SST record*/
   /* for DIMENSIONS */
   int f_row,l_row;
-  short f_col, l_col, notused;
+  unsigned short f_col, l_col, notused;
   /* for FORMULA */
-  short formula_row, formula_col, formula_xf;
   double resultat;/*Result of the formula*/
   short optionflag;/*Option flags*/
   int formula_notused; /*Not used*/
@@ -134,22 +133,22 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        *cur_pos=*cur_pos+4+Len;
        return;
      case 638: /*RK*/
-       C2F(mgetnc) (fd, (void*)&row, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*)&col, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&col, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*)&xf , &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&xf , &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd, (void*) &rkvalue , &one, typ_int, err);
        if (*err > 0) goto ErrL;
        valeur[col*(hauteur)+row]= NumFromRk2(rkvalue);
        break;
      case 515: /*Number*/
-       C2F(mgetnc) (fd, (void*)&row, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*)&col, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&col, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*)&xf , &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&xf , &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd, (void*) &resultat , &one, typ_double, err);
        if (*err > 0) goto ErrL;
@@ -157,7 +156,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        break;
 
      case 189: /*MULRK*/
-       C2F(mgetnc) (fd, (void*)&row, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd,  (void*)&colFirst, &one, typ_short, err);
        if (*err > 0) goto ErrL;
@@ -189,11 +188,11 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        if (*err > 0) goto ErrL;
        C2F(mgetnc) (fd, (void*) &l_row, &one, typ_int, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*) &f_col, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*) &f_col, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*) &l_col, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*) &l_col, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*) &notused, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*) &notused, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
 	
        /*Calcul de longueur, hauteur et capacite dela feuille*/
@@ -210,16 +209,16 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        }
        break;
      case 6:/* FORMULA*/
-       C2F(mgetnc) (fd, (void*) &formula_row, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*) &row, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*) &formula_col, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*) &col, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
-       C2F(mgetnc) (fd, (void*) &formula_xf, &one, typ_short, err);
+       C2F(mgetnc) (fd, (void*) &xf, &one, typ_ushort, err);
        if (*err > 0) goto ErrL;
 	
        C2F(mgetnc) (fd, (void*) &resultat, &one, typ_double, err);
        if (*err > 0) goto ErrL;
-       valeur[(formula_col*hauteur+formula_row)]=resultat;
+       valeur[(col*hauteur+row)]=resultat;
 
        C2F(mgetnc) (fd, (void*)&optionflag, &one, typ_short, err);
        if (*err > 0) goto ErrL;
