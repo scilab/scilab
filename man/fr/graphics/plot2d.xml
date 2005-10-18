@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <?xml-stylesheet type="text/xsl" href="file:///usr/local/lib/scilab/man/eng/html-rev.xsl"?>
 <MAN>
@@ -185,7 +185,7 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="logflags">
+      <DESCRIPTION_ITEM label="logflag">
         <SP>: This option may be used to set the scale (linear or logarithmic)
         along the axes. The associated value should be a a string with
         possible values: <VERB>"nn"</VERB>, <VERB>"nl"</VERB> ,
