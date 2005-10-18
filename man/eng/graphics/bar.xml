@@ -123,11 +123,15 @@ bar(x,y,0.2,'green');]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>plot</LINK>
+      <LINK>barh</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
       <LINK>barhomogenize</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>plot</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
