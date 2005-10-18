@@ -24,7 +24,7 @@ super_block=slevel>1
 if ~super_block then
   
   [scicos_pal_0,%scicos_menu_0,%scicos_short_0,%scicos_help_0,..
-   %scicos_display_mode_0,modelica_libs_0,scicos_pal_libs_0]=initial_scicos_new_tables()
+   %scicos_display_mode_0,modelica_libs_0,scicos_pal_libs_0]=initial_scicosnew_tables()
    //
   write(%io(2),['Waring:'
 		This is the development version'

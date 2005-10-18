@@ -5,7 +5,7 @@ function xmlfiletohtml(path,xsl)
 	//SCI/man/man-rev.dtd ) this function generates the corresponding htm
 	//file using the /man/<LANGUAGE>/html-rev.xsl xsl file
 	
-	generate_cmd='sabcmd';
+	generate_cmd='xsltproc';
 	
 	[lhs,rhs]=argn(0);
 	if rhs < 2 then xsl= 'html-rev.xsl';end //the xsl file name;

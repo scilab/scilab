@@ -1,5 +1,5 @@
 function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
-	  %scicos_display_mode, modelica_libs,scicos_pal_libs] = initial_scicos_tables()
+	  %scicos_display_mode, modelica_libs,scicos_pal_libs] = initial_scicosnew_tables()
   
     %scicos_display_mode = 0 
 
