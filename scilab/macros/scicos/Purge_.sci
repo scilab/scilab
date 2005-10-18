@@ -1,5 +1,5 @@
 function Purge_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     %pt=[]
     disablemenus()
     scs_m=do_purge(scs_m);

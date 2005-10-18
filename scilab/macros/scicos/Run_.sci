@@ -1,6 +1,6 @@
 function Run_()
     nc_save=4
-    Cmenu=[]
+    Cmenu='Open/Set'
     ok=%t
     %mm=getfield(1,%scicos_context)
     for %mi=%mm(3:$)

@@ -1,6 +1,10 @@
-function [scs_m,needcompile]=do_copy_region(scs_m,needcompile,%pt)
+function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
+  Cmenu='Copy Region'  // to copy_region from palette
+  [btn,%pt,win,Cmenu]=cosclick()
+  if Cmenu<>[] then
+    Cmenu=resume(Cmenu)
+  end
   xc=%pt(1);yc=%pt(2);
-  win=%win
   disablemenus()
   [reg,rect]=get_region(xc,yc,win)
   // Copyright INRIA

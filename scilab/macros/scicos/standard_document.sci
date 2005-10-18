@@ -73,6 +73,7 @@ function texte = standard_document(objet, k)
     identification = graphique.id
 
     //- Informations generales 
+
     if modele.sim=='super'|modele.sim=='csuper' then
       texte = ['General Information'; 
 	       '--------------------';' '

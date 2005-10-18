@@ -1,5 +1,5 @@
 function Aspect_()
-  Cmenu=[]
+  Cmenu='Open/Set'
   [edited,options]=do_options(scs_m.props.options,'3D')
   scs_m.props.options=options
   

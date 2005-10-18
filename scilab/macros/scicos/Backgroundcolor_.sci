@@ -1,5 +1,5 @@
 function Backgroundcolor_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     [edited,options]=do_options(scs_m.props.options,'Background')
     scs_m.props.options=options
     

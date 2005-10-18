@@ -1,6 +1,6 @@
 function Compile_()
     nc_save=4
-    Cmenu=[]
+    Cmenu='Open/Set'
     needcompile=4,
     [%cpr,ok]=do_compile(scs_m)
     if ok then

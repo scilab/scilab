@@ -5,7 +5,7 @@ function [k,wh]=getblocklink(scs_m,pt)
   x=pt(1);y=pt(2)
   data=[]
   k=[]
-  eps=6
+  eps=4
   for i=1:n //loop on objects
     o=scs_m.objs(i)
     if typeof(o)=='Block' then
@@ -16,7 +16,7 @@ function [k,wh]=getblocklink(scs_m,pt)
     elseif typeof(o)=='Link' then
       xx=o.xx;yy=o.yy;
       [d,ptp,ind]=dist2polyline(xx,yy,pt)
-      if d<eps/2 then k=i,wh=ind,break,end
+      if d<eps then k=i,wh=ind,break,end
     end
   end
 endfunction

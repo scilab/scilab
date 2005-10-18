@@ -18,7 +18,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 	      'Rename','Save','Save As','Load','Load as Palette',..
 	      'Save as Palette','Save as Interf Func',..
 	      'Set Diagram Info','Navigator','Export','Export All','Quit'];
-  Edit     = ['Edit','Palettes','Context','Cut','Copy','Paste','Smart Move','Move','Duplicate',..
+  Edit     = ['Edit','Palettes','Context','Smart Move','Move','Copy',..
 	      'Copy Region','Replace','Align','Link','Delete','Delete Region',..
 	      'Add new block','Flip','Undo','Pal editor'];
   Simulate = ['Simulate','Setup','Compile','Eval','Debug Level','Run'];
@@ -33,7 +33,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
   //Scicos Shortcuts definitions===========================================
   %scicos_short=['a','Align'
 		 'd','Delete';
-		 'c','Duplicate';
+		 'c','Copy';
 		 'm','Move';
 		 'u','Undo';
 		 'f','Flip';
@@ -53,8 +53,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
   %scicos_help=tlist(..
 		     ['sch','Display mode','Window','Background color','Default link colors',..
 		      'ID fonts','Aspect','Add color','Focus','Shift','Zoom in','Zoom out',..
-		      'Help','Calc','Palettes','Context','Cut','Copy','Paste',..
-		      'Smart Move','Move','Duplicate',..
+		      'Help','Calc','Palettes','Context','Smart Move','Move','Copy',..
 		      'Copy Region','Replace','Align','Link','Delete','Delete Region',..
 		      'Add new block','Flip','Undo','Setup','Compile','Eval','Debug Level','Run',..
 		      'Replot','New','Region to Super Block','Purge','Rename','Save',..
@@ -111,11 +110,6 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		      ' ';
 		      ' If you  change the value of a symbolic Scicos parameters in ';
 		      ' the context, all the blocks are updated (Eval is performed).'],..
-		     [' Cut is used to remove the selected object from the diagram";
-		      ' and keep a copy in the clipboard if the object is a block.'],..
-		     [' Copy is used to place a copy of the selected object';
-		      ' in the clipboard if the object is a block.'],..
-		     [' Paste places the object in the Clipboard in the diagram.'],..  
 		     [' To move a block in  the active editor Scicos window';
 		      ' or in edited palette keeping horizontal and vertical';
 		      ' links, select first the ""Smart Move"" menu item, ';
@@ -132,8 +126,8 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		      ' and click left again to fix the position.';
 		      ' ';
 		      ' Right click cancel the move action.'],..
-		     ['To duplicate a block in the active editor Scicos window';
-		      ' select first the Duplicate menu item, then';
+		     ['To copy a block in the active editor Scicos window';
+		      ' select first the Copy menu item, then';
 		      ' click (with left button) on the to-be-copied block';
 		      ' in Scicos windows or in a palette) ,  and';
 		      ' finally click left where you want the copy';

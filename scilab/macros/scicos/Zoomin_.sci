@@ -1,5 +1,5 @@
 function Zoomin_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     xinfo('Zoom in')
     %zoom=%zoom*1.2
     window_set_size()

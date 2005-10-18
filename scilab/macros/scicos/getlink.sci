@@ -1,20 +1,24 @@
-function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
+function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 //edition of a link from an output block to an input  block
 // Copyright INRIA
   dash=xget('dashes')
   outin=['out','in']
   //----------- get link origin --------------------------------------
   //------------------------------------------------------------------
-  win=%win;
-  xc1=%pt(1);yc1=%pt(2);
-  [kfrom,wh]=getblocklink(scs_m,[xc1;yc1])
-  
-  if kfrom<>[] then 
-    o1=scs_m.objs(kfrom),
-  else
-    return
+    while %t
+    if %pt==[] then
+      [btn,%pt,win,Cmenu]=cosclick()
+      if Cmenu<>[] then
+	[%win,Cmenu]=resume(win,Cmenu)
+      end
+    else
+      win=%win;
+    end
+    xc1=%pt(1);yc1=%pt(2);%pt=[]
+    [kfrom,wh]=getblocklink(scs_m,[xc1;yc1])
+
+    if kfrom<>[] then o1=scs_m.objs(kfrom);break,end
   end
-  
   
   //kfrom  is the number of selected block or link
   scs_m_save=scs_m,nc_save=needcompile
@@ -143,15 +147,13 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     xe=xo;ye=yo
     xpoly([xo;xe],[yo;ye],'lines')
     rep(3)=-1
-    while 1 do
-      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
-      //get a new point
-      rep=xgetmouse(0,[%t,%t])
-      if xget('window')<>curwin|rep(3)==-100 then
-	//active window has been closed
+    while rep(3)==-1 do //get a new point
+      rep=xgetmouse(0)
+      if rep(3)==-100 then //active window has been closed
 	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
+ 
       if or(rep(3)==[2 5]) then 
 	xpoly([xl;xe],[yl;ye],'lines')
 	if pixmap then xset('wshow'),end
@@ -310,12 +312,7 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       end
     end
   end //loop on link segments
-  if xget('window')<>curwin|rep(3)==-100 then //active window has been closed
-    driver(dr);
-    [%win,Cmenu]=resume(curwin,'Quit')
-  end
-  
-  
+
   //make last segment horizontal or vertical
   typ=typo
   to=[kto,port_number,bool2s(typpto=='in'|typpto=='evtin')]

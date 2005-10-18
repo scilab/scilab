@@ -1,19 +1,22 @@
-function [scs_m]=prt_align(%pt,scs_m)
+function [%pt,scs_m]=prt_align(%pt,scs_m)
 // Copyright INRIA
-  win=%win;
-  xc1=%pt(1);yc1=%pt(2);
-  k1=getblock(scs_m,[xc1;yc1])
-  if k1<>[] then 
-    o1=scs_m.objs(k1),
-  else
-    return
+  while %t
+    if %pt==[] then
+      [btn,%pt,win,Cmenu]=cosclick()
+      if Cmenu<>[] then
+	[%win,Cmenu]=resume(win,Cmenu)
+      end
+    else
+      win=%win;
+    end
+    xc1=%pt(1);yc1=%pt(2);%pt=[]
+    k1=getblock(scs_m,[xc1;yc1])
+    if k1<>[] then o1=scs_m.objs(k1);break,end
   end
   //
   while %t
     [btn,%pt2,win,Cmenu]=cosclick()
-    if Cmenu<>[]&Cmenu<>'SelectLink' then 
-      [%win,Cmenu,%pt]=resume(win,Cmenu,%pt2),
-    end
+    if Cmenu<>[] then [%win,Cmenu]=resume(win,Cmenu),end
     xc2=%pt2(1);yc2=%pt2(2);
     k2=getblock(scs_m,[xc2;yc2])
     if k2<>[] then o2=scs_m.objs(k2);break,end

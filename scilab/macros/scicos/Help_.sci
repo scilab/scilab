@@ -1,4 +1,6 @@
 function Help_()
-  do_help(%pt)
-  Cmenu=[];%pt=[];
+    Cmenu='Open/Set'
+    xinfo('Click on object or menu to get help')
+    %pt=do_help(%pt)
+    xinfo(' ')
 endfunction

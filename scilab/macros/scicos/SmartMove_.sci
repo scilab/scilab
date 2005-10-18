@@ -1,5 +1,6 @@
 function SmartMove_()
-  Cmenu=[];// Cmenu Quit can come out
-  [scs_m]=do_move(%pt,scs_m)
-  %pt=[];
+    Cmenu='Open/Set'
+    xinfo('Click object to move, drag and click (left to fix, right to cancel)')
+    [%pt,scs_m]=do_move(%pt,scs_m)
+    xinfo(' ')
 endfunction

@@ -1,5 +1,5 @@
 function Modelica_()
-  Cmenu=[]
+  Cmenu='Open/Set'
   xinfo('Click on a Implcit Superblock '+..
 	' to obtain a modelica block ! ')
   k=[]
@@ -27,7 +27,16 @@ function Modelica_()
 	mputl(txt,scs_m.props.title(2)+name+'.mo')
 	compile_modelica(scs_m.props.title(2)+name+'.mo')
 	enablemenus()
-	Cmenu=[] 
+	//if ok then 
+	//	scs_m.objs(k)=XX
+	//	edited=%t;
+	//	needcompile=4
+	//	Cmenu='Replot';
+	//	break
+	//      else
+	Cmenu='Open/Set' 
+	//	break
+	//      end     
       else
 	message('Generation Code only work for a Superblock ! ')
 	break

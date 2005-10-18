@@ -1,4 +1,4 @@
 function Rename_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     [scs_m,edited]=do_rename(scs_m) 
 endfunction

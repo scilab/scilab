@@ -1,9 +1,14 @@
-function scs_m = do_doc(scs_m,%pt)
+function scs_m = do_doc(scs_m)
 // Copyright INRIA
-  xc=%pt(1);yc=%pt(2);
-  k=getobj(scs_m,[xc;yc])
-  if k==[] then return,end
-
+  while %t
+    [btn,%pt,win,Cmenu]=cosclick()
+    if Cmenu<>[] then
+      Cmenu=resume(Cmenu)
+    end
+    xc=%pt(1);yc=%pt(2);
+    k=getobj(scs_m,[xc;yc])
+    if k<>[] then break,end
+  end
   numero_objet=k
   scs_m_save=scs_m
 

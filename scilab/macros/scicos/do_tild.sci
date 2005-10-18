@@ -1,10 +1,18 @@
 function [%pt,scs_m]=do_tild(%pt,scs_m)
 // Copyright INRIA
-  win=%win;
-  xc=%pt(1);yc=%pt(2);
+while %t
+  if %pt==[] then
+    [btn,%pt,win,Cmenu]=cosclick()
+    if Cmenu<>[] then
+      [%win,Cmenu]=resume(win,Cmenu)
+    end
+  else
+    win=%win;
+  end
+  xc=%pt(1);yc=%pt(2);%pt=[]
   k=getblock(scs_m,[xc;yc])
-  if k==[] then return,end
-
+  if k<>[] then break,end
+end
 if get_connected(scs_m,k)<>[] then
   message('Connected block can''t be tilded')
   return

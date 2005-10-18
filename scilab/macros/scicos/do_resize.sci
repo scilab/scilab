@@ -1,11 +1,19 @@
 function [%pt,scs_m]=do_resize(%pt,scs_m)
 // Copyright INRIA
-  win=%win;
-  xc=%pt(1);yc=%pt(2);
+while %t
+  if %pt==[] then
+    [btn,%pt,win,Cmenu]=cosclick()
+    if Cmenu<>[] then
+      [%win,Cmenu]=resume(win,Cmenu)
+    end
+  else
+    win=%win;
+  end
+  xc=%pt(1);yc=%pt(2);%pt=[];
   K=getblocklink(scs_m,[xc;yc])
   if K<>[] then 
     if typeof(scs_m.objs(K))=='Block' then
-      
+      break,
     else
       [pos,ct]=(scs_m.objs(K).thick,scs_m.objs(K).ct)
       Thick=pos(1)
@@ -21,10 +29,8 @@ function [%pt,scs_m]=do_resize(%pt,scs_m)
       end
       return
     end
-  else
-    return
   end
-
+end
 o=scs_m.objs(K)
 
 graphics=o.graphics

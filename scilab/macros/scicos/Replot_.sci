@@ -1,5 +1,5 @@
 function Replot_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     %pt=[];
     disablemenus()
     xbasc()

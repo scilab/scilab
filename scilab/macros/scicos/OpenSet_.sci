@@ -1,7 +1,19 @@
 function OpenSet_()
-  %xc=%pt(1);%yc=%pt(2);
+
+%kk=[]
+while %t 
+  xinfo('Click to open block or make a link')
+  if %pt==[] then
+    [btn,%pt,%win,Cmenu]=cosclick()
+    if Cmenu<>[] then
+      break
+    end
+  end
+  %xc=%pt(1);%yc=%pt(2);%pt=[]
+  
   disablemenus()
   if windows(find(%win==windows(:,2)),1)==100000 then
+
     //click in navigator
     [%Path,%kk,ok]=whereintree(%Tree,%xc,%yc)
     if ok&%kk<>[] then %Path($)=null();%Path($)=null();end
@@ -17,7 +29,7 @@ function OpenSet_()
       %pt=[%xc,%yc];
       super_path($)=[]
       enablemenus()
-      return
+      break
     end
     // in case previous window has been destroyed
     if ~or(curwin==winsid()) then
@@ -85,6 +97,7 @@ function OpenSet_()
     end
   end
   enablemenus()
-  Cmenu=[];%pt=[];
+  xinfo(' ')
+end
 
 endfunction

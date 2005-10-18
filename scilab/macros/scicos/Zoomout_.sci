@@ -1,5 +1,5 @@
 function Zoomout_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     xinfo('Zoom out')
     %zoom=%zoom/1.2
     window_set_size()

@@ -1,4 +1,4 @@
 function LoadasPalette_()
-    Cmenu=[]
+    Cmenu='Open/Set'
     [palettes,windows]=do_load_as_palette(palettes,windows)
 endfunction
