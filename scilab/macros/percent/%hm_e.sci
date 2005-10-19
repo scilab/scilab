@@ -30,27 +30,27 @@ function [M] = %hm_e(varargin)
 	    ik=1:dims(k)
 	 else                    
 	    ik=round(ik)
-	    if min(ik) <= 0 then, error(" bad subscript"), end
-	    if max(ik) > dims(k) then, error(" bad subscript"), end 
+	    if min(ik) <= 0 then, error(21), end
+	    if max(ik) > dims(k) then, error(21), end 
 	 end
       elseif type_ik==2 then                // poly subscript
 	 ik=round(horner(ik,dims(k)))    
-	 if min(ik) <= 0 then, error(" bad subscript"), end
-	 if max(ik) > dims(k) then, error(" bad subscript"), end
+	 if min(ik) <= 0 then, error(21), end
+	 if max(ik) > dims(k) then, error(21), end
       elseif type_ik == 129 then            // implicit poly subscript (p.e. 1:$)
 	 ik=round(horner(ik(:),dims(k)))    
-	 if min(ik(1),ik(3)) <= 0 then, error(" bad subscript"), end
-	 if max(ik(1),ik(3)) > dims(k) then, error(" bad subscript"), end
+	 if min(ik(1),ik(3)) <= 0 then, error(21), end
+	 if max(ik(1),ik(3)) > dims(k) then, error(21), end
 	 ik = ik(1):ik(2):ik(3)   
       elseif type_ik==4 | type_ik==6 then   // boolean and sparse boolean subscript
-	 if size(ik,"*") ~= dims(k) then, error(" bad subscript"), end
+	 if size(ik,"*") ~= dims(k) then, error(21), end
 	 ik=find(ik)
       elseif typeof(ik) == "hypermat" then  // hm boolean subscript
-	 if type(ik.entries) ~= 4 then, error(" bad subscript"), end	 
-	 if size(ik,"*") ~= dims(k) then, error(" bad subscript"), end
+	 if type(ik.entries) ~= 4 then, error(21), end	 
+	 if size(ik,"*") ~= dims(k) then, error(21), end
 	 ik=find(ik.entries)
       else
-	 error(" bad subscript")
+	 error(21)
       end
       
       nik = size(ik, "*");
