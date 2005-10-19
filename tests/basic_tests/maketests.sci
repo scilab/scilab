@@ -67,6 +67,7 @@ function tests=testslist()
 	   'auto.tst';
 	   'opcode.tst';
 	   'specfun.tst';
+	   'hypermat.tst'
 	   ];
 
 if ~MSDOS then
