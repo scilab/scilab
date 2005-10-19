@@ -69,11 +69,6 @@ extern void    /* 45  */ C2F(intslicot)();
 extern void    /* 46  */ C2F(intarpack)();
 extern void    /* 47  */ C2F(intcscicos)();
 extern void    /* 48  */ C2F(intwintools)();
-extern void    /* 49  */ C2F(impelm)();
-extern void    /* 50  */ C2F(impmatops)();
-extern void    /* 51  */ C2F(impspops)();
-extern void    /* 52  */ C2F(impspelm)();
-extern void    /* 53  */ C2F(maxplusc)();
 
 static OpTab Interfaces[] ={
     /* 01  */ {C2F(matlu)},
@@ -123,12 +118,7 @@ static OpTab Interfaces[] ={
     /* 45  */ {C2F(intslicot)},
     /* 46  */ {C2F(intarpack)},
  	/* 47  */ {C2F(intcscicos)},
-    /* 48  */ {C2F(intwintools)},
-    /* 49 */ {C2F(impelm)},
-    /* 50 */ {C2F(impmatops)},
-    /* 51 */ {C2F(impspops)},
-    /* 52 */ {C2F(impspelm)},
-    /* 53 */ {C2F(maxplusc)}
+	/* 48  */ {C2F(intwintools)}
 };
 
 #endif /*__CALLINTERF__*/
