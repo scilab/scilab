@@ -30,7 +30,7 @@ function [status,msg]=mkdir(varargin)
   end
 
   NewDirectory=fullfile(DirName,NewDirName)
-  if MSDOS then NewDirectory='""'+NewDirectory+'""',end
+  
   if (fileinfo(NewDirectory)==[]) then 
     // Le repertoire n'existe pas
     status=1;
@@ -45,6 +45,8 @@ function [status,msg]=mkdir(varargin)
     end
   end
   
+  
+  
   select status
     case 0
       ErrMsg='a file with the same name already exists in '+DirName+' .';
@@ -53,6 +55,7 @@ function [status,msg]=mkdir(varargin)
     
     case 1
       if MSDOS then
+        NewDirectory='""'+NewDirectory+'""'
         ver=OS_Version();
         if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
           batchlog = ' >'+ TMPDIR+'\mkdir.out';
