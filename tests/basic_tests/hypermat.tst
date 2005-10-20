@@ -4,6 +4,7 @@ Data=list(1:12,(1:12)+rand(1,12)*%i,int32(1:12),(1:12)+%s,rand(1,12)>0.5,string(
 test=1;
 msg='Problem with extraction for hypermatrix of type %s in test %d.%d \n';
 for k=1:size(Data)
+  disp(k)
   data=Data(k);td=typeof(data);
   h=hypermat([2 3 2],data);
   if h(2,3,2)<>data(12) then mprintf(msg,td,test,k); pause,end
@@ -14,8 +15,11 @@ for k=1:size(Data)
   if or(h(1:3)<>matrix(data([1 2 3]),-1,1)) then mprintf(msg,td,test,k); pause,end
   if or(h(1,2:3)<>data([3 5])) then mprintf(msg,td,test,k); pause,end
   if or(h(1,4:5)<>data([7 9])) then mprintf(msg,td,test,k); pause,end
-end
+  mprintf('    test%d.%d completed\n',test,k)
 
+end
+mprintf('    test%d completed\n',test)
+return
 //insertion of []
 test=2;
 for k=1:size(Data)
@@ -34,6 +38,8 @@ for k=1:size(Data)
   h(:,:,:)=[];
   if h<>[] then mprintf(msg,td,test,k); pause,end
 end
+mprintf('    test%d completed\n',test)
+
   
 //insertion of a single element
 test=3;
@@ -76,6 +82,7 @@ for k=1:size(Data)
   if or(size(h)<>[15,1]) then mprintf(msg,td,test,k); pause,end
   if or(h(13:15)<>I) then mprintf(msg,td,test,k); pause,end
 end
+mprintf('    test%d completed\n',test)
 
 //extension of a 2D matrix to a 3D one
 // skipped because it reveals bug to be fixed
@@ -92,5 +99,6 @@ for k=1:size(Data)
   if h(:,:,2)<>d then mprintf(msg,td,test,k); pause,end
 
 end
+mprintf('    test%d completed\n',test)
 
 
