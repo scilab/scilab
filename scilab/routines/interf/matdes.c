@@ -365,6 +365,13 @@ int sciplot2d(char *fname,unsigned long fname_len)
     }
   }
 
+  if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
+  {
+	  sciprint("%s: bad argument specified in input\r\n", fname);
+      Error(999); 
+      return(0);
+  }
+
   sciGetStyle(3+iskip,n1,opts);
   GetStrf(4+iskip,opts);
   GetLegend(5+iskip,opts);
