@@ -19,6 +19,7 @@ c
       il=iadr(lstk(top))
       if(istk(il).eq.1) then
 c     .  double to intn
+         if(istk(il+1).eq.0.or.istk(il+2).eq.0) return
          if(it.ne.0) then
             if(istk(il+3).ne.0) then
                err=1
