@@ -259,6 +259,23 @@ void sciXbasc()
   sciDrawObj(sciGetCurrentFigure ());      
 } 	
 
+/* Completely destroy the handle hierearchy */
+/* when switching from new to old figure_style */
+/* see intgset.c */
+void sciXClearFigure()
+{  
+  static sciPointObj *mafigure;
+  struct BCG * XGC = (struct BCG*) NULL;
+  int v = 1, verb = 0;
+  double dv = 0.;
+
+  mafigure= (sciPointObj *) sciGetCurrentFigure(); 
+  DestroyAllGraphicsSons((sciPointObj *)mafigure);
+  DestroyFigure (mafigure); 
+  C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
+  XGC->mafigure = (sciPointObj *) NULL;
+} 	
+
 void sciXclear()
 {
   static sciPointObj *masousfen, *tmpsousfen;

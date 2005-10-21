@@ -1027,17 +1027,20 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {
 	if ((strcmp(cstk(*value),"old") == 0)) {
 	  if (version_flag() == 0)  {
-	    /* 	    versionflag = 1; */
+	      /* 	    versionflag = 1; */
 
-	    sciXbasc();
-	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+	    sciXClearFigure();
 	    C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
+	
 	    if (XGC->mafigure != (sciPointObj *)NULL) {
-	      DestroyFigure (XGC->mafigure);
-	      XGC->mafigure = (sciPointObj *)NULL; 
+		DestroyAllGraphicsSons(XGC->mafigure);
+		DestroyFigure (XGC->mafigure);
+		XGC->mafigure = (sciPointObj *)NULL; 
 	    }
+	    
 	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
-
+	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+	    
 	    /* Add xclear to refresh toolbar for Windows */
 	    C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
 		      PD0, 0L, 0L);

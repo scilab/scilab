@@ -75,9 +75,10 @@ extern HDC sciGetDC (sciPointObj * pobj);     /* DRAWINGS */
 extern void sciRedrawFigure(); /* DRAWINGS */
 extern void sciRedrawF(int *num); /* DRAWINGS */
 extern void sciXbasc();  /* DRAWINGS */
+extern void sciXClearFigure(); /* DRAWINGS */
 extern void sciXclear(); /* DRAWINGS */
 extern void sciXdraw();  /* DRAWINGS */
-
+ 
 /* 3 next are in plo3d.c*/
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */
 extern void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox); /* DRAWINGS */
