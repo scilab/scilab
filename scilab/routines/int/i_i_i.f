@@ -266,12 +266,16 @@ c
       l1=sadr(il1+4)
       mn1=m1*n1
 
-      if(it3.ne.it4.or.istk(il3).ne.istk(il4)) then 
-         top=top0
-         fin=-fin
-         return
+      if(mn3.ne.0) then
+         if(it3.ne.it4.or.istk(il3).ne.istk(il4)) then 
+            top=top0
+            fin=-fin
+            return
+         endif
+         ityp=istk(il3)
+      else
+         ityp=istk(il4)
       endif
-      ityp=istk(il3)
 
       if (m3.eq.0) then
 c     .  arg4(arg1,arg2)=[]

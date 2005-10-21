@@ -10,6 +10,7 @@ c
       if(.not.checklhs('inttype',1,1)) return
 
       il=iadr(lstk(top))
+      if(istk(il).lt.0) il=iadr(istk(il+1))
       if(istk(il).eq.8) then
          is=istk(il+3)
       elseif(istk(il).eq.1) then
