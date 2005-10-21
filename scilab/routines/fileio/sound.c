@@ -4,11 +4,6 @@
  * using functions from a sound library 
  * Copyright ENPC/ Chancelier 
  *********************************************/
-#ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../sci_mem_alloc.h" /* MALLOC */
-#endif
 
 
 #include <stdio.h>
@@ -24,12 +19,16 @@
 #include <ctype.h>
 
 
-
 #include "st.h"
-
-
 #include "../graphics/Math.h"
+#ifdef WIN32
+#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../sci_mem_alloc.h" /* MALLOC */
+#endif
+
 #include "../stack-c.h" 
+
 
 #if (defined(sun) && !defined(SYSV)) 
 char *strerror __PARAMS((int errcode));

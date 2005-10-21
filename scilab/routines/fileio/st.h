@@ -105,13 +105,15 @@ typedef struct soundstream *ft_t;
 #define FILE_LOOPS	2	/* does file format support loops? */
 #define FILE_INSTR	4	/* does file format support instrument specificications? */
 
+
 /* Size field */
-#define	BYTE	1
-#define	WORD	2
-#define	LONG	4
-#define	FLOAT	5
-#define DOUBLE	6
+#define	BYTESCI	1
+#define	WORDSCI	2
+#define	LONGSCI	4
+#define	FLOATSCI	5
+#define DOUBLESCI	6
 #define IEEE	7		/* IEEE 80-bit floats.  Is it necessary? */
+
 
 /* Style field */
 #define UNSIGNED	1	/* unsigned linear: Sound Blaster */

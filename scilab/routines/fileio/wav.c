@@ -198,8 +198,8 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
     {
     case 1:
       /* User options take precedence */
-      if (ft->info.size == -1 || ft->info.size == BYTE)
-	ft->info.size = BYTE;
+      if (ft->info.size == -1 || ft->info.size == BYTESCI)
+	ft->info.size = BYTESCI;
       else
 	sciprint("User options overiding size read in .wav header\r\n");
       if (ft->info.style == -1 || ft->info.style == UNSIGNED)
@@ -208,8 +208,8 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
 	sciprint("User options overiding style read in .wav header\r\n");
       break;
     case 2:
-      if (ft->info.size == -1 || ft->info.size == WORD)
-	ft->info.size = WORD;
+      if (ft->info.size == -1 || ft->info.size == WORDSCI)
+	ft->info.size = WORDSCI;
       else
 	sciprint("User options overiding size read in .wav header\r\n");
       if (ft->info.style == -1 || ft->info.style == SIGN2)
@@ -218,8 +218,8 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
 	sciprint("User options overiding style read in .wav header\r\n");
       break;
     case 4:
-      if (ft->info.size == -1 || ft->info.size == LONG)
-	ft->info.size = LONG;
+      if (ft->info.size == -1 || ft->info.size == LONGSCI)
+	ft->info.size = LONGSCI;
       else
 	sciprint("User options overiding size read in .wav header\r\n");
       if (ft->info.style == -1 || ft->info.style == SIGN2)
@@ -336,21 +336,21 @@ void wavwritehdr(ft_t ft)
   
   switch (ft->info.size)
     {
-    case BYTE:
+    case BYTESCI:
       wBitsPerSample = 8;
       if (ft->info.style == -1 || ft->info.style == UNSIGNED)
 	ft->info.style = UNSIGNED;
       else if (!wav->second_header && ft->info.style != ALAW && ft->info.style != ULAW) 
 	sciprint("User options overiding style written to .wav header\r\n");
       break;
-    case WORD:
+    case WORDSCI:
       wBitsPerSample = 16;
       if (ft->info.style == -1 || ft->info.style == SIGN2)
 	ft->info.style = SIGN2;
       else if (!wav->second_header)
 	sciprint("User options overiding style written to .wav header\r\n");
       break;
-    case LONG:
+    case LONGSCI:
       wBitsPerSample = 32;
       if (ft->info.style == -1 || ft->info.style == SIGN2)
 	ft->info.style = SIGN2; 

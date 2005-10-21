@@ -180,7 +180,7 @@ int C2F(savewave)(char * filename,double *res,integer * rate,
   informat.comment = informat.filename;
   
   /* changing the formats. */
-  informat.info.size = WORD;
+  informat.info.size = WORDSCI;
   informat.info.rate = *rate ;
   informat.info.style = SIGN2;
   informat.info.channels = *nchannels;
@@ -296,7 +296,7 @@ static void checkformat(ft_t ft)
       ft->ierr=1;
       return;
     }
-  if (ft->info.style == -1 && ft->info.size != FLOAT)
+  if (ft->info.style == -1 && ft->info.size != FLOATSCI)
     {
       sciprint("Data style was not given for %s file\r\n", ft->filename);
       ft->ierr=1;

@@ -49,7 +49,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
   count=0;
   switch(ft->info.size) 
     {
-    case BYTE: switch(ft->info.style) 
+    case BYTESCI: switch(ft->info.style) 
       {
       case SIGN2:
 	while(done < nsamp) 
@@ -100,7 +100,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	  }
 	return done;
       }
-    case WORD: 
+    case WORDSCI: 
       switch(ft->info.style) 
 	{
 	case SIGN2:
@@ -141,7 +141,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	  ft->ierr=1;
 	  return done;
 	}
-    case FLOAT:
+    case FLOATSCI:
       while(done < nsamp) 
 	{
 	  datum = (long) rfloat(ft);
@@ -173,7 +173,7 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
   int done = 0;
   switch(ft->info.size) 
     {
-    case BYTE: switch(ft->info.style) 
+    case BYTESCI: switch(ft->info.style) 
       {
       case SIGN2:
 	while(done < nsamp) 
@@ -220,7 +220,7 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
 	  }
 	return;
       }
-    case WORD: switch(ft->info.style) {
+    case WORDSCI: switch(ft->info.style) {
     case SIGN2:
       while(done < nsamp) {
 	/* scale signed up to long's range */
@@ -248,7 +248,7 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       ft->ierr=1;
       return;
     }
-    case FLOAT:
+    case FLOATSCI:
       while(done < nsamp) {
 	/* scale signed up to long's range */
 	datum = RIGHT(*buf++, 16);
