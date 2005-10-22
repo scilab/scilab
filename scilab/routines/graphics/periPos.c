@@ -46,6 +46,14 @@
 #include "periPos.h"
 #include "color.h"
 #include "bcg.h" /* NG */
+
+#if WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+
+
 extern int versionflag;
 void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
 void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy);

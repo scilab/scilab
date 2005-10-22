@@ -2,12 +2,12 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include "calendar.h"
 #ifdef WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
-#include "calendar.h"
 /*-----------------------------------------------------------------------------------*/
 int IsAScalar(int RhsNumber);
 static int isBissextile (unsigned annee);

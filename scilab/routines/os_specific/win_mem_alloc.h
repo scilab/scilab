@@ -17,7 +17,7 @@
 #ifdef FREE
 #undef FREE
 #endif
-#define FREE(x) if (x  != NULL) MyHeapFree(x,__FILE__,__LINE__);
+#define FREE(x) if (x  != NULL) MyHeapFree((char *)x,__FILE__,__LINE__);
 
 #ifdef CALLOC
 #undef CALLOC

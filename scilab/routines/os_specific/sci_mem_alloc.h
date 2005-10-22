@@ -55,7 +55,7 @@
  #endif
 #else
 	#define MALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
-	#define FREE(x) if (x  != NULL) MyFree((unsigned  int) x,__FILE__,__LINE__);
+	#define FREE(x) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
 	#define REALLOC(x,y) MyReAlloc((char *)x, y,__FILE__,__LINE__)
 	#define CALLOC(x,y) MyCalloc((unsigned) x, (unsigned) y,__FILE__,__LINE__)
 

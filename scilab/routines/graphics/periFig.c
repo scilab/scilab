@@ -21,11 +21,6 @@
 
 #include "../machine.h"
 
-#if WIN32
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
 
 #if defined(THINK_C)|| defined(WIN32)
 #define CoordModePrevious 1
@@ -53,6 +48,12 @@
 #include "periFig.h"
 #include "color.h"
 #include "bcg.h" /* NG */
+
+#if WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 
 #define WHITE 7
 #define BLACK 0

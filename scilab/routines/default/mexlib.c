@@ -33,7 +33,7 @@
  *                 values)
  *     values = vector of doubles or int8-16-32 or char
  --------------------------------------------------------------------------*/
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+
 #include "../stack-c.h"
 #include "../calelm/calelm.h"
 
@@ -54,7 +54,7 @@
 	#include <stdlib.h> /*pour exit()*/
 #endif
 
-
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 
 
 static char *the_current_mex_name;
