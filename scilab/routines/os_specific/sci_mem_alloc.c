@@ -87,7 +87,7 @@ void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
 
 }
 /*-----------------------------------------------------------------------------------*/
-void MyFree(unsigned  int x, char *fichier,int ligne)
+void MyFree(void *x, char *fichier,int ligne)
 {
 	free((void*)x);
 	/*printf("MyFree %d %s %d\n",x,fichier,ligne);*/

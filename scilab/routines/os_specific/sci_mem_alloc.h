@@ -26,7 +26,7 @@
  extern void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
  extern void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);
  extern void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);
- extern void  MyFree(unsigned  int x, char *fichier,int ligne);
+ extern void  MyFree(void *x, char *fichier,int ligne);
 
 #ifndef WIN32
  
