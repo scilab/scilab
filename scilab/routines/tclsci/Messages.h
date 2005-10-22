@@ -6,7 +6,7 @@
 #define TCL_MSG2 "Alpha Release"
 #define TCL_MSG3 "Beta Release"
 #define TCL_MSG4 "Final Release"
-#define TCL_MSG5 "Unknow Release"
+#define TCL_MSG5 "Unknown Release"
 #define TCL_MSG6 "TCL/TK %d.%d.%d %s"   
 #define TCL_MSG7 "TCL_EvalScilabCmd %s"
 #define TCL_MSG8 " Execution starts for %s\r\n"

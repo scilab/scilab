@@ -7,9 +7,12 @@
 int C2F(intTclUnsetVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
+	static int l2,n2,m2;
 	int TypeVar1=GetType(1);
+	int TypeVar2=GetType(2);
+	Tcl_Interp *TCLinterpreter=NULL;
 
-	CheckRhs(1,1);
+	CheckRhs(1,2);
 	CheckLhs(1,1);
 	
 	if (TypeVar1 == sci_strings)
@@ -24,11 +27,36 @@ int C2F(intTclUnsetVar) _PARAMS((char *fname))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,TCL_ERROR25);
+			Scierror(999,TCL_ERROR13,fname);
 			return 0;
 		}
 
-		if (Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY) == TCL_ERROR)
+		if (Rhs==2)
+		{
+			/* two arguments given - get a pointer on the slave interpreter */
+			if (TypeVar2 == sci_strings)
+			{
+				GetRhsVar(2,"c",&m2,&n2,&l2)
+				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
+				if (TCLinterpreter==NULL)
+				{
+					Scierror(999,TCL_ERROR17,fname);
+					return 0;
+				}
+			}
+			else
+			{
+				 Scierror(999,TCL_ERROR14,fname);
+				 return 0;
+			}
+		}
+		else
+		{
+			/* only one argument given - use the main interpreter */
+			TCLinterpreter=TCLinterp;
+		}
+
+		if (Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY) == TCL_ERROR)
 		{
 			*paramoutINT=(int)(FALSE);
 		}
@@ -46,7 +74,7 @@ int C2F(intTclUnsetVar) _PARAMS((char *fname))
 	}
 	else
 	{
-		 Scierror(999,TCL_ERROR26);
+		 Scierror(999,TCL_ERROR14,fname);
 		 return 0;
 	}
 	

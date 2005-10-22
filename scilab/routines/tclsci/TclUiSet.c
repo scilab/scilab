@@ -25,10 +25,10 @@ char *UiStyleExternalName[NBRSTYLE] = {"pushbutton",
 				               "popupmenu"};
 /*-----------------------------------------------------------------------------------*/
 int GetStyleInternalName(char *StyleStr);
-int SetVarStrings(char *VarName,char **Str,int m,int n);
-int SetVarAString(char *VarName,char **Str);
-int SetVarMatrix(char *VarName,int ptrValues,int m,int n);
-int SetVarScalar(char *VarName,double VarValue);
+int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n);
+int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
+int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
+int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
 /*-----------------------------------------------------------------------------------*/
 int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValue)
 {
@@ -60,11 +60,11 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 					if ( (m1==1) && (n1==1) )
 					{
-						SetVarAString(VarName,Str);
+						SetVarAString(TCLinterp,VarName,Str);
 					}
 					else
 					{
-						SetVarStrings(VarName,Str,m1,n1);
+						SetVarStrings(TCLinterp,VarName,Str,m1,n1);
 					}
 					FreeRhsSVar(Str);
 				}
@@ -84,11 +84,11 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 
 					if ( (m1==1) && (n1==1) )
 					{
-						SetVarScalar(VarName,(double)*stk(l1));
+						SetVarScalar(TCLinterp,VarName,(double)*stk(l1));
 					}
 				else 
 					{
-						SetVarMatrix(VarName,l1,m1,n1);
+						SetVarMatrix(TCLinterp,VarName,l1,m1,n1);
 					}
 				}
 				else
@@ -115,7 +115,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 						if ( (m1==1) && (n1==1) )
 						{
 							/* Les donnees sont dans STRING_%d */
-							SetVarAString(VarName,Str);
+							SetVarAString(TCLinterp,VarName,Str);
 
 							/* Block inutile apres modifications dans set.tcl */
 							{
@@ -135,7 +135,7 @@ int InterfaceScilabToUiSet(int Handle,int RhsPropertieField,int RhsPropertieValu
 						}
 						else
 						{
-							SetVarStrings(VarName,Str,m1,n1);
+							SetVarStrings(TCLinterp,VarName,Str,m1,n1);
 
 							/* Block inutil apres modifications dans set.tcl */
 							{

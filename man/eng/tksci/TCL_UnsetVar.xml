@@ -7,13 +7,14 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>April 2005</DATE>
+  <DATE>22 October 2005</DATE>
 
-  <SHORT_DESCRIPTION name="TCL_UnsetVar">remove a tcl
+  <SHORT_DESCRIPTION name="TCL_UnsetVar">Remove a tcl
   variable</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>OK=TCL_UnsetVar(varname)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_UnsetVar(varname
+    [,interp])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -22,8 +23,19 @@
         <PARAM_NAME>varname</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: string character Contains the name of the tcl/tk variable to
+          <SP>: character string. Contains the name of the tcl/tk variable to
           unset.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>interp</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: optional character string parameter. Name of the slave tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main tcl interpreter created by
+          Scilab.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -31,29 +43,44 @@
         <PARAM_NAME>ok</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: a boolean %T if varname deleted.</SP>
+          <SP>: boolean. %T if varname was deleted.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>This routine allows to unset a tcl variable. .</P>
+    <P>This routine allows to unset a tcl variable.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
+TCL_SetVar("Scilab","OK")
+TCL_GetVar("Scilab")
+TCL_UnsetVar("Scilab")
+TCL_ExistVar("Scilab")
 
-TCL_SetVar('Scilab','OK')
-TCL_GetVar('Scilab')
-TCL_UnsetVar('Scilab')
-TCL_ExistVar('Scilab')
-                             
- 
+scipad();TCL_SetVar("Scilab","Good","scipad")
+TCL_GetVar("Scilab","scipad")
+TCL_UnsetVar("Scilab","scipad")
+TCL_ExistVar("Scilab","scipad")
+
   ]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>TCL_ExistVar</LINK>
+      <LINK>ScilabEval</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_EvalFile</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_EvalStr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_GetVar</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
@@ -61,7 +88,11 @@ TCL_ExistVar('Scilab')
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TCL_GetVar</LINK>
+      <LINK>TCL_ExistVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_UpVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

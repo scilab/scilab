@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -7,12 +7,14 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>April 2005</DATE>
+  <DATE>22 October 2005</DATE>
 
-  <SHORT_DESCRIPTION name="TCL_ExistVar"> returns %T if a tcl variable exists</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TCL_ExistVar">Return %T if a tcl variable
+  exists</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>OK=TCL_ExistVar(varname)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_ExistVar(varname
+    [,interp])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -21,7 +23,19 @@
         <PARAM_NAME>varname</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: string character Contains the name of the tcl/tk variable.</SP>
+          <SP>: character string. Contains the name of the tcl/tk
+          variable.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>interp</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: optional character string parameter. Name of the slave tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main tcl interpreter created by
+          Scilab.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -29,29 +43,48 @@
         <PARAM_NAME>ok</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: a boolean %T if varname exists.</SP>
+          <SP>: boolean. %T if varname exists.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>This routine allows to test if a tcl variable exists .</P>
+    <P>This routine allows to test if a tcl variable exists.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-
-TCL_SetVar('Scilab','OK')
-TCL_GetVar('Scilab')
-TCL_UnsetVar('Scilab')
-TCL_ExistVar('Scilab')
+TCL_SetVar("Scilab","OK")
+TCL_GetVar("Scilab")
+TCL_UnsetVar("Scilab")
+TCL_ExistVar("Scilab")
                              
- 
-  ]]></EXAMPLE>
+TCL_SetVar("aa",1)
+scipad();TCL_SetVar("aa",2,"scipad")
+TCL_ExistVar("aa")
+TCL_GetVar("aa")
+TCL_UnsetVar("aa")
+TCL_GetVar("aa","scipad")
+TCL_UnsetVar("aa","scipad")
+TCL_ExistVar("aa","scipad")
+
+]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>TCL_ExistVar</LINK>
+      <LINK>ScilabEval</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_EvalFile</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_EvalStr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_GetVar</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
@@ -59,7 +92,11 @@ TCL_ExistVar('Scilab')
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TCL_GetVar</LINK>
+      <LINK>TCL_UnsetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_UpVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

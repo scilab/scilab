@@ -4,17 +4,20 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclGetVar.h"
 /*-----------------------------------------------------------------------------------*/
-int TCL_ArrayExist(char *VarName);
-int TCL_ArraySize(char *VarName);
-int TCL_ArrayDim(char *VarName,int *m,int *n);
-char *TCL_ArrayGetVar(char *VarName,int i,int j);
+int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
+int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName);
+int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
+char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intTclGetVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
+	static int l2,n2,m2;
 	int TypeVar1=GetType(1);
+	int TypeVar2=GetType(2);
+	Tcl_Interp *TCLinterpreter=NULL;
 
-	CheckRhs(1,1);
+	CheckRhs(1,2);
 	CheckLhs(1,1);
 	
 	if (TypeVar1 == sci_strings)
@@ -26,11 +29,36 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 
 		if (TCLinterp == NULL)
 		{
-			Scierror(999,TCL_ERROR17);
+			Scierror(999,TCL_ERROR13,fname);
 			return 0;
 		}
 
-		if (TCL_ArrayExist(VarName))
+		if (Rhs==2)
+		{
+			/* two arguments given - get a pointer on the slave interpreter */
+			if (TypeVar2 == sci_strings)
+			{
+				GetRhsVar(2,"c",&m2,&n2,&l2)
+				TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
+				if (TCLinterpreter==NULL)
+				{
+					Scierror(999,TCL_ERROR17,fname);
+					return 0;
+				}
+			}
+			else
+			{
+				 Scierror(999,TCL_ERROR14,fname);
+				 return 0;
+			}
+		}
+		else
+		{
+			/* only one argument given - use the main interpreter */
+			TCLinterpreter=TCLinterp;
+		}
+
+		if (TCL_ArrayExist(TCLinterpreter,VarName))
 		{
 			int i=0,j=0;
 			int nrow=0,ncol=0;
@@ -38,7 +66,7 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 
 			char **ReturnArrayString=NULL;
 
-			TCL_ArrayDim(VarName,&ncol,&nrow);
+			TCL_ArrayDim(TCLinterpreter,VarName,&ncol,&nrow);
 			ReturnArrayString = (char **) MALLOC(ncol*nrow*sizeof(char **));
 			k=0;
 			for (j=1;j<ncol+1;j++)	for (i=1;i<nrow+1;i++)
@@ -46,8 +74,8 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 				char *RetStr=NULL;
 				char *AsciiFromUTF8=NULL;
 
-				RetStr=TCL_ArrayGetVar(VarName,i,j);
-				AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
+				RetStr=TCL_ArrayGetVar(TCLinterpreter,VarName,i,j);
+				AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
 		
 				ReturnArrayString[k++]=AsciiFromUTF8;
 			}
@@ -64,13 +92,13 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 		{
 			char *RetStr=NULL;
 
-			RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
+			RetStr= (char*)Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
 			if ( RetStr )
 			{
 				char *AsciiFromUTF8=NULL;
 				char *output=NULL ;
 
-				AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
+				AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
 
 				output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 				sprintf(output,"%s",AsciiFromUTF8);
@@ -91,14 +119,14 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 	}
 	else
 	{
-		 Scierror(999,TCL_ERROR19);
+		 Scierror(999,TCL_ERROR14,fname);
 		 return 0;
 	}
 	
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int TCL_ArrayExist(char *VarName)
+int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName)
 {
 	int bExist=FALSE;
 
@@ -109,25 +137,25 @@ int TCL_ArrayExist(char *VarName)
 
 		sprintf(MyTclCommand, "set TclScilabTmpVar [array exists %s];",VarName); 
 
-		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
 			return 0;
 		}
 
-		StrArrayExist = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
+		StrArrayExist = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
 
 		if (StrArrayExist)
 		{
 			bExist=(int)atoi(StrArrayExist);
-			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
+			Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 		}
 	}
 	
 	return bExist;
 }
 /*-----------------------------------------------------------------------------------*/
-int TCL_ArraySize(char *VarName)
+int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName)
 {
 	int ArraySize=0;
 
@@ -138,24 +166,24 @@ int TCL_ArraySize(char *VarName)
 
 		sprintf(MyTclCommand, "set TclScilabTmpVar [array size %s];",VarName); 
 
-		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
 			return 0;
 		}
 
-		StrArraySize = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
+		StrArraySize = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
 
 		if (StrArraySize)
 		{
 			ArraySize=(int)atoi(StrArraySize);
-			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
+			Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 		}
 	}
 	return ArraySize;
 }
 /*-----------------------------------------------------------------------------------*/
-int TCL_ArrayDim(char *VarName,int *m,int *n)
+int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 {
 	int Bok=FALSE;
 	*m=0;
@@ -167,13 +195,13 @@ int TCL_ArrayDim(char *VarName,int *m,int *n)
 		
 		sprintf(MyTclCommand, "set TclScilabTmpVar [lsort [array names %s *,*]];",VarName); 
 
-		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
 			return 0;
 		}
 
-		StrArrayDims = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
+		StrArrayDims = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
 
 		if (StrArrayDims)
 		{
@@ -201,20 +229,20 @@ int TCL_ArrayDim(char *VarName,int *m,int *n)
 				*n=DimX;
 				*m=DimY;
 			}
-			Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
+			Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 			Bok=TRUE;
 		}
 	}
 	return Bok;
 }
 /*-----------------------------------------------------------------------------------*/
-char *TCL_ArrayGetVar(char *VarName,int i,int j)
+char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j)
 {
 	char *RetStr=NULL;
 	char * StrValue=NULL;
 	char ArrayName[2048];
 	sprintf(ArrayName,"%s(%d,%d)",VarName,i,j);
-	RetStr= (char*)Tcl_GetVar(TCLinterp, ArrayName, TCL_GLOBAL_ONLY);
+	RetStr= (char*)Tcl_GetVar(TCLinterpreter, ArrayName, TCL_GLOBAL_ONLY);
 
 	if (RetStr)
 	{

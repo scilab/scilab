@@ -7,13 +7,14 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>April 2005</DATE>
+  <DATE>22 October 2005</DATE>
 
-  <SHORT_DESCRIPTION name="TCL_UpVar">make a link from a tcl source variable
+  <SHORT_DESCRIPTION name="TCL_UpVar">Make a link from a tcl source variable
   to a tcl destination variable</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>OK=TCL_UpVar(varname1,varname2)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_UpVar(varname1,varname2
+    [,interp])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -22,17 +23,28 @@
         <PARAM_NAME>varname1</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: string character contains the name of the tcl source
+          <SP>: character string. Contains the name of the tcl source
           variable.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>varname2:</PARAM_NAME>
+        <PARAM_NAME>varname2</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>string character contains the name of the tcl destination
+          <SP>: character string. Contains the name of the tcl destination
           variable.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>interp</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: optional character string parameter. Name of the slave tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main tcl interpreter created by
+          Scilab.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -40,34 +52,53 @@
         <PARAM_NAME>ok</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: a boolean %T if iti is ok.</SP>
+          <SP>: boolean. %T if it is ok.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>make a link from a tcl source variable to a tcl destination
+    <P>Make a link from a tcl source variable to a tcl destination
     variable.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
+TCL_SetVar("Scilab","OK")
+TCL_UpVar("Scilab","ScilabBis")
+TCL_GetVar("ScilabBis")
+TCL_SetVar("Scilab","NOK")
+TCL_GetVar("ScilabBis")
+TCL_SetVar("ScilabBis","modified")
+TCL_GetVar("ScilabBis")
+TCL_GetVar("Scilab")
 
-TCL_SetVar('Scilab','OK')
-TCL_UpVar('Scilab','ScilabBis')
-TCL_GetVar('ScilabBis')
-TCL_SetVar('Scilab','NOK')
-TCL_GetVar('ScilabBis')
-TCL_SetVar('ScilabBis','modified')
-TCL_GetVar('ScilabBis')
-TCL_GetVar('Scilab')
-
+scipad();TCL_SetVar("Scilab","Good","scipad")
+TCL_UpVar("Scilab","ScilabBis","scipad")
+TCL_GetVar("ScilabBis","scipad")
+TCL_SetVar("Scilab","Not good","scipad")
+TCL_GetVar("ScilabBis","scipad")
+TCL_SetVar("ScilabBis","modified again","scipad")
+TCL_GetVar("ScilabBis","scipad")
+TCL_GetVar("Scilab","scipad")
  
   ]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>TCL_ExistVar</LINK>
+      <LINK>ScilabEval</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_EvalFile</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_EvalStr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_GetVar</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
@@ -75,7 +106,11 @@ TCL_GetVar('Scilab')
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TCL_GetVar</LINK>
+      <LINK>TCL_ExistVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_UnsetVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

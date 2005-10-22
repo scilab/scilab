@@ -5,10 +5,12 @@
 #include "TclUiGet.h"
 /*-----------------------------------------------------------------------------------*/
 extern int GetScreenProperty(char *prop, char *value);
-extern int TCL_ArrayExist(char *VarName);
-extern int TCL_ArraySize(char *VarName);
-extern int TCL_ArrayDim(char *VarName,int *m,int *n);
-extern char *TCL_ArrayGetVar(char *VarName,int i,int j);
+extern int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
+/*
+extern int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName);
+*/
+extern int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n);
+extern char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j);
 /*-----------------------------------------------------------------------------------*/
 int TCL_UiGet(int  Handle,int RhsPropertieField)
 {
@@ -72,7 +74,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					char VarName[64];
 					sprintf(VarName,"USERDATA_%d",Handle);
 
-					if (TCL_ArrayExist(VarName))
+					if (TCL_ArrayExist(TCLinterp,VarName))
 					{
 						int i=0,j=0;
 						int nrow=0,ncol=0;
@@ -80,7 +82,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 						char **ReturnArrayString=NULL;
 
-						TCL_ArrayDim(VarName,&ncol,&nrow);
+						TCL_ArrayDim(TCLinterp,VarName,&ncol,&nrow);
 						ReturnArrayString = (char **) MALLOC(ncol*nrow*sizeof(char **));
 						k=0;
 						for (j=1;j<ncol+1;j++)	for (i=1;i<nrow+1;i++)
@@ -88,7 +90,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 							char *RetStr=NULL;
 							char *AsciiFromUTF8=NULL;
 
-							RetStr=TCL_ArrayGetVar(VarName,i,j);
+							RetStr=TCL_ArrayGetVar(TCLinterp,VarName,i,j);
 							AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
 
 							ReturnArrayString[k++]=AsciiFromUTF8;
@@ -134,7 +136,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					{
 						char VarName[64];
 						sprintf(VarName,"STRING_%d",Handle);
-						if (TCL_ArrayExist(VarName))
+						if (TCL_ArrayExist(TCLinterp,VarName))
 						{
 							int i=0,j=0;
 							int nrow=0,ncol=0;
@@ -142,7 +144,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 							char **ReturnArrayString=NULL;
 
-							TCL_ArrayDim(VarName,&ncol,&nrow);
+							TCL_ArrayDim(TCLinterp,VarName,&ncol,&nrow);
 							ReturnArrayString = (char **) MALLOC(ncol*nrow*sizeof(char **));
 							k=0;
 							for (j=1;j<ncol+1;j++)	for (i=1;i<nrow+1;i++)
@@ -150,7 +152,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 								char *RetStr=NULL;
 								char *AsciiFromUTF8=NULL;
 
-								RetStr=TCL_ArrayGetVar(VarName,i,j);
+								RetStr=TCL_ArrayGetVar(TCLinterp,VarName,i,j);
 								AsciiFromUTF8=UTF8toANSI(TCLinterp,RetStr);
 
 								ReturnArrayString[k++]=AsciiFromUTF8;

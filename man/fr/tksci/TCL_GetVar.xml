@@ -7,70 +7,104 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>07 September 2005</DATE>
+  <DATE>22 October 2005</DATE>
 
   <SHORT_DESCRIPTION name="TCL_GetVar">Get a tcl/tk variable
   value</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>value=TCL_GetVar(Varname)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>value=TCL_GetVar(Varname
+    [,interp])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>varname</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>varname : string character Contains the name of the tcl/tk
+          <SP>: character string. Contains the name of the tcl/tk
           variable.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>interp</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>value : may be a string character or a strings matrix contains
-          the value of the tcl/tk variable 'varname'.</SP>
+          <SP>: optional character string parameter. Name of the slave tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main tcl interpreter created by
+          Scilab.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>value</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: may be a character string or a strings matrix. Contains the
+          value of the tcl/tk variable <VERB>varname</VERB> in the interpreter
+          <VERB>interp</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>When tcl/tk support is enabled in scilab, this routine can be used to
+    <P>When tcl/tk support is enabled in Scilab, this routine can be used to
     retreive the value of a tcl/tk variable.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[//----------------------------------------------------
-TCL_EvalStr('toplevel .tst1');
+  <EXAMPLE><![CDATA[
+//----------------------------------------------------
+TCL_EvalStr("toplevel .tst1");
 // creates a toplevel TK window. 
-TCL_EvalStr('entry .tst1.e -textvariable tvar');
+TCL_EvalStr("entry .tst1.e -textvariable tvar");
 // create an editable entry
-TCL_EvalStr('set tvar foobar');
+TCL_EvalStr("set tvar foobar");
 // set the entry value
-TCL_EvalStr('pack .tst1.e');
+TCL_EvalStr("pack .tst1.e");
 // pack the entry widget. It appears on the screen.
-text=TCL_GetVar('tvar')
+text=TCL_GetVar("tvar")
 // retrieve the variable value
 // change the entry text and repeat the last command ...
 //delete the toplevel TK window.
-TCL_EvalStr('destroy .tst1')
+TCL_EvalStr("destroy .tst1")
 //----------------------------------------------------
-a=['A','B','C';'D','E','F'];
+a=["A","B","C";"D","E","F"];
 TCL_SetVar("A",a)
-AfromTCL=TCL_GetVar('A')
+AfromTCL=TCL_GetVar("A")
 //----------------------------------------------------
 b=[6,4,1;2,3,5];
 TCL_SetVar("B",b)
-BfromTCL=TCL_GetVar('B')
+BfromTCL=TCL_GetVar("B")
 //----------------------------------------------------
 TCL_SetVar("StringTCL","string")
 StringFromTCL=TCL_GetVar("StringTCL")
 //----------------------------------------------------
 TCL_SetVar("ScalarTCL",1.22)
 ScalarFromTCL=TCL_GetVar("ScalarTCL")
+
+
+//----------------------------------------------------
+// Examples with a slave interpreter
+// scipad creates such a slave interpreter named "scipad"
+//----------------------------------------------------
+a=['AA','BB','CC';'DD','EE','FF'];
+scipad();TCL_SetVar("A_slave",a,"scipad")
+AfromTCL_slave=TCL_GetVar('A_slave',"scipad")
+//----------------------------------------------------
+b=[66,44,11;22,33,55];
+scipad();TCL_SetVar("B_slave",b,"scipad")
+BfromTCL_slave=TCL_GetVar('B_slave',"scipad")
+//----------------------------------------------------
+scipad();TCL_SetVar("StringTCL_slave","string in slave interpreter","scipad")
+StringFromTCL_slave=TCL_GetVar("StringTCL_slave","scipad")
+//----------------------------------------------------
+scipad();TCL_SetVar("ScalarTCL_slave",1.22,"scipad")
+ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave","scipad")
+//----------------------------------------------------
 
 
 ]]></EXAMPLE>
@@ -90,6 +124,18 @@ ScalarFromTCL=TCL_GetVar("ScalarTCL")
 
     <SEE_ALSO_ITEM>
       <LINK>TCL_SetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_ExistVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_UnsetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_UpVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
