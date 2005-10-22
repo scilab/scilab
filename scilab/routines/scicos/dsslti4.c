@@ -1,6 +1,6 @@
 #include <memory.h>
 #include "scicos_block.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #include "../machine.h"
 
 extern int C2F(dmmul)();

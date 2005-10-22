@@ -1,10 +1,14 @@
 /*------------------------------------------------------------------------
- *    Copyright (C) Inria 
- *    readline support added jpc 2004 
+ *    Copyright (C) Inria 2004
  *--------------------------------------------------------------------------*/
 
 #include "history.h"
-#include "../sci_mem_alloc.h"  /* malloc */
+
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h"  /* malloc */
+#else
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#endif
 #include  "../stack-c.h"
 #define HISTORY_ID 3
 

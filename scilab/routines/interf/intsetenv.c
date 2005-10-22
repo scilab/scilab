@@ -4,12 +4,13 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h> 
 #include <string.h> 
-#ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../sci_mem_alloc.h" /* MALLOC */
-#endif
 #include "../stack-c.h"
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 /*-----------------------------------------------------------------------------------*/
 extern int setenvc(char *string,char * value);

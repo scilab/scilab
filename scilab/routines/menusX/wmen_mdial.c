@@ -126,7 +126,7 @@ static int GetVal(HWND hDlg,int i,int j)
   if ( n != (int) strlen( SciMDialog.pszName[j]))
     {
       char *p;
-      p = (char *) realloc((char*) SciMDialog.pszName[j], (n+1)*sizeof(char));
+      p = (char *) REALLOC((char*) SciMDialog.pszName[j], (n+1)*sizeof(char));
       if ( p == (char *) 0)
 	{
 	  SciMDialog.ierr=1;

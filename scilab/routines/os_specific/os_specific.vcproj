@@ -715,6 +715,9 @@ cd .. &gt;nul
 				RelativePath=".\men_Sutils.c">
 			</File>
 			<File
+				RelativePath=".\sci_mem_alloc.c">
+			</File>
+			<File
 				RelativePath=".\setenvc.c">
 			</File>
 			<File
@@ -728,6 +731,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\tmpdir.c">
+			</File>
+			<File
+				RelativePath=".\win_mem_alloc.c">
 			</File>
 		</Filter>
 		<Filter
@@ -747,6 +753,12 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="Os_Specific.h">
+			</File>
+			<File
+				RelativePath=".\sci_mem_alloc.h">
+			</File>
+			<File
+				RelativePath=".\win_mem_alloc.h">
 			</File>
 		</Filter>
 	</Files>

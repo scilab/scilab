@@ -9,7 +9,7 @@
      
    HISTORY
      fleury - Nov 19, 1997: Created.
-     $Id: pvm_recv.c,v 1.7 2005/07/03 18:16:15 cornet Exp $
+     $Id: pvm_recv.c,v 1.8 2005/10/22 18:53:10 cornet Exp $
 ***/
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,9 +25,9 @@
 #include "sci_pvm.h"
 
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 void C2F(scipvmrecv)(double *beginvar, int *maxsize, int *size,

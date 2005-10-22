@@ -16,9 +16,9 @@
 #include "BuildObjects.h"
 
 #if WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 static double MiniD __PARAMS((double *x,integer n));

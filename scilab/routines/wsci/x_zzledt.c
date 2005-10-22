@@ -11,7 +11,7 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include "win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #include "wcommon.h"
 #include "wtext.h"
 /*-----------------------------------------------------------------------------------*/

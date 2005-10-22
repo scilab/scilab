@@ -7,6 +7,12 @@
   #include "../tclsci/TCL_Global.h"
 #endif
 #ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+
+#ifdef WIN32
 static char *env=NULL;
 #endif
 

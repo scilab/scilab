@@ -10,9 +10,9 @@
 
 #include "../machine.h"
 #ifdef WIN32
- #include "../wsci/win_mem_alloc.h" /* MALLOC */
+ #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
- #include "../sci_mem_alloc.h" /* MALLOC */
+ #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 
@@ -80,7 +80,7 @@ integer C2F(scimem)(integer *n, integer *ptr)
 	    sciprint("stacksize requested size is too big (max < %lu)\r\n",pos);
 	  }
     else 
-      p1 = (char *) MALLOC(((unsigned long) sizeof(double)) * (*n + 1));
+      p1 = (char *) SCISTACKMALLOC(((unsigned long) sizeof(double)) * (*n + 1));
     if (p1 != NULL) {
       the_ps = the_p;
       the_p = p1;
@@ -103,7 +103,7 @@ integer C2F(scigmem)(integer *n, integer *ptr)
   char *p1;
   if (*n > 0){
     /* add 1 for alignment problems */
-    p1 = (char *) MALLOC((unsigned)sizeof(double) * (*n + 1));
+    p1 = (char *) SCISTACKMALLOC((unsigned)sizeof(double) * (*n + 1));
     if (p1 != NULL) {
       the_gps = the_gp;
       the_gp = p1;
@@ -123,11 +123,11 @@ integer C2F(scigmem)(integer *n, integer *ptr)
 }
 void C2F(freegmem)(void)
 {
-  if (the_gps != NULL) FREE(the_gps);
+  if (the_gps != NULL) SCISTACKFREE(the_gps);
 }
 
 void C2F(freemem)(void)
 {
-  if (the_ps != NULL) FREE(the_ps);
+  if (the_ps != NULL) SCISTACKFREE(the_ps);
 }
 

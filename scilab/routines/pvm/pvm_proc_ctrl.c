@@ -11,6 +11,21 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.20  2005/10/22 18:53:10  cornet
+     update memory management under Windows
+     use HeapAlloc and VirtualAlloc (for scilab stack)
+     Correction Bug 1576
+     n=10000
+     xbasc();
+     plot2d([0,1],[0,n],0)
+     xpols=[zeros(1,n); ones(2,n); zeros(1,n)];
+     ypols=[2:n+1; 2:n+1; 1:n; 1:n];
+     xfpolys(xpols,ypols,modulo((1:n),32))
+
+     and for windows on PC with 256 mo
+     stacksize(5000000*20)
+     a=rand(9999,9999)
+
      Revision 1.19  2005/08/01 11:30:37  cornet
      Remove ABSOFT reference
 
@@ -120,9 +135,9 @@
 ***/
 
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 #if defined(__EDG__)

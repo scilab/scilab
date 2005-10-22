@@ -10,12 +10,10 @@
 #include <string.h>
 #include <stdio.h>
 
-#ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../sci_mem_alloc.h" /* MALLOC */
-#endif
 #include "../stack-c.h" 
+
+/*MUST BE standard MALLOC under Windows*/
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #include "../os_specific/men_Sutils.h" 
 
 

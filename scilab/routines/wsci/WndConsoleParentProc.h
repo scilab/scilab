@@ -13,7 +13,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "../version.h"
-#include "win_mem_alloc.h"
+#include "../os_specific/win_mem_alloc.h"
 #include "wresource.h"
 /*-----------------------------------------------------------------------------------*/
 EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);

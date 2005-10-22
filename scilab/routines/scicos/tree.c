@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <memory.h>
 #include "../machine.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
 
 int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr,
 	   int* ord,int* nord,int* ok);

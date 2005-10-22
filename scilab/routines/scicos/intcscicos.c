@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../sci_mem_alloc.h" /* MALLOC */
-#include "../stack-c.h"
 #include "../machine.h"
 #include "intcscicos.h"
 #include "scicos_block.h"
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#include "../stack-c.h"
 
 #if WIN32
 extern int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr, int* ord,int* nord,int* ok);

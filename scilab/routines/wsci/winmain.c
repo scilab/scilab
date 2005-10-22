@@ -39,7 +39,7 @@
 #include "GraphWindows.h"
 #include "MenuWindows.h"
 
-#include "win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 
 BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;

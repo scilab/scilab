@@ -25,9 +25,9 @@
 #include "DestroyObjects.h"
 
 #if WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 #if WIN32
@@ -1363,7 +1363,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
       
       if(pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation == TRUE){
 	angle =  270.;
-	sciSetFontOrientation(ppsubwin->mon_z_label,angle*10);
+	sciSetFontOrientation(ppsubwin->mon_z_label,(int)(angle*10));
       }
       else {
 	angle = sciGetFontOrientation(ppsubwin->mon_z_label)/10.;
@@ -1960,7 +1960,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  int x1, yy1;
 	  if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
 	    angle =  0.;
-	    sciSetFontOrientation(ppsubwin->mon_x_label,angle*10);
+	    sciSetFontOrientation(ppsubwin->mon_x_label,(int)(angle*10));
 	  }
 	  else 
 	    angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
@@ -2553,7 +2553,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  int x1, yy1;
 	  if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
 	    angle =  0.;
-	    sciSetFontOrientation(ppsubwin->mon_y_label,angle);
+	    sciSetFontOrientation(ppsubwin->mon_y_label,(int)angle);
 	  }
 	  else 
 	    angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
@@ -3142,7 +3142,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  int x1, yy1;
 	  if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
 	    angle =  0.;
-	    sciSetFontOrientation(ppsubwin->mon_x_label,angle);
+	    sciSetFontOrientation(ppsubwin->mon_x_label,(int)angle);
 	  }
 	  else 
 	    angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
@@ -3727,7 +3727,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  int x1, yy1;
 	  if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
 	    angle =  0.;
-	    sciSetFontOrientation(ppsubwin->mon_y_label,angle);
+	    sciSetFontOrientation(ppsubwin->mon_y_label,(int)angle);
 	  }
 	  else 
 	    angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
@@ -4842,7 +4842,7 @@ int labels2D_draw(sciPointObj * psubwin)
     
     if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
       font_angle =  0.;
-      sciSetFontOrientation(ppsubwin->mon_x_label,font_angle);
+      sciSetFontOrientation(ppsubwin->mon_x_label,(int)font_angle);
     }
     else 
       font_angle = sciGetFontOrientation(ppsubwin->mon_x_label)/10.;
@@ -5021,7 +5021,7 @@ int labels2D_draw(sciPointObj * psubwin)
 
     if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
       font_angle =  270.;
-      sciSetFontOrientation(ppsubwin->mon_y_label,font_angle*10);
+      sciSetFontOrientation(ppsubwin->mon_y_label,(int)(font_angle*10));
     }
     else 
       font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
@@ -11598,7 +11598,7 @@ int ChooseFormatForOneGrad(char *c_format, double *grad)
   int compteur = 0;
   double epsilon = 1e-16;
   
-  if(abs(*grad) < epsilon){ /* case where grad is strictly equal to 0. */
+  if((double)(abs((int)*grad)) < epsilon){ /* case where grad is strictly equal to 0. */
     *grad = 0.;
     strcpy(c_format,"%d");
     return 0;

@@ -7,13 +7,16 @@
 #ifndef __SCIMATH_H__
 #define __SCIMATH_H__
 #include "../machine.h"
-#include "../sci_mem_alloc.h"
+
 
 #ifdef __STDC__
 #include <stdlib.h>
 #else
 #include <malloc.h>
 #endif
+
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+
 
 #ifdef WIN32 
 #if !(defined __CYGWIN32__)

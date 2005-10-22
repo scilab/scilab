@@ -8,9 +8,9 @@ MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data
 #endif
 
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 /*************************************************     

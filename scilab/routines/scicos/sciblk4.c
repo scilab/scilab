@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "../machine.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #include "../stack-c.h"
 #include "scicos_block.h"
 

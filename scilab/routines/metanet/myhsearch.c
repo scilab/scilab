@@ -25,7 +25,7 @@ Cambridge, MA 02139, USA.  */
 #endif
 
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 
 #include "mysearch.h"
 

@@ -13,9 +13,9 @@
 #include <string.h>
 #include "../machine.h"
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h"  /* malloc */
+#include "../os_specific/win_mem_alloc.h"  /* malloc */
 #else
-#include "../sci_mem_alloc.h"  /* malloc */
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #endif
 
 

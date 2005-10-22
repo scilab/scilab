@@ -24,9 +24,9 @@
 #include "intcommongraphics.h"
 
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
@@ -5842,27 +5842,27 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
   xy_type = pAXES_FEATURE (pobj)->tics;
   /* Allocating space before re-copying values to not polluate the good values 
      that will be used inside Axes.c */
-  if((x=malloc((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+  if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   }
 
-  if((y=malloc((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+  if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   }
 
-  if((nx=malloc(sizeof(int)))==NULL){
+  if((nx=MALLOC(sizeof(int)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   }  
   
-  if((ny=malloc(sizeof(int)))==NULL){
+  if((ny=MALLOC(sizeof(int)))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   } 
 
-  if((format=malloc(5*(sizeof(char ))+1))==NULL){
+  if((format=MALLOC(5*(sizeof(char ))+1))==NULL){
     sciprint("Memory allocation failed in ComputeFormat\n");
     return -1;
   } 

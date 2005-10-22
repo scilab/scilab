@@ -21,9 +21,9 @@
 #include "intcommongraphics.h"
 
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 /*-----------------------------------------------------------------------------------*/
 extern int GetTclCurrentFigure(void);
@@ -1335,19 +1335,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	int i;
 
 	numrow   = 1;numcol   = 3;
-	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+	if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] == TRUE)
 	    {
-	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
+	      if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	      strcpy(foo[i],"on");
 	    }
 	  else
 	    {
-	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
+	      if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	      strcpy(foo[i],"off");
 	    }    
@@ -1365,19 +1365,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	int i;
 
 	numrow   = 1;numcol   = 3;
-	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+	if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] == TRUE)
 	    {
-	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
+	      if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	      strcpy(foo[i],"on");
 	    }
 	  else
 	    {
-	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
+	      if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	      strcpy(foo[i],"off");
 	    }    
@@ -1598,10 +1598,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 
 		ComputeC_format(pobj,c_format);
 
-		if((foo=malloc(N*(sizeof(char *))))==NULL){
+		if((foo=MALLOC(N*(sizeof(char *))))==NULL){
 		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		for(i=0;i<N;i++){
-		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+		  if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
 		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
 
@@ -1622,10 +1622,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 		  return 0;
 		}
 
-		if((foo=malloc(N*(sizeof(char *))))==NULL){
+		if((foo=MALLOC(N*(sizeof(char *))))==NULL){
 		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		for(i=0;i<N;i++){
-		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+		  if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
 		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
 
@@ -1690,18 +1690,18 @@ int sciGet(sciPointObj *pobj,char *marker)
       int i;
 
       numrow   = 1;numcol   = 3;
-      if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+      if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
 	strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
       for(i=0;i<numcol;i++)
 	if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] == TRUE)
 	  {
-	    if((foo[i]=malloc(3*(sizeof(char))))==NULL){
+	    if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
 	    strcpy(foo[i],"on");
 	  }
 	else
 	  {
-	    if((foo[i]=malloc(4*(sizeof(char))))==NULL){
+	    if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
 	    strcpy(foo[i],"off");
 	  }    

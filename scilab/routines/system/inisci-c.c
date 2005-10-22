@@ -11,7 +11,11 @@
 #include "../os_specific/Os_specific.h"
 #include "../graphics/Math.h" 
 
-#include "../sci_mem_alloc.h" /* MALLOC */
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h"  /* malloc */
+#else
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#endif
 
 #ifdef WIN32
 	BOOL FileExist(char *filename);

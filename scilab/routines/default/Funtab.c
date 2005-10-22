@@ -8,9 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-#include "../sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #include "../machine.h"
 
 

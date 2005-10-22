@@ -35,7 +35,7 @@
 #include "scigraphic.h"
 #include "../machine.h"
 
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+
 
 #ifdef WITH_TK
 #include "tcl.h"
@@ -48,6 +48,9 @@ extern Tk_Window TKmainWindow;
 extern void flushTKEvents ();
 extern int tcl_check_one_event();
 #endif
+
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+
 
 #define M_PI	3.14159265358979323846
 #define CoordModePrevious 1

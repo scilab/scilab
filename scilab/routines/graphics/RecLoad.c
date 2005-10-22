@@ -39,9 +39,9 @@
 #include "Rec.h"
 
 #if WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 #define assert(ex) {if (!(ex)){ sciprint("Graphic Load/Save Error \r\n");return(0);}}

@@ -8,7 +8,7 @@
 #include "../Messages.h"
 #include "../Warnings.h"
 #include "../Errors.h"
-#include "../win_mem_alloc.h" /* MALLOC */
+#include "../../os_specific/win_mem_alloc.h" /* MALLOC */
 
 extern int Console_Main(int argc, char **argv);
 

@@ -33,7 +33,7 @@
  *                 values)
  *     values = vector of doubles or int8-16-32 or char
  --------------------------------------------------------------------------*/
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #include "../stack-c.h"
 #include "../calelm/calelm.h"
 

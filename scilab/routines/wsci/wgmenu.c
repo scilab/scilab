@@ -4,7 +4,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-#include "win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@
 #include <memory.h>
 #include "../machine.h"
 #include "scicos_block.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();

@@ -4,10 +4,14 @@
 /* Copyright INRIA                                */
 /* V.C. - 2004                                    */
 /**************************************************/
-#include "../sci_mem_alloc.h" /* MALLOC */
 
 #include "intmacr2tree.h"
 
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h"  /* malloc */
+#else
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#endif
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
 

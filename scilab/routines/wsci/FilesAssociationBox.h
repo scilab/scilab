@@ -10,7 +10,7 @@
 #include <windowsx.h>
 #include "wgnuplib.h"
 #include "resource.h"
-#include "win_mem_alloc.h"
+#include "../os_specific/win_mem_alloc.h"
 #include "../version.h"
 /*-----------------------------------------------------------------------------------*/
 #pragma comment(lib, "shlwapi.lib")

@@ -11,7 +11,7 @@
 #include "blocks.h"
 #include <math.h>
 #include "../graphics/Math.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
 
 
 #ifdef FORDLL 

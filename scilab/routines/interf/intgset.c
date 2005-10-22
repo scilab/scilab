@@ -21,9 +21,9 @@
 #include "intcommongraphics.h"
 
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 /*-----------------------------------------------------------------------------------*/
 extern sciPointObj *pfiguremdl;
@@ -135,7 +135,7 @@ int gset(fname,fname_len)
 	sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
 
 	if (delete_user_data) {
-	  free(*user_data_ptr);
+	  FREE(*user_data_ptr);
 	  *user_data_ptr=NULL;
 	  *size_ptr=0;
 	}
@@ -153,7 +153,7 @@ int gset(fname,fname_len)
 	    memcpy(*user_data_ptr,data_ptr,data_size*sizeof (int));
 	  }
 	  else {
-	    free(*user_data_ptr);
+	    FREE(*user_data_ptr);
 	    if ( (*user_data_ptr=(int *) MALLOC (data_size * sizeof (int))) == NULL) {
 	      strcpy(error_message,"No memory left for allocating user_data");return -1;}
 	    *size_ptr=data_size;
@@ -2164,10 +2164,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  FREE(pAXES_FEATURE(pobj)->str); pAXES_FEATURE (pobj)->str = NULL;
 
 
-	  if((foo=malloc(N*(sizeof(char *))))==NULL){
+	  if((foo=MALLOC(N*(sizeof(char *))))==NULL){
 	    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  for(i=0;i<N;i++){
-	    if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+	    if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  }
 
@@ -2222,10 +2222,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 
 	  FREE(pAXES_FEATURE(pobj)->str); pAXES_FEATURE (pobj)->str = NULL;
 
-	  if((foo=malloc(N*(sizeof(char *))))==NULL){
+	  if((foo=MALLOC(N*(sizeof(char *))))==NULL){
 	    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  for(i=0;i<N;i++){
-	    if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
+	    if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 	  }
 
@@ -2809,7 +2809,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Second argument must have 5 columns ");return -1;}
       if (*numrow !=pFEC_FEATURE (pobj)->Ntr) {
 	pnoeud=pFEC_FEATURE(pobj)->pnoeud;
-	if ((pFEC_FEATURE(pobj)->pnoeud = malloc (*numrow * 5* sizeof (int))) == NULL){
+	if ((pFEC_FEATURE(pobj)->pnoeud = MALLOC (*numrow * 5* sizeof (int))) == NULL){
 	  strcpy(error_message,"Not enough memory");
 	  pFEC_FEATURE(pobj)->pnoeud=pnoeud;
 	  return -1;

@@ -14,7 +14,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 
 #ifndef STRICT
 #define STRICT

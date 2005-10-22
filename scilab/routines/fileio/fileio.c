@@ -20,7 +20,7 @@
 
 #include <ctype.h>  /* isdigit */
 #include "../graphics/Math.h"
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 /* http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vccore98/html/_crt_malloc.asp */
 /* Why I don't optimize this file :s */
 

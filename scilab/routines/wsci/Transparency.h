@@ -14,7 +14,7 @@
 #include "Errors.h"
 #include "../version.h"
 #include "GetOS.h"
-#include "win_mem_alloc.h"
+#include "../os_specific/win_mem_alloc.h"
 
 /*-----------------------------------------------------------------------------------*/
 BOOL ActivateTransparencyMode(HWND hWnd);

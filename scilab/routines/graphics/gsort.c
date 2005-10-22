@@ -11,21 +11,25 @@
 
 #include "../os_specific/men_Sutils.h"
 
+
 #ifdef WIN32
-#include "../wsci/win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
-#include "../sci_mem_alloc.h" /* MALLOC */
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 extern void sciqsort();
-
-/** swapcode for indices : indices are integers **/
-
 #define swapcodeind CNAME(swapcode,int)
-
 #include "gsort-int.h"
 #include "gsort-double.h"
 #include "gsort-string.h"
+
+
+
+/** swapcode for indices : indices are integers **/
+
+
+
 
 #define TYPE double
 

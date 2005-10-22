@@ -24,7 +24,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #define MAXSTR 256     /* maximum file name length and general string length */
 /* documented in Device Driver Adaptation Guide */
