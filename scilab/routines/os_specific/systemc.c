@@ -9,6 +9,13 @@
 
 #include<stdio.h>
 #include "../machine.h"
+
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef __STDC__
 	#include <stdlib.h>
@@ -23,13 +30,16 @@ extern BOOL IsAFile(char *chainefichier);
 /*-----------------------------------------------------------------------------------*/
 int C2F(systemc)(char *command, integer *stat)
 {
-	#ifndef WIN32
+	/*#ifndef WIN32
 		int status;
 		status=system(command);
 		*stat=(integer)status;
 	#else
 		*stat=(integer)Windows_system(command);
-	#endif
+	#endif*/
+	int status;
+		status=system(command);
+		*stat=(integer)status;
 
 	return(0);
 }
@@ -56,7 +66,7 @@ int Windows_system(char *command)
 		BOOL bOK=FALSE;
 		SHELLEXECUTEINFO ShExecInfo;
 		char DefaultShell[MAX_PATH];
-		char CommandLine[MAX_PATH];
+		char *CommandLine=NULL;
 		char HostFilename[MAX_PATH];
 		char *TMPDir=NULL;
 		DWORD _Result=0;
@@ -69,7 +79,7 @@ int Windows_system(char *command)
 		{
 			DeleteFile(HostFilename);
 		}
-
+		CommandLine=(char*) MALLOC (sizeof(char)*(strlen(command)+strlen(HostFilename)+strlen("/C \"%s &&echo hostOK>%s\"")+1));
 		wsprintf(CommandLine,"/C \"%s &&echo hostOK>%s\"",command,HostFilename);
 
 		ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
@@ -83,7 +93,7 @@ int Windows_system(char *command)
 		ShExecInfo.hInstApp = NULL;
 		bOK=ShellExecuteEx(&ShExecInfo);
 
-		_Result = WaitForSingleObject(ShExecInfo.hProcess,1000);
+		_Result = WaitForSingleObject(ShExecInfo.hProcess,INFINITE);
 
 		if (IsAFile(HostFilename))
 		{
@@ -96,6 +106,12 @@ int Windows_system(char *command)
 			TerminateProcess(ShExecInfo.hProcess,0);
 			CloseHandle(ShExecInfo.hProcess);
 			bReturn=TRUE;
+		}
+
+		if (CommandLine)
+		{
+			FREE(CommandLine);
+			CommandLine=NULL;
 		}
 	}
 	return bReturn;
