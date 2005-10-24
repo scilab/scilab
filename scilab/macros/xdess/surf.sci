@@ -392,17 +392,15 @@ endfunction
 function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)
 
 if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
-  
-  Z = Z';  // here a transposition is needed
-  
-  if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
+    
+  if size(X,'*') ~= size(Z,1) | size(Y,'*') ~= size(Z,2)
     warning('surf : Vectors X, Y must match Z matrix dimensions');
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end 
-  
-  [XX,YY,ZZ] = genfac3d(X,Y,Z);
-  
+
+  [XX,YY,ZZ] = genfac3d(Y,X,Z');
+
   // COLOR treatment
   CC = ZZ;
   
