@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
+  <LANGUAGE>eng</LANGUAGE>
 
   <TITLE>bar</TITLE>
 
@@ -9,30 +9,35 @@
 
   <DATE>2005</DATE>
 
-  <SHORT_DESCRIPTION name="bar">dessine un histogramme de type 'bar' a la
-  Matlab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="bar">bar histogram</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>bar(x,y ,[width])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>bar(y)</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>bar(x,Y,[width])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>bar(x,y)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>bar([h],x,y [,width [,color
+    [,style]]])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur ligne ou colonne de taille N.</SP>
+          <SP>: an axes handle, (default: h=gca() ).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur ligne ou colonne de taille N.</SP>
+          <SP>: a real scalar or a vector of size N, (default: if y is a
+          vector then x is a vector and x length equals to y length. If y is a
+          matrix then x is a vector and x length equals to the lines number of
+          y.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -40,7 +45,7 @@
         <PARAM_NAME>Y</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrice de taille MxN.</SP>
+          <SP>: a real scalar, vector of size N, or a matrice NxM.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -48,26 +53,89 @@
         <PARAM_NAME>width</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: (optionnel) définit la largeur (en pourcentage de la taille
-          disponible) pour la barre.</SP>
+          <SP>: (optional), a real scalar, defines the width (a percentage of
+          the available room) for the bar (default: 0.8).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>color</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: (optional), a string (default: 'blue'), specifing the inside
+          color bar.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>style:</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>a string, 'grouped' or 'stacked' (default: 'grouped').</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>A FAIRE</P>
+    <P><VERB>bar(y,...) :</VERB> if y is a vector then bar function draws a
+    polyline which has the <VERB>polyline_style</VERB> type 6. If y is a
+    vector, bar draws vector y versus vector 1:size(y,'*') . If y is a matrix,
+    bar draws each columns of y versus vector 1:size(y,1).</P>
+
+    <P><VERB>bar(x,y,...) :</VERB> if y is a vector then bar function draws a
+    polyline which has the <VERB>polyline_style</VERB> type 6, where x length
+    = y length.If y is a matrix NxM then bar function draws M polylines which
+    have the type 6. Each columns of y (i.e y(:,i)) corresponds to a polyline,
+    x length=M (i.e columns number of y).</P>
+
+    <P><VERB>bar(h,...) :</VERB> defines the current axes where the drawing is
+    performed.</P>
+
+    <P><VERB>bar(...,width,...) :</VERB> defines the width of the bar(s) in
+    percentage (generally: 0&lt;width&lt;1).</P>
+
+    <P><VERB>bar(...,style,...) :</VERB> defines how the bar is drawn. If y is
+    a matrix NxM (so M polylines of type 6) then there are two ways to draw
+    the M bars. the 'grouped' option allows to center the M polylines versus
+    each components of x, and the 'stacked' option allows to stack them.</P>
+
+    <P><VERB>bar(...,color,...) : </VERB>defines the bar color. Bar functions
+    uses the same colormap than in the <VERB>plot</VERB> function.</P>
+
+    <P>If there are several bar calls, the <VERB>barhomogenize</VERB> function
+    allows to homegenize the width and style of all bars (i.e polylines of
+    type 6) included in the current working axes.</P>
   </DESCRIPTION>
 
-  <EXAMPLE></EXAMPLE>
+  <EXAMPLE><![CDATA[// first example : draw just oone bar, width=0.5, color='yellow', default x=1:size(y,"x")
+y=[1 -3 5];
+bar(y,0.5,'yellow');
+// second example : default style='grouped'
+x=[1 2 5]; y=[1  -5 6;3 -2 7;4  -3 8];
+bar(x,y);
+// third example : draw 3 bars (columns number of y) style='stacked'.
+x=[1 2 5]; y=[1 4 7;2 5 8;3 6  9];
+bar(x,y,'stacked');
+// fourth example; width=0.2;color='green'; default style='grouped'
+x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
+bar(x,y,0.2,'green');]]></EXAMPLE>
 
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>barh</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>barhomogenize</LINK>
+    </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>surf</LINK>
+      <LINK>polyline_properties</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
