@@ -20,21 +20,31 @@ function [rep,stat]=unix_g(cmd)
   if prod(size(cmd))<>1 then   error(55,1),end
   
   ver=OS_Version();
+  stat=0;
 
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
     if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     	cmd1= cmd + ' > '+ tmp;
+    	stat=host(cmd1);
     else
     	tmp=TMPDIR+'\unix.out';
-     	cmd1=cmd +'>'+ tmp +' 2>'+TMPDIR+'\unix.err';
+    	// Use 'dos' for 2k and more 
+     	[status,ouput]=dos(cmd);
+     	if (status == %t) then
+     		mputl(ouput,tmp);
+     	  stat=0;
+     	else
+     	  mputl(ouput,TMPDIR+'\unix.err');
+     	  stat=1;
+     	end
     end
   else 
      tmp=TMPDIR+'/unix.out';
      cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
+     stat=host(cmd1);
   end 
-   
-  stat=host(cmd1);
+    
   
   select stat
    case 0 then
@@ -42,9 +52,11 @@ function [rep,stat]=unix_g(cmd)
     if size(rep,'*')==0 then
     	rep=[]
     else
-     	for k=1:size(rep,'*') 
-					rep(k)=oemtochar(rep(k));
-			end;
+      if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+     	  for k=1:size(rep,'*') 
+				  rep(k)=oemtochar(rep(k));
+			  end;
+			end  
     end
    case -1 then // host failed
     disp('host does not answer...')
@@ -56,21 +68,11 @@ function [rep,stat]=unix_g(cmd)
        		rep=emptystr()
      	else
      		msg=mgetl(TMPDIR+'\unix.err')
-     		if size(msg,'*')<>0 then
-     		  for k=1:size(msg,'*') 
-					  msg(k)=oemtochar(msg(k));
-				  end
-				end
         disp(msg(1))
         rep=emptystr()
      	end
      else 
         msg=mgetl(TMPDIR+'/unix.err')
-        if size(msg,'*')<>0 then
-     		  for k=1:size(msg,'*') 
-					  msg(k)=oemtochar(msg(k));
-				  end
-				end
         disp(msg(1))
         rep=emptystr()
      end 
@@ -79,8 +81,8 @@ function [rep,stat]=unix_g(cmd)
   	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     		host('if exist '+tmp+' del '+tmp);
     	else
-    		host('if exist '+tmp+' del '+tmp);
-    		host('if exist '+TMPDIR+'\unix.err'+' del '+TMPDIR+'\unix.err');
+    		dos('if exist '+tmp+' del '+tmp);
+    		dos('if exist '+TMPDIR+'\unix.err'+' del '+TMPDIR+'\unix.err');
     	end
   else
      host('rm -f '+tmp);

@@ -18,20 +18,29 @@ function unix_s(cmd)
   if prod(size(cmd))<>1 then   error(55,1),end
   
   ver=OS_Version();
-
+  stat=0;
+  
   // done in scilab.star TMPDIR=getenv('TMPDIR')
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
     if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     	cmd1= cmd + ' > '+ tmp;
+    	stat=host(cmd1);
     else
-    	cmd1=cmd +'>'+ ' NUL' +' 2>'+TMPDIR+'\unix.err';
+    	// Use 'dos' for 2k and more 
+     	[status,ouput]=dos(cmd);
+     	if (status == %t) then
+     		mputl(ouput,tmp);
+     	  stat=0;
+     	else
+     	  mputl(ouput,TMPDIR+'\unix.err');
+     	  stat=1;
+     	end
     end
   else 
      cmd1='('+cmd+')>/dev/null 2>'+TMPDIR+'/unix.err;';
+     stat=host(cmd1);
   end 
-  
-  stat=host(cmd1);
   
   if MSDOS then
     host('if exist '+tmp+ ' del '+tmp);
