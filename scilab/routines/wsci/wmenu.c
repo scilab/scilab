@@ -170,13 +170,20 @@ void Callback_EXEC(void)
 	
 	LPTW lptw=GetTextWinScilab();
 
-	    			
-	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
-	{
-		SendCTRLandAKey(CTRLU);
-		wsprintf(command,MSG_SCIMSG34,Fichier);
-		StoreCommand1 (command,1);
+	_try {
+		if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
+		{
+			SendCTRLandAKey(CTRLU);
+			wsprintf(command,MSG_SCIMSG34,Fichier);
+			StoreCommand1 (command,1);
+		}	
 	}
+	_except (UnhandledExceptionFilter(GetExceptionInformation())) 
+	{
+		
+	}
+	    			
+	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_GETF(void)
