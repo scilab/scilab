@@ -5,12 +5,12 @@ c     Copyright INRIA
       return
       end
 
-      integer function algtype(m1,m2)
+      integer function algtyp2(m1,m2)
       integer m1,m2
       if (m1.eq.0) then
-         algtype=m2
+         algtyp2=m2
       else
-         algtype=900+100*m1+m2
+         algtyp2=900+100*m1+m2
       endif
       return
       end
