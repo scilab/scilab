@@ -23,6 +23,7 @@
 #include "SetProperty.h"
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
+#include "ObjectStructure.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -7830,9 +7831,9 @@ sciDrawObj (sciPointObj * pobj)
 	      {  
 		as=pSEGS_FEATURE (pobj)->arrowsize;
 		C2F(echelle2dl)(&as,&as,&ias,&ias1,&un,&un,"f2i"); 
-		if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->isoview)
-		  ias=ias*10;
-		else 
+	/* 	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->isoview) */
+/* 		  ias=ias*10; */
+/* 		else  */
 		  ias =ias/2;
 		
 		if(sciGetIsMark(pobj))
@@ -7868,6 +7869,10 @@ sciDrawObj (sciPointObj * pobj)
 	      }
 	    else
 	      {
+		  as=pSEGS_FEATURE (pobj)->arrowsize;
+		  C2F(echelle2dl)(&as,&as,&ias,&ias1,&un,&un,"f2i"); 
+		  ias = ias/2;
+		  
 		if(sciGetIsMark(pobj))
 		  {
 		    x[0] = sciGetMarkForeground(pobj);
@@ -7886,21 +7891,21 @@ sciDrawObj (sciPointObj * pobj)
 		    DrawNewMarks(pobj,n,xm,ym,DPI);
 		  }
 		
-		if(sciGetIsLine(pobj)){
-
-		  x[0] = sciGetForeground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			    PD0, PD0, PD0, 0L, 0L);    
-		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			    PD0, PD0, PD0, 0L, 0L);
-		  C2F(dr1)("xarrow","v",pstyle,&pSEGS_FEATURE (pobj)->iflag
-			   ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,
-			   &pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
+		if ( sciGetIsLine( pobj ) )
+		{
+		    x[0] = sciGetForeground(pobj);
+		    
+		    C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+			      &dv, &dv, &dv, 5L, 4096);
+		    C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+			      PD0, PD0, PD0, 0L, 0L);    
+		    C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+			      PD0, PD0, PD0, 0L, 0L);
+		    
+		    C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
 		}
-		/* with C2F(dr)("xarrow",... does not work: why? What does (dr1) routine make more than (dr) in New Graphics mode ?? */
+	
+		/* with C2F(dr)("xarrow",... did not work: why? What does (dr1) routine make more than (dr) in New Graphics mode ?? */
 		/* Answer : dr deals with pixels value (data: xm and ym are integers!!) whereas dr1 deals with double value coming from the user */
 		/* This is true for old and new graphics mode. */
 	      } /***/
