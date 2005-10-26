@@ -1,3 +1,6 @@
+
+
+
 /*------------------------------------------------------------------------
  *    Graphic library
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
@@ -816,7 +819,6 @@ void frame_clip_off()
  * 
  *  C2F(echelle2d)(x,y,x1,y1,n1,n2,rect,dir)
  *    x,y,x1,y1 of size [n1*n2] 
- *    rect[4] : the frame boundaries in pixel are returned in rect 
  *    dir     : "f2i" -> double to integer (you give x and y and get x1,y1)
  *            : "i2f" -> integer to double (you give x1 and y1 and get x,y)
  *    lstr    : unused (Fortran/C) 
