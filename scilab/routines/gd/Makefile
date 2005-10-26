@@ -14,11 +14,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
 bdftogd.o: bdftogd.c gd.h ../machine.h
 gd.o: gd.c gd.h ../machine.h mtables.c
 giftogd.o: giftogd.c gd.h ../machine.h

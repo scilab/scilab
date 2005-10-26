@@ -16,29 +16,22 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-
 genf.o:      ../stack.h
 gennf.o:      ../stack.h
 setgmn.o: ../stack.h
 
-
 Rand.o: Rand.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h grand.h clcg4.h \
-  others_generators.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h grand.h clcg4.h \
+	others_generators.h
 clcg2.o: clcg2.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 clcg4.o: clcg4.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  clcg4.h
+	clcg4.h
 fsultra.o: fsultra.c others_generators.h ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h
+	../machine.h ../graphics/Graphics.h
 igngeom.o: igngeom.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 kiss.o: kiss.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 mt.o: mt.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h grand.h
 urand.o: urand.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h

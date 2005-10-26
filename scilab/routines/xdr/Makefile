@@ -17,11 +17,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
 xdr.o: rpc/types.h rpc/xdr.h
 xdr_array.o: rpc/types.h rpc/xdr.h
 xdr_float.o: rpc/types.h rpc/xdr.h

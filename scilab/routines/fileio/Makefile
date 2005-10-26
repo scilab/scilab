@@ -19,24 +19,17 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-
-
 fileio.o: fileio.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../os_specific/Os_specific.h
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../os_specific/Os_specific.h
 libst.o: libst.c libst.h
 misc.o: misc.c st.h wav.h ../machine.h
 raw.o: raw.c st.h wav.h ../machine.h libst.h
 sound.o: sound.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  st.h wav.h
+	st.h wav.h
 soundI.o: soundI.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h sox.h wav.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h sox.h wav.h
 sox.o: sox.c st.h wav.h ../machine.h sox.h
 sprintf_ptr.o: sprintf_ptr.c ../machine.h
 wav.o: wav.c st.h wav.h ../machine.h

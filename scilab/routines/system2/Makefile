@@ -27,11 +27,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
 badd.o: ../stack.h ../callinter.h
 bcol.o: ../stack.h ../callinter.h
 bfeval.o: ../stack.h ../callinter.h

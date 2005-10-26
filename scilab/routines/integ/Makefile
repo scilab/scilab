@@ -25,8 +25,3 @@ include ../Make.lib
 ddassl.o: ../stack.h
 lsdisc.o: ../stack.h
 xerrwv.o: ../stack.h
-
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile

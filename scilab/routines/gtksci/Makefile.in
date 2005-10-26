@@ -29,7 +29,6 @@ include ../Make.lib
 
 # need gnome includes 
 
-
 helpbrowser.o : helpbrowser.c 
 	$(CC) $(CFLAGS) $(HTMLFLAGS) -c helpbrowser.c 
 
@@ -53,26 +52,25 @@ clean::
 distclean::
 	$(RM) $(OBJTEST) test
 
-
 # generated with gcc -MMD 
 about.o: about.c 
 
 command.o: command.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h All-extern.h ../os_specific/Os_specific.h
+	../graphics/Graphics.h All-extern.h ../os_specific/Os_specific.h
 
 helpbrowser.o: helpbrowser.c \
-  ../graphics/Math.h ../machine.h ../graphics/Graphics.h All-extern.h \
-  queue-gtk2.h uri.h
+	../graphics/Math.h ../machine.h ../graphics/Graphics.h All-extern.h \
+	queue-gtk2.h uri.h
 
 io.o: io.c ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../os_specific/Os_specific.h All-extern.h \
-  ../tclsci/TCL_Global.h  ../stack-def.h
+	../machine.h ../graphics/Graphics.h ../os_specific/Os_specific.h All-extern.h \
+	../tclsci/TCL_Global.h  ../stack-def.h
 
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  ../graphics/bcg.h  queue-gtk2.c queue-gtk2.h
+	../graphics/bcg.h  queue-gtk2.c queue-gtk2.h
 
 x_main.o: x_main.c  ../version.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h All-extern.h 
+	../graphics/Math.h ../graphics/Graphics.h All-extern.h 
 
 x_VTPrsTbl.o: x_VTPrsTbl.c x_VTparse.h
 

@@ -19,7 +19,6 @@ OBJSF = algdiv.o alngam.o alnrel.o apser.o \
 	ipmpar.o psi.o \
 	rcomp.o rexp.o rlog.o rlog1.o \
 	spmpar.o stvaln.o 
-#dlngam.o
 
 include ../../Makefile.incl
 
@@ -29,23 +28,14 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-
-
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-
 dinvr.o: ../stack.h
 dlanor.o: ../stack.h
 dstrem.o: ../stack.h
 ipmpar.o: ../stack.h
 
-
 DcdInterf.o: DcdInterf.c ../../routines/stack-c.h \
-  ../../routines/graphics/Math.h ../../routines/machine.h \
-  ../../routines/graphics/Graphics.h ../../routines/stack-def.h \
-  ../../routines/interf/stack1.h ../../routines/interf/stack2.h \
-  ../../routines/interf/stack3.h
+	../../routines/graphics/Math.h ../../routines/machine.h \
+	../../routines/graphics/Graphics.h ../../routines/stack-def.h \
+	../../routines/interf/stack1.h ../../routines/interf/stack2.h \
+	../../routines/interf/stack3.h
 ipmpar1.o: ipmpar1.c ../sparse/spConfig.h ../machine.h

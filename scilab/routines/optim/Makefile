@@ -29,14 +29,8 @@ OBJSF =	ajour.o bfgsd.o calbx.o calmaj.o fmulb1.o fmuls1.o fpq2.o \
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS)
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
-
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
 
 sp.o: spd.h ../machine.h

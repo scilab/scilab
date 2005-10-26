@@ -13,15 +13,9 @@ OBJSF =
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH) $(XFLAGS)
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
-
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
 
 history.o: history.c history.h ../stack-c.h
 zzledt.o: zzledt.c ../machine.h

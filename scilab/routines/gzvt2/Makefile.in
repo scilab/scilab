@@ -20,7 +20,7 @@ clean ::
 	$(CC) -o ../../bin/zterm $(TERM_NAME).c  $(LDFLAGS) 
 
 distclean::
-	$(RM) -f ../../bin/zterm gtkplug 	
+	$(RM) -f ../../bin/zterm gtkplug
 
 
 

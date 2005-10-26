@@ -23,109 +23,107 @@ OBJSC = $(COMM) $(@MENUSOBJS@)
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) $(XFLAGS)
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
 #==============dependencies 
-#==============dependencies 
+
 MenuTest.o: MenuTest.c ../machine.h
 gxmen_Utils.o: gxmen_Utils.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_choice.o: gxmen_choice.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_choose.o: gxmen_choose.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_dialog.o: gxmen_dialog.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_getfile.o: gxmen_getfile.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_madial.o: gxmen_madial.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_mdial.o: gxmen_mdial.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_message.o: gxmen_message.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 gxmen_print.o: gxmen_print.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_choice.o: men_choice.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_choose.o: men_choose.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_dialog.o: men_dialog.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_getfile.o: men_getfile.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h ../os_specific/Os_specific.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h ../os_specific/Os_specific.h
 men_madial.o: men_madial.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_mdial.o: men_mdial.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_message.o: men_message.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 men_print.o: men_print.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 wmen_choice.o: wmen_choice.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_choose.o: wmen_choose.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_choose_modal.o: wmen_choose_modal.c wmen_scilab.h \
-  ../wsci/wresource.h ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wresource.h ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_dialog.o: wmen_dialog.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_getfile.o: wmen_getfile.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_madial.o: wmen_madial.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_mdial.o: wmen_mdial.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_message.o: wmen_message.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 wmen_print.o: wmen_print.c wmen_scilab.h ../wsci/wresource.h \
-  ../wsci/wcommon.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../graphics/bcg.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
+	../wsci/wcommon.h ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../graphics/bcg.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h ../wsci/wadd.h ../wsci/common.h ../os_specific/men_Sutils.h
 xmen_Utils.o: xmen_Utils.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_choice.o: xmen_choice.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_choose.o: xmen_choose.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_dialog.o: xmen_dialog.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_getfile.o: xmen_getfile.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_madial.o: xmen_madial.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_mdial.o: xmen_mdial.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_message.o: xmen_message.c men_scilab.h ../machine.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h
 xmen_print.o: xmen_print.c men_scilab.h ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h
-
+	../graphics/Graphics.h ../os_specific/men_Sutils.h

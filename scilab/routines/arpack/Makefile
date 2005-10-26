@@ -22,16 +22,9 @@ OBJSF  = dgetv0.o dlaqrb.o dstqrb.o dsortc.o dsortr.o dstatn.o dstats.o \
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS)
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
-
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
 
 dgetv0.o: debug.h stat.h
 dnaitr.o: debug.h stat.h

@@ -27,21 +27,21 @@ dbasin.o: ../stack.h
 sigbas.o: ../stack.h
 
 addinter.o: addinter.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h men_Sutils.h link.h addinter.h Os_specific.h \
-  ../stack-def.h
+	../graphics/Graphics.h men_Sutils.h link.h addinter.h Os_specific.h \
+	../stack-def.h
 cluni0.o: cluni0.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  Os_specific.h
+	Os_specific.h
 csignal.o: csignal.c ../machine.h
 getarg-hpux.o: getarg-hpux.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h
+	../graphics/Graphics.h
 getarg.o: getarg.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 getenvc.o: getenvc.c ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h Os_specific.h
+	../graphics/Graphics.h Os_specific.h
 getpidc.o: getpidc.c ../machine.h
 inffic.o: inffic.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 isanan.o: isanan.c ../machine.h Os_specific.h 
 link.o: link.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
-  men_Sutils.h link.h link_SYSV.c ../stack-def.h
+	men_Sutils.h link.h link_SYSV.c ../stack-def.h
 link_SYSV.o: link_SYSV.c ../stack-def.h
 link_W95.o: link_W95.c ../stack-def.h
 link_linux.o: link_linux.c ../dld/dld.h

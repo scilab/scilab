@@ -38,11 +38,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
 allops.o:  ../stack.h
 bexec.o:  ../stack.h
 clause.o:  ../stack.h
@@ -115,16 +110,16 @@ System.o: System.c ../machine.h
 System2.o: System2.c ../machine.h
 banier.o: banier.c ../machine.h ../version.h
 cvstr.o: cvstr.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 inisci-c.o: inisci-c.c ../machine.h ../os_specific/Os_specific.h
 msgstore.o: msgstore.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h msgstore.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h msgstore.h
 readline.o: readline.c ../machine.h
 scicurdir.o: scicurdir.c ../machine.h
 storeversion.o: storeversion.c ../stack-c.h ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../version.h
+	../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h ../version.h
 tksynchro.o: tksynchro.c ../machine.h ../tclsci/TCL_Global.h \
- ../stack-def.h
+	../stack-def.h

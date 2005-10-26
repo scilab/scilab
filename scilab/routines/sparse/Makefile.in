@@ -38,16 +38,10 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-#all:: Makefile.mak
-#
-#Makefile.mak	: Makefile
-#	$(SCIDIR)/util/Mak2VCMak Makefile
-#
-
 lu.o: lu.c spConfig.h spmatrix.h spDefs.h ../machine.h
 mspelm.o: mspelm.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../calelm/calelm.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h ../calelm/calelm.h
 spAllocate.o: spAllocate.c spConfig.h spmatrix.h spDefs.h
 spBuild.o: spBuild.c spConfig.h spmatrix.h spDefs.h
 spFactor.o: spFactor.c spConfig.h spmatrix.h spDefs.h

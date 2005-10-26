@@ -21,7 +21,6 @@ OBJSF = metane.o arbor.o bandred.o bmatch.o busack.o carete.o \
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS)
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
@@ -38,9 +37,3 @@ paths.o: paths.c ../machine.h
 saveg.o: saveg.c ../machine.h
 transc.o: transc.c ../machine.h
 
-
-
-all:: Makefile.mak
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
