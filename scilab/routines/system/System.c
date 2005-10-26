@@ -89,7 +89,8 @@ extern void
       C2F(intfromjava)(),
 	  C2F(intcalendar)(),
 	  C2F(intgetmemory)(),
-	  C2F(intwhat)();
+	  C2F(intwhat)(),
+	  C2F(intfromc)();
 
 
 void System_contents( int x)
@@ -180,6 +181,7 @@ void System_contents( int x)
 	  C2F(intcalendar)();
 	  C2F(intgetmemory)();
 	  C2F(intwhat)();
+	  C2F(intfromc)();
     }
 } 
 
