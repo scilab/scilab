@@ -21,6 +21,7 @@ extern int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 extern int TerminateScilab(char *ScilabQuit);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);
+extern int ScilabHaveAGraph(void);
 /*-----------------------------------------------------------------------------------*/
 
 static int example1(void)
@@ -74,18 +75,18 @@ static int example1(void)
 static int example2(void)
 {
 	SendScilabJob("plot3d();");
-	printf("\nPress a key to close this example.\n");
-	while( !_kbhit() )
+	printf("\nClose Graphical Windows to close this example.\n");
+
+	while( ScilabHaveAGraph() )
 	{
 		ScilabDoOneEvent();
 		Sleep(1);
 	}
-	return 1;
+		return 1;
 }
 /*-----------------------------------------------------------------------------------*/
-int MAIN__(void) 
+int main(void)
 {
-
   if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
 
   printf("\nexample 1\n");
@@ -94,7 +95,6 @@ int MAIN__(void)
   example2();
   printf("\n\n");
   if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
-
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
