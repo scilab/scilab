@@ -14,7 +14,7 @@ OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.o
 	Sparse.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj fromjava.obj calendar.obj \
-	CallScilab.obj str2sci.obj intwhat.obj
+	CallScilab.obj str2sci.obj intwhat.obj fromc.obj
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \

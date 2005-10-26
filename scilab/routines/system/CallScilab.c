@@ -107,6 +107,8 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		StacksizeUsed=*Stacksize;
 	}
 
+	SetFromCToON();
+
 	/* Scilab Initialization */ 
 	#ifdef WITH_TK
 	  initTCLTK(); /* TCLTK Init. */
@@ -225,5 +227,25 @@ void ScilabDoOneEvent(void)
 	{
 		C2F(scirun)("quit;",(int)strlen("quit;"));
 	}
+}
+/*-----------------------------------------------------------------------------------*/
+int ScilabHaveAGraph(void)
+{
+	integer iflag =0,ids,num;
+	int vInt=0;
+
+	if (version_flag() == 0)
+	{
+		sciGetIdFigure (&ids,&num,&iflag);
+		if (num > 0) vInt=1;
+
+	}/* NG end*/
+	else
+	{
+		C2F(getwins)(&num,&ids ,&iflag);
+		if (num > 0) vInt=1;
+	} 
+
+	return vInt;
 }
 /*-----------------------------------------------------------------------------------*/

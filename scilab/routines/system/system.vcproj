@@ -700,6 +700,9 @@ cd .. &gt;nul
 				RelativePath=".\diary.c">
 			</File>
 			<File
+				RelativePath=".\fromc.c">
+			</File>
+			<File
 				RelativePath=".\fromjava.c">
 			</File>
 			<File
@@ -765,6 +768,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\CallScilab.h">
+			</File>
+			<File
+				RelativePath=".\fromc.h">
 			</File>
 			<File
 				RelativePath=".\fromjava.h">

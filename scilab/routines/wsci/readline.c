@@ -98,6 +98,7 @@ extern BOOL IsWindowInterface(void);
 extern struct sci_hist * SearchBackwardInHistory(char *line);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 extern int C2F(ismenu) ();
+extern int IsFromC(void);
 /*-----------------------------------------------------------------------------------*/
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
@@ -785,10 +786,13 @@ static char msdos_getch ()
 {
   char c ;
   
-  while( !_kbhit() && C2F(ismenu)()==0)  /* Test on C2F(ismenu) added (bug 1052) - Francois VOGEL */
+  if (!IsFromC())
   {
-	  C2F (sxevents) ();
-	  Sleep(1);
+	  while( !_kbhit() && C2F(ismenu)()==0)  /* Test on C2F(ismenu) added (bug 1052) - Francois VOGEL */
+	  {
+		  C2F (sxevents) ();
+		  Sleep(1);
+	  }
   }
   if (C2F(ismenu)()==1) return 0;  /* This line added to fix bug 1052 - Francois VOGEL */
 

@@ -36,6 +36,9 @@ int SendScilabJob(char *job);
 void ScilabDoOneEvent(void);
 /* This procedure is the entry point to Scilab's event loop */
 
+int ScilabHaveAGraph(void);
+/* Returns TRUE if a graphic windows is opened */
+
 /*-----------------------------------------------------------------------------------*/
 #endif /* __CALLSCILAB__ */
 /*-----------------------------------------------------------------------------------*/
