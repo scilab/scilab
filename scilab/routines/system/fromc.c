@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "fromC.h"
+#include "fromc.h"
 #ifdef WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
