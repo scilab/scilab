@@ -1,5 +1,3 @@
-/* C code produced by gperf version 2.7.1 (19981006 egcs) */
-/* Command-line: gperf -C -t -k 2,3,4,$ Xcall.gperf  */
 /*------------------------------------------------------------------------
    *  Graphic library for 2D and 3D plotting 
    *  Copyright (C) 1998-2001 Chancelier Jean-Philippe
@@ -61,8 +59,7 @@ struct funreplace { char *name; func action[4]; };
 #ifdef __GNUC__
 __inline
 #endif
-static unsigned int
-hash (str, len)
+static unsigned int hash (str, len)
      register const char *str;
      register unsigned int len;
 {
