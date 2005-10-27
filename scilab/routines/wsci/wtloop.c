@@ -40,6 +40,7 @@
 #include <signal.h>
 #include <string.h>
 #include <stdlib.h>
+#include <conio.h>
 
 //#include "plot.h"
 #include "wresource.h"
@@ -61,6 +62,8 @@ extern char *get_sci_data_strings (int n);
 extern int C2F(sciquit)(void );
 extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(inisci)(int *,int *,int *);
+extern int IsNoInteractiveWindow(void);
+extern BOOL IsWindowInterface(void);
 static void interrupt_setup ();
 static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory);
 static int sci_exit(int n) ;
@@ -219,11 +222,43 @@ static void realmain(int nos,char *initial_script,int initial_script_type,int lp
   C2F(inisci)(&ini, &memory, &ierr);
   if (ierr > 0) sci_exit(1) ;
   /* execute the initial script and enter scilab */ 
-  
-  C2F(scirun)(startup,strlen(startup));
+
+  _try 
+  {
+		C2F(scirun)(startup,strlen(startup));
+  }
+
+   _except (EXCEPTION_EXECUTE_HANDLER) 
+  {
+	  if (IsWindowInterface())
+	  {
+		  MessageBox(NULL,"Scilab has found a critical error.\n Click on \"OK\" to exit.", "Error",MB_ICONSTOP);
+		  WinExit();
+		  C2F(sciquit)();
+		  C2F(tmpdirc)();
+		  exit(999);
+	  }
+	  else
+	  {
+		  sciprint("Scilab has found a critical error.\n");
+		  if (!IsNoInteractiveWindow())
+		  {
+			  sciprint("Press a key to exit ...\n");
+			  while( !_kbhit() && C2F(ismenu)()==0) 
+			  {
+				  C2F (sxevents) ();
+				  Sleep(1);
+			  }
+		  }
+		  C2F(sciquit)();
+		  C2F(tmpdirc)();
+		  exit(999);
+	  }
+  }
   
   /* cleaning */ /* Allan CORNET 18/01/2004 */
   C2F(sciquit)(); 
+  C2F(tmpdirc)();
   return ;
 }
 /*-----------------------------------------------------------------------------------*/

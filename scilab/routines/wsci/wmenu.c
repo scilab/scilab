@@ -178,7 +178,7 @@ void Callback_EXEC(void)
 			StoreCommand1 (command,1);
 		}	
 	}
-	_except (UnhandledExceptionFilter(GetExceptionInformation())) 
+	_except (EXCEPTION_EXECUTE_HANDLER) 
 	{
 		
 	}

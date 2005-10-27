@@ -437,8 +437,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	if (LaunchAFile) ChangeCursorWhenScilabIsReady();
 
+	
 	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
-
+	
 	CloseScilabConsole();
 	/* Tue ce process pour fermeture correcte sous Windows 98 */
 	Kill_Scilex_Win98();
@@ -634,5 +635,10 @@ BOOL ForbiddenToUseScilab(void)
 
 	bOK=TRUE;
 	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int IsNoInteractiveWindow(void)
+{
+	return nointeractive;
 }
 /*-----------------------------------------------------------------------------------*/
