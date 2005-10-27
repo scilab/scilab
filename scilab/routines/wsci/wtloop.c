@@ -223,6 +223,7 @@ static void realmain(int nos,char *initial_script,int initial_script_type,int lp
   if (ierr > 0) sci_exit(1) ;
   /* execute the initial script and enter scilab */ 
 
+#ifndef _DEBUG
   _try 
   {
 		C2F(scirun)(startup,strlen(startup));
@@ -255,7 +256,9 @@ static void realmain(int nos,char *initial_script,int initial_script_type,int lp
 		  exit(999);
 	  }
   }
-  
+#else
+	C2F(scirun)(startup,strlen(startup));
+#endif  
   /* cleaning */ /* Allan CORNET 18/01/2004 */
   C2F(sciquit)(); 
   C2F(tmpdirc)();
