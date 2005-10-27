@@ -3,14 +3,7 @@ MACROSN = $(MACROS:.sci=)
 
 all :: genlib names lib 
 
-all ::	Makefile.mak Makefile.amk
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
-
-.sci.bin:
+sci.bin:
 	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $*.sci
 
 lib  :   $(MACROS) 
