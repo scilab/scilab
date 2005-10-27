@@ -4,7 +4,7 @@
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif/
+#endif
 #include "../os_specific/men_Sutils.h"
 #include "libinter.h"
 
