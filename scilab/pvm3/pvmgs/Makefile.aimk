@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.2 2002/10/14 14:27:40 chanceli Exp $
+# $Id: Makefile.aimk,v 1.3 2005/10/27 08:57:27 pmarecha Exp $
 #
 # Generic Makefile body to be concatenated to config header.
 #
@@ -45,12 +45,11 @@ install:	all
 
 install-mpp:	all-mpp
 
-all:	$(DIRS) $(PROGS) $(PVMLDIR)/$(LIBGPVM) $(LPROGS)
+all: $(DIRS) $(PROGS) $(PVMLDIR)/$(LIBGPVM) $(LPROGS)
 
-all-mpp:	$(DIRS) $(PROGS) $(PVMLDIR)/$(LIBGPVM)-mpp $(LPROGS)
+all-mpp: $(DIRS) $(PROGS) $(PVMLDIR)/$(LIBGPVM)-mpp $(LPROGS)
 
 $(PVMXDIR):
-	- mkdir $(PVMBDIR)
 	- mkdir $(PVMXDIR)
 
 $(PVMLDIR):
@@ -109,17 +108,17 @@ lint:
 	lint -DARCHCLASS=\"$(PVM_ARCH)\" pvm_gsulib.c > Ll
 
 #
-pvmgsu_core.o:	$(SDIR)/pvmgsu_core.c
+pvmgsu_core.o: $(SDIR)/pvmgsu_core.c
 	$(CC) $(CFLAGS) -c $(SDIR)/pvmgsu_core.c
-pvmgsu_aux.o:	$(SDIR)/pvmgsu_aux.c
+pvmgsu_aux.o: $(SDIR)/pvmgsu_aux.c
 	$(CC) $(CFLAGS) -c $(SDIR)/pvmgsu_aux.c
-pvmgroups.o:	$(SDIR)/pvmgroups.c
+pvmgroups.o: $(SDIR)/pvmgroups.c
 	$(CC) $(CFLAGS) -c $(SDIR)/pvmgroups.c
-pvm_gstat.o:	$(SDIR)/pvm_gstat.c
+pvm_gstat.o: $(SDIR)/pvm_gstat.c
 	$(CC) $(CFLAGS) -c $(SDIR)/pvm_gstat.c
-pvmgs_core.o:	$(SDIR)/pvmgs_core.c
+pvmgs_core.o: $(SDIR)/pvmgs_core.c
 	$(CC) $(CFLAGS) -c $(SDIR)/pvmgs_core.c
-pvmgs_func.o:	$(SDIR)/pvmgs_func.c
+pvmgs_func.o: $(SDIR)/pvmgs_func.c
 	$(CC) $(CFLAGS) -c $(SDIR)/pvmgs_func.c
 
 #
