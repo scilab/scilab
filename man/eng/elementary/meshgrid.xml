@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>meshgrid</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>2005</DATE>
+
+  <SHORT_DESCRIPTION name="meshgrid">create matrices or 3-D
+  arrays</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X, Y] = meshgrid(x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[X, Y] = meshgrid(x,y)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[X, Y, Z] = meshgrid(x,y,z)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x, y, z</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vectors</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>X, Y, Z</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: matrices in case of 2 input arguments, else 3-D arrays in case
+          of 3 input arguments</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>...</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+// ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ndgrid</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Farid Belahcene</AUTHOR>
+</MAN>
