@@ -67,26 +67,25 @@
     components of x, and the 'stacked' option allows to stack them.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[// first example
+  <EXAMPLE><![CDATA[// first example: creation of 1 yellow bar (i.e 1 polyline with polyline_style=6) and 3 bars (i.e 3 polylines with polyline_style=6) 
 subplot(2,3,1)
 xtitle('ex1: creation of 1 yellow bar and 3 bars ')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
-// 
-subplot(2,3,2)
+// grouped homogenisation of these 4 bars
+subplot(2,3,2) 
 xtitle('grouped homogenisation')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize();
-//
+// stacked homogenisation of thes 4 bars
  subplot(2,3,3)
 xtitle('stacked homogenisation')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize('stacked',1);
 
-// second example
-// draw one bar (using bar function) and two polylines (using plot function)  
+// second example : creation of 1 red bar (i.e 1 polyline with polyline_style=6) and 2 polylines with type=1 (calling plot function)
 subplot(2,3,4)
 xtitle('ex2: creation of 1 bar and 2 polylines')
 x=1:10; y=sin(x)/2;
@@ -101,7 +100,7 @@ bar(x,y,'red')
 x1=1:10;y1=[sin(x);cos(x)]
 plot(x1,y1)
 e=gce(); e2=e.children(2); e2.polyline_style=6;
-// homogenisation of the first (from bar function) and second bar (from the modification). 
+// homogenisation of the first bar (from bar function) and second bar (from the modification). 
 subplot(2,3,6)
 xtitle('grouped homogenisation')
 x=1:10; y=sin(x)/2;

@@ -36,7 +36,7 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>style</PARAM_NAME>
+        <PARAM_NAME>txt</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: a cell or a vector of strings.</SP>
@@ -64,7 +64,7 @@
 
   <EXAMPLE><![CDATA[// first example : one input argument  x=[1 2 5] 
 pie([1 2 5]);
-// second example : two input arguments x=[5 9  4 6 3], sp=[0 1 0 1 0], the second and the third are separated from the others
+// second example : two input arguments x=[5 9  4 6 3], sp=[0 1 0 1 0], the second and the fourth are separated of the others
 pie([5 9 4 6 3],[0 1 0 1 0]);
 // third example : three input arguments, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);]]></EXAMPLE>
@@ -75,5 +75,5 @@ pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);]]></EXAMPLE>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
-  <AUTHOR>Farid Belacehne</AUTHOR>
+  <AUTHOR>Farid Belahcene</AUTHOR>
 </MAN>
