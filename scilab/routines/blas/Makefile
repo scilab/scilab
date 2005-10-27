@@ -20,6 +20,7 @@ OBJSF = dasum.o daxpy.o dcopy.o ddot.o dgbmv.o dgemm.o dgemv.o\
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS)
+
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
