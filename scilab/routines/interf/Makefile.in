@@ -19,7 +19,7 @@ OBJSF = lstelm.o lstelmi.o matelm.o matold.o lstops.o intl_e.o intl_i.o \
 	intreadb.o intwritb.o intwrite.o intwrite4b.o oldloadsave.o intfile.o \
 	intgetenv.o intmgetl.o intgetio.o\
 	matimp.o  matnew.o matode.o matops.o matopt.o intlsqrsolve.o \
-	 matqz.o matric.o  matsys.o \
+	matqz.o matric.o  matsys.o \
 	polaut.o polelm.o polops.o strelm.o strops.o fmlelm.o \
 	logic.o logelm.o xawelm.o misops.o stack0.o \
 	where.o indxg.o defint.o \
@@ -40,14 +40,6 @@ CFLAGS = $(CC_OPTIONS) $(XFLAGS)
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
-
-
-
-all:: Makefile.mak 
-
-Makefile.mak	: Makefile
-#	$(SCIDIR)/util/Mak2VCMak Makefile
-
 
 # some versions of g77 on sparc will compile intmgetl.f
 # but the code does not execute properly.
@@ -136,54 +128,54 @@ where.o: ../stack.h
 xawelm.o: ../stack.h
 
 Interf.o: Interf.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 ciargc.o: ciargc.c
 cs2st.o: cs2st.c ../machine.h
 ctest.o: ctest.c ../machine.h
 getdate.o: getdate.c ../machine.h
 intarpack.o: intarpack.c ../mex.h ../stack-c.h ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 intfilestat.o: intfilestat.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../os_specific/Os_specific.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h ../os_specific/Os_specific.h
 intlapack.o: intlapack.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 intorand.o: intorand.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 intslicot.o: intslicot.c ../mex.h ../stack-c.h ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 matdes.o: matdes.c ../graphics/bcg.h ../stack-c.h \
-  ../graphics/CloneObjects.h ../graphics/Interaction.h ../graphics/SetProperty.h \
-  ../graphics/GetProperty.h ../graphics/InitObjects.h ../graphics/DrawObjects.h \
-  ../graphics/BuildObjects.h ../graphics/DestroyObjects.h \
-  ../graphics/Math.h ../machine.h ../graphics/Graphics.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
-  ../graphics/PloEch.h matdes.h
+	../graphics/CloneObjects.h ../graphics/Interaction.h ../graphics/SetProperty.h \
+	../graphics/GetProperty.h ../graphics/InitObjects.h ../graphics/DrawObjects.h \
+	../graphics/BuildObjects.h ../graphics/DestroyObjects.h \
+	../graphics/Math.h ../machine.h ../graphics/Graphics.h ../stack-def.h \
+	../interf/stack1.h ../interf/stack2.h ../interf/stack3.h \
+	../graphics/PloEch.h matdes.h
 matdsr.o: matdsr.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h matdsr.h ../control/control.h \
-  ../calelm/calelm.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h matdsr.h ../control/control.h \
+	../calelm/calelm.h
 stack1.o: stack1.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../system/msgstore.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h ../system/msgstore.h
 stack2.o: stack2.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h ../os_specific/men_Sutils.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h ../os_specific/men_Sutils.h
 stack3.o: stack3.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 stcreate.o: stcreate.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 strelm-c.o: strelm-c.c ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 structcreate.o: structcreate.c ../stack-c.h ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 
