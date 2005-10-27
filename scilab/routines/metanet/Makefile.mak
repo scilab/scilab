@@ -29,7 +29,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-
 metane.obj: ../stack.h
 
 connex.obj: connex.c ../machine.h
@@ -41,12 +40,3 @@ paths.obj: paths.c ../machine.h
 saveg.obj: saveg.c ../machine.h
 transc.obj: transc.c ../machine.h
 
-
-
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile

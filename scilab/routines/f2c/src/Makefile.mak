@@ -26,9 +26,6 @@ $(SCIDIR)/bin/f2c.exe	: $(OBJECTS)
 # @$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS)
 # @$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS) $(GUILIBS) 
 
-
-
-
 $(OBJECTSd): defs.h ftypes.h defines.h machdefs.h sysdep.h
 
 cds.obj: sysdep.h

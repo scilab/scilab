@@ -42,14 +42,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-# 
-#
-#Makefile.mak	: Makefile
-#	$(SCIDIR)/util/Mak2VCMak Makefile
-#
-# Makefile.amk	: Makefile
-#	$(SCIDIR)/util/Mak2ABSMak Makefile
-
 # according to compiler, do not optimize the following files
 
 #hqror2.obj: hqror2.f

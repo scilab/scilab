@@ -37,12 +37,4 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
-
 sp.obj: spd.h ../machine.h

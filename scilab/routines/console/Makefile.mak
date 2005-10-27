@@ -22,14 +22,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
-
 history.obj: history.c history.h ../stack-c.h
 zzledt.obj: zzledt.c ../machine.h
 dynamic_menus.obj: dynamic_menus.c ../machine.h

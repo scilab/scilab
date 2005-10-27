@@ -32,11 +32,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
 bitops.obj: ../stack.h
 convert.obj: ../stack.h
 creimat.obj: ../stack.h

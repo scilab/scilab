@@ -26,14 +26,7 @@ cdoublef.obj: cdoublef.c ../machine.h
 cerro.obj: cerro.c ../machine.h cerro.h
 cout.obj: cout.c ../machine.h
 libinter.obj: libinter.c ../machine.h ../graphics/Math.h \
-  ../graphics/Graphics.h ../os_specific/men_Sutils.h libinter.h cerro.h sparse.h \
-  ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
-  ../interf/stack3.h
+	../graphics/Graphics.h ../os_specific/men_Sutils.h libinter.h cerro.h sparse.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h
 
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile

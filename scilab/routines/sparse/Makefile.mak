@@ -42,14 +42,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-#
-#
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-#
-#Makefile.amk	: Makefile
-#	$(SCIDIR)/util/Mak2ABSMak Makefile
-
 lu.obj: spConfig.h spmatrix.h spDefs.h  ../machine.h
 spBuild.obj: spConfig.h  spmatrix.h spDefs.h
 spFortran.obj: spConfig.h  spmatrix.h spDefs.h

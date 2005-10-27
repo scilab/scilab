@@ -28,11 +28,3 @@ include ../Make.lib.mak
 ddassl.obj: ../stack.h
 lsdisc.obj: ../stack.h
 xerrwv.obj: ../stack.h
-
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile

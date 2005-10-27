@@ -24,15 +24,6 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
 
-
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
-
 intmcisendstring.obj: ../stack.h intmcisendstring.h
 intwintools.obj: ../stack.h intwintools.h
 intabout.obj: ../stack.h intabout.h

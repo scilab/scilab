@@ -50,14 +50,13 @@ $(DEF) : $(OBJS)
 	@echo Creation of $(DEF)
 	@..\..\bin\dumpexts.exe -o $(DEF) -n scilex.dll $(OBJS)
 
-
 matus2.obj matusr.obj msgstxt.obj user2.obj :   ../stack.h
 callinterf.obj: callinterf.c ../machine.h ../os_specific/addinter.h callinterf.h
 FTables.obj: FTables.c FTables0.h ../machine.h FTables.h ../stack-c.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../os_specific/link.h
+	../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
+	../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../os_specific/link.h
 Funtab.obj: Funtab.c ../machine.h fundef ../tclsci/fundef.tclsci
 mexlib.obj: mexlib.c ../mex.h ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 scimem.obj: scimem.c ../machine.h

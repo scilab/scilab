@@ -35,16 +35,16 @@ FeC.obj: FeC.c Math.h ../machine.h Graphics.h
 Format.obj: Format.c Math.h ../machine.h Graphics.h
 Gray.obj: Gray.c Math.h ../machine.h Graphics.h PloEch.h
 gsort.obj: gsort.c Math.h ../machine.h Graphics.h ../os_specific/men_Sutils.h \
- gsort-int.h gsort-double.h gsort-string.h
+	gsort-int.h gsort-double.h gsort-string.h
 Math.obj: Math.c Math.h ../machine.h Graphics.h ../sparse/spConfig.h
 nues1.obj: nues1.c ../machine.h Math.h Graphics.h
 periFig.obj: periFig.c Math.h ../machine.h Graphics.h periFig.h color.h bcg.h
 periGif.obj: periGif.c Math.h ../machine.h Graphics.h periGif.h color.h  bcg.h\
- ../gd/gd.h ../gd/../machine.h
+	../gd/gd.h ../gd/../machine.h
 periPos.obj: periPos.c Math.h ../machine.h Graphics.h periPos.h color.h bcg.h
 periX11.o: periX11.c Math.h ../machine.h Graphics.h periX11.h \
  bcg.h ../version.h color.h ../intersci/cerro.h \
- ../intersci/../machine.h
+	../intersci/../machine.h
 Plo2d1.obj: Plo2d1.c Math.h ../machine.h Graphics.h PloEch.h
 Plo2d2.obj: Plo2d2.c Math.h ../machine.h Graphics.h PloEch.h
 Plo2d3.obj: Plo2d3.c Math.h ../machine.h Graphics.h PloEch.h
@@ -59,5 +59,5 @@ RecLoad.obj: RecLoad.c Math.h ../machine.h Graphics.h Rec.h
 RecSave.obj: RecSave.c Math.h ../machine.h Graphics.h Rec.h
 Xcall1.obj: Xcall1.c Math.h ../machine.h Graphics.h PloEch.h
 Xcall.obj: Xcall.c Math.h ../machine.h Graphics.h periX11.h periPos.h \
- periFig.h periGif.h
+	periFig.h periGif.h
 
