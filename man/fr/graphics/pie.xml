@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -23,7 +23,7 @@
         <PARAM_NAME>x</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: un scalaire ou un vecteur de rÃ©els positifs.</SP>
+          <SP>: un scalaire ou un vecteur de réels positifs.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -31,7 +31,7 @@
         <PARAM_NAME>sp</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: un scalaire ou un vecteur de rÃ©els.</SP>
+          <SP>: un scalaire ou un vecteur de réels.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -49,30 +49,30 @@
     <P>x, sp et style doivent etre de meme longueur.</P>
 
     <P><VERB>pie(x) :</VERB> si la longueur du vecteur x est N alors la
-    fonction pie dessine un cercle graphique constituÃ© de N part. La surface
-    de la iÃ¨me part est egale Ã  : (x(i)/sum(x))*(aire du cercle unitÃ©). c'est
-    la division de la valeur de la iÃ¨me composante de x divisÃ©e par la somme
+    fonction pie dessine un cercle graphique constitué de N part. La surface
+    de la ième part est egale à  : (x(i)/sum(x))*(aire du cercle unité). c'est
+    la division de la valeur de la ième composante de x divisée par la somme
     des composantes de x</P>
 
     <P><VERB>pie(x,sp) : </VERB>le vecteur sp permet de couper une ou
     plusieurs parts du cercle, (la longueur de sp doit etre egale a la
-    longueur de x). Si la valeur de la iÃ¨me composante de sp est different de
-    0 alors la iÃ¨me part est sÃ©parÃ©e des autres part(donc du cercle) par un
-    espace, Si la valeur de la iÃ¨me composante de sp est egale Ã  0 alors elle
-    est attachÃ©e aux autres.</P>
+    longueur de x). Si la valeur de la ième composante de sp est different de
+    0 alors la ième part est séparée des autres part(donc du cercle) par un
+    espace, Si la valeur de la ième composante de sp est egale à  0 alors elle
+    est attachée aux autres.</P>
 
-    <P><VERB>pie(x,txt) :</VERB> le vecteur txt permet d'ecrire un texte Ã 
-    cotÃ© de chacune des part du cercle, la iÃ¨me composante de txt correspond
-    au texte de la iÃ¨me part (par dÃ©faut : on ecrit Ã  cotÃ© de chaque part le
-    pourcentage de l'aire d'une part par rappport Ã  la surface totale du
-    cercle. La longueur du vecteur txt doit etre Ã©gale Ã  la longueur.</P>
+    <P><VERB>pie(x,txt) :</VERB> le vecteur txt permet d'ecrire un texte à 
+    coté de chacune des part du cercle, la ième composante de txt correspond
+    au texte de la ième part (par défaut : on ecrit à  coté de chaque part le
+    pourcentage de l'aire d'une part par rappport à  la surface totale du
+    cercle. La longueur du vecteur txt doit etre égale à  la longueur.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[// premier exemple : un argument d'entrÃ©e  x=[1 2 5] 
+  <EXAMPLE><![CDATA[// premier exemple : un argument d'entrée  x=[1 2 5] 
 pie([1 2 5]);
-// deuxiÃ¨me example : deux arguments d'entrÃ©es x=[5 9  4 6 3], sp=[0 1 0 1 0], la 2Ã¨me et 4Ã¨me parts du cercle sont sÃ©parÃ©es des autres
+// deuxième example : deux arguments d'entrées x=[5 9  4 6 3], sp=[0 1 0 1 0], la 2ème et 4ème parts du cercle sont séparées des autres
 pie([5 9 4 6 3],[0 1 0 1 0]);
-// troisiÃ¨me exemple : trois arguments d'entrÃ©es, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
+// troisième exemple : trois arguments d'entrées, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);]]></EXAMPLE>
 
   <SEE_ALSO>

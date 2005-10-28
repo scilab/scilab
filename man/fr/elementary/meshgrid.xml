@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -34,8 +34,8 @@
         <PARAM_NAME>X, Y, Z</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: des matrices dans le cas de 2 arguments d'entrÃ©es, sinon des
-          tableaux des tableaux 3-D dans le cas de 3 arguments d'entrÃ©es </SP>
+          <SP>: des matrices dans le cas de 2 arguments d'entrées, sinon des
+          tableaux des tableaux 3-D dans le cas de 3 arguments d'entrées </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
