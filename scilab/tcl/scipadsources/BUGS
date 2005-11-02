@@ -136,17 +136,6 @@ Wishes:
 -unmatched parentheses are highlighted (e.g. stroke-tru) like in Matlab's 
  editor
 
--colorization of scilab keywords completely dynamical, i.e. the list
- of keywords is either read at scipad startup or resfreshed on
- demand. Thus colorization would always be in sync with environment changes
- or changes in the codebase. Now this is substantiallly implemented for 
- predefs and library functions; the lists of scilab commands, scilab primitives
- and scicos function are still hardcoded in the words file. The file itself can
- be regenerated with scilab code (makewordfile2.sce), but this is not run
- at every launch of scipad because: commands and primitive require at the
- moment shell piping of a 2nd instance of scilab, b) scicos functions names 
- are retrieved by scanning the scicos directories, which is slow.
-
 -highlighting of for--end, while--end, select--end blocks while
  typing, like for parentheses; scope background remains highlighted in a
  background tint (choose a suitable scheme for nested structures), OR,
