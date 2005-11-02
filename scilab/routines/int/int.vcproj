@@ -700,7 +700,7 @@ cd .. &gt;nul
 				RelativePath=".\gencopy.c">
 			</File>
 			<File
-				RelativePath=".\genmcuprod.c">
+				RelativePath=".\gencuprod.c">
 			</File>
 			<File
 				RelativePath=".\gencusum.c">
@@ -738,7 +738,9 @@ cd .. &gt;nul
 			<File
 				RelativePath=".\genmcuprod.c">
 			</File>
-
+			<File
+				RelativePath=".\genmcuprod.c">
+			</File>
 			<File
 				RelativePath=".\genmcusum.c">
 			</File>
@@ -764,13 +766,13 @@ cd .. &gt;nul
 				RelativePath=".\genmprod.c">
 			</File>
 			<File
-				RelativePath=".\genprod.c">
-			</File>
-			<File
 				RelativePath=".\genmsum.c">
 			</File>
 			<File
 				RelativePath=".\genmtran.c">
+			</File>
+			<File
+				RelativePath=".\genprod.c">
 			</File>
 			<File
 				RelativePath=".\genrdiv.c">

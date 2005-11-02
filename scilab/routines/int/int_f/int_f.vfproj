@@ -165,8 +165,6 @@ cd .."/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/int_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\bitops.f"/>
-		<File RelativePath="..\convert.f"/>
 		<File RelativePath="..\i_a_i.f">
 			<FileConfiguration Name="Debug without Java|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -176,43 +174,44 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas without Java|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
-		<File RelativePath="..\i_abs.f"/>
-		<File RelativePath="..\i_c_i.f"/>
-		<File RelativePath="..\i_convert.f"/>
-		<File RelativePath="..\i_cumprod.f"/>
-		<File RelativePath="..\i_cumsum.f"/>
-		<File RelativePath="..\i_d_i.f"/>
-		<File RelativePath="..\i_diag.f"/>
-		<File RelativePath="..\i_e.f"/>
-		<File RelativePath="..\i_f_i.f"/>
-		<File RelativePath="..\i_i_i.f"/>
-		<File RelativePath="..\i_kron.f"/>
-		<File RelativePath="..\i_l_i.f"/>
-		<File RelativePath="..\i_logic.f"/>
-		<File RelativePath="..\i_m_i.f"/>
-		<File RelativePath="..\i_matrix.f"/>
-		<File RelativePath="..\i_maxi.f"/>
-		<File RelativePath="..\i_mget.f"/>
-		<File RelativePath="..\i_mini.f"/>
-		<File RelativePath="..\i_mput.f"/>
-		<File RelativePath="..\i_p.f"/>
-		<File RelativePath="..\i_prod.f"/>
-		<File RelativePath="..\i_q_i.f"/>
-		<File RelativePath="..\i_r_i.f"/>
-		<File RelativePath="..\i_s_i.f"/>
-		<File RelativePath="..\i_sum.f"/>
-		<File RelativePath="..\i_t.f"/>
-		<File RelativePath="..\i_tril.f"/>
-		<File RelativePath="..\i_triu.f"/>
-		<File RelativePath="..\i_x_i.f"/>
-		<File RelativePath="..\intelm.f"/>
-		<File RelativePath="..\intinttype.f"/>
+				<File RelativePath="..\intelm.f"/>
 		<File RelativePath="..\intops.f"/>
 		<File RelativePath="..\memused.f"/>
-		<File RelativePath="..\readgif.f"/>
-		<File RelativePath="..\readxbm.f"/>
+		<File RelativePath="..\uppertype.f"/>
+		<File RelativePath="..\intinttype.f"/>
+		<File RelativePath="..\convert.f"/>
+		<File RelativePath="..\bitops.f"/>
 		<File RelativePath="..\unarybit.f"/>
-		<File RelativePath="..\uppertype.f"/></Filter>
+		<File RelativePath="..\i_mget.f"/>
+		<File RelativePath="..\i_mput.f"/>
+		<File RelativePath="..\i_s_i.f"/>
+		<File RelativePath="..\i_p.f"/>
+		<File RelativePath="..\i_e.f"/>
+		<File RelativePath="..\i_i_i.f"/>
+		<File RelativePath="..\i_c_i.f"/>
+		<File RelativePath="..\i_f_i.f"/>
+		<File RelativePath="..\i_m_i.f"/>
+		<File RelativePath="..\i_r_i.f"/>
+		<File RelativePath="..\i_l_i.f"/>
+		<File RelativePath="..\i_x_i.f"/>
+		<File RelativePath="..\i_d_i.f"/>
+		<File RelativePath="..\i_q_i.f"/>
+		<File RelativePath="..\i_t.f"/>
+		<File RelativePath="..\i_logic.f"/>
+		<File RelativePath="..\i_sum.f"/>
+		<File RelativePath="..\i_cumsum.f"/>
+		<File RelativePath="..\i_prod.f"/>
+		<File RelativePath="..\i_cumprod.f"/>
+		<File RelativePath="..\i_convert.f"/>
+		<File RelativePath="..\i_abs.f"/>
+		<File RelativePath="..\i_diag.f"/>
+		<File RelativePath="..\i_tril.f"/>
+		<File RelativePath="..\i_triu.f"/>
+		<File RelativePath="..\i_kron.f"/>
+		<File RelativePath="..\i_maxi.f"/>
+		<File RelativePath="..\i_mini.f"/>
+		<File RelativePath="..\readxbm.f"/>
+		<File RelativePath="..\i_matrix.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
 	<Globals/></VisualStudioProject>
