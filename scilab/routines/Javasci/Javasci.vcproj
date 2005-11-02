@@ -454,27 +454,6 @@ cd ..
 			<File
 				RelativePath=".\javasci_SciReal.c">
 			</File>
-			<File
-				RelativePath="..\f2c\libf2c\main.c">
-				<FileConfiguration
-					Name="Debug with Atlas|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCLCompilerTool"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release with Atlas|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCLCompilerTool"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="PIV_Release with Atlas|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCLCompilerTool"/>
-				</FileConfiguration>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
