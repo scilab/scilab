@@ -69,6 +69,11 @@ c         call readgif
          call i_convert
       elseif(fin.eq.25) then
          call i_matrix
+      elseif(fin.eq.26) then
+         call i_prod
+      elseif(fin.eq.27) then
+         call i_cumprod
+
       endif
       return
       end
