@@ -1,29 +1,8 @@
+      SUBROUTINE OPTR03(A,IA,C,IC,Q,IQ,R,IR,P,B,D,CI,CS,X,W,IW,IRE,IPVT,
+     &                  JPVT,ALFA,IRA,N,M,MI,MI1,MD,MIF,MDF,MODO,IND,IMP
+     &                  ,IO,ITER)
 C
-C -Subprograma: optr03
-      subroutine optr03(a,ia,c,ic,q,iq,r,ir,p,b,d,ci,cs,x,w,iw,ire,ipvt,
-     &                  jpvt,alfa,ira,n,m,mi,mi1,md,mif,mdf,modo,ind,imp
-     &                  ,io,iter)
-C     SUBROUTINE OPTR03(A,IA,C,IC,Q,IQ,R,IR,P,B,D,CI,CS,X,W,IW,IRE,IPVT,
-C    &                  JPVT,ALFA,IRA,N,M,MI,MI1,MD,MIF,MDF,MODO,IND,IMP
-C    &                  ,IO,ITER)
-C
-C***********************************************************************
-C                                                                      *
-C                                                                      *
-C      Copyright:       Eduardo Casas Renteria                         *
-C                       Cecilia Pola Mendez                            *
-C                                                                      *
-C       Departamento de Matematicas,Estadistica y Computacion          *
-C       -----------------------------------------------------          *
-C                       UNIVERSIDAD DE CANTABRIA                       *
-C                       ------------------------                       *
-C                            OCTUBRE  1989 Version 1.1                 *
-C                            JULIO    2001 Version 2.1                 *
-C                            JULIO    2005                             *
-C                                                                      *
-C***********************************************************************
-C
-C     OBJETIVO:
+C!PURPOSE
 C        La minimizacion  de un funcional cuadratico  con restricciones
 C        lineales,  (de acotacion, igualdad  y  desigualdad), sobre las
 C        variables:
@@ -45,7 +24,7 @@ C               F(X)= ALFA*( 1/2*X'*H*X + P'*X ) +
 C                    +( ABS(A'*X-B)) + ( MAX(A'*X-B,0))
 C
 C
-C     LISTA DE LLAMADA:
+C!     LISTA DE LLAMADA:
 C     DE ENTRADA:
 C
 C        A      Matriz de dimension  (IA,MIF+MDF).   En sus  N  primeras
@@ -72,16 +51,16 @@ C               activas.
 C
 C        IQ     Primera dimension de la matriz  Q. IQ >= N.
 C
-C        R      Matriz de  trabajo  de  dimension  (IR,N+1). En las  N
-C               primeras columnas contiene  la matriz  H  del  termino
-C               cuadratico.   Es  suficiente  suministrar  la  parte
-C               triangular inferior. Si  MODO= -2  o  MODO= 0, 3  o  5
-C               a partir de la segunda columna se suministra  la parte
-C               no nula  de la matriz triangular    superior  de  la
-C               factorizacion  QR  de  la  matriz  de coeficientes  de
-C               las restricciones recomendadas o de las restricciones
-C               activas.  El resto de la matriz se utiliza como area
-C               de trabajo.
+C        R      Matriz de trabajo de dimension  (IR,NR), donde se tomara
+C               NR= MAX(N,MI)+1 .  En las  N  primeras columnas contiene
+C               la  matriz  H  del  termino  cuadratico.  Es  suficiente
+C               suministrar la parte triangular inferior. Si  MODO= -2
+C               o  MODO= 0, 3  o  5,  a partir de la segunda columna se
+C               suministra  la parte  no nula  de la matriz triangular
+C               superior  de  la  factorizacion  QR  de  la  matriz  de
+C               coeficientes  de las restricciones recomendadas o de las
+C               restricciones activas.  El resto de la matriz se utiliza
+C               como area de trabajo.
 C
 C        IR     Primera dimension de la matriz  R. IR >= N.
 C
@@ -279,9 +258,6 @@ C                       en  OPTR01).
 C
 C        IO     Numero de canal de salida de resultados.
 C
-C       ITER  : Numero maximo de iteraciones que realizara el proceso.
-C               Si ITER <= 0, se usara el valor 14*(N+MI+MD+MIF+MDF).
-C
 C     DE SALIDA:
 C
 C        Q      Contiene la matriz  Q  ortogonal de la factorizacion  QR
@@ -340,12 +316,26 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: anfm01,anfm02,anfm03,anfm04,anfm05,anfm06
+C!    SUBPROGRAMAS AUXILIARES:
+C                anfm01,anfm02,anfm03,anfm04,anfm05,anfm06
 C                anrs01,anrs02,auxo01,aux003,dadd,daxpy,dcopy,ddif,ddot,
 C                desr03,dimp03,dipvtf,dmmul,dnrm0,dnrm2,dscal,dswap,
-C                d1mach,idamax,nvkt03,optr01,opvf03,pasr03,tol03,zthz
+C                dlamch,idamax,nvkt03,optr01,opvf03,pasr03,tol03,zthz
 C     FUNCIONES FORTRAN INTRINSECAS: abs,max,min,mod,sign,sqrt
-C
+C! ORIGEN:
+C***********************************************************************
+C                                                                      *
+C                                                                      *
+C                       Eduardo Casas Renteria                         *
+C                       Cecilia Pola Mendez                            *
+C                                                                      *
+C       Departamento de Matematicas,Estadistica y Computacion          *
+C       -----------------------------------------------------          *
+C                       UNIVERSIDAD DE CANTABRIA                       *
+C                       ------------------------                       *
+C                            OCTUBRE  1989                             *
+C                                                                      *
+C***********************************************************************
 C
       implicit double precision(a-h,o-z)
       dimension c(ic,*),a(ia,*),p(*),x(*),d(*),b(*),ci(*),cs(*),q(iq,*),
@@ -355,7 +345,7 @@ C     Se comprueba si los valores de las variables son correctos
 C
       if((ic.lt.n.and.(mi.gt.0.or.md.gt.0)) .or. n.le.1 .or. ir.lt.n .or
      &   . ((mif.gt.0.or.mdf.gt.0).and.ia.lt.n) .or. iq.lt.n .or. modo.
-     &   lt.-2 .or. modo.gt.6 .or. mi.lt.0 .or. md.lt.0 .or. mif.lt.0 .
+     &   lt.-1 .or. modo.gt.6 .or. mi.lt.0 .or. md.lt.0 .or. mif.lt.0 .
      &   or. mdf.lt.0 .or. ira.lt.0 .or. ira.gt.3 .or. io.lt.1) then
          ind=-4
          call dimp03(x,w,ire,ipvt,s,0,0,0,0,0,0,0,0,0,ind,imp,
@@ -368,7 +358,7 @@ C
       epsmch=dlamch('p')
       eps=epsmch**0.75
       eps0=epsmch**0.9
-      gigant=d1mach(2)
+      gigant=dlamch('o')
       gig1=sqrt(gigant)
 C
 C     Se comprueba que los vectores  CI,CS,IRE toman valores correctos
@@ -432,6 +422,7 @@ C
       icd=nd+n
       iad=icd+md
       idw=iad+midf
+      iter=0
       id=0
       ind=0
       icicla=0
@@ -441,12 +432,7 @@ C
       icol2=0
       iicol=0
       info=0
-	if (iter.le. 0) then 
-          itemax=14*(n+mid+midf)
-	else
-	    itemax=iter
-	end if
-	iter=0
+      itemax=4*(n+mid+midf)
       icont=0
       if(ira.eq.0) then
          do 30 i=1,n
@@ -514,7 +500,7 @@ C
       if(modo.le.0) then
          i1=idamax(n,x,1)
          s1=x(i1)
-         if(s1.eq.0.d0) then
+         if(s1.eq.0.0d+0) then
             do 38 i=1,mi1
 38          w(i)=d(ipvt(i))
             do 40 i=mi1+1,m
@@ -740,7 +726,6 @@ C
 2000     iadd=0
          ind1=0
          il=0
-         inddes=0
          if(iicol.eq.1) id=2
 C
 C     Se calcula el gradiente del funcional si no hay ciclaje
@@ -753,7 +738,7 @@ C
 160         continue
             w(n)=s
             call dadd(n,p,1,w,1)
-            if(alfa.ne.1.d0) call dscal(n,alfa,w,1)
+            if(alfa.ne.1.0d+0) call dscal(n,alfa,w,1)
             do 180 i=1,mif
                ni=nmd+i
                if(ire(ni).eq.2) then
@@ -772,11 +757,12 @@ C     y si se verifica el test sobre el gradiente proyectado
 C
          s1=gigant
          s2=0
+         inul=0
          if(id.ge.2) then
             i1=icd-1
             do 200 i=1,nm
 200         w(i1+i)=ddot(n,q(1,n1-i),1,w,1)
-            if(minimo.eq.0) s2=dnrm2(nm,w(icd),1)/(1+dnrm0(n,w,1))
+            if(minimo.eq.0) s2=dnrm2(nm,w(icd),1)/(1+dnrm0(n,x,1))
             if(s2.ge.eps0) then
                info=10
                icont=icont+1
@@ -793,81 +779,79 @@ C
 C     Se verifica si son correctos los valores de los multiplicadores
 C     de Lagrange
 C
-                  icol=0
-                  j=nd-1+mi1
-                  do 230 i=mi1+1,m
-                     j=j+1
-                     k=ipvt(i)
-                     if(k.le.nmd) then
-                        s=w(j)
-                     else if(k.gt.nmd .and. k.le.nmdi) then
-                        s=1.d0-abs(w(j))
-                     else
-                        sw=w(j)
-                        s=min(sw,1.d0-sw)
+                  indm=1
+                  if(indm.eq.1) then
+3000                 icol=0
+                     j=nd-1+mi1
+                     do 230 i=mi1+1,m
+                        j=j+1
+                        k=ipvt(i)
+                        if(k.le.nmd) then
+                           s=w(j)
+                        else if(k.gt.nmd .and. k.le.nmdi) then
+                           s=1.0d+0-abs(w(j))
+                        else
+                           sw=w(j)
+                           s=min(sw,1.0d+0-sw)
+                        end if
+                        if(s.lt.s1) then
+                           s1=s
+                           icol=i
+                        end if
+230                  continue
+                     if(icol.ne.0) then
+                        if(ipvt(icol).gt.nmd) inul=1
                      end if
-                     if(s.lt.s1) then
-                        s1=s
-                        icol=i
-                     end if
-230               continue
-                  if(s1.le.eps) then
-                     if(s1.ge.-eps) call dcopy(m,w(nd),1,w(icd),1)
-                     if(icont.gt.0) icont=0
+                     if(s1.lt.-eps .or. (s1.le.eps .and. inul.eq.0))
+     &then
+                        if(inul.eq.0 .and. abs(s1).le.eps)
+     &                  call dcopy(m,w(nd),1,w(icd),1)
+                        if(icont.gt.0) icont=0
 C
 C     Se elimina del conjunto activo la restriccion correspondiente a la
 C     columna  ICOL  y se modifican la factorizacion  QR correspondiente
 C     a las restricciones activas  y  la factorizacion de Cholesky de la
 C     matriz  Z'HZ.
 C
-                     if(m.gt.1) call anfm02(q,iq,r(1,2),ir,n,m,icol,io)
-                     m1=m-1
-                     il=ipvt(icol)
-                     if(il.gt.n) w(il)=0
-                     s=w(nd+icol-1)
-                     ire(abs(il))=0
-                     do 240 j=icol,m1
-240                  ipvt(j)=ipvt(j+1)
-                     if(minimo.eq.1) then
-                        ind=0
-                        nm=0
+                        if(m.gt.1) call anfm02(q,iq,r(1,2),ir,n,m,icol,
+     &io)
+                        m1=m-1
+                        il=ipvt(icol)
+                        if(il.gt.n) w(il)=0
+                        s=w(nd+icol-1)
+                        ire(abs(il))=0
+                        do 240 j=icol,m1
+240                     ipvt(j)=ipvt(j+1)
+                        if(minimo.eq.1) then
+                           ind=0
+                           nm=0
+                        end if
+                        call anfm06(q(1,m),iq,r,ir,w(nd),jpvt,n,nm,ind,
+     &io)
+                        info=1
+                        m=m1
+                        if(iver.ne.-1 .and. il.le.nmd) then
+                           iver=iver-1
+                        else if(iver.eq.iv .and. ind.lt.0) then
+                           ind=-1
+                           if(imp.ge.7) call dimp03(x,w,ire,ipvt,s,0,
+     &                         0,0,0,0,0,0,0,0,ind,imp,io,iter)
+                           return
+                        end if
                      end if
-                     call anfm06(q(1,m),iq,r,ir,w(nd),jpvt,n,nm,ind,io)
-                     info=1
-                     m=m1
-                     if(iver.ne.-1 .and. il.le.nmd) then
-                        iver=iver-1
-                     else if(iver.eq.iv .and. ind.lt.0) then
-                        ind=-1
-                        if(imp.ge.7) call dimp03(x,w,ire,ipvt,s,0,
-     &                      0,0,0,0,0,0,0,0,ind,imp,io,iter)
-                        return
-                     end if
-                  end if
-                  if(abs(s1).le.eps) then
-                     if(ind.ge.0 .and. ind.le.nm) then
+                     if((ind.lt.0 .or. ind.gt.nm) .or. abs(s1).gt.eps)
+     &then
+                        indm=0
+                     else
+                        s1=gigant
                         call dcopy(icol-1,w(icd),1,w(nd),1)
                         j1=nd+icol-1
                         do 243 j=icd+icol,icd+m
                            w(j1)=w(j)
                            j1=j1+1
  243                    continue
-                        if(abs(s).gt.eps) then
-                           w(nd+m)=s
-                           m=m+1
-                           ipvt(m)=il
-                           ire(il)=1
-                           ip=0
-                           call anfm04(q,iq,r(1,2),ir,a(1,il-nmd),
-     &                                 w(icd),jpvt,n,m,ip,io)
-                        end if
-                     else
-                        if(abs(s-1.d0).le.eps) then
-                           inddes=-il
-                        else
-                           inddes=il
-                        end if
                      end if
+                     if(indm.eq.1) go to 3000
                   end if
                end if
             end if
@@ -875,8 +859,8 @@ C
 C
 C     Impresion de los resultados obtenidos si x es un minimo local
 C
-         if(id.ge.2 .and. (s1.ge.-eps.and.inddes.eq.0) .and.
-     &      (s2.lt.eps0 .or. icont.ge.3)) then
+         if(id.ge.2 .and. (s1.gt.eps .or. (s1.ge.-eps.and.inul.eq.1))
+     & .and. (s2.lt.eps0 .or. icont.ge.3)) then
             call tol03(q,iq,r(1,2),ir,c,ic,d,a,ia,b,ci,cs,x,w(nd+m),
      &                 ipvt,n,m,mi,mi1,nmd,io)
             ind=0
@@ -893,7 +877,7 @@ C
                   w(iw+1)=dnorma
                end if
             end if
-            if(imp.ge.7) call dimp03(x,w,ire,ipvt,dnorma,n,m,nd,iw,il,
+            if(imp.ge.7) call dimp03(x,w,ire,ipvt,dnorma,n,m,nd,iw,0,
      &                               0,0,mi,mi1,ind,imp,io,iter)
             return
          end if
@@ -903,9 +887,9 @@ C     se modifica el vector gradiente calculado
 C
          if(il.gt.nmd) then
             k=il-nmd
-            if(s.gt.0.d0) then
+            if(s.gt.0.0d+0) then
                call dadd(n,a(1,k),1,w,1)
-            else if(s.lt.0.d0 .and. il.le.nmdi) then
+            else if(s.lt.0.0d+0 .and. il.le.nmdi) then
                call ddif(n,a(1,k),1,w,1)
             end if
          end if
@@ -913,17 +897,8 @@ C     Se calcula una direccion de descenso
 C
          m1=m+1
          m2=m1+1
-         if(abs(inddes).le.n) then
-            call desr03(q(1,m1),iq,r(1,m2),ir,w,w,w(icd),
-     &               w(nd),jpvt,alfa,nm,n,ind,info,inddes,ro,io)
-         else if(inddes.gt.n .and. inddes.le.nmd) then
-            call desr03(q(1,m1),iq,r(1,m2),ir,w,c(1,mi+il-n),w(icd),
-     &             w(nd),jpvt,alfa,nm,n,ind,info,inddes,ro,io)
-         else
-            call desr03(q(1,m1),iq,r(1,m2),ir,w,a(1,il-nmd),w(icd),
-     &             w(nd),jpvt,alfa,nm,n,ind,info,inddes,ro,io)
-         end if
-         id=inddes
+         call desr03(q(1,m1),iq,r(1,m2),ir,w,w(icd),w(nd),alfa,jpvt,nm,
+     &                  n,ind,info,id,ro,io)
          if(imp.ge.9) then
             if(id.eq.1) then
                ides=1
@@ -949,8 +924,7 @@ C
                      if(csi.le.gig1 .and. ire(i1).eq.0 .and. w(ii)
      &                  .gt.eps .and. (xi1.ge.(csi-eps)))then
                         s2=dnrm2(nm,q(i1,m1),iq)
-C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.epsmch) then.
-                        if(s2.ge.eps0) then
+                        if(s2.ge.epsmch) then
                            k=1
                            ipvt(m1)=i1
                         else
@@ -963,8 +937,7 @@ C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.ep
                      if(cii.ge.-gig1 .and. ire(i1).eq.0 .and. w(ii
      &                  ).lt.-eps .and. (xi1.le.cii+eps))then
                         s2=dnrm2(nm,q(i1,m1),iq)
-C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.epsmch) then.
-                        if(s2.ge.eps0) then
+                        if(s2.ge.epsmch) then
                            k=1
                            ipvt(m1)=-i1
                         else
@@ -990,9 +963,7 @@ C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.ep
                         jj=jj+1
 245                  continue
                      s2=dnrm2(nm,w(idw),1)
-C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.epsmch) then.
-
-                     if(s2.ge.eps0) then
+                     if(s2.ge.epsmch) then
                         k=1
                         ipvt(m1)=ni
                      else
@@ -1038,9 +1009,7 @@ C     Si la restriccion no es linealmente dependiente se apade al
 C     conjunto activo y si no, se averigua si existe direccion de
 C     descenso violandose esa restriccion
 C
-C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.epsmch) then.
-
-                     if(s2.ge.eps0) then
+                     if(s2.ge.epsmch) then
                         k=1
                         ipvt(m1)=in
                      else if(il.eq.0) then
@@ -1060,40 +1029,40 @@ C modified 15-july-2005 (anfm04 uses and used eps0 but here we used: if(s2.ge.ep
                               s2=ddot(n,q(1,m1),1,a(1,il-nmd),1)
                               sj=sj/s2
                            end if
-                           sk=0.d0
-                           s3=-1.d0
+                           sk=0.0d+0
+                           s3=-1.0d+0
                            if(i1.le.mif) then
                               s2=abs(sj)
                               if(il.le.nmd .or. (il.gt.nmdi.and.s.lt.
      &                           -eps)) then
                                  s3=s2+s
                                  if(sj.gt.eps) then
-                                    sk=-1.d0
+                                    sk=-1.0d+0
                                  else
-                                    sk=1.d0
+                                    sk=1.0d+0
                                  end if
                               else
-                                 s3=s2-abs(s)+1.d0
+                                 s3=s2-abs(s)+1.0d+0
                                  if((s.lt.-eps.and. sj.gt.eps) .or.
      &                              (s.gt.eps.and. sj.lt.-eps)) then
-                                    sk=-1.d0
+                                    sk=-1.0d+0
                                  else
-                                    sk=1.d0
+                                    sk=1.0d+0
                                  end if
                               end if
                            else
                               if(sj.lt.-eps .and. (il.le.nmd.or.
      &                           (il.gt.nmdi.and.s.lt.-eps))) then
                                  s3=s-sj
-                                 sk=1.d0
+                                 sk=1.0d+0
                               else if(sj.gt.eps .and. il.gt.nmd .and.
      &                           s.gt.eps) then
                                  s3=sj+s1
-                                 sk=1.d0
+                                 sk=1.0d+0
                               else if(sj.lt.-eps .and. il.gt.nmd .and.
      &                           il.le.nmdi .and. s.lt.-eps) then
                                  s3=s1-sj
-                                 sk=1.d0
+                                 sk=1.0d+0
                               end if
                            end if
                            if(s3.gt.eps) then
@@ -1109,26 +1078,26 @@ C
 C     Se modifican la direccion de descenso o el paso calculado, y el
 C     vector gradiente
 C
-                              if(s.gt.0.d0) then
+                              if(s.gt.0.0d+0) then
                                  s1=-s+1
-                              else if(s.lt.0.d0.and.il.le.nmdi.and.il
+                              else if(s.lt.0.0d+0.and.il.le.nmdi.and.il
      &                           .gt.nmd) then
                                  s1=-s-1
                               else
                                  s1=-s
                               end if
-                              s=1.d0+(sk*sj)/s1
+                              s=1.0d+0+(sk*sj)/s1
                               if(info.eq.0) then
                                  call dscal(n,s,w(nd),1)
                               else
                                  ro=s*ro
                               end if
-                              if(sk.eq.1.d0) then
+                              if(sk.eq.1.0d+0) then
                                  call dadd(n,a(1,i1),1,w,1)
-                              else if(sk.eq.-1.d0) then
+                              else if(sk.eq.-1.0d+0) then
                                  call ddif(n,a(1,i1),1,w,1)
                               end if
-                              w(ii)=0.d0
+                              w(ii)=0.0d+0
                            end if
                         else
                            w(ii)=0
@@ -1199,14 +1168,14 @@ C
                ni=n+i
                if(ire(ni).eq.0 .and. (iver.ne.iv .or. iver.eq.-1) .and.
      &         id.lt.10)then
-                  if(ro.eq.1.d0) then
+                  if(ro.eq.1.0d+0) then
                      w(ni)=w(ni)+w(i1+i)
                   else
                      w(ni)=w(ni)+ro*w(i1+i)
                   end if
                end if
 270         continue
-            if(ro.eq.1.d0) then
+            if(ro.eq.1.0d+0) then
                call dadd(n,w(nd),1,x,1)
             else
                call daxpy(n,ro,w(nd),1,x,1)
