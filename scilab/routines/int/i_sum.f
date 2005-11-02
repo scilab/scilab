@@ -6,8 +6,8 @@ c     WARNING : argument of this interface may be passed by reference
       integer sel,tops
       integer iadr,sadr
 
-      external memused
-      integer memused
+      external memused,mtlbsel
+      integer memused,mtlbsel
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -32,6 +32,7 @@ c
       if(rhs.eq.2) then
          call  getorient(top,sel)
          if(err.gt.0) return
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
          top=top-1
       endif
       m=istk(il0+1)

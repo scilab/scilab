@@ -4,8 +4,8 @@ c     WARNING : argument of this interface may be passed by reference
       integer id(nsiz)
       logical ref
       integer sel,tops
-      external memused
-      integer memused
+      external memused,mtlbsel
+      integer memused,mtlbsel
       integer iadr,sadr
 c     
       iadr(l)=l+l-1
@@ -32,6 +32,7 @@ c
          call getorient(top,sel)
          if(err.gt.0) return
          top=top-1
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
       endif
 
       m=istk(il0+1)

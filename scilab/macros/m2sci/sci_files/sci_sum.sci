@@ -34,11 +34,11 @@ if rhs==1 then
       tree.lhs(1).dims=A.dims
       tree.lhs(1).dims(dim)=1
     else
-      tree.rhs=Rhs(A,Funcall("firstnonsingleton",1,list(A),list()))
+      tree.rhs=Rhs(A,"m")
       tree.lhs(1).dims=allunknown(A.dims)
     end
   else
-    tree.name="mtlb_sum"
+    tree.rhs=Rhs(A,"m")
     tree.lhs(1).dims=allunknown(A.dims)
   end
 

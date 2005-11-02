@@ -179,6 +179,7 @@ cd .."/>
 		<File RelativePath="..\i_abs.f"/>
 		<File RelativePath="..\i_c_i.f"/>
 		<File RelativePath="..\i_convert.f"/>
+		<File RelativePath="..\i_cumprod.f"/>
 		<File RelativePath="..\i_cumsum.f"/>
 		<File RelativePath="..\i_d_i.f"/>
 		<File RelativePath="..\i_diag.f"/>
@@ -195,6 +196,7 @@ cd .."/>
 		<File RelativePath="..\i_mini.f"/>
 		<File RelativePath="..\i_mput.f"/>
 		<File RelativePath="..\i_p.f"/>
+		<File RelativePath="..\i_prod.f"/>
 		<File RelativePath="..\i_q_i.f"/>
 		<File RelativePath="..\i_r_i.f"/>
 		<File RelativePath="..\i_s_i.f"/>

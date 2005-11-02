@@ -11,6 +11,8 @@
     <CALLING_SEQUENCE_ITEM>y=sum(x,'r') or y=sum(x,1)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=sum(x,'c') or y=sum(x,2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=sum(x,'m')   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -29,13 +31,21 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    For a vector or a matrix <VERB>x</VERB>, <VERB>y=sum(x)</VERB>  returns in the scalar <VERB>y</VERB> the sum of all the entries
-    of <VERB>x</VERB>.</P>
-    <P><VERB>y=sum(x,'r')</VERB> (or, equivalently, <VERB>y=sum(x,1)</VERB>) is the rowwise
-    sum: <VERB>y(j)= sum(x(:,j))</VERB>. <VERB>y</VERB> is a row vector</P>
-    <P><VERB>y=sum(x,'c')</VERB> (or, equivalently, <VERB>y=sum(x,2)</VERB>) is the columnwise sum. It returns 
-    in each entry of the column vector <VERB>y</VERB> the sum :  <VERB>y(i)= sum(x(i,:))</VERB>)).</P>
+    <P> For a vector or a matrix <VERB>x</VERB>, <VERB>y=sum(x)</VERB>  returns
+      in the scalar <VERB>y</VERB> the sum of all the entries of
+      <VERB>x</VERB>.</P> 
+
+    <P><VERB>y=sum(x,'r')</VERB> (or, equivalently, <VERB>y=sum(x,1)</VERB>) is
+      the rowwise sum: <VERB>y(j)= sum(x(:,j))</VERB>. <VERB>y</VERB> is a row
+      vector</P>
+
+    <P><VERB>y=sum(x,'c')</VERB> (or, equivalently, <VERB>y=sum(x,2)</VERB>) is
+      the columnwise sum. It returns in each entry of the column vector
+      <VERB>y</VERB> the sum :  <VERB>y(i)= sum(x(i,:))</VERB>)).</P> 
+
+    <P><VERB>y=sum(x,'m')</VERB>  is the sum along the first non singleton
+      dimension of <VERB>x</VERB> (for compatibility with Matlab).</P> 
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

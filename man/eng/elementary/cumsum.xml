@@ -28,13 +28,22 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    For a vector or a matrix <VERB>x</VERB>, <VERB>y=cumsum(x)</VERB>  returns in <VERB>y</VERB> the cumulative sum of all the entries
-    of <VERB>x</VERB> taken columnwise.</P>
-    <P><VERB>y=cumsum(x,'c')</VERB> (or, equivalently, <VERB>y=cumsum(x,2)</VERB>) returns in 
-    <VERB>y</VERB> the cumulative sum of the columns of <VERB>x</VERB>: <VERB> y(i,:)=cumsum(x(i,:))</VERB></P>
-    <P><VERB>y=cumsum(x,'r')</VERB> (or, equivalently, <VERB>y=cumsum(x,1)</VERB>) returns
-    in <VERB>y</VERB> the cumulative sum of the rows of <VERB>x</VERB>: <VERB> y(:,i)=cumsum(x(:,i))</VERB></P>
+    <P> For a vector or a matrix <VERB>x</VERB>, <VERB>y=cumsum(x)</VERB>  returns
+      in <VERB>y</VERB> the cumulative sum of all the entries of <VERB>x</VERB>
+      taken columnwise.</P> 
+
+    <P><VERB>y=cumsum(x,'c')</VERB> (or, equivalently,
+      <VERB>y=cumsum(x,2)</VERB>) returns in  <VERB>y</VERB> the cumulative sum 
+      of the columns of <VERB>x</VERB>: <VERB> 	y(i,:)=cumsum(x(i,:))</VERB></P> 
+
+    <P><VERB>y=cumsum(x,'r')</VERB> (or, equivalently,
+      <VERB>y=cumsum(x,1)</VERB>) returns in <VERB>y</VERB> the cumulative sum
+      of the rows of <VERB>x</VERB>: <VERB> y(:,i)=cumsum(x(:,i))</VERB></P>
+
+
+    <P><VERB>y=cumsum(x,'m')</VERB>  is the cumulative sum along the first non
+      singleton  dimension of <VERB>x</VERB> (for compatibility with Matlab).</P> 
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

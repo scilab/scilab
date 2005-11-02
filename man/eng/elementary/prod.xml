@@ -9,7 +9,9 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=prod(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=prod(x,'r') or y=prod(x,1)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>y=prod(x,'c') or y=prod(x,2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=prod(x,'c') or y=prod(x,2)
+    </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=prod(x,'m') </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -28,13 +30,23 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    For a vector or a matrix <VERB>x</VERB>, <VERB>y=prod(x)</VERB>  returns in the scalar <VERB>y</VERB> the prod of all the entries
-    of <VERB>x</VERB>, , e.g. <VERB>prod(1:n)</VERB> is n!</P>
-    <P><VERB>y=prod(x,'r')</VERB> (or, equivalently, <VERB>y=prod(x,1)</VERB>)computes the
-    rows elementwise product of  <VERB>x</VERB>. <VERB>y</VERB> is the row vector: <VERB>y(i)=prod(x(i,:))</VERB>.</P>
-    <P><VERB>y=prod(x,'c')</VERB> (or, equivalently, <VERB>y=prod(x,2)</VERB>) computes the
-    columns elementwise product of  <VERB>x</VERB>. <VERB>y</VERB> is the column vector: <VERB>y(i)=prod(x(:,i))</VERB>.</P>
+    <P> For a vector or a matrix <VERB>x</VERB>, <VERB>y=prod(x)</VERB>
+      returns in the scalar <VERB>y</VERB> the prod of all the entries of
+      <VERB>x</VERB>, , e.g. <VERB>prod(1:n)</VERB> is n!</P> 
+
+    <P><VERB>y=prod(x,'r')</VERB> (or, equivalently,
+      <VERB>y=prod(x,1)</VERB>)computes the rows elementwise product of
+      <VERB>x</VERB>. <VERB>y</VERB> is the row vector:
+      <VERB>y(i)=prod(x(i,:))</VERB>.</P> 
+
+    <P><VERB>y=prod(x,'c')</VERB> (or, equivalently, <VERB>y=prod(x,2)</VERB>)
+      computes the columns elementwise product of
+      <VERB>x</VERB>. <VERB>y</VERB> is the column vector:
+      <VERB>y(i)=prod(x(:,i))</VERB>.</P>
+
+    <P><VERB>y=prod(x,'m')</VERB>  is the product along the first non singleton
+      dimension of <VERB>x</VERB> (for compatibility with Matlab).</P> 
+
     <P><VERB>prod</VERB> is not implemented for sparse matrices.</P>
   </DESCRIPTION>
   <EXAMPLE>

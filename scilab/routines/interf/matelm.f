@@ -520,22 +520,21 @@ c     -------------------------------
 c     maxi mini interface 
 c     -------------------------------
       character*(*) fname
-      character*(2) type
 c     Interface for maxi and mini 
       INCLUDE '../stack.h'
       integer id(nsiz)
       double precision s,sr,si
-      logical checkrhs,checklhs,getsmat,getscalar,cremat,getmat
+      logical checkrhs,checklhs,getscalar,cremat,getmat
       logical cresmat2,getrmat,test
       logical getilist,getlistmat,checkval
       integer gettype,itype,topk,isanan
+      integer sel, mtlbsel
       integer iadr,sadr
       double precision x1
 c
       iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
 c
-      type='g'//char(0)
 
       topk=top
       if (.not.checklhs(fname,1,2)) return
@@ -575,14 +574,10 @@ c     ------call macro
       if(rhs.gt.1.and.itype.ne.10) goto 100
 c=====maxi mini (A1)
 c     ------simple case one argument which is a matrix or vector 
+      sel=0
  10   if(rhs.eq.2) then 
-         if(.not.getsmat(fname,topk,top,m2,n2,1,1,lr2,nlr2))return
-         if (nlr2.ne.1) then
-            buf=fname//' : second argument must be "c" or "r"'
-            call error(999)         
-            return
-         endif
-         call cvstr(nlr2,istk(lr2),type,1)
+         call  getorient(topk,sel)
+         if(err.gt.0) return
          top=top-1
       endif
       if(gettype(top).ne.1) then
@@ -604,7 +599,9 @@ c     ------simple case one argument which is a matrix or vector
          endif
          return
       endif
-      if ( type(1:1).eq.'r') then 
+      if(sel.eq.-1) sel=mtlbsel(istk(iadr(lstk(top))+1),2)
+
+      if (sel.eq.1) then 
 c     ------------max of each column of a 
          if (.not.cremat(fname,topk,0,1,n,lr,lir)) return
          if (.not.cremat(fname,topk+1,0,1,n,lkr,lkir)) return
@@ -629,7 +626,7 @@ c     .    max
          endif
          top=topk-rhs+lhs            
 c     ---------max of each row of a
-      else if ( type(1:1).eq.'c') then       
+      else if (sel.eq.2) then       
          if (.not.cremat(fname,topk,0,m,1,lr,lir)) return
          if (.not.cremat(fname,topk+1,0,m,1,lkr,lkir)) return
          if(fin.eq.17) then
@@ -653,7 +650,7 @@ c     .    max
          endif
          top=topk-rhs+lhs            
 c     ----- general maxi or mini 
-      else if ( type(1:1).eq.'g'.or.type(1:1).eq.'*') then 
+      else 
          if (rhs.eq.2) topk=top
 
          x1=stk(lr1)
@@ -688,9 +685,6 @@ c     for matrices
                stk(lr1+1)=dble(kc+1)
             endif
          endif
-      else
-         buf = fname // ' second argument must be "c" or "r"'
-         call error(999)
       endif
       return
 c=====maxi mini (A1,.....,An)
@@ -1687,6 +1681,19 @@ c     -----------
       end
 c
 
+      integer function mtlbsel(dims,ndims)
+      integer dims(ndims),sel
+      sel=0
+      do 10 i=1,ndims
+         if(dims(i).gt.1) then
+            sel=i
+            goto 20
+         endif
+ 10   continue
+ 20   continue
+      mtlbsel=sel
+      end
+
       subroutine intsum(id)
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
@@ -1695,6 +1702,8 @@ c     WARNING : argument of this interface may be passed by reference
       integer sel,tops
       integer iadr,sadr
       double precision dsum
+      integer mtlbsel
+      
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -1718,13 +1727,17 @@ c
 c
       if(istk(il0).eq.1) then
 c     standard matrix case
+         m=istk(il0+1)
+         n=istk(il0+2)
          if(rhs.eq.2) then
             call  getorient(top,sel)
             if(err.gt.0) return
             top=top-1
+            if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
+
          endif
-         m=istk(il0+1)
-         n=istk(il0+2)
+         
+            
          it=istk(il0+3)
          mn=m*n
          l1=sadr(ilr+4)
@@ -1844,6 +1857,7 @@ c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
       logical ref
+      integer mtlbsel
       integer sel,tops
       integer iadr,sadr
 c     
@@ -1879,6 +1893,7 @@ c     standard matrix case
          call getorient(top,sel)
          if(err.gt.0) return
          top=top-1
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
       endif
 
       m=istk(il0+1)
@@ -1938,6 +1953,7 @@ c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
       logical ref
+      integer mtlbsel
       integer sel,tops
       integer iadr,sadr
 c     
@@ -1972,6 +1988,7 @@ c     standard matrix case
          call getorient(top,sel)
          if(err.gt.0) return
          top=top-1
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
       endif
 
       m=istk(il0+1)
@@ -2043,6 +2060,7 @@ c     WARNING : argument of this interface may be passed by reference
       logical ref
       integer sel,tops
       integer iadr,sadr
+      integer mtlbsel
       double precision t,tr,ti
 c     
       iadr(l)=l+l-1
@@ -2071,6 +2089,7 @@ c     standard matrix case
             call getorient(top,sel)
             if(err.gt.0) return
             top=top-1
+            if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
          endif
          m=istk(il0+1)
          n=istk(il0+2)
@@ -2215,7 +2234,7 @@ c
       integer sel,row,col,star
       integer iadr,sadr
 c
-      data row/27/,col/12/,star/47/
+      data row/27/,col/12/,star/47/,mtlb/22/
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -2247,6 +2266,8 @@ c
             sel=2
          elseif(istk(il+6).eq.star) then
             sel=0
+         elseif(istk(il+6).eq.mtlb) then
+            sel=-1
          else
             err=2
             call error(44)

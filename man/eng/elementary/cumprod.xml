@@ -10,6 +10,7 @@
     <CALLING_SEQUENCE_ITEM>y=cumprod(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=cumprod(x,'r') or y=cumprod(x,1)   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=cumprod(x,'c') or y=cumprod(x,2)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=cumprod(x,'m') </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -28,13 +29,23 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    For a vector or a matrix <VERB>x</VERB>, <VERB>y=cumprod(x)</VERB>  returns in <VERB>y</VERB> the cumulative product of all the 
-    entries of <VERB>x</VERB> taken columnwise.</P>
-    <P><VERB>y=cumprod(x,'c')</VERB> (or, equivalently, <VERB>y=cumprod(x,2)</VERB>) returns in 
-    <VERB>y</VERB> the cumulative elementwise product of the columns of <VERB>x</VERB>: <VERB> y(i,:)=cumprod(x(i,:))</VERB></P>
-    <P><VERB>y=cumprod(x,'r')</VERB> (or, equivalently, <VERB>y=cumprod(x,2)</VERB>)
-    returns in <VERB>y</VERB> the cumulative elementwise product of the rows of <VERB>x</VERB>: <VERB> y(:,i)=cumprod(x(:,i))</VERB>.</P>
+    <P> For a vector or a matrix <VERB>x</VERB>, <VERB>y=cumprod(x)</VERB>
+      returns in <VERB>y</VERB> the cumulative product of all the entries of
+      <VERB>x</VERB> taken columnwise.</P>
+
+    <P><VERB>y=cumprod(x,'c')</VERB> (or, equivalently,
+      <VERB>y=cumprod(x,2)</VERB>) returns in <VERB>y</VERB> the cumulative
+      elementwise product of the columns of <VERB>x</VERB>: <VERB>
+	y(i,:)=cumprod(x(i,:))</VERB></P>
+
+    <P><VERB>y=cumprod(x,'r')</VERB> (or, equivalently,
+      <VERB>y=cumprod(x,2)</VERB>) returns in <VERB>y</VERB> the cumulative
+      elementwise product of the rows of <VERB>x</VERB>: <VERB>
+	y(:,i)=cumprod(x(:,i))</VERB>.</P> 
+
+    <P><VERB>y=cumprod(x,'m')</VERB>  is the cumulative product along the first non singleton
+      dimension of <VERB>x</VERB> (for compatibility with Matlab).</P> 
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

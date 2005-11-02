@@ -8,7 +8,10 @@
   <SHORT_DESCRIPTION name="mini"> minimum</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(A)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(A,'c') or [m [,k]]=mini(A,'r')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(A,'c')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(A,'r')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(A,'m')  </CALLING_SEQUENCE_ITEM>
+
     <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(A1,A2,...,An)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[m [,k]]=mini(list(A1,A2,...,An))  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -29,26 +32,34 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    For <VERB>A</VERB>, a real  vector or matrix, <VERB>mini(A)</VERB> 
-    is the smallest element 
-    <VERB>A</VERB>. <VERB>[m,k]=mini(A)</VERB> gives in addition the index of the minimum.
-    A second argument of type string <VERB>'r'</VERB> or <VERB>'c'</VERB> can be used : <VERB>'r'</VERB>
-    is used to get a row vector <VERB>m</VERB> such that <VERB>m(j)</VERB> contains the 
-    minimum of the <VERB>j</VERB> th column of A (<VERB>A(:,j)</VERB>), <VERB>k(j)</VERB> gives the row 
-    indice which contain the minimum for column <VERB>j</VERB>. <VERB>'c'</VERB> is used for the dual operation on the rows of <VERB>A</VERB>.</P>
-    <P><VERB>m=mini(A1,A2,...,An)</VERB>, where all the <VERB>Aj</VERB> are matrices of the same 
-    sizes,returns a vector or a matrix <VERB>m</VERB> of size <VERB>size(m)=size(A1)</VERB>
-    such that <VERB>m(i)= mini( Aj(i)), j=1,...,n</VERB>. <VERB>[m,k]=mini(A1,A2,...,An)</VERB> 
-    gives in addition the vector or matrix <VERB>k</VERB>. for a fixed <VERB>i</VERB>,
-    <VERB>k(i)</VERB> is the number of the first <VERB>Aj(i)</VERB> achieving the minimum.</P>
+    <P> For <VERB>A</VERB>, a real  vector or matrix, <VERB>mini(A)</VERB> is
+      the largest element <VERB>A</VERB>. <VERB>[m,k]=mini(A)</VERB> gives in
+      addition the index of the minimum. A second argument of type string
+      <VERB>'r'</VERB> or <VERB>'c'</VERB> can be used : <VERB>'r'</VERB> is
+      used to get a row vector <VERB>m</VERB> such that <VERB>m(j)</VERB>
+      contains the minimum of the <VERB>j</VERB> th column of A
+      (<VERB>A(:,j)</VERB>), <VERB>k(j)</VERB> gives the row indice which
+      contain the minimum for column <VERB>j</VERB>. <VERB>'c'</VERB> is used
+      for the dual operation on the rows of <VERB>A</VERB>. <VERB>'m'</VERB> is used
+      for compatibility with Matlab.</P>
+
+    <P><VERB>m=mini(A1,A2,...,An)</VERB>, where all the <VERB>Aj</VERB> are
+      matrices of the same sizes,returns a vector or a matrix <VERB>m</VERB> of
+      size <VERB>size(m)=size(A1)</VERB> such that <VERB>m(i)= mini( Aj(i)),
+	j=1,...,n</VERB>. <VERB>[m,k]=mini(A1,A2,...,An)</VERB> gives in
+      addition the vector or matrix <VERB>k</VERB>. for a fixed <VERB>i</VERB>,
+      <VERB>k(i)</VERB> is the number of the first <VERB>Aj(i)</VERB> achieving
+      the minimum.</P>
+
     <P><VERB>[m,k]=mini(list(A1,...,An))</VERB> is an equivalent syntax of 
     <VERB>[m,k]=mini(A1,A2,...,An)</VERB></P>
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 [m,n]=mini([1,3,1])
 [m,n]=mini([3,1,1],[1,3,1],[1,1,3])
+[m,n]=mini([3,-2,1],1)
 [m,n]=mini(list([3,1,1],[1,3,1],[1,1,3]))
 [m,n]=mini(list(1,3,1))
  ]]>
@@ -59,9 +70,6 @@
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>find</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>maxi</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>min</LINK>

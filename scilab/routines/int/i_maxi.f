@@ -3,20 +3,17 @@ c     -------------------------------
 c     max interface 
 c     Author: Serge Steer, Copyright INRIA
 c     -------------------------------
-      character*(2) type
       INCLUDE '../stack.h'
-      logical checkrhs,checklhs,getsmat
-      integer gettype,itype,topk
+      logical checkrhs,checklhs
+      integer gettype,itype,topk,sel
       integer iadr,sadr
-      external memused,uppertype
-      integer memused,uppertype
+      external memused,uppertype, mtlbsel
+      integer memused,uppertype, mtlbsel
       double precision s
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      type='g'//char(0)
-
       topk=top
       if (.not.checklhs(fname,1,2)) return
       if (rhs.le.0) then 
@@ -28,34 +25,33 @@ c
 c
 
 c     maxi(A1)
- 10   if(rhs.eq.2) then 
-         if(.not.getsmat(fname,topk,top,m2,n2,1,1,lr2,nlr2))return
-         if (nlr2.ne.1) then
-            buf='max : second argument must be "c" or "r"'
-            call error(999)         
-            return
-         endif
-         call cvstr(nlr2,istk(lr2),type,1)
+
+ 10   sel=0
+      if(rhs.eq.2) then 
+         call  getorient(topk,sel)
+         if(err.gt.0) return
          top=top-1
       endif
+
       lw=iadr(lstk(top+1))
 c
       il=iadr(lstk(top))
+      if(sel.eq.-1) sel=mtlbsel(istk(il+1),2)
       m=istk(il+1)
       n=istk(il+2)
       it=istk(il+3)
       lr1=il+4
 
-      if ( type(1:1).eq.'r') then 
+      if (sel.eq.1) then 
 c     ------------max of each column of a 
          mr=1
          nr=n
          job=1
-      elseif( type(1:1).eq.'c') then    
+      elseif(sel.eq.2) then    
          mr=m
          nr=1
          job=2
-      elseif( type(1:1).eq.'g') then    
+      else
          mr=1
          nr=1
          job=0
