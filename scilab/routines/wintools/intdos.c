@@ -11,7 +11,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
-  char ** CallWindowsShell(char *command,int *Status,int *NumberOfLines);
+  char ** CallWindowsShell(char *command,BOOL WaitInput,int *Status,int *NumberOfLines);
   extern BOOL IsAFile(char *chainefichier);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -52,7 +52,18 @@ int C2F(intdos) _PARAMS((char *fname))
 				n1=1;
 				*Status=FALSE;
 			}
-			else Result=CallWindowsShell(CommandLine,Status,&NumbersOfLines);
+			else
+			{
+				_try
+				{
+					Result=CallWindowsShell(CommandLine,FALSE,Status,&NumbersOfLines);
+				}
+				_except (EXCEPTION_EXECUTE_HANDLER)
+				{
+					Scierror(999,"Error with %s.\r\n",fname);
+					return 0;
+				}
+			}
 		#endif
 	}
 	else
@@ -136,18 +147,33 @@ int C2F(intdos) _PARAMS((char *fname))
 	if (Status) {FREE(Status);Status=NULL;}
 	if (Result)
 	{
+	#ifdef WIN32
+		_try
+		{
+			for(i=0;i<m1;i++)
+			{
+				if (Result[i]) {FREE(Result[i]);Result[i]=NULL;}
+			}
+			FREE(Result);
+			Result=NULL;
+		}
+		_except (EXCEPTION_ACCESS_VIOLATION)
+		{
+		}
+#else
 		for(i=0;i<m1;i++)
 		{
 			if (Result[i]) {FREE(Result[i]);Result[i]=NULL;}
 		}
 		FREE(Result);
 		Result=NULL;
+#endif
 	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
-char ** CallWindowsShell(char *command,int *Status,int *NumberOfLines)
+char ** CallWindowsShell(char *command,BOOL WaitInput,int *Status,int *NumberOfLines)
 {
 	#define BUFSIZE 4096
 	char shellCmd[_MAX_PATH];
@@ -208,9 +234,15 @@ char ** CallWindowsShell(char *command,int *Status,int *NumberOfLines)
 	siStartInfo.cb = sizeof(STARTUPINFO); 
 	siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 	siStartInfo.wShowWindow  = SW_HIDE;
-	//siStartInfo.hStdInput= NULL;
-	//siStartInfo.hStdInput=INVALID_HANDLE_VALUE;
-	siStartInfo.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
+	if (WaitInput)
+	{
+		siStartInfo.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
+	}
+	else
+	{
+		siStartInfo.hStdInput=NULL;
+	}
+	
 	siStartInfo.hStdOutput = hChildStdoutWr;
 	siStartInfo.hStdError = hChildStdoutWr;
 
@@ -228,7 +260,8 @@ char ** CallWindowsShell(char *command,int *Status,int *NumberOfLines)
 		if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
 		return OuputStrings;
 	}
-	if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
+	else if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
+
 
 	SetStdHandle(STD_OUTPUT_HANDLE, hSaveStdout);
 	CloseHandle(hChildStdoutWr); 
