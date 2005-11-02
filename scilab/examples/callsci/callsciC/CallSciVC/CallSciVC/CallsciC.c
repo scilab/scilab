@@ -22,6 +22,7 @@ extern int TerminateScilab(char *ScilabQuit);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);
 extern int ScilabHaveAGraph(void);
+extern void C2F(tmpdirc)(void);
 /*-----------------------------------------------------------------------------------*/
 
 static int example1(void)
@@ -86,18 +87,20 @@ static int example2(void)
 }
 /*-----------------------------------------------------------------------------------*/
 int main(void)
+/* int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow) */
 {
-  if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+	printf("\nexample 1\n");
+	example1();
+	printf("\nexample 2\n");
+	example2();
+	printf("\n\n");
+	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
 
-  printf("\nexample 1\n");
-  example1();
-  printf("\nexample 2\n");
-  example2();
-  printf("\n\n");
-  if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
-  return 0;
+	// Clean TMP DIRECTORY of scilab
+	C2F(tmpdirc)();
+
+	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-
-
 
