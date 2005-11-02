@@ -28,7 +28,8 @@
 /* See routines/system/CallScilab.h */
 extern int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 extern int TerminateScilab(char *ScilabQuit);
-extern int SendScilabJob(char *job); 
+extern int SendScilabJob(char *job);
+extern void C2F(tmpdirc)(void); 
 /*------------------------------------------------------------*/
 static int premier_exemple()
 {
@@ -99,25 +100,25 @@ int troisieme_exemple()
 /*------------------------------------------------------------*/
 int MAIN__(void) 
 {
-	#ifdef WIN32
-		if ( StartScilab(NULL,NULL,NULL) == FALSE ) 
-		  printf("Error : StartScilab \n");
-	#else
-    if ( StartScilab(SCI,NULL,NULL) == FALSE ) 
-      printf("Error : StartScilab \n");
-  #endif
+#ifdef WIN32
+	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+#else
+    if ( StartScilab(SCI,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
+ #endif
 
-  printf("\nexample 1\n");  
-  premier_exemple();
+	printf("\nexample 1\n");  
+	premier_exemple();
   
-  printf("\nexample 2\n");  
-  deuxieme_exemple() ;
-  printf("\nexample 3\n");  
-  troisieme_exemple() ;
-  printf("\n\n");  
+	printf("\nexample 2\n");  
+	deuxieme_exemple() ;
+	printf("\nexample 3\n");  
+	troisieme_exemple() ;
+	printf("\n\n");  
   
-	if ( TerminateScilab(NULL) == FALSE ) 
-		  printf("Error : TerminateScilab \n");
-  return 0;
+	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
+
+	/* Clean TMPDIR of scilab */
+	C2F(tmpdirc)();
+	return 0;
 }
 /*------------------------------------------------------------*/
