@@ -12,8 +12,11 @@
 
 #include "../stack-c.h" 
 
-/*MUST BE standard MALLOC under Windows*/
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 #include "../os_specific/men_Sutils.h" 
 
 

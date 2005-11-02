@@ -1,10 +1,6 @@
 #include <string.h>
 #include "../machine.h"
-#ifdef WIN32
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+
 #include "../os_specific/men_Sutils.h"
 #include "libinter.h"
 
@@ -12,6 +8,13 @@ extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *
 
 #include "cerro.h"
 #include "sparse.h"
+
+#ifdef _WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+
 
 
 extern void C2F(erro)();

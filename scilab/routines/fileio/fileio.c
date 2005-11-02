@@ -20,12 +20,15 @@
 
 #include <ctype.h>  /* isdigit */
 #include "../graphics/Math.h"
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-/* http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vccore98/html/_crt_malloc.asp */
-/* Why I don't optimize this file :s */
 
 #include "../stack-c.h"
 #include "../os_specific/Os_specific.h"
+
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 
 
 extern char * SciGetLine __PARAMS((char *));

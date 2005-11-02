@@ -208,9 +208,9 @@ char ** CallWindowsShell(char *command,int *Status,int *NumberOfLines)
 	siStartInfo.cb = sizeof(STARTUPINFO); 
 	siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 	siStartInfo.wShowWindow  = SW_HIDE;
-	siStartInfo.hStdInput= NULL;
+	//siStartInfo.hStdInput= NULL;
 	//siStartInfo.hStdInput=INVALID_HANDLE_VALUE;
-	//siStartInfo.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
+	siStartInfo.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
 	siStartInfo.hStdOutput = hChildStdoutWr;
 	siStartInfo.hStdError = hChildStdoutWr;
 
