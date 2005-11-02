@@ -45,7 +45,7 @@ function [y]=toolboxes(path,flag,force)
   end
 
   if contribs<>[] & grep(sciargs(),"-nw")==[] then 
-  	if ~fromjava() then
+  	if ( ~fromjava() & ~fromc() ) then
     	delmenu('toolboxes')
     	addmenu('toolboxes',contribs);
     	// If you also want a build meny 
