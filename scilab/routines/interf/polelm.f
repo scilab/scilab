@@ -365,25 +365,47 @@ c
 c
       m1=istk(il1+1)
       n1=istk(il1+2)
+      mn1=m1*n1
       if(m1*n1.eq.0) return
 
       it1=istk(il1+3)
-      mn1=m1*n1
-      if(mn1.ne.1) then
-         err=1
-         call error(43)
-         return
+
+      if(istk(il1).eq.1) then
+c     for Matlab compatibility root of the vector of coefficients
+         vol=mn1
+         l1=sadr(il1+4)
+         
+         n=mn1
+         if(.not.ref) then
+            call dtild(n*(it1+1),stk(l1),1)
+            lc=l1
+         else
+            lc=lw
+            lw=lc+n*(it1+1)
+            err=lw-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call dcopy(n,stk(l1),1,stk(lc),-1)
+            if(it1.eq.1)  call dcopy(n,stk(l1+n),1,stk(lc+n),-1)
+         endif 
+      else
+         if(mn1.ne.1) then
+            err=1
+            call error(43)
+            return
+         endif
+     
+         if(istk(il1).lt.2) goto 24
+
+         id1=il1+8
+         lc=sadr(id1+mn1+1)
+         vol=istk(id1+mn1)-1
+         call icopy(4,istk(il1+4),1,id,1)
+         n=vol
       endif
-      if(istk(il1).lt.2) goto 24
-
-      id1=il1+8
-      l1=sadr(id1+mn1+1)
-      vol=istk(id1+mn1)-1
-      call icopy(4,istk(il1+4),1,id,1)
-
-      lc=l1
       l1=sadr(ilr+4)
-      n=vol
  21   n=n-1
       if(n.lt.0) goto 24
       t=abs(stk(lc+n))
@@ -997,6 +1019,7 @@ c     .      copy matrix on the top of the stack
       INCLUDE '../stack.h'
       integer iadr, sadr
       integer id(nsiz)
+      
       integer vol
       logical ref
 c     

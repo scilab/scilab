@@ -15,7 +15,9 @@
       <PARAM_ITEM>
         <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: polynomial with real or complex coefficients</SP>
+          <SP>: polynomial with real or complex coefficients  or vector of the
+	    polynomial coefficients in decreasing degree order (Matlab
+	    compatibility).</SP> 
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
