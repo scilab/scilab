@@ -1,5 +1,7 @@
 #include <stdlib.h>
-
+#ifdef WIN32
+#include <windows.h>
+#endif
 #include "intersci-n.h"
 #include "getrhs.h" 
 #include "crerhs.h" 
@@ -30,27 +32,27 @@ int main(argc,argv)
 { 
   char *files,*libs;
   char *file;
-  int interface = 0 ;
+  int SciLabinterface = 0 ;
   switch (argc) 
     {
     case 2:
       file = argv[1];
       target =  'C';
-      interface =  0; 
+      SciLabinterface =  0; 
       files = NULL;
       libs = NULL;
       break;
     case 3:
       file = argv[1];
       target = 'C';
-      interface = 0; 
+      SciLabinterface = 0; 
       files = argv[2];
       libs = NULL;
       break;
     case 4:
       file = argv[1];
       target = 'C';
-      interface = 0; 
+      SciLabinterface = 0; 
       files = argv[2];
       libs = argv[3];
       break;
@@ -70,7 +72,7 @@ int main(argc,argv)
     exit(1);
   }
   Generate(file);
-  GenFundef(file,interface);
+  GenFundef(file,SciLabinterface);
   GenBuilder(file,files,libs);
   exit(0);
 }
@@ -586,31 +588,71 @@ void WriteFortranCall(f)
 	}
       else 
 	{
+
 	  if ( variables[ivar-1]->is_sciarg == 1)
 	    {
-	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
-		{
-		  strcat(call,"&");
-		  strcat(call,variables[ivar-1]->C_name[0]);
+		#ifdef WIN32
+			_try
+			{
+				if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+				{
+					strcat(call,"&");
+					strcat(call,variables[ivar-1]->C_name[0]);
+				}
+				else strcat(call,variables[ivar-1]->for_name[0]);
+				strcat(call,",");
+			}
+
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{
+			  printf("Error EXCEPTION_EXECUTE_HANDLER %s %d\n",__FILE__,__LINE__);
+			  exit(1);
+			}
+		#else
+			if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+			{
+				strcat(call,"&");
+				strcat(call,variables[ivar-1]->C_name[0]);
+			}
+			else strcat(call,variables[ivar-1]->for_name[0]);
+			strcat(call,",");
+		#endif
+		  
 		}
-	      else 
-		strcat(call,variables[ivar-1]->for_name[0]);
-	      strcat(call,",");
-	    }
+
+
+	      
 	  else 
 	    {
 	      /* FORTRAN argument is not a SCILAB argument */
 	      /* a new variable is created on the stack for each 
 		 Fortran argument */
 	      (*(CRERHSTAB[variables[ivar-1]->type].fonc))(f,variables[ivar-1]);
+		#ifdef WIN32
+		  _try
+		  {
 	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
-		{
-		  strcat(call,"&");
-		  strcat(call,variables[ivar-1]->C_name[0]);
-		}
-	      else 
-		strcat(call,variables[ivar-1]->for_name[0]);
+			{
+				strcat(call,"&");
+				strcat(call,variables[ivar-1]->C_name[0]);
+			}
+	      else strcat(call,variables[ivar-1]->for_name[0]);
 	      strcat(call,",");
+		  }
+		  _except (EXCEPTION_EXECUTE_HANDLER)
+		  {
+			  printf("Error EXCEPTION_EXECUTE_HANDLER %s %d\n",__FILE__,__LINE__);
+			  exit(1);
+		  }
+		#else
+		  if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 
+		  {
+			  strcat(call,"&");
+			  strcat(call,variables[ivar-1]->C_name[0]);
+		  }
+		  else strcat(call,variables[ivar-1]->for_name[0]);
+		  strcat(call,",");
+		#endif
 	    }
 	}
     }

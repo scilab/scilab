@@ -213,7 +213,6 @@ int ParseLine __PARAMS((char *s, char **words));
 int ParseScilabLine __PARAMS((char *s, char **words));
 int ReadListElement __PARAMS((FILE *f, char *varlistname, IVAR iivar, int nel,int));
 void ReadListFile __PARAMS((char *listname, char *varlistname, IVAR ivar,int));
-void ReadFile __PARAMS((char *file));
 int ReadFunction __PARAMS((FILE *f));
 int TypeToBas __PARAMS(());
 void WriteArgCheck __PARAMS((FILE *f, int i));
