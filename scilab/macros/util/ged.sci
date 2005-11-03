@@ -128,6 +128,7 @@ endfunction
 
 function TK_send_handles_list(h)
 iFig = 0;
+iUim = 0;
 iAxe = 0; // <=> subwindow in C code
 iAgr = 0;
 iPol = 0;
@@ -165,6 +166,11 @@ for i=1:size(handles,1)
     iFig = iFig+1;
     figname= "Figure("+string(iFig)+")";
     TCL_EvalStr('set '+SelObject+" "+figname);
+   case "Uimenu"
+    iUim = iUim+1;
+    uimname= "Uimenu("+string(iUim)+")";
+    TCL_EvalStr('set '+SelObject+" "+uimname);
+   
    case "Axes"
     iAxe = iAxe+1;
     axename= "Axes("+string(iAxe)+")";

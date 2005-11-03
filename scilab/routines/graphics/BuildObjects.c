@@ -19,6 +19,10 @@
 #include <stdarg.h>
 #include <time.h>
 
+#if WIN32
+#include <windows.h>
+#endif
+
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
@@ -2939,9 +2943,10 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
  * @param  sciPointObj *pparentfigure
  * @param  char label[] : intial label string.
  * @param  char callback[] : intial text callback string .
+ * @param  BOOL handle_visible : handle visibility in child list .
  * @return  : pointer sciPointObj if ok , NULL if not
  */
-sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback)
+sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback,BOOL handle_visible)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciUimenu *ppobj=NULL;
@@ -3002,6 +3007,8 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
       strcpy (pUIMENU_FEATURE (pobj)->label.ptextstring, label);
 
       pUIMENU_FEATURE (pobj)->label.textlen = strlen(label);
+	  pUIMENU_FEATURE (pobj)->handle_visible=handle_visible;
+	  pUIMENU_FEATURE (pobj)->MenuPosition=0;
 
       return (sciPointObj *) pobj;
     }

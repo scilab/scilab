@@ -42,6 +42,7 @@ int getticks(char * xyztick, sciPointObj* psubwin);
 int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads);
 int BuildTListForTicks(double * locations, char ** labels, int nbtics);
 double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads);
+BOOL GetHandleVisibilityOnUimenu(sciPointObj * pobj);
 /*-----------------------------------------------------------------------------------*/
 int gget(char *fname,unsigned long fname_len)
 {
@@ -525,8 +526,9 @@ int sciGet(sciPointObj *pobj,char *marker)
       while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
 	{
 	  /* DJ.A 30/12 */
-	  if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
-	     && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL) /* F.Leray 28.05.04 */
+	  if( sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
+	     && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL
+		 && GetHandleVisibilityOnUimenu((sciPointObj *)toto->pointobj) ) /* F.Leray 28.05.04 */
 	    i++;
 	  toto = toto->pnext;
 	}
@@ -542,7 +544,8 @@ int sciGet(sciPointObj *pobj,char *marker)
 	while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
 	  { /* DJ.A 30/12 */
 	    if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
-	       && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL) /* F.Leray 28.05.04 */
+	       && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL
+		   && GetHandleVisibilityOnUimenu((sciPointObj *)toto->pointobj) ) /* F.Leray 28.05.04 */
 	      {
 		hstk(outindex)[i] = sciGetHandle((sciPointObj *)toto->pointobj);
 		i++;
@@ -1316,14 +1319,32 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strcmp(marker,"position") == 0) 
     {
-      if(sciGetEntityType(pobj) != SCI_LABEL)
-	{strcpy(error_message,"position does not exist for this handle");return -1;}
+      	  if (sciGetEntityType(pobj) == SCI_UIMENU)
+		  {
+			  numrow = 1;
+			  numcol = 1;
+			  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+			  stk(outindex)[0]=pUIMENU_FEATURE(pobj)->MenuPosition;
+		  }
+		  else if (sciGetEntityType(pobj) == SCI_LABEL)
+		  {
+			  numrow = 1;
+			  numcol = 2;
+			  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+			  sciGetPosition(pobj,&stk(outindex)[0],&stk(outindex)[1]);
+		  }
+		  else
+		  {
+			  strcpy(error_message,"position does not exist for this handle");
+			  return -1;
+		  }
+	  
+		  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 
-      numrow = 1;
-      numcol = 2;
+		  
 
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      sciGetPosition(pobj,&stk(outindex)[0],&stk(outindex)[1]);
+      
+      
 
       /*       /\* switch to manual mode for label position *\/ */
       /*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
@@ -1335,19 +1356,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	int i;
 
 	numrow   = 1;numcol   = 3;
-	if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
+	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] == TRUE)
 	    {
-	      if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	      strcpy(foo[i],"on");
 	    }
 	  else
 	    {
-	      if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
 	      strcpy(foo[i],"off");
 	    }    
@@ -1365,19 +1386,19 @@ int sciGet(sciPointObj *pobj,char *marker)
 	int i;
 
 	numrow   = 1;numcol   = 3;
-	if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
+	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] == TRUE)
 	    {
-	      if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	      strcpy(foo[i],"on");
 	    }
 	  else
 	    {
-	      if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
+	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
 		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
 	      strcpy(foo[i],"off");
 	    }    
@@ -1598,10 +1619,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 
 		ComputeC_format(pobj,c_format);
 
-		if((foo=MALLOC(N*(sizeof(char *))))==NULL){
+		if((foo=malloc(N*(sizeof(char *))))==NULL){
 		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		for(i=0;i<N;i++){
-		  if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
+		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
 		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
 
@@ -1622,10 +1643,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 		  return 0;
 		}
 
-		if((foo=MALLOC(N*(sizeof(char *))))==NULL){
+		if((foo=malloc(N*(sizeof(char *))))==NULL){
 		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		for(i=0;i<N;i++){
-		  if((foo[i]=MALLOC(256*(sizeof(char)+1)))==NULL){
+		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
 		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
 		}
 
@@ -1690,18 +1711,18 @@ int sciGet(sciPointObj *pobj,char *marker)
       int i;
 
       numrow   = 1;numcol   = 3;
-      if((foo=MALLOC(numcol*(sizeof(char *))))==NULL){
+      if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
       for(i=0;i<numcol;i++)
 	if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] == TRUE)
 	  {
-	    if((foo[i]=MALLOC(3*(sizeof(char))))==NULL){
+	    if((foo[i]=malloc(3*(sizeof(char))))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
 	    strcpy(foo[i],"on");
 	  }
 	else
 	  {
-	    if((foo[i]=MALLOC(4*(sizeof(char))))==NULL){
+	    if((foo[i]=malloc(4*(sizeof(char))))==NULL){
 	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
 	    strcpy(foo[i],"off");
 	  }    
@@ -1939,6 +1960,32 @@ int sciGet(sciPointObj *pobj,char *marker)
       data_ptr=GetData(Rhs+1);
       memcpy(data_ptr,*user_data_ptr,(*size_ptr)*sizeof (int));
     }
+  }
+  else if (strcmp(marker,"handle_visible") == 0)
+  {
+	  if (sciGetEntityType (pobj) == SCI_UIMENU)
+	  {
+		if (GetHandleVisibilityOnUimenu((sciPointObj *)pobj))
+		{
+		  numrow   = 1;
+		  numcol   = 2;
+		  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+		  strncpy(cstk(outindex),"on", numrow*numcol);
+		}
+		else 
+		{
+		  numrow   = 1;
+		  numcol   = 3;
+		  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+		  strncpy(cstk(outindex),"off", numrow*numcol);
+		}
+	 }
+	  else
+	  {
+		  strcpy(error_message,"handle_visible property does not exist for this handle");
+		  return -1;
+	  }
+
   }
 
   else 
@@ -2409,5 +2456,12 @@ int BuildTListForTicks(double * locations, char ** labels, int nbtics)
   CreateListVarFromPtr(Rhs+1, 3, "S", &nbtics, &un, labels);
 
   return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL GetHandleVisibilityOnUimenu(sciPointObj * pobj)
+{
+	if (sciGetEntityType(pobj)!=SCI_UIMENU) return TRUE;
+
+	return pUIMENU_FEATURE(pobj)->handle_visible;
 }
 /*-----------------------------------------------------------------------------------*/

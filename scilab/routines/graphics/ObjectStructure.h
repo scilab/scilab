@@ -657,8 +657,14 @@ typedef struct
   sciText label; /* Callback in sciText struct. */
   /** specifies if this object is visble             */
   BOOL visible;
+  BOOL handle_visible;
+  int MenuPosition;
 
-  int HANDLEMENU;
+  #if WIN32
+	HMENU hMenu;
+	int IDM_this;
+  #endif
+
 
 }/** */
 sciUimenu;

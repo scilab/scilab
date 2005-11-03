@@ -19,7 +19,7 @@ extern sciPointObj *sciGetCurrentFigure ();
 extern sciPointObj *sciGetPointerFromHandle (long handle);
 extern sciEntityType sciGetEntityType (sciPointObj * pobj);
 extern long sciGetHandle (sciPointObj * pobj);
-extern sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback);
+extern sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback,BOOL handle_visible);
 extern int version_flag();
 /*-----------------------------------------------------------------------------------*/
 int intUImenu(char *fname,unsigned long fname_len)
@@ -97,7 +97,7 @@ int intUImenu(char *fname,unsigned long fname_len)
 
   sciprint("%s %s\n",labelmenu,callbackmenu);
 
-  GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu));
+  GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu,TRUE));
 	
 
   numrow   = 1;

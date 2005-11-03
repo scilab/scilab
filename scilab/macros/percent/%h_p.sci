@@ -687,7 +687,9 @@ function %h_p(h)
   "children: "+fmtchildren(h.children)
   "visible = "+sci2exp(h.visible)
   "text = "+h.text 
-  "callback = "+h.callback 
+  "callback = "+h.callback
+  "handle_visible = "+sci2exp(h.handle_visible)
+  "position = "+sci2exp(h.position,0)
     ]
     end
   end

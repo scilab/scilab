@@ -1802,10 +1802,19 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     } 
   else if (strcmp(marker,"position") == 0) 
     { 
-      if(sciGetEntityType(pobj) != SCI_LABEL)
-	{strcpy(error_message,"position does not exist for this handle");return -1;}
-
-      sciSetPosition(pobj,stk(*value)[0],stk(*value)[1]);
+		if (sciGetEntityType(pobj)== SCI_UIMENU)
+		{
+			pUIMENU_FEATURE(pobj)->MenuPosition=(int)stk(*value)[0];
+		}
+		else if(sciGetEntityType(pobj) == SCI_LABEL)
+		{
+			sciSetPosition(pobj,stk(*value)[0],stk(*value)[1]);
+		}
+		else
+		{
+			strcpy(error_message,"position does not exist for this handle");
+			return -1;
+		}
     }
   /* F.Leray adding auto_ticks flags */
   else if (strcmp(marker,"auto_ticks") == 0) 
@@ -2836,9 +2845,31 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
   }
-
+  else if (strcmp(marker,"handle_visible") == 0)
+  {
+	if (sciGetEntityType (pobj) == SCI_UIMENU)
+	{
+		if ((strcmp(cstk(*value),"on") == 0)) 
+			pUIMENU_FEATURE(pobj)->handle_visible=TRUE;
+		else if ((strcmp(cstk(*value),"off") == 0))  
+			pUIMENU_FEATURE(pobj)->handle_visible=FALSE;
+		else
+		{
+			strcpy(error_message,"Value must be 'on' or 'off'");
+			return -1;
+		}
+	}
+	else
+	{
+		strcpy(error_message,"handle_visible property does not exist for this handle");
+		return -1;
+	}
+  }
   else 
-    {sprintf(error_message,"Unknown  property %s",marker);return -1;}
+    {
+		sprintf(error_message,"Unknown  property %s",marker);
+		return -1;
+	}
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
