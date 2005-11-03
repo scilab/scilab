@@ -168,8 +168,14 @@ c     .  ------------------
 c     
 c     .  Initial values for main window row and column sizes
 c     .  ---------------------------------------------------
-      lct(2) = 1
+
+      if (intexmacs().eq.0) then
+         lct(2) = 1
+      else
+         lct(2) = 0
+      endif
       call scilines(28,72)
+
 c     .  en mode fenetre ces valeurs sont remplacees par les dimension effectives
 
 c     .  initial format for number display

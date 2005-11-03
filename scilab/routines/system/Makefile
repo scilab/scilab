@@ -11,13 +11,13 @@ OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	Sparse.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
 	inisci-c.o diary.o  parse.o run.o Sparse.o fromjava.o calendar.o \
-	CallScilab.o intwhat.o fromc.o
+	CallScilab.o intwhat.o fromc.o getval.o
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \
 	defmat.o eqid.o error.o showstack.o expr.o fact.o funs.o \
 	getch.o  getlin.o getnum.o getstr.o getsym.o \
-	getval.o inisci.o \
+	 inisci.o \
 	logops.o macro.o mname.o nextj.o  findequal.o print.o \
 	prompt.o putid.o savlod.o  stackg.o stackgl.o \
 	ref2val.o stackp.o terme.o  scirun.o \
@@ -63,7 +63,7 @@ getlin.o:  ../stack.h
 getnum.o:  ../stack.h
 getstr.o:  ../stack.h
 getsym.o:  ../stack.h
-getval.o:  ../stack.h
+getval.o:  ../stack-c.h
 inisci.o:  ../stack.h
 israt.o:  ../stack.h
 logops.o:  ../stack.h

@@ -14,13 +14,12 @@ OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.o
 	Sparse.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj fromjava.obj calendar.obj \
-	CallScilab.obj str2sci.obj intwhat.obj fromc.obj
+	CallScilab.obj str2sci.obj intwhat.obj fromc.obj getval.obj 
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \
 	defmat.obj eqid.obj error.obj showstack.obj expr.obj fact.obj funs.obj \
-	getch.obj  getlin.obj getnum.obj getstr.obj getsym.obj \
-	getval.obj inisci.obj \
+	getch.obj  getlin.obj getnum.obj getstr.obj getsym.obj inisci.obj \
 	logops.obj macro.obj mname.obj nextj.obj  findequal.obj print.obj \
 	prompt.obj putid.obj savlod.obj  stackg.obj stackgl.obj \
 	ref2val.obj stackp.obj terme.obj  scirun.obj \
