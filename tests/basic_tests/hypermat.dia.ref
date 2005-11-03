@@ -56,6 +56,7 @@ end
  
  
  
+msg='Problem with insertion for hypermatrix of type %s in test %d.%d \n';
  
 //insertion of a single element
  
@@ -105,10 +106,8 @@ end
  
 //extension of a 2D matrix to a 3D one
  
-// skipped because it reveals bug to be fixed
- 
-if %f then
 test=4;
+ 
 for k=1:size(Data)
   data=matrix(Data(k),3,-1);td=typeof(data);
   I=data(1,1);
@@ -120,7 +119,12 @@ for k=1:size(Data)
   if h(:,:,2)<>d then mprintf(msg,td,test,k); bugmes();quit;end
   mprintf('    test%d.%d completed\n',test,k)
 end
-end
+    test4.1 completed
+    test4.2 completed
+    test4.3 completed
+    test4.4 completed
+    test4.5 completed
+    test4.6 completed
  
  
  

@@ -38,7 +38,7 @@ for k=1:size(Data)
 end
 
 
-  
+msg='Problem with insertion for hypermatrix of type %s in test %d.%d \n';  
 //insertion of a single element
 test=3;
 for k=1:size(Data)
@@ -84,8 +84,6 @@ for k=1:size(Data)
 end
 
 //extension of a 2D matrix to a 3D one
-// skipped because it reveals bug to be fixed
-if %f then
 test=4;
 for k=1:size(Data)
   data=matrix(Data(k),3,-1);td=typeof(data);
@@ -97,7 +95,6 @@ for k=1:size(Data)
   d=[];d(3,4)=I;
   if h(:,:,2)<>d then mprintf(msg,td,test,k); pause,end
   mprintf('    test%d.%d completed\n',test,k)
-end
 end
 
 
