@@ -4,5 +4,5 @@ function M=%p_i_p(varargin)
   M=varargin($)
   M=mlist(['hm','dims','entries'],int32(size(M)),M(:))
   varargin($)=M;
-  M=generic_i_hm('',varargin(:))
+  M=generic_i_hm(0,varargin(:))
 endfunction

@@ -22,6 +22,12 @@ function M=%i_i_s(varargin)
     M=generic_i_hm(def,varargin(:))
   else //type conversion
     M=varargin($)
-    M(varargin(1:$-2))=double(varargin($-1))
+    if M==[] then
+      N=varargin($-1)
+      M=iconvert(0,inttype(N))
+      M(varargin(1:$-2))=varargin($-1)
+    else
+      M(varargin(1:$-2))=double(varargin($-1))
+    end
   end
 endfunction

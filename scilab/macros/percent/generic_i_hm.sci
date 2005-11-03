@@ -86,7 +86,7 @@ function M=generic_i_hm(default_value,varargin)
       end
     end
     // create the resulting matrix
-    v2=[];v2(1:prod(Ndims),1)=default_value
+    v2=[];v2(1:prod(Ndims),1)=default_value;
     // populate it with M entries
     if v<>[] then v2(I1+1)=v;end
   else
