@@ -359,10 +359,7 @@ int C2F(getval)(double *s, int *dotdet)
     sprintf(string+i1,".e+%d",abs(expo));
   }
   k = ndgrec + 4;
-  printf("%s\n",string);
   *s=strtod(string,NULL);
-  printf("%e\n",*s);
-
   return 0;
 }
 
