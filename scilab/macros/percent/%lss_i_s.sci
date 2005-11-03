@@ -4,10 +4,21 @@ function s=%lss_i_s(i,j,s1,s2)
 // origine s. steer inria 1992
 //
 // Copyright INRIA
+
 [lhs,rhs]=argn(0)
+
 if rhs==3 then
   s2=s1;s1=j;
-    [a1,b1,c1,d1,x1,dom1]=s1(2:7)
+  if (type(i)==10|type(i)==15) then //cell or struct case
+    s=createstruct(i,s1)
+    if type(i(1))<>10 & i(2)=="entries" then
+      // change struct to cell
+      f=getfield(1,s);f(1)="ce"
+      setfield(1,f,s)
+    end
+    return
+  end
+  [a1,b1,c1,d1,x1,dom1]=s1(2:7)
   d2=s2;
   [n1,n1]=size(a1);
   if size(d2,2)>1 then
