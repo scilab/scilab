@@ -8,7 +8,7 @@ function M=%i_i_i(varargin)
     it=inttype(M)
     M=mlist(['hm','dims','entries'],int32(size(M)),M(:))
     varargin(rhs)=M;
-    generic_i_hm(iconvert(0,it),varargin(:))
+    M=generic_i_hm(iconvert(0,it),varargin(:))
 
   else
     M=varargin(rhs)// destination matrix
