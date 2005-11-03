@@ -1039,9 +1039,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    }
 	    
 	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
+		#if  WIN32
+		{
+			extern void RefreshGraphToolBar(struct BCG * ScilabGC);
+			extern void RefreshMenus(struct BCG * ScilabGC);
+
+			RefreshMenus(XGC);
+			RefreshGraphToolBar(XGC);
+		}
+		#endif
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	    
-	    /* Add xclear to refresh toolbar for Windows */
+	    ///* Add xclear to refresh toolbar for Windows */
 	    C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
 		      PD0, 0L, 0L);
 	  }
@@ -1049,7 +1058,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	else if ((strcmp(cstk(*value),"new") == 0)) {   
 	  if (version_flag() == 1)  {
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);      
-	    C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
+	    
 	    C2F(dr)("xget","window",&verb,&num,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L); 
 	    C2F(dr)("xstart","v",&num,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	    XGC=(struct BCG *) sciGetCurrentScilabXgc ();
@@ -1064,6 +1073,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
 		sciSetCurrentObj(psubwin);
 		sciSetOriginalSubWin (figure, psubwin);}
+		/* Refresh toolbar and Menus for Windows */
+	#if  WIN32
+		  {
+			  extern void RefreshGraphToolBar(struct BCG * ScilabGC);
+			  extern void RefreshMenus(struct BCG * ScilabGC);
+
+			  RefreshMenus(XGC);
+			  RefreshGraphToolBar(XGC);
+		  }
+	#endif
 	    }
 	  }
 	}

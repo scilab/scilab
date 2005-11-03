@@ -1162,3 +1162,110 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
   return FreeNumber;
 }
 /*-----------------------------------------------------------------------------------*/
+void RefreshMenus(struct BCG * ScilabGC)
+{
+	//if (ScilabGC->graphicsversion!=0) 
+	//{
+	//	BOOL LockToolBar=ScilabGC->lpmw.LockToolBar;
+	//	int nButton=ScilabGC->lpmw.nButton;
+	//	BOOL StateToolBar=ScilabGC->lpmw.ShowToolBar;
+
+	//	DestroyMenu(ScilabGC->hMenuRoot);
+	//	ScilabGC->hMenuRoot=NULL;
+	//	ScilabGC->IDM_Count=1;
+	//	SetMenu(ScilabGC->hWndParent,NULL);
+
+	//	UpdateFileGraphNameMenu( ScilabGC);
+	//	LoadGraphMacros( ScilabGC);
+
+	//	ScilabGC->lpmw.nButton=nButton;
+	//	ScilabGC->lpmw.ShowToolBar=StateToolBar;
+	//	ScilabGC->lpmw.LockToolBar=LockToolBar;
+
+	//}
+	//else
+	//{
+	//	BOOL LockToolBar=ScilabGC->lpmw.LockToolBar;
+	//	int nButton=ScilabGC->lpmw.nButton;
+	//	BOOL StateToolBar=ScilabGC->lpmw.ShowToolBar;
+
+
+	//	DestroyMenu(GetMenu(ScilabGC->hWndParent));
+	//	SetMenu(ScilabGC->hWndParent,NULL);
+	//	CloseGraphMacros ( ScilabGC);
+	//	ScilabGC->lpmw.nButton=nButton;
+	//	ScilabGC->lpmw.ShowToolBar=StateToolBar;
+	//	ScilabGC->lpmw.LockToolBar=LockToolBar;
+
+	//	ScilabGC->hMenuRoot=CreateMenu();
+	//	ScilabGC->IDM_Count=1;
+
+	//	SetMenu(ScilabGC->hWndParent,ScilabGC->hMenuRoot);
+
+	//}
+	int WinNum=ScilabGC->CurWindow;
+	BOOL LockToolBar=ScilabGC->lpmw.LockToolBar;
+	int nButton=ScilabGC->lpmw.nButton;
+	BOOL StateToolBar=ScilabGC->lpmw.ShowToolBar;
+
+	DestroyMenu(GetMenu(ScilabGC->hWndParent));
+	ScilabGC->hMenuRoot=NULL;
+	ScilabGC->IDM_Count=1;
+	SetMenu(ScilabGC->hWndParent,NULL);
+
+	CloseGraphMacros ( ScilabGC);
+
+	if (ScilabGC->graphicsversion!=0)
+	{
+		integer ne=3, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select","&Redraw","&Erase"};
+		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
+
+		UpdateFileGraphNameMenu( ScilabGC);
+		LoadGraphMacros(ScilabGC);
+
+		switch( ScilabGC->lpmw.CodeLanguage)
+		{
+		case 1:
+			AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+			break;
+		default:
+			AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+			break;
+		}
+	}
+	else
+	{
+		
+#ifdef WITH_TK
+		integer ne=7, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select","&Redraw","&Erase","&Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
+		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer","Propriétés de la &figure","Propriétés des &axes courants","&Démarrer sélecteur d'entités","Arrê&ter sélecteur d'entités"};
+
+#else
+		integer ne=3, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select","&Redraw","&Erase"};
+		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
+#endif
+
+		UpdateFileGraphNameMenu( ScilabGC);
+		LoadGraphMacros(ScilabGC);
+
+		switch( ScilabGC->lpmw.CodeLanguage)
+		{
+		case 1:
+			AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+			break;
+		default:
+			AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+			break;
+		}
+
+	}
+
+	ScilabGC->lpmw.nButton=nButton;
+	ScilabGC->lpmw.ShowToolBar=StateToolBar;
+	ScilabGC->lpmw.LockToolBar=LockToolBar;
+
+}
+/*-----------------------------------------------------------------------------------*/

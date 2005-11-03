@@ -171,6 +171,6 @@ EXPORT BOOL CALLBACK ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LP
 BOOL ExportStyle (struct BCG * ScilabGC);
 void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
-
+void RefreshMenus(struct BCG * ScilabGC);
 
 #endif /*__WGMENU__*/
