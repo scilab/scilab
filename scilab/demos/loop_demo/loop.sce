@@ -5,15 +5,21 @@
 global INDEX
 INDEX = make_help_index()
 
-titles=['Scilab','Visualisation de surface Riemann','Complex Functions', ..
-          'Traitement du signal','Stationnement d''une voiture', ..
-          'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
-          'Modelisation et simulation d''un pendule glissant', ..
-          'Programmation lineaire 1','Programmation lineaire 2', ..
-          'Optimisation non lineaire','Spline'];
-          //'Scicos 1','Scicos 2'
+titles=['Scilab','Arbre genealogique', ..
+	'Division Cellulaire','Visualisation scientifique',..
+	'Visualisation de surface Riemann','Surfaces 3D',..
+        'Traitement d''image','Complex Functions', ..
+        'Traitement du signal','Stationnement d''une voiture', ..
+        'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
+        'Modelisation et simulation d''un pendule glissant', ..
+        'Programmation lineaire 1','Programmation lineaire 2', ..
+        'Optimisation non lineaire','Spline'];
+        //'Scicos 1','Scicos 2'
           
-demos=['demo_scilab();','demo_riemann();','demo_cmplxfun();', ..
+demos=['demo_scilab();','demo_geneal();',..
+       'demo_cellule()','demo_isoSurf()',..
+       'demo_riemann();','demo_3dplot()',..
+       'demo_image','demo_cmplxfun();', ..
        'demo_signal();','demo_car();', ..
        'demo_truck();','demo_pendulum();', ..
        'demo_sliding_pendulum();', ..
@@ -21,7 +27,10 @@ demos=['demo_scilab();','demo_riemann();','demo_cmplxfun();', ..
        'demo_datafit();','demo_spline();'];
        //'demo_scicos1();','demo_scicos2();'
        
-filesdemos=['demo_scilab.sci','riemann.sci','cmplxfun.sci', ..
+filesdemos=['demo_scilab.sci','Geneal.sci', ..
+	    'demo_cellule.sci','demo_isoSurf.sci',..
+	    'riemann.sci','demo_3dplot.sci',..
+            'demo_image.sci','cmplxfun.sci', ..
             'demo_signal.sci','car.sci', ..
             'truck.sci','n_pendulum.sci', ..
             'sliding_pendulum.sci', ..
@@ -37,12 +46,18 @@ function demo_help(key)
   else
     tcltk_help(gethelpfile(key),key,'demo')
   end
+  // wait for people to read
+  realtimeinit(1.0);
+  for i=1:10
+    realtime(i);
+  end ;
 endfunction
 //------------------------------------------------------------
 function demotodo(demoname,title)
   clc();
   printf('Demo '+title+' \n'); 
   execstr(demoname);
+  xdel();
 endfunction
 //------------------------------------------------------------
 function loopdemos
@@ -57,8 +72,9 @@ endfunction
 //------------------------------------------------------------
 function SetPosition
   f=gdf();
-  f.figure_position= [550,16];
-  f.figure_size=[400,350]*0.9;
+  f.figure_position= [1,1];
+  //f.figure_size=[400,350]*0.9;
+  f.figure_size = [1280,1024] ;
 endfunction
 //------------------------------------------------------------
 loopnumber=0;

@@ -22,7 +22,7 @@ function demo_sliding_pendulum()
   draw_sliding_pendulum(H,y0(1:3))
  
   //set observation times
-  t0=0; T=t0:0.05:20;
+  t0=0; T=t0:0.05:15;
   
   //dassl parameters
   info=list([],0,[],[],[],0,0);
@@ -55,12 +55,15 @@ function [res,ires]=pendg(t,y,ydot)
        -(fx(x(1),x(2))*u(1)+fy(x(1),x(2))*u(2))];
   ires=0;
 endfunction
+
 function res=fx(x,y)
   res=-2*x+omega*sin(omega*x)/3;
 endfunction
+
 function res=fy(x,y)
   res=1;
 endfunction
+
 function  H=build_sliding_pendulum ()
 //build the sliding pendulum figure and graphic objects, 
 //return the handle on moving parts
@@ -69,8 +72,11 @@ function  H=build_sliding_pendulum ()
   set figure_style new;xselect()
   f=gcf();a=gca();drawlater()
 
-  f.figure_size=[510,676] //mode isoview does not work
-  f.figure_position=[500,16] 
+  //f.figure_size=[510,676] //mode isoview does not work
+  //f.figure_position=[500,16]
+  SetPosition() ;
+  // isoview by hand
+  f.figure_size = [768,1024] ;
   xmin=-1.5; xmax=1.5; ymin=-1.1; ymax=2.35
   a.data_bounds=[xmin ymin;xmax ymax]
   //the framework

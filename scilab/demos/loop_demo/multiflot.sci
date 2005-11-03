@@ -2,7 +2,8 @@ function demo_multiflot()
 //              The Graph
   demo_help demo_multiflot
   win=edit_graph(editgraph_diagram(),1,[700,616])
-  xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);
+  SetPosition();
+  //xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);
   ge_set_nodes_id('Label')
   ge_set_arcs_id('Label')
   

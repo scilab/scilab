@@ -7,8 +7,11 @@ function demo_optloc()
   Alpha=round(99*rand(n,1))+1;
   Beta=round(99*rand(n,1))+1;
   
-  xbasc();set figure_style old,
-  xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);xselect()
+  xbasc();
+  SetPosition ;
+  set figure_style old;
+  //xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);
+  xselect();
   xset('mark size',4)
   plot2d(Alpha,Beta,style=-10,rect=[1 1 100 100])
   xtitle('Position des consommateurs et des services potentiels')
@@ -33,12 +36,13 @@ function demo_optloc()
   [X1,Y1]=optloc(Alpha,Beta,C);
   disp(timer())
   kf=find(Y1>0);
-  xset('color',7)
+  xset('color',9)
   plot2d(Alpha(kf),Beta(kf),style=[-10,2],leg='Ressources 2')
   xset('color',1)
   [ic,jc]=find(X1>0);
   xsegs([Alpha(ic) Alpha(jc)]',[Beta(ic),Beta(jc)]',15)
   realtimeinit(0.1);for k=1:30,realtime(k),end
+  xdel() ;
 endfunction
 
 function [X,Y]=optloc(Alpha,Beta,C)
@@ -48,7 +52,7 @@ function [X,Y]=optloc(Alpha,Beta,C)
   end
   // matrices colonnes
   Alpha=Alpha(:);Beta=Beta(:);C=C(:);
-
+  printf("1\n");
   // calcul des distances euclidiennes entre les points
   //D(i,j)=( (Alpha(i)-Alpha(j))^2+(Beta(i)-Beta(j))^2)^(1/2)
   D=sqrt((Alpha*ones(1,n)-ones(n,1)*Alpha').^2+(Beta*ones(1,n)-ones(n,1)*Beta').^2);
@@ -85,6 +89,7 @@ function [X,Y]=optloc(Alpha,Beta,C)
   b2=zeros(n*n,1);
   A2=[eye(n*n,n*n),-eye(n,n).*.ones(n,1)];  // X(i,j)-Y(j)
   
+  printf("2\n");
   //contraintes d'egalites
   //  ---           
   //  \		  
@@ -102,7 +107,11 @@ function [X,Y]=optloc(Alpha,Beta,C)
   disp(timer())
   if max(abs(x-round(x)))>1.d-6 then warning('solution non entiere'),end
 
+  printf("3\n");
+
   x=round(x)
   X=matrix(x(1:n^2),n,n)
   Y=x(n^2+1:$)
+  printf("4\n");
+
 endfunction

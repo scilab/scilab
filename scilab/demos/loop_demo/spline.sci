@@ -1,7 +1,12 @@
 function demo_spline()
 clear;lines(0);
 demo_help demo_scilab
- xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);
+set('old_style','off');
+set("figure_style","new");
+//xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);
+SetPosition() ;
+
+
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
 //             tricubic spline interpolation)
@@ -28,6 +33,7 @@ for i = 1:length(val)
    [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
 end
+drawlater();
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
@@ -37,8 +43,14 @@ xset("hidden3d",xget("background"));
 colorbar(vmin,vmax);
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4]);
 xtitle("tri-linear interpolation of "+func);
-xselect();
-realtimeinit(0.1);for k=1:10,realtime(k),end;
+//xselect();
+drawnow();
+ realtimeinit(1.0) ;
+ for i=1:20
+   realtime(i);
+ end
+
+//realtimeinit(0.1);for k=1:10,realtime(k),end;
 xdel(winsid());
 
 endfunction

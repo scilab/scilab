@@ -7,7 +7,10 @@ function demo_datafit()
   for x=0:.1:3, Y=[Y,FF(x)+100*(rand()-.5)];X=[X,x];end
   Z=[Y;X];
   //show the data points
-  xbasc();set figure_style old;xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);xselect()
+  xbasc();
+  SetPosition();
+  set figure_style old;
+  //xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);xselect()
   plot2d(X',Y',style=-1,leg='Données expérimentales') 
   realtimeinit(0.1);for k=1:30,realtime(k),end
   // solve the non linear data fitting
@@ -15,6 +18,7 @@ function demo_datafit()
   // show the fitting curve
   plot2d(X',FF(X)',[5,2],'002','Fonction approximante')
   realtimeinit(0.1);for k=1:30,realtime(k),end
+  xdel();
 endfunction
 function y=FF(x)
 //parametric function model

@@ -10,6 +10,7 @@ function demo_pendulum()
   y0=0*ones(2*n,1);tt=0:0.05:10;
   yt=ode(y0,0,tt,'npend');
   draw_chain_from_angles(yt(1:$/2,:),r,1);
+  xdel()
 endfunction
 
 
@@ -74,7 +75,9 @@ function draw_chain_from_coordinates(x,y,job)
   [n1,n2]=size(x);
  
   //set the frame
-  xbasc();set figure_style new;a=gca()
+  xbasc();
+  SetPosition() ;
+  set figure_style new;a=gca()
   a.data_bounds=2*[-n1,-n1;n1,0];
   
   //create one polyline and one polymark with the initial position

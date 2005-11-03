@@ -27,7 +27,9 @@ global traj;traj=[]
  x=-35:0.3:35;
  y=-50:0.3:50;
  p=100
- xbasc();set figure_style new;xselect()
+ xbasc();
+ SetPosition();
+ set figure_style new;xselect()
  xset('colormap',hotcolormap(512))
  a=gca();a.tight_limits="on"
 
@@ -51,6 +53,14 @@ global traj;traj=[]
  t=gce();t.thickness=3;t.foreground=512
  drawnow()
  clearglobal traj
+
+ // rotoate the figure
+ a = gca() ;
+ realtimeinit(0.01) ;
+ for i=1:1000
+   realtime(i);
+   a.rotation_angles(2) = a.rotation_angles(2) + 1 ;
+ end
  
 endfunction
  

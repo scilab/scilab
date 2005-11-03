@@ -4,21 +4,29 @@ function demo_riemann()
   xbasc();
   xselect();
   C=hotcolormap(200);C=C(1:$-40,:); 
-  xset('wdim', 497,634);w=xget('window')
+  xset("wpos",1,1);
+  xset('wdim',768 ,1024);
+  //
+  w=xget('window');
+  SetPosition();
   xset('colormap',C);xset('color',30);fond();
   
-  [z,s]=cplxroot(4,35) //compute
+  [z,s]=cplxroot(4,25) //compute
   xset('pixmap',1)
   cplxmap(z,s,163,69)  //draw
   xset('wshow')
-  realtimeinit(0.05)
-  for k=1:300,
+  realtimeinit(0.001)
+  for i=1:100,
+    k = 2 * i ;
     realtime(k),
-    if modulo(k,10)==0 then
+    //if modulo(k,10)==0 then
       xset('wwpc')
+      
       cplxmap(z,s,163+k/10,69+k/20)  //draw
+      
+
       xset('wshow')
-    end
+    //end
 
   end
   xdel(xget('window'))

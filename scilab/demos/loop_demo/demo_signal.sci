@@ -1,7 +1,9 @@
 function demo_signal()
   demo_help demo_signal
-  set figure_style old; xselect();xbasc();
-  xset("wpos",500,16);xset("wdim",500*0.9,350*0.9);
+  SetPosition();
+  
+  set figure_style old; //xselect();xbasc();
+    //xset("wpos",500,16);xset("wdim",500*0.9,350*0.9);
   //xset('wpos',620,16);xset('wdim',600,540);
   subplot(221)
   hz=iir(3,'bp','ellip',[0.15 0.25],[0.08 0.035]);
