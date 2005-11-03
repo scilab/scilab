@@ -122,6 +122,8 @@ typedef struct BCG
 		     initgraphic **/
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
+  HMENU hMenuRoot;
+  int IDM_Count;
 #else 
 #ifdef __G_LIB_H__
 /** GTK specific objects **/
