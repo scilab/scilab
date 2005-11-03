@@ -733,6 +733,9 @@ cd .. &gt;nul
 				RelativePath=".\intsetenv.c">
 			</File>
 			<File
+				RelativePath=".\intshowalluimenushandles.c">
+			</File>
+			<File
 				RelativePath=".\intslicot.c">
 			</File>
 			<File
@@ -770,17 +773,19 @@ cd .. &gt;nul
 				RelativePath=".\intcommongraphics.h">
 			</File>
 			<File
-				RelativePath=".\intgget.h">
-			</File>
-			<File
 				RelativePath=".\intgetmemory.h">
 			</File>
-
+			<File
+				RelativePath=".\intgget.h">
+			</File>
 			<File
 				RelativePath=".\intgraphics.h">
 			</File>
 			<File
 				RelativePath=".\intgset.h">
+			</File>
+			<File
+				RelativePath=".\intshowalluimenushandles.h">
 			</File>
 			<File
 				RelativePath="matdes.h">

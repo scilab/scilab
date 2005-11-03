@@ -96,6 +96,7 @@ extern int sciunzoom _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2bmp _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2emf _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu _PARAMS((char *fname,unsigned long fname_len));
+int intshowalluimenushandles _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
 	{scichamp,"champ"},
@@ -191,7 +192,8 @@ static MatdesTable Tab[]={
 	{sciunzoom,"unzoom"},
 	{intxs2bmp,"xs2bmp"},
 	{intxs2emf,"xs2emf"},
-	{intUImenu,"UImenu"}
+	{intUImenu,"UImenu"},
+	{intshowalluimenushandles,"showalluimenushandles"}
 };
 
 /*-----------------------------------------------------------------------------------*/ 

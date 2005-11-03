@@ -12,7 +12,7 @@ OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3
 	intlapack.obj intslicot.obj intarpack.obj matdes.obj intorand.obj stcreate.obj \
 	intfilestat.obj strelm-c.obj  matdsr.obj otherspecfun.obj hmops.obj \
 	intinterp.obj intsetenv.obj intreadxls.obj dassl.obj intqld.obj intgetmemory.obj\
-	intUImenu.obj intgraphics.obj intgget.obj intgset.obj
+	intUImenu.obj intgraphics.obj intgget.obj intgset.obj intshowalluimenushandles.obj
 
 OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj lstops.obj intl_e.obj intl_i.obj \
 	matio.obj intdeff.obj intdiary.obj intdisp.obj intexec.obj intexecstr.obj \
