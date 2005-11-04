@@ -58,7 +58,7 @@ c3=shadecomp(xx3,yy3,zz3,l,2,2);
 // group them and plot them (each in a different shade)
 data=list(xx1,yy1,zz1,c1,2,xx2,yy2,zz2,c2,6,xx3,yy3,zz3,c3,3);
 xbasc();
-xtitle('Objets tridimensionnels de differentes couleurs') ;
+xtitle('Shaded 3d objects of different colors') ;
 oplot3d(data,nc*ones(1,5),45,80)
 
 f = gcf();
