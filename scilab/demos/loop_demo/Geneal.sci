@@ -1,14 +1,12 @@
 //  PROGRAMME GENEAL
-//  Version 5.3 20051101
+//  Version 5.4 20051103
 //  Copyright Jacques-Deric Rouault
 //  Designed for Scilab 3.1.1 & 4.0 under Windows XP & Linux
-//  Modified by Jean-Baptiste Silvy INRIA for the 17/11/2005 demo.
 
 function demo_geneal()
 demo_help demo_geneal
 
 lines(0);
-
 SetPosition();
 
 mprintf ("\nPROGRAMME GENEAL : TRACE D''UN ARBRE GENEALOGIQUE POLAIRE\n");
@@ -31,7 +29,7 @@ end;
 mclose (fsci);
 
 // ETAPE/STEP 02 : RECHERCHE DU FICHIER GENEAL.TXT / LOOKING FOR THE FILE GENEAL.TXT
-//nom_fichier=tk_getfile(title="RECHERCHE DU FICHIER GENEAL - LOOKING FOR THE FILE GENEAL");
+//nom_fichier=tk_getfile("*.txt",title="RECHERCHE DU FICHIER GENEAL - LOOKING FOR THE FILE GENEAL");
 nom_fichier = 'Geneal.txt';
 
 // ETAPE/STEP 03 : OUVERTURE DU FICHIER GENEAL.TXT / OPENING THE FILE GENEAL.TXT
@@ -170,7 +168,7 @@ for np = 1:npersonnes do
   str = mgetl (fg,1);
   [rang1,s,ddeb,dfin,rang2,nom1] = sscanf (str,"%i %i %i %i %i %s");
   if s<1 or s>2 then
-    mclose (fg);
+    mclose (fg);  
     mprintf ("PROBLEME DE SYNTAXE : VOIR LE FICHIER MOUCHARD fichier.MCS\n");
     mprintf ("SYNTAX ERROR: SEE THE SNEAK FILE fichier.MCS\n");
     abort;
@@ -478,10 +476,27 @@ for nf = 1:nfams do
     y21 = rho2*sin(angler1);
     x22 = rho2*cos(angler2);
     y22 = rho2*sin(angler2);
-    xpoly ([x11,x12,x22,x21,x11], [y11,y12,y22,y21,y11]);
+    xsegs ([x11,x21],[y11,y21]);
     hs = gce ();
     hs.line_style=2;
     hs.foreground=13;    
+    hs.segs_color=13;
+    xsegs ([x12,x22],[y12,y22]);
+    hs = gce ();
+    hs.line_style=2;
+    hs.foreground=13;    
+    hs.segs_color=13;
+    
+    angle1 = pasangle*(sect1-0.5);
+    angle2 = pasangle*(sect2-sect1+1);
+    xarc (-rho1, rho1, 2*rho1, 2*rho1, angle1, angle2);
+    hh = gce ();   
+    hh.foreground = 13;
+    hh.line_style=2;
+    xarc (-rho2, rho2, 2*rho2, 2*rho2, angle1, angle2);
+    hh = gce ();   
+    hh.foreground = 13;
+    hh.line_style=2;
   end;
 end;
 drawnow;
@@ -494,7 +509,8 @@ else
   mprintf ("PROBLEME DE SYNTAXE : VOIR LE FICHIER MOUCHARD fichier.MCS\n");
   mprintf ("SYNTAX ERROR: SEE THE SNEAK FILE fichier.MCS\n");
   abort;
-end;
+end;              
+
 
 realtimeinit(1.0) ;
 for i=1:10
@@ -514,12 +530,9 @@ for i=1:10
    realtime(i);
 end;
 
-
-
 mclose (fg);
 mprintf ("\nFin normale d''exécution du programme / Correct end of running\n");
 
-xdel();
+xdel() ;
 
 endfunction
-

@@ -1,7 +1,7 @@
 GENEAL-V5
-Family
+Généalogie R-B Copyright Jacques-Deric Rouault 20051101
 PHYSIC
-Family
+Rt-B V5 20051101
 0  0
 1100
 DATES
@@ -25,143 +25,143 @@ DATES
 2000
 PERSONNES
 137
-  1 1 1950 9999   0 Adrian_Arnold
-  2 2 1982 9999   0 Alex_Arnold
-  3 2 1984 9999   0 Elaine_Arnold
-  4 1 1937 9999   0 Claude_Beronie
-  5 2 1971 9999   0 Dorothée_Beronie
-  6 2 1967 9999   0 Odile_Beronie
-  7 2 1895 1919   8 Jeanne_Blanquet
-  8 2 1919 1975   0 Jeanne_Blanquet
-  9 2 1955 2004  10 Brigitte_Blondelet
- 10 2 2004 9999   0 Brigitte_Blondelet
- 11 2 1951 9999   0 Catherine_Blondelet
- 12 2 1973 2000  13 Cécile_Blondelet
- 13 2 2000 9999   0 Cécile_Blondelet
- 14 2 1970 1997  15 Claire_Blondelet
- 15 2 1997 9999   0 Claire_Blondelet
+  1 1 1950 9999   0 Adrian_A
+  2 2 1982 9999   0 Alex_A
+  3 2 1984 9999   0 Elaine_A
+  4 1 1937 9999   0 Claude_B
+  5 2 1971 9999   0 Dorothée_B
+  6 2 1967 9999   0 Odile_B
+  7 2 1895 1919   8 Jeanne_B
+  8 2 1919 1975   0 Jeanne_B
+  9 2 1955 2004  10 Brigitte_B
+ 10 2 2004 9999   0 Brigitte_B
+ 11 2 1951 9999   0 Catherine_B
+ 12 2 1973 2000  13 Cécile_B
+ 13 2 2000 9999   0 Cécile_B
+ 14 2 1970 1997  15 Claire_B
+ 15 2 1997 9999   0 Claire_B
  16 1 1970 9999   0 X
  17 1 1998 9999   0 X1
  18 2 2001 9999   0 X2
- 19 2 1953 2000  20 Dominique_Blondelet
- 20 2 2000 9999   0 Dominique_Blondelet
+ 19 2 1953 2000  20 Dominique_B
+ 20 2 2000 9999   0 Dominique_B
  21 1 1953 9999   0 X
- 22 1 1918 1947  23 Georges_Blondelet
- 23 1 1947 9999   0 Georges_Blondelet
- 24 2 1947 1967  25 Marie-Hélène_Blondelet
- 25 2 1967 1982  26 Marie-Hélène_Blondelet
- 26 2 1982 9999   0 Marie-Hélène_Blondelet
- 27 2 1913 1942  28 Marthe_Blondelet
- 28 2 1942 1989   0 Marthe_Blondelet
- 29 1 1921 1945  30 Pierre_Blondelet
- 30 1 1945 9999   0 Pierre_Blondelet
- 31 1 1946 1970  32 Philippe_Blondelet
- 32 1 1970 9999   0 Philippe_Blondelet
+ 22 1 1918 1947  23 Georges_B
+ 23 1 1947 9999   0 Georges_B
+ 24 2 1947 1967  25 Marie-Hélène_B
+ 25 2 1967 1982  26 Marie-Hélène_B
+ 26 2 1982 9999   0 Marie-Hélène_B
+ 27 2 1913 1942  28 Marthe_B
+ 28 2 1942 1989   0 Marthe_B
+ 29 1 1921 1945  30 Pierre_B
+ 30 1 1945 9999   0 Pierre_B
+ 31 1 1946 1970  32 Philippe_B
+ 32 1 1970 9999   0 Philippe_B
  33 2 1955 9999   0 Dominique_X
- 34 1 1886 1958   0 Victor_Blondelet
- 35 2 1962 9999   0 Franca_Barlocco
- 36 1 1973 9999   0 Pierre-Marie_Cadot
- 37 2 2001 9999   0 Mathilde_Cadot
- 38 2 2004 9999   0 Marianne_cadot
- 39 1 1953 1954   0 Guy_Charlier
- 40 1 1924 9999   0 Michel_Charlier
- 41 2 1950 1973  42 Rosine_Charlier
- 42 2 1973 9999   0 Rosine_Charlier
- 43 1 1954 1975  44 Yves_Charlier
- 44 1 1975 9999   0 Yves_Charlier
- 45 2 1942 1972  46 Anne-Marie_Charmeux
- 46 2 1972 9999   0 Anne-Marie_Charmeux
- 47 2 1946 1972  48 Béatrice_Charmeux
- 48 2 1972 9999   0 Béatrice_Charmeux
- 49 2 1938 1966  50 Brigitte_Charmeux
- 50 2 1966 9999   0 Brigitte_Charmeux
- 51 1 1878 1955   0 Edouard_Charmeux
- 52 2 1932 1960  53 Françoise_Charmeux
- 53 2 1960 9999   0 Françoise_Charmeux
- 54 1 1908 1932  55 Jacques_Charmeux
- 55 1 1932 1964   0 Jacques_Charmeux
- 56 2 1921 1947  57 Jeanne_Charmeux
- 57 2 1947 9999   0 Jeanne_Charmeux
- 58 2 1911 9999   0 Suzanne_Coffineau
- 59 2 1889 1958   0 Maria_Courbon
- 60 2 1975 9999   0 Bérangère_Delacroix
- 61 2 1978 9999   0 Henriette_Delacroix
- 62 1 1946 9999   0 Patrick_Delacroix
- 63 1 1931 1990   0 Daniel_Deriaz
- 64 2 1961 9999   0 Isabelle_Deriaz
- 65 1 1962 9999   0 Olivier_Deriaz
- 66 1 1946 1990  67 Jean-Paul_Fontez
- 67 1 1990 2004  68 Jean-Paul_Fontez
- 68 1 2004 9999   0 Jean-Paul_Fontez
- 69 2 1946 9999   0 x_Fontez
- 70 2 1965 1990  71 Bénédicte_Fontez
- 71 2 1990 9999   0 Bénédicte_Fontez
+ 34 1 1886 1958   0 Victor_B
+ 35 2 1962 9999   0 Franca_B
+ 36 1 1973 9999   0 Pierre-Marie_C
+ 37 2 2001 9999   0 Mathilde_C
+ 38 2 2004 9999   0 Marianne_c
+ 39 1 1953 1954   0 Guy_C
+ 40 1 1924 9999   0 Michel_C
+ 41 2 1950 1973  42 Rosine_C
+ 42 2 1973 9999   0 Rosine_C
+ 43 1 1954 1975  44 Yves_C
+ 44 1 1975 9999   0 Yves_C
+ 45 2 1942 1972  46 Anne-Marie_C
+ 46 2 1972 9999   0 Anne-Marie_C
+ 47 2 1946 1972  48 Béatrice_C
+ 48 2 1972 9999   0 Béatrice_C
+ 49 2 1938 1966  50 Brigitte_C
+ 50 2 1966 9999   0 Brigitte_C
+ 51 1 1878 1955   0 Edouard_C
+ 52 2 1932 1960  53 Françoise_C
+ 53 2 1960 9999   0 Françoise_C
+ 54 1 1908 1932  55 Jacques_C
+ 55 1 1932 1964   0 Jacques_C
+ 56 2 1921 1947  57 Jeanne_C
+ 57 2 1947 9999   0 Jeanne_C
+ 58 2 1911 9999   0 Suzanne_C
+ 59 2 1889 1958   0 Maria_C
+ 60 2 1975 9999   0 Bérangère_D
+ 61 2 1978 9999   0 Henriette_D
+ 62 1 1946 9999   0 Patrick_D
+ 63 1 1931 1990   0 Daniel_D
+ 64 2 1961 9999   0 Isabelle_D
+ 65 1 1962 9999   0 Olivier_D
+ 66 1 1946 1990  67 Jean-Paul_F
+ 67 1 1990 2004  68 Jean-Paul_F
+ 68 1 2004 9999   0 Jean-Paul_F
+ 69 2 1946 9999   0 x_F
+ 70 2 1965 1990  71 Bénédicte_F
+ 71 2 1990 9999   0 Bénédicte_F
  72 1 1965 9999   0 Nicolas_X
  73 1 1995 9999   0 X_X
  74 2 2000 9999   0 Y_X
- 75 1 1970 9999   0 Michel_Fontez
- 76 2 1885 1960   0 Hélène_Gaujard
- 77 2 1926 1993   0 Jeanine_Herriot
- 78 1 1926 1957   0 X_Herriot
- 79 2 1951 1970  80 Anne_Herriot
- 80 2 1970 9999   0 Anne_Herriot
- 81 1 1953 1975  82 Jean-Yves_Herriot
- 82 1 1975 9999   0 Jean-Yves_Herriot
- 83 2 1899 1924  84 Marie_Jézéquel
- 84 2 1924 1996   0 Marie_Jézéquel
- 85 2 1925 9999   0 Henriette_Larue
- 86 1 1910 1993   0 André_Lhéritier
- 87 1 1943 1970  88 Jean_Lhéritier
- 88 1 1970 9999   0 Jean_L'héritier
+ 75 1 1970 9999   0 Michel_F
+ 76 2 1885 1960   0 Hélène_G
+ 77 2 1926 1993   0 Jeanine_H
+ 78 1 1926 1957   0 X_H
+ 79 2 1951 1970  80 Anne_H
+ 80 2 1970 9999   0 Anne_H
+ 81 1 1953 1975  82 Jean-Yves_H
+ 82 1 1975 9999   0 Jean-Yves_H
+ 83 2 1899 1924  84 Marie_J
+ 84 2 1924 1996   0 Marie_J
+ 85 2 1925 9999   0 Henriette_L
+ 86 1 1910 1993   0 André_L
+ 87 1 1943 1970  88 Jean_L
+ 88 1 1970 9999   0 Jean_L
  89 2 1947 9999   0 Francine_X
- 90 2 1980 9999   0 Mathilde_Lhéritier
- 91 2 1947 1970  92 Michelle_Lhéritier
- 92 2 1970 1971   0 Michelle_Lhéritier
- 93 1 1953 9999   0 Jean-François_Lochet
- 94 1 1986 9999   0 Eric_Lochet
- 95 2 1988 9999   0 Lise_Lochet
- 96 2 1965 9999   0 Christine_Martin
- 97 1 1925 1967   0 Gabriel_Meria
- 98 1 1961 1986  99 Jean-Pascal_Meria
- 99 1 1986 9999   0 Jean-Pascal_Meria
-100 2 1995 9999   0 Julie_Meria
-101 1 1962 1990 102 Pierre_Meria
-102 1 1990 9999   0 Pierre_Meria
-103 1 1991 9999   0 Sylvain_Meria
-104 1 1988 9999   0 Yann_Meria
-105 2 1953 1973 106 Monique_Meron
-106 2 1973 1979 107 Monique_Meron
-107 2 1979 9999   0 Monique_Meron
-108 2 1926 1948 109 Anne_Peckett
-109 2 1948 1950 110 Anne_Peckett
-110 2 1950 1957 111 Anne_Peckett
-111 2 1957 9999   0 Anne_Peckett
-112 1 1894 1919 113 Arthur_Peckett
-113 1 1919 1933 114 Arthur_Peckett
-114 1 1933 1976   0 Arthur_Peckett
-115 1 1923 1945   0 Derek_Peckett
-116 2 1920 1947 117 Evelyn_Peckett
-117 2 1947 9999   0 Evelyn_Peckett
-118 1 1947 9999   0 Jean-Claude_Pitois
-119 2 1970 1990   0 Valerie_Pitois
-120 1 1900 1924 121 André_Rouault
-121 1 1924 1988   0 André_Rouault
-122 1 1925 1948 123 André-Paul_Rouault
-123 1 1948 1950 124 André-Paul_Rouault
-124 1 1950 1959 125 André-Paul_Rouault
-125 1 1959 1992   0 André-Paul_Rouault
-126 1 1983 2004 127 Erwan_Rouault
-127 1 2004 9999   0 Erwan_Rouault
-128 1 1949 1950 129 Jacques_Rouault
-129 1 1950 1973 130 Jacques_Rouault
-130 1 1973 1979 131 Jacques_Rouault
-131 1 1979 1982 132 Jacques_Rouault
-132 1 1982 9999   0 Jacques_Rouault
-133 2 1985 9999   0 Maëlle_Rouault
-134 2 1993 9999   0 Nolwenn_Rouault
-135 1 1940 9999   0 Claude_Thévenet
-136 1 1977 9999   0 Jean-Philippe_Thévenet
-137 2 1980 9999   0 Delphine_Thévenet
+ 90 2 1980 9999   0 Mathilde_L
+ 91 2 1947 1970  92 Michelle_L
+ 92 2 1970 1971   0 Michelle_L
+ 93 1 1953 9999   0 Jean-François_L
+ 94 1 1986 9999   0 Eric_L
+ 95 2 1988 9999   0 Lise_L
+ 96 2 1965 9999   0 Christine_M
+ 97 1 1925 1967   0 Gabriel_M
+ 98 1 1961 1986  99 Jean-Pascal_M
+ 99 1 1986 9999   0 Jean-Pascal_M
+100 2 1995 9999   0 Julie_M
+101 1 1962 1990 102 Pierre_M
+102 1 1990 9999   0 Pierre_M
+103 1 1991 9999   0 Sylvain_M
+104 1 1988 9999   0 Yann_M
+105 2 1953 1973 106 Monique_M
+106 2 1973 1979 107 Monique_M
+107 2 1979 9999   0 Monique_M
+108 2 1926 1948 109 Anne_P
+109 2 1948 1950 110 Anne_P
+110 2 1950 1957 111 Anne_P
+111 2 1957 9999   0 Anne_P
+112 1 1894 1919 113 Arthur_P
+113 1 1919 1933 114 Arthur_P
+114 1 1933 1976   0 Arthur_P
+115 1 1923 1945   0 Derek_P
+116 2 1920 1947 117 Evelyn_P
+117 2 1947 9999   0 Evelyn_P
+118 1 1947 9999   0 Jean-Claude_P
+119 2 1970 1990   0 Valerie_P
+120 1 1900 1924 121 André_R
+121 1 1924 1988   0 André_R
+122 1 1925 1948 123 André-Paul_R
+123 1 1948 1950 124 André-Paul_R
+124 1 1950 1959 125 André-Paul_R
+125 1 1959 1992   0 André-Paul_R
+126 1 1983 2004 127 Erwan_R
+127 1 2004 9999   0 Erwan_R
+128 1 1949 1950 129 Jacques_R
+129 1 1950 1973 130 Jacques_R
+130 1 1973 1979 131 Jacques_R
+131 1 1979 1982 132 Jacques_R
+132 1 1982 9999   0 Jacques_R
+133 2 1985 9999   0 Maëlle_R
+134 2 1993 9999   0 Nolwenn_R
+135 1 1940 9999   0 Claude_T
+136 1 1977 9999   0 Jean-Philippe_T
+137 2 1980 9999   0 Delphine_T
 SECTEURS
 181
   1 0
