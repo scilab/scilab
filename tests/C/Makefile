@@ -2,9 +2,7 @@
 # To be customized 
 #--------------------------------------------------------
 
-# SCIDIR must be defined here with absolute path
-# SCIDIR=../..
-include ../../Path.incl
+include ../../../Path.incl
 
 PROG=Test1
 OBJS=Test1.o
