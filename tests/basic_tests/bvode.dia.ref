@@ -1,7 +1,7 @@
  
 // Copyright INRIA
  
-getf('SCI/tests/bvode_tst.sci')
+getf('SCI/tests/basic_tests/bvode_tst.sci')
  
  
 [z,zf]=col1();
