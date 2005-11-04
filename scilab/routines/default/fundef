@@ -397,10 +397,10 @@
 {"and",			IN_logelm,	4,	0},
 #define  IN_matus2  24  
 #define  IN_xawelm  25  
-{"addmenu",		IN_xawelm,	8,	3},	
-{"delmenu",		IN_xawelm,	9,	3},	
-{"setmenu",		IN_xawelm,	10,	3},	
-{"unsetmenu",		IN_xawelm,	11,	3},	
+{"addmenu_old",		IN_xawelm,	8,	3},	
+{"delmenu_old",		IN_xawelm,	9,	3},	
+{"setmenu_old",		IN_xawelm,	10,	3},	
+{"unsetmenu_old",	IN_xawelm,	11,	3},	
 {"x_choose",		IN_xawelm,	3,	1},	
 {"x_dialog",		IN_xawelm,	1,	1},	
 {"x_mdialog",		IN_xawelm,	4,	1},	

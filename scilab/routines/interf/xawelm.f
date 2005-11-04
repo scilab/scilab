@@ -26,16 +26,16 @@ c
          call scichoice("choices")
       endif
       if (fin .eq. 8) then
-         call sciaddm("addmenu")
+         call sciaddm("addmenu_old")
       endif
       if (fin .eq. 9) then
-         call scidellm("dellmenu")
+         call scidellm("delmenu_old")
       endif
       if (fin .eq. 10 ) then 
-         call scisetum("setmenu",setmen)
+         call scisetum("setmenu_old",setmen)
       endif
       if (fin.eq.11) then 
-         call scisetum("unsetmenu",unsmen)
+         call scisetum("unsetmenu_old",unsmen)
       endif
       if (fin.eq.12) then
          call intsxgetfile("xgetfile")

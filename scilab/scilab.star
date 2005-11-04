@@ -61,6 +61,7 @@ if with_texmacs() then load('SCI/macros/texmacs/lib'),end
 clear with_texmacs
 load('SCI/macros/xdess/lib')
 load('SCI/macros/sparse/lib')
+load('SCI/macros/gui/lib')
 
 // Create some configuration variables ================================
 // path of scilab main directory

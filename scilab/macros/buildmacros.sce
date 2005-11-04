@@ -26,7 +26,8 @@ CurrentDirectory=pwd();
  "scicos",
  "scicos_new",
  "m2sci",
- "scicos_blocks"];
+ "scicos_blocks",
+ "gui"];
  
 Dim=size(Directories);
 timer();
