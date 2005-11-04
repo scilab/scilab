@@ -47,7 +47,7 @@ for k=1:size(h,'*')
   c=hk.children;
   vis=hk.visible;hk.visible='off';
   //delete(c)
-  for i=size(c,'*'):-1:1,delete(c(i)),end
+  for i=1:size(c,'*'),delete(c(i)),end
   hk.visible=vis
   if job=='reset' then
     props=['axes_size','auto_resize','figure_name','color_map','pixmap','pixel_drawing_mode','background','visible','rotation_style']
