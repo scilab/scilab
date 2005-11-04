@@ -1,14 +1,14 @@
 
-SCIDIR=..
-SCIDIR1=..
+SCIDIR = ../..
+SCIDIR1 = ../..
 
-include ../Makefile.incl.mak 
+include ../../Makefile.incl.mak 
 
 FFLAGS = $(FC_OPTIONS) -DFORDLL 
 CFLAGS = $(CC_OPTIONS) -DFORDLL 
 
-DUMPEXTS=$(SCIDIR1)\bin\dumpexts
-SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
+DUMPEXTS = $(SCIDIR1)\bin\dumpexts
+SCIIMPLIB = $(SCIDIR)/bin/LibScilab.lib
 
 OBJS = externals.obj
 

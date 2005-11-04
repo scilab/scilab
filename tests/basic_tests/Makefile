@@ -1,8 +1,8 @@
 SHELL = /bin/sh
 
-SCIDIR=..
+SCIDIR = ../..
 
-include ../Makefile.incl
+include ../../Makefile.incl
 
 
 all:: info
