@@ -9,7 +9,7 @@
 #include "../Warnings.h"
 #include "../Errors.h"
 
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#include "../../os_specific/win_mem_alloc.h" /* MALLOC */
 
 extern int WINAPI Windows_Main(HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow);
 
