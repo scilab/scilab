@@ -2604,7 +2604,10 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      pFIGURE_FEATURE (pobj)->visible = value;
+		if (pFIGURE_FEATURE (pobj)->visible != value)
+			{
+			pFIGURE_FEATURE (pobj)->visible = value;
+			}
       /*       while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL)) */
       /* 	{ */
       /* 	  sciSetVisibility ((sciPointObj *)psonstmp->pointobj,value);  */
@@ -2612,7 +2615,10 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
       /* 	} */
       break;
     case SCI_SUBWIN:
-      pSUBWIN_FEATURE (pobj)->visible = value;
+		if (pSUBWIN_FEATURE (pobj)->visible != value)
+			{
+			pSUBWIN_FEATURE (pobj)->visible = value;
+			}
       /*       while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL)) */
       /* 	{ */
       /* 	  sciSetVisibility ((sciPointObj *)psonstmp->pointobj,value);  */
@@ -2620,43 +2626,83 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
       /* 	} */
       break;
     case SCI_TITLE:
-      pTITLE_FEATURE (pobj)->visible = value;
+		if (pTITLE_FEATURE (pobj)->visible != value)
+			{
+			pTITLE_FEATURE (pobj)->visible = value;
+			}
       break;
     case SCI_LEGEND:
-      pLEGEND_FEATURE (pobj)->visible = value;
+		if (pLEGEND_FEATURE (pobj)->visible != value)
+			{
+			pLEGEND_FEATURE (pobj)->visible = value;
+			}
       break;
     case SCI_ARC:
-      pARC_FEATURE (pobj)->visible = value;
+		if (pARC_FEATURE (pobj)->visible != value)
+			{
+			pARC_FEATURE (pobj)->visible = value;
+			}
       break;
     case SCI_POLYLINE:
-      pPOLYLINE_FEATURE (pobj)->visible = value;
+		if (pPOLYLINE_FEATURE (pobj)->visible != value)
+			{
+			pPOLYLINE_FEATURE (pobj)->visible = value;
+			}
       break;
     case SCI_RECTANGLE:
-      pRECTANGLE_FEATURE (pobj)->visible = value;
+		if (pRECTANGLE_FEATURE (pobj)->visible != value)
+			{
+			pRECTANGLE_FEATURE (pobj)->visible = value;
+			}
       break;
     case SCI_SURFACE:
-      pSURFACE_FEATURE (pobj)->visible = value;
+		if (pSURFACE_FEATURE (pobj)->visible != value)
+			{
+			pSURFACE_FEATURE (pobj)->visible = value;
+			}
       break;    
     case SCI_SEGS: 
-      pSEGS_FEATURE (pobj)->visible = value;
+		if (pSEGS_FEATURE (pobj)->visible != value)
+			{
+			pSEGS_FEATURE (pobj)->visible = value;
+			}
       break;    
     case SCI_FEC: 
-      pFEC_FEATURE (pobj)->visible = value;
+		if (pFEC_FEATURE (pobj)->visible != value)
+			{
+			pFEC_FEATURE (pobj)->visible = value;
+			}
       break;    
     case SCI_GRAYPLOT: 
-      pGRAYPLOT_FEATURE (pobj)->visible = value;
+		if (pGRAYPLOT_FEATURE (pobj)->visible != value)
+			{
+			pGRAYPLOT_FEATURE (pobj)->visible = value;
+			}
       break;    
     case SCI_TEXT: 
-      pTEXT_FEATURE (pobj)->visible = value;
+		if (pTEXT_FEATURE (pobj)->visible != value)
+			{
+			pTEXT_FEATURE (pobj)->visible = value;
+			}
       break;   
     case SCI_LIGHT: 
-      pLIGHT_FEATURE (pobj)->visible = value;
+		if(pLIGHT_FEATURE (pobj)->visible != value)
+			{
+			pLIGHT_FEATURE (pobj)->visible = value;
+			}
+      
       break;
     case SCI_AXES: 
-      pAXES_FEATURE (pobj)->visible = value;
+		if (pAXES_FEATURE (pobj)->visible != value)
+			{
+			pAXES_FEATURE (pobj)->visible = value;
+			}
       break;    
     case SCI_AGREG: 
-      pAGREG_FEATURE (pobj)->visible = value; 
+		if (pAGREG_FEATURE (pobj)->visible != value )
+			{
+			pAGREG_FEATURE (pobj)->visible = value; 
+			}
       /*       while ((psonstmp != (sciSons *) NULL) && (psonstmp->pointobj != (sciPointObj *)NULL)) */
       /* 	{ */
       /* 	  sciSetVisibility ((sciPointObj *)psonstmp->pointobj,value);  */
@@ -2664,10 +2710,16 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
       /* 	}   */
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      pLABEL_FEATURE (pobj)->visible = value;
+		if (pLABEL_FEATURE (pobj)->visible != value)
+			{
+			pLABEL_FEATURE (pobj)->visible = value;
+			}
       break;
     case SCI_UIMENU:
-      pUIMENU_FEATURE(pobj)->visible=value;
+		if (pUIMENU_FEATURE(pobj)->visible != value)
+			{
+			pUIMENU_FEATURE(pobj)->visible=value;
+			}
       break;
     case SCI_SBH:   
     case SCI_PANNER:
