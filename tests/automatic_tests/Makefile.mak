@@ -1,7 +1,7 @@
 
-SCIDIR=..\..\..
+SCIDIR=..\..
 
-include ../../../Makefile.incl.mak
+include ../../Makefile.incl.mak
 
 all :: info
 
@@ -30,20 +30,3 @@ clean ::
 	@del foof.*
 
 distclean:: clean 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
