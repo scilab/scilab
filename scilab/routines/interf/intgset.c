@@ -1050,7 +1050,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		#endif
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	    
-	    ///* Add xclear to refresh toolbar for Windows */
+	    /* Add xclear to refresh toolbar for Windows */
 	    C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
 		      PD0, 0L, 0L);
 	  }
