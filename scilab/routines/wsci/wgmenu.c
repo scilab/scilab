@@ -176,53 +176,77 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
  * special buf expression ( i.e begining with '@' )
  *    are parsed 
  ******************************/
-
 void ScilabMenuAction (char *buf)
 {
-  char *d;
-  if (strlen (buf) > 2 && buf[0] == '@')
-    {
-      /** special cases : buf was produced by a dynamic menu **/
-      if (buf[1] == '0')
+	if (strlen (buf) > 2 && buf[0] == '@')
 	{
-	  /* Interpreted mode : we store the action on a queue */
-	  StoreCommand1 (buf + 2, 0);
-	
-	}
-      else
-	{
-	  /* hard coded mode */
-	  int rep, win, entry;
-	  if ((d = strchr (buf, '_')) != NULL)
-	    {
-	      sscanf (d + 1, "%d(%d)", &win, &entry);
-	      entry--;
-	      *d = '\0';
-	    }
-	  else
-	    {
-	      win = -1;
-	      if ((d = strchr (buf, '(')) != NULL)
+	      /** special cases : LocalBuf was produced by a dynamic menu **/
+	    if (buf[1] == '0')
 		{
-		  sscanf (d, "(%d)", &entry);
-		  entry--;
-		  *d = '\0';
+		  /* Interpreted mode : we store the action on a queue */
+		  StoreCommand1 (buf + 2, 0);
 		}
-	    }
-	  /** removing leading @1execstr( **/
-	  C2F (setfbutn) (buf + 2 + 8, &rep);
-	  if (rep == 0)
-	    F2C (fbutn) (buf + 2, &(win), &(entry));
+	    else
+		{
+			/* hard coded mode */
+			int rep, win, entry;
+			char *tmp=NULL;
+			char *LocalBuf=(char*)MALLOC((strlen(buf)+1)*sizeof(char));
+			char *FunctionName=(char*)MALLOC((strlen(buf)+1)*sizeof(char));
+			wsprintf(LocalBuf,"%s",buf+strlen("@1")+strlen("execstr("));
+			/*remove last char ')' */
+			LocalBuf[strlen(LocalBuf)-1]='\0';
+
+			if ( ( tmp = strchr (LocalBuf, '_') ) != NULL )
+			{
+				sscanf (tmp + 1, "%d(%d)", &win, &entry);
+				entry--;
+				strncpy(FunctionName,LocalBuf,strlen(LocalBuf)-strlen(tmp));
+				*tmp = '\0';
+			}
+			else
+			{
+				win = -1;
+				if ((tmp = strchr (LocalBuf, '(')) != NULL)
+				{
+					char *tmpbis=NULL;
+					sscanf (tmp, "(%d)", &entry);
+					
+					if ( ( tmpbis = strchr (LocalBuf, '(') ) != NULL )
+					{
+						strncpy(FunctionName,LocalBuf,strlen(LocalBuf)-strlen(tmpbis));
+					}
+
+					entry--;
+					*tmp = '\0';
+				}
+			}
+
+			C2F (setfbutn) (FunctionName, &rep);
+			if (rep == 0)
+			{
+				F2C (fbutn) (FunctionName, &(win), &(entry));
+			}
+
+			if (FunctionName) {FREE(FunctionName);FunctionName=NULL;}
+			if (LocalBuf) {FREE(LocalBuf);LocalBuf=NULL;}
+		}
 	}
-    }
-  else if (buf[0] != '\0')
-    {
-      /** standard string that we send to scilab **/
-      if (strlen (buf) == 1 && buf[0] <= 31 && buf[0] >= 1)
-	StoreCommand1 (buf, 0);
-      else
-	StoreCommand1 (buf, 1);
-    }
+	else 
+	{
+		if (buf[0] != '\0')
+		{
+			/** standard string that we send to scilab **/
+			if (strlen (buf) == 1 && buf[0] <= 31 && buf[0] >= 1) 
+			{
+				StoreCommand1 (buf, 0);
+			}
+			else
+			{
+				StoreCommand1 (buf, 1);
+			}
+		}
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 /************************************
