@@ -2,7 +2,7 @@ function demo_image()
 demo_help demo_image
 xdel() ;
 // read image
-[mat,h]   = readppm('./scilabb.ppm');
+[mat,h]   = readppm('./scilab_logo.ppm');
 
 // get three matrixes with the three channels
 [r,g,b] = col2rgb(mat) ;
