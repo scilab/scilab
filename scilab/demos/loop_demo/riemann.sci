@@ -8,8 +8,9 @@ function demo_riemann()
   xset('wdim',768 ,1024);
   //
   w=xget('window');
-  SetPosition();
-  xset('colormap',C);xset('color',30);fond();
+  //SetPosition();
+  toolbar(0,'off');
+  xset('colormap',C);xset('color',30);//fond();
   
   [z,s]=cplxroot(4,25) //compute
   xset('pixmap',1)
@@ -34,8 +35,8 @@ function demo_riemann()
 endfunction
 
 function fond()
-  n=size(xget('colormap'),1)
-  xset('background',n+1), 
+  n=size(xget('colormap'),1) ;
+  xset('background',n+1) ; 
   xset('foreground',n+2);
 endfunction
 

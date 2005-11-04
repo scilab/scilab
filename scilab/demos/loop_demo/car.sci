@@ -2,6 +2,9 @@ function demo_car()
   demo_help demo_car
   initial=[3;3;0;0]
   final=[0;0;0;0]
+  f = gcf() ;
+  f.pixmap = 'on' ;
+  toolbar(0,'off');
   state=car_solve(initial,final);
   display_car_trajectory(state)
 endfunction
@@ -163,6 +166,7 @@ function draw_car(C,pos)
       (1+cos(phi)/8) (-1/6+sin(phi)/8)]
   C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
   drawnow()
+  show_pixmap();
 endfunction
 
 function h=polyline(xy)

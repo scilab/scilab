@@ -33,10 +33,13 @@ function demo_sliding_pendulum()
   sol=dassl([y0,yd0],t0,T,rtol,atol,pendg,info);
 
   //visualization of the result
-  realtimeinit(0.1);realtime(0) 
+  realtimeinit(0.1);realtime(0);
+  f = gcf() ;
+  f.pixmap = 'on' ;
   for i=1:size(sol,2)
     realtime(i)
     draw_sliding_pendulum(H,sol(2:4,i))
+    show_pixmap() ;
   end
   xdel()
 endfunction

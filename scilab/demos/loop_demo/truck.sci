@@ -3,6 +3,9 @@ function demo_truck()
   initial = [-2;3;0.5235988;0;0;1]
   final   = [0;0;0;0;0;0]
   state = truck_solve(initial,final);
+  f = gcf() ;
+  f.pixmap = 'on' ;
+  toolbar(0,'off') ;
   display_truck_trajectory(state)
 endfunction
 function titlepage(str,win)
@@ -367,6 +370,7 @@ function draw_truck(C,pos)
   xy=[bigL/3  d2;0 0]'
   C(13).data=ones(xy)*diag([x;y])+bigL*xy*Rc
   drawnow()
+  show_pixmap();
 endfunction
 
 function h=polyline(xy)

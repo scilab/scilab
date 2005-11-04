@@ -6,35 +6,35 @@ global INDEX
 INDEX = make_help_index()
 
 titles=['Scilab','Arbre genealogique', ..
-	'Division Cellulaire','Visualisation scientifique',..
+	'Visualisation scientifique',..
 	'Visualisation de surface Riemann','Surfaces 3D',..
         'Traitement d''image','Complex Functions', ..
         'Traitement du signal','Stationnement d''une voiture', ..
         'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
         'Modelisation et simulation d''un pendule glissant', ..
-        'Programmation lineaire 1','Programmation lineaire 2', ..
+        'Programmation lineaire 2', ..
         'Optimisation non lineaire','Spline'];
         //'Scicos 1','Scicos 2'
           
 demos=['demo_scilab();','demo_geneal();',..
-       'demo_cellule()','demo_isoSurf()',..
+       'demo_isoSurf()',..
        'demo_riemann();','demo_3dplot()',..
-       'demo_image','demo_cmplxfun();', ..
+       'demo_image()','demo_cmplxfun();', ..
        'demo_signal();','demo_car();', ..
        'demo_truck();','demo_pendulum();', ..
        'demo_sliding_pendulum();', ..
-       'demo_multiflot();','demo_optloc();', ..
+       'demo_optloc();', ..
        'demo_datafit();','demo_spline();'];
        //'demo_scicos1();','demo_scicos2();'
        
 filesdemos=['demo_scilab.sci','Geneal.sci', ..
-	    'demo_cellule.sci','demo_isoSurf.sci',..
+	    'demo_isoSurf.sci',..
 	    'riemann.sci','demo_3dplot.sci',..
             'demo_image.sci','cmplxfun.sci', ..
             'demo_signal.sci','car.sci', ..
             'truck.sci','n_pendulum.sci', ..
             'sliding_pendulum.sci', ..
-            'multiflot.sci','optloc.sci', ..
+            'optloc.sci', ..
             'datafit.sci','spline.sci'];       
             //'demo_scicos1.sci','demo_scicos2.sci'
          
@@ -48,7 +48,7 @@ function demo_help(key)
   end
   // wait for people to read
   realtimeinit(1.0);
-  for i=1:10
+  for i=1:7
     realtime(i);
   end ;
 endfunction
@@ -71,14 +71,26 @@ function loopdemos
 endfunction
 //------------------------------------------------------------
 function SetPosition
-  f=gdf();
+  f=gcf();
   f.figure_position= [1,1];
   //f.figure_size=[400,350]*0.9;
   f.figure_size = [1280,1024] ;
+  toolbar(f.figure_id,'off') ;
+endfunction
+//------------------------------------------------------------
+function removeBar()
+  f = gcf();
+  toolbar(f.figure_id,'off') ;
 endfunction
 //------------------------------------------------------------
 loopnumber=0;
 mode(-1);
+
+lines(0);
+
+f= gdf() ;
+f.figure_position= [1,1];
+f.figure_size = [1280,1024] ;
 
 path=get_absolute_file_path("loop.sce")
 global %browsehelp;

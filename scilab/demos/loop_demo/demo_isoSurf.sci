@@ -9,6 +9,7 @@ demo_help demo_isoSurf
 //cd ../
 
 f = gcf()
+SetPosition();
 f.color_map = graycolormap(1024);
 drawlater();
 nx=20; ny=20; nz=20; s=hypermat([nx,ny,nz]);
@@ -29,11 +30,13 @@ plot3d(xx,yy,list(zz,c*(xget('lastpattern')-1)+1))
 e = gce();
 e.color_mode = 0 ;
 e.color_flag = 3;
-drawnow();
+//drawnow();
 
 f = gcf();
 f.pixmap='on';
 a = gca();
+a.isoview = 'on';
+drawnow();
 for i=1:45
   a.rotation_angles = a.rotation_angles + [8,0] ;
   show_pixmap() ;
@@ -42,7 +45,7 @@ end;
 xdel();
 
 nc=30; setcmap([1 2 3 4 6 7],nc)
-
+drawlater();
 // generate various 3d objects
 [xx1,yy1,zz1]=sphere(rand(2,3),0.1,12);
 [xx2,yy2,zz2]=sphere(rand(2,3),0.05,12);
@@ -62,8 +65,11 @@ xtitle('Shaded 3d objects of different colors') ;
 oplot3d(data,nc*ones(1,5),45,80)
 
 f = gcf();
+SetPosition();
 f.pixmap='on';
 a = gca();
+a.isoview = 'on';
+drawnow();
 for i=1:180
   a.rotation_angles(2) = a.rotation_angles(2) + 2 ;
   show_pixmap() ;

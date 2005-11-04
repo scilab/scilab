@@ -60,6 +60,7 @@ zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
 // plot
 drawlater()
 xbasc()
+SetPosition() ;
 xset("colormap",jetcolormap(128))
 subplot(1,2,1)
    plot3d1(xp, xp, zp1, flag=[-2 6 4])

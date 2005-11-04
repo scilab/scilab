@@ -76,6 +76,8 @@ function draw_chain_from_coordinates(x,y,job)
  
   //set the frame
   xbasc();
+  f = gcf() ;
+  f.pixmap = 'on';
   SetPosition() ;
   set figure_style new;a=gca()
   a.data_bounds=2*[-n1,-n1;n1,0];
@@ -103,6 +105,7 @@ function draw_chain_from_coordinates(x,y,job)
     // add a trajectory point
     if job==1 then t.data=[t.data;[x($,j),y($,j)]],end
     drawnow()
+    show_pixmap() ;
   end
 endfunction
 

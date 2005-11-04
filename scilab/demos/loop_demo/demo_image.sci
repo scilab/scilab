@@ -12,6 +12,7 @@ xdel() ;
 drawlater();
 imageview(RGB,mat) ;
 xset('wdim',1280,1024);
+toolbar(0,'off');
 drawnow();
 
 
@@ -57,6 +58,7 @@ xtitle('Image intensity histogram');
 histo = histo / ( n*m ) ;
 bar( x, histo ) ;
 
+SetPosition() ;
 a = gca() ;
 a.auto_ticks = ['on','on','on'] ;
 
@@ -77,6 +79,8 @@ disp = [0 0 1];
 //txt = ["blue","green","red"];
 xtitle('Proportion of the red, green and blue channels in the image');
 pie( sums, disp ) ;
+SetPosition() ;
+
 
 realtimeinit(1.0)
 for i=1:10, 
@@ -95,6 +99,7 @@ xdel();
 drawlater();
 imageview(RGB,mat);
 xset('wdim',1280,1024);
+toolbar(0,'off');
 drawnow();
 
 
@@ -324,6 +329,13 @@ while %t
  if c==10 then break,end
  h=[h c]
 end
-l=ascii(h)
+
+if MSDOS then
+  s = size(h);
+  s = s(2) - 1 ;
+  l = ascii(h(1:s)) ;
+else
+  l = ascii(h) ;
+end
 
 endfunction

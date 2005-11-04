@@ -6,8 +6,7 @@
 function demo_geneal()
 demo_help demo_geneal
 
-lines(0);
-SetPosition();
+//SetPosition();
 
 mprintf ("\nPROGRAMME GENEAL : TRACE D''UN ARBRE GENEALOGIQUE POLAIRE\n");
 mprintf ("PROGRAM GENEAL : DRAWING A POLAR GENEALOGICAL TREE\n");
@@ -68,6 +67,7 @@ npixels = sscanf (str,"%i");
 
 // ETAPE/STEP 06 : CREATION DE LA FENETRE GRAPHIQUE / CREATING THE GRAPHIC WINDOW
 hf = scf (1);
+SetPosition();
 hf.figure_position = [xd,yd];
 hf.figure_name = titre;
 hf.figure_size = [npixels,npixels];
