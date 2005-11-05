@@ -176,10 +176,12 @@ end
 clear fd ierr
 
 // load history file ==================================================
-if MSDOS then
-  loadhistory(SCIHOME+'\history.scilab')
-else
-  loadhistory(SCIHOME+'/.history.scilab')
+if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
+  if MSDOS then
+    loadhistory(SCIHOME+'\history.scilab')
+  else
+    loadhistory(SCIHOME+'/.history.scilab')
+  end
 end
 
 

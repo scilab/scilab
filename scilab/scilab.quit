@@ -24,11 +24,13 @@
  end
 
 // save history file ==================================================
- if MSDOS then
-   savehistory(SCIHOME+'\history.scilab')
- else
-   savehistory(SCIHOME+'/.history.scilab')
- end
+if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
+  if MSDOS then
+    savehistory(SCIHOME+'\history.scilab')
+  else
+    savehistory(SCIHOME+'/.history.scilab')
+  end
+end 
 // ====================================================================
 
 
