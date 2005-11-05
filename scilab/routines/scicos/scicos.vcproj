@@ -787,6 +787,9 @@ cd .. &gt;nul
 				RelativePath=".\logicalop.c">
 			</File>
 			<File
+				RelativePath=".\matscicos.c">
+			</File>
+			<File
 				RelativePath=".\minmax.c">
 			</File>
 			<File
@@ -939,6 +942,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intcscicos.h">
+			</File>
+			<File
+				RelativePath=".\matscicos.h">
 			</File>
 			<File
 				RelativePath=".\scicos.h">

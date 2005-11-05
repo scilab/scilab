@@ -18,6 +18,8 @@
 #include "../stack-c.h"
 
 #if WIN32
+	#include "../os_specific/win_mem_alloc.h"
+	extern char *GetExceptionString(DWORD ExceptionCode);
 	#undef min
 	#undef max
 #endif
@@ -1074,12 +1076,32 @@ static TabF Tab[]={
 
 int C2F(otherspfunlib)(void)
 {
-  Rhs = Max(0, Rhs);
- if (setjmp(slatec_jmp_env)) { 
-    Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
-    return 0;
-  }
-  (*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  C2F(putlhsvar)();
-  return 0;
+	Rhs = Max(0, Rhs);
+	if (setjmp(slatec_jmp_env)) 
+	{ 
+		Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
+		return 0;
+	}
+
+	#if WIN32
+		#ifndef _DEBUG
+		_try
+		{
+			(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+			char *ExceptionString=GetExceptionString(GetExceptionCode());
+			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+		}
+		#else
+			(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		#endif
+	#else
+		(*(Tab[Fin-1].f))(Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+	#endif
+
+	C2F(putlhsvar)();
+	return 0;
 }

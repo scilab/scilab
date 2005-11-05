@@ -273,7 +273,26 @@ void C2F(userlk)(integer *k)
       return;
     }
   if ( DynInterf[k1].ok == 1 ) 
-    (*DynInterf[k1].func)();
+  {
+	#if WIN32
+	  #ifndef _DEBUG
+		_try
+		{
+			(*DynInterf[k1].func)();
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+			char *ExceptionString=GetExceptionString(GetExceptionCode());
+			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,DynInterf[k1].name);
+			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+		}
+	  #else
+		(*DynInterf[k1].func)();
+	  #endif
+	#else
+	  (*DynInterf[k1].func)();
+	#endif
+  }
   else 
     {
       sciprint("Interface %s not linked\r\n",DynInterf[k1].name);

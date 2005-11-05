@@ -15,27 +15,6 @@ extern int ctree4(int* vec,int nb,int *nd,int nnd,int* typ_r,int* outoin,int* ou
 
 #endif
 
-typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
-
-typedef struct table_struct {
-  des_interf f;    /** function **/
-  char *name;      /** its name **/
-} intcscicosTable;
-
-static intcscicosTable Tab[]={
-  {inttimescicos,"scicos_time"},
-  {intduplicate,"duplicate"},
-  {intdiffobjs,"diffobjs"},
-  {intxproperty,"pointer_xproperty"},
-  {intphasesim,"phase_simulation"},
-  {intsetxproperty,"set_xproperty"},
-  {intcpass2,"scicos_cpass2"},
-  {intsetblockerror,"set_blockerror"},
-  {inttree2,"ctree2"},
-  {inttree3,"ctree3"},
-  {inttree4,"ctree4"},
-};
-
 /* fonction pour recuperer le nombre du champs a partir de son nom */
 int MlistGetFieldNumber(int *ptr, const char *string)
 {
@@ -57,16 +36,6 @@ int MlistGetFieldNumber(int *ptr, const char *string)
       break;}
   }
   return retval;
-}
-
-/* interface for the previous function Table */ 
-
-int C2F(intcscicos)()
-{  
-  Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  C2F(putlhsvar)();
-  return 0;
 }
 
 int inttimescicos(fname,fname_len)
@@ -216,10 +185,8 @@ int inttree3(fname,fname_len)
   return 0;
 }
 
-int inttree4(fname,fname_len)
+int inttree4 _PARAMS((char *fname,unsigned long fname_len))
      /* [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd) */
-     char *fname;
-     unsigned long fname_len;
 {
   int un=1,ipvec,nvec,mvec,noin,moin,ipoin,noinr,moinr,ipoinr;
   int nnd,mnd,ipnd,ntyp,mtyp,iptyp,ipr1,ipr2,n,nr,nn;

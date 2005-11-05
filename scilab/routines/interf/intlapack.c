@@ -2,7 +2,13 @@
 #include <string.h>
 #include <stdio.h>
 
-#define DOUBLE 1
+
+#if WIN32
+#include "../os_specific/win_mem_alloc.h"
+extern char *GetExceptionString(DWORD ExceptionCode);
+#endif
+
+#define SCI_DOUBLE 1
 #define STRING  10
 #define REAL 0
 #define COMPLEX 1
@@ -11,6 +17,7 @@
 #define STRINGCOMPLEX 12
 #define YES 1
 #define NO 0
+
 
 /* #define Abs(x) ( (x) > 0) ? (x) : -(x) */
 
@@ -147,7 +154,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
   case 2 :   /* svd(A, something)   */
     header2 = (int *) GetData(2);
     switch (header2[0]) {
-    case DOUBLE :
+    case SCI_DOUBLE :
       if (Lhs == 4) {
 	/*  old svd, tolerance is passed: [U,S,V,rk]=svd(A,tol)  */
 	/*   ret = C2F(intsvdold)("svd",2L);  */
@@ -750,7 +757,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	}
       }
       break;
-    case DOUBLE: /*schur(A,B)*/
+    case SCI_DOUBLE: /*schur(A,B)*/
       if (GetType(2)!=1) {
 	OverLoad(2);
 	return 0;
@@ -960,8 +967,27 @@ static LapackTable Tab[]={
 
 int C2F(intlapack)()
 {  
-  Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  if (Err <= 0 && C2F(errgst).err1 <= 0) C2F(putlhsvar)();
-  return 0;
+	Rhs = Max(0, Rhs);
+	#if WIN32
+		#ifndef _DEBUG
+			_try
+			{
+				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{
+				char *ExceptionString=GetExceptionString(GetExceptionCode());
+				sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+				if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+			}
+		#else
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		#endif
+	#else
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+	#endif
+
+	if (Err <= 0 && C2F(errgst).err1 <= 0) C2F(putlhsvar)();
+	return 0;
 }
+

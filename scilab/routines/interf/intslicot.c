@@ -4,6 +4,11 @@
 #include "../mex.h"
 #include "../stack-c.h"
 
+#if WIN32
+#include "../os_specific/win_mem_alloc.h"
+extern char *GetExceptionString(DWORD ExceptionCode);
+#endif
+
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 #define MIN(x,y)	(((x)<(y))?(x):(y))
 
@@ -123,7 +128,24 @@ static GenericTable Tab[]={
 int C2F(intslicot)()
 {
 	Rhs = Max(0, Rhs);
-	(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+	#if WIN32
+		#ifndef _DEBUG
+		_try
+		{
+			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+			char *ExceptionString=GetExceptionString(GetExceptionCode());
+			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+		}
+		#else
+			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+		#endif
+	#else
+		(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+	#endif
 	return 0;
 }
 

@@ -7,7 +7,7 @@ LIBRARY = $(SCIDIR)/libs/os_specific.lib
 
 OBJSF = bashos.obj basin.obj basout.obj \
 	clunit.obj ctrlc.obj dbasin.obj  \
-	fgetarg.obj getpro.obj inibrk.obj sigbas.obj 
+	fgetarg.obj getpro.obj inibrk.obj sigbas.obj GetExceptionCode.obj
 
 OBJSC  = getenvc.obj link.obj systemc.obj  csignal.obj getpidc.obj timer.obj \
 	flags.obj men_Sutils.obj addinter.obj tmpdir.obj cluni0.obj \

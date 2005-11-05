@@ -697,6 +697,9 @@ cd .. &gt;nul
 				RelativePath=".\getenvc.c">
 			</File>
 			<File
+				RelativePath=".\GetExceptionCode.c">
+			</File>
+			<File
 				RelativePath=".\getmemory.c">
 			</File>
 			<File
@@ -741,6 +744,9 @@ cd .. &gt;nul
 			Filter="h;hpp;hxx;hm;inl">
 			<File
 				RelativePath="addinter.h">
+			</File>
+			<File
+				RelativePath=".\GetExceptionCode.h">
 			</File>
 			<File
 				RelativePath=".\getmemory.h">

@@ -28,6 +28,10 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#if WIN32
+extern char *GetExceptionString(DWORD ExceptionCode);
+#endif
+
 /******************************************
  * SCILAB function : pvm_error_mode
  ******************************************/
@@ -946,7 +950,24 @@ static GenericTable Tab[]={
 
 int C2F(intpvm)()
 {
-  Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
-  return 0;
+	Rhs = Max(0, Rhs);
+	#if WIN32
+		#ifndef _DEBUG
+			_try
+			{
+				(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{	
+				char *ExceptionString=GetExceptionString(GetExceptionCode());
+				sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+				if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+			}
+		#else
+			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+		#endif
+	#else
+		(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+	#endif
+	return 0;
 }

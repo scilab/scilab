@@ -64,6 +64,7 @@ extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(inisci)(int *,int *,int *);
 extern int IsNoInteractiveWindow(void);
 extern BOOL IsWindowInterface(void);
+extern char *GetExceptionString(DWORD ExceptionCode);
 static void interrupt_setup ();
 static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory);
 static int sci_exit(int n) ;
@@ -164,105 +165,93 @@ void sci_clear_and_exit(int n) /* used with handlers */
 /*-----------------------------------------------------------------------------------*/
 static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory)
 {
-  int ierr;
-  static int ini=-1;
-  char startup[256];
-  /* create temp directory */
-  C2F(settmpdir)();
+	int ierr;
+	static int ini=-1;
+	char startup[256];
+	/* create temp directory */
+	C2F(settmpdir)();
 
-  /* signals */
-  signal(SIGINT,sci_clear_and_exit);
-  signal(SIGILL,sci_clear_and_exit);
-  signal(SIGFPE,sci_clear_and_exit);
-  signal(SIGSEGV,sci_clear_and_exit);
-  signal(SIGTERM,sci_clear_and_exit);
-  signal(SIGBREAK,sci_clear_and_exit);
-  signal(SIGABRT,sci_clear_and_exit);
+	/* signals */
+	signal(SIGINT,sci_clear_and_exit);
+	signal(SIGILL,sci_clear_and_exit);
+	signal(SIGFPE,sci_clear_and_exit);
+	signal(SIGSEGV,sci_clear_and_exit);
+	signal(SIGTERM,sci_clear_and_exit);
+	signal(SIGBREAK,sci_clear_and_exit);
+	signal(SIGABRT,sci_clear_and_exit);
 
-  /*  prepare startup script  */
-  if ( nos != 1 ) 
-    {
-      /* execute a startup */
-      no_startup_flag = 0;
-      if ( initial_script != NULL ) 
+	/*  prepare startup script  */
+	if ( nos != 1 ) 
 	{
-	  switch ( initial_script_type ) 
-	    {
-	    case 0 : 
-	      sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
-		      initial_script);
-	      break;
-	    case 1 : 
-	      sprintf(startup,"%s;%s;",get_sci_data_strings(1),
-		      initial_script);
-	      break;
-	    }
+		/* execute a startup */
+		no_startup_flag = 0;
+		if ( initial_script != NULL ) 
+		{
+			switch ( initial_script_type ) 
+			{
+				case 0 : 
+					sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),initial_script);
+				break;
+				case 1 : 
+					sprintf(startup,"%s;%s;",get_sci_data_strings(1),initial_script);
+				break;
+			}
+		}
+		else sprintf(startup,"%s;",get_sci_data_strings(1));
 	}
-      else 
-	sprintf(startup,"%s;",get_sci_data_strings(1));
-    }
-  else 
-    {
-      /* No startup but maybe an initial script  */
-      no_startup_flag = 1;
-      if ( initial_script != NULL ) 
-	  switch ( initial_script_type ) 
-	    {
-	    case 0 : 
-	      sprintf(startup,"exec('%s',-1)",initial_script); break;
-	    case 1 : 
-	      sprintf(startup,"%s;",initial_script);   break;
-	    }
-      else 
-	sprintf(startup," ");
-    }
+	else 
+	{
+		/* No startup but maybe an initial script  */
+		no_startup_flag = 1;
+		if ( initial_script != NULL ) 
+			switch ( initial_script_type ) 
+			{
+				case 0 : 
+					sprintf(startup,"exec('%s',-1)",initial_script);
+				break;
+				case 1 : 
+					sprintf(startup,"%s;",initial_script);
+				break;
+			}
+		else  sprintf(startup," ");
+	}
 
-  /* initialize scilab interp  */
-  
-  C2F(inisci)(&ini, &memory, &ierr);
-  if (ierr > 0) sci_exit(1) ;
-  /* execute the initial script and enter scilab */ 
+	/* initialize scilab interp  */
+	C2F(inisci)(&ini, &memory, &ierr);
+	if (ierr > 0) sci_exit(1) ;
 
-#ifndef _DEBUG
-  _try 
-  {
+	/* execute the initial script and enter scilab */ 
+	#ifndef _DEBUG
+		_try
+			{
+				C2F(scirun)(startup,strlen(startup));
+			}
+		_except (EXCEPTION_EXECUTE_HANDLER) 
+			{
+				Rerun:
+					{
+						char *ExceptionString=GetExceptionString(GetExceptionCode());
+						sciprint("Warning !!!\nScilab has found a critical error (%s).\nScilab may become unstable.\n",ExceptionString);
+						if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+					}
+				_try
+					{
+						C2F(scirun)("",strlen(""));
+}
+						_except (EXCEPTION_EXECUTE_HANDLER) 
+						{
+							goto Rerun;
+						}
+
+					}
+	#else
 		C2F(scirun)(startup,strlen(startup));
-  }
+	#endif
 
-   _except (EXCEPTION_EXECUTE_HANDLER) 
-  {
-	  if (IsWindowInterface())
-	  {
-		  MessageBox(NULL,"Scilab has found a critical error.\n Click on \"OK\" to exit.", "Error",MB_ICONSTOP);
-		  WinExit();
-		  C2F(sciquit)();
-		  C2F(tmpdirc)();
-		  exit(999);
-	  }
-	  else
-	  {
-		  sciprint("Scilab has found a critical error.\n");
-		  if (!IsNoInteractiveWindow())
-		  {
-			  sciprint("Press a key to exit ...\n");
-			  while( !_kbhit() && C2F(ismenu)()==0) 
-			  {
-				  C2F (sxevents) ();
-				  Sleep(1);
-			  }
-		  }
-		  C2F(sciquit)();
-		  C2F(tmpdirc)();
-		  exit(999);
-	  }
-  }
-#else
-	C2F(scirun)(startup,strlen(startup));
-#endif  
-  /* cleaning */ /* Allan CORNET 18/01/2004 */
-  C2F(sciquit)(); 
-  C2F(tmpdirc)();
-  return ;
+	/* cleaning */ /* Allan CORNET 18/01/2004 */
+	WinExit();
+	C2F(sciquit)(); 
+	C2F(tmpdirc)();
 }
 /*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------

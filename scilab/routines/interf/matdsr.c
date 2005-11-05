@@ -1,9 +1,15 @@
 #include <string.h> 
 
+
 #include "../stack-c.h"
 #include "../graphics/Math.h" /* Abs */ 
 
 #include "matdsr.h"
+
+#if WIN32
+#include "../os_specific/win_mem_alloc.h"
+extern char *GetExceptionString(DWORD ExceptionCode);
+#endif
 
 static integer cx1 = 1;
 static integer cx0 = 0;
@@ -129,10 +135,28 @@ static LapackTable Tab[]={
 
 int C2F(matdsr)(void)
 {  
-  Rhs = Max(0, Rhs);
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  C2F(putlhsvar)();
-  return 0;
+	Rhs = Max(0, Rhs);
+	#if WIN32
+		#ifndef _DEBUG
+			_try
+			{
+				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{
+				char *ExceptionString=GetExceptionString(GetExceptionCode());
+				sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+				if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+			}
+		#else
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		#endif
+	#else
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+	#endif
+
+	C2F(putlhsvar)();
+	return 0;
 }
 
 
