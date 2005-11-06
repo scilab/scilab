@@ -2884,6 +2884,73 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		return -1;
 	}
   }
+  else if (strcmp(marker,"callback_type") == 0)
+  {
+	  if (sciGetEntityType (pobj) == SCI_UIMENU)
+	  {
+		if ((strcmp(cstk(*value),"string") == 0))
+		{
+			pUIMENU_FEATURE(pobj)->CallbackType=0;
+		}
+		else
+		if ((strcmp(cstk(*value),"C") == 0))
+		{
+			pUIMENU_FEATURE(pobj)->CallbackType=1;
+		}
+		else
+		if ((strcmp(cstk(*value),"internal") == 0))
+		{
+			pUIMENU_FEATURE(pobj)->CallbackType=2;
+		}
+		else
+		if ((strcmp(cstk(*value),"addmenu") == 0))
+		{
+			pUIMENU_FEATURE(pobj)->CallbackType=3;
+		}
+		else
+		{
+			strcpy(error_message,"Value must be 'string','C','internal','addmenu'");
+			return -1;
+		}
+	  }
+	  else
+	  {
+		  strcpy(error_message,"callback_type property does not exist for this handle");
+		  return -1;
+	  }
+  }
+  else if (strcmp(marker,"menu_enable") == 0)
+  {
+	  if (sciGetEntityType (pobj) == SCI_UIMENU)
+	  {
+		  if ((strcmp(cstk(*value),"on") == 0))
+		  {
+			  if (pUIMENU_FEATURE(pobj)->Enable != TRUE)
+			  {
+				  pUIMENU_FEATURE(pobj)->Enable=TRUE;
+			  }
+			  
+		  }
+		  else
+		  if ((strcmp(cstk(*value),"off") == 0))
+		  {
+			  if (pUIMENU_FEATURE(pobj)->Enable != FALSE)
+			  {
+				  pUIMENU_FEATURE(pobj)->Enable=FALSE;
+			  }
+		  }
+		  else
+		  {
+			  strcpy(error_message,"Value must be 'on' or 'off'");
+			  return -1;
+		  }
+	  }
+	  else
+	  {
+		  strcpy(error_message,"menu_enable property does not exist for this handle");
+		  return -1;
+	  }
+  }
   else 
     {
 		sprintf(error_message,"Unknown  property %s",marker);

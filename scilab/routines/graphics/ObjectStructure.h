@@ -658,7 +658,10 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
   BOOL handle_visible;
+  BOOL Enable;
+
   int MenuPosition;
+  int CallbackType;
 
   #if WIN32
 	HMENU hMenu;

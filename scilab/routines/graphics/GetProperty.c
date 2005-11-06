@@ -4483,6 +4483,8 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"axes_reverse") == 0){return 10;}
   else if (strcmp(marker,"immediate_drawing") == 0){return 10;}
   else if (strcmp(marker,"handle_visible") == 0){return 10;}
+  else if (strcmp(marker,"menu_enable") == 0){return 10;}
+  else if (strcmp(marker,"callback_type") == 0){return 10;}
   else {return -1;}
 }
 

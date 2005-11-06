@@ -3009,6 +3009,8 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
       pUIMENU_FEATURE (pobj)->label.textlen = strlen(label);
 	  pUIMENU_FEATURE (pobj)->handle_visible=handle_visible;
 	  pUIMENU_FEATURE (pobj)->MenuPosition=0;
+	  pUIMENU_FEATURE (pobj)->CallbackType=0;
+	  pUIMENU_FEATURE (pobj)->Enable=TRUE;
 
       return (sciPointObj *) pobj;
     }

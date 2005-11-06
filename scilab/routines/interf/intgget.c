@@ -1987,7 +1987,71 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  }
 
   }
+  else if (strcmp(marker,"callback_type") == 0)
+  {
+	  if (sciGetEntityType (pobj) == SCI_UIMENU)
+	  {
+		  char CallbackType[16];
+		  switch (pUIMENU_FEATURE(pobj)->CallbackType)
+		  {
+			case -1:
+				strcpy(CallbackType,"disable");
+			break;
+			case 0:
+				strcpy(CallbackType,"string");
+			break;
+			case 1:
+				strcpy(CallbackType,"C");
+			break;
+			case 2:
+				strcpy(CallbackType,"internal");
+			break;
+			case 3:
+				strcpy(CallbackType,"addmenu");
+			break;
+			default:
+				strcpy(error_message,"unknow callbak type");
+				return -1;
+			break;
+		  }
 
+		  numrow   = 1;
+		  numcol   = strlen(CallbackType);
+		  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+		  strncpy(cstk(outindex),CallbackType, numrow*numcol);
+
+	  }
+	  else
+	  {
+		  strcpy(error_message,"callback_type property does not exist for this handle");
+		  return -1;
+	  }
+  }
+  else if (strcmp(marker,"menu_enable") == 0)
+  {
+	  if (sciGetEntityType (pobj) == SCI_UIMENU)
+	  {
+		if (pUIMENU_FEATURE(pobj)->Enable == TRUE)
+		 {
+			 numrow   = 1;
+			 numcol   = 2;
+			 CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+			 strncpy(cstk(outindex),"on", numrow*numcol);
+		 }
+		 else 
+		 {
+			 numrow   = 1;
+			 numcol   = 3;
+			 CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+			 strncpy(cstk(outindex),"off", numrow*numcol);
+		 }
+	  }
+	  else
+	  {
+		  strcpy(error_message,"menu_enable property does not exist for this handle");
+		  return -1;
+	  }
+  }
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
 

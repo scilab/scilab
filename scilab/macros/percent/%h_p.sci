@@ -688,8 +688,10 @@ function %h_p(h)
   "visible = "+sci2exp(h.visible)
   "text = "+h.text 
   "callback = "+h.callback
+  "callback type = "+h.callback_type
   "handle_visible = "+sci2exp(h.handle_visible)
   "position = "+sci2exp(h.position,0)
+  "menu_enable = "+sci2exp(h.menu_enable)
     ]
     end
   end
