@@ -105,8 +105,6 @@ int Console_Main(int argc, char **argv)
   textwin.hPrevInstance = 0;
   textwin.nCmdShow = 1;
   textwin.Title = MSG_SCIMSG21;
-  textwin.DragPre = "gl_name='";
-  textwin.DragPost = MSG_SCIMSG17;
   textwin.lpmw = &menuwin;
   textwin.ScreenSize.x = 120;
   textwin.ScreenSize.y = 80;
@@ -242,8 +240,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.hPrevInstance = hPrevInstance;
 	textwin.nCmdShow = iCmdShow;
 	textwin.Title = MSG_SCIMSG21;
-	textwin.DragPre = "gl_name='";
-	textwin.DragPost = MSG_SCIMSG17;
 	textwin.lpmw = &menuwin;
 	textwin.ScreenSize.x = 120;
 	textwin.ScreenSize.y = 80;

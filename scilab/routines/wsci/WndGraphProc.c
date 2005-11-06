@@ -228,8 +228,7 @@ BOOL ON_WND_GRAPH_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 
 	SetWindowLong (hwnd, 0, (LONG) ScilabGC);
 	ScilabGC->CWindow = hwnd;
-	if (ScilabGC->lpgw->lptw && (ScilabGC->lpgw->lptw->DragPre != (LPSTR) NULL) 
-		&& (ScilabGC->lpgw->lptw->DragPost != (LPSTR) NULL)) DragAcceptFiles (hwnd, TRUE);
+	if (ScilabGC->lpgw->lptw) DragAcceptFiles (hwnd, TRUE);
 
 	return TRUE;
 }

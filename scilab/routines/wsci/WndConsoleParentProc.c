@@ -121,7 +121,7 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 	lptw->hWndParent = hwnd;
 	/* get character size */
 
-	if ((lptw->DragPre != (LPSTR) NULL) && (lptw->DragPost != (LPSTR) NULL)) DragAcceptFiles (hwnd, TRUE);
+	DragAcceptFiles (hwnd, TRUE);
 
 	/* Modification Allan CORNET 15/07/03 */
 	/* Renomme la fenetre avec VERSION et numero x associé à la console*/  

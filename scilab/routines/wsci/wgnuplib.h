@@ -107,8 +107,6 @@ typedef struct tagTW
   LPMW	lpmw;			/* optional */
   POINT	ScreenSize;		/* optional */
   unsigned int KeyBufSize;	/* optional */
-  LPSTR	DragPre;		/* optional */
-  LPSTR	DragPost;		/* optional */
   int		nCmdShow;	/* optional */
   HICON	hIcon;			/* optional */
   HMENU	hPopMenu;

@@ -20,7 +20,6 @@
 #define MSG_SCIMSG14 "Zoom"
 #define MSG_SCIMSG15 "UnZoom"
 #define MSG_SCIMSG16 "2D/3D Rotation"
-#define MSG_SCIMSG17 "';exec('SCI/util/GLoad.sce');\n"
 #define MSG_SCIMSG18 "Scilab is a free copyrighted software.\n\t"
 #define MSG_SCIMSG19 "developed by Scilab Group (Inria/Enpc)\n\t"
 #define MSG_SCIMSG20 "\n\t email: scilab@inria.fr\n\t"
