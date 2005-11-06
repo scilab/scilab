@@ -38,7 +38,10 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
+/*-----------------------------------------------------------------------------------*/
+
 /*-----------------------------------------------------------------------------------*/
 static BOOL ConsoleIsMinimized=FALSE;
 static BOOL WriteInKeyBuf=FALSE;
@@ -686,31 +689,6 @@ void UpdateMark (LPTW lptw, POINT pt)
     }
   lptw->MarkEnd.x = pt.x;
   lptw->MarkEnd.y = pt.y;
-}
-/*-----------------------------------------------------------------------------------*/
-/***********************************
- *  drag-drop feature 
- ***********************************/
-void DragFunc (LPTW lptw, HDROP hdrop)
-{
-  static char szFile[80];
-  int i, cFiles;
-  LPSTR p;
-  if ((lptw->DragPre == (LPSTR) NULL) || (lptw->DragPost == (LPSTR) NULL))
-    return;
-  cFiles = DragQueryFile (hdrop, 0xffffffff, (LPSTR) NULL, 0);
-  for (i = 0; i < cFiles; i++)
-    {
-      DragQueryFile (hdrop, i, szFile, 80);
-      for (p = lptw->DragPre; *p; p++)
-	SendMessage (lptw->hWndText, WM_CHAR, *p, 1L);
-      for (p = szFile; *p; p++)
-	SendMessage (lptw->hWndText, WM_CHAR, *p, 1L);
-      for (p = lptw->DragPost; *p; p++)
-	SendMessage (lptw->hWndText, WM_CHAR, *p, 1L);
-    }
-  DragFinish (hdrop);
-
 }
 /*-----------------------------------------------------------------------------------*/
 void TextMakeFont (LPTW lptw)

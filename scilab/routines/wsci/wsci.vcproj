@@ -783,6 +783,9 @@ cd .. &gt;nul
 				RelativePath=".\DDE.c">
 			</File>
 			<File
+				RelativePath=".\DragnDrop.c">
+			</File>
+			<File
 				RelativePath=".\Events.c">
 			</File>
 			<File
@@ -2116,6 +2119,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\DDE.h">
+			</File>
+			<File
+				RelativePath=".\DragnDrop.h">
 			</File>
 			<File
 				RelativePath=".\Errors.h">

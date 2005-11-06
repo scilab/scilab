@@ -303,13 +303,23 @@ void Callback_CHDIR(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_GETCWD(void)
 {
-	char save_prompt[10];
-	char command[MAX_PATH]; 
+	char *command=NULL;
+	if (IsToThePrompt())
+	{
+		char save_prompt[10];
+		SendCTRLandAKey(CTRLU);
+		GetCurrentPrompt(save_prompt);
+		command=(char*)MALLOC((strlen("printf('\n\n %%s\n\n%s',getcwd())")+strlen(save_prompt))*sizeof(char));
+		wsprintf(command,"printf('\n\n %%s\n\n%s',getcwd())",save_prompt);
+	}
+	else
+	{
+		command=(char*)MALLOC((strlen("printf('\n\n %%s\n\n%s',getcwd())"))*sizeof(char));
+		wsprintf(command,"printf('\n\n %%s\n\n',getcwd())");
+	}
 
-	SendCTRLandAKey(CTRLU);
-	GetCurrentPrompt(save_prompt);
-	wsprintf(command,"printf('\n\n %%s\n\n%s',getcwd())",save_prompt);
-	StoreCommand1 (command, 0);
+	StoreCommand (command);
+	if (command) { FREE(command);command=NULL; }
 	    		
 }
 /*-----------------------------------------------------------------------------------*/

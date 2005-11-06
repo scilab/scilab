@@ -1,10 +1,13 @@
 /* Allan CORNET INRIA 2005 */
+#include <shlwapi.h>
 #include "FilesAssociations.h"
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
+/*-----------------------------------------------------------------------------------*/
+#pragma comment(lib, "shlwapi.lib")
 /*-----------------------------------------------------------------------------------*/
 extern void ReplaceSlash(char *pathout,char *pathin);
 extern void PrintFile(char *filename);
@@ -34,30 +37,15 @@ BOOL IsAFile(char *chainefichier)
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsABinOrSavFile(char *chainefichier)
 {
-	char ChaineTemp[MAX_PATH];
-	char *buffer=NULL;
-	char *lastdot=NULL;
-	int i=0;
 	BOOL retour=FALSE;
+	char *ExtensionFilename=NULL;
 
-	strcpy(ChaineTemp,chainefichier);
-	/* Recherche de l'extension du fichier */
-	buffer=strtok(ChaineTemp,".");
-	while ( buffer = strtok(NULL,"."))
-	{
-		lastdot=buffer;
-	}
-
-	if (lastdot == NULL) return retour;
-
-	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<(int)strlen(lastdot);i++)
-	{
-		lastdot[i]=toupper(lastdot[i]);
-	}
+	ExtensionFilename=PathFindExtension(chainefichier);
+	
 	/* Comparaison avec les extension BIN et SAV */
-	if ( (strcmp(lastdot,"BIN")==0) || (strcmp(lastdot,"SAV")==0) ) retour=TRUE;
+	if ( (_stricmp(ExtensionFilename,".BIN")==0) || (_stricmp(ExtensionFilename,".SAV")==0) ) retour=TRUE;
 
+	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 
 }
@@ -73,64 +61,30 @@ BOOL IsAGraphFile(char *chainefichier)
 /*-----------------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraph(char *chainefichier)
 {
-	char ChaineTemp[MAX_PATH];
-	char *buffer=NULL;
-	char *lastdot=NULL;
-	unsigned int i=0;
 	BOOL retour=FALSE;
+	char *ExtensionFilename=NULL;
 
-	strcpy(ChaineTemp,chainefichier);
-	/* Recherche de l'extension du fichier */
-	buffer=strtok(ChaineTemp,".");
-	while ( buffer = strtok(NULL,"."))
-	{
-		lastdot=buffer;
-	}
-
-	if (lastdot == NULL) return retour;
-
-	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<strlen(lastdot);i++)
-	{
-		lastdot[i]=toupper(lastdot[i]);
-	}
+	ExtensionFilename=PathFindExtension(chainefichier);
 
 	/* Comparaison avec l'extension Graph */
-	if ( strcmp(lastdot,"GRAPH")==0) retour=TRUE;
+	if (_stricmp(ExtensionFilename,".GRAPH")==0) retour=TRUE;
 
+	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
-
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraphb(char *chainefichier)
 {
-	char ChaineTemp[MAX_PATH];
-	char *buffer=NULL;
-	char *lastdot=NULL;
-	int i=0;
 	BOOL retour=FALSE;
+	char *ExtensionFilename=NULL;
 
-	strcpy(ChaineTemp,chainefichier);
-	/* Recherche de l'extension du fichier */
-	buffer=strtok(ChaineTemp,".");
-	while ( buffer = strtok(NULL,"."))
-	{
-		lastdot=buffer;
-	}
+	ExtensionFilename=PathFindExtension(chainefichier);
 
-	if (lastdot == NULL) return retour;
+	/* Comparaison avec l'extension Graphb */
+	if (_stricmp(ExtensionFilename,".GRAPHB")==0) retour=TRUE;
 
-	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<(int)strlen(lastdot);i++)
-	{
-		lastdot[i]=toupper(lastdot[i]);
-	}
-	
-	/* Comparaison avec l'extension Graph */
-	if ( strcmp(lastdot,"GRAPHB")==0) retour=TRUE;
-
+	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
-
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL IsAScicosFile(char *chainefichier)
@@ -144,59 +98,29 @@ BOOL IsAScicosFile(char *chainefichier)
 /*-----------------------------------------------------------------------------------*/
 BOOL IsAScicosFileCOS(char *chainefichier)
 {
-	char ChaineTemp[MAX_PATH];
-	char *buffer=NULL;
-	char *lastdot=NULL;
-	int i=0;
 	BOOL retour=FALSE;
+	char *ExtensionFilename=NULL;
 
-	strcpy(ChaineTemp,chainefichier);
-	/* Recherche de l'extension du fichier */
-	buffer=strtok(ChaineTemp,".");
-	while ( buffer = strtok(NULL,"."))
-	{
-		lastdot=buffer;
-	}
-	/* Mise en majuscule de l'extension du fichier*/
-	if (lastdot == NULL) return retour;
+	ExtensionFilename=PathFindExtension(chainefichier);
 
-	for (i=0;i<(int)strlen(lastdot);i++)
-	{
-		lastdot[i]=toupper(lastdot[i]);
-	}
-	/* Comparaison avec l'extension COS */
-	
-	if ( strcmp(lastdot,"COS")==0 ) retour=TRUE;
+	/* Comparaison avec l'extension cos */
+	if (_stricmp(ExtensionFilename,".COS")==0) retour=TRUE;
 
+	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL IsAScicosFileCOSF(char *chainefichier)
 {
-	char ChaineTemp[MAX_PATH];
-	char *buffer=NULL;
-	char *lastdot=NULL;
-	int i=0;
 	BOOL retour=FALSE;
+	char *ExtensionFilename=NULL;
 
-	strcpy(ChaineTemp,chainefichier);
-	/* Recherche de l'extension du fichier */
-	buffer=strtok(ChaineTemp,".");
-	while ( buffer = strtok(NULL,"."))
-	{
-		lastdot=buffer;
-	}
+	ExtensionFilename=PathFindExtension(chainefichier);
 
-	if (lastdot == NULL) return retour;
+	/* Comparaison avec l'extension cosf */
+	if (_stricmp(ExtensionFilename,".COSF")==0) retour=TRUE;
 
-	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<(int)strlen(lastdot);i++)
-	{
-		lastdot[i]=toupper(lastdot[i]);
-	}
-	/* Comparaison avec l'extension COSF */
-	if ( strcmp(lastdot,"COSF")==0 ) retour=TRUE;
-
+	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
 	return retour;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -206,7 +130,6 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 	char FinalFileName[MAX_PATH];
 	char ShortPath[MAX_PATH];
 	char PathWScilex[MAX_PATH];
-
 	
 	if (fichier[0]=='\"')
 	{
@@ -324,3 +247,4 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	FREE(tmpfile);
 }
 /*-----------------------------------------------------------------------------------*/
+

@@ -102,7 +102,6 @@ void ClearMark (LPTW lptw, POINT pt);
 void DoLine (LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count);
 void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark);
 void UpdateMark (LPTW lptw, POINT pt);
-void DragFunc (LPTW lptw, HDROP hdrop);
 void TextCopyClip (LPTW lptw);
 void TextMakeFont (LPTW lptw);
 void TextSelectFont (LPTW lptw);
