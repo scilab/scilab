@@ -19,6 +19,10 @@ bind Text <Return>    {insertnewline %W}
 # break prevents from triggering the default Tk
 # binding: bind all <Key-Tab> tk::TabToWindow [tk_focusNext %W], which
 # is harmful when displaying more than one buffer at the same time
+# warning: this binding might be erased by the completion binding
+# set later in this file, depending on the user preference (completion
+# options menu). Moreover, if the binded script changes, proc
+# SetCompletionBinding must be updated accordingly
 bind Text <Tab>       {inserttab %W ; break}
 
 bind Text <parenright>   {if {{%A} != {{}}} {insblinkbrace %W %A}}
@@ -120,7 +124,6 @@ bind $pad <Configure> {if {"%W"=="$pad"} {
                        }}
 bind Panedwindow <Double-Button-1> {spacesashesevenly %W}
 
-
 bind $pad <FocusIn> {checkifanythingchangedondisk %W}
 
 # The following are (unfortunately) platform/os-dependent keysyms
@@ -130,5 +133,16 @@ set Shift_F8  {"XF86_Switch_VT_8" "Shift-F8"}
 set Shift_F11  {"XF86_Switch_VT_11" "Shift-F11" "Shift-SunF36"}
 set Shift_F12  {"XF86_Switch_VT_12" "Shift-F12" "Shift-SunF37"}
 
+# warning: this binding might be erased by the completion binding
+# set later in this file, depending on the user preference (completion
+# options menu). Moreover, if the binded script changes, proc
+# SetCompletionBinding must be updated accordingly
 pbind Text $Shift_Tab {UnIndentSel ; break}
+
 pbind $pad $Shift_F1 {aboutme}
+
+# the following call sets a binding for the completion popup menu
+# it must be sourced after all the possible bindings proposed in the
+# options/completion menu that are also present above since it might
+# replace bindings previously set e.g. Tab and Shift-Tab
+SetCompletionBinding

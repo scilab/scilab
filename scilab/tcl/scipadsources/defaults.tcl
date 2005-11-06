@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.49"
+set version "Version 5.51"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -29,7 +29,7 @@ set colorpref "$bgcolors $fgcolors"
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts lang"
+       tabinserts lang completionbinding"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -64,13 +64,18 @@ set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
+set completionbinding "Control-Tab"
 
 # other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
 set Scheme scilab
 if {$tcl_platform(platform) != "unix"} {
-    set cursorblink "true"
+    # On Windows the cursor blink is disabled because of what is explained at
+    # http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
+    set cursorblink "false"
 } else {
+    # On Linux the cursor blink is disabled because of bug 865 (originated in bug 473)
+    # http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=865
     set cursorblink "false"
 }
 set mouseoversel "false"

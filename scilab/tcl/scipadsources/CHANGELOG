@@ -1614,3 +1614,26 @@ Francois VOGEL, 18/10/05
  * Searching for an empty entry in case the Find in files box is checked
    now searches for files that match the glob pattern
  * version --> 5.49
+
+Francois VOGEL, 02/11/05
+ * Documented the relevant arrays (chset and words) for colorization and
+   keyword matching (from Enrico's explanations)
+ * New: Quick Open source code of... in the file menu
+ * New: Ctrl-Tab proposes a list of completions from the known keywords
+ * version --> 5.50
+
+Francois VOGEL, 06/11/05
+ * Better retrieval of the keyword start for popup completion - the left
+   boundary of a keyword does no longer need to be a space or start of line
+ * Popup completion menu binding is a saved preference from the options
+   menu (since the default Control-Tab may be used for other purposes on
+   certain platforms)
+ * Completion binding no longer changes focus from textarea to Close button
+   in tile mode
+ * Debug-mode Scipad logs all the (non Tcl/Tk default) bindings of all the
+   children of $pad instead of only $pad bindings - this setting is
+   configurable through a global variable
+ * Cursor blink disabled on Windows to work around dnd locks in drag mode
+   when clicking quickly in a pre-existing Scipad selection when Scipad
+   does not have focus (might happen with slow computers)
+ * version --> 5.51

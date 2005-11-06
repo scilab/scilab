@@ -3,6 +3,7 @@ proc tkdndbind {w} {
 
     global TkDnDloaded pad dndinitiated sourcetextarea
     global savedsel savedseli1 savedseli2 dnddroppos
+    global debuglog logdetailedbindings
 
     # Abort if TkDnD package is not available
     if {$TkDnDloaded != "true"} {return}
@@ -79,7 +80,7 @@ proc tkdndbind {w} {
 
     dnd bindtarget $w text/plain <DragEnter> {
         # select the target textarea - update makes the cursor visible
-        # focus -force makes cursor visible even for drags from Scipad's outside
+        # focus -force makes cursor visible even for drags from outside of Scipad
         focus -force %W
         focustextarea %W
         update
@@ -109,6 +110,19 @@ proc tkdndbind {w} {
     # Nice cursor change when mouse is over the selection
     $w tag bind sel <Enter> {%W configure -cursor hand2 ; set mouseoversel "true"}
     $w tag bind sel <Leave> {%W configure -cursor xterm ; set mouseoversel "false"}
+
+    # debug log settings: log bindings for the new textarea
+    if {$debuglog && $logdetailedbindings} {
+        foreach sequ [bind $w] {
+            set script [bind $w $sequ]
+            bind $w $sequ "log \"\n----------------------\" ; \
+                           log \"Bind $w $sequ triggered!\"; \
+                           $script; \
+                           log \"End of bind $w $sequ\"; \
+                           log \"\n----------------------\n\" "
+        }
+    }
+
 }
 
 proc Button1BindTextArea { w x y } {
@@ -140,6 +154,11 @@ proc stopcursorblink {} {
 # the cursor is on during a drag. This is a workaround to avoid Tk bug 1169429
 # See https://sourceforge.net/tracker/?func=detail&atid=112997&aid=1169429&group_id=12997
 # The proper fix is included in any Tk version strictly greater than 8.5.0 beta 3
+#
+# However, cursor blinking is now disabled even on Windows because this workaround
+# can cause Scipad to lock in drag mode
+# See http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
+#
     global cursorblink listoftextarea
     if {$cursorblink == "true"} {
         foreach ta $listoftextarea {

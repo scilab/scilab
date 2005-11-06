@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.46
+# in sync at least with v5.51
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -25,6 +25,12 @@
 
 # colorize.tcl
 ::msgcat::mcset fr "Wait seconds while recolorizing file" "Patientez un instant le temps de la colorisation"
+
+
+# completion.tcl
+::msgcat::mcset fr "No possible completion" "Aucune terminaison possible"
+::msgcat::mcset fr "possible completions" "terminaisons possibles"
+::msgcat::mcset fr "Possible completions" "Terminaisons possibles"
 
 
 # db_argsmanagement.tcl
@@ -97,6 +103,8 @@
 ::msgcat::mcset fr "The contents of" "Voulez-vous enregistrer les modifications apportées à"
     ::msgcat::mcset fr "may have changed, do you wish to save your changes?" "?"
 ::msgcat::mcset fr "Save Confirm?" "Confirmer sauver ?"
+::msgcat::mcset fr "Open source of..." "Ouvrir le code source de..."
+::msgcat::mcset fr "Open source of:" "Ouvrir le source de :"
 ::msgcat::mcset fr "Weird drag&drop" "Glisser&déposer inattendu"
 ::msgcat::mcset fr "is neither a valid filename nor a valid directory.\
                     Either you're dragging an object of another type, or\
@@ -230,6 +238,7 @@
     ::msgcat::mcset fr "Open &in new" "O&uvrir dans une nouvelle fenêtre"
         ::msgcat::mcset fr "&horizontal tile" "&horizontale"
         ::msgcat::mcset fr "&vertical tile" "&verticale"
+    ::msgcat::mcset fr "Op&en source of..." "Ouvrir le &code source de..."
     ::msgcat::mcset fr "&Save" "&Enregistrer"
     ::msgcat::mcset fr "Save &as..." "En&registrer sous..."
     ::msgcat::mcset fr "&Revert..." "Re&venir..."
@@ -293,18 +302,27 @@
         ::msgcat::mcset fr "m&edium" "m&oyen"
         ::msgcat::mcset fr "&large" "&grand"
     ::msgcat::mcset fr "&Colors" "&Couleurs"
+    ::msgcat::mcset fr "Colorize \'&strings\'" "C&olorer \'chaîne\'"
+    ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
     ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
         ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"
         ::msgcat::mcset fr "&Indentation spaces" "&Dimension de l'indentation"
-    ::msgcat::mcset fr "Colorize \'&strings\'" "C&olorer \'chaîne\'"
-    ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
+    ::msgcat::mcset fr "Com&pletion" "Ter&minaison"
+        ::msgcat::mcset fr "&Tab" "&Tab"
+        ::msgcat::mcset fr "&Control-Tab" "&Control-Tab"
+        ::msgcat::mcset fr "&Alt-Tab" "&Alt-Tab"
+        ::msgcat::mcset fr "&Shift-Tab" "&Shift-Tab"
+        ::msgcat::mcset fr "C&ontrol-Alt-Tab" "C&ontrol-Alt-Tab"
+        ::msgcat::mcset fr "S&hift-Control-Tab" "S&hift-Control-Tab"
+        ::msgcat::mcset fr "Sh&ift-Alt-Tab" "Sh&ift-Alt-Tab"
+        ::msgcat::mcset fr "Shi&ft-Control-Alt-Tab" "Shi&ft-Control-Alt-Tab"
     ::msgcat::mcset fr "File&names" "&Noms de fichiers"
         ::msgcat::mcset fr "&Full path" "&Complets"
         ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
         ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
     ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
     ::msgcat::mcset fr "&Locale" "&Langue"
-  # locale names (common)
+        # locale names (common)
         ::msgcat::mcset fr "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset fr "fr locale (fr)" "Français (fr)"
         ::msgcat::mcset fr "eng locale (eng)" "English (eng)"

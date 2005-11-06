@@ -1,3 +1,33 @@
+#####################################################################
+#
+# There are two relevant arrays used for colorization and keyword
+# matching: chset and words.
+#
+# words contains elements addressed as words(MODE.TAG.INITIAL). 
+# MODE by now is always scilab,
+# TAG is one of {comm intfun predef libfun scicos}
+# INITIAL is a single character, a valid scilab name initial.
+# Each element is a tcl list containing all the words of the given TAG
+# beginning with INITIAL (not all possible INITIALs need to be present,
+# if there are no keywords beginning with that letter).
+# The script dynamickeywords.sce actually orders them alphabetically.
+# This is not exploited by the colorize procs, nor for autocompletion.
+# 
+# chset contains elements addressed as chset(MODE.TAG). Each element there
+# is a string of all the represented initials of the keywords in class
+# MODE.TAG. Also this is presently alphabetically sorted, though the fact
+# is not exploited.
+#
+# Thus a word encountered in the text is matched with the database of
+# keywords in the following way:
+#
+# take the first character of the word
+# if initial is in the relevant chset(MODE.TAG)
+#   check for a match in {words($MODE.$TAG.$INITIAL)}
+#
+#####################################################################
+
+
 proc load_words {} {
     global words chset env
     set ownpath "$env(SCIPATH)/tcl/scipadsources"

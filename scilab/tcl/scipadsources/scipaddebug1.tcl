@@ -68,10 +68,16 @@ set dev_debug "false"
 
 if {0} {
     proc tracer {varname args} {
+        global debuglog
         upvar #0 $varname var
+        if {$debuglog} {
+            log "$varname was updated to be \"$var\""
+        } else {
         showinfo "$varname was updated to be \"$var\""
     }
-    trace add variable watchvsashcoord write {tracer watchvsashcoord}
+    }
+    trace add variable dndreallystarted write {tracer dndreallystarted}
+    trace add variable dndinitiated write {tracer dndinitiated}
 }
 
 # End of debug settings to trace when certain variables are changed
@@ -100,8 +106,12 @@ if {0} {
 # if $loginafile is true then a log file is created in $env(SCIHOME)
 # this file contains the same info as the log output in the console
 # if $loginafile is false then log output is sent to the console only
+# if $logdetailedbindings is true, then all the non Tcl/Tk default
+# bindings are logged (i.e. not only those attached to $pad, but also
+# those attached to children of $pad)
 set debuglog false
 set loginafile true
+set logdetailedbindings true
 
 if {$debuglog} {
 

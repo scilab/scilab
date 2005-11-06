@@ -224,8 +224,122 @@ proc exitapp { {quittype yesno} } {
 # procs for opening buffers from disk
 ##################################################
 
+proc opensourceof {} {
+# open a dialog for selection of the function whose source the user
+# wants to open
+    global pad menuFont textFont
+    global opensoflb opensofbOK
+
+    set opensof $pad.opensof
+    catch {destroy $opensof}
+    toplevel $opensof
+    wm title $opensof [mc "Open source of..."]
+    setwingeom $opensof
+
+    frame $opensof.f1
+    label $opensof.f1.l1 -text [mc "Open source of:"] -font $menuFont
+    entry $opensof.f1.entry \
+        -width 30 -font $textFont -exportselection 0 \
+        -validate key -validatecommand "updatecompletions %P %d"
+    pack $opensof.f1.l1 $opensof.f1.entry -side left
+    pack configure $opensof.f1.entry -expand 1 -fill x -padx 5
+    pack $opensof.f1
+
+    frame $opensof.f2
+    set opensoflb $opensof.f2.lb
+    scrollbar $opensof.f2.sb -command "$opensoflb yview"
+    listbox $opensoflb -height 6 -width 15 -font $textFont \
+        -yscrollcommand "$opensof.f2.sb set" -takefocus 0
+    pack $opensoflb $opensof.f2.sb -side left -padx 2
+    pack configure $opensoflb -expand 1 -fill both 
+    pack configure $opensof.f2.sb -fill y
+    pack $opensof.f2 -expand 1 -fill both
+
+    set opensofbOK $opensof.f3.buttonOK
+    frame $opensof.f3
+    button $opensofbOK -text "OK" \
+            -command "OKopensourceof $opensof" \
+            -width 10 -height 1 -font $menuFont
+    button $opensof.f3.buttonCancel -text [mc "Cancel"] \
+            -command "destroy $opensof" \
+            -width 10 -height 1 -font $menuFont
+    pack $opensofbOK $opensof.f3.buttonCancel -side left -padx 10
+    pack $opensof.f3 -pady 4 -after $opensof.f2
+
+    bind $opensof <Return> {OKopensourceof %W}
+    bind $opensof <Double-Button-1> {OKopensourceof %W}
+    bind $opensof <Escape> "destroy $opensof"
+    bind $opensof <Up>   {scrollarrows_bp $opensoflb up}
+    bind $opensof <Down> {scrollarrows_bp $opensoflb down}
+    bind $opensof <MouseWheel> {if {%D<0} {scrollarrows_bp $opensoflb down}\
+                                          {scrollarrows_bp $opensoflb up}   }
+    $opensofbOK configure -state disable
+    focus $opensof.f1.entry
+}
+
+proc updatecompletions {partialfunnametoopen edittype} {
+# update the completions list in the listbox of the "open source of" dialog
+
+    global textFont bgcolors fgcolors
+    foreach c1 "$bgcolors $fgcolors" {global $c1}
+    global opensoflb opensofbOK
+
+    $opensoflb delete 0 end
+
+    set compl [getcompletions $partialfunnametoopen]
+
+    # populate the listbox with the possible completions
+    foreach posscompl $compl {
+        set tag [lindex $posscompl 0]
+        set completedword [lindex $posscompl 1]
+        # colorization stuff
+        switch -- $tag {
+            libfun  {set col $LFUNCOLOR}
+            scicos  {set col $SCICCOLOR}
+            default {}
+        }
+        if {$tag == "libfun" || $tag == "scicos"} {
+            $opensoflb insert end $completedword
+            $opensoflb itemconfigure end \
+                    -foreground $col -selectforeground $col\
+                    -background $BGCOLOR
+            $opensoflb itemconfigure end -selectbackground [shade \
+                [$opensoflb itemcget end -selectforeground] \
+                [$opensoflb itemcget end -background] 0.5]
+        }
+    }
+
+    set nbcompl [$opensoflb size]
+    if {$nbcompl == 0} {
+        # ring the bell only when inserting chars
+        if {$edittype == 1} {
+            bell
+        }
+        $opensofbOK configure -state disabled
+    } else {
+        $opensoflb selection set 0
+        $opensoflb see 0
+        $opensofbOK configure -state normal
+    }
+
+    return 1
+}
+
+proc OKopensourceof {w} {
+# get the function name to open, and open the corresponding file
+    global opensoflb opensofbOK
+    if {[$opensofbOK cget -state] == "normal"} {
+        set nametoopen [$opensoflb get [$opensoflb curselection]]
+        set keywtype [gettagfromkeyword $nametoopen]
+        doopenfunsource $keywtype $nametoopen
+        destroy [winfo toplevel $w]
+    } else {
+        bell
+    }
+}
+
 proc openlibfunsource {ind} {
-    global textareacur env
+    global textareacur
     # exit if the cursor is not by a libfun or a scicos keyword
     set keywtype ""
     if {[lsearch [$textareacur tag names $ind] "scicos"] !=-1} \
@@ -239,20 +353,29 @@ proc openlibfunsource {ind} {
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         if {$curterm!=""} {
-            switch $keywtype {
-              "libfun" {
-                 ScilabEval_lt "scipad(get_function_path(\"$curterm\"))"
-                 }
-              "scicos" {
-                 set scicosdir [file join "$env(SCIPATH)" macros scicos \
-                                 $curterm.sci]
-                 set blocksdir [file join "$env(SCIPATH)" macros \
-                                scicos_blocks "*" $curterm.sci]
-                 set filetoopen [glob $scicosdir $blocksdir]
-                 ScilabEval_lt "scipad(\"$filetoopen\")"
-              }
-            }
+            doopenfunsource $keywtype $curterm
         }
+    }
+}
+
+proc doopenfunsource {keywtype nametoopen} {
+# do the function source file opening
+# $nametoopen is the keyword whose source is to be opened
+# $keywtype is its associated tag (must be libfun or scicos
+# to be relevant)
+    global env
+    switch $keywtype {
+      "libfun" {
+         ScilabEval_lt "scipad(get_function_path(\"$nametoopen\"))"
+         }
+      "scicos" {
+         set scicosdir [file join "$env(SCIPATH)" macros scicos \
+                         $nametoopen.sci]
+         set blocksdir [file join "$env(SCIPATH)" macros \
+                        scicos_blocks "*" $nametoopen.sci]
+         set filetoopen [glob $scicosdir $blocksdir]
+         ScilabEval_lt "scipad(\"$filetoopen\")"
+      }
     }
 }
 

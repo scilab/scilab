@@ -348,7 +348,9 @@ proc openamatch {w posinresarea} {
 # of the match to open
 # the file is opened if not already open, the cursor is placed at the match
 # position, and the match is highlighted
-    global allthematches
+    global pad allthematches
+
+    wm deiconify $pad
 
     # highlight the selected match in the search results list
     $w tag remove foundtext 1.0 end

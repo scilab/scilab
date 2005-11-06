@@ -24,6 +24,7 @@ if { [info exists pad] } {
     source [file join $sourcedir findinfiles.tcl]
     source [file join $sourcedir buffernavigation.tcl]
     source [file join $sourcedir colorize.tcl]
+    source [file join $sourcedir completion.tcl]
     source [file join $sourcedir modselection.tcl]
     source [file join $sourcedir inputtext.tcl]
     source [file join $sourcedir helps.tcl]

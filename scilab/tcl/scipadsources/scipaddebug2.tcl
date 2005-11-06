@@ -68,13 +68,21 @@ if {$debuglog} {
     logmenues $pad.filemenu
 
     # for each Scipad binding, this surrounds the existing command with log info
-    foreach sequ [bind $pad] {
-        set script [bind $pad $sequ]
-        bind $pad $sequ "log \"\n----------------------\" ; \
-                         log \"Bind $pad $sequ triggered!\"; \
+    if {$logdetailedbindings} {
+        set scipadwidgets [winfo children $pad]
+        lappend scipadwidgets $pad
+    } else {
+        set scipadwidgets $pad
+    }
+    foreach wid $scipadwidgets {
+        foreach sequ [bind $wid] {
+            set script [bind $wid $sequ]
+            bind $wid $sequ "log \"\n----------------------\" ; \
+                             log \"Bind $wid $sequ triggered!\"; \
                          $script; \
-                         log \"End of bind $pad $sequ\"; \
+                             log \"End of bind $wid $sequ\"; \
                          log \"\n----------------------\n\" "
+        }
     }
 
 }

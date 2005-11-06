@@ -283,15 +283,6 @@ Wishes:
  -- Currently some button labels are truncated in certain locales
  -- Once done, update AddingTranslations.txt starting at line 176
 
--automatic completion of words in the textarea, a la readline: could be
- bound to Ctrl-tab (the binding tab is already used). There is
- http://tclreadline.sourceforge.net/tclreadline.html, but that would
- imply binding another additional package to scipad; perhaps it is
- possible to put together something minimal from scratch with reasonable
- effort.
-
--I miss a quick "open the source of function xxxx". I have to type
- either "scipad("get_function_path("xxxx")) or "edit xxxx scipad" in the
- shell, or xxxx in an empty buffer in scipad and Ctrl-/. Too much! I miss
- something like a dialog where I could type the first characters of xxx
- and immediately see the completions and choose them.
+-Perhaps rethink how to sort out the duplication of "Open", "Open in
+ new", "Open Source of.." and "Open function source". Four entries
+ scattered in the same menu starts to be much...

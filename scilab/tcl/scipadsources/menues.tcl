@@ -3,6 +3,7 @@ proc createmenues {} {
     global listoffile listoftextarea FontSize
     global FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu
+    global Shift_Tab
     foreach c1 "$bgcolors $fgcolors" {global $c1}
 
     #destroy old menues (used when changing language)
@@ -26,6 +27,8 @@ proc createmenues {} {
                        -command \"showopenwin horizontal\" -accelerator Ctrl+4"
         eval "$pad.filemenu.files.openintile add command [me "&vertical tile"] \
                        -command \"showopenwin vertical\" -accelerator Ctrl+5"
+    eval "$pad.filemenu.files add command [me "Op&en source of..."] \
+                   -command \"opensourceof\" "
     eval "$pad.filemenu.files add command [me "&Save"] \
                    -command \"filetosavecur\" -accelerator Ctrl+s"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
@@ -222,6 +225,33 @@ proc createmenues {} {
                 [me "&Indentation spaces"]\
                 -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
                         indentspaces 1 2 3 4 5 6 7 8 9 10]"
+    eval "$pad.filemenu.options add cascade [me "Com&pletion"] \
+               -menu $pad.filemenu.options.completion"
+        menu $pad.filemenu.options.completion -tearoff 0 -font $menuFont
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "&Tab"] -command {SetCompletionBinding}\
+                    -value \"Tab\" -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "&Control-Tab"] -command {SetCompletionBinding}\
+                    -value \"Control-Tab\" -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "&Alt-Tab"] -command {SetCompletionBinding}\
+                    -value \"Alt-Tab\" -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "&Shift-Tab"] -command {SetCompletionBinding}\
+                    -value \[list $Shift_Tab\] -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "C&ontrol-Alt-Tab"] -command {SetCompletionBinding}\
+                    -value \"Control-Alt-Tab\" -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "S&hift-Control-Tab"] -command {SetCompletionBinding}\
+                    -value \"Shift-Control-Tab\" -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "Sh&ift-Alt-Tab"] -command {SetCompletionBinding}\
+                    -value \"Shift-Alt-Tab\" -variable completionbinding"
+        eval "$pad.filemenu.options.completion add radiobutton \
+                    [me "Shi&ft-Control-Alt-Tab"] -command {SetCompletionBinding}\
+                    -value \"Shift-Control-Alt-Tab\" -variable completionbinding"
     menu $pad.filemenu.options.filenames -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "File&names"] \
            -menu $pad.filemenu.options.filenames "
@@ -469,7 +499,7 @@ proc showinfo_menu_file {w} {
 }
 
 proc showinfo_menu_wind {w} {
-# display full pathname of a recent file entry of the windows menu
+# display full pathname of a file entry of the windows menu
 # as a showinfo
     global pad FirstBufferNameInWindowsMenu listoffile listoftextarea
     set mouseentry [$w index active]
