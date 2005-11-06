@@ -66,6 +66,7 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 				MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 				//exit(1);
 			#endif
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 	}
     //printf("MyHeapAlloc %d %s %d\n",NewPointer,fichier,ligne);
 	return NewPointer;
@@ -102,6 +103,7 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		//exit(1);
 		#endif
+		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
 	}
 
 	//printf("MyVirtualAlloc %d %s %d\n",NewPointer,fichier,ligne);
