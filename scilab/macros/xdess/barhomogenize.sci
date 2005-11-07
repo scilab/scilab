@@ -9,7 +9,6 @@ function  barhomogenize(varargin)
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8).
 // F.B
 
-
 // Default values
 a=gca()
 STYLE="grouped"
@@ -76,16 +75,18 @@ if ~isreal(WIDTH)
   error("The width must be real")
 end
 
-hbarlist=list()
+hbarlist=[];
 
 for i=1:size(a.children,"*")
   hbarlist=searchbarhandle(a.children(i),hbarlist)
 end
 
-nbarhandle=size(hbarlist)
+
+nbarhandle=size(hbarlist,'*')
 if hbarlist<>[] then
   X=hbarlist(1).data(:,1)
-  for i=2:size(hbarlist)
+ 
+  for i=2:nbarhandle
     if or(hbarlist(i).data(:,1) <> X)
       error("The bars must have the same x data")
     end
@@ -108,6 +109,7 @@ end
 
 // Perform the x_shift
 wmax=inter/nbarhandle
+
 
 for i=1:nbarhandle
   if modulo(nbarhandle,2)==0 then  
@@ -175,7 +177,7 @@ if h.type=="Compound" then
   end
 elseif  h.type == "Polyline" then
   if h.polyline_style == 6 | h.polyline_style == 7 then
-    hbarlist($+1)=h
+    hbarlist = [hbarlist h];
   end
 end
 endfunction 
