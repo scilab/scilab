@@ -3216,9 +3216,9 @@ c
          return
       endif
       if(rhs.gt.3) then
-        top=tops
+         top=tops
          call ref2val
-         call funnam(ids(1,pt+1),'matrix',iadr(lstk(top-rhs+1)))
+         call setfunnam(ids(1,pt+1),'%hm_matrix',10)
          fun=-1
          return
       endif
@@ -3244,8 +3244,7 @@ c$$$      endif
       ityp=istk(il2)
 
 * next line modified by bruno (added  sparse and sparse boolean)
-      if(ityp.ne.1.and.ityp.ne.2.and.ityp.ne.5.and.ityp.ne.6
-     $     .and.ityp.ne.4.and.ityp.ne.9.and.ityp.ne.10) then
+      if(ityp.lt.1.or.ityp.gt.10) then
          top=tops
          call ref2val
          call funnam(ids(1,pt+1),'matrix',iadr(lstk(top-rhs+1)))
