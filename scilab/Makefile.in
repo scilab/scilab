@@ -27,7 +27,7 @@ include config/@MAKEFILE_TARGET@
 distclean::
 	$(RM) bin/scilex
 
-SUBDIRS = scripts macros imp intersci tcl examples tests
+SUBDIRS = scripts macros imp intersci tcl examples
 
 scilex-lib::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
