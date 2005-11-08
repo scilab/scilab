@@ -17,10 +17,10 @@ function [%pt,%win,o]=get_selection(Select,%pt,%win)
   if typeof(o)=='Block' then
     o=disconnect_ports(o)
     [orig,sz]=(o.graphics.orig,o.graphics.sz)
-    %pt=orig+sz/2
+    %pt=orig(:)+sz(:)/2
   elseif typeof(o)=='Text'  then  
     [orig,sz]=(o.graphics.orig,o.graphics.sz)
-    %pt=orig+sz/2
+    %pt=orig(:)+sz(:)/2
   elseif typeof(o)=='Link' then  
     %pt=[(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] //middle of first
                                                   //segment

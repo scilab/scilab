@@ -1,14 +1,22 @@
 function Cut_()
-  if Select<>[] then
-    if Select(2)==curwin then
-      Clipboard=scs_m.objs(Select(1))
-      [%pt,win1]=get_selection(Select,%pt,%win)
-      Cmenu='Delete'
+  if Select(1,2)==curwin then
+    scs_m_save=scs_m,nc_save=needcompile
+    [scs_m,DEL]=do_delete1(scs_m,Select(:,1)',%t)
+    if DEL<>[] then 
+      needcompile=4,
+      edited=%t
+      enable_undo=%t
+      //suppress right-most deleted elements
+      while getfield(1,scs_m.objs($))=='Deleted' then
+	scs_m.objs($)=null();
+	if lstsize(scs_m.objs)==0 then break,end
+      end
     end
-  elseif SelectRegion<>list() then
-     Clipboard=get_inside(SelectRegion)
-     %pt=[0,0],
-     Cmenu='Delete Region'
+    Cmenu=[];
+  else
+    message(['Only current diagram can be edited'])
+    Cmenu=[]; %pt=[]; %ppt=[]
   end
 endfunction
+
 
