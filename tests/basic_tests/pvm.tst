@@ -3,7 +3,7 @@
 //pvm_halt();
 
 ok=pvm_start();
-[task_id,numt] = pvm_spawn(SCI+'/tests/pvm_resend.sce',1,'nw');
+[task_id,numt] = pvm_spawn(SCI+'/tests/basic_tests/pvm_resend.sce',1,'nw');
 if numt<>1 then pause,end
 if size(task_id,'*')<>1 then pause,end
 
