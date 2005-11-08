@@ -33,13 +33,13 @@ proc load_words {} {
     set ownpath "$env(SCIPATH)/tcl/scipadsources"
 # empty initialization of the keyword arrays, for the 
 #  detached invocation of scipad (and for early-bird colorization requests)    
-    set chset(scilab.comm) {}
+    set chset(scilab.command) {}
     set chset(scilab.intfun) {}
     set chset(scilab.predef) {}
     set chset(scilab.libfun) {}
     set chset(scilab.scicos) {}
 # ask to scilab about keywords:
-    ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq" 
+    ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq"
 # old code to load a word file with additional keywords: maybe someday it will
 # turn useful...
 #     set type {}
@@ -58,6 +58,10 @@ proc load_words {} {
 #         }
 #     }
 #     close $f    
+
+#presently empty lists for other schemes
+#    set chset(none) {}
+#    set chset(xml) {}
  }
 
 proc remalltags {w begin ende} {
@@ -85,6 +89,7 @@ proc colorize {w cpos iend} {
     global words chset listoffile scilabSingleQuotedStrings
     set textarea [gettextareacur]
     set schema $listoffile("$textarea",language)
+    regsub -all "scilab." [array names chset -glob scilab\.*] "" scitags
     $w mark set begin "$cpos linestart"
     $w mark set ende "$iend+1l linestart"
     remalltags $w begin ende
@@ -171,34 +176,12 @@ proc colorize {w cpos iend} {
                     $w mark set last $ind
                     $w mark set next "$ind + $num c"
                     set initial [string range $kword 0 0]
-                    if {[string first $initial $chset(scilab.intfun)]>=0} {
-                        if {[lsearch -exact $words(scilab.intfun.$initial) \
+                    foreach itag $scitags {
+                        if {[string first $initial $chset(scilab.$itag)]>=0} {
+                           if {[lsearch -exact $words(scilab.$itag.$initial) \
                                     $kword] != -1} {
-                            $w tag add intfun last next
-                        }
-                    }
-                    if {[string first $initial $chset(scilab.comm)]>=0} {
-                        if {[lsearch -exact $words(scilab.comm.$initial) \
-                                    $kword] != -1} {
-                            $w tag add command last next
-                        }
-                    }
-                    if {[string first $initial $chset(scilab.predef)]>=0} {
-                        if {[lsearch -exact $words(scilab.predef.$initial) \
-                                    $kword] != -1} {
-                            $w tag add predef last next
-                        }
-                    }
-                    if {[string first $initial $chset(scilab.libfun)]>=0} {
-                        if {[lsearch -exact $words(scilab.libfun.$initial) \
-                                    $kword] != -1} {
-                            $w tag add libfun last next
-                        }
-                    }
-                    if {[string first $initial $chset(scilab.scicos)]>=0} {
-                        if {[lsearch -exact $words(scilab.scicos.$initial) \
-                                    $kword] != -1} {
-                            $w tag add scicos last next
+                                $w tag add $itag last next
+                           }
                         }
                     }
                     $w mark set last next+1c

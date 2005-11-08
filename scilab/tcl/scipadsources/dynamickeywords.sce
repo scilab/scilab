@@ -24,7 +24,7 @@ function dynamickeywords()
 
   //commands and primitives
   [primitives,commands]=what();
-  setscipadwords(commands,"comm")
+  setscipadwords(commands,"command")
   setscipadwords(primitives,"intfun")
 
   //predefined variables

@@ -4,17 +4,16 @@ proc getcompletions {tok} {
 # output is a list of elements being themselves lists of 2 elements
 # each such element is the list {tag completion}, completion
 # being one of the possible completions for tag
-# tag is one of {comm intfun predef libfun scicos}
+# tag is by now one of {command intfun predef libfun scicos}
 # if there's no completion in tag, {tag completion} is omitted
 # the output list is sorted by alphabetical order of completions
 
-    global chset words
+    global chset words listoffile
 
     set tokinitial [string index $tok 0]
-
     set compl [list ]
-    set mode "scilab"
-    set tags {comm intfun predef libfun scicos}
+    set mode $listoffile("[gettextareacur]",language)
+    regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
  
     foreach tag $tags {
         set indofinitial [string first $tokinitial $chset($mode.$tag)]
@@ -28,7 +27,7 @@ proc getcompletions {tok} {
                 $words($mode.$tag.[string index $chset($mode.$tag) $indofinitial])
             set complfound {}
             foreach cand $candidates {
-                if {[string match "$tok*" $cand] && $tok != $cand} {
+                if {[string match "$tok*" $cand]} {
                     # beginning of candidate keyword matches the token
                     lappend complfound [list $tag $cand]
                 }
@@ -119,7 +118,7 @@ proc popup_completions {} {
                 -command "completewith $completedword $ind $ta"
             # colorization settings
             switch -- $tag {
-                comm    {set col $COMMCOLOR}
+                command    {set col $COMMCOLOR}
                 intfun  {set col $INTFCOLOR}
                 predef  {set col $PDEFCOLOR}
                 libfun  {set col $LFUNCOLOR}
@@ -192,7 +191,7 @@ proc gettagfromkeyword {keyw} {
     global chset words
 
     set mode "scilab"
-    set tags {comm intfun predef libfun scicos}
+    regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
     set tokinitial [string index $keyw 0]
 
     foreach tag $tags {
@@ -237,7 +236,7 @@ proc SetCompletionBinding {} {
         }
     }
 
-    pbind Text $completionbinding {popup_completions ; break}
+    pbind Text $completionbinding {popup_completions; break}
     set oldcompletionbinding $completionbinding
 }
 

@@ -1637,3 +1637,9 @@ Francois VOGEL, 06/11/05
    when clicking quickly in a pre-existing Scipad selection when Scipad
    does not have focus (might happen with slow computers)
  * version --> 5.51
+
+ES,
+ * small improvements to derive the classes of scilab keywords from chset()
+   for future ease of expandability; textarea tag "comm" renamed "command"
+   (no new feature)
+ * version --> 5.52
