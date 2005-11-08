@@ -22,9 +22,9 @@ set("old_style","on")
 slevel=prod(size(find(%mac=='scicos')))
 super_block=slevel>1
 if ~super_block then
-  
-  [scicos_pal_0,%scicos_menu_0,%scicos_short_0,%scicos_help_0,..
-   %scicos_display_mode_0,modelica_libs_0,scicos_pal_libs_0]=initial_scicosnew_tables()
+  // TO BE REMOVED LATER
+  [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
+   %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicosnew_tables()
    //
   write(%io(2),['Waring:'
 		'This is the development version'
@@ -37,6 +37,7 @@ if ~super_block then
 		'Menus cannot currently be customized with'
 		'the new editor.'
 		'Send all bug reports and suggestions to ramine.nikoukhah@inria.fr'])
+ 
   
   
   // define scicos libraries
