@@ -179,11 +179,9 @@ BINDISTFILES = \
 tarbindist:
 	touch .binary
 	@STRIP@ bin/scilex
-	cd tests; make distclean
 	cd examples; make distclean
 	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar $(BINDISTFILES) @PVMINST@ 
 	$(RM) .binary
-
 
 #-------------------------------------------------
 # installation 
@@ -307,4 +305,3 @@ cvsclean::
 
 setversion : 
 	echo "SCIVERSION=Scilab-3.1-CVS-`date --iso`" > Version.incl
-
