@@ -3,7 +3,7 @@ load SCI/macros/scicos/lib;
  
  
  
-getf SCI/tests/scicos_tests.sci;
+getf SCI/tests/basic_tests/scicos_tests.sci;
  
 options=default_options();
  

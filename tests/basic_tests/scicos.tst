@@ -1,7 +1,7 @@
 load SCI/macros/scicos/lib;
 exec(loadpallibs,-1) 
 
-getf SCI/tests/scicos_tests.sci;
+getf SCI/tests/basic_tests/scicos_tests.sci;
 options=default_options();
 //build the block set
 blockslib='scs'+['Branching','Events','Misc','Sinks','Threshold','Linear', ...
