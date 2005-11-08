@@ -65,7 +65,7 @@ what
             TCL_ExistVar               TCL_GetVar           TCL_GetVersion               TCL_SetVar 
             TCL_UnsetVar                TCL_UpVar                  TCL_gcf                  TCL_scf 
                   UImenu                    about                      abs                     acos 
-                   addcb                     addf                 addinter                  addmenu 
+                   addcb                     addf                 addinter              addmenu_old 
                    amell                      and                     argn                 arl2_ius 
                    ascii                     asin                     atan                backslash 
                   balanc                   banner                    bdiag                     beep 
@@ -86,7 +86,7 @@ what
                    dassl                 ddeclose                  ddeexec                ddeisopen 
                  ddeopen                  ddepoke                   ddereq                    debug 
                     deff            definedfields                   degree                   delbpt 
-                  delete                    delip                  delmenu                      det 
+                  delete                    delip              delmenu_old                      det 
                    dhinf                     diag                    diary                 diffobjs 
                     disp                  dispbpt                  dlgamma                   dnaupd 
                   dneupd                      dos                   double                     draw 
@@ -174,7 +174,7 @@ what
                 scicosim                   sctree                  semidef                      set 
           set_blockerror           set_posfig_dim            set_xproperty                   setbpt 
                   setenv          seteventhandler                 setfield          setlanguagemenu 
-                 setmenu            setscicosvars   settextbackgroundcolor             settextcolor 
+             setmenu_old            setscicosvars   settextbackgroundcolor             settextcolor 
                    sfact                   sfinit              show_window    showalluimenushandles 
                   sident                     sign                     simp                simp_mode 
                      sin                     size                    slash                    sleep 
@@ -188,7 +188,7 @@ what
                   tokens                  toolbar                  toprint                   tr_zer 
                     tril                     triu                     type                 typename 
                   uint16                   uint32                    uint8                    ulink 
-                  unglue                     unix                unsetmenu                   unzoom 
+                  unglue                     unix            unsetmenu_old                   unzoom 
                     user                  var2vec                     varn                  vec2var 
                    where                  whereis                  winopen              winqueryreg 
                   winsid                    writb                    write                  write4b 
