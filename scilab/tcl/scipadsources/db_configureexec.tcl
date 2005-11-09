@@ -209,7 +209,7 @@ proc showdroppos_bp {w oldcurdropind droppos} {
             $w see [expr $oldcurdropind - 1]
         }
     }
-# $maxi computation is unperfect, but should work in most cases
+# <TODO>: $maxi computation is unperfect, but should work in most cases
 # The best: to get $w widget height in pixels - how?
 # winfo fpixels or winfo pixels could be a good idea...
 # [winfo height $w] should do it, maybe after update has been called!

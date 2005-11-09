@@ -1,7 +1,7 @@
 proc showpopup2 {} {
     global pad mouseoversel
-    set numx [winfo pointerx .]
-    set numy [winfo pointery .]
+    set numx [winfo pointerx $pad]
+    set numy [winfo pointery $pad]
     # if there is no debug session, popup menu is the edit menu
     # otherwise it is the debug menu
     if {[getdbstate] == "NoDebug"} {
@@ -28,22 +28,22 @@ proc showpopup2 {} {
 
 proc showpopup3 {} {
     global pad 
-    set numx [winfo pointerx .]
-    set numy [winfo pointery .]
+    set numx [winfo pointerx $pad]
+    set numy [winfo pointery $pad]
     tk_popup $pad.filemenu.exec $numx $numy
 }
 
 proc showpopupfont {} {
     global pad
-    set numx [winfo pointerx .]
-    set numy [winfo pointery .]
+    set numx [winfo pointerx $pad]
+    set numy [winfo pointery $pad]
     tk_popup $pad.filemenu.options $numx $numy
 }
 
 proc showpopupsource {ind} {
     global pad textareacur menuFont
-    set numx [winfo pointerx .]
-    set numy [winfo pointery .]
+    set numx [winfo pointerx $pad]
+    set numy [winfo pointery $pad]
     catch {destroy $pad.popsource}
     if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
     set lrange [$textareacur tag prevrange libfun "$ind+1c"]
@@ -64,8 +64,8 @@ proc showpopupsource {ind} {
 
 proc showpopupdebugwsel {watchvar} {
     global pad menuFont
-    set numx [winfo pointerx .]
-    set numy [winfo pointery .]
+    set numx [winfo pointerx $pad]
+    set numy [winfo pointery $pad]
     catch {destroy $pad.popdebugwsel}
     menu $pad.popdebugwsel -tearoff 0 -font $menuFont
     set plabel [mc AddWatch $watchvar]

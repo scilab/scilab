@@ -11,7 +11,10 @@ proc getcompletions {tok} {
     global chset words listoffile
 
     set tokinitial [string index $tok 0]
+
     set compl [list ]
+
+    # recover the tags list from the mode
     set mode $listoffile("[gettextareacur]",language)
     regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
  
@@ -54,16 +57,17 @@ proc popup_completions {} {
 # get the N possible completions, and
 #   if N=0, ring a bell
 #   if N=1, pass the completion to puttext
-#   if 1<N<10, popup the possible completions menu
-#   if N>9, ring a bell
+#   if 1<N<16, popup the possible completions menu
+#   if N>15, ring a bell
 
-    global pad textFont menuFont bgcolors fgcolors
+    global pad textFont menuFont bgcolors fgcolors chset listoffile
+    global currentselcompl tcl_platform
     foreach c1 "$bgcolors $fgcolors" {global $c1}
 
     if {[IsBufferEditable] == "No"} {return}
     set ta [gettextareacur]
 
-    # no completion is possible is cursor is at the beginning of a line
+    # no completion is possible if cursor is at the beginning of a line
     if {[$ta compare [$ta index insert] == [$ta index "insert linestart"]]} {
         bell
         return
@@ -85,11 +89,10 @@ proc popup_completions {} {
     if {[string first [$ta get $ind] $scilabnameschars ] == -1} {
         set ind [$ta index "$ind + 1 c"]
     }
-
     set startofword [$ta get $ind [$ta index insert]]
-    set compl [getcompletions $startofword]
 
-    # count number of completions
+    # get possible completions and count them
+    set compl [getcompletions $startofword]
     set nbcompl [llength $compl]
 
     if {$nbcompl == 0} {
@@ -107,79 +110,328 @@ proc popup_completions {} {
         return
 
     } else {
-        # create a popup menu containing the colorized completions
+        # create a popup "menu" containing the colorized completions
+        # note: because of all this:
+        #   http://wiki.tcl.tk/3713
+        #   http://wiki.tcl.tk/10643
+        #   http://sourceforge.net/tracker/index.php?func=detail&aid=585003&group_id=12997&atid=112997
+        #   http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/be584c844d3cb442/15630c85782a19a2
+        # the popup "menu" is not a regular tk popup menu, but a text
+        # widget posted using the place geometry manager
         catch {destroy $pad.popcompl}
-        menu $pad.popcompl -tearoff 0 -font $menuFont \
-            -title [mc "Possible completions"]
+        text $pad.popcompl -font $menuFont \
+                -bd 1 -relief solid -padx 2 -pady 2 -background $BGCOLOR
+        set xpaddingspace [expr ([$pad.popcompl cget -bd] + [$pad.popcompl cget -padx]) * 2]
+        set ypaddingspace [expr ([$pad.popcompl cget -bd] + [$pad.popcompl cget -pady]) * 2]
+        set popw $xpaddingspace
+        set poph $ypaddingspace
         foreach posscompl $compl {
             set tag [lindex $posscompl 0]
             set completedword [lindex $posscompl 1]
-            $pad.popcompl add command -label $completedword \
-                -command "completewith $completedword $ind $ta"
+            $pad.popcompl insert end "$completedword\n"
+            # compute popup size
+            set itemw [font measure [$pad.popcompl cget -font] "$completedword\n"]
+            if {$popw < [expr $itemw + $xpaddingspace]} {
+                set popw [expr $itemw + $xpaddingspace]
+            }
             # colorization settings
+            $pad.popcompl tag add $tag "insert - 1c linestart" insert
+        }
+        # remove superfluous last newline
+        $pad.popcompl delete insert
+        # colorization settings
+        set mode $listoffile("[gettextareacur]",language)
+        regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
+        foreach tag $tags {
             switch -- $tag {
-                command    {set col $COMMCOLOR}
+                command {set col $COMMCOLOR}
                 intfun  {set col $INTFCOLOR}
                 predef  {set col $PDEFCOLOR}
                 libfun  {set col $LFUNCOLOR}
                 scicos  {set col $SCICCOLOR}
                 default {set col black ;# shouldn't happen}
             }
-            $pad.popcompl entryconfigure last \
-                -foreground $col -activeforeground $col\
-                -background $BGCOLOR
-            $pad.popcompl entryconfigure last -activebackground [shade \
-                [$pad.popcompl entrycget last -activeforeground] \
-                [$pad.popcompl entrycget last -background] 0.5]
+            $pad.popcompl tag configure $tag \
+                -foreground $col -background $BGCOLOR
+            # unix menu-like appearance of the selection in the popup
+            if {$tcl_platform(platform) == "unix"} {
+                set platformoptions "-relief raised -borderwidth 2"
+            } else {
+                set platformoptions ""
+            }
+            eval "$pad.popcompl tag configure sel$tag $platformoptions \
+                    -foreground $col -background [shade \
+                    [$pad.popcompl tag cget $tag -foreground] \
+                    [$pad.popcompl tag cget $tag -background] 0.5]"
         }
 
-        # compute position for the popup menu, first in $ta coordinate system
+        # display the popup menu
+        # this is again tricky if we want to have the correct height of
+        # the popup for all font sizes:
+        #   1. place the widget offscreen so that is is not visible, and
+        #      give him an enormous height to be sure all the entries will
+        #      have enough space to be displayed
+        #   2. update to force the (invisible) display
+        #   3. compute height of the popup
+        #   4. compute correct position wrt to the textarea, and correct
+        #      this position if the popup once posted would extend beyond
+        #      the screen
+        #   5. place again the widget, this time at correct location and
+        #      with correct width and height
+        place $pad.popcompl -in $ta \
+                -x [winfo screenwidth $pad] -y [winfo screenheight $pad] \
+                -height [winfo screenheight $pad] -width [winfo screenwidth $pad]
+        update
+        # compute height of the popup
+        for {set i 1} {$i <= $nbcompl} {incr i} {
+            $pad.popcompl see "$i.0"
+            set linebbox [$pad.popcompl dlineinfo "$i.0"]
+            incr poph [lindex $linebbox 3]
+        }
+        # compute position for the popup menu in $ta coordinate system
         $ta see insert ; # otherwise dlineinfo returns an empty string
         set startofline [$ta get "insert linestart" insert]
         set startoflinewidth [font measure $textFont $startofline]
         set insertbbox [$ta dlineinfo insert]
         set posx [expr [lindex $insertbbox 0] + $startoflinewidth]
         set posy [expr [lindex $insertbbox 1] + [lindex $insertbbox 3]]
-        # now in screen coordinate system
-        set posx [expr $posx + [winfo rootx $ta]]
-        set posy [expr $posy + [winfo rooty $ta]]
+        if {[expr $posx + $popw] > [winfo width $ta]} {
+            set posx [expr $posx - $popw]
+        }
+        if {[expr $posy + $poph] > [winfo height $ta]} {
+            set posy [expr $posy - $poph - [lindex $linebbox 3]]
+        }
+        # place at final position
+        place $pad.popcompl -in $ta \
+                -x $posx -y $posy \
+                -height $poph -width $popw
 
-        # display the popup menu
-        tk_popup $pad.popcompl $posx $posy
+        # pre-select the first possible completion
+        set curseltag [lindex [lindex $compl 0] 0]
+        $pad.popcompl tag add sel$curseltag 1.0 2.0
+        set currentselcompl 0
 
-# below, unsuccessfull attempts to have the tcl event loop working while the menu
-# is posted (would allow for updating the list of completions while the user goes
-# on typing when the menu is already posted)
-# fundamental Windows issue here.
-# See http://wiki.tcl.tk/3713 and http://wiki.tcl.tk/10643
+        # further configuration options
+        $pad.popcompl configure -state disabled
+        focus $pad.popcompl
+        update ; # is this update really needed (Linux case grab failed error?)
+        grab $pad.popcompl
 
-#$pad.popcompl clone $pad.popcompl.clone tearoff
-#$pad.popcompl.clone configure -title [$pad.popcompl cget -title]
-#$pad.popcompl.clone post $posx $posy
-
-#after 1000 {bell;event generate $pad.popcompl <<MenuSelect>>}
-#tk_popup $pad.popcompl $posx $posy
-#bind $pad.popcompl <<MenuSelect>> {update;bell;after 1000 {event generate $pad.popcompl <<MenuSelect>>}}
+        # usability bindings
+        bind $pad.popcompl <Escape> \
+                "destroy $pad.popcompl ; focus $ta ; break"
+        bind $pad.popcompl <Return> \
+                "completewith [list $compl] $ind $ta ; destroy $pad.popcompl ; focus $ta ; break"
+        bind $pad.popcompl <KP_Enter> \
+                [bind $pad.popcompl <Return>]
+        bind $pad.popcompl <Down> \
+                "selectnextcompletion %W [list $compl] ; break"
+        bind $pad.popcompl <Up> \
+                "selectpreviouscompletion %W [list $compl] ; break"
+        bind $pad.popcompl <Next> \
+                "selectlastcompletion %W [list $compl] ; break"
+        bind $pad.popcompl <Prior> \
+                "selectfirstcompletion %W [list $compl] ; break"
+        bind $pad.popcompl <Motion> \
+                "selectmouseoverlaycompletion %W %x %y [list $compl] $popw $poph ; break"
+        bind $pad.popcompl <Button-1> \
+                "completewithmouseselected %W %x %y [list $compl] $ind $ta $popw $poph ; break"
+        bind $pad.popcompl <KeyPress>  {popup_completions_again_KP %W %A %k %s ; break}
+        bind $pad.popcompl <BackSpace> {popup_completions_again_BS %W ; break}
+        bind $pad.popcompl <Delete>    {}
 
         return
     }
 }
 
+proc selectnextcompletion {w compl} {
+# highlight the next possible completion in the popup
+    global currentselcompl
+
+    unselectcompletion $w $compl $currentselcompl
+
+    set lastcompl [expr [llength $compl] -1]
+    incr currentselcompl
+    if {$currentselcompl > $lastcompl} {
+        set currentselcompl 0
+    }
+
+    selectcompletion $w $compl $currentselcompl
+}
+
+proc selectpreviouscompletion {w compl} {
+# highlight the previous possible completion in the popup
+    global currentselcompl
+
+    unselectcompletion $w $compl $currentselcompl
+
+    incr currentselcompl -1
+    if {$currentselcompl < 0} {
+        set currentselcompl [expr [llength $compl] -1]
+    }
+
+    selectcompletion $w $compl $currentselcompl
+}
+
+proc unselectcompletion {w compl cn} {
+# un-highlight completion identified by $cn
+    set curseltag [lindex [lindex $compl $cn] 0]
+    $w tag remove sel$curseltag 1.0 end
+}
+
+proc selectcompletion {w compl cn} {
+# highlight completion identified by $cn
+    set newpos "[expr $cn + 1].0"
+    set curseltag [lindex [lindex $compl $cn] 0]
+    $w tag add sel$curseltag $newpos "$newpos + 1l linestart"
+}
+
+proc selectlastcompletion {w compl} {
+# highlight the last possible completion in the popup
+    selectcompletionnumber $w $compl [expr [llength $compl] -1]
+}
+
+proc selectfirstcompletion {w compl} {
+# highlight the first possible completion in the popup
+    selectcompletionnumber $w $compl 0
+}
+
+proc selectcompletionnumber {w compl cn} {
+# highlight possible completion number $cn from the possible completions
+# in the popup
+    global currentselcompl
+    unselectcompletion $w $compl $currentselcompl
+    selectcompletion $w $compl $cn
+    set currentselcompl $cn
+}
+
+proc selectmouseoverlaycompletion {w x y compl popw poph} {
+    completionmouseselect $w $x $y $compl $popw $poph
+}
+
+proc completewithmouseselected {w x y compl ind ta popw poph} {
+    completionmouseselect $w $x $y $compl $popw $poph $ind $ta
+}
+
+proc completionmouseselect {w x y compl popw poph {ind ""} {ta ""}} {
+# ancillary for selectmouseoverlaycompletion and completewithmouseselected
+# (just to factor the code a bit more)
+# if ind is provided, then it means that the proc was called by
+# completewithmouseselected otherwise it was called by
+# selectmouseoverlaycompletion
+# call from completewithmouseselected:
+#   destroy the popup if mouse is clicked outside of it, or
+#   highlight the completion clicked in the popup, wait a bit
+#   and pass this completion to the textarea
+# call from selectmouseoverlaycompletion:
+#   simply highlight the completion currently pointed by the mouse
+
+    global pad currentselcompl
+
+    # check if the mouse was clicked inside the popup or not
+    if {$x < 0 || $x > $popw || $y < 0 || $y > $poph} {
+        set inside false
+    } else {
+        set inside true
+    }
+
+    if {$inside} {
+        unselectcompletion $w $compl $currentselcompl
+
+        set mousepos [$w index "@$x,$y linestart"]
+        scan [expr $mousepos - 1] "%d.%d" currentselcompl junk
+        set curseltag [lindex [lindex $compl $currentselcompl] 0]
+        $w tag add sel$curseltag $mousepos "$mousepos + 1l linestart"
+
+        if {$ind != ""} {
+            # completewithmouseselected
+            completewith [lindex [lindex $compl $currentselcompl] 1] $ind $ta
+            after 300 {
+                destroy $pad.popcompl
+                focus [gettextareacur]
+            }
+        } else {
+            # selectmouseoverlaycompletion - nothing special to do
+        }
+        set currentselcompl $currentselcompl
+    } else {
+        if {$ind != ""} {
+            # completewithmouseselected
+            # user clicked outside of the popup
+            destroy $w ; focus $ta
+        } else {
+            # selectmouseoverlaycompletion - nothing special to do
+        }
+    }
+}
+
 proc completewith {str ind ta} {
 # insert the completed word $str after deletion of the start of word
+# if str is a single word, just insert it (used for single possible
+# completion)
+# if str is a list of completions, insert the completion identified by
+# the global variable currentselcompl (used with the popup)
 # start index for deletion is identified by index $ind in textarea $ta
 # end index for deletion is the insert index
+    global currentselcompl
     set oldSeparator [$ta cget -autoseparators] ;# in case this proc is called from another proc
     if {$oldSeparator} {
         $ta configure -autoseparators 0 ;# so only one undo is required to undo text replacement
         $ta edit separator
     }
+
+    if {[llength $str] != 1} {
+        set str [lindex [lindex $str $currentselcompl] 1]
+    }
+
     $ta delete $ind [$ta index insert]
     puttext $ta $str
     if {$oldSeparator} {
         $ta edit separator
         $ta configure -autoseparators 1
     }
+}
+
+proc popup_completions_again_KP {w character keycode modstate} {
+# insert the key pressed in the textarea and recompute the popup
+# handling capital letters is a bit tricky:
+# when the user hits say Shift-a, two KeyPress events are actually
+# fired:
+#   1. The first one has %A empty, %k (keycode) == 16, and %s (state) == 0
+#      this is just the single shift key
+#   2. The second one has %A empty, %k the keycode corresponding to
+#      the key letter (here a, %k is 65), and %s has bit 1 set, thus
+#      indicating that shift is pressed along with the letter
+
+    destroy $w
+    focus [gettextareacur]
+
+    if {$character != ""} {
+        # non-shifted character
+        puttext [gettextareacur] $character
+        popup_completions
+
+    } elseif {$keycode == 16} {
+        # first event firing when the user hits a shift key
+        popup_completions
+
+    } elseif {[expr $modstate & 1] != 0} {
+        # modstate (actually %s field of the KeyPress event) has
+        # bit 1 set (LSB) if the shift key is pressed
+        puttext [gettextareacur] $character
+        popup_completions
+    } else {
+        # do nothing, key combination not wanted during completion
+    }
+}
+
+proc popup_completions_again_BS {w} {
+# erase the character at the left of the cursor in the textarea
+# and recompute the popup
+    destroy $w
+    focus [gettextareacur]
+    backspacetext 
+    popup_completions
 }
 
 proc gettagfromkeyword {keyw} {
@@ -236,7 +488,7 @@ proc SetCompletionBinding {} {
         }
     }
 
-    pbind Text $completionbinding {popup_completions; break}
+    pbind Text $completionbinding {popup_completions ; break}
     set oldcompletionbinding $completionbinding
 }
 

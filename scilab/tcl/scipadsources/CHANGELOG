@@ -1642,4 +1642,31 @@ ES,
  * small improvements to derive the classes of scilab keywords from chset()
    for future ease of expandability; textarea tag "comm" renamed "command"
    (no new feature)
+ * The list of possible completions includes the start of word, if it
+   matches a Scilab keyword
  * version --> 5.52
+
+Francois VOGEL, 08/11/05
+ * Completion popup window, which was a tk_popup menu, replaced by a
+   text widget posted using the place geometry manager - usability
+   bindings added. Reasons for this change: the Tcl event loop is not
+   running on Windows while the menu is posted and this prevents from
+   updating the list of completions while the user goes on typing when
+   the menu is already posted. References:
+   http://wiki.tcl.tk/3713
+   http://wiki.tcl.tk/10643
+   http://sourceforge.net/tracker/index.php?func=detail&aid=585003&group_id=12997&atid=112997
+   http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/be584c844d3cb442/15630c85782a19a2
+ * version --> 5.53
+
+Francois VOGEL, 09/11/05
+ * PgUp and PgDn bindings added for the completion popup
+ * Keypad Enter key passes the selection completion from the popup the
+   same way the Return key does
+ * Improved the look of the popup for Linux (more menu-like)
+ * Capital letters (shifted keys) can be used during popup completion
+ * Completion popup size always correct for all the font sizes, even
+   extremely small or large
+ * An entry of the completion popup is highlighted when the mouse points
+   to it
+ * version --> 5.54
