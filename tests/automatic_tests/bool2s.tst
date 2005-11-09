@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/bool2s_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/bool2s_data.ref','r');
 %ans = bool2s([%t,%t,%f,%t]);
 if load_ref('%ans') then   pause,end,
 

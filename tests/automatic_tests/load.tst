@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/load_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/load_data.ref','r');
 a = eye(2, 2);b = ones(a);
 save('vals.dat', a, b);
 %ans = clear('a');

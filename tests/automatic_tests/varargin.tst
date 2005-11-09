@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/varargin_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/varargin_data.ref','r');
 %ans = deff('exampl(a,varargin)', ['[lhs,rhs]=argn(0)';
   'if rhs>=1 then disp(varargin),end']);
 if load_ref('%ans') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/feedback_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/feedback_data.ref','r');
 S1 = ssrand(2, 2, 3);S2 = ssrand(2, 2, 2);
 W = S1 /. S2;
 %ans = ss2tf(S1 /. S2);

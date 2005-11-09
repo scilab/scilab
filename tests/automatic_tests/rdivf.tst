@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/rdivf_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/rdivf_data.ref','r');
 %ans = ldivf('c', 'd');
 if load_ref('%ans') then   pause,end,
 

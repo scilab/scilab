@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ssrand_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ssrand_data.ref','r');
 //flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)
 //dim_cont_subs<=dim_stab_subs<=dim_stab0
 //pair (A,B) U-similar to:

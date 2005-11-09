@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/dirname_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/dirname_data.ref','r');
 files = dirname('SCI/macros/util/poo.sci');
 if load_ref('files') then   pause,end,
 

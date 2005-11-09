@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ss2tf_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ss2tf_data.ref','r');
 s = poly(0, 's');
 h = [1,1/s;1/(s^2 + 1),s/(s^2 - 2)];
 if load_ref('h') then   pause,end,

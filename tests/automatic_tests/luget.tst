@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/luget_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/luget_data.ref','r');
 a = rand(5, 2) * rand(2, 5);A = sparse(a);
 [hand,rk] = lufact(A);[P,L,U,Q] = luget(hand);
 %ans = full(L);

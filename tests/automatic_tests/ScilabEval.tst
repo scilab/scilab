@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ScilabEval_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ScilabEval_data.ref','r');
 //Callbacks and "seq" option usage
 
 //create tcl instructions

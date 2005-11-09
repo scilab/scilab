@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/mtlb_sparse_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mtlb_sparse_data.ref','r');
 X = sparse(rand(2, 2));Y = mtlb_sparse(X);
 Y;
 if load_ref('Y') then   pause,end,

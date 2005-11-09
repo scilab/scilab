@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/mfile2sci_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mfile2sci_data.ref','r');
 // Create a simple M-file
 write(TMPDIR + '/rot90.m', ['function B = rot90(A,k)';
   '[m,n] = size(A);';

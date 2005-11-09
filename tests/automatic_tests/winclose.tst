@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/winclose_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/winclose_data.ref','r');
 //CREATE SOME WINDOWS
 win1 = waitbar('This is an example');
 win2 = waitbar('HELLO!');

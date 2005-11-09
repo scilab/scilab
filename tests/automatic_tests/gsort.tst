@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/gsort_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/gsort_data.ref','r');
 alr = [1,2,2;
   1,2,1;
   1,1,2;

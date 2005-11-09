@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/imrep2ss_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/imrep2ss_data.ref','r');
 s = poly(0, 's');
 H = [1/(s + 0.5);2/(s - 0.4)];
 if load_ref('H') then   pause,end,

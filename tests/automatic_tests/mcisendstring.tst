@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/mcisendstring_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mcisendstring_data.ref','r');
 %ans = mcisendstring('open ""d:\audio.mp3"" type MPEGVideo alias MP3_Device');
 if load_ref('%ans') then   pause,end,
 

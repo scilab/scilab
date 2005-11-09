@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/bsplin3val_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/bsplin3val_data.ref','r');
 deff('v=f(x,y,z)', 'v=cos(x).*sin(y).*cos(z)');
 deff('v=fx(x,y,z)', 'v=-sin(x).*sin(y).*cos(z)');
 deff('v=fxy(x,y,z)', 'v=-sin(x).*cos(y).*cos(z)');

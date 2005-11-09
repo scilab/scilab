@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/sprintf_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sprintf_data.ref','r');
 fahr = 120;
 if load_ref('fahr') then   pause,end,
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/residu_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/residu_data.ref','r');
 s = poly(0, 's');
 H = [s/((s + 1)^2),1/(s + 2)];N = numer(H);D = denom(H);
 w = residu(N .* horner(N, -s), D, horner(D, -s));//N(s) N(-s) / D(s) D(-s)

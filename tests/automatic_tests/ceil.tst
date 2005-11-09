@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ceil_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ceil_data.ref','r');
 %ans = ceil([1.9,-2.5]) - [2,-2];
 if load_ref('%ans') then   pause,end,
 

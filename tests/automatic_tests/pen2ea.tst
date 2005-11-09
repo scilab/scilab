@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/pen2ea_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/pen2ea_data.ref','r');
 E = [1,0];A = [1,2];s = poly(0, 's');
 [E,A] = pen2ea(s * E - A);
 if load_ref('A') then   pause,end,

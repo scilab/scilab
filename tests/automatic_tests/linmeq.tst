@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/linmeq_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/linmeq_data.ref','r');
 //(1a)
 n = 40;m = 30;
 A = rand(n, n);C = rand(n, m);B = rand(m, m);

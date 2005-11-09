@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/inttype_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/inttype_data.ref','r');
 x = uint16(1:10);
 %ans = inttype(x);
 if load_ref('%ans') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/hinf_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/hinf_data.ref','r');
 //example from Niconet report SLWN1999-12
 //Hinf
 A = [-1,0,4,5,-3,-2;

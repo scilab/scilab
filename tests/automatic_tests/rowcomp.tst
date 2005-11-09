@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/rowcomp_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/rowcomp_data.ref','r');
 A = rand(5, 2) * rand(2, 4);// 4 col. vectors, 2 independent.
 [X,dim] = rowcomp(A);Xp = X';
 %ans = svd([Xp(:, 1:dim),A]);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/atanh_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/atanh_data.ref','r');
 // example 1
 x = [0,%i,-%i];
 if load_ref('x') then   pause,end,

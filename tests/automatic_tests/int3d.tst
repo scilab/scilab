@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/int3d_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/int3d_data.ref','r');
 X = [0;1;0;0];
 Y = [0;0;1;0];
 Z = [0;0;0;1];

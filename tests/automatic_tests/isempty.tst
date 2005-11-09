@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/isempty_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/isempty_data.ref','r');
 a = 1;
 if load_ref('a') then   pause,end,
 

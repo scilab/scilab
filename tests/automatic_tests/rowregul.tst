@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/rowregul_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/rowregul_data.ref','r');
 s = %s;
 w = [1/s,0;s/(s^3 + 2),2/s];
 Sl = tf2ss(w);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/iconvert_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/iconvert_data.ref','r');
 b = int32([1,-120,127,312]);
 if load_ref('b') then   pause,end,
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/round_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/round_data.ref','r');
 %ans = round([1.9,-2.5]) - [2,-3];
 if load_ref('%ans') then   pause,end,
 

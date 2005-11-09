@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/waitbar_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/waitbar_data.ref','r');
 winId = waitbar('This is an example');
 realtimeinit(0.3);
 for j = 0:0.1:1,

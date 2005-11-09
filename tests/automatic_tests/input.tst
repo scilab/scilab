@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/input_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/input_data.ref','r');
 //x=input("How many iterations?")
 //x=input("What is your name?","string")
 xdel_run(winsid());

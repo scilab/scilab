@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/function_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/function_data.ref','r');
 //inline definition (see function)
 function [x,y]=myfct(a,b)
   x=a+b

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/profile_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/profile_data.ref','r');
 //define function and prepare it for profiling
 %ans = deff('x=foo(n)', ['if n==0 then';
   '  x=[]';

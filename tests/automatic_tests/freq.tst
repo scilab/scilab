@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/freq_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/freq_data.ref','r');
 s = poly(0, 's');
 sys = (s + 1)/(s^3 - 5 * s + 4);
 if load_ref('sys') then   pause,end,

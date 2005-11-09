@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/timer_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/timer_data.ref','r');
 timer();A = rand(100, 100);%ans = timer();
 if load_ref_nocheck('%ans') then   pause,end,
 

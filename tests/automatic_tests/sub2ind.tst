@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/sub2ind_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sub2ind_data.ref','r');
 i = [1,2,1,1,2,1,1];
 j = [1,2,3,1,2,3,3];
 k = [1,2,1,2,1,2,1];

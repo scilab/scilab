@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/exp_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/exp_data.ref','r');
 x = [1,2,3 + %i];
 %ans = log(exp(x));
 if load_ref('%ans') then   pause,end,

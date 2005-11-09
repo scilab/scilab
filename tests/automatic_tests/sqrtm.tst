@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/sqrtm_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sqrtm_data.ref','r');
 x = [0,1;2,4];
 if load_ref('x') then   pause,end,
 

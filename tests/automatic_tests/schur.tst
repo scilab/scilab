@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/schur_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/schur_data.ref','r');
 //SCHUR FORM OF A MATRIX
 //----------------------
 A = diag([-0.9,-2,2,0.9]);X = rand(A);A = inv(X) * A * X;

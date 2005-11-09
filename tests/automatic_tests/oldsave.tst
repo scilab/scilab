@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/oldsave_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/oldsave_data.ref','r');
 a = eye(2, 2);b = ones(a);
 oldsave('TMPDIR/val.dat', a, b);
 %ans = clear('a');

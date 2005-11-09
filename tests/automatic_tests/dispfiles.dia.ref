@@ -3,13 +3,13 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/Examples_eng/other/dispfiles_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/dispfiles_data.ref','r');
  
 %ans = dispfiles();
 |File name                                                        |Unit|Type|Options       |
 |------------------------------------------------------------------------------------------|
 |TMPDIR/tmp.dia                                           |1   |C   |w b           |
-|SCI/tests/Examples_eng/other/dispfiles_data.ref|2   |C   |r             |
+|SCI/tests/automatic_tests/dispfiles_data.ref|2   |C   |r             |
 |Input                                                            |5   |F77 |old formatted |
 |Output                                                           |6   |F77 |new formatted |
  

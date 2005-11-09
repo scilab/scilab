@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/diophant_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/diophant_data.ref','r');
 s = poly(0, 's');p1 = (s + 3)^2;p2 = 1 + s;
 x1 = s;x2 = 2 + s;
 [x,err] = diophant([p1,p2], p1 * x1 + p2 * x2);

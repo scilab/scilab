@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ctr_gram_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ctr_gram_data.ref','r');
 A = diag([-1,-2,-3]);B = rand(3, 2);
 Wc = ctr_gram(A, B);
 if load_ref('Wc') then   pause,end,

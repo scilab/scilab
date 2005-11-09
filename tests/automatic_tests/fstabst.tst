@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/fstabst_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fstabst_data.ref','r');
 ny = 2;nu = 3;nx = 4;
 P22 = ssrand(ny, nu, nx);
 bigQ = rand(nx + nu, nx + nu);bigQ = bigQ * bigQ';

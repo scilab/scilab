@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/hankelsv_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/hankelsv_data.ref','r');
 A = diag([-1,-2,-3]);
 sl = syslin('c', A, rand(3, 2), rand(2, 3));[nk2,W] = hankelsv(sl);
 if load_ref('W') then   pause,end,

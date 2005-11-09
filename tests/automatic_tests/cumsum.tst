@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/cumsum_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/cumsum_data.ref','r');
 A = [1,2;3,4];
 %ans = cumsum(A);
 if load_ref('%ans') then   pause,end,

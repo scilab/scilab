@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/inttrap_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/inttrap_data.ref','r');
 t = 0:0.1:%pi;
 if load_ref('t') then   pause,end,
 

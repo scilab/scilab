@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/continue_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/continue_data.ref','r');
 for k = 1:10,  K = k;if (k > 2) & (k <= 8) then   continue,%ans = disp('hello');
     if load_ref('%ans') then   pause,end,
   end,k;

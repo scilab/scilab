@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/contrss_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/contrss_data.ref','r');
 A = [1,1;0,2];B = [1;0];C = [1,1];sl = syslin('c', A, B, C);//Non minimal
 slc = contrss(sl);
 sl1 = ss2tf(sl);sl2 = ss2tf(slc);//Compare sl1 and sl2

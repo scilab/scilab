@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/matrices_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/matrices_data.ref','r');
 E = [1,2;3,4];
 if load_ref('E') then   pause,end,
 

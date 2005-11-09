@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/auread_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/auread_data.ref','r');
 y = wavread('SCI/demos/signal/sound/chimes.wav');
 // default is 8-bits mu-law
 auwrite(y, TMPDIR + '/tmp.au');

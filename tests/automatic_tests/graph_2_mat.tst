@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/graph_2_mat_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/graph_2_mat_data.ref','r');
 g = load_graph(SCI + '/demos/metanet/colored');
 a = graph_2_mat(g);
 if load_ref('a') then   pause,end,

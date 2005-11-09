@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/chsolve_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/chsolve_data.ref','r');
 A = sprand(20, 20, 0.1);
 A = A * A' + eye();
 spcho = chfact(A);

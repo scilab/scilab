@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/coshm_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/coshm_data.ref','r');
 A = [1,2;2,4];
 if load_ref('A') then   pause,end,
 

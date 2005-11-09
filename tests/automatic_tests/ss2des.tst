@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ss2des_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ss2des_data.ref','r');
 s = poly(0, 's');
 G = [1/(s + 1),s;1 + s^2,3 * (s^3)];Sl = tf2ss(G);
 S = ss2des(Sl);

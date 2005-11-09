@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/setenv_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/setenv_data.ref','r');
 %ans = setenv('toto', 'example');
 if load_ref('%ans') then   pause,end,
 

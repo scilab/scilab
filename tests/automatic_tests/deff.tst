@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/deff_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/deff_data.ref','r');
 %ans = deff('[x]=myplus(y,z)', 'x=y+z');
 if load_ref('%ans') then   pause,end,
 

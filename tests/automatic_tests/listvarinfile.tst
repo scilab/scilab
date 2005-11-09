@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/listvarinfile_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/listvarinfile_data.ref','r');
 a = eye(2, 2);b = int16(ones(a));c = rand(2, 3, 3);
 %ans = save('vals.dat', a, b, c);
 if load_ref('%ans') then   pause,end,

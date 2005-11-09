@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/fscanfMat_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fscanfMat_data.ref','r');
 fd = mopen(TMPDIR + '/Mat', 'w');
 mfprintf(fd, 'Some text.....\n');
 mfprintf(fd, 'Some text again\n');

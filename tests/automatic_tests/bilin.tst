@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/bilin_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/bilin_data.ref','r');
 s = poly(0, 's');z = poly(0, 'z');
 w = ssrand(1, 1, 3);
 wtf = ss2tf(w);v = [2,3,-1,4];a = v(1);b = v(2);c = v(3);d = v(4);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/mean_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mean_data.ref','r');
 A = [1,2,10;7,7.1,7.01];
 %ans = mean(A);
 if load_ref('%ans') then   pause,end,

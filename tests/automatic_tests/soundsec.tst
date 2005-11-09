@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/soundsec_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/soundsec_data.ref','r');
 // At first we create 0.5 seconds of sound parameters.
 t = soundsec(0.5);
 // Then we generate the sound.

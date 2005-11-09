@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/auwrite_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/auwrite_data.ref','r');
 A = matrix(1:6, 2, 3);
 auwrite(A/6, 22050, 64, 'linear', TMPDIR + '/foo.au');
 B = auread(TMPDIR + '/foo.au');

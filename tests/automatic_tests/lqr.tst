@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/lqr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/lqr_data.ref','r');
 A = rand(2, 2);B = rand(2, 1);//two states, one input
 Q = diag([2,5]);R = 2;//Usual notations x'Qx + u'Ru
 Big = sysdiag(Q, R);//Now we calculate C1 and D12

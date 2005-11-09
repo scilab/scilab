@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/coth_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/coth_data.ref','r');
 x = [1,2 * %i];
 if load_ref('x') then   pause,end,
 

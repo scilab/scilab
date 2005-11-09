@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/sqrt_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sqrt_data.ref','r');
 %ans = sqrt([2,4]);
 if load_ref('%ans') then   pause,end,
 

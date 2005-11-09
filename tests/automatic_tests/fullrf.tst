@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/fullrf_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fullrf_data.ref','r');
 A = rand(5, 2) * rand(2, 5);
 [Q,M] = fullrf(A);
 %ans = norm(Q * M - A, 1);

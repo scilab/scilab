@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/Examples_eng/other/backslash_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/backslash_data.ref','r');
  
 A = rand(3, 2);b = [1;1;1];x = A\b;y = pinv(A) * b;%ans = x - y;
  

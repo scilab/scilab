@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/penlaur_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/penlaur_data.ref','r');
 F = randpencil([], [1,2], [1,2,3], []);
 F = rand(6, 6) * F * rand(6, 6);[E,A] = pen2ea(F);
 [Si,Pi,Di] = penlaur(F);

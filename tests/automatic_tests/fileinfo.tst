@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/fileinfo_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fileinfo_data.ref','r');
 w = fileinfo(SCI + '/scilab.star');
 if load_ref_nocheck('w') then   pause,end,
 

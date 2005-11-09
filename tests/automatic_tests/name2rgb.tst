@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/name2rgb_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/name2rgb_data.ref','r');
 rgb = name2rgb('gold');
 if load_ref('rgb') then   pause,end,
 

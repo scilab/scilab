@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/lstsize_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/lstsize_data.ref','r');
 %ans = lstsize(list(1, 'aqsdf'));
 if load_ref('%ans') then   pause,end,
 

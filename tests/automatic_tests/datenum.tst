@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/datenum_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/datenum_data.ref','r');
 %ans = datenum();
 if load_ref_nocheck('%ans') then   pause,end,
 

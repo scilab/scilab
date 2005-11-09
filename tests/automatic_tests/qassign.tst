@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/qassign_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/qassign_data.ref','r');
 n = 15;
 d = 100 * rand(15, 15);
 d = d - diag(diag(d));

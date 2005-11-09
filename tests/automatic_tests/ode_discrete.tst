@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ode_discrete_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ode_discrete_data.ref','r');
 y1 = [1;2;3];%ans = deff('yp=a_function(k,y)', 'yp=A*y+B*u(k)');
 if load_ref('%ans') then   pause,end,
 

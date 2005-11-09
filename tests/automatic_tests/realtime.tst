@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/realtime_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/realtime_data.ref','r');
 
 
 realtimeinit(1/2);//sets time unit to half a second

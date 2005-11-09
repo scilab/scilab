@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/semidef_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/semidef_data.ref','r');
 F0 = [2,1,0,0;
   1,2,0,0;
   0,0,3,1;

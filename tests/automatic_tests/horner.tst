@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/horner_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/horner_data.ref','r');
 s = poly(0, 's');M = [s,1/s];
 %ans = horner(M, 1);
 if load_ref('%ans') then   pause,end,

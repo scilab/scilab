@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/Examples_eng/other/st_ility_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/st_ility_data.ref','r');
  
 A = diag([0.9,-2,3]);B = [0;0;1];Sl = syslin('c', A, B, []);
  

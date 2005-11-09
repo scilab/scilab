@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ltitr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ltitr_data.ref','r');
 A = eye(2, 2);B = [1;1];
 x0 = [-1;-2];
 u = [1,2,3,4,5];

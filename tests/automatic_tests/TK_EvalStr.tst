@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/TK_EvalStr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/TK_EvalStr_data.ref','r');
 //with one call
 %ans = TK_EvalStr(['toplevel .foo1';
   'label .foo1.l -text ""TK married Scilab !!!""';

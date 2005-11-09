@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/fprintfMat_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fprintfMat_data.ref','r');
 n = 50;
 a = rand(n, n, 'u');
 fprintfMat(TMPDIR + '/Mat', a, '%5.2f');

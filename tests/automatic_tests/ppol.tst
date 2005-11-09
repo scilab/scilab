@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ppol_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ppol_data.ref','r');
 A = rand(3, 3);B = rand(3, 2);
 F = ppol(A, B, [-1,-2,-3]);
 %ans = spec(A - B * F);

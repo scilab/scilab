@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/sample_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sample_data.ref','r');
 X = ['a','dd','arreu';'ber','car','zon'];
 if load_ref('X') then   pause,end,
 

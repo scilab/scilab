@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/armac_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/armac_data.ref','r');
 a = [1,-2.851,2.717,-0.865] .*. eye(2, 2);
 if load_ref('a') then   pause,end,
 

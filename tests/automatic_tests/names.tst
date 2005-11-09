@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/names_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/names_data.ref','r');
 //Valid names
 %eps;
 if load_ref('%eps') then   pause,end,

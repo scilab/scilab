@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/armax_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/armax_data.ref','r');
 //-Ex1- Arma model : y(t) = 0.2*u(t-1)+0.01*e(t-1)
 ny = 1;
 if load_ref('ny') then   pause,end,

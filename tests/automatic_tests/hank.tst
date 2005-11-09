@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/hank_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/hank_data.ref','r');
 //Example of how to use the hank macro for
 //building a Hankel matrix from multidimensional
 //data (covariance or Markov parameters e.g.)

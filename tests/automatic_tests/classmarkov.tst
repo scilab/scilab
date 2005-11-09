@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/classmarkov_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/classmarkov_data.ref','r');
 //P has two recurrent classes (with 2 and 1 states) 2 transient states
 P = genmarkov([2,1], 2, 'perm');
 if load_ref('P') then   pause,end,

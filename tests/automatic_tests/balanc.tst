@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/balanc_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/balanc_data.ref','r');
 A = [1/(2^10),1/(2^10);2^10,2^10];
 [Ab,X] = balanc(A);
 %ans = norm(A(1, :))/norm(A(2, :));

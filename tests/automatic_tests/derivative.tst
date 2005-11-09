@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/derivative_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/derivative_data.ref','r');
 function y=F(x)
      y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
    

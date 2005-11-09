@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/markp2ss_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/markp2ss_data.ref','r');
 W = ssrand(2, 3, 4);//random system with 2 outputs and 3 inputs
 [a,b,c,d] = abcd(W);
 markpar = [c * b,c * a * b,c * (a^2) * b,c * (a^3) * b,c * (a^4) * b];

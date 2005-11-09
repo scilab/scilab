@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/numdiff_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/numdiff_data.ref','r');
 function f=myfun(x,y,z,t)
   f=(x+y)^t+z
 endfunction

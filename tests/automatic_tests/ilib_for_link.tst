@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/ilib_for_link_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ilib_for_link_data.ref','r');
 
 f1 = ['int ext1c(n, a, b, c)';
   'int *n;     double *a, *b, *c;';

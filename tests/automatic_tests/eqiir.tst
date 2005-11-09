@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/eqiir_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/eqiir_data.ref','r');
 [cells,fact,zzeros,zpoles] = eqiir('lp', 'ellip', [2 * %pi/10,4 * %pi/10], 0.02, 0.001);
 if load_ref('zpoles') then   pause,end,
 if load_ref('zzeros') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/int2d_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/int2d_data.ref','r');
 X = [0,0;1,1;1,0];
 Y = [0,0;0,1;1,1];
 %ans = deff('z=f(x,y)', 'z=cos(x+y)');

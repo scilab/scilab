@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/file_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/file_data.ref','r');
 u = file('open', TMPDIR + '/foo', 'unknown');
 if load_ref('u') then   pause,end,
 

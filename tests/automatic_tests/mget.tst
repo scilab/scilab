@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/mget_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mget_data.ref','r');
 file1 = 'test1.bin';
 file2 = 'test2.bin';
 fd1 = mopen(file1, 'wb');

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/glue_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/glue_data.ref','r');
 
 
 xdel_run(winsid());

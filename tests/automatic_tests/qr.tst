@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/qr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/qr_data.ref','r');
 // QR factorization, generic case
 // X is tall (full rank)
 X = rand(5, 2);[Q,R] = qr(X);%ans = [Q' * X,R];

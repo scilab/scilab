@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/colcompr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/colcompr_data.ref','r');
 s = poly(0, 's');
 p = [s;s * ((s + 1)^2);2 * (s^2) + s^3];
 [Y,rk,ac] = colcompr(p * p');

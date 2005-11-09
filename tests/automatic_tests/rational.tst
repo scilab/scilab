@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/other/rational_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/rational_data.ref','r');
 s = poly(0, 's');
 W = [1/s,1/(s + 1)];
 if load_ref('W') then   pause,end,
