@@ -6425,7 +6425,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   sciPointObj *pobj; 
   int *locindex;
   int *polyx,*polyy,fill[20];/* here we suppose there is no more than 20 edge in a facet */
-  int k1, pstyle=0,iflag;
+  int k1,iflag;
+  int pstyle = 0;
   int whiteid,verbose=0,narg;
   static double zmin,zmax,xmoy,ymoy,zmoy,zl;
   int context[6];
@@ -6639,7 +6640,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  z= (double *) NULL;
 	break;
       }
-
+      
       break;
     case  SCI_SEGS: 
       p = 2;
@@ -6682,9 +6683,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       {
 	double rectx[4],recty[4],rectz[4];
 	p = 5;
-	
-	pstyle=0; /* arevoir */
-	iflag=0; /* arevoir */
 	
 	rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
 	rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
@@ -6930,6 +6928,22 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	p = 2;
 	/***************/
 	
+	if (pSEGS_FEATURE (pobj)->ptype == 0) /* ptype == 0 F.Leray : This is NOT A champ */
+	  {  
+	    if (pSEGS_FEATURE (pobj)->iflag == 1) {
+	      pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[index]);
+	    }
+	    else{
+	      pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
+	    }
+	  }
+	else
+	  {
+	    pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
+	  }
+	
+	iflag = pSEGS_FEATURE (pobj)->iflag;
+	
 	xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index];
 	xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index+1];
 	
@@ -6969,7 +6983,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  double rectx[4],recty[4],rectz[4];
 	  p = 5;
 	
-
 	  pstyle=0; /* arevoir */
 	  iflag=0; /* arevoir */
       
@@ -7286,7 +7299,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 #ifdef WIN32
 	if ( hdcflag == 1) ReleaseWinHdc ();
 #endif	  
-  
+	
   }
   FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
 }
@@ -7749,9 +7762,9 @@ sciDrawObj (sciPointObj * pobj)
 	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1; /* F.Leray 18.02.04 Correction suivante:*/
 	  /*	if ((xm = MALLOC (in1*sizeof (integer))) == NULL)	return -1;*/ /* ANNULATION MODIF DU 18.02.04*/
 	  /*	if ((ym = MALLOC (in2*sizeof (integer))) == NULL)	return -1;*/
-	  if ((pstyle = MALLOC (n*sizeof (integer))) == NULL)	return -1; /* SS 19.04*/
+	  if ((pstyle = MALLOC ((int)(n/2)*sizeof (integer))) == NULL)	return -1; /* SS 19.04*/
 	  if (pSEGS_FEATURE (pobj)->iflag == 1) {
-	    for ( i =0 ; i <n ; i++) {
+	    for ( i =0 ; i <(int) (n/2) ; i++) {
 	      pstyle[i]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[i]);
 	    }
 	  }
