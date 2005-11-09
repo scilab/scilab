@@ -4819,31 +4819,46 @@ int copy(char *fname,unsigned long fname_len)
   unsigned long hdl, hdlparent;
   sciPointObj *pobj, *psubwinparenttarget, *pcopyobj;
   integer m1, n1, l1,l2;
-  int numrow, numcol, outindex;
+  int numrow, numcol, outindex,lw;
+  sciEntityType typ;
 
   CheckRhs(1,2);
   CheckLhs(0,1);
 
   /*  set or create a graphic window*/
   SciWin();
+  lw = 1 + Top - Rhs;
+  GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
+  if (m1!=1||n1!=1) {
+	C2F(overload)(&lw,"copy",4);
+	return 0;
+  }
+
   if (Rhs == 1)
     {
-      GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
       hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
       if (pobj == NULL) {
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
 	return 0;
       }
+      typ=sciGetEntityType(pobj);
+      if (typ!=SCI_TEXT&&typ!=SCI_ARC&&typ!=SCI_POLYLINE&&typ!=SCI_RECTANGLE) {
+	C2F(overload)(&lw,"copy",4);
+	return 0;
+      }
       psubwinparenttarget = sciGetParentSubwin(sciGetPointerFromHandle(hdl));
     }
   else
     {
-      GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
       hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
       if (pobj == NULL) {
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	return 0;
+      }
+      if (typ!=SCI_TEXT&&typ!=SCI_ARC&&typ!=SCI_POLYLINE&&typ!=SCI_RECTANGLE) {
+	C2F(overload)(&lw,"copy",4);
 	return 0;
       }
       GetRhsVar(2,"h",&m1,&n1,&l2); /* Gets the command name */
