@@ -7,17 +7,17 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
-
+/*-----------------------------------------------------------------------------------*/
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
 char ScilexConsoleName[MAX_PATH];
-
 static BOOL WindowMode;
 static int Windows_Console_State;/* 0 Hide 1 Show */
-
+/*-----------------------------------------------------------------------------------*/
+typedef  HWND (WINAPI * GetConsoleWindowPROC) (void); 
 /*-----------------------------------------------------------------------------------*/
 void RenameConsole(void)
 {
+	HMENU hmenuConsole = NULL;
 	char CurrentConsoleName[MAX_PATH];
 	char CurrentConsoleNameTmp[MAX_PATH];
 
@@ -30,6 +30,11 @@ void RenameConsole(void)
 		wsprintf(ScilexConsoleName,"%s %s",NameConsole,VERSION);
 		SetConsoleTitle(ScilexConsoleName);
 	}
+
+	// Desactive croix dans la console
+	hmenuConsole=GetSystemMenu(ScilabGetConsoleWindow(), FALSE);
+	DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
+
 }
 /*-----------------------------------------------------------------------------------*/
 void CreateScilabConsole(int ShowBanner)
@@ -47,10 +52,6 @@ void CreateScilabConsole(int ShowBanner)
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
     freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
 	freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
-
-	// Desactive croix dans la console
-	hmenuConsole=GetSystemMenu(FindWindow(NULL,ScilexConsoleName), FALSE);
-	DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
 	
 	if (ShowBanner)
 	{
@@ -67,6 +68,10 @@ void CreateScilabConsole(int ShowBanner)
     	strcpy(line,"        ___________________________________________\r\n\r\n");
 		printf(line);
 	}
+
+	// Desactive croix dans la console
+	hmenuConsole=GetSystemMenu(ScilabGetConsoleWindow(), FALSE);
+	DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
 
 	HideScilex(); /* Cache la fenetre Console */
 }
@@ -146,18 +151,18 @@ int FindFreeScilexNumber(void)
 void HideScilex(void)
 {
 	HWND hScilex=NULL;
-	hScilex=FindWindow(NULL,ScilexConsoleName);
+	hScilex=ScilabGetConsoleWindow();
 	if (hScilex)
-		{
+	{
 		ShowWindow(hScilex,SW_HIDE);	
-		}
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 /*Montre la fenetre Scilex(x) de ce processus */
 void ShowScilex(void)
 {
   HWND hScilex=NULL;
-  hScilex=FindWindow(NULL,ScilexConsoleName);
+  hScilex=ScilabGetConsoleWindow();
   if (hScilex)
   {
   	ShowWindow(hScilex,SW_SHOWNOACTIVATE);
@@ -167,22 +172,24 @@ void ShowScilex(void)
 void SwitchConsole(void)
 {
 	switch (GetConsoleState())
-  			{
-  				/* La fenetre etait cachée , on la restaure */
-  				case 0:
-  					{
-  						ShowScilex();
-  						SetConsoleState(1);
-  					}
-  				break;
-  				/* La fenetre etait apparente , on la cache */ 
-  				case 1:
-  					{
-  						HideScilex();
-  						SetConsoleState(0);
-  					}
-  				break;
-  			}
+	{
+		/* La fenetre etait cachée , on la restaure */
+		case 0:
+		{
+			ShowScilex();
+			SetConsoleState(1);
+			SetConsoleTitle(ScilexConsoleName);
+		}
+		break;
+		/* La fenetre etait apparente , on la cache */ 
+		case 1:
+		{
+			HideScilex();
+			SetConsoleState(0);
+			SetConsoleTitle(ScilexConsoleName);
+		}
+		break;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 void SetWindowMode(BOOL ON)
@@ -198,5 +205,31 @@ int GetConsoleState(void)
 void SetConsoleState(int state)
 {
 	Windows_Console_State=state;
+}
+/*-----------------------------------------------------------------------------------*/
+HWND ScilabGetConsoleWindow(void)
+{
+	HWND hWndReturn=NULL;
+	HINSTANCE Kernel32Dll = LoadLibrary ("kernel32"); 
+
+	if ( Kernel32Dll ) 
+		{ 
+			GetConsoleWindowPROC myGetConsoleWindow = (GetConsoleWindowPROC) GetProcAddress(Kernel32Dll,"GetConsoleWindow"); 
+
+			if ( myGetConsoleWindow ) 
+			{ 
+				// 2k AND more
+				hWndReturn = (myGetConsoleWindow)(); 
+			} 
+			else 
+			{ 
+				// 98
+				hWndReturn = FindWindow(NULL,ScilexConsoleName);
+			} 
+		}
+
+	FreeLibrary( Kernel32Dll ); 
+
+	return hWndReturn;
 }
 /*-----------------------------------------------------------------------------------*/
