@@ -1,0 +1,54 @@
+# test_demoplay.dpf
+# by Jaime Urzua
+#    mailto:jaime_urzua@yahoo.com
+<slide silent>demoplay
+<tx>
+<tx>demoplay is a function that allow display demos and examples files in a secuential manner.
+<tx>
+<tx>The GUI have four button:
+<tx>  1.- Previous slide
+<tx>  2.- Home
+<tx>  3.- Next
+<tx>  4.- Quit
+<tx>
+<tx>Press Next Button ...
+
+<slide>Scilab Script
+<tx>With demoplay you can execute scripts, as an example:
+<tx>
+<cm>a=rand(3,3);
+<cm>a'*a
+<cm>det(a)
+<tx>
+<tx>Or this:
+<tx>
+<cm>p=1:5;
+<cm>exp(-p)
+
+<slide>Images
+<tx>In this screen you can embed .gif files...
+<img>scilab01.gif
+
+<slide>An ODE example
+<tx>Consider the following system:
+<cm>deff('[xdot]=dlmds(t,x)','..
+<cm>  xdot=zeros(x); ..
+<cm>  xdot(1)=x(2); ..
+<cm>  xdot(2)=-(b*x(2)*abs(x(2))+k0*x(1)+k1*x(1)^3)/m; ..
+<cm>');
+<tx>
+<tx>System constant :
+<cm>m=0.5;b=2;k0=0.6;k1=2;
+<tx>
+<tx>Initial contidions
+<cm>x0=[0.3;0];t0=0;t=0:0.1:50;
+<tx>
+<tx>Solve ..
+<cm>x=ode(x0,t0,t,dlmds);
+<tx>
+<tx>Plot position
+<cm>xbasc();
+<cm>plot2d(t,x');
+
+
+
