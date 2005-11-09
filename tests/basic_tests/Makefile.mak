@@ -1,6 +1,6 @@
 
 SCIDIR = ../..
-SCIDIR1 = ../..
+SCIDIR1 = ..\..
 
 include ../../Makefile.incl.mak 
 
