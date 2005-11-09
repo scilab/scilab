@@ -316,7 +316,7 @@
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi" \
                    "Der Import der Datei ist fehlgeschlagen, siehe Scilab-Fenster\
                     für weitere Details -- Vielleicht sollten die Fehlermeldungen\
-                    und die verantwortliche Matlab-Datei an
+                    und die verantwortliche Matlab-Datei an \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi weiterleiten."
 ::msgcat::mcset de "Please select destination path for the xml source of the help file" "Bitte wählen sie einen Zielpfad für die XML-Hilfe-Datei"
 ::msgcat::mcset de "Older version of" "Es existiert eine ältere Version von"
