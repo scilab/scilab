@@ -293,6 +293,17 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       mark_background=mget(1,'il',fd)
     end
     
+    if is_higher_than([3 1 0 0]) then  
+      sz_x_shift=mget(1,'sl',fd)
+      x_shift=mget(sz_x_shift,'dl',fd)'
+
+      sz_y_shift=mget(1,'sl',fd)
+      y_shift=mget(sz_y_shift,'dl',fd)'
+      
+      sz_z_shift=mget(1,'sl',fd)
+      z_shift=mget(sz_z_shift,'dl',fd)'
+    end
+    
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     
     if clip_state=='on' then
@@ -321,6 +332,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"background",background)
       set(h,"fill_mode",fill_mode)
       set(h,"closed",closed);
+      set(h,'x_shift',x_shift);
+      set(h,'y_shift',y_shift);
+      set(h,'z_shift',z_shift);
     end
     
     if clip_state =='' then clip_state='clipgrf',end

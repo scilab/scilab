@@ -138,8 +138,10 @@ function save_graphichandle(h,fd)
     mput(ascii(part(h.mark_size_unit,1)),'c',fd)
     mput(h.mark_foreground,'il',fd)
     mput(h.mark_background,'il',fd)
+
     mput(h.foreground,'il',fd)
     mput(h.background,'il',fd)
+       
     mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then
        mput(h.clip_box,'dl',fd)
@@ -170,6 +172,11 @@ function save_graphichandle(h,fd)
     mput(h.background,'il',fd)
     mput(h.mark_foreground,'il',fd)
     mput(h.mark_background,'il',fd)
+    
+    mput(size(h.x_shift,'*'),'sl',fd); mput(h.x_shift,'dl',fd);
+    mput(size(h.y_shift,'*'),'sl',fd); mput(h.y_shift,'dl',fd);
+    mput(size(h.z_shift,'*'),'sl',fd); mput(h.z_shift,'dl',fd);
+    
     mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then
        mput(h.clip_box,'dl',fd)
