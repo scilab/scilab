@@ -29,7 +29,7 @@ endfunction
 
 function [x,k]=%hm_oriented_max(m,d)
   if d=='m' then
-    d=find(dims>1,1)
+    d=find(m.dims>1,1)
     if d==[] then 
       [x,k1]=max(m.entries)
       k=ind2sub(m.dims,k1(1))
