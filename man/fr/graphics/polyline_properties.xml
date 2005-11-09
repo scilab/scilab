@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -160,11 +160,29 @@
         dimension.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="bar_shift: ">
+      <DESCRIPTION_ITEM label="x_shift: ">
         <SP>This field contains the offset computed by a call to the
-        <LINK>bar</LINK> function and is only used when the polyline's
-        <VERB>polyline_style</VERB> is set to bar mode (case 6): the unit is
-        expressed in user coordinates.</SP>
+        <LINK>bar</LINK> function (or re-computed by a call to
+        <LINK>barhomogenize</LINK>) and is used to perform a nice vertical bar
+        representation. Note that this offset is also taken into account for
+        all the other <VERB>polyline_style</VERB>. The unit is expressed in
+        user coordinates.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="y_shift: ">
+        <SP>This field contains the offset computed by a call to the
+        <LINK>bar</LINK> function (or re-computed by a call to
+        <LINK>barhomogenize</LINK>) and is used to perform a nice horizontal
+        bar representation. Note that this offset is also taken into account
+        for all the other <VERB>polyline_style</VERB>. The unit is expressed
+        in user coordinates.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="z_shift: ">
+        <SP>This field contains the offset the user may specify. Note that
+        this offset is taken into account for all the
+        <VERB>polyline_style</VERB>. The unit is expressed in user
+        coordinates.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="bar_width: ">
