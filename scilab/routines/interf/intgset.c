@@ -30,7 +30,7 @@ extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 extern int versionflag;
 /*-----------------------------------------------------------------------------------*/
-static char error_message[70];
+static char error_message[256];
 /*-----------------------------------------------------------------------------------*/
 int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow, int * numcol);
 int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
@@ -1959,57 +1959,194 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"axes_bounds property does not exist for this handle");return -1;}
   }
   else if (strcmp(marker,"data_bounds") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {   
+    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+      
+      /* JB Silvy 09/11/05 */
+      sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
+      double * bounds = stk(*value) ;
+      double   xMin ;
+      double   xMax ;
+      double   yMin ;
+      double   yMax ;
+      double   zMin = 1.0 ; /* initialize to avoid checking between 2D and 3D */
+      double   zMax = 2.0 ;
+
+      /* get the bounds of the matrix */
+      /* only allowed 2x2, 2x3, 1x4, 4x1, 1x6 and 6x1 matrices */
+      char * errorMsg = "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ;
+      switch ( *numrow )
+      {
+      case 1 : /* row vector */
+        if ( *numcol == 4 )
+        {
+          xMin = bounds[0] ;
+          yMin = bounds[1] ;
+          xMax = bounds[2] ;
+          yMax = bounds[3] ;
+        }
+        else if( *numcol == 6 )
+        {
+          xMin = bounds[0] ;
+          yMin = bounds[1] ;
+          zMin = bounds[2] ;
+          xMax = bounds[3] ;
+          yMax = bounds[4] ;
+          zMax = bounds[5] ;
+        }
+        else
+        {
+          strcpy( error_message, errorMsg ) ;
+          return -1 ;
+        }
+        break ;
+
+      case 2 : /* 2x2 or 2x3 matrix */
+        if ( *numcol == 2 )
+        {
+          xMin = bounds[0] ;
+          yMin = bounds[2] ;
+          xMax = bounds[1] ;
+          yMax = bounds[3] ;
+        }
+        else if ( *numcol == 3 )
+        {
+          xMin = bounds[0] ;
+          yMin = bounds[2] ;
+          zMin = bounds[4] ;
+          xMax = bounds[1] ;
+          yMax = bounds[3] ;
+          zMax = bounds[5] ;
+        }
+        else
+        {
+          strcpy( error_message, errorMsg ) ;
+          return -1 ;
+        }
+        break ;
+
+      case 4 : /* column vector for 2D */
+        if ( *numcol == 1 )
+        {
+          xMin = bounds[0] ;
+          yMin = bounds[1] ;
+          xMax = bounds[2] ;
+          yMax = bounds[3] ;
+        }
+        else
+        {
+          strcpy( error_message, errorMsg ) ;
+          return -1 ;
+        }
+        break ;
+      case 6 : /* column vector for 3D */
+        if ( *numcol == 1 )
+        {
+          xMin = bounds[0] ;
+          yMin = bounds[1] ;
+          zMin = bounds[2] ;
+          xMax = bounds[3] ;
+          yMax = bounds[4] ;
+          zMax = bounds[5] ;
+        }
+        else
+        {
+          strcpy( error_message, errorMsg ) ;
+          return -1 ;
+        }
+        break ;
+      default:
+        strcpy( error_message, errorMsg ) ;
+        return -1 ;
+      }
+
+      /* check if the bounds are corrects */
+      if ( xMin >= xMax || yMin >= yMax || zMin >= zMax )
+      {
+        strcpy(error_message,"Error : Min and Max values for one axis do not verify Min < Max.");
+        return -1 ;
+      }
+
+      /* check for logflags that values are greater then 0 */
+      if (   ( ppSubWin->logflags[0] == 'l' && xMin <= 0.0 )
+          || ( ppSubWin->logflags[1] == 'l' && yMin <= 0.0 )
+          || ( ppSubWin->logflags[2] == 'l' && zMin <= 0.0 ) )
+      {
+        strcpy(error_message,"Error: bounds on axis must be strictly positive to use logarithmic mode\n") ;
+        return -1 ;
+      }
+
+      /* copy the values in the axis */
+      if ( *numrow * *numcol == 4 )
+      { 
+        /* 2D */
+        ppSubWin->SRect[0] = xMin ;
+        ppSubWin->SRect[1] = xMax ;
+        ppSubWin->SRect[2] = yMin ;
+        ppSubWin->SRect[3] = yMax ;
+      }
+      else
+      {
+        /* 3D */
+        ppSubWin->SRect[0] = xMin ;
+        ppSubWin->SRect[1] = xMax ;
+        ppSubWin->SRect[2] = yMin ;
+        ppSubWin->SRect[3] = yMax ;
+        ppSubWin->SRect[4] = zMin ;
+        ppSubWin->SRect[5] = zMax ;
+      }
+
       /**DJ.Abdemouche 2003**/
-      if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6)) 
-	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;}
+      /*if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6))
+	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;} */
+      
+      
 
-      if(pSUBWIN_FEATURE (pobj)->logflags[0] == 'n'){ /* General case for x : logflag='n' */
-	pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
-	pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
-      }
-      else{/* log. case */
-	/*xmin*/
-	if(stk(*value)[0] <= 0. || stk(*value)[1] <= 0.)
-	  {sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;}
-	else{
-	  pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
-	  pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
-	}
-      }
+      /* if(ppSubWin->logflags[0] == 'n'){ /\* General case for x : logflag='n' *\/ */
+/* 	ppSubWin->SRect[0]=stk(*value)[0]; */
+/* 	ppSubWin->SRect[1]=stk(*value)[1]; */
+/*       } */
+/*       else{/\* log. case *\/ */
+/* 	/\*xmin*\/ */
+/* 	if(stk(*value)[0] <= 0. || stk(*value)[1] <= 0.) */
+/* 	  {sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;} */
+/* 	else{ */
+/* 	  ppSubWin->SRect[0]=stk(*value)[0]; */
+/* 	  ppSubWin->SRect[1]=stk(*value)[1]; */
+/* 	} */
+/*       } */
 
-      if(pSUBWIN_FEATURE (pobj)->logflags[1] == 'n'){  /* General case for y : logflag='n' */
-	pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2];
-	pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3];
-      }
-      else{/* log. case */
-	/*ymin*/
-	if(stk(*value)[2] <= 0. || stk(*value)[3] <= 0.)
-	  {sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;}
-	else{
-	  pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2];
-	  pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3];
-	}
-      }
+/*       if( ppSubWin->logflags[1] == 'n'){  /\* General case for y : logflag='n' *\/ */
+/* 	ppSubWin->SRect[2]=stk(*value)[2]; */
+/* 	ppSubWin->SRect[3]=stk(*value)[3]; */
+/*       } */
+/*       else{/\* log. case *\/ */
+/* 	/\*ymin*\/ */
+/* 	if(stk(*value)[2] <= 0. || stk(*value)[3] <= 0.) */
+/* 	  {sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;} */
+/* 	else{ */
+/* 	  ppSubWin->SRect[2]=stk(*value)[2]; */
+/* 	  ppSubWin->SRect[3]=stk(*value)[3]; */
+/* 	} */
+/*       } */
 
-      if (*numrow * *numcol == 6)
-	{
-	  if(pSUBWIN_FEATURE (pobj)->logflags[2] == 'n'){  /* General case for z : logflag='n' */
-	    pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
-	    pSUBWIN_FEATURE (pobj)->SRect[5]=stk(*value)[5];
-	  }
-	  else{/* log. case */
-	    /*zmin*/
-	    if(stk(*value)[4] <= 0. || stk(*value)[5] <= 0.)
-	      {sciprint("Error: bounds on z axis must be strictly positive to use logarithmic mode\n");return -1;}
-	    else{
-	      pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
-	      pSUBWIN_FEATURE (pobj)->SRect[5]=stk(*value)[5];
-	    }
-	  }
-	}
+/*       if (*numrow * *numcol == 6) */
+/* 	{ */
+/* 	  if(ppSubWin->logflags[2] == 'n'){  /\* General case for z : logflag='n' *\/ */
+/* 	    ppSubWin->SRect[4]=stk(*value)[4]; */
+/* 	    ppSubWin->SRect[5]=stk(*value)[5]; */
+/* 	  } */
+/* 	  else{/\* log. case *\/ */
+/* 	    /\*zmin*\/ */
+/* 	    if(stk(*value)[4] <= 0. || stk(*value)[5] <= 0.) */
+/* 	      {sciprint("Error: bounds on z axis must be strictly positive to use logarithmic mode\n");return -1;} */
+/* 	    else{ */
+/* 	      ppSubWin->SRect[4]=stk(*value)[4]; */
+/* 	      ppSubWin->SRect[5]=stk(*value)[5]; */
+/* 	    } */
+/* 	  } */
+/* 	} */
       /* to inform plotxx function to take this boundary into account */
-      pSUBWIN_FEATURE (pobj)->FirstPlot = FALSE;
+      ppSubWin->FirstPlot = FALSE;
 
 
     }
