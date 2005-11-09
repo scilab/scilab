@@ -975,6 +975,9 @@ int sciGet(sciPointObj *pobj,char *marker)
 
   else if (strcmp(marker,"auto_clear") == 0)
     {
+      if(sciGetEntityType(pobj) != SCI_SUBWIN)
+       {strcpy(error_message,"Entity type not yet taken into account for this property");return -1;}
+	
       if (!sciGetAddPlot((sciPointObj *)pobj)) {
 	numrow   = 1;
 	numcol   = 2;
