@@ -47,7 +47,7 @@ if MSDOS then
 select stat
   case 0 then
   	rep=mgetl(tmp)
-    if size(rep,'*')==0 then
+    if (size(rep,'*')==0)  | (length(rep)==0) then
     	rep=[]
     else
       if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
