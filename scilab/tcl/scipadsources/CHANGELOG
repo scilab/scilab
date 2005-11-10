@@ -1670,3 +1670,11 @@ Francois VOGEL, 09/11/05
  * An entry of the completion popup is highlighted when the mouse points
    to it
  * version --> 5.54
+
+ES, 10/11/05
+ * minor fixes to the completion popup:
+ -trapping of Shift keypress using %K instead of %k, works in windows and linux
+ -removed 300 msec delay after an entry is selected (previously added for
+   visual feedback)
+ * version --> 5.55
+

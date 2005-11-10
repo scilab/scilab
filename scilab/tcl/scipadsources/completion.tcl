@@ -236,7 +236,7 @@ proc popup_completions {} {
                 "selectmouseoverlaycompletion %W %x %y [list $compl] $popw $poph ; break"
         bind $pad.popcompl <Button-1> \
                 "completewithmouseselected %W %x %y [list $compl] $ind $ta $popw $poph ; break"
-        bind $pad.popcompl <KeyPress>  {popup_completions_again_KP %W %A %k %s ; break}
+        bind $pad.popcompl <KeyPress>  {popup_completions_again_KP %W %A %K %s ; break}
         bind $pad.popcompl <BackSpace> {popup_completions_again_BS %W ; break}
         bind $pad.popcompl <Delete>    {}
 
@@ -346,10 +346,8 @@ proc completionmouseselect {w x y compl popw poph {ind ""} {ta ""}} {
         if {$ind != ""} {
             # completewithmouseselected
             completewith [lindex [lindex $compl $currentselcompl] 1] $ind $ta
-            after 300 {
-                destroy $pad.popcompl
-                focus [gettextareacur]
-            }
+            destroy $pad.popcompl
+            focus [gettextareacur]
         } else {
             # selectmouseoverlaycompletion - nothing special to do
         }
@@ -392,15 +390,15 @@ proc completewith {str ind ta} {
     }
 }
 
-proc popup_completions_again_KP {w character keycode modstate} {
+proc popup_completions_again_KP {w character keysym modstate} {
 # insert the key pressed in the textarea and recompute the popup
 # handling capital letters is a bit tricky:
 # when the user hits say Shift-a, two KeyPress events are actually
 # fired:
-#   1. The first one has %A empty, %k (keycode) == 16, and %s (state) == 0
-#      this is just the single shift key
-#   2. The second one has %A empty, %k the keycode corresponding to
-#      the key letter (here a, %k is 65), and %s has bit 1 set, thus
+#   1. The first one has %A empty, %K (keysym) == Shift_L/R, and 
+#      %s (state) == 0. This is just the single shift key
+#   2. The second one has %A empty, %K the keysym corresponding to
+#      the key letter, and %s has bit 1 set, thus
 #      indicating that shift is pressed along with the letter
 
     destroy $w
@@ -411,7 +409,7 @@ proc popup_completions_again_KP {w character keycode modstate} {
         puttext [gettextareacur] $character
         popup_completions
 
-    } elseif {$keycode == 16} {
+    } elseif {$keysym == "Shift_L" || $keysym == "Shift_R"} {
         # first event firing when the user hits a shift key
         popup_completions
 
