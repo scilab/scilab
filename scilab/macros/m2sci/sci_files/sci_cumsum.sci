@@ -14,17 +14,10 @@ if rhs==1 then
 
   // Because %b_cumsum and %C_cumsum are not defined
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs(A,"m")
   
-  dim=first_non_singleton(A)
-
   tree.lhs(1).dims=A.dims
   
-  if dim>0 then
-    tree.rhs=Rhs(A,dim)
-  elseif dim==-1 then
-    tree.rhs=Rhs(A,"m")
-  end
   if is_real(A) then
     tree.lhs(1).type=Type(Double,Real)
   else
