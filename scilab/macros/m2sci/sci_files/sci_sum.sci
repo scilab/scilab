@@ -14,7 +14,7 @@ if rhs==1 then
 
   // Because %b_sum and %C_sum are not defined
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs(A,"m")
   
   if is_real(A) then
     tree.lhs(1).type=Type(Double,Real)
@@ -26,19 +26,15 @@ if rhs==1 then
     tree.lhs(1).dims=list(1,1)
   elseif not_a_vector(A) then
     tree.lhs(1).dims=list(1,A.dims(2))
-    tree.rhs=Rhs(A,1)
   elseif not_empty(A) then
     dim = first_non_singleton(A)
     if dim>0 then
-      tree.rhs=Rhs(A,dim)
       tree.lhs(1).dims=A.dims
       tree.lhs(1).dims(dim)=1
     else
-      tree.rhs=Rhs(A,"m")
       tree.lhs(1).dims=allunknown(A.dims)
     end
   else
-    tree.rhs=Rhs(A,"m")
     tree.lhs(1).dims=allunknown(A.dims)
   end
 
