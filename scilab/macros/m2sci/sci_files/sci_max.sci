@@ -18,32 +18,25 @@ if rhs==1 then
   A = convert2double(A)
   tree.rhs = Rhs(A)
   dim = first_non_singleton(A)
-
+  tree.rhs=Rhs(A,'m') 
   if dim==-1 then
     // All output dims are unknown
     tree.lhs(1).dims=allunknown(A.dims)
-    tmp=gettempvar()
-    insert(Equal(list(tmp),A))
+    //tmp=gettempvar() F.B: 9/11/2005//
+    //insert(Equal(list(tmp),A)) F.B: 9/11/2005//
     // First non singleton dimension will be computed at execution
-    tree.rhs=Rhs(tmp,Funcall("firstnonsingleton",1,list(tmp),list()))
+    //tree.rhs=Rhs(tmp,Funcall("firstnonsingleton",1,list(tmp),list())) F.B: 9/11/2005//
   else
     tree.lhs(1).dims=A.dims
     if dim==0 then
       tree.rhs=Rhs(A)
       tree.lhs(1).dims=list(1,1)
-    elseif dim==1 then
-      tree.rhs=Rhs(A,"r")
-      tree.lhs(1).dims(dim)=1
-    elseif dim==2 then
-      tree.rhs=Rhs(A,"c")
-      tree.lhs(1).dims(dim)=1
     else
-      tree.rhs=Rhs(A,dim)
       tree.lhs(1).dims(dim)=1
     end
   end
   
-  // C = max(A) or [C,I] = max(A) 
+  // C = max(A) or [C,I] = max(A)
   if is_real(A) then
     tree.lhs(1).type=Type(vtype,Real)
   elseif is_complex(A) then
