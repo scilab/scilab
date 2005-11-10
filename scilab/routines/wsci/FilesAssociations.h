@@ -32,6 +32,7 @@ BOOL IsAScicosFileCOSF(char *chainefichier);
 
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
 void ExtensionFileIntoLowerCase(char *fichier);
+LPTSTR ScilabPathFindExtension(LPCTSTR pPath);
 
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __FILEASSOCIATION_H__ */

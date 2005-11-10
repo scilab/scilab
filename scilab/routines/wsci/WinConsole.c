@@ -227,6 +227,10 @@ HWND ScilabGetConsoleWindow(void)
 				hWndReturn = FindWindow(NULL,ScilexConsoleName);
 			} 
 		}
+	else
+	{
+		hWndReturn = FindWindow(NULL,ScilexConsoleName);
+	}
 
 	FreeLibrary( Kernel32Dll ); 
 

@@ -1,5 +1,4 @@
 /* Allan CORNET INRIA 2005 */
-#include <shlwapi.h>
 #include "FilesAssociations.h"
 #include "Messages.h"
 #include "Warnings.h"
@@ -7,7 +6,7 @@
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-#pragma comment(lib, "shlwapi.lib")
+typedef  LPTSTR (WINAPI * PathFindExtensionPROC) (LPTSTR); 
 /*-----------------------------------------------------------------------------------*/
 extern void ReplaceSlash(char *pathout,char *pathin);
 extern void PrintFile(char *filename);
@@ -40,7 +39,7 @@ BOOL IsABinOrSavFile(char *chainefichier)
 	BOOL retour=FALSE;
 	char *ExtensionFilename=NULL;
 
-	ExtensionFilename=PathFindExtension(chainefichier);
+	ExtensionFilename=ScilabPathFindExtension(chainefichier);
 	
 	/* Comparaison avec les extension BIN et SAV */
 	if ( (_stricmp(ExtensionFilename,".BIN")==0) || (_stricmp(ExtensionFilename,".SAV")==0) ) retour=TRUE;
@@ -64,7 +63,7 @@ BOOL IsAGraphFilegraph(char *chainefichier)
 	BOOL retour=FALSE;
 	char *ExtensionFilename=NULL;
 
-	ExtensionFilename=PathFindExtension(chainefichier);
+	ExtensionFilename=ScilabPathFindExtension(chainefichier);
 
 	/* Comparaison avec l'extension Graph */
 	if (_stricmp(ExtensionFilename,".GRAPH")==0) retour=TRUE;
@@ -78,7 +77,7 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 	BOOL retour=FALSE;
 	char *ExtensionFilename=NULL;
 
-	ExtensionFilename=PathFindExtension(chainefichier);
+	ExtensionFilename=ScilabPathFindExtension(chainefichier);
 
 	/* Comparaison avec l'extension Graphb */
 	if (_stricmp(ExtensionFilename,".GRAPHB")==0) retour=TRUE;
@@ -101,7 +100,7 @@ BOOL IsAScicosFileCOS(char *chainefichier)
 	BOOL retour=FALSE;
 	char *ExtensionFilename=NULL;
 
-	ExtensionFilename=PathFindExtension(chainefichier);
+	ExtensionFilename=ScilabPathFindExtension(chainefichier);
 
 	/* Comparaison avec l'extension cos */
 	if (_stricmp(ExtensionFilename,".COS")==0) retour=TRUE;
@@ -115,7 +114,7 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 	BOOL retour=FALSE;
 	char *ExtensionFilename=NULL;
 
-	ExtensionFilename=PathFindExtension(chainefichier);
+	ExtensionFilename=ScilabPathFindExtension(chainefichier);
 
 	/* Comparaison avec l'extension cosf */
 	if (_stricmp(ExtensionFilename,".COSF")==0) retour=TRUE;
@@ -245,6 +244,76 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	strcpy(&fichier[strlen(fichier)-strlen(ext)],ext);
 	
 	FREE(tmpfile);
+}
+/*-----------------------------------------------------------------------------------*/
+LPTSTR ScilabPathFindExtension(LPCTSTR pPath)
+{
+	LPTSTR StrReturn=NULL;
+	HINSTANCE ShlApiDll = LoadLibrary ("shlwapi.dll"); 
+
+	if ( ShlApiDll ) 
+	{ 
+		PathFindExtensionPROC myPathFindExtension = (PathFindExtensionPROC) GetProcAddress(ShlApiDll,"PathFindExtensionA"); 
+
+		if ( myPathFindExtension ) 
+		{ 
+				StrReturn = (LPTSTR )(myPathFindExtension)(pPath); 
+		} 
+		else 
+		{ 
+			char ChaineTemp[MAX_PATH];
+			char *buffer=NULL;
+			char *lastdot=NULL;
+
+			sciprint("Please update your shlwapi.dll file.\n");
+			strcpy(ChaineTemp,pPath);
+			/* Recherche de l'extension du fichier */
+			buffer=strtok(ChaineTemp,".");
+			while ( buffer = strtok(NULL,"."))
+			{
+				lastdot=buffer;
+			}
+			if (lastdot)
+			{
+				StrReturn = (char *) MALLOC ((strlen(lastdot)+2)*sizeof(char));
+				strcpy(StrReturn,".");
+				strcat(StrReturn,lastdot);
+			}
+			else
+			{
+				StrReturn =NULL;
+			}
+		} 
+	}
+	else
+	{
+		char ChaineTemp[MAX_PATH];
+		char *buffer=NULL;
+		char *lastdot=NULL;
+
+		sciprint("Please update your shlwapi.dll file.\n");
+		strcpy(ChaineTemp,pPath);
+		/* Recherche de l'extension du fichier */
+		buffer=strtok(ChaineTemp,".");
+		while ( buffer = strtok(NULL,"."))
+		{
+			lastdot=buffer;
+		}
+		if (lastdot)
+		{
+			StrReturn = (char *) MALLOC ((strlen(lastdot)+2)*sizeof(char));
+			strcpy(StrReturn,".");
+			strcat(StrReturn,lastdot);
+		}
+		else
+		{
+			StrReturn =NULL;
+		}
+	}
+
+	FreeLibrary( ShlApiDll ); 
+
+	return StrReturn;
 }
 /*-----------------------------------------------------------------------------------*/
 
