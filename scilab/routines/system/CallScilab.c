@@ -25,6 +25,9 @@ extern int C2F(ismenu)();
 extern void SetFromCToON(void);
 extern int version_flag(void); 
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
+extern int IsFromC(void);
+extern void C2F(freegmem)(void);
+extern void C2F(freemem)(void);
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -114,7 +117,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	/* Scilab Initialization */ 
 	#ifdef WITH_TK
-	  initTCLTK(); /* TCLTK Init. */
+	  	  initTCLTK(); /* TCLTK Init. */
     #endif
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
@@ -174,6 +177,10 @@ int TerminateScilab(char *ScilabQuit)
 
 		if (QuitStringToScilab) {FREE(QuitStringToScilab);QuitStringToScilab=NULL;}
 		if (ScilabQuitUsed) {FREE(ScilabQuitUsed);ScilabQuitUsed=NULL;}
+
+		C2F(freegmem)();
+		C2F(freemem)();
+
 
 		StartScilabIsOK=FALSE;
 		bOK=TRUE;

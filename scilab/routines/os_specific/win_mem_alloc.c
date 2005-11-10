@@ -7,6 +7,11 @@
 /*-----------------------------------------------------------------------------------*/
 #define MEMDISPO (MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN)
 /*-----------------------------------------------------------------------------------*/
+extern int IsFromC(void);
+/* When you call scilab dynamically (LoadLibrary,FreeLibrary) (DLL) don't use HeapAlloc or VirtualAlloc
+  problem with process caller
+*/
+/*-----------------------------------------------------------------------------------*/
 LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
 
@@ -15,8 +20,14 @@ LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 
  if (lpAddress)
  {
-	 NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
-	 
+	 if ( IsFromC() )
+	 {
+		 NewPointer=realloc(lpAddress,dwSize);
+	 }
+	 else
+	 {
+		 NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
+	 }
  }
  else
  {
@@ -26,7 +37,15 @@ LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		//exit(1);
 	#endif
-	NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		if ( IsFromC() )
+		{
+			NewPointer=malloc(dwSize);
+		}
+		else
+		{
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		}
+
 	if (NewPointer==NULL)
 	{
 		#ifdef _DEBUG
@@ -47,7 +66,15 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 
 	if (dwSize>0)
 	{
-		NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		if ( IsFromC() )
+		{
+			NewPointer=malloc(dwSize);
+		}
+		else
+		{
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		}
+
 		if (NewPointer==NULL)
 		{
 			#ifdef _DEBUG
@@ -66,7 +93,14 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 				MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 				//exit(1);
 			#endif
-			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+				if ( IsFromC() )
+				{
+					NewPointer=malloc(dwSize);
+				}
+				else
+				{
+					NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+				}
 	}
     //printf("MyHeapAlloc %d %s %d\n",NewPointer,fichier,ligne);
 	return NewPointer;
@@ -74,7 +108,14 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 /*-----------------------------------------------------------------------------------*/
 void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
 {
-	 HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
+	if ( IsFromC() )
+	{
+		free(lpAddress);
+	}
+	else
+	{
+		HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
+	}
 	 //printf("MyHeapFree %d %s %d\n",lpAddress,fichier,ligne);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -84,7 +125,15 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 
 	if (dwSize>0)
 	{
-		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		if ( IsFromC() )
+		{
+			NewPointer=malloc(dwSize);
+		}
+		else
+		{
+			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		}
+
 		if (NewPointer==NULL)
 		{
 			#ifdef _DEBUG
@@ -103,7 +152,15 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		//exit(1);
 		#endif
-		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+
+		if ( IsFromC() )
+		{
+			NewPointer=malloc(dwSize);
+		}
+		else
+		{
+			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		}
 	}
 
 	//printf("MyVirtualAlloc %d %s %d\n",NewPointer,fichier,ligne);
@@ -113,7 +170,14 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 /*-----------------------------------------------------------------------------------*/
 void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
 {
-	VirtualFree(lpAddress,0,MEM_RELEASE);
+	if ( IsFromC() )
+	{
+		free(lpAddress);
+	}
+	else
+	{
+		VirtualFree(lpAddress,0,MEM_RELEASE);
+	}
 	//printf("MyVirtualFree %d %s %d\n",lpAddress,fichier,ligne);
 }
 /*-----------------------------------------------------------------------------------*/

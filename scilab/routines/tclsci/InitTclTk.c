@@ -18,6 +18,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
+extern int IsFromC(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef WIN32
@@ -28,7 +29,7 @@ char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
-  if ( OpenTCLsci()==0 ) TK_Started=1;
+	if (!IsFromC())  if ( OpenTCLsci()==0 ) TK_Started=1;
 }
 /*-----------------------------------------------------------------------------------*/
 int OpenTCLsci(void)
