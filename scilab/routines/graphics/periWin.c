@@ -339,7 +339,7 @@ void  SetWinhdc()
     }
 }
 /*-----------------------------------------------------------------------------------*/
-int MaybeSetWinhdc()
+int  MaybeSetWinhdc()
 {
   int DiD = GetDriverId(); 	/* F.Leray 26.07.04 */
   if(  DiD != 0)
@@ -2904,7 +2904,7 @@ void C2F(DispStringAngle)(x0, yy0, string, angle)
    
  SetBkMode(hdc, TRANSPARENT); 
  
- hfnt = CreateFontIndirect((LOGFONT FAR *)&lf);
+ /* hfnt = CreateFontIndirect((LOGFONT FAR *)&lf);*/
  
  lf.lfEscapement = (int) (-(*angle)*10);
 
@@ -2915,6 +2915,10 @@ void C2F(DispStringAngle)(x0, yy0, string, angle)
 
  TextOut(hdc, *x0, *yy0, string, pcch); 
  SelectObject(hdc, hfntPrev); 
+
+ printf("hdc = %p\t lf = %p\t hfnt = %p\n",hdc,lf,hfnt); fflush(NULL);
+
+
  DeleteObject(hfnt); 
  
  // Reset the background mode to its default. 
