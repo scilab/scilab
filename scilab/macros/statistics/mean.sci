@@ -24,6 +24,16 @@ function [y] = mean(x,orient)
       if rhs == 2 then
 	 if orient == "r" then, orient = 1, end 
 	 if orient == "c" then, orient = 2, end
+	 if orient == "m" then 
+	   flag=find(size(x)>1,1)
+	   if flag==[] then
+	     y=mean(x)
+	     return
+	   else
+	     y=mean(x,flag)
+	     return
+	   end
+	 end
 	 if floor(orient)~=orient | orient < 1 | orient > length(size(x)) then
 	    error("mean: bad second argument")
 	 end
