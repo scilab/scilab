@@ -14,45 +14,41 @@ INDEX = make_help_index()
 
 compteur = 0 ;
 
-//titles=['Scilab','Arbre genealogique', ..
-//	'Visualisation scientifique',..
-//	'Visualisation de surface Riemann','Surfaces 3D',..
-//        'Traitement d''image','Complex Functions', ..
-//        'Traitement du signal','Stationnement d''une voiture', ..
-//        'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
-//        'Modelisation et simulation d''un pendule glissant', ..
-//        'Programmation lineaire 2', ..
-//        'Optimisation non lineaire','Spline'];
+titles=['Scilab','Arbre genealogique', ..
+	'Visualisation scientifique',..
+	'Visualisation de surface Riemann','Surfaces 3D',..
+        'Traitement d''image','Complex Functions', ..
+        'Traitement du signal','Stationnement d''une voiture', ..
+        'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
+        'Modelisation et simulation d''un pendule glissant', ..
+        'Programmation lineaire 2', ..
+        'Optimisation non lineaire','Spline'];
         //'Scicos 1','Scicos 2'
 
-titles=['Visualisation scientifique'];
           
-//demos=['demo_scilab();','demo_geneal();',..
-//       'demo_isoSurf()',..
-//       'demo_riemann();','demo_3dplot()',..
-//       'demo_image()','demo_cmplxfun();', ..
-//       'demo_signal();','demo_car();', ..
-//       'demo_truck();','demo_pendulum();', ..
-//       'demo_sliding_pendulum();', ..
-//       'demo_optloc();', ..
-//       'demo_datafit();','demo_spline();'];
+demos=['demo_scilab();','demo_geneal();',..
+       'demo_isoSurf()',..
+       'demo_riemann();','demo_3dplot()',..
+       'demo_image()','demo_cmplxfun();', ..
+       'demo_signal();','demo_car();', ..
+       'demo_truck();','demo_pendulum();', ..
+       'demo_sliding_pendulum();', ..
+       'demo_optloc();', ..
+       'demo_datafit();','demo_spline();'];
        //'demo_scicos1();','demo_scicos2();'
 
-demos=['demo_geneal();'];
-       
-//filesdemos=['demo_scilab.sci','Geneal.sci', ..
-//	    'demo_isoSurf.sci',..
-//	    'riemann.sci','demo_3dplot.sci',..
-//            'demo_image.sci','cmplxfun.sci', ..
-//            'demo_signal.sci','car.sci', ..
-//            'truck.sci','n_pendulum.sci', ..
-//            'sliding_pendulum.sci', ..
-//            'optloc.sci', ..
-//            'datafit.sci','spline.sci'];       
+filesdemos=['demo_scilab.sci','Geneal.sci', ..
+	    'demo_isoSurf.sci',..
+	    'riemann.sci','demo_3dplot.sci',..
+            'demo_image.sci','cmplxfun.sci', ..
+            'demo_signal.sci','car.sci', ..
+            'truck.sci','n_pendulum.sci', ..
+            'sliding_pendulum.sci', ..
+            'optloc.sci', ..
+            'datafit.sci','spline.sci'];       
             //'demo_scicos1.sci','demo_scicos2.sci'
 
-filesdemos=['Geneal.sci'];
-         
+ 
 //------------------------------------------------------------
 function demo_help(key)
   browsehelp=browsehelp;
