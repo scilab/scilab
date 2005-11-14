@@ -77,10 +77,11 @@ function draw_chain_from_coordinates(x,y,job)
   //set the frame
   xbasc();
   f = gcf() ;
-  f.pixmap = 'on';
+  f.pixmap = 'on' ;
   SetPosition() ;
   set figure_style new;a=gca()
   a.data_bounds=2*[-n1,-n1;n1,0];
+  a.isoview = 'on' ;
   
   //create one polyline and one polymark with the initial position
   drawlater() //not to see the intermediate graphic steps

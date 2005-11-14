@@ -8,7 +8,7 @@ demo_help demo_isoSurf
 //exec loader.sce
 //cd ../
 
-f = gcf()
+f = gcf() ;
 SetPosition();
 f.color_map = graycolormap(1024);
 drawlater();
@@ -25,7 +25,7 @@ end;
 c= shadecomp(xx,yy,zz,[1,0,1],3,2);
 
 xbasc();
-xtitle('Isosurface resulting of the attraction of two spheres');
+//xtitle('Isosurface resulting of the attraction of two spheres');
 plot3d(xx,yy,list(zz,c*(xget('lastpattern')-1)+1))
 e = gce();
 e.color_mode = 0 ;
@@ -36,6 +36,9 @@ f = gcf();
 f.pixmap='on';
 a = gca();
 a.isoview = 'on';
+t = a.title ;
+t.text = 'Isosurface resulting of the attraction of two spheres' ;
+t.font_size = 5 ;
 drawnow();
 for i=1:45
   a.rotation_angles = a.rotation_angles + [8,0] ;
@@ -61,7 +64,7 @@ c3=shadecomp(xx3,yy3,zz3,l,2,2);
 // group them and plot them (each in a different shade)
 data=list(xx1,yy1,zz1,c1,2,xx2,yy2,zz2,c2,6,xx3,yy3,zz3,c3,3);
 xbasc();
-xtitle('Shaded 3d objects of different colors') ;
+//xtitle('Shaded 3d objects of different colors') ;
 oplot3d(data,nc*ones(1,5),45,80)
 
 f = gcf();
@@ -69,6 +72,9 @@ SetPosition();
 f.pixmap='on';
 a = gca();
 a.isoview = 'on';
+t = a.title ;
+t.text = 'Shaded 3D objects of different colors' ;
+t.font_size = 5 ;
 drawnow();
 for i=1:180
   a.rotation_angles(2) = a.rotation_angles(2) + 2 ;

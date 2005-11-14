@@ -11,8 +11,7 @@ xdel() ;
 [RGB,mat] = ppm2sci(mat,'p') ;
 drawlater();
 imageview(RGB,mat) ;
-xset('wdim',1280,1024);
-toolbar(0,'off');
+SetPosition_Small();
 drawnow();
 
 
@@ -29,9 +28,6 @@ nb_baquet   = 32 ;
 size_3      = 3 / 256 ;
 inv_size    = 1 / 256 ;
 histo       = zeros(1,nb_baquet) ;
-histo_red   = zeros(1,nb_baquet) ;
-histo_green = zeros(1,nb_baquet) ;
-histo_blue  = zeros(1,nb_baquet) ;
 
 
 
@@ -50,9 +46,10 @@ for i = 2:n-1,
 end
 
 // display the histogramm
+drawlater() ;
 scf();
 x = 0:256/nb_baquet:255;
-xtitle('Image intensity histogram');
+//xtitle('Image intensity histogram');
 
 // put histo between 0 and 1
 histo = histo / ( n*m ) ;
@@ -61,6 +58,11 @@ bar( x, histo ) ;
 SetPosition() ;
 a = gca() ;
 a.auto_ticks = ['on','on','on'] ;
+t = a.title ;
+t.text = 'Image intensity histogram' ;
+t.font_size = 5 ;
+SetPosition() ;
+drawnow() ;
 
 realtimeinit(1.0)
 for i=1:10, 
@@ -69,18 +71,23 @@ end
 xdel() ;
 
 // dipslay a pie with the three colors channels
+drawlater() ;
 scf();
 red_sum   = double( sum(r) ) ;
 green_sum = double( sum(g) ) ;
 blue_sum  = double( sum(b) ) ;
 
 sums = [blue_sum,green_sum,red_sum];
-disp = [0 0 1];
+disp = [0 0 0];
 //txt = ["blue","green","red"];
-xtitle('Proportion of the red, green and blue channels in the image');
+//xtitle('Proportion of the red, green and blue channels in the image');
 pie( sums, disp ) ;
+a = gca() ;
+t = a.title ;
+t.text = 'Proportion of the red, green and blue channels in the image' ;
+t.font_size = 5 ;
 SetPosition() ;
-
+drawnow() ;
 
 realtimeinit(1.0)
 for i=1:10, 
@@ -93,13 +100,12 @@ res = uint8(edges);
 // convert back thre three channels in one matrix
 mat = rgb2col(res,res,res) ;
 
-// dislay the Riresult image
+// dislay the result image
 [RGB,mat] = ppm2sci(mat,'p') ;
 xdel();
 drawlater();
 imageview(RGB,mat);
-xset('wdim',1280,1024);
-toolbar(0,'off');
+SetPosition_Small();
 drawnow();
 
 

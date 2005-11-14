@@ -4,12 +4,13 @@ function demo_riemann()
   xbasc();
   xselect();
   C=hotcolormap(200);C=C(1:$-40,:); 
-  xset("wpos",1,1);
-  xset('wdim',768 ,1024);
+  //xset("wpos",1,1);
+  //xset('wdim',700 ,900);
+  SetPosition_old() ;
   //
   w=xget('window');
   //SetPosition();
-  toolbar(0,'off');
+  //toolbar(0,'off');
   xset('colormap',C);xset('color',30);//fond();
   
   [z,s]=cplxroot(4,25) //compute

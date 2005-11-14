@@ -9,6 +9,7 @@ function demo_signal()
   hz=iir(3,'bp','ellip',[0.15 0.25],[0.08 0.035]);
   [hzm,fr]=frmag(hz,256);
   plot2d(fr',hzm')
+  xset("font size",3) ;
   xtitle('Discrete  elliptic IIR filter',' ',' ');
 
   subplot(222)

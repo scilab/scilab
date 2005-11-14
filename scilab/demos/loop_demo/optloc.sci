@@ -14,9 +14,10 @@ function demo_optloc()
   xselect();
   xset('mark size',4)
   plot2d(Alpha,Beta,style=-10,rect=[1 1 100 100])
+  xset("font size", 5 ) ;
   xtitle('Position des consommateurs et des services potentiels')
   realtimeinit(0.1);for k=1:10,realtime(k),end
- 
+  xset("font size", 1 ) 
 
   //Choix des cout de contruction cj
   C=100*ones(n,1); // cout tous egaux

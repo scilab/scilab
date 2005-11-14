@@ -64,12 +64,20 @@ SetPosition() ;
 xset("colormap",jetcolormap(128))
 subplot(1,2,1)
    plot3d1(xp, xp, zp1, flag=[-2 6 4])
-   xtitle("spline (not_a_knot)")
+   //xtitle("spline (not_a_knot)")
+   a = gca() ;
+   t = a.title ;
+   t.text = "spline (not_a_knot)" ;
+   t.font_size = 3 ;
 subplot(1,2,2)
    plot3d1(xp, xp, zp2, flag=[-2 6 4])
-   xtitle("subspline (monotone)")
+   //xtitle("subspline (monotone)")
    f= gcf();
    f.color_map = jetcolormap(512) ;
+   a = gca() ;
+   t = a.title ;
+   t.text = "subspline (monotone)" ;
+   t.font_size = 3 ;
 
 drawnow() ;
    

@@ -78,8 +78,9 @@ function  H=build_sliding_pendulum ()
   //f.figure_size=[510,676] //mode isoview does not work
   //f.figure_position=[500,16]
   SetPosition() ;
-  // isoview by hand
-  f.figure_size = [768,1024] ;
+  f = gcf() ;
+  f.figure_size(1) = 0.75 * f.figure_size(1) ;
+  //f.figure_size = [768,1024] ;
   xmin=-1.5; xmax=1.5; ymin=-1.1; ymax=2.35
   a.data_bounds=[xmin ymin;xmax ymax]
   //the framework

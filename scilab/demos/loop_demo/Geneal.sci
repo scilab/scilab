@@ -147,6 +147,7 @@ for nd = 1:ndates do
   hh.font_angle = 180;
   hh.foreground = 4;
 end;
+SetPosition();
 drawnow;
 drawlater;
 
@@ -511,7 +512,7 @@ else
   abort;
 end;              
 
-
+SetPosition();
 realtimeinit(1.0) ;
 for i=1:10
    realtime(i);
