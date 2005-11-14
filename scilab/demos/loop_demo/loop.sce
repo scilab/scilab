@@ -65,17 +65,12 @@ function demo_help(key)
 endfunction
 //------------------------------------------------------------
 function demotodo(demoname,title)
-  //clc();
+  clc();
   printf('Demo '+title+' \n'); 
   execstr(demoname);
   xdel();
   clear ;
   clearglobal() ;
-  
-  //[fd,err] = mopen('mem.txt','a');
-  //Memsize = stacksize() ;
-  //mfprintf(fd,'usedSize = %d\n',Memsize(2) ) ;
-  //mclose(fd) ;
 endfunction
 //------------------------------------------------------------
 function loopdemos
@@ -114,7 +109,7 @@ function removeBar()
 endfunction
 //------------------------------------------------------------
 loopnumber=0;
-//mode(-1);
+mode(-1);
 
 lines(0);
 
@@ -141,7 +136,5 @@ Maxfiles=size(filesdemos);
 while %t
   loopdemos();
   loopnumber=loopnumber+1;
-  disp( loopnumber ) ;
-  //pause ;
 end
 //------------------------------------------------------------
