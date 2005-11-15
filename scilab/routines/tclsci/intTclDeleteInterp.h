@@ -2,14 +2,13 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INITTCLTK__
-#define __INITTCLTK__
+#ifndef __INTTCLSETVAR__
+#define __INTTCLSETVAR__
 
 #include "TCL_Global.h"
 
-void initTCLTK(void);
-int OpenTCLsci(void);
-int CloseTCLsci(void);
 
-#endif /* __INITTCLTK__ */
+int C2F(intTclDeleteInterp) _PARAMS((char *fname));
+
+#endif /* __INTTCLSETVAR__ */
 /*-----------------------------------------------------------------------------------*/ 

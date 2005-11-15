@@ -19,6 +19,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 extern int IsFromC(void);
+extern void sci_tk_activate(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef WIN32
@@ -26,6 +27,8 @@ int TK_Started=0;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 char *GetSciPath(void);
+/*-----------------------------------------------------------------------------------*/
+static int first =0;
 /*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
@@ -153,6 +156,21 @@ int OpenTCLsci(void)
 
 }
 /*-----------------------------------------------------------------------------------*/
+int CloseTCLsci(void)
+{
+	int bOK=0;
+	if (TK_Started)
+	{
+		Tcl_DeleteInterp(TCLinterp);
+		TCLinterp=NULL;
+		TKmainWindow=NULL;
+		bOK=1;
+		TK_Started=0;
+		first=0;
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
 char *GetSciPath(void)
 /* force SciPath to Unix format for compatibility (Windows) */
 {
@@ -174,5 +192,28 @@ char *GetSciPath(void)
 	}
 	
 	return PathUnix;
+}
+/*-----------------------------------------------------------------------------------*/
+int ReInitTCL(void)
+{
+	if (TK_Started != 1 )
+	{
+		if ( first == 0) 
+		{
+			sci_tk_activate();
+			first++;
+			if ( TK_Started != 1 ) 
+			{
+				initTCLTK();
+				/* Derniere chance ;) d'initialisation */
+				if ( TK_Started != 1 ) 
+				{
+					Scierror(999,TCL_ERROR20);
+					return 0;
+				}
+			}
+		}
+	}
+	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

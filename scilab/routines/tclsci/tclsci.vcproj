@@ -691,6 +691,9 @@ cd .. &gt;nul
 				RelativePath=".\intOpenTk.c">
 			</File>
 			<File
+				RelativePath=".\intTclDeleteInterp.c">
+			</File>
+			<File
 				RelativePath=".\intTclDoOneEvent.c">
 			</File>
 			<File
@@ -762,6 +765,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intOpenTk.h">
+			</File>
+			<File
+				RelativePath=".\intTclDeleteInterp.h">
 			</File>
 			<File
 				RelativePath=".\intTclDoOneEvent.h">

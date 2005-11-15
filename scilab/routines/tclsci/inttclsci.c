@@ -11,10 +11,8 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
-extern void sci_tk_activate(void);
 extern initTCLTK(void);
-/*-----------------------------------------------------------------------------------*/
-static int first =0;
+extern int ReInitTCL(void);
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intTclDoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclEvalFile) _PARAMS((char *fname,unsigned long fname_len));
@@ -32,6 +30,7 @@ extern int C2F(intTclGetVersion) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclUnsetVar) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclExistVar) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclUpVar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclDeleteInterp) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
  static TCLSCITable Tab[]=
  {
@@ -50,7 +49,8 @@ extern int C2F(intTclUpVar) _PARAMS((char *fname,unsigned long fname_len));
   {C2F(intTclGetVersion),"TCL_GetVersion"},
   {C2F(intTclUnsetVar),"TCL_UnsetVar"},
   {C2F(intTclExistVar),"TCL_ExistVar"},
-  {C2F(intTclUpVar),"TCL_UpVar"}
+  {C2F(intTclUpVar),"TCL_UpVar"},
+  {C2F(intTclDeleteInterp),"TCL_DeleteInterp"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
@@ -75,29 +75,6 @@ int C2F(inttclsci)()
 	#else
 		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	#endif
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int ReInitTCL(void)
-{
-  if (TK_Started != 1 )
-  {
-      if ( first == 0) 
-	  {
-	    sci_tk_activate();
-		first++;
-	    if ( TK_Started != 1 ) 
-	    {
-		  initTCLTK();
-		  /* Derniere chance ;) d'initialisation */
-		  if ( TK_Started != 1 ) 
-	      {
-	        Scierror(999,TCL_ERROR20);
-	        return 0;
-		  }
-	    }
-	  }
-  }
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
