@@ -1,6 +1,6 @@
 //------------------------------------------------------------
-// Author Serge Steer Copyright INRIA
-// Update 26/10/2004
+// Authors Serge Steer, Jean-Baptiste Silvy Copyright INRIA
+// Update 16/11/2005
 //------------------------------------------------------------
 
 // default window size;
@@ -11,8 +11,6 @@ wSize_Small = [850,492] ;
 
 global INDEX
 INDEX = make_help_index()
-
-compteur = 0 ;
 
 titles=['Scilab','Arbre genealogique', ..
 	'Visualisation scientifique',..
@@ -108,7 +106,6 @@ function removeBar()
   toolbar(f.figure_id,'off') ;
 endfunction
 //------------------------------------------------------------
-loopnumber=0;
 mode(-1);
 
 lines(0);
@@ -133,8 +130,9 @@ Maxfiles=size(filesdemos);
    getf(filesdemos(i));
  end
 
-while %t
+//while %t
   loopdemos();
-  loopnumber=loopnumber+1;
-end
+  //loopnumber=loopnumber+1;
+//end
+exit ;
 //------------------------------------------------------------
