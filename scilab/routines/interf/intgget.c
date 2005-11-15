@@ -975,7 +975,8 @@ int sciGet(sciPointObj *pobj,char *marker)
 
   else if (strcmp(marker,"auto_clear") == 0)
     {
-      if(sciGetEntityType(pobj) != SCI_SUBWIN)
+      if(   sciGetEntityType(pobj) != SCI_SUBWIN 
+         && sciGetEntityType(pobj) != SCI_FIGURE )
        {strcpy(error_message,"Entity type not yet taken into account for this property");return -1;}
 	
       if (!sciGetAddPlot((sciPointObj *)pobj)) {
@@ -1320,6 +1321,16 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
+  /*else if ( strcmp(marker,"bounding_rect") == 0 )
+  {
+     get the bounding rect of the text
+    if ( sciGetEntityType( pobj ) != SCI_LABEL )
+    {
+      strcpy(error_message,"bounding_rect does not exist for this handle");
+      return -1;
+    }
+    CreateVar( Rhs + 1,
+  }*/
   else if (strcmp(marker,"position") == 0) 
     {
       	  if (sciGetEntityType(pobj) == SCI_UIMENU)
