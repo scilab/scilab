@@ -1980,17 +1980,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         if ( *numcol == 4 )
         {
           xMin = bounds[0] ;
-          yMin = bounds[1] ;
-          xMax = bounds[2] ;
+          xMax = bounds[1] ;
+          yMin = bounds[2] ;
           yMax = bounds[3] ;
         }
         else if( *numcol == 6 )
         {
           xMin = bounds[0] ;
-          yMin = bounds[1] ;
-          zMin = bounds[2] ;
-          xMax = bounds[3] ;
-          yMax = bounds[4] ;
+          xMax = bounds[1] ;
+          yMin = bounds[2] ;
+          yMax = bounds[3] ;
+          zMin = bounds[4] ;
           zMax = bounds[5] ;
         }
         else
@@ -2028,8 +2028,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         if ( *numcol == 1 )
         {
           xMin = bounds[0] ;
-          yMin = bounds[1] ;
-          xMax = bounds[2] ;
+          xMax = bounds[1] ;
+          yMin = bounds[2] ;
           yMax = bounds[3] ;
         }
         else
@@ -2042,10 +2042,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         if ( *numcol == 1 )
         {
           xMin = bounds[0] ;
-          yMin = bounds[1] ;
-          zMin = bounds[2] ;
-          xMax = bounds[3] ;
-          yMax = bounds[4] ;
+          xMax = bounds[1] ;
+          yMin = bounds[2] ;
+          yMax = bounds[3] ;
+          zMin = bounds[4] ;
           zMax = bounds[5] ;
         }
         else
