@@ -31,6 +31,8 @@ extern int C2F(intTclUnsetVar) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclExistVar) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclUpVar) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclDeleteInterp) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclCreateSlave) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intTclExistInterp) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
  static TCLSCITable Tab[]=
  {
@@ -50,7 +52,9 @@ extern int C2F(intTclDeleteInterp) _PARAMS((char *fname,unsigned long fname_len)
   {C2F(intTclUnsetVar),"TCL_UnsetVar"},
   {C2F(intTclExistVar),"TCL_ExistVar"},
   {C2F(intTclUpVar),"TCL_UpVar"},
-  {C2F(intTclDeleteInterp),"TCL_DeleteInterp"}
+  {C2F(intTclDeleteInterp),"TCL_DeleteInterp"},
+	{C2F(intTclCreateSlave),"TCL_CreateSlave"},
+	{C2F(intTclExistInterp),"TCL_ExistInterp"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()

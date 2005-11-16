@@ -11,7 +11,8 @@ OBJSC  = InitTclTk.o intClose.o intFindObj.o intOpenTk.o \
 	 intTclGcf.o intTclGet.o intTclGetVar.o inttclsci.o \
 	 intTclSet.o intTclSetVar.o ScilabEval.o TclEvents.o \
 	 TclUiGet.o TclUiSet.o TCL_Global.o intTclGetVersion.o \
-	 intTclUnsetVar.o intTclExistVar.o intTclUpVar.o intTclDeleteInterp.o
+	 intTclUnsetVar.o intTclExistVar.o intTclUpVar.o intTclDeleteInterp.o \
+	 intTclExistInterp.o intTclCreateSlave.o
 
 
 include ../../Makefile.incl

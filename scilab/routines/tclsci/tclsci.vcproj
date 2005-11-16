@@ -691,6 +691,9 @@ cd .. &gt;nul
 				RelativePath=".\intOpenTk.c">
 			</File>
 			<File
+				RelativePath=".\intTclCreateSlave.c">
+			</File>
+			<File
 				RelativePath=".\intTclDeleteInterp.c">
 			</File>
 			<File
@@ -701,6 +704,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclEvalStr.c">
+			</File>
+			<File
+				RelativePath=".\intTclExistInterp.c">
 			</File>
 			<File
 				RelativePath=".\intTclExistVar.c">
@@ -767,6 +773,9 @@ cd .. &gt;nul
 				RelativePath=".\intOpenTk.h">
 			</File>
 			<File
+				RelativePath=".\intTclCreateSlave.h">
+			</File>
+			<File
 				RelativePath=".\intTclDeleteInterp.h">
 			</File>
 			<File
@@ -777,6 +786,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclEvalStr.h">
+			</File>
+			<File
+				RelativePath=".\intTclExistInterp.h">
 			</File>
 			<File
 				RelativePath=".\intTclExistVar.h">

@@ -2,13 +2,13 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTTCLDELETEINTERP__
-#define __INTTCLDELETEINTERP__
+#ifndef __INTTCLCREATESLAVE__
+#define __INTTCLCREATESLAVE__
 
 #include "TCL_Global.h"
 
 
-int C2F(intTclDeleteInterp) _PARAMS((char *fname));
+int C2F(intTclCreateSlave) _PARAMS((char *fname));
 
-#endif /* __INTTCLDELETEINTERP__ */
+#endif /* __INTTCLCREATESLAVE__ */
 /*-----------------------------------------------------------------------------------*/ 

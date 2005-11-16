@@ -20,12 +20,13 @@
 #define TCL_ERROR16 "Tcl Error: SetTclCurrentFigure.\r\n"
 #define TCL_ERROR17 "%s: No such slave interpreter.\r\n"
 #define TCL_ERROR18 "TCL_GetVar: Could not read Tcl Var \r\n"
-
+#define TCL_ERROR19 "%s: Could not create a slave interpreter.\r\n"
 #define TCL_ERROR20 "You have started Scilab in a mode in which TCL/TK is not initialized.\n"
 #define TCL_ERROR21 "Handle must be an integer.\n"
 #define TCL_ERROR22 "Field parameter must be a string.\n"
 #define TCL_ERROR23 "TCL_SetVar: Error TCL interpreter not initialized\r\n"
-#define TCL_ERROR24 "TCL_SetVar: Invalid argument type.\r\n"
+#define TCL_ERROR24 "%s: Invalid argument type.\r\n"
+#define TCL_ERROR25 "%s: %s interpreter already exist.\r\n"
 
 
 

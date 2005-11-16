@@ -114,7 +114,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	else
 	{
 		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-		Scierror(999,TCL_ERROR24);
+		Scierror(999,TCL_ERROR24,fname);
 		return 0;
 	}
 	

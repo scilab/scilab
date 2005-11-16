@@ -15,4 +15,6 @@
 {"TCL_ExistVar",        IN_tclsci, 15,	2},
 {"TCL_UpVar",           IN_tclsci, 16,	2},
 {"TCL_DeleteInterp",    IN_tclsci, 17,	2},
+{"TCL_CreateSlave",    IN_tclsci, 18,	2},
+{"TCL_ExistInterp",    IN_tclsci, 19,	2},
 
