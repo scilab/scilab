@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -127,7 +127,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>mode=0: </PARAM_NAME>
+                    <PARAM_NAME>mode=0:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a mesh of the surface is drawn.</SP>
@@ -135,7 +135,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>mode&lt;0: </PARAM_NAME>
+                    <PARAM_NAME>mode&lt;0:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>the surface is painted with color
@@ -161,7 +161,7 @@
 
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=0: </PARAM_NAME>
+                    <PARAM_NAME>type=0:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>the plot is made using the current 3D scaling (set
@@ -172,7 +172,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=1: </PARAM_NAME>
+                    <PARAM_NAME>type=1:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>rescales automatically 3d boxes with extreme aspect
@@ -182,7 +182,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=2: </PARAM_NAME>
+                    <PARAM_NAME>type=2:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>rescales automatically 3d boxes with extreme aspect
@@ -192,7 +192,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=3: </PARAM_NAME>
+                    <PARAM_NAME>type=3:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric with box bounds given by optional
@@ -202,7 +202,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=4: </PARAM_NAME>
+                    <PARAM_NAME>type=4:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric bounds derived from the data, to
@@ -211,7 +211,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=5: </PARAM_NAME>
+                    <PARAM_NAME>type=5:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds with box bounds given
@@ -221,7 +221,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=6: </PARAM_NAME>
+                    <PARAM_NAME>type=6:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds derived from the data,
@@ -244,7 +244,7 @@
 
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=0: </PARAM_NAME>
+                    <PARAM_NAME>box=0:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>nothing is drawn around the plot.</SP>
@@ -252,7 +252,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=1: </PARAM_NAME>
+                    <PARAM_NAME>box=1:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>unimplemented (like box=0).</SP>
@@ -260,7 +260,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=2: </PARAM_NAME>
+                    <PARAM_NAME>box=2:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>only the axes behind the surface are drawn.</SP>
@@ -268,7 +268,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=3: </PARAM_NAME>
+                    <PARAM_NAME>box=3:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a box surrounding the surface is drawn and captions
@@ -277,7 +277,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=4: </PARAM_NAME>
+                    <PARAM_NAME>box=4:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a box surrounding the surface is drawn, captions and
@@ -306,8 +306,8 @@
           see the corresponding behaviour). If <VERB>flag</VERB> is missing,
           <VERB>ebox</VERB> is not taken into acoount.</SP>
 
-          <P> Note that, when specified, the <VERB>ebox</VERB> argument acts
-          on the <VERB>data_bounds</VERB> field that can also be reset through
+          <P>Note that, when specified, the <VERB>ebox</VERB> argument acts on
+          the <VERB>data_bounds</VERB> field that can also be reset through
           the axes entity properties (see <LINK>axes_properties</LINK>).</P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -374,6 +374,7 @@
     <P>To get more information on the plot3d old syntax , use the
     <LINK>plot3d_old_version</LINK> help document.</P>
   </SECTION>
+
   <EXAMPLE><![CDATA[
 // simple plot using z=f(x,y) 
 t=[0:0.3:2*%pi]';
@@ -431,7 +432,7 @@ h=gce(); //get handle on current entity (here the surface)
 a=gca(); //get current axes
 a.rotation_angles=[40,70];
 a.grid=[1 1 1]; //make grids
-a.data_bounds=[-6,6;6,-1;0,5];
+a.data_bounds=[-6,0,-1;6,6,5];
 a.axes_visible="off"; //axes are hidden
 a.axes_bounds=[.2 0 1 1];
 h.color_flag=1; //color according to z
@@ -446,7 +447,7 @@ h.data = TL;
 h.color_flag=3; // interpolated shading mode
 
 ]]></EXAMPLE>
- 
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>eval3dp</LINK>

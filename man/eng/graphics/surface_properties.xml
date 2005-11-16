@@ -92,7 +92,7 @@
         <SP>This field is used to specify the algorithm used to set facets'
         colors.</SP>
 
-        <SP> Not that the rules on <VERB>color_mode</VERB>,
+        <SP>Not that the rules on <VERB>color_mode</VERB>,
         <VERB>foreground</VERB> and <VERB>hiddencolor</VERB> are still applied
         to this case.</SP>
 
@@ -124,8 +124,8 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM>
-            <P>The 3 remaining cases (<VERB>color_flag</VERB><VERB>== 2,3 or 4</VERB>)
-            are only available only with <VERB>Fac3d</VERB> entity.
+            <P>The 3 remaining cases (<VERB>color_flag</VERB><VERB>== 2,3 or
+            4</VERB>) are only available only with <VERB>Fac3d</VERB> entity.
             Then, the <VERB>data.color</VERB> value is used to set colors for
             facets (indices in the current colormap) if it exists. If not, the
             current <VERB>color_mode</VERB> is used to paint the facets.</P>
@@ -193,7 +193,7 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM>
-            <P><VERB>color_flag == 4 (Matlab-like 'flat' shading)</VERB> </P>
+            <P><VERB>color_flag == 4 (Matlab-like 'flat' shading)</VERB></P>
 
             <DESCRIPTION_INDENT>
               <DESCRIPTION_ITEM>
@@ -284,9 +284,10 @@
         value which is the marks' face color. Its value should be a color
         index (relative to the current color_map).</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	  surface data structure, and to retreive it.</SP>
+        <SP>This field can be use to store any scilab variable in the surface
+        data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
@@ -307,7 +308,7 @@ a=gca(); //get current axes
 a.rotation_angles=[40,70]; 
 a.grid=[1 1 1]; 
 //make grids 
-a.data_bounds=[-6,6;6,-1;0,5]; 
+a.data_bounds=[-6,0,-1;6,6,5];
 a.axes_visible="off"; 
 //axes are hidden a.axes_bounds=[.2 0 1 1]; 
 f=get("current_figure");
