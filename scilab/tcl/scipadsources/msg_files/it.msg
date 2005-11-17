@@ -245,8 +245,8 @@
                     Acosta, joeja@mindspring.com.\n Modificato dal Consorzio\
                     Scilab.\n Migliorato da Enrico Segre 2003-2005\n e da\
                     François Vogel (in particolare il debugger) 2004-2005.\n\
-                    Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n\
-                      polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
+                    Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n  \
+                    polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
                     Lindholm 2005; \n   tedesco, Dirk Reusch 2005."
 
 
@@ -426,12 +426,12 @@
 ::msgcat::mcset it "Conversion of the file failed, see\
                     the Scilab window for details -- Perhaps report the\
                     error text and the offending Matlab file to \
-                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
+                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
                    "La traduzione del file è fallita,\
                     vedere la finestra Scilab per dettagli -- Il baco può\
                     essere riportato a\
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
-                     includendo il file incriminato ed il messagggio di\
+                    includendo il file incriminato ed il messagggio di\
                     errore."
 ::msgcat::mcset it "Please select destination path for\
                     the xml source of the help file"\
