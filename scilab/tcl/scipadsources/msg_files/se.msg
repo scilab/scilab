@@ -29,7 +29,7 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset se "Variable:" "Variabel :"
 ::msgcat::mcset se "Value:" "Värde :"
-::msgcat::mcset fr "Get current value from Scilab" "Hämta aktuellt värde från Scilab"
+::msgcat::mcset se "Get current value from Scilab" "Hämta aktuellt värde från Scilab"
 
 
 # db_configureexec.tcl
