@@ -3,10 +3,10 @@
 //  Compares two SCI/tcl/scipadsources/msg_files/*.msg files,
 //   generally, a master one like fr.msg or it.msg, updated by
 //   the mantainers of Scipad, and a derived msg file, mantained by
-//   one of the contributing translators);
+//   one of the contributing translators;
 //  reports the missing and additional entries in the second one;
 //  generates a new *.msg.rev file, which includes placeholders
-//   for the new entries to be translated "??? master translation",
+//   for the new entries to be translated "???--master translation",
 //   all nicely reformatted.
 //
 // The syntax is assumed to be very rigid here: each line is one of 5:
@@ -188,13 +188,15 @@ function s=linesplit(longstring,lindent)
       k=find((p(:,2)+d+2-j+1)<maxline & p(:,1)>j)
       if k==[] then
         m=m+1
-        s(i)=part(longstring,j:p(m,2))
+        if m<size(p,1) then q=p(m+1,1)-2; else q=p(m,2); end
+        s(i)=part(longstring,j:q-1) 
       else
-        s(i)=part(longstring,(j+1):p(k($),2))
+        if k($)<size(p,1) then q=p(k($)+1,1)-2; else q=p(k($),2); end
+        s(i)=part(longstring,(j+1):q)
         m=k($)
       end
       if i>1 then s(i)=lindent+s(i); end
-      j=p(m,2)
+      j=q
       if j<n then s(i)=s(i)+"\"; end
       i=i+1;
     end
