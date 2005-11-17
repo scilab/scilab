@@ -37,10 +37,12 @@ function report=msgdiff(msgfile1,msgfile2)
 //find missing entries and write the result file
   disp("Finding missing entries in "+msgfile2+" and writing the result...")
   report(1)="Translations missing in file "+msgfile2+":";
-  report(2)=""; j=2; section1=""; k=0
+  report(2)=""; j=2; section1=""; k=1
   revfile=msgfile2+".rev"
   mdelete(revfile)
   fd=mopen(revfile,"w")
+// we write the header of the SECOND file to the result
+  mfprintf(fd,"%s\n",lastcomment2(1:after2(1))); k=after2(1)
   for i=1:size(M1_1,1)
     if after1(i)>k then
       mfprintf(fd,"%s\n",lastcomment1((k+1):after1(i)))
