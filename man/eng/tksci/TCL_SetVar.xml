@@ -147,7 +147,7 @@ TCL_DeleteInterp('TCLSlave')
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TCLCreateSlave</LINK>
+      <LINK>TCL_CreateSlave</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>

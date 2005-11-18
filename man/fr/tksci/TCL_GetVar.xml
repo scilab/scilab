@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -140,7 +140,7 @@ TCL_DeleteInterp('SlaveInterp3')
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TCL_CreateInterp</LINK>
+      <LINK>TCL_CreateSlave</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>

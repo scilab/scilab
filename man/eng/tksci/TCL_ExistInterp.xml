@@ -9,7 +9,7 @@
 
   <DATE>18 November 2005</DATE>
 
-  <SHORT_DESCRIPTION name="TCL_ExistInterper">Return %T if a tcl slave interperter
+  <SHORT_DESCRIPTION name="TCL_ExistInterp">Return %T if a tcl slave interperter
   exists</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>

@@ -140,7 +140,7 @@ TCL_DeleteInterp('SlaveInterp3')
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TCL_CreateInterp</LINK>
+      <LINK>TCL_CreateSlave</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
