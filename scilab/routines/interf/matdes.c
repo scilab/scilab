@@ -62,7 +62,7 @@ extern void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,do
 extern void Xtitle  _PARAMS((char *str,int n));
 extern void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,
 			       double *angle,double *box,double* wh, long *hdl, int fill,
-			       int *foreground,int *background,BOOL isboxed,BOOL isfilled,BOOL isline));
+			       int *foreground,int *background,BOOL isboxed,BOOL isline));
 extern void Xpoly  _PARAMS((char *fname,unsigned long fname_len,int n,int close,double *x,double *y));
 extern void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
 extern void Xsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
@@ -367,7 +367,7 @@ int sciplot2d(char *fname,unsigned long fname_len)
 
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
   {
-	  sciprint("%s: bad argument specified in input\r\n", fname);
+      sciprint("%s: bad argument specified in input\r\n", fname);
       Error(999); 
       return(0);
   }
@@ -2008,7 +2008,7 @@ int scixstring(char *fname,unsigned long fname_len)
 	ib += strlen(Str[i+ m3*j]);
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,FALSE,TRUE);
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE);
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
 	y += rect[3] * 1.2; 
@@ -2165,8 +2165,8 @@ int scixstringb(char *fname,unsigned long fname_len)
 
   if (version_flag() == 0) {
     wh[0]=w;wh[1]=hx;
-    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,FALSE,TRUE);
-  } 
+    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,TRUE);
+  }
   else { /* NG end */
     C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
   }
@@ -3011,6 +3011,7 @@ int scixgetmouse(char *fname,unsigned long fname_len)
     LhsVar(2) = Rhs+2;
     return 0;
   }
+  return -1 ;
 } 
 
 /*-----------------------------------------------------------------------------------*/
