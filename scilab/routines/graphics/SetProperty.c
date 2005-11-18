@@ -1316,7 +1316,7 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
       return 0;
       break;
     case SCI_TEXT:
-      pTEXT_FEATURE(pobj)->isline = isline;
+      pTEXT_FEATURE( pobj )->isline = isline;
       return 0;
       break;
     case SCI_FEC:
@@ -1334,7 +1334,7 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
     case SCI_UIMENU:
     default:
       /* pas de context graphics */
-      sciprint ("This object has no  isline \n");
+      sciprint ("This object has no isline \n");
       return -1;
       break;
     }
@@ -3602,14 +3602,11 @@ sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
       pARC_FEATURE(pobj)->fill = isfilled;
       return 0;
       break;
-    case SCI_TEXT:
-      pTEXT_FEATURE(pobj)->isfilled = isfilled;
-      return 0;
-      break;   
     case SCI_LABEL:
       pLABEL_FEATURE(pobj)->isfilled = isfilled;
       return 0;
-      break;   
+      break;
+    case SCI_TEXT:
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_SURFACE:

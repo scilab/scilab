@@ -63,54 +63,80 @@ sciCloneColormap (sciPointObj * pobj)
 sciPointObj *
 CloneText (sciPointObj * pthis)
 {
-  sciPointObj *pobj, *subwinparent;
+  sciPointObj * pobj        ;
+  sciPointObj * subwinparent;
+  sciText     * ppThisText  ;
+  sciText     * ppCopyText  ;
   int foreground = sciGetForeground(pthis);
   int background = sciGetBackground(pthis);
+  int i ;
  
   subwinparent = pthis;
 
   while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
 	 && ((int) sciGetEntityType(subwinparent) != -1));
   if ((int) sciGetEntityType(subwinparent) == -1)
+  {
     return (sciPointObj *)NULL;
+  }
+
   if (!(pobj = ConstructText (subwinparent, sciGetText(pthis), sciGetTextLength(pthis), 
 			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),pTEXT_FEATURE(pthis)->wh,pTEXT_FEATURE(pthis)->fill,
 			      &foreground,&background,pTEXT_FEATURE(pthis)->isboxed,
-			      sciGetIsFilled(pthis), sciGetIsLine(pthis)))){
+			      sciGetIsLine(pthis))))
+  {
     return (sciPointObj *)NULL;
   }
-  else{
-    sciSetCurrentObj(pobj);;} /* F.Leray Adding 26.03.04*/
+  else
+  {
+    sciSetCurrentObj(pobj);
+  } /* F.Leray Adding 26.03.04*/
+  
   if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
     return (sciPointObj *)NULL;
+  
   if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
     return (sciPointObj *)NULL;
+  
   if (sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
+  
   if (sciSetFontOrientation(pobj, sciGetFontOrientation (pthis)) == -1)
     return (sciPointObj *)NULL;
+  
   if (sciSetFontStyle(pobj,sciGetFontStyle (pthis)) == -1)
     return (sciPointObj *)NULL;
+  
   if (sciSetFontName(pobj, sciGetFontName (pthis), sciGetFontNameLength(pthis)) == -1)
     return (sciPointObj *)NULL;
-  pTEXT_FEATURE (pobj)->wh[0] = pTEXT_FEATURE (pthis)->wh[0];
-  pTEXT_FEATURE (pobj)->wh[1] = pTEXT_FEATURE (pthis)->wh[1];
   
+  /* get the pointer on features */
+  ppThisText = pTEXT_FEATURE( pthis ) ;
+  ppCopyText = pTEXT_FEATURE( pobj  ) ;
+
+  ppCopyText->wh[0] = ppThisText->wh[0];
+  ppCopyText->wh[1] = ppThisText->wh[1];
+
+  /* copy bounding rectangle  */
+  for ( i = 0 ; i < 8 ; i++ )
+  {
+    ppCopyText->boundingRect[i] = ppThisText->boundingRect[i] ;
+  }
   
-  if((pTEXT_FEATURE (pthis)->size_of_user_data != 0) && (pTEXT_FEATURE (pthis)->user_data != (int *) NULL))
-    {
-      int size = pTEXT_FEATURE (pthis)->size_of_user_data;
-      
-      if((pTEXT_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-	sciprint("Can not allocate user_data for cloned object.\n");
-	pTEXT_FEATURE (pobj)->user_data = (int *) NULL;
-	pTEXT_FEATURE (pobj)->size_of_user_data = 0;
-      }
-      else{
-	memcpy(pTEXT_FEATURE (pobj)->user_data, pTEXT_FEATURE (pthis)->user_data,  size);
-	pTEXT_FEATURE (pobj)->size_of_user_data = pTEXT_FEATURE (pthis)->size_of_user_data;
-      }
+  if((ppThisText->size_of_user_data != 0) && (ppThisText->user_data != (int *) NULL))
+  {
+    int size = ppThisText->size_of_user_data;
+    
+    if((ppCopyText->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
+      sciprint("Can not allocate user_data for cloned object.\n");
+      ppCopyText->user_data = (int *) NULL;
+      ppCopyText->size_of_user_data = 0;
     }
+    else{
+      memcpy(ppCopyText->user_data, ppThisText->user_data,  size);
+      ppCopyText->size_of_user_data = pTEXT_FEATURE (pthis)->size_of_user_data;
+    }
+  }
   
   return (sciPointObj *)pobj;
 }

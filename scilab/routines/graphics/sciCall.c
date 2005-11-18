@@ -177,16 +177,16 @@ void Objsegs (style,flag,n1,x,y,arsize)
  *-----------------------------------------------------------*/
 
 /* box is an OUTPUT re-used inside matdes.c in scixstring */
-void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,background,isboxed,isfilled,isline)
-     char *fname; 
+void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,background,isboxed,isline)
+     char *fname;
      unsigned long fname_len; 
      integer str;
      double x,y,*angle,*box,*wh;
      int fill;
      long *hdl;
      int *foreground, *background;
-     BOOL isboxed,isfilled,isline;
-{ 
+     BOOL isboxed,isline;
+{
   integer v;
   double dv;
   integer x1,yy1,n=1,rect1[4];
@@ -195,7 +195,7 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,backgrou
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   sciSetCurrentObj (ConstructText
 			(psubwin, fname,
-			 strlen (fname), x, y,wh, fill,foreground,background,isboxed,isfilled,isline));
+			 strlen (fname), x, y,wh, fill,foreground,background,isboxed,isline));
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 

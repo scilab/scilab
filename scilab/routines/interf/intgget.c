@@ -1321,16 +1321,39 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"off", numrow*numcol);
       }
     }
-  /*else if ( strcmp(marker,"bounding_rect") == 0 )
+  else if ( strcmp(marker,"bounding_rect") == 0 )
   {
-     get the bounding rect of the text
-    if ( sciGetEntityType( pobj ) != SCI_LABEL )
+    int i ;
+    numrow = 2 ;
+    numcol = 4 ;
+    /*get the bounding rect of the text*/
+    if (   sciGetEntityType( pobj ) == SCI_LABEL )
+    {
+      CreateVar( Rhs + 1, "d", &numrow, &numcol, &outindex ) ;
+      sciLabel * ppLabel = pLABEL_FEATURE( pobj ) ;
+    
+      for ( i = 0 ; i < numrow * numcol ; i++ )
+      {
+        stk(outindex)[i] = ppLabel->boundingRect[i] ;
+      }
+    }
+    else if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      CreateVar( Rhs + 1, "d", &numrow, &numcol, &outindex ) ;
+      sciText * ppText = pTEXT_FEATURE( pobj ) ;
+      
+      for ( i = 0 ; i < numrow * numcol ; i++ )
+      {
+        stk(outindex)[i] = ppText->boundingRect[i] ;
+      }
+    }
+    else
     {
       strcpy(error_message,"bounding_rect does not exist for this handle");
       return -1;
     }
-    CreateVar( Rhs + 1,
-  }*/
+
+  }
   else if (strcmp(marker,"position") == 0) 
     {
       	  if (sciGetEntityType(pobj) == SCI_UIMENU)

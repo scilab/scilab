@@ -501,7 +501,6 @@ typedef struct
   double wh[2];
   BOOL fill; /* to distinguish between xstring and xstringb */
   BOOL isboxed;
-  BOOL isfilled;
   BOOL isline;
   /** */
   double z; /**DJ.Abdemouche 2003**/
@@ -516,9 +515,15 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
+  
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
-}/** */
+
+  double boundingRect[8] ; /* the four vertices of the smallest rectangle     */
+                           /* around the text. It represent a 2x4 matrix.     */
+                           /* the data are put like [x1,y1,x2,y2,x3,y3,x4,y4] */
+                           /* the 4 point are given counter-clokwise */
+}
 sciText;  
 
 
@@ -646,8 +651,12 @@ typedef struct
   BOOL isfilled; /* to know if a label has a colored frame as background */
   BOOL auto_position; /* automatic or manual position selection for label */
   BOOL auto_rotation; /* automatic or manual rotation selection for label (depends on the current view mode 2d or 3d mainly for y and z labels) */
+                      /* not implemented for titles */
   double position[2]; /* the (x,y) coord. of the label's position */
-}/** */
+  double boundingRect[8] ; /* the four vertices of the smallest rectangle     */
+                           /* around the text. It represent a 2x4 matrix.     */
+                           /* the data are put like [x1,y1,x2,y2,x3,y3,x4,y4] */
+}
 sciLabel;  
 
 typedef struct

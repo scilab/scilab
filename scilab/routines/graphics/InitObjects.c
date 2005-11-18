@@ -228,14 +228,14 @@ int C2F(graphicsmodels) ()
   
   /* F.Leray 09.04.04 */
   if (sciInitFontContext (paxesmdl) == -1)
-    {
-      sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
-      sciDelHandle (paxesmdl);
-      FREE(paxesmdl->pfeatures);	  
-      FREE(paxesmdl);
-      strcpy(error_message,"Default axes cannot be create");
-      return 0;
-    }
+  {
+    sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
+    sciDelHandle (paxesmdl);
+    FREE(paxesmdl->pfeatures);	  
+    FREE(paxesmdl);
+    strcpy(error_message,"Default axes cannot be create");
+    return 0;
+  }
   
   ppaxesmdl->logflags[0] = 'n';
   ppaxesmdl->logflags[1] = 'n';
@@ -380,26 +380,26 @@ int C2F(graphicsmodels) ()
     return -1;
   sciSetEntityType (ppobj->mon_title, SCI_LABEL);
   if (((ppobj->mon_title)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_title));
-      return -1;
-    }
+  {
+    FREE((ppobj->mon_title));
+    return -1;
+  }
   
   
   if (sciAddNewHandle ((ppobj->mon_title)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
+  {
+    FREE(pLABEL_FEATURE((ppobj->mon_title)));
       FREE((ppobj->mon_title));
       return -1;
-    }
+  }
   
   if (!(sciAddThisToItsParent ((ppobj->mon_title), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_title));
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
+  {
+    sciDelHandle ((ppobj->mon_title));
+    FREE(pLABEL_FEATURE((ppobj->mon_title)));
+    FREE((ppobj->mon_title));
+    return -1;
+  }
       
   sciSetCurrentSon ((ppobj->mon_title), (sciPointObj *) NULL);
   
