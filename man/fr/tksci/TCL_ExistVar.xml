@@ -60,15 +60,15 @@ TCL_UnsetVar("Scilab")
 TCL_ExistVar("Scilab")
                              
 TCL_SetVar("aa",1)
-scipad();TCL_SetVar("aa",2,"scipad")
+TCL_CreateSlave('SlaveInterp');
+TCL_SetVar("aa",2,'SlaveInterp')
 TCL_ExistVar("aa")
 TCL_GetVar("aa")
 TCL_UnsetVar("aa")
-TCL_GetVar("aa","scipad")
-TCL_UnsetVar("aa","scipad")
-TCL_ExistVar("aa","scipad")
-
-]]></EXAMPLE>
+TCL_GetVar("aa",'SlaveInterp')
+TCL_UnsetVar("aa",'SlaveInterp')
+TCL_ExistVar("aa",'SlaveInterp')
+TCL_DeleteInterp('SlaveInterp')]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
@@ -97,6 +97,10 @@ TCL_ExistVar("aa","scipad")
 
     <SEE_ALSO_ITEM>
       <LINK>TCL_UpVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_CreateSlave</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

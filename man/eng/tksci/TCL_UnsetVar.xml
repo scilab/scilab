@@ -59,10 +59,12 @@ TCL_GetVar("Scilab")
 TCL_UnsetVar("Scilab")
 TCL_ExistVar("Scilab")
 
-scipad();TCL_SetVar("Scilab","Good","scipad")
-TCL_GetVar("Scilab","scipad")
-TCL_UnsetVar("Scilab","scipad")
-TCL_ExistVar("Scilab","scipad")
+TCL_CreateSlave('InterpSlave');
+TCL_SetVar("Scilab","Good",'InterpSlave')
+TCL_GetVar("Scilab",'InterpSlave')
+TCL_UnsetVar("Scilab",'InterpSlave')
+TCL_ExistVar("Scilab",'InterpSlave')
+TCL_DeleteInterp('InterpSlave')
 
   ]]></EXAMPLE>
 
@@ -93,6 +95,14 @@ TCL_ExistVar("Scilab","scipad")
 
     <SEE_ALSO_ITEM>
       <LINK>TCL_UpVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_CreateSlave</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_DeleteInterp</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

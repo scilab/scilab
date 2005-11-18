@@ -13,8 +13,7 @@
   to a tcl destination variable</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>OK=TCL_UpVar(varname1,varname2
-    [,interp])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>OK=TCL_UpVar(varname1,varname2,[interp])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -73,14 +72,16 @@ TCL_SetVar("ScilabBis","modified")
 TCL_GetVar("ScilabBis")
 TCL_GetVar("Scilab")
 
-scipad();TCL_SetVar("Scilab","Good","scipad")
-TCL_UpVar("Scilab","ScilabBis","scipad")
-TCL_GetVar("ScilabBis","scipad")
-TCL_SetVar("Scilab","Not good","scipad")
-TCL_GetVar("ScilabBis","scipad")
-TCL_SetVar("ScilabBis","modified again","scipad")
-TCL_GetVar("ScilabBis","scipad")
-TCL_GetVar("Scilab","scipad")
+TCL_CreateSlave('InterpBis')
+TCL_SetVar("Scilab","Good",'InterpBis')
+TCL_UpVar("Scilab","ScilabBis",'InterpBis')
+TCL_GetVar("ScilabBis",'InterpBis')
+TCL_SetVar("Scilab","Not good",'InterpBis')
+TCL_GetVar("ScilabBis",'InterpBis')
+TCL_SetVar("ScilabBis","modified again",'InterpBis')
+TCL_GetVar("ScilabBis",'InterpBis')
+TCL_GetVar("Scilab",'InterpBis')
+TCL_DeleteInterp('InterpBis')
  
   ]]></EXAMPLE>
 
@@ -111,6 +112,14 @@ TCL_GetVar("Scilab","scipad")
 
     <SEE_ALSO_ITEM>
       <LINK>TCL_UnsetVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_CreateSlave</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_DeleteInterp</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

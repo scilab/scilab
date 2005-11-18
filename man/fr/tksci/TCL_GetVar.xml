@@ -56,8 +56,7 @@
     retreive the value of a tcl/tk variable.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[
-//----------------------------------------------------
+  <EXAMPLE><![CDATA[//----------------------------------------------------
 TCL_EvalStr("toplevel .tst1");
 // creates a toplevel TK window. 
 TCL_EvalStr("entry .tst1.e -textvariable tvar");
@@ -85,29 +84,31 @@ StringFromTCL=TCL_GetVar("StringTCL")
 //----------------------------------------------------
 TCL_SetVar("ScalarTCL",1.22)
 ScalarFromTCL=TCL_GetVar("ScalarTCL")
-
-
 //----------------------------------------------------
 // Examples with a slave interpreter
-// scipad creates such a slave interpreter named "scipad"
 //----------------------------------------------------
 a=['AA','BB','CC';'DD','EE','FF'];
-scipad();TCL_SetVar("A_slave",a,"scipad")
-AfromTCL_slave=TCL_GetVar('A_slave',"scipad")
+TCL_CreateSlave('SlaveInterp')
+TCL_SetVar("A_slave",a,'SlaveInterp')
+AfromTCL_slave=TCL_GetVar('A_slave','SlaveInterp')
+TCL_DeleteInterp('SlaveInterp')
 //----------------------------------------------------
 b=[66,44,11;22,33,55];
-scipad();TCL_SetVar("B_slave",b,"scipad")
-BfromTCL_slave=TCL_GetVar('B_slave',"scipad")
+TCL_CreateSlave('SlaveInterp1')
+TCL_SetVar("B_slave",b,'SlaveInterp1')
+BfromTCL_slave=TCL_GetVar('B_slave','SlaveInterp1')
+TCL_DeleteInterp('SlaveInterp1')
 //----------------------------------------------------
-scipad();TCL_SetVar("StringTCL_slave","string in slave interpreter","scipad")
-StringFromTCL_slave=TCL_GetVar("StringTCL_slave","scipad")
+TCL_CreateSlave('SlaveInterp2')
+TCL_SetVar("StringTCL_slave","string in slave interpreter",'SlaveInterp2')
+StringFromTCL_slave=TCL_GetVar("StringTCL_slave",'SlaveInterp2')
+TCL_DeleteInterp('SlaveInterp2')
 //----------------------------------------------------
-scipad();TCL_SetVar("ScalarTCL_slave",1.22,"scipad")
-ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave","scipad")
-//----------------------------------------------------
-
-
-]]></EXAMPLE>
+TCL_CreateSlave('SlaveInterp3')
+TCL_SetVar("ScalarTCL_slave",1.22,'SlaveInterp3')
+ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave",'SlaveInterp3')
+TCL_DeleteInterp('SlaveInterp3')
+//----------------------------------------------------]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
@@ -136,6 +137,14 @@ ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave","scipad")
 
     <SEE_ALSO_ITEM>
       <LINK>TCL_UpVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_CreateInterp</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_DeleteInterp</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 

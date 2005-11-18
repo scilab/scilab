@@ -90,21 +90,28 @@ ScalarFromTCL=TCL_GetVar("ScalarTCL")
 
 //----------------------------------------------------
 // Examples with a slave interpreter
-// scipad creates such a slave interpreter named "scipad"
 //----------------------------------------------------
+TCL_CreateSlave('TCLSlave')
 a=['AA','BB','CC';'DD','EE','FF'];
-scipad();TCL_SetVar("A_slave",a,"scipad")
-AfromTCL_slave=TCL_GetVar('A_slave',"scipad")
+TCL_SetVar("A_slave",a,'TCLSlave')
+AfromTCL_slave=TCL_GetVar('A_slave','TCLSlave')
+TCL_DeleteInterp('TCLSlave')
 //----------------------------------------------------
+TCL_CreateSlave('TCLSlave')
 b=[66,44,11;22,33,55];
-scipad();TCL_SetVar("B_slave",b,"scipad")
-BfromTCL_slave=TCL_GetVar('B_slave',"scipad")
+TCL_SetVar("B_slave",b,'TCLSlave')
+BfromTCL_slave=TCL_GetVar('B_slave','TCLSlave')
+TCL_DeleteInterp('TCLSlave')
 //----------------------------------------------------
-scipad();TCL_SetVar("StringTCL_slave","string in slave interpreter","scipad")
-StringFromTCL_slave=TCL_GetVar("StringTCL_slave","scipad")
+TCL_CreateSlave('TCLSlave')
+TCL_SetVar("StringTCL_slave","string in slave interpreter",'TCLSlave')
+StringFromTCL_slave=TCL_GetVar("StringTCL_slave",'TCLSlave')
+TCL_DeleteInterp('TCLSlave')
 //----------------------------------------------------
-scipad();TCL_SetVar("ScalarTCL_slave",1.22,"scipad")
-ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave","scipad")
+TCL_CreateSlave('TCLSlave')
+TCL_SetVar("ScalarTCL_slave",1.22,'TCLSlave')
+ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave",'TCLSlave')
+TCL_DeleteInterp('TCLSlave')
 //----------------------------------------------------
 
 
@@ -137,6 +144,14 @@ ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave","scipad")
 
     <SEE_ALSO_ITEM>
       <LINK>TCL_UpVar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCLCreateSlave</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>TCL_DeleteInterp</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
