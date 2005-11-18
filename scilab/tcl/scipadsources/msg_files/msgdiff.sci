@@ -185,7 +185,11 @@ function s=linesplit(longstring,lindent)
     p=tokenpos(longstring," ");
     i=1;j=0;m=1
     while j<n
-      k=find((p(:,2)+d+2-j+1)<maxline & p(:,1)>j)
+      if j==0 then 
+        k=find((p(:,2)+2-j+1)<maxline & p(:,1)>j)
+      else
+        k=find((p(:,2)+d+2-j+1)<maxline & p(:,1)>j)
+      end
       if k==[] then
         m=m+1
         if m<size(p,1) then q=p(m+1,1)-2; else q=p(m,2); end
