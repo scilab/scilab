@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.122 $)dnl
+AC_REVISION($Revision: 1.123 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1398,7 +1398,7 @@ fi
 if test "$PERIFILE" = periX11.o; then 
   ac_save_LDFLAGS="$LDFLAGS"
   if test -n "$x_libraries"; then
-    LDFLAGS="$LDFLAGS -L$x_libraries -R$x_libraries"
+    LDFLAGS="$LDFLAGS -L$x_libraries"
   fi
 
 ##test Xaw3d (can be build locally)
