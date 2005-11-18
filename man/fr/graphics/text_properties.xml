@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -17,11 +17,24 @@
     entity defines the parameters for string drawing</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        text entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Compound"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, text handles currently do not have any
+        <VERB>children</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
-        default, the text is visible, the value's property is <VERB>"on"</VERB>. If <VERB>"off"</VERB> the text is not displayed on the
-        screen.</SP>
+        default, the text is visible, the value's property is
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the text is not displayed on
+        the screen.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="text: ">
@@ -32,6 +45,36 @@
       <DESCRIPTION_ITEM label="data: ">
         <SP>This field is the vector <VERB>[x,y,[z]]</VERB> of the origin of
         the text in the data units of the axes.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="box: ">
+        <SP>This field takes the values <VERB>"on"</VERB> or
+        <VERB>"off"</VERB>. If <VERB>"on"</VERB> a box is draw around the text
+        with a line on its edge and a background.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="line_mode: ">
+        <SP>Rhis boolean propertyallows to draw only the background of the box
+        when the <VERB>box</VERB> property is <VERB>"on"</VERB>. If line_mode
+        is <VERB>"off"</VERB>, the line of the box is not drawn.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="font_foreground: ">
+        <SP>This field contains the color used to display the characters of
+        the text. Its value should be a color index (relative to the current
+        colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color used to display the line on the edge
+        of the box. Its value should be a color index (relative to the current
+        colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="background: ">
+        <SP>This field contains the color used to fill the box around of the
+        text. Its value should be a color index (relative to the current
+        colormap).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_size: ">
@@ -50,11 +93,6 @@
       <DESCRIPTION_ITEM label="font_angle: ">
         <SP>This property determines the orientation of the text string.
         Specify value of rotation in degrees.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the color used to display the text. Its value
-        should be a color index (relative to the current colormap).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="clip_state: ">
@@ -84,15 +122,10 @@
         should be an empty matrix if clip_state is "off" or the vector
         <VERB>[x,y,w,h</VERB>] (upper-left point width height).</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	 text data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        text entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
+      <DESCRIPTION_ITEM label="user_data: ">
+        <SP>This field can be use to store any scilab variable in the text
+        data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

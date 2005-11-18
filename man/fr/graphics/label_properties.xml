@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -21,12 +21,21 @@
     drawing:</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        label entity should be of type <VERB>"Axes"</VERB> .</SP>
+
+        <P>Note that, for now, Label entity is exclusively used in
+        <VERB>title</VERB>, <VERB>x_label</VERB>, <VERB>y_label</VERB> and
+        <VERB>z_label</VERB> building.</P>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
-        default, the label is visible, the value's property is <VERB>"on"
-        </VERB>. If <VERB>"off"</VERB> the label is not displayed on the
-        screen.</SP>
+        default, the label is visible, the value's property is
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the label is not displayed on
+        the screen.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="text: ">
@@ -34,10 +43,21 @@
         label.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="font_size: ">
-        <SP>The <VERB>font_size</VERB> property is used to select the type of
-        size of the label. Its value should be an integer in between 0 and 5
-        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      <DESCRIPTION_ITEM label="fill_mode: ">
+        <SP>This field takes the values <VERB>"on"</VERB> or
+        <VERB>"off"</VERB>. If <VERB>"on"</VERB> a box is draw around the text
+        with a line on its edge and a background.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color used to display the characters label
+        and the line around the box if any. Its value should be a color index
+        (relative to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="background: ">
+        <SP>This field contains the color used to fill the box if any. Its
+        value should be a color index (relative to the current colormap).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_style: ">
@@ -47,18 +67,21 @@
         names.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the color used to display the label. Its value
-        should be a color index (relative to the current colormap).</SP>
+      <DESCRIPTION_ITEM label="font_size: ">
+        <SP>The <VERB>font_size</VERB> property is used to select the type of
+        size of the label. Its value should be an integer in between 0 and 5
+        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        label entity should be of type <VERB>"Axes"</VERB> .</SP>
+      <DESCRIPTION_ITEM label="font_angle: ">
+        <SP>This property allows to turn the label. The font is turned
+        clockise with the angle given in degrees.</SP>
+      </DESCRIPTION_ITEM>
 
-        <P>Note that, for now, Label entity is exclusively used in
-        <VERB>title</VERB>, <VERB>x_label</VERB>, <VERB>y_label</VERB> and
-        <VERB>z_label</VERB> building.</P>
+      <DESCRIPTION_ITEM label="auto_rotation: ">
+        <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best angle
+        to turn the label for the display. If <VERB>"off"</VERB>, the label
+        can be manually turned with the <VERB>font_angle</VERB> property.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
