@@ -734,10 +734,10 @@ sciUnCompound (sciPointObj * pobj)
  */
 int DestroyLabel (sciPointObj * pthis)
 {
-  /*   sciLabel *pplabel = pLABEL_FEATURE (pthis); */
-  FREE (pLABEL_FEATURE (pthis)->user_data); 
-  pLABEL_FEATURE (pthis)->size_of_user_data = 0;
-  FREE (pLABEL_FEATURE (pthis)->text.ptextstring);
+  sciLabel * ppLabel = pLABEL_FEATURE (pthis);
+  FREE (ppLabel->user_data); 
+  ppLabel->size_of_user_data = 0;
+  FREE (ppLabel->text.ptextstring);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
