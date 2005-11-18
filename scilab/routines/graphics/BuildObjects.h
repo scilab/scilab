@@ -29,7 +29,7 @@ extern sciPointObj *ConstructScrollH (sciPointObj * pparentfigure); /* BUILD */
 
 extern sciPointObj *ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 				   double y, double *wh, int fill,int *foreground, int *background, 
-				   BOOL isboxed, BOOL isfilled, BOOL isline); /* BUILD */
+				   BOOL isboxed, BOOL isline); /* BUILD */
      
 extern sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
 				    int type); /* BUILD */
