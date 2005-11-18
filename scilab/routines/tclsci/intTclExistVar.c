@@ -17,7 +17,6 @@ int C2F(intTclExistVar) _PARAMS((char *fname))
 	
 	if (TypeVar1 == sci_strings)
 	{
-		int *paramoutINT=(int*)MALLOC(sizeof(int));
 		char *VarName=NULL;
 
 		GetRhsVar(1,"c",&m1,&n1,&l1);
@@ -54,21 +53,20 @@ int C2F(intTclExistVar) _PARAMS((char *fname))
 			TCLinterpreter=TCLinterp;
 		}
 
+		n1=1;
 		if ( Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY) )
 		{
-			*paramoutINT=(int)(TRUE);
+			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			*paramoutINT=(int)(FALSE);
+			CreateVar(Rhs+1, "b", &n1,&n1,&l1);
+			*istk(l1)=(int)(FALSE);
 		}
-
-		n1=1;
-		CreateVarFromPtr(1, "b", &n1, &n1, &paramoutINT);
-		LhsVar(1)=1;
+	
+		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
-		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-
 	}
 	else
 	{
