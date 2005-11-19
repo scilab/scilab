@@ -44,6 +44,9 @@ proc execfile {{buf "current"}} {
 
 proc execselection {} {
     global sciprompt textareacur tcl_platform
+
+    if {[colorizationinprogress]} {return}
+
     if [ expr [string compare $sciprompt -1] == 0 ] {
        tk_messageBox -message \
                [mc "Scilab is working, wait for the prompt to execute the selection."] \

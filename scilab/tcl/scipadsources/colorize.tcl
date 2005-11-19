@@ -86,12 +86,12 @@ proc remalltags {w begin ende} {
 proc colorize {w cpos iend} {
 # Colorize in textarea w from start position cpos to end position iend
 # Warning: if cpos denotes a position located *after* iend, nothing is done
-    global words chset listoffile scilabSingleQuotedStrings
+    global words chset listoffile
     set textarea [gettextareacur]
     set schema $listoffile("$textarea",language)
     regsub -all "scilab." [array names chset -glob scilab\.*] "" scitags
-    $w mark set begin "$cpos linestart"
-    $w mark set ende "$iend+1l linestart"
+    $w mark set begin "$cpos"
+    $w mark set ende "$iend"
     remalltags $w begin ende
 
     # TAGS:
@@ -127,8 +127,8 @@ proc colorize {w cpos iend} {
         } else break
     }
 
-    #ES: why at all call ":" a "brace? 
-    # "{}" are anyway parsed above for matching pairs
+    #ES: why at all call ":" a "brace"? 
+    # "{}" are anyway parsed for matching pairs (proc blinkbrace)
     $w mark set last begin
     while {[set ind [$w search -regexp {[\{\}:]} last ende]] != {}} {
         if {[$w compare $ind >= last]} {
@@ -150,13 +150,11 @@ proc colorize {w cpos iend} {
     }
 
     # number can contain +-. so follows operator (?)
-    # (the regexp has to be perfectioned -- it matches e.g. single e6)
-    set numregexp {\m\d*\.?\d*([deDE][+\-]?\d{1,3})?\M}
-    #   set numregexp {\m(\d+|\.\d+|\d+\.\d*)([deDE][+\-]?\d{1,3})?\M}
+    set numregexp {((\.\d+)|(\m\d+(\.\d*)?))([deDE][+\-]?\d{1,3})?\M}
     $w mark set last begin
-    while {[set ind [$w search -regexp $numregexp last ende]] != {}} {
+    while {[set ind [$w search -regexp -count mlen -- $numregexp last ende]] != {}} {
         if {[$w compare $ind >= last]} {
-            $w mark set last $ind+1c
+            $w mark set last "$ind + $mlen c"
             remalltags $w $ind last
             $w tag add number $ind last
         } else break
@@ -208,71 +206,227 @@ proc colorize {w cpos iend} {
         }
     }
 
-    # Text
-    $w mark set last begin
-    while { [set ind [$w search -regexp \
-                        {"[^"]*("|$)} last ende]] != {}} {
-        if {[$w compare $ind >= last]} {
-            set res ""
-            $w mark set endetext "$ind lineend"
-            regexp {"[^"]*"} [$w get last endetext] res
-            set num [string length $res]
-            if {$num <= 0} {
-                $w mark set last "$ind + 1c"
-            } else {
-                $w mark set last "$ind + $num c"
+    # Text quoted with single/double quotes as textquoted, and Scilab remarks
+    colorizestringsandcomments_sd $w [$w index begin] [$w index ende]
+
+}
+
+proc colorizestringsandcomments_sd {w thebegin theend} {
+# colorize strings and comments between indices $thebegin and $theend in
+# textarea $w
+# consider single quotes (') and double quotes ("), or double quotes only
+# based on the Options menu setting
+
+    global scilabSingleQuotedStrings
+
+    if {$scilabSingleQuotedStrings == "yes"} {
+        # single quotes or double quotes
+
+        # since in Scilab it is legal to declare a="string', no effort is
+        # made here to detect unbalanced quotes by their type
+
+        # regular expression matching a simple string on a (non-continued) line
+        set simpstrRE {(["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
+
+        # regular expression matching a continued string possibly ending with a
+        # comment, if this string was not already matched by $simpstrRE
+        set contstrRE {(["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
+
+    } else {
+        # double quotes only
+
+        set simpstrRE {("[^"\.\n]*(?:\.?[^"\.\n]*)+")}
+        set contstrRE {("(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
+    }
+
+    # regular expression matching a comment outside of a continued string
+    # if this comment was not already matched by $simpstrRE or $contstrRE
+    set outstrcommRE {(//[^\n]*)}
+
+    # regular expression matching in two separate parts the continued string
+    # part and the comment part of a continued line containing a comment
+    set separationRE {([^\.\n]*(?:\.[^\.\n]+)*\.{2,} *)((//[^\n]*)?)}
+
+    colorizestringsandcomments $w $thebegin $theend \
+            $simpstrRE $contstrRE $outstrcommRE $separationRE
+}
+
+proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcommRE separationRE} {
+# colorize properly comments and text quoted with single or double quotes,
+# depending on the regexps received, while taking care of continued lines
+# possibly containing interlaced comments (this is legal in Scilab)
+
+    set textcommfullRE "$simpstrRE|$contstrRE|$outstrcommRE"
+    $w mark set last $thebegin
+    set resi {}
+    set simpstr {}
+    set contstr {}
+    set outstrcomm {}
+
+    while {[regexp -indices -- $textcommfullRE [$w get last $theend] \
+            resi simpstr contstr outstrcomm]} {
+        foreach {i j} $resi {}
+        set ind [$w index "last + $i c"]
+        # $ind contains now the start index for a not yet colorized match
+        # with either:
+        #   - a simple string without continuation dots, e.g.:
+        #      "there is no co.mm.ent//in this str.ing"
+        #   - a string formed by continued lines, possibly with embedded comments, e.g.:
+        #      "a continued ..  // this part is a comment
+        #      line with 1 comment"
+        #   - a regular comment outside of a string declaration, e.g.:
+        #      // there is no string in this "tricky" comment
+        # the matching order is mandatorily the order above as coded
+        # in the regular expression - this order *must* be followed below
+
+        # length of the match
+        set num [expr $j - $i + 1]
+
+        set done false
+        # try first case: string on a single line
+        if {[lindex $simpstr 0] != -1} {
+            foreach {i1 j1} $simpstr {}
+            if {$i == $i1 && $j == $j1} {
+                # we're really in the first case
+                $w mark set last "$ind +$num c"
                 # textquoted deletes any other tag
                 remalltags $w $ind last
                 $w tag add textquoted $ind last
-            }          
-        } else break
-    }
-
-    # tag 'sometext' with single quotes as textquoted
-     #let it be optional -- but be aware that if the option is changed, 
-     # it will affect only tagging of the subsequently added text.
-     # if the option is to be changed within scilab, the change
-     # has to trigger a recolorization of all buffers 
-    if {$scilabSingleQuotedStrings == "yes"} {
-        $w mark set last begin
-        while { [set ind [$w search -regexp \
-                              {'[^']*('|$)} last ende]] != {}} {
-            if {[$w compare $ind >= last]} {
-                set res ""
-                $w mark set endetext "$ind lineend"
-                regexp {'[^']*'} [$w get last endetext] res
-                set num [string length $res]
-                if {$num <= 0} {
-                    $w mark set last "$ind + 1c"
-                } else {
-                    $w mark set last "$ind + $num c"
-                    # textquoted deletes any other tag
-                    remalltags $w $ind last
-                    $w tag add textquoted $ind last
-                }          
-            } else break
-        }
-    }
-
-    # scilab remark
-    if {$schema=="scilab"} {
-        $w mark set last begin
-        while {[set ind [$w search -exact {//} last ende]] != {}} {
-            if {[$w compare $ind >= last]} {
-                $w mark set last "$ind+1l linestart"
-                # tags as rem2 only if not already textquoted
-                # (does not tag as comment "..//..")
-                if {[lsearch [$w tag names $ind] "textquoted"] ==-1 } {
-                    # rem2 deletes any other tag
-                    remalltags $w $ind "$ind lineend" 
-                    $w tag add rem2 $ind "$ind lineend" }
-                } else break
+                set done true
+            } else {
+                # some part located after $ind matches $simpstrRE
+                # ignore this for now and try cases 2 and 3 first
             }
         }
-        # anyway, commented textquoted are displayed as rem2
-        $w tag raise rem2 textquoted
-    }
 
+        # try second case: string on continued lines, possibly with comments
+        if {!$done && [lindex $contstr 0] != -1} {
+            foreach {i1 j1} $contstr {}
+            if {$i == $i1 && $j == $j1} {
+                # we're really in the second case
+                # the comment part must be separated from the string part, and
+                # this has to be done for each continued line but the last one
+                $w mark set last "$ind +$num c"
+                set subtext [$w get $ind last]
+                set strpart {}
+                set commpart {}
+                set colstart [$w index $ind]
+                while {[regexp -indices -- $separationRE $subtext \
+                        res1 strpart commpart]} {
+                    # colorize string part of the line
+                    set scolstart [$w index "$colstart + [lindex $strpart 0] c"]
+                    set scolstop  [$w index "$colstart + [lindex $strpart 1] c + 1 c"]
+                    remalltags $w $scolstart $scolstop
+                    $w tag add textquoted $scolstart $scolstop
+                    # colorize comment part of the line
+                    if {$commpart != {}} {
+                        set ccolstart [$w index "$colstart + [lindex $commpart 0] c"]
+                        set ccolstop  [$w index "$colstart + [lindex $commpart 1] c + 1 c"]
+                        remalltags $w $ccolstart $ccolstop
+                        $w tag add rem2 $ccolstart $ccolstop
+                    }
+                    set colstart [$w index "$colstart + [lindex $res1 1] c + 1 c"]
+                    set subtext [string replace $subtext 0 [lindex $res1 1]]
+                    set strpart {}
+                    set commpart {}
+                }
+                # treat the special case of the last line, which is not a
+                # continued line (doesn't match $separationRE)
+                remalltags $w $colstart last
+                $w tag add textquoted $colstart last
+                set done true
+            } else {
+                # some part located after $ind matches $contstrRE
+                # ignore this for now and try case 3 first
+            }
+        }
+
+        # try third case: regular comment outside of a string
+        if {!$done && [lindex $outstrcomm 0] != -1} {
+            foreach {i1 j1} $outstrcomm {}
+            if {$i == $i1 && $j == $j1} {
+                # we're really in the third case
+                $w mark set last "$ind +$num c"
+                # rem2 deletes any other tag
+                remalltags $w $ind last
+                $w tag add rem2 $ind last
+                set done true
+            } else {
+                # some part located after $ind matches $outstrcommRE
+                # but this should have been dealt with in the previous cases...
+            }
+        }
+
+        if {!$done} {
+            # should never happen
+            tk_messageBox -message "Colorization algorithm fooled!\n\
+                Position is $ind and regexp match length is $num.\n\
+                Text at this place is:\n[$w get $ind "$ind + $num c"]\n\
+                Please report to the Bugzilla (include your current file)."
+            # this is to avoid an endless loop
+            $w mark set last "$ind + $num c"
+        }
+
+        set resi {}
+        set simpstr {}
+        set contstr {}
+        set outstrcomm {}
+    }
+}
+
+proc dobackgroundcolorize {w thebegin theend} {
+# do colorization in background
+# actually this uses a trick to keep Scipad responsive while colorization
+# is in progress - useful for large files
+# colorization is performed by small line increments that are colorized
+# one after the other when Scipad is idle
+# adjustment of increment ($incre) is important:
+#   . if decreased, the complete colorization process will last longer
+#     due to time overhead from this proc
+#   . if increased, Scipad will be less responsive
+
+    global nbcolorizationinprogress
+
+    set incre 5
+
+    set curend "$thebegin + $incre l"
+    set curend [getendofcolorization $w $curend]
+
+    if {[$w compare $curend < $theend]} {
+        colorize $w $thebegin [$w index $curend]
+        set newbegin [$w index $curend]
+        after 1 "dobackgroundcolorize $w $newbegin $theend"
+    } else {
+        # last colorization step
+        colorize $w $thebegin $theend
+        incr nbcolorizationinprogress -1
+    }
+}
+
+proc backgroundcolorize {w thebegin theend} {
+# launch background colorization of a buffer
+# and keep track of the number of buffers currently being colorized
+    global nbcolorizationinprogress
+    incr nbcolorizationinprogress
+    dobackgroundcolorize $w $thebegin $theend
+    # decrementing nbcolorizationinprogress is done in proc dobackgroundcolorize
+}
+
+proc colorizationinprogress {} {
+# return true if colorization of a buffer is in progress
+# certain actions (those that make use of the colorization result such as the
+# rem2 or textquoted tag) cannot be executed during colorization
+    global nbcolorizationinprogress
+    if {$nbcolorizationinprogress > 0} {
+        set mes [mc "You can't do that while colorization is in progress.\
+                 Please try again when finished."]
+        set tit [mc "Command forbidden during colorization"]
+        tk_messageBox -message $mes -icon warning -title $tit
+        return true
+    } else {
+        return false
+    }
+}
 
 proc changelanguage {newlanguage} {
     global listoffile
@@ -282,7 +436,7 @@ proc changelanguage {newlanguage} {
         set listoffile("$textarea",language) $newlanguage
         showinfo [mc "Wait seconds while recolorizing file"]
         schememenus $textarea
-        colorize $textarea 1.0 end
+        backgroundcolorize $textarea 1.0 end
         keyposn $textarea
     }
 }
@@ -365,44 +519,35 @@ proc colormenuoption {c} {
 }
 
 proc refreshQuotedStrings {} {
-    global listoftextarea scilabSingleQuotedStrings
+    global listoftextarea
     showinfo [mc "Wait seconds while recolorizing file"]
     foreach w $listoftextarea {
-        $w mark set begin 1.0
-        $w mark set ende end
-        $w mark set last begin
-        if {$scilabSingleQuotedStrings=="yes"} {
-#this is taken directly from proc colorize
-          while { [set ind [$w search -regexp \
-                              {'[^']*('|$)} last ende]] != {}} {
-            if {[$w compare $ind >= last]} {
-                set res ""
-                $w mark set endetext "$ind lineend"
-                regexp {'[^']*'} [$w get last endetext] res
-                set num [string length $res]
-                if {$num <= 0} {
-                    $w mark set last "$ind + 1c"
-                } else {
-                    $w mark set last "$ind + $num c"
-                    if {[$w tag names $ind] != "rem2"} {
-                        # textquoted deletes any other tag
-                        remalltags $w $ind last
-                        $w tag add textquoted $ind last
-                    }
-                }          
-            } else break
-          }
-        } else {
-            while {[set ind [$w tag nextrange textquoted last end]] !={} } {
-              set i1 [lindex $ind 0]
-              set i2 [lindex $ind 1]
-              if {[$w get $i1] == "\'" } {
-                   colorize $w $i1 $i2
-                  }
-              $w mark set last $i2+1c
-            }
-        }
+        $w tag remove rem2 1.0 end
+        $w tag remove textquoted 1.0 end
+        colorizestringsandcomments_sd $w 1.0 end
     }
+}
+
+proc getstartofcolorization {w ind} {
+# return start bound required for proper recolorization
+# and take care of nearby continued lines
+    if {[iscontinuedline $w "$ind - 1 l"]} {
+        set uplimit [getstartofcontline $w "$ind - 1 l"]
+    } else {
+        set uplimit [$w index "$ind linestart"]
+    }
+    return $uplimit
+}
+
+proc getendofcolorization {w ind} {
+# return end bound required for proper recolorization
+# and take care of nearby continued lines
+    if {[iscontinuedline $w "$ind + 1 l"]} {
+        set dnlimit [getendofcontline $w "$ind + 1 l"]
+    } else {
+        set dnlimit [$w index "$ind + 1 l lineend"]
+    }
+    return $dnlimit
 }
 
 proc updateactiveforegroundcolormenu {} {

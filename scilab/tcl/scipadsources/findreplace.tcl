@@ -673,9 +673,9 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
         $textarea edit separator
         $textarea configure -autoseparators 1
     }
-    colorize $textarea \
-        [$textarea index "$mpos linestart"] \
-        [$textarea index "$mpos lineend"]
+    set uplimit [getstartofcolorization $textarea $mpos]
+    set dnlimit [getendofcolorization $textarea $mpos]
+    colorize $textarea $uplimit $dnlimit
     $textarea mark set insert $mpos
     foreach ta $listoftextarea {
         # this must be done for each ta, not only for $textarea

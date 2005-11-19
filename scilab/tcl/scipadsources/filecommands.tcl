@@ -79,6 +79,10 @@
 proc filesetasnew {} {
     global winopened listoffile
     global listoftextarea pad textareaid
+
+    # ensure that the cursor is changed to the default cursor
+    event generate [gettextareacur] <Leave>
+
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
@@ -286,7 +290,7 @@ proc updatecompletions {partialfunnametoopen edittype} {
 
     $opensoflb delete 0 end
 
-    set compl [getcompletions $partialfunnametoopen]
+    set compl [getcompletions $partialfunnametoopen "scilab"]
 
     # populate the listbox with the possible completions
     foreach posscompl $compl {
@@ -572,7 +576,7 @@ proc shownewbuffer {file tiledisplay} {
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
     update
-    colorize $pad.new$winopened 1.0 end
+    backgroundcolorize $pad.new$winopened 1.0 end
 }
 
 proc newfilebind {} {
@@ -781,7 +785,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
             resetmodified $textarea
             set listoffile("$textarea",thetime) [file mtime $thefile]
             montretext $textarea
-            colorize $textarea 1.0 end
+            backgroundcolorize $textarea 1.0 end
         }
     }
 }

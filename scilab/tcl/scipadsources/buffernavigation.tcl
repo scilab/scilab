@@ -925,6 +925,8 @@ proc gotoline {} {
     global pad textFont menuFont unklabel
     global physlogic linetogo curfileorfun funtogoto
 
+    if {[colorizationinprogress]} {return}
+
     # Obtain all the functions defined in all the opened buffers, and create a list
     # containing function name, textarea where this function is defined and physical
     # line number where the function definition starts. Format is:

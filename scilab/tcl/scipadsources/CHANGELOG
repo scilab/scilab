@@ -1678,3 +1678,32 @@ ES, 10/11/05
    visual feedback)
  * version --> 5.55
 
+Francois VOGEL, 19/11/05
+ * Highlight of entries in the completion popup on mouse pointing occurs
+   only when Scipad has focus
+ * Fixed: no completion was found in the Open source of... dialog when
+   current language scheme was not "Scilab"
+ * Changed <= into < for the upper bound of test on selection in proc
+   tkdndbind for the <Drop> event - same change for the lower bound -
+   this allows to drop a selection at one of the boundaries of the selection
+ * The mouse cursor is restored to its default appearance when the user
+   creates a new buffer through Control-n (it was a hand in the new buffer
+   if Control-n was hit when the mouse was over the selection)
+ * Better regexp for numbers colorization: doesn't match e123 or d1, and
+   includes the possible leading decimal dot in the match
+ * Continued lines (..) are handled for quoted strings colorization, even
+   if they contain comments - Colorization for comments and quoted strings
+   is interlaced and has been completely rewritten using regexps and making
+   no use of the rem2 tag anymore
+ * Line number finding in functions and logical line number identification
+   support:
+    - Mixed continued lines (i.e. single continued lines splitted in many
+      buffer lines, some of them containing dots and some other not)
+    - Nested brackets or braces in continued lines
+    - Single quote quoted bracket, e.g. mprintf('[');  this is no longer
+      detected as a continued line if single quotes strings are not
+      colorized, thus producing a correct logical line number
+ * Colorization of the buffer is done in the background if the entire buffer
+   needs recolorization. Scipad is immediately responsive on File/Open,
+   File/Revert to, and Scheme change, regardless of the buffer size
+ * version --> 5.56

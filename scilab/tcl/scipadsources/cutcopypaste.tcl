@@ -16,9 +16,11 @@ proc deletetext {} {
     } else {
         $textareacur delete "insert" "insert +1c"
     }
-    set  i1 [$textareacur index insert]
-    colorize $textareacur [$textareacur index "$i1 wordstart"] \
-                          [$textareacur index "$i1 wordend"]
+    set i1 [$textareacur index insert]
+    set uplimit [getstartofcolorization $textareacur $i1]
+    set dnlimit [getendofcolorization $textareacur $i1]
+    colorize $textareacur [$textareacur index $uplimit] \
+                          [$textareacur index $dnlimit]
     reshape_bp
     $textareacur see insert
     # update menues contextually
@@ -43,9 +45,11 @@ proc backspacetext {} {
     } else {
         $textareacur delete "insert-1c" "insert"
     }
-    set  i1 [$textareacur index insert]
-    colorize $textareacur [$textareacur index "$i1 wordstart"] \
-                          [$textareacur index "$i1 wordend"]
+    set i1 [$textareacur index insert]
+    set uplimit [getstartofcolorization $textareacur $i1]
+    set dnlimit [getendofcolorization $textareacur $i1]
+    colorize $textareacur [$textareacur index $uplimit] \
+                          [$textareacur index $dnlimit]
     reshape_bp
     $textareacur see insert
     # update menues contextually
@@ -59,9 +63,11 @@ proc cuttext {} {
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
     tk_textCut $textareacur
-    set  i1 [$textareacur index insert]
-    colorize $textareacur [$textareacur index "$i1 linestart"] \
-                          [$textareacur index "$i1 lineend"]
+    set i1 [$textareacur index insert]
+    set uplimit [getstartofcolorization $textareacur $i1]
+    set dnlimit [getendofcolorization $textareacur $i1]
+    colorize $textareacur [$textareacur index $uplimit] \
+                          [$textareacur index $dnlimit]
     selection clear
     reshape_bp
     $textareacur see insert
@@ -89,11 +95,13 @@ proc pastetext {} {
     catch {
         $textareacur delete sel.first sel.last
     }
-    set i1  [$textareacur index insert]
+    set i1 [$textareacur index insert]
     tk_textPaste $textareacur 
     set  i2 [$textareacur index insert]
-    colorize $textareacur [$textareacur index "$i1 wordstart"] \
-                          [$textareacur index "$i2 wordend"]
+    set uplimit [getstartofcolorization $textareacur $i1]
+    set dnlimit [getendofcolorization $textareacur $i2]
+    colorize $textareacur [$textareacur index $uplimit] \
+                          [$textareacur index $dnlimit]
     reshape_bp
     $textareacur see insert
     if {$oldSeparator} {

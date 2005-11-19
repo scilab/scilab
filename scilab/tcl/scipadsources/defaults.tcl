@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.55"
+set version "Version 5.56"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -125,3 +125,7 @@ set tileprocalreadyrunning false
 # variable used to prevent launching simultaneously multiple searches in files
 # during search in file, the other functionalities of Scipad are however enabled
 set searchinfilesalreadyrunning 0
+
+# some commands cannot be executed while colorization is in progress
+# this guard variable prevents them from being executed in such a case
+set nbcolorizationinprogress 0

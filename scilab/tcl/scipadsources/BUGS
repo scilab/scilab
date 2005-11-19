@@ -3,17 +3,15 @@ SCIPAD BUGS AND WISHES LIST
 Bugs:
 -----
 -colorization:
- . the regexp for the new class "numbers" is not perfect, e123 or d1 are
-   caught as number
- . multiple matrix transposes in the same line are colorized as textquoted, 
-   e.g. A=A'+B'
- . line-breaks (..) are not handled for quoted strings colorization
+ . multiple matrix transposes in the same line or in continued lines are
+   colorized as textquoted, e.g.
+     A=A'+B'
+     A=A'+..
+       B'
 
 -issues related with non colorizing single quoted text:
-  . code lines such as mprintf("%s",'this is a function') brakes the line
+  . code lines such as mprintf("%s",'this is a function') break the line
     number counting in functions if not properly colorized as textquoted.
-  . mprintf('['); is detected as a continued line, and this results in
-    wrong line number in function displayed in statusind2
 
 -Ctrl-v copies also inside the find/replace/filename dialogs, but does not
  replace an existing selection. Problem of setting up the proper bindings,
@@ -24,31 +22,6 @@ Bugs:
     buffer selection is); it is cut by ctrl-x, copied by ctrl-c, but it is
     NOT replaced by the clipboard issuing Ctrl-v (instead, the clipboard is
     inserted at the cursor position)
-
--Line number finding in functions may provide wrong results in some pathological
- cases of continued lines, namely:
- . "Mixed" continued lines, i.e. a single cont line splitted in many buffer lines,
-   some of them containing dots and some other not.
-     Example:
-        a1={4 ; 5 ;...
-            7
-            6};..
-            disp(a1)
-     More tricky example:
-        a1=[1;...
-            6]
-        a2=[ 6; //note that the comment here is legal
-             7
-            61
-             8]
-        Line numbers when moving the cursor in a1 are correct.
-        But line numbers when moving the cursor in a2 are not correct.
-        This is a case of mixed continued lines: some with dots some without,
-        in the same file but in different variable declarations
- . Nested brackets or braces in continued lines.
-     Example:
-        a=[[1,2];
-          [3,4]]
 
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
@@ -78,6 +51,10 @@ Bugs:
 -Dnd bug: When the NumLock key is pressed, ctrl dnd does not work on Linux
  (but works on Windows)
 
+-On Linux (not on Windows), Tcl/Tk errors can pop up when quickly doing
+ something in Scipad before launch has finished (on Windows, you can't do
+ anything before end of Scipad code sourcing)
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -85,7 +62,8 @@ Old bugs/whishes which have been hacked but could have been done better:
 -(the text cursor disappears every now and then while moving it around 
   with the arrows, known bug #865 of the linux scilab-tcl combination)
   -- now hacked:  the cursor is always on and red but does not blink,
-    for linux (normal blinking for windows).
+    for linux (the cursor does neither blink on windows for other reasons,
+    see http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435).
 
 -the window geometry is now managed in pixels. This is fine for restoring
  exactly the same window geometry as in the previous session, but loses
@@ -175,8 +153,7 @@ Wishes:
 -Blink (single or double) quotes. Must find a way to distinguish between 
  opening and closing quotes in proc blinkbrace. This is not that easy since
  these are the same character, therefore the direction to search is difficult
- to determine. Note that there is currently an old proc insquote that is
- never called and could be removed from the Scipad source
+ to determine.
 
 -'Matlab' colorization scheme for .m files
 
@@ -185,7 +162,7 @@ Wishes:
  db_, in order to reduce the risk of the use of such variable names in Scilab
  for another purpose, e.g. in the function to be debugged. We could use more
  sophisticated things to be absolutely sure that the variable names 
- instantiated by Scipad in not used in Scilab, so that conflicts would 
+ instantiated by Scipad are not used in Scilab, so that conflicts would 
  always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used.
 
@@ -194,6 +171,8 @@ Wishes:
  some sort of left grey band in which some more information could be
  put (breakpoint pink dot, yellow arrow to show the next instruction
  to be executed like in Visual C++ or Matlab, or wrapped lines sign).
+
+-Highlight continued (in the Scilab acception) lines
 
 -Block selection, copy/paste, move with dnd, indent/unindent, comment
  and uncomment. See last snaphot in http://www.winedt.com/ for an
@@ -234,22 +213,20 @@ Wishes:
  current active pane only, creating peer widgets as necessary
  -- Waiting for Scilab's adoption of 8.5, maybe Scipad could implement it
     in advance in order to be ready for the transition to 8.5 and make use
-    of its functions without delay. Something like
-        if { [package vcompare [package present Tcl] 8.5] >= 0 } {
-          # we use 8.5 or greater
-        } else {
-          # this is for 8.4
-        }
-    could be used to make Scipad work both with 8.4 and 8.5 (and use peer
-    widgets of 8.5)
+    of its functions without delay. A global variable Tk85 already exists
+    in Scipad for similar purposes and could be used to make Scipad work
+    both with 8.4 and 8.5 (and use peer widgets of 8.5)
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
- drawbacks : big big implementation work...
+ drawbacks : big big implementation work if the built-in undo of the text
+             widget was abandoned, but maybe it could be feasible to detect
+             changes in the undo stacks of more than one buffer at the same
+             time - still tricky...
 
 -minimal Scipad wm size: Probably it would be wise to make the minimum
  dependent on the number of tiles, so that all the features (menu, title,
- textbuffer, scrollbars, remain visible) - take fontsize into account
+ textbuffer, scrollbars...) remain visible - take fontsize into account
  warning: updating minsize on file open or dnd could lead to a very large
  window
 
@@ -262,10 +239,11 @@ Wishes:
         included in Tk and will be part of Tk 8.5.
   . Search among tagged text only, e.g. among comments (must be consistent
     with the language scheme)
-  . Popup menu providing a list of ready cooked regepxs
+  . Popup menu providing a list of ready cooked regexps
   . Multiline find/replace and find in files (must wait Tk8.5 since .text
-    search searches on a per line basis) - Automatically expand the entry
-    widgets size according to the length of what is pasted inside them
+    search searches on a per line basis - or use regexp instead of .text
+    search, big work...) - Automatically expand the entry widgets size
+    according to the length of what is pasted inside them
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:
@@ -286,3 +264,5 @@ Wishes:
 -Perhaps rethink how to sort out the duplication of "Open", "Open in
  new", "Open Source of.." and "Open function source". Four entries
  scattered in the same menu starts to be much...
+
+-include profiling into the debugger

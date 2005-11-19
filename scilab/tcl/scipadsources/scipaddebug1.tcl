@@ -52,7 +52,7 @@ if {[catch {ScilabEval ";"}] != 0} {
 
 
 #############
-# Debug settings for the new debugger commands (Run to cursor and Break)
+# Debug settings for the new Scipad debugger commands (Run to cursor and Break)
 
 # Committed versions should have this attribute set to false
 # In that case, the Run to Cursor and Break commands are hidden
@@ -96,6 +96,20 @@ if {0} {
 }
 
 # End of useful binding triggering a message box
+#############
+
+
+#############
+# A useful binding triggering a command
+
+if {0} {
+    bind all <Control-equal> { \
+        puts [time {colorizestringsandcomments_sd [gettextareacur] 1.0 end}] ; \
+        showinfo "colorize done (strings+comments)"
+    }
+}
+
+# End of useful binding triggering a command
 #############
 
 

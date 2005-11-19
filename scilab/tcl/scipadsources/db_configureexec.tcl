@@ -3,6 +3,9 @@ proc configurefoo_bp {} {
     global listboxinput listboxinputval listboxscrolly spin buttonAddc
     global funnames funvars funvarsvals funnameargs
     global menuFont textFont
+
+    if {[colorizationinprogress]} {return}
+
     set conf $pad.conf
     catch {destroy $conf}
     toplevel $conf

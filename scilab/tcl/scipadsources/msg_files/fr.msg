@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.51
+# in sync at least with v5.56
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -25,6 +25,10 @@
 
 # colorize.tcl
 ::msgcat::mcset fr "Wait seconds while recolorizing file" "Patientez un instant le temps de la colorisation"
+::msgcat::mcset fr "You can't do that while colorization is in progress.\
+                    Please try again when finished." \
+                   "Action interdite durant la colorisation. Veuillez réessayer plus tard."
+::msgcat::mcset fr "Command forbidden during colorization" "Commande interdite durant la colorisation"
 
 
 # completion.tcl

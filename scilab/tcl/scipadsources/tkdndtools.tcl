@@ -24,8 +24,8 @@ proc tkdndbind {w} {
             if {$sourcetextarea == "%W"} {
                 # drag and drop in the same Scipad buffer
                 if {[%W tag ranges sel] != ""} {
-                    if { ! ([%W compare sel.first <= [%W index @%x,%y]] && \
-                            [%W compare [%W index @%x,%y] <= sel.last] ) } {
+                    if { ! ([%W compare sel.first < [%W index @%x,%y]] && \
+                            [%W compare [%W index @%x,%y] < sel.last] ) } {
                         if {"%A" == "copy"} {
                             %W tag remove sel 0.0 end
                         }

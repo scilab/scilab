@@ -1,4 +1,4 @@
-proc getcompletions {tok} {
+proc getcompletions {tok {mode ""}} {
 # return the completions for $tok, i.e. the list of keywords
 # that start with $tok
 # output is a list of elements being themselves lists of 2 elements
@@ -15,7 +15,13 @@ proc getcompletions {tok} {
     set compl [list ]
 
     # recover the tags list from the mode
-    set mode $listoffile("[gettextareacur]",language)
+    if {$mode == ""} {
+        set mode $listoffile("[gettextareacur]",language)
+    } else {
+        # currently, mode can only be "scilab" to have the completion
+        # feature, therefore the caller of proc getcompletions must have
+        # given "scilab" to mode
+    }
     regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
  
     foreach tag $tags {
@@ -306,7 +312,11 @@ proc selectcompletionnumber {w compl cn} {
 }
 
 proc selectmouseoverlaycompletion {w x y compl popw poph} {
-    completionmouseselect $w $x $y $compl $popw $poph
+    global pad
+    # highlight on mouse movement only when Scipad has focus
+    if {[focus -displayof $pad] != ""} {
+        completionmouseselect $w $x $y $compl $popw $poph
+    }
 }
 
 proc completewithmouseselected {w x y compl ind ta popw poph} {
@@ -347,7 +357,7 @@ proc completionmouseselect {w x y compl popw poph {ind ""} {ta ""}} {
             # completewithmouseselected
             completewith [lindex [lindex $compl $currentselcompl] 1] $ind $ta
             destroy $pad.popcompl
-            focus [gettextareacur]
+            focus $ta
         } else {
             # selectmouseoverlaycompletion - nothing special to do
         }
@@ -356,7 +366,8 @@ proc completionmouseselect {w x y compl popw poph {ind ""} {ta ""}} {
         if {$ind != ""} {
             # completewithmouseselected
             # user clicked outside of the popup
-            destroy $w ; focus $ta
+            destroy $w
+            focus $ta
         } else {
             # selectmouseoverlaycompletion - nothing special to do
         }
@@ -418,6 +429,7 @@ proc popup_completions_again_KP {w character keysym modstate} {
         # bit 1 set (LSB) if the shift key is pressed
         puttext [gettextareacur] $character
         popup_completions
+
     } else {
         # do nothing, key combination not wanted during completion
     }

@@ -22,8 +22,12 @@ if {$debuglog} {
     TextStyles scipadindent managescroll \
     schememenus setdbmenuentriesstates_bp getdbstate pbind \
     Button1BindTextArea IsBufferEditable changedmodified \
-    gettextareacur settextareacur countcontlines reshape_bp colorize remalltags \
+    gettextareacur settextareacur countcontlines reshape_bp \
     undoredo srevert commonPrefix \
+    iscontinuedline getstartofcontline getendofcontline \
+    colorize remalltags \
+    colorizestringsandcomments_sd colorizestringsandcomments \
+    backgroundcolorize getstartofcolorization getendofcolorization \
     ]
 
     # for each Scipad proc not excluded in the list above, this surrounds the existing

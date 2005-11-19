@@ -118,7 +118,6 @@ proc puttext {w text} {
         $w configure -autoseparators 0 ;# so only one undo is required to undo text replacement
         $w edit separator
     }
-    set rem 0
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length [gettextareacur]]-1]] == [gettextareacur]} {
         if [catch {selection get -selection PRIMARY} sel] {
@@ -131,8 +130,10 @@ proc puttext {w text} {
     set i1 [$w index insert]
     $w insert insert $text
     set i2 [$w index insert]
-    if {$i1 != $i2 || $rem} {
-        colorize $w $i1 [$w index "$i2+1l linestart"]
+    if {$i1 != $i2} {
+        set uplimit [getstartofcolorization $w $i1]
+        set dnlimit [getendofcolorization $w $i2]
+        colorize $w $uplimit $dnlimit
     }
     reshape_bp
     $w see insert
