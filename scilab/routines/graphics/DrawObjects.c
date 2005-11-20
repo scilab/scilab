@@ -9417,6 +9417,10 @@ sciDrawObj (sciPointObj * pobj)
         {   
           int font_[2], cur_font_[2];
           int rect1[4], verb=0;
+          int xm[4], ym[4],n=4;
+          double cosangle = cos((360-anglestr)*M_PI/180);
+          double sinangle = sin((360-anglestr)*M_PI/180);
+          int close=1;
           
           C2F(dr1)("xget","font",&verb,font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
           
@@ -9460,10 +9464,7 @@ sciDrawObj (sciPointObj * pobj)
 	    
             
 /* 	    char str[2] = "xv"/\*,locstr*\/; */
-          int xm[4], ym[4],n=4;
-          double cosangle = cos((360-anglestr)*M_PI/180);
-          double sinangle = sin((360-anglestr)*M_PI/180);
-          int close=1;
+          
 		
           x[0] = sciGetBackground(pobj);
 		

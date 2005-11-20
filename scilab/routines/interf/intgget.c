@@ -1329,8 +1329,9 @@ int sciGet(sciPointObj *pobj,char *marker)
     /*get the bounding rect of the text*/
     if (   sciGetEntityType( pobj ) == SCI_LABEL )
     {
+    	sciLabel * ppLabel = pLABEL_FEATURE( pobj ) ;
       CreateVar( Rhs + 1, "d", &numrow, &numcol, &outindex ) ;
-      sciLabel * ppLabel = pLABEL_FEATURE( pobj ) ;
+      
     
       for ( i = 0 ; i < numrow * numcol ; i++ )
       {
@@ -1339,8 +1340,9 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
     else if ( sciGetEntityType( pobj ) == SCI_TEXT )
     {
+    	sciText * ppText = pTEXT_FEATURE( pobj ) ;
       CreateVar( Rhs + 1, "d", &numrow, &numcol, &outindex ) ;
-      sciText * ppText = pTEXT_FEATURE( pobj ) ;
+
       
       for ( i = 0 ; i < numrow * numcol ; i++ )
       {
