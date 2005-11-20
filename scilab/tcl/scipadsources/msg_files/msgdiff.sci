@@ -25,14 +25,25 @@
 //   report=msgdiff(master_msgfile_path,derived_msgfile_path);
 //   mprintf("%s\n",report)
 //
+//   msgdiff(master_msgfile_path)  just reports syntax warnings and
+//         generates a reformatted rev file
+//
+//  known bugs: 
+//   -unquoted label names are wrabbed by quotes in the rev file (apparently
+//    harmless
+//   -Quoted strings ending by \ (there is one such occurrence in fr.msg)
+//    confuse the parser, the result has a " too much
 //
 /////////////////////////////////////////////////////////////
 
 function report=msgdiff(msgfile1,msgfile2)
-  disp("Parsing file "+msgfile1+", be patient...")
   [M1_1,M2_1,after1,lastcomment1]=msglist(msgfile1);
-  disp("Parsing file "+msgfile2+", be patient...")
-  [M1_2,M2_2,after2,lastcomment2]=msglist(msgfile2);
+  if exists("msgfile2","local") then
+    [M1_2,M2_2,after2,lastcomment2]=msglist(msgfile2);
+  else
+    msgfile2=msgfile1
+    M1_2=M1_1; M2_2=M2_1; after2=after1; lastcomment2=lastcomment1;
+  end
   lang2=basename(msgfile2)
 //find missing entries and write the result file
   disp("Finding missing entries in "+msgfile2+" and writing the result...")
@@ -87,6 +98,7 @@ endfunction
 
 
 function [M1,M2,after,lastcomment]=msglist(msgfile)
+  disp("Parsing file "+msgfile+", be patient...")
   lang=basename(msgfile)
 //read the file
   M=""; i=1
