@@ -1,4 +1,8 @@
 function x=%hm_fft(x,flag)
+rhs=argn(2)
+if rhs == 1 then
+  flag = -1
+end
 dims=matrix(x.dims,-1,1)
 v=matrix(x.entries,-1,1);
 n=size(dims,'*')
