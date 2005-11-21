@@ -15,6 +15,7 @@
 	BOOL CallWindowsShell(char *command,BOOL WaitInput);
 	char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *NumberOfLines);
 #endif
+int GetNumberOfLines(char *lines);
 /*-----------------------------------------------------------------------------------*/
 #define ErrMsgDos "Only for Windows 2k and more."
 /*-----------------------------------------------------------------------------------*/
@@ -28,7 +29,6 @@ int C2F(intdos) _PARAMS((char *fname))
 	char *CommandLine=NULL;
 	
 	int OS=0;
-	
 
 	CheckRhs(1,1);
 	CheckLhs(1,2);
@@ -99,7 +99,15 @@ int C2F(intdos) _PARAMS((char *fname))
 
 						m1=NumberOfLines;
 						n1=1;
-						CreateVarFromPtr(Rhs+2, "S",&m1, &n1, Result);
+						if ( (m1==1) && (Result[0]==NULL) )
+						{
+							//CreateVarFromPtr(Rhs+2, "S",&m1, &n1, Result);
+							m1=0;
+							n1=0;
+							l1=0;
+							CreateVar(Rhs+2,"d",  &m1, &n1, &l1);
+						}
+						else CreateVarFromPtr(Rhs+2, "S",&m1, &n1, Result);
 						LhsVar(2)=Rhs+2;
 					}
 		#else
@@ -220,16 +228,16 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 #if WIN32
 char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *NumberOfLines)
 {
-	#define BUFSIZE 1024
+	#define BUFSIZE 4096
 	char shellCmd[_MAX_PATH];
 	char *CmdLine=NULL;
 	HANDLE hChildStdinRd= INVALID_HANDLE_VALUE;
 	HANDLE hChildStdinWr= INVALID_HANDLE_VALUE;
 	HANDLE hChildStdinWrDup= INVALID_HANDLE_VALUE;
-  HANDLE hChildStdoutRd= INVALID_HANDLE_VALUE;
+	HANDLE hChildStdoutRd= INVALID_HANDLE_VALUE;
 	HANDLE hChildStdoutWr= INVALID_HANDLE_VALUE;
 	HANDLE hChildStdoutRdDup= INVALID_HANDLE_VALUE;
-  HANDLE hInputFile= INVALID_HANDLE_VALUE;
+	HANDLE hInputFile= INVALID_HANDLE_VALUE;
 	HANDLE hSaveStdin= INVALID_HANDLE_VALUE;
 	HANDLE hSaveStdout= INVALID_HANDLE_VALUE; 
 
@@ -245,7 +253,7 @@ char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *
 	char *Output=NULL;
 	char *OEMstring=NULL;
 	char *op=NULL;
-	
+
 	char *line=NULL;
 	char *CopyOutput=NULL;
 
@@ -266,15 +274,15 @@ char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *
 	SetStdHandle(STD_OUTPUT_HANDLE, hChildStdoutWr);
 
 	fSuccess = DuplicateHandle(GetCurrentProcess(), hChildStdoutRd,
-		GetCurrentProcess(), &hChildStdoutRdDup , 0,
-		FALSE,
-		DUPLICATE_SAME_ACCESS);
+													 GetCurrentProcess(), &hChildStdoutRdDup , 0,
+													 FALSE,
+													 DUPLICATE_SAME_ACCESS);
 
 
 	CloseHandle(hChildStdoutRd);
-	
+
 	ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
-	
+
 	ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
 	siStartInfo.cb = sizeof(STARTUPINFO); 
 	siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
@@ -287,7 +295,7 @@ char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *
 	{
 		siStartInfo.hStdInput=NULL;
 	}
-	
+
 	siStartInfo.hStdOutput = hChildStdoutWr;
 	siStartInfo.hStdError = hChildStdoutWr;
 
@@ -306,7 +314,6 @@ char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *
 		return OuputStrings;
 	}
 	else if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
-
 
 	SetStdHandle(STD_OUTPUT_HANDLE, hSaveStdout);
 	CloseHandle(hChildStdoutWr); 
@@ -328,41 +335,37 @@ char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *
 	} 
 	*op = '\0';
 
-	OEMstring=Output;
-	Output=NULL;
-	Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
-	OemToChar(OEMstring,Output);
-	if (OEMstring) {FREE(OEMstring);OEMstring=NULL;}
+	*NumberOfLines=GetNumberOfLines(Output);
 
-	CopyOutput=(char*)MALLOC((strlen(Output)+1)*sizeof(char));
-	strcpy(CopyOutput,Output);
-
-
-	i=0;
-	for (line=strtok(CopyOutput,"\n");line;line=strtok(NULL,"\n"))
+	if (IsWindowInterface())
 	{
-		i++;
+		OEMstring=(char*)MALLOC((strlen(Output)+1)*sizeof(char));
+		sprintf(OEMstring,"%s",Output);
+		OemToChar(OEMstring,Output);
+		if (OEMstring) {FREE(OEMstring); OEMstring=NULL;}
 	}
-	*NumberOfLines=i;
-	if (CopyOutput) {FREE(CopyOutput);CopyOutput=NULL;}
-
-	if (*NumberOfLines)
+	
+	if(*NumberOfLines)
 	{
 		OuputStrings=(char**)MALLOC((*NumberOfLines)*sizeof(char**));
-
 		i=0;
 		line=NULL;
-		for (line=strtok(Output,"\n");line;line=strtok(NULL,"\n"))
+		line=strtok(Output,"\n");
+
+		while(line)
 		{
-			if (line[strlen(line)-1] == '\r') line[strlen(line)-1] = 0;
-			OuputStrings[i]=MALLOC((strlen(line)+1)*sizeof(char));
-			sprintf(OuputStrings[i],"%s",line);
-			if (line) {FREE(line);line=NULL;}
+			char *TmpOuputStrings=NULL;
+			TmpOuputStrings=MALLOC((strlen(line)+1)*sizeof(char));
+			sprintf(TmpOuputStrings,"%s",line);
+			if (TmpOuputStrings[strlen(TmpOuputStrings)-1] == '\r') TmpOuputStrings[strlen(TmpOuputStrings)-1] = 0;
+			OuputStrings[i]=TmpOuputStrings;
+			line=strtok(NULL,"\n");
 			i++;
 		}
 	}
 
-	if (op) {FREE(op);op=NULL;}
+	if (Output) {FREE(Output); Output=NULL;}
+
 
 	if (GetExitCodeProcess(piProcInfo.hProcess,&ExitCode))
 	{
@@ -392,8 +395,22 @@ char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *
 		}
 	}
 
-	return OuputStrings;
-
+return OuputStrings;
 }
 #endif
+/*-----------------------------------------------------------------------------------*/
+int GetNumberOfLines(char *lines)
+{
+	int NumberOfLines=0;
+	if (lines)
+	{
+		int i=0;
+		for (i=0;i<(int)strlen(lines);i++)
+		{
+			if (lines[i]=='\n') NumberOfLines++;
+		}
+		if (NumberOfLines==0) NumberOfLines=1;
+	}
+	return NumberOfLines;
+}
 /*-----------------------------------------------------------------------------------*/
