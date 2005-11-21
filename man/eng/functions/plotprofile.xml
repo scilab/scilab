@@ -4,8 +4,9 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>plotprofile</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>july 2000</DATE>
-  <SHORT_DESCRIPTION name="plotprofile"> extracts and displays execution profiles of a Scilab function</SHORT_DESCRIPTION>
+  <DATE>Nov 2005</DATE>
+  <SHORT_DESCRIPTION name="plotprofile"> extracts and displays execution profiles
+                     of a Scilab function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plotprofile(fun)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,32 +15,34 @@
       <PARAM_ITEM>
         <PARAM_NAME>fun</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a Scilab function</SP>
+          <SP>: a Scilab compiled function, or a function name (string), or an array of
+                function names</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    To use <VERB>plotprofile</VERB> the Scilab function must have been prepared for
+    To use <VERB>plotprofile</VERB>, the Scilab function must have been prepared for
     profiling (see getf).</P>
     <P>
-    For such functions, When such a function is executed the systems
-    counts how many time each line is executed and how may cpu time is
-    spend for each line execution. These data are stored within the
-    function data structure.  The <VERB>plotprofile</VERB> in an interactive
-    function which displays this results in a graphic window. When a line
-    is clicked text of the function is displayed with the selected line
-    hilited.</P>
+    When such a function is executed, the system
+    counts how many times each line is executed and how much cpu time is
+    spent executing each line. This data is stored within the
+    function data structure. The function <VERB>plotprofile</VERB> in an interactive
+    command which displays this results in a graphic window. When a line
+    is clicked, the source of the function is displayed with the selected line
+    highlighted.</P>
     <P>
     NOTE: you have to click on the &quot;Exit&quot; item in the graphics windows to
     exit from &quot;plotprofile&quot;.</P>
     <P>
-    Function text is rebuild with <VERB>fun2string</VERB>.</P>
+    The function code is regenerated with <VERB>fun2string</VERB> and dumped into
+    a temporary file.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-//define function and prepare it for profiling
+//define a function and prepare it for profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
                  'else'
