@@ -1707,3 +1707,15 @@ Francois VOGEL, 19/11/05
    needs recolorization. Scipad is immediately responsive on File/Open,
    File/Revert to, and Scheme change, regardless of the buffer size
  * version --> 5.56
+
+Francois VOGEL, 21/11/05
+ * Fixed a bug in the regexp of proc checkarglist (how come it worked before?)
+   and improved it to better fit what is allowed by the Scilab parser
+ * Fixed a bug in proc getstartofcontline, that produced wrong recolorization
+   of continued strings starting at the first line of the buffer
+ * Joining of continued lines in Ctrl-y Execselection is now through a
+   semicolon
+ * Colorization of multiple matrix transposes in the same logical line is
+   correct (i.e. no more as textquoted), the logical line extending on a
+   single physical line or not. Example: A=A'+B'
+ * version --> 5.57

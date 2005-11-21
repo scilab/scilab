@@ -184,10 +184,13 @@ proc getstartofcontline {textarea ind} {
 #    return index linestart of the continued line containing $ind
 # otherwise
 #    return "$ind linestart"
-    set nclup 0
+    set nclup 1
     while {[iscontinuedline $textarea "$ind - $nclup l"]} {
         incr nclup
         if {[$textarea compare "$ind - $nclup l linestart" == "1.0"]} {
+            if {[iscontinuedline $textarea "$ind - $nclup l"]} {
+                incr nclup
+            }
             break
         }
     }

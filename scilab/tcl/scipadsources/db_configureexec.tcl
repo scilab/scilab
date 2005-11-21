@@ -274,16 +274,22 @@ proc checkarglist {funname} {
     # In Scilab, a function name can contain any of these special
     # characters: %_#!?$
     # They can be anywhere in the function name, but % can only appear
-    # as the first character of the name
+    # as the first character of the name (this last condition is not checked
+    # in the regexp below, this is left to the Scilab parser)
     # Since word characters in Tcl are [[:alnum:]_], the \m character-entry
     # escape that specifies to match at the beginning of a word cannot be
     # used (same for \M, i.e. end of word)
     # A more complex regexp pattern shall therefore be used
-    set pat "\\mfunction\\M\[\[:blank:\]\]+((\\\[(\[\\w%_#!\?$,\]|\[\[:blank:\]\])*\\\])|(\[\\w%_#!\?$\]+))?\[\[:blank:\]\]*=?\[\[:blank:\]\]*($escfunname)\[\[:blank:\]\]*((;|(\\((\[\\w%_#!\?$,\]|\[\[:blank:\]\])*\\))))|$"
+    set pat1 {\mfunction\M[[:blank:]]+((\[([\w%_#!?$,[:blank:]])*\])|([\w%_#!?$]+))?[[:blank:]]*=?[[:blank:]]*(}
+    set pat2 {)[[:blank:]]*(()$|;|(//.*)|(\(([\w%_#!?$,[:blank:]])*\)(;|([[:blank:]]*//.*)|()$)))}
+    set pat "$pat1$escfunname$pat2"
 
     # In Tcl<8.5, this does not match multiple lines. This is a Tcl/Tk bug.
     # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
-    # <TODO>: once using 8.5, the messageBox below can be removed
+    # <TODO>: workaround: use regexp instead of $textarea search to overcome
+    #         the \n issue, but then proc whichfun should also return a
+    #         continued line
+    # <TODO>: once using 8.5 or regexp, the messageBox below can be removed
 
     set orderOK "false"
     set found "false"

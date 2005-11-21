@@ -226,17 +226,23 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
         # made here to detect unbalanced quotes by their type
 
         # regular expression matching a simple string on a (non-continued) line
-        set simpstrRE {(["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
+        # actually the character just before the string is part of the match
+        # this allows for removing incorrect colorization of multiple matrix
+        # transpose on a single line
+        set simpstrRE {((?:[^\w_#!?$]|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
 
         # regular expression matching a continued string possibly ending with a
         # comment, if this string was not already matched by $simpstrRE
-        set contstrRE {(["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
+        # actually the character just before the string is part of the match
+        # this allows for removing incorrect colorization of multiple matrix
+        # transpose on a single line
+        set contstrRE {((?:[^\w_#!?$]|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
 
     } else {
         # double quotes only
 
-        set simpstrRE {("[^"\.\n]*(?:\.?[^"\.\n]*)+")}
-        set contstrRE {("(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
+        set simpstrRE {((?:[^\w_#!?$]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
+        set contstrRE {((?:[^\w_#!?$]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
     }
 
     # regular expression matching a comment outside of a continued string
@@ -269,15 +275,19 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
         set ind [$w index "last + $i c"]
         # $ind contains now the start index for a not yet colorized match
         # with either:
-        #   - a simple string without continuation dots, e.g.:
-        #      "there is no co.mm.ent//in this str.ing"
-        #   - a string formed by continued lines, possibly with embedded comments, e.g.:
-        #      "a continued ..  // this part is a comment
-        #      line with 1 comment"
-        #   - a regular comment outside of a string declaration, e.g.:
-        #      // there is no string in this "tricky" comment
+        #   1 - a simple string without continuation dots, e.g.:
+        #         "there is no co.mm.ent//in this str.ing"
+        #   2 - a string formed by continued lines, possibly with embedded
+        #       comments, e.g.:
+        #         "a continued ..  // this part is a comment
+        #          line with 1 comment"
+        #   3 - a regular comment outside of a string declaration, e.g.:
+        #         // there is no string in this "tricky" comment
         # the matching order is mandatorily the order above as coded
         # in the regular expression - this order *must* be followed below
+        # cases 1 and 2: the match starts at the character before the
+        # opening quote, or at an empty string before the quote
+        # case 3: the match starts at the first slash indicating a comment
 
         # length of the match
         set num [expr $j - $i + 1]
@@ -288,6 +298,13 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
             foreach {i1 j1} $simpstr {}
             if {$i == $i1 && $j == $j1} {
                 # we're really in the first case
+                if {[$w compare $ind != last]} {
+                    # in this case we did not match at the beginning of the
+                    # string but one character before the opening quote
+                    set ind "$ind + 1 c"
+                } else {
+                    # we matched at the opening quote - no adjustment to $ind
+                }
                 $w mark set last "$ind +$num c"
                 # textquoted deletes any other tag
                 remalltags $w $ind last
@@ -306,6 +323,13 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
                 # we're really in the second case
                 # the comment part must be separated from the string part, and
                 # this has to be done for each continued line but the last one
+                if {[$w compare $ind != last]} {
+                    # in this case we did not match at the beginning of the
+                    # string but one character before the opening quote
+                    set ind "$ind + 1 c"
+                } else {
+                    # we matched at the opening quote - no adjustment to $ind
+                }
                 $w mark set last "$ind +$num c"
                 set subtext [$w get $ind last]
                 set strpart {}
@@ -362,7 +386,8 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
             tk_messageBox -message "Colorization algorithm fooled!\n\
                 Position is $ind and regexp match length is $num.\n\
                 Text at this place is:\n[$w get $ind "$ind + $num c"]\n\
-                Please report to the Bugzilla (include your current file)."
+                Please report to the Bugzilla (include your current file)." \
+                -icon warning -title "Colorization error"
             # this is to avoid an endless loop
             $w mark set last "$ind + $num c"
         }

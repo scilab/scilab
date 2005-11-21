@@ -2,13 +2,6 @@ SCIPAD BUGS AND WISHES LIST
 
 Bugs:
 -----
--colorization:
- . multiple matrix transposes in the same line or in continued lines are
-   colorized as textquoted, e.g.
-     A=A'+B'
-     A=A'+..
-       B'
-
 -issues related with non colorizing single quoted text:
   . code lines such as mprintf("%s",'this is a function') break the line
     number counting in functions if not properly colorized as textquoted.

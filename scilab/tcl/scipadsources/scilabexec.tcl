@@ -71,8 +71,8 @@ proc execselection {} {
                 #join continued lines
                 regsub -all -line "\\.{2,} *\\n" $f2 "" f3
                 unset f2
-                #join multilines with ","
-                regsub -all -line "\\n" $f3 "," comm
+                #join multilines with ";"
+                regsub -all -line "\\n" $f3 ";" comm
                 unset f3
                 # last hack - add a final endfunction if there is an unterminated
                 # function in the selection: TODO (try to involve proc whichfun)
