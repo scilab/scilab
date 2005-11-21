@@ -1,20 +1,45 @@
 function h=%h_load(fd)
 //Author S. Steer Sept 2004, Copyright INRIA
+  global init_immediate_drawing
+  init_immediate_drawing = 0;
+  
   if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'c',fd)
   immediate_drawing="";
-  [h,immediate_drawing] = load_graphichandle(fd)
+  
+  h=[];
+  
+  if is_higher_than([3 1 0 1]) then // case 3 1 0 2 and after
+    hsize = mget(2,'c',fd)
+    for i=1:hsize(1)
+      for j=1:hsize(2)
+	[htmp,immediate_drawing] = load_graphichandle(fd)
+	h = [h htmp];
+      end
+    end
+  else
+    [h,immediate_drawing] = load_graphichandle(fd) // a single handle only can be loaded before 3 1 0 2
+  end
+  
   f=gcf(); 
   f.immediate_drawing = immediate_drawing;
+  
+  clearglobal init_immediate_drawing
+  clear init_immediate_drawing
+  
 endfunction
 
 function [h,immediate_drawing] = load_graphichandle(fd)
 //Author S. Steer Sept 2004, Copyright INRIA
+  global init_immediate_drawing
   typ=ascii(mget(mget(1,'c',fd),'c',fd))
   if typ<>'Figure'
     f=gcf();
-    immediate_drawing = f.immediate_drawing;
-    f.immediate_drawing ='off';
+    if init_immediate_drawing == 0
+      immediate_drawing = f.immediate_drawing;
+      f.immediate_drawing ='off';
+      init_immediate_drawing = 1;
+    end
   end
   select typ
   case "Figure"
@@ -341,6 +366,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
     load_user_data(fd)
+  
   case "Plot3d" then
     visible=toggle(mget(1,'c',fd))
     surface_mode   = toggle(mget(1,'c',fd))

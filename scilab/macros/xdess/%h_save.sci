@@ -1,8 +1,22 @@
 function %h_save(h,fd)
   //Author S. Steer Sept 2004, Copyright INRIA
-  version=[3 1 0 1]
+  version=[3 1 0 2]
   mput(version,'c',fd)
-  save_graphichandle(h,fd)
+  
+  hsize = size(h);
+  mput(hsize,'c',fd); 
+  // introduced in version 3 1 0 2 to handle 
+  // the case where we have a matrix of handles to save
+  
+  if or(hsize>1)
+    for i=1:hsize(1)
+      for j=1:hsize(2)
+	save_graphichandle(h(i,j),fd)
+      end
+    end
+  else
+    save_graphichandle(h,fd)
+  end
 endfunction
 
 function save_graphichandle(h,fd)
@@ -182,6 +196,7 @@ function save_graphichandle(h,fd)
        mput(h.clip_box,'dl',fd)
     end
     user_data=h.user_data;save(fd,user_data)
+    
   case "Plot3d";
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
@@ -244,7 +259,7 @@ function save_graphichandle(h,fd)
     user_data=h.user_data;save(fd,user_data)
   case "Compound"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
-
+    
     h=h.children
     n=size(h,'*')
     mput(n,'il',fd)
