@@ -14,6 +14,7 @@
   extern BOOL IsAFile(char *chainefichier);
 	BOOL CallWindowsShell(char *command,BOOL WaitInput);
 	char ** CallWindowsShellWithOuput(char *command,BOOL WaitInput,int *Status,int *NumberOfLines);
+	extern BOOL IsWindowInterface(void);
 #endif
 int GetNumberOfLines(char *lines);
 /*-----------------------------------------------------------------------------------*/
@@ -61,7 +62,11 @@ int C2F(intdos) _PARAMS((char *fname))
 				*Status=CallWindowsShell(CommandLine,FALSE);
 			}
 		#else
+			m1=1;
+			n1=1;
 			*Status=FALSE;
+			CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &Status);
+			LhsVar(1)=Rhs+1;
 		#endif
 	}
 	else /* Lhs == 2 */
