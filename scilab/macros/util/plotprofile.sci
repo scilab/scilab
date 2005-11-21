@@ -31,37 +31,52 @@ function plotprofile(fun)
     end
   end
   n=size(count,1)
-
-
+  if n==0 then 
+    error("Perhaps the function(s) has not been loaded for profiling?")
+  end
+  
   //xset("window",win)
   step=ceil(n/15)
   nn=ceil((n+1)/step)
   nm=nn*step
-  nc=size(count,1)
+  nlines=size(count,1)
 
   win=sum(winsid())+1
   scf(win)
 
+  drawlater
   subplot(311)
-  mx=max(count(:,1))
-  plot2d3(1:size(count,1),count(:,1),style=1,rect=[0,0,nm,mx])
+  ncalls=count(:,1)
+  mx=max(ncalls)
+  plot2d3(1:nlines,ncalls,style=2,rect=[0,0,nm,max(mx*1.02,1)])
+  xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',2*ones(ncalls))
+  xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',0*ones(ncalls))
   legend("# calls",1)
+  //separator, if more that 1 function is given
   xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
-  xp=[0 bnd];yp=mx*1.05;for k=1:nf,xstring(xp(k),yp,fun(k));end  
+  xp=[0 bnd]+1;yp=mx*0.9;
+  for k=1:nf, xstring(xp(k),yp," "+fun(k)+" ",0,1); end  
 
   
   subplot(312)
-  mx=max(1,max(count(:,3)))
-  plot2d3(1:size(count,1),count(:,3),style=2,rect=[0,0,nm,mx])
+  ncompl=count(:,3)
+  mx=max(1,max(ncompl))
+  plot2d3(1:nlines,ncompl,style=3,rect=[0,0,nm,max(mx*1.02,1)])
+  xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',3*ones(ncompl))
+  xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',0*ones(ncompl))
   legend("Complexity",1)
-    
   xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
 
   subplot(313)
-  mx=max(count(:,2))
-  plot2d3(1:size(count,1),count(:,2),style=3,rect=[0,0,nm,mx])
+  tcpu=count(:,2)
+  mx=max(tcpu)
+  plot2d3(1:nlines,tcpu,style=4,rect=[0,0,nm,max(mx*1.02,1e-6)])
+  xtitle("total time "+string(sum(count(:,2)))+" sec")
+  xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',4*ones(tcpu))
+  xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',0*ones(tcpu))
   legend("Cpu Time",1)
   xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+  drawnow
 
   if ~MSDOS then
     delmenu(win,"3D Rot.")
@@ -107,17 +122,20 @@ function endprof()
   if or(winsid()==(win+1)) then xdel(win+1);end
   if or(winsid()==(win)) then xdel(win);end
   if withpad then
-    TCL_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TCL_GetVar("isscipadinterp")=="0" then return,end
+    if ~TCL_ExistInterp("scipad") then return,end
+    if ~TCL_ExistVar("pad","scipad")then return,end
     TCL_EvalStr("scipad eval {montretext $profiled}")
     TCL_EvalStr("scipad eval {closecur}")
   end
 endfunction
 
 function scipad_hiliteline(n)
-  TCL_EvalStr("set isscipadinterp [interp exists scipad]")
-  if TCL_GetVar("isscipadinterp")=="0" then //scipad has been closed
+  if ~TCL_ExistInterp("scipad") then //scipad has never been opened
      openinscipad(profpath)
+  else
+    if ~TCL_ExistVar("pad","scipad") then //scipad has been closed
+      openinscipad(profpath)
+    end
   end
   TCL_EvalStr("scipad eval {montretext $profiled}")
   TCL_EvalStr("scipad eval {set gotlnCommand "+string(n)+"}")
@@ -133,8 +151,7 @@ endfunction
 
 function r=with_scipad()
   if with_tk() then
-    TCL_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TCL_GetVar("isscipadinterp")=="0" then scipad(),end
+    if ~TCL_ExistInterp("scipad") then scipad(),end
     r=%t
   else
     r=%f
@@ -142,8 +159,11 @@ function r=with_scipad()
 endfunction
 
 function openinscipad(path)
-  TCL_EvalStr("set isscipadinterp [interp exists scipad]")
-  if TCL_GetVar("isscipadinterp")=="0" then scipad(),end
+  if TCL_ExistInterp("scipad") then
+     if ~TCL_ExistVar("pad","scipad") then scipad(),end
+  else
+    scipad()
+  end
   TCL_EvalStr("scipad eval {openfile """+path+"""}")
   TCL_EvalStr("scipad eval {set profiled [lindex $listoftextarea end]}")
 endfunction
