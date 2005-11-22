@@ -51,9 +51,12 @@ function plotprofile(fun)
   plot2d3(1:nlines,ncalls,style=2,rect=[0,0,nm,max(mx*1.02,1)])
   xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',2*ones(ncalls))
   xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',0*ones(ncalls))
+// it would ne nice to put a moving marker, but keeping track of the
+// handles is too much for me
+//  xarrows([0,0],[0,mx],style=5)
   legend("# calls",1)
   //separator, if more that 1 function is given
-  xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+  xsegs(ones(2,1)*bnd,[0;1.02*mx]*ones(bnd),5*ones(bnd))
   xp=[0 bnd]+1;yp=mx*0.9;
   for k=1:nf, xstring(xp(k),yp," "+fun(k)+" ",0,1); end  
 
@@ -65,7 +68,7 @@ function plotprofile(fun)
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',3*ones(ncompl))
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',0*ones(ncompl))
   legend("Complexity",1)
-  xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+  xsegs(ones(2,1)*bnd,[0;1.02*mx]*ones(bnd),5*ones(bnd))
 
   subplot(313)
   tcpu=count(:,2)
@@ -75,7 +78,7 @@ function plotprofile(fun)
   xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',4*ones(tcpu))
   xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',0*ones(tcpu))
   legend("Cpu Time",1)
-  xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
+  xsegs(ones(2,1)*bnd,[0;1.02*mx]*ones(bnd),5*ones(bnd))
   drawnow
 
   if ~MSDOS then
@@ -100,13 +103,39 @@ function plotprofile(fun)
     [h,M]=dispfuntxt(txt,1,0,%f)
   end
 
+  fig=gcf(); axes=fig.children; 
   while ok
     [c_i,c_x,c_y,cw,cm]=xclick()
     if (c_i <0 & cm==str) | c_i==-100 | ~or(winsid()==win) then break,end
+//if one of the panels has been zoomed, zoom (horizontally)all of them
+// (partially, this is a workaround for bug #1618)
+// [the update is carried on only after the next xclick -- why?]
+    Xb=[axes(2).zoom_box([1,3])', axes(4).zoom_box([1,3])',..
+        axes(6).zoom_box([1,3])']
+    if ~and(Xb(1,:)==Xb(1,1)) | ~and(Xb(2,:)==Xb(2,1)) | size(Xb,2)<>3 then
+       if Xb<>[] then
+          newXmin=max(Xb(1,:)); newXmax=min(Xb(2,:))
+          for i=2:2:6
+          // vertical zoom is restored to default
+            yrange=axes(i).data_bounds(:,2)
+            axes(i).zoom_box=[newXmin,yrange(1),newXmax,yrange(2)]; 
+          end
+       else
+          for i=2:2:6 axes(i).zoom_box=[]; end
+       end
+    end
     if cw==win & or(c_i==(0:5)) then
       k=min(n,max(1,round(c_x)))
-      // show source code in another window
-      xinfo("line "+string(k)+" :: "+txt(k))
+      if ncalls(k)==1 then
+        msg="line "+string(k)+" ["+string(ncalls(k))+" call, "+..
+                   string(tcpu(k))+" sec] :: "+txt(k)
+      else
+        msg="line "+string(k)+" ["+string(ncalls(k))+" calls, "+..
+                   string(tcpu(k))+" sec] :: "+txt(k)
+      end
+      xinfo(msg)
+//      sca(axes(1)); axes(1).children(4).data=[k,k,0,20] //wrong
+   // show source code in another window
       if withpad then
         scipad_hiliteline(k)
       else
