@@ -27,7 +27,9 @@ if {$debuglog} {
     iscontinuedline getstartofcontline getendofcontline \
     colorize remalltags \
     colorizestringsandcomments_sd colorizestringsandcomments \
-    backgroundcolorize getstartofcolorization getendofcolorization \
+    backgroundcolorize dobackgroundcolorize \
+    getstartofcolorization getendofcolorization \
+    Progress SetProgress \
     ]
 
     # for each Scipad proc not excluded in the list above, this surrounds the existing

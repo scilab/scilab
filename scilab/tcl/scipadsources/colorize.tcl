@@ -298,14 +298,14 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
             foreach {i1 j1} $simpstr {}
             if {$i == $i1 && $j == $j1} {
                 # we're really in the first case
-                if {[$w compare $ind != last]} {
+                $w mark set last "$ind +$num c"
+                if {$i != 0} {
                     # in this case we did not match at the beginning of the
                     # string but one character before the opening quote
                     set ind "$ind + 1 c"
                 } else {
                     # we matched at the opening quote - no adjustment to $ind
                 }
-                $w mark set last "$ind +$num c"
                 # textquoted deletes any other tag
                 remalltags $w $ind last
                 $w tag add textquoted $ind last
@@ -321,16 +321,16 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
             foreach {i1 j1} $contstr {}
             if {$i == $i1 && $j == $j1} {
                 # we're really in the second case
+                $w mark set last "$ind +$num c"
                 # the comment part must be separated from the string part, and
                 # this has to be done for each continued line but the last one
-                if {[$w compare $ind != last]} {
+                if {$i != 0} {
                     # in this case we did not match at the beginning of the
                     # string but one character before the opening quote
                     set ind "$ind + 1 c"
                 } else {
                     # we matched at the opening quote - no adjustment to $ind
                 }
-                $w mark set last "$ind +$num c"
                 set subtext [$w get $ind last]
                 set strpart {}
                 set commpart {}
@@ -399,7 +399,7 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
     }
 }
 
-proc dobackgroundcolorize {w thebegin theend} {
+proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
 # do colorization in background
 # actually this uses a trick to keep Scipad responsive while colorization
 # is in progress - useful for large files
@@ -409,31 +409,57 @@ proc dobackgroundcolorize {w thebegin theend} {
 #   . if decreased, the complete colorization process will last longer
 #     due to time overhead from this proc
 #   . if increased, Scipad will be less responsive
+# the progressbar is also updated accordingly
 
-    global nbcolorizationinprogress
+    global nbcolorizationinprogress listoffile
+
+    # check if the file has not been closed during colorization
+    if {![info exist listoffile("$w",fullname)]} {
+        destroy $progressbar
+        incr nbcolorizationinprogress -1
+        return
+    }
 
     set incre 5
 
     set curend "$thebegin + $incre l"
     set curend [getendofcolorization $w $curend]
 
-    if {[$w compare $curend < $theend]} {
+    scan [$w index $curend] "%d.%d" ycur xcur
+    scan [$w index end]     "%d.%d" yend xend
+    SetProgress $progressbar $ycur $yend $progresslabel
+
+    if {[$w compare $curend < end]} {
         colorize $w $thebegin [$w index $curend]
         set newbegin [$w index $curend]
-        after 1 "dobackgroundcolorize $w $newbegin $theend"
+        # interval depends on $nbcolorizationinprogress in order to share
+        # available resources from the computer - formula based on experience
+        set interval [expr $nbcolorizationinprogress * 10]
+        after $interval \
+                "dobackgroundcolorize $w $newbegin $progressbar $progresslabel"
     } else {
         # last colorization step
-        colorize $w $thebegin $theend
+        colorize $w $thebegin end
+        destroy $progressbar
         incr nbcolorizationinprogress -1
     }
 }
 
-proc backgroundcolorize {w thebegin theend} {
-# launch background colorization of a buffer
+proc backgroundcolorize {w} {
+# launch background colorization of a buffer from its start,
+# initialize the colorization progressbar,
 # and keep track of the number of buffers currently being colorized
     global nbcolorizationinprogress
+    global pad progressbarId listoffile
+
     incr nbcolorizationinprogress
-    dobackgroundcolorize $w $thebegin $theend
+
+    incr progressbarId
+    set progressbar [Progress $pad.cp$progressbarId]
+    pack $progressbar -fill both -expand 0 -before $pad.pw0 -side bottom
+
+    dobackgroundcolorize $w 1.0 $progressbar $listoffile("$w",displayedname)
+
     # decrementing nbcolorizationinprogress is done in proc dobackgroundcolorize
 }
 
@@ -461,7 +487,7 @@ proc changelanguage {newlanguage} {
         set listoffile("$textarea",language) $newlanguage
         showinfo [mc "Wait seconds while recolorizing file"]
         schememenus $textarea
-        backgroundcolorize $textarea 1.0 end
+        backgroundcolorize $textarea
         keyposn $textarea
     }
 }

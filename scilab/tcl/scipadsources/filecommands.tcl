@@ -575,8 +575,7 @@ proc shownewbuffer {file tiledisplay} {
     }
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
-    update
-    backgroundcolorize $pad.new$winopened 1.0 end
+    backgroundcolorize $pad.new$winopened
 }
 
 proc newfilebind {} {
@@ -785,7 +784,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
             resetmodified $textarea
             set listoffile("$textarea",thetime) [file mtime $thefile]
             montretext $textarea
-            backgroundcolorize $textarea 1.0 end
+            backgroundcolorize $textarea
         }
     }
 }

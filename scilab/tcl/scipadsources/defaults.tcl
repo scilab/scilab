@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.57"
+set version "Version 5.58"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -129,3 +129,6 @@ set searchinfilesalreadyrunning 0
 # some commands cannot be executed while colorization is in progress
 # this guard variable prevents them from being executed in such a case
 set nbcolorizationinprogress 0
+
+# identifier of the progressbar for background colorization - increments only
+set progressbarId 0

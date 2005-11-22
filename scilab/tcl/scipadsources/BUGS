@@ -173,9 +173,6 @@ Wishes:
  block mode. In block mode, word wrapping should be disabled. This is
  part of request 179.
 
--Colorization progressbar. Could be an overlay on the left status area,
- incrementing over the "Wait seconds for loading..." message.
-
 -Add an eventual "revert to defaults button" (colors option menu)
 
 -Carefully study whether the debugger would benefit from using editvar

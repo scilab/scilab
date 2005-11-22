@@ -1719,3 +1719,10 @@ Francois VOGEL, 21/11/05
    correct (i.e. no more as textquoted), the logical line extending on a
    single physical line or not. Example: A=A'+B'
  * version --> 5.57
+
+Francois VOGEL, 22/11/05
+ * Colorization bug fixed for strings containing double quotes ("ex""am""ple")
+ * Background colorization is canceled if the file has been closed
+ * Colorization progressbar added (one for each file colorized in the
+   background)
+ * version --> 5.58

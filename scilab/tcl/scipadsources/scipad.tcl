@@ -36,6 +36,7 @@ if { [info exists pad] } {
     source [file join $sourcedir tkdndtools.tcl] 
     source [file join $sourcedir platformbind.tcl] 
     source [file join $sourcedir menues.tcl]
+    source [file join $sourcedir progressbar.tcl]
 
     # now all the pure main level code
     source [file join $sourcedir defaults.tcl]
