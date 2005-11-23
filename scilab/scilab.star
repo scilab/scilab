@@ -25,7 +25,7 @@ $=poly(0,'$')
 // Startup message  ===================================================
 verbose=sciargs()<>"-nb"
 if verbose then
-  if ~fromjava() then
+  if ~fromjava() & ~fromc() then
     banner(); 
     write(%io(2),[' ';' ';'Startup execution:'])
   end
@@ -33,7 +33,7 @@ end
 
 // Load scilab functions libraries  ===================================
 if verbose then 
-  if ~fromjava() then
+  if ~fromjava() & ~fromc() then
     write(%io(2),'  loading initial environment')
   end  
 end 
