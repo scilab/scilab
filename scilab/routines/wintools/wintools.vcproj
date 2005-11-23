@@ -691,9 +691,6 @@ cd .. &gt;nul
 				RelativePath=".\intdde.c">
 			</File>
 			<File
-				RelativePath=".\intdos.c">
-			</File>
-			<File
 				RelativePath=".\intfileassociationbox.c">
 			</File>
 			<File
@@ -744,9 +741,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intdde.h">
-			</File>
-			<File
-				RelativePath=".\intdos.h">
 			</File>
 			<File
 				RelativePath=".\intfileassociationbox.h">

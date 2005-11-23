@@ -8,7 +8,7 @@ LIBRARY = $(SCIDIR)/libs/wintools.lib
 OBJSC = intOEMconvert.obj intmcisendstring.obj intwintools.obj intabout.obj intclipboard.obj intconsoledos.obj intdde.obj \
         intpathname.obj intsetlanguagemenu.obj inttoolbar.obj \
         intwinopen.obj intwinqueryreg.obj intprintbox.obj inttoprint.obj \
-        intihmcolor.obj intfileassociationbox.obj intfileassociationbox.obj intdos.obj
+        intihmcolor.obj intfileassociationbox.obj intfileassociationbox.obj
 
 
 OBJSF = 
@@ -23,16 +23,3 @@ CFLAGS = $(CC_OPTIONS) $(XFLAGS)
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.mak
-
-intmcisendstring.obj: ../stack.h intmcisendstring.h
-intwintools.obj: ../stack.h intwintools.h
-intabout.obj: ../stack.h intabout.h
-intclipboard.obj: ../stack.h intclipboard.h
-intconsoledos.obj: ../stack.h intconsoledos.h
-intdde.obj: ../stack.h intdde.h
-intpathname.obj: ../stack.h intpathname.h
-intsetlanguagemenu.obj: ../stack.h intsetlanguagemenu.h
-inttoolbar.obj: ../stack.h inttoolbar.h
-intwinopen.obj: ../stack.h intwinopen.h
-intwinqueryreg.obj: ../stack.h intwinqueryreg.h
-

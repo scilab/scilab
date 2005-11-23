@@ -18,43 +18,30 @@ function unix_x(cmd)
 if prod(size(cmd))<>1 then   error(55,1),end
 
 ver=OS_Version();
-stat=0;
 
 if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
     if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     	cmd1= cmd + ' > '+ tmp;
-    	stat=host(cmd1);
     else
     	tmp=TMPDIR+'\unix.out';
-    	// Use 'dos' for 2k and more 
-     	[status,ouput]=dos(cmd);
-     	if (status == %t) then
-     		mputl(ouput,tmp);
-     	  stat=0;
-     	else
-     	  mputl(ouput,TMPDIR+'\unix.err');
-     	  stat=1;
-     	end
+     	cmd1=cmd +'>'+ tmp +' 2>'+TMPDIR+'\unix.err';
     end
   else 
      tmp=TMPDIR+'/unix.out';
      cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
-     stat=host(cmd1);
   end 
 
-
+stat=host(cmd1);
 select stat
   case 0 then
   	rep=mgetl(tmp)
-    if (size(rep,'*')==0)  | (length(rep)==0) then
+    if (size(rep,'*')==0) | (length(rep)==0) then
     	rep=[]
     else
-      if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
-     	  for k=1:size(rep,'*') 
+     	for k=1:size(rep,'*') 
 					rep(k)=oemtochar(rep(k));
-			  end;
-			end
+			end;
     end
     x_message_modeless(rep)
 case -1 then // host failed
@@ -65,13 +52,11 @@ if MSDOS then
      		error('unix_x: shell error');
      	else
      		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
-     		if size(msg,'*')==0 then
+     		if (size(msg,'*')==0)  | (length(msg)==0) then
     	    msg=[]
         else
-          if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
-     	      for k=1:size(msg,'*') 
-					    msg(k)=oemtochar(msg(k));
-			      end;
+     	    for k=1:size(msg,'*') 
+					  msg(k)=oemtochar(msg(k));
 			    end;
         end
      		error('unix_x: '+msg(1))
