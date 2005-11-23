@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.58"
+set version "Version 5.59"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -126,9 +126,26 @@ set tileprocalreadyrunning false
 # during search in file, the other functionalities of Scipad are however enabled
 set searchinfilesalreadyrunning 0
 
-# some commands cannot be executed while colorization is in progress
-# this guard variable prevents them from being executed in such a case
-set nbcolorizationinprogress 0
+# colorization in background
+# Linux has bug 865 (originated in bug 473) preventing the colorization to be
+# done in the background - Same issue as for cursor blinking
+# See http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=865
+if {$tcl_platform(platform)=="unix"} {
+    set allowbackgroundcolorization false
+} else {
+    set allowbackgroundcolorization true
+}
+
+# this variable is a list of 2-elements lists { pb_id fullname }
+#   pb_id:  id of the progressbar relative to files currently being colorized
+#   fullname: full file name currently being colorized with progressbar pb_id
+# some commands cannot be executed while colorization is in progress, and
+# the size of this list is used to prevent them from being executed in such a
+# case
+# the content of this list is also used in order to:
+#    - cancel colorization if the user closes the buffer during colorization
+#    - restart colorization if the user switches scheme during colorization
+set filescurrentlycolorized [list ]
 
 # identifier of the progressbar for background colorization - increments only
 set progressbarId 0

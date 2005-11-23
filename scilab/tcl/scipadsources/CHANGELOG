@@ -1726,3 +1726,20 @@ Francois VOGEL, 22/11/05
  * Colorization progressbar added (one for each file colorized in the
    background)
  * version --> 5.58
+
+Francois VOGEL, 23/11/05
+ * Fixed bug in colorization of multiple matrix transpose: ' following a
+   closing bracket, brace or parenthesis is not the beginning of a string
+ * Fixed a bug in the regexp of proc checkarglist, to allow trailing spaces
+   in the function definition
+ * Progressbar procs are no more in a namespace (there was a bug on Linux
+   when launching Scipad multiple times from Scilab)
+ * On Linux, background colorization proceeds only if there is X activity,
+   e.g. if the mouse is moved. This when Scipad is opened from Scilab.
+   Colorization marches by itself if Scipad is launched from wish. To work
+   around this, background colorization is no more allowed on Linux
+   (progressbar is however kept, but no cancel is possible)
+ * Colorization aborted and relaunched if switching language scheme
+ * Tcl error on Scipad close during colorization is catched (happened when
+   launched from Scilab only)
+ * version --> 5.59

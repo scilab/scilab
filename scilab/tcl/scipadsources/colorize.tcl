@@ -229,20 +229,20 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
         # actually the character just before the string is part of the match
         # this allows for removing incorrect colorization of multiple matrix
         # transpose on a single line
-        set simpstrRE {((?:[^\w_#!?$]|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
+        set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
 
         # regular expression matching a continued string possibly ending with a
         # comment, if this string was not already matched by $simpstrRE
         # actually the character just before the string is part of the match
         # this allows for removing incorrect colorization of multiple matrix
         # transpose on a single line
-        set contstrRE {((?:[^\w_#!?$]|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
+        set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
 
     } else {
         # double quotes only
 
-        set simpstrRE {((?:[^\w_#!?$]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
-        set contstrRE {((?:[^\w_#!?$]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
+        set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
+        set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
     }
 
     # regular expression matching a comment outside of a continued string
@@ -411,15 +411,49 @@ proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
 #   . if increased, Scipad will be less responsive
 # the progressbar is also updated accordingly
 
-    global nbcolorizationinprogress listoffile
+    global pad filescurrentlycolorized listoffile
 
-    # check if the file has not been closed during colorization
-    if {![info exist listoffile("$w",fullname)]} {
-        destroy $progressbar
-        incr nbcolorizationinprogress -1
+    # avoid Tcl error when Scipad is closed during colorization
+    if {![info exist pad]} {
         return
     }
 
+    set progressbarId [scan $progressbar $pad.cp%d]
+
+    # if the file has been asked for recolorization, abort it and reuse
+    # the same progressbar to relaunch colorization
+    foreach item $filescurrentlycolorized {
+        set posinlist 0
+        if {[lindex $item 0] == -$progressbarId} {
+            set filescurrentlycolorized [lreplace \
+                    $filescurrentlycolorized $posinlist $posinlist \
+                    [list $progressbarId [lindex [lindex $filescurrentlycolorized $posinlist] 1] ]\
+                                        ]
+            # relaunch colorization from the beginning, using the already
+            # packed progressbar
+            SetProgress $progressbar 0
+            dobackgroundcolorize $w 1.0 $progressbar $listoffile("$w",displayedname)
+            return
+        }
+    }
+
+    # if the file has been closed during colorization, abort it and
+    # destroy the progressbar
+    if {![info exist listoffile("$w",fullname)]} {
+        set posinlist 0
+        foreach item $filescurrentlycolorized {
+            if {[expr abs([lindex $item 0])] == $progressbarId} {
+                break
+            } else {
+                incr posinlist
+            }
+        }
+        set filescurrentlycolorized [lreplace $filescurrentlycolorized $posinlist $posinlist]
+        destroy $progressbar
+        return
+    }
+
+    # colorization not aborted - normal process
     set incre 5
 
     set curend "$thebegin + $incre l"
@@ -432,43 +466,102 @@ proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
     if {[$w compare $curend < end]} {
         colorize $w $thebegin [$w index $curend]
         set newbegin [$w index $curend]
-        # interval depends on $nbcolorizationinprogress in order to share
-        # available resources from the computer - formula based on experience
-        set interval [expr $nbcolorizationinprogress * 10]
+        # interval depends on number of files currently being colorized,
+        # in order to share available resources from the computer - formula
+        # based on experience
+        set interval [expr [llength $filescurrentlycolorized] * 10]
         after $interval \
                 "dobackgroundcolorize $w $newbegin $progressbar $progresslabel"
     } else {
         # last colorization step
         colorize $w $thebegin end
+        set progressbarId [scan $progressbar $pad.cp%d]
+        set posinlist 0
+        foreach item $filescurrentlycolorized {
+            if {[lindex $item 0] == $progressbarId} {
+                break
+            } else {
+                incr posinlist
+            }
+        }
+        set filescurrentlycolorized [lreplace $filescurrentlycolorized $posinlist $posinlist]
         destroy $progressbar
-        incr nbcolorizationinprogress -1
     }
 }
 
 proc backgroundcolorize {w} {
-# launch background colorization of a buffer from its start,
+# if allowed, launch background colorization of a buffer from its start,
 # initialize the colorization progressbar,
-# and keep track of the number of buffers currently being colorized
-    global nbcolorizationinprogress
+# and keep track of the buffers currently being colorized
+
+    global allowbackgroundcolorization filescurrentlycolorized
     global pad progressbarId listoffile
 
-    incr nbcolorizationinprogress
+    if {!$allowbackgroundcolorization} {
+        # colorize actually in foreground
 
-    incr progressbarId
-    set progressbar [Progress $pad.cp$progressbarId]
-    pack $progressbar -fill both -expand 0 -before $pad.pw0 -side bottom
+        set progressbar [Progress $pad.cp0]
+        pack $progressbar -fill both -expand 0 -before $pad.pw0 -side bottom
 
-    dobackgroundcolorize $w 1.0 $progressbar $listoffile("$w",displayedname)
+        set curend [getendofcolorization $w "1.0"]
+        while {[$w compare $curend < end]} {
+            colorize $w $curend \
+                    [set curend [getendofcolorization $w "$curend + 10 l"]]
+            scan [$w index $curend] "%d.%d" ycur xcur
+            scan [$w index end]     "%d.%d" yend xend
+            SetProgress $progressbar $ycur $yend $listoffile("$w",displayedname)
+            update idletasks
+        }
 
-    # decrementing nbcolorizationinprogress is done in proc dobackgroundcolorize
+        colorize $w [getstartofcolorization $w "$curend - 10 l"] end
+
+        destroy $progressbar
+
+    } else {
+        # colorize in background
+
+        # check if the file is already being colorized (can be the case when
+        # switching scheme for instance)
+        set posinlist 0
+        set alreadybeingcolorized false
+        foreach item $filescurrentlycolorized {
+            if {[lindex $item 1] == $listoffile("$w",fullname)} {
+                set alreadybeingcolorized true
+                break
+            } else {
+                incr posinlist
+            }
+        }
+
+        if {$alreadybeingcolorized} {
+            # reset colorization of the file already being colorized - this
+            # is achieved by negating the progressbar id, which is detected
+            # in the background colorization proc
+            set progressbarId [lindex [lindex $filescurrentlycolorized $posinlist] 0]
+            set filescurrentlycolorized [lreplace \
+                    $filescurrentlycolorized $posinlist $posinlist \
+                    [list -$progressbarId [lindex [lindex $filescurrentlycolorized $posinlist] 1] ]\
+                                        ]
+        } else {
+            # colorization of a file not currently colorized
+            incr progressbarId
+            lappend filescurrentlycolorized [list $progressbarId $listoffile("$w",fullname)]
+            set progressbar [Progress $pad.cp$progressbarId]
+            pack $progressbar -fill both -expand 0 -before $pad.pw0 -side bottom
+            dobackgroundcolorize $w 1.0 $progressbar $listoffile("$w",displayedname)
+        }
+
+    }
 }
 
 proc colorizationinprogress {} {
 # return true if colorization of a buffer is in progress
 # certain actions (those that make use of the colorization result such as the
 # rem2 or textquoted tag) cannot be executed during colorization
-    global nbcolorizationinprogress
-    if {$nbcolorizationinprogress > 0} {
+
+    global filescurrentlycolorized
+
+    if {[llength $filescurrentlycolorized] > 0} {
         set mes [mc "You can't do that while colorization is in progress.\
                  Please try again when finished."]
         set tit [mc "Command forbidden during colorization"]
@@ -477,6 +570,7 @@ proc colorizationinprogress {} {
     } else {
         return false
     }
+
 }
 
 proc changelanguage {newlanguage} {
