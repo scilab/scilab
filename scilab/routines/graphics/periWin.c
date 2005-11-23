@@ -84,6 +84,8 @@ static void C2F(setscilabVersion)(integer *vers, integer *v2, integer *v3, integ
 static void C2F(getscilabVersion)(integer *verbose, integer *vers, integer *narg, double *dummy);
 static void C2F(setscilabxgc)(integer *v1, integer *v2, integer *v3, integer *v4);
 static void C2F(getscilabxgc)(integer *verbose, integer *x,integer *narg, double *dummy);
+static void C2F(getcolormapsize)(integer *verbose, integer *num, integer *narg, double *val);
+
 /* Initialization values - Guess Now Scale later */
 
 #define WIN_XMAX (2400)
@@ -2409,6 +2411,22 @@ static BOOL SciPalette(int iNumClr)
   return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
+
+
+/* getting the colormap size */
+
+void  C2F(getcolormapsize)(integer *verbose, integer *num, integer *narg, double *val)
+{
+  if(ScilabXgc != NULL)
+    *num =  ScilabXgc->Numcolors;
+  else
+    {
+      sciprint("No ScilabXgc allocated\n");
+      *num = 0;
+      return;
+    }
+}
+
 /* getting the colormap */
 
 void C2F(getcolormap)(verbose,num,narg,val)
@@ -2615,7 +2633,7 @@ void C2F(gempty)(verbose, v2, v3,dummy)
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 /*-----------------------------------------------------------------------------------*/
-#define NUMSETFONC 32
+#define NUMSETFONC 33
 /*-----------------------------------------------------------------------------------*/
 /** Table in lexicographic order **/
 
@@ -2628,6 +2646,7 @@ MissileGCTab_[] = {
   {"background",C2F(setbackground),C2F(getbackground)},
   {"clipoff",C2F(unsetclip),C2F(getclip)},
   {"clipping",C2F(setclip),C2F(getclip)},
+  {"cmap_size",C2F(sempty),C2F(getcolormapsize)},
   {"color",C2F(setpattern),C2F(getpattern)},
   {"colormap",C2F(setcolormap),C2F(getcolormap)},
   {"dashes",C2F(set_dash_or_color),C2F(get_dash_or_color)}, /* obsolet */

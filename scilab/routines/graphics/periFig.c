@@ -744,7 +744,7 @@ void setcolormapgXfig(struct  BCG *Xgc,integer *v1,integer *v2, double *a, integ
 
 void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
-  int i;
+  int i,mm;
 
   if ( ScilabGCXfig_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
@@ -782,7 +782,77 @@ void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a, integer *v3)
   C2F(setpatternXfig)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);  
   C2F(setforegroundXfig)((i=Xgc->NumForeground+1,&i),PI0,PI0,PI0);
   C2F(setbackgroundXfig)((i=Xgc->NumForeground+2,&i),PI0,PI0,PI0);
+
+
+  /* -------------------------------------------------------- */
+  /* store the colormap for the get command too */
+  /* F.Leray 04.10.05 */
+  FREE(Xgc->Red);
+  FREE(Xgc->Green);
+  FREE(Xgc->Blue);
+  
+  /* don't forget black and white */
+  mm = m;
+  if (!(Xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
+    Scistring("XgcAllocColors: unable to alloc\n");
+    return;
+  }
+  if (!(Xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
+    Scistring("XgcAllocColors: unable to alloc\n");
+    FREE(Xgc->Red);
+    return;
+  }
+  if (!(Xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
+    Scistring("XgcAllocColors: unable to alloc\n");
+    FREE(Xgc->Red);
+    FREE(Xgc->Green);
+    return;
+  }
+  
+  for(i=0;i<m;i++){
+    Xgc->Red[i] = (float)a[i];
+    Xgc->Green[i] = (float)a[i+m];
+    Xgc->Blue[i] = (float)a[i+2*m]; 
+  }
+  /* -------------------------------------------------------- */
+    
 }
+
+void C2F(getcolormapsizeXfig)(integer *v1, integer *v2, integer *v3, double *val)
+{
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    *v3 = 1;
+    return;
+  }
+
+  *v2 = ScilabGCXfig.Numcolors;
+}
+
+/* F.Leray 22.11.05: get the current colormap */
+
+void C2F(getcolormapXfig)(integer *v1, integer *v2, integer *v3, double *val)
+{
+  int m;
+  int i;
+  *v3 = 0;
+  
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    *v3 = 1;
+    return;
+  }
+  
+  
+  m = ScilabGCXfig.Numcolors;
+
+  for (i = 0; i < m; i++) {
+    val[i] = (double)ScilabGCXfig.Red[i];
+    val[i+m] = (double)ScilabGCXfig.Green[i];
+    val[i+2*m] = (double)ScilabGCXfig.Blue[i];
+  }
+}
+
 
 void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
 {
@@ -1066,7 +1136,7 @@ void C2F(gemptyXfig)(integer *verbose, integer *v2, integer *v3, double *dummy)
 
 
 
-#define NUMSETFONC 32 /* NG */
+#define NUMSETFONC 33 /* NG */
 
 struct bgc { char *name ;
 	     void  (*setfonc )() ;
@@ -1076,8 +1146,9 @@ struct bgc { char *name ;
    {"background",C2F(setbackgroundXfig),C2F(getbackgroundXfig)},
    {"clipoff",C2F(unsetclipXfig),C2F(getclipXfig)},
    {"clipping",C2F(setclipXfig),C2F(getclipXfig)},
+   {"cmap_size",C2F(semptyXfig),C2F(getcolormapsizeXfig)},
    {"color",C2F(setpatternXfig),C2F(getpatternXfig)},
-   {"colormap",C2F(setcolormapXfig),C2F(gemptyXfig)},
+   {"colormap",C2F(setcolormapXfig),C2F(getcolormapXfig)},
    {"dashes",C2F(set_dash_or_color_Xfig),C2F(set_dash_or_color_Xfig)},
    {"default",C2F(InitScilabGCXfig), C2F(gemptyXfig)},
    {"figure",C2F(setscilabFigureXfig),C2F(getscilabFigureXfig)},/* NG */
@@ -1935,49 +2006,53 @@ static void C2F(FileInitXfig)(void)
   ScilabGCXfig_is_initialized = TRUE; /* add the flag ScilabGCXfig_is_initialized to test if xinit has been called */
   C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0);
   SetGraphicsVersion();
-  if (  CheckColormap(&m) == 1) 
-    { 
-      int i;
-      float r,g,b;
-      ScilabGCXfig.Numcolors = m;
-      ScilabGCXfig.NumForeground = m;
-      ScilabGCXfig.NumBackground = m + 1;
 
-      if (ScilabGCXfig.CurColorStatus == 1) 
-	{
-	  ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1;
-	}
-      for ( i=0; i < m ; i++)
-	{
-	  unsigned short ur,ug,ub;
-	  get_r(i,&r);
-	  get_g(i,&g);
-	  get_b(i,&b);
-	  ur = (unsigned short) (65535.0*r);
-	  ug = (unsigned short) (65535.0*g);
-	  ub = (unsigned short) (65535.0*b); 
-	  ur = ur >> 8 ;
-	  ug = ug >> 8 ;	
-	  ub = ub >> 8 ; 
-	  FPRINTF((file,"0 %d #%02x%02x%02x\n",32+i,ur,ug,ub));
-	}
-      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0));
-      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255));
-    }
-  else 
-    {
-      /** the default_colors are the xfig default colors **/
-      m = DEFAULTNUMCOLORS;
-      ScilabGCXfig.Numcolors = m;
-      ScilabGCXfig.IDLastPattern = m - 1;
-      ScilabGCXfig.NumForeground = m;
-      ScilabGCXfig.NumBackground = m + 1;
-      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0));
-      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255));
-    }
+/*   if (  CheckColormap(&m) == 1)  */
+/*     {  */
+/*       int i; */
+/*       float r,g,b; */
+/*       ScilabGCXfig.Numcolors = m; */
+/*       ScilabGCXfig.NumForeground = m; */
+/*       ScilabGCXfig.NumBackground = m + 1; */
+
+/*       if (ScilabGCXfig.CurColorStatus == 1)  */
+/* 	{ */
+/* 	  ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1; */
+/* 	} */
+/*       for ( i=0; i < m ; i++) */
+/* 	{ */
+/* 	  unsigned short ur,ug,ub; */
+/* 	  get_r(i,&r); */
+/* 	  get_g(i,&g); */
+/* 	  get_b(i,&b); */
+/* 	  ur = (unsigned short) (65535.0*r); */
+/* 	  ug = (unsigned short) (65535.0*g); */
+/* 	  ub = (unsigned short) (65535.0*b);  */
+/* 	  ur = ur >> 8 ; */
+/* 	  ug = ug >> 8 ;	 */
+/* 	  ub = ub >> 8 ;  */
+/* 	  FPRINTF((file,"0 %d #%02x%02x%02x\n",32+i,ur,ug,ub)); */
+/* 	} */
+/*       FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0)); */
+/*       FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255)); */
+/*     } */
+/*   else  */
+/*     { */
+
+  /** the default_colors are the xfig default colors **/
+  m = DEFAULTNUMCOLORS;
+  ScilabGCXfig.Numcolors = m;
+  ScilabGCXfig.IDLastPattern = m - 1;
+  ScilabGCXfig.NumForeground = m;
+  ScilabGCXfig.NumBackground = m + 1;
+  FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0));
+  FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255));
+  
+/*     } */
+
   FPRINTF((file,"2 2 0 0 -1 -1 0 0 -1 0.000 0 0 0 0 0 5\n"));
   FPRINTF((file," %d %d %d %d %d %d %d %d %d %d \n",
-	  0,0,(int)x[0],0,(int)x[0],(int)x[1],0,(int)x[1],0,0));
+	   0,0,(int)x[0],0,(int)x[0],(int)x[1],0,(int)x[1],0,0));
 }
 
 /*--------------------------------------------------------

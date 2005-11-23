@@ -191,6 +191,8 @@ static xget_f xget_absourel,xget_alufunction,xget_thickness,xget_pattern,xget_la
 static xget_f xget_usecolor,xget_pixmapOn,xget_wresize,xget_colormap,xget_background,xget_foreground,xget_hidden3d;
 static xget_f xget_font,xget_mark,xget_dash_or_color;
 static xget_f xget_scilabxgc,xget_scilabFigure,xget_scilabVersion;/* NG */
+static xget_f xget_colormap_size;
+
 
 #define FONTNUMBER 11 
 #define FONTMAXSIZE 6
@@ -2217,6 +2219,20 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a, integer *v3)
     sciprint("%d colors missing, switch to private colormap\r\n",m+2 - missing_col_mess);
 }
 
+/* getting the colormap size */
+
+static void xget_colormap_size(integer *verbose, integer *num, integer *narg, double *val)
+{
+  if(ScilabXgc != NULL)
+    *num =  ScilabXgc->Numcolors;
+  else
+    {
+      sciprint("No ScilabXgc allocated\n");
+      *num = 0;
+      return;
+    }
+}
+
 /* getting the colormap */
 
 static void xget_colormap(integer *verbose, integer *num, integer *narg, double *val)
@@ -2423,7 +2439,7 @@ static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 32
+#define NUMSETFONC 33
 
 /** Table in lexicographic order **/
 
@@ -2436,6 +2452,7 @@ MissileGCTab_[] = {
   {"background",xset_background,xget_background},
   {"clipoff",xset_unclip,xget_clip},
   {"clipping",xset_clip,xget_clip},
+  {"cmap_size",xset_empty,xget_colormap_size},
   {"color",xset_pattern,xget_pattern},
   {"colormap",xset_colormap,xget_colormap},
   {"dashes",xset_dash_or_color,xget_dash_or_color}, /* obsolet */ 

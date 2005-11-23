@@ -889,7 +889,7 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
   FREE(Xgc->Blue);
   
   /* don't forget black and white */
-  mm = m + 2;
+  mm = m;
   if (!(Xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
     Scistring("XgcAllocColors: unable to alloc\n");
     return;
@@ -913,6 +913,17 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
     Xgc->Blue[i] = (float)a[i+2*m]; 
   }
   /* -------------------------------------------------------- */
+}
+
+void C2F(getcolormapsizePos)(integer *v1, integer *v2, integer *v3, double *val)
+{
+  if ( ScilabGCPos_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    *v3=1;
+    return;
+  }
+
+  *v2 = ScilabGCPos.Numcolors;
 }
 
 void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val)
@@ -1164,7 +1175,7 @@ void C2F(gemptyPos)(integer *verbose, integer *v2, integer *v3, double *dummy)
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 32 /* NG */
+#define NUMSETFONC 33 /* NG */
 
 /** Table in lexicographic order **/
 
@@ -1176,6 +1187,7 @@ struct bgc { char *name ;
     {"background",C2F(setbackgroundPos),C2F(getbackgroundPos)},
     {"clipoff",C2F(unsetclipPos),C2F(getclipPos)},
     {"clipping",C2F(setclipPos),C2F(getclipPos)},
+    {"cmap_size",C2F(semptyPos),C2F(getcolormapsizePos)},
     {"color",C2F(setpatternPos),C2F(getpatternPos)},
     {"colormap",C2F(setcolormapPos),C2F(getcolormapPos)},
     {"dashes",C2F(set_dash_or_color_Pos),C2F(get_dash_or_color_Pos)},
@@ -1203,8 +1215,8 @@ struct bgc { char *name ;
     {"wpos",C2F(setwindowposPos),C2F(getwindowposPos)},
     {"wresize",C2F(semptyPos),C2F(gemptyPos)},
     {"wshow",C2F(setwwhowPos),C2F(gemptyPos)},
-    {"wwpc",C2F(semptyPos),C2F(gemptyPos)}
- };
+    {"wwpc",C2F(semptyPos),C2F(gemptyPos)},
+  };
 
 #ifdef lint
 
@@ -2024,7 +2036,7 @@ void C2F(initgraphicPos)(char *string, integer *v2, integer *v3, integer *v4, in
 
 void FileInit(void)
 {
-  int m;
+/*   int m, ierr=0; */
   /** Just send Postscript commands to define scales etc....**/
   integer x[2],verbose,narg;
   verbose = 0; 
@@ -2043,44 +2055,51 @@ void FileInit(void)
   
   FPRINTF((file,"\n%% End init driver "));
   FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
-  /** If the X window exists we check its colormap **/
-  if (  CheckColormap(&m) == 1) 
-    { 
-      int i;
-      float r,g,b;
-      ScilabGCPos.Numcolors = m;
-      ScilabGCPos.NumForeground = m;
-      ScilabGCPos.NumBackground = m + 1;
-      if (ScilabGCPos.CurColorStatus == 1) 
-	{
-	  ScilabGCPos.IDLastPattern = ScilabGCPos.Numcolors - 1;
-	  FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
-	}
-      FPRINTF((file,"\n/ColorR ["));
-      for ( i=0; i < m ; i++)
-	{
-	  get_r(i,&r);
-	  FPRINTF((file,"%f ",r));
-	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
-	}
-      FPRINTF((file,"0.0 1.0] def"));
-      FPRINTF((file,"\n/ColorG ["));
-      for ( i=0; i < m ; i++) 
-	{
-	  get_g(i,&g);
-	  FPRINTF((file,"%f ",g));
-	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
-	}
-      FPRINTF((file,"0.0 1.0] def"));
-      FPRINTF((file,"\n/ColorB ["));
-      for ( i=0; i < m; i++)
-	{
-	  get_b(i,&b);
-	  FPRINTF((file,"%f ",b));
-	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
-	}
-      FPRINTF((file,"0.0 1.0] def"));
-    }
+
+
+/*   /\** If the X window exists we check its colormap **\/ */
+/*   if (  CheckColormap(&m) == 1)  */
+/*     {  */
+/*       int i; */
+/*       float r,g,b; */
+/*       ScilabGCPos.Numcolors = m; */
+/*       ScilabGCPos.NumForeground = m; */
+/*       ScilabGCPos.NumBackground = m + 1; */
+/*       if (ScilabGCPos.CurColorStatus == 1)  */
+/* 	{ */
+/* 	  ScilabGCPos.IDLastPattern = ScilabGCPos.Numcolors - 1; */
+/* 	  FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern)); */
+/* 	} */
+/*       FPRINTF((file,"\n/ColorR [")); */
+/*       for ( i=0; i < m ; i++) */
+/* 	{ */
+/* 	  get_r(i,&r); */
+/* 	  FPRINTF((file,"%f ",r)); */
+/* 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n")); */
+/* 	} */
+/*       FPRINTF((file,"0.0 1.0] def")); */
+/*       FPRINTF((file,"\n/ColorG [")); */
+/*       for ( i=0; i < m ; i++)  */
+/* 	{ */
+/* 	  get_g(i,&g); */
+/* 	  FPRINTF((file,"%f ",g)); */
+/* 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n")); */
+/* 	} */
+/*       FPRINTF((file,"0.0 1.0] def")); */
+/*       FPRINTF((file,"\n/ColorB [")); */
+/*       for ( i=0; i < m; i++) */
+/* 	{ */
+/* 	  get_b(i,&b); */
+/* 	  FPRINTF((file,"%f ",b)); */
+/* 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n")); */
+/* 	} */
+/*       FPRINTF((file,"0.0 1.0] def")); */
+/*     } */
+
+/*   C2F(setgccolormapPos)(&ScilabGCPos,32, default_colors, &ierr); */
+
+
+
   FPRINTF((file,"\n%%Latex:\\setlength{\\unitlength}{%4.2fpt}",
 	   1.0/(prec_fact*2)));
   FPRINTF((file,"\n%%Latex:\\begin{picture}(%d,%d)(%d,0)",
