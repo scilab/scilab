@@ -45,40 +45,37 @@ function plotprofile(fun)
   scf(win)
 
   drawlater
+  axes=[];marker=[];
   subplot(311)
-  ncalls=count(:,1)
-  mx=max(ncalls)
-  plot2d3(1:nlines,ncalls,style=2,rect=[0,0,nm,max(mx*1.02,1)])
+  ncalls=count(:,1); mx=max(ncalls)
+  plot2d([],[],rect=[0,0,nm,max(mx*1.02,1)]); axes=gca()
   xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',2*ones(ncalls))
   xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',0*ones(ncalls))
-// it would ne nice to put a moving marker, but keeping track of the
-// handles is too much for me
-//  xarrows([0,0],[0,mx],style=5)
-  legend("# calls",1)
+  xarrows([0,0],[1.5*mx,0],5,5); marker=gce()
+  xtitle("# calls")
   //separator, if more that 1 function is given
-  xsegs(ones(2,1)*bnd,[0;1.02*mx]*ones(bnd),5*ones(bnd))
+  xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
   xp=[0 bnd]+1;yp=mx*0.9;
   for k=1:nf, xstring(xp(k),yp," "+fun(k)+" ",0,1); end  
 
   
   subplot(312)
-  ncompl=count(:,3)
-  mx=max(1,max(ncompl))
-  plot2d3(1:nlines,ncompl,style=3,rect=[0,0,nm,max(mx*1.02,1)])
+  ncompl=count(:,3); mx=max(1,max(ncompl))
+  plot2d([],[],rect=[0,0,nm,max(mx*1.02,1)]); axes(2)=gca()
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',3*ones(ncompl))
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',0*ones(ncompl))
-  legend("Complexity",1)
-  xsegs(ones(2,1)*bnd,[0;1.02*mx]*ones(bnd),5*ones(bnd))
+  xarrows([0,0],[1.5*mx,0],5,5); marker(2)=gce()
+  xtitle("Complexity")
+  xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
 
   subplot(313)
-  tcpu=count(:,2)
-  mx=max(tcpu)
-  plot2d3(1:nlines,tcpu,style=4,rect=[0,0,nm,max(mx*1.02,1e-6)])
-  xtitle("total time "+string(sum(count(:,2)))+" sec")
+  tcpu=count(:,2); mx=max(tcpu)
+  plot2d([],[],rect=[0,0,nm,max(mx*1.02,1e-6)]); axes(3)=gca()
+  xtitle("Cpu time (total "+string(sum(count(:,2)))+" sec)","line")
   xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',4*ones(tcpu))
   xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',0*ones(tcpu))
-  legend("Cpu Time",1)
-  xsegs(ones(2,1)*bnd,[0;1.02*mx]*ones(bnd),5*ones(bnd))
+  xarrows([0,0],[1.5*mx,0],2,5); marker(3)=gce()
+  xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
   drawnow
 
   if ~MSDOS then
@@ -91,37 +88,39 @@ function plotprofile(fun)
     delmenu(win,"&Editer")
   end   
   addmenu(win,"Exit");str="execstr(Exit_"+string(win)+"(1))"
-  xinfo("click to get corresponding line")
-  ok=%t
-  
-  mputl(txt,TMPDIR+"/profiled.sci")
+  msg="click to get corresponding line"
+  xinfo(msg)
+
   withpad=with_scipad()
-  profpath=TMPDIR+"/profiled.sci"
   if withpad then
+    profpath=TMPDIR+"/profiled.sci"
+    mputl(txt,profpath)
     openinscipad(profpath)
   else //ouput text in a graphic window
     [h,M]=dispfuntxt(txt,1,0,%f)
   end
 
-  fig=gcf(); axes=fig.children; 
-  while ok
+  k=1
+  while %t
+    if ~or(winsid()==win) then break,end
     [c_i,c_x,c_y,cw,cm]=xclick()
     if (c_i <0 & cm==str) | c_i==-100 | ~or(winsid()==win) then break,end
 //if one of the panels has been zoomed, zoom (horizontally)all of them
 // (partially, this is a workaround for bug #1618)
 // [the update is carried on only after the next xclick -- why?]
-    Xb=[axes(2).zoom_box([1,3])', axes(4).zoom_box([1,3])',..
-        axes(6).zoom_box([1,3])']
+    Xb=[axes(1).zoom_box([1,3])', axes(2).zoom_box([1,3])',..
+        axes(3).zoom_box([1,3])']
+    drawlater
     if ~and(Xb(1,:)==Xb(1,1)) | ~and(Xb(2,:)==Xb(2,1)) | size(Xb,2)<>3 then
        if Xb<>[] then
           newXmin=max(Xb(1,:)); newXmax=min(Xb(2,:))
-          for i=2:2:6
+          for i=1:3
           // vertical zoom is restored to default
             yrange=axes(i).data_bounds(:,2)
             axes(i).zoom_box=[newXmin,yrange(1),newXmax,yrange(2)]; 
           end
        else
-          for i=2:2:6 axes(i).zoom_box=[]; end
+          for i=1:3 axes(i).zoom_box=[]; end
        end
     end
     if cw==win & or(c_i==(0:5)) then
@@ -133,8 +132,6 @@ function plotprofile(fun)
         msg="line "+string(k)+" ["+string(ncalls(k))+" calls, "+..
                    string(tcpu(k))+" sec] :: "+txt(k)
       end
-      xinfo(msg)
-//      sca(axes(1)); axes(1).children(4).data=[k,k,0,20] //wrong
    // show source code in another window
       if withpad then
         scipad_hiliteline(k)
@@ -142,6 +139,12 @@ function plotprofile(fun)
         [h,M]=dispfuntxt(txt,k,h,M)
       end
     end
+    for i=1:3
+      d=marker(i).data; 
+      marker(i).data=[k,d(1,2);k,d(2,2)]
+    end
+    drawnow
+    xinfo(msg)
   end
   endprof()
 
