@@ -19,9 +19,9 @@ function RemoveMinimalMacros()
     unix('if EXIST ""'+'listfiles.bin'+'"" del /F ""'+'listfiles.bin'+'""');
     unix('if EXIST ""'+'unix_g.bin'+'"" del /F ""'+'unix_g.bin'+'""');
     unix('if EXIST ""'+'OS_Version.bin'+'"" del /F ""'+'OS_Version.bin'+'""');
-    unix('if EXIST ""'+'isdir.bin'+'"" del /F ""'+'isdir.bin');
-    unix('if EXIST ""'+'basename.bin'+'"" del /F ""'+'basename.bin');
-    unix('if EXIST ""'+'mputl.bin'+'"" del /F ""'+'mputl.bin');
+    unix('if EXIST ""'+'isdir.bin'+'"" del /F ""'+'isdir.bin'+'""');
+    unix('if EXIST ""'+'basename.bin'+'"" del /F ""'+'basename.bin'+'""');
+    unix('if EXIST ""'+'mputl.bin'+'"" del /F ""'+'mputl.bin'+'""');
     chdir(SCI+'/macros/percent');
     unix('if EXIST ""'+'%c_a_c.bin'+'"" del /F ""'+'%c_a_c.bin'+'""');
     chdir(CurrentDir);
@@ -112,7 +112,7 @@ function BuildMinimalMacros()
   clear endline
   
   if MSDOS then
-    unix('if EXIST ""'+'cmd.sce'+'"" del /F ""'+'cmd.sce');
+    unix('if EXIST ""'+'cmd.sce'+'"" del /F ""'+'cmd.sce'+'""');
   else
     unix('rm -f cmd.sce');
   end
