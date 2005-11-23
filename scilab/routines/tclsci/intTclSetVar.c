@@ -14,9 +14,6 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	static int l1,n1,m1;
 	static int l2,n2,m2;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
-	int TypeVar1=GetType(1);
-	int TypeVar2=GetType(2);
-	int TypeVar3=GetType(3);
 	Tcl_Interp *TCLinterpreter=NULL;
 
 	CheckRhs(2,3);
@@ -31,7 +28,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	if (Rhs==3)
 	{
 		/* three arguments given - get a pointer on the slave interpreter */
-		if (TypeVar3 == sci_strings)
+		if (GetType(3) == sci_strings)
 		{
 			GetRhsVar(3,"c",&m2,&n2,&l2)
 			TCLinterpreter=Tcl_GetSlave(TCLinterp,cstk(l2));
@@ -53,7 +50,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		TCLinterpreter=TCLinterp;
 	}
 
-	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_strings) )
+	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 	{
 		char *VarName=NULL;
 		char **Str=NULL;
@@ -77,7 +74,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		FreeRhsSVar(Str);
 	}
 	else
-	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_matrix) )
+	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_matrix) )
 	{
 		#define COMPLEX 1
 		char *VarName=NULL;
