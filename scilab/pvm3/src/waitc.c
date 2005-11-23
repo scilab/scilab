@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: waitc.c,v 1.2 2002/10/14 14:37:56 chanceli Exp $";
+	"$Id: waitc.c,v 1.3 2005/11/23 10:12:13 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,6 +36,9 @@ static char rcsid[] =
  *	Wait context descriptors.
  *
  * $Log: waitc.c,v $
+ * Revision 1.3  2005/11/23 10:12:13  pmarecha
+ * To compile PVM with GCC-4.0
+ *
  * Revision 1.2  2002/10/14 14:37:56  chanceli
  * update
  *
@@ -151,6 +154,7 @@ static char rcsid[] =
 #include "lpvm.h"
 #include "host.h"
 #include "waitc.h"
+#include <pvmtev.h>
 #include "global.h"
 
 

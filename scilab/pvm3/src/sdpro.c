@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: sdpro.c,v 1.2 2002/10/14 14:37:55 chanceli Exp $";
+	"$Id: sdpro.c,v 1.3 2005/11/23 10:12:13 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,6 +36,9 @@ static char rcsid[] =
  *	Pvmd entry points for messages from scheduler.
  *
  * $Log: sdpro.c,v $
+ * Revision 1.3  2005/11/23 10:12:13  pmarecha
+ * To compile PVM with GCC-4.0
+ *
  * Revision 1.2  2002/10/14 14:37:55  chanceli
  * update
  *
@@ -139,6 +142,7 @@ static char rcsid[] =
 #include "waitc.h"
 #include "task.h"
 #include "bfunc.h"
+#include <pvmtev.h>
 #include "global.h"
 
 

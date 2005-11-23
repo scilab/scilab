@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmdpack.c,v 1.2 2002/10/14 14:37:52 chanceli Exp $";
+	"$Id: pvmdpack.c,v 1.3 2005/11/23 10:12:13 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,6 +36,9 @@ static char rcsid[] =
  *	Pvmd message packing and unpacking.
  *
  * $Log: pvmdpack.c,v $
+ * Revision 1.3  2005/11/23 10:12:13  pmarecha
+ * To compile PVM with GCC-4.0
+ *
  * Revision 1.2  2002/10/14 14:37:52  chanceli
  * update
  *
@@ -117,6 +120,7 @@ static char rcsid[] =
 #include "pvmfrag.h"
 #include "pmsg.h"
 #include "listmac.h"
+#include <pvmtev.h>
 #include "global.h"
 
 

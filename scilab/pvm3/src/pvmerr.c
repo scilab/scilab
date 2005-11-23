@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmerr.c,v 1.2 2002/10/14 14:37:53 chanceli Exp $";
+	"$Id: pvmerr.c,v 1.3 2005/11/23 10:12:13 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,6 +36,9 @@ static char rcsid[] =
  *	Text of PVM error messages.
  *
  * $Log: pvmerr.c,v $
+ * Revision 1.3  2005/11/23 10:12:13  pmarecha
+ * To compile PVM with GCC-4.0
+ *
  * Revision 1.2  2002/10/14 14:37:53  chanceli
  * update
  *
@@ -78,6 +81,7 @@ static char rcsid[] =
 #include <stdio.h>
 #include <pvm3.h>
 #include "lpvm.h"
+#include <pvmtev.h>
 #include "global.h"
 
 

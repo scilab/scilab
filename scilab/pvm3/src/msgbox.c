@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: msgbox.c,v 1.2 2002/10/14 14:37:49 chanceli Exp $";
+	"$Id: msgbox.c,v 1.3 2005/11/23 10:12:13 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,6 +36,9 @@ static char rcsid[] =
  *	Message mailbox database.
  *
  * $Log: msgbox.c,v $
+ * Revision 1.3  2005/11/23 10:12:13  pmarecha
+ * To compile PVM with GCC-4.0
+ *
  * Revision 1.2  2002/10/14 14:37:49  chanceli
  * update
  *
@@ -210,6 +213,7 @@ static char rcsid[] =
 #include "listmac.h"
 #include "pmsg.h"
 #include "msgbox.h"
+#include <pvmtev.h>
 #include "global.h"
 
 

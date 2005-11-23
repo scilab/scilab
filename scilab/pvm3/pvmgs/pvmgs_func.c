@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmgs_func.c,v 1.2 2002/10/14 14:27:42 chanceli Exp $";
+	"$Id: pvmgs_func.c,v 1.3 2005/11/23 10:12:27 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,6 +35,7 @@ static char rcsid[] =
 #include "pvmalloc.h"
 #include "pvmgsd.h"
 #include "bfunc.h"
+#include <pvmtev.h>
 #include "global.h"
 #include "pvmmimd.h"   /* for TIDISNODE, TIDONNODE  macros */
 #ifdef  SYSVSTR

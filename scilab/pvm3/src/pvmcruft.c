@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: pvmcruft.c,v 1.2 2002/10/14 14:37:51 chanceli Exp $";
+	"$Id: pvmcruft.c,v 1.3 2005/11/23 10:12:13 pmarecha Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,6 +36,9 @@ static char rcsid[] =
  *	Missing links and other wonk.
  *
  * $Log: pvmcruft.c,v $
+ * Revision 1.3  2005/11/23 10:12:13  pmarecha
+ * To compile PVM with GCC-4.0
+ *
  * Revision 1.2  2002/10/14 14:37:51  chanceli
  * update
  *
@@ -284,6 +287,7 @@ static char rcsid[] =
 #include <pvmproto.h>
 #include "pvmalloc.h"
 #include "lpvm.h"
+#include <pvmtev.h>
 #include "global.h"
 
 #ifdef WIN32
