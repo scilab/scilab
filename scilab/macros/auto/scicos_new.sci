@@ -19,14 +19,14 @@ set("old_style","on")
 
 //check if superblock editing mode
 [%ljunk,%mac]=where()
-slevel=prod(size(find(%mac=='scicos')))
+slevel=prod(size(find(%mac=='scicos_new')))
 super_block=slevel>1
 if ~super_block then
   // TO BE REMOVED LATER
   [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
    %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicosnew_tables()
    //
-  write(%io(2),['Waring:'
+  write(%io(2),['Warning:'
 		'This is the development version'
 		'of the new Scicos editor (scicos_new).'
 		'The stable editor is scicos.'
@@ -153,8 +153,15 @@ if ~super_block then
  
  
  //
- if exists('scicos_newlib')==0 then load('SCI/macros/scicos_new/lib'),end
+
+ if exists('scicos_newlib')==0 then 
+   load('SCI/macros/scicos_new/lib'),
+ end
  exec(loadpallibs,-1) //to load the palettes libraries
+ //To be removed
+ scicos_newlib.SUPER_f
+ //To be removed later: it is important because SUPER_f is duplicated in scicos_new/lib
+
 end
 
 
@@ -384,18 +391,18 @@ while ( Cmenu <> 'Quit' )
     stacksize(2*%stack(1))
     disp('stacksize increased to '+string(2*%stack(1)))
   end
-//  disp([%pt,0,%ppt]),disp(Cmenu)
+//  disp(1),disp(Cmenu)
   [CmenuType,mess] = CmType(Cmenu);
   //** clear the %pt information for backward compatibility 
   if ( %pt <> [] & Cmenu==[] ) then %pt=[]; end 
   if (Cmenu<>[] & CmenuType==0) then %pt=[];end  
   // no argument needed
-  if (Cmenu<>[] & CmenuType==1 & %pt==[] & Select<>[]) then
-    [%pt,%win]=get_selection(Select) //in case object selected
-  end
-
+  // if (Cmenu<>[] & CmenuType==1 & %pt==[] & Select<>[]) then
+  //   [%pt,%win]=get_selection(Select) //in case object selected
+  // end
+//disp(2),disp(Cmenu)
   xinfo(mess);
-  if ( Cmenu==[] | (CmenuType == 1 & %pt==[]) ) then // need MORE information
+  if ( Cmenu==[] | (CmenuType == 1 & %pt==[]& Select==[]) ) then // need MORE information
     [btn_n,%pt_n,win_n,Cmenu_n] = cosclick()  
     if (Cmenu_n=='SelectLink'| Cmenu_n=='MoveLink') & Cmenu<>[] & CmenuType == 1 & %pt==[] then
       if %pt_n <> [] then %pt = %pt_n; end 
@@ -405,6 +412,7 @@ while ( Cmenu <> 'Quit' )
     end
     %win=win_n
   else   
+//    disp(3),disp(Cmenu)
     %koko=find(Cmenu==%cor_item_exec(:,1));
     if size(%koko,'*')==1 then
       select_unhilite(hilite_image)

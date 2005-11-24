@@ -1,6 +1,6 @@
 function Paste_()
   if %win==curwin & %ppt<>[] then
-    if typeof(Clipboard)=='Block' then
+    if typeof(Clipboard)=='Block'| typeof(o)=='Text' then
       xset("window",curwin)
       scs_m_save=scs_m,nc_save=needcompile
       blk=Clipboard

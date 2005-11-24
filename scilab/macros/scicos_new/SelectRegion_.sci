@@ -22,8 +22,7 @@ function SelectRegion_()
   elseif %win==curwin then //click dans la fenetre courante
     [in,out]=get_objs_in_rect(scs_m,ox,oy,w,h)
   elseif slevel>1 then
-    execstr('[in,out]=get_objs_in_rect(scs_m_'+string(windows(kc,1)))+..
-    ',ox,oy,w,h)'
+    execstr('[in,out]=get_objs_in_rect(scs_m_'+string(windows(kc,1))',ox,oy,w,h)
   else
     return
   end

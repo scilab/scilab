@@ -5,7 +5,7 @@ function g=getgeom()
 //window.
 
   [%ljunk,%mac]=where()
-  slevel=prod(size(find(%mac=='scicos')))
+  slevel=prod(size(find(%mac=='scicos_new')))
   path=%cpr.corinv(curblock())
 
   if exists('windows')<>1|slevel<>1|size(path,'*')<>1 then 
