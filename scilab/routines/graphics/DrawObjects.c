@@ -9375,70 +9375,77 @@ sciDrawObj (sciPointObj * pobj)
 	}
       break;
     case SCI_TEXT:
-      if (!sciGetVisibility(pobj)) break;
-      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
-      n = 1;
+      if (!sciGetVisibility(pobj))
+      {
+        break;
+      }
+      else
+      {
+        sciText * ppText =  pTEXT_FEATURE( pobj ) ;
+        /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
+        n = 1;
  
-      v = 0;
-      dv = 0;
+        v = 0;
+        dv = 0;
 
-      flagx = 0;
+        flagx = 0;
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+        flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(pobj);
+        sciClip(pobj);
 
-      if (pTEXT_FEATURE (pobj)->fill==-1) {
-	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-        {
+        if (pTEXT_FEATURE (pobj)->fill==-1) {
+          if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+          {
           
-          double xvect;
-          double yvect;
-          double zvect;
+            double xvect;
+            double yvect;
+            double zvect;
           
-          xvect = pTEXT_FEATURE (pobj)->x;
-          yvect = pTEXT_FEATURE (pobj)->y;
-          zvect = pTEXT_FEATURE (pobj)->z;
+            xvect = ppText->x;
+            yvect = ppText->y;
+            zvect = ppText->z;
           
-          ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,n);
+            ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,n);
           
-          trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&xvect,&yvect,&zvect);
-        }
-	else 
-        {
-	  x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
-	  yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
-	}
-	anglestr = (sciGetFontOrientation (pobj)/10); 	
-	/* *10 parce que l'angle est conserve en 1/10eme de degre*/
-	
-	/* wether or not we draw and/or fill the box */
-	if(sciGetIsBoxed (pobj) == TRUE)
-        {   
-          int font_[2], cur_font_[2];
-          int rect1[4], verb=0;
-          int xm[4], ym[4],n=4;
-          double cosangle = cos((360-anglestr)*M_PI/180);
-          double sinangle = sin((360-anglestr)*M_PI/180);
-          int close=1;
+            trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&xvect,&yvect,&zvect);
+          }
+          else 
+          {
+            x1  = XDouble2Pixel (ppText->x);
+            yy1 = YDouble2Pixel (ppText->y);
+          }
+          anglestr = (sciGetFontOrientation (pobj)/10); 	
+          /* *10 parce que l'angle est conserve en 1/10eme de degre*/
           
-          C2F(dr1)("xget","font",&verb,font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
-          
-          cur_font_[0] = font_[0];
-          cur_font_[1] = font_[1];
+          /* wether or not we draw and/or fill the box */
+          if(sciGetIsBoxed (pobj) == TRUE)
+          {   
+            int font_[2], cur_font_[2];
+            int rect1[4], verb=0;
+            int xm[4], ym[4],n=4;
+            double cosangle = cos((360-anglestr)*M_PI/180);
+            double sinangle = sin((360-anglestr)*M_PI/180);
+            int close=1;
+
             
-          font_[0] = sciGetFontStyle (pobj);
-          font_[1] = sciGetFontDeciWidth (pobj)/100;
-          
-          C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            C2F(dr1)("xget","font",&verb,font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+            
+            cur_font_[0] = font_[0];
+            cur_font_[1] = font_[1];
+            
+            font_[0] = sciGetFontStyle (pobj);
+            font_[1] = sciGetFontDeciWidth (pobj)/100;
+            
+            C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    
-          C2F(dr)("xstringl",pTEXT_FEATURE (pobj)->ptextstring,
-                  &x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,pTEXT_FEATURE (pobj)->textlen);
+            C2F(dr)("xstringl",ppText->ptextstring,
+                    &x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,pTEXT_FEATURE (pobj)->textlen);
 	    
 /* 	    if(sciGetIsFilled(pobj)) */
 /* 	      { */
 /* 		x[0] = sciGetBackground(pobj); */
-		
+            
 /* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
 /* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
 		
@@ -9464,76 +9471,78 @@ sciDrawObj (sciPointObj * pobj)
 	    
             
 /* 	    char str[2] = "xv"/\*,locstr*\/; */
-          
-		
-          x[0] = sciGetBackground(pobj);
-		
-          xm[0] = x1;
-          xm[1] = round(x1 + cosangle*rect1[2]);
-          xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
-          xm[3] = round(x1 + sinangle*(-rect1[3]));
-		
-          ym[0] = yy1;
-          ym[1] = round(yy1 - sinangle*rect1[2]);
-          ym[2] = round(yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]));
-          ym[3] = round(yy1 + cosangle*(-rect1[3]));
-		
-	  
-          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-		
-          C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-		
-          if ( sciGetIsLine( pobj ) )
-          {
-            /* draw a rectangle around the text */
-            x[0] = sciGetForeground(pobj);
-		
+            
+            
+            x[0] = sciGetBackground(pobj);
+            
+            xm[0] = x1;
+            xm[1] = round(x1 + cosangle*rect1[2]);
+            xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
+            xm[3] = round(x1 + sinangle*(-rect1[3]));
+            
+            ym[0] = yy1;
+            ym[1] = round(yy1 - sinangle*rect1[2]);
+            ym[2] = round(yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]));
+            ym[3] = round(yy1 + cosangle*(-rect1[3]));
+            
+            
             C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
             C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-		
-            C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-          }
+            
+            C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+            
+            if ( sciGetIsLine( pobj ) )
+            {
+              /* draw a rectangle around the text */
+              x[0] = sciGetForeground(pobj);
+              
+              C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+              C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+              
+              C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+            }
 	    
-          C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
+          
+#ifdef WIN32 
+          flag_DO = MaybeSetWinhdc ();
+#endif
+          /* load the object foreground and dashes color */
+          x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
+          x[2] = sciGetFontDeciWidth (pobj)/100;
+          x[3] = 0;
+          x[4] = sciGetFontStyle(pobj);
+          
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+          C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+          
+#ifdef WIN32 
+          if ( flag_DO == 1) ReleaseWinHdc ();
+#endif
+          C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
         }
-	
+        else { /* SS for xstringb should be improved*/
+          integer w1, h1;
+          w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
+          h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
+          C2F(dr1)("xstringb",sciGetText (pobj),&(ppText->fill),&v,&v,&v,&v,&v,
+                   &(ppText->x),&(ppText->y),
+                   &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
+        } 
+        
+        sciUnClip(pobj);
 #ifdef WIN32 
-	flag_DO = MaybeSetWinhdc ();
+        if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-  	/* load the object foreground and dashes color */
-   	x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
-	x[2] = sciGetFontDeciWidth (pobj)/100;
-	x[3] = 0;
-	x[4] = sciGetFontStyle(pobj);
-	
-	C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-	C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-	C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-	
-#ifdef WIN32 
-	if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-	C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
       }
-      else { /* SS for xstringb should be improved*/
-	integer w1, h1;
-	w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
-	h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
-	C2F(dr1)("xstringb",sciGetText (pobj),&(pTEXT_FEATURE (pobj)->fill),&v,&v,&v,&v,&v,
-		 &(pTEXT_FEATURE (pobj)->x),&(pTEXT_FEATURE (pobj)->y),
-		 &(pTEXT_FEATURE (pobj)->wh[0]),&(pTEXT_FEATURE (pobj)->wh[1]),9L,0L);
-      } 
-
-      sciUnClip(pobj);
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
       break;
+      
     case SCI_AXES:
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
-    
+      
       /* load the object foreground and dashes color */
       
       x[0] = sciGetForeground (pobj);
@@ -11798,3 +11807,6 @@ int FreeVertices(sciPointObj * psubwin)
 
   return 0;
 }
+
+
+#undef round
