@@ -81,12 +81,12 @@ typedef void (function)() ;
 #line 51 "Xcall.gperf"
 struct funreplace { char *name; func action[4]; };
 
-#define TOTAL_KEYWORDS 40
+#define TOTAL_KEYWORDS 41
 #define MIN_WORD_LENGTH 4
 #define MAX_WORD_LENGTH 9
 #define MIN_HASH_VALUE 9
-#define MAX_HASH_VALUE 81
-/* maximum key range = 73, duplicates = 0 */
+#define MAX_HASH_VALUE 86
+/* maximum key range = 78, duplicates = 0 */
 
 #ifdef __GNUC__
 __inline
@@ -102,32 +102,32 @@ hash (str, len)
 {
   static const unsigned char asso_values[] =
     {
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82,  5, 82,  0,
-      15,  5, 45, 15, 25,  0, 82, 45, 25, 15,
-      20,  0, 10, 82,  0,  0,  5, 20, 82, 55,
-      25, 10, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82, 82, 82, 82, 82,
-      82, 82, 82, 82, 82, 82
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      60, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87,  5, 87,  0,
+      15,  5, 45, 15, 25,  0, 87, 45, 25, 15,
+      20,  0, 10, 87,  0,  0,  5, 20, 87, 55,
+      25, 10, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[2]] + asso_values[(unsigned char)str[1]] + asso_values[(unsigned char)str[len - 1]];
 }
@@ -147,37 +147,37 @@ xcall_in_word_set (str, len)
       {"xarc",    {C2F(drawarc),C2F(drawarcPos),C2F(drawarcXfig),C2F(drawarcGif)}},
 #line 54 "Xcall.gperf"
       {"xarcs",    {C2F(drawarcs),C2F(drawarcsPos),C2F(drawarcsXfig),C2F(drawarcsGif)}},
-#line 81 "Xcall.gperf"
+#line 82 "Xcall.gperf"
       {"xrects",    {C2F(drawrectangles),C2F(drawrectanglesPos),C2F(drawrectanglesXfig),C2F(drawrectanglesGif)}},
       {""}, {""}, {""},
-#line 80 "Xcall.gperf"
+#line 81 "Xcall.gperf"
       {"xrect",    {C2F(drawrectangle),C2F(drawrectanglePos),C2F(drawrectangleXfig),C2F(drawrectangleGif)}},
-#line 89 "Xcall.gperf"
+#line 90 "Xcall.gperf"
       {"xsetdr",    {C2F(SetDriver),C2F(SetDriver),C2F(SetDriver),C2F(SetDriver)}},
       {""}, {""},
-#line 88 "Xcall.gperf"
+#line 89 "Xcall.gperf"
       {"xset",    {C2F(MissileGCset),C2F(scilabgcsetPos),C2F(scilabgcsetXfig),C2F(scilabgcsetGif)}},
 #line 55 "Xcall.gperf"
       {"xarea",    {C2F(fillpolyline),C2F(fillpolylinePos),C2F(fillpolylineXfig),C2F(fillpolylineGif)}},
-#line 90 "Xcall.gperf"
+#line 91 "Xcall.gperf"
       {"xstart",    {CleanPlots,CleanPlots,CleanPlots,CleanPlots}},
       {""}, {""},
-#line 84 "Xcall.gperf"
+#line 85 "Xcall.gperf"
       {"xreplaysc",    {Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale}},
-#line 86 "Xcall.gperf"
+#line 87 "Xcall.gperf"
       {"xsegs",    {C2F(drawsegments),C2F(drawsegmentsPos),C2F(drawsegmentsXfig),C2F(drawsegmentsGif)}},
-#line 75 "Xcall.gperf"
+#line 76 "Xcall.gperf"
       {"xmarks",    {C2F(drawpolymark),C2F(drawpolymarkPos),C2F(drawpolymarkXfig),C2F(drawpolymarkGif)}},
-#line 91 "Xcall.gperf"
+#line 92 "Xcall.gperf"
       {"xstring",    {C2F(displaystring),C2F(displaystringPos),C2F(displaystringXfig),C2F(displaystringGif)}},
       {""},
-#line 83 "Xcall.gperf"
+#line 84 "Xcall.gperf"
       {"xreplayna",    {Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle}},
 #line 71 "Xcall.gperf"
       {"xinit",    {C2F(initgraphic),C2F(initgraphicPos),C2F(initgraphicXfig),C2F(initgraphicGif)}},
 #line 67 "Xcall.gperf"
       {"xgetdr",    {GetDriver1,GetDriver1,GetDriver1,GetDriver1}},
-#line 82 "Xcall.gperf"
+#line 83 "Xcall.gperf"
       {"xreplay",    {Tape_Replay,Tape_Replay,Tape_Replay,Tape_Replay}},
       {""},
 #line 66 "Xcall.gperf"
@@ -187,30 +187,30 @@ xcall_in_word_set (str, len)
 #line 59 "Xcall.gperf"
       {"xclear",    {C2F(clearwindow),C2F(clearwindowPos),C2F(clearwindowXfig),C2F(clearwindowGif)}},
       {""},
-#line 92 "Xcall.gperf"
+#line 93 "Xcall.gperf"
       {"xstringl",    {C2F(boundingbox),C2F(boundingboxPos),C2F(boundingboxXfig),C2F(boundingboxGif),}},
 #line 68 "Xcall.gperf"
       {"xgetmouse",    {C2F(xgetmouse),C2F(xgetmousePos),C2F(xgetmouseXfig),C2F(xgetmouseGif)}},
 #line 58 "Xcall.gperf"
       {"xclea",    {C2F(cleararea),C2F(clearareaPos),C2F(clearareaXfig),C2F(clearareaGif)}},
-#line 79 "Xcall.gperf"
+#line 80 "Xcall.gperf"
       {"xpolys",    {C2F(drawpolylines),C2F(drawpolylinesPos),C2F(drawpolylinesXfig),C2F(drawpolylinesGif)}},
-#line 87 "Xcall.gperf"
+#line 88 "Xcall.gperf"
       {"xselect",    {C2F(xselgraphic),C2F(xselgraphicPos),C2F(xselgraphicXfig),C2F(xselgraphicGif)}},
       {""},
 #line 61 "Xcall.gperf"
       {"xclickany",    {C2F(xclick_any),C2F(xclick_anyPos),C2F(xclick_anyXfig),C2F(xclick_anyGif)}},
       {""},
-#line 78 "Xcall.gperf"
+#line 79 "Xcall.gperf"
       {"xpause",    {C2F(xpause),C2F(xpausePos),C2F(xpauseXfig),C2F(xpauseGif)}},
       {""}, {""},
-#line 85 "Xcall.gperf"
+#line 86 "Xcall.gperf"
       {"xreplaysh",    {Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show}},
-#line 76 "Xcall.gperf"
+#line 77 "Xcall.gperf"
       {"xname",    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}},
-#line 73 "Xcall.gperf"
-      {"xlines",    {C2F(drawpolyline),C2F(drawpolylinePos),C2F(drawpolylineXfig),C2F(drawpolylineGif)}},
 #line 74 "Xcall.gperf"
+      {"xlines",    {C2F(drawpolyline),C2F(drawpolylinePos),C2F(drawpolylineXfig),C2F(drawpolylineGif)}},
+#line 75 "Xcall.gperf"
       {"xliness",    {C2F(fillpolylines),C2F(fillpolylinesPos),C2F(fillpolylinesXfig),C2F(fillpolylinesGif)}},
       {""}, {""},
 #line 63 "Xcall.gperf"
@@ -232,14 +232,17 @@ xcall_in_word_set (str, len)
 #line 69 "Xcall.gperf"
       {"xgfont",    {C2F(queryfamily),C2F(queryfamilyPos),C2F(queryfamilyXfig),C2F(queryfamilyGif)}},
       {""}, {""},
-#line 77 "Xcall.gperf"
+#line 78 "Xcall.gperf"
       {"xnum",    {C2F(displaynumbers),C2F(displaynumbersPos),C2F(displaynumbersXfig),C2F(displaynumbersGif)}},
       {""},
 #line 60 "Xcall.gperf"
       {"xclick",    {C2F(xclick),C2F(xclickPos),C2F(xclickXfig),C2F(xclickGif)}},
       {""}, {""}, {""}, {""},
+#line 73 "Xcall.gperf"
+      {"xlfont",    {C2F(loadfamily),C2F(loadfamilyPos),C2F(loadfamilyXfig),C2F(loadfamilyGif)}},
+      {""}, {""}, {""}, {""},
 #line 72 "Xcall.gperf"
-      {"xlfont",    {C2F(loadfamily),C2F(loadfamilyPos),C2F(loadfamilyXfig),C2F(loadfamilyGif)}}
+      {"xinit2",    {C2F(initgraphic),C2F(initgraphicfromscreenPos),C2F(initgraphicfromscreenXfig),C2F(initgraphicfromscreenGif)}}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -256,7 +259,7 @@ xcall_in_word_set (str, len)
     }
   return 0;
 }
-#line 93 "Xcall.gperf"
+#line 94 "Xcall.gperf"
 
 
 static char DriverName[]= "Rec";
