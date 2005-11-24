@@ -22,6 +22,7 @@
  extern void  C2F(fillrectangleXfig)();
  extern void  C2F(scilabgcgetXfig)();
  extern void  C2F(initgraphicXfig)();
+ extern void  C2F(initgraphicfromscreenXfig)();
  extern void  C2F(drawpolylineXfig)();
  extern void  C2F(drawpolylinesXfig)();
  extern void  C2F(fillpolylinesXfig)();

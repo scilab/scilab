@@ -116,6 +116,7 @@ static FILE *file= stdout ;
 #endif
 
 static void C2F(FileInitXfig) __PARAMS((void));
+static void C2F(FileInitFromScreenXfig) __PARAMS((void));
 static void set_dash  __PARAMS((int dash,int *l_style,int *_val));
 static void set_color  __PARAMS((int c,int *color));
 /** Structure to keep the graphic state  **/
@@ -2908,4 +2909,95 @@ void C2F(setscilabxgcXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
 /* NG end */
 
 
+/* 2 routines used only by a call to xinitfromscreen to perform the colormap selection */
+/* directly from the screen */
 
+void C2F(initgraphicfromscreenXfig)(char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
+{ 
+  char string1[50];
+  static integer EntryCounter = 0;
+  integer fnum;
+  *v3 = 0;
+  if (EntryCounter >= 1) C2F(xendgraphicXfig)();
+  strcpy(string1,string);
+  file=fopen(string1,"w");
+  if (file == 0) 
+    {
+      /*sciprint("Can't open file %s, I'll use stdout\r\n",string1);*/
+      file = stdout;
+      *v3 = 1;
+      return;
+    }
+  if (EntryCounter == 0)
+    { 
+      fnum=0;      C2F(loadfamilyXfig)("Courier",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=1;      C2F(loadfamilyXfig)("Symbol",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=2;      C2F(loadfamilyXfig)("Times-Roman",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      fnum=3;      C2F(loadfamilyXfig)("Times-Italic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=4;      C2F(loadfamilyXfig)("Times-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      fnum=5;      C2F(loadfamilyXfig)("Times-BoldItalic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=6;      C2F(loadfamilyXfig)("Helvetica",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=7;      C2F(loadfamilyXfig)("Helvetica-Oblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=8;      C2F(loadfamilyXfig)("Helvetica-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=9;      C2F(loadfamilyXfig)("Helvetica-BoldOblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+    }
+  C2F(FileInitFromScreenXfig)();
+  ScilabGCXfig.CurWindow =EntryCounter;
+  EntryCounter =EntryCounter +1;
+}
+
+static void C2F(FileInitFromScreenXfig)(void)
+{
+  int m;
+  integer x[2],verbose,narg;
+  verbose = 0; 
+  C2F(getwindowdimXfig)(&verbose,x,&narg,vdouble);
+  FPRINTF((file,"#FIG 3.1\nPortrait\nCenter\nInches\n1200 2\n"));
+  ScilabGCXfig_is_initialized = TRUE; /* add the flag ScilabGCXfig_is_initialized to test if xinit has been called */
+  C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0);
+  SetGraphicsVersion();
+  if (  CheckColormap(&m) == 1) 
+    { 
+      int i;
+      float r,g,b;
+      ScilabGCXfig.Numcolors = m;
+      ScilabGCXfig.NumForeground = m;
+      ScilabGCXfig.NumBackground = m + 1;
+
+      if (ScilabGCXfig.CurColorStatus == 1) 
+	{
+	  ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1;
+	}
+      for ( i=0; i < m ; i++)
+	{
+	  unsigned short ur,ug,ub;
+	  get_r(i,&r);
+	  get_g(i,&g);
+	  get_b(i,&b);
+	  ur = (unsigned short) (65535.0*r);
+	  ug = (unsigned short) (65535.0*g);
+	  ub = (unsigned short) (65535.0*b); 
+	  ur = ur >> 8 ;
+	  ug = ug >> 8 ;	
+	  ub = ub >> 8 ; 
+	  FPRINTF((file,"0 %d #%02x%02x%02x\n",32+i,ur,ug,ub));
+	}
+      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0));
+      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255));
+    }
+  else 
+    {
+      /** the default_colors are the xfig default colors **/
+      m = DEFAULTNUMCOLORS;
+      ScilabGCXfig.Numcolors = m;
+      ScilabGCXfig.IDLastPattern = m - 1;
+      ScilabGCXfig.NumForeground = m;
+      ScilabGCXfig.NumBackground = m + 1;
+      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0));
+      FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255));
+    }
+
+  FPRINTF((file,"2 2 0 0 -1 -1 0 0 -1 0.000 0 0 0 0 0 5\n"));
+  FPRINTF((file," %d %d %d %d %d %d %d %d %d %d \n",
+	  0,0,(int)x[0],0,(int)x[0],(int)x[1],0,(int)x[1],0,0));
+}

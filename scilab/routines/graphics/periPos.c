@@ -100,6 +100,7 @@ static FILE *file= stdout ;
 #endif
 
 void FileInit  __PARAMS((void));
+void FileInitFromScreenPos  __PARAMS((void));
 
 /** Structure to keep the graphic state  **/
 
@@ -2544,3 +2545,116 @@ void C2F(getscilabxgcPos)(integer *verbose, integer *x,integer *narg, double *du
 void C2F(setscilabxgcPos)(integer *v1, integer *v2, integer *v3, integer *v4)
 {}
 /* NG end */
+
+
+/* 2 routines used only by a call to xinitfromscreen to perform the colormap selection */
+/* directly from the screen */
+
+void C2F(initgraphicfromscreenPos)(char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+{ 
+  char string1[256];
+  static integer EntryCounter = 0;
+  integer fnum;
+
+  *v3 = 0;
+  if (EntryCounter >= 1) C2F(xendgraphicPos)();
+  strncpy(string1,string,256);
+
+  /* Not so useful   
+     sprintf(string2,"%d",(int)EntryCounter);
+     strcat(string1,string2); */
+  file=fopen(string1,"w");
+  if (file == 0) 
+    {
+      /*sciprint("Can't open file %s, I'll use stdout\r\n",string1);*/
+      file =stdout;
+      *v3 = 1;
+      return;
+    }
+  if (EntryCounter == 0)
+    { 
+      fnum=0;      C2F(loadfamilyPos)("Courier",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=1;      C2F(loadfamilyPos)("Symbol",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=2;      C2F(loadfamilyPos)("Times-Roman",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      fnum=3;      C2F(loadfamilyPos)("Times-Italic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=4;      C2F(loadfamilyPos)("Times-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      fnum=5;      C2F(loadfamilyPos)("Times-BoldItalic",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=6;      C2F(loadfamilyPos)("Helvetica",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=7;      C2F(loadfamilyPos)("Helvetica-Oblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=8;      C2F(loadfamilyPos)("Helvetica-Bold",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+      fnum=9;      C2F(loadfamilyPos)("Helvetica-BoldOblique",&fnum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0); 
+
+    }
+  FileInitFromScreenPos();
+  ScilabGCPos.CurWindow =EntryCounter;
+  EntryCounter =EntryCounter +1;
+}
+
+void FileInitFromScreenPos(void)
+{
+  int m;
+  /** Just send Postscript commands to define scales etc....**/
+  integer x[2],verbose,narg;
+  verbose = 0; 
+  C2F(getwindowdimPos)(&verbose,x,&narg,vdouble);
+  ColorInit();
+  FPRINTF((file,"\n%%scipos_w=%d\n%%scipos_h=%d",(int)x[0]/2,(int)x[1]/2));
+  FPRINTF((file,"\n%% Dessin en bas a gauche de taille %d,%d",(int)x[0]/2,(int)x[1]/2));
+  FPRINTF((file,"\n[0.5 %d div 0 0 0.5 %d div neg  0 %d %d div] concat",
+	  (int)prec_fact, (int)prec_fact,(int)x[1]/2,(int) prec_fact ));
+  FPRINTF((file,"\n%% Init driver "));
+  FPRINTF((file,"\n/PaintBackground {WhiteLev 2 add background eq {}{ (drawbox) 4 [background 1 add] [0 0 %d %d] dogrey}ifelse } def", x[0],x[1]));
+
+  ScilabGCPos_is_initialized = TRUE; /* add the flag ScilabGCPos_is_initialized to test if xinit has been called */
+  InitScilabGCPos(PI0,PI0,PI0,PI0);
+  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
+  
+  FPRINTF((file,"\n%% End init driver "));
+  FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
+  /** If the X window exists we check its colormap **/
+  if (  CheckColormap(&m) == 1) 
+    { 
+      int i;
+      float r,g,b;
+      ScilabGCPos.Numcolors = m;
+      ScilabGCPos.NumForeground = m;
+      ScilabGCPos.NumBackground = m + 1;
+      if (ScilabGCPos.CurColorStatus == 1) 
+	{
+	  ScilabGCPos.IDLastPattern = ScilabGCPos.Numcolors - 1;
+	  FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
+	}
+      FPRINTF((file,"\n/ColorR ["));
+      for ( i=0; i < m ; i++)
+	{
+	  get_r(i,&r);
+	  FPRINTF((file,"%f ",r));
+	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
+	}
+      FPRINTF((file,"0.0 1.0] def"));
+      FPRINTF((file,"\n/ColorG ["));
+      for ( i=0; i < m ; i++) 
+	{
+	  get_g(i,&g);
+	  FPRINTF((file,"%f ",g));
+	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
+	}
+      FPRINTF((file,"0.0 1.0] def"));
+      FPRINTF((file,"\n/ColorB ["));
+      for ( i=0; i < m; i++)
+	{
+	  get_b(i,&b);
+	  FPRINTF((file,"%f ",b));
+	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n"));
+	}
+      FPRINTF((file,"0.0 1.0] def"));
+    }
+
+  FPRINTF((file,"\n%%Latex:\\setlength{\\unitlength}{%4.2fpt}",
+	   1.0/(prec_fact*2)));
+  FPRINTF((file,"\n%%Latex:\\begin{picture}(%d,%d)(%d,0)",
+	   def_width*prec_fact,
+	   def_height*prec_fact,
+	   def_width/3  /* not so clear XXX */
+	   ));
+}
