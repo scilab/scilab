@@ -2238,6 +2238,237 @@ int scixstringl(char *fname,unsigned long fname_len)
 }
 
 /*-----------------------------------------------------------------------------------*/
+/* matrixLine2String                                                                 */
+/* convert a line of a string matrix to an unique string. Each member of the line is */
+/* separated by a space. The destination string is not allocate here.                */ 
+/*-----------------------------------------------------------------------------------*/
+void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest )
+{
+   int lineIndex = 0 ;
+   int j ;
+   for ( j = 0 ; j < matrixSize[1] ; j++ )
+   {
+     /* insert the space but not before the first element */
+     if ( j != 0 )
+     {
+       dest[lineIndex] = ' ';
+       lineIndex++ ;
+     }
+
+     strcpy( dest + lineIndex, matrix[ numLine + matrixSize[0] * j ] ) ;
+     lineIndex += strlen( matrix[ numLine + matrixSize[0] * j ]) ;
+     
+   }
+      
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* stringBoundingRect                                                                */
+/* compute the bounding rect [x,y,w,h] in pixels of matrix of strings.               */
+/*-----------------------------------------------------------------------------------*/
+void stringBoundingRect( char ** textMatrix, int textSize[2], int textPos[2], int rect[4] )
+{
+  
+  int i ;
+  
+  rect[0] = textPos[0] ;
+  rect[1] = textPos[1] ;
+  rect[2] = 0 ;
+  
+  /* compute the rectangle [x,y,w,h] for the matrix */
+  /* the width of the matrix is the max of the width of the lines */
+  /* its heigth is the sum of the heigth plus little gap between */
+  /* each lines */
+  for ( i = textSize[0] - 1 ; i >= 0 ; i-- )
+  {
+    integer curRect[4] ;
+    /* convert the line into a big string */
+    matrixLine2String( textMatrix, textSize, i, C2F(cha1).buf ) ;
+
+    C2F(dr)("xstringl",C2F(cha1).buf,&rect[0],&rect[1],curRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,9L,bsiz);
+    rect[2] = Max( rect[2], curRect[2] );
+    if ( i > 0 )
+    {
+      /* a line is after this one */
+      /* here a little error is done sonce we work in pixels */
+      /* moreover the 1.2 should not be coded "en dur" */
+      rect[1] -= (int) rint( curRect[3] * 1.2 ) ;
+    }
+    else
+    {
+      rect[1] -= curRect[3] ;
+    }
+  }
+  rect[3] = textPos[1] - rect[1] ;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/* getStringBox                                                                      */
+/* compute the four corners of a text                                                */
+/*-----------------------------------------------------------------------------------*/
+void getStringBox( char   ** text         ,
+                   double    textPos[2]   ,
+                   int       textSize[2]  ,
+                   double    angle        ,
+                   int       fontId       , 
+                   int       fontSize     , 
+                   double    corners[4][2] )
+{
+  integer    zero = 0   ;
+  integer    rect[4]    ;
+  integer    curFont[2] ;
+  integer    center[2]  ;
+  integer    v          ;
+
+
+  /* get the current font */
+  /* we need to change the defaut font before using xstringl */
+  C2F(dr)("xget","font",&zero,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L);
+
+  /* set the new font */
+  C2F(dr)("xset","font",&fontId,&fontSize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  /* get the bounding box with xstringl */
+  /* we must work with pixel values since the text is unaffected by scales */
+  /* the lower-left pixel of the text is put is in (10,10) */
+  /* to avoid <0 values for log axis */
+  center[0]  = XDouble2Pixel( textPos[0] ) ;
+  center[1]  = YDouble2Pixel( textPos[1] ) ;
+  
+  /* get the bounding retcnagle [x,y,w,h] in pixels */
+  stringBoundingRect( text, textSize, center, rect ) ;
+  
+  /* return to the previous size */
+  C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  /* get the 4 corners not turned */
+  /* rect[0-1] == upper-left point */
+  /* rect[2] == width  */
+  /* rect[3] == heigth */
+  
+  corners[0][0] = rect[0] ;
+  corners[0][1] = rect[1] + rect[3] ;
+
+  corners[1][0] = rect[0] ;
+  corners[1][1] = rect[1] ;
+
+  corners[2][0] = rect[0] + rect[2] ;
+  corners[2][1] = rect[1] ;
+
+  corners[3][0] = corners[2][0] ;
+  corners[3][1] = corners[0][1] ;
+  
+  /* rotate everything around corner1 if needed */
+  if ( Abs( angle ) > EPSILON )
+  {
+    double cosAngle = cos( angle ) ;
+    double sinAngle = sin( angle ) ;
+    rotate2Dim( corners[1], corners[0], cosAngle, sinAngle, corners[1] ) ;
+    rotate2Dim( corners[2], corners[0], cosAngle, sinAngle, corners[2] ) ;
+    rotate2Dim( corners[3], corners[0], cosAngle, sinAngle, corners[3] ) ;
+  
+    /* take everything back to user coordinates */
+    /* to retrieve exactly the first corner as in stringl we take the input */
+    corners[0][0] = textPos[0] ; /*XDPixel2Double( corners[0][0] ) ;*/
+    corners[0][1] = textPos[1] ; /*YDPixel2Double( corners[0][1] ) ;*/
+    
+    corners[1][0] = XDPixel2Double( corners[1][0] ) ;
+    corners[1][1] = YDPixel2Double( corners[1][1] ) ;
+    
+    corners[2][0] = XDPixel2Double( corners[2][0] ) ;
+    corners[2][1] = YDPixel2Double( corners[2][1] ) ;
+    
+    corners[3][0] = XDPixel2Double( corners[3][0] ) ;
+    corners[3][1] = YDPixel2Double( corners[3][1] ) ;
+    
+  }
+  else
+  {
+    /* to retrieve exactly the first corner as in stringl we take the input */
+    corners[0][0] = textPos[0] ; /* XDPixel2Double( corners[0][0] ) ;*/
+    corners[0][1] = textPos[1] ; /* YDPixel2Double( corners[0][1] ) ; */
+    
+    corners[1][0] = corners[0][0] ;
+    corners[1][1] = YDPixel2Double( corners[1][1] ) ;
+    
+    corners[2][0] = XDPixel2Double( corners[2][0] ) ;
+    corners[2][1] = corners[1][1] ;
+    
+    corners[3][0] = corners[2][0] ;
+    corners[3][1] = corners[0][1] ;
+  }
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* sciStringBox                                                                      */
+/*-----------------------------------------------------------------------------------*/
+int sciStringBox( char * fname, unsigned long fname_len )
+{
+  integer    two   = 2     ;
+  integer    four  = 4     ;
+  char    ** text          ;
+  double     angle         ;
+  integer    fontSize      ;
+  double     textPos[2]    ;
+  int        textSize[2]   ;
+  integer    fontId        ;
+  integer    m,n           ;
+  integer    stackPointer  ;
+  double     corners[4][2] ; /* the four edges of the boundingRect */
+
+
+  /* The function should be called with stringbox(text,posX,posY,angle,fontSize,fontId) */
+  CheckRhs( 6, 6 ) ;
+  CheckLhs( 0, 1 ) ;  
+  
+  /* get the string which is boxed */
+  GetRhsVar( 1, "S", &textSize[0], &textSize[1], &text ) ;
+  
+  /* get the position of the text */
+  GetRhsVar( 2, "d", &m, &n, &stackPointer ) ;
+  textPos[0] = *stk( stackPointer ) ;
+  GetRhsVar( 3, "d", &m, &n, &stackPointer ) ;
+  textPos[1] = *stk( stackPointer ) ;
+
+  /* get the angle in radian in clockwise direction */
+  GetRhsVar( 4, "d", &m, &n, &stackPointer ) ;
+  angle = *stk( stackPointer ) ;
+  angle = DEG2RAD( angle ) ;
+
+  /* get the font size */
+  GetRhsVar( 5, "i", &m, &n, &stackPointer ) ;
+  fontId = *istk( stackPointer ) ;
+  
+  /* get the font id */
+  GetRhsVar( 6, "i", &m, &n, &stackPointer ) ;
+  fontSize = *istk( stackPointer ) ;
+
+  /* create a window if needed to initialize the X11 graphic context  */
+  SciWin() ;
+
+  /* get the string box */
+  getStringBox( text, textPos, textSize, angle, fontId, fontSize, corners ) ;
+
+  FreeRhsSVar( text ) ;
+
+  /* copy everything into the lhs */
+  CreateVar( Rhs + 1, "d", &two, &four, &stackPointer ) ;
+  *stk( stackPointer     )  = corners[0][0] ; 
+  *stk( stackPointer + 1 )  = corners[0][1] ;
+  *stk( stackPointer + 2 )  = corners[1][0] ;
+  *stk( stackPointer + 3 )  = corners[1][1] ;
+  *stk( stackPointer + 4 )  = corners[2][0] ;
+  *stk( stackPointer + 5 )  = corners[2][1] ;
+  *stk( stackPointer + 6 )  = corners[3][0] ;
+  *stk( stackPointer + 7 )  = corners[3][1] ;
+
+  LhsVar( 1 ) = Rhs + 1 ;
+  return 0;
+}
+
+/*-----------------------------------------------------------------------------------*/
 /* xtape */
 /*-----------------------------------------------------------------------------------*/
 int scixtape(char *fname,unsigned long fname_len)
