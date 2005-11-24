@@ -1,3 +1,34 @@
+/* C code produced by gperf version 3.0.1 */
+/* Command-line: gperf -C -t -k '2,3,4,$' Xcall.gperf  */
+
+/* #if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35) \ */
+/*       && ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40) \ */
+/*       && (')' == 41) && ('*' == 42) && ('+' == 43) && (',' == 44) \ */
+/*       && ('-' == 45) && ('.' == 46) && ('/' == 47) && ('0' == 48) \ */
+/*       && ('1' == 49) && ('2' == 50) && ('3' == 51) && ('4' == 52) \ */
+/*       && ('5' == 53) && ('6' == 54) && ('7' == 55) && ('8' == 56) \ */
+/*       && ('9' == 57) && (':' == 58) && (';' == 59) && ('<' == 60) \ */
+/*       && ('=' == 61) && ('>' == 62) && ('?' == 63) && ('A' == 65) \ */
+/*       && ('B' == 66) && ('C' == 67) && ('D' == 68) && ('E' == 69) \ */
+/*       && ('F' == 70) && ('G' == 71) && ('H' == 72) && ('I' == 73) \ */
+/*       && ('J' == 74) && ('K' == 75) && ('L' == 76) && ('M' == 77) \ */
+/*       && ('N' == 78) && ('O' == 79) && ('P' == 80) && ('Q' == 81) \ */
+/*       && ('R' == 82) && ('S' == 83) && ('T' == 84) && ('U' == 85) \ */
+/*       && ('V' == 86) && ('W' == 87) && ('X' == 88) && ('Y' == 89) \ */
+/*       && ('Z' == 90) && ('[' == 91) && ('\\' == 92) && (']' == 93) \ */
+/*       && ('^' == 94) && ('_' == 95) && ('a' == 97) && ('b' == 98) \ */
+/*       && ('c' == 99) && ('d' == 100) && ('e' == 101) && ('f' == 102) \ */
+/*       && ('g' == 103) && ('h' == 104) && ('i' == 105) && ('j' == 106) \ */
+/*       && ('k' == 107) && ('l' == 108) && ('m' == 109) && ('n' == 110) \ */
+/*       && ('o' == 111) && ('p' == 112) && ('q' == 113) && ('r' == 114) \ */
+/*       && ('s' == 115) && ('t' == 116) && ('u' == 117) && ('v' == 118) \ */
+/*       && ('w' == 119) && ('x' == 120) && ('y' == 121) && ('z' == 122) \ */
+/*       && ('{' == 123) && ('|' == 124) && ('}' == 125) && ('~' == 126)) */
+/* /\* The character set is not based on ISO-646.  *\/ */
+/* error "gperf generated tables don't work with this execution character set. Please report a bug to <bug-gnu-gperf@gnu.org>." */
+/* #endif */
+
+/* #line 1 "Xcall.gperf" */
 /*------------------------------------------------------------------------
    *  Graphic library for 2D and 3D plotting 
    *  Copyright (C) 1998-2001 Chancelier Jean-Philippe
@@ -47,51 +78,58 @@ static void C2F(vide)(char *v1,integer * v2,integer * v3,integer * v4,integer * 
 
 typedef void (*func)();
 typedef void (function)() ;
+/* #line 51 "Xcall.gperf" */
 struct funreplace { char *name; func action[4]; };
 
-#define TOTAL_KEYWORDS 40
+#define TOTAL_KEYWORDS 41
 #define MIN_WORD_LENGTH 4
 #define MAX_WORD_LENGTH 9
-#define MIN_HASH_VALUE 4
-#define MAX_HASH_VALUE 141
-/* maximum key range = 138, duplicates = 0 */
+#define MIN_HASH_VALUE 9
+#define MAX_HASH_VALUE 86
+/* maximum key range = 78, duplicates = 0 */
 
 #ifdef __GNUC__
 __inline
+#else
+#ifdef __cplusplus
+inline
 #endif
-static unsigned int hash (str, len)
+#endif
+static unsigned int
+hash (str, len)
      register const char *str;
      register unsigned int len;
 {
   static const unsigned char asso_values[] =
     {
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142,  35, 142,   5,
-       15,   0,  25,  33,  20,   0, 142,   5,  10,  40,
-       42,  30,   0, 142,   0,   0,   0,  15, 142,  10,
-       10,   0, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142, 142, 142, 142, 142,
-      142, 142, 142, 142, 142, 142
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      60, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87,  5, 87,  0,
+      15,  5, 45, 15, 25,  0, 87, 45, 25, 15,
+      20,  0, 10, 87,  0,  0,  5, 20, 87, 55,
+      25, 10, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
+      87, 87, 87, 87, 87, 87
     };
+  
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[2]] + asso_values[(unsigned char)str[1]] + asso_values[(unsigned char)str[len - 1]];
 }
 
@@ -105,73 +143,93 @@ xcall_in_word_set (str, len)
 {
   static const struct funreplace wordlist[] =
     {
-      {""}, {""}, {""}, {""},
-      {"xset",    {C2F(MissileGCset),C2F(scilabgcsetPos),C2F(scilabgcsetXfig),C2F(scilabgcsetGif)}},
-      {""},
-      {"xsetdr",    {C2F(SetDriver),C2F(SetDriver),C2F(SetDriver),C2F(SetDriver)}},
-      {"xreplay",    {Tape_Replay,Tape_Replay,Tape_Replay,Tape_Replay}},
-      {""}, {""},
-      {"xrect",    {C2F(drawrectangle),C2F(drawrectanglePos),C2F(drawrectangleXfig),C2F(drawrectangleGif)}},
-      {"xrects",    {C2F(drawrectangles),C2F(drawrectanglesPos),C2F(drawrectanglesXfig),C2F(drawrectanglesGif)}},
-      {""}, {""},
-      {"xreplaysc",    {Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale}},
-      {""}, {""},
-      {"xselect",    {C2F(xselgraphic),C2F(xselgraphicPos),C2F(xselgraphicXfig),C2F(xselgraphicGif)}},
-      {"xstringl",    {C2F(boundingbox),C2F(boundingboxPos),C2F(boundingboxXfig),C2F(boundingboxGif),}},
-      {""}, {""},
-      {"xclear",    {C2F(clearwindow),C2F(clearwindowPos),C2F(clearwindowXfig),C2F(clearwindowGif)}},
-      {""}, {""},
-      {"xclickany",    {C2F(xclick_any),C2F(xclick_anyPos),C2F(xclick_anyXfig),C2F(xclick_anyGif)}},
-      {""},
-      {"xclick",    {C2F(xclick),C2F(xclickPos),C2F(xclickXfig),C2F(xclickGif)}},
-      {""}, {""},
-      {"xreplaysh",    {Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show}},
-      {""},
-      {"xfrect",    {C2F(fillrectangle),C2F(fillrectanglePos),C2F(fillrectangleXfig),C2F(fillrectangleGif)}},
-      {""}, {""}, {""}, {""}, {""},
-      {"xget",    {C2F(MissileGCget),C2F(scilabgcgetPos),C2F(scilabgcgetXfig),C2F(scilabgcgetGif)}},
-      {"xsegs",    {C2F(drawsegments),C2F(drawsegmentsPos),C2F(drawsegmentsXfig),C2F(drawsegmentsGif)}},
-      {"xgetdr",    {GetDriver1,GetDriver1,GetDriver1,GetDriver1}},
-      {"xstring",    {C2F(displaystring),C2F(displaystringPos),C2F(displaystringXfig),C2F(displaystringGif)}},
-      {"xstart",    {CleanPlots,CleanPlots,CleanPlots,CleanPlots}},
-      {"xgetmouse",    {C2F(xgetmouse),C2F(xgetmousePos),C2F(xgetmouseXfig),C2F(xgetmouseGif)}},
-      {""},
-      {"xreplayna",    {Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle}},
-      {"xarcs",    {C2F(drawarcs),C2F(drawarcsPos),C2F(drawarcsXfig),C2F(drawarcsGif)}},
-      {"xpolys",    {C2F(drawpolylines),C2F(drawpolylinesPos),C2F(drawpolylinesXfig),C2F(drawpolylinesGif)}},
-      {"xinit",    {C2F(initgraphic),C2F(initgraphicPos),C2F(initgraphicXfig),C2F(initgraphicGif)}},
+      {""}, 
+      {""}, 
+      {""}, 
+      {""}, 
+      {""}, 
+      {""}, 
+      {""}, 
+      {""}, 
       {""},
       {"xarc",    {C2F(drawarc),C2F(drawarcPos),C2F(drawarcXfig),C2F(drawarcGif)}},
-      {"xaxis",    {C2F(drawaxis),C2F(drawaxisPos),C2F(drawaxisXfig),C2F(drawaxisGif)}},
-      {"xarrow",    {C2F(drawarrows),C2F(drawarrowsPos),C2F(drawarrowsXfig),C2F(drawarrowsGif)}},
-      {""}, {""}, {""},
-      {"xclea",    {C2F(cleararea),C2F(clearareaPos),C2F(clearareaXfig),C2F(clearareaGif)}},
-      {"xpause",    {C2F(xpause),C2F(xpausePos),C2F(xpauseXfig),C2F(xpauseGif)}},
+      {"xarcs",    {C2F(drawarcs),C2F(drawarcsPos),C2F(drawarcsXfig),C2F(drawarcsGif)}},
+      {"xrects",    {C2F(drawrectangles),C2F(drawrectanglesPos),C2F(drawrectanglesXfig),C2F(drawrectanglesGif)}},
+      {""}, 
+      {""}, 
       {""},
+      {"xrect",    {C2F(drawrectangle),C2F(drawrectanglePos),C2F(drawrectangleXfig),C2F(drawrectangleGif)}},
+      {"xsetdr",    {C2F(SetDriver),C2F(SetDriver),C2F(SetDriver),C2F(SetDriver)}},
+      {""}, 
+      {""},
+      {"xset",    {C2F(MissileGCset),C2F(scilabgcsetPos),C2F(scilabgcsetXfig),C2F(scilabgcsetGif)}},
+      {"xarea",    {C2F(fillpolyline),C2F(fillpolylinePos),C2F(fillpolylineXfig),C2F(fillpolylineGif)}},
+      {"xstart",    {CleanPlots,CleanPlots,CleanPlots,CleanPlots}},
+      {""}, 
+      {""},
+      {"xreplaysc",    {Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale}},
+      {"xsegs",    {C2F(drawsegments),C2F(drawsegmentsPos),C2F(drawsegmentsXfig),C2F(drawsegmentsGif)}},
+      {"xmarks",    {C2F(drawpolymark),C2F(drawpolymarkPos),C2F(drawpolymarkXfig),C2F(drawpolymarkGif)}},
+      {"xstring",    {C2F(displaystring),C2F(displaystringPos),C2F(displaystringXfig),C2F(displaystringGif)}},
+      {""},
+      {"xreplayna",    {Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle}},
+      {"xinit",    {C2F(initgraphic),C2F(initgraphicPos),C2F(initgraphicXfig),C2F(initgraphicGif)}},
+      {"xgetdr",    {GetDriver1,GetDriver1,GetDriver1,GetDriver1}},
+      {"xreplay",    {Tape_Replay,Tape_Replay,Tape_Replay,Tape_Replay}},
+      {""},
+      {"xget",    {C2F(MissileGCget),C2F(scilabgcgetPos),C2F(scilabgcgetXfig),C2F(scilabgcgetGif)}},
+      {"xaxis",    {C2F(drawaxis),C2F(drawaxisPos),C2F(drawaxisXfig),C2F(drawaxisGif)}},
+      {"xclear",    {C2F(clearwindow),C2F(clearwindowPos),C2F(clearwindowXfig),C2F(clearwindowGif)}},
+      {""},
+      {"xstringl",    {C2F(boundingbox),C2F(boundingboxPos),C2F(boundingboxXfig),C2F(boundingboxGif),}},
+      {"xgetmouse",    {C2F(xgetmouse),C2F(xgetmousePos),C2F(xgetmouseXfig),C2F(xgetmouseGif)}},
+      {"xclea",    {C2F(cleararea),C2F(clearareaPos),C2F(clearareaXfig),C2F(clearareaGif)}},
+      {"xpolys",    {C2F(drawpolylines),C2F(drawpolylinesPos),C2F(drawpolylinesXfig),C2F(drawpolylinesGif)}},
+      {"xselect",    {C2F(xselgraphic),C2F(xselgraphicPos),C2F(xselgraphicXfig),C2F(xselgraphicGif)}},
+      {""},
+      {"xclickany",    {C2F(xclick_any),C2F(xclick_anyPos),C2F(xclick_anyXfig),C2F(xclick_anyGif)}},
+      {""},
+      {"xpause",    {C2F(xpause),C2F(xpausePos),C2F(xpauseXfig),C2F(xpauseGif)}},
+      {""}, 
+      {""},
+      {"xreplaysh",    {Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show}},
+      {"xname",    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}},
       {"xlines",    {C2F(drawpolyline),C2F(drawpolylinePos),C2F(drawpolylineXfig),C2F(drawpolylineGif)}},
       {"xliness",    {C2F(fillpolylines),C2F(fillpolylinesPos),C2F(fillpolylinesXfig),C2F(fillpolylinesGif)}},
-      {""}, {""}, {""}, {""}, {""}, {""},
-      {"xfarcs",    {C2F(fillarcs),C2F(fillarcsPos),C2F(fillarcsXfig),C2F(fillarcsGif)}},
-      {""}, {""}, {""},
-      {"xfarc",    {C2F(fillarc),C2F(fillarcPos),C2F(fillarcXfig),C2F(fillarcGif)}},
-      {"xlfont",    {C2F(loadfamily),C2F(loadfamilyPos),C2F(loadfamilyXfig),C2F(loadfamilyGif)}},
-      {""}, {""}, {""},
-      {"xarea",    {C2F(fillpolyline),C2F(fillpolylinePos),C2F(fillpolylineXfig),C2F(fillpolylineGif)}},
-      {"xend",    {C2F(xend),C2F(xendPos),C2F(xendXfig),C2F(xendGif)}},
-      {""}, {""}, {""}, {""},
-      {"xmarks",    {C2F(drawpolymark),C2F(drawpolymarkPos),C2F(drawpolymarkXfig),C2F(drawpolymarkGif)}},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {""}, {""}, {""},
-      {"xgfont",    {C2F(queryfamily),C2F(queryfamilyPos),C2F(queryfamilyXfig),C2F(queryfamilyGif)}},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {"xinfo",    {C2F(xinfo),C2F(vide),C2F(vide),C2F(vide)}},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
+      {""}, 
       {""},
-      {"xname",    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {"xnum",    {C2F(displaynumbers),C2F(displaynumbersPos),C2F(displaynumbersXfig),C2F(displaynumbersGif)}}
+      {"xfarc",    {C2F(fillarc),C2F(fillarcPos),C2F(fillarcXfig),C2F(fillarcGif)}},
+      {"xfarcs",    {C2F(fillarcs),C2F(fillarcsPos),C2F(fillarcsXfig),C2F(fillarcsGif)}},
+      {""}, 
+      {""},
+      {"xend",    {C2F(xend),C2F(xendPos),C2F(xendXfig),C2F(xendGif)}},
+      {""},
+      {"xfrect",    {C2F(fillrectangle),C2F(fillrectanglePos),C2F(fillrectangleXfig),C2F(fillrectangleGif)}},
+      {""}, 
+      {""}, 
+      {""}, 
+      {""},
+      {"xarrow",    {C2F(drawarrows),C2F(drawarrowsPos),C2F(drawarrowsXfig),C2F(drawarrowsGif)}},
+      {""}, 
+      {""}, 
+      {""},
+      {"xinfo",    {C2F(xinfo),C2F(vide),C2F(vide),C2F(vide)}},
+      {"xgfont",    {C2F(queryfamily),C2F(queryfamilyPos),C2F(queryfamilyXfig),C2F(queryfamilyGif)}},
+      {""}, 
+      {""},
+      {"xnum",    {C2F(displaynumbers),C2F(displaynumbersPos),C2F(displaynumbersXfig),C2F(displaynumbersGif)}},
+      {""},
+      {"xclick",    {C2F(xclick),C2F(xclickPos),C2F(xclickXfig),C2F(xclickGif)}},
+      {""}, 
+      {""}, 
+      {""},
+      {""},
+      {"xlfont",    {C2F(loadfamily),C2F(loadfamilyPos),C2F(loadfamilyXfig),C2F(loadfamilyGif)}},
+      {""}, 
+      {""}, 
+      {""}, 
+      {""},
+      {"xinit2",    {C2F(initgraphic),C2F(initgraphicfromscreenPos),C2F(initgraphicfromscreenXfig),C2F(initgraphicfromscreenGif)}}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -188,6 +246,8 @@ xcall_in_word_set (str, len)
     }
   return 0;
 }
+#line 94 "Xcall.gperf"
+
 
 static char DriverName[]= "Rec";
 static int  DriverId = 0;
@@ -292,11 +352,8 @@ static void C2F(all)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,int
     }
 }
 
-int C2F(foo_inttest)(int *x1)
-{
-  sciprint("Value  of x1 = <%d>\r\n",*x1);
-  return(0);
-}
 
 /*----------------------------------END---------------------------*/
+
+
 
