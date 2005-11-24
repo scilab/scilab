@@ -181,6 +181,7 @@ btn_pressed(widget, event, params, num_params)
      emited just before an xclick or xgemouse call
     if (!get_wait_click()) return;
   */
+  sciprint("num=%d %s\n",*num_params,params[0]);
   if (wait_dclick) {
    /* If we are waiting for a double-click, we only handle Button events
       in a special fashion.*/
@@ -215,16 +216,36 @@ btn_pressed(widget, event, params, num_params)
   }
   else  {
     if  (lose_up) { /* simple click detected [3 4 5]*/
-      PushClickQueue(GetEventWindow(event),event->xbutton.x,
-		     event->xbutton.y,
-		     event->xbutton.button-1+3,0,0);
+      if (params[0][0]=='0')
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
+		       event->xbutton.button-1+3,0,0);
+      else if (params[0][0]=='1') /*shift press*/
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
+		       event->xbutton.button-1+3+2000,0,0);
+      else if (params[0][0]=='2') /*ctrl press*/
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
+		       event->xbutton.button-1+3+1000,0,0);
+
       lose_up = FALSE;
       
     }
     else { /* button pressed detected [0 1 2]*/
-      PushClickQueue(GetEventWindow(event),event->xbutton.x,
-		     event->xbutton.y,
-		     event->xbutton.button-1,0,0);
+      if (params[0][0]=='0')
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
+		       event->xbutton.button-1,0,0);
+      else if (params[0][0]=='1') /*shift press*/
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
+		       event->xbutton.button-1+2000,0,0);
+      else if (params[0][0]=='2') /*ctrl press*/
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
+		       event->xbutton.button-1+1000,0,0);
+
     }
    
  }
@@ -354,7 +375,9 @@ None<KeyDown>:KeyPressed(0)\n\
 !Lock Shift<KeyUp>:KeyReleased(1)\n\
 None<KeyUp>:KeyReleased(0)\n\
 <BtnUp>:BtnReleased()\n\
-<BtnDown>:BtnPressed()\n\
+!Shift<BtnDown>:BtnPressed(1)\n\
+!Ctrl<BtnDown>:BtnPressed(2)\n\
+<BtnDown>:BtnPressed(0)\n\
 ";
 /*
  * Creates a new graphic window 
