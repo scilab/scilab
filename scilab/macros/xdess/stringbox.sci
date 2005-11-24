@@ -1,0 +1,87 @@
+//=======================================================================
+// Copyrigth INRIA 2005
+// File   : stringBox.sci
+// Author : Jean-Baptiste Silvy
+// Desc   : Compute the 4 corners of a displayed string bounding rect
+//======================================================================
+
+function [corners] = stringbox( varargin )
+
+// the call is stringBox(handle) or stringBox(text,posX,posY,[angle,[fontId,[fontSize]]]) ;
+
+[lhs,rhs] = argn(0) ;
+
+// initialize values ;
+text     = '' ;
+angle    = 0  ;
+posX     = 0  ;
+posY     = 0  ;
+font     = xget('font') ;
+fontId   = font( 1 )    ;
+fontSize = font( 2 )    ;
+
+ListArg = varargin ;
+
+select rhs,
+  
+case 1 then
+  textHandle = ListArg(1) ;
+  
+  // works only on text handles
+  if type(textHandle) ~= 9 then
+    error("If only a single argument is specified, it must be a text handle.");
+    return ;
+  end
+  if (textHandle.type ~= "Text" ) then
+    error("Handle should be an Text handle.") ;
+    return ;
+  end
+  
+  // get the properties
+  text     = textHandle.text       ;
+  posX     = textHandle.data( 1 )  ;
+  posY     = textHandle.data( 2 )  ;
+  angle    = textHandle.font_angle ;
+  fontId   = textHandle.font_style ;
+  fontSize = textHandle.font_size  ;
+  
+case 3 then
+  text = ListArg( 1 ) ;
+  posX = ListArg( 2 ) ;
+  posY = ListArg( 3 ) ;
+    
+case 4 then
+  text  = ListArg( 1 ) ;
+  posX  = ListArg( 2 ) ;
+  posY  = ListArg( 3 ) ;
+  angle = ListArg( 4 ) ;
+  
+case 5 then
+  text   = ListArg( 1 ) ;
+  posX   = ListArg( 2 ) ;
+  posY   = ListArg( 3 ) ;
+  angle  = ListArg( 4 ) ;
+  fontId = ListArg( 5 ) ;
+  
+case 6 then
+  text     = ListArg( 1 ) ;
+  posX     = ListArg( 2 ) ;
+  posY     = ListArg( 3 ) ;
+  angle    = ListArg( 4 ) ;
+  fontId   = ListArg( 5 ) ; 
+  fontSize = ListArg( 6 ) ;
+  
+else
+  error(39);
+  return ;
+end
+
+// check the type of inputs
+if type( text ) ~= 10 | type( posX ) ~= 1 | type( posY ) ~= 1 | type( angle ) ~= 1 | type( fontId ) ~= 1 | type( fontSize ) ~= 1 then
+  error(246) ;
+  return ;
+end
+
+corners = StringBox( text, posX, posY, angle, fontId, fontSize ) ;
+
+endfunction
