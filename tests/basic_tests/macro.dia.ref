@@ -534,14 +534,14 @@ a=2;
 y=ode(0,0,1:2,simul)
  y  =
  
-!   2.    4. !
+    2.    4.  
  
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
  
 y=ode(0,0,1:2,simul)
  y  =
  
-!   2.    4. !
+    2.    4.  
  
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
  
@@ -552,14 +552,14 @@ deff('[ydot]=simul(t,y,a)','ydot=a','n')
 y=ode(0,0,1:2,list(simul,a))
  y  =
  
-!   2.    4. !
+    2.    4.  
  
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
  
 y=ode(0,0,1:2,list(simul,a))
  y  =
  
-!   2.    4. !
+    2.    4.  
  
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
  

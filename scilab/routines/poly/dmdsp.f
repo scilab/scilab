@@ -37,7 +37,7 @@ c
       dl=' '
       m=abs(mm)
       n=abs(nn)
-      if(m*n.gt.1) dl='!'
+      if(m*n.gt.1) dl=' '
 c
 c facteur d'echelle
 c

@@ -40,7 +40,7 @@ c
       cw=' '
       write(form(1),130) maxc,maxc-7
       dl=' '
-      if(m*n.gt.1) dl='!'
+      if(m*n.gt.1) dl=' '
 c
 c facteur d'echelle
 c

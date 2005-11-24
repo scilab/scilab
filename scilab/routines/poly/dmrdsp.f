@@ -57,7 +57,7 @@ c
       cw=' '
       write(form(1),130) maxc,maxc-7
       dl=' '
-      if(m*n.gt.1) dl='!'
+      if(m*n.gt.1) dl=' '
 c     
 c     phase d'analyse: pour chaque coefficient a representer on determine
 c     format avec lequel on va l'editer, on en deduit la longueur

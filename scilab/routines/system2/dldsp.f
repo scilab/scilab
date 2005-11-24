@@ -26,7 +26,7 @@ c     Copyright INRIA
 c     
       cw=' '
       dl=' '
-      if(m*n.gt.1) dl='!'
+      if(m*n.gt.1) dl=' '
 c
       nelt=(ll-3)/2
       nbloc=n/nelt
