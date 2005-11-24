@@ -802,3 +802,7 @@ int GradEqual(const double grads[],const int *ngrads)
     }
   return 1;
 }
+
+
+#undef ROUND
+#undef ABS

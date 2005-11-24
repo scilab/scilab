@@ -82,6 +82,8 @@ extern int YLogScale(double y);
 /* #define XPi2R(x)  Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1) */
 /* #define YPi2R(y)  Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1) */
 
+
+/* change of frame with integer values */ 
 extern double XPi2R(int x);
 extern double YPi2R(int y);
 
@@ -89,6 +91,15 @@ extern double YPi2R(int y);
 #define YPi2LogR(y)  exp10( YPi2R(y))
 #define XPixel2Double(x)  (( Cscale.logflag[0] == 'l') ? XPi2LogR(x) : XPi2R(x))
 #define YPixel2Double(y)  (( Cscale.logflag[1] == 'l') ? YPi2LogR(y) : YPi2R(y))
+
+/* chang eof frame with double values for entries */
+extern double XDPi2R( double x ) ;
+extern double YDPi2R( double y ) ;
+
+#define XDPi2LogR(x)  exp10( XDPi2R(x))
+#define YDPi2LogR(y)  exp10( YDPi2R(y))
+#define XDPixel2Double(x)  (( Cscale.logflag[0] == 'l') ? XDPi2LogR(x) : XDPi2R(x))
+#define YDPixel2Double(y)  (( Cscale.logflag[1] == 'l') ? YDPi2LogR(y) : YDPi2R(y))
 
 /*
  * Current geometric transformation : 3D plots 

@@ -1733,6 +1733,48 @@ double YPi2R(int y)
   return -9000;
 }
 
+double XDPi2R( double x )
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+      
+      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+	return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+      else
+	return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+    }
+  
+
+  sciprint("Error in XScale\n");
+  return -9000;
+}
+
+
+double YDPi2R( double y )
+{
+  /*F.Leray 12.10.04 : MODIF named scale_modification*/
+  if(version_flag()!=0)
+    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+  else
+    {
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+      
+      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+	return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+      else
+	return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+    }
+  
+  
+  sciprint("Error in YScale\n");
+  return -9000;
+}
 
 
 

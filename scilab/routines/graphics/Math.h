@@ -9,6 +9,8 @@
 #include "../machine.h"
 
 
+#include <math.h>
+
 #ifdef __STDC__
 #include <stdlib.h>
 #else
@@ -49,11 +51,22 @@ int finite __PARAMS((double));
 
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
-#endif 
+#endif
 
 #define PI0 (integer *) 0
 #define PD0 (double *) 0
 #define SMDOUBLE 1.e-200 /* Smalest number to avoid dividing by zero */
+
+/* angle conversion */
+#define PI_OVER_180  0.01745329251994329576913914624236578987393
+#define _180_OVER_PI 57.29577951308232087665461840231273527024
+#define DEG2RAD(x) ((x) * PI_OVER_180  )
+#define RAD2DEG(x) ((x) * _180_OVER_PI )
+
+/*#define ROUND(x) ((int)rint(x))*/
+#define EPSILON 1.0e-13
+
+
 
 /** 
   #define linint(x) ((integer) floor(x)) 
@@ -94,6 +107,22 @@ int finite __PARAMS((double));
 extern double exp10 __PARAMS((double));
 
 /* prototypes */
+
+/*----------------------------------------------------------------------------*/
+/* perform the rotation of point from to point dest with angle in radian  */
+void rotate2D( double from[2], double center[2], double angle, double dest[2] ) ;
+
+/* perform the rotation of point from to point to. */
+/* the angle is directly given with its sine and cosine for speed */
+void rotate2Dim( double from[2]   ,
+                 double center[2] ,
+                 double cosAngle  ,
+                 double sinAngle  ,
+                 double dest[2]    ) ;
+
+/* perform the translation of point from to point dest with vector trans */
+void translate2D( double from[2], double trans[2], double dest[2] ) ;
+/*----------------------------------------------------------------------------*/
 
 #include "Graphics.h" 
 

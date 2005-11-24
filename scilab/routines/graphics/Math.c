@@ -46,3 +46,45 @@ double Maxi(vect, n)
       maxi=vect[i];
   return(maxi);
 }
+
+/*----------------------------------------------------------------------------*/
+
+/* perform the rotation of point from to point dest  */
+void rotate2D( double from[2], double center[2], double angle, double dest[2] )
+{
+  double cosAngle = cos( angle ) ;
+  double sinAngle = sin( angle ) ;
+  rotate2Dim( from, center, cosAngle, sinAngle, dest ) ;
+}
+
+/*----------------------------------------------------------------------------*/
+/* perform the rotation of point from to point to. */
+/* the angle is directly given with its sine and cosine for speed */
+void rotate2Dim( double from[2]   ,
+                 double center[2] ,
+                 double cosAngle  ,
+                 double sinAngle  ,
+                 double dest[2]    )
+{
+  double diff[2] ;
+
+  /* put the center to (0,0) */
+  diff[0] = from[0] - center[0] ;
+  diff[1] = from[1] - center[1] ;
+
+  /* turn and translate back */
+  dest[0] = diff[0] * cosAngle - diff[1] * sinAngle + center[0] ;
+  dest[1] = diff[0] * sinAngle + diff[1] * cosAngle + center[1] ;
+}
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------*/
+
+/* perform the translation of point from to point to with vector trans */
+void translate2D( double from[2], double trans[2], double dest[2] )
+{
+  dest[0] = from[0] + trans[0] ;
+  dest[1] = from[1] + trans[1] ;
+}
+
+/*----------------------------------------------------------------------------*/
