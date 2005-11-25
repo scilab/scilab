@@ -10,14 +10,13 @@
   <DATE>November 2005</DATE>
 
   <SHORT_DESCRIPTION name="stringbox">Compute the bounding rectangle of a text
-  object.</SHORT_DESCRIPTION>
+  or a label.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rect = stringbox( string, x, y, [angle, [fontStyle,
     [fontSize]]] )</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>rect = stringbox( textHandle
-    )</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>rect = stringbox( Handle )</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -74,10 +73,10 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>textHandle</PARAM_NAME>
+        <PARAM_NAME>Handle</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: a graphic handle of text type.</SP>
+          <SP>: a graphic handle of Text or Label type.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -85,11 +84,11 @@
 
   <DESCRIPTION>
     <P><VERB>stringbox</VERB> returns the bounding rectangle vertices of a
-    text object or a string which will be displayed with a certain way. the
-    coordinates are given with the current graphic scale. the first vertex
-    correspond to the text coordinates <VERB>(x,y)</VERB>, the lower left
-    point without rotation, the following vertex are given clockwise in the
-    resulting matrix.</P>
+    text or label object or a string which will be displayed with a certain
+    way. the coordinates are given with the current graphic scale. the first
+    vertex correspond to the text coordinates <VERB>(x,y)</VERB>, the lower
+    left point without rotation, the following vertex are given clockwise in
+    the resulting matrix.</P>
 
     <P>The result migth not be very accurate with PostScript driver.</P>
   </DESCRIPTION>
@@ -98,6 +97,12 @@
 axes = gca() ;
 axes.axes_visible = 'on' ;
 axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+
+// display a labels for axes
+xtitle( 'stringbox', 'X', 'Y' )  ;
+
+// get the bounding box of X label
+stringbox( axes.x_label ) ;
 
 // draw a string
 str = [ "Scilab", "is" , "not", "Skylab" ] ;

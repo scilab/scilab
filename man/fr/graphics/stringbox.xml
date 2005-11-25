@@ -9,15 +9,14 @@
 
   <DATE>November 2005</DATE>
 
-  <SHORT_DESCRIPTION name="stringbox">Calcule le rectangle englobant un objet
-  text.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="stringbox">Calcule le rectangle englobant d'un
+  texte ou d'un label.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rect = stringbox( string, x, y, [angle, [fontStyle,
     [fontSize]]] )</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>rect = stringbox( textHandle
-    )</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>rect = stringbox( handle )</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -74,10 +73,10 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>textHandle</PARAM_NAME>
+        <PARAM_NAME>handle</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: un handle de type texte.</SP>
+          <SP>: un handle de type Text ou Label.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -85,11 +84,11 @@
 
   <DESCRIPTION>
     <P><VERB>stringbox</VERB> renvoie les positions des quatres sommets du
-    rectangle englobant un objet texte ou d'une chaine de caractère que l'on
-    souhaite afficher. Les coordonnées sont données dans l'échelle graphique
-    courante. Le premier sommet correspond à la coordonnées du texte, le point
-    en bas à gauche sans rotations, les suivants sont donnés dans le sens des
-    aiguilles d'une montre.</P>
+    rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
+    que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
+    graphique courante. Le premier sommet correspond à la coordonnées du
+    texte, le point en bas à gauche sans rotations, les suivants sont donnés
+    dans le sens des aiguilles d'une montre.</P>
 
     <P>Le résultat est approximatif avec le pilote PostScript.</P>
   </DESCRIPTION>
@@ -98,6 +97,12 @@
 axes = gca() ;
 axes.axes_visible = 'on' ;
 axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+
+// display a labels for axes
+xtitle( 'stringbox', 'X', 'Y' )  ;
+
+// get the bounding box of X label
+stringbox( axes.x_label ) ;
 
 // draw a string
 str = [ "Scilab", "is" , "not", "Skylab" ] ;

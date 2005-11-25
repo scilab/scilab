@@ -29,21 +29,33 @@ case 1 then
   
   // works only on text handles
   if type(textHandle) ~= 9 then
-    error("If only a single argument is specified, it must be a text handle.");
-    return ;
-  end
-  if (textHandle.type ~= "Text" ) then
-    error("Handle should be an Text handle.") ;
+    error("If only a single argument is specified, it must be a handle.");
     return ;
   end
   
-  // get the properties
-  text     = textHandle.text       ;
-  posX     = textHandle.data( 1 )  ;
-  posY     = textHandle.data( 2 )  ;
-  angle    = textHandle.font_angle ;
-  fontId   = textHandle.font_style ;
-  fontSize = textHandle.font_size  ;
+  // works with text handle and label handle (axes label and titles)
+  if (textHandle.type == "Text" ) then
+    // get the properties
+    text     = textHandle.text       ;
+    posX     = textHandle.data( 1 )  ;
+    posY     = textHandle.data( 2 )  ;
+    angle    = textHandle.font_angle ;
+    fontId   = textHandle.font_style ;
+    fontSize = textHandle.font_size  ;
+  elseif (textHandle.type == "Label" ) then
+    // get the properties
+    text     = textHandle.text          ;
+    posX     = textHandle.position( 1 ) ;
+    posY     = textHandle.position( 2 ) ;
+    angle    = textHandle.font_angle    ;
+    fontId   = textHandle.font_style    ;
+    fontSize = textHandle.font_size  ;
+  else
+    error("Handle should be a Text or Label handle.") ;
+    return ;
+  end
+  
+  
   
 case 3 then
   text = ListArg( 1 ) ;
