@@ -179,6 +179,7 @@
 {"xs2emf",		IN_matdes,	92,	2},
 {"UImenu",		IN_matdes,	93,	2},
 {"showalluimenushandles",		IN_matdes,	94,	2},
+{"StringBox",		IN_matdes,	95,	2},
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
