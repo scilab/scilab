@@ -316,26 +316,30 @@ extern char *getenv();
 
 /* taken from the X11R5 server/os/osfonts.c file */
 #ifndef X_NOT_POSIX
-#ifdef _POSIX_SOURCE
-#include <limits.h>
-#else
-#if !defined(sun) || defined(sparc) || (defined(SVR4) && defined(i386))
-#define _POSIX_SOURCE
-#include <limits.h>
-#undef _POSIX_SOURCE
-#endif /* !defined(sun) || defined(sparc) */
-#endif /* _POSIX_SOURCE */
+  #ifdef _POSIX_SOURCE
+    #include <limits.h>
+  #else
+    #if !defined(sun) || defined(sparc) || (defined(SVR4) && defined(i386))
+      #define _POSIX_SOURCE
+      #include <limits.h>
+      #undef _POSIX_SOURCE
+    #endif /* !defined(sun) || defined(sparc) */
+  #endif /* _POSIX_SOURCE */
 #endif /* X_NOT_POSIX */
 
 /* define PATH_MAX if not already defined */
 #ifndef PATH_MAX
-#include <sys/param.h>
-#ifdef MAXPATHLEN
-#define PATH_MAX MAXPATHLEN
-#else
-#define PATH_MAX 1024
-#endif /* MAXPATHLEN */
+  #include <sys/param.h>
+  #ifndef PATH_MAX
+    #ifdef MAXPATHLEN
+      #define PATH_MAX MAXPATHLEN
+    #else
+      #define PATH_MAX 1024
+    #endif /* MAXPATHLEN */
+  #endif
 #endif /* PATH_MAX */
+
+
 
 /* use my own PI because GNUC has a long double and others have something else */
 #undef M_PI
