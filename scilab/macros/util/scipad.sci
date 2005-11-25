@@ -57,7 +57,7 @@ global TMPDIR
           if MSDOS then 
             filetoopen=strsubst(filetoopen,"\","/"); 
           end
-          TCL_EvalStr("scipad eval {openfile """+ filetoopen +"""}")          
+          TCL_EvalStr("scipad eval {openfile {"+ filetoopen +"}}")          
         end
       end
     end
