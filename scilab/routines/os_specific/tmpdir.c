@@ -124,6 +124,8 @@ int DeleteDirectory(char *refcstrRootDirectory)
 	sprintf(strPattern,"%s\\*.*",refcstrRootDirectory);
 
 	hFile = FindFirstFile(strPattern, &FileInformation);
+	if (strPattern) { FREE(strPattern);strPattern=NULL;}
+
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do
