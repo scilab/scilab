@@ -62,7 +62,7 @@ extern void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,do
 extern void Xtitle  _PARAMS((char *str,int n));
 extern void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,
 			       double *angle,double *box,double* wh, long *hdl, int fill,
-			       int *foreground,int *background,BOOL isboxed,BOOL isline));
+			       int *foreground,int *background,BOOL isboxed,BOOL isline, BOOL isfilled));
 extern void Xpoly  _PARAMS((char *fname,unsigned long fname_len,int n,int close,double *x,double *y));
 extern void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
 extern void Xsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
@@ -2008,7 +2008,7 @@ int scixstring(char *fname,unsigned long fname_len)
 	ib += strlen(Str[i+ m3*j]);
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE);
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE,FALSE);
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
 	y += rect[3] * 1.2; 
@@ -2165,7 +2165,7 @@ int scixstringb(char *fname,unsigned long fname_len)
 
   if (version_flag() == 0) {
     wh[0]=w;wh[1]=hx;
-    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,TRUE);
+    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,TRUE,FALSE);
   }
   else { /* NG end */
     C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);

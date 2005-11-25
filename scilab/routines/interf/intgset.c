@@ -1819,7 +1819,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pLABEL_FEATURE(pobj)->auto_rotation = FALSE;
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     } 
-  else if (strcmp(marker,"position") == 0) 
+  else if (strcmp(marker,"position") == 0)
     { 
 		if (sciGetEntityType(pobj)== SCI_UIMENU)
 		{
