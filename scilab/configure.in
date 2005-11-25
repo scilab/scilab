@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.123 $)dnl
+AC_REVISION($Revision: 1.124 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -25,10 +25,13 @@ AC_ARG_WITH(gcc,
     [  --with-gcc              use gcc C compiler ])
 
 AC_ARG_WITH(g77,
-    [  --with-g77              use g77 Fortran compiler ])
+    [  --with-g77              use g77, GNU Fortran 77 compiler ])
+
+AC_ARG_WITH(gfortran,
+    [  --with-gfortran         use gfortran, GNU Fortran 95 compiler ])
 
 AC_ARG_WITH(gnu,
-    [  --with-gnu              use gcc C compiler and g77 Fortran compiler ])
+    [  --with-gnu              use gcc C compiler and gnu Fortran compiler (977 or gfortran) ])
 
 AC_ARG_WITH(intelcompilers,
     [  --with-intelcompilers   use intel icc and ifort Fortran compiler ])
@@ -118,9 +121,9 @@ if test "$with_gnu" = yes; then
   fi
   AC_CHECK_PROG(WITH_G77,g77,yes,no)
   if test "$WITH_G77" = no; then
-    AC_CHECK_PROG(WITH_G95,f95,yes,no)
-    if test "$WITH_G95" = no; then
-      AC_MSG_ERROR([Unable to configure: f95 or g77 compiler not found])
+    AC_CHECK_PROG(WITH_GFORTRAN,gfortran,yes,no)
+    if test "$WITH_GFORTRAN" = no; then
+      AC_MSG_ERROR([Unable to configure: g77 or gfortran compiler not found])
     fi
   fi
 elif test "$with_intelcompilers" = yes; then
@@ -144,6 +147,12 @@ elif test "$with_g77" = yes; then
   AC_CHECK_PROG(WITH_G77,g77,yes,no)
   if test "$WITH_G77" = no; then
     AC_MSG_ERROR([Unable to configure: g77 compiler not found])
+  fi
+elif test "$with_gfortran" = yes; then
+# GNU g95 (gfortran) required
+  AC_CHECK_PROG(WITH_GFORTRAN,gfortran,yes,no)
+  if test "$WITH_GFORTRAN" = no; then
+    AC_MSG_ERROR([Unable to configure: gfortran compiler not found])
   fi
 fi
 
@@ -550,88 +559,140 @@ case "$host" in
     MAKEFILE_TARGET=Makefile.linux
    ;;
 # Linux ELF: all standard distributions
-  i*86-*-linux-gnu | *-pc-linux-gnu )
-    LIEEELIB=
-    AC_CHECK_LIB(ieee,main,
-      [LIEEELIB=-lieee])
-    if test "$with_intelcompilers" = yes; then
-       GCC=no
-       CC=$ICC
-       FC=$IFC
-       CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp -pc64 -ffnalias -falias '
-       CC_PICFLAGS="-fPIC"
-# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
-       FC_OPTIONS="-O -cm -w90 -w95 -mp -pc64 -ffnalias -falias"
-       FC_OPTIONS_O0="-cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
-       if test "$enable_debug" = yes; then 
-         CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO  -mp -pc64 -ffnalias -falias'
-         FC_OPTIONS="-g -cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
-       fi
-       CC_LDFLAGS=$LIEEELIB
-       FC_LDFLAGS="$LIEEELIB -ldl"
-       LD=xild
-       LD_LDFLAGS="$LIEEELIB"
-    else
-       GCC=yes
-       GCCFIX=fix.o
-       CC=gcc
-       CC_OPTIONS='-O -DNDEBUG -Dlinux  -DNARROWPROTO'
-       CC_LDFLAGS=$LIEEELIB
-       CC_PICFLAGS=-fPIC
-       # find Fortran compiler
-       # g77 already asked and found: good
-       if test "$WITH_G77" = yes; then
-         FC=g77
-         FC_PICFLAGS=-fPIC
-       elif test "$WITH_G95" = yes;then 
-         FC=f95
-         FC_PICFLAGS=-fPIC
-	 AC_DEFINE(G95_FORTRAN)
-       # option with-f2c
-       elif test "$with_f2c" = yes; then
-         AC_CHECK_PROG(F2C,f2c,yes,no)
-         if test "$F2C" = no; then
-           AC_MSG_ERROR([Unable to configure: f2c compiler not found])
-         fi
-         # script shell f77 have bugs, get ours
-         FC='${SCIDIR}/bin/f77-linux'
-       else
-         # first find g77
-         AC_CHECK_PROG(WITH_G77,g77,yes,no)
-         if test "$WITH_G77" = yes; then
-           FC=g77
-           FC_PICFLAGS=-fPIC
-         else
-          AC_CHECK_PROG(WITH_G95,f95,yes,no)
-          if test "$WITH_G95" = yes; then
-            FC=f95
-            FC_PICFLAGS=-fPIC
-            AC_DEFINE(G95_FORTRAN)
-          else
-          # otherwise find f2c
-           AC_CHECK_PROG(F2C,f2c,yes,no)
-           if test "$F2C" = yes; then
-             # script shell f77 have bugs, get ours
-             FC='${SCIDIR}/bin/f77-linux'
-           else
-             AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
-           fi
-          fi
-         fi
-       fi
-       FC_OPTIONS=-O
-       FC_OPTIONS_O0=
-       FC_LDFLAGS="$LIEEELIB -ldl -rdynamic"
-       if test "$enable_debug" = yes; then 
-         CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO'
-         FC_OPTIONS=-g
-       fi
-       LD=ld
-       LD_LDFLAGS=$LIEEELIB
-    fi
-    MAKEFILE_TARGET=Makefile.linux
-   ;;
-# Linux gnu: ia64 distributions 
+	i*86-*-linux-gnu | *-pc-linux-gnu )
+	LIEEELIB=
+	AC_CHECK_LIB(ieee,main,[LIEEELIB=-lieee])
+	if test "$with_intelcompilers" = yes; then
+		GCC=no
+		CC=$ICC
+		FC=$IFC
+		CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp -pc64 -ffnalias -falias '
+		CC_PICFLAGS="-fPIC"
+		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
+		FC_OPTIONS="-O -cm -w90 -w95 -mp -pc64 -ffnalias -falias"
+		FC_OPTIONS_O0="-cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
+		if test "$enable_debug" = yes; then 
+			CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO  -mp -pc64 -ffnalias -falias'
+			FC_OPTIONS="-g -cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
+		fi
+		CC_LDFLAGS=$LIEEELIB
+		FC_LDFLAGS="$LIEEELIB -ldl"
+		LD=xild
+		LD_LDFLAGS="$LIEEELIB"
+	else
+		GCC=yes
+		GCCFIX=fix.o
+		CC=gcc
+		CC_OPTIONS='-O -DNDEBUG -Dlinux  -DNARROWPROTO'
+		CC_LDFLAGS=$LIEEELIB
+		CC_PICFLAGS=-fPIC
+		# find Fortran compiler
+		# g77 already asked and found: good
+		if test "$WITH_G77" = yes; then
+			FC=g77
+			FC_PICFLAGS=-fPIC
+			if test "$enable_debug" = yes; then
+				FC_OPTIONS="-g"
+				FC_OPTIONS_O0=""
+			else
+				FC_OPTIONS="-O"
+				FC_OPTIONS_O0=""
+			fi
+		elif test "$WITH_GFORTRAN" = yes;then
+			FC=gfortran
+			if test "$enable_debug" = yes; then
+				FC_OPTIONS="-g"
+				FC_OPTIONS_O0=""
+			else
+				FC_OPTIONS="-O"
+				FC_OPTIONS_O0=""
+			fi
+			FC_PICFLAGS=-fPIC
+			AC_DEFINE(G95_FORTRAN)
+		# option with-f2c
+		elif test "$with_f2c" = yes; then
+			AC_CHECK_PROG(F2C,f2c,yes,no)
+			if test "$F2C" = no; then
+				AC_MSG_ERROR([Unable to configure: f2c compiler not found])
+			fi
+			# script shell f77 have bugs, get ours
+			FC='${SCIDIR}/bin/f77-linux'
+			if test "$enable_debug" = yes; then
+				FC_OPTIONS="-g"
+				FC_OPTIONS_O0=""
+			else
+				FC_OPTIONS="-O"
+				FC_OPTIONS_O0=""
+			fi
+		else
+			# first find g77
+			AC_CHECK_PROG(WITH_G77,g77,yes,no)
+			if test "$WITH_G77" = yes; then
+				FC=g77
+				FC_PICFLAGS=-fPIC
+				if test "$enable_debug" = yes; then
+					FC_OPTIONS="-g"
+					FC_OPTIONS_O0=""
+				else
+					FC_OPTIONS="-O"
+					FC_OPTIONS_O0=""
+				fi
+			else
+				AC_CHECK_PROG(WITH_GFORTRAN,gfortran,yes,no)
+				if test "$WITH_GFORTRAN" = yes; then
+					FC=gfortran
+					FC_PICFLAGS=-fPIC
+					AC_DEFINE(G95_FORTRAN)
+					if test "$enable_debug" = yes; then
+						FC_OPTIONS="-g"
+						FC_OPTIONS_O0=""
+					else
+						FC_OPTIONS="-O"
+						FC_OPTIONS_O0=""
+					fi
+				else
+					AC_CHECK_PROG(WITH_F95,f95,yes,no)
+					if test "$WITH_F95" = yes; then
+						FC=f95
+						FC_PICFLAGS=-fPIC
+						AC_DEFINE(F95_FORTRAN)
+						if test "$enable_debug" = yes; then
+							FC_OPTIONS="-g"
+							FC_OPTIONS_O0=""
+						else
+							FC_OPTIONS="-O"
+							FC_OPTIONS_O0=""
+						fi
+					else
+						# otherwise find f2c
+						AC_CHECK_PROG(F2C,f2c,yes,no)
+						if test "$F2C" = yes; then
+							# script shell f77 have bugs, get ours
+							FC='${SCIDIR}/bin/f77-linux'
+							if test "$enable_debug" = yes; then
+								FC_OPTIONS="-g"
+								FC_OPTIONS_O0=""
+							else
+								FC_OPTIONS="-O"
+								FC_OPTIONS_O0=""
+							fi
+						else
+							AC_MSG_ERROR([Unable to configure: no Fortran compiler found])    
+						fi
+					fi
+				fi
+			fi
+		fi
+		FC_LDFLAGS="$LIEEELIB -ldl -rdynamic"
+		if test "$enable_debug" = yes; then
+			CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO'
+		fi
+		LD=ld
+		LD_LDFLAGS=$LIEEELIB
+	fi
+	MAKEFILE_TARGET=Makefile.linux
+	;;
+# Linux gnu: ia64 distributions
   ia64-*-linux-gnu)
     LIEEELIB=
     AC_CHECK_LIB(ieee,main,
@@ -1291,7 +1352,7 @@ if test "$WITH_G77" = yes; then
   fi
 fi
 
-if test "$WITH_G95" = yes; then
+if test "$WITH_GFORTRAN" = yes; then
   if test "$enable_debug" = yes; then   
     FC_OPTIONS1=$FC_OPTIONS
   else
