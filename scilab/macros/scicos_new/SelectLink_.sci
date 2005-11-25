@@ -36,10 +36,6 @@ function SelectLink_()
   elseif slevel>1 then
     execstr('k=getobj(scs_m_'+string(windows(kc,1))+',%pt)')
     if k<>[] then
-      //execstr(' hilite_image=select_hilite(scs_m_'+string(windows(kc,1))+'.objs(k),%win)')
-      //xpause(200000)
-      //execstr('select_hilite(hilite_image,win)')
-      
       Select=[k,%win];Cmenu=[];return
     else
       Cmenu==[];%pt=[];return

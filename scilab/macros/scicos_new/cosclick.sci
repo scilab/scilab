@@ -72,6 +72,8 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
        Cmenu='Paste';%pt=[];
     elseif btn==65288|btn==255 then
       Cmenu='Delete';%pt=[];
+    elseif btn==1003 then
+      Cmenu="CtrlSelect";
     else
       Cmenu=%tableau(min(100,btn-31));
       if Cmenu==emptystr() then Cmenu=[];%pt=[];end
