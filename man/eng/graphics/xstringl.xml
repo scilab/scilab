@@ -108,6 +108,10 @@ e.children(2).font_style = 2;
     <SEE_ALSO_ITEM>
       <LINK>xtitle</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>stringbox</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <AUTHOR>J.Ph.C.</AUTHOR>

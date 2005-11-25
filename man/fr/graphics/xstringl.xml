@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,8 +9,8 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="xstringl">calcule les dimensions d'une boîte
-  entourant des chaînes de caractères</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="xstringl">calcule les dimensions d'une boÃ®te
+  entourant des chaÃ®nes de caractÃ¨res</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rect=xstringl(x,y,str,[fontId,fontSize])</CALLING_SEQUENCE_ITEM>
@@ -22,7 +22,7 @@
         <PARAM_NAME>rect</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur de 4 scalaires définissant la boîte</SP>
+          <SP>: vecteur de 4 scalaires dÃ©finissant la boÃ®te</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -30,8 +30,8 @@
         <PARAM_NAME>x,y</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: scalaires réels, coordonnées du point en bas à  gauche des
-          chaînes de caractères.</SP>
+          <SP>: scalaires rÃ©els, coordonnÃ©es du point en bas Ã &#160; gauche
+          des chaÃ®nes de caractÃ¨res.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -39,7 +39,7 @@
         <PARAM_NAME>str</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrice de chaînes de caractères.</SP>
+          <SP>: matrice de chaÃ®nes de caractÃ¨res.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -63,12 +63,12 @@
 
   <DESCRIPTION>
     <P><VERB>xstringl</VERB> renvoie dans <VERB>rect=[x,y,w,h]</VERB> (point
-    en haut à  gauche, largeur, hauteur) les dimensions d'un rectangle dans
-    l'échelle graphique courante entourant les chaînes de caractères
-    <VERB>str</VERB> dessinées à  la position <VERB>x,y</VERB> (point en bas à 
-    gauche).</P>
+    en haut Ã &#160; gauche, largeur, hauteur) les dimensions d'un rectangle
+    dans l'Ã©chelle graphique courante entourant les chaÃ®nes de caractÃ¨res
+    <VERB>str</VERB> dessinÃ©es Ã &#160; la position <VERB>x,y</VERB> (point en
+    bas Ã &#160; gauche).</P>
 
-    <P>Le résultat est approximatif avec le pilote PostScript.</P>
+    <P>Le rÃ©sultat est approximatif avec le pilote PostScript.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
@@ -108,6 +108,10 @@ e.children(2).font_style = 2;
 
     <SEE_ALSO_ITEM>
       <LINK>xtitle</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>stringbox</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
