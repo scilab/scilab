@@ -181,7 +181,7 @@ btn_pressed(widget, event, params, num_params)
      emited just before an xclick or xgemouse call
     if (!get_wait_click()) return;
   */
-  sciprint("num=%d %s\n",*num_params,params[0]);
+
   if (wait_dclick) {
    /* If we are waiting for a double-click, we only handle Button events
       in a special fashion.*/
@@ -1884,4 +1884,3 @@ static int GetChilds(win_num,nc,wL,outer,name,name_pos)
     }
   return TRUE;
 }
-
