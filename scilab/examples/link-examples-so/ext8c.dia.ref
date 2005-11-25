@@ -45,7 +45,7 @@ Link done
 param=[1,2,3]
  param  =
  
-!   1.    2.    3. !
+    1.    2.    3.  
  
 y=call('ext8c','out',size(param),1,'d');
  
