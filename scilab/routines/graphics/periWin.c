@@ -3013,7 +3013,7 @@ void C2F(boundingbox)(string, x, y, rect, v5, v6, v7, dv1, dv2, dv3, dv4)
 { 
   SIZE size ;
   /** text mode is supposed to be bottom  **/
-  GetTextExtentPoint32(hdc,string,strlen(string),&size);
+  GetTextExtentPoint32(hdc,(LPCTSTR)string,(int)strlen(string),&size);
   rect[0]= *x ;
   rect[1]= *y - size.cy ;
   rect[2]= size.cx;

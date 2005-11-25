@@ -2029,12 +2029,14 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand)
 		int lg=0;
 		char *CommandLine=NULL;
 		
-		lg=strlen(StringCommand);
-		CommandLine=(char*)MALLOC( (lg+1)*sizeof(char) );
-		wsprintf(CommandLine,"%s\n",StringCommand);
+		lg=strlen(StringCommand)+1+1;
+		CommandLine=(char*)MALLOC( (lg)*sizeof(char) );
+
+		sprintf(CommandLine,"%s\n",StringCommand);
 
 		WriteIntoKeyBuffer(lptw,CommandLine);
-		FREE(CommandLine);
+
+		if (CommandLine) {FREE(CommandLine);CommandLine=NULL;}
 		retour=TRUE;
 	}
 
