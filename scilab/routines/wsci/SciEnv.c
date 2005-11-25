@@ -60,7 +60,7 @@ char *GetScilabDirectory(BOOL UnixStyle)
 
 	ScilabModuleName = (LPSTR) MALLOC (MAXSTR + 1);
 
-	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle(MSG_SCIMSG9), (LPSTR) ScilabModuleName, MAX_PATH))
+	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle(MSG_SCIMSG9), (LPSTR) ScilabModuleName, MAXSTR))
 	{
 		if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
 		return NULL;

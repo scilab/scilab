@@ -972,37 +972,40 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
 
 void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox)
 {
-  char *loc,*loc1;
-  int compteur = 1;
-  int hauteur=0;
-  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
+	char *loc=NULL,*loc1=NULL;
+	int compteur = 1;
+	int hauteur=0;
+	loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
   
-  if ( loc != 0)
+	if (loc)
     {
-      integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
-      strcpy(loc,string);
-      loc1=strtok(loc,"@");
+		integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
+		strcpy(loc,string);
+		loc1=strtok(loc,"@");
 
-      for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
+		for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
 
-      while ( loc1 != ( char * ) 0) 
-	{  
-	  C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if ( rect[2] >= wmax ) wmax=rect[2];
-	  htot += (int) (1.2*((double) rect[3]));
-	  loc1=strtok((char *) 0,"@");
-	  if(compteur==1) hauteur = rect[3];
-	  compteur++;
+		while (loc1 != ( char * ) 0) 
+		{  
+			C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			if ( rect[2] >= wmax ) wmax=rect[2];
+			htot += (int) (1.2*((double) rect[3]));
+			loc1=strtok((char *) 0,"@");
+			if(compteur==1) hauteur = rect[3];
+			compteur++;
+		}
+      
+		x1=x+ (w- wmax)/2;
+		yy1=y - h + ( h - htot)/2 + rect[3];
+      
+		bbox[0] = x1;
+		bbox[1] = yy1 - hauteur;
+		bbox[2] = wmax;
+		bbox[3] = htot;
+		FREE(loc);
+		loc=NULL;
 	}
-      
-      x1=x+ (w- wmax)/2;
-      yy1=y - h + ( h - htot)/2 + rect[3];
-      
-      bbox[0] = x1;
-      bbox[1] = yy1 - hauteur;
-      bbox[2] = wmax;
-      bbox[3] = htot;
-    }
+
 }
 
 /*-----------------------------------------------------------------------------
