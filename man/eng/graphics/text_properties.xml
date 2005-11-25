@@ -59,6 +59,13 @@
         is <VERB>"off"</VERB>, the line of the box is not drawn.</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="fill_mode: ">
+        <SP>This boolean property allows to draw or not the background of the
+        box when the <VERB>box</VERB> property is <VERB>"on"</VERB>. If
+        <VERB>fill_mode</VERB> is <VERB>"off"</VERB>, the background of the
+        box is not transparent.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="font_foreground: ">
         <SP>This field contains the color used to display the characters of
         the text. Its value should be a color index (relative to the current

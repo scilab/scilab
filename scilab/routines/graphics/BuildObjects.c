@@ -709,7 +709,7 @@ ConstructScrollH (sciPointObj * pparentfigure)
 sciPointObj *
 ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 	       double y, double *wh, int fill, int *foreground, int *background, 
-	       BOOL isboxed, BOOL isline)
+	       BOOL isboxed, BOOL isline, BOOL isfilled)
 {
   sciPointObj * pobj   = (sciPointObj *) NULL;
   sciText     * ppText ; 
@@ -794,17 +794,6 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 	ppText->wh[1] = 0.0;
       }
 
-      /* compute the bounding rectangle */
-      ppText->boundingRect[0] = x ;
-      ppText->boundingRect[1] = y ;
-      ppText->boundingRect[2] = x + ppText->wh[0] ;
-      ppText->boundingRect[3] = y ;
-      ppText->boundingRect[4] = x + ppText->wh[0] ;
-      ppText->boundingRect[5] = y + ppText->wh[1] ;
-      ppText->boundingRect[6] = x ;
-      ppText->boundingRect[7] = y + ppText->wh[1] ;
-
-      
       if (sciInitFontContext (pobj) == -1)
 	{
 	  FREE(pTEXT_FEATURE (pobj)->ptextstring);	  
@@ -829,6 +818,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 
       sciSetIsBoxed(pobj,isboxed);
       sciSetIsLine(pobj,isline);
+      sciSetIsFilled(pobj,isfilled);
       
       if(foreground != NULL)
 	sciSetForeground(pobj,(*foreground));

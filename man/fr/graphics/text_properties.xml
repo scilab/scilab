@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -54,9 +54,17 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="line_mode: ">
-        <SP>Rhis boolean propertyallows to draw only the background of the box
-        when the <VERB>box</VERB> property is <VERB>"on"</VERB>. If line_mode
-        is <VERB>"off"</VERB>, the line of the box is not drawn.</SP>
+        <SP>This boolean property allows to draw or not a line around the box
+        when the <VERB>box</VERB> property is <VERB>"on"</VERB>. If
+        <VERB>line_mode</VERB> is <VERB>"off"</VERB>, the line of the box is
+        not drawn.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="fill_mode: ">
+        <SP>This boolean property allows to draw or not the background of the
+        box when the <VERB>box</VERB> property is <VERB>"on"</VERB>. If
+        <VERB>fill_mode</VERB> is <VERB>"off"</VERB>, the background of the
+        box is not transparent.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_foreground: ">

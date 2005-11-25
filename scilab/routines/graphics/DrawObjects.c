@@ -9419,7 +9419,10 @@ sciDrawObj (sciPointObj * pobj)
           /* *10 parce que l'angle est conserve en 1/10eme de degre*/
           
           /* wether or not we draw and/or fill the box */
-          if(sciGetIsBoxed (pobj) == TRUE)
+          /* no need to compute anything if both line_mode */
+          /* and fill mode are false */
+          if(    sciGetIsBoxed (pobj)
+              && ( sciGetIsFilled( pobj ) || sciGetIsLine( pobj ) ) )
           {   
             int font_[2], cur_font_[2];
             int rect1[4], verb=0;
@@ -9473,8 +9476,6 @@ sciDrawObj (sciPointObj * pobj)
 /* 	    char str[2] = "xv"/\*,locstr*\/; */
             
             
-            x[0] = sciGetBackground(pobj);
-            
             xm[0] = x1;
             xm[1] = round(x1 + cosangle*rect1[2]);
             xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
@@ -9486,11 +9487,17 @@ sciDrawObj (sciPointObj * pobj)
             ym[3] = round(yy1 + cosangle*(-rect1[3]));
             
             
-            C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-            C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-            
-            C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-            
+            /* draw the background */
+            if ( sciGetIsFilled( pobj ) )
+            {
+              x[0] = sciGetBackground(pobj);
+              C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+              C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+              
+              C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+            }
+
+            /* draw the line around the box */
             if ( sciGetIsLine( pobj ) )
             {
               /* draw a rectangle around the text */

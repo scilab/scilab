@@ -3607,6 +3607,9 @@ sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
       return 0;
       break;
     case SCI_TEXT:
+      pTEXT_FEATURE(pobj)->isfilled = isfilled ;
+      return 0 ;
+      break ;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_SURFACE:

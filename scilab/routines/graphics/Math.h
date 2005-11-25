@@ -92,15 +92,15 @@ int finite __PARAMS((double));
 #endif
 
 #if defined(THINK_C)|| defined(WIN32)
-#define M_PI	3.14159265358979323846
+  #define M_PI 3.14159265358979323846
 #else
-#if defined(HAVE_VALUES_H)
-#include <values.h>
-#else
+  #if defined(HAVE_VALUES_H)
+    #include <values.h>
+  #endif
+#endif
+
 #ifndef M_PI
-#define M_PI    3.14159265358979323846 
-#endif
-#endif
+#define M_PI 3.14159265358979323846 
 #endif
 
 
