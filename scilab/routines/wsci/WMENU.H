@@ -246,6 +246,6 @@ void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
 /*--------------------------------*/
 void SetLanguageMenu(char *Language);
 /*--------------------------------*/
-char *GetLanguageInScilabDotStar(void);
+int GetLanguageCodeInScilabDotStar(void);
 /*--------------------------------*/
 #endif /*  __WMENU_H__ */

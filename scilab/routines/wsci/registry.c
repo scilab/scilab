@@ -19,7 +19,7 @@ extern void SetDefaultShowToolBar(BOOL valShowToolBar);
 extern BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
 extern BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
 extern DWORD GetIhmTextColor(void);
-extern char *GetLanguageInScilabDotStar(void);
+extern int *GetLanguageCodeInScilabDotStar(void);
 DWORD GetIhmTextBackgroundColor(void);
 /*-----------------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,int *Number)
@@ -437,53 +437,25 @@ void ReadRegistryTxt (LPTW lptw)
 	
 	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
   	{
-		char *LanguageInScilabDotStar=NULL;
-		int CodeLanguageInScilabDotStar=-1;
+		int CodeLanguageInScilabDotStar=GetLanguageCodeInScilabDotStar();
 
-		LanguageInScilabDotStar=GetLanguageInScilabDotStar();
-
-		if (LanguageInScilabDotStar)
+		if (CodeLanguageInScilabDotStar != -1)
 		{
-			if (strcmp(LanguageInScilabDotStar,"fr")==0) CodeLanguageInScilabDotStar=1;
-			if (strcmp(LanguageInScilabDotStar,"eng")==0) CodeLanguageInScilabDotStar=0;
-
-			if (CodeLanguageInScilabDotStar != -1)
-			{
-				lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar;
-			}
-			else lptw->lpmw->CodeLanguage = 0; /* English Default*/
+			lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar;
 		}
-		else
-		{
-			lptw->lpmw->CodeLanguage = 0; /* English Default*/
-		}
-		FREE(LanguageInScilabDotStar);
+		else lptw->lpmw->CodeLanguage = 0; /* English Default*/
 	}
 	else
 	{
-		char *LanguageInScilabDotStar=NULL;
-		int CodeLanguageInScilabDotStar=-1;
+		int CodeLanguageInScilabDotStar=GetLanguageCodeInScilabDotStar();
 
-		LanguageInScilabDotStar=GetLanguageInScilabDotStar();
-
-		if (LanguageInScilabDotStar)
+		if (Language != CodeLanguageInScilabDotStar)
 		{
-			if (strcmp(LanguageInScilabDotStar,"fr")==0) CodeLanguageInScilabDotStar=1;
-			if (strcmp(LanguageInScilabDotStar,"eng")==0) CodeLanguageInScilabDotStar=0;
-
-			if (Language != CodeLanguageInScilabDotStar)
-			{
-				lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar; 
-			}
-			else lptw->lpmw->CodeLanguage = Language;
+			lptw->lpmw->CodeLanguage = CodeLanguageInScilabDotStar; 
 		}
 		else
-		{
-			if  ( (Language == 0) || (Language == 1) )	lptw->lpmw->CodeLanguage = Language;
-			else lptw->lpmw->CodeLanguage = 0; /* English Default*/
-		}
-		FREE(LanguageInScilabDotStar);
-
+		if  ( (Language == 0) || (Language == 1) )	lptw->lpmw->CodeLanguage = Language;
+		else lptw->lpmw->CodeLanguage = 0; /* English Default*/
 	}
 		
 	lptw->lpmw->LockToolBar=FALSE;

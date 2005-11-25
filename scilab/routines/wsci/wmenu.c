@@ -2027,9 +2027,9 @@ void SetLanguageMenu(char *Language)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-char *GetLanguageInScilabDotStar(void)
+int GetLanguageCodeInScilabDotStar(void)
 {
-	char *ReturnLanguage=NULL;
+	int ReturnLanguageCode=-1;
 	char *WSCIPath=NULL;
 	WSCIPath=getenv("SCI");
 
@@ -2071,11 +2071,11 @@ char *GetLanguageInScilabDotStar(void)
 					}
 					LanguageTemp[j]='\0';
 
-					ReturnLanguage=MALLOC(strlen(LanguageTemp)*sizeof(char));
-					strcpy(ReturnLanguage,LanguageTemp);
+					if (strcmp(LanguageTemp,"fr")==0) ReturnLanguageCode=1;
+					if (strcmp(LanguageTemp,"eng")==0) ReturnLanguageCode=0;
 
 					fclose(fileR);
-					return ReturnLanguage;
+					return ReturnLanguageCode;
 				}
 				
 				strcpy(Ligne,"\0");
@@ -2083,6 +2083,6 @@ char *GetLanguageInScilabDotStar(void)
 		}
 		fclose(fileR);
 	}
-	return ReturnLanguage;
+	return ReturnLanguageCode;
 }
 /*-----------------------------------------------------------------------------------*/

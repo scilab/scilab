@@ -72,7 +72,7 @@ extern char *GetScilabDirectory(BOOL UnixStyle);
 extern LPTW GetTextWinScilab(void);
 extern int C2F (scilines) (int *nl, int *nc);
 extern void MessageBoxNewGraphicMode(void);
-extern char *GetLanguageInScilabDotStar(void);
+extern int GetLanguageCodeInScilabDotStar(void);
 extern void ScilabFxFadeOut(void);
 extern void C2F (tmpdirc) (void);
 extern EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -2118,14 +2118,8 @@ int GetCurrentLanguage(void)
 	}
 	else
 	{
-		int SCILanguague=0;
-		char *Language=GetLanguageInScilabDotStar();
-
-		if (strcmp(Language,"fr")==0) SCILanguague=1;
-		if (strcmp(Language,"eng")==0) SCILanguague=0;
-
+		int SCILanguague=GetLanguageCodeInScilabDotStar();
 		ReturnLanguage=SCILanguague;
-		FREE(Language);
 	}
 	
 	return ReturnLanguage;
