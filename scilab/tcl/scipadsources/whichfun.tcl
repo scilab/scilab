@@ -56,8 +56,10 @@ proc whichfun {indexin {buf "current"}} {
 
     set insidefun 1
     if {$lfunpos == [list]} {
+        # endfunction was found above, therefore we're not in a function
         set insidefun 0
-    } else { 
+    } else {
+        # function was found above, therefore we are in a function
         set precfun [lindex $lfunpos end]
         set i1 [$textarea index "$precfun+8c"]
         # look for the end of the function line definition, taking into account
@@ -256,6 +258,7 @@ proc getallfunsintextarea {{buf "current"}} {
 #       $precfun   : physical line number where $funname is defined in $buf
 
     global listoffile
+    global funlineREpat1 funlineREpat2 scilabnameREpat
 
     if {$buf == "current"} {
         set textarea [gettextareacur]
@@ -268,14 +271,14 @@ proc getallfunsintextarea {{buf "current"}} {
         return {$textarea { "0NoFunInBuf" 0 0 }}
     }
 
+    set pat "$funlineREpat1$scilabnameREpat$funlineREpat2"
+
     set hitslist ""
-    set nextfun [$textarea search -exact -forwards -regexp\
-                 "\\mfunction\\M" 1.0 end ]
+    set nextfun [$textarea search -regexp -- $pat 1.0 end]
     while {$nextfun != ""} {
         while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
                [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
-            set nextfun [$textarea search -exact -forwards -regexp\
-                         "\\mfunction\\M" "$nextfun +8c" end]
+            set nextfun [$textarea search -regexp -- $pat "$nextfun +8c" end]
             if {$nextfun == ""} break
         }
         if {$nextfun != ""} {
@@ -285,8 +288,7 @@ proc getallfunsintextarea {{buf "current"}} {
         }
         if {$infun != {} } {
             set hitslist "$hitslist [lindex $infun 0] {[lindex $infun 2]} [lindex $infun 3]"
-            set nextfun [$textarea search -exact -forwards -regexp\
-                         "\\mfunction\\M" "$nextfun +8c" end]
+            set nextfun [$textarea search -regexp -- $pat "$nextfun +8c" end]
         }
     }
     if {$hitslist == ""} {

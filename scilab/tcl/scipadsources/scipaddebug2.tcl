@@ -60,9 +60,9 @@ if {$debuglog} {
                 if {[$w type $i] != "separator" && [$w type $i] != "tearoff" && [$w type $i] != "cascade"} {
                     $w entryconfigure $i -command " \
                             log \"\n-----------------------------------------\" ; \
-                            log \[concat \"Menu command:\" {[$w entrycget $i -label]}\]; \
+                            log \[concat \"Menu command:\" [list [$w entrycget $i -label]]\]; \
                             [$w entrycget $i -command]; \
-                            log \[concat \"End of menu command:\" {[$w entrycget $i -label]}\];
+                            log \[concat \"End of menu command:\" [list [$w entrycget $i -label]]\];
                             log \"\n-----------------------------------------\n\" "
                 }
             }

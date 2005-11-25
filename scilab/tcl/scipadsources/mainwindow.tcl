@@ -13,6 +13,7 @@ set listoffile("$pad.new$winopened",readonly) 0; # file can be written
 # set the scheme for colorization and allowed operations
 set listoffile("$pad.new$winopened",language) "scilab"; 
 set listoffile("$pad.new$winopened",redostackdepth) 0; # used to enable/disable the redo menu entry
+set listoffile("$pad.new$winopened",progressbar_id) ""; # colorization progressbar identifier
 
 set chset()                 {} 
 set words()                 {}  

@@ -399,7 +399,7 @@ proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcom
     }
 }
 
-proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
+proc dobackgroundcolorize {w thebegin progressbar} {
 # do colorization in background
 # actually this uses a trick to keep Scipad responsive while colorization
 # is in progress - useful for large files
@@ -411,7 +411,7 @@ proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
 #   . if increased, Scipad will be less responsive
 # the progressbar is also updated accordingly
 
-    global pad filescurrentlycolorized listoffile
+    global pad nbfilescurrentlycolorized listoffile
 
     # avoid Tcl error when Scipad is closed during colorization
     if {![info exist pad]} {
@@ -420,36 +420,21 @@ proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
 
     set progressbarId [scan $progressbar $pad.cp%d]
 
-    # if the file has been asked for recolorization, abort it and reuse
-    # the same progressbar to relaunch colorization
-    foreach item $filescurrentlycolorized {
-        set posinlist 0
-        if {[lindex $item 0] == -$progressbarId} {
-            set filescurrentlycolorized [lreplace \
-                    $filescurrentlycolorized $posinlist $posinlist \
-                    [list $progressbarId [lindex [lindex $filescurrentlycolorized $posinlist] 1] ]\
-                                        ]
-            # relaunch colorization from the beginning, using the already
-            # packed progressbar
-            SetProgress $progressbar 0
-            dobackgroundcolorize $w 1.0 $progressbar $listoffile("$w",displayedname)
-            return
-        }
+    # if the file has been closed during colorization, destroy the
+    # progressbar and abort colorization
+    if {![info exist listoffile("$w",fullname)]} {
+        destroy $progressbar
+        return
     }
 
-    # if the file has been closed during colorization, abort it and
-    # destroy the progressbar
-    if {![info exist listoffile("$w",fullname)]} {
-        set posinlist 0
-        foreach item $filescurrentlycolorized {
-            if {[expr abs([lindex $item 0])] == $progressbarId} {
-                break
-            } else {
-                incr posinlist
-            }
-        }
-        set filescurrentlycolorized [lreplace $filescurrentlycolorized $posinlist $posinlist]
-        destroy $progressbar
+    # if the file has been asked for recolorization, abort it and reuse
+    # the same progressbar to relaunch colorization
+    if {$listoffile("$w",progressbar_id) == ""} {
+        # relaunch colorization from the beginning, using the already
+        # packed progressbar
+        SetProgress $progressbar 0
+        set listoffile("$w",progressbar_id) $progressbarId
+        dobackgroundcolorize $w 1.0 $progressbar
         return
     }
 
@@ -461,7 +446,7 @@ proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
 
     scan [$w index $curend] "%d.%d" ycur xcur
     scan [$w index end]     "%d.%d" yend xend
-    SetProgress $progressbar $ycur $yend $progresslabel
+    SetProgress $progressbar $ycur $yend $listoffile("$w",displayedname)
 
     if {[$w compare $curend < end]} {
         colorize $w $thebegin [$w index $curend]
@@ -469,22 +454,13 @@ proc dobackgroundcolorize {w thebegin progressbar progresslabel} {
         # interval depends on number of files currently being colorized,
         # in order to share available resources from the computer - formula
         # based on experience
-        set interval [expr [llength $filescurrentlycolorized] * 10]
-        after $interval \
-                "dobackgroundcolorize $w $newbegin $progressbar $progresslabel"
+        set interval [expr $nbfilescurrentlycolorized * 10]
+        after $interval "dobackgroundcolorize $w $newbegin $progressbar"
     } else {
         # last colorization step
         colorize $w $thebegin end
-        set progressbarId [scan $progressbar $pad.cp%d]
-        set posinlist 0
-        foreach item $filescurrentlycolorized {
-            if {[lindex $item 0] == $progressbarId} {
-                break
-            } else {
-                incr posinlist
-            }
-        }
-        set filescurrentlycolorized [lreplace $filescurrentlycolorized $posinlist $posinlist]
+        set listoffile("$w",progressbar_id) ""
+        incr nbfilescurrentlycolorized -1
         destroy $progressbar
     }
 }
@@ -494,7 +470,7 @@ proc backgroundcolorize {w} {
 # initialize the colorization progressbar,
 # and keep track of the buffers currently being colorized
 
-    global allowbackgroundcolorization filescurrentlycolorized
+    global allowbackgroundcolorization nbfilescurrentlycolorized
     global pad progressbarId listoffile
 
     if {!$allowbackgroundcolorization} {
@@ -503,7 +479,7 @@ proc backgroundcolorize {w} {
         set progressbar [Progress $pad.cp0]
         pack $progressbar -fill both -expand 0 -before $pad.pw0 -side bottom
 
-        set curend [getendofcolorization $w "1.0"]
+        set curend "1.0"
         while {[$w compare $curend < end]} {
             colorize $w $curend \
                     [set curend [getendofcolorization $w "$curend + 10 l"]]
@@ -518,37 +494,22 @@ proc backgroundcolorize {w} {
         destroy $progressbar
 
     } else {
-        # colorize in background
 
         # check if the file is already being colorized (can be the case when
         # switching scheme for instance)
-        set posinlist 0
-        set alreadybeingcolorized false
-        foreach item $filescurrentlycolorized {
-            if {[lindex $item 1] == $listoffile("$w",fullname)} {
-                set alreadybeingcolorized true
-                break
-            } else {
-                incr posinlist
-            }
-        }
-
-        if {$alreadybeingcolorized} {
-            # reset colorization of the file already being colorized - this
-            # is achieved by negating the progressbar id, which is detected
-            # in the background colorization proc
-            set progressbarId [lindex [lindex $filescurrentlycolorized $posinlist] 0]
-            set filescurrentlycolorized [lreplace \
-                    $filescurrentlycolorized $posinlist $posinlist \
-                    [list -$progressbarId [lindex [lindex $filescurrentlycolorized $posinlist] 1] ]\
-                                        ]
+        # reset colorization of the file already being colorized - this
+        # is achieved by emtying the progressbar id, which is detected
+        # in the background colorization proc that is already running
+        if {$listoffile("$w",progressbar_id) != ""} {
+            set listoffile("$w",progressbar_id) ""
         } else {
-            # colorization of a file not currently colorized
+            # start colorization of a file currently not being colorized
             incr progressbarId
-            lappend filescurrentlycolorized [list $progressbarId $listoffile("$w",fullname)]
+            incr nbfilescurrentlycolorized
+            set listoffile("$w",progressbar_id) $progressbarId
             set progressbar [Progress $pad.cp$progressbarId]
             pack $progressbar -fill both -expand 0 -before $pad.pw0 -side bottom
-            dobackgroundcolorize $w 1.0 $progressbar $listoffile("$w",displayedname)
+            dobackgroundcolorize $w 1.0 $progressbar
         }
 
     }
@@ -559,9 +520,9 @@ proc colorizationinprogress {} {
 # certain actions (those that make use of the colorization result such as the
 # rem2 or textquoted tag) cannot be executed during colorization
 
-    global filescurrentlycolorized
+    global nbfilescurrentlycolorized
 
-    if {[llength $filescurrentlycolorized] > 0} {
+    if {$nbfilescurrentlycolorized > 0} {
         set mes [mc "You can't do that while colorization is in progress.\
                  Please try again when finished."]
         set tit [mc "Command forbidden during colorization"]

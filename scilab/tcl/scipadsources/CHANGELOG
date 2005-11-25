@@ -1743,3 +1743,16 @@ Francois VOGEL, 23/11/05
  * Tcl error on Scipad close during colorization is catched (happened when
    launched from Scilab only)
  * version --> 5.59
+
+Francois VOGEL, 25/11/05
+ * Fixed: The first lines of the buffer could be forgot in the foreground
+   colorization on file opening
+ * Fixed background colorization of files with filenames containing spaces or
+   Tcl special characters
+ * Scipad.sci surrounds the filename to open with curly braces {} instead
+   of quotes - prevents one round of unwanted substitution for filenames
+   containing Tcl special characters
+ * Fixed bug in relaunch of colorization of a file already being colorized
+ * Fixed Scilab hang if asking for Configuring execution of CHANGELOG file
+   in scilab language scheme
+ * version --> 5.60

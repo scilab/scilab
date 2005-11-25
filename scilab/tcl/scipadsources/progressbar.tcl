@@ -67,7 +67,6 @@ proc SetProgress {win value {range 100} {textlabel ""}} {
     global progressPercent
     set progress [expr {int(100*$value)/int($range)}]
     set relwidth [expr {double($value)/double($range)}]
-    set textlabel "$textlabel - "
     place conf $win.l.fill -relwidth $relwidth
-    set progressPercent($win) "$textlabel${progress}%"
+    set progressPercent($win) "$textlabel - ${progress}%"
 }

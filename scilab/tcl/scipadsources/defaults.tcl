@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.59"
+set version "Version 5.60"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -136,16 +136,15 @@ if {$tcl_platform(platform)=="unix"} {
     set allowbackgroundcolorization true
 }
 
-# this variable is a list of 2-elements lists { pb_id fullname }
-#   pb_id:  id of the progressbar relative to files currently being colorized
-#   fullname: full file name currently being colorized with progressbar pb_id
 # some commands cannot be executed while colorization is in progress, and
-# the size of this list is used to prevent them from being executed in such a
-# case
-# the content of this list is also used in order to:
-#    - cancel colorization if the user closes the buffer during colorization
-#    - restart colorization if the user switches scheme during colorization
-set filescurrentlycolorized [list ]
+# this variable is used to prevent them from being executed in such a case
+set nbfilescurrentlycolorized 0
 
 # identifier of the progressbar for background colorization - increments only
 set progressbarId 0
+
+# Regular expression patterns (globals since used at different places of
+# the code)
+set funlineREpat1 {\mfunction\M[[:blank:]]+(((\[([\w%_#!?$,[:blank:]])*\])|([\w%_#!?$]+))[[:blank:]]*=)?[[:blank:]]*(}
+set funlineREpat2 {)[[:blank:]]*(()$|;|(//.*)|((\([\w%_#!?$,[:blank:]]*\)[[:blank:]]*(()$|;|([[:blank:]]*//.*)))))}
+set scilabnameREpat {[\w%_#!?$,[:blank:]]*}

@@ -256,3 +256,17 @@ Wishes:
  scattered in the same menu starts to be much...
 
 -include profiling into the debugger
+
+-detect duplicate/missing underlines detection in the message files
+
+-scrollable text dialogs to be used for instance for Help/Adding translations
+
+-get the names of all the functions defined in
+ the opened buffers, make their list a keyword list. Colorize them
+ accordingly (does it need a 2nd pass colorization run? then better not).
+ Integrate "Open source of...", Ctrl-/ and the like with them (here it is
+ a matter of making order, as the functionality already exists in Goto
+ line/in function). The idea would have the drawback that those keywords
+ can be colorized or not depending on their defining buffer being opened
+ or not, but I think it could be useful nevertheless when opening those
+ files defining several ancillaries

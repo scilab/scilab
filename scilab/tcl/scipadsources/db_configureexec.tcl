@@ -264,6 +264,7 @@ proc checkarglist {funname} {
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
     global listoftextarea funvars funvarsvals
+    global funlineREpat1 funlineREpat2
 
     # A question mark or dollar sign in the function name must
     # be escaped otherwise the regexp compilation fails
@@ -280,8 +281,8 @@ proc checkarglist {funname} {
     # escape that specifies to match at the beginning of a word cannot be
     # used (same for \M, i.e. end of word)
     # A more complex regexp pattern shall therefore be used
-    set pat1 {\mfunction\M[[:blank:]]+(((\[([\w%_#!?$,[:blank:]])*\])|([\w%_#!?$]+))[[:blank:]]*=)?[[:blank:]]*(}
-    set pat2 {)[[:blank:]]*(()$|;|(//.*)|((\([\w%_#!?$,[:blank:]]*\)[[:blank:]]*(()$|;|([[:blank:]]*//.*)))))}
+    set pat1 $funlineREpat1
+    set pat2 $funlineREpat2
     set pat "$pat1$escfunname$pat2"
 
     # In Tcl<8.5, this does not match multiple lines. This is a Tcl/Tk bug.

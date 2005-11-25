@@ -61,6 +61,10 @@
 #     listoffile("$ta",redostackdepth)
 #       Depth of the redo stack. Used for enabling/disabling the redo menu entry
 #
+#     listoffile("$ta",progressbar_id)
+#       If colorization is in progress, this is the progressbar identifier
+#       Otherwise it's an empty string
+#
 #   The windows menu entries are radionbuttons, with the following
 #   properties:
 #     -value is $winopened
@@ -92,6 +96,7 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",language) "scilab"
     set listoffile("$pad.new$winopened",readonly) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
+    set listoffile("$pad.new$winopened",progressbar_id) ""
     lappend listoftextarea $pad.new$winopened
     $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
         -value $winopened -variable textareaid \
@@ -163,6 +168,7 @@ proc byebye {textarea} {
         unset listoffile("$textarea",language)
         unset listoffile("$textarea",readonly)
         unset listoffile("$textarea",redostackdepth)
+        unset listoffile("$textarea",progressbar_id)
 
         if {[llength $listoftextarea] <= [gettotnbpanes]} {
             destroypaneframe $textarea
@@ -556,6 +562,7 @@ proc notopenedfile {file} {
         set listoffile("$pad.new$winopened",readonly) 0
     }
     set listoffile("$pad.new$winopened",redostackdepth) 0
+    set listoffile("$pad.new$winopened",progressbar_id) ""
     $pad.filemenu.wind add radiobutton \
           -label $listoffile("$pad.new$winopened",displayedname) \
           -value $winopened -variable textareaid \
