@@ -427,7 +427,9 @@ function %h_p(h)
 	 "text = "+T
 	 "data = "+sci2exp(h.data,0)
 	 "box = "+sci2exp(h.box) 
-	 "text_box = "+sci2exp(h.text_box,0)
+	 "line_mode = " + sci2exp(h.line_mode);
+	 "fill_mode = " + sci2exp(h.fill_mode);
+ 	 "text_box = "+sci2exp(h.text_box,0)
 	 "text_box_mode = "+sci2exp(h.text_box_mode,0)
 	 "font_foreground = "+string(h.font_foreground)
 	 "foreground = "+string(h.foreground)
@@ -464,7 +466,8 @@ function %h_p(h)
 	 "font_size = "+string(h.font_size)
 	 "font_angle = "+string(h.font_angle)
 	 "auto_position = "+sci2exp(h.auto_position)
-	 "position = "+sci2exp(h.position,0)]
+	 "position = "+sci2exp(h.position,0)
+	 "auto_rotation = "+sci2exp(h.auto_rotation)]
     case "Plot3d"
       Data = h.data
       if size(Data.x,'*') > 10 then 
