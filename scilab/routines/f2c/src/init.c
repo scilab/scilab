@@ -307,7 +307,7 @@ fileinit(Void)
 	maxtoklen = 502;
 	token = (char *)ckalloc(maxtoklen+2);
 	memset(dflttype, tyreal, 26);
-	memset(dflttype + 'i' - 'a', tyint, 6);
+	memset(dflttype + ('i' - 'a'), tyint, 6);
 	memset(hextoi_tab, 16, sizeof(hextoi_tab));
 	for(i = 0, s = "0123456789abcdef"; *s; i++, s++)
 		hextoi(*s) = i;

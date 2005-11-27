@@ -28,7 +28,7 @@ int C2F(intsetlanguagemenu) _PARAMS((char *fname))
 	if ( (strcmp(Language,"eng")!=0) && (strcmp(Language,"fr")!=0) )
 	{
 		sciprint("Unsupported language\n");
-		LhsVar(0)=0;
+		LhsVar(1)=0;
 		C2F(putlhsvar)();
 		return 0;
 	}
@@ -39,7 +39,7 @@ int C2F(intsetlanguagemenu) _PARAMS((char *fname))
 
 	#endif
 
-	LhsVar(0)=0;
+	LhsVar(1)=0;
 	C2F(putlhsvar)();
 
 	return 0;

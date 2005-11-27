@@ -346,7 +346,6 @@ putconst(register Constp p)
 #ifdef TYQUAD
 	case TYQUAD:
 #endif
- lit_int_flavor:
 		litflavor = LIT_INT;
 
 /* Scan the literal pool for this constant value.  If this same constant

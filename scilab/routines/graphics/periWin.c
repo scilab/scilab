@@ -2935,9 +2935,6 @@ void C2F(DispStringAngle)(x0, yy0, string, angle)
  TextOut(hdc, *x0, *yy0, string, pcch); 
  SelectObject(hdc, hfntPrev); 
 
- printf("hdc = %p\t lf = %p\t hfnt = %p\n",hdc,lf,hfnt); fflush(NULL);
-
-
  DeleteObject(hfnt); 
  
  // Reset the background mode to its default. 

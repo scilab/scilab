@@ -33,12 +33,12 @@ MW InitMWStruct(void)
 	MWStruct.szAnswer=NULL;
 	MWStruct.nChar=0;
 	MWStruct.nButton=0;
-	MWStruct.hButton[BUTTONMAX]=NULL;
-	MWStruct.hButtonID[BUTTONMAX];
+	MWStruct.hButton[BUTTONMAX-1]=NULL;
+	MWStruct.hButtonID[BUTTONMAX-1];
 	MWStruct.lpfnMenuButtonProc=NULL;
-	MWStruct.lpfnButtonProc[BUTTONMAX]=NULL;
-	MWStruct.IsAIcon[BUTTONMAX]=FALSE;
-	MWStruct.PositionX[BUTTONMAX]=0;
+	MWStruct.lpfnButtonProc[BUTTONMAX-1]=NULL;
+	MWStruct.IsAIcon[BUTTONMAX-1]=FALSE;
+	MWStruct.PositionX[BUTTONMAX-1]=0;
 	MWStruct.ShowToolBar=FALSE;
 	MWStruct.LockToolBar=FALSE;
 	MWStruct.CodeLanguage=0;

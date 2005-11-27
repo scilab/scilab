@@ -1,7 +1,12 @@
 #include <string.h>
 #include "../stack-c.h"
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
+
+#ifdef __STDC__
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
+#else
+extern int Scierror __PARAMS(());
+#endif 
 
 int ql0001_(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
             double *c,double *d,double *a,double *b,double *xl,

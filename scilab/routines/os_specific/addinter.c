@@ -282,6 +282,7 @@ void C2F(userlk)(integer *k)
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
+			extern char *GetExceptionString(DWORD ExceptionCode);
 			char *ExceptionString=GetExceptionString(GetExceptionCode());
 			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,DynInterf[k1].name);
 			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}

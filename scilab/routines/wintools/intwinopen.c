@@ -33,9 +33,9 @@ int C2F(intwinopen) _PARAMS((char *fname))
 		Scierror(999,"Couldn't Open this document\r\n");
 		return 0;
 	}
-	else LhsVar(0)=0;
+	else LhsVar(1)=0;
 	#else
-		LhsVar(0)=0;
+		LhsVar(1)=0;
 	#endif
 
 	C2F(putlhsvar)();

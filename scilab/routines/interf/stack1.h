@@ -20,7 +20,7 @@ extern int C2F(stackg)   __PARAMS((integer *));
 #ifdef __STDC__
 	extern int  Scierror __PARAMS((int iv,char *fmt,...));
 #else
-	extern int Scierror __PARAMS((  )) ;
+	extern int Scierror __PARAMS(()) ;
 #endif 
 
 /* calelm */

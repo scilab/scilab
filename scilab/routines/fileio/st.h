@@ -150,7 +150,7 @@ void wshort(P2(ft_t ft, unsigned short us));
 unsigned long  rlong(P1(ft_t ft));		
 void  wlong(P2(ft_t ft, unsigned long ul));
 float          rfloat(P1(ft_t ft));
-void           wfloat(P2(ft_t ft, float f));
+void wfloat(ft_t ft, float f);
 double         rdouble(P1(ft_t ft));
 void           wdouble(P2(ft_t ft, double d));
 

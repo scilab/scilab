@@ -907,7 +907,7 @@ void mxAssert(int expr, char *error_message)
   if (!expr) mexErrMsgTxt(error_message);
 }
 
-mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it)
+mxArray *mxCreateDoubleMatrix __PARAMS((int m, int n, mxComplexity it))
 {
   static int lw, lr, lc;
   int k;
@@ -1090,7 +1090,7 @@ mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, int cmplx)
   int it;int lr;
   switch (CLASS) {
   case mxDOUBLE_CLASS:
-    return mxCreateDoubleMatrix(m, n, cmplx);
+    return mxCreateDoubleMatrix(m, n, (mxComplexity)cmplx);
   case mxINT8_CLASS:
     Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
     if (! C2F(creimat)("  ", &lw1, (it=1, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
@@ -1992,7 +1992,7 @@ void  mexPrintf(char *fmt,...)
 /* Modification pour Compilation sous Windows */
 /* Allan CORNET 27 avril 2004 */
 #ifdef __STDC__ 
-void  mexPrintf (char *fmt,...) 
+void mexPrintf __PARAMS((char *fmt,...));
 #else 
 void  mexPrintf (va_alist) va_dcl
 #endif
@@ -2769,7 +2769,7 @@ mxArray *C2F(mxcreatefull)(int *m, int *n, int *it)
 
 mxArray *C2F(mxcreatedoublematrix)(int *m, int *n, int *it)
 {
-  return (mxArray *) mxCreateDoubleMatrix(*m, *n, *it);
+  return (mxArray *) mxCreateDoubleMatrix(*m, *n, (mxComplexity)*it);
 } 
 
 

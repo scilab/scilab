@@ -15,7 +15,7 @@ int C2F(intfilesassociationbox) _PARAMS((char *fname,unsigned long l))
 	#if WIN32
 		Callback_FILESASSOCIATIONBOX();
 	#endif
-	LhsVar(0)=0;
+	LhsVar(1)=0;
 	C2F(putlhsvar)();
 	return 0;
 }

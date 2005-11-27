@@ -19,12 +19,7 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#ifdef __STDC__
-void wininfo(char *format,...);
-#else
-/*VARARGS0*/
-void wininfo();
-#endif    
+void wininfo  __PARAMS((char *fmt,...)); 
 
 extern double C2F(dsort)();
 extern char GetDriver(void);

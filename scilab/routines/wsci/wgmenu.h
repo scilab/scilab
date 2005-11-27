@@ -152,7 +152,7 @@ void ScilabMenuAction (char *buf);
 void write_scilab (char *buf);
 void LoadGraphMacros (struct BCG *ScilabGC);
 void CloseGraphMacros (struct BCG *ScilabGC);
-void scig_h_winmeth_print (integer number);
+
 void scig_h_copyclip (integer number);
 void scig_h_copyclip1 (integer number);
 void scig_print (integer number);

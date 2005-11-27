@@ -52,7 +52,12 @@ typedef struct table_struct {
 /** XXXX A finir **/
 #define mexGetArrayPtr(name,type) mexGetArray(name,type) 
 
+
+#ifdef __STDC__ 
 void mexPrintf __PARAMS((char *fmt,...));
+#else 
+void  mexPrintf __PARAMS(()); 
+#endif
 
 /** Put a matrix in Scilab Workspace */ 
 #define mexPutFull(name,m,n,ptrM,tag) \

@@ -27,14 +27,7 @@
 #include "bcg.h"
 #include "PloEch.h" 
 
-/* DJ.A 2003 */
-#ifdef __STDC__
-void wininfo(char *format,...);
-#else
-/*VARARGS0*/
-void wininfo();
-#endif
-
+void wininfo  __PARAMS((char *fmt,...));
 
 extern void GPopupResize();
 /* static struct BCG *tmpScilabXgc; */

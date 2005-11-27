@@ -151,7 +151,7 @@ sciGetEntityType (sciPointObj * pobj)
 {
   if (pobj != (sciPointObj *) NULL)
     return pobj->entitytype;
-  return -1;
+  return (sciEntityType)-1;
 }
 
 
@@ -2383,7 +2383,7 @@ sciGetTitlePlace (sciPointObj * pobj)
     return pTITLE_FEATURE (pobj)->titleplace;
   else
     sciprint ("Your are not using a title object !\n");
-  return -1;
+  return (sciTitlePlace)-1;
 }
 
 

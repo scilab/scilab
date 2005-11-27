@@ -209,8 +209,7 @@ rfloat(ft_t ft)
   return f;
 }
 
-void
-wfloat(ft_t ft, float f)
+void wfloat(ft_t ft, float f)
 {
   float t = f;
   if (ft->swap)

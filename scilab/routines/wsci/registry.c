@@ -19,7 +19,7 @@ extern void SetDefaultShowToolBar(BOOL valShowToolBar);
 extern BOOL SetIhmTextColor(int R,int G,int B,BOOL Refresh);
 extern BOOL SetIhmTextBackgroundColor(int R,int G,int B,BOOL Refresh);
 extern DWORD GetIhmTextColor(void);
-extern int *GetLanguageCodeInScilabDotStar(void);
+extern int GetLanguageCodeInScilabDotStar(void);
 DWORD GetIhmTextBackgroundColor(void);
 /*-----------------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,int *Number)

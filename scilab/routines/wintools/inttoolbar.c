@@ -32,7 +32,7 @@ int C2F(inthidetoolbar) _PARAMS((char *fname))
 	#ifdef WIN32
 		HideToolBarWin32(num_win); /* see "wsci/wmenu.c" */
 	#endif /*WIN32*/
-	LhsVar(0)=0;
+	LhsVar(1)=0;
 	C2F(putlhsvar)();
  }
  else

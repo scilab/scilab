@@ -1062,11 +1062,6 @@ static void scig_command_scilabgc (int number, void f (struct BCG *))
     f (ScilabGC);
 }
 /*-----------------------------------------------------------------------------------*/
-void scig_h_winmeth_print (integer number)
-{
-  scig_command_scilabgc (number,CopyPrint);
-}
-/*-----------------------------------------------------------------------------------*/
 void scig_h_copyclip (integer number)
 {
   scig_command_scilabgc (number, NewCopyClip);
