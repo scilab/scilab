@@ -1,10 +1,3 @@
-More .msg files can be added to this directory for the support of additional
-languages. Please contact the current mantainers if you wish to contribute
-a new file. Here are generic instructions about the format used in these
-localization files.
- 
-Enrico Segre and François Vogel
-
 ====================================================
 INSTRUCTIONS FOR CONTRIBUTING SCIPAD LOCALES
 ====================================================
@@ -17,8 +10,7 @@ it to us. We'll take care of including it in the current Scilab development
 tree, so that it becomes publicly available.
 
 In the file name, XX stands for the i18n code of the language you're
-contributing (see e.g. 
-http://www.i18nguy.com/unicode/language-identifiers.html).
+contributing (see e.g. http://www.i18nguy.com/unicode/language-identifiers.html).
 We estimate that the creation of such a file starting from an existing
 template shouldn't take more than 2-3 hours of editing. Moreover, if you
 volunteer for maintaining the file, there will be occasional changes 
@@ -206,7 +198,6 @@ usable. This is their official statement:
   Note that I am talking about LGPL and NOT GPL."
 
 ===================================================================
-
 
 We hope that these instructions are clear enough. If not, please do not
 hesitate to ask us.
