@@ -921,9 +921,6 @@ cd.. &gt;nul
 				RelativePath="periGif.h">
 			</File>
 			<File
-				RelativePath="periMac.h">
-			</File>
-			<File
 				RelativePath="periPos.h">
 			</File>
 			<File

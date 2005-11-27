@@ -15,6 +15,8 @@ extern int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BO
 extern int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
 extern void DragFunc (LPTW lptw, HDROP hdrop);
 extern int C2F (deletewin) (integer * number);
+extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
+extern void set_wait_click(val);
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_GRAPH_WM_CLOSE(HWND hwnd);
 BOOL ON_WND_GRAPH_WM_DESTROY(HWND hwnd);
@@ -57,6 +59,9 @@ BOOL ON_WND_GRAPH_WM_CLOSE(HWND hwnd)
 	PostQuitMessage (0);
 	C2F (deletewin) (&(ScilabGC->CurWindow));
 	SetWindowLong (hwnd, 0, (LONG) 0L);
+
+	PushClickQueue (ScilabGC->CurWindow,0,0,-100, 0, -1);
+	set_wait_click(0);
 
 	/* Ajout pour probleme fermeture fenetre scicos
 	si une boite de dialogue TK est presente */

@@ -908,6 +908,9 @@ cd .. &gt;nul
 				RelativePath=".\interfdde.C">
 			</File>
 			<File
+				RelativePath=".\KeyEvents.c">
+			</File>
+			<File
 				RelativePath=".\MenuWindows.c">
 			</File>
 			<File
@@ -1007,6 +1010,9 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\MouseEvents.c">
 			</File>
 			<File
 				RelativePath=".\printf.c">
@@ -2154,6 +2160,9 @@ cd .. &gt;nul
 				RelativePath=".\interfdde.h">
 			</File>
 			<File
+				RelativePath=".\KeyEvents.h">
+			</File>
+			<File
 				RelativePath=".\MenuWindows.h">
 			</File>
 			<File
@@ -2161,6 +2170,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\Messages.h">
+			</File>
+			<File
+				RelativePath=".\MouseEvents.h">
 			</File>
 			<File
 				RelativePath=".\printf.h">
