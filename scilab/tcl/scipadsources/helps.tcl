@@ -29,3 +29,45 @@ proc helpword {} {
         if {$curterm!=""} { ScilabEval_lt "help \"$curterm\"" }
     }
 }
+
+# a generic scrollable messagewindow, which displays the content of a text file
+proc textbox {textfile {wtitle ""}} {
+    global pad menuFont textFont
+    if {$wtitle == ""} {set wtitle $textfile}
+    set tbox $pad.textbox
+    catch {destroy $tbox}
+    toplevel $tbox
+    wm title $tbox $wtitle
+    setwingeom $tbox
+    wm resizable $tbox 1 1
+    frame $tbox.f1
+    text $tbox.text -font $textFont
+    set newnamefile [open $textfile r]
+    while {![eof $newnamefile]} {
+            $tbox.text insert end [read -nonewline $newnamefile ] 
+    }
+    close $newnamefile
+    $tbox.text configure -state disabled -yscrollcommand \
+           "managescroll $tbox.sb"
+    pack $tbox.text -in $tbox.f1 -side left -expand 1 -fill both
+    scrollbar $tbox.sb -command "$tbox.text yview" -takefocus 0
+    $tbox.sb set [lindex [$tbox.text yview] 0] [lindex [$tbox.text yview] 1]
+    pack $tbox.sb -in $tbox.f1 -side right -expand 0 -fill y
+    pack $tbox.f1 -expand 1 -fill both
+    frame $tbox.f2
+    button $tbox.f2.button -text [mc "Close"] \
+            -command "destroy $tbox" \
+            -width 10 -height 1 -font $menuFont
+    pack $tbox.f2.button -in $tbox.f2
+    pack configure $tbox.f2 -pady 4 -after $tbox.f1 -expand 0 -fill both
+    pack $tbox.f2 -in $tbox -side bottom
+    focus $tbox.f2.button
+    bind $tbox <Up> "$tbox.text yview scroll -1 units"
+    bind $tbox <Down> "$tbox.text yview scroll 1 units"
+    bind $tbox <Home> "$tbox.text yview moveto 0"
+    bind $tbox <End> "$tbox.text yview moveto 1"
+    bind $tbox <Prior> "$tbox.text yview scroll -1 pages"
+    bind $tbox <Next> "$tbox.text yview scroll 1 pages"
+    bind $tbox <Return> "destroy $tbox"
+    bind $tbox <KP_Enter> "destroy $tbox"
+}

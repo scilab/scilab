@@ -259,8 +259,6 @@ Wishes:
 
 -detect duplicate/missing underlines detection in the message files
 
--scrollable text dialogs to be used for instance for Help/Adding translations
-
 -get the names of all the functions defined in
  the opened buffers, make their list a keyword list. Colorize them
  accordingly (does it need a 2nd pass colorization run? then better not).

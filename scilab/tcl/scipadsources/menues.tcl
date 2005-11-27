@@ -321,21 +321,22 @@ proc createmenues {} {
                -command \"helpword\" -accelerator Ctrl+F1"
     eval "$pad.filemenu.help add command [me "&About"] \
                -command \"aboutme\" -accelerator Shift+F1"
-## additional hacker entries, for the moment disabled
+## additional hacker entries, some disabled for the moment
 # in case they become enabled, entries must be added in the msg files
-#     $pad.filemenu.help add separator
-#     eval "$pad.filemenu.help add command \
-#             [me "&Adding translations..."] \
+     $pad.filemenu.help add separator
+     eval "$pad.filemenu.help add command [me "Adding &translations..."] \
+              -command {textbox [file join $msgsdir AddingTranslations.txt] \
+               \"[mc "Adding Scipad Translations..."]\"}"
 #             -command {openfile [file join $msgsdir AddingTranslations.txt]}"
 #     eval "$pad.filemenu.help add command \
 #             [me "&edit msg file"] \
 #             -command {openfile [file join $msgsdir \$lang.msg]}"
-#     eval "$pad.filemenu.help add command \
-#             [me "&bugs \& wishlist"] \
-#             -command {openfile [file join $sourcedir BUGS]}"
-#     eval "$pad.filemenu.help add command \
-#             [me "&Changelog"] \
-#             -command {openfile [file join $sourcedir CHANGELOG]}"
+     eval "$pad.filemenu.help add command [me "&Bugs \& wishlist"] \
+             -command {textbox [file join $sourcedir BUGS] \
+              \"[mc "Scipad Known bugs"]\"}"
+     eval "$pad.filemenu.help add command [me "Change&log"] \
+            -command {textbox [file join $sourcedir CHANGELOG] \
+            \"[mc "Changes in the Scipad codebase"]\"}"
 
     # now make the menu bar visible
     $pad configure -menu $pad.filemenu 

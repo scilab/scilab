@@ -1756,3 +1756,9 @@ Francois VOGEL, 25/11/05
  * Fixed Scilab hang if asking for Configuring execution of CHANGELOG file
    in scilab language scheme
  * version --> 5.60
+
+ES, 27/11/05
+ * Additional items in the Help menu, open scrollable text dialogs which
+   display the files BUGS, CHANGELOG and AddingTranslations.txt. TBD 
+   wether to keep all of them
+ * version --> 5.61
