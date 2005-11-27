@@ -155,7 +155,7 @@ function endprof()
   if or(winsid()==(win)) then xdel(win);end
   if withpad then
     if ~TCL_ExistInterp("scipad") then return,end
-    if ~TCL_ExistVar("pad","scipad")then return,end
+    if ~TCL_ExistVar("pad","scipad") then return,end
     TCL_EvalStr("scipad eval {montretext $profiled}")
     TCL_EvalStr("scipad eval {closecur}")
   end
