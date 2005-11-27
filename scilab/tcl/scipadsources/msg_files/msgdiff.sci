@@ -29,7 +29,7 @@
 //         generates a reformatted rev file
 //
 //  known bugs: 
-//   -unquoted label names are wrabbed by quotes in the rev file (apparently
+//   -unquoted label names are wrapped by quotes in the rev file (apparently
 //    harmless
 //   -Quoted strings ending by \ (there is one such occurrence in fr.msg)
 //    confuse the parser, the result has a " too much
