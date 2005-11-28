@@ -10,6 +10,7 @@
 #include "../graphics/bcg.h"
 #include "../stack-c.h"
 #include "../graphics/Math.h"
+#include "../graphics/fig.h"
 #include "../graphics/Graphics.h"
 #include "../graphics/PloEch.h"
 #include "../graphics/CloneObjects.h"
@@ -2292,7 +2293,7 @@ void stringBoundingRect( char ** textMatrix, int textSize[2], int textPos[2], in
       /* a line is after this one */
       /* here a little error is done sonce we work in pixels */
       /* moreover the 1.2 should not be coded "en dur" */
-      rect[1] -= (int) rint( curRect[3] * 1.2 ) ;
+      rect[1] -= round( curRect[3] * 1.2 ) ;
     }
     else
     {
@@ -5107,6 +5108,7 @@ int copy(char *fname,unsigned long fname_len)
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
 	return 0;
       }
+      typ=sciGetEntityType(pobj);
       if (typ!=SCI_TEXT&&typ!=SCI_ARC&&typ!=SCI_POLYLINE&&typ!=SCI_RECTANGLE) {
 	C2F(overload)(&lw,"copy",4);
 	return 0;
