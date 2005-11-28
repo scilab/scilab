@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -25,7 +25,7 @@
         <PARAM_NAME>rect</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrice 2x4 contenant les coordonÃ©es des 4 sommets du
+          <SP>: matrice 2x4 contenant les coordonées des 4 sommets du
           rectangle englobant.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -34,7 +34,7 @@
         <PARAM_NAME>string</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrice de chaine de caractÃ¨re Ã  entourer.</SP>
+          <SP>: matrice de chaine de caractère à  entourer.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -42,8 +42,8 @@
         <PARAM_NAME>x,y</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: scalaires rÃ©els, coordonnÃ©es du point en bas Ã  gauche des
-          chaÃ®nes de caractÃ¨res.</SP>
+          <SP>: scalaires réels, coordonnées du point en bas à  gauche des
+          chaînes de caractères.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -51,7 +51,7 @@
         <PARAM_NAME>angle</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: Angle de rotation de la chaÃ®ne en degrÃ©s autour du point
+          <SP>: Angle de rotation de la chaîne en degrés autour du point
           <VERB>(x,y)</VERB> dans le sens des aiguilles d'une montre.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -84,13 +84,13 @@
 
   <DESCRIPTION>
     <P><VERB>stringbox</VERB> renvoie les positions des quatres sommets du
-    rectangle englobant d'un objet Text ou Label ou d'une chaine de caractÃ¨re
-    que l'on souhaite afficher. Les coordonnÃ©es sont donnÃ©es dans l'Ã©chelle
-    graphique courante. Le premier sommet correspond Ã  la coordonnÃ©es du
-    texte, le point en bas Ã  gauche sans rotations, les suivants sont donnÃ©s
+    rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
+    que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
+    graphique courante. Le premier sommet correspond à  la coordonnées du
+    texte, le point en bas à  gauche sans rotations, les suivants sont donnés
     dans le sens des aiguilles d'une montre.</P>
 
-    <P>Le rÃ©sultat est approximatif avec le pilote PostScript.</P>
+    <P>Le résultat est approximatif avec le pilote PostScript.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[// show axes
