@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.126 $)dnl
+AC_REVISION($Revision: 1.127 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -34,7 +34,7 @@ AC_ARG_WITH(gfortran,
     [  --with-gfortran         use gfortran, GNU Fortran 95 compiler ])
 
 AC_ARG_WITH(gnu,
-    [  --with-gnu              use gcc C compiler and gnu Fortran compiler (977 or gfortran) ])
+    [  --with-gnu              use gcc C compiler and gnu Fortran compiler (g77 or gfortran) ])
 
 AC_ARG_WITH(intelcompilers,
     [  --with-intelcompilers   use intel icc and ifort Fortran compiler ])
