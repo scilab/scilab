@@ -1992,7 +1992,7 @@ void  mexPrintf(char *fmt,...)
 /* Modification pour Compilation sous Windows */
 /* Allan CORNET 27 avril 2004 */
 #ifdef __STDC__ 
-void mexPrintf __PARAMS((char *fmt,...));
+void mexPrintf __PARAMS((char *fmt,...))
 #else 
 void  mexPrintf (va_alist) va_dcl
 #endif
