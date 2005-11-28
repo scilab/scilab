@@ -697,6 +697,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
+    
   case "Text"
     visible        = toggle(mget(1,'c',fd))
     text           = load_text_vector(fd)
@@ -720,10 +721,23 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"font_size"            , mget(1,'c',fd));
     end
     set(h,"font_angle"           , mget(1,'dl',fd));
+    
+    //adding JB Silvy 28/11/05
+    // box drawing
+    if is_higher_than([3 1 0 1]) then
+      set( h, "box"      , toggle( mget( 1, 'c', fd ) ) ) ;
+      set( h, "line_mode", toggle( mget( 1, 'c', fd ) ) ) ;
+      set( h, "fill_mode", toggle( mget( 1, 'c', fd ) ) ) ;
+      
+      set( h, "font_foreground", mget( 1, 'il', fd ) ) ;
+      set( h, "background"     , mget( 1, 'il', fd ) ) ;
+    end
+    
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
     load_user_data(fd)
+    
   case 'Axis'
     if is_higher_than([3 1 0 0]) then
       visible          = toggle(mget(1,'c',fd))

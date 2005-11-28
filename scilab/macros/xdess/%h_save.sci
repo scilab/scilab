@@ -401,10 +401,20 @@ function save_graphichandle(h,fd)
     mput(size(h.data),'c',fd);mput(h.data,'dl',fd);
     mput(h.text_box,'dl',fd);
     mput(length(h.text_box_mode),'c',fd);mput(ascii(h.text_box_mode),'c',fd);
+    
     mput(h.foreground,'il',fd)
     mput(h.font_style,'c',fd)
     mput(h.font_size,'c',fd)
     mput(h.font_angle,'dl',fd)
+    
+    //adding JB Silvy 28/11/05
+    // box drawing
+    mput( bool2s( h.box       == 'on' ), 'c', fd ) ;
+    mput( bool2s( h.line_mode == 'on' ), 'c', fd ) ;
+    mput( bool2s( h.fill_mode == 'on' ), 'c', fd ) ;
+    
+    mput( h.font_foreground, 'il', fd ) ;
+    mput( h.background     , 'il', fd ) ;
     
     mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then
