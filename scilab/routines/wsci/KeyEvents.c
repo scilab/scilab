@@ -8,6 +8,9 @@ extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 /*-----------------------------------------------------------------------------------*/
 #define CTRL_KEY 1000
 #define SHIFT_KEY 2000
+#ifndef VK_SLEEP
+  #define VK_SLEEP 0x5F
+#endif
 /*-----------------------------------------------------------------------------------*/
 BOOL IsASpecialKey(UINT vk);
 UINT GetScilabSpecialKeyCode(UINT vk);
@@ -22,7 +25,7 @@ void ON_EVENT_GRAPH_WM_KEYUP(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT f
 		int x,y,iwin;
 
 		check_pointer_win(&x,&y,&iwin);
-		PushClickQueue (ScilabGC->CurWindow, x,y,-(int)GetScilabSpecialKeyCode(vk),0,0);
+		PushClickQueue (ScilabGC->CurWindow, x,y,-(int)GetScilabSpecialKeyCode(vk),0,1);
 	}
 	else
 	{
