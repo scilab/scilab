@@ -10,7 +10,6 @@
 #include "../graphics/bcg.h"
 #include "../stack-c.h"
 #include "../graphics/Math.h"
-#include "../graphics/fig.h"
 #include "../graphics/Graphics.h"
 #include "../graphics/PloEch.h"
 #include "../graphics/CloneObjects.h"

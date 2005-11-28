@@ -63,7 +63,7 @@ int finite __PARAMS((double));
 #define DEG2RAD(x) ((x) * PI_OVER_180  )
 #define RAD2DEG(x) ((x) * _180_OVER_PI )
 
-/*#define ROUND(x) ((int)rint(x))*/
+#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
 
