@@ -29,9 +29,9 @@
 #endif
 
 extern void initsubwin();
-void compute_data_bounds(int cflag, char dataflag,integer n1,integer n2,double *x,double *y,double *drect);
+void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect);
 extern double  sciFindLogMinSPos(double *x, int n);
-void compute_data_bounds2(int cflag,char dataflag, char * logflags,integer n1,integer n2, double *x,double  *y, double *drect);
+void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect);
 BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -170,7 +170,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     case '2' : case '4' : case '6' : case '8': case '9':
       /* Force psubwin->Srect to the x and y bounds */
       if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
-      compute_data_bounds2(0,dataflag,pSUBWIN_FEATURE (psubwin)->logflags,(integer)x,(integer)y,(double*)*n1,(double*)*n2,drect);
+      compute_data_bounds2(0,dataflag,pSUBWIN_FEATURE (psubwin)->logflags,x,y,*n1,*n2,drect);
       break;
     }
     if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
@@ -295,7 +295,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
  *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] taking into account the logflag
  *  -> means we have to find among the data the min > 0.
  */
-void compute_data_bounds2(int cflag,char dataflag, char * logflags,integer n1,integer n2, double *x,double  *y, double *drect)
+void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect)
 {
   int size_x,size_y;
   double xd[2];
@@ -370,7 +370,7 @@ void compute_data_bounds2(int cflag,char dataflag, char * logflags,integer n1,in
 /* Given two set of coordinates x and y this routine computes the corresponding 
  *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] 
  */
-void compute_data_bounds(int cflag, char dataflag,integer n1,integer n2,double *x,double *y,double *drect)
+void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect)
 {
   int size_x,size_y;
   double xd[2];
