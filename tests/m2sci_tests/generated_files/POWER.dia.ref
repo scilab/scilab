@@ -1019,7 +1019,7 @@ res337 = -%inf
 res338 = %inf
 // TEST 339
 //res339|1 1|Double|Real
-res339 = 0
+res339 = %nan
 // TEST 340
 //res340|1 1|Double|Real
 res340 = %nan
@@ -1040,4 +1040,4 @@ res344 = %nan
 res345 = %nan
 // TEST 346
 //res346|1 1|Double|Real
-res346 = 0
+res346 = %nan
