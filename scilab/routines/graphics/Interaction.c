@@ -548,15 +548,19 @@ sciExecCallback (sciPointObj * pthis)
 /************************************ End of callback Functions ************************************/
 
 
-int Objmove (hdl,x,y,opt)
+int Objmove (hdl,d,m,opt)
      long *hdl;
-     double x,y;
+     double* d;
+     int m;
      BOOL opt;
 {   
   long tmphdl;
+  double x,y,z;
   sciPointObj *pobj;  
   sciSons *psonstmp;
-  int i;
+  int i,n;
+  x=d[0];y=d[1];
+  if (m==3) z=d[2]; else z=0.0;
 
   pobj = (sciPointObj *)sciGetPointerFromHandle(*hdl);
   /*sciSetCurrentObj (pobj); */ /* Useless*/
@@ -571,34 +575,59 @@ int Objmove (hdl,x,y,opt)
     case SCI_ARC:
       pARC_FEATURE(pobj)->x +=x;
       pARC_FEATURE(pobj)->y += y; 
+      if (m == 3) pRECTANGLE_FEATURE(pobj)->z += z;
       break;
     case SCI_RECTANGLE: 
       pRECTANGLE_FEATURE(pobj)->x += x;  
       pRECTANGLE_FEATURE(pobj)->y += y; 
+      if (m == 3) pRECTANGLE_FEATURE(pobj)->z += z;
       break; 
     case SCI_AGREG: 
       psonstmp = sciGetSons((sciPointObj *) pobj);
       while ((psonstmp != (sciSons *)NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
 	{
 	  tmphdl =sciGetHandle((sciPointObj *)psonstmp->pointobj);
-	  Objmove (&tmphdl,x,y,opt);
+	  Objmove (&tmphdl,d,m,opt);
 	  psonstmp = psonstmp->pnext;
 	}
       break;
     case SCI_TEXT:  
       pTEXT_FEATURE(pobj)->x += x; 
       pTEXT_FEATURE(pobj)->y += y;
+      if (m == 3) pTEXT_FEATURE(pobj)->z += z;
       break;
-    case SCI_SEGS:   
-      for (i=0;i<pSEGS_FEATURE(pobj)->Nbr1;i++) {
+    case SCI_SEGS:
+      n=pSEGS_FEATURE(pobj)->Nbr1;   
+      for (i=0;i<n;i++) {
 	pSEGS_FEATURE(pobj)->vx[i] += x; 
 	pSEGS_FEATURE(pobj)->vy[i] += y;
       }
+      if (m == 3) {
+	if  (pSEGS_FEATURE(pobj)->vz == (double *)NULL) {
+	  if ((pSEGS_FEATURE(pobj)->vz = MALLOC (n * sizeof (double)))==NULL) return -1;
+	    for (i=0;i<n;i++) 
+	      pSEGS_FEATURE(pobj)->vz[i] = z; 
+	}
+	else
+	  for (i=0;i<n;i++) 
+	    pSEGS_FEATURE(pobj)->vz[i] += z; 
+      }
       break;
     case SCI_POLYLINE: 
-      for (i=0;i<pPOLYLINE_FEATURE(pobj)->n1;i++) {
+      n=pPOLYLINE_FEATURE(pobj)->n1;
+      for (i=0;i<n;i++) {
 	pPOLYLINE_FEATURE(pobj)->pvx[i] += x; 
 	pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
+      }
+      if (m == 3) {
+	if  (pPOLYLINE_FEATURE(pobj)->pvz == (double *)NULL) {
+	  if ((pPOLYLINE_FEATURE(pobj)->pvz = MALLOC (n * sizeof (double)))==NULL) return -1;
+	    for (i=0;i<n;i++) 
+	      pPOLYLINE_FEATURE(pobj)->pvz[i] = z; 
+	}
+	else
+	  for (i=0;i<n;i++) 
+	    pPOLYLINE_FEATURE(pobj)->pvz[i] += z; 
       }
       break;
     case SCI_FEC: 
@@ -613,8 +642,51 @@ int Objmove (hdl,x,y,opt)
       for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
 	pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
       break;
+    case SCI_SURFACE: 
+      switch(pSURFACE_FEATURE (pobj)->typeof3d)
+	{
+	case SCI_FAC3D: 
+	  n= pSURFACE_FEATURE (pobj)->dimzx* pSURFACE_FEATURE (pobj)->dimzy;
+	  for (i=0;i<n;i++) {
+	    pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
+	    pSURFACE_FEATURE(pobj)->pvecy[i] += y;
+	  }
+	  if (m == 3) {
+	    if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
+	      if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
+	      for (i=0;i<n;i++) 
+		pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
+	    }
+	    else
+	      for (i=0;i<n;i++) 
+		pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
+	  }
+	  break;
+	case SCI_PLOT3D:
+	  for (i=0;i<pSURFACE_FEATURE (pobj)->dimzx;i++) 
+	    pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
+	  for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
+	    pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+	  if (m == 3) {
+	    n=pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;
+	    if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
+	      if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
+	      for (i=0;i<n;i++) 
+		pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
+	    }
+	    else
+	      for (i=0;i<n;i++) 
+		pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
+	  }
+	  break;
+	}
+      break;
+    case SCI_LABEL:
+      pLABEL_FEATURE(pobj)->position[0] += x; 
+      pLABEL_FEATURE(pobj)->position[1] += y;
+      pLABEL_FEATURE(pobj)->auto_position = FALSE;
+      break;
     case SCI_FIGURE:
-    case SCI_SURFACE:    
     case SCI_AXES:
     case SCI_LIGHT:
     case SCI_MENU:
@@ -625,7 +697,6 @@ int Objmove (hdl,x,y,opt)
     case SCI_SBV:	      
     case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
       sciprint ("This object can not be moved\r\n");
