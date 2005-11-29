@@ -79,6 +79,16 @@ function ged(k,win)
     seteventhandler("ged_eventhandler")
     case 7 then //stop Entity picker
     seteventhandler("")
+  case 8 then // Add Entity
+    ged_new_entity()
+  case 9 then //Delete Entity
+    ged_delete_entity()
+  case 10 then //move
+    ged_move_entity()
+  case 11 then //move
+    ged_copy_entity()
+  case 12 then //move
+    ged_paste_entity()
   end
   xset('window',ged_current_figure)
 endfunction
@@ -108,7 +118,8 @@ for i=2:size(handles,1)
   ged_levels(i) = Get_Depth(f,handles(i));
 end
 
-//disp("les levels sont:")
+//disp("les levels sont:")xb
+
 //disp(ged_levels);
 
 endfunction
@@ -284,7 +295,9 @@ function List_handles(h)
 global ged_handle_out;
 
 i = 1;
-
+if h.type=="Axes" then
+   ged_handle_out = [ged_handle_out;h.x_label;h.y_label;h.z_label;h.title];
+end
 psonstmp = h.children;
 if psonstmp <> [] then
   psonstmp = h.children(1);
@@ -1129,16 +1142,54 @@ function h=ged_loop(a)
       case "Compound"
       h=ged_loop(ck.children)
       if h<>[] then return,end
-      case "Axes"
+    case "Axes"
       xy=ck.data_bounds;
       [xp,yp]=xchange(pt(1),pt(2),'i2f')
       Xmin=xy(1,1);Ymin=xy(1,2),Dx=xy(2,1)-xy(1,1);Dy=xy(2,2)-xy(1,2);
       pts=[(xp-Xmin)/Dx (yp-Ymin)/Dy]
       d=Dist2polyline([0,1,1,0],[0,0,1,1],pts)
       if d<0.005 then h=ck,return,end
-      h=ged_loop(Axes.children)
+      h=ged_loop([Axes.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title])
       if h<>[] then return,end
+    case "Text"
+      if is_in_text(ck.data,ck.text,ck.font_angle,ck.font_style,ck.font_size,pts) then
+	 h=ck,
+	 return,
+      end
+    case "Label"
+      if is_in_text(ck.position,ck.text,ck.font_angle,ck.font_style,ck.font_size,pts) then
+	h=ck
+	return,
+      end
+
     end
+  end
+endfunction
+
+function r=is_in_text(xy,str,angle,style,sz,pts)
+  rect=xstringl(xy(1),xy(2),str,style, sz)
+  if angle==0 then
+    x0=rect(1);y0=rect(2);W=rect(3);H=rect(4);
+    r=(x0-Xmin)/Dx<=pts(1)&(x0-Xmin+W)/Dx>=pts(1)&..
+      (y0-H-Ymin)/Dy<=pts(2)&(y0-Ymin)/Dy>=pts(2)
+  elseif angle==270 then
+    x0=rect(1);y0=rect(2);H=rect(3);W=rect(4);
+    r=(x0-Xmin-W)/Dx<=pts(1)&(x0-Xmin)/Dx>=pts(1)&..
+      (y0-Ymin-H)/Dy<=pts(2)&(y0-Ymin)/Dy>=pts(2)
+  elseif angle==90 then  
+    x0=rect(1);y0=rect(2);H=rect(3);W=rect(4);
+    r=(x0-Xmin)/Dx<=pts(1)&(x0-Xmin+W)/Dx>=pts(1)&..
+      (y0-Ymin-H)/Dy<=pts(2)&(y0-Ymin)/Dy>=pts(2)
+  elseif angle==180 then 
+    x0=rect(1);y0=rect(2);W=rect(3);H=rect(4);
+    r=(x0-Xmin-W)/Dx<=pts(1)&(x0-Xmin)/Dx>=pts(1)&..
+      (y0-Ymin-2*H)/Dy<=pts(2)&(y0-Ymin-H)/Dy>=pts(2)
+  else
+    t=(360-angle)*%pi/180;
+    R=[cos(t) sin(t);-sin(t) cos(t)]';
+    pt=(pts-[(rect(1)-Xmin)/Dx,(rect(2)-Ymin)/Dy])*R
+    pause
+    r=pt(1)>=0&pt(1)<rect(3) & pt(2)>=0&pt(2)<=rect(4)
   end
 endfunction
 
@@ -2069,4 +2120,139 @@ clearglobal ged_current_figure
 clear ged_current_figure
 
 // disp("PASSE PAR DestroyGlobals Scilab");
+endfunction
+function ged_new_entity()
+  entities=['Rectangle','Segment','Polyline','Text','Circle']
+  sel=x_choose(entities,'Select the Entity type')
+  f=gcf();pix=f.pixmap;f.pixmap='on'
+  rep(3)=-1
+  select sel
+  case 1 then //Rectangle
+    [btn,xc,yc]=xclick()
+    xrect(xc,yc,0,0)
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
+      show_pixmap()
+    end 
+  case 2 then //Segment
+    [btn,xc,yc]=xclick()
+    xsegs([xc;xc],[yc;yc])
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data=[xc,yc;rep(1),rep(2)]
+      show_pixmap()
+    end 
+  case 3 then //Polyline
+    [btn,xc,yc]=xclick()
+    xpoly([xc;xc],[yc;yc])
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    while %t
+      while rep(3)==-1 do
+	rep=xgetmouse()
+	r.data($,:)=[rep(1),rep(2)]
+	show_pixmap()
+      end 
+      if rep(3)==2 then break,end
+      rep(3)=-1;
+      r.data=[r.data;r.data($,:)]
+    end
+  case 4 then //Text
+    
+  case 5 then //Circle
+    [btn,xc,yc]=xclick()
+    xarc(xc,yc,0,0,0,64*360)
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
+      show_pixmap()
+    end 
+
+  end
+  f.pixmap=stripblanks(pix)
+endfunction
+
+function ged_delete_entity()
+  [btn,xc,yc]=xclick()
+   [xc,yc]=xchange(xc,yc,'f2i')
+  h=ged_getobject([xc,yc])
+  if h<>[] then delete(h),end
+endfunction
+
+function ged_move_entity()
+  [btn,xc,yc]=xclick()
+  pos=[xc,yc]
+  [xc,yc]=xchange(xc,yc,'f2i')
+  r=ged_getobject([xc,yc])
+  if r==[] return,end
+  f=gcf();pix=f.pixmap;f.pixmap='on'
+  rep(3)=-1
+  select r.type
+  case 'Rectangle' then
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
+      pos=rep(1:2)
+      show_pixmap()
+    end 
+  case 'Segs' then //Segment
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data=r.data+ones(2,1)*(rep(1:2)-pos)
+      pos=rep(1:2)
+      show_pixmap()
+    end 
+  case 'Polyline' then //Polyline
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data=r.data+ones(r.data(:,1))*(rep(1:2)-pos)
+      pos=rep(1:2)
+      show_pixmap()
+    end 
+  case 4 then //Text
+    
+  case 'Arc' then //Circle
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
+      pos=rep(1:2)
+      show_pixmap()
+    end 
+  case 'Text' then
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data= r.data+(rep(1:2)-pos)
+      pos=rep(1:2)
+      show_pixmap()
+    end 
+  case 'Label' then
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.position= r.position+(rep(1:2)-pos)
+      r.auto_position = "off"
+      pos=rep(1:2)
+      show_pixmap()
+    end 
+    
+  end
+  f.pixmap=stripblanks(pix)
+endfunction
+function ged_copy_entity()
+  [btn,xc,yc]=xclick()
+  [xc,yc]=xchange(xc,yc,'f2i')
+  r=ged_getobject([xc,yc])
+  if r==[] return,end
+  save(TMPDIR+'/G_Clipboard',r)
+endfunction
+function ged_paste_entity()
+  load(TMPDIR+'/G_Clipboard')
+  a=gca();b=a.data_bounds;
+  move(r,[-1 1]*a.data_bounds/20)
 endfunction
