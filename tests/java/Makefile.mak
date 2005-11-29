@@ -2,7 +2,7 @@
 SCIDIR1 = ..\..
 
 tests:
-	$(SCIDIR1)\bin\scilex -nw -f JavaTests.sce
+	$(SCIDIR1)\bin\scilex -nb -f JavaTests.sce
 
 clean ::
 	@del *.dia

@@ -10,7 +10,7 @@ info:
 	@echo " SEE THE README FILE (IMPORTANT) "
 
 tests: 
-	$(SCIDIR)/bin/scilab -nw -f benchmark.sce
+	$(SCIDIR)/bin/scilab -nwni -nb -f benchmark.sce
 
 clean ::
 	$(RM) $(SCIDIR)/benchmark.ini

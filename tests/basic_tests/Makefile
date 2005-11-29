@@ -13,7 +13,7 @@ info:
 	@echo " SEE THE README FILE (IMPORTANT) "
 
 tests: 
-	$(SCIDIR)/bin/scilab -nw -f maketests.sce
+	$(SCIDIR)/bin/scilab -nwni -nb -f maketests.sce
 
 clean ::
 	$(RM) *.dia tmp.* get_examples.log *.graph so_locations 

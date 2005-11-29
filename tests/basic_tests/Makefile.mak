@@ -15,10 +15,10 @@ OBJS = externals.obj
 all :: externals.dll tests
 
 tests: 
-	$(SCIDIR1)\bin\scilex -nw -f maketests.sce
+	$(SCIDIR1)\bin\scilex -nb -f maketests.sce
 
 tests-clean:
-	$(SCIDIR1)\bin\scilex -nw -f makecleantests.sce
+	$(SCIDIR1)\bin\scilex -nb -f makecleantests.sce
 
 clean ::
 	@del externals.obj 

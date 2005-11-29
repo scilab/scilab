@@ -10,7 +10,7 @@ info:
 	@echo " SEE THE README FILE (IMPORTANT) "
 
 tests: 
-	$(SCIDIR)/bin/scilab -nw -f JavaTests.sce
+	$(SCIDIR)/bin/scilab -nwni -nb -f JavaTests.sce
 
 clean ::
 	$(RM) *.dia

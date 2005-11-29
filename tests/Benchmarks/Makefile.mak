@@ -2,7 +2,7 @@
 SCIDIR1 = ..\..
 
 tests:
-	$(SCIDIR1)\bin\scilex -nw -f benchmark.sce
+	$(SCIDIR1)\bin\scilex -nb -f benchmark.sce
 
 clean ::
 	@del $(SCIDIR1)\benchmark.ini

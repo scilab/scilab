@@ -10,10 +10,10 @@ info:
 	@echo " SEE THE README FILE (IMPORTANT) "
 
 tests:
-	$(SCIDIR)/bin/scilab -nw -f m2sci.sce
+	$(SCIDIR)/bin/scilab -nwni -nb -f m2sci.sce
 
 clean ::
-	$(SCIDIR)/bin/scilab -nw -f clean.sce
+	$(SCIDIR)/bin/scilab -nwni -nb -f cleanTests.sce
 
 distclean::
-	$(SCIDIR)/bin/scilab -nw -f clean.sce
+	$(SCIDIR)/bin/scilab -nwni -nb -f cleanTests.sce
