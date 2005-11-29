@@ -926,6 +926,8 @@ proc gotoline {} {
     global pad textFont menuFont unklabel
     global physlogic linetogo curfileorfun funtogoto
 
+    # gotoline cannot be executed since it uses getallfunsintextarea
+    # which needs the colorization results
     if {[colorizationinprogress]} {return}
 
     # Obtain all the functions defined in all the opened buffers, and create a list

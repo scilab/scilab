@@ -131,6 +131,7 @@ proc puttext {w text} {
     $w insert insert $text
     set i2 [$w index insert]
     if {$i1 != $i2} {
+        tagcontlines $w
         set uplimit [getstartofcolorization $w $i1]
         set dnlimit [getendofcolorization $w $i2]
         colorize $w $uplimit $dnlimit

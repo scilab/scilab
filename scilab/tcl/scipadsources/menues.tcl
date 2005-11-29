@@ -213,6 +213,9 @@ proc createmenues {} {
     eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
       -command {refreshQuotedStrings}\
       -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
+    eval "$pad.filemenu.options add check [me "Show c&ontinued lines"] \
+      -command {tagcontlinesinallbuffers}\
+      -offvalue no -onvalue yes -variable showContinuedLines"
     eval "$pad.filemenu.options add check [me "Word &Wrap"] \
       -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
       -offvalue none -onvalue word -variable wordWrap"

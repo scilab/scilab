@@ -87,8 +87,7 @@ proc colorize {w cpos iend} {
 # Colorize in textarea w from start position cpos to end position iend
 # Warning: if cpos denotes a position located *after* iend, nothing is done
     global words chset listoffile
-    set textarea [gettextareacur]
-    set schema $listoffile("$textarea",language)
+    set schema $listoffile("$w",language)
     regsub -all "scilab." [array names chset -glob scilab\.*] "" scitags
     $w mark set begin "$cpos"
     $w mark set ende "$iend"
@@ -451,17 +450,16 @@ proc dobackgroundcolorize {w thebegin progressbar} {
     if {[$w compare $curend < end]} {
         colorize $w $thebegin [$w index $curend]
         set newbegin [$w index $curend]
-        # interval depends on number of files currently being colorized,
-        # in order to share available resources from the computer - formula
-        # based on experience
-        set interval [expr $nbfilescurrentlycolorized * 10]
-        after $interval "dobackgroundcolorize $w $newbegin $progressbar"
+        after idle [list after 1 dobackgroundcolorize $w $newbegin $progressbar]
     } else {
         # last colorization step
         colorize $w $thebegin end
         set listoffile("$w",progressbar_id) ""
         incr nbfilescurrentlycolorized -1
         destroy $progressbar
+        # update status info - might be needed since logical line info makes
+        # use of proc whichfun, which in turn uses colorization info
+        keyposn $w
     }
 }
 
@@ -542,6 +540,7 @@ proc changelanguage {newlanguage} {
         set listoffile("$textarea",language) $newlanguage
         showinfo [mc "Wait seconds while recolorizing file"]
         schememenus $textarea
+        tagcontlines $textarea
         backgroundcolorize $textarea
         keyposn $textarea
     }

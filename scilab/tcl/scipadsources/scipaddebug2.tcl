@@ -25,7 +25,7 @@ if {$debuglog} {
     gettextareacur settextareacur countcontlines reshape_bp \
     undoredo srevert commonPrefix \
     iscontinuedline getstartofcontline getendofcontline \
-    colorize remalltags \
+    colorize remalltags tagcontline \
     colorizestringsandcomments_sd colorizestringsandcomments \
     backgroundcolorize dobackgroundcolorize \
     getstartofcolorization getendofcolorization \

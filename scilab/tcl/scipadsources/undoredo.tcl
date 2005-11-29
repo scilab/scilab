@@ -31,6 +31,7 @@ proc undoredo {textarea action} {
     set i1 [$textarea index "1.0 + [string length $pref] chars"]
     set pref [commonPrefix [srevert $bef] [srevert $aft]]
     set i2 [$textarea index "end - [string length $pref] chars"]
+    tagcontlines $textarea
     set uplimit [getstartofcolorization $textarea $i1]
     set dnlimit [getendofcolorization $textarea $i2]
     colorize $textarea $uplimit $dnlimit

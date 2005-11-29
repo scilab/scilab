@@ -45,6 +45,7 @@ proc execfile {{buf "current"}} {
 proc execselection {} {
     global sciprompt textareacur tcl_platform
 
+    # execselection cannot be executed since it needs the colorization results
     if {[colorizationinprogress]} {return}
 
     if [ expr [string compare $sciprompt -1] == 0 ] {

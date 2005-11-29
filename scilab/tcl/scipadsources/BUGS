@@ -1,7 +1,12 @@
 SCIPAD BUGS AND WISHES LIST
 
+
 Bugs:
 -----
+-Find Next with F3 highlights a wrong part of the text if a previous match was
+ found on the same line and the user has typed something between the two
+ matches
+
 -issues related with non colorizing single quoted text:
   . code lines such as mprintf("%s",'this is a function') break the line
     number counting in functions if not properly colorized as textquoted.
@@ -268,3 +273,6 @@ Wishes:
  can be colorized or not depending on their defining buffer being opened
  or not, but I think it could be useful nevertheless when opening those
  files defining several ancillaries
+
+-Improve further the regexps for continued lines detection, the goal being
+ to detect only legal (in the Scilab parser sense) continued lines.

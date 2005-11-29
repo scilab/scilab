@@ -17,6 +17,7 @@ proc deletetext {} {
         $textareacur delete "insert" "insert +1c"
     }
     set i1 [$textareacur index insert]
+    tagcontlines $textareacur
     set uplimit [getstartofcolorization $textareacur $i1]
     set dnlimit [getendofcolorization $textareacur $i1]
     colorize $textareacur [$textareacur index $uplimit] \
@@ -46,6 +47,7 @@ proc backspacetext {} {
         $textareacur delete "insert-1c" "insert"
     }
     set i1 [$textareacur index insert]
+    tagcontlines $textareacur
     set uplimit [getstartofcolorization $textareacur $i1]
     set dnlimit [getendofcolorization $textareacur $i1]
     colorize $textareacur [$textareacur index $uplimit] \
@@ -64,6 +66,7 @@ proc cuttext {} {
     set listoffile("$textareacur",redostackdepth) 0
     tk_textCut $textareacur
     set i1 [$textareacur index insert]
+    tagcontlines $textareacur
     set uplimit [getstartofcolorization $textareacur $i1]
     set dnlimit [getendofcolorization $textareacur $i1]
     colorize $textareacur [$textareacur index $uplimit] \
@@ -98,6 +101,7 @@ proc pastetext {} {
     set i1 [$textareacur index insert]
     tk_textPaste $textareacur 
     set  i2 [$textareacur index insert]
+    tagcontlines $textareacur
     set uplimit [getstartofcolorization $textareacur $i1]
     set dnlimit [getendofcolorization $textareacur $i2]
     colorize $textareacur [$textareacur index $uplimit] \

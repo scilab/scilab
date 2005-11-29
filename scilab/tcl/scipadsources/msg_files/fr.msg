@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.56
+# in sync at least with v5.62
 
 
 # commons
@@ -308,6 +308,7 @@
         ::msgcat::mcset fr "&large" "&grand"
     ::msgcat::mcset fr "&Colors" "&Couleurs"
     ::msgcat::mcset fr "Colorize \'&strings\'" "C&olorer \'chaîne\'"
+    ::msgcat::mcset fr "Show c&ontinued lines" "Afficher les li&gnes incomplètes"
     ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
     ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
         ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"
@@ -349,6 +350,12 @@
     ::msgcat::mcset fr "&Help..." "&Aide..."
     ::msgcat::mcset fr "&What's?..." "&Qu'est-ce ?..."
     ::msgcat::mcset fr "&About" "A &propos"
+    ::msgcat::mcset fr "Adding &translations..." "&Traduire Scipad..."
+        ::msgcat::mcset fr "Adding Scipad Translations..." "Ajouter une nouvelle traduction de Scipad..."
+    ::msgcat::mcset fr "&Bugs \& wishlist" "&Bugs \& demandes"
+        ::msgcat::mcset fr "Scipad Known bugs" "Bugs connus de Scipad"
+    ::msgcat::mcset fr "Change&log" "&Modifications"
+        ::msgcat::mcset fr "Changes in the Scipad codebase" "Liste des modifications dans le code source de Scipad"
 
 
 # popupmenus.tcl
@@ -433,10 +440,11 @@
 ::msgcat::mcset fr "XMLCOLOR" "Balises XML"
 ::msgcat::mcset fr "NUMCOLOR" "Nombres"
 ::msgcat::mcset fr "SELCOLOR" "Sélection"
-::msgcat::mcset fr "BREAKPOINTCOLOR" "Point d'arrêt (arrière-plan)"
+::msgcat::mcset fr "BREAKPOINTCOLOR" "Point d'arrêt"
 ::msgcat::mcset fr "LFUNCOLOR" "Fonctions de librairie"
 ::msgcat::mcset fr "PDEFCOLOR" "Variables prédéfinies"
 ::msgcat::mcset fr "FOUNDTEXTCOLOR" "Texte trouvé"
+::msgcat::mcset fr "CONTLINECOLOR" "Ligne incomplète"
 
 
 #overriding tcl-core dialogs (many are actually already found in 

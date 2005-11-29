@@ -673,6 +673,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
         $textarea edit separator
         $textarea configure -autoseparators 1
     }
+    tagcontlines $textarea
     set uplimit [getstartofcolorization $textarea $mpos]
     set dnlimit [getendofcolorization $textarea $mpos]
     colorize $textarea $uplimit $dnlimit

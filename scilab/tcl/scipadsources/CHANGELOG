@@ -1762,3 +1762,16 @@ ES, 27/11/05
    display the files BUGS, CHANGELOG and AddingTranslations.txt. TBD 
    wether to keep all of them
  * version --> 5.61
+
+Francois VOGEL, 29/11/05
+ * Text boxes from help menu improved:
+    - Escape dismisses the dialog
+    - Close button and scrollbar no longer clipped when shrinking the window 
+ * Optimized speed of simultaneous background colorizations
+ * Performance and response time with large buffers (say 15000 lines) on
+   keypress much improved by:
+    - continued lines tagging with an efficient proc
+    - putting proc keyposn in the background and cancelling pointless launches
+ * New saved option: Show continued lines, whose background color is a saved
+   preference
+ * version --> 5.62

@@ -4,6 +4,9 @@ proc configurefoo_bp {} {
     global funnames funvars funvarsvals funnameargs
     global menuFont textFont
 
+    # configurefoo_bp cannot be executed since it uses Obtain_all which
+    # in turn needs getallfunsintextarea
+    # which needs the colorization results
     if {[colorizationinprogress]} {return}
 
     set conf $pad.conf

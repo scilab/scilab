@@ -122,45 +122,85 @@ proc whichfun {indexin {buf "current"}} {
     }
 }
 
-proc countcontlines {w {indstart "1.0"} {indstop "insert"}} {
-# Count the continued lines in textarea $w
-# Counting is done between the line containing $indstart down to $indstop
-# <TODO> improve performance of this proc because it is used each time the
-#        user hits a key or clicks in the textarea (called by keyposn)
-#        usability problems start from, say, more than 5000 lines in the
-#        buffer (.sce files) or in a function
+proc tagcontlinesinallbuffers {} {
+    global listoftextarea
+    foreach w $listoftextarea {
+        tagcontlines $w
+    }
+}
+
+proc tagcontlines {w} {
+# detect and tag continued lines in the entire textarea $w
+# the whole line must be tagged, from the first character until and including
+# the \n at the end so that proc getstartofcontline and getendofcontline work
+# as expected
+# this proc also takes care of the visual appearance of continued lines
+
+    global showContinuedLines
+    global bgcolors
+    foreach c1 $bgcolors {global $c1}
 
     # regular expression matching a continued line identified as such because
     # it has trailing dots possibly followed by a comment
-    set dotcontlineRE {(^([^/]/?)*\.{2,} *(//.*)?$)}
+    set dotcontlineRE {(?:^(?:[^/]/?)*\.{2,} *(?://.*)?$)}
 
     # regular expression matching a continued line identified as such because
     # it has unbalanced brackets possibly followed by a comment
-    set bracketscontlineRE {(^(([^/"']/?)*(["'][^"']*["'])*)*\[[^\]]*(((\[[^\[\]]*\])*[^\]]*)*\n)+(([^/]/?)*\.{2,} *(//.*)?\n)*)}
+    set bracketscontlineRE {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\[[^\]]*(?:(?:(?:\[[^\[\]]*\])*[^\]]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 
     # regular expression matching a continued line identified as such because
     # it has unbalanced braces possibly followed by a comment
-    set bracescontlineRE   {(^(([^/"']/?)*(["'][^"']*["'])*)*\{[^\}]*(((\{[^\{\}]*\})*[^\}]*)*\n)+(([^/]/?)*\.{2,} *(//.*)?\n)*)}
+    set bracescontlineRE   {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\{[^\}]*(?:(?:(?:\{[^\{\}]*\})*[^\}]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 
     set contlineRE "$bracketscontlineRE|$bracescontlineRE|$dotcontlineRE"
 
-    set contlines 0
-    set indstop [$w index "$indstop linestart"]
-    set ind [$w index "$indstart linestart"]
+    $w tag remove contline 1.0 end
+    set ind "1.0"
+    set previ 0
+    set cont [regexp -all -inline -line -indices -- $contlineRE [$w get "1.0" end]]
+    foreach fullmatch $cont {
+        foreach {i j} $fullmatch {}
+        # what really cuts down performance is to do [$w index "1.0 + $i c"]
+        # many times with $i being large (>100000, which is fairly common
+        # for say 15000 lines buffers), thus avoid to do it at all and use
+        # position differences [expr $j - $i] instead
+        # For a 15000 lines test buffer performance gain factor is around 20:1
+        # depending on the buffer content
+        set mi [$w index "$ind + [expr $i - $previ] c"]
+        set mj [$w index "$mi + [expr $j - $i] c"]
+        $w tag add contline "$mi linestart" "$mj lineend + 1 c"
+        set ind [$w index "$ind + [expr $i - $previ] c"]
+        set previ $i
+    }
+    if {$showContinuedLines} {
+        $w tag configure contline -background $CONTLINECOLOR
+    } else {
+        $w tag configure contline -background {}
+    }
+    $w tag lower contline
+}
 
-    while {[regexp -line -indices -- $contlineRE [$w get $ind $indstop] resi]} {
-        foreach {i j} $resi {}
-        set matchstart [$w index "$ind + $i c"]
-        set matchlength [expr $j - $i + 1]
-        set matchtext [$w get $matchstart "$matchstart + $matchlength c"]
-        set nbcontlines [regexp -all -- {\n} $matchtext]
-        if {$nbcontlines == 0} {
-            # the line matches $dotcontlineRE, and with the -line option, this
-            # regexp does not match the trailing \n
-            set nbcontlines 1
+proc countcontlines {w {indstart "1.0"} {indstop "insert"}} {
+# Count the continued lines in textarea $w
+# Counting is done between the line containing $indstart (included) down to
+# $indstop (included)
+# continued lines are supposed to have been tagged previously
+    set taggedcl [$w tag ranges contline]
+    set contlines 0
+    set indstart [$w index "$indstart linestart"]
+    set indstop  [$w index "$indstop  lineend  "]
+    foreach {i1 i2} $taggedcl {
+        if {[$w compare $i1 > $indstop]} {
+            break
         }
-        incr contlines $nbcontlines
-        set ind [$w index "$matchstart + $matchlength c + 1 l linestart"]
+        if {[$w compare $i1 >= $indstart]} {
+            # include the last line (untagged) of the continued line
+            set i2 [$w index "$i2 lineend"]
+            if {[$w compare $i2 > $indstop]} {
+                set i2 $indstop
+            }
+            incr contlines [regexp -all -- {\n} [$w get $i1 $i2]]
+        }
     }
     return $contlines
 }
@@ -168,16 +208,10 @@ proc countcontlines {w {indstart "1.0"} {indstop "insert"}} {
 proc iscontinuedline {textarea ind} {
 # return true if line containing index $ind is a continued line
 # return false otherwise
-    set i1 [$textarea index "$ind linestart"]
-    set i2 [$textarea index "$ind linestart + 1l"]
-    set nbcl [countcontlines $textarea $i1 $i2]
-    if {$nbcl == 0} {
-        return false
-    } elseif {$nbcl == 1} {
+    if {[lsearch [$textarea tag names $ind] contline] != -1} {
         return true
     } else {
-        # shouldn't happen
-        return "error"
+        return false
     }
 }
 
@@ -186,32 +220,38 @@ proc getstartofcontline {textarea ind} {
 #    return index linestart of the continued line containing $ind
 # otherwise
 #    return "$ind linestart"
-    set nclup 1
-    while {[iscontinuedline $textarea "$ind - $nclup l"]} {
-        incr nclup
-        if {[$textarea compare "$ind - $nclup l linestart" == "1.0"]} {
-            if {[iscontinuedline $textarea "$ind - $nclup l"]} {
-                incr nclup
-            }
-            break
-        }
+    if {[lsearch [$textarea tag names $ind] contline] != -1} {
+        # + 1 c below to deal with the case where $ind is at the beginning
+        # of a line ($textarea tag prevrange contline $ind would return the
+        # previous range, not the one starting at $ind) - since the trailing
+        # \n is also tagged as contline, it works for any $ind position in
+        # the line
+        return [lindex [$textarea tag prevrange contline "$ind + 1 c"] 0]
+    } else {
+        return [$textarea index "$ind linestart"]
     }
-    return [$textarea index "$ind + 1 l - $nclup l linestart"]
 }
 
 proc getendofcontline {textarea ind} {
 # if line at $ind is a continued line
 #    return index lineend of the continued line containing $ind
+#    the real end of the continued line is returned, i.e. it includes
+#    the last line of the continued line (this physical line is not
+#    tagged as a continued line)
 # otherwise
 #    return "$ind lineend"
-    set ncldown 0
-    while {[iscontinuedline $textarea "$ind + $ncldown l"]} {
-        incr ncldown
-        if {[$textarea compare "$ind + $ncldown l lineend" >= "end"]} {
-            break
-        }
+    if {[lsearch [$textarea tag names $ind] contline] != -1} {
+        # + 1 c below to deal with the case where $ind is at the beginning
+        # of a line ($textarea tag prevrange contline $ind would return the
+        # previous range, not the one starting at $ind) - since the trailing
+        # \n is also tagged as contline, it works for any $ind position in
+        # the line
+        return [$textarea index \
+                "[lindex [$textarea tag prevrange contline "$ind + 1 c"] 1] \
+                 lineend"]
+    } else {
+        return [$textarea index "$ind lineend"]
     }
-    return [$textarea index "$ind + $ncldown l lineend"]
 }
 
 proc showwhichfun {} {

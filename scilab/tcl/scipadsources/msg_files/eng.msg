@@ -1,4 +1,4 @@
-# in sync at least with v5.23
+# in sync at least with v5.62
 # English is the original language of Scipad
 # Scipad tcl/tk source should use english texts
 # for instance [mc "your text in english here"]
@@ -62,3 +62,4 @@
 ::msgcat::mcset eng "LFUNCOLOR" "Library functions"
 ::msgcat::mcset eng "PDEFCOLOR" "Predefined variables"
 ::msgcat::mcset eng "FOUNDTEXTCOLOR" "Matched text"
+::msgcat::mcset eng "CONTLINECOLOR" "Continued line"

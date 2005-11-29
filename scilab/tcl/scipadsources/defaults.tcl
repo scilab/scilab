@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.61"
+set version "Version 5.62"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -19,7 +19,8 @@ if { [package vcompare $tk_version 8.5] >= 0 } {
 #  - if needed, assign an initial fallback value here
 
 # group here for convenience all the color settings
-set bgcolors {BGCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR}
+set bgcolors {BGCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR \
+       CONTLINECOLOR}
 set fgcolors {FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR INTFCOLOR COMMCOLOR OPCOLOR QTXTCOLOR \
        REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR SCICCOLOR}
@@ -29,7 +30,7 @@ set colorpref "$bgcolors $fgcolors"
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts lang completionbinding"
+       tabinserts lang completionbinding showContinuedLines"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -54,6 +55,7 @@ set NUMCOLOR "yellow4"
 set SELCOLOR "PaleGreen"
 set BREAKPOINTCOLOR "pink"
 set FOUNDTEXTCOLOR "green2"
+set CONTLINECOLOR "lemonchiffon"
 set FontSize 12
 set WMGEOMETRY 600x480
 set printCommand lpr
@@ -65,6 +67,7 @@ set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
 set completionbinding "Control-Tab"
+set showContinuedLines "yes"
 
 # other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }

@@ -47,12 +47,20 @@ proc textbox {textfile {wtitle ""}} {
             $tbox.text insert end [read -nonewline $newnamefile ] 
     }
     close $newnamefile
+if {0} {
+    set thetext [$tbox.text get 1.0 end]
+    regsub -all -- { *\n *([^-\nA-Z=])} $thetext { \1} thetext
+    $tbox.text delete 1.0 end
+    $tbox.text insert 1.0 $thetext
+    $tbox.text configure -wrap word
+}
     $tbox.text configure -state disabled -yscrollcommand \
            "managescroll $tbox.sb"
     pack $tbox.text -in $tbox.f1 -side left -expand 1 -fill both
     scrollbar $tbox.sb -command "$tbox.text yview" -takefocus 0
     $tbox.sb set [lindex [$tbox.text yview] 0] [lindex [$tbox.text yview] 1]
-    pack $tbox.sb -in $tbox.f1 -side right -expand 0 -fill y
+    pack $tbox.sb -in $tbox.f1 -side right -expand 0 -fill y \
+            -before $tbox.text
     pack $tbox.f1 -expand 1 -fill both
     frame $tbox.f2
     button $tbox.f2.button -text [mc "Close"] \
@@ -60,7 +68,7 @@ proc textbox {textfile {wtitle ""}} {
             -width 10 -height 1 -font $menuFont
     pack $tbox.f2.button -in $tbox.f2
     pack configure $tbox.f2 -pady 4 -after $tbox.f1 -expand 0 -fill both
-    pack $tbox.f2 -in $tbox -side bottom
+    pack $tbox.f2 -in $tbox -side bottom -before $tbox.f1
     focus $tbox.f2.button
     bind $tbox <Up> "$tbox.text yview scroll -1 units"
     bind $tbox <Down> "$tbox.text yview scroll 1 units"
@@ -70,4 +78,5 @@ proc textbox {textfile {wtitle ""}} {
     bind $tbox <Next> "$tbox.text yview scroll 1 pages"
     bind $tbox <Return> "destroy $tbox"
     bind $tbox <KP_Enter> "destroy $tbox"
+    bind $tbox <Escape> "destroy $tbox"
 }

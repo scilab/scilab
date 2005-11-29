@@ -14,6 +14,21 @@ proc delinfo {} {
 }
 
 proc keyposn {textarea} {
+# launch a keyposn command in background
+# dokeyposn is a bit long for very large buffers (execution time is
+# around 300 ms for 15000 lines buffers when cursor is at the buffer end),
+# entirely due to the inefficient whichfun)
+# if many keyposn are waiting for execution, e.g. when the user types
+# quicker than the position can be updated by Scipad, there can be many
+# keyposn commands pending -> first delete them since they are now pointless
+# and launch only the latest command
+# dokeyposn is catched to deal more easily with buffers that were closed
+# before the command could be processed
+     after cancel [list after 1 "catch \"dokeyposn $textarea\""]
+     after idle   [list after 1 "catch \"dokeyposn $textarea\""]
+}
+
+proc dokeyposn {textarea} {
 # this proc gets the posn and sets the statusbar, enables context menues, etc.
     global pad listoffile
     global MenuEntryId

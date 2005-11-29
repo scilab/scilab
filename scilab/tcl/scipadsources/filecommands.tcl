@@ -582,6 +582,7 @@ proc shownewbuffer {file tiledisplay} {
     }
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
+    tagcontlines $pad.new$winopened
     backgroundcolorize $pad.new$winopened
 }
 
@@ -684,6 +685,11 @@ proc filesaveas {textarea} {
 # and do the save under that filename
     global listoffile pad
     global startdir
+
+    # filesaveas cannot be executed since it uses getallfunsintextarea
+    # which needs the colorization results
+    if {[colorizationinprogress]} {return}
+
     showinfo [mc "Save as"]
     # remember the latest path used for opening files
     if {![info exists startdir]} {set startdir [pwd]}
@@ -791,6 +797,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
             resetmodified $textarea
             set listoffile("$textarea",thetime) [file mtime $thefile]
             montretext $textarea
+            tagcontlines $textarea
             backgroundcolorize $textarea
         }
     }
