@@ -26050,12 +26050,14 @@ XX11="-lX11"
       XX11=
     ;;
   esac
+
 ###########################
 ## test for JAVA compiler
 ###########################
+
 JAVASCITARGET=javasci-bidon
 if test "$with_java" != no; then
-  # Extract the first word of "javac", so it can be a program name with args.
+	# Extract the first word of "javac", so it can be a program name with args.
 set dummy javac; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -26091,18 +26093,17 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-  if test "$WITH_JAVAC" = yes; then
-    JAVASCITARGET=scilex-lib
-    JAVAC=javac
-    JAVA_INCL=
+	if test "$WITH_JAVAC" = yes; then
+		JAVASCITARGET=scilex-lib
+		JAVAC=javac
+		JAVA_INCL=
 
 
-JNI_INCLUDE_DIRS=""
-
-test "x$JAVAC" = x && { { echo "$as_me:$LINENO: error: '$JAVAC' undefined" >&5
+	JNI_INCLUDE_DIRS=""
+	test "x$JAVAC" = x && { { echo "$as_me:$LINENO: error: '$JAVAC' undefined" >&5
 echo "$as_me: error: '$JAVAC' undefined" >&2;}
    { (exit 1); exit 1; }; }
-# Extract the first word of "$JAVAC", so it can be a program name with args.
+	# Extract the first word of "$JAVAC", so it can be a program name with args.
 set dummy $JAVAC; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -26142,74 +26143,95 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-test "x$_ACJNI_JAVAC" = xno && { { echo "$as_me:$LINENO: error: $JAVAC could not be found in path" >&5
+	test "x$_ACJNI_JAVAC" = xno && { { echo "$as_me:$LINENO: error: $JAVAC could not be found in path" >&5
 echo "$as_me: error: $JAVAC could not be found in path" >&2;}
    { (exit 1); exit 1; }; }
 
 
-# find the include directory relative to the javac executable
-_cur=""$_ACJNI_JAVAC""
-while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-        echo "$as_me:$LINENO: checking symlink for $_cur" >&5
+
+		_cur=""$_ACJNI_JAVAC""
+	while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+		echo "$as_me:$LINENO: checking symlink for $_cur" >&5
 echo $ECHO_N "checking symlink for $_cur... $ECHO_C" >&6
-        _slink=`ls -ld "$_cur" | sed 's/.* -> //'`
-        case "$_slink" in
-        /*) _cur="$_slink";;
-        # 'X' avoids triggering unwanted echo options.
-        *) _cur=`echo "X$_cur" | sed -e 's/^X//' -e 's:[^/]*$::'`"$_slink";;
-        esac
-        echo "$as_me:$LINENO: result: $_cur" >&5
+		_slink=`ls -ld "$_cur" | sed 's/.* -> //'`
+		case "$_slink" in
+			/*)
+				_cur="$_slink";;
+			# 'X' avoids triggering unwanted echo options.
+			*)
+				_cur=`echo "X$_cur" | sed -e 's/^X//' -e 's:[^/]*$::'`"$_slink";;
+		esac
+		echo "$as_me:$LINENO: result: $_cur" >&5
 echo "${ECHO_T}$_cur" >&6
-done
-_ACJNI_FOLLOWED="$_cur"
+	done
+	_ACJNI_FOLLOWED="$_cur"
 
-_JTOPDIR=`echo "$_ACJNI_FOLLOWED" | sed -e 's://*:/:g' -e 's:/[^/]*$::'`
-case "$host_os" in
-        darwin*)        _JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
-                        _JINC="$_JTOPDIR/Headers";;
-        *)              _JINC="$_JTOPDIR/include";;
-esac
-if test -f "$_JINC/jni.h"; then
-        JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JINC"
-else
-        _JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
-        if test -f "$_JTOPDIR/include/jni.h"; then
-                JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include"
-        else
-                { { echo "$as_me:$LINENO: error: cannot find java include files" >&5
-echo "$as_me: error: cannot find java include files" >&2;}
-   { (exit 1); exit 1; }; }
-        fi
-fi
 
-# get the likely subdirectories for system specific java includes
-case "$host_os" in
-bsdi*)          _JNI_INC_SUBDIRS="bsdos";;
-linux*)         _JNI_INC_SUBDIRS="linux genunix";;
-osf*)           _JNI_INC_SUBDIRS="alpha";;
-solaris*)       _JNI_INC_SUBDIRS="solaris";;
-mingw*)			_JNI_INC_SUBDIRS="win32";;
-cygwin*)		_JNI_INC_SUBDIRS="win32";;
-*)              _JNI_INC_SUBDIRS="genunix";;
-esac
+	echo "$as_me:$LINENO: checking for java headers" >&5
+echo $ECHO_N "checking for java headers... $ECHO_C" >&6
 
-# add any subdirectories that are present
-for JINCSUBDIR in $_JNI_INC_SUBDIRS
-do
-        if test -d "$_JTOPDIR/include/$JINCSUBDIR"; then
-                JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include/$JINCSUBDIR"
-        fi
-done
+	_JTOPDIR=`echo "$_ACJNI_FOLLOWED" | sed -e 's://*:/:g' -e 's:/[^/]*$::'`
+	case "$host_os" in
+		darwin*)
+			_JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
+			_JINC="$_JTOPDIR/Headers";;
+		*)
+			_JINC="$_JTOPDIR/include";;
+	esac
 
-    for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
-    do
-            JAVA_INCL="$JAVA_INCL -I$JNI_INCLUDE_DIR"
-    done
+	if test -f "$_JINC/jni.h"; then
+		JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JINC"
+	else
+		_JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
+		if test -f "$_JTOPDIR/include/jni.h"; then
+			JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include"
+		else
+			JAVASCITARGET=javasci-bidon
+			{ echo "$as_me:$LINENO: WARNING: jni.h not found: I will not build the java interface" >&5
+echo "$as_me: WARNING: jni.h not found: I will not build the java interface" >&2;}
+		fi
+	fi
 
-  else
-    { echo "$as_me:$LINENO: WARNING: javac not found: I will not build the java interface" >&5
+	if test "$JAVASCITARGET" = scilex-lib; then
+
+		# get the likely subdirectories for system specific java includes
+		case "$host_os" in
+		bsdi*)
+			_JNI_INC_SUBDIRS="bsdos";;
+		linux*)
+			_JNI_INC_SUBDIRS="linux genunix";;
+		osf*)
+			_JNI_INC_SUBDIRS="alpha";;
+		solaris*)
+			_JNI_INC_SUBDIRS="solaris";;
+		mingw*)
+			_JNI_INC_SUBDIRS="win32";;
+		cygwin*)
+			_JNI_INC_SUBDIRS="win32";;
+		*)
+			_JNI_INC_SUBDIRS="genunix";;
+		esac
+
+		# add any subdirectories that are present
+		for JINCSUBDIR in $_JNI_INC_SUBDIRS
+		do
+			if test -d "$_JTOPDIR/include/$JINCSUBDIR"; then
+				JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include/$JINCSUBDIR"
+			fi
+		done
+
+		echo "$as_me:$LINENO: result: $JNI_INCLUDE_DIRS" >&5
+echo "${ECHO_T}$JNI_INCLUDE_DIRS" >&6
+	fi
+
+		for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
+		do
+			JAVA_INCL="$JAVA_INCL -I$JNI_INCLUDE_DIR"
+		done
+	else
+		{ echo "$as_me:$LINENO: WARNING: javac not found: I will not build the java interface" >&5
 echo "$as_me: WARNING: javac not found: I will not build the java interface" >&2;}
-  fi
+	fi
 fi
 
 #######################
@@ -27681,7 +27703,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 27684 "configure"
+#line 27706 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -27999,7 +28021,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 28002 "configure"
+#line 28024 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"

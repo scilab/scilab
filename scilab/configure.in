@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.127 $)dnl
+AC_REVISION($Revision: 1.128 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1541,25 +1541,26 @@ XX11="-lX11"
       XX11=
     ;;
   esac
+  
 ###########################
 ## test for JAVA compiler
 ###########################
+
 JAVASCITARGET=javasci-bidon 
 if test "$with_java" != no; then
-  AC_CHECK_PROG(WITH_JAVAC,javac,yes,no)
-  if test "$WITH_JAVAC" = yes; then
-    JAVASCITARGET=scilex-lib
-    JAVAC=javac
-    JAVA_INCL=
-    AC_JNI_INCLUDE_DIR
-    for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
-    do
-            JAVA_INCL="$JAVA_INCL -I$JNI_INCLUDE_DIR"
-    done
-
-  else
-    AC_MSG_WARN([javac not found: I will not build the java interface])
-  fi
+	AC_CHECK_PROG(WITH_JAVAC,javac,yes,no)
+	if test "$WITH_JAVAC" = yes; then
+		JAVASCITARGET=scilex-lib
+		JAVAC=javac
+		JAVA_INCL=
+		AC_JNI_INCLUDE_DIR
+		for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
+		do
+			JAVA_INCL="$JAVA_INCL -I$JNI_INCLUDE_DIR"
+		done
+	else
+		AC_MSG_WARN([javac not found: I will not build the java interface])
+	fi
 fi
 
 #######################
