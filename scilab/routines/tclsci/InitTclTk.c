@@ -32,7 +32,7 @@ static int first =0;
 /*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
-	if (!IsFromC())  if ( OpenTCLsci()==0 ) TK_Started=1;
+	if ( OpenTCLsci()==0 ) TK_Started=1;
 }
 /*-----------------------------------------------------------------------------------*/
 int OpenTCLsci(void)

@@ -28,6 +28,9 @@ extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int IsFromC(void);
 extern void C2F(freegmem)(void);
 extern void C2F(freemem)(void);
+#ifdef WITH_TK
+extern int CloseTCLsci(void);
+#endif
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -117,8 +120,8 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	/* Scilab Initialization */ 
 	#ifdef WITH_TK
-	  	  initTCLTK(); /* TCLTK Init. */
-    #endif
+	 initTCLTK(); /* TCLTK Init. */
+  #endif
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
 	if ( ierr > 0 ) 
@@ -172,15 +175,23 @@ int TerminateScilab(char *ScilabQuit)
 		}
 
 		lengthStringToScilab=(int)(strlen("exec('SCI/scilab.quit',-1);quit;")+strlen(ScilabQuitUsed));
+
 		QuitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 		sprintf(QuitStringToScilab,"exec(\"%s\",-1);quit;",ScilabQuitUsed);
+
+		/* C2F(scirun)(QuitStringToScilab,strlen(QuitStringToScilab)); */
 
 		if (QuitStringToScilab) {FREE(QuitStringToScilab);QuitStringToScilab=NULL;}
 		if (ScilabQuitUsed) {FREE(ScilabQuitUsed);ScilabQuitUsed=NULL;}
 
-		C2F(freegmem)();
-		C2F(freemem)();
+		#if WIN32
+			C2F(freegmem)();
+			C2F(freemem)();
+		#endif
 
+		#ifdef WITH_TK
+			CloseTCLsci();
+		#endif
 
 		StartScilabIsOK=FALSE;
 		bOK=TRUE;
