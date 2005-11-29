@@ -11,6 +11,7 @@ function r=horner(p,x)
 //!
 //
 // Copyright INRIA
+  if argn(2)<>2 then error('horner requires two arguments'),end
   tp=type(p)
   if tp<=10 then
     [m,n]=size(p)
