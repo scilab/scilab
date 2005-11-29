@@ -38,6 +38,9 @@ static int Test1(void)
   
   WriteMatrix("A", &mA, &nA, A);
   WriteMatrix("b", &mb, &nb, b);
+  
+  SendScilabJob("disp(A)");
+  SendScilabJob("disp(b)");
 
   if ( SendScilabJob("A,b,x=A\\b;") != 0) 
     {
@@ -52,7 +55,7 @@ static int Test1(void)
   return 1;
 } 
 /*------------------------------------------------------------*/
-int MAIN__(void) 
+int main (int argc, char **argv)
 {
 	#ifdef WIN32
 		if ( StartScilab(NULL,NULL,NULL) == FALSE ) 

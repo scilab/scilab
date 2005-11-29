@@ -12,7 +12,7 @@ CPPFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 !include $(SCIDIR)/Makefile.incl.mak 
 
 
-OBJSC=$(SCIDIR)/routines/f2c/libf2c/main.obj Test1.obj
+OBJSC=Test1.obj
 
 all:: $(OBJSC) $(SCIDIR)/bin/Test1.exe 
 
