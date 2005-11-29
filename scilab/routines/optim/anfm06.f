@@ -1,10 +1,10 @@
-C/MEMBR ADD NAME=ANFM06,SSI=0
-      SUBROUTINE ANFM06(Z,IZ,R,IR,W,IPVT,N,M,IND,IO)
+      subroutine anfm06 (z,iz,r,ir,w,ipvt,n,m,ind,io)
+C     SUBROUTINE ANFM06 (Z,IZ,R,IR,W,IPVT,N,M,IND,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,estadistica y Computacion          *
@@ -18,15 +18,15 @@ C
 C     OBJETIVO:
 C        Esta subrutina modifica la factorizacion de Cholesky (LL') de
 C        una matriz del tipo  PAP' ,(P  es una matriz de permutacion y
-C        A es del tipo Z'HZ), cuando a Z se le a|ade una columna.  En Z
-C        la columna a|adida es la que ocupa el ultimo lugar.
+C        A es del tipo Z'HZ), cuando a Z se le a¤ade una columna.  En Z
+C        la columna a¤adida es la que ocupa el ultimo lugar.
 C
 C     LISTA DE LLAMADA:
 C     DE ENTRADA:
 C
 C        Z      Matriz de dimension (IZ,M+1). En sus  N  primeras filas
 C               contiene a la matriz  Z,  pero con las columnas en orden
-C               inverso; asi, la columna a|adida ocupa el primer lugar.
+C               inverso; asi, la columna a¤adida ocupa el primer lugar.
 C
 C        IZ     Primera dimension de  Z. IZ >= N.
 C
@@ -97,7 +97,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit" :
 C                 implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: anrs01,dcopy,ddot,dipvtf,dnrm2,dlamch
+C     SUBPROGRAMAS AUXILIARES: anrs01,dcopy,ddot,dipvtf,dnrm2,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,mod,sqrt
 C
 C
@@ -106,13 +106,14 @@ C
 C
 C     Se comprueba si los valores de las variables son correctos
 C
-CX      if(ind.lt.0 .or. ind.gt.m .or. m.ge.n) then
-CX         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM06.'
-CX         stop
-CX      end if
+      if(ind.lt.0 .or. ind.gt.m .or. m.ge.n) then
+         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM06.'
+         stop
+      end if
 C
 C     Se inicializan algunas variables de trabajo
 C
+css   epsmch=d1mach(4)**0.75
       epsmch=dlamch('p')**0.75
       n1=n+1
       m1=m+1

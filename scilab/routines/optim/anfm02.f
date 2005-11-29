@@ -1,9 +1,10 @@
-      SUBROUTINE ANFM02(Q,IQ,R,IR,N,M,ICOL,IO)
+      subroutine anfm02(q,iq,r,ir,n,m,icol,io)
+C     SUBROUTINE ANFM02(Q,IQ,R,IR,N,M,ICOL,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -53,7 +54,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: daxpy, dcopy,ddot,dscal,dlamch
+C     SUBPROGRAMAS AUXILIARES: daxpy, dcopy,ddot,dscal,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: mod,sign
 C
 C
@@ -62,11 +63,11 @@ C
 C
 C     Se comprueba si los valores de las variables son correctos
 C
-CX      if(m.lt.icol .or. m.lt.2 .or. icol.lt.1 .or. iq.lt.n .or.
-CX     &   ir.lt.n) then
-CX         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM02.'
-CX         stop
-CX      end if
+      if(m.lt.icol .or. m.lt.2 .or. icol.lt.1 .or. iq.lt.n .or.
+     &   ir.lt.n) then
+         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM02.'
+         stop
+      end if
 C
 C     Si la columna que se desea quitar ocupa el ultimo lugar en la
 C     matriz,el proceso finaliza
@@ -75,15 +76,17 @@ C
 C
 C     Se modifican adecuadamente las ultimas columnas de R y la matriz Q
 C
+css      epsmch=d1mach(4)
       epsmch=dlamch('p')
+
       do 15 i=icol+1,m
-         if(r(i,i).ne.0.0d+0) then
+         if(r(i,i).ne.0.d0) then
             i1=i-1
             a=dnrm2(2,r(i1,i),1)
             if(a.gt.epsmch) then
-               if(r(i1,i).ne.0.0d+0) a=sign(a,r(i1,i))
-               call dscal(2,1.0d+0/a,r(i1,i),1)
-               r(i1,i)=1.0d+0+r(i1,i)
+               if(r(i1,i).ne.0.d0) a=sign(a,r(i1,i))
+               call dscal(2,1.d0/a,r(i1,i),1)
+               r(i1,i)=1.d0+r(i1,i)
                s1=r(i1,i)
                s2=r(i,i)
                s=s2/s1

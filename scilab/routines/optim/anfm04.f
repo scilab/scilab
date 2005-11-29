@@ -1,9 +1,10 @@
-      SUBROUTINE ANFM04(Q,IQ,R,IR,X,W,IPVT,N,M,IND,IO)
+      subroutine anfm04(q,iq,r,ir,x,w,ipvt,n,m,ind,io)
+C     SUBROUTINE ANFM04(Q,IQ,R,IR,X,W,IPVT,N,M,IND,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,estadistica y Computacion          *
@@ -16,7 +17,7 @@ C***********************************************************************
 C
 C     OBJETIVO:
 C        Esta subrutina modifica, (mediante transformaciones de Givens),
-C        la factorizacion  QR  de una matriz, cuando a esta se le a|ade
+C        la factorizacion  QR  de una matriz, cuando a esta se le a¤ade
 C        una columna. (Columna que ocupara el ultimo lugar en la matriz)
 C        Las rotaciones de Givens utilizadas son del tipo:
 C
@@ -83,7 +84,7 @@ C        Esta subrutina  trabaja  en doble precision  via  una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: dcopy,ddot,dnrm2,dlamch
+C     SUBPROGRAMAS AUXILIARES: dcopy,ddot,dnrm2,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,mod,sqrt
 C
 C
@@ -92,14 +93,15 @@ C
 C
 C     Se comprueba si los valores de las variables son correctos
 C
-CX      if(m.lt.1 .or. n.lt.2 .or. m.gt.n .or. iq.lt.n .or. ir.lt.n .or.
-CX     &   ind.lt.-n .or. ind.gt.n) then
-CX         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM04.'
-CX         stop
-CX      end if
+      if(m.lt.1 .or. n.lt.2 .or. m.gt.n .or. iq.lt.n .or. ir.lt.n .or.
+     &   ind.lt.-n .or. ind.gt.n) then
+         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM04.'
+         stop
+      end if
 C
 C     Se inicializan algunas variables de trabajo
 C
+css   epsmch=d1mach(4)
       epsmch=dlamch('p')
       eps=epsmch**0.75
       eps0=epsmch**0.9
@@ -110,7 +112,7 @@ C
       m3=m2-m
       n1=n+1
 C
-C     Se calcula la columna de R correspondiente a la columna a|adida
+C     Se calcula la columna de R correspondiente a la columna a¤adida
 C
       k=0
       if(ind.lt.0) then

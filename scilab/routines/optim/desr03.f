@@ -1,10 +1,12 @@
-      SUBROUTINE DESR03(Z,IZ,R,IR,G,W,D,ALFA,IPVT,N,NG,IND,INFO,ID,RO,
-     &                  IO)
+      subroutine desr03(z,iz,r,ir,g,a,w,d,ipvt,alfa,n,ng,ind,info,id,
+     &                  ro,io)
+C      SUBROUTINE DESR03(Z,IZ,R,IR,G,A,W,D,IPVT,ALFA,N,NG,IND,INFO,ID,
+C     &                  RO,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C      Copyright:       Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -36,6 +38,11 @@ C
 C        G      Vector de dimension  NG.  Contiene  al gradiente  del
 C               funcional de OPTR03 en un punto.
 C
+C        A      Vector de dimension NG que contiene (si id < -NG  o  si
+C               ID > NG) los coeficientes de la ultima restriccion
+C               eliminada del conjunto activo (asociada a un
+C               multiplicador extremo).
+C
 C        W      Vector de trabajo de dimension  2*N.
 C
 C        D      Vector de trabajo de dimension  NG.
@@ -59,14 +66,20 @@ C                   1  : el gradiente proyectado es un multiplo escalar
 C                        del vector n-esimo de la base canonica
 C                  10  : se suministra el gradiente proyectado
 C
+C        ID     Variable que indica segun los valores:
+C                <> 0  : en  OPTR03  se ha eliminado una restriccion
+C                        que estaba asociada a un multiplicador extremo
+C                        ID = ipvt(icol) si el multiplicador <> 1
+C                        ID = -ipvt(icol) en otro caso
+C                   0  : en otro caso.
+C
 C     DE SALIDA:
 C
 C        D      Vector que se recoge la direccion de descenso.
 C
 C        ID     Variable que indica el modo de calculo de la direccion
 C               de descenso:
-C                   0   : direccion de curvatura negativa o direccion
-C                         del nucleo.
+C                   0   : direccion de curvatura negativa o nula.
 C                   1   : en otro caso.
 C
 C        RO     Variable que almacena (si ID=1)  el posible paso optimo
@@ -77,20 +90,23 @@ C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
 C     SUBPROGRAMAS AUXILIARES:  anrs01,anrs02,daxpy,dcopy,ddot,dnrm2,
-C                               dscal,dlamch
+C                               dscal,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,mod,sqrt
 C
 C
       implicit double precision(a-h,o-z)
-      dimension z(iz,*),r(ir,*),g(*),w(*),d(*),ipvt(*)
+      dimension z(iz,*),r(ir,*),g(*),w(*),d(*),ipvt(*),a(*)
+      indmul=id
       id=0
+css      eps=d1mach(4)**0.75
       eps=dlamch('p')**0.75
+
       n1=n+1
 C
 C     Se calcula el gradiente proyectado cambiado de signo (si IND >= 0)
 C
       if(ind.ge.0) then
-         ro=1.0d+0
+         ro=1.d0
          if(info.eq.0) then
             do 10 i=1,n
 10          w(i)=-ddot(ng,z(1,n1-i),1,g,1)
@@ -109,7 +125,7 @@ C
       if(ind.eq.0) then
          id=1
          if(info.eq.0) then
-            if(alfa.ne.1.0d+0) call dscal(n,1.0d+0/alfa,w,1)
+            if(alfa.ne.1.d0) call dscal(n,1.d0/alfa,w,1)
             call anrs02(r,ir,w,d,ipvt,n,io)
          else
             do 20 i=1,n-1
@@ -117,7 +133,7 @@ C
             w(n)=-1
             call anrs01(r,ir,n,w,d,2,io)
             s=x*d(n)
-            if(s.gt.0.0d+0) then
+            if(s.gt.0.d0) then
                do 30 i=1,n
 30             w(ipvt(i))=d(i)
             else
@@ -125,7 +141,7 @@ C
 35             w(ipvt(i))=-d(i)
                s=-s
             end if
-            if(alfa.ne.1.0d+0) then
+            if(alfa.ne.1.d0) then
                ro=s/alfa
             else
                ro=s
@@ -181,7 +197,7 @@ C
                else if(i.le.m) then
                   s=w(i)*x
                else
-                  s=0.0d+0
+                  s=0.d0
                end if
             end if
             if(abs(s).gt.eps) then
@@ -199,7 +215,7 @@ C
             if(info.eq.0) then
                do 90 i=1,n
 90             w(ipvt(i))=w(n+i)
-               if(alfa.ne.1.0d+0) call dscal(n,1/alfa,w,1)
+               if(alfa.ne.1.d0) call dscal(n,1/alfa,w,1)
                call anrs02(r,ir,w,d,ipvt,m,io)
                do 95 i=m+1,n
 95             w(ipvt(i))=0
@@ -249,7 +265,7 @@ C
          do 190 i=m3,n
 190      d(i)=-r(m,i)
          s=d(m)*x
-         if(s.lt.0.0d+0) then
+         if(s.lt.0.d0) then
             do 200 i=1,n
 200         d(i)=-d(i)
          end if
@@ -303,22 +319,34 @@ C     Se la afecta  del signo adecuado  para que sea  una direccion  de
 C     descenso
 C
       if(ind.lt.0 .or. (id.eq.1.and.info.eq.1.and.ind.gt.0)) then
-         s=ddot(ng,d,1,g,1)
          if(id.eq.1) then
-            if(s.gt.0.0d+0) then
+            s=ddot(ng,d,1,g,1)
+            if(s.gt.0.d0) then
                do 255 i=1,ng
 255            d(i)=-d(i)
             else
                s=-s
             end if
-            if(alfa.ne.1.0d+0) then
+            if(alfa.ne.1.d0) then
                ro=s/alfa
             else
                ro=s
             end if
-         else if(s.gt.0.0d+0) then
-            do 260 i=1,ng
-260         d(i)=-d(i)
+         else
+            if(indmul.eq.0) then
+               s=ddot(ng,d,1,g,1)
+            else
+               if(indmul.gt.ng .or. indmul.lt.-ng) then
+                   s=ddot(ng,d,1,a,1)
+               else
+                  s=d(abs(indmul))
+               end if
+            end if
+            if((indmul.ge.0 .and. s.gt.0.d0) .or.
+     &         (indmul.lt.0 .and. s.lt.0.d0)) then
+               do 260 i=1,ng
+260            d(i)=-d(i)
+            end if
          end if
       end if
       end

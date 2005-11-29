@@ -1,9 +1,10 @@
-      SUBROUTINE ANFM01(Q,IQ,R,IR,X,W,N,M,IND,IO)
+      subroutine anfm01(q,iq,r,ir,x,w,n,m,ind,io)
+C     SUBROUTINE ANFM01(Q,IQ,R,IR,X,W,N,M,IND,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,estadistica y Computacion          *
@@ -16,7 +17,7 @@ C***********************************************************************
 C
 C     OBJETIVO:
 C        Esta subrutina modifica la factorizacion  QR  de una matriz,
-C        cuando a esta se le a|ade una columna. (Esta columna ocupara
+C        cuando a esta se le a¤ade una columna. (Esta columna ocupara
 C        el ultimo lugar en la matriz).
 C
 C     LISTA DE LLAMADA:
@@ -69,7 +70,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: daxpy,dcopy,ddot,dnrm2,dscal,dlamch
+C     SUBPROGRAMAS AUXILIARES: daxpy,dcopy,ddot,dnrm2,dscal,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: mod,sign,sqrt
 C
 C
@@ -78,13 +79,13 @@ C
 C
 C     Se comprueba si los valores de las variables son correctos
 C
-CX      if(m.lt.1 .or. n.lt.2 .or. m.gt.n .or. iq.lt.n .or. ir.lt.n .or.
-CX     &   ind.lt.-n .or. ind.gt.n) then
-CX         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM01.'
-CX         stop
-CX      end if
+      if(m.lt.1 .or. n.lt.2 .or. m.gt.n .or. iq.lt.n .or. ir.lt.n .or.
+     &   ind.lt.-n .or. ind.gt.n) then
+         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM01.'
+         stop
+      end if
 C
-C     Se calcula la columna de R correspondiente a la columna a|adida
+C     Se calcula la columna de R correspondiente a la columna a¤adida
 C
       m1=m-1
       nm=n-m1
@@ -113,7 +114,9 @@ C     Se averigua si la nueva columna es linealmente dependiente de las
 C     que ya forman la matriz
 C
       rnorma=dnrm2(nm,w,1)
+css      eps=d1mach(4)**0.9
       eps=dlamch('p')**0.9
+      
       if(rnorma.lt.eps) then
          ind=-1
          return
@@ -127,7 +130,7 @@ C
          r(m,m)=w(1)
          return
       end if
-      if(w(1).ne.0.0d+0) rnorma=sign(rnorma,w(1))
+      if(w(1).ne.0.d0) rnorma=sign(rnorma,w(1))
       w(1)=rnorma+w(1)
       s=sqrt(w(1)*rnorma)
       s=1/s

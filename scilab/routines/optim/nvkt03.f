@@ -1,9 +1,10 @@
-      SUBROUTINE NVKT03(A,IA,C,IC,G,V,W,IPVT,DNORMA,N,M,MI1,MI,NMD,NDF)
+      subroutine nvkt03(a,ia,c,ic,g,v,w,ipvt,dnorma,n,m,mi1,mi,nmd,ndf)
+C     SUBROUTINE NVKT03(A,IA,C,IC,G,V,W,IPVT,DNORMA,N,M,MI1,MI,NMD,NDF)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C      Copyright:       Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *

@@ -1,9 +1,10 @@
-      SUBROUTINE DIPVTF(R,IR,IPVT,N,I1,I2)
+      subroutine dipvtf(r,ir,ipvt,n,i1,i2)
+C     SUBROUTINE DIPVTF(R,IR,IPVT,N,I1,I2)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *

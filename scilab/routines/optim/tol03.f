@@ -1,10 +1,12 @@
-      SUBROUTINE TOL03(Q,IQ,R,IR,C,IC,D,A,IA,B,CI,CS,X,W,IPVT,N,M,MI,
-     &                  MI1,NMD,IO)
+      subroutine tol03(q,iq,r,ir,c,ic,d,a,ia,b,ci,cs,x,w,ipvt,n,m,mi,
+     &                  mi1,nmd,io)
+C     SUBROUTINE TOL03(Q,IQ,R,IR,C,IC,D,A,IA,B,CI,CS,X,W,IPVT,N,M,MI,
+C    &                  MI1,NMD,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C      Copyright:       Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -62,13 +64,14 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES:  anrs01,dadd,ddot,dmmul,dlamch
+C     SUBPROGRAMAS AUXILIARES:  anrs01,dadd,ddot,dmmul,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS:  abs,mod
 C
 C
       implicit double precision (a-h,o-z)
       dimension q(iq,*),r(ir,*),c(ic,*),d(*),a(ia,*),b(*),ci(*),cs(*),
      &          x(*),w(*),ipvt(*)
+css      eps=d1mach(4)**0.75
       eps=dlamch('p')**0.75
       ind=0
       m1=m+1
@@ -102,7 +105,7 @@ C
          end if
          w(i)=s
          if(ind.eq.0) then
-            s=abs(s)/(1.0d+0+abs(dj))
+            s=abs(s)/(1.d0+abs(dj))
             if(s.gt.eps) ind=1
          end if
 20    continue

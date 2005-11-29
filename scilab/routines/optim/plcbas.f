@@ -1,6 +1,24 @@
-      SUBROUTINE PLCBAS(H,P,C,D,CI,CS,IRA,MI,MD,X,F,W,IV,LAGR,IMP,IO,N,
-     &                  MODO,INFO)
-C! purpose
+      subroutine plcbas(h,p,c,d,ci,cs,ira,mi,md,x,f,w,iv,dlagr,imp,io,n,
+     &                  modo,info,iter)
+C     SUBROUTINE PLCBAS(H,P,C,D,CI,CS,IRA,MI,MD,X,F,W,IV,DLAGR,IMP,IO,N,
+C    &                  MODO,INFO,ITER)
+C
+C***********************************************************************
+C                                                                      *
+C                                                                      *
+C     Copyright:        Eduardo Casas Renteria                         *
+C                       Cecilia Pola Mendez                            *
+C                                                                      *
+C       Departamento de Matematicas,Estadistica y Computacion          *
+C       -----------------------------------------------------          *
+C                       UNIVERSIDAD DE CANTABRIA                       *
+C                       ------------------------                       *
+C                             FECHA: Julio 2001                        *
+C                             VERSION 2.1                              *
+C                                                                      *
+C***********************************************************************
+C
+C     OBJETIVO:
 C        La minimizacion  de un funcional cuadratico  con restricciones
 C        lineales,  (de acotacion, igualdad  y  desigualdad), sobre las
 C        variables.
@@ -12,7 +30,7 @@ C              (1)  CI(I) <= X(I) <= CS(I), I=1,N
 C              (2)  <(C(1,J),C(2,J),...,C(N,J)),X>  = D(J), J=1,MI
 C              (3)  <(C(1,J),C(2,J),...,C(N,J)),X> <= D(J), J=MI+1,MI+MD
 C
-C!    LISTA DE LLAMADA:
+C     LISTA DE LLAMADA:
 C     DE ENTRADA:
 C
 C        H      Matriz  de  dimension  (N,N), que contiene la matriz  H
@@ -61,7 +79,7 @@ C        W      Vector de trabajo de dimension  N*N+6*N+2*MD
 C
 C        IV     Vector entero  de dimension  3*N+2*MD+MI+1.
 C
-C     IMP    Indicador del nivel de impresion de salida de resultados
+C        IMP    Indicador del nivel de impresion de salida de resultados
 C               Toma los valores:
 C                  6  : Sin salida de resultados.
 C                  7  : Escribe el motivo de finalizacion del proceso.
@@ -86,7 +104,7 @@ C                  9  : Se obtiene  informacion referente  al desarrollo
 C                       de las iteraciones:  el numero de  restricciones
 C                       activas   y cuales  son  (para identificarlas se
 C                       sigue el convenio anterior), la restriccion que
-C                       se anade  o  se  elimina  del conjunto activo,
+C                       se a¤ade  o  se  elimina  del conjunto activo,
 C                       el  tipo  de  direccion   de  descenso calculada
 C                       y las iteraciones  con  punto degenerado.
 C
@@ -114,6 +132,9 @@ C                  3  : Se facilita un punto inicial. En este caso
 C                       el punto ha de ser admisible para todas las
 C                       restricciones.
 C
+C       ITER  : Numero maximo de iteraciones que realizara el proceso.
+C               Si ITER <= 0, se cambiara por 14*(N+MI+MD)
+C
 C     DE SALIDA:
 C
 C        X      Vector de dimension  N que contiene el optimo calculado,
@@ -123,7 +144,7 @@ C
 C        F      Variable  que  contiene  el  valor  del funcional  en el
 C               optimo si el proceso  ha finalizado sin problemas.
 C
-C      LAGR     Vector de doble precision de dimension N+MI+MD si IRA es
+C      DLAGR    Vector de doble precision de dimension N+MI+MD si IRA es
 C               mayor que cero y de dimension MI+MD si IRA=0.En las N
 C               primeras componentes contiene los multiplicadores de
 C               Lagrange asociados a las restricciones de cota (si IRA
@@ -153,41 +174,25 @@ C                -14  : Se  ha  realizado  el limite  de iteraciones  en
 C                       OPTR01 sin encontrar un punto admisible para las
 C                       restricciones ajenas al funcional.
 C
+C        ITER   Numero de iteraciones que realiza el proceso.
 C
 C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C!     SUBPROGRAMAS AUXILIARES:
-C                anfm01,anfm02,anfm03,anfm04,anfm05,anfm06
-C                anfm07,anrs01,anrs02,auxo01,aux003,dadd,daxpy,dcopy,
-C                ddif,ddot,desr03,dimp03,dipvtf,dmmul,dnrm2,dscal,dswap,
-C                dlamch,idamax,nvtk03,optr01,optr03,opvf03,pasr03,zthz
+C     SUBPROGRAMAS AUXILIARES: anfm01,anfm02,anfm03,anfm04,anfm05,anfm06
+C                anrs01,anrs02,auxo01,aux003,dadd,daxpy,dcopy,ddif,ddot,
+C                desr03,dimp03,dipvtf,dmmul,dnrm0,dnrm2,dscal,dswap,
+C                d1mach,idamax,nvtk03,optr01,optr03,opvf03,pasr03,
+C                tol03,zthz
 C     FUNCIONES FORTRAN INTRINSECAS: abs,max,min,mod,sign,sqrt
 C
 C
-C!    ORIGEN:
-C***********************************************************************
-C                       Eduardo Casas Renteria                         *
-C                       Cecilia Pola Mendez                            *
-C                                                                      *
-C       Departamento de Matematicas,Estadistica y Computacion          *
-C       -----------------------------------------------------          *
-C                       UNIVERSIDAD DE CANTABRIA                       *
-C                       ------------------------                       *
-C                            OCTUBRE  1989                             *
-C                             VERSION 1.1                              *
-C                                                                      *
-C***********************************************************************
-C!
-C
       implicit double precision(a-h,o-z)
-      double precision lagr(*)
-      dimension h(n,*),p(*),c(n,*),d(*),ci(*),cs(*),x(*),w(*),iv(*)
-c
-      if(imp.gt.6) write(io,'(/10X,''START  OF PLCBAS '')')
+      dimension h(n,*),p(*),c(n,*),d(*),ci(*),cs(*),x(*),w(*),iv(*),
+     &	      dlagr(*)
       iw=1
-      alfa=1.0d+0
+      alfa=1.d0
       mif=0
       mdf=0
       n1=n+1
@@ -232,23 +237,23 @@ c
             nl=0
          end if
          do 12 i=1,nl+mid
-12       lagr(i)=0
+12       dlagr(i)=0
          k=nipvt
          do 15 i=1,mi1
             j=iv(k)+nl
-            lagr(j)=w(nmul)
+            dlagr(j)=w(nmul)
             nmul=nmul+1
             k=k+1
 15       continue
          do 17 i=mi1+1,m
             j=iv(k)
             if(j.lt.0) then
-               lagr(-j)=-w(nmul)
+               dlagr(-j)=-w(nmul)
             else if(j.le.n) then
-               lagr(j)=w(nmul)
+               dlagr(j)=w(nmul)
             else
                if(ira.eq.0) j=j-n
-               lagr(j+mi)=w(nmul)
+               dlagr(j+mi)=w(nmul)
             end if
             nmul=nmul+1
             k=k+1

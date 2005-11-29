@@ -1,9 +1,10 @@
-      SUBROUTINE ANRS01(R,IR,M,B,X,IND,IO)
+      subroutine anrs01(r,ir,m,b,x,ind,io)
+C     SUBROUTINE ANRS01(R,IR,M,B,X,IND,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -47,25 +48,26 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: ddot,dlamch
+C     SUBPROGRAMAS AUXILIARES: ddot,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,mod
 C
 C
       implicit double precision(a-h,o-z)
       dimension r(ir,*),b(*),x(*)
-CXC
-CXC     Se comprueba si los valores de las variables son correctos
-CXC
-CX      if(m.lt.1 .or. ir.lt.1 .or. m.gt.ir .or. ind.lt.1 .or. ind.gt.2)
-CX     &   then
-CX         write(io,1000) 'INCORRECT LIST OF CALLING IN ANRS01.'
-CX         stop
-CX      end if
-CXC
-CXC     Se calcula un parametro para detectar la posible singularidad de
-CXC     la matriz de coeficientes
-CXC
-CX      epsmch=dlamch('p')**0.9
+C
+C     Se comprueba si los valores de las variables son correctos
+C
+      if(m.lt.1 .or. ir.lt.1 .or. m.gt.ir .or. ind.lt.1 .or. ind.gt.2)
+     &   then
+         write(io,1000) 'INCORRECT LIST OF CALLING IN ANRS01.'
+         stop
+      end if
+C
+C     Se calcula un parametro para detectar la posible singularidad de
+C     la matriz de coeficientes
+C
+css   epsmch=d1mach(4)**0.9
+      epsmch=dlamch('p')**0.9
 C
 C     Se comienza la resolucion del sistema segun sea el indicador
 C
@@ -74,10 +76,10 @@ C
       else
          j=m
       end if
-CX      if(abs(r(j,j)).lt.epsmch) then
-CX         write(io,1000) 'SINGULAR MATRIX IN ANRS01.'
-CX         stop
-CX      end if
+      if(abs(r(j,j)).lt.epsmch) then
+         write(io,1000) 'SINGULAR MATRIX IN ANRS01.'
+         stop
+      end if
       x(j)=b(j)/r(j,j)
       if(m.eq.1) return
       do 10 i=2,m
@@ -95,10 +97,10 @@ CX      end if
             j3=j2
             k=ir
          end if
-CX         if(abs(r(j,j)).lt.epsmch) then
-CX            write(io,1000) 'SINGULAR MATRIX IN ANRS01.'
-CX            stop
-CX         end if
+         if(abs(r(j,j)).lt.epsmch) then
+            write(io,1000) 'SINGULAR MATRIX IN ANRS01.'
+            stop
+         end if
          x(j)=(b(j)-ddot(i1,r(j1,j2),k,x(j3),1))/r(j,j)
 10    continue
 1000  format(10x,A)

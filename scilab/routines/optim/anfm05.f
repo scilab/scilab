@@ -1,5 +1,3 @@
-C
-C -Subprograma: anfm05
       subroutine anfm05(h,ih,r,ir,z,iz,p,w,ipvt,x,n,m,np,ind,modo,io)
 C     SUBROUTINE ANFM05(H,IH,R,IR,Z,IZ,P,W,IPVT,X,N,M,NP,IND,MODO,IO)
 C
@@ -14,7 +12,7 @@ C       -----------------------------------------------------          *
 C                       UNIVERSIDAD DE CANTABRIA                       *
 C                       ------------------------                       *
 C                             ENERO  1988                              *
-C                             JULIO  2005                              * 
+C                             JULIO  2005                              *
 C                                                                      *
 C***********************************************************************
 C
@@ -164,6 +162,7 @@ C
 C     Se inicializan algnunas variables de trabajo
 C
       n1=n+1
+css   epsmch=d1mach(4)
       epsmch=dlamch('p')
       if(ind.eq.n1) then
          ind=ind-1
@@ -316,4 +315,3 @@ C
       end if
       if(iibeta.eq.1) ind=ind-10*iz
       end
-C

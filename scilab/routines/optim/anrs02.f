@@ -1,9 +1,10 @@
-      SUBROUTINE ANRS02(A,IA,B,W,IPVT,N,IO)
+      subroutine anrs02 (a,ia,b,w,ipvt,n,io)
+C     SUBROUTINE ANRS02 (A,IA,B,W,IPVT,N,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,estadistica y Computacion          *
@@ -52,7 +53,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                implicit double precision (a-h,o-z)
 C
-C     SUPROGRAMAS AUXILIARES: anrs01,ddot,dlamch
+C     SUPROGRAMAS AUXILIARES: anrs01,ddot,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,mod
 C
 C

@@ -1,9 +1,10 @@
-      SUBROUTINE ANFM03(H,IH,R,IR,Z,IZ,W,IPVT,N,M,IND,MODO,IO)
+      subroutine anfm03(h,ih,r,ir,z,iz,w,ipvt,n,m,ind,modo,io)  
+C     SUBROUTINE ANFM03(H,IH,R,IR,Z,IZ,W,IPVT,N,M,IND,MODO,IO)
 C
-C***********************************************************************
+C***********************************************************************    
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,estadistica y Computacion          *
@@ -56,15 +57,15 @@ C
 C        M     Numero de columnas de la matriz  Z.
 C
 C        IND   Indicador que puede tomar los valores:
-C                 0  : Se comienza la factorizacion.
+C                 0  : Se comienza la factorizacion. Se procura evitar
+C                      la pivotacion durante la factorizacion.
 C               > 0  : La matriz  PZ'HZP' esta parcialmente factorizada.
 C                      El numero de filas (de L') calculadas es igual al
 C                      valor de la variable  IND.
 C
 C        MODO  Indicador que toma los valores:
 C                 0  : No se realiza la factorizacion si la matriz es
-C                      indefinida. Ademas, si IND es cero se procura
-C                      evitar la pivotacion durante la factorizacion.
+C                      indefinida.
 C              <> 0  : Se calcula la factorizacion  (total o parcial).
 C
 C        IO     Numero de canal de salida de resultados.
@@ -103,7 +104,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: dipvtf,ddot,dlamch,zthz
+C     SUBPROGRAMAS AUXILIARES: dipvtf,ddot,d1mach,zthz
 C     FUNCIONES FORTRAN INTRINSECAS: abs,max,mod,sqrt
 C
 C
@@ -112,24 +113,27 @@ C
 C
 C     Se comprueba si los valores de las variables son correctos
 C
-CX      if(ih.lt.n .or. ir.lt.m .or. iz.lt.n .or. (m-ind).lt.1 .or. ind.lt
-CX     &   .0) then
-CX         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM03.'
-CX         stop
-CX      end if
+      if(ih.lt.n .or. ir.lt.m .or. iz.lt.n .or. (m-ind).lt.1 .or. ind.lt
+     &   .0) then
+         write(io,'(10x,A)') 'INCORRECT LIST OF CALLING IN ANFM03.'
+         stop
+      end if
 C
 C     Se inicializan algunas variables de trabajo
 C
+css      epsmch=d1mach(4)
       epsmch=dlamch('p')
-      eps=epsmch*10.0d+0
+      eps=epsmch*10.d0
       if(ind.eq.0) then
          ndim=m
+         iifact=0
          do 10 i=1,ndim
 10       ipvt(i)=i
       else
          ndim=m-ind
+         iifact=1
       end if
-      smax=1.0d+0
+      smax=1.d0
       nm1=m+1
 C
 C     Se calculan los elementos diagonales
@@ -173,7 +177,7 @@ C     Se procede a factorizar la matriz (si n > 1)
 C
       eps0=epsmch*smax
       eps=eps0*ind
-      beta=max(eps0*ndim*10,sqrt(smax)*1.20d+0)
+      beta=max(eps0*ndim*10,sqrt(smax)*1.2d0)
       iibeta=0
       s1=0
       do 80 k=1,ndim-1
@@ -182,8 +186,27 @@ C
          ik=k
          if(ind.gt.0) ik=k+ind
          ik0=ik-1
-         sk=r(ik,k)
-         if(s1.le.beta) then
+C
+C     En caso de no haberse realizado pivotacion (iifact=0), se calcula
+C     el elemento diagonal siguiente o todos los elementos diagonales
+C     que restan (si la caja que queda por factorizar no es definida
+C     positiva)
+C
+         if(iifact.eq.0) then
+            r(k,k)=r(k,k)-ddot(ik0,r(1,k),1,r(1,k),1)
+            sk=r(k,k)
+            if(s1.gt.beta .or. sk.le.eps) then
+               iifact=1
+               do 25 i=kk,ndim
+25             r(i,i)=r(i,i)-ddot(ik0,r(1,i),1,r(1,i),1)
+            end if
+         else
+            sk=r(ik,k)
+         end if
+         if(s1.gt.beta) then
+            s=-1
+            iibeta=1
+         else if(iifact.eq.1) then
             j=k
             s=sk
             do 30 i=kk,ndim
@@ -195,17 +218,21 @@ C
                end if
 30          continue
          else
-            s=-1
-            iibeta=1
+            s=sk
+            j=k
          end if
 C
 C     Si el mayor elemento diagonal es positivo, se permutan las filas y
 C     columnas adecuadas para que ocupe el lugar (ind+k,k)
 C
          if(s.gt.eps) then
-            call dipvtf(r,ir,ipvt,ik0,k,j)
-            r(ind+j,j)=sk
-            l=nm1-ipvt(k)
+            if(iifact.eq.1) then
+               call dipvtf(r,ir,ipvt,ik0,k,j)
+               r(ind+j,j)=sk
+               l=nm1-ipvt(k)
+            else
+               l=nm1-k
+            end if
             sk=sqrt(s)
             r(ik,k)=sk
             do 35 i=1,n
@@ -226,7 +253,7 @@ C
                r(ik,i)=rik
                ii=i
                if(ind.gt.0) ii=ii+ind
-               r(ii,i)=r(ii,i)-rik*rik
+               if(iifact.eq.1) r(ii,i)=r(ii,i)-rik*rik
 40          continue
          else
 C
@@ -313,6 +340,7 @@ C     Se estudia el ultimo elemento diagonal
 C
       eps=eps0+eps
       in=ndim+ind
+      if(iifact.eq.0) r(in,in)=r(in,in)-ddot(in-1,r(1,in),1,r(1,in),1)
       s=r(in,ndim)
       if(s.gt.eps) then
          r(in,ndim)=sqrt(s)

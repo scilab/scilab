@@ -1,9 +1,10 @@
-      SUBROUTINE AUXO01(C,IC,CI,CS,B,X,W,IRE,IRA,N,MD,IND,FUN,IV)
+      subroutine auxo01 (c,ic,ci,cs,b,x,w,ire,ira,n,md,ind,fun,iv)
+C     SUBROUTINE AUXO01 (C,IC,CI,CS,B,X,W,IRE,IRA,N,MD,IND,FUN,IV)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -71,7 +72,7 @@ C     Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                -Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: ddot,dlamch
+C     SUBPROGRAMAS AUXILIARES: ddot,d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,mod,sqrt
 C
 C
@@ -79,8 +80,11 @@ C
       dimension c(ic,*),ci(*),cs(*),b(*),x(*),w(*),ire(*)
       if(ind.eq.1) fun=0
       iv=0
+css   eps=d1mach(4)**0.75
+css   gigant=d1mach(2)
       eps=dlamch('p')**0.75
       gigant=dlamch('o')
+
       gig1=sqrt(gigant)
       if(ind.eq.1) then
          do 5 i=1,n

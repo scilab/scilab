@@ -1,10 +1,12 @@
-      SUBROUTINE PASR03(A,IA,B,CI,CS,X,RO,W,IRE,IPVT,IRA,N,MD,MIF,MDF,
-     &                  M,ID,IO)
+      subroutine pasr03(a,ia,b,ci,cs,x,ro,w,ire,ipvt,ira,n,md,mif,mdf,
+     &                  m,id,io)
+C      SUBROUTINE PASR03(A,IA,B,CI,CS,X,RO,W,IRE,IPVT,IRA,N,MD,MIF,MDF,
+C     &                  M,ID,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C      Copyright:       Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -98,7 +100,7 @@ C        Esta subrutina trabaja en doble precision via una sentencia
 C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
-C     SUBPROGRAMAS AUXILIARES: ddot,dlamch,dnrm0,idamax
+C     SUBPROGRAMAS AUXILIARES: ddot,d1mach,dnrm0,idamax
 C     FUNCIONES FORTRAN INTRINSECAS: abs,min,mod,sqrt
 C
 C
@@ -114,6 +116,8 @@ C
       nd=nd0+1
       icd0=nd0+n
       iad0=icd0+md
+css      eps=d1mach(4)**0.75
+css      gigant=d1mach(2)
       eps=dlamch('p')**0.75
       gigant=dlamch('o')
       gig1=sqrt(gigant)
@@ -128,7 +132,8 @@ C
       idi=id
       if(id.ne.1) then
          sd=dnrm0(n,w(nd),1)+1
-         delta=1.d8
+         delta=d1mach(4)**(-0.5)
+C modified 16-july-2005. Before: delta=1.d8
       else
          s0=ro
       end if

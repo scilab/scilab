@@ -1,10 +1,12 @@
-      SUBROUTINE AUX003(A,IA,X,B,Q,IQ,R,IR,W,IRE,IPVT,NMD,MIF,MDF,MIDF,
-     &                  N,M,IND,IO)
+      subroutine aux003(a,ia,x,b,q,iq,r,ir,w,ire,ipvt,nmd,mif,mdf,midf,
+     &                  n,m,ind,io)
+C     SUBROUTINE AUX003(A,IA,X,B,Q,IQ,R,IR,W,IRE,IPVT,NMD,MIF,MDF,MIDF,
+C    &                  N,M,IND,IO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C      Copyright:       Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -40,7 +42,7 @@ C        IPVT   Vector de dimension  min(M+MIF+MDF,N). Si el IND toma el
 C               valor 1 no necesita referenciarse.
 C
 C        IND    Variable que indica segun los valores:
-C                  0  : Se aðaden al conjunto activo las restricciones
+C                  0  : Se apaden al conjunto activo las restricciones
 C                       del  funcional  no  activas, recalculandose  la
 C                       factorizacion  QR  y los vectores IRE e IPVT.
 C                  1  : Se modifica el vector IRE de entrada.
@@ -51,11 +53,12 @@ C     "implicit":
 C                Implicit double precision (a-h,o-z)
 C
 C     SUBPROGRAMAS AUXILIARES:  anfm01,daxpy,dcopy,ddot,dnrm2,dscal,
-C                               dlamch
+C                               d1mach
 C     FUNCIONES FORTRAN INTRINSECAS:  abs,mod,sign,sqrt
 C
       implicit double precision(a-h,o-z)
       dimension a(ia,*),x(*),b(*),q(iq,*),r(ir,*),w(*),ire(*),ipvt(*)
+css      eps=d1mach(4)**0.75
       eps=dlamch('p')**0.75
       mf=midf+1
       info=1

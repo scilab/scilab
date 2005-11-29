@@ -1,10 +1,12 @@
-      SUBROUTINE DIMP03(X,W,IRE,IPVT,S,I1,I2,I3,I4,I5,I6,I7,I8,I9,IND,
-     &                  IMP,IO,ITER)
+      subroutine dimp03(x,w,ire,ipvt,s,i1,i2,i3,i4,i5,i6,i7,i8,i9,ind,
+     &                  imp,io,iter)
+C     SUBROUTINE DIMP03(X,W,IRE,IPVT,S,I1,I2,I3,I4,I5,I6,I7,I8,I9,IND,
+C    &                  IMP,IO,ITER)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C      Copyright:       Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -86,7 +88,7 @@ C
             ii2=i2
             if(i2.gt.i1) ii2=i2+i9
             write(io,3000) 'DELETED CONSTRAINT: ',ii2
-            end if
+         end if
          write(io,3000) 'NUMBER OF ACTIVE CONSTRAINTS:',i3
          do 10 i=1,i9
  10      ipvt(i)=ipvt(i)+i1
@@ -122,6 +124,14 @@ C
             write(io,3000) 'ADDED CONSTRAINT: ',ii7
          end if
       else if(ind.eq.0) then
+         if(imp.ge.10) write(io,5000) 'POINT COMPUTED: ',
+     &                 (x(i),i=1,i1)
+         if(i5.ne.0) then
+            write(io,4000)  iter
+            ii2=i5
+            if(i5.gt.i1) ii2=i5+i9
+            write(io,3000) 'DELETED CONSTRAINT: ',ii2
+         end if
          write(io,1000) car, 'A LOCAL MINIMUM HAS BEEN FOUND.'
          if(imp.ge.8) then
             write(io,3000) 'NUMBER OF ITERATIONS: ',iter
@@ -157,8 +167,8 @@ C
       else if(ind.eq.-34) then
          write(io,1000) car,'INCORRECT VECTOR IRE.'
       else if(ind.lt.-10) then
-         write(io,1000) car,'OPTR01 HAS NOT FOUND A FEASIBLE POINT.'//
-     &'IND OF','OPTR01=',ind+10
+         write(io,1000) car,   'OPTR01 HAS NOT FOUND A FEASIBLE POINT.
+     &IND OF','OPTR01=',ind+10
       else if(ind.eq.-1) then
          write(io,1000) car, 'PROBLEM UNBOUNDED FROM BELOW'
       else if(ind.eq.-2) then
@@ -188,6 +198,6 @@ C
 5000  format(//,10X,A,(T31,SP,E22.16))
 6000  format(/,10X,A,T41,E22.16)
 7000  format(/,10X,A,E22.16)
-8000  format(//,10X,A,//,(10X,11(2X,I4),/))
+8000  format(//,10X,A,//,(10X,10(2X,I4),/))
 9000  format(/,10X,A,/,(10X,4(2X,E14.8)))
       end

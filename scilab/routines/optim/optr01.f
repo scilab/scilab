@@ -1,10 +1,12 @@
-      SUBROUTINE OPTR01(C,IC,Q,IQ,R,IR,CI,CS,B,X,W,IPVT,IRE,IRA,N,M,MI,
-     &                  MI1,MD,IND,IMP,IO,MODO)
+      subroutine optr01(c,ic,q,iq,r,ir,ci,cs,b,x,w,ipvt,ire,ira,n,m,mi,
+     &                  mi1,md,ind,imp,io,modo)
+C     SUBROUTINE OPTR01(C,IC,Q,IQ,R,IR,CI,CS,B,X,W,IPVT,IRE,IRA,N,M,MI,
+C    &                  MI1,MD,IND,IMP,IO,MODO)
 C
 C***********************************************************************
 C                                                                      *
 C                                                                      *
-C     ORIGEN:           Eduardo Casas Renteria                         *
+C     Copyright:        Eduardo Casas Renteria                         *
 C                       Cecilia Pola Mendez                            *
 C                                                                      *
 C       Departamento de Matematicas,Estadistica y Computacion          *
@@ -42,7 +44,7 @@ C
 C        IQ     Primera dimension de la matriz Q. IQ >= N.
 C
 C        R      Matriz de trabajo de dimension  (IR,MT), donde se tomara
-C               MT=min( max(MI,N),numero maximo de restricciones activas
+C               MT=min(N, numero  maximo  de  restricciones  activas
 C               posibles). En los  MODOS : 3,4,13,14 , en las N primeras
 C               filas y M columnas, se suministra a la matriz triangular
 C               superior  de la factorizacion   QR  de las restricciones
@@ -134,9 +136,7 @@ C                 10  : No hay salida de resultados.
 C                 11  : Escribe el motivo de finalizacion del  proceso.
 C                 12  : Tambien se obtienen el numero de iteraciones que
 C                       se ha realizado y las restricciones de igualdad
-C                       que  son   linealmente   independientes.  ( Para
-C                       identificarlas habra  que restar  N a los valores
-C                       obtenidos.
+C                       que son linealmente independientes.
 C                 13  : Ademas se tiene, en cada iteracion, el valor del
 C                       funcional de restricciones violadas, si surge un
 C                       punto degenerado y, el punto admisible calculado
@@ -221,7 +221,7 @@ C                        -Implicit double precision (a-h,o-z)
 C
 C     SUBPROGRAMAS AUXILIARES:   anfm01,anfm02,anrs01,auxo01,dadd,daxpy
 C                        dcopy,ddif,ddot,dmmul,dnrm0,dnrm2,dscal,dswap,
-C                        dlamch
+C                        d1mach
 C     FUNCIONES FORTRAN INTRINSECAS: abs,min,mod,sign,sqrt
 C
       implicit double precision (a-h,o-z)
@@ -233,8 +233,8 @@ C     Se comprueba si los valores de las variables son correctos
 C
       car='END OF  OPTR01.'
       if(mi.lt.0 .or. md.lt.0 .or. ira.lt.0 .or. ira.gt.3 .or. io.lt.1 .
-     &   or. n.le.1 .or. modo.lt.1 .or. modo.gt.22 .or. (ic.lt.n .and.
-     &   (mi.gt.0 .or. md.gt.0)) .or. iq.lt.n .or. ir.lt.n) then
+     &   or. n.le.1 .or. modo.lt.1 .or. modo.gt.22 .or. ic.lt.n .or. iq.
+     &   lt.n .or. ir.lt.n) then
                  if(io.le.0)print 1000,car,
      &      'INVALID NUMBER FOR THE WRITING CHANEL.'
          if(io.gt.0) write(io,1000) car,'INVALID INTEGER VARIABLES.'
@@ -245,9 +245,13 @@ C
 C     Se toman algunos parametros de trabajo
 C
       gigant=dlamch('o')
+
+css   gigant=d1mach(2)
       gig1=sqrt(gigant)
       test0=gigant**0.25
+css   eps=d1mach(4)**0.75
       eps=dlamch('p')**0.75
+
 C
 C     Se comprueba que los vectores CI,CS,IRE  toman valores correctos
 C
@@ -300,7 +304,7 @@ C
       nmid=n+mid
       itemax=4*nmid
       s=dnrm0(n,x,1)
-      if(s.eq.0.0d+0) then
+      if(s.eq.0.d0) then
          indx=0
       else
          indx=1
@@ -400,7 +404,7 @@ C
 C
 C     Si se han recomendado ciertas restricciones de desigualdad o
 C     acotacion y no se ha suministrado la factorizacion QR, se
-C     a|aden estas a la factorizacion hasta ahora obtenida
+C     a¤aden estas a la factorizacion hasta ahora obtenida
 C
       if(modo.eq.2) then
          if(ira.gt.0) then
@@ -420,7 +424,12 @@ C
                   end if
                end if
                i=i+1
-               if(i.le.n .and. m.lt.n) go to 500
+               if(i.le.n .and. m.lt.n) then
+                  go to 500
+               else if(i.le.n) then
+                  do 75 j=i,n+md
+75                ire(j)=0
+               end if
             end if
          end if
          if(md.gt.0) then
@@ -438,7 +447,12 @@ C
                   end if
                end if
                i=i+1
-               if(i.le.md .and. m.lt.n) go to 525
+               if(i.le.md .and. m.lt.n) then
+                  go to 525
+               else if(i.le.md) then
+                  do 80 j=i,md
+80                ire(j+n)=0
+               end if
             end if
          end if
       end if
@@ -449,8 +463,8 @@ C
       end if
 C
 C     Si se desea obtener un punto admisible (INF=0), no necesariamente
-C     un vertice, se busca un punto satisfaciendo las restricciones que
-C     hasta el momento son activas
+C     un vertice (iopt=1), se busca un punto satisfaciendo las
+C     restricciones que hasta el momento son activas
 C
       mr=0
       if(inf.eq.0) then
@@ -475,23 +489,17 @@ C
                ind=0
             end if
 C
-C     Se averigua si x cumple las demas restricciones
+C     Se averigua si el punto calculado cumple las demas restricciones
 C
             ind=0
             call auxo01(c(1,mni),ic,ci,cs,b(mni),x,w(n3),ire,ira,n,md,
      &                  ind,fun,iv)
-            if(iv.eq.0) then
-               if(imp.ge.11) write(io,1000) car,
-     &            'A FEASIBLE POINT HAS BEEN FOUND (1)'
-               if(imp.ge.13) write(io,7000) (x(i),i=1,n)
-               return
-            end if
          end if
       end if
 C
-C     Si el rango de la matriz factorizada hasta el momento es inferior
-C     a n, se a|aden mas columnas a la matriz comenzando por las
-C     restricciones de acotacion
+C     Si iopt=1 y el punto calculado x es admisible (iv=0) se añaden a
+C     la factorizacion las restricciones activas en x. En otro caso
+C     se añaden tambien las violadas en x
 C
       if(ira.gt.0) then
          i=1
@@ -546,6 +554,16 @@ C
             if(i.le.mid .and. m.lt.n) go to 575
          end if
       end if
+      if(iv.eq.0 .and. iopt.eq.1) then
+         if(imp.ge.11) write(io,1000) car,
+     &      'A FEASIBLE POINT HAS BEEN FOUND (1)'
+         if(imp.ge.13) write(io,7000) (x(i),i=1,n)
+         return
+      end if
+C
+C     Si se desea calular un vertice se continua añadiendo
+C     restricciones
+C
       if(ira.gt.0 .and. m.lt.n .and. iopt.eq.0) then
          i=1
          if(i.le.n .and. m.lt.n) then
@@ -611,7 +629,7 @@ C
          if(i.le.mid .and. m.lt.n .and. iopt.eq.0) go to 625
       end if
       if(modo.eq.1 .and. inf.eq.1) then
-         if(imp.ge.11) write(io,1000) car,
+         if(imp.ge.11) write(io,*) car,
      &      'THE FACTORIZATION  QR  HAS BEEN OBTAINED.'
          return
       end if
@@ -678,7 +696,6 @@ C
                j=j+1
 135         continue
             s=dnrm2(n-m,w(n2),1)
-            s=abs(s)
          else
             s=0
          end if
@@ -691,7 +708,7 @@ C
             ind=2
             call anrs01(r,ir,m,w(n1),w(n2),ind,io)
 C
-C     Calculo del multiplicador de Lagrange mas peque|o y test de
+C     Calculo del multiplicador de Lagrange mas peque¤o y test de
 C     positividad
 C
             ind=0
@@ -719,8 +736,8 @@ C
 C
 C     Se calcula la direccion de descenso
 C
-            s1=ddot(n,q(1,n),1,w,1)
-            call dcopy(n,q(1,n),1,w(n1),1)
+            s1=ddot(n,q(1,m),1,w,1)
+            call dcopy(n,q(1,m),1,w(n1),1)
             if(s1.lt.0) then
                do 160 i=n1,n2-1
 160            w(i)=-w(i)
@@ -976,20 +993,20 @@ C
       end if
       if(imp.ge.11) write(io,10000) car
       ind=-4
-1000  format(/,80('*'),/,10x,A,/,10x,A)
-2000  format(/,80('*'),/,10x,A,/,10x,A,I5)
-3000  format(/,80('*'),/,10x,
+1000  format(////,80('*'),///,10x,A,/,10x,A)
+2000  format(////,80('*'),///,10x,A,/,10x,A,I5)
+3000  format(////,80('*'),///,10x,
      &'THE INDEPENDENT LINEAR EQUALITY CONSTRAINTS ARE:',
-     &/,(10x,20(2x,I4),/))
-4000  format(/,10x,A,I4)
-5000  format(/,80('*'),/,10x,A,/,10x,
-     &'THERE ARE NO FEASIBLE POINTS.')
-6000  format(/,80('-'),/,10x,'ITERATION:',I4,/,10x,
-     &'OBJECTIVE FUNCTION :',F24.15)
-7000  format(/,10x,'CALCULATED POINT:',/,(T31,sp,E22.16))
-8000  format(/,10x,'SMALLEST LAGRANGE MULTIPLIER :',F19.14)
-9000  format(/,80('*'),/,10x,A,/,10x,
-     &'INDEFINITE CYCLE ON A DEGENERATED POINT.')
-10000 format(/,80('*'),/,10x,A,/,10x,'THE LIMIT FOR THE ITERATION
+     &//,(10x,20(2x,I4),/))
+4000  format(///,10x,A,I4)
+5000  format(////,80('*'),///,10x,A,/,10x,
+     &'THERE ARE NOT FEASIBLE POINTS.')
+6000  format(////,80('-'),///,10x,'ITERATION:',I4,//,10x,
+     & 'OBJECTIVE FUNCTION :',F24.15)
+7000  format(//,10x,'POINT COMPUTED: X =',(T31,sp,E22.16))
+8000  format(//,10x,'SMALLEST LAGRANGE MULTIPLIER :',F19.14)
+9000  format(////,80('*'),///,10x,A,/,10x,'INDEFINITE CICLE ON A DEGENE
+     &RATED POINT.')
+10000 format(////,80('*'),///,10x,A,/,10x,'THE LIMIT FOR THE ITERATION
      &NUMBER HAS BEEN PASSED WITHOUT',/,10X,'FINDING A FEASIBLE POINT.')
       end
