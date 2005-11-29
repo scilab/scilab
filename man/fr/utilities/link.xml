@@ -201,8 +201,7 @@
 		</ITEMIZE>
 	</SECTION>
 	
-	<EXAMPLE>
-		<![CDATA[
+	<EXAMPLE><![CDATA[
 			//Example of the use of ilib_for_link with  a simple C code
 			f1=['#include <math.h>'
 				'void fooc(c,a,b,m,n)'
@@ -224,8 +223,7 @@
 			mprintf('%s\n',mgetl('loader.sce')) 
 			// load the shared library 
 			exec loader.sce 
-		]]>
-	</EXAMPLE>
+	]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
