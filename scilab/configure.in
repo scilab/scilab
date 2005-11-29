@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.128 $)dnl
+AC_REVISION($Revision: 1.129 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -622,11 +622,11 @@ case "$host" in
 		elif test "$WITH_GFORTRAN" = yes;then
 			FC=gfortran
 			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-g -ff2c"
+				FC_OPTIONS_O0="-ff2c"
 			else
-				FC_OPTIONS="-O"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-O -ff2c"
+				FC_OPTIONS_O0="-ff2c"
 			fi
 			FC_PICFLAGS=-fPIC
 			AC_DEFINE(G95_FORTRAN)
@@ -665,11 +665,11 @@ case "$host" in
 					FC_PICFLAGS=-fPIC
 					AC_DEFINE(G95_FORTRAN)
 					if test "$enable_debug" = yes; then
-						FC_OPTIONS="-g"
-						FC_OPTIONS_O0=""
+						FC_OPTIONS="-g -ff2c"
+						FC_OPTIONS_O0="-ff2c"
 					else
-						FC_OPTIONS="-O"
-						FC_OPTIONS_O0=""
+						FC_OPTIONS="-O -ff2c"
+						FC_OPTIONS_O0="-ff2c"
 					fi
 				else
 					AC_CHECK_PROG(WITH_F95,f95,yes,no)

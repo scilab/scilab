@@ -20844,11 +20844,11 @@ fi
 		elif test "$WITH_GFORTRAN" = yes;then
 			FC=gfortran
 			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-g -ff2c"
+				FC_OPTIONS_O0="-ff2c"
 			else
-				FC_OPTIONS="-O"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-O -ff2c"
+				FC_OPTIONS_O0="-ff2c"
 			fi
 			FC_PICFLAGS=-fPIC
 			cat >>confdefs.h <<\_ACEOF
@@ -21000,11 +21000,11 @@ fi
 _ACEOF
 
 					if test "$enable_debug" = yes; then
-						FC_OPTIONS="-g"
-						FC_OPTIONS_O0=""
+						FC_OPTIONS="-g -ff2c"
+						FC_OPTIONS_O0="-ff2c"
 					else
-						FC_OPTIONS="-O"
-						FC_OPTIONS_O0=""
+						FC_OPTIONS="-O -ff2c"
+						FC_OPTIONS_O0="-ff2c"
 					fi
 				else
 					# Extract the first word of "f95", so it can be a program name with args.
