@@ -1152,12 +1152,12 @@ function h=ged_loop(a)
       h=ged_loop([Axes.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title])
       if h<>[] then return,end
     case "Text"
-      if is_in_text(ck.data,ck.text,ck.font_angle,ck.font_style,ck.font_size,pts) then
+      if is_in_text(ck,[xp;yp]) then
 	 h=ck,
 	 return,
       end
     case "Label"
-      if is_in_text(ck.position,ck.text,ck.font_angle,ck.font_style,ck.font_size,pts) then
+      if is_in_text(ck,[xp;yp]) then
 	h=ck
 	return,
       end
@@ -1166,31 +1166,10 @@ function h=ged_loop(a)
   end
 endfunction
 
-function r=is_in_text(xy,str,angle,style,sz,pts)
-  rect=xstringl(xy(1),xy(2),str,style, sz)
-  if angle==0 then
-    x0=rect(1);y0=rect(2);W=rect(3);H=rect(4);
-    r=(x0-Xmin)/Dx<=pts(1)&(x0-Xmin+W)/Dx>=pts(1)&..
-      (y0-H-Ymin)/Dy<=pts(2)&(y0-Ymin)/Dy>=pts(2)
-  elseif angle==270 then
-    x0=rect(1);y0=rect(2);H=rect(3);W=rect(4);
-    r=(x0-Xmin-W)/Dx<=pts(1)&(x0-Xmin)/Dx>=pts(1)&..
-      (y0-Ymin-H)/Dy<=pts(2)&(y0-Ymin)/Dy>=pts(2)
-  elseif angle==90 then  
-    x0=rect(1);y0=rect(2);H=rect(3);W=rect(4);
-    r=(x0-Xmin)/Dx<=pts(1)&(x0-Xmin+W)/Dx>=pts(1)&..
-      (y0-Ymin-H)/Dy<=pts(2)&(y0-Ymin)/Dy>=pts(2)
-  elseif angle==180 then 
-    x0=rect(1);y0=rect(2);W=rect(3);H=rect(4);
-    r=(x0-Xmin-W)/Dx<=pts(1)&(x0-Xmin)/Dx>=pts(1)&..
-      (y0-Ymin-2*H)/Dy<=pts(2)&(y0-Ymin-H)/Dy>=pts(2)
-  else
-    t=(360-angle)*%pi/180;
-    R=[cos(t) sin(t);-sin(t) cos(t)]';
-    pt=(pts-[(rect(1)-Xmin)/Dx,(rect(2)-Ymin)/Dy])*R
-    pause
-    r=pt(1)>=0&pt(1)<rect(3) & pt(2)>=0&pt(2)<=rect(4)
-  end
+function r=is_in_text(h,xy)
+  r = stringbox(h);
+  r=[r r(:,1)];
+  r=and([xy(2) -xy(1)]*diff(r,1,2)+(r(1,1:$-1).*r(2,2:$)-r(1,2:$).*r(2,1:$-1))<0)
 endfunction
 
 function [d,pt,ind]=Dist2polyline(xp,yp,pt)
