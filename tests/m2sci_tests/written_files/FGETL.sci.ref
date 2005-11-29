@@ -20,11 +20,11 @@ end;
 %v0;
 
 // Example 2
-%v01_1 = mgetl(fid,1);
+%v02 = mgetl(fid,1);
 if meof()~=0 then
-  %v01_1 = -1;
+  %v02 = -1;
 end;
-if mtlb_logic(mtlb_double(%v01_1),"==",-1) then
+if mtlb_logic(mtlb_double(%v02),"==",-1) then
   disp("eof");
 end;
 
