@@ -2,7 +2,7 @@
 # To be customized 
 #--------------------------------------------------------
 
-include ../../../Path.incl
+include ../../Path.incl
 
 PROG=Test1
 OBJS=Test1.o
