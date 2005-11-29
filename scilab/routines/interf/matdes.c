@@ -5135,8 +5135,7 @@ int copy(char *fname,unsigned long fname_len)
 int move(char *fname,unsigned long fname_len)
 {
   long hdl;
-  double x,y;
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,n;
   BOOL opt;
 
   CheckRhs(1,3);
@@ -5155,14 +5154,13 @@ int move(char *fname,unsigned long fname_len)
   GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */    
   GetRhsVar(2,"d",&m2,&n2,&l2);
   hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
-  if (n2 != 2)
+  n=m2*n2;
+  if (n != 2&&n !=3)
     { 
-      Scierror(999,"%s: third argument is a vector,[x y] \r\n",fname);
+      Scierror(999,"%s: third argument is a vector,[x y] or [x,y,z] \r\n",fname);
       return 0;
     }
-  x = *stk(l2); 
-  y =*stk(l2+1);
-  Objmove(&hdl,x,y,opt);
+  Objmove(&hdl,stk(l2),n,opt);
 
   LhsVar(1)=0;
   return 0;
