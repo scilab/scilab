@@ -1143,6 +1143,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
+      pPOLYLINE_FEATURE (pobj)->arsize_factor = 1;
+
       /*       pPOLYLINE_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       pPOLYLINE_FEATURE (pobj)->isselected = TRUE;

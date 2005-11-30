@@ -926,6 +926,8 @@ typedef struct
   double * z_shift;
   
   double bar_width;
+  
+  double arsize_factor; /* to be able to enlarge arrow size without changing the line thickness */
 }
 sciPolyline;  /** */
 

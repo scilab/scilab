@@ -1351,6 +1351,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"thickness") == 0)  {
     sciSetLineWidth((sciPointObj *) pobj,(int) *stk(*value));
   }
+  else if (strcmp(marker,"arrow_size_factor") == 0)  {
+    if(sciGetEntityType(pobj) == SCI_POLYLINE)
+      pPOLYLINE_FEATURE(pobj)->arsize_factor = *stk(*value);
+  }
   else if (strcmp(marker,"line_style") == 0) {
     sciSetLineStyle((sciPointObj *) pobj,(int) *stk(*value));
   }

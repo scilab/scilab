@@ -298,6 +298,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     line_style     = mget(1,'c',fd);
     thickness      = mget(1,'sl',fd);
+    if is_higher_than([3 1 0 1]) then  
+      arrow_size_factor = mget(1,'sl',fd);
+    end
     polyline_style = mget(1,'c',fd);
     mark_mode      = toggle(mget(1,'c',fd))
     mark_style     = mget(1,'c',fd);

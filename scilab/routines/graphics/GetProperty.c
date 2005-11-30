@@ -4357,7 +4357,8 @@ int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;
 { 
-  if      (strcmp(marker,"x_shift") == 0) { return 1;}
+  if      (strcmp(marker,"arrow_size_factor") == 0) { return 1;}
+  else if (strcmp(marker,"x_shift") == 0) { return 1;}
   else if (strcmp(marker,"y_shift") == 0) { return 1;}
   else if (strcmp(marker,"z_shift") == 0) { return 1;}
   else if (strcmp(marker,"bar_width") == 0) { return 1;}

@@ -684,8 +684,17 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if (strcmp(marker,"thickness") == 0) 
     {
       numrow   = 1;numcol   = 1;
+ 	 
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       *stk(outindex) = sciGetLineWidth((sciPointObj *) pobj);
+    }
+  else if (strcmp(marker,"arrow_size_factor") == 0) 
+    {
+      numrow   = 1;numcol   = 1;
+      if(sciGetEntityType(pobj) == SCI_POLYLINE){
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	*stk(outindex) = pPOLYLINE_FEATURE(pobj)->arsize_factor;
+      }
     }
   else if (strcmp(marker,"line_style") == 0)
     {
