@@ -57,6 +57,7 @@ proc insblinkbrace {w brace} {
 }
 
 proc insertnewline {w} {
+    global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set n {}
     $w mark set p1 {insert linestart}
@@ -73,10 +74,11 @@ proc insertnewline {w} {
         $w delete insert "insert+1c"
         set c [$w get insert "insert+1c"]
     }
+    set buffermodifiedsincelastsearch true
 }
 
 proc inserttab {w} {
-    global indentspaces tabinserts
+    global indentspaces tabinserts buffermodifiedsincelastsearch
     set textarea [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set selstart [lindex [$textarea tag nextrange sel 0.0] 0]
@@ -107,10 +109,11 @@ proc inserttab {w} {
             puttext $w "\x9"
         }
     }
+    set buffermodifiedsincelastsearch true
 }
 
 proc puttext {w text} {
-    global listoffile
+    global listoffile buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$w",redostackdepth) 0
     set oldSeparator [$w cget -autoseparators] ;# in case this proc is called from another proc
@@ -142,16 +145,18 @@ proc puttext {w text} {
         $w edit separator
         $w configure -autoseparators 1
     }
+    set buffermodifiedsincelastsearch true
 }
 
 
 proc printtime {} {
 #procedure to set the time change %R to %I:%M for 12 hour time display
-    global listoffile
+    global listoffile buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("[gettextareacur]",redostackdepth) 0
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]
+    set buffermodifiedsincelastsearch true
 }
 
 

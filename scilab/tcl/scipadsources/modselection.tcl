@@ -16,7 +16,7 @@ proc selectline {} {
 }
 
 proc CommentSel {} {
-    global textareacur
+    global textareacur buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
@@ -47,10 +47,11 @@ proc CommentSel {} {
     } else {
         if {[selectline] != ""} CommentSel
     }
+    set buffermodifiedsincelastsearch true
 }
 
 proc UnCommentSel {} {
-    global textareacur
+    global textareacur buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != "" } {
@@ -72,11 +73,13 @@ proc UnCommentSel {} {
     } else {
         if {[selectline] != ""} UnCommentSel
     }
+    set buffermodifiedsincelastsearch true
 }
 
 proc IndentSel {} {
 # just copied from CommentSel
     global textareacur indentspaces
+    global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set skip ""
     for {set x 0} {$x<$indentspaces} {incr x} {
@@ -113,11 +116,13 @@ proc IndentSel {} {
     } else {
         if {[selectline] != ""} IndentSel
     }
+    set buffermodifiedsincelastsearch true
 }
 
 proc UnIndentSel {} {
 # just copied from UncommentSel
     global textareacur indentspaces
+    global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {$seltexts != ""} {
@@ -138,4 +143,5 @@ proc UnIndentSel {} {
     } else {
         if {[selectline] != ""} UnIndentSel
     }
+    set buffermodifiedsincelastsearch true
 }

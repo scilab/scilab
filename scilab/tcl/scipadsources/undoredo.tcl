@@ -23,6 +23,7 @@ proc undoredo {textarea action} {
 # To colorize the range of characters that were changed by an undo
 # or redo, a string comparison between before and after the operation
 # is done. A better mechanism has been asked for in Tk request 1217222
+    global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set bef [$textarea get 1.0 end]
     event generate $textarea $action 
@@ -37,6 +38,7 @@ proc undoredo {textarea action} {
     colorize $textarea $uplimit $dnlimit
     reshape_bp
     keyposn $textarea
+    set buffermodifiedsincelastsearch true
 }
 
 proc ismodified {textarea} {

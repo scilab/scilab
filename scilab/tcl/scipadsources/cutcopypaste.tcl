@@ -1,6 +1,6 @@
 proc deletetext {} {
 # cut text procedure
-    global listoffile
+    global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
@@ -26,11 +26,12 @@ proc deletetext {} {
     $textareacur see insert
     # update menues contextually
     keyposn $textareacur
+    set buffermodifiedsincelastsearch true
 }
 
 proc backspacetext {} {
 # cut text procedure
-    global listoffile
+    global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
@@ -56,11 +57,12 @@ proc backspacetext {} {
     $textareacur see insert
     # update menues contextually
     keyposn $textareacur
+    set buffermodifiedsincelastsearch true
 }
 
 proc cuttext {} {
 # cut text procedure
-    global listoffile
+    global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
@@ -76,6 +78,7 @@ proc cuttext {} {
     $textareacur see insert
     # update menues contextually
     keyposn $textareacur
+    set buffermodifiedsincelastsearch true
 }
 
 proc copytext {} {
@@ -86,7 +89,7 @@ proc copytext {} {
 
 proc pastetext {} {
 # paste text procedure
-    global listoffile
+    global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
@@ -114,12 +117,13 @@ proc pastetext {} {
     }
     # update menues contextually
     keyposn $textareacur
+    set buffermodifiedsincelastsearch true
 }
 
 proc button2copypaste {w x y} {
 ##ES 16/11/04 -- we have to write a full proc for this because we need
 # to take care of colorization, insert only when editable, etc
-    global textareacur listoffile
+    global textareacur listoffile buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     if {[catch {selection get}] == 0} {
         set listoffile("$textareacur",redostackdepth) 0
@@ -129,6 +133,7 @@ proc button2copypaste {w x y} {
         selection clear
         $w mark set insert @$x,$y
         pastetext
+        set buffermodifiedsincelastsearch true
     }
 #there is still one glitch - the cursor returns at the beginning
 # of the insertion point (why?) - but not on windows !

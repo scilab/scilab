@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.63"
+set version "Version 5.64"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -70,8 +70,11 @@ set completionbinding "Control-Tab"
 set showContinuedLines "yes"
 
 # other non-pref initial settings
+
 if { ![info exists lang] } { set lang "eng" }
+
 set Scheme scilab
+
 if {$tcl_platform(platform) != "unix"} {
     # On Windows the cursor blink is disabled because of what is explained at
     # http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
@@ -81,6 +84,8 @@ if {$tcl_platform(platform) != "unix"} {
     # http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=865
     set cursorblink "false"
 }
+
+# Drag and drop feature initial state
 set mouseoversel "false"
 set dndinitiated "false"
 
@@ -91,9 +96,6 @@ array unset pwframe
 # source the user preferences file if any
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
-
-set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
-set FAKESELCOLOR $SELCOLOR
 
 # message files and localization to avoid ifs on $lang
 package require msgcat
@@ -128,6 +130,17 @@ set tileprocalreadyrunning false
 # variable used to prevent launching simultaneously multiple searches in files
 # during search in file, the other functionalities of Scipad are however enabled
 set searchinfilesalreadyrunning 0
+
+# variable used to detect buffer changes between two Find Next commands
+# with F3
+set buffermodifiedsincelastsearch false
+
+# default Find/Replace direction
+set SearchDir "forwards"
+
+# Find/Replace color tags
+set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
+set FAKESELCOLOR $SELCOLOR
 
 # background tasks (colorization, keyposn)
 # Linux has bug 865 (originated in bug 473) preventing taks to be

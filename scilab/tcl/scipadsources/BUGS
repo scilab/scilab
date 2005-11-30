@@ -3,9 +3,11 @@ SCIPAD BUGS AND WISHES LIST
 
 Bugs:
 -----
--Find Next with F3 highlights a wrong part of the text if a previous match was
- found on the same line and the user has typed something between the two
- matches
+-logical line numbering issue:
+   function a=foo(); a=1;
+    a=2;
+   endfunction
+ In scipad, a=1 is on line 1; for scilab it is on line 2 of function foo
 
 -issues related with non colorizing single quoted text:
   . code lines such as mprintf("%s",'this is a function') break the line

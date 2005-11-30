@@ -69,6 +69,7 @@ proc popup_completions {} {
     global pad textFont menuFont bgcolors fgcolors chset listoffile
     global currentselcompl tcl_platform
     foreach c1 "$bgcolors $fgcolors" {global $c1}
+    global buffermodifiedsincelastsearch
 
     if {[IsBufferEditable] == "No"} {return}
     set ta [gettextareacur]
@@ -108,6 +109,7 @@ proc popup_completions {} {
 
     } elseif {$nbcompl == 1} {
         completewith [lindex [lindex $compl 0] 1] $ind $ta
+        set buffermodifiedsincelastsearch true
         return
 
     } elseif {$nbcompl > 15} {
@@ -116,6 +118,7 @@ proc popup_completions {} {
         return
 
     } else {
+        set buffermodifiedsincelastsearch true
         # create a popup "menu" containing the colorized completions
         # note: because of all this:
         #   http://wiki.tcl.tk/3713

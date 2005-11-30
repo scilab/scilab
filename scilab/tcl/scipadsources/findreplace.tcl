@@ -313,12 +313,29 @@ proc getsearchpattern {pat} {
     set fileglobpat "$pat"
 }
 
+proc togglesearchdir {} {
+    global SearchDir
+    if {$SearchDir == "forwards"} {
+        set SearchDir "backwards"
+    } else {
+        set SearchDir "forwards"
+    }
+}
+
+proc reversefindnext {} {
+    togglesearchdir
+    findnext
+    togglesearchdir
+}
+
 proc findnext {} {
 # proc for find next without opening the dialog if possible
 # (only for find in already opened files)
     global SearchString find searchindir
+    global buffermodifiedsincelastsearch
     if {[info exists SearchString]} {
-        if {$SearchString != "" && !$searchindir} {
+        if {$SearchString != "" && !$searchindir && \
+                !$buffermodifiedsincelastsearch} {
             multiplefilesfindreplace $find findit
         } else {
             findtextdialog "find"
@@ -443,6 +460,9 @@ proc findit {w pw textarea tosearchfor reg} {
 
     global SearchString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
+    global buffermodifiedsincelastsearch
+
+    set buffermodifiedsincelastsearch false
 
     # do the search and get the match positions and the length of the matches
     # and do it only once (per buffer) in a search session
@@ -564,6 +584,9 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
 
     global SearchString ReplaceString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
+    global buffermodifiedsincelastsearch
+
+    set buffermodifiedsincelastsearch false
 
     # if there is no already found matching text (Find Next was not hit)
     # therefore perform a search first get the match positions and
@@ -765,6 +788,9 @@ proc replaceall {w pw textarea tosearchfor reg} {
     global SearchString SearchDir
     global listofmatch indoffirstmatch indofcurrentmatch
     global listoffile multiplefiles
+    global buffermodifiedsincelastsearch
+
+    set buffermodifiedsincelastsearch false
 
     # erase listofmatch so that the first call to replaceit will
     # reconstruct it

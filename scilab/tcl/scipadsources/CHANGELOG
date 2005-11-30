@@ -1779,3 +1779,11 @@ Francois VOGEL, 29/11/05
 Francois VOGEL, 30/11/05
  * All background tasks forbidden on Linux
  * version --> 5.63
+
+Francois VOGEL, 30/12/05
+ * Fixed Find Next bug with F3: the highlighted part of the text was not
+   correct when the buffer was modified between two searches - now in such
+   a case, the Find/Replace dialog pops up again
+ * F3 finds next (forwards or backwards depending on the radiobutton state
+   in the Find dialog), now Shift-F3 finds next in the reverse direction
+ * version --> 5.64
