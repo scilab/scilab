@@ -606,6 +606,7 @@ function ged_polyline(h)
     TCL_SetVar("curcolor",string(h.foreground))
     TCL_SetVar("curback",string(h.background))
     TCL_SetVar("curthick",string(h.thickness))
+    TCL_SetVar("curarrowsizefactor",string(h.arrow_size_factor))
     TCL_SetVar("curvis",h.visible)
 
     ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled" "bar"];
