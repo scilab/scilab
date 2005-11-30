@@ -22,7 +22,6 @@ end;
  
 key = stripblanks(key)
 if or(part(key,1)==["(",")","[","]","{","}","%","''","""",:,"*","/","\",".","<",">","&","^","|","~","+","-"]) then
- 
   key = "symbols";
 end;
 path = gethelpfile(key)

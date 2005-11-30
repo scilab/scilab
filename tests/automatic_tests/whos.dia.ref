@@ -33,8 +33,8 @@ Name                     Type           Size           Bytes
 %_opt                    string         1 by 1         48           
 %_sel                    string         1 by 1         32           
 %U                       constant       1 by 1         24           
-%CMP                     function                      16024        
-%helps                   string         27 by 2        16           
+%CMP                     function                      16032        
+%helps                   *string        27 by 2        16           
 %F                       boolean        1 by 1         24           
 %T                       boolean        1 by 1         24           
 %z                       polynomial     1 by 1         56           
