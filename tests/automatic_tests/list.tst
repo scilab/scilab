@@ -1,13 +1,14 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/list_data.ref','r');
+
 l = list(1, ['a','b']);
 if load_ref('l') then   pause,end,
 
 l(0) = 'foo';
 if load_ref('l') then   pause,end,
 
-l($ + 1) = 'bar';
+l($ + 1) = 'hello';
 if load_ref('l') then   pause,end,
 
 l(2) = 'toto';
