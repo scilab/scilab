@@ -8700,8 +8700,9 @@ sciDrawObj (sciPointObj * pobj)
 	      drawline = TRUE;
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
-		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		  if(zvect[jk] == NULL){
 		    FREE(zzz); zzz = (double *) NULL;
+		  }
 		  
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
@@ -8718,9 +8719,10 @@ sciDrawObj (sciPointObj * pobj)
 	      drawline = FALSE;
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
-		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		  if(zvect[jk] == NULL){
 		    FREE(zzz); zzz = (double *) NULL;
-		  
+		  }
+		    
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
 		  Plo2dTo3d(3,&un,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
@@ -8763,12 +8765,14 @@ sciDrawObj (sciPointObj * pobj)
 	      drawline = FALSE;
 	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 		{
-		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		  if(zvect[jk] == NULL){
 		    FREE(zzz); zzz = (double *) NULL;
+		  }
 		  
 		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
 		  Plo2dTo3d(4,&un,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  
 		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
 		}
 	      else
@@ -8815,6 +8819,8 @@ sciDrawObj (sciPointObj * pobj)
 		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			    PD0, PD0, PD0, 0L, 0L);
 		  
+		  arsize = pPOLYLINE_FEATURE(pobj)->arsize_factor * arsize;
+
 		  C2F(dr)("xarrow","v",&xm[0],&ym[0],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	      }
