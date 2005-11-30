@@ -55,7 +55,7 @@ catch {source $preffilename}
 
 global curvis curthick curpolylinestyle curlinestyle RED GREEN BLUE
 global curmarkmode curlinemode curclosedmode curmarksize curmarksizeunit curmarkforeground curmarkbackground
-global curfillmode curinterpcolormode curinterpcolorvector
+global curfillmode curinterpcolormode curinterpcolorvector curarrowsizefactor
 #global polyVAL nbcol nbrow
 
 #puts "curmarkmode = $curmarkmode"
@@ -303,6 +303,19 @@ combobox $w.frame.style \
     -command [list SelectLineStyle ] -font {Arial 9}
 eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 
+#Arrow size factor
+frame $w.frame.arrowsize  -borderwidth 0
+pack $w.frame.arrowsize  -in $w.frame -side top  -fill x
+
+label $w.frame.arrowsizelabel -height 0 -text "Arrow size:" -font {Arial 9} -anchor e -width $largeur
+
+entry $w.frame.arrowsize1 -relief sunken  -textvariable curarrowsizefactor -font {Arial 9} -width 6
+pack $w.frame.arrowsizelabel -in  $w.frame.arrowsize -side left
+pack $w.frame.arrowsize1  -in  $w.frame.arrowsize  -side left -pady 0m -padx 2m
+bind  $w.frame.arrowsize1 <Return> {setArrowSize} 
+bind  $w.frame.arrowsize1 <KP_Enter> {setArrowSize} 
+bind  $w.frame.arrowsize1 <FocusOut> {setArrowSize} 
+
 #Add thickness here
 combobox $w.frame.thickness \
     -borderwidth 1 \
@@ -345,7 +358,7 @@ pack $w.frame.backlabel -in $w.frame.backg -side left
 pack $w.frame.back  -in  $w.frame.backg -side left -expand 1 -fill x -pady 0m -padx 1m
 $w.frame.back set $curback
 
-#Background scale (line)
+#Interp. vector
 frame $w.frame.interpvec  -borderwidth 0
 pack $w.frame.interpvec  -in $w.frame -side top  -fill x
 
@@ -356,6 +369,7 @@ pack $w.frame.interpveclabel -in  $w.frame.interpvec -side left
 pack $w.frame.interpvec1  -in  $w.frame.interpvec  -side left -pady 0m -padx 2m
 bind  $w.frame.interpvec1 <Return> {setInterpColor} 
 bind  $w.frame.interpvec1 <KP_Enter> {setInterpColor} 
+bind  $w.frame.interpvec1 <FocusOut> {setInterpColor} 
 
 #Mark mode
 frame $w.frame.linemarkmode  -borderwidth 0
@@ -696,6 +710,11 @@ proc setBack {w index} {
 proc setInterpColor {} {
 global curinterpcolorvector
 ScilabEval "global ged_handle;ged_handle.interp_color_vector=$curinterpcolorvector"
+}
+
+proc setArrowSize {} {
+global curarrowsizefactor
+ScilabEval "global ged_handle;ged_handle.arrow_size_factor=$curarrowsizefactor"
 }
 
 
