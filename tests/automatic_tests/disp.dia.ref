@@ -9,7 +9,7 @@ reinit_for_test()
  
     3.  
  
-!   1.    2. !
+    1.    2.  
  
 if load_ref('%ans') then   bugmes();quit;end,
  

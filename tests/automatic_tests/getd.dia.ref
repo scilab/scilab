@@ -6,7 +6,19 @@ reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/getd_data.ref','r');
  
 %ans = getd('SCI/macros/auto');
+Warning :redefining function: scicos_new              
+ 
 Warning :redefining function: scicos                  
+ 
+Warning :redefining function: findAC                  
+ 
+Warning :redefining function: findx0BD                
+ 
+Warning :redefining function: inistate                
+ 
+Warning :redefining function: findABCD                
+ 
+Warning :redefining function: findBDK                 
  
 Warning :redefining function: steadycos               
  
@@ -20,6 +32,8 @@ Warning :redefining function: tf2ss
  
 Warning :redefining function: calfrq                  
  
+Warning :redefining function: abinv                   
+ 
 Warning :redefining function: cainv                   
  
 Warning :redefining function: colregul                
@@ -31,10 +45,6 @@ Warning :redefining function: rowregul
 Warning :redefining function: stabil                  
  
 Warning :redefining function: ui_observer             
- 
-Warning :redefining function: abinv                   
- 
-Warning :redefining function: findABCD                
  
 Warning :redefining function: st_ility                
  
@@ -88,9 +98,9 @@ Warning :redefining function: obsv_mat
  
 Warning :redefining function: obsvss                  
  
-Warning :redefining function: p_margin                
- 
 Warning :redefining function: pfss                    
+ 
+Warning :redefining function: p_margin                
  
 Warning :redefining function: lqg2stan                
  
@@ -114,9 +124,9 @@ Warning :redefining function: lqe
  
 Warning :redefining function: freson                  
  
-Warning :redefining function: g_margin                
- 
 Warning :redefining function: gfrancis                
+ 
+Warning :redefining function: g_margin                
  
 Warning :redefining function: imrep2ss                
  
@@ -126,9 +136,9 @@ Warning :redefining function: dsimul
  
 Warning :redefining function: dt_ility                
  
-Warning :redefining function: equil                   
- 
 Warning :redefining function: equil1                  
+ 
+Warning :redefining function: equil                   
  
 Warning :redefining function: flts                    
  
@@ -157,14 +167,6 @@ Warning :redefining function: arl2
 Warning :redefining function: balreal                 
  
 Warning :redefining function: bilin                   
- 
-Warning :redefining function: findx0BD                
- 
-Warning :redefining function: inistate                
- 
-Warning :redefining function: findAC                  
- 
-Warning :redefining function: findBDK                 
  
 Warning :redefining function: findR                   
  
