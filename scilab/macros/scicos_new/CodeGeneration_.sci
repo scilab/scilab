@@ -2,9 +2,18 @@ function  CodeGeneration_()
   win=%win
   xc=%pt(1);yc=%pt(2);
   %pt=[];Cmenu=[]
-  k=getobj(scs_m,[xc;yc])
-  if k==[] then return,end
-
+  if Select==[] then
+    k=getobj(scs_m,[xc;yc])
+    if k==[] then return,end
+  else
+    k=Select(:,1)';%pt=[]
+    if size(k,'*')>1|curwin<>Select(1,2) then
+      message("Only one block can be selected in current window for this o"+...
+	      "peration.")
+      return
+    end
+  end
+  
   if scs_m.objs(k).model.sim(1)=='super' then
     disablemenus()
     all_scs_m=scs_m;

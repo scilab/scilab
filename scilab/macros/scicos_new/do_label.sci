@@ -6,14 +6,15 @@ function [mod,scs_m]=do_label(%pt,scs_m)
   if Select==[] then
     xc=%pt(1);yc=%pt(2);%pt=[]
     K=getblock(scs_m,[xc;yc])
-    if K==[] then return,end
+    if K==[] then Cmenu=[];return,end
   else
     K=Select(:,1)';%pt=[]
+    if size(K,'*')>1|curwin<>Select(1,2) then
+      message("Only one block can be selected in current window for this o"+...
+	      "peration.")
+      Cmenu=[];return
+    end
   end
-  if size(K,'*')>1 then
-    message("Only one block can be selected for this operation.")
-  end
-    
   
   o=scs_m.objs(K)
   model=o.model

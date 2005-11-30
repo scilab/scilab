@@ -1,7 +1,6 @@
 function select_unhilite(hilite_image)
 //
 // Copyright INRIA
-// hilite_image=list(win,'poly',xx,yy,dashes,thickness)list(win,'rect',orig,sz,thickness)
 
 n=length(hilite_image)
 if   n==0 then return,end

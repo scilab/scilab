@@ -1,4 +1,4 @@
 function Link_()
   [scs_m,needcompile]=getlink(%pt,scs_m,needcompile);
-  Cmenu=[];%pt=[];
+  Cmenu=[];%pt=[];Select=[]
 endfunction

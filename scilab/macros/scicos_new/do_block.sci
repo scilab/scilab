@@ -2,11 +2,20 @@ function [%pt,scs_m]=do_block(%pt,scs_m)
 // do_block - edit a block icon
 // Copyright INRIA
   win=%win;
-  
-  xc=%pt(1);yc=%pt(2);%pt=[];
-  K=getblock(scs_m,[xc;yc])
-  if K==[] then return,end
+  if Select==[] then
+    xc=%pt(1);yc=%pt(2);%pt=[];
+    K=getblock(scs_m,[xc;yc])
+    if K==[] then Cmenu=[];%pt=[];return,end
+  else
+    K=Select(:,1)';%pt=[]
+    if size(K,'*')>1|%win<>Select(1,2) then
+    message("Only one block can be selected in current window for this operation.")
+    Cmenu=[];%pt=[];return
+  end
 
+  end
+  
+    
   gr_i=scs_m.objs(K).graphics.gr_i
   if type(gr_i)==15 then
     [gr_i,coli]=gr_i(1:2)

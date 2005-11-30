@@ -1,8 +1,18 @@
 function scs_m = do_ident(scs_m)
 // Copyright INRIA
-  xc=%pt(1);yc=%pt(2);
-  k=getobj(scs_m,[xc;yc])
-  if k==[] then return,end
+  if Select==[] then
+    xc=%pt(1);yc=%pt(2);
+    k=getobj(scs_m,[xc;yc])
+    if k==[] then return,end
+  else
+    k=Select(:,1)';%pt=[]
+  end  
+  if size(k,'*')>1|%win<>Select(1,2) then
+    message("Only one block can be selected in current window for this o"+...
+	    "peration.")
+    Cmenu=[];%pt=[];return
+  end
+  
 
   numero_objet=k
   scs_m_save=scs_m

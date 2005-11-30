@@ -43,10 +43,9 @@ elseif typeof(o)=='Link' then
   if pixmap then xset('wshow'),end
 end
 driver(dr)  
-if rhs>1 then 
-  xset('alufunction',alu)
-  xset('window',winback)
-end
+
+xset('alufunction',alu)
+xset('window',winback)
 
 
 endfunction
