@@ -2195,9 +2195,7 @@ function ged_move_entity()
       pos=rep(1:2)
       show_pixmap()
     end 
-  case 4 then //Text
-    
-  case 'Arc' then //Circle
+   case 'Arc' then //Circle
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
@@ -2232,6 +2230,6 @@ function ged_copy_entity()
 endfunction
 function ged_paste_entity()
   load(TMPDIR+'/G_Clipboard')
-  a=gca();b=a.data_bounds;
-  move(r,[-1 1]*a.data_bounds/20)
+//  a=gca();b=a.data_bounds;
+//  move(r,[-1 1]*a.data_bounds/20)
 endfunction
