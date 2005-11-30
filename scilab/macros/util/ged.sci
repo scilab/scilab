@@ -2108,7 +2108,7 @@ clear ged_current_figure
 endfunction
 function ged_new_entity()
   mess1 = "Press the right mouse button (during a while) to stop the line creation";
-  mess2 = "Press any mouse button to compete a single arrow line"
+  mess2 = "Press any mouse button to complete the object drawing"
   entities=['Rectangle','Segment','Polyline','Arrow','Double Arrow','Text','Circle']
   sel=x_choose(entities,'Select the Entity type')
   f=gcf();pix=f.pixmap;f.pixmap='on'
@@ -2120,12 +2120,12 @@ function ged_new_entity()
     show_pixmap()
     r=gce();r.foreground=-1;
     r.clip_state='off';
-    xinfo(mess1)
+    xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
       show_pixmap()
-      xinfo(mess1)
+      xinfo(mess2)
     end 
   case 2 then //Segment
     [btn,xc,yc]=xclick()
@@ -2133,12 +2133,12 @@ function ged_new_entity()
     show_pixmap()
     r=gce();r.foreground=-1;
     r.clip_state='off';
-    xinfo(mess1)
+    xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[xc,yc;rep(1),rep(2)]
       show_pixmap()
-      xinfo(mess1)
+      xinfo(mess2)
     end 
   case 3 then //Polyline
     [btn,xc,yc]=xclick()
@@ -2170,17 +2170,12 @@ function ged_new_entity()
     r.clip_state='off';
     xinfo(mess2)
     yc = [];
-    while %t
-      while rep(3)==-1 do
-	rep=xgetmouse()
-	r.data($,:)= [rep(1),rep(2),0]
-	show_pixmap()
-	xinfo(mess2)
-      end 
-      if rep(3)<>-1 then break,end
-      rep(3)=-1;
-      r.data=[r.data;r.data($,:)]
-    end
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data($,:)= [rep(1),rep(2),0]
+      show_pixmap()
+      xinfo(mess2)
+    end 
   case 5 // Double Arrow (single arrow)
     [btn,xc,yc]=xclick()
     xpoly([xc;xc],[yc;yc])
@@ -2192,17 +2187,12 @@ function ged_new_entity()
     r.clip_state='off';
     xinfo(mess2)
     yc = [];
-    while %t
-      while rep(3)==-1 do
-	rep=xgetmouse()
-	r.data($,:)= [rep(1),rep(2),0]
-	show_pixmap()
-	xinfo(mess2)
-      end 
-      if rep(3)<>-1 then break,end
-      rep(3)=-1;
-      r.data=[r.data;r.data($,:)]
-    end
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data($,:)= [rep(1),rep(2),0]
+      show_pixmap()
+      xinfo(mess2)
+    end 
     // second polyline (for the seconf arrow from end to origin)
     xpoly([r.data(2,1);r.data(1,1)],[r.data(2,2);r.data(1,2)])
     r=gce();r.foreground=-1;
@@ -2218,12 +2208,12 @@ function ged_new_entity()
     show_pixmap()
     r=gce();r.foreground=-1;
     r.clip_state='off';
-    xinfo(mess1)
+    xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
       show_pixmap()
-      xinfo(mess1)
+      xinfo(mess2)
     end 
 
   end
