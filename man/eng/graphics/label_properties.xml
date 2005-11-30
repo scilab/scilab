@@ -73,15 +73,27 @@
         which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="auto_rotation: ">
+        <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best angle
+        to turn the label for the display. If <VERB>"off"</VERB>, the label
+        can be manually turned with the <VERB>font_angle</VERB> property.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="font_angle: ">
         <SP>This property allows to turn the label. The font is turned
         clockise with the angle given in degrees.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="auto_rotation: ">
-        <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best angle
-        to turn the label for the display. If <VERB>"off"</VERB>, the label
-        can be manually turned with the <VERB>font_angle</VERB> property.</SP>
+      <DESCRIPTION_ITEM label="auto_position: ">
+        <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best
+        position in the graphic window for the display. If <VERB>"off"</VERB>,
+        the label can be manually places with the<VERB>position</VERB>
+        property</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="position: ">
+        <SP>This property allows to place manually the label on the screen.
+        The position is stored in the data units of the axes.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
