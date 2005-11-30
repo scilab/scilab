@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "intgraphics.h"
+#include <string.h>
 /*-----------------------------------------------------------------------------------*/ 
 #if WIN32
 extern char *GetExceptionString(DWORD ExceptionCode);
@@ -104,130 +105,130 @@ extern int intUImenu _PARAMS((char *fname,unsigned long fname_len));
 int intshowalluimenushandles _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
-	{scichamp,"champ"},
-	{scicontour,"contour"},
-	{sciparam3d,"param3d"},
-	{sciplot3d,"plot3d"},
-	{sciplot3d1,"plot3d1"},
-	{sciplot2d,"plot2d"},
-	{sciplot2d1_1,"plot2d1"},
-	{sciplot2d1_2,"plot2d2"},
-	{sciplot2d1_3,"plot2d3"},
-	{sciplot2d1_4,"plot2d4"},
-	{scigrayplot,"grayplot"},
-	{scidriver,"driver"},
-	{scixarc,"xfarc"},
-	{scixarc,"xarc"},
-	{scixarcs,"xarcs"},
-	{scirects,"xrects"},/* NG */
-	{sciarrows,"xarrows"},
-	{scixsegs,"xsegs"},
-	{nscixaxis,"drawaxis"},
-	{scixchange,"xchange"},
-	{scixclea,"xclea"},
-	{scirect,"xrect"},
-	{scirect,"xfrect"},
-	{scixclear,"xclear"},
-	{scixclick,"xclick"},
-	{scixend,"xend"},
-	{scixfpoly,"xfpoly"},
-	{scixfpolys,"xfpolys"},
-	{scixget,"xget"},
-	{scixinit,"xinit"},
-	{scixlfont,"xlfont"},
-	{scixnumb,"xnumb"},
-	{scixpause,"xpause"},
-	{scixpoly,"xpoly"},
-	{scixpolys,"xpolys"},
-	{scixselect,"xselect"},
-	{scixset,"xset"},
-	{scixstring,"xstring"},
-	{scixstringl,"xstringl"},
-	{scixtape,"xtape"},
-	{scixsetech,"xsetech"},
-	{scixgetech,"xgetech"},
-	{scigeom3d,"geom3d"},
-	{scifec,"scifec"},
-	{scixgetmouse,"xgetmouse"},
-	{scixinfo,"xinfo"},
-	{scixtitle,"xtitle"},
-	{scixgrid,"xgrid"},
-	{scixfarcs,"xfarcs"},
-	{scixsave,"xsave"},
-	{scixload,"xload"},
-	{scichamp1,"champ1"},
-	{scidelw,"xdel"},
-	{scicontour2d,"contour2d"},
-	{scixg2ps,"xg2ps"},
-	{scixs2fig,"xg2fig"},
-	{scixsort,"gsort"},
-	{sciwinsid,"winsid"},
-	{sciparam3d1,"param3d1"},
-	{scixstringb,"xstringb"},
-	{scimatplot,"Matplot"},
-	{scicontour2d1,"contour2di"},
-	{scic2dex,"c2dex"},
-	{scigray2plot,"Matplot1"}, 
-	{scixgraduate,"xgraduate"},
-	{scixname,"xname"},
-	{scixaxis,"xaxis"},
-	{sciseteventhandler,"seteventhandler"},
-	{int_gtkhelp,"help_gtk"},
-	/* NG beg */
-	{gset,"set"},
-	{gget,"get"},
-	{sci_delete,"delete"},
-	{addcb,"addcb"},
-	{copy,"copy"},
-	{move,"move"},
-	{glue,"glue"},
-	{unglue,"unglue"}, 
-	{drawnow,"drawnow"},
-	{drawlater,"drawlater"},  
-	{draw,"draw"}, /* NG end */
-	{scixs2gif,"xs2gif"},
-	{scixs2ppm,"xs2ppm"},
-	{scixs2ps,"xs2ps"},
-	{ClearScreenConsole,"clc"},
-	{HomeFunction,"tohome"},
-	{scisetposfig,"set_posfig_dim"},
-	{ShowWindowFunction,"show_window"},
-	{XSaveNative,"xsnative"},
-	{scizoomrect,"zoom_rect"},
-	{sciunzoom,"unzoom"},
-	{intxs2bmp,"xs2bmp"},
-	{intxs2emf,"xs2emf"},
-	{intUImenu,"UImenu"},
-	{intshowalluimenushandles,"showalluimenushandles"},
-        {sciStringBox,"StringBox"}
+  {scichamp,"champ"},
+  {scicontour,"contour"},
+  {sciparam3d,"param3d"},
+  {sciplot3d,"plot3d"},
+  {sciplot3d1,"plot3d1"},
+  {sciplot2d,"plot2d"},
+  {sciplot2d1_1,"plot2d1"},
+  {sciplot2d1_2,"plot2d2"},
+  {sciplot2d1_3,"plot2d3"},
+  {sciplot2d1_4,"plot2d4"},
+  {scigrayplot,"grayplot"},
+  {scidriver,"driver"},
+  {scixarc,"xfarc"},
+  {scixarc,"xarc"},
+  {scixarcs,"xarcs"},
+  {scirects,"xrects"},/* NG */
+  {sciarrows,"xarrows"},
+  {scixsegs,"xsegs"},
+  {nscixaxis,"drawaxis"},
+  {scixchange,"xchange"},
+  {scixclea,"xclea"},
+  {scirect,"xrect"},
+  {scirect,"xfrect"},
+  {scixclear,"xclear"},
+  {scixclick,"xclick"},
+  {scixend,"xend"},
+  {scixfpoly,"xfpoly"},
+  {scixfpolys,"xfpolys"},
+  {scixget,"xget"},
+  {scixinit,"xinit"},
+  {scixlfont,"xlfont"},
+  {scixnumb,"xnumb"},
+  {scixpause,"xpause"},
+  {scixpoly,"xpoly"},
+  {scixpolys,"xpolys"},
+  {scixselect,"xselect"},
+  {scixset,"xset"},
+  {scixstring,"xstring"},
+  {scixstringl,"xstringl"},
+  {scixtape,"xtape"},
+  {scixsetech,"xsetech"},
+  {scixgetech,"xgetech"},
+  {scigeom3d,"geom3d"},
+  {scifec,"scifec"},
+  {scixgetmouse,"xgetmouse"},
+  {scixinfo,"xinfo"},
+  {scixtitle,"xtitle"},
+  {scixgrid,"xgrid"},
+  {scixfarcs,"xfarcs"},
+  {scixsave,"xsave"},
+  {scixload,"xload"},
+  {scichamp1,"champ1"},
+  {scidelw,"xdel"},
+  {scicontour2d,"contour2d"},
+  {scixg2ps,"xg2ps"},
+  {scixs2fig,"xg2fig"},
+  {scixsort,"gsort"},
+  {sciwinsid,"winsid"},
+  {sciparam3d1,"param3d1"},
+  {scixstringb,"xstringb"},
+  {scimatplot,"Matplot"},
+  {scicontour2d1,"contour2di"},
+  {scic2dex,"c2dex"},
+  {scigray2plot,"Matplot1"}, 
+  {scixgraduate,"xgraduate"},
+  {scixname,"xname"},
+  {scixaxis,"xaxis"},
+  {sciseteventhandler,"seteventhandler"},
+  {int_gtkhelp,"help_gtk"},
+  /* NG beg */
+  {gset,"set"},
+  {gget,"get"},
+  {sci_delete,"delete"},
+  {addcb,"addcb"},
+  {copy,"copy"},
+  {move,"move"},
+  {glue,"glue"},
+  {unglue,"unglue"}, 
+  {drawnow,"drawnow"},
+  {drawlater,"drawlater"},  
+  {draw,"draw"}, /* NG end */
+  {scixs2gif,"xs2gif"},
+  {scixs2ppm,"xs2ppm"},
+  {scixs2ps,"xs2ps"},
+  {ClearScreenConsole,"clc"},
+  {HomeFunction,"tohome"},
+  {scisetposfig,"set_posfig_dim"},
+  {ShowWindowFunction,"show_window"},
+  {XSaveNative,"xsnative"},
+  {scizoomrect,"zoom_rect"},
+  {sciunzoom,"unzoom"},
+  {intxs2bmp,"xs2bmp"},
+  {intxs2emf,"xs2emf"},
+  {intUImenu,"UImenu"},
+  {intshowalluimenushandles,"showalluimenushandles"},
+  {sciStringBox,"StringBox"}
 };
 
 /*-----------------------------------------------------------------------------------*/ 
 /* interface for the previous function Table */ 
 int C2F(matdes)()
 {  
-	Rhs = Max(0, Rhs);
+  Rhs = Max(0, Rhs);
 
-	#if WIN32
-		#ifndef _DEBUG
-			_try
-			{
-				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{
-				char *ExceptionString=GetExceptionString(GetExceptionCode());
-				sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-				if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
-			}
-		#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		#endif
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
+#if WIN32
+#ifndef _DEBUG
+  _try
+    {
+      (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+    }
+  _except (EXCEPTION_EXECUTE_HANDLER)
+    {
+      char *ExceptionString=GetExceptionString(GetExceptionCode());
+      sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+      if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+    }
+#else
+  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+#endif
+#else
+  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+#endif
 
-	C2F(putlhsvar)();
-	return 0;
+  C2F(putlhsvar)();
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
