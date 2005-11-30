@@ -618,7 +618,7 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
 	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
   }
   if (*v1==2) {
-     for (i=0 ; i< (*n) ;i++) shade(&xm[(*p)*i],&ym[(*p)*i],&fillvect[(*p)*i],*p,0);
+     for (i=0 ; i< (*n) ;i++) scilab_shade(&xm[(*p)*i],&ym[(*p)*i],&fillvect[(*p)*i],*p,0);
   }
   else C2F(dr)(fname,str,xm,ym,fillvect,n,p,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 
