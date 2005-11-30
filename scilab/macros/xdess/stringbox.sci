@@ -1,6 +1,6 @@
 //=======================================================================
 // Copyrigth INRIA 2005
-// File   : stringBox.sci
+// File   : stringbox.sci
 // Author : Jean-Baptiste Silvy
 // Desc   : Compute the 4 corners of a displayed string bounding rect
 //======================================================================
@@ -44,7 +44,8 @@ case 1 then
     fontSize = textHandle.font_size  ;
   elseif (textHandle.type == "Label" ) then
     // get the properties
-    text     = textHandle.text          ;
+    // they use jpc syntax which must be converted to normal syntax
+    text     = jpcstring2strings( textHandle.text ) ;
     posX     = textHandle.position( 1 ) ;
     posY     = textHandle.position( 2 ) ;
     angle    = textHandle.font_angle    ;

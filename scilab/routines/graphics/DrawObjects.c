@@ -752,11 +752,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   int nbtics = 0;
   int nbsubtics = 0;
 
-  int logrect[4], XX = 0, YY = 0; /* see below */
+  int logrect[4], XX = 0, YY = 0; /* see below */ /* ah ouais ou ca ? */
   double angle=0.0;
   
   double cosangle, sinangle;
-  int bboxtitle[4];
+  
   int xm4[4], ym4[4];
   char str[2] = "xv";
   int close=1;
@@ -840,49 +840,104 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   fontid_old[1] = fontid[1];
 
   
-  if((title != NULL) && (sciGetVisibility(ppsubwin->mon_title) == TRUE)){
-   
-    /* bounding box of the title (could be on multiple lines separated by @ */
-    fontid[0] = sciGetFontStyle(ppsubwin->mon_title);
-    fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_title)/100;
+  if((title != NULL) && (sciGetVisibility(ppsubwin->mon_title) == TRUE))
+  {
+    int bboxtitle[4];
+    double cosAngle   ;
+    double sinAngle   ;
+    int    x[5]       ;
+    double font_angle ;
+    int    v  = 0     ;
+    double dv = 0.0   ;
+    int    n  = 4     ;
 
-    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /* get the pointer on the title */
+    sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_title ) ;
+    sciText  * ppText  = &(ppLabel->text) ;
     
-    xstringb_bbox (title, rect[0], rect[1], rect[2], rect[3],
-		   0., bboxtitle);
-    
-    bboxtitle[0] = bboxtitle[0]-1; /* better display */
-    bboxtitle[1] = bboxtitle[1]-2; /* better display */
+    x[0] = sciGetFontForeground (ppsubwin->mon_title);
+    x[2] = sciGetFontDeciWidth (ppsubwin->mon_title)/100;
+    x[3] = 0;
+    x[4] = sciGetFontStyle(ppsubwin->mon_title);
 
-    xm4[0] = bboxtitle[0];
-    xm4[1] = bboxtitle[0] + bboxtitle[2];
-    xm4[2] = bboxtitle[0] + bboxtitle[2];
-    xm4[3] = bboxtitle[0];
-    
-    ym4[0] = bboxtitle[1];
-    ym4[1] = bboxtitle[1];
-    ym4[2] = bboxtitle[1] + bboxtitle[3];
-    ym4[3] = bboxtitle[1] + bboxtitle[3];
-    
-    if(sciGetIsFilled(ppsubwin->mon_title) == TRUE){
-      int background = sciGetBackground(ppsubwin->mon_title);
-      int foreground = sciGetForeground(ppsubwin->mon_title);
-      int n = 4;
+    /* get position and orientation of the title */
+    if ( ppLabel->auto_rotation )
+    {
+      font_angle = 0 ;
+      sciSetFontOrientation( ppsubwin->mon_title, font_angle ) ;
+    }
+    else
+    {
+      font_angle = sciGetFontOrientation( ppsubwin->mon_title ) ;
+      font_angle /= 10.0 ;
+    }
+    cosAngle = cos( DEG2RAD( 360 - font_angle ) ) ;
+    sinAngle = sin( DEG2RAD( 360 - font_angle ) ) ;
 
-      C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /* make it back to this value */
+    
+    C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+    
+    xstringb_bbox (sciGetText(ppsubwin->mon_title), rect[0], rect[1], rect[2], rect[3],
+                   0, bboxtitle);
+     
+    if ( ppLabel->auto_position )
+    {
+
+      /* get the position given by bboxtitle */
+      bboxtitle[0] = bboxtitle[0]-1; /* better display */
+      bboxtitle[1] = bboxtitle[1]-2 + bboxtitle[3] ; /* better display */
+      ppText->x     = XPixel2Double( bboxtitle[0] ) ;
+      ppText->y     = YPixel2Double( bboxtitle[1] ) ;
+      sciSetPosition( ppsubwin->mon_title, ppText->x, ppText->y ) ;
+    }
+    else
+    {
+      /* update the position of the text */
+      /* by copying the one in the label */
+      /* yes redundant information */
+      sciGetPosition( ppsubwin->mon_title, &(ppText->x), &(ppText->y) ) ;
+      bboxtitle[0] = XDouble2Pixel( ppText->x ) ;
+      bboxtitle[1] = YDouble2Pixel( ppText->y ) ;
+    }
+    
+    xm4[0] = round(bboxtitle[0]);
+    xm4[1] = round(xm4[0] + cosAngle * bboxtitle[2]);
+    xm4[2] = round(xm4[0] + cosAngle*bboxtitle[2] + sinAngle*(-bboxtitle[3]));
+    xm4[3] = round(xm4[0] + sinAngle*(-bboxtitle[3]));
+    
+    ym4[0] = round(bboxtitle[1]);
+    ym4[1] = round(ym4[0] - sinAngle*bboxtitle[2]);
+    ym4[2] = round(ym4[0] - sinAngle*bboxtitle[2] + cosAngle*(-bboxtitle[3]));
+    ym4[3] = round(ym4[0] + cosAngle*(-bboxtitle[3]));
+
+    
+    if(sciGetIsFilled(ppsubwin->mon_title) == TRUE)
+    {
+      x[0] = sciGetBackground(ppsubwin->mon_title);
+      
+      /* fill the background of the box */
+      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
       
       C2F (dr) ("xarea", str, &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
     
-      C2F(dr)("xset","pattern",&foreground,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-       
+      x[0] = sciGetForeground(ppsubwin->mon_title);
+      
+      /* draw the rectangle */
+      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+      
       C2F (dr) ("xlines", "xv", &n, xm4, ym4, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
     }
     
-    textcolor = sciGetFontForeground(ppsubwin->mon_title);
+    x[0] = sciGetFontForeground(ppsubwin->mon_title);
     
-    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+    C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     
-    C2F(dr1)("xstringtt",title,&rect[0],&rect[1],&rect[2],&rect[3],PI0,PI0,PD0,PD0,PD0,PD0,10L,0L);
+    /* displayed the turned string */
+    xstringb_angle(sciGetText(ppsubwin->mon_title),xm4[0],ym4[0],bboxtitle[2],bboxtitle[3],font_angle);
   }
   
   textcolor = textcolor_old;
@@ -4707,7 +4762,9 @@ void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
 }
 
 
-
+/*----------------------------------------------------------------------------------*/
+/* draw the title and the two labels of the 2d axis                                 */
+/*----------------------------------------------------------------------------------*/
 int labels2D_draw(sciPointObj * psubwin)
 {
   integer x[6], v,verbose=0,rect1[4],fontid[2],narg;
@@ -4754,21 +4811,21 @@ int labels2D_draw(sciPointObj * psubwin)
 	}
       locstr=ppsubwin->axes.ydir;
       switch (locstr)
-	{
-	case 'l':
-	  locx=ppsubwin->FRect[0];
-	  break;
-	case 'c':
-	  locx=(ppsubwin->FRect[0]>0.0)?ppsubwin->FRect[0]: 0.0;
-	  locx=(ppsubwin->FRect[2]<0.0)?ppsubwin->FRect[0]: locx;
-	  break;
-	case 'r':
-	  locx=ppsubwin->FRect[2];
-	  break;
-	default:
-	  locx=ppsubwin->FRect[0];
-	  break;
-	}
+      {
+      case 'l':
+        locx=ppsubwin->FRect[0];
+        break;
+      case 'c':
+        locx=(ppsubwin->FRect[0]>0.0)?ppsubwin->FRect[0]: 0.0;
+        locx=(ppsubwin->FRect[2]<0.0)?ppsubwin->FRect[0]: locx;
+        break;
+      case 'r':
+        locx=ppsubwin->FRect[2];
+        break;
+      default:
+        locx=ppsubwin->FRect[0];
+        break;
+      }
     }
 
 
@@ -4788,32 +4845,78 @@ int labels2D_draw(sciPointObj * psubwin)
   
   if(sciGetVisibility(ppsubwin->mon_title) == TRUE)
   {
-    int bboxtitle[4] ;
+    int    bboxtitle[4] ;
+    double cosAngle ;
+    double sinAngle ;
+
+    /* get the pointer on the title */
+    sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_title ) ;
+    sciText  * ppText  = &(ppLabel->text) ;
     
     x[0] = sciGetFontForeground (ppsubwin->mon_title);
     x[2] = sciGetFontDeciWidth (ppsubwin->mon_title)/100;
     x[3] = 0;
     x[4] = sciGetFontStyle(ppsubwin->mon_title);
-    font_angle = 0.; /* the title is always horizontal */
+
+    /* get position and orientation of the title */
+    if ( ppLabel->auto_rotation )
+    {
+      font_angle = 0 ;
+      sciSetFontOrientation( ppsubwin->mon_title, font_angle ) ;
+    }
+    else
+    {
+      font_angle = sciGetFontOrientation( ppsubwin->mon_title ) ;
+      font_angle /= 10.0 ;
+    }
+    cosAngle = cos( DEG2RAD( 360 - font_angle ) ) ;
+    sinAngle = sin( DEG2RAD( 360 - font_angle ) ) ;
+
+    /* make it back to this value */
     
     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
     
     xstringb_bbox (sciGetText(ppsubwin->mon_title), rect1[0], rect1[1], rect1[2], rect1[3],
-		   font_angle, bboxtitle);
+                   0, bboxtitle);
+      /*C2F(dr)("xstringl",sciGetText(ppsubwin->mon_title),
+        &rect1[0],&rect1[1],bboxtitle,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_x_la));*/
     
     
-    bboxtitle[0] = bboxtitle[0]-1; /* better display */
-    bboxtitle[1] = bboxtitle[1]-2; /* better display */
+    /* store the value in the position field of the title */
+    
+    /*bboxtitle[0] = bboxtitle[0]-1;*/ /* better display */
+    /*bboxtitle[1] = bboxtitle[1]-2;*/ /* better display */
 
-    xm[0] = bboxtitle[0];
-    xm[1] = bboxtitle[0] + bboxtitle[2];
-    xm[2] = bboxtitle[0] + bboxtitle[2];
-    xm[3] = bboxtitle[0];
+    if ( ppLabel->auto_position )
+    {
+
+      /* get the position given by bboxtitle */
+      bboxtitle[0] = bboxtitle[0]-1; /* better display */
+      bboxtitle[1] = bboxtitle[1]-2 + bboxtitle[3] ; /* better display */
+      ppText->x     = XPixel2Double( bboxtitle[0] ) ;
+      ppText->y     = YPixel2Double( bboxtitle[1] ) ;
+      sciSetPosition( ppsubwin->mon_title, ppText->x, ppText->y ) ;
+    }
+    else
+    {
+      /* update the position of the text */
+      /* by copying the one in the label */
+      /* yes redundant information */
+      sciGetPosition( ppsubwin->mon_title, &(ppText->x), &(ppText->y) ) ;
+      bboxtitle[0] = XDouble2Pixel( ppText->x ) ;
+      bboxtitle[1] = YDouble2Pixel( ppText->y ) ;
+    }
     
-    ym[0] = bboxtitle[1];
-    ym[1] = bboxtitle[1];
-    ym[2] = bboxtitle[1] + bboxtitle[3];
-    ym[3] = bboxtitle[1] + bboxtitle[3];
+    xm[0] = round(bboxtitle[0]);
+    xm[1] = round(xm[0] + cosAngle * bboxtitle[2]);
+    xm[2] = round(xm[0] + cosAngle*bboxtitle[2] + sinAngle*(-bboxtitle[3]));
+    xm[3] = round(xm[0] + sinAngle*(-bboxtitle[3]));
+    
+    ym[0] = round(bboxtitle[1]);
+    ym[1] = round(ym[0] - sinAngle*bboxtitle[2]);
+    ym[2] = round(ym[0] - sinAngle*bboxtitle[2] + cosAngle*(-bboxtitle[3]));
+    ym[3] = round(ym[0] + cosAngle*(-bboxtitle[3]));
+
     
     if(sciGetIsFilled(ppsubwin->mon_title) == TRUE)
     {
@@ -4837,7 +4940,8 @@ int labels2D_draw(sciPointObj * psubwin)
     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     
-    xstringb_angle(sciGetText(ppsubwin->mon_title),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);
+    /*xstringb_angle(sciGetText(ppsubwin->mon_title),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);*/
+    xstringb_angle(sciGetText(ppsubwin->mon_title),xm[0],ym[0],bboxtitle[2],bboxtitle[3],font_angle);
   }
   
   /* x label */
@@ -9382,7 +9486,8 @@ sciDrawObj (sciPointObj * pobj)
       else
       {
         sciText * ppText =  pTEXT_FEATURE( pobj ) ;
-        /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
+        
+        /*drawText( pobj ) ;*/
         n = 1;
  
         v = 0;
@@ -9392,7 +9497,10 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
         flag_DO = MaybeSetWinhdc ();
 #endif
-        sciClip(pobj);
+        if ( ppText->isclip )
+        {
+          sciClip(pobj);
+        }
 
         if (pTEXT_FEATURE (pobj)->fill==-1) {
           if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
@@ -9538,8 +9646,11 @@ sciDrawObj (sciPointObj * pobj)
                    &(ppText->x),&(ppText->y),
                    &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
         } 
+        if ( ppText->isclip )
+        {
+          sciUnClip(pobj);
+        }
         
-        sciUnClip(pobj);
 #ifdef WIN32 
         if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
@@ -9665,9 +9776,6 @@ sciDrawObj (sciPointObj * pobj)
   sciSetSelectedSubWin (currentsubwin);
   return -1;
 }
-
-
-
 
 
 extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
