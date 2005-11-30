@@ -1,0 +1,55 @@
+//==========================================================================
+// Copyrigth INRIA 2005
+// File   : jpcstring2strings.sci
+// Author : Jean-Baptiste Silvy
+// Desc   : Convert the string format defined by jpc into matrix of strings
+//==========================================================================
+
+
+function [strings] = jpcstring2strings( varargin )
+
+// call : jpcstring2strings( string )
+
+[lhs,rhs] = argn(0) ;
+
+// check number of arguments
+if ( rhs ~= 1 ) then
+  error(39);
+  return ;
+end
+
+title = varargin(1) ;
+
+// check type
+if ( type(title) ~= 10 ) then
+  error(246) ;
+  return ; 
+end
+
+// check the size
+if ( size( title ) <> 1 ) then
+  error("function only works with an unique string");
+  return ;
+end
+
+// in the title, each line is separated by a '@' character
+// in the resulting matrix, each line is put on a line
+// of the matrix
+
+// positions of @ in 
+arobPos = strindex( title, '@' ) ;
+
+nbArob = size( arobPos ) ;
+nbArob = nbArob(2);
+
+// add the last character
+arobPos( nbArob + 1 ) = length( title ) + 1 ;
+
+// get the first string
+strings(1) = part( title, [1:arobPos(1)-1] ) ;
+
+for i = 1 : nbArob
+  strings( i + 1 ) = part( title, [ arobPos(i) + 1 : arobPos(i+1) - 1 ] ) ;
+end
+
+endfunction
