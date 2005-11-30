@@ -309,6 +309,9 @@ int Xorgetchar(int interrupt)
   
   for( ; ; ) {
     /* always flush writes before waiting */
+#ifdef WITH_TK 
+    flushTKEvents();
+#endif 
     gdk_flush();
     fflush(stdout); 
     fflush(stderr);
@@ -328,8 +331,8 @@ int Xorgetchar(int interrupt)
     /* FD_SET(fd_out,&write_mask);
        FD_SET(fd_err,&write_mask); */
 
-    select_timeout.tv_sec =  10;
-    select_timeout.tv_usec = 0;
+    select_timeout.tv_sec =  0;
+    select_timeout.tv_usec = 100000;
     while ( gtk_events_pending())
       { 
 	gtk_main_iteration(); 
@@ -365,7 +368,7 @@ int Xorgetchar(int interrupt)
 	} 
       continue ;
     }
-    if ( i== 0) continue ; 
+    if ( i== 0) continue;
     /* if there's something to output */
     if ( FD_ISSET(fd_out,&write_mask)) { 
       fflush(stdout); 
