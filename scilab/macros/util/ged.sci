@@ -155,6 +155,7 @@ iFec = 0;
 iGra = 0;
 iMat = 0; // forgotten object F.Leray 22.10.04
 iAxi = 0; // axis : entity created when using drawaxis method for example
+iLab = 0;
 
 f=getparfig(h);
 handles = Get_handles_list(f)
@@ -186,6 +187,10 @@ for i=1:size(handles,1)
     iAxe = iAxe+1;
     axename= "Axes("+string(iAxe)+")";
     TCL_EvalStr('set '+SelObject+" "+axename);
+//   case "Label"  // to see later: have labels at the same level than Axes (to have a better visibility)
+//    iLab = iLab+1;
+//    labname= "Label("+string(iLab)+")";
+//    TCL_EvalStr('set '+SelObject+" "+labname);
    case "Compound"
     iAgr = iAgr+1;
     agrname= "Compound("+string(iAgr)+")";
@@ -295,9 +300,9 @@ function List_handles(h)
 global ged_handle_out;
 
 i = 1;
-if h.type=="Axes" then
-   ged_handle_out = [ged_handle_out;h.x_label;h.y_label;h.z_label;h.title];
-end
+//if h.type=="Axes" then
+//   ged_handle_out = [ged_handle_out;h.x_label;h.y_label;h.z_label;h.title];
+//end
 psonstmp = h.children;
 if psonstmp <> [] then
   psonstmp = h.children(1);
@@ -2101,7 +2106,9 @@ clear ged_current_figure
 // disp("PASSE PAR DestroyGlobals Scilab");
 endfunction
 function ged_new_entity()
-  entities=['Rectangle','Segment','Polyline','Text','Circle']
+  mess1 = "Press the right mouse button (during a while) to stop the line creation";
+  mess2 = "Press any mouse button to compete a single arrow line"
+  entities=['Rectangle','Segment','Polyline','Arrow','Double Arrow','Text','Circle']
   sel=x_choose(entities,'Select the Entity type')
   f=gcf();pix=f.pixmap;f.pixmap='on'
   rep(3)=-1
@@ -2111,47 +2118,111 @@ function ged_new_entity()
     xrect(xc,yc,0,0)
     show_pixmap()
     r=gce();r.foreground=-1;
+    r.clip_state='off';
+    xinfo(mess1)
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
       show_pixmap()
+      xinfo(mess1)
     end 
   case 2 then //Segment
     [btn,xc,yc]=xclick()
     xsegs([xc;xc],[yc;yc])
     show_pixmap()
     r=gce();r.foreground=-1;
+    r.clip_state='off';
+    xinfo(mess1)
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[xc,yc;rep(1),rep(2)]
       show_pixmap()
+      xinfo(mess1)
     end 
   case 3 then //Polyline
     [btn,xc,yc]=xclick()
     xpoly([xc;xc],[yc;yc])
     show_pixmap()
     r=gce();r.foreground=-1;
-    while %t
+    r.data(:,3)=0.;
+    r.clip_state='off';
+    xinfo(mess1)
+     while %t
       while rep(3)==-1 do
 	rep=xgetmouse()
-	r.data($,:)=[rep(1),rep(2)]
+	r.data($,:)= [rep(1),rep(2),0]
 	show_pixmap()
+	xinfo(mess1)
       end 
       if rep(3)==2 then break,end
       rep(3)=-1;
       r.data=[r.data;r.data($,:)]
     end
-  case 4 then //Text
+  case 4 // Arrow (single arrow)
+    [btn,xc,yc]=xclick()
+    xpoly([xc;xc],[yc;yc])
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    r.data(:,3)=0.;
+    r.polyline_style = 4;
+    r.arrow_size_factor=5; // change the factor to have a nice arrow
+    r.clip_state='off';
+    xinfo(mess2)
+    yc = [];
+    while %t
+      while rep(3)==-1 do
+	rep=xgetmouse()
+	r.data($,:)= [rep(1),rep(2),0]
+	show_pixmap()
+	xinfo(mess2)
+      end 
+      if rep(3)<>-1 then break,end
+      rep(3)=-1;
+      r.data=[r.data;r.data($,:)]
+    end
+  case 5 // Double Arrow (single arrow)
+    [btn,xc,yc]=xclick()
+    xpoly([xc;xc],[yc;yc])
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    r.data(:,3)=0.;
+    r.polyline_style = 4;
+    r.arrow_size_factor=5; // change the factor to have a nice arrow
+    r.clip_state='off';
+    xinfo(mess2)
+    yc = [];
+    while %t
+      while rep(3)==-1 do
+	rep=xgetmouse()
+	r.data($,:)= [rep(1),rep(2),0]
+	show_pixmap()
+	xinfo(mess2)
+      end 
+      if rep(3)<>-1 then break,end
+      rep(3)=-1;
+      r.data=[r.data;r.data($,:)]
+    end
+    // second polyline (for the seconf arrow from end to origin)
+    xpoly([r.data(2,1);r.data(1,1)],[r.data(2,2);r.data(1,2)])
+    r=gce();r.foreground=-1;
+    r.data(:,3)=0.;
+    r.polyline_style = 4;
+    r.arrow_size_factor=5; // change the factor to have a nice arrow
+    r.clip_state='off';
+  case 6 then //Text
     
-  case 5 then //Circle
+  case 7 then //Circle
     [btn,xc,yc]=xclick()
     xarc(xc,yc,0,0,0,64*360)
     show_pixmap()
     r=gce();r.foreground=-1;
+    r.clip_state='off';
+    xinfo(mess1)
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
       show_pixmap()
+      xinfo(mess1)
     end 
 
   end
