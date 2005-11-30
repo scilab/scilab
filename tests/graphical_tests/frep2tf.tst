@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/frep2tf_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/frep2tf_data.ref','r');
 s = poly(0, 's');
 h = syslin('c', (s - 1)/(s^3 + 5 * s + 20));
 if load_ref('h') then   pause,end,

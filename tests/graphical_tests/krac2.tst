@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/krac2_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/krac2_data.ref','r');
 h = syslin('c', 352 * poly(-5, 's')/poly([0,0,2000,200,25,1], 's', 'c'));
 xbasc_run();%ans = evans(h, 100);
 if load_ref('%ans') then   pause,end,

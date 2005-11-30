@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/window_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/window_data.ref','r');
 // Hamming window
 %ans = clf_run();
 if load_ref('%ans') then   pause,end,

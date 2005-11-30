@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/polarplot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/polarplot_data.ref','r');
 
 t = 0:0.01:2 * %pi;
 clf_run();%ans = polarplot(sin(7 * t), cos(8 * t));

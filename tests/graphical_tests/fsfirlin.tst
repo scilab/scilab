@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/fsfirlin_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fsfirlin_data.ref','r');
 //
 //Example of how to use the fsfirlin macro for the design
 //of an FIR filter by a frequency sampling technique.

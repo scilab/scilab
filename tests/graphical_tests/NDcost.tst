@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/NDcost_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/NDcost_data.ref','r');
 // example #1 (a simple one)
 //function to minimize
 function f=rosenbrock(x,varargin)

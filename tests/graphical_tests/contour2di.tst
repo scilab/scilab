@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/contour2di_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/contour2di_data.ref','r');
 [xc,yc] = contour2di(1:10, 1:10, rand(10, 10), 5);
 k = 1;n = yc(k);c = 1;
 while (k + yc(k)) < size(xc, '*') then

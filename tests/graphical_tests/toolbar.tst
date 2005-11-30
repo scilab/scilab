@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/toolbar_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/toolbar_data.ref','r');
 %ans = toolbar(-1, 'off');
 if load_ref('%ans') then   pause,end,
 

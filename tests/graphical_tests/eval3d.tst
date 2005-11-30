@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/eval3d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/eval3d_data.ref','r');
 x = -5:5;y = x;
 deff('[z]=f(x,y)', 'z= x.*y');
 z = eval3d(f, x, y);

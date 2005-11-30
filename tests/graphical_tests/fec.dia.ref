@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/Examples_eng/graphic/fec_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fec_data.ref','r');
  
 // define a mini triangulation (4 vertices, 2 triangles)
  

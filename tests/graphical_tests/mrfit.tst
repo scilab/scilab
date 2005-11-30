@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/mrfit_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/mrfit_data.ref','r');
 w = 0.01:0.01:2;s = poly(0, 's');
 G = syslin('c', 2 * (s^2 + 0.1 * s + 2), (s^2 + s + 1) * (s^2 + 0.3 * s + 1));// syslin('c',Num,Den);
 fresp = repfreq(G, w);

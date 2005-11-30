@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/xrect_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xrect_data.ref','r');
 %ans = plot2d(0, 0, -1, '010', ' ', [-2,-2,2,2]);
 if load_ref('%ans') then   pause,end,
 

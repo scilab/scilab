@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/datafit_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/datafit_data.ref','r');
 %ans = deff('y=FF(x)', 'y=a*(x-b)+c*x.*x');
 if load_ref('%ans') then   pause,end,
 

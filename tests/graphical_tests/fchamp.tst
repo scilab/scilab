@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/fchamp_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fchamp_data.ref','r');
 
 %ans = deff('[xdot] = derpol(t,x)', ['xd1 = x(2)';'xd2 = -x(1) + (1 - x(1)**2)*x(2)';'xdot = [ xd1 ; xd2 ]']);
 if load_ref('%ans') then   pause,end,

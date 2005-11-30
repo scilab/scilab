@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/replot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/replot_data.ref','r');
 backupstyle = '?';
 if load_ref('backupstyle') then   pause,end,
 

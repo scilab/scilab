@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/interp_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/interp_data.ref','r');
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/legendre_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/legendre_data.ref','r');
 // example 1 : plot of the 6 first Legendre polynomials on (-1,1)
 l = nearfloat('pred', 1);
 x = linspace(-l, l, 200)';

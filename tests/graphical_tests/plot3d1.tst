@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/plot3d1_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/plot3d1_data.ref','r');
 // simple plot using z=f(x,y)
 t = (0:0.3:2 * %pi)';z = sin(t) * cos(t');
 %ans = plot3d1(t, t, z);

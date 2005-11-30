@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/plot2d4_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/plot2d4_data.ref','r');
 
 // compare the following with plot2d1
 x = (0:0.1:2 * %pi)';

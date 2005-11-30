@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/fftshift_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fftshift_data.ref','r');
 //make a signal
 t = 0:0.1:1000;
 x = 3 * sin(t) + 8 * sin(3 * t) + 0.5 * sin(5 * t) + 3 * rand(t);

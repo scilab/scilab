@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/xfpolys_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xfpolys_data.ref','r');
 %ans = set('figure_style', 'new');
 if load_ref('%ans') then   pause,end,
 

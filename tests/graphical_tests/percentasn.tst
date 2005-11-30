@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/percentasn_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/percentasn_data.ref','r');
 m = 0.8;z = %asn(1/sqrt(m), m);K = real(z);Ktilde = imag(z);
 x2max = 1/sqrt(m);
 x1 = 0:0.05:1;x2 = 1:(x2max - 1)/20:x2max;x3 = x2max:0.05:10;

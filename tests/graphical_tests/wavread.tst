@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/wavread_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/wavread_data.ref','r');
 %ans = wavread('SCI/demos/signal/sound/chimes.wav', 'size');
 if load_ref('%ans') then   pause,end,
 

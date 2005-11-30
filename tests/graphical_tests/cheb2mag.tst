@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/cheb2mag_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/cheb2mag_data.ref','r');
 //Chebyshev; ripple in the stopband
 n = 10;omegar = 6;A = 1/0.2;sample = 0.0001:0.05:10;
 h2 = cheb2mag(n, omegar, A, sample);

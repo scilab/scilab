@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/graduate_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/graduate_data.ref','r');
 y = (0:0.33:145.78)';
 xbasc_run();%ans = plot2d1('enn', 0, y);
 if load_ref('%ans') then   pause,end,

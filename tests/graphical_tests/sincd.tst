@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/sincd_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/sincd_data.ref','r');
 %ans = plot(sincd(10, 1));
 if load_ref('%ans') then   pause,end,
 

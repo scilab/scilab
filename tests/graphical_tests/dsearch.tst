@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/dsearch_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/dsearch_data.ref','r');
 // example #1 (elementary stat for U(0,1))
 m = 50000;n = 10;
 X = grand(m, 1, 'def');

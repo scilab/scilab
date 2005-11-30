@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/Examples_eng/graphic/frep2tf_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/frep2tf_data.ref','r');
  
 s = poly(0, 's');
  

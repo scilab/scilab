@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/iir_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/iir_data.ref','r');
 hz = iir(3, 'bp', 'ellip', [0.15,0.25], [0.08,0.03]);
 [hzm,fr] = frmag(hz, 256);
 %ans = plot2d(fr', hzm');

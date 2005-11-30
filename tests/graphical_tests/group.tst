@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/group_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/group_data.ref','r');
 z = poly(0, 'z');
 h = z/(z - 0.5);
 [tg,fr] = group(100, h);

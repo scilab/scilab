@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/contourf_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/contourf_data.ref','r');
 %ans = contourf(1:10, 1:10, rand(10, 10), 5, 1:5, '011', ' ', [0,0,11,11]);
 if load_ref('%ans') then   pause,end,
 

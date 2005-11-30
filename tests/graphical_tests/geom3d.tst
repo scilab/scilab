@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/geom3d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/geom3d_data.ref','r');
 %ans = deff('[z]=surf(x,y)', 'z=sin(x)*cos(y)');
 if load_ref('%ans') then   pause,end,
 

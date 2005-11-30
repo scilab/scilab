@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/graphics_entities_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/graphics_entities_data.ref','r');
 
 
 //Play this example line per line

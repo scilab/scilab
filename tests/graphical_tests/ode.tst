@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/ode_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/ode_data.ref','r');
 // ---------- Simple one dimension ODE (Scilab function external)
 // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
 function ydot=f(t,y)

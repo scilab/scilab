@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/fgrayplot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fgrayplot_data.ref','r');
 t = -1:0.1:1;
 %ans = deff('[z]=surf(x,y)', 'z=x**2+y**2');
 if load_ref('%ans') then   pause,end,

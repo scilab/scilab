@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/LineSpec_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/LineSpec_data.ref','r');
 x = 1:0.1:10;// Init.
 %ans = plot(x, sin(x), 'r.->');
 if load_ref('%ans') then   pause,end,

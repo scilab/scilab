@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/xsegs_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xsegs_data.ref','r');
 
 x = 2 * %pi * (0:9)/10;
 xv = [sin(x);9 * sin(x)];

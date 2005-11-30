@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/binomial_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/binomial_data.ref','r');
 // first example
 n = 10;p = 0.3;xbasc_run();plot2d3(0:n, binomial(p, n));
 

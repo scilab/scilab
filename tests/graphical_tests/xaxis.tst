@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/xaxis_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xaxis_data.ref','r');
 x = (-%pi:0.1:%pi)';
 // plot without axis
 %ans = plot2d(x, sin(x), 1, '010', ' ', [-4,-1,4,1]);

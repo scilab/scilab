@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/contour2d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/contour2d_data.ref','r');
 %ans = contour2d(1:10, 1:10, rand(10, 10), 5, rect=[0,0,11,11]);
 if load_ref('%ans') then   pause,end,
 

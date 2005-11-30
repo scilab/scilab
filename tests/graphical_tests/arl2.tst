@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/arl2_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/arl2_data.ref','r');
 v = ones(1, 20);
 xbasc_run();
 %ans = plot2d1('enn', 0, [v';zeros(80, 1)], 2, '051', ' ', [1,-0.5,100,1.5]);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/phc_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/phc_data.ref','r');
 //
 //This example may usefully be compared with the results from
 //the 'levin' macro (see the corresponding help and example)

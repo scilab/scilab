@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/g_margin_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/g_margin_data.ref','r');
 h = syslin('c', -1 + %s, 3 + 2 * %s + %s^2);
 if load_ref('h') then   pause,end,
 

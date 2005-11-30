@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/xlfont_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xlfont_data.ref','r');
 // Caution : this example may not work if your system have not
 //           the schoolbook bold font
 if MSDOS then 

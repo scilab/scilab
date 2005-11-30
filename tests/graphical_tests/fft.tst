@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/fft_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fft_data.ref','r');
 //Comparison with explicit formula
 //----------------------------------
 a = [1;2;3];n = size(a, '*');

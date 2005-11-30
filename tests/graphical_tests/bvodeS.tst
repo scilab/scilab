@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/bvodeS_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/bvodeS_data.ref','r');
 // 1. Modified example from help bvode.
 
 // DE:  y1''''(x)=(1-6*x*x*y1'''(x)-6*x*y1''(x))/(y2(x)^3)

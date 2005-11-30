@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/loadplots_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/loadplots_data.ref','r');
 
 %ans = set('old_style', 'on');
 if load_ref('%ans') then   pause,end,

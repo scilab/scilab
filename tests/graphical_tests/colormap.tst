@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/colormap_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/colormap_data.ref','r');
 n = 64;
 r = linspace(0, 1, n)';
 g = linspace(1, 0, n)';

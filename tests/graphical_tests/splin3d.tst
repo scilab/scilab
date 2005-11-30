@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/Examples_eng/graphic/splin3d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/splin3d_data.ref','r');
 // example 1
 func = 'v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)';
 deff('v=f(x,y,z)', func);
