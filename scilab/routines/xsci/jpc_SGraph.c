@@ -177,6 +177,7 @@ btn_pressed(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
+  int x,y;
   /* The following instruction has been commented out not to lose btn_pressed 
      emited just before an xclick or xgemouse call
     if (!get_wait_click()) return;
@@ -198,6 +199,9 @@ btn_pressed(widget, event, params, num_params)
   lose_up = FALSE;
   dclick = FALSE;
 
+  /*preserve the position at press time */
+  x=event->xbutton.x;
+  y=event->xbutton.y;
   /*Wait until wait_dclick becomes FALSE 
     - either because of two consecutive btn press
     - either because of timeout 
@@ -234,16 +238,13 @@ btn_pressed(widget, event, params, num_params)
     }
     else { /* button pressed detected [0 1 2]*/
       if (params[0][0]=='0')
-	PushClickQueue(GetEventWindow(event),event->xbutton.x,
-		       event->xbutton.y,
+	PushClickQueue(GetEventWindow(event),x,y,
 		       event->xbutton.button-1,0,0);
       else if (params[0][0]=='1') /*shift press*/
-	PushClickQueue(GetEventWindow(event),event->xbutton.x,
-		       event->xbutton.y,
+	PushClickQueue(GetEventWindow(event),x,y,
 		       event->xbutton.button-1+2000,0,0);
       else if (params[0][0]=='2') /*ctrl press*/
-	PushClickQueue(GetEventWindow(event),event->xbutton.x,
-		       event->xbutton.y,
+	PushClickQueue(GetEventWindow(event),x,y,
 		       event->xbutton.button-1+1000,0,0);
 
     }
