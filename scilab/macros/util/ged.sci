@@ -2176,30 +2176,35 @@ function ged_new_entity()
       show_pixmap()
       xinfo(mess2)
     end 
-  case 5 // Double Arrow (single arrow)
+  case 5 // Double Arrow
     [btn,xc,yc]=xclick()
+  
     xpoly([xc;xc],[yc;yc])
-    show_pixmap()
-    r=gce();r.foreground=-1;
-    r.data(:,3)=0.;
-    r.polyline_style = 4;
-    r.arrow_size_factor=5; // change the factor to have a nice arrow
-    r.clip_state='off';
+    r1=gce();r.foreground=-1;
+    r1.data(:,3)=0.;
+    r1.polyline_style = 4;
+    r1.arrow_size_factor=5; // change the factor to have a nice arrow
+    r1.clip_state='off';
+    
+    // second polyline (for the seconf arrow from end to origin)
+    xpoly([xc;xc],[yc;yc])
+    //xpoly([r.data(2,1);r.data(1,1)],[r.data(2,2);r.data(1,2)])
+    r2=gce();r.foreground=-1;
+    r2.data(:,3)=0.;
+    r2.polyline_style = 4;
+    r2.arrow_size_factor=5; // change the factor to have a nice arrow
+    r2.clip_state='off';
+    
     xinfo(mess2)
-    yc = [];
+    show_pixmap()
     while rep(3)==-1 do
       rep=xgetmouse()
-      r.data($,:)= [rep(1),rep(2),0]
+      r1.data($,:)= [rep(1),rep(2),0]
+      r2.data(1,:)= [rep(1),rep(2),0]
       show_pixmap()
       xinfo(mess2)
     end 
-    // second polyline (for the seconf arrow from end to origin)
-    xpoly([r.data(2,1);r.data(1,1)],[r.data(2,2);r.data(1,2)])
-    r=gce();r.foreground=-1;
-    r.data(:,3)=0.;
-    r.polyline_style = 4;
-    r.arrow_size_factor=5; // change the factor to have a nice arrow
-    r.clip_state='off';
+  
   case 6 then //Text
     
   case 7 then //Circle
