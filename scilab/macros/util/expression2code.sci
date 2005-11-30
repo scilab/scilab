@@ -246,7 +246,7 @@ end
 case "cste" then
   C=sci2exp(e.value)
   if C==""":""" then
-    C=":"
+    //C=":"
   elseif C=="""$""" then
     C="$"
   elseif C=="""*""" then // Only used in M2SCI
