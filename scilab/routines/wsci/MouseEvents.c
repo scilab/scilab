@@ -47,6 +47,8 @@ static int MOUSEX=0;
 static int MOUSEY=0;
 static int horzsinPos=0;
 static int vertsinPos=0;
+
+static BOOL OnMove=FALSE;
 /*-----------------------------------------------------------------------------------*/
 void CALLBACK LeftPressedClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data);
 void CALLBACK LeftSingleClick(HWND hwnd,UINT msg,UINT_PTR id,DWORD data);
@@ -91,14 +93,16 @@ void ON_EVENT_GRAPH_WM_LBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 
 	MOUSEX= x;
 	MOUSEY= y;
-
-	if (LeftPressedON)
+	
+	if ( (LeftPressedON) || (OnMove) )
 	{
 		if (bTimerLeftPressedON) 
 		{
 			KillTimer(ScilabGC->CWindow, TIMER1LEFTBUTTON);
 			bTimerLeftPressedON=FALSE;
 		} 
+
+		OnMove=FALSE;
 
 		if (GetKeyState(VK_CONTROL)<0)
 		{
@@ -113,7 +117,7 @@ void ON_EVENT_GRAPH_WM_LBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 		}
 		else
 		{
-			/*sciprint("Left Button Released\n");*/
+			/*sciprint("Send Released Button %d\n",RELEASED_LEFT);*/
 			PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, RELEASED_LEFT, 0, -1);
 		}
 
@@ -218,13 +222,15 @@ void ON_EVENT_GRAPH_WM_MBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 	MOUSEX= x;
 	MOUSEY= y;
 
-	if (MiddlePressedON)
+	if ( (MiddlePressedON) || (OnMove) )
 	{
 		if (bTimerMiddlePressedON) 
 		{
 			KillTimer(ScilabGC->CWindow, TIMER1MIDDLEBUTTON);
 			bTimerMiddlePressedON=FALSE;
-		} 
+		}
+
+		OnMove=FALSE;
 
 		if (GetKeyState(VK_CONTROL)<0)
 		{
@@ -343,13 +349,15 @@ void ON_EVENT_GRAPH_WM_RBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 	MOUSEX= x;
 	MOUSEY= y;
 
-	if (RightPressedON)
+	if ( (RightPressedON) || (OnMove) )
 	{
 		if (bTimerRightPressedON) 
 		{
 			KillTimer(ScilabGC->CWindow, TIMER1RIGHTBUTTON);
 			bTimerRightPressedON=FALSE;
-		} 
+		}
+
+		OnMove=FALSE;
 
 		if (GetKeyState(VK_CONTROL)<0)
 		{
@@ -364,7 +372,7 @@ void ON_EVENT_GRAPH_WM_RBUTTONUP(HWND hwnd, int x, int y, UINT keyFlags)
 		}
 		else
 		{
-			/*sciprint("Right Button Released\n");*/
+			/*sciprint("Send Released Button %d\n",RELEASED_RIGHT);*/
 			PushClickQueue (CurrentWindow, MOUSEX+horzsinPos,MOUSEY + vertsinPos, RELEASED_RIGHT, 0, -1);
 		}
 
@@ -437,7 +445,7 @@ void ON_EVENT_GRAPH_WM_RBUTTONDBLCLK(HWND hwnd, BOOL fDoubleClick, int x, int y,
 void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 {
 	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
-
+	
 	horzsinPos=ScilabGC->horzsi.nPos;
 	vertsinPos=ScilabGC->vertsi.nPos;
 
@@ -457,6 +465,7 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 	if ( (bTimerLeftPressedON) || (bTimerRightPressedON) || (bTimerMiddlePressedON) ||
 		   (bTimerLeftSingleClickON) || (bTimerMiddleSingleClickON) || (bTimerRightSingleClickON) )
 	{
+		OnMove=FALSE;
 		if (bTimerLeftPressedON)
 		{
 			if (GetKeyState(VK_CONTROL)<0)
@@ -586,6 +595,7 @@ void ON_EVENT_GRAPH_WM_MOUSEMOVE(HWND hwnd, int x, int y, UINT keyFlags)
 	else
 	{
 		PushClickQueue (ScilabGC->CurWindow,(int) x +horzsinPos,y +vertsinPos, -1, 1, 0);
+		OnMove=TRUE;
 	}
 
 }

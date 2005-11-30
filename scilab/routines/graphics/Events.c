@@ -122,10 +122,17 @@ int  get_delete_win_mode(void) {  return sci_graphic_protect;}
  * he want the queue to be used 
  ---------------------------------------------------------*/
 
+/*Only for test */
+/*static int iEventsmouse=0; */
 
 int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
+	/*if (release==-1)
+	{
+		sciprint("Receive Released button : %d %d\n",ibut,iEventsmouse);
+		iEventsmouse++;
+	}*/
   /* first let a click_handler do the job  */
   if (  wait_for_click==0){
     if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
