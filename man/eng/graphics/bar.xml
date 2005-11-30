@@ -98,8 +98,7 @@
 		type 6) included in the current working axes.</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE>
-<![CDATA[
+	<EXAMPLE><![CDATA[
 // First example: draw a bar (i.e a polyline with polyline_style type =6),default style='grouped', width=0.5, color='yellow', default x=1:length(y)
 scf(0);
 y=[1 -3 5];
@@ -119,8 +118,7 @@ bar(x,y,'stacked');
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 bar(x,y,0.2,'green');
-]]>
-	</EXAMPLE>
+]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>

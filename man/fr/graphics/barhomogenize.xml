@@ -62,8 +62,7 @@
 		abscisses, et l'option style fixée à  'stacked' permet de les empiler.</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE>
-<![CDATA[
+	<EXAMPLE><![CDATA[
 // Premier exemple : creation d'une barre jaune(i.e une polyline de type polyline_style=6) et de 3 barres(i.e 3 polylines de type polyline_style=6)
 subplot(2,3,1)
 xtitle('ex1: creation of 1 yellow bar and  3 bars')
@@ -110,8 +109,7 @@ barhomogenize();
 // change the style and the width
 //barhomogenize('stacked',0.5);
 //barhomogenize('stacked',1);
-]]>
-	</EXAMPLE>
+]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
