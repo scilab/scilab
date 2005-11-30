@@ -468,10 +468,10 @@ proc backgroundcolorize {w} {
 # initialize the colorization progressbar,
 # and keep track of the buffers currently being colorized
 
-    global allowbackgroundcolorization nbfilescurrentlycolorized
+    global backgroundtasksallowed nbfilescurrentlycolorized
     global pad progressbarId listoffile
 
-    if {!$allowbackgroundcolorization} {
+    if {!$backgroundtasksallowed} {
         # colorize actually in foreground
 
         set progressbar [Progress $pad.cp0]

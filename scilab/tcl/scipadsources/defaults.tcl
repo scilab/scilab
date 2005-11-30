@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.62"
+set version "Version 5.63"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -129,14 +129,14 @@ set tileprocalreadyrunning false
 # during search in file, the other functionalities of Scipad are however enabled
 set searchinfilesalreadyrunning 0
 
-# colorization in background
-# Linux has bug 865 (originated in bug 473) preventing the colorization to be
+# background tasks (colorization, keyposn)
+# Linux has bug 865 (originated in bug 473) preventing taks to be
 # done in the background - Same issue as for cursor blinking
 # See http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=865
 if {$tcl_platform(platform)=="unix"} {
-    set allowbackgroundcolorization false
+    set backgroundtasksallowed false
 } else {
-    set allowbackgroundcolorization true
+    set backgroundtasksallowed true
 }
 
 # some commands cannot be executed while colorization is in progress, and

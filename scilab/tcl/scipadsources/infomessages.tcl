@@ -24,8 +24,13 @@ proc keyposn {textarea} {
 # and launch only the latest command
 # dokeyposn is catched to deal more easily with buffers that were closed
 # before the command could be processed
-     after cancel [list after 1 "catch \"dokeyposn $textarea\""]
-     after idle   [list after 1 "catch \"dokeyposn $textarea\""]
+    global backgroundtasksallowed
+    if {$backgroundtasksallowed} {
+        after cancel [list after 1 "catch \"dokeyposn $textarea\""]
+        after idle   [list after 1 "catch \"dokeyposn $textarea\""]
+    } else {
+        dokeyposn $textarea
+    }
 }
 
 proc dokeyposn {textarea} {

@@ -1775,3 +1775,7 @@ Francois VOGEL, 29/11/05
  * New saved option: Show continued lines, whose background color is a saved
    preference
  * version --> 5.62
+
+Francois VOGEL, 30/11/05
+ * All background tasks forbidden on Linux
+ * version --> 5.63
