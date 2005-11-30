@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.56
+# in sync at least with v5.62
 
 
 # commons
@@ -12,6 +12,7 @@
 ::msgcat::mcset it "Untitled" "SenzaTitolo"
 ::msgcat::mcset it "Close" "Chiudi"
 ::msgcat::mcset it "&Close" "&Chiudi"
+
 
 # buffernavigation.tcl
 ::msgcat::mcset it "Goto Line?" "Vai alla linea?"
@@ -30,7 +31,8 @@
 ::msgcat::mcset it "You can't do that while colorization is in progress.\
                     Please try again when finished."\
                    "Non si può fare questo prima che la colorazione sia\
-                    completata. Aspettare il termine della colorazione e riprovare"
+                    completata. Aspettare il termine della colorazione e\
+                    riprovare"
 ::msgcat::mcset it "Command forbidden during colorization"\
                    "Comando non consentito mentre la colorazione è in corso"
 
@@ -353,11 +355,13 @@
 ::msgcat::mcset it "&large" "&grande"
 ::msgcat::mcset it "&Colors" "&Colori"
 ::msgcat::mcset it "Colorize \'&strings\'" "Colora \'&stringhe\'"
+::msgcat::mcset it "Show c&ontinued lines"\
+                   "Colora linee &incomplete"
 ::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
 ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
 ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
 ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
-::msgcat::mcset it "Com&pletion" "Autocompletamento"
+::msgcat::mcset it "Com&pletion" "&Autocompletamento"
 ::msgcat::mcset it "&Tab" "&Tab"
 ::msgcat::mcset it "&Control-Tab" "&Control-Tab"
 ::msgcat::mcset it "&Alt-Tab" "&Alt-Tab"
@@ -394,6 +398,14 @@
 ::msgcat::mcset it "&Help..." "&Aiuto..."
 ::msgcat::mcset it "&What's?..." "&Cos'è?..."
 ::msgcat::mcset it "&About" "A &proposito"
+::msgcat::mcset it "Adding &translations..." "&Tradurre Scipad..."
+::msgcat::mcset it "Adding Scipad Translations..."\
+                   "Creare una nuova traduzione di Scipad:"
+::msgcat::mcset it "&Bugs \& wishlist" "&Bachi \& richieste"
+::msgcat::mcset it "Scipad Known bugs" "Bachi noti in Scipad"
+::msgcat::mcset it "Change&log" "Cronologia &modifiche"
+::msgcat::mcset it "Changes in the Scipad codebase"\
+                   "Cronologia delle modifiche al codice di Scipad"
 
 
 # popupmenus.tcl
@@ -505,6 +517,7 @@
 ::msgcat::mcset it "LFUNCOLOR" "Funzioni di libreria"
 ::msgcat::mcset it "PDEFCOLOR" "Variabili predefinite"
 ::msgcat::mcset it "FOUNDTEXTCOLOR" "Testo trovato"
+::msgcat::mcset it "CONTLINECOLOR" "Linea incompleta"
 
 
 #overriding tcl-core dialogs (many are actually already found in
