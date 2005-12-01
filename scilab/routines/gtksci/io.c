@@ -332,7 +332,7 @@ int Xorgetchar(int interrupt)
        FD_SET(fd_err,&write_mask); */
 
     select_timeout.tv_sec =  0;
-    select_timeout.tv_usec = 100000;
+    select_timeout.tv_usec = 10;
     while ( gtk_events_pending())
       { 
 	gtk_main_iteration(); 
