@@ -24,9 +24,6 @@
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 extern integer C2F(ismenu)();
 extern int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry);
-extern int CheckClickQueue(integer *win,integer *x,integer *y,integer *ibut);
-extern int ClearClickQueue(int win);
-extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
 extern void * graphic_initial_menu(int winid);
 extern void MenuFixCurrentWin __PARAMS(( int ivalue));
 extern void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *,int *));
@@ -500,6 +497,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
   guint timer_tk;
   GTK_locator_info rec_info ; 
   int win = -1,i;
+  int motion,release,ok;
   int wincount = GetWinsMaxId()+1;
   if (wincount == 0) 
     {
@@ -507,14 +505,19 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
       return; 
     }
   
-  
-  /* checks  if we already have something on the queue **/  
+  if ( *iflag ==0 )   ClearClickQueue(-1);  /*clear the queue if required*/
+  /* checks  if we already have something on the queue **/ 
+ 
+    win=-1;
+    ok=0;
+    while (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1) {
+      if ((motion==0) && (release==0)) {
+	*iwin = win ;
+	ok=1;
+	break;
+      }
 
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1)  
-    {
-      *iwin = win ; return;
     }
-  if ( *iflag ==0 )   ClearClickQueue(-1);
 
   /* change the cursors */ 
 
@@ -631,12 +634,12 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
 {
   guint timer_tk;
   GTK_locator_info rec_info ; 
-  int win;
+  int win,motion,release,ok;
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->Cdrawable == NULL ) {
     *ibutton = -100;     return;
   }
   win = ScilabXgc->CurWindow;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
+  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1) 
     { 
       /* sciprint("ds la queue %f %f \n",(double) *x1,(double) *yy1);*/ /* XXXX */
       return ;

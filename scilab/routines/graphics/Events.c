@@ -137,13 +137,10 @@ int PushClickQueue(int win,int x,int y,int ibut,
   if (  wait_for_click==0){
     if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
   }
-  /* do not record motion events and release button 
-   * this is left for a futur release 
-   */
-  /*if (motion==1) printf("%d ",(wait_for_click&2)&&motion);*/
   if (  wait_for_click==0 &&(motion == 1 || release == 1) ) return 0;
   if (((wait_for_click&2)&&motion)||((wait_for_click&4)&&release)||(motion==0&&release==0)) {
   /* store click event in a queue */
+
   if ( lastc == MaxCB ) 
     {
       int i;
@@ -172,7 +169,7 @@ int PushClickQueue(int win,int x,int y,int ibut,
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/
-int CheckClickQueue(int *win,int *x,int *y,int *ibut)
+int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release)
 {
   int i;
   for ( i = 0 ; i < lastc ; i++ )
@@ -184,6 +181,8 @@ int CheckClickQueue(int *win,int *x,int *y,int *ibut)
 	  *x= ClickBuf[i].x ;
 	  *y= ClickBuf[i].y ;
 	  *ibut= ClickBuf[i].ibutton; 
+	  *motion= ClickBuf[i].motion ;
+	  *release= ClickBuf[i].release ;
 	  for ( j = i+1 ; j < lastc ; j++ ) 
 	    {
 	      ClickBuf[j-1].win = ClickBuf[j].win ;
@@ -240,9 +239,12 @@ void seteventhandler(int *win_num,char *name,int *ierr)
   strncpy(SciGc->EventHandler,name,24);
 }
 /*-----------------------------------------------------------------------------------*/
-void set_wait_click(val)
+void set_wait_click(int val)
 {  
-  wait_for_click=val;
+  if (val==1) {
+    wait_for_click=val;
+  }else
+    wait_for_click=val;
 }
 
 /*-----------------------------------------------------------------------------------*/

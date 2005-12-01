@@ -794,7 +794,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
   integer win;
   integer wincount;
   integer lstr ;
-
+  int motion,release,ok;
   // reinitialisation à -1
   // correction bg
   // plot2d();  => fermer la fenêtre du plot avec la croix.
@@ -819,18 +819,23 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
   /* ignore the first event if it is a ClientMessage */ 
 
   /** first check if an event has been store in the queue while wait_for_click was 0 **/
-  
+  set_wait_click(1+4);
   while (1) 
     {
       win=-1;
-      if (CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
-	{
-	  /* the clickqueue does not record move nor release events yet*/
+      ok=0;
+      while (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1) {
+	if ((motion==0) && (release==0)) {
 	  *iwin = win ;
+	  ok=1;
 	  break;
 	}
+
+	win=-1;
+      }
+      if(ok) break;
+
       /* get next event */
-      set_wait_click(1);
       C2F(sxevents)();
       Sleep(1);
 
@@ -860,7 +865,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
 	}
 
     }
-  set_wait_click(0);
+  set_wait_click(1+4);
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
@@ -974,10 +979,13 @@ static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
 void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      integer *ibutton,*x1,*yy1, *iflag,*lstr;
      int getmouse,dyn_men,getrelease;
+     integer ok,choice,motion,release;
+
      char *str;
 {
   int win;
   
+  choice=(dyn_men>1); /* depending on lhs */
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
     {
       *x1   =  -1;
@@ -993,18 +1001,24 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   /** Pas necessaire en fait voir si c'est mieux ou moins bien **/
   if (IsIconic(ScilabXgc->hWndParent)) ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
   BringWindowToTop(ScilabXgc->hWndParent);
-  
+
+  set_wait_click(1+2*getmouse+4*getrelease);
+
   while ( 1 ) 
     {
       /** first check if an event has been store in the queue while wait_for_click was 0 **/
-      if (CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
-	{
-	  /* the clickqueue does not record move nor release events yet*/
+      if (choice) win=-1;
+      ok=0;
+      if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
+	if ((release&&getrelease) || (motion&&getmouse) ||(~motion&&~release)){
+	  *iflag=win;
+	  ok=1;
 	  break;
 	}
-      
-      /*set wait_for_click=1 so that next event will be stored  */
-      set_wait_click(1+2*getmouse+4*getrelease);
+	if (choice) win=-1;
+      }
+      if(ok) break;
+
       /* make the X and tk event loop */
       C2F(sxevents)();
       Sleep(1);
@@ -1038,7 +1052,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
 	}
     }
    
-  set_wait_click(0);
+  set_wait_click(1+4);
 }
  
 /*-----------------------------------------------------------------------------------*/

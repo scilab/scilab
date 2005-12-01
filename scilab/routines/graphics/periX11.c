@@ -29,7 +29,7 @@
 #include "../version.h"
 #include "color.h"
 #include "bcg.h"
-
+#include "Events.h"
 #ifdef WITH_TK
 #include <tcl.h>
 #include <tk.h>
@@ -43,8 +43,7 @@ extern void AddMenu  __PARAMS((integer *win_num, char *button_name, char **entri
 extern int XRotDrawString();
 /** jpc_SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
-extern int CheckClickQueue   __PARAMS((integer *,integer *x,integer *y,integer *ibut));
-extern int ClearClickQueue  __PARAMS((integer));
+
 void CreatePopupWindow  __PARAMS((integer WinNum,Widget top,struct BCG *, Pixel *fg,Pixel *bg));
 extern void GViewportResize __PARAMS((struct BCG *ScilabXgc, int *width,int *height));
 
@@ -468,9 +467,10 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 {
   Window CW;
   int buttons = 0;
-  integer i,win;
+  integer i,win,ok;
   integer wincount;
   integer lstr ;
+  int motion,release;
   struct timeval delay; /* usec, to slow down event loop */
 
   wincount =  GetWinsMaxId()+1;
@@ -493,17 +493,23 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 
   /* ignore the first event if it is a ClientMessage */ 
   set_client_message_on();
-
+  set_wait_click(1+4);
   while (buttons == 0) {
     /** first check if an event has been store in the queue while wait_for_click was 0 **/
     win=-1;
-    if (CheckClickQueue(&win,x1,yy1,ibutton) == 1) {
-      /* the clickqueue does not record move nor release events yet*/
-      *iwin = win ;
-      break;
+    ok=0;
+    while (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1) {
+      if ((motion==0) && (release==0)) {
+	*iwin = win ;
+	ok=1;
+	break;
+      }
+
+      win=-1;
     }
+    if(ok) break;
     /* get next event */
-    set_wait_click(1);
+
     C2F(sxevents)();
 
    /** Check menu activation **/
@@ -521,7 +527,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
     delay.tv_sec = 0; delay.tv_usec = 10;
     select(0, 0, 0, 0, &delay);
   }
-  set_wait_click(0);
+  set_wait_click(1+4);
   set_client_message_off();
 
   /** Cleanup **/
@@ -553,7 +559,6 @@ void C2F(xclick)(char *str, integer *ibutton, integer *x1, integer *yy1, integer
 
 void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {  /* v7 is used to indicate if lhs is 1 or 2. lhs=1=> v7=0, lhs=2=> v7=1;*/
-
   SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],(v7==NULL)?0:*v7,(char *) 0,(integer *)0);
 }
 
@@ -580,7 +585,8 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
 
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
-  integer buttons = 0,win,choice;
+  integer buttons = 0;
+  integer win,ok,choice,motion,release;
   Window SCWindow;
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
@@ -599,18 +605,24 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
+
+  /*set wait_for_click=1 so that next event will be stored  */
+  set_wait_click(1+2*getmouse+4*getrelease);
+
   while (buttons == 0) 
     {
       /** first check if an event has been store in the queue while wait_for_click was 0 **/
       if (choice) win=-1;
-      if (CheckClickQueue(&win,x1,yy1,ibutton) == 1)  {
-	*iflag=win;
-	/* the clickqueue does not record move nor release events yet*/
-	break;
+      ok=0;
+      if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
+	if ((release&&getrelease) || (motion&&getmouse) ||(~motion&&~release)){
+	  *iflag=win;
+	  ok=1;
+	  break;
+	}
+	if (choice) win=-1;
       }
-      
-      /*set wait_for_click=1 so that next event will be stored  */
-      set_wait_click(1+2*getmouse+4*getrelease);
+      if(ok) break;
       /* make the X and tk event loop */
       C2F(sxevents)();
 
@@ -636,7 +648,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
     /* to slow down event loop not to use all cpu when nothing happen*/
       select(0, 0, 0, 0, &delay);
     }
-  set_wait_click(0); 
+  set_wait_click(1+4); 
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
   XSync (dpy, 0);
