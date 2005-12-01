@@ -503,19 +503,19 @@ res165 = []
 res166 = 1
 // TEST 167
 //res167|3 3|Double|Real
-res167 = [1,%nan,%nan;%nan,%nan,%nan;%nan,%nan,0]
+res167 = [1,%nan,%nan;%nan,%nan,%nan;%nan,%nan,%nan]
 // TEST 168
 //res168|1 1|Double|Real
 res168 = 1
 // TEST 169
 //res169|3 3|Double|Real
-res169 = [1,%nan,%nan;%nan,%nan,%nan;%nan,%nan,0]
+res169 = [1,%nan,%nan;%nan,%nan,%nan;%nan,%nan,%nan]
 // TEST 170
 //res170|1 1|Double|Real
 res170 = 1
 // TEST 171
 //res171|3 3|Double|Real
-res171 = [1,%nan,%nan;%nan,%nan,%nan;%nan,%nan,0]
+res171 = [1,%nan,%nan;%nan,%nan,%nan;%nan,%nan,%nan]
 // TEST 172
 //res172|1 1|Double|Complex
 res172 = %nan+%i*%nan
@@ -557,19 +557,19 @@ res183 = [%nan,%nan,%nan;%nan,%nan,%nan;%nan,%nan,%nan]
 res184 = 1
 // TEST 185
 //res185|3 3|Double|Real
-res185 = [1,0,1;1,1,0;0,1,1]
+res185 = [1,%nan,1;1,1,%nan;%nan,1,1]
 // TEST 186
 //res186|1 1|Double|Real
 res186 = 1
 // TEST 187
 //res187|3 3|Double|Real
-res187 = [1,0,1;1,1,0;0,1,1]
+res187 = [1,%nan,1;1,1,%nan;%nan,1,1]
 // TEST 188
 //res188|1 1|Double|Real
 res188 = 1
 // TEST 189
 //res189|3 3|Double|Real
-res189 = [1,0,1;1,1,0;0,1,1]
+res189 = [1,%nan,1;1,1,%nan;%nan,1,1]
 // TEST 190
 //res190|0 0|Double|Real
 res190 = []
@@ -1100,7 +1100,7 @@ res364 = -%inf
 res365 = %inf
 // TEST 366
 //res366|1 1|Double|Real
-res366 = 0
+res366 = %nan
 // TEST 367
 //res367|1 1|Double|Real
 res367 = %nan
@@ -1121,4 +1121,4 @@ res371 = %nan
 res372 = %nan
 // TEST 373
 //res373|1 1|Double|Real
-res373 = 0
+res373 = %nan
