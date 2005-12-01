@@ -23,23 +23,15 @@ function ged_insert(k,win)
   entities=['Rectangle','Segment','Polyline','Arrow','Double Arrow','Text','Circle']
 
   f=gcf();pix=f.pixmap;f.pixmap='on'
+  default_axes = gca(); // get the default axes where we start
   rep(3)=-1
   select k
-  case 6 then //Rectangle
-    [btn,xc,yc]=xclick()
-    xrect(xc,yc,0,0)
-    show_pixmap()
-    r=gce();r.foreground=-1;
-    r.clip_state='off';
-    xinfo(mess2)
-    while rep(3)==-1 do
-      rep=xgetmouse()
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
-      show_pixmap()
-      xinfo(mess2)
-    end 
   case 1 then //Single Line
     [btn,xc,yc]=xclick()
+    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    [xc,yc] = xchange(xc,yc,'f2i'); // I pass to pixel
+    sca(axes);  // I change axes and therefore change the scale
+    [xc,yc] = xchange(xc,yc,'i2f'); // in the new scale I recompute the corresponding pixel values
     xpoly([xc;xc],[yc;yc])
     show_pixmap()
     r=gce();r.foreground=-1;
@@ -53,6 +45,10 @@ function ged_insert(k,win)
     end 
   case 2 then //Polyline (stroken line)
     [btn,xc,yc]=xclick()
+    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    [xc,yc] = xchange(xc,yc,'f2i');
+    sca(axes);
+    [xc,yc] = xchange(xc,yc,'i2f');
     xpoly([xc;xc],[yc;yc])
     show_pixmap()
     r=gce();r.foreground=-1;
@@ -72,6 +68,10 @@ function ged_insert(k,win)
     end
   case 3 // Arrow (single arrow)
     [btn,xc,yc]=xclick()
+    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    [xc,yc] = xchange(xc,yc,'f2i');
+    sca(axes);
+    [xc,yc] = xchange(xc,yc,'i2f');
     xpoly([xc;xc],[yc;yc])
     show_pixmap()
     r=gce();r.foreground=-1;
@@ -89,7 +89,10 @@ function ged_insert(k,win)
     end 
   case 4 // Double Arrow
     [btn,xc,yc]=xclick()
-  
+    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    [xc,yc] = xchange(xc,yc,'f2i');
+    sca(axes);
+    [xc,yc] = xchange(xc,yc,'i2f');
     xpoly([xc;xc],[yc;yc])
     r1=gce();r.foreground=-1;
     r1.data(:,3)=0.;
@@ -118,8 +121,29 @@ function ged_insert(k,win)
   
   case 5 then //Text
     
+  case 6 then //Rectangle
+    [btn,xc,yc]=xclick();
+    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    [xc,yc] = xchange(xc,yc,'f2i');
+    sca(axes);
+    [xc,yc] = xchange(xc,yc,'i2f'); 
+    xrect(xc,yc,0,0)
+    show_pixmap()
+    r=gce();r.foreground=-1;
+    r.clip_state='off';
+    xinfo(mess2)
+    while rep(3)==-1 do
+      rep=xgetmouse()
+      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
+      show_pixmap()
+      xinfo(mess2)
+    end    
   case 7 then //Circle
     [btn,xc,yc]=xclick()
+    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    [xc,yc] = xchange(xc,yc,'f2i');
+    sca(axes);
+    [xc,yc] = xchange(xc,yc,'i2f');
     xarc(xc,yc,0,0,0,64*360)
     show_pixmap()
     r=gce();r.foreground=-1;
@@ -131,10 +155,55 @@ function ged_insert(k,win)
       show_pixmap()
       xinfo(mess2)
     end 
-
   end
+  sca(default_axes); // resume the default axes
   f.pixmap=stripblanks(pix)
   
   xset('window',ged_current_figure)
 endfunction
 
+
+
+function axes = get_the_axes_clicked(f,default_axes,xc,yc)
+// x and y are user coord.
+
+nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
+axes_size = f.axes_size // given in pixels
+axes_size = [axes_size axes_size];
+
+//if default_axes.view == '3d'
+  
+//else // 2d case
+  
+[x,y]=xchange(xc,yc,'f2i')
+
+//disp("x & y vallent")
+//disp([x y])
+
+
+for i=1:nb_axes
+  axes = f.children(i);
+  cur_axes_bounds = axes.axes_bounds;
+  
+//  disp("cur_axes_bounds vaut")
+//  disp(cur_axes_bounds)
+
+  rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
+  
+  rect(3) = rect(3) + rect(1);
+  rect(4) = rect(4) + rect(2);
+  
+//  disp("rect vaut")
+//  disp(rect)
+  
+  if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4))
+//    disp("Il s agit de l axes")
+//    disp(i);
+    return axes
+    break;
+  end
+end
+
+//end
+
+endfunction
