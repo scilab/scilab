@@ -3459,17 +3459,17 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   static integer EntryCounter = 0;
   integer WinNum;
   
-  #ifdef WITH_TK
-			integer ne=11, menutyp=2, ierr;
-			char *EditMenusE[]={"Select","Redraw","Erase","Figure properties","Current axes properties","Start entity picker","Stop entity picker","Copy","Paste","Delete","Move"};
-
-			integer ni=6;
-			char *InsertMenusE[]={"Line","Arrow","Double Arrow","Text","Rectangle","Circle"};
-	#else
-			integer ne=3, menutyp=2, ierr;
-			char *EditMenusE[]={"Select","Redraw","Erase"};
-	#endif
-		     
+#ifdef WITH_TK
+  integer ne=11, menutyp=2, ierr;
+  char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure","Copy object","Paste object","Move object","Delete object","Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
+  
+  integer ni=6;
+  char *InsertMenusE[]={"Line","Arrow","Double Arrow","Text","Rectangle","Circle"};
+#else
+  integer ne=3, menutyp=2, ierr;
+  char *EditMenusE[]={"Select as current","Redraw figure","Erase figure"};
+#endif
+  
   GC XCreateGC(Display *, Drawable, long unsigned int, XGCValues *);
   static int screen;
   static XGCValues gcvalues;
