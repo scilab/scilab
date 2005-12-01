@@ -45,7 +45,7 @@ case 1 then
   elseif (textHandle.type == "Label" ) then
     // get the properties
     // they use jpc syntax which must be converted to normal syntax
-    text     = jpcstring2strings( textHandle.text ) ;
+    text     = arobasestring2strings( textHandle.text ) ;
     posX     = textHandle.position( 1 ) ;
     posY     = textHandle.position( 2 ) ;
     angle    = textHandle.font_angle    ;
