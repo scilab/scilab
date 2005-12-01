@@ -261,9 +261,7 @@ int Xorgetchar(int interrupt)
 
     select_timeout.tv_sec = 0;
     select_timeout.tv_usec = 10;
-    i = select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL,
-	       QLength(the_dpy) ? &select_timeout
-	       : (struct timeval *) NULL);
+    i = select(inter_max_plus1, &select_mask, &write_mask, (fd_set *)NULL, &select_timeout);
     if (i < 0) {
       if (errno != EINTR)
 	{ 
