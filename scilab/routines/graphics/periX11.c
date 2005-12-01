@@ -3458,9 +3458,18 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   struct BCG *NewXgc ;
   static integer EntryCounter = 0;
   integer WinNum;
-  integer ne=12, menutyp=2, ierr;
-  char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties",
-		     "Start Entity Picker","Stop  Entity Picker","New","Delete","Move","Copy","Paste"};
+  
+  #ifdef WITH_TK
+			integer ne=11, menutyp=2, ierr;
+			char *EditMenusE[]={"Select","Redraw","Erase","Figure properties","Current axes properties","Start entity picker","Stop entity picker","Copy","Paste","Delete","Move"};
+
+			integer ni=6;
+			char *InsertMenusE[]={"Line","Arrow","Double Arrow","Text","Rectangle","Circle"};
+	#else
+			integer ne=3, menutyp=2, ierr;
+			char *EditMenusE[]={"Select","Redraw","Erase"};
+	#endif
+		     
   GC XCreateGC(Display *, Drawable, long unsigned int, XGCValues *);
   static int screen;
   static XGCValues gcvalues;
@@ -3556,8 +3565,12 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
 #ifdef WITH_TK
-  if (!IsTKGraphicalMode()) {
-     AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+  if (!IsTKGraphicalMode())
+  {
+     AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+	#ifdef WITH_TK
+		AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
+	#endif
   }
 #endif
   XSync(dpy,0);
