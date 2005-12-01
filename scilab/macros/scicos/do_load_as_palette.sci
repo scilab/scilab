@@ -23,14 +23,17 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
     delmenu(curwin,'UnZoom')
     delmenu(curwin,'Zoom')
     delmenu(curwin,'Edit')
+    delmenu(curwin,'Insert')
   else
         hidetoolbar(curwin)
      // French
   	delmenu(curwin,'&Editer')
   	delmenu(curwin,'&Outils')
+  	delmenu(win,'&Inserer')
      // English
   	delmenu(curwin,'&Edit')
   	delmenu(curwin,'&Tools')
+  	delmenu(curwin,'&Insert')
     
   end
 

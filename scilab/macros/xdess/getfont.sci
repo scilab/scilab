@@ -24,16 +24,19 @@ function [fontId,fontSize]=getfont(S,v1)
     delmenu(win,'Zoom')
     delmenu(win,"Edit")
     delmenu(win,'File')
+    delmenu(win,'Insert')
   else
     hidetoolbar(win)
     // French
     delmenu(win,'&Fichier')
     delmenu(win,'&Editer')
     delmenu(win,'&Outils')
+    delmenu(win,'&Inserer')
     // English
     delmenu(win,'&File')
     delmenu(win,'&Edit')
     delmenu(win,'&Tools')
+    delmenu(win,'&Insert')
   end
 
 

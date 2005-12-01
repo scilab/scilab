@@ -200,6 +200,7 @@ function [sd]=gr_menu(sd,flag,noframe)
   delmenu(curwin, 'Objects') 
   delmenu(curwin, 'Settings') 
   delmenu(curwin, 'Edit')
+  delmenu(curwin,'Insert')
 endfunction
 
 function [btn,xc,yc,win,Cmenu]=getclick(flag)

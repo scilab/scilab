@@ -82,10 +82,13 @@ function plotprofile(fun)
     delmenu(win,"3D Rot.")
     delmenu(win,"Edit")
     delmenu(win,"Editer")
+    delmenu(win,"Insert")
   else
     delmenu(win,"3D &Rot.")
     delmenu(win,"&Edit")
     delmenu(win,"&Editer")
+    delmenu(win,"&Insert")
+    delmenu(win,"&Inserer")
   end   
   addmenu(win,"Exit");str="execstr(Exit_"+string(win)+"(1))"
   msg="click to get corresponding line"
@@ -217,16 +220,19 @@ function [h,M]=dispfuntxt(txt,k,h,M)
       delmenu(curwin,"Zoom")
       delmenu(curwin,"Edit")
       delmenu(curwin,"File")
+      delmenu(curwin,"Insert")
     else
       hidetoolbar(curwin)
  	// French
       	delmenu(curwin,"&Fichier")
       	delmenu(curwin,"&Editer")
       	delmenu(curwin,"&Outils")
+      	delmenu(curwin,"&Inserer")
       	// English
       	delmenu(curwin,"&File")
       	delmenu(curwin,"&Edit")
       	delmenu(curwin,"&Tools")
+      	delmenu(curwin,"&Insert")
   	 end     
     
     xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])

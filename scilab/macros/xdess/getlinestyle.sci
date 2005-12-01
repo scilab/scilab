@@ -9,16 +9,19 @@ if ~MSDOS then
   delmenu(win,'Zoom')
   delmenu(win,"Edit")
   delmenu(win,'File')
+  delmenu(win,'Insert')
 else
   hidetoolbar(win)
  // French
   delmenu(win,'&Fichier')
   delmenu(win,'&Editer')
   delmenu(win,'&Outils')
+  delmenu(win,'&Inserer')
   // English
   delmenu(win,'&File')
   delmenu(win,'&Edit')
   delmenu(win,'&Tools')
+  delmenu(win,'&Insert')
 end
 //Event handler and menu definition
 deff('evh(gwin,x,y,ibut)',..
