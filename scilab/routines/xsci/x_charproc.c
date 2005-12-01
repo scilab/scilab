@@ -1413,18 +1413,22 @@ int in_put(int interrupt)
       FlushScroll(screen);
     if (screen->cursor_set && (screen->cursor_col != screen->cur_col
 			       || screen->cursor_row != screen->cur_row))
-    {
-      if (screen->cursor_state)
-	HideCursor();
-      ShowCursor();
-    } else if (screen->cursor_set != screen->cursor_state)
-    {
-      if (screen->cursor_set)
+      {
+	if (screen->cursor_state)
+	  HideCursor();
 	ShowCursor();
-      else
-	HideCursor();
+      } 
+    else if (screen->cursor_set != screen->cursor_state)
+      {
+	if (screen->cursor_set)
+	  ShowCursor();
+	else
+	  HideCursor();
     }
     XFlush(screen->display);	/* always flush writes before waiting */
+#ifdef WITH_TK
+    flushTKEvents(); 	/* always flush writes before waiting */
+#endif
 
     /* Update the masks and, unless X events are already in the queue, wait
      * for I/O to be possible. */
@@ -1433,20 +1437,16 @@ int in_put(int interrupt)
     /* select_mask = X_mask; */
     /* does not work everywhere : FD_SET(XTKsocket,&select_mask); */
     select_mask = X_mask | (1 << XTKsocket);
-    select_timeout.tv_sec = 1;
-    select_timeout.tv_usec = 0;
+    select_timeout.tv_sec = 0;
+    select_timeout.tv_usec = 100000;
     max_plus1 = (max_plus1 < (XTKsocket+1)) ? (XTKsocket+1): max_plus1;
-    i = select(max_plus1,(fd_set *)&select_mask,(fd_set *) NULL,(fd_set *) NULL,
-	       QLength(screen->display) ? &select_timeout
-	       : (struct timeval *) NULL);
 #else 
     select_mask = X_mask;		
     select_timeout.tv_sec = 1;
     select_timeout.tv_usec = 0;
-    i = select(max_plus1,(fd_set *)&select_mask,(fd_set *) NULL,(fd_set *) NULL,
-	       QLength(screen->display) ? &select_timeout
-	       : (struct timeval *) NULL);
 #endif
+    i = select(max_plus1,(fd_set *)&select_mask,(fd_set *) NULL,(fd_set *) NULL, &select_timeout);
+    if ( i == 0 ) continue;
     if (i < 0)
       {
 	if (errno != EINTR)
