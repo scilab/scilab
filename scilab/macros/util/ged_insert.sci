@@ -121,6 +121,17 @@ function ged_insert(k,win)
   
   case 5 then //Text
     
+    // open a dialog to enter the text
+    text = x_dialog("Enter the new text and click to place it","") ;
+    
+    // get the position of the text
+    [btn,xc,yc] = xclick() ;
+    
+    if ( btn == 3 ) then
+      // display the string
+      xstring( xc, yc, text ) ;
+    end ;
+    
   case 6 then //Rectangle
     [btn,xc,yc]=xclick();
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
