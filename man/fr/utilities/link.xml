@@ -97,13 +97,13 @@
 			<VERB>foo</VERB>, you will use <VERB>link</VERB> in one the following way: 
 		</P>
 		<VERBATIM>
-			<![CDATA[
-				link('foo.o','foo').
-				link('foo.o -lm -lc','foo','c').
-				link('foo.o -lfor -lm -lc','foo').
-				link('foo.o -lftn -lm -lc','foo').
-				link('foo.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foo')
-			]]>
+<![CDATA[
+	link('foo.o','foo').
+	link('foo.o -lm -lc','foo','c').
+	link('foo.o -lfor -lm -lc','foo').
+	link('foo.o -lftn -lm -lc','foo').
+	link('foo.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foo')
+]]>
 		</VERBATIM>
 		<P>
 			If Scilab compiled with the &quot;shared&quot; option, the first example can be used
@@ -136,27 +136,27 @@
 				binary file  <VERB>test.o</VERB> the two following command can be
 				used :</SP>
 				<VERBATIM>
-					<![CDATA[
-					link('test.o',['f','g'])
-					]]>
+<![CDATA[
+link('test.o',['f','g'])
+]]>
 				</VERBATIM>
 				<P>
 					or
 				</P>
 				<VERBATIM>
-					<![CDATA[
-					x=link('test.o','f');
-					link(x,'g');
-					]]>
+<![CDATA[
+x=link('test.o','f');
+link(x,'g');
+]]>
 				</VERBATIM>
 				<P>
 					But 
 				</P>
 				<VERBATIM>
-					<![CDATA[
-					link('test.o','f');
-					link('test.o','g');
-					]]>
+<![CDATA[
+link('test.o','f');
+link('test.o','g');
+]]>
 				</VERBATIM>
 				<P>
 					will also work but <VERB>f</VERB> and <VERB>g</VERB> will be loaded from two different shared libraries and won't be able to share data.  
@@ -168,62 +168,62 @@
 			<ITEM label="unlink :">
 				<SP>(dlopen version) If the function <VERB>f</VERB> is changed and one wants to link  the new version, it is necessary to use unlink to get rid of  previous loaded versions of the function <VERB>f</VERB></SP>
 				<VERBATIM>
-					<![CDATA[
-					x=link('test.o','f');
-					// if I need to reload a new definition of f a call to unlink
-					// is necessary.
-					ulink(x);
-					link('test.o','f');
-					]]>
+<![CDATA[
+x=link('test.o','f');
+// if I need to reload a new definition of f a call to unlink
+// is necessary.
+ulink(x);
+link('test.o','f');
+]]>
 				</VERBATIM>
 			</ITEM>
 			<ITEM label="scilab symbols:">
 				<SP>In order to load a symbol from the Scilab code on can use</SP>
 				<VERBATIM>
-					<![CDATA[
-					link("Scilab",['Scilab-entry-point'])
-					]]>
+<![CDATA[
+link("Scilab",['Scilab-entry-point'])
+]]>
 				</VERBATIM>
 				<P>
 				This does not work on all architectures. On some machines, on can  link a Scilab internal function after a first call to link ( with  a default binary file )</P>
 				<VERBATIM>
-					<![CDATA[
-						link("test.o",['Scilab-entry-point'])
-					]]>
+<![CDATA[
+	link("test.o",['Scilab-entry-point'])
+]]>
 				</VERBATIM>
 				<P>Note that with <VERB>dld</VERB> (Linux machine aout) you can use an empty string</P>
 				<VERBATIM>
-					<![CDATA[
-						link(" ",['Scilab-entry-point'])
-					]]>
+<![CDATA[
+	link(" ",['Scilab-entry-point'])
+]]>
 				</VERBATIM>
 			</ITEM>
 		</ITEMIZE>
 	</SECTION>
 	
 	<EXAMPLE><![CDATA[
-			//Example of the use of ilib_for_link with  a simple C code
-			f1=['#include <math.h>'
-				'void fooc(c,a,b,m,n)'
-				'double a[],*b,c[];'
-				'int *m,*n;'
-				'{'
-				'   int i;'
-				'   for ( i =0 ; i < (*m)*(*n) ; i++) '
-				'     c[i] = sin(a[i]) + *b; '
-				'}'];
-			
-			mputl(f1,'fooc.c')
-			
-			//creating the shared library (a gateway, a Makefile and a loader are 
-			//generated the code is compileda nd a shared library built.
-			ilib_for_link('fooc','fooc.o',[],"c") 
-			
-			// display the loader.sce file which calls link
-			mprintf('%s\n',mgetl('loader.sce')) 
-			// load the shared library 
-			exec loader.sce 
-	]]></EXAMPLE>
+//Example of the use of ilib_for_link with  a simple C code
+f1=['#include <math.h>'
+	'void fooc(c,a,b,m,n)'
+	'double a[],*b,c[];'
+	'int *m,*n;'
+	'{'
+	'   int i;'
+	'   for ( i =0 ; i < (*m)*(*n) ; i++) '
+	'     c[i] = sin(a[i]) + *b; '
+	'}'];
+
+mputl(f1,'fooc.c')
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated the code is compiled and a shared library built.
+ilib_for_link('fooc','fooc.o',[],"c") 
+
+// display the loader.sce file which calls link
+mprintf('%s\n',mgetl('loader.sce')) 
+// load the shared library 
+exec loader.sce
+]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>
