@@ -2177,8 +2177,20 @@ function ged_copy_entity()
   if r==[] return,end
   save(TMPDIR+'/G_Clipboard',r)
 endfunction
+
+
 function ged_paste_entity()
-  load(TMPDIR+'/G_Clipboard')
+  
+  // check the file
+  [info,err] = fileinfo(TMPDIR + '/G_Clipboard' ) ;
+  
+  if err <> 0 then
+    return ;
+  end
+  
+  // create the saved object
+  load(TMPDIR+'/G_Clipboard') ;
+
 //  a=gca();b=a.data_bounds;
 //  move(r,[-1 1]*a.data_bounds/20)
 endfunction
