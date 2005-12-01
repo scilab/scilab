@@ -116,4 +116,11 @@
 
 #define MSG_SCIMSG105 "Scilab Document"
 #define MSG_SCIMSG106 "Graphical Editor"
+#define MSG_SCIMSG107 "Line"
+#define MSG_SCIMSG108 "Arrow"
+#define MSG_SCIMSG109 "Double Arrow"
+#define MSG_SCIMSG110 "Text"
+#define MSG_SCIMSG111 "Rectangle"
+#define MSG_SCIMSG112 "Circle"
+
 #endif /*_MESSAGESH_*/

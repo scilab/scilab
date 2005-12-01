@@ -37,10 +37,18 @@
 
 
 /* wgraph.c */
-#define TOOLBAR_ZOOM		0x8801
-#define TOOLBAR_UNZOOM		0x8802
-#define TOOLBAR_ROTATE3D	0x8803
-#define TOOLBAR_GED			0x8804
+#define TOOLBAR_ZOOM					0x8801
+#define TOOLBAR_UNZOOM				0x8802
+#define TOOLBAR_ROTATE3D			0x8803
+#define TOOLBAR_GED						0x8804
+#define TOOLBAR_LINE					0x8805
+#define TOOLBAR_POLYLINE			0x8806
+#define TOOLBAR_ARROW					0x8807
+#define TOOLBAR_DOUBLEARROW		0x8808
+#define TOOLBAR_TEXT					0x8809
+#define TOOLBAR_RECTANGLE			0x8810
+#define TOOLBAR_CIRCLE				0x8811
+
 
 #define M_ABOUT				NUMMENU+1
 #define M_COPY_CLIP			NUMMENU+2
@@ -80,7 +88,7 @@
 
 #define SPOOL_PORT      515
 
-/* wgraph.c */
+/* wgraph.c */r ;
 #define PS_COLOR 200
 #define PS_LAND  201
 #define PS_TYPE  202

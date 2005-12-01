@@ -172,5 +172,5 @@ BOOL ExportStyle (struct BCG * ScilabGC);
 void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
 void RefreshMenus(struct BCG * ScilabGC);
-
+void CreateGedMenus(struct BCG * ScilabGC);
 #endif /*__WGMENU__*/

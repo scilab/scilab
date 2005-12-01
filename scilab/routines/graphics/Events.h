@@ -3,7 +3,7 @@ typedef int (*Scig_click_handler) (int,int,int,int,int,int);
 typedef void (*Scig_deletegwin_handler) (int);
 
 extern int PushClickQueue (int win,int x,int y,int ibut,int motion,int release);
-extern int CheckClickQueue (int *win,int *x, int *y, int *ibut,int *motion,int *release);
+			 
 extern int ClearClickQueue (int win);
 
 extern int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release);

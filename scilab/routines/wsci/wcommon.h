@@ -164,7 +164,7 @@ extern int CopyPrint(struct BCG *ScilabGC);
 extern void WriteRegistryGraph(struct BCG *ScilabGC);
 extern void ReadRegistryGraph(struct BCG *ScilabGC);
 extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release);
-extern int CheckClickQueue(int *win,integer *x,integer* y,integer *ibut);
+extern int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release);
 extern int ClearClickQueue(int win);
 /*-----------------------------------------------------------------------------------*/
 /** ../graphics* **/

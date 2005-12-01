@@ -453,6 +453,13 @@ IDI_SCILAB24            ICON                    "Icones Scilab\\scilab24.ico"
 IDI_UNZOOM              ICON                    "Icones Scilab\\UNZOOM.ico"
 IDI_OPEN                ICON                    "Icones Scilab\\OPEN.ico"
 IDI_GED                 ICON                    "Icones Scilab\\GED.ico"
+IDI_RECTANGLE           ICON                    "Icones Scilab\\RECTANGLE.ico"
+IDI_TEXT                ICON                    "Icones Scilab\\TEXT.ICO"
+IDI_ARROW               ICON                    "icones scilab\\ARROW.ICO"
+IDI_CIRCLE              ICON                    "Icones Scilab\\CIRCLE.ico"
+IDI_LINE                ICON                    "icones scilab\\LINE.ico"
+IDI_DOUBLEARROW         ICON                    "Icones Scilab\\DOUBLEARROW.ico"
+IDI_POLYLINE            ICON                    "Icones Scilab\\POLYLINE.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////

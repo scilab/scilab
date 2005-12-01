@@ -49,46 +49,125 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
 	HICON IconButton;
 	ScilabGC->lpmw.nButton=0;
 
-	ScilabGC->lpmw.hButton[0]= CreateWindow("button",MSG_SCIMSG14,WS_CHILD|WS_VISIBLE|BS_ICON ,
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG14,WS_CHILD|WS_VISIBLE|BS_ICON ,
 		0, 0,
 		ButtonToolBarWeight, ToolBarHeight,
 		ScilabGC->CWindow,(HMENU) TOOLBAR_ZOOM,
 		graphwin.hInstance, NULL);
 	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_ZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
-	SendMessage(ScilabGC->lpmw.hButton[0],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
-	CreateMyTooltip (ScilabGC->lpmw.hButton[0], MSG_SCIMSG14); 
-
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], MSG_SCIMSG14); 
 	ScilabGC->lpmw.nButton++;
-	ScilabGC->lpmw.hButton[1]= CreateWindow("button",MSG_SCIMSG15,WS_CHILD|WS_VISIBLE|BS_ICON ,
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG15,WS_CHILD|WS_VISIBLE|BS_ICON ,
 		ButtonToolBarWeight, 0,
 		ButtonToolBarWeight, ToolBarHeight,
 		ScilabGC->CWindow,(HMENU) TOOLBAR_UNZOOM,
 		graphwin.hInstance, NULL);
 	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_UNZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
-	SendMessage(ScilabGC->lpmw.hButton[1],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
-	CreateMyTooltip (ScilabGC->lpmw.hButton[1], MSG_SCIMSG15); 
-
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], MSG_SCIMSG15); 
 	ScilabGC->lpmw.nButton++;
-	ScilabGC->lpmw.hButton[2]= CreateWindow("button",MSG_SCIMSG16,WS_CHILD|WS_VISIBLE|BS_ICON ,
-		ButtonToolBarWeight*2, 0,
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG16,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
 		ButtonToolBarWeight, ToolBarHeight,
 		ScilabGC->CWindow,(HMENU) TOOLBAR_ROTATE3D,
 		graphwin.hInstance, NULL);
 	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_3DROT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
-	SendMessage(ScilabGC->lpmw.hButton[2],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
-	CreateMyTooltip (ScilabGC->lpmw.hButton[2], "2D/3D Rotation"); 
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "2D/3D Rotation"); 
 	ScilabGC->lpmw.nButton++;
 
 
-	ScilabGC->lpmw.hButton[3]= CreateWindow("button",MSG_SCIMSG106,WS_CHILD|WS_VISIBLE|BS_ICON ,
-		ButtonToolBarWeight*3, 0,
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG106,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
 		ButtonToolBarWeight, ToolBarHeight,
 		ScilabGC->CWindow,(HMENU) TOOLBAR_GED,
 		graphwin.hInstance, NULL);
 	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_GED,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
-	SendMessage(ScilabGC->lpmw.hButton[3],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
-	CreateMyTooltip (ScilabGC->lpmw.hButton[3], "Graphical Editor"); 
-	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[3],SW_HIDE);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Graphical Editor"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG107,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_LINE,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_LINE,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Line"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG107,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_POLYLINE,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_POLYLINE,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Polyline"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG108,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_ARROW,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_ARROW,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Arrow"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG109,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_DOUBLEARROW,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_DOUBLEARROW,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Double Arrow"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG110,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_TEXT,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_TEXT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Text"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG111,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_RECTANGLE,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_RECTANGLE,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Rectangle"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
+	ScilabGC->lpmw.nButton++;
+
+	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG112,WS_CHILD|WS_VISIBLE|BS_ICON ,
+		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
+		ButtonToolBarWeight, ToolBarHeight,
+		ScilabGC->CWindow,(HMENU) TOOLBAR_CIRCLE,
+		graphwin.hInstance, NULL);
+	IconButton=(HICON)LoadImage( GetModuleHandle(MSG_SCIMSG9), (LPCSTR)IDI_CIRCLE,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+	SendMessage(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
+	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Circle"); 
+	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
 	ScilabGC->lpmw.nButton++;
 
 	ScilabGC->lpmw.LockToolBar=FALSE;

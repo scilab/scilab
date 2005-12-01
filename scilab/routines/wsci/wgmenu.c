@@ -730,102 +730,107 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
   int number, nCountMenu;
   number = *win_num;
   if (*win_num == -1)
-    {
+  {
       lpmw = textwin.lpmw;
       hwnd = textwin.hWndParent;
       nCountMenu = WGFindMenuPos (lpmw->macro);
       if (nCountMenu >= NUMMENU)
-	{
-	  sciprint (MSG_WARNING10);
-	  return;
-	}
-    }
+			{
+				sciprint (MSG_WARNING10);
+				return;
+			}
+  }
   else
-    {
-      ScilabGC = GetWindowXgcNumber (*win_num);
-      if (ScilabGC != (struct BCG *) 0)
-	{
-	  lpmw = &(ScilabGC->lpmw);
-	  hwnd = ScilabGC->hWndParent;
-	  nCountMenu = WGFindMenuPos (lpmw->macro);
-	  if (nCountMenu >= NUMMENU)
+  {
+     ScilabGC = GetWindowXgcNumber (*win_num);
+     if (ScilabGC != (struct BCG *) 0)
+		{
+			lpmw = &(ScilabGC->lpmw);
+			hwnd = ScilabGC->hWndParent;
+			nCountMenu = WGFindMenuPos (lpmw->macro);
+			if (nCountMenu >= NUMMENU)
 	    {
 	      sciprint (MSG_WARNING11,*win_num);
 	      return;
 	    }
-	}
-      else
-	return;
-    }
+		}
+		else 	return;
+  }
+
   if (*ne == 0)
-    {
-      AppendMenu (lpmw->hMenu, MF_STRING, nCountMenu, button_name);
-      if ((macroptr = LocalAlloc (LPTR, lstrlen ("@%dexecstr(%s_%d(%d))")
-				  + lstrlen (fname) + 1)) != (BYTE *) NULL)
-	{
-	  if (*win_num < 0)
-	    if (*typ==0) 
-	      sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ, fname, 1);
-	    else if (*typ==2) 
-	      sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, 1,*win_num);
-	    else
-	      sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ,fname, 1);
-	  else 
-	    if (*typ==0) 
-	      sprintf ((char *) macroptr, "@0execstr(%s_%d(%d))",fname, *win_num, 1);
-	    else if (*typ==2) 
-	      sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, 1,*win_num);
-	    else
-	      sprintf ((char *) macroptr, "@%dexecstr(%s_%d(%d))", *typ,fname, *win_num, 1);
-	}
-      else
-	{
-	  sciprint (MSG_WARNING12);
-	  return;
-	}
-      lpmw->macro[nCountMenu] = macroptr;
-    }
+  {
+    AppendMenu (lpmw->hMenu, MF_STRING, nCountMenu, button_name);
+    if ((macroptr = LocalAlloc (LPTR, lstrlen ("@%dexecstr(%s_%d(%d))")+ lstrlen (fname) + 1)) != (BYTE *) NULL)
+		{
+			if (*win_num < 0)
+				if (*typ==0) 
+					sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ, fname, 1);
+				else 
+					if (*typ==2) sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, 1,*win_num);
+					else sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ,fname, 1);
+			else 
+				if (*typ==0) sprintf ((char *) macroptr, "@0execstr(%s_%d(%d))",fname, *win_num, 1);
+				else
+					if (*typ==2) sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, 1,*win_num);
+					else sprintf ((char *) macroptr, "@%dexecstr(%s_%d(%d))", *typ,fname, *win_num, 1);
+		}
+    else
+		{
+			sciprint (MSG_WARNING12);
+			return;
+		}
+
+    lpmw->macro[nCountMenu] = macroptr;
+  }
   else
-    {
-      int i;
-      HMENU hMenu;
-      hMenu = CreateMenu ();
-      AppendMenu (lpmw->hMenu, MF_STRING | MF_POPUP, (UINT) hMenu, button_name);
-      for (i = 0; i < *ne; i++)
-	{
-	  nCountMenu = WGFindMenuPos (lpmw->macro);
-	  if (nCountMenu >= NUMMENU)
+  {
+		int i=0;
+		int j=0;
+    HMENU hMenu;
+    hMenu = CreateMenu ();
+		
+
+    AppendMenu (lpmw->hMenu, MF_STRING | MF_POPUP, (UINT) hMenu, button_name);
+    for (i = 0; i < *ne; i++)
+		{
+			
+			nCountMenu = WGFindMenuPos (lpmw->macro);
+			if (nCountMenu >= NUMMENU)
 	    {
 	      sciprint (MSG_WARNING13);
 	      return;
 	    }
-	  AppendMenu (hMenu, MF_STRING, nCountMenu, entries[i]);
-	  if ((macroptr = LocalAlloc (LPTR, lstrlen ("@%dexecstr(%s_%d(%d))")
-				      + lstrlen (fname) + 1)) != (BYTE *) NULL)
-	    {
-	      if (*win_num < 0)
-		if (*typ==0) 
-		  sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ, fname, i + 1);
-		else if (*typ==2) 
-		  sprintf ((char *) macroptr, "@0%s(%d)",fname, i + 1);
-		else
-		  sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ,fname, i + 1);
-	      else
-		if (*typ==0) 
-		  sprintf ((char *) macroptr, "@0execstr(%s_%d(%d))",fname, *win_num, i + 1);
-		else if (*typ==2) 
-		  sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, i + 1,*win_num);
-		else
-		  sprintf ((char *) macroptr, "@%dexecstr(%s_%d(%d))", *typ,fname, *win_num, i + 1);
-	    }
-	  else
-	    {
-	      sciprint (MSG_WARNING14);
-	      return;
-	    }
-	  lpmw->macro[nCountMenu] = macroptr;
-	}
-    }
+			if ( strcmp("[--]",entries[i])==0 )
+			{
+				AppendMenu (hMenu, MF_SEPARATOR, 0, (LPSTR) NULL);
+			}
+			else
+			{
+				AppendMenu (hMenu, MF_STRING, nCountMenu, entries[i]);
+				if ((macroptr = LocalAlloc (LPTR, lstrlen ("@%dexecstr(%s_%d(%d))")+ lstrlen (fname) + 1)) != (BYTE *) NULL)
+				{
+					if (*win_num < 0)
+						if (*typ==0) 
+							sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ, fname, j + 1);
+						else
+							if (*typ==2) sprintf ((char *) macroptr, "@0%s(%d)",fname, j + 1);
+							else sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ,fname, j + 1);
+					else
+						if (*typ==0) sprintf ((char *) macroptr, "@0execstr(%s_%d(%d))",fname, *win_num, j + 1);
+						else
+							if (*typ==2) sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, j + 1,*win_num);
+							else sprintf ((char *) macroptr, "@%dexecstr(%s_%d(%d))", *typ,fname, *win_num, j + 1);
+					j++;
+				}
+				else
+				{
+					sciprint (MSG_WARNING14);
+					return;
+				}
+				lpmw->macro[nCountMenu] = macroptr;
+			}
+		}
+  }
   DrawMenuBar (hwnd);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1232,59 +1237,78 @@ void RefreshMenus(struct BCG * ScilabGC)
 	ScilabGC->IDM_Count=1;
 	SetMenu(ScilabGC->hWndParent,NULL);
 
-	CloseGraphMacros ( ScilabGC);
+	CloseGraphMacros (ScilabGC);
+	CreateGedMenus(ScilabGC);
 
+	ScilabGC->lpmw.nButton=nButton;
+	ScilabGC->lpmw.ShowToolBar=StateToolBar;
+	ScilabGC->lpmw.LockToolBar=LockToolBar;
+
+}
+/*-----------------------------------------------------------------------------------*/
+void CreateGedMenus(struct BCG * ScilabGC)
+{
+	int WinNum=ScilabGC->CurWindow;
 	if (ScilabGC->graphicsversion!=0)
 	{
 		integer ne=3, menutyp=2, ierr;
 		char *EditMenusE[]={"&Select","&Redraw","&Erase"};
 		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
 
-		UpdateFileGraphNameMenu( ScilabGC);
+		UpdateFileGraphNameMenu(ScilabGC);
 		LoadGraphMacros(ScilabGC);
 
 		switch( ScilabGC->lpmw.CodeLanguage)
 		{
-		case 1:
-			AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+			case 1:
+				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
 			break;
-		default:
-			AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+			default:
+				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
 			break;
 		}
 	}
 	else
 	{
-		
-#ifdef WITH_TK
-		integer ne=7, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select","&Redraw","&Erase","&Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
-		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer","Propriétés de la &figure","Propriétés des &axes courants","&Démarrer sélecteur d'entités","Arrê&ter sélecteur d'entités"};
+		/*
+		for new menus
+		ScilabXgc->hMenuRoot=CreateMenu();
+		ScilabXgc->IDM_Count=1;
 
-#else
+		SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
+		*/
+	#ifdef WITH_TK
+		integer ne=13, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
+		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","&Démarrer sélecteur d'entités","Arrê&ter sélecteur d'entités"};
+
+		integer ni=7;
+		char *InsertMenusE[]={"&Line","&Polyline","&Arrow","&Double Arrow","&Text","&Rectangle","&Circle"};
+		char *InsertMenusF[]={"&Ligne","L&igne brisée","&Fleche","&Double Fleche","&Texte","&Rectangle","&Cercle"};
+	#else
 		integer ne=3, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select","&Redraw","&Erase"};
-		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
-#endif
+		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
+		char *EditMenusF[]={"&Selectionner figure","&Redessiner figure","&Effacer figure"};
+	#endif
 
-		UpdateFileGraphNameMenu( ScilabGC);
+		UpdateFileGraphNameMenu(ScilabGC);
 		LoadGraphMacros(ScilabGC);
 
 		switch( ScilabGC->lpmw.CodeLanguage)
 		{
-		case 1:
-			AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+			case 1:
+				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+			#ifdef WITH_TK
+				AddMenu(&WinNum,"&Inserer", InsertMenusF, &ni, &menutyp, "ged_insert", &ierr);
+			#endif
 			break;
-		default:
-			AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+			default:
+				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+			#ifdef WITH_TK
+				AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
+			#endif
 			break;
 		}
-
 	}
-
-	ScilabGC->lpmw.nButton=nButton;
-	ScilabGC->lpmw.ShowToolBar=StateToolBar;
-	ScilabGC->lpmw.LockToolBar=LockToolBar;
-
 }
 /*-----------------------------------------------------------------------------------*/

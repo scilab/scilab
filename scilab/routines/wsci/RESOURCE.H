@@ -37,6 +37,14 @@
 #define IDI_GED                         145
 #define IDD_FILEASSOCIATION             147
 #define ABOUTDLGBOX                     148
+#define IDI_RECTANGLE                   149
+#define IDI_TEXT                        150
+#define IDI_ARROW                       151
+#define IDI_DOUBLEARROW                 152
+#define IDI_CIRCLE                      153
+#define IDI_LINE                        154
+#define IDI_ICON2                       155
+#define IDI_POLYLINE                    155
 #define IDC_VERSION_SPLASH              1000
 #define IDC_COPYRIGHT_SPLASH            1001
 #define IDC_STATIC_ABOUT_HTTP           1002
@@ -106,13 +114,12 @@
 #define IDC_CHECKGRAPHB                 1066
 #define IDC_STATICLOGO                  1067
 
-
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        149
+#define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1068
 #define _APS_NEXT_SYMED_VALUE           101

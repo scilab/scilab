@@ -210,6 +210,7 @@ static void set_clip_after_scroll (void) ;
 
 extern void UpdateFileGraphNameMenu(struct BCG *ScilabGC);
 extern void CreateGraphToolBar(struct BCG * ScilabGC); 
+extern void CreateGedMenus(struct BCG * ScilabGC); 
 extern void SetIsASingleClickToFalse(void);
 extern BOOL IsASingleClickToFalse(void);
 extern BOOL IsWindowInterface(void);
@@ -976,13 +977,9 @@ static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
   return 1;
 }
 /*-----------------------------------------------------------------------------------*/
-void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
-     integer *ibutton,*x1,*yy1, *iflag,*lstr;
-     int getmouse,dyn_men,getrelease;
-     integer ok,choice,motion,release;
-
-     char *str;
+void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
+	integer ok,choice,motion,release;
   int win;
   
   choice=(dyn_men>1); /* depending on lhs */
@@ -4133,67 +4130,11 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 		StoreXgc(WinNum);
 		EntryCounter=Max(EntryCounter,WinNum);
 		EntryCounter++;
-
-		if (ScilabXgc->graphicsversion!=0)
-		{
-			integer ne=3, menutyp=2, ierr;
-			char *EditMenusE[]={"&Select","&Redraw","&Erase"};
-			char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
-
-			UpdateFileGraphNameMenu( ScilabXgc);
-			LoadGraphMacros( ScilabXgc);
-
-			switch( ScilabXgc->lpmw.CodeLanguage)
-			{
-				case 1:
-					AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
-				break;
-				default:
-					AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-				break;
-			}
-		}
-		else
-		{
-			/*
-			for new menus
-			ScilabXgc->hMenuRoot=CreateMenu();
-			ScilabXgc->IDM_Count=1;
-
-			SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
-			*/
-		#ifdef WITH_TK
-			integer ne=12, menutyp=2, ierr;
-			char *EditMenusE[]={"&Select","&Redraw","&Erase","&Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker","New","Delete","Move","Copy","Paste"};
-
-
-			char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer","Propriétés de la &figure","Propriétés des &axes courants","&Démarrer sélecteur d'entités","Arrê&ter sélecteur d'entités","Nouveau","Détruire","Déplacer","Copier","Coller"};
-			*v3 = 0;
-		#else
-			integer ne=3, menutyp=2, ierr;
-			char *EditMenusE[]={"&Select","&Redraw","&Erase"};
-			char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
-		#endif
-
-			UpdateFileGraphNameMenu( ScilabXgc);
-			LoadGraphMacros( ScilabXgc);
-
-			switch( ScilabXgc->lpmw.CodeLanguage)
-			{
-				case 1:
-					AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
-				break;
-				default:
-					AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-				break;
-			}
-
-		}
-
-	CreateGraphToolBar(ScilabXgc);	  
+		
+		/* see ../wsci/wgmenu.c */
+		CreateGedMenus(ScilabXgc);	  
+		CreateGraphToolBar(ScilabXgc);	  
 	}
-
-
 
 	ScilabXgc->Inside_init=0;
 }

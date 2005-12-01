@@ -653,10 +653,16 @@
 				RelativePath="..\Icones Scilab\3DROT.ico">
 			</File>
 			<File
+				RelativePath="..\icones scilab\ARROW.ico">
+			</File>
+			<File
 				RelativePath="..\Icones Scilab\Bin.ico">
 			</File>
 			<File
 				RelativePath="..\Icones Scilab\CHDIR.ico">
+			</File>
+			<File
+				RelativePath="..\icones scilab\CIRCLE.ico">
 			</File>
 			<File
 				RelativePath="..\Icones Scilab\CONSOLE.ico">
@@ -674,6 +680,9 @@
 				RelativePath="..\Icones Scilab\Dem.ico">
 			</File>
 			<File
+				RelativePath="..\Icones Scilab\DOUBLEARROW.ico">
+			</File>
+			<File
 				RelativePath="..\Icones Scilab\exit24.ico">
 			</File>
 			<File
@@ -689,6 +698,9 @@
 				RelativePath="..\Icones Scilab\HELP.ico">
 			</File>
 			<File
+				RelativePath="..\icones scilab\LINE.ico">
+			</File>
+			<File
 				RelativePath="..\Icones Scilab\metanet24.ico">
 			</File>
 			<File
@@ -701,7 +713,13 @@
 				RelativePath="..\Icones Scilab\PASTE.ico">
 			</File>
 			<File
+				RelativePath="..\Icones Scilab\POLYLINE.ico">
+			</File>
+			<File
 				RelativePath="..\Icones Scilab\PRINT.ico">
+			</File>
+			<File
+				RelativePath="..\icones scilab\RECTANGLE.ico">
 			</File>
 			<File
 				RelativePath="..\Rscilab.rc">
@@ -722,16 +740,19 @@
 				RelativePath="..\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\Icones Scilab\scilab.ico">
+				RelativePath="..\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\scilab.ico">
+				RelativePath="..\Icones Scilab\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\Icones Scilab\scilab24.ico">
 			</File>
 			<File
 				RelativePath="..\scilab_logo.bmp">
+			</File>
+			<File
+				RelativePath="..\icones scilab\Text.ico">
 			</File>
 			<File
 				RelativePath="..\Icones Scilab\Tst.ico">
