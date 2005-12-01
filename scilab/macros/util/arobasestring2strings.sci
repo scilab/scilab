@@ -1,14 +1,14 @@
 //==========================================================================
 // Copyrigth INRIA 2005
-// File   : jpcstring2strings.sci
+// File   : arobasestring2strings.sci
 // Author : Jean-Baptiste Silvy
 // Desc   : Convert the string format defined by jpc into matrix of strings
 //==========================================================================
 
 
-function [strings] = jpcstring2strings( varargin )
+function [strings] = arobasestring2strings( varargin )
 
-// call : jpcstring2strings( string )
+// call : arobasestring2strings( string )
 
 [lhs,rhs] = argn(0) ;
 
