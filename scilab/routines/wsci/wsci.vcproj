@@ -2121,9 +2121,6 @@ cd .. &gt;nul
 				RelativePath=".\clipboard.h">
 			</File>
 			<File
-				RelativePath="common.h">
-			</File>
-			<File
 				RelativePath=".\DDE.h">
 			</File>
 			<File
