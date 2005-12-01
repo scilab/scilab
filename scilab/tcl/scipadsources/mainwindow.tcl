@@ -60,7 +60,7 @@ text $textareacur -relief sunken -bd 0 \
     -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
     -selectbackground $SELCOLOR -exportselection 1 \
     -undo 1 -autoseparators 1
-if {$cursorblink == "true"} {
+if {$cursorblink} {
     $textareacur configure -insertofftime 500 -insertontime 500
 } else {
     $textareacur configure -insertofftime 0

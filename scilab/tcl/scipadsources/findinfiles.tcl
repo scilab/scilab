@@ -14,7 +14,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
     set cancelsearchflag 0
     update
 
-    # create the list of files no search in
+    # create the list of files to search in
     if {![direxists $initdir]} {
         tk_messageBox -title [mc "Directory access issue"] -icon warning \
             -message [mc "The directory you specified cannot be reached. The search won't bring any result."]

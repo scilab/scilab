@@ -6,7 +6,10 @@ proc tkdndbind {w} {
     global debuglog logdetailedbindings
 
     # Abort if TkDnD package is not available
-    if {$TkDnDloaded != "true"} {return}
+    if {$TkDnDloaded != "true"} {
+        bind $w <ButtonRelease-1>  { focustextarea %W }
+        return
+    }
 
     # To ensure that the widgets have been created before binding to them
     update idletasks
@@ -21,16 +24,23 @@ proc tkdndbind {w} {
     dnd bindtarget $w text/plain <Drop> {
         if {[info exists sourcetextarea]} {
             # drag from Scipad, drop in Scipad
-            if {$sourcetextarea == "%W"} {
+            if {$sourcetextarea == "%W" && [%W tag ranges sel] != ""} {
                 # drag and drop in the same Scipad buffer
-                if {[%W tag ranges sel] != ""} {
-                    if { ! ([%W compare sel.first < [%W index @%x,%y]] && \
-                            [%W compare [%W index @%x,%y] < sel.last] ) } {
-                        if {"%A" == "copy"} {
-                            %W tag remove sel 0.0 end
-                        }
-                        puttext %W %D
+                #
+                # if the mouse went out of the buffer during drag, and
+                # finally drops in the same buffer as the drag buffer
+                # the selection has been lost in the process because of
+                # focustextarea below in the <DragEnter> event, thus the
+                # drop process is the same as if two different buffers
+                # were involved (-> else clause of this if)
+                #
+                # here we didn't fly out of the buffer, sel tag still here
+                if { ! ([%W compare sel.first < [%W index @%x,%y]] && \
+                        [%W compare [%W index @%x,%y] < sel.last] ) } {
+                    if {"%A" == "copy"} {
+                        %W tag remove sel 0.0 end
                     }
+                    puttext %W %D
                 }
             } else {
                 # drag from a Scipad buffer, drop in another Scipad buffer
@@ -149,35 +159,65 @@ proc Button1BindTextArea { w x y } {
     return $dndreallystarted
 }
 
+############################
+# Temporary cursor blinking start/stop
+#
+# 1. proc dostopcursorblink implements a hack to ensure that the cursor is
+#    on during a drag, so that it is visible
+#    This is a workaround to avoid Tk bug 1169429
+#    See https://sourceforge.net/tracker/?func=detail&atid=112997&aid=1169429&group_id=12997
+#    The proper fix is included in any Tk version strictly greater than 8.5.0 beta 3
+#
+# 2. Launching the procs in the background prevents from having the dnd locks
+#    issues that were previously reported in the newsgroup:
+#    http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
+#
+# Warning: if !$backgroundtasksallowed (this should only be a debug setting),
+# the dnd locks issues are not fixed
+
 proc stopcursorblink {} {
-# What is inside the if {$cursorblink == "true"} is needed to ensure that
-# the cursor is on during a drag. This is a workaround to avoid Tk bug 1169429
-# See https://sourceforge.net/tracker/?func=detail&atid=112997&aid=1169429&group_id=12997
-# The proper fix is included in any Tk version strictly greater than 8.5.0 beta 3
-#
-# However, cursor blinking is now disabled even on Windows because this workaround
-# can cause Scipad to lock in drag mode
-# See http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
-#
-    global cursorblink listoftextarea
-    if {$cursorblink == "true"} {
-        foreach ta $listoftextarea {
-            $ta configure -insertofftime 2
+    global cursorblink backgroundtasksallowed
+    if {$cursorblink} {
+        if {$backgroundtasksallowed} {
+            after cancel {dorestorecursorblink}
+            after idle {dostopcursorblink}
+        } else {
+            dostopcursorblink
         }
-        update
-        after 5
-        foreach ta $listoftextarea {
-            $ta configure -insertofftime 0
-        }
-        update
     }
 }
 
 proc restorecursorblink {} {
-    global cursorblink listoftextarea
-    if {$cursorblink == "true"} {
-        foreach ta $listoftextarea {
-            $ta configure -insertofftime 500
+    global cursorblink backgroundtasksallowed
+    if {$cursorblink} {
+        if {$backgroundtasksallowed} {
+            after cancel {dostopcursorblink}
+            after idle {dorestorecursorblink}
+        } else {
+            dorestorecursorblink
         }
     }
 }
+
+proc dostopcursorblink {} {
+    global listoftextarea
+    foreach ta $listoftextarea {
+        $ta configure -insertofftime 2
+    }
+    update
+    after 5
+    foreach ta $listoftextarea {
+        $ta configure -insertofftime 0
+    }
+    update
+}
+
+proc dorestorecursorblink {} {
+    global listoftextarea
+    foreach ta $listoftextarea {
+        $ta configure -insertofftime 500
+    }
+}
+
+# End of temporary cursor blinking start/stop
+############################

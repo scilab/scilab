@@ -59,12 +59,6 @@ Bugs:
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
 
--(the text cursor disappears every now and then while moving it around 
-  with the arrows, known bug #865 of the linux scilab-tcl combination)
-  -- now hacked:  the cursor is always on and red but does not blink,
-    for linux (the cursor does neither blink on windows for other reasons,
-    see http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435).
-
 -the window geometry is now managed in pixels. This is fine for restoring
  exactly the same window geometry as in the previous session, but loses
  some advantages of the previously broken grid management, such as resize
@@ -241,6 +235,8 @@ Wishes:
     search searches on a per line basis - or use regexp instead of .text
     search, big work...) - Automatically expand the entry widgets size
     according to the length of what is pasted inside them
+  . use -inactiveselectionbackground (Tk8.5 only) instead of using a fake
+    selection tag that mimics the real selection (sel tag)
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:

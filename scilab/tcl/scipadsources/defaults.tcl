@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.64"
+set version "Version 5.65"
 
 
 # detect Tk version and set a global flag to true if this version is >= 8.5
@@ -75,15 +75,12 @@ if { ![info exists lang] } { set lang "eng" }
 
 set Scheme scilab
 
-if {$tcl_platform(platform) != "unix"} {
-    # On Windows the cursor blink is disabled because of what is explained at
-    # http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
-    set cursorblink "false"
-} else {
-    # On Linux the cursor blink is disabled because of bug 865 (originated in bug 473)
-    # http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=865
-    set cursorblink "false"
-}
+# On Windows the cursor blink was once disabled because of what is explained at
+# http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
+# On Linux the cursor blink was once disabled because of bug 865 (originated in
+# bug 473)
+# now both issues have been fixed, therefore:
+set cursorblink true
 
 # Drag and drop feature initial state
 set mouseoversel "false"
@@ -141,16 +138,6 @@ set SearchDir "forwards"
 # Find/Replace color tags
 set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
 set FAKESELCOLOR $SELCOLOR
-
-# background tasks (colorization, keyposn)
-# Linux has bug 865 (originated in bug 473) preventing taks to be
-# done in the background - Same issue as for cursor blinking
-# See http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=865
-if {$tcl_platform(platform)=="unix"} {
-    set backgroundtasksallowed false
-} else {
-    set backgroundtasksallowed true
-}
 
 # some commands cannot be executed while colorization is in progress, and
 # this variable is used to prevent them from being executed in such a case

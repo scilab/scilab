@@ -3,9 +3,12 @@
 exec `which wish` "$0" "$@"
 
 if { [info exists pad] } { 
+
     raise $pad
     update
+
 } else {
+
     set pad .scipad
 
     set sourcedir [file join "$env(SCIPATH)" "tcl" "scipadsources"]
@@ -44,19 +47,20 @@ if { [info exists pad] } {
     source [file join $sourcedir db_init.tcl]
     source [file join $sourcedir bindings.tcl]
 
-# additional initial state operations, now that all the widgets have been set
+    # additional initial state operations, now that all the widgets have been set
     load_words
 
     createmenues
 
     setfontscipad $FontSize
 
-# set initial debug state
+    # set initial debug state
     setdbstate "NoDebug"
 
+    # the following update makes background tasks work on Linux
+    # since bug 865 is fixed
+    update
     focustextarea [gettextareacur]
-
-    update idletasks
 
     # finally source debug settings that must be executed after the procs definition
     source [file join $sourcedir scipaddebug2.tcl]

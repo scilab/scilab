@@ -1780,10 +1780,27 @@ Francois VOGEL, 30/11/05
  * All background tasks forbidden on Linux
  * version --> 5.63
 
-Francois VOGEL, 30/12/05
+Francois VOGEL, 30/11/05
  * Fixed Find Next bug with F3: the highlighted part of the text was not
    correct when the buffer was modified between two searches - now in such
    a case, the Find/Replace dialog pops up again
  * F3 finds next (forwards or backwards depending on the radiobutton state
    in the Find dialog), now Shift-F3 finds next in the reverse direction
  * version --> 5.64
+
+Francois VOGEL, 01/12/05
+ * Update added at the end of scipad.tcl to make background tasks work on
+   Linux (together with bug 865 fix)
+ * Dnd of directories work again (this regression came in Scipad 5.38) -
+   there is no need in this case to prevent concurrent running of the tile
+   procs (maximizebuffer and splitwindow)
+ * Continued lines are tagged in scilab language scheme only, and menu entry
+   is disabled when not in scilab scheme
+ * Cursor blink re-enabled on Linux thanks to bug 865 fix
+ * Cursor blink re-enabled on Windows since I found a better way to work
+   around dnd locks previously caused by the workaround for Tk bug 1169429
+ * Missing focustextarea binding added in case Scipad is launched without
+   TkDnD
+ * Dnd bug fixed: Dragging from a buffer, going out of it, coming back and
+   dropping in this same buffer did nothing
+ * version --> 5.65

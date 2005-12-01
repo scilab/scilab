@@ -560,6 +560,8 @@ proc schememenus {textarea} {
         # enable all the debug entries
         # this is set selectively in function of the debugger state
         setdbmenuentriesstates_bp
+        # enable "Show continued lines"
+        $pad.filemenu.options entryconfigure $MenuEntryId($pad.filemenu.options.[mcra "Show c&ontinued lines"]) -state normal
     } else {
         #disable "Load into scilab"
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state disabled
@@ -584,6 +586,8 @@ proc schememenus {textarea} {
         pbind $pad $Shift_F12 {}
         bind $pad <F12> {}
         bind $pad <Control-F12> {}
+        # disable "Show continued lines"
+        $pad.filemenu.options entryconfigure $MenuEntryId($pad.filemenu.options.[mcra "Show c&ontinued lines"]) -state disabled
     }
     if {$listoffile("$textarea",language) == "xml"} {
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Compile as &help page"]) -state normal

@@ -9,7 +9,9 @@
 # Don't forget to set this setting to no before committing!
 # There is a hard link to the RamDebugger directory here!
 # Anyway, there is a catch to avoid errors in case of lapse of memory...
+
 set DebugScipadWithRamDebugger no
+
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
         lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
@@ -45,6 +47,13 @@ if {[catch {ScilabEval ";"}] != 0} {
         console eval {wm geometry . 67x20+0+0}
         console title "Scipad debug"
     }
+    
+    set standaloneScipad true
+
+} else {
+
+    set standaloneScipad false
+
 }
 
 # End of debug settings in case Scipad is launched outside of Scilab, e.g. from wish
@@ -57,6 +66,7 @@ if {[catch {ScilabEval ";"}] != 0} {
 # Committed versions should have this attribute set to false
 # In that case, the Run to Cursor and Break commands are hidden
 # since there are issues with them in the Scilab parsers
+
 set dev_debug "false"
 
 # End of debug settings for the new debugger commands (Run to cursor and Break)
@@ -64,17 +74,37 @@ set dev_debug "false"
 
 
 #############
+# Debug settings for the background tasks
+
+# Committed versions should have this attribute set to true
+# since bug 865 has been fixed
+# When set to true, some tasks (colorization, keyposn) are
+# performed in the background
+
+set backgroundtasksallowed true
+
+# End of debug settings for the background tasks
+#############
+
+#############
 # Debug settings to trace when certain variables are changed
 
 if {0} {
     proc tracer {varname args} {
-        global debuglog
+        global debuglog standaloneScipad
         upvar #0 $varname var
         if {$debuglog} {
+            # debug log (in a file or in the console)
             log "$varname was updated to be \"$var\""
         } else {
-        showinfo "$varname was updated to be \"$var\""
-    }
+            if {$standaloneScipad} {
+                # Scipad launched from wish, no log
+                puts "$varname was updated to be \"$var\""
+            } else {
+                # Scipad launched from Scilab, no log
+                tk_messageBox -message "$varname was updated to be \"$var\""
+            }
+        }
     }
     trace add variable dndreallystarted write {tracer dndreallystarted}
     trace add variable dndinitiated write {tracer dndinitiated}

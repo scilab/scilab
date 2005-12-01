@@ -393,8 +393,6 @@ proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
-    global tileprocalreadyrunning
-    if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
     foreach f $filelist {
         regsub "^file:" $f "" f

@@ -136,9 +136,15 @@ proc tagcontlines {w} {
 # as expected
 # this proc also takes care of the visual appearance of continued lines
 
-    global showContinuedLines
+    global showContinuedLines listoffile
     global bgcolors
     foreach c1 $bgcolors {global $c1}
+
+    # don't tag anything if the language is not scilab
+    if {$listoffile("$w",language) != "scilab"} {
+        $w tag remove contline 1.0 end
+        return
+    }
 
     # regular expression matching a continued line identified as such because
     # it has trailing dots possibly followed by a comment
