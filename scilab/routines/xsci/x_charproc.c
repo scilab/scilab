@@ -1446,7 +1446,6 @@ int in_put(int interrupt)
     select_timeout.tv_usec = 0;
 #endif
     i = select(max_plus1,(fd_set *)&select_mask,(fd_set *) NULL,(fd_set *) NULL, &select_timeout);
-    if ( i == 0 ) continue;
     if (i < 0)
       {
 	if (errno != EINTR)
