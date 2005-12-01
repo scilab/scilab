@@ -864,7 +864,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     if ( ppLabel->auto_rotation )
     {
       font_angle = 0 ;
-      sciSetFontOrientation( ppsubwin->mon_title, font_angle ) ;
+      sciSetFontOrientation( ppsubwin->mon_title,(int) font_angle ) ;
     }
     else
     {
@@ -4862,7 +4862,7 @@ int labels2D_draw(sciPointObj * psubwin)
     if ( ppLabel->auto_rotation )
     {
       font_angle = 0 ;
-      sciSetFontOrientation( ppsubwin->mon_title, font_angle ) ;
+      sciSetFontOrientation( ppsubwin->mon_title, (int)font_angle ) ;
     }
     else
     {
@@ -8819,7 +8819,7 @@ sciDrawObj (sciPointObj * pobj)
 		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			    PD0, PD0, PD0, 0L, 0L);
 		  
-		  arsize = pPOLYLINE_FEATURE(pobj)->arsize_factor * arsize;
+		  arsize = (integer) pPOLYLINE_FEATURE(pobj)->arsize_factor * arsize;
 
 		  C2F(dr)("xarrow","v",&xm[0],&ym[0],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L);
 		}
