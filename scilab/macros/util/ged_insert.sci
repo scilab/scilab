@@ -27,6 +27,7 @@ function ged_insert(k,win)
   rep(3)=-1
   select k
   case 1 then //Single Line
+    show_pixmap()
     [btn,xc,yc]=xclick()
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i'); // I pass to pixel
@@ -44,6 +45,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 2 then //Polyline (stroken line)
+    show_pixmap()
     [btn,xc,yc]=xclick()
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -67,6 +69,7 @@ function ged_insert(k,win)
       r.data=[r.data;r.data($,:)]
     end
   case 3 // Arrow (single arrow)
+    show_pixmap()
     [btn,xc,yc]=xclick()
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -88,6 +91,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 4 // Double Arrow
+    show_pixmap()
     [btn,xc,yc]=xclick()
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -133,6 +137,7 @@ function ged_insert(k,win)
     end ;
     
   case 6 then //Rectangle
+    show_pixmap()
     [btn,xc,yc]=xclick();
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -150,6 +155,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end    
   case 7 then //Circle
+    show_pixmap()
     [btn,xc,yc]=xclick()
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
