@@ -192,16 +192,12 @@ btn_pressed(widget, event, params, num_params)
       XtRemoveTimeOut (timerId);
       return;
  }
-
   timerId = XtAppAddTimeOut(app_con, MultiClickTime,
 			     (XtTimerCallbackProc) reset_click_counter, (XtPointer) NULL);
   wait_dclick = TRUE;
   lose_up = FALSE;
   dclick = FALSE;
 
-  /*preserve the position at press time */
-  x=event->xbutton.x;
-  y=event->xbutton.y;
   /*Wait until wait_dclick becomes FALSE 
     - either because of two consecutive btn press
     - either because of timeout 
@@ -238,13 +234,16 @@ btn_pressed(widget, event, params, num_params)
     }
     else { /* button pressed detected [0 1 2]*/
       if (params[0][0]=='0')
-	PushClickQueue(GetEventWindow(event),x,y,
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
 		       event->xbutton.button-1,0,0);
       else if (params[0][0]=='1') /*shift press*/
-	PushClickQueue(GetEventWindow(event),x,y,
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
 		       event->xbutton.button-1+2000,0,0);
       else if (params[0][0]=='2') /*ctrl press*/
-	PushClickQueue(GetEventWindow(event),x,y,
+	PushClickQueue(GetEventWindow(event),event->xbutton.x,
+		       event->xbutton.y,
 		       event->xbutton.button-1+1000,0,0);
 
     }
@@ -267,7 +266,6 @@ btn_released(widget, event, params, num_params)
     return;
   }
   if (dclick)  return;
-
  /* button released detected [-5 -4 -3]*/
   PushClickQueue(GetEventWindow(event),event->xbutton.x,
 		 event->xbutton.y,
