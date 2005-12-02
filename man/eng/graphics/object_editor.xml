@@ -9,8 +9,14 @@
 
   <DATE>2004</DATE>
 
-  <SHORT_DESCRIPTION name="object_editor">description of the graphic object
+  <SHORT_DESCRIPTION name="object_editor ">description of the graphic object
   editor capacities</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="graphic ">description of the graphic object editor
+  capacities</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="menus">description of the graphic object editor
+  capacities</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
     <P>As explained in the <VERB>graphics_entities</VERB> help file, Scilab
@@ -21,9 +27,9 @@
     top level is the Figure. Each Figure defines at least one child of type
     Axes. Each Axes entity contains a set of leaf entities which are the basic
     graphics objects like Polylines, Rectangles, Arcs, Segs,... It can also
-    contain an Compound type which are recursive sets of entities.</P>
+    contain a Compound type which are recursive sets of entities.</P>
 
-    <P>The main interest of the new graphic mode is to make property change
+    <P>The main interest of the new graphic mode is to make property changes
     easier. This new graphics'mode provides a set of high-level graphing
     routines (see <LINK>set</LINK>, <LINK>get</LINK>) used to control objects'
     properties such as data, coordinates and scaling, color and appearences
@@ -46,20 +52,22 @@
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Select: ">
-        <SP>Make the figure be the current one.</SP>
+      <DESCRIPTION_ITEM label="Select figure as current: ">
+        <SP>Let this</SP>
+
+        <SP>figure be the current one.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Redraw: ">
+      <DESCRIPTION_ITEM label="Redraw figure: ">
         <SP>Redraw the content of the graphics window (only useful for
         old_style mode).</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Erase: ">
+      <DESCRIPTION_ITEM label="Erase figure: ">
         <SP>Erase the content of the graphics window. Its action corresponds
         to a <VERB>xbasc</VERB> (old graphic style) or <VERB>clf</VERB> (new
         graphic style) command.</SP>
@@ -68,8 +76,39 @@
 
         <P></P>
 
-        <P>The last four items are specially dedicated to the graphic editor
+        <P>The last eight items are specially dedicated to the graphic editor
         :</P>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Copy object: ">
+        <SP>Using the mouse, it allows the user to select a 2D object (like a
+        curve, a rectangle...) and put it in the clipboard. Thus, by a next
+        call to <VERB>Paste object</VERB>, the object is copied in the
+        selected current axes.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Paste object: ">
+        <SP>Allow the user to paste a previous object put into in the
+        clipboard inside the selected current axes.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Move object: ">
+        <SP>Using the mouse, it allows the user to move a 2D object (like a
+        curve, a rectangle...) inside the selected current axes.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Delete object: ">
+        <SP>Using the mouse, it allows the user to pick up a 2D object (like a
+        curve, a rectangle...) inside the selected current axes and to delete
+        it instantly.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
@@ -104,18 +143,24 @@
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Once the graphic interface is enabled, two main areas appear :</P>
+    <P>Once the graphic interface is enabled (using the <VERB>Figure
+    Porperties</VERB> or <VERB>Current Axes Properties</VERB> options), two
+    main areas appear :</P>
+
+    <P></P>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="A combobox entity selector: ">
-        <SP>Placed in the right-top corner of the Tk interface, a combobox
-        selector specifies which object is currently edited. It can be used to
-        switch from a graphic object to another provided that they are in the
-        same graphic window.</SP>
+      <DESCRIPTION_ITEM label="A tree selector: ">
+        <SP>Placed on the left side of the graphical editor, a hierarchical
+        tree selector specifies which object is currently edited. It can be
+        used to switch from a graphic object to another provided that they are
+        in the same graphic window.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
+
+    <P><IMG src="../../images/graphics/tree.gif"></IMG></P>
 
     <P></P>
 
@@ -126,17 +171,88 @@
         <VERB>Clipping</VERB>...) depending on the selected graphic object.
         Using this editor, man can edit more easily the whole properties set
         of each graphic object (like through the <VERB>"set"</VERB> and
-        <VERB>"get"</VERB> commands).</SP>
+        <VERB>"get"</VERB> commands). Here is an example of the axes' notebook
+        displaying axes properties:</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P><IMG src="../../images/graphics/notebook.gif"></IMG></P>
+
+    <P></P>
+
+    <P>Furthermore, you can legend/annotate your figure using sample
+    primitives given inside the <VERB>Insert</VERB> menu in the graphic
+    window. Using the mouse and following the instruction in the message
+    subwindow, you can add a:</P>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Line: ">
+        <SP>Draw a line between 2 left mouse clicks. The line lives in the
+        axes where the first point was selected.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Polyline: ">
+        <SP>Draw a polyline by clicking on the left button to define the line
+        path and right click at last to complete the drawing. The polyline
+        lives in the axes where the first point was selected.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Arrow: ">
+        <SP>Draw an arrow between 2 left mouse clicks. The arrow lives in the
+        axes where the first point was selected.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Double arrow: ">
+        <SP>Draw a double-sided arrow between 2 left mouse clicks. The double
+        arrow lives in the axes where the first point was selected.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Text: ">
+        <SP>Open a dialog box to enter the text, then click on the figure
+        window to place it. The text lives in the axes where the point was
+        selected.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Rectangle: ">
+        <SP>Draw a rectangle : 2 left mouse clicks define respectively the
+        upper left corner and the lower-right corner of the rectangle. The
+        rectangle lives in the axes where the first point was selected.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Circle: ">
+        <SP>Draw a circle : 2 left mouse clicks define respectively the upper
+        left corner and the lower-right corner of the bounding-box where the
+        circle lives. The rectangle lives in the axes where the first point
+        was selected.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[// Below is an example of the appearance of such an interface with objects of type Axes.
-
-// No images for now
-]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
@@ -153,6 +269,10 @@
 
     <SEE_ALSO_ITEM>
       <LINK>clf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>plot</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
