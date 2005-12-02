@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -9,134 +9,263 @@
 
   <DATE>2004</DATE>
 
-  <SHORT_DESCRIPTION name="object_editor">description of the graphic object
-  editor capacities</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="object_editor ">description des capacités de
+  l'éditeur graphique</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="graphic ">description des capacités de l'éditeur
+  graphique</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="graphique ">description des capacités de l'éditeur
+  graphique</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="menus">description des capacités de l'éditeur
+  graphique</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>As explained in the <VERB>graphics_entities</VERB> help file, Scilab
-    graphics is now based on a brent new graphics mode. This mode allows the
-    user to have more interaction with graphics before and after having them
-    drawn. In the <VERB>"new"</VERB> mode, each graphics window and the
-    drawing it contains are represented by hierchical entities. The hierachy
-    top level is the Figure. Each Figure defines at least one child of type
-    Axes. Each Axes entity contains a set of leaf entities which are the basic
-    graphics objects like Polylines, Rectangles, Arcs, Segs,... It can also
-    contain an Compound type which are recursive sets of entities.</P>
+    <P>Comme explicité dans le fichier d'aide <VERB>graphics_entities</VERB>,
+    le graphique Scilab possède désormais un nouveau mode. Ce mode facilite
+    les intéractions entre l'utilisateur et le graphique aussi bien avant
+    qu'après sa création. Dans ce <VERB>"nouveau</VERB>", chaque fenêtre
+    graphique et les dessins qu'elle contient sont représentés sous forme
+    d'entités hiérarchiques. Le plus haut niveaui de la hiérarchie est
+    toujours l'entité Figure. Chaque Figure définit au moins un enfant de type
+    Axes. Chaque entité Axes contient un ensemble d'entités feuilles (entités
+    terminales de la hiérarchie - elles n'ont pas de fils) qui sont les objets
+    de type Polylines, Rectangles, Arcs, Segs,... L'entités Axes peut
+    également contenir une entité intermédiaire nommé Compound qui regroupe un
+    ensemble d'entités filles.</P>
 
-    <P>The main interest of the new graphic mode is to make property change
-    easier. This new graphics'mode provides a set of high-level graphing
-    routines (see <LINK>set</LINK>, <LINK>get</LINK>) used to control objects'
-    properties such as data, coordinates and scaling, color and appearences
-    without requiring to replay the initial graphics commands.</P>
+    <P>Le principal intérêt du nouveau mode graphique réside dans sa capacité
+    à changer à volonté les propriétés des objets graphiques a priori et
+    surtout a posteriori. Ce nouveua mode graphique est fourni avec une suite
+    de commandes graphiques de haut niveau (voir <LINK>set</LINK>,
+    <LINK>get</LINK>) utliisées pour positionner les proriéts des objets
+    telles que les données, les coordonnées, échelles, couleur etc... sans
+    avoir à rejouer les commandes initiales (comportement de l'ancien mode
+    graphique).</P>
 
-    <P>Graphics entities are associated to Scilab variables of type
-    <VERB>handle</VERB>. The handle is a unique identifier which is associated
-    to each instance of a created graphical entity. Using this handle, it will
-    be possible to reach entities' properties through "set" and "get"
-    routines. The handles are also used to manipulate graphics objects, to
-    move them, to make copies or delete them.</P>
+    <P>Les entités graphiques ont un type <VERB>handle</VERB> dans Scilab.Un
+    handle est un identificateur unique qui est associé chaque instance d'un
+    objet graphique créé. En utilisant ce handle, il sera possible d'atteindre
+    les propriétés de l'entité considérée à travers l'utilisation des
+    commandes "set" et "get". Les handles sont aussi utiles pour manipuler des
+    objets graphiques, les bouger, les copier ou encore les supprimer.</P>
 
-    <P>To complete and use the graphics handle capacity at its maximum, a
-    graphic object editor has been created too. It is a set of Tcl/Tk
-    interfaces available for each kind of graphics objects (see
-    <LINK>graphics_entities</LINK> for more details) that can be enabled for
-    each graphic window. To make it work, select the <VERB>Edit</VERB> menu in
-    the graphic window. Seven graphics editing operations are available :</P>
+    <P>Pour compléter ce nouveau mode, un éditeur graphique a été développé
+    pour ces objets. Il s'agit d'un ensemble d'interfaces en Tcl/Tk
+    disponibles pour chaque objet graphique (voir
+    <LINK>graphics_entities</LINK> pour plus de détail). Pour lancer
+    l'interface, il faut sélectionner le menu <VERB>Edit</VERB> dans la
+    fenêtre graphique. On a alors sept opérations d'édition disponibles:</P>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Select: ">
-        <SP>Make the figure be the current one.</SP>
+      <DESCRIPTION_ITEM label="Select figure as current: ">
+        <SP>Positionne la figure comme étant la nouvelle figure courante.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Redraw: ">
-        <SP>Redraw the content of the graphics window (only useful for
-        old_style mode).</SP>
+      <DESCRIPTION_ITEM label="Redraw figure: ">
+        <SP>Redessinne le contenu de la figure (seulement utile en ancien mode
+        (old_style mode on)).</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Erase: ">
-        <SP>Erase the content of the graphics window. Its action corresponds
-        to a <VERB>xbasc</VERB> (old graphic style) or <VERB>clf</VERB> (new
-        graphic style) command.</SP>
+      <DESCRIPTION_ITEM label="Erase figure: ">
+        <SP>Efface le contenu de la figure. Son action correspond à un appel
+        à<VERB>xbasc</VERB> (ancienne syntaxe) ou <VERB>clf</VERB> (nouveau
+        mode graphique).</SP>
 
         <P></P>
 
         <P></P>
 
-        <P>The last four items are specially dedicated to the graphic editor
-        :</P>
+        <P>Les 8 derniers items sont dédiés exclusivement au nouveau mode
+        graphique :</P>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Copy object/Copier: ">
+        <SP>En utilisant la souris, cela permet de sélectionner un objet
+        graphique 2D (comme une courbe, un rectangle...) et de le glisser dans
+        le presse-papier. Ainsi, par un prochain appel à <VERB>Paste
+        object</VERB>, l'objet est recopié dans les axe courant.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Paste object/Coller: ">
+        <SP>Permet à l'utilisateur de coller un objet précédemment placé dans
+        le presse-papier sur l'axe courant.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Move object/Bouger: ">
+        <SP>En utilisant la souris, cette fonction permet de bouger un objet
+        2D (comme une courbe, un rectangle...) à l'intérieur d'un axe
+        courant.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Delete object/Détruire: ">
+        <SP>En utilisant la souris, cette fonction permet de détruire un objet
+        2D (like a curve, a rectangle...) que l'on sélectionne a
+        posteriori.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Figure Properties: ">
-        <SP>Launch the Tcl/Tk interface for the Figure object applied to the
-        figure handle of the graphics window.</SP>
+        <SP>Lance l'interface Tcl/Tk pour l'objet Figure, handle de la figure
+        de la fenêtre courante.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Current Axes Properties: ">
-        <SP>Launch the Tcl/Tk interface for the Axes object applied to the
-        current axes handle of the graphics window.</SP>
+        <SP>Lance l'interface Tcl/Tk pour l'objet Axes courant, handle de
+        l'axe courant de la fenêtre courante.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Start Entity Picker: ">
-        <SP>Start an event handler on the graphics window to catch the mouse
-        clicks on graphics objects and launch the corresponding Tcl/Tk
-        interface.</SP>
+        <SP>Démarre un sélecteur d'entité pour pointer des objets 2D à la
+        souris et ainsi ouvrir leur interface Tcl/Tk pour pouvoir modifier
+        leurs propriétés.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Stop Entity Picker: ">
-        <SP>Stop the action of the Entity Picker by terminating the event
-        handler on the graphics window.</SP>
+        <SP>Arrête l'action du sélecteur d'entité.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Once the graphic interface is enabled, two main areas appear :</P>
+    <P>Une fois l'interface graphique (fenêtre Tcl/Tk) activée en utilisant
+    les commandes <VERB>Figure Porperties</VERB> ou <VERB>Current Axes
+    Properties</VERB>, on distingue 2 zones pricnipales sur ces interfaces
+    :</P>
+
+    <P></P>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="A combobox entity selector: ">
-        <SP>Placed in the right-top corner of the Tk interface, a combobox
-        selector specifies which object is currently edited. It can be used to
-        switch from a graphic object to another provided that they are in the
-        same graphic window.</SP>
+      <DESCRIPTION_ITEM label="Un arbre sélecteur: ">
+        <SP>placé sur la gauche de la fenêtre de l'éditeur graphique, l'arbre
+        sélecteur permet de parcourir la hiérarchie des objets présents au
+        sein de la figure. On peut passer d'un objet à l'autre en déroulant la
+        hiérarchie.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P><IMG src="../../images/graphics/tree.gif"></IMG></P>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Des onglets: ">
+        <SP>La seconde zone d'intérêt est à droite: les propriétés de l'objet
+        sélectionné dans l'arbre sont disposées dans une structure
+        multi-onglets. On y trouve différents types de propriétés telles le
+        <VERB>Style</VERB>, <VERB>Data</VERB>, <VERB>Clipping</VERB>... Elles
+        dépendent du type d'objet considéré. A travers cet éditeur, on peut
+        voir et changer les propriétés de ces objets de façon graphique comme
+        on le ferait à travers l'emploi des fonctions <VERB>"set"</VERB> et
+        <VERB>"get"</VERB> dans la console. Voici un exemple d'onglets
+        affichant les propriétés d'un objet de type Axes:</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P><IMG src="../../images/graphics/notebook.gif"></IMG></P>
+
+    <P></P>
+
+    <P>De plus, on peut légender/annoter la figure en utilisant des primitives
+    simples données dans le menu <VERB>Insert</VERB> de la fenêtre graphique.
+    En utilisant la souris et en suivant les instructions dans la sous-fenêtre
+    de message, on peut ajouter un(e):</P>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Line/Ligne: ">
+        <SP>Dessine une ligne définie entre 2 clics souris gauche. La ligne
+        est définie dans le repère des axes du premier point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="A notebook: ">
-        <SP>The second area represents a notebook composed with different
-        properties pages (like <VERB>Style</VERB>, <VERB>Data</VERB>,
-        <VERB>Clipping</VERB>...) depending on the selected graphic object.
-        Using this editor, man can edit more easily the whole properties set
-        of each graphic object (like through the <VERB>"set"</VERB> and
-        <VERB>"get"</VERB> commands).</SP>
+      <DESCRIPTION_ITEM label="Polyline/Ligne brisée: ">
+        <SP>Dessine une ligne brisée en sélectionnant un chemin (clic gauche)
+        et une fin (clic droit). La ligne brisée est définie dans le repère
+        des axes du premier point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Arrow/Flèche: ">
+        <SP>Dessine une flèche définie entre 2 clics souris gauche. La flèche
+        est définie dans le repère des axes du premier point sélectionné.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Double arrow/Double flèche: ">
+        <SP>Dessine une double-flèche définie entre 2 clics souris gauche. La
+        flèche est définie dans le repère des axes du premier point
+        sélectionné.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Text/Texte: ">
+        <SP>Ouvre une boîte de dialogue pour entrer un texte, puis, en
+        cliquant qur une zone de la figure, insert le texte à l'endroit
+        cliquer. Le texte est définie dans le repère des axes du point
+        sélectionné.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Rectangle: ">
+        <SP>Dessine un rectangle : 2 clics souris gauches définissent
+        respectivement le coin supérieur gauche et inférieur droit du
+        rectangle. Le rectangle est défini dans le repère des axes du premier
+        point sélectionné.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Circle/Cercle: ">
+        <SP>Dessine un cercle : 2 clics souris gauches définissent
+        respectivement le coin supérieur gauche et inférieur droit de la boîte
+        englobante du cercle. Le cercle est défini dans le repère des axes du
+        premier point sélectionné.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[// Below is an example of the appearance of such an interface with objects of type Axes.
-
-// No images for now
-]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
@@ -153,6 +282,10 @@
 
     <SEE_ALSO_ITEM>
       <LINK>clf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>plot</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
