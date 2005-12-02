@@ -104,7 +104,6 @@ if txt~=[] then
     ninstr=ninstr+1
   end
 end
-
 // add the M-file name in funcallname vector (at the first index)
-funcallname=[mtlbtree.name;funcallname]
+funcallname=[fnam;funcallname]
 endfunction
