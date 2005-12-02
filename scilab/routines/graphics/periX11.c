@@ -462,6 +462,7 @@ static void set_client_message_off() { client_message=0;};
 int get_xclick_client_message_flag () { return client_message;}
 
 extern void set_wait_click(int val); 
+extern void set_event_select(int val); 
 
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
 {
@@ -493,7 +494,8 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 
   /* ignore the first event if it is a ClientMessage */ 
   set_client_message_on();
-  set_wait_click(1+4);
+  set_wait_click(1); /*disable event handler if any */
+  set_event_select(1+4);/*only record press and release events */
   while (buttons == 0) {
     /** first check if an event has been store in the queue while wait_for_click was 0 **/
     win=-1;
@@ -527,7 +529,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
     delay.tv_sec = 0; delay.tv_usec = 10;
     select(0, 0, 0, 0, &delay);
   }
-  set_wait_click(1+4);
+  set_wait_click(0);
   set_client_message_off();
 
   /** Cleanup **/
@@ -606,7 +608,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 
   XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
 
-  /*set wait_for_click=1 so that next event will be stored  */
+  /*set wait_for_click=1 to diable event handler if any */
+  set_wait_click(1);
   set_wait_click(1+2*getmouse+4*getrelease);
 
   while (buttons == 0) 
@@ -632,6 +635,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *x1   =  -1;
 	  *yy1  =  -1;
 	  *ibutton = -100;
+	  set_event_select(1+4); 
 	  set_wait_click(0);
 	  return;
 	}
@@ -648,7 +652,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
     /* to slow down event loop not to use all cpu when nothing happen*/
       select(0, 0, 0, 0, &delay);
     }
-  set_wait_click(1+4); 
+  set_event_select(1+4); 
+  set_wait_click(0);
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
   XSync (dpy, 0);

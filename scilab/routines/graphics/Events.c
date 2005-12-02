@@ -24,9 +24,10 @@ int demo_menu_activate=0; /* add a demo menu in the graphic Window */
 #define MaxCB 50 /* We keep the last  MaxCB click events on a queue just in case */
 static But ClickBuf[MaxCB];
 static int lastc = 0;
-static int wait_for_click=0;
+static int wait_for_click=0; /* set to 1 when in xclick or xgetmouse to disable event handler*/
+static int event_select=5;/* record only press and release events, ignoring move*/
 
-/* nextused to prevent the user from destroying a graphic window 
+/* next used to prevent the user from destroying a graphic window 
  * when acquiring for example a zoom rectangle */
 static int sci_graphic_protect = 0;
 /*-----------------------------------------------------------------------------------*/
@@ -137,8 +138,8 @@ int PushClickQueue(int win,int x,int y,int ibut,
   if (  wait_for_click==0){
     if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
   }
-  if (  wait_for_click==0 &&(motion == 1 || release == 1) ) return 0;
-  if (((wait_for_click&2)&&motion)||((wait_for_click&4)&&release)||(motion==0&&release==0)) {
+  if (  event_select==0 &&(motion == 1 || release == 1) ) return 0;
+  if (((event_select&2)&&motion)||((event_select&4)&&release)||(motion==0&&release==0)) {
   /* store click event in a queue */
 
   if ( lastc == MaxCB ) 
@@ -251,5 +252,16 @@ void set_wait_click(int val)
 int get_wait_click()
 {  
   return wait_for_click;
+}
+
+void set_event_select(int val)
+{  
+    event_select=val;
+}
+
+/*-----------------------------------------------------------------------------------*/
+int get_event_select()
+{  
+  return event_select;
 }
 

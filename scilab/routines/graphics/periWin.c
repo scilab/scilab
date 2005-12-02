@@ -777,6 +777,7 @@ int check_pointer_win(int *x1,int *yy1,int *win)
 /*-----------------------------------------------------------------------------------*/
 /* used by xclick_any and xclick */ 
 extern void set_wait_click(int val); 
+extern void set_event_select(int val); 
 /*-----------------------------------------------------------------------------------*/
 int GetWinsMaxId(void)
 {
@@ -815,12 +816,12 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
       return;
     }
   
-  /** if we already have something on the queue **/
-  if ( *iflag ==0 )  ClearClickQueue(-1);
-  /* ignore the first event if it is a ClientMessage */ 
 
+  if ( *iflag ==0 )  ClearClickQueue(-1); /*clear the queue if required*/
+ 
   /** first check if an event has been store in the queue while wait_for_click was 0 **/
-  set_wait_click(1+4);
+  set_wait_click(1); /*disable event handler if any */
+  set_event_select(1+4); /* select press and release events*/
   while (1) 
     {
       win=-1;
@@ -866,7 +867,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
 	}
 
     }
-  set_wait_click(1+4);
+  set_wait_click(0);
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F(xclick)(str, ibutton, x1, yy1, iflag,istr, v7, dv1, dv2, dv3, dv4)
@@ -999,7 +1000,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   if (IsIconic(ScilabXgc->hWndParent)) ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
   BringWindowToTop(ScilabXgc->hWndParent);
 
-  set_wait_click(1+2*getmouse+4*getrelease);
+  set_wait_click(1);
+  set_event_select(1+2*getmouse+4*getrelease);
 
   while ( 1 ) 
     {
@@ -1026,6 +1028,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *x1= 0 ;
 	  *yy1= 0;
 	  *ibutton=-100; 
+	  set_event_select(1+4);
 	  set_wait_click(0);
 	  return;
 	}
@@ -1037,6 +1040,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  *ibutton = -2;
 	  *x1=0;
 	  *yy1=0;
+	  set_event_select(1+4);
+	  set_wait_click(0);
 	  return ;
 	}
 
@@ -1048,8 +1053,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  break ;
 	}
     }
-   
-  set_wait_click(1+4);
+  set_event_select(1+4);
+  set_wait_click(0);
 }
  
 /*-----------------------------------------------------------------------------------*/
