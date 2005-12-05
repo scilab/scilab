@@ -25,8 +25,9 @@ global TMPDIR
     // designed to take advantage of the ScilabEval sequential mode in
     // order to prevent flushing of events by Scilab to Tcl during the
     // launch of Scipad
-    TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
-                  "/tcl/scipadsources/scipad.tcl""""}"")} ""seq"" ")
+//    TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
+//                  "/tcl/scipadsources/scipad.tcl""""}"")} ""seq"" ")
+    TCL_EvalStr("source """+SCI+"/tcl/scipadsources/scipad.tcl""","scipad")
     nfiles=argn(2)
     if nfiles>0 then
       for i=1:nfiles
@@ -64,8 +65,9 @@ global TMPDIR
 //  Given that scipad is open via a ScilabEval as is done above, the initial
 //  opening of files has to be done in the same way, so that the command is sequenced
 //  after scipad is really open
-          TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
-                        filetoopen +"}}"")} ""seq"" ")          
+//          TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
+//                        filetoopen +"}}"")} ""seq"" ")     
+            TCL_EvalStr("openfile """+filetoopen+"""","scipad")
         end
       end
     end
