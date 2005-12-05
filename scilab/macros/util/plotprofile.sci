@@ -194,12 +194,7 @@ function r=with_scipad()
 endfunction
 
 function openinscipad(path)
-  if TCL_ExistInterp("scipad") then
-     if ~TCL_ExistVar("pad","scipad") then scipad(),end
-  else
-    scipad()
-  end
-  TCL_EvalStr("scipad eval {openfile """+path+"""}")
+  scipad(path)
   TCL_EvalStr("scipad eval {set profiled [lindex $listoftextarea end]}")
 endfunction
 
