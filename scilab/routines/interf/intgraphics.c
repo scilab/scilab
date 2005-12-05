@@ -102,6 +102,7 @@ extern int sciunzoom _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2bmp _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2emf _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu _PARAMS((char *fname,unsigned long fname_len));
+extern int scinewaxes _PARAMS((char *fname,unsigned long fname_len));
 int intshowalluimenushandles _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
@@ -200,7 +201,8 @@ static MatdesTable Tab[]={
   {intxs2emf,"xs2emf"},
   {intUImenu,"UImenu"},
   {intshowalluimenushandles,"showalluimenushandles"},
-  {sciStringBox,"StringBox"}
+  {sciStringBox,"StringBox"},
+  {scinewaxes,"newaxes"}
 };
 
 /*-----------------------------------------------------------------------------------*/ 
