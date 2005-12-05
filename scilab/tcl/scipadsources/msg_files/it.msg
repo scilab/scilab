@@ -355,8 +355,7 @@
 ::msgcat::mcset it "&large" "&grande"
 ::msgcat::mcset it "&Colors" "&Colori"
 ::msgcat::mcset it "Colorize \'&strings\'" "Colora \'&stringhe\'"
-::msgcat::mcset it "Show c&ontinued lines"\
-                   "Colora linee &incomplete"
+::msgcat::mcset it "Show c&ontinued lines" "Colora linee &incomplete"
 ::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
 ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
 ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
@@ -375,6 +374,7 @@
 ::msgcat::mcset it "Full path if &ambiguous" "Percorso completo se &ambiguo"
 ::msgcat::mcset it "&Unambiguous pruned path" "Percorso &ridotto univoco"
 ::msgcat::mcset it "&Recent files" "&Numero files recenti"
+::msgcat::mcset it "&Backup files depth" "Numero &versioni backup"
 ::msgcat::mcset it "&Locale" "&Localizzazione"
 # locale names (common)
 ::msgcat::mcset it "de locale (de)" "Deutsch (de)"
