@@ -30,6 +30,9 @@ static int event_select=5;/* record only press and release events, ignoring move
 /* next used to prevent the user from destroying a graphic window 
  * when acquiring for example a zoom rectangle */
 static int sci_graphic_protect = 0;
+
+/* Disable Events when in PushClickQueue */
+static int EventOff=FALSE;
 /*-----------------------------------------------------------------------------------*/
 
 int scig_click_handler_none (int win,int x,int y,int ibut,
@@ -129,18 +132,38 @@ int  get_delete_win_mode(void) {  return sci_graphic_protect;}
 int PushClickQueue(int win,int x,int y,int ibut,
 		   int motion,int release) 
 {
+/* Disable Events when in PushClickQueue */
+/* sciprint("Eventoff %d ibut %d wait %d\n",EventOff,ibut,get_wait_click()); */
+
+if (EventOff) return 0;
+EventOff=TRUE;
 	/*if (release==-1)
 	{
 		sciprint("Receive Released button : %d %d\n",ibut,iEventsmouse);
 		iEventsmouse++;
 	}*/
   /* first let a click_handler do the job  */
-  if (  wait_for_click==0){
-    if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
-  }
-  if (  event_select==0 &&(motion == 1 || release == 1) ) return 0;
+  if (  wait_for_click==0)
+		{
+			int tmp=scig_click_handler(win,x,y,ibut,motion,release);
+			if ( tmp== 1 )
+				{
+				EventOff=FALSE;
+				return 0;
+				}
+		}
+  if (  event_select==0 &&(motion == 1 || release == 1) ) 
+		{
+		EventOff=FALSE;
+		return 0;
+		}
   if (((event_select&2)&&motion)||((event_select&4)&&release)||(motion==0&&release==0)) {
   /* store click event in a queue */
+if (motion == 1)
+	{
+	//sciprint("\n");
+	}
+	//sciprint("Queue\n");
 
   if ( lastc == MaxCB ) 
     {
@@ -167,6 +190,7 @@ int PushClickQueue(int win,int x,int y,int ibut,
       lastc++;
     }
   }
+	EventOff=FALSE;
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/
