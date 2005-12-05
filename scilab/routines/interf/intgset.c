@@ -977,7 +977,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   int xtmp;
   int  i,num,v=1,na,id,cur,verb=0;
   double dv=0.0; 
-  char  **str, **ptr;
+  char   **ptr;
   sciPointObj *psubwin, *figure, *tmpobj;
   struct BCG *XGC;
 
@@ -991,9 +991,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ) /* Addings F.Leray 10.06.04 */
     {
-      if (pobj != (sciPointObj *)NULL) {
-	psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-	str=pAXES_FEATURE(pobj)->str;  
+      if (pobj != (sciPointObj *)NULL) 
+			{
+				psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
       }
 
       if ((pobj == (sciPointObj *)NULL) && 
