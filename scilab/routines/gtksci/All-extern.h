@@ -26,7 +26,7 @@ extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_hand
 */
 
 extern int PushClickQueue (int,int ,int y,int ibut,int m,int r);
-extern int CheckClickQueue  (integer *,integer *x, integer *y, integer *ibut);  
+extern int CheckClickQueue(int *win,int *x,int *y,int *ibut,int *motion,int *release);		       
 extern int ClearClickQueue  (integer);  
 
 extern int C2F (deletewin) (integer *number);  
