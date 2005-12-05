@@ -3,30 +3,30 @@ function scipad(varargin)
 global LANGUAGE
 global TMPDIR
   if with_tk() then
-    TCL_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TCL_GetVar("isscipadinterp")=="0" then    
+    if ~TCL_ExistInterp("scipad") then    
       TCL_EvalStr("interp create scipad")
       TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
-      TCL_EvalStr("scipad eval {wm withdraw .}")
+      TCL_EvalStr("wm withdraw .","scipad")
       TCL_EvalStr("scipad alias ScilabEval ScilabEval")
     end
     if exists("SCIHOME") then
       if MSDOS then
-        TCL_EvalStr("scipad eval { set env(SCIHOME) """+strsubst(SCIHOME,"\","/")+""" }")
+        TCL_EvalStr("set env(SCIHOME) """+strsubst(SCIHOME,"\","/")+"""","scipad")
       else
-        TCL_EvalStr("scipad eval { set env(SCIHOME) """+pathconvert(SCIHOME,%f,%t)+""" }")
+        TCL_EvalStr("set env(SCIHOME) """+pathconvert(SCIHOME,%f,%t)+"""","scipad")
       end
     end
     if MSDOS then
-      TCL_EvalStr("scipad eval { set tmpdir """+strsubst(TMPDIR,"\","/")+""" }")
+      TCL_EvalStr("set tmpdir """+strsubst(TMPDIR,"\","/")+"""","scipad")
     else
-      TCL_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
+      TCL_EvalStr("set tmpdir """+pathconvert(TMPDIR,%f,%t)+"""","scipad")
     end
     // Although the following line might seem to be a bit too much it is
     // designed to take advantage of the ScilabEval sequential mode in
     // order to prevent flushing of events by Scilab to Tcl during the
     // launch of Scipad
-    TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+"/tcl/scipadsources/scipad.tcl""""}"")} ""seq"" ")
+    TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
+                  "/tcl/scipadsources/scipad.tcl""""}"")} ""seq"" ")
     nfiles=argn(2)
     if nfiles>0 then
       for i=1:nfiles
@@ -61,7 +61,11 @@ global TMPDIR
           if MSDOS then 
             filetoopen=strsubst(filetoopen,"\","/"); 
           end
-          TCL_EvalStr("scipad eval {openfile {"+ filetoopen +"}}")          
+//  Given that scipad is open via a ScilabEval as is done above, the initial
+//  opening of files has to be done in the same way, so that the command is sequenced
+//  after scipad is really open
+          TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
+                        filetoopen +"}}"")} ""seq"" ")          
         end
       end
     end
