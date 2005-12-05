@@ -610,7 +610,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 
   /*set wait_for_click=1 to diable event handler if any */
   set_wait_click(1);
-  set_wait_click(1+2*getmouse+4*getrelease);
+  set_event_select(1+2*getmouse+4*getrelease);
 
   while (buttons == 0) 
     {
