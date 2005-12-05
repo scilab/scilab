@@ -3728,6 +3728,8 @@ int
 sciSetInterpVector(sciPointObj * pobj, int size, int * value)
 {
   int i;
+
+  FREE(pPOLYLINE_FEATURE(pobj)->scvector);
   
   if((pPOLYLINE_FEATURE(pobj)->scvector = MALLOC(size*sizeof(int)))==NULL){
     sciprint("Can not allocate room for shaded color vbector\n");

@@ -1232,17 +1232,18 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       sciSetIsFilled(pobj,isfilled);
       /*       sciSetIsInterpShaded(pobj,isinterpshaded); */
       
-      pPOLYLINE_FEATURE (pobj)->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
+      ppoly->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
       
       if(foreground != NULL)
 	sciSetForeground(pobj,(*foreground));
       
-      pPOLYLINE_FEATURE(pobj)->scvector = (int *) NULL;
-      pPOLYLINE_FEATURE(pobj)->dim_icv = 0;
+      ppoly->scvector = (int *) NULL;
+      
+      ppoly->dim_icv = n1;
       
       if(background != NULL){
 	if(isinterpshaded == TRUE){ /* 3 or 4 values to store */
-	  pPOLYLINE_FEATURE(pobj)->dim_icv = n1;
+	  
 	  sciSetInterpVector(pobj,n1,background);
 	}
 	else
