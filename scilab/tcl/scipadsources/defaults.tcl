@@ -1,10 +1,18 @@
 set winTitle "SciPad"
-set version "Version 5.65"
+set version "Version 5.66"
 
 
-# detect Tk version and set a global flag to true if this version is >= 8.5
-# this is used to improve Scipad when used with recent Tks without preventing
-# use with older ladies (ex: -strictlimits option in find/replace)
+# detect Tcl and Tk version and set global flags to true if version is >= 8.5
+# this is used to improve Scipad when used with recent Tcl/Tk without
+# preventing its use with older ladies
+# ex of 8.5 use: -strictlimits option in find/replace
+#                -stretch always option for panedwindows
+#                proc timestamp uses clock milliseconds
+if { [package vcompare $tcl_version 8.5] >= 0 } {
+    set Tcl85 1
+} else {
+    set Tcl85 0
+}
 if { [package vcompare $tk_version 8.5] >= 0 } {
     set Tk85 1
 } else {
@@ -30,7 +38,8 @@ set colorpref "$bgcolors $fgcolors"
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts lang completionbinding showContinuedLines"
+       tabinserts lang completionbinding showContinuedLines \
+       filebackupdepth"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -68,6 +77,7 @@ set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
 set completionbinding "Control-Tab"
 set showContinuedLines "yes"
+set filebackupdepth 0
 
 # other non-pref initial settings
 

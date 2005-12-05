@@ -81,7 +81,7 @@ proc tkdndbind {w} {
         if {%y <= 10} { %W yview scroll -1 units }
         if {%y >= [expr [winfo height %W] - 10]} { %W yview scroll 1 units }
         update idletasks
-        if {"%m" == "Control"} {
+        if {[lsearch "%m" "Control"] != -1} {
             return copy
         } else {
             return move

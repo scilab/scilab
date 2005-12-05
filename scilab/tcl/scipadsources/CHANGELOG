@@ -1804,3 +1804,24 @@ Francois VOGEL, 01/12/05
  * Dnd bug fixed: Dragging from a buffer, going out of it, coming back and
    dropping in this same buffer did nothing
  * version --> 5.65
+
+Francois VOGEL, 05/12/05
+ * Added an identifier in front of each proc log entry, so that end of
+   interlaced events can be easily related to their beginning
+ * Timestamping in logs is accurate to the millisecond
+ * Added global variable Tcl85 which is true if Tcl version is at least 8.5
+   This is useful to prepare the transition of Scipad to Tcl/Tk 8.5. Currently
+   Scipad works as well under 8.4 or 8.5, but certain options or commands
+   available only in 8.5 are used when Tcl/Tk 8.5 is present
+ * Partially fixed Tcl errors that popped when hammering Scipad during its
+   launch from Scilab (fix is in scipad.sci)
+ * Dnd bug fixed: When the NumLock mode is active, ctrl dnd did not work
+   (issue was only on Linux)
+ * Added automatic backup of files on file save, with configurable and saved
+   depth of backups
+ * Fixed: help (Ctrl-F1) on quotes works
+ * Fixed: Ctrl-v copies inside the find/replace/filename dialogs, and replaces
+   an existing selection (issue was only on Linux). The selected text can be
+   copy-pasted outside by button-2 click. The entry boxes have -exportselection
+   set to true again
+ * version --> 5.66

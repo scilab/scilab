@@ -724,7 +724,7 @@ proc filesaveas {textarea} {
 
 proc writesave {textarea nametosave} {
 # generic save function - write a file onto disk
-    global listoffile
+    global listoffile filebackupdepth
     # if the file exists, check once more if the file is writable 
     # if it doesn't, check if the directory is writable
     # (case of Save as...) (non existent files return 0 to writable)
@@ -736,6 +736,7 @@ proc writesave {textarea nametosave} {
           [expr [file writable [file dirname $nametosave]] == 0]
     }
     if {$listoffile("$textarea",readonly)==0} {
+        backupfile $nametosave $filebackupdepth
         set FileNameToSave [open $nametosave w+]
         puts -nonewline $FileNameToSave [$textarea get 0.0 end]
         close $FileNameToSave
@@ -769,6 +770,37 @@ proc savepreferences {} {
     }
     close $preffile
   }
+}
+
+proc backupfile { fname { levels 10 } } {
+# before writing to a file $fname, call: bak $fname
+# and the file will not get overwritten.
+#
+# renames like so: .bak, .ba2, .ba3, .ba4, etc.
+#
+# this proc was taken from http://wiki.tcl.tk/1641 and slightly adapted
+
+    if {$levels==0} {return}
+
+    if { [ catch {
+        if { [ file exists $fname ] } {
+            set dir [ file dirname $fname ]
+            set files [ glob -nocomplain -path ${fname} .ba* ]
+            set i $levels
+            while { [ incr i -1 ] } {
+                if { [ lsearch -exact $files ${fname}.ba$i ] > -1 } {
+                    file rename -force ${fname}.ba$i ${fname}.ba[ incr i ]
+                    incr i -1
+                }
+            }
+            if { [ file exists ${fname}.bak ] } {
+                file rename -force ${fname}.bak ${fname}.ba2
+            }
+            file rename -force $fname ${fname}.bak
+        }
+    } err ] } {
+        return -code error "backupfile($fname $levels): $err"
+    }
 }
 
 ##################################################

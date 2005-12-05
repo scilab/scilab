@@ -26,6 +26,8 @@ proc helpword {} {
     }
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
+        set curterm [duplicatechars $curterm "\""]
+        set curterm [duplicatechars $curterm "'"]
         if {$curterm!=""} { ScilabEval_lt "help \"$curterm\"" }
     }
 }

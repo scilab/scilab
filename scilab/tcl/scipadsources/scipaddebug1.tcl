@@ -161,17 +161,56 @@ if {$debuglog} {
 
     unset -nocomplain -- Scipaddebuglogfileid
 
+    proc timestamp { { tv_sec_p "" } { tv_msec_p "" } } {
+    # timestamping accurate to the millisecond
+    # this proc can give back the second and millisecond information
+    # separately to the caller
+    # it was taken from http://wiki.tcl.tk/1035 and slightly adapted
+    # to take advantage of what is available in 8.5 if present
+        global Tcl85
+
+        if { $tv_sec_p != "" } {
+            upvar $tv_sec_p secs
+        }
+        if { $tv_msec_p != "" } {
+            upvar $tv_msec_p fract
+        }
+
+        if {$Tcl85} {
+            # Tcl >= 8.5, clock milliseconds is better
+            set stamp [clock milliseconds]
+            set secs [expr $stamp / 1000]
+            set fract [expr $stamp - ($secs * 1000)]
+
+        } else {
+            # Tcl < 8.5, use what available
+            set secs [clock seconds]
+            set ms [clock clicks -milliseconds]
+            set base [expr { $secs * 1000 }]
+            set fract [expr { $ms - $base }]
+            if { $fract > 1000 } {
+                set diff [expr { $fract / 1000 }]
+                incr secs $diff
+                incr fract [expr { -1000 * $diff }]
+            }
+
+        }
+
+        return $secs.[format %03d $fract]
+    }
+
     proc log {value} {
     # quick and dirty log file facility
     # value is output in the console, and also in a file unless $loginafile is
     # set to false
     # the log file is overwritten each time Scipad starts
-    # however in case an bgerror occurs, the log file is copied to another file
-    # and this one is never erased by Scipad (a new filename is used for each bgerror)
+    # however in case a bgerror occurs, the log file is copied to another file
+    # and this one is never erased by Scipad (a new filename is used for each
+    # bgerror)
         global Scipaddebuglogfileid Scipaddebuglogfilename env debuglog loginafile
         if {!$debuglog} {return}
-        set seconds [clock seconds]
-        puts "[clock format $seconds -format "%d/%m/%y|%T|"]$value"
+        timestamp sec mil
+        puts "[clock format $sec -format "%d/%m/%y|%T"].[format %03d $mil]|$value"
         if {$loginafile} {
             if {![info exists Scipaddebuglogfileid]} {
                 set rootpath $env(SCIHOME)
@@ -181,7 +220,7 @@ if {$debuglog} {
             } else {
                 set Scipaddebuglogfileid [open $Scipaddebuglogfilename a]
             }
-            puts $Scipaddebuglogfileid "[clock format $seconds -format "%d/%m/%y|%T|"]$value"
+            puts $Scipaddebuglogfileid "[clock format $sec -format "%d/%m/%y|%T"].[format %03d $mil]|$value"
             close $Scipaddebuglogfileid
         }
     }

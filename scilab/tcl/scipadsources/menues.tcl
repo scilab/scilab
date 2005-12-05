@@ -275,6 +275,9 @@ proc createmenues {} {
         $pad.filemenu.options.recent.menu entryconfigure $i \
             -command {UpdateRecentFilesList}
     }
+    eval "$pad.filemenu.options add cascade  [me "&Backup files depth"]\
+               -menu [tk_optionMenu $pad.filemenu.options.backup \
+                    filebackupdepth 0 1 2 3 4 5 6 7 8 9 10]"
     menu $pad.filemenu.options.locale -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "&Locale"] \
            -menu $pad.filemenu.options.locale "

@@ -66,5 +66,3 @@ if { [info exists pad] } {
     source [file join $sourcedir scipaddebug2.tcl]
 
 }
-
-

@@ -14,6 +14,24 @@ proc findtextdialog {typ} {
     toplevel $find
     wm title $find [mc "Find"]
     setwingeom $find
+    
+    # save the possibly existing selection
+    # fakeselection is a copy of the sel tag, required because:
+    # 1. the sel tag is not visible when focus is out of $pad
+    # 2. since the Find/Replace entry boxes now have -exportselection 1
+    #    the sel tag actually disappears from the textarea during the
+    #    dialog build
+    # note wrt Tk85:
+    # using -inactiveselectionbackground (Tk8.5 only) instead of using a fake
+    # selection tag that mimics the real selection (sel tag) could have been
+    # a good idea, but it only addresses point 1. above
+    set tahasnosel [catch {[gettextareacur] get sel.first sel.last}]
+    if {!$tahasnosel} {
+        # there is a selection
+        [gettextareacur] tag add fakeselection sel.first sel.last
+        [gettextareacur] tag raise foundtext fakeselection
+        [gettextareacur] tag raise replacedtext fakeselection
+    }
 
     # entry fields
     frame $find.l
@@ -21,7 +39,7 @@ proc findtextdialog {typ} {
     label $find.l.f1.label -text [mc "Find what:"] \
         -width 15 -font $menuFont
     entry $find.l.f1.entry -textvariable SearchString \
-        -width 30 -font $textFont -exportselection 0
+        -width 30 -font $textFont -exportselection 1
     pack $find.l.f1.label $find.l.f1.entry -side left
     pack configure $find.l.f1.entry -expand 1 -fill x
     if {$typ=="replace"} {
@@ -29,7 +47,7 @@ proc findtextdialog {typ} {
         label $find.l.f2.label2 -text [mc "Replace with:"] \
             -width 15 -font $menuFont
         entry $find.l.f2.entry2 -textvariable ReplaceString \
-            -width 30 -font $textFont -exportselection 0
+            -width 30 -font $textFont -exportselection 1
         pack $find.l.f2.label2 $find.l.f2.entry2 -side left
         pack configure $find.l.f2.entry2 -expand 1 -fill x
         pack $find.l.f1 $find.l.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
@@ -124,7 +142,7 @@ proc findtextdialog {typ} {
         label $find.b.f6.f1.labelt -text [mc "In files/file types:"] \
             -width 20 -font $menuFont
         entry $find.b.f6.f1.entryt -textvariable fileglobpat \
-            -width 30 -font $textFont -exportselection 0
+            -width 30 -font $textFont -exportselection 1
         menubutton $find.b.f6.f1.mbselectpat -text "..." -indicatoron 0 \
             -relief raised -font $textFont
         menu $find.b.f6.f1.mbselectpat.pat -tearoff 0 -font $menuFont
@@ -140,7 +158,7 @@ proc findtextdialog {typ} {
         label $find.b.f6.f2.labeld -text [mc "In directory:"] \
             -width 20 -font $menuFont
         entry $find.b.f6.f2.entryd -textvariable initdir \
-            -width 30 -font $textFont -exportselection 0
+            -width 30 -font $textFont -exportselection 1
         button $find.b.f6.f2.buttonselectdir -text "..." \
             -command \"getinitialdirforsearch\" \
             -font $menuFont
@@ -185,11 +203,6 @@ proc findtextdialog {typ} {
     bind $find <Visibility> {raise $find $pad ; focus $find.l.f1.entry}
     bind $pad  <Expose>     {catch {raise $find ; focus $find.l.f1.entry}}
 
-    # preselect the entry field -
-    # warning: this does not work on Linux if the entry has -exportselection 1
-    # which is the default
-    $find.l.f1.entry selection range 0 end
-
     focus $find.l.f1.entry
     update
     grab $find
@@ -198,7 +211,6 @@ proc findtextdialog {typ} {
     $find.l.f4.f3.down invoke
 
     # initial settings for searching in selection
-    set tahasnosel [catch {[gettextareacur] get sel.first sel.last}]
     if {$tahasnosel} {
         $find.l.f4.f5.cbox4 deselect
         $find.l.f4.f5.cbox4 configure -state disabled
@@ -246,7 +258,25 @@ proc findtextdialog {typ} {
     }
     set searchforfilesonly 0
 
-    # initialize all the settings
+    # preselect the entry field -
+    $find.l.f1.entry selection range 0 end
+
+    # arrange for the entry boxes selection to be erased when pasting
+    bind $find.l.f1.entry <Control-v> { \
+        if {[%W selection present]} { \
+            %W delete sel.first sel.last \
+        } ; \
+        # no need to event generate %W <<Paste>> since Tk does it for us (class binding)! \
+    }
+    if {$typ == "replace"} {
+        bind $find.l.f2.entry2 <Control-v> [bind $find.l.f1.entry <Control-v>]
+    }
+    if {$typ == "find"} {
+        bind $find.b.f6.f1.entryt <Control-v> [bind $find.l.f1.entry <Control-v>]
+        bind $find.b.f6.f2.entryd <Control-v> [bind $find.l.f1.entry <Control-v>]
+    }
+
+    # initialize all the remaining startup settings
     resetfind $find [gettextareacur]
 }
 
@@ -851,7 +881,8 @@ proc searchforallmatches {textarea str cas reg ssel whword} {
 
 proc getsearchlimits {textarea ssel} {
 # decide about the start and stop positions of a forwards search:
-# if there is a selection then start = sel.first and stop = sel.last
+# if there is a selection then start = fakeselection.first and
+#                              stop = fakeselection.last
 #                         otherwise start = 1.0 and stop = last char
 # of $textarea
     if {!$ssel} {
@@ -859,8 +890,8 @@ proc getsearchlimits {textarea ssel} {
         set sta 1.0
         set sto [$textarea index end]
     } else {
-        set sta [$textarea index sel.first]
-        set sto [$textarea index sel.last]
+        set sta [$textarea index fakeselection.first]
+        set sto [$textarea index fakeselection.last]
     }
     return [list $sta $sto]
 }
@@ -990,9 +1021,9 @@ proc getnextmatchany {textarea dir ssel} {
         } else {
             #... the selection start or end if there is a selection
             if {$dir == "forwards"} {
-                set pos [$textarea index sel.first]
+                set pos [$textarea index fakeselection.first]
             } else {
-                set pos [$textarea index sel.last]
+                set pos [$textarea index fakeselection.last]
             }
         }
 
@@ -1133,19 +1164,8 @@ proc setcurmatchasreplaced {textarea lenR} {
 
 proc resetfind {w textarea} {
 # reset the find/replace settings to their initial default values
-    global searchinsel
     global listofmatch indoffirstmatch indofcurrentmatch
     global indoffirstbuf indofcurrentbuf
-
-    # save the possibly existing selection
-    if {$searchinsel} {
-        # there is a selection
-        # fakeselection is a copy of the sel tag, required
-        # because the sel tag is not visible when focus is out of $pad
-        $textarea tag add fakeselection sel.first sel.last
-        $textarea tag raise foundtext fakeselection
-        $textarea tag raise replacedtext fakeselection
-    }
 
     # reset the search data (current buffer)
     unset -nocomplain -- listofmatch

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.62
+# in sync at least with v5.66
 
 
 # commons
@@ -327,6 +327,7 @@
         ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
         ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
     ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
+    ::msgcat::mcset fr "&Backup files depth" "&Profondeur de sauvegarde"
     ::msgcat::mcset fr "&Locale" "&Langue"
         # locale names (common)
         ::msgcat::mcset fr "de locale (de)" "Deutsch (de)"

@@ -22,7 +22,11 @@ global TMPDIR
     else
       TCL_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
     end
-    TCL_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
+    // Although the following line might seem to be a bit too much it is
+    // designed to take advantage of the ScilabEval sequential mode in
+    // order to prevent flushing of events by Scilab to Tcl during the
+    // launch of Scipad
+    TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+"/tcl/scipadsources/scipad.tcl""""}"")} ""seq"" ")
     nfiles=argn(2)
     if nfiles>0 then
       for i=1:nfiles

@@ -3,31 +3,17 @@ SCIPAD BUGS AND WISHES LIST
 
 Bugs:
 -----
--logical line numbering issue:
-   function a=foo(); a=1;
-    a=2;
-   endfunction
- In scipad, a=1 is on line 1; for scilab it is on line 2 of function foo
-
 -issues related with non colorizing single quoted text:
   . code lines such as mprintf("%s",'this is a function') break the line
     number counting in functions if not properly colorized as textquoted.
-
--Ctrl-v copies also inside the find/replace/filename dialogs, but does not
- replace an existing selection. Problem of setting up the proper bindings,
- likely. Note: this happens only on some platforms (Windows is OK).
- More precise report:
-    the selected text is deleted once typing new text;
-    that text is not copy-pasted outside by 2nd-click (instead, the current
-    buffer selection is); it is cut by ctrl-x, copied by ctrl-c, but it is
-    NOT replaced by the clipboard issuing Ctrl-v (instead, the clipboard is
-    inserted at the cursor position)
+    Solution could be to detect all quoted strings, with single or double
+    quotes, and .textarea tag add some invisibletextquoted aside the
+    existing (visible) textquoted tag used for colorization, and use only
+    invisibletextquoted for Scilab function detection within buffers, in
+    other words, separate the strings detection from their colorization
 
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
-
--Ctrl-F1 on some characters like " ' - or + does not work (different errors in
- the shell). Problem is partly in sciGUI, and partly in Scipad.
 
 -On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
  usually produces a read-only warning and prevents the user from saving there.
@@ -45,15 +31,13 @@ Bugs:
  Workaround: insert an empty line between the line containing endfunction
  and the next breakpointed line - This is Scilab bug 1469 (outside of Scipad)
 
--On Linux (not on Windows), clicking [x] during a long drop of files (dnd
- of a directory) makes Scilab crash - it might be a dnd bug
-
--Dnd bug: When the NumLock key is pressed, ctrl dnd does not work on Linux
- (but works on Windows)
-
--On Linux (not on Windows), Tcl/Tk errors can pop up when quickly doing
- something in Scipad before launch has finished (on Windows, you can't do
- anything before end of Scipad code sourcing)
+-logical line numbering issue:
+   function a=foo(); a=1;
+    a=2;
+   endfunction
+ In scipad, a=1 is on line 1; for scilab it is on line 2 of function foo
+ Also related to bug 1469 - better wait for clarification on this one instead
+ of working around Scilab parser bugs
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -166,8 +150,6 @@ Wishes:
  put (breakpoint pink dot, yellow arrow to show the next instruction
  to be executed like in Visual C++ or Matlab, or wrapped lines sign).
 
--Highlight continued (in the Scilab acception) lines
-
 -Block selection, copy/paste, move with dnd, indent/unindent, comment
  and uncomment. See last snaphot in http://www.winedt.com/ for an
  example. Add an option to toggle between line mode (current mode) and
@@ -235,8 +217,6 @@ Wishes:
     search searches on a per line basis - or use regexp instead of .text
     search, big work...) - Automatically expand the entry widgets size
     according to the length of what is pasted inside them
-  . use -inactiveselectionbackground (Tk8.5 only) instead of using a fake
-    selection tag that mimics the real selection (sel tag)
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:

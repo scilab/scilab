@@ -11,8 +11,9 @@ if {$debuglog} {
     # list of Scipad procs that won't be logged
     # this is basically for convenience (in order to clutter the logs a bit less)
     # for some procs it can however be mandatory, e.g. when the proc is used
-    # in proc log
+    # in proc log such as proc timestamp
     set excludedScipadprocs [list \
+    timestamp \
     tk_optionMenu \
     escapespecialchars \
     mc amp mcra keyposn dokeyposn ismodified whichfun modifiedtitle \
@@ -34,6 +35,7 @@ if {$debuglog} {
 
     # for each Scipad proc not excluded in the list above, this surrounds the existing
     # proc with log info: proc called with input arguments, and proc return value
+    set logid 0
     foreach pr [info procs] {
         if {[lsearch $nologprocs $pr] == -1 && \
             [lsearch $excludedScipadprocs $pr] == -1 && \
@@ -45,9 +47,11 @@ if {$debuglog} {
             }
             # add log info to the proc
             rename $pr ScipadLog_$pr
-            eval "proc $pr {args} {log \"Level \[info level\]: \[info level 0\]\"; \
+            eval "proc $pr {args} {global logid; \
+                                   incr logid; set thislogid \$logid; \
+                                   log \"# \$thislogid - Level \[info level\]: \[info level 0\]\"; \
                                    set ret \[uplevel 1 ScipadLog_$pr \$args\]; \
-                                   log \"Return value (level \[info level\] - \[info level 0\]):!!\$ret!!\"; \
+                                   log \"# \$thislogid - Return value (level \[info level\] - \[info level 0\]):!!\$ret!!\"; \
                                    return \$ret \
                                   }"
         }
@@ -85,9 +89,9 @@ if {$debuglog} {
             set script [bind $wid $sequ]
             bind $wid $sequ "log \"\n----------------------\" ; \
                              log \"Bind $wid $sequ triggered!\"; \
-                         $script; \
+                             $script; \
                              log \"End of bind $wid $sequ\"; \
-                         log \"\n----------------------\n\" "
+                             log \"\n----------------------\n\" "
         }
     }
 
