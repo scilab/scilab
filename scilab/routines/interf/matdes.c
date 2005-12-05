@@ -366,11 +366,11 @@ int sciplot2d(char *fname,unsigned long fname_len)
   }
 
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
-  {
+    {
       sciprint("%s: bad argument specified in input\r\n", fname);
       Error(999); 
       return(0);
-  }
+    }
 
   sciGetStyle(3+iskip,n1,opts);
   GetStrf(4+iskip,opts);
@@ -2244,21 +2244,21 @@ int scixstringl(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest )
 {
-   int lineIndex = 0 ;
-   int j ;
-   for ( j = 0 ; j < matrixSize[1] ; j++ )
-   {
-     /* insert the space but not before the first element */
-     if ( j != 0 )
-     {
-       dest[lineIndex] = ' ';
-       lineIndex++ ;
-     }
+  int lineIndex = 0 ;
+  int j ;
+  for ( j = 0 ; j < matrixSize[1] ; j++ )
+    {
+      /* insert the space but not before the first element */
+      if ( j != 0 )
+	{
+	  dest[lineIndex] = ' ';
+	  lineIndex++ ;
+	}
 
-     strcpy( dest + lineIndex, matrix[ numLine + matrixSize[0] * j ] ) ;
-     lineIndex += strlen( matrix[ numLine + matrixSize[0] * j ]) ;
+      strcpy( dest + lineIndex, matrix[ numLine + matrixSize[0] * j ] ) ;
+      lineIndex += strlen( matrix[ numLine + matrixSize[0] * j ]) ;
      
-   }
+    }
       
 }
 
@@ -2280,25 +2280,25 @@ void stringBoundingRect( char ** textMatrix, int textSize[2], int textPos[2], in
   /* its heigth is the sum of the heigth plus little gap between */
   /* each lines */
   for ( i = textSize[0] - 1 ; i >= 0 ; i-- )
-  {
-    integer curRect[4] ;
-    /* convert the line into a big string */
-    matrixLine2String( textMatrix, textSize, i, C2F(cha1).buf ) ;
+    {
+      integer curRect[4] ;
+      /* convert the line into a big string */
+      matrixLine2String( textMatrix, textSize, i, C2F(cha1).buf ) ;
 
-    C2F(dr)("xstringl",C2F(cha1).buf,&rect[0],&rect[1],curRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,9L,bsiz);
-    rect[2] = Max( rect[2], curRect[2] );
-    if ( i > 0 )
-    {
-      /* a line is after this one */
-      /* here a little error is done sonce we work in pixels */
-      /* moreover the 1.2 should not be coded "en dur" */
-      rect[1] -= round( curRect[3] * 1.2 ) ;
+      C2F(dr)("xstringl",C2F(cha1).buf,&rect[0],&rect[1],curRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,9L,bsiz);
+      rect[2] = Max( rect[2], curRect[2] );
+      if ( i > 0 )
+	{
+	  /* a line is after this one */
+	  /* here a little error is done sonce we work in pixels */
+	  /* moreover the 1.2 should not be coded "en dur" */
+	  rect[1] -= round( curRect[3] * 1.2 ) ;
+	}
+      else
+	{
+	  rect[1] -= curRect[3] ;
+	}
     }
-    else
-    {
-      rect[1] -= curRect[3] ;
-    }
-  }
   rect[3] = textPos[1] - rect[1] ;
 }
 
@@ -2361,43 +2361,43 @@ void getStringBox( char   ** text         ,
   
   /* rotate everything around corner1 if needed */
   if ( Abs( angle ) > EPSILON )
-  {
-    double cosAngle = cos( angle ) ;
-    double sinAngle = sin( angle ) ;
-    rotate2Dim( corners[1], corners[0], cosAngle, sinAngle, corners[1] ) ;
-    rotate2Dim( corners[2], corners[0], cosAngle, sinAngle, corners[2] ) ;
-    rotate2Dim( corners[3], corners[0], cosAngle, sinAngle, corners[3] ) ;
+    {
+      double cosAngle = cos( angle ) ;
+      double sinAngle = sin( angle ) ;
+      rotate2Dim( corners[1], corners[0], cosAngle, sinAngle, corners[1] ) ;
+      rotate2Dim( corners[2], corners[0], cosAngle, sinAngle, corners[2] ) ;
+      rotate2Dim( corners[3], corners[0], cosAngle, sinAngle, corners[3] ) ;
   
-    /* take everything back to user coordinates */
-    /* to retrieve exactly the first corner as in stringl we take the input */
-    corners[0][0] = textPos[0] ; /*XDPixel2Double( corners[0][0] ) ;*/
-    corners[0][1] = textPos[1] ; /*YDPixel2Double( corners[0][1] ) ;*/
+      /* take everything back to user coordinates */
+      /* to retrieve exactly the first corner as in stringl we take the input */
+      corners[0][0] = textPos[0] ; /*XDPixel2Double( corners[0][0] ) ;*/
+      corners[0][1] = textPos[1] ; /*YDPixel2Double( corners[0][1] ) ;*/
     
-    corners[1][0] = XDPixel2Double( corners[1][0] ) ;
-    corners[1][1] = YDPixel2Double( corners[1][1] ) ;
+      corners[1][0] = XDPixel2Double( corners[1][0] ) ;
+      corners[1][1] = YDPixel2Double( corners[1][1] ) ;
     
-    corners[2][0] = XDPixel2Double( corners[2][0] ) ;
-    corners[2][1] = YDPixel2Double( corners[2][1] ) ;
+      corners[2][0] = XDPixel2Double( corners[2][0] ) ;
+      corners[2][1] = YDPixel2Double( corners[2][1] ) ;
     
-    corners[3][0] = XDPixel2Double( corners[3][0] ) ;
-    corners[3][1] = YDPixel2Double( corners[3][1] ) ;
+      corners[3][0] = XDPixel2Double( corners[3][0] ) ;
+      corners[3][1] = YDPixel2Double( corners[3][1] ) ;
     
-  }
+    }
   else
-  {
-    /* to retrieve exactly the first corner as in stringl we take the input */
-    corners[0][0] = textPos[0] ; /* XDPixel2Double( corners[0][0] ) ;*/
-    corners[0][1] = textPos[1] ; /* YDPixel2Double( corners[0][1] ) ; */
+    {
+      /* to retrieve exactly the first corner as in stringl we take the input */
+      corners[0][0] = textPos[0] ; /* XDPixel2Double( corners[0][0] ) ;*/
+      corners[0][1] = textPos[1] ; /* YDPixel2Double( corners[0][1] ) ; */
     
-    corners[1][0] = corners[0][0] ;
-    corners[1][1] = YDPixel2Double( corners[1][1] ) ;
+      corners[1][0] = corners[0][0] ;
+      corners[1][1] = YDPixel2Double( corners[1][1] ) ;
     
-    corners[2][0] = XDPixel2Double( corners[2][0] ) ;
-    corners[2][1] = corners[1][1] ;
+      corners[2][0] = XDPixel2Double( corners[2][0] ) ;
+      corners[2][1] = corners[1][1] ;
     
-    corners[3][0] = corners[2][0] ;
-    corners[3][1] = corners[0][1] ;
-  }
+      corners[3][0] = corners[2][0] ;
+      corners[3][1] = corners[0][1] ;
+    }
 
 }
 
@@ -2644,38 +2644,6 @@ int scixsetech(char* fname,unsigned long fname_len)
 }
 
 
-/*-----------------------------------------------------------------------------------*/
-/* xsetech(wrect=[...],frect=[..],logflag="..", arect=[...]) */
-/* or */
-/* xsetech(wrect,[frect,logflag]) */
-/* or  */
-/* xsetech() */
-/*-----------------------------------------------------------------------------------*/
-int scinewaxes(char* fname,unsigned long fname_len)
-{ 
-
-  int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1;
-  sciPointObj *masousfen;
-  int outindex,numrow   = 1,numcol   = 1;
-  CheckRhs(minrhs,maxrhs) ;
-  CheckLhs(minlhs,maxlhs) ;
-
-  SciWin();
-  if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
-    {
-      sciSetCurrentObj(masousfen);
-      sciSetSelectedSubWin(masousfen);
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *hstk(outindex) = sciGetHandle(masousfen);
-      LhsVar(1)=1;
-    }
-  else {
-    Scierror(999,"%s: running out of memory \r\n",fname);
-  }
-  return 0;
-
-}
-
 
 
 
@@ -2866,7 +2834,7 @@ int scixget(char *fname,unsigned long fname_len)
     {
       /*     special case for colormap : must allocate space */
       int m3,n3=3;
- /*      CheckColormap(&m3); */
+      /*      CheckColormap(&m3); */
       C2F(dr)("xget","cmap_size",x1,&m3,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       
       if ( m3 == 0) n3=0;
@@ -3259,32 +3227,32 @@ int scixgetmouse(char *fname,unsigned long fname_len)
     v2=0;
     C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L); 
     CreateVar(Rhs+1,"d",&m1,&n1,&l1);
-		if (button==-100)
-		{
-			*stk(l1) = -1;
-			*stk(l1+1) = -1;
-			*stk(l1+2) = (double) button;
-		}
-		else
-		{
-			*stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
-		}
+    if (button==-100)
+      {
+	*stk(l1) = -1;
+	*stk(l1+1) = -1;
+	*stk(l1+2) = (double) button;
+      }
+    else
+      {
+	*stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
+      }
     LhsVar(1) = Rhs+1;
     return 0;
   case 2:
     v2=2;
     C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v2,&x,&y,&dv,&dv,10L,3L);
     CreateVar(Rhs+1,"d",&m1,&n1,&l1);
-		if (button==-100)
-		{
-			*stk(l1) = -1;
-			*stk(l1+1) = -1;
-			*stk(l1+2) = (double) button;
-		}
-		else
-		{
-			*stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
-		}
+    if (button==-100)
+      {
+	*stk(l1) = -1;
+	*stk(l1+1) = -1;
+	*stk(l1+2) = (double) button;
+      }
+    else
+      {
+	*stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;
+      }
     LhsVar(1) = Rhs+1;
 
     CreateVar(Rhs+2,"d",&m1,&m1,&l2);
@@ -5112,8 +5080,8 @@ int copy(char *fname,unsigned long fname_len)
   lw = 1 + Top - Rhs;
   GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
   if (m1!=1||n1!=1) {
-	C2F(overload)(&lw,"copy",4);
-	return 0;
+    C2F(overload)(&lw,"copy",4);
+    return 0;
   }
 
   if (Rhs == 1)
