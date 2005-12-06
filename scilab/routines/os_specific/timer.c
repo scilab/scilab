@@ -179,10 +179,10 @@ static long stimerwin(void)
 
 
 /* returns 1 if interval from last call is greater than 
- * a time interval of dt microsec (dt=100000)
+ * a time interval of dt microsec (dt=10000)
  */
 
-#define DT_TIMER 100000
+#define DT_TIMER 10000
 
 #if (defined __MSC__)  || (defined __MINGW32__)
 
@@ -207,7 +207,7 @@ int scilab_timer_check(void)
   rep = (ctime.tv_sec > ctime_old.tv_sec) ? 1  : 
     ( ctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
   ctime_old=ctime;
-  return rep;
+  return rep; 
 }
 
 
