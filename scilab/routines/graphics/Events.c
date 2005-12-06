@@ -161,9 +161,9 @@ EventOff=TRUE;
   /* store click event in a queue */
 if (motion == 1)
 	{
-	//sciprint("\n");
+	/*sciprint("\n");*/
 	}
-	//sciprint("Queue\n");
+	/*sciprint("Queue\n");*/
 
   if ( lastc == MaxCB ) 
     {
