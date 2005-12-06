@@ -1246,6 +1246,12 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		  
 		  SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
 
+/* 		  printf("------AVANT SEARCH DES MIN MAX ------------------\n"); */
+/* 		  printf("xmin = %lf \t xmax = %lf\n",xmin,xmax); */
+/* 		  printf("ymin = %lf \t ymax = %lf\n",ymin,ymax); */
+/* 		  printf("zmin = %lf \t zmax = %lf\n",zmin,zmax); */
+/* 		  printf("------------------------\n\n"); */
+		
 		  for(i=0;i<index_vertex;i++)
 		    {
 		      int xp,yp;

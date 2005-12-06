@@ -11856,12 +11856,12 @@ int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, doubl
   
   while (pCurrent != NULL) {
     if(pCurrent->value_x >  *xmin) *xmin = pCurrent->value_x;
-    if(pCurrent->value_x >  *ymin) *ymin = pCurrent->value_y;
-    if(pCurrent->value_x >  *zmin) *zmin = pCurrent->value_z;
+    if(pCurrent->value_y >  *ymin) *ymin = pCurrent->value_y;
+    if(pCurrent->value_z >  *zmin) *zmin = pCurrent->value_z;
     
     if(pCurrent->value_x <  *xmax) *xmax = pCurrent->value_x;
-    if(pCurrent->value_x <  *ymax) *ymax = pCurrent->value_y;
-    if(pCurrent->value_x <  *zmax) *zmax = pCurrent->value_z;
+    if(pCurrent->value_y <  *ymax) *ymax = pCurrent->value_y;
+    if(pCurrent->value_z <  *zmax) *zmax = pCurrent->value_z;
     
     pCurrent = pCurrent->pNext;
   }
