@@ -1,6 +1,7 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/link_data.ref','r');
+
 //Example of the use of ilib_for_link with  a simple C code
 f1 = ['#include <math.h>';
   'void fooc(c,a,b,m,n)';
@@ -22,7 +23,7 @@ if load_ref('%ans') then   pause,end,
 if load_ref('%ans') then   pause,end,
 
 
-// display the loader.sce file which calls <VERB>link</VERB>
+// display the loader.sce file which calls link
 %ans = mprintf('%s\n', mgetl('loader.sce'));
 if load_ref('%ans') then   pause,end,
 

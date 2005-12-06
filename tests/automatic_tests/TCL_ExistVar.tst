@@ -1,7 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/TCL_ExistVar_data.ref','r');
-
 %ans = TCL_SetVar('Scilab', 'OK');
 if load_ref('%ans') then   pause,end,
 
@@ -15,6 +14,33 @@ if load_ref('%ans') then   pause,end,
 if load_ref('%ans') then   pause,end,
 
 
+%ans = TCL_SetVar('aa', 1);
+if load_ref('%ans') then   pause,end,
+
+TCL_CreateSlave('SlaveInterp');
+%ans = TCL_SetVar('aa', 2, 'SlaveInterp');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_ExistVar('aa');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_GetVar('aa');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_UnsetVar('aa');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_GetVar('aa', 'SlaveInterp');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_UnsetVar('aa', 'SlaveInterp');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_ExistVar('aa', 'SlaveInterp');
+if load_ref('%ans') then   pause,end,
+
+%ans = TCL_DeleteInterp('SlaveInterp');
+if load_ref('%ans') then   pause,end,
 
 xdel_run(winsid());
 
