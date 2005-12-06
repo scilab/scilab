@@ -1,4 +1,4 @@
-function hilite_image=select_hilite2(Select,SelectRegion)
+function hilite_image=select_hilite2(Select)
 //
 // Copyright INRIA
   winback=xget('window')

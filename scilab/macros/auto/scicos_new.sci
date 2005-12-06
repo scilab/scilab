@@ -136,6 +136,7 @@ if ~super_block then
       'Open/Set','Click to open block or make a link'; 
       'MoveLink','';
       'SelectLink','';
+      'CtrlSelect','';
       'SelectRegion','';
       'Popup','';
       'Label', 'Click block to label';
@@ -241,6 +242,7 @@ end
 %cor_item_exec=[%cor_item_exec;
 		'MoveLink','MoveLink_';
 		'SelectLink','SelectLink_';
+		'CtrlSelect','CtrlSelect_';
 		'SelectRegion','SelectRegion_';
 	       'Popup','Popup_'];
 
@@ -383,7 +385,7 @@ if pixmap then xset('wshow'),end
 
 //
 %pt = [];Cmenu = [];%win = curwin;// state machine variables 
-Select=[];%ppt=[];Clipboard=[];hilite_image=list(),SelectRegion=list() //state machine variables windowish behavior
+Select=[];%ppt=[];Clipboard=[];hilite_image=list(), //state machine variables windowish behavior
 
 while ( Cmenu <> 'Quit' ) 
   [%stack]=stacksize()
@@ -391,7 +393,10 @@ while ( Cmenu <> 'Quit' )
     stacksize(2*%stack(1))
     disp('stacksize increased to '+string(2*%stack(1)))
   end
-//  disp(1),disp(Cmenu)
+  if Select<>[] then
+    if ~or(Select(1,2)==winsid()) then Select=[],end
+  end
+  
   [CmenuType,mess] = CmType(Cmenu);
   //** clear the %pt information for backward compatibility 
   if ( %pt <> [] & Cmenu==[] ) then %pt=[]; end 
@@ -417,7 +422,7 @@ while ( Cmenu <> 'Quit' )
     if size(%koko,'*')==1 then
       select_unhilite(hilite_image)
       execstr('exec('+%cor_item_exec(%koko,2)+',-1)')
-      hilite_image=select_hilite2(Select,SelectRegion)
+      hilite_image=select_hilite2(Select)
     else
       Cmenu=[];%pt=[]
     end
