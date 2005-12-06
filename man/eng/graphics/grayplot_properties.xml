@@ -19,6 +19,17 @@
     <VERB>Sfgrayplot</VERB>).</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        grayplot entity should be of the type <VERB>"Axes"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, <VERB>grayplot</VERB> handles currently do not
+        have any <VERB>children</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
@@ -51,14 +62,10 @@
         value <VERB>"direct"</VERB> where the plot is a grayplot and the
         indices of painting colors are given by the data (see above).</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	  grayplot  data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        grayplot entity should be of the type <VERB>"Axes"</VERB>.</SP>
+      <DESCRIPTION_ITEM label="user_data: ">
+        <SP>This field can be use to store any scilab variable in the grayplot
+        data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

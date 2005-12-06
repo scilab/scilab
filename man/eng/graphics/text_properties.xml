@@ -92,9 +92,9 @@
 
       <DESCRIPTION_ITEM label="font_style: ">
         <SP>Seven differents fonts are available : "Courrier", "Symbol",
-        "Times", "Times Italic", "Times Bold", "User defined". The font_size
-        property is an index in [0 6] which is associated to the previous font
-        names.</SP>
+        "Times", "Times Italic", "Times Bold", "User defined". The
+        <VERB>font_style</VERB> property is an index in [0 6] which is
+        associated to the previous font names.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_angle: ">
