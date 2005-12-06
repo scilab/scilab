@@ -1873,6 +1873,7 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	/* Nous sommes au prompt */
 	write_scilab(line);
 	LeaveCriticalSection(&Sync);
+	DeleteCriticalSection(&Sync);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
