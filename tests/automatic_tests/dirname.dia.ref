@@ -7,17 +7,17 @@ reinit_for_test()
  
 files = dirname('SCI/macros/util/poo.sci');
  
-if load_ref('files') then   bugmes();quit;end,
+if load_ref_nocheck('files') then   bugmes();quit;end,
  
  
 files = dirname('SCI/macros\util/poo.sci');
  
-if load_ref('files') then   bugmes();quit;end,
+if load_ref_nocheck('files') then   bugmes();quit;end,
  
  
 files = dirname('SCI/macros\util/poo.sci.k');
  
-if load_ref('files') then   bugmes();quit;end,
+if load_ref_nocheck('files') then   bugmes();quit;end,
  
  
 xdel_run(winsid());

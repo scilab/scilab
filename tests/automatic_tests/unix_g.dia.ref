@@ -20,7 +20,7 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 %ans = DIR('SCI/demos');
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 xdel_run(winsid());

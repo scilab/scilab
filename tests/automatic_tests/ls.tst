@@ -5,10 +5,10 @@ ls;
 if load_ref('%ans') then   pause,end,
 
 %ans = ls('SCI/macros/util/*.sci');
-if load_ref('%ans') then   pause,end,
+if load_ref_nocheck('%ans') then   pause,end,
 
 x = ls('SCI/macros/util/f*.sci');
-if load_ref('x') then   pause,end,
+if load_ref_nocheck('x') then   pause,end,
 
 xdel_run(winsid());
 

@@ -13,7 +13,7 @@ if load_ref('%ans') then   pause,end,
 
 
 %ans = DIR('SCI/demos');
-if load_ref('%ans') then   pause,end,
+if load_ref_nocheck('%ans') then   pause,end,
 
 xdel_run(winsid());
 

@@ -8,7 +8,7 @@ if load_ref('%ans') then   pause,end,
 if load_ref('%ans') then   pause,end,
 
 %ans = pathconvert('SCI/macros/util/foo.sci', %f, %t, 'w');
-if load_ref('%ans') then   pause,end,
+if load_ref_nocheck('%ans') then   pause,end,
 
 %ans = pathconvert('HOME/macros/util/foo.sci', %t, %t, 'w');
 if load_ref('%ans') then   pause,end,
