@@ -93,15 +93,31 @@ function ged(k,win)
 endfunction
 
 
-function curgedindex = Get_handle_pos_in_list(h)
+function curgedindex_ = Get_handle_pos_in_list(h)
 global ged_cur_fig_handle
+
+curgedindex_ = [];
 
 handles = Get_handles_list(ged_cur_fig_handle)
 for i=1:size(handles,1)
   if (h==handles(i))
-    curgedindex = i;
+    curgedindex_ = i;
   end
 end
+
+// Other case :
+// a label has been selected (and for now they are included inside the Axes)
+if (curgedindex_==[])
+  if h.type == "Label"
+    h = h.parent;
+    for i=1:size(handles,1)
+      if (h==handles(i))
+	curgedindex_ = i;
+      end
+    end
+  end
+end
+  
 endfunction
 
 
@@ -1238,6 +1254,7 @@ function ged_eventhandler(win,x,y,ibut)
   global ged_handle;ged_handle=[]
   cur=gcf();scf(win)
   ged_handle=ged_getobject([x,y])
+    
   scf(cur)
 
   if ged_handle~=[] then
@@ -1299,64 +1316,76 @@ endfunction
 
 
 function tkged()
-  global ged_handle
-  global ged_cur_fig_handle
+global ged_handle
+global ged_cur_fig_handle
 
-  h=ged_handle
+h=ged_handle
 
-  // hierarchical viewer
-  TK_send_handles_list(ged_cur_fig_handle)
-  TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
+// hierarchical viewer
+TK_send_handles_list(ged_cur_fig_handle)
+TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
 
-  //color_map array for color sample display
-  f=getparfig(h);
-  for i=1:size(f.color_map,1)
-    redname= "RED("+string(i)+")";
-    TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
-    grename= "GREEN("+string(i)+")";
-    TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
-    bluname= "BLUE("+string(i)+")";
-    TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
+//color_map array for color sample display
+f=getparfig(h);
+for i=1:size(f.color_map,1)
+  redname= "RED("+string(i)+")";
+  TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
+  grename= "GREEN("+string(i)+")";
+  TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
+  bluname= "BLUE("+string(i)+")";
+  TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
+end
+
+TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+
+select h.type
+case "Polyline"
+  ged_polyline(h)
+case "Rectangle"
+  ged_rectangle(h)
+case "Axes"
+  ged_axes(h)
+case "Label" // for now the labels are inside the axes (F.Leray 06.12.05)
+  ged_axes(h.parent)
+  if (h == h.parent.x_label)
+    TCL_EvalStr("Notebook:raise $uf.n X");
+  elseif (h == h.parent.y_label)
+    TCL_EvalStr("Notebook:raise $uf.n Y");
+  elseif (h == h.parent.z_label)
+    TCL_EvalStr("Notebook:raise $uf.n Z");
+  elseif (h == h.parent.title)
+    TCL_EvalStr("Notebook:raise $uf.n Title");
   end
+case "Figure"
+  ged_figure(h)
+case "Compound"
+  ged_Compound(h)
   
-  TCL_SetVar("msdos",string(MSDOS)) // to know the OS
-  
-  select h.type
-    case "Polyline"
-     ged_polyline(h)
-    case "Rectangle"
-     ged_rectangle(h)
-    case "Axes"
-     ged_axes(h)
-    case "Figure"
-     ged_figure(h)
-    case "Compound"
-     ged_Compound(h)
-
-    case "Plot3d"
-     ged_plot3d(h)
-    case "Fac3d"
-     ged_fac3d(h)
-    case "Text"
-     ged_text(h)
-    case "Legend"
-     ged_legend(h)
-    case "Arc"
-     ged_arc(h)
-    case "Segs"
-     ged_segs(h)    
-    case "Champ"
-     ged_champ(h)
-    case "Fec"
-     ged_fec(h)
-    case "Grayplot"
-     ged_grayplot(h)
-    case "Matplot"
-     ged_matplot(h)
-    case "Axis"
-     ged_axis(h)
-  end
+case "Plot3d"
+  ged_plot3d(h)
+case "Fac3d"
+  ged_fac3d(h)
+case "Text"
+  ged_text(h)
+case "Legend"
+ged_legend(h)
+case "Arc"
+  ged_arc(h)
+case "Segs"
+  ged_segs(h)    
+case "Champ"
+  ged_champ(h)
+case "Fec"
+  ged_fec(h)
+case "Grayplot"
+  ged_grayplot(h)
+case "Matplot"
+  ged_matplot(h)
+case "Axis"
+  ged_axis(h)
+end
 endfunction
+  
 function setStyle(sty)
   global ged_handle; h=ged_handle
   h.polyline_style=find(sty==['interpolated','staircase', ...
