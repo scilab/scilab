@@ -8,7 +8,7 @@
 #else 
 #include <windows.h>
 #include <winbase.h> /* header du compteur haute résolution */
-static int stimerwin(void);
+static long stimerwin(void);
 #endif 
 #endif 
 
@@ -28,90 +28,91 @@ static int stimerwin(void);
 #if WIN32
 static __int64 i64UserTick1;
 static LARGE_INTEGER   Tick1;
-	typedef enum
-	{
-		WINNT,	WIN2K_XP, WIN9X, UNKNOWN
-	}PLATFORM;
+typedef enum
+  {
+    WINNT,	WIN2K_XP, WIN9X, UNKNOWN
+  }PLATFORM;
 
 PLATFORM GetPlatform()
 {
-	OSVERSIONINFO osvi;
-	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	if (!GetVersionEx(&osvi))
-		return UNKNOWN;
-	switch (osvi.dwPlatformId)
-	{
-	case VER_PLATFORM_WIN32_WINDOWS:
-		return WIN9X;
-	case VER_PLATFORM_WIN32_NT:
-		if (osvi.dwMajorVersion == 4)
-			return WINNT;
-		else
-			return WIN2K_XP;
-	}
-	return UNKNOWN;
+  OSVERSIONINFO osvi;
+  osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+  if (!GetVersionEx(&osvi))
+    return UNKNOWN;
+  switch (osvi.dwPlatformId)
+    {
+    case VER_PLATFORM_WIN32_WINDOWS:
+      return WIN9X;
+    case VER_PLATFORM_WIN32_NT:
+      if (osvi.dwMajorVersion == 4)
+	return WINNT;
+      else
+	return WIN2K_XP;
+    }
+  return UNKNOWN;
 }
-	
+
 #else
-	static clock_t t1;
+static clock_t t1;
 #endif
 
 static int init_clock = 1;
-/*-----------------------------------------------------------------------------------*/
-int C2F(timer)(double *etime)
+
 /* Allan CORNET 2004 */
+
+int C2F(timer)(double *etime)
 {
 #if WIN32 
-	if (GetPlatform() == WIN9X)
-	{
-		/* Timer high Precision */
-		/* It is not easy to have CPU Time on Win9x */
-		/* timer don't return CPU Time but time between 2 calls of Timer() 2.7 compatibility*/
-		LARGE_INTEGER   Tick2;
-		LARGE_INTEGER   freq;
-
-		QueryPerformanceFrequency(&freq);
-		QueryPerformanceCounter(&Tick2);
-
-		if (init_clock == 1) {init_clock = 0; Tick1 = Tick2;}
-		*etime=(double) ( (double) (Tick2.QuadPart - Tick1.QuadPart) / (double)(freq.QuadPart));
-		Tick1 = Tick2;
-	}
-	else
-	if (GetPlatform() == UNKNOWN)
-	{
-		*etime=(double)-1;
-	}
-	else
-	{
+  if (GetPlatform() == WIN9X)
+    {
+      /* Timer high Precision */
+      /* It is not easy to have CPU Time on Win9x */
+      /* timer don't return CPU Time but time between 2 calls of Timer() 2.7 compatibility*/
+      LARGE_INTEGER   Tick2;
+      LARGE_INTEGER   freq;
+      
+      QueryPerformanceFrequency(&freq);
+      QueryPerformanceCounter(&Tick2);
+      
+      if (init_clock == 1) {init_clock = 0; Tick1 = Tick2;}
+      *etime=(double) ( (double) (Tick2.QuadPart - Tick1.QuadPart) / (double)(freq.QuadPart));
+      Tick1 = Tick2;
+    }
+  else
+    if (GetPlatform() == UNKNOWN)
+      {
+	*etime=(double)-1;
+      }
+    else
+      {
 	/* NT 3.5 & > */
 	/* Return CPU Time */
 	FILETIME            ftCreation,
-                        ftExit,
-                        ftKernel,
-                        ftUser;
+	  ftExit,
+	  ftKernel,
+	  ftUser;
    	__int64 i64UserTick2;
- 
-
+	
 	GetProcessTimes(GetCurrentProcess(), &ftCreation, &ftExit, &ftKernel, &ftUser);
 	i64UserTick2=*((__int64 *) &ftUser);
 	if (init_clock == 1) {init_clock = 0; i64UserTick1 = i64UserTick2;}
 	*etime=(double) ((double)(i64UserTick2 - i64UserTick1)/(double)10000000U);
 	i64UserTick1 = i64UserTick2;
-
-	}
 	
+      }
 #else
-	clock_t t2;
-	t2 = clock();
-	if (init_clock == 1) {init_clock = 0; t1 = t2;}
-	*etime=(double)((double)(t2 - t1)/(double)CLOCKS_PER_SEC);
-	t1 = t2;
+  clock_t t2;
+  t2 = clock();
+  if (init_clock == 1) {init_clock = 0; t1 = t2;}
+  *etime=(double)((double)(t2 - t1)/(double)CLOCKS_PER_SEC);
+  t1 = t2;
 #endif
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/
+
+
 /* define X_GETTIMEOFDAY macro, a portable gettimeofday() */
+
 #if  defined(VMS)
 #define X_GETTIMEOFDAY(t) gettimeofday(t)
 #else
@@ -134,14 +135,12 @@ static struct timezone tmz;
 #endif
 #endif
 #endif 
-/*-----------------------------------------------------------------------------------*/
-/***********************************************************
- * stimer is used while runing the interpreter (run.f) 
- * to fix a timer for checking X11 or windows events 
- ***********************************************************/
-    
 
-int C2F(stimer)(void)
+/*
+ * this function is no more used 
+ */
+
+static long int scilab_stimer_deprecated(void)
 {
 #if defined(THINK_C)||defined(__MWERKS__) 
         YieldToAnyThread();
@@ -150,21 +149,22 @@ int C2F(stimer)(void)
 #if !(defined __MSC__) && !(defined __MINGW32__)
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
+  scilab_timer_check();
   return(ctime.tv_usec);
 #else 
   return(stimerwin());
 #endif /* !(defined __MSC__) && !(defined __MINGW32__) */ 
 #endif /* defined(THINK_C)||defined(__MWERKS__) */
 }
-/*-----------------------------------------------------------------------------------*/
-/****************************
+
+/*
  * stimer for non cygwin win32 compilers 
- ****************************/
+ */
 
 #if (defined __MSC__)  || (defined __MINGW32__)
-static int stimerwin(void)
+static long stimerwin(void)
 {
-  int i;
+  long int i;
   union {FILETIME ftFileTime;
     __int64  ftInt64;
   } ftRealTime; 
@@ -176,10 +176,41 @@ static int stimerwin(void)
   return( i/10); /** convert to microseconds **/
 }
 #endif
-/*-----------------------------------------------------------------------------------*/
-int C2F(fclock)(void)
+
+
+/* returns 1 if interval from last call is greater than 
+ * a time interval of dt microsec (dt=100000)
+ */
+
+#define DT_TIMER 100000
+
+#if (defined __MSC__)  || (defined __MINGW32__)
+
+int scilab_timer_check(void)
 {
-  return (int)clock();
+  int rep;
+  static long int ctime_old;
+  long int ctime = stimerwin(void);
+  rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
+  ctime_old=ctime;
+  return rep;
 }
-/*-----------------------------------------------------------------------------------*/
+
+#else 
+
+int scilab_timer_check(void)
+{
+  int rep;
+  static struct timeval ctime_old;
+  struct timeval ctime;
+  X_GETTIMEOFDAY(&ctime);
+  rep = (ctime.tv_sec > ctime_old.tv_sec) ? 1  : 
+    ( ctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
+  ctime_old=ctime;
+  return rep;
+}
+
+
+#endif /*  (defined __MSC__)  || (defined __MINGW32__) */
+
 

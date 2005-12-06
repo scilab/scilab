@@ -146,7 +146,6 @@ int C2F(parse)()
   int i__2, i__3;
 
   /* Local variables */
-  static int otimer = 0;
   static int iesc, ndel, ifin, ibpt;
   static int iret;
   static int topk;
@@ -161,7 +160,6 @@ int C2F(parse)()
   static int id[6], lb, io, ir;
   static int inxsci;
   static logical dotsep;
-  static int ntimer;
   static int icount;
   static int nentry, lastindpos;
   static int job, nlc, pts;
@@ -282,15 +280,11 @@ int C2F(parse)()
   /*     Beginning of a new statement, clause expression or command */
   /* ------------------------------------------------------------ */
  L15:
-  if (inxsci == 1) {
-    ntimer = C2F(stimer)() / itime;
-    if (ntimer != otimer) {
-      C2F(sxevents)();
-      otimer = ntimer;
-      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
-	iret = 1;
-	goto L96;
-      }
+  if (inxsci == 1 && scilab_timer_check() ==1 ) {
+    C2F(sxevents)();
+    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
+      iret = 1;
+      goto L96;
     }
   }
   r = 0;

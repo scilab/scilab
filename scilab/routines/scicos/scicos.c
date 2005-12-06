@@ -835,13 +835,9 @@ int C2F(scicos)
   
   while(*told < *tf) {
     
-    if (inxsci == 1) {
-      ntimer = C2F(stimer)();
-      if (ntimer != otimer) {
-	C2F(sxevents)();
-	otimer = ntimer;
-	/*     .     sxevents can modify halt */
-      }
+    if (inxsci == 1 && scilab_timer_check() == 1) {
+      C2F(sxevents)();
+      /*     .     sxevents can modify halt */
     }
     if (C2F(coshlt).halt != 0) {
       C2F(coshlt).halt = 0;
@@ -1234,13 +1230,9 @@ int C2F(scicos)
   }
   /*     main loop on time */
   while (*told < *tf) {
-    if (inxsci == 1) {
-      ntimer = C2F(stimer)();
-      if (ntimer != otimer) {
-	C2F(sxevents)();
-	otimer = ntimer;
-	/*     .     sxevents can modify halt */
-      }
+    if (inxsci == 1 && scilab_timer_check() == 1) {
+      C2F(sxevents)();
+      /*     .     sxevents can modify halt */
     }
     if (C2F(coshlt).halt != 0) {
       C2F(coshlt).halt = 0;
@@ -1494,13 +1486,10 @@ int C2F(scicos)
 	    }
 	  }
 	}
-	if (inxsci == 1) {
-	  ntimer = C2F(stimer)();
-	  if (ntimer != otimer) {
-	    C2F(sxevents)();
-	    otimer = ntimer;
-	    /*     .     sxevents can modify halt */
-	  }
+	if (inxsci == 1 && scilab_timer_check() == 1) {
+	  C2F(sxevents)();
+	  otimer = ntimer;
+	  /*     .     sxevents can modify halt */
 	}
 	if (C2F(coshlt).halt != 0) {
 	  C2F(coshlt).halt = 0;

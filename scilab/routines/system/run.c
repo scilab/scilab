@@ -68,7 +68,7 @@ extern int C2F(nextj)();
 extern int C2F(isafunptr)();
 extern int C2F(varfunptr)();
 extern int C2F(defmat)();
-extern int C2F(fclock)();
+extern int clock();
 extern int C2F(ref2val)();
 extern int C2F(objvide)();
 
@@ -93,9 +93,6 @@ logical Istrue(int n)
 int C2F(run)()
 {
   /* Initialized data */
-
-  static int otimer = 0;
-
   /* Fortran common data equivalence */
   static int    *Ids  = C2F(recu).ids-nsiz-1;
   static int    *Rstk = C2F(recu).rstk-1;
@@ -116,12 +113,12 @@ int C2F(run)()
   static int ifin, iesc, ibpt, tref, ifun;
   static int ierr, ndel;
   static int j, k, m, n, p, r, t;
-  static int lname, imode, itime;
+  static int lname, imode;
   static int l0;
   static int id[6], lc, kc, nc, lb, li, il, io, ip;
   static logical ok;
   static int ir, lr, op;
-  static int inxsci, ntimer;
+  static int inxsci;
   static int mm1;
   static int nn1;
   static int nentry, lastindpos;
@@ -131,7 +128,6 @@ int C2F(run)()
   static char tmp[80];
 
   tref = 0;
-  itime = 10000;
   C2F(checkevts)(&inxsci);
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," run pt:%d rstk(pt):%d",Pt,Rstk[Pt]);
@@ -165,7 +161,7 @@ int C2F(run)()
 
   
  L1: /*  Start execution of a "compiled" function  */
-  tref = C2F(fclock)();
+  tref = clock();
   C2F(errgst).toperr = Top;
   k = Lpt[1] - (13+nsiz);
   lc = Lin[k + 7];
@@ -485,15 +481,10 @@ int C2F(run)()
   C2F(nextj)(&Istk[1 + l0 - 7], &Pstk[Pt]);
   if (Pstk[Pt] != 0) {
     Lct[8] = Ids[2 + Pt * nsiz];
-    if (inxsci == 1) {
-      ntimer = C2F(stimer)() / itime;
-      if (ntimer != otimer) {
-	C2F(sxevents)();
-	otimer = ntimer;
-	if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
-	  goto L115;
-	}
-      }
+    
+    if (inxsci == 1 && scilab_timer_check() ) {
+      C2F(sxevents)();
+      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
     }
     goto L10;
   }
@@ -603,16 +594,11 @@ int C2F(run)()
     Ids[1 + Pt * nsiz] = l0;
     Ids[2 + Pt * nsiz] = nc;
     Rstk[Pt] = 616;
-    if (inxsci == 1) {
-      ntimer = C2F(stimer)() / itime;
-      if (ntimer != otimer) {
-	C2F(sxevents)();
-	otimer = ntimer;
-	if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
-	  goto L115;
-	}
-      }
+    if (inxsci == 1 && scilab_timer_check() ) {
+      C2F(sxevents)();
+      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
     }
+
     goto L10;
   } else {
     if (Istk[Pstk[Pt]] == 9) {
@@ -669,16 +655,9 @@ int C2F(run)()
 
  L70:
   /* re entering run to continue macro evaluation */
-
-  if (inxsci == 1) {
-    ntimer = C2F(stimer)() / itime;
-    if (ntimer != otimer) {
-      C2F(sxevents)();
-      otimer = ntimer;
-      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
-	goto L115;
-      }
-    }
+  if (inxsci == 1 && scilab_timer_check() ) {
+    C2F(sxevents)();
+    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
   }
  L71:
   /* reset proper values for l0 and nc if a control structure had been escaped*/
@@ -939,16 +918,11 @@ int C2F(run)()
 
   ++Lct[8];
   ++lc;
-  if (inxsci == 1) {
-    ntimer = C2F(stimer)() / itime;
-    if (ntimer != otimer) {
-      C2F(sxevents)();
-      otimer = ntimer;
-      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
-	goto L115;
-      }
-    }
+  if (inxsci == 1 && scilab_timer_check() ) {
+    C2F(sxevents)();
+    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
   }
+
   goto L10;
 
   /* set line number.
@@ -1072,7 +1046,7 @@ int C2F(run)()
  L200:
   /*     profile */
   ++Istk[1 + lc];
-  t = C2F(fclock)();
+  t = clock();
   Istk[2 + lc] = Istk[2 + lc] + t - tref;
   tref = t;
   lc += 3;
