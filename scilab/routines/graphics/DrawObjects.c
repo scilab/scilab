@@ -7398,15 +7398,17 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  }
 	  
 	  if(sciGetIsLine(pobj)){
-        context[3] = 0;
-
+	    int un = 1, deux = 2;
+	    context[3] = 0;
+	    
 	    C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
 		      PD0, PD0, PD0, 5L, 6L);
 	    C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
 		      PD0, PD0, PD0, 5L, 10L);
 	    C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
 	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
-	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    /*C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+	    C2F (dr) ("xlines", "xv", &deux, polyx, polyy, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	  }
 	  /* 	  else {/\*patch*\/ */
 	  /* 	    int close=1; */
