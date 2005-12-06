@@ -5,10 +5,69 @@ reinit_for_test()
  
 %U=mopen('SCI/tests/automatic_tests/whos_data.ref','r');
  
-//%ans = whos(); removed because of varying display
  
-if load_ref_nocheck('%ans') then   bugmes();quit;end,
+%ans = whos();
+Name                     Type           Size           Bytes        
  
+whos                     function                      8512         
+%U                       constant       1 by 1         24           
+%CMP                     function                      16032        
+xbasc_run                function                      5456         
+clf_run                  function                      6936         
+xdel_run                 function                      5472         
+reinit_for_test          function                      2904         
+load_ref_nocheck         function                      1976         
+load_ref                 function                      2144         
+bugmes                   function                      256          
+scicos_pal               string         12 by 2        2048         
+%helps                   *string        27 by 2        16           
+home                     string         1 by 1         80           
+SCIHOME                  string         1 by 1         176          
+PWD                      string         1 by 1         216          
+TMPDIR                   string         1 by 1         80           
+MSDOS                    boolean        1 by 1         16           
+SCI                      string         1 by 1         128          
+guilib                   library                       288          
+sparselib                library                       280          
+xdesslib                 library                       3008         
+percentlib               library                       13000        
+polylib                  library                       880          
+intlib                   library                       1368         
+elemlib                  library                       1904         
+utillib                  library                       4592         
+statslib                 library                       1280         
+alglib                   library                       1336         
+siglib                   library                       1768         
+optlib                   library                       608          
+autolib                  library                       2168         
+roblib                   library                       1192         
+soundlib                 library                       464          
+metalib                  library                       3928         
+armalib                  library                       488          
+tkscilib                 library                       824          
+tdcslib                  library                       752          
+s2flib                   library                       1912         
+mtlblib                  library                       5552         
+%F                       boolean        1 by 1         24           
+%T                       boolean        1 by 1         24           
+%z                       polynomial     1 by 1         56           
+%s                       polynomial     1 by 1         56           
+%nan                     constant       1 by 1         24           
+%inf                     constant       1 by 1         24           
+COMPILER                 string         1 by 1         40           
+%gtk                     boolean        1 by 1         24           
+%pvm                     boolean        1 by 1         24           
+%tk                      boolean        1 by 1         24           
+$                        polynomial     1 by 1         56           
+%t                       boolean        1 by 1         24           
+%f                       boolean        1 by 1         24           
+%eps                     constant       1 by 1         24           
+%io                      constant       1 by 2         32           
+%i                       constant       1 by 1         32           
+%e                       constant       1 by 1         24           
+%pi                      constant       1 by 1         24           
+ 
+if load_ref('%ans') then   bugmes();quit;end,
  
  
 %ans = whos('-type', 'boolean');
@@ -24,7 +83,6 @@ MSDOS                    boolean        1 by 1         16
 %f                       boolean        1 by 1         24           
  
 if load_ref('%ans') then   bugmes();quit;end,
- 
  
  
 %ans = whos('-name', '%');
@@ -51,7 +109,6 @@ Name                     Type           Size           Bytes
 %i                       constant       1 by 1         32           
  
 if load_ref('%ans') then   bugmes();quit;end,
- 
  
  
 xdel_run(winsid());

@@ -5,7 +5,6 @@ reinit_for_test()
  
 %U=mopen('SCI/tests/automatic_tests/TCL_UnsetVar_data.ref','r');
  
- 
 %ans = TCL_SetVar('Scilab', 'OK');
  
 if load_ref('%ans') then   bugmes();quit;end,
@@ -25,6 +24,33 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 if load_ref('%ans') then   bugmes();quit;end,
  
+ 
+ 
+TCL_CreateSlave('InterpSlave');
+ 
+%ans = TCL_SetVar('Scilab', 'Good', 'InterpSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = TCL_GetVar('Scilab', 'InterpSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = TCL_UnsetVar('Scilab', 'InterpSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = TCL_ExistVar('Scilab', 'InterpSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = TCL_DeleteInterp('InterpSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
  
  
  
