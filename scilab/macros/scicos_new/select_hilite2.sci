@@ -1,13 +1,14 @@
 function hilite_image=select_hilite2(Select,SelectRegion)
 //
 // Copyright INRIA
+  winback=xget('window')
+
   if Select<>[] then 
     hilite_image=list()
     for i=1:size(Select,1)
 
       [junk,win,o]=get_selection(Select(i,:))    
       if or(winsid()==win) then
-	winback=xget('window')
 	xset('window',win)
 	alu=xget('alufunction')
 	xset('alufunction',6)
@@ -48,28 +49,8 @@ function hilite_image=select_hilite2(Select,SelectRegion)
 	xset('window',winback)
       end
     end
-  elseif SelectRegion<>list() then 
-    [ox,oy,w,h,win]=SelectRegion(:)
-    if or(winsid()==win) then
-      winback=xget('window')
-      xset('window',win)
-      alu=xget('alufunction')
-      xset('alufunction',6)
-    else
-      return
-    end
-    dr=driver()
-    if dr=='Rec' then driver('X11'),end
-    thick=xget('thickness')
-    thickness=4
-    xset('thickness',thickness);
-    orig=[ox,oy-h];sz=[w,h]
-    xrect(orig(1),orig(2)+sz(2),sz(1),sz(2));
-    if pixmap then xset('wshow'),end
-    xset('thickness',thick);
-    
-    hilite_image=list(win,'rect',orig,sz,thickness)
   else
     hilite_image=list()
   end
+  xset("window",winback)
 endfunction

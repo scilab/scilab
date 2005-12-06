@@ -64,16 +64,18 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
     //** -----------------------------------------------------------
     //** Single key Shortcut 
   elseif btn>31 then
-    if btn==1120 then 
+    if btn==1120|btn==65288 then 
       Cmenu='Cut';%pt=[];
     elseif btn==1099 then
        Cmenu='Copy';%pt=[];
     elseif btn==1118 then
        Cmenu='Paste';%pt=[];
-    elseif btn==65288|btn==255 then
+    elseif btn==255 then
       Cmenu='Delete';%pt=[];
-    elseif btn==1003 then
+    elseif btn==1003|btn==2003 then
       Cmenu="CtrlSelect";
+    elseif btn==1122 then // ctrl_z
+       Cmenu="Undo"
     else
       Cmenu=%tableau(min(100,btn-31));
       if Cmenu==emptystr() then Cmenu=[];%pt=[];end

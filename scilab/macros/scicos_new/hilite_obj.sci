@@ -1,7 +1,6 @@
 function hilite_obj(o,win)
 //
 // Copyright INRIA
-
 rhs=argn(2)
 if rhs>1 then
   if or(winsid()==win) then
