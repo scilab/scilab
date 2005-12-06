@@ -7,13 +7,14 @@
 #include <ctype.h>
 #include <string.h>
 #include <windows.h>
+#include "../stack-def.h"
 
+#ifdef round
+	#undef round
+#endif 
 #define round(x,s) (((x) + ((s)-1)) & ~((s)-1))
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
-
-#include "../stack-def.h"
-
 #define debug C2F(iop).ddt==1
 
 extern char *strchr();
