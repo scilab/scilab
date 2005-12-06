@@ -1438,7 +1438,7 @@ int in_put(int interrupt)
     /* does not work everywhere : FD_SET(XTKsocket,&select_mask); */
     select_mask = X_mask | (1 << XTKsocket);
     select_timeout.tv_sec = 0;
-    select_timeout.tv_usec = 100000;
+    select_timeout.tv_usec = 100;
     max_plus1 = (max_plus1 < (XTKsocket+1)) ? (XTKsocket+1): max_plus1;
 #else 
     select_mask = X_mask;		
