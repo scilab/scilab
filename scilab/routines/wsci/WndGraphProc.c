@@ -284,7 +284,7 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				if (ScilabGC->graphicsversion == 0)
 				{
 					char command[1024];
-					wsprintf(command,"ged(4,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged(8,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
 			}
