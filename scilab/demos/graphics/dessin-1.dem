@@ -196,5 +196,4 @@ info_l=['plot2d';
         'fac3d';
 	'fac3d1'];
 
-
-x=90
+x=90;
