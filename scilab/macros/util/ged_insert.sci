@@ -39,7 +39,7 @@ function ged_insert(k,win)
     r.clip_state='off';
     xinfo(mess2)
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data=[xc,yc;rep(1),rep(2)]
       show_pixmap()
       xinfo(mess2)
@@ -85,7 +85,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     yc = [];
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data($,:)= [rep(1),rep(2),0]
       show_pixmap()
       xinfo(mess2)
@@ -116,7 +116,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     show_pixmap()
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r1.data($,:)= [rep(1),rep(2),0]
       r2.data(1,:)= [rep(1),rep(2),0]
       show_pixmap()
@@ -131,7 +131,7 @@ function ged_insert(k,win)
     // get the position of the text
     [btn,xc,yc] = xclick() ;
     
-    if ( btn == 3 ) then
+    if ( or(btn == [0 3]) ) then
       // display the string
       xstring( xc, yc, text ) ;
     end ;
@@ -149,7 +149,7 @@ function ged_insert(k,win)
     r.clip_state='off';
     xinfo(mess2)
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
       show_pixmap()
       xinfo(mess2)
@@ -167,7 +167,7 @@ function ged_insert(k,win)
     r.clip_state='off';
     xinfo(mess2)
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
       show_pixmap()
       xinfo(mess2)

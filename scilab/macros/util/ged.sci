@@ -1150,7 +1150,7 @@ function h=ged_loop(a)
       if d<0.005 then h=ck,return,end
       case "Arc" 
       xy=ck.data;
-      x0=xy(1,1);y0=xy(1,2);RX=xy(2,1)/2;RY=xy(2,2)/2;a1=xy(3,1);a2=xy(3,2);
+      x0=xy(1);y0=xy(2);RX=xy(3)/2;RY=xy(4)/2;a1=xy(5);a2=xy(6);
       d=abs(((pt(1)-(x0+RX))./RX)^2+((pt(2)-(y0-RY))./RY)^2-1)
       if d<0.005 then h=ck,return,end
       case "Segs"
@@ -1232,7 +1232,7 @@ if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
 
 function ged_eventhandler(win,x,y,ibut)
-//if ibut<>-1 then disp(ibut),end
+if ibut<>-1 then disp(ibut),end
 //Copyright INRIA
 //Author : Serge Steer 2002
 
@@ -2154,42 +2154,42 @@ function ged_move_entity()
   select r.type
   case 'Rectangle' then
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Segs' then //Segment
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data=r.data+ones(2,1)*(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Polyline' then //Polyline
     while rep(3)==-1 do
-      rep=xgetmouse()
-      r.data=r.data+ones(r.data(:,1))*(rep(1:2)-pos)
+      rep=xgetmouse([%t %t])
+      r.data(:,1:2)=r.data(:,1:2)+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
    case 'Arc' then //Circle
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Text' then
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.data= r.data+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Label' then
     while rep(3)==-1 do
-      rep=xgetmouse()
+      rep=xgetmouse([%t %t])
       r.position= r.position+(rep(1:2)-pos)
       r.auto_position = "off"
       pos=rep(1:2)
