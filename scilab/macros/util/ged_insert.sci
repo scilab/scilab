@@ -39,7 +39,7 @@ function ged_insert(k,win)
     r.clip_state='off';
     xinfo(mess2)
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data=[xc,yc;rep(1),rep(2)]
       show_pixmap()
       xinfo(mess2)
@@ -57,15 +57,15 @@ function ged_insert(k,win)
     r.data(:,3)=0.;
     r.clip_state='off';
     xinfo(mess1)
-     while %t
+    while %t
+      rep(3)=-1;
       while rep(3)==-1 do
-	rep=xgetmouse()
+	rep=xgetmouse(0)
 	r.data($,:)= [rep(1),rep(2),0]
 	show_pixmap()
 	xinfo(mess1)
       end 
-      if rep(3)==2 then break,end
-      rep(3)=-1;
+      if or(rep(3)==[2 5]) then break,end
       r.data=[r.data;r.data($,:)]
     end
   case 3 // Arrow (single arrow)
@@ -85,7 +85,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     yc = [];
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data($,:)= [rep(1),rep(2),0]
       show_pixmap()
       xinfo(mess2)
@@ -116,7 +116,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     show_pixmap()
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r1.data($,:)= [rep(1),rep(2),0]
       r2.data(1,:)= [rep(1),rep(2),0]
       show_pixmap()
@@ -149,7 +149,7 @@ function ged_insert(k,win)
     r.clip_state='off';
     xinfo(mess2)
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
       show_pixmap()
       xinfo(mess2)
@@ -167,7 +167,7 @@ function ged_insert(k,win)
     r.clip_state='off';
     xinfo(mess2)
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
       show_pixmap()
       xinfo(mess2)

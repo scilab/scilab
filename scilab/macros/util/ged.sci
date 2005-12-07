@@ -1120,8 +1120,8 @@ function ged_axis(h)
 endfunction
 
 
-function h=ged_getobject(pt)
-  h=[]
+function [h,Axes]=ged_getobject(pt)
+  h=[];Axes=[];
 
    f=get("current_figure");
    aold=get("current_axes")
@@ -1130,8 +1130,9 @@ function h=ged_getobject(pt)
      Axes=axes_array(k)
      set("current_axes",Axes)
      h=ged_loop(Axes)
-     if h<>[] then return,end
+     if h<>[] then break,end
    end
+   set("current_axes",aold)
 endfunction
 
 function h=ged_loop(a)
@@ -1232,7 +1233,6 @@ if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
 
 function ged_eventhandler(win,x,y,ibut)
-if ibut<>-1 then disp(ibut),end
 //Copyright INRIA
 //Author : Serge Steer 2002
 
@@ -1267,7 +1267,7 @@ if ibut<>-1 then disp(ibut),end
       [x,y]=xchange(x,y,'i2f')
       pos=[x,y]
       while %t then
-	rep=xgetmouse()
+	rep=xgetmouse(0,[%t %t])
 	if rep(3)>0 then break,end
 	
 	move(ged_handle,rep(1:2)-pos)
@@ -2147,49 +2147,51 @@ function ged_move_entity()
   [btn,xc,yc]=xclick()
   pos=[xc,yc]
   [xc,yc]=xchange(xc,yc,'f2i')
-  r=ged_getobject([xc,yc])
+  [r,ax]=ged_getobject([xc,yc])
+  cur_ax=gca(),sca(ax)
+  [xc,yc]=xchange(xc,yc,'i2f');pos=[xc,yc]
   if r==[] return,end
   f=gcf();pix=f.pixmap;f.pixmap='on'
   rep(3)=-1
   select r.type
   case 'Rectangle' then
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Segs' then //Segment
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data=r.data+ones(2,1)*(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Polyline' then //Polyline
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data(:,1:2)=r.data(:,1:2)+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
    case 'Arc' then //Circle
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Text' then
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.data= r.data+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 
   case 'Label' then
     while rep(3)==-1 do
-      rep=xgetmouse([%t %t])
+      rep=xgetmouse(0,[%t %t])
       r.position= r.position+(rep(1:2)-pos)
       r.auto_position = "off"
       pos=rep(1:2)
@@ -2197,6 +2199,7 @@ function ged_move_entity()
     end 
     
   end
+  sca(cur_ax)
   f.pixmap=stripblanks(pix)
 endfunction
 function ged_copy_entity()
