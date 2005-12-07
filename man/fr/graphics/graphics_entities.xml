@@ -83,9 +83,9 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Compound: ">
-        <SP>The Compound entity is just a vector of children and with a
-        single property (visibility property). It is used to glue a set of
-        entities together.</SP>
+        <SP>The Compound entity is just a vector of children and with a single
+        property (visibility property). It is used to glue a set of entities
+        together.</SP>
 
         <P>See <LINK>glue</LINK>, <LINK>unglue</LINK> and
         <LINK>Compound_properties</LINK> functions.</P>
@@ -220,22 +220,10 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Title: ">
-        <SP>The Title entity is a child of the <VERB>Axes</VERB> graphics
-        entity. This entity defines the parameters for a title drawn on a
-        graphics window.</SP>
-
-        <P>See <LINK>title_properties</LINK> for details.</P>
-
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-
       <DESCRIPTION_ITEM label="Labels: ">
         <SP>The Labels entity are children of the <VERB>Axes</VERB> graphics
         entity. This entity defines the parameters for the 3 x,y and z labels
-        drawn on a graphics window.</SP>
+        and title drawn on a graphics window.</SP>
 
         <P>See <LINK>label_properties</LINK> for details.</P>
 
