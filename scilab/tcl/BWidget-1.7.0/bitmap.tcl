@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  bitmap.tcl
 #  This file is part of Unifix BWidget Toolkit
-#  $Id: bitmap.tcl,v 1.1 2004/07/15 13:23:29 leray Exp $
+#  $Id: bitmap.tcl,v 1.2 2005/12/07 10:38:15 pmarecha Exp $
 # ------------------------------------------------------------------------------
 #  Index of commands:
 #     - Bitmap::get

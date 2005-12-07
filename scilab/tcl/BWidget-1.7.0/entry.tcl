@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  entry.tcl
 #  This file is part of Unifix BWidget Toolkit
-#  $Id: entry.tcl,v 1.1 2004/07/15 13:23:28 leray Exp $
+#  $Id: entry.tcl,v 1.2 2005/12/07 10:38:15 pmarecha Exp $
 # ------------------------------------------------------------------------------
 #  Index of commands:
 #     - Entry::create
@@ -99,10 +99,10 @@ proc Entry::create { path args } {
     set text     [Widget::getMegawidgetOption $path -text]
     if { $editable && [string equal $state "normal"] } {
         bindtags $path [list $path BwEntry [winfo toplevel $path] all]
-        $path configure -takefocus 1
+        $path configure -takefocus 1 -insertontime 600
     } else {
         bindtags $path [list $path BwDisabledEntry [winfo toplevel $path] all]
-        $path configure -takefocus 0
+        $path configure -takefocus 0 -insertontime 0
     }
     if { $editable == 0 } {
         $path configure -cursor left_ptr
@@ -115,8 +115,7 @@ proc Entry::create { path args } {
 	$path configure \
                 -foreground [Widget::getMegawidgetOption $path -foreground] \
                 -background [Widget::getMegawidgetOption $path -background]
-                
-	bindtags $path [linsert [bindtags $path] 2 BwEditableEntry] 
+	bindtags $path [linsert [bindtags $path] 2 BwEditableEntry]
     }
     if { [string length $text] } {
 	set varName [$path cget -textvariable]
@@ -129,7 +128,7 @@ proc Entry::create { path args } {
 	    $path configure -validate $validateState
 	    $path insert 0 [Widget::getMegawidgetOption $path -text]
 	}
-    }	
+    }
 
     DragSite::setdrag $path $path Entry::_init_drag_cmd Entry::_end_drag_cmd 1
     DropSite::setdrop $path $path Entry::_over_cmd Entry::_drop_cmd 1
@@ -137,7 +136,7 @@ proc Entry::create { path args } {
 
     Widget::create Entry $path
     proc ::$path { cmd args } \
-    	"return \[Entry::_path_command $path \$cmd \$args\]"
+    	"return \[Entry::_path_command [list $path] \$cmd \$args\]"
     return $path
 }
 
@@ -156,7 +155,7 @@ proc Entry::configure { path args } {
     set vars [list chstate cheditable chfg chdfg chbg chdbg chtext]
     set opts [list -state -editable -foreground -disabledforeground \
                 -background -disabledbackground -text]
-    foreach $vars [eval Widget::hasChangedX $path $opts] { break }
+    foreach $vars [eval [linsert $opts 0 Widget::hasChangedX $path]] { break }
 
     if { $chstate || $cheditable } {
 	set state [Widget::getMegawidgetOption $path -state]
@@ -167,13 +166,13 @@ proc Entry::configure { path args } {
             if { $idx != -1 } {
                 bindtags $path [lreplace $btags $idx $idx BwEntry]
             }
-            $path:cmd configure -takefocus 1
+            $path:cmd configure -takefocus 1 -insertontime 600
         } else {
             set idx [lsearch $btags BwEntry]
             if { $idx != -1 } {
                 bindtags $path [lreplace $btags $idx $idx BwDisabledEntry]
             }
-            $path:cmd configure -takefocus 0
+            $path:cmd configure -takefocus 0 -insertontime 0
             if { [string equal [focus] $path] } {
                 focus .
             }
@@ -253,7 +252,7 @@ proc Entry::cget { path option } {
 #  Command Entry::invoke
 # ------------------------------------------------------------------------------
 proc Entry::invoke { path } {
-    if { [set cmd [Widget::getMegawidgetOption $path -command]] != "" } {
+    if {[llength [set cmd [Widget::getMegawidgetOption $path -command]]]} {
         uplevel \#0 $cmd
     }
 }
@@ -264,9 +263,9 @@ proc Entry::invoke { path } {
 # ------------------------------------------------------------------------------
 proc Entry::_path_command { path cmd larg } {
     if {[string equal $cmd "configure"] || [string equal $cmd "cget"]} {
-        return [eval [list Entry::$cmd $path] $larg]
+        return [eval [linsert $larg 0 Entry::$cmd $path]]
     } else {
-        return [eval [list $path:cmd $cmd] $larg]
+        return [eval [linsert $larg 0 $path:cmd $cmd]]
     }
 }
 
@@ -278,7 +277,7 @@ proc Entry::_init_drag_cmd { path X Y top } {
     variable $path
     upvar 0  $path data
 
-    if { [set cmd [Widget::getoption $path -draginitcmd]] != "" } {
+    if {[llength [set cmd [Widget::getoption $path -draginitcmd]]]} {
         return [uplevel \#0 $cmd [list $path $X $Y $top]]
     }
     set type [Widget::getoption $path -dragtype]
@@ -322,7 +321,7 @@ proc Entry::_end_drag_cmd { path target op type dnddata result } {
     variable $path
     upvar 0  $path data
 
-    if { [set cmd [Widget::getoption $path -dragendcmd]] != "" } {
+    if {[llength [set cmd [Widget::getoption $path -dragendcmd]]]} {
         return [uplevel \#0 $cmd [list $path $target $op $type $dnddata $result]]
     }
     if { $result && $op == "move" && $path != $target } {
@@ -342,7 +341,7 @@ proc Entry::_drop_cmd { path source X Y op type dnddata } {
         after cancel $data(afterid)
         set data(afterid) ""
     }
-    if { [set cmd [Widget::getoption $path -dropcmd]] != "" } {
+    if {[llength [set cmd [Widget::getoption $path -dropcmd]]]} {
         set idx [$path:cmd index @[expr {$X-[winfo rootx $path]}]]
         return [uplevel \#0 $cmd [list $path $source $idx $op $type $dnddata]]
     }
@@ -381,7 +380,7 @@ proc Entry::_over_cmd { path source event X Y op type dnddata } {
         return 2
     }
 
-    if { [set cmd [Widget::getoption $path -dropovercmd]] != "" } {
+    if {[llength [set cmd [Widget::getoption $path -dropovercmd]]]} {
         set x   [expr {$X-[winfo rootx $path]}]
         set idx [$path:cmd index @$x]
         set res [uplevel \#0 $cmd [list $path $source $event $idx $op $type $dnddata]]
@@ -418,14 +417,14 @@ proc Entry::_auto_scroll { path x } {
     set xmax [winfo width $path]
     if { $x <= 10 && [$path:cmd index @0] > 0 } {
         if { $data(afterid) == "" } {
-            set data(afterid) [after 100 "Entry::_scroll $path -1 $x $xmax"]
+            set data(afterid) [after 100 [list Entry::_scroll $path -1 $x $xmax]]
             DropSite::setcursor sb_left_arrow
         }
         return 1
     } else {
         if { $x >= $xmax-10 && [$path:cmd index @$xmax] < [$path:cmd index end] } {
             if { $data(afterid) == "" } {
-                set data(afterid) [after 100 "Entry::_scroll $path 1 $x $xmax"]
+                set data(afterid) [after 100 [list Entry::_scroll $path 1 $x $xmax]]
                 DropSite::setcursor sb_right_arrow
             }
             return 1
@@ -451,7 +450,7 @@ proc Entry::_scroll { path dir x xmax } {
     $path:cmd icursor @$x
     if { ($dir == -1 && [$path:cmd index @0] > 0) ||
          ($dir == 1  && [$path:cmd index @$xmax] < [$path:cmd index end]) } {
-        set data(afterid) [after 100 "Entry::_scroll $path $dir $x $xmax"]
+        set data(afterid) [after 100 [list Entry::_scroll $path $dir $x $xmax]]
     } else {
         set data(afterid) ""
         DropSite::setcursor dot

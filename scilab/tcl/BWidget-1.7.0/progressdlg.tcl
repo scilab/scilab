@@ -38,10 +38,10 @@ namespace eval ProgressDlg {
 proc ProgressDlg::create { path args } {
     array set maps [list ProgressDlg {} :cmd {} .frame.msg {} .frame.pb {}]
     array set maps [Widget::parseArgs ProgressDlg $args]
-    
+
     eval [list Dialog::create] $path $maps(:cmd) \
 	[list -image [Bitmap::get hourglass] \
-	     -modal none -side bottom -anchor c -class ProgressDlg]
+	     -modal none -side bottom -anchor e -class ProgressDlg]
 
     Widget::initFromODB ProgressDlg "$path#ProgressDlg" $maps(ProgressDlg)
 

@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------
 #  dialog.tcl
 #  This file is part of Unifix BWidget Toolkit
-#  $Id: dialog.tcl,v 1.1 2004/07/15 13:23:29 leray Exp $
+#  $Id: dialog.tcl,v 1.2 2005/12/07 10:38:15 pmarecha Exp $
 # ----------------------------------------------------------------------------
 #  Index of commands:
 #     - Dialog::create
@@ -25,23 +25,23 @@ namespace eval Dialog {
     Widget::define Dialog dialog ButtonBox
 
     Widget::bwinclude Dialog ButtonBox .bbox \
-        remove     {-orient} \
-        initialize {-spacing 10 -padx 10}
+	remove	   {-orient} \
+	initialize {-spacing 10 -padx 10}
 
     Widget::declare Dialog {
-        {-title       String     ""       0}
-	{-geometry    String     ""       0}
-        {-modal       Enum       local    0 {none local global}}
-        {-bitmap      TkResource ""       1 label}
-        {-image       TkResource ""       1 label}
-        {-separator   Boolean    0        1}
-        {-cancel      Int        -1       0 "%d >= -1"}
-        {-parent      String     ""       0}
-        {-side        Enum       bottom   1 {bottom left top right}}
-        {-anchor      Enum       c        1 {n e w s c}}
-	{-class       String     Dialog   1}
-        {-transient   Boolean    1        1}
-        {-place       Enum       center   0 {none center left right above below}}
+	{-title	      String	 ""	  0}
+	{-geometry    String	 ""	  0}
+	{-modal	      Enum	 local	  0 {none local global}}
+	{-bitmap      TkResource ""	  1 label}
+	{-image	      TkResource ""	  1 label}
+	{-separator   Boolean	 0	  1}
+	{-cancel      Int	 -1	  0 "%d >= -1"}
+	{-parent      String	 ""	  0}
+	{-side	      Enum	 bottom	  1 {bottom left top right}}
+	{-anchor      Enum	 c	  1 {n e w s c}}
+	{-class	      String	 Dialog	  1}
+	{-transient   Boolean	 1	  1}
+	{-place	      Enum	 center	  0 {none center left right above below}}
     }
 
     Widget::addmap Dialog "" :cmd   {-background {}}
@@ -78,6 +78,7 @@ proc Dialog::create { path args } {
 	set bd 0
     }
     toplevel $path -relief $re -borderwidth $bd -class $dialogClass
+    wm withdraw $path
 
     Widget::initFromODB Dialog $path $maps(Dialog)
 
@@ -88,11 +89,10 @@ proc Dialog::create { path args } {
     if { ![winfo exists $parent] } {
         set parent [winfo parent $path]
     }
-   # JDC: made transient optional
+    # JDC: made transient optional
     if { [Widget::getoption $path -transient] } {
 	wm transient $path [winfo toplevel $parent]
     }
-    wm withdraw $path
 
     set side [Widget::cget $path -side]
     if { [string equal $side "left"] || [string equal $side "right"] } {
@@ -101,7 +101,8 @@ proc Dialog::create { path args } {
         set orient horizontal
     }
 
-    set bbox  [eval [list ButtonBox::create $path.bbox] $maps(.bbox) -orient $orient]
+    set bbox  [eval [list ButtonBox::create $path.bbox] $maps(.bbox) \
+		   -orient $orient]
     set frame [frame $path.frame -relief flat -borderwidth 0]
     set bg [Widget::cget $path -background]
     $path configure -background $bg
@@ -112,13 +113,13 @@ proc Dialog::create { path args } {
         set label [label $path.label -bitmap $bitmap -background $bg]
     }
     if { [Widget::getoption $path -separator] } {
-                Separator::create $path.sep -orient $orient -background $bg
+	Separator::create $path.sep -orient $orient -background $bg
     }
     set _widget($path,realized) 0
     set _widget($path,nbut)     0
 
-    bind $path <Escape>  "ButtonBox::invoke $path.bbox [Widget::getoption $path -cancel]"
-    bind $path <Return>  "ButtonBox::invoke $path.bbox default"
+    bind $path <Escape>  [list ButtonBox::invoke $path.bbox [Widget::getoption $path -cancel]]
+    bind $path <Return>  [list ButtonBox::invoke $path.bbox default]
 
     return [Widget::create Dialog $path]
 }
@@ -167,7 +168,13 @@ proc Dialog::getframe { path } {
 proc Dialog::add { path args } {
     variable _widget
 
-    set cmd [list ButtonBox::add $path.bbox \
+    if {[string equal $::tcl_platform(platform) "windows"]
+	&& $::tk_version >= 8.4} {
+	set width -11
+    } else {
+	set width 8
+    }
+    set cmd [list ButtonBox::add $path.bbox -width $width \
 		 -command [list Dialog::enddialog $path $_widget($path,nbut)]]
     set res [eval $cmd $args]
     incr _widget($path,nbut)
@@ -235,7 +242,8 @@ proc Dialog::draw { path {focus ""} {overrideredirect 0} {geometry ""}} {
                 set pad  -pady
                 set fill x
             }
-            pack $path.bbox -side $side -anchor [Widget::getoption $path -anchor] -padx 1m -pady 1m
+            pack $path.bbox -side $side -padx 1m -pady 1m \
+		-anchor [Widget::getoption $path -anchor]
             if { [winfo exists $path.sep] } {
                 pack $path.sep -side $side -fill $fill $pad 2m
             }

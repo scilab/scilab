@@ -94,7 +94,7 @@ proc MessageDlg::create { path args } {
             set image ""
         }
         eval [list Dialog::create $path] $maps(:cmd) \
-	    [list -image $image -modal local -side bottom -anchor c]
+	    [list -image $image -modal local -side bottom -anchor e]
         foreach but $lbut {
             Dialog::add $path -text $but -name $but -width $width
         }
@@ -115,10 +115,9 @@ proc MessageDlg::create { path args } {
 	if { ![string equal $icon "none"] } {
 	    set tkMBoxArgs(-icon) $icon
 	}
-	if { [info exists tkMBoxArgs(-parent)] } {
-	    if { ![winfo exists $tkMBoxArgs(-parent)] } {
-		unset tkMBoxArgs(-parent)
-	    }
+	if {[info exists tkMBoxArgs(-parent)]
+	    && ![winfo exists $tkMBoxArgs(-parent)]} {
+	    unset tkMBoxArgs(-parent)
 	}
 	set tkMBoxArgs(-type) $type
 	set res [eval [list tk_messageBox] [array get tkMBoxArgs]]

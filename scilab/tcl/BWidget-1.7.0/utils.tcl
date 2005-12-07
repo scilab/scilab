@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------
 #  utils.tcl
 #  This file is part of Unifix BWidget Toolkit
-#  $Id: utils.tcl,v 1.1 2004/07/15 13:23:29 leray Exp $
+#  $Id: utils.tcl,v 1.2 2005/12/07 10:38:15 pmarecha Exp $
 # ----------------------------------------------------------------------------
 #  Index of commands:
 #     - GlobalVar::exists
@@ -331,7 +331,7 @@ proc BWidget::place { path w h args } {
                     if { $idx == 2 } {
                         # try left, then right if out, then 0 if out
                         if { $x0 >= $w } {
-                            set x "+[expr {$x0-$sw}]"
+                            set x [expr {$x0-$sw}]
                         } elseif { $x1+$w <= $sw } {
                             set x "+$x1"
                         } else {
@@ -342,7 +342,7 @@ proc BWidget::place { path w h args } {
                         if { $x1+$w <= $sw } {
                             set x "+$x1"
                         } elseif { $x0 >= $w } {
-                            set x "+[expr {$x0-$sw}]"
+                            set x [expr {$x0-$sw}]
                         } else {
                             set x "-0"
                         }
@@ -356,7 +356,7 @@ proc BWidget::place { path w h args } {
                     if { $idx == 4 } {
                         # try top, then bottom, then 0
                         if { $h <= $y0 } {
-                            set y "+[expr {$y0-$sh}]"
+                            set y [expr {$y0-$sh}]
                         } elseif { $y1+$h <= $sh } {
                             set y "+$y1"
                         } else {
@@ -367,7 +367,7 @@ proc BWidget::place { path w h args } {
                         if { $y1+$h <= $sh } {
                             set y "+$y1"
                         } elseif { $h <= $y0 } {
-                            set y "+[expr {$y0-$sh}]"
+                            set y [expr {$y0-$sh}]
                         } else {
                             set y "-0"
                         }
@@ -375,6 +375,11 @@ proc BWidget::place { path w h args } {
                 }
             }
         }
+
+        ## If there's not a + or - in front of the number, we need to add one.
+        if {[string is integer [string index $x 0]]} { set x +$x }
+        if {[string is integer [string index $y 0]]} { set y +$y }
+
         wm geometry $path "${w}x${h}${x}${y}"
     } else {
         wm geometry $path "${w}x${h}"
@@ -458,6 +463,69 @@ proc BWidget::refocus {container component} {
 	::focus $component
     }
     return
+}
+
+## These mirror tk::(Set|Restore)FocusGrab
+
+# BWidget::SetFocusGrab --
+#   swap out current focus and grab temporarily (for dialogs)
+# Arguments:
+#   grab	new window to grab
+#   focus	window to give focus to
+# Results:
+#   Returns nothing
+#
+proc BWidget::SetFocusGrab {grab {focus {}}} {
+    variable _focusGrab
+    set index "$grab,$focus"
+
+    lappend _focusGrab($index) [::focus]
+    set oldGrab [::grab current $grab]
+    lappend _focusGrab($index) $oldGrab
+    if {[winfo exists $oldGrab]} {
+	lappend _focusGrab($index) [::grab status $oldGrab]
+    }
+    # The "grab" command will fail if another application
+    # already holds the grab.  So catch it.
+    catch {::grab $grab}
+    if {[winfo exists $focus]} {
+	::focus $focus
+    }
+}
+
+# BWidget::RestoreFocusGrab --
+#   restore old focus and grab (for dialogs)
+# Arguments:
+#   grab	window that had taken grab
+#   focus	window that had taken focus
+#   destroy	destroy|withdraw - how to handle the old grabbed window
+# Results:
+#   Returns nothing
+#
+proc BWidget::RestoreFocusGrab {grab focus {destroy destroy}} {
+    variable _focusGrab
+    set index "$grab,$focus"
+    if {[info exists _focusGrab($index)]} {
+	foreach {oldFocus oldGrab oldStatus} $_focusGrab($index) break
+	unset _focusGrab($index)
+    } else {
+	set oldGrab ""
+    }
+
+    catch {::focus $oldFocus}
+    ::grab release $grab
+    if {[string equal $destroy "withdraw"]} {
+	wm withdraw $grab
+    } else {
+	::destroy $grab
+    }
+    if {[winfo exists $oldGrab] && [winfo ismapped $oldGrab]} {
+	if {[string equal $oldStatus "global"]} {
+	    ::grab -global $oldGrab
+	} else {
+	    ::grab $oldGrab
+	}
+    }
 }
 
 # BWidget::badOptionString --

@@ -17,6 +17,7 @@ package ifneeded BWidget 1.7 "\
 {scrollw.tcl source {ScrolledWindow ScrolledWindow::create ScrolledWindow::use}}
 {scrollview.tcl source {ScrollView ScrollView::create ScrollView::use}}
 {scrollframe.tcl source {ScrollableFrame ScrollableFrame::create ScrollableFrame::use}}
+{panelframe.tcl source {PanelFrame PanelFrame::create PanelFrame::use}}
 {progressbar.tcl source {ProgressBar ProgressBar::create ProgressBar::use}}
 {progressdlg.tcl source {ProgressDlg ProgressDlg::create ProgressDlg::use}}
 {passwddlg.tcl source {PasswdDlg PasswdDlg::create PasswdDlg::use}}
@@ -24,6 +25,7 @@ package ifneeded BWidget 1.7 "\
 {dropsite.tcl source {DropSite::register DropSite::include DropSite::use}}
 {separator.tcl source {Separator Separator::create Separator::use}}
 {spinbox.tcl source {SpinBox SpinBox::create SpinBox::use}}
+{statusbar.tcl source {StatusBar StatusBar::create StatusBar::use}}
 {titleframe.tcl source {TitleFrame TitleFrame::create TitleFrame::use}}
 {mainframe.tcl source {MainFrame MainFrame::create MainFrame::use}}
 {listbox.tcl source {ListBox ListBox::create ListBox::use}}

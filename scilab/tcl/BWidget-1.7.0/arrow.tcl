@@ -87,7 +87,7 @@ proc ArrowButton::create { path args } {
     Widget::initFromODB ArrowButton $path $submaps(ArrowButton)
 
     # Create the canvas with the initial options
-    eval canvas $path.c $submaps(.c)
+    eval [list canvas $path.c] $submaps(.c)
 
     # Compute the width and height of the canvas from the width/height
     # of the ArrowButton and the borderwidth/hightlightthickness.
@@ -171,7 +171,7 @@ proc ArrowButton::invoke { path } {
             configure $path -state active -arrowrelief sunken
         }
 	update idletasks
-        if { [set cmd [Widget::getoption $path -armcommand]] != "" } {
+        if {[llength [set cmd [Widget::getoption $path -armcommand]]]} {
             uplevel \#0 $cmd
         }
 	after 10
@@ -180,10 +180,10 @@ proc ArrowButton::invoke { path } {
         } else {
             configure $path -state $oldstate -arrowrelief $oldrelief
         }
-        if { [set cmd [Widget::getoption $path -disarmcommand]] != "" } {
+        if {[llength [set cmd [Widget::getoption $path -disarmcommand]]]} {
             uplevel \#0 $cmd
         }
-        if { [set cmd [Widget::getoption $path -command]] != "" } {
+        if {[llength [set cmd [Widget::getoption $path -command]]]} {
             uplevel \#0 $cmd
         }
     }
@@ -222,8 +222,7 @@ proc ArrowButton::_redraw { path width height } {
 
     if { $clean > 0 } {
         # arrange for base to be odd
-        if { [string equal $dir "top"] ||
-             [string equal $dir "bottom"] } {
+        if { [string equal $dir "top"] || [string equal $dir "bottom"] } {
             if { !($w % 2) } {
                 incr w -1
             }
@@ -488,11 +487,11 @@ proc ArrowButton::_press { path } {
             set _grab(oldrelief) [Widget::getoption $path -arrowrelief]
             configure $path -arrowrelief sunken
         }
-        if { [set cmd [Widget::getoption $path -armcommand]] != "" } {
+        if {[llength [set cmd [Widget::getoption $path -armcommand]]]} {
             uplevel \#0 $cmd
             if { [set delay [Widget::getoption $path -repeatdelay]]    > 0 ||
                  [set delay [Widget::getoption $path -repeatinterval]] > 0 } {
-                after $delay "ArrowButton::_repeat $path"
+                after $delay [list ArrowButton::_repeat $path]
             }
         }
     }
@@ -512,12 +511,12 @@ proc ArrowButton::_release { path } {
         } else {
             configure $path -arrowrelief $_grab(oldrelief)
         }
-        if { [set cmd [Widget::getoption $path -disarmcommand]] != "" } {
+        if {[llength [set cmd [Widget::getoption $path -disarmcommand]]]} {
             uplevel \#0 $cmd
         }
         if { $_grab(current) == $path &&
              ![string equal [Widget::getoption $path -state] "disabled"] &&
-             [set cmd [Widget::getoption $path -command]] != "" } {
+             [llength [set cmd [Widget::getoption $path -command]]]} {
             uplevel \#0 $cmd
         }
     }
@@ -531,13 +530,13 @@ proc ArrowButton::_repeat { path } {
     variable _grab
     if { $_grab(current) == $path && $_grab(pressed) == $path &&
          ![string equal [Widget::getoption $path -state] "disabled"] &&
-         [set cmd [Widget::getoption $path -armcommand]] != "" } {
+         [llength [set cmd [Widget::getoption $path -armcommand]]]} {
         uplevel \#0 $cmd
     }
     if { $_grab(pressed) == $path &&
          ([set delay [Widget::getoption $path -repeatinterval]] > 0 ||
           [set delay [Widget::getoption $path -repeatdelay]]    > 0) } {
-        after $delay "ArrowButton::_repeat $path"
+        after $delay [list ArrowButton::_repeat $path]
     }
 }
 

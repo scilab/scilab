@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------
 #  widget.tcl
 #  This file is part of Unifix BWidget Toolkit
-#  $Id: widget.tcl,v 1.1 2004/07/15 13:23:28 leray Exp $
+#  $Id: widget.tcl,v 1.2 2005/12/07 10:38:15 pmarecha Exp $
 # ----------------------------------------------------------------------------
 #  Index of commands:
 #     - Widget::tkinclude
@@ -63,6 +63,12 @@ namespace eval Widget {
     variable _class
     variable _tk_widget
 
+    # This controls whether we try to use themed widgets from Tile
+    variable _theme 0
+
+    variable _aqua [expr {($::tcl_version >= 8.4) &&
+			  [string equal [tk windowingsystem] "aqua"]}]
+
     array set _optiontype {
         TkResource Widget::_test_tkresource
         BwResource Widget::_test_bwresource
@@ -78,7 +84,6 @@ namespace eval Widget {
 
     proc use {} {}
 }
-
 
 
 # ----------------------------------------------------------------------------
@@ -494,7 +499,9 @@ proc Widget::init { class path options } {
     set fpath $path
     set rdbclass [string map [list :: ""] $class]
     if { ![winfo exists $path] } {
-	set fpath ".#BWidgetClass#$class"
+	set fpath ".#BWidget.#Class#$class"
+	# encapsulation frame to not pollute '.' childspace
+	if {![winfo exists ".#BWidget"]} { frame ".#BWidget" }
 	if { ![winfo exists $fpath] } {
 	    frame $fpath -class $rdbclass
 	}
@@ -682,7 +689,9 @@ proc Widget::initFromODB {class path options} {
     set fpath [_get_window $class $path]
     set rdbclass [string map [list :: ""] $class]
     if { ![winfo exists $path] } {
-	set fpath ".#BWidgetClass#$class"
+	set fpath ".#BWidget.#Class#$class"
+	# encapsulation frame to not pollute '.' childspace
+	if {![winfo exists ".#BWidget"]} { frame ".#BWidget" }
 	if { ![winfo exists $fpath] } {
 	    frame $fpath -class $rdbclass
 	}
@@ -1066,8 +1075,10 @@ proc Widget::_get_tkwidget_options { tkwidget } {
     variable _tk_widget
     variable _optiondb
     variable _optionclass
-    
-    set widget ".#BWidget#$tkwidget"
+
+    set widget ".#BWidget.#$tkwidget"
+    # encapsulation frame to not pollute '.' childspace
+    if {![winfo exists ".#BWidget"]} { frame ".#BWidget" }
     if { ![winfo exists $widget] || ![info exists _tk_widget($tkwidget)] } {
 	set widget [$tkwidget $widget]
 	# JDC: Withdraw toplevels, otherwise visible
@@ -1118,7 +1129,7 @@ proc Widget::_test_tkresource { option value arg } {
 #    set tkwidget [lindex $arg 0]
 #    set realopt  [lindex $arg 1]
     foreach {tkwidget realopt} $arg break
-    set path     ".#BWidget#$tkwidget"
+    set path     ".#BWidget.#$tkwidget"
     set old      [$path cget $realopt]
     $path configure $realopt $value
     set res      [$path cget $realopt]
@@ -1290,7 +1301,7 @@ proc Widget::focusNext { w } {
 	    incr i
 	    if {$i < [llength $children]} {
 		set cur [lindex $children $i]
-		if {[winfo toplevel $cur] == $cur} {
+		if {[string equal [winfo toplevel $cur] $cur]} {
 		    continue
 		} else {
 		    break
@@ -1302,14 +1313,14 @@ proc Widget::focusNext { w } {
 	    # look for its next sibling.
 
 	    set cur $parent
-	    if {[winfo toplevel $cur] == $cur} {
+	    if {[string equal [winfo toplevel $cur] $cur]} {
 		break
 	    }
 	    set parent [winfo parent $parent]
 	    set children [winfo children $parent]
 	    set i [lsearch -exact $children $cur]
 	}
-	if {($cur == $w) || [focusOK $cur]} {
+	if {[string equal $cur $w] || [focusOK $cur]} {
 	    return $cur
 	}
     }
@@ -1318,17 +1329,20 @@ proc Widget::focusNext { w } {
 
 # -----------------------------------------------------------------------------
 #  Command Widget::focusPrev
-#  Same as tk_focusPrev, but call Widget::focusOK
+#  Same as tk_focusPrev, except:
+#	+ Don't traverse from a child to a direct ancestor
+#	+ Call Widget::focusOK instead of tk::focusOK
 # -----------------------------------------------------------------------------
 proc Widget::focusPrev { w } {
     set cur $w
+    set origParent [winfo parent $w]
     while 1 {
 
 	# Collect information about the current window's position
 	# among its siblings.  Also, if the window is a top-level,
 	# then reposition to just after the last child of the window.
-    
-	if {[winfo toplevel $cur] == $cur}  {
+
+	if {[string equal [winfo toplevel $cur] $cur]}  {
 	    set parent $cur
 	    set children [winfo children $cur]
 	    set i [llength $children]
@@ -1346,7 +1360,7 @@ proc Widget::focusPrev { w } {
 	while {$i > 0} {
 	    incr i -1
 	    set cur [lindex $children $i]
-	    if {[winfo toplevel $cur] == $cur} {
+	    if {[string equal [winfo toplevel $cur] $cur]} {
 		continue
 	    }
 	    set parent $cur
@@ -1354,7 +1368,19 @@ proc Widget::focusPrev { w } {
 	    set i [llength $children]
 	}
 	set cur $parent
-	if {($cur == $w) || [focusOK $cur]} {
+	if {[string equal $cur $w]} {
+	    return $cur
+	}
+	# If we are just at the original parent of $w, skip it as a
+	# potential focus accepter.  Extra safety in this is to see if
+	# that parent is also a proc (not a C command), which is what
+	# BWidgets makes for any megawidget.  Could possibly also check
+	# for '[info commands ::${origParent}:cmd] != ""'.  [Bug 765667]
+	if {[string equal $cur $origParent]
+	    && [info procs ::$origParent] != ""} {
+	    continue
+	}
+	if {[focusOK $cur]} {
 	    return $cur
 	}
     }
@@ -1531,4 +1557,20 @@ proc Widget::nextIndex { path node } {
 proc Widget::exists { path } {
     variable _class
     return [info exists _class($path)]
+}
+
+proc Widget::theme {{bool {}}} {
+    # Private, *experimental* API that may change at any time - JH
+    variable _theme
+    if {[llength [info level 0]] == 2} {
+	# set theme-ability
+	if {[catch {package require tile 0.6}]
+	    && [catch {package require tile 1}]} {
+	    return -code error "BWidget's theming requires tile 0.6+"
+	} else {
+	    catch {style default BWSlim.Toolbutton -padding 0}
+	}
+	set _theme [string is true -strict $bool]
+    }
+    return $_theme
 }

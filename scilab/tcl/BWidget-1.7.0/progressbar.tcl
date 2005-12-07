@@ -161,19 +161,22 @@ proc ProgressBar::_modify { path args } {
 		set x0 [expr {(1.0-(double($tval) / double($max))) * 1.5}]
 	    }
 	    set x1 [expr {$x0 + 0.25}]
+	    # convert coords to ints to prevent triggering canvas refresh
+	    # bug related to fractional coords
 	    if {[Widget::getoption $path -orient] == "horizontal"} {
-		$path.bar coords rect [expr {$x0*$w}] 0 [expr {$x1*$w}] $h
+		$path.bar coords rect [expr {int($x0*$w)}] 0 \
+		    [expr {int($x1*$w)}] $h
 	    } else {
-		$path.bar coords rect 0 [expr {$h-$x0*$h}] $w \
-			[expr {$x1*$h}]
+		$path.bar coords rect 0 [expr {int($h-$x0*$h)}] $w \
+		    [expr {int($x1*$h)}]
 	    }
 	} else {
 	    if { $val > $max } {set val $max}
 	    if {[Widget::getoption $path -orient] == "horizontal"} {
-		$path.bar coords rect -1 0 [expr {$val*$w/$max}] $h
+		$path.bar coords rect -1 0 [expr {int($val*$w/$max)}] $h
 	    } else {
 		$path.bar coords rect 0 [expr {$h+1}] $w \
-			[expr {$h*(1.0 - double($val)/$max)}]
+		    [expr {int($h*(1.0 - double($val)/$max))}]
 	    }
 	}
     }

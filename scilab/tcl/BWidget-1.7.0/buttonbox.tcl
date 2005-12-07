@@ -19,15 +19,15 @@ namespace eval ButtonBox {
     Widget::define ButtonBox buttonbox Button
 
     Widget::declare ButtonBox {
-        {-background  TkResource ""         0 frame}
-        {-orient      Enum       horizontal 1 {horizontal vertical}}
-        {-state       Enum       "normal"   0 {normal disabled}}
-        {-homogeneous Boolean    1          1}
-        {-spacing     Int        10         0 "%d >= 0"}
-        {-padx        TkResource ""         0 button}
-        {-pady        TkResource ""         0 button}
-        {-default     Int        -1         0 "%d >= -1"} 
-        {-bg          Synonym    -background}
+	{-background  TkResource ""	    0 frame}
+	{-orient      Enum	 horizontal 1 {horizontal vertical}}
+	{-state	      Enum	 "normal"   0 {normal disabled}}
+	{-homogeneous Boolean	 1	    1}
+	{-spacing     Int	 10	    0 "%d >= 0"}
+	{-padx	      TkResource ""	    0 button}
+	{-pady	      TkResource ""	    0 button}
+	{-default     Int	 -1	    0 "%d >= -1"}
+	{-bg	      Synonym	 -background}
     }
 
     Widget::addmap ButtonBox "" :cmd {-background {}}
@@ -106,7 +106,7 @@ proc ButtonBox::cget { path option } {
 #  Command ButtonBox::add
 # ----------------------------------------------------------------------------
 proc ButtonBox::add { path args } {
-    return [eval insert $path end $args]
+    return [eval [linsert $args 0 insert $path end]]
 }
 
 
@@ -146,8 +146,8 @@ proc ButtonBox::insert { path idx args } {
     }
 
     eval [list Button::create $but \
-        -background [Widget::getoption $path -background]\
-        -padx       [Widget::getoption $path -padx] \
+	      -background [Widget::getoption $path -background]\
+	      -padx       [Widget::getoption $path -padx] \
 	      -pady       [Widget::getoption $path -pady]] \
         $args [list -default $style]
 
@@ -290,7 +290,7 @@ proc ButtonBox::index { path index } {
         set res [Widget::getoption $path -default]
     } elseif {$index == "end" || $index == "last"} {
 	set res $n
-    } elseif {![string is integer $index]} {
+    } elseif {![string is integer -strict $index]} {
 	## It's not an integer.  Search the text of each button
 	## in the box and return the index that matches.
 	foreach i $data(buttons) {

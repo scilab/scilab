@@ -102,7 +102,7 @@ namespace eval SelectFont {
 	    presetfixed		$presetFixed	\
 	    presetall		$presetAll	\
 	    ]
-		
+
     variable _widget
 }
 
@@ -126,7 +126,8 @@ proc SelectFont::create { path args } {
     set bg [Widget::getoption "$path#SelectFont" -background]
     set _styles [Widget::getoption "$path#SelectFont" -styles]
     if { [Widget::getoption "$path#SelectFont" -type] == "dialog" } {
-        Dialog::create $path -modal local -default 0 -cancel 1 -background $bg \
+        Dialog::create $path -modal local -anchor e -default 0 -cancel 1 \
+	    -background $bg \
             -title  [Widget::getoption "$path#SelectFont" -title] \
             -parent [Widget::getoption "$path#SelectFont" -parent]
 
@@ -226,29 +227,54 @@ proc SelectFont::create { path args } {
 	    set fams "preset"
 	    append fams [Widget::getoption "$path#SelectFont" -families]
 	}
-        frame $path -relief flat -borderwidth 0 -background $bg
-        bind $path <Destroy> [list SelectFont::_destroy $path]
-        set lbf [ComboBox::create $path.font \
-                     -highlightthickness 0 -takefocus 0 -background $bg \
-                     -values   $_families($fams) \
-                     -textvariable SelectFont::$path\(family\) \
-                     -editable 0 \
-                     -modifycmd [list SelectFont::_update $path]]
-        set lbs [ComboBox::create $path.size \
-                     -highlightthickness 0 -takefocus 0 -background $bg \
-                     -width    4 \
-                     -values   $_sizes \
-                     -textvariable SelectFont::$path\(size\) \
-                     -editable 0 \
-                     -modifycmd [list SelectFont::_update $path]]
+	if {[Widget::theme]} {
+	    ttk::frame $path
+	    set lbf [ttk::combobox $path.font \
+			 -takefocus 0 -exportselection 0 \
+			 -values   $_families($fams) \
+			 -textvariable SelectFont::${path}(family) \
+			 -state readonly]
+	    set lbs [ttk::combobox $path.size \
+			 -takefocus 0 -exportselection 0 \
+			 -width    4 \
+			 -values   $_sizes \
+			 -textvariable SelectFont::${path}(size) \
+			 -state readonly]
+	    bind $lbf <<ComboboxSelected>> [list SelectFont::_update $path]
+	    bind $lbs <<ComboboxSelected>> [list SelectFont::_update $path]
+	} else {
+	    frame $path -background $bg
+	    set lbf [ComboBox::create $path.font \
+			 -highlightthickness 0 -takefocus 0 -background $bg \
+			 -values   $_families($fams) \
+			 -textvariable SelectFont::$path\(family\) \
+			 -editable 0 \
+			 -modifycmd [list SelectFont::_update $path]]
+	    set lbs [ComboBox::create $path.size \
+			 -highlightthickness 0 -takefocus 0 -background $bg \
+			 -width    4 \
+			 -values   $_sizes \
+			 -textvariable SelectFont::$path\(size\) \
+			 -editable 0 \
+			 -modifycmd [list SelectFont::_update $path]]
+	}
+	bind $path <Destroy> [list SelectFont::_destroy $path]
         pack $lbf -side left -anchor w
         pack $lbs -side left -anchor w -padx 4
         foreach st $_styles {
-            button $path.$st \
-                -highlightthickness 0 -takefocus 0 -padx 0 -pady 0 -bd 2 \
-                -background $bg \
-                -image  [Bitmap::get $st] \
-                -command [list SelectFont::_modstyle $path $st]
+	    if {$::Widget::_theme} {
+		ttk::checkbutton $path.$st -takefocus 0 \
+		    -style BWSlim.Toolbutton \
+		    -image [Bitmap::get $st] \
+		    -variable SelectFont::${path}($st) \
+		    -command [list SelectFont::_update $path]
+	    } else {
+		button $path.$st \
+		    -highlightthickness 0 -takefocus 0 -padx 0 -pady 0 \
+		    -background $bg \
+		    -image [Bitmap::get $st] \
+		    -command [list SelectFont::_modstyle $path $st]
+	    }
             pack $path.$st -side left -anchor w
         }
         set data(label) ""
@@ -377,13 +403,8 @@ proc SelectFont::_modstyle { path style } {
     variable $path
     upvar 0  $path data
 
-    if { $data($style) == 1 } {
-        $path.$style configure -relief raised
-        set data($style) 0
-    } else {
-        $path.$style configure -relief sunken
-        set data($style) 1
-    }
+    $path.$style configure -relief [expr {$data($style) ? "raised" : "sunken"}]
+    set data($style) [expr {!$data($style)}]
     _update $path
 }
 
@@ -461,11 +482,14 @@ proc SelectFont::_getfont { path } {
         set data(family) [expr {$idxf >= 0 ? $idxf : 0}]
         set data(size)   [expr {$idxs >= 0 ? $idxs : 0}]
     } else {
-        set data(family) $font(-family)
-        set data(size)   $font(-size)
-        foreach st $_styles {
-            $path.$st configure -relief [expr {$data($st) ? "sunken":"raised"}]
-        }
+	set data(family) $font(-family)
+	set data(size)   $font(-size)
+	if {![Widget::theme]} {
+	    foreach st $_styles {
+		$path.$st configure \
+		    -relief [expr {$data($st) ? "sunken":"raised"}]
+	    }
+	}
     }
 }
 

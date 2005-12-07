@@ -2,7 +2,7 @@
 #  passwddlg.tcl
 #  This file is part of Unifix BWidget Toolkit
 #   by Stephane Lavirotte (Stephane.Lavirotte@sophia.inria.fr)
-#  $Id: passwddlg.tcl,v 1.1 2004/07/15 13:23:29 leray Exp $
+#  $Id: passwddlg.tcl,v 1.2 2005/12/07 10:38:15 pmarecha Exp $
 # -----------------------------------------------------------------------------
 #  Index of commands:
 #     - PasswdDlg::create
@@ -18,7 +18,7 @@ namespace eval PasswdDlg {
 
     Widget::bwinclude PasswdDlg Dialog :cmd \
 	    remove     {-image -bitmap -side -default -cancel -separator} \
-	    initialize {-modal local -anchor c}
+	    initialize {-modal local -anchor e}
     
     Widget::bwinclude PasswdDlg LabelEntry .frame.lablog \
 	    remove [list -command -justify -name -show -side	        \
