@@ -88,7 +88,7 @@
 
 #define SPOOL_PORT      515
 
-/* wgraph.c */r ;
+/* wgraph.c */
 #define PS_COLOR 200
 #define PS_LAND  201
 #define PS_TYPE  202
