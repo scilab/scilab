@@ -159,16 +159,11 @@ static long int scilab_stimer_deprecated(void)
 #if WIN32
 static long stimerwin(void)
 {
-  long int i;
-  union {FILETIME ftFileTime;
-    __int64  ftInt64;
-  } ftRealTime; 
-  SYSTEMTIME st;
-  GetSystemTime(&st);
-  SystemTimeToFileTime(&st,&ftRealTime.ftFileTime);
-  /* Filetimes are in 100NS units */
-  i= (int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
-  return( i/10); /** convert to microseconds **/
+	long int i;
+	union {FILETIME ftFileTime;__int64  ftInt64;}ftRealTime; 
+	GetSystemTimeAsFileTime(&ftRealTime.ftFileTime); /*Granularity: 100 nanoseconds */
+	i= (long int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
+	return( i/10);
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
