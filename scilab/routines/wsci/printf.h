@@ -35,18 +35,11 @@
 #undef fread
 /*-----------------------------------------------------------------------------------*/
 int MyPutCh (int ch);
-int MyKBHit (void);
 int MyGetCh (void);
-int MyGetChE (void);
-int MyFGetC (FILE * file);
-char *MyGetS (char *str);
 char * MyFGetS (char *str, unsigned int size, FILE * file);
 int MyFPutC (int ch, FILE * file);
 int MyFPutS (char *str, FILE * file);
-int MyPutS (char *str);
 void Scistring (char *str);
-int MyFPrintF (FILE * file, char *fmt,...);
-int MyPrintF (char *fmt,...);
 void sciprint (char *fmt,...);
 void sciprint_nd (char *fmt,...);
 int sciprint2 (int iv, char *fmt,...);

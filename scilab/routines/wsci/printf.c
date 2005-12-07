@@ -27,38 +27,9 @@ int MyPutCh (int ch)
 	return TextPutCh (&textwin, (BYTE) ch);
 }
 /*-----------------------------------------------------------------------------------*/
-int MyKBHit (void)
-{
-	return TextKBHit (&textwin);
-}
-/*-----------------------------------------------------------------------------------*/
 int MyGetCh (void)
 {
 	return TextGetCh (&textwin);
-}
-/*-----------------------------------------------------------------------------------*/
-int MyGetChE (void)
-{
-	return TextGetChE (&textwin);
-}
-/*-----------------------------------------------------------------------------------*/
-int MyFGetC (FILE * file)
-{
-	if (isterm (file))
-	{
-		return MyGetChE ();
-	}
-	return fgetc (file);
-}
-/*-----------------------------------------------------------------------------------*/
-char *MyGetS (char *str)
-{
-	TextPutS (&textwin,MSG_WARNING4);
-	MyFGetS (str, 80, stdin);
-	if (strlen (str) > 0
-	&& str[strlen (str) - 1] == '\n')
-	str[strlen (str) - 1] = '\0';
-	return str;
 }
 /*-----------------------------------------------------------------------------------*/
 char * MyFGetS (char *str, unsigned int size, FILE * file)
@@ -96,14 +67,6 @@ int MyFPutS (char *str, FILE * file)
 	return fputs (str, file);
 }
 /*-----------------------------------------------------------------------------------*/
-int MyPutS (char *str)
-{
-	TextPutS (&textwin, str);
-	MyPutCh ('\n');
-	TextMessage ();
-	return 0;			/* different from Borland library */
-}
-/*-----------------------------------------------------------------------------------*/
 /** synonym for scilab but without the \n **/
 void Scistring (char *str)
 {
@@ -119,36 +82,6 @@ void Scistring (char *str)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-int MyFPrintF (FILE * file, char *fmt,...)
-{
-	int count;
-	va_list args;
-	va_start (args, fmt);
-	if (isterm (file))
-	{
-		char buf[MAXPRINTF];
-		count = vsprintf (buf, fmt, args);
-		TextPutS (&textwin, buf);
-	}
-	else
-	count = vfprintf (file, fmt, args);
-	va_end (args);
-	return count;
-}
-/*-----------------------------------------------------------------------------------*/
-int MyPrintF (char *fmt,...)
-{
-	int count;
-	char buf[MAXPRINTF];
-	va_list args;
-	va_start (args, fmt);
-	count = vsprintf (buf, fmt, args);
-	TextPutS (&textwin, buf);
-	va_end (args);
-	return count;
-}
-/*-----------------------------------------------------------------------------------*/
-/** Synonym for Scilab of MyPrintf **/
 void sciprint (char *fmt,...)
 {
 	int i, count, lstr;
@@ -265,17 +198,13 @@ size_t MyFRead (void *ptr, size_t size, size_t n, FILE * file)
 }
 /*-----------------------------------------------------------------------------------*/
 /* I/O Function for scilab : this function are used when Xscilab is on */
-
 /*-----------------------------------------------------------------------------------*/
-void Xputchar (c)
-char c;
+void Xputchar (char c)
 {
 	MyPutCh ((int) c);
 }
 /*-----------------------------------------------------------------------------------*/
-void Xputstring (str, n)
-char *str;
-int n;
+void Xputstring (char *str,int n)
 {
 	int i;
 	for (i = 0; i < n; i++)
@@ -283,9 +212,7 @@ int n;
 	TextMessage ();
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F (xscisncr) (str, n, dummy)
-char *str;
-integer *n, dummy;
+void C2F (xscisncr) (char *str,integer *n,integer dummy)
 {
 	int i;
 	for (i = 0; i < *n; i++)
@@ -295,10 +222,7 @@ integer *n, dummy;
 	TextMessage ();
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F (xscistring) (str, n, dummy)
-char *str;
-int *n;
-long int dummy;
+void C2F (xscistring) (char *str,int *n,long int dummy)
 {
 	int i;
 	for (i = 0; i < *n; i++)
@@ -309,8 +233,7 @@ long int dummy;
 	TextMessage ();
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F (xscimore) (n)
-int *n;
+void C2F (xscimore) (int *n)
 {
 	int n1, ln;
 	*n = 0;
@@ -324,9 +247,7 @@ int *n;
 }
 /*-----------------------------------------------------------------------------------*/
 /* I/O Function for C routines : test for xscion */
-
-void Scisncr (str)
-char *str;
+void Scisncr (char *str)
 {
 	int i;
 	integer lstr;
