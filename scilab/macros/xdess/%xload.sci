@@ -4,12 +4,12 @@ function %xload(fil,num)
   f=gcf()
   xload_mode=%t
 
-  if execstr('load(fil)','errcatch')==0 then
+  res = execstr('load(fil)','errcatch') ;
+  disp(res) ;
+  pause
+  if res==0 then
     f.visible='on'
     f.immediate_drawing='on';
-  else
-    set('figure_style','old')
-    xload(fil)
   end
 //  draw(f)
 
