@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #endif
 
+#include <time.h>
 #include "../stack-c.h"
 #undef Lstk
 #undef Infstk
@@ -68,7 +69,6 @@ extern int C2F(nextj)();
 extern int C2F(isafunptr)();
 extern int C2F(varfunptr)();
 extern int C2F(defmat)();
-extern int clock();
 extern int C2F(ref2val)();
 extern int C2F(objvide)();
 
