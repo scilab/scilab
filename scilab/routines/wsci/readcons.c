@@ -7,16 +7,5 @@
  * 
  **************************************/
 
-/* with cygwin the two solutions should work 
-   (i.e with _Windows or without)
-   with __MINGWIN32__ and other windows compilers 
-   #define _Windows is needed
- 
-*/
-
-#ifndef  __CYGWIN32__
-#define _Windows
-#endif
-
 #define  USE_CONSOLE
 #include "readline.c"

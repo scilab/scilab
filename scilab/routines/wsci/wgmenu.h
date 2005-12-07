@@ -15,13 +15,8 @@
 #endif
 
 #include <string.h>		/* only use  items */
-
-#ifdef __CYGWIN32__
-#include <unistd.h>		/* for getpid */
-#endif
-#if (defined __MSC__) || (defined __MINGW32__)
 #include <process.h>		/* for getpid */
-#endif
+
 
 #ifdef __STDC__
 #include <stdlib.h>

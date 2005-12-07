@@ -17,11 +17,7 @@
 /* Les Definitions */
 /*-----------------------------------------------------------------------------------*/
 
-
-#if (defined __MSC__ ) || (defined __MINGW32__) 
 #define putenv(x) _putenv(x)
-#endif
-
 
 /* limits */
 //#define MAXSTR 255

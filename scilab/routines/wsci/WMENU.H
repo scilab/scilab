@@ -1,11 +1,6 @@
 #ifndef __WMENU_H__
 #define  __WMENU_H__
 
-#ifdef __MINGW32__
-#ifndef __WIN32_IE
-#define _WIN32_IE 0x0300
-#endif 
-#endif 
 
 #include <windows.h>
 #include <string.h>		/* only use far items */
