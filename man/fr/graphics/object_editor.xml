@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,60 +9,60 @@
 
   <DATE>2004</DATE>
 
-  <SHORT_DESCRIPTION name="object_editor ">description des capacitÃ©s de
-  l'Ã©diteur graphique</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="object_editor ">description des capacités de
+  l'éditeur graphique</SHORT_DESCRIPTION>
 
-  <SHORT_DESCRIPTION name="graphic ">description des capacitÃ©s de l'Ã©diteur
+  <SHORT_DESCRIPTION name="graphic ">description des capacités de l'éditeur
   graphique</SHORT_DESCRIPTION>
 
-  <SHORT_DESCRIPTION name="graphique ">description des capacitÃ©s de l'Ã©diteur
+  <SHORT_DESCRIPTION name="graphique ">description des capacités de l'éditeur
   graphique</SHORT_DESCRIPTION>
 
-  <SHORT_DESCRIPTION name="menus">description des capacitÃ©s de l'Ã©diteur
+  <SHORT_DESCRIPTION name="menus">description des capacités de l'éditeur
   graphique</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-    <P>Comme explicitÃ© dans le fichier d'aide <VERB>graphics_entities</VERB>,
-    le graphique Scilab possÃ¨de dÃ©sormais un nouveau mode. Ce mode facilite
-    les intÃ©ractions entre l'utilisateur et le graphique aussi bien avant
-    qu'aprÃ¨s sa crÃ©ation. Dans ce <VERB>"nouveau</VERB>", chaque fenÃªtre
-    graphique et les dessins qu'elle contient sont reprÃ©sentÃ©s sous forme
-    d'entitÃ©s hiÃ©rarchiques. Le plus haut niveaui de la hiÃ©rarchie est
-    toujours l'entitÃ© Figure. Chaque Figure dÃ©finit au moins un enfant de type
-    Axes. Chaque entitÃ© Axes contient un ensemble d'entitÃ©s feuilles (entitÃ©s
-    terminales de la hiÃ©rarchie - elles n'ont pas de fils) qui sont les objets
-    de type Polylines, Rectangles, Arcs, Segs,... L'entitÃ©s Axes peut
-    Ã©galement contenir une entitÃ© intermÃ©diaire nommÃ© Compound qui regroupe un
-    ensemble d'entitÃ©s filles.</P>
+    <P>Comme explicité dans le fichier d'aide <VERB>graphics_entities</VERB>,
+    le graphique Scilab possède désormais un nouveau mode. Ce mode facilite
+    les intéractions entre l'utilisateur et le graphique aussi bien avant
+    qu'après sa création. Dans ce <VERB>"nouveau</VERB>", chaque fenêtre
+    graphique et les dessins qu'elle contient sont représentés sous forme
+    d'entités hiérarchiques. Le plus haut niveaui de la hiérarchie est
+    toujours l'entité Figure. Chaque Figure définit au moins un enfant de type
+    Axes. Chaque entité Axes contient un ensemble d'entités feuilles (entités
+    terminales de la hiérarchie - elles n'ont pas de fils) qui sont les objets
+    de type Polylines, Rectangles, Arcs, Segs,... L'entités Axes peut
+    également contenir une entité intermédiaire nommé Compound qui regroupe un
+    ensemble d'entités filles.</P>
 
-    <P>Le principal intÃ©rÃªt du nouveau mode graphique rÃ©side dans sa capacitÃ©
-    Ã &#160; changer Ã &#160; volontÃ© les propriÃ©tÃ©s des objets graphiques a
+    <P>Le principal intérêt du nouveau mode graphique réside dans sa capacité
+    à &#160; changer à &#160; volonté les propriétés des objets graphiques a
     priori et surtout a posteriori. Ce nouveua mode graphique est fourni avec
     une suite de commandes graphiques de haut niveau (voir <LINK>set</LINK>,
-    <LINK>get</LINK>) utliisÃ©es pour positionner les proriÃ©ts des objets
-    telles que les donnÃ©es, les coordonnÃ©es, Ã©chelles, couleur etc... sans
-    avoir Ã &#160; rejouer les commandes initiales (comportement de l'ancien
+    <LINK>get</LINK>) utliisées pour positionner les proriéts des objets
+    telles que les données, les coordonnées, échelles, couleur etc... sans
+    avoir à &#160; rejouer les commandes initiales (comportement de l'ancien
     mode graphique).</P>
 
-    <P>Les entitÃ©s graphiques ont un type <VERB>handle</VERB> dans Scilab.Un
-    handle est un identificateur unique qui est associÃ© chaque instance d'un
-    objet graphique crÃ©Ã©. En utilisant ce handle, il sera possible d'atteindre
-    les propriÃ©tÃ©s de l'entitÃ© considÃ©rÃ©e Ã &#160; travers l'utilisation des
+    <P>Les entités graphiques ont un type <VERB>handle</VERB> dans Scilab.Un
+    handle est un identificateur unique qui est associé chaque instance d'un
+    objet graphique créé. En utilisant ce handle, il sera possible d'atteindre
+    les propriétés de l'entité considérée à &#160; travers l'utilisation des
     commandes "set" et "get". Les handles sont aussi utiles pour manipuler des
     objets graphiques, les bouger, les copier ou encore les supprimer.</P>
 
-    <P>Pour complÃ©ter ce nouveau mode, un Ã©diteur graphique a Ã©tÃ© dÃ©veloppÃ©
+    <P>Pour compléter ce nouveau mode, un éditeur graphique a été développé
     pour ces objets. Il s'agit d'un ensemble d'interfaces en Tcl/Tk
     disponibles pour chaque objet graphique (voir
-    <LINK>graphics_entities</LINK> pour plus de dÃ©tail). Pour lancer
-    l'interface, il faut sÃ©lectionner le menu <VERB>Edit</VERB> dans la
-    fenÃªtre graphique. On a alors sept opÃ©rations d'Ã©dition disponibles:</P>
+    <LINK>graphics_entities</LINK> pour plus de détail). Pour lancer
+    l'interface, il faut sélectionner le menu <VERB>Edit</VERB> dans la
+    fenêtre graphique. On a alors sept opérations d'édition disponibles:</P>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Select figure as current: ">
-        <SP>Positionne la figure comme Ã©tant la nouvelle figure courante.</SP>
+        <SP>Positionne la figure comme étant la nouvelle figure courante.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
@@ -75,47 +75,47 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Erase figure: ">
-        <SP>Efface le contenu de la figure. Son action correspond Ã &#160; un
-        appel Ã &#160;<VERB>xbasc</VERB> (ancienne syntaxe) ou <VERB>clf</VERB>
+        <SP>Efface le contenu de la figure. Son action correspond à &#160; un
+        appel à &#160;<VERB>xbasc</VERB> (ancienne syntaxe) ou <VERB>clf</VERB>
         (nouveau mode graphique).</SP>
 
         <P></P>
 
         <P></P>
 
-        <P>Les 8 derniers items sont dÃ©diÃ©s exclusivement au nouveau mode
+        <P>Les 8 derniers items sont dédiés exclusivement au nouveau mode
         graphique :</P>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Copy object/Copier: ">
-        <SP>En utilisant la souris, cela permet de sÃ©lectionner un objet
+        <SP>En utilisant la souris, cela permet de sélectionner un objet
         graphique 2D (comme une courbe, un rectangle...) et de le glisser dans
-        le presse-papier. Ainsi, par un prochain appel Ã &#160; <VERB>Paste
-        object</VERB>, l'objet est recopiÃ© dans les axe courant.</SP>
+        le presse-papier. Ainsi, par un prochain appel à &#160; <VERB>Paste
+        object</VERB>, l'objet est recopié dans les axe courant.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Paste object/Coller: ">
-        <SP>Permet Ã &#160; l'utilisateur de coller un objet prÃ©cÃ©demment placÃ©
+        <SP>Permet à &#160; l'utilisateur de coller un objet précédemment placé
         dans le presse-papier sur l'axe courant.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Move object/DÃ©placer: ">
+      <DESCRIPTION_ITEM label="Move object/Déplacer: ">
         <SP>En utilisant la souris, cette fonction permet de bouger un objet
-        2D (comme une courbe, un rectangle...) Ã &#160; l'intÃ©rieur d'un axe
+        2D (comme une courbe, un rectangle...) à &#160; l'intérieur d'un axe
         courant.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Delete object/DÃ©truire: ">
-        <SP>En utilisant la souris, cette fonction permet de dÃ©truire un objet
-        2D (like a curve, a rectangle...) que l'on sÃ©lectionne a
+      <DESCRIPTION_ITEM label="Delete object/Détruire: ">
+        <SP>En utilisant la souris, cette fonction permet de détruire un objet
+        2D (like a curve, a rectangle...) que l'on sélectionne a
         posteriori.</SP>
 
         <P></P>
@@ -123,37 +123,37 @@
 
       <DESCRIPTION_ITEM label="Figure Properties: ">
         <SP>Lance l'interface Tcl/Tk pour l'objet Figure, handle de la figure
-        de la fenÃªtre courante.</SP>
+        de la fenêtre courante.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Current Axes Properties: ">
         <SP>Lance l'interface Tcl/Tk pour l'objet Axes courant, handle de
-        l'axe courant de la fenÃªtre courante.</SP>
+        l'axe courant de la fenêtre courante.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Start Entity Picker/DÃ©marrer le sÃ©lecteur d'entitÃ©s: ">
-        <SP>DÃ©marre un sÃ©lecteur d'entitÃ© pour pointer des objets 2D Ã &#160;
+      <DESCRIPTION_ITEM label="Start Entity Picker/Démarrer le sélecteur d'entités: ">
+        <SP>Démarre un sélecteur d'entité pour pointer des objets 2D à &#160;
         la souris et ainsi ouvrir leur interface Tcl/Tk pour pouvoir modifier
-        leurs propriÃ©tÃ©s. Le clic souris gauche permet d'Ã©diter l'objet
-        cliquÃ©; le clic droit rÃ©alise un dÃ©placement de l'objet sÃ©lectionnÃ©.
+        leurs propriétés. Le clic souris gauche permet d'éditer l'objet
+        cliqué; le clic droit réalise un déplacement de l'objet sélectionné.
         Remarque: pour l'instant, cette option fonctionne uniquement avec des
         objets 2D.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Stop Entity Picker/ArrÃªter le sÃ©lecteur d'entitÃ©s: ">
-        <SP>ArrÃªte l'action du sÃ©lecteur d'entitÃ©.</SP>
+      <DESCRIPTION_ITEM label="Stop Entity Picker/Arrêter le sélecteur d'entités: ">
+        <SP>Arrête l'action du sélecteur d'entité.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Une fois l'interface graphique (fenÃªtre Tcl/Tk) activÃ©e en utilisant
+    <P>Une fois l'interface graphique (fenêtre Tcl/Tk) activée en utilisant
     les commandes <VERB>Figure Properties</VERB> ou <VERB>Current Axes
     Properties</VERB>, on distingue 2 zones pricnipales sur ces interfaces
     :</P>
@@ -163,11 +163,11 @@
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Un arbre sÃ©lecteur: ">
-        <SP>placÃ© sur la gauche de la fenÃªtre de l'Ã©diteur graphique, l'arbre
-        sÃ©lecteur permet de parcourir la hiÃ©rarchie des objets prÃ©sents au
-        sein de la figure. On peut passer d'un objet Ã &#160; l'autre en
-        dÃ©roulant la hiÃ©rarchie.</SP>
+      <DESCRIPTION_ITEM label="Un arbre sélecteur: ">
+        <SP>placé sur la gauche de la fenêtre de l'éditeur graphique, l'arbre
+        sélecteur permet de parcourir la hiérarchie des objets présents au
+        sein de la figure. On peut passer d'un objet à &#160; l'autre en
+        déroulant la hiérarchie.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
@@ -177,15 +177,15 @@
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Des onglets: ">
-        <SP>La seconde zone d'intÃ©rÃªt est Ã &#160; droite: les propriÃ©tÃ©s de
-        l'objet sÃ©lectionnÃ© dans l'arbre sont disposÃ©es dans une structure
-        multi-onglets. On y trouve diffÃ©rents types de propriÃ©tÃ©s telles le
+        <SP>La seconde zone d'intérêt est à &#160; droite: les propriétés de
+        l'objet sélectionné dans l'arbre sont disposées dans une structure
+        multi-onglets. On y trouve différents types de propriétés telles le
         <VERB>Style</VERB>, <VERB>Data</VERB>, <VERB>Clipping</VERB>... Elles
-        dÃ©pendent du type d'objet considÃ©rÃ©. A travers cet Ã©diteur, on peut
-        voir et changer les propriÃ©tÃ©s de ces objets de faÃ§on graphique comme
-        on le ferait Ã &#160; travers l'emploi des fonctions <VERB>"set"</VERB>
+        dépendent du type d'objet considéré. A travers cet éditeur, on peut
+        voir et changer les propriétés de ces objets de façon graphique comme
+        on le ferait à &#160; travers l'emploi des fonctions <VERB>"set"</VERB>
         et <VERB>"get"</VERB> dans la console. Voici un exemple d'onglets
-        affichant les propriÃ©tÃ©s d'un objet de type Axes:</SP>
+        affichant les propriétés d'un objet de type Axes:</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
@@ -193,46 +193,46 @@
 
     <P></P>
 
-    <P>De plus, on peut lÃ©gender/annoter la figure en utilisant des primitives
-    simples donnÃ©es dans le menu <VERB>Insert</VERB> de la fenÃªtre graphique.
-    En utilisant la souris et en suivant les instructions dans la sous-fenÃªtre
+    <P>De plus, on peut légender/annoter la figure en utilisant des primitives
+    simples données dans le menu <VERB>Insert</VERB> de la fenêtre graphique.
+    En utilisant la souris et en suivant les instructions dans la sous-fenêtre
     de message, on peut ajouter un(e):</P>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Line/Ligne: ">
-        <SP>Dessine une ligne dÃ©finie entre 2 clics souris gauche. La ligne
-        est dÃ©finie dans le repÃ¨re des axes du premier point sÃ©lectionnÃ©.</SP>
+        <SP>Dessine une ligne définie entre 2 clics souris gauche. La ligne
+        est définie dans le repère des axes du premier point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Polyline/Ligne brisÃ©e: ">
-        <SP>Dessine une ligne brisÃ©e en sÃ©lectionnant un chemin (clic gauche)
-        et une fin (clic droit). La ligne brisÃ©e est dÃ©finie dans le repÃ¨re
-        des axes du premier point sÃ©lectionnÃ©.</SP>
+      <DESCRIPTION_ITEM label="Polyline/Ligne brisée: ">
+        <SP>Dessine une ligne brisée en sélectionnant un chemin (clic gauche)
+        et une fin (clic droit). La ligne brisée est définie dans le repère
+        des axes du premier point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Arrow/FlÃ¨che: ">
-        <SP>Dessine une flÃ¨che dÃ©finie entre 2 clics souris gauche. La flÃ¨che
-        est dÃ©finie dans le repÃ¨re des axes du premier point sÃ©lectionnÃ©.</SP>
+      <DESCRIPTION_ITEM label="Arrow/Flèche: ">
+        <SP>Dessine une flèche définie entre 2 clics souris gauche. La flèche
+        est définie dans le repère des axes du premier point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P></P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Double arrow/Double flÃ¨che: ">
-        <SP>Dessine une double-flÃ¨che dÃ©finie entre 2 clics souris gauche. La
-        flÃ¨che est dÃ©finie dans le repÃ¨re des axes du premier point
-        sÃ©lectionnÃ©.</SP>
+      <DESCRIPTION_ITEM label="Double arrow/Double flèche: ">
+        <SP>Dessine une double-flèche définie entre 2 clics souris gauche. La
+        flèche est définie dans le repère des axes du premier point
+        sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
@@ -240,10 +240,10 @@
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Text/Texte: ">
-        <SP>Ouvre une boÃ®te de dialogue pour entrer un texte, puis, en
-        cliquant qur une zone de la figure, insert le texte Ã &#160; l'endroit
-        cliquer. Le texte est dÃ©finie dans le repÃ¨re des axes du point
-        sÃ©lectionnÃ©.</SP>
+        <SP>Ouvre une boîte de dialogue pour entrer un texte, puis, en
+        cliquant qur une zone de la figure, insert le texte à &#160; l'endroit
+        cliquer. Le texte est définie dans le repère des axes du point
+        sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
@@ -251,10 +251,10 @@
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Rectangle: ">
-        <SP>Dessine un rectangle : 2 clics souris gauches dÃ©finissent
-        respectivement le coin supÃ©rieur gauche et infÃ©rieur droit du
-        rectangle. Le rectangle est dÃ©fini dans le repÃ¨re des axes du premier
-        point sÃ©lectionnÃ©.</SP>
+        <SP>Dessine un rectangle : 2 clics souris gauches définissent
+        respectivement le coin supérieur gauche et inférieur droit du
+        rectangle. Le rectangle est défini dans le repère des axes du premier
+        point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
@@ -262,10 +262,10 @@
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Circle/Cercle: ">
-        <SP>Dessine un cercle : 2 clics souris gauches dÃ©finissent
-        respectivement le coin supÃ©rieur gauche et infÃ©rieur droit de la boÃ®te
-        englobante du cercle. Le cercle est dÃ©fini dans le repÃ¨re des axes du
-        premier point sÃ©lectionnÃ©.</SP>
+        <SP>Dessine un cercle : 2 clics souris gauches définissent
+        respectivement le coin supérieur gauche et inférieur droit de la boîte
+        englobante du cercle. Le cercle est défini dans le repère des axes du
+        premier point sélectionné.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
