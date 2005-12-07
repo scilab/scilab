@@ -2843,8 +2843,8 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
-#ifdef WITH_TK
   AddMenu(&WinNum,"_Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+#ifdef WITH_TK
   AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);
 #endif
   gdk_flush();
