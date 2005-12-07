@@ -130,7 +130,9 @@
       <DESCRIPTION_ITEM label="Start Entity Picker: ">
         <SP>Start an event handler on the graphics window to catch the mouse
         clicks on graphics objects and launch the corresponding Tcl/Tk
-        interface.</SP>
+        interface. The left mouse-click allows object edition and the right
+        click performs a move of the selected object. Note that, for now, this
+        feature is applied to 2D objects only.</SP>
 
         <P></P>
       </DESCRIPTION_ITEM>
@@ -144,7 +146,7 @@
     </DESCRIPTION_INDENT>
 
     <P>Once the graphic interface is enabled (using the <VERB>Figure
-    Porperties</VERB> or <VERB>Current Axes Properties</VERB> options), two
+    Properties</VERB> or <VERB>Current Axes Properties</VERB> options), two
     main areas appear :</P>
 
     <P></P>
