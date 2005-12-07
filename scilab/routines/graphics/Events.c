@@ -125,53 +125,22 @@ int  get_delete_win_mode(void) {  return sci_graphic_protect;}
  * if he take care of the click and returns 0 if 
  * he want the queue to be used 
  ---------------------------------------------------------*/
-
-/*Only for test */
-/*static int iEventsmouse=0; */
-
-int PushClickQueue(int win,int x,int y,int ibut,
-		   int motion,int release) 
+int PushClickQueue(int win,int x,int y,int ibut, int motion,int release) 
 {
-/* Disable Events when in PushClickQueue */
-/* sciprint("Eventoff %d ibut %d wait %d\n",EventOff,ibut,get_wait_click()); */
-
-if (EventOff) return 0;
-EventOff=TRUE;
-	/*if (release==-1)
-	{
-		sciprint("Receive Released button : %d %d\n",ibut,iEventsmouse);
-		iEventsmouse++;
-	}*/
   /* first let a click_handler do the job  */
-  if (  wait_for_click==0)
-		{
-			int tmp=scig_click_handler(win,x,y,ibut,motion,release);
-			if ( tmp== 1 )
-				{
-				EventOff=FALSE;
-				return 0;
-				}
-		}
-  if (  event_select==0 &&(motion == 1 || release == 1) ) 
-		{
-		EventOff=FALSE;
-		return 0;
-		}
-  if (((event_select&2)&&motion)||((event_select&4)&&release)||(motion==0&&release==0)) {
-  /* store click event in a queue */
-if (motion == 1)
+  if ( ( wait_for_click == 0 ) && ( scig_click_handler(win,x,y,ibut,motion,release) == 1 ) ) return 0;
+  if (  event_select==0 &&(motion == 1 || release == 1) ) return 0;
+		
+  if (((event_select&2)&&motion)||((event_select&4)&&release)||(motion==0&&release==0))
 	{
-	/*sciprint("\n");*/
-	}
-	/*sciprint("Queue\n");*/
-
-  if ( lastc == MaxCB ) 
+		/* store click event in a queue */
+	  if ( lastc == MaxCB ) 
     {
       int i;
       for ( i= 1 ; i < MaxCB ; i ++ ) 
-	{
-	  ClickBuf[i-1]=ClickBuf[i];
-	}
+			{
+				ClickBuf[i-1]=ClickBuf[i];
+			}
       ClickBuf[lastc-1].win = win;
       ClickBuf[lastc-1].x = x;
       ClickBuf[lastc-1].y = y;
@@ -179,7 +148,7 @@ if (motion == 1)
       ClickBuf[lastc-1].motion = motion;
       ClickBuf[lastc-1].release = release;
     }
-  else 
+		else 
     {
       ClickBuf[lastc].win = win;
       ClickBuf[lastc].x = x;
@@ -190,7 +159,6 @@ if (motion == 1)
       lastc++;
     }
   }
-	EventOff=FALSE;
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/
