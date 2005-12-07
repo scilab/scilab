@@ -591,7 +591,6 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   integer win,ok,choice,motion,release;
   Window SCWindow;
   struct timeval delay; /* usec, to slow down event loop */
-  delay.tv_sec = 0; delay.tv_usec = 10;
 
   choice=(dyn_men>1); /* depending on lhs */
 
@@ -650,6 +649,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       }
 
     /* to slow down event loop not to use all cpu when nothing happen*/
+      delay.tv_sec = 0; delay.tv_usec = 10;
       select(0, 0, 0, 0, &delay);
     }
   set_event_select(1+4); 
