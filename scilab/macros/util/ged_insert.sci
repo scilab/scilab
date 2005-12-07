@@ -126,8 +126,9 @@ function ged_insert(k,win)
   case 5 then //Text
     
     // open a dialog to enter the text
+    show_pixmap()
     text = x_dialog("Enter the new text and click to place it","") ;
-    
+    show_pixmap()    
     // get the position of the text
     [btn,xc,yc] = xclick() ;
     
@@ -135,7 +136,7 @@ function ged_insert(k,win)
       // display the string
       xstring( xc, yc, text ) ;
     end ;
-    
+    show_pixmap() 
   case 6 then //Rectangle
     show_pixmap()
     [btn,xc,yc]=xclick();
