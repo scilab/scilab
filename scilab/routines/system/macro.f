@@ -8,7 +8,7 @@ c
       integer eol
       logical eqid,ptover,vargin,vargout,exec,vcopyobj
       integer blank,r,ival(2),ptr,top1,count,iadr,wmacn
-      integer varargin(nsiz),varargout(nsiz)
+      integer varargin(nsiz),varargout(nsiz),id(nsiz)
       equivalence (ival(1),val)
       data blank/40/,eol/99/
       data varargin/169544223,387059739,nz2*673720360/
