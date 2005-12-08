@@ -48,10 +48,10 @@ function plotprofile(fun)
   axes=[];marker=[];
   subplot(311)
   ncalls=count(:,1); mx=max(ncalls)
-  plot2d([],[],rect=[0,0,nm,max(mx*1.02,1)]); axes=gca()
+  plot2d([],[],rect=[0.5,0,nm+0.5,max(mx*1.02,1)]); axes=gca()
   xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',2*ones(ncalls))
   xrects([(1:nlines)'-0.5,ncalls,ones(ncalls),ncalls]',0*ones(ncalls))
-  xarrows([0,0],[1.5*mx,0],5,5); marker=gce()
+  xarrows([1,1],[1.5*mx,0],5,5); marker=gce()
   xtitle("# calls")
   //separator, if more that 1 function is given
   xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
@@ -61,22 +61,24 @@ function plotprofile(fun)
   
   subplot(312)
   ncompl=count(:,3); mx=max(1,max(ncompl))
-  plot2d([],[],rect=[0,0,nm,max(mx*1.02,1)]); axes(2)=gca()
+  plot2d([],[],rect=[0.5,0,nm+0.5,max(mx*1.02,1)]); axes(2)=gca()
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',3*ones(ncompl))
   xrects([(1:nlines)'-0.5,ncompl,ones(ncompl),ncompl]',0*ones(ncompl))
-  xarrows([0,0],[1.5*mx,0],5,5); marker(2)=gce()
+  xarrows([1,1],[1.5*mx,0],5,5); marker(2)=gce()
   xtitle("Complexity")
   xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
 
   subplot(313)
   tcpu=count(:,2); mx=max(tcpu)
-  plot2d([],[],rect=[0,0,nm,max(mx*1.02,1e-6)]); axes(3)=gca()
+  plot2d([],[],rect=[0.5,0,nm+0.5,max(mx*1.02,1e-6)]); axes(3)=gca()
   xtitle("Cpu time (total "+string(sum(count(:,2)))+" sec)","line")
   xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',4*ones(tcpu))
   xrects([(1:nlines)'-0.5,tcpu,ones(tcpu),tcpu]',0*ones(tcpu))
-  xarrows([0,0],[1.5*mx,0],2,5); marker(3)=gce()
+  xarrows([1,1],[1.5*mx,0],5,5); marker(3)=gce()
   xsegs(ones(2,1)*bnd,[0;1.5*mx]*ones(bnd),0*ones(bnd))
   drawnow
+  
+  for i=1:3; axes(i).tight_limits="on"; end
 
   if ~MSDOS then
     delmenu(win,"3D Rot.")
@@ -91,7 +93,7 @@ function plotprofile(fun)
     delmenu(win,"&Inserer")
   end   
   addmenu(win,"Exit");str="execstr(Exit_"+string(win)+"(1))"
-  msg="click to get corresponding line"
+  msg="click to get corresponding line, move with a-z"
   xinfo(msg)
 
   withpad=with_scipad()
@@ -99,6 +101,7 @@ function plotprofile(fun)
     profpath=TMPDIR+"/profiled.sci"
     mputl(txt,profpath)
     openinscipad(profpath)
+    scipad_hiliteline(1)
   else //ouput text in a graphic window
     [h,M]=dispfuntxt(txt,1,0,%f)
   end
@@ -114,9 +117,12 @@ function plotprofile(fun)
     Xb=[axes(1).zoom_box([1,3])', axes(2).zoom_box([1,3])',..
         axes(3).zoom_box([1,3])']
     drawlater
-    if ~and(Xb(1,:)==Xb(1,1)) | ~and(Xb(2,:)==Xb(2,1)) | size(Xb,2)<>3 then
+//treat here also if all the panes were zoomed but key navigation
+// brought the cursor out of window
+    if ~and(Xb(1,:)==Xb(1,1)) | ~and(Xb(2,:)==Xb(2,1)) | size(Xb,2)<>3 |..
+       ~and(k<Xb(1,:)) | ~and(k>Xb(2,:)) then
        if Xb<>[] then
-          newXmin=max(Xb(1,:)); newXmax=min(Xb(2,:))
+          newXmin=min(max(Xb(1,:)),k-1); newXmax=max(min(Xb(2,:)),k+1)
           for i=1:3
           // vertical zoom is restored to default
             yrange=axes(i).data_bounds(:,2)
@@ -126,8 +132,16 @@ function plotprofile(fun)
           for i=1:3 axes(i).zoom_box=[]; end
        end
     end
-    if cw==win & or(c_i==(0:5)) then
-      k=min(n,max(1,round(c_x)))
+    if cw==win then 
+      if or(c_i==(0:5)) then
+        k=min(n,max(1,round(c_x)))
+      end
+      if or(c_i==[65 97 65361]) then
+        k=max(1,k-1)
+      end      
+      if or(c_i==[90 122 65363]) then
+        k=min(n,k+1)
+      end      
       if ncalls(k)==1 then
         msg="line "+string(k)+" ["+string(ncalls(k))+" call, "+..
                    string(tcpu(k))+" sec] :: "+txt(k)
