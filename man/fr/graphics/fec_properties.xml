@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -18,10 +18,22 @@
     <VERB>Sgrayplot</VERB>).</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        fec entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Compound"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, <VERB>Fec</VERB> handles currently do not have
+        any <VERB>children</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
-        By default, the plot is visible, the value's property is 
+        By default, the plot is visible, the value's property is
         <VERB>"on"</VERB>. If <VERB>"off"</VERB> the plot is not drawn on the
         screen.</SP>
       </DESCRIPTION_ITEM>
@@ -32,10 +44,6 @@
         <VERB>i</VERB>'th node. <VERB>f(i)</VERB> is the value associated to
         the node <VERB>i</VERB>.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	  fec data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="triangles: ">
         <SP>This is a five column matrix <VERB>[tn,n1,n2,n3,flag]</VERB>.
@@ -45,10 +53,21 @@
         used).</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        fec entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
+      <DESCRIPTION_ITEM label="z_bounds: ">
+        <SP>This <TT>[zmin,zmax]</TT> vector gives the z values associated
+        with the first and the last color (of the current colormap). More
+        exactly if the colormap have <TT>nc</TT> colors and if we note <TT>dz
+        = (zmax-zmin)/nc</TT>, then the part of the triangulation where
+        <TT>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</TT> is filled with the
+        color <TT>i</TT>). By default <TT>zmin = min(func)</TT> and <TT>zmax =
+        max(func)</TT>. If you want to do an animation with func values that
+        varie in time, take for <TT>zmin</TT> and <TT>zmax</TT> the global
+        minimum and maximum or something close. </SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="user_data: ">
+        <SP>This field can be use to store any scilab variable in the fec data
+        structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -10,7 +10,8 @@
   <DATE>2002</DATE>
 
   <SHORT_DESCRIPTION name="legend_properties">description of the Legend entity
-  properties</SHORT_DESCRIPTION>
+  properties. <SP><BD>Warning</BD>: This object will be rebuild in the next
+  version.</SP></SHORT_DESCRIPTION>
 
   <DESCRIPTION>
     <P>The Legend entity is a leaf of the graphics entities hierarchy. This
@@ -19,11 +20,17 @@
     marker symbol, and color.</P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
-        If <VERB>"on"</VERB> the legend is drawn , If <VERB>"off"</VERB> the
-        legend is not displayed on the screen.</SP>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        legend entity should be of the type <VERB>"Compound"</VERB>. This
+        Compound entity contains also the remainder of the graph's
+        entities.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, <VERB>legend</VERB> handles currently do not have
+        any <VERB>children</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="line_mode: ">
@@ -55,16 +62,29 @@
         should be a color index (relative to the current colormap).</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        If <VERB>"on"</VERB> the legend is drawn , If <VERB>"off"</VERB> the
+        legend is not displayed on the screen.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="text: ">
         <SP>This field is the character string vector which contains the
         legend.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        legend entity should be of the type <VERB>"Compound"</VERB>. This
-        Compound entity contains also the remainder of the graph's
-        entities.</SP>
+      <DESCRIPTION_ITEM label="font_size: ">
+        <SP>The <VERB>font_size</VERB> property is used to select the type of
+        size of the text. Its value should be an integer in between 0 and 5
+        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="font_style: ">
+        <SP>Seven differents fonts are available : "Courrier", "Symbol",
+        "Times", "Times Italic", "Times Bold", "User defined". The
+        <VERB>font_style</VERB> property is an index in [0 6] which is
+        associated to the previous font names.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

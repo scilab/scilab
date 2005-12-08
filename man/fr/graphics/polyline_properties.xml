@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -17,6 +17,18 @@
     entity defines the parameters for polylines.</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This field contains the handle of the parent. The parent of the
+        polyline entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Compound"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, polyline handles currently do not have any
+        <VERB>children</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
@@ -31,6 +43,24 @@
         is a two (three) column matrix <VERB>[x,y,[z]]</VERB> of points.</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="closed: ">
+        <SP>This field determines wether the polyline is closed or not: its
+        value can be <VERB>"on"</VERB> or <VERB>"off"</VERB> (no default
+        value, it depends on the primitive used to create the polyline).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="line_mode: ">
+        <SP>This field contains the default <VERB>line_mode</VERB> property
+        value for the polyline. Its value should be <VERB>"on" </VERB>(line
+        drawn) or <VERB>"off"</VERB> (no line drawn).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="fill_mode: ">
+        <SP>If the <VERB>polyline_style</VERB> field is different of 5, fill
+        the background of the curve with color defined by the
+        <VERB>background</VERB> property.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>The <VERB>line_style</VERB> property value should be an integer in
         [0 6]. 0 stands for solid the other value stands for a selection of
@@ -40,6 +70,12 @@
       <DESCRIPTION_ITEM label="thickness: ">
         <SP>This field contains the line <VERB>thickness</VERB> property. It's
         value should be positive integer.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="arrow_size_factor: ">
+        <SP>This integer allows to set the size of arrows drawn on the
+        polyline. The actual size of arrows is the product of the
+        <VERB>thickness</VERB> and the the size factor.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="polyline_style: ">
@@ -80,16 +116,31 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="closed: ">
-        <SP>This field determines wether the polyline is closed or not: its
-        value can be <VERB>"on"</VERB> or <VERB>"off"</VERB> (no default
-        value, it depends on the primitive used to create the polyline).</SP>
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the default <VERB>foreground</VERB> property
+        used to draw the polyline. Its value should be a color index (relative
+        to the current colormap).</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="line_mode: ">
-        <SP>This field contains the default <VERB>line_mode</VERB> property
-        value for the polyline. Its value should be <VERB>"on" </VERB>(line
-        drawn) or <VERB>"off"</VERB> (no line drawn).</SP>
+      <DESCRIPTION_ITEM label="background: ">
+        <SP>This field contains the color used to fill the background of the
+        polyline. Its value should be a color index (relative to the current
+        colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="interp_color_vector: ">
+        <SP>This field contains the vector of color indices used to fill in
+        the polyline when the <VERB>interp_color_mode</VERB> property is set
+        to <VERB>"on"</VERB>. It is only applicable if the polyline is defined
+        by 3 or 4 points. Therefore, the size of the vector must match this
+        dimension.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="interp_color_mode: ">
+        <SP>This field determines if we are using the interpolated shading
+        mode to fill the polyline : its value can be <VERB>"on"</VERB> or
+        <VERB>"off"</VERB>. Note that an <VERB>interp_color_vector</VERB> must
+        be defined before switching to "on" value (see below).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="mark_mode: ">
@@ -137,27 +188,6 @@
         <SP>This field contains the <VERB>mark_background</VERB> property
         value which is the marks' face color. Its value should be a color
         index (relative to the current color_map).</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the default <VERB>foreground</VERB> property
-        used to draw the polyline. Its value should be a color index (relative
-        to the current colormap).</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="interp_color_mode: ">
-        <SP>This field determines if we are using the interpolated shading
-        mode to fill the polyline : its value can be <VERB>"on"</VERB> or
-        <VERB>"off"</VERB>. Note that an <VERB>interp_color_vector</VERB> must
-        be defined before switching to "on" value (see below).</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="interp_color_vector: ">
-        <SP>This field contains the vector of color indices used to fill in
-        the polyline when the <VERB>interp_color_mode</VERB> property is set
-        to <VERB>"on"</VERB>. It is only applicable if the polyline is defined
-        by 3 or 4 points. Therefore, the size of the vector must match this
-        dimension.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="x_shift: ">
@@ -224,12 +254,6 @@
       <DESCRIPTION_ITEM label="user_data: ">
         <SP>This field can be use to store any scilab variable in the polyline
         data structure, and to retrieve it.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This field contains the handle of the parent. The parent of the
-        polyline entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

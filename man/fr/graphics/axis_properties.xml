@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -19,6 +19,12 @@
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Axis properties">
         <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="parent: ">
+            <SP>This property contains the handle of the parent. The parent of
+            the axis entity should be of the type <VERB>"Axes"</VERB> or
+            <VERB>"Compound"</VERB>.</SP>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="visible: ">
             <SP>This field contains the <VERB>visible</VERB> property value
             for the entity . It should be <VERB>"on" </VERB> or
@@ -79,11 +85,6 @@
             draw the axis'lines and tics.</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="sub_tics: ">
-            <SP>This field sets the number of tics to draw between two main
-            tics.</SP>
-          </DESCRIPTION_ITEM>
-
           <DESCRIPTION_ITEM label="tics_segment: ">
             <SP>This field contains a flag which controls the display of the
             base segment of the axis. The default is <VERB>"on"</VERB>, else
@@ -116,6 +117,11 @@
                 <VERB>k2*10^a</VERB>, n is the number of intervals.</P>
               </DESCRIPTION_ITEM>
             </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="sub_tics: ">
+            <SP>This field sets the number of tics to draw between two main
+            tics.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="tics_labels: ">
@@ -166,12 +172,6 @@
           <DESCRIPTION_ITEM label="user_data: ">
             <SP>This field can be use to store any scilab variable in the axis
             data structure, and to retreive it.</SP>
-          </DESCRIPTION_ITEM>
-
-          <DESCRIPTION_ITEM label="parent: ">
-            <SP>This property contains the handle of the parent. The parent of
-            the axis entity should be of the type <VERB>"Axes"</VERB> or
-            <VERB>"Compound"</VERB>.</SP>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>

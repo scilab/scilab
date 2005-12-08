@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -17,36 +17,16 @@
     entity defines the parameters for rectangles and filled rectangles.</P>
 
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the <VERB>visible</VERB> property value for
-        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
-        By default, the rectangle is visible, the value's property is
-        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the rectangle is not drawn on
-        the screen.</SP>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This field contains the handle of the parent. The parent of the
+        rectancle entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Compound"</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This property is to return the coordinates of the upper-left point
-        of the rectangle and its width and height in the data units of the
-        axes. The result is the matrix
-        <VERB>[xleft,yup,[zup],width,height]</VERB></SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="line_style: ">
-        <SP>The <VERB>line_style</VERB> property value should be an integer in
-        [0 9]. 0 stands for solid the other value stands for a selection of
-        dashes.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="thickness: ">
-        <SP>This field contains the line <VERB>thickness</VERB> property. Its
-        value should be a positif integer.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="line_mode: ">
-        <SP>This field contains the default <VERB>line_mode</VERB> property
-        value for the rectangle. Its value should be <VERB>"on" </VERB>(line
-        drawn) or <VERB>"off"</VERB> (no line drawn).</SP>
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, <VERB>rectangle</VERB> handles currently do not
+        have any <VERB>children</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="mark_mode: ">
@@ -96,10 +76,10 @@
         index (relative to the current color_map).</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the default <VERB>foreground</VERB> property
-        used to draw or to fill the rectangle. Its value should be a color
-        index (relative to the current colormap).</SP>
+      <DESCRIPTION_ITEM label="line_mode: ">
+        <SP>This field contains the default <VERB>line_mode</VERB> property
+        value for the rectangle. Its value should be <VERB>"on" </VERB>(line
+        drawn) or <VERB>"off"</VERB> (no line drawn).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="fill_mode: ">
@@ -108,6 +88,43 @@
         <VERB>mark_mode</VERB> must also have the value <VERB>"off"</VERB>. if
         not and the value's property is <VERB>"off"</VERB> only the shape of
         the rectangle is drawn using the foreground color.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="line_style: ">
+        <SP>The <VERB>line_style</VERB> property value should be an integer in
+        [0 9]. 0 stands for solid the other value stands for a selection of
+        dashes.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="thickness: ">
+        <SP>This field contains the line <VERB>thickness</VERB> property. Its
+        value should be a positif integer.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color used to draw the outline of the
+        rectangle. Its value should be a color index (relative to the current
+        colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="background: ">
+        <SP>This field contains the color used to fill the rectangle. Its
+        value should be a color index (relative to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="data: ">
+        <SP>This property is to return the coordinates of the upper-left point
+        of the rectangle and its width and height in the data units of the
+        axes. The result is the matrix
+        <VERB>[xleft,yup,[zup],width,height]</VERB></SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        By default, the rectangle is visible, the value's property is
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the rectangle is not drawn on
+        the screen.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="clip_state: ">
@@ -143,12 +160,6 @@
       <DESCRIPTION_ITEM label="user_data: ">
         <SP>This field can be use to store any scilab variable in the
         rectangle data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This field contains the handle of the parent. The parent of the
-        rectancle entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

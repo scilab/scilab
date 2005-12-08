@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -25,6 +25,18 @@
     <P>Here are the properties contained in a surface entity:</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        surface entity should be of type <VERB>"Axes"</VERB> or
+        <VERB>"Compound"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, surface handles currently do not have any
+        <VERB>children</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
@@ -33,41 +45,10 @@
         displayed on the screen.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="data: ">
-        <SP>This field defines a <VERB>tlist</VERB> data structure of type
-        <VERB>"3d"</VERB> composed of a row and column indices of each element
-        as the x-, y- and z-coordinates contained respectivly in
-        <VERB>data.x,</VERB> <VERB>data.y</VERB> and <VERB>data.z</VERB>. The
-        complementary field named <VERB>data.color</VERB> is available in case
-        a real color vector or matrix is specified. If none,
-        <VERB>data.color</VERB> is not listed. The surface is painted
-        according to <VERB>color_mode</VERB> and <VERB>color_flag</VERB>
-        properties.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="color_mode: ">
-        <SP>an integer for surface color treatment (see below in the
-        <VERB>color_flag</VERB> item) :</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="cdata_mapping: ">
-        <SP>a string with value <VERB>'scaled'</VERB> or
-        <VERB>'direct'</VERB>. If a <VERB>data.color</VERB> is set, each index
-        color data specifies a single value for each vertex.
-        <VERB>cdata_mapping</VERB> determines wether those indices are scaled
-        to map linearly into the current colormap (<VERB>'scaled'</VERB> mode)
-        or point directly into this colormap (<VERB>'direct</VERB>' mode).
-        This property is usefull when <VERB>color_flag</VERB> equals
-        <VERB>2</VERB>,<VERB>3</VERB> or <VERB>4</VERB>. Note that this
-        property exists only with <VERB>Fac3d</VERB> entities.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="hiddencolor: ">
-        <SP>This field contains the color index used to draw the backward
-        faces of a surface. Its value should be a positive integer (color
-        index relative to the current colormap). If it is a negative
-        integer,the same color than the "visible" face is applied to the rear
-        face.</SP>
+      <DESCRIPTION_ITEM label="surface_mode: ">
+        <SP>This field contains the default <VERB>surface_mode</VERB> property
+        value for the surface. Its value should be <VERB>"on" </VERB>(surface
+        drawn) or <VERB>"off"</VERB> (no surface drawn).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="foreground: ">
@@ -75,6 +56,72 @@
         index used to draw the edges. If not, foreground is not used at all.
         The foreground value should be an integer color index (relative to the
         current colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="thickness: ">
+        <SP>This field contains the default <VERB>thickness</VERB> value of
+        the lines used to draw the facets contours. It should be a positive
+        integer.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_mode: ">
+        <SP>This field contains the default <VERB>mark_mode</VERB> property
+        value for the surface. Its value should be <VERB>"on"</VERB> (marks
+        drawn) or <VERB>"off"</VERB> (no marks drawn).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_style: ">
+        <SP>The <VERB>mark_style</VERB> property value is used to select the
+        type of mark to use when <VERB>mark_mode</VERB> property is
+        <VERB>"on"</VERB>. The value should be an integer in [0 14] which
+        stands for: dot, plus, cross, star, filled diamond, diamond, triangle
+        up, triangle down, diamond plus, circle, asterisk, square, triangle
+        right, triangle left and pentagram.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_size_unit: ">
+        <SP>This field contains the default <VERB>mark_size_unit</VERB>
+        property value. If <VERB>mark_size_unit</VERB> is set to
+        <VERB>"point"</VERB>, then the <VERB>mark_size</VERB> value is
+        directly given in points. When <VERB>mark_size_unit</VERB> is set to
+        <VERB>"tabulated"</VERB>, <VERB>mark_size</VERB> is computed relative
+        to the font size array: therefore, its value should be an integer in
+        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+        <LINK>plot3d</LINK> and pure scilab functions use
+        <VERB>tabulated</VERB> mode as default ; when using the
+        <LINK>surf</LINK> (or <LINK>plot</LINK> for 2D lines) function, the
+        <VERB>point</VERB> mode is automatically enabled.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_size: ">
+        <SP>The <VERB>mark_size</VERB> property is used to select the type of
+        size of the marks when <VERB>mark_mode</VERB> property is
+        <VERB>"on"</VERB>. Its value should be an integer between 0 and 5
+        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_foreground: ">
+        <SP>This field contains the <VERB>mark_foreground</VERB> property
+        value which is the marks' edge color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_background: ">
+        <SP>This field contains the <VERB>mark_background</VERB> property
+        value which is the marks' face color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="data: ">
+        <SP>This field defines a <VERB>tlist</VERB> data structure of type
+        "3d" composed of a row and column indices of each element as the x-,
+        y- and z-coordinates contained respectivly in
+        <VERB>data.x</VERB>,<VERB>data.y</VERB> and <VERB>data.z</VERB>. The
+        complementary field named <VERB>data.color</VERB> is available in case
+        a real color vector or matrix is specified. If none,
+        <VERB>data.color</VERB> is not listed. The surface is painted
+        according to <VERB>color_mode </VERB>and <VERB>color_flag</VERB>
+        properties. </SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="color_mode: ">
@@ -225,75 +272,29 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="thickness: ">
-        <SP>This field contains the default <VERB>thickness</VERB> value of
-        the lines used to draw the facets contours. It should be a positive
-        integer.</SP>
+      <DESCRIPTION_ITEM label="cdata_mapping: ">
+        <SP><VERB>Specific to Fac3d handles</VERB>. A string with value
+        <VERB>'scaled'</VERB> or <VERB>'direct'</VERB>. If a
+        <VERB>data.color</VERB> is set, each index color data specifies a
+        single value for each vertex. <VERB>cdata_mapping</VERB> determines
+        wether those indices are scaled to map linearly into the current
+        colormap (<VERB>'scaled'</VERB> mode) or point directly into this
+        colormap (<VERB>'direct</VERB>' mode). This property is usefull when
+        <VERB>color_flag</VERB> equals <VERB>2</VERB>,<VERB>3</VERB> or
+        <VERB>4</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="surface_mode: ">
-        <SP>This field contains the default <VERB>surface_mode</VERB> property
-        value for the surface. Its value should be <VERB>"on" </VERB>(surface
-        drawn) or <VERB>"off"</VERB> (no surface drawn).</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="mark_mode: ">
-        <SP>This field contains the default <VERB>mark_mode</VERB> property
-        value for the surface. Its value should be <VERB>"on"</VERB> (marks
-        drawn) or <VERB>"off"</VERB> (no marks drawn).</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="mark_style: ">
-        <SP>The <VERB>mark_style</VERB> property value is used to select the
-        type of mark to use when <VERB>mark_mode</VERB> property is
-        <VERB>"on"</VERB>. The value should be an integer in [0 14] which
-        stands for: dot, plus, cross, star, filled diamond, diamond, triangle
-        up, triangle down, diamond plus, circle, asterisk, square, triangle
-        right, triangle left and pentagram.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="mark_size_unit: ">
-        <SP>This field contains the default <VERB>mark_size_unit</VERB>
-        property value. If <VERB>mark_size_unit</VERB> is set to
-        <VERB>"point"</VERB>, then the <VERB>mark_size</VERB> value is
-        directly given in points. When <VERB>mark_size_unit</VERB> is set to
-        <VERB>"tabulated"</VERB>, <VERB>mark_size</VERB> is computed relative
-        to the font size array: therefore, its value should be an integer in
-        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
-        <LINK>plot3d</LINK> and pure scilab functions use
-        <VERB>tabulated</VERB> mode as default ; when using the
-        <LINK>surf</LINK> (or <LINK>plot</LINK> for 2D lines) function, the
-        <VERB>point</VERB> mode is automatically enabled.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="mark_size: ">
-        <SP>The <VERB>mark_size</VERB> property is used to select the type of
-        size of the marks when <VERB>mark_mode</VERB> property is
-        <VERB>"on"</VERB>. Its value should be an integer between 0 and 5
-        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="mark_foreground: ">
-        <SP>This field contains the <VERB>mark_foreground</VERB> property
-        value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="mark_background: ">
-        <SP>This field contains the <VERB>mark_background</VERB> property
-        value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</SP>
+      <DESCRIPTION_ITEM label="hiddencolor: ">
+        <SP>This field contains the color index used to draw the backward
+        faces of a surface. Its value should be a positive integer (color
+        index relative to the current colormap). If it is a negative
+        integer,the same color than the "visible" face is applied to the rear
+        face.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="user_data: ">
         <SP>This field can be use to store any scilab variable in the surface
         data structure, and to retreive it.</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        surface entity should be of type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

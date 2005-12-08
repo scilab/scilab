@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -22,6 +22,14 @@
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="Figure properties: ">
         <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="children: ">
+            <SP>This handles represent the vector of the figure's children .
+            Note that all figure children are of type <VERB>"Axes"</VERB>.
+            Also keep in mind that, when creating a figure entity (using
+            <VERB>scf</VERB> command), an <VERB>Axes</VERB> entity is
+            simultaneously built too.</SP>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="figure_style: ">
             <SP>The value of this field defines the figure style, it should be
             <VERB>"old"</VERB> or <VERB>"new"</VERB>. The <VERB>"new"</VERB>
@@ -39,8 +47,8 @@
 
           <DESCRIPTION_ITEM label="figure_size: ">
             <SP>This property controls the size in pixel of the screen's
-            graphics window. The size is the vector <VERB>[width,height]</VERB>.
-            </SP>
+            graphics window. The size is the vector
+            <VERB>[width,height]</VERB>.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_size: ">
@@ -81,9 +89,28 @@
             between 0 and 1.</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="background: ">
-            <SP>This property controls the figure window background color. It
-            takes as value an index relative to the current colormap.</SP>
+          <DESCRIPTION_ITEM label="pixmap: ">
+            <SP>This property controls the pixmap status of a Graphic Window.
+            If this property value is <VERB>"off"</VERB> the graphics are
+            directly displayed on the screen. If it is <VERB>"on"</VERB> the
+            graphics are done on a pixmap and are sent to the graphics window
+            with the command <VERB>show_pixmap()</VERB>.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="pixel_drawing_mode: ">
+            <SP>This field defines the bitwise operation used to draw the
+            pixel on the screen. The default mode is <VERB>copy</VERB> what is
+            to say the pixel is drawn as required. More generally the bitwise
+            operation is performed between the color of the source pixel and
+            the color of the pixel already present on the screen. Operations
+            are : <VERB>"clear"</VERB>, <VERB>"and"</VERB>,
+            <VERB>"andReverse"</VERB> , <VERB>"copy"</VERB>,
+            <VERB>"andInverted"</VERB> , <VERB>"noop"</VERB> ,
+            <VERB>"xor"</VERB> , <VERB>"or"</VERB> , <VERB>"nor"</VERB> ,
+            <VERB>"equiv"</VERB> , <VERB>"invert"</VERB> ,
+            <VERB>"orReverse"</VERB> , <VERB>"copyInverted"</VERB> ,
+            <VERB>"orInverted"</VERB> , <VERB>"nand"</VERB> ,
+            <VERB>"set"</VERB> ,</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="immediate_drawing: ">
@@ -97,39 +124,14 @@
             <VERB>'on'</VERB>).</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="pixmap: ">
-            <SP>This property controls the pixmap status of a Graphic Window.
-            If this property value is <VERB>"off"</VERB> the graphics are
-            directly displayed on the screen. If it is <VERB>"on"</VERB> the
-            graphics are done on a pixmap and are sent to the graphics window
-            with the command <VERB>show_pixmap()</VERB>.</SP>
+          <DESCRIPTION_ITEM label="background: ">
+            <SP>This property controls the figure window background color. It
+            takes as value an index relative to the current colormap.</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="pixel_drawing_mode: ">
-            <P>This field defines the bitwise operation used to draw the pixel
-            on the screen. The default mode is <VERB>copy</VERB> what is to
-            say the pixel is drawn as required. More generally the bitwise
-            operation is performed between the color of the source pixel and
-            the color of the pixel already present on the screen. Operations
-            are : <VERB>"clear"</VERB>, <VERB>"and"</VERB>,
-            <VERB>"andReverse"</VERB> , <VERB>"copy"</VERB>,
-            <VERB>"andInverted"</VERB> , <VERB>"noop"</VERB> ,
-            <VERB>"xor"</VERB> , <VERB>"or"</VERB> , <VERB>"nor"</VERB> ,
-            <VERB>"equiv"</VERB> , <VERB>"invert"</VERB> ,
-            <VERB>"orReverse"</VERB> , <VERB>"copyInverted"</VERB> ,
-            <VERB>"orInverted"</VERB> , <VERB>"nand"</VERB> ,
-            <VERB>"set"</VERB> ,</P>
-          </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="user_data: ">
+          <DESCRIPTION_ITEM label="user_data: ">
             <SP>This field can be use to store any scilab variable in the
-	      figure data structure, and to retreive it.</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="children: ">
-            <SP>This handles represent the vector of the figure's children .
-            Note that all figure children are of type <VERB>"Axes"</VERB>.
-            Also keep in mind that, when creating a figure entity (using
-            <VERB>scf</VERB> command), an <VERB>Axes</VERB> entity is
-            simultaneously built too.</SP>
+            figure data structure, and to retreive it.</SP>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -17,6 +17,18 @@
     entity defines the parameters for a 2D vector field.</P>
 
     <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        2D vector field entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Compound"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="children: ">
+        <SP>This property contains a vector with the <VERB>children</VERB> of
+        the handle. However, <VERB>champ</VERB> handles currently do not have
+        any <VERB>children</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This properties contains the <VERB>visible</VERB> property value
         for the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB>
@@ -33,10 +45,6 @@
         named <VERB>data.fx</VERB> and <VERB>data.fy</VERB> are matrices which
         describe respectively the <VERB>x</VERB> and <VERB>y</VERB> component
         of the vector field at point <VERB>(x(i),y(j))</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="user_data: ">
-	<SP>This field can be use to store any scilab variable in the
-	  champ data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="line_style: ">
@@ -56,6 +64,11 @@
         <SP>If this this property value is <VERB>"on"</VERB>, fields vectors
         are drawn using a color proportional to the intensity of the
         field.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="arrow_size: ">
+        <SP>This positive defined the size of the triangle drawn at the end of
+        the arrows. If the value is 0, no triangle is drawn.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="clip_state: ">
@@ -88,10 +101,9 @@
         <VERB>clip_state</VERB> property value will be changed.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the
-        2D vector field entity should be of the type <VERB>"Axes"</VERB> or
-        <VERB>"Compound"</VERB>.</SP>
+      <DESCRIPTION_ITEM label="user_data: ">
+        <SP>This field can be use to store any scilab variable in the champ
+        data structure, and to retreive it.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
