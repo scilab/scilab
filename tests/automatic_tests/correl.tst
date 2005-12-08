@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/correl_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/correl_data.ref','rb');
 x = [2.5,7.5,12.5,17.5];
 if load_ref('x') then   pause,end,
 

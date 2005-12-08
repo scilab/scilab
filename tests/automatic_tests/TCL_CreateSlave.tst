@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/TCL_CreateSlave_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/TCL_CreateSlave_data.ref','rb');
 %ans = TCL_CreateSlave('TCLinterp');
 if load_ref('%ans') then   pause,end,
 

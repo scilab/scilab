@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/pvm_sci2f77_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/pvm_sci2f77_data.ref','rb');
 a = [1 + %i,2 + 2 * %i,3 + 3 * %i];
 %ans = pvm_sci2f77(a);
 if load_ref('%ans') then   pause,end,

@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/automatic_tests/aff2ab_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/aff2ab_data.ref','rb');
  
 // Lyapunov equation solver (one unknown variable, one constraint)
  

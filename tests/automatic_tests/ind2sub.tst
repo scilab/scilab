@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/ind2sub_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ind2sub_data.ref','rb');
 %ans = ind2sub([2,3,2], 1:12);
 if load_ref('%ans') then   pause,end,
 

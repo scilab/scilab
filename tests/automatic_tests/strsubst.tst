@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/strsubst_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/strsubst_data.ref','rb');
 %ans = strsubst('SCI/demos/scicos', 'SCI', '.');
 if load_ref('%ans') then   pause,end,
 

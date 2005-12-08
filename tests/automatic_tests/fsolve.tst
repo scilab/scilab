@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/fsolve_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fsolve_data.ref','rb');
 // A simple example with fsolve
 a = [1,7;2,8];b = [10;11];
 deff('[y]=fsol1(x)', 'y=a*x+b');

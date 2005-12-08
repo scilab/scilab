@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/etime_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/etime_data.ref','rb');
 t1 = [2004,6,10,17,0,12.345];
 if load_ref('t1') then   pause,end,
 

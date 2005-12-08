@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/spchol_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/spchol_data.ref','rb');
 
 X = [3,0,0,2,0,0,2,0,2,0,0;
   0,5,4,0,0,0,0,0,0,0,0;

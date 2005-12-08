@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/unix_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/unix_data.ref','rb');
 unix('ls $SCI/demos');
 %ans = deff('wd=dir()', 'if MSDOS then unix(''cd>''+TMPDIR+''\path'');                else unix(''pwd>''+TMPDIR+''/path'');end      wd=read(TMPDIR+''/path'',1,1,''(a)'')');
 if load_ref('%ans') then   pause,end,

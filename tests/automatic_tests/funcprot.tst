@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/funcprot_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/funcprot_data.ref','rb');
 %ans = funcprot(1);
 if load_ref('%ans') then   pause,end,
 

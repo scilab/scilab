@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/coff_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/coff_data.ref','rb');
 M = [1,2;0,3];
 [N,d] = coff(M);
 if load_ref('d') then   pause,end,

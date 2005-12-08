@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/unique_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/unique_data.ref','rb');
 M = round(2 * rand(20, 1));
 
 %ans = unique(M);

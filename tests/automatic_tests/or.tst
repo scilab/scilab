@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/or_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/or_data.ref','rb');
 %ans = or([%t,%t,%f]);
 if load_ref('%ans') then   pause,end,
 

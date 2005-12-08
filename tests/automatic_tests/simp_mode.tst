@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/simp_mode_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/simp_mode_data.ref','rb');
 s = poly(0, 's');
 mod = simp_mode();
 if load_ref('mod') then   pause,end,

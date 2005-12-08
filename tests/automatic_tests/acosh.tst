@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/acosh_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/acosh_data.ref','rb');
 x = [0,1,%i];
 %ans = cosh(acosh(x));
 if load_ref('%ans') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/ui_observer_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ui_observer_data.ref','rb');
 A = diag([3,-3,7,4,-4,8]);
 B = [eye(3, 3);zeros(3, 3)];
 C = [0,0,1,2,3,4;0,0,0,0,0,1];

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/for_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/for_data.ref','rb');
 n = 5;
 for i = 1:n,  for j = 1:n,  a(i, j) = 1/(i + j - 1);end,end,
 for j = 2:n - 1,  a(j, j) = j;end,a;

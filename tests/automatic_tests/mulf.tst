@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/mulf_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mulf_data.ref','rb');
 %ans = mulf('1', 'a');
 if load_ref('%ans') then   pause,end,
 

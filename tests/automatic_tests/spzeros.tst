@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/spzeros_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/spzeros_data.ref','rb');
 %ans = sum(spzeros(1000, 1000));
 if load_ref('%ans') then   pause,end,
 

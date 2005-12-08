@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/empty_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/empty_data.ref','rb');
 s = poly(0, 's');A = [s,s + 1];
 %ans = A + [];
 if load_ref('%ans') then   pause,end,

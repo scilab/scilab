@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/lu_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/lu_data.ref','rb');
 a = rand(4, 4);
 [l,u] = lu(a);
 if load_ref('u') then   pause,end,

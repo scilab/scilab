@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/sva_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sva_data.ref','rb');
 A = rand(5, 4) * rand(4, 5);
 [U,s,V] = sva(A, 2);
 B = U * s * V';

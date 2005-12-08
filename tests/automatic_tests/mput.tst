@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/mput_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mput_data.ref','rb');
 filen = 'test.bin';
 mopen(filen, 'wb');
 mput(1996, 'l');mput(1996, 'i');mput(1996, 's');mput(98, 'c');

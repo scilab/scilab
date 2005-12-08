@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/copy_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/copy_data.ref','rb');
 
 
 xdel_run(winsid());

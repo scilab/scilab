@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/spcompack_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/spcompack_data.ref','rb');
 // A is the sparse matrix:
 A = [1,0,0,0,0,0,0;
   0,1,0,0,0,0,0;

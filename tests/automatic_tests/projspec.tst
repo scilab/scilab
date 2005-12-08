@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/projspec_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/projspec_data.ref','rb');
 %ans = deff('j=jdrn(n)', 'j=zeros(n,n);for k=1:n-1;j(k,k+1)=1;end');
 if load_ref('%ans') then   pause,end,
 

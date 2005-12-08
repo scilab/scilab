@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/givens_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/givens_data.ref','rb');
 A = [3,4;5,6];
 U = givens(A(:, 1));
 %ans = U * A;

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/regress_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/regress_data.ref','rb');
 x = [0.5608486,0.6623569,0.7263507,0.1985144,0.5442573,0.2320748,0.2312237];
 if load_ref('x') then   pause,end,
 

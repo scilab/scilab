@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/ldiv_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ldiv_data.ref','rb');
 wss = ssrand(1, 1, 3);[a,b,c,d] = abcd(wss);
 wtf = ss2tf(wss);
 x1 = ldiv(numer(wtf), denom(wtf), 5);

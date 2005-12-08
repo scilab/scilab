@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/fileparts_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fileparts_data.ref','rb');
 [path,fname,extension] = fileparts('SCI/scilab.star');
 if load_ref('extension') then   pause,end,
 if load_ref('fname') then   pause,end,

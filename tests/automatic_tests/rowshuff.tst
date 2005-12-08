@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/rowshuff_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/rowshuff_data.ref','rb');
 F = randpencil([], 2, [1,2,3], []);
 F = rand(5, 5) * F * rand(5, 5);// 5 x 5 regular pencil with 3 evals at 1,2,3
 [Ws,F1] = rowshuff(F, -1);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/log2_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/log2_data.ref','rb');
 %ans = 2^log2([1,%i,-1,-%i]);
 if load_ref('%ans') then   pause,end,
 

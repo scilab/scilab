@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/aff2ab_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/aff2ab_data.ref','rb');
 // Lyapunov equation solver (one unknown variable, one constraint)
 %ans = deff('Y=lyapunov(X,D)', '[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)');
 if load_ref('%ans') then   pause,end,

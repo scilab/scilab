@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/diag_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/diag_data.ref','rb');
 %ans = diag([1,2]);
 if load_ref('%ans') then   pause,end,
 

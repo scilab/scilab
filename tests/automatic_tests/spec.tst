@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/spec_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/spec_data.ref','rb');
 // MATRIX EIGENVALUES
 A = diag([1,2,3]);X = rand(3, 3);A = inv(X) * A * X;
 %ans = spec(A);

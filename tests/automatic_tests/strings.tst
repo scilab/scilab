@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/strings_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/strings_data.ref','rb');
 %ans = ['this','is';'a 2x2','matrix'];
 if load_ref('%ans') then   pause,end,
 

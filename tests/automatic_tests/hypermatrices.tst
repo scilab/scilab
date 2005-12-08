@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/hypermatrices_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/hypermatrices_data.ref','rb');
 a(1, 1, 1, 1:2) = [1,2];
 if load_ref('a') then   pause,end,
 

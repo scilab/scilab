@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/sysconv_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sysconv_data.ref','rb');
 s1 = ssrand(1, 1, 2);
 s2 = ss2tf(s1);
 [s1,s2] = sysconv(s1, s2);

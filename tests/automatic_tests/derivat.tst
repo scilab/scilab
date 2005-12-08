@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/derivat_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/derivat_data.ref','rb');
 s = poly(0, 's');
 %ans = derivat(1/s);
 if load_ref('%ans') then   pause,end,

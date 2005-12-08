@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/balreal_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/balreal_data.ref','rb');
 A = diag([-1,-2,-3,-4,-5]);B = rand(5, 2);C = rand(1, 5);
 sl = syslin('c', A, B, C);
 [slb,U] = balreal(sl);

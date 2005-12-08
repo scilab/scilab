@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/execstr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/execstr_data.ref','rb');
 %ans = execstr('a=1');
 if load_ref('%ans') then   pause,end,
 // sets a=1.

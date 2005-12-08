@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/dscr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/dscr_data.ref','rb');
 s = poly(0, 's');
 Sys = syslin('c', [1,1/(s + 1);2 * s/(s^2 + 2),1/s]);
 if load_ref('Sys') then   pause,end,

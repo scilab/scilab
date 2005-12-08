@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/det_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/det_data.ref','rb');
 x = poly(0, 'x');
 %ans = det([x,1 + x;2 - x,x^2]);
 if load_ref('%ans') then   pause,end,

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/dir_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/dir_data.ref','rb');
 dir;
 if load_ref_nocheck('%ans') then   pause,end,
 

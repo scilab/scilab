@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/lcmdiag_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/lcmdiag_data.ref','rb');
 s = poly(0, 's');
 H = [1/s,(s + 2)/s/((s + 1)^2);1/((s^2) * (s + 2)),2/(s + 2)];
 [N,D] = lcmdiag(H);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/tokenpos_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/tokenpos_data.ref','rb');
 str = 'This is a character string';
 kdf = tokenpos(str);
 if load_ref('kdf') then   pause,end,

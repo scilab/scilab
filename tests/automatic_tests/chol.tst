@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/chol_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/chol_data.ref','rb');
 W = rand(5, 5) + %i * rand(5, 5);
 X = W * W';
 R = chol(X);

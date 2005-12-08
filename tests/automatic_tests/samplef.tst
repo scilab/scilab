@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/samplef_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/samplef_data.ref','rb');
 a = [3,7,9;22,4,2];
 if load_ref('a') then   pause,end,
 

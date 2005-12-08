@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/arhnk_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/arhnk_data.ref','rb');
 A = diag([-1,-2,-3,-4,-5]);B = rand(5, 1);C = rand(1, 5);
 sl = syslin('c', A, B, C);
 slapprox = arhnk(sl, 2);

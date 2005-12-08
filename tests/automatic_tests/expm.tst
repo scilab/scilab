@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/expm_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/expm_data.ref','rb');
 X = [1,2;3,4];
 if load_ref('X') then   pause,end,
 

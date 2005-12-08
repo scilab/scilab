@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/winqueryreg_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/winqueryreg_data.ref','rb');
 if MSDOS then 
   %ans = winqueryreg('HKEY_LOCAL_MACHINE', 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\', 'ProcessorNameString');
   if load_ref('%ans') then   pause,end,

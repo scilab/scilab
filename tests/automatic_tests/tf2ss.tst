@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/tf2ss_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/tf2ss_data.ref','rb');
 s = poly(0, 's');
 H = [2/s,(s + 1)/(s^2 - 5)];
 Sys = tf2ss(H);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/dasrt_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/dasrt_data.ref','rb');
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
 //g1 = ((2*log(y)+8)/t - 5)*y
 //g2 = log(y) - 2.2491

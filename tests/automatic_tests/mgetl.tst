@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/mgetl_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mgetl_data.ref','rb');
 %ans = mgetl('SCI/scilab.star', 5);
 if load_ref('%ans') then   pause,end,
 

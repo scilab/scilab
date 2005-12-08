@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/hat_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/hat_data.ref','rb');
 %ans = 2^4;
 if load_ref('%ans') then   pause,end,
 

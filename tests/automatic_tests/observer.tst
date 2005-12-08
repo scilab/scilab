@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/observer_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/observer_data.ref','rb');
 nx = 5;nu = 1;ny = 1;un = 3;us = 2;Sys = ssrand(ny, nu, nx, list('dt', us, us, un));
 //nx=5 states, nu=1 input, ny=1 output,
 //un=3 unobservable states, us=2 of them unstable.

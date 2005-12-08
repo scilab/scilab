@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/modulo_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/modulo_data.ref','rb');
 n = [1,2,10,15];m = [2,2,3,5];
 %ans = modulo(n, m);
 if load_ref('%ans') then   pause,end,

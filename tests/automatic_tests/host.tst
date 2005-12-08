@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/host_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/host_data.ref','rb');
 //create a getdir function based on host
 function wd=getdir()
         if MSDOS then

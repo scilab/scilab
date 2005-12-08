@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/strindex_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/strindex_data.ref','rb');
 k = strindex('SCI/demos/scicos', '/');
 if load_ref('k') then   pause,end,
 

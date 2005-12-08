@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/automatic_tests/bvode_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/bvode_data.ref','rb');
  
 %ans = deff('df=dfsub(x,z)', 'df=[0,0,-6/x**2,-6/x]');
  

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/integrate_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/integrate_data.ref','rb');
 %ans = integrate('sin(x)', 'x', 0, %pi);
 if load_ref('%ans') then   pause,end,
 

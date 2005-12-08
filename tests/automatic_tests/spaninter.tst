@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/spaninter_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/spaninter_data.ref','rb');
 A = rand(5, 3) * rand(3, 4);// A is 5 x 4, rank=3
 B = [A(:, 2),rand(5, 1)] * rand(2, 2);
 [X,dim] = spaninter(A, B);

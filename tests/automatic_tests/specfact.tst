@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/specfact_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/specfact_data.ref','rb');
 A = diag([-1,-2]);B = [1;1];C = [1,1];D = 1;s = poly(0, 's');
 W1 = syslin('c', A, B, C, D);
 phi = gtild(W1, 'c') + W1;

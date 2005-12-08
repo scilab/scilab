@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/double_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/double_data.ref','rb');
 x = int8([0,12,140]);
 if load_ref('x') then   pause,end,
 

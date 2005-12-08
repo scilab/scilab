@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/whereami_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/whereami_data.ref','rb');
 %ans = deff('y=test(a)', ['y=sin(a)+1';
   'y=t1(y)';
   'y=y+1']);

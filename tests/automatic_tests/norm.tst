@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/norm_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/norm_data.ref','rb');
 A = [1,2,3];
 %ans = norm(A, 1);
 if load_ref('%ans') then   pause,end,

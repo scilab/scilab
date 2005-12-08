@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/sfact_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sfact_data.ref','rb');
 //Simple polynomial example
 z = poly(0, 'z');
 p = (z - 1/2) * (2 - z);

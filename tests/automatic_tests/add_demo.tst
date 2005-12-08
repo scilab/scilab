@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/add_demo_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/add_demo_data.ref','rb');
 //create a simple demo script
 path = TMPDIR + '/foo.sce';
 %ans = mputl('disp Hello', path);

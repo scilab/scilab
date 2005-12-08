@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/automatic_tests/obscont_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/obscont_data.ref','rb');
  
 ny = 2;nu = 3;nx = 4;P = ssrand(ny, nu, nx);[A,B,C,D] = abcd(P);
  

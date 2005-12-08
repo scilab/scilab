@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/pbig_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/pbig_data.ref','rb');
 A = diag([1,2,3]);X = rand(A);A = inv(X) * A * X;
 [Q,M] = pbig(A, 1.5, 'd');
 %ans = spec(M * A * Q);

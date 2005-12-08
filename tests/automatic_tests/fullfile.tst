@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/fullfile_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/fullfile_data.ref','rb');
 f = fullfile('/home/', '\scilab', 'macros', '\util', 'fullfile.sci');
 if load_ref('f') then   pause,end,
 

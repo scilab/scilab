@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/kroneck_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/kroneck_data.ref','rb');
 F = randpencil([1,1,2], [2,3], [-1,3,1], [0,3]);
 Q = rand(17, 17);Z = rand(18, 18);F = Q * F * Z;
 //random pencil with eps1=1,eps2=1,eps3=1; 2 J-blocks @ infty

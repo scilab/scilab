@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/call_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/call_data.ref','rb');
 //Example 1 with  a simple C code
 f1 = ['#include <math.h>';
   'void fooc(c,a,b,m,n)';

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/readmps_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/readmps_data.ref','rb');
 
 //Let the LP problem:
 //objective:

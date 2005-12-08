@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/asinh_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/asinh_data.ref','rb');
 A = [1,2;2,3];
 if load_ref('A') then   pause,end,
 

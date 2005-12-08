@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/ndims_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/ndims_data.ref','rb');
 A = rand(2, 3);
 %ans = ndims(A);
 if load_ref('%ans') then   pause,end,

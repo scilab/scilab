@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/mseek_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/mseek_data.ref','rb');
 file3 = 'test3.bin';
 if load_ref('file3') then   pause,end,
 

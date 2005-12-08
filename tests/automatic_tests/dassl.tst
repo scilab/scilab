@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/dassl_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/dassl_data.ref','rb');
 deff('[r,ires]=chemres(t,y,yd)', [
   'r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);';
   'r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2);';

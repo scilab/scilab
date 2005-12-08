@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/lqg2stan_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/lqg2stan_data.ref','rb');
 ny = 2;nu = 3;nx = 4;
 P22 = ssrand(ny, nu, nx);
 bigQ = rand(nx + nu, nx + nu);bigQ = bigQ * bigQ';

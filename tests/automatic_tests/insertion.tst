@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/insertion_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/insertion_data.ref','rb');
 // MATRIX CASE
 a = [1,2,3;4,5,6];
 if load_ref('a') then   pause,end,

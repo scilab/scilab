@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/bdiag_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/bdiag_data.ref','rb');
 //Real case: 1x1 and 2x2 blocks
 a = rand(5, 5);[ab,x,bs] = bdiag(a);ab;
 if load_ref('ab') then   pause,end,

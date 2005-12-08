@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/nlev_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/nlev_data.ref','rb');
 A = rand(3, 3);x = poly(0, 'x');
 [NUM,den] = nlev(A, 'x');
 if load_ref('den') then   pause,end,

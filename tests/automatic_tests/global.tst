@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/global_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/global_data.ref','rb');
 //first: calling environnment and a function share a variable
 %ans = global('a');
 if load_ref('%ans') then   pause,end,

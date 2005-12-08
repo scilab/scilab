@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/funptr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/funptr_data.ref','rb');
 // Suppose you want to load some codes via the dynamic
 // loading facilities offers by addinter. By default
 // arguments are passed by values but if you want to

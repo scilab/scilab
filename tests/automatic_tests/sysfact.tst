@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/sysfact_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/sysfact_data.ref','rb');
 //Kalman filter
 Sys = ssrand(3, 2, 4);Sys('D') = rand(3, 2);
 S = sysfact(Sys, lqr(Sys), 'post');

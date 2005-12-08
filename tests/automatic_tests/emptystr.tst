@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/emptystr_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/emptystr_data.ref','rb');
 x = emptystr();for k = 1:10,  x = x + ',' + string(k);end,
 xdel_run(winsid());
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/cat_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/cat_data.ref','rb');
 // first example : concatenation according to the rows
 dims = 1;A1 = [1,2,3];A2 = [4,5,6;7,8,9];A3 = [10,11,12];y = cat(dims, A1, A2, A3);
 if load_ref('y') then   pause,end,

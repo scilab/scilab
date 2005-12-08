@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/rand_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/rand_data.ref','rb');
 x = rand(10, 10, 'uniform');
 if load_ref('x') then   pause,end,
 

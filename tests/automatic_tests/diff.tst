@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/diff_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/diff_data.ref','rb');
 v = (1:8)^3;
 %ans = diff(v);
 if load_ref('%ans') then   pause,end,

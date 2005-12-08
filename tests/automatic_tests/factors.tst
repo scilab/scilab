@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/factors_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/factors_data.ref','rb');
 n = poly([0.2,2,5], 'z');
 d = poly([0.1,0.3,7], 'z');
 R = syslin('d', n, d);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/library_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/library_data.ref','rb');
 // elemlib is a predefined library
 elemlib;
 if load_ref('elemlib') then   pause,end,

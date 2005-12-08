@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/pol2des_data.ref','r');
+%U=mopen('SCI/tests/automatic_tests/pol2des_data.ref','rb');
 s = poly(0, 's');
 G = [1,s;1 + s^2,3 * (s^3)];[N,B,C] = pol2des(G);
 G1 = clean(C * inv(s * N - eye()) * B);
