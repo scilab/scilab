@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/czt_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/czt_data.ref','rb');
 a = 0.7 * exp(%i * %pi/6);
 [ffr,bds] = xgetech();//preserve current context
 rect = [-1.2,-1.2 * sqrt(2),1.2,1.2 * sqrt(2)];

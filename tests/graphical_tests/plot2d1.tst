@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/plot2d1_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/plot2d1_data.ref','rb');
 
 // multiple plot without giving x
 x = (0:0.1:2 * %pi)';

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/flts_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/flts_data.ref','rb');
 sl = syslin('d', 1, 1, 1);u = 1:10;
 y = flts(u, sl);
 %ans = plot2d2('onn', (1:size(u, 'c'))', y');

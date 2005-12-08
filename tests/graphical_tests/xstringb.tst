@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/xstringb_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xstringb_data.ref','rb');
 str = ['Scilab','is';'not','elisaB'];
 plot2d(0, 0, [-1,1], '010', ' ', [0,0,1,1]);
 r = [0,0,1,0.5];

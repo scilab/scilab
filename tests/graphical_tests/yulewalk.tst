@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/yulewalk_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/yulewalk_data.ref','rb');
 f = [0,0.4,0.4,0.6,0.6,1];H = [0,0,1,1,0,0];Hz = yulewalk(8, f, H);
 fs = 1000;fhz = f * fs/2;
 xbasc_run(0);xset('window', 0);plot2d(fhz', H');

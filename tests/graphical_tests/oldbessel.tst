@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/oldbessel_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/oldbessel_data.ref','rb');
 // example #1: display some I Bessel functions
 x = linspace(0.01, 10, 5000)';
 y = oldbesseli(0:4, x);

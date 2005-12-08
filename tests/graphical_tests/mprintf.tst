@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/mprintf_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/mprintf_data.ref','rb');
 %ans = mprintf('At iteration %i, Result is:\nalpha=%f', 33, 0.535);
 if load_ref('%ans') then   pause,end,
 

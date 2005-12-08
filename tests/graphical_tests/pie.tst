@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/pie_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/pie_data.ref','rb');
 
 // First example : one input argument  x=[1 2 5]
 scf(0);

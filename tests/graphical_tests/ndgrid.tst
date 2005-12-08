@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/ndgrid_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/ndgrid_data.ref','rb');
 // create a simple 2d grid
 nx = 40;ny = 40;
 x = linspace(-1, 1, nx);

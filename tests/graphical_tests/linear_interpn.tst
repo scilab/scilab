@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/linear_interpn_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/linear_interpn_data.ref','rb');
 // example 1 : 1d linear interpolation
 x = linspace(0, 2 * %pi, 11);
 y = sin(x);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/colorbar_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/colorbar_data.ref','rb');
 // example 1
 x = linspace(0, 1, 81);
 z = cos(2 * %pi * x)' * sin(2 * %pi * x);

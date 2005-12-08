@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/surf_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/surf_data.ref','rb');
 // Z initialisation
 
 Z = [0.0001,0.0013,0.0053,-0.0299,-0.1809,-0.2465,-0.11,-0.0168,-0.0008,-0;

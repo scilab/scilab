@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/tabul_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/tabul_data.ref','rb');
 // first example
 X = [2,8,0,3,7,6,8,7,9,1,6,7,7,2,5,2,2,2,9,7];
 if load_ref('X') then   pause,end,

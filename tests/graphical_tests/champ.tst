@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/champ_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/champ_data.ref','rb');
 
 // using rect as plot boundaries
 %ans = champ(-5:5, -5:5, rand(11, 11), rand(11, 11), rect=[-10,-10,10,10], arfact=2);

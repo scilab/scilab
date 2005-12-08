@@ -3,7 +3,7 @@ getf SCI/util/testexamples.sci
  
 reinit_for_test()
  
-%U=mopen('SCI/tests/graphical_tests/contour2di_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/contour2di_data.ref','rb');
  
 [xc,yc] = contour2di(1:10, 1:10, rand(10, 10), 5);
  

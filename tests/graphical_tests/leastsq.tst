@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/leastsq_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/leastsq_data.ref','rb');
 // We will show different calling possibilities of leastsq on one (trivial) example
 // which is non linear but doesn't really need to be solved with leastsq (applying
 // log linearizes the model and the problem may be solved with linear algebra).

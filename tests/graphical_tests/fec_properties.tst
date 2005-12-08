@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/fec_properties_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fec_properties_data.ref','rb');
 
 
 set('figure_style', 'new');//create a figure

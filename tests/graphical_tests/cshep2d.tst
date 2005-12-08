@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/cshep2d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/cshep2d_data.ref','rb');
 // interpolation of cos(x)cos(y) with randomly choosen interpolation points
 n = 150;// nb of interpolation points
 xy = grand(n, 2, 'unf', 0, 2 * %pi);

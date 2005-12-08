@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/beta_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/beta_data.ref','rb');
 // example 1 :
 %ans = beta(5, 2) - beta(2, 5);
 if load_ref('%ans') then   pause,end,

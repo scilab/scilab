@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/genfac3d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/genfac3d_data.ref','rb');
 t = (0:0.3:2 * %pi)';z = sin(t) * cos(t');
 [xx,yy,zz] = genfac3d(t, t, z);
 %ans = plot3d(xx, yy, zz);

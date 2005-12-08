@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/drawaxis_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/drawaxis_data.ref','rb');
 %ans = plot2d(1:10, 1:10, 1, '020');
 if load_ref('%ans') then   pause,end,
 

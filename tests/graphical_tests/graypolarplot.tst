@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/graypolarplot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/graypolarplot_data.ref','rb');
 
 
 rho = 1:0.1:4;theta = (0:0.02:1) * 2 * %pi;

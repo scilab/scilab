@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/twinkle_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/twinkle_data.ref','rb');
 x = linspace(-2 * %pi, 2 * %pi, 100)';
 plot2d(x, [sin(x),cos(x)]);
 e = gce();p1 = e.children(1);p2 = e.children(2);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/histplot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/histplot_data.ref','rb');
 // example #1: variations around an histogram of a gaussian random sample
 d = rand(1, 10000, 'normal');// the gaussian random sample
 clf_run();%ans = histplot(20, d);

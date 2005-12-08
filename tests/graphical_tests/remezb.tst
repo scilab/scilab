@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/remezb_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/remezb_data.ref','rb');
 // Choose the number of cosine functions and create a dense grid
 // in [0,.24) and [.26,.5)
 nc = 21;ngrid = nc * 16;

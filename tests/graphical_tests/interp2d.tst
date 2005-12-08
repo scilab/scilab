@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/interp2d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/interp2d_data.ref','rb');
 // see the examples of splin2d
 
 // this example shows some different extrapolation features

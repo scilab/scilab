@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/plotframe_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/plotframe_data.ref','rb');
 x = (-0.3:0.8:27.3)';
 y = rand(x);
 rect = [min(x),min(y),max(x),max(y)];

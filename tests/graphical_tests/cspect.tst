@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/cspect_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/cspect_data.ref','rb');
 rand('normal');rand('seed', 0);
 x = rand(1:1024 - 33 + 1);
 //make low-pass filter with eqfir

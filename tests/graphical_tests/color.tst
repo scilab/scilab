@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/color_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/color_data.ref','rb');
 x = linspace(-2 * %pi, 2 * %pi, 100)';
 // using existing colors
 plot2d(x, [sin(x),cos(x)], style=[color('red'),color('green')]);

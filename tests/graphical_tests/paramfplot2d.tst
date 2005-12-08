@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/paramfplot2d_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/paramfplot2d_data.ref','rb');
 %ans = deff('y=f(x,t)', 'y=t*sin(x)');
 if load_ref('%ans') then   pause,end,
 

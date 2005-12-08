@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/phasemag_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/phasemag_data.ref','rb');
 s = poly(0, 's');
 h = syslin('c', 1/((s + 5) * (s + 10) * (100 + 6 * s + s * s) * (s + 0.3)));
 [frq,rf] = repfreq(h, 0.1, 20, 0.005);

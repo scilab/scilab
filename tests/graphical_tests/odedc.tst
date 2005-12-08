@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/odedc_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/odedc_data.ref','rb');
 //Linear system with switching input
 deff('xdu=phis(t,x,u,flag)', 'if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
 x0 = [1;1];A = [-1,2;-2,-1];B = [1;2];u = 0;nu = 1;stdel = [1,0];u0 = 0;t = 0:0.05:10;

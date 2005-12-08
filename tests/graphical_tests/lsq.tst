@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/lsq_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/lsq_data.ref','rb');
 //Build the data
 x = (1:10)';
 

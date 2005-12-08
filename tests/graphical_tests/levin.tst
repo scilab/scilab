@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/levin_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/levin_data.ref','rb');
 //We use the 'levin' macro for solving the normal equations
 //on two examples: a one-dimensional and a two-dimensional process.
 //We need the covariance sequence of the stochastic process.

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/buttmag_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/buttmag_data.ref','rb');
 //squared magnitude response of Butterworth filter
 h = buttmag(13, 300, 1:1000);
 mag = 20 * log(h)'/log(10);

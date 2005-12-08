@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/plot2d_old_version_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/plot2d_old_version_data.ref','rb');
 //simple plot
 x = (0:0.1:2 * %pi)';
 %ans = plot2d(sin(x));

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/xsetech_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xsetech_data.ref','rb');
 // To get a graphical explanation of xsetech parameters enter:
 exec('SCI/demos/graphics/xsetechfig.sce');
 

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/percentsn_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/percentsn_data.ref','rb');
 m = 0.36;
 K = %k(m);
 P = 4 * K;//Real period

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/xclip_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xclip_data.ref','rb');
 x = 0:0.2:2 * %pi;
 x1 = [sin(x);100 * sin(x)];
 y1 = [cos(x);100 * cos(x)];

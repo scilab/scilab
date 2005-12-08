@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/xarrows_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/xarrows_data.ref','rb');
 x = 2 * %pi * (0:9)/8;
 x1 = [sin(x);9 * sin(x)];
 y1 = [cos(x);9 * cos(x)];

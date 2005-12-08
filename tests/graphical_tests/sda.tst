@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/sda_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/sda_data.ref','rb');
 
 x = (0:0.1:2 * %pi)';
 %ans = set('old_style', 'off');

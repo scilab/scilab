@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/rectangle_properties_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/rectangle_properties_data.ref','rb');
 %ans = set('figure_style', 'new');
 if load_ref('%ans') then   pause,end,
 //create a figure

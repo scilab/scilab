@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/legends_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/legends_data.ref','rb');
 t = 0:0.1:2 * %pi;
 plot2d(t, [cos(t'),cos(2 * t'),cos(3 * t')], [-1,2,3]);
 %ans = legends(['cos(t)';'cos(2*t)';'cos(3*t)'], [-1,2,3], opt='lr');

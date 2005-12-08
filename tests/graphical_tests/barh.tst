@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/barh_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/barh_data.ref','rb');
 
 // First example: draw a bar (i.e a polyline with polyline_style type =6),default style='grouped', width=0.5, color='yellow', default x=1:length(y)
 scf(0);

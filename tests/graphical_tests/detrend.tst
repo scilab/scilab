@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/detrend_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/detrend_data.ref','rb');
 // example #1
 t = linspace(0, 16 * %pi, 1000)';
 x = -20 + t + 0.3 * sin(0.5 * t) + sin(t) + 2 * sin(2 * t) + 0.5 * sin(3 * t);

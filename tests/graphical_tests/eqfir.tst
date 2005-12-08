@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/eqfir_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/eqfir_data.ref','rb');
 hn = eqfir(33, [0,0.2;0.25,0.35;0.4,0.5], [0,1,0], [1,1,1]);
 [hm,fr] = frmag(hn, 256);
 %ans = plot(fr, hm);

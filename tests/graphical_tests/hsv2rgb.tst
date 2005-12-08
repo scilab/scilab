@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/hsv2rgb_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/hsv2rgb_data.ref','rb');
 t = (0:0.3:2 * %pi)';z = sin(t) * cos(t');
 %ans = plot3d1(t, t, z);
 if load_ref('%ans') then   pause,end,

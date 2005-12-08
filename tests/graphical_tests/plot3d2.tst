@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/plot3d2_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/plot3d2_data.ref','rb');
 
 u = linspace(-%pi/2, %pi/2, 40);
 v = linspace(0, 2 * %pi, 20);

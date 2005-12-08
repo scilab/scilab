@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/lsq_splin_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/lsq_splin_data.ref','rb');
 // this is an artifical example where the datas xd and yd
 // are build from a perturbed sin function
 a = 0;b = 2 * %pi;

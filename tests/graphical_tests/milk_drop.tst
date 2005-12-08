@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/milk_drop_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/milk_drop_data.ref','rb');
 x = -2:0.1:2;y = x;
 z = eval3d(milk_drop, x, y);
 %ans = plot3d(x, y, z);

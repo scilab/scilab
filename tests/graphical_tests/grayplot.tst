@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/grayplot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/grayplot_data.ref','rb');
 
 x = -10:10;y = -10:10;m = rand(21, 21);
 %ans = grayplot(x, y, m, rect=[-20,-20,20,20]);

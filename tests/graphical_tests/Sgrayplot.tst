@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/Sgrayplot_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/Sgrayplot_data.ref','rb');
 // example #1
 x = -10:10;y = -10:10;m = rand(21, 21);
 %ans = xbasc_run();

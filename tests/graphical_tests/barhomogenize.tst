@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/barhomogenize_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/barhomogenize_data.ref','rb');
 
 // First example: creation of 1 yellow bar (i.e 1 polyline with polyline_style=6) and 3 bars (i.e 3 polylines with polyline_style=6)
 %ans = subplot(2, 3, 1);

@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/m_circle_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/m_circle_data.ref','rb');
 //Example 1 :
 s = poly(0, 's');
 if load_ref('s') then   pause,end,

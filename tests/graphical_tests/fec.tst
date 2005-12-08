@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/fec_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/fec_data.ref','rb');
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0,1,0,-1];
 y = [0,0,1,1];

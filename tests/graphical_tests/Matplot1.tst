@@ -1,6 +1,6 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/Matplot1_data.ref','r');
+%U=mopen('SCI/tests/graphical_tests/Matplot1_data.ref','rb');
 
 //--- first example
 set('figure_style', 'new');
