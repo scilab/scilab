@@ -2064,9 +2064,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
 
       /* check if the bounds are corrects */
-      if ( xMin >= xMax || yMin >= yMax || zMin >= zMax )
+      /* allows equality with bounds since it is working */
+      if ( xMin > xMax || yMin > yMax || zMin > zMax )
       {
-        strcpy(error_message,"Error : Min and Max values for one axis do not verify Min < Max.");
+        strcpy(error_message,"Error : Min and Max values for one axis do not verify Min <= Max.");
         return -1 ;
       }
 
