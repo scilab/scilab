@@ -21,8 +21,9 @@ function h=%h_load(fd)
     [h,immediate_drawing] = load_graphichandle(fd) // a single handle only can be loaded before 3 1 0 2
   end
   f=gcf();
+  pause;
   f.immediate_drawing = immediate_drawing;
-  
+  pause;
   clearglobal init_immediate_drawing
   clear init_immediate_drawing
 endfunction
@@ -35,7 +36,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     f=gcf();
     if init_immediate_drawing == 0
       immediate_drawing = f.immediate_drawing;
-      f.immediate_drawing ='off';
+      //f.immediate_drawing ='off';
       init_immediate_drawing = 1;
     end
   end
@@ -56,11 +57,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       pixmap=toggle(mget(1,'c',fd)); // pixmap
       pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd)) // pixel_drawing_mode
       immediate_drawing=toggle(mget(1,'c',fd));// immediate drawing // init. global variable immediate_drawing
-      h.immediate_drawing = 'off';  // set it to 'off' to pass useless redraw due to several 'set' calls
+      //h.immediate_drawing = 'off';  // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd) // background
-      h.visible=toggle(mget(1,'c',fd)); // visible
       rotation_style=ascii(mget(mget(1,'c',fd),'c',fd)) // rotation_style
-      pause;
     else
       visible=toggle(mget(1,'c',fd)); // visible
       figure_position=mget(2,'sl',fd); // figure_position
@@ -85,6 +84,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd); // background
       h.rotation_style=ascii(mget(mget(1,'c',fd),'c',fd)) // rotation_style
+      
     end
     
     // children
@@ -92,14 +92,19 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if n_axes==1 then
       load_graphichandle(fd)
     else
-      for k=1:n_axes
+      disp('-------------------');
+      disp(n_axes);
+      load_graphichandle(fd);
+      for k=2:n_axes
 	xsetech(wrect=[0 0 .1 .1])
+	disp(size(h.children));
+	pause;
 	load_graphichandle(fd)
       end
     end
     
     load_user_data(fd); // user_data
-        
+    disp(mtell(fd));    
   case "Axes"
     
     a=gca() ;
@@ -257,18 +262,27 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     
     set(a,"tight_limits"         , toggle(mget(1,'c',fd))) // tight_limits
-
+    disp(mtell(fd));
     data_bounds = matrix(mget(mget(1,'c',fd),'dl',fd),2,-1) // data_bounds
+    disp(data_bounds);
+    disp(mtell(fd));
     
-    //data_bounds = mget(mget(1,'c',fd),'dl',fd) ; // data_bounds
     if view=='2d'& a.view=='3d' then
       data_bounds(2,3)=0;
     end
-    if xload_mode 
-      old_bounds=a.data_bounds;
-      for k=1:size(old_bounds,2)
-	data_bounds(1,k)=min(data_bounds(1,k),old_bounds(1,k));
-	data_bounds(2,k)=max(data_bounds(2,k),old_bounds(2,k));
+    if xload_mode
+      // check if a had at least a child previously
+      // if not the axes is considered unused
+      // and we don't merge the data_bounds.
+      if a.children <> []  then
+	old_bounds=a.data_bounds;
+	for k=1:size(old_bounds,2)
+	  disp('merging');
+	  pause;
+	  
+	  data_bounds(1,k)=min(data_bounds(1,k),old_bounds(1,k));
+	  data_bounds(2,k)=max(data_bounds(2,k),old_bounds(2,k));
+	end
       end
     end
     if is_higher_than([3 0 0 0]) then
@@ -872,8 +886,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
     
-  // remove case because of bugs  
+    // remove case because of bugs  
   case "Legend"
+    disp(mtell(fd));
     visible        = toggle(mget(1,'c',fd)) // visible
     line_mode       = toggle(mget(1,'c',fd)) // line_mode
     mark_mode       = toggle(mget(1,'c',fd)) // mark_mode
@@ -888,9 +903,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     lineFeedPosition = strindex(text,'@')
     nbLines = size( lineFeedPosition ) ;
     nbLines = nbLines(2) + 1
-    create as many curves as lines in the text
+    //create as many curves as lines in the text
     nullVector = zeros(1,nbLines);
     //draw the legend
+    pause;
     plot2d(0,nullVector,leg=text) ;
     H=unglue(get('hdl'));
     h=H(1);
@@ -910,6 +926,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"clip_box",mget(4,'dl',fd)); // clip_box
     end
     set(h,"clip_state",clip_state);
+    disp(mtell(fd));
     
   case "Text"
     visible         = toggle(mget(1,'c',fd)) // visible

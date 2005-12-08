@@ -35,6 +35,7 @@ function save_graphichandle(h,fd)
     mput(length(h.figure_name),'c',fd); // figure_name
     mput(ascii(h.figure_name),'c',fd);
     mput(h.figure_id,'sl',fd); // figure_id
+    
     mput(size(h.color_map,'*'),'il',fd); // color_map
     mput(h.color_map,'dl',fd) ;
     mput(bool2s(h.pixmap=='on'),'c',fd) ; // pix_map
@@ -55,6 +56,7 @@ function save_graphichandle(h,fd)
     
     user_data=h.user_data; // user_data
     save(fd,user_data) ;
+    
     
   case "Axes" 
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); // type
@@ -162,7 +164,7 @@ function save_graphichandle(h,fd)
     mput(ascii(h.log_flags),'c',fd) // log_flags
     mput(bool2s(h.tight_limits=='on'),'c',fd) // tight_limits
     mput(size(h.data_bounds,'*'),'c',fd); // data_bounds
-    mput(h.data_bounds,'dl',fd); 
+    mput(h.data_bounds,'dl',fd);
     mput(size(h.zoom_box,'*'),'c',fd);  // zoom_box
     if size(h.zoom_box,'*')>0 then mput(h.zoom_box,'dl',fd);end
     mput(h.margins,'dl',fd); // margins
@@ -450,23 +452,24 @@ function save_graphichandle(h,fd)
     end
     user_data=h.user_data;save(fd,user_data) // user_data
     
-   case "Legend"
-     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); //type
-     mput(bool2s(h.visible=='on'),'c',fd) // visible
-     mput(bool2s(h.line_mode=='on'),'c',fd) // line_mode
-     mput(bool2s(h.mark_mode=='on'),'c',fd) // mark_mode
-     mput(h.mark_foreground,'il',fd); // mark_foreground
-     mput(h.mark_background,'il',fd); // mark_background
-     //mput(length(h.text),'c',fd);mput(ascii(h.text),'c',fd); // text
-     save_text_vector(h.text,fd); // text
-     mput(h.foreground,'il',fd) // foreground
-     mput(h.font_style,'c',fd) // font_style
-     mput(h.font_size,'c',fd) // font_size
-     mput(length(h.clip_state),'c',fd); // clip_state
-     mput(ascii(h.clip_state),'c',fd);
-     if h.clip_state=='on' then
-       mput(h.clip_box,'dl',fd) // clip_box
-     end
+  case "Legend"
+    mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); //type
+    mput(bool2s(h.visible=='on'),'c',fd) // visible
+    mput(bool2s(h.line_mode=='on'),'c',fd) // line_mode
+    mput(bool2s(h.mark_mode=='on'),'c',fd) // mark_mode
+    mput(h.mark_foreground,'il',fd); // mark_foreground
+    mput(h.mark_background,'il',fd); // mark_background
+    //mput(length(h.text),'c',fd);mput(ascii(h.text),'c',fd); // text
+    save_text_vector(h.text,fd); // text
+    mput(h.foreground,'il',fd) // foreground
+    mput(h.font_style,'c',fd) // font_style
+    mput(h.font_size,'c',fd) // font_size
+    mput(length(h.clip_state),'c',fd); // clip_state
+    mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd) // clip_box
+    end
+    
     
   case "Text"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); // type
@@ -522,7 +525,7 @@ function save_graphichandle(h,fd)
     end
     user_data=h.user_data;save(fd,user_data) // user_data
   else
-    disp("handle of type "+h.type+" unhandled")
+    warning("handle of type "+h.type+" unhandled")
   end
 
 endfunction

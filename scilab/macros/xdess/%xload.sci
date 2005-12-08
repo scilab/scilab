@@ -5,8 +5,6 @@ function %xload(fil,num)
   xload_mode=%t
 
   res = execstr('load(fil)','errcatch') ;
-  disp(res) ;
-  pause
   if res==0 then
     f.visible='on'
     f.immediate_drawing='on';
