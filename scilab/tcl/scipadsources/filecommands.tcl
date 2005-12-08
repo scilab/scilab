@@ -732,8 +732,10 @@ proc writesave {textarea nametosave} {
         set listoffile("$textarea",readonly) \
           [expr [file writable $nametosave] == 0]
     } else {
-        set listoffile("$textarea",readonly) \
-          [expr [file writable [file dirname $nametosave]] == 0]
+	set listoffile("$textarea",readonly) 0
+	# To fix the Windows bad behavior when wanting to write a 
+	# file in an exotic directory where read-only is set
+
     }
     if {$listoffile("$textarea",readonly)==0} {
         backupfile $nametosave $filebackupdepth
@@ -744,6 +746,12 @@ proc writesave {textarea nametosave} {
         set listoffile("$textarea",thetime) [file mtime $nametosave] 
         set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
         showinfo $msgWait
+    #test if file creation has succeeded
+	if {![file exists $nametosave]} {
+	    set msgWait [concat $nametosave [mc "cannot be written!"]]
+	    tk_messageBox -message $msgWait
+	    filesaveas $textarea
+    	}
     } else {
         set msgWait [concat $nametosave [mc "cannot be written!"]]
         tk_messageBox -message $msgWait
