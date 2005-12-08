@@ -1,113 +1,125 @@
+//================================
+//
+// Copyright INRIA 2005
+// Scilab team
+// Date : December 8th 2005
+// 
+//================================
+
 function tests=testslist()
-  tests = ['filesassocation.tst';
-     'TCL_SetGet.tst';
-  	 'parse.tst';
-	   'clause.tst';
-	   'trycatch.tst';
-	   'comment.tst';
-	   'comand.tst';
-	   'global.tst';
-	   'listextraction.tst';
-	   'listinsertion.tst';
-	   'scilab.tst';
-	   'resume.tst';
-	   'function.tst';
-	   'maxi.tst';
-	   'matsys.tst';
-	   'macro.tst';
-	   'matelm.tst';
-	   'lstops.tst';
-	   'strelm.tst';
-	   'algebra.tst'
-	   'saveload.tst';
-	   'arma.tst';
-	   'basiclink.tst';
-	   'binary.tst';
-	   'breakpoints.tst';
-	   'bvode.tst';
-	   'call.tst';
-	   'calpol.tst';
-	   'cmp.tst';
-	   'dassldasrt.tst';
-	   'dcd.tst';
-	   'display.tst';
-	   'errcatch.tst';
-	   'feval.tst';
-	   'fscanfMat.tst';
-	   'grandb.tst';
-	   'grand.tst';
-	   'gsort.tst';
-	   'intops.tst';
-	   'links.tst';
-	   'lsparse.tst';
-	   'lstops.tst';
-	   'matimp.tst';
-	   'matode.tst';
-	   'matops.tst';
-	   'matopt.tst';
-	   'metanet.tst';
-	   'mfprintf.tst';
-	   'mfscanf.tst';
-	   'msprintf.tst';
-	   'msscanf.tst';
-	   'norm.tst';
-	   'odedc.tst';
-	   'odedi.tst';
-	   'pause.tst';
-	   'polelm.tst';
-	   'polops.tst';
-	   'pvm.tst';	   
-	   'sound.tst';
-	   'sparse.tst';
-	   'sprintf.tst';
-	   'sscanf.tst';
-	   'slicot.tst';
-	   'fptr.tst';
-	   'scicos.tst';
-	   'auto.tst';
-	   'opcode.tst';
-	   'specfun.tst';
-	   'hypermat.tst'
-	   ];
-
-if ~MSDOS then
-	tests(find(tests=='filesassocation.tst'))=[]
-end
-
-if ~with_tk() then
-	tests(find(tests=='links.tst'))=[]
-end
-
-if MSDOS then
-  comp_target = getenv('COMPILER','NO');
-  if comp_target == 'gcc ' then 
-    tests(find(tests=='links.tst'))=[]
-  end
-tests(find(tests=='pvm.tst'))=[]
-end
+tests = ['algebra.tst';
+	'arma.tst';
+	'auto.tst';
+	'basiclink.tst';
+	'binary.tst';
+	'breakpoints.tst';
+	'bvode.tst';
+	'call.tst';
+	'calpol.tst';
+	'clause.tst';
+	'cmp.tst';
+	'comand.tst';
+	'comment.tst';
+	'dassldasrt.tst';
+	'dcd.tst';
+	'display.tst';
+	'errcatch.tst';
+	'feval.tst';
+	'fptr.tst';
+	'fscanfMat.tst';
+	'function.tst';
+	'global.tst';
+	'grand.tst';
+	'grandb.tst';
+	'gsort.tst';
+	'hypermat.tst'
+	'intops.tst';
+	'links.tst';
+	'listextraction.tst';
+	'listinsertion.tst';
+	'lsparse.tst';
+	'lstops.tst';
+	'lstops.tst';
+	'macro.tst';
+	'matelm.tst';
+	'matimp.tst';
+	'matode.tst';
+	'matops.tst';
+	'matopt.tst';
+	'matsys.tst';
+	'maxi.tst';
+	'metanet.tst';
+	'mfprintf.tst';
+	'mfscanf.tst';
+	'msprintf.tst';
+	'msscanf.tst';
+	'norm.tst';
+	'odedc.tst';
+	'odedi.tst';
+	'opcode.tst';
+	'pause.tst';
+	'polelm.tst';
+	'polops.tst';
+	'pvm.tst';
+	'resume.tst';
+	'saveload.tst';
+	'scicos.tst';
+	'scilab.tst';
+	'slicot.tst';
+	'sound.tst';
+	'sparse.tst';
+	'specfun.tst';
+	'sprintf.tst';
+	'sscanf.tst';
+	'strelm.tst';
+	'trycatch.tst';
+	'parse.tst';
+	'TCL_SetGet.tst';
+	'filesassocation.tst'];
+	
+	if ~MSDOS then
+		tests(find(tests=='filesassocation.tst'))=[];
+	end
+	
+	if ~with_tk() then
+		tests(find(tests=='links.tst'))=[];
+	end
+	
+	if ~with_pvm() then
+		tests(find(tests=='pvm.tst'))=[];
+	end
+	
+	if MSDOS then
+		comp_target = getenv('COMPILER','NO');
+		if comp_target == 'gcc ' then 
+			tests(find(tests=='links.tst'))=[]
+		end
+		tests(find(tests=='pvm.tst'))=[]
+	end
+	
 endfunction
 
 function maketests(job)
-lines(0) // to disable line control
-if argn(2)<1 then job='tests',end
-if job=='clean' then //remove .dia files
-  cleantests()
-else
-  tests=testslist()
-  for k1=1:size(tests,'*')  // loop on .tst files
-    scitest(tests(k1))
-  end
-end
+	lines(0) // to disable line control
+	if argn(2)<1 then job='tests',end
+	if job=='clean' then //remove .dia files
+		cleantests()
+	else
+		tests=testslist()
+		for k1=1:size(tests,'*')  // loop on .tst files
+			scitest(tests(k1))
+		end
+	end
 endfunction
 
 function cleantests()
-if MSDOS then
-  path=SCI+'\tests\'
-  file_to_clean=path+strsubst(testslist(),'.tst','.dia')
-  unix_s('del '+'""'+strcat(file_to_clean,'"" ""')+'""')
-else
-  path=SCI+'/tests/'
-  file_to_clean=path+strsubst(testslist(),'.tst','.dia')
-  unix_s('rm -f '+strcat(file_to_clean,' '))
-end
+	if MSDOS then
+		path=SCI+'\tests\'
+		file_to_clean=path+strsubst(testslist(),'.tst','.dia')
+		unix_s('del '+'""'+strcat(file_to_clean,'"" ""')+'""')
+	else
+		path=SCI+'/tests/'
+		file_to_clean=path+strsubst(testslist(),'.tst','.dia')
+		unix_s('rm -f '+strcat(file_to_clean,' '))
+	end
 endfunction
