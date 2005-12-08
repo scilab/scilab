@@ -1122,20 +1122,19 @@ endfunction
 
 function [h,Axes]=ged_getobject(pt)
   h=[];Axes=[];
-
-   f=get("current_figure");
-   aold=get("current_axes")
-   axes_array=f.children
-   for k=1:size(axes_array,'*')
-     Axes=axes_array(k)
-     set("current_axes",Axes)
-     h=ged_loop(Axes)
-     if h<>[] then break,end
-   end
-   set("current_axes",aold)
+  f=get("current_figure");
+  aold=get("current_axes")
+  axes_array=f.children
+  for k=1:size(axes_array,'*')
+    Axes=axes_array(k)
+    set("current_axes",Axes)
+    h=ged_loop(Axes)
+    if h<>[] then break,end
+  end
+  set("current_axes",aold)
 endfunction
 
-function h=ged_loop(a)
+function h=ged_loop(a,pt)
   h=[]
   for ka=1:size(a,'*')
     ck=a(ka)
@@ -1162,7 +1161,7 @@ function h=ged_loop(a)
       dy=(yv(1,:)-yv(2,:))
       d_d=dx.^2+dy.^2
       case "Compound"
-      h=ged_loop(ck.children)
+      h=ged_loop(ck.children,pt)
       if h<>[] then return,end
     case "Axes"
       xy=ck.data_bounds;
@@ -1171,7 +1170,7 @@ function h=ged_loop(a)
       pts=[(xp-Xmin)/Dx (yp-Ymin)/Dy]
       d=Dist2polyline([0,1,1,0],[0,0,1,1],pts)
       if d<0.005 then h=ck,return,end
-      h=ged_loop([Axes.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title])
+      h=ged_loop([a.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title],pt)
       if h<>[] then return,end
     case "Text"
       if is_in_text(ck,[xp;yp]) then
@@ -1271,6 +1270,7 @@ function ged_eventhandler(win,x,y,ibut)
 	if rep(3)>0 then break,end
 	
 	move(ged_handle,rep(1:2)-pos)
+	show_pixmap()
 	pos=rep(1:2)
       end
 //    elseif ibut==3 then
