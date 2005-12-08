@@ -260,6 +260,17 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
   if (version_flag() == 0) {
     sciPointObj *curFig=sciGetCurrentFigure ();
     integer bg;
+    
+    if(curFig == (sciPointObj *) NULL){
+      Scierror(999,"No current graphic window %d found for exporting to %s\r\n",win_num,driver);
+      C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      /* to force a reset in the graphic scales for the graphic window number cur */
+      if(GetDriverId() == 1) SwitchWindow(&cur);
+      scig_buzy = 0;
+      return ierr;
+    }
+    
     C2F(dr)("xget","background",&verb,&bg,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,11L);
     /* Rajout F.Leray 06.04.04 */
     bg = sciGetBackground(curFig);
@@ -267,7 +278,7 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     /* xinit from screen (for the colormap definition) */
     C2F(dr)("xinit2",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if (ierr != 0) goto bad;
-    set_version_flag(1);
+    set_version_flag(0);
     sciSetCurrentFigure(curFig);
     C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
     xinitxend_flag = 0; /* we force to draw */
@@ -279,7 +290,7 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     /* xinit from screen (for the colormap definition) */
     C2F(dr)("xinit2",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if (ierr != 0)  goto bad;
-    if (colored==1) 
+     if (colored==1) 
       C2F(dr)("xset","use color",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     else
       C2F(dr)("xset","use color",&zero,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
