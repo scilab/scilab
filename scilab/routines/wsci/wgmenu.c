@@ -1252,8 +1252,8 @@ void CreateGedMenus(struct BCG * ScilabGC)
 	if (ScilabGC->graphicsversion!=0)
 	{
 		integer ne=3, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select","&Redraw","&Erase"};
-		char *EditMenusF[]={"&Selectionner","&Redessiner","&Effacer"};
+		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
+		char *EditMenusF[]={"&Selectionner figure","&Redessiner figure","&Effacer figure"};
 
 		UpdateFileGraphNameMenu(ScilabGC);
 		LoadGraphMacros(ScilabGC);
