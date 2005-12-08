@@ -192,7 +192,7 @@ int TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *m,int *n)
 		char MyTclCommand[2048];
 		char *StrArrayDims=NULL;
 		
-		sprintf(MyTclCommand, "set TclScilabTmpVar [lsort [array names %s *,*]];",VarName); 
+		sprintf(MyTclCommand, "set TclScilabTmpVar [lsort -dictionary [array names %s *,*]];",VarName); 
 
 		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
 		{
