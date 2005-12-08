@@ -16,6 +16,13 @@ function rec=loadplots(fil)
 //
 // Copyright INRIA
 // Author: Serge Steer  
+
+  // function works only for the old graphic mode
+  if get("figure_style") == 'new' then
+    error( "Macro does not work with the new graphic mode." ) ;
+    return ;
+  end
+  
   ufil=mopen(fil,'rb')
   rec=tlist('SPLOT')
   SciF_version=LoadVectC()
