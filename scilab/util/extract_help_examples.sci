@@ -232,9 +232,9 @@ function instructions=instrument_instruction(job,instructions,refpath)
 	if job<>'build' then instructions='getf SCI/util/testexamples.sci',end
 		instructions=[instructions;'reinit_for_test()'];
 	if job=='build' then 
-		instructions=[instructions;'%U=mopen('''+refpath+''',''w'');']
+		instructions=[instructions;'%U=mopen('''+refpath+''',''wb'');']
 	else
-		instructions=[instructions;'%U=mopen('''+refpath+''',''r'');']
+		instructions=[instructions;'%U=mopen('''+refpath+''',''rb'');']
 	end
 	instructions=[instructions; txt;'mclose(%U);'];
 	
