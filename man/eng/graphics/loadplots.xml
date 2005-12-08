@@ -53,6 +53,10 @@
     instruction</P>
 
     <VERBATIM>loadplots;</VERBATIM>
+
+    <P><BD>Warning</BD>: The <VERB>loadplots</VERB> function is only available
+    with the old graphic mode and is then deprecated. For the new mode,
+    <VERB>xload</VERB> migth be used instead.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
