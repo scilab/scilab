@@ -1825,3 +1825,11 @@ Francois VOGEL, 05/12/05
    copy-pasted outside by button-2 click. The entry boxes have -exportselection
    set to true again
  * version --> 5.66
+
+Francois VOGEL, 08/12/05
+ * Scipad is deiconified when called
+ * "Bug fix", well it's a patch, from Allan/Serge to let Scipad to save a
+   file in C:\Documents and Settings\<account>\My Documents (workaround for
+   Tcl bug 1193497, whose existing patch is not yet applied to the Tcl cvs
+   tree)
+ * version --> 5.67

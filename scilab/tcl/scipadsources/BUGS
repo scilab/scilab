@@ -15,10 +15,6 @@ Bugs:
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
--On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
- usually produces a read-only warning and prevents the user from saving there.
- This is Tcl bug 1193497.
-
 -On Windows, opening files and then closing one of them makes the remaining
  ones unselectable in the windows menu. This is Tk bug 1224330.
 
@@ -39,9 +35,21 @@ Bugs:
  Also related to bug 1469 - better wait for clarification on this one instead
  of working around Scilab parser bugs
 
+-On Linux (much less often on Windows, but the issue is here also), Tcl/Tk
+ errors can pop up when quickly doing something in Scipad before launch has
+ finished
+
+-if you call from the scilab shell scipad somefile.sce, and scipad needs to
+ open, the keywords in the first some lines of the file are not colorized
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
+
+-On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
+ usually produces a read-only warning and prevents the user from saving there.
+ This is Tcl bug 1193497. A patch has been forced in by the operational team.
+ The fix for the Tcl bug exists but is not yet applied to the Tcl cvs tree.
 
 -the window geometry is now managed in pixels. This is fine for restoring
  exactly the same window geometry as in the previous session, but loses

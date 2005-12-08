@@ -4,6 +4,7 @@ exec `which wish` "$0" "$@"
 
 if { [info exists pad] } { 
 
+    wm deiconify $pad
     raise $pad
     update
 
