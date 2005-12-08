@@ -43,12 +43,6 @@
         label.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="fill_mode: ">
-        <SP>This field takes the values <VERB>"on"</VERB> or
-        <VERB>"off"</VERB>. If <VERB>"on"</VERB> a box is draw around the text
-        with a line on its edge and a background.</SP>
-      </DESCRIPTION_ITEM>
-
       <DESCRIPTION_ITEM label="foreground: ">
         <SP>This field contains the color used to display the characters label
         and the line around the box if any. Its value should be a color index
@@ -58,6 +52,12 @@
       <DESCRIPTION_ITEM label="background: ">
         <SP>This field contains the color used to fill the box if any. Its
         value should be a color index (relative to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="fill_mode: ">
+        <SP>This field takes the values <VERB>"on"</VERB> or
+        <VERB>"off"</VERB>. If <VERB>"on"</VERB> a box is draw around the text
+        with a line on its edge and a background.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_style: ">
@@ -73,15 +73,20 @@
         which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="font_angle: ">
+        <SP>This property allows to turn the label. The font is turned
+        clockise with the angle given in degrees.</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="auto_rotation: ">
         <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best angle
         to turn the label for the display. If <VERB>"off"</VERB>, the label
         can be manually turned with the <VERB>font_angle</VERB> property.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="font_angle: ">
-        <SP>This property allows to turn the label. The font is turned
-        clockise with the angle given in degrees.</SP>
+      <DESCRIPTION_ITEM label="position: ">
+        <SP>This property allows to place manually the label on the screen.
+        The position is stored in the data units of the axes.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="auto_position: ">
@@ -89,11 +94,6 @@
         position in the graphic window for the display. If <VERB>"off"</VERB>,
         the label can be manually places with the<VERB>position</VERB>
         property</SP>
-      </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label="position: ">
-        <SP>This property allows to place manually the label on the screen.
-        The position is stored in the data units of the axes.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
