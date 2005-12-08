@@ -169,7 +169,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					else
 					if  ( IsAScicosFile(fichier)== TRUE )
 					{
-					    ExtensionFileIntoLowerCase(FinalFileName);	
+					  ExtensionFileIntoLowerCase(FinalFileName);	
 						wsprintf(Cmd,MSG_SCIMSG2,PathWScilex,FinalFileName);
 					}
 					else
@@ -257,7 +257,10 @@ LPTSTR ScilabPathFindExtension(LPCTSTR pPath)
 
 		if ( myPathFindExtension ) 
 		{ 
-				StrReturn = (LPTSTR )(myPathFindExtension)(pPath); 
+			LPTSTR Extension=NULL;
+			Extension = (LPTSTR )(myPathFindExtension)(pPath); 
+			StrReturn = (char *) MALLOC ((strlen(Extension)+1)*sizeof(char));
+			wsprintf(StrReturn,"%s",Extension);
 		} 
 		else 
 		{ 
