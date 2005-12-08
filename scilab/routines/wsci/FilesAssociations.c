@@ -6,7 +6,7 @@
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-typedef  LPTSTR (WINAPI * PathFindExtensionPROC) (LPTSTR); 
+typedef  LPCTSTR (WINAPI * PathFindExtensionPROC) (LPCTSTR); 
 /*-----------------------------------------------------------------------------------*/
 extern void ReplaceSlash(char *pathout,char *pathin);
 extern void PrintFile(char *filename);
