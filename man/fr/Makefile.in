@@ -4,18 +4,17 @@ include ../../Path.incl
 include ../../Makefile.incl
 
 DIRS = arma control dcd elementary fileio functions graphics gui \
-	linear metanet nonlinear polynomials programming pvm robust \
-	signal sound strings tdcs tksci translation utilities \
-	statistics mtlb sparse
-#scicos 
+	linear metanet nonlinear polynomials programming robust \
+	signal sound strings tdcs translation utilities \
+	statistics mtlb sparse @PVMHELP@ @TCLTKHELP@
 
 QUIET= > /dev/null 
-LANGUAGE=eng 
+LANGUAGE=fr
 
-#XSLFILE=html-jpc-rev.xsl
+#XSLFILE=html.xsl
 XSLFILE=html-rev.xsl
 
-man: 	
+man:
 	@echo "Creating html help files" 
 	$(SCIDIR)/bin/scilab -l $(LANGUAGE) \
 		-nwni  -e "xmltohtml([],[],'$(XSLFILE)');quit" -args -nouserstartup
@@ -27,7 +26,7 @@ man:
 %.step: 
 	@echo "Creating $*" 
 	$(SCIDIR)/bin/scilab -l $(LANGUAGE) \
-		-nwni  -e "xmltohtml([],[],'$(XSLFILE)','$*');quit" -args  -nouserstartup
+		-nwni  -e "xmltohtml([],[],'$(XSLFILE)','$*');quit" -args -nouserstartup
 
 
 
@@ -43,17 +42,6 @@ check:
 			rm -f xmllint.tmp; \
 		done); \
 	done
-
-indent: 
-	@for i in $(DIRS) ;\
-	do \
-		(cd $$i ; echo "Indenting  xml in $$i"; \
-		for j in *.xml; \
-		do xmllint --format $$j > /tmp/tmp.xml ; mv /tmp/tmp.xml $$j; \
-		done ; ); \
-	done
-
-
 
 distclean::
 	$(RM)  $(FILES_TO_CLEAN)

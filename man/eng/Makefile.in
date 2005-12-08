@@ -4,13 +4,14 @@ include ../../Path.incl
 include ../../Makefile.incl
 
 DIRS = arma control dcd elementary fileio functions graphics gui \
-	linear metanet nonlinear polynomials programming pvm robust \
-	signal sound strings tdcs tksci translation utilities mtlb sparse
-#scicos 
-QUIET= > /dev/null 
-LANGUAGE=fr
+	linear metanet nonlinear polynomials programming robust \
+	signal sound strings tdcs translation utilities \
+	statistics mtlb sparse @PVMHELP@ @TCLTKHELP@
 
-#XSLFILE=html.xsl
+QUIET= > /dev/null 
+LANGUAGE=eng 
+
+#XSLFILE=html-jpc-rev.xsl
 XSLFILE=html-rev.xsl
 
 man: 	
@@ -25,7 +26,7 @@ man:
 %.step: 
 	@echo "Creating $*" 
 	$(SCIDIR)/bin/scilab -l $(LANGUAGE) \
-		-nwni  -e "xmltohtml([],[],'$(XSLFILE)','$*');quit" -args -nouserstartup
+		-nwni  -e "xmltohtml([],[],'$(XSLFILE)','$*');quit" -args  -nouserstartup
 
 
 
@@ -41,6 +42,17 @@ check:
 			rm -f xmllint.tmp; \
 		done); \
 	done
+
+indent: 
+	@for i in $(DIRS) ;\
+	do \
+		(cd $$i ; echo "Indenting  xml in $$i"; \
+		for j in *.xml; \
+		do xmllint --format $$j > /tmp/tmp.xml ; mv /tmp/tmp.xml $$j; \
+		done ; ); \
+	done
+
+
 
 distclean::
 	$(RM)  $(FILES_TO_CLEAN)

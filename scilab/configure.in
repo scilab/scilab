@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.129 $)dnl
+AC_REVISION($Revision: 1.130 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1674,6 +1674,7 @@ PVMSCIDIR=
 PVMSCILIB=
 PVMTARGET=pvm-bidon
 PVMROOT=
+PVMHELP=
 # need an non empty default value for scilab script 
 PVMROOTR='$SCI/pvm3'
 PVMINST=
@@ -1685,74 +1686,77 @@ PVMHOSTERFILES=
 PVMHOSTER=
 
 if test "$with_pvm" != no; then
-# check for a locally installed PVM
-if test -x $PVM_ROOT/lib/pvmgetarch ; then
-  PVMROOT=$PVM_ROOT
-  PVMROOTR=$PVM_ROOT
-  PVMTARGET=pvm-bidon
-else
-  PVMROOT="$SCIDIR/pvm3"
-  PVMROOTR='$SCI/pvm3'
-  PVMTARGET=scilex-lib
-  PVMINST='$(PVMBINDISTFILES) $(PVMBINDISTFILES1)'
-  PVMINST1='$(INSTPVMBINDISTFILES) $(INSTPVMBINDISTFILES1)'
-fi
 
-PVMINCLUDE=$PVMROOT/include
+	# check for a locally installed PVM
+	
+	PVMHELP=pvm
+	
+	if test -x $PVM_ROOT/lib/pvmgetarch ; then
+		PVMROOT=$PVM_ROOT
+		PVMROOTR=$PVM_ROOT
+		PVMTARGET=pvm-bidon
+	else
+		PVMROOT="$SCIDIR/pvm3"
+		PVMROOTR='$SCI/pvm3'
+		PVMTARGET=scilex-lib
+		PVMINST='$(PVMBINDISTFILES) $(PVMBINDISTFILES1)'
+		PVMINST1='$(INSTPVMBINDISTFILES) $(INSTPVMBINDISTFILES1)'
+	fi
+	
+	PVMINCLUDE=$PVMROOT/include
+	
+	AC_ARG_WITH(pvm-include,
+		[  --with-pvm-include=DIR  PVM include files are in DIR ],
+		[  PVMINCLUDE=$withval
+	])
+	
+	AC_CACHE_CHECK([for PVM architecture],ac_cv_PVM_arch,
+	[
+	ac_cv_PVM_arch=`$PVMROOT/lib/pvmgetarch`
+	])
 
-AC_ARG_WITH(pvm-include,
-    [  --with-pvm-include=DIR  PVM include files are in DIR ],
-    [  PVMINCLUDE=$withval
-    ])
-
-AC_CACHE_CHECK([for PVM architecture],ac_cv_PVM_arch,
-[
-ac_cv_PVM_arch=`$PVMROOT/lib/pvmgetarch`
-])
-if test "$ac_cv_PVM_arch" = UNKNOWN; then
-  AC_MSG_WARN([PVM unable to find architecture: I will not use PVM])
-  PVMTARGET=pvm-bidon
-  PVMINST='$(PVMBINDISTFILES)'
-  PVMINST1='$(INSTPVMBINDISTFILES)'
-else
-  AC_DEFINE(WITH_PVM)
-  PVMARCH="$ac_cv_PVM_arch"
-
-  case "$host" in
-      *-*-mingw32*)
-        ac_cv_PVM_arch=MINGW
-        PVMARCH="$ac_cv_PVM_arch"
-	PVMHOSTERFILES="pvmwinrexec.o pvmwinrsh.o"
-	PVMHOSTER=h
-    ;;
-  esac
-
-  PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
-  AC_ARG_WITH(pvm-library,
-  	[  --with-pvm-library=DIR  PVM library files are in DIR ],
-    	[  PVMLIBDIR=$withval
-	    ])
-
-  PVMGLIB="$PVMLIBDIR/libgpvm3.a"
-  PVMLIB="$PVMLIBDIR/libpvm3.a"
-  PVMSCIDIR=pvm
-  PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
-
-  case "$host" in
-      *-*-mingw32*)
-      # add src to PVMINCLUDE 
-      PVMINCLUDE="$PVMINCLUDE -I$SCIDIR/pvm3/src"
-      #     to have path with SCIDIR 
-      # PVMROOT=`echo $PVMROOT | sed -e "s+$SCIDIR+\\$(SCIDIR)+g" `
-
-      PVMLIB=`echo $PVMLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-      PVMGLIB=`echo $PVMGLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-      PVMINCLUDE=`echo $PVMINCLUDE | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" ` 
-    ;;
-  esac
-
-fi
-
+	if test "$ac_cv_PVM_arch" = UNKNOWN; then
+		AC_MSG_WARN([PVM unable to find architecture: I will not use PVM])
+		PVMTARGET=pvm-bidon
+		PVMINST='$(PVMBINDISTFILES)'
+		PVMINST1='$(INSTPVMBINDISTFILES)'
+	else
+		AC_DEFINE(WITH_PVM)
+		PVMARCH="$ac_cv_PVM_arch"
+		
+		case "$host" in
+		*-*-mingw32*)
+			ac_cv_PVM_arch=MINGW
+			PVMARCH="$ac_cv_PVM_arch"
+			PVMHOSTERFILES="pvmwinrexec.o pvmwinrsh.o"
+			PVMHOSTER=h
+			;;
+		esac
+		
+		PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
+		AC_ARG_WITH(pvm-library,
+			[  --with-pvm-library=DIR  PVM library files are in DIR ],
+			[  PVMLIBDIR=$withval
+		])
+		
+		PVMGLIB="$PVMLIBDIR/libgpvm3.a"
+		PVMLIB="$PVMLIBDIR/libpvm3.a"
+		PVMSCIDIR=pvm
+		PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
+		
+		case "$host" in
+		*-*-mingw32*)
+			# add src to PVMINCLUDE 
+			PVMINCLUDE="$PVMINCLUDE -I$SCIDIR/pvm3/src"
+			#     to have path with SCIDIR 
+			# PVMROOT=`echo $PVMROOT | sed -e "s+$SCIDIR+\\$(SCIDIR)+g" `
+			
+			PVMLIB=`echo $PVMLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
+			PVMGLIB=`echo $PVMGLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
+			PVMINCLUDE=`echo $PVMINCLUDE | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" ` 
+			;;
+		esac
+	fi
 fi
 
 #################
@@ -1764,65 +1768,70 @@ TK_LIB_PATH=
 TCLTK_LIBS=
 TCLSCILIB=
 TCLSCIDIR=
+TCLTKHELP=
 
 if test "$with_tk" != no; then
 
-# check user arguments
-USER_TCL_LIB_PATH=""
-USER_TCL_INC_PATH=""
-AC_ARG_WITH(tcl-library,
-    [  --with-tcl-library=DIR  Tcl library files are in DIR ],
-    [  USER_TCL_LIB_PATH=$withval
-    ])
-AC_ARG_WITH(tcl-include,
-    [  --with-tcl-include=DIR  Tcl include files are in DIR ],
-    [  USER_TCL_INC_PATH=$withval
-    ])
-
-USER_TK_LIB_PATH=$USER_TCL_LIB_PATH
-USER_TK_INC_PATH=$USER_TCL_INC_PATH
-AC_ARG_WITH(tk-library,
-    [  --with-tk-library=DIR   Tk library files are in DIR ],
-    [  USER_TK_LIB_PATH=$withval
-    ])
-AC_ARG_WITH(tk-include,
-    [  --with-tk-include=DIR   Tk include files are in DIR ],
-    [  USER_TK_INC_PATH=$withval
-    ])
-
-saved_cflags="$CFLAGS"
-saved_ldflags="$LDFLAGS"
-saved_cppflags="$CPPFLAGS"
-
-AC_CHECK_LIB(dl, main,TCLTK_LIBS=" -ldl")
-AC_CHECK_TCLTK()
-
-# set variables
-if test $WITH_TKSCI = 1; then
-  AC_DEFINE(WITH_TK)
-  TCLSCILIB="\$(SCIDIR)/libs/tclsci.a"
-  TCLSCIDIR=tclsci
-else
-  AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
-fi
-
-TKBASE=
-case "$host" in
-  *-*-mingw32*)
-	TKBASE=$SCIDIR
-	TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-    ;;
-esac
-
-GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
-
-case "$host" in
-  *-*-darwin*)
-  GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
-  ;;
-esac 
+	TCLTKHELP=tksci
+	
+	# check user arguments
+	USER_TCL_LIB_PATH=""
+	USER_TCL_INC_PATH=""
+	AC_ARG_WITH(tcl-library,
+		[  --with-tcl-library=DIR  Tcl library files are in DIR ],
+		[  USER_TCL_LIB_PATH=$withval
+	])
+	AC_ARG_WITH(tcl-include,
+		[  --with-tcl-include=DIR  Tcl include files are in DIR ],
+		[  USER_TCL_INC_PATH=$withval
+	])
+	
+	USER_TK_LIB_PATH=$USER_TCL_LIB_PATH
+	USER_TK_INC_PATH=$USER_TCL_INC_PATH
+	
+	AC_ARG_WITH(tk-library,
+		[  --with-tk-library=DIR   Tk library files are in DIR ],
+		[  USER_TK_LIB_PATH=$withval
+	])
+	
+	AC_ARG_WITH(tk-include,
+		[  --with-tk-include=DIR   Tk include files are in DIR ],
+		[  USER_TK_INC_PATH=$withval
+	])
+	
+	saved_cflags="$CFLAGS"
+	saved_ldflags="$LDFLAGS"
+	saved_cppflags="$CPPFLAGS"
+	
+	AC_CHECK_LIB(dl, main,TCLTK_LIBS=" -ldl")
+	AC_CHECK_TCLTK()
+	
+	# set variables
+	if test $WITH_TKSCI = 1; then
+		AC_DEFINE(WITH_TK)
+		TCLSCILIB="\$(SCIDIR)/libs/tclsci.a"
+		TCLSCIDIR=tclsci
+	else
+		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
+	fi
+	
+	TKBASE=
+	case "$host" in
+	*-*-mingw32*)
+		TKBASE=$SCIDIR
+		TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
+		TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
+		TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
+	;;
+	esac
+	
+	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
+	
+	case "$host" in
+		*-*-darwin*)
+		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
+	;;
+	esac 
 
 fi
 
@@ -2160,6 +2169,7 @@ AC_SUBST(PVMINST1)
 AC_SUBST(PVMINCLUDE)
 AC_SUBST(PVMHOSTERFILES)
 AC_SUBST(PVMHOSTER)
+AC_SUBST(PVMHELP)
 
 AC_SUBST(TKBASE)
 AC_SUBST(TK_INC_PATH)
@@ -2168,8 +2178,10 @@ AC_SUBST(TCLTK_LIBS)
 AC_SUBST(TCLSCILIB)
 AC_SUBST(TCLSCIDIR)
 AC_SUBST(TCLSCIDIR)
+AC_SUBST(TCLTKHELP)
 AC_SUBST(TK_MINOR_VERSION)
 AC_SUBST(TK_MAJOR_VERSION)
+
 AC_SUBST(NOINLINE)
 AC_SUBST(WHICH_BLAS)
 AC_SUBST(ATLAS_DIR)
@@ -2221,7 +2233,7 @@ AC_SUBST(TERM_LDFLAGS)
 AC_SUBST(JAVASCITARGET)
 AC_SUBST(JAVA_INCL)
 AC_SUBST(GCCFIX)
-AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile) 
+AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile man/fr/Makefile man/eng/Makefile)
  
 
 
