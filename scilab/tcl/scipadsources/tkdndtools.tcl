@@ -106,10 +106,20 @@ proc tkdndbind {w} {
                                      %W tag remove sel 0.0 end ; \
                                  } \
                                }
+    # if {[info exists listoffile("%W",fullname]} in the else clause below
+    # is required to solve a bug reported in the newsgroup at
+    # http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/21cee717df71ab0/d5957386272e17b3
+    # http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/875daad29986228e/ae651d1a948ba67c
+    # The double click in the file/open box fires two <ButtonRelease-1>
+    # events to the first buffer ($pad.new1), and when these events come
+    # to Scipad this buffer has already been closed thanks to the automagical
+    # close of the initial buffer
     bind $w <ButtonRelease-1>  { if {$dndinitiated == "true"} { \
                                      set dndinitiated "false" ; \
                                  } else { \
-                                     focustextarea %W ; \
+                                     if {[info exists listoffile("%W",fullname]} { \
+                                         focustextarea %W ; \
+                                     } \
                                  } \
                                }
     bind $w <Button1-Leave>    { if {$dndinitiated == "true"} {break} }

@@ -1833,3 +1833,10 @@ Francois VOGEL, 08/12/05
    Tcl bug 1193497, whose existing patch is not yet applied to the Tcl cvs
    tree)
  * version --> 5.67
+
+Francois VOGEL, 09/12/05
+ * Fixed bug reported in the newsgroup on File/Open followed by a double
+   click on the file to open. References:
+   http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/21cee717df71ab0/d5957386272e17b3
+   http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/875daad29986228e/ae651d1a948ba67c
+ * version --> 5.68 - This version comes with Scilab 4.0RC
