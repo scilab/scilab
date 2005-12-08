@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -9,8 +9,17 @@
 
   <DATE>2002</DATE>
 
-  <SHORT_DESCRIPTION name="graphics_entities">description of the graphics
+  <SHORT_DESCRIPTION name="graphics_entities ">description of the graphics
   entities data structures</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="nouveau graphique  ">description of the graphics
+  entities data structures</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="figure_style ">description of the graphics entities
+  data structures</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="old_style ">description of the graphics entities
+  data structures</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
     <P>Scilab graphics is based on two differents modes. In the

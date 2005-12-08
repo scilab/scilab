@@ -12,6 +12,15 @@
   <SHORT_DESCRIPTION name="graphics_entities">description of the graphics
   entities data structures</SHORT_DESCRIPTION>
 
+  <SHORT_DESCRIPTION name="new graphics ">description of the graphics entities
+  data structures</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="figure_style ">description of the graphics entities
+  data structures</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="old_style ">description of the graphics entities
+  data structures</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
     <P>Scilab graphics is based on two differents modes. In the
     <VERB>"old"</VERB> mode, the graphics functions are stored to enable
