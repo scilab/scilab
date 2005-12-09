@@ -14,8 +14,11 @@ csim('step',t,G);
 
 diary(0);
 
+if MSDOS then
+[rep,stat]=unix_g('findstr /c:""warning"" bug549.txt')
+else
 [rep,stat]=unix_g("fgrep warning bug549.txt") ;
-
+end
  if stat == 0 then
  
  affich_result(%F,549);
