@@ -19,8 +19,7 @@ CFLAGS = $(CC_OPTIONS) -DFORDLL
 
 all	:: message 
 
-TESTS=ex01.dia ex02.dia ex03.dia ex04.dia ex05.dia ex06.dia ex07.dia ex08.dia \
-	ex09.dia ex10.dia ex11.dia ex12.dia ex13.dia ex14.dia ex15.dia ex16.dia ex17.dia
+TESTS= ex10.dia ex17.dia
 
 
 message:

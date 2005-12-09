@@ -12,15 +12,15 @@ goto end
 :all 
 
 
-echo "Inside interface-general"
-cd interface-general 
- nmake /nologo /C /f Makefile.mak all
-cd ..\
+rem echo "Inside interface-general"
+rem cd interface-general 
+rem  nmake /nologo /C /f Makefile.mak all
+rem cd ..\
 
-echo "Inside interface-tour-so"
-cd interface-tour-so 
- nmake /nologo /C /f Makefile.mak all
-cd ..\
+rem echo "Inside interface-tour-so"
+rem cd interface-tour-so 
+rem  nmake /nologo /C /f Makefile.mak all
+rem cd ..\
 
 
 echo "Inside interface-tutorial-so"
@@ -38,15 +38,15 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak all
 cd ..\
 
-echo "Inside mex-examples/cmex"
-cd mex-examples/cmex
- nmake /nologo /C /f Makefile.mak all
-cd ..\..\
+rem echo "Inside mex-examples/cmex"
+rem cd mex-examples/cmex
+rem  nmake /nologo /C /f Makefile.mak all
+rem cd ..\..\
 
-echo "Inside mex-examples/cppmex"
-cd mex-examples/cppmex
- nmake /nologo /C /f Makefile.mak all
-cd ..\..\
+rem echo "Inside mex-examples/cppmex"
+rem cd mex-examples/cppmex
+rem  nmake /nologo /C /f Makefile.mak all
+rem cd ..\..\
 
 goto end 
 
@@ -123,14 +123,14 @@ goto end
 
 :tests
 
-echo "Inside interface-general"
-cd interface-general 
- nmake /nologo /C /f Makefile.mak tests
-cd ..\
+rem echo "Inside interface-general"
+rem cd interface-general 
+rem  nmake /nologo /C /f Makefile.mak tests
+rem cd ..\
 
-cd interface-tour-so 
- nmake /nologo /C /f Makefile.mak tests
-cd ..\
+rem cd interface-tour-so 
+rem  nmake /nologo /C /f Makefile.mak tests
+rem cd ..\
 
 cd interface-tutorial-so
  nmake /nologo /C /f Makefile.mak tests
@@ -144,15 +144,15 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak tests
 cd ..\
 
-echo "Inside mex-examples/cmex"
-cd mex-examples\cmex
- nmake /nologo /C /f Makefile.mak tests 
-cd ..\..\
+rem echo "Inside mex-examples/cmex"
+rem cd mex-examples\cmex
+rem  nmake /nologo /C /f Makefile.mak tests 
+rem cd ..\..\
 
-echo "Inside mex-examples/cppmex"
-cd mex-examples\cppmex
- nmake /nologo /C /f Makefile.mak tests 
-cd ..\..\
+rem echo "Inside mex-examples/cppmex"
+rem cd mex-examples\cppmex
+rem  nmake /nologo /C /f Makefile.mak tests 
+rem cd ..\..\
 
 goto end 
 
