@@ -22,13 +22,15 @@ function ged_insert(k,win)
   mess2 = "Press any mouse button to complete the object drawing"
   entities=['Rectangle','Segment','Polyline','Arrow','Double Arrow','Text','Circle']
 
-  f=gcf();pix=f.pixmap;f.pixmap='on'
+  f=gcf();
+  pix=f.pixmap
   default_axes = gca(); // get the default axes where we start
   rep(3)=-1
   select k
   case 1 then //Single Line
-    show_pixmap()
+    //show_pixmap()
     [btn,xc,yc]=xclick()
+    f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i'); // I pass to pixel
     sca(axes);  // I change axes and therefore change the scale
@@ -45,8 +47,9 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 2 then //Polyline (stroken line)
-    show_pixmap()
+    //show_pixmap()
     [btn,xc,yc]=xclick()
+    f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
@@ -69,8 +72,9 @@ function ged_insert(k,win)
       r.data=[r.data;r.data($,:)]
     end
   case 3 // Arrow (single arrow)
-    show_pixmap()
+    //show_pixmap()
     [btn,xc,yc]=xclick()
+    f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
@@ -91,8 +95,9 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 4 // Double Arrow
-    show_pixmap()
+    //show_pixmap()
     [btn,xc,yc]=xclick()
+    f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
@@ -117,8 +122,10 @@ function ged_insert(k,win)
     show_pixmap()
     while rep(3)==-1 do
       rep=xgetmouse(0,[%t %t])
+      drawlater();
       r1.data($,:)= [rep(1),rep(2),0]
       r2.data(1,:)= [rep(1),rep(2),0]
+      drawnow();
       show_pixmap()
       xinfo(mess2)
     end 
@@ -126,20 +133,21 @@ function ged_insert(k,win)
   case 5 then //Text
     
     // open a dialog to enter the text
-    show_pixmap()
+    //show_pixmap()
     text = x_dialog("Enter the new text and click to place it","") ;
-    show_pixmap()    
+    //show_pixmap()    
     // get the position of the text
     [btn,xc,yc] = xclick() ;
-    
+    f.pixmap='on'    
     if ( or(btn == [0 3]) ) then
       // display the string
       xstring( xc, yc, text ) ;
     end ;
     show_pixmap() 
   case 6 then //Rectangle
-    show_pixmap()
+    //show_pixmap()
     [btn,xc,yc]=xclick();
+    f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
@@ -156,8 +164,9 @@ function ged_insert(k,win)
       xinfo(mess2)
     end    
   case 7 then //Circle
-    show_pixmap()
+    //show_pixmap()
     [btn,xc,yc]=xclick()
+    f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
