@@ -20,7 +20,7 @@ function %helps=initial_help_chapters(language)
 		"gui";"utilities";"linear";"polynomials";"control";"robust";
 		"nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
 		"tdcs";"statistics";"dcd";"identification";"mtlb";
-		"sparse"];
+		"sparse";"pvm";"tksci"];
 	
 	sep="/";
 	if MSDOS then sep="\",end
@@ -46,19 +46,9 @@ function %helps=initial_help_chapters(language)
 			"Cumulative Distribution Functions; Inverses, grand";
 			"Identification";
 			"Matlab to Scilab conversion tips";
-			"Sparse solvers"]];
-			
-		if with_tk() then
-			tk_dir = sep+"man"+sep+language+sep+"tksci";
-			tk_message = "TCL/Tk interface";
-			%helps = cat(1,%helps,[tk_dir,tk_message]);
-		end
-		
-		if with_pvm() then
-			pvm_dir = sep+"man"+sep+language+sep+"pvm";
-			pvm_message = "PVM parallel toolbox";
-			%helps = cat(1,%helps,[pvm_dir,pvm_message]);
-		end
+			"Sparse solvers";
+			"PVM parallel toolbox";
+			"TCL/Tk interface"]];
 	
 	case "fr"
 		%helps=[%helps,..
@@ -78,20 +68,9 @@ function %helps=initial_help_chapters(language)
 			"Fonctions de distributions statistiques";
 			"Identification";
 			"Aide à la conversion Matlab vers Scilab";
-			"Solveurs creux"]];
-		
-		if with_tk() then
-			tk_dir = sep+"man"+sep+language+sep+"tksci";
-			tk_message = "Interface TCL/Tk";
-			%helps = cat(1,%helps,[tk_dir,tk_message]);
-		end
-		
-		if with_pvm() then
-			pvm_dir = sep+"man"+sep+language+sep+"pvm";
-			pvm_message = "Calcul parallèle avec PVM";
-			%helps = cat(1,%helps,[pvm_dir,pvm_message]);
-		end
-	
+			"Solveurs creux";
+			"Calcul parallèle avec PVM";
+			"Interface TCL/Tk"]];
 	end
 	
 	%helps=[SCI+%helps(:,1),%helps(:,2)];
