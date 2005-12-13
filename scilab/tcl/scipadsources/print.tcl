@@ -80,6 +80,6 @@ proc selectprint_win {textarea} {
         ScilabEval_lt "toprint(\"$fname\")" "sync"
         file delete $fname
     } else {
-        ScilabEval_lt "toprint $listoffile("$textarea",fullname)"
+        ScilabEval_lt "toprint(\"$listoffile("$textarea",fullname)\")"
     }
 }
