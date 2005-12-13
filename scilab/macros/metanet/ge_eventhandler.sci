@@ -204,7 +204,7 @@ function ge_eventhandler(win,x,y,ibut)
   //----------------- Compute button submenus ----------------- 
   case "Shortest path" then 
     xinfo('Select the head and tail nodes')
-    ge_do_shortestpath()
+    ge_do_shortestpath(EGdata.GraphList)
     EGdata.Cmenu=[];
     
   //----------------- Help button submenus ----------------- 
