@@ -15,6 +15,7 @@ int C2F(intClose) _PARAMS((char *fname))
 
 	if (Rhs == 0)
 	{
+		DoCloseFigure=TRUE;
 		sprintf(MyTclCommand, "DestroyFigure 0;"); 
 	}
 	else
