@@ -45,25 +45,31 @@
     Pour supprimer l&apos;effet d&apos;une commande xclip précédente, utiliser <VERB>xclip()</VERB>.
   </P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+<![CDATA[
 x=0:0.2:2*%pi;
 x1=[sin(x);100*sin(x)];
 y1=[cos(x);100*cos(x)];
 y1=y1+20*ones(y1);
-// No clip 
-plot2d([-100,500],[-100,600],[-1,-1],"022")
+
+// set the frame
+clf();a=gca();a.data_bounds=[-100 -100;500 600];
+    
+// No clipping
 xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1))
-// clipping défini par un rectangle 
-xbasc(); plot2d([-100,500],[-100,600],[-1,-1],"022")
+e=gce(); //handle on the Segs entity
+
+// draw rectangle clipping zone 
 xrect(150,460,100,150)
-xclip(150,460,100,150)
-xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1))
-// rectangle de clipping = cadre du dessin
-xbasc(); plot2d([-100,500],[-100,600],[-1,-1],"022")
+// set clip_box for  Segs entity
+e.clip_box=[150,460,100,150];
+
+// Set usual rectangle boundaries clipping zone 
+e.clip_state='clipgrf';
 xclip("clipgrf")
-xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
-// fin du clipping
-xclip()
- ]]></EXAMPLE>
+// remove clipping
+e.clip_state='off';
+ ]]>
+  </EXAMPLE>
   <AUTHOR>J.Ph.C.  </AUTHOR>
 </MAN>

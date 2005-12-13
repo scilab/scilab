@@ -40,7 +40,7 @@
     for i=1:5
       xfrect(7-i,9-i,3,3);
       e=gce();
-      e.foreground=i;
+      e.background=i;
      end
     delete(); // delete current entity
     delete(gce()); // delete current entity

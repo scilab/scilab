@@ -177,6 +177,7 @@
    r.foreground=13;
    r.line_style=2;
    r.fill_mode="on";
+   r.background=color('red');
    r.clip_box=[-1 1;1 1];
    r.data(:,[3 4])=[1/2 1/2];
    r.data(:,[1 2])=[1/2 1/2];

@@ -92,11 +92,8 @@ if MSDOS then
 else
    xlfont("-adobe-new century schoolbook-bold-r-normal-*-%s-*-75-75-*-*-iso8859-1",10)
 end
-xbasc()
-xset("font", 6, 2)  // use helvetica at 12 pts
-plot2d()
 xset("font", 10, 4) // use Schoolbook bold at 18 pts
-xtitle("plot2d demo","x","y")
+plot2d()
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

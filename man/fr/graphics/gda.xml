@@ -46,28 +46,31 @@
   <EXAMPLE><![CDATA[
      
     a=gda() // get the handle of the model axes 
-      // setting its' properties
-    a.background=31;
+    // set its' properties
     a.box="off";
-    a.rotation_angles=[70 10];
     a.foreground=2;
     a.labels_font_size=3;
     a.labels_font_color=5;
     a.sub_tics=[5 5 3];
     a.x_location="top";
+
+    //now used the model axes for drawing
     set("figure_style","new")
-    subplot(211)
-    plot2d() //create an axes entity
+    subplot(211) //create an axes entity
+    plot2d() 
+
+   // set other model's properties
+    a.background=color('gray')
+    a.grid=[5 5 5];
     subplot(212)
-    plot3d1() //create a second axes entity
-    a.grid=[5 5 5]; // setting other model's properties
-    clf()
     t=0:0.1:5*%pi; 
-    plot2d(sin(t),cos(t),t/10) 
+    plot2d(sin(t),cos(t)) 
+
+ 
     set(a,"default_values",1); // return to the  default values of the model
                                // see sda() function
     clf()
-    plot2d(sin(t),cos(t),t/10)
+    plot2d(sin(t),cos(t))
 
   ]]></EXAMPLE>
 

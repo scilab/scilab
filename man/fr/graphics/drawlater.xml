@@ -34,7 +34,7 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-  Example 1 // one axes / one figure
+  //Example :  one axes / one figure
   set("figure_style","new") // select entity based graphics
   drawlater(); 
   xfarc(.25,.55,.1,.15,0,64*360);
@@ -48,16 +48,16 @@
   a=get("current_axes");
   a.children(1).font_size=4;
   a.children(1).font_style=4;  
-  a.children(1).foreground=5;
-  a.children(3).foreground=8;
-  a.children(4).foreground=8; 
-  a.children(5).foreground=17;
-  a.children(6).foreground=17; 
-  a.children(7).foreground=25;
-  a.children(8).foreground=25;
+  a.children(1).background=5;
+  a.children(3).background=8;
+  a.children(4).background=8; 
+  a.children(5).background=17;
+  a.children(6).background=17; 
+  a.children(7).background=25;
+  a.children(8).background=25;
   xclick();drawnow();
  
-  Example 2 // two axes / one figure
+  //Example 2:: two axes / one figure
 
   subplot(212)
   a=gca();
@@ -68,8 +68,7 @@
   plot2d1 // default drawing mode
 
   draw(a) // ...axes only is visible providing you not redraw the window
-
- drawnow() // all is visible
+  drawnow() // all is visible
   ]]></EXAMPLE>
 
   <SEE_ALSO>
