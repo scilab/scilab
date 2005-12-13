@@ -117,7 +117,7 @@ proc tkdndbind {w} {
     bind $w <ButtonRelease-1>  { if {$dndinitiated == "true"} { \
                                      set dndinitiated "false" ; \
                                  } else { \
-                                     if {[info exists listoffile("%W",fullname]} { \
+                                     if {[info exists listoffile("%W",fullname)]} { \
                                          focustextarea %W ; \
                                      } \
                                  } \
