@@ -245,12 +245,12 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j)
 
 	if (RetStr)
 	{
-		StrValue=MALLOC(strlen(RetStr)*sizeof(char));
+		StrValue=MALLOC((strlen(RetStr)+1)*sizeof(char));
 		sprintf(StrValue,"%s",RetStr);
 	}
 	else
 	{
-		StrValue=MALLOC(strlen("#NOT DEF.#")*sizeof(char));
+		StrValue=MALLOC((strlen("#NOT DEF.#")+1)*sizeof(char));
 		sprintf(StrValue,"%s","#NOT DEF.#");
 	}
 
