@@ -89,13 +89,13 @@
   <EXAMPLE><![CDATA[
 // example #1
 x=-10:10; y=-10:10;m =rand(21,21);
-xbasc()
+clf()
 xset("colormap",hotcolormap(64))
 Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
 
 // example #2
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
-xbasc()
+clf()
 xset("colormap",jetcolormap(64))
 colorbar(-1,1)
 Sgrayplot(t,t,m, strf="041")
@@ -108,21 +108,19 @@ x = linspace(0,2*%pi,n);
 y = linspace(0,%pi,n/2);
 z = sin(x')*sin(y);
 t = linspace(0,4*%pi,nt);
-xselect(); xbasc()
-fig_styl_init = get("figure_style");
-if fig_styl_init == "new" then, set("figure_style","old"), end
-xset("font",6,2)
-xset("colormap",jetcolormap(64))
-driver("X11"); xset("pixmap",1);
+xselect(); clf()
+f=gcf();
+f.color_map=jetcolormap(64);
+f.pixmap='on';
+colorbar(-1,1)
+Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
+c=gce(),e=c.children
+xtitle("Kaa''s eyes")
 for i = 1:nt
-   xbasc()
-   colorbar(-1,1)
-   Sgrayplot(x,y,cos(t(i))*z, strf="042", zminmax=[-1,1])
-   xtitle("Kaa''s eyes")
-   xset("wshow")
+   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
+   show_pixmap()
 end
-xset("pixmap",0); driver("Rec")
-if fig_styl_init == "new" then, set("figure_style","new"), end
+f.pixmap='off';
   ]]></EXAMPLE>
 
   <SEE_ALSO>

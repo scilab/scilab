@@ -54,9 +54,7 @@
   <EXAMPLE><![CDATA[
 
    set("figure_style","new") //create a figure
-
-   Matplot([1 2 3;4 5 6])
-   // draw the current colormap 
+    
    Matplot((1:xget("lastpattern")))
    e=gce(); // get current entity
 

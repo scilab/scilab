@@ -24,7 +24,7 @@
 			</PARAM_ITEM>
 			
 			<PARAM_ITEM>
-				<PARAM_NAME>Yy</PARAM_NAME>
+				<PARAM_NAME>y</PARAM_NAME>
 				<PARAM_DESCRIPTION>
 					<SP>: a real scalar, vector of size N, or a matrice N*M.</SP>
 				</PARAM_DESCRIPTION>

@@ -229,7 +229,7 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="Labels: ">
+      <DESCRIPTION_ITEM label="Label: ">
         <SP>The Labels entity are children of the <VERB>Axes</VERB> graphics
         entity. This entity defines the parameters for the 3 x,y and z labels
         and title drawn on a graphics window.</SP>
