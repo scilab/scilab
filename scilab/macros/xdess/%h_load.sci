@@ -598,7 +598,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     H=[]
     for k=1:n
       htmp = load_graphichandle(fd)
-      H=[H htmp]
+      H=[htmp H]
     end
     h=glue(H)
     if is_higher_than([3 1 0 1]) then // visible
@@ -615,7 +615,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     H=[]
     for k=1:n
       htmp = load_graphichandle(fd)
-      H=[H htmp]
+      H=[htmp H]
     end
     h=glue(H)
     
