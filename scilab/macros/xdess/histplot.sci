@@ -34,8 +34,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 //
    [lhs,rhs]=argn()
    if rhs == 0 then   // demo
-      s_mat=['xbasc()';
-	     'histplot([-4.5:0.25:4.5],rand(1,20000,''n''),style=2);';
+      s_mat=['histplot([-4.5:0.25:4.5],rand(1,20000,''n''),style=2);';
 	     'deff(''[y]=f(x)'',''y=exp(-x.*x/2)/sqrt(2*%pi);'');';
 	     'x=-4.5:0.125:4.5;x=x'';plot2d(x,f(x),26,'"000'");';
 	     'titre= ''macro histplot : (normalized) histogram plot'';';
