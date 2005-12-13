@@ -33,8 +33,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    if <VERB>x</VERB> results of an fft computation <VERB>y= fftshift(x)</VERB> or <VERB>y=
-    fftshift(x,&quot;all&quot;)</VERB> moves the zero frequency component to the center
+    if <VERB>x</VERB> results of an fft computation <VERB>y= fftshift(x)</VERB> or <VERB>y= fftshift(x,&quot;all&quot;)</VERB> moves the zero frequency component to the center
     of the spectrum, which is sometimes a more convenient form.</P>
     <P>
     If <VERB>x</VERB> is a vector of size n, y is the vector <VERB>x([n/2+1:n,1:n/2])</VERB></P>
@@ -45,7 +44,7 @@
 <![CDATA[
   [x11 x12]                  [x22 x21]
 x=[       ]        gives   y=[       ]
-  [x21 x22]       [x12 x11]
+  [x21 x22]                  [x12 x11]
    ]]>
     </VERBATIM>
     <P><VERB>y= fftshift(x,n)</VERB>  make the swap only along the <VERB>n</VERB>th dimension</P>

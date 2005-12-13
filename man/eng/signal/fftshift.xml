@@ -44,7 +44,7 @@
 <![CDATA[
   [x11 x12]                  [x22 x21]
 x=[       ]        gives   y=[       ]
-  [x21 x22]       [x12 x11]
+  [x21 x22]                  [x12 x11]
    ]]>
     </VERBATIM>
     <P><VERB>y= fftshift(x,n)</VERB>  make the swap only along the <VERB>n</VERB>th dimension</P>
