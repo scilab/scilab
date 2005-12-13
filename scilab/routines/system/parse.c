@@ -89,6 +89,8 @@ extern int C2F(run)();
 extern int C2F(name2var)();
 extern void C2F(parsecomment)();
 
+extern int scilab_timer_check();
+
 void handle_onprompt(int *n);
 
 void Msgs(int n,int ierr)
@@ -280,7 +282,7 @@ int C2F(parse)()
   /*     Beginning of a new statement, clause expression or command */
   /* ------------------------------------------------------------ */
  L15:
-  if (inxsci == 1 && scilab_timer_check() ==1 ) {
+  if (inxsci == 1 && scilab_timer_check() ) {
     C2F(sxevents)();
     if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
       iret = 1;

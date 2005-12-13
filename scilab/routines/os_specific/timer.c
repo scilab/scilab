@@ -174,12 +174,16 @@ static long stimerwin(void)
 #if WIN32
 int scilab_timer_check(void)
 {
-  int rep;
+	/* seems don't have no effect on Windows */
+	/* then return always 1 to force event loop*/
+
+  /*int rep;
   static long int ctime_old;
   long int ctime = stimerwin();
   rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
-  ctime_old=ctime;
-  return rep;
+	ctime_old=ctime;
+  return rep;*/
+	return 1;
 }
 #else 
 int scilab_timer_check(void)
@@ -188,9 +192,8 @@ int scilab_timer_check(void)
   static struct timeval ctime_old;
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
-  rep = (ctime.tv_sec > ctime_old.tv_sec) ? 1  : 
-    ( ctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
-  ctime_old=ctime;
+  rep = (ctime.tv_sec > ctime_old.tv_sec) ? 1  : ( ctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
+	if (rep) ctime_old=ctime;
   return rep;
 }
 #endif /* WIN32  */
