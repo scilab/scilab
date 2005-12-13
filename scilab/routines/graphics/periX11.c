@@ -509,7 +509,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 
       win=-1;
     }
-    if(ok) break;
+    if(ok) {*istr = 0;break;};
     /* get next event */
 
     C2F(sxevents)();
