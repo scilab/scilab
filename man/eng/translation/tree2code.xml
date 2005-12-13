@@ -57,9 +57,9 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-tree=macr2tree(help);
+tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)')
+write(%io(2),txt,'(a)');
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
