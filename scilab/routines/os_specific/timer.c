@@ -19,7 +19,11 @@
 	#include <Threads.h> 
 #endif
 /*-----------------------------------------------------------------------------------*/
-#define DT_TIMER 10000
+#if WIN32
+	#define DT_TIMER 1000 /* Windows XP SP 2 A voir sous 9x & 2k */
+#else
+	#define DT_TIMER 10000
+#endif
 
 #ifndef CLOCKS_PER_SEC
 	#if defined(sun)
@@ -174,16 +178,12 @@ static long stimerwin(void)
 #if WIN32
 int scilab_timer_check(void)
 {
-	/* seems don't have no effect on Windows */
-	/* then return always 1 to force event loop*/
-
-  /*int rep;
+  int rep;
   static long int ctime_old;
   long int ctime = stimerwin();
   rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
 	ctime_old=ctime;
-  return rep;*/
-	return 1;
+  return rep;
 }
 #else 
 int scilab_timer_check(void)
