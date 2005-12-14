@@ -23,18 +23,6 @@ slevel=prod(size(find(%mac=='scicos')))
 super_block=slevel>1
 if ~super_block then
   //
-  write(%io(2),['A new Scicos editor is available now.'
-	'It is not fully tested and validated'
-	'but it is included in this version of'
-	'Scilab and can be used in place of'
-	'this program (scicos).'
-	'To launch the new editor, use the command:'
-	'scicos_new'
-	'Send all bug reports and suggestions to ramine.nikoukhah@inria.fr'])
-  
-  
-  
-  
   // define scicos libraries
   if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 |..
 	exists('%scicos_display_mode')==0| exists('scicos_pal_libs') ==0 then 
