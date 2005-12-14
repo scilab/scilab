@@ -1228,12 +1228,14 @@ c
          call error(17)
          return
       endif
-c     
-c     call PLCBAS(H,P,C,D,CI,CS,IRA,MI,MD,X,F,W,IV,LAGR,IMP,IO,N,
-c     &                  MODO,INFO)
+
+C     SUBROUTINE PLCBAS(H,P,C,D,CI,CS,IRA,MI,MD,X,F,W,IV,DLAGR,IMP,IO,N,
+C    &                  MODO,INFO,ITER)
+C
+      iter=0
       call plcbas(stk(l2),stk(l3),stk(l4),stk(l5),stk(l6),stk(l7),
      &     ira,mi,md,stk(lw9),stk(lw10),stk(lw11),stk(lw12),
-     &     stk(lw13),imp,wte,n1,modo,info)
+     &     stk(lw13),imp,wte,n1,modo,info,iter)
       if (info .ne. 0) then
          if (info .eq. 1) then
             call msgs(104,0)
