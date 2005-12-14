@@ -18,7 +18,7 @@
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : vecteur ou matrice (entiŽère, réelle ou complexe)
+    : vecteur ou matrice (entière, réelle ou complexe)
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -26,7 +26,7 @@
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : vecteur ou matrice (entiŽère,réelle ou complexe)
+    : vecteur ou matrice (entière,réelle ou complexe)
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -47,8 +47,8 @@
       <VERB>x</VERB>: <VERB> y(:,i)=cumsum(x(:,i))</VERB>.  </P>
 
   <P> <VERB>y=cumsum(x,'m')</VERB>
-      effectue la somme cumulative selon la premiŽère dimension plus grande que
-      1 (compatibilitŽé avec Matlab). </P>
+      effectue la somme cumulative selon la première dimension plus grande que
+      1 (compatibilité avec Matlab). </P>
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

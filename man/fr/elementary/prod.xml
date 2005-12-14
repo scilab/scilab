@@ -50,8 +50,8 @@
 	prod(x(i,j),j=1,n)</VERB>)).  </P>
 
   <P> <VERB>y=prod(x,'m')</VERB>
-      effectue le produit suivant la premiŽère dimension plus grande que 1
-      (compatibilitŽé avec Matlab). </P>
+      effectue le produit suivant la première dimension plus grande que 1
+      (compatibilité avec Matlab). </P>
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

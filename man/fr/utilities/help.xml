@@ -14,7 +14,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>key</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: Une chaŽîne de caractŽères. Donne le nom de la page d'aide Žà visualiser.</SP>
+          <SP>: Une chaîne de caractères. Donne le nom de la page d'aide à visualiser.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -23,27 +23,27 @@
     <P><VERB>help</VERB> sans argument, visualise la page hypertexte contenat la
       liste des chapitres d'aide.</P>
 
-    <P><VERB>help(key)</VERB> visualise la page d'aide associŽé avec le nom
-      donnŽé par <VERB>key</VERB>. S'il n'y a pas de page d'aide, <VERB>help(key)</VERB>
+    <P><VERB>help(key)</VERB> visualise la page d'aide associé avec le nom
+      donné par <VERB>key</VERB>. S'il n'y a pas de page d'aide, <VERB>help(key)</VERB>
       appele automatiquement <VERB>apropos(key)</VERB>.</P>
 
-    <P> Scilab comprend son propre browser html Žécrit en  TCL/TK. Il est
+    <P> Scilab comprend son propre browser html écrit en  TCL/TK. Il est
       possible de choisir un autre browser. La variable globale
-      <VERB>%browsehelp</VERB> contient une chaŽîne de caractŽères dŽéfinissant
-      quel browser doit Žêtre utilisŽé. Sa valeur initiale est fixŽée par le
-      fichier startup <VERB>scilab.star</VERB> est peut Žêtre changŽée. </P>
+      <VERB>%browsehelp</VERB> contient une chaîne de caractères définissant
+      quel browser doit être utilisé. Sa valeur initiale est fixée par le
+      fichier startup <VERB>scilab.star</VERB> est peut être changée. </P>
 
 
-      <P>Si cette variable est affectŽée Žà la matrice vide ( <VERB>global
-	%browsehelp; %browsehelp=[]</VERB>) alors une fenŽêtre de dialogue
+      <P>Si cette variable est affectée à la matrice vide ( <VERB>global
+	%browsehelp; %browsehelp=[]</VERB>) alors une fenêtre de dialogue
       apparait au lancement du help et permet de  choisir le browser
-      dŽésirŽé. Attention, les differents browsers on des synatxes d'appel
-      diffŽérentes. Aussi si vous souhaitez ajouter un nouveau browser Žà la
+      désiré. Attention, les differents browsers on des synatxes d'appel
+      différentes. Aussi si vous souhaitez ajouter un nouveau browser à la
       liste vous devrez modifier la fonction Scilab <VERB>browsehelp</VERB>
       dont le code source est dans  <VERB>SCI/macros/util/browsehelp.sci</VERB>.</P>
 
 
-    <P> Voir  <LINK>man</LINK> pour apprendre Žà Žécrire de nouvelles pages d'aide.</P> 
+    <P> Voir  <LINK>man</LINK> pour apprendre à écrire de nouvelles pages d'aide.</P> 
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>apropos</LINK> </SEE_ALSO_ITEM>   

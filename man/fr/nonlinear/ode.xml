@@ -175,9 +175,9 @@
       <VERB>y</VERB> est calculée et <VERB>y</VERB>  est la matrice 
       <VERB>y=[y(t(1)),y(t(2)),...]</VERB>.    </SP>
     <P>
-      Le paramètre d&apos;entrŽée <VERB>f</VERB> de <VERB>ode</VERB> dŽéfini le
-	  membre de droite de lŽéquation diffŽérentielle du premier ordre
-	  dy/dt=f(t,y). C'est un external qui peut Žêtre :
+      Le paramètre d&apos;entrée <VERB>f</VERB> de <VERB>ode</VERB> défini le
+	  membre de droite de léquation différentielle du premier ordre
+	  dy/dt=f(t,y). C'est un external qui peut être :
     </P>
 	<DESCRIPTION_INDENT>
 	  <DESCRIPTION_ITEM>
@@ -192,20 +192,20 @@
 	  <DESCRIPTION_ITEM>
 	    <SP>
 	      Soit  une chaîne de caractères, elle désigne le nom d&apos;une subroutine Fortran
-	      ou une procŽédure C, i.e. si <VERB>ode(y0,t0,t,&quot;fex&quot;)</VERB> est la
+	      ou une procédure C, i.e. si <VERB>ode(y0,t0,t,&quot;fex&quot;)</VERB> est la
 	      commande, alors la procedure <VERB>fex</VERB> est appelée.  </SP>
-	    <P>Si c'est une subroutine Fortran, sa liste d&apos;appel doit Žêtre</P>
+	    <P>Si c'est une subroutine Fortran, sa liste d&apos;appel doit être</P>
 	    <VERBATIM><![CDATA[
 	      subroutine fex(n,t,y,ydot) 
 	      integer n
 	      double precision t,y(*),ydot(*)
 	      ]]></VERBATIM>
-	     <SP> Si c'est une fonction C son prototype doit Žêtre:</SP>
+	     <SP> Si c'est une fonction C son prototype doit être:</SP>
 	    <VERBATIM><![CDATA[
 	      void fex(int *n,double *t,double *y,double *ydot)
 	      ]]></VERBATIM>
-	    <P>Cet external peut Žêtre compilŽé par l'utilitaire
-	      <LINK>ilib_for_link</LINK> et chargŽé dynamiquement par la
+	    <P>Cet external peut être compilé par l'utilitaire
+	      <LINK>ilib_for_link</LINK> et chargé dynamiquement par la
 	      fonction <LINK>link</LINK>. </P>
 	  </DESCRIPTION_ITEM> 
 	  <DESCRIPTION_ITEM>
@@ -276,13 +276,13 @@
 	      integer n,ml,mu,nrpd
 	      double precision t,y(*),J(*)
 	      ]]></VERBATIM>
-	     <SP> Si c'est une fonction C son prototype doit Žêtre:</SP>
+	     <SP> Si c'est une fonction C son prototype doit être:</SP>
 	    <VERBATIM><![CDATA[
 	      void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
 	      ]]></VERBATIM>
 	<SP> Dans la plupart des cas il n&apos;est pas nécessaire
 	  d&apos;utiliser <VERB>ml</VERB>, <VERB>mu</VERB> et
-	  <VERB>nrpd</VERB>, qui sont relatif aŽà la possibilitŽé de stockage
+	  <VERB>nrpd</VERB>, qui sont relatif aà la possibilité de stockage
 	  "bande" du Jacobien </SP>
 	<P>
       Si <VERB>jac</VERB> est une liste, les mêmes conventions que pour <VERB>f</VERB> s&apos;appliquent.
@@ -291,11 +291,11 @@
       <DESCRIPTION_ITEM>
     <P>
       Les arguments optionnels <VERB>w</VERB> et <VERB>iw</VERB> sont 
-      des vecteurs ou le solveur stocke des informations sur son Žétat(voir
-	  <LINK>ode_optional_output</LINK> pour plus de dŽétails) . Lorsque ces
-	  paramŽêtres sont utilisŽés comme argument d'entrŽée, ils permettent de
+      des vecteurs ou le solveur stocke des informations sur son état(voir
+	  <LINK>ode_optional_output</LINK> pour plus de détails) . Lorsque ces
+	  paramêtres sont utilisés comme argument d'entrée, ils permettent de
 	  redémarrer l&apos;intégration au point où elle
-	  s&apos;était arrêtée à la sortie d'un apple prŽécŽédent Žà  <VERB>ode</VERB>.
+	  s&apos;était arrêtée à la sortie d'un apple précédent à  <VERB>ode</VERB>.
     </P>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM>
@@ -337,7 +337,7 @@
     A=[1 1;0 2];B=[1;1];omega=5;
     ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
 
-    // ----------Integration de l'Žéquation diffŽérentielle de Riccati (Žétat matriciel)
+    // ----------Integration de l'équation différentielle de Riccati (état matriciel)
     // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
     // Solution at t=[1,2] 
     function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
@@ -345,13 +345,13 @@
     t0=0;t=0:0.1:%pi;
     X=ode(eye(A),0,t,ric)
     //
-    // ---------- Calcul de exp(A)  (Žétat matriciel)
+    // ---------- Calcul de exp(A)  (état matriciel)
     A=[1,1;0,2];
     function xdot=f(t,x),xdot=A*x;,endfunction 
     ode(eye(A),0,1,f)
     ode("adams",eye(A),0,1,f)
 
-    // ----------  Calcul de exp(A)  (Žétat matriciel, cas raide, jacobien fourni)
+    // ----------  Calcul de exp(A)  (état matriciel, cas raide, jacobien fourni)
     A=[10,0;0,-1];
     function xdot=f(t,x),xdot=A*x,endfunction 
     function J=Jacobian(t,y),J=A,endfunction 

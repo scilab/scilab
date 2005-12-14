@@ -45,7 +45,7 @@
       contient le maximum pour la colonne
       <VERB>j</VERB>. <VERB>'c'</VERB> est utilisé pour
       l'opération duale sur les lignes de <VERB>A</VERB>. <VERB>'m'</VERB> est utilisé pour
-      la compatibilitŽé avec Mtalab.</P>
+      la compatibilité avec Mtalab.</P>
 
     <P> <VERB>m=maxi(A1,A2,...,An)</VERB>, où tous les <VERB>Aj</VERB> sont des
       matrices de même taille, renvoie un vecteur ou une matrice <VERB>m</VERB>

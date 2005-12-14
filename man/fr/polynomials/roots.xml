@@ -17,7 +17,7 @@
   <PARAM_DESCRIPTION>
   <SP>
     : polynôme à coefficients réels ou complexes ou vecteur des coefficients du
-	    polynôme ordonnés par puissance décroissante (compatibilité avec
+	    polynôme ordonnés par puissance décroissante (compatibilité avec
 	    Matlab).</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -26,9 +26,9 @@
   <DESCRIPTION>
   <P>
     <VERB>x=roots(p)</VERB> renvoie dans le vecteur complexe <VERB>x</VERB> les
-      racines du polynôme <VERB>p</VERB>. Pour les polynômes à coéfficients
-      réels et de degré &lt;=100, l'algorithme rapide RPOLY est utilisé. Dans
-      les autres cas les racines sont calculées comme valeurs propres de la
+      racines du polynôme <VERB>p</VERB>. Pour les polynômes à coéfficients
+      réels et de degré &lt;=100, l'algorithme rapide RPOLY est utilisé. Dans
+      les autres cas les racines sont calculées comme valeurs propres de la
       matrice compagnion du polynôme. Pour forcer ce dernier algorithme dans
       tous les cas utilisez <VERB>x=roots(p,'e')</VERB>.  
   </P>
@@ -51,9 +51,9 @@ spec(A)
     <SP>La routine RPOLY est decrite dans ACM TOMS 1 (1975) 178-189</SP>
   </BIBLIO>
   <USED_FUNCTIONS>
-    <SP>Le code source de rpoly.f peut être trouvé dans le repertoire
+    <SP>Le code source de rpoly.f peut être trouvé dans le repertoire
       routines/control de la distribution source de Scilab. Le calcul des
-      valeurs propores est effectué en utilisant les routines DGEEV et ZGEEV de
+      valeurs propores est effectué en utilisant les routines DGEEV et ZGEEV de
       LAPACK. </SP> 
   </USED_FUNCTIONS>
 </MAN>

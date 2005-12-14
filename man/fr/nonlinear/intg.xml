@@ -63,7 +63,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>intg(a,b,f)</VERB> approche l&apos;intégrale de <VERB>a</VERB> à
-      <VERB>b</VERB> de <VERB>f(t)dt</VERB>. La fonction <VERB>f</VERB> doit Žêtre
+      <VERB>b</VERB> de <VERB>f(t)dt</VERB>. La fonction <VERB>f</VERB> doit être
       continue.</P>
 
 
@@ -80,31 +80,31 @@
       suivante : <VERB> list(f,x1,x2,...)</VERB> où <VERB>f</VERB> est une
       fonction Scilab avec la liste d&apos;appel : <VERB>f(t,x1,x2,...)</VERB>.</P>
     
-    <P>Si <VERB>f</VERB> est une chaŽîne de caractŽères, ce paramŽètre dŽésigne le
-      nom d'un fonction Fortran ou d'une procŽédure C ayant une liste d'appel fixŽée:  </P>
+    <P>Si <VERB>f</VERB> est une chaîne de caractères, ce paramètre désigne le
+      nom d'un fonction Fortran ou d'une procédure C ayant une liste d'appel fixée:  </P>
 
-    <P>Dans le cas Fortran la liste d'appel doit Žêtre:
-      <VERB>double precision function f(x)</VERB> oŽù <VERB>x</VERB> est aussi
+    <P>Dans le cas Fortran la liste d'appel doit être:
+      <VERB>double precision function f(x)</VERB> où <VERB>x</VERB> est aussi
       un nombre double precision. </P>
-    <P>Dans la cas  C la liste d'appel doit Žêtre:
+    <P>Dans la cas  C la liste d'appel doit être:
       <VERB>double f(double *x)</VERB>. </P>
 
     
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-    //External Žécrit en Scilab
+    //External écrit en Scilab
     function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
     exact=-2.5432596188;
     I=intg(0,2*%pi,f)
     abs(exact-I)
 
-    //External Žécrit en Scilab avec un argument
+    //External écrit en Scilab avec un argument
     function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
     I=intg(0,2*%pi,list(f1,30))
     abs(exact-I)
 
 
-    // External Žécrit en Fortran (un compilateur Fortran est nŽécessaire)
+    // External écrit en Fortran (un compilateur Fortran est nécessaire)
     // Ecriture du code fortran
     F=['      double precision function ffun(x)'
     '      double precision x,pi'
@@ -115,13 +115,13 @@
     mputl(F,TMPDIR+'/ffun.f')
     // compilation du code Fortran
     l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
-    // link incrŽémental
+    // link incrémental
     link(l,'ffun','f')
     // integration de la fonction
     I=intg(0,2*%pi,'ffun')
     abs(exact-I)
 
-    // External Žécrit en C (un compilateur C est nŽécessaire)
+    // External écrit en C (un compilateur C est nécessaire)
     // Ecriture du code C
     C=['#include <math.h>'
     'double cfun(double *x)'

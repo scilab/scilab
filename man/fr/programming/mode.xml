@@ -48,13 +48,13 @@
 	  commande. L&apos;exécution est interrompue après chaque ligne et
 	  reprend après un appui sur la touche entrée/return.</SP>
 	<SP>Si la touche
-	  entrée/return et précédée du caractère "p", l'éxecution est suspendue
+	  entrée/return et précédée du caractère "p", l'éxecution est suspendue
 	  (voir <LINK>pause</LINK>).	</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <SP>
       L&apos;affichage est supprimé dans les fonctions compilées (voir getf ou
-      comp). Par défaut les fonctions Scilab sont éxécutées en mode silencieux ("-1"). 
+      comp). Par défaut les fonctions Scilab sont éxécutées en mode silencieux ("-1"). 
 
     </SP>
     

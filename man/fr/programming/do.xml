@@ -8,8 +8,8 @@
   <SHORT_DESCRIPTION name="do"> language keyword for loops</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
-    Le mot clé M<VERB>do</VERB> peut être utilisé dans une instruction
-      <VERB>for</VERB> ou  <VERB>while</VERB> pour séparer la définition de la
+    Le mot clé M<VERB>do</VERB> peut être utilisé dans une instruction
+      <VERB>for</VERB> ou  <VERB>while</VERB> pour séparer la définition de la
       variable de boucle de l'ensemble des instructions.
     </P>
   </DESCRIPTION>

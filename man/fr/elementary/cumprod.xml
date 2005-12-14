@@ -47,8 +47,8 @@
       <VERB>x</VERB>: <VERB> y(:,i)=cumprod(x(:,i))</VERB>. </P>
 
   <P> <VERB>y=cumprod(x,'m')</VERB>
-      effectue le produit cumulatif selon la premiŽère dimension plus grande que
-      1 (compatibilitŽé avec Matlab). </P>
+      effectue le produit cumulatif selon la première dimension plus grande que
+      1 (compatibilité avec Matlab). </P>
 
 
   </DESCRIPTION>

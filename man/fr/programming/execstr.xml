@@ -54,8 +54,8 @@
 	  défaut. </SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
-    <P> ierr=execstr(instr,'errcatch') peut gérer les erreurs de syntaxes. Ceci
-      peut être utile pour évaluer les instructions obtenues par une requète à
+    <P> ierr=execstr(instr,'errcatch') peut gérer les erreurs de syntaxes. Ceci
+      peut être utile pour évaluer les instructions obtenues par une requète à
       l'utilisateur (interface homme-machine).</P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -70,11 +70,11 @@ execstr(['if %t then';
          ' b=0'
          'end'])
 
-// récupération des erreurs d'exécution
+// récupération des erreurs d'exécution
 execstr('a=zzzzzzz','errcatch')
 execstr('a=zzzzzzz','errcatch','m')
 
-// récupération des erreurs de syntaxe
+// récupération des erreurs de syntaxe
 execstr('a=1?02','errcatch')
 lasterror(%t)
 

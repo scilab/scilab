@@ -19,10 +19,10 @@
 	  contenant, séparés par des espaces  <VERB>scilab -args 'foo1 foo2';</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-display Display">
-	<SP>: Cette option n'est valide que pour les version basŽées sur
-	  Xwindow, elle peut alors Žêtre utilisŽée pour specifier un server X. La
-	  valeur par dŽéfaut est  unix:0.0</SP>
-	<P><VERB>-display</VERB> peut Žêtre remplacŽé par <VERB>-d</VERB></P>
+	<SP>: Cette option n'est valide que pour les version basées sur
+	  Xwindow, elle peut alors être utilisée pour specifier un server X. La
+	  valeur par défaut est  unix:0.0</SP>
+	<P><VERB>-display</VERB> peut être remplacé par <VERB>-d</VERB></P>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="-debug">
@@ -31,20 +31,20 @@
 
       <DESCRIPTION_ITEM label="-e Instruction">
 	<SP>: si cette option est présente l'instruction
-	  <VERB>Instruction</VERB> est exécutée  dans Scilab immŽédiatement
-	  aprŽès les fichiers startup. </SP> 
+	  <VERB>Instruction</VERB> est exécutée  dans Scilab immédiatement
+	  après les fichiers startup. </SP> 
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM  label='-f File'> 
 	<SP>: si cette option est présente le script <VERB>File</VERB> est
-	  exécuté  dans Scilab mmŽédiatement aprŽès les fichiers startup.  </SP>  
+	  exécuté  dans Scilab mmédiatement après les fichiers startup.  </SP>  
       </DESCRIPTION_ITEM>
       
       <DESCRIPTION_ITEM label="-l lang">
-	<SP>: Cette option permet de sŽélectionner la langue de
+	<SP>: Cette option permet de sélectionner la langue de
 	l'utilisateur. Les valeurs possible pour sont <VERB>-l fr</VERB>
-	pour sŽélectionner le francais et <VERB>-l eng</VERB>
-	pour sŽélectionner l'anglais. La langue par dŽéfaut est l'anglais,
+	pour sélectionner le francais et <VERB>-l eng</VERB>
+	pour sélectionner l'anglais. La langue par défaut est l'anglais,
 	ce défaut est fixé dans le fichier <VERB>scilab.star</VERB>.</SP> 
       </DESCRIPTION_ITEM>
 
@@ -64,9 +64,9 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="-mem N">
-	<SP>: SpŽécifie la valeur initiale de la stacksize, cette option est a
-	  utiliser avec l'option -ns. Lorsque Scilab est appelŽé sans l'option
-	  -ns  la valeur initiale de la stacksize est dŽéfinie par le script
+	<SP>: Spécifie la valeur initiale de la stacksize, cette option est a
+	  utiliser avec l'option -ns. Lorsque Scilab est appelé sans l'option
+	  -ns  la valeur initiale de la stacksize est définie par le script
 	  scilab.star.</SP> 
       </DESCRIPTION_ITEM>
  
@@ -83,7 +83,7 @@
      <DESCRIPTION_ITEM label="-nouserstartup">
 	<SP>: Si cette option est fournie, les fichiers startup de
 	  l'utilisateur  <VERB>.scilab</VERB>, <VERB>scilab.ini</VERB> ne sont
-	  pas ŽéxŽécutŽés. </SP> 
+	  pas éxécutés. </SP> 
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM  label='-nw'> 
@@ -94,12 +94,12 @@
       <DESCRIPTION_ITEM  label='-nwni'> 
 	<SP>: si cette option est présente Scilab n'est pas exécuté dans
 	  une fenêtre spécifique et n'accepte pas d'interaction avec
-	  l'utilisateur. Cette option doit Žêtre utilisŽée avec l'option -e ou
+	  l'utilisateur. Cette option doit être utilisée avec l'option -e ou
 	  -f .  </SP>  
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="--texmacs">
-	<SP>: Cette option est rŽéservŽée pour TeXMacs.</SP>
+	<SP>: Cette option est réservée pour TeXMacs.</SP>
       </DESCRIPTION_ITEM>
   
    </DESCRIPTION_INDENT>

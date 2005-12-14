@@ -15,13 +15,13 @@
       <PARAM_ITEM>
         <PARAM_NAME>key</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: Une chaŽîne de caractŽères, la sŽéquence de caractŽères Žà rechercher</SP>
+          <SP>: Une chaîne de caractères, la séquence de caractères à rechercher</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>regexp</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:  Une chaŽîne de caractŽères, l'expression rŽéguliŽère Žà
+          <SP>:  Une chaîne de caractères, l'expression régulière à
 	    rechercher. Cette syntaxe ne fonctionne que le browser "Scilab Browser"</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -29,10 +29,10 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>apropos(key)</VERB> recherche les pages d'aides contenant la
-      sŽéquence de caractŽères <VERB>key</VERB> dans leur section "SHORT_DESCRIPTION".</P>
+      séquence de caractères <VERB>key</VERB> dans leur section "SHORT_DESCRIPTION".</P>
 
     <P>Avec le "Browser Scilab" uniquement , <VERB>apropos(regexp)</VERB>
-      recherche les pages d'aides contenant l'expression rŽéguliŽère donnŽée par
+      recherche les pages d'aides contenant l'expression régulière donnée par
       <VERB>regexp</VERB> dans leur section "SHORT_DESCRIPTION".</P> 
 
   </DESCRIPTION>
@@ -45,7 +45,7 @@ apropos "list of"
 global %browsehelp;%browsehelp_save=%browsehelp;%browsehelp="Scilab Browser";
 
 apropos "sin.*hyperbolic"
-apropos "^ab"  //rechercher les pages d'aide dont le nom commence par les deux caractŽères "ab"
+apropos "^ab"  //rechercher les pages d'aide dont le nom commence par les deux caractères "ab"
 apropos "quadratic.*solver"
 
 %browsehelp=%browsehelp_save;

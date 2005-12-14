@@ -30,8 +30,8 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P> Cette fonction est obsolete, il est conseillŽé d'utiliser la fonction
-      <LINK>getmark</LINK> ou l'Žéditeur interactif de propiŽétŽés graphiques.</P>
+    <P> Cette fonction est obsolete, il est conseillé d'utiliser la fonction
+      <LINK>getmark</LINK> ou l'éditeur interactif de propiétés graphiques.</P>
   <P>
     <VERB>getsymbol</VERB> ouvre une boîte de dialogue avec pour titre <VERB>title</VERB>, où l&apos;utilisateur peut choisir un marqueur ainsi que sa taille. <VERB>getsymbol</VERB> renvoie le numéro du marqueur <VERB>n</VERB> et le code de sa taille <VERB>sz</VERB>.
   </P>
