@@ -19,11 +19,7 @@
 	#include <Threads.h> 
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
-	#define DT_TIMER 1000 /* Windows XP SP 2 A voir sous 9x & 2k */
-#else
-	#define DT_TIMER 10000
-#endif
+#define DT_TIMER 10000
 
 #ifndef CLOCKS_PER_SEC
 	#if defined(sun)
@@ -164,10 +160,10 @@ static long int scilab_stimer_deprecated(void)
 static long stimerwin(void)
 {
 	long int i;
-	union {FILETIME ftFileTime;__int64  ftInt64;}ftRealTime; 
-	GetSystemTimeAsFileTime(&ftRealTime.ftFileTime); /*Granularity: 100 nanoseconds */
-	i= (long int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
-	return( i/10);
+	union {FILETIME ftFileTime;__int64  ftInt64;} ftRealTime; 
+	GetSystemTimeAsFileTime(&ftRealTime.ftFileTime); 
+	i= (int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
+	return( i/10); /** convert to microseconds **/
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -176,14 +172,14 @@ static long stimerwin(void)
  */
 /*-----------------------------------------------------------------------------------*/
 #if WIN32
+static long int ctime_old=0;
 int scilab_timer_check(void)
 {
-  int rep;
-  static long int ctime_old;
-  long int ctime = stimerwin();
-  rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
+	int rep;
+	long int ctime = stimerwin();
+	rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
 	ctime_old=ctime;
-  return rep;
+	return rep;
 }
 #else 
 int scilab_timer_check(void)
@@ -193,9 +189,8 @@ int scilab_timer_check(void)
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
   rep = (ctime.tv_sec > ctime_old.tv_sec) ? 1  : ( ctime.tv_usec - ctime_old.tv_usec > DT_TIMER ) ? 1 : 0 ;
-	if (rep) ctime_old=ctime;
+  if (rep) ctime_old=ctime;
   return rep;
 }
 #endif /* WIN32  */
 /*-----------------------------------------------------------------------------------*/
-
