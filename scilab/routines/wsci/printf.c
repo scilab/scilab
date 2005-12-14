@@ -78,7 +78,6 @@ void Scistring (char *str)
 	{
 		TextPutS (&textwin, str);
 		MyPutCh ('\n');
-		TextMessage ();
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -207,30 +206,18 @@ void Xputchar (char c)
 void Xputstring (char *str,int n)
 {
 	int i;
-	for (i = 0; i < n; i++)
-	Xputchar (str[i]);
-	TextMessage ();
+	for (i = 0; i < n; i++)	Xputchar (str[i]);
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F (xscisncr) (char *str,integer *n,integer dummy)
 {
-	int i;
-	for (i = 0; i < *n; i++)
-	{
-		Xputchar (str[i]);
-	}
-	TextMessage ();
+	Xputstring (str, *n);
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F (xscistring) (char *str,int *n,long int dummy)
 {
-	int i;
-	for (i = 0; i < *n; i++)
-	{
-		Xputchar (str[i]);
-	}
+	Xputstring (str, *n);
 	Xputstring ("\r\n", 2);
-	TextMessage ();
 }
 /*-----------------------------------------------------------------------------------*/
 void C2F (xscimore) (int *n)

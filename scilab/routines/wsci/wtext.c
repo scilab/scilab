@@ -374,9 +374,8 @@ void NewLine (LPTW lptw)
 		LimitMark(lptw, &lptw->MarkEnd);
 		UpdateWindow(lptw->hWndText);
 	}
-	if (lptw->CursorFlag)
-		TextToCursor(lptw);
-	TextMessage();
+	if (lptw->CursorFlag) TextToCursor(lptw);
+	
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -394,13 +393,10 @@ void UpdateText (LPTW lptw, int count)
   SetBkColor (hdc, GetIhmTextBackgroundColor());
 
   SelectFont (hdc, lptw->hfont);
-  TextOut (hdc, xpos, ypos,
-      (LPSTR) (lptw->ScreenBuffer + lptw->CursorPos.y * lptw->ScreenSize.x +
-	       lptw->CursorPos.x), count);
-  (void) ReleaseDC (lptw->hWndText, hdc);
+  TextOut (hdc, xpos, ypos,(LPSTR) (lptw->ScreenBuffer + lptw->CursorPos.y * lptw->ScreenSize.x +  lptw->CursorPos.x), count);
+  ReleaseDC (lptw->hWndText, hdc);
   lptw->CursorPos.x += count;
-  if (lptw->CursorPos.x >= lptw->ScreenSize.x)
-    NewLine (lptw);
+  if (lptw->CursorPos.x >= lptw->ScreenSize.x)  NewLine (lptw);
 }
 /*-----------------------------------------------------------------------------------*/
 EXPORT int WINAPI TextPutCh (LPTW lptw, BYTE ch)
