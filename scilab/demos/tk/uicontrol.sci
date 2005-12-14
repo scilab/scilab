@@ -83,7 +83,12 @@ function myuidialog()
 		 "String"    , "popup|item1|item2|item3|toto|truc|bidule");
 
   fin=%f
-  while ~fin,sleep(1),end
+  while ~fin
+    sleep(1)
+    if findobj('label', 'menu')==[] then
+      return;
+    end
+  end
   close(f)
 
   return
