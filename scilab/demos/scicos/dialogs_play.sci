@@ -49,7 +49,7 @@ function str=x_dialog(comment,default)
   TCL_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(str)+''"')
   
   for t=1:min(140*(ln-1),7000),  xpause(2000),end
-disp(timer())
+//disp(timer())
   TCL_EvalStr('destroy $w')
 endfunction
 
@@ -102,7 +102,7 @@ function [btn,xc,yc,win,Cmenu]=xclick();
   global %PT
   xselect()
   str=readline()
-  disp(str)
+//  disp(str)
   rep=evstr('list('+str+')')
   btn=rep(1)
   xc=rep(2)
