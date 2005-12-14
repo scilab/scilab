@@ -1,14 +1,28 @@
+// ==========================================
+// Copyright INRIA
 // Copyright Enpc
-mode(1)
-kp=xget("pixmap");xset("pixmap",1);
-xselect();plot3d();
-t=-%pi:0.3:%pi;
-I=20:-1:1;
-realtimeinit(0.1)
-for i=1:size(I,'*')
-  realtime(i)
-  xset("wwpc");
-  plot3d1(t,t,sin((I(i)/10)*t)'*cos((I(i)/10)*t),35,45," ",[2,0,0])
-  xset("wshow");
-end
-xset("pixmap",kp);
+// last modified : 14th, December 2005
+// ==========================================
+
+mode(0);
+
+string_to_display = [
+	'kp=xget(''pixmap'');xset(''pixmap'',1);';
+	'xselect();';
+	't=-%pi:0.3:%pi;';
+	'plot3d(t,t,sin(t)''*cos(t),35,45,''X@Y@Z'',[2,2,4]);';
+	'I=20:-1:1;';
+	'realtimeinit(0.1)';
+	'for i=1:size(I,''*'')';
+	'  realtime(i)';
+	'  xset(''wwpc'');';
+	'  plot3d1(t,t,sin((I(i)/10)*t)''*cos((I(i)/10)*t),35,45,'' '',[2,0,0])';
+	'  xset(''wshow'');';
+	'end'];
+
+x_message(string_to_display);
+execstr(string_to_display);
+
+xset('pixmap',kp);
+
+mode(-1);

@@ -4,21 +4,21 @@ xbasc();
 path=get_absolute_file_path('anim.dem');
 
 demolist=['Rotation of a 3D Surface (plot3d1)';
-          '3D curve (param3d)';
-	  'Lorentz curve (param3d) ';
-	  'Rotation of a 3D contour';
-	  'Evolution of a 3D surface (plot3d)';
-	  'N link pendulum movement';
-	  'Riemann surface';
-          'Shell'];
-deff('[]=demoexc(fil)','exec(path+fil)')
+	'3D curve (param3d)';
+	'Lorentz curve (param3d) ';
+	'Rotation of a 3D contour';
+	'Evolution of a 3D surface (plot3d)';
+	'N link pendulum movement';
+	'Riemann surface';
+	'Shell'];
+deff('[]=demoexc(fil)','exec(path+fil);')
 while %t then
-  num=x_choose(demolist(:,1),'Choose a demo');
-  if num==0 then break;
-  else
-    xdel(0);xset('window',0);
-    set("figure_style","old")
-    demoexc('anim'+string(num)+'.dem');
-  end,
+	num=x_choose(demolist(:,1),'Choose a demo');
+	if num==0 then
+		break;
+	else
+		xdel(0);xset('window',0);
+		set("figure_style","old");
+		demoexc('anim'+string(num)+'.dem');
+	end,
 end
-

@@ -1,4 +1,17 @@
-mode(-1)
-path=get_absolute_file_path('anim7.dem');
-getf(path+'riemann.sci')
-demo_riemann()
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+// ==========================================
+
+mode(0);
+
+string_to_display = [
+	'path=get_absolute_file_path(''anim7.dem'');';
+	'getf(path+''riemann.sci'');';
+	'demo_riemann();'];
+
+x_message(string_to_display);
+execstr(string_to_display);
+
+mode(-1);

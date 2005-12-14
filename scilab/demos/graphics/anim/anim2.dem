@@ -1,20 +1,39 @@
+// ==========================================
+// Copyright INRIA
 // Copyright Enpc
-mode(1)
-kp=xget("pixmap");xset("pixmap",1);
-xselect() //raise graphic window
-np=10;
-t=0:0.1:np*%pi;
-if driver()=='Pos' then st=1.5;else st=0.5;end
-I=1:st:30
-realtimeinit(0.03);
-for i=1:size(I,'*')
-  realtime(i)
-  xset("wwpc");
-  param3d((t/(np*%pi)*%pi).*sin(t),(t/(np*%pi)*%pi).*cos(t),...
-      I(i)*t/(np*%pi),35,45,'X@Y@Z',[2,4]);
-  xset("wshow");
-end
-xset("pixmap",kp);
+// last modified : 14th, December 2005
+// ==========================================
 
+mode(0);
 
+string_to_display = [
+	'kp=xget(''pixmap'');';
+	'xset(''pixmap'',1);';
+	'';
+	'xselect(); //raise graphic window';
+	'np=10;';
+	't=0:0.1:np*%pi;';
+	'';
+	'if driver()==''Pos'' then';
+	'  st=1.5;';
+	'else';
+	'  st=0.5;';
+	'end';
+	'';
+	'I=1:st:30';
+	'';
+	'realtimeinit(0.03);';
+	'';
+	'for i=1:size(I,''*'')';
+	'  realtime(i)';
+	'  xset(''wwpc'');';
+	'  param3d((t/(np*%pi)*%pi).*sin(t),(t/(np*%pi)*%pi).*cos(t),I(i)*t/(np*%pi),35,45,''X@Y@Z'',[2,4]);';
+	'  xset(''wshow'');';
+	'end';
+	'xset(''pixmap'',kp);'
+];
 
+x_message(string_to_display);
+execstr(string_to_display);
+
+mode(-1);

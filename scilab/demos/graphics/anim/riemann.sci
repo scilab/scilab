@@ -28,8 +28,6 @@ function fond()
   xset('foreground',n+2);
 endfunction
 
-
-
 function cplxmap(z,w,varargin)
 //cplxmap(z,w,T,A,leg,flags,ebox)
 //cplxmap Plot a function of a complex variable.
@@ -46,8 +44,6 @@ Colors = Colors - min(Colors);
 Colors = int((ncols-1)*Colors/max(Colors)+1);
 plot3d(X,Y,list(U,Colors),varargin(:))
 endfunction
-
-
 
 function [z,s]=cplxroot(n,m)
 //cplxroot(n,m,T,A,leg,flags,ebox)
@@ -66,4 +62,3 @@ theta = - %pi*(-n*m:n*m)/m;
 z = r * exp(%i*theta);
 s = r.^(1/n) * exp(%i*theta/n);
 endfunction
-

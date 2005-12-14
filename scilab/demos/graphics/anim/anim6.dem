@@ -1,15 +1,30 @@
+// ==========================================
+// Copyright INRIA
 // Copyright Enpc
-path=get_absolute_file_path('anim6.dem');
-getf(path+'anim6.sci')
+// last modified : 14th, December 2005
+// ==========================================
 
-mode(1)
-xselect();  //raise the graphic window
-kp=xget("pixmap");xset("pixmap",1)
+mode(0);
 
-n=10;
-r=1*ones(1,n);m=1*ones(1,n);j=1*ones(1,n);g=9.81;
-y0=0*ones(2*n,1);
-yt=read(path+'yt.wrt',20,201);  //load data
-chainap(yt); //draw the animation
+string_to_display = [
+	'path=get_absolute_file_path(''anim6.dem'');';
+	'getf(path+''anim6.sci'');';
+	'';
+	'xselect();  //raise the graphic window';
+	'kp=xget(''pixmap'');xset(''pixmap'',1)';
+	'';
+	'n=10;';
+	'r=1*ones(1,n);';
+	'm=1*ones(1,n);';
+	'j=1*ones(1,n);';
+	'g=9.81;';
+	'y0=0*ones(2*n,1);';
+	'yt=read(path+''yt.wrt'',20,201);  //load data';
+	'chainap(yt); //draw the animation'];
+	
+x_message(string_to_display);
+execstr(string_to_display);
+
 xset("pixmap",kp);
 
+mode(-1);
