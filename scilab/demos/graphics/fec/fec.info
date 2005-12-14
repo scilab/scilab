@@ -37,5 +37,5 @@ fec(x,y,triangles,func,no,Ntr,strflag,legend,brect,aaint)
 
 fec.ex2 is an example for which the mesh and the function value where 
 computed by an external `mesh builder    (amdba type mesh) and external program 
-A set of macros ( provided in file macros.sci) were used to read the to data files in Scilab 
+A set of macros ( provided in file fec_demos.sci) were used to read the to data files in Scilab 
 and plot the results 
