@@ -11,39 +11,31 @@ function show_startupinfo()
   global LANGUAGE
   if  LANGUAGE=='fr' then
     DialogNewGraphic=["Attention:"
-		      "Cette version de Scilab utilise par défaut le nouveau "
-		      "mode graphique."
+		      "* Scilab :"
 		      " "
-		      "Vous pouvez revenir à l''ancien mode par l''instruction :"
-		      "    set old_style on"
+		      "Les versions Scilab 4.x seront les dernières à fonctionner"
+		      "avec l''ancien mode graphique."
 		      " "
-		      "Cependant les animations doivent être adaptées au "
-		      "nouveau mode graphique."
+		      "* Scicos :"
 		      " "
-		      "Pour plus d''information, consulter l''aide en ligne de "
-		      """graphics_entities""."
+		      "Un nouvel éditeur est utilisable (beta version)."
 		      " "
-		      " "
-		      "Veuillez noter que l''ancien mode sera obsolète dans les futures "
-		      "versions."
+		      "Veuillez lire le fichier release_notes pour plus de détails."
 		      " "
 		      "Cliquez ""Oui"" si vous ne désirez plus voir cet avertissement"]
     Buttons=['Oui','Non']
   else
     DialogNewGraphic=["Warning:"
-		      "This Scilab version uses, by default, the new graphics mode.";
+		      "* Scilab :";
 		      " "
-		      "You can go back to the old graphic entering the instruction:"
-		      "    set old_style on"
+		      "Scilab 4.x versions family: the last versions working"
+		      " with the old graphics mode."
 		      " "
-		      "Note however that the animations should be adapted to "
-		      "the new graphics."
+		      "* Scicos :"
 		      " "
-		      "For more information, see ""graphics_entities"" help page."
+		      "A new editor available (beta version)."
 		      " "
-		      " "
-		      "Please notice that the old graphics mode will be obsolete "
-		      "in future releases."
+		      "Please read the release_notes file for more details."
 		      " "
 		      "Click ""Yes"" if you do not want to see this warning any more"]
     Buttons=['Yes','No']

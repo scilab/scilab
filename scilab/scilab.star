@@ -155,7 +155,7 @@ predef('all')
 
 // Graphic mode and Startup info ======================================
 set old_style off
-// show_startupinfo();clear show_startupinfo
+show_startupinfo();clear show_startupinfo
 
 
 // Define Scicos data tables ===========================================
