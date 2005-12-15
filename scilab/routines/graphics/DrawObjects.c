@@ -9650,6 +9650,15 @@ sciDrawObj (sciPointObj * pobj)
           integer w1, h1;
           w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
           h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
+          x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
+          x[2] = sciGetFontDeciWidth (pobj)/100;
+          x[3] = 0;
+          x[4] = sciGetFontStyle(pobj);
+          
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+          C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+
           C2F(dr1)("xstringb",sciGetText (pobj),&(ppText->fill),&v,&v,&v,&v,&v,
                    &(ppText->x),&(ppText->y),
                    &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
