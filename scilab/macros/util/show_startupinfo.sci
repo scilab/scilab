@@ -11,14 +11,14 @@ function show_startupinfo()
   global LANGUAGE
   if  LANGUAGE=='fr' then
     DialogNewGraphic=["Attention:"
+          " "
 		      "* Scilab :"
-		      " "
 		      "Les versions Scilab 4.x seront les dernières à fonctionner"
 		      "avec l''ancien mode graphique."
 		      " "
 		      "* Scicos :"
-		      " "
 		      "Un nouvel éditeur est utilisable (beta version)."
+		      " "
 		      " "
 		      "Veuillez lire le fichier release_notes pour plus de détails."
 		      " "
@@ -26,14 +26,14 @@ function show_startupinfo()
     Buttons=['Oui','Non']
   else
     DialogNewGraphic=["Warning:"
-		      "* Scilab :";
-		      " "
+ 		      " "
+		      "* Scilab :"
 		      "Scilab 4.x versions family: the last versions working"
-		      " with the old graphics mode."
+		      "with the old graphics mode."
 		      " "
 		      "* Scicos :"
-		      " "
 		      "A new editor available (beta version)."
+		      " "
 		      " "
 		      "Please read the release_notes file for more details."
 		      " "
