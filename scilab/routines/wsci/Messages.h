@@ -95,9 +95,9 @@
 #define MSG_SCIMSG85 "Are you sure to quit ?"
 #define MSG_SCIMSG86 "Quit"
 #define MSG_SCIMSG87 "Remarque Importante"
-#define MSG_SCIMSG88 "Cette version de Scilab utilise par défaut le nouveau mode graphique.\n\nVous pouvez revenir à l'ancien mode par l'instruction:\n\tset old_style on\n\nCependant les animations doivent être adaptées au nouveau mode graphique.\n\nPour plus d'information, consulter l'aide en ligne de \"graphics_entities\".\n\n\nVeuillez noter que l'ancien mode sera obsolète dans les futures versions."
+#define MSG_SCIMSG88 "* Scilab :\nLes versions Scilab 4.x seront les dernières à fonctionner avec l'ancien mode graphique.\n\n* Scicos :\nUn nouvel éditeur (optionnel) est utilisable (beta version).\n\nVeuillez lire le fichier release_notes pour plus de détails."
 #define MSG_SCIMSG89 "Ne plus afficher ce message"
-#define MSG_SCIMSG90 "This Scilab version uses, by default, the new graphics mode.\n\nYou can go back to the old graphics entering the instruction:\n\tset old_style on\n\nNote however that the animations should be adapted to the new graphics.\n\nFor more information, see \"graphics_entities\" help page.\n\n\nPlease notice that the old graphics mode will be obsolete in future releases."
+#define MSG_SCIMSG90 "* Scilab :\nScilab 4.x versions family: the last versions working with the old graphics mode.\n\n\n* Scicos :\nA optional new editor available (beta version).\n\n\nPlease read the release_notes file for more details."
 #define MSG_SCIMSG91 "Don't show this screen at startup"
 
 #define MSG_SCIMSG92 "Black and white"
@@ -122,5 +122,8 @@
 #define MSG_SCIMSG110 "Text"
 #define MSG_SCIMSG111 "Rectangle"
 #define MSG_SCIMSG112 "Circle"
+
+#define MSG_SCIMSG113 "Ouvrir release_notes.txt"
+#define MSG_SCIMSG114 "Open release_notes.txt"
 
 #endif /*_MESSAGESH_*/

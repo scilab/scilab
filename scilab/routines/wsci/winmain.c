@@ -53,6 +53,7 @@ extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
 extern void CreateSplashscreen(void);
 extern void settexmacs(void);
+extern void MessageBoxNewGraphicMode(void);
 /*-----------------------------------------------------------------------------------*/
 static void AllGraphWinDelete ();
 static LPSTR my_argv[MAXCMDTOKENS];
@@ -217,7 +218,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	strcpy(FileName,"Empty");
 
 	/* New Graphics Mode Warning */
-	/*MessageBoxNewGraphicMode();*/
+	MessageBoxNewGraphicMode();
 
 	ScilabDirectory=GetScilabDirectory(FALSE);
 

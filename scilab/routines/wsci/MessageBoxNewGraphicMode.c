@@ -6,10 +6,13 @@
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 extern LPTW GetTextWinScilab(void);
+extern char *GetScilabDirectory(BOOL UnixStyle);
 /*-----------------------------------------------------------------------------------*/
 BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam);
 BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam);
 BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify);
+/*-----------------------------------------------------------------------------------*/
+static int MessageBoxLanguageCode=0;
 /*-----------------------------------------------------------------------------------*/
 void MessageBoxNewGraphicMode(void)
 {
@@ -19,11 +22,11 @@ void MessageBoxNewGraphicMode(void)
 	int DontShowMessageNewGraphicMode,Ans;
 
 	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
-  	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
+  result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
 	if ( RegQueryValueEx(key, "DontShowMessageNewGraphicMode", 0, NULL, (LPBYTE)&Ans, &size) !=  ERROR_SUCCESS )
-  	{
-  		DontShowMessageNewGraphicMode = 0;
+  {
+  	DontShowMessageNewGraphicMode = 0;
 	}
 	else
 	{
@@ -67,26 +70,28 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM 
 
 	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
 	{
-		LanguageCode = 0; /* English Default*/
+		MessageBoxLanguageCode = 0; /* English Default*/
 	}
 	else
 	{
-		LanguageCode = Language;
+		MessageBoxLanguageCode = Language;
 	}
 
 	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
 
 	 CheckDlgButton(hDlg, IDC_CHECKNEWGRAPHIC, BST_UNCHECKED);
-	 switch (LanguageCode)
+	 switch (MessageBoxLanguageCode)
 	 {
 		 case 1:
 			 SetWindowText(hDlg,MSG_SCIMSG87);
+			 SetDlgItemText(hDlg,IDC_OPENRELEASENOTES,MSG_SCIMSG113);
 			 SetDlgItemText(hDlg,IDC_NEWGRAPHICMESSAGE,MSG_SCIMSG88);
 			 SetDlgItemText(hDlg,IDC_CHECKNEWGRAPHIC,MSG_SCIMSG89);
 		 break;
 
 		 case 0:default:
 			 SetWindowText(hDlg,MSG_WARNING22);
+			 SetDlgItemText(hDlg,IDC_OPENRELEASENOTES,MSG_SCIMSG114);
 			 SetDlgItemText(hDlg,IDC_NEWGRAPHICMESSAGE,MSG_SCIMSG90);
 			 SetDlgItemText(hDlg,IDC_CHECKNEWGRAPHIC,MSG_SCIMSG91);
 			 break;
@@ -125,6 +130,34 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 		  
 			  EndDialog(hwnd, IDOK);
 		}
+		break;
+		case IDC_OPENRELEASENOTES:
+		{
+			char *ScilabDirectory=NULL;
+			char Chemin[MAX_PATH];
+			int error=0;
+
+			ScilabDirectory=GetScilabDirectory(FALSE);
+			
+			wsprintf(Chemin,"%s\\release_note.txt",ScilabDirectory);
+			if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
+
+			error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
+			if (error<= 32)
+			{
+				switch (MessageBoxLanguageCode)
+				{
+					case 1:
+						MessageBox(hwnd,MSG_WARNING32,MSG_WARNING22,MB_ICONWARNING);
+					break;
+
+					case 0: default:
+						MessageBox(hwnd,MSG_WARNING33,MSG_WARNING22,MB_ICONWARNING);
+					break;
+				}
+			}
+		}
+		break;
 	}
 	return TRUE;
 }

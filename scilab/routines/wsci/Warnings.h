@@ -34,4 +34,6 @@
 #define MSG_WARNING29 "\n Not in console mode \n"
 #define MSG_WARNING30 "Scilab has performed a illegal operation\nand will be shutdown.\n Please save your work ..."
 #define MSG_WARNING31 "  Only in Graphical Version.\n"
+#define MSG_WARNING32 "Impossible d'ouvrir le fichier release_notes.txt"
+#define MSG_WARNING33 "Couldn't Open release_notes.txt"
 #endif /*_WARNINGSH_*/

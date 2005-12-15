@@ -53,7 +53,6 @@
 #define IDC_CHECKNEWGRAPHIC             1005
 #define IDC_NEWGRAPHICMESSAGE           1006
 #define IDC_LISTCHOOSEASCILAB           1007
-#define IDC_BUTTON1                     1008
 #define IDC_OK                          1008
 #define IDC_COMPILMODE                  1009
 #define IDC_EDITX0Y1                    1010
@@ -113,6 +112,7 @@
 #define IDC_CHECKSAV                    1065
 #define IDC_CHECKGRAPHB                 1066
 #define IDC_STATICLOGO                  1067
+#define IDC_OPENRELEASENOTES            1068
 
 // Next default values for new objects
 // 
@@ -121,7 +121,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1068
+#define _APS_NEXT_CONTROL_VALUE         1069
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
