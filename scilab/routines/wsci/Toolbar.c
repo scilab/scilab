@@ -126,6 +126,8 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
 	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
 	ScilabGC->lpmw.nButton++;
 
+	/* Disable Double Arrow */
+	/*
 	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG109,WS_CHILD|WS_VISIBLE|BS_ICON ,
 		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,
 		ButtonToolBarWeight, ToolBarHeight,
@@ -136,6 +138,7 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
 	CreateMyTooltip (ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton], "Double Arrow"); 
 	if (ScilabGC->graphicsversion!=0) ShowWindow(ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton],SW_HIDE);
 	ScilabGC->lpmw.nButton++;
+	*/
 
 	ScilabGC->lpmw.hButton[ScilabGC->lpmw.nButton]= CreateWindow("button",MSG_SCIMSG110,WS_CHILD|WS_VISIBLE|BS_ICON ,
 		ButtonToolBarWeight*ScilabGC->lpmw.nButton, 0,

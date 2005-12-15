@@ -323,6 +323,8 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 			}
 			break;
 
+			/* Disable Double Arrow */
+			/*
 			case TOOLBAR_DOUBLEARROW:
 			{
 				if (ScilabGC->graphicsversion == 0)
@@ -333,13 +335,14 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				}
 			}
 			break;
+			*/
 
 			case TOOLBAR_TEXT:
 			{
 				if (ScilabGC->graphicsversion == 0)
 				{
 					char command[1024];
-					wsprintf(command,"ged_insert(5,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged_insert(4,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
 			}
@@ -350,7 +353,7 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				if (ScilabGC->graphicsversion == 0)
 				{
 					char command[1024];
-					wsprintf(command,"ged_insert(6,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged_insert(5,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
 			}
@@ -361,7 +364,7 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				if (ScilabGC->graphicsversion == 0)
 				{
 					char command[1024];
-					wsprintf(command,"ged_insert(7,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged_insert(6,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
 			}

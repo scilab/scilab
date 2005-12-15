@@ -1282,9 +1282,10 @@ void CreateGedMenus(struct BCG * ScilabGC)
 		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
 		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","&Démarrer sélecteur d'entités","Arrê&ter sélecteur d'entités"};
 
-		integer ni=7;
-		char *InsertMenusE[]={"&Line","&Polyline","&Arrow","&Double Arrow","&Text","&Rectangle","&Circle"};
-		char *InsertMenusF[]={"&Ligne","L&igne brisée","&Fleche","&Double Fleche","&Texte","&Rectangle","&Cercle"};
+		/* Disable Double Arrow */
+		integer ni=/*7*/6;
+		char *InsertMenusE[]={"&Line","&Polyline","&Arrow",/*"&Double Arrow",*/"&Text","&Rectangle","&Circle"};
+		char *InsertMenusF[]={"&Ligne","L&igne brisée","&Fleche",/*"&Double Fleche",*/"&Texte","&Rectangle","&Cercle"};
 	#else
 		integer ne=3, menutyp=2, ierr;
 		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
