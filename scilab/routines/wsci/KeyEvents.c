@@ -71,7 +71,10 @@ void ON_EVENT_GRAPH_WM_KEYUP(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT f
 				{
 					if (GetKeyState (VK_CONTROL) < 0)
 					{
-						CodeKey=Char+CTRL_KEY;
+						if ((Char>=1) && (Char<=29))
+						{
+							CodeKey=('a'-1+Char)+CTRL_KEY;
+						}
 					}
 					else CodeKey=Char;
 
@@ -115,7 +118,10 @@ void ON_EVENT_GRAPH_WM_KEYDOWN(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT
 				{
 					if (GetKeyState (VK_CONTROL) < 0)
 					{
-						CodeKey=Char+CTRL_KEY;
+						if ((Char>=1) && (Char<=29))
+						{
+							CodeKey=('a'-1+Char)+CTRL_KEY;
+						}
 					}
 					else CodeKey=Char;
 
