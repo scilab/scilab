@@ -45,7 +45,8 @@
     au sommet <VERB>i</VERB> dans l&apos;appariement optimal ou 0 si <VERB>i</VERB> n&apos;est pas apparié.
   </P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
+  <![CDATA[
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
 he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
@@ -67,13 +68,14 @@ show_arcs(v');
 g=load_graph(SCI+'/demos/metanet/mesh1000');
 g('directed')=0;
 ta=g('tail');he=g('head');n=node_number(g);
-show_graph(g,'new',[3000,1000]);
+show_graph(g,'new',1/2,[1000,400]);
 [card,match] = best_match(g);
 sp=sparse([ta' he'],[1:size(ta,2)]',[n,n]);
 sp1=sparse([[1:n]' match'],ones(1,size(match,2))',[n,n]);
 [ij,v,mn]=spget(sp.*sp1);
 show_arcs(v');
- ]]></EXAMPLE>
+ ]]>
+ </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>perfect_match</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>

@@ -60,7 +60,7 @@ show_arcs(v');
 g=load_graph(SCI+'/demos/metanet/mesh1000');
 g('directed')=0;
 ta=g('tail');he=g('head');n=node_number(g);
-show_graph(g,'new',[3000,1000]);
+show_graph(g,'new',1/2,[1000,400]);
 [card,match] = best_match(g);
 sp=sparse([ta' he'],[1:size(ta,2)]',[n,n]);
 sp1=sparse([[1:n]' match'],ones(1,size(match,2))',[n,n]);
