@@ -154,11 +154,15 @@ str_l(27)=['exec(''SCI/demos/graphics/sd.sav'');';
           'xtitle(title,'' '','' '');'];
 
 
-str_l(28)=['xset('"font"',2,0);xsetech([0,0,0.5,0.5]);plot3d();';
-	'xsetech([0.5,0,0.5,0.5]);plot2d();';
-	'xsetech([0.5,0.5,0.5,0.5]);grayplot();';
-	'xsetech([0,0.5,0.5,0.5]);histplot();';
-	'xsetech([0,0,1,1]);'];
+str_l(28)=[
+	'subplot(2,2,1);';
+	'plot3d();';
+	'subplot(2,2,2);';
+	'plot2d();';
+	'subplot(2,2,3);';
+	'histplot();';
+	'subplot(2,2,4);';
+	'grayplot();'];
 
 str_l(29)=['fac3d();'];
 
@@ -191,7 +195,7 @@ info_l=['plot2d';
         'contour (3d) 4';
         'plot2d+gr_menu';
         'plot3d+gr_menu';
-        'plots+xsetech';
+        'subplot';
         'fac3d';
 	'fac3d1'];
 
