@@ -1233,7 +1233,7 @@ void C2F(ScilabGCGetorSetXfig)(char *str, integer flag, integer *verbose, intege
        j = strcmp(str,ScilabGCTabXfig_[i].name);
        if ( j == 0 ) 
 	 { if (*verbose == 1)
-	     sciprint("\nGettting Info on %s\r\n",str);
+	     sciprint("\nGetting Info on %s\r\n",str);
 	   if (flag == 1)
 	     (ScilabGCTabXfig_[i].getfonc)(verbose,x1,x2,dx1);
 	   else 

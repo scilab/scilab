@@ -1362,7 +1362,7 @@ void C2F(ScilabGCGetorSetGif)(char *str, integer flag, integer *verbose, integer
        j = strcmp(str,ScilabGCTabGif[i].name);
        if ( j == 0 ) 
 	 { if (*verbose == 1)
-	     sciprint("\nGettting Info on %s\r\n",str);
+	     sciprint("\nGetting Info on %s\r\n",str);
 	   if (flag == 1)
 	     (ScilabGCTabGif[i].getfonc)(verbose,x1,x2,dv1);
 	   else 
