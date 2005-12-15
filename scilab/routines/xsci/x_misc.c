@@ -509,10 +509,10 @@ void Panic(s, a)
 
 /* #include "wf_fig.h" */ /** for sys_errlist **/
 #ifndef linux 
-#if !defined(__bsdi__) && !defined(__NetBSD__) && !defined(__APPLE__)
+#if !defined(__bsdi__) && !defined(__NetBSD__) && !defined(__APPLE__) && !defined(__FreeBSD__)
 extern int	errno;
 extern int	sys_nerr;
-#if (! (defined(BSD) && (BSD >= 199306))) && !defined(freebsd)  && !defined(__APPLE__)
+#if (! (defined(BSD) && (BSD >= 199306))) && !defined(__FreeBSD__)  && !defined(__APPLE__)
 extern char    *sys_errlist[];
 #endif
 #endif

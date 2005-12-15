@@ -48,7 +48,7 @@
 #include <errno.h>
 
 #ifndef linux 
-#if !defined(__bsdi__) && !defined(__NetBSD__) && !defined(__APPLE__)
+#if !defined(__bsdi__) && !defined(__NetBSD__) && !defined(__APPLE__) && !defined(__FreeBSD__)
 extern int	errno;
 extern int	sys_nerr;
 #if (! (defined(BSD) && (BSD >= 199306))) && !defined(freebsd)  && !defined(__APPLE__)
