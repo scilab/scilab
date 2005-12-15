@@ -50,38 +50,42 @@ str_l(12)=['fplot3d1();';
       'xtitle(title,'' '','' '');'];
 
 str_l(13)=['contour();';
-	   'title=''contour '';';
+	   'title=''contour'';';
 	   'xtitle(title,'' '','' '');'];
 
 str_l(14)=['fcontour();'; 
-	   'title=[''fcontour ''];';
+	   'title=[''fcontour''];';
 	   'xtitle(title,'' '','' '');'];
 
-str_l(15)=['champ();';
+str_l(15)=['contourf();'; 
+	   'title=[''contourf''];';
+	   'xtitle(title,'' '','' '');'];   
+      
+str_l(16)=['champ();';
       'title=[''champ ''];';
       'xtitle(title,'' '','' '');'];
 
-str_l(16)=['fchamp();';
+str_l(17)=['fchamp();';
       'title=[''fchamp ''];';
       'xtitle(title,'' '','' '');'];
 
-str_l(17)=['grayplot();';
+str_l(18)=['grayplot();';
       'title=[''grayplot ''];';
       'xtitle(title,'' '','' '');'];
 
-str_l(18)=['fgrayplot();';
+str_l(19)=['fgrayplot();';
       'title=[''fgrayplot ''];';
       'xtitle(title,'' '','' '');'];
 
 
-str_l(19)=['errbar();';
+str_l(20)=['errbar();';
       'title=[''errbar ''];';
       'xtitle(title,'' '','' '');'];
 
-str_l(20)='chart();';
-str_l(21)='zgrid();';
+str_l(21)='chart();';
+str_l(22)='zgrid();';
 
-str_l(22)=[
+str_l(23)=[
 	'r=(%pi):-0.01:0;';
 	'x=r.*cos(10*r);';
 	'y=r.*sin(10*r);';
@@ -114,7 +118,7 @@ str_l(22)=[
 	'title=[''plot3d and use of xgeom''];';
 	'xtitle(title,'' '','' '');'];
 
-str_l(23)=['t=%pi*(-10:10)/10;';
+str_l(24)=['t=%pi*(-10:10)/10;';
           'deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
           'rect=[-%pi,%pi,-%pi,%pi,-5,1];';
           'z=feval(t,t,Surf);';
@@ -123,7 +127,7 @@ str_l(23)=['t=%pi*(-10:10)/10;';
           'title=[''plot3d and contour ''];';
           'xtitle(title,'' '','' '');'];
 
-str_l(24)=['t=%pi*(-10:10)/10;';
+str_l(25)=['t=%pi*(-10:10)/10;';
           'deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
           'rect=[-%pi,%pi,-%pi,%pi,-1,1];';
           'z=feval(t,t,Surf);';
@@ -132,7 +136,7 @@ str_l(24)=['t=%pi*(-10:10)/10;';
           'title=[''plot3d and contour ''];';
           'xtitle(title,'' '','' '');'];
 
-str_l(25)=['t=%pi*(-10:10)/10;';
+str_l(26)=['t=%pi*(-10:10)/10;';
           'deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
           'rect=[-%pi,%pi,-%pi,%pi,-1,1];';
           'z=feval(t,t,Surf);';
@@ -141,20 +145,20 @@ str_l(25)=['t=%pi*(-10:10)/10;';
           'title=[''plot3d and contour''];';
           'xtitle(title,'' '','' '');'];
 	  
-str_l(26)=['exec(''SCI/demos/graphics/sd.sav'');';
+str_l(27)=['exec(''SCI/demos/graphics/sd.sav'');';
 	   'set figure_style old';
            'plot2d();gr_menu(sd_1,1,1);';
            'title=[''plot2d and gr_menu ''];';
            'xtitle(title,'' '','' '');'];
 
-str_l(27)=['exec(''SCI/demos/graphics/sd.sav'');';
+str_l(28)=['exec(''SCI/demos/graphics/sd.sav'');';
 	   'set figure_style old';
            'plot3d();gr_menu(sd_2,1,1);';
           'title=[''plot3d and gr_menu ''];';
           'xtitle(title,'' '','' '');'];
 
 
-str_l(28)=[
+str_l(29)=[
 	'subplot(2,2,1);';
 	'plot3d();';
 	'subplot(2,2,2);';
@@ -164,39 +168,40 @@ str_l(28)=[
 	'subplot(2,2,4);';
 	'grayplot();'];
 
-str_l(29)=['fac3d();'];
+str_l(30)=['fac3d();'];
 
-str_l(30)=['fac3d1();'];
+str_l(31)=['fac3d1();'];
 
 info_l=['plot2d';
-        'plot2d1';     
-        'plot2d3';
-        'plot2d1';     
-        'histplot';
-        'fplot2d';
-        'param3d';
-        'param3d';
-        'plot3d';
-        'fplot3d';
-        'plot3d1';
-        'fplot3d1';
-        'contour';
-        'fcontour'; 
-        'champ';
-        'fchamp';
-        'grayplot';
-        'fgrayplot';
-        'errbar';
-        'abaque';
-        'zgrid';
-        'xgeom';
-        'contour (3d) 2';
-        'contour (3d) 3';
-        'contour (3d) 4';
-        'plot2d+gr_menu';
-        'plot3d+gr_menu';
-        'subplot';
-        'fac3d';
+	'plot2d1';     
+	'plot2d3';
+	'plot2d1';     
+	'histplot';
+	'fplot2d';
+	'param3d';
+	'param3d';
+	'plot3d';
+	'fplot3d';
+	'plot3d1';
+	'fplot3d1';
+	'contour';
+	'fcontour'; 
+	'contourf';
+	'champ';
+	'fchamp';
+	'grayplot';
+	'fgrayplot';
+	'errbar';
+	'abaque';
+	'zgrid';
+	'xgeom';
+	'contour (3d) 2';
+	'contour (3d) 3';
+	'contour (3d) 4';
+	'plot2d+gr_menu';
+	'plot3d+gr_menu';
+	'subplot';
+	'fac3d';
 	'fac3d1'];
 
 x=90;
