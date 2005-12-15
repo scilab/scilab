@@ -17,8 +17,6 @@ else
   error("function ""twinkle"" must have one or two arguments")
 end
 
-disp("Type of handle: "+h.type);
-
 f=h;
 while f.type<>"Figure"
   f=f.parent;
@@ -26,7 +24,7 @@ end
 old_pixmap=f.pixmap;
 f.pixmap="on";
 show_pixmap();
-realtimeinit(0.2); realtime(0);
+realtimeinit(0.1); realtime(0);
 k=0;
 if h.type<>"Axes" then
   v=h.visible;
