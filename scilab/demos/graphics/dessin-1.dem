@@ -49,13 +49,11 @@ str_l(12)=['fplot3d1();';
       'title=[''fplot3d : z=f(x,y), f external''];';
       'xtitle(title,'' '','' '');'];
 
-str_l(13)=['set(''figure_style'',''old'')';
-	   'contour();';
+str_l(13)=['contour();';
 	   'title=''contour '';';
 	   'xtitle(title,'' '','' '');'];
 
-str_l(14)=['set(''figure_style'',''old'')';
-	   'fcontour();'; 
+str_l(14)=['fcontour();'; 
 	   'title=[''fcontour ''];';
 	   'xtitle(title,'' '','' '');'];
 
@@ -126,19 +124,17 @@ str_l(25)=['t=%pi*(-10:10)/10;';
           'rect=[-%pi,%pi,-%pi,%pi,-1,1];';
           'z=feval(t,t,Surf);';
           'plot3d(t,t,z,35,45,''X@Y@Z'',[-1,1,3],rect);';
-          'contour(t,t,z,10,35,45,''X@Y@Z'',[0,1,0],rect);';
+          'contour(t,t,z+0.1,10,35,45,''X@Y@Z'',[0,1,0],rect);';
           'title=[''plot3d and contour ''];';
           'xtitle(title,'' '','' '');'];
 
 str_l(26)=['t=%pi*(-10:10)/10;';
-	  'set figure_style old;';
           'deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
           'rect=[-%pi,%pi,-%pi,%pi,-1,1];';
           'z=feval(t,t,Surf);';
           'plot3d(t,t,z,35,45,''X@Y@Z'',[-20,1,3],rect);';
-          'xset(''alufunction'',0);';
-          'contour(t,t,z,10,35,45,''X@Y@Z'',[0,1,0],rect);';
-          'title=[''plot3d and contour X11 only''];';
+          'contour(t,t,z+0.1,10,35,45,''X@Y@Z'',[0,1,0],rect);';
+          'title=[''plot3d and contour''];';
           'xtitle(title,'' '','' '');'];
 	  
 str_l(27)=['exec(''SCI/demos/graphics/sd.sav'');';
