@@ -43,65 +43,11 @@ tk=txt(k)
   end
 end
 
-// try and catch 
-k=1
-while k<size(txt,'r')
-  k=k+1
-  tk=txt(k)
-  if length(stripblanks(tk))>3 then
-    tktemp=stripblanks(tk)
-    if part(tktemp,1:3) == 'try' &  length(tktemp) > 4 then
-      if part(tktemp,4)==" " then
-        txt=[txt(1:k-1);part(tktemp,1:3);part(tktemp,5:length(tktemp));txt(k+1:size(txt,"*"))]         
-      end      
-    end
-  end
-end
-//
-
-k=1
-while k<size(txt,'r')
-  k=k+1
-  tk=txt(k)
-indcatch=strindex(tk,'catch')
-if indcatch<>[] then
-  tktemp=stripblanks(tk)
-  if length(tktemp)>5 then
-    for i=size(indcatch,2):-1:1
-      if indcatch(i)<>1 then
-        if or(part(tktemp,indcatch(i)-1)==[" ";",";";"]) then
-	  if length(tktemp)==indcatch(i)+4 
-	  txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):length(tktemp));txt(k+1:size(txt,"*"))]
-	  elseif or(stripblanks(part(tktemp,indcatch(i)+5:length(tktemp)))==["";",";";"]) then
-	 txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):length(tktemp));txt(k+1:size(txt,"*"))]
-	    else 
-	    indend=strindex(tktemp,'end')
-          if indend<>[] then
-	  j=max(indend)
-	  if or(part(tktemp,j-1)==["";",";";"]) then
-	  txt=[txt(1:k-1);part(tktemp,1:j-1);part(tktemp,j:j+length(tktemp))]
-	  txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):indcatch(i)+5);part(tktemp,indcatch(i)+6:j-1);txt(k+1:size(txt,"*"))]
-	  else
-	  txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):indcatch(i)+5);part(tktemp,indcatch(i)+6:length(tktemp));txt(k+1:size(txt,"*"))]
-	  end
-	  else
-	      txt=[txt(1:k-1);part(tktemp,1:indcatch(i)-1);part(tktemp,indcatch(i):indcatch(i)+5);part(tktemp,indcatch(i)+6:length(tktemp));txt(k+1:size(txt,"*"))]
-	      end
-	    end
-	  end
-	end  
-      end
-    end
-  end
-end
-
 // Number of lines in txt (i.e. in M-file)
 n=size(txt,'r')
 eoltoinsert=0
 firstctm=[]
 k=0
-nbend=0
-nblinecatch=%f
 while k<size(txt,'r')
   k=k+1
   kc=strindex(txt(k),ctm)
@@ -136,9 +82,11 @@ while k<size(txt,'r')
       end
     end
   end
-  if part(stripblanks(txt(k)),1)=="}" then
-    txt(k-1)=txt(k-1)+txt(k);
-    txt(k)="";
+  if k<>0 then 
+    if part(stripblanks(txt(k)),1)=="}" then
+      txt(k-1)=txt(k-1)+txt(k);
+      txt(k)="";
+    end
   end
 end
 
@@ -531,5 +479,6 @@ else
     txt=[txt(first_ncl);txt(1:first_ncl(1)-1);txt(first_ncl($)+1:$)]
   end
 end
+
 endfunction
 

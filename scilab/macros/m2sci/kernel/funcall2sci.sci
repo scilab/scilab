@@ -40,12 +40,16 @@ if exists("sci_"+funname)==1 then
   execstr("[sci_equiv]=sci_"+funname+"(mtlb_expr)");
 // If I don't know where I can search other M-files
 elseif res_path==[] then
-  sci_equiv=default_trad(mtlb_expr)
+  sci_equiv=default_trad(mtlb_expr)  
 else
+  sci_tmpfile =pathconvert(TMPDIR)+pathconvert(fnam)+"sci_"+funname+".sci"
+  tmpierr=execstr("getf(sci_tmpfile)","errcatch");errclear();
   sci_file=res_path+"sci_"+funname+".sci"
-  ierr=execstr("getf(sci_file)","errcatch");errclear();
+  ierr=execstr("getf(sci_file)","errcatch");errclear(); 
+  if tmpierr==0 then 
+    execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");  
   // If a translation function exists
-  if ierr==0 then
+  elseif ierr==0 then
     execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");
   // If no translation indication given
   elseif Recmode then

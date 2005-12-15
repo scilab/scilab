@@ -5,32 +5,120 @@ function   funcallname=lst_funcall(fil,fnamvect)
 //  Ouput 
 //  -funcallname : a list of vectors
 //  Input
-//  -fil : vector which contains all M-files names (path+name)found in the Paths
+//  -fil : vector which contains all M-files names (path+name) found in the Paths
 //  -fnamvect : vector which contains all M-files names (just the name) found in the Paths
 
-k=strindex(fil,".")
-if k<>[]
-  ke=k($)-1
-  base_name=part(fil,1:ke)
-else
-  ke=length(fil)
-  base_name=fil
-end
+quote="''";
+dquote="""";
 
+k=strindex(fil,".")
+ke=k($)-1
+// Function name
 ksep=strindex(fil,sep)
-fnam=part(base_name,ksep($)+1:ke) 
+fnam=part(fil,ksep($)+1:ke) // File name without extension
 txt=mgetl(fil);
 
+kf=grep(txt,["function[","function "])
+
+if isempty(kf) then
+  // Batch file
+  bval=%f
+elseif size(kf,"*")==1 then
+  // Only one function defined
+  bval=%f
+else
+  funcdecl=[]
+  for kk=kf
+    ind=strindex(txt(kk),["function[";"function "])
+    if (ind<isacomment(txt(kk)) | isacomment(txt(kk))==0) & ~isinstring(txt(kk),ind) & part(stripblanks(txt(kk),%T),1:8)=="function"  then // function prototype
+      funcdecl=[funcdecl kk]
+    end
+  end
+  if isempty(funcdecl) then
+    // "function" only exists in comments and strings
+    bval=%f
+  elseif size(funcdecl,"*")==1 then
+    bval=%f
+  else
+    bval= %t
+  end
+end
+
+// file contains more than one function declaration 
+if bval then
+// Verify if the directory exists
+  if MSDOS then
+    dirnam=unix_g('dir /b '+pathconvert(TMPDIR))
+  else
+    dirnam=unix_g('ls ' + pathconvert(TMPDIR))
+  end
+  if or(fnam==dirnam) then
+    rmdir(pathconvert(TMPDIR)+fnam,'s')
+  end
+  mkdir(pathconvert(TMPDIR),fnam)
+  
+  write(%io(2)," -- File "+fil+" contains more than one function -- ");
+  // First split file into as many files as function declared
+  funcdecl=[funcdecl size(txt,"*")+1] 
+  tmpfiles=[]
+  for k=1:size(funcdecl,"*")-1
+    if k==1 then
+      functxt=txt(funcdecl(k):funcdecl(k+1)-1)
+      str=  strindex(txt(funcdecl(k)),"(")-1
+      funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+      keq=strindex(funcname,"=")
+      if ~isempty(keq) then
+        funcname=stripblanks(part(funcname,keq+1:length(funcname)))
+      end
+      mputl(functxt,pathconvert(TMPDIR)+fnam+".m")
+    else
+      functxt=txt(funcdecl(k):funcdecl(k+1)-1)
+      str=strindex(txt(funcdecl(k)),"(")-1
+      funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+      keq=strindex(funcname,"=")
+      if ~isempty(keq) then
+        funcname=stripblanks(part(funcname,keq+1:length(funcname)))
+      end
+      tmpfiles=[tmpfiles;funcname]
+      mputl(functxt,pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles($)+".m")
+    end
+  end
+  write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
+  write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
+  
+  // Conversion of each file
+  for k=1:size(tmpfiles,"*")
+    mfile2sci(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m",pathconvert(TMPDIR)+pathconvert(fnam))
+    // Delete useless .m files
+    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m")
+  end
+  
+  // Catenation of all .sci files to have only one output file
+  txt=[]
+  for k=1:size(tmpfiles,"*")
+    txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")]
+    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")
+  end
+  mputl(txt,pathconvert(TMPDIR)+"tmp"+fnam+".sci")
+ 
+  // Catenation of all .log files to have only one output file
+  txt=[]
+  for k=1:size(tmpfiles,"*")
+    txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")]
+    // Delete useless .log files
+    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")
+  end
+  mputl(txt,pathconvert(TMPDIR)+"m2sci_tmp"+fnam+".log")
+     
+  txt=mgetl(pathconvert(TMPDIR)+fnam+".m")
+end
+
+txt=strsubst(txt,code2str(-40),"")
 [helppart,txt,batch]=m2sci_syntax(txt)
 // save txt vector, helpart and batch after the syntax modification
-save(base_name+".tree",txt,helppart,batch)
-
-//Replace TAB by SPACE
-txt=strsubst(txt,code2str(-40),"")
+save(pathconvert(TMPDIR)+fnam+".tree",txt,helppart,batch)
 
 if txt~=[] then
-  quote="''";
-  dquote="""";
   kc=strindex(txt(1),"function");
   kc=kc(1);
 
@@ -40,7 +128,9 @@ if txt~=[] then
   
   // Blanks in file name are replaced by _ for batch
   // kc+9 because 'function '
+ 
   ksc=min(strindex(txt(1),";")) // searching for a comment on first line after function prototype
+
   if isempty(ksc) then 
     ksc=length(txt(1))+1;
     firstline=[]
@@ -66,8 +156,8 @@ if txt~=[] then
   
   deff(func_proto,[firstline;txt(2:$)],"n")
   w=who("get");
-  //mname=w(1);
-  
+  mname=w(1);
+
   // Compilation
   execstr("comp("+mname+",1)")
   funcprot(fprot)
@@ -83,7 +173,7 @@ if txt~=[] then
   end
   
   funcallname=[]
-  ninstr=1
+  ninstr=1 
   // variablevect is a vector which contains all variables (excluded functions)
   variablevect=[]  
   for i=1:size(mtlbtree.inputs)
@@ -104,6 +194,8 @@ if txt~=[] then
     ninstr=ninstr+1
   end
 end
+
 // add the M-file name in funcallname vector (at the first index)
 funcallname=[fnam;funcallname]
+
 endfunction
