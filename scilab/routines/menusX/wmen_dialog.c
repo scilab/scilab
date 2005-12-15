@@ -30,7 +30,7 @@ EXPORT int CALLBACK SciDialogDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM
 		SetWindowPos(hdlg,HWND_TOP,SciMenusRect.left,SciMenusRect.top,0,0,SWP_NOSIZE | SWP_NOZORDER );
 	}
     SetDlgItemText(hdlg, DI_TIT, ScilabDialog.description);
-    SetDlgItemText(hdlg, DI_TEXT,ScilabDialog.init);
+		if (strcmp(ScilabDialog.init,"\r\n")!=0) SetDlgItemText(hdlg, DI_TEXT,ScilabDialog.init);
     SetDlgItemText(hdlg, IDOK,ScilabDialog.pButName[0]);
     SetDlgItemText(hdlg, IDCANCEL,ScilabDialog.pButName[1]);
     return TRUE;
