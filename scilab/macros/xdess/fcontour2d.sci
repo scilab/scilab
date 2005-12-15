@@ -1,16 +1,31 @@
 function fcontour2d(xr,yr,f,nz,style,strf,leg,rect,nax,void)
-// deff('[z]=Surf(x,y)','z=x**2+y**2');
-// fcontour(Surf,-1:0.1:1,-1:0.1:1,10);
-//
-//!
-// Copyright INRIA
-[lhs,rhs]=argn(0);
-if rhs==0,
-  s_mat=['deff(''[z]=Surf(x,y)'',''z=x**3+y'');';
-      'fcontour2d(-1:0.1:1,-1:0.1:1,Surf,10,style=1:10,rect=[-1,-1,1,1]*1.5,strf='"011"');'];
-  write(%io(2),s_mat);execstr(s_mat);
-  return;
-end;
+	
+	// deff('[z]=Surf(x,y)','z=x**2+y**2');
+	// fcontour(Surf,-1:0.1:1,-1:0.1:1,10);
+	
+	// Copyright INRIA
+	
+	[lhs,rhs]=argn(0);
+	
+	if rhs == 0 then   // demo
+		
+		title_demo = [
+			'';
+			'Demo of fcontour2d()';
+			'========================================';
+			''];
+		
+		s_mat=[
+			'deff(''[z]=Surf(x,y)'',''z=x**3+y'');';
+			'fcontour2d(-1:0.1:1,-1:0.1:1,Surf,10,style=1:10,rect=[-1,-1,1,1]*1.5,strf='"011"');'];
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	end
+
 if rhs<3,
   error(' I need at least 3 arguments or zero to have a demo');
 end

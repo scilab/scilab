@@ -1,19 +1,35 @@
 function []=evans(n,d,kmax)
-//seuil maxi et mini (relatifs) de discretisation
-// en espace
-// Copyright INRIA
-smax=0.002;smin=smax/3;
-nptmax=2000 //nbre maxi de pt de discretisation en k
-//
-//analyse de la liste d'appel
-[lhs,rhs]=argn(0)
-if rhs<=0 then  //demo
-  s_mat=['xbasc();n=real(poly([0.1-%i 0.1+%i,-10],''s''));';
-	'  d=real(poly([-1 -2 -%i %i],''s''));';
-	'evans(n,d,80);'];
-  write(%io(2),s_mat);execstr(s_mat);
-  return;
-end
+	// Seuil maxi et mini (relatifs) de discretisation en espace
+	// Copyright INRIA
+	
+	smax=0.002;smin=smax/3;
+	nptmax=2000 //nbre maxi de pt de discretisation en k
+	
+	//analyse de la liste d'appel
+	
+	[lhs,rhs]=argn(0)
+	
+	if rhs <= 0 then   // demo
+		
+		title_demo = [
+			'';
+			'Demo of evans()';
+			'========================================';
+			''];
+		
+		s_mat=[
+			'xbasc();';
+			'n=real(poly([0.1-%i 0.1+%i,-10],''s''));';
+			'd=real(poly([-1 -2 -%i %i],''s''));';
+			'evans(n,d,80);'];
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	end
+
 select type(n)
   case 1  then
     if rhs==2 then kmax=0,end
