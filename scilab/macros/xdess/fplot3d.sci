@@ -10,14 +10,28 @@ function fplot3d(xr,yr,f,theta,alpha,leg,flag,ebox)
 // Exemple : taper fplot3d() pour voir un exemple
 //!
 // Copyright INRIA
-[lhs,rhs]=argn(0)
-if rhs<=0 then
-  s_mat=['deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
-      't=-%pi:0.3:%pi;';
-      'fplot3d(t,t,Surf,35,45,'"X@Y@Z'");'];
-  write(%io(2),s_mat);execstr(s_mat);
-  return;
-end;
+	
+	[lhs,rhs]=argn(0)
+	if rhs <= 0 then   // demo
+		
+		title_demo = [
+			'';
+			'Demo of fplot3d()';
+			'========================================';
+			''];
+		
+		s_mat=[
+			'deff(''[z]=Surf(x,y)'',''z=sin(x)*cos(y)'');';
+			't=-%pi:0.3:%pi;';
+			'fplot3d(t,t,Surf,35,45,'"X@Y@Z'");'];
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	end
+
 if rhs<3, error(' I need at least 3 arguments'),end;
 
 opts=[]

@@ -20,17 +20,24 @@ end
 
 
 if ~rhs
-  //LineSpec and PropertySpec examples:
-  s_mat=["t=0:%pi/20:2*%pi;";
-      "subplot(211)";
-      "plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')";
-      "subplot(212)";
-      "plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])"];
-  
-  write(%io(2),"Demo of plot");
-  write(%io(2),s_mat);
-  execstr(s_mat);
-  return;
+	//LineSpec and PropertySpec examples:
+	title_demo = [
+		'';
+		'Demo of plot()';
+		'========================================';
+		''];
+	
+	s_mat=["t=0:%pi/20:2*%pi;";
+	"subplot(211)";
+	"plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')";
+	"subplot(212)";
+	"plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])"];
+	
+	write(%io(2),title_demo);
+	write(%io(2),s_mat);
+	write(%io(2),' ');
+	execstr(s_mat);
+	return;
 end
 
 

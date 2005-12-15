@@ -32,18 +32,29 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 //    - modify a little the demo
 //    - add some checking on n|x and data
 //
-   [lhs,rhs]=argn()
-   if rhs == 0 then   // demo
-      s_mat=['histplot([-4.5:0.25:4.5],rand(1,20000,''n''),style=2);';
-	     'deff(''[y]=f(x)'',''y=exp(-x.*x/2)/sqrt(2*%pi);'');';
-	     'x=-4.5:0.125:4.5;x=x'';plot2d(x,f(x),26,'"000'");';
-	     'titre= ''macro histplot : (normalized) histogram plot'';';
-	     'xtitle(titre,''C (Classes)'',''N(C)/(Nmax length(C))'');';
-	     'legends([''gaussian random sample histogram'' ''exact gaussian density''],[2 26],1)']
-      write(%io(2),s_mat)
-      execstr(s_mat);
-      return
-   end
+	[lhs,rhs]=argn()
+	if rhs == 0 then   // demo
+		
+		title_demo = [
+			'';
+			'Demo of histplot()';
+			'========================================';
+			''];
+		
+		s_mat=[
+			'histplot([-4.5:0.25:4.5],rand(1,20000,''n''),style=2);';
+			'deff(''[y]=f(x)'',''y=exp(-x.*x/2)/sqrt(2*%pi);'');';
+			'x=-4.5:0.125:4.5;x=x'';plot2d(x,f(x),26,'"000'");';
+			'titre= ''macro histplot : (normalized) histogram plot'';';
+			'xtitle(titre,''C (Classes)'',''N(C)/(Nmax length(C))'');';
+			'legends([''gaussian random sample histogram'' ''exact gaussian density''],[2 26],1)'];
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	end
    
    if rhs < 2 then
       error("wrong number of input arguments")

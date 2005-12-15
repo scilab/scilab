@@ -1,17 +1,30 @@
 function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
   
-  rhs=argn(2);
-  if rhs==0,
-    s_mat=['deff(''[z]=Surf1(x,y)'',''z=x^2+y^3'');';
-	   'x=-1:0.1:1; y=x;'
-	   'subplot(211);contour(x,y,Surf1,10);'
-	   'deff(''[z]=Surf2(x,y)'',''z=x^2+y^2'');';
-	   'z=eval3d(Surf2,x,y)'
-	   'subplot(212);plot3d(x,y,z);contour(x,y,z+0.1,10,flag=[0 2 4]);'];
-    write(%io(2),s_mat);execstr(s_mat);
-    return;
-  end;
+	rhs=argn(2);
+	if rhs == 0 then   // demo
+	
+		title_demo = [
+			'';
+			'Demo of contour()';
+			'========================================';
+			''];
+		
+		s_mat=[
+			'deff(''[z]=Surf1(x,y)'',''z=x^2+y^3'');';
+			'x=-1:0.1:1; y=x;'
+			'subplot(211);contour(x,y,Surf1,10);'
+			'deff(''[z]=Surf2(x,y)'',''z=x^2+y^2'');';
+			'z=eval3d(Surf2,x,y)'
+			'subplot(212);plot3d(x,y,z);contour(x,y,z+0.1,10,flag=[0 2 4]);'];
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	end
 
+  
   if rhs<4, error('contour requires at least 4 arguments'),end;
   levels=[]
 

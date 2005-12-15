@@ -13,16 +13,29 @@ function []=fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
 //Example : enter fchamp()
 //!
 // Copyright INRIA
-  [lhs,rhs]=argn(0);
-  if rhs <=0,
-    s_mat=['deff(''[xdot] = derpol(t,x)'',[''xd1 = x(2)'';';
-	   '''xd2 = -x(1) + (1 - x(1)**2)*x(2)'';';
-	   '''xdot = [ xd1 ; xd2 ]'']);';
-	   'fchamp(derpol,0,-1:0.1:1,-1:0.1:1,1);']
-    write(%io(2),s_mat);execstr(s_mat);
-    return;
-  end;
-
+	
+	[lhs,rhs]=argn(0)
+	if rhs <= 0 then   // demo
+		
+		title_demo = [
+			'';
+			'Demo of fchamp()';
+			'========================================';
+			''];
+		
+		s_mat=[
+			'deff(''[xdot] = derpol(t,x)'',[''xd1 = x(2)'';';
+			'''xd2 = -x(1) + (1 - x(1)**2)*x(2)'';';
+			'''xdot = [ xd1 ; xd2 ]'']);';
+			'fchamp(derpol,0,-1:0.1:1,-1:0.1:1,1);'];
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	end
+  
   if rhs <= 2,fch_xr=-1:0.1:1;end
   if rhs <= 3,fch_yr=-1:0.1:1;end
 

@@ -15,22 +15,32 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
 // Some new modifs (Bruno Pincon, Feb 2005, demo + some checking + cleaning + add
 // mesh and colout optionnal args)
 
-   [lhs,rhs] = argn();
-   if rhs==0 then
-      s_mat = ["t=-%pi:0.1:%pi";
-	       "m=sin(t)''*cos(t)";
-	       "xbasc()";
-	       "xset(''colormap'',jetcolormap(64))";
-	       "colorbar(-1,1)"
-	       "Sgrayplot(t,t,m,strf=''041'',zminmax=[-1,1])";
-	       "xtitle(''Sgrayplot demo f(x,y)=sin(x)*cos(y) on [-pi,pi]x[-pi,pi]'')"]
-      write(%io(2),s_mat)
-      execstr(s_mat)
-      return
-   elseif rhs < 3 then
-      error("bad number of input arguments")
-   end
-   
+	[lhs,rhs] = argn();
+	 
+	if rhs == 0 then   // demo
+		title_demo = [
+			'';
+			'Demo of Sgrayplot()';
+			'========================================';
+			''];
+		
+		s_mat = ["t=-%pi:0.1:%pi";
+			"m=sin(t)''*cos(t)";
+			"xbasc()";
+			"xset(''colormap'',jetcolormap(64))";
+			"colorbar(-1,1)"
+			"Sgrayplot(t,t,m,strf=''041'',zminmax=[-1,1])";
+			"xtitle(''Sgrayplot demo f(x,y)=sin(x)*cos(y) on [-pi,pi]x[-pi,pi]'')"]
+		
+		write(%io(2),title_demo);
+		write(%io(2),s_mat);
+		write(%io(2),' ');
+		execstr(s_mat);
+		return
+	elseif rhs < 3 then
+		error("bad number of input arguments")
+	end
+
    // some checks
    if ~(type(x)==1 & isreal(x) & type(y)==1 & isreal(y) & type(z)==1 & isreal(z)) then 
       error("three first arguments must be real")
