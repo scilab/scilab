@@ -21,21 +21,24 @@ function ged_insert(k,win)
   
   mess1 = "Press the right mouse button (during a while) to stop the line creation";
   mess2 = "Press any mouse button to complete the object drawing"
-  entities=['Rectangle','Segment','Polyline','Arrow','Double Arrow','Text','Circle']
-
+  entities=['Rectangle','Segment','Polyline','Arrow','Double Arrow', ...
+	    'Text','Circle']
+  
+  default_axes = gca(); // get the default axes where we start
+  f=gcf();
+  job='annotation'
+  if job=='annotation' then axes = get_insertion_axes(job,f),end
 
   [k,xc,yc]=ged_click()
-  
-  f=gcf();
+    
   pix=f.pixmap; f.pixmap='on'
   default_axes = gca(); // get the default axes where we start
   rep(3)=-1
- 
   select k
   case -100 then //window has been closed
      ged_insert_end(),return
   case 1 then //Single Line
-    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    axes = get_insertion_axes(job,f,default_axes,xc,yc)
     [xc,yc] = xchange(xc,yc,'f2i'); // I pass to pixel
     sca(axes);  // I change axes and therefore change the scale
     [xc,yc] = xchange(xc,yc,'i2f'); // in the new scale I recompute the corresponding pixel values
@@ -51,7 +54,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 2 then //Polyline (stroken line)
-    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    axes = get_insertion_axes(job,f,default_axes,xc,yc)
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
     [xc,yc] = xchange(xc,yc,'i2f');
@@ -73,7 +76,7 @@ function ged_insert(k,win)
       r.data=[r.data;r.data($,:)]
     end
   case 3 // Arrow (single arrow)
-    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    axes = get_insertion_axes(job,f,default_axes,xc,yc)
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
     [xc,yc] = xchange(xc,yc,'i2f');
@@ -82,7 +85,7 @@ function ged_insert(k,win)
     r=gce();r.foreground=-1;
     r.data(:,3)=0.;
     r.polyline_style = 4;
-    r.arrow_size_factor=5; // change the factor to have a nice arrow
+    r.arrow_size_factor=10; // change the factor to have a nice arrow
     r.clip_state='off';
     xinfo(mess2)
     yc = [];
@@ -93,7 +96,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
 //   case 4 // Double Arrow
-//     axes = get_the_axes_clicked(f,default_axes,xc,yc);
+//      axes = get_insertion_axes(job,f,default_axes,xc,yc)
 //     [xc,yc] = xchange(xc,yc,'f2i');
 //     sca(axes);
 //     [xc,yc] = xchange(xc,yc,'i2f');
@@ -132,7 +135,7 @@ function ged_insert(k,win)
     xstring( xc, yc, text ) ;
     show_pixmap() 
   case 5 then //Rectangle
-    axes = get_the_axes_clicked(f,default_axes,xc,yc);
+    axes = get_insertion_axes(job,f,default_axes,xc,yc)
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
     [xc,yc] = xchange(xc,yc,'i2f'); 
@@ -148,7 +151,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end    
   case 6 then //Circle
-      axes = get_the_axes_clicked(f,default_axes,xc,yc);
+     axes = get_insertion_axes(job,f,default_axes,xc,yc)
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
     [xc,yc] = xchange(xc,yc,'i2f');
@@ -169,69 +172,45 @@ endfunction
 
 
 
-function axes = get_the_axes_clicked(f,default_axes,xc,yc)
-// x and y are user coord.
-
-  nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
-  axes_size = f.axes_size // given in pixels
-  axes_size = [axes_size axes_size];
-
-  //if default_axes.view == '3d'
-  
-  //else // 2d case
-  
-  [x,y]=xchange(xc,yc,'f2i')
-
-  //disp("x & y vallent")
-  //disp([x y])
-
-
-  for i=1:nb_axes
-    axes = f.children(i);
-    cur_axes_bounds = axes.axes_bounds;
-    
-    //  disp("cur_axes_bounds vaut")
-    //  disp(cur_axes_bounds)
-
-    rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
-    
-    rect(3) = rect(3) + rect(1);
-    rect(4) = rect(4) + rect(2);
-    
-    //  disp("rect vaut")
-    //  disp(rect)
-    
-    if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4))
-      //    disp("Il s agit de l axes")
-      //    disp(i);
-      return axes
-      break;
+function axes = get_insertion_axes(job,f,default_axes,xc,yc)
+  if job=='annotation' then //special axes used
+    axes=f.children(1)
+    if axes.user_data=="annotation" then return,end
+    //  create a new specialized axes at left bottom of the window
+    //it shoud be better if the annotation axes be directly attached to
+    //the figure (to be done)
+    axes=newaxes();
+    axes.user_data="annotation"
+    axes.axes_bounds=[0,1,0.15,0.15];
+    axes.margins=[0 0 0 0];
+    axes.axes_visible = ["off","off","off"]
+    axes.background=f.background;
+  else //get the axes containing the point xc,yc
+    //the point  xc,yc is given in user coordinate relative to the 
+    //default_axes axes entity.
+    nb_axes = size(f.children,'*') 
+    // for now I consider that all children of a figure are of type Axes
+    axes_size = f.axes_size // given in pixels
+    axes_size = [axes_size axes_size];
+    [x,y]=xchange(xc,yc,'f2i')
+    found=%f
+    for i=1:nb_axes
+      axes = f.children(i);
+      cur_axes_bounds = axes.axes_bounds;
+      rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
+      rect(3) = rect(3) + rect(1);
+      rect(4) = rect(4) + rect(2);
+      if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4)) then  found=%t,break,end
     end
-  end
-
-  //end
-
-endfunction
-function  ged_set_insertmenu(t)
-  global LANGUAGE
-  if ~MSDOS then 
-    men='Insert'
-  elseif  LANGUAGE=='eng' then
-    men='&Insert'
-  elseif  LANGUAGE=='fr' then
-    men='&Inserer'
-  end
-  if t then 
-    setmenu(win,men)
-  else
-    unsetmenu(win,men)
+    if ~found then axes=[],end
   end
 endfunction
+
 function  ged_insert_end()
   if or(win==winsid()) then //  the window still exists
     sca(default_axes); // resume the default axes
+    f=gcf()
     f.pixmap=stripblanks(pix)
-    //ged_set_insertmenu(%t)
     clearglobal active men  
   end
   if win<>ged_current_figure then xset('window',ged_current_figure),end
