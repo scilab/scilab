@@ -1,17 +1,13 @@
+
 function ged_insert(k,win)
   //xset, xget used because ged should handle both old and new style
-
-  global ged_current_figure
-  global ged_cur_fig_handle
   
   ged_current_figure=xget('window')
   xset('window',win) 
   isold=get('figure_style')=='old'
-  if isold&k>3 then 
+  if isold then 
     message('this menu does not apply to old style graphics')
     xset('window',ged_current_figure)
-    clearglobal ged_current_figure
-    clear ged_current_figure
     return
   end
   
@@ -26,10 +22,11 @@ function ged_insert(k,win)
   pix=f.pixmap
   default_axes = gca(); // get the default axes where we start
   rep(3)=-1
+  ged_set_insertmenu(%f)
   select k
   case 1 then //Single Line
-    //show_pixmap()
     [btn,xc,yc]=xclick()
+    if or(btn==[2 5 -100]) then     ged_insert_end(),return,end
     f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i'); // I pass to pixel
@@ -47,8 +44,8 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 2 then //Polyline (stroken line)
-    //show_pixmap()
     [btn,xc,yc]=xclick()
+    if or(btn==[2 5 -100]) then     ged_insert_end(),return,end
     f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -68,12 +65,12 @@ function ged_insert(k,win)
 	show_pixmap()
 	xinfo(mess1)
       end 
-      if or(rep(3)==[2 5]) then break,end
+      if or(rep(3)==[2 5 -100]) then break,end
       r.data=[r.data;r.data($,:)]
     end
   case 3 // Arrow (single arrow)
-    //show_pixmap()
     [btn,xc,yc]=xclick()
+    if or(btn==[2 5 -100]) then     ged_insert_end(),return,end
     f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -95,8 +92,8 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   case 4 // Double Arrow
-    //show_pixmap()
     [btn,xc,yc]=xclick()
+    if or(btn==[2 5 -100]) then     ged_insert_end(),return,end
     f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -133,11 +130,10 @@ function ged_insert(k,win)
   case 5 then //Text
     
     // open a dialog to enter the text
-    //show_pixmap()
     text = x_dialog("Enter the new text and click to place it","") ;
-    //show_pixmap()    
     // get the position of the text
     [btn,xc,yc] = xclick() ;
+    if or(btn==[2 5 -100]) then ged_insert_end(),return,end
     f.pixmap='on'    
     if ( or(btn == [0 3]) ) then
       // display the string
@@ -145,8 +141,7 @@ function ged_insert(k,win)
     end ;
     show_pixmap() 
   case 6 then //Rectangle
-    //show_pixmap()
-    [btn,xc,yc]=xclick();
+    if or(btn==[2 5 -100]) then     ged_insert_end(),return,end
     f.pixmap='on'
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
@@ -164,9 +159,8 @@ function ged_insert(k,win)
       xinfo(mess2)
     end    
   case 7 then //Circle
-    //show_pixmap()
     [btn,xc,yc]=xclick()
-    f.pixmap='on'
+    if or(btn==[2 5 -100]) then     ged_insert_end(),return,end
     axes = get_the_axes_clicked(f,default_axes,xc,yc);
     [xc,yc] = xchange(xc,yc,'f2i');
     sca(axes);
@@ -183,10 +177,7 @@ function ged_insert(k,win)
       xinfo(mess2)
     end 
   end
-  sca(default_axes); // resume the default axes
-  f.pixmap=stripblanks(pix)
-  
-  xset('window',ged_current_figure)
+  ged_insert_end()
 endfunction
 
 
@@ -194,43 +185,68 @@ endfunction
 function axes = get_the_axes_clicked(f,default_axes,xc,yc)
 // x and y are user coord.
 
-nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
-axes_size = f.axes_size // given in pixels
-axes_size = [axes_size axes_size];
+  nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
+  axes_size = f.axes_size // given in pixels
+  axes_size = [axes_size axes_size];
 
-//if default_axes.view == '3d'
+  //if default_axes.view == '3d'
   
-//else // 2d case
+  //else // 2d case
   
-[x,y]=xchange(xc,yc,'f2i')
+  [x,y]=xchange(xc,yc,'f2i')
 
-//disp("x & y vallent")
-//disp([x y])
+  //disp("x & y vallent")
+  //disp([x y])
 
 
-for i=1:nb_axes
-  axes = f.children(i);
-  cur_axes_bounds = axes.axes_bounds;
-  
-//  disp("cur_axes_bounds vaut")
-//  disp(cur_axes_bounds)
+  for i=1:nb_axes
+    axes = f.children(i);
+    cur_axes_bounds = axes.axes_bounds;
+    
+    //  disp("cur_axes_bounds vaut")
+    //  disp(cur_axes_bounds)
 
-  rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
-  
-  rect(3) = rect(3) + rect(1);
-  rect(4) = rect(4) + rect(2);
-  
-//  disp("rect vaut")
-//  disp(rect)
-  
-  if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4))
-//    disp("Il s agit de l axes")
-//    disp(i);
-    return axes
-    break;
+    rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
+    
+    rect(3) = rect(3) + rect(1);
+    rect(4) = rect(4) + rect(2);
+    
+    //  disp("rect vaut")
+    //  disp(rect)
+    
+    if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4))
+      //    disp("Il s agit de l axes")
+      //    disp(i);
+      return axes
+      break;
+    end
   end
-end
 
-//end
+  //end
+endfunction
+
+function  ged_set_insertmenu(t)
+  global LANGUAGE
+  if ~MSDOS then 
+    men='Insert'
+  elseif  LANGUAGE=='eng' then
+    men='&Insert'
+  elseif  LANGUAGE=='fr' then
+    men='&Inserer'
+  end
+  if t then 
+    setmenu(win,men)
+  else
+    unsetmenu(win,men)
+  end
+endfunction
+
+function  ged_insert_end()
+  if or(win==winsid()) then //  the window still exists
+    sca(default_axes); // resume the default axes
+    f.pixmap=stripblanks(pix)
+    ged_set_insertmenu(%t)
+  end
+  if win<>ged_current_figure then xset('window',ged_current_figure),end
 
 endfunction
