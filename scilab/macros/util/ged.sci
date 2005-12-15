@@ -15,6 +15,7 @@ function ged(k,win)
     return
   end
   
+  
   scf(win);
   ged_cur_fig_handle=gcf();
   
@@ -1250,6 +1251,11 @@ function ged_eventhandler(win,x,y,ibut)
     return,
   end
 //  seteventhandler("")  
+  if ibut==10 then
+      ax=ged_select_axes(x,y)
+      if ax<>[] then sca(ax),twinkle(ax,1),end
+      return
+  end 
   global ged_handle;ged_handle=[]
   cur=gcf();scf(win)
   ged_handle=ged_getobject([x,y])
@@ -1257,9 +1263,7 @@ function ged_eventhandler(win,x,y,ibut)
   scf(cur)
 
   if ged_handle~=[] then
-
-
-    if ibut==0 | ibut==3 | ibut == 10 then
+    if ibut==0 | ibut==3  then
       //Set(h)
       tkged()
     elseif ibut==2 | ibut==5 then
@@ -2207,6 +2211,7 @@ function ged_copy_entity()
   [xc,yc]=xchange(xc,yc,'f2i')
   r=ged_getobject([xc,yc])
   if r==[] return,end
+  twinkle(r,1);	
   save(TMPDIR+'/G_Clipboard',r)
 endfunction
 
@@ -2225,4 +2230,25 @@ function ged_paste_entity()
 
 //  a=gca();b=a.data_bounds;
 //  move(r,[-1 1]*a.data_bounds/20)
+endfunction
+
+function axes =  ged_select_axes(x,y)
+// x and y are pixel coord.
+f=gcf()
+nb_axes = size(f.children,'*') // for now Iconsider that children of a figure are of type Axes
+axes_size = f.axes_size // given in pixels
+axes_size = [axes_size axes_size];
+
+for i=1:nb_axes
+  axes = f.children(i);
+  cur_axes_bounds = axes.axes_bounds;
+  rect = cur_axes_bounds.*axes_size; // rectangle in pixels (margins inside)
+  
+  rect(3) = rect(3) + rect(1);
+  rect(4) = rect(4) + rect(2);
+  if (x>rect(1) & x<rect(3) & y>rect(2) & y<rect(4)) then
+     return 
+  end
+end
+axes=[]
 endfunction
