@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -24,7 +24,7 @@
         <PARAM_NAME>choice-name</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res</SP>
+          <SP>: chaîne de caractères</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -32,7 +32,7 @@
         <PARAM_NAME>x1,...,x5</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: dÃ©pend de <VERB>choice-name</VERB></SP>
+          <SP>: dépend de <VERB>choice-name</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -40,80 +40,80 @@
 
   <DESCRIPTION>
     <P><VERB>Remarque Importante : </VERB>Les versions Scilab 4.x seront les
-    derniÃ¨res Ã  fonctionner avec l'ancien mode graphique.</P>
+    dernières à  fonctionner avec l'ancien mode graphique.</P>
 
-    <P><VERB>xset</VERB> est utilisÃ©e pour changer des valeurs du contexte
-    graphique de la fenÃªtre graphique courante.</P>
+    <P><VERB>xset</VERB> est utilisée pour changer des valeurs du contexte
+    graphique de la fenêtre graphique courante.</P>
 
-    <P>Quand elle est appelÃ©e sans argument, une boÃ®te de dialogue est
-    affichÃ©e avec les valeurs courantes et des changements peuvent Ãªtre
-    effectuÃ©s Ã &#160; l'aide de boutons.</P>
+    <P>Quand elle est appelée sans argument, une boîte de dialogue est
+    affichée avec les valeurs courantes et des changements peuvent être
+    effectués à &#160; l'aide de boutons.</P>
 
     <P>Utiliser <VERB>xset()</VERB> pour afficher ou changer la couleur
     courante, le marqueur ou la police.</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="xset(&quot;alufunction&quot;,number)">
-        <SP>: utilisÃ© pour changer l'opÃ©rateur logique de dessin L'opÃ©rateur
+        <SP>: utilisé pour changer l'opérateur logique de dessin L'opérateur
         est choisi avec <VERB>x1</VERB>. Les valeurs habituelles sont : 3 pour
-        la copie (par dÃ©faut), 6 pour le ou exclusif (pour faire des
+        la copie (par défaut), 6 pour le ou exclusif (pour faire des
         animations) et 0 pour effacer. Voir <VERB>alufunctions</VERB> pour
-        plus de dÃ©tails.</SP>
+        plus de détails.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;auto clear&quot;,&quot;on&quot;|&quot;off&quot;)">
         <SP>: Met "on" ou "off" le mode d'effacement automatique des
         graphiques. Quand le mode est "on", les dessins successifs ne sont pas
-        superposÃ©s, i.e. la commande <VERB>xbasc()</VERB> (effacement de la
-        fenÃªtre graphique et effacement des graphiques enregistrÃ©s) est
-        exÃ©cutÃ©e avant chaque commande graphique de haut niveau (plot2d par
-        exemple). La valeur par dÃ©faut est "off".</SP>
+        superposés, i.e. la commande <VERB>xbasc()</VERB> (effacement de la
+        fenêtre graphique et effacement des graphiques enregistrés) est
+        exécutée avant chaque commande graphique de haut niveau (plot2d par
+        exemple). La valeur par défaut est "off".</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;background&quot;,color)">
-        <SP>: Change la couleur d'arriÃ¨re plan de la fenÃªtre graphique
-        courante. La fenÃªtre graphique courante dÃ©signe la zone des axes oÃ¹
-        les dessins sont dessinÃ©s, pas la figure entiÃ¨re.</SP>
+        <SP>: Change la couleur d'arrière plan de la fenêtre graphique
+        courante. La fenêtre graphique courante désigne la zone des axes où
+        les dessins sont dessinés, pas la figure entière.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;clipping&quot;,x,y,w,h)">
-        <SP>: DÃ©finit la zone de clipping (la zone de la fenÃªtre graphique oÃ¹
-        les dessins peuvent Ãªtre dessinÃ©s) comme le rectangle (x,y,w,h) (point
-        en haut Ã &#160; gauche, largeur, hauteur). Cette fonction utilise
-        l'Ã©chelle courante de la fenÃªtre graphique.</SP>
+        <SP>: Définit la zone de clipping (la zone de la fenêtre graphique où
+        les dessins peuvent être dessinés) comme le rectangle (x,y,w,h) (point
+        en haut à &#160; gauche, largeur, hauteur). Cette fonction utilise
+        l'échelle courante de la fenêtre graphique.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;color&quot;,value)">
-        <SP>: DÃ©finit la couleur par dÃ©faut de tracÃ© de ligne, de remplissage,
+        <SP>: Définit la couleur par défaut de tracé de ligne, de remplissage,
         de texte, pour toutes les fonctions de dessin. <VERB>value</VERB> est
-        un entier projetÃ© sur l'intervalle [0,whiteid]. 0 est utilisÃ© pour le
-        noir et whiteid pour le blanc. La valeur de whiteid peut Ãªtre obtenue
+        un entier projeté sur l'intervalle [0,whiteid]. 0 est utilisé pour le
+        noir et whiteid pour le blanc. La valeur de whiteid peut être obtenue
         avec <VERB>xget("white")</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;colormap&quot;,cmap)">
-        <SP>: DÃ©finit la table des couleurs Ã &#160; partir d'une matrice m x
-        3. m est le nombre de couleurs. La couleur numÃ©ro i est donnÃ©e comme
+        <SP>: Définit la table des couleurs à &#160; partir d'une matrice m x
+        3. m est le nombre de couleurs. La couleur numéro i est donnée comme
         le triplet cmap(i,1), cmap(i,2), cmap(i,3) correspondant
-        respectivement aux intensitÃ©s de rouge, vert et bleu, comprises entre
+        respectivement aux intensités de rouge, vert et bleu, comprises entre
         0 et 1.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;dashes&quot;,i)">
         <SP>: en mode noir et blanc (<VERB>xset("use color",0)</VERB>),
-        choisit le style de pointillÃ© numÃ©ro i (0 pour une ligne continue). En
+        choisit le style de pointillé numéro i (0 pour une ligne continue). En
         mode couleur (<VERB>xset("use color",1)</VERB>) cette commande est
-        utilisÃ©e pour choisir la couleur du marqueur, des lignes et du texte.
-        Ce mot-clÃ© est obsolÃ¨te, utiliser <VERB>xset('color',i)</VERB> et
-        <VERB>xset('line style',i)</VERB> Ã &#160; la place.</SP>
+        utilisée pour choisir la couleur du marqueur, des lignes et du texte.
+        Ce mot-clé est obsolète, utiliser <VERB>xset('color',i)</VERB> et
+        <VERB>xset('line style',i)</VERB> à &#160; la place.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;default&quot;)">
-        <SP>: RÃ©initialise le contexte graphiques aux valeurs par dÃ©faut.</SP>
+        <SP>: Réinitialise le contexte graphiques aux valeurs par défaut.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;font&quot;,fontid,fontsize) : choisit la police courante et sa taille.">
-        <SP>Noter que <VERB>fontsize</VERB> s'applique aussi Ã &#160; toutes
+        <SP>Noter que <VERB>fontsize</VERB> s'applique aussi à &#160; toutes
         les polices autres que <VERB>fontid</VERB> .</SP>
       </DESCRIPTION_ITEM>
 
@@ -122,38 +122,38 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;foreground&quot;,color)">
-        <SP>: Choisit la couleur de premier plan pour la fenÃªtre graphique
+        <SP>: Choisit la couleur de premier plan pour la fenêtre graphique
         courante.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;fpf&quot;,string)">
-        <SP>: Change le format des nombres affichÃ©s sur les courbes de niveau,
-        oÃ¹ <VERB>string</VERB> prÃ©cise le format comme en langage C (par
+        <SP>: Change le format des nombres affichés sur les courbes de niveau,
+        où <VERB>string</VERB> précise le format comme en langage C (par
         exemple <VERB>string="%.3f"</VERB>). Utiliser <VERB>string=""</VERB>
-        pour revenir au format par dÃ©faut.</SP>
+        pour revenir au format par défaut.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="xset(&quot;hidden3d&quot;,colorid) : Choisit la couleur des parties arriÃ¨res dans la fonction plot3d.">
-        <SP><VERB>colorid=0</VERB> supprime l'affichage des parties arriÃ¨res
-        des objets 3D. Il s'agit d'une technique dÃ©nommÃ©e 'culling' et permet
-        d'accÃ©lÃ©rer le rendu des surfaces fermÃ©es.</SP>
+      <DESCRIPTION_ITEM label="xset(&quot;hidden3d&quot;,colorid) : Choisit la couleur des parties arrières dans la fonction plot3d.">
+        <SP><VERB>colorid=0</VERB> supprime l'affichage des parties arrières
+        des objets 3D. Il s'agit d'une technique dénommée 'culling' et permet
+        d'accélérer le rendu des surfaces fermées.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;line mode&quot;,type)">
-        <SP>: Cette fonction est utilisÃ©e pour changer le mode de dessin des
+        <SP>: Cette fonction est utilisée pour changer le mode de dessin des
         lignes. Mode absolu pour type=1 et relatif avec type=0. (attention :
-        le mode type=0 est buggÃ©)</SP>
+        le mode type=0 est buggé)</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;line style&quot;,value)">
         <SP>: Choisit le style de ligne (1: continu, &gt;1 pour les
-        pointillÃ©s).</SP>
+        pointillés).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;mark&quot;,markid,marksize)">
         <SP>: Choisit le marqueur ainsi que sa taille. Utiliser
         <VERB>xset()</VERB> pour voir les marqueurs. Noter que
-        <VERB>marksize</VERB> s'applique aussi Ã &#160; tous les marqueurs
+        <VERB>marksize</VERB> s'applique aussi à &#160; tous les marqueurs
         autres que <VERB>markid</VERB>.</SP>
       </DESCRIPTION_ITEM>
 
@@ -163,69 +163,69 @@
 
       <DESCRIPTION_ITEM label="xset(&quot;pattern&quot;,value)">
         <SP>: Choisit le motif pour les fonctions de remplissage.
-        <VERB>value</VERB> est un entier projetÃ© sur l'intervalle [0,whiteid].
-        0 est utilisÃ© pour le noir et whiteid pour le blanc. La valeur de
-        whiteid peut Ãªtre obtenue avec <VERB>xget("white")</VERB>. "pattern"
-        est Ã©quivalent Ã &#160; "color".</SP>
+        <VERB>value</VERB> est un entier projeté sur l'intervalle [0,whiteid].
+        0 est utilisé pour le noir et whiteid pour le blanc. La valeur de
+        whiteid peut être obtenue avec <VERB>xget("white")</VERB>. "pattern"
+        est équivalent à &#160; "color".</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;pixmap&quot;,flag)">
-        <SP>Si flag=0 les graphiques sont dessinÃ©s directement sur l'Ã©cran. Si
-        flag=1 les graphiques sont dessinÃ©s sur un pixmap et sont affichÃ©s
-        Ã &#160; l'Ã©cran avec la commande <VERB>xset("wshow")</VERB>. Le pixmap
-        est effacÃ© avec la commande <VERB>xset("wwpc")</VERB>. Noter que la
+        <SP>Si flag=0 les graphiques sont dessinés directement sur l'écran. Si
+        flag=1 les graphiques sont dessinés sur un pixmap et sont affichés
+        à &#160; l'écran avec la commande <VERB>xset("wshow")</VERB>. Le pixmap
+        est effacé avec la commande <VERB>xset("wwpc")</VERB>. Noter que la
         commande <VERB>xbasc()</VERB> efface aussi le pixmap.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;thickness&quot;,value)">
-        <SP>: Choisit l'Ã©paisseur des lignes en pixels (0 et 1 = Ã©paisseur de
+        <SP>: Choisit l'épaisseur des lignes en pixels (0 et 1 = épaisseur de
         1 pixel).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;use color&quot;,flag)">
         <SP>Si flag=1 alors <VERB>xset("pattern",.)</VERB> ou
         <VERB>xset("dashes",.)</VERB> changent la couleur de dessin ou de
-        remplissage. Si flag=0 on passe en mode pointillÃ©s et noir et
+        remplissage. Si flag=0 on passe en mode pointillés et noir et
         blanc.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;viewport&quot;,x,y)">
-        <SP>: Choisit la position de la fenÃªtre glissante.</SP>
+        <SP>: Choisit la position de la fenêtre glissante.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;wdim&quot;,width,height)">
-        <SP>: Choisit la largeur et la hauteur de la fenÃªtre graphique
+        <SP>: Choisit la largeur et la hauteur de la fenêtre graphique
         courante. Cette option n'est pas prise en compte par le pilote
         PostScript.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;wpdim&quot;,width,height)">
-        <SP>: Choisit (en pixels) la largeur et la hauteur de la fenÃªtre
-        graphique courante physique (qui peut Ãªtre diffÃ©rente de la taille
-        rÃ©elle en mode wresize=1). Cette option n'est pas prise en compte par
+        <SP>: Choisit (en pixels) la largeur et la hauteur de la fenêtre
+        graphique courante physique (qui peut être différente de la taille
+        réelle en mode wresize=1). Cette option n'est pas prise en compte par
         le pilote PostScript.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;window&quot;,window-number)">
-        <SP>: Choisit la fenÃªtre <VERB>window-number</VERB> comme fenÃªtre
-        graphique par dÃ©faut et crÃ©e cette fenÃªtre si elle n'existe pas.</SP>
+        <SP>: Choisit la fenêtre <VERB>window-number</VERB> comme fenêtre
+        graphique par défaut et crée cette fenêtre si elle n'existe pas.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;wpos&quot;,x,y)">
-        <SP>: Choisit la position (en pixels) du point en haut Ã &#160; gauche
-        de la fenÃªtre graphique.</SP>
+        <SP>: Choisit la position (en pixels) du point en haut à &#160; gauche
+        de la fenêtre graphique.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="xset(&quot;wresize&quot;,flag)">
-        <SP>Si flag=1 alors les graphiques sont automatiquement redimensionnÃ©s
-        de maniÃ¨re Ã &#160; remplir la fenÃªtre graphique.</SP>
+        <SP>Si flag=1 alors les graphiques sont automatiquement redimensionnés
+        de manière à &#160; remplir la fenêtre graphique.</SP>
 
         <VERBATIM>xdel();xset("wresize",1);plot2d();xset("wdim",1000,500)</VERBATIM>
 
-        <P>Si flag=0 l'Ã©chelle des graphiques est inchangÃ©e quand la fenÃªtre
-        est redimensionnÃ©e. Le "panner" en haut Ã &#160; gauche de la fenÃªtre
-        ou les flÃ¨ches du clavier peuvent Ãªtre utilisÃ©es pour faire glisser le
-        contenu de la fenÃªtre.</P>
+        <P>Si flag=0 l'échelle des graphiques est inchangée quand la fenêtre
+        est redimensionnée. Le "panner" en haut à &#160; gauche de la fenêtre
+        ou les flèches du clavier peuvent être utilisées pour faire glisser le
+        contenu de la fenêtre.</P>
 
         <VERBATIM>xdel();plot2d();xset("wresize",0);xset("wdim",1000,500)</VERBATIM>
       </DESCRIPTION_ITEM>

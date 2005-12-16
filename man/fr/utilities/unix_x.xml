@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,8 +9,8 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="unix_x">exÃ©cution d'une commande Unix ou DOS,
-  sortie redirigÃ©e vers une fenÃªtre</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="unix_x">exécution d'une commande Unix ou DOS,
+  sortie redirigée vers une fenêtre</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>unix_x(command-name)
   </CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE>
@@ -18,15 +18,15 @@
   <PARAM><PARAM_INDENT> <PARAM_ITEM>
       <PARAM_NAME>command-name</PARAM_NAME>
 
-      <PARAM_DESCRIPTION>: chaÃ®ne de caractÃ¨res</PARAM_DESCRIPTION>
+      <PARAM_DESCRIPTION>: chaîne de caractères</PARAM_DESCRIPTION>
     </PARAM_ITEM> </PARAM_INDENT></PARAM>
 
-  <DESCRIPTION><P> Envoie la chaÃ®ne <VERB>command-name</VERB> Ã  l'interprÃ©teur
+  <DESCRIPTION><P> Envoie la chaîne <VERB>command-name</VERB> à  l'interpréteur
   de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
-  les erreurs sont reportÃ©es dans une fenÃªtre . Les erreurs se produisant dans
-  l'interprÃ©teur de commande sont interceptÃ©es; notez que la *derniÃ¨re erreur
-  uniquement* est signalÃ©e quand <VERB>command-name</VERB> est une suite de
-  commandes sÃ©parÃ©es par des ";" </P></DESCRIPTION>
+  les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
+  l'interpréteur de commande sont interceptées; notez que la *dernière erreur
+  uniquement* est signalée quand <VERB>command-name</VERB> est une suite de
+  commandes séparées par des ";" </P></DESCRIPTION>
 
   <EXAMPLE><![CDATA[
 if MSDOS then

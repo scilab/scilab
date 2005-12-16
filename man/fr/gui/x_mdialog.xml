@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,8 +9,8 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="x_mdialog">boÃ®te de dialogue pour la saisie de
-  paramÃ¨tres</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="x_mdialog">boîte de dialogue pour la saisie de
+  paramètres</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>result=x_mdialog(title,labels,default_inputs_vector)</CALLING_SEQUENCE_ITEM>
@@ -24,7 +24,7 @@
         <PARAM_NAME>title</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur colonne de chaÃ®nes de caractÃ¨res. Titre gÃ©nÃ©ral</SP>
+          <SP>: vecteur colonne de chaînes de caractères. Titre général</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -32,8 +32,8 @@
         <PARAM_NAME>labels</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: n vecteurs colonnes de chaÃ®nes de caractÃ¨res,
-          <VERB>labels(i)</VERB> est l'intitulÃ© du i-Ã¨me paramÃ¨tre Ã &#160;
+          <SP>: n vecteurs colonnes de chaînes de caractères,
+          <VERB>labels(i)</VERB> est l'intitulé du i-ème paramètre à &#160;
           saisir</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -42,9 +42,9 @@
         <PARAM_NAME>default_input_vector</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: n vecteurs colonnes de chaÃ®nes de caractÃ¨res,
-          <VERB>default_input_vector(i)</VERB> la valeur initiale du i-Ã¨me
-          paramÃ¨tre</SP>
+          <SP>: n vecteurs colonnes de chaînes de caractères,
+          <VERB>default_input_vector(i)</VERB> la valeur initiale du i-ème
+          paramètre</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -52,8 +52,8 @@
         <PARAM_NAME>labelsv</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur de n chaÃ®nes de caractÃ¨res, <VERB>labelsv(i)</VERB>
-          est la lÃ©gende de la i-Ã¨me ligne de la matrice de paramÃ¨tres</SP>
+          <SP>: vecteur de n chaînes de caractères, <VERB>labelsv(i)</VERB>
+          est la légende de la i-ème ligne de la matrice de paramètres</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -61,8 +61,8 @@
         <PARAM_NAME>labelsh</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur de m chaÃ®nes de caractÃ¨res, <VERB>labelsh(j)</VERB>
-          est la lÃ©gende de la j-iÃ¨me colonne de la matrice de paramÃ¨tres</SP>
+          <SP>: vecteur de m chaînes de caractères, <VERB>labelsh(j)</VERB>
+          est la légende de la j-ième colonne de la matrice de paramètres</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -70,9 +70,9 @@
         <PARAM_NAME>default_input_matrix</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrice n x m de chaÃ®nes de caractÃ¨res,
+          <SP>: matrice n x m de chaînes de caractères,
           <VERB>default_input_matrix(i,j)</VERB> est la valeur initiale du
-          terme (i,j) de la matrice Ã &#160; saisir</SP>
+          terme (i,j) de la matrice à &#160; saisir</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -80,15 +80,15 @@
         <PARAM_NAME>result</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: matrice n x m de chaÃ®nes de caractÃ¨res si le bouton "Ok" a Ã©tÃ©
-          pressÃ© ou [] si c'est le bouton "Cancel".</SP>
+          <SP>: matrice n x m de chaînes de caractères si le bouton "Ok" a été
+          pressé ou [] si c'est le bouton "Cancel".</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>BoÃ®te de dialogue pour la saisie de paramÃ¨tres</P>
+    <P>Boîte de dialogue pour la saisie de paramètres</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[ txt=['module';'frequence';'phase    '];
