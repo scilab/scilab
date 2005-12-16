@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -108,18 +108,28 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
-xset("alufunction",6)
-xtitle(" drawing a rectangle ")
-[b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
-xrect(x0,y0,x-x0,y-y0)
-while rep(3)==-1 then
-    rep=xgetmouse(0)
-    xrect(x0,y0,x-x0,y0-y)
-    x=rep(1); y=rep(2);
-    xrect(x0,y0,x-x0,y0-y)
-end
-xset("alufunction",3)
+//  rectangle selection
+clf();  // erase/create window
+f=gcf();f.data_bounds=[0 0;100 100];//set user coordinates
+xtitle(" drawing a rectangle ") //add a title
+xselect(); //put the window on the top
+
+[b,xc,yc]=xclick(); //get a point
+xrect(xc,yc,0,0) //draw a rectangle entity
+r=gce();// the handle of the rectangle
+rep=[xc,yc,-1];first=%f;
+
+while rep(3)==-1 do // mouse just moving ...
+  if first then rep=xgetmouse();else rep=xgetmouse(0);end
+  xc1=rep(1);yc1=rep(2);
+  ox=mini(xc,xc1);
+  oy=maxi(yc,yc1);
+  w=abs(xc-xc1);h=abs(yc-yc1);
+  r.data=[ox,oy,w,h]; //change the retangle origin, width an height
+  first=%f;
+end 
+
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
