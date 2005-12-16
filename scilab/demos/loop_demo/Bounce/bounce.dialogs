@@ -13,5 +13,5 @@ Bounce/bounce4.cos
 -2,0,0,-1,'execstr(Simulate_1000(4))'// Simulate/Run
 -->xdel(1)
 -2,0,0,-1,'execstr(Diagram_1000(16))'// Diagram/Quit
-//x_choose:  Diagram has not been saved
+//tk_choose:  Diagram has not been saved
   0

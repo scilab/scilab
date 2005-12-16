@@ -4,7 +4,7 @@ mode(-1)
 deff("[]=demoexc(fil)","exec(""SCI/demos/ode/""+fil)")
 
 while %t do
-  n=x_choose(["ODE 1D","ODE 2D"],"Select a demo");
+  n=tk_choose(["ODE 1D","ODE 2D"],"Select a demo");
   select n
   case 0
     break

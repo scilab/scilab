@@ -62,17 +62,17 @@ function result=x_mdialog(title, labels, default_inputs_vector)
 endfunction
 
 
-function num=x_choose(items, title, button)
+function num=tk_choose(items, title, button)
   if argn(2) == 3 then
-    num = x_choose1(items, title, button);
+    num = tk_choose1(items, title, button);
   else
-    num = x_choose1(items, title);
+    num = tk_choose1(items, title);
   end,
   if num<>0 then
-    txt=[comm + 'x_choose:  '+ title(1)
+    txt=[comm + 'tk_choose:  '+ title(1)
 	 '  '+string(num) + '//'+items(num)]
   else
-    txt=[comm + 'x_choose:  '+ title(1)
+    txt=[comm + 'tk_choose:  '+ title(1)
 	 '  '+string(num) + '// Cancel']
   end
   mputl(txt,uapp);

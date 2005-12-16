@@ -27,7 +27,7 @@ end
     demos_name=[demos_name;'Live tutorials']        
 
 while %t do
-  n=x_choose(demos_name,'Choose a demo')
+  n=tk_choose(demos_name,'Choose a demo')
   if n ==0 then break,end
   select demos_name(n)
   case 'Simple Thermostat' then  
@@ -90,7 +90,7 @@ while %t do
 	  'The Cblock2 block'
 	  ];
     while %t do
-      n=x_choose(tuti,'Choose a tutorial (must be played in order).')
+      n=tk_choose(tuti,'Choose a tutorial (must be played in order).')
       if n ==0 then break,end
       dirr=pwd()
       chdir(TMPDIR)

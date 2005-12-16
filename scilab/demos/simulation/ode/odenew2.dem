@@ -11,7 +11,7 @@ x_message(["Examples of autonomous ODE''s in 2 dimensions";" ";
            "You can start over by clicking on the LEFT button again";
            "  or stop everything by clicking on the RIGHT button."]);
 while %t do
-  n=x_choose(["Van der Pol";"Lotka-Volterra"],..
+  n=tk_choose(["Van der Pol";"Lotka-Volterra"],..
       "Choose an ODE");
   select n
   case 0

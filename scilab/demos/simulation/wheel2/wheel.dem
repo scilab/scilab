@@ -5,7 +5,7 @@ getf(path+'show.sci');
 
 xbasc();
 set("figure_style","old")
-flag1=x_choose(['Reading a precomputed trajectory';
+flag1=tk_choose(['Reading a precomputed trajectory';
  'Simulation with ode (needs f77 and link. may fail, see help link)'],...
  'Simulation or Visualisation ? (click below)');
 
@@ -38,7 +38,7 @@ select flag1,
 	  ystr=[ 'phi';'theta';'psi';'Dpsi';'Dtheta';'Dpsi';'x';'y'];
         flag=2;
 	  while flag==2, [n1,n2]=size(x);
-  		flag=x_choose(['Stop';'Go on'],'Choose');
+  		flag=tk_choose(['Stop';'Go on'],'Choose');
                 if flag==2,x0=evstr(x_mdialog(['Initial conditions'],...
                       ystr,string(x(:,n2))));
   		x=ode(x0,tmin,times,'wheel');

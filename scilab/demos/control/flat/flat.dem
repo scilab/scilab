@@ -12,7 +12,7 @@ demolist=['Car  ';
 
 
 while %t then
-  num=x_choose(demolist(:,1),'Choose a vehicle');
+  num=tk_choose(demolist(:,1),'Choose a vehicle');
   if num==0 then break,end
   select num
     case 1 then 

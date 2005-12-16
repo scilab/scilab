@@ -1,7 +1,7 @@
 deff('[]=demoexc(fil)','exec(''SCI/demos/control/''+fil)')
 // Copyright INRIA
 while %t do
-  n=x_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');
+  n=tk_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');
   select n
   case 0
     break

@@ -18,7 +18,7 @@ x_message(['Simple example of SISO LQG Design';
            'Demo is in file '+path+'lqg.dem';
            'Computes the LQG compensator and plots response'])
 
-n=x_choose(['Continuous time';'Discrete time'],'Select time domain');
+n=tk_choose(['Continuous time';'Discrete time'],'Select time domain');
 //  
 select n
 case 0
@@ -74,7 +74,7 @@ x_message('Closed-loop response');
 
 resp=['Frequency response';'Time response'];
 while %t do
-  n=x_choose(resp,'Select response(s)');
+  n=tk_choose(resp,'Select response(s)');
   select n
   case 0
     disp("LQG demo stops!");break;
@@ -92,7 +92,7 @@ while %t do
       dttmax=evstr(rep)
       dt=evstr(dttmax(1));tmax=evstr(dttmax(2));
       t=0:dt/5:tmax;
-      n1=x_choose(['Step response?';'Impulse response?'],'Simulation:');
+      n1=tk_choose(['Step response?';'Impulse response?'],'Simulation:');
       select n1
       case 1 then
 	xbasc(1);xset("window",1);xselect();
@@ -110,7 +110,7 @@ while %t do
       if rep==[] then break,end
       Tmax=evstr(rep);
       mode(-1)
-      n2=x_choose(['Step response?';'Impulse response?'],'Simulation:');
+      n2=tk_choose(['Step response?';'Impulse response?'],'Simulation:');
       select n2
       case 0 then
 	break;

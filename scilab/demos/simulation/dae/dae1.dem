@@ -7,7 +7,7 @@ x_message(["Modeling of a spherical pendulum";
 	   "  using Lagrange formulation"]);
 
 while %t do
-  n=x_choose(["Index 2";"Index 1";"Index 1 with stabilization"],..
+  n=tk_choose(["Index 2";"Index 1";"Index 1 with stabilization"],..
       "Choose the type of the system");
   select n
   case 0

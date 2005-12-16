@@ -111,8 +111,8 @@ function []=metro()
     Depart=108;Arrivee=108;Gr_typ='null';
     while (Lnode(Depart)==-1|Lnode(Arrivee)==-1),
       Lnode(1)=-2;
-      Depart=x_choose(Lstation,'Choose the station of departure');
-      Arrivee=x_choose(Lstation,'Choose the station of arrival');
+      Depart=tk_choose(Lstation,'Choose the station of departure');
+      Arrivee=tk_choose(Lstation,'Choose the station of arrival');
       if(Depart==0|Arrivee==0) then return  end;
 	if (Lnode(Depart)==-1|Lnode(Arrivee)==-1) then
 	  x_message(['You have chosen an RER station to the suburbs'; 
@@ -244,7 +244,7 @@ function []=metro()
 		 'You will go thru the following stations:';
 		 string(routef);]);
       road=[];route=[];routef=[];changename=[];
-      iter=x_choose(['yes','no'],'Another travel?');
+      iter=tk_choose(['yes','no'],'Another travel?');
       TTT=[];routef=[];road=[];
     end
     seteventhandler("")

@@ -18,7 +18,7 @@ demolist=[
 'Uicontrol','exec(tkpath+''uicontrol1.sce'')';
 ]
 while %t then
-  num=x_choose(demolist(:,1),'demo of TCL/TK interface and uicontrol');
+  num=tk_choose(demolist(:,1),'demo of TCL/TK interface and uicontrol');
   if num==0 then 
      lines(oldln(1))
      return

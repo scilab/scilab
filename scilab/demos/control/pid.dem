@@ -17,7 +17,7 @@ s=poly(0,'s');z=poly(0,'z');
 x_message(['Example of PID Design '
 	   'file: '+SCI+'/demos/control/pid.dem'])	
 
-n=x_choose(['Continuous time';'Discrete time'],'Select time domain');
+n=tk_choose(['Continuous time';'Discrete time'],'Select time domain');
 select n
  case 0
   warning('Demo stops!');return;
@@ -85,7 +85,7 @@ disp(clean(ss2tf(Tpid)),'Complementary sensitivity function');
 
 resp=['Frequency response';'Time response'];
 while %t do
-  n=x_choose(resp,'Select response(s)');
+  n=tk_choose(resp,'Select response(s)');
   if degree(Tpid(5))>0 then
     warning('Improper transfer function! D(s) set to D(0)')
     Tpid(5)=coeff(Tpid(5),0);
@@ -108,7 +108,7 @@ while %t do
       dttmax=evstr(rep);
       dt=evstr(dttmax(1));tmax=evstr(dttmax(2));
       t=0:dt/5:tmax;
-      n1=x_choose(['Step response?';'Impulse response?'],'Simulation:');
+      n1=tk_choose(['Step response?';'Impulse response?'],'Simulation:');
       if n1==0 then
 	warning('Demo stops!');return;
       end
@@ -130,7 +130,7 @@ while %t do
       Tmax=evstr(rep);
       mode(-1)
       while %t do
-	n=x_choose(['Step response?';'Impulse response?'],'Simulation:');
+	n=tk_choose(['Step response?';'Impulse response?'],'Simulation:');
 	select n
 	case 0 then
 	  break

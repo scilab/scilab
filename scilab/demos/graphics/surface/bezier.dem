@@ -14,7 +14,7 @@ demolist=[
 'Bezier surface test 2','xbasc();showinstr(c1test);c1test();']
 
 while %t then
-  num=x_choose(demolist(:,1),'Bezier demos (From Euler)');
+  num=tk_choose(demolist(:,1),'Bezier demos (From Euler)');
   if num==0 then 
      lines(oldln(1))
      return

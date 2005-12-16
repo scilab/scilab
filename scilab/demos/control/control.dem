@@ -13,7 +13,7 @@ demolist=['LQG',               'lqg/lqg.dem'
 deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
 
 while %t then
-  num=x_choose(demolist(:,1),'Choose a demo');
+  num=tk_choose(demolist(:,1),'Choose a demo');
   if num==0 then 
      lines(oldln(1))
      return

@@ -6,7 +6,7 @@ global demolist
 // Demos list is defined in scilab.star
 deff('[]=demoex(num)','exec(demolist(num,2),-1)')
 while %t then
-  num=x_choose(demolist(:,1),['Click to choose a demo';
+  num=tk_choose(demolist(:,1),['Click to choose a demo';
 '(see also in SCIDIR/demos/...)']);
   if num==0 then 
      lines(oldln(1))

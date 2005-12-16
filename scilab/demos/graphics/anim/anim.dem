@@ -13,7 +13,7 @@ demolist=['Rotation of a 3D Surface (plot3d1)';
 	'Shell'];
 deff('[]=demoexc(fil)','exec(path+fil);')
 while %t then
-	num=x_choose(demolist(:,1),'Choose a demo');
+	num=tk_choose(demolist(:,1),'Choose a demo');
 	if num==0 then
 		break;
 	else

@@ -56,7 +56,7 @@ function str=x_mdialog(description,labels,valuesini)
 endfunction
 
 
-function num=x_choose(tochoose,comment,button)
+function num=tk_choose(tochoose,comment,button)
 // Copyright INRIA
   [lhs,rhs]=argn(0)
   n=prod(size(tochoose))
@@ -210,7 +210,7 @@ function color=tk_getcolor(title,color)
 endfunction
 
 function num=tk_choose(varargin)
-  num=x_choose(varargin(:))
+  num=tk_choose(varargin(:))
 endfunction
 
 function varargout=tk_getvalue(varargin)

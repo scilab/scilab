@@ -55,7 +55,7 @@ rep_init = ["(1)./((z+2).*(2-z))";"Disk";"1.9";"No"];
 rep = rep_init;       
 
 while %t
-  [num]=x_choose(items,title);
+  [num]=tk_choose(items,title);
   if num == 0 then , xdel(my_win) , break , end
   
   xbasc()

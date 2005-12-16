@@ -1,6 +1,6 @@
 -->win=xget('window');xset('window',1000);xset('wpos',620,16);xset('window',win)
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   1
 -->win=xget('window');xset('window',1001);xset('wpos',620,461);xset('window',win)
 -->win=xget('window');xset('window',1000);xselect();xset('window',win)
@@ -63,7 +63,7 @@
 83,189.6,-1//xgemouse
 83,189.6,0//xgemouse
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   2
 -->win=xget('window');xset('window',1002);xset('wpos',620,460);xset('window',win)
 -->win=xget('window');xset('window',1000);xselect();xset('window',win)
@@ -174,7 +174,7 @@
 441.5,191.1,-1//xgemouse
 441.5,191.1,0//xgemouse
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   1
 -->win=xget('window');xset('window',1001);xset('wpos',620,460);xset('window',win)
 -->realtimeint(0.1);realtime(0);for k=1:30,realtime(k),end
@@ -223,7 +223,7 @@
 443.7,297,-1//xgemouse
 443.7,297,0//xgemouse
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   3
 -->win=xget('window');xset('window',1003);xset('wpos',620,460);xset('window',win)
 -->win=xget('window');xset('window',1000);xselect();xset('window',win)
@@ -279,7 +279,7 @@
 357,197,-1//xgemouse
 357,197,0//xgemouse
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   4
 -->win=xget('window');xset('window',1004);xset('wpos',620,460);xset('window',win)
 -->win=xget('window');xset('window',1000);xselect();xset('window',win)
@@ -860,7 +860,7 @@
 100,184.4,208.9,1000,'void'// Link: 6
 -->realtime(45);xdel(1)
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   3
 -->win=xget('window');xset('window',1003);xset('wpos',620,460);xset('window',win)
 -->realtime(55)
@@ -926,7 +926,7 @@
 174.8,202.2,-1//xgemouse
 174.8,202.2,0//xgemouse
 -2,0,0,-1,'execstr(Edit_1000(1))'// Edit/Palettes
-//x_choose:  Choose a Palette
+//tk_choose:  Choose a Palette
   4
 -->win=xget('window');xset('window',1004);xset('wpos',620,460);xset('window',win)
 -->realtimeint(0.1);realtime(0);for k=1:30,realtime(k),end
@@ -1432,5 +1432,5 @@
 -->win=xget('window');xset('window',1000);xselect();xset('window',win)
 -->xdel(1)
 -2,0,0,-1,'execstr(Diagram_1000(16))'// Diagram/Quit
-//x_choose:  Diagram has not been saved
+//tk_choose:  Diagram has not been saved
   0

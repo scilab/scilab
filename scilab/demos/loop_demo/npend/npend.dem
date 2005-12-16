@@ -7,7 +7,7 @@ getf(path+'/macros.sci');
 getf(path+'/dessin.sci');
 
 xbasc();set("figure_style","old")
-flag1=x_choose(['Read a precomputed trajectory';
+flag1=tk_choose(['Read a precomputed trajectory';
         'Simulation with ode (needs f77 and link. may fail. see help link)'],...
          'Simulation or Visualisation ? (click below)');
 
@@ -29,12 +29,12 @@ case 2 then
   ystr=[y;yd];
   while flag==2, 
     [n1,n2]=size(yt);
-    flag=x_choose(['Stop';'Go on'],'Choose');
+    flag=tk_choose(['Stop';'Go on'],'Choose');
     if flag==2 then
       y0=evstr(x_mdialog(['Initial point '],ystr,...
 	  string(yt(:,n2))));
       yt=ode(y0,0,tt,'npend');
-      met=x_choose(['With last point trajectory';'Without'],...
+      met=tk_choose(['With last point trajectory';'Without'],...
 	  'Graphic Option');
       xbasc();
       if met==1; chainb(yt);else;chaina(yt);end

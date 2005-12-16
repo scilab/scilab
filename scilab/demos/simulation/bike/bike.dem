@@ -14,7 +14,7 @@ demolist=['bike : unstable trajectory';
           'bike : stable trajectory!'];
 go_on=%t;
 while go_on then
-  num=x_choose(demolist(:,1),'Choose a bike');
+  num=tk_choose(demolist(:,1),'Choose a bike');
   if num==0 then go_on=%f;
   else
      select num

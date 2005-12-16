@@ -27,7 +27,7 @@ demos_name=[
 exec('SCI/demos/pvm/pvm1.sce');
 return
 while %t do
-  n=x_choose(demos_name,'Choose a demo')
+  n=tk_choose(demos_name,'Choose a demo')
   select n
   case 0 then 
     break

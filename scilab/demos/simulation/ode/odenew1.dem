@@ -12,7 +12,7 @@ x_message(["Examples of ODE''s in 1 dimension";" ";
            "  or stop everything by clicking on the RIGHT button."]);
 
 while %t do
-  n=x_choose(["y''=y^2-t"],..
+  n=tk_choose(["y''=y^2-t"],..
       "Choose an ODE"); 
   select n
   case 0

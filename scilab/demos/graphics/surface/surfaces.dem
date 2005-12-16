@@ -22,7 +22,7 @@ getf(path+'Macros.sci');
 getf(path+'surfaces.sci');
 
 while %t then
-  num=x_choose(demolist(:,1),'Surface demos (From Euler)');
+  num=tk_choose(demolist(:,1),'Surface demos (From Euler)');
   if num==0 then 
      lines(oldln(1))
      return

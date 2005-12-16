@@ -10,7 +10,7 @@ demolist=[
 'Lorenz equation','ode4.dem']
 
 while %t then
-  num=x_choose(demolist(:,1),'Click to choose a demo')
+  num=tk_choose(demolist(:,1),'Click to choose a demo')
   if num==0 then 
      lines(oldln(1))
      return

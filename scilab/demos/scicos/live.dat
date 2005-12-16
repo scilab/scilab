@@ -1,7 +1,7 @@
 -->xset('wpos',0,0);xset('window',10);xset('wpos',605,0);xset('window',0);
 -->xbasc(10);titlepage(['New Diagram edition';' '],10)
  -2,0,450,-1,'execstr(Edit_0(1))'//xclick
- 1//x_choose
+ 1//tk_choose
 -->xset('window',1);xset('wpos',0,489);xset('window',0);
 -->xbasc(10);titlepage(['Selection of the INPUT/OUTPUT';'palette';'to get some blocks'],10)
  -2,0,450,-1,'execstr(Edit_0(5))'//xclick
@@ -510,7 +510,7 @@
  0,271.06599,95.696203,0,'void'//xclick
 -->xbasc(10);titlepage(['Opening Linear palette ';'to get the + block'],10)
  -2,0,450,-1,'execstr(Edit_0(1))'//xclick
- 2//x_choose
+ 2//tk_choose
 -->xset('window',2);xset('wpos',585,483);xset('window',0);
 -->xbasc(10);titlepage(['Updating diagram ..';' '],10)
  -2,0,450,-1,'execstr(Edit_0(5))'//xclick

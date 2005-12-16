@@ -6,7 +6,7 @@ path='SCI/demos/sci2for/'
 deff('[]=demoexc(fil)','exec(path+fil,-1)')
 
 while %t do
-  n=x_choose(['Clauses, loops and operations';
+  n=tk_choose(['Clauses, loops and operations';
               'Matrix concatenation';
 	      'Concatenations and inversions';
 	      'Call of simple primitives';

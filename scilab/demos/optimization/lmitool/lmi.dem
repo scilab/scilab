@@ -26,7 +26,7 @@ x_message(['      ';
 	   'LMITOOL uses Semidefinite Programming package SP developed by L. Vandenberghe and S. Boyd.']);
 
 while %t
-  %demo_=x_choose(['H-infinity gain';'Output Feedback';'Sylvester equation'],...
+  %demo_=tk_choose(['H-infinity gain';'Output Feedback';'Sylvester equation'],...
       ['This is a sample of LMI problems that LMITOOL can solve';
       'Select a problem (other examples are given in demos/lmitool directory)']);
   select %demo_

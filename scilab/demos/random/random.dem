@@ -18,7 +18,7 @@ demolist=[
 'Simulation of an Erlang random variable','xbasc();ErlangT();'];
 
 while %t then
-  num=x_choose(demolist(:,1),'demo of random variable simulations');
+  num=tk_choose(demolist(:,1),'demo of random variable simulations');
   if num==0 then 
      lines(oldln(1))
      return

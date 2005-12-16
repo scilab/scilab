@@ -41,7 +41,7 @@ function demo_scicos()
   
 endfunction
 function S=remove_builtins()
-  builtins=['lines','x_message','x_dialog','x_mdialog','x_choose', ...
+  builtins=['lines','x_message','x_dialog','x_mdialog','tk_choose', ...
 	    'mode','xclick','xgetmouse']
   ptr=list();N=[];
   for b=builtins
