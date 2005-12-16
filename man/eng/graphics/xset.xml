@@ -39,6 +39,9 @@
   </PARAM>
 
   <DESCRIPTION>
+    <P><VERB>Warning : </VERB>Scilab 4.x versions family will be the last
+    versions working with the old graphics mode. </P>
+
     <P><VERB>xset</VERB> is used to set default values of the current window
     graphic context.</P>
 
