@@ -377,7 +377,7 @@
             <SP>This field contains the default <VERB>line_style</VERB>
             property value for Segs, Arcs, Rectangle and Polyline objects.
             <VERB>line_style</VERB> selects the type of line to be used to
-            draw lines . Its value should be an integer in [0 9]. 0 stands for
+            draw lines . Its value should be an integer in [1 6]. 1 stands for
             solid, the other values stand for a selection of dashes (see
             <LINK>getlinestyle</LINK>).</SP>
           </DESCRIPTION_ITEM>

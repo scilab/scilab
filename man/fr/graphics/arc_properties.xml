@@ -37,7 +37,7 @@
 
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>The <VERB>line_style</VERB> property value should be an integer in
-        [0 9]. 0 stands for solid the other value stands for a selection of
+        [1 6]. 1 stands for solid the other value stands for a selection of
         dashes.</SP>
       </DESCRIPTION_ITEM>
 
