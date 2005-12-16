@@ -958,10 +958,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd) // clip_box
+      set(h,"clip_box",clip_box) ; // clip_box
     else
       clip_box=[]
     end
-    set(h,"clip_box",clip_box) ; // clip_box
     set(h,"clip_state",clip_state); 
     load_user_data(fd) // user_data
     
