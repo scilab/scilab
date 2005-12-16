@@ -260,7 +260,7 @@ DOCNAME=$(SCIBASE)
 install:
 	@if test `pwd`/..  != $(PREFIX)/lib ; then \
 		install -d $(PREFIX)/lib/$(SCIBASE); \
-		( tar cf - $(INSTBINDISTFILES) @PVMINST1@  | (cd $(PREFIX)/lib/$(SCIBASE) ; tar xf -)); \
+		( for file in $(INSTBINDISTFILES) @PVMINST1@; do tar cf - $${file}  | (cd $(PREFIX)/lib/$(SCIBASE); tar xf -); done); \
 		(cd $(PREFIX)/lib/$(SCIBASE);touch .binary; make postinstall PREFIX=$(PREFIX) ) \
 	fi
 	install -d $(PREFIX)/share/doc/$(DOCNAME)/
@@ -269,9 +269,9 @@ install:
 	install -d $(PREFIX)/bin 
 	$(RM)  $(PREFIX)/bin/scilab
 	ln -fs $(PREFIX)/lib/$(SCIBASE)/bin/scilab $(PREFIX)/bin/scilab
-	$(RM)  $(PREFIX)$/bin/intersciXXX
+	$(RM)  $(PREFIX)/bin/intersci
 	ln -fs $(PREFIX)/lib/$(SCIBASE)/bin/intersci $(PREFIX)/bin/intersci
-	$(RM)  $(PREFIX)$/bin/intersci-n
+	$(RM)  $(PREFIX)/bin/intersci-n
 	ln -fs $(PREFIX)/lib/$(SCIBASE)/bin/intersci-n $(PREFIX)/bin/intersci-n
 
 # DESTDIR is the final destination of the file 
@@ -290,7 +290,7 @@ postinstall:
 	@$(RM) -f -r contrib 
 	@mkdir contrib 
 	@mv contrib-loader.sce contrib/loader.sce
-	@$(RM) man/*/*/*.xml 
+	@find man -name "*.xml" -print0 | xargs -0 $(RM)
 	@@STRIP@ bin/scilex;
 
 uninstall:

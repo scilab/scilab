@@ -96,6 +96,10 @@ int finite __PARAMS((double));
 #else
   #if defined(HAVE_VALUES_H)
     #include <values.h>
+  #else
+    #if defined(HAVE_LIMITS_H)
+     #include <limits.h>
+    #endif
   #endif
 #endif
 

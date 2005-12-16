@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.130 $)dnl
+AC_REVISION($Revision: 1.131 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1229,12 +1229,12 @@ case "$host" in
 # FreeBSD  systems (not supported by INRIA)
   *-*-freebsd*)
      GCC=yes
-     CC=gcc
+     CC=$CC
      CC_OPTIONS="${CFLAGS} -Dfreebsd"
      CC_LDFLAGS=-lm
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
-     FC=f77
+     FC=$F77
      FC_OPTIONS="${CFLAGS} -Dfreebsd"	
      FC_OPTIONS_O0='-Dfreebsd'
      FC_LDFLAGS='-lm -Wl,--export-dynamic'
