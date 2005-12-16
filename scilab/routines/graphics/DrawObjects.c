@@ -7725,72 +7725,74 @@ sciDrawObj (sciPointObj * pobj)
       
     case SCI_LEGEND: 
       if (!sciGetVisibility(pobj)) break;
-      sciLegend * ppLegend = pLEGEND_FEATURE (pobj) ;
-      /* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
-      C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
+      else
+	{
+      		sciLegend * ppLegend = pLEGEND_FEATURE (pobj) ;
+      	/* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
+      	C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr1) ("xget", "foreground", &flagx, &xold[1], &vold, &vold, &vold,
+      	C2F (dr1) ("xget", "foreground", &flagx, &xold[1], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
       
       
-      itmp[0] = 0;		/* verbose */
-      itmp[1] = 0;		/* thickness value*/
-      itmp[2] = 1;		/* narg*/
-      C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
-		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-      C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,
-		PD0, PD0, PD0, PD0, 0L, 0L);
+      	itmp[0] = 0;		/* verbose */
+      	itmp[1] = 0;		/* thickness value*/
+      	itmp[2] = 1;		/* narg*/
+      	C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
+			PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+      	C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,
+			PD0, PD0, PD0, PD0, 0L, 0L);
 
-      /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	/*la dash est de la meme couleur que le foreground*/
-      x[4] = 0;
-      v = 0;
-      dv = 0;
+      	/* load the object foreground and dashes color */
+      	x[0] = sciGetForeground (pobj);	/*la dash est de la meme couleur que le foreground*/
+      	x[4] = 0;
+      	v = 0;
+      	dv = 0;
 
-      xxx[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
-      xxx[2] = sciGetFontDeciWidth (pobj)/100;
-      xxx[3] = 0;
-      xxx[4] = sciGetFontStyle(pobj);
+      	xxx[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
+      	xxx[2] = sciGetFontDeciWidth (pobj)/100;
+      	xxx[3] = 0;
+      	xxx[4] = sciGetFontStyle(pobj);
       
 #ifdef WIN32 
-      flag_DO=MaybeSetWinhdc();
+      	flag_DO=MaybeSetWinhdc();
 #endif
-      C2F (dr1) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-		 &dv, &dv, &dv, 5L, 4096);
-      C2F (dr1) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-		 &dv, &dv, &dv, &dv, 5L, 4096);
+      	C2F (dr1) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			 &dv, &dv, &dv, 5L, 4096);
+      	C2F (dr1) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+			 &dv, &dv, &dv, &dv, 5L, 4096);
 
-      C2F(dr)("xset","font",xxx+4,xxx+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); /* Adding F.Leray*/
+      	C2F(dr)("xset","font",xxx+4,xxx+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); /* Adding F.Leray*/
 
 
-      /*permet la mise a jour des legendes correspondantes aux entites associees */
-      for (i = 0; i < ppLegend->nblegends; i++)
-      {
-        //if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
-        //{
-        //  pLEGEND_FEATURE (pobj)->pstyle[i] = 
-        //    -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
-        //}
-        //else
-        //{ 
-          ppLegend->pstyle[i] =  
-            sciGetForeground( ppLegend->pptabofpointobj[i] );
-          //}
-      }
-      /*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
-      Legends( ppLegend->pstyle, &(ppLegend->nblegends), sciGetText(pobj));
+      	/*permet la mise a jour des legendes correspondantes aux entites associees */
+      	for (i = 0; i < ppLegend->nblegends; i++)
+      	{
+        	//if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
+        	//{
+        	//  pLEGEND_FEATURE (pobj)->pstyle[i] = 
+        	//    -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
+        	//}
+        	//else
+        	//{ 
+          	ppLegend->pstyle[i] =  
+            	sciGetForeground( ppLegend->pptabofpointobj[i] );
+          	//}
+      	}
+      	/*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
+      	Legends( ppLegend->pstyle, &(ppLegend->nblegends), sciGetText(pobj));
        
           
-      /* restore the graphic context */
+      	/* restore the graphic context */
 
-      C2F (dr1) ("xset", "dashes", &xold[0], &vold, &vold, &vold, &vold, &v,
-		 &dv, &dv, &dv, &dv, 5L, 6L);
-      C2F (dr1) ("xset", "foreground", &xold[1], &vold, &vold, &vold, &vold,
-		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
+      	C2F (dr1) ("xset", "dashes", &xold[0], &vold, &vold, &vold, &vold, &v,
+			 &dv, &dv, &dv, &dv, 5L, 6L);
+      	C2F (dr1) ("xset", "foreground", &xold[1], &vold, &vold, &vold, &vold,
+			 &v, &dv, &dv, &dv, &dv, 5L, 10L);
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+      	if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
- 
+ 	}
       break; 
 
       /******************************** 22/05/2002 ***************************/    
