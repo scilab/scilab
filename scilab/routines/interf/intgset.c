@@ -968,6 +968,33 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
   }
   return 0;
 }
+
+/*-----------------------------------------------------------------------------------*/
+/* removeNewStyleMenu                                                                */
+/* remove the menu and toolbar which can not be used in old style                    */
+/*-----------------------------------------------------------------------------------*/
+void updateMenus( struct BCG * XCG )
+{
+#if  WIN32
+  {
+    extern void RefreshGraphToolBar(struct BCG * ScilabGC);
+    extern void RefreshMenus(struct BCG * ScilabGC);
+    
+    RefreshMenus(XGC);
+    RefreshGraphToolBar(XGC);
+  }
+#else
+  {
+    extern void refreshMenus( struct BCG * ScilabGC ) ;
+
+    refreshMenus( XCG ) ;
+    /* no toolbar under linux */
+    
+  }
+#endif
+
+}
+
 /*-----------------------------------------------------------------------------------*/
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
  * Sets the value to the object
@@ -1039,7 +1066,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    }
 	    
 	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
-		#if  WIN32
+            
+            /* remove the Insert menu and purge the Edit menu in old style */
+            /* A.Cornet, JB Silvy 12/2005 */
+            updateMenus( XGC ) ;
+            /*#if  WIN32
 		{
 			extern void RefreshGraphToolBar(struct BCG * ScilabGC);
 			extern void RefreshMenus(struct BCG * ScilabGC);
@@ -1047,7 +1078,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 			RefreshMenus(XGC);
 			RefreshGraphToolBar(XGC);
 		}
-		#endif
+		#endif*/
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	    
 	    /* Add xclear to refresh toolbar for Windows */
@@ -1072,9 +1103,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
 		sciSetCurrentObj(psubwin);
-		sciSetOriginalSubWin (figure, psubwin);}
+		sciSetOriginalSubWin (figure, psubwin);
+              }
 		/* Refresh toolbar and Menus for Windows */
-	#if  WIN32
+              updateMenus( XGC ) ;
+              /*#if  WIN32
 		  {
 			  extern void RefreshGraphToolBar(struct BCG * ScilabGC);
 			  extern void RefreshMenus(struct BCG * ScilabGC);
@@ -1082,7 +1115,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 			  RefreshMenus(XGC);
 			  RefreshGraphToolBar(XGC);
 		  }
-	#endif
+                  #endif*/
 	    }
 	  }
 	}
@@ -1570,8 +1603,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"font_style") == 0)
     {
       xtmp = (int) *stk(*value);
-      if ( (xtmp > 9) || xtmp < 0)
-	{strcpy(error_message,"The value must be in [0 9]");return -1;}
+      if ( (xtmp > 10) || xtmp < 0)
+	{strcpy(error_message,"The value must be in [0 10]");return -1;}
       else
 	sciSetFontStyle((sciPointObj *) pobj, xtmp);
     }

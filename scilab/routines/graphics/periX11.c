@@ -64,6 +64,9 @@ extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
 extern void flushTKEvents();
 #endif
 extern int versionflag;
+extern int version_flag() ;
+extern void refreshMenus( struct BCG * ScilabGC ) ;
+
 
 #define MESSAGE4 "Can't allocate point vector"
 #define MESSAGE5 "Can't re-allocate point vector" 
@@ -3468,8 +3471,10 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   integer ne=11, menutyp=2, ierr;
   char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure","Copy object","Paste object","Move object","Delete object","Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
   
+
   integer ni=/*7*/6;
   char *InsertMenusE[]={"Line","Polyline","Arrow",/*"Double Arrow",*/"Text","Rectangle","Circle"};
+
 #else
   integer ne=3, menutyp=2, ierr;
   char *EditMenusE[]={"Select as current","Redraw figure","Erase figure"};
@@ -3572,10 +3577,12 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
 #ifdef WITH_TK
   if (!IsTKGraphicalMode())
   {
-     AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-	#ifdef WITH_TK
-		AddMenu(&WinNum,"Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
-	#endif
+    /* add the Edit and Insert menus */
+    AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+    AddMenu(&WinNum,"Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
+
+    /* put them in grey in old style */
+    refreshMenus( ScilabXgc ) ;  
   }
 #endif
   XSync(dpy,0);

@@ -91,7 +91,7 @@ static void UnZoom  __PARAMS((Widget, XtPointer , XtPointer ));
 static void Rot3D  __PARAMS((Widget, XtPointer , XtPointer ));  
 static void ChangeBF1  __PARAMS((Widget, char *str, Pixel fg, Pixel bg));  
 static void KillButton  __PARAMS((Widget, XtPointer , caddr_t ));  
-static void SelMenu  __PARAMS((Widget, XtPointer , caddr_t));  
+static void SelMenu  __PARAMS((Widget, XtPointer , caddr_t));
 static void SetUnsetMenu  __PARAMS((integer *, char *, integer *, int));  
 static void PannerCallback __PARAMS((Widget, XtPointer , XtPointer ));
 static void ViewportCallback __PARAMS((Widget, XtPointer , XtPointer ));
@@ -1834,12 +1834,12 @@ int C2F(unsmen)(win_num,button_name,entries,ptrentries,ne,ierr)
  ************************************/
 
 static int GetChilds(win_num,nc,wL,outer,name,name_pos) 
-     int win_num;
-     int *nc;
-     WidgetList *wL;
-     Widget *outer;
-     char *name;
-     int * name_pos;
+  int win_num; /* id of the window */
+  int *nc; /* number of children */
+  WidgetList *wL;
+  Widget *outer;
+  char *name; /* name of the menu */
+  int * name_pos; /* id of the menu */
 { 
   Cardinal nc1=0;
   Widget popup,toplevel;
@@ -1883,3 +1883,76 @@ static int GetChilds(win_num,nc,wL,outer,name,name_pos)
     }
   return TRUE;
 }
+
+
+/*------------------------------------------------------------------------------------*/
+/* put some menus in gray under old graphic style                                     */
+/* or put them back under new graphic style                                           */
+void refreshMenus( struct BCG * ScilabGC )
+{
+
+  /* put some menu in grey in old graphic style */
+  if ( version_flag() == 0 )
+  {
+    /* new graphic style */
+    int        subMenuNumber = 0 ;
+    int        nbChildren        ;
+    WidgetList editSubMenus      ;
+    Widget     editMenu          ;
+    int        editId            ;
+    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ;
+    
+    /* get the number of children of the Edit menu */
+    /* maybe create a faster function to get only the number */
+    /* of children */
+    GetChilds( ScilabGC->CurWindow,
+               &nbChildren        ,
+               &editSubMenus      ,
+               &editMenu          ,
+               "File"             ,
+               &editId             ) ; 
+               
+               
+               
+               
+    /* the last element is nbChildren + 1 since the menu is actually
+       also counted with its children */
+    /* TODO: get the real number of children */
+    nbChildren = 12 ;
+    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+    {
+      SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, True ) ;
+    }
+  }
+  else
+  {
+    /* old graphic style */
+    int        subMenuNumber = 0 ;
+    int        nbChildren        ;
+    WidgetList editSubMenus      ;
+    Widget     editMenu          ;
+    int        editId            ;
+    
+    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ;
+
+    /* get the number of children of the Edit menu */
+    /* maybe create a faster function to get only the number */
+    /* of children */
+    GetChilds( ScilabGC->CurWindow,
+               &nbChildren        ,
+               &editSubMenus      ,
+               &editMenu          ,
+               "File"             ,
+               &editId             ) ; 
+
+    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ;
+    /* TODO : get the real number of children */
+    nbChildren = 12 ;
+    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+    {
+      SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, False ) ;
+    }
+  }
+    
+}
+/*------------------------------------------------------------------------------------*/
