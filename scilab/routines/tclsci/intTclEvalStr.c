@@ -4,6 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclEvalStr.h"
 /*-----------------------------------------------------------------------------------*/
+extern void flushTKEvents(void);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclEvalStr) _PARAMS((char *fname))
 { 
 	CheckRhs(1,2);
@@ -14,7 +16,7 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 		char **Str=NULL;
 		int m1,n1,i,RET;
 		int m2,n2,l2;
-        Tcl_Interp *TCLinterpreter=NULL;
+    Tcl_Interp *TCLinterpreter=NULL;
 
 		GetRhsVar(1,"S",&m1,&n1,&Str);
 
@@ -52,6 +54,8 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 		for (i = 0; i<m1*n1 ;i++)
 		{
 			RET=Tcl_Eval(TCLinterpreter,Str[i]);
+			flushTKEvents ();
+
 			if (RET==TCL_ERROR)
 			{
 				if(C2F(iop).err>0)

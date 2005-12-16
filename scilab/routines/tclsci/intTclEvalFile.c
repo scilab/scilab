@@ -4,6 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclEvalFile.h"
 /*-----------------------------------------------------------------------------------*/
+extern void flushTKEvents(void);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclEvalFile) _PARAMS((char *fname))
 {
   /* execute Tcl scripts */
@@ -51,6 +53,7 @@ int C2F(intTclEvalFile) _PARAMS((char *fname))
 	}
 
 	RET=Tcl_EvalFile(TCLinterpreter,cstk(l1));
+	flushTKEvents ();
 
 	if (RET==TCL_ERROR)
 	{
