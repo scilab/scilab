@@ -37,7 +37,7 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[if MSDOS then
-  unix_w("dir ''"+WSCI+"\demos''");
+  unix_w("dir "+'""'+WSCI+"\demos"+'""'); 
 else 
   unix_w("ls $SCI/demos");
 end
