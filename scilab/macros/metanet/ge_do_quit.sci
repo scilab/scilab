@@ -10,7 +10,7 @@ function  ok=ge_do_quit(check_if_edited)
 		  'Really quit?'],['yes','no'])
     if ok==2 then ok=%f,return,end
   end
-  seteventhandler('')
+  if or(win==winsid()) then seteventhandler(''),end
   if win==EGcurrent then EGcurrent=[],end
   execstr('clearglobal EGdata_'+w+' EGhist_'+w)
   ok=%t
