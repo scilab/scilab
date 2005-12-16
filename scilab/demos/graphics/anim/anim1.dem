@@ -9,6 +9,9 @@ mode(0);
 // Hide the toolbar
 toolbar(0,'off');
 
+// Save the graphic context
+kp = xget('pixmap');
+
 string_to_display = [
 	'if driver()==''Pos'' then';
 	'  st=4;';
@@ -38,5 +41,7 @@ execstr(string_to_display);
 xset("pixmap",0);
 x_message(string_to_display);
 
-mode(-1);
+// Restore the graphic context
+xset('pixmap',kp);
 
+mode(-1);
