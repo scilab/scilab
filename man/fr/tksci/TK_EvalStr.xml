@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -80,11 +80,11 @@ TCL_EvalStr("destroy .foo1");
 TCL_EvalStr("destroy .foo2");
  
 //with one call, and in a slave interpreter
-scipad();TCL_EvalStr(["toplevel .foo1"
-   "label .foo1.l -text ""TK married Scilab also with slave interpreters !!!"""
-   "pack .foo1.l"
-   "button .foo1.b -text close -command {destroy .foo1}"
-   "pack .foo1.b"],"scipad")
+TCL_CreateSlave('TCLSlave');
+TCL_EvalStr('set test ""in Slave TCL Interp""','TCLSlave');
+TCL_GetVar('test','TCLSlave')
+
+TCL_DeleteInterp('TCLSlave')
 ]]></EXAMPLE>
 
   <SEE_ALSO>
