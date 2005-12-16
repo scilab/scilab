@@ -6,6 +6,9 @@
 
 mode(0);
 
+// Hide the toolbar
+toolbar(0,'off');
+
 string_to_display = [
 	'xset(''pixmap'',1);';
 	'xset(''wwpc'');  // clean pixmap';

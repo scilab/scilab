@@ -4,7 +4,10 @@
 // last modified : 14th, December 2005
 // ==========================================
 
-mode(0)
+mode(0);
+
+// Hide the toolbar
+toolbar(0,'off');
 
 string_to_display = [
 	'if driver()==''Pos'' then';
