@@ -130,10 +130,13 @@ function ged_insert(k,win)
   
   case 4 then //Text
     // open a dialog to enter the text
-    text = x_dialog("Enter the new text and click to place it","") ;
-    // get the position of the text
-    xstring( xc, yc, text ) ;
-    show_pixmap() 
+    text = x_dialog("Enter the new text here.","") ;
+    if ( text <> [] & text <> "" ) then
+      // do nothing if cancel button has been pressed or no text entered
+      // get the position of the text
+      xstring( xc, yc, text ) ;
+    end
+      show_pixmap() ;
   case 5 then //Rectangle
     axes = get_insertion_axes(job,f,default_axes,xc,yc)
     [xc,yc] = xchange(xc,yc,'f2i');
