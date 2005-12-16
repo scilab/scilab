@@ -7,7 +7,6 @@
 mode(0);
 
 string_to_display = [
-	'kp=xget(''pixmap'');';
 	'xset(''pixmap'',1);';
 	'';
 	'xselect(); //raise graphic window';
@@ -30,10 +29,10 @@ string_to_display = [
 	'  param3d((t/(np*%pi)*%pi).*sin(t),(t/(np*%pi)*%pi).*cos(t),I(i)*t/(np*%pi),35,45,''X@Y@Z'',[2,4]);';
 	'  xset(''wshow'');';
 	'end';
-	'xset(''pixmap'',kp);'
 ];
 
-x_message(string_to_display);
 execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
 
 mode(-1);

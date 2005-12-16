@@ -7,10 +7,7 @@
 mode(0)
 
 string_to_display = [
-	'kp=xget(''pixmap'');';
 	'xset(''pixmap'',1);';
-	'';
-	'dr=driver();';
 	'';
 	'if driver()==''Rec'' then';
 	'  driver(''X11'');';
@@ -38,11 +35,8 @@ string_to_display = [
 	'  xset(''wshow'');  //show';
 	'end'];
 
-x_message(string_to_display);
 execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
 
-mode(-1)
-
-xset("dashes",ds(1));
-xset("pixmap",kp);
-driver(dr)
+mode(-1);

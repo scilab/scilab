@@ -13,7 +13,6 @@ string_to_display = [
 	'  st=2;';
 	'end;';
 	'';
-	'kp=xget(''pixmap'');';
 	'xset(''pixmap'',1);';
 	'';
 	'xset(''wwpc'');  // clean pixmap';
@@ -32,8 +31,9 @@ string_to_display = [
 	'  xset(''wshow'');';
 	'end'];
 
-x_message(string_to_display);
 execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
 
-mode(-1)
-xset("pixmap",kp);
+mode(-1);
+

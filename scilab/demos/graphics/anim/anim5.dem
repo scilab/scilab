@@ -7,7 +7,7 @@
 mode(0);
 
 string_to_display = [
-	'kp=xget(''pixmap'');xset(''pixmap'',1);';
+	'xset(''pixmap'',1);';
 	'xselect();';
 	't=-%pi:0.3:%pi;';
 	'plot3d(t,t,sin(t)''*cos(t),35,45,''X@Y@Z'',[2,2,4]);';
@@ -20,9 +20,8 @@ string_to_display = [
 	'  xset(''wshow'');';
 	'end'];
 
-x_message(string_to_display);
 execstr(string_to_display);
-
-xset('pixmap',kp);
+xset("pixmap",0);
+x_message(string_to_display);
 
 mode(-1);

@@ -7,7 +7,6 @@
 mode(0);
 
 string_to_display = [
-	'kp=xget(''pixmap'');';
 	'xset(''pixmap'',1);';
 	'xset(''wwpc'');';
 	't=-%pi:0.3:%pi;';
@@ -41,9 +40,8 @@ string_to_display = [
 	'end';
 ];
 
-x_message(string_to_display);
 execstr(string_to_display);
-
-xset('pixmap',kp);
+xset("pixmap",0);
+x_message(string_to_display);
 
 mode(-1);

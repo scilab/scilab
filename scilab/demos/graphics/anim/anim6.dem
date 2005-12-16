@@ -11,7 +11,7 @@ string_to_display = [
 	'getf(path+''anim6.sci'');';
 	'';
 	'xselect();  //raise the graphic window';
-	'kp=xget(''pixmap'');xset(''pixmap'',1)';
+	'xset(''pixmap'',1)';
 	'';
 	'n=10;';
 	'r=1*ones(1,n);';
@@ -21,10 +21,9 @@ string_to_display = [
 	'y0=0*ones(2*n,1);';
 	'yt=read(path+''yt.wrt'',20,201);  //load data';
 	'chainap(yt); //draw the animation'];
-	
-x_message(string_to_display);
-execstr(string_to_display);
 
-xset("pixmap",kp);
+execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
 
 mode(-1);
