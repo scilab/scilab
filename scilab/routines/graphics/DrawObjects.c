@@ -7725,6 +7725,7 @@ sciDrawObj (sciPointObj * pobj)
       
     case SCI_LEGEND: 
       if (!sciGetVisibility(pobj)) break;
+      sciLegend * ppLegend = pLEGEND_FEATURE (pobj) ;
       /* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
@@ -7763,17 +7764,21 @@ sciDrawObj (sciPointObj * pobj)
 
 
       /*permet la mise a jour des legendes correspondantes aux entites associees */
-      for (i = 0; i < pLEGEND_FEATURE (pobj)->nblegends; i++)
-	{
- 	  if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
-	    pLEGEND_FEATURE (pobj)->pstyle[i] = 
-	      - sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
- 	  else 
- 	    pLEGEND_FEATURE (pobj)->pstyle[i] =  
- 	      sciGetForeground(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
-	}
+      for (i = 0; i < ppLegend->nblegends; i++)
+      {
+        //if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
+        //{
+        //  pLEGEND_FEATURE (pobj)->pstyle[i] = 
+        //    -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
+        //}
+        //else
+        //{ 
+          ppLegend->pstyle[i] =  
+            sciGetForeground( ppLegend->pptabofpointobj[i] );
+          //}
+      }
       /*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
-      Legends(pLEGEND_FEATURE (pobj)->pstyle, &(pLEGEND_FEATURE (pobj)->nblegends), sciGetText(pobj));
+      Legends( ppLegend->pstyle, &(ppLegend->nblegends), sciGetText(pobj));
        
           
       /* restore the graphic context */
@@ -7787,6 +7792,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif
  
       break; 
+
       /******************************** 22/05/2002 ***************************/    
     case SCI_FEC:  
       if (!sciGetVisibility(pobj)) break;
