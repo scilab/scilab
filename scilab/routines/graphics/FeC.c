@@ -169,28 +169,37 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     }
 
     if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+    {
       sciDrawObj(sciGetCurrentFigure());
+    }
  /*      EraseAndOrRedraw(psubwin);  /\*  inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
     
     sciSetCurrentObj (ConstructFec 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
+    
+    /* retrieve the created object : fec */
     pptabofpointobj = sciGetCurrentObj();
     hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
     cmpt++;   
     sciDrawObjIfRequired(sciGetCurrentObj ());
     DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
     /** Drawing the Legends **/
-    if ((int)strlen(strflag) >=1  && strflag[0] == '1'){
+    if ((int)strlen(strflag) >=1  && strflag[0] == '1')
+    {
       n1=1; styl[0]=1;styl[1]=0;
       sciSetCurrentObj (ConstructLegend
 			((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			 legend, strlen(legend), n1, styl, &pptabofpointobj)); 
 
-/*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
-      sciSetIsMark(pptabofpointobj, TRUE);
-      sciSetMarkStyle (pptabofpointobj, *styl);
+       /*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
+      
+      /* removed JB Silvy 12/05 */
+      /* fec object has no mark properties */
+      /*sciSetIsMark(pptabofpointobj, TRUE);*/
+      /*sciSetMarkStyle (pptabofpointobj, *styl);*/
+      
 
       sciDrawObjIfRequired(sciGetCurrentObj ()); 
       DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
