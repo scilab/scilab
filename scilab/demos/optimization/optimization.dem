@@ -11,7 +11,7 @@ demolist=['LMITOOL',                    'lmitool/lmi.dem'
 
 deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
 
-xbasc();
+//xbasc();
 while %t then
   num=x_choose(demolist(:,1),'Choose a demo');
   if num==0 then 
