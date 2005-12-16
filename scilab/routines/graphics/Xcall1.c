@@ -968,44 +968,57 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
  * entry is a set of lines coded with 'line1@line2@.....@'
  * centered in the rectangle [x,y,w=wide,h=height] 
  * BUT also allow angle selection for string rotation
+ * angle is not taken into account
  *-----------------------------------------------------------------------------*/
 
 void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox)
 {
-	char *loc=NULL,*loc1=NULL;
-	int compteur = 1;
-	int hauteur=0;
-	loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
+  char *loc=NULL,*loc1=NULL;
+  int compteur = 1;
+  int hauteur=0;
+  loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
   
-	if (loc)
-    {
-		integer wmax=0,htot=0,x1=0,yy1=0,rect[4],i;
-		strcpy(loc,string);
-		loc1=strtok(loc,"@");
-
-		for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
-
-		while (loc1 != ( char * ) 0) 
-		{  
-			C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			if ( rect[2] >= wmax ) wmax=rect[2];
-			htot += (int) (1.2*((double) rect[3]));
-			loc1=strtok((char *) 0,"@");
-			if(compteur==1) hauteur = rect[3];
-			compteur++;
-		}
-      
-		x1=x+ (w- wmax)/2;
-		yy1=y - h + ( h - htot)/2 + rect[3];
-      
-		bbox[0] = x1;
-		bbox[1] = yy1 - hauteur;
-		bbox[2] = wmax;
-		bbox[3] = htot;
-		FREE(loc);
-		loc=NULL;
-	}
-
+  if (loc)
+  {
+    integer wmax=0,x1=0,yy1=0,rect[4],i;
+    double htot = 0.0;
+    strcpy(loc,string);
+    loc1=strtok(loc,"@");
+    
+    for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
+    
+    while (loc1 != ( char * ) 0) 
+    {  
+      C2F(dr)("xstringl",loc1,&x1,&yy1,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( rect[2] >= wmax ) wmax=rect[2];
+      /*htot += (int) (1.2*((double) rect[3]));*/
+      loc1=strtok((char *) 0,"@");
+      /*if(compteur==1) hauteur = rect[3];*/
+      /* modified 30/11/05 jean-baptiste Silvy */
+      if ( compteur == 1 )
+      {
+        hauteur = rect[3] ;
+        /* no extra space before this line */
+        htot += rect[3] ;
+      }
+      else
+      {
+        htot += 1.2 * rect[3] ;
+      }
+      compteur++;
+    }
+    
+    x1=x+ (w- wmax)/2;
+    yy1=y - h + ( h - htot)/2 + rect[3];
+    
+    bbox[0] = x1;
+    bbox[1] = yy1 - hauteur;
+    bbox[2] = wmax;
+    bbox[3] = round( htot ) ;
+    FREE(loc);
+    loc=NULL;
+  }
+  
 }
 
 /*-----------------------------------------------------------------------------
@@ -1060,11 +1073,16 @@ void xstringb_angle (char *string, integer x, integer y, integer w, integer h, d
 void boundingbox_1(char *fname, char *string, integer *v1, integer *v2, integer *v3, integer *x6, integer *x7, integer *x8, double *x, double *y, double *rect, double *dx4, integer lx0, integer lx1)
 { 
   integer x1,yy1,n=1,rect1[4];
+
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
+
   C2F(dr)(fname,string,&x1,&yy1,rect1,x6,x7,x8,PD0,PD0,PD0,dx4,lx0,lx1);
+  
+
   C2F(echelle2d)(rect,rect+1,rect1,rect1+1,&n,&n,"i2f",3L);
   C2F(echelle2dl)(rect+2,rect+3,rect1+2,rect1+3,&n,&n,"i2f");
+
 }
 
 /*-----------------------------------------------------------------------------
