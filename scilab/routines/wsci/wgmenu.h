@@ -168,4 +168,5 @@ void NewFigure(struct BCG * ScilabGC);
 int FindFreeGraphicWindow(struct BCG * ScilabGC);
 void RefreshMenus(struct BCG * ScilabGC);
 void CreateGedMenus(struct BCG * ScilabGC);
+BOOL IsEntityPickerMenu(struct BCG * ScilabGC,int id);
 #endif /*__WGMENU__*/

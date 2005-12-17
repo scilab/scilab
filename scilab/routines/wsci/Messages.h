@@ -117,13 +117,20 @@
 #define MSG_SCIMSG105 "Scilab Document"
 #define MSG_SCIMSG106 "Graphical Editor"
 #define MSG_SCIMSG107 "Line"
+#define MSG_SCIMSG120 "Polyline"
 #define MSG_SCIMSG108 "Arrow"
 #define MSG_SCIMSG109 "Double Arrow"
 #define MSG_SCIMSG110 "Text"
 #define MSG_SCIMSG111 "Rectangle"
 #define MSG_SCIMSG112 "Circle"
+#define MSG_SCIMSG113 "Entity Picker"
 
-#define MSG_SCIMSG113 "Ouvrir release_notes.txt"
-#define MSG_SCIMSG114 "Open release_notes.txt"
+#define MSG_SCIMSG114 "Ouvrir release_notes.txt"
+#define MSG_SCIMSG115 "Open release_notes.txt"
+
+#define MSG_SCIMSG116 "S&tart entity picker"
+#define MSG_SCIMSG117 "St&op entity picker"
+#define MSG_SCIMSG118 "&Démarrer sélecteur d'entités"
+#define MSG_SCIMSG119 "Arrê&ter sélecteur d'entités"
 
 #endif /*_MESSAGESH_*/

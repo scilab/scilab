@@ -24,6 +24,7 @@ extern void PrintPs (struct BCG *ScilabGC);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void Callback_PRINTSETUP(void);
 extern LPTW GetTextWinScilab(void);
+void ModifyEntityPickerToolbar(struct BCG * ScilabGC,BOOL Pressed);
 /*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
@@ -1278,9 +1279,9 @@ void CreateGedMenus(struct BCG * ScilabGC)
 		SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
 		*/
 	#ifdef WITH_TK
-		integer ne=13, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","S&tart entity picker","St&op entity picker"};
-		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","&Démarrer sélecteur d'entités","Arrê&ter sélecteur d'entités"};
+		integer ne=14, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
+		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
 
 		/* Disable Double Arrow */
 		integer ni=/*7*/6;
@@ -1310,6 +1311,74 @@ void CreateGedMenus(struct BCG * ScilabGC)
 			#endif
 			break;
 		}
+
 	}
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)
+{
+	BOOL bOK=FALSE;
+	char command[1024];
+	
+	if (IsEntityPickerMenu(ScilabGC,id))
+	{
+		if (id == 24)
+		{
+			wsprintf(command,"ged(10,%d);",ScilabGC->CurWindow); /* Start */
+			ModifyEntityPickerToolbar(ScilabGC,TRUE);
+			StoreCommand(command);
+			bOK=TRUE;
+		}
+
+		if (id == 25)
+		{
+			wsprintf(command,"ged(11,%d);",ScilabGC->CurWindow); /* Stop */
+			ModifyEntityPickerToolbar(ScilabGC,FALSE);
+			StoreCommand(command);
+			bOK=TRUE;
+		}
+	}
+	
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL IsEntityPickerMenu(struct BCG * ScilabGC,int id)
+{
+	BOOL bOK=FALSE;
+	if (id == 24)
+	{
+		#define lenStringMenu 64
+		char CurrentStringMenu[lenStringMenu];
+		GetMenuString(ScilabGC->lpmw.hMenu,id,CurrentStringMenu,lenStringMenu-1,MF_BYCOMMAND);
+		switch (ScilabGC->lpmw.CodeLanguage)
+		{
+			case 1:
+				if (strcmp(CurrentStringMenu,MSG_SCIMSG118)==0) bOK=TRUE;
+			break;
+
+			case 0: default:
+				if (strcmp(CurrentStringMenu,MSG_SCIMSG116)==0) bOK=TRUE;
+			break;
+		}
+	}
+
+	if (id == 25)
+	{
+		#define lenStringMenu 64
+		char CurrentStringMenu[lenStringMenu];
+		GetMenuString(ScilabGC->lpmw.hMenu,id,CurrentStringMenu,lenStringMenu-1,MF_BYCOMMAND);
+		switch (ScilabGC->lpmw.CodeLanguage)
+		{
+			case 1:
+				if (strcmp(CurrentStringMenu,MSG_SCIMSG119)==0) bOK=TRUE;
+			break;
+
+			case 0: default:
+				if (strcmp(CurrentStringMenu,MSG_SCIMSG117)==0) bOK=TRUE;
+			break;
+		}
+	}
+
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

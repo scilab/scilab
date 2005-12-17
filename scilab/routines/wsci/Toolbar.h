@@ -34,6 +34,7 @@ void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);
 void CreateGraphToolBar(struct BCG * ScilabGC) ;
 void RefreshGraphToolBar(struct BCG * ScilabGC) ;
+void ModifyEntityPickerToolbar(struct BCG * ScilabGC,BOOL Pressed);
 
 void ShowToolBar(LPTW lptw);
 void HideToolBar(LPTW lptw);
@@ -46,5 +47,6 @@ int ToolBarWin32(int WinNum,char *onoff);
 
 void EnableToolBar(LPTW lptw);
 void DisableToolBar(LPTW lptw);
+void CreateButtonToolBar(struct BCG * ScilabGC,char *Name,HMENU CallbackID,int ID_ICON,char *ToolTipString,DWORD Style);
 #endif /* __TOOLBARWIN__ */
 /*-----------------------------------------------------------------------------------*/ 

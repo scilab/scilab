@@ -48,6 +48,7 @@
 #define TOOLBAR_TEXT					0x8809
 #define TOOLBAR_RECTANGLE			0x8810
 #define TOOLBAR_CIRCLE				0x8811
+#define TOOLBAR_PICKER				0x8812
 
 
 #define M_ABOUT				NUMMENU+1
