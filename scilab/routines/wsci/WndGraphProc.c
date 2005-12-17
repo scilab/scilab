@@ -17,6 +17,7 @@ extern void DragFunc (LPTW lptw, HDROP hdrop);
 extern int C2F (deletewin) (integer * number);
 extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
 extern void set_wait_click(val);
+extern BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id);
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_GRAPH_WM_CLOSE(HWND hwnd);
 BOOL ON_WND_GRAPH_WM_DESTROY(HWND hwnd);
@@ -262,7 +263,11 @@ void ON_WND_GRAPH_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags
 BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 {
 	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
-	if (id < NUMMENU) SendGraphMacro (ScilabGC, id);
+
+	if (id < NUMMENU) 
+	{
+		if (!SendMacroEntityPicker(ScilabGC, id)) SendGraphMacro (ScilabGC, id);
+	}
 	else
 	{
 		switch (id)
@@ -287,6 +292,32 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 					wsprintf(command,"ged(8,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
+			}
+			break;
+
+			case TOOLBAR_PICKER:
+			{
+				LRESULT lResult;
+
+				HWND hwndPicker=NULL;
+				hwndPicker=GetDlgItem(ScilabGC->CWindow,TOOLBAR_PICKER);
+
+				lResult=SendMessage(hwndPicker,(UINT) BM_GETCHECK,0,0);  
+
+				if (lResult == BST_CHECKED)
+				{
+					char command[1024];
+					wsprintf(command,"ged(10,%d);",ScilabGC->CurWindow);
+					StoreCommand(command);
+					
+				}
+				else
+				{
+					char command[1024];
+					wsprintf(command,"ged(11,%d);",ScilabGC->CurWindow);
+					StoreCommand(command);
+				}
+				
 			}
 			break;
 
