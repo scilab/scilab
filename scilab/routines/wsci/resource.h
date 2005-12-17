@@ -43,8 +43,8 @@
 #define IDI_DOUBLEARROW                 152
 #define IDI_CIRCLE                      153
 #define IDI_LINE                        154
-#define IDI_ICON2                       155
 #define IDI_POLYLINE                    155
+#define IDI_PICKER                      156
 #define IDC_VERSION_SPLASH              1000
 #define IDC_COPYRIGHT_SPLASH            1001
 #define IDC_STATIC_ABOUT_HTTP           1002
@@ -119,7 +119,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        156
+#define _APS_NEXT_RESOURCE_VALUE        157
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1069
 #define _APS_NEXT_SYMED_VALUE           101
