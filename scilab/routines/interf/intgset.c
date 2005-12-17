@@ -973,7 +973,7 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
 /* removeNewStyleMenu                                                                */
 /* remove the menu and toolbar which can not be used in old style                    */
 /*-----------------------------------------------------------------------------------*/
-void updateMenus( struct BCG * XCG )
+void updateMenus( struct BCG * XGC )
 {
 #if  WIN32
   {
@@ -987,7 +987,7 @@ void updateMenus( struct BCG * XCG )
   {
     extern void refreshMenus( struct BCG * ScilabGC ) ;
 
-    refreshMenus( XCG ) ;
+    refreshMenus( XGC ) ;
     /* no toolbar under linux */
     
   }
@@ -1105,17 +1105,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		sciSetCurrentObj(psubwin);
 		sciSetOriginalSubWin (figure, psubwin);
               }
-		/* Refresh toolbar and Menus for Windows */
-              updateMenus( XGC ) ;
-              /*#if  WIN32
-		  {
-			  extern void RefreshGraphToolBar(struct BCG * ScilabGC);
-			  extern void RefreshMenus(struct BCG * ScilabGC);
-
-			  RefreshMenus(XGC);
-			  RefreshGraphToolBar(XGC);
-		  }
-                  #endif*/
+				/* Refresh toolbar and Menus */
+        updateMenus( XGC ) ;
 	    }
 	  }
 	}
