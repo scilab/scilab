@@ -255,16 +255,11 @@ BOOL ON_WND_CONSOLE_WM_SIZE(HWND hwnd,UINT state,int cx,int cy)
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_CONSOLE_WM_GETMINMAXINFO(HWND hwnd, LPMINMAXINFO lpMinMaxInfo)
 {
-	HDC hdc;
 	POINT *MMinfo = (POINT *) lpMinMaxInfo;
-	TEXTMETRIC tm;
-	hdc = GetDC (hwnd);
-	SelectFont (hdc, GetStockFont (OEM_FIXED_FONT));
-	GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
-	ReleaseDC (hwnd, hdc);
 	/* minimum size */
-	MMinfo[3].x = ScreenMinSize.x * tm.tmAveCharWidth+ GetSystemMetrics (SM_CXVSCROLL) + 2 * GetSystemMetrics (SM_CXFRAME);
-	MMinfo[3].y = ScreenMinSize.y * tm.tmHeight+ GetSystemMetrics (SM_CYHSCROLL) + 2 * GetSystemMetrics (SM_CYFRAME)+ GetSystemMetrics (SM_CYCAPTION);
+	/* same minimum size as Linux */
+	MMinfo[3].x = 400;
+	MMinfo[3].y =320;
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

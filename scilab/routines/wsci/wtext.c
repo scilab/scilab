@@ -70,7 +70,6 @@ extern void InitIhmDefaultColor(void);
 extern DWORD GetIhmTextColor(void);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern LPTW GetTextWinScilab(void);
-extern int C2F (scilines) (int *nl, int *nc);
 extern void MessageBoxNewGraphicMode(void);
 extern int GetLanguageCodeInScilabDotStar(void);
 extern void ScilabFxFadeOut(void);

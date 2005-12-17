@@ -45,6 +45,7 @@ extern LPTW GetTextWinScilab(void);
 extern BOOL ActivateTransparencyMode(HWND hWnd);
 extern void IncreaseAlphaLevel(void);
 extern void DecreaseAlphaLevel(void);
+extern int C2F (scilines) (int *nl, int *nc);
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_TEXT_WM_DESTROY(HWND hwnd);
 BOOL ON_WND_TEXT_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct);
@@ -827,9 +828,7 @@ void ON_WND_TEXT_WM_SIZE(HWND hwnd, UINT state, int cx, int cy)
 	nc = lptw->ClientSize.x / lptw->CharSize.x;
 	nl = lptw->ClientSize.y / lptw->CharSize.y;
 	/** send number of lines info to scilab **/
-	nl = (nl > 5) ? nl : 5;
-	/** to avoid lines set to 0 when iconified **/
-	//C2F (scilines) (&nl, &nc);
+	if ((cx>0) && (cy>0))	C2F (scilines) (&nl, &nc);
 
 	lptw->ScrollMax.y = max (0, lptw->CharSize.y * lptw->ScreenSize.y - lptw->ClientSize.y);
 	lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
