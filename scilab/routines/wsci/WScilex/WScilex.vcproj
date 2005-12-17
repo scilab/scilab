@@ -639,10 +639,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
-				RelativePath="..\resource.h">
+				RelativePath=".\resource.h">
 			</File>
 			<File
-				RelativePath=".\resource.h">
+				RelativePath="..\resource.h">
 			</File>
 		</Filter>
 		<Filter
@@ -713,6 +713,9 @@
 				RelativePath="..\Icones Scilab\PASTE.ico">
 			</File>
 			<File
+				RelativePath="..\Icones Scilab\PICKER.ico">
+			</File>
+			<File
 				RelativePath="..\Icones Scilab\POLYLINE.ico">
 			</File>
 			<File
@@ -740,10 +743,10 @@
 				RelativePath="..\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\scilab.ico">
+				RelativePath="..\Icones Scilab\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\Icones Scilab\scilab.ico">
+				RelativePath="..\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\Icones Scilab\scilab24.ico">
