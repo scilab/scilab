@@ -874,10 +874,16 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\3DROT.ico">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\ARROW.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\Bin.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\CHDIR.ico">
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\CIRCLE.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\CONSOLE.ico">
@@ -895,16 +901,25 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\Dem.ico">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\DOUBLEARROW.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\exit24.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\fonts.ico">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\GED.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\Graph.ICO">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\HELP.ico">
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\LINE.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\metanet24.ico">
@@ -919,7 +934,13 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\PASTE.ico">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\POLYLINE.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\PRINT.ico">
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\RECTANGLE.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Rscilab.rc">
@@ -1032,6 +1053,9 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\scilab_logo.bmp">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Text.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\Tst.ico">
 			</File>
 			<File
@@ -1047,6 +1071,9 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath="..\..\routines\wsci\resource.h">
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\bin\atlas.lib">
