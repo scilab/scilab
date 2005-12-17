@@ -110,6 +110,7 @@
 			[CLEARHISTORY]
 		Clear Command &Window	F2
 			[CLEARCOMMANDWINDOW]
+		--	
 		&Console	F12
 			[CONSOLE]
 [EndMenu]

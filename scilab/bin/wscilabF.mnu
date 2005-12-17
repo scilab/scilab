@@ -109,7 +109,8 @@
 			[CLEARHISTORY]
 		Effacer la &fenêtre ligne de commande	F2
 			[CLEARCOMMANDWINDOW]
-		Afficher &console	F12
+		--	
+		&Console	F12
 			[CONSOLE]
 
 [EndMenu]
