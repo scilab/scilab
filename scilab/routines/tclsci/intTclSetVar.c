@@ -9,8 +9,6 @@ int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
 int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
 int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
 /*-----------------------------------------------------------------------------------*/
-extern void flushTKEvents(void);
-/*-----------------------------------------------------------------------------------*/
 int C2F(intTclSetVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
@@ -177,7 +175,6 @@ int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,in
 			{
 				bOK=(int)(FALSE);
 			}
-			flushTKEvents ();
 		}
 	}
 		if (MatrixDouble) {FREE(MatrixDouble);MatrixDouble=NULL;}
@@ -210,8 +207,6 @@ int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 	{
 		bOK=(int)(TRUE);
 	}
-	flushTKEvents ();
-
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -243,7 +238,6 @@ int SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int 
 			{
 				TestOnAllTcl_SetVar=FALSE;
 			}
-			flushTKEvents ();
 		}
 	}
 	bOK=(int)(TestOnAllTcl_SetVar);
@@ -269,7 +263,6 @@ int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 	{
 		bOK=(int)(TRUE);
 	}
-	flushTKEvents ();
 	
 	return bOK;
 }
