@@ -17,12 +17,15 @@
 #include "../os_specific/win_mem_alloc.h"
 
 /*-----------------------------------------------------------------------------------*/
-BOOL ActivateTransparencyMode(HWND hWnd);
+BOOL EnableTransparencyMode(HWND hWnd);
+BOOL DisableTransparencyMode(HWND hWnd);
+BOOL IsEnableTransparencyMode(void);
 void ScilabFxFadeOut(void);
 int GetCurrentAlphaLevel(void);
 void SetCurrentAlphaLevel(HWND hWnd ,int Alpha);
 BOOL IncreaseAlphaLevel(void);
 BOOL DecreaseAlphaLevel(void);
+
 /*-----------------------------------------------------------------------------------*/
 #endif /*__TRANSPARENCY__*/
 /*-----------------------------------------------------------------------------------*/

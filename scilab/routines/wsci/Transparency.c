@@ -21,8 +21,15 @@ SLWA_FUNC SetLayeredWindowAttributes;
 /*-----------------------------------------------------------------------------------*/
 static BOOL LoadUser32DLL=FALSE;
 static int CurrentAlphaLevel=255;
+static BOOL TransparencyON=FALSE;
+static HMODULE hUser32=NULL;
 /*-----------------------------------------------------------------------------------*/
 extern LPTW GetTextWinScilab(void);
+/*-----------------------------------------------------------------------------------*/
+BOOL IsEnableTransparencyMode(void)
+{
+	return TransparencyON;
+}
 /*-----------------------------------------------------------------------------------*/
 BOOL ActivateTransparencyMode(HWND hWnd)
 {
@@ -35,16 +42,38 @@ BOOL ActivateTransparencyMode(HWND hWnd)
 		(OS!=OS_WIN32_WINDOWS_98) &&
 		(OS!=OS_WIN32_WINDOWS_Me) )
 	{
-		SetWindowLong(hWnd,	GWL_EXSTYLE,GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
-		bOK=TRUE;
+		if (TransparencyON) return FALSE;
+
 		if (LoadUser32DLL==FALSE)
 		{
-			HMODULE hUser32 = GetModuleHandle("USER32.DLL");
-			if (!hUser32) return FALSE;
-			SetLayeredWindowAttributes = (SLWA_FUNC)GetProcAddress(hUser32, "SetLayeredWindowAttributes");
+			hUser32 = GetModuleHandle("USER32.DLL");
 			LoadUser32DLL=TRUE;
 		}
-		SetCurrentAlphaLevel(hWnd ,CurrentAlphaLevel);
+		if (!hUser32) return FALSE;
+
+		SetWindowLong(hWnd,	GWL_EXSTYLE,GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
+		SetLayeredWindowAttributes = (SLWA_FUNC)GetProcAddress(hUser32, "SetLayeredWindowAttributes");
+		TransparencyON=TRUE;
+		bOK=TRUE;
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL DisableTransparencyMode(HWND hWnd)
+{
+	BOOL bOK=FALSE;
+	int OS=GetOSVersion();
+
+	if ( (OS!=OS_WIN32_WINDOWS_NT_3_51) &&
+		(OS!=OS_WIN32_WINDOWS_NT_4_0) &&
+		(OS!=OS_WIN32_WINDOWS_95) &&
+		(OS!=OS_WIN32_WINDOWS_98) &&
+		(OS!=OS_WIN32_WINDOWS_Me) )
+	{
+			SetWindowLong(hWnd,	GWL_EXSTYLE,CS_HREDRAW | CS_VREDRAW);
+			CurrentAlphaLevel=255;
+			TransparencyON=FALSE;
+			bOK=TRUE;
 	}
 	return bOK;
 }
@@ -86,9 +115,10 @@ void SetCurrentAlphaLevel(HWND hWnd ,int Alpha)
 	{
 		if ( (Alpha>=0) && (Alpha<=255) )
 		{
-			CurrentAlphaLevel=Alpha;
+			
 			SetLayeredWindowAttributes(hWnd, (COLORREF)NULL,CurrentAlphaLevel, LWA_ALPHA);
 		}
+		CurrentAlphaLevel=Alpha;
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -98,9 +128,23 @@ BOOL IncreaseAlphaLevel(void)
 	LPTW lptw=GetTextWinScilab();
 	int Alpha=GetCurrentAlphaLevel();
 
-	SetCurrentAlphaLevel(lptw->hWndParent ,Alpha++);
-	SetCurrentAlphaLevel(lptw->hWndText ,Alpha++);
-
+	if (Alpha==255)
+	{
+		DisableTransparencyMode(lptw->hWndParent);
+		DisableTransparencyMode(lptw->hWndText);
+		DragAcceptFiles (lptw->hWndParent, TRUE);
+		InvalidateRect(lptw->hWndParent,NULL,TRUE);
+		InvalidateRect(lptw->hWndText,NULL,TRUE);
+	}
+	else
+	{
+		if (Alpha<255)
+		{
+			SetCurrentAlphaLevel(lptw->hWndParent ,Alpha++);
+			SetCurrentAlphaLevel(lptw->hWndText ,Alpha++);
+			if (Alpha>255) Alpha=255;
+		}
+	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -110,9 +154,12 @@ BOOL DecreaseAlphaLevel(void)
 	LPTW lptw=GetTextWinScilab();
 	int Alpha=GetCurrentAlphaLevel();
 
-	SetCurrentAlphaLevel(lptw->hWndParent ,Alpha--);
-	SetCurrentAlphaLevel(lptw->hWndText ,Alpha--);
-
+	if (Alpha<0) Alpha=0;
+	else
+	{
+		SetCurrentAlphaLevel(lptw->hWndParent ,Alpha--);
+		SetCurrentAlphaLevel(lptw->hWndText ,Alpha--);
+	}
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/

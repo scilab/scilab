@@ -18,6 +18,8 @@ void DragFunc (LPTW lptw, HDROP hdrop)
 	
 	cFiles = DragQueryFile (hdrop, 0xffffffff, (LPSTR) NULL, 0);
 
+	lptw->bGetCh =FALSE;
+
 	for (i = 0; i < cFiles; i++)
 	{
 		DragQueryFile (hdrop, i, szFile, MAX_PATH);

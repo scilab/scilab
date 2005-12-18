@@ -46,7 +46,10 @@ extern BOOL ActivateTransparencyMode(HWND hWnd);
 extern void IncreaseAlphaLevel(void);
 extern void DecreaseAlphaLevel(void);
 extern int C2F (scilines) (int *nl, int *nc);
+extern void ExitWindow(void);
+extern BOOL IsEnableTransparencyMode(void);
 /*-----------------------------------------------------------------------------------*/
+BOOL ON_WND_TEXT_WM_CLOSE(HWND hwnd);
 BOOL ON_WND_TEXT_WM_DESTROY(HWND hwnd);
 BOOL ON_WND_TEXT_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct);
 BOOL ON_WND_TEXT_WM_PAINT(HWND hwnd);
@@ -101,10 +104,17 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		HANDLE_MSG(hwnd,WM_PAINT,ON_WND_TEXT_WM_PAINT);
 		HANDLE_MSG(hwnd,WM_CREATE,ON_WND_TEXT_WM_CREATE);
 		HANDLE_MSG(hwnd,WM_DESTROY,ON_WND_TEXT_WM_DESTROY);
+		HANDLE_MSG(hwnd,WM_CLOSE,ON_WND_TEXT_WM_CLOSE);
 		HANDLE_MSG(hwnd,WM_CHAR,ON_WND_TEXT_WM_CHAR);
 	}
     
 	return DefWindowProc (hwnd, message, wParam, lParam);
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL ON_WND_TEXT_WM_CLOSE(HWND hwnd)
+{
+	ExitWindow();
+	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_TEXT_WM_DESTROY(HWND hwnd)
@@ -606,10 +616,22 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 				break;
 
 				case VK_ADD :
-					//IncreaseAlphaLevel();
+					if (!IsEnableTransparencyMode())
+					{
+						LPTW lptw=GetTextWinScilab();
+						ActivateTransparencyMode(lptw->hWndParent);
+						ActivateTransparencyMode(lptw->hWndText);
+					}
+					IncreaseAlphaLevel();
 				break;
 				case VK_SUBTRACT:
-					//DecreaseAlphaLevel();
+					if (!IsEnableTransparencyMode())
+					{
+						LPTW lptw=GetTextWinScilab();
+						ActivateTransparencyMode(lptw->hWndParent);
+						ActivateTransparencyMode(lptw->hWndText);
+					}
+					DecreaseAlphaLevel();
 				break;
 
 				default:
@@ -818,7 +840,7 @@ void ON_WND_TEXT_WM_SIZE(HWND hwnd, UINT state, int cx, int cy)
 {
 	int nl=0, nc=0;
 	LPTW lptw=GetTextWinScilab();
-
+	
 	lptw->ClientSize.y = cy;
 	lptw->ClientSize.x = cx;
 	nc = lptw->ClientSize.x / lptw->CharSize.x;

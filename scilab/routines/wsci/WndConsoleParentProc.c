@@ -93,10 +93,8 @@ BOOL ON_WND_CONSOLE_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT MyCopyDa
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_CONSOLE_WM_CLOSE(HWND hwnd)
 {
-	/* Allan CORNET 11/07/03 Bug Win 98 */
-	/* Sortie Meme durant l'execution d'un script */
-	/* 28/11/03 */
-	ExitWindow();
+	LPTW lptw=GetTextWinScilab();
+	SendMessage(lptw->hWndText,WM_CLOSE,(WPARAM)lptw->hWndParent,0);
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -108,6 +106,7 @@ BOOL ON_WND_CONSOLE_WM_DESTROY(HWND hwnd)
 	DeleteFont (lptw->hfont);
 	lptw->hfont = 0;
 
+	
 	/* Tue le Process Scilex si OS est Windows 9x */
 	Kill_Scilex_Win98();
 	return TRUE;
@@ -238,6 +237,7 @@ BOOL ON_WND_CONSOLE_WM_ENTERSIZEMOVE(void)
 BOOL ON_WND_CONSOLE_WM_SIZE(HWND hwnd,UINT state,int cx,int cy)
 {
 	LPTW lptw=GetTextWinScilab();
+	
 	if (lptw->lpmw->ShowToolBar)
 	{
 		/* Affichage Zone Toolbar */
