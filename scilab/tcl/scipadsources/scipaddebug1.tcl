@@ -28,7 +28,7 @@ catch {
 #############
 # Debug settings in case Scipad is launched outside of Scilab, e.g. from wish
 
-if {[catch {ScilabEval ";"}] != 0} {
+if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 
     # Define ScilabEval to a void function, if it is unknown. This is
     # useful in order to run scipad outside of scilab (e.g. to debug it)
