@@ -71,6 +71,7 @@ extern LPTW GetTextWinScilab(void);
 extern void MessageBoxNewGraphicMode(void);
 extern int GetLanguageCodeInScilabDotStar(void);
 extern void ScilabFxFadeOut(void);
+extern BOOL IsEnableTransparencyMode(void);
 extern void C2F (tmpdirc) (void);
 extern EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -1762,31 +1763,28 @@ void ReorganizeScreenBuffer(LPTW lptw)
 	BYTE *CopyOfAttribBuffer=NULL;
       	
      	      			
-      	NombredeCaracteres=lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
+    NombredeCaracteres=lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
      	
-      	DecalageY=lptw->ScreenSize.x*RemoveLines;
+    DecalageY=lptw->ScreenSize.x*RemoveLines;
 
       	
 	CopyOfScreenBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
 			
-      	strncpy(CopyOfScreenBuffer,(LPSTR)(lptw->ScreenBuffer+DecalageY),NombredeCaracteres-DecalageY);
-      	_fmemset (lptw->ScreenBuffer, ' ', lptw->ScreenSize.x * lptw->ScreenSize.y);
-      	strncpy((LPSTR)lptw->ScreenBuffer,CopyOfScreenBuffer,NombredeCaracteres-DecalageY);
-      	FREE(CopyOfScreenBuffer);
+    strncpy(CopyOfScreenBuffer,(LPSTR)(lptw->ScreenBuffer+DecalageY),NombredeCaracteres-DecalageY);
+    _fmemset (lptw->ScreenBuffer, ' ', lptw->ScreenSize.x * lptw->ScreenSize.y);
+    strncpy((LPSTR)lptw->ScreenBuffer,CopyOfScreenBuffer,NombredeCaracteres-DecalageY);
+    FREE(CopyOfScreenBuffer);
       			
       			
-      	CopyOfAttribBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
-      	strncpy(CopyOfAttribBuffer,(LPSTR)(lptw->AttrBuffer+DecalageY),NombredeCaracteres-DecalageY);
-      	_fmemset (lptw->AttrBuffer, NOTEXT, lptw->ScreenSize.x * lptw->ScreenSize.y);
-      	strncpy((LPSTR)lptw->AttrBuffer,CopyOfAttribBuffer,NombredeCaracteres-DecalageY);
-      	FREE(CopyOfAttribBuffer);
+    CopyOfAttribBuffer=(char*)MALLOC( (NombredeCaracteres+1)* sizeof(char));
+    strncpy(CopyOfAttribBuffer,(LPSTR)(lptw->AttrBuffer+DecalageY),NombredeCaracteres-DecalageY);
+    _fmemset (lptw->AttrBuffer, NOTEXT, lptw->ScreenSize.x * lptw->ScreenSize.y);
+    strncpy((LPSTR)lptw->AttrBuffer,CopyOfAttribBuffer,NombredeCaracteres-DecalageY);
+    FREE(CopyOfAttribBuffer);
       	
       	
-      	lptw->CursorPos.y=lptw->CursorPos.y-RemoveLines;
-      	lptw->ScrollPos.y=lptw->ScrollPos.y-(RemoveLines*lptw->CharSize.y);
-      	
-  	
-
+    lptw->CursorPos.y=lptw->CursorPos.y-RemoveLines;
+    lptw->ScrollPos.y=lptw->ScrollPos.y-(RemoveLines*lptw->CharSize.y);
 }
 /*-----------------------------------------------------------------------------------*/
 void ExitWindow(void)
@@ -1821,7 +1819,7 @@ void ExitWindow(void)
            	SetThreadPasteRunning(FALSE);
            	CloseHandle( GetHandleThreadPaste() );
         }
-		//ScilabFxFadeOut();
+		if (IsEnableTransparencyMode())	ScilabFxFadeOut();
         WriteRegistryTxt (lptw);
     	C2F(sciquit)();
 		C2F(tmpdirc)();
@@ -1834,13 +1832,38 @@ void ExitWindow(void)
    }
    else
    {
-	//ScilabFxFadeOut();
-   	WriteRegistryTxt (lptw);
-	C2F(sciquit)();
-	C2F(tmpdirc)();
-	Kill_Scilex();
+	   if (lptw->bGetCh)
+	   {
+		   if (IsEnableTransparencyMode())	ScilabFxFadeOut();
+		   WriteRegistryTxt (lptw);
+		   C2F(sciquit)();
+		   C2F(tmpdirc)();
+		   Kill_Scilex();
+	   }
+	   else
+	   {
+		   switch (lptw->lpmw->CodeLanguage)
+		   {
+			case 1:
+			   strcpy(Message,MSG_SCIMSG83);
+			   strcpy(Title,MSG_SCIMSG84);
+			break;
+			case 0:default:
+			   strcpy(Message,MSG_SCIMSG85);
+			   strcpy(Title,MSG_SCIMSG86);
+			break;
+		   }   
+
+		   if (MessageBox(lptw->hWndParent,Message,Title,MB_SYSTEMMODAL|MB_YESNO|MB_ICONWARNING)==IDYES)
+		   {
+			   if (IsEnableTransparencyMode())	ScilabFxFadeOut();
+			   WriteRegistryTxt (lptw);
+			   C2F(sciquit)();
+			   C2F(tmpdirc)();
+			   Kill_Scilex();
+		   }
+	   }
    }
-	   	
 }
 /*-----------------------------------------------------------------------------------*/
 void write_scilab_synchro(char *line)
@@ -1862,7 +1885,6 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	LPTW lptw=GetTextWinScilab();
 
 	line=(char *)lpParam;
-	
 	
 	EnterCriticalSection(&Sync);
 	while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
