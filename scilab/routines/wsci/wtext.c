@@ -41,8 +41,6 @@
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------*/
 static BOOL ConsoleIsMinimized=FALSE;
 static BOOL WriteInKeyBuf=FALSE;
 static void CreateTextClass (LPTW lptw);
@@ -1390,9 +1388,6 @@ int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 	{
 		if ( IsWindowInterface() )
 		{
-			int X=0,Y=0;
-			int cx=0,cy=0;
-
 			static int l1, m1, n1;
 			int NbrLineToRemove=0;
 					
@@ -1404,25 +1399,7 @@ int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 	
 	 		if (NbrLineToRemove>0)
 	 		{
-	 			 int i = 0;
-	 			 LPTW lptw=GetTextWinScilab();
-				 
-				 X=lptw->CursorPos.x;
-				 Y=lptw->CursorPos.y-NbrLineToRemove;
-				 if (Y>0)
-				 {
-				 	i=(Y+1)*lptw->ScreenSize.x;
-				 			 
-	 			 	_fmemset(lptw->ScreenBuffer + i, ' ', (NbrLineToRemove+1)*lptw->ScreenSize.x);
-	 			 	_fmemset(lptw->AttrBuffer + i, NOTEXT, (NbrLineToRemove+1)*lptw->ScreenSize.x);
-	 			 
-	 				TextGotoXY (lptw, X,Y);
-	 				InvalidateRect (lptw->hWndText, NULL, TRUE);
-				 }
-				 else
-				 {
-				 	sciprint(MSG_WARNING28);
-				 }
+	 			ClearLinesScreenConsole(NbrLineToRemove);
 			}	
 			else
 	 		{
@@ -1435,6 +1412,33 @@ int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 		}
 	}
 return 0;	
+}
+/*-----------------------------------------------------------------------------------*/
+void ClearLinesScreenConsole(int NbrOfLines)
+{
+	if (IsWindowInterface())
+	{
+		int X=0,Y=0;
+		int i = 0;
+		LPTW lptw=GetTextWinScilab();
+
+		X=lptw->CursorPos.x;
+		Y=lptw->CursorPos.y-NbrOfLines;
+		if (Y>0)
+		{
+			i=(Y)*lptw->ScreenSize.x;
+
+			_fmemset(lptw->ScreenBuffer + i, ' ', (NbrOfLines+1)*lptw->ScreenSize.x);
+			_fmemset(lptw->AttrBuffer + i, NOTEXT, (NbrOfLines+1)*lptw->ScreenSize.x);
+
+			TextGotoXY (lptw, X,Y);
+			InvalidateRect (lptw->hWndText, NULL, TRUE);
+		}
+		else
+		{
+			sciprint(MSG_WARNING28);
+		}
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 /* Efface la fenetre de commandes */
@@ -1817,7 +1821,7 @@ void ExitWindow(void)
            	SetThreadPasteRunning(FALSE);
            	CloseHandle( GetHandleThreadPaste() );
         }
-		ScilabFxFadeOut();
+		//ScilabFxFadeOut();
         WriteRegistryTxt (lptw);
     	C2F(sciquit)();
 		C2F(tmpdirc)();
@@ -1830,7 +1834,7 @@ void ExitWindow(void)
    }
    else
    {
-	ScilabFxFadeOut();
+	//ScilabFxFadeOut();
    	WriteRegistryTxt (lptw);
 	C2F(sciquit)();
 	C2F(tmpdirc)();

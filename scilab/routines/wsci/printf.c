@@ -7,7 +7,7 @@
 #include <windows.h>
 #include <Winuser.h>
 #include "..\version.h"
-
+#include "wgnuplib.h"
 #include "printf.h"
 #include "winmain.h"
 #include "wcommon.h"
@@ -21,6 +21,8 @@
 extern void Xputchar ();
 extern int getdiary();
 extern void diary_nnl(char *str,int *n);
+extern BOOL IsWindowInterface(void);
+extern LPTW GetTextWinScilab(void);
 /*-----------------------------------------------------------------------------------*/
 int MyPutCh (int ch)
 {
@@ -228,8 +230,35 @@ void C2F (xscimore) (int *n)
 	Xputstring (MORESTR, ln);
 	n1 = TextGetCh (&textwin);
 	if (n1 == 'n')
-	*n = 1;
-	Xputstring ("\r\n", 2);
+	{
+		*n = 1;
+		Xputstring ("\r\n", 2);
+	}
+	else
+	{
+		if (IsWindowInterface())
+		{
+			#define NOTEXT 0xF0
+			int X=0,Y=0;
+			int i = 0;
+			LPTW lptw=GetTextWinScilab();
+
+			X=lptw->CursorPos.x-strlen(MORESTR);
+			Y=lptw->CursorPos.y;
+			if (Y>0)
+			{
+				i=(Y)*lptw->ScreenSize.x;
+
+				_fmemset(lptw->ScreenBuffer + i, ' ', lptw->ScreenSize.x);
+				_fmemset(lptw->AttrBuffer + i, NOTEXT,lptw->ScreenSize.x);
+
+				TextGotoXY (lptw, X,Y);
+				InvalidateRect (lptw->hWndText, NULL, TRUE);
+			}
+		}
+		
+	}
+	
 	TextMessage ();
 }
 /*-----------------------------------------------------------------------------------*/
