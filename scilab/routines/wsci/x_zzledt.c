@@ -30,6 +30,7 @@ extern void write_history(char *filename);
 extern LPTW GetTextWinScilab(void);
 extern void SendCTRLandAKey(int code);
 extern BOOL IsWindowInterface(void);
+extern int C2F (scilines) (int *nl, int *nc);
 /*-----------------------------------------------------------------------------------*/
 char copycur_line[1024];
 BOOL PutLineInBuffer=FALSE;
@@ -114,6 +115,7 @@ void ChangeCursorWhenScilabIsReady(void)
 	HCURSOR hCursor;
 	LPTW lptw=GetTextWinScilab();
 	int NumsMenu = 0;
+	int nl=0, nc=0;
 		
 	hCursor=LoadCursor(  lptw->hInstance,IDC_ARROW);
 	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
@@ -129,8 +131,14 @@ void ChangeCursorWhenScilabIsReady(void)
 	BringWindowToTop (lptw->hWndParent);
 	SetFocus(lptw->hWndParent);
 	SetFocus(lptw->hWndText);
-  }
+	
+	/* Initialize 'lines' */
+	nc = lptw->ClientSize.x / lptw->CharSize.x;
+	nl = lptw->ClientSize.y / lptw->CharSize.y;
+	/** send number of lines info to scilab **/
+	if ((lptw->ClientSize.x>0) && (lptw->ClientSize.y>0))	C2F (scilines) (&nl, &nc);
 
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 void SaveCurrentLine(BOOL RewriteLineAtPrompt)
