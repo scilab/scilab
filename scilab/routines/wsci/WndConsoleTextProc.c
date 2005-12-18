@@ -131,10 +131,6 @@ BOOL ON_WND_TEXT_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 	lptw->CharAscent = tm.tmAscent;
 	ReleaseDC (hwnd, hdc);
 
-	ActivateTransparencyMode(hwnd);
-
-
-
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -610,10 +606,10 @@ void ON_WND_TEXT_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags)
 				break;
 
 				case VK_ADD :
-					IncreaseAlphaLevel();
+					//IncreaseAlphaLevel();
 				break;
 				case VK_SUBTRACT:
-					DecreaseAlphaLevel();
+					//DecreaseAlphaLevel();
 				break;
 
 				default:

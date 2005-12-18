@@ -137,7 +137,6 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 
 		SetWindowText(hwnd,ScilexWindowName);  
 	}
-	ActivateTransparencyMode(hwnd);
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
