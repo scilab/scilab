@@ -703,18 +703,17 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
   return 0;
 }  
 
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab fscanMat function
  * fscanfMat('pipo')
  * [A,b]=fscanfMat('pipo')
  *********************************************************************/
 #define INFOSIZE 1024
-
 static int  Info_size = 0;
 static char *Info= NULL;
 static int ReadLine __PARAMS((FILE *fd,int *mem));
-
-
+/*-----------------------------------------------------------------------------------*/
 int int_objfscanfMat(char *fname,unsigned long fname_len)
 {
   char **Str;
@@ -859,31 +858,44 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
     }
   return 0;
 }  
-
-
+/*-----------------------------------------------------------------------------------*/
+/* Correction Bug 1620 A.C */
 static int ReadLine(FILE *fd,int *mem)
 {
-  int n=0;
-  char * Info1;
-  while (1)
-    {
-      char c = (char) getc(fd);
-      if ( n > Info_size ) 
-	{
-	  Info_size += INFOSIZE;
-	  if (( Info1 = REALLOC(Info,Info_size*sizeof(char)))==NULL) {
-	    *mem=1;
-	    return EOF;
-	  }
-	  Info=Info1;
-	}
-      Info[n]= c ; 
-      if ( c == '\n') { Info[n] = '\0' ; return 1;}
-      else if ( c == (char)EOF ) return EOF;  
-      n++;
-    }
-}
+	int n=0;
 
+	while (1)
+	{
+		char c = (char) fgetc(fd);
+
+		if ( n == Info_size ) 
+		{
+			char * Info1=NULL;
+			int New_Size = Info_size + INFOSIZE;
+			
+			Info1=MALLOC(New_Size*sizeof(char));
+			if (Info1==NULL)
+			{
+				*mem=1;
+				return EOF;
+			}
+			else
+			{
+				memset(Info1,0,New_Size);
+				memcpy(Info1,Info,Info_size);
+				Info_size=New_Size;
+				FREE(Info);
+				Info=Info1;
+			}
+		}
+		
+		Info[n]= c ; 
+		if ( c == '\n') { Info[n] = '\0' ; return 1;}
+		else if ( c == (char)EOF ) return EOF;  
+		n++;
+	}
+}
+/*-----------------------------------------------------------------------------------*/
 int NumTokens(char *string)
 {
   char buf[128];
