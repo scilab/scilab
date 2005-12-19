@@ -548,6 +548,11 @@ sciExecCallback (sciPointObj * pthis)
 /************************************ End of callback Functions ************************************/
 
 
+/*-------------------------------------------------------------------------------------------------*/
+/* Objmove                                                                                         */
+/* move a handle in the graphic window                                                             */
+/*-------------------------------------------------------------------------------------------------*/
+
 int Objmove (hdl,d,m,opt)
      long *hdl;
      double* d;
@@ -563,7 +568,8 @@ int Objmove (hdl,d,m,opt)
   if (m==3) z=d[2]; else z=0.0;
 
   pobj = (sciPointObj *)sciGetPointerFromHandle(*hdl);
-  /*sciSetCurrentObj (pobj); */ /* Useless*/
+  /*sciSetCurrentObj (pobj);*/  /* Useless*/
+
   switch (sciGetEntityType (pobj))
     {    
     case SCI_SUBWIN:
@@ -704,9 +710,15 @@ int Objmove (hdl,d,m,opt)
       break;
     }    
   if (opt)
-    sciDrawObjIfRequired(pobj);
+  {
+    /*sciDrawObjIfRequired(pobj);*/
+    sciRefreshObj( pobj ) ;
+  }
   else
-    sciDrawObj(sciGetParentFigure(pobj));
+  {
+    /*sciDrawObj(sciGetParentFigure(pobj));*/
+    sciRefreshObj( sciGetParentFigure( pobj ) ) ;
+  }
   /* sciDrawObj(sciGetParentFigure(sciGetCurrentObj ()));*/
     
   return 0;
