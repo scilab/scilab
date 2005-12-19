@@ -7427,11 +7427,40 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 }
 
 
+/*-------------------------------------------------------------------------------------------*/
+/* sciRefreshObj                                                                             */
+/* draw an object but before select the rigth figure for display                             */
+/*-------------------------------------------------------------------------------------------*/
+int sciRefreshObj( sciPointObj * pobj )
+{
+  
+  int parentId = sciGetNum( sciGetParentFigure( pobj ) ) ;
+  int currentId             ;
+  int status                ;
+  int verboseGet        = 0 ;
+  int iDontKnowWhatItIs     ;
+  /* get current Id in ScilabXgc */
+  C2F (dr) ("xget", "window",&verboseGet,&currentId,&iDontKnowWhatItIs,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
+  /* set the parent figure of the object as the current figure */
+  if ( parentId != currentId )
+  {
+    C2F (dr) ("xset", "window",&parentId,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+  
+  /* draw the object */
+  status = sciDrawObjIfRequired( pobj ) ;
 
+  /* set back the values */
+  if ( parentId != currentId )
+  {
+    C2F (dr) ("xset", "window",&currentId,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
 
-
-
+  return status ;
+  
+  
+}
 
 
 
@@ -7768,16 +7797,16 @@ sciDrawObj (sciPointObj * pobj)
       	/*permet la mise a jour des legendes correspondantes aux entites associees */
       	/*for (i = 0; i < ppLegend->nblegends; i++)
       	{
-        	if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
-        	{
-        	  pLEGEND_FEATURE (pobj)->pstyle[i] = 
-        	    -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
-        	}
-        	else
-        	{ 
+        	  if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
+        	  {
+        	    pLEGEND_FEATURE (pobj)->pstyle[i] = 
+        	      -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
+        	  }
+        	  else
+        	  { */
           	ppLegend->pstyle[i] =  
             	sciGetForeground( ppLegend->pptabofpointobj[i] );
-          	}
+          /* }
       	}*/
       	/*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
       	Legends( ppLegend->pstyle, &(ppLegend->nblegends), sciGetText(pobj));
