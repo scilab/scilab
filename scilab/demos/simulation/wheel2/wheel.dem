@@ -4,6 +4,7 @@ path=get_absolute_file_path("wheel.dem");
 getf(path+'show.sci');
 
 xbasc();
+fs = get('figure_style');
 set("figure_style","old")
 flag1=tk_choose(['Reading a precomputed trajectory';
  'Simulation with ode (needs f77 and link. may fail, see help link)'],...
@@ -52,3 +53,5 @@ select flag1,
 	wheelg=wheelgs;
 	show(x);
 end
+
+set('figure_style',fs);
