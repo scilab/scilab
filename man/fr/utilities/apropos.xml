@@ -44,7 +44,7 @@ apropos "list of"
 // la suite ne fonction qu'avec le browser "Browser Scilab"
 global %browsehelp;%browsehelp_save=%browsehelp;%browsehelp="Scilab Browser";
 
-apropos "sin.*hyperbolic"
+apropos "sin.*hyperbolique"
 apropos "^ab"  //rechercher les pages d'aide dont le nom commence par les deux caractères "ab"
 apropos "quadratic.*solver"
 
