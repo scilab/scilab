@@ -21,7 +21,6 @@ function demo_datafit()
   plot2d(X',FF(X)',[5,2],'002','Fitting function')
   ;;
   realtimeinit(0.1);for k=1:30,realtime(k),end
-  set('figure_style',fs);
 endfunction
 
 function y=FF(x)
