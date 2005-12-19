@@ -1,33 +1,44 @@
 global tkc_comment tkc_thelist text_button
 
-set ww .tk_choose_menu
-catch {destroy $ww}
-toplevel $ww
-wm title $ww "Tk_Choose"
-wm iconname $ww ""
-wm protocol $ww WM_DELETE_WINDOW "Return_zero"
-wm geometry $ww +100+100
+set tk_choose_ww .tk_choose_menu
+catch {destroy $tk_choose_ww}
+toplevel $tk_choose_ww
+wm title $tk_choose_ww "Tk_Choose"
+wm iconname $tk_choose_ww ""
+wm protocol $tk_choose_ww WM_DELETE_WINDOW "Return_zero"
+wm geometry $tk_choose_ww +100+100
 
-#remove " for tkc_comment
-regsub -all "\"" $tkc_comment "" tkc_comment
+#remove some special caracters for tkc_comment
+#character string treatment to remove "[" and "]" and replace "," and ";" by " "
+set tkc_comment [string trimright $tkc_comment \] ]
+set tkc_comment [string trimleft $tkc_comment \[ ]
+regsub -all \" $tkc_comment "\n" tkc_comment
+regsub -all "," $tkc_comment " " tkc_comment
+regsub -all ";" $tkc_comment " " tkc_comment
 
+#remove some special caracters for text_button
+#character string treatment to remove "[" and "]" and replace "," and ";" by " "
+set text_button [string trimright $text_button \] ]
+set text_button [string trimleft $text_button \[ ]
+regsub -all \" $text_button "\n" text_button
+regsub -all "," $text_button " " text_button
+regsub -all ";" $text_button " " text_button
 
-# caracter string treatment to remove "[" and "]" and replace "," by " "
+# character string treatment to remove "[" and "]" and replace "," and ";" by " "
 set tkc_thelist [string trimright $tkc_thelist \] ]
 set tkc_thelist [string trimleft $tkc_thelist \[ ]
 
 regsub -all "," $tkc_thelist " " tkc_thelist
 regsub -all ";" $tkc_thelist " " tkc_thelist
-#regsub -all "\"" $tkc_thelist "" tkc_thelist
 set tkc_thelist [list $tkc_thelist]
 
 frame .tk_choose_menu.main_frame
-set w .tk_choose_menu.main_frame
-pack $w -in  $ww  -side left -expand yes
+set tk_choose_w .tk_choose_menu.main_frame
+pack $tk_choose_w -in  $tk_choose_ww  -side left -expand yes
 
-label $w.label  -height 0 -text $tkc_comment -width 0 
-pack $w.label -in $w -side top
-set lbf [listbox $w.mylist  -height 0  -width 0]
+label $tk_choose_w.label  -height 0 -text $tkc_comment -width 0 
+pack $tk_choose_w.label -in $tk_choose_w -side top
+set lbf [listbox $tk_choose_w.mylist  -height 0  -width 0]
 
 #if one choice only, different treatment
 if { [catch {set titi [expr $tkc_thelist]}] } {
@@ -36,14 +47,14 @@ if { [catch {set titi [expr $tkc_thelist]}] } {
     eval [list $lbf insert end] $titi
 }
 
-$w.mylist activate 0
-bind  $w.mylist  <<ListboxSelect>> {
-    Tk_Choose_Select [$w.mylist curselection]
+$tk_choose_w.mylist activate 0
+bind  $tk_choose_w.mylist  <<ListboxSelect>> {
+    Tk_Choose_Select [$tk_choose_w.mylist curselection]
 }
-pack $w.mylist -in $w -side top -fill x
+pack $tk_choose_w.mylist -in $tk_choose_w -side top -fill x
 
-button $w.cancel_button -text $text_button -command "Return_zero; destroy $ww" -font {Arial 9}
-pack  $w.cancel_button -in $w -side top
+button $tk_choose_w.cancel_button -text $text_button -command "Return_zero; destroy $tk_choose_ww" -font {Arial 9}
+pack  $tk_choose_w.cancel_button -in $tk_choose_w -side top
 
 
 proc Tk_Choose_Select {sel} {
