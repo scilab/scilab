@@ -1,0 +1,37 @@
+Scilab RC 4.0 Release_Notes
+***************************
+
+Scilab:
+*******
+- Next to the on line help of the software, we advise you, to make
+the first move with Scilab, to consult the Scilab step-to-step web site
+(http://www.spas.cnrs-gif.fr/index.html).
+
+- Please note that:
+    - Scilab 4.x versions family will be the last versions working
+with the old graphics mode.
+    - Scilab v 4.0 is the last release working with Microsoft
+Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
+supported by Scilab operational team.
+
+- Scilab binary versions are built:
+    - for Linux: gcc-3.4.3 and g77 compilers with a platform under
+Mandriva 2005. No need to recompile except to use incremental link, we
+advise indeed to download the source files if you are using others
+compilers.
+    - for Windows: Visual Studio .Net 2003 and Fortran and C Intel
+compilers with a platform under Windows XP Service Pack 2 .
+    - Recall: No Scilab GTK version is provided and supported by
+the operational team. Same way about MinGW and Cygwin.
+
+
+
+Scicos:
+*******
+- Warning:
+    - This is the development version of the new Scicos editor
+(scicos_new). The stable editor is scicos. The new editor has not been
+fully tested and validated; save your diagram regularly. Diagrams edited
+with the two editors are compatible so you can switch at any time. 
+Menus cannot currently be customized with the new editor.
+Send all bug reports and suggestions to ramine.nikoukhah@inria.fr

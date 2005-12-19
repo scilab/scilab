@@ -127,11 +127,12 @@ BINDISTFILES = \
 	$(SCIBASE)/ACKNOWLEDGEMENTS \
 	$(SCIBASE)/CHANGES \
 	$(SCIBASE)/Makefile \
-        $(SCIBASE)/Makefile.OBJ \
+	$(SCIBASE)/Makefile.OBJ \
 	$(SCIBASE)/Makefile.incl \
 	$(SCIBASE)/Makemex \
-        $(SCIBASE)/Path.incl \
+	$(SCIBASE)/Path.incl \
 	$(SCIBASE)/README_Unix \
+	$(SCIBASE)/RELEASE_NOTES \
 	$(SCIBASE)/Version.incl \
 	$(SCIBASE)/configure \
 	$(SCIBASE)/libtool \
