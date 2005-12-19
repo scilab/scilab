@@ -799,11 +799,12 @@ int draw(char *fname,unsigned long fname_len)
       psubwin = (sciPointObj *) sciGetParentSubwin(pobj);
       if (psubwin != ( sciPointObj *)NULL )  {  
 	sciSetSelectedSubWin(psubwin); 
-	/*	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
-		pSUBWIN_FEATURE(psubwin)->visible = TRUE ;SS 20.04.04*/
+	set_scale ("tttftt", pSUBWIN_FEATURE (psubwin)->WRect, 
+		   pSUBWIN_FEATURE (psubwin)->FRect,
+		   NULL, pSUBWIN_FEATURE (psubwin)->logflags, 
+		   pSUBWIN_FEATURE (psubwin)->ARect); 
 
-	sciDrawObj(pobj); /* Leave it as sciDrawObj as I want 'draw' to make drawings even if figure->auto_redraw is OFF */
-	/*pSUBWIN_FEATURE(psubwin)->visible = tmpmode;SS 20.04.04*/
+	sciDrawObj(pobj); 
 	sciSetSelectedSubWin(tmpsubwin);
       }
       else {
