@@ -84,6 +84,7 @@ extern void sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight); /* SET */
 extern int sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy); /* SET */
 extern void sciSetFigureIconify (sciPointObj * pobj, BOOL value); /* SET */
 extern int sciSetSubWindowPos (sciPointObj * pobj, int *x, int *y); /* SET */
+extern void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
 extern int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
 extern int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
 

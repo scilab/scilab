@@ -2995,6 +2995,34 @@ sciSetSubWindowPos (sciPointObj * pobj, int *pposx, int *pposy)
 }
 
 
+/*-----------------------------------------------------------------------------------*/
+/* sciSelectFirstSubwin                                                              */
+/* select under the first window found under the current figure                      */
+/*-----------------------------------------------------------------------------------*/
+void sciSelectFirstSubwin( sciPointObj * parentFigure )
+{
+  sciSons * figureSons = sciGetSons ( parentFigure ) ;
+  if ( figureSons != (sciSons *) NULL )
+  { 
+    /* look for the first subwindow */
+    while (   (figureSons->pnext != (sciSons *) NULL) 
+           && (sciGetEntityType (figureSons->pointobj) != SCI_SUBWIN))
+    {
+      figureSons = figureSons->pnext;
+    }
+    
+    if( sciGetEntityType (figureSons->pointobj) == SCI_SUBWIN ) 
+    {
+      /* we found another valid subwindow */ 
+      sciSetSelectedSubWin (figureSons->pointobj);
+    }
+    else
+    {
+      sciSetSelectedSubWin((sciPointObj *) NULL);
+    }
+  }
+}
+
 
 /**sciSetSelectedSubWin
  * @memo Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
@@ -3004,31 +3032,40 @@ sciSetSubWindowPos (sciPointObj * pobj, int *pposx, int *pposy)
 int
 sciSetSelectedSubWin (sciPointObj * psubwinobj)
 {
-  sciPointObj *pselectedsubwin;
+  sciPointObj  * pselectedsubwin;
+  sciSubWindow * ppSubWin ;
 
   /* on verifie que l'entite passee en argument est bien une sous fenetre */
   if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
-    {
-      sciprint("This Handle is not a SubWindow\n");
-      return -1;
-    }
+  {
+    sciprint("This Handle is not a SubWindow\n");
+    return -1;
+  }
+
+  ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
+
   /* on verifie que la sous fenetre donnee n'est pas deja selectionnee */
   if (sciGetIsSelected (psubwinobj))
-    return 1;
+  {
+    return 1 ;
+  }
 
   /* sinon on recherche la sous fenetre deja selectionnee */
   /* dans l'ensemble des sous fenetres du parent SCI_FIGURE */
-  if ((pselectedsubwin = (sciPointObj *)sciGetSelectedSubWin(sciGetParent(psubwinobj))) != (sciPointObj *)NULL)
+  pselectedsubwin = sciGetSelectedSubWin( sciGetParent( psubwinobj ) ) ;
+  if ( pselectedsubwin != (sciPointObj *) NULL )
+  {
     /* puis on la deselectionne */
     pSUBWIN_FEATURE (pselectedsubwin)->isselected = FALSE;
+  }
 
   /* puis on selectionne la sous fenetre passee en argument */
-  pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE;
+  ppSubWin->isselected = TRUE;
 
 
-  set_scale ("tttftt", pSUBWIN_FEATURE (psubwinobj)->WRect,
-	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
-	     pSUBWIN_FEATURE(psubwinobj)->logflags, pSUBWIN_FEATURE (psubwinobj)->ARect);
+  set_scale ("tttftt", ppSubWin->WRect,
+	     ppSubWin->FRect, NULL,
+	     ppSubWin->logflags, ppSubWin->ARect);
   
 
   return 1;
