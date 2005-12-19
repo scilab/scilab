@@ -985,11 +985,12 @@ void updateMenus( struct BCG * XGC )
   }
 #else
   {
-    extern void refreshMenus( struct BCG * ScilabGC ) ;
+    #ifndef WITH_GTK
+      extern void refreshMenus( struct BCG * ScilabGC ) ;
 
-    refreshMenus( XGC ) ;
-    /* no toolbar under linux */
-    
+      refreshMenus( XGC ) ;
+      /* no toolbar under linux */
+    #endif  
   }
 #endif
 
