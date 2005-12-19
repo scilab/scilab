@@ -36,6 +36,11 @@ end
 
 num = tk_choose_num;
 
+clear tk_choose_num;
+TCL_UnsetVar("tkc_thelist");
+TCL_UnsetVar("tkc_comment");
+TCL_UnsetVar("text_button");
+
 TCL_EvalStr("destroy .tk_choose_menu")
 
 endfunction

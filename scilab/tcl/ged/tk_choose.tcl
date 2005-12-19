@@ -60,7 +60,7 @@ pack  $tk_choose_w.cancel_button -in $tk_choose_w -side top
 proc Tk_Choose_Select {sel} {
 #    set index [$sel curselection]
     incr sel
-    ScilabEval "global tk_choose_num; tk_choose_num = $sel"
+    ScilabEval "global tk_choose_num; tk_choose_num = $sel" "seq"
 }
 
 
