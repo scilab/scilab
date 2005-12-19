@@ -23,7 +23,7 @@
         <PARAM_NAME>i</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: entier, numÃ©ro du sommet de dÃ©part</SP>
+          <SP>: entier, numéro du sommet de départ</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -31,7 +31,7 @@
         <PARAM_NAME>j</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: entier, numÃ©ro du sommet d'arrivÃ©e</SP>
+          <SP>: entier, numéro du sommet d'arrivée</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -47,7 +47,7 @@
         <PARAM_NAME>typ</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res, type du chemin le plus court</SP>
+          <SP>: chaîne de caractères, type du chemin le plus court</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -55,7 +55,7 @@
         <PARAM_NAME>p</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur ligne des numÃ©ros des arcs du chemin s'il existe</SP>
+          <SP>: vecteur ligne des numéros des arcs du chemin s'il existe</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -73,16 +73,16 @@
     <P><VERB>shortest_path</VERB> renvoie le chemin le plus court
     <VERB>p</VERB> du sommet <VERB>i</VERB> au sommet <VERB>j</VERB> s'il
     existe, et le vecteur vide <VERB>[]</VERB> sinon. L'argument optionnel
-    <VERB>typ</VERB> est une chaÃ®ne dÃ©finissant le type du chemin, 'arc' pour
+    <VERB>typ</VERB> est une chaîne définissant le type du chemin, 'arc' pour
     le chemin le plus court par rapport au nombre d'arcs et 'length' pour le
-    chemin le plus court par rapport Ã  la longueur des arÃªtes
+    chemin le plus court par rapport à  la longueur des arêtes
     <VERB>edge_length</VERB>.</P>
 
-    <P>Pour le chemin le plus court par rapport Ã  la longueur des arÃªtes, les
-    longueurs sont donnÃ©es par les Ã©lÃ©ments <VERB>edge_length</VERB> du
-    graphe. Si cette valeur n'est pas donnÃ©e (vecteur vide <VERB>[]</VERB>),
-    elle est supposÃ©e nulle sur chaque arÃªte. Les longueurs peuvent Ãªtre
-    positives ou nÃ©gatives (ou nulles).</P>
+    <P>Pour le chemin le plus court par rapport à  la longueur des arêtes, les
+    longueurs sont données par les éléments <VERB>edge_length</VERB> du
+    graphe. Si cette valeur n'est pas donnée (vecteur vide <VERB>[]</VERB>),
+    elle est supposée nulle sur chaque arête. Les longueurs peuvent être
+    positives ou négatives (ou nulles).</P>
 
     <P>Quand le chemin le plus court existe, <VERB>lp</VERB> est la longueur
     du chemin.</P>
@@ -101,7 +101,7 @@ g1('edge_length')=int(20*rand(1,ma));
 [p,lp]=shortest_path(13,1,g1,'length');
 p
 x_message(['Voici le chemin le plus court';
-           'Le nom des arcs peut Ãªtre visualisÃ© en selectionnant la valeur ""Name"" pour les arcs';
+           'Le nom des arcs peut être visualisé en selectionnant la valeur ""Name"" pour les arcs';
            'dans le menu Graph->Options.']);
 g1('edge_name')=string(g1('edge_length'));
 edgecolor=ones(1:ma);edgecolor(p)=11*ones(p);
