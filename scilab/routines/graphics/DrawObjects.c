@@ -7795,19 +7795,19 @@ sciDrawObj (sciPointObj * pobj)
 
 
       	/*permet la mise a jour des legendes correspondantes aux entites associees */
-      	/*for (i = 0; i < ppLegend->nblegends; i++)
+      	for (i = 0; i < ppLegend->nblegends; i++)
       	{
-        	  if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
-        	  {
-        	    pLEGEND_FEATURE (pobj)->pstyle[i] = 
-        	      -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
-        	  }
-        	  else
-        	  { */
-          	ppLegend->pstyle[i] =  
-            	sciGetForeground( ppLegend->pptabofpointobj[i] );
-          /* }
-      	}*/
+          if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
+          {
+            pLEGEND_FEATURE (pobj)->pstyle[i] = 
+              -sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
+          }
+          else
+          {
+            ppLegend->pstyle[i] =  
+              sciGetForeground( ppLegend->pptabofpointobj[i] );
+          }
+      	}
       	/*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
       	Legends( ppLegend->pstyle, &(ppLegend->nblegends), sciGetText(pobj));
        

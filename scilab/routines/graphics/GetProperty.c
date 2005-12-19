@@ -1149,10 +1149,10 @@ sciGetIsMark (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
-      sciprint ("This object has no ismark\n");
-      return -1;
+      /*sciprint ("This object has no ismark\n");*/
+      return FALSE;
       break;
     }
   return 0;
@@ -2459,8 +2459,12 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
-      return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;  
-      break;                                                     
+      {
+        sciPointObj * figure ;
+        figure = sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;
+        return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;
+      }  
+      break;
     default:  
       return (sciPointObj *) NULL;
       break;
