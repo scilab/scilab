@@ -4867,97 +4867,6 @@ int sciunzoom(char *fname,unsigned long fname_len)
 } 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*-----------------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
@@ -5008,34 +4917,54 @@ int sci_delete(char *fname,unsigned long fname_len)
   SciWin();
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
   if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
+  {
     sciDelCallback((sciPointObj *)pobj);
+  }
   else {
+
+    sciEntityType objType    = sciGetEntityType( pobj ) ;
+    BOOL          isSelected = sciGetIsSelected( pobj ) ;
+
     if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)
       { /* I added && sciGetEntityType(pobj) != SCI_FIGURE at last !!!!!!!! F.Leray 09.04.04 */
 	pparentfigure = sciGetParentFigure(pobj);
 	/*}*/
 	sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj)); /* A LAISSER F.Leray 25.03.04*/
 
-	/* test here: we are about to delete a subwindow that could be the selected one */
-	/* We must always have one selected subwindow (if at least one subwindow exists) */
-	if(sciGetEntityType(pobj) == SCI_SUBWIN && pSUBWIN_FEATURE(pobj)->isselected == TRUE)
-	  {
-	    /* we have to select antoher subwindow if one exists at least */
-	    sciSons *psonstmp = sciGetSons (pparentfigure);
-	    if (psonstmp != (sciSons *) NULL)
-	      {
-		while ((psonstmp->pnext != (sciSons *) NULL) && (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN))
-		  psonstmp = psonstmp->pnext;
-
-		if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) /* we found another valid subwindow */
-		  sciSetSelectedSubWin (psonstmp->pointobj);
-		else
-		  sciSetSelectedSubWin((sciPointObj *) NULL);
-	      }
-	  }
+	
 
 	sciDelGraphicObj((sciPointObj *)pobj);
+
+        /* test here: we could have deleted the selected subwindow, we must choose an other */
+	/* We must always have one selected subwindow (if at least one subwindow exists) */
+	if ( objType  == SCI_SUBWIN && isSelected )
+	  {
+	    /* we have to select antoher subwindow if one exists at least */
+	    /*sciSons *psonstmp = sciGetSons (pparentfigure);
+	    if (psonstmp != (sciSons *) NULL)
+	      {
+
+		while ( (psonstmp->pnext != (sciSons *) NULL) && (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN))
+                {
+		  psonstmp = psonstmp->pnext;
+                }
+
+		if( sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN ) 
+                { 
+		  sciSetSelectedSubWin (psonstmp->pointobj);
+                }
+		else
+                {
+		  sciSetSelectedSubWin((sciPointObj *) NULL);
+                }
+	      }
+            */
+            sciSelectFirstSubwin( pparentfigure ) ;
+	  }
+        
+        /* redraw the window */
 	sciDrawObj((sciPointObj *)pparentfigure);
       }
     else if(sciGetEntityType(pobj) == SCI_FIGURE) /* F.Leray 13.04.04: We delete the special object Figure !!*/
