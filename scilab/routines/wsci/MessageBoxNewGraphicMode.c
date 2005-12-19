@@ -139,7 +139,7 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 
 			ScilabDirectory=GetScilabDirectory(FALSE);
 			
-			wsprintf(Chemin,"%s\\release_note.txt",ScilabDirectory);
+			wsprintf(Chemin,"%s\\release_notes.txt",ScilabDirectory);
 			if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
 
 			error =(int)ShellExecute(NULL, "open", Chemin, NULL, NULL, SW_SHOWNORMAL);
