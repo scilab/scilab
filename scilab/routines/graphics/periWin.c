@@ -2752,41 +2752,35 @@ void C2F(MissileGCset)(str, x1, x2, x3, x4, x5, x6, dv1, dv2, dv3, dv4)
   C2F(MissileGCGetorSet)(str,0L,&verbose,x1,x2,x3,x4,x5,x6,dv1);
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F(MissileGCGetorSet)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
-     char *str;
-     integer flag;
-     integer *verbose;
-     integer *x1;
-     integer *x2;
-     integer *x3;
-     integer *x4;
-     integer *x5;
-     integer *x6;
-     double  *dv1;
-{ integer i ;
- for (i=0; i < NUMSETFONC ; i++)
-   {
-     integer j;
-     j = strcmp(str,MissileGCTab_[i].name);
-     if ( j == 0 ) 
-       { if (*verbose == 1)
-	 sciprint("\nGetting Info on %s\r\n",str);
-       if (flag == 1)
-	 (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
-       else 
-	 (MissileGCTab_[i].setfonc)(x1,x2,x3,x4,x5,x6,dv1);
-       return;}
-     else 
-       { if ( j <= 0)
-	 {
-	   sciprint("\nUnknow X operator <%s>\r\n",str);
-	   *x1=1;*x2=0;
-	   return;
-	 }
-       }
-   }
- sciprint("\n Unknow X operator <%s>\r\n",str);
- *x1=1;*x2=0;
+void C2F(MissileGCGetorSet)(char *str,integer flag,integer *verbose,integer *x1,integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,double  *dv1)
+{
+	integer i ;
+	for (i=0; i < NUMSETFONC ; i++)
+	{
+		integer j;
+		j = strcmp(str,MissileGCTab_[i].name);
+		if ( j == 0 ) 
+		{
+			#ifdef _DEBUG
+			if (*verbose == 1)	 sciprint("\nGetting Info on %s\r\n",str);
+			#endif
+			if (flag == 1)	 (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
+			else  (MissileGCTab_[i].setfonc)(x1,x2,x3,x4,x5,x6,dv1);
+			return;
+		}
+		else 
+		{
+			if ( j <= 0)
+			{
+				sciprint("\nUnknow X operator <%s>\r\n",str);
+				*x1=1;*x2=0;
+				return;
+			}
+		}
+	}
+	sciprint("\n Unknow X operator <%s>\r\n",str);
+	*x1=1;
+	*x2=0;
 }
 /*-----------------------------------------------------------------------------------*/
 /*-------------------------------------------------------
