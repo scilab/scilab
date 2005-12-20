@@ -50,23 +50,24 @@ x_message('Singular values plot')
 fcts=['S function';'R (=K*S) function';'T function'];
 www=x_mdialog('Select sensitivity function',fcts,['Yes';'No';'Yes']);
 if www==[] then return,end
+
 ww1=part(www(1),1)=='Y';
 if ww1 then
-  xbasc(1);xset("window",1);xselect();gainplot(Ssens)
+  scf(1);clf();xselect();
+  gainplot(Ssens);
   xtitle('S = Sensitivity function');
-  xend()
 end
 
 ww2=part(www(2),1)=='Y';
 if ww2 then
-  xbasc(2);xset("window",2);xselect();gainplot(Rsens);
+  scf(2);clf();xselect();
+  gainplot(Rsens);
   xtitle('R (=G*S) Sensitivity function');
-  xend()
 end
 
 ww3=part(www(3),1)=='Y';
 if ww3 then
-  xbasc(3);xset("window",3);xselect();gainplot(Tsens);
+  scf(3);clf();xselect();
+  gainplot(Tsens);
   xtitle('T = Complementary Sensitivity function');
-  xend()
 end
