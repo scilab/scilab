@@ -13,6 +13,8 @@ with the old graphics mode.
     - Scilab v 4.0 is the last release working with Microsoft
 Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
 supported by Scilab operational team.
+    - Copy/Paste command of the objects of "Insert" menu in a Graphic windows
+does not run.
 
 - Scilab binary versions are built:
     - for Linux: gcc-3.4.3 and g77 compilers with a platform under
