@@ -29,9 +29,12 @@ the operational team. Same way about MinGW and Cygwin.
 Scicos:
 *******
 - Warning:
-    - This is the development version of the new Scicos editor
-(scicos_new). The stable editor is scicos. The new editor has not been
-fully tested and validated; save your diagram regularly. Diagrams edited
-with the two editors are compatible so you can switch at any time. 
-Menus cannot currently be customized with the new editor.
-Send all bug reports and suggestions to ramine.nikoukhah@inria.fr
+    - A new Scicos editor is available now, with a more standard behavior
+for edition (Bloc selection, CRTRL-C CTRL-V, Press-Move-Release,...)
+    - This new Scicos editor is  not fully tested and validated but  can be
+used in place of default Scicos editor (the edited diagrams are fully
+compatible).
+    - To launch the new editor, use the command: scicos_new instead of
+scicos.
+    - Send all bug reports and suggestions to ramine.nikoukhah@inria.fr
+    
