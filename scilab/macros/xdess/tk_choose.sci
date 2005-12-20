@@ -32,6 +32,7 @@ end
 
 while tk_choose_num == -1
   // wait for response
+  sleep(1);
 end
 
 num = tk_choose_num;
