@@ -2800,9 +2800,8 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
                      "_Move object","_Delete object","_Figure properties",\
                      "_Current axes properties","Start _entity picker",\
                      "Stop e_ntity picker"};
-  integer ni=7;
+  integer ni=6;
   char *InsertMenus[]={"--- _Line","^v^  _Polyline","---> _Arrow",\
-                       "<--> _Double Arrow",\
                        "_Text","[]   _Rectangle","O   _Circle"};
 #else
   integer ne=3, menutyp=2, ierr;
