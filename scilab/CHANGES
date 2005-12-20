@@ -29,18 +29,53 @@ Graphics:
   - Graphic window Events (mouse, keyboard,...) handling have been improved and 
     extended:
     + click, double_click, press, release ,move
-    + key press and release, with or without Shift and Ctrl modifiers.
-
+    + key press and release, with or without Shift and Ctrl modifiers.                             
+                                         
+  - xs2bmp xs2emf functions added to export graphics under bmp and EMF 
+    (Enhanced Meta File) formats. These functions are only available under
+    Windows
+    
+  - Colorbar function added. Thanks to Bruno Pincon.
+               
+  - Under Windows a toolbar  has been added to the graphic windows, the 
+    function toolbar can be used to set or unset it.
+    
+    
+Numerical computation:
+======================
+    
+  - Sparse operations and functions like real, imag, matrix, spones revisited to 
+    improve efficiency. Thanks to Bruno Pincon.
+    
+  - Bessel functions extended to work in the complex case (using Slatec routines)
+    Incompatibilities: The semantics of besseli, besselj, besselk and bessely 
+    functions has been changed and extended.
+    The oldbesseli, oldbesselj, oldbesselk and oldbessely correspond to the old
+    obsolete semantics.
+    
+  - New version of linpro and quapro. Thanks to Cecilia Pola.
+  
+  - bvodeS function added to solve differential equation with boundary value. 
+    Thanks to Bruno Pincon.
+    
+  - detrend function added to remove constant, linear or piecewise linear trend 
+    from a vector. Thanks to Bruno Pincon.
+    
+  - Interface with Excel (Functions to read Excel files)
+    
 
 Matlab to Scilab converter:
 ===========================
 
-  - Translatepaths function improved to allow conversion on an entire toolbox 
-    propagating inference throught toolbox functions
+  - slatepaths function improved to allow conversion on an entire toolbox 
+    agating inference throught toolbox functions
+    
   - The set of translated function has been extented in particular with the 
     basic graphic functions
+    
   - Scilab function sum, prod,... extented to the "first non singleton" matlab
     semantics to improve readability and efficiency of translated code
+    
   - Try catch construct added to Scilab for a better translation
 
 
@@ -48,38 +83,56 @@ Scipad editor:
 ==============
 
   - A debugging tool is now available
+  
   - Drag'n'drop is now supported
+  
   - Split a Scipad window
+  
   - Print file from Scipad is now available
+  
   - Scipad is easily localized (See "Adding translations..." in the Scipad Help
-    Menu).
-    Today English, German, French, Swedish, Polish, Norwegian and Italian 
+    Menu). Today English, German, French, Swedish, Polish, Norwegian and Italian 
     languages are supported
 
   - User settings and text colors are now configurable and save across editing 
     sessions
+    
   - Colorization of strings rewritten - now supports strings on continued lines
-  - Colorization of files launched in the background, with progressbar and in 
-    "Misc File managements" section: MRU list
+  
+  - Colorization of files launched in the background, with progressbar
+
+  - Miscellaneous file management improvements: readonly flag, 
+    absolute pathnames to files, pruned pathnames display, revert to 
+    saved feature, MRU (Most Recently Used) list
 
   - Quick access in the file menu for recently opened/saved files
+  
   - Identification of Scilab predefined variables and library functions in 
     scilab scripts
+    
   - Miscellaneous file management improvements: readonly flag, absolute 
     pathnames to files, pruned pathnames display, revert to saved feature
+    
   - Keyword completion added, keyword list now completely dynamical
 
   - Undo/Redo rewritten
+  
   - Go to... functions rewritten and expanded
+  
   - Find/Replace rewritten, includes find files, find in files, find in multiple 
     buffers, find in selection only, find full word
 
   - Creation of XML help page templates and xmltohtml compilation available from 
     within Scipad
+    
+Syntax:
+=======
+
+  - try-catch instruction added to improve programming with error control.
 
 
-Improvements:
-=============
+Other Improvements:
+===================
 
   - Configure adapted to linux 64bit architectures
 
@@ -89,6 +142,7 @@ Improvements:
 
   - Memory improvements under Windows platforms (particularly the management 
     of virtual memory or swap file)
+    
   - Exception management added under Windows version
 
   - Windows platforms with:
@@ -99,8 +153,9 @@ Improvements:
     with VC6 tool
     Please note that the Windows binary version provided on our Web site 
     is built with .NET
+    
   - Improvement of the integration of Visual Studio Compiler to the dynamic 
-    links: findmsvccompiler() and configure_msvc() macros have been added
+    links: findmsvccompiler() and configure_msvc() macros have been added.
 
   - Integration of the ATLAS library (specific Windows version).
     During the installation of Scilab, dynamic library (Atlas.dll) is 
@@ -109,30 +164,34 @@ Improvements:
 
   - Java interface written to allow calling Scilab computational engine from Java
 
-  - Interface with Excel (Functions to read Excel files)
-
-  - Try catch syntax added
-
   - Font rotation is now possible under Xwindow
 
   - SCI and HOME are redefined if not correct ( Bug 1488 Only for Windows )
+  
   - home variable (%HOME%) defined under Windows: c:/Documents and Setting/USER
+  
   - New environment variable SCIHOME:
     + Under Windows: %HOME%\scilab\SCILAB_VERSION
     + Under Linux: $HOME/USER/.scilab/SCILAB_VERSION
 
-  - Sparse operations and functions like real, imag, matrix, spones revisited to 
-    improve efficiency
-  - Bessel functions extended to work in the complex case (using Slatec routines)
-    Incompatibilities: The semantics of besseli, besselj, besselk and bessely 
-    functions has been changed and extended.
-    The oldbesseli, oldbesselj, oldbesselk and oldbessely correspond to the old
-    obsolete semantics.
+  - Function what() has been rewritten : alphabetical sort, print modified.
+  
+  - mkdir, rmdir, copyfile, toprint functions added for handling files and
+    directories from Scilab.
+    
+  - getshortpathname, getlongpathname, winqueryreg (Registers), console, 
+    mcisendstring (MCI device), clipboard, functions added for a better 
+    interaction with Windows environment.
+    
+  - getos, setenv, getmemory, sleep, functions added for a better interaction 
+    with the operating system (Unix and Windows).
 
-  - Function what() has been rewritten : alphabetical sort, print modified
-  - xs2bmp xs2emf (Windows specific)
+  - The perl function as been added to allow execution of Perl scripts from 
+    Scilab.
 
-
+  - The calendar function has been added.
+    
+    
 New primitives:
 ===============
 
