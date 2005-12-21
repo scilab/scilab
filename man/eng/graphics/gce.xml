@@ -37,6 +37,7 @@
     set("figure_style","new") //create a figure entity
     a=gca() //get the handle of the newly created axes
     a.data_bounds=[1,1;10,10];
+    a.axes_visible = 'on' ;
     for i=1:5
       xfrect(7-i,9-i,3,3);
       e=gce();
@@ -44,7 +45,7 @@
      end
     delete(); // delete current entity
     delete(gce()); // delete current entity
-    delete(gca()); // delete current axes
+    delete(gcf()); // delete current figure
      
 
   ]]></EXAMPLE>
