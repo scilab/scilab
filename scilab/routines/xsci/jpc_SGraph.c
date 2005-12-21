@@ -1884,6 +1884,49 @@ static int GetChilds(win_num,nc,wL,outer,name,name_pos)
   return TRUE;
 }
 
+/*------------------------------------------------------------------------------------*/
+/* get the number of submenus of a given menu                                         */
+/*------------------------------------------------------------------------------------*/
+int getNbSubMenus( int winNumber, char * menuName )
+{
+  int        nbMenus        ;
+  WidgetList subMenus       ;
+  Widget     menu           ;
+  Widget     subMenu        ;
+  int        menuId         ;
+  int        nbSubMenus = 0 ;
+  String     mname      = NULL ;
+
+  if ( GetChilds( winNumber ,
+                  &nbMenus   ,
+                  &subMenus ,
+                  &menu     ,
+                  menuName  ,
+                  &menuId    )  == FALSE )
+  { 
+    return 0 ;
+  }
+  /* a submenu is specified by its position 
+   * in the menu item list  (*ne) 
+   */
+  iargs=0;
+  XtSetArg(args[iargs], XtNmenuName, &mname);
+  iargs++;
+  XtGetValues(subMenus[menuId], args, iargs);
+  
+  if ( mname == NULL )
+  {
+    return 0 ;
+  }
+  
+  subMenu = XtNameToWidget(subMenus[menuId],mname) ;
+  iargs = 0 ;
+  XtSetArg(args[iargs], XtNnumChildren, &nbSubMenus);
+  iargs++;
+  XtGetValues( subMenu , args, iargs);
+  
+  return nbSubMenus ;
+}
 
 /*------------------------------------------------------------------------------------*/
 /* put some menus in gray under old graphic style                                     */
@@ -1897,28 +1940,11 @@ void refreshMenus( struct BCG * ScilabGC )
     /* new graphic style */
     int        subMenuNumber = 0 ;
     int        nbChildren        ;
-    WidgetList editSubMenus      ;
-    Widget     editMenu          ;
-    int        editId            ;
+    
     SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ;
     
     /* get the number of children of the Edit menu */
-    /* maybe create a faster function to get only the number */
-    /* of children */
-    GetChilds( ScilabGC->CurWindow,
-               &nbChildren        ,
-               &editSubMenus      ,
-               &editMenu          ,
-               "File"             ,
-               &editId             ) ; 
-               
-               
-               
-               
-    /* the last element is nbChildren + 1 since the menu is actually
-       also counted with its children */
-    /* TODO: get the real number of children */
-    nbChildren = 12 ;
+    nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
     for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
     {
       SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, True ) ;
@@ -1929,25 +1955,10 @@ void refreshMenus( struct BCG * ScilabGC )
     /* old graphic style */
     int        subMenuNumber = 0 ;
     int        nbChildren        ;
-    WidgetList editSubMenus      ;
-    Widget     editMenu          ;
-    int        editId            ;
     
-    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ;
-
-    /* get the number of children of the Edit menu */
-    /* maybe create a faster function to get only the number */
-    /* of children */
-    GetChilds( ScilabGC->CurWindow,
-               &nbChildren        ,
-               &editSubMenus      ,
-               &editMenu          ,
-               "File"             ,
-               &editId             ) ; 
-
     SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ;
-    /* TODO : get the real number of children */
-    nbChildren = 12 ;
+
+    nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
     for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
     {
       SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, False ) ;
