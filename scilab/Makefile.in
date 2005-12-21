@@ -108,7 +108,7 @@ distclean::
 	conftest conftest.c so_locations
 
 # SCIBASE for scilab binaries generation
-SCIBASE = scilab-3.1
+SCIBASE = scilab-4.0-rc1
 
 PVMBINDISTFILES = \
 	$(SCIBASE)/pvm3/Readme \
