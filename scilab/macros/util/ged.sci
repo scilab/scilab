@@ -1126,6 +1126,10 @@ function [h,Axes]=ged_getobject(pt)
   f=get("current_figure");
   aold=get("current_axes")
   axes_array=f.children
+  // assume that the lastly created objects
+  // are at the beginning of the arrays of children
+  // We can then select the last object
+  // first in the loop.
   for k=1:size(axes_array,'*')
     Axes=axes_array(k)
     set("current_axes",Axes)
@@ -1136,62 +1140,165 @@ function [h,Axes]=ged_getobject(pt)
 endfunction
 
 function h=ged_loop(a,pt)
+
   h=[]
+  minDist = 0.01 ;
+  
   for ka=1:size(a,'*')
-    ck=a(ka)
+    ck=a(ka) ;
     select ck.type
+      
       case "Polyline"
-      xy=ck.data;
-      d=Dist2polyline((xy(:,1)-Xmin)/Dx,(xy(:,2)-Ymin)/Dy,pts)
-      if d<0.005 then h=ck,return,end
+	xy=ck.data;
+	d=Dist2polyline((xy(:,1)-Xmin)/Dx,(xy(:,2)-Ymin)/Dy,pts)
+	if d < minDist then h=ck,return,end
+	
       case "Rectangle"
-      xy=ck.data;
-      x0=xy(1);y0=xy(2);W=xy(3);H=xy(4);
-      d=Dist2polyline((x0+[0,W,W,0]-Xmin)/Dx,(y0+[0,0,-H,-H]-Ymin)/Dy,pts)
-      if d<0.005 then h=ck,return,end
+	xy=ck.data;
+	x0=xy(1);y0=xy(2);W=xy(3);H=xy(4);
+	d=Dist2polyline((x0+[0,W,W,0]-Xmin)/Dx,(y0+[0,0,-H,-H]-Ymin)/Dy,pts)
+	if d < minDist then h=ck,return,end
+    
       case "Arc" 
-      xy=ck.data;
-      x0=xy(1);y0=xy(2);RX=xy(3)/2;RY=xy(4)/2;a1=xy(5);a2=xy(6);
-      d=abs(((pt(1)-(x0+RX))./RX)^2+((pt(2)-(y0-RY))./RY)^2-1)
-      if d<0.005 then h=ck,return,end
+	xy=ck.data;
+	dist = dist2Arc( pts, xy(1:2), xy(3), xy(4), xy(5) / 64., xy(6) / 64. ) ;
+	if dist < minDist then h=ck,return,end
+      
       case "Segs"
-      xy=ck.data;
-      xv=matrix(xy(:,1),2,-1)
-      yv=matrix(xy(:,2),2,-1)
-      dx=(xv(1,:)-xv(2,:))
-      dy=(yv(1,:)-yv(2,:))
-      d_d=dx.^2+dy.^2
+	xy=ck.data;
+	xv=matrix(xy(:,1),2,-1)
+	yv=matrix(xy(:,2),2,-1)
+	dx=(xv(1,:)-xv(2,:))
+	dy=(yv(1,:)-yv(2,:))
+	d_d=dx.^2+dy.^2
+	
       case "Compound"
-      h=ged_loop(ck.children,pt)
-      if h<>[] then return,end
-    case "Axes"
-      xy=ck.data_bounds;
-      [xp,yp]=xchange(pt(1),pt(2),'i2f')
-      Xmin=xy(1,1);Ymin=xy(1,2),Dx=xy(2,1)-xy(1,1);Dy=xy(2,2)-xy(1,2);
-      pts=[(xp-Xmin)/Dx (yp-Ymin)/Dy]
-      d=Dist2polyline([0,1,1,0],[0,0,1,1],pts)
-      if d<0.005 then h=ck,return,end
-      h=ged_loop([a.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title],pt)
-      if h<>[] then return,end
-    case "Text"
-      if is_in_text(ck,[xp;yp]) then
-	 h=ck,
-	 return,
+	h=ged_loop(ck.children,pt)
+	if h<>[] then return,end
+	
+      case "Axes"
+	xy=ck.data_bounds;
+	[xp,yp]=xchange(pt(1),pt(2),'i2f')
+	Xmin=xy(1,1);Ymin=xy(1,2),Dx=xy(2,1)-xy(1,1);Dy=xy(2,2)-xy(1,2);
+	pts=[(xp-Xmin)/Dx (yp-Ymin)/Dy]
+	d=Dist2polyline([0,1,1,0],[0,0,1,1],pts)
+	if d < minDist then h=ck,return,end
+	h=ged_loop([a.children(:);ck.x_label;ck.y_label;ck.z_label;ck.title],pt)
+	if h<>[] then return,end
+	
+      case "Text"
+	if is_in_text(ck,[xp;yp]) then
+	  h=ck,
+	  return,
+	end
+	
+      case "Label"
+	if is_in_text(ck,[xp;yp]) then
+	  h=ck
+	  return,
+	end
+	
       end
-    case "Label"
-      if is_in_text(ck,[xp;yp]) then
-	h=ck
-	return,
-      end
-
     end
-  end
 endfunction
-
+  
 function r=is_in_text(h,xy)
   r = stringbox(h);
   r=[r r(:,1)];
   r=and([xy(2) -xy(1)]*diff(r,1,2)+(r(1,1:$-1).*r(2,2:$)-r(1,2:$).*r(2,1:$-1))<0)
+endfunction
+
+// compute the square of distance between a point and the ellipse 
+// in 2D included in an axis aligned rectangle whose upper left 
+// corner is upperLeft and its wifth and heigth is defined.
+function [dist] = dist2Ellipse( point, upperLeft, width, heigth )
+  width2  = width  / 2. ;
+  heigth2 = heigth / 2. ;
+  centerC = [ upperLeft(1) + width2, upperLeft(2) - heigth2 ] ; // center of the ellipse
+  
+  // clicked point in the circle frame
+  pointC  = [ (point(1) - centerC(1)) / width2, (point(2) - centerC(2)) / heigth2 ] ;
+  
+  // get the vector between the point and the closest on the circle
+  diffclose = ( 1 - 1 / norm( pointC ) ) * pointC ;
+  //closest = pointC / sqrt( pointC(1) * pointC(1) + pointC(2) * pointC(2) ) ;
+  
+  // get the difference between the two
+  //ffclose = pointC - closest ;
+  
+  // bring it back to the current frame value
+  diffclose(1) = diffclose(1) * width2  ;
+  diffclose(2) = diffclose(2) * heigth2 ;
+  
+  // get the distance with the closest point
+  dist = sqrt( diffclose(1) * diffclose(1) + diffclose(2) * diffclose(2) ) ;
+  
+endfunction
+
+// compute the square of distance between a point and the arc 
+// in 2D included in an axis aligned rectangle whose upper left 
+// corner is upperLeft and its wifth and heigth is defined.
+function [dist] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
+
+  // convert the sector into radiant angle
+  angle1 = sector1           * %pi / 180. ;
+  angle2 = sector1 + sector2 * %pi / 180. ;
+  
+  width2  = width  / 2. ;
+  heigth2 = heigth / 2. ;
+  centerC = [ upperLeft(1) + width2, upperLeft(2) - heigth2 ] ; // center of the ellipse
+  
+  // clicked point in the circle frame
+  pointC  = [ (point(1) - centerC(1)) / width2, (point(2) - centerC(2)) / heigth2 ] ;
+  
+  // get the projection of the clicked point on the circle
+  closest = pointC / norm( pointC ) ;
+  
+  // now a quite tricky part. The aim is to find
+  // if the closest point is in the drawing sector
+  // ie if it is between bound1 and bound2 on the circle
+  // maybe a eayer solution exists.
+  
+  // get the boundaries of the displayed angle
+  // the closest point is not on the arc it is one of the two
+  // boundaries
+  bound1 = [cos(angle1),sin(angle1)] ;
+  bound2 = [cos(angle2),sin(angle2)] ;
+  
+  // now get the vector of bissecting line between the two bounds
+  // with the orientation toward the arc
+  b2b1       = bound1 -  bound2 ;
+  bissect(1) = -b2b1(2)         ;
+  bissect(2) =  b2b1(1)         ;
+  
+  // get the position of the point along this axis
+  side = closest(1) * bissect(1) + closest(2) * bissect(2) ;
+  
+  // get the position of one of the bound (same value for both)
+  boundPos = bound1(1) * bissect(1) + bound1(2) * bissect(2) ;
+  
+  if side > boundPos  then
+    // the closest point is on the arc
+    diffclose = ( pointC - closest ) .* [width2,heigth2] ;
+    // bring it back to the current frame value
+    //diffclose = diffclose .* [width2,heigth2] ;
+  
+    // get the distance with the closest point
+    dist = norm( diffclose ) ;
+    
+  else
+    // the closest point is one of the bounds
+    // return back to the real coordinates
+    bound1 = centerC + bound1 .* [width2,heigth2];
+    bound2 = centerC + bound2 .* [width2,heigth2];
+    
+    // get the minimum distance
+    dist = min( norm( bound1 - point ), norm( bound2 - point ) ) ;
+  end
+  
+  
+  
+  
 endfunction
 
 function [d,pt,ind]=Dist2polyline(xp,yp,pt)
@@ -2206,6 +2313,7 @@ function ged_move_entity()
   sca(cur_ax)
   f.pixmap=stripblanks(pix)
 endfunction
+
 function ged_copy_entity()
   [btn,xc,yc]=xclick()
   [xc,yc]=xchange(xc,yc,'f2i')
