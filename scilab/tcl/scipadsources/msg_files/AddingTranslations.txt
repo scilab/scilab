@@ -1,44 +1,32 @@
-====================================================
-INSTRUCTIONS FOR CONTRIBUTING SCIPAD LOCALES
-====================================================
+====================================================================
+INSTRUCTIONS FOR TRANSLATING SCIPAD AND CONTRIBUTING SCIPAD LOCALES
+====================================================================
 
-If you're considering to contribute to the localization of Scipad, here
-is some background information. What we need you to do is to create a 
-"message file" file XX.msg in the directory SCI/tcl/scipadsources/msg_files,
-containing the translation of the text strings used by Scipad, and to submit
-it to us. We'll take care of including it in the current Scilab development 
-tree, so that it becomes publicly available.
+In order to port Scipad to a new language, you need to create a 
+"message file" containing the translation of the text strings used by Scipad,
+and to put it in the directory SCI/tcl/scipadsources/msg_files/. Here are
+detailed instructions about how. We estimate that the creation of such a 
+file starting from an existing template shouldn't take more than 2-3 hours
+of editing.
 
-In the file name, XX stands for the i18n code of the language you're
-contributing (see e.g. http://www.i18nguy.com/unicode/language-identifiers.html).
-We estimate that the creation of such a file starting from an existing
-template shouldn't take more than 2-3 hours of editing. Moreover, if you
-volunteer for maintaining the file, there will be occasional changes 
-and additions you'd be asked to incorporate from time to time. We 
-expect that the latter will be very few, of the order of a few strings
-a month.
+If you're considering to contribute to the localization of Scipad, we'd be
+happy to receive your file; we can take care of including it in the current
+Scilab development tree, so that it becomes publicly available.
+Moreover, if you volunteer for maintaining, there will be occasional changes
+and additions you'd be asked to incorporate from time to time. We expect 
+that the latter will be very few, of the order of a few strings a month.
 
 
 THE MESSAGE FILE CONTENT
 ------------------------
 
-The message file itself is written in Tcl. You're not expected to know
-Tcl at all, just to respect a few conventions adopted. Among these:
+The message file has to be called XX.msg, where XX stands for the i18n code
+of the language you're using (see e.g.
+http://www.i18nguy.com/unicode/language-identifiers.html).
 
--strings are enclosed within double quotes "" or curly brackets {}
-
--a # marks the rest of a line as a comment
-
--long lines can be continued by using a \ as last character of the
- line
-
--some characters, having special meanings in Tcl, like []{}, need to
- be escaped with a backslash (i.e. \[ ) (in some very particular cases
- with three backslashes \\\)
-
--\n in a string represents the newline character
-
--some strings use & with a special purpose -- see below.
+The file itself is written in Tcl. You're not expected to know Tcl at all,
+just to respect the format adopted, easily understood from the 
+existing files. Notably:
 
 The file itself is composed of:
 
@@ -49,24 +37,43 @@ The file itself is composed of:
 -a sequence of lines of the form 
   ::msgcat::mcset XX "A_STRING" "TRANSLATED_STRING"
 
--some interspersed comments, dividing loosely the sequence in sections
+-some interspersed comments (a # marks the rest of a line as a comment),
+ dividing loosely the sequence in sections
+
+
+The minimal syntax rules you have to keep in mind are:
+
+-strings are enclosed within double quotes "" or curly brackets {}
+
+-long lines can be continued by using a \ as last character of the line
+
+-some characters, having special meanings in Tcl, like []{}, need to
+ be escaped with a backslash (i.e. \[ ) (in some very particular cases
+ with three backslashes \\\)
+
+-\n in a string represents the newline character
+
+-some strings use & with a special purpose -- see below.
 
 
 EDITING THE MESSAGE FILE
 ------------------------
 
 First of all, choose one of the existing files 
-SCI/tcl/scipadsources/msg_files/*.msg as a template. Such files are found 
-in the CVS version of scilab and in recent unstable versions; we recommend
-starting from the very latest file available on CVS; if you have difficulties
-in getting it (see 
-http://scilabsoft.inria.fr/download/index_download.php?page=CVS.html)
-let us know, we can forward it by email.
+SCI/tcl/scipadsources/msg_files/*.msg as a template. The files fr.msg and
+it.msg are the best candidates, as they are most frequently updated.
+Such files are found in the CVS version of scilab and in recent unstable 
+versions; we recommend to start from the very latest files available on CVS 
+(see
+http://agon.inria.fr:8080/viewcvs/cgi/viewcvs.cgi/tcl/scipadsources/msg_files/
+and http://scilabsoft.inria.fr/download/index_download.php?page=CVS.html).
+If you have difficulties in getting them, let us know, we can forward 
+by email.
 
-Save this file under the new name XX.msg, where XX is the i18n
-code of the language you're using. Change all the codes xx following
-::msgcat::mcset into the XX you have chosen. This can be done easily
-by a Replace all operation in your favourite text editor.
+Save this file under the new name XX.msg, where XX is the i18n code of the
+language you're using. Change all the codes xx following ::msgcat::mcset 
+into the XX you have chosen. This can be done easily by a Replace all 
+operation in your favourite text editor.
 
 In the *.msg file, "A_STRING" is usually a plain readable english text string,
 only sometimes it is an abbreviation. The full english string can then 
@@ -82,14 +89,13 @@ these exact strings as labels. If you think that the english original is
 inadequate, please report it to us, an eventual change needs to be propagated
 to the main code and to all of the message files. 
 
-In most of the cases, the translation is one to one, in the sense that
-each string will have its immediate translation. In a few more complex
-cases (e.g. "The contents of" YYYYY "may have changed"), a sequence of
-strings is used to build up a longer message, where some arguments are
-substituted at run time. Such cases allow for some rearrangement, 
-should the syntax of the local language require a different word order.
-For instance, the former sequence could be rendered as 
-"" YYYY "contents may have changed", or as 
+In most of the cases, the translation is one to one, in the sense that each
+string will have its immediate translation. In a few more complex cases (e.g.
+"The contents of" YYYYY "may have changed"), a sequence of strings is used to
+build up a longer message, where some arguments are substituted at run time.
+Such cases allow for some rearrangement, should the syntax of the local
+language require a different word order. For instance, the former sequence
+could be rendered as "" YYYY "contents may have changed", or as 
 "It may be that contents changed for" YYYY "".
 If you run into truly untranslatable messages, let us know.
 
@@ -98,26 +104,25 @@ ENCODING ISSUES
 ---------------
 
 Localization files could require a particular encoding for displaying
-correctly latin accented characters, or non-latin ones. We have seen 
-that ISO-8859-15 and UTF-8 work fine, and we have used consistently 
-ISO-8559-15 for French and Italian. As a rule of thumb, everything
-should be fine for Scipad if, opening it, it recognizes the encoding
-you used. Tcl seems to have some ability of doing it by itself. 
-We also have some tools for transcoding, if needed, though our
-systems might lack the proper fonts.
+correctly latin accented characters, or non-latin ones. We have seen that
+ISO-8859-15 and UTF-8 work fine, and we have used consistently ISO-8559-15
+for French and Italian. As a rule of thumb, everything should be fine for
+Scipad if, opening it, it recognizes the encoding you used. Tcl seems to have
+some ability of doing it by itself. 
+We also have some tools for transcoding, if needed, though our systems might
+lack the proper fonts.
 
 
 THE SPECIAL & CHARACTER
 -----------------------
 
-You'll remark that some strings contain a single & somewhere in the
-string. This is used for menu entry labels and a few dialog button
-labels. There, the character following the & will be underlined in
-Scipad, meaning that the corresponding entry will be accessible also
-by pressing an appropriate keyboard sequence. In menues, this is 
-a Alt-char-char-... sequence: for example, in the english locale,
-Alt-f-n corresponds to File/New, Alt-f-o to File/Open..., etc.
-In button labels, this is a Alt-char accelerator.
+You'll remark that some strings contain a single & somewhere. This is used 
+for menu entry labels and for a few dialog button labels. There, the 
+character following the & will be underlined in Scipad, meaning that the
+corresponding entry will be accessible also by pressing an appropriate 
+keyboard sequence. In menues, this is an Alt-char-char-... sequence: for
+example, in the english locale, Alt-f-n corresponds to File/New, Alt-f-o to
+File/Open..., etc. In button labels, this is a Alt-char accelerator.
 The choice of the underlined characters is completely free, and
 the Alt-char sequence will work in the locale whichever underlined
 character has been chosen.
@@ -144,14 +149,15 @@ CHECKING THE TRANSLATION
 ------------------------
 
 After creating the *.msg file and dropping it in its place, you can 
-check the result by opening scilab and changing the locale in the Options
+check the result by opening Scipad and changing the locale in the Options
 menu. The locale you just added should appear automatically in that menu. 
-
-Unless you have introduced Tcl syntax errors with your editing, Scipad
-should display menues and dialogs in this new locale.
+If you just changed an existing *.msg file, just reselecting Options/Locale
+will do, without any need to restart Scipad. Unless you have introduced Tcl 
+syntax errors with your editing, Scipad should display menues and dialogs 
+in this new locale.
 
 Should you have dropped a tcl syntax error (the most common are to
-forget a " or a \), scipad should warn you with an error message 
+forget a " or a \), Scipad should warn you with an error message 
 detailed enough to find the offending line. If you have wish 
 installed, it might be more explicative to run scipad.tcl in wish, e.g.
 
@@ -169,6 +175,31 @@ Please check also that whenever space is limited (for instance in
 dialogs), your translation is reasonably short and fits within the
 given space constraints.
 
+THE msgdiff TOOL
+----------------
+
+The directory SCI/tcl/scipadsources/msg_files/ contains also a Scilab script
+which can be used to check the cross-consistency of the existing message 
+files. The script is called msgdiff.sci and has to be loaded in Scilab by 
+getf(). Once this is done, files can be checked calling from Scilab
+
+  msgdiff <firstfile.msg> <secondfile.msg>
+
+or
+
+  msgdiff <firstfile.msg>
+  
+In the first form, msgdiff compares the two files and reports the strings
+defined in <firstfile.msg> but not in <secondfile.msg> and viceversa.
+Moreover, it generates a new file called <secondfile.msg>.rev, which contains
+all the strings present in <secondfile.msg>, nicely reformatted and reordered
+following the same order of <firstfile.msg>, and placeholders containing "???"
+for the strings not (yet) translated in <secondfile.msg>. 
+In the second form, msgdiff only generates a <firstfile.msg>.rev in which
+the entries are nicely reformatted (this implies losing any original 
+indentation, for the moment). 
+Some really minimal syntax check is done in both cases. Further comments are
+written in the header of msgdiff.sci.
 
 UPDATES
 --------
