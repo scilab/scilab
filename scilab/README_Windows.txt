@@ -21,7 +21,7 @@ I - TO RUN SCILAB (BINARY VERSION)
         so you can run Scilab by executing directly "wscilex.exe".
  
     3 - Scilab has been compiled with Visual C++ .NET 2003
-	      (Intel C 8.0 & Fortran 8.0, see IV below).
+	      (Intel C 9.0 & Fortran 9.0, see III below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
@@ -43,38 +43,23 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
     "Scilab 3.1" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
-******************************************************************************
-III - TO CUSTOMIZE SCILAB FONTS, WINDOW SIZE and SCILAB MENUS 
-******************************************************************************
- 
-    When you enter Scilab for the first time the window may be too
-    large and the fonts not properly choosen.  Just change this
-    with mouse and menus (right mouse click in the scilab window),
-    when you close scilab your changes are saved.
-    	
-    For the popup help, just change the size and it will keep it for 
-    next calls.
- 
-    You can also edit the files "bin/wscilabE.mnu" and
-    "bin/wgscilabE.mnu" to customize the Scilab menus. It's quite
-    easy to change them.
  
 ******************************************************************************
-IV - TO COMPILE SCILAB FROM A SOURCE VERSION
+III - TO COMPILE SCILAB FROM A SOURCE VERSION
 ******************************************************************************
  
-    We have compiled this distribution with Visual Studio 2003 (Intel C 8.0 &
-    Fortran 8.0). It is possible to compile it with egcs or Cygwin compiler.
+    We have compiled this distribution with Visual Studio 2003 (Intel C 9.0 &
+    Fortran 9.0). 
 
-    1 - To compile with Visual C++.NET 2003 & Intel Fortran 8.0,
+    1 - To compile with Visual C++ .NET 2003 & Intel Fortran 9.0,
         see Readme_visual.txt 
  
-    2 - To compile with Visual C++ 4.0,  5.0 or 6.0
+    2 - To compile with  Visual C++ 6.0
         type "make all". (use f2c to translate fortran to c.)
  
  
 ******************************************************************************
-V - DOCUMENTATION
+IV - DOCUMENTATION
 ******************************************************************************
  
  In addition to Scilab online documentation (obtained by typing "help item" or
@@ -96,7 +81,7 @@ V - DOCUMENTATION
  Note that these documents are not uptodate.
 
 ******************************************************************************
-VI - SOME IMPORTANT FILES AND DIRECTORIES
+V - SOME IMPORTANT FILES AND DIRECTORIES
 ******************************************************************************
  
  scilab.star: startup file for Scilab instructions in this file
@@ -120,14 +105,9 @@ VI - SOME IMPORTANT FILES AND DIRECTORIES
              (control, polynomials,...). Each subdirectory contains 
              the source code of the macros (files *.sci). 
  
- libs/	   : directory of libraries: archives of object files needed 
-             to link Scilab.
- 
  routines/ : directory of fortran or C routines.
  
  man/	   : files for online help
- 
- tests/    : set of exec files to test Scilab.
  
  util/     : useful routines and ASCII files to manage Scilab.
  
@@ -135,7 +115,6 @@ VI - SOME IMPORTANT FILES AND DIRECTORIES
 
  		scilex  : executable code of Scilab (Console version).
 		wscilex  : executable code of Scilab (Windows version).
-    intersci: generator of interface program between Scilab and routines.
  
  intersci/ : Generator of interface program between Scilab and routines.
  
