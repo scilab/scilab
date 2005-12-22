@@ -91,9 +91,15 @@ void NewCopyClip (struct BCG *ScilabGC)
   SetWindowExtEx (hdc, rect.right - rect.left,rect.bottom - rect.top, (LPSIZE) NULL);
   Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
 
-  /** fix hdc in the scilab driver **/
-  scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
+  
   scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
+
+	/** fix hdc in the scilab driver **/
+	{
+		HDC hDCtmp=TryToGetDC (hwnd);
+		scig_replay_hdc ('C', ScilabGC->CurWindow, hDCtmp,rect.right - rect.left, rect.bottom - rect.top, 1);
+		ReleaseDC(hwnd,hDCtmp);
+	}
 
   hmf = CloseEnhMetaFile (hdc);  
 
@@ -111,19 +117,17 @@ void NewCopyClip (struct BCG *ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 /****************************************
  * copy graph window to clipboard 
- * copy a CF_METAFILEPICT and a CF_BITMAP to the clipboard 
+ * copy a CF_BITMAP to the clipboard 
  ****************************************/
 void CopyClip (struct BCG *ScilabGC)
 {
   LPGW lpgw;
-  HDC mem;
+  HDC hmemDC;
+	HBITMAP hBitmap;
   RECT rect;
-  HBITMAP bitmap;
-  HANDLE hmf;
-  HGLOBAL hGMem;
-  LPMETAFILEPICT lpMFP;
+  
   HWND hwnd;
-  HDC hdc;
+  HDC hdc=NULL;
   integer SaveCurrentWindow=0;
 
   SaveCurrentWindow=GetCurrentFigureWindows();
@@ -133,65 +137,51 @@ void CopyClip (struct BCG *ScilabGC)
 
   SetCurrentFigureWindows (ScilabGC->CurWindow);
 
+	/* view the window */
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
-  /* view the window */
-  if (IsIconic (hwnd))
-    ShowWindow (hwnd, SW_SHOWNORMAL);
+
+  if (IsIconic (hwnd))   ShowWindow (hwnd, SW_SHOWNORMAL);
   BringWindowToTop (hwnd);
   UpdateWindow (hwnd);
+
   /* get the context */
   hdc = TryToGetDC (hwnd);
-  GetClientRect (hwnd, &rect);
+  
   /* make a bitmap and copy it there */
-  mem = CreateCompatibleDC (hdc);
-  bitmap = CreateCompatibleBitmap (hdc, rect.right - rect.left,
-				   rect.bottom - rect.top);
-  if (bitmap)
-    {
-      /* there is enough memory and the bitmaps OK */
-      SelectBitmap (mem, bitmap);
-      BitBlt (mem, 0, 0, rect.right - rect.left,
-	      rect.bottom - rect.top, hdc, rect.left,
-	      rect.top, SRCCOPY);
-    }
-  else
-    {
-      MessageBeep (MB_ICONHAND);
-      MessageBox (hwnd, MSG_WARNING16,lpgw->Title, MB_ICONHAND | MB_OK);
-    }
-  DeleteDC (mem);
-  ReleaseDC (hwnd, hdc);
-  hdc = CreateMetaFile ((LPSTR) NULL);
+	if (hdc)
+	{
+		GetClientRect (hwnd, &rect);
+		hmemDC = CreateCompatibleDC (hdc);
+		hBitmap = CreateCompatibleBitmap (hdc, rect.right - rect.left, rect.bottom - rect.top);
 
-  /** SetMapMode(hdc, MM_ANISOTROPIC); **/
+		if (hBitmap)
+		{
+			SelectBitmap (hmemDC, hBitmap);
+			scig_replay_hdc ('C', ScilabGC->CurWindow, hmemDC,rect.right - rect.left, rect.bottom - rect.top, 1);
 
-  SetMapMode (hdc, MM_TEXT);
-  SetTextAlign (hdc, TA_LEFT | TA_BOTTOM);
-  SetWindowExtEx (hdc, rect.right - rect.left,
-		  rect.bottom - rect.top, (LPSIZE) NULL);
-  /** fix hdc in the scilab driver **/
-  scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,
-		   rect.right - rect.left, rect.bottom - rect.top, 1);
-  hmf = CloseMetaFile (hdc);
-  hGMem = GlobalAlloc (GMEM_MOVEABLE, (DWORD) sizeof (METAFILEPICT));
-  lpMFP = (LPMETAFILEPICT) GlobalLock (hGMem);
-  /* in MM_ANISOTROPIC, xExt & yExt give suggested size in 0.01mm units 
-   */
-  hdc = TryToGetDC (hwnd);
-  lpMFP->mm = MM_ANISOTROPIC;
-  lpMFP->xExt = MulDiv (rect.right - rect.left, 2540, GetDeviceCaps 
-			(hdc, LOGPIXELSX));
-  lpMFP->yExt = MulDiv (rect.bottom - rect.top, 2540, GetDeviceCaps 
-			(hdc, LOGPIXELSX));
-  lpMFP->hMF = hmf;
-  ReleaseDC (hwnd, hdc);
-  GlobalUnlock (hGMem);
-  OpenClipboard (hwnd);
-  EmptyClipboard ();
-  SetClipboardData (CF_METAFILEPICT, hGMem);
-  SetClipboardData (CF_BITMAP, bitmap);
-  CloseClipboard ();
+			OpenClipboard (hwnd);
+			EmptyClipboard ();
+			SetClipboardData (CF_BITMAP, hBitmap);
+			CloseClipboard ();
+
+			DeleteDC(hmemDC);
+			DeleteBitmap(hBitmap);
+		}
+		else
+		{
+			MessageBeep (MB_ICONHAND);
+			MessageBox (hwnd, MSG_WARNING16,lpgw->Title, MB_ICONHAND | MB_OK);
+		}
+	}
+	else
+	{
+		MessageBox(NULL,MSG_ERROR36,MSG_ERROR20,MB_ICONWARNING);
+	}
+
+	/** fix hdc in the scilab driver **/
+	scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,  rect.right - rect.left, rect.bottom - rect.top, 1);
+	ReleaseDC (hwnd, hdc);
   
   SetCurrentFigureWindows (SaveCurrentWindow);
   
@@ -199,25 +189,6 @@ void CopyClip (struct BCG *ScilabGC)
 
   return;
 }
-/*-----------------------------------------------------------------------------------*/
-/****************************************
- * copy graph window to printer         *
- ****************************************/
-/* PageGDICalls : only for testing */
-#ifdef PageTest
-static void PageGDICalls (HDC hdcPrn, int cxPage, int cyPage)
-{
-  static char szTextStr[] = "Hello, Printer!";
-  SetMapMode (hdcPrn, MM_ISOTROPIC);
-  SetWindowExtEx (hdcPrn, 1000, 1000, NULL);
-  SetViewportExtEx (hdcPrn, cxPage / 2, -cyPage / 2, NULL);
-  SetViewportOrgEx (hdcPrn, cxPage / 2, cyPage / 2, NULL);
-  Ellipse (hdcPrn, -500, 500, 500, -500);
-  SetTextAlign (hdcPrn, TA_LEFT | TA_BOTTOM);
-  TextOut (hdcPrn, 0, 0, szTextStr, sizeof (szTextStr) - 1);
-}
-#endif
-/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Debug Function 
@@ -262,9 +233,7 @@ Graphic window
  *@author: Matthieu PHILIPPE
  *@date: Dec 1999
  **/
-void SciViewportMove (ScilabGC, x, y)
-     struct BCG *ScilabGC;
-     int x, y;
+void SciViewportMove (struct BCG *ScilabGC,int x, int y)
 {
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
@@ -298,9 +267,7 @@ Graphic window
  *@author: Matthieu PHILIPPE
  *@date: Dec 1999
  **/
-void SciViewportGet (ScilabXgc, x, y)
-     struct BCG *ScilabXgc;
-     int *x, *y;
+void SciViewportGet (struct BCG *ScilabXgc,int *x,int *y)
 {
   if (ScilabXgc != NULL)
     {
@@ -391,40 +358,10 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
  
 }
 /*-----------------------------------------------------------------------------------*/
-/*************************************************
- * une petite fonction a la peek moi le message 
- *************************************************/
-void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-  sciSend.msg.lParam = lParam;
-  sciSend.msg.wParam = wParam;
-  sciSend.msg.message = message;
-  sciSend.msg.hwnd = hwnd;
-  sciSend.flag = 1;
-
-}
-/*-----------------------------------------------------------------------------------*/
-int sciPeekMessage (MSG * msg)
-{
-  if (sciSend.flag != 0)
-    {
-      msg->message = sciSend.msg.message;
-      msg->lParam = sciSend.msg.lParam;
-      msg->wParam = sciSend.msg.wParam;
-      msg->hwnd = sciSend.msg.hwnd;
-      sciSend.flag = 0;
-      return (1);
-    }
-  else
-    return (0);
-}
-/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Drawing graphic window 
  ****************************************************/
-
 /* utility for backing store simulation */
-
 /* A améliorer pour que le bitmap ne soit pas plus grand que nécessaire 
  * ou au moins qu'il utilise rcpaint comme clipregion. 
  */
@@ -682,7 +619,6 @@ void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  i
   SciG_Font ();
   SwitchWindow (&cur);
 }
-/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 BOOL HdcToBmpFile(HDC hdc, char *pszflname)
 {

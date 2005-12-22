@@ -716,12 +716,6 @@ void C2F(setpopupname)(x0, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   Setpopupname(x0);
 }
 /*-----------------------------------------------------------------------------------*/
-
-extern void sciSendMessage(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-extern int  sciPeekMessage(MSG *msg);
-/*-----------------------------------------------------------------------------------*/
-
-
 /****************************************************************
  Wait for mouse click in graphic window 
    send back mouse location  (x1,y1)  and button number  

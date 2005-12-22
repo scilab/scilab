@@ -63,15 +63,6 @@
 extern int version_flag();
 
 /*-----------------------------------------------------------------------------------*/
-
-typedef struct
-{
-  MSG msg;
-  integer flag;
-}
-SCISEND;
-SCISEND sciSend;
-/*-----------------------------------------------------------------------------------*/
 void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
 void set_delete_win_mode();
 int C2F (deletewin) (integer * number);
@@ -80,8 +71,6 @@ void CopyClip (struct BCG *ScilabGC);
 void SciViewportMove (ScilabGC, x, y);
 void SciViewportGet (ScilabXgc, x, y);
 void GPopupResize (struct BCG * ScilabXgc,int * width,int * height);
-void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-int sciPeekMessage (MSG * msg);
 static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
 static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC);
 static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
