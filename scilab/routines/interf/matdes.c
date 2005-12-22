@@ -3579,7 +3579,16 @@ int scixname(char *fname,unsigned long fname_len)
   CheckLhs(1,1);
   GetRhsVar(1,"c",&m1,&n1,&l1);
   SciWin();
-  C2F(dr1)("xname",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,bsiz);
+  if ( version_flag() == 0 )
+  {
+    sciSetName( sciGetCurrentFigure(), cstk(l1), m1 ) ;
+    /*C2F(dr)("xname",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,bsiz);*/
+  }
+  else
+  {
+    C2F(dr1)("xname",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,bsiz);
+  }
+
   LhsVar(1)=0;
   return 0;
 }
