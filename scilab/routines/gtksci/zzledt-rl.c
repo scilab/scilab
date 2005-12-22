@@ -130,6 +130,8 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
      buffer[0]=0;
      strncpy(saved_buf,rl_line_buffer,512);
      saved_buf_flag=1;
+     sciprint("\r");  /* this is a hack and fixes the redraw of short lines upon
+                       tk events (bug #593, #1363)*/
      return;
    } else {
      int i; 
@@ -139,7 +141,7 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
 	   rl_stuff_char(saved_buf[i]);
 	 saved_buf_flag=0;
        }
-     line = readline((use_prompt) ? Sci_Prompt : "" );
+     line=readline((use_prompt) ? Sci_Prompt : "" );
      use_prompt=1;
    }
 
