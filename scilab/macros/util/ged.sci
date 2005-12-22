@@ -1246,9 +1246,16 @@ endfunction
 // corner is upperLeft and its wifth and heigth is defined.
 function [dist,diffClose] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
 
+
+  if ( width == 0 | heigth == 0 ) then
+    dist = %inf ;
+    diffClose = [%inf,%inf];
+    return ;
+  end
+  
   // convert the sector into radiant angle
-  angle1 = sector1           * %pi / 180. ;
-  angle2 = sector1 + sector2 * %pi / 180. ;
+  angle1 =  sector1            * %pi / 180. ;
+  angle2 = (sector1 + sector2) * %pi / 180. ;
   
   width2  = width  / 2. ;
   heigth2 = heigth / 2. ;
