@@ -219,13 +219,17 @@ proc break_bp {} {
 proc canceldebug_bp {} {
     global funnameargs waitmessage
     if {[checkscilabbusy] == "OK"} {
-        showinfo $waitmessage
-        if {$funnameargs != ""} {
-            removeallactive_bp
-            ScilabEval_lt "abort" "seq"
-            removescilab_bp "with_output"
-            getfromshell
-            cleantmpdebugfiles
+        if {[getdbstate] == "DebugInProgress"} {
+            showinfo $waitmessage
+            if {$funnameargs != ""} {
+                removeallactive_bp
+                ScilabEval_lt "abort" "seq"
+                removescilab_bp "with_output"
+                getfromshell
+                cleantmpdebugfiles
+            }
+        } else {
+            # [getdbstate] is "ReadyForDebug" - nothing to do
         }
         setdbstate "NoDebug"
     }

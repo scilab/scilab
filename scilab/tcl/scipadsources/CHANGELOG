@@ -1839,4 +1839,23 @@ Francois VOGEL, 09/12/05
    click on the file to open. References:
    http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/21cee717df71ab0/d5957386272e17b3
    http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/875daad29986228e/ae651d1a948ba67c
+ * DarkMagenta and darkred are not known under hpux11.11, therefore these
+   colors become magenta4 and red4 (bug 1203)
+ * ScilabEval command has quotes in proc selectprint_win in order to
+   work with filenames containing white spaces
+ * Added "sync" "seq" options to the initial ScilabEval ";" - this solves
+   startup missing colorisation problems when issuing scipad some_file in
+   Scilab
  * version --> 5.68 - This version comes with Scilab 4.0RC
+
+Francois VOGEL, 22/12/05
+ * Debugger: Cancel debug is allowed right after configure execution, and
+   more generally from the "ReadyForDebug" state
+ * Fixed: Running Configure execution on an empty file or a pure .sce file
+   changed the debug state to "ReadyForDebug"
+ * Fixed: Scilab comments and strings on continued lines are no longer
+   colorized in schemes other than scilab
+ * Fixed bug reported on double click in the file open dialog. This was
+   already fixed in 5.68 but only in case the TkDnD package is present,
+   which is not the case in Scilab 4.0 RC1
+ * version --> 5.69

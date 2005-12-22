@@ -28,6 +28,8 @@ catch {
 #############
 # Debug settings in case Scipad is launched outside of Scilab, e.g. from wish
 
+# Warning: "sync" "seq" option is mandatory so that colorization
+#          works with scipad somefile.sci
 if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 
     # Define ScilabEval to a void function, if it is unknown. This is

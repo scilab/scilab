@@ -7,7 +7,11 @@ proc tkdndbind {w} {
 
     # Abort if TkDnD package is not available
     if {$TkDnDloaded != "true"} {
-        bind $w <ButtonRelease-1>  { focustextarea %W }
+        bind $w <ButtonRelease-1>  { \
+            if {[info exists listoffile("%W",fullname)]} { \
+                focustextarea %W ; \
+            } \
+        }
         return
     }
 

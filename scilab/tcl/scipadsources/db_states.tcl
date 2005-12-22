@@ -7,17 +7,18 @@
 # ---------
 # |NoDebug|---->---- insertremove_bp  |
 # ---------          removeall_bp     |
-# |   \    \         showwatch_bp     |
-# |    \    \               |
-# |     \    \----<---------|
-# |      \
-# |       \ configurefoo_bp(OK) ---------------
-# |        \-------->----------|ReadyForDebug|-->-- insertremove_bp  |
-# |                            ---------------      removeall_bp     |
-# |                             /   / \             configurefoo_bp  |
-# |canceldebug_bp   <enddebug> /   /   \            showwatch_bp     |
-# |                |goonwo_bp /   /     \                 |
-# |                          /   /       \-------<--------|
+# | \ \    \         showwatch_bp     |
+# |  \ \    \               |
+# |   \ \    \----<---------|
+# |    \ \
+# |     \ \ configurefoo_bp(OK)---------------
+# |      \ \-------->----------|ReadyForDebug|-->-- insertremove_bp  |
+# |       \  canceldebug_bp    ---------------      removeall_bp     |
+# |        \--------<----------| /   /\             configurefoo_bp  |
+# |                             /   /  \            showwatch_bp     |
+# |canceldebug_bp   <enddebug> /   /    \                 |
+# |                |goonwo_bp /   /      \                |
+# |                          /   /        \-------<-------|
 # |               |---->----/   /
 # |   -----------------        /tonextbreakpoint_bp
 # |-<-|DebugInProgress|---<---/|runtocursor_bp
@@ -112,7 +113,7 @@ if {$dev_debug=="true"} {
         bind all <Control-F12> {showwatch_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
         bind all <F12> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state disabled
+        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
 
     } elseif {[getdbstate] == "DebugInProgress"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
@@ -168,7 +169,7 @@ if {$dev_debug=="true"} {
 } else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
             } elseif {[getdbstate] == "DebugInProgress"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal

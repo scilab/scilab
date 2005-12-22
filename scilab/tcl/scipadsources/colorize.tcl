@@ -39,6 +39,8 @@ proc load_words {} {
     set chset(scilab.libfun) {}
     set chset(scilab.scicos) {}
 # ask to scilab about keywords:
+# Warning: "seq" option only is mandatory so that colorization
+#          works with scipad somefile.sci
     ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq"
 # old code to load a word file with additional keywords: maybe someday it will
 # turn useful...
@@ -215,53 +217,79 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
 # textarea $w
 # consider single quotes (') and double quotes ("), or double quotes only
 # based on the Options menu setting
+# if language scheme is anything but scilab, // comments are ignored and
+# strings are colorized if they are on a single physical line
 
     global scilabSingleQuotedStrings
+    global listoffile
 
-    if {$scilabSingleQuotedStrings == "yes"} {
-        # single quotes or double quotes
+    set schema $listoffile("$w",language)
 
-        # since in Scilab it is legal to declare a="string', no effort is
-        # made here to detect unbalanced quotes by their type
+    if {$schema == "scilab"} {
+        # deal with comments and continued strings only in scilab
+        # language scheme
 
-        # regular expression matching a simple string on a (non-continued) line
-        # actually the character just before the string is part of the match
-        # this allows for removing incorrect colorization of multiple matrix
-        # transpose on a single line
-        set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
+        if {$scilabSingleQuotedStrings == "yes"} {
+            # single quotes or double quotes
 
-        # regular expression matching a continued string possibly ending with a
-        # comment, if this string was not already matched by $simpstrRE
-        # actually the character just before the string is part of the match
-        # this allows for removing incorrect colorization of multiple matrix
-        # transpose on a single line
-        set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
+            # since in Scilab it is legal to declare a="string', no effort is
+            # made here to detect unbalanced quotes by their type
+
+            # regular expression matching a simple string on a (non-continued) line
+            # actually the character just before the string is part of the match
+            # this allows for removing incorrect colorization of multiple matrix
+            # transpose on a single line
+            set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
+
+            # regular expression matching a continued string possibly ending with a
+            # comment, if this string was not already matched by $simpstrRE
+            # actually the character just before the string is part of the match
+            # this allows for removing incorrect colorization of multiple matrix
+            # transpose on a single line
+            set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
+
+        } else {
+            # double quotes only
+
+            set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
+            set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
+        }
+
+        # regular expression matching a comment outside of a continued string
+        # if this comment was not already matched by $simpstrRE or $contstrRE
+        set outstrcommRE {(//[^\n]*)}
+
+        # regular expression matching in two separate parts the continued string
+        # part and the comment part of a continued line containing a comment
+        set separationRE {([^\.\n]*(?:\.[^\.\n]+)*\.{2,} *)((//[^\n]*)?)}
+
+        set textcommfullRE "$simpstrRE|$contstrRE|$outstrcommRE"
 
     } else {
-        # double quotes only
+        # ignore comments and continued strings if language scheme is
+        # anything but scilab
 
-        set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
-        set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
+        if {$scilabSingleQuotedStrings == "yes"} {
+            # single quotes or double quotes
+            set simpstrRE {((?:.|\A(?:))["'][^"'\n]*["'])}
+        } else {
+            # double quotes only
+            set simpstrRE {((?:.|\A(?:))"[^"'\n]*")}
+        }
+
+        set separationRE {}
+        set textcommfullRE "$simpstrRE"
     }
 
-    # regular expression matching a comment outside of a continued string
-    # if this comment was not already matched by $simpstrRE or $contstrRE
-    set outstrcommRE {(//[^\n]*)}
-
-    # regular expression matching in two separate parts the continued string
-    # part and the comment part of a continued line containing a comment
-    set separationRE {([^\.\n]*(?:\.[^\.\n]+)*\.{2,} *)((//[^\n]*)?)}
-
     colorizestringsandcomments $w $thebegin $theend \
-            $simpstrRE $contstrRE $outstrcommRE $separationRE
+            $textcommfullRE $separationRE
 }
 
-proc colorizestringsandcomments {w thebegin theend simpstrRE contstrRE outstrcommRE separationRE} {
+proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE} {
 # colorize properly comments and text quoted with single or double quotes,
 # depending on the regexps received, while taking care of continued lines
 # possibly containing interlaced comments (this is legal in Scilab)
 
-    set textcommfullRE "$simpstrRE|$contstrRE|$outstrcommRE"
     $w mark set last $thebegin
     set resi {}
     set simpstr {}
