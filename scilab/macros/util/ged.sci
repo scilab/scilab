@@ -1133,7 +1133,7 @@ function [h,Axes]=ged_getobject(pt)
   for k=1:size(axes_array,'*')
     Axes=axes_array(k)
     set("current_axes",Axes)
-    h=ged_loop(Axes)
+    h=ged_loop(Axes,pt)
     if h<>[] then break,end
   end
   set("current_axes",aold)
@@ -1142,7 +1142,8 @@ endfunction
 function h=ged_loop(a,pt)
 
   h=[]
-  minDist = 0.01 ;
+  minDist    = 0.01 ;
+  minPixDist = 3    ;
   
   for ka=1:size(a,'*')
     ck=a(ka) ;
@@ -1161,8 +1162,13 @@ function h=ged_loop(a,pt)
     
       case "Arc" 
 	xy=ck.data;
-	dist = dist2Arc( pts, xy(1:2), xy(3), xy(4), xy(5) / 64., xy(6) / 64. ) ;
-	if dist < minDist then h=ck,return,end
+	[xp,yp]=xchange(pt(1),pt(2),'i2f')
+	//[dist, toto] = dist2Arc( [xp,yp] ./ [Dx,Dy], xy(1:2)./[Dx,Dy], xy(3)/Dx, xy(4)/Dy, xy(5) / 64., xy(6) / 64. ) ;
+	dist = pixDist2Arc( [xp,yp], xy(1:2), xy(3), xy(4), xy(5) / 64., xy(6) / 64. ) ;
+	if dist <= minPixDist then 
+	  h=ck;
+	  return;
+	end
       
       case "Segs"
 	xy=ck.data;
@@ -1231,14 +1237,14 @@ function [dist] = dist2Ellipse( point, upperLeft, width, heigth )
   diffclose(2) = diffclose(2) * heigth2 ;
   
   // get the distance with the closest point
-  dist = sqrt( diffclose(1) * diffclose(1) + diffclose(2) * diffclose(2) ) ;
+  dist = norm( diffclose ) ;
   
 endfunction
 
-// compute the square of distance between a point and the arc 
+// compute the distance between a point and the arc 
 // in 2D included in an axis aligned rectangle whose upper left 
 // corner is upperLeft and its wifth and heigth is defined.
-function [dist] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
+function [dist,diffClose] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
 
   // convert the sector into radiant angle
   angle1 = sector1           * %pi / 180. ;
@@ -1279,12 +1285,12 @@ function [dist] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
   
   if side > boundPos  then
     // the closest point is on the arc
-    diffclose = ( pointC - closest ) .* [width2,heigth2] ;
+    diffClose = ( pointC - closest ) .* [width2,heigth2] ;
     // bring it back to the current frame value
     //diffclose = diffclose .* [width2,heigth2] ;
   
     // get the distance with the closest point
-    dist = norm( diffclose ) ;
+    dist = norm( diffClose ) ;
     
   else
     // the closest point is one of the bounds
@@ -1293,12 +1299,30 @@ function [dist] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
     bound2 = centerC + bound2 .* [width2,heigth2];
     
     // get the minimum distance
-    dist = min( norm( bound1 - point ), norm( bound2 - point ) ) ;
-  end
+    dist  = norm( bound1 - point ) ;
+    dist2 = norm( bound2 - point ) ;
+    if dist > dist2 then
+      diffClose = bound1 - point ;
+    else
+      dist = dist2 ;
+      diffClose = bound2 - point ;
+    end
+    //dist = min( norm( bound1 - point ), norm( bound2 - point ) ) ;
+  end  
   
+endfunction
+
+// same as before but return the value in pixels
+function dist = pixDist2Arc( point, upperLeft, width, heigth, sector1, sector2 )
   
-  
-  
+  [dist, difference] = dist2Arc( point, upperLeft, width, heigth, sector1, sector2 ) ;
+  // convert to pixels
+  // get the length of the difference vector
+  // we construct it by getting two points
+  [origin(1),origin(2)] = xchange(0,0,'f2i');
+  [extremity(1),extremity(2)] = xchange(difference(1),difference(2),'f2i');
+  dist = norm( extremity - origin ) ;
+
 endfunction
 
 function [d,pt,ind]=Dist2polyline(xp,yp,pt)
