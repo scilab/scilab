@@ -147,7 +147,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     xe=xo;ye=yo
     xpoly([xo;xe],[yo;ye],'lines')
     rep(3)=-1
-    while rep(3)==-1 do //get a new point
+    while or(rep(3)==[-1 -5]) do //get a new point
       rep=xgetmouse(0)
       if rep(3)==-100 then //active window has been closed
 	driver(dr);
