@@ -170,7 +170,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     
     pat=xget('pattern')
     xset('pattern',default_color(0))
-    while rep(3)<>3 ,  // move loop
+    while and(rep(3)<>[3 5]) ,  // move loop
 			
       // draw block shape
       xrect(xc,yc+sz(2),sz(1),sz(2))
@@ -277,7 +277,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     drawobj(o)
     dr=driver()
     if dr=='Rec' then driver('X11'),end
-    while rep(3)<>3 , //move loop
+    while and(rep(3)<>[3 5]), //move loop
       
       // draw block shape
       xrect(xc,yc+sz(2),sz(1),sz(2))
@@ -332,7 +332,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       x1=X1;y1=Y1;
       xpolys(x1,y1,ct(1)) //erase moving part of the link
       rep(3)=-1
-      while rep(3)<>3 do
+      while and(rep(3)<>[3 5]) do
 	xpolys(x1,y1,ct(1))//draw moving part of the link
 	rep=xgetmouse(0);
 	if rep(3)==-100 then //active window has been closed
@@ -374,7 +374,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       x1=X1;y1=Y1;
       xpolys(x1,y1,ct(1)) //erase moving part of the link
       rep(3)=-1
-      while rep(3)<>3 do
+      while and(rep(3)<>[3 5]) do
 	xpolys(x1,y1,ct(1))//draw moving part of the link
 	rep=xgetmouse(0);
 	if rep(3)==-100 then //active window has been closed
@@ -414,7 +414,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
     x1=X1;y1=Y1;
     xpolys(x1,y1,ct(1)) //erase moving part of the link
     rep(3)=-1
-    while rep(3)<>3 do
+    while and(rep(3)<>[3 5]) do
       xpolys(x1,y1,ct(1))//draw moving part of the link
       rep=xgetmouse(0);
       if rep(3)==-100 then //active window has been closed
@@ -459,7 +459,7 @@ function scs_m=movelink4(scs_m)
   x1=X1;y1=Y1;
   xpolys(x1,y1,ct(1)) //erase moving part of the link
   rep(3)=-1
-  while rep(3)<>3 do
+  while and(rep(3)<>[3 5]) do
     xpolys(x1,y1,ct(1))//draw moving part of the link
     if pixmap then xset('wshow'),end
     rep=xgetmouse(0);
@@ -497,7 +497,7 @@ function scs_m=movelink1(scs_m)
   xpolys(xx,yy,ct(1))//erase  the link
   X1=xx;Y1=yy
   rep(3)=-1
-  while rep(3)<>3 do
+  while and(rep(3)<>[3 5]) do
     xpolys(xx,yy,ct(1))  //draw  the link
     if pixmap then xset('wshow'),end
     rep=xgetmouse(0);
@@ -600,7 +600,7 @@ function scs_m=movelink2(scs_m)
   xpolys(x1,y1,ct(1))//erase  moving part of the link
   if pixmap then xset('wshow'),end
   rep(3)=-1
-  while rep(3)<>3 do
+  while and(rep(3)<>[3 5]) do
     xpolys(x1,y1,ct(1))  //draw moving part of the link
     if pixmap then xset('wshow'),end
     rep=xgetmouse(0);
@@ -700,7 +700,7 @@ function scs_m=movelink3(scs_m)
   x1=X1;y1=Y1;
   xpolys(x1,y1,ct(1)) //erase moving part of the link
   rep(3)=-1
-  while rep(3)<>3 do
+  while and(rep(3)<>[3 5]) do
     xpolys(x1,y1,ct(1))//draw moving part of the link
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
@@ -789,7 +789,7 @@ function scs_m=movecorner(scs_m,k,xc,yc,wh)
   xpolys(x1,y1,ct(1)) //erase moving part of the link
   rep(3)=-1
 
-  while rep(3)<>3 do
+  while and(rep(3)<>[3 5]) do
     xpolys(x1,y1,ct(1))//draw moving part of the link
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed

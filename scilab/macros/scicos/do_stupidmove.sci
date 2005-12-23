@@ -82,7 +82,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     if dr=='Rec' then driver('X11'),end
     dx=xc-xmin;dy=yc-ymin;
     
-    while rep(3)<>3 ,  // move loop
+    while and(rep(3)<>[3 5]) ,  // move loop
       xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))// draw block shape
       
       // draw moving links
@@ -146,7 +146,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
     drawobj(o)
     dr=driver()
     if dr=='Rec' then driver('X11'),end
-    while rep(3)<>3 , //move loop
+    while and(rep(3)<>[3 5]), //move loop
       xrect(xc,yc+sz(2),sz(1),sz(2))// draw block shape
       if pixmap then xset('wshow'),end
       // get new position
@@ -192,7 +192,7 @@ function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
   xpolys(x1,y1,ct(1)) //erase moving part of the link
   rep(3)=-1
 
-  while rep(3)<>3 do
+  while and(rep(3)<>[3 5]) do
     xpolys(x1,y1,ct(1))//draw moving part of the link
     rep=xgetmouse(0);
     if rep(3)==-100 then //active window has been closed
