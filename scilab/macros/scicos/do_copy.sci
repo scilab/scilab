@@ -49,7 +49,7 @@ function [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
     [xy,sz]=(o.graphics.orig,o.graphics.sz)
     dr=driver()
     if dr=='Rec' then driver('X11'),end
-    while rep(3)==-1 then //move loop
+    while rep(3)<>3 then //move loop
       // draw block shape
       xrect(xc,yc+sz(2),sz(1),sz(2))
       if pixmap then xset('wshow'),end
