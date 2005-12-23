@@ -1,14 +1,20 @@
 function scs_m = do_ident(scs_m)
 // Copyright INRIA
   while %t
-    [btn,%pt,win,Cmenu]=cosclick()
-    if Cmenu<>[] then
-      Cmenu=resume(Cmenu)
+    if %pt==[] then
+      [btn,%pt,win,Cmenu]=cosclick()
+      disp(Cmenu)
+      if Cmenu<>[] then
+	Cmenu=resume(Cmenu)
+      end
+    else
+      win=%win;
     end
     xc=%pt(1);yc=%pt(2);
     k=getobj(scs_m,[xc;yc])
     if k<>[] then break,end
   end
+
   numero_objet=k
   scs_m_save=scs_m
 
