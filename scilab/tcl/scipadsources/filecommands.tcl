@@ -462,7 +462,8 @@ proc fileunreadable {file} {
     if [ file exists $file ]  {
          if [file readable $file]==0 {
              tk_messageBox -title [mc "Unreadable file"]\
-                 -message [mc "The file "]$file[mc " exists but is not readable!"]
+                 -message [concat [mc "The file"] $file\
+                               [mc "exists but is not readable!"]]
              return 1
          } else {
             return 0
