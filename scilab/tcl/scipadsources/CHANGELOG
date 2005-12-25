@@ -1859,3 +1859,10 @@ Francois VOGEL, 22/12/05
    already fixed in 5.68 but only in case the TkDnD package is present,
    which is not the case in Scilab 4.0 RC1
  * version --> 5.69
+
+ES, 25/12/2005
+ * no tk error, but a popup warning, when trying to open an unreadable file
+   (should deal with all the instances of opening files, tested on linux
+   only)
+ * opensourceof dialog made resizable
+ * version --> 5.70

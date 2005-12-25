@@ -245,6 +245,7 @@ proc opensourceof {} {
     toplevel $opensof
     wm title $opensof [mc "Open source of..."]
     setwingeom $opensof
+    wm resizable $opensof 1 1 
 
     frame $opensof.f1
     label $opensof.f1.l1 -text [mc "Open source of:"] -font $menuFont
@@ -435,6 +436,7 @@ proc showopenwin {tiledisplay} {
     if {![info exists startdir]} {set startdir [pwd]}
     set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad -initialdir $startdir]
     if [string compare "$file" ""] {
+        if [fileunreadable $file] return 
         set startdir [file dirname $file]
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
@@ -453,6 +455,21 @@ proc showopenwin {tiledisplay} {
     }
     [gettextareacur] mark set insert "1.0"
     keyposn [gettextareacur]
+}
+
+proc fileunreadable {file} {
+# make sure that the file, if it exist, can be read at all   
+    if [ file exists $file ]  {
+         if [file readable $file]==0 {
+             tk_messageBox -title [mc "Unreadable file"]\
+                 -message [mc "The file "]$file[mc " exists but is not readable!"]
+             return 1
+         } else {
+            return 0
+         }
+    } else {
+         return 0
+    }
 }
 
 proc openfileifexists {file} {
@@ -494,6 +511,7 @@ proc openfile {file} {
 # otherwise just switch buffers to show it
     global pad winopened listoftextarea listoffile
     global closeinitialbufferallowed
+    if [fileunreadable $file] return 
     if [string compare $file ""] {
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
@@ -569,6 +587,7 @@ proc notopenedfile {file} {
 
 proc shownewbuffer {file tiledisplay} {
     global pad winopened closeinitialbufferallowed
+    if [fileunreadable $file] return 
     openoninit $pad.new$winopened $file $tiledisplay
     resetmodified $pad.new$winopened
     if {$tiledisplay == "currenttile"} {
@@ -628,7 +647,7 @@ proc openoninit {textarea thefile tiledisplay} {
             set newnamefile [open $thefile a+]
         }
         while {![eof $newnamefile]} {
-            $textarea insert end [read -nonewline $newnamefile ] 
+            $textarea insert end [read -nonewline $newnamefile ]
         }
         close $newnamefile
     }
@@ -829,6 +848,9 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
     global listoffile
     set thefile $listoffile("$textarea",fullname) 
     if [ file exists $thefile ] {
+# check for the perverse case that someone changed the file to unreadable
+# in the meantime
+        if [fileunreadable $thefile] return
         if {$ConfirmFlag == "ConfirmNeeded"} {
             set answer [tk_messageBox \
                 -message [concat [mc "Revert"] $thefile [mc "to saved?"] ] \
@@ -863,11 +885,17 @@ proc checkiffilechangedondisk {textarea} {
     set myfile $listoffile("$textarea",fullname)
     if { [file exists $myfile] && $listoffile("$textarea",new) == 0 } {
         if { $listoffile("$textarea",thetime) != [file mtime $myfile]} {
-            set answer [tk_messageBox -message $msgChanged -title $msgTitle \
-                            -type yesno -icon question]
+# note: if thetime is not updated first, we may enter a recursion:
+# if revertsaved pops up the "unreadable file" warning, there is once
+# more a change of focus, which triggers this proc recursively.
+# An a posteriori rationale: the decision whether to keep the version
+# on disk or the one in memory is itself the most recent editing action.
+            set listoffile("$textarea",thetime) [file mtime $myfile]
+            set answer [tk_messageBox -message $msgChanged \
+                            -title $msgTitle -type yesno -icon question]
             case $answer {
                 yes {revertsaved $textarea NoConfirm}
-                no  {set listoffile("$textarea",thetime) [file mtime $myfile]}
+                no  {}
             }
         }
     }
