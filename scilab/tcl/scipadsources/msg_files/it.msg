@@ -175,6 +175,7 @@
 ::msgcat::mcset it "Revert" "Ritornare alla versione di"
 ::msgcat::mcset it "to saved?" "salvata sul disco?"
 ::msgcat::mcset it "Revert Confirm?" "Conferma recupero?"
+::msgcat::mcset it "Unreadable file" "File illeggibile!"
 ::msgcat::mcset it "exists but is not readable!" "esiste, ma non è leggibile!"
 
 
