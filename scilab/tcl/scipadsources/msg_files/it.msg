@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.62
+# in sync at least with v5.70
 
 
 # commons
@@ -175,6 +175,7 @@
 ::msgcat::mcset it "Revert" "Ritornare alla versione di"
 ::msgcat::mcset it "to saved?" "salvata sul disco?"
 ::msgcat::mcset it "Revert Confirm?" "Conferma recupero?"
+::msgcat::mcset it "exists but is not readable!" "esiste, ma non è leggibile!"
 
 
 # findreplace.tcl
