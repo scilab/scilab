@@ -442,23 +442,31 @@ function gener_hh(dirs,titles)
 			fbase = basename(files);
 			name = strsubst(base(k)+"\"+fbase,"\\","/");
 			items=[items;
-				"<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
+				"            <LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
 				+ name +  ...
 				".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
 			names=[names;files];
 		end
 	end
-
+	
 	[sv,sk]=sort(names);
 	items=items(sk);
-
-	full_index=["<UL><LI><OBJECT type=""text/sitemap"">";
-		"<param name=""Name"" value=""Scilab documentation"">";
-		"</OBJECT>";
-		"<UL>";
+	
+	full_index=[
+		"<HTML>";
+		"    <HEAD>";
+		"    </HEAD>";
+		"    <BODY>";
+		"        <UL>";
+		"            <LI><OBJECT type=""text/sitemap"">";
+		"                     <param name=""Name"" value=""Scilab documentation"">";
+		"                     </OBJECT>";
+		"            <UL>";
 		items;
-		"</UL>";
-		"</UL>"];
+		"            </UL>";
+		"        </UL>"
+		"    </BODY>";
+		"</HTML>"];
 		
 	mputl(full_index,'sciman.hhk')
 
@@ -467,24 +475,35 @@ function gener_hh(dirs,titles)
 	// (contents) 
 	//------------------------------------------------------------------------------------------
     
+	items = [];
 	for k=1:n 
 		name(k) = strsubst(base(k)+"\","\\","/");
+		items=[items;
+			"                <LI><OBJECT type=""text/sitemap"">";
+			"                    <param name=""Local"" value="""+ name(k)+"whatis.htm"">";
+			"                    <param name=""Name"" value="""+ titles(k)+""">";
+			"                    <param name=""ImageNumber"" value=""11"">";
+			"                    </OBJECT>"];
 	end
 	
-	items="<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-		+ name+"whatis.htm""><param name=""Name"" value=""" ...
-		+ titles+"""></OBJECT>";
-
-	contents=["<UL><LI><OBJECT type=""text/sitemap"">";
-		"<param name=""Name"" value=""Scilab documentation"">";
-		"</OBJECT>";
-		"<UL>";
+	contents=[
+		"<HTML>";
+		"    <HEAD>";
+		"    </HEAD>";
+		"    <BODY>";
+		"        <UL>";
+		"            <LI><OBJECT type=""text/sitemap"">";
+		"                     <param name=""Name"" value=""Scilab documentation"">";
+		"                     </OBJECT>";
+		"            <UL>";
 		items;
-		"</UL>";
-		"</UL>"];
+		"            </UL>";
+		"        </UL>"
+		"    </BODY>";
+		"</HTML>"];
 		
 	mputl(contents,'sciman.hhc')
-  
+	
 	//------------------------------------------------------------------------------------------
 	// produce a scilab.hhp file 
 	//------------------------------------------------------------------------------------------
