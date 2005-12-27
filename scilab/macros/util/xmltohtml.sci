@@ -197,15 +197,22 @@ function gener_whatis(title)
 		d=grep(txt,"<SHORT_DESCRIPTION");
 		f=grep(txt,"</SHORT_DESCRIPTION");
 		if d<>[] then 
+			
+			// Remove <VERB> and </VERB> tags
+			
+			txt = strsubst(txt,'<VERB>','');
+			txt = strsubst(txt,'</VERB>','');
+			
+			// Loop on the lines of short description if necessary
 			for k2=1:size(d,"*")
-				// loop on the lines of short description if necessary
 				tt="";
 				for k3=d(k2):f(k2)
 					tt=tt+txt(k3);
 				end
 				i=strindex(tt,"""");
 				name=part(tt,i(1)+1:i(2)-1);
-				i1=strindex(tt,">"); i2=strindex(tt,"<");
+				i1=strindex(tt,">");
+				i2=strindex(tt,"<");
 				desc=stripblanks(part(tt,i1(1)+1:i2(2)-1));
 				l=l+1; fname=part(path,[1:length(path)-4])+".htm";
 				fname=strsubst(fname,'//','/');
