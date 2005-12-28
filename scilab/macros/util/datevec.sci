@@ -50,7 +50,7 @@ function [Y,M,D,h,m,s] = datevec(varargin)
 		
 		M = int (ValDate/29.);
 		
-		if IsBissextile(Y) then
+		if isLeapYear(Y) then
 			if ValDate > bissextile_year(M+1) then
 				M = M+1;
 			end

@@ -75,14 +75,13 @@ function n=datenum(varargin)
 endfunction
 
 
-
 function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,sec)
 	
 	decimal_part = (sec*(1/(24*3600)))+(mn*(1/(24*60)))+(heure*(1/24));
 	integer_part = jour + months_to_days(mois);
 	
 	if (mois > 2) then
-		if ( IsBissextile(annee) == %T ) then
+		if ( isLeapYear(annee) == %T ) then
 			integer_part = integer_part - 1;
 		else
 			integer_part = integer_part - 2;
@@ -91,29 +90,8 @@ function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,sec)
 	
 	integer_part = integer_part + years_to_days(annee);
 	scalaire = integer_part+decimal_part;
-endfunction
-
-
-
-function Rep=IsBissextile(annee)
 	
-	// Si l'année est divisible par 4 et non par 100 => Année issextile
-	// Si l'année est divisible par 400 => Année issextile
-	
-	Rep=%F
-	if modulo(annee,100)<>0 then
-		r = modulo(annee,4);
-		if r == 0 then
-			Rep=%T
-		end
-	else
-		r = modulo(annee,400);
-		if r == 0 then
-			Rep=%T
-		end
-	end
 endfunction
-
 
 
 function days=months_to_days (mois)
@@ -121,10 +99,9 @@ function days=months_to_days (mois)
 endfunction
 
 
-
 function days=years_to_days (annee)
 	
-	if ( IsBissextile(annee) == %T ) then
+	if ( isLeapYear(annee) == %T ) then
 		days=annee * 365 + (annee / 4) - floor(annee / 100) + floor(annee / 400);
 	else
 		days=annee * 365 + floor(annee/4) + 1 - floor(annee / 100) + floor(annee / 400);
