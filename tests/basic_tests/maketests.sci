@@ -21,6 +21,7 @@ tests = ['algebra.tst';
 	'comand.tst';
 	'comment.tst';
 	'dassldasrt.tst';
+	'date.tst';
 	'dcd.tst';
 	'display.tst';
 	'errcatch.tst';
