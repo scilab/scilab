@@ -1866,3 +1866,17 @@ ES, 25/12/2005
    only)
  * opensourceof dialog made resizable
  * version --> 5.70
+
+Francois VOGEL, 29/12/05
+ * Fixed bugs in the find in files results dialog:
+    - Line number was wrong (one unit too small)
+    - After getting the find in files results, delete a file containing a
+      match, and try to show this match. The dialog pops up correctly about
+      the nonexisting file: click no. The highlight was nevertheless done
+      (on a wrong buffer)
+ * Goto physical line in current file is preselected if no function was found
+   in the opened buffers
+ * Fixed endless loop in certain cases on Goto dialog opening (issue was in
+   proc getallfunsintextarea), for instance when opening matsys.f, change
+   scheme to scilab, then Ctrl-g: Scipad was stuck forever
+ * version --> 5.71

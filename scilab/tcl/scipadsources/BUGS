@@ -147,7 +147,7 @@ Wishes:
  sophisticated things to be absolutely sure that the variable names 
  instantiated by Scipad are not used in Scilab, so that conflicts would 
  always be avoided. For instance, browsing the existing known
- variables and checking for existence, etc. could be used.
+ variables and checking for existence, etc. could be used (who, who_user...)
 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add
@@ -204,7 +204,8 @@ Wishes:
 
 -minimal Scipad wm size: Probably it would be wise to make the minimum
  dependent on the number of tiles, so that all the features (menu, title,
- textbuffer, scrollbars...) remain visible - take fontsize into account
+ textbuffer, scrollbars...) remain visible - take fontsize and locale into
+ account
  warning: updating minsize on file open or dnd could lead to a very large
  window
 
@@ -259,3 +260,6 @@ Wishes:
 
 -Improve further the regexps for continued lines detection, the goal being
  to detect only legal (in the Scilab parser sense) continued lines.
+
+-Emacs bindings in Scipad. Proposed list is at:
+http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0807b11fb118ab/9fe94a45d23f92fe

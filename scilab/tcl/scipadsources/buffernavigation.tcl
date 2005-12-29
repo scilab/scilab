@@ -943,7 +943,7 @@ proc gotoline {} {
             }
         }
     }
-    # Set default values for the other the choices of the box
+    # Set default values for the other choices of the box
     if {![info exists linetogo]} {set linetogo 1}
     if {![info exists funtogoto]} {
         set funtogoto [list $unklabel 0 0]
@@ -1029,6 +1029,10 @@ proc gotoline {} {
     # Default choices
     if {$physlogic    == ""} {$gotln.f1.rbut1 invoke}
     if {$curfileorfun == ""} {$gotln.f2.rbut3 invoke}
+    if {$funtogotolist == {}} {
+        $gotln.rbut2 invoke
+        $gotln.rbut4 invoke
+    }
 
     # Validation of the entry to prevent the user to enter nasty things
     $gotln.f1.en1 configure -validate all -vcmd "updateOKbuttonstategoto $gotln %P"

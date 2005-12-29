@@ -276,6 +276,7 @@ proc showwhichfun {} {
 
 proc getallfunsinalltextareas {} {
 # Get all the functions defined in all the opened textareas
+# (those that have scilab as scheme)
 # Result is a string with getallfunsintextarea results:
 # "{textarea1 { $funname11 $funline11 $precfun11  $funname12 $funline12 $precfun12  ... }}
 #  {textarea2 { $funname21 $funline21 $precfun21  ... }}
@@ -290,7 +291,7 @@ proc getallfunsinalltextareas {} {
 }
 
 proc getallfunsintextarea {{buf "current"}} {
-# Get all the functions defined in the given textarea
+# Get all the functions defined in the given textarea (only if scheme is scilab)
 # Return a list {$buf $result_of_whichfun}
 # If there is no function in $buf, then $result_of_whichfun is the following list:
 #   { "0NoFunInBuf" 0 0 }
@@ -329,12 +330,12 @@ proc getallfunsintextarea {{buf "current"}} {
         }
         if {$nextfun != ""} {
             set infun [whichfun [$textarea index "$nextfun +1c"] $textarea]
-        } else {
-            set infun {}
-        }
-        if {$infun != {} } {
-            set hitslist "$hitslist [lindex $infun 0] {[lindex $infun 2]} [lindex $infun 3]"
-            set nextfun [$textarea search -regexp -- $pat "$nextfun +8c" end]
+            if {$infun != {} } {
+                set hitslist "$hitslist [lindex $infun 0] {[lindex $infun 2]} [lindex $infun 3]"
+                set nextfun [$textarea search -regexp -- $pat "$nextfun +8c" end]
+            } else {
+                set nextfun [$textarea index "$nextfun +1c"]
+            }
         }
     }
     if {$hitslist == ""} {

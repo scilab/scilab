@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.66
+# in sync at least with v5.71
 
 
 # commons
@@ -143,6 +143,8 @@
 ::msgcat::mcset fr "Revert" "Revenir à la version enregistrée de"
     ::msgcat::mcset fr "to saved?" "?"
 ::msgcat::mcset fr "Revert Confirm?" "Confirmer revenir ?"
+::msgcat::mcset fr "Unreadable file" "Fichier illisible!"
+::msgcat::mcset fr "exists but is not readable!" "existe mais ne peut pas être lu!"
 
 
 # findreplace.tcl

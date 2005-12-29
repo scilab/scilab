@@ -127,7 +127,7 @@ proc findinonefile {fname str cas reg whword} {
     # create a temporary text widget
     text $pad.fake 
 
-    set linenumber -1
+    set linenumber 0
 
     # loop on file lines and search for matches on each single line
     while {[gets $fid line] >= 0} {
@@ -138,7 +138,7 @@ proc findinonefile {fname str cas reg whword} {
             # at least one match has been found in the searched line of the file
             foreach amatch $listoflinematch {
                 scan [lindex $amatch 0] "%d.%d" ypos xpos
-                set pos "[expr $ypos + $linenumber].$xpos"
+                set pos "[expr $ypos + $linenumber - 1].$xpos"
                 set len [lindex $amatch 1]
                 set zero [lindex $amatch 2]
                 lappend filematchlist [list $fname $pos $len $zero]
@@ -362,20 +362,26 @@ proc openamatch {w posinresarea} {
     set thematch [lindex $allthematches [expr $linenum - 1]]
 
     # open the file (or display it if already open), and highlight the match
-    openfileifexists [lindex $thematch 0]
-    set ta [gettextareacur]
-    set matchstart [lindex $thematch 1]
-    $ta mark set insert $matchstart
-    keyposn $ta
-    $ta see $matchstart
-    $ta tag remove sel 1.0 end
-    $ta tag remove foundtext 1.0 end
-    $ta tag add foundtext $matchstart "$matchstart + [lindex $thematch 2] char"
+    if {[openfileifexists [lindex $thematch 0]]} {
+        set ta [gettextareacur]
+        set matchstart [lindex $thematch 1]
+        $ta mark set insert $matchstart
+        keyposn $ta
+        $ta see $matchstart
+        $ta tag remove sel 1.0 end
+        $ta tag remove foundtext 1.0 end
+        $ta tag add foundtext $matchstart "$matchstart + [lindex $thematch 2] char"
 
-    # <TODO>: these bindings are required to remove the foundtext tag after having
-    #         been highlighted. Once set, they will live in the textarea forever,
-    #         and there will be one such binding added for each successful search!!
-    bind $ta <KeyPress>    {+%W tag remove foundtext 1.0 end}
-    bind $ta <ButtonPress> {+%W tag remove foundtext 1.0 end}
-    bind $ta <Button-1>    {+%W tag remove foundtext 1.0 end}
+        # <TODO>: these bindings are required to remove the foundtext tag after having
+        #         been highlighted. Once set, they will live in the textarea forever,
+        #         and there will be one such binding added for each successful search!!
+        bind $ta <KeyPress>    {+%W tag remove foundtext 1.0 end}
+        bind $ta <ButtonPress> {+%W tag remove foundtext 1.0 end}
+        bind $ta <Button-1>    {+%W tag remove foundtext 1.0 end}
+    } else {
+        # file was deleted between the time when the match was found and the
+        # time when it was clicked in the dialog
+        # depending on the user's answer, a new file is created or not, anyway
+        # there is nothing to highlight
+    }
 }

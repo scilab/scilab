@@ -458,7 +458,7 @@ proc showopenwin {tiledisplay} {
 }
 
 proc fileunreadable {file} {
-# make sure that the file, if it exist, can be read at all   
+# make sure that the file, if it exists, can be read at all   
     if [ file exists $file ]  {
          if [file readable $file]==0 {
              tk_messageBox -title [mc "Unreadable file"]\
@@ -489,9 +489,11 @@ proc openfileifexists {file} {
             break
         }
     }
-    if {$alreadyopen == "false"} {
+    if {$alreadyopen == "true"} {
+        return 1
+    } else {
         if {[file exist $file]} {
-             openfile $file
+             return [openfile $file]
         } else {
              set answer \
                 [tk_messageBox -type yesno -icon question \
@@ -499,8 +501,8 @@ proc openfileifexists {file} {
                   $file [mc "does not exist anymore. Do you want to create an\
                   empty file with the same name?"]"]
              switch -- $answer {
-               yes {openfile $file}
-               no {}
+               yes {return [openfile $file]}
+               no  {return 0}
                }
         }
     }
@@ -510,9 +512,12 @@ proc openfile {file} {
 # try to open a file with filename $file (no file selection through a dialog)
 # if file is not already open, open it
 # otherwise just switch buffers to show it
+# return value:
+#    0 if file could not be open
+#    1 if file could be open or displayed (switched buffers)
     global pad winopened listoftextarea listoffile
     global closeinitialbufferallowed
-    if [fileunreadable $file] return 
+    if [fileunreadable $file] {return 0}
     if [string compare $file ""] {
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
@@ -541,6 +546,9 @@ proc openfile {file} {
             $pad.filemenu.wind invoke $res
         }
         selection clear
+        return 1
+    } else {
+        return 0
     }
 }
 
@@ -588,7 +596,7 @@ proc notopenedfile {file} {
 
 proc shownewbuffer {file tiledisplay} {
     global pad winopened closeinitialbufferallowed
-    if [fileunreadable $file] return 
+    if [fileunreadable $file] return
     openoninit $pad.new$winopened $file $tiledisplay
     resetmodified $pad.new$winopened
     if {$tiledisplay == "currenttile"} {
