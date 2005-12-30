@@ -193,7 +193,7 @@ proc byebye {textarea} {
 
 proc killwin {widget} {
 # kill main window and save preferences on exit
-    global pad WMGEOMETRY debuglog Scipaddebuglogfileid
+    global pad WMGEOMETRY
     #save the geometry for the next time
     set WMGEOMETRY [eval {wm geometry $pad}] 
     savepreferences

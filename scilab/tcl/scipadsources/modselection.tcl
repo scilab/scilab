@@ -19,7 +19,8 @@ proc CommentSel {} {
     global textareacur buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
-    if {$seltexts != "" } {
+    if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
+             == $textareacur} {
         if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} CommentSel
         } else {
@@ -54,7 +55,8 @@ proc UnCommentSel {} {
     global textareacur buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
-    if {$seltexts != "" } {
+    if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
+             == $textareacur} {
         if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {UnCommentSel}
         } else {
@@ -86,7 +88,8 @@ proc IndentSel {} {
         append skip " "
     }
     set seltexts [selection own]
-    if {$seltexts != "" } {
+    if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
+             == $textareacur} {
         if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {IndentSel}
         } else {
@@ -125,7 +128,8 @@ proc UnIndentSel {} {
     global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
-    if {$seltexts != ""} {
+    if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
+             == $textareacur} {
         if [catch {selection get -selection PRIMARY} sel] {
             if {[selectline] != ""} {UnIndentSel}
         } else {

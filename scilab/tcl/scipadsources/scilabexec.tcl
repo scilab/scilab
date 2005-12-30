@@ -54,7 +54,8 @@ proc execselection {} {
             -title [mc "Scilab working"] -type ok -icon info
      } else {
         set seltexts [selection own]
-        if {$seltexts != "" } {
+        if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
+                 == $textareacur} {
             if [catch {selection get -selection PRIMARY} sel] {
             } else {
                 set f [selection get]

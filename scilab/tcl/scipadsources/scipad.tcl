@@ -66,4 +66,5 @@ if { [info exists pad] } {
     # finally source debug settings that must be executed after the procs definition
     source [file join $sourcedir scipaddebug2.tcl]
 
+#for {set i 0} {$i < 10000000} {incr i} {}
 }

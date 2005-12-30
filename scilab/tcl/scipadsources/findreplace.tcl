@@ -6,7 +6,11 @@ proc findtextdialog {typ} {
     global listoftextarea
     global searchindir initdir fileglobpat searchinfilesalreadyrunning
     global searchforfilesonly
+    global findreplaceboxalreadyopen
 
+    if {$findreplaceboxalreadyopen} {return}
+    set findreplaceboxalreadyopen true
+    
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
     set find $pad.find
@@ -1180,6 +1184,7 @@ proc resetfind {w textarea} {
 proc cancelfind {w} {
 # end of a find/replace session
     global pad listoftextarea
+    global findreplaceboxalreadyopen
 
     foreach textarea $listoftextarea {
         $textarea tag remove foundtext 0.0 end
@@ -1196,6 +1201,7 @@ proc cancelfind {w} {
 
     bind $pad <Expose> {}
     destroy $w
+    set findreplaceboxalreadyopen true
 }
 
 proc setparentwname {w} {

@@ -1880,3 +1880,13 @@ Francois VOGEL, 29/12/05
    proc getallfunsintextarea), for instance when opening matsys.f, change
    scheme to scilab, then Ctrl-g: Scipad was stuck forever
  * version --> 5.71
+
+Francois VOGEL, 30/12/05
+ * Fixed some races on startup:
+    - Ctrl-g followed by ctrl-y/m/M/d/D during Scipad startup throwed a Tcl
+      error because the selection is owned by the goto box when the second
+      event is fired
+    - Ctrl-f followed by ctrl-r, or the opposite sequence, triggered another
+      Tcl error because the second event was fired before the grab $find was
+      reached
+ * version --> 5.72

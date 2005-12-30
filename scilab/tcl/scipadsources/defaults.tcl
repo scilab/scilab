@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.71"
+set version "Version 5.72"
 
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
@@ -127,6 +127,11 @@ set closeinitialbufferallowed true
 # when it is opened again with the same file that was opened before in another
 # textarea
 catch {unset physlogic linetogo curfileorfun funtogoto}
+
+# guard variable used to prevent more than one simultaneous launch of the
+# find/replace box, which can happen during startup when hammering
+# Scipad with ctrl-r ctrl-f or the opposite
+set findreplaceboxalreadyopen false
 
 # variable used to prevent more than one single instance of any of the tile
 # procs from running concurrently, e.g. maximize and splitwindow
