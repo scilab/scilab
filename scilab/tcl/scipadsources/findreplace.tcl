@@ -1201,7 +1201,7 @@ proc cancelfind {w} {
 
     bind $pad <Expose> {}
     destroy $w
-    set findreplaceboxalreadyopen true
+    set findreplaceboxalreadyopen false
 }
 
 proc setparentwname {w} {

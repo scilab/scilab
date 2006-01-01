@@ -1890,3 +1890,8 @@ Francois VOGEL, 30/12/05
       Tcl error because the second event was fired before the grab $find was
       reached
  * version --> 5.72
+
+Francois VOGEL, 01/01/06
+ * Fixed stupid error I introduced in 5.72: the find box could only be opened
+   once in a Scipad session
+ * version --> 5.73
