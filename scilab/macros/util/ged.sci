@@ -463,6 +463,7 @@ function ged_axes(h)
   TCL_SetVar("xauto_rotation",h.x_label.auto_rotation)
   TCL_SetVar("yauto_rotation",h.y_label.auto_rotation)
   TCL_SetVar("zauto_rotation",h.z_label.auto_rotation)
+  TCL_SetVar("titleauto_rotation",h.title.auto_rotation)
   TCL_SetVar("Xfillmode",h.x_label.fill_mode)
   TCL_SetVar("Yfillmode",h.y_label.fill_mode)
   TCL_SetVar("Zfillmode",h.z_label.fill_mode)
@@ -493,7 +494,7 @@ function ged_axes(h)
   TCL_SetVar("curfontangle_x",string(h.x_label.font_angle))
   TCL_SetVar("curfontangle_y",string(h.y_label.font_angle))
   TCL_SetVar("curfontangle_z",string(h.z_label.font_angle))
-  TCL_SetVar("curfontangle_title",string(h.z_label.font_angle))
+  TCL_SetVar("curfontangle_title",string(h.title.font_angle))
 
   
   select h.view

@@ -67,8 +67,10 @@ global xlabel_foreground ylabel_foreground zlabel_foreground titlelabel_foregrou
 global xlabel_background ylabel_background zlabel_background titlelabel_background
 global Xfillmode Yfillmode Zfillmode Titlefillmode
 global xlabel_fontsize ylabel_fontsize zlabel_fontsize  titlelabel_fontsize
-global curfontangle_x curfontangle_x2 curfontangle_y curfontangle_y2
-global curfontangle_z curfontangle_z2 curfontangle_title curfontangle_title2
+global curfontangle_x curfontangle_x2 
+global curfontangle_y curfontangle_y2
+global curfontangle_z curfontangle_z2
+global curfontangle_title curfontangle_title2
 
 global ncolors fcolor curthick curvis curfontsize curfontcolor
 global curalpharotation curthetarotation old_curalpharotation old_curthetarotation
@@ -95,7 +97,7 @@ global hiddencolor
 global xauto_position yauto_position zauto_position titleauto_position
 global x_position y_position z_position title_position
 
-global xauto_rotation yauto_rotation zauto_rotation
+global xauto_rotation yauto_rotation zauto_rotation titleauto_rotation
 
 
 # #debug
@@ -1134,24 +1136,40 @@ pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
 pack $w.frame.posmodelabel -in $w.frame.poslab -side left
 pack $w.frame.posmode -in $w.frame.poslab -side left -fill x -padx 2m
 
+
+#Auto Rotation
+frame $w.frame.rotlab -borderwidth 0
+pack $w.frame.rotlab  -in $w.frame -side top -fill x -pady 0m
+label $w.frame.rotlablabel  -text "Auto rotation:" -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.rotlabb  -text "on"\
+    -variable titleauto_rotation  -onvalue "on" -offvalue "off" \
+    -command "toggleAutoRotationtitle $w.frame.rotlabb"  -font {Arial 9}
+OnOffForeground $w.frame.rotlabb $titleauto_rotation
+
+pack $w.frame.rotlablabel -in $w.frame.rotlab -side left
+pack $w.frame.rotlabb -in $w.frame.rotlab -side left -padx 1m
+
 #Font Angle
-#frame $w.frame.font  -borderwidth 0
-#pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
-#
-#label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
+frame $w.frame.font  -borderwidth 0
+pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0m
 
-#scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-#	 -resolutino -1.0 -command "setFontAngle_title $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
-#$w.frame.fontangle set $curfontangle_title
+label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
 
-#entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font {Arial 9} -width 5
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_title -value 0 -command "setFontAngle_title" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_title -value 90 -command "setFontAngle_title" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_title -value 180 -command "setFontAngle_title" -font {Arial 9}
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_title -value 270 -command "setFontAngle_title" -font {Arial 9}
 
-#bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
-#bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title $w.frame.fontangle2 $w.frame.fontangle"
+entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font {Arial 9}
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title"
 
-#pack $w.frame.fontanglelabel -in $w.frame.font -side left
-#pack $w.frame.fontangle  -in $w.frame.font  -side left
-#pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 1m
+pack $w.frame.fontanglelabel -in $w.frame.font -side left
+pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice90 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice180 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0m
+pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx 2m
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -4009,7 +4027,7 @@ proc setPosition_z { } {
 
 
 proc setPosition_title { } {
-    global titleposition
+    global title_position
     if { $title_position == ""} {
 	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
 	return
@@ -4038,6 +4056,13 @@ proc toggleAutoRotationz { frame } {
     ScilabEval "global ged_handle;ged_handle.z_label.auto_rotation='$zauto_rotation'"
 
     OnOffForeground $frame $zauto_rotation
+}
+
+proc toggleAutoRotationtitle { frame } {
+    global titleauto_rotation
+    ScilabEval "global ged_handle;ged_handle.title.auto_rotation='$titleauto_rotation'"
+
+    OnOffForeground $frame $titleauto_rotation
 }
 
 
