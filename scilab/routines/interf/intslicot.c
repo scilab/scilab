@@ -1,7 +1,6 @@
 #include <math.h>
 #include <string.h>
 
-#include "../mex.h"
 #include "../stack-c.h"
 
 #if WIN32
@@ -11,6 +10,26 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 #define MIN(x,y)	(((x)<(y))?(x):(y))
+
+typedef int mxArray;
+typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs, mxArray *prhs[]));
+typedef int (*GatefuncS) __PARAMS((char *fname, int l)); 
+typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
+                                 mxArray *prhs[]));
+typedef int (*FGatefuncH) __PARAMS((int *nlhs,mxArray *plhs[],int *nrhs,
+                                 mxArray *prhs[]));
+
+typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
+typedef int (*GT) ();
+
+typedef struct table_struct {
+  Myinterfun f;    /** interface **/
+  GT F;     /** function **/
+  char *name;      /** its name **/
+} GenericTable;
+
+extern int fortran_mex_gateway __PARAMS((char *fname, FGatefuncH F));
+extern int sci_gateway __PARAMS((char *fname, GatefuncS F));
 
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
