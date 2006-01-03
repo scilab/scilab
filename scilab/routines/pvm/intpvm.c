@@ -18,7 +18,7 @@
 #else
   #include "pvm3.h"
 #endif
-#include "../mex.h"
+
 #include "../stack-c.h"
 #include "sci_pvm.h"
 
@@ -27,6 +27,27 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+
+typedef int mxArray;
+typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs, mxArray *prhs[]));
+typedef int (*GatefuncS) __PARAMS((char *fname, int l)); 
+typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
+                                 mxArray *prhs[]));
+typedef int (*FGatefuncH) __PARAMS((int *nlhs,mxArray *plhs[],int *nrhs,
+                                 mxArray *prhs[]));
+
+typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
+typedef int (*GT) ();
+
+typedef struct table_struct {
+  Myinterfun f;    /** interface **/
+  GT F;     /** function **/
+  char *name;      /** its name **/
+} GenericTable;
+
+/*  extern int fortran_mex_gateway __PARAMS((char *fname, FGatefuncH F));  */
+extern int sci_gateway __PARAMS((char *fname, GatefuncS F));
+
 
 #if WIN32
 extern char *GetExceptionString(DWORD ExceptionCode);
