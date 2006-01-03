@@ -1,7 +1,6 @@
 #include <math.h>
 #include <string.h>
 
-#include "../mex.h"
 #include "../stack-c.h"
 
 #ifdef WIN32
@@ -21,6 +20,21 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
 #define CMPLX(x)	(zstk(x))
+
+typedef int (*GatefuncS) __PARAMS((char *fname, int l)); 
+typedef int mxArray;
+typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs, mxArray *prhs[]));
+typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
+typedef int (*GT) ();
+
+typedef struct table_struct {
+  Myinterfun f;    /** interface **/
+  GT F;     /** function **/
+  char *name;      /** its name **/
+} GenericTable;
+
+
+extern int sci_gateway __PARAMS((char *fname, GatefuncS F));
 
 extern int  C2F(dsaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
 
