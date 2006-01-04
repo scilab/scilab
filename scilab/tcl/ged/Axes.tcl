@@ -349,6 +349,7 @@ entry $w.frame.posmode -relief sunken  -textvariable x_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_x}
 bind  $w.frame.posmode <KP_Enter> {setPosition_x}
+bind  $w.frame.posmode <FocusOut> {setPosition_x}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
@@ -382,6 +383,7 @@ radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_x -v
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font {Arial 9}
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_x"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
@@ -620,6 +622,7 @@ entry $w.frame.posmode -relief sunken  -textvariable y_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_y}
 bind  $w.frame.posmode <KP_Enter> {setPosition_y}
+bind  $w.frame.posmode <FocusOut> {setPosition_y}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
@@ -652,6 +655,7 @@ radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_y -v
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font {Arial 9} 
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_y"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
@@ -873,6 +877,7 @@ entry $w.frame.posmode -relief sunken  -textvariable z_position -font {Arial 9}
 
 bind  $w.frame.posmode <Return> {setPosition_z}
 bind  $w.frame.posmode <KP_Enter> {setPosition_z}
+bind  $w.frame.posmode <FocusOut> {setPosition_z}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
@@ -905,6 +910,7 @@ radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_z -v
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font {Arial 9}
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_z"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
@@ -1130,6 +1136,7 @@ entry $w.frame.posmode -relief sunken  -textvariable title_position -font {Arial
 
 bind  $w.frame.posmode <Return> {setPosition_title}
 bind  $w.frame.posmode <KP_Enter> {setPosition_title}
+bind  $w.frame.posmode <FocusOut> {setPosition_title}
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx 1m
@@ -1163,6 +1170,7 @@ radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_titl
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font {Arial 9}
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title"
 bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_title"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0m
@@ -2816,6 +2824,7 @@ proc PopUp { w numpage} {
 	-background white -textvariable StepEntryX -width 10 -font {Arial 9}
     bind  $fen1.frame.stepe <Return> "SetStep $frameaxes $numpage 1"
     bind  $fen1.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 1"
+    bind  $fen1.frame.stepe <FocusOut> "SetStep $frameaxes $numpage 1"
     pack $fen1.frame.steplabel -in $fen1.frame.step -side left
     pack $fen1.frame.stepe -in $fen1.frame.step -side left -pady 0m -padx 2m
 
@@ -2829,6 +2838,7 @@ proc PopUp { w numpage} {
 	-background white -textvariable SubticksEntryX -width 10 -font {Arial 9}
     bind  $fen1.frame.subtickse <Return> "SetSubticksX"
     bind  $fen1.frame.subtickse <KP_Enter> "SetSubticksX"
+    bind  $fen1.frame.subtickse <FocusOut> "SetSubticksX"
     pack $fen1.frame.subtickslabel -in $fen1.frame.subticks -side left
     pack $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 0m -padx 2m
     
@@ -2852,6 +2862,7 @@ proc PopUp { w numpage} {
 	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyX $fen1"
 	bind  $fen1.frame.c.locationsdata$i <KP_Enter> "TicksApplyX $fen1"
+	bind  $fen1.frame.c.locationsdata$i <FocusOut> "TicksApplyX $fen1"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.locationsdata$i
 	
 	
@@ -2863,6 +2874,7 @@ proc PopUp { w numpage} {
 	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.labelsdata$i <Return> "TicksApplyX $fen1"
 	bind  $fen1.frame.c.labelsdata$i <KP_Enter> "TicksApplyX $fen1"
+	bind  $fen1.frame.c.labelsdata$i <FocusOut> "TicksApplyX $fen1"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.labelsdata$i
     }
 
@@ -2940,6 +2952,7 @@ proc PopUp { w numpage} {
 	-background white -textvariable StepEntryY -width 10 -font {Arial 9}
     bind  $fen2.frame.stepe <Return> "SetStep $frameaxes $numpage 2"
     bind  $fen2.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 2"
+    bind  $fen2.frame.stepe <FocusOut> "SetStep $frameaxes $numpage 2"
     pack $fen2.frame.steplabel -in $fen2.frame.step -side left
 		pack $fen2.frame.stepe -in $fen2.frame.step -side left -pady 0m -padx 2m
 
@@ -2951,6 +2964,7 @@ proc PopUp { w numpage} {
 	-background white -textvariable SubticksEntryY -width 10 -font {Arial 9}
     bind  $fen2.frame.subtickse <Return> "SetSubticksY"
     bind  $fen2.frame.subtickse <KP_Enter> "SetSubticksY"
+    bind  $fen2.frame.subtickse <FocusOut> "SetSubticksY"
     pack $fen2.frame.subtickslabel -in $fen2.frame.subticks -side left
 		pack $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 0m -padx 2m
 
@@ -2974,6 +2988,7 @@ proc PopUp { w numpage} {
 	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i;"
 	bind  $fen2.frame.c.locationsdata$i <Return> "TicksApplyY $fen2"
 	bind  $fen2.frame.c.locationsdata$i <KP_Enter> "TicksApplyY $fen2"
+	bind  $fen2.frame.c.locationsdata$i <FocusOut> "TicksApplyY $fen2"
 	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.locationsdata$i
 	
 	
@@ -2985,6 +3000,7 @@ proc PopUp { w numpage} {
 	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i;"
 	bind  $fen2.frame.c.labelsdata$i <Return> "TicksApplyY $fen2"
 	bind  $fen2.frame.c.labelsdata$i <KP_Enter> "TicksApplyY $fen2"
+	bind  $fen2.frame.c.labelsdata$i <FocusOut> "TicksApplyY $fen2"
 	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.labelsdata$i
     }
 
@@ -3062,6 +3078,7 @@ proc PopUp { w numpage} {
 	-background white -textvariable StepEntryZ -width 10 -font {Arial 9}
     bind  $fen3.frame.stepe <Return> "SetStep $frameaxes $numpage 3"
     bind  $fen3.frame.stepe <KP_Enter> "SetStep $frameaxes $numpage 3"
+    bind  $fen3.frame.stepe <FocusOut> "SetStep $frameaxes $numpage 3"
     pack $fen3.frame.steplabel -in $fen3.frame.step -side left
     pack $fen3.frame.stepe -in $fen3.frame.step -side left -pady 0m -padx 2m
 
@@ -3073,6 +3090,7 @@ proc PopUp { w numpage} {
 	-background white -textvariable SubticksEntryZ -width 10 -font {Arial 9}
     bind  $fen3.frame.subtickse <Return> "SetSubticksZ"
     bind  $fen3.frame.subtickse <KP_Enter> "SetSubticksZ"
+    bind  $fen3.frame.subtickse <FocusOut> "SetSubticksZ"
     pack $fen3.frame.subtickslabel -in $fen3.frame.subticks -side left
 		pack $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 0m -padx 2m
 
@@ -3096,6 +3114,7 @@ proc PopUp { w numpage} {
 	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i;"
 	bind  $fen3.frame.c.locationsdata$i <Return> "TicksApplyZ $fen3"
 	bind  $fen3.frame.c.locationsdata$i <KP_Enter> "TicksApplyZ $fen3"
+	bind  $fen3.frame.c.locationsdata$i <FocusOut> "TicksApplyZ $fen3"
 	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.locationsdata$i
 	
 	
@@ -3107,6 +3126,7 @@ proc PopUp { w numpage} {
 	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i;"
 	bind  $fen3.frame.c.labelsdata$i <Return> "TicksApplyZ $fen3"
 	bind  $fen3.frame.c.labelsdata$i <KP_Enter> "TicksApplyZ $fen3"
+	bind  $fen3.frame.c.labelsdata$i <FocusOut> "TicksApplyZ $fen3"
 	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.labelsdata$i
     }
 
