@@ -39,38 +39,85 @@ BOOL modereplay = FALSE;
 
 extern int cf_type;
 
-void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
+/*------------------------------------------------------------------------------------*/
+/* setSubWinAngles                                                                    */
+/* Modify the viewing angles of a subwindow                                           */
+/* for safer modifications prefer use Obj_RedrawNewAngle                              */
+/*------------------------------------------------------------------------------------*/
+void setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
 {
-  /**dj20003***/ 
+  /**dj20003***/
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE (psubwin) ;
   if ((alpha == 0.0) && (theta == 270.0))
-    {
-      pSUBWIN_FEATURE (psubwin)-> is3d = FALSE; 
-      return;
-    }
+  {
+    ppSubWin->is3d = FALSE; 
+    return;
+  }
   
-  pSUBWIN_FEATURE (psubwin)->alpha = alpha;
-  pSUBWIN_FEATURE (psubwin)->theta  = theta;
-  pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
+  ppSubWin->alpha = alpha ;
+  ppSubWin->theta = theta ;
+  ppSubWin->is3d  = TRUE  ;
   if ((alpha == 0.0 ) || (alpha == 180.0 ) || (alpha == -180.0 ))  /* DJ.A 30/12 */
-    pSUBWIN_FEATURE (psubwin)->project[2]= 0; /* no z to display */
+  {
+    ppSubWin->project[2]= 0; /* no z to display */
+  }
   else 
+  {
+    ppSubWin->project[2]= 1; /* z must be displayed */
+    if (    ((alpha == 90.0 ) || (alpha == 270.0 ) || (alpha == -90.0 ) || (alpha == -270.0 ))
+	 && ((theta == 90.0 ) || (theta == -90.0 ) || (theta == 270.0 ) || (theta == -270.0 )))
     {
-      pSUBWIN_FEATURE (psubwin)->project[2]= 1; /* z must be displayed */
-      if (((alpha == 90.0 ) || (alpha == 270.0 )|| (alpha == -90.0) || (alpha == -270.0 ))
-	  && ((theta == 90.0 ) || (theta == -90.0 )
-	      || (theta == 270.0 )|| (theta == -270.0 )))
-	pSUBWIN_FEATURE (psubwin)->project[1]= 0; /* no y to display */
-      else
-	{
-	  pSUBWIN_FEATURE (psubwin)->project[1]= 1;
-	  if (((alpha == 90.0 )|| (alpha == 270.0 )|| (alpha == -90.0) || (alpha == -270.0 ))  
-	      && ((theta == 0.0 ) || (theta == 180.0 )|| (alpha == -180.0 )))
-	    pSUBWIN_FEATURE (psubwin)->project[0]= 0; /* BUG evreywhere when theta == 0 */
-	  else
-	    pSUBWIN_FEATURE (psubwin)->project[0]= 1;
-	}
+      ppSubWin->project[1]= 0; /* no y to display */
     }
+    else
+    {
+      ppSubWin->project[1]= 1;
+      if (   ( (alpha == 90.0 ) || (alpha == 270.0 ) || (alpha == -90.0  ) || (alpha == -270.0 ))  
+          && ( (theta == 0.0  ) || (theta == 180.0 ) || (alpha == -180.0 ) ))
+      {
+        ppSubWin->project[0]= 0; /* BUG evreywhere when theta == 0 */
+      }
+      else
+      {
+        ppSubWin->project[0]= 1;
+      }
+    }
+  }
 }
+
+/*------------------------------------------------------------------------------------*/
+/* Obj_RedrawNewAngle                                                                 */
+/* Modify the viewing angles of a subwindow and the one of its brothers id necessary  */
+/*------------------------------------------------------------------------------------*/
+
+void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
+{
+  /* check if all the axis must be turned */
+  sciPointObj * pParentFigure = sciGetParentFigure( pSubWin ) ;
+  if ( pFIGURE_FEATURE(pParentFigure)->rotstyle == 1 )
+  {
+    /* every axes has the same angles */
+    sciSons * subWins = sciGetSons( pParentFigure ) ;
+    
+    /* modify each axis */
+    while ( subWins != NULL )
+    {
+      sciPointObj * curSubWin = subWins->pointobj ;
+      if ( curSubWin->entitytype == SCI_SUBWIN )
+      {
+        setSubWinAngles( curSubWin, theta, alpha ) ;
+      }
+      subWins = subWins->pnext ;
+    }
+  }
+  else
+  {
+    /* modify angles only for this axes */
+    setSubWinAngles( pSubWin, theta, alpha ) ;
+  }
+}
+
+
 
 
 
