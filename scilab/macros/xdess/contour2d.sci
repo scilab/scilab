@@ -55,7 +55,19 @@ while k < length(xc)
 	 if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
       end
    end
-   execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')')
+   err = execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')','errcatch','m');
+   
+   // add a test to see if plot2d call succeed
+   // and, if not, restore good figure property values before exiting
+   if err <> 0
+     mprintf("Error %d : in plot2d called by contour2d",err);
+     if newstyle then
+       fig.immediate_drawing=v;
+       fig.auto_clear=autoc;
+     end
+     return;
+   end
+   
    if newstyle then 
       unglue(a.children(1))
       cnt = cnt+1
