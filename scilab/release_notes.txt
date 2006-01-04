@@ -1,8 +1,6 @@
 Scilab RC 4.0 Release_Notes
 ***************************
 
-Scilab:
-*******
 - Next to the on line help of the software, we advise you, to make
 the first move with Scilab, to consult the Scilab step-to-step web site
 (http://www.spas.cnrs-gif.fr/index.html).
@@ -13,8 +11,6 @@ with the old graphics mode.
     - Scilab v 4.0 is the last release working with Microsoft
 Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
 supported by Scilab operational team.
-    - Copy/Paste command of the objects of "Insert" menu in a Graphic windows
-does not run.
 
 - Scilab binary versions are built:
     - for Linux: gcc-3.4.3 and g77 compilers with a platform under
@@ -25,18 +21,4 @@ compilers.
 compilers with a platform under Windows XP Service Pack 2 .
     - Recall: No Scilab GTK version is provided and supported by
 the operational team. Same way about MinGW and Cygwin.
-
-
-
-Scicos:
-*******
-- Warning:
-    - A new Scicos editor is available now, with a more standard behavior
-for edition (Bloc selection, CRTRL-C CTRL-V, Press-Move-Release,...)
-    - This new Scicos editor is  not fully tested and validated but  can be
-used in place of default Scicos editor (the edited diagrams are fully
-compatible).
-    - To launch the new editor, use the command: scicos_new instead of
-scicos.
-    - Send all bug reports and suggestions to ramine.nikoukhah@inria.fr
     
