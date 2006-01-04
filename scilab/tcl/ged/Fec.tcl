@@ -206,6 +206,8 @@ bind  $w.frame.zbmin <Return> {setZb}
 bind  $w.frame.zbmax <Return> {setZb} 
 bind  $w.frame.zbmin <KP_Enter> {setZb} 
 bind  $w.frame.zbmax <KP_Enter> {setZb} 
+bind  $w.frame.zbmin <FocusOut> {setZb} 
+bind  $w.frame.zbmax <FocusOut> {setZb} 
 
 
 

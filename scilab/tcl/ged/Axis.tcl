@@ -263,6 +263,7 @@ label $w.frame.subticslab -height 0 -text "Subtics:"  -font {Arial 9} -anchor e 
 entry $w.frame.subtics  -relief sunken  -textvariable cursubtics  -width 10 -font {Arial 9}
 bind  $w.frame.subtics  <Return> "SelectSubtics  $w.frame"
 bind  $w.frame.subtics  <KP_Enter> "SelectSubtics  $w.frame"
+bind  $w.frame.subtics  <FocusOut> "SelectSubtics  $w.frame"
 pack  $w.frame.subticslab  -in  $w.frame.cas  -side left
 pack  $w.frame.subtics     -in  $w.frame.cas  -side left -fill x -pady 0m -padx 2m
 
@@ -325,6 +326,7 @@ if { $nbcolX == 1} {
     entry $w.frame.xcoord  -relief sunken  -textvariable xticscoord -width 10 -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectXticsCoord  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectXticsCoord  $w.frame"
+    bind  $w.frame.xcoord  <FocusOut> "SelectXticsCoord  $w.frame"
     pack  $w.frame.xcoordlab   -in  $w.frame.cas1_1   -side left
 		pack  $w.frame.xcoord      -in  $w.frame.cas1_1   -side left -fill x -pady 0m -padx 2m
 } else {
@@ -345,6 +347,7 @@ if { $nbcolX == 1} {
     entry $w.frame.xcoord  -relief sunken  -textvariable xticscoord -width 10 -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectXticsCoord2  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectXticsCoord2  $w.frame"
+    bind  $w.frame.xcoord  <FocusOut> "SelectXticsCoord2  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas2_1 -side left
     pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -side left -fill x -pady 0m -padx 2m
     
@@ -355,6 +358,7 @@ if { $nbcolX == 1} {
     entry $w.frame.ticslabel  -relief sunken  -textvariable curticslabel -width 10 -font {Arial 9}
     bind  $w.frame.ticslabel  <Return> "SelectTicsLabels  $w.frame"
     bind  $w.frame.ticslabel  <KP_Enter> "SelectTicsLabels  $w.frame"
+    bind  $w.frame.ticslabel  <FocusOut> "SelectTicsLabels  $w.frame"
     pack  $w.frame.ticslabellab  -in  $w.frame.cas2_2   -side left
     pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 0m -padx 2m
 
@@ -411,6 +415,7 @@ if { $nbcolY == 1} {
     entry $w.frame.xcoord  -relief sunken  -textvariable yticscoord -width 10  -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectYticsCoord  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectYticsCoord  $w.frame"
+    bind  $w.frame.xcoord  <FocusOut> "SelectYticsCoord  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas1_1   -side left
  	  pack  $w.frame.xcoord     -in  $w.frame.cas1_1   -side left -fill x -pady 0m -padx 2m
 } else {
@@ -427,6 +432,7 @@ if { $nbcolY == 1} {
     entry $w.frame.xcoord  -relief sunken  -textvariable yticscoord -width 10 -font {Arial 9}
     bind  $w.frame.xcoord  <Return> "SelectYticsCoord2  $w.frame"
     bind  $w.frame.xcoord  <KP_Enter> "SelectYticsCoord2  $w.frame"
+    bind  $w.frame.xcoord  <FocusOut> "SelectYticsCoord2  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas2_1 -side left
     pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -expand 1 -fill x -pady 0m -padx 2m
     
@@ -437,6 +443,7 @@ if { $nbcolY == 1} {
     entry $w.frame.ticslabel  -relief sunken  -textvariable curticslabel -width 10 -font {Arial 9}
     bind  $w.frame.ticslabel  <Return> "SelectTicsLabels  $w.frame"
     bind  $w.frame.ticslabel  <KP_Enter> "SelectTicsLabels  $w.frame"
+    bind  $w.frame.ticslabel  <FocusOut> "SelectTicsLabels  $w.frame"
     pack  $w.frame.ticslabellab  -in  $w.frame.cas2_2   -side left
     pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 0m -padx 2m
 

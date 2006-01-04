@@ -196,6 +196,7 @@ pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx  -pady 0m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setText} 
 bind  $w.frame.xlabel1 <KP_Enter> {setText} 
+bind  $w.frame.xlabel1 <FocusOut> {setText} 
 
 
 ###############
