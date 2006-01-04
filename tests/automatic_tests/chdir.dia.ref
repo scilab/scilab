@@ -5,6 +5,7 @@ reinit_for_test()
  
 %U=mopen('SCI/tests/automatic_tests/chdir_data.ref','rb');
  
+ 
 chdir(TMPDIR);
  
 %ans = pwd();
@@ -12,7 +13,7 @@ chdir(TMPDIR);
 if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
-cd();
+cd;
  
 if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
@@ -20,6 +21,7 @@ if load_ref_nocheck('%ans') then   bugmes();quit;end,
 %ans = cd('SCI');
  
 if load_ref_nocheck('%ans') then   bugmes();quit;end,
+ 
  
  
 xdel_run(winsid());

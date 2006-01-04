@@ -5,36 +5,41 @@ reinit_for_test()
  
 %U=mopen('SCI/tests/automatic_tests/tree2code_data.ref','rb');
  
-tree = macr2tree(help);
+tree = macr2tree(cosh);
  
 txt = tree2code(tree, %T);
  
-%ans = write(%io(2), txt, '(a)');
-function [] = help(key)
-//for compatibility with toolboxes making use of old cat files
-change_old_man
-INDEX = make_help_index()
- 
-if argn(2)==0 then
-  browsehelp(INDEX,"index");
-  return;
+write(%io(2), txt, '(a)');
+function [t] = cosh(z)
+//
+//  PURPOSE
+//     element wise hyperbolic cosinus
+//
+//  METHOD
+//     1/ in the real case use
+//
+//         cosh(z) = 0.5 (exp(|z|) + exp(-|z|))
+//                 = 0.5 ( y + 1/y ) with y = exp(|z|)
+//
+//         The absolute value avoids the problem of a
+//         division by zero arising with the formula
+//           "cosh(z) = 0.5 ( y + 1/y ), y=exp(z)"
+//         when ieee = 0 for z such that exp(z) equal 0
+//         in floating point arithmetic ( approximatly z < -745 )
+//
+//     2/ in the complex case use :   cosh(z) = cos(i z)
+//
+if type(z)~=1 then
+  error(53,1),
 end;
- 
-key = stripblanks(key)
-if or(part(key,1)==["(",")","[","]","{","}","%","''","""",":","*","/","\",".","<",">","&","^","|","~","+","-"]) then
-  key = "symbols";
-end;
-path = gethelpfile(key)
-if path~=[] then
-  browsehelp(path,key)
+if isreal(z) then
+  y = exp(abs(z));
+  t = 0.5*(y+10./y)
 else
-  apropos(key)
+  t = cos(imult(z))
 end;
  
 endfunction
- 
- 
-if load_ref('%ans') then   bugmes();quit;end,
  
  
 xdel_run(winsid());

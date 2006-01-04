@@ -7,13 +7,11 @@ reinit_for_test()
  
 //with one call
  
-%ans = TK_EvalStr(['toplevel0.foo1';
+%ans = TCL_EvalStr(['toplevel0.foo1';
   'label0.foo1.l -text ""TK married Scilab !!!""';
   'pack0.foo1.l';
   'button0.foo1.b -text close -command {destroy0.foo1}';
   'pack0.foo1.b']);
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
  
 if load_ref('%ans') then   bugmes();quit;end,
  
@@ -21,44 +19,48 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 //step by step (debugging)
  
-TK_EvalStr('toplevel0.foo2');
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr('toplevel0.foo2');
  
 // creates a toplevel TK window.
  
-TK_EvalStr('label0.foo2.l -text ""TK married Scilab !!!""');
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr('label0.foo2.l -text ""TK married Scilab !!!""');
  
 // create a static label
  
-TK_EvalStr('pack0.foo2.l');
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr('pack0.foo2.l');
  
 // pack the label widget. It appears on the screen.
  
 text = 'button0.foo2.b -text close -command {destroy0.foo2}';
  
-TK_EvalStr(text);
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr(text);
  
-TK_EvalStr('pack0.foo2.b');
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr('pack0.foo2.b');
  
  
 //kill the windows by program
  
-TK_EvalStr('destroy0.foo1');
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr('destroy0.foo1');
  
-TK_EvalStr('destroy0.foo2');
-
-Warning TK_EvalStr obsolete please use TCL_EvalStr.
+TCL_EvalStr('destroy0.foo2');
+ 
+ 
+//with one call, and in a slave interpreter
+ 
+TCL_CreateSlave('TCLSlave');
+ 
+TCL_EvalStr('set test ""in Slave TCL Interp""', 'TCLSlave');
+ 
+%ans = TCL_GetVar('test', 'TCLSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+ 
+%ans = TCL_DeleteInterp('TCLSlave');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
  
 xdel_run(winsid());
  
