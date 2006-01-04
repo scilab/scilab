@@ -607,7 +607,6 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   SCWindow = ScilabXgc->CWindow;
 
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
-
   XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
 
   /*set wait_for_click=1 to diable event handler if any */
@@ -620,7 +619,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       if (choice) win=-1;
       ok=0;
       if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
-	if ((release&&getrelease) || (motion&&getmouse) ||(~motion&&~release)){
+	if ((release&&getrelease) || (motion&&getmouse) || ((motion==0)&&(release==0))){
 	  *iflag=win;
 	  ok=1;
 	  break;
