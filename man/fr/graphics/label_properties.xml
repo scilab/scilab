@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -74,26 +74,31 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_angle: ">
-        <SP>This property allows to turn the label. The font is turned
-        clockise with the angle given in degrees.</SP>
+        <SP>This scalar allows you to turn the label. The font is turned
+        clockise with the angle given in degrees. To manually change the font
+        angle, you must <VERB>first</VERB> set the <VERB>auto_rotation</VERB>
+        property to <VERB>"off"</VERB> and then enter the font angle.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="auto_rotation: ">
-        <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best angle
+        <SP>If <VERB>"on"</VERB>, Scilab computes automaticaly the best angle
         to turn the label for the display. If <VERB>"off"</VERB>, the label
         can be manually turned with the <VERB>font_angle</VERB> property.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="position: ">
-        <SP>This property allows to place manually the label on the screen.
-        The position is stored in the data units of the axes.</SP>
+        <SP>This 2d vector allows you to place manually the label on the
+        screen. The position is stored in the data units of the axes. To
+        manually change the position, you must <VERB>first</VERB> set the
+        <VERB>auto_position</VERB> property to <VERB>"off"</VERB> and then
+        enter the new 2d vector.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="auto_position: ">
-        <SP>If <VERB>"on"</VERB>, Scilab compute automaticaly the best
+        <SP>If <VERB>"on"</VERB>, Scilab computes automaticaly the best
         position in the graphic window for the display. If <VERB>"off"</VERB>,
-        the label can be manually places with the<VERB>position</VERB>
-        property</SP>
+        the label can be manually places with the <VERB>position</VERB>
+        property.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

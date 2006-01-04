@@ -160,11 +160,10 @@
             <VERB>"off"</VERB> for a global setting.To act on a single axis,
             the syntax is <VERB>auto_ticks(N)</VERB> where <VERB>N</VERB> is
             <VERB>1,2</VERB> or <VERB>3</VERB> corresponding to the
-            <VERB>x,y</VERB> or <VERB>z</VERB> axis. Note that editing labels
-            via <VERB>x_ticks.labels, y_ticks.labels</VERB> or
-            <VERB>z_ticks.labels</VERB> automatically set
-            <VERB>auto_ticks</VERB> to <VERB>"on"</VERB> for the corresponding
-            axes.</SP>
+            <VERB>x,y</VERB> or <VERB>z</VERB> axis. Note that editing ticks
+            (text and/or locations) via <VERB>x_ticks, y_ticks</VERB> or
+            <VERB>z_ticks</VERB> automatically set <VERB>auto_ticks</VERB> to
+            <VERB>"off"</VERB> for the corresponding axes.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="x_ticks.locations: ">
@@ -302,7 +301,7 @@
             <SP>This field contains the current zoom box if any coordinates
             are given. It is an empty matrix (no zoom) or the vector
             <VERB>[xmin,ymin,xmax,ymax]</VERB> (defines a rectangle given by
-            two opposite corners). The z coordinate is not yet taken into
+            two opposite corners). The z coordinates is not yet taken into
             account.</SP>
           </DESCRIPTION_ITEM>
 
