@@ -302,7 +302,8 @@
             <SP>This field contains the current zoom box if any coordinates
             are given. It is an empty matrix (no zoom) or the vector
             <VERB>[xmin,ymin,xmax,ymax]</VERB> (defines a rectangle given by
-            two opposite corners).</SP>
+            two opposite corners). The z coordinate is not yet taken into
+            account.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="margins: ">
