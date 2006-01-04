@@ -716,6 +716,12 @@ void C2F(setpopupname)(x0, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   Setpopupname(x0);
 }
 /*-----------------------------------------------------------------------------------*/
+
+extern void sciSendMessage(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+extern int  sciPeekMessage(MSG *msg);
+/*-----------------------------------------------------------------------------------*/
+
+
 /****************************************************************
  Wait for mouse click in graphic window 
    send back mouse location  (x1,y1)  and button number  
@@ -1002,7 +1008,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       if (choice) win=-1;
       ok=0;
       if (CheckClickQueue(&win,x1,yy1,ibutton,&motion,&release) == 1)  {
-	if ((release&&getrelease) || (motion&&getmouse) ||(~motion&&~release)){
+	if ((release&&getrelease) || (motion&&getmouse) || ((motion==0)&&(release==0))){
 	  *iflag=win;
 	  ok=1;
 	  break;
