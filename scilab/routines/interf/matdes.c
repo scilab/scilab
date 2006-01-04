@@ -1802,7 +1802,7 @@ int scixset(char *fname,unsigned long fname_len)
       sciSetMarkSize(subwin,(int) xx[1]);
     }
     else
-      C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
+      C2F(dr1)("xset","mark",&(x[0]),&(x[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
     verb=0;
