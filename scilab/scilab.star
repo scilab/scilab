@@ -209,7 +209,7 @@ if sciargs()<>'-nouserstartup' then
       exec(startup,-1);mclose(startup)
     end
   end
-  clear startup ierr
+  clear startup ierr startup_path
 
   // working dir startup (if any)
   if  home<>PWD then
