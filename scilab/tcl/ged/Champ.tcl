@@ -235,6 +235,7 @@ pack $w.frame.arrowlab -in $w.frame.ar -side left
 pack $w.frame.arrow  -in $w.frame.ar -side left -pady 0m -padx 2m 
 bind  $w.frame.arrow <Return> {SelectArrowSize}
 bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
+bind  $w.frame.arrow <FocusOut> {SelectArrowSize}
 
 #colored
 frame $w.frame.col -borderwidth 0
