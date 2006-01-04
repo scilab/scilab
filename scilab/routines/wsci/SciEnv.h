@@ -40,5 +40,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath);
 BOOL Set_TK_LIBRARY_PATH(char *DefaultPath);
 BOOL Set_LCC_PATH(char *DefaultPath);
 BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
+BOOL IsTheGoodShell(void);
+BOOL Set_Shell(void);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __SCIENV_H__ */

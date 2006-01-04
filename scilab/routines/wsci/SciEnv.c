@@ -18,6 +18,16 @@ void SciEnv(void)
 	char *SCIPathName=NULL;
 
 	SCIPathName=GetScilabDirectory(TRUE);
+
+	// Correction Bug 1579
+	if (!IsTheGoodShell()) 
+	{
+		if ( (!Set_Shell()) || (!IsTheGoodShell()))
+		{
+			MessageBox(NULL,MSG_SCIMSG121,MSG_WARNING22,MB_ICONWARNING|MB_OK);
+		}
+	}
+
 	set_sci_env(SCIPathName);
 	if (SCIPathName) {FREE(SCIPathName);SCIPathName=NULL;}
 
@@ -243,7 +253,6 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 
-
 	if (_putenv (env))
 	{
 		bOK=FALSE;
@@ -431,6 +440,67 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 		putenv ("WIN64=OK");
 	#endif
 
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL IsTheGoodShell(void)
+{
+	BOOL bOK=FALSE;
+	char shellCmd[_MAX_PATH];
+	char drive[_MAX_DRIVE];
+	char dir[_MAX_DIR];
+	char fname[_MAX_FNAME];
+	char ext[_MAX_EXT];
+	int OS=-1;
+
+	strcpy(shellCmd,"");
+	strcpy(fname,"");
+	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
+	_splitpath(shellCmd,drive,dir,fname,ext);
+
+	OS=GetOSVersion();
+
+	if ( (OS==OS_WIN32_WINDOWS_95) || (OS==OS_WIN32_WINDOWS_98) || (OS==OS_WIN32_WINDOWS_Me) )
+	{
+		if (_stricmp(fname,"command")==0) bOK=TRUE;
+	}
+	else
+	{
+		if (_stricmp(fname,"cmd")==0) bOK=TRUE;
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL Set_Shell(void)
+{
+	BOOL bOK=FALSE;
+	char env[_MAX_DRIVE+_MAX_DIR+_MAX_FNAME+_MAX_EXT+10];
+	char *WINDIRPATH=NULL;
+  int OS=-1;
+
+	OS=GetOSVersion();
+
+	if ( (OS==OS_WIN32_WINDOWS_95) || (OS==OS_WIN32_WINDOWS_98) || (OS==OS_WIN32_WINDOWS_Me) )
+	{
+		WINDIRPATH=getenv ("windir");
+		sprintf(env,"ComSpec=%s\\command.com",WINDIRPATH);
+	}
+	else
+	{
+		WINDIRPATH=getenv ("SystemRoot");
+		sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
+	}
+
+	if (_putenv (env))
+	{
+		bOK=FALSE;		
+	}
+	else
+	{
+		bOK=TRUE;
+	}
+	
+	if (WINDIRPATH){ FREE(WINDIRPATH); WINDIRPATH=NULL; }
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
