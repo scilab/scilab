@@ -17,12 +17,12 @@ function unix_s(cmd)
 
   if prod(size(cmd))<>1 then   error(55,1),end
   
-  ver=OS_Version();
+  shl=getshell();
 
   // done in scilab.star TMPDIR=getenv('TMPDIR')
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+    if shl <> 'cmd' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	cmd1=cmd +'>'+ ' NUL' +' 2>'+TMPDIR+'\unix.err';
@@ -42,7 +42,7 @@ function unix_s(cmd)
     error(85)
   else //sh failed
      if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+     	if shl <> 'cmd' then
        		error('unix_s: shell error');
        	else
        		msg=read(TMPDIR+'\unix.err',-1,1,'(a)');

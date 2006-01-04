@@ -17,13 +17,13 @@ function [rep,stat]=unix_g(cmd)
 // Modified by Allan CORNET 2004
 
   [lhs,rhs]=argn(0)
-  if prod(size(cmd))<>1 then   error(55,1),end
+  if prod(size(cmd))<>1 then error(55,1),end
   
-  ver=OS_Version();
+  shl=getshell();
 
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+    if shl <> 'cmd' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	tmp=TMPDIR+'\unix.out';
@@ -51,7 +51,7 @@ function [rep,stat]=unix_g(cmd)
     rep=emptystr()
   else
   if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+     	if shl <> 'cmd' then
      		write(%io(2),'unix_g: shell error');
        		rep=emptystr()
      	else
@@ -76,7 +76,7 @@ function [rep,stat]=unix_g(cmd)
      end 
   end
   if MSDOS then
-  	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+  	  if shl <> 'cmd' then
     		host('if exist '+tmp+' del '+tmp);
     	else
     		host('if exist '+tmp+' del '+tmp);

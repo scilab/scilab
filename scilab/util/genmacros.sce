@@ -14,6 +14,8 @@ function RemoveMinimalMacros()
     CurrentDir=pwd();
     chdir(SCI+'/macros/util');
     unix('if EXIST ""'+'genlib.bin'+'"" del /F ""'+'genlib.bin'+'""');
+    unix('if EXIST ""'+'fileparts.bin'+'"" del /F ""'+'fileparts.bin'+'""');
+    unix('if EXIST ""'+'getshell.bin'+'"" del /F ""'+'getshell.bin'+'""');
     unix('if EXIST ""'+'pathconvert.bin'+'"" del /F ""'+'pathconvert.bin'+'""');
     unix('if EXIST ""'+'stripblanks.bin'+'"" del /F ""'+'stripblanks.bin'+'""');
     unix('if EXIST ""'+'listfiles.bin'+'"" del /F ""'+'listfiles.bin'+'""');
@@ -27,6 +29,8 @@ function RemoveMinimalMacros()
     chdir(CurrentDir);
   else
     unix('rm -f '+SCI+'/macros/util/genlib.bin');
+    unix('rm -f '+SCI+'/macros/util/fileparts.bin');
+    unix('rm -f '+SCI+'/macros/util/getshell.bin');
     unix('rm -f '+SCI+'/macros/util/pathconvert.bin');
     unix('rm -f '+SCI+'/macros/util/stripblanks.bin');
     unix('rm -f '+SCI+'/macros/util/listfiles.bin');
@@ -99,6 +103,14 @@ function BuildMinimalMacros()
   cmd=scilabstart+'getf(SCI+''/macros/util/pathconvert.sci'');save(SCI+''/macros/util/pathconvert.bin'');'+scilabquit;
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
+  
+  cmd=scilabstart+'getf(SCI+''/macros/util/fileparts.sci'');save(SCI+''/macros/util/fileparts.bin'');'+scilabquit;
+  unix(startline+cmd+endline);
+  unix(SCI+LineToDo);
+  
+  cmd=scilabstart+'getf(SCI+''/macros/util/getshell.sci'');save(SCI+''/macros/util/getshell.bin'');'+scilabquit;
+  unix(startline+cmd+endline);
+  unix(SCI+LineToDo);
 
   cmd=scilabstart+'getf(SCI+''/macros/util/genlib.sci'');save(SCI+''/macros/util/genlib.bin'');'+scilabquit;
   unix(startline+cmd+endline);
@@ -125,6 +137,8 @@ RemoveMinimalMacros();
 BuildMinimalMacros();
 clear BuildMinimalMacros;
 SCI=getenv('SCI');
+load(SCI+'/macros/util/fileparts.bin');
+load(SCI+'/macros/util/getshell.bin');
 load(SCI+'/macros/util/pathconvert.bin');
 load(SCI+'/macros/util/stripblanks.bin');
 load(SCI+'/macros/util/listfiles.bin');

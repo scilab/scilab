@@ -16,11 +16,11 @@ function unix_w(cmd)
 // Modified by Allan CORNET 2004
   if prod(size(cmd))<>1 then   error(55,1),end
   
-  ver=OS_Version();
+  shl=getshell();
   
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+    if shl <> 'cmd' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	tmp=TMPDIR+'\unix.out';
@@ -49,7 +49,7 @@ function unix_w(cmd)
     error(85)
   else
      if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+     	if shl <> 'cmd' then
      		error('unix_w: shell error');
      	else
      		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
@@ -66,7 +66,7 @@ function unix_w(cmd)
      end 
   end
   if MSDOS then
-    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+    if shl <> 'cmd' then
     	host('if exist '+tmp+' del '+tmp);
     else
     	host('if exist '+tmp+' del '+tmp);

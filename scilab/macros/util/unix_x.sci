@@ -17,11 +17,11 @@ function unix_x(cmd)
 
 if prod(size(cmd))<>1 then   error(55,1),end
 
-ver=OS_Version();
+shl=getshell();
 
 if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+    if shl <> 'cmd' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	tmp=TMPDIR+'\unix.out';
@@ -48,7 +48,7 @@ case -1 then // host failed
   error(85)
 else //sh failed
 if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
+     	if shl <> 'cmd' then
      		error('unix_x: shell error');
      	else
      		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
