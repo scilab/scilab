@@ -409,6 +409,9 @@ bind  $w.frame.dataz <Return> {SelectZval}
 bind  $w.frame.datax <KP_Enter> {SelectXval} 
 bind  $w.frame.datay <KP_Enter> {SelectYval} 
 bind  $w.frame.dataz <KP_Enter> {SelectZval} 
+bind  $w.frame.datax <FocusOut> {SelectXval} 
+bind  $w.frame.datay <FocusOut> {SelectYval} 
+bind  $w.frame.dataz <FocusOut> {SelectZval} 
 
 #----------------------------#
 frame $w.frame.lb3 -borderwidth 0
@@ -433,6 +436,8 @@ bind  $w.frame.dataw <Return> {SelectWval}
 bind  $w.frame.datah <Return> {SelectHval} 
 bind  $w.frame.dataw <KP_Enter> {SelectWval} 
 bind  $w.frame.datah <KP_Enter> {SelectHval} 
+bind  $w.frame.dataw <FocusOut> {SelectWval} 
+bind  $w.frame.datah <FocusOut> {SelectHval} 
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken

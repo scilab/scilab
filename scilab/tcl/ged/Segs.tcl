@@ -243,6 +243,7 @@ pack  $w.frame.arrowlab -in $w.frame.ar -side left
 pack  $w.frame.arrow -in $w.frame.ar -side left -fill x -pady 0m -padx 2m 
 bind  $w.frame.arrow <Return> {SelectArrowSize}
 bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
+bind  $w.frame.arrow <FocusOut> {SelectArrowSize}
 
 
 #Mark mode
@@ -404,6 +405,7 @@ for {set i 1} {$i<=$nbcolsegscolor} {incr i} {
     entry  $w2.frame2.c1.data$i  -relief sunken  -textvariable segscolorVAL($i) -width 10 -font {Arial 9}
     bind  $w2.frame2.c1.data$i <Return> "setSegsColorData $i "
     bind  $w2.frame2.c1.data$i <KP_Enter> "setSegsColorData $i "
+    bind  $w2.frame2.c1.data$i <FocusOut> "setSegsColorData $i "
 #location help balloon	
     set_balloon $w2.frame2.c1.data$i "Row: $i"
  

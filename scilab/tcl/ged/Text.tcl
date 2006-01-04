@@ -243,6 +243,7 @@ entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle2 -font {Ari
 
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
 bind  $w.frame.fontangle2 <KP_Enter> 	"setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
+bind  $w.frame.fontangle2 <FocusOut> 	"setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
 
 
 #Box mode
@@ -320,6 +321,7 @@ pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx  -side left -pady 0m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setText} 
 bind  $w.frame.xlabel1 <KP_Enter> {setText} 
+bind  $w.frame.xlabel1 <FocusOut> {setText} 
 
 
 #Text box mode
