@@ -137,11 +137,26 @@ int FindFreeScilexNumber(void)
 	int Number_of_Scilex=0;
 	char NameScilex[MAX_PATH];
 
-	wsprintf(NameScilex,"%s %s (%d)",NameConsole,VERSION,Number_of_Scilex);
-	while ( FindWindow(NULL,NameScilex) )
+	wsprintf(NameScilex,"%s (%d)",VERSION,Number_of_Scilex);
+	hScilexN=FindWindow(NULL,NameScilex);
+	while ( hScilexN )
 	{
-		Number_of_Scilex++;
-		wsprintf(NameScilex,"%s %s (%d)",NameConsole,VERSION,Number_of_Scilex);
+		UINT NbChar=0;
+		char FileName[MAX_PATH+1];
+		strcpy(FileName,"");
+
+		NbChar=GetWindowModuleFileName(hScilexN,FileName,MAX_PATH);
+		
+		if (NbChar)
+		{
+			Number_of_Scilex++;
+			wsprintf(NameScilex,"%s (%d)",VERSION,Number_of_Scilex);
+			hScilexN=FindWindow(NULL,NameScilex);
+		}
+		else
+		{
+			hScilexN=NULL;
+		}
 	}
 
 	return Number_of_Scilex;
