@@ -3951,21 +3951,44 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       break;
     case SCI_SBH:
       return (double*)NULL;			/* les coordonnees sont (x,0) */
-    case SCI_TITLE:
+    
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype == 0) {
 	*numrow = pSEGS_FEATURE (pthis)->Nbr1;
-	*numcol = ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) 
-		   && (pSEGS_FEATURE (pthis)->vz != NULL))? 3:2;
+        
+        /* only two coordinates are displayed if the axe is in 2d
+           and the z coordinates has never been modified */
+        if (   pSEGS_FEATURE(pthis)->vz != NULL
+            || pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d )
+        {
+          *numcol = 3 ;
+        }
+        else
+        {
+          *numcol = 2 ;
+        }
+        /**numcol = ( pSEGS_FEATURE (pthis)->vz != NULL ? 3 : 2 ) ;*/
 	if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
 	  return (double*)NULL;
-	for (i=0;i < *numrow;i++)
-	  {
-	    tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
-	    tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];
-	    if (*numcol== 3)
-	      tab[2*(*numrow)+i]= pSEGS_FEATURE (pthis)->vz[i];   
-	  }
+        }
+	for ( i = 0 ; i < *numrow ; i++ )
+        {
+          tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
+          tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];
+          if ( *numcol == 3 )
+          {
+            if ( pSEGS_FEATURE (pthis)->vz == NULL )
+            {
+              /* default value */
+              tab[2*(*numrow)+i] = 0.0 ;
+            }
+            else
+            {
+              tab[2*(*numrow)+i]= pSEGS_FEATURE (pthis)->vz[i];
+            }
+          }
+        }
       }
       else {
 	sciprint("Impossible case: champ object is now treated as a tlist. See set/getchampdata\r\n");
@@ -4018,6 +4041,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       }
       return (double*)tab;
       break;
+    case SCI_TITLE: 
     case SCI_LEGEND:
     case SCI_LIGHT:
     case SCI_AXES:
@@ -4026,7 +4050,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       sciprint ("This object has no points Y\n");
       return (double*)NULL;
