@@ -41,7 +41,6 @@ int C2F(intqld)(fname)
   /* RhsVar: qld(Q,p,C,b,lb,ub,me,eps) */
   /*             1,2,3,4,5 ,6 ,7, 8  */
   eps1=C2F(dlamch)("e",1L);
-
   next= Rhs+1;
   /*   Variable 1 (Q)   */
   GetRhsVar(1, "d", &n, &nbis, &Q);
@@ -97,6 +96,7 @@ int C2F(intqld)(fname)
       Error(116);
       return 0;
     }
+
   if(Rhs==8) {
     /*   Variable 8 (eps1)   */  
     GetRhsVar(8, "d", &pipo, &unbis, &leps);
@@ -104,22 +104,20 @@ int C2F(intqld)(fname)
     eps1= Max(eps1,*stk(leps));
   }
 
-
-
+  next=Rhs;
   /* Internal variables: x, lambda, inform, C_mmax, b_mmax */
-
   CreateVar(next+1, "d", &n, &un, &x);
 
   CreateVar(next+2, "d", &mnn, &un, &lambda);
-
+ 
   CreateVar(next+3, "i", &un, &un, &inform);
+  
 
   lwar = 3*n*n/2+10*n+2*mmax+2;
   CreateVar(next+4, "d", &lwar, &un, &war);
-
   CreateVar(next+5, "i", &n, &un, &iwar);
-  *istk(iwar)=(int)1;
-
+  istk(iwar)[0]=0;
+ 
   /* extend C and B to add a row and change the sign of C*/
   CreateVar(next+6, "d", &mmax, &n, &C_mmax);
   for(k=0; k<n; k++) {
@@ -132,9 +130,8 @@ int C2F(intqld)(fname)
     stk(b_mmax)[k] = stk(b)[k];
   stk(b_mmax)[m] = 0.0;
 
-
   iout = 0;
-
+  ifail=0;
   C2F(ql0001)(&m, istk(me), &mmax, &n, &n, &mnn, stk(Q), stk(p), stk(C_mmax),
           stk(b_mmax), stk(lb), stk(ub), stk(x), stk(lambda), &iout,
           &ifail, &zero, stk(war), &lwar, istk(iwar), &n, &eps1);
