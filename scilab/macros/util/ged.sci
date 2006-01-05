@@ -35,16 +35,16 @@ function ged(k,win)
       if isold then xbasr(win),end
     case 3 then //erase
       xbasc()
-    case 4 then //copy
-      ged_copy_entity()
-    case 5 then //past
-      ged_paste_entity()
-    case 6 then //move
-      ged_move_entity()
-    case 7 then //Delete Entity
-      ged_delete_entity()
+   // case 4 then //copy
+   //   ged_copy_entity()
+   // case 5 then //past
+   //   ged_paste_entity()
+   // case 6 then //move
+   //   ged_move_entity()
+   // case 7 then //Delete Entity
+   //   ged_delete_entity()
       
-    case 8 then //edit current figure properties
+    case 4 then //edit current figure properties
       
       // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
@@ -66,7 +66,8 @@ function ged(k,win)
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
     ged_figure(ged_cur_fig_handle)
-    case 9 then //edit current axes
+    
+    case 5 then //edit current axes
       // hierarchical viewer
     TK_send_handles_list(ged_cur_fig_handle)
     TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(gca())))
@@ -85,9 +86,9 @@ function ged(k,win)
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
     
     ged_axes(gca())
-    case 10 then //start Entity picker
+    case 6 then //start Entity picker
       seteventhandler("ged_eventhandler")
-    case 11 then //stop Entity picker
+    case 7 then //stop Entity picker
       seteventhandler("")
   end
   xset('window',ged_current_figure)

@@ -1279,9 +1279,9 @@ void CreateGedMenus(struct BCG * ScilabGC)
 		SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
 		*/
 	#ifdef WITH_TK
-		integer ne=14, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
-		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
+		integer ne=14-5, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure",/*"[--]","&Copy object","&Paste object","Move object","Delete object",*/"[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
+		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure",/*"[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet",*/"[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
 
 		/* Disable Double Arrow */
 		integer ni=/*7*/6;
@@ -1301,13 +1301,13 @@ void CreateGedMenus(struct BCG * ScilabGC)
 			case 1:
 				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
 			#ifdef WITH_TK
-				AddMenu(&WinNum,"&Inserer", InsertMenusF, &ni, &menutyp, "ged_insert", &ierr);
+				/*AddMenu(&WinNum,"&Inserer", InsertMenusF, &ni, &menutyp, "ged_insert", &ierr);*/
 			#endif
 			break;
 			default:
 				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
 			#ifdef WITH_TK
-				AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
+				/*AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);*/
 			#endif
 			break;
 		}
@@ -1322,17 +1322,17 @@ BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)
 	
 	if (IsEntityPickerMenu(ScilabGC,id))
 	{
-		if (id == 24)
+		if (id == 20)
 		{
-			wsprintf(command,"ged(10,%d);",ScilabGC->CurWindow); /* Start */
+			wsprintf(command,"ged(6,%d);",ScilabGC->CurWindow); /* Start */
 			ModifyEntityPickerToolbar(ScilabGC,TRUE);
 			StoreCommand(command);
 			bOK=TRUE;
 		}
 
-		if (id == 25)
+		if (id == 21)
 		{
-			wsprintf(command,"ged(11,%d);",ScilabGC->CurWindow); /* Stop */
+			wsprintf(command,"ged(7,%d);",ScilabGC->CurWindow); /* Stop */
 			ModifyEntityPickerToolbar(ScilabGC,FALSE);
 			StoreCommand(command);
 			bOK=TRUE;
@@ -1345,7 +1345,7 @@ BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)
 BOOL IsEntityPickerMenu(struct BCG * ScilabGC,int id)
 {
 	BOOL bOK=FALSE;
-	if (id == 24)
+	if (id == 20)
 	{
 		#define lenStringMenu 64
 		char CurrentStringMenu[lenStringMenu];
@@ -1362,7 +1362,7 @@ BOOL IsEntityPickerMenu(struct BCG * ScilabGC,int id)
 		}
 	}
 
-	if (id == 25)
+	if (id == 21)
 	{
 		#define lenStringMenu 64
 		char CurrentStringMenu[lenStringMenu];

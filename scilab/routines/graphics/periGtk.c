@@ -2794,15 +2794,15 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 { 
   struct BCG *NewXgc ;
 #ifdef WITH_TK
-  integer ne=11, menutyp=2, ierr;
+  integer ne=7, menutyp=2, ierr;
   char *EditMenus[]={"_Select figure as current","_Redraw figure",\
-                     "_Erase figure","_Copy object","_Paste object",\
-                     "_Move object","_Delete object","_Figure properties",\
+                     "_Erase figure",/*"_Copy object","_Paste object",\
+                     "_Move object","_Delete object",*/"_Figure properties",\
                      "_Current axes properties","Start _entity picker",\
                      "Stop e_ntity picker"};
-  integer ni=6;
+  /*integer ni=6;
   char *InsertMenus[]={"--- _Line","^v^  _Polyline","---> _Arrow",\
-                       "_Text","[]   _Rectangle","O   _Circle"};
+                       "_Text","[]   _Rectangle","O   _Circle"};*/
 #else
   integer ne=3, menutyp=2, ierr;
   char *EditMenus[]={"_Select as current","_Redraw figure","_Erase figure"};
@@ -2844,7 +2844,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   EntryCounter++;
   AddMenu(&WinNum,"_Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
 #ifdef WITH_TK
-  AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);
+  /*AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);*/
 #endif
   gdk_flush();
 }

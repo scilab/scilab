@@ -289,7 +289,7 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				if (ScilabGC->graphicsversion == 0)
 				{
 					char command[1024];
-					wsprintf(command,"ged(8,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged(4,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
 			}
@@ -307,20 +307,20 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				if (lResult == BST_CHECKED)
 				{
 					char command[1024];
-					wsprintf(command,"ged(10,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged(6,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 					
 				}
 				else
 				{
 					char command[1024];
-					wsprintf(command,"ged(11,%d);",ScilabGC->CurWindow);
+					wsprintf(command,"ged(7,%d);",ScilabGC->CurWindow);
 					StoreCommand(command);
 				}
 				
 			}
 			break;
-
+/*
 			case TOOLBAR_LINE:
 			{
 				if (ScilabGC->graphicsversion == 0)
@@ -354,8 +354,6 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 			}
 			break;
 
-			/* Disable Double Arrow */
-			/*
 			case TOOLBAR_DOUBLEARROW:
 			{
 				if (ScilabGC->graphicsversion == 0)
@@ -366,8 +364,7 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				}
 			}
 			break;
-			*/
-
+	
 			case TOOLBAR_TEXT:
 			{
 				if (ScilabGC->graphicsversion == 0)
@@ -399,7 +396,7 @@ BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 					StoreCommand(command);
 				}
 			}
-			break;
+			break; */
 		}
 		SetFocus(ScilabGC->CWindow);
 		SetActiveWindow(ScilabGC->CWindow);
