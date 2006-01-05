@@ -3855,12 +3855,6 @@ proc toggleReverselabz { frame } {
 }
 
 
-
-proc SelectFontStyle {w args} {
-global curfontstyle
-ScilabEval "setFontStyle('$curfontstyle')"
-}
-
 proc setFontAngle_x { } {
     global curfontangle_x2
     global curfontangle_x
@@ -3982,7 +3976,7 @@ proc TitletoggleFillmode { frame } {
 
 
 proc toggleAutoPositionx { frame } {
-    global xauto_position
+    global xauto_position 
     ScilabEval "global ged_handle;ged_handle.x_label.auto_position='$xauto_position'"
 
     OnOffForeground $frame $xauto_position
