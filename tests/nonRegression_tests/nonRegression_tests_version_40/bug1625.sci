@@ -1,4 +1,4 @@
-// Non-regression test file for bug 1506
+// Non-regression test file for bug 1625
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2005
