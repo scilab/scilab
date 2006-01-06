@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>interp1</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="interp1">one_dimension interpolation
+  function</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[yp]=interp1(x, y,xp [,
+    method,[extrapolation]])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xp</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: reals scalar, vector or matrix (or hypermatrix)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: reals vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>method</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) string defining the interpolation method</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>extrapolation</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) string, or real value defining the yp(j) components
+          for xp(j) values outside [x1,xn] interval.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>yp</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vector, or matrix (or hypermatrix)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Given <VERB>(x,y,xp)</VERB>, this function performs the yp components
+    corresponding to xp by the interpolation(linear by default) defined by x
+    and y.</P>
+
+    <P>If <VERB>yp</VERB> is a vector then the length of xp is equal to the
+    length of <VERB>yp,</VERB> if <VERB>yp</VERB> is a matrix then
+    <VERB>xp</VERB> have the same length than the length of each columns of
+    yp, if <VERB>yp</VERB> is a hypermatrix then the length of <VERB>xp</VERB>
+    have the same length than the first dimension of <VERB>yp. </VERB></P>
+
+    <P>If size(y)=[C,M1,M2,M3,...,Mj] and size(xp)=[N1,N2,N3,...,Nk] then
+    size(yp)=[N1,N2,..,Nk,M1,M2,...Mj] and length of x must be equal to
+    size(y,1)</P>
+
+    <P>The <VERB>method</VERB> parameter sets the evaluation rule for
+    interpolation</P>
+
+    <ITEMIZE label="method">
+      <ITEM label="&quot;linear&quot;">
+        <SP>: the interpolation is defined by linear method (see
+        <LINK>interpln</LINK>)</SP>
+      </ITEM>
+
+      <ITEM label="&quot;spline&quot;">
+        <SP>: the interpolation is defined by cubic spline interpolation ( see
+        <LINK>splin</LINK> , <LINK>interp</LINK>)</SP>
+      </ITEM>
+
+      <ITEM label="&quot;nearest&quot;">
+        <SP>: for each value xp(j), yp(j) takes the value or y(i)
+        corresponding to x(i) the nearest neighbor of xp(j)</SP>
+
+        <P></P>
+      </ITEM>
+    </ITEMIZE>
+
+    <P>The <VERB>extrapolation</VERB> parameter sets the evaluation rule for
+    extrapolation, i.e for <VERB>xp(i) </VERB>not in [x1,xn] interval</P>
+
+    <ITEMIZE label="extrapolation">
+      <ITEM label="&quot;extrap&quot;">
+        <SP>: the extrapolation is performed by the defined method.
+        yp=interp1(x,y,xp,method,"extrap")</SP>
+      </ITEM>
+
+      <ITEM label="real value">
+        <SP>: you can choose a real value for extrapolation, in this way yp(i)
+        takes this value for xp(i) not in [x1,xn] interval, for example 0 (but
+        also nan or inf). yi=interp1(x,y,xp,method, 0)</SP>
+      </ITEM>
+
+      <ITEM label="by default">
+        <SP>: the extrapolation is performed by the defined method (for spline
+        method), and by nan for linear and nearest methods.
+        yp=interp1(x,y,xp,method)</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[x=linspace(0,3,20);
+y=x^2;
+xx=linspace(0,3,100);
+yy1=interp1(x,y,xx,'linear');
+yy2=interp1(x,y,xx,'spline');
+yy3=interp1(x,y,xx,'nearest');
+plot(xx,[yy1;yy2;yy3],x,y,'*')
+xtitle('interpolation of square function')
+legend(['linear','spline','nearest'],a=2)
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>interp</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>interpln</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>splin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>F.B</AUTHOR>
+</MAN>

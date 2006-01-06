@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>qmr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>March 2000  </DATE>
+  <SHORT_DESCRIPTION name="qmr"> quasi minimal resiqual method with preconditioning  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x,flag,err,iter,res] = qmr(A,b,x0,M1,M1p,M2,M2p,maxi,tol)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : matrix of size n-by-n or function returning <VERB>A*x</VERB>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>b  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : right hand side vector
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x0  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : initial guess vector (default: zeros(n,1))
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M1  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : left preconditioner: matrix or function returning <VERB>M1*x</VERB> (In the first case, default: eye(n,n))
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M1p  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : must only be provided when <VERB>M1</VERB> is a function. In this case <VERB>M1p</VERB> is the function which returns <VERB>M1&apos;*x</VERB>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M2  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : right preconditioner: matrix or function returning <VERB>M2*x</VERB> (In the first case, default: eye(n,n))
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M2p  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  :  must only be provided when <VERB>M2</VERB> is a function. In this case <VERB>M2p</VERB> is the function which returns <VERB>M2&apos;*x</VERB>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>maxi  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : maximum number of iterations (default: n)
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : error tolerance (default: 1000*%eps)
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : solution vector
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>flag  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : 0 = <VERB>qmr</VERB> converged to the desired tolerance within <VERB>maxi</VERB> iterations
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <P>
+	1 = no convergence given <VERB>maxi</VERB>
+      </P>
+      <PARAM_ITEM>
+	<PARAM_NAME>res  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : residual vector
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>err  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : final residual norm
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>iter  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : number of iterations performed
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Solves the linear system <VERB>Ax=b</VERB> using the Quasi Minimal Residual Method with preconditioning.
+    </P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>gmres</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    SAGE Group, IRISA 2005
+  </AUTHOR>
+</MAN>

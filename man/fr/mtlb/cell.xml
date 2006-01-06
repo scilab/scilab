@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>cell</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>May 2004</DATE>
+
+  <SHORT_DESCRIPTION name="cell">empty cell</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>c=cell(m1,m2,...)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>c=cell(x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>c=cell()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integers vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>m1, m2,..</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Returns an empty cell.</P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="cell(m1)">
+        <SP> returns an empty <VERB>(m1,m1)</VERB> cell</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="cell(m1,m2)">
+        <SP> returns an empty <VERB>(m1,m2) </VERB>cell</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="cell(m1,m2,..,mn)">
+        <SP> : creates an empty <VERB>(m1,m2,..,mn)</VERB> cell.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="cell(x)">
+        <SP> returns an empty cell array with : the first dimension of the
+        cell array is <VERB>x(1)</VERB>, the second dimension is <VERB>x(2),
+        ...</VERB></SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Note that <VERB>cell(x) </VERB>is not the same size that
+    <VERB>x</VERB></P>
+
+    <P><VERB>cell()</VERB> is eqivalent to <VERB>cell(0)</VERB></P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+cell(3)
+cell(3,3)
+cell([2,3,4])
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>eye</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>ones</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>zeros</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
