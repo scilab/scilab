@@ -1278,7 +1278,8 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	      double height, double width, double alphabegin, double alphaend, 
 	      int *foreground, int *background, BOOL isfilled, BOOL isline)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
+  sciPointObj * pobj  = (sciPointObj *) NULL;
+  sciArc      * ppArc = NULL ;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
@@ -1290,9 +1291,13 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
+      /* get the pointer to features */
+      ppArc = pobj->pfeatures ;
+
       if (sciAddNewHandle (pobj) == -1)
 	{
-	  FREE(pARC_FEATURE (pobj));
+	  FREE(ppArc);
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
@@ -1300,53 +1305,59 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
 	{
 	  sciDelHandle (pobj);
-	  FREE(pARC_FEATURE (pobj));
+	  FREE(ppArc);
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pARC_FEATURE (pobj)->user_data = (int *) NULL;
-      pARC_FEATURE (pobj)->size_of_user_data = 0;
-      pARC_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pARC_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      ppArc->user_data = (int *) NULL;
+      ppArc->size_of_user_data = 0;
+      ppArc->relationship.psons = (sciSons *) NULL;
+      ppArc->relationship.plastsons = (sciSons *) NULL;
 
-      pARC_FEATURE (pobj)->callback = (char *)NULL;
-      pARC_FEATURE (pobj)->callbacklen = 0;
-      pARC_FEATURE (pobj)->callbackevent = 100;
+      ppArc->callback = (char *)NULL;
+      ppArc->callbacklen = 0;
+      ppArc->callbackevent = 100;
     
-      pARC_FEATURE (pobj)->x = x;
-      pARC_FEATURE (pobj)->y = y;
-      pARC_FEATURE (pobj)->z = 0;
-      pARC_FEATURE (pobj)->height = height;
-      pARC_FEATURE (pobj)->width = width;
-      pARC_FEATURE (pobj)->alphabegin = alphabegin;
-      pARC_FEATURE (pobj)->alphaend = alphaend;
-      pARC_FEATURE (pobj)->isselected = TRUE; 
-      pARC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+      ppArc->x = x;
+      ppArc->y = y;
+      ppArc->z = 0;
+      ppArc->height = height;
+      ppArc->width = width;
+      ppArc->alphabegin = alphabegin;
+      ppArc->alphaend = alphaend;
+      ppArc->isselected = TRUE; 
+      ppArc->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      pARC_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
+      ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-      pARC_FEATURE (pobj)->clip_region_set = 0;
+      ppArc->clip_region_set = 0;
       /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
 
-      sciSetIsFilled(pobj,isfilled);
-      sciSetIsLine(pobj,isline);
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pARC_FEATURE (pobj));
+	  FREE(ppArc);
 	  FREE(pobj);
 	  sciprint("pas de context");
 	  return (sciPointObj *) NULL;
 	}
+
+      sciSetIsFilled(pobj,isfilled);
+      /* should be put after graphicContext initialization */
+      sciSetIsLine(pobj,isline);
       
       if(foreground != NULL)
+      {
 	sciSetForeground(pobj,(*foreground));
+      }
       
       if(background != NULL)
+      {
 	sciSetBackground(pobj,(*background));
+      }
       
       return pobj;
     }
@@ -2372,7 +2383,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  FREE(pSEGS_FEATURE(pobj));
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
-	} 
+	}
      
       for (i = 0; i < Nbr1; i++)
 	{
