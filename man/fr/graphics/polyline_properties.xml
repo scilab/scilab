@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -129,10 +129,13 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="interp_color_vector: ">
-        <SP>This field contains the vector of color indices used to fill in
+        <SP>TThis field contains the vector of color indices used to fill in
         the polyline when the <VERB>interp_color_mode</VERB> property is set
-        to <VERB>"on"</VERB>. It is only applicable if the polyline is defined
-        by 3 or 4 points. Therefore, the size of the vector must match this
+        to <VERB>"on"</VERB>. It defines the intervals of colormap indices
+        used to fill each segment. For instance, the first segment will be
+        filled by every colors whose index is between the first two elements
+        of the vecor. It is only applicable if the polyline is defined by 3 or
+        4 points. Therefore, the size of the vector must match this
         dimension.</SP>
       </DESCRIPTION_ITEM>
 
@@ -140,7 +143,7 @@
         <SP>This field determines if we are using the interpolated shading
         mode to fill the polyline : its value can be <VERB>"on"</VERB> or
         <VERB>"off"</VERB>. Note that an <VERB>interp_color_vector</VERB> must
-        be defined before switching to "on" value (see below).</SP>
+        be defined before switching to "on" value (see above).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="mark_mode: ">
