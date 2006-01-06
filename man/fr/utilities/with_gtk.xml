@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>with_gtk</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
+  <SHORT_DESCRIPTION name="with_gtk"> Checks if Scilab has been built
+ with the &quot;GIMP Toolkit&quot;  library</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r=with_gtk()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns <VERB>%t</VERB> if Scilab as been built  with gtk library
+    interface or <VERB>%f</VERB> if not.</P>
+  </DESCRIPTION>
+</MAN>

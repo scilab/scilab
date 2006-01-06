@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>char</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="char">char function</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=char( x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y=char(st1,st2,st3,....)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a cell of strings arrays, or an array of ascii codes</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>st1,st2,st3</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: strings arrays</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y:</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>a strings vector(column)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <PP><VERB>One input argument :</VERB></PP>
+
+    <P>Given <VERB>a cell of strings arrays x</VERB>, this function returns a
+    strings vector <VERB>y </VERB>in which the rows are the components of the
+    strings cell</P>
+
+    <P>Given <VERB>an array of ascii codes x,</VERB> this function returns a
+    strings array <VERB>y</VERB> corresponding into ascii codes. If dims
+    (<VERB>x</VERB>)=[n1,n2,n3,n4,....],then returned value have same size as
+    input value instead of second dims, dims(<VERB>y</VERB>)=[n1,n3,n4,..]</P>
+
+    <PP><VERB>More than one input argument :</VERB></PP>
+
+    <P>Given <VERB>strings arrays</VERB> <VERB>st1,st2,st3,...</VERB>, this
+    function returns a vector of strings in which the rows are the components
+    of <VERB>st1,st2,st3,... </VERB><TT>In the vector </TT><VERB>y </VERB>the
+    length of all strings sti is completed by blanks, to have the same length
+    than the lengthmax of sti.//</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[//Example with a hypermatrix of ascii codes :
+x=hypermat([4,2,3],61:84);
+y=char(x)
+size(x)
+size(y)
+
+//Example with more than one argument :
+st1="zeros";
+st2=["one","two"];
+st3=["three"];
+y=char(st1,st2,st3)
+size(y)
+//all strings rows are completed by 'blanks' to have the same length : 6
+length(y)
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>asciimat</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>F.B</AUTHOR>
+</MAN>

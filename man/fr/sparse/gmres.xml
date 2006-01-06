@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gmres  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>March 2000  </DATE>
+  <SHORT_DESCRIPTION name="gmres"> generalized minimum residual method with restarts  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x,flag,err,iter,res] = gmres(A,b,rstr,tol,maxi,M,x0)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : n-by-n matrix or function returning <VERB>A*x</VERB>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>b  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : right hand side vector
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x0  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : initial guess vector (default: zeros(n,1))
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : preconditioner: matrix or function returning <VERB>M*x</VERB> (In the first case, default: eye(n,n))
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>rstr  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : number of iterations between restarts (default: 10)
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>maxi  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : maximum number of iterations (default: n)
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : error tolerance (default: 1e-6)
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : solution vector
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>err  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : final residual norm
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>iter  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : number of iterations performed
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>flag  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : 0 = <VERB>gmres</VERB> converged to the desired tolerance within <VERB>maxi</VERB> iterations
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <P>
+	1 = no convergence given <VERB>maxi</VERB>
+      </P>
+      <PARAM_ITEM>
+	<PARAM_NAME>res  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  : residual vector
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Solves the linear system <VERB>Ax=b</VERB> using the Generalized Minimal residual (GMRES(m)) method with restarts.
+    </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pcg</LINK> </SEE_ALSO_ITEM> 
+  </SEE_ALSO>
+  <AUTHOR>Sage Group (IRISA, 2005) </AUTHOR>
+</MAN>
