@@ -433,13 +433,25 @@ int mxGetNumberOfElements(const mxArray *ptr)
   switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return header[1]*header[2];
-  case MLIST:   /* TO BE DONE */
-  headerdims = listentry(header,2);
-  proddims=1;
-  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
-    proddims=proddims*headerdims[4+k];
-  }
-  return proddims;
+  case MLIST:  
+    switch (theMLIST(header)) {
+    case NDARRAY:
+      headerdims = listentry(header,2);
+      proddims=1;
+      for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+        proddims = proddims * headerdims[4+k];
+      }
+      return proddims;
+    case CELL: case STRUCT:
+      headerdims = listentry(header,2);
+      proddims=1;
+      for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+        proddims = proddims * headerdims[4+k];
+      }
+      return proddims;
+    default:
+      return 0;
+    }
   /*  return header[6+2*(header[4]-1)+1];  */
   case STRINGMATRIX:
     m=header[1];
