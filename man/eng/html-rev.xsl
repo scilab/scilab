@@ -120,7 +120,7 @@
   <h3><font color="blue">See Also</font></h3>
   <p>
   <xsl:for-each  select="./SEE_ALSO_ITEM">
-    <xsl:apply-templates select="A|LINK"/>
+    <xsl:apply-templates select="A|LINK|text()"/>
     <xsl:text disable-output-escaping="yes">,&amp;nbsp;</xsl:text>
     <xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text>
   </xsl:for-each>
