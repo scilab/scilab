@@ -466,23 +466,40 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
   /* modified 30/10/02 to get cursor location and register  key_press_event in queue' SS */
   gint x,y; 
   GdkModifierType state;
-  if (info.getkey == 1 && (event->keyval >= 0x20) && (event->keyval <= 0xFF))
+
+  if ( info.sci_click_activated == 0 || info.getkey == 0 ) 
     {
-      /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
-      if ( event->state != GDK_CONTROL_MASK && event->state != GDK_MOD1_MASK ) 
+      gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
+      PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,0);      
+    }
+  else 
+    {
+      /* fprintf(stderr,"key = %d\n",event->keyval); */
+      if ( (event->keyval >= 0x20) && (event->keyval <= 0xFF))
 	{
+	  /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
 	  gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
 	  info.x=x ; info.y=y;
 	  info.ok =1 ;  info.win=  gc->CurWindow; 
-	  info.button = event->keyval;
+	  /* This is not good we should return modifiers 
+	   * as extra data 
+	   */
+	  /* 1000 + key : Ctrl-key 
+	   * 2000 + key : Ctrl-Alt-key 
+	   * 3000 + key : Alt-key 
+	   */
+	  if ( event->state & GDK_CONTROL_MASK ) 
+	    {
+	      info.button = ( event->state & GDK_MOD1_MASK ) ? 2000: 1000;
+	    }
+	  else
+	    {
+	      info.button = ( event->state & GDK_MOD1_MASK ) ? 3000: 0;
+	    }
+	  info.button += event->keyval ;
 	  gtk_main_quit();
 	}
     }
-  else {
-    gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
-    PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,1);
-  }
-
   return FALSE; /* want also the menu to receive the key pressed */
 }
 
@@ -705,7 +722,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
   info.getrelease = getrelease ; 
   info.getmouse   = getmouse ;
   info.getmen     = dyn_men;
-  info.getkey     = 0; /* do not check keys in xclick */
+  info.getkey     = 1; /*  check keys in xclick */
   info.sci_click_activated = 1;
 
   if ( info.getmen == 1 && info.timer == 0 ) 
