@@ -348,37 +348,87 @@ struct _GTK_locator_info {
 
 static GTK_locator_info info = { -1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0};
 
+static GdkEventButton last_press={0};/* initialized to zero */
 
 static gboolean locator_button_press(GtkWidget *widget,
 				     GdkEventButton *event,
 				     BCG *gc)
 {
+  int id;
+  switch (event->type) 
+    {
+    case GDK_2BUTTON_PRESS : 
+      /* fprintf(stderr,"In the double \n"); */
+      /* extra event for double click */
+      id= event->button-1 +10; /* double click code */
+      break;
+    case GDK_3BUTTON_PRESS : return;break;
+    case GDK_BUTTON_PRESS :
+    default: 
+      last_press = *event;
+      id= event->button-1; /* press code */
+      break;
+    }
   if ( info.sci_click_activated == 0) 
     {
-      PushClickQueue( gc->CurWindow,event->x, event->y,event->button-1 ,0,0);
+      PushClickQueue( gc->CurWindow,event->x, event->y,id,0,0);
     }
   else 
     {
       info.ok = 1; info.win=  gc->CurWindow; info.x = event->x; info.y = event->y; 
-      info.button = event->button -1;
+      info.button = id;
       gtk_main_quit();
     }
   return TRUE;
 }
 
+/* here we detect if the release can be considered 
+ * to be the release associated to a click (press-release)
+ * In that case we return a click i.e a click will 
+ * generate at scilab level two events a press and a click !
+ * the release is not returned. 
+ * a double click will generate : press/click/press/double_click/click
+ *
+ */
+
 static gboolean locator_button_release(GtkWidget *widget,
 				       GdkEventButton *event,
 				       BCG *gc)
 {
-  if ( info.sci_click_activated == 0 || info.getrelease == 0 ) 
+  static GdkDisplay *display=NULL;
+  if ( display == NULL) display=gdk_display_get_default();
+  if ((event->time < (last_press.time + 2*display->double_click_time)) &&
+      (event->window == last_press.window) &&
+      (event->button == last_press.button) &&
+      (ABS (event->x - last_press.x) <= display->double_click_distance) &&
+      (ABS (event->y - last_press.y) <= display->double_click_distance))
     {
-      PushClickQueue( gc->CurWindow,event->x, event->y,event->button-6 ,0,1);
+      /* fprintf(stderr,"This is a click\n"); */
+      /* return a click */
+      if ( info.sci_click_activated == 0 ) 
+	{
+	  PushClickQueue( gc->CurWindow,event->x, event->y,event->button+2 ,0,0);
+	}
+      else 
+	{
+	  info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
+	  info.button = event->button +2 ;
+	  gtk_main_quit();
+	}
     }
   else 
     {
-      info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
-      info.button = event->button -6;
-      gtk_main_quit();
+      /* return a release */
+      if ( info.sci_click_activated == 0 || info.getrelease == 0 ) 
+	{
+	  PushClickQueue( gc->CurWindow,event->x, event->y,event->button-6 ,0,1);
+	}
+      else 
+	{
+	  info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
+	  info.button = event->button -6;
+	  gtk_main_quit();
+	}
     }
   return TRUE;
 }
@@ -1308,7 +1358,7 @@ static void xset_dashstyle(integer *value, integer *xx, integer *n)
     }
   else 
     {
-      static gchar buffdash[18];
+      gint8 buffdash[18];
       int i;
       for ( i =0 ; i < *n ; i++) buffdash[i]=xx[i];
       gdk_gc_set_dashes(ScilabXgc->wgc, 0, buffdash, *n);
