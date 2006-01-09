@@ -26,7 +26,10 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 /*-----------------------------------------------------------------------------------*/
+#ifdef WITH_TK
 extern int GetTclCurrentFigure(void);
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
