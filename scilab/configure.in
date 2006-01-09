@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.132.2.2 $)dnl
+AC_REVISION($Revision: 1.132.2.3 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -77,10 +77,11 @@ fi
 ## creating Path.incl if needed
 ###############################
 # 
-# change scidir for mingw/cygwin 
+# change scidir for mingw 
+#   *-*-cygwin* |   *-*-mingw32*)
 
 case "$host" in
-  *-*-cygwin* |   *-*-mingw32*)
+   *-*-mingw32*)
     SCIDIR=`echo $SCIDIR | sed -e 's+/cygdrive/\([[a-zA-Z]]*\)/+\1:/+g' `
     ;;
 esac
@@ -1173,7 +1174,7 @@ case "$host" in
     XDRLIBNAME='libs/xdr.a'
     MENUSOBJS=WOBJS
     BLPR_SCRIPTS=
-    SED_CYGDRIVE='$(CYGDRIVE)'
+    # with cygwin we keep /cygdrive/ SED_CYGDRIVE='$(CYGDRIVE)'
     IMPPREF=B
     IMPENV=env.o
     # want to build f2c comand 
