@@ -335,6 +335,7 @@
         ::msgcat::mcset fr "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset fr "fr locale (fr)" "Français (fr)"
         ::msgcat::mcset fr "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset fr "es locale (es)" "Español (es)"
         ::msgcat::mcset fr "it locale (it)" "Italiano (it)"
         ::msgcat::mcset fr "no locale (no)" "Norsk (no)"
         ::msgcat::mcset fr "pl locale (pl)" "Polski (pl)"

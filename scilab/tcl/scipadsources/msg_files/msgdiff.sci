@@ -76,7 +76,7 @@ function report=msgdiff(msgfile1,msgfile2)
   mclose(fd)
   
 //unused strings
-  disp("Finding unused entries in" +msgfile2+"...")
+  disp("Finding unused entries in " +msgfile2+"...")
   j=j+1; report(j)=""; 
   j=j+1; report(j)="Unused strings in file "+msgfile2+":"; 
   section1=""

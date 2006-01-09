@@ -16,13 +16,15 @@
                     Swedish translation by Gunnar Lindholm 2005.\n\
                     Norwegian translation by Torbjørn Pettersen 2005.\n\
                     German translation by Dirk Reusch 2005.\n\
-                    Polish translation by Bartosz Kosiorek 2005."
+                    Polish translation by Bartosz Kosiorek 2005.\n\
+                    Spanish translation by Juan Nicolás Quesada 2006"
 
 # menues.tcl 
   # locale names (common)
         ::msgcat::mcset eng "de locale (de)" "Deutsch (de)"
         ::msgcat::mcset eng "fr locale (fr)" "Français (fr)"
         ::msgcat::mcset eng "eng locale (eng)" "English (eng)"
+        ::msgcat::mcset eng "es locale (es)" "Español (es)"
         ::msgcat::mcset eng "it locale (it)" "Italiano (it)"
         ::msgcat::mcset eng "no locale (no)" "Norsk (no)"
         ::msgcat::mcset eng "pl locale (pl)" "Polski (pl)"

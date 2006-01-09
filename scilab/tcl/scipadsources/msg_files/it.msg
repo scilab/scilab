@@ -254,7 +254,8 @@
                     François Vogel (in particolare il debugger) 2004-2005.\n\
                     Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n  \
                     polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
-                    Lindholm 2005; \n   tedesco, Dirk Reusch 2005."
+                    Lindholm 2005; \n   tedesco, Dirk Reusch 2005; \n  \
+                    spagnolo, Juan Nicolás Quesada 2006."
 
 
 # infomessages.tcl
@@ -382,6 +383,7 @@
 ::msgcat::mcset it "de locale (de)" "Deutsch (de)"
 ::msgcat::mcset it "fr locale (fr)" "Français (fr)"
 ::msgcat::mcset it "eng locale (eng)" "English (eng)"
+::msgcat::mcset it "es locale (es)" "Español (es)"
 ::msgcat::mcset it "it locale (it)" "Italiano (it)"
 ::msgcat::mcset it "no locale (no)" "Norsk (no)"
 ::msgcat::mcset it "pl locale (pl)" "Polski (pl)"
