@@ -7,7 +7,7 @@
 mode(-1);
 clear
 
-test1 =  ( datenum(2006,1,4) == -732681 );
+test1 =  ( datenum(2006,1,4) == 732681 );
 
 if test1 then
 	affich_result(%T,1711);
