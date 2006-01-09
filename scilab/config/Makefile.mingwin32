@@ -1,0 +1,64 @@
+# Copyright ENPC 
+
+FFLAGS = $(FC_OPTIONS)
+CFLAGS = $(CC_OPTIONS)
+
+RESOURCES= routines/wsci/Rscilab.o
+DLL_NAME =LibScilab
+DLL_NAME1 =bin/LibScilab
+
+# scilex-lib
+
+bin/scilex bin/scilex.exe : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME1).a
+	@$(ECHO) ------- Building $@ --------
+	@$(CC)  -mconsole -o bin/scilex.exe libs/scimain.o \
+		$(RESOURCES) $(DLL_NAME1).a $(WINLIBS)  --enable-stdcall-fixup
+
+# with gcc -mno-cygwin et  f2c 
+
+$(DLL_NAME1).dll : $(DLL_NAME1).def  
+	@x=1;if test -f $(DLL_NAME1).dll; then  \
+		x=`find $(MAINSCI) $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
+		-newer $(DLL_NAME1).dll  -print | wc -l `; \
+	fi;\
+	if test $$x -ne 0; then \
+		$(RM) $@; \
+		$(ECHO) ------- Building $@ --------; \
+		$(LD) --shared -s -o $(DLL_NAME1).dll $(DLL_NAME1).def \
+			$(MAINSCI) $(DEFAULTS) $(RESOURCES) \
+			$(LIBR) -lg2c $(WINLIBS)  ; \
+	else \
+		echo $(DLL_NAME1) is up to date ; \
+	fi
+
+ECHO=echo
+NM=nm 
+SED=sed
+
+$(DLL_NAME1).def : $(MAINSCI) $(DEFAULTS) $(RESOURCES) $(LIBR) 
+	@$(ECHO) ------- Building $@ --------
+	@$(ECHO) LIBRARY $(DLL_NAME) > $*.def
+	@$(ECHO) EXPORTS >> $*.def
+	@cat libs/libg2c.def  >> $*.def
+	@$(NM) $^ > Defs
+	@$(SED) -n '/^........ [BCDRT] _/s/^........ [BCDRT] _/ /p' Defs >> $*.def
+	@$(RM) Defs
+
+$(DLL_NAME1).a : $(DLL_NAME1).dll $(DLL_NAME1).def 
+	@$(ECHO) ------- Building $@ --------
+	@dlltool -k --as as --dllname $(DLL_NAME).dll \
+		--def $(DLL_NAME1).def --output-lib $(DLL_NAME1).a ;
+
+# XXXXX attention on veut un --whole-archive pour lg2c 
+
+scilex-force : 
+	$(CC)  -mconsole -o bin/scilex.exe libs/scimain.o \
+	$(RESOURCES) $(DLL_NAME1).a $(WINLIBS)  --enable-stdcall-fixup
+
+bin/sci.exe : 
+	$(CC) -mconsole -o bin/sci.exe  \
+		$(MAINSCI) $(DEFAULTS) $(RESOURCES) $(LIBR) -lg2c $(WINLIBS) 
+
+
+
+
