@@ -285,7 +285,7 @@ proc createmenues {} {
     set msgFiles [lsort [glob -nocomplain -tails -directory $msgsdir *.msg]]
     foreach m $msgFiles {
         set l [file rootname $m]
-	if {l != ""} {
+	if { $l != ""} {
         eval "$pad.filemenu.options.locale add radiobutton \
             [me [concat $l locale ($l)]] \
             -variable lang -value $l -command relocalize"
