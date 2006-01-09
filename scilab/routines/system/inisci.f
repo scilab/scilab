@@ -118,6 +118,7 @@ c     .  standard i/o initialization
 c     .  ----------------------------
 c      call iset(nunit,0,unit,1)
 c     .  rte = unit number for terminal input
+      err=0
       if(ini1.ne.-3) then
          rte = 5
          mode(1)=0
