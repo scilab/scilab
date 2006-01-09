@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.133 $)dnl
+AC_REVISION($Revision: 1.134 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1167,7 +1167,7 @@ case "$host" in
   *-*-cygwin* )
     SCILABSCRIPT=scilab-gcwin32.g
     PERIFILE=periWin.o
-    MAIN='mainwin95.o'
+    MAIN='mainsci.o'
     GUILIB='wsci'
     XDRLIB='xdr'
     XDRLIBNAME='libs/xdr.a'
@@ -1252,7 +1252,7 @@ case "$host" in
     LD=gcc
     LD_LDFLAGS="-mconsole --enable-stdcall-fixup"
     WINXFLAGS='-I../xdr'
-    MAKEFILE_TARGET=Makefile.gcwin32
+    MAKEFILE_TARGET=Makefile.mingwin32
     ;;
 # FreeBSD  systems (not supported by INRIA)
   *-*-freebsd*)
