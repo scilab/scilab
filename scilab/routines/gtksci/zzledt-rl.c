@@ -104,6 +104,9 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
      fd=fileno(stdin);
      tty = isatty(fileno(stdin));
      init_flag = FALSE;
+#if defined(__CYGWIN32__)
+     tty=1 ; /* FIXME cygwin */
+#endif 
    }
 
    set_is_reading(TRUE);
