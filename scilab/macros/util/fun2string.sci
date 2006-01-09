@@ -233,7 +233,6 @@ function [txt,ilst]=cod2sci(lst,ilst)
       lhs=size(op,2)
       LHS=[]
       iind=0
-
       for k=1:lhs
 	name=op(1,k)
 	rhs=evstr(op(2,k))
@@ -416,14 +415,12 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	dqote='""'
 	if lst(ilst+1)(1)=='20'&lst(ilst+1)(2)=='deff' then
 	  st=op(4:$)
-	  txt=catcode(txt,['function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
-			   indentsci(st(:))
-			   'endfunction'
-			   ''])
-	  lst(ilst+1)(1)='0'
-	  lst(ilst+2)(1)='0'
-	  stk(top)=list('','-2'),top=top-1
-	  ilst=ilst+3
+	  fn='function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
+	  if stripblanks(st)<>'' then fn=[fn;st],end
+	  fn=[fn;'endfunction']
+	  txt=catcode(txt,fn)
+	  lst(ilst+1)(1)='0'; ilst=ilst+1;// ignore deff (20)
+	  stk(top)=list('','-2'),
 	else
 	  m=evstr(op(2))
 	  n=evstr(op(3))
@@ -447,7 +444,11 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	top=top+1
 	stk(top)=list(op(4),'0')
       case '31' then //comment into multi line matrix definition a=[...
-	stk(top)(1)=stk(top)(1)+'; //'+op(2)
+	if top==0 then 
+	  txt=[txt;'//'+op(2)]
+	else
+	  stk(top)(1)=stk(top)(1)+'; //'+op(2)
+	end
       else
 	ok=%f
       end
