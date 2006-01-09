@@ -348,37 +348,87 @@ struct _GTK_locator_info {
 
 static GTK_locator_info info = { -1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0};
 
+static GdkEventButton last_press={0};/* initialized to zero */
 
 static gboolean locator_button_press(GtkWidget *widget,
 				     GdkEventButton *event,
 				     BCG *gc)
 {
+  int id;
+  switch (event->type) 
+    {
+    case GDK_2BUTTON_PRESS : 
+      /* fprintf(stderr,"In the double \n"); */
+      /* extra event for double click */
+      id= event->button-1 +10; /* double click code */
+      break;
+    case GDK_3BUTTON_PRESS : return;break;
+    case GDK_BUTTON_PRESS :
+    default: 
+      last_press = *event;
+      id= event->button-1; /* press code */
+      break;
+    }
   if ( info.sci_click_activated == 0) 
     {
-      PushClickQueue( gc->CurWindow,event->x, event->y,event->button-1 ,0,0);
+      PushClickQueue( gc->CurWindow,event->x, event->y,id,0,0);
     }
   else 
     {
       info.ok = 1; info.win=  gc->CurWindow; info.x = event->x; info.y = event->y; 
-      info.button = event->button -1;
+      info.button = id;
       gtk_main_quit();
     }
   return TRUE;
 }
 
+/* here we detect if the release can be considered 
+ * to be the release associated to a click (press-release)
+ * In that case we return a click i.e a click will 
+ * generate at scilab level two events a press and a click !
+ * the release is not returned. 
+ * a double click will generate : press/click/press/double_click/click
+ *
+ */
+
 static gboolean locator_button_release(GtkWidget *widget,
 				       GdkEventButton *event,
 				       BCG *gc)
 {
-  if ( info.sci_click_activated == 0 || info.getrelease == 0 ) 
+  static GdkDisplay *display=NULL;
+  if ( display == NULL) display=gdk_display_get_default();
+  if ((event->time < (last_press.time + 2*display->double_click_time)) &&
+      (event->window == last_press.window) &&
+      (event->button == last_press.button) &&
+      (ABS (event->x - last_press.x) <= display->double_click_distance) &&
+      (ABS (event->y - last_press.y) <= display->double_click_distance))
     {
-      PushClickQueue( gc->CurWindow,event->x, event->y,event->button-6 ,0,1);
+      /* fprintf(stderr,"This is a click\n"); */
+      /* return a click */
+      if ( info.sci_click_activated == 0 ) 
+	{
+	  PushClickQueue( gc->CurWindow,event->x, event->y,event->button+2 ,0,0);
+	}
+      else 
+	{
+	  info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
+	  info.button = event->button +2 ;
+	  gtk_main_quit();
+	}
     }
   else 
     {
-      info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
-      info.button = event->button -6;
-      gtk_main_quit();
+      /* return a release */
+      if ( info.sci_click_activated == 0 || info.getrelease == 0 ) 
+	{
+	  PushClickQueue( gc->CurWindow,event->x, event->y,event->button-6 ,0,1);
+	}
+      else 
+	{
+	  info.ok =1 ; info.win=  gc->CurWindow; info.x = event->x;  info.y = event->y;
+	  info.button = event->button -6;
+	  gtk_main_quit();
+	}
     }
   return TRUE;
 }
@@ -416,23 +466,40 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
   /* modified 30/10/02 to get cursor location and register  key_press_event in queue' SS */
   gint x,y; 
   GdkModifierType state;
-  if (info.getkey == 1 && (event->keyval >= 0x20) && (event->keyval <= 0xFF))
+
+  if ( info.sci_click_activated == 0 || info.getkey == 0 ) 
     {
-      /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
-      if ( event->state != GDK_CONTROL_MASK && event->state != GDK_MOD1_MASK ) 
+      gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
+      PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,0);      
+    }
+  else 
+    {
+      /* fprintf(stderr,"key = %d\n",event->keyval); */
+      if ( (event->keyval >= 0x20) && (event->keyval <= 0xFF))
 	{
+	  /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
 	  gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
 	  info.x=x ; info.y=y;
 	  info.ok =1 ;  info.win=  gc->CurWindow; 
-	  info.button = event->keyval;
+	  /* This is not good we should return modifiers 
+	   * as extra data 
+	   */
+	  /* 1000 + key : Ctrl-key 
+	   * 2000 + key : Ctrl-Alt-key 
+	   * 3000 + key : Alt-key 
+	   */
+	  if ( event->state & GDK_CONTROL_MASK ) 
+	    {
+	      info.button = ( event->state & GDK_MOD1_MASK ) ? 2000: 1000;
+	    }
+	  else
+	    {
+	      info.button = ( event->state & GDK_MOD1_MASK ) ? 3000: 0;
+	    }
+	  info.button += event->keyval ;
 	  gtk_main_quit();
 	}
     }
-  else {
-    gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
-    PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,1);
-  }
-
   return FALSE; /* want also the menu to receive the key pressed */
 }
 
@@ -655,7 +722,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
   info.getrelease = getrelease ; 
   info.getmouse   = getmouse ;
   info.getmen     = dyn_men;
-  info.getkey     = 0; /* do not check keys in xclick */
+  info.getkey     = 1; /*  check keys in xclick */
   info.sci_click_activated = 1;
 
   if ( info.getmen == 1 && info.timer == 0 ) 
@@ -1308,7 +1375,7 @@ static void xset_dashstyle(integer *value, integer *xx, integer *n)
     }
   else 
     {
-      static gchar buffdash[18];
+      gint8 buffdash[18];
       int i;
       for ( i =0 ; i < *n ; i++) buffdash[i]=xx[i];
       gdk_gc_set_dashes(ScilabXgc->wgc, 0, buffdash, *n);
@@ -2794,15 +2861,15 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 { 
   struct BCG *NewXgc ;
 #ifdef WITH_TK
-  integer ne=7, menutyp=2, ierr;
+  integer ne=11, menutyp=2, ierr;
   char *EditMenus[]={"_Select figure as current","_Redraw figure",\
-                     "_Erase figure",/*"_Copy object","_Paste object",\
-                     "_Move object","_Delete object",*/"_Figure properties",\
+                     "_Erase figure","_Copy object","_Paste object",\
+                     "_Move object","_Delete object","_Figure properties",\
                      "_Current axes properties","Start _entity picker",\
                      "Stop e_ntity picker"};
-  /*integer ni=6;
+  integer ni=6;
   char *InsertMenus[]={"--- _Line","^v^  _Polyline","---> _Arrow",\
-                       "_Text","[]   _Rectangle","O   _Circle"};*/
+                       "_Text","[]   _Rectangle","O   _Circle"};
 #else
   integer ne=3, menutyp=2, ierr;
   char *EditMenus[]={"_Select as current","_Redraw figure","_Erase figure"};
@@ -2844,7 +2911,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   EntryCounter++;
   AddMenu(&WinNum,"_Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
 #ifdef WITH_TK
-  /*AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);*/
+  AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);
 #endif
   gdk_flush();
 }
