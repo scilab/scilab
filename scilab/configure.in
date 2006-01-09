@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.132 $)dnl
+AC_REVISION($Revision: 1.133 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1164,8 +1164,53 @@ case "$host" in
     ;;
 
 # CYGWIN32 for Windows 9X/NT/XP 
+  *-*-cygwin* )
+    SCILABSCRIPT=scilab-gcwin32.g
+    PERIFILE=periWin.o
+    MAIN='mainwin95.o'
+    GUILIB='wsci'
+    XDRLIB='xdr'
+    XDRLIBNAME='libs/xdr.a'
+    MENUSOBJS=WOBJS
+    BLPR_SCRIPTS=
+    SED_CYGDRIVE='$(CYGDRIVE)'
+    IMPPREF=B
+    IMPENV=env.o
+    # want to build f2c comand 
+    # which is required for building fortran dlls 
+    # which can be loaded into scilab 
+    F2C_SUBDIR=f2c/src
+    # just *-so tests 
+    EXAMPLES_TESTS='$(SUBDIRS1)'
+    GCC=yes
+    CC=gcc 
+    CC_OPTIONS=' -mieee-fp -O2 -DNDEBUG  -Wall'
+      if test "$enable_debug" = yes; then 
+	CC_OPTIONS=' -g   -Wall'
+      fi
+    CC_LDFLAGS=
+    FC=g77
+    if test "$WITH_G77" = yes; then
+      FC=g77
+    fi 
+    FC_OPTIONS="-O2 "
+    FC_OPTIONS_O0=
+      if test "$enable_debug" = yes; then 
+        FC_OPTIONS="-g "
+      fi
+    FC_LDFLAGS=
+    if test "$with_f2c" = yes; then
+      # ignore with_f2c here       
+      FC=g77
+    fi    
+    LD=gcc
+    #LD_LDFLAGS="-mconsole --enable-stdcall-fixup"
+    WINXFLAGS='-I../xdr'
+    MAKEFILE_TARGET=Makefile.gcwin32
+    ;;
+# CYGWIN32 for Windows 9X/NT/XP 
 # mingw32 is detected 
-  *-*-cygwin* |   *-*-mingw32*)
+   *-*-mingw32*)
     SCILABSCRIPT=scilab-gcwin32.g
     PERIFILE=periWin.o
     MAIN='mainwin95.o'
@@ -1756,7 +1801,7 @@ TCLTKHELP=
 if test "$with_tk" != no; then
 
 	TCLTKHELP=tksci
-	
+
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
@@ -1813,12 +1858,12 @@ if test "$with_tk" != no; then
 	case "$host" in
 		*-*-darwin*)
 		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
-	;;
+		;;
+		*-*-cygwin* |   *-*-mingw32*)
+		GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
 	esac 
 
 fi
-
-
 
 #################
 ## GTK
