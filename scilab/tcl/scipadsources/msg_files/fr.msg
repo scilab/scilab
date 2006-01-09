@@ -209,7 +209,8 @@
                     Traduction en Suédois par Gunnar Lindholm 2005.\n\
                     Traduction en Norvégien par Torbjørn Pettersen 2005.\n\
                     Traduction en Allemand par Dirk Reusch 2005.\n\
-                    Traduction en Polonais par Bartosz Kosiorek 2005."
+                    Traduction en Polonais par Bartosz Kosiorek 2005.\n\
+                    Traduction en Espagnol par Juan Nicolás Quesada 2006."
 
 
 # infomessages.tcl
