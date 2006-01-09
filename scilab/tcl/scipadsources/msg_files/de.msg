@@ -400,6 +400,7 @@
 ::msgcat::mcset de "de locale (de)" "Deutsch (de)"
 ::msgcat::mcset de "fr locale (fr)" "Français (fr)"
 ::msgcat::mcset de "eng locale (eng)" "English (eng)"
+::msgcat::mcset de "es locale (es)" "Español (es)"
 ::msgcat::mcset de "it locale (it)" "Italiano (it)"
 ::msgcat::mcset de "no locale (no)" "Norsk (no)"
 ::msgcat::mcset de "pl locale (pl)" "Polski (pl)"
