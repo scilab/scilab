@@ -7,7 +7,7 @@
   <DATE>2001</DATE>
   <SHORT_DESCRIPTION name="lsq"> linear least square problems.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>X=lsq(A,B)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>X=lsq(A,B [,tol])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -24,6 +24,17 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive scalar,  used to determine the effective rank of A
+	    (defined as the order of the largest leading triangular 
+          submatrix R11 in the QR factorization with pivoting of A,
+          whose estimated condition number < 1/tol. The tol default value is
+	    set to <VERB>sqrt(%eps)</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+  
+      <PARAM_ITEM>
         <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex (n x p) matrix</SP>
@@ -37,7 +48,8 @@
     solution with at at most <VERB>rank(A)</VERB>  nonzero components per column.</P>
   </DESCRIPTION>
   <SECTION label="References">
-    <P><VERB>lsq</VERB> function is  based on the LApack functions DGELSY for real matrices and ZGELSY for complex matrices.</P>
+    <P><VERB>lsq</VERB> function is  based on the LApack functions DGELSY for
+      real matrices and ZGELSY for complex matrices.</P> 
   </SECTION>
   <EXAMPLE>
 <![CDATA[
