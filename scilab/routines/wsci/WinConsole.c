@@ -13,7 +13,8 @@ char ScilexConsoleName[MAX_PATH];
 static BOOL WindowMode;
 static int Windows_Console_State;/* 0 Hide 1 Show */
 /*-----------------------------------------------------------------------------------*/
-typedef  HWND (WINAPI * GetConsoleWindowPROC) (void); 
+typedef  HWND (WINAPI * GetConsoleWindowPROC) (void);
+typedef  UINT (WINAPI * GetWindowModuleFileNamePROC) (HWND,LPTSTR,UINT);
 /*-----------------------------------------------------------------------------------*/
 void RenameConsole(void)
 {
@@ -145,9 +146,9 @@ int FindFreeScilexNumber(void)
 		char FileName[MAX_PATH+1];
 		strcpy(FileName,"");
 
-		NbChar=GetWindowModuleFileName(hScilexN,FileName,MAX_PATH);
+		NbChar=ScilabGetWindowModuleFileName(hScilexN,FileName,MAX_PATH);
 		
-		if (NbChar)
+		if (NbChar>0)
 		{
 			Number_of_Scilex++;
 			wsprintf(NameScilex,"%s (%d)",VERSION,Number_of_Scilex);
@@ -250,5 +251,33 @@ HWND ScilabGetConsoleWindow(void)
 	FreeLibrary( Kernel32Dll ); 
 
 	return hWndReturn;
+}
+/*-----------------------------------------------------------------------------------*/
+UINT ScilabGetWindowModuleFileName(HWND hwnd,LPTSTR lpszFileName,UINT cchFileNameMax)
+{
+	UINT UintReturn=0;
+	HINSTANCE User32Dll = LoadLibrary ("user32"); 
+
+	if ( User32Dll ) 
+	{ 
+		GetWindowModuleFileNamePROC myGetWindowModuleFileName = (GetWindowModuleFileNamePROC) GetProcAddress(User32Dll,"GetWindowModuleFileName"); 
+
+		if ( myGetWindowModuleFileName ) 
+		{ 
+			UintReturn=myGetWindowModuleFileName(hwnd,lpszFileName,cchFileNameMax);
+		} 
+		else 
+		{ 
+			UintReturn=-1;
+		} 
+	}
+	else
+	{
+		UintReturn=-1;
+	}
+
+	FreeLibrary( User32Dll ); 
+
+	return UintReturn;
 }
 /*-----------------------------------------------------------------------------------*/
