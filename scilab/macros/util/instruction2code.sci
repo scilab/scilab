@@ -107,9 +107,17 @@ if typeof(I)=="selectcase" then
   
   // SELECT
   C="select "+expression2code(I.expression(1))
-  if size(I.expression)==2 | prettyprint then // Add EOL after select if needed 
-    C = cat_code(C,"")
+
+  if size(I.expression)==1 // Not EOL and not comment after the expression 
+    if prettyprint then
+      C = cat_code(C,"") // Add EOL after expression 
+    end
+  else
+    for i=2:size(I.expression)
+        C=cat_code(C," "+ instruction2code(I.expression(i)))
+    end
   end
+ 
 
   // CASES
   if size(I.cases)<>0 then
@@ -128,7 +136,6 @@ if typeof(I)=="selectcase" then
       C = format_txt(C,I.cases(k).then($),prettyprint); // Add EOL after last then statement if needed
     end
   end
-
   // ELSE
   if size(I.else)<>0 then
   C=cat_code(C,"  else")
@@ -253,12 +260,7 @@ if typeof(I)=="sup_equal" then
       I.sup_instr(1)=null()
     elseif typeof(I.sup_instr(1))=="equal" then //Instruction is acomment  
       if typeof(I.sup_instr(1).expression)=="funcall" then 
-	if I.sup_instr(1).expression.name=="%comment" then
-	  C($+1)=instruction2code(I.sup_instr(1))
-	  I.sup_instr(1)=null()
-	else
 	  break
-	end
       end
     end
   end

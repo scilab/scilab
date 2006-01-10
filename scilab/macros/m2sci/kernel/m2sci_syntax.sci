@@ -23,23 +23,23 @@ batch=%t
 k=0
 first_ncl=[]
 while k<size(txt,'r')
-k=k+1
-tk=txt(k)
+  k=k+1
+  tk=txt(k)
   if part(stripblanks(tk),1:9) == 'function ' | part(stripblanks(tk),1:9) == 'function[' then
     eolind=strindex(tk,";")
-      if eolind<>[] then
-        kc=isacomment(tk)
-          if kc<>0 then // Current line has or is a comment
+    if eolind<>[] then
+      kc=isacomment(tk)
+      if kc<>0 then // Current line has or is a comment
       // If function prototype immediately followed by a comment on same line
-            if stripblanks(part(tk,eolind(1):kc))<>'' then
-              txt=[txt(1:k-1);part(tk,1:eolind(1)-1);part(tk,eolind(1)+1:length(tk));txt(k+1:size(txt,"*"))]
-            tk=part(tk,1:eolind(1)-1)
-            end
-          elseif stripblanks(part(tk,eolind(1)+1:length(tk)))<>'' then
-            txt=[txt(1:k-1);part(tk,1:eolind(1)-1);part(tk,eolind(1)+1:length(tk));txt(k+1:size(txt,"*"))]
-            tk=part(tk,1:eolind(1)-1) 
-          end
-      end      
+        if stripblanks(part(tk,eolind(1):kc))<>'' then
+          txt=[txt(1:k-1);part(tk,1:eolind(1)-1);part(tk,eolind(1)+1:length(tk));txt(k+1:size(txt,"*"))]
+          tk=part(tk,1:eolind(1)-1)
+        end
+      elseif stripblanks(part(tk,eolind(1)+1:length(tk)))<>'' then
+        txt=[txt(1:k-1);part(tk,1:eolind(1)-1);part(tk,eolind(1)+1:length(tk));txt(k+1:size(txt,"*"))]
+        tk=part(tk,1:eolind(1)-1) 
+      end
+    end      
   end
 end
 
@@ -97,7 +97,6 @@ helppart=[],endofhelp=%f
 
 for k=1:n
   tk=txt(k)
-  
   // ifthenelse expression like if (x==1)t=2 becomes if (x==1) t=2
   // Add a blank between parenthesize expression and the first instruction
   kif=strindex(tk,"if")
@@ -281,7 +280,7 @@ if kc<>0 then // Current line has or is a comment
     end
     com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
   else
-    com=";%comment("+quote+com+quote+")"
+    com=";//"+com
   end
   tkbeg=part(tk,1:kc-1)
   
@@ -364,7 +363,7 @@ else // Current line has not and is not a comment line
     end
   else
     if ~endofhelp then helppart=[helppart;' '],end
-    txt(k)='%comment('+quote+' '+quote+')'
+    txt(k)="// "
   end
 else // Current line is a line after function keyword
 endofhelp=%t
@@ -481,4 +480,3 @@ else
 end
 
 endfunction
-
