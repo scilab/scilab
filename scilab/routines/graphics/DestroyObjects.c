@@ -396,10 +396,11 @@ DestroyTitle (sciPointObj * pthis)
 int
 DestroyLegend (sciPointObj * pthis)
 {
-  FREE(pLEGEND_FEATURE (pthis)->pptabofpointobj);
-  FREE (pLEGEND_FEATURE (pthis)->text.ptextstring);
-  FREE (pLEGEND_FEATURE (pthis)->user_data);
-  pLEGEND_FEATURE (pthis)->size_of_user_data = 0;
+  sciLegend * ppLegend = pLEGEND_FEATURE (pthis) ;
+  FREE(ppLegend->pptabofpointobj);
+  FREE (ppLegend->text.ptextstring);
+  FREE (ppLegend->user_data);
+  ppLegend->size_of_user_data = 0;
 
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
@@ -715,10 +716,11 @@ sciUnCompound (sciPointObj * pobj)
     {
       /* we delete this son to this */ 
       pobjson = psons->pointobj;
+      /* take the previous sons before the current is freed */
+      psons = psons->pprev;
       sciDelThisToItsParent (pobjson, pobj);
       /* and link to its old parent */
       sciAddThisToItsParent (pobjson, pparent);
-      psons = psons->pprev;
     }
 
   sciSetCurrentObj(pparent); /* pparent is the new current object */
