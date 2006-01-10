@@ -4,6 +4,11 @@ function num = tk_choose(varargin)
 
 ListArg = varargin;
 
+if with_gtk()== %t then 
+  num=x_choose(ListArg(:));
+  return 
+end
+
 global tk_choose_num;
 
 tk_choose_num = -1;
