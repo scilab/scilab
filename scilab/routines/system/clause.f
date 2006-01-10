@@ -218,12 +218,18 @@ c    .    get the following line
          goto 41
       endif
 c     looking for the "case" keyword
-      if(sym.eq.name.and.eqid(syn,cas)) then
-         rstk(pt)=807
-         if(comp(1).ne.0) then
-            call compcl(0)
-            if(err.gt.0) return
-         endif
+
+      if(sym.eq.name) then
+         if (eqid(syn,cas)) then
+            rstk(pt)=807
+            if(comp(1).ne.0) then
+               call compcl(0)
+               if(err.gt.0) return
+            endif
+         else
+            call error(35)
+            return
+         endif    
       elseif(lin(lpt(3)-2).eq.blank) then
          sym=semi
          lpt(4)=lpt(3)-1
