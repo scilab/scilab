@@ -5151,7 +5151,7 @@ clear;lines(0);
    a.isoview="on"; // isoview mode
    xrect([-2 0.25 4 0.5]);
    a.children(1).fill_mode="on";
-   a.axes_visibles="off";
+   a.axes_visible="off";
    a.children(1).data=[-2 0.25 -1 4 0.5];
    a.children(2).data=[-4 0.5 1 8 1];
    x=2*%pi*(0:7)/8;
@@ -5210,7 +5210,7 @@ clear;lines(0);
   drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
   a2=get("hdl")
   a2.sub_tics=0;
-  a2.tics_segments="off";
+  a2.tics_segment="off";
   a2.ytics_coord=4;
   
   drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
@@ -5945,7 +5945,7 @@ clear;lines(0);
     plot2d() //create an axes entity
     subplot(212)
     plot3d1() //create a second axes entity
-    a.grids=[5 5 5]; // setting other model's properties
+    a.grid=[5 5 5]; // setting other model's properties
     clf()
     t=0:0.1:5*%pi; 
     plot2d(sin(t),cos(t),t/10) 
@@ -6972,7 +6972,8 @@ h=gce(); //get handle on current entity (here the surface)
 a=gca(); //get current axes
 a.rotation_angles=[40,70];
 a.grid=[1 1 1]; //make grids
-a.data_bounds=[-6,6;6,-1;0,5];
+//a.data_bounds=[-6,6;6,-1;0,5];
+a.data_bounds=[-6,-1,0;6,6,5];
 a.axes_visible="off"; //axes are hidden
 a.axes_bounds=[.2 0 1 1];
 h.color_flag=1; //color according to z
@@ -7408,7 +7409,8 @@ a=gca(); //get current axes
 a.rotation_angles=[40,70]; 
 a.grid=[1 1 1]; 
 //make grids 
-a.data_bounds=[-6,6;6,-1;0,5]; 
+//a.data_bounds=[-6,6;6,-1;0,5]; 
+a.data_bounds=[-6,-1,0;6,6,5];
 a.axes_visible="off"; 
 //axes are hidden a.axes_bounds=[.2 0 1 1]; 
 f=get("current_figure");
@@ -9676,6 +9678,7 @@ clear;lines(0);
  g=make_graph('foo',1,17,ta,he);
  g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
  g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+ get("figure_style");
  edit_graph(g)
 
 
@@ -12091,8 +12094,8 @@ clear;lines(0);
 t1=[2004 06 10 17 00 12.345]
 t2=[2004 06 10 17 01 13.965]
 E1=etime(t2,t1)
-t1=[2004 06 24 162 5 10 17 00 12.345]
-t2=[2004 06 24 162 5 10 17 01 13.965]
+t1=[2004 06 24 162 5 10 17 00 12 345]
+t2=[2004 06 24 162 5 10 17 01 13 965]
 E2=etime(t2,t1)
 
 xdel(winsid())
@@ -14387,15 +14390,15 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-  wavread('SCI/demos/sound/chimes.wav','size')
+  wavread('SCI/demos/signal/sound/chimes.wav','size')
 
-  [y,Fs,bits]=wavread('SCI/demos/sound/chimes.wav');Fs,bits
+  [y,Fs,bits]=wavread('SCI/demos/signal/sound/chimes.wav');Fs,bits
   subplot(2,1,1)
   plot2d(y(:,1))
   subplot(2,1,2)
   plot2d(y(:,2))
   
-  y=wavread('SCI/demos/sound/chimes.wav',[1 5]) //the first five samples
+  y=wavread('SCI/demos/signal/sound/chimes.wav',[1 5]) //the first five samples
 
 
 xdel(winsid())
@@ -15226,24 +15229,25 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>savehistory</LINK>
-    </SEE_ALSO_ITEM>
+  //<SEE_ALSO>
+  //  <SEE_ALSO_ITEM>
+  //    <LINK>savehistory</LINK>
+  //  </SEE_ALSO_ITEM>
 
-    <SEE_ALSO_ITEM>
-      <LINK>resethistory</LINK>
-    </SEE_ALSO_ITEM>
+  //  <SEE_ALSO_ITEM>
+  //    <LINK>resethistory</LINK>
+  //  </SEE_ALSO_ITEM>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gethistory</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  //  <SEE_ALSO_ITEM>
+  //    <LINK>gethistory</LINK>
+  //  </SEE_ALSO_ITEM>
+  //</SEE_ALSO>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>xdel(winsid())
+  //<AUTHORS>
+   // <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  //</AUTHORS>
+//</MAN>
+xdel(winsid())
 
 //====================================================
 // ../man/eng/utilities/make_index.xml
@@ -15306,24 +15310,25 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>loadhistory</LINK>
-    </SEE_ALSO_ITEM>
+  //<SEE_ALSO>
+  //  <SEE_ALSO_ITEM>
+  //    <LINK>loadhistory</LINK>
+  //  </SEE_ALSO_ITEM>
 
-    <SEE_ALSO_ITEM>
-      <LINK>resethistory</LINK>
-    </SEE_ALSO_ITEM>
+  //  <SEE_ALSO_ITEM>
+  //    <LINK>resethistory</LINK>
+  //  </SEE_ALSO_ITEM>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gethistory</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  //  <SEE_ALSO_ITEM>
+  //    <LINK>gethistory</LINK>
+  //  </SEE_ALSO_ITEM>
+  //</SEE_ALSO>
 
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>xdel(winsid())
+  //<AUTHORS>
+  //  <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  //</AUTHORS>
+//</MAN>
+xdel(winsid())
 
 //====================================================
 // ../man/eng/utilities/sci2exp.xml
