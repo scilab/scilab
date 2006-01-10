@@ -53,11 +53,7 @@ int C2F (deletewin) (integer * number)
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
-/****************************************
- * copy graph window to clipboard 
- * with the EnHmetafile format (win95/winNT)
- ****************************************/
-void NewCopyClip (struct BCG *ScilabGC)
+void CopyToClipboardEMF (struct BCG *ScilabGC)
 {
   TCHAR   szDesc[] = "Scilab\0Image\0\0";
   LPGW lpgw;
@@ -66,60 +62,61 @@ void NewCopyClip (struct BCG *ScilabGC)
   HANDLE hmf;
    
   HWND hwnd;
-  HDC hdc;
+  HDC hdcEMF=NULL;
+	HDC hDCtmp=NULL;
   integer SaveCurrentWindow=0;
 
   SaveCurrentWindow=GetCurrentFigureWindows();
+
+	lpgw = ScilabGC->lpgw;
+	hwnd = ScilabGC->CWindow;
 
   if (Getscig_buzyState() == 1) return;
   Setscig_buzyState(1);
 
   SetCurrentFigureWindows (ScilabGC->CurWindow);
-  lpgw = ScilabGC->lpgw;
-  hwnd = ScilabGC->CWindow;
 
-  /* view the window */
-  if (IsIconic (hwnd)) ShowWindow (hwnd, SW_SHOWNORMAL);
-  BringWindowToTop (hwnd);
-  UpdateWindow (hwnd);
-  
-  hdc = CreateEnhMetaFile (NULL, NULL, NULL, szDesc);
- 
-  GetClientRect (hwnd, &rect);
-  SetMapMode (hdc, MM_TEXT);
-  SetTextAlign (hdc, TA_LEFT | TA_BOTTOM);
-  SetWindowExtEx (hdc, rect.right - rect.left,rect.bottom - rect.top, (LPSIZE) NULL);
-  Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+	hDCtmp = TryToGetDC (hwnd);
+	if (hDCtmp) hdcEMF = CreateEnhMetaFile (hDCtmp, NULL, NULL, szDesc);
 
-  
-  scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
-
-	/** fix hdc in the scilab driver **/
+	if (hdcEMF)
 	{
-		HDC hDCtmp=TryToGetDC (hwnd);
+		/* view the window */
+		if (IsIconic (hwnd)) ShowWindow (hwnd, SW_SHOWNORMAL);
+		BringWindowToTop (hwnd);
+		UpdateWindow (hwnd);
+
+		GetClientRect (hwnd, &rect);
+		SetMapMode (hdcEMF, MM_TEXT);
+		SetTextAlign (hdcEMF, TA_LEFT | TA_BOTTOM);
+		SetWindowExtEx (hdcEMF, rect.right - rect.left,rect.bottom - rect.top, (LPSIZE) NULL);
+		Rectangle (hdcEMF, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+		
+		/** fix hdc in the scilab driver **/
 		scig_replay_hdc ('C', ScilabGC->CurWindow, hDCtmp,rect.right - rect.left, rect.bottom - rect.top, 1);
 		ReleaseDC(hwnd,hDCtmp);
+
+		scig_replay_hdc ('C', ScilabGC->CurWindow, hdcEMF,rect.right - rect.left, rect.bottom - rect.top, 1);
+		hmf = CloseEnhMetaFile (hdcEMF);  
+		ReleaseDC(hwnd,hdcEMF);
+
+
+		OpenClipboard (hwnd);
+		EmptyClipboard ();
+		SetClipboardData (CF_ENHMETAFILE, hmf);
+		CloseClipboard ();
 	}
 
-  hmf = CloseEnhMetaFile (hdc);  
-
-  OpenClipboard (hwnd);
-  EmptyClipboard ();
-  SetClipboardData (CF_ENHMETAFILE, hmf);
-  CloseClipboard ();
-
-  SetCurrentFigureWindows (SaveCurrentWindow);
-
+	SetCurrentFigureWindows (SaveCurrentWindow);
   Setscig_buzyState(0);
   return;
-
 }
 /*-----------------------------------------------------------------------------------*/
 /****************************************
  * copy graph window to clipboard 
  * copy a CF_BITMAP to the clipboard 
  ****************************************/
-void CopyClip (struct BCG *ScilabGC)
+void CopyToClipboardBitmap (struct BCG *ScilabGC)
 {
   LPGW lpgw;
   HDC hmemDC;

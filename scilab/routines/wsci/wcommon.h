@@ -158,8 +158,8 @@ extern void  SignalCtrC(void);
 /** wgraph */
 extern void DebugGW (char *fmt, ...);
 extern int C2F(deletewin)(integer *number) ;
-extern void NewCopyClip(struct BCG *ScilabGC);
-extern void CopyClip(struct BCG *ScilabGC);
+extern void CopyToClipboardEMF(struct BCG *ScilabGC);
+extern void CopyToClipboardBitmap(struct BCG *ScilabGC);
 extern int CopyPrint(struct BCG *ScilabGC);
 extern void WriteRegistryGraph(struct BCG *ScilabGC);
 extern void ReadRegistryGraph(struct BCG *ScilabGC);

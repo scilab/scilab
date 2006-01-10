@@ -90,12 +90,12 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      break;
 	    case COPYCLIP:
 	      {
-		NewCopyClip (ScilabGC);
+		CopyToClipboardEMF (ScilabGC);
 		s++;
 	      }
 	      break;
 	    case COPYCLIP1:
-	      CopyClip (ScilabGC);
+	      CopyToClipboardBitmap (ScilabGC);
 	      s++;
 	      break;
 	    case REDRAW:
@@ -1070,12 +1070,12 @@ static void scig_command_scilabgc (int number, void f (struct BCG *))
 /*-----------------------------------------------------------------------------------*/
 void scig_h_copyclip (integer number)
 {
-  scig_command_scilabgc (number, NewCopyClip);
+  scig_command_scilabgc (number, CopyToClipboardEMF);
 }
 /*-----------------------------------------------------------------------------------*/
 void scig_h_copyclip1 (integer number)
 {
-  scig_command_scilabgc (number, CopyClip);
+  scig_command_scilabgc (number, CopyToClipboardBitmap);
 }
 /*-----------------------------------------------------------------------------------*/
 void scig_print (integer number)

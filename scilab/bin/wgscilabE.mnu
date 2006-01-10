@@ -7,8 +7,6 @@
 &File
 	&New ...
 		[NEWFIG]
-	S&ave position
-		[UPDINI]
 	--
 	&Load ...
 		[LOADSCG]xload[EOS]*.scg[EOS]
@@ -22,7 +20,7 @@
 		&Copy to clipboard
 			&EnhMetafile
 				[COPYCLIP]
-			&Metafile + DIB
+			&Bitmap
 				[COPYCLIP1]
 	[EndMenu]
 	--

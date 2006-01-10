@@ -358,11 +358,11 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 						{
 							if ( strcmp(param2,"EMF") == 0 )
 							{
-								NewCopyClip (ScilabGC);
+								CopyToClipboardEMF (ScilabGC);
 							}
 							else
 							{
-								CopyClip (ScilabGC);
+								CopyToClipboardBitmap (ScilabGC);
 							}
 						}
 						else
@@ -469,11 +469,11 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 					  {
 						  if ( strcmp(param2,"EMF") == 0 )
 						  {
-							  NewCopyClip (ScilabGC);
+							  CopyToClipboardEMF (ScilabGC);
 						  }
 						  else
 						  {
-							  CopyClip (ScilabGC);
+							  CopyToClipboardBitmap (ScilabGC);
 						  }
 					  }
 					  else
