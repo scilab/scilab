@@ -2499,8 +2499,9 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 sciPointObj *
 ConstructCompound (long *handelsvalue, int number) /* Conflicting types with definition */
 {
-  sciSons *sons, *sonsnext;
-  sciPointObj *pobj;
+  /* sciSons *sons, *sonsnext; */
+  sciPointObj * pobj       ;
+  sciAgreg    * ppCompound ;
   int i;
   long xtmp;
 
@@ -2512,6 +2513,9 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   if ((pobj->pfeatures = MALLOC ((sizeof (sciAgreg)))) == NULL)
     return (sciPointObj *) NULL;
 
+  /* get the pointer on features */
+  ppCompound = pAGREG_FEATURE (pobj) ;
+
   if (sciAddNewHandle (pobj) == -1)
     {
       sciprint("no handle to allocate\n");
@@ -2520,47 +2524,63 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 
   /* the parent of the Compound will be the parent of the sons entities */
   if (!(sciAddThisToItsParent (pobj, (sciPointObj *)sciGetParent(
-								 sciGetPointerFromHandle((long) handelsvalue[0])))))
+                                 sciGetPointerFromHandle((long) handelsvalue[0])))))
     return NULL;
 
   sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-  pAGREG_FEATURE (pobj)->user_data = (int *) NULL;
-  pAGREG_FEATURE (pobj)->size_of_user_data = 0;
-  pAGREG_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
+  ppCompound->user_data = (int *) NULL;
+  ppCompound->size_of_user_data = 0;
+  ppCompound->relationship.psons = (sciSons *) NULL;
 
-  pAGREG_FEATURE (pobj)->callback = (char *)NULL;
-  pAGREG_FEATURE (pobj)->callbacklen = 0;
-  pAGREG_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+  ppCompound->callback = (char *)NULL;
+  ppCompound->callbacklen = 0;
+  ppCompound->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-  sonsnext = (sciSons *) NULL;
+  /* sonsnext = (sciSons *) NULL */
 
   /* initialisation with the first son */
   xtmp = (long) handelsvalue[0];
-  for (i=0;i<number;i++)
+  for ( i = 0 ; i < number ; i++ )
     {
-      if ((sons = MALLOC ((sizeof (sciSons)))) == NULL)
-	return (sciPointObj *)NULL;
-      if (i == 0)
-	pAGREG_FEATURE(pobj)->relationship.plastsons = (sciSons *)sons;
+      /* if ((sons = MALLOC ((sizeof (sciSons)))) == NULL) */
+/* 	return (sciPointObj *)NULL; */
+      /* if (i == 0) */
+/*         ppCompound->relationship.plastsons = (sciSons *)sons; */
 
-      xtmp = handelsvalue[i];
-      sons->pointobj      = sciGetPointerFromHandle(xtmp);
+      /* xtmp = handelsvalue[i]; */
+      /* sons->pointobj = sciGetPointerFromHandle(xtmp); */
 
       /* Nous changeons le parent de l'entite qui devient alors l'Compound */
-      if (sons->pointobj != NULL)
-	{
-	  sciDelThisToItsParent (sons->pointobj, sciGetParent(sons->pointobj));
-	  sciAddThisToItsParent (sons->pointobj, pobj);
-	}
+      /* if (sons->pointobj != NULL) */
+/* 	{ */
+/* 	  sciDelThisToItsParent (sons->pointobj, sciGetParent(temp)); */
+/* 	  sciAddThisToItsParent (sons->pointobj, pobj); */
+/* 	} */
 
-      sons->pprev         = (sciSons *)NULL;
-      sons->pnext         = sonsnext;
-      if (sonsnext) sonsnext->pprev = sons;
-      sonsnext            = sons;
+      /* sons->pprev         = (sciSons *)NULL; */
+/*       sons->pnext         = sonsnext; */
+
+/*       if (sonsnext != NULL ) */
+/*       { */
+/*         sonsnext->pprev = sons; */
+/*       } */
+
+/*       sonsnext            = sons; */
+
+
+      /* jb Silvy 10/01/06 */
+      /* the handle id moved from the current parent (ex axis) to the compund */
+      xtmp = handelsvalue[i] ;
+      sciPointObj * movedObject = sciGetPointerFromHandle(xtmp) ;
+      if ( movedObject != NULL )
+      {
+        sciDelThisToItsParent( movedObject, sciGetParent(movedObject) ) ;
+        sciAddThisToItsParent( movedObject, pobj ) ;
+      }
     }
 
-  pAGREG_FEATURE(pobj)->relationship.psons = sons;
-  pAGREG_FEATURE(pobj)->isselected = TRUE;
+ /*  ppCompound->relationship.psons = sons; */
+  ppCompound->isselected = TRUE;
 
   return (sciPointObj *)pobj;
 }
