@@ -27,7 +27,9 @@ int TK_Started=0;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 char *GetSciPath(void);
+#if defined(__CYGWIN32__) 
 static char *GetSciPathCyg(void);
+#endif
 /*-----------------------------------------------------------------------------------*/
 static int first =0;
 /*-----------------------------------------------------------------------------------*/ 
@@ -202,6 +204,7 @@ char *GetSciPath(void)
 	return PathUnix;
 }
 /*-----------------------------------------------------------------------------------*/
+#if defined(__CYGWIN32__) 
 /* from cygwin /cygdrive/f/ to f: 
  * PathUnix must be a valid pathname returned by GetSciPath
  */
@@ -233,7 +236,7 @@ static char *GetSciPathCyg(void)
     }
   return PathUnix;
 }
-
+#endif
 /*-----------------------------------------------------------------------------------*/
 int ReInitTCL(void)
 {
