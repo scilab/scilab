@@ -685,6 +685,10 @@ int Objmove (hdl,d,m,opt)
 		pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
 	  }
 	  break;
+	case SCI_CONTOUR:
+	case SCI_PARAM3D:
+	case SCI_PARAM3D1: /* Nothing to be done */
+	  break;
 	}
       break;
     case SCI_LABEL:
