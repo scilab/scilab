@@ -246,7 +246,7 @@ xcall_in_word_set (str, len)
     }
   return 0;
 }
-#line 94 "Xcall.gperf"
+/*#line 94 "Xcall.gperf"*/
 
 
 static char DriverName[]= "Rec";
