@@ -35,13 +35,6 @@ function colorbar(umin, umax, colminmax)
      nb_colors = colminmax(2) - colminmax(1) + 1
   end
   
-  fg_color = xget("foreground")
-
-  wr = xgetech()
-  wrect_cb = [wr(1)+0.85*wr(3) , wr(2) , 0.15*wr(3) , wr(4)]
-  wrect_pl = [wr(1) , wr(2) , 0.85*wr(3) , wr(4)]
-  xsetech(wrect=wrect_cb,frect=[0 0 1 1], arect=0.125*[1 1 1 1])
-
   nb_grad = 5
   // go on... 
   vec_ones = ones(1,nb_colors)
@@ -51,7 +44,7 @@ function colorbar(umin, umax, colminmax)
   y1 = 0.1 ; y2 = 0.9
   y = linspace(y1,y2,nb_colors+1)
   y_polys = [y(1:$-1) ; y(1:$-1) ; y(2:$) ; y(2:$)] 
- 
+    
   xtics = x2*ones(1,nb_grad) ; dx_tics = 0.05 ; 
   ytics = linspace(y1, y2, nb_grad) ; dy_tics = 0
 
@@ -59,15 +52,61 @@ function colorbar(umin, umax, colminmax)
   rect = xstringl(0, 0, string(umin))
   dy_cor = -rect(4)*0.5
   xmarks = xtics + 3*dx_tics ; ymarks = ytics + dy_cor; 
+
   
-  xfpolys(x_polys, y_polys, -(colminmax(1):colminmax(2)))
-  xset("color", fg_color) ;
-  xpoly([x1 x2 x2 x1],[y1 y1 y2 y2],"lines",1)
-  xnumb(xmarks, ymarks , valeurs)
-  xsegs([xtics ; xtics+dx_tics ],[ytics ; ytics+dy_tics],fg_color)
-  
-  xsetech(wrect=wrect_pl)
-  
+  if get('figure_style')=='old' then
+    fg_color = xget("foreground")
+
+    wr = xgetech()
+    wrect_cb = [wr(1)+0.85*wr(3) , wr(2) , 0.15*wr(3) , wr(4)]
+    wrect_pl = [wr(1) , wr(2) , 0.85*wr(3) , wr(4)]
+    xsetech(wrect=wrect_cb,frect=[0 0 1 1], arect=0.125*[1 1 1 1])
+
+    
+    xfpolys(x_polys, y_polys, -(colminmax(1):colminmax(2)))
+    xset("color", fg_color) ;
+    xpoly([x1 x2 x2 x1],[y1 y1 y2 y2],"lines",1)
+    xnumb(xmarks, ymarks , valeurs)
+    xsegs([xtics ; xtics+dx_tics ],[ytics ; ytics+dy_tics],fg_color)
+    
+    xsetech(wrect=wrect_pl)
+  else //new graphic mode
+    //defer the drawing to avoid binking
+    f=gcf()
+    id=f.immediate_drawing=='on';
+    if id then f.immediate_drawing=='off',end
+
+    // get current axes and properties
+    a=gca(); 
+    fg_color=a.foreground
+    wr=a.axes_bounds; //get the rectangle of the current axes
+     
+    //replace current axes by two axes: ones for the plot and one for the
+    //colorbar
+   
+    a_cb=newaxes(); //create a axes for the colorbar and set itsproperties
+    a_cb.axes_visible='off'
+    a_cb.axes_bounds=[wr(1)+0.85*wr(3) , wr(2) , 0.15*wr(3) , wr(4)];
+    
+    a_cb.margins=0.125*[1 1 1 1];
+    a_cb.data_bounds=[0 0;1 1];
+    a_cb.foreground=a.foreground;
+    a_cb.background=a.background;
+    
+    //draw the colorbar
+    xfpolys(x_polys, y_polys, -(colminmax(1):colminmax(2)))
+    xpoly([x1 x2 x2 x1],[y1 y1 y2 y2],"lines",1);
+    //shoud use the y_axis graduation instead
+    xnumb(xmarks, ymarks , valeurs)
+    xsegs([xtics ; xtics+dx_tics ],[ytics ; ytics+dy_tics],a_cb.foreground)
+
+    a_pl=a;
+    a_pl.axes_bounds=[wr(1) , wr(2) , 0.85*wr(3) , wr(4)]
+    sca(a_pl)
+    //reset the initial value 
+    if id then f.immediate_drawing=='on',end
+
+  end
 endfunction
 
 
