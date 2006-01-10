@@ -451,6 +451,7 @@ proc dobackgroundcolorize {w thebegin progressbar} {
     # progressbar and abort colorization
     if {![info exist listoffile("$w",fullname)]} {
         destroy $progressbar
+        incr nbfilescurrentlycolorized -1
         return
     }
 

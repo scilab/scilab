@@ -35,10 +35,6 @@ Bugs:
  Also related to bug 1469 - better wait for clarification on this one instead
  of working around Scilab parser bugs
 
--On Linux (much less often on Windows, but the issue is here also), Tcl/Tk
- errors can pop up when quickly doing something in Scipad before launch has
- finished
-
 -dnd related bug: after doing a drag and drop (copy or move), if the user hits
  ctrl-Button-1 and moves simultaneously the mouse to select some text, then
  the selection does not start at the cursor position. Instead, the selection

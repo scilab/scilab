@@ -1895,3 +1895,14 @@ Francois VOGEL, 01/01/06
  * Fixed stupid error I introduced in 5.72: the find box could only be opened
    once in a Scipad session
  * version --> 5.73
+
+Francois VOGEL, 10/01/06
+ * Fixed (by JP. Chancelier): file rootname might return an empty string
+   under cygwin - test added in menues.tcl
+ * Fixed: Goto box did not want to open after having closed a file during
+   its colorization. Scipad thought colorization was still in progress
+ * Refined preselection of choices in the Goto dialog box
+ * Fixed replace dialog bug: Clicking on "In selection only" or on "In all
+   opened files" after having opened more than one buffer triggered a Tcl
+   error
+ * version --> 5.74
