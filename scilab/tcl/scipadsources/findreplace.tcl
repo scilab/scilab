@@ -109,13 +109,17 @@ proc findtextdialog {typ} {
         -variable multiplefiles \
         -command \"resetfind $find \[gettextareacur\] ; \
                    $find.l.f4.f5.cbox4 deselect ; \
-                   $find.l.f4.f5.cbox5 deselect ; searchindirdisabled\" \
+                   if {[string compare $typ find] == 0} { \
+                       $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
+                   }\" \
          -font $menuFont "
     eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
         -variable searchinsel \
         -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find \[gettextareacur\] ; \
                    $find.l.f4.f5.cbox3 deselect ; \
-                   $find.l.f4.f5.cbox5 deselect ; searchindirdisabled\" \
+                   if {[string compare $typ find] == 0} { \
+                       $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
+                   }\" \
         -font $menuFont "
     if {$typ == "find"} {
         eval "checkbutton $find.l.f4.f5.cbox5 [bl "In a director&y"] \
@@ -128,9 +132,9 @@ proc findtextdialog {typ} {
             $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 $find.l.f4.f5.cbox5 \
             -anchor sw
     } else {
-    pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
-        $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 \
-        -anchor sw
+        pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
+            $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 \
+            -anchor sw
     }
 
     if {$typ == "find"} {

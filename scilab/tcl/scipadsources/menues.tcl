@@ -285,11 +285,13 @@ proc createmenues {} {
     set msgFiles [lsort [glob -nocomplain -tails -directory $msgsdir *.msg]]
     foreach m $msgFiles {
         set l [file rootname $m]
-	if { $l != ""} {
-        eval "$pad.filemenu.options.locale add radiobutton \
-            [me [concat $l locale ($l)]] \
-            -variable lang -value $l -command relocalize"
-	}
+        # for some reason $l might be empty under cygwin
+        # this is probably due to the /cygdrive/ syntax for paths
+        if {$l != ""} {
+            eval "$pad.filemenu.options.locale add radiobutton \
+                [me [concat $l locale ($l)]] \
+                -variable lang -value $l -command relocalize"
+        }
     }
 
     # window menu

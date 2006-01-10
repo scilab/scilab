@@ -1030,8 +1030,14 @@ proc gotoline {} {
     if {$physlogic    == ""} {$gotln.f1.rbut1 invoke}
     if {$curfileorfun == ""} {$gotln.f2.rbut3 invoke}
     if {$funtogotolist == {}} {
+        # preselect physical line in buffer if there is no function definition
         $gotln.rbut2 invoke
         $gotln.rbut4 invoke
+    } else {
+        # preselect the first function found if no previous choice was made
+        if {[lindex $funtogoto 0] == $unklabel} {
+            $gotln.f2.mb.om1 invoke 0
+        }
     }
 
     # Validation of the entry to prevent the user to enter nasty things
