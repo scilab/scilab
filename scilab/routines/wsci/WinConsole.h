@@ -33,6 +33,5 @@ void SwitchConsole(void);
 int GetConsoleState(void); /* Show 1 or Hide 0 */
 void SetConsoleState(int state);
 HWND ScilabGetConsoleWindow(void);
-
-
+UINT ScilabGetWindowModuleFileName(HWND hwnd,LPTSTR lpszFileName,UINT cchFileNameMax);
 #endif /* __WINCONSOLE_H__ */
