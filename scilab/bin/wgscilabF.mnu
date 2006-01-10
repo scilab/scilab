@@ -7,8 +7,6 @@
 &Fichier
 	&Nouvelle ...
 		[NEWFIG]
-	S&auvegarder Position
-		[UPDINI]
 	--	
 	&Charger ...
 		[LOADSCG]xload[EOS]*.scg[EOS]
@@ -21,7 +19,7 @@
 		Copier dans le &presse papier
 			&EnhMetafile
 				[COPYCLIP]
-			&Metafile + DIB
+			&Bitmap
 				[COPYCLIP1]
 	[EndMenu]
 	--
