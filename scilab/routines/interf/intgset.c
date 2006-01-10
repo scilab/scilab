@@ -1982,6 +1982,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Second argument must have 4 elements r");return -1;}
       for (i=0;i<4;i++) {
 	pSUBWIN_FEATURE (pobj)->WRect[i]=stk(*value)[i];
+
+	set_scale ("ttffff", pSUBWIN_FEATURE (pobj)->WRect,
+		   NULL, NULL,
+		   NULL, NULL);
       }
     }
     else
