@@ -12,5 +12,5 @@ end
 if d2==%pi
     d2 = log(%pi)/log(10);
 end
-y=exp(log(10)*[d1*ones(1,n-1)+(0:n-2)*(d2-d1)/(n-1),d2]);
+y=(10).^ [d1+(0:n-2)*(d2-d1)/(floor(n)-1), d2];exp(log(10)*[d1*ones(1,n-1)+(0:n-2)*(d2-d1)/(n-1),d2]);
 endfunction
