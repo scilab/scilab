@@ -2570,8 +2570,9 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 
       /* jb Silvy 10/01/06 */
       /* the handle id moved from the current parent (ex axis) to the compund */
+      sciPointObj * movedObject ;
       xtmp = handelsvalue[i] ;
-      sciPointObj * movedObject = sciGetPointerFromHandle(xtmp) ;
+      movedObject = sciGetPointerFromHandle(xtmp) ;
       if ( movedObject != NULL )
       {
         sciDelThisToItsParent( movedObject, sciGetParent(movedObject) ) ;
