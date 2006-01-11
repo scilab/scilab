@@ -253,7 +253,6 @@ INSTBINDISTFILES = \
 	routines/xsci/*.h \
 	scripts \
 	tcl \
-	tests \
 	util
 
 DOCNAME=$(SCIBASE)
