@@ -1,4 +1,4 @@
-function colorbar(umin, umax, colminmax)
+function colorbar(umin, umax, colminmax,fmt)
 
 //  PURPOSE
 //     Draw a colorbar for a plot3d, fec, Sgrayplot, etc...
@@ -29,7 +29,13 @@ function colorbar(umin, umax, colminmax)
 //     see the help page
   
   nb_grad = 5
-
+  if ~exists("fmt","local") then 
+    fmt='%-5.2g'
+  else
+    if type(fmt)<>10|size(fmt,'*')<>1 then 
+      error('colorbar: the fmt agrument should be a string containaing a C format")
+    end
+  end
   
   if get('figure_style')=='old' then
     if ~exists("colminmax","local") then 
@@ -67,7 +73,10 @@ function colorbar(umin, umax, colminmax)
     xfpolys(x_polys, y_polys, -(colminmax(1):colminmax(2)))
     xset("color", fg_color) ;
     xpoly([x1 x2 x2 x1],[y1 y1 y2 y2],"lines",1)
-    xnumb(xmarks, ymarks , valeurs)
+    lab=msprintf(fmt+'\n',valeurs(:))
+    for k=1:size(xmarks,'*')
+      xstring(xmarks(k), ymarks(k) ,lab(k))
+    end
     xsegs([xtics ; xtics+dx_tics ],[ytics ; ytics+dy_tics],fg_color)
     
     xsetech(wrect=wrect_pl)
@@ -106,7 +115,7 @@ function colorbar(umin, umax, colminmax)
     //It is not possible to set no ticks for x (should be fixed)
     a_cb.x_ticks=tlist(["ticks","locations","labels"],-1,'');
     ytics = linspace(umin, umax, nb_grad);
-    a_cb.y_ticks=tlist(["ticks","locations","labels"],ytics, ' '+msprintf('%-5.2g\n',ytics'));
+    a_cb.y_ticks=tlist(["ticks","locations","labels"],ytics, ' '+msprintf(fmt+'\n',ytics'));
     a_cb.auto_ticks = ["off","off","on"];
     a_cb.box = "on";
     a_cb.margins=[0 0.75 0 0];
