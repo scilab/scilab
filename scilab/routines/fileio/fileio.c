@@ -50,7 +50,7 @@ static int do_printf __PARAMS((char *fname,FILE * fp, char *format,int n_args,
 
 /*if maxscan is increased don't forget to chage the (*printer)(......) 
   in do_scanf procedure */
-#define MAXSCAN 30
+#define MAXSCAN 50
 
 typedef union {
   char * c;
@@ -593,8 +593,9 @@ int int_objfscanf(char *fname,unsigned long fname_len)
     if ( retval == EOF) {
       /* 
       Scierror(999,"Error: in %s: end of file reached\r\n",fname);
-      return 0;
+
       */
+      break;
     }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
@@ -1832,6 +1833,7 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
   sfdir cur_type;
   char ** temp;
      
+
   /* create Scilab variable with each column of data */
   if (ncol+Rhs > intersiz ){
     Scierror(998,"Error:\ttoo many directive in scanf\r\n");
@@ -1839,6 +1841,19 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
   }
   iarg=Rhs;
   if (Lhs > 1) {
+    if (nrow==0) {/* eof encountered before any data */
+      CreateVar(++iarg, "d", &one, &one, &l);
+      LhsVar(1) = iarg;
+      *stk(l) = -1.0;
+      for ( i = 2; i <= Lhs ; i++) 
+      {
+	iarg++;
+	CreateVar(iarg,"d",&zero,&zero,&l);
+	LhsVar(i) = iarg;
+      }
+      PutLhsVar();
+      return 0;
+    }
     CreateVar(++iarg, "d", &one, &one, &l);
     *stk(l) = (double) retval_s;
     LhsVar(1)=iarg;
