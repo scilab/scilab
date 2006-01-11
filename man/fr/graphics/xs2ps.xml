@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -47,9 +47,15 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>xs2ps</VERB> sends the recorded graphics of the window
-    <VERB>win_num</VERB> in the file <VERB>filen</VERB> in PS syntax. Warning:
-    <VERB>filen</VERB> must not have extension.</P>
+    <P><VERB>xs2ps</VERB> saves the recorded graphics of the window
+    <VERB>win_num</VERB> to file <VERB>filen</VERB> in Postscript syntax. The
+    <VERB>filen</VERB> must not have suffix extension.</P>
+
+    <P>Note that the generated Postscript file cannot be direcly printed since
+    it requires a header file. The Scilab command <VERB>BEpsf</VERB> or others
+    can be used to add a header file. The function <VERB>xs2eps</VERB> can be
+    used to directly produce an encapsulated Postscript file with an
+    header.</P>
 
     <P>This function works only if the selected driver is <VERB>"Rec"</VERB>
     in the window <VERB>win_num</VERB> or if the window is in "new style". The
@@ -68,7 +74,6 @@
     else
       unix_s(pathconvert('SCI/bin/BEpsf',%f)+' -p ' +filename)
     end
-    
     // Gif export
     xs2gif(0,'foo.gif')
     // ppm export
@@ -82,6 +87,10 @@
 
     <SEE_ALSO_ITEM>
       <LINK>printing</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xs2eps</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
