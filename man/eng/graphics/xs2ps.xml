@@ -48,14 +48,14 @@
 
   <DESCRIPTION>
     <P><VERB>xs2ps</VERB> saves the recorded graphics of the window
-    <VERB>win_num</VERB> to file <VERB>filen</VERB> in Postscript syntax. 
-    The <VERB>filen</VERB> must not have suffix extension.</P> 
+    <VERB>win_num</VERB> to file <VERB>filen</VERB> in Postscript syntax. The
+    <VERB>filen</VERB> must not have suffix extension.</P>
 
-
-    <P>Note that the generated Postscript file cannot be direcly printed since 
-    it requires a header file. The Scilab command <VERB>BEpsf</VERB> an others 
-    can be used to add a header file.  The function <VERB>xs2eps</VERB> can 
-    be used to directly produce an encapsulated Postscript file with an header.</P>
+    <P>Note that the generated Postscript file cannot be direcly printed since
+    it requires a header file. The Scilab command <VERB>BEpsf</VERB> or others
+    can be used to add a header file. The function <VERB>xs2eps</VERB> can be
+    used to directly produce an encapsulated Postscript file with an
+    header.</P>
 
     <P>This function works only if the selected driver is <VERB>"Rec"</VERB>
     in the window <VERB>win_num</VERB> or if the window is in "new style". The
