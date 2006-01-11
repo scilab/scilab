@@ -2042,13 +2042,12 @@ void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integ
 
 void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle)
 {
-  int i,flag=0;
-  integer x,y, rect[4];
-  double sina ,cosa,l,zero=0.0;
+  int i,flag=0, rect[4],x,y;
+  double xd,yd, sina ,cosa,l,zero=0.0;
   char str1[2];
   str1[1]='\0';
-  x= *x0;
-  y= *yy0;
+  xd=x= *x0;
+  yd=y= *yy0;
   sina= sin(*angle * M_PI/180.0);
   cosa= cos(*angle * M_PI/180.0);
   for ( i = 0 ; i < (int)strlen(string); i++)
@@ -2057,14 +2056,16 @@ void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle
       C2F(displaystring)(str1,&x,&y,PI0,&flag,PI0,PI0,&zero,PD0,PD0,PD0);
       /* XDrawString(dpy,ScilabXgc->Cdrawable,gc,(int) x,(int) y ,str1,1); */
       C2F(boundingbox)(str1,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      /** C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3); **/
-      if ( cosa <= 0.0 && i < (int)strlen(string)-1)
-	{ char str2[2];
-	/** si le cosinus est negatif le deplacement est a calculer **/
-	/** sur la boite du caractere suivant **/
-	str2[1]='\0';str2[0]=string[i+1];
-	C2F(boundingbox)(str2,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      if (0 && cosa <= 0.0 && i < (int)strlen(string)-1)
+	{ 
+	  char str2[2];
+	  /** si le cosinus est negatif le deplacement est a calculer **/
+	  /** sur la boite du caractere suivant **/
+	  str2[1]='\0';str2[0]=string[i+1];
+	  C2F(boundingbox)(str2,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+	  fprintf(stderr,"cos is negative\n");
 	}
+      /* C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3,  PI0,PI0,PD0,PD0,PD0,PD0); */
       if ( Abs(cosa) >= 1.e-8 )
 	{
 	  if ( Abs(sina/cosa) <= Abs(((double)rect[3])/((double)rect[2])))
@@ -2074,8 +2075,10 @@ void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle
 	}
       else 
 	l = Abs(rect[3]/sina);
-      x +=  cosa*l*1.1;
-      y +=  sina*l*1.1;
+      xd +=  cosa*l*1.1;
+      yd +=  sina*l*1.1;
+      x = inint(xd);
+      y = inint(yd);
     }
 }
 
@@ -2861,15 +2864,15 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 { 
   struct BCG *NewXgc ;
 #ifdef WITH_TK
-  integer ne=11, menutyp=2, ierr;
+  integer ne=7, menutyp=2, ierr;
   char *EditMenus[]={"_Select figure as current","_Redraw figure",\
-                     "_Erase figure","_Copy object","_Paste object",\
-                     "_Move object","_Delete object","_Figure properties",\
+                     "_Erase figure",/*"_Copy object","_Paste object",\
+                     "_Move object","_Delete object",*/"_Figure properties",\
                      "_Current axes properties","Start _entity picker",\
                      "Stop e_ntity picker"};
-  integer ni=6;
+  /*integer ni=6;
   char *InsertMenus[]={"--- _Line","^v^  _Polyline","---> _Arrow",\
-                       "_Text","[]   _Rectangle","O   _Circle"};
+                       "_Text","[]   _Rectangle","O   _Circle"};*/
 #else
   integer ne=3, menutyp=2, ierr;
   char *EditMenus[]={"_Select as current","_Redraw figure","_Erase figure"};
@@ -2911,7 +2914,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
   EntryCounter++;
   AddMenu(&WinNum,"_Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
 #ifdef WITH_TK
-  AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);
+  /*AddMenu(&WinNum,"_Insert", InsertMenus, &ni, &menutyp, "ged_insert", &ierr);*/
 #endif
   gdk_flush();
 }
