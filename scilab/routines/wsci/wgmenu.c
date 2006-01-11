@@ -1279,7 +1279,7 @@ void CreateGedMenus(struct BCG * ScilabGC)
 		SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
 		*/
 	#ifdef WITH_TK
-		integer ne=14-5, menutyp=2, ierr;
+		integer ne=8, menutyp=2, ierr;
 		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure",/*"[--]","&Copy object","&Paste object","Move object","Delete object",*/"[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
 		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure",/*"[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet",*/"[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
 
