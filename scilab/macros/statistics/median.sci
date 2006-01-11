@@ -6,50 +6,53 @@ function y=median(x,orient)
 //    - new syntaxes: median(x,'m') and median(x,dim)  
 
 [lhs,rhs]=argn(0)
-if rhs==1 then
-  n=size(x,'*');
-  x=matrix(x,-1,1)
-  y=median(x,1)
-elseif orient=='r' then
-  y=median(x,1);
-elseif orient=='c' then
-  y=median(x,2);
-elseif orient=='m' then
-  n=find(size(x)>1,1);
-  if n == []  then 
-    y = median(x,1);
-  else 
-    y = median(x,n);
-  end  
-elseif orient>=1 & orient-floor(orient)==0 then
-  if orient>ndims(x) then
-  y=x;
-  return
+if argn(2)<2 then
+  orient=0
+else
+  if orient=='r' then 
+    orient=1
+  elseif orient=='c' then 
+    orient=2
+  elseif orient=='*' then 
+    orient=0
+  elseif orient=='m' then 
+    orient=find(size(x)>1,1)
+    if orient==[] then orient=1,end
+  else
+    if type(orient)<>1|size(orient,'*')<>1|~isreal(orient)|orient<=0 then
+      error('median: second argument should be  ''r'', ''c'',''m'' or a positive number')
+    end
   end
+end
+  
+if orient==0 then
+  n=size(x,'*');
+  x=gsort(x(:),'g','i')
+  if 2*int(n/2)==n then
+    y = (x(n/2)+x(n/2+1))/2;
+  else 
+    y = x((n+1)/2);
+  end  
+else
+  if orient>ndims(x) then y=x; return;  end
   xsize=size(x);
-  orient_above_size=xsize(orient+1:$);
-  orient_below_size=xsize(1:orient-1);
-  orient_size=xsize(1:orient);
+  orient_above_size=xsize(orient+1:$);N=prod(orient_above_size)
+  orient_below_size=xsize(1:orient-1);M=prod(orient_below_size)
+  orient_size=xsize(1:orient);P=prod(orient_size)
   y=[];
-  for k=1:prod(orient_above_size)
-    for i=1:prod(orient_below_size)
-      ytemp=[];
-      for j=1:xsize(orient)
-	ytemp($+1)=x(i+(j-1)*prod(orient_below_size)+(k-1)*prod(orient_size));
-      end
-      ytemp=gsort(ytemp,'r','i');
-      if 2*int(xsize(orient)/2)==xsize(orient) then
-	y($+1) = (ytemp(xsize(orient)/2,:)+ytemp(xsize(orient)/2+1,:))/2;
+  n=xsize(orient)
+  for k=1:N
+    for i=1:M
+      ytemp=gsort(x(i+(0:n-1)*M+(k-1)*P),'r','i');
+      if 2*int(n/2)==n then
+	y($+1) = (ytemp(n/2,:)+ytemp(n/2+1,:))/2;
       else 
-	y($+1) = ytemp((xsize(orient)+1)/2,:);
+	y($+1) = ytemp((n+1)/2,:);
       end
     end
   end
-  ysize=xsize;
-  ysize(orient)=1;
-  y=matrix(y,ysize);
-else
-  error('median : second argument must be ''r'', ''c'',''m'', or a positive integer')
+  xsize(orient)=1;
+  y=matrix(y,xsize);
 end
 
 endfunction
