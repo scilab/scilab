@@ -53,7 +53,7 @@ c     . b op  eye
          endif
          call tpconv(it1,it,1,istk(l1),1,is1,1)
          call tpconv(it2,it,mn2,istk(l2),1,istk(lw),1)
-         call gencheck(it,op,mn2,is1,0,istk(l2),1,istk(il1+3))
+         call gencheck(it,op,mn2,is1,0,istk(lw),1,istk(il1+3))
          lstk(top+1)=sadr(il1+3+mn2)
       elseif(mn2.eq.1.and.mn1.gt.1) then
          istk(il1)=4
