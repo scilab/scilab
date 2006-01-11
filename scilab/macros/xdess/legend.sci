@@ -73,8 +73,13 @@ function R=legend(varargin)
   bbx=[]
   xset('font',A.font_style,A.font_size)
   for k=1:nleg
-    r=xstringl(0,0,leg(k));
-    bbx=[bbx;r(3:4)]; //[width height]
+    //r=xstringl(0,0,leg(k));
+    rect=stringbox(leg(k),0,0);
+    // get the width and heigth of the bbox
+    r = [ rect(1,3) - rect(1,2), rect(2,2) - rect(2,1)];
+    //bbx=[bbx;r(3:4)]; //[width height]
+    bbx=[bbx;r];
+    
   end
 
   coef = 0.5
