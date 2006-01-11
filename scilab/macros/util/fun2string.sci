@@ -416,7 +416,8 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	if lst(ilst+1)(1)=='20'&lst(ilst+1)(2)=='deff' then
 	  st=op(4:$)
 	  fn='function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
-	  if stripblanks(st)<>'' then fn=[fn;st],end
+	  st(stripblanks(st)=='')==[]
+	  fn=[fn;st(:)],
 	  fn=[fn;'endfunction']
 	  txt=catcode(txt,fn)
 	  lst(ilst+1)(1)='0'; ilst=ilst+1;// ignore deff (20)
