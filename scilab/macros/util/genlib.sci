@@ -9,11 +9,8 @@ function genlib(nam,path,force,verbose,names)
   W=who('get');
   np=predef();
   predefined=or(W($-np+1:$)==nam);
-
   
   updatelib=%f //true if updating an already defined library
- 
-
   //check if a library with the same name exists
   oldlib=[];old_path=[];old_names=[];
   if exists(nam)==1 then 
@@ -28,16 +25,19 @@ function genlib(nam,path,force,verbose,names)
     path=old_path
     updatelib=%t
   end
-    
   // convert path according to MSDOS flag 
   // without env variable substitution
   path1 = pathconvert(path,%t,%f); 
   // with env subsitution 
   path = pathconvert(path,%t,%t); 
-
   if exists('names','local')==0 then 
     // list the sci files 
-    files=listfiles(path+'*.sci',%f)
+    if part(getos(),1:6)=='CYGWIN' then
+      // ls *.sci requires less resources than ls path/*.sci
+      files=path+listfiles('*.sci',%f)
+    else
+       files=listfiles(path+'*.sci',%f)
+    end
     if files==[] | files== "" then 
       error('I cannot find any sci files in '+path);
       return ;
