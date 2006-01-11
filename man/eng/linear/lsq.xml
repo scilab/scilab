@@ -29,7 +29,7 @@
           <SP>: positive scalar,  used to determine the effective rank of A
 	    (defined as the order of the largest leading triangular 
           submatrix R11 in the QR factorization with pivoting of A,
-          whose estimated condition number < 1/tol. The tol default value is
+          whose estimated condition number &lt;= 1/tol. The tol default value is
 	    set to <VERB>sqrt(%eps)</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
