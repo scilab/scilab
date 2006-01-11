@@ -19,8 +19,17 @@ s1=['+','-','*','/','\',',',';',' ','^','.','&','|','''',']',')','}']
 s2=[string(0:9),'d','e','D','E','.']
 
 for k=1:n
-
+  st=strindex(txt(k),[";//","//"])
+  if st<> [] then
+    for stk=1:size(st,"*")
+       if ~isinstring(txt(k),stk) then
+       break
+       end
+    end
+    continue
+  end
   tk=txt(k)+' '
+  
   // Find possible occurence of complex notation
   kc=strindex(tk,matches)
   
