@@ -194,6 +194,9 @@ typedef struct tagGW {
 
 typedef GW *  LPGW;
 
+#define SCILEX "scilex.exe"
+#define WSCILEX "wscilex.exe"
+
 
 /*************************/
 

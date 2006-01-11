@@ -261,24 +261,26 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	{
 		char LineCommand[MAX_PATH];
 		char LineCommandBis[MAX_PATH];
-
 		char ShortPath[MAX_PATH];
 		char *pPathCmdLine=NULL;
 		char PathCmdLineCopy[1024];
+		char StrWscilexToSearch[MAX_PATH];
+		
+		sprintf(StrWscilexToSearch,"%s\" ",WSCILEX);
 
 		strcpy(LineCommand,pFullCmdLineTmp);
 		LineCommand[strlen(LineCommand)]='\0';
 		strcpy(LineCommandBis,pFullCmdLineTmp);
 		LineCommandBis[strlen(LineCommandBis)]='\0';
 
-		pPathCmdLine=strstr(LineCommand,"wscilex.exe\" ");
+		pPathCmdLine=stristr(LineCommand,StrWscilexToSearch);
 		
-		if ( (pPathCmdLine != NULL) && ( strlen(pPathCmdLine)-strlen("wscilex.exe\" ")-1 > 0) ) 
+		if ( (pPathCmdLine != NULL) && ( (strlen(pPathCmdLine)-strlen(StrWscilexToSearch)-1) > 0) ) 
 		{
 			char LINE[1024];
 
 			strcpy(PathCmdLineCopy,pPathCmdLine);	
-			if ( PathCmdLineCopy[strlen("wscilex.exe\" ")-2] == '\"' ) PathCmdLineCopy[strlen("wscilex.exe\" ")-2] = ' ';
+			if ( PathCmdLineCopy[strlen(StrWscilexToSearch)-2] == '\"' ) PathCmdLineCopy[strlen(StrWscilexToSearch)-2] = ' ';
 			strncpy(LINE,&LineCommandBis[1],strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1);
 			LINE[strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1]='\0';
 		
@@ -638,4 +640,35 @@ int IsNoInteractiveWindow(void)
 {
 	return nointeractive;
 }
+/*-----------------------------------------------------------------------------------*/
+/* strstr case insensitive */
+char *stristr(const char *psz,const char *tofind)
+{
+	const char *ptr = psz;
+	const char *ptr2;
+
+	while(1)
+	{
+		ptr = strchr(psz,toupper(*tofind));
+		ptr2 = strchr(psz,tolower(*tofind));
+		if (!ptr)
+		{
+			ptr = ptr2; /* was ptr2 = ptr.  Big bug fixed 10/22/99 */
+		}
+		if (!ptr)
+		{
+			break;
+		}
+		if (ptr2 && (ptr2 < ptr))
+		{
+			ptr = ptr2;
+		}
+		if (!strnicmp(ptr,tofind,strlen(tofind)))
+		{
+			return (char *) ptr;
+		}
+		psz = ptr+1;
+	}
+	return 0;
+} 
 /*-----------------------------------------------------------------------------------*/

@@ -69,5 +69,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 int Console_Main(int argc, char **argv);
 int MAIN__ ();
 int IsNoInteractiveWindow(void);
+
+char *stristr(const char *psz,const char *tofind);
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __WINMAIN_H__ */
