@@ -25,7 +25,12 @@ if exists('rect','local')==1 then
 end
 if exists('nax','local')==1 then opts=[opts,'nax=nax'],end
 if exists('logflag','local')==1 then opts=[opts,'logflag=logflag'],end
-if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
+//if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
+if exists('frameflag','local')==1 then 
+  opts=[opts,'frameflag=frameflag'],
+else 
+  frameflag=[]
+end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
 opts=strcat([opts,"style=style(c)"],',')
 
@@ -76,6 +81,7 @@ while k < length(xc)
      end
    end
    err = execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')','errcatch','m');
+   frameflag = 0 ;
    
    // add a test to see if plot2d call succeed
    // and, if not, restore good figure property values before exiting
