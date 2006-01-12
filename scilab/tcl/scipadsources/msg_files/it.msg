@@ -56,10 +56,6 @@
 ::msgcat::mcset it "Obtain" "Ottieni"
 ::msgcat::mcset it "Input arguments:" "Argumenti di ingresso:"
 ::msgcat::mcset it "Remove" "Rimuovi"
-::msgcat::mcset it "Check function definition: it must be on a single code\
-                    line."\
-                   "Controllare la definizione della funzione: deve essere\
-                    data su un unica linea"
 ::msgcat::mcset it "Function name or input arguments do not match definition\
                     of the function"\
                    "Il nome della funzione o i suoi argomenti non\

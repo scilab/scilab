@@ -38,8 +38,6 @@
 ::msgcat::mcset se "Obtain" "Få"
 ::msgcat::mcset se "Input arguments:" "Indata argument :"
 ::msgcat::mcset se "Remove" "Tabort"
-::msgcat::mcset se "Check function definition: it must be on a single code line." \
-                   "Kontrollera funktions definitionen: det skall vara en enda rad kod."
 ::msgcat::mcset se "Function name or input arguments do not match definition of the function" \
                     "Funktionsnamnet eller indata argumenten matchar inte definitionen av funktionen"
     ::msgcat::mcset se "in the file!\n\nCheck function\

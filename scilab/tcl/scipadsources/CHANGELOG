@@ -1906,3 +1906,8 @@ Francois VOGEL, 10/01/06
    opened files" after having opened more than one buffer triggered a Tcl
    error
  * version --> 5.74
+
+Francois VOGEL, 12/01/06
+ * Debugger works again with functions whose definition logical line is
+   splitted into many physical lines
+ * version --> 5.75

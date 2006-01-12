@@ -56,10 +56,6 @@
 ::msgcat::mcset de "Obtain" "Erhält"
 ::msgcat::mcset de "Input arguments:" "Eingabeargumente :"
 ::msgcat::mcset de "Remove" "Entfernen"
-::msgcat::mcset de "Check function definition: it must be on a single code\
-                    line."\
-                   "Überprüfen Sie die Funktionsdefinition, sie muß aus\
-                    einer Programmzeile bestehen."
 ::msgcat::mcset de "Function name or input arguments do not match definition\
                     of the function"\
                    "Funktionsname und Eingabeargumente stimmen nicht mit der\
