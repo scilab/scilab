@@ -295,6 +295,14 @@ case $host_os in
   ;;
 esac
 
+# needed for cygwin with X11 
+case "$host" in
+  *-*-cygwin* ) 
+	TK_PLUS=" "
+    ;;
+esac
+
+
 for e in $libexts; do
 	for j in $dirs; do
 		for n in $libnames; do
