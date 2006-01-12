@@ -10,21 +10,24 @@ if MSDOS then
 	else
 	  if (rhs == 2) then
 	  	if (varargin(1) == 'copy') then
-	  	  param=sci2exp(varargin(2));
+	  	  param=string(varargin(2));
   			ClipBoard(varargin(1),param);
-  			abort;
+  			s=[];
+  			break;
 	  	else
 	  	  if (varargin(1) == 'do') then
 	  	    if ( (varargin(2) == 'copy') | (varargin(2) == 'paste') | (varargin(2) == 'empty') ) then
 	  	      ClipBoard(varargin(1),varargin(2));
-   					abort;
+	  	      s=[];
+	  	      break;
    				else
    				  error('invalid parameter(s)');
    				end
 	  		else
 	  		  if ( type(varargin(1))==1 ) & ( (varargin(2) == 'EMF') | (varargin(2) == 'DIB') ) then
 	  		    ClipBoard(varargin(1),varargin(2));
-   					abort;
+	  		    s=[];
+	  	      break;
 	  		  else
 	  		    error('invalid parameter(s)');
 	  		  end
