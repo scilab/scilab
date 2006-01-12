@@ -293,6 +293,8 @@ proc getallfunsinalltextareas {} {
 proc getallfunsintextarea {{buf "current"}} {
 # Get all the functions defined in the given textarea (only if scheme is scilab)
 # Return a list {$buf $result_of_whichfun}
+# Continued lines and comments are trimmed so that the function definition line
+# returned constitutes a single line
 # If there is no function in $buf, then $result_of_whichfun is the following list:
 #   { "0NoFunInBuf" 0 0 }
 # Note that the leading zero in "0NoFunInBuf" is here so that the latter cannot
@@ -321,23 +323,22 @@ proc getallfunsintextarea {{buf "current"}} {
     set pat "$funlineREpat1$scilabnameREpat$funlineREpat2"
 
     set hitslist ""
-    set nextfun [$textarea search -regexp -- $pat 1.0 end]
-    while {$nextfun != ""} {
-        while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
-               [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
-            set nextfun [$textarea search -regexp -- $pat "$nextfun +8c" end]
-            if {$nextfun == ""} break
-        }
-        if {$nextfun != ""} {
-            set infun [whichfun [$textarea index "$nextfun +1c"] $textarea]
+
+    set allfun [regexp -all -inline -indices -- $pat [$textarea get "1.0" end]]
+
+    foreach {fullmatch funname} $allfun {
+        foreach {i j} $fullmatch {}
+        set star [$textarea index "1.0 + $i c"]
+        if {[lsearch [$textarea tag names $star] "textquoted"] == -1 && \
+            [lsearch [$textarea tag names $star] "rem2"] == -1 } {
+            # whichfun trims continued lines and comments
+            set infun [whichfun [$textarea index "$star +1c"] $textarea]
             if {$infun != {} } {
                 set hitslist "$hitslist [lindex $infun 0] {[lindex $infun 2]} [lindex $infun 3]"
-                set nextfun [$textarea search -regexp -- $pat "$nextfun +8c" end]
-            } else {
-                set nextfun [$textarea index "$nextfun +1c"]
             }
         }
     }
+
     if {$hitslist == ""} {
         return [list $textarea [list "0NoFunInBuf" 0 0]]
     } else {

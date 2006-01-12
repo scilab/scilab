@@ -20,12 +20,16 @@ Bugs:
 
 -When two buffers are opened containing the same function (or function name) to
  debug, then the wrong buffer may become the active one to show the active
- breakpoint
+ breakpoint - same issue in configureexec: if a function is defined in more
+ than one buffer, proc checkarglist may detect the wrong one and prevent
+ correct configuration of the debugger
 
--When nested functions are used with comments, a breakpoint can be set on a
- line just after an endfunction but execution will not stop at this point.
- Workaround: insert an empty line between the line containing endfunction
- and the next breakpointed line - This is Scilab bug 1469 (outside of Scipad)
+-When a function definition line ends with a comment, the line numbering is
+ wrong 1 unit, resulting is various strange behaviors: execution not stopping
+ at breakpoints or not up-to-date value of variables in the watch window
+ This is Scilab bug 1469 (outside of Scipad) that deals with the general
+ issue of mismatch between line numbering as reported by fun2string and that
+ held by the breakpoint handling
 
 -logical line numbering issue:
    function a=foo(); a=1;

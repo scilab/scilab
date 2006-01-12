@@ -50,10 +50,6 @@
 ::msgcat::mcset pl "Obtain" "Otrzymano"
 ::msgcat::mcset pl "Input arguments:" "Parametry wej\u015Bciowe :"
 ::msgcat::mcset pl "Remove" "Usu\u0144"
-::msgcat::mcset pl "Check function definition: it must be\
-                    on a single code line."\
-                   "Spawdzanie definicji funkcji :\
-                   funkcja musi by\u0107 w pojedy\u0144czej linii kodu."
 ::msgcat::mcset pl "Function name or input arguments do\
                    not match definition of the function"\
                    "Nazwa funkcji lub jej argumenty, nie\

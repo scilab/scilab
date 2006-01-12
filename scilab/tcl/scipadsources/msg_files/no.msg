@@ -56,10 +56,6 @@
 ::msgcat::mcset no "Obtain" "Hent"
 ::msgcat::mcset no "Input arguments:" "Input argumenter :"
 ::msgcat::mcset no "Remove" "Fjern"
-::msgcat::mcset no "Check function definition: it must be on a single code\
-                    line."\
-                   "Kontroller funksjons definisjon: det skal være en enkel\
-                    kodelinje."
 ::msgcat::mcset no "Function name or input arguments do not match definition\
                     of the function"\
                    "Funksjonsnavn eller input argument passer ikke med\

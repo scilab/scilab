@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.74"
+set version "Version 5.75"
 
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
@@ -161,8 +161,64 @@ set nbfilescurrentlycolorized 0
 # identifier of the progressbar for background colorization - increments only
 set progressbarId 0
 
-# Regular expression patterns (globals since used at different places of
-# the code)
-set funlineREpat1 {\mfunction\M[[:blank:]]+(((\[([\w%_#!?$,[:blank:]])*\])|([\w%_#!?$]+))[[:blank:]]*=)?[[:blank:]]*(}
-set funlineREpat2 {)[[:blank:]]*(()$|;|(//.*)|((\([\w%_#!?$,[:blank:]]*\)[[:blank:]]*(()$|;|([[:blank:]]*//.*)))))}
-set scilabnameREpat {[\w%_#!?$,[:blank:]]*}
+##########################################################################
+# Regular expression patterns
+# These are globals since used at different places of the code
+
+# Scilab names character class for first character of names
+# From help names: Names of variables and functions must begin with a letter
+# or one of the following special characters ' % ', ' _ ', ' # ', ' ! ', ' $ ', ' ? '
+set sncc1RE {[[:alpha:]%_#!?$]}
+
+# Scilab names character class for all but first character of names
+# From help names: Next characters may be letters or digits or any special
+# character in ' _ ', ' # ', ' ! ', ' $ ', ' ? '
+# Note that \w already contains the underscore
+set sncc2RE {[\w#!?$]}
+
+# Scilab names regexp, reporting version and non-reporting version
+set snRE_rep {}
+append snRE_rep {(} $sncc1RE $sncc2RE * {)}
+set snRE {}
+append snRE {(?:} $sncc1RE $sncc2RE * {)}
+
+# Any number of blanks (spaces or tabs), possibly none
+set sblRE {[[:blank:]]*}
+
+# Scilab comment
+set scommRE {(?://[^\n]*)}
+
+# Scilab continuation mark
+# Note: more than one continued lines is a match
+set scontRE {}
+append scontRE {(?:} $sblRE {\.{2,}} $sblRE $scommRE {?} {\n} {)} {*}
+
+# List of Scilab names separated by commas, allowing blanks and continuations anywhere
+# Note: empty list is NOT a match
+set slnRE {}
+append slnRE $snRE {(?:} $scontRE $sblRE {,} $scontRE $sblRE $snRE {)*}
+
+# List of Scilab names enclosed in brackets
+# Note: empty brackets [] is a match
+set sbklnRE {}
+append sbklnRE {\[} $scontRE $sblRE {(?:} $slnRE {)?} $scontRE $sblRE {\]}
+
+# List of Scilab names enclosed in parenthesis
+# Note: empty parenthesis () is a match
+set spalnRE {}
+append spalnRE {\(} $scontRE $sblRE {(?:} $slnRE {)?} $scontRE $sblRE {\)}
+
+# Scilab function definition regexp (left part, i.e. up to but not including function name)
+set sfdlRE {}
+append sfdlRE {\mfunction\M[[:blank:]]+} $scontRE {(?:} {(?:} $sbklnRE {|} $snRE {)} $scontRE $sblRE {=} $scontRE {)} {?} $sblRE
+
+# Scilab function definition regexp (right part, i.e. from but not including function name)
+set sfdrRE {}
+append sfdrRE $sblRE $scontRE $sblRE {(?:} $spalnRE {)} {?} $scontRE $sblRE {(?:} {[;,]} {|} {(?:} $sblRE $scommRE {)} {|} {\n} {)}
+
+set funlineREpat1 $sfdlRE
+set funlineREpat2 $sfdrRE
+set scilabnameREpat $snRE_rep
+
+# End of regular expression patterns
+##########################################################################

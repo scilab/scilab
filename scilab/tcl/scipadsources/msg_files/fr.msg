@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.71
+# in sync at least with v5.75
 
 
 # commons
@@ -50,8 +50,10 @@
 ::msgcat::mcset fr "Obtain" "Obtenir"
 ::msgcat::mcset fr "Input arguments:" "Arguments d'entrée :"
 ::msgcat::mcset fr "Remove" "Supprimer"
-::msgcat::mcset fr "Check function definition: it must be on a single code line." \
-                   "Vérifier la définition de la fonction : elle doit être sur une seule ligne."
+::msgcat::mcset fr "The selected function has not been found in the opened files, maybe it was deleted since last configuration of the debugger.\nUse button \"" \
+                   "La fonction sélectionnée n'a pas pu être trouvée dans les fichiers ouverts, peut-être a-t-elle été supprimée depuis la précédente configuration du débuggueur.\nUtiliser le bouton \""
+    ::msgcat::mcset fr "\" to refresh the list of available functions." \
+                       "\" pour rafraîchir la liste des fonctions disponibles."
 ::msgcat::mcset fr "Function name or input arguments do not match definition of the function" \
                     "Le nom de la fonction ou ses arguments ne correspondent pas à la définition de la fonction"
     ::msgcat::mcset fr "in the file!\n\nCheck function\

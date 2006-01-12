@@ -57,10 +57,6 @@
 ::msgcat::mcset es "Obtain" "Obtener"
 ::msgcat::mcset es "Input arguments:" "Argumentos de entrada:"
 ::msgcat::mcset es "Remove" "Remover"
-::msgcat::mcset es "Check function definition: it must be on a single code\
-                   line."\
-                   "Revisar definición de la función: debe ser\
-                    una sola línea de código."
 ::msgcat::mcset es "Function name or input arguments do not match definition\
                     of the function"\
                    "El nombre de la función o los argumentos de entrada\

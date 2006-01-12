@@ -275,39 +275,27 @@ proc checkarglist {funname} {
     set escfunname [string map {"\?" "\\\?"} $funname]
     set escfunname [string map {"\$" "\\\$"} $escfunname]
 
-    # In Scilab, a function name can contain any of these special
-    # characters: %_#!?$
-    # They can be anywhere in the function name, but % can only appear
-    # as the first character of the name (this last condition is not checked
-    # in the regexp below, this is left to the Scilab parser)
-    # Since word characters in Tcl are [[:alnum:]_], the \m character-entry
-    # escape that specifies to match at the beginning of a word cannot be
-    # used (same for \M, i.e. end of word)
-    # A more complex regexp pattern shall therefore be used
-    set pat1 $funlineREpat1
-    set pat2 $funlineREpat2
-    set pat "$pat1$escfunname$pat2"
-
-    # In Tcl<8.5, this does not match multiple lines. This is a Tcl/Tk bug.
-    # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
-    # <TODO>: workaround: use regexp instead of $textarea search to overcome
-    #         the \n issue, but then proc whichfun should also return a
-    #         continued line
-    # <TODO>: once using 8.5 or regexp, the messageBox below can be removed
+    set pat {}
+    append pat $funlineREpat1 {(?:} $escfunname {)} $funlineREpat2
 
     set orderOK "false"
     set found "false"
     foreach textarea $listoftextarea {
-        set ex [$textarea search -regexp -- $pat 0.0 end]
-        if {$ex != "" } {
-            while {[lsearch [$textarea tag names $ex] "textquoted"] != -1 || \
-                   [lsearch [$textarea tag names $ex] "rem2"] != -1 } {
-                set ex [$textarea search -regexp -- $pat "$ex+8c" end]
-                if {$ex == ""} break
-            }
-            if {$ex != "" } {
+        set allfun [regexp -all -inline -indices -- $pat [$textarea get "1.0" end]]
+# <TODO>: if the above returns more than one match that is not in a coment
+#         nor in a string, result of checkarglist can be wrong
+        if {$allfun == ""} {
+            # have a look in another buffer
+            continue
+        }
+        foreach fullmatch $allfun {
+            foreach {i j} $fullmatch {}
+            set star [$textarea index "1.0 + $i c"]
+            if {[lsearch [$textarea tag names $star] "textquoted"] == -1 && \
+                [lsearch [$textarea tag names $star] "rem2"] == -1 } {
                 set found "true"
-                set infun [whichfun [$textarea index "$ex +1l"] $textarea]
+                # whichfun trims continued lines and comments
+                set infun [whichfun [$textarea index "$star +1c"] $textarea]
                 set funline [lindex $infun 2]
                 set oppar [string first "\(" $funline]
                 set clpar [string first "\)" $funline]
@@ -331,16 +319,19 @@ proc checkarglist {funname} {
         }
     }
     if {$found == "false"} {
-        tk_messageBox -message [mc "Check function definition: it must be on a single code line."]
-    }
-    if {$orderOK != "true" } {
-        set mes [concat [mc "Function name or input arguments do not match definition\
-                 of the function"] $funname [mc "in the file!\n\nCheck function\
-                 name and arguments (names, order) in the configuration dialog.\
-                 \nArguments order can be changed using drag and drop with\
-                 right mouse button in the arguments listbox."] ]
-        set tit [mc "Error in selected function name or arguments"]
-        tk_messageBox -message $mes -icon warning -title $tit
+        tk_messageBox -message [concat [mc "The selected function has not been found in the opened files, maybe it was deleted since last configuration of the debugger.\nUse button \""] \
+                                       [mc "Obtain"] \
+                                       [mc "\" to refresh the list of available functions."] ]
+    } else {
+        if {$orderOK != "true" } {
+            set mes [concat [mc "Function name or input arguments do not match definition\
+                     of the function"] $funname [mc "in the file!\n\nCheck function\
+                     name and arguments (names, order) in the configuration dialog.\
+                     \nArguments order can be changed using drag and drop with\
+                     right mouse button in the arguments listbox."] ]
+            set tit [mc "Error in selected function name or arguments"]
+            tk_messageBox -message $mes -icon warning -title $tit
+        }
     }
     return $orderOK
 }
