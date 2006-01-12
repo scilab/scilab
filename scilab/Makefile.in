@@ -283,8 +283,7 @@ DESTDIR=$(PREFIX)/lib
 postinstall: 
 	@echo "creating Path.incl SCIDIR=$(DESTDIR)/$(SCIBASE)"
 	@echo "SCIDIR=$(DESTDIR)/$(SCIBASE)"  > Path.incl
-	@cd scripts; make 
-	@cd tests ; make distclean > /dev/null
+	@cd scripts; make
 	@cd examples ; make distclean > /dev/null
 	@cp contrib/loader.sce contrib-loader.sce 
 	@$(RM) -f -r contrib 
