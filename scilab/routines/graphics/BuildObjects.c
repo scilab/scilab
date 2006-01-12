@@ -487,8 +487,11 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       /*       /\*       ppsubwin->drawlater = ppaxesmdl->drawlater; *\/ */
       /*       ppsubwin->drawlater = sciGetDrawLater(sciGetParentFigure(pobj)); */
       
-      ppsubwin->isclip = ppaxesmdl->isclip;
-      ppsubwin->clip_region_set = 0;
+      ppsubwin->clip_region_set = 0 ;
+      sciSetIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
+      sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
+      /*ppsubwin->isclip = ppaxesmdl->isclip;
+        ppsubwin->clip_region_set = ppaxesmdl->clip_region_set ;*/
             
       ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
       
@@ -759,9 +762,11 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       ppText->callbackevent = 100;
       ppText->visible = sciGetVisibility(sciGetParentSubwin (pobj));
       
-      ppText->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       ppText->clip_region_set = 0;
+      /*ppText->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj) ) ) ;
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      
       /*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       if ((ppText->ptextstring = CALLOC (n+1, sizeof (char))) ==
@@ -1140,9 +1145,12 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       pPOLYLINE_FEATURE (pobj)->callbackevent = 100; 
       pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
+      /*pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      
+      
       pPOLYLINE_FEATURE (pobj)->arsize_factor = 1;
 
       /*       pPOLYLINE_FEATURE (pobj)->clip_region = (double *) NULL; */
@@ -1329,9 +1337,10 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       ppArc->isselected = TRUE; 
       ppArc->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       ppArc->clip_region_set = 0;
+      /*ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
 
 
@@ -1430,9 +1439,11 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
       pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pRECTANGLE_FEATURE (pobj)->clip_region_set = 0;
+      /*pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      
       /*     pRECTANGLE_FEATURE (pobj)->clip_region = (double *) NULL; */
 
       if (sciInitGraphicContext (pobj) == -1)
@@ -2008,9 +2019,10 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      pAXES_FEATURE (pobj)->isclip = -1;  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       pAXES_FEATURE (pobj)->clip_region_set = 0;
+      /*pAXES_FEATURE (pobj)->isclip = -1;*/  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
+      sciSetIsClipping( pobj, -1 ) ;
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
      
       pAXES_FEATURE (pobj)->dir =dir;
@@ -2357,9 +2369,13 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       pSEGS_FEATURE (pobj)->isselected = TRUE;
       pSEGS_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
-      pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      /* this must be done prior to the call of sciSetClipping to know */
+      /* if the clip_state has been set */
       pSEGS_FEATURE (pobj)->clip_region_set = 0;
+      /*pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      sciSetIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
+      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      
       /*       pSEGS_FEATURE (pobj)->clip_region = (double *) NULL; */
    
       psegs = pSEGS_FEATURE (pobj); 
