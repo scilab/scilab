@@ -18,6 +18,7 @@ function [%pt,scs_m]=do_color(%pt,scs_m)
   if typeof(o)=='Link' then
     [nam,pos,ct]=(o.id,o.thick,o.ct)
     c=getcolor('Choose a color',ct(1));
+
     if c<>[] then
       connected=connected_links(scs_m,K)
       for kc=connected
@@ -39,7 +40,9 @@ function [%pt,scs_m]=do_color(%pt,scs_m)
     else
       coli=o.graphics.gr_i(2)
     end
+//    pause
     coln=getcolor('color',coli)
+        disp(coln)
     if coln<>[] then
       if coln<>coli then
 	drawblock(o)
