@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -30,8 +30,8 @@
         <PARAM_NAME>filen</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res, nom du fichier Postscript (la valeur par
-          dÃ©faut est "file"). Le numÃ©ro de fenÃªtre est ajoutÃ© Ã 
+          <SP>: chaîne de caractères, nom du fichier Postscript (la valeur par
+          défaut est "file"). Le numéro de fenêtre est ajouté à 
           <VERB>filen</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -40,28 +40,28 @@
         <PARAM_NAME>printer</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chaÃ®ne de caractÃ¨res, nom de l'imprimante. Si
-          <VERB>printer</VERB> est prÃ©sent ou s'il n'y a qu'un seul argument
-          d'entrÃ©e dans la sÃ©quence d'appel, le fichier est directement
-          imprimÃ© sur l'imprimante <VERB>printer</VERB>.</SP>
+          <SP>: chaîne de caractères, nom de l'imprimante. Si
+          <VERB>printer</VERB> est présent ou s'il n'y a qu'un seul argument
+          d'entrée dans la séquence d'appel, le fichier est directement
+          imprimé sur l'imprimante <VERB>printer</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>xbasimp</VERB> envoie les graphiques enregistrÃ©s dans la fenÃªtre
+    <P><VERB>xbasimp</VERB> envoie les graphiques enregistrés dans la fenêtre
     <VERB>win_num</VERB> dans le fichier Postscript <VERB>filen.</VERB> Le
-    fichier crÃ©Ã© ne contient pas d'entÃªte. Pour le visualiser, il est
-    nÃ©cessaire d'ajouter l'entÃªte, par exemple avec les commandes
+    fichier créé ne contient pas d'entête. Pour le visualiser, il est
+    nécessaire d'ajouter l'entête, par exemple avec les commandes
     <VERB>Blpr</VERB> ou <VERB>BEpsf</VERB> ou d'utiliser directement la
-    fonction <VERB>xs2eps</VERB>. Si une imprimante est spÃ©cifiÃ©e, le fichier
-    Postscript est imprimÃ© avec la commande <VERB>Blpr</VERB>. Cette fonction
+    fonction <VERB>xs2eps</VERB>. Si une imprimante est spécifiée, le fichier
+    Postscript est imprimé avec la commande <VERB>Blpr</VERB>. Cette fonction
     n'est utilisable qu'avec le pilote <VERB>"Rec"</VERB>.</P>
 
     <P>Si <VERB>win_num</VERB> est un vecteur, plusieurs fichiers sont
-    gÃ©nÃ©rÃ©s, un pour chaque fenÃªtre (avec les noms <VERB>filenxx</VERB>), et
-    les fichiers sont imprimÃ©s sur une seule page avec la commande
+    générés, un pour chaque fenêtre (avec les noms <VERB>filenxx</VERB>), et
+    les fichiers sont imprimés sur une seule page avec la commande
     <VERB>Blpr</VERB>.</P>
   </DESCRIPTION>
 
