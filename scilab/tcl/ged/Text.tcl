@@ -63,10 +63,10 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 260
+set NBheight 300
 set NBwidth  250
 
-set Wheight [expr $NBheight + 155]
+set Wheight [expr $NBheight + 185]
 set Wwidth  [expr $NBwidth  + 265]
 
 set ww .axes
@@ -132,7 +132,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 21 \
+	       -width 20 -height 25 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -237,7 +237,7 @@ pack $w.frame.fontsang  -in $w.frame    -side top -fill x -pady 0m
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font {Arial 9} -anchor e -width $largeur
 scale $w.frame.fontangle -orient horizontal  -from 0 -to 360 \
-	 -resolution -1.0 -command "setFontAngle $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
+	 -resolution 1.0 -command "setFontAngle $w.frame.fontangle " -tickinterval 0 -font {Arial 9}
 $w.frame.fontangle set $curfontangle
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle2 -font {Arial 9} -width 15
 
