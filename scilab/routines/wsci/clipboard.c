@@ -288,57 +288,159 @@ void SetThreadPasteRunning(BOOL Running)
 	ThreadPasteRunning=Running;
 }
 /*-----------------------------------------------------------------------------------*/
-int	InterfaceWindowsClipboard _PARAMS((char *fname))
+int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 {
-  static int l1,n1,m1;
+	static int l1,n1,m1;
+	char *param1=NULL,*param2=NULL,*param3=NULL;
 
-  char *param1=NULL,*param2=NULL,*param3=NULL;
+	Rhs=Max(0,Rhs);
+	CheckRhs(0,2);
+	CheckLhs(0,1);
 
-  Rhs=Max(0,Rhs);
-  CheckRhs(0,2);
-  CheckLhs(0,1);
-
-  if ( IsWindowInterface() )
-  {
-	if (Rhs == 1)
+	if ( IsWindowInterface() )
 	{
-	  GetRhsVar(1,"c",&m1,&n1,&l1);
-	  param1=cstk(l1);
-
-	  if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
-	  {
-		  char *output=NULL ;
-		  LPTW lptw=GetTextWinScilab();
-
-		  output=GetTextFromClipboard(lptw);
-
-		  if (output)
-		  {
-			  CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
-			  FREE(output);
-			  LhsVar(1)=1;
-		  }
-		  else
-		  {
-			  m1=0;
-			  n1=0;
-			  l1=0;
-			  CreateVar(1,"d",  &m1, &n1, &l1);
-			  LhsVar(1)=1;
-		  }
-	  }
-	  else
-	  {
-		  Scierror(999,MSG_ERROR7);
-		  return 0;
-	  }
-	}
-	else
-	if (Rhs == 2)
-	{
-		if (IsAScalar(1))
+		if ( (Rhs == 1) && (GetType(1)==sci_strings) )
 		{
-			if (GetType(2)==sci_strings)
+			GetRhsVar(1,"c",&m1,&n1,&l1);
+			param1=cstk(l1);
+
+			if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
+			{
+				char *output=NULL ;
+				LPTW lptw=GetTextWinScilab();
+
+				output=GetTextFromClipboard(lptw);
+
+				if (output)
+				{
+					CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+					FREE(output);
+					LhsVar(1)=1;
+				}
+				else
+				{
+					m1=0;
+					n1=0;
+					l1=0;
+					CreateVar(1,"d",  &m1, &n1, &l1);
+					LhsVar(1)=1;
+				}
+
+				C2F(putlhsvar)();	
+				return 0;
+			}
+			else
+			{
+				Scierror(999,MSG_ERROR7);
+				return 0;
+			}
+		}
+
+		if (Rhs == 2)
+		{
+			if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
+			{
+				GetRhsVar(1,"c",&m1,&n1,&l1);
+				param1=cstk(l1);
+
+				if ( strcmp(param1,"do") == 0 )
+				{
+					GetRhsVar(2,"c",&m1,&n1,&l1);
+					param2=cstk(l1);
+
+					if ( strcmp(param2,"paste") == 0 )
+					{
+						Callback_PASTE();
+					}
+					else if ( strcmp(param2,"copy") == 0 )
+					{
+						Callback_MCOPY();
+					}
+					else if ( strcmp(param2,"empty") == 0 )
+					{
+						Callback_EMPTYCLIPBOARD();
+					}
+					else
+					{
+						Scierror(999,"Incorrect second parameter.");
+						return 0;
+					}
+
+					m1=0;
+					n1=0;
+					l1=0;
+					CreateVar(1,"d",  &m1, &n1, &l1);
+					LhsVar(1)=1;
+					C2F(putlhsvar)();	
+					return 0;
+				}
+
+				if ( strcmp(param1,"copy") == 0 )
+				{
+					char *TextToPutInClipboard=NULL;
+					char **Str=NULL;
+					LPTW lptw=GetTextWinScilab();
+
+					GetRhsVar(2,"S",&m1,&n1,&Str);
+
+
+					if ( (m1==1) && (n1==1) )
+					{
+						TextToPutInClipboard=Str[0];
+						PutTextInClipboard(lptw,TextToPutInClipboard);
+					}
+					else
+					{
+						int i=0;
+						int j=0;
+						int l=0;
+						char *TextToSendInClipboard=NULL;
+						int SizeofTextToSendInClipboard=0;
+						char **buffer = (char**)MALLOC( (m1*n1)*sizeof(char *) );
+					
+						for (i=0; i<m1; i++) for (j=0; j<n1; j++) 
+						{
+							SizeofTextToSendInClipboard=SizeofTextToSendInClipboard+strlen(Str[j*m1+i])+strlen(" \n");
+							buffer[i*n1+j]=(char*)MALLOC(strlen(Str[j*m1+i])+1);
+							sprintf(buffer[i*n1+j],"%s",Str[j*m1+i]);
+						}
+
+						TextToSendInClipboard=(char*)MALLOC( (SizeofTextToSendInClipboard)*sizeof(char) );
+						strcpy(TextToSendInClipboard,"");
+
+						for (i=0; i<m1; i++)
+						{
+								for (j=0; j<n1; j++) 
+								{
+									strcat(TextToSendInClipboard,buffer[l++]);
+									strcat(TextToSendInClipboard," ");
+								}
+								if ( i != (m1-1) ) strcat(TextToSendInClipboard,"\n");
+						}
+
+						PutTextInClipboard(lptw,TextToSendInClipboard);
+
+						if (buffer) {FREE(buffer);buffer=NULL;}
+
+						if(TextToSendInClipboard) {FREE(TextToSendInClipboard);TextToSendInClipboard=NULL;}
+					}
+
+					m1=0;
+					n1=0;
+					l1=0;
+					CreateVar(1,"d",  &m1, &n1, &l1);
+					LhsVar(1)=1;
+					C2F(putlhsvar)();	
+					return 0;
+				}
+				else
+				{
+					Scierror(999,"Incorrect parameters. See : help clipboard");
+					return 0;
+				}
+			}
+
+			if ( (IsAScalar(1)) && (GetType(2)==sci_strings) )
 			{
 				GetRhsVar(2,"c",&m1,&n1,&l1);
 				param2=cstk(l1);
@@ -348,7 +450,6 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 					int num_win=-2;
 					GetRhsVar(1,"i",&m1,&n1,&l1);
 					num_win=*istk(l1);
-
 					if (num_win>=0)
 					{
 						struct BCG *ScilabGC=NULL;
@@ -364,6 +465,14 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 							{
 								CopyToClipboardBitmap (ScilabGC);
 							}
+
+							m1=0;
+							n1=0;
+							l1=0;
+							CreateVar(1,"d",  &m1, &n1, &l1);
+							LhsVar(1)=1;
+							C2F(putlhsvar)();	
+							return 0;
 						}
 						else
 						{
@@ -383,6 +492,60 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 					return 0;
 				}
 			}
+		}
+		else
+		{
+			Scierror(999,"Incorrect parameters. See : help clipboard");
+			return 0;	
+		}
+	}
+	else
+	{
+		if ( (Rhs == 2) && (IsAScalar(1)) && (GetType(2)==sci_strings) )
+		{
+			GetRhsVar(2,"c",&m1,&n1,&l1);
+			param2=cstk(l1);
+			if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+			{
+				int num_win=-2;
+				GetRhsVar(1,"i",&m1,&n1,&l1);
+				num_win=*istk(l1);
+				if (num_win>=0)
+				{
+					struct BCG *ScilabGC=NULL;
+					ScilabGC = GetWindowXgcNumber (num_win);
+
+					if (ScilabGC)
+					{
+						if ( strcmp(param2,"EMF") == 0 )
+						{
+							CopyToClipboardEMF (ScilabGC);
+						}
+						else
+						{
+							CopyToClipboardBitmap (ScilabGC);
+						}
+
+						m1=0;
+						n1=0;
+						l1=0;
+						CreateVar(1,"d",  &m1, &n1, &l1);
+						LhsVar(1)=1;
+						C2F(putlhsvar)();	
+						return 0;
+					}
+					else
+					{
+						Scierror(999,"Invalid Windows number.");
+						return 0;
+					}
+				}
+				else
+				{
+					Scierror(999,"parameter must be >= 0.");
+					return 0;
+				}
+			}
 			else
 			{
 				Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
@@ -390,123 +553,280 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 			}
 		}
 		else
-		if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
 		{
-			GetRhsVar(1,"c",&m1,&n1,&l1);
-			param1=cstk(l1);
-
-			if ( strcmp(param1,"do") == 0 )
-			{
-				GetRhsVar(2,"c",&m1,&n1,&l1);
-				param2=cstk(l1);
-
-				if ( strcmp(param2,"paste") == 0 )
-				{
-					Callback_PASTE();
-				}
-				else
-				if ( strcmp(param2,"copy") == 0 )
-				{
-					Callback_MCOPY();
-				}
-				else
-				if ( strcmp(param2,"empty") == 0 )
-				{
-					Callback_EMPTYCLIPBOARD();
-				}
-				else
-				{
-					Scierror(999,"Incorrect second parameter.");
-					return 0;
-				}
-			}
-			else
-			if ( strcmp(param1,"copy") == 0 )
-			{
-				LPTW lptw=GetTextWinScilab();
-				char *TextToPutInClipboard=NULL;
-
-				GetRhsVar(2,"c",&m1,&n1,&l1);
-				TextToPutInClipboard=cstk(l1);
-
-				PutTextInClipboard(lptw,TextToPutInClipboard);
-			}
-			else
-			{
-				Scierror(999,MSG_ERROR9);
-				return 0;
-			}
-		}
-		else
-		{
-			Scierror(999,"Incorrect parameters. See : help clipboard");
+			Scierror(999,MSG_ERROR10);
 			return 0;
 		}
-      LhsVar(1)=0;
+		Scierror(999,MSG_ERROR10);
+		return 0;
 	}
-  }
-  else
-  {
-	  if ( IsAScalar(1) && (Rhs == 2) )
-	  {
-		  if (GetType(2)==sci_strings)
-		  {
-			  GetRhsVar(2,"c",&m1,&n1,&l1);
-			  param2=cstk(l1);
+	return 0;
 
-			  if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
-			  {
-				  int num_win=-2;
-				  GetRhsVar(1,"i",&m1,&n1,&l1);
-				  num_win=*istk(l1);
+ // static int l1,n1,m1;
 
-				  if (num_win>=0)
-				  {
-					  struct BCG *ScilabGC=NULL;
-					  ScilabGC = GetWindowXgcNumber (num_win);
+ // char *param1=NULL,*param2=NULL,*param3=NULL;
 
-					  if (ScilabGC)
-					  {
-						  if ( strcmp(param2,"EMF") == 0 )
-						  {
-							  CopyToClipboardEMF (ScilabGC);
-						  }
-						  else
-						  {
-							  CopyToClipboardBitmap (ScilabGC);
-						  }
-					  }
-					  else
-					  {
-						  Scierror(999,"Invalid Windows number.");
-						  return 0;
-					  }
-				  }
-				  else
-				  {
-					  Scierror(999,"parameter must be >= 0.");
-					  return 0;
-				  }
-			  }
-			  else
-			  {
-				  Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
-				  return 0;
-			  }
-		  }
-		  else
-		  {
-			  Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
-			  return 0;
-		  }
-	  }
-	  else
-	  {
-		  Scierror(999,MSG_ERROR10);
-		  return 0;
-	  }
-  }
-  return 0;
+ // Rhs=Max(0,Rhs);
+ // CheckRhs(0,2);
+ // CheckLhs(0,1);
+
+ // if ( IsWindowInterface() )
+ // {
+	//if (Rhs == 1)
+	//{
+	//  GetRhsVar(1,"c",&m1,&n1,&l1);
+	//  param1=cstk(l1);
+
+	//  if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
+	//  {
+	//	  char *output=NULL ;
+	//	  LPTW lptw=GetTextWinScilab();
+
+	//	  output=GetTextFromClipboard(lptw);
+
+	//	  if (output)
+	//	  {
+	//		  CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+	//		  FREE(output);
+	//		  LhsVar(1)=1;
+	//	  }
+	//	  else
+	//	  {
+	//		  m1=0;
+	//		  n1=0;
+	//		  l1=0;
+	//		  CreateVar(1,"d",  &m1, &n1, &l1);
+	//		  LhsVar(1)=1;
+	//	  }
+
+	//		C2F(putlhsvar)();	
+	//		return 0;
+	//  }
+	//  else
+	//  {
+	//	  Scierror(999,MSG_ERROR7);
+	//	  return 0;
+	//  }
+	//}
+	//else
+	//if (Rhs == 2)
+	//{
+	//	if (IsAScalar(1))
+	//	{
+	//		if (GetType(2)==sci_strings)
+	//		{
+	//			GetRhsVar(2,"c",&m1,&n1,&l1);
+	//			param2=cstk(l1);
+
+	//			if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+	//			{
+	//				int num_win=-2;
+	//				GetRhsVar(1,"i",&m1,&n1,&l1);
+	//				num_win=*istk(l1);
+
+	//				if (num_win>=0)
+	//				{
+	//					struct BCG *ScilabGC=NULL;
+	//					ScilabGC = GetWindowXgcNumber (num_win);
+
+	//					if (ScilabGC)
+	//					{
+	//						if ( strcmp(param2,"EMF") == 0 )
+	//						{
+	//							CopyToClipboardEMF (ScilabGC);
+	//						}
+	//						else
+	//						{
+	//							CopyToClipboardBitmap (ScilabGC);
+	//						}
+	//					}
+	//					else
+	//					{
+	//						Scierror(999,"Invalid Windows number.");
+	//						return 0;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					Scierror(999,"parameter must be >= 0.");
+	//					return 0;
+	//				}
+	//			}
+	//			else
+	//			{
+	//				Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+	//				return 0;
+	//			}
+	//		}
+	//		else
+	//		{
+	//			Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+	//			return 0;
+	//		}
+	//	}
+	//	else
+	//	if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
+	//	{
+	//		GetRhsVar(1,"c",&m1,&n1,&l1);
+	//		param1=cstk(l1);
+
+	//		if ( strcmp(param1,"do") == 0 )
+	//		{
+	//			GetRhsVar(2,"c",&m1,&n1,&l1);
+	//			param2=cstk(l1);
+
+	//			if ( strcmp(param2,"paste") == 0 )
+	//			{
+	//				Callback_PASTE();
+	//			}
+	//			else
+	//			if ( strcmp(param2,"copy") == 0 )
+	//			{
+	//				Callback_MCOPY();
+	//			}
+	//			else
+	//			if ( strcmp(param2,"empty") == 0 )
+	//			{
+	//				Callback_EMPTYCLIPBOARD();
+	//			}
+	//			else
+	//			{
+	//				Scierror(999,"Incorrect second parameter.");
+	//				return 0;
+	//			}
+	//		}
+	//		else
+	//		if ( strcmp(param1,"copy") == 0 )
+	//		{
+	//			char *TextToPutInClipboard=NULL;
+	//			char **Str=NULL;
+	//			LPTW lptw=GetTextWinScilab();
+	//			
+	//			GetRhsVar(2,"S",&m1,&n1,&Str);
+
+	//			if ( (m1==1) && (n1==1) )
+	//			{
+	//				TextToPutInClipboard=Str[0];
+	//				PutTextInClipboard(lptw,TextToPutInClipboard);
+	//			}
+	//			else
+	//			{
+	//				int i=0;
+	//				int j=0;
+	//				int l=0;
+	//				char *TextToSendInClipboard=NULL;
+	//				int SizeofTextToSendInClipboard=0;
+	//				char **buffer = (char**)MALLOC( (m1*n1)*sizeof(char *) );
+	//			
+	//				for (i=0; i<m1; i++) for (j=0; j<n1; j++) 
+	//				{
+	//					SizeofTextToSendInClipboard=SizeofTextToSendInClipboard+strlen(Str[j*m1+i])+strlen(" \n");
+	//					buffer[i*n1+j]=(char*)MALLOC(strlen(Str[j*m1+i]));
+	//					sprintf(buffer[i*n1+j],"%s",Str[j*m1+i]);
+	//				}
+
+	//				TextToSendInClipboard=(char*)MALLOC( (SizeofTextToSendInClipboard)*sizeof(char) );
+	//				strcpy(TextToSendInClipboard,"");
+
+	//				for (i=0; i<m1; i++)
+	//				{
+	//					for (j=0; j<n1; j++) 
+	//					{
+	//						strcat(TextToSendInClipboard,buffer[l++]);
+	//						strcat(TextToSendInClipboard," ");
+	//					}
+	//					if ( i != (m1-1) ) strcat(TextToSendInClipboard,"\n");
+	//				}
+	//				PutTextInClipboard(lptw,TextToSendInClipboard);
+
+	//				if (buffer)
+	//				{
+	//					for(i=0;i<m1*n1;i++) if (buffer[i]) {free(buffer[i]);buffer[i]=NULL;}
+	//					FREE(buffer);buffer=NULL;
+	//				}
+
+	//				if(TextToSendInClipboard) {FREE(TextToSendInClipboard);TextToSendInClipboard=NULL;}
+	//			}
+	//		}
+	//		else
+	//		{
+	//			Scierror(999,MSG_ERROR9);
+	//			return 0;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		Scierror(999,"Incorrect parameters. See : help clipboard");
+	//		return 0;
+	//	}
+ //   LhsVar(1)=0;
+	//	C2F(putlhsvar)();	
+	//}
+ // }
+ // else
+ // {
+	//  if ( IsAScalar(1) && (Rhs == 2) )
+	//  {
+	//	  if (GetType(2)==sci_strings)
+	//	  {
+	//		  GetRhsVar(2,"c",&m1,&n1,&l1);
+	//		  param2=cstk(l1);
+
+	//		  if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+	//		  {
+	//			  int num_win=-2;
+	//			  GetRhsVar(1,"i",&m1,&n1,&l1);
+	//			  num_win=*istk(l1);
+
+	//			  if (num_win>=0)
+	//			  {
+	//				  struct BCG *ScilabGC=NULL;
+	//				  ScilabGC = GetWindowXgcNumber (num_win);
+
+	//				  if (ScilabGC)
+	//				  {
+	//					  if ( strcmp(param2,"EMF") == 0 )
+	//					  {
+	//						  CopyToClipboardEMF (ScilabGC);
+	//					  }
+	//					  else
+	//					  {
+	//						  CopyToClipboardBitmap (ScilabGC);
+	//					  }
+	//				  }
+	//				  else
+	//				  {
+	//					  Scierror(999,"Invalid Windows number.");
+	//					  return 0;
+	//				  }
+	//			  }
+	//			  else
+	//			  {
+	//				  Scierror(999,"parameter must be >= 0.");
+	//				  return 0;
+	//			  }
+	//		  }
+	//		  else
+	//		  {
+	//			  Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+	//			  return 0;
+	//		  }
+	//	  }
+	//	  else
+	//	  {
+	//		  Scierror(999,"Second parameter must be 'EMF' or 'DIB'.");
+	//		  return 0;
+	//	  }
+	//		LhsVar(1)=0;
+	//		C2F(putlhsvar)();	
+	//  }
+	//  else
+	//  {
+	//	  Scierror(999,MSG_ERROR10);
+	//	  return 0;
+	//  }
+ // }
+ // return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 char * GetTextFromClipboard(LPTW lptw)
@@ -535,7 +855,7 @@ char * GetTextFromClipboard(LPTW lptw)
 	if (hGMem)
 		{
 			lpMem  = GlobalLock( hGMem );
-			Text= (char*) MALLOC (sizeof(char)*strlen(lpMem));
+			Text= (char*) MALLOC (sizeof(char)*(strlen(lpMem)+1));
 			strcpy(Text,lpMem);
 			GlobalUnlock (hGMem);
 		}
