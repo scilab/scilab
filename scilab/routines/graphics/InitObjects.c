@@ -356,6 +356,9 @@ int C2F(graphicsmodels) ()
   ppaxesmdl->clip_region[1] = 0.;
   ppaxesmdl->clip_region[2] = 0.;
   ppaxesmdl->clip_region[3] = 0.;
+
+  /* the model has not been changed !!! */
+  ppaxesmdl->clip_region_set = 0 ;
   
   ppaxesmdl->tight_limits = FALSE;
   
