@@ -34,26 +34,26 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Job(JNIEnv *env , jobject obj_this, 
   cm=jm;cn=jn;
   if (!  C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname)))
   {
-	   fprintf(stderr,"erreur lors de l'envoi a scilab \n");
+	   fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (1).\n");
   }
   else 
   { 
     if ( send_scilab_job((char *)cjob) != 0) 
-      {
-		fprintf(stderr,"Bug in scilab \n");
-      }
+    {
+			fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (2).\n");
+    }
     else 
-      {
-		if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
-		{
-			fprintf(stderr,"erreur lors de la reception \n");
-		}
-		else 
-		if (! C2F(creadmat)((char *)cname,&cm, &cn,cx,(unsigned long)strlen(cname) ))
-		{	
-			fprintf(stderr,"erreur lors de la reception \n");
-		}
-      }
+    {
+			if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
+			{
+				fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (3).\n");
+			}
+			else 
+			if (! C2F(creadmat)((char *)cname,&cm, &cn,cx,(unsigned long)strlen(cname) ))
+			{	
+				fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (4).\n");
+			}
+   }
   }
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   (*env)->ReleaseStringUTFChars(env, job , cjob);
@@ -88,12 +88,12 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Get(JNIEnv *env , jobject obj_this)
   
   if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
   {
-      fprintf(stderr,"erreur lors de la reception \n");
+      fprintf(stderr,"Error in Java_javasci_SciReal_Get (1).\n");
   }
   else 
   if (! C2F(creadmat)((char *)cname,&cm, &cn,cx,(unsigned long)strlen(cname) ))
 	{	
-		fprintf(stderr,"erreur lors de la reception \n");
+		fprintf(stderr,"Error in Java_javasci_SciReal_Get (2).\n");
 	}
 	
   (*env)->ReleaseStringUTFChars(env, jname , cname);
@@ -128,7 +128,10 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Send(JNIEnv *env , jobject obj_this)
   if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
   cm=jm;cn=jn;
   if (!  C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname))) 
-    fprintf(stderr,"erreur lors de l'envoi a scilab \n");
+  {
+  	fprintf(stderr,"Error in Java_javasci_SciReal_Send.\n");
+  }
+ 
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }

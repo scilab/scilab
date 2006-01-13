@@ -101,8 +101,6 @@ void Initialize()
 
   /* Chargement de Scilab.star */
   C2F(scirun)(initstr,(int)strlen(initstr));
-  
-  fprintf(stderr,"Fin de Init\n");
  
 }
 /********************************************************************************************************/
