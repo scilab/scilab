@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.136 $)dnl
+AC_REVISION($Revision: 1.137 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1190,6 +1190,7 @@ case "$host" in
 	CC_OPTIONS=' -g   -Wall'
       fi
     CC_LDFLAGS=
+    WITH_G77='yes'
     FC=g77
     if test "$WITH_G77" = yes; then
       FC=g77
