@@ -28,7 +28,7 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject obj
 	{
 		C2F(getwins)(&num,&ids ,&iflag);
 		if (num > 0) vInt=1;
-    } 
+  } 
  
 	return vInt;
 }
@@ -41,9 +41,9 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring
   cjob = (*env)->GetStringUTFChars(env, job, NULL);
   if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
   if ( send_scilab_job((char *)cjob) != 0) 
-    {
-      fprintf(stderr,"Bug in scilab \n");
-    }
+  {
+    fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
+  }
   (*env)->ReleaseStringUTFChars(env, job , cjob);
 }
 /********************************************************************************************************/

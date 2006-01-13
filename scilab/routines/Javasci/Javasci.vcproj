@@ -454,6 +454,9 @@ cd ..
 			<File
 				RelativePath=".\javasci_SciReal.c">
 			</File>
+			<File
+				RelativePath=".\javasci_SciString.c">
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -467,6 +470,9 @@ cd ..
 			</File>
 			<File
 				RelativePath=".\javasci_SciReal.h">
+			</File>
+			<File
+				RelativePath=".\javasci_SciString.h">
 			</File>
 			<File
 				RelativePath=".\jni.h">
@@ -494,6 +500,9 @@ cd ..
 			</File>
 			<File
 				RelativePath=".\classes\SciReal.java">
+			</File>
+			<File
+				RelativePath=".\classes\SciString.java">
 			</File>
 		</Filter>
 		<File
