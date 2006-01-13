@@ -43,6 +43,28 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
 	ierr=execstr('load(fname)','errcatch')
 	ok=%t
       end
+     case 'COSF'
+      [x,ierr]=fileinfo(fname)
+      if ierr==0 then
+	ww=stacksize()
+	if ww(1)<2*x(1) then 
+	  disp('stacksize increased to '+string(2*x(1)))
+	  stacksize(2*x(1)),
+	end
+	ierr=execstr('exec(fname,-1)','errcatch')
+	ok=%t
+      end
+     case 'COS' then
+      [x,ierr]=fileinfo(fname)
+      if ierr==0 then
+	ww=stacksize()
+	if ww(1)<2*x(1) then 
+	  disp('stacksize increased to '+string(2*x(1)))
+	  stacksize(2*x(1)),
+	end
+	ierr=execstr('load(fname)','errcatch')
+	ok=%t
+      end
     else
       message(['Only *.cos (binary) and *.cosf (formatted) files';
 	       'allowed'])
