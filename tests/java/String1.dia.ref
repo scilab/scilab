@@ -1,13 +1,9 @@
-String Sentence1=
- 
- Who is the best ?   
-String Sentence2=
- 
- I have a dream ...   
+S1 : Sentence1 = Who is the best ?
+S2 : Sentence2 = I have a dream ...
  
  You are the best !   
  
  I have a dream ...   
-String Sentence3=
  
  You are the best ! I have a dream ...   
+S3 : Sentence3 = You are the best ! I have a dream ...

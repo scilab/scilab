@@ -11,17 +11,17 @@ class String1
     S1.Send();
     S2.Send();
     
-    S1.disp();
-    S2.disp();
+    System.out.println("S1 : "+ S1.getName()+" = "+S1.getData());
+    System.out.println("S2 : "+ S2.getName()+" = "+S2.getData());
     
     Scilab.Exec("Sentence1=''You are the best !'';");
     
     Scilab.Exec("disp(Sentence1);");
     Scilab.Exec("disp(Sentence2);");
     Scilab.Exec("Sentence3=Sentence1+'' ''+Sentence2;");
+    Scilab.Exec("disp(Sentence3);");
     
-    S3.Get();
-    S3.disp();
+    System.out.println("S3 : "+ S3.getName()+" = "+S3.getData());
     
 
   }
