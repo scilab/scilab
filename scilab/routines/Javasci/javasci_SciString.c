@@ -1,7 +1,6 @@
 #include "javasci_SciReal.h"
 /********************************************************************************************************/
-/* Copyright Cermics/Enpc : jean-philippe Chancelier */
-/* Modifications et ameliorations Allan CORNET */
+/* Allan CORNET */
 /* INRIA 2005 */
 /********************************************************************************************************/
 
@@ -59,7 +58,8 @@ JNIEXPORT jstring JNICALL Java_javasci_SciString_GetString(JNIEnv *env , jobject
 
   m=1;
   n=1;
-  if ( C2F(creadchains)((char*)cname, &m, &n, &lenStrValue, StrValue, (unsigned long)strlen(cname), (unsigned long)strlen(StrValue)) )
+  
+  if (!C2F(creadchains)((char*)cname, &m, &n, &lenStrValue, StrValue, (unsigned long)strlen(cname), (unsigned long)strlen(StrValue)) )
   {
   	fprintf(stderr,"Error in Java_javasci_SciString_GetString routine.\n");
   }
@@ -97,7 +97,7 @@ JNIEXPORT void JNICALL Java_javasci_SciString_Send(JNIEnv *env , jobject obj_thi
   lencname=(int)strlen(cname);
   lenStrValue=(int)strlen(StrValue);
 
-  if (! C2F(cwritechain)((char*)cname,&lenStrValue,(char*)StrValue,(unsigned long)lencname,(unsigned long)lenStrValue ))
+  if (!C2F(cwritechain)((char*)cname,&lenStrValue,(char*)StrValue,(unsigned long)lencname,(unsigned long)lenStrValue ))
   { 
 	  fprintf(stderr,"Error in Java_javasci_SciString_Send routine.\n");
   }

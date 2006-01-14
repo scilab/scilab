@@ -54,7 +54,8 @@ public class SciString
 /********************************************************************************************************/    
   public void disp() 
   {
-	  System.out.println("String "+ getName() +"=");
+    Get();
+	System.out.println("String "+ getName() +"=");
     Job( "disp(" + getName() +");");
   }
 }
