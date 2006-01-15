@@ -139,24 +139,13 @@ proc tagcontlines {w} {
     global showContinuedLines listoffile
     global bgcolors
     foreach c1 $bgcolors {global $c1}
+    global dotcontlineRE bracketscontlineRE bracescontlineRE
 
     # don't tag anything if the language is not scilab
     if {$listoffile("$w",language) != "scilab"} {
         $w tag remove contline 1.0 end
         return
     }
-
-    # regular expression matching a continued line identified as such because
-    # it has trailing dots possibly followed by a comment
-    set dotcontlineRE {(?:^(?:[^/]/?)*\.{2,} *(?://.*)?$)}
-
-    # regular expression matching a continued line identified as such because
-    # it has unbalanced brackets possibly followed by a comment
-    set bracketscontlineRE {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\[[^\]]*(?:(?:(?:\[[^\[\]]*\])*[^\]]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
-
-    # regular expression matching a continued line identified as such because
-    # it has unbalanced braces possibly followed by a comment
-    set bracescontlineRE   {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\{[^\}]*(?:(?:(?:\{[^\{\}]*\})*[^\}]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 
     set contlineRE "$bracketscontlineRE|$bracescontlineRE|$dotcontlineRE"
 
@@ -184,6 +173,38 @@ proc tagcontlines {w} {
         $w tag configure contline -background {}
     }
     $w tag lower contline
+}
+
+proc createnestregexp {nestlevel opdel cldel} {
+# Create a regular expression able to match $nestlevel levels of nested
+# items enclosed in balanced $opdel (open delimiter) and $cldel close
+# delimiter
+# Any level of nesting is achievable through $nestlevel (but not an
+# arbitrary level), but performance has to be considered
+# Note: the regexp returned uses only non reporting parenthesis, which is
+# required to properly match continued lines (proc tagcontlines), but also
+# to avoid a huge performance impact if sub-matches would be reported
+# This proc allows to match for instance (brackets are the delimiters, $nestlevel is > 2):
+# [ you [simply [ can't] match [arbitrarily nested] constructs [with regular expressions]]]
+
+    set op "\\$opdel"
+    set nodel "\[^\\$opdel\\$cldel\]*"
+    set cl "\\$cldel"
+
+    set RE {}
+    append RE $op $nodel
+
+    for {set i 2} {$i <= $nestlevel} {incr i} {
+        append RE {(?:} {(?:} $op $nodel
+    }
+
+    for {set i 2} {$i <= $nestlevel} {incr i} {
+        append RE $cl {)*} $nodel {)+}
+    }
+
+    append RE $cl
+
+    return $RE
 }
 
 proc countcontlines {w {indstart "1.0"} {indstop "insert"}} {
