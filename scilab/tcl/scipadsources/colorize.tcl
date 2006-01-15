@@ -652,7 +652,8 @@ proc colormenuoption {c} {
 #  changed)
        foreach i $listoftextarea {
            TextStyles $i; update
-           }
+       }
+       tagcontlinesinallbuffers
    }
 }
 

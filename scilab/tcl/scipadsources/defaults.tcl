@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 5.75"
+set version "Version 5.76"
 
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
@@ -219,6 +219,29 @@ append sfdrRE $sblRE $scontRE $sblRE {(?:} $spalnRE {)} {?} $scontRE $sblRE {(?:
 set funlineREpat1 $sfdlRE
 set funlineREpat2 $sfdrRE
 set scilabnameREpat $snRE_rep
+
+###
+
+# regular expression matching a continued line identified as such because
+# it has trailing dots possibly followed by a comment
+set dotcontlineRE {(?:^(?:[^/]/?)*\.{2,} *(?://.*)?$)}
+
+# maximum level of nesting for brackets and braces
+# if a higher level of nesting exists in a continued line of the textarea,
+# then continued lines detection algorithm will be fooled
+set constructsmaxnestlevel 3
+
+# regular expression matching a continued line identified as such because
+# it has unbalanced brackets possibly followed by a comment
+set bracketscontlineRE {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\[[^\]]*(?:(?:(?:}
+append bracketscontlineRE [createnestregexp $constructsmaxnestlevel {[} {]}]
+append bracketscontlineRE {)*[^\]]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
+
+# regular expression matching a continued line identified as such because
+# it has unbalanced braces possibly followed by a comment
+set bracescontlineRE   {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\{[^\}]*(?:(?:(?:}
+append bracescontlineRE [createnestregexp $constructsmaxnestlevel "{" "}"]
+append bracescontlineRE {)*[^\}]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 
 # End of regular expression patterns
 ##########################################################################
