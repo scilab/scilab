@@ -34,7 +34,7 @@
 #include "Graphics.h"
 #include "scigraphic.h"
 #include "../machine.h"
-
+#include "../wsci/GetOS.h"
 
 
 #ifdef WITH_TK
@@ -716,12 +716,6 @@ void C2F(setpopupname)(x0, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   Setpopupname(x0);
 }
 /*-----------------------------------------------------------------------------------*/
-
-extern void sciSendMessage(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-extern int  sciPeekMessage(MSG *msg);
-/*-----------------------------------------------------------------------------------*/
-
-
 /****************************************************************
  Wait for mouse click in graphic window 
    send back mouse location  (x1,y1)  and button number  
@@ -1610,27 +1604,54 @@ void C2F(setthickness)(value, v2, v3, v4)
      integer *v4;
 { 
   HPEN hpen ;
+  int width;
+  int style = DashTab[ScilabXgc->CurDashStyle];
+  int OS = SciWinGetPlatformId();
+
   ScilabXgc->CurLineWidth =Max(0, *value);
+  width = ScilabXgc->CurLineWidth;
+
   if ( ScilabXgc->CurColorStatus == 1 ) 
     {
-      COLORREF px = DefaultForeground ;
-      if (ScilabXgc->Colors != NULL) 
-	{
-	  if ( ScilabXgc->CurDrawFunction !=  GXxor )
-	    px= ScilabXgc->Colors[ScilabXgc->CurColor];
-	  else 
-	    px = ScilabXgc->Colors[ScilabXgc->CurColor] 
+	  COLORREF px = DefaultForeground ;
+	  if (ScilabXgc->Colors != NULL)
+		{
+		  if ( ScilabXgc->CurDrawFunction !=  GXxor )
+		   px= ScilabXgc->Colors[ScilabXgc->CurColor];
+		  else 
+		   px = ScilabXgc->Colors[ScilabXgc->CurColor] 
 	      ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+  	    }
+        
+		if(OS == VER_PLATFORM_WIN32_NT)
+          {
+			  LOGBRUSH logbrush;
+			  logbrush.lbStyle = BS_SOLID;
+			  logbrush.lbColor = px;
+			  logbrush.lbHatch = 0;
+			  hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+		  }
+	    else
+		  {
+			 hpen = CreatePen(PS_SOLID,ScilabXgc->CurLineWidth,px);
+		  }
 	}
-      hpen = CreatePen(PS_SOLID,ScilabXgc->CurLineWidth,px);
-    }
   else 
     {
-      int width;
-      int style = DashTab[ScilabXgc->CurDashStyle];
-      /** warning win95 only uses dot or dash with linewidth <= 1 **/
-      width = ( style != PS_SOLID) ? 0 : ScilabXgc->CurLineWidth ;
-      hpen = CreatePen(style,width,RGB(0,0,0));
+	  if(OS == VER_PLATFORM_WIN32_NT)
+	  {
+		  LOGBRUSH logbrush;
+		  logbrush.lbStyle = BS_SOLID;
+		  logbrush.lbColor = RGB(0,0,0);
+		  logbrush.lbHatch = 0;
+		  hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+	  }
+	  else
+	  {
+        /** warning win95 only uses dot or dash with linewidth <= 1 **/
+        width = ( style != PS_SOLID) ? 0 : ScilabXgc->CurLineWidth ;
+        hpen = CreatePen(style,width,RGB(0,0,0));
+	  }
     }
   SelectObject(hdc,hpen);
   if ( ScilabXgc->hPen != (HPEN) 0 ) DeleteObject(ScilabXgc->hPen);
@@ -1780,10 +1801,16 @@ void C2F(setdash)(value, v2, v3, v4)
   static integer l3 ;
   COLORREF col ;
   HPEN hpen;
-  int id,width;
+  int id,width=0;
+  int OS = SciWinGetPlatformId();
+
   l3 = Max(0,Min(MAXDASH - 1,*value - 1));
-  /** warning win95 only uses dot or dash with linewidth <= 1 **/
-  width = ( DashTab[l3] != PS_SOLID) ?  0 : ScilabXgc->CurLineWidth ;
+
+  if(OS == VER_PLATFORM_WIN32_NT)
+  {
+	  width = ScilabXgc->CurLineWidth ;
+  }
+
   if ( ScilabXgc->CurColorStatus == 1) {
     id = ScilabXgc->CurColor;
     if ( ScilabXgc->CurDrawFunction !=  GXxor )
@@ -1794,7 +1821,19 @@ void C2F(setdash)(value, v2, v3, v4)
   else
     col=RGB(0,0,0);
  
-  hpen = CreatePen(DashTab[l3],width,col);
+  if(OS == VER_PLATFORM_WIN32_NT)
+  {
+     int style = DashTab[l3];
+     LOGBRUSH logbrush;
+     logbrush.lbStyle = BS_SOLID;
+	 logbrush.lbColor = col;
+	 logbrush.lbHatch = 0;
+	 hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+ }
+  else
+    hpen = CreatePen(DashTab[l3],width,col); /** warning win95 only uses dot or dash with linewidth <= 1 **/
+ 
+  
   SelectObject(hdc,hpen);
   if ( ScilabXgc->hPen != (HPEN) 0 ) DeleteObject(ScilabXgc->hPen);
   ScilabXgc->hPen = hpen;
