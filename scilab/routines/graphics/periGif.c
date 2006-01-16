@@ -1748,7 +1748,10 @@ void C2F(drawarcGif)(char *str, integer *x, integer *y, integer *width, integer 
     alpha=((*angle1/64)+k)*fact;
     vx[k] = (integer) (*x + w*(cos(alpha)+1.0));
     vy[k] = (integer) (*y + h*(-sin(alpha)+1.0));}
-    
+  
+  /* Fix bug 1737 : if n==360 we want a closed circle */
+  if(n == 360) close = 1;
+  
   C2F(drawpolylineGif)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);
 }
 
