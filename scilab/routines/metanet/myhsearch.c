@@ -1,22 +1,4 @@
-/* Copyright (C) 1993 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-   Contributed by Ulrich Drepper <drepper@ira.uka.de>
-
-The GNU C Library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Library General Public License as
-published by the Free Software Foundation; either version 2 of the
-License, or (at your option) any later version.
-
-The GNU C Library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Library General Public License for more details.
-
-You should have received a copy of the GNU Library General Public
-License along with the GNU C Library; see the file COPYING.LIB.  If
-not, write to the Free Software Foundation, Inc., 675 Mass Ave,
-Cambridge, MA 02139, USA.  */
-
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #ifdef __STDC__
 #include <stdlib.h>
@@ -24,33 +6,18 @@ Cambridge, MA 02139, USA.  */
 #include <malloc.h>
 #endif
 
-
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-
 #include "mysearch.h"
-
-/*
- * [Aho,Sethi,Ullman] Compilers: Principles, Techniques and Tools, 1986
- * [Knuth]            The Art of Computer Programming, part 3 (6.4)
- */
-
-
-/*
- * We need a local static variable which contains the pointer to the
- * allocated memory for the hash table. An entry in this table contains
- * an ENTRY and a flag for usage.
- */
-
+/*-----------------------------------------------------------------------------------*/
 typedef struct { 
     int   used;
     ENTRY entry;
 } _ENTRY;
-
+/*-----------------------------------------------------------------------------------*/
 static _ENTRY   * htable = NULL;
 static unsigned   hsize;
 static unsigned   filled;
-
-
+/*-----------------------------------------------------------------------------------*/
 /* 
  * For the used double hash method the table size has to be a prime. To
  * correct the user given table size we need a prime test.  This trivial
@@ -58,10 +25,7 @@ static unsigned   filled;
  * a)  the code is (most probably) only called once per program run and
  * b)  the number is small because the table must fit in the core
  */
-
-static int
-isprime(number)
-unsigned number;
+static int isprime(unsigned number)
 {
     /* no even number will be passed */
     unsigned div = 3;
@@ -71,8 +35,7 @@ unsigned number;
 
     return number%div != 0;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 /*
  * Before using the hash table we must allocate memory for it.
  * Test for an existing table are done. We allocate one element
@@ -81,10 +44,7 @@ unsigned number;
  * The contents of the table is zeroed, especially the field used 
  * becomes zero.
  */
-
-int
-myhcreate(nel)
-unsigned nel;
+int myhcreate(unsigned nel)
 {
     /* There is still another table active. Return with error. */
     if (htable != NULL)
@@ -104,15 +64,12 @@ unsigned nel;
     /* everything went alright */
     return 1;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 /*
  * After using the hash table it has to be destroyed. The used memory can
  * be freed and the local static variable can be marked as not used.
  */
-
-void
-myhdestroy()
+void myhdestroy()
 {
     /* free used memory */
     FREE(htable);
@@ -120,8 +77,7 @@ myhdestroy()
     /* the sign for an existing table is an value != NULL in htable */ 
     htable = NULL;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 /*
  * This is the search function. It uses double hashing with open adressing.
  * The argument item.key has to be a pointer to an zero terminated, most
@@ -138,10 +94,7 @@ myhdestroy()
  * unnecessary expensive calls of strcmp.
  */
 
-ENTRY*
-myhsearch(item, action)
-ENTRY item;
-SCIACTION action;
+ENTRY* myhsearch(ENTRY item,SCIACTION action)
 {
     register unsigned hval;
     register unsigned hval2;
@@ -223,3 +176,4 @@ SCIACTION action;
     } else
         return NULL;
 }
+/*-----------------------------------------------------------------------------------*/
