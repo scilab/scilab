@@ -1,3 +1,4 @@
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * This Software is ( Copyright ENPC 1998 )                          *
  * Jean-Philippe Chancelier Enpc/Cergrene                            *
@@ -8,7 +9,7 @@
  * Modified May 2000 by S. Steer for vectorization of                *
  * *printf and *scanf                                                *
  *********************************************************************/
-
+/*-----------------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
 #ifdef __STDC__
@@ -29,29 +30,7 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
-
-
-extern char * SciGetLine __PARAMS((char *));
-extern FILE *GetFile __PARAMS((int *));
-extern int C2F(xscion) __PARAMS((int *));
-
-#ifdef __STDC__ 
-extern int  sciprint2(int iv,char *fmt,...) ;
-#else 
-/*VARARGS0*/
-extern int sciprint2() ;
-#endif 
-
-
-/* extern int sciprint2 __PARAMS((int i,char *fmt, ...));*/
-
-static int do_printf __PARAMS((char *fname,FILE * fp, char *format,int n_args,
-			      int arg_cnt,int lcount,char **strv));
-
-/*if maxscan is increased don't forget to chage the (*printer)(......) 
-  in do_scanf procedure */
-#define MAXSCAN 50
-
+/*-----------------------------------------------------------------------------------*/
 typedef union {
   char * c;
   long unsigned int lui;
@@ -63,21 +42,17 @@ typedef union {
   double lf;
   float f;
 } rec_entry;
+
 typedef union {
   double d;
   char * s;
 } entry;
 typedef enum {SF_C,SF_S,SF_LUI,SF_SUI,SF_UI,SF_LI,SF_SI,SF_I,SF_LF,SF_F} sfdir;
-static int Store_Scan __PARAMS((int *nrow,int *ncol,sfdir *type_s,sfdir *type,
-			       int *retval, int*retval_s, rec_entry *buf, 
-			       entry **data,int rowcount,int n));
-static void Free_Scan  __PARAMS((int rowcount,int ncol,sfdir *type_s,entry **data));
-static int Sci_Store __PARAMS((int nrow,int ncol,entry* data,sfdir *type,int retval));
 
-int SciStrtoStr __PARAMS((int *Scistring,int *nstring,int *ptrstrings,char **strh));
+typedef int (*PRINTER) __PARAMS((FILE *, char *,...));
+typedef int (*FLUSH) __PARAMS((FILE *));
 
-static int do_scanf __PARAMS((char *fname,  FILE *fp, char *format,int *nargs, 
-			     char *strv,int *retval,rec_entry *buf,sfdir *type));
+/*-----------------------------------------------------------------------------------*/
 #define RET_END -2
 #define RET_BUG -1 
 #define FAIL 0
@@ -85,21 +60,59 @@ static int do_scanf __PARAMS((char *fname,  FILE *fp, char *format,int *nargs,
 #define MEM_LACK -3
 #define MISMATCH -4
 #define NOT_ENOUGH_ARGS -5
+/*if maxscan is increased don't forget to chage the (*printer)(......) 
+in do_scanf procedure */
+#define MAXSCAN 50
+/*---------- types and defs for doing printf ------------*/
+#define  PF_C		0
+#define  PF_S		1
+#define  PF_D		2	/* int conversion */
+#define  PF_LD		3	/* long int */
+#define  PF_F		4	/* float conversion */
 
-static int GetString __PARAMS((char *fname,int *first,int *arg,int narg,
-			      int *ir,int ic,char **sval) );
-static int GetScalarInt __PARAMS((char *fname,int *first,int *arg,int narg,
-				 int *ir,int ic,int *ival));
-static int GetScalarDouble  __PARAMS((char *fname,int *first,int *arg,int narg,
-				     int *ir,int ic,double *dval));
+/* for switch on number of '*' and type */
+#define  AST(num,type)  (5*(num)+(type))
+
+/* Buffer for printf **/
+#define MAX_SPRINTF_SIZE  4096
+#define MAXSTR 512
+#define INFOSIZE 1024
+#define MAX_STR 1024
+#define VPTR void * 
+/*-----------------------------------------------------------------------------------*/
+static int GetString __PARAMS((char *fname,int *first,int *arg,int narg, int *ir,int ic,char **sval) );
+static int GetScalarInt __PARAMS((char *fname,int *first,int *arg,int narg, int *ir,int ic,int *ival));
+static int GetScalarDouble  __PARAMS((char *fname,int *first,int *arg,int narg, int *ir,int ic,double *dval));
 static int StringConvert __PARAMS((char *str));
-
+static int do_scanf __PARAMS((char *fname,  FILE *fp, char *format,int *nargs,char *strv,int *retval,rec_entry *buf,sfdir *type));
+static void Free_Scan  __PARAMS((int rowcount,int ncol,sfdir *type_s,entry **data));
+static int Sci_Store __PARAMS((int nrow,int ncol,entry* data,sfdir *type,int retval));
+static int Store_Scan __PARAMS((int *nrow,int *ncol,sfdir *type_s,sfdir *type,int *retval, int*retval_s, rec_entry *buf, entry **data,int rowcount,int n));
+static int do_printf __PARAMS((char *fname,FILE * fp, char *format,int n_args,int arg_cnt,int lcount,char **strv));
+/*-----------------------------------------------------------------------------------*/
 int NumTokens __PARAMS((char *str));
+int SciStrtoStr __PARAMS((int *Scistring,int *nstring,int *ptrstrings,char **strh));
+/*-----------------------------------------------------------------------------------*/
+extern char * SciGetLine __PARAMS((char *));
+extern FILE *GetFile __PARAMS((int *));
+extern int C2F(xscion) __PARAMS((int *));
+#ifdef __STDC__ 
+extern int  sciprint2(int iv,char *fmt,...) ;
+#else 
+/*VARARGS0*/
+extern int sciprint2() ;
+#endif 
+/*-----------------------------------------------------------------------------------*/
+static char sprintf_buff[MAX_SPRINTF_SIZE];
+static char *sprintf_limit = sprintf_buff + MAX_SPRINTF_SIZE;
+static int  Info_size = 0;
+static char *Info= NULL;
+static int ReadLine __PARAMS((FILE *fd,int *mem));
 
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab printf function OK 
  *********************************************************************/
-
 int int_objprintf(char *fname,unsigned long fname_len)
 {
   static int l1, m1, n1, lcount, rval, k, mx, mk, nk;
@@ -160,11 +173,10 @@ int int_objprintf(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }  
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab fprintf function OK 
  *********************************************************************/
-
 int int_objfprintf(char *fname,unsigned long fname_len)
 {
   FILE *f;
@@ -231,11 +243,10 @@ int int_objfprintf(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }  
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab sprintf function OK 
  *********************************************************************/
-
 int int_objsprintf(char *fname,unsigned long fname_len)
 {
   unsigned long lstr;
@@ -361,13 +372,10 @@ int int_objsprintf(char *fname,unsigned long fname_len)
   Scierror(999,"sprintf: cannot allocate cannot allocate more memory \r\n");
   return 0;
 }  
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab scanf function
  *********************************************************************/
-#define MAXSTR 512
-
-
 int int_objscanf(char *fname,unsigned long fname_len)
 {
   static char String[MAXSTR];
@@ -452,11 +460,10 @@ int int_objscanf(char *fname,unsigned long fname_len)
   if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
   return 0;
 } 
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab sscanf function
  *********************************************************************/
-
 int int_objsscanf(char *fname,unsigned long fname_len)
 {
   static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
@@ -540,11 +547,10 @@ int int_objsscanf(char *fname,unsigned long fname_len)
   if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab fscanf function
  *********************************************************************/
-
 int int_objfscanf(char *fname,unsigned long fname_len)
 {
   static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
@@ -624,12 +630,10 @@ int int_objfscanf(char *fname,unsigned long fname_len)
   if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
   return 0;
 }  
-
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab numtokens
  *********************************************************************/
-
 int int_objnumTokens(char *fname,unsigned long fname_len)
 {
   static int l1,m1,n1,l2,un=1;
@@ -643,13 +647,11 @@ int int_objnumTokens(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }  
-
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab fprintfMat function
  * fprintfMat('pipo',rand(2,2),'%f',['comment un';'comment 2'])
  *********************************************************************/
-
 int int_objfprintfMat(char *fname,unsigned long fname_len)
 {
   int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j,mS,nS;
@@ -703,17 +705,12 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
   PutLhsVar();
   return 0;
 }  
-
 /*-----------------------------------------------------------------------------------*/
 /*********************************************************************
  * Scilab fscanMat function
  * fscanfMat('pipo')
  * [A,b]=fscanfMat('pipo')
  *********************************************************************/
-#define INFOSIZE 1024
-static int  Info_size = 0;
-static char *Info= NULL;
-static int ReadLine __PARAMS((FILE *fd,int *mem));
 /*-----------------------------------------------------------------------------------*/
 int int_objfscanfMat(char *fname,unsigned long fname_len)
 {
@@ -919,8 +916,7 @@ int NumTokens(char *string)
     }
   return(FAIL);
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 /***************************************************************
  * Emulation of Ansi C XXscanf functions 
  * The number of scaned object is hardwired (MAXSCAN) 
@@ -929,20 +925,11 @@ int NumTokens(char *string)
  * XXXX Could be changed to eliminate the MAXSCAN limitation 
  * 
  ****************************************************************/
-
-#define MAX_STR 1024
-
-#define VPTR void * 
-
-
-typedef int (*PRINTER) __PARAMS((FILE *, char *,...));
-typedef int (*FLUSH) __PARAMS((FILE *));
-
 int voidflush(FILE *fp)
 {
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
 {
   int i;
@@ -1271,47 +1258,7 @@ static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv
     }
   return 0;
 }
-
-
-/***************************************************************
-								
-  do_printf: code extraced from RLab and hacked for Scilab 
-              by Jean-Philippe Chancelier 1998. 
-
-    Copyright (C) 1995  Ian R. Searle
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *************************************************************** */
-
-
-/*---------- types and defs for doing printf ------------*/
-#define  PF_C		0
-#define  PF_S		1
-#define  PF_D		2	/* int conversion */
-#define  PF_LD		3	/* long int */
-#define  PF_F		4	/* float conversion */
-
-/* for switch on number of '*' and type */
-
-#define  AST(num,type)  (5*(num)+(type))
-
-/* Buffer for printf **/
-
-#define MAX_SPRINTF_SIZE  4096
-static char sprintf_buff[MAX_SPRINTF_SIZE];
-static char *sprintf_limit = sprintf_buff + MAX_SPRINTF_SIZE;
-
+/*-----------------------------------------------------------------------------------*/
 static int do_printf (char *fname, FILE *fp, char *format, int nargs, int argcnt, int lcount, char **strv)
 {
   int previous_t=0; 
@@ -1708,15 +1655,10 @@ static int do_printf (char *fname, FILE *fp, char *format, int nargs, int argcnt
   Scierror(998,"Error:\tprintf: not enough arguments\r\n");
   return RET_BUG;
 }
-
-
-
-
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Utility functions 
  ****************************************************/
-
 static int  GetString(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, char **sval)
 {
   int mx,nx,il,ild,lw,k,one=1;
@@ -1745,9 +1687,8 @@ static int  GetString(char *fname, int *previous_t, int *arg, int narg, int *ic,
   *sval = p;
   return OK;
 }
-
 /** changes `\``n` --> `\n` idem for \t and \r  **/
-
+/*-----------------------------------------------------------------------------------*/
 static int StringConvert(char *str)
 {
   char *str1;
@@ -1774,6 +1715,7 @@ static int StringConvert(char *str)
   *str1 = '\0';
   return count;
 }
+/*-----------------------------------------------------------------------------------*/
 static int GetScalarInt(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, int *ival)
 {
   int mx,nx,lx;
@@ -1799,7 +1741,7 @@ static int GetScalarInt(char *fname, int *previous_t, int *arg, int narg, int *i
    *ic=*ic+1;
   return OK;
 }
-
+/*-----------------------------------------------------------------------------------*/
 static int GetScalarDouble(char *fname, int *previous_t, int *arg, int narg, int *ic, int ir, double *dval)
 {
   int mx,nx,lx;
@@ -1825,8 +1767,7 @@ static int GetScalarDouble(char *fname, int *previous_t, int *arg, int narg, int
   *ic=*ic+1;
   return OK;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 {
   int cur_i,i,j,i1,one=1,zero=0,k,l,iarg,colcount;
@@ -1974,12 +1915,11 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
   PutLhsVar();
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /* ************************************************************************
  *   Store data scanned by a single call to do_scan in line rowcount of data 
  *   table 
  ************************************************************************/
-
 static int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, int *retval_s, rec_entry *buf, entry **data, int rowcount, int n)
 { 
   int i,j,nr,nc,err;
@@ -2072,9 +2012,7 @@ static int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *ret
  bad2: 
   return err;
 }
-
-
-
+/*-----------------------------------------------------------------------------------*/
 static void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
 {
   int i,j;
@@ -2092,14 +2030,13 @@ static void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
   /* free scaned data area */
   if (ncol>0) FREE(Data);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /********************************************************
  * Converts a Scilab array of  String coded as integer array 
  * into a regular string.
  * entries of the original array are catenated, separated by 
  * '\n'   char
  ********************************************************/
-
 int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh)
 {
   char *s,*p;
@@ -2127,5 +2064,5 @@ int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh)
   *strh=p;
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 

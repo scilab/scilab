@@ -1,9 +1,8 @@
-/*-------------------------------------------------------
- * Scilab function table 
+/*-----------------------------------------------------------------------------------*/
+/* Scilab function table 
  * Copyright ENPC Jean-Philippe Chancelier 
- * See Also copyright bellow 
- *-------------------------------------------------------*/
-
+ * See Also copyright bellow */
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,57 +10,56 @@
 #include "../stack-c.h"
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #include "../machine.h"
-
-
-typedef enum {
-	SCIFIND, SCIENTER,SCIDELETE
-} SCIACTION;
-
-
+/*-----------------------------------------------------------------------------------*/
 #define NAMECODE 6
 #define OK 1
 #undef FAILED
 #define FAILED 0
-
-extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
-
-/** size of name code in scilab int id[NAMECODE] */
-
-
 /** maximum number of entries in the htable **/
 /** in fact myhcreate used a prime > MAXTAB **/
 /** WARNING : MAXTAB must be chosen > 2* the number of entries in fundef **/
 /** for good efficiency of the hash code **/
-
 #define MAXTAB 900
-
-
-
-static int	 myhcreate(unsigned int nel);
-/* static void	 myhdestroy(); */
-static int 	 myhsearch(int *key, int *data, int *level, SCIACTION action);
-static int Eqid(int *x, int *y);
-static void  Init(void) ;
-static int backsearch(int *key, int *data);
-
-/**********************
- * Scilab functions 
- **********************/
+/*-----------------------------------------------------------------------------------*/
+typedef enum {
+	SCIFIND, SCIENTER,SCIDELETE
+} SCIACTION;
 
 typedef struct 
 {
-  char *name;
-  int codeI;
-  int code;
-  int level;
+	char *name;
+	int codeI;
+	int code;
+	int level;
 } Funcs ;
 
 Funcs SciFuncs[]={
 #include "fundef"
-  {(char*) 0 ,  0,  0  ,   1},
+	{(char*) 0 ,  0,  0  ,   1},
 };
 
+typedef struct entry {
+	int key[NAMECODE];
+	int data;
+} ENTRY;
 
+typedef struct { 
+	unsigned int   used;
+	ENTRY entry;
+} _ENTRY;
+/*-----------------------------------------------------------------------------------*/
+static _ENTRY   * htable = NULL;
+static unsigned   hsize;
+static unsigned   filled;
+/*-----------------------------------------------------------------------------------*/
+extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
+/*-----------------------------------------------------------------------------------*/
+static int	 myhcreate(unsigned int nel);
+static int 	 myhsearch(int *key, int *data, int *level, SCIACTION action);
+static int Eqid(int *x, int *y);
+static void  Init(void) ;
+static int backsearch(int *key, int *data);
+/*-----------------------------------------------------------------------------------*/
 /************************************************************
  *    Hash table for scilab functions 
  *    job is used to specify a job
@@ -85,8 +83,6 @@ Funcs SciFuncs[]={
  *   id  :vecteur de taille nsiz contenant le code scilab du nom
  *   fptr:entier
  ************************************************************/
-
-
 int C2F(funtab)(int *id, int *fptr, int *job)
 {
   int level=0, j=0;
@@ -119,7 +115,7 @@ int C2F(funtab)(int *id, int *fptr, int *job)
     }
   return(0);
 }
-  
+/*-----------------------------------------------------------------------------------*/  
 static int EnterStr(char *str, int *dataI, int *data, int *level)
 {
   int ldata;
@@ -129,7 +125,7 @@ static int EnterStr(char *str, int *dataI, int *data, int *level)
   ldata= (*dataI)*100+*data;
   return( myhsearch(id,&ldata,level,SCIENTER));
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void  Init(void)
 {
   static int firstentry = 0;
@@ -152,103 +148,12 @@ static void  Init(void)
     }
   firstentry = 1;
 }
-
-
-
+/*-----------------------------------------------------------------------------------*/
 /************************************************
  * Hashtable code : 
  * slightly modified to add DELETE 
  * Jean-Philippe Chancelier ( Scilab Group )
  ************************************************/
-
-/*-
- * Copyright (c) 1990, 1993
- *	The Regents of the University of California.  All rights reserved.
- *
- * This code is derived from software contributed to Berkeley by
- * Margo Seltzer.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- *	@(#)search.h	8.1 (Berkeley) 6/4/93
- */
-
-
-/* Backward compatibility to hsearch interface. */
-
-typedef struct entry {
-  int key[NAMECODE];
-  int data;
-} ENTRY;
-
-/* Copyright (C) 1993 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-   Contributed by Ulrich Drepper <drepper@ira.uka.de>
-
-The GNU C Library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Library General Public License as
-published by the Free Software Foundation; either version 2 of the
-License, or (at your option) any later version.
-
-The GNU C Library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Library General Public License for more details.
-
-You should have received a copy of the GNU Library General Public
-License along with the GNU C Library; see the file COPYING.LIB.  If
-not, write to the Free Software Foundation, Inc., 675 Mass Ave,
-Cambridge, MA 02139, USA.  */
-
-
-/*
- * [Aho,Sethi,Ullman] Compilers: Principles, Techniques and Tools, 1986
- * [Knuth]            The Art of Computer Programming, part 3 (6.4)
- */
-
-
-/*
- * We need a local static variable which contains the pointer to the
- * allocated memory for the hash table. An entry in this table contains
- * an ENTRY and a flag for usage.
- */
-
-typedef struct { 
-    unsigned int   used;
-    ENTRY entry;
-} _ENTRY;
-
-static _ENTRY   * htable = NULL;
-static unsigned   hsize;
-static unsigned   filled;
-
-
 /* 
  * For the used double hash method the table size has to be a prime. To
  * correct the user given table size we need a prime test.  This trivial
@@ -256,9 +161,7 @@ static unsigned   filled;
  * a)  the code is (most probably) only called once per program run and
  * b)  the number is small because the table must fit in the core
  */
-
-static int
-isprime(unsigned int number)
+static int isprime(unsigned int number)
 {
     /* no even number will be passed */
     unsigned div = 3;
@@ -268,7 +171,7 @@ isprime(unsigned int number)
 
     return number%div != 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*
  * Before using the hash table we must allocate memory for it.
  * Test for an existing table are done. We allocate one element
@@ -277,7 +180,6 @@ isprime(unsigned int number)
  * The contents of the table is zeroed, especially the field used 
  * becomes zero.
  */
-
 static int myhcreate(unsigned int nel)
 {
     /* There is still another table active. Return with error. */
@@ -298,26 +200,7 @@ static int myhcreate(unsigned int nel)
     /* everything went alright */
     return 1;
 }
-
-
-/*
- * After using the hash table it has to be destroyed. The used memory can
- * be freed and the local static variable can be marked as not used.
- */
-/** Unused : cleaned at scilab exit 
-static void
-myhdestroy()
-{
-    / * free used memory * /
-    FREE(htable);
-
-    / * the sign for an existing table is a value != NULL in htable * / 
-    htable = NULL;
-}
-**/
-
-/** from data to key **/
-
+/*-----------------------------------------------------------------------------------*/
 static int backsearch(int *key, int *data)
 {
   unsigned int i;
@@ -331,11 +214,7 @@ static int backsearch(int *key, int *data)
       }
   return(0);
 }
-  
-      
-  
-
-
+/*-----------------------------------------------------------------------------------*/  
 /*****************************************************************************
  * This is the search function. It uses double hashing with open adressing.
  * The argument item.key has to be a pointer to an zero terminated, most
@@ -351,8 +230,6 @@ static int backsearch(int *key, int *data)
  * equality of the stored and the parameter value. This helps to prevent
  * unnecessary expensive calls of strcmp.
  ******************************************************************************/
-
-
 static int myhsearch(int *key, int *data, int *level, SCIACTION action)
 {
   register unsigned hval;
@@ -462,8 +339,7 @@ static int myhsearch(int *key, int *data, int *level, SCIACTION action)
     else
       return FAILED;
 }
-
-
+/*-----------------------------------------------------------------------------------*/  
 static int Eqid(int *x, int *y)
 {
   int i;
@@ -472,4 +348,4 @@ static int Eqid(int *x, int *y)
       return(1);
   return(0);
 }
-
+/*-----------------------------------------------------------------------------------*/  
