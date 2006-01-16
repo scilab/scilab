@@ -116,13 +116,17 @@ void ChangeCursorWhenScilabIsReady(void)
 	LPTW lptw=GetTextWinScilab();
 	int NumsMenu = 0;
 	int nl=0, nc=0;
+	HMENU hMenu=NULL;
 		
 	hCursor=LoadCursor(  lptw->hInstance,IDC_ARROW);
 	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
 	SetClassLong(lptw->hWndText,GCL_HCURSOR,(LONG) hCursor); 
 	InvalidateCursor(); 
-	NumsMenu=GetMenuItemCount (lptw->lpmw->hMenu);
-	if (NumsMenu>=DefaultNumMenu) EnableNMenus(lptw,DefaultNumMenu);
+	hMenu=GetMenu(lptw->hWndParent);
+	NumsMenu=GetMenuItemCount (hMenu);
+	//NumsMenu=GetMenuItemCount (lptw->lpmw->hMenu);
+	//if (NumsMenu>=DefaultNumMenu) EnableNMenus(lptw,DefaultNumMenu);
+	EnableNMenus(lptw,NumsMenu);
 	EnableToolBar(lptw);
 
 	ScilabIsStarting=FALSE;
