@@ -111,7 +111,6 @@ void ChangeCursorWhenScilabIsReady(void)
 {
   if ( (IsWindowInterface()) && (ScilabIsStarting) )
   {
-	#define DefaultNumMenu 7
 	HCURSOR hCursor;
 	LPTW lptw=GetTextWinScilab();
 	int NumsMenu = 0;
@@ -124,8 +123,6 @@ void ChangeCursorWhenScilabIsReady(void)
 	InvalidateCursor(); 
 	hMenu=GetMenu(lptw->hWndParent);
 	NumsMenu=GetMenuItemCount (hMenu);
-	//NumsMenu=GetMenuItemCount (lptw->lpmw->hMenu);
-	//if (NumsMenu>=DefaultNumMenu) EnableNMenus(lptw,DefaultNumMenu);
 	EnableNMenus(lptw,NumsMenu);
 	EnableToolBar(lptw);
 
