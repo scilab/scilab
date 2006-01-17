@@ -207,7 +207,7 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   mfprintf(fd,"SCIDIR1 =%s\n",pathconvert(SCI,%f,%f,'w'));
   mfprintf(fd,"DUMPEXTS=""$(SCIDIR1)\\bin\\dumpexts""\n");
   if ( with_atlas()==%T ) then
-  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib\n\n");
+  	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib $(SCIDIR1)\\bin\\atlaslcc.lib $(SCIDIR1)\\bin\\libf2clcc.lib $(SCIDIR1)\\bin\\arpacklcc.lib $(SCIDIR1)\\bin\\lapacklcc.lib\n\n");
   else
   	mfprintf(fd,"SCIIMPLIB=$(SCIDIR1)\\bin\\LibScilabLCC.lib\n\n");
   end
