@@ -51,7 +51,7 @@ global curtextboxmode curtext
 global RED BLUE GREEN
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
-global curboxmode curforeground curbackground
+global curboxmode curlinemode curlfillmode curforeground curbackground
 
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
@@ -63,7 +63,7 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 300
+set NBheight 310
 set NBwidth  250
 
 set Wheight [expr $NBheight + 185]
@@ -132,7 +132,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 25 \
+	       -width 20 -height 26 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -187,6 +187,43 @@ OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
 pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
+
+#Box mode
+frame $w.frame.boxmode  -borderwidth 0
+pack $w.frame.boxmode  -in $w.frame -side top   -fill x -pady 0m
+
+label $w.frame.boxmodelabel -height 0 -text "Box :" -width 0  -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.boxmodevalue  -text "on"\
+    -variable curboxmode  -onvalue "on" -offvalue "off" \
+    -command "toggleBoxmode $w.frame.boxmodevalue" -font {Arial 9}
+OnOffForeground $w.frame.boxmodevalue $curboxmode
+
+pack $w.frame.boxmodelabel -in $w.frame.boxmode  -side left
+pack $w.frame.boxmodevalue  -in $w.frame.boxmode    -side left -padx 1m
+
+#line mode
+frame $w.frame.linemode  -borderwidth 0
+pack $w.frame.linemode  -in $w.frame -side top   -fill x -pady 0m
+label $w.frame.linemodelabel -height 0 -text "Line mode :" -width 0  -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.linemodevalue  -text "on"\
+    -variable curlinemode  -onvalue "on" -offvalue "off" \
+    -command "toggleLineMode $w.frame.linemodevalue" -font {Arial 9}
+OnOffForeground $w.frame.linemodevalue $curlinemode
+
+pack $w.frame.linemodelabel -in $w.frame.linemode  -side left
+pack $w.frame.linemodevalue  -in $w.frame.linemode    -side left -padx 1m
+
+#fill mode
+frame $w.frame.fillmode  -borderwidth 0
+pack $w.frame.fillmode  -in $w.frame -side top   -fill x -pady 0m
+label $w.frame.fillmodelabel -height 0 -text "Fill mode :" -width 0  -font {Arial 9} -anchor e -width $largeur
+checkbutton $w.frame.fillmodevalue  -text "on"\
+    -variable curfillmode  -onvalue "on" -offvalue "off" \
+    -command "toggleFillMode $w.frame.fillmodevalue" -font {Arial 9}
+OnOffForeground $w.frame.fillmodevalue $curfillmode
+
+pack $w.frame.fillmodelabel -in $w.frame.fillmode  -side left
+pack $w.frame.fillmodevalue  -in $w.frame.fillmode    -side left -padx 1m
 
 ###############
 #Font color
@@ -244,20 +281,6 @@ entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle2 -font {Ari
 bind  $w.frame.fontangle2 <Return> "setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
 bind  $w.frame.fontangle2 <KP_Enter> 	"setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
 bind  $w.frame.fontangle2 <FocusOut> 	"setEntryFontAngle $w.frame.fontangle2 $w.frame.fontangle"
-
-
-#Box mode
-frame $w.frame.boxmode  -borderwidth 0
-pack $w.frame.boxmode  -in $w.frame -side top   -fill x -pady 0m
-
-label $w.frame.boxmodelabel -height 0 -text "Box :" -width 0  -font {Arial 9} -anchor e -width $largeur
-checkbutton $w.frame.boxmodevalue  -text "on"\
-    -variable curboxmode  -onvalue "on" -offvalue "off" \
-    -command "toggleBoxmode $w.frame.boxmodevalue" -font {Arial 9}
-OnOffForeground $w.frame.boxmodevalue $curboxmode
-
-pack $w.frame.boxmodelabel -in $w.frame.boxmode  -side left
-pack $w.frame.boxmodevalue  -in $w.frame.boxmode    -side left -padx 1m
 
 #Foreground scale
 frame $w.frame.clrf  -borderwidth 0
@@ -556,6 +579,20 @@ proc toggleBoxmode { frame } { #fill mode for text object
     ScilabEval "global ged_handle;ged_handle.box='$curboxmode'"
     
     OnOffForeground $frame $curboxmode
+}
+
+proc toggleLineMode { frame } { #line mode for text object
+    global curlinemode
+    ScilabEval "global ged_handle;ged_handle.line_mode='$curlinemode'"
+    
+    OnOffForeground $frame $curlinemode
+}
+
+proc toggleFillMode { frame } { #line mode for text object
+    global curfillmode
+    ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
+    
+    OnOffForeground $frame $curfillmode
 }
 
 
