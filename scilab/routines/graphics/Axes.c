@@ -1644,14 +1644,24 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 	  for(j=0;j<nbsubtics;j++)
 	    {
 	      double val = tmp_log_grads[j];
+              /* the length of the ticks in pixels */
+              /* minimum 2 pixels */
+              /* use of integer division for speed */
+              int ticksLength =  Max( ( 3 * barlength ) / 4,  2 ) ;
 	      vx[0] = vx[1] = XScale(val);
 	      
 	      if(val<xminval || val>xmaxval) continue;	   
 	      
 	      if ( pos == 'd' ) 
-		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] + 0.7*barlength) ; }
+              { 
+                vy[0] = ym[0] ;
+                vy[1] = ym[0] + ticksLength ; 
+              }
 	      else 
-		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] - 0.7*barlength) ; }
+              { 
+                vy[0] = ym[0] ; 
+                vy[1] = ym[0] - ticksLength ;
+              }
 	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  
@@ -1664,17 +1674,28 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 	{
 	  double xtmp = grads[i];
 	  double dx = (grads[i+1]-grads[i]) / nbsubtics;
-	  for(j=0;j<nbsubtics;j++)
+	  for( j = 0 ; j < nbsubtics ; j++ )
 	    {
 	      double val = xtmp+dx*j;
+              /* the length of the ticks in pixels */
+              /* minimum 2 pixels */
+              /* use of integer division for speed */
+              int ticksLength =  Max( ( 3 * barlength ) / 4,  2 ) ;
 	      vx[0] = vx[1] = XScale(val);
 	      
 	      if(val<xminval || val>xmaxval) continue;	   
 	      
 	      if ( pos == 'd' ) 
-		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] + 0.7*barlength) ; }
+	      {
+                
+                vy[0]= ym[0];
+                vy[1]= ym[0] + ticksLength ; 
+              }
 	      else 
-		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] - 0.7*barlength) ; }
+              { 
+                vy[0]= ym[0];
+                vy[1]= ym[0] - ticksLength ; 
+              }
 	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
@@ -1794,7 +1815,7 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 
   ym[0] = YScale(xy);
  
-  barlength =  (integer) (Cscale.WIRect1[3]/50.0);
+  barlength =  Max( (integer) (Cscale.WIRect1[3]/50.0), 2 ) ;
   
   ppsubwin->firsttime_x = TRUE;
   
@@ -2015,14 +2036,24 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 	  for(j=0;j<nbsubtics;j++)
 	    {
 	      double val = tmp_log_grads[j];
+              /* the length of the ticks in pixels */
+              /* minimum 2 pixels */
+              /* use of integer division for speed */
+              int ticksLength =  Max( ( 3 * barlength ) / 4,  1 ) ;
 	      vy[0] = vy[1] = YScale(val);
 	      
 	      if(val<yminval || val>ymaxval) continue;	   
 	      
 	      if ( pos == 'r' ) 
-		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] + 0.7*barlength) ; }
+              { 
+                vx[0] = xm[0] ;
+                vx[1] = xm[0] + ticksLength ; 
+              }
 	      else 
-		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] - 0.7*barlength) ; }
+              { 
+                vx[0] = xm[0] ;
+                vx[1] = xm[0] - ticksLength ; 
+              }
 	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  
@@ -2038,14 +2069,24 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
 	  for(j=0;j<nbsubtics;j++)
 	    {
 	      double val = xtmp+dx*j;
+              /* the length of the ticks in pixels */
+              /* minimum 2 pixels */
+              /* use of integer division for speed */
+              int ticksLength =  Max( ( 3 * barlength ) / 4, 1 ) ;
 	      vy[0] = vy[1] = YScale(val);
 	      
 	      if(val<yminval || val>ymaxval) continue;	   
 	      
 	      if ( pos == 'r' ) 
-		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] + 0.7*barlength) ; }
+              { 
+                vx[0] = xm[0] ;
+                vx[1]=  xm[0] + ticksLength ; 
+              }
 	      else 
-		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] - 0.7*barlength) ; }
+              { 
+                vx[0] = xm[0] ;
+                vx[1] = xm[0] - ticksLength ; 
+              }
 	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
@@ -2169,7 +2210,8 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   xm[0] = XScale(xy); /* F.Leray modified le 28.09.04 */
   /*  xm[0] = (ppsubwin->logflags[0]=='n')?XScale(xy):XLogScale(xy);*/
   
-  barlength =  (integer) (Cscale.WIRect1[2]/75.0);
+  /* at least 1 pixels */
+  barlength =  Max( (integer) (Cscale.WIRect1[2]/75.0), 1 ) ;
   
   ppsubwin->firsttime_y = TRUE;
 
