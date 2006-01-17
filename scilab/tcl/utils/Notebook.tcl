@@ -21,6 +21,14 @@
 #   drh@acm.org
 #   http://www.hwaci.com/drh/
 
+#
+# jb Silvy. To know the current page
+#
+
+proc Notebook:getCurrentPage { w } {
+  global Notebook
+  return $Notebook($w,top)
+}
 
 #
 # Create a new notebook widget
@@ -94,7 +102,7 @@ proc Notebook:config {w args} {
   set y7 [expr $Notebook($w,y1)+10]
   foreach p $Notebook($w,pages) {
     set Notebook($w,p$cnt,x5) $x
-    set id [$w create text 0 0 -text $p -anchor nw -tags "p$cnt t$cnt" -font {Arial 10}]
+    set id [$w create text 0 0 -text $p -anchor nw -tags "p$cnt t$cnt" -font {Arial 10}  -fill $Notebook($w,fg,off)]
     set bbox [$w bbox $id]
     set width [lindex $bbox 2]
     $w move $id [expr $x+10] $y7
@@ -149,9 +157,10 @@ proc Notebook:click {w x y} {
   if {$y<$Notebook($w,y1) || $y>$Notebook($w,y6)} return
   set N [llength $Notebook($w,pages)]
   for {set i 0} {$i<$N} {incr i} {
+    $w itemconfigure t$i -fill $Notebook($w,fg,off)
     if {$x>=$Notebook($w,p$i,x5) && $x<=$Notebook($w,p$i,x6)} {
       Notebook:raise.page $w $i
-      break
+      #break
     }
   }
 }
@@ -166,8 +175,11 @@ proc Notebook:raise.page {w n} {
   set top $Notebook($w,top)
   if {$top>=0 && $top<[llength $Notebook($w,pages)]} {
     $w move p$top 0 2
+    
   }
   $w move p$n 0 -2
+  #$w itemconfigure t$n -font {Arial 12}
+  $w itemconfigure t$n -fill $Notebook($w,fg,on)
   $w delete topline
   if {$n>0} {
     $w create line \
