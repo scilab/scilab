@@ -803,6 +803,9 @@ function ged_text(h)
   TCL_SetVar("curforeground",string(h.foreground))
   TCL_SetVar("curbackground",string(h.background))
   TCL_SetVar("curboxmode",h.box)
+  TCL_SetVar("curlinemode",h.line_mode);
+  TCL_SetVar("curfillmode",h.fill_mode);
+  //TCL_SetVar("curPosition",h.data) ;
 
   if (h.clip_box==[])
     TCL_SetVar("old_Xclipbox","")
@@ -2073,7 +2076,6 @@ function ged_tablo=GetTab2(val,index,ged_tablo)
 //disp("ICI")
 ged_tablo(index) =val
 endfunction
-
 
 function setTicksTList(XYZ,locations,labels)
 global ged_handle;h= ged_handle;
