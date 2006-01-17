@@ -30,33 +30,7 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
-<<<<<<< fileio.c
 /*-----------------------------------------------------------------------------------*/
-=======
-
-
-extern char * SciGetLine __PARAMS((char *));
-extern FILE *GetFile __PARAMS((int *));
-extern int C2F(xscion) __PARAMS((int *));
-
-#ifdef __STDC__ 
-extern int  sciprint2(int iv,char *fmt,...) ;
-#else 
-/*VARARGS0*/
-extern int sciprint2() ;
-#endif 
-
-
-/* extern int sciprint2 __PARAMS((int i,char *fmt, ...));*/
-
-static int do_printf __PARAMS((char *fname,FILE * fp, char *format,int n_args,
-			      int arg_cnt,int lcount,char **strv));
-
-/*if maxscan is increased don't forget to chage the (*printer)(......) 
-  in do_scanf procedure */
-#define MAXSCAN 50
-
->>>>>>> 1.33
 typedef union {
   char * c;
   long unsigned int lui;
