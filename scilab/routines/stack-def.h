@@ -7,12 +7,15 @@
  * __declspec(dllimport) 
  */ 
 
-#ifdef FORDLL 
-#define IMPORT extern  __declspec (dllimport)
-#else 
-#define IMPORT extern
+#if _LCC_ & FORDLL 
+  #define IMPORT __declspec (dllimport)
+#else
+ #ifdef FORDLL 
+   #define IMPORT extern  __declspec (dllimport)
+ #else 
+   #define IMPORT extern
+ #endif
 #endif
-
 /* typedef int integer ; */
 
 #define csiz 63  
