@@ -64,3 +64,8 @@ Atlas
 Atlas.dll
 Atlas.lib
 msvcr71.dll
+LibScilablcc.lib
+arpacklcc.lib
+Atlaslcc.lib
+lapacklcc.lib
+libf2clcc.lib
