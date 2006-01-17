@@ -125,30 +125,30 @@ int Console_Main(int argc, char **argv)
   while (argcount > 0)
     {
       argcount--;
-      if (strcmp (my_argv[argcount], "-nw") == 0) nowin = 1;
-      else if (strcmp (my_argv[argcount], "-ns") == 0) startupf = 1;
-      else if ( strcmp(my_argv[argcount],"-nb") == 0) { sci_show_banner = 0; }
-      else if (strcmp (my_argv[argcount], "-nwni") == 0)
+      if (stricmp (my_argv[argcount], "-NW") == 0) nowin = 1;
+      else if (stricmp (my_argv[argcount], "-NS") == 0) startupf = 1;
+      else if ( stricmp(my_argv[argcount],"-NB") == 0) { sci_show_banner = 0; }
+      else if (stricmp (my_argv[argcount], "-NWNI") == 0)
 		{
 			nowin = 1;
 			nointeractive = 1;
 		}
-      else if (strcmp (my_argv[argcount], "-f") == 0 && argcount + 1 < my_argc)
+      else if (stricmp (my_argv[argcount], "-F") == 0 && argcount + 1 < my_argc)
 		{
 			path = my_argv[argcount + 1];
 			lpath = strlen (my_argv[argcount + 1]);
 		}
-      else if (strcmp (my_argv[argcount], "-e") == 0 && argcount + 1 < my_argc)
+      else if (stricmp (my_argv[argcount], "-E") == 0 && argcount + 1 < my_argc)
 		{
 			path = my_argv[argcount + 1];
 			lpath = strlen (my_argv[argcount + 1]);
 			pathtype=1;
 		}
-      else if ( strcmp(my_argv[argcount],"-mem") == 0 && argcount + 1 < my_argc)
+      else if ( stricmp(my_argv[argcount],"-MEM") == 0 && argcount + 1 < my_argc)
 		{
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		} 
-	  else if ( strcmp(my_argv[argcount],"-texmacs") == 0 && argcount + 1 < my_argc)
+	  else if ( strcmp(my_argv[argcount],"-TEXMACS") == 0 && argcount + 1 < my_argc)
 	  {
 		  settexmacs();
 	  }
@@ -312,9 +312,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			exit(1);
 		}
 
-		if ( (stricmp (strupr(my_argv[i]), "-H") == 0) ||
-			 (stricmp (strupr(my_argv[i]), "-?") == 0) ||
-			 (stricmp (strupr(my_argv[i]), "-HELP") == 0) )
+		if ( (stricmp (my_argv[i], "-H") == 0) ||
+			 (stricmp (my_argv[i], "-?") == 0) ||
+			 (stricmp (my_argv[i], "-HELP") == 0) )
 		{
 			char Msg[1024];
 			strcpy(Msg,MSG_SCIMSG24);
@@ -331,9 +331,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	if (argcount > 2)
 	{
-		if ( (strcmp (my_argv[1], "-X") == 0) ||
-		     (strcmp (my_argv[1], "-O") == 0) ||	
-		     (strcmp (my_argv[1], "-P") == 0) )
+		if ( (stricmp (my_argv[1], "-X") == 0) ||
+		     (stricmp (my_argv[1], "-O") == 0) ||	
+		     (stricmp (my_argv[1], "-P") == 0) )
 		{
 			char *Commande=NULL;
 			int CodeAction=-1;
@@ -347,9 +347,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 				strcat(FileName," ");
 				strcat(FileName,my_argv[j]);
 			}
-			if (strcmp (my_argv[1], "-O") == 0) CodeAction=0;
-			if (strcmp (my_argv[1], "-X") == 0) CodeAction=1; 
-			if (strcmp (my_argv[1], "-P") == 0) CodeAction=2;
+			if (stricmp (my_argv[1], "-O") == 0) CodeAction=0;
+			if (stricmp (my_argv[1], "-X") == 0) CodeAction=1; 
+			if (stricmp (my_argv[1], "-P") == 0) CodeAction=2;
 
 			Commande=(char*)MALLOC(MAX_PATH*sizeof(char));
 			strcpy(Commande,"empty");
@@ -392,25 +392,25 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	else
 	while (argcount > 0)
 	{
-        char ArgTmp[MAX_PATH];
+    char ArgTmp[MAX_PATH];
                 
 		argcount--;
 		strcpy(ArgTmp,my_argv[argcount]);
 		
-		if (strcmp (strupr(ArgTmp), "-NS") == 0) startupf = 1;
-		else if ( strcmp(strupr(ArgTmp),"-NB") == 0) { sci_show_banner = 0; }
-		else if (strcmp (strupr(ArgTmp), "-F") == 0 && argcount + 1 < my_argc)
+		if (stricmp (ArgTmp, "-NS") == 0) startupf = 1;
+		else if ( stricmp(ArgTmp,"-NB") == 0) { sci_show_banner = 0; }
+		else if (stricmp (ArgTmp, "-F") == 0 && argcount + 1 < my_argc)
 		{
 			path = my_argv[argcount + 1];
 			lpath = strlen (my_argv[argcount + 1]);
 		}
-		else if (strcmp (strupr(ArgTmp), "-E") == 0 && argcount + 1 < my_argc)
+		else if (stricmp (ArgTmp, "-E") == 0 && argcount + 1 < my_argc)
 		{
 			path = my_argv[argcount + 1];
 			lpath = strlen (my_argv[argcount + 1]);
 			pathtype=1;
 		}
-		else if ( strcmp(strupr(ArgTmp),"-MEM") == 0 && argcount + 1 < my_argc)
+		else if ( stricmp(ArgTmp,"-MEM") == 0 && argcount + 1 < my_argc)
 		{
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		}
