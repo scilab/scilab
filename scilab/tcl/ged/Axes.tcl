@@ -56,6 +56,7 @@ global ged_handle_list_size
 global lalist
 global curgedindex
 global curgedobject
+global ticksNoteBook ;
 
 global  visToggle limToggle boxToggle isoToggle gridToggle 
 global  xToggle yToggle zToggle red green blue color 
@@ -173,7 +174,7 @@ proc OnOffForeground { frame flag } {
 }
 
 
-set NBheight 340
+set NBheight 350
 set NBwidth  360
 
 set Wheight [expr $NBheight + 210]
@@ -275,6 +276,7 @@ set uf $w
 set largeur 14
 
 Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 0  -height $NBheight -width $NBwidth
+
 pack $uf.n -fill both -expand yes  -side top
 
 
@@ -2725,6 +2727,7 @@ proc PopUp { w numpage} {
     global StepEntryX StepEntryY StepEntryZ
     global Xaxes_visibleToggle Yaxes_visibleToggle Zaxes_visibleToggle
     global largeur
+    global ticksNoteBook
 
     global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
 #     set TICK_WINDOW_POSITION "+0+0"
@@ -2732,10 +2735,10 @@ proc PopUp { w numpage} {
     set preffilename $envSCIHOME/.GedPreferences.tcl
     catch {source $preffilename}
 
-
     set frameaxes $w
 
     set www .ticks
+        
     catch {destroy $www}
 
     toplevel $www
@@ -2748,6 +2751,7 @@ proc PopUp { w numpage} {
     wm geometry $www 310x520$TICK_WINDOW_POSITION
     wm maxsize  $www 310 520
     wm iconname $www "TE"
+    wm protocol $www WM_DELETE_WINDOW "closeTicksWindow $www"
     grab set $www
 #    bell -displayof $w
     
@@ -2760,7 +2764,6 @@ proc PopUp { w numpage} {
     
     #sauv www
     set old_www $www
-
 
     # Make a frame scrollable
 
@@ -2777,6 +2780,7 @@ proc PopUp { w numpage} {
     
     Notebook:create $uf.n -pages {X Y Z} -pad 20   -height 400 -width 230
     pack $uf.n -in $uf -fill both -expand yes
+    set ticksNoteBook $uf.n
 
     Notebook:raise.page $uf.n $numpage
 
@@ -2859,10 +2863,10 @@ proc PopUp { w numpage} {
 	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right -width 10\
 	    -background white -textvariable LOCATIONS_X($i)  -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
-	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i;"
-	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyX $fen1"
-	bind  $fen1.frame.c.locationsdata$i <KP_Enter> "TicksApplyX $fen1"
-	bind  $fen1.frame.c.locationsdata$i <FocusOut> "TicksApplyX $fen1"
+	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i $fen1.frame.c.locationsdata$i;"
+	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyXRepalce $fen1 $fen1.frame.c.locationsdata$i right"
+	bind  $fen1.frame.c.locationsdata$i <KP_Enter> "TicksApplyXReplace $fen1 $fen1.frame.c.locationsdata$i right"
+	bind  $fen1.frame.c.locationsdata$i <FocusOut> "TicksApplyXReplace $fen1 $fen1.frame.c.locationsdata$i right"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.locationsdata$i
 	
 	
@@ -2871,10 +2875,10 @@ proc PopUp { w numpage} {
 	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left -width 10\
 	    -background white -textvariable LABELS_X($i) -font {Arial 9}
 	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
-	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i;"
-	bind  $fen1.frame.c.labelsdata$i <Return> "TicksApplyX $fen1"
-	bind  $fen1.frame.c.labelsdata$i <KP_Enter> "TicksApplyX $fen1"
-	bind  $fen1.frame.c.labelsdata$i <FocusOut> "TicksApplyX $fen1"
+	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i $fen1.frame.c.labelsdata$i;"
+	bind  $fen1.frame.c.labelsdata$i <Return> "TicksApplyXReplace $fen1 $fen1.frame.c.labelsdata$i left"
+	bind  $fen1.frame.c.labelsdata$i <KP_Enter> "TicksApplyXReplace $fen1 $fen1.frame.c.labelsdata$i left"
+	bind  $fen1.frame.c.labelsdata$i <FocusOut> "TicksApplyXReplace $fen1 $fen1.frame.c.labelsdata$i left"
 	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.labelsdata$i
     }
 
@@ -2892,8 +2896,10 @@ proc PopUp { w numpage} {
     frame $fen1.buttons -borderwidth 0
     pack  $fen1.buttons -anchor w -fill both  -side bottom   -fill x
     
+    #apply button
     button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1" -font {Arial 9} -width 10
-    button $fen1.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
+    # quit button
+    button $fen1.buttons.b -text Quit -command "closeTicksWindow $old_www" -font {Arial 9} -width 10
     
     pack $fen1.buttons.apply  $fen1.buttons.b -in  $fen1.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -2985,10 +2991,10 @@ proc PopUp { w numpage} {
 	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right  -width 10\
 	    -background white -textvariable LOCATIONS_Y($i) -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
-	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i;"
-	bind  $fen2.frame.c.locationsdata$i <Return> "TicksApplyY $fen2"
-	bind  $fen2.frame.c.locationsdata$i <KP_Enter> "TicksApplyY $fen2"
-	bind  $fen2.frame.c.locationsdata$i <FocusOut> "TicksApplyY $fen2"
+	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i $fen2.frame.c.locationsdata$i "
+	bind  $fen2.frame.c.locationsdata$i <Return> "TicksApplyYReplace $fen2 $fen2.frame.c.locationsdata$i right"
+	bind  $fen2.frame.c.locationsdata$i <KP_Enter> "TicksApplyYReplace $fen2 $fen2.frame.c.locationsdata$i right"
+	bind  $fen2.frame.c.locationsdata$i <FocusOut> "TicksApplyYReplace $fen2 $fen2.frame.c.locationsdata$i right"
 	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.locationsdata$i
 	
 	
@@ -2997,10 +3003,10 @@ proc PopUp { w numpage} {
 	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left  -width 10\
 	    -background white -textvariable LABELS_Y($i) -font {Arial 9}
 	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
-	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i;"
-	bind  $fen2.frame.c.labelsdata$i <Return> "TicksApplyY $fen2"
-	bind  $fen2.frame.c.labelsdata$i <KP_Enter> "TicksApplyY $fen2"
-	bind  $fen2.frame.c.labelsdata$i <FocusOut> "TicksApplyY $fen2"
+	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i $fen2.frame.c.labelsdata$i"
+	bind  $fen2.frame.c.labelsdata$i <Return> "TicksApplyYReplace $fen2 $fen2.frame.c.labelsdata$i left"
+	bind  $fen2.frame.c.labelsdata$i <KP_Enter> "TicksApplyYReplace $fen2 $fen2.frame.c.labelsdata$i left"
+	bind  $fen2.frame.c.labelsdata$i <FocusOut> "TicksApplyYReplace $fen2 $fen2.frame.c.labelsdata$i left"
 	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.labelsdata$i
     }
 
@@ -3019,8 +3025,8 @@ proc PopUp { w numpage} {
     pack  $fen2.buttons -anchor w -fill both  -side bottom   -fill x
     
     button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2" -font {Arial 9} -width 10
-    button $fen2.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
-    
+    # button $fen2.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
+    button $fen2.buttons.b -text Quit -command "closeTicksWindow $old_www" -font {Arial 9} -width 10
     pack $fen2.buttons.apply  $fen2.buttons.b -in  $fen2.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
     
@@ -3111,10 +3117,10 @@ proc PopUp { w numpage} {
 	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right  -width 10\
 	    -background white -textvariable LOCATIONS_Z($i) -font {Arial 9}
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
-	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i;"
-	bind  $fen3.frame.c.locationsdata$i <Return> "TicksApplyZ $fen3"
-	bind  $fen3.frame.c.locationsdata$i <KP_Enter> "TicksApplyZ $fen3"
-	bind  $fen3.frame.c.locationsdata$i <FocusOut> "TicksApplyZ $fen3"
+	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i $fen3.frame.c.locationsdata$i;"
+	bind  $fen3.frame.c.locationsdata$i <Return> "TicksApplyZReplace $fen3 $fen3.frame.c.locationsdata$i right"
+	bind  $fen3.frame.c.locationsdata$i <KP_Enter> "TicksApplyZReplace $fen3 $fen3.frame.c.locationsdata$i right"
+	bind  $fen3.frame.c.locationsdata$i <FocusOut> "TicksApplyZReplace $fen3 $fen3.frame.c.locationsdata$i right"
 	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.locationsdata$i
 	
 	
@@ -3123,10 +3129,10 @@ proc PopUp { w numpage} {
 	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left  -width 10\
 	    -background white -textvariable LABELS_Z($i) -font {Arial 9}
 	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
-	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i;"
-	bind  $fen3.frame.c.labelsdata$i <Return> "TicksApplyZ $fen3"
-	bind  $fen3.frame.c.labelsdata$i <KP_Enter> "TicksApplyZ $fen3"
-	bind  $fen3.frame.c.labelsdata$i <FocusOut> "TicksApplyZ $fen3"
+	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i $fen3.frame.c.labelsdata$i "
+	bind  $fen3.frame.c.labelsdata$i <Return> "TicksApplyZReplace $fen3 $fen3.frame.c.labelsdata$i left"
+	bind  $fen3.frame.c.labelsdata$i <KP_Enter> "TicksApplyZReplace $fen3 $fen3.frame.c.labelsdata$i left"
+	bind  $fen3.frame.c.labelsdata$i <FocusOut> "TicksApplyZReplace $fen3 $fen3.frame.c.labelsdata$i left"
 	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.labelsdata$i
     }
 
@@ -3146,7 +3152,7 @@ proc PopUp { w numpage} {
     pack  $fen3.buttons -anchor w -fill both  -side bottom   -fill x
     
     button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3" -font {Arial 9} -width 10
-    button $fen3.buttons.b -text Quit -command "SavePreferences2 $old_www; destroy $old_www" -font {Arial 9} -width 10
+    button $fen3.buttons.b -text Quit -command "closeTicksWindow $old_www" -font {Arial 9} -width 10
     
     pack $fen3.buttons.apply  $fen3.buttons.b -in  $fen3.buttons \
 	-side left   -fill x  -expand 1 -pady 0m
@@ -3265,15 +3271,27 @@ proc TicksDeleteX { ww w } {
     
 }
 
+# jb Silvy
+# replace the entry wid and call TickApply
+proc TicksApplyXReplace { w wid side } {
+    $wid configure -justify $side
+    TicksApplyX $w ;
+}
+
 proc TicksApplyX { w } {
     global LOCATIONS_X LABELS_X
     global nbticks_x 
     global XautoticksToggle
+    
+    if { $nbticks_x == 0 } {
+        # in this case ged_tmp_* won't be initialized
+        return
+    }
+
     #First, we pass the TLIST in 2 arrays to scilab
     #LOCATIONS_X
     for {set i 1} {$i<=$nbticks_x} {incr i} {
 	set index $i
-
 	if { $i == 1 } {
 	    ScilabEval "ged_tmp_LOCATIONS=GetTab($LOCATIONS_X($index),$index)"  "seq"
 	} else {
@@ -3295,6 +3313,8 @@ proc TicksApplyX { w } {
     
     set XautoticksToggle "off"
     OnOffForeground $w.frame.xautoticksb $XautoticksToggle
+
+    #$wi configure -justify right
 }
 
 
@@ -3389,10 +3409,21 @@ proc TicksDeleteY { ww w } {
     
 }
 
+# jb Silvy
+# replace the entry wid and call TickApply
+proc TicksApplyYReplace { w wid side } {
+    $wid configure -justify $side
+    TicksApplyY $w ;
+}
+
 proc TicksApplyY { w } {
     global LOCATIONS_Y LABELS_Y
     global nbticks_y
     global YautoticksToggle
+
+    if { $nbticks_y == 0 } {
+        return
+    }
 
     #First, we pass the TLIST in 2 arrays to scilab
     #LOCATIONS_Y
@@ -3515,6 +3546,13 @@ proc TicksDeleteZ { ww w } {
     
 }
 
+# jb Silvy
+# replace the entry wid and call TickApply
+proc TicksApplyZReplace { w wid side } {
+    $wid configure -justify $side
+    TicksApplyZ $w ;
+}
+
 proc TicksApplyZ { w } {
     global LOCATIONS_Z LABELS_Z
     global nbticks_z
@@ -3522,9 +3560,11 @@ proc TicksApplyZ { w } {
 
     #First, we pass the TLIST in 2 arrays to scilab
     #LOCATIONS_Z
+    if { $nbticks_z == 0 } {
+        return
+    }
     for {set i 1} {$i<=$nbticks_z} {incr i} {
 	set index $i
-
 	if { $i == 1 } {
 	    ScilabEval "ged_tmp_LOCATIONS=GetTab($LOCATIONS_Z($index),$index)"  "seq"
 	} else {
@@ -3551,24 +3591,27 @@ proc TicksApplyZ { w } {
 
 
 
-proc setLEI_x { i } {
+proc setLEI_x { i wi } {
     global LEI_x
 
     set LEI_x $i
+    $wi configure -justify left
 #    return $LEI
 }
 
-proc setLEI_y { i } {
+proc setLEI_y { i wid } {
     global LEI_y
 
     set LEI_y $i
+    $wid configure -justify left
 #    return $LEI
 }
 
-proc setLEI_z { i } {
+proc setLEI_z { i wid } {
     global LEI_z
 
     set LEI_z $i
+    $wid configure -justify left
 #    return $LEI
 }
 
@@ -3610,24 +3653,37 @@ proc SetStep { w numpage xyz} {
     global LOCATIONS_Y LABELS_Y
     global LOCATIONS_Z LABELS_Z
     global nbticks_x nbticks_y nbticks_z
+    global ticksNoteBook
+    global fen1 fen2 fen3
     
+
     if { $xyz == 1 } {
+        set step $StepEntryX
+        if { $step=="" } {
+            return
+        }
 	set min $dbxmin
 	set max $dbxmax
 	set nbticks_x 0
-	set step $StepEntryX
     } else {
 	if { $xyz == 2 } {
+            set step $StepEntryY
+            if { $step=="" } {
+                return
+            }
 	    set min $dbymin
 	    set max $dbymax
 	    set nbticks_y 0
-	    set step $StepEntryY
+	    
 	} else {
 	    if { $xyz == 3 } {
+                set step $StepEntryZ
+                if { $step=="" } {
+                    return
+                }
 		set min $dbzmin
 		set max $dbzmax
 		set nbticks_z 0
-		set step $StepEntryZ
 	    }
 	}
     }
@@ -3642,10 +3698,11 @@ proc SetStep { w numpage xyz} {
 #     puts "min = $min"
 #     puts "max = $max"
     
-    if {$step <= 0  | $step==""} {
+    if { $step <= 0 } {
 	tk_messageBox -icon error -type ok -title "Wrong Step" -message "The step must be positive !"
-	return
+        return
     }
+    
     
     set x $min
     
@@ -3688,29 +3745,45 @@ proc SetStep { w numpage xyz} {
 	set LOCATIONS_X($ii) $x
 	set LABELS_X($ii) $x
 	set nbticks_x [expr $nbticks_x +1]
+        TicksApplyX $fen1
+        
     } else {
 	if { $xyz == 2 } {
 	    set LOCATIONS_Y($ii) $x
 	    set LABELS_Y($ii) $x
 	    set nbticks_y [expr $nbticks_y +1]
+            TicksApplyY $fen2
+            
 	} else {
 	    if { $xyz == 3 } {
 		set LOCATIONS_Z($ii) $x
 		set LABELS_Z($ii) $x
 		set nbticks_z [expr $nbticks_z +1]
-	    }
+                TicksApplyZ $fen3
+            }
 	}
     }
     
+    set curPage [Notebook:getCurrentPage $ticksNoteBook]
+    
+    # save the current position
+    SavePreferences2 .ticks
+    # redraw the modified page
     PopUp $w $numpage
+    # and popup the current
+    #PopUp $w $curPage
+    Notebook:raise.page $ticksNoteBook $curPage
 }
 
 
 
 proc SetSubticksX { } {
     global SubticksEntryX
-
-    if {$SubticksEntryX < 0 | $SubticksEntryX==""} {
+    
+    if {$SubticksEntryX==""} {
+        return
+    }
+    if {$SubticksEntryX < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
 	return
     }
@@ -3720,8 +3793,11 @@ proc SetSubticksX { } {
 
 proc SetSubticksY { } {
     global SubticksEntryY
- 
-    if {$SubticksEntryY < 0 | $SubticksEntryY==""} {
+    
+    if {$SubticksEntryY==""} {
+        return
+    }
+    if {$SubticksEntryY < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
 	return
     }
@@ -3731,7 +3807,10 @@ proc SetSubticksY { } {
 proc SetSubticksZ { } {
     global SubticksEntryZ
     
-    if {$SubticksEntryZ < 0 | $SubticksEntryZ==""} {
+    if {$SubticksEntryZ==""} {
+        return
+    }
+    if {$SubticksEntryZ < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
 	return
     }
@@ -3793,6 +3872,8 @@ proc SavePreferences2 { w } {
 
     set x [eval {winfo x $w}]
     set y [eval {winfo y $w}]
+    
+    # here is the difference with SavePreference
     set TICK_WINDOW_POSITION "+[expr $x+$xoffset]+[expr $y+$yoffset]"
     
     
@@ -3808,6 +3889,19 @@ proc SavePreferences2 { w } {
 	close $preffile
     }
     
+}
+
+
+# to be called when the window is closed
+proc closeTicksWindow { wind } {
+    global StepEntryX StepEntryY StepEntryZ
+    
+    # remove the step by entry texts
+    set StepEntryX  ""
+    set StepEntryY  ""
+    set StepEntryZ  ""
+    SavePreferences2 $wind
+    destroy $wind
 }
 
 proc DestroyGlobals { } {
