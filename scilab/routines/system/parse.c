@@ -1520,6 +1520,7 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
 {
 
   /* Local variables */
+  int Pts, Tops;
   extern int C2F(iset)();
   extern int C2F(callinterf)(), C2F(ref2val)();
   static int iflagint;
@@ -1531,8 +1532,8 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   static int *Lstk = C2F(vstk).lstk-1;
   static int *Infstk  = C2F(vstk).infstk-1;
 
-  Pt = max(Pt,0);
-  Top = max(Top,0);
+  Pt = max(Pt,0);Pts=Pt;
+  Top = max(Top,0);Tops=Top;
   C2F(basbrk).interruptible = *seq != 0;
   C2F(bexec)(str, ns, ierr, (*ns));
   if (*ierr != 0) {
@@ -1672,12 +1673,15 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   return 0;
  L9998:
   *ierr = 1;
+  Pt=Pts;Top=Tops;
+
   return 0;
  L9999:
   /* Err == 9999999 arises if abort has been used to terminate the callback execution */
   if (Err != 9999999) *ierr = 1;
   --Top;
   --C2F(recu).niv;
+  Pt=Pts;Top=Tops;
   return 0;
 } /* syncexec */
 
