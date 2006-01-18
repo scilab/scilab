@@ -10852,7 +10852,12 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
       {
 	ppsubwin->axes.ygrads[0] = (grads_tmp[0]+grads_tmp[lastyindex])/2.;
 	ppsubwin->axes.nygrads = 1;
-	ppsubwin->axes.nbsubtics[1] = 1;
+        
+        if ( !ppsubwin->flagNax )
+        {
+          /* don't change the number if it aldready has been specified */
+          ppsubwin->axes.nbsubtics[1] = 1 ;
+        }
 	return 0;
       }
   
@@ -10894,17 +10899,25 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
     
     ppsubwin->axes.nygrads = compteur;
     
-    
-    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
-							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nygrads,
+                                                           ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,
+                                                           ppsubwin->axes.nbsubtics[1]); 
   }
   else{
     ppsubwin->axes.ygrads[0] = grads_tmp[0];
     ppsubwin->axes.ygrads[1] = grads_tmp[lastyindex];
     ppsubwin->axes.nygrads = 2;
-    
-    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
-							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nygrads,
+                                                           ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,
+                                                           ppsubwin->axes.nbsubtics[1]); 
     
     if(ppsubwin->logflags[1] == 'n'){
       if(nb_grads_max > 4) {
@@ -10917,8 +10930,12 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
 	
 	ppsubwin->axes.ygrads[3] = grads_tmp[lastyindex]; /* exact max */
 	ppsubwin->axes.nygrads = 4;
-	ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,'n',
-							       ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+        /* Nb of subtics computation and storage */
+	ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                               ppsubwin->axes.nygrads,
+                                                               'n',
+							       ppsubwin->axes.ygrads,
+                                                               ppsubwin->axes.nbsubtics[1]); 
       }
     }
   }
@@ -11075,7 +11092,10 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
       {
 	ppsubwin->axes.xgrads[0] = (grads_tmp[0]+grads_tmp[lastxindex])/2.;
 	ppsubwin->axes.nxgrads = 1;
-	ppsubwin->axes.nbsubtics[0] = 1;
+        if ( !ppsubwin->flagNax )
+        {
+          ppsubwin->axes.nbsubtics[0] = 1;
+        }
 	return 0;
       }
   
@@ -11117,17 +11137,25 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
     
     ppsubwin->axes.nxgrads = compteur;
     
-    
-    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
-							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nxgrads,
+                                                           ppsubwin->logflags[0],
+							   ppsubwin->axes.xgrads,
+                                                           ppsubwin->axes.nbsubtics[0]); 
   }
   else{
     ppsubwin->axes.xgrads[0] = grads_tmp[0];
     ppsubwin->axes.xgrads[1] = grads_tmp[lastxindex];
     ppsubwin->axes.nxgrads = 2;
-    
-    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
-							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nxgrads,
+                                                           ppsubwin->logflags[0],
+							   ppsubwin->axes.xgrads,
+                                                           ppsubwin->axes.nbsubtics[0]); 
     
     if(ppsubwin->logflags[0] == 'n'){
       if(nb_grads_max > 4) {
@@ -11140,8 +11168,14 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
 	
 	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
 	ppsubwin->axes.nxgrads = 4;
-	ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,'n',
-							       ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+        
+        /* Nb of subtics computation and storage */
+        /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+	ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                               ppsubwin->axes.nxgrads,
+                                                               'n',
+							       ppsubwin->axes.xgrads,
+                                                               ppsubwin->axes.nbsubtics[0]); 
       }
     }
   }
@@ -11289,7 +11323,10 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
       {
 	ppsubwin->axes.ygrads[0] = (grads_tmp[0]+grads_tmp[lastyindex])/2.;
 	ppsubwin->axes.nygrads = 1;
-	ppsubwin->axes.nbsubtics[1] = 1;
+        if ( !ppsubwin->flagNax )
+        {
+          ppsubwin->axes.nbsubtics[1] = 1;
+        }
 	return 0;
       }
   
@@ -11331,17 +11368,26 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
     
     ppsubwin->axes.nygrads = compteur;
     
-    
-    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
-							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nygrads,
+                                                           ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,
+                                                           ppsubwin->axes.nbsubtics[1]);
   }
   else{
     ppsubwin->axes.ygrads[0] = grads_tmp[0];
     ppsubwin->axes.ygrads[1] = grads_tmp[lastyindex];
     ppsubwin->axes.nygrads = 2;
-    
-    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,ppsubwin->logflags[1],
-							   ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nygrads,
+                                                           ppsubwin->logflags[1],
+							   ppsubwin->axes.ygrads,
+                                                           ppsubwin->axes.nbsubtics[1]);
     
     if(ppsubwin->logflags[1] == 'n'){
       if(nb_grads_max > 4) {
@@ -11354,8 +11400,13 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
 	
 	ppsubwin->axes.ygrads[3] = grads_tmp[lastyindex]; /* exact max */
 	ppsubwin->axes.nygrads = 4;
-	ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nygrads,'n',
-							       ppsubwin->axes.ygrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+        /* Nb of subtics computation and storage */
+        /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+	ppsubwin->axes.nbsubtics[1] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                               ppsubwin->axes.nygrads,
+                                                               'n',
+							       ppsubwin->axes.ygrads,
+                                                               ppsubwin->axes.nbsubtics[1]);
       }
     }
   }
@@ -11502,7 +11553,10 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
       {
 	ppsubwin->axes.xgrads[0] = (grads_tmp[0]+grads_tmp[lastxindex])/2.;
 	ppsubwin->axes.nxgrads = 1;
-	ppsubwin->axes.nbsubtics[0] = 1;
+        if ( !ppsubwin->flagNax )
+        {
+          ppsubwin->axes.nbsubtics[0] = 1;
+        }
 	return 0;
       }
   
@@ -11544,18 +11598,27 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
     
     ppsubwin->axes.nxgrads = compteur;
     
-    
-    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
-							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0], */
+/* 							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); */
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nxgrads,
+                                                           ppsubwin->logflags[0],
+ 							   ppsubwin->axes.xgrads,
+                                                           ppsubwin->axes.nbsubtics[0]);
   }
   else{
     ppsubwin->axes.xgrads[0] = grads_tmp[0];
     ppsubwin->axes.xgrads[1] = grads_tmp[lastxindex];
     ppsubwin->axes.nxgrads = 2;
-    
-    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0],
-							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
-    
+    /* /\* Nb of subtics computation and storage *\/ */
+/*     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,ppsubwin->logflags[0], */
+/* 							   ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2));  */
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nxgrads,
+                                                           ppsubwin->logflags[0],
+ 							   ppsubwin->axes.xgrads,
+                                                           ppsubwin->axes.nbsubtics[0]);
     if(ppsubwin->logflags[0] == 'n'){
       if(nb_grads_max > 4) {
 	/* we could display at least 4 graduations but we did not find a proper interval... */
@@ -11567,8 +11630,17 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
 	
 	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
 	ppsubwin->axes.nxgrads = 4;
-	ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nxgrads,'n',
-							       ppsubwin->axes.xgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+        /* Nb of subtics computation and storage */
+	/* ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin, */
+/*                                                                ppsubwin->axes.nxgrads, */
+/*                                                                'n', */
+/* 							       ppsubwin->axes.xgrads, */
+/*                                                                Max((int) abs((13-compteur)/2),2) ); */
+        ppsubwin->axes.nbsubtics[0] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                               ppsubwin->axes.nxgrads,
+                                                               'n',
+							       ppsubwin->axes.xgrads,
+                                                               ppsubwin->axes.nbsubtics[0] );
       }
     }
   }
@@ -11714,7 +11786,10 @@ int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, s
       {
 	ppsubwin->axes.zgrads[0] = (grads_tmp[0]+grads_tmp[lastzindex])/2.;
 	ppsubwin->axes.nzgrads = 1;
-	ppsubwin->axes.nbsubtics[2] = 1;
+        if ( !ppsubwin->flagNax )
+        {
+          ppsubwin->axes.nbsubtics[2] = 1;
+        }
 	return 0;
       }
   
@@ -11754,17 +11829,25 @@ int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, s
     
     ppsubwin->axes.nzgrads = compteur;
     
-    
-    ppsubwin->axes.nbsubtics[2] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nzgrads,ppsubwin->logflags[2],
-							   ppsubwin->axes.zgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[2] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nzgrads,
+                                                           ppsubwin->logflags[2],
+							   ppsubwin->axes.zgrads,
+                                                           ppsubwin->axes.nbsubtics[2]); 
   }
   else{
     ppsubwin->axes.zgrads[0] = grads_tmp[0];
     ppsubwin->axes.zgrads[1] = grads_tmp[lastzindex];
     ppsubwin->axes.nzgrads = 2;
-    
-    ppsubwin->axes.nbsubtics[2] = ComputeNbSubTicsFor3dUse(psubwin,ppsubwin->axes.nzgrads,ppsubwin->logflags[2],
-							   ppsubwin->axes.zgrads,Max((int) abs((13-compteur)/2),2)); /* Nb of subtics computation and storage */
+    /* Nb of subtics computation and storage */
+    /* jb Silvy 01/2006 : default value was Max((int) abs((13-compteur)/2),2) */
+    ppsubwin->axes.nbsubtics[2] = ComputeNbSubTicsFor3dUse(psubwin,
+                                                           ppsubwin->axes.nzgrads,
+                                                           ppsubwin->logflags[2],
+							   ppsubwin->axes.zgrads,
+                                                           ppsubwin->axes.nbsubtics[2]); 
   }
   
   return 0;
@@ -11781,7 +11864,7 @@ int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, doubl
 
 
   if(logflag =='l'){
-    if((grads[1]-grads[0])==1) /* intervalle de type ...10^n 10^(n+1)...*/
+    if( (grads[1]-grads[0]) == 1 ) /* intervalle de type ...10^n 10^(n+1)...*/
       {
 	return 9; /* 9 subtics to have a pretty tics/grid in log.*/
       }
@@ -11790,19 +11873,22 @@ int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, doubl
 	return 1; /* no subtics at all (1 but draw on a tics place) */
       }
   }
-  else{
+  else
+  {
     if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */
-      { 
-	for(i=0;i<19;i++)
-	  if(nbtics == ticsval[i])
-	    {
-	      return subticsval[i];
-	    }
+    { 
+      for(i=0;i<19;i++)
+      {
+        if(nbtics == ticsval[i])
+        {
+          return subticsval[i];
+        }
       }
+    }
     else /* if auto subtics mode == OFF already computed in Plo2dn.c, Champ.c routines... */
-      {  /* or given via a.subtics=[nbsubtics_on_x, nbsubtics_on_y, nbsubtics_on_z] command */
-	return nbsubtics_input;
-      }
+    {  /* or given via a.subtics=[nbsubtics_on_x, nbsubtics_on_y, nbsubtics_on_z] command */
+      return nbsubtics_input;
+    }
   }
   
   return -1;
