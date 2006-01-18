@@ -18,6 +18,10 @@
 #include "../graphics/BuildObjects.h"
 #include "../graphics/DestroyObjects.h"
 
+#ifdef WITH_TK
+#include "../tclsci/GedManagement.h"
+#endif
+
 #include "intcommongraphics.h"
 
 #ifdef WIN32
@@ -1058,6 +1062,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      /* 	    versionflag = 1; */
 
 	    sciXClearFigure();
+#ifdef WITH_TK
+            /* close ged to prevent errors when using it */
+            sciDestroyGed() ;
+#endif
 	    C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
 	
 	    if (XGC->mafigure != (sciPointObj *)NULL) {
