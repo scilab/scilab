@@ -2256,29 +2256,48 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   }
   /*Dj.A 17/12/2003*/
-  else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0)) {
+  else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))
+  {
     if (sciGetEntityType (pobj) == SCI_AXES)
+    {
       pAXES_FEATURE (pobj)->subint= (int) *stk(*value);
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      if ((*numcol != 3 )&& (*numcol != 2)) {
-	strcpy(error_message,"Value must have two elements (three if 3D universe) ");return -1;}
-      pSUBWIN_FEATURE (pobj)->flagNax = TRUE;
-      for (i = 0; i < *numcol;i++){
-	char logflag = pSUBWIN_FEATURE (pobj)->logflags[i];
+    }
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN) 
+    {
+      sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
+      if ((*numcol != 3 )&& (*numcol != 2))
+      {
+	strcpy(error_message,"Value must have two elements (three if 3D universe) ");
+        return -1;
+      }
+      ppSubWin->flagNax = TRUE;
+      for ( i = 0; i < *numcol ; i++ )
+      {
+	char logflag = ppSubWin->logflags[i] ;
+        int  nbTicks ;
 
-	if(logflag == 'l') {
+	if(logflag == 'l')
+        {
 	  /* 	  sciprint("Subtics number can not be set while using logarithmic scaling\n"); */
 	  continue;
 	}
-
-	if((int) *stk(*value+i)>=0)
-	  pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i]=(int) *stk(*value+i) +1; 
+        
+        nbTicks = (int) *stk(*value+i);
+	if( nbTicks >= 0 )
+        {
+	  ppSubWin->axes.nbsubtics[i] = nbTicks + 1 ;
+        } 
 	else
-	  pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i]= 1;
+        {
+	  ppSubWin->axes.nbsubtics[i] = 1 ;
+        }
       }
     }
     else
-      {strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
+    {
+      strcpy(error_message,"sub_ticks property does not exist for this handle");
+      return -1 ;
+    }
 
   }
   else if (strcmp(marker,"format_n") == 0)
