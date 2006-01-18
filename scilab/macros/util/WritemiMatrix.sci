@@ -308,6 +308,13 @@ if DataType==miDOUBLE & and(double(int(value))==value) then
     DataType=miUINT8;
   elseif min(value)>=-128 & max(value)<=127 then // min and max value for int8
     DataType=miINT8;
+    //miINT8 replaced by miINT16 due to an error somewhere (matlab or
+    //scilab?) the generated file gives incorrect result in Matlab!
+    //example:
+    //  scilab var=-40;savematfile('foosci.mat','var','-mat','-v6');
+    //  matlab load foosci.mat;var
+    DataType=miINT16;
+
   elseif min(value)>=0 & max(value)<=65535 then // min and max value for int16
     DataType=miUINT16;
   elseif min(value)>=-32768 & max(value)<=32767 then // min and max value for int16
