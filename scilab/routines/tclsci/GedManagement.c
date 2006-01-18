@@ -9,12 +9,12 @@
 
 /*-----------------------------------------------------------------------------------------*/
 
-void sciDestroyGed( void )
+int sciDestroyGed( void )
 {
   if ( TCLinterp == NULL )
   {
     Scierror( 999, TCL_ERROR13, "sciDestroyGed" ) ;
-    return 0;
+    return 1 ;
   }
   else
   {
@@ -22,6 +22,7 @@ void sciDestroyGed( void )
     Tcl_Eval( TCLinterp, "catch { destroy .ticks }" ) ;
     /* try to close the editor */
     Tcl_Eval( TCLinterp, "catch { destroy .axes }"  ) ;
+    return 0 ;
   }
 }
 /*------------------------------------------------------------------------------------------*/
