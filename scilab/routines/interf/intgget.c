@@ -1509,6 +1509,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
     }
   /*Dj.A 17/12/2003*/
+  /* modified jb Silvy 01/2006 */
   else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))
     {
       numrow   = 1;
