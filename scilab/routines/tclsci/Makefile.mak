@@ -12,7 +12,7 @@ OBJSC  = InitTclTk.obj intClose.obj intFindObj.obj intOpenTk.obj \
 	 intTclSet.obj intTclSetVar.obj ScilabEval.obj TclEvents.obj \
 	 TclUiGet.obj TclUiSet.obj TCL_Global.obj intTclGetVersion.obj \
 	 intTclUnsetVar.obj intTclExistVar.obj intTclUpVar.obj intTclDeleteInterp.obj \
-	 intTclExistInterp.obj intTclCreateSlave.obj
+	 intTclExistInterp.obj intTclCreateSlave.obj GedManagement.obj
 
 include ../../Makefile.incl.mak
 
