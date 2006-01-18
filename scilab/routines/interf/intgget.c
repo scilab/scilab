@@ -1512,19 +1512,29 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))
     {
       numrow   = 1;
-      numcol   = (sciGetEntityType (pobj) == SCI_AXES) ? 1:2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
-      if (sciGetEntityType (pobj) == SCI_AXES)
+      /*numcol   = (sciGetEntityType (pobj) == SCI_AXES) ? 1 : 2 ;*/
+      
+      if ( sciGetEntityType (pobj) == SCI_AXES )
+      {
+        numcol = 1 ;
+        CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	*stk(outindex) = pAXES_FEATURE (pobj)->subint;
-      else  if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	{
-	  numcol=(pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i] -1;
-	}
+      }
+      else if ( sciGetEntityType (pobj) == SCI_SUBWIN )
+      {
+        sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
+        numcol = (ppSubWin->is3d)? 3 : 2;
+        CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+        for ( i = 0 ; i < numcol ; i++ )
+        {
+          stk(outindex)[i] = ppSubWin->axes.nbsubtics[i] - 1 ;
+        }
+      }
       else
-	{strcpy(error_message,"sub_ticks property does not exist for this handle");return -1;}
+      {
+        strcpy(error_message,"sub_ticks property does not exist for this handle");
+        return -1 ;
+      }
     }
   else if (strcmp(marker,"tics_segment") == 0) 
     {
