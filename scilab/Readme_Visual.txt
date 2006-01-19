@@ -3,8 +3,8 @@ How to compile with visual studio C++ .Net 2003 and Intel Fortran 9.0 ?
 Pre-requirements:
 
 Install Visual Studio C++ .NET 2003
-Install Intel Fortran 9.0
-Install TCL/TK 8.4(.6)
+Install Intel Fortran 9.0.028
+Install TCL/TK 8.4(.12)
 Install Java 2 JDK
 
 1] copy tcl84.dll,tk84.dll,tcl84.lib and tk84.lib in bin directory.
