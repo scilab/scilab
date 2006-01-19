@@ -1,4 +1,4 @@
-#include "javasci_SciReal.h"
+#include "javasci_SciString.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2005 */
@@ -9,28 +9,23 @@
 JNIEXPORT void JNICALL Java_javasci_SciString_Job(JNIEnv *env , jobject obj_this, jstring job)
 /********************************************************************************************************/
 {
-  const char *cname,*cjob;
+	const char *cjob;
 
-  /* get the class */
-  jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
-  /* get the fields i.e x,m,n,name  */
-   jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
-  /* get the field value */
- 
-  jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
+	/* get the class */
+	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
-  cname = (*env)->GetStringUTFChars(env, jname, NULL);
-  cjob = (*env)->GetStringUTFChars(env, job, NULL);
+	/* get the field value */
+	cjob = (*env)->GetStringUTFChars(env, job, NULL);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 
-  if (send_scilab_job((char*)cjob))
-  {
-	   fprintf(stderr,"Error in Java_javasci_SciString_Job routine.\n");
-  }
-  (*env)->ReleaseStringUTFChars(env, jname , cname);
-  (*env)->ReleaseStringUTFChars(env, job , cjob);
-  
+	if (send_scilab_job((char*)cjob))
+	{
+		fprintf(stderr,"Error in Java_javasci_SciString_Job routine.\n");
+	}
+
+	(*env)->ReleaseStringUTFChars(env, job , cjob);
+
 }
 /********************************************************************************************************/
 /*! private native String GetString(); */

@@ -1,7 +1,6 @@
 #include "javasci_Scilab.h"
 /********************************************************************************************************/
-/* Copyright Cermics/Enpc : jean-philippe Chancelier */
-/* Modifications et ameliorations Allan CORNET */
+/* Allan CORNET */
 /* INRIA 2005 */
 /********************************************************************************************************/
 /* public static native void Events(); */
@@ -38,12 +37,16 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring
 /********************************************************************************************************/
 {
   const char *cjob;
+
   cjob = (*env)->GetStringUTFChars(env, job, NULL);
+
   if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+
   if ( send_scilab_job((char *)cjob) != 0) 
   {
     fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
   }
+
   (*env)->ReleaseStringUTFChars(env, job , cjob);
 }
 /********************************************************************************************************/
