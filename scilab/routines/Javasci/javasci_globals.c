@@ -1,7 +1,6 @@
 #include "javasci_globals.h"
 /********************************************************************************************************/
-/* Copyright Cermics/Enpc : jean-philippe Chancelier */
-/* Modifications et ameliorations Allan CORNET */
+/* Allan CORNET */
 /* INRIA 2005 */
 /********************************************************************************************************/
 static int init = 0;

@@ -4,7 +4,8 @@ all::
 	cl /c -DWIN32 javasci_Scilab.c
 	cl /c -DWIN32 javasci_SciReal.c
 	cl /c -DWIN32 javasci_SciString.c
-	link ..\..\bin\libscilab.lib -nologo -debug -dll -out:..\..\bin\javasci.dll javasci_globals.obj javasci_Scilab.obj javasci_SciReal.obj javasci_SciString.obj main.obj
+	cl /c -DWIN32 DllmainJavasci.c
+	link ..\..\bin\libscilab.lib -nologo -debug -dll -out:..\..\bin\javasci.dll javasci_globals.obj javasci_Scilab.obj javasci_SciReal.obj javasci_SciString.obj main.obj DllmainJavasci.obj
 	cd classes
 	@MakeJavaClass.bat
 	cd ..

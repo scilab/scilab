@@ -1,7 +1,6 @@
 #include "javasci_SciReal.h"
 /********************************************************************************************************/
-/* Copyright Cermics/Enpc : jean-philippe Chancelier */
-/* Modifications et ameliorations Allan CORNET */
+/* Allan CORNET */
 /* INRIA 2005 */
 /********************************************************************************************************/
 
@@ -10,54 +9,23 @@
 JNIEXPORT void JNICALL Java_javasci_SciReal_Job(JNIEnv *env , jobject obj_this, jstring job)
 /********************************************************************************************************/
 {
-  int cm,cn,lp;
-  const char *cname,*cjob;
-  /* get the class */
-  jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
-  /* get the fields i.e x,m,n,name  */
-  jfieldID id_x = (*env)->GetFieldID(env, class_Mine, "x", "[D");
-  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name", 
-					 "Ljava/lang/String;");
-  jfieldID id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
-  jfieldID id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
-  /* get the field value */
-  jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
-  jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
+	const char *cjob;
 
-  jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn = (*env)->GetIntField(env, obj_this, id_n);
-  double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
-  cname = (*env)->GetStringUTFChars(env, jname, NULL);
-  cjob = (*env)->GetStringUTFChars(env, job, NULL);
+	/* get the class */
+	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  cm=jm;cn=jn;
-  if (!  C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname)))
-  {
-	   fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (1).\n");
-  }
-  else 
-  { 
-    if ( send_scilab_job((char *)cjob) != 0) 
-    {
-			fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (2).\n");
-    }
-    else 
-    {
-			if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
-			{
-				fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (3).\n");
-			}
-			else 
-			if (! C2F(creadmat)((char *)cname,&cm, &cn,cx,(unsigned long)strlen(cname) ))
-			{	
-				fprintf(stderr,"Error in Java_javasci_SciReal_Job routine (4).\n");
-			}
-   }
-  }
-  (*env)->ReleaseStringUTFChars(env, jname , cname);
-  (*env)->ReleaseStringUTFChars(env, job , cjob);
-  (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
+	/* get the field value */
+	cjob = (*env)->GetStringUTFChars(env, job, NULL);
+
+	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+
+	if (send_scilab_job((char*)cjob))
+	{
+		fprintf(stderr,"Error in Java_javasci_SciString_Job routine.\n");
+	}
+
+	(*env)->ReleaseStringUTFChars(env, job , cjob);
+
 }
 /********************************************************************************************************/
 /*! public native void Get(); */
@@ -66,14 +34,16 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Get(JNIEnv *env , jobject obj_this)
 {
   int cm,cn,lp;
   const char *cname; 
+
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
   /* get the fields i.e x,m,n,name  */
   jfieldID id_x = (*env)->GetFieldID(env, class_Mine, "x", "[D");
-  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name", 
-					 "Ljava/lang/String;");
+  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
   jfieldID id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
   jfieldID id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
+
   /* get the field value */
   jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
@@ -92,9 +62,9 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Get(JNIEnv *env , jobject obj_this)
   }
   else 
   if (! C2F(creadmat)((char *)cname,&cm, &cn,cx,(unsigned long)strlen(cname) ))
-	{	
-		fprintf(stderr,"Error in Java_javasci_SciReal_Get (2).\n");
-	}
+  {	
+	fprintf(stderr,"Error in Java_javasci_SciReal_Get (2).\n");
+  }
 	
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
@@ -108,14 +78,16 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Send(JNIEnv *env , jobject obj_this)
 {
   int cm,cn;
   const char *cname; 
+
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
+
   /* get the fields i.e x,m,n,name  */
   jfieldID id_x = (*env)->GetFieldID(env, class_Mine, "x", "[D");
-  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name", 
-					 "Ljava/lang/String;");
+  jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
   jfieldID id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
   jfieldID id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
+
   /* get the field value */
   jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
@@ -127,7 +99,7 @@ JNIEXPORT void JNICALL Java_javasci_SciReal_Send(JNIEnv *env , jobject obj_this)
 
   if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
   cm=jm;cn=jn;
-  if (!  C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname))) 
+  if (!C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname))) 
   {
   	fprintf(stderr,"Error in Java_javasci_SciReal_Send.\n");
   }
