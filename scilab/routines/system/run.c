@@ -81,6 +81,7 @@ extern logical Eptover(int n);
 extern logical Ptover(int n);
 extern void Msgs(int n,int ierr);
 extern void SciError(int n);
+extern int scilab_timer_check(void);
 
 logical Istrue(int n)
 {
