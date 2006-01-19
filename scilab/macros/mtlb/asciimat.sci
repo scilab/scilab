@@ -6,14 +6,20 @@ function y=asciimat(x)
 // Fonction created because ascii() Scilab function returns a row vector
 if size(size(x),"*")<=2 then
   if type(x)==10 then
-    xsize=size(x);
-    if size(x,1)<>1 then
-      xsize=[xsize(1:$-1),-1]
-      xsize=xsize($:-1:1)
-      y=matrix(ascii(x),xsize)';
-    else
-      y=matrix(ascii(x),[xsize(1:$-1),-1]);
-    end
+    if x==[] then
+      y=[]
+      return
+    else 
+      ytemp=[];
+      for i=1:size(x,1)
+        ytemp=[ytemp ascii(x(i,:))]
+      end
+      nbcol= size(ytemp,'*')*size(x,2)/size(x,'*') 
+      y=[]
+      for i=1:size(x,1)
+	y=[y ;ytemp(1+(i-1)*nbcol:i*nbcol)]
+      end   
+  end
   elseif type(x)==1 | type(x)==8 then
     y=[]
     for k=1:size(x,1)
