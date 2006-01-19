@@ -25,11 +25,17 @@ I - TO RUN SCILAB (BINARY VERSION)
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use LCC-Win32 (C compiler) with Scilab 4.0-rc1
+    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.0-rc1
+    		download and install "Windows® Server 2003 SP1 Platform SDK"
+    		at http://www.microsoft.com/downloads
+    		and download and install "Microsoft Visual C++ 2005 Express"
+    		at http://msdn.microsoft.com/vstudio/express/visualc/
+ 
+    5 - If you want use LCC-Win32 (C compiler) with Scilab 4.0-rc1
         See Readme_LCC.txt in lcc directory.
         You can download at http://www.cs.virginia.edu/~lcc-win32/
     
-    5 - If you have any problems or suggestions concerning Scilab,
+    6 - If you have any problems or suggestions concerning Scilab,
         http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi        
         or better post a message to newsgroup:
   	    comp.soft-sys.math.scilab
