@@ -15,6 +15,9 @@ if size(size(x),"*")<=2 then
         ytemp=[ytemp ascii(x(i,:))]
       end
       nbcol= size(ytemp,'*')*size(x,2)/size(x,'*') 
+      if nbcol-floor(nbcol)<>0 then
+        error("input argument: inconsistent size ")
+      end
       y=[]
       for i=1:size(x,1)
 	y=[y ;ytemp(1+(i-1)*nbcol:i*nbcol)]
