@@ -14,7 +14,7 @@ OBJSC2 =readwin.obj wtloop.obj misc.obj \
 	TextWindows.obj Toolbar.obj GraphWindows.obj MenuWindows.obj \
 	FilesAssociationBox.obj AboutBox.obj Splashscreen.obj MessageBoxNewGraphicMode.obj \
 	WndParentGraphProc.obj WndGraphProc.obj WndConsoleParentProc.obj WndConsoleTextProc.obj \
-	Transparency.obj DragnDrop.obj KeyEvents.obj MouseEvents.obj  Events.obj
+	Transparency.obj DragnDrop.obj KeyEvents.obj MouseEvents.obj Events.obj ExportBmpEmf.obj
 
 OBJSC = $(OBJSC1) $(OBJSC2)
 
