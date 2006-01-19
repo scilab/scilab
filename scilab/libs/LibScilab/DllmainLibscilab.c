@@ -1,9 +1,9 @@
-
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2005 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
 #include <windows.h> 
-#include <stdio.h>
-#include <math.h>
-
-
+/*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
   switch (reason) 
@@ -19,6 +19,6 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
     }
   return 1;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 
 
