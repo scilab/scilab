@@ -789,6 +789,9 @@ cd .. &gt;nul
 				RelativePath=".\Events.c">
 			</File>
 			<File
+				RelativePath=".\ExportBmpEmf.c">
+			</File>
+			<File
 				RelativePath=".\FigureToPrint.c">
 			</File>
 			<File
@@ -2131,6 +2134,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\Events.h">
+			</File>
+			<File
+				RelativePath=".\ExportBmpEmf.h">
 			</File>
 			<File
 				RelativePath=".\FigureToPrint.h">
