@@ -1631,12 +1631,21 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   else if (strcmp(marker,"text_box") == 0)
     {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
+      if (sciGetEntityType (pobj) == SCI_TEXT)
+      {
+        if ( *numcol * *numrow != 2 )
+        {
+          strcpy(error_message,"text_box must be a 2D vector.");
+          return -1 ;
+        }
 	pTEXT_FEATURE (pobj)->wh[0]=*stk(*value);
 	pTEXT_FEATURE (pobj)->wh[1]=*stk(*value+1);
       }
       else
-	{strcpy(error_message,"text_box property does not exist for this handle");return -1;}
+	{
+          strcpy(error_message,"text_box property does not exist for this handle");
+          return -1;
+        }
     }
   else if (strcmp(marker,"text") == 0) {
     sciSetText((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
