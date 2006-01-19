@@ -6,6 +6,12 @@ function bOK=configure_msvc()
 if MSDOS then
   msvc=findmsvccompiler();
   select msvc,
+  case 'msvc80pro' then
+      bOK=setmsvc80pro()
+  case 'msvc80std' then
+      bOK=setmsvc80std()    
+  case 'msvc80express' then
+      bOK=setmsvc80express()
   case 'msvc71' then
       bOK=setmsvc71()
   case 'msvc70' then
@@ -18,6 +24,124 @@ if MSDOS then
       //disp('Warning Ms Visual C Compiler not found.');
       bOK=%F;
   end
+else
+  bOK=%F;
+end
+endfunction
+//-----------------------------------------------------------------------------
+function bOK=setmsvc80pro()
+if MSDOS then
+	MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VisualStudio\8.0\Setup\VS\Pro','ProductDir');
+  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  
+  err=setenv('VSINSTALLDIR',MSVSDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  MSVCDir=MSVSDir+'\VC';
+  err=setenv('VCINSTALLDIR',MSVCDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  DevEnvDir=MSVSDir+'\Common7\IDE';
+  err=setenv('DevEnvDir',DevEnvDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  PATH=getenv('PATH','ndef');
+  if (PATH =='ndef') then  bOK=%F,return,end
+  
+  err=setenv('PATH',DevEnvDir+';'+MSVCDir+'\bin;'+MSVSDir+'\Common7\Tools;'+MSVSDir+'\SDK\v2.0\bin;'+MSVCDir+'\VCPackages;'+PATH+";"+WSCI+"\bin;");
+  if (err == %F) then bOK=%F,return,end
+  
+  INCLUDE=getenv('INCLUDE','');  
+  INCLUDE=MSVCDir+'\INCLUDE';
+  err=setenv("INCLUDE",INCLUDE);
+  if (err == %F) then bOK=%F,return,end
+  
+  LIB=getenv('INCLUDE','');  
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+LIB;
+  err=setenv("LIB",LIB);
+  if (err == %F) then bOK=%F,return,end
+  
+  bOK=%T
+else
+  bOK=%F;
+end
+endfunction
+//-----------------------------------------------------------------------------
+function bOK=setmsvc80std()
+if MSDOS then
+  MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VisualStudio\8.0\Setup\VS\Std','ProductDir');
+  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  
+  err=setenv('VSINSTALLDIR',MSVSDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  MSVCDir=MSVSDir+'\VC';
+  err=setenv('VCINSTALLDIR',MSVCDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  DevEnvDir=MSVSDir+'\Common7\IDE';
+  err=setenv('DevEnvDir',DevEnvDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  PATH=getenv('PATH','ndef');
+  if (PATH =='ndef') then  bOK=%F,return,end
+  
+  err=setenv('PATH',DevEnvDir+';'+MSVCDir+'\bin;'+MSVSDir+'\Common7\Tools;'+MSVSDir+'\SDK\v2.0\bin;'+MSVCDir+'\VCPackages;'+PATH+";"+WSCI+"\bin;");
+  if (err == %F) then bOK=%F,return,end
+  
+  INCLUDE=getenv('INCLUDE','');  
+  INCLUDE=MSVCDir+'\INCLUDE';
+  err=setenv("INCLUDE",INCLUDE);
+  if (err == %F) then bOK=%F,return,end
+  
+  LIB=getenv('INCLUDE','');  
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+LIB;
+  err=setenv("LIB",LIB);
+  if (err == %F) then bOK=%F,return,end
+  
+  bOK=%T
+else
+  bOK=%F;
+end
+endfunction
+//-----------------------------------------------------------------------------
+function bOK=setmsvc80express()
+if MSDOS then
+  MSVSDir=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\VCExpress\8.0\Setup\VS','ProductDir');
+  if ( part(MSVSDir,length(MSVSDir)) == '\' ) then MSVSDir=part(MSVSDir,1:length(MSVSDir)-1);end;
+  
+  err=setenv('VSINSTALLDIR',MSVSDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  MSVCDir=MSVSDir+'\VC';
+  err=setenv('VCINSTALLDIR',MSVCDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  DevEnvDir=MSVSDir+'\Common7\IDE';
+  err=setenv('DevEnvDir',DevEnvDir);
+  if (err == %F) then bOK=%F,return,end
+  
+  PATH=getenv('PATH','ndef');
+  if (PATH =='ndef') then  bOK=%F,return,end
+  
+  err=setenv('PATH',DevEnvDir+';'+MSVCDir+'\bin;'+MSVSDir+'\Common7\Tools;'+MSVSDir+'\SDK\v2.0\bin;'+MSVCDir+'\VCPackages;'+PATH+";"+WSCI+"\bin;");
+  if (err == %F) then bOK=%F,return,end
+  
+  INCLUDE=getenv('INCLUDE','');  
+  INCLUDE=MSVCDir+'\INCLUDE';
+  err=setenv("INCLUDE",INCLUDE);
+  if (err == %F) then bOK=%F,return,end
+  
+  LIB=getenv('INCLUDE','');  
+  W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+W2003SDK+'\Lib;'+LIB;
+  err=setenv("LIB",LIB);
+  if (err == %F) then bOK=%F,return,end
+  
+  err=setenv("USE_MT","-MT");
+  if (err == %F) then bOK=%F,return,end
+  
+  bOK=%T
 else
   bOK=%F;
 end

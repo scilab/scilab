@@ -1,11 +1,13 @@
+//-----------------------------------------------------------------------------
 function libn=ilib_compile(lib_name,makename,files)
-// Copyright ENPC
+// Copyright ENPC/INRIA
+// Updated by Allan CORNET INRIA 2006
 // call make for target files or objects depending
 // on OS and compilers
 // very similar to G_make
 // if files is given the make is performed on each 
 // target contained in files then a whole make is performed 
-//-------------------------------------------------
+//-----------------------------------------------------------------------------
   [lhs,rhs]=argn(0);
   if rhs < 3 then files=[]; end 
   if typeof(lib_name)<>'string' then
@@ -31,7 +33,7 @@ function libn=ilib_compile(lib_name,makename,files)
   libn=path+lib_name_make ; 
   chdir(oldpath)
 endfunction
-
+//-----------------------------------------------------------------------------
 function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_get_names(lib_name,makename,files) 
 // return is res the correct name for 
 // makefile, libname, files 
@@ -57,7 +59,12 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
     select comp_target
      case 'VC++' then 
       makename = makename + '.mak' ; 
-      make_command = 'nmake /nologo /f '
+      vcvompilerversion=findmsvccompiler();
+      if (vcvompilerversion=='msvc80express') | (vcvompilerversion=='msvc80pro') | (vcvompilerversion=='msvc80std') then
+        make_command = 'nmake /Y /nologo /f '
+      else
+        make_command = 'nmake /nologo /f '
+      end  
       if files<>[] then 
 	files = files + '.obj' ;
       end
@@ -85,9 +92,4 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
   end
   
 endfunction 
-
-  
-
-
-
-
+//-----------------------------------------------------------------------------
