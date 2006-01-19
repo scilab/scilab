@@ -91,10 +91,6 @@ static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);
 
-BOOL HdcToBmpFile(HDC hdc, char *pszflname);
-BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
-void ExportBMP(struct BCG *ScilabGC,char *pszflname);
-void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 int GetScreenProperty(char *prop, char *value);
 
 integer GetCurrentFigureWindows(void);
