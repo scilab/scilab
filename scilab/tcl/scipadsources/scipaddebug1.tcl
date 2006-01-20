@@ -155,9 +155,12 @@ if {0} {
 # if $logdetailedbindings is true, then all the non Tcl/Tk default
 # bindings are logged (i.e. not only those attached to $pad, but also
 # those attached to children of $pad)
+# if $logTextclassbindings is true, then all the Tcl/Tk Text class
+# bindings are logged
 set debuglog false
 set loginafile true
 set logdetailedbindings true
+set logTextclassbindings false
 
 if {$debuglog} {
 

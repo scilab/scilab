@@ -36,15 +36,20 @@ proc tkdndbind {w} {
                 # the selection has been lost in the process because of
                 # focustextarea below in the <DragEnter> event, thus the
                 # drop process is the same as if two different buffers
-                # were involved (-> else clause of this if)
+                # were involved (-> else clause of this if above)
                 #
                 # here we didn't fly out of the buffer, sel tag still here
-                if { ! ([%W compare sel.first < [%W index @%x,%y]] && \
-                        [%W compare [%W index @%x,%y] < sel.last] ) } {
+                if { ! ([%W compare sel.first <= [%W index @%x,%y]] && \
+                        [%W compare [%W index @%x,%y] < sel.last] ) || \
+                        [%W compare sel.first == [%W index @%x,%y]] } {
+                    # the mouse, in fact the destination mark cursor, is not
+                    # inside the selection
                     if {"%A" == "copy"} {
                         %W tag remove sel 0.0 end
                     }
                     puttext %W %D
+                } else {
+                    # drop occurs at the same place as drag, do nothing
                 }
             } else {
                 # drag from a Scipad buffer, drop in another Scipad buffer
@@ -65,7 +70,6 @@ proc tkdndbind {w} {
         restorecursorblink ; # needed for drags from the outside
         set dndinitiated "false"
         if {[info exists dnddroppos]} {
-            %W mark set insert $dnddroppos
             unset dnddroppos
         }
     }

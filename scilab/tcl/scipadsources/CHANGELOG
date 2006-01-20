@@ -1918,3 +1918,15 @@ Francois VOGEL, 15/01/06
  * Fixed: Update of continued lines background color when this color is
    changed was missing
  * version --> 5.76
+
+Francois VOGEL, 20/01/06
+ * Fixed: click on the first character of the selection inserted a copy of
+   this selection in the buffer at the cursor place
+ * Fixed: after doing a drag and drop (copy or move), if the user hit
+   Ctrl-Button-1 and moved simultaneously the mouse to select some text,
+   then the selection did not start at the cursor position. Instead, the
+   selection started at the position where the cursor was just before the
+   dnd
+ * Log files can now contain Text class bindings through a new setting
+   logTextclassbindings in scipaddebug1.tcl
+ * version --> 5.77
