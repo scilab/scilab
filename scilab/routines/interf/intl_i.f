@@ -265,6 +265,7 @@ c     .  variables at the top of the stack
          if(err.gt.0) return
          rhs=2+m1i
       endif
+
       if(k+1.lt.m1) then
 c     put (ik+2)..(in) in the stack for further use
          ll=sadr(il1+3+m1)+istk(il1+1+(k+2))-1
@@ -296,7 +297,6 @@ c     put a pointer to A2 in the stack for further use
       if(k+1.eq.m1) goto 56
 
 c     Temp2=Temp1(ik+1) extraction:
-
 c     - form index ik+1
       if (istk(il1i).ne.15) then
          ill=iadr(sadr(il1+3+m1)+istk(il1+1+(k+1))-1)
@@ -348,9 +348,14 @@ c     save context for recursion
       rhs=3
       fin=2
       if (istk(iadr(lstk(top))).eq.1) then
-c     *call* matops insertion in an empty matrix
-         icall=4
-         return
+c     .  insertion in an empty matrix
+c     .  get the type of the inserted variable            
+         ityp=abs(istk(iadr(lstk(top-1))))
+         if(ityp.ne.15.and.ityp.ne.16.and.ityp.ne.17) then
+c     .     not a list, *call* allops
+            icall=4
+            return
+         endif
       endif
 c     *call* intl_i
       goto 05
