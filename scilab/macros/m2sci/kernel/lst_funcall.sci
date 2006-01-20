@@ -99,7 +99,8 @@ if bval then
     txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")]
     mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")
   end
-  mputl(txt,pathconvert(TMPDIR)+"tmp"+fnam+".sci")
+  mputl(txt,pathconvert(TMPDIR)+"tmp_"+fnam+".sci")
+  // End of catenation of all .sci files to have only one output file
  
   // Catenation of all .log files to have only one output file
   txt=[]
@@ -108,8 +109,19 @@ if bval then
     // Delete useless .log files
     mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")
   end
-  mputl(txt,pathconvert(TMPDIR)+"m2sci_tmp"+fnam+".log")
-     
+  mputl(txt,pathconvert(TMPDIR)+"tmp_m2sci_"+fnam+".log")
+  //End of catenation of all .log files to have only one output file  
+  
+  // Catenation of all resume.log files to have only one output file 
+  txt=[]
+  for k=1:size(tmpfiles,"*")
+    txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+"resume_m2sci_"+tmpfiles(k)+".log")]
+    // Delete useless resume.log files
+    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"resume_m2sci_"+tmpfiles(k)+".log")
+  end
+  mputl(txt,pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log")
+  //End of catenation of all resume.log files to have only one output file
+  
   txt=mgetl(pathconvert(TMPDIR)+fnam+".m")
 end
 

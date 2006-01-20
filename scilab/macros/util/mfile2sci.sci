@@ -23,7 +23,7 @@ if part(res_path,length(res_path))<>"/" then
 end
 // Loads libraries related to m2sci
 if exists("m2skernellib")==0 then load("SCI/macros/m2sci/kernel/lib"),end
-if exists('m2spercentlib')==0 then load("SCI/macros/m2sci/percent/lib"),end
+if exists("m2spercentlib")==0 then load("SCI/macros/m2sci/percent/lib"),end
 if exists("m2ssci_fileslib")==0 then load("SCI/macros/m2sci/sci_files/lib"),end
 
 if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint) then
@@ -100,9 +100,16 @@ fnam=part(base_name,k($)+1:ke) // File name without extension
 
 // logfile initialisation
 if exists("logfile")==0 then
+  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+"logfile.dat","old")
+  if ierr1==0 then
+    load(pathconvert(TMPDIR)+"logfile.dat")
+    file('close',tempfd1)
+    file('close',logfile)
+    mdelete(pathconvert(TMPDIR)+"logfile.dat")
+  end
   logfile=file('open',res_path+"m2sci_"+fnam+'.log','unknown')
+  save(pathconvert(TMPDIR)+"logfile.dat",logfile)
 end
-
 
 // Output beginning message
 mss=["****** Beginning of mfile2sci() session ******";
@@ -129,7 +136,7 @@ end
 
 // Make minor changes on syntax
 m2sci_info("Syntax modification...",-1);
-ierr=execstr('load('''+ base_name + '.tree'',''txt'',''helppart'',''batch'')','errcatch','n')
+ierr=execstr("load(''"+pathconvert(TMPDIR)+fnam+ ".tree'',''txt'',''helppart'',''batch'')",'errcatch','n')
 if ierr<>0 | exists('txt')==0 | exists('batch')==0 then
 [helppart,txt,batch]=m2sci_syntax(txt)
 end
@@ -214,13 +221,22 @@ if txt~=[] then
 
   // Perform the translation
   [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprint)
-  
+
   //Creation of fname_resume.log file
-  if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
+ // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
     //resume_logfile initialisation
     if exists("resume_logfile")==0 then
-      resume_logfile=file('open',res_path+"m2sci_"+fnam+'_resume.log','unknown')
+      [tempfd2,ierr2]=file('open',pathconvert(TMPDIR)+"resumelogfile.dat","old")
+      if ierr2==0 then
+        load(pathconvert(TMPDIR)+"resumelogfile.dat")
+        file('close',tempfd2)
+        file('close',resume_logfile)
+        mdelete(pathconvert(TMPDIR)+"resumelogfile.dat")
+      end
+      resume_logfile=file('open',res_path+"resume_m2sci_"+fnam+".log",'unknown')
+      save(pathconvert(TMPDIR)+"resumelogfile.dat",resume_logfile)
     end
+       
     //number of matlab reference functions, matlab toolboxes functions, not matlab functions
     size1=size(mtlbref_fun,1)
     size2=size(mtlbtool_fun,1)
@@ -236,7 +252,7 @@ if txt~=[] then
       not_mtlb_fun(:,1)=""""+not_mtlb_fun(:,1)+""""
     end
 
-    info_resume=["****** Functions of mfile2sci() session ******";
+    info_resume=["****** " + fnam + ": Functions of mfile2sci() session ******";
 	"*";
 	string(size1)+" Matlab Function(s) not yet converted, original calling sequence used : ";
 	mtlbref_fun(:,1)+mtlbref_fun(:,2);
@@ -250,7 +266,8 @@ if txt~=[] then
 
     write(resume_logfile,margin+info_resume)
     file("close",resume_logfile)
-  end
+    mdelete(pathconvert(TMPDIR)+"resumelogfile.dat")
+  //end
   
   m2sci_info("Macro to tree conversion: Done",-1);
 
@@ -316,5 +333,7 @@ clearglobal mtlbtool_fun
 clearglobal not_mtlb_fun
 // For execution called by translatepaths()
 //nametbl=resume(nametbl)
-mdelete(base_name + ".tree")
+mdelete(pathconvert(TMPDIR)+fnam+ ".tree")
+mdelete(pathconvert(TMPDIR)+"logfile.dat")
+
 endfunction
