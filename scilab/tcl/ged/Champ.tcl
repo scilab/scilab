@@ -57,6 +57,7 @@ global curcolored
 global scicomint_data
 global curdata_x curdata_y curdata_fx curdata_fy
 global scicomint_dataFX scicomint_dataFY scicomint_dataFX scicomint_dataFY
+global smallPad mediumPad
 
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
@@ -68,11 +69,17 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 220
-set NBwidth  220
+set NBheight 250
+set NBwidth  250
 
-set Wheight [expr $NBheight + 170]
-set Wwidth  [expr $NBwidth  + 265]
+set smallPad  4
+set mediumPad 8
+
+set Wheight [expr $NBheight + 125]
+set Wwidth  [expr $NBwidth  + 275]
+
+#create the font we will use
+set gedFont {Arial -13}
 
 set ww .axes
 catch {destroy $ww}
@@ -87,7 +94,7 @@ wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font $gedFont]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -115,8 +122,8 @@ set theframe $fra
 
 #adding 15.06.2005
 set topflabel  [frame $theframe.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font $gedFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font $gedFont]
 
 set w [$titf1label getframe]
 
@@ -139,7 +146,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 10 \
+	       -width 20 -height 11 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -171,7 +178,7 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
-set largeur 14
+set largeur 12
 
 Notebook:create $uf.n -pages {Style Data Clipping} -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand 1
@@ -186,21 +193,21 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.vislabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib" -font {Arial 9}
+    -command "toggleVis $w.frame.visib" -font $gedFont
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx $smallPad
 
 
 #Line Style
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Line style:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.stylelabel  -height 0 -text "Line style:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -208,31 +215,31 @@ combobox $w.frame.style \
     -width 3 \
     -textvariable curlinestyle \
     -editable false \
-    -command [list SelectLineStyle ] -font {Arial 9}
+    -command [list SelectLineStyle ] -font $gedFont
 eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 pack $w.frame.stylelabel -in $w.frame.linest   -side left
-pack $w.frame.style   -in $w.frame.linest   -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.style   -in $w.frame.linest   -expand 1 -fill x -pady 0 -padx $mediumPad
 
 
 #Thickness scale
 frame $w.frame.thk  -borderwidth 0
 pack $w.frame.thk  -side top -fill x
 
-label $w.frame.scalelabel -height 0 -text "Thickness:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.scalelabel -height 0 -text "Thickness:" -width 0  -font $gedFont -anchor e -width $largeur
 scale $w.frame.thickness -orient horizontal -length 284 -from 1 -to 20 \
-	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0 -font {Arial 9}
+	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0 -font $gedFont
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
-pack $w.frame.thickness  -in $w.frame.thk  -expand 1 -fill x -pady 0m -padx 1m
+pack $w.frame.thickness  -in $w.frame.thk  -expand 1 -fill x -pady 0 -padx $smallPad
 $w.frame.thickness set $curthick
 
 #Arrow size
 frame $w.frame.ar -borderwidth 0
 pack $w.frame.ar  -in $w.frame -side top   -fill x
 
-label $w.frame.arrowlab -text "Arrow size:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.arrowlab -text "Arrow size:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.arrow -relief sunken  -textvariable curarrowsize -width 10
 pack $w.frame.arrowlab -in $w.frame.ar -side left
-pack $w.frame.arrow  -in $w.frame.ar -side left -pady 0m -padx 2m 
+pack $w.frame.arrow  -in $w.frame.ar -side left -pady 0 -padx $mediumPad 
 bind  $w.frame.arrow <Return> {SelectArrowSize}
 bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
 bind  $w.frame.arrow <FocusOut> {SelectArrowSize}
@@ -240,14 +247,14 @@ bind  $w.frame.arrow <FocusOut> {SelectArrowSize}
 #colored
 frame $w.frame.col -borderwidth 0
 pack $w.frame.col  -in $w.frame  -side top -fill x
-label $w.frame.collabel  -text "Colored:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.collabel  -text "Colored:" -font $gedFont -anchor e -width $largeur
 checkbutton $w.frame.colored  -text "on"\
     -variable curcolored  -onvalue "on" -offvalue "off" \
-    -command "toggleCol $w.frame.colored" -font {Arial 9}
+    -command "toggleCol $w.frame.colored" -font $gedFont
 OnOffForeground $w.frame.colored $curcolored
 
 pack $w.frame.collabel -in $w.frame.col  -side left
-pack $w.frame.colored  -in $w.frame.col    -side left -fill x -padx 1m
+pack $w.frame.colored  -in $w.frame.col    -side left -fill x -padx $smallPad
 
 
 #sep bar
@@ -255,7 +262,7 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both
 
 #exit button
-button $w.b -text Quit -command "destroy $ww"  -font {Arial 9}
+button $w.b -text Quit -command "destroy $ww"  -font $gedFont
 pack $w.b -side bottom 
 
 
@@ -282,7 +289,7 @@ pack $w3.frame -anchor w -fill both
 #     -command [list SelectData ]
 # eval $w3.frame.polydata list insert end [list $mycurdata "----" "Edit data..."]
 # pack $w3.frame.polydatalabel -in $w3.frame.curdataframe  -side left
-# pack $w3.frame.polydata   -in $w3.frame.curdataframe  -expand 1 -fill x -pady 0m -padx 2m
+# pack $w3.frame.polydata   -in $w3.frame.curdataframe  -expand 1 -fill x -pady 0 -padx $mediumPad
 
 
 ##############################
@@ -292,7 +299,7 @@ pack $w3.frame -anchor w -fill both
 frame $w3.frame.curdataframeX  -borderwidth 0
 pack $w3.frame.curdataframeX  -in $w3.frame  -side top  -fill x
 
-label $w3.frame.polydatalabelX  -height 0 -text "X Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w3.frame.polydatalabelX  -height 0 -text "X Data:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w3.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -300,16 +307,16 @@ combobox $w3.frame.polydataX \
     -width 3 \
     -textvariable curdata_x \
     -editable false \
-    -command [list SelectDataX ] -font {Arial 9}
+    -command [list SelectDataX ] -font $gedFont
 eval $w3.frame.polydataX list insert end [list $curdata_x "----" "Edit data..."]
 pack $w3.frame.polydatalabelX -in $w3.frame.curdataframeX  -side left
-pack $w3.frame.polydataX   -in $w3.frame.curdataframeX  -expand 1 -fill x -pady 0m -padx 2m
+pack $w3.frame.polydataX   -in $w3.frame.curdataframeX  -expand 1 -fill x -pady 0 -padx $mediumPad
 
 
 frame $w3.frame.curdataframeY  -borderwidth 0
 pack $w3.frame.curdataframeY  -in $w3.frame  -side top  -fill x
 
-label $w3.frame.polydatalabelY  -height 0 -text "Y Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w3.frame.polydatalabelY  -height 0 -text "Y Data:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w3.frame.polydataY \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -317,15 +324,15 @@ combobox $w3.frame.polydataY \
     -width 3 \
     -textvariable curdata_y \
     -editable false \
-    -command [list SelectDataY ] -font {Arial 9}
+    -command [list SelectDataY ] -font $gedFont
 eval $w3.frame.polydataY list insert end [list $curdata_y "----" "Edit data..."]
 pack $w3.frame.polydatalabelY -in $w3.frame.curdataframeY  -side left
-pack $w3.frame.polydataY   -in $w3.frame.curdataframeY  -expand 1 -fill x -pady 0m -padx 2m
+pack $w3.frame.polydataY   -in $w3.frame.curdataframeY  -expand 1 -fill x -pady 0 -padx $mediumPad
 
 frame $w3.frame.curdataframeFX  -borderwidth 0
 pack $w3.frame.curdataframeFX  -in $w3.frame  -side top  -fill x
 
-label $w3.frame.polydatalabelFX  -height 0 -text "X Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w3.frame.polydatalabelFX  -height 0 -text "X Data:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w3.frame.polydataFX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -333,16 +340,16 @@ combobox $w3.frame.polydataFX \
     -width 3 \
     -textvariable curdata_fx \
     -editable false \
-    -command [list SelectDataFX ] -font {Arial 9}
+    -command [list SelectDataFX ] -font $gedFont
 eval $w3.frame.polydataFX list insert end [list $curdata_fx "----" "Edit data..."]
 pack $w3.frame.polydatalabelFX -in $w3.frame.curdataframeFX  -side left
-pack $w3.frame.polydataFX   -in $w3.frame.curdataframeFX  -expand 1 -fill x -pady 0m -padx 2m
+pack $w3.frame.polydataFX   -in $w3.frame.curdataframeFX  -expand 1 -fill x -pady 0 -padx $mediumPad
 
 
 frame $w3.frame.curdataframeFY  -borderwidth 0
 pack $w3.frame.curdataframeFY  -in $w3.frame  -side top  -fill x
 
-label $w3.frame.polydatalabelFY  -height 0 -text "FY Data:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w3.frame.polydatalabelFY  -height 0 -text "FY Data:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w3.frame.polydataFY \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -350,10 +357,10 @@ combobox $w3.frame.polydataFY \
     -width 3 \
     -textvariable curdata_fy \
     -editable false \
-    -command [list SelectDataFY ] -font {Arial 9}
+    -command [list SelectDataFY ] -font $gedFont
 eval $w3.frame.polydataFY list insert end [list $curdata_fy "----" "Edit data..."]
 pack $w3.frame.polydatalabelFY -in $w3.frame.curdataframeFY  -side left
-pack $w3.frame.polydataFY   -in $w3.frame.curdataframeFY  -expand 1 -fill x -pady 0m -padx 2m
+pack $w3.frame.polydataFY   -in $w3.frame.curdataframeFY  -expand 1 -fill x -pady 0 -padx $mediumPad
 
 
 
@@ -362,18 +369,18 @@ pack $w3.frame.polydataFY   -in $w3.frame.curdataframeFY  -expand 1 -fill x -pad
 #######################################################
 
 frame $w3.scicom1
-pack $w3.scicom1 -side top -fill x -pady 0m
+pack $w3.scicom1 -side top -fill x -pady 0
 
-label $w3.scicom1.label1 -text "Scilab Command Interface for data:" -font {Arial 9} -anchor w
+label $w3.scicom1.label1 -text "Scilab Command Interface for data:" -font $gedFont -anchor w
 pack  $w3.scicom1.label1 -in $w3.scicom1 -side left
 
 frame $w3.scicomX
-pack $w3.scicomX -side top -fill x -pady 0m
+pack $w3.scicomX -side top -fill x -pady 0
 
-label $w3.scicomX.label1 -text "X Data:" -font {Arial 9} -anchor e -width $largeur
+label $w3.scicomX.label1 -text "X Data:" -font $gedFont -anchor e -width $largeur
 pack  $w3.scicomX.label1 -in $w3.scicomX -side left
 
-entry $w3.scicomX.text1 -relief sunken -textvariable scicomint_dataX -width 10 -font {Arial 9}
+entry $w3.scicomX.text1 -relief sunken -textvariable scicomint_dataX -width 10 -font $gedFont
 set_balloon $w3.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector)\n to initialize the \"X data\" field."
 bind  $w3.scicomX.text1 <Return> "sciCommandData"
 bind  $w3.scicomX.text1 <KP_Enter> "sciCommandData"
@@ -382,12 +389,12 @@ pack $w3.scicomX.text1  -side left  -fill both -expand yes
 
 
 frame $w3.scicomY
-pack $w3.scicomY -side top -fill x -pady 0m
+pack $w3.scicomY -side top -fill x -pady 0
 
-label $w3.scicomY.label1 -text "Y Data:" -font {Arial 9} -anchor e -width $largeur
+label $w3.scicomY.label1 -text "Y Data:" -font $gedFont -anchor e -width $largeur
 pack  $w3.scicomY.label1 -in $w3.scicomY -side left
 
-entry $w3.scicomY.text1 -relief sunken -textvariable scicomint_dataY -width 10 -font {Arial 9}
+entry $w3.scicomY.text1 -relief sunken -textvariable scicomint_dataY -width 10 -font $gedFont
 set_balloon $w3.scicomY.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector)\n to initialize the \"Y data\" field."
 bind  $w3.scicomY.text1 <Return> "sciCommandData"
 bind  $w3.scicomY.text1 <KP_Enter> "sciCommandData"
@@ -396,12 +403,12 @@ pack $w3.scicomY.text1  -side left  -fill both -expand yes
 
 
 frame $w3.scicomFX
-pack $w3.scicomFX -side top -fill x -pady 0m
+pack $w3.scicomFX -side top -fill x -pady 0
 
-label $w3.scicomFX.label1 -text "FX Data:" -font {Arial 9} -anchor e -width $largeur
+label $w3.scicomFX.label1 -text "FX Data:" -font $gedFont -anchor e -width $largeur
 pack  $w3.scicomFX.label1 -in $w3.scicomFX -side left
 
-entry $w3.scicomFX.text1 -relief sunken -textvariable scicomint_dataFX -width 10 -font {Arial 9}
+entry $w3.scicomFX.text1 -relief sunken -textvariable scicomint_dataFX -width 10 -font $gedFont
 set_balloon $w3.scicomFX.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"FX data\" field."
 bind  $w3.scicomFX.text1 <Return> "sciCommandData"
 bind  $w3.scicomFX.text1 <KP_Enter> "sciCommandData"
@@ -411,17 +418,17 @@ pack $w3.scicomFX.text1  -side left  -fill both -expand yes
 
 
 frame $w3.scicomFY
-pack $w3.scicomFY -side top -fill x -pady 0m
+pack $w3.scicomFY -side top -fill x -pady 0
 
-label $w3.scicomFY.label1 -text "FY Data:" -font {Arial 9} -anchor e -width $largeur
-pack  $w3.scicomFY.label1 -in $w3.scicomFY -side left
+label $w3.scicomFY.label1 -text "FY Data:" -font $gedFont -anchor e -width $largeur
+pack  $w3.scicomFY.label1 -in $w3.scicomFY -side left 
 
-entry $w3.scicomFY.text1 -relief sunken -textvariable scicomint_dataFY -width 10 -font {Arial 9}
+entry $w3.scicomFY.text1 -relief sunken -textvariable scicomint_dataFY -width 10 -font $gedFont
 set_balloon $w3.scicomFY.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"FY data\" field."
 bind  $w3.scicomFY.text1 <Return> "sciCommandData"
 bind  $w3.scicomFY.text1 <KP_Enter> "sciCommandData"
 
-pack $w3.scicomFY.text1  -side left  -fill both -expand yes
+pack $w3.scicomFY.text1  -side left  -fill both -expand yes -pady "0 $smallPad"
 
 
 
@@ -467,13 +474,13 @@ pack $w3.scicomFY.text1  -side left  -fill both -expand yes
 # pack  $w3.frame2.c1
 
 # frame $w3.scicom1
-# pack $w3.scicom1 -side top -fill x -pady 0m
+# pack $w3.scicom1 -side top -fill x -pady 0
 
 # label $w3.scicom1.label1 -text "Scilab Command Interface for data:"
 # pack  $w3.scicom1.label1 -in $w3.scicom1 -side left
 
 # frame $w3.scicom
-# pack $w3.scicom -side top -fill x -pady 0m
+# pack $w3.scicom -side top -fill x -pady 0
 
 # label $w3.scicom.label1 -text "champ_handle.data = "
 # pack  $w3.scicom.label1 -in $w3.scicom -side left
@@ -491,7 +498,7 @@ pack $w3.sep -fill both
 
 #exit button
 frame $w3.buttons
-button $w3.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w3.b -text Quit -command "DestroyGlobals; destroy $ww" -font $gedFont
 pack $w3.b -side bottom 
 
 
@@ -509,9 +516,9 @@ set letext ""
 #frame $w9.frame.clpwarning  -borderwidth 0
 
 frame $w9.frame.clpstat  -borderwidth 0
-pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0m
+pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0
 
-label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
+label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w9.frame.clip \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -519,16 +526,16 @@ combobox $w9.frame.clip \
     -width 8 \
     -textvariable curclipstate\
     -editable false \
-    -command [list SelectClipState ] -font {Arial 9}
+    -command [list SelectClipState ] -font $gedFont
 eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 
 pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-pack $w9.frame.clip -in $w9.frame.clpstat -side left -pady 0m -padx 2m
+pack $w9.frame.clip -in $w9.frame.clpstat -side left -pady 0 -padx $mediumPad
 
 #clip box
 frame $w9.frame.lb1 -borderwidth 0
 pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
-label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
+label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font $gedFont
 pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
 
 frame $w9.frame.lb2 -borderwidth 0
@@ -540,15 +547,15 @@ pack $w9.frame.lb21  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb22 -borderwidth 0
 pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
-entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
-label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
-entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
+label $w9.frame.labelx -text "X:" -font $gedFont  -anchor e -width $largeur
+entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font $gedFont
+label $w9.frame.labely -text "Y:" -font $gedFont -anchor e -width $largeur
+entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font $gedFont
 
 pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
-pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
+pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0 -padx $mediumPad
 pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
-pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
+pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0 -padx $mediumPad
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -557,7 +564,7 @@ bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
 pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
-label $w9.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
+label $w9.frame.labelwh -text "Clip box : width and height" -font $gedFont
 pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
 
 frame $w9.frame.lb4 -borderwidth 0
@@ -566,15 +573,15 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
-entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
-label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
-entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
+label $w9.frame.labelw -text "W:" -font $gedFont -anchor e -width $largeur
+entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font $gedFont
+label $w9.frame.labelh -text "H:" -font $gedFont -anchor e -width $largeur
+entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font $gedFont
 
 pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
-pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
+pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0 -padx $mediumPad
 pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
-pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
+pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0 -padx $mediumPad
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
@@ -582,7 +589,7 @@ bind  $w9.frame.datah <KP_Enter> "SelectClipBox $w9.frame"
 
 
 frame $w9.frame.warning
-label $w9.frame.mesgwarning  -justify left -textvariable letext -font {Arial 9}
+label $w9.frame.mesgwarning  -justify left -textvariable letext -font $gedFont
 $w9.frame.mesgwarning config -foreground red
 pack $w9.frame.mesgwarning -in $w9.frame.warning
 pack $w9.frame.warning -in $w9.frame
@@ -594,7 +601,7 @@ pack $w9.sep -fill both
 
 #exit button
 frame $w9.buttons
-button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font $gedFont
 pack $w9.b -side bottom
 
 

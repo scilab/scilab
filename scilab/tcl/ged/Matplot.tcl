@@ -64,11 +64,17 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 120
-set NBwidth  250
+set NBheight 165
+set NBwidth  225
 
 set Wheight [expr $NBheight + 110]
-set Wwidth  [expr $NBwidth  + 265]
+set Wwidth  [expr $NBwidth  + 270]
+
+set smallPad  4
+set mediumPad 8
+
+#create the font we will use
+set gedFont {Arial -13}
 
 set ww .axes
 catch {destroy $ww}
@@ -81,7 +87,7 @@ wm maxsize  $ww $Wwidth $Wheight
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font $gedFont]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -109,8 +115,8 @@ set theframe $fra
 
 #adding 15.06.2005
 set topflabel  [frame $theframe.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font $gedFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font $gedFont]
 
 set w [$titf1label getframe]
 
@@ -165,7 +171,7 @@ set w [$titf1axes getframe]
 set uf $w
 #------------------------------------------------
 
-set largeur 18
+set largeur 17
 
 Notebook:create $uf.n -pages {"Style" "Data" } -pad 0 -height $NBheight -width $NBwidth
 pack $uf.n -in $uf -fill both -expand yes
@@ -180,14 +186,14 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.vislabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib" -font {Arial 9}
+    -command "toggleVis $w.frame.visib" -font $gedFont
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
+pack $w.frame.visib  -in $w.frame.vis    -side left -padx $smallPad
 
 #data_mapping
 #frame $w.frame.dtmap  -borderwidth 0
@@ -204,14 +210,14 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -padx 1m
 #    -command [list SelectDataMapping ]
 #eval $w.frame.dtmapyle list insert end [list "direct" "scaled"]
 #pack $w.frame.dtmapylelabel -in $w.frame.dtmap   -side left
-#pack $w.frame.dtmapyle   -in $w.frame.dtmap   -expand 1 -fill x -pady 0m -padx 2m
+#pack $w.frame.dtmapyle   -in $w.frame.dtmap   -expand 1 -fill x -pady 0 -padx $mediumPad
 #
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both
 
 #exit button
-button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww"  -font $gedFont
 pack $w.buttons -side bottom
 
 
@@ -231,21 +237,23 @@ pack $w.frame -anchor w -fill both
 ## DATA edit via sciGUI ######
 ##############################
 
+set largeurData 10
+
 frame $w.frame.curdataframeX  -borderwidth 0
 pack $w.frame.curdataframeX  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelX  -height 0 -text "Data:" -width 0   -font {Arial 9} -anchor e -width $largeur
+label $w.frame.polydatalabelX  -height 0 -text "Data:" -width 0   -font $gedFont -anchor e -width $largeurData
 combobox $w.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
     -maxheight 0 \
-    -width 3 \
+    -width 10 \
     -textvariable curdata \
     -editable false \
-    -command [list SelectData ]  -font {Arial 9}
+    -command [list SelectData ]  -font $gedFont
 eval $w.frame.polydataX list insert end [list $curdata "----" "Edit data..."]
 pack $w.frame.polydatalabelX -in $w.frame.curdataframeX  -side left
-pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 0m -padx 2m
+pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 3 -padx $smallPad
 
 
 #######################################################
@@ -255,23 +263,23 @@ pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 0m
 #set largeur 18
 
 frame $w.scicom1
-pack $w.scicom1 -side top -fill x -pady 0m
+pack $w.scicom1 -side top -fill x -pady 0
 
-label $w.scicom1.label1 -text "Scilab Command Interface for data:"  -font {Arial 9} -anchor w
+label $w.scicom1.label1 -text "Scilab Command Interface for data:"  -font $gedFont -anchor w
 pack  $w.scicom1.label1 -in $w.scicom1 -side left
 
 frame $w.scicomX
-pack $w.scicomX -side top -fill x -pady 0m
+pack $w.scicomX -side top -fill x -pady 0
 
-label $w.scicomX.label1 -text "matplot_handle.data:"  -font {Arial 9} -anchor e -width $largeur
+label $w.scicomX.label1 -text "matplot_handle.data:"  -font $gedFont -anchor e -width $largeur
 pack  $w.scicomX.label1 -in $w.scicomX -side left
 
-entry $w.scicomX.text1 -relief sunken -textvariable scicomint_data -width 10  -font {Arial 9}
+entry $w.scicomX.text1 -relief sunken -textvariable scicomint_data -width 10  -font $gedFont
 set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"data\" field."
 bind  $w.scicomX.text1 <Return> "sciCommandData"
 bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
 
-pack $w.scicomX.text1  -side left -padx 2m
+pack $w.scicomX.text1  -side left -padx $mediumPad
 
 
 #sep bar
@@ -281,7 +289,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww"  -font $gedFont
 pack $w.b -side bottom 
 
 
