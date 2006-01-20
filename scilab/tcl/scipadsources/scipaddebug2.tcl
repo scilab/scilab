@@ -84,12 +84,15 @@ if {$debuglog} {
     } else {
         set scipadwidgets $pad
     }
+    if {$logTextclassbindings} {
+        lappend scipadwidgets Text
+    }
     foreach wid $scipadwidgets {
         foreach sequ [bind $wid] {
             set script [bind $wid $sequ]
             bind $wid $sequ "log \"\n----------------------\" ; \
                              log \"Bind $wid $sequ triggered!\"; \
-                             $script; \
+                             \n$script;\n\
                              log \"End of bind $wid $sequ\"; \
                              log \"\n----------------------\n\" "
         }

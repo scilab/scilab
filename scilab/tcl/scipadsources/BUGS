@@ -39,11 +39,6 @@ Bugs:
  Also related to bug 1469 - better wait for clarification on this one instead
  of working around Scilab parser bugs
 
--dnd related bug: after doing a drag and drop (copy or move), if the user hits
- ctrl-Button-1 and moves simultaneously the mouse to select some text, then
- the selection does not start at the cursor position. Instead, the selection
- starts at the position where the cursor was just before the dnd
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
