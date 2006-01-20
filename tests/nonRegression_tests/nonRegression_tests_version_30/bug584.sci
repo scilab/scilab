@@ -8,7 +8,7 @@
 format('e',32);
 result=logspace( 3, 3, 1 );
 
-trueValue=1.0000000000000006821210263E+03;
+trueValue=1.000000000000000000E+03;
 
 if result == trueValue then ;
 	format('v',10);
