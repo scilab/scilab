@@ -187,7 +187,7 @@ set Wheight [expr $NBheight + 210]
 set Wwidth  [expr $NBwidth  + 265]
 
 #create the font we will use
-set gedFont {Arial -13}
+set gedFont {Arial -12}
 
 
 set ww .axes

@@ -77,7 +77,7 @@ set smallPad  4
 set mediumPad 8
 
 #create the font we will use
-set gedFont {Arial -13}
+set gedFont {Arial -12}
 
 set ww .axes
 catch {destroy $ww}
