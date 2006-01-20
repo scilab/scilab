@@ -46,6 +46,7 @@ global curgedobject
 
 global curvis
 
+
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
     
@@ -56,12 +57,17 @@ proc OnOffForeground { frame flag } {
     }
 }
 
-set NBheight 90
-set NBwidth  120
+set NBheight 105
+set NBwidth  130
 
 set Wheight [expr $NBheight + 170]
-set Wwidth  [expr $NBwidth  + 265]
+set Wwidth  [expr $NBwidth  + 275]
 
+set smallPad  4
+set mediumPad 8
+
+#create the font we will use
+set gedFont {Arial -13}
 
 set ww .axes
 catch {destroy $ww}
@@ -75,7 +81,7 @@ wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font $gedFont]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -102,8 +108,8 @@ set theframe $fra
 
 #adding 15.06.2005
 set topflabel  [frame $theframe.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font $gedFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font $gedFont]
 
 set w [$titf1label getframe]
 
@@ -126,7 +132,7 @@ set curgedobject $SELOBJECT($curgedindex)
 
 set tree  [Tree $wfortree.tree \
 	       -yscrollcommand {$wfortree.y set} -xscrollcommand {$wfortree.x set} \
-	       -width 20 -height 10 \
+	       -width 20 -height 11 \
 	       -background white -opencmd {LemonTree::open $wfortree.tree} \
 	       -selectbackground blue -selectforeground white ]
 
@@ -173,14 +179,14 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.vislabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib"  -font {Arial 9}
+    -command "toggleVis $w.frame.visib"  -font $gedFont
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx $mediumPad
 
 
 #sep bar
@@ -189,8 +195,8 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 0m
-button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+pack $w.buttons -side bottom -fill x -pady 0
+button $w.buttons.dismiss -text Quit -command "DestroyGlobals; destroy $ww"  -font $gedFont
 pack $w.buttons.dismiss  -side bottom
 
 

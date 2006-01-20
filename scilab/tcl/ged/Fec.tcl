@@ -68,10 +68,16 @@ proc OnOffForeground { frame flag } {
 }
 
 set NBheight 180
-set NBwidth  210
+set NBwidth  215
 
 set Wheight [expr $NBheight + 110]
-set Wwidth  [expr $NBwidth  + 265]
+set Wwidth  [expr $NBwidth  + 270]
+
+set smallPad  4
+set mediumPad 8
+
+#create the font we will use
+set gedFont {Arial -13}
 
 set ww .axes
 catch {destroy $ww}
@@ -84,7 +90,7 @@ wm maxsize  $ww $Wwidth $Wheight
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
-set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font {Arial 9}]
+set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font $gedFont]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
@@ -112,8 +118,8 @@ set theframe $fra
 
 #adding 15.06.2005
 set topflabel  [frame $theframe.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font {Arial 9}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font {Arial 9}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Objects Browser" -font $gedFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Object Properties" -font $gedFont]
 
 set w [$titf1label getframe]
 
@@ -183,25 +189,25 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "Visibility:" -font {Arial 9} -anchor e -width $largeur
+label $w.frame.vislabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
 checkbutton $w.frame.visib  -text "on"\
     -variable curvis  -onvalue "on" -offvalue "off" \
-    -command "toggleVis $w.frame.visib" -font {Arial 9}
+    -command "toggleVis $w.frame.visib" -font $gedFont
 OnOffForeground $w.frame.visib $curvis
 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx 1m
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -padx $smallPad
 
 #z bounds
 frame $w.frame.zb  -borderwidth 0
 pack $w.frame.zb  -in $w.frame -side top   -fill x 
 
-label $w.frame.datalabel -text "Z bounds:" -font {Arial 9} -anchor e -width $largeur
-entry $w.frame.zbmin -relief sunken  -textvariable zbmin -width 8 -font {Arial 9}
-entry $w.frame.zbmax -relief sunken  -textvariable zbmax -width 8 -font {Arial 9}
+label $w.frame.datalabel -text "Z bounds:" -font $gedFont -anchor e -width $largeur
+entry $w.frame.zbmin -relief sunken  -textvariable zbmin -width 6 -font $gedFont
+entry $w.frame.zbmax -relief sunken  -textvariable zbmax -width 6 -font $gedFont
 pack $w.frame.datalabel -in  $w.frame.zb -side left
-pack $w.frame.zbmin -in  $w.frame.zb  -side left  -pady 0m -padx 2m
-pack $w.frame.zbmax -in  $w.frame.zb  -side left  -pady 0m -padx 2m
+pack $w.frame.zbmin -in  $w.frame.zb  -side left  -pady 0 -padx $mediumPad
+pack $w.frame.zbmax -in  $w.frame.zb  -side left  -pady 0 -padx $mediumPad
 bind  $w.frame.zbmin <Return> {setZb} 
 bind  $w.frame.zbmax <Return> {setZb} 
 bind  $w.frame.zbmin <KP_Enter> {setZb} 
@@ -216,7 +222,7 @@ frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both
 
 #exit button
-button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww"  -font {Arial 9}
+button $w.buttons -text Quit -command "DestroyGlobals; destroy $ww"  -font $gedFont
 pack $w.buttons -side bottom
 
 
@@ -235,7 +241,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.curdataframeX  -borderwidth 0
 pack $w.frame.curdataframeX  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelX  -height 0 -text "Data:" -width 10  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.polydatalabelX  -height 0 -text "Data:" -width 10  -font $gedFont -anchor e -width $largeur
 combobox $w.frame.polydataX \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -243,16 +249,16 @@ combobox $w.frame.polydataX \
     -width 3 \
     -textvariable curdata_data \
     -editable false \
-    -command [list SelectDataData ] -font {Arial 9}
+    -command [list SelectDataData ] -font $gedFont
 eval $w.frame.polydataX list insert end [list $curdata_data "----" "Edit data..."]
 pack $w.frame.polydatalabelX -in $w.frame.curdataframeX  -side left
-pack $w.frame.polydataX   -in $w.frame.curdataframeX  -pady 0m -padx 2m -fill x
+pack $w.frame.polydataX   -in $w.frame.curdataframeX  -pady 0 -padx 0 -fill x
 
 
 frame $w.frame.curdataframeY  -borderwidth 0
 pack $w.frame.curdataframeY  -in $w.frame  -side top  -fill x
 
-label $w.frame.polydatalabelY  -height 0 -text "Triangles:" -width 10  -font {Arial 9} -anchor e -width $largeur
+label $w.frame.polydatalabelY  -height 0 -text "Triangles:" -width 10  -font $gedFont -anchor e -width $largeur
 combobox $w.frame.polydataY \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -260,10 +266,10 @@ combobox $w.frame.polydataY \
     -width 3 \
     -textvariable curdata_triangles \
     -editable false \
-    -command [list SelectDataTriangles ] -font {Arial 9}
+    -command [list SelectDataTriangles ] -font $gedFont
 eval $w.frame.polydataY list insert end [list $curdata_triangles "----" "Edit data..."]
 pack $w.frame.polydatalabelY -in $w.frame.curdataframeY  -side left
-pack $w.frame.polydataY   -in $w.frame.curdataframeY  -pady 0m -padx 2m -fill x
+pack $w.frame.polydataY   -in $w.frame.curdataframeY  -pady 0 -padx 0 -fill x
 
 
 #######################################################
@@ -271,24 +277,24 @@ pack $w.frame.polydataY   -in $w.frame.curdataframeY  -pady 0m -padx 2m -fill x
 #######################################################
 
 frame $w.scicom1
-pack $w.scicom1 -side top -fill x -pady 0m
+pack $w.scicom1 -side top -fill x -pady 0
 
-label $w.scicom1.label1 -text "Scilab Command Interface for" -font {Arial 9} -anchor w
+label $w.scicom1.label1 -text "Scilab Command Interface for" -font $gedFont -anchor w
 pack  $w.scicom1.label1 -in $w.scicom1 -side left
 
 frame $w.scicom2
-pack $w.scicom2 -side top -fill x -pady 0m
+pack $w.scicom2 -side top -fill x -pady 0
 
-label $w.scicom2.label2 -text "data and triangles:" -font {Arial 9} -anchor w
+label $w.scicom2.label2 -text "data and triangles:" -font $gedFont -anchor w
 pack  $w.scicom2.label2 -in $w.scicom2 -side left
 
 frame $w.scicom
-pack $w.scicom -side top -fill x -pady 0m
+pack $w.scicom -side top -fill x -pady 0
 
-label $w.scicom.label1 -text "Data:" -font {Arial 9} -anchor e -width $largeur
+label $w.scicom.label1 -text "Data:" -font $gedFont -anchor e -width $largeur
 pack  $w.scicom.label1 -in $w.scicom -side left
 
-entry $w.scicom.text1 -relief sunken -textvariable scicomint_data -width 10 -font {Arial 9}
+entry $w.scicom.text1 -relief sunken -textvariable scicomint_data -width 10 -font $gedFont
 set_balloon $w.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
 bind  $w.scicom.text1 <Return> "sciCommandData"
 bind  $w.scicom.text1 <KP_Enter> "sciCommandData"
@@ -297,12 +303,12 @@ pack $w.scicom.text1  -side left  -fill both
 
 
 frame $w.scicomT
-pack $w.scicomT -side top -fill x -pady 0m
+pack $w.scicomT -side top -fill x -pady 0
 
-label $w.scicomT.label1 -text "Triangles:" -font {Arial 9} -anchor e -width $largeur
+label $w.scicomT.label1 -text "Triangles:" -font $gedFont -anchor e -width $largeur
 pack  $w.scicomT.label1 -in $w.scicomT -side left
 
-entry $w.scicomT.text1 -relief sunken -textvariable scicomint_triangles -width 10 -font {Arial 9}
+entry $w.scicomT.text1 -relief sunken -textvariable scicomint_triangles -width 10 -font $gedFont
 set_balloon $w.scicomT.text1 "Enter an integer matrix defined in Scilab Console representing\n the indexes of the nodes which constitute\n each triangle to initialize the \"triangles\" field."
 bind  $w.scicomT.text1 <Return> "sciCommandTriangles"
 bind  $w.scicomT.text1 <KP_Enter> "sciCommandTriangles"
@@ -318,7 +324,7 @@ pack $w.sep -fill both
 
 #exit button
 frame $w.buttons
-button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+button $w.b -text Quit -command "DestroyGlobals; destroy $ww" -font $gedFont
 pack $w.b -side bottom 
 
 
@@ -390,9 +396,9 @@ pack $w.b -side bottom
 ##frame $w9.frame.clpwarning  -borderwidth 0
 #
 #frame $w9.frame.clpstat  -borderwidth 0
-#pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0m
+#pack $w9.frame.clpstat  -in $w9.frame -side top -fill x -pady 0
 #
-#label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font {Arial 9} -anchor e -width $largeur
+#label $w9.frame.cliplabel  -height 0 -text "Clip state:" -width 0  -font $gedFont -anchor e -width $largeur
 #combobox $w9.frame.clip \
 #    -borderwidth 1 \
 #    -highlightthickness 1 \
@@ -400,16 +406,16 @@ pack $w.b -side bottom
 #    -width 8 \
 #    -textvariable curclipstate\
 #    -editable false \
-#    -command [list SelectClipState ] -font {Arial 9}
+#    -command [list SelectClipState ] -font $gedFont
 #eval $w9.frame.clip list insert end [list "on" "off" "clipgrf"]
 #
 #pack $w9.frame.cliplabel -in $w9.frame.clpstat   -side left
-#pack $w9.frame.clip -in $w9.frame.clpstat -side left -pady 0m -padx 2m
+#pack $w9.frame.clip -in $w9.frame.clpstat -side left -pady 0 -padx $mediumPad
 #
 ##clip box
 #frame $w9.frame.lb1 -borderwidth 0
 ##pack $w9.frame.lb1  -in $w9.frame -side top   -fill x
-#label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font {Arial 9}
+#label $w9.frame.labelul -text "Clip box : upper-left point coordinates" -font $gedFont
 #pack $w9.frame.labelul -in  $w9.frame.lb1 -side left
 #
 #frame $w9.frame.lb2 -borderwidth 0
@@ -421,15 +427,15 @@ pack $w.b -side bottom
 #frame $w9.frame.lb22 -borderwidth 0
 #pack $w9.frame.lb22  -in $w9.frame -side top   -fill x
 #
-#label $w9.frame.labelx -text "X:" -font {Arial 9}  -anchor e -width $largeur
-#entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font {Arial 9}
-#label $w9.frame.labely -text "Y:" -font {Arial 9} -anchor e -width $largeur
-#entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font {Arial 9}
+#label $w9.frame.labelx -text "X:" -font $gedFont  -anchor e -width $largeur
+#entry $w9.frame.datax -relief sunken  -textvariable Xclipbox -width 10  -font $gedFont
+#label $w9.frame.labely -text "Y:" -font $gedFont -anchor e -width $largeur
+#entry $w9.frame.datay -relief sunken  -textvariable Yclipbox -width 10  -font $gedFont
 #
 #pack $w9.frame.labelx  -in  $w9.frame.lb2 -side left 
-#pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0m -padx 2m
+#pack $w9.frame.datax   -in  $w9.frame.lb2 -side left -pady 0 -padx $mediumPad
 #pack $w9.frame.labely  -in  $w9.frame.lb21 -side left 
-#pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0m -padx 2m
+#pack $w9.frame.datay   -in  $w9.frame.lb21 -side left -pady 0 -padx $mediumPad
 #bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 #bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
 #bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
@@ -438,7 +444,7 @@ pack $w.b -side bottom
 ##----------------------------#
 #frame $w9.frame.lb3 -borderwidth 0
 #pack $w9.frame.lb3  -in $w9.frame -side top   -fill x
-#label $w9.frame.labelwh -text "Clip box : width and height" -font {Arial 9}
+#label $w9.frame.labelwh -text "Clip box : width and height" -font $gedFont
 #pack $w9.frame.labelwh -in  $w9.frame.lb3 -side left
 #
 #frame $w9.frame.lb4 -borderwidth 0
@@ -447,15 +453,15 @@ pack $w.b -side bottom
 #frame $w9.frame.lb41 -borderwidth 0
 #pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 #
-#label $w9.frame.labelw -text "W:" -font {Arial 9} -anchor e -width $largeur
-#entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font {Arial 9}
-#label $w9.frame.labelh -text "H:" -font {Arial 9} -anchor e -width $largeur
-#entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font {Arial 9}
+#label $w9.frame.labelw -text "W:" -font $gedFont -anchor e -width $largeur
+#entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox -width 10  -font $gedFont
+#label $w9.frame.labelh -text "H:" -font $gedFont -anchor e -width $largeur
+#entry $w9.frame.datah -relief sunken  -textvariable Hclipbox -width 10  -font $gedFont
 #
 #pack $w9.frame.labelw  -in  $w9.frame.lb4 -side left 
-#pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0m -padx 2m
+#pack $w9.frame.dataw   -in  $w9.frame.lb4 -side left -pady 0 -padx $mediumPad
 #pack $w9.frame.labelh  -in  $w9.frame.lb41 -side left 
-#pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0m -padx 2m
+#pack $w9.frame.datah   -in  $w9.frame.lb41 -side left -pady 0 -padx $mediumPad
 #bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 #bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
 #bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
@@ -463,7 +469,7 @@ pack $w.b -side bottom
 #
 #
 #frame $w9.frame.warning
-#label $w9.frame.mesgwarning  -justify left -textvariable letext -font {Arial 9}
+#label $w9.frame.mesgwarning  -justify left -textvariable letext -font $gedFont
 #$w9.frame.mesgwarning config -foreground red
 #pack $w9.frame.mesgwarning -in $w9.frame.warning
 #pack $w9.frame.warning -in $w9.frame
@@ -475,7 +481,7 @@ pack $w.b -side bottom
 #
 ##exit button
 #frame $w9.buttons
-#button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font {Arial 9}
+#button $w9.b -text Quit -command "DestroyGlobals; destroy $ww" -font $gedFont
 #pack $w9.b -side bottom
 
 
@@ -493,13 +499,13 @@ pack $w.b -side bottom
 
 
 # frame $w5.scicom1
-# pack $w5.scicom1 -side top -fill x -pady 0m
+# pack $w5.scicom1 -side top -fill x -pady 0
 
 # label $w5.scicom1.label1 -text "Scilab Command Interface for data and triangles:"
 # pack  $w5.scicom1.label1 -in $w5.scicom1 -side left
 
 # frame $w5.scicom
-# pack $w5.scicom -side top -fill x -pady 0m
+# pack $w5.scicom -side top -fill x -pady 0
 
 # label $w5.scicom.label1 -text "fec_handle.data =         "
 # pack  $w5.scicom.label1 -in $w5.scicom -side left
@@ -512,7 +518,7 @@ pack $w.b -side bottom
 
 
 # frame $w5.scicomT
-# pack $w5.scicomT -side top -fill x -pady 0m
+# pack $w5.scicomT -side top -fill x -pady 0
 
 # label $w5.scicomT.label1 -text "fec_handle.triangles =   "
 # pack  $w5.scicomT.label1 -in $w5.scicomT -side left
