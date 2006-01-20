@@ -102,7 +102,7 @@ proc Notebook:config {w args} {
   set y7 [expr $Notebook($w,y1)+10]
   foreach p $Notebook($w,pages) {
     set Notebook($w,p$cnt,x5) $x
-    set id [$w create text 0 0 -text $p -anchor nw -tags "p$cnt t$cnt" -font {Arial 10}  -fill $Notebook($w,fg,off)]
+    set id [$w create text 0 0 -text $p -anchor nw -tags "p$cnt t$cnt" -font {Arial -15}  -fill $Notebook($w,fg,off)]
     set bbox [$w bbox $id]
     set width [lindex $bbox 2]
     $w move $id [expr $x+10] $y7
