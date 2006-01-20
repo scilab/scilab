@@ -191,6 +191,7 @@ function gener_whatis(title)
 		"<dl>"];
   
 	l=0;
+	line=[]
 	for k1=1:size(xml,'*')  // loop on .xml files
 		path=xml(k1);
 		txt=mgetl(path);
@@ -236,13 +237,10 @@ function gener_index(dirs,txt)
 	lines(0);
 	find_links=find_links;
 	sep="/";// if MSDOS then sep="\",end
-	path=get_absolute_file_path("html.xsl")+"html.xsl"
 	[lhs,rhs]=argn(0) 
 	if rhs <= 0 then 
-		dirs=basename(%helps(:,1))
+	        dirs=%helps(:,1)
 		txt=%helps(:,2)
-	else
-		dirs=basename(dirs);
 	end
   
 	line=["<html>"
