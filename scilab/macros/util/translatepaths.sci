@@ -44,9 +44,15 @@ end
 
 // Create a logfile and a whatis file
 Paths=stripblanks(Paths)
-//logfile=file('open',res_path+'log','unknown')
-//whsfil_unit=file('open',res_path+'whatis','unknown')
-
+[tempfd,ierr]=file('open',pathconvert(TMPDIR)+"unitfile.dat","old");
+if ierr==0 then
+  load(pathconvert(TMPDIR)+"unitfile.dat")
+  file('close',whsfil_unit);
+  file('close',tempfd);
+  mdelete(pathconvert(TMPDIR)+"unitfile.dat")
+end
+  whsfil_unit=file('open',res_path+'whatis','unknown')
+save(pathconvert(TMPDIR)+"unitfile.dat",whsfil_unit)
 // Close paths with a / or a \
 for k=1:size(Paths,'*')
   if part(Paths(k),length(Paths(k)))<>sep then 
@@ -60,9 +66,9 @@ mfiles=[]
 for k=1:size(Paths,'*')
   path=Paths(k)
   if MSDOS then 
-    mfiles=[mfiles;path + unix_g('dir /b '+path+'*.m')]
+    mfiles=[mfiles;path + unix_g('dir /b '+ """" + path + """" + '*.m')]
   else
-    mfiles=[mfiles;unix_g('ls '+path+'*.m')]
+    mfiles=[mfiles;unix_g('ls '+ """" + path + """" + '*.m')]
   end
 end
 
@@ -102,6 +108,8 @@ for i=1:size(transorder,1)
 end   
 
 // Translation is done only if M-file has changed
+logtxt=[]
+resumelogtxt=[]
 for i=1:size(funpath,1)
   kk=strindex(funpath(i),sep)
   mpath=funpath(i) 
@@ -117,32 +125,45 @@ for i=1:size(funpath,1)
       rmdir(pathconvert(TMPDIR)+pathconvert(fnam),'s')
     else
      mfile2sci(funpath(i),res_path)
-      //mfile2sci(funpath(i),res_path,%F,%F,3,%F)
     end
-    sci_tmpfile=pathconvert(TMPDIR)+"tmp"+fnam+".sci"
-    ierr=execstr("getf(sci_tmpfile)","errcatch");errclear();
+    tmp_sci_file=pathconvert(TMPDIR)+"tmp_"+fnam+".sci"
+    ierr=execstr("getf(tmp_sci_file)","errcatch");errclear();
     if ierr==0 then
       txt=[]
       txt=mgetl(scipath)
-      txt=[txt;mgetl(sci_tmpfile)]
+      txt=[txt;mgetl(tmp_sci_file)]
       mputl(txt,scipath) 
-      mdelete(sci_tmpfile)
+      mdelete(tmp_sci_file)
     end
-    m2sci_tmpfile=pathconvert(TMPDIR)+"m2sci_tmp"+fnam+".log"
+    // LOG
+    tmp_m2sci_file=pathconvert(TMPDIR)+"tmp_m2sci_"+fnam+".log"
     m2scipath=res_path+"m2sci_"+fnam+".log" 
-    [fd,ierr]=file('open',m2sci_tmpfile,'old');
+    logtxt=[logtxt;" ";" ";mgetl(m2scipath)]
+    mdelete(m2scipath)
+    [fd,ierr]=file('open',tmp_m2sci_file,'old');
     if ierr==0 then
-      txt=[]
-      txt=mgetl(m2scipath)
-      txt=[txt;mgetl(m2sci_tmpfile)]
-      mputl(txt,m2scipath)
+      logtxt=[logtxt;" ";mgetl(tmp_m2sci_file)]
       file('close',fd)
-      mdelete(m2sci_tmpfile)
+      mdelete(tmp_m2sci_file)
+    end
+    // RESUMELOG
+    tmp_resume_m2sci_file=pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log"
+    resumem2scipath=res_path+"resume_m2sci_"+fnam+".log" 
+    resumelogtxt=[resumelogtxt;" ";" ";mgetl(resumem2scipath)]
+    mdelete(resumem2scipath)
+    [fd,ierr]=file('open',tmp_resume_m2sci_file,'old');
+    if ierr==0 then
+      resumelogtxt=[resumelogtxt;" ";mgetl(tmp_resume_m2sci_file)]
+      file('close',fd)
+      mdelete(tmp_resume_m2sci_file)
     end
   end
+  mputl(logtxt,res_path+'log')
+  mputl(resumelogtxt,res_path+'resumelog')
 end
 
 // File closing
-//close(logfile);
-//close(whsfil_unit);
+file('close',whsfil_unit);
+mdelete(pathconvert(TMPDIR)+"unitfile.dat")
+
 endfunction
