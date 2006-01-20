@@ -25,11 +25,7 @@ REFCONTENTS=["function y=ans(x)";
 		"  y = sq(a) + 1";
 		"endfunction"];
 
-if or(REFCONTENTS<>CONTENTS) then
-	test1=%F
-else
-	test1=%T
-end
+test1=~or(REFCONTENTS<>CONTENTS);
 
 // =============== Test 2 =============== 
 
@@ -47,19 +43,15 @@ CONTENTS_II = fun2string(one);
 
 REFCONTENTS_II=["function []=ans";
 		"  function two()";
-		"    // a comment";
+		"  // A comment";
 		"  endfunction";
 		"  function three()";
-		"    // a comment";
+		"  // A comment";
 		"  endfunction";
 		"  //a comment here";
 		"endfunction"];
-
-if or(REFCONTENTS_II<>CONTENTS_II) then
-	test2=%F
-else
-	test2=%T
-end
+ 
+test2=~or(REFCONTENTS_II<>CONTENTS_II);
 
 // =============== Test 3 =============== 
 
@@ -71,24 +63,15 @@ endfunction
 CONTENTS_III=fun2string(foo1);
 
 REFCONTENTS_III=["function a=ans";
-		"  a = 1;function foo2() ";
-		"  ; disp(""hello"") ; ";
-		"  endfunction;disp(''zut'');";
-		"  a = 2";
-		"endfunction"];
+		 "  a = 1;function foo2() ";
+		 "  ; disp(""hello"") ; ";
+		 "  endfunction;disp(''zut'');";
+		 "  a = 2";
+		 "endfunction"];
 
-if or(REFCONTENTS_III<>CONTENTS_III) then
-	test3=%F
-else
-	test3=%T
-end
+test3=~or(REFCONTENTS_III<>CONTENTS_III);
 
 // =============== Result =============== 
-
-if test1 & test2 & test3 then
-	affich_result(%T,731);
-else
-	affich_result(%F,731);
-end
+affich_result(test1 & test2 & test3,731);
 
 clear
