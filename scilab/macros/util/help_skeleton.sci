@@ -20,7 +20,7 @@ args=[inputs(:);outputs(:)]
 
 txt=[
 '<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>' 
-'<!DOCTYPE MAN SYSTEM ""'+pathconvert(SCI,%t,%t)+'man/manrev.dtd"">'
+'<!DOCTYPE MAN SYSTEM ""file://'+pathconvert(SCI,%t,%t)+'man/manrev.dtd"">'
 '<MAN>'
 '  <LANGUAGE>eng</LANGUAGE>'
 '  <TITLE>'+funname+'</TITLE>'
