@@ -231,6 +231,7 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
 
         if {$scilabSingleQuotedStrings == "yes"} {
             # single quotes or double quotes
+            set quotespattern {["']}
 
             # since in Scilab it is legal to declare a="string', no effort is
             # made here to detect unbalanced quotes by their type
@@ -239,20 +240,21 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
             # actually the character just before the string is part of the match
             # this allows for removing incorrect colorization of multiple matrix
             # transpose on a single line
-            set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
+            set simpstrRE {((?:[^\w_#!?$\]\}\)"']|\A(?:))["'][^"'\.\n]*(?:\.?[^"'\.\n]*)+["'])}
 
             # regular expression matching a continued string possibly ending with a
             # comment, if this string was not already matched by $simpstrRE
             # actually the character just before the string is part of the match
             # this allows for removing incorrect colorization of multiple matrix
             # transpose on a single line
-            set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
+            set contstrRE {((?:[^\w_#!?$\]\}\)"']|\A(?:))["'](?:(?:[^"'\.\n]*(?:\.[^"'\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"'\n]*["'])}
 
         } else {
             # double quotes only
+            set quotespattern {"}
 
-            set simpstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
-            set contstrRE {((?:[^\w_#!?$\]\}\)]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
+            set simpstrRE {((?:[^\w_#!?$\]\}\)"]|\A(?:))"[^"\.\n]*(?:\.?[^"\.\n]*)+")}
+            set contstrRE {((?:[^\w_#!?$\]\}\)"]|\A(?:))"(?:(?:[^"\.\n]*(?:\.[^"\.\n]+)*\.{2,} *)+(?://[^\n]*)?\n)+[^"\n]*")}
         }
 
         # regular expression matching a comment outside of a continued string
@@ -271,9 +273,11 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
 
         if {$scilabSingleQuotedStrings == "yes"} {
             # single quotes or double quotes
+            set quotespattern {["']}
             set simpstrRE {((?:.|\A(?:))["'][^"'\n]*["'])}
         } else {
             # double quotes only
+            set quotespattern {"}
             set simpstrRE {((?:.|\A(?:))"[^"'\n]*")}
         }
 
@@ -282,10 +286,10 @@ proc colorizestringsandcomments_sd {w thebegin theend} {
     }
 
     colorizestringsandcomments $w $thebegin $theend \
-            $textcommfullRE $separationRE
+            $textcommfullRE $separationRE $quotespattern
 }
 
-proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE} {
+proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE quotespattern} {
 # colorize properly comments and text quoted with single or double quotes,
 # depending on the regexps received, while taking care of continued lines
 # possibly containing interlaced comments (this is legal in Scilab)
@@ -326,7 +330,7 @@ proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE} 
             if {$i == $i1 && $j == $j1} {
                 # we're really in the first case
                 $w mark set last "$ind +$num c"
-                if {$i != 0} {
+                if {![string match $quotespattern [$w get $ind]]} {
                     # in this case we did not match at the beginning of the
                     # string but one character before the opening quote
                     set ind "$ind + 1 c"
@@ -351,7 +355,7 @@ proc colorizestringsandcomments {w thebegin theend textcommfullRE separationRE} 
                 $w mark set last "$ind +$num c"
                 # the comment part must be separated from the string part, and
                 # this has to be done for each continued line but the last one
-                if {$i != 0} {
+                if {![string match $quotespattern [$w get $ind]]} {
                     # in this case we did not match at the beginning of the
                     # string but one character before the opening quote
                     set ind "$ind + 1 c"

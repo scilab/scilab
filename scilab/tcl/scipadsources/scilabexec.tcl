@@ -210,7 +210,12 @@ proc xmlhelpfile {} {
             -title [mc "Scilab working"] -type ok -icon info
     } else {
         set filetocomp $listoffile("[gettextareacur]",fullname)
-        ScilabEval_lt "xmlfiletohtml(\"$filetocomp\")"
+        set filename [file tail    $filetocomp]
+        set filepath [file dirname $filetocomp]
+        set cwd [pwd]
+        cd $filepath
+        ScilabEval "xmlfiletohtml(\"$filename\")" sync
+        cd $cwd
     }
 }
 
