@@ -9,7 +9,7 @@
   #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-const int nbrCommands=27;
+const int nbrCommands=29;
 /*-----------------------------------------------------------------------------------*/
 static char *CommandWords[]={
 	"if","else",
@@ -25,7 +25,8 @@ static char *CommandWords[]={
 	"break","elseif",
 	"pwd","function",
 	"endfunction","clc",
-	"continue"  
+	"continue",
+	"try","catch"
 };
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
