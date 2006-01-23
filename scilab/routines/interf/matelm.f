@@ -3732,14 +3732,14 @@ c     .     argument is passed by value
          endif
          if(mn1.eq.0) return
          do 20 i=0,mn1
-            if(abs(stk(l1+i))+abs(stk(l2+i)).eq.0.0d+0) then
-               if(ieee.eq.0) then
-                  call error(32)
-                  return
-               elseif(ieee.eq.1) then
-                  call msgs(64)
-               endif
-            endif
+c            if(abs(stk(l1+i))+abs(stk(l2+i)).eq.0.0d+0) then
+c               if(ieee.eq.0) then
+c                  call error(32)
+c                  return
+c               elseif(ieee.eq.1) then
+c                  call msgs(64)
+c               endif
+c            endif
             stk(lr+i)=atan2(stk(l1+i),stk(l2+i))
  20      continue
       endif
