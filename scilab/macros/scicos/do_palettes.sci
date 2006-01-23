@@ -93,8 +93,9 @@ function [palettes,windows]=do_palettes(palettes,windows)
     end
     drawobjs(palettes(kpal))
     if pixmap then xset('wshow'),end
-
-    xsave(graph)
+    if getos()<>"Darwin" then
+      xsave(graph)  //save bug under Mac
+    end
   else
     xload(graph)
     xname(palettes(kpal).props.title(1))
