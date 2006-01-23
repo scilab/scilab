@@ -7588,7 +7588,7 @@ sciDrawObj (sciPointObj * pobj)
      
       C2F(dr)("xset","pixmap",&(pFIGURE_FEATURE (pobj)->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
 	      PD0,PD0,PD0,0L,0L);
-      if (pFIGURE_FEATURE (pobj)->pixmap == 0){
+      if (pFIGURE_FEATURE (pobj)->pixmap == 0 || GetDriverId() != 0){
 	/* Change background BEFORE xclear F.Leray */
 	C2F(dr)("xset","background",&x[1],PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L); 
 	C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
