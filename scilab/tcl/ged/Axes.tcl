@@ -4007,7 +4007,7 @@ proc setEntryFontAngle_x { button } {
 proc setFontAngle_y { button } {
     global curfontangle_y
     global curfontangle_y2
-    global ii
+    global yauto_rotation
     
     set fa $curfontangle_y
     ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $fa then ged_handle.y_label.font_angle=$fa; end;"
@@ -4021,6 +4021,8 @@ proc setFontAngle_y { button } {
 proc setEntryFontAngle_y { button } {
     global curfontangle_y
     global curfontangle_y2
+    global yauto_rotation
+
     if { $curfontangle_y2 == "" } {
         return
     }
@@ -4040,6 +4042,7 @@ proc setEntryFontAngle_y { button } {
 proc setFontAngle_z { button } {
     global curfontangle_z
     global curfontangle_z2
+    global zauto_rotation
     
     set fa $curfontangle_z
     ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $fa then ged_handle.z_label.font_angle=$fa; end;"
@@ -4054,6 +4057,8 @@ proc setFontAngle_z { button } {
 proc setEntryFontAngle_z { button } {
     global curfontangle_z
     global curfontangle_z2
+    global zauto_rotation
+
     if { $curfontangle_z2 == "" } {
         return
     }
@@ -4074,6 +4079,7 @@ proc setEntryFontAngle_z { button } {
 proc setFontAngle_title { button } {
     global curfontangle_title
     global curfontangle_title2
+    global titleauto_rotation
 
     set fa $curfontangle_title
     ScilabEval "global ged_handle;if ged_handle.title.font_angle <> $fa then ged_handle.title.font_angle=$fa; end;"
@@ -4088,6 +4094,7 @@ proc setFontAngle_title { button } {
 proc setEntryFontAngle_title { button } {
     global curfontangle_title
     global curfontangle_title2
+    global titleauto_rotation
 
     if { $curfontangle_title2 == "" } {
         return
