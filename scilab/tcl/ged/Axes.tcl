@@ -361,9 +361,9 @@ OnOffForeground $w.frame.poslabb $xauto_position
 label $w.frame.posmodelabel -height 0 -text "Position:" -font $gedFont -anchor e -width $largeurRight
 entry $w.frame.posmode -relief sunken  -textvariable x_position -font $gedFont
 
-bind  $w.frame.posmode <Return> {setPosition_x}
-bind  $w.frame.posmode <KP_Enter> {setPosition_x}
-bind  $w.frame.posmode <FocusOut> {setPosition_x}
+bind  $w.frame.posmode <Return> "setPosition_x $w.frame.poslabb"
+bind  $w.frame.posmode <KP_Enter> "setPosition_x $w.frame.poslabb"
+bind  $w.frame.posmode <FocusOut> "setPosition_x $w.frame.poslabb"
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx $smallPad
@@ -389,15 +389,15 @@ pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:"  -font $gedFont -anchor e -width $largeur
 
-radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_x -value 0 -command "setFontAngle_x" -font $gedFont
-radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_x -value 90 -command "setFontAngle_x" -font $gedFont
-radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_x -value 180 -command "setFontAngle_x" -font $gedFont
-radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_x -value 270 -command "setFontAngle_x" -font $gedFont
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_x -value 0 -command "setFontAngle_x $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_x -value 90 -command "setFontAngle_x $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_x -value 180 -command "setFontAngle_x $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_x -value 270 -command "setFontAngle_x $w.frame.rotlabb" -font $gedFont
 
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_x2 -font $gedFont
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x"
-bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_x"
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_x $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_x $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_x $w.frame.rotlabb"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0
@@ -634,9 +634,9 @@ OnOffForeground $w.frame.poslabb $yauto_position
 label $w.frame.posmodelabel -height 0 -text "Position:" -font $gedFont -anchor e -width $largeurRight
 entry $w.frame.posmode -relief sunken  -textvariable y_position -font $gedFont
 
-bind  $w.frame.posmode <Return> {setPosition_y}
-bind  $w.frame.posmode <KP_Enter> {setPosition_y}
-bind  $w.frame.posmode <FocusOut> {setPosition_y}
+bind  $w.frame.posmode <Return> "setPosition_y $w.frame.poslabb"
+bind  $w.frame.posmode <KP_Enter> "setPosition_y $w.frame.poslabb"
+bind  $w.frame.posmode <FocusOut> "setPosition_y $w.frame.poslabb"
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx $smallPad
@@ -661,15 +661,15 @@ pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font $gedFont -anchor e -width $largeur
 
-radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_y -value 0 -command "setFontAngle_y" -font $gedFont
-radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_y -value 90 -command "setFontAngle_y" -font $gedFont
-radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_y -value 180 -command "setFontAngle_y " -font $gedFont
-radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_y -value 270 -command "setFontAngle_y " -font $gedFont
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_y -value 0 -command "setFontAngle_y $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_y -value 90 -command "setFontAngle_y $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_y -value 180 -command "setFontAngle_y $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_y -value 270 -command "setFontAngle_y $w.frame.rotlabb" -font $gedFont
 
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_y2 -font $gedFont 
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y"
-bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_y"
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_y $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_y $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_y $w.frame.rotlabb"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0
@@ -889,9 +889,9 @@ OnOffForeground $w.frame.poslabb $zauto_position
 label $w.frame.posmodelabel -height 0 -text "Position:" -font $gedFont -anchor e -width $largeurRight
 entry $w.frame.posmode -relief sunken  -textvariable z_position -font $gedFont
 
-bind  $w.frame.posmode <Return> {setPosition_z}
-bind  $w.frame.posmode <KP_Enter> {setPosition_z}
-bind  $w.frame.posmode <FocusOut> {setPosition_z}
+bind  $w.frame.posmode <Return> "setPosition_z $w.frame.poslabb"
+bind  $w.frame.posmode <KP_Enter> "setPosition_z $w.frame.poslabb"
+bind  $w.frame.posmode <FocusOut> "setPosition_z $w.frame.poslabb"
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx $smallPad
@@ -916,15 +916,15 @@ pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font $gedFont -anchor e -width $largeur
 
-radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_z -value 0 -command "setFontAngle_z" -font $gedFont
-radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_z -value 90 -command "setFontAngle_z" -font $gedFont
-radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_z -value 180 -command "setFontAngle_z" -font $gedFont
-radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_z -value 270 -command "setFontAngle_z" -font $gedFont
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_z -value 0 -command "setFontAngle_z $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_z -value 90 -command "setFontAngle_z $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_z -value 180 -command "setFontAngle_z $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_z -value 270 -command "setFontAngle_z $w.frame.rotlabb" -font $gedFont
 
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_z2 -font $gedFont
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z"
-bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_z"
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_z $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_z $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_z $w.frame.rotlabb"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0
@@ -1148,9 +1148,9 @@ OnOffForeground $w.frame.poslabb $titleauto_position
 label $w.frame.posmodelabel -height 0 -text "Position:" -font $gedFont -anchor e -width $largeurRight
 entry $w.frame.posmode -relief sunken  -textvariable title_position -font $gedFont
 
-bind  $w.frame.posmode <Return> {setPosition_title}
-bind  $w.frame.posmode <KP_Enter> {setPosition_title}
-bind  $w.frame.posmode <FocusOut> {setPosition_title}
+bind  $w.frame.posmode <Return> "setPosition_title $w.frame.poslabb"
+bind  $w.frame.posmode <KP_Enter> "setPosition_title $w.frame.poslabb"
+bind  $w.frame.posmode <FocusOut> "setPosition_title $w.frame.poslabb"
 
 pack $w.frame.poslablabel -in $w.frame.poslab -side left
 pack $w.frame.poslabb -in $w.frame.poslab -side left -padx $smallPad
@@ -1176,15 +1176,15 @@ pack $w.frame.font  -in $w.frame -side top   -fill x -pady 0
 
 label $w.frame.fontanglelabel -height 0 -text "Font angle:" -width 0  -font $gedFont -anchor e -width $largeur
 
-radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_title -value 0 -command "setFontAngle_title" -font $gedFont
-radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_title -value 90 -command "setFontAngle_title" -font $gedFont
-radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_title -value 180 -command "setFontAngle_title" -font $gedFont
-radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_title -value 270 -command "setFontAngle_title" -font $gedFont
+radiobutton $w.frame.fontanglechoice0 -text "0°" -variable curfontangle_title -value 0 -command "setFontAngle_title $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice90 -text "90°" -variable curfontangle_title -value 90 -command "setFontAngle_title $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice180 -text "180°" -variable curfontangle_title -value 180 -command "setFontAngle_title $w.frame.rotlabb" -font $gedFont
+radiobutton $w.frame.fontanglechoice270 -text "270°" -variable curfontangle_title -value 270 -command "setFontAngle_title $w.frame.rotlabb" -font $gedFont
 
 entry $w.frame.fontangle2 -relief sunken  -textvariable curfontangle_title2 -font $gedFont
-bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title"
-bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title"
-bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_title"
+bind  $w.frame.fontangle2 <Return> "setEntryFontAngle_title $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <KP_Enter> "setEntryFontAngle_title $w.frame.rotlabb"
+bind  $w.frame.fontangle2 <FocusOut> "setEntryFontAngle_title $w.frame.rotlabb"
 
 pack $w.frame.fontanglelabel -in $w.frame.font -side left
 pack $w.frame.fontanglechoice0 -in $w.frame.font -side left -padx 0
@@ -1680,7 +1680,7 @@ entry $w.frame.rotalpha -relief sunken  -textvariable curalpharotation -width 10
 entry $w.frame.rottheta -relief sunken  -textvariable curthetarotation -width 10 -font $gedFont
 pack $w.frame.rotanglabel  -in $w.frame.rotang -side left  -pady 0
 pack $w.frame.rotalpha $w.frame.rottheta -in $w.frame.rotang  -in $w.frame.rotang -side left  -pady 0 -padx $mediumPad
-bind  $w.frame.rotalpha <Return> {setAlphaAngle} 
+bind  $w.frame.rotalpha <Return> {setAlphaAngle}
 bind  $w.frame.rottheta <Return> {setThetaAngle} 
 bind  $w.frame.rotalpha <KP_Enter> {setAlphaAngle} 
 bind  $w.frame.rottheta <KP_Enter> {setThetaAngle} 
@@ -3940,6 +3940,11 @@ proc Reload_and_popup { win numpage } {
 
 }
 
+# unpush a button and puts the on label in grey
+proc uncheckButton { button } {
+    OnOffForeground $button "off"
+    $button deselect
+}
 
 proc toggleReverselabx { frame } {
     global Xaxes_reverseToggle
@@ -3964,28 +3969,42 @@ proc toggleReverselabz { frame } {
 }
 
 
-proc setFontAngle_x { } {
+proc setFontAngle_x { button } {
     global curfontangle_x2
     global curfontangle_x
+    global xauto_rotation
 
     set fa $curfontangle_x
     ScilabEval "global ged_handle;if ged_handle.x_label.font_angle <> $fa then ged_handle.x_label.font_angle=$fa; end;"
     set curfontangle_x2 $fa
+    
+    # uncheck auto rotation
+    set xauto_rotation "off"
+    uncheckButton $button
 }
 
-proc setEntryFontAngle_x { } {
+proc setEntryFontAngle_x { button } {
     global curfontangle_x
     global curfontangle_x2
-    if { $curfontangle_x2 == "" || $curfontangle_x2 < 0} {
+    global xauto_rotation
+    if { $curfontangle_x2 == "" } {
+        return
+    }
+    if { $curfontangle_x2 < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
 	return
     }
+    
     ScilabEval "global ged_handle;if ged_handle.x_label.font_angle <> $curfontangle_x2 then ged_handle.x_label.font_angle=$curfontangle_x2; end;"
     set curfontangle_x $curfontangle_x2
+    
+    # uncheck auto rotation
+    set xauto_rotation "off"
+    uncheckButton $button
 }
 
 
-proc setFontAngle_y { } {
+proc setFontAngle_y { button } {
     global curfontangle_y
     global curfontangle_y2
     global ii
@@ -3993,62 +4012,97 @@ proc setFontAngle_y { } {
     set fa $curfontangle_y
     ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $fa then ged_handle.y_label.font_angle=$fa; end;"
     set curfontangle_y2 $fa
-#    ScilabEval "TCL_SetVar(\"ii\",sci2exp(ged_handle.y_label.position,0)); TCL_EvalStr(\"set x_position $ii\")"
-#    ScilabEval "TCL_EvalStr(\"set x_position sci2exp(ged_handle.y_label.position,0)\")"
-#    puts "ii vaut $ii"
+    
+    # uncheck auto rotation
+    set yauto_rotation "off"
+    uncheckButton $button
 }
 
-proc setEntryFontAngle_y { } {
+proc setEntryFontAngle_y { button } {
     global curfontangle_y
     global curfontangle_y2
-    if { $curfontangle_y2 == "" || $curfontangle_y2 < 0} {
+    if { $curfontangle_y2 == "" } {
+        return
+    }
+    if { $curfontangle_y2 < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
 	return
     }
     ScilabEval "global ged_handle;if ged_handle.y_label.font_angle <> $curfontangle_y2 then ged_handle.y_label.font_angle=$curfontangle_y2; end;"
     set curfontangle_y $curfontangle_y2
+
+    # uncheck auto rotation
+    set yauto_rotation "off"
+    uncheckButton $button
 }
 
 
-proc setFontAngle_z { } {
+proc setFontAngle_z { button } {
     global curfontangle_z
     global curfontangle_z2
     
     set fa $curfontangle_z
     ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $fa then ged_handle.z_label.font_angle=$fa; end;"
     set curfontangle_z2 $fa
+    
+    # uncheck auto rotation
+    set zauto_rotation "off"
+    uncheckButton $button
+
 }
 
-proc setEntryFontAngle_z { } {
+proc setEntryFontAngle_z { button } {
     global curfontangle_z
     global curfontangle_z2
-    if { $curfontangle_z2 == "" || $curfontangle_z2 < 0} {
+    if { $curfontangle_z2 == "" } {
+        return
+    }
+    if { $curfontangle_z2 < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
 	return
     }
     ScilabEval "global ged_handle;if ged_handle.z_label.font_angle <> $curfontangle_z2 then ged_handle.z_label.font_angle=$curfontangle_z2; end;"
     set curfontangle_z $curfontangle_z2
+
+    # uncheck auto rotation
+    set zauto_rotation "off"
+    uncheckButton $button
+
 }
 
 
-proc setFontAngle_title { } {
+proc setFontAngle_title { button } {
     global curfontangle_title
     global curfontangle_title2
 
     set fa $curfontangle_title
     ScilabEval "global ged_handle;if ged_handle.title.font_angle <> $fa then ged_handle.title.font_angle=$fa; end;"
     set curfontangle_title2 $fa
+
+    # uncheck auto rotation
+    set titleauto_rotation "off"
+    uncheckButton $button
+
 }
 
-proc setEntryFontAngle_title { } {
+proc setEntryFontAngle_title { button } {
     global curfontangle_title
     global curfontangle_title2
-    if { $curfontangle_title2 == "" || $curfontangle_title2 < 0} {
+
+    if { $curfontangle_title2 == "" } {
+        return
+    }
+    if { $curfontangle_title2 < 0} {
 	tk_messageBox -icon error -type ok -title "Incorrect angle" -message "Set a correct angle value in degree from 0 to 360"
 	return
     }
     ScilabEval "global ged_handle;if ged_handle.title.font_angle <> $curfontangle_title2 then ged_handle.title.font_angle=$curfontangle_title2; end;"
     set curfontangle_title $curfontangle_title2
+
+    # uncheck auto rotation
+    set titleauto_rotation "off"
+    uncheckButton $button
+
 }
 
 
@@ -4113,57 +4167,69 @@ proc toggleAutoPositiontitle { frame } {
 }
 
 
-proc setPosition_x { } {
+proc setPosition_x { button } {
     global x_position
+    global xauto_position
     if { $x_position == ""} {
-	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
-	return
+        return
     }
     ScilabEval "global ged_handle;ged_handle.x_label.position = $x_position"
-#    ScilabEval "global ged_handle;if ged_handle.z_label.position <> $z_position then ged_handle.z_label.position=$z_position; end;"
+    
+    # uncheck auto_position button
+    set xauto_position "off"
+    uncheckButton $button
 }
 
 
-proc setPosition_y { } {
+proc setPosition_y { button } {
     global y_position
+    global yauto_position
     if { $y_position == ""} {
 	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
 	return
     } 
     
     ScilabEval "global ged_handle;ged_handle.y_label.position = $y_position"
-#     puts "av. y_position = $y_position"
-#     ScilabEval "global ged_handle;if ged_handle.y_label.position <> $y_position then disp(\"y_label.position CHANGED\");ged_handle.y_label.position=$y_position; end;"
-#     puts "ap. y_position = $y_position"
+    
+    # uncheck auto_position button
+    set yauto_position "off"
+    uncheckButton $button
 }
 
 
-proc setPosition_z { } {
+proc setPosition_z { button } {
     global z_position
+    global zauto_position
     if { $z_position == ""} {
 	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
 	return
     }
     ScilabEval "global ged_handle;ged_handle.z_label.position = $z_position"
-#     ScilabEval "global ged_handle;if ged_handle.z_label.position <> $z_position then ged_handle.z_label.position=$z_position; end;"
+    
+    # uncheck auto_position button
+    set zauto_position "off"
+    uncheckButton $button
 }
 
 
-proc setPosition_title { } {
+proc setPosition_title { button } {
     global title_position
+    global titleauto_position
     if { $title_position == ""} {
 	tk_messageBox -icon error -type ok -title "Incorrect entry" -message "Set a correct entry"
 	return
     }
     ScilabEval "global ged_handle;ged_handle.title.position = $title_position"
-#     ScilabEval "global ged_handle;if ged_handle.title.position <> $title_position then ged_handle.title.position=$title_position; end;"
+
+     # uncheck auto_position button
+    set titleauto_position "off"
+    uncheckButton $button
 }
 
 
 proc toggleAutoRotationx { frame } {
     global xauto_rotation
     ScilabEval "global ged_handle;ged_handle.x_label.auto_rotation='$xauto_rotation'"
-
     OnOffForeground $frame $xauto_rotation
 }
 
