@@ -72,7 +72,12 @@ randlib: Library of Fortran Routines for Random Number Generation
 	  Barry W. Brown, James Lovato, Kathy Russell, John Venier.
 
 scipad: an embedded text editor scipad derived from TkNotepad
-        (www.mindspring.com/~joeja/programs.html).
+        (www.mindspring.com/~joeja/programs.html) and improved by
+        Enrico Segre and François Vogel, two Scilab Developers to take
+        an active part in Scilab development.
+
+SciGui: a tcl gui environment developed by Jaime Urzua: jaime_urzua@yahoo.com
+	used for the help browser, waitbar and editvar 
 
 signal: routines from IEEE Signal processing library.
 
