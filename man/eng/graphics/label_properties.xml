@@ -75,9 +75,9 @@
 
       <DESCRIPTION_ITEM label="font_angle: ">
         <SP>This scalar allows you to turn the label. The font is turned
-        clockise with the angle given in degrees. To manually change the font
-        angle, you must <VERB>first</VERB> set the <VERB>auto_rotation</VERB>
-        property to <VERB>"off"</VERB> and then enter the font angle.</SP>
+        clockise with the angle given in degrees. Note that changing the
+        <VERB>font_angle</VERB> will automatically disable the
+        <VERB>auto_rotation</VERB> property.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="auto_rotation: ">
@@ -88,10 +88,9 @@
 
       <DESCRIPTION_ITEM label="position: ">
         <SP>This 2d vector allows you to place manually the label on the
-        screen. The position is stored in the data units of the axes. To
-        manually change the position, you must <VERB>first</VERB> set the
-        <VERB>auto_position</VERB> property to <VERB>"off"</VERB> and then
-        enter the new 2d vector.</SP>
+        screen. The position is stored in the data units of the axes. Note
+        that changing the <VERB>font_angle</VERB> will automatically disable
+        the <VERB>auto_position</VERB> property.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="auto_position: ">
