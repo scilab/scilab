@@ -686,7 +686,8 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
 
   double * pvecx = NULL, * pvecy = NULL, * pvecz = NULL;
   integer /* * zcol = NULL,*/ izcol = 0 ;
-
+  int dimvectx = 0;
+  int dimvecty = 0;
 
   m1 = numrow[0];
   m2 = numrow[1];
@@ -758,10 +759,85 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
 	}
     }
 
+  
+  /* check the monotony on x and y */
+  
+  if(m1 == 1) /* x is a row vector */
+    dimvectx = n1;
+  else if(n1 == 1) /* x is a column vector */
+    dimvectx = m1;
+  else /* x is a matrix */
+    dimvectx = -1;
+  
+  if(dimvectx>1){
+    /* test the monotony on x*/
+    if(stk(l1)[0] >= stk(l1)[1]) /* decreasing */
+      {
+	int i;
+	for(i=1;i<dimvectx-1;i++)
+	  {
+	    if(stk(l1)[i] < stk(l1)[i+1])
+	      {
+		Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
+		return 0;
+	      }
+	  }
+	psurf->flag_x = -1;
+      }
+    else /* x[0] < x[1]*/
+      {
+	for(i=1;i<dimvectx-1;i++)
+	  {
+	    if(stk(l1)[i] > stk(l1)[i+1])
+	      {
+		Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
+		return 0;
+	      }
+	  }
+	psurf->flag_x = 1;
+      }
+  }
+
+  if(m2 == 1) /* y is a row vector */
+    dimvecty = n2;
+  else if(n2 == 1) /* y is a column vector */
+    dimvecty = m2;
+  else /* y is a matrix */
+    dimvecty = -1;
+  
+  if(dimvecty>1){
+    /* test the monotony on y*/
+    if(stk(l2)[0] >= stk(l2)[1]) /* decreasing */
+      {
+	int i;
+	for(i=1;i<dimvecty-1;i++)
+	  {
+	    if(stk(l2)[i] < stk(l2)[i+1])
+	      {
+		Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
+		return 0;
+	      }
+	  }
+	psurf->flag_y = -1;
+      }
+    else /* y[0] < y[1]*/
+      {
+	for(i=1;i<dimvecty-1;i++)
+	  {
+	    if(stk(l2)[i] > stk(l2)[i+1])
+	      {
+		Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
+		return 0;
+	      }
+	  }
+	psurf->flag_y = 1;
+      }
+  }
+  
   /* Update of the dimzx, dimzy depends on  m3, n3: */
   psurf->dimzx = m3;
   psurf->dimzy = n3;
-
+  
 
   /* Free the old values... */
   FREE(psurf->pvecx); psurf->pvecx = NULL;
@@ -773,7 +849,6 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
   /* If we had a previous color matrix/vector and we do not specify a new one, I consider we are losing it.*/
   /* That's why we make a FREE as follows:*/
   FREE(psurf->inputCMoV);psurf->inputCMoV = NULL; /* F.Leray 23.03.04*/
-
 
   /* allocations:*/
   if ((pvecx = MALLOC (m1*n1 * sizeof (double))) == NULL) return -1;
@@ -796,7 +871,7 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
 
   for(i=0;i< m3*n3;i++)
     pvecz[i] = stk(l3)[i];
-
+  
   if(flagc ==1) /* F.Leray There is a color matrix */
     {
       if(m3n * n3n != 0) /* Normally useless test here: means we have a color vector or matrix */
