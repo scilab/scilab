@@ -154,4 +154,7 @@ extern HMENU sciGethPopMenu (sciPointObj * pthis);
 extern int *sciGetInterpVector(sciPointObj * pobj);
 extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 
+extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
+extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

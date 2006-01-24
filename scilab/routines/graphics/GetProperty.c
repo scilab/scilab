@@ -3182,7 +3182,8 @@ sciGetResize (sciPointObj * pobj)
       break;
     case SCI_SUBWIN:
       /* the value is inhirated by the parent */
-      return sciGetResize (sciGetParent (pobj));
+      /*return sciGetResize (sciGetParent (pobj));*/
+      return (sciGetGraphicMode (pobj))->wresize;
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -4859,3 +4860,77 @@ sciGetPosition (sciPointObj * pobj, double *x, double *y)
     }
   return 0;
 }
+
+BOOL sciGetAutoRotation ( sciPointObj * pObj )
+{
+   switch (sciGetEntityType (pObj))
+    {
+    case SCI_LABEL:
+      return pLABEL_FEATURE(pObj)->auto_rotation ;
+      break;
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_ARC:
+    case SCI_TEXT:
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_FEC:
+    case SCI_SEGS:
+    case SCI_LEGEND:
+    case SCI_GRAYPLOT:
+    case SCI_LIGHT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_AGREG:
+    case SCI_TITLE:
+    case SCI_UIMENU:
+    default:
+      return FALSE;
+      break;
+    }
+  return FALSE;
+}
+
+BOOL sciGetAutoPosition ( sciPointObj * pObj )
+{
+   switch (sciGetEntityType (pObj))
+    {
+    case SCI_LABEL:
+      return pLABEL_FEATURE(pObj)->auto_position ;
+      break;
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_ARC:
+    case SCI_TEXT:
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_SURFACE:
+    case SCI_AXES:
+    case SCI_FEC:
+    case SCI_SEGS:
+    case SCI_LEGEND:
+    case SCI_GRAYPLOT:
+    case SCI_LIGHT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_AGREG:
+    case SCI_TITLE:
+    case SCI_UIMENU:
+    default:
+      return FALSE;
+      break;
+    }
+  return FALSE;
+}
+
+
