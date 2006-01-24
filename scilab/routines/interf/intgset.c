@@ -1062,6 +1062,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      /* 	    versionflag = 1; */
 
 	    sciXClearFigure();
+
+            
 #ifdef WITH_TK
             /* close ged to prevent errors when using it */
             sciDestroyGed() ;
@@ -1585,6 +1587,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"font_angle") == 0)
     {
       xtmp = (int)stk(*value)[0];
+      if ( sciGetAutoRotation( pobj ) )
+      {
+        sciSetAutoRotation( pobj, FALSE ) ;
+      }
       sciSetFontOrientation((sciPointObj *) pobj,(int) (*stk(*value)*10));
     }
   else if (strcmp(marker,"font_foreground") == 0)
@@ -1866,20 +1872,24 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     } 
   else if (strcmp(marker,"position") == 0)
-    { 
-		if (sciGetEntityType(pobj)== SCI_UIMENU)
-		{
-			pUIMENU_FEATURE(pobj)->MenuPosition=(int)stk(*value)[0];
-		}
-		else if(sciGetEntityType(pobj) == SCI_LABEL)
-		{
-			sciSetPosition(pobj,stk(*value)[0],stk(*value)[1]);
-		}
-		else
-		{
-			strcpy(error_message,"position does not exist for this handle");
-			return -1;
-		}
+    {
+      if ( sciGetAutoPosition( pobj ) )
+      {
+        sciSetAutoPosition( pobj, FALSE ) ;
+      }
+      if (sciGetEntityType(pobj)== SCI_UIMENU)
+      {
+        pUIMENU_FEATURE(pobj)->MenuPosition=(int)stk(*value)[0];
+      }
+      else if(sciGetEntityType(pobj) == SCI_LABEL)
+      {
+        sciSetPosition(pobj,stk(*value)[0],stk(*value)[1]);
+      }
+      else
+      {
+        strcpy(error_message,"position does not exist for this handle");
+        return -1;
+      }
     }
   /* F.Leray adding auto_ticks flags */
   else if (strcmp(marker,"auto_ticks") == 0) 
@@ -2306,7 +2316,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       strcpy(error_message,"sub_ticks property does not exist for this handle");
       return -1 ;
     }
-      
+
   }
   else if (strcmp(marker,"format_n") == 0)
     {
