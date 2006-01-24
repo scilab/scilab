@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -9,7 +9,7 @@
 
   <DATE>2001</DATE>
 
-  <SHORT_DESCRIPTION name="loadplots">loads and formats saved
+  <SHORT_DESCRIPTION name="loadplots">loads and formats saved old style
   plots</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -23,7 +23,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: character string giving the path of the binary file containing
-          the save of a graphic (see xsave)</SP>
+          the save of a graphic (old style)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -54,9 +54,8 @@
 
     <VERBATIM>loadplots;</VERBATIM>
 
-    <P><BD>Warning</BD>: The <VERB>loadplots</VERB> function is only available
-    with the old graphic mode and is then deprecated. For the new mode,
-    <VERB>xload</VERB> migth be used instead.</P>
+    <P><BD>Warning</BD>: The <VERB>loadplots</VERB> function is currently
+      available with the graphic files saved under the old graphic mode.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
