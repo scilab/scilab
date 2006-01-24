@@ -1,52 +1,50 @@
-function num = tk_choose(varargin)
+function _result=tk_choose(_items,_title,_button)
 
-[lhs,rhs]=argn(0);
+// Author : S. Mottelet, Tue Jan 24 12:01:25 CET 2006
+// Use of a namespace makes things easier (no global variables to pass
+// arguments from the Scilab level).
 
-ListArg = varargin;
-
-if with_gtk()== %t then 
-  num=x_choose(ListArg(:));
-  return 
+if argn(2)<=1
+    _title="";
+end
+if argn(2)<=2
+  _button="Cancel"
+  if LANGUAGE=="fr"
+    _button="Annuler"
+  end
 end
 
-global tk_choose_num;
+// Create the namespace
 
-tk_choose_num = -1;
+TCL_EvalStr("namespace eval tkChoose {}")
 
-if rhs == 1
-  TCL_SetVar("tkc_thelist",sci2exp(ListArg(1),0));
-  TCL_SetVar("tkc_comment","");
-  TCL_SetVar("text_button","Cancel");
-  TCL_EvalFile(SCI+"/tcl/ged/tk_choose.tcl")
-end
+// Set parameter arrays in the Tcl world
 
+TCL_SetVar("tkChoose::title",_title(:));
+TCL_SetVar("tkChoose::items",_items(:));
+TCL_SetVar("tkChoose::button",_button(:));
 
-if rhs == 2
-  TCL_SetVar("tkc_thelist",sci2exp(ListArg(1),0));
-  TCL_SetVar("tkc_comment",sci2exp(ListArg(2),0));
-  TCL_SetVar("text_button","Cancel");
-  TCL_EvalFile(SCI+"/tcl/ged/tk_choose.tcl")
-end
+// Finally launch the Tcl script
 
-if rhs == 3
-  TCL_SetVar("tkc_thelist",sci2exp(ListArg(1),0));
-  TCL_SetVar("tkc_comment",sci2exp(ListArg(2),0));
-  TCL_SetVar("text_button",sci2exp(ListArg(3),0));
-  TCL_EvalFile(SCI+"/tcl/ged/tk_choose.tcl")
-end
+TCL_EvalFile(SCI+"/tcl/ged/tk_choose.tcl")
 
-while tk_choose_num == -1
+// Event loop at the Scilab level
+
+while ~TCL_ExistVar("tkChoose::result")
   // wait for response
   sleep(1);
 end
 
-num = tk_choose_num;
+_result=evstr(TCL_GetVar("tkChoose::result"))+1;
 
-clear tk_choose_num;
-TCL_UnsetVar("tkc_thelist");
-TCL_UnsetVar("tkc_comment");
-TCL_UnsetVar("text_button");
+// Destroy the toplevel tkChoose widget
 
-TCL_EvalStr("destroy .tk_choose_menu")
+TCL_EvalStr("catch {destroy $tkChoose::t}")
+
+// Yank the namespace (all variables therein are also
+// destroyed)
+
+TCL_EvalStr("namespace delete tkChoose")
 
 endfunction
+
