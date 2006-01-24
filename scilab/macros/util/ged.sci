@@ -62,7 +62,8 @@ function ged(k,win)
     end
     
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
-    
+    TCL_SetVar("sciGedIsAlive","Alive") ; // to know wether ged is opened or not
+
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
     ged_figure(ged_cur_fig_handle)
@@ -84,7 +85,8 @@ function ged(k,win)
     end
     
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
-    
+    TCL_SetVar("sciGedIsAlive","Alive") ; // to know wether ged is opened or not
+
     ged_axes(gca())
     case 6 then //start Entity picker
       seteventhandler("ged_eventhandler")
@@ -1481,6 +1483,7 @@ for i=1:size(f.color_map,1)
 end
 
 TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+TCL_SetVar("sciGedIsAlive","Alive") ; // to know wether ged is opened or not
 
 select h.type
 case "Polyline"
@@ -2272,6 +2275,9 @@ global ged_current_figure
 if find(ged_current_figure==winsid()) then
   xset('window',ged_current_figure)
 end 
+
+// ged is closed
+TCL_UnsetVar("sciGedIsAlive");
 
 clearglobal ged_current_figure
 clear ged_current_figure
