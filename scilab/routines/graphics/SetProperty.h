@@ -101,4 +101,7 @@ void set_version_flag(int flag) ; /* SET */
 extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 extern int sciSetPosition (sciPointObj * pobj, double x, double y);
 
+extern void sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
+extern void sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
+
 #endif /* __SCI_SET_PROPERTY__ */
