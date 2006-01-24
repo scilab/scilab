@@ -16,18 +16,16 @@ function rec=loadplots(fil)
 //
 // Copyright INRIA
 // Author: Serge Steer  
-
-  // function works only for the old graphic mode
-  if get("figure_style") == 'new' then
-    error( "Macro does not work with the new graphic mode." ) ;
-    return ;
-  end
-  
+ 
   ufil=mopen(fil,'rb')
   rec=tlist('SPLOT')
+  pos=mtell(ufil)
+  n1=mget(1,'uib',ufil)
+  if n1<>8 then mclose(ufil),error('Given file is not an old graphic one');end
+  mseek(pos,ufil,'set')
   SciF_version=LoadVectC()
+  if part(SciF_version,1:4)<>"SciG" then mclose(ufil),error('Given file is not an old graphic one'),end
   while %t do
-    //posi=mtell(ufil);
     typ=LoadVectC();//disp(typ)
     if typ=='endplots' then break,end
     rec($+1)=LoadTPlot(typ);
