@@ -7,6 +7,9 @@ namespace eval tkChoose {
     set relief raised
     set t .tkChoose
     set fontSize 12
+    if {$::tcl_platform(os)=="Windows NT"} {
+        set fontSize 9
+    }
 
     catch {font create chooseFont -family Helvetica -size $fontSize}
     catch {font create chooseBoldFont -family Helvetica -size $fontSize -weight bold}
