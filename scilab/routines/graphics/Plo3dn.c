@@ -65,6 +65,63 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   for (u = 0; u < (*p) * (*q); u++)
     ztmp[u] = z[u];
 
+    
+  /* To fix bug 1757, I make a test on x data and sort the x entries */
+  /* in a good manner for the algorithm... */
+  if(*p >1){
+    
+    if(pSURFACE_FEATURE (pobj)->flag_x == -1) /* x input is decreasing */
+      {
+	int k;
+	double xt,zt;
+
+	for (u = 0; u < (*p)/2; u++){
+	  xt = xtmp[u];
+	  xtmp[u] = xtmp[(*p)-1-u];
+	  xtmp[(*p)-1-u] = xt;
+	}
+	
+	/* corresponding z must change too */
+	for (u = 0; u < (*p)/2; u++)
+	  {
+	    for(k = 0; k < (*q); k++){
+	      zt = ztmp[(*p)*k+u];
+	      
+ 	      ztmp[(*p)*k+u] = ztmp[(*p)*k+(*p-1)-u];
+	      ztmp[(*p)*k+(*p-1)-u] = zt;
+	      
+	    }
+	  }
+      }
+  }
+  
+  /* Same thing on y */
+  if(*q >1){
+     
+    if(pSURFACE_FEATURE (pobj)->flag_y == -1) /* y input is decreasing */
+      {
+	int k;
+	double yt,zt;
+	
+	for (u = 0; u < (*q)/2; u++){
+	  yt = ytmp[u];
+	  ytmp[u] = ytmp[(*q)-1-u];
+	  ytmp[(*q)-1-u] = yt;
+	}
+
+	/* corresponding z must change too */
+	for (u = 0; u < (*q)/2; u++)
+	  {
+	    for(k = 0; k < (*p); k++){
+	      zt = ztmp[(*p)*u+k];
+	      
+ 	      ztmp[(*p)*u+k] = ztmp[(*p)*(*q-1-u)+k];
+	      ztmp[(*p)*(*q-1-u)+k] = zt;
+	    }
+	  }
+      }
+  }
+  
   ReverseDataFor3DXonly (psubwin, xtmp, (*p));
   ReverseDataFor3DYonly (psubwin, ytmp, (*q));
   ReverseDataFor3DZonly (psubwin, ztmp, (*p) * (*q));
@@ -96,8 +153,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   for (i = 0; i < (*q) - 1; i++)
     fill[i] = dc;
   polysize = 5;
-
-
+  
   /** The 3d plot **/
   /** Choix de l'ordre de parcourt **/
   switch (cache)
@@ -121,7 +177,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -147,7 +203,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -184,7 +240,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -210,7 +266,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -248,7 +304,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -273,7 +329,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -304,7 +360,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -329,7 +385,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -364,7 +420,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -389,7 +445,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -422,7 +478,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -447,7 +503,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i,
-                                       (*q) - 2 - j, npolyok, p, dc, fg1);
+                                       (*q) - 2 - j, npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -482,7 +538,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -507,7 +563,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -540,7 +596,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -565,7 +621,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                       npolyok +=
                         (Gen3DPoints) (flagcolor, polyx, polyy, fill, whiteid,
                                        zmin, zmax, xtmp, ytmp, ztmp, i, j,
-                                       npolyok, p, dc, fg1);
+                                       npolyok, p, dc, fg1, pobj);
                     }
                   if (npolyok != 0)
                     {
@@ -585,7 +641,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
         }
       break;
     }
-
+      
   FREE (ztmp);
   ztmp = NULL;
   FREE (xtmp);

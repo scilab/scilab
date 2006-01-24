@@ -6284,13 +6284,14 @@ sciUnClip (sciPointObj * pobj)
 }
 
 
-int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg)
+int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg, sciPointObj * psurface)
 {
   sciPointObj *pobj;
   int facteur = 1;
 
   sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  sciSurface * ppsurface = pSURFACE_FEATURE (psurface);
   
   pobj = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   if (trans3d(pobj ,1, &(polyx[  5*jj1]),&(polyy[  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
@@ -6303,6 +6304,9 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   if(ppsubwin->axes.reverse[0] == TRUE) facteur = -facteur;
   if(ppsubwin->axes.reverse[1] == TRUE) facteur = -facteur;
   if(ppsubwin->axes.reverse[2] == TRUE) facteur = -facteur;
+  
+  /* try */
+  facteur = ppsurface->flag_x * ppsurface->flag_y * facteur;
   
   /* type == flagcolor and dc == color_mode */
   /* fg = hidden color */
@@ -7585,7 +7589,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       flag_DO = MaybeSetWinhdc();
 #endif
-     
+      
       C2F(dr)("xset","pixmap",&(pFIGURE_FEATURE (pobj)->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
 	      PD0,PD0,PD0,0L,0L);
       if (pFIGURE_FEATURE (pobj)->pixmap == 0 || GetDriverId() != 0){

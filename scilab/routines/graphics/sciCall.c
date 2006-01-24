@@ -311,6 +311,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   char * legy = NULL;
   char * legz = NULL;
   /*   char * buff = NULL; */
+  int flag_x = 1;
+  int flag_y = 1;
+  int dimvectx = -1;
+  int dimvecty = -1;
 
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
@@ -500,12 +504,91 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * Construct the Entities
    * ================================================= */
 
-  if ( typeof3d != SCI_PARAM3D1 ) /*Distinction here between SCI_PARAM3D1 and others*/
+  if ( typeof3d != SCI_PARAM3D1 ) {/*Distinction here between SCI_PARAM3D1 and others*/
+
+    if(*m1 == 1) /* x is a row vector */
+      dimvectx = *n1;
+    else if(*n1 == 1) /* x is a column vector */
+      dimvectx = *m1;
+    else /* x is a matrix */
+      dimvectx = -1;
+    
+    if(dimvectx>1){
+      /* test the monotony on x*/
+      if(x[0] >= x[1]) /* decreasing */
+	{
+	  int i;
+	  for(i=1;i<dimvectx-1;i++)
+	    {
+	      if(x[i] < x[i+1])
+		{
+		  Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
+		  return;
+		}
+	    }
+	  flag_x = -1;
+	}
+      else /* x[0] < x[1]*/
+	{
+	  for(i=1;i<dimvectx-1;i++)
+	    {
+	      if(x[i] > x[i+1])
+		{
+		  Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
+		  return;
+		}
+	    }
+	  flag_x = 1;
+	}
+    }
+    
+    if(*m2 == 1) /* y is a row vector */
+      dimvecty = *n2;
+    else if(*n2 == 1) /* y is a column vector */
+      dimvecty = *m2;
+    else /* y is a matrix */
+      dimvecty = -1;
+   
+    if(dimvecty>1){
+      /* test the monotony on y*/
+      if(y[0] >= y[1]) /* decreasing */
+	{
+	  int i;
+	  for(i=1;i<dimvecty-1;i++)
+	  {
+	    if(y[i] < y[i+1])
+	      {
+		Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
+		return;
+	      }
+	  }
+	  flag_y = -1;
+	}
+      else /* y[0] < y[1]*/
+	{
+	  for(i=1;i<dimvecty-1;i++)
+	    {
+	      if(y[i] > y[i+1])
+		{
+		  Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
+		  return;
+		}
+	    }
+	  flag_y = 1;
+	}
+    }
+
     sciSetCurrentObj (ConstructSurface
 		      ((sciPointObj *)
 		       psubwin, typeof3d,
 		       x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
 		       isfac,m1,n1,m2,n2,m3,n3,m3n,n3n));
+    
+    pSURFACE_FEATURE (sciGetCurrentObj())->flag_x = flag_x;
+    pSURFACE_FEATURE (sciGetCurrentObj())->flag_y = flag_y;
+    
+    
+  }
   else
     {
       if ((hdltab = MALLOC (*n * sizeof (long))) == NULL) {

@@ -144,7 +144,7 @@ extern void C2F(fac3dn)(sciPointObj *pobj,
 			double *cvect, integer *p, integer *q, int *DPI);
 /**DJ.Abdemouche 2003**/
 
-extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg); /* DRAWINGS */
+extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg, sciPointObj *psurface); /* DRAWINGS */
 extern void Merge3d(sciPointObj *psubwin);/*DJ.A merge*/   /* DRAWINGS */
 extern void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos);
 extern int Merge3dDimension(sciPointObj *pparent);

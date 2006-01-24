@@ -1030,6 +1030,9 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
 
+  int flag_x;
+  int flag_y;
+  
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
