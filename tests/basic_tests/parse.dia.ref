@@ -212,12 +212,13 @@ what
  Commands: 
 
                    abort                  apropos                    break                     case 
-                     clc                    clear                 continue                       do 
-                    else                   elseif                      end              endfunction 
-                    exit                      for                 function                     help 
-                      if                    pause                      pwd                     quit 
-                  resume                   return                   select                     then 
-                    what                    while                      who 
+                   catch                      clc                    clear                 continue 
+                      do                     else                   elseif                      end 
+             endfunction                     exit                      for                 function 
+                    help                       if                    pause                      pwd 
+                    quit                   resume                   return                   select 
+                    then                      try                     what                    while 
+                     who 
  
 :
  ans  =
