@@ -13,7 +13,7 @@ function browsehelp(path,key)
   if or(sciargs()=="-nw") then // the no window case
     if  with_gtk ()| ..
 	  (with_tk()& or(%browsehelp==['Scilab Browser','Old Scilab Browser'])) | ..
-	  or(%browsehelp==['nautilus','mozilla/netscape (gnome-moz-remote)','opera','quanta (kde)']) then
+	  or(%browsehelp==['firefox','nautilus','mozilla/netscape (gnome-moz-remote)','opera','quanta (kde)']) then
       run_help(path,key);
     else
       write(%io(2),mgetl(path))
@@ -29,7 +29,8 @@ function  browsehelp_configure(job)
   oldbrowsehelp=[];
   if ~MSDOS then
     if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
-    browse_modes=['nautilus';
+    browse_modes=['firefox';
+	          'nautilus';
 		  'mozilla/netscape (gnome-moz-remote)';
 		  'opera'
 		  'quanta (kde)'];
@@ -90,6 +91,8 @@ function run_help(path,key)
   select %browsehelp
   case 'help widget' then
     help_gtk(SCI+"/man/",LANGUAGE,path);
+  case 'firefox' then
+    unix_s("firefox -remote ""openurl("+path+')"" &')
   case 'nautilus' then 
     unix_s("nautilus --no-desktop "+path+ '&');
   case 'mozilla/netscape (gnome-moz-remote)' then
