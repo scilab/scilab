@@ -20,7 +20,7 @@ returns a 2x2x2 array filled with entries taken from values.
   values = double array of values, dimension prod
  *********************************************************/ 
  
-int intex16c(fname)
+int intex19c(fname)
      char* fname;
 { 
 #define  FIRST_DIM  2
@@ -39,13 +39,16 @@ int intex16c(fname)
   23,8,1,3,4};
 
   CheckRhs(0,1); CheckLhs(1,1);
-
+  /*   1: set ndim and prod here:   */
+  ndim=3;
   prod=TOTAL_ELEMENTS;
+  /************************************/
+
   CreateData(1, (33+ndim)*sizeof(int) + (2+prod)*sizeof(double));
   header = GetData(1); data = (double *) &header[0];  
-  for ( i = 0 ; i < 32 ; i++ ) {
+  for ( i = 0 ; i < DIM ; i++ )
     header[i]=template[i];
-   }
+  
   header[4]=header[3] + SIZE_DIMS;
   header[5]=header[4] + SIZE_VALUES;
   /*   entries = real (prod x 1) vector */ 
@@ -53,19 +56,17 @@ int intex16c(fname)
   header[HEAD+1]=prod;
   header[HEAD+2]=1;
   header[HEAD+3]=0;
-  /*    fill with dimensions  */
+
+  /*   2: fill with dimensions  */
   header[DIM+0]=  FIRST_DIM; 
   header[DIM+1]=  SECOND_DIM; 
   header[DIM+2]=  THIRD_DIM;  
-    /*   fill with values  */
-    data[VAL+0] =  values[0];
-    data[VAL+1] =  values[1];
-    data[VAL+2] =  values[2];
-    data[VAL+3] =  values[3];
-    data[VAL+4] =  values[4];
-    data[VAL+5] =  values[5];
-    data[VAL+6] =  values[6];
-    data[VAL+7] =  values[7];
+ /************************************/
+    /*  3: fill with values  */
+   for ( i = 0 ; i < prod ; i++ )
+    data[VAL+i] =  values[i];
+ /************************************/
+
   LhsVar(1)=1;
   return 0;
 }
