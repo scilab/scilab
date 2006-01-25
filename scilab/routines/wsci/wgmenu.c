@@ -21,6 +21,7 @@ extern void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 extern HDC GetPrinterDC(void);
 extern char GetPrinterOrientation(void);
 extern void PrintPs (struct BCG *ScilabGC);
+extern void SavePs (struct BCG *ScilabGC);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void Callback_PRINTSETUP(void);
 extern LPTW GetTextWinScilab(void);
@@ -261,10 +262,14 @@ void write_scilab (char *buf)
   
 }
 /*-----------------------------------------------------------------------------------*/
+void CallTranslateMacroGraphicWindow(char *string)
+{
+	TranslateMacro(string);
+}
+/*-----------------------------------------------------------------------------------*/
 /************************************
  * Translate string to tokenized macro 
  ************************************/
-
 static void TranslateMacro (char *string)
 {
   int i, len;
@@ -872,195 +877,7 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
-/****************************************************
- * Event handler function for the line style window 
- * uses GetWindowLong(hwnd, 4) and SetWindowLong
- ****************************************************/
-
-EXPORT BOOL CALLBACK
-ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
-{
-  int i;
-  switch (wmsg)
-    {
-    case WM_INITDIALOG:
-      SendDlgItemMessage (hdlg, PS_COLOR, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) MSG_SCIMSG92));
-      SendDlgItemMessage (hdlg, PS_COLOR, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) MSG_SCIMSG93));
-      SendDlgItemMessage (hdlg, PS_COLOR, CB_SETCURSEL,
-			  ls.colored, 0L);
-      SendDlgItemMessage (hdlg, PS_LAND, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) MSG_SCIMSG94));
-      SendDlgItemMessage (hdlg, PS_LAND, CB_ADDSTRING, 0,
-			  (LPARAM) ((LPSTR) MSG_SCIMSG95));
-      SendDlgItemMessage (hdlg, PS_LAND, CB_SETCURSEL,
-			  ls.land, 0L);
-      if (ls.use_printer == 0)
-	{
-	  for (i = 0; i < 8; i++)
-	    SendDlgItemMessage (hdlg, PS_TYPE, CB_ADDSTRING, 0,
-				(LPARAM) ((LPSTR) Print_Formats[i]));
-	  SendDlgItemMessage (hdlg, PS_TYPE, CB_SETCURSEL,
-			      ls.ps_type, 0L);
-	}
-      return TRUE;
-    case WM_COMMAND:
-      switch (LOWORD (wparam))
-	{
-	case PS_COLOR:
-	  ls.colored =
-	    (UINT) SendDlgItemMessage (hdlg, PS_COLOR, CB_GETCURSEL, 0, 0L);
-	  return FALSE;
-	case PS_TYPE:
-	  ls.ps_type =
-	    (UINT) SendDlgItemMessage (hdlg, PS_TYPE, CB_GETCURSEL, 0, 0L);
-	  return FALSE;
-	case PS_LAND:
-	  ls.land =
-	    (UINT) SendDlgItemMessage (hdlg, PS_LAND, CB_GETCURSEL, 0, 0L);
-	  return FALSE;
-	case IDOK:
-	  EndDialog (hdlg, IDOK);
-	  return TRUE;
-	case IDCANCEL:
-	  EndDialog (hdlg, IDCANCEL);
-	  return TRUE;
-	}
-      break;
-      return FALSE;
-    }
-  return FALSE;
-}
-/*-----------------------------------------------------------------------------------*/
-/****************************************************
- * Export style dialog box 
- ****************************************************/
-
-BOOL ExportStyle (struct BCG * ScilabGC)
-{
-  DLGPROC lpfnExportStyleDlgProc;
-  BOOL status = FALSE;
-  lpfnExportStyleDlgProc = (DLGPROC) MyGetProcAddress ("ExportStyleDlgProc",
-						       ExportStyleDlgProc);
-  if (DialogBox (hdllInstance,"ExportStyleDlgBox",
-		 ScilabGC->hWndParent, lpfnExportStyleDlgProc) == IDOK)
-    {
-      status = TRUE;
-    }
-  return status;
-}
-/*-----------------------------------------------------------------------------------*/
-static void SavePs (struct BCG *ScilabGC)
-{
-
-  char *d, ori;
-  char filename[MAXSTR],filename1[MAXSTR];
-  BYTE *s;
-  char str[] = "[SAVESCG]XScilab Postscript[EOS]*[EOS]";
-  int flag, ierr = 0;
-  /** getting ls flags **/
-  ls.use_printer = 0;
-  if (ExportStyle (ScilabGC) == FALSE)
-    return;
-  /** getting filename **/
-  d = filename;
-  TranslateMacro (str);
-  s = str;
-  flag = SciOpenSave (ScilabGC->hWndParent, &s,TRUE,&d, &ierr);
-  if (flag == 0 || ierr == 1)
-    {
-      return;
-    }
-  *d = '\0';
-
-  switch (ls.ps_type)
-    {
-    case 0:
-      /** postscript Epsf file **/
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      wininfo (MSG_SCIMSG96);
-      dos2win32 (filename, filename1);
-      scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
-      ori = (ls.land == 1) ? 'l' : 'p';
-      ScilabPsToEps (ori, filename1, filename);
-      wininfo (MSG_SCIMSG97);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 1:
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      scig_tops (ScilabGC->CurWindow, ls.colored, filename, "Pos");
-      wininfo (MSG_SCIMSG98);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 2:
-      /** Epsf + Tex file **/
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      wininfo (MSG_SCIMSG99);
-      dos2win32 (filename, filename1);
-      scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
-      ori = (ls.land == 1) ? 'l' : 'p';
-      ScilabPsToTeX (ori, filename1, filename, 1.0, 1.0);
-      wininfo (MSG_SCIMSG100);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 3:
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      scig_tops (ScilabGC->CurWindow, ls.colored, filename, "Fig");
-      wininfo (MSG_SCIMSG101);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 4:
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      scig_tops (ScilabGC->CurWindow, ls.colored, filename, "GIF");
-      wininfo (MSG_SCIMSG102);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 5:
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      scig_tops (ScilabGC->CurWindow, ls.colored, filename, "PPM");
-      wininfo (MSG_SCIMSG103);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 6:
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      ExportBMP(ScilabGC,filename);
-      wininfo (MSG_SCIMSG104);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    case 7:
-      SetCursor (LoadCursor (NULL, IDC_WAIT));
-      ExportEMF(ScilabGC,filename);
-      wininfo (MSG_SCIMSG104);
-      SetCursor (LoadCursor (NULL, IDC_CROSS));
-      break;
-    }
-	
-	
-}
-/*-----------------------------------------------------------------------------------*/
-void dos2win32 (char *filename, char *filename1)
-{
-#ifdef CVT_PATH_BEG
-  if (filename[1] == ':')
-    {
-      *filename1++ = '/';
-      *filename1++ = '/';
-      *filename1++ = *filename++;
-      filename++;
-    }
-#endif
-  while (*filename != '\0')
-    {
-      *filename1++ = *filename++;
-      if (*(filename1 - 1) == '\\')
-	*(filename1 - 1) = '/';
-    }
-  *filename1 = '\0';
-}
-/*-----------------------------------------------------------------------------------*/
 /* used by command_handler in metanet */
-
 static void scig_command_scilabgc (int number, void f (struct BCG *))
 {
   struct BCG *ScilabGC = GetWindowXgcNumber (number);
@@ -1279,14 +1096,9 @@ void CreateGedMenus(struct BCG * ScilabGC)
 		SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
 		*/
 	#ifdef WITH_TK
-		integer ne=8, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure",/*"[--]","&Copy object","&Paste object","Move object","Delete object",*/"[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
-		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure",/*"[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet",*/"[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
-
-		/* Disable Double Arrow */
-		integer ni=/*7*/6;
-		char *InsertMenusE[]={"&Line","&Polyline","&Arrow",/*"&Double Arrow",*/"&Text","&Rectangle","&Circle"};
-		char *InsertMenusF[]={"&Ligne","L&igne brisée","&Fleche",/*"&Double Fleche",*/"&Texte","&Rectangle","&Cercle"};
+		integer ne=9, menutyp=2, ierr;
+		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
+		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
 	#else
 		integer ne=3, menutyp=2, ierr;
 		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
@@ -1300,15 +1112,10 @@ void CreateGedMenus(struct BCG * ScilabGC)
 		{
 			case 1:
 				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
-			#ifdef WITH_TK
-				/*AddMenu(&WinNum,"&Inserer", InsertMenusF, &ni, &menutyp, "ged_insert", &ierr);*/
-			#endif
 			break;
+
 			default:
 				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-			#ifdef WITH_TK
-				/*AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);*/
-			#endif
 			break;
 		}
 
@@ -1322,7 +1129,7 @@ BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)
 	
 	if (IsEntityPickerMenu(ScilabGC,id))
 	{
-		if (id == 20)
+		if (id == 19)
 		{
 			wsprintf(command,"ged(6,%d);",ScilabGC->CurWindow); /* Start */
 			ModifyEntityPickerToolbar(ScilabGC,TRUE);
@@ -1330,7 +1137,7 @@ BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)
 			bOK=TRUE;
 		}
 
-		if (id == 21)
+		if (id == 20)
 		{
 			wsprintf(command,"ged(7,%d);",ScilabGC->CurWindow); /* Stop */
 			ModifyEntityPickerToolbar(ScilabGC,FALSE);
@@ -1345,7 +1152,7 @@ BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)
 BOOL IsEntityPickerMenu(struct BCG * ScilabGC,int id)
 {
 	BOOL bOK=FALSE;
-	if (id == 20)
+	if (id == 19)
 	{
 		#define lenStringMenu 64
 		char CurrentStringMenu[lenStringMenu];
@@ -1362,7 +1169,7 @@ BOOL IsEntityPickerMenu(struct BCG * ScilabGC,int id)
 		}
 	}
 
-	if (id == 21)
+	if (id == 20)
 	{
 		#define lenStringMenu 64
 		char CurrentStringMenu[lenStringMenu];

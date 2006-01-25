@@ -104,18 +104,6 @@ static BYTE keyeq[] =
   menu for exporting to ps or xfig 
   ***************************/
 
-typedef struct tagLS
-{
-  int colored;
-  int land;
-  int use_printer;
-  int ps_type;
-}
-LS;
-
-LS ls =
-{1, 0, 0, 0};
-
 static char *Print_Formats[] =
 {
   "Postscript",
@@ -128,6 +116,7 @@ static char *Print_Formats[] =
   "Enhanced Meta File (.emf)"
 };
 
+extern LS ls;
 
 
 void dos2win32 (char *filename, char *filename1);
@@ -137,10 +126,12 @@ static void SciChMenu (LPMW lpmw, char *name, char *new_name);
 static void SciSetMenu (HMENU hmen, char *name, int num, int flag);
 static void SciChMenu (LPMW lpmw, char *name, char *new_name);
 static void SciDelMenu (LPMW lpmw, char *name);
-static void SavePs (struct BCG *ScilabGC);
-static void TranslateMacro (char *string);
+
+
 static void ExploreMenu (HMENU hmen, BYTE ** hmacro);
 static void scig_command_scilabgc (int number, void f (struct BCG *));
+void CallTranslateMacroGraphicWindow(char *string);
+static void TranslateMacro (char *string);
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);

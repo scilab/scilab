@@ -197,7 +197,18 @@ typedef GW *  LPGW;
 #define SCILEX "scilex.exe"
 #define WSCILEX "wscilex.exe"
 
+/*****************************
+menu for exporting to ps or xfig 
+***************************/
 
+typedef struct tagLS
+	{
+	int colored;
+	int land;
+	int use_printer;
+	int ps_type;
+	}
+LS;
 /*************************/
 
 #endif /*  __WGNUPLIB_H__ */

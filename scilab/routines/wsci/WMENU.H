@@ -118,7 +118,7 @@
    1 FRENCH
    ...
 */
-char *keyword[] =
+static char *keyword[] =
 {
   "[EMPTYCLIPBOARD]","[SELECTALL]","[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
@@ -133,7 +133,7 @@ char *keyword[] =
   "{^Y}", "{^Z}", "{^[}", "{^\\}", "{^]}", "{^^}", "{^_}",
   NULL};
 
-BYTE keyeq[] =
+static BYTE keyeq[] =
 {
   EMPTYCLIPBOARD,SELECTALL,CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,
   TOOLBAR,NEWSGROUP,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
