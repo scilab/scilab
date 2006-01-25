@@ -3,7 +3,7 @@
 /*   
 Example of ND Array in Scilab  
 FD for Mengzhen (Jan-2006)
-usage: w=ex16c()
+usage: w=ex19c()
 returns a 2x2x2 array filled with entries taken from values.
 
 */
