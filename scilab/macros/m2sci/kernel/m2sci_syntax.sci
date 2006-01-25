@@ -112,7 +112,7 @@ for k=1:n
 	  if m<>[] then 
             for l=1:size(m,"*")
 	      if m(l)>=kif(i)+2
-	        if stripblanks(part(tk,kif+2:m(l)))=="(" then
+	        if stripblanks(part(tk,kif(i)+2:m(l)))=="(" then
 	          openpar=1
 	          mtemp=m(l)+1
                   while openpar<>0
@@ -264,14 +264,16 @@ if kcom<>0 then
 end
 if kpunct<>[] then
   for l=size(kpunct,"*"):-1:1
-    kk=gsort(strindex(tk,symbs),"r","i")
-    kk=kk(find(kk>kpunct(l)))
-    if kk==[] then 
-      kk=length(tk)
-      tk=part(tk,1:kpunct(l)-1)+quote+part(tk,kpunct(l)+1:kk)+quote
-    else
-      kk=kk(1)
-      tk=part(tk,1:kpunct(l)-1)+quote+part(tk,kpunct(l)+1:kk-1)+quote+part(tk,kk:length(tk))
+    if ~isinstring(tk,kpunct(l)) then
+      kk=gsort(strindex(tk,symbs),"r","i")
+      kk=kk(find(kk>kpunct(l)))
+      if kk==[] then 
+        kk=length(tk)
+        tk=part(tk,1:kpunct(l)-1)+quote+part(tk,kpunct(l)+1:kk)+quote
+      else
+        kk=kk(1)
+        tk=part(tk,1:kpunct(l)-1)+quote+part(tk,kpunct(l)+1:kk-1)+quote+part(tk,kk:length(tk))
+      end
     end
   end
 end
