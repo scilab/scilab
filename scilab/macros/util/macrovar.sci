@@ -22,6 +22,7 @@ ng=prod(size(getted))
 globals=[],called=[]
 for k=1:ng
   if (find(getted(k)==vars)==[])&(find(getted(k)==in)==[]) then 
+    clear w //to avoid redefinition warning
     ierr=execstr('w='+getted(k),'errcatch')
     if ierr==0 then //the variable exists
       if or(type(w)==[13 130 11]) then
