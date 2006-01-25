@@ -97,30 +97,43 @@ helppart=[],endofhelp=%f
 
 for k=1:n
   tk=txt(k)
+  
   // ifthenelse expression like if (x==1)t=2 becomes if (x==1) t=2
-  // Add a blank between parenthesize expression and the first instruction
+  // Add a blank between parenthesize expression and the first instruction 
   kif=strindex(tk,"if")
   if kif<>[] then
-    m=min(strindex(tk,"("))
-      if m<>[] then
-        kcom=isacomment(tk)
-          if (kcom<>0 & m<kcom) | (kcom==0) then
-              if stripblanks(part(tk,kif(1)+2:m-1))=="" then
-                openpar=1
-	        m=m+1
-                while openpar<>0
-	          if or(part(tk,m)=="(") then
-	            openpar=openpar+1
-	          elseif or(part(tk,m)==")") then
-                    openpar=openpar-1
+    kcom=isacomment(tk)
+    for i=1:size(kif,"*")
+      if kif(i)>kcom & kcom<>0 then
+        break
+      else
+        if (kif(i)>1 & or(stripblanks(part(tk,kif(i)-1:kif(i)+2))==["if(","if"])) | (kif(i)==1 & or(stripblanks(part(tk,kif(i):kif(i)+2))==["if(","if"]))
+          m=min(strindex(tk,"("))
+	  if m<>[] then 
+            for l=1:size(m,"*")
+	      if m(l)>=kif(i)+2
+	        if stripblanks(part(tk,kif+2:m(l)))=="(" then
+	          openpar=1
+	          mtemp=m(l)+1
+                  while openpar<>0
+	            if or(part(tk,mtemp)=="(") then
+	              openpar=openpar+1
+	            elseif or(part(tk,mtemp)==")") then
+                      openpar=openpar-1
+                    end
+                    mtemp=mtemp+1 
                   end
-                  m=m+1 
-                end
-                tk=part(tk,1:m-1)+" "+part(tk,m:length(tk))
-              end	      
-	    end 
+                  tk=part(tk,1:mtemp-1)+" "+part(tk,mtemp:length(tk))
+	          break
+	        end
+              end
+            end
+          end
         end
       end
+    end
+  end  
+  
 
   // Parenthesize expressions like 1+-2, 1*-2... which becomes 1+(-2), 1*(-2)...
   // Parentheses are deleted by comp() and will be added one more time by %?2sci function
@@ -131,6 +144,7 @@ if kcom<>0 then
 end
 offset=1
 l=1
+
 while l<=size(kop,"*")
   if ~isinstring(tk,kop(l)) then
     ksym=kop(l)+offset
@@ -181,6 +195,7 @@ end
 end
 l=l+1
 end
+
 // Modify expressions like 1++2, 1*+2... which become 1+2, 1*2...
 kop=strindex(tk,["+","-","*","/","\","^"])
 offset=0
