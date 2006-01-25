@@ -14,14 +14,6 @@ extern char GetPrinterOrientation(void);
 /*-----------------------------------------------------------------------------------*/
 #define MAXSTR 255
 static char filename[MAXSTR], filename1[MAXSTR];
-typedef struct tagLS
-{
-	int colored;
-	int land;
-	int use_printer;
-	int ps_type;
-}
-LS;
 extern LS ls;
 /*-----------------------------------------------------------------------------------*/
 BOOL FigureToPrint(int figurenumber,BOOL Postscript)

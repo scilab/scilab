@@ -792,6 +792,12 @@ cd .. &gt;nul
 				RelativePath=".\ExportBmpEmf.c">
 			</File>
 			<File
+				RelativePath=".\ExportBox.c">
+			</File>
+			<File
+				RelativePath=".\FigureToFile.c">
+			</File>
+			<File
 				RelativePath=".\FigureToPrint.c">
 			</File>
 			<File
@@ -2137,6 +2143,12 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\ExportBmpEmf.h">
+			</File>
+			<File
+				RelativePath=".\ExportBox.h">
+			</File>
+			<File
+				RelativePath=".\FigureToFile.h">
 			</File>
 			<File
 				RelativePath=".\FigureToPrint.h">
