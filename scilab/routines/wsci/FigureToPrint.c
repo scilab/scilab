@@ -14,14 +14,6 @@ extern char GetPrinterOrientation(void);
 /*-----------------------------------------------------------------------------------*/
 #define MAXSTR 255
 static char filename[MAXSTR], filename1[MAXSTR];
-typedef struct tagLS
-{
-	int colored;
-	int land;
-	int use_printer;
-	int ps_type;
-}
-LS;
 extern LS ls;
 /*-----------------------------------------------------------------------------------*/
 BOOL FigureToPrint(int figurenumber,BOOL Postscript)
@@ -91,15 +83,13 @@ int CopyPrint (struct BCG *ScilabGC)
 
 	GetClientRect (hwnd, &rect);
 	SetLastError (0);
-	if (SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr)) == 0
-		&& GetLastError () != 0)
+	if (SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr)) == 0 && GetLastError () != 0)
 	{
 		sciprint (MSG_ERROR34);
 		Setscig_buzyState(0);
 		return TRUE;
 	}
-	if (SetWindowLong(ScilabGC->hWndParent, 4, (LONG) ((LP_PRINT) & pr)) == 0
-		&& GetLastError () != 0)
+	if (SetWindowLong(ScilabGC->hWndParent, 4, (LONG) ((LP_PRINT) & pr)) == 0	&& GetLastError () != 0)
 	{
 		sciprint (MSG_ERROR34);
 		Setscig_buzyState(0);
@@ -137,8 +127,8 @@ int CopyPrint (struct BCG *ScilabGC)
 			else bError = TRUE;
 		}
 	}
-	else
-		bError = TRUE;
+	else bError = TRUE;
+
 	if (!pr.bUserAbort)
 	{
 		EnableWindow (hwnd, TRUE);
