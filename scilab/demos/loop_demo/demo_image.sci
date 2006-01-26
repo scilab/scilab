@@ -4,11 +4,7 @@ demo_help demo_image
 xdel() ;
 
 // read image
-if MSDOS then
-  [mat,h] = readppm('./scilab_logo.ppm');
-else
-  [mat,h] = readppm('./scilab_logo_unix.ppm');
-end
+[mat,h] = readppm('./scilab_logo.ppm');
 
 // get three matrixes with the three channels
 [r,g,b] = col2rgb(mat) ;
