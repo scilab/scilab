@@ -79,7 +79,7 @@ red_sum   = double( sum(r) ) ;
 green_sum = double( sum(g) ) ;
 blue_sum  = double( sum(b) ) ;
 
-sums = [red_sum,green_sum,blue_sum];
+sums = [green_sum,red_sum,blue_sum];
 disp = [0 0 0];
 //txt = ["blue","green","red"];
 //xtitle('Proportion of the red, green and blue channels in the image');
