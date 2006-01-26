@@ -253,7 +253,9 @@ else
 	prop=[prop;Unknown]
       end
     end
-    dims="dims="+sci2exp(dims)
+    
+    dimstemp=sci2exp(dims)
+    dims=["dims="+dimstemp(1);dimstemp(2:$)]
     vtype="vtype="+sci2exp(vtype)
     prop="prop="+sci2exp(prop)
     trad=[trad;
@@ -287,6 +289,7 @@ else
     end
   end
 end
+
 clearglobal varslist
 clearglobal %graphics
 endfunction
