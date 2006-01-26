@@ -1,4 +1,4 @@
-cd(SCI+'/demos/loop_demo/loop_demo_eng');
+cd(SCI+'/demos/loop_demo');
 if MSDOS then
   while %t
     unix_g(SCI+'/bin/Wscilex -ng -f loop.sce');
