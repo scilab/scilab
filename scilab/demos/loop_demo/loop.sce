@@ -9,6 +9,10 @@ wSize = [850,920];
 // window size for the image demo
 wSize_Small = [850,492] ;
 
+// set firefox has help viewer
+global %browsehelp
+%browsehelp = 'firefox'
+
 global INDEX
 INDEX = make_help_index()
 
@@ -17,12 +21,11 @@ titles=['Scilab','Arbre genealogique', ..
 	'Visualisation de surface Riemann','Surfaces 3D',..
         'Traitement d''image','Complex Functions', ..
         'Traitement du signal','Stationnement d''une voiture', ..
-        'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
+        'Stationnement d''un semi remorque',..
+	'Modelisation et simulation d''une chaine', ..
         'Modelisation et simulation d''un pendule glissant', ..
         'Programmation lineaire 2', ..
         'Optimisation non lineaire','Spline'];
-        //'Scicos 1','Scicos 2'
-
           
 demos=['demo_scilab();','demo_geneal();',..
        'demo_isoSurf()',..
@@ -33,7 +36,6 @@ demos=['demo_scilab();','demo_geneal();',..
        'demo_sliding_pendulum();', ..
        'demo_optloc();', ..
        'demo_datafit();','demo_spline();'];
-       //'demo_scicos1();','demo_scicos2();'
 
 filesdemos=['demo_scilab.sci','Geneal.sci', ..
 	    'demo_isoSurf.sci',..
@@ -41,24 +43,22 @@ filesdemos=['demo_scilab.sci','Geneal.sci', ..
             'demo_image.sci','cmplxfun.sci', ..
             'demo_signal.sci','car.sci', ..
             'truck.sci','n_pendulum.sci', ..
-            'sliding_pendulum.sci', ..
-            'optloc.sci', ..
-            'datafit.sci','spline.sci'];       
-            //'demo_scicos1.sci','demo_scicos2.sci'
-
+	    'sliding_pendulum.sci', ..
+	    'optloc.sci', ..
+            'datafit.sci','spline.sci'];    
  
 //------------------------------------------------------------
 function demo_help(key)
   browsehelp=browsehelp;
-  if MSDOS then
+  //if MSDOS then
     browsehelp(gethelpfile(key),key)
-  else
-    tcltk_help(gethelpfile(key),key,'demo')
-  end
+  //else
+    //tcltk_help(gethelpfile(key),key,'demo')
+  //end
   // wait for people to read
   realtimeinit(1.0);
   for i=1:1
-    realtime(i);
+//    realtime(i);
   end ;
 endfunction
 //------------------------------------------------------------
@@ -71,11 +71,11 @@ function demotodo(demoname,title)
   clearglobal() ;
 endfunction
 //------------------------------------------------------------
-function loopdemos
+function loopdemos(n)
   
- Max=size(demos);
+// Max=size(demos,"*");
  
- for i=1:1:Max(2) do
+ for i=1:n do
    demotodo(demos(i),titles(i)); 
  end
 
@@ -127,12 +127,12 @@ end
 Maxfiles=size(filesdemos);
  
  for i=1:1:Maxfiles(2) do
-   getf(filesdemos(i));
+   exec(filesdemos(i));
  end
 
 //while %t
-  loopdemos();
-  //loopnumber=loopnumber+1;
+  loopdemos(15);
+//  loopnumber=loopnumber+1;
 //end
-exit ;
-//------------------------------------------------------------
+exit
+

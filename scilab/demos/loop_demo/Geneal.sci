@@ -4,7 +4,9 @@
 //  Designed for Scilab 3.1.1 & 4.0 under Windows XP & Linux
 
 function demo_geneal()
+
 demo_help demo_geneal
+
 
 //SetPosition();
 

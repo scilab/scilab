@@ -1,8 +1,14 @@
 function demo_image()
+
 demo_help demo_image
 xdel() ;
+
 // read image
-[mat,h]   = readppm('./scilab_logo.ppm');
+if MSDOS then
+  [mat,h] = readppm('./scilab_logo.ppm');
+else
+  [mat,h] = readppm('./scilab_logo_unix.ppm');
+end
 
 // get three matrixes with the three channels
 [r,g,b] = col2rgb(mat) ;
@@ -77,7 +83,7 @@ red_sum   = double( sum(r) ) ;
 green_sum = double( sum(g) ) ;
 blue_sum  = double( sum(b) ) ;
 
-sums = [blue_sum,green_sum,red_sum];
+sums = [red_sum,green_sum,blue_sum];
 disp = [0 0 0];
 //txt = ["blue","green","red"];
 //xtitle('Proportion of the red, green and blue channels in the image');

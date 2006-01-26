@@ -1,5 +1,5 @@
 function demo_datafit()
-  demo_help demo_datafit
+  //demo_help demo_datafit
   
   //create the experimental data
   X=[];Y=[];
@@ -8,7 +8,7 @@ function demo_datafit()
   Z=[Y;X];
   //show the data points
   xbasc();
-  SetPosition();
+  //SetPosition();
   set figure_style old;
   //xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);xselect()
   plot2d(X',Y',style=-1,leg='Données expérimentales') 

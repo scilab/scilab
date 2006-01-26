@@ -82,7 +82,6 @@ for i=1:180
 end;
 
 
-
 endfunction
 
 function [xx,yy,zz]=isosurf3d(x,y,z,s,s0)
@@ -1271,7 +1270,7 @@ if lhs==0 then
   xtitle('All the colormaps at the current color depth ('+string(nc)+..
          ' colors)')
     disp " "
-    i=tk_choose(string((-k:k)')+' '+..
+    i=x_choose(string((-k:k)')+' '+..
      [cname(k:-1:1);'Scilab''s default';cname],..
              'Choose one colormap!','Forget!')-k-1
     xdel(a($)+1); xset('window',currwin); setcmap(i,nc,1)
