@@ -17,9 +17,8 @@ function editvar(%_name)
   %_type=typeof(%_var)
   if and(type(%_var)~=[1 4 8 10 16])&%_type~="xlssheet" then error(44), end
 
-  disp("Please wait...");
   [%_ni,%_nj]=size(%_var);
-
+  %_var=string(%_var)
   TCL_EvalStr("set EdVarLoc [sciGUIEditVar -1]");
   %_winId=TCL_GetVar("EdVarLoc");
 
@@ -39,9 +38,8 @@ function editvar(%_name)
 
   for %_j=1:%_nj,
     for %_i=1:%_ni,
-      %_value=string(%_var(%_i,%_j));
       %_varname="sciGUITable(win,"+%_winId+",data,"+string(%_i)+","+string(%_j)+")";
-      TCL_SetVar(%_varname,%_value);
+      TCL_SetVar(%_varname,%_var(%_i,%_j));
     end
   end
 

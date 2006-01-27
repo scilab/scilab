@@ -10,19 +10,22 @@ function outvar=editvar_get(winId)
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
 
-  disp("Please wait...");
- 
+ // mprintf("Please wait...");
   base="sciGUITable(win,"+string(winId)+",data";
   varType=TCL_GetVar(base+',type)');
   varni=evstr(TCL_GetVar(base+',ni)'));
   varnj=evstr(TCL_GetVar(base+',nj)'));
   
   outvar=[];
+  count=0;  winId=progressionbar('Updating, please wait');
+
   select varType
   case "constant" then
     outvar=zeros(varni,varnj)
     for j=1:varnj,
       for i=1:varni,
+	count=modulo(count+1,100)
+	if count==0 then  progressionbar(winId);end
 	outvar(i,j)=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
       end
     end
@@ -30,12 +33,16 @@ function outvar=editvar_get(winId)
     outvar(varni,varnj)=%f;
     for j=1:varnj,
       for i=1:varni,
+	count=modulo(count+1,100)
+	if count==0 then  progressionbar(winId);end
 	outvar(i,j)=convstr(TCL_GetVar(base+','+string(i)+','+string(j)+')')=='t')
       end
     end
   case "string" then
     for j=1:varnj,
       for i=1:varni,
+	count=modulo(count+1,100)
+	if count==0 then  progressionbar(winId);end
 	outvar(i,j)=TCL_GetVar(base+','+string(i)+','+string(j)+')')
       end
     end
@@ -44,6 +51,8 @@ function outvar=editvar_get(winId)
     V=%nan*ones(varni,varnj)
     for j=1:varnj,
       for i=1:varni,
+	count=modulo(count+1,100)
+	if count==0 then  progressionbar(winId);end
 	q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
 	if execstr('v='+q,'errcatch')==0 then
 	  V(i,j)=v;
@@ -59,6 +68,8 @@ function outvar=editvar_get(winId)
       execstr('outvar='+varType+'(zeros(varni,varnj))')
       for j=1:varnj,
 	for i=1:varni,
+	  count=modulo(count+1,100)
+	  if count==0 then  progressionbar(winId);end
 	  q=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
 	  execstr('outvar(i,j)='+varType+'(q)')
 	end
@@ -66,5 +77,7 @@ function outvar=editvar_get(winId)
     end
   
   end
+  winclose(winId);
+
 endfunction
 
