@@ -9,8 +9,6 @@
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
-static int scig_buzy = 0;
-/*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 extern TW textwin;
 extern GW graphwin;
@@ -28,6 +26,7 @@ extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_hand
 extern EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
+extern void Setscig_buzyState(BOOL state);
 /*-----------------------------------------------------------------------------------*/
 static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
 /*-----------------------------------------------------------------------------------*/
@@ -322,13 +321,9 @@ void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   /* static paint = 0; */
   HDC hdc;
   PAINTSTRUCT ps;
-  hdc = BeginPaint(hwnd, &ps);  
-  if (Getscig_buzyState() == 1)  
-    {
-      EndPaint(hwnd, &ps);
-      return; 
-    }
-  Setscig_buzyState(1);
+  
+  Setscig_buzyState(TRUE);
+	hdc = BeginPaint(hwnd, &ps);  
   
   if (ScilabGC->Inside_init == 1) goto paint_end;
   
@@ -387,7 +382,7 @@ void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   paint_end : 
     {
       EndPaint(hwnd, &ps);
-      Setscig_buzyState(0);
+      Setscig_buzyState(FALSE);
     }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -690,15 +685,5 @@ HDC TryToGetDC(HWND hWnd)
 	}
 
 	return (HDC)hDCRet;
-}
-/*-----------------------------------------------------------------------------------*/
-int Getscig_buzyState(void)
-{
-	return scig_buzy;
-}
-/*-----------------------------------------------------------------------------------*/
-void Setscig_buzyState(int state)
-{
-	scig_buzy=state;
 }
 /*-----------------------------------------------------------------------------------*/

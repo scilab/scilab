@@ -17,7 +17,7 @@
 #include "wresource.h"
 #include "../graphics/bcg.h"
 /*-----------------------------------------------------------------------------------*/
-BOOL HdcToBmpFile(HDC hdc, char *pszflname);
+BOOL HdcToBmpFile(HDC hdc, char *pszflname,POINT DeviceSize);
 BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
 void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 void ExportEMF(struct BCG *ScilabGC,char *pszflname);

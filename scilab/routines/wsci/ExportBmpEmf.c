@@ -6,7 +6,6 @@
 /*-----------------------------------------------------------------------------------*/
 extern integer GetCurrentFigureWindows(void);
 extern void SetCurrentFigureWindows(integer win);
-extern int Getscig_buzyState(void);
 extern void Setscig_buzyState(int state);
 extern HDC TryToGetDC(HWND hWnd);
 extern void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
@@ -52,10 +51,9 @@ int Interface_XS2EMF(int figurenum,char *filename)
 /*-----------------------------------------------------------------------------------*/
 void CopyToClipboardEMF (struct BCG *ScilabGC)
 {
-	TCHAR   szDesc[] = "Scilab\0Image\0\0";
+	TCHAR szDesc[] = "Scilab\0Image\0\0";
 	LPGW lpgw;
 
-	RECT rect;
 	HANDLE hmf;
 
 	HWND hwnd;
@@ -68,8 +66,7 @@ void CopyToClipboardEMF (struct BCG *ScilabGC)
 	lpgw = ScilabGC->lpgw;
 	hwnd = ScilabGC->CWindow;
 
-	if (Getscig_buzyState() == 1) return;
-	Setscig_buzyState(1);
+	Setscig_buzyState(TRUE);
 
 	SetCurrentFigureWindows (ScilabGC->CurWindow);
 
@@ -83,17 +80,16 @@ void CopyToClipboardEMF (struct BCG *ScilabGC)
 		BringWindowToTop (hwnd);
 		UpdateWindow (hwnd);
 
-		GetClientRect (hwnd, &rect);
 		SetMapMode (hdcEMF, MM_TEXT);
 		SetTextAlign (hdcEMF, TA_LEFT | TA_BOTTOM);
-		SetWindowExtEx (hdcEMF, rect.right - rect.left,rect.bottom - rect.top, (LPSIZE) NULL);
-		Rectangle (hdcEMF, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+		SetWindowExtEx (hdcEMF, ScilabGC->CWindowWidth,ScilabGC->CWindowHeight,(LPSIZE) NULL);
+		Rectangle (hdcEMF, 0, 0, ScilabGC->CWindowWidth,ScilabGC->CWindowHeight);
 
 		/** fix hdc in the scilab driver **/
-		scig_replay_hdc ('C', ScilabGC->CurWindow, hDCtmp,rect.right - rect.left, rect.bottom - rect.top, 1);
+		scig_replay_hdc ('C', ScilabGC->CurWindow, hDCtmp, ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
 		ReleaseDC(hwnd,hDCtmp);
 
-		scig_replay_hdc ('C', ScilabGC->CurWindow, hdcEMF,rect.right - rect.left, rect.bottom - rect.top, 1);
+		scig_replay_hdc ('C', ScilabGC->CurWindow, hdcEMF, ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
 		hmf = CloseEnhMetaFile (hdcEMF);  
 		ReleaseDC(hwnd,hdcEMF);
 
@@ -105,7 +101,7 @@ void CopyToClipboardEMF (struct BCG *ScilabGC)
 	}
 
 	SetCurrentFigureWindows (SaveCurrentWindow);
-	Setscig_buzyState(0);
+	Setscig_buzyState(FALSE);
 	return;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -118,16 +114,14 @@ void CopyToClipboardBitmap (struct BCG *ScilabGC)
 	LPGW lpgw;
 	HDC hmemDC;
 	HBITMAP hBitmap;
-	RECT rect;
-
+	
 	HWND hwnd;
 	HDC hdc=NULL;
 	integer SaveCurrentWindow=0;
 
 	SaveCurrentWindow=GetCurrentFigureWindows();
 
-	if (Getscig_buzyState() == 1) return;
-	Setscig_buzyState(1);
+	Setscig_buzyState(TRUE);
 
 	SetCurrentFigureWindows (ScilabGC->CurWindow);
 
@@ -145,14 +139,17 @@ void CopyToClipboardBitmap (struct BCG *ScilabGC)
 	/* make a bitmap and copy it there */
 	if (hdc)
 	{
-		GetClientRect (hwnd, &rect);
+		/** fix hdc in the scilab driver **/
+		scig_replay_hdc ('C', ScilabGC->CurWindow, hdc, ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
+		ReleaseDC (hwnd, hdc);
+
 		hmemDC = CreateCompatibleDC (hdc);
-		hBitmap = CreateCompatibleBitmap (hdc, rect.right - rect.left, rect.bottom - rect.top);
+		hBitmap = CreateCompatibleBitmap (hdc, ScilabGC->CWindowWidth,ScilabGC->CWindowHeight);
 
 		if (hBitmap)
 		{
 			SelectBitmap (hmemDC, hBitmap);
-			scig_replay_hdc ('C', ScilabGC->CurWindow, hmemDC,rect.right - rect.left, rect.bottom - rect.top, 1);
+			scig_replay_hdc ('C', ScilabGC->CurWindow, hmemDC,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
 
 			OpenClipboard (hwnd);
 			EmptyClipboard ();
@@ -173,18 +170,14 @@ void CopyToClipboardBitmap (struct BCG *ScilabGC)
 		MessageBox(NULL,MSG_ERROR36,MSG_ERROR20,MB_ICONWARNING);
 	}
 
-	/** fix hdc in the scilab driver **/
-	scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,  rect.right - rect.left, rect.bottom - rect.top, 1);
-	ReleaseDC (hwnd, hdc);
-
 	SetCurrentFigureWindows (SaveCurrentWindow);
 
-	Setscig_buzyState(0);
+	Setscig_buzyState(FALSE);
 
 	return;
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL HdcToBmpFile(HDC hdc, char *pszflname)
+BOOL HdcToBmpFile(HDC hdc, char *pszflname,POINT DeviceSize)
 {
 	HDC memdc;
 	HANDLE hfl;
@@ -197,8 +190,10 @@ BOOL HdcToBmpFile(HDC hdc, char *pszflname)
 	BITMAPINFO bmpinfo;
 	HGDIOBJ hret;
 
-	dwWidth = GetDeviceCaps(hdc, HORZRES);
-	dwHeight = GetDeviceCaps(hdc, VERTRES);
+	dwWidth = DeviceSize.x;
+	dwHeight = DeviceSize.y;
+
+
 	dwBPP = GetDeviceCaps(hdc, BITSPIXEL);
 
 	if(dwBPP <= 8) dwNumColors = 256;
@@ -335,35 +330,64 @@ relHwndDc:
 /*-----------------------------------------------------------------------------------*/
 void ExportBMP(struct BCG *ScilabGC,char *pszflname)
 {
-	RECT rect;
-	integer SaveCurrentFigure=0; 
+	LPGW lpgw;
+	HBITMAP hBitmap;
+	HDC hmemDC=NULL;
 	HWND hwnd;
-	HDC hDCfromhWnd=NULL;
+	HDC hdc=NULL;
+	integer SaveCurrentWindow=0;
 
-	SaveCurrentFigure=GetCurrentFigureWindows();
 
-	if (Getscig_buzyState() == 1) return;
-	Setscig_buzyState(1);
+	Setscig_buzyState(TRUE);
 
+	SaveCurrentWindow=GetCurrentFigureWindows();
 	SetCurrentFigureWindows (ScilabGC->CurWindow);
-	hwnd = ScilabGC->CWindow;
 
 	/* view the window */
-	if (IsIconic (hwnd)) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
-	BringWindowToTop (ScilabGC->hWndParent);
-	UpdateWindow (ScilabGC->hWndParent);
+	lpgw = ScilabGC->lpgw;
+	hwnd = ScilabGC->CWindow;
+
+	if (IsIconic (hwnd)) ShowWindow (hwnd, SW_SHOWNORMAL);
+	BringWindowToTop (hwnd);
+	UpdateWindow (hwnd);
 
 	SetActiveWindow(ScilabGC->hWndParent);      
-	GetClientRect (hwnd, &rect);
+	
+	/* get the context */
+	hdc = TryToGetDC (hwnd);
 
-	hDCfromhWnd=TryToGetDC (hwnd);
-	scig_replay_hdc ('C', ScilabGC->CurWindow, hDCfromhWnd,rect.right - rect.left, rect.bottom - rect.top, 1);
-	HwndToBmpFile(hwnd,pszflname);
-	ReleaseDC (hwnd, hDCfromhWnd);
-	SetCurrentFigureWindows (SaveCurrentFigure);
+	/* make a bitmap and copy it there */
+	if (hdc)
+	{
+			/** fix hdc in the scilab driver **/
+			scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
+			ReleaseDC (hwnd, hdc);
 
-	Setscig_buzyState(0);
-	InvalidateRect(hwnd,NULL,TRUE);
+			hmemDC = CreateCompatibleDC (hdc);
+			hBitmap = CreateCompatibleBitmap (hdc,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight);
+
+			if (hBitmap)
+			{
+				POINT DCSize;
+				SelectBitmap (hmemDC, hBitmap);
+				scig_replay_hdc ('C', ScilabGC->CurWindow, hmemDC,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
+				DCSize.x=ScilabGC->CWindowWidth;
+				DCSize.y=ScilabGC->CWindowHeight;
+
+				HdcToBmpFile(hmemDC,pszflname,DCSize);
+
+				DeleteDC(hmemDC);
+				DeleteBitmap(hBitmap);
+			}
+	}
+	else
+	{
+		MessageBox(NULL,MSG_ERROR36,MSG_ERROR20,MB_ICONWARNING);
+	}
+
+	SetCurrentFigureWindows (SaveCurrentWindow);
+
+	Setscig_buzyState(FALSE);
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -372,16 +396,15 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
 	RECT rect;
 	HWND hwnd;
 	HDC hdc;
+	HDC hdcTmp;
 	HENHMETAFILE metafile;
 
 	integer SaveCurrentFigure=0; 
 
+	Setscig_buzyState(TRUE);
+
 	SaveCurrentFigure=GetCurrentFigureWindows();
-
-	if (Getscig_buzyState() == 1) return;
-
 	SetCurrentFigureWindows (ScilabGC->CurWindow);
-	Setscig_buzyState(1);
 
 	hwnd = ScilabGC->CWindow;
 
@@ -390,24 +413,31 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
 	BringWindowToTop (hwnd);
 	UpdateWindow (hwnd);
 
-	hdc = CreateEnhMetaFile (GetWindowDC(hwnd), pszflname, NULL, "Scilab Graphics");
+	/* get the context */
+	hdcTmp=TryToGetDC (hwnd);
+	hdc = CreateEnhMetaFile (hdcTmp, pszflname, NULL, "Scilab Graphics");
 
 	GetClientRect (hwnd, &rect);
 	SetMapMode (hdc, MM_TEXT);
 	SetTextAlign (hdc, TA_LEFT | TA_BOTTOM);
-	SetWindowExtEx (hdc, rect.right - rect.left,rect.bottom - rect.top, (LPSIZE) NULL);
-	Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+	
+	SetWindowExtEx (hdc,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, (LPSIZE) NULL);
+	Rectangle (hdc, 0, 0,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight);
 
 	/** fix hdc in the scilab driver **/
-	scig_replay_hdc ('C', ScilabGC->CurWindow, TryToGetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
-	scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
+	
+	scig_replay_hdc ('C', ScilabGC->CurWindow,hdcTmp,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
+	ReleaseDC(hwnd,hdcTmp);
+
+	scig_replay_hdc ('C', ScilabGC->CurWindow,hdc,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight, 1);
 
 	metafile = CloseEnhMetaFile(hdc);
+	DeleteDC(hdc);
 	DeleteEnhMetaFile( metafile );
 
 	SetCurrentFigureWindows (SaveCurrentFigure);
 
-	Setscig_buzyState(0);
+	Setscig_buzyState(FALSE);
 	return;
 }
 /*-----------------------------------------------------------------------------------*/

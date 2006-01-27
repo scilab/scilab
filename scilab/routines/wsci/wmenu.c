@@ -1661,8 +1661,9 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 	char szBuffer[MAX_PATH] = "";
 	OPENFILENAME OFN;
 		
-  ZeroMemory(&OFN, sizeof(OFN));
+	ZeroMemory(&OFN, sizeof(OFN));
   OFN.lStructSize = sizeof(OFN);
+  
   OFN.hwndOwner = hWndParent;
   OFN.hInstance = NULL;
   OFN.lpstrFilter = FileExt;
@@ -1672,15 +1673,15 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
   OFN.lpstrFile = szBuffer;
   OFN.nMaxFile = MAX_PATH;
   OFN.lpstrTitle = titre;
-   
+ 
   if (read == TRUE)
 	{
-		/* Lecture */
+	 	/* Lecture */
 	 	OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 	  if( GetOpenFileName( &OFN ) )
-		{
-			lstrcpy(file,OFN.lpstrFile);
-      Retour=TRUE;
+  	{
+   			lstrcpy(file,OFN.lpstrFile);
+      	Retour=TRUE;
 		}
 		else Retour=FALSE;
 	}
@@ -1689,12 +1690,13 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 	 	/* Ecriture */
 	 	OFN.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR|OFN_HIDEREADONLY;
 	  if(GetSaveFileName ( &OFN ) )
-  	{
-  			lstrcpy(file,OFN.lpstrFile);
-   			Retour=TRUE;
+    {
+			lstrcpy(file,OFN.lpstrFile);
+			Retour=TRUE;
 		}
 		else Retour=FALSE;
-  }
+	}
+	
 	return Retour;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1741,20 +1743,19 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
   NEWSTRING (szFileTitle);
   NEWSTRING (szFilter);
 
-  /* save = (**s == SAVE);*/
   (*s)++;
   for (i = 0; (**s >= 32 && **s <= 126); i++)
-    {
-      szTitle[i] = **s;
-      (*s)++;
-    }				/* get dialog box title */
+  {
+    szTitle[i] = **s;
+   (*s)++;
+  }				/* get dialog box title */
   szTitle[i] = '\0';
   (*s)++;
   for (i = 0; (**s >= 32 && **s <= 126); i++)
-    {
-      szFile[i] = **s;
-      (*s)++;
-    }				/* temporary copy of filter */
+  {
+    szFile[i] = **s;
+    (*s)++;
+  }				/* temporary copy of filter */
   szFile[i++] = '\0';
   lstrcpy (szFilter, "Default (");
   lstrcat (szFilter, szFile);
@@ -1776,7 +1777,7 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
 
   /* clear the structrure */
 	ZeroMemory(&ofn, sizeof(ofn));
-  ofn.lStructSize = sizeof (OPENFILENAME);
+  ofn.lStructSize = sizeof (ofn);
   ofn.hwndOwner = hWndParent;
   ofn.lpstrFilter = szFilter;
   ofn.nFilterIndex = 1;
@@ -1786,18 +1787,28 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
   ofn.nMaxFileTitle = MAXSTR;
   ofn.lpstrTitle = szTitle;
   ofn.lpstrInitialDir = (LPSTR) NULL;
-  ofn.Flags = OFN_SHOWHELP | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
-  flag = (save ? GetSaveFileName (&ofn) : GetOpenFileName (&ofn));
-  if (flag)
-  {
+
+	if (save)
+	{
+		ofn.Flags = OFN_PATHMUSTEXIST;
+		flag=GetSaveFileName (&ofn);
+	}
+	else
+	{
+		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+		flag=GetOpenFileName (&ofn);
+	}
+
+	if (flag)
+	{
 		nChar = lstrlen (ofn.lpstrFile);
-    for (i = 0; i < nChar; i++)
+		for (i = 0; i < nChar; i++)
 		{
 			**d = ofn.lpstrFile[i];
 			(*d)++;
 		}
-  }
-
+	}
+  
   FREE (szTitle);
   FREE (szFilter);
   FREE (szFile);

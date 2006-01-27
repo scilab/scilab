@@ -11,6 +11,7 @@ extern int Printer_XRes;
 extern int Printer_YRes;
 extern void dos2win32 (char *filename, char *filename1);
 extern char GetPrinterOrientation(void);
+extern void Setscig_buzyState(BOOL state);
 /*-----------------------------------------------------------------------------------*/
 #define MAXSTR 255
 static char filename[MAXSTR], filename1[MAXSTR];
@@ -57,8 +58,7 @@ int CopyPrint (struct BCG *ScilabGC)
 
 	SaveCurrentWindow=GetCurrentFigureWindows();
 
-	if ( Getscig_buzyState() == 1 ) return TRUE;
-	Setscig_buzyState(1);
+	Setscig_buzyState(TRUE);
 
 	SetCurrentFigureWindows (ScilabGC->CurWindow);
 
@@ -73,7 +73,7 @@ int CopyPrint (struct BCG *ScilabGC)
 		/* Redessine si Cancel Impression */
 		GetClientRect (hwnd, &RectRestore);
 		scig_replay_hdc ('W', ScilabGC->CurWindow, hDCfromhWnd,RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
-		Setscig_buzyState(0);
+		Setscig_buzyState(FALSE);
 		return TRUE;		/* abort */
 	}
 
@@ -83,18 +83,16 @@ int CopyPrint (struct BCG *ScilabGC)
 
 	GetClientRect (hwnd, &rect);
 	SetLastError (0);
-	if (SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr)) == 0
-		&& GetLastError () != 0)
+	if (SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr)) == 0 && GetLastError () != 0)
 	{
 		sciprint (MSG_ERROR34);
-		Setscig_buzyState(0);
+		Setscig_buzyState(FALSE);
 		return TRUE;
 	}
-	if (SetWindowLong(ScilabGC->hWndParent, 4, (LONG) ((LP_PRINT) & pr)) == 0
-		&& GetLastError () != 0)
+	if (SetWindowLong(ScilabGC->hWndParent, 4, (LONG) ((LP_PRINT) & pr)) == 0	&& GetLastError () != 0)
 	{
 		sciprint (MSG_ERROR34);
-		Setscig_buzyState(0);
+		Setscig_buzyState(FALSE);
 		return TRUE;
 	}
 	PrintRegister ((LP_PRINT) & pr);
@@ -129,8 +127,8 @@ int CopyPrint (struct BCG *ScilabGC)
 			else bError = TRUE;
 		}
 	}
-	else
-		bError = TRUE;
+	else bError = TRUE;
+
 	if (!pr.bUserAbort)
 	{
 		EnableWindow (hwnd, TRUE);
@@ -144,7 +142,7 @@ int CopyPrint (struct BCG *ScilabGC)
 	ReleaseDC (hwnd, hDCfromhWnd);
 	SetCurrentFigureWindows (SaveCurrentWindow);
 
-	Setscig_buzyState(0);
+	Setscig_buzyState(FALSE);
 	InvalidateRect(hwnd,NULL,TRUE);
 
 	return bError || pr.bUserAbort;
