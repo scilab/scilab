@@ -46,6 +46,9 @@ filesdemos=['demo_scilab.sci','Geneal.sci', ..
 	    'sliding_pendulum.sci', ..
 	    'optloc.sci', ..
             'datafit.sci','spline.sci'];    
+    
+nbDemos = size(filesdemos);
+nbDemos = nbDemos(2) ;
  
 //------------------------------------------------------------
 function demo_help(key)
@@ -131,7 +134,7 @@ Maxfiles=size(filesdemos);
  end
 
 //while %t
-  loopdemos(15);
+  loopdemos(nbDemos);
 //  loopnumber=loopnumber+1;
 //end
 exit
