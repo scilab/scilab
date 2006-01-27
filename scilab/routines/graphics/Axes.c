@@ -148,8 +148,8 @@ void axis_draw2(strflag)
   
   switch ( c) 
     {
-    case '0' :
-      break ;
+      /*case '0' :
+        break ;*/
     case '2' :
       pSUBWIN_FEATURE (psubwin)->axes.rect = 1;
       
@@ -1256,16 +1256,6 @@ void Convex3d_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD
 
 
 
-
-
-
-
-
-
-
-
-
-
 static void axesplot(strflag, psubwin)
      char * strflag;
      sciPointObj * psubwin;
@@ -1284,12 +1274,10 @@ static void axesplot(strflag, psubwin)
   int lastxindex = 0, lastyindex = 0;
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
 
-  seg=0; 
-  
-  if(ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
+  if( ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
     {
-      switch ( c ) 
-	{ 
+      switch ( c )
+	{
 	case '3' : /* right axis */
 	  x1= ppsubwin->axes.xlim[1];
 	  y1= ppsubwin->axes.ylim[0];
@@ -1302,10 +1290,10 @@ static void axesplot(strflag, psubwin)
 	  break ;
 	case '5': /* centred at (0,0) */
 	  seg=1;
-	  x1 = y1 = 0.0; 
+	  x1 = y1 = 0.0;
 	  break;
 	case '1' : /* left axis */
-	default :  
+	default :
 	  x1=  ppsubwin->axes.xlim[0];
 	  y1=  ppsubwin->axes.ylim[1];
 	  break;
@@ -1316,8 +1304,8 @@ static void axesplot(strflag, psubwin)
       lastxindex = ppsubwin->axes.nxgrads - 1;
       lastyindex = ppsubwin->axes.nygrads - 1;
      
-        switch ( c ) 
-	{ 
+        switch ( c )
+	{
 	case '3' : /* right axis */
 	  x1= ppsubwin->axes.xgrads[lastxindex];
 	  y1= ppsubwin->axes.ygrads[0];
@@ -1330,10 +1318,10 @@ static void axesplot(strflag, psubwin)
 	  break ;
 	case '5': /* centred at (0,0) */
 	  seg=1;
-	  x1 = y1 = 0.0; 
+	  x1 = y1 = 0.0;
 	  break;
 	case '1' : /* left axis */
-	default :  
+	default :
 	  x1= ppsubwin->axes.xgrads[0];
 	  y1= ppsubwin->axes.ygrads[0];
 	break;
@@ -1345,45 +1333,45 @@ static void axesplot(strflag, psubwin)
   if(ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
     {
       if (c != '4')
-	{  
+	{
 	  xstr=ppsubwin->axes.xdir;
 	  if(ppsubwin->axes.reverse[1] == FALSE)
 	    { /* y reverse axis : NO */
-	      switch (xstr) 
+	      switch (xstr)
 		{
-		case 'u':  
+		case 'u':
 		  y1= ppsubwin->axes.ylim[1];
-		  dirx='u';   
+		  dirx='u';
 		  break;
-		case 'c':  
+		case 'c':
 		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
 		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
-		  seg =1; 
-		  dirx ='d';                           
+		  seg =1;
+		  dirx ='d';
 		  break;
-		default :  
+		default :
 		  y1= ppsubwin->axes.ylim[0];
-		  dirx ='d'; 
+		  dirx ='d';
 		  break;
 		}
 	    }
 	  else
 	    { /* y reverse axis : YES */
-	      switch (xstr) 
+	      switch (xstr)
 		{
-		case 'u':  
+		case 'u':
 		  y1= ppsubwin->axes.ylim[0];
 		  dirx='u';
 		  break;
-		case 'c':  
+		case 'c':
 		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
 		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
-		  seg =1; 
-		  dirx ='d';                           
+		  seg =1;
+		  dirx ='d';
 		  break;
-		default :  
+		default :
 		  y1= ppsubwin->axes.ylim[1];
-		  dirx ='d'; 
+		  dirx ='d';
 		  break;
 		}
 	    }
@@ -1391,41 +1379,41 @@ static void axesplot(strflag, psubwin)
 	  ystr=ppsubwin->axes.ydir;
 	  if(ppsubwin->axes.reverse[0] == FALSE)
 	    { /* x reverse axis : NO */
-	      switch (ystr) 
+	      switch (ystr)
 		{
-		case 'r': 
+		case 'r':
 		  x1= ppsubwin->axes.xlim[1];
-		  dir='r';    
+		  dir='r';
 		  break;
-		case 'c': 
+		case 'c':
 		  x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
 		  x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
+		  seg =1;
+		  dir ='l';
+		  break;
+		default :
 		  x1= ppsubwin->axes.xlim[0];
-		  dir ='l';  
+		  dir ='l';
 		  break;
 		}
 	    }
 	  else
 	    { /* x reverse axis : YES */
-	      switch (ystr) 
+	      switch (ystr)
 		{
-		case 'r': 
+		case 'r':
 		  x1= ppsubwin->axes.xlim[0];
-		  dir='r';    
+		  dir='r';
 		  break;
-		case 'c': 
+		case 'c':
 		  x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
 		  x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
+		  seg =1;
+		  dir ='l';
+		  break;
+		default :
 		  x1= ppsubwin->axes.xlim[1];
-		  dir ='l';  
+		  dir ='l';
 		  break;
 		}
 	    }
@@ -1437,43 +1425,43 @@ static void axesplot(strflag, psubwin)
       lastyindex = ppsubwin->axes.nygrads - 1;
       
       if (c != '4')
-	{  
+	{
 	  xstr=ppsubwin->axes.xdir;
 	  if(ppsubwin->axes.reverse[1] == FALSE)
 	    { /* y reverse axis : NO */
-	      switch (xstr) 
+	      switch (xstr)
 		{
-		case 'u':  
+		case 'u':
 		  y1=ppsubwin->axes.ygrads[lastyindex];
-		  dirx='u';   
+		  dirx='u';
 		  break;
-		case 'c':  
+		case 'c':
 		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
 		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
-		  seg =1; 
-		  dirx ='d';                           
+		  seg =1;
+		  dirx ='d';
 	      break;
-		default :  
+		default :
 		  y1= ppsubwin->axes.ygrads[0];
-		  dirx ='d'; 
+		  dirx ='d';
 		  break;
 		}
 	    }
 	  else
 	    { /* y reverse axis : YES */
-	      switch (xstr) 
+	      switch (xstr)
 		{
-		case 'u':  
+		case 'u':
 		  y1=ppsubwin->axes.ygrads[0];
-		  dirx='u';   
+		  dirx='u';
 		  break;
-		case 'c':  
+		case 'c':
 		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
 		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
-		  seg =1; 
+		  seg =1;
 		  dirx ='d';
 		  break;
-		default :  
+		default :
 		  y1= ppsubwin->axes.ygrads[lastyindex];
 		  dirx ='d';
 		  break;
@@ -1483,41 +1471,41 @@ static void axesplot(strflag, psubwin)
 	  ystr=ppsubwin->axes.ydir;
 	  if(ppsubwin->axes.reverse[0] == FALSE)
 	    { /* x reverse axis : NO */
-	      switch (ystr) 
+	      switch (ystr)
 		{
-		case 'r': 
+		case 'r':
 		  x1= ppsubwin->axes.xgrads[lastxindex];
-		  dir='r';    
+		  dir='r';
 		  break;
-		case 'c': 
+		case 'c':
 		  x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
 		  x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
+		  seg =1;
+		  dir ='l';
+		  break;
+		default :
 		  x1= ppsubwin->axes.xgrads[0];
-		  dir ='l';  
+		  dir ='l';
 		  break;
 		}
-	    } 
-	  else 
+	    }
+	  else
 	    { /* x reverse axis : YES */
-	      switch (ystr) 
+	      switch (ystr)
 		{
-		case 'r': 
+		case 'r':
 		  x1= ppsubwin->axes.xgrads[0];
-		  dir='r';    
+		  dir='r';
 		  break;
-		case 'c': 
+		case 'c':
 		  x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
 		  x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
+		  seg =1;
+		  dir ='l';
+		  break;
+		default :
 		  x1= ppsubwin->axes.xgrads[lastxindex];
-		  dir ='l';  
+		  dir ='l';
 		  break;
 		}
 	    }
@@ -1538,7 +1526,10 @@ static void axesplot(strflag, psubwin)
   /* Once the 2 axes are plotted, we can draw :
      1. the axes lines
      2. the box lines over if necessary (i.e. seg == 1) */
-  SciDrawLines(dirx,psubwin,y1,textcolor,ticscolor);
+  if ( ppsubwin->axes.axes_visible[0] )
+  {
+    SciDrawLines(dirx,psubwin,y1,textcolor,ticscolor);
+  }
   SciDrawLines(dir, psubwin,x1,textcolor,ticscolor);
   
   
@@ -1571,7 +1562,7 @@ int SciDrawLines(char pos, sciPointObj * psubwin, double xy, int textcolor,int t
   FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
 
   if(pos=='u' || pos=='d'){ /* X */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] == TRUE)
+    if( pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] == TRUE )
       XDrawAxisLine(xminval,xmaxval,xy,ticscolor,color_kp);
   } else if(pos=='l' || pos=='r'){ /* Y */
     if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] == TRUE)
@@ -1662,7 +1653,10 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
                 vy[0] = ym[0] ; 
                 vy[1] = ym[0] - ticksLength ;
               }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              if ( ppsubwin->axes.axes_visible[0] )
+              {
+                C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
 	  
 	  FREE(tmp_log_grads); tmp_log_grads = NULL;
@@ -1696,7 +1690,10 @@ static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
                 vy[0]= ym[0];
                 vy[1]= ym[0] - ticksLength ; 
               }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              if ( ppsubwin->axes.axes_visible[0] )
+              {
+                C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
 	}
     }
@@ -1749,8 +1746,10 @@ static int DrawXGrid(sciPointObj * psubwin)
       if(xtmp<xminval || xtmp>xmaxval) continue;	   
       
       vy[0]= ym[0];vy[1]=  ym[1];
-      
-      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->axes.axes_visible[0] )
+      {
+        C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
     }
   
   /* Grid based on subtics : ONLY for log. case */
@@ -1782,8 +1781,10 @@ static int DrawXGrid(sciPointObj * psubwin)
 	      if(val<xminval || val>xmaxval) continue;	  
 	      
 	      vy[0]= ym[0];vy[1]=  ym[1];
-	      
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      if ( ppsubwin->axes.axes_visible[0] )
+              {
+                C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
 	  
 	  FREE(tmp_log_grads); tmp_log_grads = NULL;
@@ -1792,6 +1793,7 @@ static int DrawXGrid(sciPointObj * psubwin)
  
   /* return to solid mode (in default mode) */
   C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
 
   return 0;
 }
@@ -1858,8 +1860,10 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
-	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	  if ( ppsubwin->axes.axes_visible[0] )
+          {
+            C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+          }
 	  XGradPosition(psubwin,posi[1],rect[3]);
 /* 	  if ( logflag == 'l' ) */
 /* 	    { */
@@ -1871,7 +1875,11 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 	    } */
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
+          if ( ppsubwin->axes.axes_visible[0] )
+          {
+            /* le tic proprement dit ("petit baton") */
+            C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /***************************************************************/
@@ -1940,21 +1948,33 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 	    } */
 	  
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
-	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	  if ( ppsubwin->axes.axes_visible[0] )
+          {
+            C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+          }
 	  XGradPosition(psubwin,posi[1],rect[3]);
 	  if ( logflag == 'l' )
 	    {
 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-		      (posi[1] += logrect[3],&posi[1]),
-		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+	      if ( ppsubwin->axes.axes_visible[0] )
+              {
+                C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
+                        (posi[1] += logrect[3],&posi[1]),
+                        PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+              }
 	      XGradPosition(psubwin,posi[1],rect[3]);
 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
+	  if ( ticscolor != -1 )
+          {
+            C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
+          if ( ppsubwin->axes.axes_visible[0] )
+          {
+            /* le tic proprement dit ("petit baton") */
+	    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+          }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  /***************************************************************/
@@ -2054,7 +2074,10 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
                 vx[0] = xm[0] ;
                 vx[1] = xm[0] - ticksLength ; 
               }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              if ( ppsubwin->axes.axes_visible[1] )
+              {
+                C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
 	  
 	  FREE(tmp_log_grads); tmp_log_grads = NULL;
@@ -2087,7 +2110,10 @@ static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor
                 vx[0] = xm[0] ;
                 vx[1] = xm[0] - ticksLength ; 
               }
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              if ( ppsubwin->axes.axes_visible[1] )
+              {
+                C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
 	}
     }
@@ -2140,8 +2166,10 @@ static int DrawYGrid(sciPointObj * psubwin)
       if(xtmp<yminval || xtmp>ymaxval) continue;	   
       
       vx[0]= xm[0];vx[1]=  xm[1];
-      
-      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( ppsubwin->axes.axes_visible[1] )
+      {
+        C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
     }
   
   /* Grid based on subtics : ONLY for log. case */
@@ -2173,8 +2201,10 @@ static int DrawYGrid(sciPointObj * psubwin)
 	      if(val<yminval || val>ymaxval) continue;	  
 	      
 	      vx[0]= xm[0];vx[1]=  xm[1];
-	      
-	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      if ( ppsubwin->axes.axes_visible[1] )
+              {
+                C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
 	  
 	  FREE(tmp_log_grads); tmp_log_grads = NULL;
@@ -2261,8 +2291,10 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+          if ( ppsubwin->axes.axes_visible[1] )
+          {
+            C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+          }
 	  YGradPosition(psubwin,posi[0],rect[2]);
 	  /*   if ( logflag == 'l' ) */
 	  /* 	    { */
@@ -2275,7 +2307,10 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          if ( ppsubwin->axes.axes_visible[1] )
+          {
+            C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  
@@ -2341,22 +2376,31 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 
 
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+          if ( ppsubwin->axes.axes_visible[1] )
+          {
+            C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+          }
 	  YGradPosition(psubwin,posi[0],rect[2]);
 	  
 	  if ( logflag == 'l' )
 	    {
 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
-		      (posi[1] += logrect[3],&posi[1]),
-		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+              if ( ppsubwin->axes.axes_visible[1] )
+              {
+                C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
+                        (posi[1] += logrect[3],&posi[1]),
+                        PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+              }
 	      YGradPosition(psubwin,posi[0],rect[2]); /* adding F.Leray 04.08.05 */
 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          if ( ppsubwin->axes.axes_visible[1] )
+          {
+            C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
 	  /***************************************************************/
@@ -2480,7 +2524,8 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
   case 0: /* x horizontal axis */
 
     /** Horizontal axes **/
-    if(ppsubwin->axes.axes_visible[0] == TRUE){
+    if ( /*ppsubwin->axes.axes_visible[0]*/ TRUE )
+    {
       
       barlength =  (integer) (Cscale.WIRect1[3]/50.0);
       
@@ -2496,8 +2541,8 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
       
       /* subtics display*/
       DrawXSubTics(pos, psubwin, xy, ticscolor, color_kp);
-    }      
-    
+    }
+        
     /* grids if specified (val > -1) */
     if(ppsubwin->grid[0] > -1)
       DrawXGrid(psubwin);
@@ -2506,7 +2551,7 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
   case 1: /* y vertical axis */
 
     /** Vertical axes **/
-    if(ppsubwin->axes.axes_visible[1] == TRUE){
+    if( /*ppsubwin->axes.axes_visible[1] ==*/ TRUE){
     
       barlength =  (integer) (Cscale.WIRect1[2]/75.0);
       
@@ -2529,7 +2574,7 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
     
     break;
   default:
-    sciprint("Impossible case");
+    sciprint("Axes.c : SciAxisNew : Impossible case");
     return -1;
   }
   
