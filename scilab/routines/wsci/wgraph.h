@@ -100,8 +100,6 @@ HDC TryToGetDC(HWND hWnd);
 
 int Interface_XS2BMP(int figurenum,char *filename);
 int Interface_XS2EMF(int figurenum,char *filename);
-int Getscig_buzyState(void);
-void Setscig_buzyState(int state);
 
 extern HDC GetPrinterDC(void);
 

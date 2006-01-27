@@ -1743,7 +1743,6 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
   NEWSTRING (szFileTitle);
   NEWSTRING (szFilter);
 
-  /* save = (**s == SAVE);*/
   (*s)++;
   for (i = 0; (**s >= 32 && **s <= 126); i++)
   {
@@ -1788,23 +1787,33 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
   ofn.nMaxFileTitle = MAXSTR;
   ofn.lpstrTitle = szTitle;
   ofn.lpstrInitialDir = (LPSTR) NULL;
-  ofn.Flags = OFN_SHOWHELP | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 
-  flag = (save ? GetSaveFileName (&ofn) : GetOpenFileName (&ofn));
-  if (flag)
-  {
+	if (save)
+	{
+		ofn.Flags = OFN_PATHMUSTEXIST;
+		flag=GetSaveFileName (&ofn);
+	}
+	else
+	{
+		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+		flag=GetOpenFileName (&ofn);
+	}
+
+	if (flag)
+	{
 		nChar = lstrlen (ofn.lpstrFile);
-    for (i = 0; i < nChar; i++)
+		for (i = 0; i < nChar; i++)
 		{
 			**d = ofn.lpstrFile[i];
 			(*d)++;
 		}
-  }
-
+	}
+  
   FREE (szTitle);
   FREE (szFilter);
   FREE (szFile);
   FREE (szFileTitle);
+
   return (flag);
 }
 /*-----------------------------------------------------------------------------------*/

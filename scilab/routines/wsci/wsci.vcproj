@@ -780,6 +780,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\CriticalSectionGraphicWindow.c">
+			</File>
+			<File
 				RelativePath=".\DDE.c">
 			</File>
 			<File
@@ -2128,6 +2131,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\clipboard.h">
+			</File>
+			<File
+				RelativePath=".\CriticalSectionGraphicWindow.h">
 			</File>
 			<File
 				RelativePath=".\DDE.h">
