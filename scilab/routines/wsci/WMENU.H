@@ -100,7 +100,7 @@
 #define SUBJECT "Doctor Scilab Please Help me"
 
 
-#define NEWSTRING(x) if ((x=LocalAlloc(LPTR, MAXSTR+1)) == (char *)NULL) \
+#define NEWSTRING(x) if ((x=MALLOC((MAXSTR+1)*sizeof(LPTR))) == (char *)NULL) \
 { *ierr=1;return(FALSE);}
 
 #define BUGGOTOCLEAN(str) \
