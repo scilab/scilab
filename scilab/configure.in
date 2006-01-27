@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.137 $)dnl
+AC_REVISION($Revision: 1.138 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1393,6 +1393,14 @@ esac
 
 FC_OPTIONS1=$FC_OPTIONS
 if test "$WITH_G77" = yes; then
+  if test "$enable_debug" = yes; then   
+    FC_OPTIONS1=$FC_OPTIONS
+  else
+    FC_OPTIONS1=$FC_OPTIONS_O0
+  fi
+fi
+
+if test "$with_f2c" = yes; then
   if test "$enable_debug" = yes; then   
     FC_OPTIONS1=$FC_OPTIONS
   else
