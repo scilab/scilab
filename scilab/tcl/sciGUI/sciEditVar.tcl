@@ -418,7 +418,8 @@ proc sciGUIEditVar { {winId -1 } } {
 
 	button $w.buttons.update -text "Update to Scilab" -width 15 
 	button $w.buttons.quit -text "Quit" -width 15 -command "sciGUIEditVarQuit $winId2"
-	label $w.buttons.msg1 -text "editing variable ->" -bg LightGray -fg blue
+	label $w.buttons.msg1 -text "Loading variable, please wait ..." -bg LightGray -fg blue
+
 	label $w.buttons.msg2 -text "" -bg LightGray -fg blue
 	pack $w.buttons.update $w.buttons.quit $w.buttons.msg1 $w.buttons.msg2 -side left -padx 4 -expand 0 -fill x -pady 2
 	
@@ -530,7 +531,8 @@ proc GEDsciGUIEditVarDrawGrid { winId } {
  #	set w "[sciGUIName $winId].buttons.update"
  #	$w configure -command "sciGUIEditVarUpdateScilab $winId"
  	set w "[sciGUIName $winId].buttons.msg1"
- 	$w configure -text "editing variable -> $sciGUITable(win,$winId,data,name)"
+ #ss 	$w configure -text "editing variable -> $sciGUITable(win,$winId,data,name)"
+         $w configure -text "loading...."
  	set w "[sciGUIName $winId].editor"
  	set ni $sciGUITable(win,$winId,data,ni)
  	set nj $sciGUITable(win,$winId,data,nj)
