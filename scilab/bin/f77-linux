@@ -124,11 +124,12 @@ do
 	*.[fF])
 		case "$1" in *.f) f=".f";; *.F) f=".F";; esac
 		b=`basename $1 $f`
-                trap "rm -f f2ctmp_$b.* ; exit 0" 0
-                sed 's/\\$/\\-/;
-                     s/^ *INCLUDE *'\(.*\)'.*$/#include "\1"/' $1 |\
-		 $CPP $CPPFLAGS |\
-		 egrep -v '^# ' > f2ctmp_$b.f
+#                trap "rm -f f2ctmp_$b.* ; exit 0" 0
+#                sed 's/\\$/\\-/;
+#                     s/^ *INCLUDE *'\(.*\)'.*$/#include "\1"/' $1 |\
+#		 $CPP $CPPFLAGS |\
+#		 egrep -v '^# ' > f2ctmp_$b.f
+                cp $1  f2ctmp_$b.f
                 trap "rm -f f2ctmp_$b.* ; exit 0" 0
 		$F2C $F2CFLAGS f2ctmp_$b.f
 		case $? in 0);; *) rm f2ctmp_* ; exit 5;; esac
