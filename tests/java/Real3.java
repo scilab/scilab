@@ -20,15 +20,15 @@ class Real3
 /********************************************************************************************************/  	
   public static void main(String[] args) 
     {
-			SciReal A = new SciReal("A",4,1, new double [] {1.1,2.2,3.3,4.4} );
+			SciDoubleArray A = new SciDoubleArray("A",4,1, new double [] {1.1,2.2,3.3,4.4} );
 			A.Send();
-      SciReal B = new SciReal("B",4,1, new double [] {4.4,3.3,2.2,1.1} );
+      SciDoubleArray B = new SciDoubleArray("B",4,1, new double [] {4.4,3.3,2.2,1.1} );
       B.Send();
-  		SciReal C = new SciReal("C",4,1, new double [] {1. ,1. ,1. ,1.} );
+  		SciDoubleArray C = new SciDoubleArray("C",4,1, new double [] {1. ,1. ,1. ,1.} );
   		C.Send();
-  		SciReal D = new SciReal("Dim",1,2);
+  		SciDoubleArray D = new SciDoubleArray("Dim",1,2);
   		D.Send();
-  		SciReal E = new SciReal("E",C);
+  		SciDoubleArray E = new SciDoubleArray("E",C);
   		E.Send();
   		
   		Scilab.Exec("C=A+B;");
