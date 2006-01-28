@@ -50,7 +50,7 @@ public class MonPanneau extends Panel
 		System.out.println("Boucle Java sans fin "+i);
 		i++;
 	    }
-	while (Scilab.HaveAGraph()!=0);
+	while (Scilab.HaveAGraph()!=false);
 
 	Scilab.Events();
 

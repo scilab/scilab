@@ -9,4 +9,5 @@ echo Exemple Events 1
 echo ------------------------------------------------------------------------
 java ExempleEvent
 pause
+cd ..\examples\callsci\callsciJava\others
 echo on

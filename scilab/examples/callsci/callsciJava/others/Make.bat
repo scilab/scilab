@@ -1,4 +1,4 @@
-echo off
+@echo off
 rem Allan CORNET
 rem INRIA Juillet 2004
 
@@ -7,5 +7,5 @@ PATH=%PATH%;c:\Wintools\JBuilder9\jdk1.4\bin;
 
 rem Compilation des exemples
 javac -deprecation -d ..\..\..\..\bin -classpath ..\..\..\..\bin *.java
-echo on
+@echo on
 

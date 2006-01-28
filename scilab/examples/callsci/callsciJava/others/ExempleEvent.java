@@ -13,7 +13,7 @@ class  ExempleEvent
         
 	  Scilab.Exec("plot3d();");
   	
-  	while (Scilab.HaveAGraph()!=0)
+  	while (Scilab.HaveAGraph()!=false)
   	{
   		Scilab.Events();
   		try

@@ -21,6 +21,9 @@ xrdb $SCIDIR/X11_defaults/Xscilab  (usually, xrdb can be found in /usr/openwin/b
 java Exemple1
 java Exemple2
 java Exemple3
+java Exemple4
+java Exemple5
+java Exemple6
 
 java ExempleEvent
 java ExempleEvent2

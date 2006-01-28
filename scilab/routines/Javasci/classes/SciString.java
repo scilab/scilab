@@ -1,55 +1,56 @@
 package javasci ;
 /********************************************************************************************************/
 /* Allan CORNET */
-/* INRIA 2005 */
+/* INRIA 2006 */
 /********************************************************************************************************/
 public class SciString
 {
 /********************************************************************************************************/
-  private String StrValue;
-  private String name; 
+  private SciStringArray pObjSciString;
+  private String[] pTmpStringArray;
 /********************************************************************************************************/  
-  public native void Job(String job);
-  private native String GetString();
-  public native void Send();
+/* See SCI/examples/callsci/callsciJava/others for some simple examples */
 /********************************************************************************************************/  
-  static 
+  public SciString(String name,SciString Obj) 
   {
-    System.loadLibrary("javasci");
-  }
-/********************************************************************************************************/  
-  public SciString(SciString Obj) 
-  {
-    this.name = Obj.name;
-    this.StrValue = Obj.StrValue;
+  	pTmpStringArray=new String[1];
+  	pTmpStringArray[0]=Obj.getData();
+	pObjSciString = new SciStringArray(name,1,1,pTmpStringArray);
   }
 /********************************************************************************************************/  
   public SciString(String name) 
   {
-    this.name = name;
-    this.StrValue = "";
+  	pTmpStringArray=new String[1];
+	pObjSciString = new SciStringArray(name,1,1);
   }
  /********************************************************************************************************/  
   public SciString(String name,String StrValue )
   {
-    this.name = name;
-    this.StrValue = StrValue;
+  	pTmpStringArray=new String[1];
+  	pTmpStringArray[0]=StrValue;
+	pObjSciString = new SciStringArray(name,1,1,pTmpStringArray);
   }
 /********************************************************************************************************/
   public String getName()
   {
-   return name;
-  }
-/********************************************************************************************************/  
-  public String getData() 
-  {
-   Get();
-   return StrValue;
+    return  pObjSciString.getName();
   }
 /********************************************************************************************************/  
   public void Get() 
   {
-   StrValue=GetString();
+    pObjSciString.Get();
+  }
+ /********************************************************************************************************/
+  public String getData() 
+  {
+    Get();
+    pTmpStringArray=pObjSciString.getData();
+    return pTmpStringArray[0];
+  }
+ /********************************************************************************************************/          
+  public void Send()
+  {
+  	pObjSciString.Send();
   }
 /********************************************************************************************************/    
   public void disp() 
@@ -58,5 +59,12 @@ public class SciString
 	System.out.println("String "+ getName() +"=");
     Job( "disp(" + getName() +");");
   }
+/********************************************************************************************************/    
+  public boolean Job(String job)
+  {
+  	return pObjSciString.Job(job);
+  }
+/********************************************************************************************************/    
 }
 /********************************************************************************************************/  
+  
