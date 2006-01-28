@@ -452,13 +452,13 @@ cd ..
 				RelativePath=".\javasci_globals.c">
 			</File>
 			<File
+				RelativePath=".\javasci_SciDoubleArray.c">
+			</File>
+			<File
 				RelativePath=".\javasci_Scilab.c">
 			</File>
 			<File
-				RelativePath=".\javasci_SciReal.c">
-			</File>
-			<File
-				RelativePath=".\javasci_SciString.c">
+				RelativePath=".\javasci_SciStringArray.c">
 			</File>
 		</Filter>
 		<Filter
@@ -469,13 +469,13 @@ cd ..
 				RelativePath=".\javasci_globals.h">
 			</File>
 			<File
+				RelativePath=".\javasci_SciDoubleArray.h">
+			</File>
+			<File
 				RelativePath=".\javasci_Scilab.h">
 			</File>
 			<File
-				RelativePath=".\javasci_SciReal.h">
-			</File>
-			<File
-				RelativePath=".\javasci_SciString.h">
+				RelativePath=".\javasci_SciStringArray.h">
 			</File>
 			<File
 				RelativePath=".\jni.h">
@@ -496,16 +496,19 @@ cd ..
 				RelativePath=".\classes\BadDataArgumentException.java">
 			</File>
 			<File
-				RelativePath=".\classes\MakeJavaClass.bat">
+				RelativePath=".\classes\SciDouble.java">
+			</File>
+			<File
+				RelativePath=".\classes\SciDoubleArray.java">
 			</File>
 			<File
 				RelativePath=".\classes\Scilab.java">
 			</File>
 			<File
-				RelativePath=".\classes\SciReal.java">
+				RelativePath=".\classes\SciString.java">
 			</File>
 			<File
-				RelativePath=".\classes\SciString.java">
+				RelativePath=".\classes\SciStringArray.java">
 			</File>
 		</Filter>
 		<File

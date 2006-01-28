@@ -1,28 +1,31 @@
 SCIDIR=../../..
-SOURCES=BadDataArgumentException.java Scilab.java SciReal.java SciString.java
+SOURCES=BadDataArgumentException.java Scilab.java SciDoubleArray.java SciDouble.java SciStringArray.java SciString.java 
 CLASSREP=$(SCIDIR)/bin
 DEST=$(CLASSREP)/javasci
-CLASSES=$(DEST)/Scilab.class $(DEST)/BadDataArgumentException.class $(DEST)/SciReal.class $(DEST)/SciString.class
+CLASSES= $(DEST)/BadDataArgumentException.class $(DEST)/Scilab.class $(DEST)/SciDoubleArray.class $(DEST)/SciDouble.class $(DEST)/SciStringArray.class $(DEST)/SciString.class 
 
 JAVAC=javac -d $(CLASSREP) -classpath $(CLASSREP)
 
 all:: $(CLASSES)
 
-$(DEST)/Scilab.class: Scilab.java
-	@$(JAVAC)  Scilab.java
-
-$(DEST)/SciReal.class: SciReal.java
-	@$(JAVAC)  SciReal.java
-
-$(DEST)/SciString.class: SciString.java
-	@$(JAVAC)  SciString.java
-	
-
 $(DEST)/BadDataArgumentException.class: BadDataArgumentException.java
 	@$(JAVAC)  BadDataArgumentException.java
 
+$(DEST)/Scilab.class: Scilab.java
+	@$(JAVAC)  Scilab.java
+
+$(DEST)/SciDoubleArray.class: SciDoubleArray.java
+	@$(JAVAC)  SciDoubleArray.java
+	
+$(DEST)/SciDouble.class: SciDouble.java
+	@$(JAVAC)  SciDouble.java
+
+$(DEST)/SciStringArray.class: SciStringArray.java
+	@$(JAVAC)  SciStringArray.java
+	
+$(DEST)/SciString.class: SciString.java
+	@$(JAVAC)  SciString.java
 
 cleanC::
 	@$(RM) -f $(DEST)/*.class
-
 

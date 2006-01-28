@@ -3,23 +3,41 @@ package javasci ;
 /* Allan CORNET */
 /* INRIA 2005 */
 /********************************************************************************************************/
-public class SciReal
+public class SciDoubleArray
 {
 /********************************************************************************************************/
   private double [] x ;
+  
   private int m, n;
+  /* m number of rows */
+  /* n number of colons */
+  
   private String name; 
 /********************************************************************************************************/  
-  public native void Job(String job);
+  public native boolean Job(String job);
+  /* Execute a command in Scilab */
+  
   public native void Get();
+  /* Get Matrix from Scilab*/
+  
   public native void Send();
+  /* Send Matrix to Scilab */
+  
+  public native double GetElement(int indr, int indc);
+  /* Get only ONE element from Scilab Matrix */
+  /* indr AND indc are indices in scilab */
+  /* in Scilab A=[1,2;3,4];
+  /* A(1,1)=1 */
+  /* A(2,2)=4 */
+  
+  /* See SCI/examples/callsci/callsciJava/others for some simple examples */
 /********************************************************************************************************/  
   static 
   {
     System.loadLibrary("javasci");
   }
 /********************************************************************************************************/  
-  public SciReal(String name,SciReal Obj) 
+  public SciDoubleArray(String name,SciDoubleArray Obj) 
   {
     this.name = name;
     this.m = Obj.getRow() ;
@@ -27,28 +45,31 @@ public class SciReal
     this.x = new double[m*n];
    
     this.x =Obj.getData() ;
+    Send();
   }
 /********************************************************************************************************/  
-  public SciReal(String name,int m,int n) 
+  public SciDoubleArray(String name,int r,int c) 
   {
-    this.m = m ;
-    this.n = n;
-    this.x = new double[m*n];
+    this.m = r ;
+    this.n = c ;
+    this.x = new double[r*c];
     this.name = name;
    
-    for ( int i = 0 ; i < m*n ; i++)x[i]=0;
+    for ( int i = 0 ; i < r*c ; i++)x[i]=0;
+    Send();
   }
  /********************************************************************************************************/  
-  public SciReal(String name,int m,int n,double [] x )
+  public SciDoubleArray(String name,int r,int c,double [] x )
   {
-    if ( m*n != x.length) 
+    if ( r*c != x.length) 
     {
      throw new BadDataArgumentException("Bad Matrix call, size of third argument is wrong");
     }
-    this.m = m ;
-    this.n = n;
+    this.m = r ;
+    this.n = c;
     this.x = x;
     this.name = name;
+    Send();
   }
 /********************************************************************************************************/
   public int getRow() 

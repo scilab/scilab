@@ -6,18 +6,18 @@ package javasci ;
 public class Scilab
 {
 /********************************************************************************************************/
-
   public static native void Events();  
-  //! Fait tourner la boucle d'evenements de scilab
+  //! do a Scilab event 
+  // See SCI/examples/callsci/callsciJava/others/ExempleEvent.java
+  
+  public static native boolean HaveAGraph();
+  //! Detect if a Scilab graphic window is opened 
 
-  //! Indique si une fenetre graphique scilab est presente
-  public static native int HaveAGraph();
+  public static native boolean Exec(String job);
+  /* Execute a command in Scilab */
 
-
-  //! Execute une commande scilab
-  public static native void Exec(String job);
-
-
+  /* See SCI/examples/callsci/callsciJava/others AND  SCI/examples/callsci/callsciJava/ihm
+     for some simple examples */
 /********************************************************************************************************/
   static 
   {

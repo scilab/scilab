@@ -5,16 +5,17 @@ class  Exemple4 {
 
   public static void main(String[] args) 
   {
-    SciString S = new SciString("Sentence","Who is the best ?");
-    S.Send();
+    SciString S1 = new SciString("Sentence","Who is the best ?");
+    S1.Send();
     
-    S.disp();
+    S1.disp();
     
-    Scilab.Exec("Sentence=''You are the best !'';");
-    
-    Scilab.Exec("disp(Sentence);");
-    
-    S.disp();
+    SciString S2 = new SciString("Sentence2",S1);
+
+    Scilab.Exec("Sentence2=''Scilab is the best.'';");
+    S2.disp();
+
+
     
   }
 }

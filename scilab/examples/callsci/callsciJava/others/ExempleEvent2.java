@@ -13,7 +13,7 @@ import java.io.*;
   		{
   			Scilab.Events();
   		}
-  		while ( (i==0) && ( Scilab.HaveAGraph() != 0) );
+  		while ( (i==0) && ( Scilab.HaveAGraph() != false) );
   		Scilab.Events();
   		System.out.println("Fenetre Graphique fermee");
   	}
@@ -31,18 +31,18 @@ class  ExempleEvent2
 
   	  	
   	
-  	while (System.in.read()!='q')
-  	{
-  		try
-   		{
-  		 	Thread.sleep( 1 );
-  		}
-  		catch ( InterruptedException e )
-   		{
-   		}
+  		while (System.in.read()!='q')
+  		{
+  			try
+   			{
+  		 		Thread.sleep( 1 );
+  			}
+  			catch ( InterruptedException e )
+   			{
+   			}
 
-  	}
-  	thread.stop();
+  		}
+  		thread.stop();
   }
 
 }

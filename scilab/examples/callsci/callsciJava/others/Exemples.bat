@@ -1,4 +1,4 @@
-echo off
+@echo off
 rem A modifier selon votre répertoire d'installation de Java(TM) 2 SDK, Standard Edition Version 1.4.2
 PATH=%PATH%;c:\Wintools\JBuilder9\jdk1.4\bin;
 
@@ -24,5 +24,16 @@ echo Exemple 4
 echo ------------------------------------------------------------------------
 java Exemple4
 pause
-echo on
+echo ------------------------------------------------------------------------
+echo Exemple 5
+echo ------------------------------------------------------------------------
+java Exemple5
+pause
+echo ------------------------------------------------------------------------
+echo Exemple 6
+echo ------------------------------------------------------------------------
+java Exemple6
+pause
+cd ..\examples\callsci\callsciJava\others
+@echo on
 

@@ -1,16 +1,17 @@
 import javasci.* ; 
 
+class  Exemple5 {
 
-class  Exemple1 {
-
-  public static void main(String[] args) {
+  public static void main(String[] args) 
+  {
   	int col=4;
   	int row=2;
-  	int r,c;
-  	double [] b=new double[row*col];
+  	int r,c,k;
+  	String [] b=new String [row*col];
+  	String [] d=new String[row*col];
   	
-  	SciDoubleArray a = new SciDoubleArray("A",row,col);
-  	Scilab.Exec("A=[1,2,3,4;5 6 7 8];");
+  	SciStringArray a = new SciStringArray("A",row,col);
+  	Scilab.Exec("A=[''Aaa'',''Bbb'',''Ccc'',''Ddd'';''Eee'',''Fff'',''Ggg'',''Hhh''];");
   	a.Get();
   	System.out.println("----------------------------------------------------");
   	a.disp();
@@ -36,15 +37,19 @@ class  Exemple1 {
      System.out.println(" ");
     }
   	System.out.println("----------------------------------------------------");
- 	  SciDoubleArray d = new SciDoubleArray("D",1,4,new double [] {1,2,3,4});
-    d.Send();
-    Scilab.Exec("P=poly(D,''x'',''coeffs'');");
-    Scilab.Exec("Q=real(roots(P));");
+
+		
+		for (k=0;k<row*col;k++)
+		{
+			d[k]=new String("Sentence ")+k;
+		}
+		
+		SciStringArray D = new SciStringArray("D",2,4,d);
+		D.Send();
+		D.disp();
+
+  	
     
-    SciDoubleArray q = new SciDoubleArray("Q",1,3);
-    q.Get();
-    q.disp();
-    System.out.println("----------------------------------------------------");
   }
 }
 
