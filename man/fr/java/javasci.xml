@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>Java - Scilab Interface</TITLE>
+
+  <TYPE>Java Interface</TYPE>
+
+  <DATE>January 2006</DATE>
+
+  <SHORT_DESCRIPTION name="javasci">Scilab tool to interface Scilab functions
+  to Java</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>Java interface written to allow calling Scilab computational engine
+    from Java.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ // See SCI/examples/Callsci/CallsciJava directory]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>Scilab</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciDouble</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciDoubleArray</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciString</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciStringArray</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>
