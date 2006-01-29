@@ -20,7 +20,7 @@ function %helps=initial_help_chapters(language)
 		"gui";"utilities";"linear";"polynomials";"control";"robust";
 		"nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
 		"tdcs";"statistics";"dcd";"identification";"mtlb";
-		"sparse";"pvm";"tksci"];
+		"sparse";"pvm";"tksci";"java"];
 	
 	sep="/";
 	if MSDOS then sep="\",end
@@ -48,7 +48,7 @@ function %helps=initial_help_chapters(language)
 			"Matlab to Scilab conversion tips";
 			"Sparse solvers";
 			"PVM parallel toolbox";
-			"TCL/Tk interface"]];
+			"TCL/Tk interface";"Java Interface"]];
 	
 	case "fr"
 		%helps=[%helps,..
@@ -70,7 +70,7 @@ function %helps=initial_help_chapters(language)
 			"Aide à la conversion Matlab vers Scilab";
 			"Solveurs creux";
 			"Calcul parallèle avec PVM";
-			"Interface TCL/Tk"]];
+			"Interface TCL/Tk";"Interface Java"]];
 	end
 	
 	%helps=[SCI+%helps(:,1),%helps(:,2)];
