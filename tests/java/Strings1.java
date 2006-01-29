@@ -14,8 +14,6 @@ class  Strings1 {
   	Scilab.Exec("A=[''Aaa'',''Bbb'',''Ccc'',''Ddd'';''Eee'',''Fff'',''Ggg'',''Hhh''];");
   	a.Get();
   	System.out.println("----------------------------------------------------");
-  	a.disp();
-  	System.out.println("----------------------------------------------------");
   	for(r=1;r<=a.getRow();r++)
     {
      for(c=1;c<=a.getCol();c++)
@@ -46,9 +44,6 @@ class  Strings1 {
 		
 		SciStringArray D = new SciStringArray("D",2,4,d);
 		D.Send();
-		D.disp();
-
-  	
     
   }
 }

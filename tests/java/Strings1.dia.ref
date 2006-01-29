@@ -1,18 +1,7 @@
 ----------------------------------------------------
-Matrix A=
- 
-!Aaa  Bbb  Ccc  Ddd  !
-!                    !
-!Eee  Fff  Ggg  Hhh  !
-----------------------------------------------------
 A(1,1)=Aaa  A(1,2)=Bbb  A(1,3)=Ccc  A(1,4)=Ddd   
 A(2,1)=Eee  A(2,2)=Fff  A(2,3)=Ggg  A(2,4)=Hhh   
 ----------------------------------------------------
 b(0,0)=Aaa  b(0,1)=Bbb  b(0,2)=Ccc  b(0,3)=Ddd   
 b(1,0)=Eee  b(1,1)=Fff  b(1,2)=Ggg  b(1,3)=Hhh   
 ----------------------------------------------------
-Matrix D=
- 
-!Sentence 0  Sentence 2  Sentence 4  Sentence 6  !
-!                                                !
-!Sentence 1  Sentence 3  Sentence 5  Sentence 7  !
