@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>SciString</TITLE>
+
+  <TYPE>Java Interface</TYPE>
+
+  <DATE>January 2006</DATE>
+
+  <SHORT_DESCRIPTION name="SciString">Class to use String object in
+  Scilab.</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <p>
+      <IMG src="../../images/java/SciStringClass.gif" />
+    </p>
+
+    <P><VERB>public SciString(String name,SciString Obj) </VERB> :</P>
+
+    <P><VERB>public SciString(String name) </VERB> :</P>
+
+    <P><VERB>public String getName()</VERB> :</P>
+
+    <P><VERB>public void Get()</VERB> :</P>
+
+    <P><VERB>public String getData() </VERB> :</P>
+
+    <P><VERB>public void Send()</VERB> :</P>
+
+    <P><VERB>public void disp() </VERB> :</P>
+
+    <P><VERB>public boolean Job(String job)</VERB> :</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ // See SCI/examples/Callsci/CallsciJava directory]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>Scilab</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciDouble</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciDoubleArray</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciStringArray</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>
