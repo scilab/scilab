@@ -15,6 +15,7 @@
       #if defined(__APPLE__) 
         #import <mach/host_info.h>
         #import <mach/mach_host.h>
+	#import <sys/sysctl.h>
       #else
         #include <unistd.h>
         #endif
