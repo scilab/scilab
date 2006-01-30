@@ -340,17 +340,21 @@ int C2F(run)()
   C2F(com).fin = Istk[7 + lc];
   goto L26;
  L28:
-  if (Rhs == 0 && Istk[7 + lc] == -2 && C2F(com).fin == -1) {
+  if (Rhs == 0 && ((Istk[7 + lc] == -2)||(Istk[7 + lc] == -1)) && C2F(com).fin == -1) {
     lc += 9;
-    /* instruction reduced to <name> with name not a function, replace */
-    /* next two op code by a single store */
-    /* skip extract op-code <5 3 1 1> */
-    if (Istk[lc] != 5 || Istk[1 + lc] != 3) {
-      strcpy(C2F(cha1).buf,"Unexpected opcode, please report");
-      SciError(9999);
-      return 0;
+
+    if (Istk[7 + lc-9] == -2) {
+    
+      /* instruction reduced to <name> with name not a function, replace */
+      /* next two op code by a single store */
+      /* skip extract op-code <5 3 1 1> */
+      if (Istk[lc] != 5 || Istk[1 + lc] != 3) {
+	strcpy(C2F(cha1).buf,"Unexpected opcode, please report");
+	SciError(9999);
+	return 0;
+      }
+      lc += 4;
     }
-    lc += 4;
     /* skip assignment op_code <29 43 ans 0> */
     if (Istk[lc] != 29) {
       strcpy(C2F(cha1).buf,"Unexpected opcode, please report");

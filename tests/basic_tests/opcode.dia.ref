@@ -159,9 +159,9 @@ Warning :redefining function: sin
     1.  
  
 sin //devrait repondre 1 or il essaye d'executer sin
-  !--error    42 
-incompatible RHS
+ ans  =
  
+    1.  
  
 a=sin //est ok
  a  =
