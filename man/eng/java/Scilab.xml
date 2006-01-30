@@ -14,6 +14,8 @@
   <DESCRIPTION>
     <P><IMG src="../../images/java/ScilabClass.gif"></IMG></P>
 
+    <P>Method Summary :</P>
+
     <P><VERB>public static void Events()</VERB> : do a scilab event.</P>
 
     <P><VERB>public static boolean HaveAGraph() </VERB>: return true if there

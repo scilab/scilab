@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -13,6 +13,8 @@
 
   <DESCRIPTION>
     <P><IMG src="../../images/java/ScilabClass.gif"></IMG></P>
+
+    <P>Method Summary :</P>
 
     <P><VERB>public static void Events()</VERB> : do a scilab event.</P>
 
