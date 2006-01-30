@@ -29,7 +29,8 @@ function R=legend(varargin)
     if tmpH.type=='Axes' then
       A = tmpH;
     end
-    H=[ H ; getvalidchildren(tmpH)'];
+    H=[H;getvalidchildren(tmpH)'];
+    //H=[getvalidchildren(tmpH)'; H];
     k0 = k0+1;
   end
 
@@ -144,7 +145,7 @@ function R=legend(varargin)
   end
   for k=1:nleg
     if k<=size(H,'*') then
-      h=H($+1-k)
+      h=H(k)
       r = []; rb = [];  // rb is for mark 
       select h.type
       case "Polyline"
@@ -211,10 +212,11 @@ function h=getvalidchildren(A)
     select a.type
     case "Polyline" then
       h=[h;a]
-    case 'Axes'
-      h=[h;getvalidchildren(a.children)]
+     case 'Axes'
+      ax=a.children
+      h=[h;getvalidchildren(ax($:-1:1))]
     case 'Compound'
-      for k=1:size(a.children,'*')
+      for k=size(a.children,'*'):-1:1
 	h=[h;getvalidchildren(a.children(k))]
 
       end
