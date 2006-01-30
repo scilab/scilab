@@ -103,9 +103,22 @@ c     form function like call
          if(pchar.ne.blank) return
       endif
  11   continue
+
       fin=0
       if(char1.eq.lparen.or.char1.eq.equal) return
-      rhs=0
+
+      if (comp(1).eq.0) then
+         rhs=0
+         fin=-1
+
+         call stackg(id)
+         if (fin.gt.0) then
+            ityp=abs(istk(iadr(lstk(fin))))
+            fin=0
+            if (ityp.ne.11.and.ityp.ne.13.and.ityp.ne.130) return
+         endif
+      endif
+
       call funs(id)
       if(fin.eq.0) then
          if(comp(1).eq.0) then
