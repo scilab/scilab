@@ -5,11 +5,11 @@ PATH=%PATH%;C:\Wintools\JBuilder9\jdk1.4\bin;C:\j2sdk1.4.2_05\bin;C:\Wintools\j2
 
 rem Compilation des classes Java d'interfaces
 
-javac -cp ..\..\..\bin -d ..\..\..\bin BadDataArgumentException.java
-javac -cp ..\..\..\bin -d ..\..\..\bin Scilab.java
-javac -cp ..\..\..\bin -d ..\..\..\bin SciDoubleArray.java
-javac -cp ..\..\..\bin -d ..\..\..\bin SciDouble.java
-javac -cp ..\..\..\bin -d ..\..\..\bin SciStringArray.java
-javac -cp ..\..\..\bin -d ..\..\..\bin SciString.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin BadDataArgumentException.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin Scilab.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin SciDoubleArray.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin SciDouble.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin SciStringArray.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin SciString.java
 
 @echo on
