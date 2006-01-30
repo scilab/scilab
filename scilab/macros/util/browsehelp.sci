@@ -92,7 +92,13 @@ function run_help(path,key)
   case 'help widget' then
     help_gtk(SCI+"/man/",LANGUAGE,path);
   case 'firefox' then
-    unix_s("firefox -remote ""openurl("+path+')"" &')
+    // we must check if a firefox is opened or not
+    exec_str = 'if firefox -remote ""ping()"" 2> /dev/null ; then ..
+	          firefox -remote ""openURL('+path+')"" & ..
+		else ..
+		  firefox '+path+' & ..
+		fi ' ;
+    unix_s(exec_str);
   case 'nautilus' then 
     unix_s("nautilus --no-desktop "+path+ '&');
   case 'mozilla/netscape (gnome-moz-remote)' then
