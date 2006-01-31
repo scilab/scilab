@@ -211,7 +211,7 @@ void BeepLinuxWindows(void)
    arg = (time<<16)+(1193180/freq);
    ioctl(fd,KDMKTONE,arg);
    */
-	system("echo -e \"\a\"");
+	system("echo -en \"\a\"");
 	#endif
 }
 /******************************************
