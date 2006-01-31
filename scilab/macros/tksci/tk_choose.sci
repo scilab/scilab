@@ -28,7 +28,7 @@ TCL_SetVar("tkChoose::button",_button(:));
 
 // Finally launch the Tcl script
 
-TCL_EvalFile(SCI+"/tcl/ged/tk_choose.tcl")
+TCL_EvalFile(SCI+"/tcl/utils/tk_choose.tcl")
 
 // Event loop at the Scilab level
 
