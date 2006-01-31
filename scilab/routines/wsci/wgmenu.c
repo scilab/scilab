@@ -1098,7 +1098,7 @@ void CreateGedMenus(struct BCG * ScilabGC)
 	#ifdef WITH_TK
 		integer ne=9, menutyp=2, ierr;
 		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
-		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
+		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","&Effacer figure","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
 	#else
 		integer ne=3, menutyp=2, ierr;
 		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
