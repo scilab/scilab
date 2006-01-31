@@ -98,5 +98,5 @@ c     .        unformatted write
  100  continue
       err=0
       call basout(io,wte,'File '//buf(1:lfil)//' Cannot be opened')
-      iflag=-1
+      flag=-1
       end

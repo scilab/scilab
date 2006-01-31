@@ -60,7 +60,7 @@ c     init
          m=ipar(1)
          n=ipar(2) 
          if(m.gt.50.or.n.gt.50) then
-            iflag=-1
+            flag=-1
             return
          endif
       endif
