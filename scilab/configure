@@ -24248,7 +24248,14 @@ rm -f conftest.err conftest.$ac_objext \
      FC=g77
      FC_OPTIONS='-O2'
      FC_OPTIONS_O0=
-     FC_LDFLAGS='-L/sw/lib -ldl -lcc_dynamic'
+     case "$host" in
+             *-*-darwin[4567].*)
+                FC_LDFLAGS='-L/sw/lib -ldl -lcc_dynamic -bind_at_load'
+               ;;
+             *-*-darwin*.*)
+                FC_LDFLAGS='-L/sw/lib -ldl -bind_at_load'
+               ;;
+     esac
      FC_PICFLAGS='-fPIC'
      LD=ld
      LD_LDFLAGS=
