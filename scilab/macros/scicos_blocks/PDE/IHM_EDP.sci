@@ -52,7 +52,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
   //m1=uimenu(f,'label', 'Methode');
   //m2=uimenu(f,'label', 'Système Expert');
   //m3=uimenu(f,'label', 'Generation', 'callback', "do_pdeode()");
-  m4=uimenu(f,'label', 'Documentation', 'callback', "help(''PDE'')");
+  m4=uimenu(f,'label', 'Documentation', 'callback', "help()");
   m5=uimenu(f,'label', 'Quitter', 'callback', "do_quitter()");
   //create two items in the menu "windows"
   //m11=uimenu(m,'label', 'new model', 'callback',"xselect()");
