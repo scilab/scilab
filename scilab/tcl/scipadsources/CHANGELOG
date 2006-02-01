@@ -1937,3 +1937,6 @@ Francois VOGEL, 22/01/06
     - a="hello""" +"world"
     - a="hello"""+"world"
  * version --> 5.78
+
+Francois VOGEL, 01/02/06
+ * version --> 6.0 - This version comes with Scilab 4.0 final release
