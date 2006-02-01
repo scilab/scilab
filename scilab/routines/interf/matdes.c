@@ -2061,20 +2061,67 @@ int scixstring(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scixtitle(char *fname,unsigned long fname_len)
 {
-  int narg;
+  int  narg          ;
+  int  nbLabels      ; /* number of modified labels */
+  int  box      = 0  ;
+  BOOL isBoxSpecified = FALSE ;
   sciPointObj * psubwin = NULL;
+  static rhs_opts opts[] = { {-1,"boxed","i" ,0,0,0},
+                             {-1,NULL   ,NULL,0,0,0} };
 
   if (Rhs <= 0) {
     sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Titre';'Principal'],'x','y');",&one);
     return 0;
   }
-  CheckRhs(1,4);
+  
+  CheckRhs(1,5);
+  
+
+  nbLabels = Rhs ;
+
+  /* get the given options from the name in opts */
+  if ( !get_optionals(fname,opts) ) return 0;
+
+  /* compatibility with previous version in which box was put */
+  /* at the fourth position */
+  
+  if ( Rhs == 4 )
+  {
+    int type = GetType(4);
+    if ( type == 1 || type == 8 )/* double or integer */
+    {
+      int n,m ;
+      int boxPtr   = -1 ; /* pointer of box on the stack */
+      GetRhsVar(4,"i",&m,&n,&boxPtr);
+      CheckScalar(4,m,n);
+      box = *istk( boxPtr ) ;
+      nbLabels-- ; /* it is not a label text */
+      isBoxSpecified = TRUE ;
+    }
+  }
+  
+  if ( opts[0].position != -1 && !isBoxSpecified )
+  {
+    /* check if "box" is in the options */
+    box = *istk(opts[0].l) ;
+    if ( opts[0].m * opts[0].n != 1 )
+     {       
+       /* check size */
+       Scierror( 999, "The boxed parameter must be a scalar", fname ) ;
+       return 1 ;
+     } 
+    nbLabels-- ; /* it is not a label text */
+  }
+  
   SciWin();
 
-  if (version_flag() == 0) 
+  if (version_flag() == 0)
+  {
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  }
+  
 
-  for ( narg = 1 ; narg <= Rhs ; narg++) 
+  for ( narg = 1 ; narg <= nbLabels ; narg++)
     {
       int i,m,n;
       char **Str;
@@ -2089,24 +2136,37 @@ int scixtitle(char *fname,unsigned long fname_len)
       FreeRhsSVar(Str);
       if (version_flag() == 0)
 	{
+          sciPointObj * modifiedLabel ;
 	  switch(narg){
 	  case 1:
-	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_title, C2F(cha1).buf , strlen(C2F(cha1).buf));
+            modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_title ;
 	    break;
 	  case 2:
-	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_x_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
-	    break;
+            modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_x_label ;
+            break;
 	  case 3:
-	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_y_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
-	    break;
-	  case 4:
-	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_z_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
-	    break;
-	  }
+            modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_y_label ;
+            break;
+          case 4:
+            modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_z_label ;
+          default:
+            break;
+          }
+          sciSetText( modifiedLabel, C2F(cha1).buf , strlen(C2F(cha1).buf) ) ;
+          if ( box == 1 )
+          {
+            sciSetIsFilled( modifiedLabel, TRUE ) ;
+          }
+          else
+          {
+            sciSetIsFilled( modifiedLabel, FALSE ) ;
+          }
 	  /*  sciRedrawFigure(); */
 	}
       else
+      {
 	Xtitle (C2F(cha1).buf,narg);
+      }
     }
 
   if (version_flag() == 0){
