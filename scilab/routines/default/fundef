@@ -385,6 +385,7 @@
 {"ascii",		IN_strelm,	12,	1},	
 {"grep",		IN_strelm,	13,	1},
 {"tokens",		IN_strelm,	14,	1},
+{"strsplit",		IN_strelm,	15,	1},
 	
 #define  IN_fmlelm  22  
 {"addf",		IN_fmlelm,	1,	0},	
