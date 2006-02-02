@@ -27,7 +27,7 @@ static int CNAME(compareD,char)(char *i,char *j)
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
-void CNAME(RowSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
+void CNAME(ColSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
 {
   int i,j;
   if ( flag == 1) 
@@ -50,7 +50,7 @@ void CNAME(RowSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
-void CNAME(ColSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
+void CNAME(RowSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
 {  
   int i,j;
   if ( flag == 1) 
