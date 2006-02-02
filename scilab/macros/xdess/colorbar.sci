@@ -14,6 +14,7 @@ function colorbar(umin, umax, colminmax,fmt)
 //                 the number of colors of the current colormap.
 //                 May be useful to deal with a part of the colormap
 //                 (for instance using fec or plot3d)
+//     fmt : optional, a C format to display colorbar graduations 
 //                 
 //  CAUTION
 //     this function may be used BEFORE a plot3d, fec, Sgrayplot, ...
@@ -22,8 +23,9 @@ function colorbar(umin, umax, colminmax,fmt)
 //     the "associated" plot and so is not modified by a zoom or 
 //     a rotation of the plot.
 //
-//  AUTHOR
+//  AUTHORS
 //     Bruno Pincon
+//     Serge Steer (adaptation to new graphic system)
 //
 //  EXAMPLES
 //     see the help page
@@ -33,7 +35,7 @@ function colorbar(umin, umax, colminmax,fmt)
     fmt='%-5.2g'
   else
     if type(fmt)<>10|size(fmt,'*')<>1 then 
-      error('colorbar: the fmt agrument should be a string containaing a C format")
+      error('colorbar: the fmt argument should be a string containing a C format")
     end
   end
   
