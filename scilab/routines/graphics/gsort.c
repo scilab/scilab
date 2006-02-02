@@ -36,6 +36,7 @@ extern void sciqsort();
 
 int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
+
   switch ( type[0])
     {
     case 'r' :  CNAME(ColSort,double)(xD,ind,*iflag,*m,*n,iord[0]);break;

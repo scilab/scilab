@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA Scilab */
 /*-----------------------------------------------------------------------------------*/
-static int CNAME(swapcode,int)(char *parmi,char* parmj,int n) 
+static int CNAME(swapcode,int)(char *parmi,char* parmj,int n, int inc )
 { 		
   int i = n;
   register int *pi = (int *) (parmi); 		
@@ -9,7 +9,9 @@ static int CNAME(swapcode,int)(char *parmi,char* parmj,int n)
   do { 						
     register int t = *pi;		
     *pi++ = *pj;				
-    *pj++ = t;				
+    *pj++ = t;	
+    pi += inc;
+    pj += inc;			
   } while (--i > 0);				
   return(0);
 }
