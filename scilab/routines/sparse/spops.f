@@ -146,14 +146,14 @@ c
       itr=max(it1,it2)
 c     
       fun = 0
-c     
+c
 c        cconc  extrac insert rconc
       goto(65  ,  999  ,  999   ,66) op
 c     
 c           :  +  -  * /  \  =          '
       goto(06,07,08,10,20,25,130,05,05,60) op+1-colon
 c     
- 05   if(op.eq.dstar) goto 30
+ 05   if(op.eq.dstar .or. op.eq.dstar+dot) goto 30  ! case dstar+dot added (bug fix 1769)
       if(op.eq.quote+dot) goto 60
       if(op.ge.3*dot+star) goto 200
       if(op.ge.2*dot+star) goto 120
@@ -633,7 +633,7 @@ c     call multiplication with scalar inverse
       goto 14
 c     
 c     left division
- 25   if (m1*n1 .ne. 1) then
+ 25   if ( .not.a1_is_scalar ) then
 c     left division by a matrix -->macro coded
          top=top0
          fin=-fin
@@ -671,14 +671,35 @@ c     left division by a scalar
       mn1=mn2
       nel1=nel2
       goto 14
-c     
-c     puissance
+*
+*     power operations: sp^pow or sp.^pow 
+*     (modified by Bruno jan 19 2006 to fix bug 1769)
+*     
+*     notes : dstar corresponds to ^
+*             dstar+dot corresponds to .^
+*             at the beginning of this toooooooo big subroutine the code is
+*             branched here in these 2 cases.
+*
  30   if (mn2 .ne. 1) then
          call error(30)
          return
       endif
-      if(m1.eq.n1.and.m1*n1.gt.1) goto 31
-c     element wise
+
+*     for sp^pow with a sp square and not scalar (scalar case is faster handle
+*     by the element wize power op)
+      if ( op.eq.dstar .and. m1.eq.n1 .and. .not.a1_is_scalar ) goto 31
+
+*     sp^pow is nevertheless "authorized" when sp is a vector (and done
+*     as an element wize power operation)
+      if ( op.eq.dstar .and. m1.ne.1 .and. n1.ne.1 ) then
+         err=1
+         call error(20)
+         return
+      endif
+*     so the following concerns only element wise power
+*
+************end of the modif for bug 1769****************
+*
       err=l1+nel1*2-lstk(bot)
       if(err.gt.0) then
          call error(17)
