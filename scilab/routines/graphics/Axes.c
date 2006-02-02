@@ -1856,12 +1856,13 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	      posi[1]=inint( ym[0] - 1.2*barlength);
 	      vy[0]= ym[0];vy[1]= ym[0] - barlength;
 	    }
-	  
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
-	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          
 	  if ( ppsubwin->axes.axes_visible[0] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+            C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
 	  XGradPosition(psubwin,posi[1],rect[3]);
@@ -1873,10 +1874,11 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L); */
 /* 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 /* 	    } */
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           if ( ppsubwin->axes.axes_visible[0] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             /* le tic proprement dit ("petit baton") */
             C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
           }
@@ -1946,37 +1948,42 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 	      posi[1]=inint( ym[0] - 1.2*barlength); */
 /* 	      vy[0]= ym[0];vy[1]= ym[0] - barlength; */
 /* 	    } */
-	  
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ppsubwin->axes.axes_visible[0] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
 	  XGradPosition(psubwin,posi[1],rect[3]);
 	  if ( logflag == 'l' )
 	    {
-	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      if ( ppsubwin->axes.axes_visible[0] )
+              if ( ppsubwin->axes.axes_visible[0] )
               {
+                C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                
                 C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
                         (posi[1] += logrect[3],&posi[1]),
                         PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
               }
 	      XGradPosition(psubwin,posi[1],rect[3]);
-	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              if ( ppsubwin->axes.axes_visible[0] )
+              {
+                C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  if ( ticscolor != -1 )
-          {
-            C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-          }
           if ( ppsubwin->axes.axes_visible[0] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            if ( ticscolor != -1 )
+            {
+              C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            }
+            
             /* le tic proprement dit ("petit baton") */
 	    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+            
+            if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           }
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
 	  /***************************************************************/
@@ -2287,12 +2294,12 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 
 
 
-
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           if ( ppsubwin->axes.axes_visible[1] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
+            C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
 	  YGradPosition(psubwin,posi[0],rect[2]);
@@ -2304,15 +2311,16 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  /* 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L); */
 	  /* 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	  /* 	    } */
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           if ( ppsubwin->axes.axes_visible[1] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
+            if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-          }
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
+            
+            if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  }
 	  
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
@@ -2374,35 +2382,40 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 	      vx[0]= xm[0];vx[1]= xm[0] - barlength; */
 /* 	    } */
 
-
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           if ( ppsubwin->axes.axes_visible[1] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
 	  YGradPosition(psubwin,posi[0],rect[2]);
 	  
 	  if ( logflag == 'l' )
 	    {
-	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
               if ( ppsubwin->axes.axes_visible[1] )
               {
+                C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                
                 C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
                         (posi[1] += logrect[3],&posi[1]),
                         PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
               }
 	      YGradPosition(psubwin,posi[0],rect[2]); /* adding F.Leray 04.08.05 */
-	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      if ( ppsubwin->axes.axes_visible[1] )
+              {
+                C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+              }
 	    }
-	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           if ( ppsubwin->axes.axes_visible[1] )
           {
+            if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
+            if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
             C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-          }
-	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  
+          
+            if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  }
 	  /***************************************************************/
 	  /************************* END COMMON PART *********************/
 	  /***************************************************************/
