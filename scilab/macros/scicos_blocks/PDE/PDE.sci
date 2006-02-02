@@ -27,17 +27,17 @@ case 'set' then
   x=arg1;  
   graphics=arg1.graphics;label=graphics.exprs
   model=arg1.model;  
-  params_pde=label(2);
+  params_pde=label(1);
   
   while %t do
     [ln,fun]=where();  
     if (fun(3) == "clickin") then // cas standard    
-		   [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,..
+      [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,..
        CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,..
        a6,b6,a7,b7,k,mesures,params_pde]=IHM_EDP(params_pde);
-       if ok then 
-         return;
-       end
+      if ok then 
+	return;
+      end
     else
       if exists('%scicos_context') then
         // evaluation du context
@@ -47,16 +47,16 @@ case 'set' then
       end
     end
     
-     //**********************************
-     // Get the name of the file
-     //***********************************
+    //**********************************
+    // Get the name of the file
+    //***********************************
     okk=%f;rdnom='PDE';ok1=%t;
     while %t do
       [okk,rdnom,lab]=getvalue('PLEASE, GIVE US THE BLOCK''s NAME. ',..
-		    'New block''s name :',list('str',1),label(1));
+			       'New block''s name :',list('str',1),label(3));
 	
       if okk==%f then ok1=%f;return; end
-      label(1)=lab;
+      label(3)=lab;
       rdnom=stripblanks(rdnom);     
       if rdnom==emptystr() then 
         ok1=%f;x_message('sorry C file name not defined');
@@ -136,14 +136,16 @@ case 'set' then
     end
      
     // Ecriture, compilation et linkage du code
-    [ok1]=CFORTREDP(rdnom,tt);
-    if ~ok1 then break,end
+    if (fun(3) == "clickin") then 
+      [ok1]=CFORTREDP(rdnom,tt);
+      if ~ok1 then break,end
+    end
     
     if ~ok then
   	   [model,graphics,ok]=check_io(model,graphics,ones(k,1),out(:),[],[])
     end
-    label(2)=params_pde;
-    label(3)=tt;
+    label(1)=params_pde;
+    label(2)=tt;
     graphics.exprs=label;
     x.graphics=graphics;
     x.model=model;
@@ -168,7 +170,7 @@ case 'define' then
                     '0',"","IN_EDP4(t)",'0',"","IN_EDP5(t)",'0',"","IN_EDP6(t)",'0',"","IN_EDP7(t)",'0','0',..
                     '0','0','0','0','','','','','',"","","",'0',"IN_CL1(t)",'0',"IN_CL2(t)","");
   // dans label on mis infos de getvalue, infos ihm et le code C
-  label=list('',params_pde,[]);
+  label=list(params_pde,[],'');
 	gr_i=['txt=CCC;';
         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   x=standard_define([4 4],model,label,gr_i)
