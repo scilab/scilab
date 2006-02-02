@@ -1841,6 +1841,53 @@ void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
   C2F(set_dash_and_color_Xfig)(Dvalue,PI0,PI0,PI0);
   C2F(setcursymbolXfig)(symb,symb+1,PI0,PI0);
 }
+/*----------------------------------------------------------------------------------*/
+/* for the fig driver we need to know if we have at least three distincts points */
+static BOOL checkPolygon( integer *polyX, integer *polyY, integer length )
+{
+  int i, j   ;
+  int nbDiff = 0 ;
+  for ( i = 0 ; i < length ; i++ )
+  {
+    for ( j = i + 1 ; j < length ; j++ )
+    {
+      if ( polyX[j] != polyX[i] || polyY[j] != polyY[i] )
+      {
+        nbDiff++ ;
+        if ( nbDiff >= 3 )
+        {
+          /* 3 distincts points have been found */
+          return TRUE ;
+        }
+      }
+    }
+  }
+  return FALSE ;
+}
+/*----------------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------------*/
+/* for the fig driver we need to know if we have at least three distincts points */
+/* for each polygon */
+static BOOL checkPolygons( integer *polyX, integer *polyY, integer polyLength, integer nbPoly )
+{
+  int   i                ;
+  int * curPolyX = polyX ;
+  int * curPolyY = polyY ;
+  for ( i = 0 ; i < nbPoly ; i++ )
+  {
+    /* check every pairs of points in the polygon */
+    if ( !checkPolygon( curPolyX, curPolyY, polyLength ) )
+    {
+      return FALSE ;
+    }
+    /* get the pointer on the next polygon */
+    curPolyX += polyLength ;
+    curPolyY += polyLength ;
+  }
+  return TRUE ;
+}
+/*----------------------------------------------------------------------------------*/
 
 /** fill a set of polygons each of which is defined by **/
 /** (*p) points (*n) is the number of polygons **/
@@ -1862,14 +1909,23 @@ void C2F(fillpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
     return;
   }
 
-  if ( ScilabGCXfig.CurVectorStyle !=  CoordModeOrigin)
-    FPRINTF((file,"#/absolu false def\n"));
+  /* check if every polygon is not flat */
+  if ( !checkPolygons( vectsx, vectsy, *p, *n ) )
+  {
+    return ;
+  }
+
+  if ( ScilabGCXfig.CurVectorStyle !=  CoordModeOrigin )
+  {
+    FPRINTF( (file,"#/absolu false def\n") ) ;
+  }
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
   C2F(WriteGenericXfig)("drawpoly",*n,(*p)*2,vectsx,vectsy,(*p)*(*n),(integer)1L,
 			fillvect);
   C2F(setpatternXfig)(&(cpat),PI0,PI0,PI0);
   FPRINTF((file,"#/absolu true def\n"));
 }
+
 
 /** Only draw one polygon with current line style **/
 /** according to *closeflag : it's a polyline or a polygon **/
@@ -1899,14 +1955,16 @@ void C2F(drawpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, inte
     return;
   }
 
-  for(j=0;j<(*n);j++){
+  
+  for( j = 0 ; j < (*n ) ; j++ )
+  {
     vxtmp[j] = vx[j];
     vytmp[j] = vy[j];
   }
   
   vxtmp[(*n)] = vx[0];
   vytmp[(*n)] = vy[0];
-  
+
   if (*closeflag == 1 ){
     int nb = (*n)+1;
     FPRINTF((file,"#/closeflag true def\n"));
@@ -2405,49 +2463,52 @@ void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer 
   C2F(getdashXfig)(&verb,Dvalue,&Dnarg,vdouble);
   C2F(getpatternXfig)(&verb,&cpat,&num,vdouble);
   if ( nobj==0|| sizeobj==0) return;
-  if ( strcmp(string,"drawpoly")==0)
+  
+  if ( strcmp(string,"drawpoly") == 0 )
+  {
+    for ( i = 0 ; i < nobj ; i++ )
     {
-      for ( i =0 ; i < nobj ; i++)
-	{
-	  if (fvect[i] < 0 )
-	   {
-	     /** only fill **/
+      lg = sizeobj / 2 ;
 
-	     set_pattern_or_color( - fvect[i],&areafill,&fill_color);
-	     l_style = 0;
-	     style_val = 0;
-	     pen_color = fill_color;
-	     type = 3;
-	   }
-	  else if (fvect[i] == 0 )
-	    {
-	      /** only draws th polyline **/
-	      set_color(cpat,&pen_color);
-	      set_dash(Dvalue[0],&l_style,&style_val);
-	      areafill=-1;
-	      fill_color = WHITE;
-	    }
-	  else 
-	    /** fill with pattern  and draw with current dash **/
-	    { 
-	      set_pattern_or_color(fvect[i],&areafill,&fill_color);
-	      set_color(cpat,&pen_color);
-	      set_dash(Dvalue[0],&l_style,&style_val);
-	      /*set_dash_or_color(Dvalue[0],&l_style,&style_val,&pen_color);*/
-	      type=3;
-	    }
-	  lg=sizeobj/2;
-	  FPRINTF((file,"# Object : %d %s -<pat:%d,areafill=%d,white=%d>- \n", (int)i,string,
-		  (int)fvect[i],
-		  (int)areafill,
-		  ScilabGCXfig.IDLastPattern));
-	  FPRINTF((file,"2 %d %d %d %d %d 0 0 %d %d.00 0 0 -1 0 0 %d\n",
-		   (int)type,l_style, ScilabGCXfig.CurLineWidth*prec_fact/16,
-		  pen_color,fill_color,areafill,style_val, (int)lg
-		  ));
+      if ( fvect[i] < 0 )
+      {
+        /** only fill **/
+            
+        set_pattern_or_color( - fvect[i], &areafill, &fill_color ) ;
+        l_style = 0;
+        style_val = 0;
+        pen_color = fill_color;
+        type = 3;
+      }
+      else if ( fvect[i] == 0 )
+      {
+        /** only draws the polyline **/
+        set_color(cpat,&pen_color);
+        set_dash(Dvalue[0],&l_style,&style_val);
+        areafill=-1;
+        fill_color = WHITE;
+      }
+      else 
+        /** fill with pattern  and draw with current dash **/
+      { 
+        set_pattern_or_color(fvect[i],&areafill,&fill_color);
+        set_color(cpat,&pen_color);
+        set_dash(Dvalue[0],&l_style,&style_val);
+        /*set_dash_or_color(Dvalue[0],&l_style,&style_val,&pen_color);*/
+        type=3;
+      }
+      
+      FPRINTF((file,"# Object : %d %s -<pat:%d,areafill=%d,white=%d>- \n", (int)i,string,
+               (int)fvect[i],
+               (int)areafill,
+               ScilabGCXfig.IDLastPattern));
+      FPRINTF((file,"2 %d %d %d %d %d 0 0 %d %d.00 0 0 -1 0 0 %d\n",
+               (int)type,l_style, ScilabGCXfig.CurLineWidth*prec_fact/16,
+               pen_color,fill_color,areafill,style_val, (int)lg
+                ));
 
-	  /* debug info.*/
-	/*   printf("# Object : %d %s -<pat:%d,areafill=%d,white=%d>- \n", (int)i,string, */
+      /* debug info.*/
+      /*   printf("# Object : %d %s -<pat:%d,areafill=%d,white=%d>- \n", (int)i,string, */
 /* 		 (int)fvect[i], */
 /* 		 (int)areafill, */
 /* 		 ScilabGCXfig.IDLastPattern); */
@@ -2455,10 +2516,9 @@ void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer 
 /* 		 (int)type,l_style, ScilabGCXfig.CurLineWidth*prec_fact/16, */
 /* 		 pen_color,fill_color,areafill,style_val, (int)lg); */
 /* 	  fflush(NULL); */
-	  
-	  C2F(Write2VectXfig)(&vx[i*lg],&vy[i*lg],lg,flag);
-	}
+      C2F(Write2VectXfig)(&vx[i*lg],&vy[i*lg],lg,flag);
     }
+  }
   else 
   if ( strcmp(string,"drawbox")==0)
     {
@@ -2620,12 +2680,13 @@ void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer 
     sciprint("Can't translate %s\r\n",string);
 }
 
-
 void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag)
 {
+  
   integer i,k;
-  i=0;
-  while( i < n)
+  
+  i=0;     
+  while( i < n )
     {
       k=0;
       while ( k < PERLINE && i < n )
