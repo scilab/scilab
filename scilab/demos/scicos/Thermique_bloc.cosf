@@ -2,8 +2,7 @@ scicos_ver = "scicos2.7.3"
 scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
-"doc"],[600,450,0,0,600,450],..
-["hermique_bloc","/usr/local/lib/scilab/demos/scicos/"],..
+"doc"],[600,450,0,0,600,450],["Thermique_bloc","/home/ramin/EDP/Tests/"],..
 [0.0001;0.000001;1.000E-10;100001;0;100;0],15000," ",[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[12,9],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
@@ -12,7 +11,7 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
               "gr_i","id","in_implicit","out_implicit"],[-134.89583,502.27913],..
               [80,80],%t,..
-              list("termique",..
+              list(..
               tlist(..
               ["paramspde";
               "a";
@@ -62,7 +61,7 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               "IN_EDP4(t)","0","","IN_EDP5(t)","0","","IN_EDP6(t)","0","",..
               "IN_EDP7(t)","1","0","1","0","1","1","","","","2","101","0.1","0",..
               "","0","IN_CL1(t)","0","IN_CL2(t)",["2","4","5","6","8"]),..
-              ["#include ""/home/azil/scilab-3.1.1/routines/scicos/scicos_block.h""";
+              ["#include <scicos/scicos_block.h>";
               "#include <math.h>";
               " ";
               "void  termique_implicite(scicos_block *block,int flag)";
@@ -400,7 +399,7 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               "  set_pointer_xproperty(property);";
               " }";
               " return;";
-              "}"]),[16;17;21;33],[45;35],[],[],..
+              "}"],"termique"),[16;17;21;33],[45;35],[],[],..
               list(..
               ["txt=CCC;";"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],..
               32),"",["E";"E";"E";"E"],["E";"E"]),..
