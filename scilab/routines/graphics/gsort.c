@@ -12,26 +12,15 @@
 #include "../os_specific/men_Sutils.h"
 
 
-#ifdef WIN32
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-
 extern void sciqsort();
 #define swapcodeind CNAME(swapcode,int)
-#include "gsort-int.h"
-#include "gsort-double.h"
-#include "gsort-string.h"
+
+#include "qsort-int.c"
+#include "qsort-string.c"
+#include "qsort-double.c"
 
 
 
-/** swapcode for indices : indices are integers **/
-
-
-
-
-#define TYPE double
 
 /******************************************************
  * General sort routine for Scilab 
@@ -88,7 +77,7 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
     case 'c' :  CNAME(RowSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
-	CNAME(LexiRow,char)((int **)data,ind,*iflag,*m,*n,iord[0]);
+	CNAME(LexiRow,char)(data,ind,*iflag,*m,*n,iord[0]);
       else
 	CNAME(LexiCol,char)(data,ind,*iflag,*m,*n,iord[0]);
       break;
@@ -110,13 +99,14 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
 
 void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
+
   switch ( type[0])
     {
     case 'r' :  CNAME(ColSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'c' :  CNAME(RowSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
-	CNAME(LexiRow,char)((int **)data,ind,*iflag,*m,*n,iord[0]);
+	CNAME(LexiRow,char)(data,ind,*iflag,*m,*n,iord[0]);
       else
 	CNAME(LexiCol,char)(data,ind,*iflag,*m,*n,iord[0]);
       break;
@@ -124,6 +114,4 @@ void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, 
     default :  CNAME(GlobalSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     }
 }
-
-
 
