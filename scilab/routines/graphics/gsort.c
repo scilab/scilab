@@ -1,38 +1,26 @@
-/*------------------------------------------------------------------------
- *    Graphic library
- *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
- *    jpc@cermics.enpc.fr 
- --------------------------------------------------------------------------*/
-
+/*-----------------------------------------------------------------------------------*/
+/* Written by  Jean-Philippe Chancelier Copyright (C) ENPC 1998-2001                 *
+ * Modified (restructuration and bug fix) by Allan Cornet  INRIA 2006                */
+/*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include "Math.h"
 
 #include "../os_specific/men_Sutils.h"
-
-
-#ifdef WIN32
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-
+/*-----------------------------------------------------------------------------------*/ 
 extern void sciqsort();
-#define swapcodeind CNAME(swapcode,int)
-#include "gsort-int.h"
-#include "gsort-double.h"
-#include "gsort-string.h"
-
-
-
-/** swapcode for indices : indices are integers **/
-
-
-
-
-#define TYPE double
-
+extern void GlobalSortchar(char * *a,int *ind,int flag,int n,int p,char dir);
+extern void LexiColchar(char * *a,int *ind,int flag,int n,int p,char dir);
+extern void LexiRowchar(char * *a,int *ind,int flag,int n,int p,char dir);
+extern void RowSortchar(char * *a,int *ind,int flag,int n,int p,char dir);
+extern void ColSortchar(char * *a,int *ind,int flag,int n,int p,char dir);
+extern void GlobalSortdouble(double *a,int *ind,int flag,int n,int p,char dir);
+extern void LexiColint(int *a,int *ind,int flag,int n,int p,char dir);
+extern void LexiRowint(int *a,int *ind,int flag,int n,int p,char dir);
+extern void RowSortdouble(double *a,int *ind,int flag,int n,int p,char dir);
+extern void ColSortdouble(double *a,int *ind,int flag,int n,int p,char dir);
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * General sort routine for Scilab 
  * xI is the transmitted table to sort ( if table is int ) 
@@ -44,13 +32,13 @@ extern void sciqsort();
  * type : the operation ( see the interface ) 
  * iord : 'i' or 'd' : increasind or decreasing sort 
  ******************************************************/
-
 int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
+
   switch ( type[0])
     {
-    case 'r' :  CNAME(ColSort,double)(xD,ind,*iflag,*m,*n,iord[0]);break;
-    case 'c' :  CNAME(RowSort,double)(xD,ind,*iflag,*m,*n,iord[0]);break;
+    case 'r' :  ColSortdouble(xD,ind,*iflag,*m,*n,iord[0]);break;
+    case 'c' :  RowSortdouble(xD,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
 	CNAME(LexiRow,int)(xI,ind,*iflag,*m,*n,iord[0]);
@@ -58,11 +46,11 @@ int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *
 	CNAME(LexiCol,int)(xI,ind,*iflag,*m,*n,iord[0]);
       break;
     case 'g' : 
-    default :  CNAME(GlobalSort,double)(xD,ind,*iflag,*m,*n,iord[0]);break;
+    default :  GlobalSortdouble(xD,ind,*iflag,*m,*n,iord[0]);break;
     }
   return(0);
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * General sort routine for Scilab 
  * The version for Scilab strings 
@@ -71,7 +59,6 @@ int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *
  * type : the operation ( see the interface ) 
  * iord : 'i' or 'd' : increasind or decreasing sort 
  ******************************************************/
-
 void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrres, int *ierr, int *ind, int *iflag, char *type, char *iord)
 {
   char **data;
@@ -84,22 +71,21 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
   if ( *ierr == 1) return;
   switch ( type[0])
     {
-    case 'r' :  CNAME(ColSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
-    case 'c' :  CNAME(RowSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
+    case 'r' :  ColSortchar(data,ind,*iflag,*m,*n,iord[0]);break;
+    case 'c' :  RowSortchar(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
-	CNAME(LexiRow,char)((int **)data,ind,*iflag,*m,*n,iord[0]);
+				LexiRowchar(data,ind,*iflag,*m,*n,iord[0]);
       else
-	CNAME(LexiCol,char)(data,ind,*iflag,*m,*n,iord[0]);
+				LexiColchar(data,ind,*iflag,*m,*n,iord[0]);
       break;
     case 'g' : 
-    default :  CNAME(GlobalSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
+    default :  GlobalSortchar(data,ind,*iflag,*m,*n,iord[0]);break;
     }
   ScilabCM2MStr(data,nv,res,ptrres,maxchars,ierr);
   for (i=0;i< nv ;i++) FREE(data[i]); FREE(data);
 }
-
-
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * General sort routine for Scilab strings 
  * iflag == if 1 ind is to be computed if 0 ind is ignored 
@@ -107,23 +93,21 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
  * type : the operation ( see the interface ) 
  * iord : 'i' or 'd' : increasind or decreasing sort 
  ******************************************************/
-
 void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
+
   switch ( type[0])
     {
-    case 'r' :  CNAME(ColSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
-    case 'c' :  CNAME(RowSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
+    case 'r' :  ColSortchar(data,ind,*iflag,*m,*n,iord[0]);break;
+    case 'c' :  RowSortchar(data,ind,*iflag,*m,*n,iord[0]);break;
     case 'l' :  
       if ( type[1] == 'r' ) 
-	CNAME(LexiRow,char)((int **)data,ind,*iflag,*m,*n,iord[0]);
+		LexiRowchar(data,ind,*iflag,*m,*n,iord[0]);
       else
-	CNAME(LexiCol,char)(data,ind,*iflag,*m,*n,iord[0]);
+		LexiColchar(data,ind,*iflag,*m,*n,iord[0]);
       break;
     case 'g' : 
-    default :  CNAME(GlobalSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
+    default :  GlobalSortchar(data,ind,*iflag,*m,*n,iord[0]);break;
     }
 }
-
-
-
+/*-----------------------------------------------------------------------------------*/ 
