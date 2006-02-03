@@ -1,33 +1,36 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA Scilab */
-/*-----------------------------------------------------------------------------------*/
-static int CNAME(swapcode,char)(char **parmi,char** parmj,int n) 
-{ 		
-  int i = n;
-  register char **pi = (char **) (parmi); 		
-  register char **pj = (char **) (parmj); 
-  do { 						
-    register char *t = *pi;		
-    *pi++ = *pj;				
-    *pj++ = t;				
-  } while (--i > 0);				
-  return(0);
-}
-/*-----------------------------------------------------------------------------------*/
-static int CNAME(compareC,char)(char *i,char *j)
+/* INRIA 2006 */
+/*-----------------------------------------------------------------------------------*/ 
+static int swapcodechar( char ** parmi, char ** parmj, int n,int incr) 
+	{ 		
+	int i = n;
+	register char **pi = (char **) (parmi); 		
+	register char **pj = (char **) (parmj); 
+	register int inc1 = incr/sizeof(char *);
+	do { 		
+		register char *t = *pi;
+		*pi = *pj;				
+		*pj = t;				
+		pi += inc1;
+		pj += inc1;
+		} while (--i > 0);				
+	return(0);
+	}
+/*-----------------------------------------------------------------------------------*/ 
+static int compareCchar(char *i,char *j)
 {
-  return(strcmp(*((char **) i),*((char**) j)));
+  return(strcmp(*((char * *) i),*((char **) j)));
 }
-/*-----------------------------------------------------------------------------------*/
-static int CNAME(compareD,char)(char *i,char *j)
+/*-----------------------------------------------------------------------------------*/ 
+static int compareDchar(char *i,char *j)
 {
-  return(- strcmp(*((char **) i),*((char **) j)));
+  return(- strcmp(*((char * *) i),*((char **) j)));
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
-void CNAME(ColSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
+void ColSortchar(char * *a,int *ind,int flag,int n,int p,char dir)
 {
   int i,j;
   if ( flag == 1) 
@@ -41,16 +44,16 @@ void CNAME(ColSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
   for ( j= 0 ; j < p ; j++ ) 
     {
       sciqsort((char *) (a+n*j),(char *) (ind+n*j),flag, n, 
-		sizeof(char*),sizeof(int), 
-		(dir == 'i' ) ? CNAME(compareC,char) : CNAME(compareD,char),
-		CNAME(swapcode,char),swapcodeind);
+		sizeof(char *),sizeof(int), 
+		(dir == 'i' ) ? compareCchar : compareDchar,
+		swapcodechar,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
-void CNAME(RowSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
+void RowSortchar(char * *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i,j;
   if ( flag == 1) 
@@ -66,16 +69,16 @@ void CNAME(RowSort,char)(char **a,int *ind,int flag,int n,int p,char dir)
   for ( i = 0 ; i < n ; i++) 
     {
       sciqsort((char *) (a+i),(char *) (ind+i),flag, p, 
-		n*sizeof(char*),n*sizeof(int), 
-		(dir == 'i' ) ? CNAME(compareC,char):CNAME(compareD,char),
-		CNAME(swapcode,char),swapcodeind);
+		n*sizeof(char *),n*sizeof(int), 
+		(dir == 'i' ) ? compareCchar:compareDchar,
+		swapcodechar,swapcodeind);
     }
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
-void CNAME(GlobalSort,char)(char ** a, int * ind, int flag, int n, int p,char dir)
+void GlobalSortchar(char * *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i;
   if ( flag == 1) 
@@ -84,149 +87,147 @@ void CNAME(GlobalSort,char)(char ** a, int * ind, int flag, int n, int p,char di
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n*p, 
-	    sizeof(char*),sizeof(int), 
-	    (dir == 'i' ) ? CNAME(compareC,char):CNAME(compareD,char),
-	    CNAME(swapcode,char),swapcodeind);
+	    sizeof(char *),sizeof(int), 
+	    (dir == 'i' ) ? compareCchar:compareDchar,
+	    swapcodechar,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 
 /*******************************************************
  *  lexicographic order with Rows ind is of size n
  *  ind gives the permutation of the rows which is applied 
  *  to sort them 
  ******************************************************/
-
-static int CNAME(lexicols,char) =1;
-static int CNAME(lexirows,char) =1;
-
-static void CNAME(setLexiSize,char)(int n,int p) 
+static int lexicolschar =1;
+static int lexirowschar =1;
+/*-----------------------------------------------------------------------------------*/ 
+static void setLexiSizechar(int n,int p) 
 {
-  CNAME(lexicols,char) = p;
-  CNAME(lexirows,char) = n;
+  lexicolschar = p;
+  lexirowschar = n;
 }
-/*-----------------------------------------------------------------------------------*/
-static  int CNAME(LexiRowcompareC,char)(char **i,char **j)
+/*-----------------------------------------------------------------------------------*/ 
+static  int LexiRowcompareCchar(char * *i,char * *j)
 {
   int jc;
-  for ( jc = 0 ; jc < CNAME(lexicols,char) ; jc++) 
+  for ( jc = 0 ; jc < lexicolschar ; jc++) 
     {
       int k = strcmp(*i,*j);
       if ( k != 0) return(k);
-      i += CNAME(lexirows,char);
-      j += CNAME(lexirows,char);
+      i += lexirowschar;
+      j += lexirowschar;
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/
-static  int CNAME(LexiRowcompareD,char)(char **i,char **j)
+/*-----------------------------------------------------------------------------------*/ 
+static  int LexiRowcompareDchar(char * *i,char * *j)
 {
   int jc;
-  for ( jc = 0 ; jc < CNAME(lexicols,char) ; jc++) 
+  for ( jc = 0 ; jc < lexicolschar ; jc++) 
     {
       int k = strcmp(*i,*j);
       if ( k != 0) return(-k);
-      i += CNAME(lexirows,char);
-      j += CNAME(lexirows,char);
+      i += lexirowschar;
+      j += lexirowschar;
     }
   return (0);
 }
-/*-----------------------------------------------------------------------------------*/
-static int CNAME(LexiRowswapcode,char)(char **parmi,char ** parmj,int n) 
+/*-----------------------------------------------------------------------------------*/ 
+static int LexiRowswapcodechar(char *parmi,char * parmj,int n) 
 { 		
   int i = n,j;
-  register char **pi = (char **) (parmi); 		
-  register char **pj = (char **) (parmj); 
+  register char * *pi = (char * *) (parmi); 		
+  register char * *pj = (char * *) (parmj); 
   /* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
   do { 
-    for ( j = 0 ; j < CNAME(lexicols,char) ; j++) 
+    for ( j = 0 ; j < lexicolschar ; j++) 
       {
-	register char *t = *(pi +CNAME(lexirows,char)*j);		
-	*(pi + CNAME(lexirows,char)*j) = *(pj+CNAME(lexirows,char)*j);				
-	*(pj + CNAME(lexirows,char)*j) = t;	
+	register char * t = *(pi +lexirowschar*j);		
+	*(pi + lexirowschar*j) = *(pj+lexirowschar*j);				
+	*(pj + lexirowschar*j) = t;	
       }
     pi++;
     pj++;
   } while (--i > 0);				
   return(0);
 }
-/*-----------------------------------------------------------------------------------*/
-void CNAME(LexiRow,char)(char **a,int *ind,int flag,int n,int p,char dir)
+/*-----------------------------------------------------------------------------------*/ 
+void LexiRowchar(char * *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
-  CNAME(setLexiSize,char)(n,p);
+  setLexiSizechar(n,p);
   if ( flag == 1) 
     {
       for ( i = 0 ; i < n ; i++) 
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n, 
-	    sizeof(char*),sizeof(int), 
-	    (dir == 'i' ) ? CNAME(LexiRowcompareC,char):CNAME(LexiRowcompareD,char),
-	    CNAME(LexiRowswapcode,char),swapcodeind);
+	    sizeof(char *),sizeof(int), 
+	    (dir == 'i' ) ? LexiRowcompareCchar:LexiRowcompareDchar,
+	    LexiRowswapcodechar,swapcodeind);
 }
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------*/ 
 /******************************************************
- *  lexicographic order with Cols ind is of size p
- *  ind gives the permutation of the column which is applied 
- *  to sort them 
- ******************************************************/
-static  int CNAME(LexiColcompareC,char)(char **i,char **j)
-{
-  int ic;
-  for ( ic = 0 ; ic < CNAME(lexirows,char) ; ic++) 
-    {
-      int k = strcmp(*i,*j);
-      if ( k != 0) return(k);
-      i++;
-      j++;
-    }
-  return (0);
-}
-/*-----------------------------------------------------------------------------------*/
-static  int CNAME(LexiColcompareD,char)(char **i,char **j)
-{
-  int ic;
-  for ( ic = 0 ; ic < CNAME(lexirows,char) ; ic++) 
-    {
-      int k = strcmp(*i,*j);
-      if ( k != 0) return(-k);
-      i++;
-      j++;
-    }
-  return (0);
-}
-/*-----------------------------------------------------------------------------------*/
-static int CNAME(LexiColswapcode,char)(char *parmi,char* parmj,int n) 
-{ 		
-  int i = n,ir;
-  register char **pi = (char **) (parmi); 		
-  register char **pj = (char **) (parmj); 
-  /* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
-  do { 
-    for ( ir = 0 ; ir < CNAME(lexirows,char) ; ir++) 
-      {
-	register char *t = *(pi +ir);		
-	*(pi +ir) = *(pj+ir);				
-	*(pj +ir) = t;	
-      }
-    pi += CNAME(lexirows,char) ;
-    pj += CNAME(lexirows,char) ;
-  } while (--i > 0);				
-  return(0);
-}
-/*-----------------------------------------------------------------------------------*/
-void CNAME(LexiCol,char)(char **a,int *ind,int flag,int n,int p,char dir)
-{
-  int i;
-  CNAME(setLexiSize,char)(n,p);
-  if ( flag == 1) 
-    {
-      for ( i = 0 ; i < p ; i++) 
-	ind[i]= i+1;
-    }
-  sciqsort((char *) (a),(char *) (ind),flag, p, 
-	    n*sizeof(char*),sizeof(int), 
-	    (dir == 'i' ) ? CNAME(LexiColcompareC,char):CNAME(LexiColcompareD,char),
-	    CNAME(LexiColswapcode,char),
-	    swapcodeind);
-}
-/*-----------------------------------------------------------------------------------*/
+*  lexicographic order with Cols ind is of size p
+*  ind gives the permutation of the column which is applied 
+*  to sort them 
+******************************************************/
+static  int LexiColcompareCchar(char * *i,char * *j)
+	{
+	int ic;
+	for ( ic = 0 ; ic < lexirowschar ; ic++) 
+		{
+		int k = strcmp(*i,*j);
+		if ( k != 0) return(k);
+		i++;
+		j++;
+		}
+	return (0);
+	}
+/*-----------------------------------------------------------------------------------*/ 
+static  int LexiColcompareDchar(char * *i,char * *j)
+	{
+	int ic;
+	for ( ic = 0 ; ic < lexirowschar ; ic++) 
+		{
+		int k = strcmp(*i,*j);
+		if ( k != 0) return(-k);
+		i++;
+		j++;
+		}
+	return (0);
+	}
+/*-----------------------------------------------------------------------------------*/ 
+static int LexiColswapcodechar(char *parmi,char* parmj,int n) 
+	{ 		
+	int i = n,ir;
+	register char * *pi = (char * *) (parmi); 		
+	register char * *pj = (char * *) (parmj); 
+	/* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
+	do { 
+		for ( ir = 0 ; ir < lexirowschar ; ir++) 
+			{
+			register char * t = *(pi +ir);		
+			*(pi +ir) = *(pj+ir);				
+			*(pj +ir) = t;	
+			}
+		pi += lexirowschar ;
+		pj += lexirowschar ;
+		} while (--i > 0);				
+	return(0);
+	}
+/*-----------------------------------------------------------------------------------*/ 
+void LexiColchar(char * *a,int *ind,int flag,int n,int p,char dir)
+	{
+	int i;
+	setLexiSizechar(n,p);
+	if ( flag == 1) 
+		{
+		for ( i = 0 ; i < p ; i++) 
+			ind[i]= i+1;
+		}
+	sciqsort((char *) (a),(char *) (ind),flag, p, 
+		n*sizeof(char *),sizeof(int), 
+		(dir == 'i' ) ? LexiColcompareCchar:LexiColcompareDchar,
+		LexiColswapcodechar,swapcodeind);
+	}
+/*-----------------------------------------------------------------------------------*/ 
