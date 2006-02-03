@@ -3,7 +3,7 @@ scs_m=scicos_diagram()
 scs_m.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
 "doc"],[600,450,0,0,600,450],["Others","SCI/macros/scicos/"],..
-[0.0001,1.000E-06,1.000E-10,100001,0,0],100000,[],[],..
+[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
@@ -36,7 +36,7 @@ scs_m_1=scicos_diagram()
 scs_m_1.props=tlist(..
 ["params","wpar","title","tol","tf","context","void1","options","void2","void3",..
 "doc"],[600,450,0,0,600,450],"Super Block",..
-[0.0001,1.000E-06,1.000E-10,100001,0,0],100000,[],[],..
+[0.0001,0.000001,1.000E-10,100001,0,0],100000,[],[],..
 tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
 list([5,1],[4,1]),[0.8,0.8,0.8]),[],[],list())
 scs_m.objs(3)=mlist(..
@@ -245,3 +245,66 @@ scs_m.objs(16)=mlist(["Block","graphics","model","gui","doc"],..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],list("sinblk",1),1,1,[],[],[],[],[],[],"c",[],..
                [%t,%f],"",0,0,list()),"generic_block2",list())
+scs_m.objs(17)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[300,140],[80,80],%t,..
+               list(..
+               tlist(..
+               ["paramspde";
+               "a";
+               "b";
+               "txt_exp";
+               "check_op1";
+               "a1";
+               "b1";
+               "check_op2";
+               "a2";
+               "b2";
+               "check_op3";
+               "a3";
+               "b3";
+               "check_op4";
+               "a4";
+               "b4";
+               "check_op5";
+               "a5";
+               "b5";
+               "check_op6";
+               "a6";
+               "b6";
+               "check_op7";
+               "a7";
+               "b7";
+               "discr_cst";
+               "discr_non_cst";
+               "signe";
+               "rad_automatique";
+               "rad_manuel";
+               "methode";
+               "ord1";
+               "ord2";
+               "ord3";
+               "degre";
+               "nnode";
+               "txt_pas";
+               "CI";
+               "dCI";
+               "CLa";
+               "CLa_exp";
+               "CLb";
+               "CLb_exp";
+               "points"],"","","","0","","IN_EDP1(t)","0","","IN_EDP2(t)","0","",..
+               "IN_EDP3(t)","0","","IN_EDP4(t)","0","","IN_EDP5(t)","0","",..
+               "IN_EDP6(t)","0","","IN_EDP7(t)","0","0","0","0","0","0","","","",..
+               "","","","","","0","IN_CL1(t)","0","IN_CL2(t)",""),[],""),..
+               [0;0;0;0;0],[0;0],[],[],..
+               list(..
+               ["txt=CCC;";"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],..
+               8),"",["E";"E";"E";"E";"E"],["E";"E"]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],list("PDE",0),[1;1;1;1;1],[10;0],[],[],..
+               [0;0;0;0;0;0;0;0;0;0],[],[],[],"c",[],[%f,%t],"",0,0,list()),..
+               "PDE",list())
