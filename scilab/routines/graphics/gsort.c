@@ -1,5 +1,6 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
+/* Written by  Jean-Philippe Chancelier Copyright (C) ENPC 1998-2001                 *
+ * Modified (restructuration and bug fix) by Allan Cornet  INRIA 2006                */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
