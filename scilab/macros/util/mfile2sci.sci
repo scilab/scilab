@@ -133,13 +133,17 @@ if txt==[] then
   m2sci_infos("File "+fil+"is an empty file ! Nothing done...",-1);
   return
 end
+tmptxt=txt
 
 // Make minor changes on syntax
 m2sci_info("Syntax modification...",-1);
 ierr=execstr("load(''"+pathconvert(TMPDIR)+fnam+ ".tree'',''txt'',''helppart'',''batch'')",'errcatch','n')
-if ierr<>0 | exists('txt')==0 | exists('batch')==0 then
-[helppart,txt,batch]=m2sci_syntax(txt)
+if ierr<>0 | exists('txt')==0 | exists('batch')==0  then
+  [helppart,txt,batch]=m2sci_syntax(txt)
+elseif ierr==0 & newest(fil,pathconvert(TMPDIR)+fnam+ ".tree")==1 then
+    [helppart,txt,batch]=m2sci_syntax(tmptxt)
 end
+
 m2sci_info("Syntax modification: Done",-1);
 
 // Write .cat file and update whatis
