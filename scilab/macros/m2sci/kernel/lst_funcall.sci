@@ -49,8 +49,10 @@ if bval then
 // Verify if the directory exists
   if MSDOS then
     dirnam=unix_g('dir /b '+pathconvert(TMPDIR))
-  else
+    sep="\"
+  else  
     dirnam=unix_g('ls ' + pathconvert(TMPDIR))
+    sep="/"
   end
   if or(fnam==dirnam) then
     rmdir(pathconvert(TMPDIR)+fnam,'s')
@@ -86,40 +88,48 @@ if bval then
   write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
   write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
   
-  // Conversion of each file
-  for k=1:size(tmpfiles,"*")
-    mfile2sci(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m",pathconvert(TMPDIR)+pathconvert(fnam))
-    // Delete useless .m files
-    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m")
-  end
   
+  // Conversion of each file
+  //for k=1:size(tmpfiles,"*")
+    //mfile2sci(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m",pathconvert(TMPDIR)+pathconvert(fnam))
+    // Delete useless .m files
+    //mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m")
+  //end
+  translatepaths(pathconvert(TMPDIR)+pathconvert(fnam),pathconvert(TMPDIR)+pathconvert(fnam))
   // Catenation of all .sci files to have only one output file
   txt=[]
   for k=1:size(tmpfiles,"*")
-    txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")]
+    txt=[txt ;" ";mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")]
     mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")
   end
   mputl(txt,pathconvert(TMPDIR)+"tmp_"+fnam+".sci")
   // End of catenation of all .sci files to have only one output file
- 
-  // Catenation of all .log files to have only one output file
-  txt=[]
-  for k=1:size(tmpfiles,"*")
-    txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")]
-    // Delete useless .log files
-    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")
-  end
+  txt=mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+sep+"log")
   mputl(txt,pathconvert(TMPDIR)+"tmp_m2sci_"+fnam+".log")
+  //
+  txt=mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+sep+"resumelog")
+  mputl(txt,pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log")
+  
+  
+  
+  // Catenation of all .log files to have only one output file
+ // txt=[]
+ // for k=1:size(tmpfiles,"*")
+   // txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")]
+    // Delete useless .log files
+   // mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"m2sci_"+tmpfiles(k)+".log")
+  //end
+  //mputl(txt,pathconvert(TMPDIR)+"tmp_m2sci_"+fnam+".log")
   //End of catenation of all .log files to have only one output file  
   
   // Catenation of all resume.log files to have only one output file 
-  txt=[]
-  for k=1:size(tmpfiles,"*")
-    txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+"resume_m2sci_"+tmpfiles(k)+".log")]
+  //txt=[]
+  //for k=1:size(tmpfiles,"*")
+    //txt=[txt ; mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+"resume_m2sci_"+tmpfiles(k)+".log")]
     // Delete useless resume.log files
-    mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"resume_m2sci_"+tmpfiles(k)+".log")
-  end
-  mputl(txt,pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log")
+   // mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+"resume_m2sci_"+tmpfiles(k)+".log")
+  //end
+  //mputl(txt,pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log")
   //End of catenation of all resume.log files to have only one output file
   
   txt=mgetl(pathconvert(TMPDIR)+fnam+".m")

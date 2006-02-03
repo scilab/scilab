@@ -26,6 +26,7 @@ if exists("m2spercentlib")==0 then load("SCI/macros/m2sci/percent/lib"),end
 if exists("m2ssci_fileslib")==0 then load("SCI/macros/m2sci/sci_files/lib"),end
 
 // Convert paths so that they can be used according to the platform
+
 if MSDOS then 
   sep='\'
   Paths=strsubst(Paths,'/',sep)
@@ -45,13 +46,15 @@ end
 // Create a logfile and a whatis file
 Paths=stripblanks(Paths)
 [tempfd,ierr]=file('open',pathconvert(TMPDIR)+"unitfile.dat","old");
+
 if ierr==0 then
   load(pathconvert(TMPDIR)+"unitfile.dat")
   file('close',whsfil_unit);
   file('close',tempfd);
   mdelete(pathconvert(TMPDIR)+"unitfile.dat")
 end
-  whsfil_unit=file('open',res_path+'whatis','unknown')
+
+whsfil_unit=file('open',res_path+'whatis','unknown')
 save(pathconvert(TMPDIR)+"unitfile.dat",whsfil_unit)
 // Close paths with a / or a \
 for k=1:size(Paths,'*')
@@ -131,7 +134,7 @@ for i=1:size(funpath,1)
     if ierr==0 then
       txt=[]
       txt=mgetl(scipath)
-      txt=[txt;mgetl(tmp_sci_file)]
+      txt=[txt;" ";mgetl(tmp_sci_file)]
       mputl(txt,scipath) 
       mdelete(tmp_sci_file)
     end
