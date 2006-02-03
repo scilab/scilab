@@ -162,15 +162,16 @@ function t=mat2exp(a,lmax)
       t=x;
     else
       ind=strindex(x,';');
-      k1=1
-      l=0
+      k1=1;l=0;I=[];
       while %t
-	if lx-l<lmax|k1>length(ind) then t=[t;part(x,l+1:lx)],break,end
+	if lx-l<lmax|k1>length(ind) then,break,end
 	k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
-	t=[t;part(x,l+1:ind(k2))]
+	I=[I ind(k2)];
+//	t=[t;part(x,l+1:ind(k2))]
 	k1=k2+1
 	l=ind(k2)
       end
+      t=[t;strsplit(x,I)];
     end
   elseif m==1 then      
     x=strcat(a,',')
@@ -179,15 +180,17 @@ function t=mat2exp(a,lmax)
       t=x;
     else
       ind=strindex(x,',');
-      k1=1
-      l=0
+      k1=1;l=0;I=[];
       while %t
-	if lx-l<lmax|k1>length(ind) then t=[t;part(x,l+1:lx)],break,end
+	if lx-l<lmax|k1>length(ind) then break,end
 	k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
-	t=[t;part(x,l+1:ind(k2))+dots]
+	I=[I ind(k2)];
+//	t=[t;part(x,l+1:ind(k2))+dots]
 	k1=k2+1
 	l=ind(k2)
       end
+      x=strsplit(x,I);x(1:$-1)=x(1:$-1)+dots;
+      t=[t;x]
     end
   else
     for i=1:m
@@ -200,15 +203,17 @@ function t=mat2exp(a,lmax)
 	t=[t;x]
       else
 	ind=strindex(x,',');
-	k1=1
-	l=0
+	k1=1;l=0;I=[];
 	while %t
-	  if lx-l<lmax|k1>length(ind) then t=[t;part(x,l+1:lx)],break,end
+	  if lx-l<lmax|k1>length(ind) then break,end
 	  k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
-	  t=[t;part(x,l+1:ind(k2))+dots]
+	  I=[I ind(k2)];
+//	  t=[t;part(x,l+1:ind(k2))+dots]
 	  k1=k2+1
 	  l=ind(k2)
 	end
+	x=strsplit(x,I);x(1:$-1)=x(1:$-1)+dots;x(2:$)=' '+x(2:$);
+	t=[t;x]
       end
     end
   end
