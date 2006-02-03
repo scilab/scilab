@@ -1306,7 +1306,7 @@ scs_m.objs(44)=mlist(["Block","graphics","model","gui","doc"],..
                ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
                "gr_i","id","in_implicit","out_implicit"],[-124.28991,587.74539],..
                [60,40],%f,..
-               ["101";"Resultats/Thermique.txt";"(102(e10.8,1x))";"200"],45,[],..
+               ["101";"TMPDIR/Thermique.txt";"(102(e10.8,1x))";"200"],45,[],..
                48,[],..
                list(..
                ["txt=[''write to'';''output file''];";
