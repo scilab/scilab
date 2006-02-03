@@ -183,31 +183,32 @@ what
                spcompack                     spec                    spget                    splin 
                  splin2d                  splin3d                   spones                     sqrt 
                stacksize                 str2code                   strcat                 strindex 
-                  string                 strsubst                     subf                      sum 
-                     svd                  symfcti                   syredi                      tan 
-              testmatrix                    timer                    tlist                   tohome 
-                  tokens                  toolbar                  toprint                   tr_zer 
-                    tril                     triu                     type                 typename 
-                  uint16                   uint32                    uint8                    ulink 
-                  unglue                     unix            unsetmenu_old                   unzoom 
-                    user                  var2vec                     varn                  vec2var 
-                   where                  whereis                  winopen              winqueryreg 
-                  winsid                    writb                    write                  write4b 
-                x_choose                 x_dialog                x_mdialog                x_message 
-      x_message_modeless           x_print_dialog                     xarc                    xarcs 
-                 xarrows                    xaxis                  xchange                xchoicesi 
-                   xclea                   xclick                     xdel                     xend 
-                   xfarc                   xfarcs                   xfpoly                  xfpolys 
-                  xfrect                    xg2ps                     xget                  xgetech 
-                xgetfile                xgetmouse                xgraduate                    xgrid 
-                   xinfo                    xinit                   xlfont                    xload 
-                xls_open                 xls_read                    xname                   xpause 
-                   xpoly                   xpolys                    xrect                   xrects 
-                  xs2bmp                   xs2emf                   xs2fig                   xs2gif 
-                  xs2ppm                    xs2ps                    xsave                    xsegs 
-                 xselect                     xset                  xsetech                 xsnative 
-                 xstring                 xstringb                 xstringl                    xtape 
-                  xtitle                    zeros                   znaupd 
+                  string                 strsplit                 strsubst                     subf 
+                     sum                      svd                  symfcti                   syredi 
+                     tan               testmatrix                    timer                    tlist 
+                  tohome                   tokens                  toolbar                  toprint 
+                  tr_zer                     tril                     triu                     type 
+                typename                   uint16                   uint32                    uint8 
+                   ulink                   unglue                     unix            unsetmenu_old 
+                  unzoom                     user                  var2vec                     varn 
+                 vec2var                    where                  whereis                  winopen 
+             winqueryreg                   winsid                    writb                    write 
+                 write4b                 x_choose                 x_dialog                x_mdialog 
+               x_message       x_message_modeless           x_print_dialog                     xarc 
+                   xarcs                  xarrows                    xaxis                  xchange 
+               xchoicesi                    xclea                   xclick                     xdel 
+                    xend                    xfarc                   xfarcs                   xfpoly 
+                 xfpolys                   xfrect                    xg2ps                     xget 
+                 xgetech                 xgetfile                xgetmouse                xgraduate 
+                   xgrid                    xinfo                    xinit                   xlfont 
+                   xload                 xls_open                 xls_read                    xname 
+                  xpause                    xpoly                   xpolys                    xrect 
+                  xrects                   xs2bmp                   xs2emf                   xs2fig 
+                  xs2gif                   xs2ppm                    xs2ps                    xsave 
+                   xsegs                  xselect                     xset                  xsetech 
+                xsnative                  xstring                 xstringb                 xstringl 
+                   xtape                   xtitle                    zeros                   znaupd 
+
 
  Commands: 
 
