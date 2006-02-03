@@ -93,7 +93,7 @@ function M=generic_i_hm(default_value,varargin)
     v2=v
   end
   //insert N entries into result  
-  v2(I)=N
+  v2(I)=N(:)
   
   //remove trailing unitary dimensions
   if reduced_index then
