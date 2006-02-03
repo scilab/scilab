@@ -53,9 +53,21 @@ else
     bval=%f
     return
   end
-  
+
+  // Verify if the directory exists
+  if MSDOS then
+    dirnam=unix_g('dir /b '+pathconvert(TMPDIR)+base_name)
+    sep='\'  
+  else
+    dirnam=unix_g('ls ' + pathconvert(TMPDIR)+base_name)
+    sep='/'
+  end
+  if or(dirnam<>'') then
+    rmdir(pathconvert(TMPDIR)+base_name,'s')
+  end
+  mkdir(pathconvert(TMPDIR),base_name)
   write(%io(2)," -- File "+fil+" contains more than one function -- ");
-      
+     
   bval= %t
   
   // First split file into as many files as function declared
@@ -71,45 +83,54 @@ else
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
     end
     tmpfiles=[tmpfiles;funcname]
-    mputl(functxt,pathconvert(TMPDIR)+tmpfiles($)+".m")
+    mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m")
   end
   
   write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
   write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
 
   // Conversion of each file
+
   for k=1:size(tmpfiles,"*")
-  txt=mgetl(pathconvert(TMPDIR)+tmpfiles(k)+".m")
-    mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
+    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+tmpfiles(k)+".m")
+    //mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
   end
+  
+  translatepaths(pathconvert(TMPDIR)+base_name,pathconvert(TMPDIR)+base_name)
+  
+    txt=[]
+    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'log')
+    mputl(txt,res_path+'log') 
+    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'resumelog')
+    mputl(txt,res_path+'resumelog') 
   
   // Catenation of all .sci files to have only one output file
   txt=[]
   for k=1:size(tmpfiles,"*")
-    txt=[txt ; mgetl(res_path+tmpfiles(k)+".sci")]
+    txt=[txt ;'';mgetl(pathconvert(TMPDIR)+base_name+sep+tmpfiles(k)+".sci")]
   end
   
   // Delete useless .sci files
-  for k=1:size(tmpfiles,"*")
-    mdelete(res_path+tmpfiles(k)+".sci")
-  end
+  //for k=1:size(tmpfiles,"*")
+    //mdelete(res_path+tmpfiles(k)+".sci")
+  //end
    
   mputl(txt,res_path+base_name+".sci")
 
   // Catenation of all .log files to have only one output file
-  if exists("logfile")==0 then
-    txt=[]
-    for k=1:size(tmpfiles,"*")
-      txt=[txt ; mgetl(res_path+"m2sci_"+tmpfiles(k)+".log")]
-    end
+  //if exists("logfile")==0 then
+    //txt=[]
+    //for k=1:size(tmpfiles,"*")
+      //txt=[txt ; mgetl(pathconvert(TMPDIR)+base_name+sep+"m2sci_"+tmpfiles(k)+".log")]
+    //end
     
     // Delete useless .log files
-    for k=1:size(tmpfiles,"*")
-      mdelete(res_path+"m2sci_"+tmpfiles(k)+".log")
-    end
+    //for k=1:size(tmpfiles,"*")
+      //mdelete(pathconvert(TMPDIR)+base_name+sep+"m2sci_"+tmpfiles(k)+".log")
+    //end
   
-    mputl(txt,res_path+"m2sci_"+base_name+".log")
-  end
+    //mputl(txt,res_path+"m2sci_"+base_name+".log")
+  //end
   
   // Catenation of all resume.log files to have only one output file
   //if exists("resume_logfile")==0 then
@@ -127,11 +148,14 @@ else
   //end
   
   // Delete useless .m files
+  //for k=1:size(tmpfiles,"*")
+    //mdelete(pathconvert(TMPDIR)+tmpfiles(k)+".m")
+  //end
+  
+  rmdir(pathconvert(TMPDIR)+base_name,'s')
   for k=1:size(tmpfiles,"*")
-    mdelete(pathconvert(TMPDIR)+tmpfiles(k)+".m")
+    mdelete(pathconvert(TMPDIR)+tmpfiles(k)+".tree")
   end
-  
-  
 end
   
 endfunction
