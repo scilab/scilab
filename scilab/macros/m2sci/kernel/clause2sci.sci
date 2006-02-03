@@ -151,13 +151,12 @@ updatevarslist("END OF CLAUSE")
 // --- SELECT ---
 case "selectcase"
   level=[level;0] 
-  
   // Convert expression
   sci_expr=list()
   [sci_expr(1)]=expression2sci(mtlb_clause.expression(1))
-  if size(mtlb_clause.expression)==2 then
-    sci_expr(2)=mtlb_clause.expression(2) // EOL
-  end
+  for i=2:size(mtlb_clause.expression)
+    sci_expr(i)=mtlb_clause.expression(i) // EOL or comment
+  end  
   
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
