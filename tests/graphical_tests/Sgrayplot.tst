@@ -3,7 +3,7 @@ reinit_for_test()
 %U=mopen('SCI/tests/graphical_tests/Sgrayplot_data.ref','rb');
 // example #1
 x = -10:10;y = -10:10;m = rand(21, 21);
-%ans = xbasc_run();
+%ans = clf_run();
 if load_ref('%ans') then   pause,end,
 
 %ans = xset('colormap', hotcolormap(64));
@@ -15,7 +15,7 @@ if load_ref('%ans') then   pause,end,
 
 // example #2
 t = -%pi:0.1:%pi;m = sin(t)' * cos(t);
-%ans = xbasc_run();
+%ans = clf_run();
 if load_ref('%ans') then   pause,end,
 
 %ans = xset('colormap', jetcolormap(64));
@@ -36,43 +36,33 @@ x = linspace(0, 2 * %pi, n);
 y = linspace(0, %pi, n/2);
 z = sin(x') * sin(y);
 t = linspace(0, 4 * %pi, nt);
-xselect();%ans = xbasc_run();
+xselect();%ans = clf_run();
 if load_ref('%ans') then   pause,end,
 
-fig_styl_init = get('figure_style');
-if fig_styl_init == 'new' then   %ans = set('figure_style', 'old');
-  if load_ref('%ans') then   pause,end,
-end,
-%ans = xset('font', 6, 2);
+f = gcf();
+f('color_map') = jetcolormap(64);
+f('pixmap') = 'on';
+%ans = colorbar(-1, 1);
 if load_ref('%ans') then   pause,end,
 
-%ans = xset('colormap', jetcolormap(64));
+%ans = Sgrayplot(x, y, cos(t(1)) * z, strf='042', zminmax=[-1,1]);
 if load_ref('%ans') then   pause,end,
 
-driver('X11');xset('pixmap', 1);
+c = gce();
+if load_ref('c') then   pause,end,
+e = c('children');
+if load_ref('e') then   pause,end,
+
+%ans = xtitle('Kaa''s eyes');
+if load_ref('%ans') then   pause,end,
+
 for i = 1:nt,
-  %ans = xbasc_run();
-  if load_ref('%ans') then   pause,end,
-
-  %ans = colorbar(-1, 1);
-  if load_ref('%ans') then   pause,end,
-
-  %ans = Sgrayplot(x, y, cos(t(i)) * z, strf='042', zminmax=[-1,1]);
-  if load_ref('%ans') then   pause,end,
-
-  %ans = xtitle('Kaa''s eyes');
-  if load_ref('%ans') then   pause,end,
-
-  %ans = xset('wshow');
+  e.data(eye(), 3) = matrix(cos(t(i)) * z, -1, 1);
+  %ans = show_pixmap();
   if load_ref('%ans') then   pause,end,
 
 end,
-xset('pixmap', 0);%ans = driver('Rec');
-if load_ref('%ans') then   pause,end,
-
-if fig_styl_init == 'new' then   %ans = set('figure_style', 'new');
-  if load_ref('%ans') then   pause,end,
-end,
+f('pixmap') = 'off';
 xdel_run(winsid());
 
 mclose(%U);

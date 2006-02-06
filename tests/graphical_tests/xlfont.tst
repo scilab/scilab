@@ -12,19 +12,10 @@ else
   if load_ref('%ans') then   pause,end,
 
 end,
-%ans = xbasc_run();
-if load_ref('%ans') then   pause,end,
-
-%ans = xset('font', 6, 2);
-if load_ref('%ans') then   pause,end,
-// use helvetica at 12 pts
-%ans = plot2d();
-if load_ref('%ans') then   pause,end,
-
 %ans = xset('font', 10, 4);
 if load_ref('%ans') then   pause,end,
 // use Schoolbook bold at 18 pts
-%ans = xtitle('plot2d demo', 'x', 'y');
+%ans = plot2d();
 if load_ref('%ans') then   pause,end,
 
 xdel_run(winsid());

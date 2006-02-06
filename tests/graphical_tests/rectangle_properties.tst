@@ -5,7 +5,7 @@ reinit_for_test()
 if load_ref('%ans') then   pause,end,
 //create a figure
 a = get('current_axes');//get the handle of the newly created axes
-a('data_bounds') = [-2,2;-2,2];
+a('data_bounds') = [-2,-2;2,2];
 
 %ans = xrect(-1, 1, 2, 2);
 if load_ref('%ans') then   pause,end,
@@ -21,6 +21,7 @@ if load_ref('%ans') then   pause,end,
 r('foreground') = 13;
 r('line_style') = 2;
 r('fill_mode') = 'on';
+r('background') = color('red');
 r('clip_box') = [-1,1;1,1];
 r.data(eye(), [3,4]) = [1/2,1/2];
 r.data(eye(), [1,2]) = [1/2,1/2];

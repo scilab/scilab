@@ -5,6 +5,9 @@ reinit_for_test()
 %ans = Matplot([1,2,3;4,5,6]);
 if load_ref('%ans') then   pause,end,
 
+%ans = clf_run();
+if load_ref('%ans') then   pause,end,
+
 // draw the current colormap
 %ans = Matplot(1:xget('lastpattern'));
 if load_ref('%ans') then   pause,end,

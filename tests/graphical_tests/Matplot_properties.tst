@@ -6,10 +6,6 @@ reinit_for_test()
 if load_ref('%ans') then   pause,end,
 //create a figure
 
-%ans = Matplot([1,2,3;4,5,6]);
-if load_ref('%ans') then   pause,end,
-
-// draw the current colormap
 %ans = Matplot(1:xget('lastpattern'));
 if load_ref('%ans') then   pause,end,
 

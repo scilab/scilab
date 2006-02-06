@@ -5,38 +5,30 @@ x = 0:0.2:2 * %pi;
 x1 = [sin(x);100 * sin(x)];
 y1 = [cos(x);100 * cos(x)];
 y1 = y1 + 20 * ones(y1);
-// No clip
-%ans = plot2d([-100,500], [-100,600], [-1,-1], '022');
-if load_ref('%ans') then   pause,end,
 
+// set the frame
+clf_run();a = gca();a('data_bounds') = [-100,-100;500,600];
+
+// No clipping
 %ans = xsegs(10 * x1 + 200 * ones(x1), 10 * y1 + 200 * ones(y1));
 if load_ref('%ans') then   pause,end,
 
-// rectangle clipping zone
-xbasc_run();%ans = plot2d([-100,500], [-100,600], [-1,-1], '022');
-if load_ref('%ans') then   pause,end,
+e = gce();//handle on the Segs entity
 
+// draw rectangle clipping zone
 %ans = xrect(150, 460, 100, 150);
 if load_ref('%ans') then   pause,end,
 
-%ans = xclip(150, 460, 100, 150);
-if load_ref('%ans') then   pause,end,
+// set clip_box for  Segs entity
+e('clip_box') = [150,460,100,150];
 
-%ans = xsegs(10 * x1 + 200 * ones(x1), 10 * y1 + 200 * ones(y1));
-if load_ref('%ans') then   pause,end,
-
-// usual rectangle boundaries clipping zone
-xbasc_run();%ans = plot2d([-100,500], [-100,600], [-1,-1], '022');
-if load_ref('%ans') then   pause,end,
-
+// Set usual rectangle boundaries clipping zone
+e('clip_state') = 'clipgrf';
 %ans = xclip('clipgrf');
 if load_ref('%ans') then   pause,end,
 
-xsegs(10 * x1 + 200 * ones(x1), 10 * y1 + 200 * ones(y1));
-// clipping of
-%ans = xclip();
-if load_ref('%ans') then   pause,end,
-
+// remove clipping
+e('clip_state') = 'off';
 xdel_run(winsid());
 
 mclose(%U);

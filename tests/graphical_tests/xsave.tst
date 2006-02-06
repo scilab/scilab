@@ -1,6 +1,7 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/graphical_tests/xsave_data.ref','rb');
+
 //new style
 %ans = set('figure_style', 'new');
 if load_ref('%ans') then   pause,end,
@@ -65,6 +66,7 @@ if load_ref('%ans') then   pause,end,
 
 %ans = xload(TMPDIR + '/foo.scg');
 if load_ref('%ans') then   pause,end,
+
 
 
 
