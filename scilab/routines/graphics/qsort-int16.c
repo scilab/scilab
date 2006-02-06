@@ -1,36 +1,44 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/ 
-static int swapcodestring( char ** parmi, char ** parmj, int n,int incr) 
+/*-----------------------------------------------------------------------------------*/
+static int swapcodeshort(char * parmi,char * parmj,int n,int incr) 
 	{ 		
 	int i = n;
-	register char **pi = (char **) (parmi); 		
-	register char **pj = (char **) (parmj); 
-	register int inc1 = incr/sizeof(char *);
-	do { 		
-		register char *t = *pi;
+	register short *pi = (short *) (parmi); 		
+	register short *pj = (short *) (parmj); 
+	register int inc1 = incr/sizeof(short);
+	do { 						
+		register short t = *pi;		
 		*pi = *pj;				
 		*pj = t;				
 		pi += inc1;
 		pj += inc1;
 		} while (--i > 0);				
 	return(0);
-	}
-/*-----------------------------------------------------------------------------------*/ 
-static int compareCstring(char *i,char *j)
-{
-  return(strcmp(*((char * *) i),*((char **) j)));
 }
 /*-----------------------------------------------------------------------------------*/ 
-static int compareDstring(char *i,char *j)
+static int compareCshort(char *i,char *j)
 {
-  return(- strcmp(*((char * *) i),*((char **) j)));
+  if ( *((short *)i) > *((short *)j))
+    return (1);
+  if ( *((short *)i) < *((short *)j))
+    return (-1);
+  return (0);
+}
+/*-----------------------------------------------------------------------------------*/ 
+static int compareDshort(char *i,char *j)
+{
+  if ( *((short *)i) < *((short *)j))
+    return (1);
+  if ( *((short *)i) > *((short *)j))
+    return (-1);
+  return (0);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
-void ColSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
+void ColSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i,j;
   if ( flag == 1) 
@@ -44,16 +52,16 @@ void ColSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
   for ( j= 0 ; j < p ; j++ ) 
     {
       sciqsort((char *) (a+n*j),(char *) (ind+n*j),flag, n, 
-		sizeof(char *),sizeof(int), 
-		(dir == 'i' ) ? compareCstring : compareDstring,
-		swapcodestring,swapcodeind);
+		sizeof(short),sizeof(int), 
+		(dir == 'i' ) ? compareCshort : compareDshort,
+		swapcodeshort,swapcodeind);
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
-void RowSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
+void RowSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i,j;
   if ( flag == 1) 
@@ -69,16 +77,16 @@ void RowSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
   for ( i = 0 ; i < n ; i++) 
     {
       sciqsort((char *) (a+i),(char *) (ind+i),flag, p, 
-		n*sizeof(char *),n*sizeof(int), 
-		(dir == 'i' ) ? compareCstring:compareDstring,
-		swapcodestring,swapcodeind);
+		n*sizeof(short),n*sizeof(int), 
+		(dir == 'i' ) ? compareCshort:compareDshort,
+		swapcodeshort,swapcodeind);
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
-void GlobalSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
+void GlobalSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 {  
   int i;
   if ( flag == 1) 
@@ -87,9 +95,9 @@ void GlobalSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n*p, 
-	    sizeof(char *),sizeof(int), 
-	    (dir == 'i' ) ? compareCstring:compareDstring,
-	    swapcodestring,swapcodeind);
+	    sizeof(short),sizeof(int), 
+	    (dir == 'i' ) ? compareCshort:compareDshort,
+	    swapcodeshort,swapcodeind);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /*******************************************************
@@ -97,53 +105,56 @@ void GlobalSortstring(char * *a,int *ind,int flag,int n,int p,char dir)
  *  ind gives the permutation of the rows which is applied 
  *  to sort them 
  ******************************************************/
-static int lexicolsstring =1;
-static int lexirowsstring =1;
+static short lexicolsshort =1;
+static short lexirowsshort =1;
 /*-----------------------------------------------------------------------------------*/ 
-static void setLexiSizestring(int n,int p) 
+static void setLexiSizeshort(int n,int p) 
 {
-  lexicolsstring = p;
-  lexirowsstring = n;
+  lexicolsshort = p;
+  lexirowsshort = n;
 }
-/*-----------------------------------------------------------------------------------*/ 
-static  int LexiRowcompareCstring(char * *i,char * *j)
+
+static  int LexiRowcompareCshort(short *i,short *j)
 {
   int jc;
-  for ( jc = 0 ; jc < lexicolsstring ; jc++) 
+  for ( jc = 0 ; jc < lexicolsshort ; jc++) 
     {
-      int k = strcmp(*i,*j);
-      if ( k != 0) return(k);
-      i += lexirowsstring;
-      j += lexirowsstring;
+      if (*i > *j)
+	return (1);
+      if (*i < *j)
+	return (-1);
+      i += lexirowsshort;
+      j += lexirowsshort;
+    }
+  return (0);
+}
+static  int LexiRowcompareDshort(short *i, short*j)
+{
+  int jc;
+  for ( jc = 0 ; jc < lexicolsshort ; jc++) 
+    {
+      if (*i < *j)
+	return (1);
+      if (*i > *j)
+	return (-1);
+      i += lexirowsshort;
+      j += lexirowsshort;
     }
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/ 
-static  int LexiRowcompareDstring(char * *i,char * *j)
-{
-  int jc;
-  for ( jc = 0 ; jc < lexicolsstring ; jc++) 
-    {
-      int k = strcmp(*i,*j);
-      if ( k != 0) return(-k);
-      i += lexirowsstring;
-      j += lexirowsstring;
-    }
-  return (0);
-}
-/*-----------------------------------------------------------------------------------*/ 
-static int LexiRowswapcodestring(char *parmi,char * parmj,int n) 
+static int LexiRowswapcodeshort(char *parmi,char * parmj,int n) 
 { 		
   int i = n,j;
-  register char * *pi = (char * *) (parmi); 		
-  register char * *pj = (char * *) (parmj); 
+  register short *pi = (short *) (parmi); 		
+  register short *pj = (short *) (parmj); 
   /* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
   do { 
-    for ( j = 0 ; j < lexicolsstring ; j++) 
+    for ( j = 0 ; j < lexicolsshort ; j++) 
       {
-	register char * t = *(pi +lexirowsstring*j);		
-	*(pi + lexirowsstring*j) = *(pj+lexirowsstring*j);				
-	*(pj + lexirowsstring*j) = t;	
+	register short t = *(pi +lexirowsshort*j);		
+	*(pi + lexirowsshort*j) = *(pj+lexirowsshort*j);				
+	*(pj + lexirowsshort*j) = t;	
       }
     pi++;
     pj++;
@@ -151,83 +162,89 @@ static int LexiRowswapcodestring(char *parmi,char * parmj,int n)
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/ 
-void LexiRowstring(char * *a,int *ind,int flag,int n,int p,char dir)
+void LexiRowshort(short *a,int *ind,int flag,int n,int p,char dir)
 {
   int i;
-  setLexiSizestring(n,p);
+  setLexiSizeshort(n,p);
   if ( flag == 1) 
     {
       for ( i = 0 ; i < n ; i++) 
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n, 
-	    sizeof(char *),sizeof(int), 
-	    (dir == 'i' ) ? LexiRowcompareCstring:LexiRowcompareDstring,
-	    LexiRowswapcodestring,swapcodeind);
+	    sizeof(short),sizeof(int), 
+	    (dir == 'i' ) ? LexiRowcompareCshort:LexiRowcompareDshort,
+	    LexiRowswapcodeshort,swapcodeind);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
-*  lexicographic order with Cols ind is of size p
-*  ind gives the permutation of the column which is applied 
-*  to sort them 
-******************************************************/
-static  int LexiColcompareCstring(char * *i,char * *j)
+ *  lexicographic order with Cols ind is of size p
+ *  ind gives the permutation of the column which is applied 
+ *  to sort them 
+ ******************************************************/
+static  int LexiColcompareCshort(short *i,short *j)
 	{
 	int ic;
-	for ( ic = 0 ; ic < lexirowsstring ; ic++) 
+	for ( ic = 0 ; ic < lexirowsshort ; ic++) 
 		{
-		int k = strcmp(*i,*j);
-		if ( k != 0) return(k);
+		if (*i > *j)
+			return (1);
+		if (*i < *j)
+			return (-1);
 		i++;
 		j++;
 		}
 	return (0);
 	}
 /*-----------------------------------------------------------------------------------*/ 
-static  int LexiColcompareDstring(char * *i,char * *j)
+static  int LexiColcompareDshort(short *i,short *j)
 	{
 	int ic;
-	for ( ic = 0 ; ic < lexirowsstring ; ic++) 
+	for ( ic = 0 ; ic < lexirowsshort ; ic++) 
 		{
-		int k = strcmp(*i,*j);
-		if ( k != 0) return(-k);
+		if (*i < *j)
+			return (1);
+		if (*i > *j)
+			return (-1);
 		i++;
 		j++;
 		}
 	return (0);
 	}
 /*-----------------------------------------------------------------------------------*/ 
-static int LexiColswapcodestring(char *parmi,char* parmj,int n) 
+static int LexiColswapcodeshort(char *parmi,char* parmj,int n) 
 	{ 		
 	int i = n,ir;
-	register char * *pi = (char * *) (parmi); 		
-	register char * *pj = (char * *) (parmj); 
+	register short *pi = (short *) (parmi); 		
+	register short *pj = (short *) (parmj); 
 	/* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
 	do { 
-		for ( ir = 0 ; ir < lexirowsstring ; ir++) 
+		for ( ir = 0 ; ir < lexirowsshort ; ir++) 
 			{
-			register char * t = *(pi +ir);		
+			register short t = *(pi +ir);		
 			*(pi +ir) = *(pj+ir);				
 			*(pj +ir) = t;	
 			}
-		pi += lexirowsstring ;
-		pj += lexirowsstring ;
+		pi += lexirowsshort ;
+		pj += lexirowsshort ;
 		} while (--i > 0);				
 	return(0);
 	}
 /*-----------------------------------------------------------------------------------*/ 
-void LexiColstring(char * *a,int *ind,int flag,int n,int p,char dir)
+void LexiColshort(short *a,int *ind,int flag,int n,int p,char dir)
 	{
 	int i;
-	setLexiSizestring(n,p);
+	setLexiSizeshort(n,p);
 	if ( flag == 1) 
 		{
 		for ( i = 0 ; i < p ; i++) 
 			ind[i]= i+1;
 		}
 	sciqsort((char *) (a),(char *) (ind),flag, p, 
-		n*sizeof(char *),sizeof(int), 
-		(dir == 'i' ) ? LexiColcompareCstring:LexiColcompareDstring,
-		LexiColswapcodestring,swapcodeind);
+		n*sizeof(short),sizeof(int), 
+		(dir == 'i' ) ? LexiColcompareCshort:LexiColcompareDshort,
+		LexiColswapcodeshort,
+		swapcodeind);
 	}
 /*-----------------------------------------------------------------------------------*/ 
+
