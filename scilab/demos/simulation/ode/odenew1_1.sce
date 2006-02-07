@@ -31,7 +31,7 @@ a.x_label.text="y1",a.x_label.font_size=3;
 a.y_label.text="y2",a.y_label.font_size=3;
 oldt0=10*tmax; oldy0=10*ymax;
 fig=gcf();fig.pixmap='on';
-
+show_pixmap();
 dt=0.1; dy=0.1;
 while(%t)
   [b,t0,y0]=xclick();
