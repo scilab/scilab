@@ -126,9 +126,7 @@ derivative(F, x, order = 4) etc.
    y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
  endfunction
 
- x=[1;2;3];[J,H]=derivative(F,x,H_form='blockmat');
- disp(J)
- disp(H)
+ x=[1;2;3];[J,H]=derivative(F,x,H_form='blockmat')
 
  n=3;
  // form an orthogonal matrix :   
@@ -136,14 +134,12 @@ derivative(F, x, order = 4) etc.
  for i=[1,2,4]
     [J,H]=derivative(F,x,order=i,H_form='blockmat',Q=Q);
     mprintf("order= %d \n",i);
-    disp(H);
+    H,
  end
 
  p=1;h=1e-3;
- [J,H]=derivative(list(G,p),x,h,2,H_form='hypermat');
- disp(H);
- [J,H]=derivative(list(G,p),x,h,4,Q=Q);
- disp(H)
+ [J,H]=derivative(list(G,p),x,h,2,H_form='hypermat');H
+ [J,H]=derivative(list(G,p),x,h,4,Q=Q);H
 
  // Taylor series example:
  dx=1e-3*[1;1;-1];
