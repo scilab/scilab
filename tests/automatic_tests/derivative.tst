@@ -2,24 +2,19 @@ getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/derivative_data.ref','rb');
 function y=F(x)
-     y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
-   
-endfunction
+   y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
+endfunction%ans = ;
 if load_ref('%ans') then   pause,end,
 
 function y=G(x,p)
-     y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
-   
-endfunction
+   y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
+endfunction%ans = ;
 if load_ref('%ans') then   pause,end,
 
 
 x = [1;2;3];[J,H] = derivative(F, x, H_form='blockmat');
-%ans = disp(J);
-if load_ref('%ans') then   pause,end,
-
-%ans = disp(H);
-if load_ref('%ans') then   pause,end,
+if load_ref('H') then   pause,end,
+if load_ref('J') then   pause,end,
 
 
 n = 3;
@@ -28,15 +23,17 @@ nu = 0;while nu < n then  [Q,nu] = colcomp(rand(n, n));end,
 for i = [1,2,4],
   [J,H] = derivative(F, x, order=i, H_form='blockmat', Q=Q);
   mprintf('order= %d \n', i);
-  disp(H);
+  H;
+  if load_ref('H') then   pause,end,
+
 end,
 
 p = 1;h = 0.001;
-[J,H] = derivative(list(G, p), x, h, 2, H_form='hypermat');
-disp(H);
-[J,H] = derivative(list(G, p), x, h, 4, Q=Q);
-%ans = disp(H);
-if load_ref('%ans') then   pause,end,
+[J,H] = derivative(list(G, p), x, h, 2, H_form='hypermat');H;
+if load_ref('H') then   pause,end,
+
+[J,H] = derivative(list(G, p), x, h, 4, Q=Q);H;
+if load_ref('H') then   pause,end,
 
 
 // Taylor series example:
@@ -57,8 +54,8 @@ if load_ref('%ans') then   pause,end,
 
 // A trivial example
 function y=f(x,A,p,w)
-  , y=x'*A*x+p'*x+w; 
-endfunction
+, y=x'*A*x+p'*x+w; 
+endfunction%ans = ;
 if load_ref('%ans') then   pause,end,
 
 // with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
