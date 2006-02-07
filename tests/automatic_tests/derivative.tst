@@ -3,14 +3,10 @@ reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/derivative_data.ref','rb');
 function y=F(x)
    y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
-endfunction%ans = ;
-if load_ref('%ans') then   pause,end,
-
+endfunction;
 function y=G(x,p)
    y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
-endfunction%ans = ;
-if load_ref('%ans') then   pause,end,
-
+endfunction;
 
 x = [1;2;3];[J,H] = derivative(F, x, H_form='blockmat');
 if load_ref('H') then   pause,end,
@@ -55,9 +51,7 @@ if load_ref('%ans') then   pause,end,
 // A trivial example
 function y=f(x,A,p,w)
 , y=x'*A*x+p'*x+w; 
-endfunction%ans = ;
-if load_ref('%ans') then   pause,end,
-
+endfunction;
 // with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
 A = rand(3, 3);p = rand(3, 1);w = 1;
 x = rand(3, 1);
