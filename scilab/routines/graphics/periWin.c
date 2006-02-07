@@ -5118,12 +5118,9 @@ integer first_in(n, ideb, vx, vy)
   for (i=ideb  ; i < n ; i++)
     {
       if (vx[i]>= xleft && vx[i] <= xright  && vy[i] >= ybot && vy[i] <= ytop)
-	{
-#ifdef DEBUG
-	  sciprint("first in %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
-#endif
-	  return(i);
-	}
+			{
+				return(i);
+			}
     }
   return(-1);
 }
