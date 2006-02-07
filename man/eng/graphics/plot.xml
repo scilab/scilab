@@ -128,9 +128,9 @@
     matrix) and the corresponding computation <VERB>y(x)</VERB> is done
     implicitly.</P>
 
-    <P>The <VERB>LineSpec</VERB> and <VERB>GlobalProperty</VERB> arguments sould
-    be used to customize the plot. Here is a complete list of the available
-    options.</P>
+    <P>The <VERB>LineSpec</VERB> and <VERB>GlobalProperty</VERB> arguments
+    sould be used to customize the plot. Here is a complete list of the
+    available options.</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
@@ -297,9 +297,6 @@ poly1= a.children.children(2); //store polyline handle into poly1
 poly1.foreground = 4; // another way to change the style...
 poly1.thickness = 3;  // ...and the tickness of a curve.
 poly1.clip_state='off' // clipping control
-leg= a.children.children(1); // store legend handle into leg
-leg.font_style = 9; 
-leg.foreground = 6;
 a.isoview='off'; 
 
 //LineSpec and GlobalProperty examples:
