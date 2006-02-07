@@ -16,9 +16,15 @@ function editvar(%_name)
   if execstr("%_var="+%_name,'errcatch')~=0 then error(44), end
   %_type=typeof(%_var)
   if and(type(%_var)~=[1 4 8 10 16])&%_type~="xlssheet" then error(44), end
-
+  namesheet='';
   [%_ni,%_nj]=size(%_var);
-  %_var=string(%_var)
+  if (%_type=="xlssheet") then
+    namesheet=%_var.name;
+    %_var=string(%_var);
+  else
+    %_var=string(%_var);
+  end
+  
   TCL_EvalStr("set EdVarLoc [sciGUIEditVar -1]");
   %_winId=TCL_GetVar("EdVarLoc");
 
@@ -27,7 +33,9 @@ function editvar(%_name)
   TCL_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_ni));
   TCL_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_nj));
   if %_type=="xlssheet" then
-      TCL_SetVar("sciGUITable(win,"+%_winId+",data,sheetname)",%_var.name);
+     
+      TCL_SetVar("sciGUITable(win,"+%_winId+",data,sheetname)",namesheet);
+      clear namesheet;
   end
 
   //
