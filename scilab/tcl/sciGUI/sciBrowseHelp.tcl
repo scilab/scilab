@@ -203,7 +203,7 @@ proc sciGUIBrowseHelpChangeMode { winId {force ""} } {
                         set sciGUITable(browsehelp,last_0) $sciGUITable(browsehelp,curid)
                         set sciGUITable(browsehelp,mode) 1
                         set sciGUITable(browsehelp,curid) $sciGUITable(browsehelp,last_1)
-                        set g0 [entry $laname -textvariable sciGUITable(win,$winId,data,labFind)]
+                        set g0 [entry $laname -textvariable sciGUITable(win,$winId,data,labFind) -background white]
                         bind $g0 <Return> "sciGUIBrowseHelpShowTree $winId"
                         pack $laname -side right -fill x -expand 1 -padx 5
                 
@@ -257,17 +257,16 @@ proc sciGUIBrowseHelp { {winId -1} update filelist {toFind ""} } {
                 set w [sciGUIName $winId2]
                 wm title $w "Scilab Browse Help ($winId2)"
                 wm protocol $w WM_DELETE_WINDOW "sciGUIBrowseHelpQuit $winId2"
-                $w configure -background white
-                frame $w.top -bd 0 -background white
-                label $w.top.logo -image sciGUITable(gif,scilab01) -bg white
-                label $w.top.mes01 -text "Browse Help" -font $sciGUITable(font,1) -bg white
+                frame $w.top -bd 0
+                label $w.top.logo -image sciGUITable(gif,scilab01)
+                label $w.top.mes01 -text "Browse Help" -font $sciGUITable(font,1)
                 pack $w.top -expand 0
-                pack $w.top.logo -side left
+                pack $w.top.logo -side left -pady 5
                 pack $w.top.mes01 -side right
-                frame $w.l -bd 0 -background white
-                frame $w.r -bd 0 -background white
-                frame $w.l.t -bd 0 -background white
-                frame $w.l.b -bd 0 -background white
+                frame $w.l -bd 0 
+                frame $w.r -bd 0
+                frame $w.l.t -bd 0 
+                frame $w.l.b -bd 0 
                 set sciGUITable(win,$winId,data,labFind) ""
                 #set g0 [entry $w.l.t.labFind -textvariable sciGUITable(win,$winId2,data,labFind)]
                 #bind $g0 <Return> "sciGUIBrowseHelpShowTree $winId2"
@@ -276,9 +275,9 @@ proc sciGUIBrowseHelp { {winId -1} update filelist {toFind ""} } {
                 #pack $w.l.t.labFind -side right -fill x -expand 1 -padx 5
                 pack $w.l.t.butFind -side left -expand 0
                 
-                canvas $w.l.b.tree -width 250 -height 350 -bd 1 -background LightGray -relief sunken -yscrollcommand "$w.l.b.sb set" -highlightthickness 0
+                canvas $w.l.b.tree -width 250 -height 350 -bd 2 -background white -relief sunken -yscrollcommand "$w.l.b.sb set" -highlightthickness 0
                 scrollbar $w.l.b.sb -command "$w.l.b.tree yview"
-                pack $w.l.b.tree $w.l.b.sb -side left -fill both -expand 0
+                pack $w.l.b.tree $w.l.b.sb -side left -fill both -expand 0 -padx 5 -pady 5
                 pack $w.l.t -side top -fill x -expand 0 
                 pack $w.l.b -side top -fill both -expand 1 -pady 3
 
