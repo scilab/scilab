@@ -9,6 +9,8 @@ if MSDOS then
   unix_w('dir ' + '""' + WSCI + '\demos' + '""');
 else
   unix_w('ls $SCI/demos');
+CVS
+Makefile
 alldems.dem
 basic
 control
@@ -17,14 +19,13 @@ excel
 graphics
 interp
 loop_demo
-Makefile
 metanet
 optimization
 pvm
 random
 sci2for
-scicos
 sciGUI
+scicos
 signal
 simulation
 tk
