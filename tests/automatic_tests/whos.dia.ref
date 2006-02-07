@@ -29,8 +29,8 @@ MSDOS                    boolean        1 by 1         16
 SCI                      string         1 by 1         120          
 guilib                   library                       288          
 sparselib                library                       280          
-xdesslib                 library                       3032         
-percentlib               library                       13000        
+xdesslib                 library                       3008         
+percentlib               library                       13096        
 polylib                  library                       880          
 intlib                   library                       1368         
 elemlib                  library                       1904         
@@ -44,7 +44,7 @@ roblib                   library                       1192
 soundlib                 library                       464          
 metalib                  library                       3928         
 armalib                  library                       488          
-tkscilib                 library                       824          
+tkscilib                 library                       848          
 tdcslib                  library                       752          
 s2flib                   library                       1912         
 mtlblib                  library                       5552         
