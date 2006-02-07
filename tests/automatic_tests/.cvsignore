@@ -1,0 +1,13 @@
+*.dia
+.libs
+
+Makelib
+fooc.*
+foof.*
+fun1.*
+libfoo*
+val*.dat
+asave
+libext1c.*
+loader.sce
+
