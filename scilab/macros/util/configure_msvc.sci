@@ -52,15 +52,19 @@ if MSDOS then
   if (err == %F) then bOK=%F,return,end
   
   INCLUDE=getenv('INCLUDE','');  
-  INCLUDE=MSVCDir+'\INCLUDE';
+  INCLUDE=MSVCDir+'\INCLUDE;'+MSVCDir+'\PlatformSDK\include;'+MSVSDir+'\SDK\v2.0\include';
+    
   err=setenv("INCLUDE",INCLUDE);
   if (err == %F) then bOK=%F,return,end
   
-  LIB=getenv('INCLUDE','');  
-  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+LIB;
+  LIB=getenv('LIB','');  
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+MSVSDir+'\VC\PlatformSDK\lib;'+LIB;
   err=setenv("LIB",LIB);
   if (err == %F) then bOK=%F,return,end
   
+  err=setenv("USE_MT","-MT");
+  if (err == %F) then bOK=%F,return,end
+    
   bOK=%T
 else
   bOK=%F;
@@ -90,13 +94,16 @@ if MSDOS then
   if (err == %F) then bOK=%F,return,end
   
   INCLUDE=getenv('INCLUDE','');  
-  INCLUDE=MSVCDir+'\INCLUDE';
+  INCLUDE=MSVCDir+'\INCLUDE;'+MSVCDir+'\PlatformSDK\include;'+MSVSDir+'\SDK\v2.0\include';
   err=setenv("INCLUDE",INCLUDE);
   if (err == %F) then bOK=%F,return,end
   
-  LIB=getenv('INCLUDE','');  
-  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+LIB;
+  LIB=getenv('LIB','');  
+  LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+MSVSDir+'\VC\PlatformSDK\lib;'+LIB;
   err=setenv("LIB",LIB);
+  if (err == %F) then bOK=%F,return,end
+  
+  err=setenv("USE_MT","-MT");
   if (err == %F) then bOK=%F,return,end
   
   bOK=%T
@@ -132,7 +139,7 @@ if MSDOS then
   err=setenv("INCLUDE",INCLUDE);
   if (err == %F) then bOK=%F,return,end
   
-  LIB=getenv('INCLUDE','');  
+  LIB=getenv('LIB','');  
   W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
   LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+W2003SDK+'\Lib;'+LIB;
   err=setenv("LIB",LIB);
