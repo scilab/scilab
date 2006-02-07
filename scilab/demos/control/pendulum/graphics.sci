@@ -14,6 +14,7 @@ function [P]=dpnd()
 //!
   set figure_style new
   clf();a=gca();a.isoview='on';
+  f = gcf() ; f.figure_size = [640,480];
   a.data_bounds=[0 0;100 100];
   xg=40;y1=25;lb=40;hc=10;lc=20;teta=.25;r=2.5;
   P=build_pendulum([xg,y1],[lc,hc,lb,teta,r])
@@ -36,10 +37,8 @@ function [P]=dpnd()
   e=gce();e.font_size=3;
   
   //the différential equations
-  xstring(5,-5,['a'''' = (-sin(a)*cos(a)*(m/(m+M))*a''^2 + 2/(mb*l)*(sin(a)*m*g - qm*cos(a)*u))/d'
+  xstring(5,-6,['a'''' = (-sin(a)*cos(a)*(m/(m+M))*a''^2 + 2/(mb*l)*(sin(a)*m*g - qm*cos(a)*u))/d'
 		'x'''' =  (u+m*(l/2)*(sin(a)a''^2-cos(a)*a''''))/(m+M);'
-		' '
-		' '
 		'm: weight of the pendulum'
 		'M: weight of the cart'
 		'l: length of the pendulum'])
