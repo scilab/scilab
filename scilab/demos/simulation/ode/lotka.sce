@@ -41,7 +41,7 @@ oldx0=10*xmax; oldy0=10*ymax;
 dx=0.1; dy=0.1;
 rtol=0.0001; atol=rtol;
 fig=gcf();fig.pixmap='on';
-
+show_pixmap();
 
 while (%t)
   [b,x0,y0]=xclick();

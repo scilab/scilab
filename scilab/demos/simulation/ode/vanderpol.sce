@@ -37,7 +37,7 @@ xstring(-2,8.15,['Click left to start a new trajectory, move the mouse'
 		'Click right to exit'])
 
 fig=gcf();fig.pixmap='on';
-
+show_pixmap();
 t0=0; dt=0.05; tmax=15;
 t=t0:dt:tmax;
 oldx0=10*xmax; oldy0=10*ymax;
