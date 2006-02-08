@@ -37,8 +37,8 @@ if load_ref('%ans') then   pause,end,
 
 z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, ltol=ltol, tol=tol, ystart=ystart);
 // Try tol=1e-14 etc.
-%ans = disp(toc(), 'time for bvodeS = ');
-if load_ref('%ans') then   pause,end,
+%ans = toc();
+if load_ref_nocheck('%ans') then   pause,end,
 
 
 function z=yex(x) 

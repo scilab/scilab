@@ -10,8 +10,11 @@ reinit_for_test()
 f = scf(0);f('figure_size') = [800,300];
  
 %ans = plot2d();
-Demo of plot2d
+
+Demo of plot2d()
+========================================
 x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
  
 if load_ref('%ans') then   bugmes();quit;end,
  
