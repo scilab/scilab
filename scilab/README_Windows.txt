@@ -26,10 +26,10 @@ I - TO RUN SCILAB (BINARY VERSION)
         for Visual C++.
  
     4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.0-rc1
-    		download and install "Windows® Server 2003 SP1 Platform SDK"
-    		at http://www.microsoft.com/downloads
-    		and download and install "Microsoft Visual C++ 2005 Express"
-    		at http://msdn.microsoft.com/vstudio/express/visualc/
+        download and install "Windows® Server 2003 SP1 Platform SDK"
+        at http://www.microsoft.com/downloads
+        and download and install "Microsoft Visual C++ 2005 Express"
+        at http://msdn.microsoft.com/vstudio/express/visualc/
  
     5 - If you want use LCC-Win32 (C compiler) with Scilab 4.0-rc1
         See Readme_LCC.txt in lcc directory.
