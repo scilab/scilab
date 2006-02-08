@@ -1,4 +1,5 @@
 function [k1,k2]=getmark()
+	
 	//returns the clicked markid (with a minus sign) 
 	//and mark size. 
 	[lhs,rhs]=argn(0)
@@ -37,6 +38,7 @@ function [k1,k2]=getmark()
 	'end'
 	'if ibut==-1000 then ,done=3,end'
 	])
+	
 	deff('menu_ok(k,gwin)','global done;done=1')
 	deff('menu_cancel(k,gwin)','global done;done=2')
 	
@@ -100,9 +102,9 @@ function [k1,k2]=getmark()
 				xinfo('You have chosen mark_style = '+string(k1)+' , mark_size = '+string(k2))
 			case 1 then  // ok button clicked
 				k1=k1;k=[k1,k2];break,
-				case 2 then   // cancel button clicked
+			case 2 then   // cancel button clicked
 				k=[];break,
-				case 3 then //the window has been blosed
+			case 3 then //the window has been blosed
 				k=[],if argn(1)==1 then k1=k,end
 				clearglobal pos done
 				return
