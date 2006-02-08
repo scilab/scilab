@@ -1,5 +1,4 @@
 function r=load_ref(name)
-	
 	if exists(name)==0 then r=%f;return,end
 	v=evstr(name)
 	if type(v) == 9 then   v = ghdl2tree(v);end,
@@ -11,7 +10,6 @@ function r=load_ref(name)
 		return
 	end
 	execstr('r=%CMP(v,'+name+'_ref);')
-	
 endfunction
 
 function r=load_ref_nocheck(name)
@@ -141,43 +139,44 @@ endfunction
 
 
 function r=xbasc_run(w)
-	
-	//Author : Serge Steer, april 2005, Copyright INRIA
-	//  
-	//Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file. 
-	// This function must mirror the  xbasc_build one.
-	
-	r=%f
-	if winsid()==[] then return,end
-	cur=xget('window')
-	//
-	if argn(2)==1 then
-		ids_=[]
-		for k=1:size(w,'*')
-			xset('window',w(k))
-			if get('figure_style')=='new' then ids_=[ids_,w(k)],end
-		end
-		load(%U,'ids_ref')
-		if or(ids_ref<>ids_) then r=%t,return,end
-		for k=ids_ref
-			%wins_=ghdl2tree(scf(k));
-			load(%U,'%wins_ref');
-			if %CMP(%wins_, %wins_ref) then r=%t,return,end
-		end
-		
-		xbasc(w)
-	else
-		if get('figure_style')=='old' then return,end
-		ids_=xget('window');
-		load(%U,'ids_ref')
-		if or(ids_ref<>ids_) then r=%t,return,end
-		%wins_=ghdl2tree(gcf());
-		load(%U,'%wins_ref');
-		if %CMP(%wins_, %wins_ref) then r=%t,return,end
-		xbasc()
-	end
-	if or(winsid()==cur) then xset('window',cur),end
-	
+  
+//Author : Serge Steer, april 2005, Copyright INRIA
+//  
+//Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file. 
+// This function must mirror the  xbasc_build one.
+  r=%f
+  if winsid()==[] then return,end
+  cur=xget('window')
+  //
+  if argn(2)==1 then
+    ids_=[]
+    for k=1:size(w,'*')
+      xset('window',w(k))
+      if get('figure_style')=='new' then ids_=[ids_,w(k)],end
+    end
+    load(%U,'ids_ref')
+    if or(ids_ref<>ids_) then r=%t,return,end
+    for k=ids_ref
+      %wins_=ghdl2tree(scf(k));
+      load(%U,'%wins_ref');
+      %wins_ref.figure_position=%wins_.figure_position
+      if %CMP(%wins_, %wins_ref) then r=%t,return,end
+    end
+    
+    xbasc(w)
+  else
+    if get('figure_style')=='old' then return,end
+    ids_=xget('window');
+    load(%U,'ids_ref')
+    if or(ids_ref<>ids_) then r=%t,return,end
+    %wins_=ghdl2tree(gcf());
+    load(%U,'%wins_ref');
+    %wins_ref.figure_position=%wins_.figure_position
+    if %CMP(%wins_, %wins_ref) then r=%t,return,end
+    xbasc()
+  end
+  if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
 
 
@@ -254,5 +253,4 @@ function r=%CMP(%A,%B)
 	else
 		r=%f
 	end
-
 endfunction
