@@ -3,25 +3,17 @@ reinit_for_test()
 %U=mopen('SCI/tests/graphical_tests/Sfgrayplot_data.ref','rb');
 // example #1: plot 4 surfaces
 function z=surf1(x,y)
-  , z=x*y, 
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, z=x*y, 
+endfunction;
 function z=surf2(x,y)
-  , z=x^2-y^2, 
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, z=x^2-y^2, 
+endfunction;
 function z=surf3(x,y)
-  , z=x^3+y^2, 
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, z=x^3+y^2, 
+endfunction;
 function z=surf4(x,y)
-  , z=x^2+y^2, 
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, z=x^2+y^2, 
+endfunction;
 %ans = xbasc_run();
 if load_ref('%ans') then   pause,end,
 
@@ -91,10 +83,8 @@ if load_ref('%ans') then   pause,end,
 
 // example #2: plot surf3 and add some contour lines
 function z=surf3(x,y)
-  , z=x^3+y^2, 
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, z=x^3+y^2, 
+endfunction;
 %ans = xbasc_run();
 if load_ref('%ans') then   pause,end,
 
@@ -129,10 +119,8 @@ if load_ref('%ans') then   pause,end,
 // example #3: plot surf3 and use zminmax and colout optional arguments
 //             to restrict the plot for -0.5<= z <= 1
 function z=surf3(x,y)
-  , z=x^3+y^2, 
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, z=x^3+y^2, 
+endfunction;
 %ans = xbasc_run();
 if load_ref('%ans') then   pause,end,
 

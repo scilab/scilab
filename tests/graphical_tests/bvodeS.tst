@@ -10,24 +10,18 @@ reinit_for_test()
 // BV: y1(2)=1 y1''(2)=0 y2(2)=2
 
 function RhS=fsub(x,z)
-    RhS=[(1-6*x*x*z(4)-6*x*z(3))/(z(5)^3);1]
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  RhS=[(1-6*x*x*z(4)-6*x*z(3))/(z(5)^3);1]
+endfunction;
 
 function g=gsub(i,z)
-    g=[z(1) z(3) z(1)-1 z(3) z(5)-2]
-    g=g(i)
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  g=[z(1) z(3) z(1)-1 z(3) z(5)-2]
+  g=g(i)
+endfunction;
 
 function [z,lhS]=ystart(x)
-    z=zeros(5,1);z(5)=1;
-    lhS=[0;1];
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  z=zeros(5,1);z(5)=1;
+  lhS=[0;1];
+endfunction;
 
 n = 2;
 m = [4,1];
@@ -48,16 +42,14 @@ if load_ref('%ans') then   pause,end,
 
 
 function z=yex(x) 
-  // True solution
-    z=zeros(5,1);
-    z(1)=0.25*(10*log(2)-3)*(1-x)+0.5*(1/x+(3+x)*log(x)-x)+(x-1)
-    z(2)=-0.25*(10*log(2)-3)+0.5*(-1/x^2+(3+x)/x+log(x)-1)+1
-    z(3)=0.5*(2/x^3+1/x-3/x^2)
-    z(4)=0.5*(-6/x^4-1/x/x+6/x^3)
-    z(5)=x
-endfunction
-if load_ref('%ans') then   pause,end,
-
+// True solution
+  z=zeros(5,1);
+  z(1)=0.25*(10*log(2)-3)*(1-x)+0.5*(1/x+(3+x)*log(x)-x)+(x-1)
+  z(2)=-0.25*(10*log(2)-3)+0.5*(-1/x^2+(3+x)/x+log(x)-1)+1
+  z(3)=0.5*(2/x^3+1/x-3/x^2)
+  z(4)=0.5*(-6/x^4-1/x/x+6/x^3)
+  z(5)=x
+endfunction;
 
 zex = [];for xx = x,  zex = [zex,yex(xx)];end,
 scf(0);clf_run();
@@ -86,25 +78,19 @@ if load_ref('%ans') then   pause,end,
 // z=[y(x) ; y'(x) ; la]
 
 function rhs=fsub(x,z)
-    rhs=[-z(3)*z(1);0]
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  rhs=[-z(3)*z(1);0]
+endfunction;
 
 function g=gsub(i,z)
-    g=[z(1)-z(2) z(1)-1 z(1)]
-    g=g(i)
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  g=[z(1)-z(2) z(1)-1 z(1)]
+  g=g(i)
+endfunction;
 
 // The following start function is good for the first 8 eigenfunctions.
 function [z,lhs]=ystart(x,z,la0)
-    z=[1;0;la0]
-    lhs=[0;0]
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  z=[1;0;la0]
+  lhs=[0;0]
+endfunction;
 
 a = 0;b = 1;
 m = [2;1];
@@ -148,26 +134,20 @@ tol = 0.00000001 * [1,1];
 x = linspace(a, b, N);
 
 function rhs=fsub(x,z)
-  ,rhs=-exp(z(1));
-endfunction
-if load_ref('%ans') then   pause,end,
-
+,rhs=-exp(z(1));
+endfunction;
 
 function g=gsub(i,z)
-    g=[z(1) z(1)]
-    g=g(i)
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  g=[z(1) z(1)]
+  g=g(i)
+endfunction;
 
 function [z,lhs]=ystart(x,z,M)
-    //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
-    z=[M;0]
-    //lhs=[-exp(4*x*(1-x)*M)]
-    lhs=0
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+  z=[M;0]
+  //lhs=[-exp(4*x*(1-x)*M)]
+  lhs=0
+endfunction;
 
 for M = [1,4],
   if M == 1 then 
@@ -180,30 +160,22 @@ end,
 // Integrating the ode yield e.g. the two solutions yex and yex1.
 
 function y=f(c)
-  ,y=c.*(1-tanh(sqrt(c)/4).^2)-2;
-endfunction
-if load_ref('%ans') then   pause,end,
-
+,y=c.*(1-tanh(sqrt(c)/4).^2)-2;
+endfunction;
 c = fsolve(2, f);
 
 function y=yex(x,c)
-    y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+endfunction;
 
 function y=f1(c1)
-  , y=2*c1^2+tanh(1/4/c1)^2-1;
-endfunction
-if load_ref('%ans') then   pause,end,
-
+, y=2*c1^2+tanh(1/4/c1)^2-1;
+endfunction;
 c1 = fsolve(0.1, f1);
 
 function y=yex1(x,c1)
-    y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+endfunction;
 
 %ans = disp(norm(z(1, :) - yex(x)), 'norm(yex(x)-z(1,:))= ');
 if load_ref('%ans') then   pause,end,
@@ -246,17 +218,13 @@ n = 1;
 m = 3;
 
 function rhs=fsub(x,z)
-    rhs=1
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  rhs=1
+endfunction;
 
 function g=gsub(i,z)
-    g=[z(1)-2 z(1)-1 z(1)-2]
-    g=g(i)
-endfunction
-if load_ref('%ans') then   pause,end,
-
+  g=[z(1)-2 z(1)-1 z(1)-2]
+  g=g(i)
+endfunction;
 
 N = 10;
 zeta = [a,c,b];
@@ -265,10 +233,8 @@ x = linspace(a, b, N);
 z = bvodeS(x, m, n, a, b, fsub, gsub, zeta, fixpnt=c);
 
 function y=yex(x)
-  y=x.^3/6+x.^2-x./6+1
-endfunction
-if load_ref('%ans') then   pause,end,
-
+y=x.^3/6+x.^2-x./6+1
+endfunction;
 
 %ans = disp(norm(yex(x) - z(1, :)), 'norm(yex(x)-z(1,:))= ');
 if load_ref('%ans') then   pause,end,

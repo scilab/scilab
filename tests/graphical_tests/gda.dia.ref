@@ -12,13 +12,9 @@ if load_ref('a') then   bugmes();quit;end,
  
 // get the handle of the model axes
  
-// setting its' properties
- 
-a('background') = 31;
+// set its' properties
  
 a('box') = 'off';
- 
-a('rotation_angles') = [70,10];
  
 a('foreground') = 2;
  
@@ -30,6 +26,9 @@ a('sub_tics') = [5,5,3];
  
 a('x_location') = 'top';
  
+ 
+//now used the model axes for drawing
+ 
 %ans = set('figure_style', 'new');
  
 if load_ref('%ans') then   bugmes();quit;end,
@@ -39,40 +38,40 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 if load_ref('%ans') then   bugmes();quit;end,
  
+//create an axes entity
  
 %ans = plot2d();
-Demo of plot2d
+
+Demo of plot2d()
+========================================
 x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
  
 if load_ref('%ans') then   bugmes();quit;end,
  
-//create an axes entity
+ 
+ 
+// set other model's properties
+ 
+a('background') = color('gray');
+ 
+if load_ref('a') then   bugmes();quit;end,
+ 
+ 
+a('grid') = [5,5,5];
  
 %ans = subplot(212);
  
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-%ans = plot3d1();
-Demo of plot3d1
-t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
-//create a second axes entity
- 
-a('grid') = [5,5,5];// setting other model's properties
- 
-%ans = clf_run();
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
- 
 t = 0:0.1:5 * %pi;
  
-%ans = plot2d(sin(t), cos(t), t/10);
+%ans = plot2d(sin(t), cos(t));
  
 if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
  
  
 set(a, 'default_values', 1);// return to the  default values of the model
@@ -84,7 +83,7 @@ set(a, 'default_values', 1);// return to the  default values of the model
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-%ans = plot2d(sin(t), cos(t), t/10);
+%ans = plot2d(sin(t), cos(t));
  
 if load_ref('%ans') then   bugmes();quit;end,
  

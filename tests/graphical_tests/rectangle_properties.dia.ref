@@ -13,7 +13,7 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 a = get('current_axes');//get the handle of the newly created axes
  
-a('data_bounds') = [-2,2;-2,2];
+a('data_bounds') = [-2,-2;2,2];
  
  
 %ans = xrect(-1, 1, 2, 2);
@@ -39,6 +39,8 @@ r('foreground') = 13;
 r('line_style') = 2;
  
 r('fill_mode') = 'on';
+ 
+r('background') = color('red');
  
 r('clip_box') = [-1,1;1,1];
  

@@ -4,9 +4,7 @@ reinit_for_test()
 //generate the data
 function y=FF(x,p)
 ,y=p(1)*(x-p(2))+p(3)*x.*x,
-endfunction%ans = ;
-if load_ref('%ans') then   pause,end,
-
+endfunction;
 X = [];Y = [];
 pg = [34;12;14];
 if load_ref('pg') then   pause,end,
@@ -20,9 +18,7 @@ function e=G(p,z)
 ,
    y=z(1),x=z(2);
    e=y-FF(x,p),
-endfunction%ans = ;
-if load_ref('%ans') then   pause,end,
-
+endfunction;
 
 //Solve the problem
 p0 = [3;5;10];
@@ -49,9 +45,7 @@ function s=DG(p,z)
 ,
    a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
    s=-[x-b,-a,x*x]
-endfunction%ans = ;
-if load_ref('%ans') then   pause,end,
-
+endfunction;
 
 [p,err] = datafit(G, DG, Z, p0);
 scf(1);%ans = clf_run();

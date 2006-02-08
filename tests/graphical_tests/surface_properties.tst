@@ -17,7 +17,7 @@ a = gca();//get current axes
 a('rotation_angles') = [40,70];
 a('grid') = [1,1,1];
 //make grids
-a('data_bounds') = [-6,6;6,-1;0,5];
+a('data_bounds') = [-6,0,-1;6,6,5];
 a('axes_visible') = 'off';
 //axes are hidden a.axes_bounds=[.2 0 1 1];
 f = get('current_figure');

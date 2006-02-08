@@ -8,12 +8,9 @@ reinit_for_test()
 t = linspace(-%pi, %pi, 30);
  
 function z=surf(x,y)
-  ,z=x*sin(x)^2*cos(y),
-endfunction
+,z=x*sin(x)^2*cos(y),
+endfunction;
 Warning :redefining function: surf                    
- 
- 
-if load_ref('%ans') then   bugmes();quit;end,
  
  
  

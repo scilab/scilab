@@ -91,8 +91,11 @@ if load_ref('%ans') then   bugmes();quit;end,
 //create a new figure with figure_id=10
  
 %ans = plot3d();
-Demo of plot3d
+
+Demo of plot3d()
+========================================
 t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
  
 if load_ref('%ans') then   bugmes();quit;end,
  

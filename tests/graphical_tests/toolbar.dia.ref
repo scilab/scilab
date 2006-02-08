@@ -17,8 +17,11 @@ if load_ref('state') then   bugmes();quit;end,
  
  
 plot3d();
-Demo of plot3d
+
+Demo of plot3d()
+========================================
 t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
  
 h = gcf();
  

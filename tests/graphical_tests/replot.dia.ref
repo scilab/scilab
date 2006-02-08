@@ -42,12 +42,16 @@ if load_ref('%ans') then   bugmes();quit;end,
 xdel_run(winsid());
  
 %ans = plot();
-Demo of plot
+ 
+Demo of plot()
+========================================
+ 
 t=0:%pi/20:2*%pi;
 subplot(211)
 plot(t,sin(t),'ro-0.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
 subplot(212)
 plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+ 
  
 if load_ref('%ans') then   bugmes();quit;end,
  

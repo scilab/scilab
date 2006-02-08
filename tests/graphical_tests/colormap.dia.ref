@@ -18,8 +18,11 @@ cmap = [r,g,b];
 f = gcf();f('color_map') = cmap;
  
 %ans = plot3d1();
-Demo of plot3d1
+
+Demo of plot3d1()
+========================================
 t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+
  
 if load_ref('%ans') then   bugmes();quit;end,
  

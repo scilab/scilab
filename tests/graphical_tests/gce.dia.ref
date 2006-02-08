@@ -18,19 +18,21 @@ if load_ref('a') then   bugmes();quit;end,
  
 //get the handle of the newly created axes
  
-a('data_bounds') = [1,10,1,10];
+a('data_bounds') = [1,1;10,10];
+ 
+a('axes_visible') = 'on';
  
 for i = 1:5,
   xfrect(7 - i, 9 - i, 3, 3);
   e = gce();
-  e('foreground') = i;
+  e('background') = i;
 end,
  
 delete();// delete current entity
  
 delete(gce());// delete current entity
  
-delete(gca());// delete current axes
+delete(gcf());// delete current figure
  
  
  

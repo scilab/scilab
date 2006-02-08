@@ -10,12 +10,16 @@ toprint(['Test','toprint primitive'], 'Scilab page header');
 scf(4);
  
 plot();
-Demo of plot
+ 
+Demo of plot()
+========================================
+ 
 t=0:%pi/20:2*%pi;
 subplot(211)
 plot(t,sin(t),'ro-0.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
 subplot(212)
 plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+ 
  
 toprint(4);
  

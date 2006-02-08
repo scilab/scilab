@@ -32,28 +32,24 @@ if load_ref('%ans') then   pause,end,
 // example 3 : define then plot a spherical harmonic
 // 3-1 : define the function Ylm
 function [y] = Y(l,m,theta,phi)
-     // theta may be a scalar or a row vector
-     // phi may be a scalar or a column vector
-     if m >= 0 then
-        y = (-1)^m/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, m, cos(theta), "norm")
-     else
-        y = 1/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, -m, cos(theta), "norm")
-     end
-endfunction
-if load_ref('%ans') then   pause,end,
-
+   // theta may be a scalar or a row vector
+   // phi may be a scalar or a column vector
+   if m >= 0 then
+      y = (-1)^m/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, m, cos(theta), "norm")
+   else
+      y = 1/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, -m, cos(theta), "norm")
+   end
+endfunction;
 
 // 3.2 : define another useful function
 function [x,y,z] = sph2cart(theta,phi,r)
-     // theta row vector      1 x nt
-     // phi   column vector  np x 1
-     // r     scalar or np x nt matrix (r(i,j) the length at phi(i) theta(j))
-     x = r.*(cos(phi)*sin(theta));
-     y = r.*(sin(phi)*sin(theta));
-     z = r.*(ones(phi)*cos(theta));
-endfunction
-if load_ref('%ans') then   pause,end,
-
+   // theta row vector      1 x nt
+   // phi   column vector  np x 1
+   // r     scalar or np x nt matrix (r(i,j) the length at phi(i) theta(j))
+   x = r.*(cos(phi)*sin(theta));
+   y = r.*(sin(phi)*sin(theta));
+   z = r.*(ones(phi)*cos(theta));
+endfunction;
 
 // 3-3 plot Y31(theta,phi)
 l = 3;m = 1;

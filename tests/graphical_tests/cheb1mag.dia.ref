@@ -15,9 +15,12 @@ h = cheb1mag(n, omegac, epsilon, sample);
 Warning :redefining function: sample                  
  
  
-%ans = plot(sample, h, 'frequencies', 'magnitude');
-WARNING:Error in Property specification : bad argument specified
-WARNING:Error in Property specification : bad argument specified
+%ans = plot2d(sample, h);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('', 'frequencies', 'magnitude');
  
 if load_ref('%ans') then   bugmes();quit;end,
  

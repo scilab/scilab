@@ -17,31 +17,18 @@ else
   if load_ref('%ans') then   bugmes();quit;end,
 end,
  
-%ans = xbasc_run();
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
- 
-%ans = xset('font', 6, 2);
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
-// use helvetica at 12 pts
- 
-%ans = plot2d();
-Demo of plot2d
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
- 
 %ans = xset('font', 10, 4);
  
 if load_ref('%ans') then   bugmes();quit;end,
  
 // use Schoolbook bold at 18 pts
  
-%ans = xtitle('plot2d demo', 'x', 'y');
+%ans = plot2d();
+
+Demo of plot2d()
+========================================
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+
  
 if load_ref('%ans') then   bugmes();quit;end,
  

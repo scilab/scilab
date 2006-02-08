@@ -19,10 +19,8 @@ plot2d(x, Gauss(x), style=2);
 
 // by binomial formula (Caution if big n)
 function pr=binomial2(p,n)
-  x=poly(0,'x');pr=coeff((1-p+x)^n).*horner(x^(0:n),p);
-endfunction
-if load_ref('%ans') then   pause,end,
-
+x=poly(0,'x');pr=coeff((1-p+x)^n).*horner(x^(0:n),p);
+endfunction;
 p = 1/3;n = 5;
 %ans = binomial(p, n) - binomial2(p, n);
 if load_ref('%ans') then   pause,end,

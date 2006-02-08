@@ -9,7 +9,7 @@ reinit_for_test()
  
 x = -10:10;y = -10:10;m = rand(21, 21);
  
-%ans = xbasc_run();
+%ans = clf_run();
  
 if load_ref('%ans') then   bugmes();quit;end,
  
@@ -29,7 +29,7 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 t = -%pi:0.1:%pi;m = sin(t)' * cos(t);
  
-%ans = xbasc_run();
+%ans = clf_run();
  
 if load_ref('%ans') then   bugmes();quit;end,
  
@@ -66,50 +66,48 @@ z = sin(x') * sin(y);
  
 t = linspace(0, 4 * %pi, nt);
  
-xselect();%ans = xbasc_run();
+xselect();%ans = clf_run();
  
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-fig_styl_init = get('figure_style');
+f = gcf();
  
-if fig_styl_init == 'new' then   %ans = set('figure_style', 'old');
-  if load_ref('%ans') then   bugmes();quit;end,
-end,
+f('color_map') = jetcolormap(64);
  
-%ans = xset('font', 6, 2);
+f('pixmap') = 'on';
  
-if load_ref('%ans') then   bugmes();quit;end,
- 
- 
-%ans = xset('colormap', jetcolormap(64));
+%ans = colorbar(-1, 1);
  
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-driver('X11');xset('pixmap', 1);
+%ans = Sgrayplot(x, y, cos(t(1)) * z, strf='042', zminmax=[-1,1]);
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
+c = gce();
+ 
+if load_ref('c') then   bugmes();quit;end,
+ 
+e = c('children');
+ 
+if load_ref('e') then   bugmes();quit;end,
+ 
+ 
+%ans = xtitle('Kaa''s eyes');
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
  
 for i = 1:nt,
-  %ans = xbasc_run();
-  if load_ref('%ans') then   bugmes();quit;end,
-  %ans = colorbar(-1, 1);
-  if load_ref('%ans') then   bugmes();quit;end,
-  %ans = Sgrayplot(x, y, cos(t(i)) * z, strf='042', zminmax=[-1,1]);
-  if load_ref('%ans') then   bugmes();quit;end,
-  %ans = xtitle('Kaa''s eyes');
-  if load_ref('%ans') then   bugmes();quit;end,
-  %ans = xset('wshow');
+  e.data(eye(), 3) = matrix(cos(t(i)) * z, -1, 1);
+  %ans = show_pixmap();
   if load_ref('%ans') then   bugmes();quit;end,
 end,
  
-xset('pixmap', 0);%ans = driver('Rec');
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
- 
-if fig_styl_init == 'new' then   %ans = set('figure_style', 'new');
-  if load_ref('%ans') then   bugmes();quit;end,
-end,
+f('pixmap') = 'off';
  
 xdel_run(winsid());
  

@@ -11,6 +11,13 @@ reinit_for_test()
 if load_ref('%ans') then   bugmes();quit;end,
  
  
+%ans = clf_run();
+ 
+ handle of type Matplot unhandled   
+ 
+if load_ref('%ans') then   bugmes();quit;end,
+ 
+ 
 // draw the current colormap
  
 %ans = Matplot(1:xget('lastpattern'));
@@ -20,8 +27,6 @@ if load_ref('%ans') then   bugmes();quit;end,
  
  
 xdel_run(winsid());
- 
- handle of type Matplot unhandled   
  
  handle of type Matplot unhandled   
  

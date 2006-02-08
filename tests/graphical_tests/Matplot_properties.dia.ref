@@ -13,13 +13,6 @@ if load_ref('%ans') then   bugmes();quit;end,
 //create a figure
  
  
-%ans = Matplot([1,2,3;4,5,6]);
- 
-if load_ref('%ans') then   bugmes();quit;end,
- 
- 
-// draw the current colormap
- 
 %ans = Matplot(1:xget('lastpattern'));
  
 if load_ref('%ans') then   bugmes();quit;end,
@@ -39,8 +32,6 @@ if load_ref('e') then   bugmes();quit;end,
  
  
 xdel_run(winsid());
- 
- handle of type Matplot unhandled   
  
  handle of type Matplot unhandled   
  

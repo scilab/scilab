@@ -3,10 +3,8 @@ reinit_for_test()
 %U=mopen('SCI/tests/graphical_tests/contour_data.ref','rb');
 t = linspace(-%pi, %pi, 30);
 function z=surf(x,y)
-  ,z=x*sin(x)^2*cos(y),
-endfunction
-if load_ref('%ans') then   pause,end,
-
+,z=x*sin(x)^2*cos(y),
+endfunction;
 
 %ans = contour(t, t, surf, 10);
 if load_ref('%ans') then   pause,end,
