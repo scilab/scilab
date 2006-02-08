@@ -145,7 +145,7 @@ tol=1e-12;
 tic()
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ystart);
 // Try tol=1e-14 etc.
-disp(toc(),'time for bvodeS = ')
+toc()
 
 function z=yex(x) // True solution
   z=zeros(5,1);
