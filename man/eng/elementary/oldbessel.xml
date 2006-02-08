@@ -1,100 +1,117 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>oldbessel</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>September 1997</DATE>
-  <SHORT_DESCRIPTION name="oldbesseli">Modified Bessel functions of the first kind
-    (I sub alpha).</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="oldbesselj">Bessel functions of the first kind
-    (J sub alpha).</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="oldbesselk">Modified Bessel functions of the second kind
-    (K sub alpha).</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="oldbessely">Bessel functions of the second kind
-    (Y sub alpha).</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x,ice)    </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbesselj(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbesselk(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbesselk(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbessely(alpha,x)  </CALLING_SEQUENCE_ITEM>
 
+  <TITLE>oldbessel</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>September 1997</DATE>
+
+  <SHORT_DESCRIPTION name="oldbesseli">Modified Bessel functions of the first
+  kind (I sub alpha).</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="oldbesselj">Bessel functions of the first kind (J
+  sub alpha).</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="oldbesselk">Modified Bessel functions of the second
+  kind (K sub alpha).</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="oldbessely">Bessel functions of the second kind (Y
+  sub alpha).</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y = oldbesseli(alpha,x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y = oldbesseli(alpha,x,ice)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y = oldbesselj(alpha,x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y = oldbesselk(alpha,x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y = oldbesselk(alpha,x,ice)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y = oldbessely(alpha,x)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>x</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: real vector with non negative entries</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>alpha</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: real vector with non negative entries regularly spaced with 
-                increment equal to one <VERB>alpha=alpha0+(n1:n2)</VERB></SP>
+          <SP>: real vector with non negative entries regularly spaced with
+          increment equal to one <VERB>alpha=alpha0+(n1:n2)</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>ice</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: integer flag, with default value 1</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P>These functions  are obsolete, use <LINK>besseli</LINK>,
-      <LINK>besselj</LINK>, <LINK>besselk</LINK>, <LINK>bessely</LINK>
-      instead. Note however that the semantics of these two sets of functions are
-      different.</P>
+    <P>These functions are obsolete, use <LINK>besseli</LINK>,
+    <LINK>besselj</LINK>, <LINK>besselk</LINK>, <LINK>bessely</LINK> instead.
+    Note however that the semantics of these two sets of functions are
+    different.</P>
 
-    <P><VERB>oldbesseli(alpha,x)</VERB> computes modified Bessel functions of the
-    first kind (I sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real non negative argument <VERB>x</VERB>.  <VERB>besseli(alpha,x,2)</VERB> computes 
-	  <VERB>besseli(alpha,x).*exp(-x)</VERB>.</P> 
+    <P><VERB>oldbesseli(alpha,x)</VERB> computes modified Bessel functions of
+    the first kind (I sub alpha), for real, non-negative order
+    <VERB>alpha</VERB> and real non negative argument <VERB>x</VERB>.
+    <VERB>besseli(alpha,x,2)</VERB> computes
+    <VERB>besseli(alpha,x).*exp(-x)</VERB>.</P>
 
-    <P><VERB>oldbesselj(alpha,x)</VERB> computes Bessel functions of the
-    first kind (J sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real non negative argument <VERB>x</VERB>. </P> 
+    <P><VERB>oldbesselj(alpha,x)</VERB> computes Bessel functions of the first
+    kind (J sub alpha), for real, non-negative order <VERB>alpha</VERB> and
+    real non negative argument <VERB>x</VERB>.</P>
 
-    <P><VERB>oldbesselk(alpha,x)</VERB> computes modified Bessel functions of the
-    second kind (K sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real non negative argument <VERB>x</VERB>.  <VERB>besselk(alpha,x,2)</VERB> computes
-    <VERB>besselk(alpha,x).*exp(x)</VERB>.</P> 
+    <P><VERB>oldbesselk(alpha,x)</VERB> computes modified Bessel functions of
+    the second kind (K sub alpha), for real, non-negative order
+    <VERB>alpha</VERB> and real non negative argument <VERB>x</VERB>.
+    <VERB>besselk(alpha,x,2)</VERB> computes
+    <VERB>besselk(alpha,x).*exp(x)</VERB>.</P>
 
     <P><VERB>oldbessely(alpha,x)</VERB> computes Bessel functions of the
-    second kind (Y sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real non negative argument <VERB>x</VERB>. </P> 
+    second kind (Y sub alpha), for real, non-negative order <VERB>alpha</VERB>
+    and real non negative argument <VERB>x</VERB>.</P>
 
-    <P><VERB>alpha</VERB>  and <VERB>x</VERB> may be vectors.
-    The output is <VERB>m</VERB>-by-<VERB>n</VERB> with <VERB>m = size(x,'*')</VERB>,
+    <P><VERB>alpha</VERB> and <VERB>x</VERB> may be vectors. The output is
+    <VERB>m</VERB>-by-<VERB>n</VERB> with <VERB>m = size(x,'*')</VERB>,
     <VERB>n = size(alpha,'*')</VERB> whose <VERB>(i,j)</VERB> entry is
     <VERB>oldbessel?(alpha(j),x(i))</VERB>.</P>
-
   </DESCRIPTION>
-   <SECTION  label="Remarks">
 
-    <P> Y_alpha and J_alpha Bessel functions are 2 independant 
-        solutions of the Bessel 's differential equation :</P>
-    <VERBATIM>
-<![CDATA[          2               2        2
-         x  y" + x y' + (x  - alpha ) y = 0 ,  alpha >= 0
-     ]]>
-    </VERBATIM>
-    <P> K_alpha and I_alpha modified Bessel functions are 2 independant 
-        solutions of the modified Bessel 's differential equation :</P>
-    <VERBATIM>
-<![CDATA[          2               2        2
-         x  y" + x y' - (x  + alpha ) y = 0 ,  alpha >= 0
-     ]]>
-    </VERBATIM>
- </SECTION>
+  <SECTION label="Remarks">
+    <P>Y_alpha and J_alpha Bessel functions are 2 independant solutions of the
+    Bessel 's differential equation :</P>
 
-  <EXAMPLE>
-<![CDATA[// example #1: display some I Bessel functions
+    <VERBATIM>2 2 2 x y" + x y' + (x - alpha ) y = 0 , alpha &gt;=
+    0</VERBATIM>
+
+    <P>K_alpha and I_alpha modified Bessel functions are 2 independant
+    solutions of the modified Bessel 's differential equation :</P>
+
+    <VERBATIM>2 2 2 x y" + x y' - (x + alpha ) y = 0 , alpha &gt;=
+    0</VERBATIM>
+  </SECTION>
+
+  <EXAMPLE><![CDATA[
+// example #1: display some I Bessel functions
 x = linspace(0.01,10,5000)';
 y = oldbesseli(0:4,x);
 ys = oldbesseli(0:4,x,2);
@@ -131,25 +148,24 @@ subplot(2,1,2)
 
 // example #4: display some K Bessel functions
 x = linspace(0.01,10,5000)';
-y = besselk(0:4,x);
-ys = besselk(0:4,x,2);
+y = besselk(0:2,x);
+ys = besselk(0:2,x,1);
 xbasc()
 subplot(2,1,1)
-   plot2d(x,y, style=2:6, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
+   plot2d(x,y, style=2:4, leg="K0@K1@K2", rect=[0,0,6,10])
    xtitle("Some modified Bessel functions of the second kind")
 subplot(2,1,2)
-   plot2d(x,ys, style=2:6, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
+   plot2d(x,ys, style=2:4, leg="K0s@K1s@K2s", rect=[0,0,6,10])
    xtitle("Some modified scaled Bessel functions of the second kind")
 
 // example #5: plot severals Y Bessel functions
 x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
-y = bessely(0:4,x);
+y = bessely(0:2,x);
 xbasc()
-plot2d(x,y, style=2:6, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
+plot2d(x,y, style=2:4, leg="Y0@Y1@Y2", rect=[0,-1.5,40,0.6])
 xtitle("Some Bessel functions of the second kind")
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
 
   <AUTHOR>W. J. Cody, L. Stoltz (code from Netlib (specfun))</AUTHOR>
 </MAN>
-
