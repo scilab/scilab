@@ -56,7 +56,7 @@
         prompt but also at the end of each instructions of the currently
         running function) in the order they were submitted. This syntax can be
         used to associate Scilab actions to tcl/tk widgets but not into a tcl
-        script executed by <LINK>TK_EvalFile</LINK> or <LINK>TK_EvalStr</LINK>
+        script executed by <LINK>TCL_EvalFile</LINK> or <LINK>TCL_EvalStr</LINK>
         because in this situation the Scilab interpreter is blocked up to the
         end of the script. Note that with the<VERB>ScilabEval
         instruction</VERB> syntax, if there are many <VERB>ScilabEval</VERB>
@@ -122,7 +122,7 @@ tcl_script=['toplevel .w1'
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
 // Execute the tcl script
 cont=%f;
-TK_EvalFile(TMPDIR+'/test.tcl');;
+TCL_EvalFile(TMPDIR+'/test.tcl');;
 
 //scripts and "sync" option usage
 
@@ -135,8 +135,8 @@ tcl_script=['  set t ""0""'
 
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
 // Execute the tcl script
-TK_EvalFile(TMPDIR+'/test.tcl');mprintf('TK_EvalFile finished\n');
-// The ScilabEval are executed  after the and of TK_EvalFile
+TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
+// The ScilabEval are executed  after the and of TCL_EvalFile
 
 //----------------with "sync"----------------
 tcl_script=['  set t ""0""'
@@ -147,27 +147,27 @@ tcl_script=['  set t ""0""'
 
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
 // Execute the tcl script
-TK_EvalFile(TMPDIR+'/test.tcl');mprintf('TK_EvalFile finished\n');
-// The ScilabEval are executed  synchronously with TK_EvalFile
+TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
+// The ScilabEval are executed  synchronously with TCL_EvalFile
 
  
   </EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>TK_EvalFile</LINK>
+      <LINK>TCL_EvalFile</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TK_EvalStr</LINK>
+      <LINK>TCL_EvalStr</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TK_GetVar</LINK>
+      <LINK>TCL_GetVar</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>TK_SetVar</LINK>
+      <LINK>TCL_SetVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
