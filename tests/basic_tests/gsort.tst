@@ -314,6 +314,7 @@ if norm(evstr(a1)- matrix(a(:,ind),N1,P1)) > %eps then pause,end;
 // a and string(a) are in the same order in the previous example 
 if norm(evstr(a1)- a2 ) > %eps then pause,end;
 
+return
 //================================ Matrix of int32 and uint32 case =======================================
 // Copyright Inria
 N=4;P=20;Nrand=100; 
