@@ -399,7 +399,7 @@ static gboolean locator_button_release(GtkWidget *widget,
 
 /* to compile with gdk<2.4 */
 #if GTK_MAJOR_VERSION==2 &&  GTK_MINOR_VERSION>=4
-  display_double_click_distance = display->double_click_distance;
+  int display_double_click_distance = display->double_click_distance;
 #else
   int display_double_click_distance=5;
 #endif
