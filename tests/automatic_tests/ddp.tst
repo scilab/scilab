@@ -11,13 +11,13 @@ Sys = syslin('c', A, B2, C, D2);
 alfa = -1;beta = -2;flag = 'ge';
 [X,dims,F,U,k,Z] = abinv(Sys12, alfa, beta, flag);
 %ans = clean(X' * (A + B2 * F) * X);
-if load_ref('%ans') then   pause,end,
+if load_ref_nocheck('%ans') then   pause,end,
 
 %ans = clean(X' * B2 * U);
-if load_ref('%ans') then   pause,end,
+if load_ref_nocheck('%ans') then   pause,end,
 
 %ans = clean((C1 + D12 * F) * X);
-if load_ref('%ans') then   pause,end,
+if load_ref_nocheck('%ans') then   pause,end,
 
 clean(D12 * U);
 //Calculating an ad-hoc B1,D1

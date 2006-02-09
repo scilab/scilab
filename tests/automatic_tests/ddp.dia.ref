@@ -29,17 +29,17 @@ WARNING:system not stabilizable (or detectable)=>stabilizing the stabilizable pa
  
 %ans = clean(X' * (A + B2 * F) * X);
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 %ans = clean(X' * B2 * U);
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 %ans = clean((C1 + D12 * F) * X);
  
-if load_ref('%ans') then   bugmes();quit;end,
+if load_ref_nocheck('%ans') then   bugmes();quit;end,
  
  
 clean(D12 * U);
