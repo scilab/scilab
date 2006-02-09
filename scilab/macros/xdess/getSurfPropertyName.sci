@@ -9,13 +9,13 @@ function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode
 str = convstr(PropertyName);
 
 
-Table    = ['cdata'     'colordata' 'cdatamapping'     'colordatamapping' ..
+Table    = ['cdata' 'colordata' 'cdata_mapping' 'cdatamapping' 'colordatamapping' ..
     'cdatamode'     'colordatamode' 'clipping' 'edgecolor'   'foreground' 'facecolor' ..
     'linestyle' 'linewidth' 'thickness' 'marker' .. 
     'markstyle' 'markeredgecolor' 'markforeground' 'markerfacecolor'  'markbackground' ..
     'markersize' 'marksize' 'visible' 'xdata' 'ydata' 'zdata'];
 
-TableEQ =  ['colordata' 'colordata' 'colordatamapping' 'colordatamapping' ..
+TableEQ =  ['colordata' 'colordata' 'colordatamapping' 'colordatamapping' 'colordatamapping' ..
     'colordatamode' 'colordatamode' 'clipping' 'foreground'  'foreground' 'facecolor' ..
     'linestyle' 'thickness' 'thickness' 'markstyle' ..
     'markstyle'  'markforeground' 'markforeground' 'markbackground' 'markbackground' .. 
