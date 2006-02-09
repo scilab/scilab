@@ -580,7 +580,7 @@ void C2F(getlastPos)(integer *verbose, integer *num, integer *narg, double *dumm
 
 #define MAXDASH 6
 static integer DashTabPos[MAXDASH][4] = {
-  {2,5,2,5}, {5,2,5,2},  {5,3,2,3}, {8,3,2,3},
+  {2,5,2,5}, {7,2,7,2},  {2,2,2,2}, {7,2,2,2},
   {11,3,2,3}, {11,3,5,3}};
 
 /* old version of setdashPos retained for compatibility */
