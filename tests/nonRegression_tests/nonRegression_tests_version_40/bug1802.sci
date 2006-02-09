@@ -7,7 +7,7 @@
 mode(-1);
 clear
 
-a=rand(100,200);
+a=rand(100,500);
 timer();sci2exp(a);t=timer();
-affich_result(t<3,1802);
+affich_result(t<12,1802);
 clear
