@@ -3053,39 +3053,54 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if (strcmp(marker,"cdata_mapping") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
-	if ((strcmp(cstk(*value),"scaled") == 0)){
-	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 0){ /* not already scaled */
+
+      sciSurface * ppSurf = pSURFACE_FEATURE ( pobj ) ;
+
+      if ( ppSurf->typeof3d == SCI_FAC3D )
+      {
+	if ( (strcmp( cstk(*value), "scaled" ) == 0 ) )
+        {
+	  if( ppSurf->cdatamapping != 0 )
+          { /* not already scaled */
 	    LinearScaling2Colormap(pobj);
-	    pSURFACE_FEATURE (pobj)->cdatamapping = 0;
+	    ppSurf->cdatamapping = 0;
 	  }
 	} 
-	else if ((strcmp(cstk(*value),"direct") == 0)){
-	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 1){ /* not already direct */
-	    int nc = pSURFACE_FEATURE (pobj)->nc;
+	else if ((strcmp(cstk(*value),"direct") == 0))
+        {
+	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 1)
+          { 
+            /* not already direct */
+	    int nc = ppSurf->nc;
 
-	    FREE(pSURFACE_FEATURE (pobj)->color); pSURFACE_FEATURE (pobj)->color = NULL;
+	    FREE( ppSurf->color ) ;
+            ppSurf->color = NULL ;
 
 	    /* 	    printf("pSURFACE_FEATURE (pobj)->color = %d\n",pSURFACE_FEATURE (pobj)->color); */
 	    /* 	    printf("nc = %d\n",nc); */
 	    /* 	    fflush(NULL); */
 
-	    if(nc>0){
-	      if ((pSURFACE_FEATURE (pobj)->color = MALLOC (nc * sizeof (double))) == NULL)
+	    if(nc>0)
+            {
+	      if ((ppSurf->color = MALLOC (nc * sizeof (double))) == NULL)
+              {
 		return -1;
+              }
 	    }
 
-	    for(i=0;i<nc;i++)
-	      pSURFACE_FEATURE (pobj)->color[i] = pSURFACE_FEATURE (pobj)->zcol[i];
+	    for( i = 0 ; i < nc ; i++ )
+            {
+	      ppSurf->color[i] = ppSurf->zcol[i] ;
+            }
 
-	    pSURFACE_FEATURE (pobj)->cdatamapping = 1;
+	    ppSurf->cdatamapping = 1 ;
 	  }
 	}
 	else
 	  {strcpy(error_message,"cdata_mapping value must be 'scaled' or 'direct'");return -1;}
       }
       else
-	{strcpy(error_message,"cdata_mapping property does not exist for this handle");return -1;}
+	{strcpy(error_message,"cdata_mapping property only exists for Fac3d surfaces");return -1;}
     }
     else
       {strcpy(error_message,"cdata_mapping property does not exist for this handle");return -1;}
@@ -3251,6 +3266,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	}
   return 0;
 }
+
 /*-----------------------------------------------------------------------------------*/
 int LinearScaling2Colormap(sciPointObj* pobj)
 {
