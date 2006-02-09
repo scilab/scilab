@@ -34,8 +34,7 @@ Events.obj : Events.c bcg.h
 FeC.obj: FeC.c Math.h ../machine.h Graphics.h
 Format.obj: Format.c Math.h ../machine.h Graphics.h
 Gray.obj: Gray.c Math.h ../machine.h Graphics.h PloEch.h
-gsort.obj: gsort.c Math.h ../machine.h Graphics.h ../os_specific/men_Sutils.h \
-	gsort-int.h gsort-double.h gsort-string.h
+gsort.obj: gsort.c Math.h ../machine.h Graphics.h ../os_specific/men_Sutils.h
 Math.obj: Math.c Math.h ../machine.h Graphics.h ../sparse/spConfig.h
 nues1.obj: nues1.c ../machine.h Math.h Graphics.h
 periFig.obj: periFig.c Math.h ../machine.h Graphics.h periFig.h color.h bcg.h
