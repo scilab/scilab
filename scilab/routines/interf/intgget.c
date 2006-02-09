@@ -1895,6 +1895,11 @@ int sciGet(sciPointObj *pobj,char *marker)
 	else if(pSURFACE_FEATURE (pobj)->cdatamapping == 1) /* direct mode */
 	  strncpy(cstk(outindex),"direct", numrow*numcol); 
       }
+      else
+      {
+        strcpy(error_message,"cdata_mapping property only exists for Fac3d surfaces.");
+        return -1;
+      } 
     }
     else
       {strcpy(error_message,"cdata_mapping property does not exist for this handle");return -1;}
