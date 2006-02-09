@@ -3085,7 +3085,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  {strcpy(error_message,"cdata_mapping value must be 'scaled' or 'direct'");return -1;}
       }
       else
-	{strcpy(error_message,"cdata_mapping property does not exist for this handle");return -1;}
+	{strcpy(error_message,"cdata_mapping property only exists for Fac3d surfaces");return -1;}
     }
     else
       {strcpy(error_message,"cdata_mapping property does not exist for this handle");return -1;}
