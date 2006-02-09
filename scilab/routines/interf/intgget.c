@@ -1509,6 +1509,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
     }
   /*Dj.A 17/12/2003*/
+  /* modified jb Silvy 01/2006 */
   else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))
     {
       numrow   = 1;
@@ -1895,18 +1896,32 @@ int sciGet(sciPointObj *pobj,char *marker)
       {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
   } 
   else if (strcmp(marker,"cdata_mapping") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE )
+    {
+      if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D)
+      {
 	numrow   = 1;numcol   = 6;
 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if(pSURFACE_FEATURE (pobj)->cdatamapping == 0) /* scaled mode */
-	  strncpy(cstk(outindex),"scaled", numrow*numcol); 
-	else if(pSURFACE_FEATURE (pobj)->cdatamapping == 1) /* direct mode */
-	  strncpy(cstk(outindex),"direct", numrow*numcol); 
+	if(pSURFACE_FEATURE (pobj)->cdatamapping == 0)
+        { /* scaled mode */
+	  strncpy(cstk(outindex),"scaled", numrow*numcol);
+        } 
+	else if( pSURFACE_FEATURE (pobj)->cdatamapping == 1)
+        { /* direct mode */
+	  strncpy(cstk(outindex),"direct", numrow*numcol);
+        }
+      }
+      else
+      {
+        strcpy(error_message,"cdata_mapping property only exists for Fac3d surfaces.");
+        return -1;
       }
     }
     else
-      {strcpy(error_message,"cdata_mapping property does not exist for this handle");return -1;}
+    {
+      strcpy(error_message,"cdata_mapping property does not exist for this handle.");
+      return -1;
+    }
   }
 
   else if (strcmp(marker,"surface_color") == 0) {
