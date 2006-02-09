@@ -1243,7 +1243,7 @@ static void xget_last(integer *verbose, integer *num, integer *narg, double *dum
 #define MAXDASH 6
 
 static integer DashTab[MAXDASH][4] = {
-  {2,5,2,5}, {5,2,5,2},  {5,3,2,3}, {8,3,2,3},
+  {2,5,2,5}, {7,2,7,2},  {2,2,2,2}, {7,2,2,2},
   {11,3,2,3}, {11,3,5,3}};
 
 static void xset_dash(integer *value, integer *v2, integer *v3, integer *v4)
