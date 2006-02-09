@@ -1845,19 +1845,27 @@ void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
 /* for the fig driver we need to know if we have at least three distincts points */
 static BOOL checkPolygon( integer *polyX, integer *polyY, integer length )
 {
-  int i, j   ;
-  int nbDiff = 0 ;
-  for ( i = 0 ; i < length ; i++ )
+  if ( length <= 2 )
   {
-    for ( j = i + 1 ; j < length ; j++ )
+    return TRUE ;
+  }
+  else
+  {
+    int i, j   ;
+    int nbDiff = 0 ;
+    /* real polygon */
+    for ( i = 0 ; i < length ; i++ )
     {
-      if ( polyX[j] != polyX[i] || polyY[j] != polyY[i] )
+      for ( j = i + 1 ; j < length ; j++ )
       {
-        nbDiff++ ;
-        if ( nbDiff >= 3 )
+        if ( polyX[j] != polyX[i] || polyY[j] != polyY[i] )
         {
-          /* 3 distincts points have been found */
-          return TRUE ;
+          nbDiff++ ;
+          if ( nbDiff >= 3 )
+          {
+            /* 3 distincts points have been found */
+            return TRUE ;
+          }
         }
       }
     }
