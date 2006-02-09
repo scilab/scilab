@@ -1,5 +1,5 @@
 if MSDOS then
-	if ( ~or(sciargs()==['-nw']) ) then
+   if ( ~or(sciargs()==['-nw']) & ~or(sciargs()==['-nwni']) ) then
     a="put in clipboard";
     clipboard('copy',a);
     a1=clipboard('paste');
@@ -19,19 +19,19 @@ if MSDOS then
   scf(2);
   plot();
   clipboard(2,'EMF');
-  if ( ~or(sciargs()==['-nw']) ) then
+  if ( ~or(sciargs()==['-nw']) & ~or(sciargs()==['-nwni']) ) then
     clipboard('do','empty');
   end
 
   scf(3);
   plot3d();
   clipboard(3,'DIB');
-  if ( ~or(sciargs()==['-nw']) ) then
+  if ( ~or(sciargs()==['-nw']) & ~or(sciargs()==['-nwni']) ) then
     clipboard('do','empty');
   end
 
 
-	if ( ~or(sciargs()==['-nw']) ) then
+    if ( ~or(sciargs()==['-nw']) & ~or(sciargs()==['-nwni']) ) then
     d=rand(3,5);
     clipboard('copy',d);
     d1=clipboard('paste');
