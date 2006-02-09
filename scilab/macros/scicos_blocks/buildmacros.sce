@@ -9,7 +9,7 @@ CurrentDirectoryScicosBlocks=pwd();
 		    "Sources",
 		    "Threshold",
 		    "Hydraulics",
-		    "Electrical"
+		    "Electrical",
 		    "PDE"];
  
 Dim=size(SubDirectoriesScicosBlocks);
