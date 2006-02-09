@@ -674,7 +674,7 @@ void C2F(getlastGif)(integer *verbose, integer *num, integer *narg, double *dumm
 /**  to a strictly positive integer **/
 #define MAXDASH 6
 
-static integer DashTabGif[6][4] = {
+static integer DashTabGif[MAXDASH][4] = {
   {2,5,2,5}, {7,2,7,2},  {2,2,2,2}, {7,2,2,2},
   {11,3,2,3}, {11,3,5,3}};
 
