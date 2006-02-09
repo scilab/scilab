@@ -36,6 +36,7 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
+rmdir(SCI + '/Directory'); //remove the directory if it exists
 mkdir(SCI,'Directory')
 status=mkdir(SCI,'Directory')
 [status,msg] = mkdir(SCI,'Directory')
@@ -51,7 +52,9 @@ rmdir(SCI+'/Directory')
       <LINK>dir</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-
+    <SEE_ALSO_ITEM>
+      <LINK>rmdir</LINK>
+    </SEE_ALSO_ITEM>
   <AUTHORS>
     <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
   </AUTHORS>
