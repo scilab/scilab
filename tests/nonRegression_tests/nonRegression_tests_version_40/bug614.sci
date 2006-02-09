@@ -20,8 +20,8 @@ mputl([
 '  sciprint(""%d %d %d\n"",dims[0],dims[1],dims[2]);'
 '}'
 ],'mexfunction16.c')
-exec builder.sce;
-exec loader.sce;
+exec(TMPDIR+'/builder.sce');
+exec(TMPDIR+'/loader.sce');
 diary('bug614.dia')
 mexf16(rand(2,3,2))
 diary(0)
