@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -9,7 +9,7 @@
 
   <DATE>April 1993</DATE>
 
-  <SHORT_DESCRIPTION name="legends">dessine des lÃ©gendes de courbes
+  <SHORT_DESCRIPTION name="legends">dessine des légendes de courbes
   2D</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -27,8 +27,8 @@
         <PARAM_NAME>strings</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur de chaÃ®nes de caractÃ¨res, strings(i) est la lÃ©gende de
-          la iÃ¨me courbe</SP>
+          <SP>: vecteur de chaînes de caractères, strings(i) est la légende de
+          la ième courbe</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -37,8 +37,8 @@
 
         <PARAM_DESCRIPTION>
           <SP>vecteur ligne entier de taille n (les styles de dessin de chaque
-          courbe, troisiÃ¨me paramÃ¨tre de plot2d) ou une matrice d'entiers 2 x
-          n, style(1,k) contenant le style pour la k-iÃ¨me courbe et style(2,k)
+          courbe, troisième paramètre de plot2d) ou une matrice d'entiers 2 x
+          n, style(1,k) contenant le style pour la k-ième courbe et style(2,k)
           contient le style de ligne (si style(1,k)&gt;0) ou la couleur du
           marqueur (si style(1,k)&lt;0).</SP>
         </PARAM_DESCRIPTION>
@@ -53,7 +53,7 @@
               <PARAM_NAME>1</PARAM_NAME>
 
               <PARAM_DESCRIPTION>
-                <SP>= coin en haut Ã  droite 2 = coin en haut Ã  gauche</SP>
+                <SP>= coin en haut à  droite 2 = coin en haut à  gauche</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
 
@@ -61,7 +61,7 @@
               <PARAM_NAME>3</PARAM_NAME>
 
               <PARAM_DESCRIPTION>
-                <SP>= coin en bas Ã  gauche</SP>
+                <SP>= coin en bas à  gauche</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
 
@@ -69,7 +69,7 @@
               <PARAM_NAME>4</PARAM_NAME>
 
               <PARAM_DESCRIPTION>
-                <SP>= coin en bas Ã  droite</SP>
+                <SP>= coin en bas à  droite</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
 
@@ -77,7 +77,7 @@
               <PARAM_NAME>5</PARAM_NAME>
 
               <PARAM_DESCRIPTION>
-                <SP>= placement interactif avec la souris (par dÃ©faut)</SP>
+                <SP>= placement interactif avec la souris (par défaut)</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
@@ -88,21 +88,21 @@
         <PARAM_NAME>xy</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: un vecteur [x,y] donnant les coordonnÃ©es du coin en haut Ã 
-          gauche de la boÃ®te contenant la lÃ©gende</SP>
+          <SP>: un vecteur [x,y] donnant les coordonnées du coin en haut à 
+          gauche de la boîte contenant la légende</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
 
   <DESCRIPTION>
-    <P>Dessine des lÃ©gendes sur le dessin courant en utilisant des chaÃ®nes de
-    caractÃ¨res donnÃ©es.</P>
+    <P>Dessine des légendes sur le dessin courant en utilisant des chaînes de
+    caractères données.</P>
 
-    <P>En cas de placement interactif (opt=5) dÃ©placer la boÃ®te de la lÃ©gende
+    <P>En cas de placement interactif (opt=5) déplacer la boîte de la légende
     avec la souris et presser bouton de gauche pour la fixer.</P>
 
-    <P>Cette fonction permet de placer les lÃ©gendes avec plus de libertÃ© que
+    <P>Cette fonction permet de placer les légendes avec plus de liberté que
     l'argument leg de plot2d.</P>
 
     <P></P>
