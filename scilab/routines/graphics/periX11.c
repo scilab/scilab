@@ -1243,7 +1243,7 @@ static void xget_last(integer *verbose, integer *num, integer *narg, double *dum
 #define MAXDASH 6
 
 static integer DashTab[MAXDASH][4] = {
-  {2,5,2,5}, {5,2,5,2},  {5,3,2,3}, {8,3,2,3},
+  {2,5,2,5}, {7,2,7,2},  {2,2,2,2}, {7,2,2,2},
   {11,3,2,3}, {11,3,5,3}};
 
 static void xset_dash(integer *value, integer *v2, integer *v3, integer *v4)
@@ -3107,14 +3107,14 @@ void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer 
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
   if (n1 >= 2) 
     {
-      C2F(analyze_points)(*n, vx, vy,*closeflag); 
-      /* Old code replaced by a routine with clipping 
-	 if (C2F(store_points)(*n, vx, vy,*closeflag))
-	 {
-	 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1,
-	 ScilabXgc->CurVectorStyle);
-	 XFlush(dpy);
-	 } */
+      C2F(analyze_points)(*n, vx, vy,*closeflag);
+      /*Old code replaced by a routine with clipping */
+	 /* if (C2F(store_points)(*n, vx, vy,*closeflag)) */
+/* 	 { */
+/* 	 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1, */
+/* 	 ScilabXgc->CurVectorStyle); */
+/* 	 XFlush(dpy); */
+/* 	 } */
       XFlush(dpy);
     }
 }
