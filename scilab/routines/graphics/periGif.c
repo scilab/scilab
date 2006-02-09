@@ -672,9 +672,10 @@ void C2F(getlastGif)(integer *verbose, integer *num, integer *narg, double *dumm
 /**  use a table of dashes and set default dashes to **/
 /**  one of the possible value. value pointeger **/
 /**  to a strictly positive integer **/
+#define MAXDASH 6
 
 static integer DashTabGif[6][4] = {
-  {2,5,2,5}, {5,2,5,2},  {5,3,2,3}, {8,3,2,3},
+  {2,5,2,5}, {7,2,7,2},  {2,2,2,2}, {7,2,2,2},
   {11,3,2,3}, {11,3,5,3}};
 
 /* old version of setdashGif retained for compatibility */
