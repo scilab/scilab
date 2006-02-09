@@ -137,15 +137,10 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
         end
       end
 
-      sep11=['/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'...
-              +'/'+'DEFINE INITIAL GUESS AND PRELIMINARY CALCULATIONS BELOW']
-      sep12=['/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'...
-              +'/'+' ']
-      sep13=['/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'...
-              +'/'+'DEFINE LME, LMI and OBJ BELOW']
-
-      sep2=['/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'...
-              +'/'+'EVALUATION FUNCTION'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/'+'/']
+      sep11='///////////DEFINE INITIAL GUESS AND PRELIMINARY CALCULATIONS BELOW'
+      sep12='/////////// '
+      sep13='/////////////////DEFINE LME, LMI and OBJ BELOW'
+      sep2='/////////////////EVALUATION FUNCTION////////////////////////////'
 
       txt2=[
           'XLIST0=list('+strcat(txt2,',')+')';
