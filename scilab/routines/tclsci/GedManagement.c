@@ -9,10 +9,10 @@
 
 /*-----------------------------------------------------------------------------------------*/
 
-int sciDestroyGed( void )
+int sciDestroyGed( int figureId )
 {
   Tcl_Interp * gedInterp = getGedInterpreter() ;
-  if ( isGedAlive() )
+  if ( isGedOpenedOn( figureId ) )
   {
     /* try to close the ticks editor */
     Tcl_Eval( gedInterp, "catch { destroy .ticks }" ) ;
@@ -28,15 +28,27 @@ int sciDestroyGed( void )
 
 /*-----------------------------------------------------------------------------------------*/
 
-int isGedAlive( void )
+int isGedOpenedOn( int figureId )
 {
   Tcl_Interp * gedInterp = getGedInterpreter() ;
   if ( gedInterp != NULL )
   {
     /* check is sciGedIsAlive variable exists */
-    if ( Tcl_GetVar( gedInterp, "sciGedIsAlive", TCL_GLOBAL_ONLY ) )
+    char * sGedWindowNum = (char * ) Tcl_GetVar( gedInterp, "sciGedIsAlive", TCL_GLOBAL_ONLY ) ;
+    if ( sGedWindowNum )
     {
-      return TRUE ;
+      /* get the number of the window ged modified */
+      int iGedWindowNum ;
+      sscanf( sGedWindowNum, "%d", &iGedWindowNum ) ;
+      /* check if ged is opened on the checked window */
+      if ( iGedWindowNum == figureId )
+      {
+        return TRUE ;
+      }
+      else
+      {
+        return FALSE ;
+      }
     }
     else
     {
