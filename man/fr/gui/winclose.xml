@@ -30,7 +30,6 @@
 <![CDATA[//CREATE SOME WINDOWS
 win1=waitbar('This is an example');
 win2=waitbar('HELLO!');
-halt();
 winclose([win1,win2]);]]>
 </EXAMPLE>
 
