@@ -1,10 +1,13 @@
 function demo_truck()
-  //demo_help demo_truck
   initial = [-2;3;0.5235988;0;0;1]
   final   = [0;0;0;0;0;0]
   state = truck_solve(initial,final);
+  f = gcf() ;
+  f.pixmap = 'on' ;
+  toolbar(0,'off') ;
   display_truck_trajectory(state)
 endfunction
+
 function titlepage(str,win)
 //titlepage(str) genere une page de titres graphiques contenant la ma-
 //trice de chaines de caracteres str ecrite centree dans  la page avec
@@ -367,6 +370,7 @@ function draw_truck(C,pos)
   xy=[bigL/3  d2;0 0]'
   C(13).data=ones(xy)*diag([x;y])+bigL*xy*Rc
   drawnow()
+  show_pixmap();
 endfunction
 
 function h=polyline(xy)
