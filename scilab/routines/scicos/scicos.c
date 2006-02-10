@@ -106,6 +106,8 @@ extern  integer C2F(xscion)();
 extern  integer C2F(ddaskr)();
 extern  integer C2F(lsodar2)();
 
+extern int scilab_timer_check(void);
+
 ScicosImport  scicos_imp;
 
 static integer nblk, nordptr, nout, ng, ncord, noord, nzord,niord,
