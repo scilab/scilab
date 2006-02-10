@@ -62,7 +62,8 @@ function ged(k,win)
     end
     
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
-    TCL_SetVar("sciGedIsAlive","Alive") ; // to know wether ged is opened or not
+    // get the number of the window associated with ged
+    TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
     
@@ -84,7 +85,8 @@ function ged(k,win)
     end
     
     TCL_SetVar("msdos",string(MSDOS)) // to know the OS
-    TCL_SetVar("sciGedIsAlive","Alive") ; // to know wether ged is opened or not
+    // get the number of the window associated with ged
+    TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     
     ged_axes(gca())
     case 10 then //start Entity picker
@@ -1485,7 +1487,8 @@ for i=1:size(f.color_map,1)
 end
 
 TCL_SetVar("msdos",string(MSDOS)) // to know the OS
-TCL_SetVar("sciGedIsAlive","Alive") ; // to know wether ged is opened or not
+// get the number of the window associated with ged
+TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
 
 select h.type
 case "Polyline"
