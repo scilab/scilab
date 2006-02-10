@@ -93,6 +93,7 @@ a2(j,:)=a2temp.'
 end
 norm(a2-fft2(a))
 
+
  
   ]]></EXAMPLE>
 
