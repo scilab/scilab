@@ -30,23 +30,23 @@ test1=~or(REFCONTENTS<>CONTENTS);
 // =============== Test 2 =============== 
 
 function one()
-	function two()
-		// A comment
-	endfunction
-	function three()
-		// A comment
-	endfunction
-	//a comment here
+  function two()
+    // A comment
+  endfunction
+  function three()
+    // A comment
+  endfunction
+    //a comment here
 endfunction
 
 CONTENTS_II = fun2string(one);
 
 REFCONTENTS_II=["function []=ans";
 		"  function two()";
-		"  // A comment";
+		"      // A comment";
 		"  endfunction";
 		"  function three()";
-		"  // A comment";
+		"      // A comment";
 		"  endfunction";
 		"  //a comment here";
 		"endfunction"];
