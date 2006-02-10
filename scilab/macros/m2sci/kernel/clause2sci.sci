@@ -156,7 +156,7 @@ case "selectcase"
   [sci_expr(1)]=expression2sci(mtlb_clause.expression(1))
   for i=2:size(mtlb_clause.expression)
     sci_expr(i)=mtlb_clause.expression(i) // EOL or comment
-  end
+  end  
   
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then

@@ -8,7 +8,6 @@ java:
 	@cd $@
 	@$(XMLINTCHECK)
 	@cd ..
-
 arma:  
 	@echo Checking $@
 	@cd $@

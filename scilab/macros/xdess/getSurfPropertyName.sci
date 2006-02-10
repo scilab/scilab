@@ -9,7 +9,7 @@ function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode
 str = convstr(PropertyName);
 
 
-Table    = ['cdata'     'colordata' 'cdata_mapping' 'cdatamapping'     'colordatamapping' ..
+Table    = ['cdata' 'colordata' 'cdata_mapping' 'cdatamapping' 'colordatamapping' ..
     'cdatamode'     'colordatamode' 'clipping' 'edgecolor'   'foreground' 'facecolor' ..
     'linestyle' 'linewidth' 'thickness' 'marker' .. 
     'markstyle' 'markeredgecolor' 'markforeground' 'markerfacecolor'  'markbackground' ..

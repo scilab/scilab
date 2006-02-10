@@ -104,7 +104,7 @@ end
 // Generate code corresponding to a SELECT-CASE
 // --------------------------------------------
 if typeof(I)=="selectcase" then
-  
+
   // SELECT
   C="select "+expression2code(I.expression(1))
 
@@ -118,7 +118,6 @@ if typeof(I)=="selectcase" then
     end
   end
  
-
   // CASES
   if size(I.cases)<>0 then
     for k=1:size(I.cases)
