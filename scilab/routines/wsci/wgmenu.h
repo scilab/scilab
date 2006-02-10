@@ -100,26 +100,7 @@ static BYTE keyeq[] =
   25, 26, 28, 29, 30, 31,
   0 /* NULL */ };
 
-/*****************************
-  menu for exporting to ps or xfig 
-  ***************************/
 
-static char *Print_Formats[] =
-{
-  "Postscript",
-  "Postscript No Preamble",
-  "Postscript-Latex",
-  "Xfig",
-  "GIF",
-  "PPM",
-  "BMP",
-  "Enhanced Meta File (.emf)"
-};
-
-extern LS ls;
-
-
-void dos2win32 (char *filename, char *filename1);
 static void ExploreMenu (HMENU hmen, BYTE ** macro);
 static void SciDelMenu (LPMW lpmw, char *name);
 static void SciChMenu (LPMW lpmw, char *name, char *new_name);
@@ -127,11 +108,9 @@ static void SciSetMenu (HMENU hmen, char *name, int num, int flag);
 static void SciChMenu (LPMW lpmw, char *name, char *new_name);
 static void SciDelMenu (LPMW lpmw, char *name);
 
-
+static void TranslateMacro (char *string);
 static void ExploreMenu (HMENU hmen, BYTE ** hmacro);
 static void scig_command_scilabgc (int number, void f (struct BCG *));
-void CallTranslateMacroGraphicWindow(char *string);
-static void TranslateMacro (char *string);
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);
