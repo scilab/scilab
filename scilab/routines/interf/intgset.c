@@ -18,10 +18,6 @@
 #include "../graphics/BuildObjects.h"
 #include "../graphics/DestroyObjects.h"
 
-#ifdef WITH_TK
-#include "../tclsci/GedManagement.h"
-#endif
-
 #include "intcommongraphics.h"
 
 #ifdef WIN32
@@ -1136,14 +1132,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  if (version_flag() == 0)  {
 	      /* 	    versionflag = 1; */
 
-	    sciXClearFigure();
-
-            
-#ifdef WITH_TK
-            /* close ged to prevent errors when using it */
-            sciDestroyGed() ;
-#endif
-	    C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
+	    
+            sciXClearFigure();
+	    
+            C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
 	
 	    if (XGC->mafigure != (sciPointObj *)NULL) {
 		DestroyAllGraphicsSons(XGC->mafigure);
@@ -1156,15 +1148,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
             /* remove the Insert menu and purge the Edit menu in old style */
             /* A.Cornet, JB Silvy 12/2005 */
             updateMenus( XGC ) ;
-            /*#if  WIN32
-		{
-			extern void RefreshGraphToolBar(struct BCG * ScilabGC);
-			extern void RefreshMenus(struct BCG * ScilabGC);
-
-			RefreshMenus(XGC);
-			RefreshGraphToolBar(XGC);
-		}
-		#endif*/
+            
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	    
 	    /* Add xclear to refresh toolbar for Windows */
@@ -1191,8 +1175,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		sciSetCurrentObj(psubwin);
 		sciSetOriginalSubWin (figure, psubwin);
               }
-				/* Refresh toolbar and Menus */
-        updateMenus( XGC ) ;
+              /* Refresh toolbar and Menus */
+              updateMenus( XGC ) ;
 	    }
 	  }
 	}
