@@ -24,6 +24,11 @@
 #include "DrawObjects.h"
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
+#ifdef WITH_TK
+#include "../tclsci/GedManagement.h"
+#endif
+
+
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -32,7 +37,9 @@
 #endif
 
 
-/********************* modifier le 01/02/2002 ************************
+/*----------------------------------------------------------------------------*/
+
+/********************* modifie le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure
  * pour cette version, on considere qu'il y'a 1 seule sous fenetre et 
  * elle suit la fenetre principale (voir xbasc() ), la fenetre n'est pas 
@@ -489,26 +496,35 @@ DestroyRectangle (sciPointObj * pthis)
 int
 DestroySurface (sciPointObj * pthis)
 {
-  sciPointObj *psubwin, *pobj;
+  sciPointObj * psubwin ;
+  sciSubWindow * ppSubWin ;
   sciSons *psonstmp;
   integer cmpt;
+  sciSurface * ppSurface = pSURFACE_FEATURE (pthis) ;
   
-  psubwin = (sciPointObj *) sciGetParentSubwin(pthis);
-  FREE (pSURFACE_FEATURE (pthis)->user_data);
-  pSURFACE_FEATURE (pthis)->size_of_user_data = 0;
-  FREE(pSURFACE_FEATURE (pthis)->pvecz);
-  FREE(pSURFACE_FEATURE (pthis)->pvecy);
-  FREE(pSURFACE_FEATURE (pthis)->pvecx);
-  FREE(pSURFACE_FEATURE (pthis)->inputCMoV); /* Adding F.Leray 24.03.04*/
-  FREE(pSURFACE_FEATURE (pthis)->color); /* Adding F.Leray 18.03.05 */
+  psubwin  = sciGetParentSubwin(pthis) ;
+  ppSubWin = pSUBWIN_FEATURE ( psubwin ) ;
+
+  FREE (ppSurface->user_data);
+  ppSurface->size_of_user_data = 0;
+
+  FREE(ppSurface->pvecz);
+  FREE(ppSurface->pvecy);
+  FREE(ppSurface->pvecx);
+  FREE(ppSurface->inputCMoV); /* Adding F.Leray 24.03.04*/
+  FREE(ppSurface->color); /* Adding F.Leray 18.03.05 */
   
-  if (pSURFACE_FEATURE (pthis)->izcol != 0 ) 
-    FREE(pSURFACE_FEATURE (pthis)->zcol);
-  pSUBWIN_FEATURE (psubwin)->surfcounter--;
+  if (ppSurface->izcol != 0 )
+  { 
+    FREE(ppSurface->zcol);
+  }
+  ppSubWin->surfcounter-- ;
   /* DJ.A 2003 */
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
+  {
     return -1;
+  }
   /*FREE (pSURFACE_FEATURE (pthis)->pproj);*/
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
@@ -521,6 +537,7 @@ DestroySurface (sciPointObj * pthis)
       psonstmp = psonstmp->pnext;
     }
   if (cmpt < 2){
+    sciPointObj * pobj ;
     if ((pobj= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
       DestroyMerge(pobj); 
   }
@@ -692,7 +709,12 @@ void DeleteObjs(integer win_num)
   if (  figure != (sciPointObj *) NULL )
     {
       Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;
+      
       DestroyAllGraphicsSons (figure);
+#ifdef WITH_TK
+            /* close ged to prevent errors when using it */
+            sciDestroyGed( sciGetNum(figure) ) ;
+#endif
       DestroyFigure (figure);
       Xgc->mafigure = (sciPointObj *) NULL;
     }
@@ -889,4 +911,16 @@ void delete_sgwin_entities(int win_num,int v_flag)
     }
 }
 
+/*------------------------------------------------------------------------------------*/
+/* free the user_data */
+void clearUserData( sciPointObj * pObj )
+{
+  int ** pUserData ;
+  int *  pSizeUD   ;
+  sciGetPointerToUserData( pObj, &pUserData, &pSizeUD ) ;
+  FREE( *pUserData ) ;
+  *pUserData = NULL ;
+  *pSizeUD = 0 ;
+}
+/*------------------------------------------------------------------------------------*/
 
