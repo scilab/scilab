@@ -47,14 +47,14 @@ rmdir(SCI+'/Directory')
     <SEE_ALSO_ITEM>
       <LINK>cd</LINK>
     </SEE_ALSO_ITEM>
-
     <SEE_ALSO_ITEM>
       <LINK>dir</LINK>
     </SEE_ALSO_ITEM>
-  </SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>rmdir</LINK>
     </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  
   <AUTHORS>
     <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
   </AUTHORS>
