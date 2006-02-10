@@ -110,7 +110,7 @@
 <![CDATA[
 //  rectangle selection
 clf();  // erase/create window
-f=gcf();f.data_bounds=[0 0;100 100];//set user coordinates
+a=gca();a.data_bounds=[0 0;100 100];//set user coordinates
 xtitle(" drawing a rectangle ") //add a title
 xselect(); //put the window on the top
 
@@ -127,9 +127,7 @@ while rep(3)==-1 do // mouse just moving ...
   w=abs(xc-xc1);h=abs(yc-yc1);
   r.data=[ox,oy,w,h]; //change the retangle origin, width an height
   first=%f;
-end 
-
-
+end
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
