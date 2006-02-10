@@ -72,7 +72,7 @@ randlib: Library of Fortran Routines for Random Number Generation
 	  Barry W. Brown, James Lovato, Kathy Russell, John Venier.
 
 scipad: an embedded text editor scipad derived from TkNotepad
-        (www.mindspring.com/~joeja/programs.html) and improved by
+        (http://home.earthlink.net/~joseph-ja/programs.html#Tcl-Tk) and improved by
         Enrico Segre and François Vogel, two Scilab Developers to take
         an active part in Scilab development.
 
