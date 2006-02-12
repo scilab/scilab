@@ -14,7 +14,9 @@
 #include <stdlib.h>
 #include "f2c.h"
 
-/* extern char **environ; */
+#ifndef  environ
+#define environ     _environ
+#endif
 
 #ifdef KR_headers
 VOID getenv_(fname, value, flen, vlen) char *value, *fname; ftnlen vlen, flen;
