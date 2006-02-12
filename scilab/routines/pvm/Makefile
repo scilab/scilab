@@ -4,8 +4,18 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/pvm.a
 
+	
 OBJSC = pvm_grp.o pvm_proc_ctrl.o pvm_send.o  pvm_info.o \
-	pvm_recv.o scipvmf77.o  varpack.o intpvm.o
+        pvm_recv.o scipvmf77.o  varpack.o \
+        intspvm_addhosts.o intspvm_barrier.o intspvm_bcast.o intspvm_bufinfo.o  \
+        intspvm_config.o intspvm_delhosts.o intspvm_error.o intspvm_error_mode.o \
+        intspvm_exit.o intspvm_f772sci.o intspvm_getinst.o intspvm_gettid.o \
+        intspvm_get_timer.o intspvm_gsize.o intspvm_halt.o intspvm_joingroup.o \
+        intspvm_kill.o intspvm_lvgroup.o intspvm_mytid.o intspvm_parent.o \
+        intspvm_probe.o intspvm_recv.o intspvm_recv_var.o intspvm_reduce.o \
+        intspvm_sci2f77.o intspvm_send.o intspvm_send_var.o intspvm_set_timer.o \
+        intspvm_spawn.o intspvm_spawn_independent.o intspvm_start.o \
+        intspvm_tasks.o intspvm_tidtohost.o matpvm.o	
 
 OBJSF = mycmatptr.o
 
@@ -19,7 +29,7 @@ include ../Make.lib
 
 mycmatptr.o: ../stack.h
 
-intpvm.o: intpvm.c ../../pvm3/include/pvm3.h ../mex.h ../stack-c.h \
+matpvm.o: matpvm.c ../../pvm3/include/pvm3.h ../mex.h ../stack-c.h \
 	../graphics/Math.h ../machine.h ../graphics/Graphics.h ../stack-def.h \
 	../interf/stack1.h ../interf/stack2.h ../interf/stack3.h sci_pvm.h
 pvm_grp.o: pvm_grp.c ../../pvm3/include/pvm3.h ../machine.h \
