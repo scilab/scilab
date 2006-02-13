@@ -1,6 +1,7 @@
 getf SCI/util/testexamples.sci
 reinit_for_test()
 %U=mopen('SCI/tests/automatic_tests/mkdir_data.ref','rb');
+rmdir(SCI + '/Directory');//remove the directory if it exists
 %ans = mkdir(SCI, 'Directory');
 if load_ref_nocheck('%ans') then   pause,end,
 

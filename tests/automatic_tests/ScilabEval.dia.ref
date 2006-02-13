@@ -33,9 +33,7 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 cont = %f;
  
-TK_EvalFile(TMPDIR + '/test.tcl');
-
-Warning TK_EvalFile obsolete please use TCL_EvalFile.
+TCL_EvalFile(TMPDIR + '/test.tcl');
  
  
 //scripts and "sync" option usage
@@ -58,12 +56,10 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 // Execute the tcl script
  
-TK_EvalFile(TMPDIR + '/test.tcl');mprintf('TK_EvalFile finished\n');
-
-Warning TK_EvalFile obsolete please use TCL_EvalFile.
-TK_EvalFile finished
+TCL_EvalFile(TMPDIR + '/test.tcl');mprintf('TCL_EvalFile finished\n');
+TCL_EvalFile finished
  
-// The ScilabEval are executed  after the and of TK_EvalFile
+// The ScilabEval are executed  after the and of TCL_EvalFile
  
  
 //----------------with "sync"----------------
@@ -83,12 +79,10 @@ if load_ref('%ans') then   bugmes();quit;end,
  
 // Execute the tcl script
  
-TK_EvalFile(TMPDIR + '/test.tcl');mprintf('TK_EvalFile finished\n');
-
-Warning TK_EvalFile obsolete please use TCL_EvalFile.
-0 1 2 3 4 5 6 7 8 9 TK_EvalFile finished
+TCL_EvalFile(TMPDIR + '/test.tcl');mprintf('TCL_EvalFile finished\n');
+0 1 2 3 4 5 6 7 8 9 TCL_EvalFile finished
  
-// The ScilabEval are executed  synchronously with TK_EvalFile
+// The ScilabEval are executed  synchronously with TCL_EvalFile
  
  
 xdel_run(winsid());

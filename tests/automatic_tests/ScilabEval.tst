@@ -21,7 +21,7 @@ if load_ref('%ans') then   pause,end,
 //write them to a file
 // Execute the tcl script
 cont = %f;
-TK_EvalFile(TMPDIR + '/test.tcl');
+TCL_EvalFile(TMPDIR + '/test.tcl');
 
 //scripts and "sync" option usage
 
@@ -36,8 +36,8 @@ tcl_script = ['  set t ""0""';
 if load_ref('%ans') then   pause,end,
 //write them to a file
 // Execute the tcl script
-TK_EvalFile(TMPDIR + '/test.tcl');mprintf('TK_EvalFile finished\n');
-// The ScilabEval are executed  after the and of TK_EvalFile
+TCL_EvalFile(TMPDIR + '/test.tcl');mprintf('TCL_EvalFile finished\n');
+// The ScilabEval are executed  after the and of TCL_EvalFile
 
 //----------------with "sync"----------------
 tcl_script = ['  set t ""0""';
@@ -50,8 +50,8 @@ tcl_script = ['  set t ""0""';
 if load_ref('%ans') then   pause,end,
 //write them to a file
 // Execute the tcl script
-TK_EvalFile(TMPDIR + '/test.tcl');mprintf('TK_EvalFile finished\n');
-// The ScilabEval are executed  synchronously with TK_EvalFile
+TCL_EvalFile(TMPDIR + '/test.tcl');mprintf('TCL_EvalFile finished\n');
+// The ScilabEval are executed  synchronously with TCL_EvalFile
 
 xdel_run(winsid());
 
