@@ -17,7 +17,7 @@ function %helps=initial_help_chapters(language)
 	end
 	
 	dirs=["programming";"graphics";"elementary";"fileio";"functions";"strings";
-		"gui";"utilities";"linear";"polynomials";"control";"robust";
+		"gui";"utilities";"time";"linear";"polynomials";"control";"robust";
 		"nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
 		"tdcs";"statistics";"dcd";"identification";"mtlb";
 		"sparse";"pvm";"tksci";"java"];
@@ -34,7 +34,7 @@ function %helps=initial_help_chapters(language)
 			["Programming";"Graphics Library";"Elementary Functions";
 			"Input/Output Functions";"Handling of functions and libraries";
 			"Character string manipulations";"GUI and Dialogs";"Utilities";
-			"Linear Algebra";"Polynomial calculations";
+			"Time and Date";"Linear Algebra";"Polynomial calculations";
 			"General System and Control";"Robust control toolbox";
 			"Optimization and simulation";
 			"Signal Processing toolbox";
@@ -55,7 +55,7 @@ function %helps=initial_help_chapters(language)
 			["Programmation";"Librairie graphique";"Fonctions élémentaires";
 			"Entrées-sorties";"Manipulation des fonctions et des librairies";
 			"Manipulations de chaînes de caractères";"IHM et Dialogues";"Utilitaires";
-			"Algèbre linéaire";"Calculs sur les polynômes";
+			"Heure et date";"Algèbre linéaire";"Calculs sur les polynômes";
 			"Contrôle et théorie des systèmes";"Contrôle robuste";
 			"Optimisation et simulation";
 			"Traitement du signal";"Modélisation et simulation ARMA";
