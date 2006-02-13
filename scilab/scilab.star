@@ -189,6 +189,7 @@ end
 if MSDOS then
   configure_msvc()
   clear configure_msvc setmsvc71 setmsvc70 setmsvc60 setmsvc50
+  clear setmsvc80std setmsvc80pro setmsvc80express
 end
 
 // calling user initialization =========================================
