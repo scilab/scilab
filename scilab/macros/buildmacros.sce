@@ -28,7 +28,8 @@ CurrentDirectory=pwd();
  "m2sci",
  "scicos_blocks",
  "gui",
- "time"];
+ "time",
+ "pvm"];
  
 Dim=size(Directories);
 timer();

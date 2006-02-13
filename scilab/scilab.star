@@ -63,7 +63,7 @@ load('SCI/macros/xdess/lib')
 load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
 load('SCI/macros/time/lib')
-
+if %pvm then load('SCI/macros/pvm/lib'),end
 // Create some configuration variables ================================
 // path of scilab main directory
 SCI=getenv('SCI');
@@ -77,12 +77,11 @@ if MSDOS then
   SCI=strsubst(getshortpathname(SCI),'\','/');
   // path of scilab main directory for Windows
   WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
-  if with_pvm() then
-    setenv("PVM_ROOT",pathconvert(SCI,%f,%f,'w')+"\pvm3")
-    setenv("PVM_ARCH","WIN32")
-    setenv("PVM_TMP",getenv("TEMP"))
+  if %pvm then
+  	configure_pvm()
+  	clear configure_pvm
   end
-  clear pathconvert with_pvm
+  clear pathconvert
 else
   if getenv('PRINTERS','ndef')=="ndef" then
     setenv("PRINTERS","lp")
@@ -190,6 +189,7 @@ end
 if MSDOS then
   configure_msvc()
   clear configure_msvc setmsvc71 setmsvc70 setmsvc60 setmsvc50
+  clear setmsvc80std setmsvc80pro setmsvc80express
 end
 
 // calling user initialization =========================================
