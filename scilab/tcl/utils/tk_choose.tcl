@@ -3,6 +3,9 @@ namespace eval tkChoose {
     # Author : S. Mottelet, Tue Jan 24 12:01:25 CET 2006
     # Use of a namespace makes things easier (no global variables to pass
     # arguments from the Scilab level).
+    
+    # Modified by P. Marechal, Tue Feb 14 08:00:00 CET 2006
+    # => Add a scrollbar if the number of items reachs 30 elements.
 
     set relief raised
     set t .tkChoose
@@ -13,7 +16,7 @@ namespace eval tkChoose {
 
     catch {font create chooseFont -family Helvetica -size $fontSize}
     catch {font create chooseBoldFont -family Helvetica -size $fontSize -weight bold}
-    
+
     toplevel $t
     bind $t <Destroy> {
         set tkChoose::result -1
@@ -31,9 +34,22 @@ namespace eval tkChoose {
         append titleString $title($k,1)
     }
 
-    label $t.label -text $titleString -font chooseBoldFont
+    label $t.label -text $titleString -justify left -font chooseBoldFont
     
-    listbox $t.list -bg white -height 0 -width 0 -font chooseFont
+    scrollbar $t.scroll -relief sunken -command "$t.list yview"
+
+    if [set length [array size items]] {
+        if {$length>=30} then {
+            set list_height 30
+        } else {
+            set list_height 0
+        }
+    } else {
+        set list_height 0
+    }
+
+    listbox $t.list -relief sunken -yscrollcommand "$t.scroll set" -bg white -height $list_height -width 0 -font chooseFont
+    
     bind  $t.list  <ButtonRelease> {
       bind $tkChoose::t <Destroy> {}
       catch {set tkChoose::result [$tkChoose::t.list nearest %y]}
@@ -49,7 +65,7 @@ namespace eval tkChoose {
         }
     }
 
-    button $t.b -text $button -font chooseFont -relief $relief -command {
+    button $t.b -text $button -relief $relief -font chooseFont -command {
         destroy $tkChoose::t
     }
 
@@ -61,9 +77,17 @@ namespace eval tkChoose {
     } else {
         set listPady {10 0}
     }
-
-    pack $t.list  -pady $listPady -padx 10
-    pack $t.b -pady 10
+    
+    pack $t.b -pady 10 -side bottom
+    
+    # Display the listbox and the scrollbar if needed
+    
+    if {$length>=30} then {
+        pack $t.list $t.scroll -side left -fill y -pady $listPady -padx 10
+    } else {
+        pack $t.list -pady $listPady -padx 10
+    }
+ 
     wm resizable $t 0 0
     
     # The event loop occurs at the Scilab level 
