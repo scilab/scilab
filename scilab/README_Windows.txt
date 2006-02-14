@@ -1,5 +1,5 @@
-                Scilab version 4.0-rc1 for Windows (98/2000/XP)
-                ***********************************************
+                Scilab version 4.0 for Windows (98/2000/XP)
+                *******************************************
  
 ******************************************************************************
 0 - COPYRIGHT NOTICE
@@ -13,32 +13,32 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
  
-    1 - You have already installed Scilab by executing "scilab-4.0-rc1.exe".
-        By default Scilab is in "C:\Program Files\scilab-4.0-rc1" directory.
+    1 - You have already installed Scilab by executing "scilab-4.0.exe".
+        By default Scilab is in "C:\Program Files\scilab-4.0" directory.
  
-    2 - Run Scilab by executing "Scilab 4.0-rc1" from the startup menu.
+    2 - Run Scilab by executing "Scilab 4.0" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
  
     3 - Scilab has been compiled with Visual C++ .NET 2003
-	      (Intel C 9.0 & Fortran 9.0, see III below).
+        (Intel C 9.0 & Fortran 9.0, see III below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.0-rc1
+    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.0
         download and install "Windows® Server 2003 SP1 Platform SDK"
         at http://www.microsoft.com/downloads
         and download and install "Microsoft Visual C++ 2005 Express"
         at http://msdn.microsoft.com/vstudio/express/visualc/
  
-    5 - If you want use LCC-Win32 (C compiler) with Scilab 4.0-rc1
+    5 - If you want use LCC-Win32 (C compiler) with Scilab 4.0
         See Readme_LCC.txt in lcc directory.
         You can download at http://www.cs.virginia.edu/~lcc-win32/
     
     6 - If you have any problems or suggestions concerning Scilab,
         http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi        
         or better post a message to newsgroup:
-  	    comp.soft-sys.math.scilab
+        comp.soft-sys.math.scilab
 
 
 ******************************************************************************
@@ -46,7 +46,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
-    "Scilab 4.0-rc1" item of the Program Group.
+    "Scilab 4.0" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
  
@@ -90,46 +90,45 @@ IV - DOCUMENTATION
 V - SOME IMPORTANT FILES AND DIRECTORIES
 ******************************************************************************
  
- scilab.star: startup file for Scilab instructions in this file
-              are executed when Scilab is executed. Note that
-              you can also have your own startup file "scilab.ini" 
-              in your current directory.
+ scilab.star          : startup file for Scilab instructions in this file
+                        are executed when Scilab is executed. Note that
+                        you can also have your own startup file "scilab.ini"
+                        in your current directory.
  
- Makefile.incl.mak: file included by all Makefile's.
+ Makefile.incl.mak    : file included by all Makefile's.
  
- Makefile.mak: the main Makefile to make Scilab.
+ Makefile.mak         : the main Makefile to make Scilab.
  
  config/Makefile.mak  : directory used by the main Makefile
  
- demos/    : demos directory. Some of the demos can be executed by clicking
-             on the "demos" button.
+ demos/               : demos directory. Some of the demos can be executed by
+                        clicking on the "demos" button.
  
- examples/ : examples of dynamic links and interface code.
+ examples/            : examples of dynamic links and interface code.
  
- macros/   : functions directory: this directory is divided into 
-             subdirectories corresponding to specific topics
-             (control, polynomials,...). Each subdirectory contains 
-             the source code of the macros (files *.sci). 
+ macros/              : functions directory: this directory is divided into 
+                        subdirectories corresponding to specific topics
+                        (control, polynomials,...). Each subdirectory contains
+                        the source code of the macros (files *.sci). 
  
- routines/ : directory of fortran or C routines.
+ routines/            : directory of fortran or C routines.
  
- man/	   : files for online help
+ man/                 : files for online help
  
- util/     : useful routines and ASCII files to manage Scilab.
+ util/                : useful routines and ASCII files to manage Scilab.
  
- bin/	   : executable code and scripts.
-
- 		scilex  : executable code of Scilab (Console version).
-		wscilex  : executable code of Scilab (Windows version).
+ bin/                 : executable code and scripts.
+                        scilex : executable code of Scilab (Console version).
+                        wscilex : executable code of Scilab (Windows version).
  
- intersci/ : Generator of interface program between Scilab and routines.
+ intersci/            : Generator of interface program between Scilab and
+                        routines.
  
- maple/    : Maple code to link Maple with Scilab.
+ maple/               : Maple code to link Maple with Scilab.
  
- pvm3/	  : PVM 3 for Scilab.
+ pvm3/                : PVM 3 for Scilab.
  
- tcl/      : TCL/TK for Scilab.
+ tcl/                 : TCL/TK for Scilab.
  
  ******************************************************************************
-
-		       
+ 
