@@ -13,7 +13,7 @@
 	</CALLING_SEQUENCE>
 	
 	<DESCRIPTION>
-		<P>t = now() returns date and time as a serial date number. (See <link>datenum</link>)</P>
+		<P>t = now() returns date and time as a serial date number. (See <LINK>datenum</LINK>)</P>
 	</DESCRIPTION>
 	
 	<EXAMPLE><![CDATA[
