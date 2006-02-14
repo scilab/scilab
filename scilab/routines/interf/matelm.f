@@ -339,12 +339,27 @@ c     .  more than 3 argument rand(n1,n2,n3,...) assumed
       topk=top
       tops=top
 
-
       if(rhs.eq.0) then
 c     .  rand()         
          top=top+1
          if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-         stk(lr) = urand(ran(1))
+*************** fix for bug 1826 (bruno)
+         if ( ran(2).eq.0 ) then ! U(0,1) distribution
+            stk(lr) = urand(ran(1))
+         else                    ! N(0,1) distribution
+            if (phase) then
+ 10            sr=2.d0*urand(ran(1)) - 1.d0
+               si=2.d0*urand(ran(1)) - 1.d0
+               t = sr*sr + si*si
+               if (t .gt. 1.d0) go to 10
+               r = sqrt(-2.d0*log(t)/t)
+               stk(lr) = sr*r
+            else
+               stk(lr) = si*r
+            endif
+            phase = .not. phase
+         endif
+*************** end for bug fix
          return
       endif
 
