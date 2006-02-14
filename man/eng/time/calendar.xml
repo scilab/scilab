@@ -17,12 +17,10 @@
 		<P>c = calendar(y,m), where y and m are integers, returns a calendar for the specified month of the specified year.</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE>
-<![CDATA[
+	<EXAMPLE><![CDATA[
 calendar()
 calendar(1973,8)
-]]>
-	</EXAMPLE>
+	]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM>

@@ -15,11 +15,9 @@
 		<P>Returns the CPU time from the preceding call to <VERB>timer()</VERB>.</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE>
-<![CDATA[
+	<EXAMPLE><![CDATA[
 timer();A=rand(100,100);timer()
-]]>
-	</EXAMPLE>
+	]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM><LINK>getdate</LINK></SEE_ALSO_ITEM>

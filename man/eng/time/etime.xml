@@ -48,16 +48,14 @@
 		<P><VERB>t2</VERB> et <VERB>t1</VERB> can be matrices with each line containing a format described above (all lines having same format).</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE>
-<![CDATA[
+	<EXAMPLE><![CDATA[
 t1=[2004 06 10 17 00 12.345]
 t2=[2004 06 10 17 01 13.965]
 E1=etime(t2,t1)
 t1=[2004 06 24 162 5 10 17 00 12 345]
 t2=[2004 06 24 162 5 10 17 01 13 965]
 E2=etime(t2,t1)
-]]>
-	</EXAMPLE>
+	]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>

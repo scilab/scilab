@@ -26,11 +26,9 @@
 		<P>dt=date() returns a string containing the date in dd-mmm-yyyy format.</P>
 	</DESCRIPTION>
 	
-	<EXAMPLE>
-<![CDATA[
+	<EXAMPLE><![CDATA[
 date()
-]]>
-	</EXAMPLE>
+	]]></EXAMPLE>
 	
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM><LINK>getdate</LINK></SEE_ALSO_ITEM>
