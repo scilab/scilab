@@ -131,11 +131,7 @@ frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 #end adding
 
-# The variable wfortree create an error in the combobox
-# : "Error: can't read "wfortree": no such variable"
-# The reason of the bug has nor been found but it is certainly in
-# Combobox.tcl (with no combobox in the note book, no error)
-# This bug only occurs under windows. However the result is OK. 
+
 set wfortree $w
 
 for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 

@@ -26,7 +26,7 @@ txt=[
 '  <TITLE>'+funname+'</TITLE>'
 '  <TYPE>Scilab Function  </TYPE>'
 '  <DATE>'+date()+'</DATE>'
-'  <SHORT_DESCRIPTION name=""'+funname+'"">  add short description here</SHORT_DESCRIPTION>'
+'  <SHORT_DESCRIPTION name=""'+funname+'"">  add short decription here</SHORT_DESCRIPTION>'
 ''
 '  <CALLING_SEQUENCE>'
 '  <CALLING_SEQUENCE_ITEM>'+Call+'</CALLING_SEQUENCE_ITEM>'

@@ -8,7 +8,7 @@
   <SHORT_DESCRIPTION name="colorbar">draw a colorbar</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>colorbar(umin, umax [, colminmax, fmt])</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>colorbar(umin, umax [, colminmax])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -31,13 +31,6 @@
 	 <SP>: (optional) a vector with 2 integer components</SP>
 	</PARAM_DESCRIPTION> 
      </PARAM_ITEM>
-     <PARAM_ITEM>
-        <PARAM_NAME>fmt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-	 <SP>: (optional) a string to set up the display format for
-        colorbar graduations</SP>
-	</PARAM_DESCRIPTION> 
-     </PARAM_ITEM>
    </PARAM_INDENT>
   </PARAM>
   
@@ -54,17 +47,6 @@
      colormap. By default <VERB>colminmax=[1 nb_colors]</VERB> where nb_colors is the 
      number of colors of the current colormap.
     </P>
-    <P>
-     The optional argument <VERB>fmt</VERB> is a string containing a
-     C-format, like <VERB>"%.2f"</VERB>, <VERB>"%e"</VERB>, etc... 
-    </P>
-    <P>
-     For the 2 optional arguments you can use the syntax
-     <VERB>keyword=value</VERB> which is useful to give the
-     format without giving  <VERB>colminmax</VERB> (see the
-     last example).
-    </P>
-
     </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
@@ -117,7 +99,7 @@ xbasc()
 xset("colormap",hotcolormap(nb_col))
 new_styl = get("figure_style") == "new";
 if new_styl then, drawlater(), end
-colorbar(zzm,zzM,fmt="%.1f")
+colorbar(zzm,zzM)
 nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
@@ -133,7 +115,7 @@ xselect()
   </SEE_ALSO>
 
   <AUTHOR>
-     B. Pincon, S. Steer
+     B. Pincon
   </AUTHOR>
 
 </MAN>

@@ -35,25 +35,6 @@ static int compareDint(char *i,char *j)
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/ 
-static int compareCuint(char *i,char *j)
-{
-  if ( *((unsigned int *)i) > *((unsigned int *)j))
-    return (1);
-  if ((unsigned int) *((unsigned int *)i) <(unsigned int) *((unsigned int *)j))
-    return (-1);
-  return (0);
-}
-/*-----------------------------------------------------------------------------------*/ 
-static int compareDuint(char *i,char *j)
-{
-  if ((unsigned int) *((unsigned int *)i) < (unsigned int)*((unsigned int *)j))
-    return (1);
-  if ( (unsigned int)*((unsigned int *)i) > (unsigned int)*((unsigned int *)j))
-    return (-1);
-  return (0);
-}
-/*-----------------------------------------------------------------------------------*/ 
-
 /******************************************************
  * Column sort of a matrix 
  ******************************************************/
@@ -77,27 +58,6 @@ void ColSortint(int *a,int *ind,int flag,int n,int p,char dir)
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
-void ColSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
-{
-  int i,j;
-  if ( flag == 1) 
-    {
-      for ( j= 0 ; j < p ; j++ ) 
-	{
-	  for ( i = 0 ; i < n ; i++) 
-	    ind[i+n*j]= i+1;
-	}
-    }
-  for ( j= 0 ; j < p ; j++ ) 
-    {
-      sciqsort((char *) (a+n*j),(char *) (ind+n*j),flag, n, 
-		sizeof(int),sizeof(int), 
-		(dir == 'i' ) ? compareCuint : compareDuint,
-		swapcodeint,swapcodeind);
-    }
-}
-/*-----------------------------------------------------------------------------------*/ 
-
 /******************************************************
  * Row sort of a matrix 
  ******************************************************/
@@ -123,29 +83,6 @@ void RowSortint(int *a,int *ind,int flag,int n,int p,char dir)
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
-void RowSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
-{  
-  int i,j;
-  if ( flag == 1) 
-    {
-      for ( i = 0 ; i < n ; i++) 
-	{
-	  for ( j= 0 ; j < p ; j++ ) 
-	    {
-	      ind[i+n*j]= j+1;
-	    }
-	}
-    }
-  for ( i = 0 ; i < n ; i++) 
-    {
-      sciqsort((char *) (a+i),(char *) (ind+i),flag, p, 
-		n*sizeof(int),n*sizeof(int), 
-		(dir == 'i' ) ? compareCuint:compareDuint,
-		swapcodeint,swapcodeind);
-    }
-}
-/*-----------------------------------------------------------------------------------*/ 
-
 /******************************************************
  * Global sort of a Matrix
  ******************************************************/
@@ -162,24 +99,7 @@ void GlobalSortint(int *a,int *ind,int flag,int n,int p,char dir)
 	    (dir == 'i' ) ? compareCint:compareDint,
 	    swapcodeint,swapcodeind);
 }
-
 /*-----------------------------------------------------------------------------------*/ 
-void GlobalSortuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
-{  
-  int i;
-  if ( flag == 1) 
-    {
-      for ( i = 0 ; i < n*p ; i++) 
-	ind[i]= i+1;
-    }
-  sciqsort((char *) (a),(char *) (ind),flag, n*p, 
-	    sizeof(int),sizeof(int), 
-	    (dir == 'i' ) ? compareCuint:compareDuint,
-	    swapcodeint,swapcodeind);
-}
-
-/*-----------------------------------------------------------------------------------*/ 
-
 /*******************************************************
  *  lexicographic order with Rows ind is of size n
  *  ind gives the permutation of the rows which is applied 
@@ -208,22 +128,6 @@ static  int LexiRowcompareCint(int *i,int *j)
     }
   return (0);
 }
-
-static  int LexiRowcompareCuint(unsigned int *i,unsigned int *j)
-{
-  int jc;
-  for ( jc = 0 ; jc < lexicolsint ; jc++) 
-    {
-      if (*i > *j)
-	return (1);
-      if (*i < *j)
-	return (-1);
-      i += lexirowsint;
-      j += lexirowsint;
-    }
-  return (0);
-}
-
 static  int LexiRowcompareDint(int *i, int*j)
 {
   int jc;
@@ -238,22 +142,6 @@ static  int LexiRowcompareDint(int *i, int*j)
     }
   return (0);
 }
-
-static  int LexiRowcompareDuint(unsigned int *i, unsigned int*j)
-{
-  int jc;
-  for ( jc = 0 ; jc < lexicolsint ; jc++) 
-    {
-      if (*i < *j)
-	return (1);
-      if (*i > *j)
-	return (-1);
-      i += lexirowsint;
-      j += lexirowsint;
-    }
-  return (0);
-}
-
 /*-----------------------------------------------------------------------------------*/ 
 static int LexiRowswapcodeint(char *parmi,char * parmj,int n) 
 { 		
@@ -288,22 +176,6 @@ void LexiRowint(int *a,int *ind,int flag,int n,int p,char dir)
 	    (dir == 'i' ) ? LexiRowcompareCint:LexiRowcompareDint,
 	    LexiRowswapcodeint,swapcodeind);
 }
-
-void LexiRowuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
-{
-  int i;
-  setLexiSizeint(n,p);
-  if ( flag == 1) 
-    {
-      for ( i = 0 ; i < n ; i++) 
-	ind[i]= i+1;
-    }
-  sciqsort((char *) (a),(char *) (ind),flag, n, 
-	    sizeof(int),sizeof(int), 
-	    (dir == 'i' ) ? LexiRowcompareCuint:LexiRowcompareDuint,
-	    LexiRowswapcodeint,swapcodeind);
-}
-
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  *  lexicographic order with Cols ind is of size p
@@ -324,39 +196,8 @@ static  int LexiColcompareCint(int *i,int *j)
 		}
 	return (0);
 	}
-
-static  int LexiColcompareCuint(unsigned int *i,unsigned int *j)
-	{
-	int ic;
-	for ( ic = 0 ; ic < lexirowsint ; ic++) 
-		{
-		if (*i > *j)
-			return (1);
-		if (*i < *j)
-			return (-1);
-		i++;
-		j++;
-		}
-	return (0);
-	}
-
 /*-----------------------------------------------------------------------------------*/ 
 static  int LexiColcompareDint(int *i,int *j)
-	{
-	int ic;
-	for ( ic = 0 ; ic < lexirowsint ; ic++) 
-		{
-		if (*i < *j)
-			return (1);
-		if (*i > *j)
-			return (-1);
-		i++;
-		j++;
-		}
-	return (0);
-	}
-
-static  int LexiColcompareDuint(unsigned int *i,unsigned int *j)
 	{
 	int ic;
 	for ( ic = 0 ; ic < lexirowsint ; ic++) 
@@ -405,22 +246,5 @@ void LexiColint(int *a,int *ind,int flag,int n,int p,char dir)
 		LexiColswapcodeint,
 		swapcodeind);
 	}
-
-void LexiColuint(unsigned int *a,int *ind,int flag,int n,int p,char dir)
-	{
-	int i;
-	setLexiSizeint(n,p);
-	if ( flag == 1) 
-		{
-		for ( i = 0 ; i < p ; i++) 
-			ind[i]= i+1;
-		}
-	sciqsort((char *) (a),(char *) (ind),flag, p, 
-		n*sizeof(int),sizeof(int), 
-		(dir == 'i' ) ? LexiColcompareCuint:LexiColcompareDuint,
-		LexiColswapcodeint,
-		swapcodeind);
-	}
-
 /*-----------------------------------------------------------------------------------*/ 
 

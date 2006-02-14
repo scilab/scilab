@@ -1,29 +1,12 @@
 function demo_truck()
-  //demo_help demo_truck
   initial = [-2;3;0.5235988;0;0;1]
   final   = [0;0;0;0;0;0]
   state = truck_solve(initial,final);
+  f = gcf() ;
+  f.pixmap = 'on' ;
+  toolbar(0,'off') ;
   display_truck_trajectory(state)
 endfunction
-function titlepage(str,win)
-//titlepage(str) genere une page de titres graphiques contenant la ma-
-//trice de chaines de caracteres str ecrite centree dans  la page avec
-//une taille de caractere maximale.
-//!
-//origine S Steer INRIA 1989
-// Copyright INRIA
-[lhs,rhs]=argn(0)
-old=xget('window')
-if rhs==2 then xset('window',win);end
-set figure_style new 
-xrect(0,1,1,1)
-xset('font',1,5)
-a.font_size=5;
-
-xstringb(0,0,str,1,1,'fill');
-xset('window',old)
-endfunction
-
 
 function state=truck_solve(initial,final)
 //
@@ -367,6 +350,7 @@ function draw_truck(C,pos)
   xy=[bigL/3  d2;0 0]'
   C(13).data=ones(xy)*diag([x;y])+bigL*xy*Rc
   drawnow()
+  show_pixmap();
 endfunction
 
 function h=polyline(xy)

@@ -28,8 +28,7 @@ namespace eval help {
  variable font          "Helvetica"
  variable fontfixed     "Courier"
  variable fontsize      10
- variable bigfontsize   18
- variable backcolor     "white"
+ variable backcolor     ""
  variable forecolor     black
  variable linkcolor     "#006800"
  variable alinkcolor    "#c00000"
@@ -1862,7 +1861,6 @@ proc help::show {{topic contents} {modhist 1} {textpos {}}} {
  variable lmargin
  variable font
  variable fontsize
- variable bigfontsize
  variable curtopic
  variable curfilename
  variable _count
@@ -2072,9 +2070,9 @@ proc help::show {{topic contents} {modhist 1} {textpos {}}} {
  catch {$w.text configure -foreground $settings(fore)}
  catch {$w.text configure -background $settings(back)}
  set _t_title(title) [$w.title create text 4 4 -anchor nw -fill $settings(fore) -text $title \
-                     -font "-family $font -size $bigfontsize -weight bold"]
+                     -font "-family $font -size [expr $fontsize + 12] -weight bold"]
 
- set inc [font metrics "-family $font -size $bigfontsize -weight bold" -displayof $w -ascent]
+ set inc [font metrics "-family $font -size [expr $fontsize + 12] -weight bold" -displayof $w -ascent]
  set spc [font measure "-family $font -size [expr $fontsize - 2]" -displayof $w.title "    "]
 
  set x 4

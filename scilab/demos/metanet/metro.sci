@@ -111,8 +111,8 @@ function []=metro()
     Depart=108;Arrivee=108;Gr_typ='null';
     while (Lnode(Depart)==-1|Lnode(Arrivee)==-1),
       Lnode(1)=-2;
-      Depart=tk_choose(Lstation,'Choose the station of departure');
-      Arrivee=tk_choose(Lstation,'Choose the station of arrival');
+      Depart=x_choose(Lstation,'Choose the station of departure');
+      Arrivee=x_choose(Lstation,'Choose the station of arrival');
       if(Depart==0|Arrivee==0) then return  end;
 	if (Lnode(Depart)==-1|Lnode(Arrivee)==-1) then
 	  x_message(['You have chosen an RER station to the suburbs'; 

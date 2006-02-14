@@ -18,6 +18,10 @@
 #include "../graphics/BuildObjects.h"
 #include "../graphics/DestroyObjects.h"
 
+#ifdef WITH_TK
+#include "../tclsci/GedManagement.h"
+#endif
+
 #include "intcommongraphics.h"
 
 #ifdef WIN32
@@ -1132,10 +1136,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  if (version_flag() == 0)  {
 	      /* 	    versionflag = 1; */
 
-	    
-            sciXClearFigure();
-	    
-            C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
+	    sciXClearFigure();
+
+            
+#ifdef WITH_TK
+            /* close ged to prevent errors when using it */
+            sciDestroyGed() ;
+#endif
+	    C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
 	
 	    if (XGC->mafigure != (sciPointObj *)NULL) {
 		DestroyAllGraphicsSons(XGC->mafigure);
@@ -1148,7 +1156,15 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
             /* remove the Insert menu and purge the Edit menu in old style */
             /* A.Cornet, JB Silvy 12/2005 */
             updateMenus( XGC ) ;
-            
+            /*#if  WIN32
+		{
+			extern void RefreshGraphToolBar(struct BCG * ScilabGC);
+			extern void RefreshMenus(struct BCG * ScilabGC);
+
+			RefreshMenus(XGC);
+			RefreshGraphToolBar(XGC);
+		}
+		#endif*/
 	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
 	    
 	    /* Add xclear to refresh toolbar for Windows */
@@ -1175,8 +1191,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		sciSetCurrentObj(psubwin);
 		sciSetOriginalSubWin (figure, psubwin);
               }
-              /* Refresh toolbar and Menus */
-              updateMenus( XGC ) ;
+				/* Refresh toolbar and Menus */
+        updateMenus( XGC ) ;
 	    }
 	  }
 	}
@@ -3037,47 +3053,32 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if (strcmp(marker,"cdata_mapping") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-
-      sciSurface * ppSurf = pSURFACE_FEATURE ( pobj ) ;
-
-      if ( ppSurf->typeof3d == SCI_FAC3D )
-      {
-	if ( (strcmp( cstk(*value), "scaled" ) == 0 ) )
-        {
-	  if( ppSurf->cdatamapping != 0 )
-          { /* not already scaled */
+      if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
+	if ((strcmp(cstk(*value),"scaled") == 0)){
+	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 0){ /* not already scaled */
 	    LinearScaling2Colormap(pobj);
-	    ppSurf->cdatamapping = 0;
+	    pSURFACE_FEATURE (pobj)->cdatamapping = 0;
 	  }
 	} 
-	else if ((strcmp(cstk(*value),"direct") == 0))
-        {
-	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 1)
-          { 
-            /* not already direct */
-	    int nc = ppSurf->nc;
+	else if ((strcmp(cstk(*value),"direct") == 0)){
+	  if(pSURFACE_FEATURE (pobj)->cdatamapping != 1){ /* not already direct */
+	    int nc = pSURFACE_FEATURE (pobj)->nc;
 
-	    FREE( ppSurf->color ) ;
-            ppSurf->color = NULL ;
+	    FREE(pSURFACE_FEATURE (pobj)->color); pSURFACE_FEATURE (pobj)->color = NULL;
 
 	    /* 	    printf("pSURFACE_FEATURE (pobj)->color = %d\n",pSURFACE_FEATURE (pobj)->color); */
 	    /* 	    printf("nc = %d\n",nc); */
 	    /* 	    fflush(NULL); */
 
-	    if(nc>0)
-            {
-	      if ((ppSurf->color = MALLOC (nc * sizeof (double))) == NULL)
-              {
+	    if(nc>0){
+	      if ((pSURFACE_FEATURE (pobj)->color = MALLOC (nc * sizeof (double))) == NULL)
 		return -1;
-              }
 	    }
 
-	    for( i = 0 ; i < nc ; i++ )
-            {
-	      ppSurf->color[i] = ppSurf->zcol[i] ;
-            }
+	    for(i=0;i<nc;i++)
+	      pSURFACE_FEATURE (pobj)->color[i] = pSURFACE_FEATURE (pobj)->zcol[i];
 
-	    ppSurf->cdatamapping = 1 ;
+	    pSURFACE_FEATURE (pobj)->cdatamapping = 1;
 	  }
 	}
 	else
@@ -3250,7 +3251,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	}
   return 0;
 }
-
 /*-----------------------------------------------------------------------------------*/
 int LinearScaling2Colormap(sciPointObj* pobj)
 {

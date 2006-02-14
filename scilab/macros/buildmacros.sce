@@ -24,7 +24,6 @@ CurrentDirectory=pwd();
  "xdess",
  "sparse",
  "scicos",
- "scicos_new",
  "m2sci",
  "scicos_blocks",
  "gui"];

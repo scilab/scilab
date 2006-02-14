@@ -3182,7 +3182,8 @@ sciGetResize (sciPointObj * pobj)
       break;
     case SCI_SUBWIN:
       /* the value is inhirated by the parent */
-      return sciGetResize (sciGetParent (pobj));
+      /*return sciGetResize (sciGetParent (pobj));*/
+      return (sciGetGraphicMode (pobj))->wresize;
       break;
     case SCI_TEXT:
     case SCI_TITLE:
@@ -4860,7 +4861,6 @@ sciGetPosition (sciPointObj * pobj, double *x, double *y)
   return 0;
 }
 
-
 BOOL sciGetAutoRotation ( sciPointObj * pObj )
 {
    switch (sciGetEntityType (pObj))
@@ -4932,4 +4932,5 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
     }
   return FALSE;
 }
+
 

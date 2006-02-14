@@ -190,18 +190,19 @@ function r=%CMP(%A,%B)
   
   r=%f
   tol=0.00001
+  atol=1d-6,rtol=1d-6
   if type(%A)<>type(%B) then r=%t,return,end
   select type(%A)
   case 1 then //float
     if or(size(%A)<>size(%B)) then  r=%t,return,end
     %ka=~isnan(%A);%kb=~isnan(%B);
     if or(%ka<>%kb)  then  r=%t,return,end
-    if isreal(%A)<>isreal(%A)  then  r=%t,return,end
-    if or(clean(%A(%ka)-%B(%kb))<>0) then  r=%t,return,end
+    if %A(%ka)==[] then return,end
+    if or(clean(%A(%ka)-%B(%kb),atol,rtol)<>0) then  r=%t,return,end
   case 2 then //polynomial
     if or(size(%A)<>size(%B)) then  r=%t,return,end
     if or(degree(%A)<>degree(%B)) then r=%t,return,end
-    if or(clean(%A-%B)<>0) then  r=%t,return,end
+    if or(clean(%A-%B,atol,rtol)<>0) then  r=%t,return,end
   case 4 then //boolean
     if or(size(%A)<>size(%B)) then  r=%t,return,end
     if or(%A<>%B) then  r=%t,return,end
@@ -211,7 +212,8 @@ function r=%CMP(%A,%B)
     if or(ija<>ijb) then  r=%t,return,end
     %ka=~isnan(%A);%kb=~isnan(%B);
     if or(%ka<>%kb)  then  r=%t,return,end
-    if or(clean(%A(%ka)-%B(%kb))<>0) then  r=%t,return,end
+    if %A(%ka)==[] then return,end
+    if or(clean(%A(%ka)-%B(%kb),atol,rtol)<>0) then  r=%t,return,end
   case 6 then //boolean sparse
     if or(size(%A)<>size(%B)) then  r=%t,return,end
     if or(%A<>%B) then  r=%t,return,end
@@ -239,7 +241,7 @@ function r=%CMP(%A,%B)
     if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
     if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end
     if typeof(%A)=='rational' then
-      if or(clean(%A-%B)<>0) then r=%t,end
+      if or(clean(%A-%B,atol,rtol)<>0) then r=%t,end
       return
     end
     for k = definedfields(%A)

@@ -52,7 +52,9 @@ int cre_hmat(int pos,  HyperMat *H)
   return 1;
 }
 
-int intex11c(char *fname)
+
+int intex11c(fname)
+  char* fname;
 { 
   HyperMat M;
   CheckRhs(1,1);

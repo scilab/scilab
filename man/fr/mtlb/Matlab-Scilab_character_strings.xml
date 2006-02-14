@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Matlab-Scilab_character_strings</TITLE>
+  <TYPE>Documentation</TYPE>
+  <DATE>Dec 2003</DATE>
+
+  <SHORT_DESCRIPTION name="Matlab-Scilab_character_strings">Generally speaking about...</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>    
+  Matlab and Scilab character strings are not considered in the same way.
+  Here is a little talk about differences between them.
+  </P>
+  <P>
+  Matlab considers a character string as Scilab considers a matrix of characters.
+  For example, a Scilab equivalent for Matlab 'mystring' could be ["m","y","s","t","r","i","n","g"]. 
+  So in Scilab, a character string is a object of type string (10) and always have size 1 x 1 but in Matlab, a character string have size equal to 1 x number_of_characters.
+  </P>
+  <P>
+  Considering this, we can see that a Matlab character string matrix column can only be made of same-size character strings what is not true in Scilab. We can say that a Scilab character string matrix is equivalent to a Matlab cell of character strings.
+  </P>
+  <P>
+  All these differences can lead to different results while executing same commands in Scilab or in Matlab, particularly for "dimension" functions such as length() or size().
+  </P>
+  </DESCRIPTION> 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mstr2sci</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

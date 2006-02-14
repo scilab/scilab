@@ -1941,11 +1941,11 @@ void refreshMenus( struct BCG * ScilabGC )
     int        subMenuNumber = 0 ;
     int        nbChildren        ;
     
-    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ;
+    /*SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ; */
     
     /* get the number of children of the Edit menu */
     nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
-    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+    for ( subMenuNumber = 4 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
     {
       SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, True ) ;
     }
@@ -1956,10 +1956,10 @@ void refreshMenus( struct BCG * ScilabGC )
     int        subMenuNumber = 0 ;
     int        nbChildren        ;
     
-    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ;
+    /*SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ; */
 
     nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
-    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+    for ( subMenuNumber = 4 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
     {
       SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, False ) ;
     }

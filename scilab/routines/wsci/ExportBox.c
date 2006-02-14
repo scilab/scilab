@@ -26,7 +26,8 @@ extern HINSTANCE hdllInstance;
  * uses GetWindowLong(hwnd, 4) and SetWindowLong
  ****************************************************/
 
-EXPORT BOOL CALLBACK ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
+EXPORT BOOL CALLBACK
+ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 {
   int i;
   switch (wmsg)

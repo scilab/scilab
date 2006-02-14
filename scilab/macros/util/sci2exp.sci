@@ -212,7 +212,7 @@ function t=mat2exp(a,lmax)
 	  k1=k2+1
 	  l=ind(k2)
 	end
-	x=strsplit(x,I);x(1:$-1)=x(1:$-1)+dots;x(2:$)=' '+x(2:$);
+	x=strsplit(x,I);x(1:$-1)=x(1:$-1)+dots;//x(2:$)=' '+x(2:$);
 	t=[t;x]
       end
     end

@@ -3107,14 +3107,14 @@ void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer 
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
   if (n1 >= 2) 
     {
-      C2F(analyze_points)(*n, vx, vy,*closeflag);
-      /*Old code replaced by a routine with clipping */
-	 /* if (C2F(store_points)(*n, vx, vy,*closeflag)) */
-/* 	 { */
-/* 	 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1, */
-/* 	 ScilabXgc->CurVectorStyle); */
-/* 	 XFlush(dpy); */
-/* 	 } */
+      C2F(analyze_points)(*n, vx, vy,*closeflag); 
+      /* Old code replaced by a routine with clipping 
+	 if (C2F(store_points)(*n, vx, vy,*closeflag))
+	 {
+	 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1,
+	 ScilabXgc->CurVectorStyle);
+	 XFlush(dpy);
+	 } */
       XFlush(dpy);
     }
 }
@@ -3467,12 +3467,13 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   integer WinNum;
   
 #ifdef WITH_TK
-  integer ne=11, menutyp=2, ierr;
-  char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure","Copy object","Paste object","Move object","Delete object","Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
+  integer ne=7, menutyp=2, ierr;
+  char *EditMenusE[]={"Select figure as current","Redraw figure","Erase figure",/*"Copy object","Paste object","Move object","Delete object",*/"Figure properties","Current axes properties","Start entity picker","Stop entity picker"};
   
 
-  integer ni=/*7*/6;
-  char *InsertMenusE[]={"Line","Polyline","Arrow",/*"Double Arrow",*/"Text","Rectangle","Circle"};
+  /*integer ni=6;
+  char *InsertMenusE[]={"Line","Polyline","Arrow","Text","Rectangle","Circle"};
+  */
 
 #else
   integer ne=3, menutyp=2, ierr;
@@ -3578,7 +3579,8 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   {
     /* add the Edit and Insert menus */
     AddMenu(&WinNum,"Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-    AddMenu(&WinNum,"Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);
+    
+    /*AddMenu(&WinNum,"Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);*/
 
     /* put them in grey in old style */
     refreshMenus( ScilabXgc ) ;  

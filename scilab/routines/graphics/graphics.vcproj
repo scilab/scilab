@@ -888,6 +888,18 @@ cd.. &gt;nul
 				RelativePath="Graphics.h">
 			</File>
 			<File
+				RelativePath="gsort-double.h">
+			</File>
+			<File
+				RelativePath="gsort-int.h">
+			</File>
+			<File
+				RelativePath="gsort-string.h">
+			</File>
+			<File
+				RelativePath="gsort.h">
+			</File>
+			<File
 				RelativePath=".\HandleManagement.h">
 			</File>
 			<File

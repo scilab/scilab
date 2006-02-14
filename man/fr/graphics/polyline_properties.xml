@@ -129,7 +129,7 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="interp_color_vector: ">
-        <SP>TThis field contains the vector of color indices used to fill in
+        <SP>This field contains the vector of color indices used to fill in
         the polyline when the <VERB>interp_color_mode</VERB> property is set
         to <VERB>"on"</VERB>. It defines the intervals of colormap indices
         used to fill each segment. For instance, the first segment will be

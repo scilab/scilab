@@ -22,10 +22,7 @@ Graphics:
   - Graphical Environment improved and extended:
     + Manipulation of the hierachy of the entities has been made easier thanks 
       to a hierachy browser.
-    + Annotation edition is now possible with the Insert menu and toolbar. 
-      Text, polylines, arrows, rectangles, circles, lines can be added.
-    + Copy/Paste/Delete/Move Menus allow to customize graphics and Annotations.
-
+  
   - Graphic window Events (mouse, keyboard,...) handling have been improved and 
     extended:
     + click, double_click, press, release ,move.

@@ -1,9 +1,10 @@
-Scilab RC 4.0 Release_Notes
-***************************
+Scilab 4.0 Release_Notes
+************************
 
 - Next to the on line help of the software, we advise you, to make
 the first move with Scilab, to consult the Scilab step-to-step web site
 (http://www.spas.cnrs-gif.fr/index.html).
+
 
 - Please note that:
     - Scilab 4.x versions family will be the last versions working
@@ -11,6 +12,10 @@ with the old graphics mode.
     - Scilab v 4.0 is the last release working with Microsoft
 Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
 supported by Scilab operational team.
+    - genlib() will not accept anymore that there is not an "endfunction"
+at the end of each scilab function. Please, be sure that you have this 
+keyword at the end of your function.
+
 
 - Scilab binary versions are built:
     - for Linux: gcc-3.4.3 and g77 compilers with a platform under
@@ -21,3 +26,17 @@ compilers.
 compilers with a platform under Windows XP Service Pack 2 .
     - Recall: No Scilab GTK version is provided and supported by
 the operational team. Same way about MinGW and Cygwin.
+
+
+- Under linux platforms :
+    - Using xclick() or xgetmouse() functions, be sure your "num lock"
+is disabled if you want to catch keypad evenements.
+    - We advise to download and build scilab source version if you want
+to compile SCI/examples/callsci/callsciC directory.
+
+
+- Under hpux platforms :
+    - The demo "scicos - live tutorials" have some trouble.
+    - readxls() function doesn't run.
+    - Using Scipad, a warning can appear in the shell console. Please, don't
+take into account of this message.

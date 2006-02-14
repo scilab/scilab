@@ -23,8 +23,6 @@ extern void sciqsort(char *a, char *tab,int flag, int n, int es, int es1, int (*
 	:(cmp(b, c) > 0 ? (res=b,tabres=xb) : (cmp(a, c) < 0 ? (res=a,tabres=xa) : (res=c,tabres=xc) ))
 /*-----------------------------------------------------------------------------------*/ 
 #include "qsort-int.c"
-#include "qsort-short.c"
-#include "qsort-char.c"
 #include "qsort-double.c"
 #include "qsort-string.c"
 /*-----------------------------------------------------------------------------------*/ 

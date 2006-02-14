@@ -31,10 +31,6 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#ifdef WITH_TK
-#include "../tclsci/GedManagement.h"
-#endif
-
 #if WIN32
 extern HDC TryToGetDC(HWND hWnd);
 #endif
@@ -275,13 +271,6 @@ void sciXClearFigure()
   double dv = 0.;
 
   mafigure= (sciPointObj *) sciGetCurrentFigure(); 
-
-
-#ifdef WITH_TK
-            /* close ged to prevent errors when using it */
-            sciDestroyGed( sciGetNum( mafigure ) ) ;
-#endif
-
   DestroyAllGraphicsSons((sciPointObj *)mafigure);
   DestroyFigure (mafigure); 
   C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
@@ -9562,8 +9551,7 @@ sciDrawObj (sciPointObj * pobj)
           sciClip(pobj);
         }
 
-        if ( ppText->fill == -1 ) 
-        {
+        if (pTEXT_FEATURE (pobj)->fill==-1) {
           if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
           {
           
@@ -9715,7 +9703,7 @@ sciDrawObj (sciPointObj * pobj)
           C2F(dr1)("xstringb",sciGetText (pobj),&(ppText->fill),&v,&v,&v,&v,&v,
                    &(ppText->x),&(ppText->y),
                    &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
-        }
+        } 
         if ( ppText->isclip )
         {
           sciUnClip(pobj);

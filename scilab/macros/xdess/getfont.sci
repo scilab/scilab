@@ -6,13 +6,9 @@ function [fontId,fontSize]=getfont(S,v1)
 	if exists('S','local')==0 then S="a";end
 	if type(S)<>10 then error('Argument must be a character string'),end
 	S=part(S(1),1)
-	wins=winsid()
-	if wins<>[] then
-		curwin=xget('window')
-		win=max(wins+1)
-	else
-		win=0
-	end
+	
+	win=max(winsid()+1);
+	xset('window',win);
 	
 	xset('window',win);
 	set figure_style new;
@@ -72,12 +68,15 @@ function [fontId,fontSize]=getfont(S,v1)
 		[c_i,cx,cy,cw,str]=xclick();
 		
 		if c_i==-2 then
-			if str=="menu_ok(1,0)" then break,end
-			if str=="menu_cancel(1,0)" then break,end
+			if strindex(str,"menu_ok")==1 then xdel(win);break,end
+			if strindex(str,"menu_cancel")==1 then xdel(win);break,end
+		
 		elseif c_i==-100 then
-			str=cmdcancel ;
-			break, 
-		elseif c_i>=0&c_i<6 then
+			fontId=[];
+			fontSize=[];
+			break,
+		
+		elseif c_i>=0 & c_i<=12 then
 			if selected<>0 then 
 				t=Hdl(selected)
 				t.foreground=-1;
@@ -89,20 +88,26 @@ function [fontId,fontSize]=getfont(S,v1)
 			t=Hdl(selected);t.foreground=red;
 			show_pixmap()
 			xinfo('You have chosen fontId = '+string(fontId)+' , fontSize =  '+string(fontSize))
-		else
+		
+		elseif c_i>=32 & c_i<1032 then
 			S=ascii(c_i)
-			a=gca();a.visible='off'
+			a=gca();
+			a.visible='off';
+			Hdl.text=S;
+			a.visible='on';
+			show_pixmap()
+			
+		elseif c_i>=1032
+			S=ascii(c_i-1000)
+			a=gca();
+			a.visible='off';
 			Hdl.text=S;
 			a.visible='on';
 			show_pixmap()
 		end
 	end
 	
-	xdel(win);
-	
-	if wins<>[] then xset('window',curwin),end
-	
-	if str=="menu_cancel(1,0)" then
+	if strindex(str,"menu_cancel")==1 then
 		fontId=[];
 		fontSize=[];
 	end

@@ -11,13 +11,13 @@
 #include "intTclEvalStr.h"
 
 /*-----------------------------------------------------------------------------------------*/
-/* close the graphic editor linked with the window figureId */
-int sciDestroyGed( int figureId ) ;
+/* close the graphic editor */
+int sciDestroyGed( void ) ;
 /*-----------------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------------*/
-/* return true if ged is opened on the window figureId */
-int isGedOpenedOn( int figureId ) ;
+/* return true if ged is opened */
+int isGedAlive( void ) ;
 /*-----------------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------------*/

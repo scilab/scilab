@@ -23,7 +23,7 @@ if with_modelica_compiler() then
 	      'Electrical circuit: Rectifier'
               'Regulated Thermo Hydraulic plant'];
 end
-    demos_name=[demos_name;'PDE']	
+
     demos_name=[demos_name;'Live tutorials']        
 
 while %t do
@@ -80,12 +80,6 @@ while %t do
       x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
     else
       scicos('SCI/demos/scicos/Hydraulics.cosf');
-    end
-   case 'PDE' then  
-    if ~(haveacompiler()) then
-      x_message(['Scilab doesn''t find a C compiler','This demo is disabled'])
-    else
-      scicos('SCI/demos/scicos/Thermique_bloc.cosf');
     end
    case 'Live tutorials' then
     tuti=['Simple block construction';

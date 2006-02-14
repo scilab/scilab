@@ -535,8 +535,8 @@ void C2F(getlastXfig)(integer *verbose, integer *num, integer *narg, double *dum
 #define MAXDASH 6
 /** dot specification for line style  **/
 /* solid dash dotted dash-dot dash-dot-dot dash-dot-dot-dot   */
-static integer DashTab[MAXDASH]      = {0,1,1,2,2,2} ;
-static integer DashTabStyle[MAXDASH] = {0,2,4,2,4,8} ;
+static integer DashTab[6] =      {0,1,1,2,2,2};
+static integer DashTabStyle[6] = {0,2,4,2,4,8};
 
 
 /* old version of setdashXfig retained for compatibility */
@@ -1842,12 +1842,9 @@ void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
   C2F(setcursymbolXfig)(symb,symb+1,PI0,PI0);
 }
 /*----------------------------------------------------------------------------------*/
-/* for the fig driver we need to know if we have at least three distincts points
-   for polygons and 2 for lines */
+/* for the fig driver we need to know if we have at least three distincts points */
 static BOOL checkPolygon( integer *polyX, integer *polyY, integer length )
 {
-  
-  
   if ( length <= 2 )
   {
     return TRUE ;

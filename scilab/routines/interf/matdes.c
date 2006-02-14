@@ -30,13 +30,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortint)(int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortuint)(unsigned int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortshort)(short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortushort)(unsigned short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortchar)(char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortuchar)(unsigned char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+extern int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
 extern void  C2F(msgs)(int *i, int *v);
 extern int C2F(dsort) _PARAMS((double *count, int *n, int *index));
 extern int IsAScalar(int RhsNumber);
@@ -2723,6 +2717,7 @@ int scixsetech(char* fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scinewaxes(char* fname,unsigned long fname_len)
 { 
+
   int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1;
   sciPointObj *masousfen;
   int outindex,numrow   = 1,numcol   = 1;
@@ -2736,8 +2731,6 @@ int scinewaxes(char* fname,unsigned long fname_len)
       sciSetSelectedSubWin(masousfen);
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
       *hstk(outindex) = sciGetHandle(masousfen);
-
-
       LhsVar(1)=1;
     }
   else {
@@ -3457,14 +3450,11 @@ int scixsort(char *fname,unsigned long fname_len)
   char typex[10]; /* = { 'g' ,'\0'} ; */
   double dv;
   integer iv;
-  SciIntMat Im;
-  int Type;
   iord[0] = 'd'; iord[1]='\0';
   typex[0] = 'g'; typex[1] = '\0';
 
   CheckRhs(1,3);
 
-  Type=VarType(1);
   switch ( VarType(1)) 
     {
     case 10 : 
@@ -3472,9 +3462,6 @@ int scixsort(char *fname,unsigned long fname_len)
       break;
     case 1 :
       GetRhsVar(1,"d",&m1,&n1,&l1);
-      break;
-    case 8:
-      GetRhsVar(1,"I",&m1,&n1,&Im);
       break;
     default :
       Scierror(999,"%s: first argument has a wrong type, expecting scalar or string matrix\r\n",fname);
@@ -3510,45 +3497,80 @@ int scixsort(char *fname,unsigned long fname_len)
     }
 
 
-  /** Scalar matrix **/
-  iflag = 0;
-  if (Lhs == 2) iflag = 1;
-
-  if ( typex[0] == 'l') 
+  if ( VarType(1) == 1) 
     {
-      if (typex[1] == 'r') {
-	CreateVar(Rhs+1,"i",&m1,&un,&lex);
-      } else  {
-	CreateVar(Rhs+1,"i",&un,&n1,&lex);
-      }
+      /** Scalar matrix **/
+      if (Lhs == 2) {
+	iflag = 1;
+	if ( typex[0] == 'l') 
+	  {
+	    if (typex[1] == 'r') 	  {
+	      CreateVar(Rhs+1,"i",&m1,&un,&lex);
+	    } else  {
+	      CreateVar(Rhs+1,"i",&un,&n1,&lex);
+	    }
+	    GetRhsVar(1,"i",&m1,&n1,&l1);
+	    C2F(gsort)(istk(l1),&dv,istk(lex),&iflag,&m1,&n1,typex,iord);
+	  } 
+	else 
+	  {
+	    CreateVar(Rhs+1,"i",&m1,&n1,&lex);
+	    C2F(gsort)(&iv,stk(l1),istk(lex),&iflag,&m1,&n1,typex,iord);
+	  }
+      } 
+      else 
+	{
+	  iflag = 0;
+	  if ( typex[0] == 'l') 
+	    {
+	      GetRhsVar(1,"i",&m1,&n1,&l1);
+	      C2F(gsort)(istk(l1),&dv,&iv,&iflag,&m1,&n1,typex,iord);
+	    } 
+	  else 
+	    {
+	      C2F(gsort)(&iv,stk(l1),&iv,&iflag,&m1,&n1,typex,iord );
+	    }
+	}
+      LhsVar(1)=1;
+      if ( Lhs == 2 ) LhsVar(2)=Rhs+1;
     }
   else 
-      CreateVar(Rhs+1,"i",&m1,&n1,&lex);
-
-  LhsVar(1)=1;
-  if (Type==1) 
-    C2F(gsortd)(stk(l1),istk(lex),&iflag,&m1,&n1,typex,iord);
-  else if (Type==8) {
-    if (Im.it==4)
-      C2F(gsortint)(Im.D,istk(lex),&iflag,&m1,&n1,typex,iord);
-    else if(Im.it == 14)
-      C2F(gsortuint)(Im.D,istk(lex),&iflag,&m1,&n1,typex,iord);
-    else if (Im.it==2)
-      C2F(gsortshort)(Im.D,istk(lex),&iflag,&m1,&n1,typex,iord);
-    else if(Im.it == 12)
-      C2F(gsortushort)(Im.D,istk(lex),&iflag,&m1,&n1,typex,iord);
-    else if (Im.it==1)
-      C2F(gsortchar)(Im.D,istk(lex),&iflag,&m1,&n1,typex,iord);
-    else if(Im.it == 11)
-      C2F(gsortuchar)(Im.D,istk(lex),&iflag,&m1,&n1,typex,iord);
-  }
-  else if (Type==10) {
-    C2F(gsorts)(S,istk(lex),&iflag,&m1,&n1,typex,iord);
-    CreateVarFromPtr(Rhs+Lhs,"S", &m1, &n1, S);
-    LhsVar(1)=Rhs+Lhs;
-  }
-
-  if ( Lhs == 2 ) LhsVar(2)=Rhs+1;
+    {
+      /** String matrix **/
+      if (Lhs == 2) {
+	iflag = 1;
+	if ( typex[0] == 'l') 
+	  {
+	    if (typex[1] == 'r') 	  {
+	      CreateVar(Rhs+1,"i",&m1,&un,&lex);
+	    } else  {
+	      CreateVar(Rhs+1,"i",&un,&n1,&lex);
+	    }
+	    C2F(gsorts)(S,istk(lex),&iflag,&m1,&n1,typex,iord);
+	  } 
+	else 
+	  {
+	    CreateVar(Rhs+1,"i",&m1,&n1,&lex);
+	    C2F(gsorts)(S,istk(lex),&iflag,&m1,&n1,typex,iord);
+	  }
+	CreateVarFromPtr(Rhs+2,"S", &m1, &n1, S);
+      } else {
+	iflag = 0;
+	C2F(gsorts)(S,&v,&iflag,&m1,&n1,typex,iord);
+	CreateVarFromPtr(Rhs+1,"S", &m1, &n1, S);
+      }
+      /* we must free Str2 memory */ 
+      FreeRhsSVar(S);
+      if ( Lhs == 2 ) 
+	{
+	  LhsVar(1)=Rhs+2;
+	  LhsVar(2)=Rhs+1;
+	}
+      else 
+	{
+	  LhsVar(1)=Rhs+1;
+	}
+    }
   return 0;
 } 
 /*-----------------------------------------------------------------------------------*/
