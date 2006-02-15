@@ -588,7 +588,7 @@ proc schememenus {textarea} {
         #enable "Load into scilab"
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state normal
         # restore bindings
-        bind $pad <Control-l> {execfile}
+        bindenable $pad execfile
         bind $pad <F5> {filetosave %W; execfile}
         # enable all the debug entries
         # this is set selectively in function of the debugger state
@@ -607,7 +607,7 @@ proc schememenus {textarea} {
         #disable "create help skeleton"
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled
         # remove bindings
-        bind $pad <Control-l> {}
+        binddisable $pad execfile
         bind $pad <F5> {}
         # remove debugger bindings
         bind $pad <F9> {}

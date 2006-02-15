@@ -80,19 +80,19 @@ proc dokeyposn {textarea} {
     # enable Undo if the buffer was modified
     if {[ismodified $textarea]} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state normal
-        bind Text <Control-z> {undo %W}
+        bindenable Text {undo [gettextareacur]}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Undo"]) -state disabled
-        bind Text <Control-z> {}
+        binddisable Text {undo [gettextareacur]}
     }
 
     # enable Redo if the redo stack is not empty
     if {$listoffile("$textarea",redostackdepth) == 0} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Redo"]) -state disabled
-        bind Text <Control-Z> {}
+        binddisable Text {redo [gettextareacur]}
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Redo"]) -state normal
-        bind Text <Control-Z> {redo %W}
+        bindenable Text {redo [gettextareacur]}
     }
 
     # enable Cut and Copy and Evaluate selection if there is a selection
@@ -100,23 +100,23 @@ proc dokeyposn {textarea} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state disabled
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state disabled
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state disabled
-        bind Text <Control-x> {}
-        bind $pad <Control-c> {}
+        binddisable Text cuttext
+        binddisable $pad copytext
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "Cu&t"]) -state normal
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Copy"]) -state normal
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Evaluate selection"]) -state normal
-        bind Text <Control-x> {cuttext}
-        bind $pad <Control-c> {copytext}
+        bindenable Text cuttext
+        bindenable $pad copytext
     }
 
     # enable Paste if the clipboard contains something
     if {[catch {clipboard get}] == 1} {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state disabled
-        bind Text <Control-v> {}
+        binddisable Text pastetext
     } else {
         $pad.filemenu.edit entryconfigure $MenuEntryId($pad.filemenu.edit.[mcra "&Paste"]) -state normal
-        bind Text <Control-v> {pastetext}
+        bindenable Text pastetext
     }
 }
 
@@ -160,11 +160,11 @@ proc modifiedtitle {textarea {panesonly "false"}} {
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure \
           $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state normal
-        bind $pad <Control-R> {revertsaved [gettextareacur]}
+        bindenable $pad {revertsaved \[gettextareacur\]}
     } else {
         $pad.filemenu.files entryconfigure \
           $MenuEntryId($pad.filemenu.files.[mcra "&Revert..."]) -state disabled
-        bind $pad <Control-R> {}
+        binddisable $pad {revertsaved \[gettextareacur\]}
     }
 }
 

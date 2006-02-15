@@ -1940,3 +1940,10 @@ Francois VOGEL, 22/01/06
 
 Francois VOGEL, 01/02/06
  * version --> 6.0 - This version comes with Scilab 4.0 final release
+
+ES 15/02/06
+ *switchable emacs/mac-pc bindings. Currently the feature is disabled 
+  (bindings are always pc) because emacs is not finished. The files are
+  committed to allow simultaneous work on other features. Remove "-state
+  disabled at line 290 of menus.tcl to make it work.
+ *version 6.1

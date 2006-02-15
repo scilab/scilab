@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.0"
+set version "Version 6.1"
 
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
@@ -39,7 +39,7 @@ set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
-       filebackupdepth"
+       filebackupdepth bindstyle"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -78,6 +78,7 @@ set tabinserts "spaces"    ;# "spaces" or "tabs"
 set completionbinding "Control-Tab"
 set showContinuedLines "yes"
 set filebackupdepth 0
+set bindstyle "mac-pc"
 
 # other non-pref initial settings
 

@@ -39,6 +39,7 @@ if { [info exists pad] } {
     source [file join $sourcedir localetools.tcl] 
     source [file join $sourcedir tkdndtools.tcl] 
     source [file join $sourcedir platformbind.tcl] 
+#    source [file join $sourcedir oldmenues.tcl]
     source [file join $sourcedir menues.tcl]
     source [file join $sourcedir progressbar.tcl]
 
@@ -46,10 +47,13 @@ if { [info exists pad] } {
     source [file join $sourcedir defaults.tcl]
     source [file join $sourcedir mainwindow.tcl]
     source [file join $sourcedir db_init.tcl]
-    source [file join $sourcedir bindings.tcl]
+#    source [file join $sourcedir bindings.tcl]
+    source [file join $sourcedir commonbindings.tcl]
 
     # additional initial state operations, now that all the widgets have been set
     load_words
+
+    loadbindings
 
     createmenues
 
@@ -57,6 +61,8 @@ if { [info exists pad] } {
 
     # set initial debug state
     setdbstate "NoDebug"
+
+    rebind
 
     # the following update makes background tasks work on Linux
     # since bug 865 is fixed

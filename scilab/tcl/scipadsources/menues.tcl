@@ -1,6 +1,6 @@
 proc createmenues {} {
     global pad menuFont tcl_platform bgcolors fgcolors sourcedir
-    global listoffile listoftextarea FontSize
+    global listoffile listoftextarea FontSize bindset
     global FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu
     global Shift_Tab
@@ -14,30 +14,27 @@ proc createmenues {} {
 
     #file menu
     menu $pad.filemenu.files -tearoff 1 -font $menuFont
-    eval "$pad.filemenu  add cascade [me "&File"] \
-                   -menu $pad.filemenu.files "
-    eval "$pad.filemenu.files add command [me "&New"] \
-                   -command \"filesetasnew\" -accelerator Ctrl+n"
+    eval "$pad.filemenu  add cascade [me "&File"] -menu $pad.filemenu.files "
+    eval "$pad.filemenu.files add command [me "&New"] [ca {filesetasnew}]"
     eval "$pad.filemenu.files add command [me "&Open..."] \
-                   -command \"showopenwin currenttile\" -accelerator Ctrl+o"
+                   [ca {showopenwin currenttile}]"
     menu $pad.filemenu.files.openintile -tearoff 0 -font $menuFont
     eval "$pad.filemenu.files add cascade [me "Open &in new"]\
       -menu $pad.filemenu.files.openintile"
-        eval "$pad.filemenu.files.openintile add command [me "&horizontal tile"] \
-                       -command \"showopenwin horizontal\" -accelerator Ctrl+4"
-        eval "$pad.filemenu.files.openintile add command [me "&vertical tile"] \
-                       -command \"showopenwin vertical\" -accelerator Ctrl+5"
+        eval "$pad.filemenu.files.openintile add command \
+                   [me "&horizontal tile"] [ca {showopenwin horizontal}]"
+        eval "$pad.filemenu.files.openintile add command [me "&vertical tile"]\
+                   [ca {showopenwin vertical}]"
     eval "$pad.filemenu.files add command [me "Op&en source of..."] \
                    -command \"opensourceof\" "
-    eval "$pad.filemenu.files add command [me "&Save"] \
-                   -command \"filetosavecur\" -accelerator Ctrl+s"
+    eval "$pad.filemenu.files add command [me "&Save"] [ca {filetosavecur}]"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
-                   -command \"filesaveascur\" -accelerator Ctrl+S"
-    eval "$pad.filemenu.files add command [me "&Revert..."] \
-                   -command {revertsaved \[gettextareacur\]} -state disabled -accelerator Ctrl+R"
+                   [ca {filesaveascur}]"
+    eval "$pad.filemenu.files add command [me "&Revert..."] -state disabled\
+                    [ca {revertsaved \[gettextareacur\]}]"
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Import &Matlab file..."] \
-                   -command \"importmatlab\" -accelerator F4"
+                   [ca {importmatlab}]"
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Create help s&keleton..."] \
                    -command \"helpskeleton\" -state disabled "
@@ -45,81 +42,74 @@ proc createmenues {} {
                    -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Open &function source"] \
-              -command {openlibfunsource \[\[gettextareacur\] index insert\]}\
-                   -state disabled -accelerator Ctrl+/"
+              [ca {openlibfunsource [[gettextareacur] index insert]}]\
+                   -state disabled"
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Print Se&tup"]\
-              -command \"printsetup\" -accelerator Ctrl+P"
+            [ca {printsetup}]"
     eval "$pad.filemenu.files add command [me "&Print"] \
-              -command {selectprint \[gettextareacur\]} -accelerator Ctrl+p"
+            [ca {selectprint [gettextareacur]}]"
     $pad.filemenu.files add separator
     set FirstMRUFileNameInFileMenu [expr [$pad.filemenu.files index last] + 1]
     BuildInitialRecentFilesList
     eval "$pad.filemenu.files add command [me "&Close"]\
-                   -command \"closecur yesnocancel\" -accelerator Ctrl+w"
+                   [ca {closecur yesnocancel}]"
     eval "$pad.filemenu.files add command [me "E&xit"] \
-                   -command \"idleexitapp\" -accelerator Ctrl+q"
+                   [ca idleexitapp]"
     bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu_file %W}
 
     #edit menu
     menu $pad.filemenu.edit -tearoff 1 -font $menuFont
-    eval "$pad.filemenu add cascade [me "&Edit"] \
-               -menu $pad.filemenu.edit "
+    eval "$pad.filemenu add cascade [me "&Edit"] -menu $pad.filemenu.edit "
     eval "$pad.filemenu.edit add command [me "&Undo"] \
-               -command {undo \[gettextareacur\]} -accelerator Ctrl+z"
+               [ca {undo [gettextareacur]}]"
     eval "$pad.filemenu.edit add command [me "&Redo"] \
-               -command {redo \[gettextareacur\]} -accelerator Ctrl+Z"
+               [ca {redo [gettextareacur]}]"
     $pad.filemenu.edit add separator
-    eval "$pad.filemenu.edit add command [me "Cu&t"] \
-               -command \"cuttext\" -accelerator Ctrl+x"
-    eval "$pad.filemenu.edit add command [me "&Copy"] \
-               -command \"copytext\" -accelerator Ctrl+c"
-    eval "$pad.filemenu.edit add command [me "&Paste"] \
-               -command \"pastetext\" -accelerator Ctrl+v"
-    eval "$pad.filemenu.edit add command [me "&Delete"] \
-               -command \"deletetext\" -accelerator Del"
+    eval "$pad.filemenu.edit add command [me "Cu&t"] [ca cuttext]"
+    eval "$pad.filemenu.edit add command [me "&Copy"] [ca copytext]"
+    eval "$pad.filemenu.edit add command [me "&Paste"] [ca pastetext]"
+    eval "$pad.filemenu.edit add command [me "&Delete"] [ca deletetext]"
     $pad.filemenu.edit add separator
-    eval "$pad.filemenu.edit add command [me "Select &All"] \
-               -command \"selectall\" -accelerator Ctrl+a"
+    eval "$pad.filemenu.edit add command [me "Select &All"] [ca selectall]"
     #    eval "$pad.filemenu.edit add command [me "Insert &Time/Date"] \
     #               -command \"printtime\" "
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "Co&mment selection"] \
-               -command \"CommentSel\" -accelerator Ctrl+m"
+               [ca CommentSel]"
     eval "$pad.filemenu.edit add command [me "U&ncomment selection"] \
-               -command \"UnCommentSel\" -accelerator Ctrl+M"
+               [ca UnCommentSel]"
     $pad.filemenu.edit add separator
     eval "$pad.filemenu.edit add command [me "&Indent selection"] \
-               -command \"IndentSel\" -accelerator Ctrl+d"
+               [ca IndentSel]"
     eval "$pad.filemenu.edit add command [me "Unin&dent selection"] \
-               -command \"UnIndentSel\" -accelerator Ctrl+D"
+               [ca UnIndentSel]"
 
     #search menu
     menu $pad.filemenu.search -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Search"] \
                -menu $pad.filemenu.search  "
     eval "$pad.filemenu.search add command [me "&Find..."] \
-               -command \"findtextdialog find\" -accelerator Ctrl+f"
-    eval "$pad.filemenu.search add command [me "Find &Next"] \
-               -command \"findnext\" -accelerator F3"
+               [ca {findtextdialog find}]"
+    eval "$pad.filemenu.search add command [me "Find &Next"] [ca findnext]"
     eval "$pad.filemenu.search add command [me "&Replace..."] \
-               -command \"findtextdialog replace\" -accelerator Ctrl+r"
-    eval "$pad.filemenu.search add command [me "&Goto Line..."] \
-               -command \"gotoline\" -accelerator Ctrl+g"
+               [ca {findtextdialog replace}]"
+    eval "$pad.filemenu.search add command [me "&Goto Line..."] [ca gotoline]"
 
     # exec menu
     menu $pad.filemenu.exec -tearoff 1 -font $menuFont
-    eval "$pad.filemenu add cascade [me "E&xecute"] \
-              -menu $pad.filemenu.exec "
+    eval "$pad.filemenu add cascade [me "E&xecute"] -menu $pad.filemenu.exec "
     eval "$pad.filemenu.exec add command [me "&Load into Scilab"] \
-              -command \"execfile\" -accelerator Ctrl+l"
+              [ca execfile]"
     eval "$pad.filemenu.exec add command [me "&Evaluate selection"] \
-              -command \"execselection\" -accelerator Ctrl+y"
+              [ca execselection]"
 
     #debug menu
+# debug menu entries have for now hardwired accelerators, because they are
+# handled elsewhere according to the debug state machine
+# Their bindings are not changed when switching style
     menu $pad.filemenu.debug -tearoff 1 -font $menuFont
-    eval "$pad.filemenu add cascade [me "&Debug"] \
-               -menu $pad.filemenu.debug "
+    eval "$pad.filemenu add cascade [me "&Debug"] -menu $pad.filemenu.debug "
     eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
                -command \"insertremove_bp\" -accelerator F9\
                -image menubutsetbptimage -compound left "
@@ -293,11 +283,31 @@ proc createmenues {} {
                 -variable lang -value $l -command relocalize"
         }
     }
+# feature temporary disabled as not yet 100% ok (see bindings/issues.txt)
+# REMOVE -state disabled to make this work
+    menu $pad.filemenu.options.bindings -tearoff 0 -font $menuFont
+    eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
+           -menu $pad.filemenu.options.bindings " \
+          -state disabled
+    set binddir [file join $sourcedir bindings]
+    set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
+    foreach m $BindFiles {
+        set l [file rootname $m]
+        # for some reason $l might be empty under cygwin
+        # this is probably due to the /cygdrive/ syntax for paths
+        if {$l != ""} {
+            eval "$pad.filemenu.options.bindings add radiobutton \
+                [me $l] \
+                -variable bindstyle -value $l -command \"rebind\""
+        }
+    }
 
     # window menu
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] \
          -font $menuFont
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
+# the bindings for the next 3 items need to invoke the item itself instead
+# of a proc -- therefore we leave them hardwired
     eval "$pad.filemenu.wind add command [me "&Maximize"] \
                -command \"maximizebuffer\" -accelerator Ctrl+1 "
     eval "$pad.filemenu.wind add command [me "&Split"] \
@@ -325,12 +335,10 @@ proc createmenues {} {
     menu $pad.filemenu.help -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Help"] \
                -menu $pad.filemenu.help "
-    eval "$pad.filemenu.help add command [me "&Help..."] \
-               -command \"helpme\" -accelerator F1"
-    eval "$pad.filemenu.help add command [me "&What's?..."] \
-               -command \"helpword\" -accelerator Ctrl+F1"
+    eval "$pad.filemenu.help add command [me "&Help..."] [ca helpme]"
+    eval "$pad.filemenu.help add command [me "&What's?..."] [ca helpword]"
     eval "$pad.filemenu.help add command [me "&About"] \
-               -command \"aboutme\" -accelerator Shift+F1"
+             -command aboutme -accelerator Shift+F1"
 ## additional hacker entries, some disabled for the moment
 # in case they become enabled, entries must be added in the msg files
      $pad.filemenu.help add separator
@@ -369,7 +377,7 @@ proc disablemenuesbinds {} {
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state disabled
-    bind $pad <Control-w> {}
+    binddisable $pad {closecur yesnocancel}
     # Windows menu entries
     set lasttoset 3
     for {set i 1} {$i<$lasttoset} {incr i} {
@@ -391,7 +399,7 @@ proc restoremenuesbinds {} {
     # File/Close
     set iClose [expr [GetFirstRecentInd] + $nbrecentfiles + 1]
     $pad.filemenu.files entryconfigure $iClose -state normal
-    bind $pad <Control-w> {closecur yesnocancel}
+    bindenable $pad {closecur yesnocancel}
     # Windows menu entries
     set lasttoset 3
     for {set i 1} {$i<$lasttoset} {incr i} {
@@ -522,5 +530,28 @@ proc showinfo_menu_wind {w} {
             }
         }
         showinfo $listoffile("$ta",fullname)
+    }
+}
+
+
+proc ca {menucommand} {
+#look up the bindings array to see if there is a binding defined
+# for the given command, and in case generate a -command -accelerator pair
+    set event [findbinding $menucommand]
+    if {$event == ""} {
+       return "-command \"$menucommand\""
+    } else {
+        regsub -all {Control} $event {Ctrl} kevent
+        regsub -all {underscore} $kevent {_} kevent
+        regsub -all {backslash} $kevent {\\\\} kevent
+        regsub -all {slash} $kevent {/} kevent
+        regsub -all {percent} $kevent {%} kevent
+        regsub -all {exclam} $kevent {!} kevent
+        regsub -all {Key-} $kevent {} kevent
+        regsub -all {\-} $kevent {+} kevent
+        regsub -all {><} $kevent { } kevent
+        regsub {>\Z} $kevent {} kevent
+        regsub {\A<} $kevent {} kevent
+        return "-command \"$menucommand\" -accelerator \"$kevent\""
     }
 }
