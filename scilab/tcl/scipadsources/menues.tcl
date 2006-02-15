@@ -287,8 +287,7 @@ proc createmenues {} {
 # REMOVE -state disabled to make this work
     menu $pad.filemenu.options.bindings -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
-           -menu $pad.filemenu.options.bindings " \
-          -state disabled
+           -menu $pad.filemenu.options.bindings " -state disabled
     set binddir [file join $sourcedir bindings]
     set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
     foreach m $BindFiles {
