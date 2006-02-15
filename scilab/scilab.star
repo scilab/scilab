@@ -63,7 +63,7 @@ load('SCI/macros/xdess/lib')
 load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
 load('SCI/macros/time/lib')
-if %pvm then load('SCI/macros/pvm/lib'),end
+load('SCI/macros/pvm/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
 SCI=getenv('SCI');
