@@ -480,7 +480,7 @@ function gener_hh(dirs,titles)
 			"                <LI><OBJECT type=""text/sitemap"">";
 			"                    <param name=""Local"" value="""+ name(k)+"whatis.htm"">";
 			"                    <param name=""Name"" value="""+ titles(k)+""">";
-			"                    <param name=""ImageNumber"" value=""11"">";
+			"                    <param name=""ImageNumber"" value=""1"">";
 			"                    </OBJECT>"];
 	end
 	
@@ -489,6 +489,14 @@ function gener_hh(dirs,titles)
 		"    <HEAD>";
 		"    </HEAD>";
 		"    <BODY>";
+		"      <OBJECT type=""text/site properties"">";
+		"        <param name=""FrameName"" value=""right"">";
+		"        <param name=""ImageType"" value=""Folder"">";
+		"        <param name=""Window Styles"" value=""0xC01627"">";
+		"        <param name=""Foreground"" value=""0xFFD5D5"">";
+		"        <param name=""Background"" value=""0xFFD5D5"">";
+		"        <param name=""Font"" value=""Palatino Linotype,10,0"">";
+		"      </OBJECT>";
 		"        <UL>";
 		"            <LI><OBJECT type=""text/sitemap"">";
 		"                     <param name=""Name"" value=""Scilab documentation"">";
@@ -506,20 +514,28 @@ function gener_hh(dirs,titles)
 	// produce a scilab.hhp file 
 	//------------------------------------------------------------------------------------------
        
+	// Get the index.htm path
+	
+	if ( strindex(base(1),'\eng\') <> [] ) then
+		index_path = pathconvert(getlongpathname(SCI)+'/man/eng',%t,%f,'w');
+	elseif ( strindex(base(1),'\fr\') <> [] ) then
+		index_path = pathconvert(getlongpathname(SCI)+'/man/fr',%t,%f,'w');
+	end
+	
 	head=["[OPTIONS]";
-		"Compatibility=1.1";
+		"Compatibility=1.1 or later";
 		"Compiled file=sciman.chm";
 		"Contents file=sciman.hhc";
 		"Default Window=sciman";
-		"Default topic=index.htm";
-		"Display compile progress=No";
+		"Default topic="+index_path+"index.htm";
+		"Display compile progress=Yes";
 		"Full-text search=Yes";
 		"Index file=sciman.hhk";
 		"Language=0x409"; 
 		"Title=Scilab Documentation";
 		"";
 		"[WINDOWS]";
-		"sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"",""index.htm"",""index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
+		"sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"","""+index_path+"index.htm"","""+index_path+"index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
 		"";
 		"[FILES]"];
 
@@ -528,4 +544,3 @@ function gener_hh(dirs,titles)
 	mputl([head;items],'sciman.hhp')  
 
 endfunction
-
