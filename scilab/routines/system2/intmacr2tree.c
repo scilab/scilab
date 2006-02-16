@@ -470,6 +470,11 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     CreateCsteTList("emptymatrix",data,index);
     break;
   case 5: /* Operations */
+    if(data[*index+2]==0) 
+      {
+        *index +=3;
+        break;
+      }
     CreateOperationTList(data,index);
     break;
   case 6: /* Number */
