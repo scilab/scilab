@@ -27,7 +27,7 @@ function show_startupinfo()
 		      " "
 		      "Please read the release_notes file for more details."
 		      " "
-		      "Click ""Yes"" if you do not want to see this warning any more"]
+		      "Click ""Yes"" if you don''t wish anymore to see this warning."]
     Buttons=['Yes','No']
   end
   if ~MSDOS  then
