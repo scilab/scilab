@@ -1,0 +1,17 @@
+The purpose of this contribution is to emulate the Matlab mexfile
+mechanism for people too lazy/busy to learn the Scilab dynamic
+link interfacing mechanism...
+
+Only the most useful functions have been emulated. 
+
+See SCIDIR/routines/default/mexlib.c for additional info and
+in particular the list of emulated mx functions.
+
+-------------------------------------------------------
+To build and load the shared library enter 
+	--> exec cmex.sce 
+	at scilab prompt 
+	
+-------------------------------------------------------
+jpc and fd 
+update INRIA 2006 A.C
