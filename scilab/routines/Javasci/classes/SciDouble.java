@@ -3,7 +3,7 @@ package javasci ;
 /* Allan CORNET */
 /* INRIA 2006 */
 /********************************************************************************************************/
-public class SciDouble
+public class SciDouble implements java.io.Serializable  
 {
 /********************************************************************************************************/
   private SciDoubleArray pObjSciDouble;

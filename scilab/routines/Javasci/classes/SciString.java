@@ -3,7 +3,7 @@ package javasci ;
 /* Allan CORNET */
 /* INRIA 2006 */
 /********************************************************************************************************/
-public class SciString
+public class SciString implements java.io.Serializable  
 {
 /********************************************************************************************************/
   private SciStringArray pObjSciString;
