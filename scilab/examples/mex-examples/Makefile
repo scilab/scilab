@@ -26,7 +26,7 @@ clean::
 		$(MAKE) $(MFLAGS) clean); \
 	done
 
-TEST_SUBDIRS =  cmex
+TEST_SUBDIRS = 
 
 tests::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
