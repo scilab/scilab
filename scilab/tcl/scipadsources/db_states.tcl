@@ -191,9 +191,11 @@ if {$dev_debug=="true"} {
 
 proc getdebuggersciancillaries_bp {} {
     global env
-    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""
-    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatWhereForDebugWatch.sci\""
-    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/ext_exists.sci\""
+    ScilabEval_lt "db_funcprotscheme=funcprot();funcprot(0)" "seq"
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\"" "seq"
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatWhereForDebugWatch.sci\"" "seq"
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/ext_exists.sci\"" "seq"
+    ScilabEval_lt "funcprot(db_funcprotscheme)" "seq"
 }
 
 proc setdbstatevisualhints_bp {} {

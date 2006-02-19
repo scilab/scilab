@@ -1,9 +1,15 @@
 proc deletetext {} {
-# cut text procedure
+# cut text procedure (delete key hit, i.e. erases the character
+# at the right of the cursor)
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
+    set oldSeparator [$textareacur cget -autoseparators]
+    if {$oldSeparator} {
+        $textareacur configure -autoseparators 0
+        $textareacur edit separator
+    }
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]] \
             == $textareacur} {
@@ -22,19 +28,30 @@ proc deletetext {} {
     set dnlimit [getendofcolorization $textareacur $i1]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
+    backgroundcolorizeuserfun
     reshape_bp
     $textareacur see insert
+    if {$oldSeparator} {
+        $textareacur edit separator
+        $textareacur configure -autoseparators 1
+    }
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
 }
 
 proc backspacetext {} {
-# cut text procedure
+# cut text procedure (backspace key hit, i.e. erases the character
+# at the left of the cursor)
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
+    set oldSeparator [$textareacur cget -autoseparators]
+    if {$oldSeparator} {
+        $textareacur configure -autoseparators 0
+        $textareacur edit separator
+    }
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length $textareacur]-1]]\
              == $textareacur} {
@@ -53,8 +70,13 @@ proc backspacetext {} {
     set dnlimit [getendofcolorization $textareacur $i1]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
+    backgroundcolorizeuserfun
     reshape_bp
     $textareacur see insert
+    if {$oldSeparator} {
+        $textareacur edit separator
+        $textareacur configure -autoseparators 1
+    }
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
@@ -73,6 +95,7 @@ proc cuttext {} {
     set dnlimit [getendofcolorization $textareacur $i1]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
+    backgroundcolorizeuserfun
     selection clear
     reshape_bp
     $textareacur see insert
@@ -109,6 +132,7 @@ proc pastetext {} {
     set dnlimit [getendofcolorization $textareacur $i2]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
+    backgroundcolorizeuserfun
     reshape_bp
     $textareacur see insert
     if {$oldSeparator} {
@@ -123,7 +147,7 @@ proc pastetext {} {
 proc button2copypaste {w x y} {
 ##ES 16/11/04 -- we have to write a full proc for this because we need
 # to take care of colorization, insert only when editable, etc
-    global textareacur listoffile buffermodifiedsincelastsearch
+    global textareacur listoffile
     if {[IsBufferEditable] == "No"} {return}
     if {[catch {selection get}] == 0} {
         set listoffile("$textareacur",redostackdepth) 0
@@ -133,7 +157,6 @@ proc button2copypaste {w x y} {
         selection clear
         $w mark set insert @$x,$y
         pastetext
-        set buffermodifiedsincelastsearch true
     }
 #there is still one glitch - the cursor returns at the beginning
 # of the insertion point (why?) - but not on windows !

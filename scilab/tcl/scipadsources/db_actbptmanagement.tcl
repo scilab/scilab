@@ -15,21 +15,9 @@ proc updateactivebreakpoint { {itemno 3} } {
 
 proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
 # Show the active breakpoint
-# This is done by fooling proc dogotoline
-    global physlogic linetogo curfileorfun funtogoto
+# This is done by using proc dogotoline
     removeallactive_bp
     if {$activemacro == ""} {return}
-    if {![info exists physlogic]} {
-        # go to line dialog was never opened before
-        set flag "undefined"
-    } else {
-        # save current values so that they will stay when the user reopens the go to line dialog
-        set flag "they_exist"
-        set temp1 $physlogic
-        set temp2 $linetogo
-        set temp3 $curfileorfun
-        set temp4 $funtogoto
-    }
     set fundefs [getallfunsinalltextareas]
     set funtogoto ""
     foreach {ta fundefsinta} $fundefs {
@@ -40,21 +28,10 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
             }
         }
     }
-    set physlogic "logical"
-    set linetogo $activeline
-    set curfileorfun "function"
     if {$funtogoto != ""} {
-        dogotoline
+        dogotoline "logical" $activeline "function" $funtogoto
         set actpos [[lindex $funtogoto 1] index insert]
         [lindex $funtogoto 1] tag add activebreakpoint "$actpos linestart" "$actpos lineend"
-    }
-    if {$flag == "undefined"} {
-        unset physlogic linetogo curfileorfun funtogoto
-    } else {
-        set physlogic $temp1
-        set linetogo $temp2
-        set curfileorfun $temp3
-        set funtogoto $temp4
     }
 }
 

@@ -55,8 +55,6 @@ if { [info exists pad] } {
 
     createmenues
 
-    setfontscipad $FontSize
-
     # set initial debug state
     setdbstate "NoDebug"
 

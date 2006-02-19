@@ -738,6 +738,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     set uplimit [getstartofcolorization $textarea $mpos]
     set dnlimit [getendofcolorization $textarea $mpos]
     colorize $textarea $uplimit $dnlimit
+    backgroundcolorizeuserfun
     $textarea mark set insert $mpos
     foreach ta $listoftextarea {
         # this must be done for each ta, not only for $textarea

@@ -12,6 +12,8 @@ Bugs:
     invisibletextquoted for Scilab function detection within buffers, in
     other words, separate the strings detection from their colorization
 
+-proc blinkbrace blinks even if the brackets/braces are quoted, e.g. "[" "]"
+
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
@@ -21,7 +23,7 @@ Bugs:
 -When two buffers are opened containing the same function (or function name) to
  debug, then the wrong buffer may become the active one to show the active
  breakpoint - same issue in configureexec: if a function is defined in more
- than one buffer, proc checkarglist may detect the wrong one and prevent
+ than one buffer, proc checkarglist may detect the wrong one and prevents
  correct configuration of the debugger
 
 -When a function definition line ends with a comment, the line numbering is
@@ -38,6 +40,9 @@ Bugs:
  In scipad, a=1 is on line 1; for scilab it is on line 2 of function foo
  Also related to bug 1469 - better wait for clarification on this one instead
  of working around Scilab parser bugs
+
+-Colorization of undone text removal is sometimes missing. Well, I had this
+ once but could not reproduce. Any repeatable case?
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -248,18 +253,19 @@ Wishes:
 
 -detect duplicate/missing underlines detection in the message files
 
--get the names of all the functions defined in
- the opened buffers, make their list a keyword list. Colorize them
- accordingly (does it need a 2nd pass colorization run? then better not).
- Integrate "Open source of...", Ctrl-/ and the like with them (here it is
- a matter of making order, as the functionality already exists in Goto
- line/in function). The idea would have the drawback that those keywords
- can be colorized or not depending on their defining buffer being opened
- or not, but I think it could be useful nevertheless when opening those
- files defining several ancillaries
-
 -Improve further the regexps for continued lines detection, the goal being
  to detect only legal (in the Scilab parser sense) continued lines.
 
 -Emacs bindings in Scipad. Proposed list is at:
 http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0807b11fb118ab/9fe94a45d23f92fe
+
+-Add a function "Beautify code" for Scilab schemes: (optionally) suppress
+ tabs, and reindents according to keywords (if, function, while, for...)
+
+-Add a "Save all" command (saves modified buffers only), perhaps the "Save"
+ command in the file menu could be changed to "Save all" when this menu is
+ clicked when the shift key is down (but what about alt bindings then?)
+
+-Visual indicator somewhere indicating that at least one buffer is modified
+ Useful in tile mode when a buffer is modified and focus is in an unmodified
+ buffer

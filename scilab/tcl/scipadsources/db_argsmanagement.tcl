@@ -226,6 +226,8 @@ proc quickAddWatch_bp {watchvar} {
     }
     if {$watchalreadyopen == "false"} {
         showwatch_bp
+    } else {
+        wm deiconify $watch
     }
     set argname $watchvar
     # set value to "" so that OKadda_bp will get it from the shell

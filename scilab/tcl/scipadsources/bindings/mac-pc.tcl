@@ -35,7 +35,7 @@ sbind Entry <Control-x> [bind Entry <<Cut>>]
 sbind Entry <Control-c> [bind Entry <<Copy>>]
 sbind Entry <Control-v> [bind Entry <<Paste>>]
 
-sbind Text <Control-/> ""
+sbind Text <Control-slash> ""
 sbind $pad <Control-a> {selectall}
 
 

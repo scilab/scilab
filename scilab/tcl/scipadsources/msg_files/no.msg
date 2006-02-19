@@ -347,7 +347,7 @@
 ::msgcat::mcset no "&Colors" "&Farger"
 ::msgcat::mcset no "Colorize \'&strings\'" "Fargelegg \'&strenger\'"
 ::msgcat::mcset no "Show c&ontinued lines" "Vis forlengede linjer"
-::msgcat::mcset no "Word &Wrap" "&Brekk linjer"
+::msgcat::mcset no "Word &wrap" "&Brekk linjer"
 ::msgcat::mcset no "&Tabs and indentation" "Tabulering og &innrykk"
 ::msgcat::mcset no "Tab inserts &spaces" "Tabulering til mellomrom"
 ::msgcat::mcset no "&Indentation spaces" "&Innrykksmellomrom"

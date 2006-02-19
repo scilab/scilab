@@ -213,11 +213,13 @@ proc montretext {textarea} {
         packbuffer $textarea
     }
     focustextarea $textarea
+    backgroundcolorizeuserfun
 }
 
 proc focustextarea {textarea} {
 # Set all the settings such that $textarea becomes the current one
-    global pad Scheme listoffile textareaid
+    global pad Scheme ColorizeIt listoffile textareaid
+    global buffermodifiedsincelastsearch
 
     # clear the selection when leaving a buffer
     set oldta [gettextareacur]
@@ -232,10 +234,12 @@ proc focustextarea {textarea} {
     focus $textarea
     keyposn $textarea
     set Scheme $listoffile("$textarea",language)
+    set ColorizeIt $listoffile("$textarea",colorize)
     schememenus $textarea
     highlighttextarea $textarea
     TextStyles $textarea
     set textareaid [scan $textarea $pad.new%d]
+    set buffermodifiedsincelastsearch true
 }
 
 proc maximizebuffer {} {
@@ -362,6 +366,7 @@ proc splitwindow {neworient {tatopack ""}} {
         focustextarea $newta
     }
 
+    backgroundcolorizeuserfun
     restoremenuesbinds
 }
 
@@ -377,6 +382,7 @@ proc createnewtextarea {} {
     set listoffile("$pad.new$winopened",new) 1
     set listoffile("$pad.new$winopened",thetime) 0
     set listoffile("$pad.new$winopened",language) "scilab"
+    setlistoffile_colorize "$pad.new$winopened" ""
     set listoffile("$pad.new$winopened",readonly) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
@@ -1074,18 +1080,26 @@ proc updateOKbuttonstategoto {w {entryfieldvalue "not_given"}} {
     return 1
 }
 
-proc dogotoline {} {
+proc dogotoline {{physlogic_ "useglobals"} {linetogo_ ""} {curfileorfun_ ""} {funtogoto_ ""}} {
 # Actually perform a go to line number ... taking into account all the possible
 # choices from the user in the dialog box. These choices are known by the four
 # global variables below (this is required and sufficient)
 
     global physlogic linetogo curfileorfun funtogoto
 
-    if {$curfileorfun == "current_file"} {
-        if {$physlogic == "physical"} {
+    # if no input parameter is given, use the globals
+    if {$physlogic_ == "useglobals"} {
+        set physlogic_ $physlogic
+        set linetogo_ $linetogo
+        set curfileorfun_ $curfileorfun
+        set funtogoto_ $funtogoto
+    }
+
+    if {$curfileorfun_ == "current_file"} {
+        if {$physlogic_ == "physical"} {
             # go to physical line in current file
             set ta [gettextareacur]
-            $ta mark set insert "$linetogo.0"
+            $ta mark set insert "$linetogo_.0"
             catch {keyposn $ta}
             $ta see insert
 
@@ -1097,7 +1111,7 @@ proc dogotoline {} {
             set offset 0
             set curphysline 1.0
             set curlogicline $curphysline
-            while {$linetogo != $curlogicline && [$ta compare $curphysline < $endpos]} {
+            while {$linetogo_ != $curlogicline && [$ta compare $curphysline < $endpos]} {
                 incr offset
                 set curphysline [$ta index "$offset.0"]
                 set contlines [countcontlines $ta 1.0 $curphysline]
@@ -1110,27 +1124,27 @@ proc dogotoline {} {
         }
 
     } else {
-        if {$physlogic == "physical"} {
+        if {$physlogic_ == "physical"} {
             # go to physical line in function
-            set textarea [lindex $funtogoto 1]
-            set absoluteline [$textarea index "[lindex $funtogoto 2] + 1c + $linetogo lines -1l"]
+            set textarea [lindex $funtogoto_ 1]
+            set absoluteline [$textarea index "[lindex $funtogoto_ 2] + 1c + $linetogo_ lines -1l"]
             # check that the end of the function is after the position to go to
             set infun [whichfun $absoluteline $textarea]
             if {$infun == {}} {
                 # target line is before function definition line - should never happen since
                 # negative or null line numbers are forbidden in the entry widget!
                 showinfo [mc "Outside of function definition"]
-                set absoluteline [$textarea index [lindex $funtogoto 2]]
+                set absoluteline [$textarea index [lindex $funtogoto_ 2]]
             } else {
                 # target line is after the beginning of the function definition
-                if {[lindex $infun 0] != [lindex $funtogoto 0]} {
+                if {[lindex $infun 0] != [lindex $funtogoto_ 0]} {
                     # target line is after the end of the function definition,
                     # we will jump to the start of the function definition instead
                     showinfo [mc "Outside of function definition"]
-                    set absoluteline [$textarea index [lindex $funtogoto 2]]
+                    set absoluteline [$textarea index [lindex $funtogoto_ 2]]
                 } else {
                     # target position is between function and endfunction lines (inclusive)
-                    set absoluteline [$textarea index "[lindex $funtogoto 2] + $linetogo lines -1l"]
+                    set absoluteline [$textarea index "[lindex $funtogoto_ 2] + $linetogo_ lines -1l"]
                 }
             }
             montretext $textarea
@@ -1140,17 +1154,17 @@ proc dogotoline {} {
 
         } else {
             # go to logical line in function
-            set textarea [lindex $funtogoto 1]
-            set funstart [lindex $funtogoto 2]
+            set textarea [lindex $funtogoto_ 1]
+            set funstart [lindex $funtogoto_ 2]
             set infun [whichfun [$textarea index "$funstart + 1c"] $textarea]
             set offset 0
             # <TODO> This while loop could be improved (proc whichfun takes time to execute)
-            # Its purpose is to make the line number in the buffer correspond to $linetogo
-            while {$infun != "" && [lindex $infun 1] != $linetogo} {
+            # Its purpose is to make the line number in the buffer correspond to $linetogo_
+            while {$infun != "" && [lindex $infun 1] != $linetogo_} {
                 incr offset
                 set infun [whichfun [$textarea index "$funstart + $offset l"] $textarea]
             }
-            if {[lindex $infun 0] == [lindex $funtogoto 0]} {
+            if {[lindex $infun 0] == [lindex $funtogoto_ 0]} {
                 # target logical line is between function and endfunction
                 set targetline [$textarea index "$funstart + $offset l"]
             } else {

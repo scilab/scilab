@@ -36,6 +36,7 @@ proc undoredo {textarea action} {
     set uplimit [getstartofcolorization $textarea $i1]
     set dnlimit [getendofcolorization $textarea $i2]
     colorize $textarea $uplimit $dnlimit
+    backgroundcolorizeuserfun
     reshape_bp
     keyposn $textarea
     set buffermodifiedsincelastsearch true

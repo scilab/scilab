@@ -41,25 +41,48 @@ proc showpopupfont {} {
 }
 
 proc showpopupsource {ind} {
-    global pad textareacur menuFont
+    global pad textareacur menuFont words
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     catch {destroy $pad.popsource}
-    if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
-    set lrange [$textareacur tag prevrange libfun "$ind+1c"]
-    if {$lrange==""} {set lrange [$textareacur tag nextrange libfun $ind]}
+    set tagname ""
+    if {[lsearch [$textareacur tag names $ind] "libfun"] != -1} {
+        set tagname libfun
+    } elseif {[lsearch [$textareacur tag names $ind] "scicos"] != -1} {
+        set tagname scicos
+    } elseif {[lsearch [$textareacur tag names $ind] "userfun"] != -1} {
+        set tagname userfun
+    } else {
+        return
+    }
+    set lrange [$textareacur tag prevrange $tagname "$ind+1c"]
+    if {$lrange==""} {set lrange [$textareacur tag nextrange $tagname $ind]}
     set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         if {$curterm!=""} {
-            set sourcecommand "scipad(get_function_path(\"$curterm\"))"
+            if {$tagname == "userfun"} {
+                set nameinitial [string range $curterm 0 0]
+                set candidates $words(scilab.$tagname.$nameinitial)
+                for {set i 0} {$i<[llength $candidates]} {incr i} {
+                    if {[lindex [lindex $candidates $i] 0] == $curterm} {
+                        set plabel [concat [mc "Jump to"] $curterm ]
+                        set sourcecommand \
+                            "dogotoline \"physical\" 1 \"function\" [list [lindex $candidates $i]]"
+                        break
+                    }
+                }
+            } else {
+                # scicos or libfun
+                set plabel [concat [mc "Open the source of"] $curterm ]
+                set sourcecommand \
+                    "ScilabEval_lt scipad(get_function_path(\"$curterm\"))"
+            }
             menu $pad.popsource -tearoff 0 -font $menuFont
-            set plabel [concat [mc "Open the source of"] $curterm ]
-            $pad.popsource add command -label $plabel\
-              -command "ScilabEval_lt $sourcecommand"
-        }
+            $pad.popsource add command -label $plabel -command $sourcecommand
+            tk_popup $pad.popsource $numx $numy
+       }
     }
-    tk_popup $pad.popsource $numx $numy
 }
 
 proc showpopupdebugwsel {watchvar} {

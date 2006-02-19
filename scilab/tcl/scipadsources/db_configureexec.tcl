@@ -240,13 +240,29 @@ proc OKconf_bp {w} {
     global funnameargs
     set funname [$spin get]
     if {$funname != ""} {
-        set orderOK [checkarglist $funname]
-        if {$orderOK == "true"} {
+        foreach {parametersOK varargincase} [checkarglist $funname] {}
+        if {$parametersOK == "true"} {
             set strargs ""
             for {set i 0} {$i < [$listboxinput size]} {incr i} {
                 set argvalue [$listboxinputval get $i]
-                if {$argvalue == ""} break
-                set strargs "$strargs,$argvalue"
+# <TODO> If the user configures the debugger successfully and then
+#        "switches the varargin mode" by adding or removing the
+#        keyword varargin as last argument of the function to debug
+#        and then relaunches the debugger, the funnameargs string
+#        becomes wrong - this string should be reconstructed on each
+#        debug session launch, i.e. on F11, and not on closure of the
+#        configure box
+                if {$varargincase} {
+                    # parameters are passed by value, possibly empty
+                    # e.g. foo(1,2,,,9) - strargs will be 1,2,,,9
+                    set strargs "$strargs,$argvalue"
+                } else {
+                    # parameters are passed by name, no empty value
+                    # e.g. foo(c=1,a=2,k=9) - strargs will be c=1,a=2,k=9
+                    if {$argvalue == ""} continue
+                    set argname [$listboxinput get $i]
+                    set strargs "$strargs,$argname=$argvalue"
+                }
             }
             set strargs [string range $strargs 1 end]
             set funnameargs "$funname\($strargs\)"
@@ -266,6 +282,7 @@ proc checkarglist {funname} {
 # Because the user could add input variables (in the text buffer) to the
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
+    global conf
     global listoftextarea funvars funvarsvals
     global funlineREpat1 funlineREpat2
 
@@ -278,12 +295,15 @@ proc checkarglist {funname} {
     set pat {}
     append pat $funlineREpat1 {(?:} $escfunname {)} $funlineREpat2
 
-    set orderOK "false"
+    set varargincase false
+    set parametersOK "false"
     set found "false"
     foreach textarea $listoftextarea {
         set allfun [regexp -all -inline -indices -- $pat [$textarea get "1.0" end]]
-# <TODO>: if the above returns more than one match that is not in a coment
-#         nor in a string, result of checkarglist can be wrong
+# <TODO>: if the above returns more than one match that is not in a comment
+#         nor in a string, result of checkarglist can be wrong - currently the
+#         last match is used (more precisely the last match of the last buffer
+#         that contains a match)
         if {$allfun == ""} {
             # have a look in another buffer
             continue
@@ -294,25 +314,50 @@ proc checkarglist {funname} {
             if {[lsearch [$textarea tag names $star] "textquoted"] == -1 && \
                 [lsearch [$textarea tag names $star] "rem2"] == -1 } {
                 set found "true"
-                # whichfun trims continued lines and comments
-                set infun [whichfun [$textarea index "$star +1c"] $textarea]
-                set funline [lindex $infun 2]
+                set stop [$textarea index "1.0 + $j c + 1 c"]
+                set funline [$textarea get $star $stop]
+                set funline [trimcontandcomments $funline]
                 set oppar [string first "\(" $funline]
                 set clpar [string first "\)" $funline]
                 set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
                 set listvars [string map {, " "} $listvars]
+                set parametersOK "true"
                 set orderOK "true"
-                set i 0
-                foreach var $funvars($funname) {
-                    if {[lindex $listvars $i] == "varargin" || \
-                        $funvarsvals($funname,$var) == "" } {
-                        break
+                foreach {varargincase listvars} [hasvarargin $listvars] {}
+                if {$varargincase} {
+                    # (true) varargin case
+                    # arguments order DOES matter because they will be passed
+                    # by value when running a debug session
+                    # compare var list of the function line in the textarea
+                    # with the dialog content
+                    set i 0
+                    foreach var $listvars {
+                        if {$var != [lindex $funvars($funname) $i]} {
+                            set orderOK "false"
+                            set parametersOK "false"
+                            break
+                        } else {
+                            incr i
+                        }
                     }
-                    if {$var != [lindex $listvars $i]} {
-                        set orderOK "false"
-                        break
-                    } else {
-                        incr i
+                } else {
+                    # not in varargin case
+                    # arguments order DOES NOT matter because they will be passed
+                    # by name when running a debug session
+                    # compare var list of the dialog content with the function
+                    # line in the textarea
+                    foreach var $funvars($funname) {
+                        if {[lsearch -exact $listvars $var] == -1} {
+                            # the variable name from the dialog does not appear in
+                            # the parameters list of the function definition
+                            # Scilab accepts this even outside of the varargin
+                            # case but I believe it shouldn't (this is bug 1828),
+                            # therefore the debugger will not run in this case
+                            # moreover, giving more arguments than expected is
+                            # error 58 in Scilab (varargin is not used here)
+                            set parametersOK "false"
+                            break
+                        }
                     }
                 }
             }
@@ -321,19 +366,28 @@ proc checkarglist {funname} {
     if {$found == "false"} {
         tk_messageBox -message [concat [mc "The selected function has not been found in the opened files, maybe it was deleted since last configuration of the debugger.\nUse button \""] \
                                        [mc "Obtain"] \
-                                       [mc "\" to refresh the list of available functions."] ]
+                                       [mc "\" to refresh the list of available functions."] ] \
+                      -parent $conf
     } else {
-        if {$orderOK != "true" } {
-            set mes [concat [mc "Function name or input arguments do not match definition\
-                     of the function"] $funname [mc "in the file!\n\nCheck function\
-                     name and arguments (names, order) in the configuration dialog.\
-                     \nArguments order can be changed using drag and drop with\
-                     right mouse button in the arguments listbox."] ]
-            set tit [mc "Error in selected function name or arguments"]
-            tk_messageBox -message $mes -icon warning -title $tit
+        if {$parametersOK != "true" } {
+            if {$orderOK == "false"} {
+                set mes [concat [mc "Function name or input arguments do not match definition\
+                         of the function"] $funname [mc "in the file!\n\nCheck function\
+                         name and arguments (names, order) in the configuration dialog.\
+                         \nArguments order can be changed using drag and drop with\
+                         right mouse button in the arguments listbox."] ]
+                set tit [mc "Error in selected function name or arguments"]
+                tk_messageBox -message $mes -icon warning -title $tit -parent $conf
+            } else {
+                set mes [concat [mc "At least one input argument does not match definition\
+                         of the function"] $funname [mc "in the file!\n\nCheck function\
+                         arguments (their names) in the configuration dialog."] ]
+                set tit [mc "Error in selected function arguments"]
+                tk_messageBox -message $mes -icon warning -title $tit -parent $conf
+            }
         }
     }
-    return $orderOK
+    return [list $parametersOK $varargincase]
 }
 
 #proc Cancelconf_bp {w} {
@@ -372,11 +426,8 @@ proc Obtainall_bp {} {
             set clpar [string first "\)" $funline]
             set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
             set listvars [string map {, " "} $listvars]
+            foreach {varargincase listvars} [hasvarargin $listvars] {}
             foreach var $listvars {
-                if {$var == "varargin"} {
-                    set listvars [lreplace $listvars [lsearch $listvars "varargin"] end]
-                    break
-                }
                 set funvarsvals($funname,$var) ""
             }
             set funvars($funname) $listvars
@@ -393,4 +444,28 @@ proc Obtainall_bp {} {
     }
     spinboxbuttoninvoke
     $listboxinput see 0
+}
+
+proc hasvarargin {arglist} {
+    if {[lindex $arglist end] == "varargin"} {
+        # varargin as the last element of the input arguments
+        # has a special meaning (see help varargin)
+        set hasvarin true
+        set arglist [lreplace $arglist end end]
+        # however, if varargin also appears a second time before the last
+        # argument, then this varargin is a normal argument and the last
+        # varargin is ignored by Scilab
+        if {[lsearch $arglist "varargin"] != -1} {
+            set hasvarin false
+        }
+        # in any case when varargin is the last element, the returned
+        # argument list has no varargin as last element
+    } else {
+        # either no argument has "varargin" as name, or varargin
+        # is not the last argument - in this case varargin is a
+        # normal variable and has no special meaning
+        set hasvarin false
+        # the returned argument list is what was given as input
+    }
+    return [list $hasvarin $arglist]
 }

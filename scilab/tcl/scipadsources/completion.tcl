@@ -35,6 +35,15 @@ proc getcompletions {tok {mode ""}} {
             set candidates \
                 $words($mode.$tag.[string index $chset($mode.$tag) $indofinitial])
             set complfound {}
+            if {$tag == "userfun"} {
+                # special case : $words($mode.$tag) does not only contain
+                # the functions names, therefore $candidates shall be reworked
+                set funcand {}
+                foreach elt $candidates {
+                    lappend funcand [lindex $elt 0]
+                }
+                set candidates $funcand
+            }
             foreach cand $candidates {
                 if {[string match "$tok*" $cand]} {
                     # beginning of candidate keyword matches the token
@@ -158,6 +167,7 @@ proc popup_completions {} {
                 predef  {set col $PDEFCOLOR}
                 libfun  {set col $LFUNCOLOR}
                 scicos  {set col $SCICCOLOR}
+                userfun {set col $USERFUNCOLOR}
                 default {set col black ;# shouldn't happen}
             }
             $pad.popcompl tag configure $tag \
@@ -465,6 +475,15 @@ proc gettagfromkeyword {keyw} {
             # therefore $keyw cannot be tagged with $tag
         } else {
             set candidates $words($mode.$tag.$tokinitial)
+            if {$tag == "userfun"} {
+                # special case : $words($mode.$tag) does not only contain
+                # the functions names, therefore $candidates shall be reworked
+                set funcand {}
+                foreach elt $candidates {
+                    lappend funcand [lindex $elt 0]
+                }
+                set candidates $funcand
+            }
             foreach cand $candidates {
                 if {$keyw == $cand} {
                     return $tag

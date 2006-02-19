@@ -149,3 +149,21 @@ proc UnIndentSel {} {
     }
     set buffermodifiedsincelastsearch true
 }
+
+proc updatedoubleclickscheme {} {
+    global doubleclickscheme tcl_wordchars tcl_nonwordchars
+    global tcl_wordchars_linux tcl_nonwordchars_linux
+    global tcl_wordchars_windows tcl_nonwordchars_windows 
+    global tcl_wordchars_scilab tcl_nonwordchars_scilab
+    if {$doubleclickscheme == "Linux"} {
+        set tcl_wordchars $tcl_wordchars_linux
+        set tcl_nonwordchars $tcl_nonwordchars_linux
+    } elseif {$doubleclickscheme == "Windows"} {
+        set tcl_wordchars $tcl_wordchars_windows
+        set tcl_nonwordchars $tcl_nonwordchars_windows
+    } else {
+        # "Scilab"
+        set tcl_wordchars $tcl_wordchars_scilab
+        set tcl_nonwordchars $tcl_nonwordchars_scilab
+    }
+}

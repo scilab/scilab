@@ -65,6 +65,10 @@
 #       If colorization is in progress, this is the progressbar identifier
 #       Otherwise it's an empty string
 #
+#     listoffile("$ta",colorize)
+#       true: file gets colorized
+#       false: no colorization for this file
+#
 #   The windows menu entries are radionbuttons, with the following
 #   properties:
 #     -value is $winopened
@@ -94,6 +98,7 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",new) 1
     set listoffile("$pad.new$winopened",thetime) 0
     set listoffile("$pad.new$winopened",language) "scilab"
+    setlistoffile_colorize "$pad.new$winopened" ""
     set listoffile("$pad.new$winopened",readonly) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
@@ -118,8 +123,6 @@ proc closecur { {quittype yesno} } {
     global tileprocalreadyrunning
     if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
-    removescilabbuffer_bp "with_output" [gettextareacur]
-    removefuns_bp [gettextareacur]
     set outvalue [closefile [gettextareacur] $quittype]
     catch {restoremenuesbinds} ; # catched because otherwise pad is unknown after last buffer close
     return $outvalue
@@ -152,6 +155,8 @@ proc byebye {textarea} {
     global listoftextarea listoffile
     global pad FirstBufferNameInWindowsMenu pwframe
     if { [llength $listoftextarea] > 1 } {
+        removescilabbuffer_bp "with_output" $textarea
+        removefuns_bp $textarea
         focustextarea $textarea
         # delete the textarea entry in the listoftextarea
         set listoftextarea [lreplace $listoftextarea [lsearch \
@@ -166,6 +171,7 @@ proc byebye {textarea} {
         unset listoffile("$textarea",new)
         unset listoffile("$textarea",thetime)
         unset listoffile("$textarea",language)
+        unset listoffile("$textarea",colorize)
         unset listoffile("$textarea",readonly)
         unset listoffile("$textarea",redostackdepth)
         unset listoffile("$textarea",progressbar_id)
@@ -307,9 +313,10 @@ proc updatecompletions {partialfunnametoopen edittype} {
         switch -- $tag {
             libfun  {set col $LFUNCOLOR}
             scicos  {set col $SCICCOLOR}
+            userfun {set col $USERFUNCOLOR}
             default {}
         }
-        if {$tag == "libfun" || $tag == "scicos"} {
+        if {$tag == "libfun" || $tag == "scicos" || $tag == "userfun"} {
             $opensoflb insert end $completedword
             $opensoflb itemconfigure end \
                     -foreground $col -selectforeground $col\
@@ -351,12 +358,14 @@ proc OKopensourceof {w} {
 
 proc openlibfunsource {ind} {
     global textareacur
-    # exit if the cursor is not by a libfun or a scicos keyword
+    # exit if the cursor is not by a libfun or a scicos or a userfun keyword
     set keywtype ""
     if {[lsearch [$textareacur tag names $ind] "scicos"] !=-1} \
        {set keywtype scicos}
     if {[lsearch [$textareacur tag names $ind] "libfun"] !=-1} \
        {set keywtype libfun}
+    if {[lsearch [$textareacur tag names $ind] "userfun"] !=-1} \
+       {set keywtype userfun}
     if {$keywtype==""} return
     set lrange [$textareacur tag prevrange $keywtype "$ind+1c"]
     if {$lrange==""} {set lrange [$textareacur tag nextrange $keywtype $ind]}
@@ -373,20 +382,30 @@ proc doopenfunsource {keywtype nametoopen} {
 # do the function source file opening
 # $nametoopen is the keyword whose source is to be opened
 # $keywtype is its associated tag (must be libfun or scicos
-# to be relevant)
-    global env
+# or userfun to be relevant)
+    global env words
     switch $keywtype {
-      "libfun" {
-         ScilabEval_lt "scipad(get_function_path(\"$nametoopen\"))"
-         }
-      "scicos" {
-         set scicosdir [file join "$env(SCIPATH)" macros scicos \
-                         $nametoopen.sci]
-         set blocksdir [file join "$env(SCIPATH)" macros \
-                        scicos_blocks "*" $nametoopen.sci]
-         set filetoopen [glob $scicosdir $blocksdir]
-         ScilabEval_lt "scipad(\"$filetoopen\")"
-      }
+        "libfun" {
+            ScilabEval_lt "scipad(get_function_path(\"$nametoopen\"))"
+        }
+        "scicos" {
+            set scicosdir [file join "$env(SCIPATH)" macros scicos \
+                           $nametoopen.sci]
+            set blocksdir [file join "$env(SCIPATH)" macros \
+                          scicos_blocks "*" $nametoopen.sci]
+            set filetoopen [glob $scicosdir $blocksdir]
+            ScilabEval_lt "scipad(\"$filetoopen\")"
+        }
+        "userfun" {
+            set nameinitial [string range $nametoopen 0 0]
+            set candidates $words(scilab.$keywtype.$nameinitial)
+            for {set i 0} {$i<[llength $candidates]} {incr i} {
+                if {[lindex [lindex $candidates $i] 0] == $nametoopen} {
+                    dogotoline "physical" 1 "function" [lindex $candidates $i]
+                    break
+                }
+            }
+        }
     }
 }
 
@@ -579,6 +598,7 @@ proc notopenedfile {file} {
     set listoffile("$pad.new$winopened",displayedname) \
             [file tail $listoffile("$pad.new$winopened",fullname)]
     set listoffile("$pad.new$winopened",language) [extenstolang $file]
+    setlistoffile_colorize "$pad.new$winopened" $listoffile("$pad.new$winopened",fullname)
     set listoffile("$pad.new$winopened",new) 0
     if [ file exists $file ] {
         set listoffile("$pad.new$winopened",readonly) \
@@ -963,6 +983,49 @@ proc direxists {dir} {
         }
     }
     return $ret
+}
+
+proc setlistoffile_colorize {ta fullfilename} {
+# set listoffile("$ta",colorize) to the right value according to the colorize
+# option "always", "ask" or "never"
+# the fullfilename parameter can be set to "", which is used for new files not
+# yet saved on disk, and which have therefore no size - colorize defaults to
+# true in the "ask" case
+# this proc is supposed to be used when opening or creating files only
+# listoffile("$ta",colorize) can also be changed after opening of the
+# file through the Scheme menu and proc switchcolorizefile
+
+    global pad listoffile colorizeenable
+
+    # arbitrary size in bytes above which Scipad will ask for colorization
+    set sizelimit 100000
+
+    if {$colorizeenable == "always"} {
+        set listoffile("$ta",colorize) true
+
+    } elseif {$colorizeenable == "ask"} {
+        if {[catch {file size $fullfilename} fsize] != 0} {
+            # file size cannot be obtained, maybe the file does not exist
+            set listoffile("$ta",colorize) true
+        } else {
+            if {$fsize > $sizelimit} {
+                set answ [tk_messageBox \
+                     -message [mc "This file is rather large and colorization might take some time.\n\nColorize anyway?"] \
+                     -title [mc "File size warning"] \
+                     -parent $pad -icon warning -type yesno]
+                if {$answ == "yes"} {
+                    set listoffile("$ta",colorize) true
+                } else {
+                    set listoffile("$ta",colorize) false
+                }
+            } else {
+                set listoffile("$ta",colorize) true
+            }
+        }
+
+    } else {
+        set listoffile("$ta",colorize) false
+    }
 }
 
 ##################################################

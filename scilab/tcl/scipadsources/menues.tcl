@@ -1,5 +1,5 @@
 proc createmenues {} {
-    global pad menuFont tcl_platform bgcolors fgcolors sourcedir
+    global pad tcl_platform bgcolors fgcolors sourcedir
     global listoffile listoftextarea FontSize bindset
     global FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu
@@ -13,12 +13,12 @@ proc createmenues {} {
     $pad.filemenu delete 0 end
 
     #file menu
-    menu $pad.filemenu.files -tearoff 1 -font $menuFont
+    menu $pad.filemenu.files -tearoff 1
     eval "$pad.filemenu  add cascade [me "&File"] -menu $pad.filemenu.files "
     eval "$pad.filemenu.files add command [me "&New"] [ca {filesetasnew}]"
     eval "$pad.filemenu.files add command [me "&Open..."] \
                    [ca {showopenwin currenttile}]"
-    menu $pad.filemenu.files.openintile -tearoff 0 -font $menuFont
+    menu $pad.filemenu.files.openintile -tearoff 0
     eval "$pad.filemenu.files add cascade [me "Open &in new"]\
       -menu $pad.filemenu.files.openintile"
         eval "$pad.filemenu.files.openintile add command \
@@ -59,7 +59,7 @@ proc createmenues {} {
     bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu_file %W}
 
     #edit menu
-    menu $pad.filemenu.edit -tearoff 1 -font $menuFont
+    menu $pad.filemenu.edit -tearoff 1
     eval "$pad.filemenu add cascade [me "&Edit"] -menu $pad.filemenu.edit "
     eval "$pad.filemenu.edit add command [me "&Undo"] \
                [ca {undo [gettextareacur]}]"
@@ -86,7 +86,7 @@ proc createmenues {} {
                [ca UnIndentSel]"
 
     #search menu
-    menu $pad.filemenu.search -tearoff 1 -font $menuFont
+    menu $pad.filemenu.search -tearoff 1
     eval "$pad.filemenu add cascade [me "&Search"] \
                -menu $pad.filemenu.search  "
     eval "$pad.filemenu.search add command [me "&Find..."] \
@@ -97,7 +97,7 @@ proc createmenues {} {
     eval "$pad.filemenu.search add command [me "&Goto Line..."] [ca gotoline]"
 
     # exec menu
-    menu $pad.filemenu.exec -tearoff 1 -font $menuFont
+    menu $pad.filemenu.exec -tearoff 1
     eval "$pad.filemenu add cascade [me "E&xecute"] -menu $pad.filemenu.exec "
     eval "$pad.filemenu.exec add command [me "&Load into Scilab"] \
               [ca execfile]"
@@ -108,7 +108,7 @@ proc createmenues {} {
 # debug menu entries have for now hardwired accelerators, because they are
 # handled elsewhere according to the debug state machine
 # Their bindings are not changed when switching style
-    menu $pad.filemenu.debug -tearoff 1 -font $menuFont
+    menu $pad.filemenu.debug -tearoff 1
     eval "$pad.filemenu add cascade [me "&Debug"] -menu $pad.filemenu.debug "
     eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
                -command \"insertremove_bp\" -accelerator F9\
@@ -125,7 +125,7 @@ proc createmenues {} {
                -command \"tonextbreakpoint_bp\" -accelerator F11\
                -image menubutnextimage -compound left "
 
-    menu $pad.filemenu.debug.step -tearoff 1 -font $menuFont
+    menu $pad.filemenu.debug.step -tearoff 1
     eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
                   -menu $pad.filemenu.debug.step "
         eval "$pad.filemenu.debug.step add command [me "Step &into"] \
@@ -158,7 +158,7 @@ proc createmenues {} {
                -image menubutcancelimage -compound left "
 
     # scheme menu
-    menu $pad.filemenu.scheme -tearoff 1 -font $menuFont
+    menu $pad.filemenu.scheme -tearoff 1
     eval "$pad.filemenu add cascade [me "S&cheme"] \
                -menu $pad.filemenu.scheme "
     eval "$pad.filemenu.scheme add radiobutton [me "S&cilab"] \
@@ -170,12 +170,16 @@ proc createmenues {} {
     eval "$pad.filemenu.scheme add radiobutton [me "&none"] \
                -command {changelanguage \"none\"} -variable Scheme \
                -value \"none\" "
+    $pad.filemenu.scheme add separator
+    eval "$pad.filemenu.scheme add check [me "&Colorize"] \
+      -command {switchcolorizefile}\
+      -offvalue false -onvalue true -variable ColorizeIt"
 
     # options menu
-    menu $pad.filemenu.options -tearoff 1 -font $menuFont
+    menu $pad.filemenu.options -tearoff 1
     eval "$pad.filemenu add cascade [me "&Options"] \
                -menu $pad.filemenu.options "
-    menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
+    menu $pad.filemenu.options.fontsize -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Font size"]\
       -menu $pad.filemenu.options.fontsize"
         eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
@@ -188,7 +192,7 @@ proc createmenues {} {
               -value 18 -variable FontSize -command \"setfontscipad 18\" "
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
                -menu $pad.filemenu.options.colors"
-        menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
+        menu $pad.filemenu.options.colors -tearoff 1
         foreach c $bgcolors {
             eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -background \[set $c\]\
@@ -200,18 +204,41 @@ proc createmenues {} {
                 -activeforeground \[set $c\] -background $BGCOLOR"
         }
         updateactiveforegroundcolormenu
-    eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
-      -command {refreshQuotedStrings}\
-      -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
-    eval "$pad.filemenu.options add check [me "Show c&ontinued lines"] \
-      -command {tagcontlinesinallbuffers}\
-      -offvalue no -onvalue yes -variable showContinuedLines"
-    eval "$pad.filemenu.options add check [me "Word &Wrap"] \
+
+    menu $pad.filemenu.options.colorizeoptions -tearoff 0
+    eval "$pad.filemenu.options add cascade [me "Colori&ze"] \
+      -menu $pad.filemenu.options.colorizeoptions"
+        eval "$pad.filemenu.options.colorizeoptions add radiobutton [me "&Always"] \
+              -value always -variable colorizeenable "
+        eval "$pad.filemenu.options.colorizeoptions add radiobutton [me "Ask for &big files"]\
+              -value ask -variable colorizeenable "
+        eval "$pad.filemenu.options.colorizeoptions add radiobutton [me "&Never"] \
+              -value never -variable colorizeenable "
+        $pad.filemenu.options.colorizeoptions add separator
+        eval "$pad.filemenu.options.colorizeoptions add check [me "Colorize \'&strings\'"] \
+              -command {refreshQuotedStrings}\
+              -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
+        eval "$pad.filemenu.options.colorizeoptions add check [me "Show c&ontinued lines"] \
+              -command {tagcontlinesinallbuffers}\
+              -offvalue no -onvalue yes -variable showContinuedLines"
+    eval "$pad.filemenu.options add check [me "Word &wrap"] \
       -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
       -offvalue none -onvalue word -variable wordWrap"
+    menu $pad.filemenu.options.doubleclick -tearoff 0
+    eval "$pad.filemenu.options add cascade [me "&Double-click behavior"]\
+      -menu $pad.filemenu.options.doubleclick"
+        eval "$pad.filemenu.options.doubleclick add radiobutton [me "&Linux"] \
+              -value Linux -variable doubleclickscheme \
+              -command \"updatedoubleclickscheme\" "
+        eval "$pad.filemenu.options.doubleclick add radiobutton [me "&Windows"] \
+              -value Windows -variable doubleclickscheme \
+              -command \"updatedoubleclickscheme\" "
+        eval "$pad.filemenu.options.doubleclick add radiobutton [me "&Scilab"] \
+              -value Scilab -variable doubleclickscheme \
+              -command \"updatedoubleclickscheme\" "
     eval "$pad.filemenu.options add cascade [me "&Tabs and indentation"] \
                -menu $pad.filemenu.options.tabs"
-        menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
+        menu $pad.filemenu.options.tabs -tearoff 0
         eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
                     -offvalue tabs -onvalue spaces -variable tabinserts"
         eval "$pad.filemenu.options.tabs add cascade  \
@@ -220,7 +247,7 @@ proc createmenues {} {
                         indentspaces 1 2 3 4 5 6 7 8 9 10]"
     eval "$pad.filemenu.options add cascade [me "Com&pletion"] \
                -menu $pad.filemenu.options.completion"
-        menu $pad.filemenu.options.completion -tearoff 0 -font $menuFont
+        menu $pad.filemenu.options.completion -tearoff 0
         eval "$pad.filemenu.options.completion add radiobutton \
                     [me "&Tab"] -command {SetCompletionBinding}\
                     -value \"Tab\" -variable completionbinding"
@@ -245,7 +272,7 @@ proc createmenues {} {
         eval "$pad.filemenu.options.completion add radiobutton \
                     [me "Shi&ft-Control-Alt-Tab"] -command {SetCompletionBinding}\
                     -value \"Shift-Control-Alt-Tab\" -variable completionbinding"
-    menu $pad.filemenu.options.filenames -tearoff 0 -font $menuFont
+    menu $pad.filemenu.options.filenames -tearoff 0
     eval "$pad.filemenu.options add cascade [me "File&names"] \
            -menu $pad.filemenu.options.filenames "
         eval "$pad.filemenu.options.filenames add radiobutton \
@@ -268,7 +295,7 @@ proc createmenues {} {
     eval "$pad.filemenu.options add cascade  [me "&Backup files depth"]\
                -menu [tk_optionMenu $pad.filemenu.options.backup \
                     filebackupdepth 0 1 2 3 4 5 6 7 8 9 10]"
-    menu $pad.filemenu.options.locale -tearoff 0 -font $menuFont
+    menu $pad.filemenu.options.locale -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Locale"] \
            -menu $pad.filemenu.options.locale "
     set msgsdir [file join $sourcedir msg_files]
@@ -285,7 +312,7 @@ proc createmenues {} {
     }
 # feature temporary disabled as not yet 100% ok (see bindings/issues.txt)
 # REMOVE -state disabled to make this work
-    menu $pad.filemenu.options.bindings -tearoff 0 -font $menuFont
+    menu $pad.filemenu.options.bindings -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
            -menu $pad.filemenu.options.bindings " -state disabled
     set binddir [file join $sourcedir bindings]
@@ -302,8 +329,7 @@ proc createmenues {} {
     }
 
     # window menu
-    menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] \
-         -font $menuFont
+    menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"]
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
 # the bindings for the next 3 items need to invoke the item itself instead
 # of a proc -- therefore we leave them hardwired
@@ -331,7 +357,7 @@ proc createmenues {} {
     bind $pad.filemenu.wind <<MenuSelect>> {+showinfo_menu_wind %W}
 
     # help menu
-    menu $pad.filemenu.help -tearoff 1 -font $menuFont
+    menu $pad.filemenu.help -tearoff 1
     eval "$pad.filemenu add cascade [me "&Help"] \
                -menu $pad.filemenu.help "
     eval "$pad.filemenu.help add command [me "&Help..."] [ca helpme]"
@@ -361,6 +387,10 @@ proc createmenues {} {
     # create array of menu entries identifiers
     # this array allows to avoid to refer to menu entries by their hardcoded id
     createarrayofmenuentriesid $pad.filemenu
+
+    # set the correct font for menues, includind tk_optionMenues, that do not
+    # have a -font option
+    setfontscipad $FontSize
 }
 
 proc disablemenuesbinds {} {
@@ -531,7 +561,6 @@ proc showinfo_menu_wind {w} {
         showinfo $listoffile("$ta",fullname)
     }
 }
-
 
 proc ca {menucommand} {
 #look up the bindings array to see if there is a binding defined

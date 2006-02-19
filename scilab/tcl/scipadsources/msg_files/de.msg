@@ -371,7 +371,7 @@
 ::msgcat::mcset de "Colorize \'&strings\'" "Farbige \'&Zeichenketten\'"
 ::msgcat::mcset de "Show c&ontinued lines"\
                    "F&ortgesetzte Zeilen anzeigen"
-::msgcat::mcset de "Word &Wrap" "&Automatischer Zeilenumbruch"
+::msgcat::mcset de "Word &wrap" "&Automatischer Zeilenumbruch"
 ::msgcat::mcset de "&Tabs and indentation" "&Tabulatoren und Einrücken"
 ::msgcat::mcset de "Tab inserts &spaces" "&Tabulator fügt Leerzeichen ein"
 ::msgcat::mcset de "&Indentation spaces" "&Leerzeichen für das Einrücken"

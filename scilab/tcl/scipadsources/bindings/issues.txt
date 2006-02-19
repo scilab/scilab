@@ -6,9 +6,10 @@
 *C-x,C-c,C-v survive in Entries side by side with C-w,M-w,C-y
 *C-l is not exactly recenter
 *[in the  menu labels <> denote switchable bindings] (not all bindings are 
- yet switchable)
+ yet switchable) -- obsolete item?
 *not all menu entries have native emacs bindings; some mac-pc have been left
  in place, some not
 *prefix-prefix-prefix- is seen as prefix- once; sequences longer than 
  prefix-key are not possible
 *M as Alt can clash with underline navigation; replace with Esc?
+*localization missing

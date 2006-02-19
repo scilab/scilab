@@ -58,7 +58,7 @@ sbind Entry <Control-w> [bind Entry <<Cut>>]
 sbind Entry <Alt-w> [bind Entry <<Copy>>]
 sbind Entry <Control-y> [bind Entry <<Paste>>]
 
-sbind Text <Control-/> ""
+sbind Text <Control-slash> ""
 sbind Text <Control-x><h> {selectall}
 
 

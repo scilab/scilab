@@ -121,7 +121,8 @@ if {0} {
 
 if {0} {
     proc dispsthg {} {
-        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
+#        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
+        set str [time {colorize [gettextareacur] 1.0 end}]
         tk_messageBox -message "$str"
     }
     bind all <Control-equal> {dispsthg}
@@ -138,6 +139,9 @@ if {0} {
     bind all <Control-equal> { \
         puts [time {colorizestringsandcomments_sd [gettextareacur] 1.0 end}] ; \
         showinfo "colorize done (strings+comments)"
+    }
+    bind all <Control-equal> { \
+        parray words; parray chset \
     }
 }
 

@@ -1,6 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.1"
-
+set version "Version 6.2"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -31,7 +30,8 @@ set bgcolors {BGCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR \
        CONTLINECOLOR}
 set fgcolors {FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR INTFCOLOR COMMCOLOR OPCOLOR QTXTCOLOR \
-       REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR SCICCOLOR}
+       REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR SCICCOLOR \
+       USERFUNCOLOR}
 set colorpref "$bgcolors $fgcolors"
 
 # those are the preferences which are going to be saved
@@ -39,7 +39,7 @@ set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
-       filebackupdepth bindstyle"
+       filebackupdepth bindstyle doubleclickscheme colorizeenable"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -65,6 +65,7 @@ set SELCOLOR "PaleGreen"
 set BREAKPOINTCOLOR "pink"
 set FOUNDTEXTCOLOR "green2"
 set CONTLINECOLOR "lemonchiffon"
+set USERFUNCOLOR {#02a5f2}
 set FontSize 12
 set WMGEOMETRY 600x480
 set printCommand lpr
@@ -79,12 +80,15 @@ set completionbinding "Control-Tab"
 set showContinuedLines "yes"
 set filebackupdepth 0
 set bindstyle "mac-pc"
+set doubleclickscheme "Scilab"  ;# "Scilab" or "Windows" or "Linux"
+set colorizeenable "always"     ;# "always" or "ask" or "never"
 
 # other non-pref initial settings
 
 if { ![info exists lang] } { set lang "eng" }
 
 set Scheme scilab
+set ColorizeIt true
 
 # On Windows the cursor blink was once disabled because of what is explained at
 # http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
@@ -177,6 +181,10 @@ set sncc1RE {[[:alpha:]%_#!?$]}
 # Note that \w already contains the underscore
 set sncc2RE {[\w#!?$]}
 
+# Negated Scilab names character class (non reporting)
+# Note: this is neither the negation of $sncc1RE nor the negation of $sncc2RE
+set notsnccRE {(?:[^\w%#!?$])}
+
 # Scilab names regexp, reporting version and non-reporting version
 set snRE_rep {}
 append snRE_rep {(} $sncc1RE $sncc2RE * {)}
@@ -190,9 +198,15 @@ set sblRE {[[:blank:]]*}
 set scommRE {(?://[^\n]*)}
 
 # Scilab continuation mark
-# Note: more than one continued lines is a match
+# Note: more than one continued line is a single match
+# scontRE does not need an actual continued line to match (* case)
+# scontRE1 does need an actual continued line to match (+ case)
 set scontRE {}
 append scontRE {(?:} $sblRE {\.{2,}} $sblRE $scommRE {?} {\n} {)} {*}
+set scontRE1 {}
+append scontRE1 {(?:} $sblRE {\.{2,}} $sblRE $scommRE {?} {\n} {)} {+}
+set scontRE2 {}
+append scontRE2 {(?:} $scontRE1 $sblRE {)}
 
 # List of Scilab names separated by commas, allowing blanks and continuations anywhere
 # Note: empty list is NOT a match
@@ -234,15 +248,27 @@ set constructsmaxnestlevel 3
 
 # regular expression matching a continued line identified as such because
 # it has unbalanced brackets possibly followed by a comment
-set bracketscontlineRE {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\[[^\]]*(?:(?:(?:}
+set bracketscontlineRE {(?:^(?:(?:[^/"']/?)*(?:[^\w%#!?$]["'][^"']*["'])*)*\[[^\]]*(?:(?:(?:}
 append bracketscontlineRE [createnestregexp $constructsmaxnestlevel {[} {]}]
 append bracketscontlineRE {)*[^\]]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 
 # regular expression matching a continued line identified as such because
 # it has unbalanced braces possibly followed by a comment
-set bracescontlineRE   {(?:^(?:(?:[^/"']/?)*(?:["'][^"']*["'])*)*\{[^\}]*(?:(?:(?:}
+set bracescontlineRE   {(?:^(?:(?:[^/"']/?)*(?:[^\w%#!?$]["'][^"']*["'])*)*\{[^\}]*(?:(?:(?:}
 append bracescontlineRE [createnestregexp $constructsmaxnestlevel "{" "}"]
 append bracescontlineRE {)*[^\}]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
+
+# the user might want the same behaviour on Windows as on Linux for
+# double-clicking - this is bug 1792, see also
+# http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/659fd6c1f41d9a81/eb2a841ac335580e
+catch {tcl_endOfWord}
+set tcl_wordchars_linux {[a-zA-Z0-9_]}
+set tcl_nonwordchars_linux {[^a-zA-Z0-9_]}
+set tcl_wordchars_windows {\S}
+set tcl_nonwordchars_windows {\s}
+set tcl_wordchars_scilab {[\w%#!?$]}
+set tcl_nonwordchars_scilab {[^\w%#!?$]}
+updatedoubleclickscheme
 
 # End of regular expression patterns
 ##########################################################################

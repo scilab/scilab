@@ -9,6 +9,7 @@ proc whichfun {indexin {buf "current"}} {
 #       $precfun   : physical line number where $funname is defined
 #       $contlines : number of continued lines between $precfun and $indexin
     global listoffile
+    global funlineREpat1 funlineREpat2 scilabnameREpat
 
     # it is implicitely meant that indexin refers to a position in buf,
     # i.e. in textareacur if buf is not passed to whichfun
@@ -20,6 +21,9 @@ proc whichfun {indexin {buf "current"}} {
 
     # return {} if the language is anything but scilab
     if {$listoffile("$textarea",language) != "scilab"} {return {}}
+
+    # return {} if the colorization of buffer is off
+    if {!$listoffile("$textarea",colorize)} {return {}}
 
     set indexin [$textarea index $indexin]
     scan $indexin "%d.%d" ypos xpos
@@ -61,42 +65,18 @@ proc whichfun {indexin {buf "current"}} {
     } else {
         # function was found above, therefore we are in a function
         set precfun [lindex $lfunpos end]
-        set i1 [$textarea index "$precfun+8c"]
-        # look for the end of the function line definition, taking into account
-        # continued lines and possible comments after the trailing dots
-        # comments are removed from the function definition, and continued
-        # lines are concatenated to form a single line
-        set i2 [$textarea index "$precfun lineend"]
-        set firstcommchar [lindex [$textarea tag nextrange "rem2" $i1 $i2] 0]
-        if {$firstcommchar == ""} {
-            set firstcommchar $i2
-        }
-        set funline [$textarea get $i1 $firstcommchar]
-        set funline [string trim $funline]
-        set lineend "[string index $funline end-1][string index $funline end]"
-        while {$lineend == ".."} {
-            # this is a continued line
-            set funline [string trimright $funline "."]
-            set i1 "$i2 + 1 line linestart"
-            set i2 [$textarea index "$i2 + 1 line lineend"]
-            set firstcommchar [lindex [$textarea tag nextrange "rem2" $i1 $i2] 0]
-            if {$firstcommchar == ""} {
-                set firstcommchar $i2
-            }
-            set contline [$textarea get "$i2 linestart" $firstcommchar]
-            set contline [string trim $contline]
-            set funline "$funline$contline"
-            set lineend "[string index $funline end-1][string index $funline end]"
-        }
-        # find the function name, excluding too pathological cases
-        set funname ""
-#        set funpat  "\[\%\#\]*\\m\[\\w%\#\]*\\M\[%\#\]*"
-        set funpat {[\%\#\!\$\?]*\m[\w\#\!\$\?]*\M[\#\!\$\?]*}
-        if {[set i3 [string first "=" $funline]] !={}} {
-            regexp -start [expr $i3+1] $funpat $funline funname  
-        } else {
-            regexp  $funpat $funline funname  
-        }
+        # get the full function definition line, including possible
+        # continued lines and comments
+        set pat "$funlineREpat1$scilabnameREpat$funlineREpat2"
+        regexp -- $pat [$textarea get $precfun end] funline
+        # remove the leading keyword function (8 characters)
+        set funline [string range $funline 8 end]
+        # remove continued lines tags and comments
+        set funline [trimcontandcomments $funline]
+        # find function name
+        set funname [extractfunnamefromfunline $funline]
+        # funname=="" might happen if regexp $pat does not match while function
+        # detection above did find the word "function"
         if {$funname==""} {set insidefun 0}
     }
 
@@ -164,7 +144,7 @@ proc tagcontlines {w} {
         set mi [$w index "$ind + [expr $i - $previ] c"]
         set mj [$w index "$mi + [expr $j - $i] c"]
         $w tag add contline "$mi linestart" "$mj lineend + 1 c"
-        set ind [$w index "$ind + [expr $i - $previ] c"]
+        set ind $mi
         set previ $i
     }
     if {$showContinuedLines} {
@@ -177,8 +157,8 @@ proc tagcontlines {w} {
 
 proc createnestregexp {nestlevel opdel cldel} {
 # Create a regular expression able to match $nestlevel levels of nested
-# items enclosed in balanced $opdel (open delimiter) and $cldel close
-# delimiter
+# items enclosed in balanced $opdel (open delimiter) and $cldel (close
+# delimiter)
 # Any level of nesting is achievable through $nestlevel (but not an
 # arbitrary level), but performance has to be considered
 # Note: the regexp returned uses only non reporting parenthesis, which is
@@ -187,8 +167,9 @@ proc createnestregexp {nestlevel opdel cldel} {
 # This proc allows to match for instance (brackets are the delimiters, $nestlevel is > 2):
 # [ you [simply [ can't] match [arbitrarily nested] constructs [with regular expressions]]]
 
+    set qtext {(?:(?:["'][^"']*["'])*)}
     set op "\\$opdel"
-    set nodel "\[^\\$opdel\\$cldel\]*"
+    set nodel "(?:\[^\\$opdel\\$cldel\"'\]*|$qtext)"
     set cl "\\$cldel"
 
     set RE {}
@@ -341,23 +322,40 @@ proc getallfunsintextarea {{buf "current"}} {
         return {$textarea { "0NoFunInBuf" 0 0 }}
     }
 
+    # return if colorization of the buffer is switched off
+    if {!$listoffile("$textarea",colorize)} {
+        return {$textarea { "0NoFunInBuf" 0 0 }}
+    }
+
     set pat "$funlineREpat1$scilabnameREpat$funlineREpat2"
 
     set hitslist ""
 
-    set allfun [regexp -all -inline -indices -- $pat [$textarea get "1.0" end]]
+    set allfun [regexp -all -inline -indices -- $pat [$textarea get 1.0 end]]
 
+    set ind "1.0"
+    set previ 0
     foreach {fullmatch funname} $allfun {
         foreach {i j} $fullmatch {}
-        set star [$textarea index "1.0 + $i c"]
-        if {[lsearch [$textarea tag names $star] "textquoted"] == -1 && \
-            [lsearch [$textarea tag names $star] "rem2"] == -1 } {
-            # whichfun trims continued lines and comments
-            set infun [whichfun [$textarea index "$star +1c"] $textarea]
-            if {$infun != {} } {
-                set hitslist "$hitslist [lindex $infun 0] {[lindex $infun 2]} [lindex $infun 3]"
+        set star [$textarea index "$ind + [expr $i - $previ] c"]
+        set stop [$textarea index "$star + [expr $j - $i] c"]
+        if {[lsearch [$textarea tag names $star] "rem2"] == -1} {
+            if {[lsearch [$textarea tag names $star] "textquoted"] == -1} {
+                # skip the keyword "function" (8 characters)
+                set funline [$textarea get "$star + 8 c" $stop]
+                # remove continued lines tags and comments
+                set funline [trimcontandcomments $funline]
+                # get function name
+                set funname [extractfunnamefromfunline $funline]
+                # get physical line number of function definition
+                set funstart [$textarea index "$star linestart"]
+                # braces around $funline mandatory because $funline can
+                # contain spaces
+                set hitslist "$hitslist $funname {$funline} $funstart"
             }
         }
+        set ind $star
+        set previ $i
     }
 
     if {$hitslist == ""} {
@@ -365,4 +363,26 @@ proc getallfunsintextarea {{buf "current"}} {
     } else {
         return [list $textarea $hitslist]
     }
+}
+
+proc trimcontandcomments {str} {
+# remove comments and continued lines from $str and return the resulting
+# string
+    global scommRE scontRE2
+    regsub -all -- $scontRE2 $str  "" str2
+    regsub -all -- $scommRE  $str2 "" str2
+    set str2 [string trim $str2]
+    return $str2
+}
+
+proc extractfunnamefromfunline {str} {
+# find the function name in a function definition line
+    global snRE
+    set funname ""
+    if {[set i [string first "=" $str]] != {}} {
+        regexp -start [expr $i+1] -- $snRE $str funname  
+    } else {
+        regexp -- $snRE $str funname  
+    }
+    return $funname
 }

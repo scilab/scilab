@@ -355,7 +355,7 @@
 ::msgcat::mcset it "&Colors" "&Colori"
 ::msgcat::mcset it "Colorize \'&strings\'" "Colora \'&stringhe\'"
 ::msgcat::mcset it "Show c&ontinued lines" "Colora linee &incomplete"
-::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
+::msgcat::mcset it "Word &wrap" "&Ritorno a capo visuale"
 ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
 ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
 ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"

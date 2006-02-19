@@ -1947,3 +1947,74 @@ ES 15/02/06
   committed to allow simultaneous work on other features. Remove "-state
   disabled at line 290 of menus.tcl to make it work.
  *version 6.1
+
+Francois VOGEL, 19/02/06
+ * funcprot(0) is used to prevent function redefinition messages related
+   to debugger sci files ancillaries (bug 1775)
+ * Fixed bug 1792 (Linux/Windows different double click behavior), and added
+   a saved preference for this setting
+ * Fixed: Find in a single buffer and close the dialog. Switch to another
+   buffer and hit F3. Wrong matches were found.
+ * Fixed: When switching for 'colorize strings' to no single quotes string
+   colorization, keywords, numbers, etc were not colorized properly because
+   colorizestringsandcomments_sd was called in refreshQuotedStrings, i.e.
+   only strings and comments were recolorized
+ * Fixed: Colorization of strings for XML files was wrong because proc
+   colorizestringsandcomments did always consider a scilab scheme
+ * Colorization of xml files 10 times faster and corrected (xml tags can now
+   contain spaces
+ * Colorization can be switched on and off selectively in each buffer:
+   Functions that make use of colorization results are disabled when the
+   buffer is not colorized, i.e. :
+     - goto line does not propose Scilab functions from a non colorized
+       buffer
+     - when colorization is switched off, the line number in the status bar
+       is always the logical one (no line in function)
+     - when colorization is switched off, the debugger configure box does
+       not propose functions from non colorized buffers
+ * Fixed two different incorrect string colorizations:
+    - [q1,p1]=find(mat'=='[');  // transpose operator
+    - a=["[";
+         "]"];                  // quoted bracket or brace
+ * Fixed: Undo/Redo after backspace or delete key could make the cursor jump
+   in the buffer - the edit separator instructions were missing
+ * Loosen debugger constraints wrt empty values for function parameters - see
+   http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/ea4cc65bf1a79bc2/80f5f4896074fae2?hl=en#80f5f4896074fae2
+     - varargin case:
+       Function arguments are still passed by value, and order in the
+       configure box matters
+       (note: this is for the true varargin case, i.e. last argument is
+       varargin, and there is no other argument named varargin)
+     - no varargin case:
+       Function arguments are now passed by name - order of arguments in the
+       configure box does no longer need to be the same as the order of
+       arguments in the function definition line
+     - double varargin, ex. foo(a,varargin,b,varargin):
+       This case is handled like Scilab handles it: the last varargin is
+       ignored and the previous varargin is a normal argument
+ * Proc dogotoline accepts the destination parameters as inputs. Simplified
+   proc updateactivebreakpointtag as a consequence
+ * Speed up of proc getallfunsintextarea (up to 70 times faster, especially
+   for large buffers containing many functions) by removing the need to use
+   proc whichfun - Ditto for proc checkarglist
+ * Slight speed up of proc whichfun
+ * Fixed bug 1824: Speed up of proc colorize (approx. twice faster) and proc
+   colorizestringsandcomments (hundreds times faster for long lines)
+ * Increased increment for background colorization from 5 to 20 lines since
+   colorization now uses regexp -all instead of .text search -regexp, which
+   is faster because all the matches are returned at once. Colorization is
+   now more efficient on larger chunks - balance with Scipad responsivity
+   during colorization
+ * User functions are gathered in the words and chset arrays in real time.
+   This allows for colorization, shortcuts to jump to function definition
+   line or to open source of..., and also completion with user function
+   names
+ * The watch window is deiconified on quick add watch
+ * Scipad checks if execution of a script or a buffer did change the content
+   of any already opened buffer and proposes to reload the file in this case
+ * When switching scheme for new buffers the file extension is changed
+   accordingly so that when scheme is xml, default extension proposed for
+   saving a new buffer is .xml (and still .sce for other schemes)
+ * Fixed: all the tk_optionMenu did miss their $menuFont on Scipad launch
+   or after changing the locale
+ * version --> 6.2

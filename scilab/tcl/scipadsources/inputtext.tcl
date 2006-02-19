@@ -124,7 +124,6 @@ proc puttext {w text} {
     set cuttexts [selection own]
     if {[string range $cuttexts 0 [expr [string length [gettextareacur]]-1]] == [gettextareacur]} {
         if [catch {selection get -selection PRIMARY} sel] {
-
         } else {
             $cuttexts delete sel.first sel.last
             selection clear
@@ -138,6 +137,7 @@ proc puttext {w text} {
         set uplimit [getstartofcolorization $w $i1]
         set dnlimit [getendofcolorization $w $i2]
         colorize $w $uplimit $dnlimit
+        backgroundcolorizeuserfun
     }
     reshape_bp
     $w see insert

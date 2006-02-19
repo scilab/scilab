@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v5.75
+# in sync at least with v6.2
 
 
 # commons
@@ -66,6 +66,14 @@
                         L'ordre des arguments peut être modifié par glisser/déposer\
                         avec le bouton droit de la souris."
 ::msgcat::mcset fr "Error in selected function name or arguments" "Erreur sur la fonction sélectionnée ou ses arguments"
+::msgcat::mcset fr "At least one input argument does not match definition of the function" \
+                    "Au moins un argument ne correspond pas à la définition de la fonction"
+    ::msgcat::mcset fr "in the file!\n\nCheck function\
+                        arguments (their names) in the configuration dialog."\
+                       "dans le fichier!\n\n\
+                        Vérifier les arguments de la fonction (leur noms)\
+                        dans la boîte de dialogue de configuration."
+::msgcat::mcset fr "Error in selected function arguments" "Erreur sur les arguments de la fonction sélectionnée"
 ::msgcat::mcset fr "Debugger is not yet developed for sce scripts!" "Débug de scripts .sce non implémenté!"
 
 
@@ -147,6 +155,9 @@
 ::msgcat::mcset fr "Revert Confirm?" "Confirmer revenir ?"
 ::msgcat::mcset fr "Unreadable file" "Fichier illisible!"
 ::msgcat::mcset fr "exists but is not readable!" "existe mais ne peut pas être lu!"
+::msgcat::mcset fr "This file is rather large and colorization might take some time.\n\nColorize anyway?" \
+                   "Ce fichier est de grande taille et sa colorisation peut être longue.\n\nColorer tout de même?"
+::msgcat::mcset fr "File size warning" "Avertissement relatif à la taille du fichier"
 
 
 # findreplace.tcl
@@ -304,6 +315,7 @@
     ::msgcat::mcset fr "S&cilab" "S&cilab"
     ::msgcat::mcset fr "&XML" "&XML"
     ::msgcat::mcset fr "&none" "&aucun"
+    ::msgcat::mcset fr "&Colorize" "&Colorer"
 
     # menues.tcl - Options menu
     ::msgcat::mcset fr "&Font size" "&Taille de police"
@@ -312,9 +324,17 @@
         ::msgcat::mcset fr "m&edium" "m&oyen"
         ::msgcat::mcset fr "&large" "&grand"
     ::msgcat::mcset fr "&Colors" "&Couleurs"
-    ::msgcat::mcset fr "Colorize \'&strings\'" "C&olorer \'chaîne\'"
+    ::msgcat::mcset fr "Colori&ze" "C&olorer"
+        ::msgcat::mcset fr "&Always" "&Toujours"
+        ::msgcat::mcset fr "Ask for &big files" "&Demander pour les gros fichiers"
+        ::msgcat::mcset fr "&Never" "&Jamais"
+        ::msgcat::mcset fr "Colorize \'&strings\'" "Colorer \'&chaîne\'"
     ::msgcat::mcset fr "Show c&ontinued lines" "Afficher les li&gnes incomplètes"
-    ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
+    ::msgcat::mcset fr "Word &wrap" "&Retour à la ligne automatique"
+    ::msgcat::mcset fr "&Double-click behavior" "Comportement du &double-clic"
+        ::msgcat::mcset fr "&Linux" "&Linux"
+        ::msgcat::mcset fr "&Windows" "&Windows"
+        ::msgcat::mcset fr "&Scilab" "&Scilab"
     ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
         ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"
         ::msgcat::mcset fr "&Indentation spaces" "&Dimension de l'indentation"
@@ -368,6 +388,7 @@
 # popupmenus.tcl
 ::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
 ::msgcat::mcset fr "AddWatch" "Ajouter %s comme espion"
+::msgcat::mcset fr "Jump to" "Sauter à"
 
 
 # print.tcl
@@ -452,6 +473,7 @@
 ::msgcat::mcset fr "PDEFCOLOR" "Variables prédéfinies"
 ::msgcat::mcset fr "FOUNDTEXTCOLOR" "Texte trouvé"
 ::msgcat::mcset fr "CONTLINECOLOR" "Ligne incomplète"
+::msgcat::mcset fr "USERFUNCOLOR" "Fonctions utilisateur"
 
 
 #overriding tcl-core dialogs (many are actually already found in 

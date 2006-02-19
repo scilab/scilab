@@ -59,8 +59,8 @@ proc rebind {} {
     }
 
 #finally redraw the menues, so that the accelerators are updated
-     createmenues
-     setdbmenuentriesstates_bp
+    createmenues
+    setdbmenuentriesstates_bp
 }
 
 

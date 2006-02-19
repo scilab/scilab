@@ -360,7 +360,7 @@
 ::msgcat::mcset pl "&large" "&du\u017Ca"
 ::msgcat::mcset pl "&Colors" "&Kolory"
 ::msgcat::mcset pl "Colorize \'&strings\'" "K&oloruj \'\u0142a\u0144cuchy\'"
-::msgcat::mcset pl "Word &Wrap" "&Zawijaj wiersze"
+::msgcat::mcset pl "Word &wrap" "&Zawijaj wiersze"
 ::msgcat::mcset pl "&Tabs and indentation" "&Tabulator i wci\u0119cia"
 ::msgcat::mcset pl "Tab inserts &spaces" "Klawisz Tab wstawia &spacje"
 ::msgcat::mcset pl "&Indentation spaces"\

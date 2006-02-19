@@ -1,6 +1,6 @@
 proc execfile {{buf "current"}} {
 # return argument: 0=success, 1 scilab busy, 2 cancel, -1 fail
-    global listoffile sciprompt
+    global listoffile sciprompt pad
     if {$buf == "current"} {
         set textarea [gettextareacur]
     } else {
@@ -33,9 +33,13 @@ proc execfile {{buf "current"}} {
             set f $listoffile("$textarea",fullname)
             if {[catch {ScilabEval_lt "exec(\"$f\");" "sync" "seq"}]} {
                 scilaberror $listoffile("$textarea",fullname)
+                # this is in case a script modifies a file opened in Scipad
+                checkifanythingchangedondisk $pad
                 return -1
             } else {
                 showinfo [mc "Exec done"]
+                # this is in case a script modifies a file opened in Scipad
+                checkifanythingchangedondisk $pad
                 return 0 
             }
         }
@@ -43,7 +47,7 @@ proc execfile {{buf "current"}} {
 }
 
 proc execselection {} {
-    global sciprompt textareacur tcl_platform
+    global sciprompt textareacur tcl_platform pad
 
     # execselection cannot be executed since it needs the colorization results
     if {[colorizationinprogress]} {return}
@@ -117,6 +121,8 @@ proc execselection {} {
                     ScilabEval_lt "mprintf(\"%s\\n\",\"$dispcomm1\")"
                 }
                 ScilabEval_lt $comm
+                # this is in case the evaluated script modifies a file opened in Scipad
+                checkifanythingchangedondisk $pad
             }
         }
     }

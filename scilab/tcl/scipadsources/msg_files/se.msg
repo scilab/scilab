@@ -272,7 +272,7 @@
         ::msgcat::mcset se "Tab inserts &spaces" "Tab blir mellanslag"
         ::msgcat::mcset se "&Indentation spaces" "&Indragsutrymme"
     ::msgcat::mcset se "Colorize \'&strings\'" "Färga \'&strängar\'"
-    ::msgcat::mcset se "Word &Wrap" "&Bryt ej långa rader"
+    ::msgcat::mcset se "Word &wrap" "&Bryt ej långa rader"
     ::msgcat::mcset se "File&names" "Fil&namn"
         ::msgcat::mcset se "&Full path" "&Hela sökvägen"
         ::msgcat::mcset se "Full path if &ambiguous"\

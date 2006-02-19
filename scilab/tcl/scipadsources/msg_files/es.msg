@@ -361,7 +361,7 @@
 ::msgcat::mcset es "&Colors" "&Color"
 ::msgcat::mcset es "Colorize \'&strings\'" "Dar color \'ca&dena\'"
 ::msgcat::mcset es "Show c&ontinued lines" "Mostrar líneas continuadas"
-::msgcat::mcset es "Word &Wrap" "&Regresar al campo visual"
+::msgcat::mcset es "Word &wrap" "&Regresar al campo visual"
 # de esta tampoco estoy muy seguro y estoy basandome en la traducción del italiano
 ::msgcat::mcset es "&Tabs and indentation" "&Tabulación e identación"
 ::msgcat::mcset es "Tab inserts &spaces" "T&ab inserta espacios"
