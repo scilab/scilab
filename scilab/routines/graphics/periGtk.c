@@ -396,6 +396,7 @@ static gboolean locator_button_release(GtkWidget *widget,
 				       BCG *gc)
 {
   static GdkDisplay *display=NULL;
+  if ( display == NULL) display=gdk_display_get_default();
 
 /* to compile with gdk<2.4 */
 #if GTK_MAJOR_VERSION==2 &&  GTK_MINOR_VERSION>=4
@@ -404,7 +405,6 @@ static gboolean locator_button_release(GtkWidget *widget,
   int display_double_click_distance=5;
 #endif
 
-  if ( display == NULL) display=gdk_display_get_default();
   if ((event->time < (last_press.time + 2*display->double_click_time)) &&
       (event->window == last_press.window) &&
       (event->button == last_press.button) &&
