@@ -682,7 +682,11 @@ proc docolorizeuserfun {} {
                 continue
             }
 
-            set fulltext [$ta get 1.0 end]
+            # the leading space is added so that the regexp can match at
+            # the very beginning of the text
+            # regexping for $notsnccRE|(?:) is not correct because it would
+            # match function names inside longer Scilab names
+            set fulltext " [$ta get 1.0 end]"
 
             # construct the composite regexp pattern
             set atleastone false
@@ -709,7 +713,7 @@ proc docolorizeuserfun {} {
 
             # parse regexp results and tag with userfun accordingly
             set ind "1.0"
-            set previ 0
+            set previ 1 ;# and not 0 because of the added leading space in $fulltext
             foreach {fullmatch funnamematch} $allmatch {
                 foreach {i j} $funnamematch {}
                 set star [$ta index "$ind + [expr $i - $previ] c"]

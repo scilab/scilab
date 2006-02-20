@@ -333,7 +333,7 @@
     ::msgcat::mcset fr "Word &wrap" "&Retour à la ligne automatique"
     ::msgcat::mcset fr "&Double-click behavior" "Comportement du &double-clic"
         ::msgcat::mcset fr "&Linux" "&Linux"
-        ::msgcat::mcset fr "&Windows" "&Windows"
+        ::msgcat::mcset fr "Windo&ws" "Windo&ws"
         ::msgcat::mcset fr "&Scilab" "&Scilab"
     ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
         ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"

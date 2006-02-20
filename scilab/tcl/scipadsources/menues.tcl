@@ -230,7 +230,9 @@ proc createmenues {} {
         eval "$pad.filemenu.options.doubleclick add radiobutton [me "&Linux"] \
               -value Linux -variable doubleclickscheme \
               -command \"updatedoubleclickscheme\" "
-        eval "$pad.filemenu.options.doubleclick add radiobutton [me "&Windows"] \
+        # the underline below cannot be on the first W otherwise it collides
+        # with the main menu bar item with same name
+        eval "$pad.filemenu.options.doubleclick add radiobutton [me "Windo&ws"] \
               -value Windows -variable doubleclickscheme \
               -command \"updatedoubleclickscheme\" "
         eval "$pad.filemenu.options.doubleclick add radiobutton [me "&Scilab"] \

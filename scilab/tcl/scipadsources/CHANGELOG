@@ -2024,4 +2024,9 @@ ES 20/2/2006
    the commands Revert... and Open Function Source (hopefully doesn't break
    other menu commands and accelerators)
  * version --> 6.3
-  
+
+Francois VOGEL, 20/02/06
+ * Fixed: A user function name starting at line 1 column 1 was not colorized
+ * Fixed: msgcat collision between Windows menu entry (main menu bar) and the
+   entry with same name in the Options/Double click sub-menu
+ * version --> 6.4
