@@ -1,20 +1,23 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/*-----------------------------------------------------------------------------------*/
+/*
+ * Copyright Enpc Jean-Philippe Chancelier 
+ * Modified 2006 S.Steer (changing generic code to sepcialized code 
+ * by hand macro expansion).
+ */
+
 static int swapcodeshort(char * parmi,char * parmj,int n,int incr) 
-	{ 		
-	int i = n;
-	register short *pi = (short *) (parmi); 		
-	register short *pj = (short *) (parmj); 
-	register int inc1 = incr/sizeof(short);
-	do { 						
-		register short t = *pi;		
-		*pi = *pj;				
-		*pj = t;				
-		pi += inc1;
-		pj += inc1;
-		} while (--i > 0);				
-	return(0);
+{ 		
+  int i = n;
+  register short *pi = (short *) (parmi); 		
+  register short *pj = (short *) (parmj); 
+  register int inc1 = incr/sizeof(short);
+  do { 						
+    register short t = *pi;		
+    *pi = *pj;				
+    *pj = t;				
+    pi += inc1;
+    pj += inc1;
+  } while (--i > 0);				
+  return(0);
 }
 /*-----------------------------------------------------------------------------------*/ 
 static int compareCshort(char *i,char *j)
@@ -70,9 +73,9 @@ void ColSortshort(short *a,int *ind,int flag,int n,int p,char dir)
   for ( j= 0 ; j < p ; j++ ) 
     {
       sciqsort((char *) (a+n*j),(char *) (ind+n*j),flag, n, 
-		sizeof(short),sizeof(int), 
-		(dir == 'i' ) ? compareCshort : compareDshort,
-		swapcodeshort,swapcodeind);
+	       sizeof(short),sizeof(int), 
+	       (dir == 'i' ) ? compareCshort : compareDshort,
+	       swapcodeshort,swapcodeind);
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -95,9 +98,9 @@ void RowSortshort(short *a,int *ind,int flag,int n,int p,char dir)
   for ( i = 0 ; i < n ; i++) 
     {
       sciqsort((char *) (a+i),(char *) (ind+i),flag, p, 
-		n*sizeof(short),n*sizeof(int), 
-		(dir == 'i' ) ? compareCshort:compareDshort,
-		swapcodeshort,swapcodeind);
+	       n*sizeof(short),n*sizeof(int), 
+	       (dir == 'i' ) ? compareCshort:compareDshort,
+	       swapcodeshort,swapcodeind);
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -113,9 +116,9 @@ void GlobalSortshort(short *a,int *ind,int flag,int n,int p,char dir)
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n*p, 
-	    sizeof(short),sizeof(int), 
-	    (dir == 'i' ) ? compareCshort:compareDshort,
-	    swapcodeshort,swapcodeind);
+	   sizeof(short),sizeof(int), 
+	   (dir == 'i' ) ? compareCshort:compareDshort,
+	   swapcodeshort,swapcodeind);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /*-----------------------------------------------------------------------------------*/ 
@@ -136,9 +139,9 @@ void ColSortushort(short *a,int *ind,int flag,int n,int p,char dir)
   for ( j= 0 ; j < p ; j++ ) 
     {
       sciqsort((char *) (a+n*j),(char *) (ind+n*j),flag, n, 
-		sizeof(short),sizeof(int), 
-		(dir == 'i' ) ? compareCushort : compareDushort,
-		swapcodeshort,swapcodeind);
+	       sizeof(short),sizeof(int), 
+	       (dir == 'i' ) ? compareCushort : compareDushort,
+	       swapcodeshort,swapcodeind);
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -161,9 +164,9 @@ void RowSortushort(short *a,int *ind,int flag,int n,int p,char dir)
   for ( i = 0 ; i < n ; i++) 
     {
       sciqsort((char *) (a+i),(char *) (ind+i),flag, p, 
-		n*sizeof(short),n*sizeof(int), 
-		(dir == 'i' ) ? compareCushort:compareDushort,
-		swapcodeshort,swapcodeind);
+	       n*sizeof(short),n*sizeof(int), 
+	       (dir == 'i' ) ? compareCushort:compareDushort,
+	       swapcodeshort,swapcodeind);
     }
 }
 /*-----------------------------------------------------------------------------------*/ 
@@ -179,9 +182,9 @@ void GlobalSortushort(short *a,int *ind,int flag,int n,int p,char dir)
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n*p, 
-	    sizeof(short),sizeof(int), 
-	    (dir == 'i' ) ? compareCushort:compareDushort,
-	    swapcodeshort,swapcodeind);
+	   sizeof(short),sizeof(int), 
+	   (dir == 'i' ) ? compareCushort:compareDushort,
+	   swapcodeshort,swapcodeind);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /*******************************************************
@@ -284,9 +287,9 @@ void LexiRowshort(short *a,int *ind,int flag,int n,int p,char dir)
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n, 
-	    sizeof(short),sizeof(int), 
-	    (dir == 'i' ) ? LexiRowcompareCshort:LexiRowcompareDshort,
-	    LexiRowswapcodeshort,swapcodeind);
+	   sizeof(short),sizeof(int), 
+	   (dir == 'i' ) ? LexiRowcompareCshort:LexiRowcompareDshort,
+	   LexiRowswapcodeshort,swapcodeind);
 }
 
 /*-----------------------------------------------------------------------------------*/ 
@@ -300,9 +303,9 @@ void LexiRowushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
 	ind[i]= i+1;
     }
   sciqsort((char *) (a),(char *) (ind),flag, n, 
-	    sizeof(short),sizeof(int), 
-	    (dir == 'i' ) ? LexiRowcompareCushort:LexiRowcompareDushort,
-	    LexiRowswapcodeshort,swapcodeind);
+	   sizeof(short),sizeof(int), 
+	   (dir == 'i' ) ? LexiRowcompareCushort:LexiRowcompareDushort,
+	   LexiRowswapcodeshort,swapcodeind);
 }
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
@@ -311,115 +314,115 @@ void LexiRowushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
  *  to sort them 
  ******************************************************/
 static  int LexiColcompareCshort(short *i,short *j)
-	{
-	int ic;
-	for ( ic = 0 ; ic < lexirowsshort ; ic++) 
-		{
-		if (*i > *j)
-			return (1);
-		if (*i < *j)
-			return (-1);
-		i++;
-		j++;
-		}
-	return (0);
-	}
+{
+  int ic;
+  for ( ic = 0 ; ic < lexirowsshort ; ic++) 
+    {
+      if (*i > *j)
+	return (1);
+      if (*i < *j)
+	return (-1);
+      i++;
+      j++;
+    }
+  return (0);
+}
 /*-----------------------------------------------------------------------------------*/ 
 static  int LexiColcompareDshort(short *i,short *j)
-	{
-	int ic;
-	for ( ic = 0 ; ic < lexirowsshort ; ic++) 
-		{
-		if (*i < *j)
-			return (1);
-		if (*i > *j)
-			return (-1);
-		i++;
-		j++;
-		}
-	return (0);
-	}
+{
+  int ic;
+  for ( ic = 0 ; ic < lexirowsshort ; ic++) 
+    {
+      if (*i < *j)
+	return (1);
+      if (*i > *j)
+	return (-1);
+      i++;
+      j++;
+    }
+  return (0);
+}
 /*-----------------------------------------------------------------------------------*/ 
 static  int LexiColcompareCushort(unsigned short *i,unsigned short *j)
-	{
-	int ic;
-	for ( ic = 0 ; ic < lexirowsshort ; ic++) 
-		{
-		if (*i > *j)
-			return (1);
-		if (*i < *j)
-			return (-1);
-		i++;
-		j++;
-		}
-	return (0);
-	}
+{
+  int ic;
+  for ( ic = 0 ; ic < lexirowsshort ; ic++) 
+    {
+      if (*i > *j)
+	return (1);
+      if (*i < *j)
+	return (-1);
+      i++;
+      j++;
+    }
+  return (0);
+}
 /*-----------------------------------------------------------------------------------*/ 
 static  int LexiColcompareDushort(unsigned short *i,unsigned short *j)
-	{
-	int ic;
-	for ( ic = 0 ; ic < lexirowsshort ; ic++) 
-		{
-		if (*i < *j)
-			return (1);
-		if (*i > *j)
-			return (-1);
-		i++;
-		j++;
-		}
-	return (0);
-	}
+{
+  int ic;
+  for ( ic = 0 ; ic < lexirowsshort ; ic++) 
+    {
+      if (*i < *j)
+	return (1);
+      if (*i > *j)
+	return (-1);
+      i++;
+      j++;
+    }
+  return (0);
+}
 
 /*-----------------------------------------------------------------------------------*/ 
 static int LexiColswapcodeshort(char *parmi,char* parmj,int n) 
-	{ 		
-	int i = n,ir;
-	register short *pi = (short *) (parmi); 		
-	register short *pj = (short *) (parmj); 
-	/* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
-	do { 
-		for ( ir = 0 ; ir < lexirowsshort ; ir++) 
-			{
-			register short t = *(pi +ir);		
-			*(pi +ir) = *(pj+ir);				
-			*(pj +ir) = t;	
-			}
-		pi += lexirowsshort ;
-		pj += lexirowsshort ;
-		} while (--i > 0);				
-	return(0);
-	}
+{ 		
+  int i = n,ir;
+  register short *pi = (short *) (parmi); 		
+  register short *pj = (short *) (parmj); 
+  /* if ( n!= 1) printf(" swapcode avec n != 1\n"); */
+  do { 
+    for ( ir = 0 ; ir < lexirowsshort ; ir++) 
+      {
+	register short t = *(pi +ir);		
+	*(pi +ir) = *(pj+ir);				
+	*(pj +ir) = t;	
+      }
+    pi += lexirowsshort ;
+    pj += lexirowsshort ;
+  } while (--i > 0);				
+  return(0);
+}
 /*-----------------------------------------------------------------------------------*/ 
 void LexiColshort(short *a,int *ind,int flag,int n,int p,char dir)
-	{
-	int i;
-	setLexiSizeshort(n,p);
-	if ( flag == 1) 
-		{
-		for ( i = 0 ; i < p ; i++) 
-			ind[i]= i+1;
-		}
-	sciqsort((char *) (a),(char *) (ind),flag, p, 
-		n*sizeof(short),sizeof(int), 
-		(dir == 'i' ) ? LexiColcompareCshort:LexiColcompareDshort,
-		LexiColswapcodeshort,
-		swapcodeind);
-	}
+{
+  int i;
+  setLexiSizeshort(n,p);
+  if ( flag == 1) 
+    {
+      for ( i = 0 ; i < p ; i++) 
+	ind[i]= i+1;
+    }
+  sciqsort((char *) (a),(char *) (ind),flag, p, 
+	   n*sizeof(short),sizeof(int), 
+	   (dir == 'i' ) ? LexiColcompareCshort:LexiColcompareDshort,
+	   LexiColswapcodeshort,
+	   swapcodeind);
+}
 /*-----------------------------------------------------------------------------------*/ 
 void LexiColushort(unsigned short *a,int *ind,int flag,int n,int p,char dir)
-	{
-	int i;
-	setLexiSizeshort(n,p);
-	if ( flag == 1) 
-		{
-		for ( i = 0 ; i < p ; i++) 
-			ind[i]= i+1;
-		}
-	sciqsort((char *) (a),(char *) (ind),flag, p, 
-		n*sizeof(short),sizeof(int), 
-		(dir == 'i' ) ? LexiColcompareCushort:LexiColcompareDushort,
-		LexiColswapcodeshort,
-		swapcodeind);
-	}
+{
+  int i;
+  setLexiSizeshort(n,p);
+  if ( flag == 1) 
+    {
+      for ( i = 0 ; i < p ; i++) 
+	ind[i]= i+1;
+    }
+  sciqsort((char *) (a),(char *) (ind),flag, p, 
+	   n*sizeof(short),sizeof(int), 
+	   (dir == 'i' ) ? LexiColcompareCushort:LexiColcompareDushort,
+	   LexiColswapcodeshort,
+	   swapcodeind);
+}
 /*-----------------------------------------------------------------------------------*/ 
 
