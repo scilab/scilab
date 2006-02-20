@@ -31,7 +31,7 @@ proc createmenues {} {
     eval "$pad.filemenu.files add command [me "Save &as..."]\
                    [ca {filesaveascur}]"
     eval "$pad.filemenu.files add command [me "&Revert..."] -state disabled\
-                    [ca {revertsaved \[gettextareacur\]}]"
+                    [ca {revertsaved [gettextareacur]}]"
     $pad.filemenu.files add separator
     eval "$pad.filemenu.files add command [me "Import &Matlab file..."] \
                    [ca {importmatlab}]"
@@ -311,10 +311,9 @@ proc createmenues {} {
         }
     }
 # feature temporary disabled as not yet 100% ok (see bindings/issues.txt)
-# REMOVE -state disabled to make this work
     menu $pad.filemenu.options.bindings -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
-           -menu $pad.filemenu.options.bindings " -state disabled
+           -menu $pad.filemenu.options.bindings "
     set binddir [file join $sourcedir bindings]
     set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
     foreach m $BindFiles {
@@ -322,9 +321,10 @@ proc createmenues {} {
         # for some reason $l might be empty under cygwin
         # this is probably due to the /cygdrive/ syntax for paths
         if {$l != ""} {
+# REMOVE -state disabled below to make this option menu work
             eval "$pad.filemenu.options.bindings add radiobutton \
-                [me $l] \
-                -variable bindstyle -value $l -command \"rebind\""
+                [me $l]  -state disabled \
+                -variable bindstyle -value $l -command \"rebind\"" 
         }
     }
 
@@ -567,7 +567,7 @@ proc ca {menucommand} {
 # for the given command, and in case generate a -command -accelerator pair
     set event [findbinding $menucommand]
     if {$event == ""} {
-       return "-command \"$menucommand\""
+        return "-command {$menucommand}"
     } else {
         regsub -all {Control} $event {Ctrl} kevent
         regsub -all {underscore} $kevent {_} kevent
@@ -580,6 +580,6 @@ proc ca {menucommand} {
         regsub -all {><} $kevent { } kevent
         regsub {>\Z} $kevent {} kevent
         regsub {\A<} $kevent {} kevent
-        return "-command \"$menucommand\" -accelerator \"$kevent\""
+        return "-command {$menucommand} -accelerator \"$kevent\""
     }
 }

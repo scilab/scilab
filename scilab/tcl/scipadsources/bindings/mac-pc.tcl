@@ -81,11 +81,11 @@ sbind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
 
 sbind $pad <F4> {importmatlab}
 
-sbind $pad <Control-R> {revertsaved \[gettextareacur\]}
+sbind $pad <Control-R> {revertsaved [gettextareacur]}
 
 sbind Text <Control-slash> {openlibfunsource [[gettextareacur] index insert]}
 sbind Text <Shift-Control-Button-1> \
-           {set ind [\[gettextareacur\] index current]; showpopupsource $ind}
+           {set ind [[gettextareacur] index current]; showpopupsource $ind}
 
 # For Tk 8.5 and above, the behavior on external resize is driven by
 # the option -stretch always
