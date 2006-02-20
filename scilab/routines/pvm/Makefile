@@ -4,7 +4,6 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/pvm.a
 
-	
 OBJSC = pvm_grp.o pvm_proc_ctrl.o pvm_send.o  pvm_info.o \
         pvm_recv.o scipvmf77.o  varpack.o \
         intspvm_addhosts.o intspvm_barrier.o intspvm_bcast.o intspvm_bufinfo.o  \
