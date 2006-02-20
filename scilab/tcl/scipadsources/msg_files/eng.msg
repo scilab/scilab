@@ -65,4 +65,4 @@
 ::msgcat::mcset eng "PDEFCOLOR" "Predefined variables"
 ::msgcat::mcset eng "FOUNDTEXTCOLOR" "Matched text"
 ::msgcat::mcset eng "CONTLINECOLOR" "Continued line"
-::msgcat::mcset eng "USERFUNCOLOR" "User defined fonctions"
+::msgcat::mcset eng "USERFUNCOLOR" "User defined functions"
