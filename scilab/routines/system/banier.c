@@ -30,7 +30,7 @@ void banner(void)
               sciprint("\r\n\r\n");
               sciprint("Warning: the operational team of the Scilab Consortium\r\n");
               sciprint("   does not directly provide nor officially support this\r\n");
-              sciprint("   version of Scilab built with the GTK widget\r\n\r\n");
+              sciprint("   version of Scilab built with the GTK\r\n\r\n");
 	#endif
 
 	#if ( defined(__CYGWIN32__) )
@@ -51,7 +51,7 @@ void banner(void)
         /* Visual Studio C++ 6.0 */
               sciprint("\r\n\r\n");
               sciprint("Warning: the operational team of the Scilab Consortium\r\n");
-              sciprint("   does not directly provide nor officially support the\r\n");
+              sciprint("   does not directly provide nor officially support any\r\n");
               sciprint("   version of Scilab compiled with Microsoft Visual C++ 6.0\r\n\r\n");
 	#endif
 
@@ -59,7 +59,7 @@ void banner(void)
               sciprint("\r\n\r\n");
               sciprint("Warning: the operational team of the Scilab Consortium\r\n");
               sciprint("   does not directly provide nor officially support the\r\n");
-              sciprint("   port of Scilab to MacOS\r\n\r\n");
+              sciprint("   port of Scilab to MacOSX\r\n\r\n");
 	#endif
 
 }
