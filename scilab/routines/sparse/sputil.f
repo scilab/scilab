@@ -273,23 +273,20 @@
       implicit none
       integer n, ix(n), p(n)
       
-      integer i, j, kmax, temp
+      integer i, j, pivot, temp
       call set_perm_id(p, n)
-      kmax = 1
-      do i = 2,n
-         if (ix(i) .lt. ix(kmax)) kmax = i
-      enddo
-      p(1) = kmax
-      p(kmax) = 1
 
-      do i = 3, n
-         j = i
-         do while ( ix(p(j-1)) .gt. ix(p(j)) )
-            temp = p(j)
-            p(j) = p(j-1)
-            p(j-1) = temp
-            j = j-1
-         enddo
+      do i = 2, n
+         pivot = ix(p(i))
+         temp = p(i)
+         j = i-1
+ 10      continue
+            if ( ix(p(j)) .gt. pivot ) then
+               p(j+1) = p(j)
+               j = j-1
+               if ( j .ge. 1 ) goto 10
+            endif
+         p(j+1) = temp
       enddo
 
       end ! subroutine isorti
@@ -442,6 +439,98 @@
       if (it .eq. 1) B_I(k) = val_im
 
       end
+
+
+**********************************************************************
+*
+*    subroutine added by Bruno (Feb 20 2006 to speed up the
+*     sparse(i,j) = sparse insertion
+*
+      subroutine insert_sprow(ka, A_it, A_mnel, A_icol, A_R, A_I,
+     $                        kb, B_it, B_mnel, B_icol, B_R, B_I, 
+     $                        kc, C_it, C_mnel, C_icol, C_R, C_I,
+     $                        j, p, nj, nelmax, ierr)
+
+*      ka, kb, kc : pointent sur les debuts de ligne de A, B et C
+*      kb  is not modified
+*      ka is equal to kamax+1 on output (indice pointer on the next row of A)
+*      kc is modified (on output it is the index of the future next element of C)
+*
+      implicit none
+      integer ka, A_it, A_mnel, A_icol(*), 
+     $        kb, B_it, B_mnel, B_icol(*),
+     $        kc, C_it, C_mnel, C_icol(*),
+     $        j(*), p(*), nj, it, ib, nelmax, ierr
+      double precision A_R(*), A_i(*), B_R(*), B_I(*), C_R(*), C_I(*)
+
+*     local vars
+      integer i, j1, j2, jp, k, kamax, num
+*     external functions and subroutines
+      external dicho_search
+      integer dicho_search
+      external insert_j1j2
+
+*     indice max pour la ligne de A
+      kamax = ka + A_mnel - 1
+      j1  = 1
+
+      k = 1
+*     loop on k from 1 to nj but some values must be skiped
+ 100     jp = j(p(k))
+         if ( k .lt. nj ) then
+            if ( j(p(k+1)) .eq. jp ) then
+               k = k+1
+               goto 100
+            endif
+         endif
+
+         j2 = jp - 1
+         if ( j1 .le. j2 ) then
+            call insert_j1j2(j1, j2, A_it, A_icol, A_R, A_I, ka, 
+     $                       kamax, C_it, C_mnel, C_icol, C_R, C_I, kc, 
+     $                       nelmax, ierr)
+            if (ierr .ne. 0) return
+         endif
+
+       ! insertion de B (ib, p(k))
+         num = dicho_search(p(k), B_icol(kb), B_mnel)
+         if ( num .ne. 0 ) then  ! B(ib,p(k)) is not zero insert it in C
+            num = kb + num - 1
+            if (kc .gt. nelmax) then ! test if there is enough memory
+               ierr = -1
+               return
+            endif
+
+            C_icol(kc) = jp
+            C_mnel = C_mnel + 1
+            C_R(kc) = B_R(num)
+
+            if ( C_it .eq. 1 ) then ! C is complex
+               if (B_it .eq. 0) then !  but B is real
+                  C_I(kc) = 0.d0
+               else                  ! complex case , B complex
+                  C_I(kc) = B_I(num)
+               endif
+            endif
+            kc = kc + 1
+         endif
+
+         j1 = jp + 1
+         k = k + 1
+         if (k .le. nj) goto 100
+*      endloop on k
+ 
+      j2 = A_icol(kamax)
+      if ( j1 .le. j2 ) then
+         call insert_j1j2(j1, j2, A_it, A_icol, A_R, A_I, ka, 
+     $                    kamax, C_it, C_mnel, C_icol, C_R, C_I, kc, 
+     $                    nelmax, ierr)
+      endif
+
+      ka = kamax + 1
+
+      end ! subroutine insert_sprow
+ 
 
 
       SUBROUTINE QSORTI (X, IND, N)

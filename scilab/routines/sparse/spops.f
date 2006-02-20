@@ -1358,17 +1358,20 @@ c     form resulting variable
       if(it3.eq.1) call unsfdcopy(nelr,stk(lr+nelrmax),1,stk(l1+nelr),1)
       lstk(top+1)=l1+nelr*(it3+1)
       go to 999
-c      
-c     insertion
+
+*      
+*     insertion operations
+*
  80   continue
       if(rhs.gt.4) then
          top=top0
          fin=-fin
          return
       endif
-      if(rhs.eq.4) goto 90
-c     arg3(arg1)=arg2
-c     get arg3      
+      if(rhs.eq.4) goto 90  ! goto A(i,j) = B insertion
+*
+*     here begin  arg3(arg1)=arg2  insertion
+*     get arg3      
       tops = top
       il3=iadr(lstk(top))
       if(istk(il3).lt.0) il3=iadr(istk(il3+1))
@@ -1547,19 +1550,29 @@ c     .  arg3=eye,arg2=eye
 c     .  arg3(:)=arg2 reshape arg2 according to arg3
 *  CAUTION: bug if arg2 is a full matrix !
          if(mn2.eq.mn3) then
-            if(m2.ne.m3) then
+            if ( m2.ne.m3 ) then  ! macro coded
                top=top0
                fin=-fin
                return
+            elseif ( istk(il2) .eq. 5 ) then ! equal sizes arg2 is a sparse
+               istk(ilrs)=5
+               istk(ilrs+1)=m3
+               istk(ilrs+2)=n3
+               call icopy(2+m2+nel2,istk(il2+3),1,istk(ilrs+3),1)
+               l1=sadr(ilrs+5+m2+nel2)
+               call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
+               lstk(top+1)=l1+nel2*(it2+1)
+               return
+            else                             ! equal sizes arg2 is a full matrix 
+               istk(ilrs)=1
+               istk(ilrs+1)=m3
+               istk(ilrs+2)=n3
+               istk(ilrs+3)=it2
+               l1=sadr(ilrs+4)
+               call unsfdcopy(mn2*(it2+1),stk(l2),1,stk(l1),1)
+               lstk(top+1)=l1+mn2*(it2+1)
+               return
             endif
-            istk(ilrs)=5
-            istk(ilrs+1)=m3
-            istk(ilrs+2)=n3
-            call icopy(2+m2+nel2,istk(il2+3),1,istk(ilrs+3),1)
-            l1=sadr(ilrs+5+m2+nel2)
-            call unsfdcopy(nel2*(it2+1),stk(l2),1,stk(l1),1)
-            lstk(top+1)=l1+nel2*(it2+1)
-            return
          elseif(mn2.eq.1) then
             istk(ilrs)=1
             istk(ilrs+1)=m3
@@ -1708,7 +1721,6 @@ c     .  row vector
       go to 999   ! c'est un return
 
  90   continue
-
 c     **** insertion  arg4(arg1,arg2)=arg3  *****
 c     (comments added by Bruno to try to understand this stuff)
 
@@ -1912,33 +1924,35 @@ c     .  arg3=eye , arg4=eye
 
       elseif(m1.eq.-1.and.m2.eq.-1) then
 c     .  arg4(:,:)=arg3
-         if(mn3.eq.mn4) then
-            if(m3.ne.m4) then  ! bizarre ca on a alors A(:,:)=B qui ne change pas A
-               top=top0        ! en fait on imagine plutot une erreur a indiquer
-               fin=-fin
-               return
-c     .  reshape arg3 according to arg4  : ici on a donc des matrices de tailles identiques
-c             il ne semble pas y avoir de distinctions entre sparse ou pleine pour arg3 (B)
-c             ca peut expliquer le plantage ...  OUI
-c             remede : cependant ce cas peut etre pris en compte par les routines generiques
-c                      plutot que de le traiter dans l'interface. De plus ce n'est pas si
-c                      court comme code vu qu'il faut tester les coefs de B. L'interface
-c                      ne doit s'occuper que des cas triviaux et des cas d'erreurs
-*
-*   A signaler a Serge.
-*
-            elseif (istk(il3) .eq. 5) then ! ajout bruno (si arg3 est pleine le code suivant n'est pas bon)
-               istk(ilrs)=5
+         if(mn3.eq.mn4) then   
+*           reshape arg3 according to arg4 
+            if ( istk(il3) .eq. 1 ) then   ! arg3 is a full matrix
+               istk(ilrs)=1                ! => change of type (sparse -> full)
                istk(ilrs+1)=m4
                istk(ilrs+2)=n4
-               call icopy(2+m3+nel3,istk(il3+3),1,istk(ilrs+3),1)
-               l1=sadr(ilrs+5+m3+nel3)
-               call unsfdcopy(nel3*(it3+1),stk(l3),1,stk(l1),1)
-               lstk(top+1)=l1+nel3*(it3+1)
+               istk(ilrs+3)=it3
+               l1=sadr(ilrs+4)
+               call unsfdcopy(mn3*(it3+1),stk(l3),1,stk(l1),1)
+               lstk(top+1)=l1+mn3*(it3+1)
                return
+            else                           ! arg3 is a sparse matrix
+               if( m3 .eq. m4 ) then 
+                  istk(ilrs)=5
+                  istk(ilrs+1)=m4
+                  istk(ilrs+2)=n4
+                  call icopy(2+m3+nel3,istk(il3+3),1,istk(ilrs+3),1)
+                  l1=sadr(ilrs+5+m3+nel3)
+                  call unsfdcopy(nel3*(it3+1),stk(l3),1,stk(l1),1)
+                  lstk(top+1)=l1+nel3*(it3+1)
+                  return
+               else            
+                  top=top0   ! macro coded in %sp_i_sp.sci     
+                  fin=-fin
+                  return
+               endif
             endif
-         elseif(mn3.eq.1) then   ! arg4(:,:)=arg3 avec arg3 un scalaire 
-            istk(ilrs)=1         ! on change de type (matrice pleine)
+         elseif(mn3.eq.1) then   ! arg4(:,:)=arg3 with arg3 a scalar 
+            istk(ilrs)=1         ! => change of type (sparse -> full)
             istk(ilrs+1)=m4
             istk(ilrs+2)=n4
             istk(ilrs+3)=it3
@@ -1953,7 +1967,7 @@ c                      ne doit s'occuper que des cas triviaux et des cas d'erreu
          endif
       endif
 
-      ! insertion  arg4(arg1,arg2)=arg3 ... suite 
+      ! insertion  arg4(arg1,arg2)=arg3 : treatment of indices vectors arg1 and arg2
       call indxg(il1,m4,ili,mi,mxi,lw,11)
       if(err.gt.0) return
       if(mi.lt.0) then
@@ -1978,8 +1992,8 @@ c     .  sizes of arg1 or arg2 dont agree with arg3 sizes
                lstk(top+1)=l+mn4*(it4+1)
                goto 999
             endif
-            if(istk(il3).ne.1) then
-               top=top0
+            if(istk(il3).eq.5) then  ! A(i,j) = B with B a 1x1 sparse matrix 
+               top=top0              ! is macro coded (see second case of %sp_i_sp.sci)
                fin=-fin
                return
             endif
@@ -1988,16 +2002,15 @@ c     .  sizes of arg1 or arg2 dont agree with arg3 sizes
             return
          endif
       else
-         if(mr1.eq.0.or.nr1.eq.0) then  ! est-ce possible ?
+         if(mr1.eq.0.or.nr1.eq.0) then
             call error(15)
             return
          endif
       endif
       mr=max(m4,mxi)
       nr=max(n4,mxj)
-c      ! insertion  arg4(arg1,arg2)=arg3 ... suite 
 
-      ! try if we can do insertion in place
+*     try if we can do insertion in place
       if (      (istk(il3).eq.1) .and. (it4.ge.it3) 
      $    .and. (mi.gt.0).and.(mj.gt.0).and.(mi.le.m4).and.(mj.le.n4)
      $    .and. (mi*mj.lt.nel4/4) ) then 
@@ -2027,35 +2040,41 @@ c      ! insertion  arg4(arg1,arg2)=arg3 ... suite
 
       itr=max(it4,it3)
       if(istk(il3).eq.5) then  ! insertion sparse(ind_i, ind_j) = sparse matrix
-         lptr=iadr(lw)    
-         irc=lptr+mr+1
-         lw=sadr(irc+mr)
-         nelr=(lstk(bot)-lw)/(1+2*(itr+1))
-         if(nelr.le.0) then
-            err=lw-lstk(bot)
+                               ! accelerated by bruno for Jean-François 's simulations
+
+         ipi = iadr(lw)         ! indice pour pi
+         ipj = ipi + max(0,mi)  ! indice pour pj
+         ipptr_row = ipj + max(0,mj)  ! indice pour B_ptr_row
+         irc = ipptr_row + m3+1 ! indice pour C_mnel
+         lw = sadr(irc + mr)    ! indice de stk à partir duquel il faut caser C_icol, C_R et C_I
+         nelmax = 2*(lstk(bot)-lw)/(1+2*(itr+1))
+         if(nelmax .le. 0) then
+            err = lw-lstk(bot)
             call error(17)
             return
          endif
-         lr=sadr(irc+mr+nelr)
-         lw=lr+nelr*(itr+1)
-         nel=nelr
+         lr = sadr(irc + mr + nelmax)
+         lw = lr + nelmax*(itr + 1)
 
-         if(itr.eq.0) then
-            call dspisp(m4,n4,stk(l4),nel4,istk(irc4),
-     $           istk(ili),mi,istk(ilj),mj,
-     $           m3,n3,stk(l3),nel3,istk(irc3),
-     $           mr,nr,stk(lr),nelr,istk(irc),istk(lptr),ierr)
-         else
-            call wspisp(m4,n4,stk(l4),stk(l4+nel4),nel4,istk(irc4),
-     $           istk(ili),mi,istk(ilj),mj,
-     $           m3,n3,stk(l3),stk(l3+nel3),nel3,istk(irc3),
-     $           mr,nr,stk(lr),stk(lr+nelr),nelr,istk(irc),
-     $           istk(lptr),ierr,it4,it3)
-         endif
+c     arg4(arg1,arg2)=arg3   A(i,j) = B
+*      subroutine spisp(A_m, A_n, A_nel, A_it, A_mnel, A_icol, A_R, A_I,
+*     $                 B_m, B_n, B_nel, B_it, B_mnel, B_icol, B_R, B_I,
+*     $                 C_m, C_n, C_nel, C_it, C_mnel, C_icol, C_R, C_I,
+*     $                 B_ptr_row, i, pi, ni, j, pj, nj, nelmax, ierr)
+
+         call spisp(m4,n4,nel4,it4,istk(irc4),istk(irc4+m4),
+     $              stk(l4),stk(l4+it4*nel4),
+     $              m3,n3,nel3,it3,istk(irc3),istk(irc3+m3),
+     $              stk(l3),stk(l3+it3*nel3),
+     $              mr,nr,nelr,itr,istk(irc), istk(irc+mr), 
+     $              stk(lr), stk(lr+itr*nelmax),
+     $              istk(ipptr_row), istk(ili), istk(ipi), mi, 
+     $              istk(ilj), istk(ipj), mj, nelmax, ierr) 
+         nel = nelmax
 
       else  ! insertion sparse(ind_i, ind_j) = full matrix
 
-         ipi = iadr(lw)   ! indice pour pi
+         ipi = iadr(lw)         ! indice pour pi
          ipj = ipi + max(0,mi)  ! indice pour pj
          irc = ipj + max(0,mj)  ! indice pour C_mnel
          lw = sadr(irc + mr)    ! indice de stk à partir duquel il faut caser C_icol, C_R et C_I
@@ -2085,8 +2104,8 @@ c     arg4(arg1,arg2)=arg3   A(i,j) = B
 
       endif
 
-      if(ierr.ne.0) then     ! methode a utiliser lorsque l'on peut difficilement
-         buf='not enough memory'   ! evaluer la memoire manquante
+      if(ierr.ne.0) then    
+         buf='not enough memory'
          call error(9999)
          return
       endif
