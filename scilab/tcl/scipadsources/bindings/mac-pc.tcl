@@ -28,7 +28,6 @@ sbind Text <Control-x> {cuttext}
 sbind $pad <Control-c> {copytext}
 sbind Text <Control-v> {pastetext}
 sbind Text <Delete>    {deletetext}
-#sbind Text <ButtonRelease-2> {button2copypaste [gettextareacur] %x %y}
 
 #cut-copy-paste for entries
 sbind Entry <Control-x> [bind Entry <<Cut>>]
