@@ -1,6 +1,7 @@
 /*------------------------------------------------------------------------
  *    Graphic library
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
+ *    Copyright (C) 2006      INRIA/Jean-Baptiste Silvy
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------
@@ -12,6 +13,10 @@
 #include <stdio.h>
 #include "Math.h"
 #include "PloEch.h"
+#include "Axes.h"
+#include "DestroyObjects.h"
+#include "DrawObjects.h"
+#include "InitObjects.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -23,8 +28,8 @@
 
 #include "GetProperty.h"
 
-static sciPointObj *psubwin;/* NG */
-
+static sciPointObj * psubwin;/* NG */
+extern sciPointObj * paxesmdl ;
 
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
@@ -2627,3 +2632,110 @@ void XGradPosition(sciPointObj * psubwin, int yy, int rect3)
       if(yy + rect3 > ppsubwin->XGradMostOnTop) ppsubwin->XGradMostOnTop = yy + rect3;
     }
 }
+
+/*--------------------------------------------------------------------------------*/
+/* clear a subwindow from all of its children */
+void clearSubWin( sciPointObj * pSubWin )
+{
+  sciSons * curSon = sciGetSons (pSubWin);
+  
+  while ( curSon != NULL && curSon->pointobj != NULL )
+  {
+    if ( curSon->pointobj->entitytype != SCI_LABEL )
+    {
+      DestroyAllGraphicsSons (curSon->pointobj) ;
+      curSon = sciGetSons ( pSubWin ) ;
+    }
+    else
+    {
+      curSon = curSon->pnext ;
+    }
+    
+  }
+}
+/*--------------------------------------------------------------------------------*/
+/* reinit a subwindow (but don't change position ) */
+void reinitSubWin( sciPointObj * pSubWin )
+{
+  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin) ;
+  
+  clearSubWin(   pSubWin ) ;
+ 
+  initSubWinBounds( pSubWin ) ;
+  ppSubWin->axes.xdir = 'd' ;
+  ppSubWin->axes.ydir = 'l' ;
+  
+  ppSubWin->visible = TRUE;
+  
+  ppSubWin->is3d = FALSE ;
+  ppSubWin->alpha_kp  = ppSubWin->alpha ;
+  ppSubWin->theta_kp  = ppSubWin->theta ;
+  ppSubWin->alpha  = 0.0;
+  ppSubWin->theta  = 270.0 ;
+
+  ppSubWin->surfcounter = 0 ;
+  
+  ppSubWin->FirstPlot = TRUE;
+  
+
+}
+/*--------------------------------------------------------------------------------*/
+/* set the size and position of the subwindow to the default */
+void initSubWinSize( sciPointObj * pSubWin )
+{
+  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
+  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (paxesmdl) ;
+  ppSubWin->WRect[0] = ppAxesMdl->WRect[0] ;
+  ppSubWin->WRect[1] = ppAxesMdl->WRect[1] ;
+  ppSubWin->WRect[2] = ppAxesMdl->WRect[2] ;
+  ppSubWin->WRect[3] = ppAxesMdl->WRect[3] ;
+
+}
+/*--------------------------------------------------------------------------------*/
+/* set the data_bounds of the axes to the default value */
+void initSubWinBounds( sciPointObj * pSubWin )
+{
+  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
+  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (paxesmdl) ;
+  ppSubWin->FRect[0] = ppAxesMdl->FRect[0] ;
+  ppSubWin->FRect[1] = ppAxesMdl->FRect[1] ;
+  ppSubWin->FRect[2] = ppAxesMdl->FRect[2] ;
+  ppSubWin->FRect[3] = ppAxesMdl->FRect[3] ;
+  ppSubWin->FRect[4] = ppAxesMdl->FRect[4] ;
+  ppSubWin->FRect[5] = ppAxesMdl->FRect[5] ;
+
+  ppSubWin->SRect[0] = ppAxesMdl->SRect[0] ;
+  ppSubWin->SRect[1] = ppAxesMdl->SRect[1] ;
+  ppSubWin->SRect[2] = ppAxesMdl->SRect[2] ;
+  ppSubWin->SRect[3] = ppAxesMdl->SRect[3] ;
+  ppSubWin->SRect[4] = ppAxesMdl->SRect[4] ;
+  ppSubWin->SRect[5] = ppAxesMdl->SRect[5] ;
+}
+/*--------------------------------------------------------------------------------*/
+/* reinit the selected subwindow if the auto_clear property is set to on */
+/* return TRUE if the window has been redrawn */
+BOOL checkRedrawing( void )
+{
+  
+  sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+  if ( !sciGetAddPlot( pSubWin ) )
+  {
+    if ( version_flag() == 0 )
+    {
+      /* redraw the axis */
+      reinitSubWin( pSubWin ) ;
+      return TRUE ;
+    }
+    else
+    {
+      /* jb Silvy : take this from the old code */
+      sciXbasc()   ;
+      initsubwin() ;
+      sciRedrawFigure() ;
+      return TRUE ;
+    }
+  }
+  return FALSE ;
+}
+/*--------------------------------------------------------------------------------*/
+
