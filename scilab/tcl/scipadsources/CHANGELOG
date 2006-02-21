@@ -2030,3 +2030,10 @@ Francois VOGEL, 20/02/06
  * Fixed: msgcat collision between Windows menu entry (main menu bar) and the
    entry with same name in the Options/Double click sub-menu
  * version --> 6.4
+ 
+ES 21/2/06
+ * bug fixed: double-click on an unfocused split pane pasted wrongly the 
+   selection inside the focused pane
+ * removed some duplicate general bindings from emacs.tcl and mac-pc.tcl 
+ * version --> 6.5
+ 

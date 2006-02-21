@@ -28,7 +28,7 @@ sbind Text <Control-x> {cuttext}
 sbind $pad <Control-c> {copytext}
 sbind Text <Control-v> {pastetext}
 sbind Text <Delete>    {deletetext}
-sbind Text <ButtonRelease-2> {button2copypaste [gettextareacur] %x %y}
+#sbind Text <ButtonRelease-2> {button2copypaste [gettextareacur] %x %y}
 
 #cut-copy-paste for entries
 sbind Entry <Control-x> [bind Entry <<Cut>>]
@@ -84,17 +84,3 @@ sbind $pad <F4> {importmatlab}
 sbind $pad <Control-R> {revertsaved [gettextareacur]}
 
 sbind Text <Control-slash> {openlibfunsource [[gettextareacur] index insert]}
-sbind Text <Shift-Control-Button-1> \
-           {set ind [[gettextareacur] index current]; showpopupsource $ind}
-
-# For Tk 8.5 and above, the behavior on external resize is driven by
-# the option -stretch always
-# For Tk before 8.5, proc spaceallsasheskeeprelsizes emulates this option
-sbind $pad <Configure> {if {" \[gettextareacur\]"=="$pad"} {
-                           if {!$Tk85} {
-                               catch {spaceallsasheskeeprelsizes}
-                           }
-                       }}
-sbind Panedwindow <Double-Button-1> {spacesashesevenly  %W}
-
-

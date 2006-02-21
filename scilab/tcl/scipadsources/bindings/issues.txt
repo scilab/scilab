@@ -5,8 +5,8 @@
  implemented
 *C-x,C-c,C-v survive in Entries side by side with C-w,M-w,C-y
 *C-l is not exactly recenter
-*[in the  menu labels <> denote switchable bindings] (not all bindings are 
- yet switchable) -- obsolete item?
+*not all bindings are yet switchable [for debug the switchable ones could be
+ highligthed, for instance leaving <> around them, proc ca]
 *not all menu entries have native emacs bindings; some mac-pc have been left
  in place, some not
 *prefix-prefix-prefix- is seen as prefix- once; sequences longer than 

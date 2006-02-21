@@ -148,15 +148,19 @@ proc button2copypaste {w x y} {
 ##ES 16/11/04 -- we have to write a full proc for this because we need
 # to take care of colorization, insert only when editable, etc
     global textareacur listoffile
-    if {[IsBufferEditable] == "No"} {return}
+#the target textarea gets focused, even if paste is forbidden there
+    if {[IsBufferEditable] == "No"} {focustextarea $w; return}
     if {[catch {selection get}] == 0} {
         set listoffile("$textareacur",redostackdepth) 0
         clipboard clear
         set ct [selection get]
         clipboard append $ct
         selection clear
+        focustextarea $w
         $w mark set insert @$x,$y
         pastetext
+    } else {
+        focustextarea $w
     }
 #there is still one glitch - the cursor returns at the beginning
 # of the insertion point (why?) - but not on windows !

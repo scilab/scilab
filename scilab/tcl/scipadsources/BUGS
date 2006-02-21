@@ -47,14 +47,6 @@ Bugs:
 -Irreproducible Error 0 on ScilabEval_lt happens sometimes - stack trace
  wanted!
 
--Open two long enough (more than half screenful) files. Split the window
-so that you display both. Select some text in one window (which becomes
-the active one). Button-2 click on the other buffer. What should
-naturally happen in an X application is that the second buffer becomes
-active, and the selection is copied at the drop position. Instead, the
-first buffer remains active, and the text is dropped there at screen
-coordinates matching the drop in the second one.
-
 
 
 Old bugs/whishes which have been hacked but could have been done better:

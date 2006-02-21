@@ -51,7 +51,6 @@ sbind Text <Control-w> {cuttext}
 sbind $pad <Alt-w>     {copytext}
 sbind Text <Control-y> {pastetext}
 sbind Text <Control-d> {deletetext}
-sbind Text <ButtonRelease-2> {button2copypaste [gettextareacur] %x %y}
 
 #cut-copy-paste for entries
 sbind Entry <Control-w> [bind Entry <<Cut>>]
@@ -112,33 +111,8 @@ sbind $pad <F4> {importmatlab}
 sbind $pad <Control-R> {revertsaved [gettextareacur]}
 
 sbind Text <Control-slash> {openlibfunsource [[gettextareacur] index insert]}
-sbind Text <Shift-Control-Button-1> \
-          {set ind [ [gettextareacur] index current]; showpopupsource $ind}
-
-# For Tk 8.5 and above, the behavior on external resize is driven by
-# the option -stretch always
-# For Tk before 8.5, proc spaceallsasheskeeprelsizes emulates this option
-sbind $pad <Configure> {if {" \[gettextareacur\]"=="$pad"} {
-                           if {!$Tk85} {
-                               catch {spaceallsasheskeeprelsizes}
-                           }
-                       }}
-sbind Panedwindow <Double-Button-1> {spacesashesevenly  %W}
 
 
-#emacs pure movements: low level (should we change?)
-# sbind Text <Control-v> {tk::TextSetCursor %W [tk::TextScrollPages %W 1]}
-# sbind Text <Alt-v> {tk::TextSetCursor %W [tk::TextScrollPages %W -1]}
-# sbind All <Control-a> {tk::TextSetCursor %W {insert linestart}}
-# sbind All <Control-e> {tk::TextSetCursor %W {insert lineend}}
-# sbind All <Control-p> {tk::TextSetCursor %W [tk::TextUpDownLine %W -1]}
-# sbind All <Control-n> {tk::TextSetCursor %W [tk::TextUpDownLine %W 1]}
-# sbind All <Control-b> {tk::TextSetCursor %W insert -1c}
-# sbind All <Control-f> {tk::TextSetCursor %W insert +1c}
-# sbind All <Alt-b> {tk::TextSetCursor %W insert tcl_startOfPreviousWord]}
-# sbind All <Alt-f> {tk::TextSetCursor %W [tk::TextNextWord %W insert]}
-# sbind Text <Alt-less> {tk::TextSetCursor %W 1.0}
-# sbind Text <Alt-greater> {tk::TextSetCursor %W {end - 1 char}}
 ## not exactly emacs recenter:
 sbind Text <Control-l> {[gettextareacur] see insert}
 
