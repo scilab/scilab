@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v5.70
+# in sync at least with v6.4
 
 
 # commons
@@ -56,6 +56,14 @@
 ::msgcat::mcset it "Obtain" "Ottieni"
 ::msgcat::mcset it "Input arguments:" "Argumenti di ingresso:"
 ::msgcat::mcset it "Remove" "Rimuovi"
+::msgcat::mcset it "The selected function has not been found in the opened\
+                    files, maybe it was deleted since last configuration of\
+                    the debugger.\nUse button \""\
+                   "la funzione selezionata non compare in nessuno dei files\
+                    aperti, potrebbe essere stata cancellata dall'ultima volta\
+                    che il debugger è stato configurato. Usare il tasto \""
+::msgcat::mcset it "\" to refresh the list of available functions."\
+                   "\" per rinfrescare la lista delle funzioni disponibili"
 ::msgcat::mcset it "Function name or input arguments do not match definition\
                     of the function"\
                    "Il nome della funzione o i suoi argomenti non\
@@ -71,6 +79,17 @@
                     mouse."
 ::msgcat::mcset it "Error in selected function name or arguments"\
                    "Errore nella funzione selezionata o nei suoi argomenti"
+::msgcat::mcset it "At least one input argument does not match definition of\
+                    the function"\
+                   "Uno o più argomenti non corrispondono alla\
+                    definizione della funzione"
+::msgcat::mcset it "in the file!\n\nCheck function arguments (their names)\
+                    in the configuration dialog."\
+                   "nel file!\n\nVerificare il nome della funzione e gli\
+                    argomenti (nome, ordine di comparsa) nel\
+                    dialogo di configurazione."
+::msgcat::mcset it "Error in selected function arguments"\
+                   "Errore negli agromenti della funzione selezionata"
 ::msgcat::mcset it "Debugger is not yet developed for sce scripts!"\
                    "Il debugger non funziona, per ora, su programmi *.sce!"
 
@@ -173,6 +192,12 @@
 ::msgcat::mcset it "Revert Confirm?" "Conferma recupero?"
 ::msgcat::mcset it "Unreadable file" "File illeggibile!"
 ::msgcat::mcset it "exists but is not readable!" "esiste, ma non è leggibile!"
+::msgcat::mcset it "This file is rather large and colorization might take\
+                    some time.\n\nColorize anyway?"\
+                   "Questo file è relativamente grosso, e la colorazione potrebbe\
+                    richiedere tempo. Colorare comunque?"
+::msgcat::mcset it "File size warning"\
+                   "Avvertimento: grosso file"
 
 
 # findreplace.tcl
@@ -345,6 +370,7 @@
 ::msgcat::mcset it "S&cilab" "&Scilab"
 ::msgcat::mcset it "&XML" "&XML"
 ::msgcat::mcset it "&none" "&nessuno"
+::msgcat::mcset it "&Colorize" "&Colora"
 
 # menues.tcl - Options menu
 ::msgcat::mcset it "&Font size" "&Dimensione carattere"
@@ -353,9 +379,17 @@
 ::msgcat::mcset it "m&edium" "m&edio"
 ::msgcat::mcset it "&large" "&grande"
 ::msgcat::mcset it "&Colors" "&Colori"
-::msgcat::mcset it "Colorize \'&strings\'" "Colora \'&stringhe\'"
+::msgcat::mcset it "Colori&ze" "C&olorare"
+::msgcat::mcset it "&Always" "&Sempre"
+::msgcat::mcset it "Ask for &big files" "&Chiedere per files grandi"
+::msgcat::mcset it "&Never" "&Mai"
+::msgcat::mcset it "Colorize \'&strings\'" "Colora &\'stringhe\'"
 ::msgcat::mcset it "Show c&ontinued lines" "Colora linee &incomplete"
 ::msgcat::mcset it "Word &wrap" "&Ritorno a capo visuale"
+::msgcat::mcset it "&Double-click behavior" "Doppio clic &seleziona come"
+::msgcat::mcset it "&Linux" "&Linux"
+::msgcat::mcset it "Windo&ws" "Windo&w$"
+::msgcat::mcset it "&Scilab" "&Scilab"
 ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
 ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
 ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
@@ -411,6 +445,7 @@
 # popupmenus.tcl
 ::msgcat::mcset it "Open the source of" "Apri la sorgente di"
 ::msgcat::mcset it "AddWatch" "Tieni %s sotto controllo"
+::msgcat::mcset it "Jump to" "Salta a"
 
 
 # print.tcl
@@ -518,6 +553,7 @@
 ::msgcat::mcset it "PDEFCOLOR" "Variabili predefinite"
 ::msgcat::mcset it "FOUNDTEXTCOLOR" "Testo trovato"
 ::msgcat::mcset it "CONTLINECOLOR" "Linea incompleta"
+::msgcat::mcset it "USERFUNCOLOR" "Funzioni utente"
 
 
 #overriding tcl-core dialogs (many are actually already found in
