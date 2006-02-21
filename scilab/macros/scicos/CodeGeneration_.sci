@@ -2722,7 +2722,7 @@ function Code=make_decl()
 	'#include <memory.h>';
 	'#include <string.h>';
 	'#include '"'+SCI+'/routines/machine.h'"';
-	'#include '"'+SCI+'/routines/sun/link.h'"';
+	'#include '"'+SCI+'/routines/os_specific/link.h'"';
 	'#include '"'+SCI+'/routines/scicos/scicos.h'"';	
 	' ';
         cformatline('void '+rdnom+'main0(scicos_block *,double *, double *, int );',70);
