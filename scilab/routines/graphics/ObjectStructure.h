@@ -499,6 +499,7 @@ typedef struct
   double y;
   /***/
   double wh[2];
+  /* used by text_box_mode : -1 <=> off, 0 <=> centered, 1 <=> filled */
   BOOL fill; /* to distinguish between xstring and xstringb */
   BOOL isboxed  ;
   BOOL isline   ; /* switch the contour of the box */
@@ -577,7 +578,7 @@ typedef struct
   sciLegendPlace place;
   /** */
   sciSons *associatedentity;
-  /** */
+  /** pointer on the labelled objects */
   sciPointObj **pptabofpointobj;
   /** specifies if this object is visble             */
   BOOL visible; 
@@ -652,7 +653,7 @@ typedef struct
   double position[2]; /* the (x,y) coord. of the label's position */
 
 }
-sciLabel;  
+sciLabel;
 
 typedef struct
 {
@@ -756,9 +757,9 @@ typedef struct
   /** specifies the factor of the y zoom                     */
   int zoomy;
   double SRect[6]; /* [xmin xmax ymin ymax zmin zmax] : Strict rect. coming from update_specification_bounds function or from a set(a,"data_bounds",[...]) */
-  double FRect[6];
-  double WRect[4]; /* subwin */
-  double ARect[4]; /* margins*/
+  double FRect[6]; /* real data_bounds */
+  double WRect[4]; /* size of the subplot */
+  double ARect[4]; /* margins, give the size of the axe*/
   int zoomy_kp;
   /* ZRect_kp is now useless : when unzooming we deal with SRect values */
   double ZRect[6]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
@@ -770,7 +771,8 @@ typedef struct
   BOOL is3d;
   BOOL tight_limits;
   double theta_kp;
-  double alpha_kp;	
+  double alpha_kp;
+  /* viewing angles */
   double theta;
   double alpha;	
   /** specifie the associated entity popup menu */
@@ -986,9 +988,9 @@ typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
-  double * pvecx;
-  double * pvecy;
-  double * pvecz;
+  double * pvecx; /* x data */
+  double * pvecy; /* y data */
+  double * pvecz; /* z data */
   double *inputCMoV; /* Adding here in order to always have the input data*/
   /* We will determinate if it is a vector or matrix data with m3n and n3n values*/
   double *zcol;
@@ -996,19 +998,19 @@ typedef struct
                   /*  color == zcol if 'direct' mode used (direct indices on colormap)  */
                   /* else 'scaled' mode used => color == linear interp. of zcol on the colormap */
 
-  int cdatamapping; /* like in Matlab, it determines how the color is computed ('saled' or 'direct' mode) */
+  int cdatamapping; /* like in Matlab, it determines how the color is computed ('scaled' or 'direct' mode) */
                     /* 0: scaled */
                     /* 1: direct (default) */
-  integer izcol;  
+  integer izcol;
   integer dimzx;
   integer dimzy;
 
   /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
 
-  int nc;
-  int nx;
-  int ny;
-  int nz;
+  int nc; /* number of colors */
+  int nx; /* number of x data */
+  int ny; /* number of y data */
+  int nz; /* number of z data */
   int isfac;
   int m1,n1;
   int m2,n2;
@@ -1021,7 +1023,7 @@ typedef struct
   int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
 		    0: uniformed color
 		    1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */
-  sciTypeOf3D typeof3d;
+  sciTypeOf3D typeof3d; /* Fac3d or Plot3d */
   int hiddencolor;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
