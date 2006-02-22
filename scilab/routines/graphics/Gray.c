@@ -17,6 +17,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
+#include "Axes.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -79,16 +80,11 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   
   /* NG beg */
   if (version_flag() == 0){
-   
-    if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-      sciXbasc(); 
-      initsubwin();
-      sciRedrawFigure();
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
-    } 
-
+    BOOL isRedrawn ;
     /* Adding F.Leray 22.04.04 */
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+    isRedrawn = checkRedrawing() ;
     
     /* Force psubwin->is3d to FALSE: we are in 2D mode */
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
@@ -171,8 +167,16 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,z,*n1,*n2,0));
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    /* if the auto_clear is on we must redraw everything */
+    if ( isRedrawn )
+    {
+      sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+    }
+    else
+    {
+      sciDrawObjIfRequired(sciGetCurrentObj ());
+      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    }
   }
 
   else { 
@@ -273,15 +277,12 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   yy[0]=0.5;yy[1]= *n1+0.5;
   
   if (version_flag() == 0){
-    if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-      sciXbasc(); 
-      initsubwin();
-      sciRedrawFigure();
-    } 
-    
+    BOOL isRedrawn ;
     /* Adding F.Leray 22.04.04 */
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     
+    isRedrawn = checkRedrawing() ;
+
     /* Force psubwin->is3d to FALSE: we are in 2D mode */
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
       {
@@ -360,9 +361,17 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       NULL,NULL,z,*n1 + 1,*n2 + 1,1)); 
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+		       NULL,NULL,z,*n1 + 1,*n2 + 1,1));
+    /* if the auto_clear is on we must redraw everything */
+    if ( isRedrawn )
+    {
+      sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+    }
+    else
+    {
+      sciDrawObjIfRequired(sciGetCurrentObj ());
+      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    }
   }
   else { /* NG end */
     /** Boundaries of the frame **/
@@ -402,13 +411,11 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
 
   /* NG beg */
   if (version_flag() == 0){
+    BOOL isRedrawn ;
     double y; /* void for ConstructGrayplot */ 
     sciPointObj *psubwin = NULL;
-    if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-      sciXbasc(); 
-      initsubwin();
-      sciRedrawFigure();
-    } 
+    
+    isRedrawn = checkRedrawing() ;
   
     /*---- Boundaries of the frame ----*/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
@@ -419,8 +426,16 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       xrect,&y,z,*n1+1,*n2+1,2));
-    sciDrawObjIfRequired(sciGetCurrentObj ()); 
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    /* if the auto_clear is on we must redraw everything */
+    if ( isRedrawn )
+    {
+      sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+    }
+    else
+    {
+      sciDrawObjIfRequired(sciGetCurrentObj ());
+      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    }
   }
   else { /* NG end */
     double xx[2],yy[2];

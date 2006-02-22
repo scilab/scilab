@@ -14,6 +14,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
+#include "Axes.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -82,12 +83,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   yy[0]=y[0];yy[1]=y[*n2-1];
   
   if (version_flag() == 0) {
-      if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-	sciXbasc();  
-	initsubwin();
-	sciRedrawFigure();
-      }  
+      
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      checkRedrawing() ;
 
       /* Force psubwin->is3d to FALSE: we are in 2D mode */
       if (sciGetSurface(psubwin) == (sciPointObj *) NULL)

@@ -15,6 +15,7 @@ for entities handling
 #include <string.h>
 #include "Math.h" 
 #include "Graphics.h"
+#include "Axes.h"
 
 #include "GetProperty.h"
 #include "SetProperty.h"
@@ -86,13 +87,12 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     BOOL bounds_changed = FALSE;
     BOOL axes_properties_changed = FALSE;
     
-    if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-      sciXbasc(); 
-      initsubwin();
-      sciRedrawFigure();
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
-    } 
+    
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    
+    checkRedrawing() ;
+
+    
      
     /* Force psubwin->is3d to FALSE: we are in 2D mode */
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
@@ -421,9 +421,11 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
 	  ymin = Min(ymin,sy[2]); ymax = Max(ymax,sy[1]);
 	}
       
-      if ( xmax > Fxmin  &&  ymax > Fymin  &&  xmin < Fxmax  &&  ymin < Fymax ) 
+      if ( xmax > Fxmin  &&  ymax > Fymin  &&  xmin < Fxmax  &&  ymin < Fymax )
+      { 
 	/* call the "painting" function */
 	PaintTriangle(sx, sy, fxy, zxy, zlevel, fill, with_mesh);
+      }
     }
 
   frame_clip_off();
@@ -457,7 +459,6 @@ static void PermutOfSort (int *tab, int *perm)
     };
 }
 
-
 static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, 
 			   double *zlevel, int *fill, BOOL with_mesh)
 {
@@ -487,11 +488,15 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
       resy[0]=inint(sy[0]); resy[1]=inint(sy[1]);  resy[2]=inint(sy[2]);
       color = fill[zxy[0]]; nr = 3;
       if ( color != 0 )
-	C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
-		PI0,PD0,PD0,PD0,PD0,0L,0L);
+      {
+        C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
+                PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
       if ( with_mesh )
-	C2F(dr)("xliness","str",resx,resy,&zero,(ncont=1,&ncont),&nr, 
-		PI0,PD0,PD0,PD0,PD0,0L,0L);
+      {
+        C2F(dr)("xliness","str",resx,resy,&zero,(ncont=1,&ncont),&nr, 
+                PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
       return;
     }
 
@@ -520,68 +525,96 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
   
   resx[0]=inint(sx[0]); resy[0]=inint(sy[0]); nr = 1; edge = 0;
   if ( nb0 == 0 )  /* the intersection point is on Edge1 but */
-    {              /* the next point of the poly is P1 */  
-      resx[1]=inint(sx[1]); resy[1]=inint(sy[1]); nr++;
-      edge = 1;    /* the next intersection points will be on edge1 */
-    } 
-  else 
+  {              /* the next point of the poly is P1 */  
+    resx[1] = inint(sx[1]);
+    resy[1] = inint(sy[1]);
+    nr++;
+    edge = 1;    /* the next intersection points will be on edge1 */
+  } 
+  else
+  {
     nb0--;
+  }
   /* the intersection point on edge (0 or 1) : */
   FindIntersection(sx, sy, fxy, zlevel[zxy[0]], edge, edge+1, &xEdge, &yEdge);
-  resx[nr]=xEdge; resy[nr]=yEdge; nr++;
+  resx[nr] = xEdge; 
+  resy[nr] = yEdge; 
+  nr++;
   /* the last point of the first poly (edge 2) : */
   FindIntersection(sx, sy, fxy, zlevel[zxy[0]], 0, 2, &xEdge2, &yEdge2);
-  resx[nr]=xEdge2; resy[nr]=yEdge2; nr++;
+  resx[nr] = xEdge2; 
+  resy[nr] = yEdge2;
+  nr++;
   color = fill[zxy[0]];
   if ( color != 0 )
+  {
     C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
-	    PI0,PD0,PD0,PD0,PD0,0L,0L);
+            PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
 
   /*------------------------------------+ 
     | compute the intermediary polygon(s) |
     +------------------------------------*/
 
   for ( izone = zxy[0]+1 ; izone < zxy[2] ; izone++ ) 
+  {
+    resx[0] = xEdge2; 
+    resy[0] = yEdge2;          /* the 2 first points are known */
+    resx[1] = xEdge ;
+    resy[1] = yEdge ; 
+    nr      = 2     ;
+    if ( edge == 0 )   /* the intersection point is perhaps on edge 0 */
     {
-      resx[0] = xEdge2; resy[0] = yEdge2;          /* the 2 first points are known */
-      resx[1] = xEdge;  resy[1] = yEdge; nr = 2;
-      if ( edge == 0 )   /* the intersection point is perhaps on edge 0 */
-	{
-	  if (nb0 == 0 )  /* no it is on edge 1 but the next point of the poly is P1 */
-	    {
-	      resx[2]=inint(sx[1]); resy[2]=inint(sy[1]); nr++;
-	      edge = 1;          /* the next intersection points will be on edge1 */
-	    } 
-	  else 
-	    nb0--;
-	};
-      /* the intersection point on edge (0 or 1) : */
-      FindIntersection(sx, sy, fxy, zlevel[izone], edge, edge+1, &xEdge, &yEdge);
-      resx[nr]=xEdge; resy[nr]=yEdge; nr++;
-      /* the last point of the first poly (edge 2) : */
-      FindIntersection(sx, sy, fxy, zlevel[izone], 0, 2, &xEdge2, &yEdge2);
-      resx[nr]=xEdge2; resy[nr]=yEdge2; nr++;
-      color = fill[izone];
-      if ( color != 0 )
-	C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
-		PI0,PD0,PD0,PD0,PD0,0L,0L);
-    };
+      if (nb0 == 0 )  /* no it is on edge 1 but the next point of the poly is P1 */
+      {
+        resx[2] = inint(sx[1]);
+        resy[2] = inint(sy[1]);
+        nr++;
+        edge = 1;          /* the next intersection points will be on edge1 */
+      }
+      else
+      {
+        nb0--;
+      }
+    }
+    /* the intersection point on edge (0 or 1) : */
+    FindIntersection(sx, sy, fxy, zlevel[izone], edge, edge+1, &xEdge, &yEdge);
+    resx[nr]=xEdge; resy[nr]=yEdge; nr++;
+    /* the last point of the first poly (edge 2) : */
+    FindIntersection(sx, sy, fxy, zlevel[izone], 0, 2, &xEdge2, &yEdge2);
+    resx[nr]=xEdge2; resy[nr]=yEdge2; nr++;
+    color = fill[izone];
+    if ( color != 0 )
+    {
+      C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
+              PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  }
 
   /*-----------------------+ 
     | compute the last poly  |
     +-----------------------*/
-  resx[0] = xEdge2; resy[0] = yEdge2;         /* the 2 first points are known */
-  resx[1] = xEdge;  resy[1] = yEdge; nr = 2;
+  resx[0] = xEdge2;
+  resy[0] = yEdge2;         /* the 2 first points are known */
+  resx[1] = xEdge;
+  resy[1] = yEdge;
+  nr = 2;
   if ( edge == 0 )  /* the next point of the poly is P1 */
-    {                         
-      resx[2]=inint(sx[1]); resy[2]=inint(sy[1]); nr++;
-    };
+  {                         
+    resx[2]=inint(sx[1]);
+    resy[2]=inint(sy[1]);
+    nr++;
+  } ;
   /* the last point is P2 */
-  resx[nr] = inint(sx[2]); resy[nr] = inint(sy[2]); nr++;
+  resx[nr] = inint(sx[2]);
+  resy[nr] = inint(sy[2]);
+  nr++;
   color = fill[zxy[2]];
   if ( color != 0 )
+  {
     C2F(dr)("xliness","str",resx,resy,&color,(ncont=1,&ncont),&nr, 
-	    PI0,PD0,PD0,PD0,PD0,0L,0L);
+            PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
 
   if ( with_mesh )
     {
@@ -589,7 +622,7 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
       resy[0]=inint(sy[0]); resy[1]=inint(sy[1]);  resy[2]=inint(sy[2]);
       nr = 3;
       C2F(dr)("xliness","str",resx,resy,&zero,(ncont=1,&ncont),&nr, 
-	      PI0,PD0,PD0,PD0,PD0,0L,0L);
+              PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
 }
 

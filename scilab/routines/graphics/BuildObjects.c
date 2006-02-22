@@ -1538,9 +1538,11 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+      /*debug F.Leray*/
+      psurf = pSURFACE_FEATURE (pobj);
       if (sciAddNewHandle (pobj) == -1)
 	{
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj); pobj = NULL;
 	  return (sciPointObj *) NULL;
 	}
@@ -1548,23 +1550,22 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
 	{
 	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj); pobj = NULL;
 	  return (sciPointObj *) NULL;
 	}
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pSURFACE_FEATURE (pobj)->user_data = (int *) NULL;
-      pSURFACE_FEATURE (pobj)->size_of_user_data = 0;
-      pSURFACE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pSURFACE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      psurf->user_data = (int *) NULL;
+      psurf->size_of_user_data = 0;
+      psurf->relationship.psons = (sciSons *) NULL;
+      psurf->relationship.plastsons = (sciSons *) NULL;
 
-      pSURFACE_FEATURE (pobj)->callback = (char *)NULL;
-      pSURFACE_FEATURE (pobj)->callbacklen = 0;
-      pSURFACE_FEATURE (pobj)->callbackevent = 100; 
-      pSURFACE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+      psurf->callback = (char *)NULL;
+      psurf->callbacklen = 0;
+      psurf->callbackevent = 100; 
+      psurf->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      /*debug F.Leray*/
-      psurf = pSURFACE_FEATURE (pobj);
+      
   
       /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
       psurf->nc = nc;

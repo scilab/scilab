@@ -14,6 +14,7 @@
 #include "InitObjects.h"
 
 #include "PloEch.h"
+#include "Axes.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -41,14 +42,25 @@ void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flags
      long *hdl;
      BOOL flagstring;
 { 
+  BOOL redraw = FALSE ;
   sciPointObj *psubwin;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
+  /* check if the auto_clear property is on and then erase everything */
+  redraw = checkRedrawing() ;
+
   sciSetCurrentObj (ConstructRectangle
 		    (psubwin ,*x,*y,*height, *width, 0, 0,
 		     foreground, background, isfilled, isline, n, flagstring));
   
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
+
+  /* if the window has been cleared we must redraw everything */
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+
 }
 
 
@@ -63,16 +75,29 @@ void Objarc (angle1,angle2,x,y,width,height,foreground,background,isfilled,islin
     BOOL isfilled,isline;
     long *hdl;
 { 
+  BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
+  redraw = checkRedrawing() ;
+  
   sciSetCurrentObj (ConstructArc
          (psubwin,*x,*y,
 	  *height, *width, *angle1, *angle2, foreground, background, isfilled, isline));
   pobj = sciGetCurrentObj();
  
   *hdl=sciGetHandle(pobj);
-  sciDrawObjIfRequired(pobj);
+  
+  /* if the window has been cleared we must redraw everything */
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+  else
+  {
+    sciDrawObjIfRequired( pobj ) ;
+  }
+
  
 }
 
@@ -86,8 +111,11 @@ void Objpoly (x,y,n,closed,mark,hdl)
     long *hdl;
     int mark;
 { 
+  BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
-  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());  
+
+  redraw = checkRedrawing() ;
   
   if (mark <= 0)
     { 
@@ -102,7 +130,12 @@ void Objpoly (x,y,n,closed,mark,hdl)
     }
   
    pobj = sciGetCurrentObj();
-   *hdl=sciGetHandle(pobj); 
+   *hdl=sciGetHandle(pobj);
+
+   if ( redraw )
+   {
+     sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+   }
 }
   
 
@@ -115,11 +148,13 @@ void Objfpoly (x,y,n,style,hdl,shading)
      double *x,*y;
      long * hdl;
 { 
+  BOOL redraw = FALSE ;
   int fillcolor, contourcolor;
   sciPointObj *psubwin, *pobj;
   int closed = 1; /* we close the polyline by default */
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
+  redraw = checkRedrawing() ;
 
   if(shading == 2)
     {
@@ -150,6 +185,12 @@ void Objfpoly (x,y,n,style,hdl,shading)
       pobj = sciGetCurrentObj();
       *hdl=sciGetHandle(sciGetCurrentObj ());  
     }
+  
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+
 }
 
 
@@ -161,16 +202,26 @@ void Objsegs (style,flag,n1,x,y,arsize)
      double *x,*y;
      double arsize;
 { 
+  BOOL redraw = FALSE ;
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
   sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
+  redraw = checkRedrawing() ;
+
   n2=n1;
   fx=x;fy=y;
   sciSetCurrentObj (ConstructSegs(psubwin,type,
-				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp)); 
-  sciDrawObjIfRequired(sciGetCurrentObj ()); 
+				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp));
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+  else
+  {
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+  }
 }
 /*-----------------------------------------------------------
  * Objstring:
@@ -187,12 +238,16 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,backgrou
      int *foreground, *background;
      BOOL isboxed,isline,isfilled;
 {
+  BOOL redraw = FALSE ;
   integer v;
   double dv;
   integer x1,yy1,n=1,rect1[4];
   sciPointObj *psubwin, *pobj;
    
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  redraw = checkRedrawing() ;
+
   sciSetCurrentObj (ConstructText
 			(psubwin, fname,
 			 strlen (fname), x, y,wh, fill,foreground,background,isboxed,isline,isfilled));
@@ -203,8 +258,14 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,backgrou
 /*   sciSetForeground (pobj, sciGetForeground (psubwin)); */
 /*   sciSetFontStyle(pobj, sciGetFontStyle (psubwin)); */
 /*   sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin)); */
-  sciDrawObjIfRequired(pobj);
-          
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+  else
+  {
+    sciDrawObjIfRequired(pobj);
+  }   
 
   x1 = XDouble2Pixel(x);
   yy1 = YDouble2Pixel(y);
@@ -222,12 +283,21 @@ void Objtitle(str,n,hdl)
      int n;
      long *hdl;
 { 
+  BOOL redraw = FALSE ;
+  redraw = checkRedrawing() ;
   sciSetCurrentObj (ConstructTitle
   		((sciPointObj *)
              		 sciGetSelectedSubWin (sciGetCurrentFigure ()),str,n));
   
-  *hdl=sciGetHandle(sciGetCurrentObj ()); 
-  sciDrawObjIfRequired(sciGetCurrentObj ()); 
+  *hdl=sciGetHandle(sciGetCurrentObj ());
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+  else
+  {
+    sciDrawObjIfRequired(sciGetCurrentObj ()) ;
+  }
 }
 
 
@@ -241,10 +311,8 @@ void Objplot2d (ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNa
      integer *n1,*n2,style[],aaint[];
      char legend[],strflag[],logflags[];
      BOOL flagNax;
-{ 
-     
-     plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax,4L,bsiz); 
-         
+{
+  plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax,4L,bsiz);
 }
 
 /*------------------------------------------------
@@ -256,11 +324,12 @@ void Objgrayplot (x,y,z,n1,n2,strflag,brect,aaint,flagNax)
      char strflag[];
      BOOL flagNax;
 { 
-     
-     C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );
-     
+ 
+  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );
          
-}/*------------------------------------------------
+}
+
+/*------------------------------------------------
  *  Matplot
  *-----------------------------------------------*/   
 void Objmatplot (z,n1,n2,strflag,brect,aaint,flagNax) 
@@ -269,11 +338,9 @@ void Objmatplot (z,n1,n2,strflag,brect,aaint,flagNax)
      char strflag[];
      BOOL flagNax;
 { 
-     
-     C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
-     
-         
+  C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
 }
+
 /*------------------------------------------------
  *  Matplot1
  *-----------------------------------------------*/   
@@ -281,10 +348,7 @@ void Objmatplot1 (z,n1,n2,xrect)
      double z[],xrect[];
      integer *n1,*n2;
 { 
-    
-     C2F(xgray2)(z, n1, n2,xrect);
-     
-         
+  C2F(xgray2)(z, n1, n2,xrect);
 }
 
 /*------------------------------------------------
@@ -299,7 +363,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
      char *fname,*legend; 
      /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
      /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
-{  
+{
   sciTypeOf3D typeof3d;
   integer flagcolor;  
   long *hdltab;
@@ -327,18 +391,13 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   drect[4]=0;
   drect[5]=0;
 
-
-  if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-    sciXbasc(); 
-    initsubwin();
-    sciRedrawFigure();
-  } 
-
   /* =================================================
    * Force SubWindow properties according to arguments 
    * ================================================= */
 
   psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  checkRedrawing() ;
   
   /* Force psubwin->is3d to TRUE: we are in 3D mode */
   pSUBWIN_FEATURE (psubwin)->is3d = TRUE;
@@ -673,7 +732,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
   FREE(loc); loc = NULL;
-       
+
 }
 /*-----------------------------------------------------------
  * Objaxis:
@@ -685,13 +744,19 @@ void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag
      int *nx,*ny;
      int subint,font,textcol,ticscol, seg,nb_tics_labels;
 { 
-      
+  BOOL redraw = FALSE ;
+  redraw = checkRedrawing() ;
   sciSetCurrentObj (ConstructAxes 
 		    ((sciPointObj *)
 		     sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels));  
   sciDrawObjIfRequired(sciGetCurrentObj ());
-     
+  
+  if ( redraw )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+
   /* F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
      one axis. ConstructAxis is apparently unused!!*/
      

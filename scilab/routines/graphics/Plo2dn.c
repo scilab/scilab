@@ -21,6 +21,7 @@
 #include "InitObjects.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
+#include "Axes.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -97,7 +98,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   sciPointObj  *psubwin;
   long hdl;
   long *hdltab;
-  int cmpt=0,ok/*,i*/;
+  int cmpt=0/*,i*/;
+  BOOL containsSurface = FALSE ;
   int with_leg;
   double drect[6];
   char dataflag/*,frameflag*/;
@@ -107,15 +109,22 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   ppsubwin = pSUBWIN_FEATURE(psubwin);
-  ok=0;  
-  if (sciGetSurface(psubwin) != (sciPointObj *) NULL)   ok=1;
 
-  if (!(sciGetGraphicMode (psubwin)->addplot)) { 
-    sciXbasc(); 
-    initsubwin(); 	/* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*/
-    sciRedrawFigure();
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-  } 
+  /* check if the auto_clear property is on and then erase everything */
+  checkRedrawing() ;
+  
+  if ( sciGetSurface(psubwin) !=  NULL ) 
+  {
+    containsSurface = TRUE ;
+  }
+
+  /* if (!(sciGetGraphicMode (psubwin)->addplot)) {  */
+/*     sciXbasc();  */
+/*     initsubwin(); 	/\* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*\/ */
+/*     sciRedrawFigure(); */
+/*     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  */
+/*   }  */
+  
   
   
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
@@ -275,7 +284,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- construct Compound ----*/
     sciSetCurrentObj(ConstructCompound (hdltab, cmpt)); 
     FREE(hdltab);
-    if (ok==1) {
+    if ( containsSurface ) {
       Merge3d(psubwin);
       sciDrawObj(sciGetCurrentFigure ());
       /*       sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); */
