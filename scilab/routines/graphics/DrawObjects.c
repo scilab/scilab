@@ -6695,32 +6695,51 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       }
       break;
     case  SCI_POLYLINE:
-      n1= pPOLYLINE_FEATURE (pobj)->n1;
-      p=0;
-      if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; /* F.Leray 20.01.05 A REVOIR ICI*/
-      if (sciGetIsLine((sciPointObj *)pobj) == 1) p=2;
+    {
+      sciPolyline * ppPolyLine = pPOLYLINE_FEATURE (pobj) ;
+      n1 = ppPolyLine->n1 ;
+      p  = 0 ;
+      if ( sciGetIsMark(pobj) ) { p = 1 ; } /* F.Leray 20.01.05 A REVOIR ICI*/
+      if ( sciGetIsLine(pobj) ) { p = 2 ; }
       
-      xtmp[0] = pPOLYLINE_FEATURE (pobj)->pvx[index];
-      xtmp[1] = pPOLYLINE_FEATURE (pobj)->pvx[index+1];
-      
-      ytmp[0] = pPOLYLINE_FEATURE (pobj)->pvy[index];
-      ytmp[1] = pPOLYLINE_FEATURE (pobj)->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
-      
-      if(pPOLYLINE_FEATURE (pobj)->pvz != NULL){
-	  ztmp[0] = pPOLYLINE_FEATURE (pobj)->pvz[index];
-	  ztmp[1] = pPOLYLINE_FEATURE (pobj)->pvz[index+1];
-	}
-      
-      if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
-	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
+      if ( ppPolyLine->plot != 2 && sciGetIsMark(pobj) == 1 )
+      {
+        xtmp[0] = ppPolyLine->pvx[index];
+        xtmp[1] = xtmp[0] ;
+        
+        ytmp[0] = ppPolyLine->pvy[index];
+        ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
+      }
       else
-	ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
+      {
+        xtmp[0] = ppPolyLine->pvx[index];
+        xtmp[1] = ppPolyLine->pvx[index+1];
+        
+        ytmp[0] = ppPolyLine->pvy[index];
+        ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+      }
       
-      switch (pPOLYLINE_FEATURE (pobj)->plot) {
+      if( ppPolyLine->pvz != NULL )
+      {
+        ztmp[0] = ppPolyLine->pvz[index];
+        ztmp[1] = ppPolyLine->pvz[index+1];
+      }
+      
+      if( ppPolyLine->pvz != NULL )
+      {
+	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
+      }
+      else
+      {
+	ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
+      }
+      
+      switch ( ppPolyLine->plot )
+      {
       case 0: case 1: case 4: /*linear interpolation */
 	x=&(xtmp[0]);
 	y=&(ytmp[0]);
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
+	if ( ppPolyLine->pvz != (double *) NULL) 
 	  z=&(ztmp[0]);
 	else
 	  z=(double *)NULL;
@@ -6730,7 +6749,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	X[1]=xtmp[1];
 	Y[0]=ytmp[0];
 	Y[1]=ytmp[0];
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	if (ppPolyLine->pvz != (double *) NULL) {
 	  Z[0]=ztmp[0];
 	  Z[1]=ztmp[0];
 	  z=Z;
@@ -6746,7 +6765,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
 	  Y[0] = ppsubwin->FRect[1];
 	Y[1]=ytmp[0];
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	if ( ppPolyLine->pvz != (double *) NULL) {
 	  Z[0]=ztmp[0];
 	  Z[1]=ztmp[0];
 	  z=Z;
@@ -6758,13 +6777,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       case 5: /* patch */
 	x=xtmp;
 	y=ytmp;
-	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)
+	if ( ppPolyLine->pvz != (double *) NULL)
 	  z=ztmp;
 	else
 	  z= (double *) NULL;
 	break;
       }
-      
+    }
       break;
     case  SCI_SEGS: 
       p = 2;
@@ -6979,74 +6998,88 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	}
 	break;
       case  SCI_POLYLINE:
-	p=0;
-	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; /* F.Leray 20.01.05 A REVOIR ICI*/
-	if (sciGetIsLine((sciPointObj *)pobj) == 1) p=2;
-      
-	xtmp[0] = pPOLYLINE_FEATURE (pobj)->pvx[index];
-	xtmp[1] = pPOLYLINE_FEATURE (pobj)->pvx[index+1];
-      
-	ytmp[0] = pPOLYLINE_FEATURE (pobj)->pvy[index];
-	ytmp[1] = pPOLYLINE_FEATURE (pobj)->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
-	
-	if(pPOLYLINE_FEATURE (pobj)->pvz != NULL){
-	  ztmp[0] = pPOLYLINE_FEATURE (pobj)->pvz[index];
-	  ztmp[1] = pPOLYLINE_FEATURE (pobj)->pvz[index+1];
-	}
-	
-	if(pPOLYLINE_FEATURE (pobj)->pvz != NULL)
-	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
-	else
-	  ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
-	
-	switch (pPOLYLINE_FEATURE (pobj)->plot) {
-	case 0: case 1: case 4: /*linear interpolation */
-	  x=&(xtmp[0]);
-	  y=&(ytmp[0]);
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
-	    z=&(ztmp[0]);
-	  else
-	    z=(double *)NULL;
-	  break;
-	case 2: /* staircase */ /* just for completion  */
-	  X[0]=xtmp[0];
-	  X[1]=xtmp[1];
-	  Y[0]=ytmp[0];
-	  Y[1]=ytmp[0];
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
-	    Z[0]=ztmp[0];
-	    Z[1]=ztmp[0];
-	    z=Z;
-	  }
-	  else 
-	    z=(double *)NULL;
-	  x=X;y=Y;
-	  break;
-	case 3 : /* vertical bar */ /* just for completion  */
-	  X[0]=xtmp[0];
-	  X[1]=xtmp[0];
-	  Y[0]=0.0;
-	  if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
-	    Y[0] = ppsubwin->FRect[1];
-	  Y[1]=ytmp[0];
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
-	    Z[0]=ztmp[0];
-	    Z[1]=ztmp[0];
-	    z=Z;
-	  }
-	  else 
-	    z=(double *)NULL;
-	  x=X;y=Y;
-	  break;
-	case 5: /* patch*/
-	  x=xtmp;
-	  y=ytmp;
-	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)
-	    z=ztmp;
-	  else
-	    z= (double *) NULL;
-	  break;
-	}
+        {
+          sciPolyline * ppPolyLine = pPOLYLINE_FEATURE( pobj ) ;
+          p=0;
+          if ( sciGetIsMark( pobj ) ) { p=1 ; } /* F.Leray 20.01.05 A REVOIR ICI*/
+          if ( sciGetIsLine( pobj ) ) { p=2 ; }
+          
+          if ( ppPolyLine->plot != 2 && sciGetIsMark(pobj) == 1 )
+          {
+            xtmp[0] = ppPolyLine->pvx[index];
+            xtmp[1] = xtmp[0] ;
+            
+            ytmp[0] = ppPolyLine->pvy[index];
+            ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
+          }
+          else
+          {
+            xtmp[0] = ppPolyLine->pvx[index];
+            xtmp[1] = ppPolyLine->pvx[index+1];
+            
+            ytmp[0] = ppPolyLine->pvy[index];
+            ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+          }
+                   
+          if(ppPolyLine->pvz != NULL){
+            ztmp[0] = ppPolyLine->pvz[index];
+            ztmp[1] = ppPolyLine->pvz[index+1];
+          }
+          
+          if(ppPolyLine->pvz != NULL)
+            ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,2);
+          else
+            ReverseDataFor3D(psubwin,xtmp,ytmp,(double *) NULL,2);
+          
+          switch (ppPolyLine->plot) {
+          case 0: case 1: case 4: /*linear interpolation */
+            x=&(xtmp[0]);
+            y=&(ytmp[0]);
+            if (ppPolyLine->pvz != (double *) NULL) 
+              z=&(ztmp[0]);
+            else
+              z=(double *)NULL;
+            break;
+          case 2: /* staircase */ /* just for completion  */
+            X[0]=xtmp[0];
+            X[1]=xtmp[1];
+            Y[0]=ytmp[0];
+            Y[1]=ytmp[0];
+            if (ppPolyLine->pvz != (double *) NULL) {
+              Z[0]=ztmp[0];
+              Z[1]=ztmp[0];
+              z=Z;
+            }
+            else 
+              z=(double *)NULL;
+            x=X;y=Y;
+            break;
+          case 3 : /* vertical bar */ /* just for completion  */
+            X[0]=xtmp[0];
+            X[1]=xtmp[0];
+            Y[0]=0.0;
+            if(ppsubwin->logflags[1]=='l') /* when logscale on Y, special treatment because we can not have Y == 0 */
+              Y[0] = ppsubwin->FRect[1];
+            Y[1]=ytmp[0];
+            if (ppPolyLine->pvz != (double *) NULL) {
+              Z[0]=ztmp[0];
+              Z[1]=ztmp[0];
+              z=Z;
+            }
+            else 
+              z=(double *)NULL;
+            x=X;y=Y;
+            break;
+          case 5: /* patch*/
+            x=xtmp;
+            y=ytmp;
+            if (ppPolyLine->pvz != (double *) NULL)
+              z=ztmp;
+            else
+              z= (double *) NULL;
+            break;
+          }
+        }
 	break;
       case  SCI_SEGS: 
 	p = 2;
