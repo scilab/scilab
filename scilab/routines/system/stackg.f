@@ -20,6 +20,10 @@ c fin=-4 : demande de retour d'une variable de type indirect
 c fin=-5 : recherche dans la zone globale
 c          oui : fin=numero de la variable
 c          non fin=0
+c fin=-7 : recherche dans le contexte appleant uniquement
+c          oui : fin=numero de la variable
+c          non fin=0
+
 c     =============================================================
 c
 c     Copyright INRIA
@@ -56,7 +60,12 @@ c     set environnement where variable is searched
          k=lpt(1)-(13+nsiz)
          last=lin(k+5)-1
          local=.true.
-      elseif(fin.ne.-5) then
+      elseif(fin.eq.-7.and.(macr.ne.0.or.paus.ne.0)) then
+         k=lpt(1)-(13+nsiz)
+         last=isiz-1
+         cbot=lin(k+5)
+         local=.false.
+       elseif(fin.ne.-5) then
          last=isiz-1
          local=.false.
       else
@@ -98,7 +107,7 @@ c     .  does global variable variable really exists
          if(fin.eq.-3.or.fin.eq.-2) k=kg
       endif
 
-      if(fin.eq.-1.or.fin.eq.-5.or.fin.eq.-6) then
+      if(fin.eq.-1.or.fin.eq.-5.or.fin.eq.-6.or.fin.eq.-7) then
          fin=k
          fun=0
          return
