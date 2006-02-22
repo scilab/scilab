@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="8.10" ProjectIdGuid="{13082624-97F9-47DB-A9A1-AD7D6BF3856A}">
 	<Platforms>
 		<Platform Name="Win32"/></Platforms>
@@ -227,6 +227,7 @@ cd .."/>
 		<File RelativePath="..\spif1b.f"/>
 		<File RelativePath="..\spifp.f"/>
 		<File RelativePath="..\spind.f"/>
+		<File RelativePath="..\spisp.f"/>
 		<File RelativePath="..\spops.f"/>
 		<File RelativePath="..\spord.f"/>
 		<File RelativePath="..\spreshape.f"/>
