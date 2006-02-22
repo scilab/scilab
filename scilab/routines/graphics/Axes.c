@@ -2667,18 +2667,27 @@ void reinitSubWin( sciPointObj * pSubWin )
   
   ppSubWin->visible = TRUE;
   
-  ppSubWin->is3d = FALSE ;
-  ppSubWin->alpha_kp  = ppSubWin->alpha ;
-  ppSubWin->theta_kp  = ppSubWin->theta ;
-  ppSubWin->alpha  = 0.0;
-  ppSubWin->theta  = 270.0 ;
-
+  initSubWinAngles( pSubWin ) ;
+  
   ppSubWin->surfcounter = 0 ;
   
   ppSubWin->FirstPlot = TRUE;
   
 
 }
+/*--------------------------------------------------------------------------------*/
+/* reinit the viewing angles of a subwindow */
+void initSubWinAngles( sciPointObj * pSubWin )
+{
+  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
+  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (paxesmdl) ;
+  ppSubWin->is3d     = ppAxesMdl->is3d     ;
+  ppSubWin->alpha_kp = ppAxesMdl->alpha_kp ;
+  ppSubWin->theta_kp = ppAxesMdl->theta_kp ;
+  ppSubWin->alpha    = ppAxesMdl->alpha    ;
+  ppSubWin->theta    = ppAxesMdl->theta    ;
+}
+
 /*--------------------------------------------------------------------------------*/
 /* set the size and position of the subwindow to the default */
 void initSubWinSize( sciPointObj * pSubWin )

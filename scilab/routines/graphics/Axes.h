@@ -18,6 +18,9 @@ void clearSubWin( sciPointObj * pSubWin ) ;
 /* reinit a subwindow (but don't change position) */
 void reinitSubWin( sciPointObj * pSubWin ) ;
 
+/* reinit the viewing angles of a subwindow */
+void initSubWinAngles( sciPointObj * pSubWin ) ;
+
 /* set the size and position of the subwindow to the default */
 void initSubWinSize( sciPointObj * pSubWin ) ;
 
