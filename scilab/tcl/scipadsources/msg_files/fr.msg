@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.2
+# in sync at least with v6.6
 
 
 # commons
@@ -387,6 +387,8 @@
 
 # popupmenus.tcl
 ::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
+::msgcat::mcset fr "Scilab is working, please wait for the prompt to execute this command!" \
+                   "Scilab est occupé, veuillez attendre le prompt pour exécuter cette commande !"
 ::msgcat::mcset fr "AddWatch" "Ajouter %s comme espion"
 ::msgcat::mcset fr "Jump to" "Sauter à"
 

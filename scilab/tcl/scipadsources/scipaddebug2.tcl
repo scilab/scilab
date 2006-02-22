@@ -32,8 +32,10 @@ if {$debuglog} {
     getstartofcolorization getendofcolorization \
     Progress SetProgress \
     backgroundcolorizeuserfun docolorizeuserfun \
+    colorizetag \
     getallfunsintextarea \
     trimcontandcomments extractfunnamefromfunline \
+    bindenable binddisable findbinding \
     ]
 
     # for each Scipad proc not excluded in the list above, this surrounds the existing

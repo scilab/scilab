@@ -236,6 +236,10 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
 # ScilabEval exec("the_file"). If this fails (wrong permission rights...) then warn the
 # user that something really weird might happen since there is no way to pass the
 # command to Scilab.
+
+    # this global solves bugs 1848 and 1853 even if sciprompt is not used in proc ScilabEval_lt
+    global sciprompt
+
     global tmpdir
     set bsiz_1 4095   ;# Must be consistent with bsiz defined in routines/stack.h
     if {[string length $comm] <= $bsiz_1} {

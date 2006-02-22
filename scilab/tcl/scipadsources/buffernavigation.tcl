@@ -1131,9 +1131,14 @@ proc dogotoline {{physlogic_ "useglobals"} {linetogo_ ""} {curfileorfun_ ""} {fu
             # check that the end of the function is after the position to go to
             set infun [whichfun $absoluteline $textarea]
             if {$infun == {}} {
-                # target line is before function definition line - should never happen since
-                # negative or null line numbers are forbidden in the entry widget!
-                showinfo [mc "Outside of function definition"]
+                # target line is before function definition line - should never
+                # happen when called from the goto dialog since negative or
+                # null line numbers are forbidden in the entry widget!
+                # however, whichfun says (correctly) that $absoluteline is
+                # outside of function when $absoluteline is on the same
+                # line as the keyword function, but before it because of
+                # indentation - this is not an error and Scipad goes to
+                # the correct line
                 set absoluteline [$textarea index [lindex $funtogoto_ 2]]
             } else {
                 # target line is after the beginning of the function definition
@@ -1160,6 +1165,7 @@ proc dogotoline {{physlogic_ "useglobals"} {linetogo_ ""} {curfileorfun_ ""} {fu
             set offset 0
             # <TODO> This while loop could be improved (proc whichfun takes time to execute)
             # Its purpose is to make the line number in the buffer correspond to $linetogo_
+            # Use countcontlines instead of whichfun, much faster!
             while {$infun != "" && [lindex $infun 1] != $linetogo_} {
                 incr offset
                 set infun [whichfun [$textarea index "$funstart + $offset l"] $textarea]

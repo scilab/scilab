@@ -75,13 +75,23 @@ proc showpopupsource {ind} {
             } else {
                 # scicos or libfun
                 set plabel [concat [mc "Open the source of"] $curterm ]
-                set sourcecommand \
-                    "ScilabEval_lt scipad(get_function_path(\"$curterm\"))"
+                set sourcecommand "popupsourcecommand $curterm"
             }
             menu $pad.popsource -tearoff 0 -font $menuFont
             $pad.popsource add command -label $plabel -command $sourcecommand
             tk_popup $pad.popsource $numx $numy
        }
+    }
+}
+
+proc popupsourcecommand {curterm} {
+    global sciprompt
+    if {[string compare $sciprompt -1] == 0} {
+        tk_messageBox -message \
+            [mc "Scilab is working, please wait for the prompt to execute this command!"] \
+                    -title [mc "Scilab working"] -type ok -icon info
+    } else {
+        ScilabEval_lt scipad(get_function_path("$curterm"))
     }
 }
 

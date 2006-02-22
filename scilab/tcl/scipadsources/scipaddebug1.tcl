@@ -143,6 +143,9 @@ if {0} {
     bind all <Control-equal> { \
         parray words; parray chset \
     }
+    bind all <Control-equal> { \
+        if {[checkscilabbusy]=="busy"} {tk_messageBox -message "BUSY"} else {tk_messageBox -message "IDLE"}
+    }
 }
 
 # End of useful binding triggering a command

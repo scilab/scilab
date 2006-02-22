@@ -2036,4 +2036,13 @@ ES 21/2/06
    selection inside the focused pane
  * removed some duplicate general bindings from emacs.tcl and mac-pc.tcl 
  * version --> 6.5
- 
+
+Francois VOGEL, 22/02/06
+ * Fixed: Erroneous "Outside of function definition" message when jumping
+   to an indented function
+ * Fixed: Tcl Error 0 when trying to add varargin as watch variable - no
+   error any more, but varargin cannot be watched (always $unklabel, i.e.
+   <?> in the watch window)
+ * Candidate fix for bug 1848 and bug 1853 and Tcl Error 0 when trying to
+   open function source when Scilab is busy
+ * version --> 6.6

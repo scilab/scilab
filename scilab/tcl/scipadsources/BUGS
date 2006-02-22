@@ -68,6 +68,9 @@ Old bugs/whishes which have been hacked but could have been done better:
  Under windows 2nd-button is ineffective if the selection is external, 
  but has the side effect (with some glitches) to drop at the mouse point the
  selection it is within scipad
+ On Windows:btn-2 in the same textarea as the selection: it's a move (wrong!),
+ while btn-2 in another textarea: it's a copy/paste
+ On Linux: always copy/paste (correct)
 
 -Make printing from Scipad work on Linux and implement it for Windows.
  Try to preserve the colorization in the process.
