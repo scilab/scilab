@@ -76,7 +76,6 @@ void rotate2Dim( double from[2]   ,
   dest[0] = diff[0] * cosAngle - diff[1] * sinAngle + center[0] ;
   dest[1] = diff[0] * sinAngle + diff[1] * cosAngle + center[1] ;
 }
-/*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
 
@@ -85,6 +84,15 @@ void translate2D( double from[2], double trans[2], double dest[2] )
 {
   dest[0] = from[0] + trans[0] ;
   dest[1] = from[1] + trans[1] ;
+}
+
+/*----------------------------------------------------------------------------*/
+
+/* check if two values can be considered equal given an accurracy */
+int safeEqual( double val1, double val2, double accuracy )
+{
+  /* the val1 == val2 is put to avoid division by 0 */
+  return ( val1 == val2 ) || ( Abs( val1 - val2 ) < accuracy * Max( Abs(val1), Abs(val2 ) ) ) ;
 }
 
 /*----------------------------------------------------------------------------*/
