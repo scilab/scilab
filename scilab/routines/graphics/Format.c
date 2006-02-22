@@ -689,23 +689,30 @@ int C2F(theticks)(xminv, xmaxv, grads, ngrads)
 /*     { */
 /*       *ngrads=1;grads[0]=*xminv; return 1; */
 /*     } */
-  if (*xminv != *xminv) {
-   *ngrads=1;grads[0]=*xminv; return 1; 
-  }
-  if (*xmaxv != *xmaxv) {
-   *ngrads=1;grads[0]=*xmaxv; return 1; 
-  }
+  
 
-  if (*xminv == *xmaxv) {
-    xmin=floor(*xminv);xmax=ceil(*xmaxv);
-    if (xmin==xmax) {
-      xmax=xmax+1;
-      xmin=xmin-1;
-      *ngrads=3;grads[0]=xmin;grads[1]=xmin+1;grads[2]=xmax;return 1;
+  if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) ) 
+  {
+    xmin = floor(*xminv) ;
+    xmax = ceil(*xmaxv)  ;
+    if ( SAFE_EQUAL( *xminv, xmin, EPSILON ) )
+    {
+      xmin-- ;
     }
-    C2F(theticks)(&xmin,&xmax,grads,ngrads);
-    return 0;
+    if ( SAFE_EQUAL( *xmaxv, xmax, EPSILON ) )
+    {
+      xmax++ ;
+    }
+        
+    return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
+    /* hum, strange, isn't it ? */
+  /* if (*xminv != *xminv) { */
+/*    *ngrads=1;grads[0]=*xminv; return 1;  */
+/*   } */
+/*   if (*xmaxv != *xmaxv) { */
+/*    *ngrads=1;grads[0]=*xmaxv; return 1;  */
+/*   } */
   if (*xminv >= 0 && *xmaxv > 0) {
     if (*xminv > *xmaxv) {
       xmin=*xmaxv;xmax=*xminv;
