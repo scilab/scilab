@@ -444,7 +444,7 @@ function gener_hh(dirs,titles)
 	// Modified by Pierre MARECHAL
 	// Scilab Team
 	// Copyright INRIA
-	// Date : 31/03/2005
+	// Date : 22/02/2006
 	//------------------------------------------------------------------------------------------
 	
 	//------------------------------------------------------------------------------------------
@@ -456,10 +456,12 @@ function gener_hh(dirs,titles)
 	
 	if ( strindex(base(1),'\eng\') <> [] ) then
 		manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'w');
+		doctitle = "Scilab documentation";
 	elseif ( strindex(base(1),'\fr\') <> [] ) then
 		manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'w');
+		doctitle = "Documentation";
 	end
-
+	
 	// help in the std man directory 
 	n=size(dirs,'*')
 
@@ -563,8 +565,9 @@ function gener_hh(dirs,titles)
 		"		</OBJECT>";
 		"		<UL>";
 		"			<LI><OBJECT type=""text/sitemap"">";
-		"					<param name=""Name"" value=""Scilab documentation"">";
+		"					<param name=""Name"" value="""+doctitle+""">";
 		"					<param name=""Local"" value=""index.htm"">";
+		"					<param name=""ImageNumber"" value=""15"">";
 		"				</OBJECT>";
 		"			<UL>";
 		items;
