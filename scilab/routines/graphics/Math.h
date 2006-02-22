@@ -128,6 +128,14 @@ void rotate2Dim( double from[2]   ,
 void translate2D( double from[2], double trans[2], double dest[2] ) ;
 /*----------------------------------------------------------------------------*/
 
+/*----------------------------------------------------------------------------*/
+/* check if two values can be considered equal given an accurracy */
+int safeEqual( double val1, double val2, double accuracy ) ;
+
+/* with a macro it is faster */
+#define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
+/*----------------------------------------------------------------------------*/
+
 #include "Graphics.h" 
 
 #endif /* SCI_MATH.HG */

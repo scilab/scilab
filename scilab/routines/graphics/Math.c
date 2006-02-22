@@ -88,3 +88,12 @@ void translate2D( double from[2], double trans[2], double dest[2] )
 }
 
 /*----------------------------------------------------------------------------*/
+
+/* check if two values can be considered equal given an accurracy */
+int safeEqual( double val1, double val2, double accuracy )
+{
+  /* the val1 == val2 is put to avoid division by 0 */
+  return ( val1 == val2 ) || ( Abs( val1 - val2 ) < accuracy * Max( Abs(val1), Abs(val2 ) ) ) ;
+}
+
+/*----------------------------------------------------------------------------*/
