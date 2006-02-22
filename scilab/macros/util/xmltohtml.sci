@@ -1,5 +1,5 @@
 function xmltohtml(dirs,titles,xsl,step)
-
+	
 	//------------------------------------------------------------------------------------------
 	// Copyright Enpc (Jean-Philippe Chancelier)
 	//------------------------------------------------------------------------------------------
@@ -234,7 +234,23 @@ function gener_index(dirs,txt)
 	//------------------------------------------------------------------------------------------
 	// use %helps to generate an index file 
 	//------------------------------------------------------------------------------------------
+	
 	lines(0);
+	
+	if ( strindex(%helps(1,1),'\eng\') <> [] ) then
+		if MSDOS then
+			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'w');
+		else
+			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'u');
+		end
+	elseif ( strindex(%helps(1,1),'\fr\') <> [] ) then
+		if MSDOS then
+			manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'w');
+		else
+			manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'u');
+		end
+	end
+	
 	find_links=find_links;
 	sep="/";// if MSDOS then sep="\",end
 	[lhs,rhs]=argn(0) 
@@ -244,12 +260,14 @@ function gener_index(dirs,txt)
 	end
   
 	line=["<html>"
-		"<head>"
-		"	<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
-		"	<title>Index</title>"
-		"</head>"
-		"<body bgcolor=""#FFFFFF"">"
-		"<dl>"];
+		"	<head>"
+		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
+		"		<title>Index</title>"
+		"		<link href=""../sci_styles.css"" rel=""stylesheet"" type=""text/css"">"
+		"	</head>"
+		"	"
+		"	<body bgcolor=""#FFFFFF"">"
+		"		<dl>"];
   
 	l=size(line,'*')
 	
@@ -266,9 +284,20 @@ function gener_index(dirs,txt)
 		l=l+1;
 		w=strsubst(w,'\','/');
 		w=strsubst(w,'//','/');
-		line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"
+		
+		if MSDOS then
+			w=pathconvert(getlongpathname(w),%f,%f,'w');
+		else
+			w=pathconvert(getlongpathname(w),%f,%f,'u');
+		end
+		
+		w = strsubst(w,manpath,'');
+		
+		line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"		
 	end
-	line = [line;"</dl></body></html>"]
+	line = [line;"		</dl>"
+		"	</body>"
+		"</html>"]
   
 	mputl(line,"index.htm")
 	
@@ -424,6 +453,12 @@ function gener_hh(dirs,titles)
 	//------------------------------------------------------------------------------------------
 	
 	base = dirs 
+	
+	if ( strindex(base(1),'\eng\') <> [] ) then
+		manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'w');
+	elseif ( strindex(base(1),'\fr\') <> [] ) then
+		manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'w');
+	end
 
 	// help in the std man directory 
 	n=size(dirs,'*')
@@ -433,16 +468,17 @@ function gener_hh(dirs,titles)
 
 	// just for the std directories 
 
-	for k=1:n 
+	for k=1:n
 		// look for .xml files
 		files = listfiles(base(k)+'/*.xml');
 		if files<>[] then
+			
 			fbase = basename(files);
+			
 			name = strsubst(base(k)+"\"+fbase,"\\","/");
-			items=[items;
-				"            <LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-				+ name +  ...
-				".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
+			name = strsubst(name,manpath,'');
+			
+			items=[items;"				<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" + name + ".htm""><param name=""Name"" value="""+fbase+"""></OBJECT>"];
 			names=[names;files];
 		end
 	end
@@ -452,18 +488,19 @@ function gener_hh(dirs,titles)
 	
 	full_index=[
 		"<HTML>";
-		"    <HEAD>";
-		"    </HEAD>";
-		"    <BODY>";
-		"        <UL>";
-		"            <LI><OBJECT type=""text/sitemap"">";
-		"                     <param name=""Name"" value=""Scilab documentation"">";
-		"                     </OBJECT>";
-		"            <UL>";
+		" 	<HEAD>";
+		"	</HEAD>";
+		"	<BODY>";
+		"		<UL>";
+		" 			<LI><OBJECT type=""text/sitemap"">";
+		"					<param name=""Name"" value=""Scilab documentation"">";
+		"					<param name=""Local"" value=""index.htm"">";
+		"				</OBJECT>";
+		"			<UL>";
 		items;
-		"            </UL>";
-		"        </UL>"
-		"    </BODY>";
+		"			</UL>";
+		"		</UL>"
+		"	</BODY>";
 		"</HTML>"];
 		
 	mputl(full_index,'sciman.hhk')
@@ -474,38 +511,66 @@ function gener_hh(dirs,titles)
 	//------------------------------------------------------------------------------------------
     
 	items = [];
+	
 	for k=1:n 
+		
+		names_II = [];
+		items_II = [];
+		
 		name(k) = strsubst(base(k)+"\","\\","/");
+		name(k) = strsubst(name(k),manpath,'');
+		
 		items=[items;
-			"                <LI><OBJECT type=""text/sitemap"">";
-			"                    <param name=""Local"" value="""+ name(k)+"whatis.htm"">";
-			"                    <param name=""Name"" value="""+ titles(k)+""">";
-			"                    <param name=""ImageNumber"" value=""1"">";
-			"                    </OBJECT>"];
+			"				<LI><OBJECT type=""text/sitemap"">";
+			"						<param name=""Local"" value="""+ name(k)+"whatis.htm"">";
+			"						<param name=""Name"" value="""+ titles(k)+""">";
+			"						<param name=""ImageNumber"" value=""1"">";
+			"					</OBJECT>"];
+			
+		// look for .xml files
+		
+		files_II = listfiles(base(k)+'/*.xml');
+		if files_II<>[] then
+			fbase_II = basename(files_II);
+			name_II = strsubst(base(k)+"\"+fbase_II,"\\","/");
+			name_II = strsubst(name_II,manpath,'');			
+			items_II=[items_II;"					<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" + name_II + ".htm""><param name=""Name"" value="""+fbase_II+"""><param name=""ImageNumber"" value=""11""></OBJECT>"];
+			names_II=[names_II;files_II];
+		end
+		
+		[sv,sk]=sort(names_II);
+		items_II=items_II(sk);
+		
+		items=[items;
+		"				<UL>";
+		items_II;
+		"				</UL>"];
+		
 	end
 	
 	contents=[
 		"<HTML>";
-		"    <HEAD>";
-		"    </HEAD>";
-		"    <BODY>";
-		"      <OBJECT type=""text/site properties"">";
-		"        <param name=""FrameName"" value=""right"">";
-		"        <param name=""ImageType"" value=""Folder"">";
-		"        <param name=""Window Styles"" value=""0xC01627"">";
-		"        <param name=""Foreground"" value=""0xFFD5D5"">";
-		"        <param name=""Background"" value=""0xFFD5D5"">";
-		"        <param name=""Font"" value=""Palatino Linotype,10,0"">";
-		"      </OBJECT>";
-		"        <UL>";
-		"            <LI><OBJECT type=""text/sitemap"">";
-		"                     <param name=""Name"" value=""Scilab documentation"">";
-		"                     </OBJECT>";
-		"            <UL>";
+		"	<HEAD>";
+		"	</HEAD>";
+		" 	<BODY>";
+		"		<OBJECT type=""text/site properties"">";
+		"			<param name=""FrameName"" value=""right"">";
+		"			<param name=""ImageType"" value=""Folder"">";
+		"			<param name=""Window Styles"" value=""0xC01627"">";
+		"			<param name=""Foreground"" value=""0xFFD5D5"">";
+		"			<param name=""Background"" value=""0xFFD5D5"">";
+		"			<param name=""Font"" value=""Palatino Linotype,10,0"">";
+		"		</OBJECT>";
+		"		<UL>";
+		"			<LI><OBJECT type=""text/sitemap"">";
+		"					<param name=""Name"" value=""Scilab documentation"">";
+		"					<param name=""Local"" value=""index.htm"">";
+		"				</OBJECT>";
+		"			<UL>";
 		items;
-		"            </UL>";
-		"        </UL>"
-		"    </BODY>";
+		"			</UL>";
+		"		</UL>";
+		"	</BODY>";
 		"</HTML>"];
 		
 	mputl(contents,'sciman.hhc')
@@ -516,18 +581,12 @@ function gener_hh(dirs,titles)
        
 	// Get the index.htm path
 	
-	if ( strindex(base(1),'\eng\') <> [] ) then
-		index_path = pathconvert(getlongpathname(SCI)+'/man/eng',%t,%f,'w');
-	elseif ( strindex(base(1),'\fr\') <> [] ) then
-		index_path = pathconvert(getlongpathname(SCI)+'/man/fr',%t,%f,'w');
-	end
-	
 	head=["[OPTIONS]";
 		"Compatibility=1.1 or later";
 		"Compiled file=sciman.chm";
 		"Contents file=sciman.hhc";
 		"Default Window=sciman";
-		"Default topic="+index_path+"index.htm";
+		"Default topic=index.htm";
 		"Display compile progress=Yes";
 		"Full-text search=Yes";
 		"Index file=sciman.hhk";
@@ -535,7 +594,7 @@ function gener_hh(dirs,titles)
 		"Title=Scilab Documentation";
 		"";
 		"[WINDOWS]";
-		"sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"","""+index_path+"index.htm"","""+index_path+"index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
+		"sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"",""index.htm"",""index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
 		"";
 		"[FILES]"];
 
