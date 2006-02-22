@@ -1465,8 +1465,8 @@ C
 
 C
 C     Check NEQ to see if it is positive.
-C
-      IF (NEQ .LE. 0) GO TO 702
+C     NEQ=0
+c      IF (NEQ .LE. 0) GO TO 702
 C
 C     Check and compute maximum order.
 C
@@ -1716,6 +1716,10 @@ C
       NZFLG = 0
       RTOLI = RTOL(1)
       ATOLI = ATOL(1)
+c     ------- neq=0
+      IF (RTOLI .GT. 0.0D0 .OR. ATOLI .GT. 0.0D0) NZFLG = 1
+c     ------- neq=0
+
       DO 210 I=1,NEQ
          IF (INFO(2) .EQ. 1) RTOLI = RTOL(I)
          IF (INFO(2) .EQ. 1) ATOLI = ATOL(I)

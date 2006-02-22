@@ -1173,7 +1173,8 @@ c
 c first check legality of the non-optional inputs neq, itol, iopt,
 c jt, ml, mu, and ng.
 c-----------------------------------------------------------------------
-      if (neq(1) .le. 0) go to 604
+c      neq=0
+c      if (neq(1) .le. 0) go to 604
       if (istate .eq. 1) go to 25
       if (neq(1) .gt. n) go to 605
  25   n = neq(1)

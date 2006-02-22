@@ -106,8 +106,6 @@ extern  integer C2F(xscion)();
 extern  integer C2F(ddaskr)();
 extern  integer C2F(lsodar2)();
 
-extern int scilab_timer_check(void);
-
 ScicosImport  scicos_imp;
 
 static integer nblk, nordptr, nout, ng, ncord, noord, nzord,niord,
@@ -924,12 +922,28 @@ int C2F(scicos)
 	  C2F(dset)(&panj, &c_b14, &rhot[5], &c__1);
 	  rhot[6]=hmax;
 	}
-	phase=2;
-	C2F(lsodar2)(C2F(simblk), neq, x, told, &t, &c__1, &rtol, 
-		     &Atol, &itask, &istate, &iopt, &rhot[1], &
-		     nrwp, &ihot[1], &niwp, &jdum, &jt, 
-		     C2F(grblk), &ng, jroot);
+
+	/*--discrete zero crossings----dzero--------------------*/
+	/*--check for Dzeros after Mode settings or ddoit()----*/
+	if (ng>0 && hot==0){
+	  zdoit(W, x, x,told);
+	  if (*ierr != 0) {freeall;return;}
+	  for (jj = 0; jj < ng; ++jj) {
+	    if((W[jj]>=0.0)&&(jroot[jj]==-5)) {istate=3;jroot[jj]=1;}
+	    else if((W[jj]<0.0)&&(jroot[jj]==5)) {istate=3;jroot[jj]=-1;}
+	  }
+	} 
+	/*--discrete zero crossings----dzero--------------------*/
+
+	if (istate!=3){/* if there was a dzero, its event should be activated*/
+	  phase=2;
+	  C2F(lsodar2)(C2F(simblk), neq, x, told, &t, &c__1, &rtol, 
+		       &Atol, &itask, &istate, &iopt, &rhot[1], &
+		       nrwp, &ihot[1], &niwp, &jdum, &jt, 
+		       C2F(grblk), &ng, jroot);
+	}
 	phase=1;
+	
 	if (*ierr > 5) {
 	  /*     !           singularity in block */
 	  freeall;
@@ -1029,6 +1043,14 @@ int C2F(scicos)
 	  }
 	}
       }
+      /*--discrete zero crossings----dzero--------------------*/
+      if (ng>0){ /* storing ZC signs just after a ddaskr call*/
+	zdoit(W, x, x, told); if (*ierr != 0) {freeall;return;  }
+	for (jj = 0; jj < ng; ++jj) 
+	  if(W[jj]>=0)jroot[jj]=5;else jroot[jj]=-5;
+      }
+      /*--discrete zero crossings----dzero--------------------*/
+
       C2F(realtime)(told);
     } else {
       /*     .  t==told */   
@@ -1385,10 +1407,26 @@ int C2F(scicos)
 	if (C2F(cosdebug).cosd >= 1) {
 	  sciprint("****daskr from: %f to %f hot= %d  \r\n", *told,t,hot);
 	}
+
+	/*--discrete zero crossings----dzero--------------------*/
+	/*--check for Dzeros after Mode settings or ddoit()----*/
+	if (ng>0 && hot==0){
+	  zdoit(W, xd, x,told);
+	  if (*ierr != 0) {freeallx;return;  }
+	  istate=0;
+	  for (jj = 0; jj < ng; ++jj) {
+	    if((W[jj]>=0.0)&&( jroot[jj]==-5)) {istate=5;jroot[jj]=1;}
+	    else if((W[jj]<0.0)&&( jroot[jj]==5)) {istate=5;jroot[jj]=-1;}
+	    else jroot[jj]=0;
+	  }
+	} 
+	/*--discrete zero crossings----dzero--------------------*/
+	if (istate!=5){/* if there was a dzero, its event should be activated*/
 	C2F(ddaskr)(C2F(simblkdaskr), neq, told, x, xd, &t, 
 		    info, &rtol, &Atol, &istate, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, rpardummy, ipardummy
 		    ,C2F(Jacobian), rpardummy, C2F(grblkdaskr), &ng, jroot);
+	}
 
 	if (istate == -1)
 	  sciprint("**** Stiffness at: %26.18f %d\r\n",*told,istate);
@@ -1398,7 +1436,7 @@ int C2F(scicos)
 	  freeallx; /* singularity in block */
 	  return;
 	}
-	
+	 
 	if (istate <= -2) { /* in case istate==-1 : continue the integration*/
 	  *ierr = 100 - istate;
 	  freeallx;/* singularity in block */
@@ -1510,6 +1548,14 @@ int C2F(scicos)
 	      goto L15;
 	    }
 	    }*/
+
+	/*--discrete zero crossings----dzero--------------------*/
+	if (ng>0){ /* storing ZC signs just after a ddaskr call*/
+	  zdoit(W, xd, x, told); if (*ierr != 0) {freeallx;return;  }
+	  for (jj = 0; jj < ng; ++jj) 
+	    if(W[jj]>=0)jroot[jj]=5;else jroot[jj]=-5;
+	}
+	/*--discrete zero crossings----dzero--------------------*/
       }
       C2F(realtime)(told);
     } else {
