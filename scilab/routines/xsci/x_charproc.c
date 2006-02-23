@@ -552,6 +552,7 @@ void C2F(xscistring)(char *str,integer *n,long int dummy)
 }
 
 #define MORESTR "[More (y or n ) ?] "
+
 void C2F(xscimore)(n)
      int *n;
 {
@@ -559,7 +560,7 @@ void C2F(xscimore)(n)
   *n=0;
   ln=strlen(MORESTR);
   Xputstring(MORESTR,ln);
-  n1=XEvorgetchar(0);
+  n1=XEvorgetchar(1);
   if ( n1 == 110 )  *n=1;
   Xputstring("\r\n",2);
 }
@@ -1426,7 +1427,7 @@ int in_put(int interrupt)
     }
     XFlush(screen->display);	/* always flush writes before waiting */
 #ifdef WITH_TK
-    if (interrupt) flushTKEvents(); 	/* always flush writes before waiting */
+    flushTKEvents(); 	/* always flush writes before waiting */
 #endif
 
     /* Update the masks and, unless X events are already in the queue, wait
@@ -1453,7 +1454,7 @@ int in_put(int interrupt)
       }
 
 #ifdef WITH_TK
-    if ( (select_mask & (1 << XTKsocket))&&interrupt) flushTKEvents();
+    if ( select_mask & (1 << XTKsocket)) flushTKEvents();
 #endif
 
     /* if there are X events already in our queue, it counts as being

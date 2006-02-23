@@ -310,7 +310,7 @@ int Xorgetchar(int interrupt)
   for( ; ; ) {
     /* always flush writes before waiting */
 #ifdef WITH_TK 
-    if (interrupt) flushTKEvents();
+    flushTKEvents();
 #endif 
     gdk_flush();
     fflush(stdout); 
@@ -384,7 +384,7 @@ int Xorgetchar(int interrupt)
     } 
 #ifdef WITH_TK 
     if ( FD_ISSET(XTKsocket,&select_mask )) { 
-      if (interrupt) flushTKEvents();
+      flushTKEvents();
     }
 #endif 
     if ( FD_ISSET(GtkXsocket,&select_mask)) { 
