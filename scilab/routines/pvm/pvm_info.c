@@ -9,7 +9,7 @@
      PVM task information
    HISTORY
      fleury - Nov 18, 1997: Created.
-     $Id: pvm_info.c,v 1.8 2005/10/22 18:53:10 cornet Exp $
+
 ***/
 
 #include <stdio.h>

@@ -9,7 +9,7 @@
      
    HISTORY
      fleury - Nov 25, 1997: Created.
-     $Id: pvm_grp.c,v 1.5 2005/01/07 20:49:25 cornet Exp $
+
 ***/
 
 #include <stdio.h>
