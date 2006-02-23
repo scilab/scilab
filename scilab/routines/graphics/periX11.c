@@ -3104,19 +3104,28 @@ void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fi
 void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer n1;
-  if (*closeflag == 1) n1 = *n+1;else n1= *n;
+  if ( *closeflag )
+  {
+    n1 = *n+1 ;
+  }
+  else
+  {
+    n1= *n ;
+  }
   if (n1 >= 2) 
+  {
+    /*F(analyze_points)(*n, vx, vy,*closeflag);*/
+    /*Old code replaced by a routine with clipping */
+    if (C2F(store_points)(*n, vx, vy,*closeflag))
     {
-      C2F(analyze_points)(*n, vx, vy,*closeflag);
-      /*Old code replaced by a routine with clipping */
-	 /* if (C2F(store_points)(*n, vx, vy,*closeflag)) */
-/* 	 { */
-/* 	 XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1, */
-/* 	 ScilabXgc->CurVectorStyle); */
-/* 	 XFlush(dpy); */
-/* 	 } */
+      /* draw the points */
+      XDroutine( n1 ) ;
+      /*XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1,
+        ScilabXgc->CurVectorStyle);*/
       XFlush(dpy);
     }
+    /*XFlush(dpy);*/
+  }
 }
 
 /* 
@@ -4360,7 +4369,7 @@ static XPoint *get_xpoints(void) { return(points); }
 int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore)
 { 
   integer i,n1 = ( onemore == 1) ? n+1 : n;
-  if (ReallocVector(n1) == 1)
+  if ( ReallocVector(n1) )
     {
       for (i = 0; i < n; i++){
 #ifdef DEBUG
@@ -4375,12 +4384,18 @@ int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore)
 		    (int) vy[i]);
 	  }
 #endif
-	points[i].x =(short) vx[i];
-	points[i].y =(short) vy[i];
+        
+        points[i].x = INT_2_16B( vx[i] ) ;
+        /* points[i].x = (short) vx[i]; */
+        
+        
+        points[i].y = INT_2_16B( vy[i] ) ;
+        /*  points[i].y = (short) vy[i]; */
+        
       }
-      if (onemore == 1) {
-	points[n].x=(short) points[0].x;
-	points[n].y=(short) points[0].y;
+      if ( onemore ) {
+	points[n].x = points[0].x;
+	points[n].y = points[0].y;
       }
       return(1);
     }
@@ -4400,7 +4415,7 @@ static int ReallocVector(integer n)
  * Clipping functions 
  ************************************************************/
 
-static void XDroutine(int npts)
+void XDroutine(int npts)
 {
   if (ScilabXgc->Cdrawable != (Drawable) 0)
     XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(),(int) npts,
