@@ -88,13 +88,13 @@ if bval then
   write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
   write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
   
-  
   // Conversion of each file
   //for k=1:size(tmpfiles,"*")
     //mfile2sci(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m",pathconvert(TMPDIR)+pathconvert(fnam))
     // Delete useless .m files
     //mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m")
   //end
+  
   translatepaths(pathconvert(TMPDIR)+pathconvert(fnam),pathconvert(TMPDIR)+pathconvert(fnam))
   // Catenation of all .sci files to have only one output file
   txt=[]
@@ -109,8 +109,6 @@ if bval then
   //
   txt=mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+sep+"resumelog")
   mputl(txt,pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log")
-  
-  
   
   // Catenation of all .log files to have only one output file
  // txt=[]
@@ -140,6 +138,7 @@ txt=strsubst(txt,code2str(-40),"")
 // save txt vector, helpart and batch after the syntax modification
 save(pathconvert(TMPDIR)+fnam+".tree",txt,helppart,batch)
 
+funcallname=[]
 if txt~=[] then
   kc=strindex(txt(1),"function");
   kc=kc(1);
@@ -179,7 +178,7 @@ if txt~=[] then
   deff(func_proto,[firstline;txt(2:$)],"n")
   w=who("get");
   mname=w(1);
-
+  
   // Compilation
   execstr("comp("+mname+",1)")
   funcprot(fprot)
@@ -194,7 +193,6 @@ if txt~=[] then
     mtlbtree.name="";
   end
   
-  funcallname=[]
   ninstr=1 
   // variablevect is a vector which contains all variables (excluded functions)
   variablevect=[]  
