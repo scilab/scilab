@@ -169,4 +169,28 @@ end
 file('close',whsfil_unit);
 mdelete(pathconvert(TMPDIR)+"unitfile.dat")
 
+// create builder.sce and loader.sce files
+// get the directory name where the Scilab functions are written 
+if res_path=="./" then
+current_path=pathconvert(unix_g('pwd'))
+index_slash=strindex(current_path,'/')
+namelib=part(current_path,index_slash($-1)+1:index_slash($)-1)
+else
+index_slash=strindex(res_path,'/')
+namelib=part(res_path,index_slash($-1)+1:index_slash($)-1)
+end
+
+//builder.sce
+buildertxt=[]
+buildertxt($+1)="path=get_absolute_file_path(""builder.sce"")"
+buildertxt($+1)="genlib("""+namelib+"lib"",path)"
+builderfile=res_path+"builder.sce"
+mputl(buildertxt,builderfile)
+//loader.sce
+loadertxt=[]
+loadertxt($+1)="path=get_absolute_file_path(""builder.sce"")"
+loadertxt($+1)="load(path+"+"""/lib"")"
+loaderfile=res_path+"loader.sce"
+mputl(loadertxt,loaderfile)
+
 endfunction
