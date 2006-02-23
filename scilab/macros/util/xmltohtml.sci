@@ -480,7 +480,7 @@ function gener_hh(dirs,titles)
 			name = strsubst(base(k)+"\"+fbase,"\\","/");
 			name = strsubst(name,manpath,'');
 			
-			items=[items;"				<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" + name + ".htm""><param name=""Name"" value="""+fbase+"""></OBJECT>"];
+			items=[items;"			<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" + name + ".htm""><param name=""Name"" value="""+fbase+"""></OBJECT>"];
 			names=[names;files];
 		end
 	end
@@ -494,13 +494,7 @@ function gener_hh(dirs,titles)
 		"	</HEAD>";
 		"	<BODY>";
 		"		<UL>";
-		" 			<LI><OBJECT type=""text/sitemap"">";
-		"					<param name=""Name"" value=""Scilab documentation"">";
-		"					<param name=""Local"" value=""index.htm"">";
-		"				</OBJECT>";
-		"			<UL>";
 		items;
-		"			</UL>";
 		"		</UL>"
 		"	</BODY>";
 		"</HTML>"];
