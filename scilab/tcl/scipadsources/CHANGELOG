@@ -1940,3 +1940,8 @@ Francois VOGEL, 22/01/06
 
 Francois VOGEL, 01/02/06
  * version --> 6.0 - This version comes with Scilab 4.0 final release
+
+ES 23/2/06
+ * ScilabEval_lt -> ScilabEval at line 34 of scilabexec.tcl. Workaround
+   for bugs 1848 and 1853.
+ * version 6.0.fix1, tag BUILD_4. This is the first time we branch scipad.

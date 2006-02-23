@@ -31,7 +31,7 @@ proc execfile {{buf "current"}} {
             return 1
         } else {
             set f $listoffile("$textarea",fullname)
-            if {[catch {ScilabEval_lt "exec(\"$f\");" "sync" "seq"}]} {
+            if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
                 scilaberror $listoffile("$textarea",fullname)
                 return -1
             } else {
