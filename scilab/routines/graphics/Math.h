@@ -7,7 +7,7 @@
 #ifndef __SCIMATH_H__
 #define __SCIMATH_H__
 #include "../machine.h"
-
+#include <limits.h>
 
 #include <math.h>
 
@@ -84,6 +84,9 @@ int finite __PARAMS((double));
 
 /* XWindow function arguments can be  int16 or unsigned16 */
 
+#define INT16      short
+#define INT16MAX   SHRT_MAX
+#define INT16MIN   SHRT_MIN
 #define int16max   0x7FFF
 #define uns16max   0xFFFF
 
@@ -134,6 +137,12 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 
 /* with a macro it is faster */
 #define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------*/
+/* truncate an integer to a 16 bits integer. Overflow value are trucated to the min */
+/* and max of 16 bits integer. */
+#define INT_2_16B(i) ( (i) > INT16MAX ? (INT16MAX) : ( (i) < INT16MIN ? INT16MIN : ((INT16) i)) )
 /*----------------------------------------------------------------------------*/
 
 #include "Graphics.h" 
