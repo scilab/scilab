@@ -695,11 +695,12 @@ int C2F(theticks)(xminv, xmaxv, grads, ngrads)
   {
     xmin = floor(*xminv) ;
     xmax = ceil(*xmaxv)  ;
-    if ( SAFE_EQUAL( *xminv, xmin, EPSILON ) )
+    /* check if the bounds are not too close to the curve */
+    if ( Abs( *xminv - xmin ) < 0.2 )
     {
       xmin-- ;
     }
-    if ( SAFE_EQUAL( *xmaxv, xmax, EPSILON ) )
+    if ( Abs( *xmaxv - xmax ) < 0.2 )
     {
       xmax++ ;
     }
