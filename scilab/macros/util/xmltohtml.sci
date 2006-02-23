@@ -237,16 +237,16 @@ function gener_index(dirs,txt)
 	
 	lines(0);
 	
-	if ( strindex(%helps(1,1),'\eng\') <> [] ) then
-		if MSDOS then
+	if MSDOS then
+		if ( strindex(%helps(1,1),'\eng\') <> [] ) then
 			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'w');
-		else
-			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'u');
-		end
-	elseif ( strindex(%helps(1,1),'\fr\') <> [] ) then
-		if MSDOS then
+		elseif ( strindex(%helps(1,1),'\fr\') <> [] ) then
 			manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'w');
-		else
+		end
+	else
+		if ( strindex(%helps(1,1),'/eng/') <> [] ) then
+			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'u');
+		elseif ( strindex(%helps(1,1),'/fr/') <> [] ) then
 			manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'u');
 		end
 	end
