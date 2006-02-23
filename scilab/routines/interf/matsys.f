@@ -1867,11 +1867,12 @@ c     Copyright INRIA
       integer topk
       integer id(nsiz)
       logical checkrhs,checklhs,cremat,getsmat,checkval,crebmat
-      logical flag
-      integer local
+      integer flag
+      integer local,nolocal
       integer iadr,sadr
 c
       data local/21/
+      data nolocal/23/
 c    
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -1881,12 +1882,13 @@ c
       if(.not.checklhs('exists',1,1)) return
       if(.not.checkrhs('exists',1,2)) return
 
-      flag=.false.
+      flag=0
 c
       if(rhs.eq.2) then
          if(.not.getsmat('exists',topk,top,m,n,1,1,il,n1)) return
          if(.not.checkval('exists',m*n,1) ) return
-         if(istk(il).eq.local) flag=.true.
+         if(istk(il).eq.local) flag=1
+         if(istk(il).eq.nolocal) flag=2
          top=top-1
       endif
 
@@ -1896,8 +1898,13 @@ c
       call namstr(id,istk(il),n,0)
 
 c     look for  variables in the stack
-      if(flag) then
-c      just in local environnement
+      if(flag.eq.2) then
+c      in the full calling context
+c      but not in the local environment
+         fin=-7
+         call stackg(id)
+      elseif(flag.eq.1) then
+c      just in local environment
          fin=-3
          call stackg(id)
          ilw=iadr(lstk(top))
@@ -1908,11 +1915,11 @@ c      just in local environnement
             fin=0
          endif
       else
-c     in all the stack
+c      in all the stack
          fin=-1
          call stackg(id)
          if (fin.le.0) then
-c     look for libraries functions
+c      look for libraries functions
             fin=-3
             kfun=fun
             call funs(id)
