@@ -46,8 +46,6 @@
 #ifndef lint
 static char copyright[] =
     "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
-static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spFactor.c,v 1.2 2004/02/28 16:43:21 cornet Exp $";
 #endif
 
 
