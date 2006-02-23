@@ -227,7 +227,7 @@ else
     typ="Type("+vtype+","+prop+")"
     
     if mtlbtree.outputs($).name<>"varargout" then
-      trad=[trad;"tree.lhs(1).dims="+dims;"tree.lhs(1).type="+typ]
+      trad=[trad;"tree.lhs(1).dims="+dims;"tree.lhs(1).type="+typ;"endfunction"]
     else
       trad=[trad;
 	  "for k=1:lhs"
@@ -235,6 +235,7 @@ else
 	  "  tree.lhs(k).vtype=Unknown"
 	  "  tree.lhs(k).property=Unknown"
 	  "end"
+	  "endfunction"
 	  ]
     end
   else  // Function with more than 1 output
@@ -271,7 +272,8 @@ else
 	  "  tree.lhs(k).dims=dims(k)"
 	  "  tree.lhs(k).vtype=vtype(k)"
 	  "  tree.lhs(k).property=prop(k)"
-	  "end"]
+	  "end"
+	  "endfunction"]
     else
       trad=[trad;
 	  "for k=1:min(lstsize(dims),lhs)"
@@ -285,6 +287,7 @@ else
 	  "  tree.lhs(k).vtype=Unknown"
 	  "  tree.lhs(k).property=Unknown"
 	  "end"
+	  "endfunction"
 	  ]
     end
   end
