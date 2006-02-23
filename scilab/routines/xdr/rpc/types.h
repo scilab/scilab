@@ -28,7 +28,6 @@
  *
  *	from: @(#)types.h 1.18 87/07/24 SMI
  *	from: @(#)types.h	2.3 88/08/15 4.0 RPCSRC
- *	$Id: types.h,v 1.2 2002/06/28 10:49:24 chanceli Exp $
  */
 
 /*
