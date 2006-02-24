@@ -1677,18 +1677,19 @@ int YScale(double y)
       
       if( ppsubwin->axes.reverse[1] && !ppsubwin->is3d )
       {
-        double dRes = Cscale.Wscy1 * ( y - Cscale.frect[1] + Cscale.Wyofset1 ) ;
+        double dRes = Cscale.Wscy1 * ( y - Cscale.frect[1] ) + Cscale.Wyofset1 ;
         return FLOAT_2_INT( dRes ) ;
       }
       else
       {
-        double dRes = Cscale.Wscy1 * ( -y + Cscale.frect[3] + Cscale.Wyofset1 ) ;
+        double dRes = Cscale.Wscy1 * ( -y + Cscale.frect[3] ) + Cscale.Wyofset1 ;
         return FLOAT_2_INT( dRes ) ;
       }
-      /*if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
-	return inint(  Max( Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ;
-      else
-	return inint(  Max( Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ; */
+
+      /* if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
+/* 	return inint(  Max( Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ; */
+/*       else */
+/* 	return inint(  Max( Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ;  */
     }
   
   sciprint("Error in YScale\n");
