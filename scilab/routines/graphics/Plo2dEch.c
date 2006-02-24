@@ -1617,9 +1617,19 @@ int XScale(double x)
       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
       
       if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-	return inint( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1,2147483647));
+      {
+
+        /* 2147483647 == 2^31 - 1 == INT32MAX */
+        /*return inint( Max( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1, INT_MAX ), INT_MIN ) ) ;*/
+        double dRes = Cscale.Wscx1 * (Cscale.frect[2] - (x)) + Cscale.Wxofset1 ;
+        return FLOAT_2_INT( dRes ) ;
+      }
       else
-	return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647));
+      {
+	      /*return inint( Max( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1, INT_MAX ), INT_MIN ) );*/
+        double dRes = Cscale.Wscx1 * ((x) -Cscale.frect[0]) + Cscale.Wxofset1 ;
+        return FLOAT_2_INT( dRes ) ;
+      }
     }
   
 
@@ -1665,12 +1675,21 @@ int YScale(double y)
       sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
       
-      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
-	return inint(  Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1,2147483647));
+      if( ppsubwin->axes.reverse[1] && !ppsubwin->is3d )
+      {
+        double dRes = Cscale.Wscy1 * ( y - Cscale.frect[1] + Cscale.Wyofset1 ) ;
+        return FLOAT_2_INT( dRes ) ;
+      }
       else
-	return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647));
+      {
+        double dRes = Cscale.Wscy1 * ( -y + Cscale.frect[3] + Cscale.Wyofset1 ) ;
+        return FLOAT_2_INT( dRes ) ;
+      }
+      /*if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+	return inint(  Max( Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ;
+      else
+	return inint(  Max( Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ; */
     }
-  
   
   sciprint("Error in YScale\n");
   return -9000;
