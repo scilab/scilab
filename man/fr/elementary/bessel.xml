@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -176,27 +176,27 @@
    plot2d(x(ind), er(ind), style=2, logflag="nl")
    xtitle("relative error between 2 formulae for besselj(0.5,x)") 
 
-
 // besselK functions
 // =================
    x = linspace(0.01,10,5000)';
    xbasc()
    subplot(2,1,1)
-   plot2d(x,besselk(0:2,x), style=2:4, rect=[0,0,6,10])
-   legend('K'+string(0:2),1);
+   plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
    xtitle("Some modified Bessel functions of the second kind")
    subplot(2,1,2)
-   plot2d(x,besselk(0:2,x,1), style=2:4, rect=[0,0,6,10])
-   legend('K'+string(0:2),1);
+   plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
    xtitle("Some modified scaled Bessel functions of the second kind")
 
 // besselY functions
 // =================
    x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
    xbasc()
-   plot2d(x,bessely(0:2,x), style=2:4, rect=[0,-1.5,40,0.6])
-   legend('Y'+string(0:2),4);
+   plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
+   legend('Y'+string(0:4),4);
    xtitle("Some Bessel functions of the second kind")
+
 
 // besselH functions
 // =================
