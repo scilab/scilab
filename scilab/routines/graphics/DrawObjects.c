@@ -9187,7 +9187,6 @@ sciDrawObj (sciPointObj * pobj)
 	      
 	      if ( sciGetIsLine(pobj) )
               {
-		SClipRegion clipping ;
                
 		x[0] = sciGetForeground(pobj);
 		
@@ -9202,12 +9201,9 @@ sciDrawObj (sciPointObj * pobj)
                 /* draw the polyline inside the window */
                 /* this is required to avoid overflow when
                    coordinates are changed */
-                clipping.leftX   = 0 ;
-                clipping.rightX  = sciGetWidth( sciGetCurrentFigure() ) ;
-                clipping.bottomY = 0 ;
-                clipping.topY    = sciGetHeight( sciGetCurrentFigure() ) ;
-                C2F(clipPolyLine)( n1, xm, ym, closeflag, &clipping ) ;
-                /*C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);*/
+                
+                /*C2F(clipPolyLine)( n1, xm, ym, closeflag, &clipping ) ;*/
+                C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	      }
 	    }
 	  
@@ -12289,11 +12285,13 @@ void sciDrawInsideSegments( integer       iib,
   integer npts;
   integer * vxNew ; /* the drawn vector */
   integer * vyNew ;
-  npts = ( iib > 0) ? iif-iib+2  : iif-iib+1;
   int close = 0 ;
   /* backup of the first and last bounds of the bounds of the drawn vector
      which may be changed */
   int prevBounds[4] ;
+
+  npts = ( iib > 0) ? iif-iib+2  : iif-iib+1;  
+  
   if ( iib > 0) 
   {
     sciClipLine( vx[iib-1], vy[iib-1],
@@ -12426,9 +12424,7 @@ void C2F(clipPolyLine)( integer       n     ,
                         SClipRegion * clipping )
 { 
   integer iib,iif,ideb=0,vxl[2],vyl[2];
-  /*xget_windowdim(&verbose,wd,&narg,vdouble);*/
-  /*xleft=0;xright=wd[0]; ybot=0;ytop=wd[1];*/
-
+  
   while (1) 
   { 
     integer j;
