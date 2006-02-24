@@ -4563,41 +4563,41 @@ static void change_points(integer i, integer x, integer y)
   points[i].x=(short)x;   points[i].y=(short)y;
 }
 
-static void MyDraw(integer iib, integer iif, integer *vx, integer *vy)
-{
-  integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0;
-  integer npts;
-  npts= ( iib > 0) ? iif-iib+2  : iif-iib+1;
-  if ( iib > 0)
-    {
-      clip_line(vx[iib-1],vy[iib-1],vx[iib],vy[iib],&x1n,&y1n,&x2n,&y2n,&flag1);
-    }
-  clip_line(vx[iif-1],vy[iif-1],vx[iif],vy[iif],&x11n,&y11n,&x2n,&y2n,&flag2);
-  if (C2F(store_points)(npts, &vx[Max(0,iib-1)], &vy[Max(0,iib-1)],(integer)0L));
-  {
-    if (iib > 0 && (flag1==1||flag1==3)) change_points((integer)0L,x1n,y1n);
-    if (flag2==2 || flag2==3) change_points(npts-1,x2n,y2n);
-    XDroutine((int)npts);
+/* static void MyDraw(integer iib, integer iif, integer *vx, integer *vy) */
+/* { */
+/*   integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0; */
+/*   integer npts; */
+/*   npts= ( iib > 0) ? iif-iib+2  : iif-iib+1; */
+/*   if ( iib > 0) */
+/*     { */
+/*       clip_line(vx[iib-1],vy[iib-1],vx[iib],vy[iib],&x1n,&y1n,&x2n,&y2n,&flag1); */
+/*     } */
+/*   clip_line(vx[iif-1],vy[iif-1],vx[iif],vy[iif],&x11n,&y11n,&x2n,&y2n,&flag2); */
+/*   if (C2F(store_points)(npts, &vx[Max(0,iib-1)], &vy[Max(0,iib-1)],(integer)0L)); */
+/*   { */
+/*     if (iib > 0 && (flag1==1||flag1==3)) change_points((integer)0L,x1n,y1n); */
+/*     if (flag2==2 || flag2==3) change_points(npts-1,x2n,y2n); */
+/*     XDroutine((int)npts); */
 
-  }
-}
+/*   } */
+/* } */
 
-static void My2draw(integer j, integer *vx, integer *vy)
-{
-  /** The segment is out but can cross the box **/
-  integer vxn[2],vyn[2],flag;
-  integer npts=2;
-  clip_line(vx[j-1],vy[j-1],vx[j],vy[j],&vxn[0],&vyn[0],&vxn[1],&vyn[1],&flag);
-  if (flag == 3 && C2F(store_points)(npts,vxn,vyn,(integer)0L))
-    {
-#ifdef DEBUG
-      sciprint("segment out mais intersecte en (%d,%d),(%d,%d)\r\n",
-	       vxn[0],vyn[0],vxn[1],vyn[1]);
-#endif
-      XDroutine((int)npts);
+/* static void My2draw(integer j, integer *vx, integer *vy) */
+/* { */
+/*   /\** The segment is out but can cross the box **\/ */
+/*   integer vxn[2],vyn[2],flag; */
+/*   integer npts=2; */
+/*   clip_line(vx[j-1],vy[j-1],vx[j],vy[j],&vxn[0],&vyn[0],&vxn[1],&vyn[1],&flag); */
+/*   if (flag == 3 && C2F(store_points)(npts,vxn,vyn,(integer)0L)) */
+/*     { */
+/* #ifdef DEBUG */
+/*       sciprint("segment out mais intersecte en (%d,%d),(%d,%d)\r\n", */
+/* 	       vxn[0],vyn[0],vxn[1],vyn[1]); */
+/* #endif */
+/*       XDroutine((int)npts); */
  
-    }
-}
+/*     } */
+/* } */
 
 /* 
  *  returns the first (vx[.],vy[.]) point inside 
@@ -4643,83 +4643,83 @@ integer first_out(integer n, integer ideb, integer *vx, integer *vy)
   return(-1);
 }
 
-static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore)
-{
-  integer iib,iif,ideb=0,vxl[2],vyl[2];
-  integer verbose=0,wd[2],narg;
-  xget_windowdim(&verbose,wd,&narg,vdouble);
-  xleft=0;xright=wd[0]; ybot=0;ytop=wd[1];
-#ifdef DEBUG1
-  xleft=100;xright=300;
-  ybot=100;ytop=300;
-  if (ScilabXgc->Cdrawable != (Drawable) 0)
-    XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc,xleft,ybot,(unsigned)xright-xleft,
-		   (unsigned)ytop-ybot);
-  if (ScilabXgc->CurPixmapStatus != 1)
-    XDrawRectangle(dpy,(Drawable) ScilabXgc->CWindow , gc,xleft,ybot,(unsigned)xright-xleft,
-		   (unsigned)ytop-ybot);
-#endif
-#ifdef DEBUG
-  sciprint("inside analyze\r\n");
-#endif
-  while (1)
-    { integer j;
-    iib=first_in(n,ideb,vx,vy);
-    if (iib == -1)
-      {
-#ifdef DEBUG
-	sciprint("[%d,end=%d] polyline out\r\n",(int)ideb,(int)n);
-	/* all points are out but segments can cross the box */
-#endif
-	for (j=ideb+1; j < n; j++) My2draw(j,vx,vy);
-	break;
-      }
-    else
-      if ( iib - ideb > 1)
-	{
-	  /* un partie du polygine est totalement out de ideb a iib -1 */
-	  /* mais peu couper la zone */
-	  for (j=ideb+1; j < iib; j++) My2draw(j,vx,vy);
-	};
-    iif=first_out(n,iib,vx,vy);
-    if (iif == -1) {
-      /* special case the polyligne is totaly inside */
-      if (iib == 0)
-	{
-	  if (C2F(store_points)(n,vx,vy,onemore))
-	    {
-	      int n1 ;
-	      if (onemore == 1) n1 = n+1;else n1= n;
-	      XDroutine(n1);
-	      return;
-	    }
-	  else
-	    return;
-	}
-      else
-	MyDraw(iib,n-1,vx,vy);
-      break;
-    }
-#ifdef DEBUG
-    sciprint("Analysed : [%d,%d]\r\n",(int)iib,(int)iif);
-#endif
-    MyDraw(iib,iif,vx,vy);
-    ideb=iif;
-    }
-  if (onemore == 1) {
-    /* The polyligne is closed we consider the closing segment */
-    integer x1n,y1n,x2n,y2n,flag1=0;
-    vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0];
-    clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1);
-    if ( flag1==0) return ;
-    if ( C2F(store_points)((integer)2L,vxl,vyl,(integer)0L))
-      {
-	if (flag1==1||flag1==3) change_points((integer)0L,x1n,y1n);
-	if (flag1==2||flag1==3) change_points((integer)1L,x2n,y2n);
-	XDroutine(2);
-      }
-  }
-}
+/* static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore) */
+/* { */
+/*   integer iib,iif,ideb=0,vxl[2],vyl[2]; */
+/*   integer verbose=0,wd[2],narg; */
+/*   xget_windowdim(&verbose,wd,&narg,vdouble); */
+/*   xleft=0;xright=wd[0]; ybot=0;ytop=wd[1]; */
+/* #ifdef DEBUG1 */
+/*   xleft=100;xright=300; */
+/*   ybot=100;ytop=300; */
+/*   if (ScilabXgc->Cdrawable != (Drawable) 0) */
+/*     XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc,xleft,ybot,(unsigned)xright-xleft, */
+/* 		   (unsigned)ytop-ybot); */
+/*   if (ScilabXgc->CurPixmapStatus != 1) */
+/*     XDrawRectangle(dpy,(Drawable) ScilabXgc->CWindow , gc,xleft,ybot,(unsigned)xright-xleft, */
+/* 		   (unsigned)ytop-ybot); */
+/* #endif */
+/* #ifdef DEBUG */
+/*   sciprint("inside analyze\r\n"); */
+/* #endif */
+/*   while (1) */
+/*     { integer j; */
+/*     iib=first_in(n,ideb,vx,vy); */
+/*     if (iib == -1) */
+/*       { */
+/* #ifdef DEBUG */
+/* 	sciprint("[%d,end=%d] polyline out\r\n",(int)ideb,(int)n); */
+/* 	/\* all points are out but segments can cross the box *\/ */
+/* #endif */
+/* 	for (j=ideb+1; j < n; j++) My2draw(j,vx,vy); */
+/* 	break; */
+/*       } */
+/*     else */
+/*       if ( iib - ideb > 1) */
+/* 	{ */
+/* 	  /\* un partie du polygine est totalement out de ideb a iib -1 *\/ */
+/* 	  /\* mais peu couper la zone *\/ */
+/* 	  for (j=ideb+1; j < iib; j++) My2draw(j,vx,vy); */
+/* 	}; */
+/*     iif=first_out(n,iib,vx,vy); */
+/*     if (iif == -1) { */
+/*       /\* special case the polyligne is totaly inside *\/ */
+/*       if (iib == 0) */
+/* 	{ */
+/* 	  if (C2F(store_points)(n,vx,vy,onemore)) */
+/* 	    { */
+/* 	      int n1 ; */
+/* 	      if (onemore == 1) n1 = n+1;else n1= n; */
+/* 	      XDroutine(n1); */
+/* 	      return; */
+/* 	    } */
+/* 	  else */
+/* 	    return; */
+/* 	} */
+/*       else */
+/* 	MyDraw(iib,n-1,vx,vy); */
+/*       break; */
+/*     } */
+/* #ifdef DEBUG */
+/*     sciprint("Analysed : [%d,%d]\r\n",(int)iib,(int)iif); */
+/* #endif */
+/*     MyDraw(iib,iif,vx,vy); */
+/*     ideb=iif; */
+/*     } */
+/*   if (onemore == 1) { */
+/*     /\* The polyligne is closed we consider the closing segment *\/ */
+/*     integer x1n,y1n,x2n,y2n,flag1=0; */
+/*     vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0]; */
+/*     clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1); */
+/*     if ( flag1==0) return ; */
+/*     if ( C2F(store_points)((integer)2L,vxl,vyl,(integer)0L)) */
+/*       { */
+/* 	if (flag1==1||flag1==3) change_points((integer)0L,x1n,y1n); */
+/* 	if (flag1==2||flag1==3) change_points((integer)1L,x2n,y2n); */
+/* 	XDroutine(2); */
+/*       } */
+/*   } */
+/* } */
 
 int CheckScilabXgc(void)
 {
