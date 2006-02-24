@@ -84,7 +84,7 @@ int finite __PARAMS((double));
 
 /* XWindow function arguments can be  int16 or unsigned16 */
 
-#define INT16      short
+#define SCIINT16   short
 #define INT16MAX   SHRT_MAX
 #define INT16MIN   SHRT_MIN
 #define int16max   0x7FFF
@@ -142,7 +142,7 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 /* truncate an integer to a 16 bits integer. Overflow value are trucated to the min */
 /* and max of 16 bits integer. */
-#define INT_2_16B(i) ( (i) > INT16MAX ? (INT16MAX) : ( (i) < INT16MIN ? INT16MIN : ((INT16) i)) )
+#define INT_2_16B(i) ( (i) > INT16MAX ? (INT16MAX) : ( (i) < INT16MIN ? INT16MIN : ((SCIINT16) i)) )
 /*----------------------------------------------------------------------------*/
 
 #include "Graphics.h" 
