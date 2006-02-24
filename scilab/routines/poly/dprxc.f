@@ -22,15 +22,26 @@ c!
       double precision roots(n),coeff(*)
       integer n
 c
-      integer j,nj
+      integer j,nj, ninf
+      double precision dlamch
 c
+      ninf=0
       call dset (n,0.0d+0,coeff,1)
       coeff(n+1)=1.0d+0
 c
       do 10 j=1,n
-      nj=n+1-j
-      call daxpy(j,-roots(j),coeff(nj+1),1,coeff(nj),1)
-   10 continue
+         if(abs(roots(j)).gt.dlamch('o')) then
+c     .    infinite roots gives zero high degree coeff
+            ninf=ninf+1
+         else
+            nj=n+1-j
+            call daxpy(j,-roots(j),coeff(nj+1),1,coeff(nj),1)
+         endif
+ 10   continue
+      if (ninf.gt.0) then
+         call unsfdcopy(n-ninf+1,coeff(ninf+1),1,coeff(1),1)
+         call dset(ninf,0.0d0,coeff(n-ninf+2),1)
+      endif
 c
       return
       end

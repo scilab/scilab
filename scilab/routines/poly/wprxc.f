@@ -22,17 +22,34 @@ c!
       double precision rootr(n),rooti(n),coeffr(*),coeffi(*)
       integer n
 c
-      integer j,nj
+      integer j,nj,ninf
+      double precision dlamch
+c
+      ninf=0
 c
       call dset (n,0.0d+0,coeffr,1)
       call dset (n+1,0.0d+0,coeffi,1)
       coeffr(n+1)=1.0d+0
 c
       do 10 j=1,n
-      nj=n+1-j
-      call waxpy(j,-rootr(j),-rooti(j),coeffr(nj+1),coeffi(nj+1),1,
-     & coeffr(nj),coeffi(nj),1)
+         if(abs(rootr(j)).gt.dlamch('o').or.
+     $        abs(rooti(j)).gt.dlamch('o')) then
+c     .    infinite roots gives zero high degree coeff
+            ninf=ninf+1
+         else
+            nj=n+1-j
+            call waxpy(j,-rootr(j),-rooti(j),coeffr(nj+1),coeffi(nj+1),1
+     $           ,coeffr(nj),coeffi(nj),1)
+         endif
    10 continue
+
+      if (ninf.gt.0) then
+         call unsfdcopy(n-ninf+1,coeffr(ninf+1),1,coeffr(1),1)
+         call dset(ninf,0.0d0,coeffr(n-ninf+2),1)
+         call unsfdcopy(n-ninf+1,coeffi(ninf+1),1,coeffi(1),1)
+         call dset(ninf,0.0d0,coeffi(n-ninf+2),1)
+
+      endif
 c
       return
       end
