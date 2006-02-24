@@ -136,6 +136,7 @@ void translate2D( double from[2], double trans[2], double dest[2] ) ;
 int safeEqual( double val1, double val2, double accuracy ) ;
 
 /* with a macro it is faster */
+/* the x == y test is put to avoid division by 0 */
 #define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
 /*----------------------------------------------------------------------------*/
 
@@ -143,6 +144,12 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /* truncate an integer to a 16 bits integer. Overflow value are trucated to the min */
 /* and max of 16 bits integer. */
 #define INT_2_16B(i) ( (i) > INT16MAX ? (INT16MAX) : ( (i) < INT16MIN ? INT16MIN : ((SCIINT16) i)) )
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------*/
+/* truncate a float or double to an int. Overflow value are trucated to the min */
+/* and max of 32 bits integer. */
+#define FLOAT_2_INT(f) ( (f) > INT_MAX ? (INT_MAX) : ( (f) < INT_MIN ? (INT_MIN) : ( inint( f ) ) ) )
 /*----------------------------------------------------------------------------*/
 
 #include "Graphics.h" 
