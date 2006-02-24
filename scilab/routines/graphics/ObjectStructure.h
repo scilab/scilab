@@ -1390,10 +1390,10 @@ sciAgreg;  /** */
 
 typedef struct
 {
-  double leftX   ; /* abscissa of the left edge of the region */
-  double rightX  ; /* abscissa of the rigth edge */
-  double bottomY ; /* ordinate of the bottom edge */
-  double topY    ; /* ordinate of the upper edge */
+  int leftX   ; /* abscissa of the left edge of the region */
+  int rightX  ; /* abscissa of the rigth edge */
+  int bottomY ; /* ordinate of the bottom edge */
+  int topY    ; /* ordinate of the upper edge */
 }
 SClipRegion ;
 
