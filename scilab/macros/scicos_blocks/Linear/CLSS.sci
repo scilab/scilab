@@ -32,8 +32,18 @@ case 'set' then
     out=size(C,1);if out==0 then out=[],end
     in=size(B,2);if in==0 then in=[],end
     [ms,ns]=size(A)
-    if ms<>ns then
-      message('A matrix must be square')
+    okD=%t
+    if size(D,'*')<>size(C,1)*size(B,2) then
+      if size(D,'*')==1 then 
+	D*ones(C*B)
+      elseif  size(D,'*')==0 then 
+	D*zeros(C*B)
+      else
+	okD=%f
+      end
+    end
+    if ms<>ns|~okD then
+      message('A matrix is not square or D has wrong dimension')
     else
       [model,graphics,ok]=check_io(model,graphics,in,out,[],[])
       if ok then
