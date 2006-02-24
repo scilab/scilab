@@ -3114,7 +3114,7 @@ void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer 
   }
   if (n1 >= 2) 
   {
-    /*F(analyze_points)(*n, vx, vy,*closeflag);*/
+    /*C2F(analyze_points)(*n, vx, vy,*closeflag);*/
     /*Old code replaced by a routine with clipping */
     if (C2F(store_points)(*n, vx, vy,*closeflag))
     {
@@ -4371,26 +4371,14 @@ int C2F(store_points)(integer n, integer *vx, integer *vy, integer onemore)
   integer i,n1 = ( onemore == 1) ? n+1 : n;
   if ( ReallocVector(n1) )
     {
-      for (i = 0; i < n; i++){
-#ifdef DEBUG
-	if ( Abs(vx[i]) > int16max )
-	  {
-	    fprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
-		    (int) vx[i]);
-	  }
-	if ( Abs(vy[i]) > int16max )
-	  {
-	    fprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
-		    (int) vy[i]);
-	  }
-#endif
-        
+      for ( i = 0; i < n; i++ )
+      {
         points[i].x = INT_2_16B( vx[i] ) ;
-        /* points[i].x = (short) vx[i]; */
+        /* points[i].x = (SCIINT16) vx[i]; */
         
         
         points[i].y = INT_2_16B( vy[i] ) ;
-        /*  points[i].y = (short) vy[i]; */
+        /*  points[i].y = (SCIINT16) vy[i]; */
         
       }
       if ( onemore ) {
@@ -4472,16 +4460,16 @@ void  set_clip_box(integer xxleft, integer xxright, integer yybot, integer yytop
 
 void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, integer *yy1n, integer *x2n, integer *y2n, integer *flag)
 {
-  integer  x_intr[2], y_intr[2]; /* used to store intersection points 
-				  * at most two points 
+  integer  x_intr[2], y_intr[2]; /* used to store intersection points
+				  * at most two points
 				  */
-  integer x, y, dx, dy, count, pos1, pos2; 
+  integer x, y, dx, dy, count, pos1, pos2;
 
   *x1n=x1;*yy1n=yy1;*x2n=x2;*y2n=y2;*flag=4;
   pos1 = clip_point(x1, yy1);
   pos2 = clip_point(x2, y2);
   if (pos1 || pos2) {
-    if (pos1 & pos2) { *flag=0;return;}	  
+    if (pos1 & pos2) { *flag=0;return;}
     /* segment is totally out. */
 
     /* Here part of the segment MAy be inside. test the intersection
@@ -4500,26 +4488,26 @@ void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, in
 	x_intr[count] = x;
 	y_intr[count++] = ybot;
       }
-      x = (ytop - y2) * ((double) dx / (double) dy) + x2; 
+      x = (ytop - y2) * ((double) dx / (double) dy) + x2;
       /* Test for ytop boundary. */
       if (x >= xleft && x <= xright) {
 	x_intr[count] = x;
 	y_intr[count++] = ytop;
       }
     }
-    if ( count < 2 ) 
+    if ( count < 2 )
       {
 	/* Find intersections with the y parallel bbox lines: */
 	if (dx != 0) {
-	  y = (xleft - x2) * ((double) dy / (double) dx) + y2;   
+	  y = (xleft - x2) * ((double) dy / (double) dx) + y2;
 	  /* Test for xleft boundary. */
 	  if (y >= ybot && y <= ytop) {
 	    x_intr[count] = xleft;
 	    y_intr[count++] = y;
 	  }
-	  if ( count < 2 ) 
+	  if ( count < 2 )
 	    {
-	      y = (xright - x2) * ((double) dy / (double) dx) + y2;  
+	      y = (xright - x2) * ((double) dy / (double) dx) + y2;
 	      /* Test for xright boundary. */
 	      if (y >= ybot && y <= ytop) {
 		x_intr[count] = xright;
@@ -4562,7 +4550,7 @@ void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, in
 	}
       }
     }
-    else 
+    else
       {
 	/* count != 0 */
 	*flag=0;return;
@@ -4580,7 +4568,7 @@ static void MyDraw(integer iib, integer iif, integer *vx, integer *vy)
   integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0;
   integer npts;
   npts= ( iib > 0) ? iif-iib+2  : iif-iib+1;
-  if ( iib > 0) 
+  if ( iib > 0)
     {
       clip_line(vx[iib-1],vy[iib-1],vx[iib],vy[iib],&x1n,&y1n,&x2n,&y2n,&flag1);
     }
@@ -4605,7 +4593,7 @@ static void My2draw(integer j, integer *vx, integer *vy)
 #ifdef DEBUG
       sciprint("segment out mais intersecte en (%d,%d),(%d,%d)\r\n",
 	       vxn[0],vyn[0],vxn[1],vyn[1]);
-#endif 
+#endif
       XDroutine((int)npts);
  
     }
@@ -4644,7 +4632,7 @@ integer first_out(integer n, integer ideb, integer *vx, integer *vy)
   integer i;
   for (i=ideb  ; i < n ; i++)
     {
-      if ( vx[i]< xleft || vx[i]> xright  || vy[i] < ybot || vy[i] > ytop) 
+      if ( vx[i]< xleft || vx[i]> xright  || vy[i] < ybot || vy[i] > ytop)
 	{
 #ifdef DEBUG
 	  sciprint("first out %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
@@ -4656,7 +4644,7 @@ integer first_out(integer n, integer ideb, integer *vx, integer *vy)
 }
 
 static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore)
-{ 
+{
   integer iib,iif,ideb=0,vxl[2],vyl[2];
   integer verbose=0,wd[2],narg;
   xget_windowdim(&verbose,wd,&narg,vdouble);
@@ -4667,27 +4655,27 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
   if (ScilabXgc->Cdrawable != (Drawable) 0)
     XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc,xleft,ybot,(unsigned)xright-xleft,
 		   (unsigned)ytop-ybot);
-  if (ScilabXgc->CurPixmapStatus != 1) 
+  if (ScilabXgc->CurPixmapStatus != 1)
     XDrawRectangle(dpy,(Drawable) ScilabXgc->CWindow , gc,xleft,ybot,(unsigned)xright-xleft,
 		   (unsigned)ytop-ybot);
 #endif
-#ifdef DEBUG 
+#ifdef DEBUG
   sciprint("inside analyze\r\n");
 #endif
-  while (1) 
+  while (1)
     { integer j;
     iib=first_in(n,ideb,vx,vy);
-    if (iib == -1) 
-      { 
+    if (iib == -1)
+      {
 #ifdef DEBUG
 	sciprint("[%d,end=%d] polyline out\r\n",(int)ideb,(int)n);
 	/* all points are out but segments can cross the box */
-#endif 
+#endif
 	for (j=ideb+1; j < n; j++) My2draw(j,vx,vy);
 	break;
       }
-    else 
-      if ( iib - ideb > 1) 
+    else
+      if ( iib - ideb > 1)
 	{
 	  /* un partie du polygine est totalement out de ideb a iib -1 */
 	  /* mais peu couper la zone */
@@ -4696,7 +4684,7 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
     iif=first_out(n,iib,vx,vy);
     if (iif == -1) {
       /* special case the polyligne is totaly inside */
-      if (iib == 0) 
+      if (iib == 0)
 	{
 	  if (C2F(store_points)(n,vx,vy,onemore))
 	    {
@@ -4708,13 +4696,13 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
 	  else
 	    return;
 	}
-      else 
+      else
 	MyDraw(iib,n-1,vx,vy);
       break;
     }
 #ifdef DEBUG
     sciprint("Analysed : [%d,%d]\r\n",(int)iib,(int)iif);
-#endif 
+#endif
     MyDraw(iib,iif,vx,vy);
     ideb=iif;
     }

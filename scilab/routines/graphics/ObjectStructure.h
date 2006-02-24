@@ -1388,7 +1388,14 @@ typedef struct
 }
 sciAgreg;  /** */
 
-
+typedef struct
+{
+  double leftX   ; /* abscissa of the left edge of the region */
+  double rightX  ; /* abscissa of the rigth edge */
+  double bottomY ; /* ordinate of the bottom edge */
+  double topY    ; /* ordinate of the upper edge */
+}
+SClipRegion ;
 
 
 #endif /*__SCI_OBJECT_STRUCTURE__ */

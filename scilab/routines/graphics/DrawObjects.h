@@ -123,6 +123,12 @@ extern void UpdateSubwinScale(sciPointObj * pobj); /* DRAWINGS */
 extern void sciClip (sciPointObj *pobj); /* DRAWINGS */
 extern void sciUnClip (sciPointObj *pobj); /* DRAWINGS */
 
+extern void C2F(clipPolyLine)( integer       n     , 
+                               integer     * vx    , 
+                               integer     * vy    , 
+                               integer       closed,
+                               SClipRegion * clipping ) ;
+
 extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 extern int sciRefreshObj( sciPointObj * pobj ) ; /* DRAWINGS */
