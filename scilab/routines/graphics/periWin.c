@@ -4908,8 +4908,8 @@ int C2F(store_points)(n, vx, vy, onemore)
 //		    (int) vy[i]);
 //	  }
 //#endif
-	points[i].x =(short) vx[i];
-	points[i].y =(short) vy[i];
+	points[i].x = INT_2_16B( vx[i] ) ;
+	points[i].y = INT_2_16B( vy[i] ) ;
       }
       if (onemore == 1) {
 	points[n].x=(short) points[0].x;
