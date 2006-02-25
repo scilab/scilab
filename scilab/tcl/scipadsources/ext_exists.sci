@@ -7,18 +7,8 @@ function ext_ex = ext_exists(varargin)
 
   if argn(2) == 0 then error(39); else var = varargin(1); end
 
-  if exists(var) then
-    if ~exists(var,'local') then
-      ext_ex = %t;
-    else
-      // the variable exists both in 'all' and in 'local' scopes
-      // since 'all' includes 'local', there is no way to know if
-      // the variable exists only outside of function ext_exists
-      // this is the case for the varargin variable for instance
-      // consequence is that this variable cannot be watched
-      // <TODO>: improve Scilab's exists with an 'outside' option
-      ext_ex = %f;
-    end
+  if exists(var,"nolocal") then
+    ext_ex = %t;
   else
     var = string(var);
     if prod(size(var)) > 1 then
@@ -28,7 +18,7 @@ function ext_ex = ext_exists(varargin)
       if prod(size(var_tok)) <> 2 then
         ext_ex = %f;
       else
-        if ~exists(var_tok(1)) then
+        if ~exists(var_tok(1),"nolocal") then
           ext_ex = %f;
         else
           accesstryresult = execstr(var_tok(1) + "(" + var_tok(2) + ")","errcatch");

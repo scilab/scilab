@@ -1,54 +1,37 @@
-proc checkscilabbusy {{mb "message"}} {
-    global sciprompt
-# <TODO> Remove the bypass of this proc
-#return "OK"
-    if [ expr [string compare $sciprompt -1] == 0 ] {
-        if {$mb != "nomessage"} {
-            set mes [mc "Scilab is working, wait for the prompt to issue a debugger command."]
-            set tit [mc "Scilab working"]
-            tk_messageBox -message $mes -title $tit -type ok -icon info
-        }
-        return "busy"
-    } else {
-        return "OK"
-    }
-}
-
 proc runtocursor_bp {} {
-    if {[checkscilabbusy] == "OK"} {
-        set textarea [gettextareacur]
-        set infun [whichfun [$textarea index insert] $textarea]
-        if {$infun!=""} {
-            set cursorfunname [lindex $infun 0]
-            set cursorfunline [lindex $infun 1]
-            set rfn $cursorfunname
-            set rfl $cursorfunline
-            insertremove_bp
+    if {[isscilabbusy 5]} {return}
+    set textarea [gettextareacur]
+    set infun [whichfun [$textarea index insert] $textarea]
+    if {$infun!=""} {
+        set cursorfunname [lindex $infun 0]
+        set cursorfunline [lindex $infun 1]
+        set rfn $cursorfunname
+        set rfl $cursorfunline
+        insertremove_bp
+        tonextbreakpoint_bp
+        set comm1 "\[db_l,db_m\]=where();"
+        set comm2 "if size(db_l,1)>=3 then"
+        set comm3 "TCL_EvalStr(\"scipad eval {set checklist \[ list \"+string(db_l(3))+\" \"+string(db_m(3))+\" $rfl $rfn \] }\");"
+        set comm4 "else"
+        set comm5 "TCL_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
+        set comm6 "end;"
+        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
+        ScilabEval_lt "$fullcomm" "seq"
+        ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+        ScilabEval_lt "flush"
+        while {$bptcheckresult == "WrongBpt" && [getdbstate] == "DebugInProgress"} {
             tonextbreakpoint_bp
-            set comm1 "\[db_l,db_m\]=where();"
-            set comm2 "if size(db_l,1)>=3 then"
-            set comm3 "TCL_EvalStr(\"scipad eval {set checklist \[ list \"+string(db_l(3))+\" \"+string(db_m(3))+\" $rfl $rfn \] }\");"
-            set comm4 "else"
-            set comm5 "TCL_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
-            set comm6 "end;"
-            set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
             ScilabEval_lt "$fullcomm" "seq"
             ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
             ScilabEval_lt "flush"
-            while {$bptcheckresult == "WrongBpt" && [getdbstate] == "DebugInProgress"} {
-                tonextbreakpoint_bp
-                ScilabEval_lt "$fullcomm" "seq"
-                ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
-                ScilabEval_lt "flush"
-            }
-            if {[getdbstate] != "DebugInProgress"} {
-                tk_messageBox -message [mc "Cursor position is out of reach!"] -icon info
-            }
-            insertremove_bp
-        } else {
-            # <TODO> .sce case
-            showinfo [mc "Cursor must be in a function"]
         }
+        if {[getdbstate] != "DebugInProgress"} {
+            tk_messageBox -message [mc "Cursor position is out of reach!"] -icon info
+        }
+        insertremove_bp
+    } else {
+        # <TODO> .sce case
+        showinfo [mc "Cursor must be in a function"]
     }
 }
 
@@ -78,70 +61,69 @@ proc tonextbreakpoint_bp {} {
 
 proc execfile_bp {} {
     global funnameargs listoftextarea funsinbuffer waitmessage watchvars
-    if {[checkscilabbusy] == "OK"} {
-        showinfo $waitmessage
-        set removecomm [removescilab_bp "no_output"]
-        set setbpcomm ""
+    if {[isscilabbusy 5]} {return}
+    showinfo $waitmessage
+    set removecomm [removescilab_bp "no_output"]
+    set setbpcomm ""
+    foreach textarea $listoftextarea {
+        set tagranges [$textarea tag ranges breakpoint]
+    #    set nlins -1
+     #   set nlins -2
+        foreach {tstart tstop} $tagranges {
+            set infun [whichfun [$textarea index $tstart] $textarea]
+            if {$infun !={} } {
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
+           } else {
+                # <TODO> .sce case: I thought about:
+                # - inserting pause before each bp, or
+                # - inserting mode(6) plus mode(0) before each bp
+                # but none is satisfactory. Using mode() will fail in loops,
+                # and pause is very limited (no way to add a new bp during debug,
+                # or to remove all bp to finish execution ignoring them)
+    #            incr nlins 1
+     #           incr nlins 2
+    #            $textarea insert "$tstart +$nlins l linestart" "pause\n"
+     #           $textarea insert "$tstart +$nlins l linestart" "mode(6)\nmode(0)\n"
+            }
+        }
+    }
+    if {$funnameargs != ""} {
+        execfile "current"
+        set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
         foreach textarea $listoftextarea {
-            set tagranges [$textarea tag ranges breakpoint]
-    #        set nlins -1
-     #       set nlins -2
-            foreach {tstart tstop} $tagranges {
-                set infun [whichfun [$textarea index $tstart] $textarea]
-                if {$infun !={} } {
-                    set funname [lindex $infun 0]
-                    set lineinfun [expr [lindex $infun 1] - 1]
-                    set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
-               } else {
-                    # <TODO> .sce case: I thought about:
-                    # - inserting pause before each bp, or
-                    # - inserting mode(6) plus mode(0) before each bp
-                    # but none is satisfactory. Using mode() will fail in loops,
-                    # and pause is very limited (no way to add a new bp during debug,
-                    # or to remove all bp to finish execution ignoring them)
-    #                incr nlins 1
-     #               incr nlins 2
-    #                $textarea insert "$tstart +$nlins l linestart" "pause\n"
-     #               $textarea insert "$tstart +$nlins l linestart" "mode(6)\nmode(0)\n"
+            if {[info exists funsinbuffer($textarea)]} {
+                if {[lsearch $funsinbuffer($textarea) $funname] != -1 && \
+                     $textarea != [gettextareacur]} {
+                    execfile $textarea
                 }
             }
         }
-        if {$funnameargs != ""} {
-            execfile "current"
-            set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
-            foreach textarea $listoftextarea {
-                if {[info exists funsinbuffer($textarea)]} {
-                    if {[lsearch $funsinbuffer($textarea) $funname] != -1 && \
-                         $textarea != [gettextareacur]} {
-                        execfile $textarea
-                    }
-                }
+        if {$setbpcomm != ""} {
+            setdbstate "DebugInProgress"
+            set commnvars [createsetinscishellcomm $watchvars]
+            set watchsetcomm [lindex $commnvars 0]
+            if {$watchsetcomm != ""} {
+                ScilabEval_lt "$watchsetcomm"  "seq"
             }
-            if {$setbpcomm != ""} {
-                setdbstate "DebugInProgress"
-                set commnvars [createsetinscishellcomm $watchvars]
-                set watchsetcomm [lindex $commnvars 0]
-                if {$watchsetcomm != ""} {
-                    ScilabEval_lt "$watchsetcomm"  "seq"
-                }
 # <TODO> A ScilabEval "seq" never causes an error, this only happens with "sync"
 #        It would be a good idea to arrange for an error to be reported even with a seq,
 #        but this is outside of Scipad.
-                if {[catch {ScilabEval_lt "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
-                    scilaberror $funnameargs
-                }
-                updateactivebreakpoint
-                getfromshell
-                checkendofdebug_bp
-            } else {
-                if {[catch {ScilabEval_lt "$funnameargs" "seq"}]} {
-                    scilaberror $funnameargs
-                }
+            if {[catch {ScilabEval_lt "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
+                scilaberror $funnameargs
             }
+            updateactivebreakpoint
+            getfromshell
+            checkendofdebug_bp
         } else {
-            # <TODO> .sce case
-##            execfile
+            if {[catch {ScilabEval_lt "$funnameargs" "seq"}]} {
+                scilaberror $funnameargs
+            }
         }
+    } else {
+        # <TODO> .sce case
+##        execfile
     }
 }
 
@@ -164,46 +146,44 @@ proc stepbystep_bp {} {
 
 proc resume_bp {} {
     global funnameargs waitmessage watchvars
-    if {[checkscilabbusy] == "OK"} {
-        showinfo $waitmessage
-        if {$funnameargs != ""} {
-            set commnvars [createsetinscishellcomm $watchvars]
-            set watchsetcomm [lindex $commnvars 0]
-            if {$watchsetcomm != ""} {
-                ScilabEval_lt "$watchsetcomm" "seq"
-                set returnwithvars [lindex $commnvars 1]
-                ScilabEval_lt "$returnwithvars" "seq"
-            } else {
-                ScilabEval_lt "resume(0)" "seq"
-            }
-            updateactivebreakpoint
-            getfromshell
-            checkendofdebug_bp
+    if {[isscilabbusy 5]} {return}
+    showinfo $waitmessage
+    if {$funnameargs != ""} {
+        set commnvars [createsetinscishellcomm $watchvars]
+        set watchsetcomm [lindex $commnvars 0]
+        if {$watchsetcomm != ""} {
+            ScilabEval_lt "$watchsetcomm" "seq"
+            set returnwithvars [lindex $commnvars 1]
+            ScilabEval_lt "$returnwithvars" "seq"
         } else {
-            # <TODO> .sce case
-            # Sending \n is if mode(6) mode(0) is used. If pause, there is no
-            # need to distinguish between .sci and .sce (resume is sent for both)
- #           ScilabEval_lt " " "seq"
+            ScilabEval_lt "resume(0)" "seq"
         }
+        updateactivebreakpoint
+        getfromshell
+        checkendofdebug_bp
+    } else {
+        # <TODO> .sce case
+        # Sending \n is if mode(6) mode(0) is used. If pause, there is no
+        # need to distinguish between .sci and .sce (resume is sent for both)
+ #       ScilabEval_lt " " "seq"
     }
 }
 
 proc goonwo_bp {} {
     global funnameargs waitmessage
-    if {[checkscilabbusy] == "OK"} {
-        showinfo $waitmessage
-        if {$funnameargs != ""} {
-            removeallactive_bp
-            removescilab_bp "with_output"
-            ScilabEval_lt "resume(0)" "seq"
-            getfromshell
-        }
-        setdbstate "ReadyForDebug"
+    if {[isscilabbusy 5]} {return}
+    showinfo $waitmessage
+    if {$funnameargs != ""} {
+        removeallactive_bp
+        removescilab_bp "with_output"
+        ScilabEval_lt "resume(0)" "seq"
+        getfromshell
     }
+    setdbstate "ReadyForDebug"
 }
 
 proc break_bp {} {
-    if {[checkscilabbusy "nomessage"] != "OK"} {
+    if {[isscilabbusy]} {
         ScilabEval_lt "flush"
         ScilabEval_lt "pause" "seq"
         updateactivebreakpoint 4
@@ -218,59 +198,18 @@ proc break_bp {} {
 
 proc canceldebug_bp {} {
     global funnameargs waitmessage
-    if {[checkscilabbusy] == "OK"} {
-        if {[getdbstate] == "DebugInProgress"} {
-            showinfo $waitmessage
-            if {$funnameargs != ""} {
-                removeallactive_bp
-                ScilabEval_lt "abort" "seq"
-                removescilab_bp "with_output"
-                getfromshell
-                cleantmpdebugfiles
-            }
-        } else {
-            # [getdbstate] is "ReadyForDebug" - nothing to do
-        }
-        setdbstate "NoDebug"
-    }
-}
-
-proc scilaberror {funnameargs} {
-    global errnum errline errmsg errfunc
-    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();\
-                   TCL_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
-                                               set errnum  \"+string(db_n)+\"; \
-                                               set errline \"+string(db_l)+\"; \
-                                               set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                               set errmsg  \"\"\"+db_str+\"\"\"}\")" \
-                  "sync" "seq"
-    tk_messageBox -title [mc "Scilab execution error"] \
-      -message [concat [mc "The shell reported an error while trying to execute "]\
-      $funnameargs ": error " $errnum ", " $errmsg [mc " at line "]\
-      $errline [mc " of "] $errfunc]
-    showinfo [mc "Execution aborted!"]
+    if {[isscilabbusy 5]} {return}
     if {[getdbstate] == "DebugInProgress"} {
-        canceldebug_bp
+        showinfo $waitmessage
+        if {$funnameargs != ""} {
+            removeallactive_bp
+            ScilabEval_lt "abort" "seq"
+            removescilab_bp "with_output"
+            getfromshell
+            cleantmpScilabEvalfile
+        }
+    } else {
+        # [getdbstate] is "ReadyForDebug" - nothing to do
     }
-    blinkline $errline $errfunc
-}
-
-proc blinkline {li ma {nb 3}} {
-# Blink $nb times line $li in macro function $ma
-# Warning: This proc is also used from outside of Scipad by edit_error
-    for {set i 0} {$i < $nb} {incr i} {
-        updateactivebreakpointtag $li $ma
-        update idletasks
-        after 500
-        updateactivebreakpointtag 0 ""
-        update idletasks
-        after 500
-    }
-}
-
-proc cleantmpdebugfiles {} {
-# Try to remove the possibly existing files in tmpdir
-# created by ScilabEval_lt
-    global tmpdir
-    catch {file delete [file join $tmpdir "ScilabEval_command.sce"]}
+    setdbstate "NoDebug"
 }

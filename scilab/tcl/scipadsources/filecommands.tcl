@@ -155,7 +155,10 @@ proc byebye {textarea} {
     global listoftextarea listoffile
     global pad FirstBufferNameInWindowsMenu pwframe
     if { [llength $listoftextarea] > 1 } {
-        removescilabbuffer_bp "with_output" $textarea
+        # check on Scilab busy needed to remove breakpoints
+        if {![isscilabbusy]} {
+            removescilabbuffer_bp "with_output" $textarea
+        }
         removefuns_bp $textarea
         focustextarea $textarea
         # delete the textarea entry in the listoftextarea
@@ -245,6 +248,8 @@ proc opensourceof {} {
 # wants to open
     global pad menuFont textFont
     global opensoflb opensofbOK
+
+    if {[isscilabbusy 0]} {return}
 
     set opensof $pad.opensof
     catch {destroy $opensof}
@@ -358,6 +363,7 @@ proc OKopensourceof {w} {
 
 proc openlibfunsource {ind} {
     global textareacur
+    if {[isscilabbusy 0]} {return}
     # exit if the cursor is not by a libfun or a scicos or a userfun keyword
     set keywtype ""
     if {[lsearch [$textareacur tag names $ind] "scicos"] !=-1} \

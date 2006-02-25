@@ -144,7 +144,7 @@ if {0} {
         parray words; parray chset \
     }
     bind all <Control-equal> { \
-        if {[checkscilabbusy]=="busy"} {tk_messageBox -message "BUSY"} else {tk_messageBox -message "IDLE"}
+        if {[isscilabbusy]} {tk_messageBox -message "BUSY"} else {tk_messageBox -message "IDLE"}
     }
 }
 

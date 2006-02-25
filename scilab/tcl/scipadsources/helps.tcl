@@ -1,5 +1,6 @@
 proc helpme {} {
 # help
+    if {[isscilabbusy 0]} {return}
     ScilabEval_lt "help scipad"
 }
 
@@ -12,6 +13,7 @@ proc aboutme {} {
 
 proc helpword {} {
     global textareacur
+    if {[isscilabbusy 0]} {return}
     set seltexts [selection own]
     if {[catch {selection get -selection PRIMARY} sel] ||$seltexts != $textareacur} {
         # if there is no selection in the current textarea, select the word at the cursor position

@@ -66,12 +66,14 @@ proc selectprint_unix {textarea} {
 
 proc printsetup_win {} {
 # procedure to setup the printer on windows systems
+    if {[isscilabbusy 0]} {return}
     ScilabEval_lt "printsetupbox()"
 }
 
 proc selectprint_win {textarea} {
 # procedure to print on windows systems
     global tmpdir listoffile
+    if {[isscilabbusy 0]} {return}
     if {[ismodified $textarea]} {
         set fname [file join $tmpdir SciPadtmpfile]
         set TempPrintFile [open $fname w]

@@ -79,6 +79,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
     global spin funvars funvarsvals
     global watchvars watchvarsvals
     global getvaluefromscilab
+
     if {$argname != ""} {
 
         # 1. Check whether the variable was already entered in the calling (watch or configure) box
@@ -94,7 +95,38 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             }
         }
 
-        # 2. add or change this variable in the calling box
+        # 2. In certain cases one cannot add variables when Scilab is busy
+        if {$alreadyexists == "false" && \
+            [string first listboxinput $leftwin] == -1 && \
+            (    ($argvalue == "" || $getvaluefromscilab == 1) \
+              || ($argvalue == $unklabel) \
+            ) } {
+            # the proc was called from the watch window, $argname does not
+            # yet exist and $argvalue will in fine be set to $unklabel
+            # -> the value will be retrieved from Scilab
+            if {[isscilabbusy 5]} {return}
+        }
+        if {$alreadyexists == "true" && \
+            [string first listboxinput $leftwin] == -1 && \
+            ($getvaluefromscilab == 1 || $forceget == "true") } {
+            # the proc was called from the watch window, $argname does
+            # already exist and $argvalue will in fine be forced to Scilab's
+            # value
+            # -> the value will be retrieved from Scilab
+            if {[isscilabbusy 5]} {return}
+        }
+        set mustdoScilabroundtrip false
+        if {[string first listboxinput $leftwin] == -1 && \
+            [getdbstate] == "DebugInProgress" && \
+            $getvaluefromscilab == 0 } {
+            # the proc was called from the watch window, during a debug session,
+            # and the "get from Scilab" box was not checked
+            # -> a round trip to Scilab is required
+            set mustdoScilabroundtrip true
+            if {[isscilabbusy 5]} {return}
+        }
+
+        # 3. add or change this variable in the calling box
         # next line is a bit dirty... it is used to differentiate processing for the
         # add argument box used with the watch window from the one use with the configure box
         if {[string first listboxinput $leftwin] != -1} {
@@ -149,18 +181,14 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
             $rightwin insert $eltindex $argvalue
         }
 
-        # 3. Perform a roundtrip to Scilab to:
+        # 4. Perform a roundtrip to Scilab to:
         #   a. update the new value of the modified variable in Scilab, and
         #   b. get back the new values of all the watched variables from Scilab
         # This is required only for the watch window, in case the user watches a variable
         # var and elements of var such as var(i) or var(i:j) at the same time
-        # The new or changed variable must first be updated in Scilad, and then the
-        # watched variables must be get back from Scilab
-        if {[string first listboxinput $leftwin] == -1 && \
-            [getdbstate] == "DebugInProgress" && \
-            $getvaluefromscilab == 0 } {
-            # the proc was called from the watch window, during a debug session,
-            # and the "get from Scilab" box was not checked
+        # The new or changed variable must first be updated in Scilab, and then the
+        # watched variables must be retrieved from Scilab
+        if {$mustdoScilabroundtrip} {
             setinscishellone_bp $argname  ; # update the changed var only
             getfromshell                  ; # get new value of all the watched variables
         }
@@ -277,18 +305,17 @@ proc removefuns_bp {textarea} {
 proc setinscishellone_bp {var} {
 # Update in Scilab the value of one watched variable named $var
     global funnameargs waitmessage
-    if {[checkscilabbusy] == "OK"} {
-        showinfo $waitmessage
-        if {$funnameargs != ""} {
-            set commnvars [createsetinscishellcomm $var]
-            set watchsetcomm [lindex $commnvars 0]
-            set visibilitycomm [lindex $commnvars 2]
-            if {$watchsetcomm != ""} {
-                ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
-            }
-        } else {
-            # <TODO> .sce case
- #           ScilabEval_lt " " "seq"
+    if {[isscilabbusy 5]} {return}
+    showinfo $waitmessage
+    if {$funnameargs != ""} {
+        set commnvars [createsetinscishellcomm $var]
+        set watchsetcomm [lindex $commnvars 0]
+        set visibilitycomm [lindex $commnvars 2]
+        if {$watchsetcomm != ""} {
+            ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
         }
+    } else {
+        # <TODO> .sce case
+ #       ScilabEval_lt " " "seq"
     }
 }
