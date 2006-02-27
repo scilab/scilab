@@ -49,7 +49,7 @@
 	      <VERB>&quot;x&quot;</VERB> l&apos;indéterminée. Dans ce cas
 	      <VERB>roots</VERB> et <VERB>poly</VERB> sont des fonctions inverses
 	      l&apos;une de l&apos;autre. Notez qye les racines infinies produisent des
-	      coefficients de haut degrŽé egaux a zŽéro.</SP>
+	      coefficients de haut degré egaux a zéro.</SP>
 	  </DESCRIPTION_ITEM>
 	  <DESCRIPTION_ITEM label="-">
 	    <SP><VERB>poly(v,&quot;x&quot;,&quot;coeff&quot;)</VERB> crée le polynôme
