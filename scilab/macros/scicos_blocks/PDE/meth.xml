@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- Copyright INRIA -->
+<!-- développé par EADS-CCR -->
+<DecisionTree>
+  <Node condition = "delta > 0" decision = "type_meth = 1"/>
+  <Node condition = "delta < 0" decision = "type_meth = 3"/>
+  <Node condition = "delta == 0" decision = "type_meth = 2"/>
+</DecisionTree>
