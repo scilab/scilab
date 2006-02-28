@@ -1,15 +1,11 @@
 #include <stdio.h> 
 #include "machine.h"
 #include "stack-c.h"
-
-#if (defined __MSC__ ) || (defined __MINGW32__) 
-#define putenv(x) _putenv(x)
+/*-----------------------------------------------------------------------------------*/ 
+#if WIN32
+	#define putenv(x) _putenv(x)
 #endif
-
-#ifdef __ABSC__
-#define putenv(x) abs_putenv(x)
-#endif
-
+/*-----------------------------------------------------------------------------------*/ 
 /* ---------------------------------------------
  * Initialize scilab 
  * If SCI is not specified in the Makefile 
@@ -17,15 +13,14 @@
  * directory (since SCI will be bound to ../../../) 
  * except if environment variables are set 
  * ---------------------------------------------*/
-
+/*-----------------------------------------------------------------------------------*/ 
 #ifndef SCI
-#define SCI "SCI=../../.." 
+	#define SCI "SCI=../../.." 
 #endif  
-
+/*-----------------------------------------------------------------------------------*/ 
 extern void add_sci_argv(char *p);
-
+/*-----------------------------------------------------------------------------------*/ 
 /* this function should be moved inside scilab */
-
 static void Initialize()  
 {
   char *p1;
@@ -57,24 +52,23 @@ static void Initialize()
   C2F(scirun)(initstr,strlen(initstr));
   return;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 int send_scilab_job(char *job) 
 {
   static char buf[1024];
   static char format[]="Err=execstr('%s','errcatch','n');quit;";
   int m,n,lp;
   sprintf(buf,format,job);
-  fprintf(stderr,"job envoye %s\n",buf);
   C2F(scirun)(buf,strlen(buf));
   GetMatrixptr("Err", &m, &n, &lp);
   return (int) *stk(lp);
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 double f(double x)
 {
   return x*x + 1;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 static int my_plot() 
 {
   int m,n,lx,ly,i;
@@ -92,9 +86,9 @@ static int my_plot()
   /* 
    * plot(x,y);
    */
-  send_scilab_job("plot(y,x);xclick();quit");
+  send_scilab_job("plot(y,x);");
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 static int my_job()
 {
   static char job[256];
@@ -107,8 +101,8 @@ static int my_job()
   WriteMatrix("A", &mA, &nA, A); /* if failed make my_job return O; */
   WriteMatrix("b", &mb, &nb, b);
 
-  if ( send_scilab_job("A,b,x=0\\b;") != 0) 
-    fprintf(stdout,"Error occured during scilab execution\n");
+  if ( send_scilab_job("A,b,x=0\\b;") == 27) 
+    fprintf(stdout,"division by zero...\n");
   else 
     {
       GetMatrixptr("x", &m, &n, &lp);
@@ -127,36 +121,8 @@ static int my_job()
 	fprintf(stdout,"x[%d] = %5.2f\n",i,*stk(i+lp));
     }
 } 
-
-/* I do not want to see the Scilab banier */ 
-
-void C2F(banier)(int *x) 
-{
-  /* fprintf(stdout,"Ourf ....\n");
-     C2F(storeversion)("scilab-2.5.1",12L);
-  */
-}
-
-
-int MAIN__(void) 
-{
-#if (defined __MSC__ ) || (defined __MINGW32__) 
-  static char nw[]="-nw";
-  static char nb[]="-nb";
-  add_sci_argv(nw);
-  add_sci_argv(nb);
-#endif 
-  Initialize();
-  my_ode_job();
-  my_job();
-  my_plot() ;
-  cc_test();
-  C2F(sciquit)();
-}
-
-
+/*-----------------------------------------------------------------------------------*/ 
 /* I want to integrate the previous equation */
-
 int my_ode_job() 
 {
   double x[]={1,0,0} ; int mx=3,nx=1;
@@ -170,9 +136,19 @@ int my_ode_job()
   /* scilab is called to solve the ODE */
   send_scilab_job("y=ode(x,0,time,''mon_ode''),");
 }
-
-
-
-
-
-
+/*-----------------------------------------------------------------------------------*/ 
+#if WIN32
+	int main(void) 	
+#else
+	int MAIN__(void) 
+#endif
+{
+  Initialize();
+  my_ode_job();
+  my_job();
+  my_plot() ;
+  cc_test();
+  C2F(sciquit)();
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 

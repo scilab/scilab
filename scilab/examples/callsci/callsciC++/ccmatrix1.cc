@@ -1,5 +1,6 @@
-#include "ccmatrix.h"
 #include <iostream>
+#include "ccmatrix.h"
+
 
 class SciError {};
 
