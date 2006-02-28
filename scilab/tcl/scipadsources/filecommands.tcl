@@ -138,7 +138,7 @@ proc closefile {textarea {quittype yesno} } {
            $listoffile("$textarea",fullname) \
            [mc "may have changed, do you wish to save your changes?"] ] \
              -title [mc "Save Confirm?"] -type $quittype -icon question]
-        case $answer {
+        switch -- $answer {
             yes { filetosave $textarea; byebye $textarea }
             no {byebye $textarea}
             cancel {return "Canceled"}
@@ -482,22 +482,6 @@ proc showopenwin {tiledisplay} {
     keyposn [gettextareacur]
 }
 
-proc fileunreadable {file} {
-# make sure that the file, if it exists, can be read at all   
-    if [ file exists $file ]  {
-         if [file readable $file]==0 {
-             tk_messageBox -title [mc "Unreadable file"]\
-                 -message [concat [mc "The file"] $file\
-                               [mc "exists but is not readable!"]]
-             return 1
-         } else {
-            return 0
-         }
-    } else {
-         return 0
-    }
-}
-
 proc openfileifexists {file} {
 # wrapper to openfile, but issues a warning if the file does not exist (anymore).
 # if file is already open, action is the same as hitting the entry in the windows
@@ -706,8 +690,10 @@ proc filetosave {textarea} {
 # the file on disk?) since last loading in Scipad
 # and ask the user if he still wants to save in that case
 # if yes or if there was no change on disk, perform the save on disk
-# note: the modification check is normally pointless now since
-# Scipad performs this check each time it gets focus
+# note: the modification check is almost pointless now since
+# Scipad performs this check each time it gets focus - it is kept
+# to deal with the perverse case where some external process modifies
+# the file while Scipad keeps focus
     global listoffile
     set msgChanged [concat [mc "The contents of "] \
                            $listoffile("$textarea",fullname) \
@@ -718,7 +704,7 @@ proc filetosave {textarea} {
         if { $listoffile("$textarea",thetime) != [file mtime $myfile]} {
             set answer [tk_messageBox -message $msgChanged -title $msgTitle \
                             -type yesnocancel -icon question]
-            case $answer {
+            switch -- $answer {
                 yes { writesave $textarea $myfile}
                 no {}
                 cancel {}
@@ -846,7 +832,7 @@ proc savepreferences {} {
 }
 
 proc backupfile { fname { levels 10 } } {
-# before writing to a file $fname, call: bak $fname
+# before writing to a file $fname, call: backupfile $fname
 # and the file will not get overwritten.
 #
 # renames like so: .bak, .ba2, .ba3, .ba4, etc.
@@ -917,21 +903,18 @@ proc checkiffilechangedondisk {textarea} {
                            $listoffile("$textarea",fullname) \
                            [mc "has been modified outside of Scipad. Do you want to reload it?"] ]
     set msgTitle [mc "File has changed!"]
-    set myfile $listoffile("$textarea",fullname)
-    if { [file exists $myfile] && $listoffile("$textarea",new) == 0 } {
-        if { $listoffile("$textarea",thetime) != [file mtime $myfile]} {
+    if {[filehaschangedondisk $textarea]} {
 # note: if thetime is not updated first, we may enter a recursion:
 # if revertsaved pops up the "unreadable file" warning, there is once
 # more a change of focus, which triggers this proc recursively.
 # An a posteriori rationale: the decision whether to keep the version
 # on disk or the one in memory is itself the most recent editing action.
-            set listoffile("$textarea",thetime) [file mtime $myfile]
-            set answer [tk_messageBox -message $msgChanged \
-                            -title $msgTitle -type yesno -icon question]
-            case $answer {
-                yes {revertsaved $textarea NoConfirm}
-                no  {}
-            }
+        set listoffile("$textarea",thetime) [file mtime $listoffile("$textarea",fullname)]
+        set answer [tk_messageBox -message $msgChanged \
+                        -title $msgTitle -type yesno -icon question]
+        switch -- $answer {
+            yes {revertsaved $textarea NoConfirm}
+            no  {}
         }
     }
 }
@@ -982,6 +965,9 @@ proc extenstolang {file} {
 
 proc direxists {dir} {
 # check whether $dir is an existing directory
+# return value:
+#   1  $dir exists and is a directory
+#   0  otherwise
     set ret 0
     if {[file exists $dir]} {
         if {[file isdirectory $dir]} {
@@ -989,6 +975,41 @@ proc direxists {dir} {
         }
     }
     return $ret
+}
+
+proc fileunreadable {file} {
+# make sure that the file, if it exists, can be read at all   
+# return value:
+#   1  $file exists and is not readable
+#   0  otherwise ($file does not exist or if it exists it is readable)
+    if {[file exists $file]}  {
+        if {[file readable $file]==0} {
+            tk_messageBox -title [mc "Unreadable file"] \
+                -message [concat [mc "The file"] $file \
+                         [mc "exists but is not readable!"]] \
+                -icon warning -type ok
+            return 1
+        } else {
+            return 0
+        }
+    } else {
+        return 0
+    }
+}
+
+proc filehaschangedondisk {ta} {
+# return value:
+#   1  the file opened in $ta exists, is not a new file, and its last saving
+#      time is different from the modify date retrieved from the file on disk
+#   0  otherwise
+    global listoffile
+    set myfile $listoffile("$ta",fullname)
+    if { [file exists $myfile] && $listoffile("$ta",new) == 0 } {
+        if { $listoffile("$ta",thetime) != [file mtime $myfile]} {
+            return 1
+        }
+    }
+    return 0
 }
 
 proc setlistoffile_colorize {ta fullfilename} {

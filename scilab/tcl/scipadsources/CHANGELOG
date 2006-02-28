@@ -1831,7 +1831,7 @@ Francois VOGEL, 08/12/05
  * "Bug fix", well it's a patch, from Allan/Serge to let Scipad to save a
    file in C:\Documents and Settings\<account>\My Documents (workaround for
    Tcl bug 1193497, whose existing patch is not yet applied to the Tcl cvs
-   tree)
+   tree) - Fixes also part of bug 1146
  * version --> 5.67
 
 Francois VOGEL, 09/12/05
@@ -2058,3 +2058,12 @@ Francois VOGEL, 25/02/06
    where they were missing (adding variables in the watch or configure box
    for instance)
  * version --> 6.7
+
+Francois VOGEL, 28/02/06
+ * Substituted the remaining obsolete Tcl instruction case by switch
+ * Fixed: colorization was missing after undoing a change that did in fact
+   not change the buffer content, e.g. Ctrl-a,Ctrl-c,Ctrl-v (no change here
+   because the paste replaces the selection with the same text),Ctrl-v,
+   Ctrl-z,Ctrl-z
+ * Fixed: Edit/Select all did not update the menues contextually
+ * version --> 6.8

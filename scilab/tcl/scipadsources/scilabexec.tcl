@@ -21,7 +21,7 @@ proc execfile {{buf "current"}} {
                   $listoffile("$textarea",fullname) \
                   [mc "may have changed, do you wish to save your changes?"] ] \
                 -title [mc "Save Confirm?"] -type yesnocancel -icon question]
-        case $answer {
+        switch -- $answer {
             yes    { set doexec 1; filetosave $textarea }
             no     { set doexec 0 }
             cancel { set doexec 0; return 2 }

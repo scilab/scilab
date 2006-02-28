@@ -99,9 +99,15 @@ Wishes:
  Step by step execution remains to be implemented, but this requires Scilab
  core support.
 
--default fonts modifiable within the program
+-default fonts modifiable within the program (menuFont and textFont for now)
  See TIP 213 for a possible implementation (new tk_chooseFont command
  possibly available in Tk 8.5)
+ Other possible references (licence issues to be checked):
+ http://wiki.tcl.tk/9173
+ http://wiki.tcl.tk/3896
+ This one is especially nice IMHO: http://billposer.org/Software/FontControl.tcl
+ http://people.man.ac.uk/~zzcgudf/tcl/mwidx.html#fontdlg
+ http://wiki.tcl.tk/1129
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
