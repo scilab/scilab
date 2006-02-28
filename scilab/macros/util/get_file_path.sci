@@ -11,5 +11,5 @@ for k=size(nams,'*'):-1:1
     break
   end
 end
-if path == "" then path = "." ; end
+if path == "" then path = pwd() ; end
 endfunction
