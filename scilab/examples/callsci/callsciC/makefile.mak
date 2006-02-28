@@ -34,5 +34,5 @@ $(SCIDIR)/routines/f2c/libf2c/main.obj :
 $(SCIDIR)/bin/prog.exe : $(OBJSC)
 	@echo "Linking" 
 	$(LINKER) $(LINKER_FLAGS) -OUT:"$*.exe" \
-	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(XLIBS) 
+	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(XLIBSBIN) 
 	@echo "done " $(SCIDIR)/bin/prog.exe 
