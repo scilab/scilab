@@ -77,15 +77,9 @@ end;
 if rhs==3 then x0=sl(6),end
 if imp==1 then x0=0*x0,end
 nt=size(dt,'*');x=0*ones(ma,nt)
-[a,v]=balanc(a);
-//apply transformation u without matrix inversion
-[k,l]=find(v<>0) //get the permutation
-//apply right transformation 
-v=v(k,l);c=c(:,k)*v; 
-//apply left transformation 
-v=diag(1 ./diag(v));b=v*b(k,:);x0=v*x0(k)
-
-[a,v,bs]=bdiag(a,1);b=v\b;c=c*v;x0=v\x0;
+[a,v1]=balanc(a);b=v1\b;c=c*v1;x0=v1\x0;
+[a,v2,bs]=bdiag(a,1);b=v2\b;c=c*v2;x0=v2\x0;
+v=v1*v2;//save combined scaling for unscaling later
 //
 if type(u)==1 then
    ut=u;
