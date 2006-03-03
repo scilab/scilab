@@ -252,7 +252,7 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       while(done < nsamp) {
 	/* scale signed up to long's range */
 	datum = RIGHT(*buf++, 16);
-	wfloat(ft, (double) datum);
+	wfloat(ft, (float) datum);
 	done++;
       }
       return;
