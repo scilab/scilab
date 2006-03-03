@@ -466,48 +466,57 @@ int int_objscanf(char *fname,unsigned long fname_len)
  *********************************************************************/
 int int_objsscanf(char *fname,unsigned long fname_len)
 {
-  static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
+	static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
   int args,retval,retval_s,err,n_count,lw,il1,ild1,skip;
   int k;
 
   entry *data;
   rec_entry buf[MAXSCAN];
-  sfdir  type[MAXSCAN],type_s[MAXSCAN];
+  sfdir type[MAXSCAN],type_s[MAXSCAN];
   char* str;
 
   Nbvars = 0;
   CheckRhs(2,3);
-  if (Rhs==3) {
+  if (Rhs==3) 
+	{
     GetRhsVar(1,"i",&m1,&n1,&l1);
-    if (m1*n1!=1) {
+    if (m1*n1!=1) 
+		{
       Scierror(999,"Error: in sscanf: incorrect first argument\r\n");
       return 0;
-    }
-    iarg=2;
-    maxrow=*istk(l1);
+		}
 
+		iarg=2;
+		maxrow=*istk(l1);
   }
-  else {
+  else 
+	{
     iarg=1;
     maxrow=1;
   }
+
   lw = iarg + Top - Rhs; /* Scilab string vector */
   if (! C2F(getwsmat)("sscanf",&Top,&lw,&m1,&n1,&il1,&ild1,6L)) return 0;
+
   GetRhsVar(iarg+1,"c",&m2,&n2,&l2); /* Format */
   n_count=StringConvert(cstk(l2))+1;  /* conversion */
-  if (maxrow >= 0) 
-    if (maxrow*n_count>m1*n1) {
-      Scierror(999,"Error: in sscanf: not enough entries in str\r\n");
-      return 0;
-    }
+
+  if ((maxrow >= 0) && (maxrow*n_count>m1*n1))
+	{
+     Scierror(999,"Error: in sscanf: not enough entries in str\r\n");
+     return 0;
+  }
 
   k=0;
   nrow=maxrow; 
   rowcount = -1; /* number-1 of result lines already got */
-  while (1) {
+  while (1) 
+	{
     rowcount++;
     if ((maxrow >= 0) && (rowcount >= maxrow)) break;
+
     if ( k >= m1*n1 ) break;
+
     skip=*istk(ild1+k)-1;
     SciStrtoStr(istk(il1+skip),&n_count,istk(ild1+k),&str);
     k +=n_count;
@@ -516,35 +525,47 @@ int int_objsscanf(char *fname,unsigned long fname_len)
     err = do_scanf("sscanf",(FILE *)0,cstk(l2),&args,str,&retval,buf,type);
     FREE(str);
     if ( err < 0 )  return 0;
-    if ( retval == EOF) {
-      /* 
-	 first returned argument wil be set to -1 
-	 Scierror(999,"Error: in %s: end of string reached\r\n",fname);
-	 return 0;
+
+    if ( retval == EOF) 
+		{
+      /* first returned argument wil be set to -1 */
+			/* Scierror(999,"Error: in %s: end of string reached\r\n",fname);
+			return 0;
       */
     }
-    if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
-			buf,&data,rowcount,args)) <0 ) {
-      switch (err) {
-      case MISMATCH:
-	if (maxrow>=0) {
-	  Free_Scan(rowcount,ncol,type_s,&data);
-	  Scierror(999,"Error: in sscanf: data mismatch\r\n");
-	  return 0;
-	}
-	break;
-      case MEM_LACK:
-	Free_Scan(rowcount,ncol,type_s,&data);
-	Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");
-	return 0;
-	break;
+
+    if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args)) <0 )
+		{
+      switch (err) 
+			{
+				case MISMATCH:
+				{
+					if (maxrow>=0) 
+					{
+						Free_Scan(rowcount,ncol,type_s,&data);
+						Scierror(999,"Error: in sscanf: data mismatch\r\n");
+						return 0;
+					}
+				}
+				break;
+
+				case MEM_LACK:
+				{
+					Free_Scan(rowcount,ncol,type_s,&data);
+					Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");
+					return 0;
+				}
+				break;
       }
       if (err==MISMATCH) break;
     }
   } /* while */
   /* create Scilab variables with each column of data */
   err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
-  if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
+  if (err==MEM_LACK) 
+	{
+		Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");
+	}
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -933,7 +954,7 @@ int NumTokens(char *string)
  * The number of scaned object is hardwired (MAXSCAN) 
  * and scaned strings (%s,%c %[) are limited to MAX_STR characters
  *
- * XXXX Could be changed to eliminate the MAXSCAN limitation 
+ * TO DO : eliminate the MAXSCAN limitation 
  * 
  ****************************************************************/
 int voidflush(FILE *fp)
@@ -941,9 +962,11 @@ int voidflush(FILE *fp)
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
+/* Correction Bug 1867 A.C */
+static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir type[MAXSCAN])
 {
   int i;
+	
   char sformat[MAX_STR];
   void *ptrtab[MAXSCAN];
   int nc[MAXSCAN];
@@ -955,318 +978,346 @@ static int do_scanf (char *fname, FILE *fp, char *format, int *nargs, char *strv
   int l_flag=0, h_flag=0,width_flag,width_val,ign_flag,str_width_flag=0;
   int num_conversion = -1;	/* for error messages and counting arguments*/
 
-
   PRINTER printer;		/* pts at fprintf() or sprintf() */
+
   if (fp == (FILE *) 0)		
-    {
-      /* doing sscanf or scanf */
-      target = strv;
-      printer = (PRINTER) sscanf;
-    }
+  {
+    /* doing sscanf or scanf */
+    target = strv;
+    printer = (PRINTER) sscanf;
+  }
   else
-    {
-      /* doing fscanf */
-      target = (char *) fp;
-      printer = (PRINTER) fscanf;
-    }
+  {
+     /* doing fscanf */
+     target = (char *) fp;
+     printer = (PRINTER) fscanf;
+  }
   
   q = format;
   *retval = 0;
 
   /* Traverse format string, doing scanf(). */
   while (1)
-    {
-      /* scanf */
-      p=q;
-      while (*q != '%' && *q != '\0' ) q++;
-      if ( *q == '%' && *(q+1) == '%' ) 
-	{
-	  q=q+2;
-	  while (*q != '%' && *q != '\0' ) q++;
-	}
-      if (*q == 0) 
-	{
-	  break ;
-	}
+  {
+		/* scanf */
+    p=q;
+    while (*q != '%' && *q != '\0' ) q++;
 
-      q++; /** q point to character following % **/
+    if ( *q == '%' && *(q+1) == '%' ) 
+		{
+			q=q+2;
+			while (*q != '%' && *q != '\0' ) q++;
+		}
+
+    if (*q == 0) 
+		{
+			break ;
+		}
+
+    q++; /** q point to character following % **/
 
       
-      /* 
-       * We have found a conversion specifier, figure it out,
-       * then scan the data asociated with it.
-       */
+    /* 
+     * We have found a conversion specifier, figure it out,
+     * then scan the data asociated with it.
+     */
 
 
-      /* mark the '%' with p1 */
+    /* mark the '%' with p1 */
       
-      p1 = q - 1; 
+    p1 = q - 1; 
 
-      /* check for width field */
+    /* check for width field */
 
-      while ( isdigit(((int)*q)) ) q++;
-      width_flag =0;
+    while ( isdigit(((int)*q)) ) q++;
+    width_flag =0;
 
-      if ( p1+1 != q ) 
-	{	  
-	  char w= *q;
-	  *q='\0';
-	  width_flag = 1;
-	  sscanf(p1+1,"%d",&width_val);
-	  *q=w;
-	}
+    if ( p1+1 != q ) 
+		{	  
+			char w= *q;
+			*q='\0';
+			width_flag = 1;
+			sscanf(p1+1,"%d",&width_val);
+			*q=w;
+		}
 
-      /* check for ignore argument */
+    /* check for ignore argument */
 
-      ign_flag=0;
+    ign_flag=0;
 
-      if (*q == '*')
-	{
-	  /* Ignore the argument in the input args */
-	  /*num_conversion = Max(num_conversion-1,0);*/
-	  ign_flag = 1;
-	  q++;
-	}
-      else
+    if (*q == '*')
+		{
+			/* Ignore the argument in the input args */
+			/*num_conversion = Max(num_conversion-1,0);*/
+			ign_flag = 1;
+			q++;
+		}
+    else
+		{
+			/* check for %l or %h */
+			l_flag = h_flag = 0;
+		}
 
-      /* check for %l or %h */
+    if (*q == 'l')
+		{
+			q++;
+			l_flag = 1;
+		}
+    else if (*q == 'h')
+		{
+			q++;
+			h_flag = 1;
+		}
 
-      l_flag = h_flag = 0;
+    /* directive points to the scan directive  */
+    directive = *q++;
 
-      if (*q == 'l')
-	{
-	  q++;
-	  l_flag = 1;
-	}
-      else if (*q == 'h')
-	{
-	  q++;
-	  h_flag = 1;
-	}
+    if ( directive == '[' )
+		{
+			char *q1=q--;
+			/** we must find the closing bracket **/
+			while ( *q1 != '\0' && *q1 != ']') q1++;
 
-      /* directive points to the scan directive  */
-
-      directive = *q++;
-
-      if ( directive == '[' )
-	{
-	  char *q1=q--;
-	  /** we must find the closing bracket **/
-	  while ( *q1 != '\0' && *q1 != ']') q1++;
-	  if ( *q1 == '\0') 
+			if ( *q1 == '\0') 
 	    {
 	      Scierror(998,"Error:\tscanf, unclosed [ directive\r\n");
 	      return RET_BUG;
 	    }
-	  if ( q1 == q +1 || strncmp(q,"[^]",3)==0 ) 
+
+			if ( q1 == q +1 || strncmp(q,"[^]",3)==0 ) 
 	    {
 	      q1++;
 	      while ( *q1 != '\0' && *q1 != ']') q1++;  
 	      if ( *q1 == '\0') 
-		{
-		  Scierror(998,"Error:\tscanf unclosed [ directive\r\n");
-		  return RET_BUG;
-		}
+				{
+					Scierror(998,"Error:\tscanf unclosed [ directive\r\n");
+					return RET_BUG;
+				}
 	    }
-	  directive = *q1++;
-	  q=q1;
-	}
+			directive = *q1++;
+			q=q1;
+		}
 
-      /** accumulate characters in the format up to next % directive **/
-      /*** unused 
-      while ( *q != '\0' && *q != '%' ) q++;
-      if ( *q == '%' && *(q+1) == '%' ) 
-	{
-	  q=q+2;
-	  while (*q != '%' && *q != '\0' ) q++;
-	}
-	**/
-      save = *q;
-      /* *q = 0; */
+    save = *q;
       
-      /** if (debug) Sciprintf("Now directive [%s],%c\r\n",p,directive); **/
-      
-      if ( ign_flag != 1) 
-	{
-	  num_conversion++;
-	  if ( num_conversion > MAXSCAN ) 
+    if ( ign_flag != 1) 
+		{
+			num_conversion++;
+			if ( num_conversion >= MAXSCAN ) 
 	    {
-	      Scierror(998,"Error:\tscanf too many (%d > %d) conversion required\r\n",
-		       num_conversion,MAXSCAN);
+				Scierror(998,"Error:\tscanf too many (>%d) conversion required\r\n",MAXSCAN);
 	      return RET_BUG;
 	    }
-	  switch (directive )
+
+			switch (directive )
 	    {
-	    case ']':
-	      if (width_flag == 0 ) str_width_flag = 1;
-	      if (width_flag == 1 && width_val > MAX_STR-1 )
-		{
-		  Scierror(998,"Error:\tscanf, width field %d is too long (> %d) for %%[ directive\r\n",
-			   width_val,MAX_STR-1);
-		  return RET_BUG;
-		}
-	      if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
-	      ptrtab[num_conversion] =  buf[num_conversion].c;
-	      type[num_conversion] = SF_S;
+				case ']':
+				{
+					if (width_flag == 0 ) str_width_flag = 1;
+					if (width_flag == 1 && width_val > MAX_STR-1 )
+					{
+						Scierror(998,"Error:\tscanf, width field %d is too long (> %d) for %%[ directive\r\n",width_val,MAX_STR-1);
+						return RET_BUG;
+					}
+					if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
+					ptrtab[num_conversion] =  buf[num_conversion].c;
+					type[num_conversion] = SF_S;
+				}
 	      break;
-	    case 's':
-	      if (l_flag + h_flag) {
-		Scierror(998,"Error:\tscanf: bad conversion\r\n");
-		return RET_BUG;
-	      }
-	      if (width_flag == 0 ) str_width_flag = 1;
-	      if (width_flag == 1 && width_val > MAX_STR-1 )
-		{
-		  Scierror(998,"Error:\tscanf, width field %d is too long (< %d) for %%s directive\r\n",
-			   width_val,MAX_STR-1);
-		  return RET_BUG;
-		}
-	      if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
-	      ptrtab[num_conversion] =  buf[num_conversion].c;
-	      type[num_conversion] = SF_S;
+
+				case 's':
+				{
+					if (l_flag + h_flag) 
+					{
+						Scierror(998,"Error:\tscanf: bad conversion\r\n");
+						return RET_BUG;
+					}
+
+					if (width_flag == 0 ) str_width_flag = 1;
+
+					if (width_flag == 1 && width_val > MAX_STR-1 )
+					{
+						Scierror(998,"Error:\tscanf, width field %d is too long (< %d) for %%s directive\r\n",width_val,MAX_STR-1);
+						return RET_BUG;
+					}
+
+					if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
+
+					ptrtab[num_conversion] =  buf[num_conversion].c;
+					type[num_conversion] = SF_S;
+				}
 	      break;
-	    case 'c':
-	      if (l_flag + h_flag) {
-		Scierror(998,"Error:\tscanf: bad conversion\r\n");
-		return RET_BUG;
-	      }
-	      if ( width_flag == 1 ) 
-		nc[num_conversion ] = width_val;
-	      else
-		nc[num_conversion ] = 1;
-	      if (width_flag == 1 && width_val > MAX_STR-1 )
-		{
-		  Scierror(998,"Error:\tscanf width field %d is too long (< %d) for %%c directive\r\n",
-			   width_val,MAX_STR-1);
-		  return RET_BUG;
-		}
-	      if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
-	      ptrtab[num_conversion] =  buf[num_conversion].c;
-	      type[num_conversion] = SF_C;
+
+				case 'c':
+				{
+					if (l_flag + h_flag)
+					{
+						Scierror(998,"Error:\tscanf: bad conversion\r\n");
+						return RET_BUG;
+					}
+
+					if ( width_flag == 1 ) nc[num_conversion ] = width_val;
+					else nc[num_conversion ] = 1;
+
+					if (width_flag == 1 && width_val > MAX_STR-1 )
+					{
+						Scierror(998,"Error:\tscanf width field %d is too long (< %d) for %%c directive\r\n",width_val,MAX_STR-1);
+						return RET_BUG;
+					}
+
+					if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
+
+					ptrtab[num_conversion] =  buf[num_conversion].c;
+					type[num_conversion] = SF_C;
+				}
+				break;
+
+				case 'o': case 'u': case 'x':	case 'X':
+				{
+				if ( l_flag ) 
+					{
+					ptrtab[num_conversion] =  &buf[num_conversion].lui;
+					type[num_conversion] = SF_LUI;
+					}
+				else if ( h_flag) 
+					{
+					ptrtab[num_conversion] =  &buf[num_conversion].sui;
+					type[num_conversion] = SF_SUI;
+					}
+				else 
+					{
+					ptrtab[num_conversion] =  &buf[num_conversion].ui;
+					type[num_conversion] = SF_UI;
+					}
+				}
+				break;
+
+				case 'D':
+				{
+					ptrtab[num_conversion] =  &buf[num_conversion].li;
+					type[num_conversion] = SF_LI;
+				}
 	      break;
-	    case 'o':
-	    case 'u':
-	    case 'x':
-	    case 'X':
-	      if ( l_flag ) 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].lui;
-		  type[num_conversion] = SF_LUI;
-		}
-	      else if ( h_flag) 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].sui;
-		  type[num_conversion] = SF_SUI;
-		}
-	      else 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].ui;
-		  type[num_conversion] = SF_UI;
-		}
+
+				case 'n':
+				{
+					/** count the n directives since they are not counted by retval **/
+					n_directive_count++;
+				}
+				break;
+
+	      case 'i':	case 'd':
+				{
+					if ( l_flag ) 
+					{
+						ptrtab[num_conversion] =  &buf[num_conversion].li;
+						type[num_conversion] = SF_LI;
+					}
+					else if ( h_flag) 
+					{
+						ptrtab[num_conversion] =  &buf[num_conversion].si;
+						type[num_conversion] = SF_SI;
+					}
+					else 
+					{
+						ptrtab[num_conversion] =  &buf[num_conversion].i;
+						type[num_conversion] = SF_I;
+					}
+				}
 	      break;
-	    case 'D':
-	      ptrtab[num_conversion] =  &buf[num_conversion].li;
-	      type[num_conversion] = SF_LI;
+
+				case 'e': case 'f': case 'g': case 'E': case 'G':
+				{
+					if (h_flag)
+					{
+						Scierror(998,"Error:\tscanf: bad conversion\r\n");
+						return RET_BUG;
+					}
+					else if (l_flag) 
+					{
+						ptrtab[num_conversion] =  &buf[num_conversion].lf;
+						type[num_conversion] = SF_LF;
+					}
+					else
+					{
+						ptrtab[num_conversion] =  &buf[num_conversion].f;
+						type[num_conversion] = SF_F;
+					}
+				}
 	      break;
-	    case 'n':
-	      /** count the n directives since they are not counted by retval **/
-	      n_directive_count++;
-	    case 'i':
-	    case 'd':
-	      if ( l_flag ) 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].li;
-		  type[num_conversion] = SF_LI;
-		}
-	      else if ( h_flag) 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].si;
-		  type[num_conversion] = SF_SI;
-		}
-	      else 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].i;
-		  type[num_conversion] = SF_I;
-		}
-	      break;
-	    case 'e':
-	    case 'f':
-	    case 'g':
-	    case 'E':
-	    case 'G':
-	      if (h_flag)
-		{
-		  Scierror(998,"Error:\tscanf: bad conversion\r\n");
-		  return RET_BUG;
-		}
-	      else if (l_flag) 
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].lf;
-		  type[num_conversion] = SF_LF;
-		}
-	      else
-		{
-		  ptrtab[num_conversion] =  &buf[num_conversion].f;
-		  type[num_conversion] = SF_F;
-		}
-	      break;
-	    default:
-	      Scierror(998,"Error:\tscanf: bad conversion\r\n");
-	      return RET_BUG;
+
+				default:
+				{
+					Scierror(998,"Error:\tscanf: bad conversion\r\n");
+					return RET_BUG;
+				}
+				break;
+
 	    }
-	  *q = save;
-	}
-    }
+			*q = save;
+		}
+  } /* end while(1) */
+
+
   /** we replace %s and %[ directive with a max length field **/
-  
   if ( str_width_flag == 1) 
-    {
-      char *f1=format;
-      char *f2=sformat;
-      char *slast = sformat + MAX_STR-1 -4;
-      while ( *f1 != '\0'  ) 
-	{
-	  int n;
-	  *f2++ = *f1++;
+  {
+		char *f1=format;
+    char *f2=sformat;
+    char *slast = sformat + MAX_STR-1 -4;
+
+    while ( *f1 != '\0'  ) 
+		{
+			int n;
+			*f2++ = *f1++;
 	  
-	  if ( *(f1-1) == '%' && ( *(f1) == 's'  || *(f1) == '['))
+			if ( *(f1-1) == '%' && ( *(f1) == 's'  || *(f1) == '['))
 	    {
 	      n=sprintf(f2,"%d",MAX_STR-1);
 	      f2 += n;
-      	      *f2++ = *f1++;
+        *f2++ = *f1++;
 	    }
-	  if ( f2 == slast )
+
+			if ( f2 == slast )
 	    {
 	      Scierror(998,"Error:\tscanf, format is too long (> %d) \r\n",MAX_STR-1);
 	      return RET_BUG;
 	    }
-	}
-      *f2='\0';
-      format = sformat;
-    }
+		}
+    *f2='\0';
+    format = sformat;
+  }
     
+	/** Calling scanf function : 
+   Only  num_conversion +1 argument are used 
+   the last arguments transmited points to nothing 
+   but this is not a problem since they won't be used ***/
 
-  /** Calling scanf function : 
-    Only  num_conversion +1 qrgument are used 
-    the last arguments transmited points to nothing 
-    but this is not a problem since they won't be used ***/
+	 
+	*retval = (*printer) ((VPTR) target,format,
+					ptrtab[0],ptrtab[1],ptrtab[2],ptrtab[3],ptrtab[4],
+					ptrtab[5],ptrtab[6],ptrtab[7],ptrtab[8],ptrtab[9],
+					ptrtab[10],ptrtab[11],ptrtab[12],ptrtab[13],ptrtab[14],
+					ptrtab[15],ptrtab[16],ptrtab[17],ptrtab[18],ptrtab[19],
+					ptrtab[20],ptrtab[21],ptrtab[22],ptrtab[23],ptrtab[24],
+					ptrtab[25],ptrtab[26],ptrtab[27],ptrtab[28],ptrtab[29],
+					ptrtab[30],ptrtab[31],ptrtab[32],ptrtab[33],ptrtab[34],
+					ptrtab[35],ptrtab[36],ptrtab[37],ptrtab[38],ptrtab[39],
+					ptrtab[40],ptrtab[41],ptrtab[42],ptrtab[43],ptrtab[44],
+					ptrtab[45],ptrtab[46],ptrtab[47],ptrtab[48],ptrtab[MAXSCAN-1]);
 
-
-  *retval = (*printer) ((VPTR) target,format,ptrtab[0],ptrtab[1],ptrtab[2],
-			ptrtab[3],ptrtab[4],ptrtab[5],ptrtab[6],ptrtab[7],
-			ptrtab[8],ptrtab[9],ptrtab[10],ptrtab[11],ptrtab[12],
-			ptrtab[13],ptrtab[14],ptrtab[15],ptrtab[16],ptrtab[17],
-			ptrtab[18],ptrtab[19],ptrtab[20],ptrtab[21],ptrtab[22],
-			ptrtab[23],ptrtab[24],ptrtab[25],ptrtab[26],ptrtab[27],
-			ptrtab[28],ptrtab[29]);
-  /** *nargs counts the number of corectly scaned arguments **/
+  /** *nargs counts the number of correctly scaned arguments **/
   *nargs = Min(num_conversion+1,Max(*retval+n_directive_count,0));
 
   for ( i=1 ; i <= *nargs ; i++) 
-    if ( type[i-1]  == SF_C ) {
-      sval=(char *) ptrtab[i-1];
-      sval[nc[i-1]]='\0';
-    }
+	{
+		if ( type[i-1]  == SF_C ) 
+		{
+			sval=(char *) ptrtab[i-1];
+			sval[nc[i-1]]='\0';
+		}
+	}
+  
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1322,7 +1373,7 @@ static int do_printf (char *fname, FILE *fp, char *format, int nargs, int argcnt
   while (1)
     {
       if (fp)			/* printf */
-	/** XXXX on pourrait couper en deux pour separer fp==stdout et fp == file **/
+	/** TO DO : on pourrait couper en deux pour separer fp==stdout et fp == file **/
 	{
 	  while (*q != '%')
 	    {
