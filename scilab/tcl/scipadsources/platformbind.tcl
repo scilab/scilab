@@ -77,14 +77,14 @@ proc findbinding {command} {
 }
 
 proc bindenable {tag command} {
-    set b [findbinding command]
+    set b [findbinding $command]
     if {$b !=""} {
-       bind $tag $b $command
+        bind $tag $b "$command"
     }
 }
 
 proc binddisable {tag command} {
-    set b [findbinding command]
+    set b [findbinding $command]
     if {$b !=""} {
         bind $tag $b {}
     }

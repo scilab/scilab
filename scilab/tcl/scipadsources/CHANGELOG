@@ -2076,3 +2076,7 @@ Francois VOGEL, 05/03/06
    an unmodified buffer, the user is aware that at least one file is modified
  * Added a "Save all" command (saves modified buffers only)
  * version --> 6.9
+
+ES 05/03/06
+ * fixed bug about keyboard bindings enabled/disabled contextually
+ * version --> 6.10
