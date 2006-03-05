@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.4
+# in sync at least with v6.10
 
 
 # commons
@@ -60,8 +60,9 @@
                     files, maybe it was deleted since last configuration of\
                     the debugger.\nUse button \""\
                    "la funzione selezionata non compare in nessuno dei files\
-                    aperti, potrebbe essere stata cancellata dall'ultima volta\
-                    che il debugger è stato configurato. Usare il tasto \""
+                    aperti, potrebbe essere stata cancellata dall'ultima\
+                    volta che il debugger è stato configurato. Usare il\
+                    tasto \""
 ::msgcat::mcset it "\" to refresh the list of available functions."\
                    "\" per rinfrescare la lista delle funzioni disponibili"
 ::msgcat::mcset it "Function name or input arguments do not match definition\
@@ -81,15 +82,15 @@
                    "Errore nella funzione selezionata o nei suoi argomenti"
 ::msgcat::mcset it "At least one input argument does not match definition of\
                     the function"\
-                   "Uno o più argomenti non corrispondono alla\
-                    definizione della funzione"
+                   "Uno o più argomenti non corrispondono alla definizione\
+                    della funzione"
 ::msgcat::mcset it "in the file!\n\nCheck function arguments (their names)\
                     in the configuration dialog."\
                    "nel file!\n\nVerificare il nome della funzione e gli\
-                    argomenti (nome, ordine di comparsa) nel\
-                    dialogo di configurazione."
+                    argomenti (nome, ordine di comparsa) nel dialogo di\
+                    configurazione."
 ::msgcat::mcset it "Error in selected function arguments"\
-                   "Errore negli agromenti della funzione selezionata"
+                   "Errore negli argomenti della funzione selezionata"
 ::msgcat::mcset it "Debugger is not yet developed for sce scripts!"\
                    "Il debugger non funziona, per ora, su programmi *.sce!"
 
@@ -194,10 +195,9 @@
 ::msgcat::mcset it "exists but is not readable!" "esiste, ma non è leggibile!"
 ::msgcat::mcset it "This file is rather large and colorization might take\
                     some time.\n\nColorize anyway?"\
-                   "Questo file è relativamente grosso, e la colorazione potrebbe\
-                    richiedere tempo. Colorare comunque?"
-::msgcat::mcset it "File size warning"\
-                   "Avvertimento: grosso file"
+                   "Questo file è relativamente grosso, e la colorazione\
+                    potrebbe richiedere tempo. Colorare comunque?"
+::msgcat::mcset it "File size warning" "Avvertimento: grosso file"
 
 
 # findreplace.tcl
@@ -316,6 +316,7 @@
 ::msgcat::mcset it "Op&en source of..." "Apri sorgente di..."
 ::msgcat::mcset it "&Save" "&Salva"
 ::msgcat::mcset it "Save &as..." "Salva &come..."
+::msgcat::mcset it "Save a&ll" "Salva &tutti"
 ::msgcat::mcset it "&Revert..." "&Recupera..."
 ::msgcat::mcset it "Import &Matlab file..." "Importa file &Matlab..."
 ::msgcat::mcset it "Create help s&keleton..." "Crea scheletro di aiuto &XML..."
@@ -444,6 +445,10 @@
 
 # popupmenus.tcl
 ::msgcat::mcset it "Open the source of" "Apri la sorgente di"
+::msgcat::mcset it "Scilab is working, please wait for the prompt to execute\
+                    this command!"\
+                   "Scilab è occupato, attendere il prompt per eseguire questo\
+                    comando!"
 ::msgcat::mcset it "AddWatch" "Tieni %s sotto controllo"
 ::msgcat::mcset it "Jump to" "Salta a"
 
