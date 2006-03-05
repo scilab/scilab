@@ -802,35 +802,34 @@ proc writesave {textarea nametosave} {
     if {[file exists $nametosave]} {
         set readonlyflag [expr [file writable $nametosave] == 0]
     } else {
-
-    # patch starts
+# >>>>>>>>>>>>>>Patch starts<<<<<<<<<<<<<<<
+# This patch is intended to have limited lifetime and should be removed
+# once Tcl bugs 1193497 and 1344540 are fixed, i.e. file writable be
+# based on the ACL list on Windows directories instead of on the read-only
+# attribute
+# Once removed, non regression on bug 1785 should be tested, it should
+# still work with no further change
         # To fix the Windows bad behavior when wanting to write a 
         # file in an exotic directory where read-only is set
         set readonlyflag 0
-    # end of patch (continued below)
-
-    # original code before patch is the following line only:
-        set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
-
+# >>>>>>>>>>>>>>End of patch<<<<<<<<<<<<<<<
+# original code before patch is the following line only:
+#        set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
     }
     if {$readonlyflag==0} {
-        writefileondisk $textarea $nametosave
-        resetmodified $textarea
-        set listoffile("$textarea",thetime) [file mtime $nametosave]
-        set listoffile("$textarea",readonly) $readonlyflag
-        set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
-        showinfo $msgWait
-
-    # continuation of the patch above:    
-        #test if file creation has succeeded
-        if {![file exists $nametosave]} {
+        # writefileondisk catched to deal with unexpected errors (should be none!)
+        if {[catch {writefileondisk $textarea $nametosave}] == 0} {
+            resetmodified $textarea
+            set listoffile("$textarea",thetime) [file mtime $nametosave]
+            set listoffile("$textarea",readonly) $readonlyflag
+            set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
+            showinfo $msgWait
+            return 1
+        } else {
             set msgWait [concat $nametosave [mc "cannot be written!"]]
             tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
             return 0
         }
-    # end of patch
-        return 1
-
     } else {
         set msgWait [concat $nametosave [mc "cannot be written!"]]
         tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]

@@ -2080,3 +2080,9 @@ Francois VOGEL, 05/03/06
 ES 05/03/06
  * fixed bug about keyboard bindings enabled/disabled contextually
  * version --> 6.10
+
+Francois VOGEL, 05/03/06
+ * Patch for saving in Windows special directories again active (forgot a
+   comment sign in Scipad 6.9)
+ * Fixed bug 1785
+ * version --> 6.11
