@@ -680,6 +680,16 @@ proc filetosavecur {} {
     filetosave [gettextareacur]
 }
 
+proc filetosaveall {} {
+# save all modified buffers to disk
+    global listoftextarea
+    foreach ta $listoftextarea {
+        if {[ismodified $ta]} {
+            filetosave $ta
+        }
+    }
+}
+
 proc filesaveascur {} {
 # save current buffer to disk as...
     filesaveas [gettextareacur]
@@ -695,26 +705,30 @@ proc filetosave {textarea} {
 # to deal with the perverse case where some external process modifies
 # the file while Scipad keeps focus
     global listoffile
-    set msgChanged [concat [mc "The contents of "] \
-                           $listoffile("$textarea",fullname) \
-                           [mc "has changed on disk, save it anyway?"] ]
-    set msgTitle [mc "File has changed!"]
-    set myfile $listoffile("$textarea",fullname)
-    if { [file exists $myfile] && $listoffile("$textarea",new) == 0 } {
-        if { $listoffile("$textarea",thetime) != [file mtime $myfile]} {
+    if {[fileexistsondisk $textarea]} {
+        if {[filetimeondiskisdifferent $textarea]} {
+            set msgChanged [concat [mc "The contents of "] \
+                                   $listoffile("$textarea",fullname) \
+                                   [mc "has changed on disk, save it anyway?"] ]
+            set msgTitle [mc "File has changed!"]
             set answer [tk_messageBox -message $msgChanged -title $msgTitle \
                             -type yesnocancel -icon question]
             switch -- $answer {
-                yes { writesave $textarea $myfile}
-                no {}
+                yes {
+                      if {![writesave $textarea $listoffile("$textarea",fullname)]} {
+                          filesaveas $textarea
+                      }
+                    }
+                no     {}
                 cancel {}
             }
-        } else {  
-            writesave $textarea $myfile
+        } else {
+            if {![writesave $textarea $listoffile("$textarea",fullname)]} {
+                filesaveas $textarea
+            }
         }
-        return 1
     } else {
-        return [eval filesaveas $textarea]
+        filesaveas $textarea
     }
 }
 
@@ -729,9 +743,10 @@ proc filesaveas {textarea} {
     if {[colorizationinprogress]} {return}
 
     showinfo [mc "Save as"]
+
     # remember the latest path used for opening files
-    if {![info exists startdir]} {set startdir [pwd]}
     # proposedname is the first function name found in the buffer
+    if {![info exists startdir]} {set startdir [pwd]}
     set proposedname ""
     set firstfuninfo [lindex [getallfunsintextarea $textarea] 1]
     if {[lindex $firstfuninfo 0] != "0NoFunInBuf"} {
@@ -742,55 +757,67 @@ proc filesaveas {textarea} {
     } else {
         set proposedname $proposedname.sci
     }
+
+    set writesucceeded 0
     set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
                     -initialfile $proposedname -initialdir $startdir]
-    if { [expr [string compare $myfile ""]] != 0} {
+
+    if {$myfile != ""} {
+        set startdir [file dirname $myfile]
+        set writesucceeded [writesave $textarea $myfile]
+        while {!$writesucceeded} {
+            set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
+                            -initialfile $proposedname -initialdir $startdir]
+            if {$myfile != ""} {
+                set startdir [file dirname $myfile]
+                set writesucceeded [writesave $textarea $myfile]
+            } else {
+                break
+            }
+        }
+    }
+    if {$writesucceeded} {
         set ilab [extractindexfromlabel $pad.filemenu.wind \
                   $listoffile("$textarea",displayedname)]
         set listoffile("$textarea",fullname) [file normalize $myfile]
         set listoffile("$textarea",displayedname) \
             [file tail $listoffile("$textarea",fullname)]
         set listoffile("$textarea",new) 0
-        resetmodified $textarea
         $pad.filemenu.wind entryconfigure $ilab \
            -label $listoffile("$textarea",displayedname)
-        writesave $textarea $myfile
         RefreshWindowsMenuLabels
-        AddRecentFile [file normalize $myfile]
-        return 1
+        AddRecentFile $listoffile("$textarea",fullname)
     }
-    return 0
 }
 
 proc writesave {textarea nametosave} {
-# generic save function - write a file onto disk
-    global listoffile filebackupdepth
-    # if the file exists, check once more if the file is writable 
+# generic save function - write a file onto disk if it is writable
+# return value:
+#    1  file was successfully written
+#    0  otherwise
+    global listoffile
+    # if the file exists, check if the file is writable 
     # if it doesn't, check if the directory is writable
     # (case of Save as...) (non existent files return 0 to writable)
     if {[file exists $nametosave]} {
-        set listoffile("$textarea",readonly) \
-          [expr [file writable $nametosave] == 0]
+        set readonlyflag [expr [file writable $nametosave] == 0]
     } else {
-        
+
     # patch starts
         # To fix the Windows bad behavior when wanting to write a 
         # file in an exotic directory where read-only is set
-        set listoffile("$textarea",readonly) 0
+        set readonlyflag 0
     # end of patch (continued below)
 
     # original code before patch is the following line only:
-#        set listoffile("$textarea",readonly) \
-          [expr [file writable [file dirname $nametosave]] == 0]
-          
+        set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
+
     }
-    if {$listoffile("$textarea",readonly)==0} {
-        backupfile $nametosave $filebackupdepth
-        set FileNameToSave [open $nametosave w+]
-        puts -nonewline $FileNameToSave [$textarea get 0.0 end]
-        close $FileNameToSave
+    if {$readonlyflag==0} {
+        writefileondisk $textarea $nametosave
         resetmodified $textarea
-        set listoffile("$textarea",thetime) [file mtime $nametosave] 
+        set listoffile("$textarea",thetime) [file mtime $nametosave]
+        set listoffile("$textarea",readonly) $readonlyflag
         set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
         showinfo $msgWait
 
@@ -798,16 +825,27 @@ proc writesave {textarea nametosave} {
         #test if file creation has succeeded
         if {![file exists $nametosave]} {
             set msgWait [concat $nametosave [mc "cannot be written!"]]
-            tk_messageBox -message $msgWait
-            filesaveas $textarea
+            tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
+            return 0
         }
     # end of patch
-    
+        return 1
+
     } else {
         set msgWait [concat $nametosave [mc "cannot be written!"]]
-        tk_messageBox -message $msgWait
-        filesaveas $textarea
+        tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
+        return 0
     }
+}
+
+proc writefileondisk {textarea nametosave} {
+# really write the file onto the disk
+# all writability tests have normally been done before
+    global filebackupdepth
+    backupfile $nametosave $filebackupdepth
+    set FileNameToSave [open $nametosave w+]
+    puts -nonewline $FileNameToSave [$textarea get 0.0 end]
+    close $FileNameToSave
 }
 
 proc savepreferences {} {
@@ -999,15 +1037,39 @@ proc fileunreadable {file} {
 
 proc filehaschangedondisk {ta} {
 # return value:
-#   1  the file opened in $ta exists, is not a new file, and its last saving
-#      time is different from the modify date retrieved from the file on disk
+#   1  the file opened in $ta exists on disk, is not a new file, and its last
+#      saving time is different from the modify date retrieved from the file
+#      on disk
 #   0  otherwise
     global listoffile
-    set myfile $listoffile("$ta",fullname)
-    if { [file exists $myfile] && $listoffile("$ta",new) == 0 } {
-        if { $listoffile("$ta",thetime) != [file mtime $myfile]} {
+    if {[fileexistsondisk $ta]} {
+        if {[filetimeondiskisdifferent $ta]} {
             return 1
         }
+    }
+    return 0
+}
+
+proc fileexistsondisk {ta} {
+# return value:
+#   1  the file opened in $ta exists on disk and is not a new file
+#   0  otherwise
+    global listoffile
+    if { [file exists $listoffile("$ta",fullname)] && \
+         $listoffile("$ta",new) == 0 } {
+        return 1
+    }
+    return 0
+}
+
+proc filetimeondiskisdifferent {ta} {
+# return value:
+#   1  the file saving time on disk is different from the time as known by
+#      Scipad
+#   0  otherwise
+    global listoffile
+    if {$listoffile("$ta",thetime) != [file mtime $listoffile("$ta",fullname)]} {
+        return 1
     }
     return 0
 }

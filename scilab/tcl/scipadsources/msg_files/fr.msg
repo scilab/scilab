@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.6
+# in sync at least with v6.9
 
 
 # commons
@@ -262,6 +262,7 @@
     ::msgcat::mcset fr "Op&en source of..." "Ouvrir le &code source de..."
     ::msgcat::mcset fr "&Save" "&Enregistrer"
     ::msgcat::mcset fr "Save &as..." "En&registrer sous..."
+    ::msgcat::mcset fr "Save a&ll" "Enregistrer &tout"
     ::msgcat::mcset fr "&Revert..." "Re&venir..."
     ::msgcat::mcset fr "Import &Matlab file..."  "Importer fichier &Matlab..."
     ::msgcat::mcset fr "Create help s&keleton..." "Créer un &squelette d'aide XML..."

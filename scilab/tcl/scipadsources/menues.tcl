@@ -30,6 +30,7 @@ proc createmenues {} {
     eval "$pad.filemenu.files add command [me "&Save"] [ca {filetosavecur}]"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
                    [ca {filesaveascur}]"
+    eval "$pad.filemenu.files add command [me "Save a&ll"] -command \"filetosaveall\" "
     eval "$pad.filemenu.files add command [me "&Revert..."] -state disabled\
                     [ca {revertsaved [gettextareacur]}]"
     $pad.filemenu.files add separator

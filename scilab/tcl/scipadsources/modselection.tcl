@@ -50,7 +50,6 @@ proc CommentSel {} {
     } else {
         if {[selectline] != ""} CommentSel
     }
-    set buffermodifiedsincelastsearch true
 }
 
 proc UnCommentSel {} {
@@ -77,7 +76,6 @@ proc UnCommentSel {} {
     } else {
         if {[selectline] != ""} UnCommentSel
     }
-    set buffermodifiedsincelastsearch true
 }
 
 proc IndentSel {} {
@@ -121,7 +119,6 @@ proc IndentSel {} {
     } else {
         if {[selectline] != ""} IndentSel
     }
-    set buffermodifiedsincelastsearch true
 }
 
 proc UnIndentSel {} {
@@ -149,7 +146,6 @@ proc UnIndentSel {} {
     } else {
         if {[selectline] != ""} UnIndentSel
     }
-    set buffermodifiedsincelastsearch true
 }
 
 proc updatedoubleclickscheme {} {

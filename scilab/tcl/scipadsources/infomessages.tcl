@@ -136,6 +136,11 @@ proc modifiedtitle {textarea {panesonly "false"}} {
     if {$listoffile("$textarea",readonly) == 1} { 
         set mod1 [mc " \[ReadOnly\]"]
     }
+    if {[isanymodified]} {
+        $pad.statusind configure -background PeachPuff
+    } else {
+        $pad.statusind configure -background [$pad.filemenu cget -background]
+    }
     if {[ismodified $textarea]} {
         set mod2 [mc " (modified)"]
         if {$ind !=-1} {
@@ -148,7 +153,6 @@ proc modifiedtitle {textarea {panesonly "false"}} {
             $pad.filemenu.wind entryconfigure $ind -background "" \
                -activebackground ""
         }
-        $pad.statusind configure -background [$pad.filemenu cget -background]
     }
     if {$panesonly == "false"} {
         wm title $pad "$winTitle - $fname$mod1$mod2"

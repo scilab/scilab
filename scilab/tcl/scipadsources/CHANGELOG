@@ -2067,3 +2067,12 @@ Francois VOGEL, 28/02/06
    Ctrl-z,Ctrl-z
  * Fixed: Edit/Select all did not update the menues contextually
  * version --> 6.8
+
+Francois VOGEL, 05/03/06
+ * Fixed a bug in Save as... - reorganized the save procs, but bug 1785 is
+   still present
+ * The status bar gets colorized in PeachPuff if at least one buffer is
+   modified - useful in tile mode when a buffer is modified and focus is in
+   an unmodified buffer, the user is aware that at least one file is modified
+ * Added a "Save all" command (saves modified buffers only)
+ * version --> 6.9

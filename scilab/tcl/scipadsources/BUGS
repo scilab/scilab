@@ -41,12 +41,11 @@ Bugs:
  Also related to bug 1469 - better wait for clarification on this one instead
  of working around Scilab parser bugs
 
--Colorization of undone text removal is sometimes missing. Well, I had this
- once but could not reproduce. Any repeatable case?
+-Trying to save in a readonly directory triggers bug 1785
 
--Irreproducible Error 0 on ScilabEval_lt happens sometimes - stack trace
- wanted!
-
+-Select an empty line plus the next one (empty or not) and hit Ctrl-m. Two bugs:
+   . The second line is commented twice
+   . Initial state is not restored on Ctrl-M
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -274,11 +273,3 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 
 -Add a function "Beautify code" for Scilab schemes: (optionally) suppress
  tabs, and reindents according to keywords (if, function, while, for...)
-
--Add a "Save all" command (saves modified buffers only), perhaps the "Save"
- command in the file menu could be changed to "Save all" when this menu is
- clicked when the shift key is down (but what about alt bindings then?)
-
--Visual indicator somewhere indicating that at least one buffer is modified
- Useful in tile mode when a buffer is modified and focus is in an unmodified
- buffer

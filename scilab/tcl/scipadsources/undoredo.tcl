@@ -47,6 +47,19 @@ proc undoredo {textarea action} {
     set buffermodifiedsincelastsearch true
 }
 
+proc isanymodified {} {
+# Returns true if any buffer was modified
+    global listoftextarea
+    set ret false
+    foreach textarea $listoftextarea {
+        if {[ismodified $textarea]} {
+            set ret true
+            break
+        }
+    }
+    return $ret
+}
+
 proc ismodified {textarea} {
 # Returns true if the buffer in parameter was modified
     return [$textarea edit modified]
