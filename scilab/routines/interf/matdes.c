@@ -3451,12 +3451,12 @@ int scidelw(char *fname,unsigned long fname_len)
 int scixsort(char *fname,unsigned long fname_len)
 {
   char **S;
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3/* ,v */;
   integer un=1,lex,iflag = 0;
   char iord[2] ; /* = { 'd','\0' }; */
   char typex[10]; /* = { 'g' ,'\0'} ; */
-  double dv;
-  integer iv;
+  /* double dv; */
+  /* integer iv; */
   SciIntMat Im;
   int Type;
   iord[0] = 'd'; iord[1]='\0';
@@ -4260,7 +4260,7 @@ int sciplot2d1_G(char *fname,int ptype,int (*func)
   int *axes=&axes_def;
   integer iskip,test;
   integer m1,n1,l1, m2, n2, l2, lt, i, j ;
-  static char str[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+  /* static char str[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);"; */
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
 			    {-1,"frameflag","?",0,0,0},
@@ -4273,7 +4273,28 @@ int sciplot2d1_G(char *fname,int ptype,int (*func)
 			    {-1,NULL,NULL,0,0}};
 
   if (Rhs <= 0) {
-    sci_demo(fname,str,&one);
+    /* lauch the default routines depending on the name of the calling funtion */
+    if ( strcmp( fname, "plot2d2" ) == 0 )
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d2(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    else if ( strcmp( fname, "plot2d3" ) == 0 )
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d3(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    else if ( strcmp( fname, "plot2d4" ) == 0 )
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d4(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    else
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    /* sci_demo(fname,str,&one); */
     return 0;
   }
   CheckRhs(1,9); /* to allow plot2dxx(y) */
