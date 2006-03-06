@@ -18,7 +18,7 @@ proc selectline {} {
 }
 
 proc CommentSel {} {
-    global textareacur buffermodifiedsincelastsearch
+    global textareacur
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
@@ -48,7 +48,7 @@ proc CommentSel {} {
 }
 
 proc UnCommentSel {} {
-    global textareacur buffermodifiedsincelastsearch
+    global textareacur
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
@@ -62,7 +62,7 @@ proc UnCommentSel {} {
             if { $i2<$i1 } {
                 set i3 $i2; set i2 $i1; set i1 $i3
             } 
-            regsub -all -line "^\\s*//" $ctext  "" uctext
+            regsub -all -line "^\\s*//" $ctext "" uctext
             puttext $textareacur $uctext
             # after many deglitches, this only sometimes loses the selection
             # for <one line
@@ -76,7 +76,6 @@ proc UnCommentSel {} {
 proc IndentSel {} {
 # just copied from CommentSel
     global textareacur indentspaces
-    global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set skip ""
     for {set x 0} {$x<$indentspaces} {incr x} {
@@ -114,7 +113,6 @@ proc IndentSel {} {
 proc UnIndentSel {} {
 # just copied from UncommentSel
     global textareacur indentspaces
-    global buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     set seltexts [selection own]
     if {[string range $seltexts 0 [expr [string length $textareacur]-1]]\
@@ -128,7 +126,7 @@ proc UnIndentSel {} {
             if { $i2<$i1 } {
                 set i3 $i2; set i2 $i1; set i1 $i3
             }
-            regsub -all -line "^ {1,$indentspaces}" $ctext  "" uctext
+            regsub -all -line "^ {1,$indentspaces}" $ctext "" uctext
             puttext $textareacur $uctext
             # as above in UnCommentSel
             $textareacur tag add sel $i1 [$textareacur index insert]

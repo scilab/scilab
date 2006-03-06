@@ -2087,8 +2087,13 @@ Francois VOGEL, 05/03/06
  * Fixed bug 1785
  * version --> 6.11
 
-ES 07/03/06
+ES 06/03/06
  * procs CommentSel and IndentSel simplified, which removes two bugs relative
    to selections beginning or ending with empty lines, or ending after a 
    newline
  * version --> 6.12
+
+Francois VOGEL, 06/03/06
+ * fileunreadable extended to deal with files locked by another process,
+   working around Tcl bug 1394972
+ * version --> 6.13

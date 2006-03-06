@@ -1027,7 +1027,26 @@ proc fileunreadable {file} {
                 -icon warning -type ok
             return 1
         } else {
-            return 0
+            # try to actually read the file from disk
+            # if this fails then the file is probably locked by another
+            # process - file readable should have reported this (this is
+            # Tcl bug 1394972) and when it will correctly answer 0 this
+            # code should be removed and just replaced by
+            # return 0
+            if {[catch {set fileid [open $file r]}] == 0} {
+                # the file readable answers true and file can really be read
+                # this is the usual case
+                close $fileid
+                return 0
+            } else {
+                # the file cannot be read despite file readable answers true
+                # meaning that the file is probably locked
+                tk_messageBox -title [mc "Unreadable file"] \
+                    -message [concat [mc "The file"] $file \
+                             [mc "exists but is not readable!"]] \
+                    -icon warning -type ok
+                return 1
+            }
         }
     } else {
         return 0
