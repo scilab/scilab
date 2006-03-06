@@ -29,23 +29,18 @@ proc CommentSel {} {
             set uctext [selection get]
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
-            # I thought this shouldn't match a newline as last character of the string...
-            regsub -all -line "(?!.\Z)^" $uctext  "//" ctext
-            # glitches: are they because of my misunderstanding or bugs in regsub? 
-            # this fixes the trailing "\n//"
-            if {[string range $ctext end-1 end]=="//"} {
-                set ctext [string range $ctext 0 end-2]
-                set i2 $i2-2c
-            }
-            # this fixes another glitch - missing "//" at the second line if
-            # the first is empty
-            if {[string range $ctext 0 2]=="//\n"} {
-                set ctext1 [string range $ctext 3 end]
-                set ctext "//\n//"
-                append ctext $ctext1
-            }
+            scan $i2 %d.%d l2 c2
+# insert // at the beginning of the selected string and at each newline,
+#  but not after the last newline, if the selection end at column 0
+# (no idea how but it works!)
+            regsub -all -line {^(?!\Z)} $uctext  "//" ctext
             puttext $textareacur $ctext
-            $textareacur tag add sel $i1 $i2+2c
+# restore the selection including the // characters added
+            if {$c2==0} {
+              $textareacur tag add sel $i1 $i2
+            } else {
+              $textareacur tag add sel $i1 $i2+2c
+            }
         }
     } else {
         if {[selectline] != ""} CommentSel
@@ -96,25 +91,20 @@ proc IndentSel {} {
             set uctext [selection get]
             set i1 [$textareacur index sel.first]
             set i2 [$textareacur index sel.last]
-            # I thought this shouldn't match a newline as last character of the string...
-            regsub -all -line "(?!.\Z)^" $uctext $skip ctext
-            # glitches: are they because of my misunderstanding or bugs in regsub? 
-            # this fixes the trailing "\n  "
-            if {[string range $ctext end-1 end]==$skip} {
-                set ctext [string range $ctext 0 end-$indentspaces]
-                set i2 "$i2-$indentspaces c"
-            }
-            # this fixes another glitch - missing "  " at the second line if
-            # the first is empty
-            if {[string range $ctext 0 $indentspaces]=="$skip\n"} {
-                set ctext1 [string range $ctext [expr $indentspaces+1] end]
-                set ctext "$skip\n  "
-                append ctext $ctext1
-            }
-            #clean up lines which contain only spaces
+            scan $i2 %d.%d l2 c2
+# insert $skip at the beginning of the selected string and at each newline,
+#  but not after the last newline, if the selection end at column 0
+# (no idea how but it works!)
+            regsub -all -line {^(?!\Z)} $uctext $skip ctext
+# clean up lines which contain only spaces
             regsub -all -line "\ *\n" $ctext "\n" ctext1
             puttext $textareacur $ctext1
-            $textareacur tag add sel $i1 "$i2+$indentspaces c"
+# restore the selection including the spaces added
+            if {$c2==0} {
+              $textareacur tag add sel $i1 $i2
+            } else {
+              $textareacur tag add sel $i1 "$i2+$indentspaces c"
+            }
         }
     } else {
         if {[selectline] != ""} IndentSel
