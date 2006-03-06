@@ -3,10 +3,12 @@ c
 c     Copyright INRIA
       include '../stack.h'
       integer r,op,bslash,star,slash,dot,not
-c      integer plus,minus,ou,et
+      integer plus,minus
 c      integer equal,less,great,not
 
       data bslash/49/,star/47/,slash/48/,dot/51/,not/61/
+      data plus/45/,minus/46/
+
 c
       r = rstk(pt)
       if (ddt .eq. 4) then
@@ -56,8 +58,14 @@ c     *call* lfact (in expr)
       return
 
  21   rstk(pt) = 202
-      icall=3
-c     *call* factor
+      if(sym.eq.plus.or.sym.eq.minus) then
+c     .  added to handle syntax like a*-b for Matlab compatiblity
+         icall=1
+c     .  *call* expr
+      else
+         icall=3
+c     .  *call* factor
+      endif
       return
    25 fin=pstk(pt)
 c     evaluation
