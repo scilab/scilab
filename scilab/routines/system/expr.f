@@ -8,7 +8,7 @@ c     Copyright INRIA
       integer iadr,sadr
 c     
       integer op,r,blank,sign,plus,minus,name,colon,eye(nsiz),ou,et
-      integer equal,less,great,not,eol,p,temp
+      integer equal,less,great,not,eol,p,temp,s
       logical eptover, skip, compil, ifexpr, istrue
       
       external gettype,istrue
@@ -30,20 +30,30 @@ c
       if(r.eq.204) goto 85
       ir=r/100
       if(ir.ne.1) goto 01
-      goto(05,06,25,26,61,73,74,82,83,86,87,102,104,105,22),r-100
+      goto(05,06,25,26,61,73,74,82,83,86,87,102,104,105,23),r-100
 c     
  01   if(sym.ge.ou.and.sym.le.great) then
          call error(40)
-         return
+         return101
       endif
  02   continue
       kount = 1
       if(sym.eq.not) goto 70
       if (sym .eq. colon) call putid(syn(1),eye)
 c      if (sym .eq. colon) sym = name
- 03   sign = plus
-      if (sym .eq. minus) sign = minus
-      if (sym.eq.plus .or. sym.eq.minus) call getsym
+
+ 03   s=1
+ 04   if (sym .eq. minus) s=-s
+      if (sym.eq.plus .or. sym.eq.minus) then
+         call getsym
+         goto 04
+      endif
+
+      sign = plus
+      if (s.lt.0) sign = minus
+
+
+
       if ( eptover(1,psiz-1)) return
       pstk(pt) = sign + 256*kount
       rstk(pt) = 101
@@ -54,7 +64,7 @@ c     *call* term
       kount = pstk(pt)/256
       pt = pt-1
       if (sign .ne. minus) goto 10
-      rhs=1
+ 07   rhs=1
       pt=pt+1
       pstk(pt)=kount
       fin=minus
@@ -76,15 +86,35 @@ c     blank or tab is delimiter inside angle brackets
       if (abs(lin(ls)).eq.blank.and.abs(lin(lpt(3))).ne.blank) go to 50
  21   op = sym
       call getsym
+
+c     next lines added to handle sequence of + and - operators, S. Steer
+c     03/2005 (Matlab compatibility). Here i implemented a lazy way
+C     without calling unary + or unary - operator
+ 22   if (sym.eq.plus) then
+c     1++2 or 1-+2
+         call getsym
+         goto 22
+      endif
+      if (sym.eq.minus) then
+c     1+-2 or 1--2
+         if (op.eq.minus) then
+            op=plus
+         else
+            op=minus
+         endif
+         call getsym
+         goto 22
+      endif
+
       pt=pt+1
       pstk(pt) = op + 256*kount
-      if(sym.ne.not) goto 23
+      if(sym.ne.not) goto 24
       rstk(pt)=115
 c     *call* lfact
       goto 85
- 22   goto 25
+ 23   goto 25
 c
- 23   rstk(pt) = 103
+ 24   rstk(pt) = 103
       icall=2
 c     *call* term
       return
@@ -297,7 +327,7 @@ c     *call* allops(not)
  87   kount=pstk(pt)
       pt=pt-1
 C     next two lines to handle a+~b and a*~b,...
-      if(rstk(pt).eq.115) goto 22
+      if(rstk(pt).eq.115) goto 23
       if(rstk(pt).eq.204) return
       goto 82
 c     
