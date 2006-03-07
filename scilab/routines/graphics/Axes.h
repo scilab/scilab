@@ -11,6 +11,73 @@
 #include "ObjectStructure.h"
 
 /*--------------------------------------------------------------------------------------*/
+/* check if the graduation text foo is inside the old_rect */
+/* in this case it should not been displayed */
+BOOL CheckDisplay( double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect) ;
+
+/* The unit is the pixel */
+/* return 0 if the point is inside the rect */
+/* 1 if it is actually outside the rect */
+/* (rect[0],rect[1]) : upper left point of the bounding box  in pixel */
+/* (rect[2],rect[3]) : width and height in pixel */
+/* point[0] : x component */
+/* point[1] : y component */
+BOOL IsInsideRectangle(int * rect, int *point) ;
+
+/* get the bounding rectangle of a label of a ticks */
+/* similar to stringBoundingRect but only for ticks labels */
+void getTicksLabelBox( double   fact_h   ,
+                       double   fact_w   , 
+                       char   * label    ,
+                       int      pos[2]   ,
+                       int      fontId[2],
+                       char     logflag  ,
+                       int      bbox[4]  ,
+                       BOOL     changeFont ) ;
+
+/* remove the concealed ticks before display on the X and Y axis */
+BOOL checkXAxes2dTics( sciPointObj * psubwin  ,
+                       char          side     ,
+                       double        y        ,
+                       char        * cFormat  ,
+                       int           fontId[2],
+                       int           smallersize ) ;
+
+/* remove the concealed ticks before display on the X and Y axis */
+BOOL checkYAxes2dTics( sciPointObj * psubwin  ,
+                       char          side     ,
+                       double        x        ,
+                       char        * cFormat  ,
+                       int           fontId[2],
+                       int           smallersize ) ;
+
+
+void updateXaxesTics( sciPointObj * psubwin  ,
+                      char          side     ,
+                      double        y        ,
+                      int           fontId[2],
+                      int           smallersize ) ;
+
+void updateYaxesTics( sciPointObj * psubwin  ,
+                      char          side     ,
+                      double        x        ,
+                      int           fontId[2],
+                      int           smallersize ) ;
+
+/* remove in the ticks array the indices i such as removedTicks[i] */
+/* is true. The value nbtics is an in-out variable */
+void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks ) ;
+
+/* remove an element in the array from translating the next
+   elements on step backward */
+void removeIndex( double * changedArray, int size, int ind ) ;
+
+/* compute the needed formats to display the ticks of a subWin */
+void findFormat( sciPointObj * pSubWin, char formatX[5], char formatY[5] ) ;
+
+/*--------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------------*/
 
 /* clear a subwindow from all of its children */
 void clearSubWin( sciPointObj * pSubWin ) ;

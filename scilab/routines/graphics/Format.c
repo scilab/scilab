@@ -526,7 +526,7 @@ static void decompInf(double x, integer *xk, integer *xa, integer b)
 
 
 
-/* Francois' algo for Theticks */
+/* Francois' (tricky) algo for Theticks */
 
 void flexpo1(double *x, double *f, double *sg, double *scale)
 {
@@ -586,15 +586,25 @@ int *nticks, *tst0;
     w = k;
     if (f <= spans[k - 1]) break;
   }
-  *nticks = ticks[w - 1];
-  *thewidth = width[w - 1];
-  *scal=scale;
+
+  if ( *nticks >  0 )
+  {
+    *thewidth = (*xmax - *xmin) / ( *nticks - 1 ) ;
+    scale = 1.0 ;
+    *scal = scale ;
+  }
+  else
+  {
+    *nticks = ticks[w - 1];
+    *thewidth = width[w - 1];
+    *scal=scale;
+  }
 
   grads[0] = *xmin;
   i1 = *nticks - 1;
   for (k = 0; k < i1; ++k) {
     grads[k + 1] = grads[k] + *thewidth * scale;
-    if (grads[k + 1] == 0) *tst0=1; 
+    if ( grads[k+1] == 0.0 ) { *tst0 = 1 ; } 
   }
   return 0;
 }
@@ -618,7 +628,6 @@ double *xmax, *thewidth, *scal;
   return 0;
 }
 
-
 void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
      double *xminv, *xmaxv, *gr, *thewidth, *scal;
      int *nticks, *tst0;
@@ -626,24 +635,46 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
   double span,width,low,up;
   double nup,nlow;
   int res,k;
-  span=*xmaxv-*xminv;
-  res=gradu2(&span, thewidth, scal);
-  width=*thewidth* *scal;
-
-  nlow= ROUND(*xminv/ width);low=nlow* width;
-  nup = ROUND(*xmaxv/ width);up = nup* width;
-
-  if (low>*xminv) {nlow=floor(*xminv/width);low=nlow*width;}
-  /* printf("%e %e %e %e %e\n", *xmaxv-up, *scal, nup, width, *thewidth); */
-  if (up<*xmaxv) {nup=ceil(*xmaxv/width);up=nup*width;}
+  span  = *xmaxv - *xminv ;
+  res   = gradu2( &span, thewidth, scal ) ;
+  width = (*thewidth) * (*scal) ;
   
-  *nticks=(int) (nup-nlow+1);
+  
+  
+  nlow= ROUND(*xminv/ width);
+  low=nlow* width;
+  nup = ROUND(*xmaxv/ width);
+  up = nup * width;
+  
+  if ( low > *xminv )
+  { 
+    nlow = floor( *xminv / width ) ;
+    low  = nlow * width ;
+  }
+  /* printf("%e %e %e %e %e\n", *xmaxv-up, *scal, nup, width, *thewidth); */
+  if ( up < *xmaxv )
+  {
+    nup = ceil( *xmaxv / width);
+    up = nup * width ;
+  }
+  
+  if ( *nticks > 0 )
+  {
+    width = ( up - low ) / ( *nticks - 1 ) ;
+  }
+  else
+  {
+    *nticks = (int) (nup-nlow+1);
+  }
   gr[0]=low;gr[*nticks-1]=up;
   for (k=1; k<*nticks-1; ++k)
-    {
-      gr[k]=gr[k-1]+width;
-    }
+  {
+    gr[k]=gr[k-1]+width;
+  }
+  
 }
+
+
 
 int agrandir(xmin, xmax, xlow, xup)
      double *xmin, *xmax, *xlow, *xup;
@@ -656,6 +687,7 @@ int agrandir(xmin, xmax, xlow, xup)
     i1 = s;
     for (i = 0; i <= i1; ++i) {
       j = s - i;
+      nticks = -1 ;
       *xup = *xmax + (double) i;
       *xlow = *xmin - (double) j;
       gradu(xlow, xup, work, &nticks, &thewidth, &tst0, &scal);
@@ -734,19 +766,25 @@ int C2F(theticks)(xminv, xmaxv, grads, ngrads)
     return 0;
   }
   if (*xminv > 0 && *xmaxv <0)
-    {
-      /*  should never happen ...   */
-      d1=*xmaxv; d2=*xminv;
-      C2F(theticks)(&d1, &d2, grads, ngrads);
-      return 0;
-    }
+  {
+    /*  should never happen ...   */
+    d1=*xmaxv; d2=*xminv;
+    C2F(theticks)(&d1, &d2, grads, ngrads);
+    return 0;
+  }
+  
   newbnds(xminv, xmaxv, &xmin, &xmax, &scale);
   agrandir(&xmin, &xmax, &xlow, &xup);
+  
+
   gradu(&xlow, &xup, grads, ngrads, &thewidth, &tst0, &scal);
+  
   i1 = *ngrads;
-  for (k = 0; k < i1; ++k) {
+  for (k = 0; k < i1; ++k)
+  {
     grads[k] = scale * grads[k];
   }
+    
   return 0;
 } 
 
@@ -764,13 +802,25 @@ int C2F(theticks)(xminv, xmaxv, grads, ngrads)
 
 /* I encapsulate C2F(theticks) routine inside TheTicks (this one) because 
    we need to perform a test if the returned grads is a single scalar */
-
-int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads)
+/* the boolean compNgrads tell wether the number of grads is fixed
+   or if it needs to be computed */
+int TheTicks( double * xminv ,
+              double * xmaxv , 
+              double * grads , 
+              int    * ngrads,
+              int      compNgrads )
 {
+
   double tmp = 0.;
   double epsilon = exp10(-15);
 
-  C2F(theticks)(xminv, xmaxv, grads, ngrads);
+  if ( !compNgrads )
+  {
+    *ngrads = -1 ;
+  }
+
+  C2F(theticks)(xmin
+                v, xmaxv, grads, ngrads);
   
   if(*ngrads == 1)
     {
@@ -784,6 +834,7 @@ int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads)
       grads[2] = (1+epsilon)*tmp;
       
       *ngrads = 3;
+      return 1 ;
     }
   else if(GradEqual(grads,ngrads)==0)
     {
@@ -793,6 +844,7 @@ int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads)
       grads[2] = (1+epsilon)*tmp;
       
       *ngrads = 3;
+      return 2 ;
     }
   
   return 0;

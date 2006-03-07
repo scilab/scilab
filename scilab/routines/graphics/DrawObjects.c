@@ -24,6 +24,7 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 #include "ObjectStructure.h"
+#include "Axes.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -4241,26 +4242,78 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
 }
 
 
+void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads )
+{
+  int initSize ;
+  int i ;
 
-int GradLog(double _min, double _max, double *_grads, int * n_grads)
+  /* intialize the array as usual */
+  GradLog( minVal, maxVal, ticks, &initSize, FALSE ) ;
+
+  if ( initSize > nbGrads )
+  {
+    /* we create a smaller vector from a bigger one */
+    int nbRemove = initSize - nbGrads ;
+    
+    BOOL * removedTicks ;
+    if( ( removedTicks = MALLOC( initSize * sizeof(BOOL) ) ) == NULL )
+    {
+      return ;
+    }
+
+    for ( i = 0 ; i < initSize ; i++ )
+    {
+      removedTicks[i] = FALSE ;
+    }
+
+    /* we now remove the nbremove indexes : round( ( 0.5 + i ) * size / nbRemove ) */
+    /* i=0..nbReg-1 should do the thing */
+    for ( i = 0 ; i < nbRemove ; i++ )
+    {
+      int remIndex = 1 + (int) round(  i  * ((double) initSize - 2 ) / ( (double) nbRemove ) ) ;
+      removedTicks[remIndex] = TRUE ;
+    }
+
+    removeBadTicks( ticks, removedTicks, &initSize ) ;
+
+    FREE( removedTicks ) ;
+
+  }
+
+}
+
+
+/* compute the automatic graduation of the segment [_min,_max] and store it in _grads */
+/* the number of graduation may be fixed if compNgrads is TRUE or automaticaly computed */
+/* otherwise. */
+int GradLog( double   _min   ,
+             double   _max   ,
+             double * _grads ,
+             int    * n_grads,
+             int      compNgrads )
 {
   int i;
   int log_min, log_max;
-  int /*  * tab= NULL, */ size;
+  int size;
   
+  if ( compNgrads )
+  {
+    GradFixedlog( _min, _max, _grads, *n_grads ) ;
+    return 0 ;
+  }
 
-  *n_grads = 0;
   log_max =  (int) ceil(_max);
   log_min =  (int) floor(_min);
   
+
   size = log_max - log_min +1;
   /*  tab=(int *)MALLOC(size*sizeof(int)); */
   
   /*   for(i=0;i<size;i++) tab[i]=log_min+i; */
 
+  *n_grads = 0 ;
 
-  if(size<=7)
-    {
+  if(size<=7)    {
       for(i=0;i<size;i++)
 	{
 	  /*    _grads[i] = exp10(tab[i]); */
@@ -4295,6 +4348,7 @@ int GradLog(double _min, double _max, double *_grads, int * n_grads)
 	  *n_grads =2;
 	}
       else
+      {
 	for(i=0;i<=(int )(size/pas);i++)
 	  {
 	    _grads[i] = log_min+(i*pas);
@@ -4302,12 +4356,76 @@ int GradLog(double _min, double _max, double *_grads, int * n_grads)
 	    *n_grads = (*n_grads) + 1;
 	    /* 	    sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
 	  }
+      }
     }
   
   return 0;
 }
 
+/* get the displayed bounds of an axis */
+void sciGetDisplayedBounds( sciPointObj * pSubWin,
+                            double      * xmin   ,
+                            double      * xmax   ,
+                            double      * ymin   ,
+                            double      * ymax    )
+{
+  sciSubWindow * ppsubwin =  pSUBWIN_FEATURE ( pSubWin ) ;
+    /*****************************************************************
+     * get initial bounds
+   *****************************************************************/
+  if( sciGetZooming( pSubWin ) )
+  {
+    *xmin= ppsubwin->ZRect[0]; 
+    *ymin= ppsubwin->ZRect[1]; 
+    *xmax= ppsubwin->ZRect[2];
+    *ymax= ppsubwin->ZRect[3];
+  }
+  else
+  {
+    *xmin = ppsubwin->SRect[0];
+    *ymin = ppsubwin->SRect[2];
+    *xmax = ppsubwin->SRect[1];
+    *ymax = ppsubwin->SRect[3];
+  }
+  
+  
+   
+  /*****************************************************************
+   * modify  bounds and aaint  if using log scaling X axis
+   *****************************************************************/
+  if ( ppsubwin->logflags[0] == 'l' )
+  {
+    if ( *xmin >  0)
+    {
+      *xmax = ceil(log10(*xmax));
+      *xmin = floor(log10(*xmin));
+    }
+    else
+    {
+      Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
+      *xmax = 1;
+      *xmin = 0;
+    }
+  }
 
+  /*****************************************************************
+   * modify  bounds and aaint  if using log scaling Y axis
+   *****************************************************************/
+  if ( ppsubwin->logflags[1] == 'l' )
+  {
+    if ( *ymin > 0 )
+    {
+      *ymax = ceil(log10(*ymax));
+      *ymin = floor(log10(*ymin));
+    }
+    else
+    {
+      Scistring(" Can't use Log on Y-axis ymin is negative \n");
+      *ymax = 1;
+      *ymin = 0;
+    }
+  }
+}
 
 /* F.Leray au 13.10.04 completly review for new axes graduations */
 /*** F.Leray 02.04.04 */
@@ -4341,55 +4459,7 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
   /*   ppsubwin->axes.nzgrads = 0; */
   
 
-  /*****************************************************************
-   * get initial bounds
-   *****************************************************************/
-  if(sciGetZooming(pobj) == TRUE) {
-    xmin= ppsubwin->ZRect[0]; 
-    ymin= ppsubwin->ZRect[1]; 
-    xmax= ppsubwin->ZRect[2];
-    ymax= ppsubwin->ZRect[3];
-    /*    sciprint("Il y a un zoom dans l'axe courrant\n"); */
-    /*     sciprint(" xmin= ppsubwin->ZRect[0] = %lf\n",ppsubwin->ZRect[0]); */
-    /*     sciprint(" ymin= ppsubwin->ZRect[1] = %lf\n",ppsubwin->ZRect[1]); */
-    /*     sciprint(" xmax= ppsubwin->ZRect[2] = %lf\n",ppsubwin->ZRect[2]); */
-    /*     sciprint(" ymax= ppsubwin->ZRect[3] = %lf\n",ppsubwin->ZRect[3]); */
-  }
-  else {
-    xmin = ppsubwin->SRect[0];
-    ymin = ppsubwin->SRect[2];
-    xmax = ppsubwin->SRect[1];
-    ymax = ppsubwin->SRect[3];
-  }
-  
-  
-   
-  /*****************************************************************
-   * modify  bounds and aaint  if using log scaling X axis
-   *****************************************************************/
-  if ( ppsubwin->logflags[0]=='l') {
-    if ( xmin >  0) {
-      xmax=ceil(log10(xmax));  xmin=floor(log10(xmin));
-    }
-    else {
-      Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
-      xmax= 1; xmin= 0;
-    }
-  }
-
-  /*****************************************************************
-   * modify  bounds and aaint  if using log scaling Y axis
-   *****************************************************************/
-  if ( ppsubwin->logflags[1]=='l') {
-    if ( ymin > 0 ) {
-      ymax= ceil(log10(ymax)); ymin= floor(log10(ymin));
-    }
-    else {
-      Scistring(" Can't use Log on Y-axis ymin is negative \n");
-      ymax= 1; ymin= 0;
-    }
-  }
-   
+  sciGetDisplayedBounds( pobj, &xmin, &xmax, &ymin, &ymax ) ;
 
 
   /* _grad Init. to 0. */
@@ -4401,20 +4471,20 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
    
  
   if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-    TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
+    TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads, FALSE); 
     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
   }
   else{ /* log. case */
-    GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
+    GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads, FALSE );
     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
   }
    
   if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-    TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
+    TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads, FALSE);
     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
   }
   else{ /* log. case */
-    GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
+    GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads, FALSE );
     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
   }
    
@@ -4455,22 +4525,22 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     /* I need to recompute the correct xgrads and ygrads vector to have a good display */
      
     if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-      TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
+      TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads, FALSE);
       ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL, ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
     }
     else{ /* log. case */
-      GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
+      GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads, FALSE);
       ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
     }
 
  
 
     if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-      TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
+      TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads, FALSE);
       ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
     }
     else{ /* log. case */
-      GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
+      GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads, FALSE );
       ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
     }
    
@@ -4635,29 +4705,29 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
    
   
   if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-    TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
+    TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads, FALSE);
     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */
   }
   else{ /* log. case */
-    GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
+    GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads, FALSE );
     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
   }
   
   if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-    TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
+    TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads, FALSE);
     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */
   }
   else{ /* log. case */
-    GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
+    GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads, FALSE );
     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
   }
   
   if ( ppsubwin->logflags[2]=='n') { /* z-axis */
-    TheTicks(&zmin, &zmax, &(ppsubwin->axes.zgrads[0]), &ppsubwin->axes.nzgrads);
+    TheTicks(&zmin, &zmax, &(ppsubwin->axes.zgrads[0]), &ppsubwin->axes.nzgrads, FALSE);
     ppsubwin->axes.nbsubtics[2] = ComputeNbSubTics(pobj,ppsubwin->axes.nzgrads,'n',NULL, ppsubwin->axes.nbsubtics[2]); /* Nb of subtics computation and storage */
   }
   else{ /* log. case */
-    GradLog(zmin,zmax,ppsubwin->axes.zgrads,&ppsubwin->axes.nzgrads);
+    GradLog(zmin,zmax,ppsubwin->axes.zgrads,&ppsubwin->axes.nzgrads, FALSE );
     ppsubwin->axes.nbsubtics[2] = ComputeNbSubTics(pobj,ppsubwin->axes.nzgrads,'l',ppsubwin->axes.zgrads,0);
   }
   
@@ -10674,99 +10744,6 @@ int GetDPIFromDriver(int * DPI)
 
 
 
-/* 1----------4 */
-/* |          | */
-/* |          | */
-/* |          | */
-/* 2----------3 */
-
-int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect) 
-{
-  int rect[4],i;
-  int point[4][2];
-  int logrect[4], XX, YY;
-  
-  if(old_rect[0] == 0 && old_rect[1] == 0 && old_rect[2] == 0 && old_rect[3] == 0)
-    return 1;
-  
-  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
-  
-  /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
-  C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
-  
-  if(logflag == 'n')
-    {
-      C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      rect[3] = (integer)(fact_h* rect[3]); /* added the 01.06.05 */
-      rect[2] = (integer)(fact_w* rect[2]);
-   }
-  else
-    {
-      int smallersize = fontid[1]-2;
-      int rect10[4];
-      int posi10[2];
-      
-      posi10[0] = posi[0] - logrect[2];
-      posi10[1] = posi[1] + logrect[3];
-      
-      C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      
-      posi[0] = rect10[0] + rect10[2];
-      posi[1] = (int) (rect10[1] - rect10[3]*.1);
-      
-      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      
-      rect[2] = (integer)(fact_w*(rect[2] + rect10[2]));
-      rect[3] = (integer)(fact_h*(rect[3] + rect10[3] + (int) (rect10[3]*.1))); /* added the 01.06.05 */
-/*       rect[3] = rect[3] + rect10[3] + (int) (rect10[3]*.1); /\* added the 01.06.05 *\/ */
-      rect[0] = rect10[0];
-      rect[1] = rect[1];
-
-      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    }
-  
-  
-  point[0][0] = rect[0]; /* upper left point */
-  point[0][1] = rect[1];
-  
-  point[1][0] = rect[0]; /* lower left point */
-  point[1][1] = rect[1]+rect[3];
-  
-  point[2][0] = rect[0]+rect[2]; /* lower right point */
-  point[2][1] = rect[1]+rect[3];
-  
-  point[3][0] = rect[0]+rect[2]; /* upper right point */
-  point[3][1] = rect[1];
-  
-  for(i=0;i<4;i++)
-    if(IsInsideRectangle(old_rect,point[i]) == 0)
-      return 0; /* If one inside the old_rect, DO NOT display the graduation ! */
-
-
-  return 1;
-}
-
-
-
-/* The unit is the pixel */
-/* return 0 if the point is inside the rect */
-/* 1 if it is actually outside the rect */
-/* (rect[0],rect[1]) : upper left point of the bounding box  in pixel */
-/* (rect[2],rect[3]) : width and height in pixel */
-/* point[0] : x component */
-/* point[1] : y component */
-int IsInsideRectangle(int * rect, int *point)
-{
-
-  if((point[0] >= rect[0] && point[0] <= rect[0]+rect[2]) &&
-     (point[1] >= rect[1] && point[1] <= rect[1]+rect[3]))
-    return 0;
-  
-  return 1;
-}
-
-
 
 int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double yminval, double ymaxval, double fx, double fy, double fz)
 {
@@ -10780,7 +10757,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
   double grads_tmp[20];
   char c_format[5];
   integer barlengthx = 0,barlengthy = 0;
-  integer rect[4],posi[2]; 
+  integer rect[4],posi[2];
   integer textcolor = -1;
   int logrect[4],XX,YY;
   int pas;
@@ -10811,7 +10788,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
 
   for(i=0;i<nbtics;i++)
     {
-      char foo[256]; 
+      char foo[256];
       double ytmp = ppsubwin->axes.ygrads[i];
 		  
 /*       if(ytmp<yminval || ytmp>ymaxval)  */
@@ -10831,7 +10808,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
 		  
       ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
 		  
-      vx[0]=xm;vy[0]=ym; 
+      vx[0]=xm;vy[0]=ym;
 		  
       barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
       barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
@@ -10855,17 +10832,17 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
       if (IsDownAxes(psubwin)){
 	vx[1]=vx[0];
 	vy[1]=vy[0]+iof/2;
-	posi[0] = inint(xm-rect[2]/2); 
+	posi[0] = inint(xm-rect[2]/2);
 	posi[1]=inint( vy[0] + iof + rect[3]);}
       else{
 	vx[1]=vx[0]+barlengthx;
 	vy[1]=vy[0]+barlengthy;
 /* 	posi[0] = inint( xm+2*barlengthx-rect[2]/2);  */
-	posi[0] = inint( xm+2*barlengthx-rect[2]); 
+	posi[0] = inint( xm+2*barlengthx-rect[2]);
 	posi[1]=inint( ym + 2*barlengthy + rect[3]);}
       
       /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
-      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       
       
       if(CheckDisplay(fact_h, fact_w, ppsubwin->logflags[1],foo,posi,fontid,old_rect) == 0)
@@ -10971,7 +10948,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
                                                            ppsubwin->axes.nygrads,
                                                            ppsubwin->logflags[1],
 							   ppsubwin->axes.ygrads,
-                                                           ppsubwin->axes.nbsubtics[1]); 
+                                                           ppsubwin->axes.nbsubtics[1]);
   }
   else{
     ppsubwin->axes.ygrads[0] = grads_tmp[0];
@@ -10983,7 +10960,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
                                                            ppsubwin->axes.nygrads,
                                                            ppsubwin->logflags[1],
 							   ppsubwin->axes.ygrads,
-                                                           ppsubwin->axes.nbsubtics[1]); 
+                                                           ppsubwin->axes.nbsubtics[1]);
     
     if(ppsubwin->logflags[1] == 'n'){
       if(nb_grads_max > 4) {
@@ -11001,7 +10978,7 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
                                                                ppsubwin->axes.nygrads,
                                                                'n',
 							       ppsubwin->axes.ygrads,
-                                                               ppsubwin->axes.nbsubtics[1]); 
+                                                               ppsubwin->axes.nbsubtics[1]);
       }
     }
   }

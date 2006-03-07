@@ -1824,7 +1824,7 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
  
   barlength =  Max( (integer) (Cscale.WIRect1[3]/50.0), 2 ) ;
   
-  ppsubwin->firsttime_x = TRUE;
+  /*ppsubwin->firsttime_x = TRUE;*/
   
   if(ppsubwin->axes.auto_ticks[0] == FALSE)
     {
@@ -1912,13 +1912,18 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  char foo[256]; 
 	  double xtmp = ppsubwin->axes.xgrads[i];
 	  
-	  if(xtmp<xminval || xtmp>xmaxval) 
-	    {
-	    /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-	      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
-	                                             /* donc autant ne pas aller plus loin dans l'algo... */
-	    }
-	  	  
+	  /* if ( xtmp < xminval || xtmp > xmaxval )  */
+/*           { */
+/*             continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon *\/ */
+/*                       /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/*           } */
+          
+          /* chack that xtmp < xminval || xtmp > xmalval */
+          /* but if xtmp is very close to xminval or xmaxval we display it */
+          if ( !SAFE_LT( xminval, xtmp, EPSILON ) || !SAFE_LT( xtmp, xmaxval, EPSILON ) )
+          {
+            continue ;
+          }
 
 	  sprintf(foo,c_format,xtmp);
 	  
@@ -1956,6 +1961,11 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  if ( ppsubwin->axes.axes_visible[0] )
           {
             if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+            
+            /* if ( logflag == 'l' ) */
+/*             { */
+/*               C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ; */
+/*             } */
             
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
@@ -2253,9 +2263,9 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   /*  xm[0] = (ppsubwin->logflags[0]=='n')?XScale(xy):XLogScale(xy);*/
   
   /* at least 1 pixels */
-  barlength =  Max( (integer) (Cscale.WIRect1[2]/75.0), 1 ) ;
+  barlength =  Max( (integer) (Cscale.WIRect1[2]/75.0), 2 ) ;
   
-  ppsubwin->firsttime_y = TRUE;
+  /* ppsubwin->firsttime_y = TRUE */;
 
   if(ppsubwin->axes.auto_ticks[1] == FALSE)
     {
@@ -2335,20 +2345,27 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
     }
   else
     {
+
       FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need y data (xmin xmax are computed but not used after) */
       nbtics = ppsubwin->axes.nygrads;
       
       for(i=0;i<nbtics;i++)
 	{
-	  char foo[256]; 
+	  char foo[256];
 	  double ytmp = ppsubwin->axes.ygrads[i];
 	  
-	  if(ytmp<yminval || ytmp>ymaxval) 
-	    {
-	      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
-	      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
-	      /* donc autant ne pas aller plus loin dans l'algo... */
-	    }
+	  /* if ( ytmp < yminval || ytmp > ymaxval )  */
+/*           { */
+/*             continue; /\* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon *\/ */
+/*             /\* donc autant ne pas aller plus loin dans l'algo... *\/ */
+/*           } */
+          
+          /* chack that xtmp < xminval || xtmp > xmalval */
+          /* but if xtmp is very close to xminval or xmaxval we display it */
+          if ( !SAFE_LT( yminval, ytmp, EPSILON ) || !SAFE_LT( ytmp, ymaxval, EPSILON ) )
+          {
+            continue ;
+          }
 
 	  sprintf(foo,c_format,ytmp);
 	  
@@ -2386,7 +2403,19 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 /* 	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]); */
 /* 	      vx[0]= xm[0];vx[1]= xm[0] - barlength; */
 /* 	    } */
+          
+          /* if ( !CheckDisplay( 1.5, 1.5, */
+/*                               ppsubwin->logflags[1], */
+/*                               foo, posi, */
+/*                               fontid, oldRect ) ) */
+/*           { */
+/*             continue ; */
+/*           } */
 
+/*           /\* update old_rect *\/ */
+/*           getTicksLabelBox( 1.5, 1.5, foo, posi, fontid, old_rect ) ; */
+          
+          
           if ( ppsubwin->axes.axes_visible[1] )
           {
             if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -2490,7 +2519,7 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
   double xminval, yminval, xmaxval, ymaxval;
   
   char logflag ;
-  int lastxindex, lastyindex;
+  /* int lastxindex, lastyindex; */
   BOOL auto_ticks;
 
 
@@ -2544,16 +2573,23 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
     /** Horizontal axes **/
     if ( /*ppsubwin->axes.axes_visible[0]*/ TRUE )
     {
-      
+      char formatY[5] ;
       barlength =  (integer) (Cscale.WIRect1[3]/50.0);
       
-      lastxindex = ppsubwin->axes.nxgrads - 1;
+      /* lastxindex = ppsubwin->axes.nxgrads - 1; */
       
-      ChoixFormatE(c_format,
-		   ppsubwin->axes.xgrads[0],
-		   ppsubwin->axes.xgrads[lastxindex],
-		   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex)); /* Adding F.Leray 06.05.04 */
+/*       ChoixFormatE(c_format, */
+/* 		   ppsubwin->axes.xgrads[0], */
+/* 		   ppsubwin->axes.xgrads[lastxindex], */
+/* 		   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex)); /\* Adding F.Leray 06.05.04 *\/ */
+
+      /* remove concealing tics labels */
       
+      updateXaxesTics( psubwin, pos, xy, fontid, smallersize ) ;
+      
+      /* the format may have changed */
+      findFormat( psubwin, c_format, formatY ) ;
+
       /* le "loop on the ticks" */
       DrawXTics(pos, psubwin, xy, c_format, fontid, textcolor, ticscolor, color_kp, logrect, smallersize);
       
@@ -2570,15 +2606,24 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
 
     /** Vertical axes **/
     if( /*ppsubwin->axes.axes_visible[1] ==*/ TRUE){
-    
+      char formatX[5] ;
+      
+      /* int ticsDir[2] = {1,0} ; */
       barlength =  (integer) (Cscale.WIRect1[2]/75.0);
       
-      lastyindex = ppsubwin->axes.nygrads - 1;
-      ChoixFormatE(c_format,
-		   ppsubwin->axes.ygrads[0],
-		   ppsubwin->axes.ygrads[lastyindex],
-		   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex)); /* Adding F.Leray 06.05.04 */
+      /* lastyindex = ppsubwin->axes.nygrads - 1; */
+/*       ChoixFormatE(c_format, */
+/* 		   ppsubwin->axes.ygrads[0], */
+/* 		   ppsubwin->axes.ygrads[lastyindex], */
+/* 		   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex)); /\* Adding F.Leray 06.05.04 *\/ */
       
+      
+      /* remove concealing tics labels */
+      updateYaxesTics( psubwin, pos, xy, fontid, smallersize ) ;
+
+       /* the format may have changed */
+      findFormat( psubwin, formatX, c_format ) ;
+
       /* le "loop on the ticks" */
       DrawYTics(pos, psubwin, xy, c_format, fontid, textcolor, ticscolor, color_kp, logrect, smallersize);
       
@@ -2746,5 +2791,553 @@ BOOL checkRedrawing( void )
   }
   return FALSE ;
 }
+
 /*--------------------------------------------------------------------------------*/
 
+/* 1----------4 */
+/* |          | */
+/* |          | */
+/* |          | */
+/* 2----------3 */
+/* check if the graduation text foo is inside the old_rect */
+/* in this case it should not been displayed */
+/* taken from drawobject.c */
+BOOL CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *posi,int *fontid,int *old_rect) 
+{
+  int rect[4],i;
+  int point[4][2];
+  int logrect[4], XX, YY;
+  
+  if(old_rect[0] == 0 && old_rect[1] == 0 && old_rect[2] == 0 && old_rect[3] == 0)
+  {
+    return TRUE ;
+  }
+  
+  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+  
+  /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+  C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+ 
+
+
+  getTicksLabelBox( 1.0, 1.0, foo, posi, fontid, logflag, rect, TRUE ) ;
+ 
+  /* if(logflag == 'n') */
+/*     { */
+/*       C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/*       rect[3] = (integer)(fact_h* rect[3]); /\* added the 01.06.05 *\/ */
+/*       rect[2] = (integer)(fact_w* rect[2]); */
+/*    } */
+/*   else */
+/*     { */
+/*       int smallersize = fontid[1]-2; */
+/*       int rect10[4]; */
+/*       int posi10[2]; */
+      
+/*       posi10[0] = posi[0] - logrect[2]; */
+/*       posi10[1] = posi[1] + logrect[3]; */
+      
+/*       C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+      
+/*       posi[0] = rect10[0] + rect10[2]; */
+/*       posi[1] = (int) (rect10[1] - rect10[3]*.1); */
+      
+/*       C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/*       C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+      
+/*       rect[2] = (integer)(fact_w*(rect[2] + rect10[2])); */
+/*       rect[3] = (integer)(fact_h*(rect[3] + rect10[3] + (int) (rect10[3]*.1))); /\* added the 01.06.05 *\/ */
+/* /\*       rect[3] = rect[3] + rect10[3] + (int) (rect10[3]*.1); /\\* added the 01.06.05 *\\/ *\/ */
+/*       rect[0] = rect10[0]; */
+/*       rect[1] = rect[1]; */
+
+/*       C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/*     } */
+  
+  
+  point[0][0] = rect[0]; /* upper left point */
+  point[0][1] = rect[1];
+  
+  point[1][0] = rect[0]; /* lower left point */
+  point[1][1] = rect[1]+rect[3];
+  
+  point[2][0] = rect[0]+rect[2]; /* lower right point */
+  point[2][1] = rect[1]+rect[3];
+  
+  point[3][0] = rect[0]+rect[2]; /* upper right point */
+  point[3][1] = rect[1];
+  
+  for(i=0;i<4;i++)
+  {
+    if( !IsInsideRectangle(old_rect,point[i]) )
+    {
+      return FALSE; /* If one inside the old_rect, DO NOT display the graduation ! */
+    }
+  }
+
+  return TRUE;
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* The unit is the pixel */
+/* return 0 if the point is inside the rect */
+/* 1 if it is actually outside the rect */
+/* (rect[0],rect[1]) : upper left point of the bounding box  in pixel */
+/* (rect[2],rect[3]) : width and height in pixel */
+/* point[0] : x component */
+/* point[1] : y component */
+BOOL IsInsideRectangle(int * rect, int *point)
+{
+
+  if((point[0] >= rect[0] && point[0] <= rect[0]+rect[2]) &&
+     (point[1] >= rect[1] && point[1] <= rect[1]+rect[3]))
+    return FALSE;
+  
+  return TRUE;
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* get the bounding rectangle of a label of a ticks */
+/* similar to stringBoundingRect but only for ticks labels */
+void getTicksLabelBox( double   fact_h   ,
+                       double   fact_w   , 
+                       char   * label    ,
+                       int      pos[2]   ,
+                       int      fontId[2],
+                       char     logflag  ,
+                       int      bbox[4]  ,
+                       BOOL     changeFont )
+{  
+  int prevFontId[2] ;
+  
+  if ( changeFont )
+  {
+    int verbose = 0 ;
+    int narg ;
+    C2F(dr)("xget","font",&verbose,prevFontId,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+    C2F(dr)("xset","font",fontId,fontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+  }
+  
+  if ( logflag == 'n' )
+  { 
+    C2F(dr)("xstringl",label,&pos[0],&pos[1],bbox,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    bbox[3] = (int)(fact_h * bbox[3]);
+    bbox[2] = (int)(fact_w * bbox[2]);
+  }
+  else
+  {
+    int smallersize = fontId[1]-2;
+    int rect10[4];
+    int posi10[2];
+    int logrect[4] ;
+    int XX = 1 ;
+    int YY = 1 ;
+    /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
+    C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+    
+    posi10[0] = pos[0] - logrect[2];
+    posi10[1] = pos[1] + logrect[3];
+    
+    /* get the bbox of the 10 */
+    C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    pos[0] = rect10[0] + rect10[2];
+    pos[1] = (int) (rect10[1] - rect10[3]*.1);
+    
+    C2F(dr)("xset","font",fontId,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    /* get the bbox of the exponent */
+    C2F(dr)("xstringl",label,(&pos[0]),(&pos[1]),bbox,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    bbox[2] = (integer)(fact_w*(bbox[2] + rect10[2]));
+    bbox[3] = (integer)(fact_h*(bbox[3] + rect10[3] + (int) (rect10[3]*.1))); /* added the 01.06.05 */
+    bbox[0] = rect10[0];
+    /* bbox[1] = bbox[1]; */
+    
+    C2F(dr)("xset","font",fontId,fontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+
+  if ( changeFont )
+  {
+    C2F(dr)("xset","font",prevFontId,prevFontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+  }
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* remove the concealed ticks before display on the X axis */
+BOOL checkXAxes2dTics( sciPointObj * psubwin  ,
+                       char          side     ,
+                       double        y        ,
+                       char        * cFormat  ,
+                       int           fontId[2],
+                       int           smallersize )
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin) ;
+  double xminval, yminval, xmaxval, ymaxval ;
+  int  /* flag=0, */xx=0,yy=0,rect[4] ;
+  int xm[2],ym[2];
+  int barlength = 0;
+  int posi[2];
+  int prevFontId[2] ;
+  int verbose = 0 ;
+  int narg ;
+  
+  double factX = 1.2 ;
+  double factY = 1.2 ;
+  int nbtics = 0,i ;
+  int prevRect[4] = { 0, 0, 0, 0 } ;
+  
+  /*--------*/
+  /* x axis */
+  /*--------*/
+  
+  ym[0] = YScale(y) ;
+
+  barlength =  Max( (integer) (Cscale.WIRect1[3]/50.0), 2 ) ;
+
+  ppsubwin->firsttime_x = TRUE ;
+
+  /* suppose auto_ticks is off */
+  /* here i only need x data (ymin ymax are computed but not used after) */
+  FindXYMinMaxAccordingTL( psubwin, &xminval, &yminval, &xmaxval, &ymaxval ) ;
+  nbtics = ppsubwin->axes.nxgrads ;
+  
+  C2F(dr)("xget","font",&verbose,prevFontId,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+  C2F(dr)("xset","font",fontId,fontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+  
+  for( i = 0 ; i < nbtics; i++ )
+  {
+    
+    char foo[256];
+    double xtmp = ppsubwin->axes.xgrads[i] ;
+
+    if( xtmp < xminval || xtmp > xmaxval ) 
+    {
+      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
+                /* donc autant ne pas aller plus loin dans l'algo... */
+    }
+    
+    sprintf(foo, cFormat,xtmp);
+    
+    /* compute the bounding box of the label */
+   
+    C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    xm[0] = XScale(xtmp);
+    posi[0] = inint( xm[0] - rect[2]/2.0 ) ;
+    
+    if ( side == 'd')
+    {
+      /* ticks are drawn under the axis */
+      posi[1] = inint( ym[0] + 1.2 * barlength + rect[3] ) ;
+    }
+    else /* side = 'u' */
+    {
+      /* ticks are drawn above the axis */
+      posi[1] = inint( ym[0] - 1.2 * barlength ) ;
+    }
+
+    /* check that the new display doesnot concealed the previous */
+    if ( !CheckDisplay( factX, factY,
+                        ppsubwin->logflags[0],
+                        foo, posi,
+                        fontId, prevRect ) )
+    {
+      /* put the font back */
+      C2F(dr)("xset","font",prevFontId,prevFontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+      return FALSE ;
+    }
+    
+    /* get the boundig rectangle of the new label */
+    getTicksLabelBox( factX, factY, foo, posi, fontId, ppsubwin->logflags[0],  prevRect, FALSE ) ;
+
+    XGradPosition(psubwin,posi[1],rect[3]) ;
+    
+  }
+
+
+  /* put the font back */
+  C2F(dr)("xset","font",prevFontId,prevFontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+
+  return TRUE ;    
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* remove the concealed ticks before display on the X axis */
+BOOL checkYAxes2dTics( sciPointObj * psubwin  ,
+                       char          side     ,
+                       double        x        ,
+                       char        * cFormat  ,
+                       int           fontId[2],
+                       int           smallersize )
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin) ;
+  double xminval, yminval, xmaxval, ymaxval ;
+  int  /* flag=0, */xx=0,yy=0,rect[4] ;
+  int xm[2],ym[2];
+  int barlength = 0;
+  int posi[2];
+  int prevFontId[2] ;
+  int verbose = 0 ;
+  int narg ;
+  double factX = 1.5 ;
+  double factY = 1.5 ;
+  int nbtics = 0,i ;
+  int prevRect[4] = { 0, 0, 0, 0 } ;
+  
+  /*--------*/
+  /* y axis */
+  /*--------*/
+  
+  xm[0] = XScale(x) ;
+
+  barlength =  Max( (integer) (Cscale.WIRect1[2]/75.0), 2 ) ;
+
+  ppsubwin->firsttime_y = TRUE ;
+
+  /* suppose auto_ticks is off */
+  /* here i only need x data (ymin ymax are computed but not used after) */
+  FindXYMinMaxAccordingTL( psubwin, &xminval, &yminval, &xmaxval, &ymaxval ) ;
+  nbtics = ppsubwin->axes.nygrads ;
+  
+  C2F(dr)("xget","font",&verbose,prevFontId,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+  C2F(dr)("xset","font",fontId,fontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* fix bug noticed by R.N. */
+  
+  for( i = 0 ; i < nbtics; i++ )
+  {
+    
+    char foo[256];
+    double ytmp = ppsubwin->axes.ygrads[i] ;
+
+    if( ytmp < yminval || ytmp > ymaxval ) 
+    {
+      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
+                /* donc autant ne pas aller plus loin dans l'algo... */
+    }
+    
+    sprintf(foo, cFormat,ytmp);
+    
+    /* compute the bounding box of the label */
+   
+    C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    ym[0] = YScale(ytmp);
+    posi[1] = inint( ym[0] + rect[2]/2.0 ) ;
+    
+    if ( side == 'r')
+    {
+      /* ticks are drawn under the axis */
+      posi[0] = inint( xm[0] + 1.2 * barlength ) ;
+    }
+    else /* side = 'l' */
+    {
+      /* ticks are drawn above the axis */
+      posi[0] = inint( xm[0] - 1.2 * barlength - rect[2] ) ;
+    }
+
+    /* check that the new display doesnot concealed the previous */
+    if ( !CheckDisplay( factX, factY,
+                        ppsubwin->logflags[1],
+                        foo, posi,
+                        fontId, prevRect ) )
+    {
+      /* put the font back */
+      C2F(dr)("xset","font",prevFontId,prevFontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+      return FALSE ;
+    }
+    
+    /* get the boundig rectangle of the new label */
+    getTicksLabelBox( factX, factY, foo, posi, fontId, ppsubwin->logflags[1],  prevRect, FALSE ) ;
+
+    YGradPosition(psubwin,posi[0],rect[2]) ;
+    
+  }
+
+
+  /* put the font back */
+  C2F(dr)("xset","font",prevFontId,prevFontId+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+  
+  return TRUE ;
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* check if the ticks are not concealing each others */
+/* in this case some are removed until it's fit */
+void updateXaxesTics( sciPointObj * psubwin  ,
+                      char          side     ,
+                      double        y        ,
+                      int           fontId[2] ,
+                      int           smallersize )
+{
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( psubwin ) ;
+  char labelXFormat[5] ;
+  char labelYFormat[5] ;
+  findFormat( psubwin, labelXFormat, labelYFormat ) ;
+  
+  /* check if the ticks are concealing or not */
+  if ( !checkXAxes2dTics( psubwin, side, y, labelXFormat, fontId, smallersize ) ) 
+  {
+    double xMin ;
+    double xMax ;
+    double yMin ;
+    double yMax ;
+    int    ticksStatus = 0 ;
+    
+    sciGetDisplayedBounds( psubwin, &xMin, &xMax, &yMin, &yMax ) ;
+    
+    ppSubWin->axes.nxgrads = ( ppSubWin->axes.nxgrads + 1 ) / 2 ;
+    
+    /* recompute the ticks */
+    if ( ppSubWin->logflags[0] == 'n' )
+    {
+      TheTicks( &xMin, &xMax, ppSubWin->axes.xgrads, &ppSubWin->axes.nxgrads, TRUE ) ;
+    }
+    else
+    {
+      GradLog( xMin, xMax, ppSubWin->axes.xgrads, &ppSubWin->axes.nxgrads, TRUE ) ;
+    }
+
+    findFormat( psubwin, labelXFormat, labelYFormat ) ;
+
+    while( ticksStatus == 0 && !checkXAxes2dTics( psubwin, side, y, labelXFormat, fontId, smallersize ) )
+    {
+      ppSubWin->axes.nxgrads = ( ppSubWin->axes.nxgrads + 1 ) / 2 ;
+      if (  ppSubWin->logflags[0] == 'n' )
+      {
+        ticksStatus = TheTicks( &xMin, &xMax, ppSubWin->axes.xgrads, &ppSubWin->axes.nxgrads, TRUE ) ;
+      }
+      else
+      {
+        GradLog( xMin, xMax, ppSubWin->axes.xgrads, &ppSubWin->axes.nxgrads, TRUE ) ;
+      }
+
+      findFormat( psubwin, labelXFormat, labelYFormat ) ;
+
+    }
+
+  }
+  /* else everything ok */
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* check if the ticks are not concealing each others */
+/* in this case some are removed until it's fit */
+void updateYaxesTics( sciPointObj * psubwin  ,
+                      char          side     ,
+                      double        x        ,
+                      int           fontId[2],
+                      int           smallersize )
+{
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( psubwin ) ;
+  char labelXFormat[5] ;
+  char labelYFormat[5] ;
+  findFormat( psubwin, labelXFormat, labelYFormat ) ;
+  
+  /* check if the ticks are concealing or not */
+  if ( !checkYAxes2dTics( psubwin, side, x, labelYFormat, fontId, smallersize ) ) 
+  {
+    double xMin ;
+    double xMax ;
+    double yMin ;
+    double yMax ;
+    int    ticksStatus = 0 ;
+    
+    sciGetDisplayedBounds( psubwin, &xMin, &xMax, &yMin, &yMax ) ;
+    
+    ppSubWin->axes.nygrads = ( ppSubWin->axes.nygrads + 1 ) / 2 ;
+    
+    /* recompute the ticks */
+    if ( ppSubWin->logflags[1] == 'n' )
+    {
+      TheTicks( &yMin, &yMax, ppSubWin->axes.ygrads, &ppSubWin->axes.nygrads, TRUE ) ;
+    }
+    else
+    {
+      GradLog( yMin, yMax, ppSubWin->axes.ygrads, &ppSubWin->axes.nygrads, TRUE ) ;
+    }
+
+    findFormat( psubwin, labelXFormat, labelYFormat ) ;
+
+    while( ticksStatus == 0 && !checkYAxes2dTics( psubwin, side, x, labelYFormat, fontId, smallersize ) )
+    {
+      ppSubWin->axes.nygrads = ( ppSubWin->axes.nygrads + 1 ) / 2 ;
+      if (  ppSubWin->logflags[1] == 'n' )
+      {
+        ticksStatus = TheTicks( &yMin, &yMax, ppSubWin->axes.ygrads, &ppSubWin->axes.nygrads, TRUE ) ;
+      }
+      else
+      {
+        GradLog( yMin, yMax, ppSubWin->axes.ygrads, &ppSubWin->axes.nygrads, TRUE ) ;
+      }
+
+      findFormat( psubwin, labelXFormat, labelYFormat ) ;
+
+    }
+
+  }
+  /* else everything ok */
+}
+
+/*--------------------------------------------------------------------------------*/
+ 
+/* remove in the ticks array the indices i such as removedTicks[i] */
+/* is true. The value nbtics is an in-out variable */
+void removeBadTicks( double * ticks, BOOL * removedTicks, int * nbTicks )
+{
+  int i ;
+  for ( i = *nbTicks - 1 ; i >= 0 ; i-- )
+  {
+    if ( removedTicks[i] )
+    {
+      removeIndex( ticks, *nbTicks, i ) ;
+      *nbTicks = *nbTicks - 1 ;
+    }
+  }
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* remove an element in the array from translating the next
+   elements on step backward */
+void removeIndex( double * changedArray, int size, int ind )
+{
+  int i ;
+  for ( i = ind + 1 ; i < size ; i++ )
+  {
+    changedArray[i-1] = changedArray[i] ;
+  } 
+}
+
+/*--------------------------------------------------------------------------------*/
+
+/* compute the needed formats to display the ticks of a subWin */
+void findFormat( sciPointObj * pSubWin, char formatX[5], char formatY[5] )
+{
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( pSubWin ) ;
+  int lastIndex ;
+
+  /* x axis */
+  lastIndex = Max( ppSubWin->axes.nxgrads - 1, 0 ) ;
+
+  ChoixFormatE( formatX,
+                ppSubWin->axes.xgrads[0],
+                ppSubWin->axes.xgrads[lastIndex],
+               ( (ppSubWin->axes.xgrads[lastIndex])-(ppSubWin->axes.xgrads[0]))/(lastIndex)); /* Adding F.Leray 06.05.04 */
+
+  /* y-axis */
+  lastIndex = Max( ppSubWin->axes.nygrads - 1, 0 ) ;
+  
+  ChoixFormatE( formatY,
+                ppSubWin->axes.ygrads[0],
+                ppSubWin->axes.ygrads[lastIndex],
+                ((ppSubWin->axes.ygrads[lastIndex])-(ppSubWin->axes.ygrads[0]))/(lastIndex)); /* Adding F.Leray 06.05.04 */
+  
+}
+
+/*--------------------------------------------------------------------------------*/

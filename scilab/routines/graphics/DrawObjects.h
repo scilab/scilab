@@ -81,10 +81,15 @@ extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *z
 extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
 extern void Nextind(integer ind1, integer *ind2, integer *ind3); /* DRAWINGS */
 extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z); /* DRAWINGS */
-extern int GradLog(double _min, double _max, double *_grads, int * n_grads);
+extern int GradLog(double _min, double _max, double *_grads, int * n_grads, int compNgrads );
 extern BOOL Ishidden(sciPointObj *pobj); /* DRAWINGS */
 extern BOOL IsDownAxes(sciPointObj *pobj); /* DRAWINGS */
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1); /* DRAWINGS */
+extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
+                                   double      * xmin   ,
+                                   double      * xmax   ,
+                                   double      * ymin   ,
+                                   double      * ymax    ) ;
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
