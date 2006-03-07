@@ -75,10 +75,15 @@ else
  
   tmpfiles=[]
   for k=1:size(funcdecl,"*")-1
-  functxt=txt(funcdecl(k):funcdecl(k+1)-1)
-  str=  strindex(txt(funcdecl(k)),"(")-1
-    funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
-    keq=strindex(funcname,"=")
+    functxt=txt(funcdecl(k):funcdecl(k+1)-1)
+    str=  strindex(txt(funcdecl(k)),"(")-1
+    if str==-1 then
+      funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:length(txt(funcdecl(k)))))
+    else
+      funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+    end
+    pause
+      keq=strindex(funcname,"=")
     if ~isempty(keq) then
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
     end
