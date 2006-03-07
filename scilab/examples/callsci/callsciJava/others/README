@@ -7,6 +7,7 @@ exit from scilab
 make (from /examples/callsci/callsciJava/others)
 
 export SCIDIR=<your current scilab path>
+export SCI=<your current scilab path>
 go to bin directory :
 cd $SCIDIR/bin
 
@@ -14,6 +15,10 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCIDIR/bin:.
 (under HP unix platforms : export SHLIB_PATH=$SHLIB_PATH:$SCIDIR/bin:. )
 
 export CLASSPATH=$CLASSPATH:$SCIDIR/bin:.
+
+Could be recquired :
+export TK_LIBRARY=$SCIDIR/tcl/tk8.4
+export TCL_LIBRARY=$SCIDIR/tcl/tcl8.4
 
 Under solaris platforms:
 xrdb $SCIDIR/X11_defaults/Xscilab  (usually, xrdb can be found in /usr/openwin/bin/ directory)
