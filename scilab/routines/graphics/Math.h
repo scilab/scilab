@@ -138,6 +138,10 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /* with a macro it is faster */
 /* the x == y test is put to avoid division by 0 */
 #define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
+
+/* test if a value if lesser than an other or just sligthy greater */
+#define SAFE_LT(x,y,acc) ( (x) == (y) || ( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
+#define SAFE_GT(x,y,acc) ( (x) == (y) || ( (y) - (x) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
