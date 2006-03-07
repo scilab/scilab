@@ -819,8 +819,7 @@ int TheTicks( double * xminv ,
     *ngrads = -1 ;
   }
 
-  C2F(theticks)(xmin
-                v, xmaxv, grads, ngrads);
+  C2F(theticks)(xminv, xmaxv, grads, ngrads);
   
   if(*ngrads == 1)
     {
