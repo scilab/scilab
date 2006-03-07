@@ -8,7 +8,7 @@ function [tree]=sci_whos(tree)
 
 k=1
 while k<=size(tree.rhs)
-  if tree.rhs(k).value=="" then
+  if typeof(tree.rhs(k))=="cste" & tree.rhs(k).value=="" then
     tree.rhs(k)=null()
   end
   k=k+1
