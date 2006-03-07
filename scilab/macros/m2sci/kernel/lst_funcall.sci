@@ -76,7 +76,11 @@ if bval then
     else
       functxt=txt(funcdecl(k):funcdecl(k+1)-1)
       str=strindex(txt(funcdecl(k)),"(")-1
+      if str==-1 then
+      funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:length(txt(funcdecl(k)))))
+      else
       funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
+      end
       keq=strindex(funcname,"=")
       if ~isempty(keq) then
         funcname=stripblanks(part(funcname,keq+1:length(funcname)))
@@ -94,10 +98,11 @@ if bval then
     // Delete useless .m files
     //mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m")
   //end
-  
+ 
   translatepaths(pathconvert(TMPDIR)+pathconvert(fnam),pathconvert(TMPDIR)+pathconvert(fnam))
   // Catenation of all .sci files to have only one output file
   txt=[]
+  
   for k=1:size(tmpfiles,"*")
     txt=[txt ;" ";mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")]
     mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")
@@ -178,15 +183,17 @@ if txt~=[] then
   deff(func_proto,[firstline;txt(2:$)],"n")
   w=who("get");
   mname=w(1);
-  
+ 
   // Compilation
   execstr("comp("+mname+",1)")
+ 
   funcprot(fprot)
-  
+
   // Get Scilab pseudo code of the function
   macr=evstr(mname)
+ 
   mtlbtree=macr2tree(macr);
-  
+
   if ~batch then
     mtlbtree.name=mname;
   else
@@ -209,10 +216,12 @@ if txt~=[] then
   ninstr=1
   // search the called functions in the mtlbtree  
   // funcallname contains the name of the M-file, followed by the called functions
+
   while ninstr<=size(mtlbtree.statements)-3  
     [funcallname,variablevect]=funcallsearch(mtlbtree.statements(ninstr),funcallname,fnamvect,variablevect) 
     ninstr=ninstr+1
   end
+  
 end
 
 // add the M-file name in funcallname vector (at the first index)
