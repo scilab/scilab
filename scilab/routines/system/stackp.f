@@ -210,7 +210,9 @@ c
 c     store
    35  lstk(k) = lstk(k+1) - v
       lk = lstk(k)
+      if(vt.eq.8) call showint(stk(lstk(pntr)+2))
       call dcopy(v,stk(lstk(pntr)),-1,stk(lk),-1)
+      if(vt.eq.8)call showint(stk(lk+2))
       go to 40
 c
 c     pop stack
