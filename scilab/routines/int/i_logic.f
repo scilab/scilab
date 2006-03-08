@@ -17,6 +17,10 @@ c
       m2=istk(il2+1)
       n2=istk(il2+2)
       it2=istk(il2+3)
+      if(istk(il2).eq.1.and.it2.eq.1) then
+         fin=-op
+         return
+      endif
       l2=il2+4
       mn2=m2*n2
       top=top-1
@@ -26,6 +30,12 @@ c
       m1=istk(il1+1)
       n1=istk(il1+2)
       it1=istk(il1+3)
+      if(istk(il1).eq.1.and.it1.eq.1) then
+         top=top+1
+         fin=-op
+         return
+      endif
+
       l1=il1+4
       mn1=m1*n1
 
