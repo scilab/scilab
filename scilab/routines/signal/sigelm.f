@@ -119,9 +119,60 @@ c     .        ierr should be always 0
          endif
       else
 c     .  2 dimensionnal fft
-         call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
-         if(ierr.lt.0) goto 21
-         call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)
+cxx         call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
+cxx         if(ierr.lt.0) goto 21
+cxx         call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)
+
+
+
+         m2=2**int(log(dble(m)+0.5d0)/log(2.0d+0))
+         n2=2**int(log(dble(n)+0.5d0)/log(2.0d+0))
+c     .  first call ()
+c     .  If m2 is a power of two and less than m<2^15 use fft842 for efficiency 
+         if(m2.eq.m) then
+            if(m.le.2**15) then
+               do 25 i=1,n
+                  call fft842(isn,m,stk(lr+m*(i-1)),stk(li+m*(i-1)),
+     $                 ierr)
+ 25            continue
+            else
+               call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
+               if(ierr.lt.0) goto 21
+            endif
+         else
+            call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
+            if(ierr.lt.0) goto 21
+         endif
+c     .  second call ()
+         if(2*n.le.lw) then
+            if(n2.eq.n) then
+               if(n.le.2**15) then
+                  ltempr=libre
+                  ltempi=libre+n
+                  do 26 i=1,m
+c     .              compute the fft on each line of the matrix
+                     call dcopy(n,stk(lr+(i-1)),m,stk(ltempr),1)
+                     call dcopy(n,stk(li+(i-1)),m,stk(ltempi),1)
+                     call fft842(isn,n,stk(ltempr),stk(ltempi),ierr)
+                     if(ierr.lt.0) goto 21
+                     call dcopy(n,stk(ltempr),1,stk(lr+(i-1)),m)
+                     call dcopy(n,stk(ltempi),1,stk(li+(i-1)),m)
+ 26               continue
+               else
+                  call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre)
+     $                 ,lw)
+                  if(ierr.lt.0) goto 21
+               endif
+            else
+               call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)
+               if(ierr.lt.0) goto 21
+            endif
+         else
+            call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)
+            if(ierr.lt.0) goto 21
+         endif 
+
+
       endif
  21   if(ierr.lt.0) then
          buf='fft fails by lack of memory'
