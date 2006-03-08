@@ -29,18 +29,18 @@ void Initialize()
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
   #if WIN32
-	static char JavaSciInterf[]="javasci";
+    static char JavaSciInterf[]="javasci";
     static char nw[]="-nw";
     static char nb[]="-nb";
   #endif
 
-  #if WIN32
-    char *p1 = (char*)getenv ("SCI");
-  #endif
+  
+  char *p1 = (char*)getenv ("SCI");
+  
   
   #if WIN32
   /* Supprime le mode windows et la baniere */
-	add_sci_argv(JavaSciInterf);
+    add_sci_argv(JavaSciInterf);
     add_sci_argv(nb);
   #endif
   
@@ -74,8 +74,12 @@ void Initialize()
 		set_sci_env(p1);
 	}
   #else
-   sprintf (env, "%s=%s", "SCI",SCI);
-   putenv (env);
+   if (p1==NULL)
+   {
+   	fprintf(stderr,"Please define SCI environment variable\n");
+   	sprintf (env, "%s=%s", "SCI",SCI);
+		putenv (env);
+   }
   #endif
 
   /* Scilab Initialization */
