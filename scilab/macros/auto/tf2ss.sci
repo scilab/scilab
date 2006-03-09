@@ -42,17 +42,21 @@ for k=1:md
 end;
 
 if degree(d)==0 then d=coeff(d),end
+
 if n1<>0 then
   nrmb=norm(b,1);nrmc=norm(c,1);fact=sqrt(nrmc*nrmb);
-  b=b*fact/nrmb;c=c*fact/nrmc;
+  b=b*fact/nrmb;c=c*fact/nrmc;atmp=a;
   [a,u]=balanc(a);
+  if rcond(u)< %eps*n1*n1*100
+  nn=size(a,1);u=eye(nn,nn);a=atmp;
+  end
   //apply transformation u without matrix inversion
   [k,l]=find(u<>0) //get the permutation
   u=u(k,l);c=c(:,k)*u; b=diag(1 ./diag(u))*b(k,:);
   //c=c*u;b=u^(-1)*b; 
 
   if rhs<2 then 
-    [no,u]=contr(a',c');
+    [no,u]=contr(a',c',%eps);
   else
     [no,u]=contr(a',c',tol);
   end
