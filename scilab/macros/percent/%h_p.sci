@@ -173,6 +173,7 @@ function %h_p(h)
 	 "auto_clear = "+sci2exp(h.auto_clear)
 	 "auto_scale = "+sci2exp(h.auto_scale)
 	 " "
+         "hidden_axis_color = " + string(h.hidden_axis_color);
 	 "hiddencolor = "+string(h.hiddencolor)
          "line_mode = "+sci2exp(h.line_mode)
 	 "line_style = "+string(h.line_style)
