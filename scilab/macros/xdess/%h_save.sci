@@ -1,6 +1,6 @@
 function %h_save(h,fd)
   //Author S. Steer Sept 2004, Copyright INRIA
-  version=[3 1 0 2]
+  version=[4 0 0 0]
   mput(version,'c',fd)
   
   hsize = size(h);
@@ -151,8 +151,8 @@ function save_graphichandle(h,fd)
     mput(length(h.z_ticks.labels),'c',fd); // z_ticks.labels
     mput(ascii(strcat(h.z_ticks.labels)),'c',fd);
     
-    
-    mput(bool2s(h.box=='on'),'c',fd) // box
+    mput(length(h.box), 'c', fd ) ; // box
+    mput(ascii(h.box),  'c', fd ) ;
     mput(size(h.sub_tics,'*'),'c',fd);mput(h.sub_tics,'c',fd); // sub_ticks
     //mput(-1,'il',fd) // tics_color is removed F.Leray 15.03.05
     mput(h.font_style,'c',fd) // font_style
@@ -171,6 +171,7 @@ function save_graphichandle(h,fd)
     mput(h.axes_bounds,'dl',fd); // axes_bounds
     mput(bool2s(h.auto_clear=='on'),'c',fd) // auto_clear
     mput(bool2s(h.auto_scale=='on'),'c',fd) // auto_scale
+    mput(h.hidden_axis_color,'il',fd); // hidden_axiis_color
     mput(h.hiddencolor,'il',fd) // hidden_color
     mput(bool2s(h.line_mode=='on'),'c',fd) // line_mode
     mput(h.line_style,'c',fd) // line_style

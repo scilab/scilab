@@ -58,7 +58,8 @@ global curgedindex
 global curgedobject
 global ticksNoteBook ;
 
-global  visToggle limToggle boxToggle isoToggle gridToggle 
+global  visToggle limToggle boxToggle isoToggle gridToggle
+global  curBoxState
 global  xToggle yToggle zToggle red green blue color 
 global  xlabel ylabel zlabel tlabel
 global  curvis cubToggle viewToggle
@@ -93,7 +94,7 @@ global msdos
 global Xlabelfontstyle Ylabelfontstyle Zlabelfontstyle TITLEfontstyle fontstyle
 global RED GREEN BLUE
 
-global hiddencolor
+global hiddenAxisColor
 
 global xauto_position yauto_position zauto_position titleauto_position
 global x_position y_position z_position title_position
@@ -1353,15 +1354,14 @@ $w.frame.bcolor set $bcolor
 #Color scale hiddencolor
 frame $w.frame.clrh  -borderwidth 0
 pack $w.frame.clrh  -in $w.frame -side top  -fill x -pady 0
-label $w.frame.hcolorlabel -height 0 -text "Hidden color:" -width 0  -font $gedFont -anchor e -width $largeur
+label $w.frame.hcolorlabel -height 0 -text "Hidden axis color:" -width 0  -font $gedFont -anchor e -width $largeur
 
 scale $w.frame.hcolor -orient horizontal -from -2 -to $ncolors \
-	 -resolution 1.0 -command "setHiddenColor $w.frame.hcolor" -tickinterval 0  -font $gedFont
+	 -resolution 1.0 -command "setHiddenAxisColor $w.frame.hcolor" -tickinterval 0  -font $gedFont
 
 pack $w.frame.hcolorlabel -in $w.frame.clrh -side left
 pack $w.frame.hcolor -in  $w.frame.clrh -side left -expand 1 -fill x -pady 0 -padx $smallPad
-$w.frame.hcolor set $hiddencolor
-
+$w.frame.hcolor set $hiddenAxisColor
 
 #Thickness scale
 frame $w.frame.thk  -borderwidth 0
@@ -1406,6 +1406,8 @@ pack $w.b -side bottom
 ###################################################################
 set w [Notebook:frame $uf.n Aspect]
 
+set largeurArray 12
+
 frame $w.frame -borderwidth 0
 pack $w.frame -side top   -fill x
 
@@ -1429,7 +1431,7 @@ pack $w.frame.clearlabel -in $w.frame.line1   -side left
 pack $w.frame.clearib  -in $w.frame.line1    -side left -fill x -pady 0 -padx $smallPad
 
 #Isoview
-label $w.frame.isolabel  -text " Isoview:" -font $gedFont -anchor e -width $largeur
+label $w.frame.isolabel  -text " Isoview:" -font $gedFont -anchor e -width $largeurArray
 checkbutton $w.frame.isob  -text "on"\
     -variable isoToggle  -onvalue "on" -offvalue "off" \
     -command "toggleIsoview $w.frame.isob" -font $gedFont
@@ -1450,7 +1452,7 @@ pack $w.frame.scallabel -in $w.frame.line2  -side left
 pack $w.frame.scalib  -in $w.frame.line2    -side left  -fill x -pady 0 -padx $smallPad
 
 #Tight Limits
-label $w.frame.limitlabel -text "Tight limits:" -font $gedFont -anchor e -width $largeur
+label $w.frame.limitlabel -text "Tight limits:" -font $gedFont -anchor e -width $largeurArray
 checkbutton $w.frame.limit  -text "on"\
     -variable limToggle  -onvalue "on" -offvalue "off" \
     -command "toggleLimits $w.frame.limit" -font $gedFont
@@ -1460,14 +1462,14 @@ pack $w.frame.limitlabel -in $w.frame.line2 -side left
 pack $w.frame.limit  -in $w.frame.line2  -side left  -fill x -pady 0 -padx $smallPad
 
 #box
-label $w.frame.boxlabel  -text "Boxed:" -font $gedFont -anchor e -width $largeur
-checkbutton $w.frame.box  -text "on"\
-    -variable boxToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleBox $w.frame.box" -font $gedFont
-OnOffForeground $w.frame.box $boxToggle
+# label $w.frame.boxlabel  -text "Boxed:" -font $gedFont -anchor e -width $largeur
+# checkbutton $w.frame.box  -text "on"\
+#     -variable boxToggle  -onvalue "on" -offvalue "off" \
+#     -command "toggleBox $w.frame.box" -font $gedFont
+# OnOffForeground $w.frame.box $boxToggle
 
-pack $w.frame.boxlabel -in $w.frame.line3  -side left
-pack $w.frame.box  -in $w.frame.line3   -side left -fill x -pady 0 -padx $smallPad
+# pack $w.frame.boxlabel -in $w.frame.line3  -side left
+# pack $w.frame.box  -in $w.frame.line3   -side left -fill x -pady 0 -padx $smallPad
 
 #cubescaling
 label $w.frame.cublabel  -text "Cube scaling:" -font $gedFont -anchor e -width $largeur
@@ -1478,6 +1480,22 @@ OnOffForeground $w.frame.cubb $cubToggle
 
 pack $w.frame.cublabel -in $w.frame.line3 -side left
 pack $w.frame.cubb  -in $w.frame.line3  -side left -fill x -pady 0 -padx $smallPad
+
+
+
+#box
+label $w.frame.boxlabel -text "Boxed:" -font $gedFont -anchor e -width $largeurArray
+combobox $w.frame.box \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 10 \
+    -textvariable curBoxState\
+    -editable false \
+    -command [list selectBoxState ] -font $gedFont
+eval $w.frame.box list insert end [list "off" "hidden_axis" "back_half" "on"]
+pack $w.frame.boxlabel -in $w.frame.line3   -side left
+pack $w.frame.box -in $w.frame.line3  -side left -fill x -pady 0 -padx $smallPad
 
 
 #Clip state
@@ -1941,7 +1959,7 @@ proc setBackColor {w index} {
     }
 }
 
-proc setHiddenColor {w index} {  
+proc setHiddenAxisColor {w index} {  
     global RED BLUE GREEN
     variable REDCOL 
     variable GRECOL 
@@ -1949,18 +1967,18 @@ proc setHiddenColor {w index} {
     
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle; if ged_handle.hiddencolor <> $index then ged_handle.hiddencolor=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.hidden_axis_color <> $index then ged_handle.hidden_axis_color=$index; end;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	$w config  -activebackground $color -troughcolor $color
 
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle; if ged_handle.hiddencolor <> $index then ged_handle.hiddencolor=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.hidden_axis_color <> $index then ged_handle.hidden_axis_color=$index; end;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle; if ged_handle.hiddencolor <> $index then ged_handle.hiddencolor=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.hidden_axis_color <> $index then ged_handle.hidden_axis_color=$index; end;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -1970,7 +1988,7 @@ proc setHiddenColor {w index} {
 	
 	$w config  -activebackground $color -troughcolor $color
     } else { 
-	ScilabEval "global ged_handle; if ged_handle.hiddencolor <> $index then ged_handle.hiddencolor=$index; end;"
+	ScilabEval "global ged_handle; if ged_handle.hidden_axis_color <> $index then ged_handle.hidden_axis_color=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -2103,6 +2121,11 @@ proc toggleCubview { frame } {
     ScilabEval "global ged_handle;ged_handle.cube_scaling='$cubToggle'"
 
     OnOffForeground $frame $cubToggle
+}
+
+proc selectBoxState {w args} {
+    global curBoxState
+    ScilabEval "global ged_handle;ged_handle.box='$curBoxState'"
 }
 
 proc toggleBox { frame } {

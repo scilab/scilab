@@ -2555,12 +2555,42 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     } 
   else if  (strcmp(marker,"box") == 0) 
     {
-      if ((strcmp(cstk(*value),"on") == 0))
-	sciSetIsBoxed(pobj,TRUE);
-      else if ((strcmp(cstk(*value),"off") == 0))  
-	sciSetIsBoxed(pobj,FALSE);
+      if ( sciGetEntityType( pobj ) == SCI_SUBWIN )
+      {
+        if ( (strcmp(cstk(*value),"off") == 0) )
+        {
+          sciSetBoxType( pobj, BT_OFF ) ;
+        }
+        else if ( (strcmp(cstk(*value),"on") == 0) )
+        {
+          sciSetBoxType( pobj, BT_ON ) ;
+        }
+        else if ( (strcmp(cstk(*value),"hidden_axis") == 0) )
+        {
+          sciSetBoxType( pobj, BT_HIDDEN_AXIS ) ;
+        }
+        else if ( (strcmp(cstk(*value),"back_half") == 0) )
+        {
+          sciSetBoxType( pobj, BT_BACK_HALF ) ;
+        }
+        else
+        {
+          strcpy(error_message,"Second argument must be 'on', 'off', 'hidden_axis' or 'back_half'. ") ;
+          return -1;
+        }
+      }
       else
-	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+      {
+        if ((strcmp(cstk(*value),"on") == 0))
+          sciSetIsBoxed(pobj,TRUE);
+        else if ((strcmp(cstk(*value),"off") == 0))  
+          sciSetIsBoxed(pobj,FALSE);
+        else
+	{
+          strcpy(error_message,"Second argument must be 'on' or 'off'") ;
+          return -1;
+        }
+      }
     }
   else if (strcmp(marker,"grid") == 0) {/**DJ.Abdemouche 2003**/
     for (i = 0; i < *numcol; i++ )
@@ -3242,6 +3272,23 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		  strcpy(error_message,"menu_enable property does not exist for this handle");
 		  return -1;
 	  }
+  }
+  else if( strcmp(marker,"hidden_axis_color") == 0 )
+  {
+    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
+    {
+      int haColor = (int) *stk(*value) ;
+      int colormapSize = sciGetNumColors(pobj) ;
+      if ( haColor >= -2 && haColor <= colormapSize + 1 )
+      {
+        pSUBWIN_FEATURE(pobj)->axes.hiddenAxisColor = haColor ;
+      }
+    }
+    else
+    {
+      strcpy(error_message,"hidden_axis_color property does not exist for this handle");
+      return -1;
+    }
   }
   else 
     {

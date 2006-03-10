@@ -227,7 +227,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
       set(a,"auto_ticks"           , auto_ticks)
     end
-    set(a,"box"                  , toggle(mget(1,'c',fd))) // box
+    
+    if is_higher_than([3 1 0 2]) then
+      // migth be now 'off','hidden_axis','back_half' or 'on'
+      boxtype = ascii(mget(mget(1,'c',fd),'c',fd)) ;
+      set( a, "box", boxtype  ) // box
+    else
+      set(a, "box", toggle(mget(1,'c',fd) ) ) // box
+    end
+    
     set(a,"sub_tics"             , mget(mget(1,'c',fd),'c',fd)) // sub_tics
     if ~(is_higher_than([3 1 0 1]) ) then 
       mget(1,'il',fd); // tics_color is removed F.Leray 15.03.05
@@ -286,6 +294,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"axes_bounds"          , mget(4,'dl',fd))  // axes_bounds
     set(a,"auto_clear"           , toggle(mget(1,'c',fd))) // auto_clear
     set(a,"auto_scale"           , toggle(mget(1,'c',fd))) // auto_scale
+
+    if is_higher_than([3 1 0 2] ) then // 4 0 0 0 and after
+      set(a,"hidden_axis_color", mget(1,'il',fd)) ; // hidden_axis_color
+    end
+    
     set(a,"hiddencolor"          , mget(1,'il',fd)), // hidden_color
     set(a,"line_mode"            , toggle(mget(1,'c',fd))), // line_mode
     set(a,"line_style"           , mget(1,'c',fd)) // line_style
@@ -314,18 +327,20 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(a,"clip_box",mget(4,'dl',fd)) ;
     end
     set(a,"clip_state"           ,clip_state);
- 
+    
     // children
     nbChildren = mget(1,'il',fd) ;
     for k = 1 : nbChildren
        load_graphichandle(fd) ;
     end
-    
     //next lines because tools used to rebuild children change the
     //data_bounds an axes_visible properties
     set(a,"data_bounds"          , data_bounds) ; 
     set(a,"axes_visible"          , axes_visible) ;  
-    
+    if is_higher_than([3 1 0 2] ) then
+      set(a, "box", boxtype ) ;
+    end   
+
     h=a;
     load_user_data(fd) ; // user_data
     

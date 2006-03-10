@@ -38,7 +38,6 @@ set preffilename $env(SCIHOME)/.GedPreferences.tcl
 #puts "preffilename vaut: -> $preffilename"
 catch {source $preffilename}
 
-
 global SELOBJECT
 global ged_handle_list_size
 global lalist
