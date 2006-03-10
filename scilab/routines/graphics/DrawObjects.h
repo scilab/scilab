@@ -185,4 +185,12 @@ extern int FreeVertices(sciPointObj * psubwin);
 extern int ChildrenCounter(sciPointObj *pparent);
 extern int GetBarNumber(sciPointObj * pobj);
 extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
+
+extern void sciGetAxisBox( double limits[6], double xbox[8], double ybox[8], double zbox[8] ) ;
+extern void sciUpdateScaleAngles( double theta, double alpha ) ;
+extern void sciAxesVerticesIndices( integer insideU[4],
+                                    integer insideD[4],
+                                    double  xbox[8]   ,
+                                    double  ybox[8]   ,
+                                    integer xind[8]    ) ;
 #endif /* __SCI_DRAWINGS__ */
