@@ -98,7 +98,7 @@ void axis_draw(strflag)
     case '0' :
       break ;
     case '2' :
-      if (version_flag() == 0) pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  /* NG */
+      if (version_flag() == 0) pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON;  /* NG */
        
       C2F(dr)("xrect","xv",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
 	      ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -156,7 +156,7 @@ void axis_draw2(strflag)
       /*case '0' :
         break ;*/
     case '2' :
-      pSUBWIN_FEATURE (psubwin)->axes.rect = 1;
+      pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON;
       
       C2F(dr)("xrect","xv",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
 	      ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -223,7 +223,7 @@ static void aplotv2(strflag)
   char xstr,ystr;  
   char dirx = 'd';
   int i;
-  
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE(psubwin) ;
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
   y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
@@ -236,12 +236,12 @@ static void aplotv2(strflag)
   /** Cscale.frect[4]= xmin ymin xmax ymax **/ 
 
   if (version_flag() == 0) {
-    Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
-    Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2]; 
+    Cscale.xtics[2] = ppSubWin->axes.xlim[2];
+    Cscale.ytics[2] = ppSubWin->axes.ylim[2]; 
 
     /* Remis F.Leray 06.05.04 */
     for(i=0 ; i<4 ; i++ )
-      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+      Cscale.frect[i]=  ppSubWin->FRect[i] ;
 
     Cscale.xtics[1] = (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ; 
     Cscale.xtics[0] = (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
@@ -273,7 +273,7 @@ static void aplotv2(strflag)
    
   if ((version_flag() == 0) && (c != '4'))
     {  
-      xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+      xstr = ppSubWin->axes.xdir;
       switch (xstr) 
 	{
 	case 'u':  
@@ -291,7 +291,7 @@ static void aplotv2(strflag)
 	  dirx ='d'; 
 	  break;
 	}
-      ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
+      ystr = ppSubWin->axes.ydir;
       switch (ystr) 
 	{
 	case 'r': 
@@ -311,20 +311,25 @@ static void aplotv2(strflag)
 	}
     }
   if ( c != '4' && c != '5' ) {
-    if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.rect == 0))
+    if (   (version_flag() == 0) 
+        && ( ppSubWin->axes.rect == BT_OFF || ppSubWin->axes.rect == BT_HIDDEN_AXIS ))
+    {
       seg=1; /* seg=1 means not to draw a rectangle (cases wherexy-axis is centered in the middle of the frame or in (0,0))*/
-    else  
+    }
+    else
+    {
       /** frame rectangle **/
       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
   }
 
   if (version_flag() == 0){  
-    /*  Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; */ /*SS 01/01/03 */ /* F.Leray Error here: Array overflowed: dim  Cscale.Waaint1 = 4 and i=4 */
-    Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
-    Cscale.Waaint1[1]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.xlim[3]); /*SS 02/01/03 */ /* Give the number of intervals on x*/
-    Cscale.Waaint1[2]= pSUBWIN_FEATURE (psubwin)->axes.subint[1]+1; 
-    Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */  /* Give the number of intervals on y*/
+    
+    Cscale.Waaint1[0]= ppSubWin->axes.subint[0]+1;
+    Cscale.Waaint1[1]= (integer) (ppSubWin->axes.xlim[3]); /*SS 02/01/03 */ /* Give the number of intervals on x*/
+    Cscale.Waaint1[2]= ppSubWin->axes.subint[1]+1; 
+    Cscale.Waaint1[3]= (integer) (ppSubWin->axes.ylim[3]);/*SS 02/01/03 */  /* Give the number of intervals on y*/
 
     /* Above: Number of tics on x-axis: Cscale.Waaint1[0]*/
     /*        Number of tics on y-axis: Cscale.Waaint1[2]*/
@@ -332,7 +337,7 @@ static void aplotv2(strflag)
     /* Above: Number of subtics on x-axis: Cscale.Waaint1[1]*/
     /*        Number of subtics on y-axis: Cscale.Waaint1[3]*/
 
-    ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+    ticscolor = ppSubWin->axes.ticscolor;
     /*textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
       fontsize=pSUBWIN_FEATURE (psubwin)->axes.fontsize;*/
     textcolor=sciGetFontForeground(psubwin);
@@ -363,7 +368,7 @@ static void aplotv1(strflag)
   char xstr,ystr; 
   char dirx = 'd';
   double CSxtics[4], CSytics[4];
-
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE(psubwin) ;
   seg=0; 
   
   switch ( c ) 
@@ -391,7 +396,7 @@ static void aplotv1(strflag)
        
   if ((version_flag() == 0) && (c != '4'))
     {  
-      xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+      xstr = ppSubWin->axes.xdir;
       switch (xstr) 
 	{
 	case 'u':  
@@ -430,22 +435,27 @@ static void aplotv1(strflag)
     }
   
   if ( c != '4' && c != '5' ) {
-    if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.rect == 0))
+    if (    (version_flag() == 0) 
+         && (ppSubWin->axes.rect == BT_OFF || ppSubWin->axes.rect == BT_HIDDEN_AXIS) )
+    {
       seg=1;
+    }
     else
+    {
       /** frame rectangle **/
       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
   }
 
   if (version_flag() == 0){  
 
-    Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
-    Cscale.Waaint1[1]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.xlim[3]); /*SS 02/01/03 */
-    Cscale.Waaint1[2]= pSUBWIN_FEATURE (psubwin)->axes.subint[1]+1; 
-    Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */
+    Cscale.Waaint1[0]= ppSubWin->axes.subint[0]+1;
+    Cscale.Waaint1[1]= (integer) (ppSubWin->axes.xlim[3]); /*SS 02/01/03 */
+    Cscale.Waaint1[2]= ppSubWin->axes.subint[1]+1; 
+    Cscale.Waaint1[3]= (integer) (ppSubWin->axes.ylim[3]);/*SS 02/01/03 */
 
-    ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+    ticscolor = ppSubWin->axes.ticscolor;
     textcolor=sciGetFontForeground(psubwin);
     fontsize=sciGetFontDeciWidth(psubwin)/100;
     fontstyle=sciGetFontStyle(psubwin);
@@ -1538,13 +1548,18 @@ static void axesplot(strflag, psubwin)
   SciDrawLines(dir, psubwin,x1,textcolor,ticscolor);
   
   
-  if ( c != '4' && c != '5' ) {
-    if (pSUBWIN_FEATURE (psubwin)->axes.rect == 0)
-      seg=1;
+  if ( c != '4' && c != '5' )
+  {
+    if ( sciGetBoxType(psubwin) == BT_OFF || sciGetBoxType(psubwin) == BT_HIDDEN_AXIS )
+    {
+      seg = 1 ;
+    }
     else
+    {
       /** frame rectangle **/
       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
   }
 }
 
@@ -2818,43 +2833,8 @@ BOOL CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *pos
   /* compute bounding of "10"  string used for log scale ON and auto_ticks ON */
   C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
  
-
-
   getTicksLabelBox( 1.0, 1.0, foo, posi, fontid, logflag, rect, TRUE ) ;
  
-  /* if(logflag == 'n') */
-/*     { */
-/*       C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*       rect[3] = (integer)(fact_h* rect[3]); /\* added the 01.06.05 *\/ */
-/*       rect[2] = (integer)(fact_w* rect[2]); */
-/*    } */
-/*   else */
-/*     { */
-/*       int smallersize = fontid[1]-2; */
-/*       int rect10[4]; */
-/*       int posi10[2]; */
-      
-/*       posi10[0] = posi[0] - logrect[2]; */
-/*       posi10[1] = posi[1] + logrect[3]; */
-      
-/*       C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-      
-/*       posi[0] = rect10[0] + rect10[2]; */
-/*       posi[1] = (int) (rect10[1] - rect10[3]*.1); */
-      
-/*       C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*       C2F(dr)("xstringl",foo,(&posi[0]),(&posi[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-      
-/*       rect[2] = (integer)(fact_w*(rect[2] + rect10[2])); */
-/*       rect[3] = (integer)(fact_h*(rect[3] + rect10[3] + (int) (rect10[3]*.1))); /\* added the 01.06.05 *\/ */
-/* /\*       rect[3] = rect[3] + rect10[3] + (int) (rect10[3]*.1); /\\* added the 01.06.05 *\\/ *\/ */
-/*       rect[0] = rect10[0]; */
-/*       rect[1] = rect[1]; */
-
-/*       C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*     } */
-  
-  
   point[0][0] = rect[0]; /* upper left point */
   point[0][1] = rect[1];
   
