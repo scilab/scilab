@@ -457,6 +457,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
       ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
       ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];
+      ppsubwin->axes.hiddenAxisColor = ppaxesmdl->axes.hiddenAxisColor ;
       ppsubwin->project[0]= ppaxesmdl->project[0];
       ppsubwin->project[1]= ppaxesmdl->project[1];
       ppsubwin->project[2]= ppaxesmdl->project[2];
