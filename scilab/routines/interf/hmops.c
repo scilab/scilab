@@ -68,6 +68,7 @@ extern int C2F(ddmpev)();
 int C2F(createlistcvarfrom)();
 #endif
 
+extern int C2F(tpconv)(integer *xtyp, integer *ytyp, integer *n, void *dx, integer *incx, void *dy, integer *incy);
 
 static int get_length(int num)
 {
@@ -406,6 +407,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
   double *td, px[3], x;
   HyperMat H;
   SciBoolSparse B;
+  SciIntMat IV;
 
   switch ( GetType(pos) )
     {
@@ -430,6 +432,27 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  td = stk(l); *mn = m*n; *ind_max = 0;
 	  li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li); 
 	  return ( index_convert(td, ti, *mn, ind_max) );
+	}
+
+    case (SCI_INTEGER):
+
+      GetRhsVar(pos, "I", &m, &n, (int *)&IV);
+
+      if ( m <= 0 )      /* normaly not possible */
+	return 0;
+      else               /* "normal" index */
+	{
+	  *mn = m*n; *ind_max = 0;
+	  li = 4; CreateVar(pos_ind, "I", mn,   &one,   &li); ti = istk(li);
+	  li = 4; C2F(tpconv)(&(IV.it), &li, mn, IV.D, &one, (void *) ti, &one); /* convert to usual int */
+
+	  for ( i = 0 ; i < *mn ; i++ )
+	    {
+	      if ( ti[i] <= 0 ) return 0;
+	      if ( ti[i] > *ind_max ) *ind_max = ti[i];
+	      ti[i]--;
+	    }
+	  return 1;
 	}
 
     case (SCI_POLYNOMIAL):
