@@ -677,7 +677,8 @@ typedef struct
 }/** */
 sciUimenu;
 
-
+/* the part of the drawn box for 3d axis */
+typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxesBoxType ;
 
 typedef struct 
 {  
@@ -699,7 +700,7 @@ typedef struct
   sciFont fontcontext;
   
   int  subint[3]; /* Dj.A 17/12/03 */
-  int  rect;
+  EAxesBoxType  rect ; /* to know the part of the box we have to draw */
   char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
  
@@ -709,6 +710,8 @@ typedef struct
   
   char **u_xlabels,  **u_ylabels,  **u_zlabels; /* label string corresponding to each specified u_xyzgrads */
     
+  int hiddenAxisColor ; /* the color and style of the hidden axis */
+
   double  limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
   integer flag[3]; /* 3d options */
   
@@ -732,7 +735,7 @@ typedef struct
   /** */
   scigMode gmode;
   /** */
-  sciGraphicContext graphiccontext; 
+  sciGraphicContext graphiccontext;
   /** */
   /** specifies the title for this window  */
   char name[sizeof ("ScilabGraphic") + 4];	    
