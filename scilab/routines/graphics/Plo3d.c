@@ -1050,14 +1050,12 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
   C2F(dr)("xget","line style",&verbose,lstyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   /**DJ.Abdemouche 2003**/
-  if (version_flag() == 0) { 
+  if (version_flag() == 0) 
+  { 
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-    hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;    
-    if (hiddencolor == style ) 
-      j= 2;
-    else
-      j=sciGetLineStyle (psubwin);
-  }	
+    hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;
+    j = sciGetLineStyle (psubwin) ;
+  }  	
   /***/  
   C2F(dr)("xset","line style",&j,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsegs","v",ixbox,iybox,&npoly,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
