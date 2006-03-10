@@ -23,6 +23,7 @@ extern int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
 extern int sciInitGraphicMode (sciPointObj * pobj);
 
 extern void initsubwin(); /* INITOBJECT */
+extern void reinitSubwin( void ) ;
 
 extern int InitFigureModel(); /* INITOBJECT */
 extern int InitAxesModel();   /* INITOBJECT */
