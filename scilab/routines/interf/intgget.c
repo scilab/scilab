@@ -1704,18 +1704,42 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
     }
-  else if ((strcmp(marker,"box") == 0)) {
-    if (sciGetIsBoxed(pobj)) {
-      numrow   = 1;
-      numcol   = 2;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex),"on", numrow*numcol); 
+  else if ((strcmp(marker,"box") == 0))
+  {
+    if ( sciGetEntityType ( pobj ) == SCI_SUBWIN )
+    {
+      switch( sciGetBoxType( pobj ) )
+      {
+      case BT_OFF:
+        sciReturnString( "off" ) ;
+        break ;
+      case BT_ON:
+        sciReturnString( "on" ) ;
+        break ;
+      case BT_HIDDEN_AXIS:
+        sciReturnString( "hidden_axis" ) ;
+        break ;
+      case BT_BACK_HALF:
+        sciReturnString( "back_half" ) ;
+        break ;
+      }
     }
-    else {
-      numrow   = 1;
-      numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex),"off", numrow*numcol);  
+    else
+    {
+      if (sciGetIsBoxed(pobj))
+      {
+        numrow   = 1;
+        numcol   = 2;
+        CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+        strncpy(cstk(outindex),"on", numrow*numcol); 
+      }
+      else
+      {
+        numrow   = 1;
+        numcol   = 3;
+        CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+        strncpy(cstk(outindex),"off", numrow*numcol);  
+      }
     }
   }
   /**DJ.Abdemouche 2003**/
@@ -2092,6 +2116,18 @@ int sciGet(sciPointObj *pobj,char *marker)
 		  strcpy(error_message,"menu_enable property does not exist for this handle");
 		  return -1;
 	  }
+  }
+  else if ( strcmp(marker,"hidden_axis_color") == 0 )
+  {
+    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
+    {
+      sciReturnInt( pSUBWIN_FEATURE(pobj)->axes.hiddenAxisColor ) ;
+    }
+    else
+    {
+      strcpy(error_message,"hidden_axis_color property does not exist for this handle");
+      return -1;
+    }
   }
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
@@ -2513,7 +2549,10 @@ double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
   int flag_limit = 0,i;
   double * tmp = NULL;
 
-  tmp=(double *)MALLOC(nbtics*sizeof(double));
+  if ( nbtics <= 0 || ( tmp = MALLOC( nbtics * sizeof(double) ) ) == NULL )
+  {
+    return NULL ;
+  }
 
   if(logflag=='l')
     {
@@ -2569,4 +2608,31 @@ BOOL GetHandleVisibilityOnUimenu(sciPointObj * pobj)
 
 	return pUIMENU_FEATURE(pobj)->handle_visible;
 }
+/*-----------------------------------------------------------------------------------*/
+
+int sciReturnString( const char * value )
+{
+  int numRow   = 1 ;
+  int numCol   = strlen( value ) ;
+  int outIndex = 0 ;
+  CreateVar(Rhs+1,"c",&numRow,&numCol,&outIndex);
+  strncpy(cstk(outIndex),value, numCol);
+
+  return  0 ;
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+int sciReturnInt( int value )
+{
+
+  int numRow   = 1 ;
+  int numCol   = 1 ;
+  int outIndex = 0 ;
+  CreateVar( Rhs+1, "i", &numRow, &numCol, &outIndex ) ;
+  *istk(outIndex) = value ;
+  
+  return 0 ;
+}
+
 /*-----------------------------------------------------------------------------------*/
