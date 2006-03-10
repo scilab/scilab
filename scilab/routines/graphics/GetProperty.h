@@ -37,6 +37,7 @@ extern BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
 extern int sciGetLineStyle (sciPointObj * pobj); /* GET */
 extern BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 extern BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
+EAxesBoxType sciGetBoxType( sciPointObj * pobj ) ; /* GET */
 extern BOOL sciGetIsBoxed (sciPointObj * pobj); /* GET */
 extern int sciGetMarkStyle (sciPointObj * pobj); /* GET */
 extern int sciGetMarkSize (sciPointObj * pobj); /* GET */

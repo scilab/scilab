@@ -4515,6 +4515,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"menu_enable"       ) == 0) {return 10;}
   else if (strcmp(marker,"callback_type"     ) == 0) {return 10;}
   else if (strcmp(marker,"bounding_rect"     ) == 0) {return 1 ;} /*JBS 16/11/05 */
+  else if (strcmp(marker,"hidden_axis_color" ) == 0) {return 1 ;} /*       03/06 */
   else {return -1;}
 }
 
@@ -4763,6 +4764,20 @@ sciGethPopMenu (sciPointObj * pthis)
   return (HMENU) NULL;
 }
 
+/* get the property of the axes box */
+EAxesBoxType sciGetBoxType( sciPointObj * pobj )
+{
+  switch (sciGetEntityType (pobj))
+  {
+    case SCI_SUBWIN:
+      return pSUBWIN_FEATURE(pobj)->axes.rect ;
+    default:
+      sciprint ("This object has no box type \n") ;
+      return 0 ;
+  }
+  return 0;
+}
+
 
 /**sciGetIsBoxed
  * @memo Returns the box existence
@@ -4776,7 +4791,7 @@ sciGetIsBoxed (sciPointObj * pobj)
       return pTEXT_FEATURE(pobj)->isboxed;
       break;
     case SCI_SUBWIN:
-      return pSUBWIN_FEATURE(pobj)->axes.rect;
+      return ( pSUBWIN_FEATURE(pobj)->axes.rect == BT_ON || pSUBWIN_FEATURE(pobj)->axes.rect == BT_BACK_HALF ) ;
     case SCI_LABEL:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:

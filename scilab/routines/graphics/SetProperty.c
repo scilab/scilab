@@ -3721,6 +3721,40 @@ sciSetIsFilled (sciPointObj * pobj, BOOL isfilled)
 }
 
 
+/* set the property of the axes box  */
+int sciSetBoxType( sciPointObj * pobj, EAxesBoxType type ) 
+{
+  switch (sciGetEntityType (pobj))
+  {
+    case SCI_SUBWIN:
+      pSUBWIN_FEATURE(pobj)->axes.rect = type ;
+      /* redondant information in scilab :'( */
+      switch ( type )
+      {
+        case BT_OFF:
+          pSUBWIN_FEATURE(pobj)->axes.flag[2] = 0 ;
+          break ;
+        case BT_ON:
+          pSUBWIN_FEATURE(pobj)->axes.flag[2] = 4 ;
+          break ;
+        case BT_HIDDEN_AXIS:
+          pSUBWIN_FEATURE(pobj)->axes.flag[2] = 2 ;
+          break ;
+        case BT_BACK_HALF:
+          pSUBWIN_FEATURE(pobj)->axes.flag[2] = 3 ;
+          break ;
+      }
+      return 0;
+      break;
+    default:
+      sciprint ("This object has no box type \n") ;
+      return -1 ;
+      break;
+  }
+  return 0;
+}
+
+
 /**sciSetIsBoxed
  * @memo Sets the box existence
  */
@@ -3734,7 +3768,15 @@ sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
       return 0;
       break;
     case SCI_SUBWIN:
-      pSUBWIN_FEATURE(pobj)->axes.rect = isboxed;
+      sciprint("Warning: SetProperty.c:sciSetIsBoxed : please use sciSetBoxType instead\n");
+      if ( isboxed )
+      {
+        pSUBWIN_FEATURE(pobj)->axes.rect = BT_ON ;
+      }
+      else
+      {
+        pSUBWIN_FEATURE(pobj)->axes.rect = BT_OFF ;
+      }
       return 0;
       break;
     case SCI_LABEL:

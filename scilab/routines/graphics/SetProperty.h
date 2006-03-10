@@ -41,6 +41,7 @@ extern int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit); /* SET */
 extern int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetFillStyle (sciPointObj * pobj, int fillstyle); /* SET */
+extern int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /* SET */
 extern int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
 /* extern int sciSetIsInterpShaded (sciPointObj * pobj, BOOL isinterpshaded); /\* SET *\/ */
 
