@@ -327,21 +327,18 @@ psonstmp = h.children;
 if psonstmp <> [] then
   psonstmp = h.children(1);
 end
-//pause
+
 while ((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
   i = i+1;
   ged_handle_out = [ged_handle_out;  psonstmp];
   List_handles(psonstmp);
-  //  disp("Processus recursif RETOUR")
-  //  disp("    ici 1");
-  //  pause
+
   if ((i) <=size(psonstmp.parent.children,1)) then
     psonstmp = psonstmp.parent.children(i);
   else
     psonstmp=[];
   end
-  //  disp("    ici 2");
-  //  pause
+
 end
 
 endfunction
@@ -487,14 +484,14 @@ function ged_axes(h)
   TCL_SetVar("isoToggle",h.isoview)
   TCL_SetVar("cubToggle",h.cube_scaling)
   TCL_SetVar("viewToggle",h.view)
-  TCL_SetVar("boxToggle",h.box)
+  TCL_SetVar("curBoxState",h.box)
   TCL_SetVar("xToggle",part(h.log_flags,1))
   TCL_SetVar("yToggle",part(h.log_flags,2))
   TCL_SetVar("zToggle",part(h.log_flags,3))
   TCL_SetVar("xGrid",string(h.grid(1)))
   TCL_SetVar("yGrid",string(h.grid(2)))
   
-  TCL_SetVar("hiddencolor",string(h.hiddencolor))
+  TCL_SetVar("hiddenAxisColor",h.hidden_axis_color)
   TCL_SetVar("curfontangle_x",string(h.x_label.font_angle))
   TCL_SetVar("curfontangle_y",string(h.y_label.font_angle))
   TCL_SetVar("curfontangle_z",string(h.z_label.font_angle))
@@ -2121,6 +2118,7 @@ case "2d"
   drawlater(); // postpon the drawings due to switching from 2d to 3d mode (for example)
   // in order to know the complete data set (z data for axes...)
   h.view='3d'
+  
   TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
   h.view='2d'
   drawnow();
