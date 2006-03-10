@@ -508,7 +508,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = FALSE;
       ppsubwin->axes.axes_visible[1] = FALSE;
       ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
-      ppsubwin->axes.rect = 0;
+      ppsubwin->axes.rect = BT_OFF;
       haschanged = TRUE;
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
@@ -523,7 +523,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       ppsubwin->axes.ydir ='l';
-      ppsubwin->axes.rect = 1;
+      ppsubwin->axes.rect = BT_ON;
       haschanged = TRUE;
     }
     break;
@@ -535,7 +535,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = FALSE;
       ppsubwin->axes.axes_visible[1] = FALSE;
       ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
-      ppsubwin->axes.rect = 1;
+      ppsubwin->axes.rect = BT_ON;
       haschanged = TRUE;
     }
     break;
@@ -560,7 +560,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = TRUE;
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.rect = 1;
+      ppsubwin->axes.rect = BT_ON;
       /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
       haschanged = TRUE;
     }
@@ -577,7 +577,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       ppsubwin->axes.xdir ='c';
       ppsubwin->axes.ydir ='c';
-      ppsubwin->axes.rect = 1;
+      ppsubwin->axes.rect = BT_ON;
       haschanged = TRUE;
     }
     break;
@@ -589,7 +589,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = TRUE;
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.rect = 1;
+      ppsubwin->axes.rect = BT_ON;
       haschanged = TRUE;
     }
   }

@@ -454,23 +454,32 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   }
   
   if( pSUBWIN_FEATURE (psubwin)->FirstPlot == FALSE && (iflag[2] == 0 || iflag[2] == 1))
-    { /* Nothing to do: we leave as before */}
-  else{
+  { 
+    /* Nothing to do: we leave as before */
+  }
+  else
+  {
     pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
     
-    if(iflag[2] == 0 || iflag[2] == 1){
-      pSUBWIN_FEATURE (psubwin)->axes.rect = 0; /* for 2d use only (when switching to 2d mode) */
-
-      if (pSUBWIN_FEATURE(psubwin)->FirstPlot) {
+    if(iflag[2] == 0 || iflag[2] == 1)
+    {
+      
+      if (pSUBWIN_FEATURE(psubwin)->FirstPlot)
+      {
 	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
 	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
 	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE;
-	pSUBWIN_FEATURE (psubwin)->axes.rect = 0;
+	pSUBWIN_FEATURE (psubwin)->axes.rect = BT_OFF ;
+
+        sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,FALSE);
+        sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,FALSE);
+        sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,FALSE);
       }
       /*else no changes : the axes visible properties are driven by the previous plot */
     }
-    else if(iflag[2] == 3){
-      pSUBWIN_FEATURE (psubwin)->axes.rect = 1; /* for 2d use only (when switching to 2d mode) */
+    else if(iflag[2] == 3)
+    {
+      pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON ; /* for 2d use only (when switching to 2d mode) */
       
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
@@ -480,9 +489,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,TRUE);
       sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,TRUE);
     }
-    else if(iflag[2] == 4){
-      pSUBWIN_FEATURE (psubwin)->axes.rect = 1;
-
+    else if(iflag[2] == 4)
+    {
+      pSUBWIN_FEATURE (psubwin)->axes.rect = BT_ON ;
+      
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE;
