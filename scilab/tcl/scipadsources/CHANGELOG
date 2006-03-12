@@ -2097,3 +2097,10 @@ Francois VOGEL, 06/03/06
  * fileunreadable extended to deal with files locked by another process,
    working around Tcl bug 1394972
  * version --> 6.13
+
+Francois VOGEL, 12/03/06
+ * The debugger can perform step-by-step (step into only, and only in opened
+   buffers) - this is a brute force approach, breakpoints are set on every
+   line of every function from every buffer, but this is the only way I
+   found without Scilab team support
+ * version --> 6.14

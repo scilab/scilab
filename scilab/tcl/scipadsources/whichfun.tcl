@@ -280,8 +280,9 @@ proc getallfunsinalltextareas {} {
 # Get all the functions defined in all the opened textareas
 # (those that have scilab as scheme)
 # Result is a string with getallfunsintextarea results:
-# "{textarea1 { $funname11 $funline11 $precfun11  $funname12 $funline12 $precfun12  ... }}
-#  {textarea2 { $funname21 $funline21 $precfun21  ... }}
+# "textarea1 { $funname11 $funline11 $precfun11  $funname12 $funline12 $precfun12  ... }
+#  textarea2 { $funname21 $funline21 $precfun21  ... }
+#  ...
 # "
     global listoftextarea
     set hitslist ""

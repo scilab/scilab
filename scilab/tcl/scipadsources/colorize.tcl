@@ -788,44 +788,71 @@ proc switchcolorizefile {} {
 
 proc schememenus {textarea} {
     global pad listoffile
-    global Shift_F11 Shift_F12
+    global Shift_F8 Shift_F11 Shift_F12
+    global watch watchwinicons watchwinstepicons
     global MenuEntryId
     set dm $pad.filemenu.debug
+    set dms $pad.filemenu.debug.step
     if {$listoffile("$textarea",language) == "scilab"} {
         #enable "Load into scilab"
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state normal
         # restore bindings
         bindenable $pad execfile
         bind $pad <F5> {filetosave %W; execfile}
-        # enable all the debug entries
+        # enable the debug entries and watch window icons
         # this is set selectively in function of the debugger state
         setdbmenuentriesstates_bp
+        # enable "create help skeleton" - done in proc keyposn
         # enable "Show continued lines"
         $pad.filemenu.options.colorizeoptions entryconfigure $MenuEntryId($pad.filemenu.options.colorizeoptions.[mcra "Show c&ontinued lines"]) -state normal
     } else {
         #disable "Load into scilab"
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state disabled
-        #disable all the Debug entries
+        # remove bindings
+        binddisable $pad execfile
+        bind $pad <F5> {}
+        #disable all the Debug menues entries
         for {set i 1} {$i<=[$dm index last]} {incr i} {
-            if {[$dm type $i] == "command"} {
+            if {[$dm type $i] == "command" || [$dm type $i] == "cascade"} {
                 $dm entryconfigure $i -state disabled
+            }
+        }
+        for {set i 1} {$i<=[$dms index last]} {incr i} {
+            if {[$dms type $i] == "command" || [$dms type $i] == "cascade"} {
+                $dms entryconfigure $i -state disabled
+            }
+        }
+        # remove debugger bindings
+        bind all <F9> {}
+        bind all <Control-F9> {}
+        bind all <F10> {}
+        bind all <Control-F11> {}
+        bind all <F11> {}
+#       pbind all $Shift_F11 {} ; # unused for the time being
+        pbind all $Shift_F8 {}
+        bind all <F8> {}
+        bind all <Control-F8> {}
+        pbind all $Shift_F12 {}
+        bind all <F12> {}
+        bind all <Control-F12> {}
+        # disable watch window icons
+        if {[info exists watchwinicons] && [info exists watchwinstepicons]} {
+            if {[winfo exists $watch]} {
+                set wi $watchwinicons
+                set wis $watchwinstepicons
+                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
+                [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
+                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
+                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
             }
         }
         #disable "create help skeleton"
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled
-        # remove bindings
-        binddisable $pad execfile
-        bind $pad <F5> {}
-        # remove debugger bindings
-        bind $pad <F9> {}
-        bind $pad <Control-F9> {}
-        bind $pad <F10> {}
-        bind $pad <Control-F11> {}
-        bind $pad <F11> {}
-#       pbind $pad $Shift_F11 {}
-        pbind $pad $Shift_F12 {}
-        bind $pad <F12> {}
-        bind $pad <Control-F12> {}
         # disable "Show continued lines"
         $pad.filemenu.options.colorizeoptions entryconfigure $MenuEntryId($pad.filemenu.options.colorizeoptions.[mcra "Show c&ontinued lines"]) -state disabled
     }

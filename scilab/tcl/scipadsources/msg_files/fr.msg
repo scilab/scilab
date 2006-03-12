@@ -1,12 +1,11 @@
 # Scipad texts in French
-# in sync at least with v6.9
+# in sync at least with v6.14
 
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
 ::msgcat::mcset fr "Cance&l" "Annu&ler"
 ::msgcat::mcset fr "OK" "OK"
-::msgcat::mcset fr "Scilab working" "Scilab occupé"
 ::msgcat::mcset fr "All files" "Tous les fichiers"
 ::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
 ::msgcat::mcset fr "Untitled" "SansTitre"
@@ -78,15 +77,31 @@
 
 
 # db_debugsession.tcl
-::msgcat::mcset fr "Scilab is working, wait for the prompt to issue a debugger command." "Scilab est occupé, attendez le prompt pour effectuer des commandes de débug."
-::msgcat::mcset fr "Cursor position is out of reach!" "Position du curseur hors d'atteinte!"
-::msgcat::mcset fr "Cursor must be in a function" "Le curseur doit être dans une fonction"
-::msgcat::mcset fr "No effect - The debugged file is not stuck" "Aucun effet - Le fichier en débug n'est pas bloqué"
-::msgcat::mcset fr "Scilab execution error" "Erreur Scilab durant l'exécution"
-::msgcat::mcset fr "The shell reported an error while trying to execute " "Le shell a rencontré une erreur en tentant d'exécuter "
-    ::msgcat::mcset fr " at line " " ligne "
-    ::msgcat::mcset fr " of " " de "
-::msgcat::mcset fr "Execution aborted!" "Exécution arrêtée!"
+::msgcat::mcset fr "Cursor position is out of reach!" \
+                   "Position du curseur hors d'atteinte!"
+::msgcat::mcset fr "Cursor must be in a function" \
+                   "Le curseur doit être dans une fonction"
+::msgcat::mcset fr "No effect - The debugged file is not stuck" \
+                   "Aucun effet - Le fichier en débug n'est pas bloqué"
+::msgcat::mcset fr "Too many breakpointed functions" \
+                   "Trop de fonctions contenant des points d'arrêt"
+::msgcat::mcset fr "You have currently" \
+                   "Vos fichiers ouverts définissent actuellement"
+    ::msgcat::mcset fr "functions in your opened files." "fonctions."
+    ::msgcat::mcset fr "Scilab supports a maximum of" "Scilab supporte au maximum"
+    ::msgcat::mcset fr "possible breakpointed functions (see help setbpt)." \
+                       "functions avec points d'arrêts (voir help setbpt)."
+    ::msgcat::mcset fr "Step-by-step hence cannot be performed." \
+                       "Le mode pas à pas n'est en conséquence pas possible."
+    ::msgcat::mcset fr "This command will actually run to the next breakpoint." \
+                       "Cette commande va atteindre le prochain point d'arrêt."
+::msgcat::mcset fr "Too many breakpoints" "Trop de points d'arrêt"
+::msgcat::mcset fr "Executing this command would require to set" \
+                   "Exécuter cette commande nécessiterait d'insérer"
+    ::msgcat::mcset fr "breakpoints in your opened files." \
+                       "points d'arrêt dans vos fichiers ouverts."
+    ::msgcat::mcset fr "possible breakpoints in Scilab (see help setbpt)." \
+                       "points d'arrêt (voir help setbpt)."
 
 
 # db_init.tcl
@@ -302,8 +317,8 @@
     ::msgcat::mcset fr "&Configure execution..." "Con&figurer l'exécution..."
     ::msgcat::mcset fr "Go to next b&reakpoint" "Aller jusq&u'au prochain point d'arrêt"
     ::msgcat::mcset fr "&Step by step" "&Pas à pas"
-    ::msgcat::mcset fr "Step &into" "Pas à pas &principal"
-    ::msgcat::mcset fr "Step o&ver" "Pas à pas &détaillé"
+    ::msgcat::mcset fr "Step &into" "Pas à pas &détaillé"
+    ::msgcat::mcset fr "Step o&ver" "Pas à pas &principal"
     ::msgcat::mcset fr "Step &out" "Pas à pas &sortant"
     ::msgcat::mcset fr "Run to c&ursor" "Executer jusqu'au cur&seur"
     ::msgcat::mcset fr "G&o on ignoring any breakpoint" "&Continuer sans aucun point d'arrêt"
@@ -388,8 +403,6 @@
 
 # popupmenus.tcl
 ::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
-::msgcat::mcset fr "Scilab is working, please wait for the prompt to execute this command!" \
-                   "Scilab est occupé, veuillez attendre le prompt pour exécuter cette commande !"
 ::msgcat::mcset fr "AddWatch" "Ajouter %s comme espion"
 ::msgcat::mcset fr "Jump to" "Sauter à"
 
@@ -401,13 +414,11 @@
 
 # scilabexec.tcl
 ::msgcat::mcset fr "No point in loading an empty file!" "Charger un fichier vide ne présente pas d'intérêt!"
-::msgcat::mcset fr "Scilab is working, wait for the prompt to load file" "Scilab est occupé, attendez le prompt pour charger le fichier"
 ::msgcat::mcset fr "Exec done" "Exécution effectuée"
-::msgcat::mcset fr "Scilab is working, wait for the prompt to execute the selection." "Scilab est occupé, attendez le prompt pour exécuter la sélection."
-::msgcat::mcset fr "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab est occupé, attendez le prompt pour importer un fichier Matlab."
 ::msgcat::mcset fr "Matlab files" "Fichiers Matlab"
 ::msgcat::mcset fr "Matlab file to convert" "Fichier Matlab à importer"
-::msgcat::mcset fr "Scilab is converting, please hold on..." "Scilab est en train de convertir, patientez SVP..."
+::msgcat::mcset fr "Scilab is converting, please hold on..." \
+                   "Scilab est en train de convertir, patientez SVP..."
 ::msgcat::mcset fr "Matlab file import" "Import d'un fichier Matlab"
 ::msgcat::mcset fr "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
@@ -424,13 +435,30 @@
     ::msgcat::mcset fr "already exists: open the old file instead?" "existe déjà : Ouvrir le fichier existant ?"
 ::msgcat::mcset fr "Existing file" "Fichier existant"
 ::msgcat::mcset fr "New skeleton" "Nouveau squelette d'aide"
-::msgcat::mcset fr "Scilab is working, wait for the prompt to compile the help file." "Scilab est occupé, attendez le prompt pour compiler la page d'aide."
 ::msgcat::mcset fr "ScilabEval command cannot be passed to Scilab!" "Une commande ScilabEval ne peut pas être passée à Scilab!"
 ::msgcat::mcset fr impossibleScilabEval_message \
                    "ATTENTION : Une commande n'a pas pu être passée à Scilab et a été ignorée.\n\n \
                    La raison probable est que vous n'avez pas les droits d'écriture dans le répertoire TMPDIR de Scilab. \
                    Un comportement imprévisible peut se produire.\n\n \
                    La commande en cause est:\n\n-->"
+::msgcat::mcset fr "Scilab working" "Scilab occupé"
+::msgcat::mcset fr "Scilab is working, please wait for the prompt to execute this command!" \
+                   "Scilab est occupé, veuillez attendre le prompt pour exécuter cette commande !"
+::msgcat::mcset fr "Scilab is working, wait for the prompt to load file" \
+                   "Scilab est occupé, attendez le prompt pour charger le fichier"
+::msgcat::mcset fr "Scilab is working, wait for the prompt to execute the selection." \
+                   "Scilab est occupé, attendez le prompt pour exécuter la sélection."
+::msgcat::mcset fr "Scilab is working, wait for the prompt to convert a Matlab file." \
+                   "Scilab est occupé, attendez le prompt pour importer un fichier Matlab."
+::msgcat::mcset fr "Scilab is working, wait for the prompt to compile the help file." \
+                   "Scilab est occupé, attendez le prompt pour compiler la page d'aide."
+::msgcat::mcset fr "Scilab is working, wait for the prompt to issue a debugger command." \
+                   "Scilab est occupé, attendez le prompt pour effectuer des commandes de débug."
+::msgcat::mcset fr "Scilab execution error" "Erreur Scilab durant l'exécution"
+::msgcat::mcset fr "The shell reported an error while trying to execute " "Le shell a rencontré une erreur en tentant d'exécuter "
+    ::msgcat::mcset fr " at line " " ligne "
+    ::msgcat::mcset fr " of " " de "
+::msgcat::mcset fr "Execution aborted!" "Exécution arrêtée!"
 
 
 # scipad.tcl

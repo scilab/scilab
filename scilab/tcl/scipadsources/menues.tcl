@@ -128,16 +128,17 @@ proc createmenues {} {
 
     menu $pad.filemenu.debug.step -tearoff 1
     eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
-                  -menu $pad.filemenu.debug.step "
+                  -menu $pad.filemenu.debug.step \
+                  -image menubutstepimage -compound left "
         eval "$pad.filemenu.debug.step add command [me "Step &into"] \
-                 -command \"stepbystep_bp\" -accelerator Shift+F8\
-                 -image menubutstepimage -compound left "
+                 -command \"stepbystepinto_bp\" -accelerator Shift+F8\
+                 -image menubutstepenterimage -compound left "
         eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
-                 -command \"stepbystep_bp\" -accelerator F8\
-                 -image menubutstepimage -compound left "
+                 -command \"stepbystepover_bp\" -accelerator F8\
+                 -image menubutstepoverimage -compound left "
         eval "$pad.filemenu.debug.step add command [me "Step &out"] \
-                 -command \"stepbystep_bp\" -accelerator Ctrl+F8\
-                 -image menubutstepimage -compound left "
+                 -command \"stepbystepout_bp\" -accelerator Ctrl+F8\
+                 -image menubutstepexitimage -compound left "
 
     eval "$pad.filemenu.debug add command [me "Run to c&ursor"] \
                -command \"runtocursor_bp\" -accelerator Ctrl+F11\

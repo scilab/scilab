@@ -245,6 +245,9 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             set splitsize 4000 ;# arbitrary but works up to approx. 4095
             set nbparts [expr [string length $comm] / $splitsize + 1]
             set fid [open $fname w]
+            # mode(-1) to prevent Scilab to echo the commands passed to the temporary
+            # file - only "mode(-1)" will be displayed in the Scilab shell when the
+            # ScilabEval "exec ..." below gets executed
             puts $fid "mode(-1);"
             set startpos 0
             for {set i 1} {$i < $nbparts} {incr i} {

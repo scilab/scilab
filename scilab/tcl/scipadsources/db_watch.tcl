@@ -5,7 +5,7 @@ proc showwatch_bp {} {
     global watchvars watchvarsvals buttonAddw
     global firsttimeinshowwatch watchgeom watchmins watchminsinit
     global callstackwidget callstackcontent
-    global watchwinicons db_butimages
+    global watchwinicons watchwinstepicons db_butimages db_stepbutimages
     global showwatchvariablesarea togglewvabutton
     global showcallstackarea togglecsabutton
     global watchvpane1mins watchvpane2mins watchvsashcoord
@@ -49,6 +49,15 @@ proc showwatch_bp {} {
     set buttonToNextBpt $watch.f.f1.f1l.toNextBpt
     button $buttonToNextBpt -command "tonextbreakpoint_bp" -image [lindex $db_butimages 6] \
            -relief flat -overrelief raised
+    set buttonStepInto $watch.f.f1.f1l.stepInto
+    button $buttonStepInto -command "stepbystepinto_bp" -image [lindex $db_stepbutimages 1] \
+           -relief flat -overrelief raised
+    set buttonStepOver $watch.f.f1.f1l.stepOver
+    button $buttonStepOver -command "stepbystepover_bp" -image [lindex $db_stepbutimages 2] \
+           -relief flat -overrelief raised
+    set buttonStepOut $watch.f.f1.f1l.stepOut
+    button $buttonStepOut -command "stepbystepout_bp" -image [lindex $db_stepbutimages 3] \
+           -relief flat -overrelief raised
     set buttonRunToCursor $watch.f.f1.f1l.runToCursor
     button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 8] \
            -relief flat -overrelief raised
@@ -61,8 +70,10 @@ proc showwatch_bp {} {
     set buttonCancelDebug $watch.f.f1.f1l.cancelDebug
     button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 14] \
            -relief flat -overrelief raised
-    pack $buttonConfigure $buttonToNextBpt $buttonRunToCursor \
-         $buttonGoOnIgnor $buttonBreakDebug $buttonCancelDebug \
+    pack $buttonConfigure $buttonToNextBpt $buttonStepInto \
+         $buttonStepOver $buttonStepOut \
+         $buttonRunToCursor $buttonGoOnIgnor \
+         $buttonBreakDebug $buttonCancelDebug \
          -padx 2 -pady 2 -side left
 
     frame $watch.f.f1.f1r
@@ -86,6 +97,8 @@ proc showwatch_bp {} {
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
                             "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
+    set watchwinstepicons [list "sep" $buttonStepInto $buttonStepOver $buttonStepOut]
+
     setdbmenuentriesstates_bp
     bind $buttonConfigure   <Enter> {update_bubble_watch enter \
         $MenuEntryId($pad.filemenu.debug.[mcra "&Configure execution..."]) \
@@ -98,6 +111,24 @@ proc showwatch_bp {} {
         [winfo pointerxy $watch]}
     bind $buttonToNextBpt   <Leave> {update_bubble_watch leave \
         $MenuEntryId($pad.filemenu.debug.[mcra "Go to next b&reakpoint"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonStepInto    <Enter> {update_bubble_watch_step enter \
+        $MenuEntryId($pad.filemenu.debug.step.[mcra "Step &into"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonStepInto    <Leave> {update_bubble_watch_step leave \
+        $MenuEntryId($pad.filemenu.debug.step.[mcra "Step &into"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonStepOver    <Enter> {update_bubble_watch_step enter \
+        $MenuEntryId($pad.filemenu.debug.step.[mcra "Step o&ver"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonStepOver    <Leave> {update_bubble_watch_step leave \
+        $MenuEntryId($pad.filemenu.debug.step.[mcra "Step o&ver"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonStepOut     <Enter> {update_bubble_watch_step enter \
+        $MenuEntryId($pad.filemenu.debug.step.[mcra "Step &out"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonStepOut     <Leave> {update_bubble_watch_step leave \
+        $MenuEntryId($pad.filemenu.debug.step.[mcra "Step &out"]) \
         [winfo pointerxy $watch]}
     bind $buttonRunToCursor <Enter> {update_bubble_watch enter \
         $MenuEntryId($pad.filemenu.debug.[mcra "Run to c&ursor"]) \
@@ -470,11 +501,24 @@ proc duplicatechars {st ch} {
 }
 
 proc update_bubble_watch {type butnum mousexy} {
-# Manage the popup bubbles that display the name and accelerator of the watch window icons
+# Wrapper for generic_update_bubble_watch (all but step by step icons)
     global pad watchwinicons
-    set butname [lindex $watchwinicons $butnum]
-    set txt [$pad.filemenu.debug entrycget $butnum -label]
-    set acc [$pad.filemenu.debug entrycget $butnum -accelerator]
+    generic_update_bubble_watch $type $butnum $mousexy \
+            $watchwinicons $pad.filemenu.debug
+}
+
+proc update_bubble_watch_step {type butnum mousexy} {
+# Wrapper for generic_update_bubble_watch (step by step icons)
+    global pad watchwinstepicons
+    generic_update_bubble_watch $type $butnum $mousexy \
+            $watchwinstepicons $pad.filemenu.debug.step
+}
+
+proc generic_update_bubble_watch {type butnum mousexy watchwiniconslist menutosearchin} {
+# Manage the popup bubbles that display the name and accelerator of the watch window icons
+    set butname [lindex $watchwiniconslist $butnum]
+    set txt [$menutosearchin entrycget $butnum -label]
+    set acc [$menutosearchin entrycget $butnum -accelerator]
     if {$acc != ""} { set txt "$txt ($acc)" }
     update_bubble $type $butname $mousexy $txt
 }

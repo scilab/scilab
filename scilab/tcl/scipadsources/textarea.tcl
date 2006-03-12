@@ -97,13 +97,14 @@ proc TextStyles { t } {
     $t tag configure number -foreground $NUMCOLOR
     scipadindent $t .8
     $t tag configure breakpoint -background $BREAKPOINTCOLOR
+    $t tag configure activebreakpoint -background $BREAKPOINTCOLOR
     $t tag configure activebreakpoint -font $actbptextFont \
         -relief raised -borderwidth 2
     $t tag configure foundtext -background $FOUNDTEXTCOLOR
     $t tag configure replacedtext -background $REPLACEDTEXTCOLOR
     $t tag configure fakeselection -background $FAKESELCOLOR
+    $t tag raise activebreakpoint breakpoint
     $t tag raise sel activebreakpoint
-    $t tag raise sel breakpoint
 }
 
 proc setfontscipad {FontSize} {

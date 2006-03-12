@@ -36,10 +36,7 @@ proc runtocursor_bp {} {
 }
 
 proc makelinecheck_bp {cl} {
-    set fl  [lindex $cl 0]
-    set fn  [lindex $cl 1]
-    set rfl [lindex $cl 2]
-    set rfn [lindex $cl 3]
+    foreach {fl fn rfl rfn} $cl {}
     if {$fn==$rfn && $fl== $rfl} {
 #tk_messageBox -message "RightBpt\n$fl    $fn\n$rfl    $rfn"
         return "RightBpt"
@@ -61,9 +58,9 @@ proc tonextbreakpoint_bp {} {
 
 proc execfile_bp {} {
     global funnameargs listoftextarea funsinbuffer waitmessage watchvars
+    global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
-    set removecomm [removescilab_bp "no_output"]
     set setbpcomm ""
     foreach textarea $listoftextarea {
         set tagranges [$textarea tag ranges breakpoint]
@@ -91,6 +88,11 @@ proc execfile_bp {} {
     }
     if {$funnameargs != ""} {
         execfile "current"
+        # exec file containing the function to debug
+        # <TODO> this fails if the same function name can be found in more
+        #        than one single buffer
+        # note : we can't exec *all* buffers because some might contain
+        # non-Scilab scripts, which is not checked by execfile
         set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
         foreach textarea $listoftextarea {
             if {[info exists funsinbuffer($textarea)]} {
@@ -100,34 +102,28 @@ proc execfile_bp {} {
                 }
             }
         }
-        if {$setbpcomm != ""} {
-            setdbstate "DebugInProgress"
-            set commnvars [createsetinscishellcomm $watchvars]
-            set watchsetcomm [lindex $commnvars 0]
-            if {$watchsetcomm != ""} {
-                ScilabEval_lt "$watchsetcomm"  "seq"
-            }
+        set setbptonreallybreakpointedlinescmd $setbpcomm
+        setdbstate "DebugInProgress"
+        set commnvars [createsetinscishellcomm $watchvars]
+        set watchsetcomm [lindex $commnvars 0]
+        if {$watchsetcomm != ""} {
+            ScilabEval_lt "$watchsetcomm"  "seq"
+        }
 # <TODO> A ScilabEval "seq" never causes an error, this only happens with "sync"
 #        It would be a good idea to arrange for an error to be reported even with a seq,
 #        but this is outside of Scipad.
-            if {[catch {ScilabEval_lt "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
-                scilaberror $funnameargs
-            }
-            updateactivebreakpoint
-            getfromshell
-            checkendofdebug_bp
-        } else {
-            if {[catch {ScilabEval_lt "$funnameargs" "seq"}]} {
-                scilaberror $funnameargs
-            }
+        if {[catch {ScilabEval_lt "$setbpcomm; $funnameargs;"  "seq"}]} {
+            scilaberror $funnameargs
         }
+        updateactivebreakpoint
+        getfromshell
+        checkendofdebug_bp
     } else {
         # <TODO> .sce case
 ##        execfile
     }
 }
 
-proc stepbystep_bp {} {
 # <TODO> step by step support
 # I have no satisfactory solution for the time being.
 # The heart of the matter with step by step execution is that
@@ -135,13 +131,189 @@ proc stepbystep_bp {} {
 # line of code to execute. Of course, it is usually the next code line in the
 # sci file, but this is not necessarily true in for, while, if, and case
 # structures. I do not foresee any other remedy than a complete code analysis
-# performed in tcl (!), but this is a huge task I'm not prepared to go into.
+# performed in Tcl (!), but this is a huge task I'm not prepared to go into.
 # Moreover, all this analysis is already (and surely better) done by the
 # Scilab interpreter, therefore the best way would probably be to add a new
 # Scilab function that would return the line number of the next instruction to
 # be executed. This should no be such a tricky thing to do, drawing inspiration
-# e.g. from setbpt. 
-    tk_messageBox -message "Sorry, step execution not yet implemented!"
+# e.g. from setbpt, where, whatln and so on. However, despite my repeated
+# demands for information about the internals to the Scilab team, I never could
+# obtain any documentation nor help on this topic. Hence an elegant solution
+# for step execution is still to be achieved. Better than nothing, I
+# implemented a brute force approach that basically sets a breakpoint
+# everywhere. This works but is obviously sub-optimal. Moreover, this
+# implementation does not allow to step into non opened files that the debugger
+# could open, e.g. library files.
+
+proc stepbystepinto_bp {} {
+# set a breakpoint in Scilab on really every line of every function
+# of every opened buffer, run execution, delete all those breakpoints
+# and restore the breakpoints that were really set by the user
+    global funnameargs watchvars
+    global setbptonreallybreakpointedlinescmd
+    if {[isscilabbusy 5]} {return}
+    if {[getdbstate] == "ReadyForDebug"} {
+        if {$funnameargs != ""} {
+            set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
+            ScilabEval "setbpt(\"$funname\",1)" "seq"
+        }
+        # here tricky behaviour!! (see below for same comment)
+        execfile_bp
+        if {$funnameargs != ""} {
+            ScilabEval "delbpt(\"$funname\",1)" "seq"
+        }
+    } elseif {[getdbstate] == "DebugInProgress"} {
+        if {$funnameargs != ""} {
+            # because the user can open or close files during debug,
+            # getlogicallinenumbersranges must be called at each step
+            set cmd [getlogicallinenumbersranges]
+            # check Scilab limits in terms of breakpoints
+            if {$cmd == "-1"} {
+                # abort step-by-step command
+            } elseif {$cmd == "0"} {
+                # execute "Go to next breakpoint" instead
+                tonextbreakpoint_bp
+            } else {
+                regsub -all -- {\(} $cmd "setbpt(" cmdset
+                regsub -all -- {\(} $cmd "delbpt(" cmddel
+                ScilabEval_lt "$cmdset" "seq"
+                # here tricky behaviour!!
+                # resume_bp calls checkendofdebug_bp that constructs a string
+                # containing TCL_EvalStr("Scilab_Eval_lt ... seq"","scipad")
+                # this string is itself evaluated by a ScilabEval_lt seq, so the order
+                # in queue is first Tcl_EvalStr("Scilab_Eval_lt ... seq"","scipad")
+                # queued by checkendofdebug_bp, and second $cmddel queued from here
+                # Then Scilab executes the statements one by one: the first item
+                # results in queueing at the end what is in the ScilabEval_lt (the ...
+                # above) and that's all. Then $cmddel gets executed, and finally
+                # the ... get executed
+                # Order of execution is therefore $cmddel and, after it only, the
+                # contents of proc checkendofdebug_bp
+                resume_bp
+                ScilabEval_lt "$cmddel" "seq"
+            }
+        } else {
+            # <TODO> .sce case
+    #        resume_bp
+        }
+    } else {
+        tk_messageBox -message "Unexpected debug state in proc stepbystepinto_bp: please report"
+    }
+}
+
+proc stepbystepover_bp {} {
+# <TODO> step by step support
+    tk_messageBox -message "Sorry, step over not yet implemented!"
+}
+
+proc stepbystepout_bp {} {
+# <TODO> step by step support
+    tk_messageBox -message "Sorry, step out not yet implemented!"
+}
+
+proc getlogicallinenumbersranges {} {
+# get all logical line numbers ranges of all functions from all buffers
+# return value is normally a single string:
+#   ("$fun1",[1,max1]);("$fun2",[1,max2]);...;("$funN",[1,maxN]);
+# this format is especially useful when this string is used to set or
+# delete breakpoints in all the lines - just use a regsub to replace
+# the opening parenthesis by setbpt( or delbpt(
+# in case any Scilab limit is exceeded, return value is a string containing
+# a return code:
+#   "0"  : the calling procedure should apply "Go to next breakpoint" instead
+#          of the intended step-by-step command
+#   "-1" : the calling procedure should cancel the step-by-step command
+
+    global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
+
+    set cmd ""
+    set nbmacros 0 ; # used to test max number of breakpointed macros
+    set nbbreakp 0 ; # used to test max number of breakpoints
+
+    foreach {ta funsinthatta} [getallfunsinalltextareas] {
+        if {[lindex $funsinthatta 0] == "0NoFunInBuf"} {
+            continue
+        }
+        incr nbmacros
+        foreach {funname funline precfun} $funsinthatta {
+
+            # look for endfunction of $funname
+            set lfunpos [list $precfun]
+            set amatch [$ta search -exact -regexp "\\mfunction\\M" $precfun end]
+            set curpos [$ta index "$amatch + 1c"]
+            set amatch "firstloop"
+            while {[llength $lfunpos] != 0} {
+                # search for the next "function" or "endfunction" which is not in a
+                # comment nor in a string
+                set amatch [$ta search -exact -regexp "\\m(end)?function\\M" $curpos end]
+                if {$amatch != ""} {
+                    while {[lsearch [$ta tag names $amatch] "textquoted"] !=-1 || \
+                           [lsearch [$ta tag names $amatch] "rem2"      ] !=-1} {
+                        set amatch [$ta search -exact -regexp "\\m(end)?function\\M" "$amatch+8c" end]
+                        if {$amatch==""} break
+                    }
+                }
+                if {$amatch != ""} {
+                    if {[$ta get $amatch] == "e"} {
+                        # "endfunction" found
+                        if {![$ta compare "end-11c" < $amatch]} {
+                            # the 'if' above is to include the "endfunction" word
+                            # into the core of the function
+                            set lfunpos [lreplace $lfunpos end end]
+                        }
+                    } else {
+                        # "function" found
+                        lappend lfunpos $amatch
+                    }
+                    set curpos [$ta index "$amatch + 1c"]
+                }
+            }
+            # $curpos now contains the index in $ta of the first n of the word
+            # endfunction corresponding to $funname
+            set nbcontlines [countcontlines $ta $precfun $curpos]
+            scan $precfun "%d." startoffun 
+            scan $curpos  "%d." endoffun 
+            set lastlogicalline [expr $endoffun - $startoffun - $nbcontlines +1]
+
+            append cmd "(\"$funname\",\[1:" $lastlogicalline "\]);"
+
+            incr nbbreakp $lastlogicalline
+        }
+    }
+
+    # From help setbpt: The maximum number of functions with breakpoints
+    #                   enabled must be less than 100 and the maximum number
+    #                   of breakpoints is set to 1000
+    # Check it and ask what to do if any limit is exceeded
+    if {$nbmacros >= $ScilabCodeMaxBreakpointedMacros} {
+        set mes [concat [mc "You have currently"] $nbmacros [mc "functions in your opened files."] \
+                        [mc "Scilab supports a maximum of"] $ScilabCodeMaxBreakpointedMacros \
+                        [mc "possible breakpointed functions (see help setbpt)."] \
+                        [mc "Step-by-step hence cannot be performed."] \
+                        [mc "This command will actually run to the next breakpoint."] ]
+        set answer [tk_messageBox -message $mes -title [mc "Too many breakpointed functions"] \
+                        -icon warning -type okcancel]
+        switch -- $answer {
+            ok     {set cmd "0"}
+            cancel {set cmd "-1"}
+        }
+    }
+    if {$nbbreakp >= $ScilabCodeMaxBreakpoints} {
+        set mes [concat [mc "Executing this command would require to set"] $nbbreakp \
+                        [mc "breakpoints in your opened files."] \
+                        [mc "Scilab supports a maximum of"] $ScilabCodeMaxBreakpoints \
+                        [mc "possible breakpoints in Scilab (see help setbpt)."] \
+                        [mc "Step-by-step hence cannot be performed."] \
+                        [mc "This command will actually run to the next breakpoint."] ]
+        set answer [tk_messageBox -message $mes -title [mc "Too many breakpoints"] \
+                        -icon warning -type okcancel]
+        switch -- $answer {
+            ok     {set cmd "0"}
+            cancel {set cmd "-1"}
+        }
+    }
+
+    return $cmd
 }
 
 proc resume_bp {} {

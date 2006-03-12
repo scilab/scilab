@@ -17,13 +17,13 @@ proc insertremove_bp {{buf "current"}} {
                 $textarea tag add breakpoint $i1 $i2
             } else {
                 $textarea tag remove breakpoint $i1 $i2
-#                $textarea tag remove activebreakpoint $i1 $i2
             }
         }
     }
 }
 
 proc insertremovedebug_bp {textarea} {
+    global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
     set i1 "insert linestart"
     set i2 "insert lineend"
@@ -35,6 +35,7 @@ proc insertremovedebug_bp {textarea} {
             set funname [lindex $infun 0]
             set lineinfun [expr [lindex $infun 1] - 1]
             set setbpcomm " setbpt(\"$funname\",$lineinfun);"
+            append setbptonreallybreakpointedlinescmd $setbpcomm
             ScilabEval_lt $setbpcomm "seq"
         } else {
             # <TODO> .sce case
@@ -43,10 +44,10 @@ proc insertremovedebug_bp {textarea} {
         set infun [whichfun [$textarea index $i1] $textarea]
         if {$infun !={} } {
             $textarea tag remove breakpoint $i1 $i2
-#            $textarea tag remove activebreakpoint $i1 $i2
             set funname [lindex $infun 0]
             set lineinfun [expr [lindex $infun 1] - 1]
             set delbpcomm " delbpt(\"$funname\",$lineinfun);"
+            append setbptonreallybreakpointedlinescmd $delbpcomm
             ScilabEval_lt $delbpcomm  "seq"
         } else {
             # <TODO> .sce case

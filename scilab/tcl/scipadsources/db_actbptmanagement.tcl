@@ -16,6 +16,8 @@ proc updateactivebreakpoint { {itemno 3} } {
 proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
 # Show the active breakpoint
 # This is done by using proc dogotoline
+# <TODO> this might fail if the same function name can be found in more
+#        than one single buffer
     removeallactive_bp
     if {$activemacro == ""} {return}
     set fundefs [getallfunsinalltextareas]
