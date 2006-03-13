@@ -1,4 +1,4 @@
-function [fail]=setTitleLabelProperty(PropertyName,PropertyValue,TitleLabel,current_figure,cur_draw_mode)
+function [fail]=setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,current_figure,cur_draw_mode)
 // Copyright INRIA
 // SETTITLELABELPROPERTY function
 // is used by the functions title, xlabel, ylabel, zlabel
@@ -12,7 +12,7 @@ str = convstr(PropertyName);
 
 //Property = ['foreground' 'clipping'];
 
-[PName] = getTitleLabelPropertyName(str,current_figure,cur_draw_mode)
+[PName] = getTitleLabelPropertyNam(str,current_figure,cur_draw_mode)
 
 if (PName==[])
   ResetFigureDDM(current_figure, cur_draw_mode);
@@ -31,7 +31,7 @@ if (type(PropertyValue)<>1 | size(PropertyValue,"*")<>1)
   return;
 end
 
-TitleLabel.font_size = PropertyValue
+titlelabel.font_size = PropertyValue
 return
   
 
@@ -44,9 +44,9 @@ if (type(PropertyValue)<>1 | size(PropertyValue,"*")<>1)
   return;
 end
 
-TitleLabel.auto_rotation = 'off'
+titlelabel.auto_rotation = 'off'
 newPropertyValue=modulo(PropertyValue,360)
-TitleLabel.font_angle = 360-newPropertyValue
+titlelabel.font_angle = 360-newPropertyValue
 return
 
 
@@ -61,9 +61,9 @@ case 'foreground'         // <=> color or edgecolor
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
 
     if index < 10
-      TitleLabel.foreground = color(ColorVal(index));
+      titlelabel.foreground = color(ColorVal(index));
     elseif index == 10  // 'none' selected
-      TitleLabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
+      titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
     else
       warning("Color value must be a 3 element vector or an index in the colormap.");
       ResetFigureDDM(current_figure, cur_draw_mode);
@@ -72,7 +72,7 @@ case 'foreground'         // <=> color or edgecolor
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
     
     if (size(PropertyValue,'*')==3)
-      TitleLabel.foreground = addcolor(PropertyValue);
+      titlelabel.foreground = addcolor(PropertyValue);
     else
       warning("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
       ResetFigureDDM(current_figure, cur_draw_mode);
@@ -97,10 +97,10 @@ if (type(PropertyValue) == 10)
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
 
     if index < 10
-      TitleLabel.fill_mode = 'on'
-      TitleLabel.background = color(ColorVal(index));
+      titlelabel.fill_mode = 'on'
+      titlelabel.background = color(ColorVal(index));
     elseif index == 10  // 'none' selected
-      TitleLabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
+      titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
     else
       warning("Color value must be a 3 elements vector or an index in the colormap.");
       ResetFigureDDM(current_figure, cur_draw_mode);
@@ -109,8 +109,8 @@ if (type(PropertyValue) == 10)
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
     
     if (size(PropertyValue,'*')==3) 
-      TitleLabel.fill_mode = 'on'
-      TitleLabel.background = addcolor(PropertyValue);
+      titlelabel.fill_mode = 'on'
+      titlelabel.background = addcolor(PropertyValue);
     else
       warning("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
       ResetFigureDDM(current_figure, cur_draw_mode);
@@ -127,7 +127,7 @@ if (type(PropertyValue) == 10)
 case 'text'        // <=> string
   /////////////////////////
   if (type(PropertyValue) == 10)   
-     TitleLabel.text = PropertyValue;
+     titlelabel.text = PropertyValue;
      return
   else
     warning("Incorrect input : ...");
@@ -141,8 +141,8 @@ case 'position'        // <=> position, à completer: la position par rapport à z
   /////////////////////////
 
   if type(PropertyValue) == 1 & size(PropertyValue,"*")<=3    
-    TitleLabel.auto_position = 'off';
-    TitleLabel.position = PropertyValue ;
+    titlelabel.auto_position = 'off';
+    titlelabel.position = PropertyValue ;
     return
   else
     warning("Incorrect input : ...");
@@ -157,10 +157,10 @@ case 'visible'           // <=> visible
   if type(PropertyValue) == 10
     newPropertyName = convstr(PropertyName);
     if or(PropertyValue == ['off' 'of'])
-      TitleLabel.visible = 'off';
+      titlelabel.visible = 'off';
       return
     elseif PropertyValue == 'on'
-      TitleLabel.visible = 'on'; 
+      titlelabel.visible = 'on'; 
         return
     else
       warning("Incorrect input : ...");

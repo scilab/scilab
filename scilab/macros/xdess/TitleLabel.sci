@@ -17,7 +17,7 @@ end
 // nor PropertyName
 
 ListArg = varargin;
-TitleLabel = ListArg(1);
+titlelabel = ListArg(1);
 ListArg(1) = null();
 
 //detect and set the current axes now:
@@ -39,7 +39,7 @@ nv = size(ListArg);
 // detect and set the strig now:
 if modulo(nv,2) == 1 then
   st = ListArg(1);
-  execstr("monaxe."+ TitleLabel +".text"+"=st")
+  execstr("monaxe."+ titlelabel +".text"+"=st")
   ListArg(1) = null();
   nv=nv-1 
 end
@@ -88,12 +88,12 @@ Property = P1;
 
 current_surface = gce(); // get the newly created fac3d
 
-current_TitleLabel=get(monaxe,TitleLabel)
+current_titlelabel=get(monaxe,titlelabel)
 monaxe.axes_visible = ["on","on","on"]
 //current_surface.mark_size_unit='point';
 
 while ((Property <> 0) & (Property <= nv-1))
-  setTitleLabelProperty(ListArg(Property),ListArg(Property+1),current_TitleLabel,current_figure,cur_draw_mode)
+  setTitleLabelProperty(ListArg(Property),ListArg(Property+1),current_titlelabel,current_figure,cur_draw_mode)
   //setLabelProperty(ListArg(Property),ListArg(Property+1),monaxe.title,current_figure,cur_draw_mode)
   Property = Property+2;
 end
