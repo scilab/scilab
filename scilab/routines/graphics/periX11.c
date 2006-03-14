@@ -169,8 +169,7 @@ struct BCG *AddNewWindowToList __PARAMS((void));
 static void ResetScilabXgc __PARAMS((void));
 static XPoint *get_xpoints __PARAMS((void));
 static int ReallocVector  __PARAMS((int));
-static void DrawMark(integer *x, integer *y),LoadFonts(void), LoadSymbFonts(void), C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore);
-static void My2draw(integer j, integer *vx, integer *vy), MyDraw(integer iib, integer iif, integer *vx, integer *vy), change_points(integer i, integer x, integer y);
+static void DrawMark(integer *x, integer *y),LoadFonts(void), LoadSymbFonts(void) ;
 static void C2F(loadfamily_n)(char *name, integer *j);
 static void PixmapClear   __PARAMS((struct BCG *Xgc,int x,int y,int w,int h));
 static void xset_colormap __PARAMS((integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *a));
@@ -297,6 +296,7 @@ void sci_pixmap_resize(struct BCG *Xgc,int x,int y)
   if (Xgc->Cdrawable != (Drawable) 0) 
     XFreePixmap(dpy,(Pixmap)Xgc->Cdrawable);
   Xgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
+  
   if ( Xgc->Cdrawable == (Drawable) 0) 
     sciprint("Not enough memory  to allocate pixmap\r\n");
   else
@@ -1124,6 +1124,57 @@ static void xget_alufunction(integer *verbose, integer *value, integer *narg, do
     }
 }
 
+/* Line style 
+ * use a table of dashes and set default X11-dash style to 
+ *  one of the possible value. value points 
+ *  to a strictly positive integer 
+ *   if *value == 0 -> Solid line  
+ * else Dashed Line 
+ */
+
+#define MAXDASH       6
+#define DASH_TAB_SIZE 4
+
+/* define the different kind of lines. We can defined two kinds of dash for each line*/
+/* the first number is the length of the first dash, the third is the one of the second dash, */
+/* the two others are the distances between the dashes. */
+static integer DashTab[MAXDASH][DASH_TAB_SIZE] = {
+  {2,5,2,5}, {5,2,5,2}, {1,2,1,2}, {5,2,1,2},
+  {9,2,1,2}, {9,2,5,2}} ;
+
+/* modify the dashstyle depending on the wanted dashes and the thickness of the line */
+/* the result is stored inside xDash */
+static void setRealDashStyle( integer lineThickness, integer dashStyle, integer dashStyleSize )
+{
+  integer xDash[4] ;
+  integer xDash0 ;
+  double gapFactor ;
+  double dLineThickness ;
+  
+  /* increase the relative gap between each dash when the width is small */
+  /* otherwise, the points are too close, or too distant when the width is high */
+  /* I tried to find a compromise. Jb Silvy 03/2006 */
+  if ( lineThickness == 0 )
+  {
+    dLineThickness = 0.8 ;
+    gapFactor = 5.0 ; /* lineThickness = 0.8 */
+  }
+  else
+  {
+    dLineThickness = lineThickness ;
+    gapFactor =  dLineThickness + ( 4.0 / ( sqrt(dLineThickness) ) ) ;
+  }
+
+  /* printf("dashstyle = %d\n",dashStyle ) ; */
+  xDash0 =  DashTab[dashStyle][0] ;
+  
+  xDash[0] = Max( (integer) ( DashTab[dashStyle][0]  * dLineThickness ), 1 ) ;
+  xDash[1] = (integer) ( DashTab[dashStyle][1] * gapFactor ) ;
+  xDash[2] = Max( (integer) ( DashTab[dashStyle][2] * dLineThickness ), 1 ) ;
+  xDash[3] = (integer) ( DashTab[dashStyle][3] * gapFactor ) ;
+  xset_dashstyle( &dashStyle, xDash, &dashStyleSize ) ;
+}
+
 /*
  *  to set the thickness of lines : 0 is a possible value 
  *  it gives the thinest line (0 and 1 are the same for X11 but
@@ -1133,10 +1184,18 @@ static void xget_alufunction(integer *verbose, integer *value, integer *narg, do
 
 static void xset_thickness(integer *value, integer *v2, integer *v3, integer *v4)
 { 
+  integer l2 = DASH_TAB_SIZE ;
   XGCValues gcvalues;
-  ScilabXgc->CurLineWidth =Max(0, *value);
-  gcvalues.line_width = Max(0, *value);
-  XChangeGC(dpy, gc, GCLineWidth, &gcvalues); }
+
+  ScilabXgc->CurLineWidth = Max(0, *value);
+  
+  gcvalues.line_width = ScilabXgc->CurLineWidth ;
+  XChangeGC(dpy, gc, GCLineWidth, &gcvalues);
+  
+  /* modify the real dash style */
+  /* jb Silvy 03/2006 */
+  setRealDashStyle( ScilabXgc->CurLineWidth, ScilabXgc->CurDashStyle, l2 ) ;
+}
 
 /** to get the thickness value **/
 
@@ -1232,27 +1291,21 @@ static void xget_last(integer *verbose, integer *num, integer *narg, double *dum
   *narg=1;
 }
 
-/* Line style 
- * use a table of dashes and set default X11-dash style to 
- *  one of the possible value. value points 
- *  to a strictly positive integer 
- *   if *value == 0 -> Solid line  
- * else Dashed Line 
- */
-
-#define MAXDASH 6
-
-static integer DashTab[MAXDASH][4] = {
-  {2,5,2,5}, {7,2,7,2},  {2,2,2,2}, {7,2,2,2},
-  {11,3,2,3}, {11,3,5,3}};
 
 static void xset_dash(integer *value, integer *v2, integer *v3, integer *v4)
 {
-  static integer  l2 = 4, l3;
+  static integer l3     ;
+  static integer l2 = DASH_TAB_SIZE ;
 
   l3 = Max(0,Min(MAXDASH - 1,*value - 1));
-  xset_dashstyle(&l3,DashTab[l3],&l2);
-  ScilabXgc->CurDashStyle = l3;
+
+  ScilabXgc->CurDashStyle = l3 ;
+
+  /* xset_dashstyle(&l3,DashTab[l3],&l2); */
+  /* jbSilvy 03/2006 */
+  /* create a dash style depending on the thickness of the curve */
+  setRealDashStyle( ScilabXgc->CurLineWidth, ScilabXgc->CurDashStyle, l2 ) ;
+  
 }
 
 /* old version of xset_dash retained for compatibility */
@@ -1297,13 +1350,28 @@ static void xset_line_style(integer *value, integer *v2, integer *v3, integer *v
 static void xset_dashstyle(integer *value, integer *xx, integer *n)
 {
   int dashok= LineOnOffDash ;
-  if ( *value == 0) dashok = LineSolid;
+  if ( *value == 0)
+  {
+    dashok = LineSolid ;
+  }
   else 
+  {
+    integer i;
+    char * buffdash = NULL ; 
+    if ( ( buffdash = MALLOC( *n * sizeof(char) ) ) == NULL )
     {
-      integer i; char buffdash[18];
-      for ( i =0 ; i < *n ; i++) buffdash[i]=xx[i];
-      XSetDashes(dpy,gc,0,buffdash,(int)*n);
+      return ;
     }
+    for ( i = 0 ; i < *n ; i++ )
+    {
+      /* we need to convert the length from integer to char */
+      /* XSetDashes take a char * as argument, however it seems */
+      /* that it treat it as unsigned char *. */
+      buffdash[i] = INT_2_UCHAR( xx[i] ) ;
+    }
+    XSetDashes(dpy,gc,0,buffdash,(int)*n);
+    FREE( buffdash ) ;
+  }
   XSetLineAttributes(dpy,gc,(unsigned) ScilabXgc->CurLineWidth,dashok,
 		     CapButt,JoinMiter);
 }
@@ -3829,7 +3897,8 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
 { 
   integer i,j;
   ScilabXgc->IDLastPattern = GREYNUMBER - 1;
-  ScilabXgc->CurLineWidth=0 ;
+  ScilabXgc->CurLineWidth = 0 ;
+  ScilabXgc->CurDashStyle = 0 ;
   i=1;
   xset_thickness(&i,PI0,PI0,PI0);
   /** retirer le clipping **/
@@ -4558,10 +4627,10 @@ void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, in
   }
 }
 
-static void change_points(integer i, integer x, integer y)
-{
-  points[i].x=(short)x;   points[i].y=(short)y;
-}
+/* static void change_points(integer i, integer x, integer y) */
+/* { */
+/*   points[i].x=(short)x;   points[i].y=(short)y; */
+/* } */
 
 /* static void MyDraw(integer iib, integer iif, integer *vx, integer *vy) */
 /* { */
@@ -4726,3 +4795,5 @@ int CheckScilabXgc(void)
   return( ScilabXgc != (struct BCG *) 0);
 }
 
+#undef MAXTAB
+#undef DASH_TAB_SIZE
