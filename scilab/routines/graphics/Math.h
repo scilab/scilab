@@ -151,6 +151,12 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/
+/* truncate an integer to a char. Overflow value are trucated to the min */
+/* and max of char integer. */
+#define INT_2_UCHAR(i) ( (i) > UCHAR_MAX ? (UCHAR_MAX) : ( (i) < 0  ? 0 : ((char) i)) )
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------*/
 /* truncate a float or double to an int. Overflow value are trucated to the min */
 /* and max of 32 bits integer. */
 #define FLOAT_2_INT(f) ( (f) > INT_MAX ? (INT_MAX) : ( (f) < INT_MIN ? (INT_MIN) : ( inint( f ) ) ) )
