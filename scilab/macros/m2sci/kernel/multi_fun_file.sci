@@ -82,7 +82,7 @@ else
     else
       funcname=stripblanks(part(txt(funcdecl(k)),strindex(txt(funcdecl(k)),["function[","function "])+8:str(1)))
     end
-    pause
+   
       keq=strindex(funcname,"=")
     if ~isempty(keq) then
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
