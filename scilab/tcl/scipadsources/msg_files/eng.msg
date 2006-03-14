@@ -41,6 +41,12 @@
                     Most probably you don't have write access to Scilab's TMPDIR. \
                     Unpredictable results may occur.\n\n \
                     The offending command was:\n\n-->"
+::msgcat::mcset eng impossibleScilabEval_message2 \
+                    "WARNING: A command could not be passed to Scilab and has been ignored \
+                    because it is too long.\n\n \
+                    Unpredictable results may occur.\n\n \
+                    If you are currently debugging, try to remove watched variables.\n\n \
+                    The offending command was:\n\n-->"
 
 
 #preference variables description

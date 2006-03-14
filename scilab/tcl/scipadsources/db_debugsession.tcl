@@ -153,15 +153,54 @@ proc stepbystepinto_bp {} {
     global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
     if {[getdbstate] == "ReadyForDebug"} {
+
+# The code in the if {0} should have worked - This is Scilab bug 1894
+# A workaround is to execute the code in the else part of this clause
+# Reasons why it works this way are unknown
+# The only difference between the two implementations is the number of
+# breakpoints set and deleted when step into is called to enter the debug
+# (i.e. in the ReadyForDebug state of the debugger)
+if {0} {
         if {$funnameargs != ""} {
             set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
-            ScilabEval "setbpt(\"$funname\",1)" "seq"
+            ScilabEval_lt "setbpt(\"$funname\",1);" "seq"
+        } else {
+            # <TODO> .sce case
         }
-        # here tricky behaviour!! (see below for same comment)
+        # here tricky (but correct) behaviour!! (see below for same comment)
         execfile_bp
         if {$funnameargs != ""} {
-            ScilabEval "delbpt(\"$funname\",1)" "seq"
+            ScilabEval_lt "delbpt(\"$funname\",1);" "seq"
+        } else {
+            # <TODO> .sce case
         }
+
+} else {
+        if {$funnameargs != ""} {
+            # because the user can open or close files during debug,
+            # getlogicallinenumbersranges must be called at each step
+            set cmd [getlogicallinenumbersranges]
+            # check Scilab limits in terms of breakpoints
+            if {$cmd == "-1"} {
+                # abort step-by-step command - do nothing
+            } elseif {$cmd == "0"} {
+                # execute "Go to next breakpoint" instead
+                tonextbreakpoint_bp
+            } else {
+                # no limit exceeded - go on one step
+                regsub -all -- {\(} $cmd "setbpt(" cmdset
+                regsub -all -- {\(} $cmd "delbpt(" cmddel
+                ScilabEval_lt "$cmdset" "seq"
+                # here tricky (but correct) behaviour!! (see below for same comment)
+                execfile_bp
+                ScilabEval_lt "$cmddel" "seq"
+            }
+        } else {
+            # <TODO> .sce case
+    #        resume_bp
+        }
+}
+
     } elseif {[getdbstate] == "DebugInProgress"} {
         if {$funnameargs != ""} {
             # because the user can open or close files during debug,
@@ -169,15 +208,16 @@ proc stepbystepinto_bp {} {
             set cmd [getlogicallinenumbersranges]
             # check Scilab limits in terms of breakpoints
             if {$cmd == "-1"} {
-                # abort step-by-step command
+                # abort step-by-step command - do nothing
             } elseif {$cmd == "0"} {
                 # execute "Go to next breakpoint" instead
                 tonextbreakpoint_bp
             } else {
+                # no limit exceeded - go on one step
                 regsub -all -- {\(} $cmd "setbpt(" cmdset
                 regsub -all -- {\(} $cmd "delbpt(" cmddel
                 ScilabEval_lt "$cmdset" "seq"
-                # here tricky behaviour!!
+                # here tricky (but correct) behaviour!!
                 # resume_bp calls checkendofdebug_bp that constructs a string
                 # containing TCL_EvalStr("Scilab_Eval_lt ... seq"","scipad")
                 # this string is itself evaluated by a ScilabEval_lt seq, so the order
@@ -196,6 +236,7 @@ proc stepbystepinto_bp {} {
             # <TODO> .sce case
     #        resume_bp
         }
+
     } else {
         tk_messageBox -message "Unexpected debug state in proc stepbystepinto_bp: please report"
     }

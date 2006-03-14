@@ -2104,3 +2104,10 @@ Francois VOGEL, 12/03/06
    line of every function from every buffer, but this is the only way I
    found without Scilab team support
  * version --> 6.14
+
+Francois VOGEL, 14/03/06
+ * Impossible ScilabEvals better catched. bsiz (Scilab maximum buffer size)
+   limit was already taken into account, now lsiz limit (maximum complexity
+   of a command) is also tested
+ * Worked around Scilab bug 1894
+ * version --> 6.15

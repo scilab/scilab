@@ -216,26 +216,31 @@ proc xmlhelpfile {} {
 
 proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
 # ScilabEval with length test
-# This is needed because ScilabEval cannot accept commands longer than bsiz (they
-# are truncated by Scilab). Workaround: Long commands shall be saved into a file
-# that is exec'ed by ScilabEval.
+# This is needed because ScilabEval cannot accept commands longer than bsiz
+# (they are truncated by Scilab). Workaround: Long commands shall be saved
+# into a file that is exec'ed by ScilabEval.
 # This proc checks first the length of the command passed to ScilabEval.
-# If this length is smaller than bsiz-1, pass the command to ScilabEval for execution.
-# If this length is greater than bsiz-1, save the command in a file and do a
-# ScilabEval exec("the_file"). If this fails (wrong permission rights...) then warn the
-# user that something really weird might happen since there is no way to pass the
-# command to Scilab.
+# - If this length is smaller than bsiz-1, pass the command to ScilabEval for
+# execution.
+# - If this length is greater than bsiz-1 but smaller than lsiz-1, save the
+# command in a file and do a ScilabEval exec("the_file"). If this fails
+# (wrong permission rights...) then warn the user that something really weird
+# might happen since there is no way to pass the command to Scilab.
+# - If this length is greater than lsiz-1, warn the user that the command
+# cannot be passed to Scilab
 
     # this global solves bugs 1848 and 1853 even if sciprompt is not used in proc ScilabEval_lt
     global sciprompt
 
     global tmpdir
-    set bsiz_1 4095   ;# Must be consistent with bsiz defined in routines/stack.h
-    if {[string length $comm] <= $bsiz_1} {
+    set bsiz_1  4095   ;# Must be consistent with bsiz defined in routines/stack.h
+    set lsiz_1 65535   ;# Must be consistent with lsiz defined in routines/stack.h
+    set commlength [string length $comm]
+    if {$commlength <= $bsiz_1} {
         # No problem to process this
         ScilabEval $comm $opt1 $opt2
-    } else {
-        # Command is too long
+    } elseif {$commlength <= $lsiz_1} {
+        # Command is too long for a direct ScilabEval but can be passed through an exec'ed file
         # Create a file in tmpdir, and save the command in it.
         # Large (>$splitsize) commands are splitted into smaller parts, and trailing dots
         # are added.
@@ -265,7 +270,13 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             tk_messageBox  -title [mc "ScilabEval command cannot be passed to Scilab!"] -icon warning -type ok \
                            -message [concat [mc impossibleScilabEval_message] "ScilabEval" $comm $opt1 $opt2]
         }
-
+    } else {
+        # Command is definitely too long to be passed to Scilab, even if exec'ed in a file
+        # If the command was nevertheless sent, it would trigger error 108
+        # Even tk_messageBox does not accept too large -message content
+        set comm [concat "[string range $comm 0 4000]..." [mc "(end of command skipped)"] ]
+        tk_messageBox  -title [mc "ScilabEval command cannot be passed to Scilab!"] -icon warning -type ok \
+                       -message [concat [mc impossibleScilabEval_message2] "ScilabEval" $comm $opt1 $opt2]
     }
 }
 

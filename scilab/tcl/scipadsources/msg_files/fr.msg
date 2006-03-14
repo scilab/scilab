@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.14
+# in sync at least with v6.15
 
 
 # commons
@@ -441,6 +441,13 @@
                    La raison probable est que vous n'avez pas les droits d'écriture dans le répertoire TMPDIR de Scilab. \
                    Un comportement imprévisible peut se produire.\n\n \
                    La commande en cause est:\n\n-->"
+::msgcat::mcset fr impossibleScilabEval_message2 \
+                   "ATTENTION : Une commande n'a pas pu être passée à Scilab et a été ignorée \
+                   parce qu'elle est trop longue.\n\n \
+                   Un comportement imprévisible peut se produire.\n\n \
+                   Si vous êtes en cours de débug, essayez de supprimer des variables espionnées.\n\n \
+                   La commande en cause est:\n\n-->"
+::msgcat::mcset fr "(end of command skipped)" "(fin de la commande supprimée)"
 ::msgcat::mcset fr "Scilab working" "Scilab occupé"
 ::msgcat::mcset fr "Scilab is working, please wait for the prompt to execute this command!" \
                    "Scilab est occupé, veuillez attendre le prompt pour exécuter cette commande !"

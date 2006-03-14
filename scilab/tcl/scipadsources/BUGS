@@ -131,6 +131,13 @@ Debugger wishes:
 
 -include profiling into the debugger
 
+-breakpoint and activebreakpoint tags are not visible when selected. No
+ solution found so far. Only one tag with -background option has highest
+ priority, and there is no -selectbackground option for tags
+
+-watching some very large variable content looks like the variable is empty
+ This is Tk bug 1449858.
+
 
 Other wishes:
 
