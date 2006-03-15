@@ -382,6 +382,7 @@ void NewLine (LPTW lptw)
 void UpdateText (LPTW lptw, int count)
 {
   HDC hdc;
+	
   int xpos, ypos;
   xpos = lptw->CursorPos.x * lptw->CharSize.x - lptw->ScrollPos.x;
   ypos = lptw->CursorPos.y * lptw->CharSize.y - lptw->ScrollPos.y;
@@ -395,6 +396,17 @@ void UpdateText (LPTW lptw, int count)
   ReleaseDC (lptw->hWndText, hdc);
   lptw->CursorPos.x += count;
   if (lptw->CursorPos.x >= lptw->ScreenSize.x)  NewLine (lptw);
+	else
+	{
+		RECT RectZone;
+
+		RectZone.left=0;
+		RectZone.top=ypos;
+		RectZone.bottom=ypos+lptw->CharSize.y;
+		RectZone.right=xpos+lptw->CharSize.x;
+
+		InvalidateRect(lptw->hWndText,&RectZone,TRUE);
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 EXPORT int WINAPI TextPutCh (LPTW lptw, BYTE ch)
