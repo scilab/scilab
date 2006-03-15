@@ -98,11 +98,11 @@ if bval then
     // Delete useless .m files
     //mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".m")
   //end
- 
+
   translatepaths(pathconvert(TMPDIR)+pathconvert(fnam),pathconvert(TMPDIR)+pathconvert(fnam))
   // Catenation of all .sci files to have only one output file
   txt=[]
-  
+
   for k=1:size(tmpfiles,"*")
     txt=[txt ;" ";mgetl(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")]
     mdelete(pathconvert(TMPDIR)+pathconvert(fnam)+tmpfiles(k)+".sci")
@@ -141,7 +141,9 @@ end
 txt=strsubst(txt,code2str(-40),"")
 [helppart,txt,batch]=m2sci_syntax(txt)
 // save txt vector, helpart and batch after the syntax modification
+if strindex(fil,TMPDIR)==[] then
 save(pathconvert(TMPDIR)+fnam+".tree",txt,helppart,batch)
+end
 
 funcallname=[]
 if txt~=[] then
