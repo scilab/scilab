@@ -1729,7 +1729,7 @@ static int DrawXGrid(sciPointObj * psubwin)
   int verbose=0,narg;
 
   int vx[2],vy[2],ym[2];
-  int dash[6],trois=3;
+  int dash[6],lineMode=2;
   int ns=2,style=0,iflag=0;
   
   double * grads = (double *) NULL;
@@ -1754,7 +1754,7 @@ static int DrawXGrid(sciPointObj * psubwin)
   
   /* Grid style */
   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F (dr) ("xset", "line style",&lineMode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style = ppsubwin->grid[0];
   
   /* Grid based on tics */
@@ -2166,7 +2166,7 @@ static int DrawYGrid(sciPointObj * psubwin)
   int verbose=0,narg;
 
   int vx[2],vy[2],xm[2];
-  int dash[6],trois=3;
+  int dash[6],lineMode=2;
   int ns=2,style=0,iflag=0;
   
   double * grads = (double *) NULL;
@@ -2191,7 +2191,7 @@ static int DrawYGrid(sciPointObj * psubwin)
   
   /* Grid style */
   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F (dr) ("xset", "line style",&lineMode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style = ppsubwin->grid[1];
   
   /* Grid based on tics */

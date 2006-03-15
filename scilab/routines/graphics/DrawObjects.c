@@ -533,15 +533,9 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  x[2] = sciGetLineWidth (pobj);
           x[3] = sciGetLineStyle (pobj);
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-          /* DJ.A 2003 */
-	  hiddencolor = ppsubwin->axes.hiddenAxisColor ;
-	  if (hiddencolor==-1) hiddencolor=0;
-          if (hiddencolor==-2)
-          {
-            /* white color */
-            int colormapSize = sciGetNumColors(pobj) ;
-            hiddencolor = colormapSize + 2 ;
-          }
+          
+	  hiddencolor = sciSetGoodIndex( pobj, ppsubwin->axes.hiddenAxisColor ) ;
+	  
 	  if (zbox[InsideU[0]] > zbox[InsideD[0]])
 	    DrawAxis(xbox,ybox,InsideD,hiddencolor);
 	  else
@@ -666,7 +660,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   int fontstyle=0; /* F.Leray 08.04.04 */
   sciPointObj *psubwin = NULL;
   sciSubWindow * ppsubwin = NULL;
-  int ns=2,iflag=0,gstyle,trois=3,dash[6];
+  int ns=2,iflag=0,gstyle,gridStyle=2,dash[6];
   double xx[4],yy[4],zz[4],vxx1,vyy1,vzz1;
   integer i,xm,ym,vx[2],vy[2],xg[2],yg[2],j;
   integer fontid_old[2], textcolor_old;
@@ -1049,7 +1043,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  /*  if ((ym != iybox[3]) && (ym != iybox[2])) */
 			  /* 			    { */
 			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  xg[0]= ixbox[3];yg[0]= ym;
 			  if (Ishidden(psubwin))
 			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
@@ -1069,7 +1063,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		      if(ztmp>zminval && ztmp<zmaxval) 
 			{
 			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  xg[0]= ixbox[3];yg[0]= ym;
 			  if (Ishidden(psubwin))
 			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
@@ -1288,7 +1282,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			  /*  if ((ym != iybox[3]) && (ym != iybox[2])) */
 			  /* 			    { */
 			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  xg[0]= ixbox[3];yg[0]= ym;
 			  if (Ishidden(psubwin))
 			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
@@ -1308,7 +1302,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		      if(ztmp>zminval && ztmp<zmaxval) 
 			{
 			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			  xg[0]= ixbox[3];yg[0]= ym;
 			  if (Ishidden(psubwin))
 			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
@@ -1609,7 +1603,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 				  
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -1630,7 +1624,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -1877,7 +1871,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 				  
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -1898,7 +1892,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -2205,7 +2199,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -2226,7 +2220,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -2473,7 +2467,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -2494,7 +2488,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[3] - ixbox[4] +xm; 
@@ -2801,7 +2795,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -2821,7 +2815,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -3062,7 +3056,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -3082,7 +3076,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -3384,7 +3378,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -3404,7 +3398,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -3648,7 +3642,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -3668,7 +3662,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			      else
 				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
 			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			      xg[0]= xg[1]; yg[0]= yg[1];
 			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
@@ -7484,8 +7478,10 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 {
   sciPointObj * pfigure = sciGetParentFigure(pobj);
 
-  if(pFIGURE_FEATURE(pfigure)->auto_redraw == TRUE && pFIGURE_FEATURE(pfigure)->visible == TRUE)
+  if( pFIGURE_FEATURE(pfigure)->auto_redraw && pFIGURE_FEATURE(pfigure)->visible )
+  {
     sciDrawObj(pobj);
+  }
 
   return 0;
 }
@@ -7586,15 +7582,21 @@ sciDrawObj (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if(pFIGURE_FEATURE(pobj)->auto_redraw == FALSE) break;
+    {
+      sciFigure * ppFigure = pFIGURE_FEATURE(pobj) ;
+      if( !ppFigure->auto_redraw )
+      {
+        break ;
+      }
      
-      x[1] = sciGetBackground (pobj);x[4] = 0;
+      x[1] = sciGetBackground (pobj) ;
+      x[4] = 0 ;
       /** xclear will properly upgrade background if necessary **/
 #ifdef WIN32
-      flag_DO = MaybeSetWinhdc();
+      flag_DO = MaybeSetWinhdc() ;
 #endif
       
-      C2F(dr)("xset","pixmap",&(pFIGURE_FEATURE (pobj)->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
+      C2F(dr)("xset","pixmap",&(ppFigure->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
 	      PD0,PD0,PD0,0L,0L);
       if (pFIGURE_FEATURE (pobj)->pixmap == 0 || GetDriverId() != 0){
 	/* Change background BEFORE xclear F.Leray */
@@ -7621,6 +7623,7 @@ sciDrawObj (sciPointObj * pobj)
 	psonstmp = psonstmp->pprev;
       }
       break;
+    }
     case SCI_SUBWIN: 
       if (sciGetVisibility(pobj) == FALSE) break;
 
@@ -9138,7 +9141,9 @@ sciDrawObj (sciPointObj * pobj)
 	      if ( sciGetIsLine(pobj) )
               {
                
-		x[0] = sciGetForeground(pobj);
+		x[0] = sciGetForeground( pobj ) ;
+                x[2] = sciGetLineWidth(  pobj ) ;
+                x[3] = sciGetLineStyle( pobj ) ;
 		
 		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
 			  &dv, &dv, &dv, 5L, 4096);
@@ -9152,7 +9157,7 @@ sciDrawObj (sciPointObj * pobj)
                 /* this is required to avoid overflow when
                    coordinates are changed */
                 
-                /*C2F(clipPolyLine)( n1, xm, ym, closeflag, &clipping ) ;*/
+                /* C2F(clipPolyLine)( n1, xm, ym, closeflag, &clipping ) ; */
                 C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	      }
 	    }
