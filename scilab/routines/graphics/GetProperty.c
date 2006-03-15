@@ -2392,10 +2392,19 @@ sciGetTitlePlace (sciPointObj * pobj)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return sciTitlePlace
  */
-sciTitlePlace
+sciLegendPlace
 sciGetLegendPlace (sciPointObj * pobj)
 {
-  return pTITLE_FEATURE (pobj)->titleplace;
+  if ( sciGetEntityType(pobj) == SCI_LEGEND )
+  {
+    return pLEGEND_FEATURE (pobj)->place ;
+  }
+  else
+  {
+    sciprint ("Your are not using a legend object !\n");
+    return SCI_LEGEND_OUTSIDE ;
+  }
+  return SCI_LEGEND_OUTSIDE ;
 }
 
 
@@ -2407,7 +2416,7 @@ POINT2D
 sciGetLegendPos (sciPointObj * pobj)
 {
   POINT2D tmppoint;
-  if (sciGetEntityType (pobj) == SCI_TITLE)
+  if (sciGetEntityType (pobj) == SCI_LEGEND)
     return pLEGEND_FEATURE (pobj)->pos;
   else
     {
@@ -3337,7 +3346,29 @@ sciGetHeight (sciPointObj * pobj)
     }
 }
 
-
+/**sciGetDim
+ * @memo Gets the dimension of the Figure or Subwin
+ * @param sciPointObj * pobj: the pointer to the entity
+ * @param int *pwidth: the return width of the window dimension
+ * @param int *pheight: the return height of the window dimension
+ */
+void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight )
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      *pWidth  = pFIGURE_FEATURE (pobj)->figuredimwidth ;
+      *pHeight = pFIGURE_FEATURE (pobj)->figuredimheight ;
+      break;
+    case SCI_SUBWIN:
+      *pWidth  = pSUBWIN_FEATURE (pobj)->windimwidth ;
+      *pHeight = pSUBWIN_FEATURE (pobj)->windimheight ;
+      break;
+    default:
+      sciprint ("Only Figure or Subwin can be sized\n");
+      break;
+    }
+}
 
 /**sciGetFigurePosX
  * @memo Returns the horizontal position of  the FIGURE (the window) in root, in pixels

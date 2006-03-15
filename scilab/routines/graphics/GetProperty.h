@@ -25,6 +25,7 @@ extern char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
 extern sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 extern int sciGetNumColors (sciPointObj * pobj); /* GET */
 extern int sciGetColormap (sciPointObj * pobj, double *rgbmat); /* GET */
+extern int sciGetNumColors( sciPointObj * pobj ) ; /* GET */
 extern int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 
 extern int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */
@@ -74,7 +75,7 @@ extern POINT2D sciGetTitlePos (sciPointObj * pobj); /* GET */
 extern sciTitlePlace sciGetTitlePlace (sciPointObj * pobj); /* GET */
 
 /* Legend */
-extern sciTitlePlace sciGetLegendPlace (sciPointObj * pobj);
+extern sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
 extern POINT2D sciGetLegendPos (sciPointObj * pobj);
 
 /* Figure / Subwin main functions */
@@ -104,6 +105,7 @@ extern int sciGetNameLength (sciPointObj * pobj);  /* GET */
 extern int sciGetNum (sciPointObj * pobj);  /* GET */
 extern double sciGetWidth (sciPointObj * pobj);   /* GET */
 extern double sciGetHeight (sciPointObj * pobj);  /* GET */
+extern void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
 extern int sciGetFigurePosX (sciPointObj * pobj);  /* GET */
 extern int sciGetFigurePosY (sciPointObj * pobj);  /* GET */
 extern BOOL sciGetIsFigureIconified (sciPointObj * pobj);  /* GET */
