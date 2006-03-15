@@ -507,8 +507,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
       ppsubwin->with_leg =  ppaxesmdl->with_leg;
       
-      if (sciSetSelectedSubWin(pobj) != 1) 
-	return (sciPointObj *)NULL; 
+      if (sciSetSelectedSubWin(pobj) < 0 )
+      { 
+	return (sciPointObj *)NULL ;
+      }
       
       /* Construction des labels: x,y,z et Title */
 
