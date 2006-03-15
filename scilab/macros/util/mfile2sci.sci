@@ -138,7 +138,7 @@ tmptxt=txt
 // Make minor changes on syntax
 m2sci_info("Syntax modification...",-1);
 ierr=execstr("load(''"+pathconvert(TMPDIR)+fnam+ ".tree'',''txt'',''helppart'',''batch'')",'errcatch','n')
-if ierr<>0 | exists('txt')==0 | exists('batch')==0  then
+if ierr<>0 | exists('txt')==0 | exists('batch')==0 & strindex(res_path,TMPDIR)==[] then
   [helppart,txt,batch]=m2sci_syntax(txt)
 elseif ierr==0 & newest(fil,pathconvert(TMPDIR)+fnam+ ".tree")==1 then
     [helppart,txt,batch]=m2sci_syntax(tmptxt)
