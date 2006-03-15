@@ -1597,54 +1597,63 @@ void C2F(getalufunction)(verbose, value, narg,dummy)
 /** give the thinest line (0 and 1 the same for X11 but   **/
 /** with diferent algorithms ) **/
 /** defaut value is 1 **/
-void C2F(setthickness)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setthickness)(integer *value,integer *v2,integer *v3,integer *v4)
 { 
-  HPEN hpen ;
-  int width;
+  HPEN hpen=NULL ;
+	HPEN hpenOld=NULL ;
+
+  int width =Max(0, *value);
   int style = DashTab[ScilabXgc->CurDashStyle];
   int OS = SciWinGetPlatformId();
 
-  ScilabXgc->CurLineWidth =Max(0, *value);
-  width = ScilabXgc->CurLineWidth;
-
+  ScilabXgc->CurLineWidth = width ;
+  
   if ( ScilabXgc->CurColorStatus == 1 ) 
-    {
-	  COLORREF px = DefaultForeground ;
-	  if (ScilabXgc->Colors != NULL)
+  {
+		COLORREF px = DefaultForeground ;
+		if (ScilabXgc->Colors != NULL)
 		{
-		  if ( ScilabXgc->CurDrawFunction !=  GXxor )
-		   px= ScilabXgc->Colors[ScilabXgc->CurColor];
-		  else 
-		   px = ScilabXgc->Colors[ScilabXgc->CurColor] 
-	      ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
-  	    }
+			if ( ScilabXgc->CurDrawFunction !=  GXxor ) px= ScilabXgc->Colors[ScilabXgc->CurColor];
+		  else px = ScilabXgc->Colors[ScilabXgc->CurColor] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+  	}
         
 		if(OS == VER_PLATFORM_WIN32_NT)
-          {
-			  LOGBRUSH logbrush;
-			  logbrush.lbStyle = BS_SOLID;
-			  logbrush.lbColor = px;
-			  logbrush.lbHatch = 0;
-			  hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
-		  }
-	    else
-		  {
+    {
+				if ( (style == PS_SOLID) || (width<=1) )
+				{
+					hpen = CreatePen(style,ScilabXgc->CurLineWidth,px);
+				}
+				else
+				{
+					LOGBRUSH logbrush;
+					logbrush.lbStyle = BS_SOLID;
+					logbrush.lbColor = px;
+					logbrush.lbHatch = 0;
+					hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+				}
+			  
+		}
+	  else
+		{
 			 hpen = CreatePen(PS_SOLID,ScilabXgc->CurLineWidth,px);
-		  }
+		}
 	}
   else 
-    {
+  {
 	  if(OS == VER_PLATFORM_WIN32_NT)
 	  {
-		  LOGBRUSH logbrush;
-		  logbrush.lbStyle = BS_SOLID;
-		  logbrush.lbColor = RGB(0,0,0);
-		  logbrush.lbHatch = 0;
-		  hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+			if ( (style == PS_SOLID) || (width<=1) )
+			{
+				hpen = CreatePen(style,width,RGB(0,0,0));
+			}
+			else
+			{
+				LOGBRUSH logbrush;
+				logbrush.lbStyle = BS_SOLID;
+				logbrush.lbColor = RGB(0,0,0);
+				logbrush.lbHatch = 0;
+				hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+			}
 	  }
 	  else
 	  {
@@ -1652,23 +1661,18 @@ void C2F(setthickness)(value, v2, v3, v4)
         width = ( style != PS_SOLID) ? 0 : ScilabXgc->CurLineWidth ;
         hpen = CreatePen(style,width,RGB(0,0,0));
 	  }
-    }
-  SelectObject(hdc,hpen);
-  if ( ScilabXgc->hPen != (HPEN) 0 ) DeleteObject(ScilabXgc->hPen);
+  }
+  hpenOld=SelectObject(hdc,hpen);
+  if ( hpenOld ) DeleteObject(hpenOld);
   ScilabXgc->hPen = hpen;
 }
 /*-----------------------------------------------------------------------------------*/
 /** to get the thickness value **/
-void C2F(getthickness)(verbose, value, narg,dummy)
-     integer *verbose;
-     integer *value;
-     integer *narg;
-     double *dummy;
+void C2F(getthickness)(integer *verbose,integer *value,integer *narg,double *dummy)
 {
   *narg =1 ;
   *value = ScilabXgc->CurLineWidth ;
-  if (*verbose ==1 ) 
-    sciprint("\nLine Width:%d\r\n", ScilabXgc->CurLineWidth ) ;
+  if (*verbose ==1 ) sciprint("\nLine Width:%d\r\n", ScilabXgc->CurLineWidth ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 /** To set grey level for filing areas **/
@@ -1741,8 +1745,7 @@ void C2F(getpattern)(verbose, num, narg,dummy)
     *num = ScilabXgc->CurColor +1 ;
   else 
     *num = ScilabXgc->CurPattern +1 ;
-  if (*verbose == 1) 
-    sciprint("\n Pattern : %d\r\n",ScilabXgc->CurPattern+1);
+  if (*verbose == 1) sciprint("\n Pattern : %d\r\n",ScilabXgc->CurPattern+1);
 }
 /*-----------------------------------------------------------------------------------*/
 /** To get the id of the last pattern **/
@@ -1784,58 +1787,51 @@ void C2F(set_dash_or_color)(value, v2, v3, v4)
      integer *v3;
      integer *v4;
 {
-  if ( ScilabXgc->CurColorStatus == 1) 
-    {
-      set_c(*value-1);
-    }
-  else
-    C2F(setdash)(value, v2, v3, v4);
+  if ( ScilabXgc->CurColorStatus == 1) set_c(*value-1);
+  else C2F(setdash)(value, v2, v3, v4);
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F(setdash)(value, v2, v3, v4)
-     integer *value;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setdash)(integer *value,integer *v2,integer *v3,integer *v4)
 {
   static integer l3 ;
-  COLORREF col ;
-  HPEN hpen;
-  int id,width=0;
+  COLORREF col=RGB(0,0,0) ;
+  HPEN hpen=NULL;
+	HPEN hpenOld=NULL;
+  int id=0,width=0;
   int OS = SciWinGetPlatformId();
 
   l3 = Max(0,Min(MAXDASH - 1,*value - 1));
 
-  if(OS == VER_PLATFORM_WIN32_NT)
-  {
-	  width = ScilabXgc->CurLineWidth ;
-  }
-
-  if ( ScilabXgc->CurColorStatus == 1) {
-    id = ScilabXgc->CurColor;
-    if ( ScilabXgc->CurDrawFunction !=  GXxor )
-      col = ScilabXgc->Colors[id];
-    else 
-      col = ScilabXgc->Colors[id] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
-  }
-  else
-    col=RGB(0,0,0);
- 
-  if(OS == VER_PLATFORM_WIN32_NT)
-  {
-     int style = DashTab[l3];
-     LOGBRUSH logbrush;
-     logbrush.lbStyle = BS_SOLID;
-	 logbrush.lbColor = col;
-	 logbrush.lbHatch = 0;
-	 hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
- }
-  else
-    hpen = CreatePen(DashTab[l3],width,col); /** warning win95 only uses dot or dash with linewidth <= 1 **/
- 
+  if(OS == VER_PLATFORM_WIN32_NT) width = ScilabXgc->CurLineWidth ;
   
-  SelectObject(hdc,hpen);
-  if ( ScilabXgc->hPen != (HPEN) 0 ) DeleteObject(ScilabXgc->hPen);
+  if ( ScilabXgc->CurColorStatus == 1) 
+	{
+    id = ScilabXgc->CurColor;
+    if ( ScilabXgc->CurDrawFunction !=  GXxor ) col = ScilabXgc->Colors[id];
+    else col = ScilabXgc->Colors[id] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+  }
+  else col=RGB(0,0,0);
+ 
+  if(OS == VER_PLATFORM_WIN32_NT)
+  {
+		int style = DashTab[l3];
+		if ( (style == PS_SOLID) || (width<=1) )
+		{
+			hpen = CreatePen(style,width,col); /** warning win95 only uses dot or dash with linewidth <= 1 **/
+		}
+		else
+		{
+			LOGBRUSH logbrush;
+			logbrush.lbStyle = BS_SOLID;
+			logbrush.lbColor = col;
+			logbrush.lbHatch = 0;
+			hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+		}
+	}
+  else  hpen = CreatePen(DashTab[l3],width,col); /** warning win95 only uses dot or dash with linewidth <= 1 **/
+   
+  hpenOld=SelectObject(hdc,hpen);
+  if ( hpenOld ) DeleteObject(hpenOld);
   ScilabXgc->hPen = hpen;
   ScilabXgc->CurDashStyle = l3;
 }
@@ -2465,10 +2461,7 @@ static BOOL SciPalette(int iNumClr)
   return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
-
-
 /* getting the colormap size */
-
 void  C2F(getcolormapsize)(integer *verbose, integer *num, integer *narg, double *val)
 {
   if(ScilabXgc != NULL)
@@ -2515,8 +2508,7 @@ void C2F(setbackground)(num, v2, v3, v4)
       COLORREF px;
       ScilabXgc->NumBackground = Max(0,Min(*num - 1,ScilabXgc->Numcolors + 1));
       C2F(setalufunction1)(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
-      px = (ScilabXgc->Colors == NULL) ? DefaultBackground 
-	:  ScilabXgc->Colors[ScilabXgc->NumBackground];
+      px = (ScilabXgc->Colors == NULL) ? DefaultBackground :  ScilabXgc->Colors[ScilabXgc->NumBackground];
 
       /** A finir XXXX 
 	  if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
@@ -2612,8 +2604,7 @@ void C2F(gethidden3d)(verbose, num, narg,dummy)
     {
       *num = 1; /** the hidden3d is a solid line style in b&w */
     }
-  if (*verbose == 1)
-    sciprint("\n Hidden3d : %d\r\n",*num);
+  if (*verbose == 1) sciprint("\n Hidden3d : %d\r\n",*num);
 }
 /*-----------------------------------------------------------------------------------*/
 /*****************************************************
@@ -3915,38 +3906,61 @@ void C2F(getwins)(Num,Ids,flag)
 /*--------------------------------------------------------------
   \encadre{Routine for initialisation : string is a display name }
   --------------------------------------------------------------*/
-
-void set_c(coli)
-     integer coli;
+void set_c(integer coli)
 {
-  int i,id, width;
-  COLORREF col ;
-  HBRUSH hBrush;
-  HPEN hpen;
+  int i=0,id=0, width=0;
+  COLORREF col=RGB(0,0,0);
+  HBRUSH hBrush=NULL;
+	HBRUSH hBrushOld=NULL;
+  HPEN hpen=NULL;
+	HPEN hpenOld=NULL;
+	int style=0;
+	int OS = SciWinGetPlatformId();
 
-  if (ScilabXgc->Colors == NULL) 
-    return;
+  if (ScilabXgc->Colors == NULL)  return;
+
   i= Max(0,Min(coli,ScilabXgc->Numcolors + 1));
   ScilabXgc->CurColor = i ;
-  if ( ScilabXgc->CurDrawFunction !=  GXxor )
-    col = ScilabXgc->Colors[i];
-  else 
-    col = ScilabXgc->Colors[i] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+
+  if ( ScilabXgc->CurDrawFunction !=  GXxor ) col = ScilabXgc->Colors[i];
+  else col = ScilabXgc->Colors[i] ^ ScilabXgc->Colors[ScilabXgc->NumBackground];
+
   hBrush=CreateSolidBrush(col);
-  SelectObject(hdc,hBrush);
+  hBrushOld=SelectObject(hdc,hBrush);
+	if ( hBrushOld ) DeleteObject(hBrushOld);
+	ScilabXgc->hBrush = hBrush;
+
   id =  ScilabXgc->CurDashStyle;
-  if (DashTab[id] == PS_SOLID) 
-    hpen = CreatePen(PS_SOLID,ScilabXgc->CurLineWidth,col); 
-  else {
-    width = ( DashTab[id] != PS_SOLID) ?  0 : ScilabXgc->CurLineWidth ;
-    hpen = CreatePen(DashTab[id],width,col);
-  }
-  SelectObject(hdc,hpen);
-  SetTextColor(hdc,col); 
-  if ( ScilabXgc->hPen != (HPEN) 0 ) DeleteObject(ScilabXgc->hPen);
+	style=DashTab[id];
+
+	width = ScilabXgc->CurLineWidth;
+
+	if(OS == VER_PLATFORM_WIN32_NT)
+	{
+		if ( (style == PS_SOLID) || (width<=1) )
+		{
+			hpen = CreatePen(style,ScilabXgc->CurLineWidth,col);
+		}
+		else
+		{
+			LOGBRUSH logbrush;
+			logbrush.lbStyle = BS_SOLID;
+			logbrush.lbColor = col;
+			logbrush.lbHatch = 0;
+			hpen = ExtCreatePen(PS_GEOMETRIC|PS_ENDCAP_FLAT|style,width,&logbrush,0,NULL);
+		}
+	}
+	else
+	{
+		width = ( DashTab[id] != PS_SOLID) ?  0 : ScilabXgc->CurLineWidth ;
+		hpen = CreatePen(PS_SOLID,ScilabXgc->CurLineWidth,col);
+	}
+
+  hpenOld=SelectObject(hdc,hpen);
+  if (hpenOld) DeleteObject(hpenOld);
   ScilabXgc->hPen = hpen;
-  if ( ScilabXgc->hBrush != (HBRUSH) 0 ) DeleteObject(ScilabXgc->hBrush);
-  ScilabXgc->hBrush = hBrush;
+
+	SetTextColor(hdc,col); 
 }
 
  
