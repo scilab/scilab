@@ -86,6 +86,8 @@ end
 
 for k1=1:size(mfiles,1)
     mpath=mfiles(k1)
+    disp("********************lst_funcall**********************")
+   disp(mpath)
  filefuncallname($+1)=lst_funcall(mpath,fnamvect)
 end
 
@@ -113,15 +115,17 @@ end
 // Translation is done only if M-file has changed
 logtxt=[]
 resumelogtxt=[]
+
 for i=1:size(funpath,1)
   kk=strindex(funpath(i),sep)
   mpath=funpath(i) 
   fnam=part(funpath(i),kk($)+1:length(funpath(i))-2)
   scipath=res_path+fnam+".sci"  
   scepath=res_path+fnam+".sce"
+
   if newest(mpath,scipath,scepath)==1 then
   [fd,ierr]=file('open',pathconvert(TMPDIR)+fnam+".m",'old');
-    if ierr==0 then
+    if ierr==0 & strindex(mpath,TMPDIR)==[] then
       mfile2sci(pathconvert(TMPDIR)+fnam+".m",res_path)
       file('close',fd)
       mdelete(pathconvert(TMPDIR)+fnam+".m")  
@@ -129,33 +133,38 @@ for i=1:size(funpath,1)
     else
      mfile2sci(funpath(i),res_path)
     end
+    
     tmp_sci_file=pathconvert(TMPDIR)+"tmp_"+fnam+".sci"
     ierr=execstr("getf(tmp_sci_file)","errcatch");errclear();
-    if ierr==0 then
+    if ierr==0 & strindex(mpath,TMPDIR)==[] then
       txt=[]
       txt=mgetl(scipath)
       txt=[txt;" ";mgetl(tmp_sci_file)]
       mputl(txt,scipath) 
       mdelete(tmp_sci_file)
     end
+    
     // LOG
     tmp_m2sci_file=pathconvert(TMPDIR)+"tmp_m2sci_"+fnam+".log"
     m2scipath=res_path+"m2sci_"+fnam+".log" 
     logtxt=[logtxt;" ";" ";mgetl(m2scipath)]
     mdelete(m2scipath)
+    
     [fd,ierr]=file('open',tmp_m2sci_file,'old');
-    if ierr==0 then
+    if ierr==0 & strindex(mpath,TMPDIR)==[] then
       logtxt=[logtxt;" ";mgetl(tmp_m2sci_file)]
       file('close',fd)
       mdelete(tmp_m2sci_file)
     end
+    
     // RESUMELOG
     tmp_resume_m2sci_file=pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log"
     resumem2scipath=res_path+"resume_m2sci_"+fnam+".log" 
     resumelogtxt=[resumelogtxt;" ";" ";mgetl(resumem2scipath)]
     mdelete(resumem2scipath)
+    
     [fd,ierr]=file('open',tmp_resume_m2sci_file,'old');
-    if ierr==0 then
+    if ierr==0 & strindex(mpath,TMPDIR)==[] then
       resumelogtxt=[resumelogtxt;" ";mgetl(tmp_resume_m2sci_file)]
       file('close',fd)
       mdelete(tmp_resume_m2sci_file)
@@ -172,12 +181,12 @@ mdelete(pathconvert(TMPDIR)+"unitfile.dat")
 // create builder.sce and loader.sce files
 // get the directory name where the Scilab functions are written 
 if res_path=="./" then
-current_path=pathconvert(unix_g('pwd'))
-index_slash=strindex(current_path,'/')
-namelib=part(current_path,index_slash($-1)+1:index_slash($)-1)
+  current_path=pathconvert(unix_g('pwd'))
+  index_slash=strindex(current_path,'/')
+  namelib=part(current_path,index_slash($-1)+1:index_slash($)-1)
 else
-index_slash=strindex(res_path,'/')
-namelib=part(res_path,index_slash($-1)+1:index_slash($)-1)
+  index_slash=strindex(res_path,'/')
+  namelib=part(res_path,index_slash($-1)+1:index_slash($)-1)
 end
 
 //builder.sce
