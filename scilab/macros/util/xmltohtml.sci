@@ -417,8 +417,8 @@ function gener_contents(dirs1)
 	full_whatis=full_whatis(sk);
 	
 	select LANGUAGE 
-		case 'fr' then title =  "<H2>Fonctions Scilab</H2>";
-		case 'eng' then title =  "<H2>Scilab functions</H2>";
+		case 'fr' then type_title =  "<H2>Fonctions Scilab</H2>";
+		case 'eng' then type_title =  "<H2>Scilab functions</H2>";
 	end
   
 	full_whatis=["<html>"
@@ -427,7 +427,7 @@ function gener_contents(dirs1)
 		"	<title>Scilab General Index</title>"
 		"</head>"
 		"<body bgcolor=""#FFFFFF"">";
-		title;
+		type_title;
 		full_whatis;
 		"</body></html>"
 		];
