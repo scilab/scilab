@@ -20,7 +20,7 @@
 
 extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha); /* SET  */
 
-extern void sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
+extern int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
 extern int sciSetColormap (sciPointObj * pobj, double *rgbmat,
 			   integer m, integer n); /* SET */
 extern int sciSetNumColors (sciPointObj * pobj, int numcolors); /* SET */
@@ -65,31 +65,31 @@ extern int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place);
 extern int sciSetLegendPos (sciPointObj * pobj, int x, int y);
 
 /* GMODE */
-extern void sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
-extern int  sciSetClipping (sciPointObj * pobj, double *pclip); /* SET */
-extern void sciSetHighLight (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetZooming (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetGraphicsStyle (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetXorMode (sciPointObj * pobj, int value); /* SET */
-extern void sciSetVisibility (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetResize (sciPointObj * pobj, BOOL value); /* SET */
-extern void sciSetDefaultValues (); /* SET */
+extern int sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
+extern int  sciSetClipping (sciPointObj * pobj, double pclip[4] ); /* SET */
+extern int sciSetHighLight (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetZooming (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetGraphicsStyle (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetXorMode (sciPointObj * pobj, int value); /* SET */
+extern int sciSetVisibility (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetResize (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetDefaultValues (); /* SET */
 
 
 /* Window Functions */
-extern void sciSetName (sciPointObj * pobj, char *pvalue, int length); /* SET */
-extern void sciSetNum (sciPointObj * pobj, int *pvalue); /* SET */
-extern void sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight); /* SET */
+extern int sciSetName (sciPointObj * pobj, char *pvalue, int length); /* SET */
+extern int sciSetNum (sciPointObj * pobj, int *pvalue); /* SET */
+extern int sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight); /* SET */
 extern int sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy); /* SET */
-extern void sciSetFigureIconify (sciPointObj * pobj, BOOL value); /* SET */
+extern int sciSetFigureIconify (sciPointObj * pobj, BOOL value); /* SET */
 extern int sciSetSubWindowPos (sciPointObj * pobj, int *x, int *y); /* SET */
 extern void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
 extern int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
 extern int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
 
-extern void sciSetCurrentFigure (sciPointObj * mafigure); /* SET */
+extern int sciSetCurrentFigure (sciPointObj * mafigure); /* SET */
 
 extern int sciSetReplay (BOOL value); /* SET */
 /* extern int sciSetHDC (sciPointObj * pobj); /\* SET *\/ /\* unused?? *\/ */
@@ -97,12 +97,12 @@ extern int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numco
 
 extern int sciSetdrawmode(BOOL mode); /* SET */
 extern int sciSwitchWindow(int *winnum); /* SET */
-void set_version_flag(int flag) ; /* SET */
+extern int set_version_flag(int flag) ; /* SET */
 
 extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 extern int sciSetPosition (sciPointObj * pobj, double x, double y);
 
-extern void sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
-extern void sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
+extern int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
+extern int sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
 
 #endif /* __SCI_SET_PROPERTY__ */
