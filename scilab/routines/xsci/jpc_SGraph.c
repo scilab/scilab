@@ -75,7 +75,7 @@ extern int GetEventWindow(XEvent* event);
 static void ChangeBF1 __PARAMS(( Widget w,     char *str,     Pixel fg,     Pixel bg));
 static void SetHints  __PARAMS((Widget topW));  
 static int AddNewWin  __PARAMS((int, struct BCG *));
-static XtEventHandler EventProc  __PARAMS((Widget widget, XtPointer , XEvent *));  
+/* static XtEventHandler EventProc  __PARAMS((Widget widget, XtPointer , XEvent *));   */
 static XtEventHandler EventProc1  __PARAMS((Widget widget, XtPointer , XEvent *));  
 /*static XtEventHandler ResizeWindow  __PARAMS((Widget, XtPointer , XConfigureEvent *));  */
 
@@ -96,7 +96,7 @@ static void SetUnsetMenu  __PARAMS((integer *, char *, integer *, int));
 static void PannerCallback __PARAMS((Widget, XtPointer , XtPointer ));
 static void ViewportCallback __PARAMS((Widget, XtPointer , XtPointer ));
 static void MoveChild  __PARAMS((Widget viewp, Position x,Position  y));
-static int GetChilds __PARAMS((int win_num,int *nc,WidgetList *wL,Widget *outer,char *name,
+static int GetChilds __PARAMS((int win_num, int *nc,WidgetList *wL,Widget *outer,char *name,
 			      int *name_pos) );
 static void ignore_events( Widget widget, XEvent *event2,long mask );
 
@@ -177,7 +177,7 @@ btn_pressed(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-  int x,y;
+  
   /* The following instruction has been commented out not to lose btn_pressed 
      emited just before an xclick or xgemouse call
     if (!get_wait_click()) return;
@@ -902,12 +902,12 @@ static void ignore_events( Widget widget, XEvent *event2,long mask )
 
 
 
-static XtEventHandler
-EventProc( Widget widget, XtPointer number, XEvent *event)
-{
-  /*EventWindow = (int)number;*/
-  return(0);
-}
+/* static XtEventHandler */
+/* EventProc( Widget widget, XtPointer number, XEvent *event) */
+/* { */
+/*   /\*EventWindow = (int)number;*\/ */
+/*   return(0); */
+/* } */
 
 
 /*******************************************************
@@ -1024,23 +1024,23 @@ Select(w, number, client_data)
  * deleted a graphic window ( used in xclick_any)
  */
 
-static void SendSGDeleteMessage(int win_num)
-{
-  Window Win;
-  Widget toplevel;
-  Display * dpy;
-  XClientMessageEvent ev;
-  DisplayInit("",&dpy,&toplevel);
-  Win=GetBGWindowNumber(win_num);
-  /** sending a message for xclick_any **/
-  ev.type = ClientMessage;
-  ev.window = Win;
-  ev.message_type = Close_SG_Window_Activated;
-  ev.format = 32;
-  ev.data.l[0] =  win_num;
-  ev.data.l[1] =  CurrentTime; 
-  XSendEvent (dpy,Win , False, 0L, (XEvent *) &ev);
-}  
+/* static void SendSGDeleteMessage(int win_num) */
+/* { */
+/*   Window Win; */
+/*   Widget toplevel; */
+/*   Display * dpy; */
+/*   XClientMessageEvent ev; */
+/*   DisplayInit("",&dpy,&toplevel); */
+/*   Win=GetBGWindowNumber(win_num); */
+/*   /\** sending a message for xclick_any **\/ */
+/*   ev.type = ClientMessage; */
+/*   ev.window = Win; */
+/*   ev.message_type = Close_SG_Window_Activated; */
+/*   ev.format = 32; */
+/*   ev.data.l[0] =  win_num; */
+/*   ev.data.l[1] =  CurrentTime;  */
+/*   XSendEvent (dpy,Win , False, 0L, (XEvent *) &ev); */
+/* }  */ 
 
 
 /*------------------------------------------------------------------
@@ -1550,7 +1550,7 @@ int C2F(delbtn)(win_num,button_name)
      integer *win_num;
      char *button_name;
 {  
-  Cardinal nc=0;
+  int nc=0;
   WidgetList childs;
   Widget outer,h,v,w;
   int i,pos=0;
