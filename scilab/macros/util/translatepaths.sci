@@ -197,8 +197,8 @@ builderfile=res_path+"builder.sce"
 mputl(buildertxt,builderfile)
 //loader.sce
 loadertxt=[]
-loadertxt($+1)="path=get_absolute_file_path(""builder.sce"")"
-loadertxt($+1)="load(path+"+"""/lib"")"
+loadertxt($+1)="path=get_absolute_file_path(""loader.sce"")"
+loadertxt($+1)="load(path+"+"""lib"")"
 loaderfile=res_path+"loader.sce"
 mputl(loadertxt,loaderfile)
 
