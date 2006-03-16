@@ -199,6 +199,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	int i=0;
 	BOOL ShortCircuitExec=FALSE;
 	BOOL LaunchAFile=FALSE;
+	BOOL ShowMessageBoxInfo=TRUE;
 	char FileName[MAX_PATH];
 	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
 	char *path = NULL;
@@ -216,9 +217,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	ScilabIsStarting=TRUE;
 
 	strcpy(FileName,"Empty");
-
-	/* New Graphics Mode Warning */
-	MessageBoxNewGraphicMode();
 
 	ScilabDirectory=GetScilabDirectory(FALSE);
 
@@ -302,6 +300,20 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	while (my_argv[my_argc] != NULL)
 	{
 		my_argv[++my_argc] = strtok(NULL, " ");
+	}
+
+	for (i=1;i<my_argc;i++)
+	{
+		if  ( stricmp (my_argv[i], "-NB") == 0 )
+		{
+			ShowMessageBoxInfo=FALSE;
+		}
+	}
+
+	if (ShowMessageBoxInfo)
+	{
+		/* New Graphics Mode Warning */
+		MessageBoxNewGraphicMode();
 	}
 
 	for (i=1;i<my_argc;i++)
