@@ -27,4 +27,4 @@ elseif rhs == 2 then
 else 
   error(58);
 end
- 
+endfunction
