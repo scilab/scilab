@@ -144,21 +144,29 @@ if type(dom)==1 then
   plot2d1("oln",max(frq)*[1;1],val,5,"000"," ",rect);
 end
 xtitle('Magnitude ',' Hz','db');
-
 //phase
 xsetech(wrect=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95]);
+
+// get the axes of the phase
+if ( get("figure_style") == "new" ) then
+  sciCurAxes = get("current_axes") ;
+end
+
 rect=[mini(frq),mini(phi),maxi(frq),maxi(phi)]
 // just to fix the scales for xgrid
 plot2d1("oln",mini(frq),mini(phi),0,"051"," ",rect);
 xgrid(4);
 //  now the curves
 plot2d1("oln",frq',phi',[1:mn],"000");
+
 if type(dom)==1 then
   [xx1,xx2]=xgetech();
   val= xx2([2;4])';
   plot2d1("oln",max(frq)*[1;1],val,5,"000");
 end
 xtitle('Phase ',' Hz','degrees');
+
+// create legend
 if mnc>0 then
   xsetech([wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1],[0 0 1 1]);
   dash=xget('color')
@@ -177,5 +185,12 @@ if mnc>0 then
   end
   xset('color',dash(1))
 end
-xsetech(wrect,frect);
+
+// return to the previous scale
+if ( get("figure_style") == "old" ) then
+  xsetech(wrect,frect);
+else
+  set( "current_axes", sciCurAxes ) ;
+end
+
 endfunction
