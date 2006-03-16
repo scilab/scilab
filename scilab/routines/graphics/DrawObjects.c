@@ -1005,7 +1005,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	      /* grid to put here */
-	      if (pSUBWIN_FEATURE (psubwin)->grid[2] > -1)
+	      if ( ppsubwin->grid[2] > -1 && ppsubwin->axes.axes_visible[2] )
 		{
 		  gstyle = pSUBWIN_FEATURE (psubwin)->grid[2];
 
@@ -1244,7 +1244,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	      /* grid to put here */
-	      if (pSUBWIN_FEATURE (psubwin)->grid[2] > -1)
+	      if ( ppsubwin->grid[2] > -1 && ppsubwin->axes.axes_visible[2] )
 		{
 		  gstyle = pSUBWIN_FEATURE (psubwin)->grid[2];
 
@@ -1559,7 +1559,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+		  if ( ppsubwin->grid[0] > -1 && ppsubwin->axes.axes_visible[0] )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
 
@@ -1771,9 +1771,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 
 		  /* 	  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz); */
 		  
-		  if(ppsubwin->axes.reverse[0] == TRUE)
+		  if( ppsubwin->axes.reverse[0] )
+                  {
 		    xtmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp);
-		  
+		  }
+                  
 		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
 		  
 		  vx[0]=xm;vy[0]=ym; 
@@ -1794,114 +1796,119 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    posi[0] = inint( xm+2*barlengthx);
 		    posi[1]=inint( ym + 2*barlengthy + rect[3]);}
 		      
-		  if(ppsubwin->axes.axes_visible[0] == TRUE){
+		  if( ppsubwin->axes.axes_visible[0] )
+                  {
 		    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		    if ( ppsubwin->logflags[0] == 'l' )
-		      {
-			int smallersize = fontid[1]-2;
-			int old_rect10[4];
-			int posi10[2];
+                    {
+                      int smallersize = fontid[1]-2;
+                      int old_rect10[4];
+                      int posi10[2];
+                      
+                      posi10[0] = posi[0] - logrect[2];
+                      posi10[1] = posi[1] + logrect[3];
+                      
+                      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                      C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+                      
+                      C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			
-			posi10[0] = posi[0] - logrect[2];
-			posi10[1] = posi[1] + logrect[3];
+                      posi[0] = old_rect10[0] + old_rect10[2];
+                      posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
 			
-			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			C2F(dr)("xstring","10",(&posi10[0]),(&posi10[1]),PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+                      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
 			
-			C2F(dr)("xstringl","10",(&posi10[0]),(&posi10[1]),old_rect10,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			
-			posi[0] = old_rect10[0] + old_rect10[2];
-			posi[1] = (int) (old_rect10[1] - old_rect10[3]*.1);
-			
-			C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
-			
-			/* put back the current fontid */
-			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		      }
+                      /* put back the current fontid */
+                      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                    }
 		    else
+                    {
 		      C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
-		    		    
+                    }	    
 		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
-		    {
-		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
+		  if ( ppsubwin->grid[0] > -1 && ppsubwin->axes.axes_visible[0]  )
+                  {
+                    gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
 		      
-		      if((ppsubwin->logflags[0] =='l') && (i != nbtics-1))
-			{
-			  double tmp[2];
-			  double pas=0;
-			  double * tmp_log_grads = (double *) NULL;
+                    if((ppsubwin->logflags[0] =='l') && (i != nbtics-1))
+                    {
+                      double tmp[2];
+                      double pas=0;
+                      double * tmp_log_grads = (double *) NULL;
 			  
 			  
-			  double * grads = ppsubwin->axes.xgrads;
+                      double * grads = ppsubwin->axes.xgrads;
 
-			  tmp[0] = exp10(grads[i]);
-			  tmp[1] = exp10(grads[i+1]);
-			  pas = (exp10(grads[i+1]) - exp10(grads[i])) / (nbsubtics );
+                      tmp[0] = exp10(grads[i]);
+                      tmp[1] = exp10(grads[i+1]);
+                      pas = (exp10(grads[i+1]) - exp10(grads[i])) / (nbsubtics );
 			  
-			  if((tmp_log_grads = (double *)MALLOC(nbsubtics*sizeof(double)))==NULL){
-			    sciprint("Error allocating tmp_log_grads\n");
-			    return -1;
-			  }
+                      if((tmp_log_grads = (double *)MALLOC(nbsubtics*sizeof(double)))==NULL){
+                        sciprint("Error allocating tmp_log_grads\n");
+                        return -1;
+                      }
 			  
-			  for(j=0;j<nbsubtics;j++) tmp_log_grads[j] = log10(tmp[0]+(j)*pas);
+                      for(j=0;j<nbsubtics;j++)
+                      {
+                        tmp_log_grads[j] = log10( tmp[0] + (j) * pas ) ;
+                      }
 			  
-			  for(j=0;j<nbsubtics;j++)
-			    {
-			      vxx1 = tmp_log_grads[j];
+                      for(j=0;j<nbsubtics;j++)
+                      {
+                        vxx1 = tmp_log_grads[j];
 			      
-			      if(vxx1<=xminval || vxx1>=xmaxval) continue;
+                        if(vxx1<=xminval || vxx1>=xmaxval) continue;
 			      
-			      if(ppsubwin->axes.reverse[0] == TRUE)
-				vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
+                        if(ppsubwin->axes.reverse[0] == TRUE)
+                          vxx1 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],vxx1);
 			      
-			      ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+                        ComputeGoodTrans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
 			      
-			      /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
-			      /* 				{  */
-			      xg[0]= xm;  yg[0]= ym;  
-			      if (Ishidden(psubwin)) 
-				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
-			      else
-				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+                        /*  if ((xm != ixbox[5]) && (xm != ixbox[4])) */
+                        /* 				{  */
+                        xg[0]= xm;  yg[0]= ym;  
+                        if (Ishidden(psubwin)) 
+                        { xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+                        else
+                        {xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
 				  
-			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      xg[0]= xg[1]; yg[0]= yg[1];
-			      xg[1] = ixbox[3] - ixbox[4] +xm; 
-			      yg[1]=  iybox[2] - iybox[4] +ym;
-			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			      /* 	} */
-			    }
-			  FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
-			}
-		      else
-			{
-			  if(xtmp>xminval && xtmp<xmaxval) 
-			    {
-			      xg[0]= xm;  yg[0]= ym;  
-			      if (Ishidden(psubwin)) 
-				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
-			      else
-				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
-			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      xg[0]= xg[1]; yg[0]= yg[1];
-			      xg[1] = ixbox[3] - ixbox[4] +xm; 
-			      yg[1]=  iybox[2] - iybox[4] +ym;
-			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-			    }
-			}	
-		    }
+                        C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        xg[0]= xg[1]; yg[0]= yg[1];
+                        xg[1] = ixbox[3] - ixbox[4] +xm; 
+                        yg[1]=  iybox[2] - iybox[4] +ym;
+                        C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+                        /* 	} */
+                      }
+                      FREE(tmp_log_grads); tmp_log_grads = (double *) NULL;
+                    }
+                    else
+                    {
+                      if(xtmp>xminval && xtmp<xmaxval) 
+                      {
+                        xg[0]= xm;  yg[0]= ym;  
+                        if (Ishidden(psubwin)) 
+                        { xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+                        else
+                        {xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+                        C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        C2F (dr) ("xset", "line style",&gridStyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        xg[0]= xg[1]; yg[0]= yg[1];
+                        xg[1] = ixbox[3] - ixbox[4] +xm; 
+                        yg[1]=  iybox[2] - iybox[4] +ym;
+                        C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+                        C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+                      }
+                    }	
+                  }
 
 		  /* and subtics */
 		  if(i != nbtics-1) /* F.Leray NEW 03.11.04 */
@@ -1951,7 +1958,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
 				}
 			      
-			      if(ppsubwin->axes.axes_visible[0] == TRUE)
+			      if( ppsubwin->axes.axes_visible[0] )
 				C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 			    }
 			  
@@ -2156,7 +2163,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+		  if ( ppsubwin->grid[1] > -1 && ppsubwin->axes.axes_visible[1] )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
 
@@ -2424,7 +2431,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		  
 		  /* grid to put here */
 		  
-		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+		  if ( ppsubwin->grid[1] > -1 && ppsubwin->axes.axes_visible[1] )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
 
@@ -2752,7 +2759,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+		  if ( ppsubwin->grid[0] > -1 && ppsubwin->axes.axes_visible[0]  )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
 
@@ -3013,7 +3020,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+		  if ( ppsubwin->grid[0] > -1 && ppsubwin->axes.axes_visible[0] )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
 		      
@@ -3335,7 +3342,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+		  if ( ppsubwin->grid[1] > -1 && ppsubwin->axes.axes_visible[1] )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
 		      
@@ -3599,7 +3606,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    C2F(dr)("xsegs","v", vx, vy, &ns,&ticscolor,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 		  /* grid to put here */
-		  if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+		  if ( ppsubwin->grid[1] > -1 && ppsubwin->axes.axes_visible[1] )
 		    {
 		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
 
@@ -9303,7 +9310,7 @@ sciDrawObj (sciPointObj * pobj)
 		  &dv, &dv, &dv, &dv, 5L, 6L);
 	C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
 		  &dv, &dv, &dv, &dv, 5L, 10L );
-	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 0L, 0L);
       }
       
       if(sciGetIsLine(pobj) == TRUE){
