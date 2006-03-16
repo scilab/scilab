@@ -10,6 +10,10 @@ end
 
 m = 0:n;
 xtemp = matrix(x,1,-1);
+xone=find(xtemp==1);
+xminusone=find(xtemp==-1);
+xtemp(xone)=nearfloat("pred",1);
+xtemp(xminusone)=nearfloat("succ",-1);
 y = legendre(n,m,xtemp);
 
 if (rhs == 2) then
