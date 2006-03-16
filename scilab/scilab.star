@@ -155,8 +155,12 @@ predef('all')
 
 // Graphic mode and Startup info ======================================
 set old_style off
-show_startupinfo();clear show_startupinfo
-
+verbose=sciargs()<>"-nb"
+if verbose then
+	show_startupinfo();
+	clear show_startupinfo;
+end
+clear verbose;
 
 // Define Scicos data tables ===========================================
 [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
