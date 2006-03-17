@@ -69,9 +69,10 @@
 
           <DESCRIPTION_ITEM label="figure_name: ">
             <SP>This field contains the name of the figure. This name is a
-            character string displayed at the top of the graphics_window. If
-            this name contains the substring %d, this substring will be
-            replaced by the <VERB>figure_id</VERB>.</SP>
+            character string displayed at the top of the graphics_window. The
+            name can contain a single substring <VERB>%d</VERB> which will be
+            replaced by the <VERB>figure_id</VERB>. No other instance of the
+            <VERB>%</VERB> character is allowed inside the name.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="figure_id: ">
