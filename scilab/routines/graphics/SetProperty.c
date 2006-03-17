@@ -3087,7 +3087,7 @@ sciSetResize (sciPointObj * pobj, BOOL value)
  * @memo Sets the name of the Figure
  * @param sciPointObj * pobj: the pointer to the entity
  * @param char pvalue: a pointer to the string contening name
- * @param int length: the length of the string
+ * @param int length: the length of the string (without the ending (char)0 ).
  * @return 
  */
 int
@@ -3096,23 +3096,61 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if( length > 79)
+    {
+      /* the length of the C string */
+      int realLength = length + 1 ;
+      int percentStatus = 0 ;
+      if( realLength > SCI_FIGURE_NAME_LENGTH )
       {
-	sciprint("Warning: Figure name is limlited to 80 characters\n");
+	sciprint("Warning: Figure name is limited to %d characters.\n", SCI_FIGURE_NAME_LENGTH - 1 );
         return -1 ;
-	break;
       }
-      else
+      
+      percentStatus = checkPercent( pvalue ) ;
+      if ( percentStatus < 0  )
       {
-	strcpy (pFIGURE_FEATURE (pobj)->name, pvalue);
+        sciprint("Figure name may not contains any %% character, except a single %%d.\n") ;
+        return -1 ;
       }
-      pFIGURE_FEATURE (pobj)->namelen = Min (79, length); 
-      if (pobj != pfiguremdl) {
-	char str[80];
-	sprintf(str,pvalue,sciGetNum(pobj));
-	C2F(dr)("xname",str,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length);
+      
+      strcpy (pFIGURE_FEATURE (pobj)->name, pvalue ) ;
+      pFIGURE_FEATURE (pobj)->namelen = length ; 
+      
+      if (pobj != pfiguremdl)
+      {
+	char * str = NULL ;
+        if ( percentStatus == 0 )
+        {
+          str = MALLOC( realLength * sizeof(char) ) ;
+          if ( str == NULL )
+          {
+            sciprint("No more memory left.\n");
+            return -1 ;
+          }
+          strcpy( str, pvalue ) ;
+        }
+        else
+        {
+          /* a %d inside */
+          /* get the number digits of the window number */
+          int figureNumber = sciGetNum( pobj ) ;
+          int nbDigits = GET_NB_DIGITS( figureNumber ) ;
+          realLength = realLength + nbDigits - 2 ; /* -2 for the %d */
+          str = MALLOC( realLength * sizeof(char) ) ;
+          if ( str == NULL )
+          {
+            sciprint("No more memory left.\n");
+            return -1 ;
+          }
+          sprintf( str, pvalue, figureNumber ) ;
+          length = realLength - 1 ;
+        }
+	C2F(dr)("xname",str,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,(long) length ) ;
+        FREE(str) ;
       }
+      
       break;
+    }
     case SCI_SUBWIN:
     case SCI_AGREG:
     default:
@@ -4291,3 +4329,39 @@ int sciSetAutoPosition ( sciPointObj * pObj, BOOL value )
 
   return 0 ;
 }
+
+/*---------------------------------------------------------------------------*/
+int checkPercent( char * string )
+{
+  /* check for the percent in the string */
+  char * firstPercent  = strchr( string, '%' ) ;
+  
+  if ( firstPercent == NULL )
+  {
+    /* no % character found */
+    return 0 ;
+  }
+  else if ( firstPercent[1] != 'd' )
+  {
+    /* a %something with something != d has been found */
+    return -1 ;
+  }
+  else
+  {
+    /* here we have found a first %d, check if there is not any more % */
+    firstPercent++ ;
+    firstPercent = strchr( firstPercent, '%' ) ;
+    if ( firstPercent == NULL )
+    {
+      /* no other % character found */
+      return 1 ;
+    }
+    else
+    {
+      return -1 ;
+    }
+  }
+  return -1 ;
+}
+
+/*---------------------------------------------------------------------------*/

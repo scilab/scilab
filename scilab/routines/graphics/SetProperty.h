@@ -105,4 +105,12 @@ extern int sciSetPosition (sciPointObj * pobj, double x, double y);
 extern int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
 extern int sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
 
+
+/*---------------------------------------------------------------------------*/
+/* return 0 if the string contains any % character, 1 if a %d has been found */
+/* and -1 otherwise. */
+extern int checkPercent( char * string ) ;
+/*---------------------------------------------------------------------------*/
+
+
 #endif /* __SCI_SET_PROPERTY__ */
