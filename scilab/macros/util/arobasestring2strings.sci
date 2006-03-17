@@ -18,38 +18,38 @@ if ( rhs ~= 1 ) then
   return ;
 end
 
-title = varargin(1) ;
+cText = varargin(1) ;
 
 // check type
-if ( type(title) ~= 10 ) then
+if ( type(cText) ~= 10 ) then
   error(246) ;
   return ; 
 end
 
 // check the size
-if ( size( title ) <> 1 ) then
+if ( size( cText ) <> 1 ) then
   error("function only works with an unique string");
   return ;
 end
 
-// in the title, each line is separated by a '@' character
+// in the text, each line is separated by a '@' character
 // in the resulting matrix, each line is put on a line
 // of the matrix
 
 // positions of @ in 
-arobPos = strindex( title, '@' ) ;
+arobPos = strindex( cText, '@' ) ;
 
 nbArob = size( arobPos ) ;
 nbArob = nbArob(2);
 
 // add the last character
-arobPos( nbArob + 1 ) = length( title ) + 1 ;
+arobPos( nbArob + 1 ) = length( cText ) + 1 ;
 
 // get the first string
-strings(1) = part( title, [1:arobPos(1)-1] ) ;
+strings(1) = part( cText, [1:arobPos(1)-1] ) ;
 
 for i = 1 : nbArob
-  strings( i + 1 ) = part( title, [ arobPos(i) + 1 : arobPos(i+1) - 1 ] ) ;
+  strings( i + 1 ) = part( cText, [ arobPos(i) + 1 : arobPos(i+1) - 1 ] ) ;
 end
 
 endfunction
