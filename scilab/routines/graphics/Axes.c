@@ -223,7 +223,7 @@ static void aplotv2(strflag)
   char xstr,ystr;  
   char dirx = 'd';
   int i;
-  sciSubWindow * ppSubWin = pSUBWIN_FEATURE(psubwin) ;
+  sciSubWindow * ppSubWin = NULL ;
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
   y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
@@ -235,7 +235,12 @@ static void aplotv2(strflag)
 
   /** Cscale.frect[4]= xmin ymin xmax ymax **/ 
 
-  if (version_flag() == 0) {
+  
+
+  if (version_flag() == 0)
+  {
+    /* initialize only there since in old style no subwin */
+    ppSubWin = pSUBWIN_FEATURE(psubwin) ;
     Cscale.xtics[2] = ppSubWin->axes.xlim[2];
     Cscale.ytics[2] = ppSubWin->axes.ylim[2]; 
 
@@ -368,7 +373,7 @@ static void aplotv1(strflag)
   char xstr,ystr; 
   char dirx = 'd';
   double CSxtics[4], CSytics[4];
-  sciSubWindow * ppSubWin = pSUBWIN_FEATURE(psubwin) ;
+  sciSubWindow * ppSubWin = NULL ;
   seg=0; 
   
   switch ( c ) 
@@ -448,8 +453,9 @@ static void aplotv1(strflag)
     }
   }
 
-  if (version_flag() == 0){  
-
+  if (version_flag() == 0)
+  {  
+    ppSubWin = pSUBWIN_FEATURE(psubwin) ;
     Cscale.Waaint1[0]= ppSubWin->axes.subint[0]+1;
     Cscale.Waaint1[1]= (integer) (ppSubWin->axes.xlim[3]); /*SS 02/01/03 */
     Cscale.Waaint1[2]= ppSubWin->axes.subint[1]+1; 
