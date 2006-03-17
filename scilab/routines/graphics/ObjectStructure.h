@@ -56,6 +56,7 @@
 #define SB_HORZ 0
 #endif 
 #define NUMCOLORS_SCI 32
+#define SCI_FIGURE_NAME_LENGTH 256
 /* Renvoi le pointeur sur la structure */
 
 #define pFIGURE_FEATURE(pointobj)      ((sciFigure        *)pointobj->pfeatures)/** */
@@ -438,7 +439,7 @@ typedef struct
   sciGraphicContext graphiccontext; /* the only property used here is background */
   sciPointObj * originalsubwin0011;
   /** specifies the title for this window  */
-  char name[80];	 
+  char name[SCI_FIGURE_NAME_LENGTH];	 
   /** specifies le length of the string name */
   int namelen;
   /** specifies the number of this window            */
