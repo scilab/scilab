@@ -56,6 +56,7 @@
 #define SB_HORZ 0
 #endif 
 #define NUMCOLORS_SCI 32
+#define SCI_FIGURE_NAME_LENGTH 256
 /* Renvoi le pointeur sur la structure */
 
 #define pFIGURE_FEATURE(pointobj)      ((sciFigure        *)pointobj->pfeatures)/** */
@@ -438,7 +439,7 @@ typedef struct
   sciGraphicContext graphiccontext; /* the only property used here is background */
   sciPointObj * originalsubwin0011;
   /** specifies the title for this window  */
-  char name[80];	 
+  char name[SCI_FIGURE_NAME_LENGTH];	 
   /** specifies le length of the string name */
   int namelen;
   /** specifies the number of this window            */
@@ -513,9 +514,9 @@ typedef struct
   int callbackevent; 
   /** specifies if this object is visble             */
   BOOL visible;
-  int isclip;
-  double clip_region[4];
-  int clip_region_set;
+  int isclip; /* this is the scilab clip_state propety */
+  double clip_region[4]; /* scilab clip_box property */
+  int clip_region_set; /* false if the clip state of the object has not already been set */
   
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
