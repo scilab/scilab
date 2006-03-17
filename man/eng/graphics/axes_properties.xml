@@ -216,8 +216,13 @@
 
           <DESCRIPTION_ITEM label="box: ">
             <SP>This property specifies whether to enclose the axes in a box.
-            Take as value <VERB>"off" </VERB> is to not display the box. The
-            default is <VERB>"on" </VERB>.</SP>
+            Its value can be either <VERB>"off"</VERB>,
+            <VERB>"hidden_axes"</VERB>, <VERB>"back_half"</VERB> or
+            <VERB>"on".</VERB> If the property is <VERB>"off"</VERB>, the box
+            is not draw. If the property is <VERB>"hidden_axes"</VERB>, only
+            the back frame is drawn. If the property is
+            <VERB>"back_half"</VERB>, the X, Y and Z axis are also drawn. If
+            the property is <VERB>"on"</VERB> the whole box is drawn.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="sub_ticks: ">
@@ -322,6 +327,11 @@
             position of the upper-left corner and the dimension of the axes
             (these numbers are ratio relative to the corresponding figure
             <VERB>figure_size</VERB> property values).</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="hidden_axis_color: ">
+            <SP>This property defined the color of the hidden axis. It takes
+            an index relative to the current colormap.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="user_data: ">
@@ -540,7 +550,7 @@
    a.rotation_angles=[70 250]; //turn the axes with giving angles
    a.grid=[1 6 -1]; //make y-grid
    a.view="2d"; //return te the 2d view
-   a.box="off"; 
+   a.box="back_half"; 
    a.labels_font_color=5;
    a.children.children.thickness=4;
    a.children.children.polyline_style=3;
