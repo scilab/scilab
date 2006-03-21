@@ -165,7 +165,7 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 /* return the number of digits of a positive integer (ie for 10236 it is 5 )  */
 /* the added 0.5 is to avoid trouble with 10^i which could become 9.999999999 */
-#define GET_NB_DIGITS(i) ( ((int) floor( log10( i + 0.5 ) ) ) + 1 )
+#define GET_NB_DIGITS(i) ( (i) == 0 ? 1 : ((int) floor( log10( (i) + 0.5 ) ) ) + 1 )
 /*----------------------------------------------------------------------------*/
 
 
