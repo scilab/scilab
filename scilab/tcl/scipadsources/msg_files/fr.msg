@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.15
+# in sync at least with v6.16
 
 
 # commons
@@ -118,11 +118,10 @@
 ::msgcat::mcset fr "Watch" "Espions"
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
 ::msgcat::mcset fr "Remove" "Supprimer"
-::msgcat::mcset fr "Call stack:" "Pile des appels:"
-::msgcat::mcset fr "Show watch variables" "Montrer les variables"
+::msgcat::mcset fr "Call stack:" "Pile des appels :"
 ::msgcat::mcset fr "Hide watch variables" "Cacher les variables"
-::msgcat::mcset fr "Show call stack" "Montrer la pile d'appel"
 ::msgcat::mcset fr "Hide call stack" "Cacher la pile d'appel"
+::msgcat::mcset fr "Always on top" "Toujours à l'avant-plan"
 ::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
 ::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
 ::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"

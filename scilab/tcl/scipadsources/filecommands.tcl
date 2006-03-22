@@ -607,7 +607,7 @@ proc notopenedfile {file} {
 proc shownewbuffer {file tiledisplay} {
     global pad winopened closeinitialbufferallowed
     if [fileunreadable $file] return
-    openoninit $pad.new$winopened $file $tiledisplay
+    openfileondisk $pad.new$winopened $file $tiledisplay
     resetmodified $pad.new$winopened
     if {$tiledisplay == "currenttile"} {
         montretext $pad.new$winopened
@@ -637,8 +637,9 @@ proc fileisopen {file} {
       file to another name and reopen it from disk!"] ]
 }
 
-proc openoninit {textarea thefile tiledisplay} {
-# open/read a file from disk or read a pipe
+proc openfileondisk {textarea thefile tiledisplay} {
+# really open/read a file from disk
+# all readability tests have normally been done before
     global listoftextarea pad closeinitialbufferallowed
     set msgWait [mc "Wait seconds while loading and colorizing file"]
     showinfo $msgWait
@@ -647,29 +648,11 @@ proc openoninit {textarea thefile tiledisplay} {
         set closeinitialbufferallowed false
         closefile $pad.new1
     }
-    if [string match " " $thefile] {  
-        fconfigure stdin -blocking 0
-        set incoming [read stdin 1]
-        if [expr [string length $incoming] == 0] {
-            fconfigure stdin -blocking 1
-        } else {
-            fconfigure stdin -blocking 1
-            $textarea insert end $incoming
-            while {![eof stdin]} {
-                $textarea insert end [read -nonewline stdin]
-            }
-        }
-    } else {
-        if [ file exists $thefile ] {
-            set newnamefile [open $thefile r]
-        } else {
-            set newnamefile [open $thefile a+]
-        }
-        while {![eof $newnamefile]} {
-            $textarea insert end [read -nonewline $newnamefile ]
-        }
-        close $newnamefile
+    set newnamefile [open $thefile r]
+    while {![eof $newnamefile]} {
+        $textarea insert end [read -nonewline $newnamefile ]
     }
+    close $newnamefile
 }
 
 ##################################################
@@ -1033,6 +1016,11 @@ proc fileunreadable {file} {
             # Tcl bug 1394972) and when it will correctly answer 0 this
             # code should be removed and just replaced by
             # return 0
+            # Note: this bug has been marked as WONTFIX in the Tcl tracker
+            # since it is an OS limitation. On Windows there is no way to
+            # know before trying to open a file that it is locked.
+            # A test with constraint "knownBug" has been added in fCmd.test
+            # (in the Tcl test suite)
             if {[catch {set fileid [open $file r]}] == 0} {
                 # the file readable answers true and file can really be read
                 # this is the usual case

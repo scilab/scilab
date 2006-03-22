@@ -1,27 +1,40 @@
+proc blinkchars {w sta sto} {
+# blink characters in $w between indices $sta and $sto
+# $sta is supposed to be before $sto in $w
+    $w tag add sel $sta $sto
+    $w see $sto
+    update idletasks
+    after 300
+    $w tag remove sel $sta $sto
+    selection clear
+    $w see insert
+}
+
 proc blinkbrace {w pos brace} {
-    global bracefind fno
+# blink an entity delimited by matching brackets, braces or parenthesis
     if {[regexp \\$brace "\{\}\[\]\(\)"] == 0} return
+
     switch $brace {
         \{ { set findbs {[{}]}; set bs "\}";\
-                            set dir {-forwards}; set bn brace }
+                            set dir {-forwards} }
         \} { set findbs {[{}]}; set bs "\{"; \
-                            set dir {-backwards}; set bn brace }
+                            set dir {-backwards} }
         \[ { set findbs {[][]}; set bs "\]"; \
-                            set dir {-forwards}; set bn bracket }
+                            set dir {-forwards} }
         \] { set findbs {[][]}; set bs "\["; \
-                            set dir {-backwards}; set bn bracket }
-        \( { set findbs {[()]}; set bs "\)"; set dir {-forwards};\
-                            set bn parenthesis }
+                            set dir {-backwards} }
+        \( { set findbs {[()]}; set bs "\)"; \
+                            set dir {-forwards} }
         \) { set findbs {[()]}; set bs "\("; \
-                            set dir {-backwards}; set bn parenthesis }
+                            set dir {-backwards} }
     }
-    set p [set i [$w index $pos-1c]]
+    set p [$w index $pos-1c]
     set d 1
     while {$d > 0} {
         if {$dir == "-backwards"} {
             set p [$w search $dir -regexp $findbs $p 1.0]
         } else {
-            set p [$w search $dir -regexp $findbs $p+1c end]
+            set p [$w search $dir -regexp $findbs "$p+1c" end]
         }
         if {$p == {}} {
             set d -1
@@ -35,18 +48,90 @@ proc blinkbrace {w pos brace} {
     }
     if {$d == 0} {
         if {$dir == "-backwards"} {
-            $w tag add sel $p $pos
+            blinkchars $w $p $pos
         } else {
-            $w tag add sel $pos-1c $p+1c
+            blinkchars $w $pos-1c $p+1c
         }
-        $w see $p
-        update idletasks
-        after 300
-        $w tag remove sel 1.0 end
-        selection clear
-        $w see insert
     } else {
         showinfo [concat [mc "No corresponding <"] $bs [mc "> found!"] ]
+    }
+}
+
+proc blinkquote {w pos char} {
+# blink quotes that define a character string
+# <TODO>: - take care of quotes inside comments
+#         - blink single quotes (beware of the transpose case)
+    global listoffile
+
+    if {$listoffile("$w",language) != "scilab"} {return}
+    if {[regexp \\$char "\""] == 0} {return}
+
+    if {[iscontinuedline $w "$pos - 1 l"]} {
+        set sta [getstartofcontline $w "$pos - 1 l"]
+    } else {
+        set sta [$w index "$pos linestart"]
+    }
+    if {[iscontinuedline $w $pos]} {
+        set sto [getendofcontline $w $pos]
+    } else {
+        set sto [$w index "$pos lineend"]
+    }
+    set i [$w index "$pos - 1 c"]
+
+    set pat {"[^"]*(?:""[^"]*)*"}
+
+    proc tryright {w pat i pos sto} {
+    # try to find and blink a closing quote (i.e. at the right of the
+    # quote that was just typed)
+        set allind1 [regexp -all -indices -inline -- $pat [$w get $i $sto]]
+        set allind2 [regexp -all -indices -inline -- $pat [$w get $pos $sto]]
+
+        if {[llength $allind1] == 0} {
+            # no closing quote found
+            return
+        } else {
+            # a closing quote has been found after the
+            # quote that was just typed
+            set p [$w index "$i + [lindex [lindex $allind1 0] 1] c + 1 c"]
+            blinkchars $w $i $p
+        }
+    }
+
+    # try first to find an opening quote matching the quote
+    # that was just typed (i.e. try towards the left)
+    set allind1 [regexp -all -indices -inline -- $pat [$w get $sta $pos]]
+    set allind2 [regexp -all -indices -inline -- $pat [$w get $sta $i]]
+
+    if {[llength $allind1] == 0} {
+        # the quote just typed is an opening quote
+        # search for the closing quote
+        tryright $w $pat $i $pos $sto
+        return
+    }
+
+    if {[llength $allind1] != [llength $allind2]} {
+        # the quote just typed closes a string
+        # that starts before this quote
+        set p [$w index "$sta + [lindex [lindex $allind1 end] 0] c"]
+        blinkchars $w $p $pos
+    } else {
+        foreach {i1 j1} [lindex $allind1 end] {}
+        foreach {i2 j2} [lindex $allind2 end] {}
+        if {$i1 == $i2} {
+            if {$j1 == $j2} {
+                # the quote just typed is an opening quote
+                # search for the closing quote
+                tryright $w $pat $i $pos $sto
+            } else {
+                # the quote just typed closes a string
+                # that contains a quote, e.g. "abc""def"
+                set p [$w index "$sta + $i1 c"]
+                blinkchars $w $p $pos
+            }
+        } else {
+            # shouldn't happen
+            tk_messageBox -message "Impossible case #1 in blinkquote"
+        }
     }
 }
 
@@ -54,6 +139,12 @@ proc insblinkbrace {w brace} {
     if {[IsBufferEditable] == "No"} {return}
     puttext $w $brace
     blinkbrace $w insert $brace 
+}
+
+proc insblinkquote {w quote} {
+    if {[IsBufferEditable] == "No"} {return}
+    puttext $w $quote
+    blinkquote $w insert $quote 
 }
 
 proc insertnewline {w} {

@@ -14,17 +14,20 @@ Bugs:
 
 -proc blinkbrace blinks even if the brackets/braces are quoted, e.g. "[" "]"
 
+-proc blinkquote blinks even for partially commented text, e.g.
+ a "string.. // this is no "string
+
+-On some platforms certain bindings for blinking character never trigger,
+ e.g. for bracketleft on Windows (AltGr-5, french keyboard) one gets
+ Control_L plus parenleft - this one however blinks through the parenleft
+ binding, but others such as braceleft does never trigger and gives
+ Control_L plus quoteright - depends on keyboard, platform and whatnot...
+
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
 -On Windows, opening files and then closing one of them makes the remaining
  ones unselectable in the windows menu. This is Tk bug 1224330.
-
--When two buffers are opened containing the same function (or function name) to
- debug, then the wrong buffer may become the active one to show the active
- breakpoint - same issue in configureexec: if a function is defined in more
- than one buffer, proc checkarglist may detect the wrong one and prevents
- correct configuration of the debugger
 
 -When a function definition line ends with a comment, the line numbering is
  wrong 1 unit, resulting is various strange behaviors: execution not stopping
@@ -45,7 +48,10 @@ Bugs:
  lines without dots are present before the breakpoint stop. Bug 1469 again!!!
 
 -anything can happen during debug if the same function name can be found more
- than once among the opened buffers
+ than once among the opened buffers, for instance the wrong buffer may become
+ the active one to show the active breakpoint - same issue in configureexec:
+ if a function is defined in more than one buffer, proc checkarglist may
+ detect the wrong one and prevents correct configuration of the debugger
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -53,8 +59,11 @@ Old bugs/whishes which have been hacked but could have been done better:
 
 -On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
  usually produces a read-only warning and prevents the user from saving there.
- This is Tcl bug 1193497. A patch has been forced in by the operational team.
- The fix for the Tcl bug exists but is not yet applied to the Tcl cvs tree.
+ This is Tcl bug 1193497 / patch 1344540.
+ A patch has been forced in by the operational team.
+ The fix for the Tcl bug exists and has beed applied to the Tcl cvs tree,
+ both in the core-8.4 branch and HEAD. Tcl/Tk 8.5a4 and 8.4.13 include it
+ but Scilab does not yet use 8.4.13
 
 -the window geometry is now managed in pixels. This is fine for restoring
  exactly the same window geometry as in the previous session, but loses
@@ -138,6 +147,11 @@ Debugger wishes:
 -watching some very large variable content looks like the variable is empty
  This is Tk bug 1449858.
 
+-allow to dock the watch window inside the Scipad window, as if in a pane
+
+-add a debugger command: "Show next instruction", with a little yellow arrow
+ in the margin
+
 
 Other wishes:
 
@@ -183,10 +197,8 @@ Other wishes:
 -Improve the aesthetics of Scipad (see sciGUI)
    . Find dialog
 
--Blink (single or double) quotes. Must find a way to distinguish between 
- opening and closing quotes in proc blinkbrace. This is not that easy since
- these are the same character, therefore the direction to search is difficult
- to determine.
+-Blink single quotes. More difficult than to blink double quotes because
+ of the transpose case
 
 -'Matlab' colorization scheme for .m files
 
@@ -286,3 +298,5 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 
 -Add a function "Beautify code" for Scilab schemes: (optionally) suppress
  tabs, and reindents according to keywords (if, function, while, for...)
+
+-Request 262: tabbed buffers (see discussion in this request)

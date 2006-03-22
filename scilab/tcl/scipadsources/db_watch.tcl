@@ -6,16 +6,22 @@ proc showwatch_bp {} {
     global firsttimeinshowwatch watchgeom watchmins watchminsinit
     global callstackwidget callstackcontent
     global watchwinicons watchwinstepicons db_butimages db_stepbutimages
-    global showwatchvariablesarea togglewvabutton
-    global showcallstackarea togglecsabutton
+    global watchalwaysontop
+    global showwatchvariablesarea showcallstackarea
     global watchvpane1mins watchvpane2mins watchvsashcoord
     global watchhpane1mins watchhpane2mins watchhsashcoord
     global debugstateindicator
     global menuFont textFont
+    global tcl_platform
 
     # Hardwired size, but how else?
-    set heightofwatchwithnoarea 105 ;# 85 enough for windows, 105 for my Linux
-    set widthofwatchwithnoarea  504 ;# Anyway, could depend on font size, language...
+    if {$tcl_platform(platform) == "unix"} {
+        # 85 enough for windows, 105 for my Linux Mandrake 10.1
+        set heightofwatchwithnoarea 105
+    } else {
+        set heightofwatchwithnoarea 90
+    }
+    set widthofwatchwithnoarea  587 ;# Anyway, could depend on font size, language...
 
     set watch $pad.watch
     catch {destroy $watch}
@@ -40,9 +46,9 @@ proc showwatch_bp {} {
 
     frame $watch.f
 
-    frame $watch.f.f1
+    frame $watch.f.f1 ;# -bg pink
 
-    frame $watch.f.f1.f1l
+    frame $watch.f.f1.f1l ;# -bg red
     set buttonConfigure $watch.f.f1.f1l.configure
     button $buttonConfigure -command "configurefoo_bp" -image [lindex $db_butimages 4] \
            -relief flat -overrelief raised
@@ -74,18 +80,33 @@ proc showwatch_bp {} {
          $buttonStepOver $buttonStepOut \
          $buttonRunToCursor $buttonGoOnIgnor \
          $buttonBreakDebug $buttonCancelDebug \
-         -padx 2 -pady 2 -side left
+         -padx 0 -pady 0 -side left
 
-    frame $watch.f.f1.f1r
-    set buttonshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
-    button $buttonshowwatchvariablesarea -command "togglewatchvariablesarea" -text [mc $togglewvabutton] -width 20 -font $menuFont
-    set buttonshowcallstackarea $watch.f.f1.f1r.showcallstackarea
-    button $buttonshowcallstackarea -command "togglecallstackarea" -text [mc $togglecsabutton] -width 20 -font $menuFont
+    frame $watch.f.f1.f1r -bg orange
+    set checkboxalwaysontop $watch.f.f1.f1r.watchalwaysontop
+    checkbutton $checkboxalwaysontop -variable watchalwaysontop \
+            -command "managewatchontop_bp" \
+            -text [mc "Always on top"] -width 20 -font $menuFont \
+            -anchor w -borderwidth 0 -pady 0
+    set checkboxshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
+    checkbutton $checkboxshowwatchvariablesarea -variable showwatchvariablesarea \
+            -command "closewatch_bp $watch; showwatch_bp" \
+            -onvalue "false" -offvalue "true" \
+            -text [mc "Hide watch variables"] -width 20 -font $menuFont \
+            -anchor w -borderwidth 0 -pady 0
+    set checkboxshowcallstackarea $watch.f.f1.f1r.showcallstackarea
+    checkbutton $checkboxshowcallstackarea -variable showcallstackarea \
+            -command "closewatch_bp $watch; showwatch_bp" \
+            -onvalue "false" -offvalue "true" \
+            -text [mc "Hide call stack"] -width 20 -font $menuFont \
+            -anchor w -borderwidth 0 -pady 0
 
-    pack $watch.f.f1.f1r.showwatchvariablesarea $watch.f.f1.f1r.showcallstackarea -pady 2
-    pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 20 -anchor w
+    pack $checkboxalwaysontop $checkboxshowwatchvariablesarea \
+            $checkboxshowcallstackarea -pady 0
+    pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 5 -pady 0 -anchor w
+    managewatchontop_bp
 
-    frame $watch.f.f1.f1fr
+    frame $watch.f.f1.f1fr ;# -bg lightblue
     set debugstateindicator $watch.f.f1.f1fr.debugstateindicator
     canvas $debugstateindicator -relief ridge -width 15 -height 15
     updatedebugstateindicator_bp
@@ -185,7 +206,7 @@ proc showwatch_bp {} {
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
     scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval"
-    listbox $lbvarname -height 6 -width 12  -font $textFont -yscrollcommand \
+    listbox $lbvarname -height 6 -width 12 -font $textFont -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -takefocus 0
     listbox $lbvarval  -height 6 -font $textFont -yscrollcommand \
@@ -216,7 +237,7 @@ proc showwatch_bp {} {
     label $watch.f.vpw.f6.cslabel -text $csl -font $menuFont
     pack $watch.f.vpw.f6.cslabel -anchor w -pady 4
     set callstackwidget $watch.f.vpw.f6.callstack
-    text $callstackwidget -height 5 -width 81 -font $textFont -state normal -background gray83
+    text $callstackwidget -height 5 -font $textFont -state normal -background gray83
     pack $callstackwidget -fill both -expand 1
     if {$showcallstackarea == "true"} {
         $watch.f.vpw add $watch.f.vpw.f6
@@ -234,7 +255,7 @@ proc showwatch_bp {} {
     # In order to make the Close button visible at all times, it must be packed
     # first with -side bottom, and the panedwindow must be packed after it with
     # -side top. This is a feature of the pack command, it is not a bug.
-    # See Tk bug 1217762
+    # See Tk bug 1217762 (resolved as invalid, btw)
     pack $watch.f.f9 -pady 2 -side bottom
     if {$showwatchvariablesarea == "true" || $showcallstackarea == "true"} {
         pack $watch.f.vpw -fill both -expand yes -side top
@@ -567,36 +588,4 @@ proc update_bubble {type widgetname mousexy bubbletxt} {
         set cmd [list destroy $bubble]
         after 1000 $cmd
     }
-}
-
-proc togglewatchvariablesarea {} {
-# Show or hide the watch window variables area
-# Localization of the button label is done in proc showwatch_bp
-    global watch
-    global showwatchvariablesarea togglewvabutton
-    closewatch_bp $watch
-    if {$showwatchvariablesarea == "true"} {
-        set showwatchvariablesarea "false"
-        set togglewvabutton "Show watch variables"
-    } else {
-        set showwatchvariablesarea "true"
-        set togglewvabutton "Hide watch variables"
-    }
-    showwatch_bp
-}
-
-proc togglecallstackarea {} {
-# Show or hide the watch window call stack area
-# Localization of the button label is done in proc showwatch_bp
-    global watch
-    global showcallstackarea togglecsabutton
-    closewatch_bp $watch
-    if {$showcallstackarea == "true"} {
-        set showcallstackarea "false"
-        set togglecsabutton "Show call stack"
-    } else {
-        set showcallstackarea "true"
-        set togglecsabutton "Hide call stack"
-    }
-    showwatch_bp
 }

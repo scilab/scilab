@@ -8,9 +8,8 @@ array set watchvarsvals {}
 set callstackcontent ""
 set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"
-set togglewvabutton "Hide watch variables" ; # localization is done in proc showwatch_bp
 set showcallstackarea "true"
-set togglecsabutton "Hide call stack" ; # localization is done in proc showwatch_bp
+set watchalwaysontop 0
 
 # Set the Scilab limits in terms of max number of breakpointed functions
 # and of max number of breakpoints (see help setbpt)

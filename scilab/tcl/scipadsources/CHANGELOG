@@ -1839,6 +1839,7 @@ Francois VOGEL, 09/12/05
    click on the file to open. References:
    http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/21cee717df71ab0/d5957386272e17b3
    http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/875daad29986228e/ae651d1a948ba67c
+   More than one year later, I found that this is known in Tk as bug 943110...
  * DarkMagenta and darkred are not known under hpux11.11, therefore these
    colors become magenta4 and red4 (bug 1203)
  * ScilabEval command has quotes in proc selectprint_win in order to
@@ -2095,7 +2096,8 @@ ES 06/03/06
 
 Francois VOGEL, 06/03/06
  * fileunreadable extended to deal with files locked by another process,
-   working around Tcl bug 1394972
+   working around Tcl bug 1394972 (this bug was later marked as WONTFIX
+   in the Tcl tracker)
  * version --> 6.13
 
 Francois VOGEL, 12/03/06
@@ -2111,3 +2113,15 @@ Francois VOGEL, 14/03/06
    of a command) is also tested
  * Worked around Scilab bug 1894
  * version --> 6.15
+
+Francois VOGEL, 22/03/06
+ * Proc openoninit renamed to openfileondisk and cleaned
+ * Tuned a bit the look of the watch window, particularly when no pane is
+   shown because it was slightly broken by the addition of the new buttons
+   in 6.14
+ * Scipad blinks double quotes (scilab scheme only)
+ * Added missing bindings for parenleft bracketleft braceleft to blink them
+ * The watch window can be always on top (setting added in the watch window,
+   buttons become checkboxes to minimize space used) - Fixes request 261
+ * Updated Scipad help page (mainly step by step new feature)
+ * version --> 6.16

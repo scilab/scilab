@@ -24,9 +24,13 @@ bind Text <Return>    {insertnewline %W}
 # SetCompletionBinding must be updated accordingly
 bind Text <Tab>       {inserttab %W ; break}
 
+bind Text <parenleft>    {if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <parenright>   {if {{%A} != {{}}} {insblinkbrace %W %A}}
+bind Text <bracketleft>  {if {{%A} != {{}}} {insblinkbrace %W %A}} 
 bind Text <bracketright> {if {{%A} != {{}}} {insblinkbrace %W %A}} 
+bind Text <braceleft>    {if {{%A} != {{}}} {insblinkbrace %W %A}}
 bind Text <braceright>   {if {{%A} != {{}}} {insblinkbrace %W %A}}
+bind Text <quotedbl>     {if {{%A} != {{}}} {insblinkquote %W %A}}
 
 
 bind Text <<Modified>> {changedmodified %W}
