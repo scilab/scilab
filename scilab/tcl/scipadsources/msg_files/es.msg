@@ -248,8 +248,8 @@
 ::msgcat::mcset es "aboutme_message"\
                    "\n Originado de tknotepad de Joseph Acosta,\
                     joeja@mindspring.com.\n Modificado por el consorcio\
-                    Scilab.\n Mejoras por Enrico Segre 2003-2005\n y por\
-                    François Vogel (en particular el depurador) 2004-2005.\n\
+                    Scilab.\n Mejoras por Enrico Segre 2003-2006\n y por\
+                    François Vogel (en particular el depurador) 2004-2006.\n\
                     Traducción: \n   noruego, Torbjrn Pettersen 2005; \n  \
                     polaco, Bartosz Kosiorek 2005; \n   sueco, Gunnar\
                     Lindholm 2005; \n   alemán, Dirk Reusch 2005; \n   español, Nicolás Quesada 2006."

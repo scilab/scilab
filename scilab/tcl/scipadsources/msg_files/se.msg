@@ -166,8 +166,8 @@
 ::msgcat::mcset se aboutme_message \
                    "\n Skapat av Joseph Acosta, joeja@mindspring.com.\n\
                     Modifierat av Scilab Constortium.\n\
-                    Granskat av Enrico Segre 2003-2005.\n\
-                    Diverse förbättringar, i synnerhet debuggingverktygen av François Vogel 2004-2005.\n\
+                    Granskat av Enrico Segre 2003-2006.\n\
+                    Diverse förbättringar, i synnerhet debuggingverktygen av François Vogel 2004-2006.\n\
                     Översättning till svenska av Gunnar Lindholm 2005.\n\
                     Översättning till tyska av Dirk Reusch 2005."
 

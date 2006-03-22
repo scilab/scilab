@@ -246,9 +246,9 @@
                    "\n Program zapocz\u0105tkowany przez\
                    Joseph Acosta, joeja@mindspring.com.\n Zmodyfikowany\
                    przez Konsorcjum Scilab.\n Skorygowany przez Enrico Segre\
-                   2003-2005.\n R\u00F3\u017Cnorodne ulepszenia,\
+                   2003-2006.\n R\u00F3\u017Cnorodne ulepszenia,\
                    narz\u0119dzia debuguj\u0105ce, zosta\u0142y stworzone\
-                   przez Francois Vogel 2004-2005.\n Autorem szwedzkiej\
+                   przez Francois Vogel 2004-2006.\n Autorem szwedzkiej\
                    lokalizacji jest Lindholm 2005.\n Norweskej lokalizacji\
                    jest Torbj\u0159rn Pettersen 2005.\n Niemieckiej lokalizacji\
                    jest Dirk Reusch 2005.\n Polskiej lokalizacji jest\
