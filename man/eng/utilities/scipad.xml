@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>1st-Nov-2004 - Revised 2005</DATE>
+  <DATE>1st-Nov-2004 - Revised 2005, March 2006</DATE>
 
   <SHORT_DESCRIPTION name="scipad">Embedded Scilab text
   editor</SHORT_DESCRIPTION>
@@ -160,8 +160,7 @@
   </DESCRIPTION>
 
   <SECTION label="Debugger">
-    <P>Scipad 2.0 or later includes a debugger (for .sci files only). The user
-    can:</P>
+    <P>Scipad includes a debugger (for .sci files only). The user can:</P>
 
     <P></P>
 
@@ -177,14 +176,16 @@
         names, and variable values. To ease this step, a scan of the currently
         displayed buffer is implemented to look for functions defined in it,
         scan their names and variable names. All this is displayed to the user
-        in a dialog for easy selection. First, he has to select a function in
-        a spinbox, then eventually one of its variables. Once a variable is
-        selected, the user can set/change its value (another dialog pops).
-        Variable values and names are displayed in listboxes. The user can
-        also add a new variable or remove already defined variables. This is
-        in case the user changes the input variables of his function in the
-        file, and he does not want to scan the buffer again (which causes all
-        the variable values to reset to a null value, actually "").</SP>
+        in a dialog for easy selection. First, the user has to select a
+        function in a spinbox, then eventually one of its variables. Once a
+        variable is selected, the user can set/change its value (another
+        dialog pops). Variable values and names are displayed in listboxes.
+        The user can also add a new variable or remove already defined
+        variables. This is in case the user changes the input variables of his
+        function in the file, and he does not want to scan the buffer again
+        (which causes all the variable values to reset to a null value,
+        actually ""). Note also that the <LINK>varargin</LINK> keyword is
+        supported.</SP>
 
         <P></P>
       </ITEM>
@@ -193,10 +194,11 @@
         <SP>Scipad execs the currently displayed buffer as well as all the
         opened buffers that contain functions, sends to Scilab the buffer as
         well as all the opened buffers that contain functions, sends to Scilab
-        the setbpt instructions relative to all the breakpoints that have been
-        set, and executes the selected function with the input variable values
-        provided during the configure execution step. Then the execution is
-        automagically stopped by Scilab at the first breakpoint.</SP>
+        the <LINK>setbpt</LINK> instructions relative to all the breakpoints
+        that have been set, and executes the selected function with the input
+        variable values provided during the configure execution step. Then the
+        execution is automagically stopped by Scilab at the first
+        breakpoint.</SP>
 
         <P></P>
       </ITEM>
@@ -210,7 +212,7 @@
       <ITEM label="Continue up to next breakpoint.">
         <SP>Scilab resumes execution, and stops at the next breakpoint or goes
         to the end of the file if there are no more breakpoints. The active
-        breakpoint is emphasized in Scipad so that it can easily be
+        breakpoint is highlighted in Scipad so that it can easily be
         identified.</SP>
 
         <P></P>
@@ -225,11 +227,28 @@
         <P></P>
       </ITEM>
 
-      <ITEM label="Execute step by step.">
+      <ITEM label="Execute step by step, going into functions (step into).">
+        <SP>Scilab stops after execution of each line. The active stop
+        position is highlighted in Scipad so that it can easily be identified.
+        Every line of code in functions from opened files is taken into
+        account, but Scipad does not search for or open files by itself in
+        order to step into them.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Execute step by step, without going into ancillary functions (step over).">
         <SP>This is currently not available (it is always disabled in the
-        Debug menu). See proc stepbystep_bp in
-        SCI/tcl/scipadsources/db_debugsession.tcl for further details about
-        the problems encountered for this item.</SP>
+        Debug menu). See SCI/tcl/scipadsources/db_debugsession.tcl for details
+        about the problems encountered for this item.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Execute step by step, starting back from the return of the current function (step out).">
+        <SP>This is currently not available (it is always disabled in the
+        Debug menu). See SCI/tcl/scipadsources/db_debugsession.tcl for details
+        about the problems encountered for this item.</SP>
 
         <P></P>
       </ITEM>
@@ -259,7 +278,8 @@
     <P>At any time during the debug, a <BD>watch window</BD> can be displayed
     on user request. It allows to monitor any variable value, or change a
     variable value during a breakpoint stop and relaunch execution with the
-    modified value. The watch window also displays the calling stack.</P>
+    modified value. The watch window also displays the calling stack and
+    contains a toolbar with the most useful commands from the debug menu.</P>
 
     <P>After the end of the execution, the breakpoints are removed from Scilab
     (but kept in Scipad).</P>
@@ -274,8 +294,8 @@
     should be easy to add the functionality in the Scipad source code. Anyway,
     if actually a debug is required in a .sce, you should first convert it
     into a .sci function just by adding (output_vars)=function foo(input_vars)
-    / endfunction and that's it. The absence of breakpoints management for
-    .sce is therefore not such a major drawback.</P>
+    / endfunction and that's it. The lack of breakpoints management for .sce
+    is therefore not such a major drawback.</P>
 
     <P></P>
   </SECTION>
@@ -288,10 +308,11 @@
         English or French (see <LINK>setlanguage</LINK>), but other languages
         are being added. The localization in effect can be selected with the
         menu Options/Locale, and is remembered across sessions. Currently, the
-        supported languages are: "de" (German) ,"eng" (English), "fr"
-        (French), "it" (Italian), "no" (Norwegian), "se" (Swedish).</SP>
+        supported languages are: "de" (German) ,"eng" (English), "es"
+        (Spanish), "fr" (French), "it" (Italian), "no" (Norwegian), "pl"
+        (Polish), "se" (Swedish).</SP>
 
-        <SP>Further languages can be added by creating the proper translation
+        <SP> Further languages can be added by creating the proper translation
         file and putting it in SCI/tcl/scipadsources/msg_files/. If you plan
         to do such a job, please check the file
         <VERB>SCI/tcl/scipadsources/msg_files/AddingTranslations.txt</VERB>
@@ -304,7 +325,7 @@
       <ITEM label="Drag and drop:">
         <SP>DnD has been implemented in Scipad for moving around text, for
         dropping selected text from and to external applications, and for
-        opening files or for list of files.</SP>
+        opening a file or a list of files.</SP>
 
         <P>Dragging one or more files from an explorer and dropping to Scipad
         will open the file(s) in Scipad. Doing the same with a directory will
@@ -349,7 +370,10 @@
 
       <ITEM label="Bugs:">
         <SP>There are still a few... Details can be found in file
-        SCI/tcl/scipadsources/BUGS</SP>
+        SCI/tcl/scipadsources/BUGS. Officially reported bugs are filed in the
+        Bugzilla http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi
+        and can be easily retrieved by filtering entries wrt the "Scipad
+        Editor" element.</SP>
 
         <P></P>
       </ITEM>
@@ -380,8 +404,8 @@
 
     <AUTHORS_ITEM>Mathieu Philippe, INRIA, 2001;</AUTHORS_ITEM>
 
-    <AUTHORS_ITEM>Enrico Segre, Weizmann Institute, 2003-2005;</AUTHORS_ITEM>
+    <AUTHORS_ITEM>Enrico Segre, Weizmann Institute, 2003-2006;</AUTHORS_ITEM>
 
-    <AUTHORS_ITEM>Francois Vogel, 2004-2005.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>Francois Vogel, 2004-2006.</AUTHORS_ITEM>
   </AUTHORS>
 </MAN>
