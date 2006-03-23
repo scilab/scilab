@@ -27,4 +27,14 @@ extern sciPointObj *CloneArc (sciPointObj * pthis);
 
 extern sciPointObj *sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
 
+/*--------------------------------------------------------------------------*/
+/**
+ * @memo copy the graphicontext of an object to another
+ * @param pObjSource the object from which the GC is taken
+ * @param pObjDest the object in which the GC is paste
+ */
+extern void cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+
+/*--------------------------------------------------------------------------*/
+
 #endif /* __SCI_CLONE__ */

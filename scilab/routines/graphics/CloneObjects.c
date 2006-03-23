@@ -382,3 +382,10 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
   return (sciPointObj *)pcopyobj;
 }
 
+/*--------------------------------------------------------------------------*/
+void cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
+{
+  /* struct affectation */
+  *(sciGetGraphicContext(pObjDest)) = *(sciGetGraphicContext(pObjSource)) ;
+}
+/*--------------------------------------------------------------------------*/
