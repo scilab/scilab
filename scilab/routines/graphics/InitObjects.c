@@ -24,6 +24,7 @@
 #include "PloEch.h"
 #include "Axes.h"
 #include "DestroyObjects.h"
+#include "CloneObjects.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -439,7 +440,10 @@ int C2F(graphicsmodels) ()
       
   pLABEL_FEATURE ((ppobj->mon_title))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_title))->ptype = 1; /* type = 1 <=> title, 2 <=> x_label...*/
-      
+   
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_title ) ;
+   
   pLABEL_FEATURE ((ppobj->mon_title))->text.fontcontext.textorientation = 0;
 
   /*   pLABEL_FEATURE ((ppobj->mon_title))->titleplace = SCI_LABEL_IN_TOP; */
@@ -515,6 +519,9 @@ int C2F(graphicsmodels) ()
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_x_label))->ptype = 2; /* type = 1 <=> x_label, 2 <=> x_label...*/
       
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_x_label ) ;
+
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.fontcontext.textorientation = 0;
 
   /*   pLABEL_FEATURE ((ppobj->mon_x_label))->x_labelplace = SCI_LABEL_IN_TOP; */
@@ -589,7 +596,10 @@ int C2F(graphicsmodels) ()
       
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_y_label))->ptype = 3; /* type = 1 <=> y_label, 2 <=> y_label...*/
-      
+  
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_y_label ) ;
+    
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.fontcontext.textorientation = 0;
 
   /*   pLABEL_FEATURE ((ppobj->mon_y_label))->y_labelplace = SCI_LABEL_IN_TOP; */
@@ -663,7 +673,10 @@ int C2F(graphicsmodels) ()
       
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_z_label))->ptype = 4; /* type = 1 <=> z_label, 2 <=> z_label...*/
-      
+  
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_z_label ) ;
+
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.fontcontext.textorientation = 0;
 
   /*   pLABEL_FEATURE ((ppobj->mon_z_label))->z_labelplace = SCI_LABEL_IN_TOP; */
@@ -803,12 +816,43 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->marksizeunit  = sciGetMarkSizeUnit  (sciGetParent (pobj));
       return 0;
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
+      if ( sciGetParent(pobj) == paxesmdl )
+      {
+        /* this is a label model */
+        cloneGraphicContext( sciGetParent( pobj ), pobj ) ;
+        return 0;
+      }
+      else
+      {
+        sciPointObj * plabelmdl = NULL ;
+        switch ( pLABEL_FEATURE(pobj)->ptype )
+        {
+        case 1:
+          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
+          break ;
+        case 2:
+          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
+          break ;
+        case 3:
+          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
+          break ;
+        case 4:
+          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+          break ;
+        default:
+          /* arrgh*/
+          return -1 ;
+          break ;
+        }
+        cloneGraphicContext( plabelmdl, pobj ) ;
+        return 0 ;
+      }
     case SCI_AGREG:
     case SCI_TITLE:
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
-    case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
       return -1;
@@ -870,7 +914,7 @@ sciInitFontContext (sciPointObj * pobj)
       if(sciGetParent(pobj) == paxesmdl)
 	{
 	  /* init plabelmdl that could be models for title, x_label, y_label or z_label */
-	  sciSetFontStyle (pobj, 6);/* set helvetica font */
+          (sciGetFontContext(pobj))->fonttype        = 6 ; /* set helvetica font */
 	  (sciGetFontContext(pobj))->backgroundcolor = -3;
 	  (sciGetFontContext(pobj))->foregroundcolor = -2; 
 	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
@@ -918,8 +962,8 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_SUBWIN: 
       if (pobj == paxesmdl)
 	{
-	  sciSetFontStyle (pobj, 6);/* set helvetica font */
-	  (sciGetFontContext(pobj))->backgroundcolor = -3;
+          sciInitFontStyle (pobj, 6); /* set helvetica font */
+          (sciGetFontContext(pobj))->backgroundcolor = -3;
 	  (sciGetFontContext(pobj))->foregroundcolor = -2; 
 	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
 	  (sciGetFontContext(pobj))->textorientation = 0;
@@ -955,8 +999,8 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_FIGURE:
       if (pobj == pfiguremdl)
 	{
-	  sciSetFontStyle (pobj, 6);/* set helvetica font */
-	  (sciGetFontContext(pobj))->backgroundcolor = -3;
+          sciInitFontStyle (pobj, 6); /* set helvetica font */
+          (sciGetFontContext(pobj))->backgroundcolor = -3;
 	  (sciGetFontContext(pobj))->foregroundcolor = -2;
 	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
 	  (sciGetFontContext(pobj))->textorientation = 0;
@@ -1330,6 +1374,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_title))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_title))->ptype = 1; /* type = 1 <=> title, 2 <=> x_label...*/
       
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_title ) ;
+
   pLABEL_FEATURE ((ppobj->mon_title))->text.fontcontext.textorientation = 0; 
 
   /*   pLABEL_FEATURE ((ppobj->mon_title))->titleplace = SCI_LABEL_IN_TOP; */
@@ -1405,6 +1452,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_x_label))->ptype = 2; /* type = 1 <=> x_label, 2 <=> x_label...*/
       
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_x_label ) ;
+
   pLABEL_FEATURE ((ppobj->mon_x_label))->text.fontcontext.textorientation = 0; 
 
   /*   pLABEL_FEATURE ((ppobj->mon_x_label))->x_labelplace = SCI_LABEL_IN_TOP; */
@@ -1480,6 +1530,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_y_label))->ptype = 3; /* type = 1 <=> y_label, 2 <=> y_label...*/
       
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_y_label ) ;
+  
   pLABEL_FEATURE ((ppobj->mon_y_label))->text.fontcontext.textorientation = 0; 
 
   /*   pLABEL_FEATURE ((ppobj->mon_y_label))->y_labelplace = SCI_LABEL_IN_TOP; */
@@ -1554,6 +1607,9 @@ int InitAxesModel()
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.textlen = 0;
   pLABEL_FEATURE ((ppobj->mon_z_label))->ptype = 4; /* type = 1 <=> z_label, 2 <=> z_label...*/
       
+  /* graphic context */
+  sciInitGraphicContext( ppobj->mon_z_label ) ;
+
   pLABEL_FEATURE ((ppobj->mon_z_label))->text.fontcontext.textorientation = 0; 
 
   /*   pLABEL_FEATURE ((ppobj->mon_z_label))->z_labelplace = SCI_LABEL_IN_TOP; */
