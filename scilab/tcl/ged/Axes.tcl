@@ -64,7 +64,7 @@ global  xToggle yToggle zToggle red green blue color
 global  xlabel ylabel zlabel tlabel
 global  curvis cubToggle viewToggle
 
-#global xlabel_fontforeground ylabel__fontforeground zlabel__fontforeground titlelabel__fontforeground
+global xlabel_fontforeground ylabel_fontforeground zlabel_fontforeground titlelabel_fontforeground
 global xlabel_foreground ylabel_foreground zlabel_foreground titlelabel_foreground
 global xlabel_background ylabel_background zlabel_background titlelabel_background
 global Xfillmode Yfillmode Zfillmode Titlefillmode
@@ -409,46 +409,39 @@ pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx $smallPad
 
 
 #Font color
-frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0
+frame $w.frame.col  -borderwidth 0
+pack $w.frame.col  -in $w.frame -side top   -fill x -pady 0
 
-label $w.frame.fontcolorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
-scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font $gedFont
+label $w.frame.colorlabel -height 0 -text "Fore/Back colors:" -width 0 -font $gedFont -anchor e -width $largeur
+scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setXLabelColor $w.frame.color" -tickinterval 0   -font $gedFont
 
-scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setXBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font $gedFont
+scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setXBackLabelColor $w.frame.bcolor" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
-pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0 -padx $smallPad
-$w.frame.fontcolor set $xlabel_foreground
-$w.frame.bfontcolor set $xlabel_background
+pack $w.frame.colorlabel  -in  $w.frame.col -side left 
+pack $w.frame.color -in  $w.frame.col -side left
+pack $w.frame.bcolor -in  $w.frame.col -side left -expand 1 -fill x -pady 0 -padx $smallPad
 
+$w.frame.color set $xlabel_foreground
+$w.frame.bcolor set $xlabel_background
 
-# #Foreground
-# frame $w.frame.foreground  -borderwidth 0
-# pack $w.frame.foreground  -in $w.frame -side top   -fill x -pady 0
+#Font size/foreground
+frame $w.frame.fontsf -borderwidth 0
+pack $w.frame.fontsf -in $w.frame -side top -fill x -pady 0
 
-# label $w.frame.foregroundlabel -height 0 -text "Foreground:" -width 0   -font $gedFont -anchor e -width $largeur
-# scale $w.frame.foreground -orient horizontal -from -2 -to $ncolors \
-#     -resolution 1.0 -command "setXForeground $w.frame.foreground" -tickinterval 0   -font $gedFont
-
-# pack $w.frame.foregroundlabel  -in  $w.frame.foreground -side left 
-# pack $w.frame.foreground -in  $w.frame.foreground -side left -expand 1 -fill x -pady 0 -padx $smallPad
-# $w.frame.foregroundor set $xlabel_foreground
-
-#Font size
-frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0
-
-label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0   -font $gedFont -anchor e -width $largeur
+label $w.frame.fontsflabel -height 0 -text "Font size/color:" -width 0   -font $gedFont -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
     -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -side left -expand 1 -fill x -pady 0 -padx $smallPad
+scale $w.frame.fontforeground -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setXFontForeground $w.frame.fontforeground" -tickinterval 0 -font $gedFont
+
+pack $w.frame.fontsflabel -in $w.frame.fontsf -side left
+pack $w.frame.fontsize  -in  $w.frame.fontsf -side left 
+pack $w.frame.fontforeground  -in  $w.frame.fontsf -side left -expand 1 -fill x -pady 0 -padx $smallPad
 $w.frame.fontsize set $xlabel_fontsize
+$w.frame.fontforeground set $xlabel_fontforeground
 
 
 #Fonts Style
@@ -680,35 +673,39 @@ pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0
 pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx $smallPad
 
 #Font color
-frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x  -pady 0
+frame $w.frame.col  -borderwidth 0
+pack $w.frame.col  -in $w.frame -side top   -fill x  -pady 0
 
-label $w.frame.fontcolorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
-scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font $gedFont
+label $w.frame.colorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
+scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setYLabelColor $w.frame.color" -tickinterval 0   -font $gedFont
 
-scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setYBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font $gedFont
+scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setYBackLabelColor $w.frame.bcolor" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
-pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0 -padx $smallPad
-$w.frame.fontcolor set $ylabel_foreground
-$w.frame.bfontcolor set $ylabel_background
+pack $w.frame.colorlabel  -in  $w.frame.col -side left 
+pack $w.frame.color -in  $w.frame.col -side left
+pack $w.frame.bcolor -in  $w.frame.col -side left -expand 1 -fill x -pady 0 -padx $smallPad
+$w.frame.color set $ylabel_foreground
+$w.frame.bcolor set $ylabel_background
 
 
-#Font size
-frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0
+#Font size/foreground
+frame $w.frame.fontsf -borderwidth 0
+pack $w.frame.fontsf -in $w.frame -side top -fill x -pady 0
 
-label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0  -font $gedFont -anchor e -width $largeur
+label $w.frame.fontsflabel -height 0 -text "Font size/color:" -width 0   -font $gedFont -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0  -font $gedFont
+    -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0 -padx $smallPad
+scale $w.frame.fontforeground -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setYFontForeground $w.frame.fontforeground" -tickinterval 0 -font $gedFont
+
+pack $w.frame.fontsflabel -in $w.frame.fontsf -side left
+pack $w.frame.fontsize  -in  $w.frame.fontsf -side left 
+pack $w.frame.fontforeground  -in  $w.frame.fontsf -side left -expand 1 -fill x -pady 0 -padx $smallPad
 $w.frame.fontsize set $ylabel_fontsize
-
+$w.frame.fontforeground set $ylabel_fontforeground
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
@@ -935,34 +932,39 @@ pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0
 pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx $smallPad
 
 #Font color
-frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0
+frame $w.frame.col  -borderwidth 0
+pack $w.frame.col  -in $w.frame -side top   -fill x -pady 0
 
-label $w.frame.fontcolorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
-scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font $gedFont
+label $w.frame.colorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
+scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setZFontLabelColor $w.frame.color" -tickinterval 0   -font $gedFont
 
-scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setZBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font $gedFont
+scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setZBackLabelColor $w.frame.bcolor" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
-pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0 -padx $smallPad
-$w.frame.fontcolor set $zlabel_foreground
-$w.frame.bfontcolor set $zlabel_background
+pack $w.frame.colorlabel  -in  $w.frame.col -side left 
+pack $w.frame.color -in  $w.frame.col -side left
+pack $w.frame.bcolor -in  $w.frame.col -side left -expand 1 -fill x -pady 0 -padx $smallPad
+$w.frame.color set $zlabel_foreground
+$w.frame.bcolor set $zlabel_background
 
 
-#Font size
-frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0
+#Font size/foreground
+frame $w.frame.fontsf -borderwidth 0
+pack $w.frame.fontsf -in $w.frame -side top -fill x -pady 0
 
-label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0  -font $gedFont -anchor e -width $largeur
+label $w.frame.fontsflabel -height 0 -text "Font size/color:" -width 0   -font $gedFont -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0  -font $gedFont
+    -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz   -expand 1 -fill x -pady 0 -padx $smallPad
+scale $w.frame.fontforeground -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setZFontForeground $w.frame.fontforeground" -tickinterval 0 -font $gedFont
+
+pack $w.frame.fontsflabel -in $w.frame.fontsf -side left
+pack $w.frame.fontsize  -in  $w.frame.fontsf -side left 
+pack $w.frame.fontforeground  -in  $w.frame.fontsf -side left -expand 1 -fill x -pady 0 -padx $smallPad
 $w.frame.fontsize set $zlabel_fontsize
+$w.frame.fontforeground set $zlabel_fontforeground
 
 
 #Fonts Style
@@ -1195,34 +1197,38 @@ pack $w.frame.fontanglechoice270 -in $w.frame.font -side left -padx 0
 pack $w.frame.fontangle2  -in $w.frame.font  -side left  -fill x -padx $smallPad
 
 #Font color
-frame $w.frame.fontcol  -borderwidth 0
-pack $w.frame.fontcol  -in $w.frame -side top   -fill x -pady 0
+frame $w.frame.col  -borderwidth 0
+pack $w.frame.col  -in $w.frame -side top   -fill x -pady 0
 
-label $w.frame.fontcolorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
-scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0   -font $gedFont
+label $w.frame.colorlabel -height 0 -text "Fore/Back colors:" -width 0   -font $gedFont -anchor e -width $largeur
+scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setTitleFontLabelColor $w.frame.color" -tickinterval 0   -font $gedFont
 
-scale $w.frame.bfontcolor -orient horizontal -from -2 -to $ncolors \
-    -resolution 1.0 -command "setTitleBackLabelColor $w.frame.bfontcolor" -tickinterval 0   -font $gedFont
+scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setTitleBackLabelColor $w.frame.bcolor" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor -in  $w.frame.fontcol -side left
-pack $w.frame.bfontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 0 -padx $smallPad
-$w.frame.fontcolor set $titlelabel_foreground
-$w.frame.bfontcolor set $titlelabel_background
+pack $w.frame.colorlabel  -in  $w.frame.col -side left 
+pack $w.frame.color -in  $w.frame.col -side left
+pack $w.frame.bcolor -in  $w.frame.col -side left -expand 1 -fill x -pady 0 -padx $smallPad
+$w.frame.color set $titlelabel_foreground
+$w.frame.bcolor set $titlelabel_background
 
+#Font size/foreground
+frame $w.frame.fontsf -borderwidth 0
+pack $w.frame.fontsf -in $w.frame -side top -fill x -pady 0
 
-#Font size
-frame $w.frame.fontsiz  -borderwidth 0
-pack $w.frame.fontsiz  -in $w.frame -side top   -fill x -pady 0
-
-label $w.frame.fontsizlabel -height 0 -text "Font size:" -width 0  -font $gedFont -anchor e -width $largeur
+label $w.frame.fontsflabel -height 0 -text "Font size/color:" -width 0   -font $gedFont -anchor e -width $largeur
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
-	 -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0  -font $gedFont
+    -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0   -font $gedFont
 
-pack $w.frame.fontsizlabel  -in  $w.frame.fontsiz -side left 
-pack $w.frame.fontsize  -in  $w.frame.fontsiz  -expand 1 -fill x -pady 0 -padx $smallPad
+scale $w.frame.fontforeground -orient horizontal -from -2 -to $ncolors \
+    -resolution 1.0 -command "setTitleFontForeground $w.frame.fontforeground" -tickinterval 0 -font $gedFont
+
+pack $w.frame.fontsflabel -in $w.frame.fontsf -side left
+pack $w.frame.fontsize  -in  $w.frame.fontsf -side left 
+pack $w.frame.fontforeground  -in  $w.frame.fontsf -side left -expand 1 -fill x -pady 0 -padx $smallPad
 $w.frame.fontsize set $titlelabel_fontsize
+$w.frame.fontforeground set $titlelabel_fontforeground
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
@@ -2208,7 +2214,7 @@ proc setXFontLabelSize {w siz} {
 ScilabEval "global ged_handle; if ged_handle.x_label.font_size <> $siz then ged_handle.x_label.font_size=$siz; end;"
 }
 
-proc setXFontLabelColor {w  index} {
+proc setXLabelColor {w  index} {
     global RED BLUE GREEN
     variable REDCOL 
     variable GRECOL 
@@ -2290,6 +2296,47 @@ proc setXBackLabelColor {w  index} {
     }
 }
 
+proc setXFontForeground {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; if ged_handle.x_label.font_foreground <> $index then ged_handle.x_label.font_foreground=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
 # Y LABEL
 proc setYGridColor {w index} {
     global RED BLUE GREEN msdos
@@ -2352,7 +2399,7 @@ proc setYFontLabelSize {w siz} {
 }
 
 
-proc setYFontLabelColor {w  index} {
+proc setYLabelColor {w  index} {
     global RED BLUE GREEN
     variable REDCOL 
     variable GRECOL 
@@ -2424,6 +2471,48 @@ proc setYBackLabelColor {w  index} {
 	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle;if ged_handle.y_label.background <> $index then  ged_handle.y_label.background=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
+proc setYFontForeground {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then ged_handle.y_label.font_foreground=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then  ged_handle.y_label.font_foreground=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then  ged_handle.y_label.font_foreground=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle;if ged_handle.y_label.font_foreground <> $index then  ged_handle.y_label.font_foreground=$index; end;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -2579,7 +2668,46 @@ proc setZBackLabelColor {w  index} {
     }
 }
 
+proc setZFontForeground {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then ged_handle.z_label.font_foreground=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then  ged_handle.z_label.font_foreground=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then  ged_handle.z_label.font_foreground=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle;if ged_handle.z_label.font_foreground <> $index then  ged_handle.z_label.font_foreground=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
 
 # Title
 proc setTitleLabel {} {
@@ -2673,7 +2801,45 @@ proc setTitleBackLabelColor {w  index} {
     }
 }
 
+proc setTitleFontForeground {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle;if ged_handle.title.font_foreground <> $index then  ged_handle.title.font_foreground=$index; end;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
 
 
 

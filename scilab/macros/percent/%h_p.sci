@@ -460,7 +460,8 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "visible = "+sci2exp(h.visible) 
-	 "text = "+T
+	 "text = "+T;
+	 "font_foreground = " + string(h.font_foreground) ;
 	 "foreground = "+string(h.foreground)
 	 "background = "+string(h.background)
 	 "fill_mode = "+sci2exp(h.fill_mode)
