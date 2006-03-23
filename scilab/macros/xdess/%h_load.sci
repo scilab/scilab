@@ -102,7 +102,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
   case "Axes"
     
     a=gca() ;
-    title=a.title ;
+    titl=a.title ;
     x_label=a.x_label ;
     y_label=a.y_label ;
     set(a,"visible"              , toggle(mget(1,'c',fd))) // visible
@@ -125,27 +125,33 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     view            =  ascii(mget(2,'c',fd)); // view
 
     // title
-    set(title,"visible"   , toggle(mget(1,'c',fd))) // title.visible
-    set(title,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
-    set(title,"foreground", mget(1,'il',fd)); // title.foreground
+    set(titl,"visible"   , toggle(mget(1,'c',fd))) // title.visible
+    set(titl,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+    if is_higher_than([3 1 0 2]) then
+      set(titl,"font_foreground", mget(1,'il',fd)); // title.font_foreground
+    end
+    set(titl,"foreground", mget(1,'il',fd)); // title.foreground
     if is_higher_than([3 1 0 0]) then
-      set(title,"background"       , mget(1,'il',fd)); // title.background
-      set(title,"fill_mode"        , toggle(mget(1,'c',fd))); //title.fill_mode
+      set(titl,"background"       , mget(1,'il',fd)); // title.background
+      set(titl,"fill_mode"        , toggle(mget(1,'c',fd))); //title.fill_mode
     end
     
-    set(title,"font_style"       , mget(1,'c',fd)); // title.font_style
-    set(title,"font_size"        , mget(1,'c',fd)); // title.font_size
+    set(titl,"font_style"       , mget(1,'c',fd)); // title.font_style
+    set(titl,"font_size"        , mget(1,'c',fd)); // title.font_size
 
     if is_higher_than([3 1 0 0]) then
-      set(title,"auto_rotation", toggle(mget(1,'c',fd))) // title.auto_rotation
-      set(title,"font_angle"   , mget(1,'dl',fd)); // title.font_angle
-      set(title,"auto_position", toggle(mget(1,'c',fd))) // title.auto_position
-      set(title,"position"     , mget(2,'dl',fd)); // title.position
+      set(titl,"auto_rotation", toggle(mget(1,'c',fd))) // title.auto_rotation
+      set(titl,"font_angle"   , mget(1,'dl',fd)); // title.font_angle
+      set(titl,"auto_position", toggle(mget(1,'c',fd))) // title.auto_position
+      set(titl,"position"     , mget(2,'dl',fd)); // title.position
     end
     
     // x_label
     set(x_label,"visible"   , toggle(mget(1,'c',fd))) // x_label.visible
-    set(x_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // x_label.text
+    set(x_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd)) ) ; // x_label.text
+    if is_higher_than([3 1 0 2]) then
+      set(x_label,"font_foreground", mget(1,'il',fd)); // x_label.font_foreground
+    end
     set(x_label,"foreground", mget(1,'il',fd)); // x_label.foreground
     if is_higher_than([3 0 0 0]) then
       set(x_label,"background"       , mget(1,'il',fd)); // x_label.background
@@ -163,8 +169,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     // y_label
     set(y_label,"visible"        , toggle(mget(1,'c',fd)))
-    set(y_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
-    
+    set(y_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd))) // y_label.text
+    if is_higher_than([3 1 0 2]) then
+      set(y_label,"font_foreground", mget(1,'il',fd)); // y_label.font_foreground
+    end
     set(y_label,"foreground"     , mget(1,'il',fd));
     if is_higher_than([3 0 0 0]) then
       set(y_label,"background"       , mget(1,'il',fd));
@@ -184,7 +192,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       // z_label
       z_label=a.z_label
       set(z_label,"visible"        , toggle(mget(1,'c',fd)))
-      set(z_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd)))
+      set(z_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd))) // z_label.text
+      if is_higher_than([3 1 0 2]) then
+	set(z_label,"font_foreground", mget(1,'il',fd)); // z_label.font_foreground
+      end
       set(z_label,"foreground"     , mget(1,'il',fd));
       if is_higher_than([3 0 0 0]) then
 	set(z_label,"background"       , mget(1,'il',fd));
@@ -336,7 +347,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     //next lines because tools used to rebuild children change the
     //data_bounds an axes_visible properties
     set(a,"data_bounds"          , data_bounds) ; 
-    set(a,"axes_visible"          , axes_visible) ;  
+    set(a,"axes_visible"          , axes_visible) ;
     if is_higher_than([3 1 0 2] ) then
       set(a, "box", boxtype ) ;
     end   

@@ -76,6 +76,7 @@ function save_graphichandle(h,fd)
     l=h.title;
     mput(bool2s(l.visible=='on'),'c',fd) ; // title.visible
     mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); // title.text
+    mput(l.font_foreground,'il',fd); // title_label.font_foreground
     mput(l.foreground,'il',fd) // title.foreground
     mput(l.background,'il',fd) // title.background
     mput(bool2s(l.fill_mode=='on'),'c',fd) // title.fill_mode
@@ -91,6 +92,7 @@ function save_graphichandle(h,fd)
     l=h.x_label
     mput(bool2s(l.visible=='on'),'c',fd) // x_label.visible
     mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); // x_label.text
+    mput(l.font_foreground,'il',fd); // x_label.font_foreground
     mput(l.foreground,'il',fd) // x_label.foreground
     mput(l.background,'il',fd) // x_label.background
     mput(bool2s(l.fill_mode=='on'),'c',fd) // x_label.fill_mode
@@ -106,6 +108,7 @@ function save_graphichandle(h,fd)
     l=h.y_label
     mput(bool2s(l.visible=='on'),'c',fd) // y_label.visible
     mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); //y_label.text
+    mput(l.font_foreground,'il',fd); // y_label.font_foreground
     mput(l.foreground,'il',fd) // y_label.foreground
     mput(l.background,'il',fd) // y_label.background
     mput(bool2s(l.fill_mode=='on'),'c',fd) // y_label.fill_mode
@@ -122,6 +125,7 @@ function save_graphichandle(h,fd)
       l=h.z_label
       mput(bool2s(l.visible=='on'),'c',fd) // z_label.visible
       mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); // z_label.text
+      mput(l.font_foreground,'il',fd); // z_label.font_foreground
       mput(l.foreground,'il',fd) // z_label.foreground
       mput(l.background,'il',fd) // z_label.background
       mput(bool2s(l.fill_mode=='on'),'c',fd) // z_label.fill_mode
