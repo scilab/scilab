@@ -404,40 +404,38 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE (psubwin)->project[2] = 1; /* to force z axis display */
 
   ppsubwin = pSUBWIN_FEATURE(psubwin);
-  /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
-  loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
-  if ( loc == NULL)    
-    Scistring("Objplot3d : No more Place to store all the labels\n");
+
+  if ( legend != NULL )
+  {
+    /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
+    loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
+    if ( loc == NULL)    
+      Scistring("Objplot3d : No more Place to store all the labels\n");
   
-  strcpy(loc,legend);
+    strcpy(loc,legend);
   
-  /*   legx=strtok_r(loc,"@",&buff); */
-  legx=strtok(loc,"@");
+    /*   legx=strtok_r(loc,"@",&buff); */
+    legx=strtok(loc,"@");
   
-  if(legx == NULL) {
-    char empty[]= "";
-    sciSetText(ppsubwin->mon_x_label, empty , strlen(empty));
-  }
-  else
-    sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
+    if (legx != NULL)
+    {
+      sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
+    }
    
-  /*   legy=strtok_r((char *)0,"@",&buff); */
-  legy=strtok((char *)0,"@");
-  if(legy == NULL) {
-    char empty[]= "";
-    sciSetText(ppsubwin->mon_y_label, empty , strlen(empty));
-  }
-  else
-    sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
+    /*   legy=strtok_r((char *)0,"@",&buff); */
+    legy=strtok((char *)NULL,"@"); /* NULL to begin at the last read character */
+    if ( legy != NULL )
+    {
+      sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
+    }
  
-  /*   legz=strtok_r((char *)0,"@",&buff); */
-  legz=strtok((char *)0,"@");
-  if(legz == NULL) {
-    char empty[]= "";
-    sciSetText(ppsubwin->mon_z_label, empty , strlen(empty));
+    /*   legz=strtok_r((char *)0,"@",&buff); */
+    legz=strtok((char *)NULL,"@");
+    if ( legz != NULL )
+    {
+      sciSetText(ppsubwin->mon_z_label, legz , strlen(legz));
+    }
   }
-  else
-    sciSetText(ppsubwin->mon_z_label, legz , strlen(legz));
    
   /* Force psubwin->logflags to linear */
   pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
