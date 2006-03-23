@@ -296,14 +296,24 @@ proc checkendofdebug_bp {} {
     regsub -all {\?} $cmd "\\\?" cmd
     regsub -all {\$} $cmd "\\\$" cmd
 
+    # command to skip lines with no executable code (for step by step)
+    # stepbystepinto_bp command is just rerun, with Scilab busy checks disabled
+    # note that since checkendofdebug_bp is called at the end of each step, the
+    # command below is an if and not a while
+    # note also that in order to stack commands with the right order, this must
+    # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
+    set comm1 "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+    set skipnocodeline [concat $comm1]
+
     set comm1 "\[db_l,db_m\]=where();"
     set comm2 "if size(db_l,1)==1 then"
-    set comm3 "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm4 "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
+    set comm3   "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm4   "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
     set comm5 "else"
-    set comm6 "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm7 "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
+    set comm6   "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm7   "TCL_EvalStr(\"ScilabEval_lt \"\"$skipnocodeline\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm8 "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8]
 
     ScilabEval_lt "$fullcomm" "seq"
 }

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.16
+# in sync at least with v6.17
 
 
 # commons
@@ -102,6 +102,7 @@
                        "points d'arrêt dans vos fichiers ouverts."
     ::msgcat::mcset fr "possible breakpoints in Scilab (see help setbpt)." \
                        "points d'arrêt (voir help setbpt)."
+::msgcat::mcset fr "No breakpoint here!" "Pas de point d'arrêt ici !"
 
 
 # db_init.tcl

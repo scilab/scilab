@@ -387,3 +387,18 @@ proc extractfunnamefromfunline {str} {
     }
     return $funname
 }
+
+proc isnocodeline {ind} {
+# return true if the line containing index $ind in the current textarea
+# is a no code line, i.e. if this line either:
+#     - is empty
+# or  - contains only blanks (spaces or tabs)
+# or  - contains only a comment with possible leading blanks
+# otherwise, return false
+    global sblRE scommRE
+    if {[regexp -- "^$sblRE$scommRE?\$" \
+                   [[gettextareacur] get "$ind linestart" "$ind lineend"]]} {
+        return true
+    }
+    return false
+}

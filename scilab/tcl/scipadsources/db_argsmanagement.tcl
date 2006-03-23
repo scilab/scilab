@@ -11,6 +11,11 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     wm title $adda [mc "Add/Change"]
     setwingeom $adda
     wm resizable $adda 1 0
+
+    # The add argument dialog must be a transient of $watch or $conf
+    # otherwise it might be obscured by the watch window if always on top
+    wm transient $adda $w
+
     set selecteditem [$leftwin curselection]
     if {$selecteditem != ""} {
         set argname [$leftwin get $selecteditem]

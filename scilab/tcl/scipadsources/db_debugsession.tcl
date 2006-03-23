@@ -145,14 +145,17 @@ proc execfile_bp {} {
 # implementation does not allow to step into non opened files that the debugger
 # could open, e.g. library files.
 
-proc stepbystepinto_bp {} {
+proc stepbystepinto_bp {{checkbusyflag 1}} {
 # set a breakpoint in Scilab on really every line of every function
 # of every opened buffer, run execution, delete all those breakpoints
 # and restore the breakpoints that were really set by the user
     global funnameargs watchvars
     global setbptonreallybreakpointedlinescmd
-    if {[isscilabbusy 5]} {return}
+
     if {[getdbstate] == "ReadyForDebug"} {
+        # always a busy check - this code aprt cannot be entered
+        # while skipping no code lines (step by step)
+        if {[isscilabbusy 5]} {return}
 
 # The code in the if {0} should have worked - This is Scilab bug 1894
 # A workaround is to execute the code in the else part of this clause
@@ -202,6 +205,10 @@ if {0} {
 }
 
     } elseif {[getdbstate] == "DebugInProgress"} {
+        # no busy check to allow to skip lines without code (step by step)
+        if {$checkbusyflag} {
+            if {[isscilabbusy 5]} {return}
+        }
         if {$funnameargs != ""} {
             # because the user can open or close files during debug,
             # getlogicallinenumbersranges must be called at each step
@@ -229,7 +236,7 @@ if {0} {
                 # the ... get executed
                 # Order of execution is therefore $cmddel and, after it only, the
                 # contents of proc checkendofdebug_bp
-                resume_bp
+                resume_bp $checkbusyflag
                 ScilabEval_lt "$cmddel" "seq"
             }
         } else {
@@ -357,9 +364,14 @@ proc getlogicallinenumbersranges {} {
     return $cmd
 }
 
-proc resume_bp {} {
+proc resume_bp {{checkbusyflag 1}} {
     global funnameargs waitmessage watchvars
-    if {[isscilabbusy 5]} {return}
+
+    # no busy check to allow to skip lines without code (step by step)
+    if {$checkbusyflag} {
+        if {[isscilabbusy 5]} {return}
+    }
+
     showinfo $waitmessage
     if {$funnameargs != ""} {
         set commnvars [createsetinscishellcomm $watchvars]

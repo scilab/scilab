@@ -1,5 +1,5 @@
 proc configurefoo_bp {} {
-    global pad conf
+    global pad conf watch
     global listboxinput listboxinputval listboxscrolly spin buttonAddc
     global funnames funvars funvarsvals funnameargs
     global menuFont textFont
@@ -13,6 +13,15 @@ proc configurefoo_bp {} {
     catch {destroy $conf}
     toplevel $conf
     wm title $conf [mc "Configure execution"]
+
+    # The configure box must be a transient of $watch if it exists
+    # otherwise it might be obscured by the watch window if always on top
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            wm transient $conf $watch
+        }
+    }
+
     setwingeom $conf
     frame $conf.f
 

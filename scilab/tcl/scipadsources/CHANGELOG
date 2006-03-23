@@ -2125,3 +2125,11 @@ Francois VOGEL, 22/03/06
    buttons become checkboxes to minimize space used) - Fixes request 261
  * Updated Scipad help page (mainly step by step new feature)
  * version --> 6.16
+
+Francois VOGEL, 23/03/06
+ * Fixed opening of the configure box or add argument box behind the watch
+   window when the latter is always on top
+ * No breakpoint can be set on a line that contains no executable code
+ * Step by step (into) skips lines that does not contain executable code -
+   This closes request 256
+ * version --> 6.17
