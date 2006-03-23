@@ -807,7 +807,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
       bboxtitle[1] = bboxtitle[1]-2 + bboxtitle[3] ; /* better display */
       ppText->x     = XPixel2Double( bboxtitle[0] ) ;
       ppText->y     = YPixel2Double( bboxtitle[1] ) ;
-      sciSetPosition( ppsubwin->mon_title, ppText->x, ppText->y ) ;
+      sciInitPosition( ppsubwin->mon_title, ppText->x, ppText->y ) ;
     }
     else
     {
@@ -1437,7 +1437,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
       }
       
       /* new automatic position values */
-      sciSetPosition(ppsubwin->mon_z_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+      sciInitPosition(ppsubwin->mon_z_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
       
       xm4[0] = x1;
       xm4[1] = round(x1+cosangle*rect1[2]);
@@ -2042,7 +2042,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  }
 	  
 	  /* new automatic position values */
-	  sciSetPosition(ppsubwin->mon_x_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	  sciInitPosition(ppsubwin->mon_x_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
 	  
 	  xm4[0] = x1;
 	  xm4[1] = round(x1+cosangle*rect1[2]);
@@ -3810,7 +3810,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	  }
 	  
 	  /* new automatic position values */
-	  sciSetPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+	  sciInitPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
 	  
 	  xm4[0] = x1;
 	  xm4[1] = round(x1+cosangle*rect1[2]);
@@ -4952,7 +4952,7 @@ int labels2D_draw(sciPointObj * psubwin)
       bboxtitle[1] = bboxtitle[1]-2 + bboxtitle[3] ; /* better display */
       ppText->x     = XPixel2Double( bboxtitle[0] ) ;
       ppText->y     = YPixel2Double( bboxtitle[1] ) ;
-      sciSetPosition( ppsubwin->mon_title, ppText->x, ppText->y ) ;
+      sciInitPosition( ppsubwin->mon_title, ppText->x, ppText->y ) ;
     }
     else
     {
@@ -5116,7 +5116,7 @@ int labels2D_draw(sciPointObj * psubwin)
         x1 = round(Cscale.WIRect1[0] + Cscale.WIRect1[2]/2 + largeur/2);
 	
       /* new automatic position values */
-      sciSetPosition(ppsubwin->mon_x_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+      sciInitPosition(ppsubwin->mon_x_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
 	
       xm[0] = round(x1);
       xm[1] = round(x1 + cosangle*rect1[2]);
@@ -5196,7 +5196,7 @@ int labels2D_draw(sciPointObj * psubwin)
 
     if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
       font_angle =  270.;
-      sciSetFontOrientation(ppsubwin->mon_y_label,(int)(font_angle*10));
+      sciInitFontOrientation(ppsubwin->mon_y_label,(int)(font_angle*10));
     }
     else 
       font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
@@ -5333,7 +5333,7 @@ int labels2D_draw(sciPointObj * psubwin)
       } 
 
       /* new automatic position values */
-      sciSetPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
+      sciInitPosition(ppsubwin->mon_y_label,XPixel2Double(x1),YPixel2Double(yy1)); /* the lower left corner of the bounding rectangle */
 	
       xm[0] = round(x1);
       xm[1] = round(x1 + cosangle*rect1[2]);
@@ -5719,29 +5719,28 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
     }
   
 
-  /* we search for values <= 0 */
+  /* we search for values <= 0 if log_flag */
   for(i=0;i<pppolyline->n1;i++)
+  {
+    if(ppsubwin->logflags[0] == 'l')
     {
-      if(ppsubwin->logflags[0] == 'l')
-	{
-	  if((indexGoodPoints[i] == 1) && (pvx_plus_x_shift[i] <= 0))
-	    indexGoodPoints[i] = -1;
-	}
-      
-      if(ppsubwin->logflags[1] == 'l') 
-	{
-	  if((indexGoodPoints[i] == 1) && (pvy_plus_y_shift[i] <= 0))
-	    indexGoodPoints[i] = -1;
-	}
-      
-      if(pppolyline->pvz != NULL)
-	if(ppsubwin->logflags[2] == 'l') 
-	  {
-	    if((indexGoodPoints[i] == 1) && (pvz_plus_z_shift[i] <= 0))
-	      indexGoodPoints[i] = -1;
-	  }
-      
+      if((indexGoodPoints[i] == 1) && (pvx_plus_x_shift[i] <= 0))
+        indexGoodPoints[i] = -1;
     }
+      
+    if(ppsubwin->logflags[1] == 'l') 
+    {
+      if((indexGoodPoints[i] == 1) && (pvy_plus_y_shift[i] <= 0))
+        indexGoodPoints[i] = -1;
+    }
+      
+    if(pppolyline->pvz != NULL && ppsubwin->logflags[2] == 'l') 
+    {
+      if((indexGoodPoints[i] == 1) && (pvz_plus_z_shift[i] <= 0))
+        indexGoodPoints[i] = -1;
+    }
+      
+  }
   
   valeur = indexGoodPoints[0]; /* -1 ou 1 */
   
