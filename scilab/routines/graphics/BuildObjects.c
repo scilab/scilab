@@ -30,6 +30,7 @@
 #include "bcg.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
+#include "CloneObjects.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -199,7 +200,7 @@ ConstructFigure (XGC)
       pFIGURE_FEATURE(pobj)->pcolormap[i] = defcolors[i]/255.0;
   }
 
-  sciSetNumColors (pobj,m);
+  sciInitNumColors (pobj,m);
    
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
@@ -227,9 +228,9 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-  sciSetNum (pobj, &(XGC->CurWindow));		   
+  sciInitNum (pobj, &(XGC->CurWindow));		   
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
-  sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
+  sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
   pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
   pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
   C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
@@ -243,7 +244,7 @@ ConstructFigure (XGC)
   x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
   x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
   x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
-  sciSetFigurePos (pobj,x[0],x[1]);
+  sciInitFigurePos (pobj,x[0],x[1]);
   pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
   pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
@@ -489,7 +490,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       /*       ppsubwin->drawlater = sciGetDrawLater(sciGetParentFigure(pobj)); */
       
       ppsubwin->clip_region_set = 0 ;
-      sciSetIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
+      sciInitIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
       sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
       /*ppsubwin->isclip = ppaxesmdl->isclip;
         ppsubwin->clip_region_set = ppaxesmdl->clip_region_set ;*/
@@ -507,7 +508,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
       ppsubwin->with_leg =  ppaxesmdl->with_leg;
       
-      if (sciSetSelectedSubWin(pobj) < 0 )
+      if (sciInitSelectedSubWin(pobj) < 0 )
       { 
 	return (sciPointObj *)NULL ;
       }
@@ -592,7 +593,12 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation = 
 	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
-      
+
+      cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label ) ;
+      cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label ) ;
+      cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
+      cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
+                  
       ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       ppsubwin->surfcounter = 0;
       return (sciPointObj *)pobj;
@@ -767,7 +773,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       
       ppText->clip_region_set = 0;
       /*ppText->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj) ) ) ;
+      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj) ) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
       /*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
@@ -824,15 +830,15 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       
       ppText->fill=fill; /* to distinguish between xstring and xstringb */
 
-      sciSetIsBoxed(pobj,isboxed);
-      sciSetIsLine(pobj,isline);
-      sciSetIsFilled(pobj,isfilled);
+      sciInitIsBoxed(pobj,isboxed);
+      sciInitIsLine(pobj,isline);
+      sciInitIsFilled(pobj,isfilled);
       
       if(foreground != NULL)
-	sciSetForeground(pobj,(*foreground));
+	sciInitForeground(pobj,(*foreground));
       
       if(background != NULL)
-	sciSetBackground(pobj,(*background));
+	sciInitBackground(pobj,(*background));
       
       return pobj;
     }
@@ -1150,7 +1156,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
       pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
       /*pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
       
@@ -1238,15 +1244,15 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	}
 
       /* colors and marks setting */
-      sciSetIsMark(pobj,ismark);
-      sciSetIsLine(pobj,isline);
-      sciSetIsFilled(pobj,isfilled);
+      sciInitIsMark(pobj,ismark);
+      sciInitIsLine(pobj,isline);
+      sciInitIsFilled(pobj,isfilled);
       /*       sciSetIsInterpShaded(pobj,isinterpshaded); */
       
       ppoly->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
       
       if(foreground != NULL)
-	sciSetForeground(pobj,(*foreground));
+	sciInitForeground(pobj,(*foreground));
       
       ppoly->scvector = (int *) NULL;
       
@@ -1258,17 +1264,17 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  sciSetInterpVector(pobj,n1,background);
 	}
 	else
-	  sciSetBackground(pobj,(*background));
+	  sciInitBackground(pobj,(*background));
       }
       
       if(mark_style != NULL)
-	sciSetMarkStyle(pobj,(*mark_style));
+	sciInitMarkStyle(pobj,(*mark_style));
       
       if(mark_foreground != NULL)
-	sciSetMarkForeground(pobj,(*mark_foreground));
+	sciInitMarkForeground(pobj,(*mark_foreground));
       
       if(mark_background != NULL)
-	sciSetMarkBackground(pobj,(*mark_background));
+	sciInitMarkBackground(pobj,(*mark_background));
       
       return pobj;
     }
@@ -1342,7 +1348,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 
       ppArc->clip_region_set = 0;
       /*ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
 
@@ -1357,18 +1363,18 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  return (sciPointObj *) NULL;
 	}
 
-      sciSetIsFilled(pobj,isfilled);
+      sciInitIsFilled(pobj,isfilled);
       /* should be put after graphicContext initialization */
-      sciSetIsLine(pobj,isline);
+      sciInitIsLine(pobj,isline);
       
       if(foreground != NULL)
       {
-	sciSetForeground(pobj,(*foreground));
+	sciInitForeground(pobj,(*foreground));
       }
       
       if(background != NULL)
       {
-	sciSetBackground(pobj,(*background));
+	sciInitBackground(pobj,(*background));
       }
       
       return pobj;
@@ -1444,7 +1450,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 
       pRECTANGLE_FEATURE (pobj)->clip_region_set = 0;
       /*pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      sciSetIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
       /*     pRECTANGLE_FEATURE (pobj)->clip_region = (double *) NULL; */
@@ -1458,14 +1464,14 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  return (sciPointObj *) NULL;
 	}
 
-      sciSetIsLine(pobj,isline);
-      sciSetIsFilled(pobj,isfilled);
+      sciInitIsLine(pobj,isline);
+      sciInitIsFilled(pobj,isfilled);
       
       if(foreground != NULL)
-	sciSetForeground(pobj,(*foreground));
+	sciInitForeground(pobj,(*foreground));
       
       if(background != NULL)
-	sciSetBackground(pobj,(*background));
+	sciInitBackground(pobj,(*background));
       
       /*       if (pRECTANGLE_FEATURE (pobj)->fillcolor < 0) */
       /* 	sciSetForeground (pobj,-(pRECTANGLE_FEATURE (pobj)->fillcolor)); */
@@ -2025,7 +2031,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
       pAXES_FEATURE (pobj)->clip_region_set = 0;
       /*pAXES_FEATURE (pobj)->isclip = -1;*/  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
-      sciSetIsClipping( pobj, -1 ) ;
+      sciInitIsClipping( pobj, -1 ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
      
@@ -2377,7 +2383,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       /* if the clip_state has been set */
       pSEGS_FEATURE (pobj)->clip_region_set = 0;
       /*pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      sciSetIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
+      sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
       /*       pSEGS_FEATURE (pobj)->clip_region = (double *) NULL; */
@@ -2450,7 +2456,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	  psegs->arrowsize = arsize /* * 100 */;
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
-	  sciSetForeground(pobj,sciGetForeground(sciGetSelectedSubWin (sciGetCurrentFigure ()))); /* set sciGetForeground(psubwin) as the current foreground */
+	  sciInitForeground(pobj,sciGetForeground(sciGetSelectedSubWin (sciGetCurrentFigure ()))); /* set sciGetForeground(psubwin) as the current foreground */
 	  psegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
 	  psegs->parfact = arfact;
 	  if ((psegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
@@ -2753,7 +2759,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     }
     
     sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-    sciSetIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
+    sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
     ppLabel->user_data = (int *) NULL;
     ppLabel->size_of_user_data = 0;
     ppLabel->text.relationship.psons = (sciSons *) NULL;
