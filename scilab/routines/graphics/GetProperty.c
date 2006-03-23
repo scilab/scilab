@@ -312,13 +312,14 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_TEXT:
       return  &(pTEXT_FEATURE (pobj)->graphiccontext);
       break;
+    case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/06 */
+      return &(pLABEL_FEATURE(pobj)->text.graphiccontext);
     case SCI_AGREG:
     case SCI_TITLE:
     case SCI_PANNER:
     case SCI_SBH:
     case SCI_SBV:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
       return (sciGraphicContext *) NULL;
       break;
@@ -437,7 +438,7 @@ sciGetForeground (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_SEGS:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
@@ -513,9 +514,9 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_LABEL:
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     case SCI_SEGS:
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -528,7 +529,6 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
       return -1;
       break;
     }
-
   colorindex = sciGetGoodIndex(pobj, colorindex);
   
   if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
@@ -880,7 +880,7 @@ sciGetMarkBackground (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_LIGHT:
     case SCI_LABEL:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     case SCI_TITLE:
     case SCI_TEXT:
     case SCI_FEC: 
@@ -1936,7 +1936,7 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_SUBWIN:  /* F.Leray 08.04.04 */
     case SCI_FIGURE:  /* F.Leray 08.04.04 */
     case SCI_LABEL:   /* F.Leray 28.05.04 */
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1950,8 +1950,9 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_SBH:
     case SCI_SBV:
     case SCI_AGREG:
-	case SCI_UIMENU:
+    case SCI_UIMENU:
     default:
+      sciprint ("This object has no text !\n");
       return -1;
       break;
     }
@@ -1982,7 +1983,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
     case SCI_SUBWIN:  /* F.Leray 08.04.04 */
     case SCI_FIGURE:  /* F.Leray 08.04.04 */
     case SCI_LABEL:   /* F.Leray 28.05.04 */
-      colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_ARC:
     case SCI_SEGS: 
@@ -2009,9 +2010,6 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
   
   return colorindex;
 }
-
-
-
 
 
 /**sciGetFontStyle
@@ -2053,6 +2051,7 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_AGREG:
 	case SCI_UIMENU:
     default:
+      sciprint ("This object has no font style !\n");
       return -1;
       break;
     }
@@ -3611,7 +3610,7 @@ sciGetSelectedSubWin (sciPointObj * pparent)
   sciSons *psonstmp;
   if (sciGetEntityType (pparent) != SCI_FIGURE)
     {	  
-      sciprint("This Handle is not a Figure\n");
+      /* sciprint("This Handle is not a Figure\n"); */
       return (sciPointObj *)NULL;
     }
   psonstmp = sciGetSons (pparent);
@@ -4979,3 +4978,23 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
   return FALSE;
 }
 
+/*--------------------------------------------------------------------------------------------*/
+BOOL sciGetLegendDefined( sciPointObj * pObj )
+{
+  if ( pObj == NULL )
+  {
+    return FALSE ;
+  }
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( pObj ) ;
+  if (    sciGetTextLength( ppSubWin->mon_x_label) == 0
+       && sciGetTextLength( ppSubWin->mon_y_label) == 0
+       && sciGetTextLength( ppSubWin->mon_z_label) == 0 )
+  {
+    return FALSE ;
+  }
+  else
+  {
+    return TRUE ;
+  }
+}
+/*--------------------------------------------------------------------------------------------*/
