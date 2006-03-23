@@ -757,7 +757,7 @@ int sciSetLineWidth( sciPointObj * pobj, int linewidth )
     /* nothing to do */
     return 1 ;
   }
-  return sciSetLineWidth( pobj, linewidth ) ;
+  return sciInitLineWidth( pobj, linewidth ) ;
 }
 
 
@@ -853,7 +853,7 @@ int sciSetLineStyle( sciPointObj * pobj, int linestyle )
     /* nothing to do */
     return 1 ;
   }
-  return sciSetLineStyle( pobj, linestyle ) ;
+  return sciInitLineStyle( pobj, linestyle ) ;
 }
 
 /**sciSetLineStyle
