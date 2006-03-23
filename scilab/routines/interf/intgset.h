@@ -19,6 +19,11 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow);
 int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow);
 
 /*-----------------------------------------------------------------------------------*/
+/* this function compute the final staus of modifications when two consecutive call */
+/* to sciSet*** have been made. A bit tricky I agree. JB Silvy 03/2006 */
+int sciSetFinalStatus( int status1, int status2 ) ;
+
+/*-----------------------------------------------------------------------------------*/
 
 #endif /*__INTGSET__*/
 /*-----------------------------------------------------------------------------------*/
