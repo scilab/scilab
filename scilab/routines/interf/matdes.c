@@ -5620,24 +5620,58 @@ static int get_legend(char *fname,int pos,rhs_opts opts[])
   int m,n,l,first_opt=FirstOpt(),kopt;
 
   if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "c", &m, &n, &l);
-	Legend = cstk(l); 
+  { 
+    if (VarType(pos)) {
+      GetRhsVar(pos, "c", &m, &n, &l);
+      Legend = cstk(l); 
+    }
+    else
+    {
+      if ( version_flag() == 0 )
+      {
+        /* jb silvy 03/2006 */
+        /* do not change the legend if one already exists */
+        sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+        if ( sciGetLegendDefined( pSubWin ) )
+        {
+          Legend = NULL ;
+        }
+        else
+        {
+          Legend = def_legend ;
+        }
       }
       else
-	{
-	  Legend = def_legend ;
-	}
+      {
+        Legend = def_legend ;
+      }
     }
+  }
   else if ((kopt=FindOpt("leg",opts))) {
     GetRhsVar(kopt, "c", &m, &n, &l);
     Legend = cstk(l); 
   }
   else
+  {
+    if ( version_flag() == 0 )
+    {
+      /* jb silvy 03/2006 */
+      /* do not change the legend if one already exists */
+      sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+      if ( sciGetLegendDefined( pSubWin ) )
+      {
+        Legend = NULL ;
+      }
+      else
+      {
+        Legend = def_legend ;
+      }
+    }
+    else
     {
       Legend = def_legend ;
     }
+  }
   return 1;
 }
 
