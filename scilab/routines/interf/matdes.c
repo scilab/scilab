@@ -112,6 +112,7 @@ static int get_style(char *fname,int pos, int n1,rhs_opts opts[]);
 static int get_rect(char *fname,int pos,rhs_opts opts[]);
 static int get_strf(char *fname,int pos,rhs_opts opts[]);
 static int get_legend(char *fname,int pos,rhs_opts opts[]);
+static int get_labels(char *fname,int pos,rhs_opts opts[]);
 static int get_nax(int pos,rhs_opts opts[]);
 static int get_zminmax(char *fname,int pos,rhs_opts opts[]);
 static int get_colminmax(char *fname,int pos,rhs_opts opts[]);
@@ -125,6 +126,7 @@ static int get_optional_int_arg();
 #define GetRect(pos,opts) if ( get_rect(fname,pos,opts) == 0) return 0;
 #define GetStrf(pos,opts) if ( get_strf(fname,pos,opts) == 0) return 0;
 #define GetLegend(pos,opts) if ( get_legend(fname,pos,opts) == 0) return 0;
+#define GetLabels(pos,opts) if ( get_labels(fname,pos,opts) == 0) return 0;
 #define GetNax(pos,opts) if ( get_nax(pos,opts)==0 ) return 0;
 #define GetZminmax(pos,opts) if ( get_zminmax(fname,pos,opts) == 0) return 0;
 #define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
@@ -539,7 +541,7 @@ int scicontour(char *fname,unsigned long fname_len)
   }
   GetOptionalDoubleArg(5,"theta",&theta,1,opts);
   GetOptionalDoubleArg(6,"alpha",&alpha,1,opts);
-  GetLegend(7,opts);
+  GetLabels(7,opts);
   GetOptionalIntArg(8,"flag",&iflag,3,opts);
   GetOptionalDoubleArg(9,"ebox",&ebox,6,opts);
   GetOptionalDoubleArg(10,"zlev",&zlev,1,opts);
@@ -596,7 +598,7 @@ int sciparam3d(char *fname,unsigned long fname_len)
   SciWin();
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
-  GetLegend(6,opts);
+  GetLabels(6,opts);
 
   if (version_flag() == 0) iflag_def[1]=8;
   else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
@@ -701,7 +703,7 @@ int sciparam3d1(char *fname,unsigned long fname_len)
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
-  GetLegend(6,opts);
+  GetLabels(6,opts);
   if (version_flag() == 0) iflag_def[1]=8;
   else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
   ifl=&(iflag_def[1]);
@@ -4172,7 +4174,7 @@ int sciplot3d_G(char *fname,
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
-  GetLegend(6,opts);
+  GetLabels(6,opts);
   GetOptionalIntArg(7,"flag",&iflag,3,opts);
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
 
@@ -5616,6 +5618,35 @@ static int get_strf(char *fname,int pos,rhs_opts opts[])
 
 /*-----------------------------------------------------------------------------------*/
 static int get_legend(char *fname,int pos,rhs_opts opts[])
+{
+  int m,n,l,first_opt=FirstOpt(),kopt;
+
+  if (pos < first_opt) 
+    { 
+      if (VarType(pos)) {
+	GetRhsVar(pos, "c", &m, &n, &l);
+	Legend = cstk(l); 
+      }
+      else
+	{
+	  Legend = def_legend ;
+	}
+    }
+  else if ((kopt=FindOpt("leg",opts))) {
+    GetRhsVar(kopt, "c", &m, &n, &l);
+    Legend = cstk(l); 
+  }
+  else
+    {
+      Legend = def_legend ;
+    }
+  return 1;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * @memo retrieve the labels from the command line  and store them into Legend
+ */
+static int get_labels(char *fname,int pos,rhs_opts opts[])
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
