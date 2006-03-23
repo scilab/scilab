@@ -1,17 +1,17 @@
       SUBROUTINE DGELS( TRANS, M, N, NRHS, A, LDA, B, LDB, WORK, LWORK,
      $                  INFO )
 *
-*  -- LAPACK driver routine (version 2.0) --
+*  -- LAPACK driver routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     September 30, 1994
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          TRANS
       INTEGER            INFO, LDA, LDB, LWORK, M, N, NRHS
 *     ..
 *     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), WORK( LWORK )
+      DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), WORK( * )
 *     ..
 *
 *  Purpose
@@ -97,10 +97,15 @@
 *
 *  LWORK   (input) INTEGER
 *          The dimension of the array WORK.
-*          LWORK >= min(M,N) + MAX(1,M,N,NRHS).
+*          LWORK >= max( 1, MN + max( MN, NRHS ) ).
 *          For optimal performance,
-*          LWORK >= min(M,N) + MAX(1,M,N,NRHS) * NB
-*          where NB is the optimum block size.
+*          LWORK >= max( 1, MN + max( MN, NRHS )*NB ).
+*          where MN = min(M,N) and NB is the optimum block size.
+*
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
 *
 *  INFO    (output) INTEGER
 *          = 0:  successful exit
@@ -113,7 +118,7 @@
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 *     ..
 *     .. Local Scalars ..
-      LOGICAL            TPSD
+      LOGICAL            LQUERY, TPSD
       INTEGER            BROW, I, IASCL, IBSCL, J, MN, NB, SCLLEN, WSIZE
       DOUBLE PRECISION   ANRM, BIGNUM, BNRM, SMLNUM
 *     ..
@@ -127,8 +132,8 @@
       EXTERNAL           LSAME, ILAENV, DLAMCH, DLANGE
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DGELQF, DGEQRF, DLABAD, DLASCL, DLASET, DORMLQ,
-     $                   DORMQR, DTRSM, XERBLA
+      EXTERNAL           DGELQF, DGEQRF, DLASCL, DLASET, DORMLQ, DORMQR,
+     $                   DTRSM, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          DBLE, MAX, MIN
@@ -139,6 +144,7 @@
 *
       INFO = 0
       MN = MIN( M, N )
+      LQUERY = ( LWORK.EQ.-1 )
       IF( .NOT.( LSAME( TRANS, 'N' ) .OR. LSAME( TRANS, 'T' ) ) ) THEN
          INFO = -1
       ELSE IF( M.LT.0 ) THEN
@@ -151,7 +157,8 @@
          INFO = -6
       ELSE IF( LDB.LT.MAX( 1, M, N ) ) THEN
          INFO = -8
-      ELSE IF( LWORK.LT.MAX( 1, MN+MAX( M, N, NRHS ) ) ) THEN
+      ELSE IF( LWORK.LT.MAX( 1, MN+MAX( MN, NRHS ) ) .AND. .NOT.LQUERY )
+     $          THEN
          INFO = -10
       END IF
 *
@@ -183,13 +190,15 @@
             END IF
          END IF
 *
-         WSIZE = MN + MAX( M, N, NRHS )*NB
+         WSIZE = MAX( 1, MN+MAX( MN, NRHS )*NB )
          WORK( 1 ) = DBLE( WSIZE )
 *
       END IF
 *
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGELS ', -INFO )
+         RETURN
+      ELSE IF( LQUERY ) THEN
          RETURN
       END IF
 *

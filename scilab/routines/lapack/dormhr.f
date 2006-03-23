@@ -1,18 +1,17 @@
       SUBROUTINE DORMHR( SIDE, TRANS, M, N, ILO, IHI, A, LDA, TAU, C,
      $                   LDC, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 2.0) --
+*  -- LAPACK routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     September 30, 1994
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          SIDE, TRANS
       INTEGER            IHI, ILO, INFO, LDA, LDC, LWORK, M, N
 *     ..
 *     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * ), C( LDC, * ), TAU( * ),
-     $                   WORK( LWORK )
+      DOUBLE PRECISION   A( LDA, * ), C( LDC, * ), TAU( * ), WORK( * )
 *     ..
 *
 *  Purpose
@@ -91,6 +90,11 @@
 *          LWORK >= M*NB if SIDE = 'R', where NB is the optimal
 *          blocksize.
 *
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
+*
 *  INFO    (output) INTEGER
 *          = 0:  successful exit
 *          < 0:  if INFO = -i, the i-th argument had an illegal value
@@ -98,12 +102,13 @@
 *  =====================================================================
 *
 *     .. Local Scalars ..
-      LOGICAL            LEFT
-      INTEGER            I1, I2, IINFO, MI, NH, NI, NQ, NW
+      LOGICAL            LEFT, LQUERY
+      INTEGER            I1, I2, IINFO, LWKOPT, MI, NB, NH, NI, NQ, NW
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
-      EXTERNAL           LSAME
+      INTEGER            ILAENV
+      EXTERNAL           LSAME, ILAENV
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DORMQR, XERBLA
@@ -116,7 +121,9 @@
 *     Test the input arguments
 *
       INFO = 0
+      NH = IHI - ILO
       LEFT = LSAME( SIDE, 'L' )
+      LQUERY = ( LWORK.EQ.-1 )
 *
 *     NQ is the order of Q and NW is the minimum dimension of WORK
 *
@@ -144,17 +151,29 @@
          INFO = -8
       ELSE IF( LDC.LT.MAX( 1, M ) ) THEN
          INFO = -11
-      ELSE IF( LWORK.LT.MAX( 1, NW ) ) THEN
+      ELSE IF( LWORK.LT.MAX( 1, NW ) .AND. .NOT.LQUERY ) THEN
          INFO = -13
       END IF
+*
+      IF( INFO.EQ.0 ) THEN
+         IF( LEFT ) THEN
+            NB = ILAENV( 1, 'DORMQR', SIDE // TRANS, NH, N, NH, -1 )
+         ELSE
+            NB = ILAENV( 1, 'DORMQR', SIDE // TRANS, M, NH, NH, -1 )
+         END IF
+         LWKOPT = MAX( 1, NW )*NB
+         WORK( 1 ) = LWKOPT
+      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DORMHR', -INFO )
+         RETURN
+      ELSE IF( LQUERY ) THEN
          RETURN
       END IF
 *
 *     Quick return if possible
 *
-      NH = IHI - ILO
       IF( M.EQ.0 .OR. N.EQ.0 .OR. NH.EQ.0 ) THEN
          WORK( 1 ) = 1
          RETURN
@@ -174,6 +193,8 @@
 *
       CALL DORMQR( SIDE, TRANS, MI, NI, NH, A( ILO+1, ILO ), LDA,
      $             TAU( ILO ), C( I1, I2 ), LDC, WORK, LWORK, IINFO )
+*
+      WORK( 1 ) = LWKOPT
       RETURN
 *
 *     End of DORMHR

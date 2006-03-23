@@ -1,10 +1,10 @@
       SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
      $                  VS, LDVS, WORK, LWORK, BWORK, INFO )
 *
-*  -- LAPACK driver routine (version 2.0) --
+*  -- LAPACK driver routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     March 31, 1993
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVS, SORT
@@ -110,6 +110,11 @@
 *          The dimension of the array WORK.  LWORK >= max(1,3*N).
 *          For good performance, LWORK must generally be larger.
 *
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
+*
 *  BWORK   (workspace) LOGICAL array, dimension (N)
 *          Not referenced if SORT = 'N'.
 *
@@ -137,7 +142,8 @@
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 *     ..
 *     .. Local Scalars ..
-      LOGICAL            CURSL, LASTSL, LST2SL, SCALEA, WANTST, WANTVS
+      LOGICAL            CURSL, LASTSL, LQUERY, LST2SL, SCALEA, WANTST,
+     $                   WANTVS
       INTEGER            HSWORK, I, I1, I2, IBAL, ICOND, IERR, IEVAL,
      $                   IHI, ILO, INXT, IP, ITAU, IWRK, K, MAXB,
      $                   MAXWRK, MINWRK
@@ -148,8 +154,8 @@
       DOUBLE PRECISION   DUM( 1 )
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DCOPY, DGEBAK, DGEBAL, DGEHRD, DHSEQR, DLABAD,
-     $                   DLACPY, DLASCL, DORGHR, DSWAP, DTRSEN, XERBLA
+      EXTERNAL           DCOPY, DGEBAK, DGEBAL, DGEHRD, DHSEQR, DLACPY,
+     $                   DLASCL, DORGHR, DSWAP, DTRSEN, XERBLA
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -165,6 +171,7 @@
 *     Test the input arguments
 *
       INFO = 0
+      LQUERY = ( LWORK.EQ.-1 )
       WANTVS = LSAME( JOBVS, 'V' )
       WANTST = LSAME( SORT, 'S' )
       IF( ( .NOT.WANTVS ) .AND. ( .NOT.LSAME( JOBVS, 'N' ) ) ) THEN
@@ -190,7 +197,7 @@
 *       the worst case.)
 *
       MINWRK = 1
-      IF( INFO.EQ.0 .AND. LWORK.GE.1 ) THEN
+      IF( INFO.EQ.0 .AND. ( LWORK.GE.1 .OR. LQUERY ) ) THEN
          MAXWRK = 2*N + N*ILAENV( 1, 'DGEHRD', ' ', N, 1, N, 0 )
          MINWRK = MAX( 1, 3*N )
          IF( .NOT.WANTVS ) THEN
@@ -210,11 +217,13 @@
          END IF
          WORK( 1 ) = MAXWRK
       END IF
-      IF( LWORK.LT.MINWRK ) THEN
+      IF( LWORK.LT.MINWRK .AND. .NOT.LQUERY ) THEN
          INFO = -13
       END IF
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGEES ', -INFO )
+         RETURN
+      ELSE IF( LQUERY ) THEN
          RETURN
       END IF
 *

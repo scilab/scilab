@@ -1,9 +1,9 @@
       SUBROUTINE DSYTF2( UPLO, N, A, LDA, IPIV, INFO )
 *
-*  -- LAPACK routine (version 2.0) --
+*  -- LAPACK routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     October 31, 1992
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          UPLO
@@ -76,6 +76,9 @@
 *  Further Details
 *  ===============
 *
+*  1-96 - Based on modifications by J. Lewis, Boeing Computer Services
+*         Company
+*
 *  If UPLO = 'U', then A = U*D*U', where
 *     U = P(n)*U(n)* ... *P(k)U(k)* ...,
 *  i.e., U is a product of terms P(k)*U(k), where k decreases from n to
@@ -120,8 +123,9 @@
 *     ..
 *     .. Local Scalars ..
       LOGICAL            UPPER
-      INTEGER            IMAX, JMAX, K, KK, KP, KSTEP
-      DOUBLE PRECISION   ABSAKK, ALPHA, C, COLMAX, R1, R2, ROWMAX, S, T
+      INTEGER            I, IMAX, J, JMAX, K, KK, KP, KSTEP
+      DOUBLE PRECISION   ABSAKK, ALPHA, COLMAX, D11, D12, D21, D22, R1,
+     $                   ROWMAX, T, WK, WKM1, WKP1
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -129,7 +133,7 @@
       EXTERNAL           LSAME, IDAMAX
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DLAEV2, DROT, DSCAL, DSWAP, DSYR, XERBLA
+      EXTERNAL           DSCAL, DSWAP, DSYR, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          ABS, MAX, SQRT
@@ -169,7 +173,7 @@
 *        If K < 1, exit from loop
 *
          IF( K.LT.1 )
-     $      GO TO 30
+     $      GO TO 70
          KSTEP = 1
 *
 *        Determine rows and columns to be interchanged and whether
@@ -286,22 +290,27 @@
 *              A := A - ( U(k-1) U(k) )*D(k)*( U(k-1) U(k) )'
 *                 = A - ( W(k-1) W(k) )*inv(D(k))*( W(k-1) W(k) )'
 *
-*              Convert this to two rank-1 updates by using the eigen-
-*              decomposition of D(k)
+               IF( K.GT.2 ) THEN
 *
-               CALL DLAEV2( A( K-1, K-1 ), A( K-1, K ), A( K, K ), R1,
-     $                      R2, C, S )
-               R1 = ONE / R1
-               R2 = ONE / R2
-               CALL DROT( K-2, A( 1, K-1 ), 1, A( 1, K ), 1, C, S )
-               CALL DSYR( UPLO, K-2, -R1, A( 1, K-1 ), 1, A, LDA )
-               CALL DSYR( UPLO, K-2, -R2, A( 1, K ), 1, A, LDA )
+                  D12 = A( K-1, K )
+                  D22 = A( K-1, K-1 ) / D12
+                  D11 = A( K, K ) / D12
+                  T = ONE / ( D11*D22-ONE )
+                  D12 = T / D12
 *
-*              Store U(k) and U(k-1) in columns k and k-1
+                  DO 30 J = K - 2, 1, -1
+                     WKM1 = D12*( D11*A( J, K-1 )-A( J, K ) )
+                     WK = D12*( D22*A( J, K )-A( J, K-1 ) )
+                     DO 20 I = J, 1, -1
+                        A( I, J ) = A( I, J ) - A( I, K )*WK -
+     $                              A( I, K-1 )*WKM1
+   20                CONTINUE
+                     A( J, K ) = WK
+                     A( J, K-1 ) = WKM1
+   30             CONTINUE
 *
-               CALL DSCAL( K-2, R1, A( 1, K-1 ), 1 )
-               CALL DSCAL( K-2, R2, A( 1, K ), 1 )
-               CALL DROT( K-2, A( 1, K-1 ), 1, A( 1, K ), 1, C, -S )
+               END IF
+*
             END IF
          END IF
 *
@@ -327,12 +336,12 @@
 *        1 or 2
 *
          K = 1
-   20    CONTINUE
+   40    CONTINUE
 *
 *        If K > N, exit from loop
 *
          IF( K.GT.N )
-     $      GO TO 30
+     $      GO TO 70
          KSTEP = 1
 *
 *        Determine rows and columns to be interchanged and whether
@@ -432,50 +441,47 @@
 *
 *                 A := A - L(k)*D(k)*L(k)' = A - W(k)*(1/D(k))*W(k)'
 *
-                  R1 = ONE / A( K, K )
-                  CALL DSYR( UPLO, N-K, -R1, A( K+1, K ), 1,
+                  D11 = ONE / A( K, K )
+                  CALL DSYR( UPLO, N-K, -D11, A( K+1, K ), 1,
      $                       A( K+1, K+1 ), LDA )
 *
 *                 Store L(k) in column K
 *
-                  CALL DSCAL( N-K, R1, A( K+1, K ), 1 )
+                  CALL DSCAL( N-K, D11, A( K+1, K ), 1 )
                END IF
             ELSE
 *
-*              2-by-2 pivot block D(k): columns K and K+1 now hold
-*
-*              ( W(k) W(k+1) ) = ( L(k) L(k+1) )*D(k)
-*
-*              where L(k) and L(k+1) are the k-th and (k+1)-th columns
-*              of L
+*              2-by-2 pivot block D(k)
 *
                IF( K.LT.N-1 ) THEN
 *
 *                 Perform a rank-2 update of A(k+2:n,k+2:n) as
 *
-*                 A := A - ( L(k) L(k+1) )*D(k)*( L(k) L(k+1) )'
-*                    = A - ( W(k) W(k+1) )*inv(D(k))*( W(k) W(k+1) )'
+*                 A := A - ( (A(k) A(k+1))*D(k)**(-1) ) * (A(k) A(k+1))'
 *
-*                 Convert this to two rank-1 updates by using the eigen-
-*                 decomposition of D(k)
+*                 where L(k) and L(k+1) are the k-th and (k+1)-th
+*                 columns of L
 *
-                  CALL DLAEV2( A( K, K ), A( K+1, K ), A( K+1, K+1 ),
-     $                         R1, R2, C, S )
-                  R1 = ONE / R1
-                  R2 = ONE / R2
-                  CALL DROT( N-K-1, A( K+2, K ), 1, A( K+2, K+1 ), 1, C,
-     $                       S )
-                  CALL DSYR( UPLO, N-K-1, -R1, A( K+2, K ), 1,
-     $                       A( K+2, K+2 ), LDA )
-                  CALL DSYR( UPLO, N-K-1, -R2, A( K+2, K+1 ), 1,
-     $                       A( K+2, K+2 ), LDA )
+                  D21 = A( K+1, K )
+                  D11 = A( K+1, K+1 ) / D21
+                  D22 = A( K, K ) / D21
+                  T = ONE / ( D11*D22-ONE )
+                  D21 = T / D21
 *
-*                 Store L(k) and L(k+1) in columns k and k+1
+                  DO 60 J = K + 2, N
 *
-                  CALL DSCAL( N-K-1, R1, A( K+2, K ), 1 )
-                  CALL DSCAL( N-K-1, R2, A( K+2, K+1 ), 1 )
-                  CALL DROT( N-K-1, A( K+2, K ), 1, A( K+2, K+1 ), 1, C,
-     $                       -S )
+                     WK = D21*( D11*A( J, K )-A( J, K+1 ) )
+                     WKP1 = D21*( D22*A( J, K+1 )-A( J, K ) )
+*
+                     DO 50 I = J, N
+                        A( I, J ) = A( I, J ) - A( I, K )*WK -
+     $                              A( I, K+1 )*WKP1
+   50                CONTINUE
+*
+                     A( J, K ) = WK
+                     A( J, K+1 ) = WKP1
+*
+   60             CONTINUE
                END IF
             END IF
          END IF
@@ -492,11 +498,12 @@
 *        Increase K and return to the start of the main loop
 *
          K = K + KSTEP
-         GO TO 20
+         GO TO 40
 *
       END IF
 *
-   30 CONTINUE
+   70 CONTINUE
+*
       RETURN
 *
 *     End of DSYTF2

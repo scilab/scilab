@@ -2,10 +2,10 @@
      $                  ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
      $                  LWORK, INFO )
 *
-*  -- LAPACK driver routine (version 2.0) --
+*  -- LAPACK driver routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     September 30, 1994
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOBVSL, JOBVSR
@@ -19,6 +19,8 @@
 *
 *  Purpose
 *  =======
+*
+*  This routine is deprecated and has been replaced by routine DGGES.
 *
 *  DGEGS computes for a pair of N-by-N real nonsymmetric matrices A, B:
 *  the generalized eigenvalues (alphar +/- alphai*i, beta), the real
@@ -145,6 +147,11 @@
 *          NB  -- MAX of the blocksizes for DGEQRF, DORMQR, and DORGQR
 *          The optimal LWORK is  2*N + N*(NB+1).
 *
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
+*
 *  INFO    (output) INTEGER
 *          = 0:  successful exit
 *          < 0:  if INFO = -i, the i-th argument had an illegal value.
@@ -171,9 +178,10 @@
       PARAMETER          ( ZERO = 0.0D0, ONE = 1.0D0 )
 *     ..
 *     .. Local Scalars ..
-      LOGICAL            ILASCL, ILBSCL, ILVSL, ILVSR
+      LOGICAL            ILASCL, ILBSCL, ILVSL, ILVSR, LQUERY
       INTEGER            ICOLS, IHI, IINFO, IJOBVL, IJOBVR, ILEFT, ILO,
-     $                   IRIGHT, IROWS, ITAU, IWORK, LWKMIN, LWKOPT
+     $                   IRIGHT, IROWS, ITAU, IWORK, LOPT, LWKMIN,
+     $                   LWKOPT, NB, NB1, NB2, NB3
       DOUBLE PRECISION   ANRM, ANRMTO, BIGNUM, BNRM, BNRMTO, EPS,
      $                   SAFMIN, SMLNUM
 *     ..
@@ -183,8 +191,9 @@
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
+      INTEGER            ILAENV
       DOUBLE PRECISION   DLAMCH, DLANGE
-      EXTERNAL           LSAME, DLAMCH, DLANGE
+      EXTERNAL           LSAME, ILAENV, DLAMCH, DLANGE
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          INT, MAX
@@ -219,6 +228,8 @@
 *
       LWKMIN = MAX( 4*N, 1 )
       LWKOPT = LWKMIN
+      WORK( 1 ) = LWKOPT
+      LQUERY = ( LWORK.EQ.-1 )
       INFO = 0
       IF( IJOBVL.LE.0 ) THEN
          INFO = -1
@@ -234,18 +245,28 @@
          INFO = -12
       ELSE IF( LDVSR.LT.1 .OR. ( ILVSR .AND. LDVSR.LT.N ) ) THEN
          INFO = -14
-      ELSE IF( LWORK.LT.LWKMIN ) THEN
+      ELSE IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY ) THEN
          INFO = -16
+      END IF
+*
+      IF( INFO.EQ.0 ) THEN
+         NB1 = ILAENV( 1, 'DGEQRF', ' ', N, N, -1, -1 )
+         NB2 = ILAENV( 1, 'DORMQR', ' ', N, N, N, -1 )
+         NB3 = ILAENV( 1, 'DORGQR', ' ', N, N, N, -1 )
+         NB = MAX( NB1, NB2, NB3 )
+         LOPT = 2*N + N*( NB+1 )
+         WORK( 1 ) = LOPT
       END IF
 *
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGEGS ', -INFO )
          RETURN
+      ELSE IF( LQUERY ) THEN
+         RETURN
       END IF
 *
 *     Quick return if possible
 *
-      WORK( 1 ) = LWKOPT
       IF( N.EQ.0 )
      $   RETURN
 *

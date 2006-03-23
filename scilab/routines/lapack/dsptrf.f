@@ -1,9 +1,9 @@
       SUBROUTINE DSPTRF( UPLO, N, AP, IPIV, INFO )
 *
-*  -- LAPACK routine (version 2.0) --
+*  -- LAPACK routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     March 31, 1993
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          UPLO
@@ -68,6 +68,9 @@
 *  Further Details
 *  ===============
 *
+*  5-96 - Based on modifications by J. Lewis, Boeing Computer Services
+*         Company
+*
 *  If UPLO = 'U', then A = U*D*U', where
 *     U = P(n)*U(n)* ... *P(k)U(k)* ...,
 *  i.e., U is a product of terms P(k)*U(k), where k decreases from n to
@@ -112,9 +115,10 @@
 *     ..
 *     .. Local Scalars ..
       LOGICAL            UPPER
-      INTEGER            IMAX, J, JMAX, K, KC, KK, KNC, KP, KPC, KSTEP,
-     $                   KX, NPP
-      DOUBLE PRECISION   ABSAKK, ALPHA, C, COLMAX, R1, R2, ROWMAX, S, T
+      INTEGER            I, IMAX, J, JMAX, K, KC, KK, KNC, KP, KPC,
+     $                   KSTEP, KX, NPP
+      DOUBLE PRECISION   ABSAKK, ALPHA, COLMAX, D11, D12, D21, D22, R1,
+     $                   ROWMAX, T, WK, WKM1, WKP1
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -122,7 +126,7 @@
       EXTERNAL           LSAME, IDAMAX
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DLAEV2, DROT, DSCAL, DSPR, DSWAP, XERBLA
+      EXTERNAL           DSCAL, DSPR, DSWAP, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          ABS, MAX, SQRT
@@ -162,7 +166,7 @@
 *        If K < 1, exit from loop
 *
          IF( K.LT.1 )
-     $      GO TO 70
+     $      GO TO 110
          KSTEP = 1
 *
 *        Determine rows and columns to be interchanged and whether
@@ -295,22 +299,30 @@
 *              A := A - ( U(k-1) U(k) )*D(k)*( U(k-1) U(k) )'
 *                 = A - ( W(k-1) W(k) )*inv(D(k))*( W(k-1) W(k) )'
 *
-*              Convert this to two rank-1 updates by using the eigen-
-*              decomposition of D(k)
+               IF( K.GT.2 ) THEN
 *
-               CALL DLAEV2( AP( KC-1 ), AP( KC+K-2 ), AP( KC+K-1 ), R1,
-     $                      R2, C, S )
-               R1 = ONE / R1
-               R2 = ONE / R2
-               CALL DROT( K-2, AP( KNC ), 1, AP( KC ), 1, C, S )
-               CALL DSPR( UPLO, K-2, -R1, AP( KNC ), 1, AP )
-               CALL DSPR( UPLO, K-2, -R2, AP( KC ), 1, AP )
+                  D12 = AP( K-1+( K-1 )*K / 2 )
+                  D22 = AP( K-1+( K-2 )*( K-1 ) / 2 ) / D12
+                  D11 = AP( K+( K-1 )*K / 2 ) / D12
+                  T = ONE / ( D11*D22-ONE )
+                  D12 = T / D12
 *
-*              Store U(k) and U(k-1) in columns k and k-1
+                  DO 50 J = K - 2, 1, -1
+                     WKM1 = D12*( D11*AP( J+( K-2 )*( K-1 ) / 2 )-
+     $                      AP( J+( K-1 )*K / 2 ) )
+                     WK = D12*( D22*AP( J+( K-1 )*K / 2 )-
+     $                    AP( J+( K-2 )*( K-1 ) / 2 ) )
+                     DO 40 I = J, 1, -1
+                        AP( I+( J-1 )*J / 2 ) = AP( I+( J-1 )*J / 2 ) -
+     $                     AP( I+( K-1 )*K / 2 )*WK -
+     $                     AP( I+( K-2 )*( K-1 ) / 2 )*WKM1
+   40                CONTINUE
+                     AP( J+( K-1 )*K / 2 ) = WK
+                     AP( J+( K-2 )*( K-1 ) / 2 ) = WKM1
+   50             CONTINUE
 *
-               CALL DSCAL( K-2, R1, AP( KNC ), 1 )
-               CALL DSCAL( K-2, R2, AP( KC ), 1 )
-               CALL DROT( K-2, AP( KNC ), 1, AP( KC ), 1, C, -S )
+               END IF
+*
             END IF
          END IF
 *
@@ -339,13 +351,13 @@
          K = 1
          KC = 1
          NPP = N*( N+1 ) / 2
-   40    CONTINUE
+   60    CONTINUE
          KNC = KC
 *
 *        If K > N, exit from loop
 *
          IF( K.GT.N )
-     $      GO TO 70
+     $      GO TO 110
          KSTEP = 1
 *
 *        Determine rows and columns to be interchanged and whether
@@ -383,13 +395,13 @@
 *
                ROWMAX = ZERO
                KX = KC + IMAX - K
-               DO 50 J = K, IMAX - 1
+               DO 70 J = K, IMAX - 1
                   IF( ABS( AP( KX ) ).GT.ROWMAX ) THEN
                      ROWMAX = ABS( AP( KX ) )
                      JMAX = J
                   END IF
                   KX = KX + N - J
-   50          CONTINUE
+   70          CONTINUE
                KPC = NPP - ( N-IMAX+1 )*( N-IMAX+2 ) / 2 + 1
                IF( IMAX.LT.N ) THEN
                   JMAX = IMAX + IDAMAX( N-IMAX, AP( KPC+1 ), 1 )
@@ -429,12 +441,12 @@
      $            CALL DSWAP( N-KP, AP( KNC+KP-KK+1 ), 1, AP( KPC+1 ),
      $                        1 )
                KX = KNC + KP - KK
-               DO 60 J = KK + 1, KP - 1
+               DO 80 J = KK + 1, KP - 1
                   KX = KX + N - J + 1
                   T = AP( KNC+J-KK )
                   AP( KNC+J-KK ) = AP( KX )
                   AP( KX ) = T
-   60          CONTINUE
+   80          CONTINUE
                T = AP( KNC )
                AP( KNC ) = AP( KPC )
                AP( KPC ) = T
@@ -485,26 +497,28 @@
 *                 A := A - ( L(k) L(k+1) )*D(k)*( L(k) L(k+1) )'
 *                    = A - ( W(k) W(k+1) )*inv(D(k))*( W(k) W(k+1) )'
 *
-*                 Convert this to two rank-1 updates by using the eigen-
-*                 decomposition of D(k)
+                  D21 = AP( K+1+( K-1 )*( 2*N-K ) / 2 )
+                  D11 = AP( K+1+K*( 2*N-K-1 ) / 2 ) / D21
+                  D22 = AP( K+( K-1 )*( 2*N-K ) / 2 ) / D21
+                  T = ONE / ( D11*D22-ONE )
+                  D21 = T / D21
 *
-                  CALL DLAEV2( AP( KC ), AP( KC+1 ), AP( KNC ), R1, R2,
-     $                         C, S )
-                  R1 = ONE / R1
-                  R2 = ONE / R2
-                  CALL DROT( N-K-1, AP( KC+2 ), 1, AP( KNC+1 ), 1, C,
-     $                       S )
-                  CALL DSPR( UPLO, N-K-1, -R1, AP( KC+2 ), 1,
-     $                       AP( KNC+N-K ) )
-                  CALL DSPR( UPLO, N-K-1, -R2, AP( KNC+1 ), 1,
-     $                       AP( KNC+N-K ) )
+                  DO 100 J = K + 2, N
+                     WK = D21*( D11*AP( J+( K-1 )*( 2*N-K ) / 2 )-
+     $                    AP( J+K*( 2*N-K-1 ) / 2 ) )
+                     WKP1 = D21*( D22*AP( J+K*( 2*N-K-1 ) / 2 )-
+     $                      AP( J+( K-1 )*( 2*N-K ) / 2 ) )
 *
-*                 Store L(k) and L(k+1) in columns k and k+1
+                     DO 90 I = J, N
+                        AP( I+( J-1 )*( 2*N-J ) / 2 ) = AP( I+( J-1 )*
+     $                     ( 2*N-J ) / 2 ) - AP( I+( K-1 )*( 2*N-K ) /
+     $                     2 )*WK - AP( I+K*( 2*N-K-1 ) / 2 )*WKP1
+   90                CONTINUE
 *
-                  CALL DSCAL( N-K-1, R1, AP( KC+2 ), 1 )
-                  CALL DSCAL( N-K-1, R2, AP( KNC+1 ), 1 )
-                  CALL DROT( N-K-1, AP( KC+2 ), 1, AP( KNC+1 ), 1, C,
-     $                       -S )
+                     AP( J+( K-1 )*( 2*N-K ) / 2 ) = WK
+                     AP( J+K*( 2*N-K-1 ) / 2 ) = WKP1
+*
+  100             CONTINUE
                END IF
             END IF
          END IF
@@ -522,11 +536,11 @@
 *
          K = K + KSTEP
          KC = KNC + N - K + 2
-         GO TO 40
+         GO TO 60
 *
       END IF
 *
-   70 CONTINUE
+  110 CONTINUE
       RETURN
 *
 *     End of DSPTRF

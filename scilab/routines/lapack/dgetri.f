@@ -1,16 +1,16 @@
       SUBROUTINE DGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 2.0) --
+*  -- LAPACK routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     September 30, 1994
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LWORK, N
 *     ..
 *     .. Array Arguments ..
       INTEGER            IPIV( * )
-      DOUBLE PRECISION   A( LDA, * ), WORK( LWORK )
+      DOUBLE PRECISION   A( LDA, * ), WORK( * )
 *     ..
 *
 *  Purpose
@@ -48,6 +48,11 @@
 *          For optimal performance LWORK >= N*NB, where NB is
 *          the optimal blocksize returned by ILAENV.
 *
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
+*
 *  INFO    (output) INTEGER
 *          = 0:  successful exit
 *          < 0:  if INFO = -i, the i-th argument had an illegal value
@@ -61,7 +66,9 @@
       PARAMETER          ( ZERO = 0.0D+0, ONE = 1.0D+0 )
 *     ..
 *     .. Local Scalars ..
-      INTEGER            I, IWS, J, JB, JJ, JP, LDWORK, NB, NBMIN, NN
+      LOGICAL            LQUERY
+      INTEGER            I, IWS, J, JB, JJ, JP, LDWORK, LWKOPT, NB,
+     $                   NBMIN, NN
 *     ..
 *     .. External Functions ..
       INTEGER            ILAENV
@@ -78,16 +85,21 @@
 *     Test the input parameters.
 *
       INFO = 0
-      WORK( 1 ) = MAX( N, 1 )
+      NB = ILAENV( 1, 'DGETRI', ' ', N, -1, -1, -1 )
+      LWKOPT = N*NB
+      WORK( 1 ) = LWKOPT
+      LQUERY = ( LWORK.EQ.-1 )
       IF( N.LT.0 ) THEN
          INFO = -1
       ELSE IF( LDA.LT.MAX( 1, N ) ) THEN
          INFO = -3
-      ELSE IF( LWORK.LT.MAX( 1, N ) ) THEN
+      ELSE IF( LWORK.LT.MAX( 1, N ) .AND. .NOT.LQUERY ) THEN
          INFO = -6
       END IF
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGETRI', -INFO )
+         RETURN
+      ELSE IF( LQUERY ) THEN
          RETURN
       END IF
 *
@@ -103,9 +115,6 @@
       IF( INFO.GT.0 )
      $   RETURN
 *
-*     Determine the block size for this environment.
-*
-      NB = ILAENV( 1, 'DGETRI', ' ', N, -1, -1, -1 )
       NBMIN = 2
       LDWORK = N
       IF( NB.GT.1 .AND. NB.LT.N ) THEN

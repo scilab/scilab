@@ -1,9 +1,9 @@
       SUBROUTINE DSYTRF( UPLO, N, A, LDA, IPIV, WORK, LWORK, INFO )
 *
-*  -- LAPACK routine (version 2.0) --
+*  -- LAPACK routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     September 30, 1994
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          UPLO
@@ -11,7 +11,7 @@
 *     ..
 *     .. Array Arguments ..
       INTEGER            IPIV( * )
-      DOUBLE PRECISION   A( LDA, * ), WORK( LWORK )
+      DOUBLE PRECISION   A( LDA, * ), WORK( * )
 *     ..
 *
 *  Purpose
@@ -71,6 +71,11 @@
 *          The length of WORK.  LWORK >=1.  For best performance
 *          LWORK >= N*NB, where NB is the block size returned by ILAENV.
 *
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
+*
 *  INFO    (output) INTEGER
 *          = 0:  successful exit
 *          < 0:  if INFO = -i, the i-th argument had an illegal value
@@ -119,8 +124,8 @@
 *  =====================================================================
 *
 *     .. Local Scalars ..
-      LOGICAL            UPPER
-      INTEGER            IINFO, IWS, J, K, KB, LDWORK, NB, NBMIN
+      LOGICAL            LQUERY, UPPER
+      INTEGER            IINFO, IWS, J, K, KB, LDWORK, LWKOPT, NB, NBMIN
 *     ..
 *     .. External Functions ..
       LOGICAL            LSAME
@@ -139,23 +144,33 @@
 *
       INFO = 0
       UPPER = LSAME( UPLO, 'U' )
+      LQUERY = ( LWORK.EQ.-1 )
       IF( .NOT.UPPER .AND. .NOT.LSAME( UPLO, 'L' ) ) THEN
          INFO = -1
       ELSE IF( N.LT.0 ) THEN
          INFO = -2
       ELSE IF( LDA.LT.MAX( 1, N ) ) THEN
          INFO = -4
-      ELSE IF( LWORK.LT.1 ) THEN
+      ELSE IF( LWORK.LT.1 .AND. .NOT.LQUERY ) THEN
          INFO = -7
       END IF
+*
+      IF( INFO.EQ.0 ) THEN
+*
+*        Determine the block size
+*
+         NB = ILAENV( 1, 'DSYTRF', UPLO, N, -1, -1, -1 )
+         LWKOPT = N*NB
+         WORK( 1 ) = LWKOPT
+      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DSYTRF', -INFO )
          RETURN
+      ELSE IF( LQUERY ) THEN
+         RETURN
       END IF
 *
-*     Determine the block size
-*
-      NB = ILAENV( 1, 'DSYTRF', UPLO, N, -1, -1, -1 )
       NBMIN = 2
       LDWORK = N
       IF( NB.GT.1 .AND. NB.LT.N ) THEN
@@ -265,7 +280,7 @@
       END IF
 *
    40 CONTINUE
-      WORK( 1 ) = IWS
+      WORK( 1 ) = LWKOPT
       RETURN
 *
 *     End of DSYTRF

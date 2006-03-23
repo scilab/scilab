@@ -2,10 +2,10 @@
      $                   EQUED, R, C, B, LDB, X, LDX, RCOND, FERR, BERR,
      $                   WORK, IWORK, INFO )
 *
-*  -- LAPACK driver routine (version 2.0) --
+*  -- LAPACK driver routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
-*     September 30, 1994
+*     June 30, 1999
 *
 *     .. Scalar Arguments ..
       CHARACTER          EQUED, FACT, TRANS
@@ -51,9 +51,12 @@
 *     where P is a permutation matrix, L is a unit lower triangular
 *     matrix, and U is upper triangular.
 *
-*  3. The factored form of A is used to estimate the condition number
-*     of the matrix A.  If the reciprocal of the condition number is
-*     less than machine precision, steps 4-6 are skipped.
+*  3. If some U(i,i)=0, so that U is exactly singular, then the routine
+*     returns with INFO = i. Otherwise, the factored form of A is used
+*     to estimate the condition number of the matrix A.  If the
+*     reciprocal of the condition number is less than machine precision,
+*     INFO = N+1 is returned as a warning, but the routine still goes on
+*     to solve for X and compute error bounds as described below.
 *
 *  4. The system of equations is solved for X using the factored form
 *     of A.
@@ -180,12 +183,12 @@
 *          The leading dimension of the array B.  LDB >= max(1,N).
 *
 *  X       (output) DOUBLE PRECISION array, dimension (LDX,NRHS)
-*          If INFO = 0, the N-by-NRHS solution matrix X to the original
-*          system of equations.  Note that A and B are modified on exit
-*          if EQUED .ne. 'N', and the solution to the equilibrated
-*          system is inv(diag(C))*X if TRANS = 'N' and EQUED = 'C' or
-*          'B', or inv(diag(R))*X if TRANS = 'T' or 'C' and EQUED = 'R'
-*          or 'B'.
+*          If INFO = 0 or INFO = N+1, the N-by-NRHS solution matrix X
+*          to the original system of equations.  Note that A and B are
+*          modified on exit if EQUED .ne. 'N', and the solution to the
+*          equilibrated system is inv(diag(C))*X if TRANS = 'N' and
+*          EQUED = 'C' or 'B', or inv(diag(R))*X if TRANS = 'T' or 'C'
+*          and EQUED = 'R' or 'B'.
 *
 *  LDX     (input) INTEGER
 *          The leading dimension of the array X.  LDX >= max(1,N).
@@ -195,8 +198,7 @@
 *          A after equilibration (if done).  If RCOND is less than the
 *          machine precision (in particular, if RCOND = 0), the matrix
 *          is singular to working precision.  This condition is
-*          indicated by a return code of INFO > 0, and the solution and
-*          error bounds are not computed.
+*          indicated by a return code of INFO > 0.
 *
 *  FERR    (output) DOUBLE PRECISION array, dimension (NRHS)
 *          The estimated forward error bound for each solution vector
@@ -233,12 +235,14 @@
 *                <= N:  U(i,i) is exactly zero.  The factorization has
 *                       been completed, but the factor U is exactly
 *                       singular, so the solution and error bounds
-*                       could not be computed.
-*                = N+1: RCOND is less than machine precision.  The
-*                       factorization has been completed, but the
-*                       matrix is singular to working precision, and
-*                       the solution and error bounds have not been
-*                       computed.
+*                       could not be computed. RCOND = 0 is returned.
+*                = N+1: U is nonsingular, but RCOND is less than machine
+*                       precision, meaning that the matrix is singular
+*                       to working precision.  Nevertheless, the
+*                       solution and error bounds are computed because
+*                       there are a number of situations where the
+*                       computed solution can be more accurate than the
+*                       value of RCOND would suggest.
 *
 *  =====================================================================
 *
@@ -429,13 +433,10 @@
 *
       CALL DGECON( NORM, N, AF, LDAF, ANORM, RCOND, WORK, IWORK, INFO )
 *
-*     Return if the matrix is singular to working precision.
+*     Set INFO = N+1 if the matrix is singular to working precision.
 *
-      IF( RCOND.LT.DLAMCH( 'Epsilon' ) ) THEN
-         WORK( 1 ) = RPVGRW
-         INFO = N + 1
-         RETURN
-      END IF
+      IF( RCOND.LT.DLAMCH( 'Epsilon' ) )
+     $   INFO = N + 1
 *
 *     Compute the solution matrix X.
 *

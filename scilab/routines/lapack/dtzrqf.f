@@ -1,6 +1,6 @@
       SUBROUTINE DTZRQF( M, N, A, LDA, TAU, INFO )
 *
-*  -- LAPACK routine (version 2.0) --
+*  -- LAPACK routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
 *     September 30, 1994
@@ -14,6 +14,8 @@
 *
 *  Purpose
 *  =======
+*
+*  This routine is deprecated and has been replaced by routine DTZRZF.
 *
 *  DTZRQF reduces the M-by-N ( M<=N ) real upper trapezoidal matrix A
 *  to upper triangular form by means of orthogonal transformations.

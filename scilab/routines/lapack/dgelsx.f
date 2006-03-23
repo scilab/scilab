@@ -1,7 +1,7 @@
       SUBROUTINE DGELSX( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND, RANK,
      $                   WORK, INFO )
 *
-*  -- LAPACK driver routine (version 2.0) --
+*  -- LAPACK driver routine (version 3.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
 *     Courant Institute, Argonne National Lab, and Rice University
 *     March 31, 1993
@@ -17,6 +17,8 @@
 *
 *  Purpose
 *  =======
+*
+*  This routine is deprecated and has been replaced by routine DGELSY.
 *
 *  DGELSX computes the minimum-norm solution to a real linear least
 *  squares problem:
@@ -124,8 +126,8 @@
       EXTERNAL           DLAMCH, DLANGE
 *     ..
 *     .. External Subroutines ..
-      EXTERNAL           DGEQPF, DLABAD, DLAIC1, DLASCL, DLASET, DLATZM,
-     $                   DORM2R, DTRSM, DTZRQF, XERBLA
+      EXTERNAL           DGEQPF, DLAIC1, DLASCL, DLASET, DLATZM, DORM2R,
+     $                   DTRSM, DTZRQF, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          ABS, MAX, MIN

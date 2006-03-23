@@ -52,7 +52,9 @@ OBJSF = dgelqf.o dgels.o  dgeqrf.o dlae2.o dlaev2.o \
 	zungtr.o zhetd2.o zlatrd.o zungql.o zung2l.o dggev.o zggev.o \
 	zggbak.o zggbal.o zgghrd.o zhgeqz.o ztgevc.o zgges.o ztgsen.o \
 	ztgexc.o ztgsyl.o ztgex2.o ztgsy2.o zgesc2.o zgetc2.o zlatdf.o \
-	$(@IN_ATLAS@) 
+	ieeeck.o dgeql2.o dlasq6.o dsytd2.o dlatrd.o dpotf2.o dlasq5.o \
+	dorm2l.o dtgsen.o dtgsyl.o dtgsy2.o dlatdf.o dgetc2.o dgesc2.o \
+	dtgexc.o dtgex2.o dlagv2.o $(@IN_ATLAS@) 
 
 include ../../Makefile.incl
 
