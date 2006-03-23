@@ -55,7 +55,7 @@ void strwidth(char *string, int *max_width, int *height)
 void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr)
 {
   int job=1;
-  *strh =(char *) MALLOC( (*n)+1);
+  *strh =(char *) MALLOC( ( *n + 1 ) * sizeof(char) );
   if ((*strh) == NULL)    {*ierr=1;     return;}
   C2F(cvstr)(n,Scistring,*strh,&job,(long int)*n);
   (*strh)[*n]='\0';
@@ -86,9 +86,20 @@ void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, 
     {
       ni=ptrstrings[i]-li;
       li=ptrstrings[i];
+      /* p is allocated here */
       ScilabStr2C(&ni,SciS,&p,ierr);
+      if ( *ierr == 1 )
+      {
+        int j ;
+        /* free what have just been allocated */
+        for ( j = 0 ; j < i-1 ; j++ )
+        {
+          FREE( strings[j] ) ;
+        }
+        FREE( strings ) ;
+        return;
+      }
       strings[i-1]=p;
-      if ( *ierr == 1) return;
       SciS += ni;
     }
   strings[*nstring]=NULL;

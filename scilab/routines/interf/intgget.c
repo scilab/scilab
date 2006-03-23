@@ -1391,6 +1391,13 @@ int sciGet(sciPointObj *pobj,char *marker)
 
 	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
 
+        /* free the foo */
+        for ( i = 0 ; i < numcol ; i++ )
+        {
+          free( foo[i] ) ;
+        }
+        free( foo ) ;
+
       }
       else
 	{strcpy(error_message,"auto_ticks property does not exist for this handle");return -1;}
@@ -1421,6 +1428,13 @@ int sciGet(sciPointObj *pobj,char *marker)
 
 	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
 
+        /* free the foo */
+        for ( i = 0 ; i < numcol ; i++ )
+        {
+          free( foo[i] ) ;
+        }
+        free( foo ) ;
+        
       }
       else
 	{strcpy(error_message,"reverse property does not exist for this handle");return -1;}
@@ -1779,7 +1793,14 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  }    
 
       CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
-
+        
+      /* free the foo */
+      for ( i = 0 ; i < numcol ; i++ )
+      {
+        free( foo[i] ) ;
+      }
+      free( foo ) ;
+      
     }
     else
       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;}
@@ -2383,7 +2404,12 @@ int getticks(char * xyztick, sciPointObj* psubwin)
 	  /* construction de la tlist */
 
 	  BuildTListForTicks(tmp,ticklabel, nbtics);
-
+          
+          /* free ticklabel */
+          for ( i = 0 ; i < nbtics ; i++ )
+          {
+            FREE( ticklabel[i] ) ;
+          }
 	  FREE(ticklabel); ticklabel = (char **) NULL;
 	  FREE(tmp); tmp = (double *) NULL;
 	}
@@ -2434,6 +2460,11 @@ int getticks(char * xyztick, sciPointObj* psubwin)
 	  /* construction de la tlist */
 	  BuildTListForTicks(tmp,ticklabel, nbtics);
 
+          /* free ticklabel */
+          for ( i = 0 ; i < nbtics ; i++ )
+          {
+            FREE( ticklabel[i] ) ;
+          }
 	  FREE(ticklabel); ticklabel = (char **) NULL;
 	  FREE(tmp); tmp = (double *) NULL;
 	}
@@ -2496,6 +2527,11 @@ int getticks(char * xyztick, sciPointObj* psubwin)
 	  /* construction de la tlist */
 	  BuildTListForTicks(tmp,ticklabel, nbtics);
 
+          /* free ticklabel */
+          for ( i = 0 ; i < nbtics ; i++ )
+          {
+            FREE( ticklabel[i] ) ;
+          }
 	  FREE(ticklabel); ticklabel = (char **) NULL;
 	  FREE(tmp); tmp = (double *) NULL;
 	}
