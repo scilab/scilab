@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="8.10" ProjectIdGuid="{F230A0FD-8B40-4112-B458-1947D48348FD}">
 	<Platforms>
 		<Platform Name="Win32"/></Platforms>
@@ -262,6 +262,11 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dgeql2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgeqlf.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -307,12 +312,22 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dgesc2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgesvd.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgesvx.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dgetc2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
@@ -413,6 +428,11 @@ cd .."/>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dlag2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dlagv2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
@@ -587,6 +607,16 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dlasq5.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dlasq6.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dlasr.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -618,6 +648,16 @@ cd .."/>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dlasyf.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dlatdf.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dlatrd.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
@@ -697,6 +737,11 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dorm2l.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dorm2r.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -757,6 +802,11 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dpotf2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>	
 		<File RelativePath="..\dpotrf.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -833,6 +883,11 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dsytd2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsytf2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
@@ -859,6 +914,31 @@ cd .."/>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtgevc.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dtgex2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dtgexc.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dtgsen.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dtgsy2.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+		<File RelativePath="..\dtgsyl.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
@@ -928,7 +1008,12 @@ cd .."/>
 			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>	
+		<File RelativePath="..\ieeeck.f">
+			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>		
 		<File RelativePath="..\ilaenv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
