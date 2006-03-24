@@ -4981,11 +4981,12 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 /*--------------------------------------------------------------------------------------------*/
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
+  sciSubWindow * ppSubWin ;
   if ( pObj == NULL )
   {
     return FALSE ;
   }
-  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( pObj ) ;
+  ppSubWin = pSUBWIN_FEATURE( pObj ) ;
   if (    sciGetTextLength( ppSubWin->mon_x_label) == 0
        && sciGetTextLength( ppSubWin->mon_y_label) == 0
        && sciGetTextLength( ppSubWin->mon_z_label) == 0 )
