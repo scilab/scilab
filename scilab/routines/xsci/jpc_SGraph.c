@@ -177,7 +177,6 @@ btn_pressed(widget, event, params, num_params)
     String*	params;
     Cardinal*	num_params;
 {
-  int x,y;
   /* The following instruction has been commented out not to lose btn_pressed 
      emited just before an xclick or xgemouse call
     if (!get_wait_click()) return;
@@ -1741,13 +1740,20 @@ int C2F(addmen)(win_num,button_name,entries,ptrentries,ne,typ,fname,ierr)
      integer *win_num,*entries,*ptrentries,*ne,*ierr,*typ;
      char *button_name,*fname;
 {
-  char ** menu_entries;
+  char ** menu_entries = NULL ;
+  int i ;
   *ierr =0;
   if (*ne!=0) {
     ScilabMStr2CM(entries,ne,ptrentries,&menu_entries,ierr);
     if ( *ierr == 1) return(0);
   }
   AddMenu(win_num,button_name,menu_entries,ne,typ,fname,ierr);
+  /* ScilabMStr2CM allocate menu_entries */
+  for ( i = 0 ; i  < *ne ; i++ )
+  {
+    FREE( menu_entries[i] ) ;
+  }
+  FREE( menu_entries ) ;
   return(0);
 }
 
@@ -1945,7 +1951,7 @@ void refreshMenus( struct BCG * ScilabGC )
     
     /* get the number of children of the Edit menu */
     nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
-    for ( subMenuNumber = 4 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
     {
       SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, True ) ;
     }
@@ -1959,7 +1965,7 @@ void refreshMenus( struct BCG * ScilabGC )
     /*SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ; */
 
     nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
-    for ( subMenuNumber = 4 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
+    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
     {
       SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, False ) ;
     }
