@@ -55,6 +55,9 @@ OBJSF = dgelqf.obj dgels.obj  dgeqrf.obj dlae2.obj dlaev2.obj \
 	zungtr.obj zhetd2.obj zlatrd.obj zungql.obj zung2l.obj dggev.obj zggev.obj \
 	zggbak.obj zggbal.obj zgghrd.obj zhgeqz.obj ztgevc.obj zgges.obj ztgsen.obj \
 	ztgexc.obj ztgsyl.obj ztgex2.obj ztgsy2.obj zgesc2.obj zgetc2.obj zlatdf.obj \
+	ieeeck.obj dgeql2.obj dlasq6.obj dsytd2.obj dlatrd.obj dpotf2.obj dlasq5.obj \
+	dorm2l.obj dtgsen.obj dtgsyl.obj dtgsy2.obj dlatdf.obj dgetc2.obj dgesc2.obj \
+	dtgexc.obj dtgex2.obj dlagv2.obj \
 	$(LOCAL) 
 
 include ../../Makefile.incl.mak
