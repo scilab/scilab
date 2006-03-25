@@ -56,7 +56,7 @@ proc tonextbreakpoint_bp {} {
     }
 }
 
-proc execfile_bp {} {
+proc execfile_bp {{stepmode "nostep"}} {
     global funnameargs listoftextarea funsinbuffer waitmessage watchvars
     global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
@@ -117,7 +117,7 @@ proc execfile_bp {} {
         }
         updateactivebreakpoint
         getfromshell
-        checkendofdebug_bp
+        checkendofdebug_bp $stepmode
     } else {
         # <TODO> .sce case
 ##        execfile
@@ -146,15 +146,32 @@ proc execfile_bp {} {
 # could open, e.g. library files.
 
 proc stepbystepinto_bp {{checkbusyflag 1}} {
+# perform "step into" debug
+    stepbystep_bp $checkbusyflag "into"
+}
+
+proc stepbystepover_bp {{checkbusyflag 1}} {
+# perform "step over" debug
+    stepbystep_bp $checkbusyflag "over"
+}
+
+proc stepbystepout_bp {{checkbusyflag 1}} {
+# perform "step out" debug
+    stepbystep_bp $checkbusyflag "out"
+}
+
+proc stepbystep_bp {checkbusyflag stepmode} {
 # set a breakpoint in Scilab on really every line of every function
-# of every opened buffer, run execution, delete all those breakpoints
-# and restore the breakpoints that were really set by the user
+# of every opened buffer consistently with the current step mode,
+# run execution, delete all those breakpoints and restore the
+# breakpoints that were really set by the user
     global funnameargs watchvars
     global setbptonreallybreakpointedlinescmd
 
     if {[getdbstate] == "ReadyForDebug"} {
-        # always a busy check - this code aprt cannot be entered
-        # while skipping no code lines (step by step)
+        # always a busy check - this code part cannot be entered
+        # while skipping lines without executable statements
+        # (which might occur during step by step)
         if {[isscilabbusy 5]} {return}
 
 # The code in the if {0} should have worked - This is Scilab bug 1894
@@ -171,7 +188,7 @@ if {0} {
             # <TODO> .sce case
         }
         # here tricky (but correct) behaviour!! (see below for same comment)
-        execfile_bp
+        execfile_bp $stepmode
         if {$funnameargs != ""} {
             ScilabEval_lt "delbpt(\"$funname\",1);" "seq"
         } else {
@@ -180,9 +197,17 @@ if {0} {
 
 } else {
         if {$funnameargs != ""} {
-            # because the user can open or close files during debug,
-            # getlogicallinenumbersranges must be called at each step
-            set cmd [getlogicallinenumbersranges]
+            if {$stepmode == "into"} {
+                set stepscope "allscilabbuffers"
+            } elseif {$stepmode == "over"} {
+                set stepscope "configuredfoo"
+            } elseif {$stepmode == "out"} {
+                set stepscope "configuredfoo"
+            } else {
+                # should never happen
+                set stepscope "allscilabbuffers"
+            }
+            set cmd [getlogicallinenumbersranges $stepscope]
             # check Scilab limits in terms of breakpoints
             if {$cmd == "-1"} {
                 # abort step-by-step command - do nothing
@@ -195,7 +220,7 @@ if {0} {
                 regsub -all -- {\(} $cmd "delbpt(" cmddel
                 ScilabEval_lt "$cmdset" "seq"
                 # here tricky (but correct) behaviour!! (see below for same comment)
-                execfile_bp
+                execfile_bp $stepmode
                 ScilabEval_lt "$cmddel" "seq"
             }
         } else {
@@ -212,7 +237,17 @@ if {0} {
         if {$funnameargs != ""} {
             # because the user can open or close files during debug,
             # getlogicallinenumbersranges must be called at each step
-            set cmd [getlogicallinenumbersranges]
+            if {$stepmode == "into"} {
+                set stepscope "allscilabbuffers"
+            } elseif {$stepmode == "over"} {
+                set stepscope "currentcontext"
+            } elseif {$stepmode == "out"} {
+                set stepscope "callingcontext"
+            } else {
+                # should never happen
+                set stepscope "allscilabbuffers"
+            }
+            set cmd [getlogicallinenumbersranges $stepscope]
             # check Scilab limits in terms of breakpoints
             if {$cmd == "-1"} {
                 # abort step-by-step command - do nothing
@@ -236,7 +271,7 @@ if {0} {
                 # the ... get executed
                 # Order of execution is therefore $cmddel and, after it only, the
                 # contents of proc checkendofdebug_bp
-                resume_bp $checkbusyflag
+                resume_bp $checkbusyflag $stepmode
                 ScilabEval_lt "$cmddel" "seq"
             }
         } else {
@@ -245,22 +280,20 @@ if {0} {
         }
 
     } else {
-        tk_messageBox -message "Unexpected debug state in proc stepbystepinto_bp: please report"
+        tk_messageBox -message "Unexpected debug state in proc stepbystep_bp: please report"
     }
 }
 
-proc stepbystepover_bp {} {
-# <TODO> step by step support
-    tk_messageBox -message "Sorry, step over not yet implemented!"
-}
-
-proc stepbystepout_bp {} {
-# <TODO> step by step support
-    tk_messageBox -message "Sorry, step out not yet implemented!"
-}
-
-proc getlogicallinenumbersranges {} {
-# get all logical line numbers ranges of all functions from all buffers
+proc getlogicallinenumbersranges {stepscope} {
+# get all logical line numbers ranges of all functions from the given
+# step by step scope $stepscope, which can be
+#   - allscilabbuffers : functions from all scilab scheme buffers
+#   - configuredfoo    : only the function that was selected in the
+#                        configure box
+#   - currentcontext   : functions listed in the call stack at the
+#                        current stop point
+#   - callingcontext   : functions listed in the call stack at the
+#                        current stop point, but the first one
 # return value is normally a single string:
 #   ("$fun1",[1,max1]);("$fun2",[1,max2]);...;("$funN",[1,maxN]);
 # this format is especially useful when this string is used to set or
@@ -284,6 +317,10 @@ proc getlogicallinenumbersranges {} {
         }
         incr nbmacros
         foreach {funname funline precfun} $funsinthatta {
+
+            if {![isinstepscope $funname $stepscope]} {
+                continue
+            }
 
             # look for endfunction of $funname
             set lfunpos [list $precfun]
@@ -364,7 +401,47 @@ proc getlogicallinenumbersranges {} {
     return $cmd
 }
 
-proc resume_bp {{checkbusyflag 1}} {
+proc isinstepscope {funname stepscope} {
+# return true if function name $funname is in step scope $stepscope
+# see proc getlogicallinenumbersranges for the available scopes
+    global funnameargs
+    global callstackfuns
+    if {$stepscope == "allscilabbuffers"} {
+        return true
+    } elseif {$stepscope == "configuredfoo"} {
+        set oppar [expr [string first "\(" $funnameargs] - 1]
+        set configuredfunname [string range $funnameargs 0 $oppar]
+        if {$funname == $configuredfunname} {
+            return true
+        } else {
+            return false
+        }
+    } elseif {$stepscope == "currentcontext"} {
+        # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
+        if {[lsearch -exact $callstackfuns $funname] != -1} {
+            return true
+        } else {
+            return false
+        }
+    } elseif {$stepscope == "callingcontext"} {
+        # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
+        if {[llength $callstackfuns] > 1} {
+            set callcont [lreplace $callstackfuns 0 0]
+            if {[lsearch -exact $callcont $funname] != -1} {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    } else {
+        tk_messageBox -message "Unexpected step scope ($stepscope) in proc isinstepscope. Please report."
+        return false
+    }
+}
+
+proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
     global funnameargs waitmessage watchvars
 
     # no busy check to allow to skip lines without code (step by step)
@@ -385,7 +462,7 @@ proc resume_bp {{checkbusyflag 1}} {
         }
         updateactivebreakpoint
         getfromshell
-        checkendofdebug_bp
+        checkendofdebug_bp $stepmode
     } else {
         # <TODO> .sce case
         # Sending \n is if mode(6) mode(0) is used. If pause, there is no

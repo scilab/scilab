@@ -108,10 +108,10 @@ global dev_debug
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state normal
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state normal
         pbind all $Shift_F8 {stepbystepinto_bp}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state disabled
-        bind all <F8> {}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state disabled
-        bind all <Control-F8> {}
+        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state normal
+        bind all <F8> {stepbystepover_bp}
+        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
+        bind all <Control-F8> {stepbystepout_bp}
 if {$dev_debug=="true"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
@@ -139,10 +139,10 @@ if {$dev_debug=="true"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state normal
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state normal
         pbind all $Shift_F8 {stepbystepinto_bp}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state disabled
-        bind all <F8> {}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state disabled
-        bind all <Control-F8> {}
+        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state normal
+        bind all <F8> {stepbystepover_bp}
+        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
+        bind all <Control-F8> {stepbystepout_bp}
 if {$dev_debug=="true"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
@@ -185,8 +185,8 @@ if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
                 [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
+                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
 if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
 } else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
@@ -197,8 +197,8 @@ if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
+                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
 if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
 } else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
@@ -277,7 +277,7 @@ proc managewatchontop_bp {} {
     }
 }
 
-proc checkendofdebug_bp {} {
+proc checkendofdebug_bp {{stepmode "nostep"}} {
 # check if debug session is over
 # if it is, remove in Scilab the breakpoints set by the user and set the
 # debug state accordingly
@@ -302,8 +302,22 @@ proc checkendofdebug_bp {} {
     # command below is an if and not a while
     # note also that in order to stack commands with the right order, this must
     # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
-    set comm1 "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
-    set skipnocodeline [concat $comm1]
+    switch -- $stepmode {
+        "nostep" {
+            # no need to define code for skipping no code lines since
+            # stops always occur on existing breakpoints set by the user
+            set skipnocodeline ""
+                 }
+        "into"   {
+            set skipnocodeline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+                 }
+        "over"   {
+            set skipnocodeline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+                 }
+        "out"    {
+            set skipnocodeline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepout_bp  0}\\\"\",\\\"\"scipad\\\"\");"
+                 }
+    }
 
     set comm1 "\[db_l,db_m\]=where();"
     set comm2 "if size(db_l,1)==1 then"

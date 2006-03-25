@@ -66,16 +66,8 @@ proc blinkquote {w pos char} {
     if {$listoffile("$w",language) != "scilab"} {return}
     if {[regexp \\$char "\""] == 0} {return}
 
-    if {[iscontinuedline $w "$pos - 1 l"]} {
-        set sta [getstartofcontline $w "$pos - 1 l"]
-    } else {
-        set sta [$w index "$pos linestart"]
-    }
-    if {[iscontinuedline $w $pos]} {
-        set sto [getendofcontline $w $pos]
-    } else {
-        set sto [$w index "$pos lineend"]
-    }
+    set sta [getrealstartofcontline $w $pos]
+    set sto [getrealendofcontline   $w $pos]
     set i [$w index "$pos - 1 c"]
 
     set pat {"[^"]*(?:""[^"]*)*"}

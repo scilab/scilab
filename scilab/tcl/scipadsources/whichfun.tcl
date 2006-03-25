@@ -248,6 +248,9 @@ proc getendofcontline {textarea ind} {
 #    tagged as a continued line)
 # otherwise
 #    return "$ind lineend"
+# contrary to proc getrealendofcontline, this proc does not always return
+# the real end of the continued line, instead it returns "$ind lineend"
+# if line at $ind is not tagged as a continued line 
     if {[lsearch [$textarea tag names $ind] contline] != -1} {
         # + 1 c below to deal with the case where $ind is at the beginning
         # of a line ($textarea tag prevrange contline $ind would return the
@@ -260,6 +263,21 @@ proc getendofcontline {textarea ind} {
     } else {
         return [$textarea index "$ind lineend"]
     }
+}
+
+proc getrealstartofcontline {w ind} {
+# return start bound of a line
+# and take care of nearby continued lines
+# this proc is the same as getstartofcolorization
+    return [getstartofcolorization $w $ind]
+}
+
+proc getrealendofcontline {w ind} {
+# return end bound of a line
+# and take care of nearby continued lines
+# this proc is different from getendofcolorization and also from
+# getendofcontline (see comments in the latter)
+    return [getendofcolorization $w [$w index "$ind - 1 l"]]
 }
 
 proc showwhichfun {} {

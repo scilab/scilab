@@ -152,6 +152,11 @@ Debugger wishes:
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin
 
+-trying to debug functions with names > 24 characters does not work. This is
+ a very general Scilab limitation (in the debugger context, setbpt looses
+ characters for long names, that's why it doesn't work). One could add
+ a check on name length when colorizing user functions for instance.
+
 
 Other wishes:
 

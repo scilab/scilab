@@ -2133,3 +2133,13 @@ Francois VOGEL, 23/03/06
  * Step by step (into) skips lines that does not contain executable code -
    This closes request 256
  * version --> 6.17
+
+Francois VOGEL, 25/03/06
+ * Breakpoint insertion takes care of continued lines: only the first
+   physical line of a continued line is pink-ified
+ * The debugger can perform step over, i.e. without stepping into deeper
+   call stack levels
+ * The debugger can perform step out, i.e. next stop is just after the
+   current context has returned
+ * Updated Scipad help page (again step by step new features)
+ * version --> 6.18

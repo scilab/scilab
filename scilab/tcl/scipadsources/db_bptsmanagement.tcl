@@ -10,8 +10,8 @@ proc insertremove_bp {{buf "current"}} {
     } elseif {![isnocodeline insert]} {
         set infun [whichfun [$textarea index "insert linestart"] $textarea]
         if {$infun !={}} {
-            set i1 "insert linestart"
-            set i2 "insert lineend"
+            set i1 [getrealstartofcontline $textarea "insert linestart"]
+            set i2 [$textarea index "$i1 lineend"  ]
             set activetags [$textarea tag names $i1]
             if {[lsearch $activetags breakpoint] == -1} {
                 $textarea tag add breakpoint $i1 $i2
@@ -29,8 +29,8 @@ proc insertremove_bp {{buf "current"}} {
 proc insertremovedebug_bp {textarea} {
     global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
-    set i1 "insert linestart"
-    set i2 "insert lineend"
+    set i1 [getrealstartofcontline $textarea "insert linestart"]
+    set i2 [$textarea index "$i1 lineend"  ]
     if {![isnocodeline $i1]} {
         set activetags [$textarea tag names $i1]
         if {[lsearch $activetags breakpoint] == -1} {
