@@ -238,17 +238,20 @@
       </ITEM>
 
       <ITEM label="Execute step by step, without going into ancillary functions (step over).">
-        <SP>This is currently not available (it is always disabled in the
-        Debug menu). See SCI/tcl/scipadsources/db_debugsession.tcl for details
-        about the problems encountered for this item.</SP>
+        <SP>Similar to step into, but ancillaries are executed at once without
+        stepping into them. However, if the user has manually set a breakpoint
+        in an ancillary, Scilab will nevertheless stop at this
+        breakpoint.</SP>
 
         <P></P>
       </ITEM>
 
-      <ITEM label="Execute step by step, starting back from the return of the current function (step out).">
-        <SP>This is currently not available (it is always disabled in the
-        Debug menu). See SCI/tcl/scipadsources/db_debugsession.tcl for details
-        about the problems encountered for this item.</SP>
+      <ITEM label="Execute step by step, starting back from the return point of the current function (step out).">
+        <SP>Scilab executes instructions until the function returns from the
+        current context, i.e. the next stop occurs just after the current
+        function has returned. However, if the user has manually set a
+        breakpoint in the current function or in an ancillary, Scilab will
+        nevertheless stop at this breakpoint.</SP>
 
         <P></P>
       </ITEM>
@@ -312,7 +315,7 @@
         (Spanish), "fr" (French), "it" (Italian), "no" (Norwegian), "pl"
         (Polish), "se" (Swedish).</SP>
 
-        <SP> Further languages can be added by creating the proper translation
+        <SP>Further languages can be added by creating the proper translation
         file and putting it in SCI/tcl/scipadsources/msg_files/. If you plan
         to do such a job, please check the file
         <VERB>SCI/tcl/scipadsources/msg_files/AddingTranslations.txt</VERB>
