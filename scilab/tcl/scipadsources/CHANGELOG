@@ -2143,3 +2143,9 @@ Francois VOGEL, 25/03/06
    current context has returned
  * Updated Scipad help page (again step by step new features)
  * version --> 6.18
+
+Francois VOGEL, 26/03/06
+ * Fixed a bug in dogotoline when going to an indented function
+ * The debugger can perform run to cursor
+ * Updated Scipad help page (run to cursor new feature)
+ * version --> 6.19

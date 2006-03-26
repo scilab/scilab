@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.17
+# in sync at least with v6.19
 
 
 # commons
@@ -77,8 +77,6 @@
 
 
 # db_debugsession.tcl
-::msgcat::mcset fr "Cursor position is out of reach!" \
-                   "Position du curseur hors d'atteinte!"
 ::msgcat::mcset fr "Cursor must be in a function" \
                    "Le curseur doit être dans une fonction"
 ::msgcat::mcset fr "No effect - The debugged file is not stuck" \

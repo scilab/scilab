@@ -15,24 +15,28 @@
 # |      \ \-------->----------|ReadyForDebug|-->-- insertremove_bp  |
 # |       \  canceldebug_bp    ---------------      removeall_bp     |
 # |        \--------<----------| /   /\             configurefoo_bp  |
-# |                             /   /  \            showwatch_bp     |
+# |                             /   /  \            showwatch_bp
 # |canceldebug_bp   <enddebug> /   /    \                 |
 # |                |goonwo_bp /   /      \                |
 # |                          /   /        \-------<-------|
 # |               |---->----/   /
-# |   -----------------        /tonextbreakpoint_bp
-# |-<-|DebugInProgress|---<---/|runtocursor_bp
-#     -----------------
-#        \     \
-#         \     \
-#          \     \-->-- insertremove_bp     |
-#           \           removeall_bp        |
-#            \          tonextbreakpoint_bp |
-#             \         showwatch_bp        |
-#              \        runtocursor_bp      |
-#               \       break_bp
-#                \              |
-#                 \----<--------|
+# |   -----------------        /tonextbreakpoint_bp |
+# |-<-|DebugInProgress|---<---/ runtocursor_bp      |
+#     -----------------         stepbystepinto_bp   |
+#        \     \                stepbystepover_bp   |
+#         \     \               stepbystepout_bp
+#          \     \
+#           \     \-->-- insertremove_bp     |
+#            \           removeall_bp        |
+#             \          tonextbreakpoint_bp |
+#              \         stepbystepinto_bp   |
+#               \        stepbystepover_bp   |
+#                \       stepbystepout_bp    |
+#                 \      showwatch_bp        |
+#                  \     runtocursor_bp      |
+#                   \    break_bp
+#                    \           |
+#                     \----<-----|
 #
 ####################################################################
 
@@ -112,13 +116,8 @@ global dev_debug
         bind all <F8> {stepbystepover_bp}
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
         bind all <Control-F8> {stepbystepout_bp}
-if {$dev_debug=="true"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
-} else {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
-        bind all <Control-F11> {}
-}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
         pbind all $Shift_F12 {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
@@ -143,13 +142,8 @@ if {$dev_debug=="true"} {
         bind all <F8> {stepbystepover_bp}
         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
         bind all <Control-F8> {stepbystepout_bp}
-if {$dev_debug=="true"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
         bind all <Control-F11> {runtocursor_bp}
-} else {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
-        bind all <Control-F11> {}
-}
         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state normal
         pbind all $Shift_F12 {goonwo_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
@@ -187,9 +181,7 @@ if {$dev_debug=="true"} {
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
-if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
-} else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
                 [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
@@ -199,9 +191,7 @@ if {$dev_debug=="true"} {
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
                 [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
-if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
-} else {[lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled}
                 [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
 if {$dev_debug=="true"} {
                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
@@ -300,23 +290,29 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # stepbystepinto_bp command is just rerun, with Scilab busy checks disabled
     # note that since checkendofdebug_bp is called at the end of each step, the
     # command below is an if and not a while
+    # same principle is used for skipping breakpoints when running to cursor
     # note also that in order to stack commands with the right order, this must
     # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
     switch -- $stepmode {
-        "nostep" {
+        "nostep"   {
             # no need to define code for skipping no code lines since
             # stops always occur on existing breakpoints set by the user
-            set skipnocodeline ""
-                 }
-        "into"   {
-            set skipnocodeline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
-                 }
-        "over"   {
-            set skipnocodeline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
-                 }
-        "out"    {
-            set skipnocodeline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepout_bp  0}\\\"\",\\\"\"scipad\\\"\");"
-                 }
+            set skipline ""
+                   }
+        "into"     {
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+                   }
+        "over"     {
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+                   }
+        "out"      {
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepout_bp  0}\\\"\",\\\"\"scipad\\\"\");"
+                   }
+        "runtocur" {
+            set skipline1 "TCL_EvalStr(\\\"\"if {!\[iscursorplace_bp  \]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp  0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline [concat $skipline1 $skipline2]
+                   }
     }
 
     set comm1 "\[db_l,db_m\]=where();"
@@ -325,7 +321,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set comm4   "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
     set comm5 "else"
     set comm6   "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm7   "TCL_EvalStr(\"ScilabEval_lt \"\"$skipnocodeline\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm7   "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
     set comm8 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8]
 

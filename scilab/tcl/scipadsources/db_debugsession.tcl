@@ -1,56 +1,8 @@
-proc runtocursor_bp {} {
-    if {[isscilabbusy 5]} {return}
-    set textarea [gettextareacur]
-    set infun [whichfun [$textarea index insert] $textarea]
-    if {$infun!=""} {
-        set cursorfunname [lindex $infun 0]
-        set cursorfunline [lindex $infun 1]
-        set rfn $cursorfunname
-        set rfl $cursorfunline
-        insertremove_bp
-        tonextbreakpoint_bp
-        set comm1 "\[db_l,db_m\]=where();"
-        set comm2 "if size(db_l,1)>=3 then"
-        set comm3 "TCL_EvalStr(\"scipad eval {set checklist \[ list \"+string(db_l(3))+\" \"+string(db_m(3))+\" $rfl $rfn \] }\");"
-        set comm4 "else"
-        set comm5 "TCL_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
-        set comm6 "end;"
-        set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
-        ScilabEval_lt "$fullcomm" "seq"
-        ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
-        ScilabEval_lt "flush"
-        while {$bptcheckresult == "WrongBpt" && [getdbstate] == "DebugInProgress"} {
-            tonextbreakpoint_bp
-            ScilabEval_lt "$fullcomm" "seq"
-            ScilabEval_lt "TCL_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
-            ScilabEval_lt "flush"
-        }
-        if {[getdbstate] != "DebugInProgress"} {
-            tk_messageBox -message [mc "Cursor position is out of reach!"] -icon info
-        }
-        insertremove_bp
-    } else {
-        # <TODO> .sce case
-        showinfo [mc "Cursor must be in a function"]
-    }
-}
-
-proc makelinecheck_bp {cl} {
-    foreach {fl fn rfl rfn} $cl {}
-    if {$fn==$rfn && $fl== $rfl} {
-#tk_messageBox -message "RightBpt\n$fl    $fn\n$rfl    $rfn"
-        return "RightBpt"
-    } else {
-#tk_messageBox -message "WrongBpt\n$fl    $fn\n$rfl    $rfn"
-        return "WrongBpt"
-    }
-}
-
-proc tonextbreakpoint_bp {} {
+proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
     if {[getdbstate] == "ReadyForDebug"} {
-        execfile_bp
+        execfile_bp $stepmode
     } elseif {[getdbstate] == "DebugInProgress"} {
-        resume_bp
+        resume_bp $checkbusyflag $stepmode
     } else {
         tk_messageBox -message "Unexpected debug state in proc tonextbreakpoint_bp: please report"
     }
@@ -197,15 +149,11 @@ if {0} {
 
 } else {
         if {$funnameargs != ""} {
-            if {$stepmode == "into"} {
-                set stepscope "allscilabbuffers"
-            } elseif {$stepmode == "over"} {
-                set stepscope "configuredfoo"
-            } elseif {$stepmode == "out"} {
-                set stepscope "configuredfoo"
-            } else {
-                # should never happen
-                set stepscope "allscilabbuffers"
+            switch -- $stepmode {
+                "into"  {set stepscope "allscilabbuffers"}
+                "over"  {set stepscope "configuredfoo"}
+                "out"   {set stepscope "configuredfoo"}
+                default {set stepscope "allscilabbuffers" ;# should never happen}
             }
             set cmd [getlogicallinenumbersranges $stepscope]
             # check Scilab limits in terms of breakpoints
@@ -237,15 +185,11 @@ if {0} {
         if {$funnameargs != ""} {
             # because the user can open or close files during debug,
             # getlogicallinenumbersranges must be called at each step
-            if {$stepmode == "into"} {
-                set stepscope "allscilabbuffers"
-            } elseif {$stepmode == "over"} {
-                set stepscope "currentcontext"
-            } elseif {$stepmode == "out"} {
-                set stepscope "callingcontext"
-            } else {
-                # should never happen
-                set stepscope "allscilabbuffers"
+            switch -- $stepmode {
+                "into"  {set stepscope "allscilabbuffers"}
+                "over"  {set stepscope "currentcontext"}
+                "out"   {set stepscope "callingcontext"}
+                default {set stepscope "allscilabbuffers" ;# should never happen}
             }
             set cmd [getlogicallinenumbersranges $stepscope]
             # check Scilab limits in terms of breakpoints
@@ -439,6 +383,51 @@ proc isinstepscope {funname stepscope} {
         tk_messageBox -message "Unexpected step scope ($stepscope) in proc isinstepscope. Please report."
         return false
     }
+}
+
+proc runtocursor_bp {{checkbusyflag 1} {skipbptmode 0}} {
+    global cursorfunname cursorfunline
+
+    # no busy check to allow to skip stops at the wrong breakpoint
+    if {$checkbusyflag} {
+        if {[isscilabbusy 5]} {return}
+    }
+
+    set textarea [gettextareacur]
+    set infun [whichfun [$textarea index insert] $textarea]
+    if {$infun!=""} {
+        if {!$skipbptmode} {
+            set cursorfunname [lindex $infun 0]
+            # substract 1 since we want to stop before this line and not after
+            set cursorfunline [expr [lindex $infun 1] - 1]
+            if {$cursorfunline == 0} {
+                # cursor is on the function definition line
+                set cursorfunline 1
+            }
+        }
+        set setbpcomm "setbpt(\"$cursorfunname\",$cursorfunline);"
+        ScilabEval_lt $setbpcomm "seq"
+        tonextbreakpoint_bp $checkbusyflag "runtocur"
+        set delbpcomm "delbpt(\"$cursorfunname\",$cursorfunline);"
+        ScilabEval_lt $delbpcomm "seq"
+    } else {
+        # <TODO> .sce case
+        showinfo [mc "Cursor must be in a function"]
+    }
+}
+
+proc iscursorplace_bp {} {
+# return true if the current stop occurs at line $cursorfunline of
+# function $cursorfunname
+# return false otherwise
+    global cursorfunname cursorfunline
+    global callstackfuns callstacklines
+    if {[lindex $callstackfuns 0] == $cursorfunname} {
+        if {[expr [lindex $callstacklines 0] -1] == $cursorfunline} {
+            return true
+        }
+    }
+    return false
 }
 
 proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {

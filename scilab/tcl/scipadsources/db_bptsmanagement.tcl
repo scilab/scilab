@@ -39,7 +39,7 @@ proc insertremovedebug_bp {textarea} {
                 $textarea tag add breakpoint $i1 $i2
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
-                set setbpcomm " setbpt(\"$funname\",$lineinfun);"
+                set setbpcomm "setbpt(\"$funname\",$lineinfun);"
                 append setbptonreallybreakpointedlinescmd $setbpcomm
                 ScilabEval_lt $setbpcomm "seq"
             } else {
@@ -51,7 +51,7 @@ proc insertremovedebug_bp {textarea} {
                 $textarea tag remove breakpoint $i1 $i2
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
-                set delbpcomm " delbpt(\"$funname\",$lineinfun);"
+                set delbpcomm "delbpt(\"$funname\",$lineinfun);"
                 append setbptonreallybreakpointedlinescmd $delbpcomm
                 ScilabEval_lt $delbpcomm  "seq"
             } else {

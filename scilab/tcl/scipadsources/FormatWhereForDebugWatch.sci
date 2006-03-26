@@ -2,8 +2,9 @@ function txt = FormatWhereForDebugWatch(startitem)
 // Converts input information (provided by where()) into a single string that
 // mimics the output of whereami()
 // This is used for the watch window of the debugger in Scipad.
-// The callstackfuns list is also set inside the scipad interpreter by
-// this function for later use during step by step
+// The callstackfuns and callstacklines lists are also set inside the scipad
+// interpreter by this function for later use during step by step or run to
+// cursor
 // Author: François Vogel, 2004-06 (freely inspired from whereami())
 
 global LANGUAGE
@@ -29,10 +30,15 @@ nn  = prod(size(linn))
 lm  = maxi(maxi(length(mac(2:$))),length(str0))
 txt = emptystr()
 
-// Create a Tcl list containing the calling stack
+// Create a Tcl list containing the calling stack functions list
 macstring = strcat(mac(startitem+1:nn-1)," ")
 macstring = strsubst(macstring,"$","\$")
 TCL_SetVar("callstackfuns",macstring,"scipad")
+
+// Create a Tcl list containing the calling stack line numbers list
+linnstring = strcat(string(linn(startitem+1:nn-1))," ")
+linnstring = strsubst(linnstring,"$","\$")
+TCL_SetVar("callstacklines",linnstring,"scipad")
 
 // Properly format the call stack and line numbers in a single string
 // that will be displayed in the call stack area of the watch window
