@@ -166,7 +166,9 @@
 
     <ITEMIZE>
       <ITEM label="Set/remove breakpoints anywhere in the opened files.">
-        <SP>The breakpointed lines get pink background.</SP>
+        <SP>The breakpointed lines get pink background. No breakpoint can be
+        set on empty, blank or commented lines, or outside of a function
+        definition.</SP>
 
         <P></P>
       </ITEM>
@@ -183,42 +185,26 @@
         The user can also add a new variable or remove already defined
         variables. This is in case the user changes the input variables of his
         function in the file, and he does not want to scan the buffer again
-        (which causes all the variable values to reset to a null value,
-        actually ""). Note also that the <LINK>varargin</LINK> keyword is
-        supported.</SP>
-
-        <P></P>
-      </ITEM>
-
-      <ITEM label="Launch execution with breakpoints.">
-        <SP>Scipad execs the currently displayed buffer as well as all the
-        opened buffers that contain functions, sends to Scilab the buffer as
-        well as all the opened buffers that contain functions, sends to Scilab
-        the <LINK>setbpt</LINK> instructions relative to all the breakpoints
-        that have been set, and executes the selected function with the input
-        variable values provided during the configure execution step. Then the
-        execution is automagically stopped by Scilab at the first
-        breakpoint.</SP>
+        (which causes all the variable values to be reset to a null value).
+        Note also that the <LINK>varargin</LINK> keyword is fully supported,
+        and that variables that are not given a value by the user are ignored
+        when Scipad launches the function for debug.</SP>
 
         <P></P>
       </ITEM>
     </ITEMIZE>
 
-    <P>At this point there are several possibilities for the user:</P>
-
-    <P></P>
-
     <ITEMIZE>
-      <ITEM label="Continue up to next breakpoint.">
-        <SP>Scilab resumes execution, and stops at the next breakpoint or goes
-        to the end of the file if there are no more breakpoints. The active
+      <ITEM label="Go to next breakpoint.">
+        <SP>Scilab executes the code, and stops at the next breakpoint or goes
+        to the end of the file if there is no more breakpoints. The active
         breakpoint is highlighted in Scipad so that it can easily be
         identified.</SP>
 
         <P></P>
       </ITEM>
 
-      <ITEM label="Insert a new breakpoint or remove existing breakpoint during the debug.">
+      <ITEM label="Insert a new breakpoint or remove an existing breakpoint during the debug.">
         <SP>The breakpointed lines get pink background, and lines where
         breakpoints are removed restore their normal background. The new
         breakpoint configuration is taken into account for the next steps of
@@ -228,20 +214,20 @@
       </ITEM>
 
       <ITEM label="Execute step by step, going into functions (step into).">
-        <SP>Scilab stops after execution of each line. The active stop
+        <SP>Scilab stops before execution of each line. The active stop
         position is highlighted in Scipad so that it can easily be identified.
         Every line of code in functions from opened files is taken into
         account, but Scipad does not search for or open files by itself in
-        order to step into them.</SP>
+        order to step into them. Lines with no executable code (blank or
+        commented lines) are skipped.</SP>
 
         <P></P>
       </ITEM>
 
       <ITEM label="Execute step by step, without going into ancillary functions (step over).">
         <SP>Similar to step into, but ancillaries are executed at once without
-        stepping into them. However, if the user has manually set a breakpoint
-        in an ancillary, Scilab will nevertheless stop at this
-        breakpoint.</SP>
+        stepping into them. However, if the user has set a breakpoint in an
+        ancillary, Scilab will nevertheless stop at this breakpoint.</SP>
 
         <P></P>
       </ITEM>
@@ -249,16 +235,29 @@
       <ITEM label="Execute step by step, starting back from the return point of the current function (step out).">
         <SP>Scilab executes instructions until the function returns from the
         current context, i.e. the next stop occurs just after the current
-        function has returned. However, if the user has manually set a
-        breakpoint in the current function or in an ancillary, Scilab will
-        nevertheless stop at this breakpoint.</SP>
+        function has returned. However, if the user has set a breakpoint in
+        the current function or in an ancillary, Scilab will nevertheless stop
+        at this breakpoint. Lines with no executable code (blank or commented
+        lines) are skipped.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Run execution up to the cursor position.">
+        <SP>Scilab executes instructions until the cursor position is reached.
+        If the user has set breakpoints in the current function or in an
+        ancillary, Scilab will skip them and stop only when the cursor
+        position is reached. Lines with no executable code (blank or commented
+        lines) are also skipped: if the cursor is in such a line, Scilab will
+        stop just before executing the next line carrying executable
+        code.</SP>
 
         <P></P>
       </ITEM>
 
       <ITEM label="Continue ignoring any breakpoint.">
-        <SP>Finish execution in Scilab as if there was no breakpoint at all:
-        Breakpoints are removed from Scilab but kept in Scipad.</SP>
+        <SP>Finish execution in Scilab as if there was no breakpoint at
+        all.</SP>
 
         <P></P>
       </ITEM>
@@ -278,14 +277,22 @@
       </ITEM>
     </ITEMIZE>
 
+    <P>When one of the commands above is triggered for the first time, Scipad
+    launches execution, i.e. it execs the currently displayed buffer as well
+    as all the opened buffers that contain functions, sends to Scilab the
+    <LINK>setbpt</LINK> instructions relative to all the breakpoints that have
+    been set, and executes the selected function with the input variable
+    values provided during the configure execution step. Then the execution is
+    automagically stopped by Scilab according to the debug command that was
+    launched. A new debug command can then be executed.</P>
+
+    <P></P>
+
     <P>At any time during the debug, a <BD>watch window</BD> can be displayed
     on user request. It allows to monitor any variable value, or change a
     variable value during a breakpoint stop and relaunch execution with the
     modified value. The watch window also displays the calling stack and
     contains a toolbar with the most useful commands from the debug menu.</P>
-
-    <P>After the end of the execution, the breakpoints are removed from Scilab
-    (but kept in Scipad).</P>
 
     <P></P>
 
