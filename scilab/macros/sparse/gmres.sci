@@ -279,7 +279,7 @@ end
        warning('GMRES did not converge');
      end
    end
-endfunction
+endfunction //GMRES
  
 
 //
