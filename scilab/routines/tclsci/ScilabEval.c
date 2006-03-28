@@ -122,8 +122,8 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         if (C2F(iop).ddt==-1)
         {
           sciprint(TCL_MSG13,comm[nc]);
-          FREE(comm[nc]);
         }
+        FREE(comm[nc]);
         C2F(tksynchro)(&C2F(recu).paus);
         if (ierr != 0) return TCL_ERROR;
       }
