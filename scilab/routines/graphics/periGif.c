@@ -62,6 +62,8 @@ extern  char  *getenv();
 #define GXset 15
 #endif
 
+#define COLORMAP_WARNING "Warning: with GIF and PPM drivers, the size of colormaps should be less than %d. The resulting output may be inaccurate.\n"
+
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
@@ -929,38 +931,41 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
   for ( i=0;i < Xgc->Numcolors+2; i++) 
     col_index[i] = -1;
 
-  if (m>gdMaxColors-3) {/* reduce the number of colors */
+  if (m>gdMaxColors-3) 
+  {
+/* reduce the number of colors */
+    sciprint(COLORMAP_WARNING,gdMaxColors-2) ;
       m1 = gdMaxColors-2;
-      if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) {
-	Scistring("Not enough memory\n");
-	*v3 = 1;
-	return;
-      }
-      if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) {
-	Scistring("Not enough memory\n");
-	FREE(cmap);
-	*v3 = 1;
-	return;
-      }
+    if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) {
+      Scistring("Not enough memory\n");
+      *v3 = 1;
+      return;
+    }
+    if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) {
+      Scistring("Not enough memory\n");
+      FREE(cmap);
+      *v3 = 1;
+      return;
+    }
 
-      C2F(nues1)(a,&m,cmap,&m1,ind,&ierr);
-      /* create new colormap */
-      Xgc->Numcolors = m;
-      for ( i=0; i < Xgc->Numcolors; i++) {
-	i1 = ind[i] - 1;
-	r=(int)(cmap[i1] * 255);
-	g=(int)(cmap[i1 + m1] * 255);
-	b=(int)(cmap[i1 + 2*m1] * 255);
-	if (r==255 && g==255 && b==255) {
+    C2F(nues1)(a,&m,cmap,&m1,ind,&ierr);
+    /* create new colormap */
+    Xgc->Numcolors = m;
+    for ( i=0; i < Xgc->Numcolors; i++) {
+      i1 = ind[i] - 1;
+      r=(int)(cmap[i1] * 255);
+      g=(int)(cmap[i1 + m1] * 255);
+      b=(int)(cmap[i1 + 2*m1] * 255);
+      if (r==255 && g==255 && b==255) {
 	/* move white a little to distinguish it from the background */
 	r=254;g=254;b=254; }
-	/*c = gdImageColorExact(GifIm, r,g,b);
-	  if (c == -1)*/
-	c = gdImageColorAllocate(GifIm,r,g,b);
+      /*c = gdImageColorExact(GifIm, r,g,b);
+        if (c == -1)*/
+      c = gdImageColorAllocate(GifIm,r,g,b);
       col_index[i] = c;
-      }
-      FREE(ind);
-      FREE(cmap);
+    }
+    FREE(ind);
+    FREE(cmap);
   }
   else {
     /* create new colormap */
@@ -2558,6 +2563,7 @@ static void FileInitFromScreenGif(void)
       col_index[i] = -1;
 
     if (m>gdMaxColors-3) {/* reduce the number of colors */
+      sciprint(COLORMAP_WARNING,gdMaxColors-2) ;
       if ( (bigcmap = (double*) MALLOC(3*m * sizeof(double)))== NULL) {
 	Scistring("Not enough memory\n");
 	return;
