@@ -195,7 +195,9 @@ C
 C     Calculo de los pasos donde se saturan las restricciones presentes
 C     en el funcional
 C
-      r3=r2
+c      r3=r2
+c     SS 03_2006 +0.0d0 added to fix an optimization bug with gfortran 4.0.2
+      r3=r2+0.0d0
       ro=r2
       do 30 i=1,mif
          k1=k+1
