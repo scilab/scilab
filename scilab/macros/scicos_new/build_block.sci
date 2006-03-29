@@ -8,14 +8,16 @@ function [model,ok]=build_block(o)
       ok=%f; return
     end
     model.sim=list(genmac(model.ipar,size(model.in,'*'),size(model.out,'*')),3)
+
   elseif type(model.sim)==15 then
-    if int(model.sim(2)/1000)==1 then   //fortran block
+    modsim=modulo(model.sim(2),10000)
+    if int(modsim/1000)==1 then   //fortran block
       funam=model.sim(1)
       if ~c_link(funam) then
 	tt=graphics.exprs(2);
 	ok=scicos_block_link(funam,tt,'f')
       end
-    elseif int(model.sim(2)/1000)==2 then   //C block
+    elseif int(modsim/1000)==2 then   //C block
       funam=model.sim(1)
       if ~c_link(funam) then
 	tt=graphics.exprs(2);
