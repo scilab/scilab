@@ -486,11 +486,9 @@ int C2F(run)()
   C2F(nextj)(&Istk[1 + l0 - 7], &Pstk[Pt]);
   if (Pstk[Pt] != 0) {
     Lct[8] = Ids[2 + Pt * nsiz];
-    
-    if (inxsci == 1 && scilab_timer_check() ) {
-      C2F(sxevents)();
-      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
-    }
+
+    if (inxsci == 1 && scilab_timer_check() )  C2F(sxevents)();
+    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   }
   /*     fin for */
@@ -599,11 +597,8 @@ int C2F(run)()
     Ids[1 + Pt * nsiz] = l0;
     Ids[2 + Pt * nsiz] = nc;
     Rstk[Pt] = 616;
-    if (inxsci == 1 && scilab_timer_check() ) {
-      C2F(sxevents)();
-      if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
-    }
-
+    if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   } else {
     if (Istk[Pstk[Pt]] == 9) {
@@ -660,10 +655,9 @@ int C2F(run)()
 
  L70:
   /* re entering run to continue macro evaluation */
-  if (inxsci == 1 && scilab_timer_check() ) {
-    C2F(sxevents)();
-    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
-  }
+  if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+  if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
+
  L71:
   /* reset proper values for l0 and nc if a control structure had been escaped*/
   r = Rstk[Pt] - 610;
@@ -920,13 +914,11 @@ int C2F(run)()
     i2 = Lct[4] / 4;
     C2F(prompt)(&i2, &iesc);
   }
-
   ++Lct[8];
   ++lc;
-  if (inxsci == 1 && scilab_timer_check() ) {
-    C2F(sxevents)();
-    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
-  }
+
+  if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+  if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) goto L115;
 
   goto L10;
 
