@@ -2149,3 +2149,8 @@ Francois VOGEL, 26/03/06
  * The debugger can perform run to cursor
  * Updated Scipad help page (run to cursor new feature)
  * version --> 6.19
+
+Francois VOGEL, 30/03/06
+ * Fixed a bug on step out if the line from which to resume execution is
+   a no code line.
+ * version --> 6.20

@@ -306,11 +306,11 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
             set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepout_bp  0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\[iscursorplace_bp  \]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp  0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }

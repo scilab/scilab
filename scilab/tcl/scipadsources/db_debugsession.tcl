@@ -117,8 +117,7 @@ proc stepbystep_bp {checkbusyflag stepmode} {
 # of every opened buffer consistently with the current step mode,
 # run execution, delete all those breakpoints and restore the
 # breakpoints that were really set by the user
-    global funnameargs watchvars
-    global setbptonreallybreakpointedlinescmd
+    global funnameargs
 
     if {[getdbstate] == "ReadyForDebug"} {
         # always a busy check - this code part cannot be entered
@@ -475,16 +474,68 @@ proc goonwo_bp {} {
 
 proc break_bp {} {
     if {[isscilabbusy]} {
-        ScilabEval_lt "flush"
-        ScilabEval_lt "pause" "seq"
-        updateactivebreakpoint 4
-        getfromshell 4
+
+# Many solutions were explored, none is fully functional:
+
+# 1. send a seq pause preceded by flush
+# two flushes since the first one may just queue new commands
+# (see proc checkendofdebug_bp)
+#        ScilabEval_lt "flush"
+#        ScilabEval_lt "flush"
+#        ScilabEval_lt "pause" "seq"
+#        updateactivebreakpoint 4
+#        getfromshell 4
+
+# 2. send a sync pause
+# apparently same result with:
+#       ScilabEval_lt "pause" "sync"
+#       updateactivebreakpoint 3
+#       getfromshell 3
+
+# 3. launch a new core Fortran command that only says call sigbas(2)
+#    i.e. set iflag to 1 (true), i.e. an interrupt has occurred
+#    Note that this command already exists in C (void SignalCtrC)
+#      ScilabEval "breaksgl" "sync" "seq"
+#      updateactivebreakpoint 4
+#      getfromshell 4
+
+# 4. set breakpoints everywhere during run (details copied
+#    from stepbystep_bp)
+if {1} {
+global funnameargs
+set checkbusyflag 0
+        if {$funnameargs != ""} {
+            # because the user can open or close files during debug,
+            # getlogicallinenumbersranges must be called at each step
+            set stepmode "into"
+            set stepscope "allscilabbuffers"
+            set cmd [getlogicallinenumbersranges $stepscope]
+            # check Scilab limits in terms of breakpoints
+            if {$cmd == "-1" || $cmd == "0"} {
+                # impossible to set the required breakpoints
+                tk_messageBox -message "Too many bpts or bpted funs!"
+                return
+            } else {
+                # no limit exceeded - go on one 
+                regsub -all -- {\(} $cmd "setbpt(" cmdset
+                regsub -all -- {\(} $cmd "delbpt(" cmddel
+                ScilabEval_lt "$cmdset" "sync" "seq"
+#                resume_bp $checkbusyflag $stepmode
+#                ScilabEval_lt "$cmddel" "seq"
+            }
+        } else {
+            # <TODO> .sce case
+    #        resume_bp
+        }
+
 # <TODO> Remove next line and allow to continue debug
 # Problem: Scilab does not stop at breakpoints located after the break command point!
-        setdbstate "NoDebug"
+#        setdbstate "NoDebug"
     } else {
         showinfo [mc "No effect - The debugged file is not stuck"]
     }
+}
+
 }
 
 proc canceldebug_bp {} {

@@ -47,6 +47,9 @@ Bugs:
 -step-by-step debugging may highlight the wrong line in Scipad when continued
  lines without dots are present before the breakpoint stop. Bug 1469 again!!!
 
+-bug 1894 (outside of Scipad) can come into play when debugging step by step,
+ i.e. the debugger might stop at unexpected positions in the code
+
 -anything can happen during debug if the same function name can be found more
  than once among the opened buffers, for instance the wrong buffer may become
  the active one to show the active breakpoint - same issue in configureexec:
