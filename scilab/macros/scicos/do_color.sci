@@ -40,9 +40,7 @@ function [%pt,scs_m]=do_color(%pt,scs_m)
     else
       coli=o.graphics.gr_i(2)
     end
-//    pause
     coln=getcolor('color',coli)
-        disp(coln)
     if coln<>[] then
       if coln<>coli then
 	drawblock(o)
