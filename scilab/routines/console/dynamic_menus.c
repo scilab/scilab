@@ -218,6 +218,7 @@ int GetCommand ( char *str)
 
 integer C2F(ismenu)()
 {
+  /* Do not manage comands while compiling scilab function */
   if ( (commandQueue == NULL) || (C2F(com).comp[0] != 0)) 
     return(0) ;
   else 
