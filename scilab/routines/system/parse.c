@@ -282,13 +282,12 @@ int C2F(parse)()
   /*     Beginning of a new statement, clause expression or command */
   /* ------------------------------------------------------------ */
  L15:
-  if (inxsci == 1 && scilab_timer_check() ) {
-    C2F(sxevents)();
-    if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
-      iret = 1;
-      goto L96;
-    }
+  if (inxsci == 1 && scilab_timer_check() ) C2F(sxevents)();
+  if (C2F(ismenu)() == 1 && C2F(basbrk).interruptible) {
+    iret = 1;
+    goto L96;
   }
+
   r = 0;
   if (Pt > 0) {
     r = Rstk[Pt];
@@ -1670,10 +1669,12 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   *ierr = 0;
   C2F(recu).icall = 0;
   C2F(com).fin = 3;
+  C2F(basbrk).interruptible = TRUE_;
   return 0;
  L9998:
   *ierr = 1;
   Pt=Pts;Top=Tops;
+  C2F(basbrk).interruptible = TRUE_;
 
   return 0;
  L9999:
@@ -1682,6 +1683,7 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   --Top;
   --C2F(recu).niv;
   Pt=Pts;Top=Tops;
+  C2F(basbrk).interruptible = TRUE_;
   return 0;
 } /* syncexec */
 
