@@ -9,6 +9,7 @@ c
       logical eqid,ptover,vargin,vargout,exec,vcopyobj
       integer blank,r,ival(2),ptr,top1,count,iadr,wmacn
       integer varargin(nsiz),varargout(nsiz),id(nsiz)
+      integer scivarindex
       equivalence (ival(1),val)
       data blank/40/,eol/99/
       data varargin/169544223,387059739,nz2*673720360/
@@ -68,14 +69,13 @@ c     .        function without argument list
             else
                call putid(id,ids(1,pt))
             endif
-            do 15 im=1,nmacs
-               if(eqid(id,macnms(1,im))) then
-                  wmacn=im
-                  goto 16
-               endif
- 15         continue
- 16         continue
+        endif
+
+         if(comp(1).eq.0) then
+c     .     find the index of the macro in the stack et memorize it for breakpoints
+            wmacn=scivarindex(fin)
          endif
+
          l=ilk+1
          if(exec) then
             vargout=.false.
@@ -507,3 +507,38 @@ c
  99   continue
       return
       end
+
+      integer function scivarindex(l)
+      include '../stack.h'
+      integer k0,k1,k2,l
+
+      if(l.ge.lstk(bot)) then
+         k0=bot
+         k2=isiz
+      elseif(l.le.lstk(top+1)) then
+         k0=1
+         k2=top+1
+      else
+         scivarindex=0
+         return
+      endif
+
+c     dichotomy search
+ 10   continue
+      if (k2-k0.le.1) goto 20
+      k1=int((k2-k0)/2)+k0
+      if(l.ge.lstk(k1)) then
+         k0=k1
+      else
+         k2=k1-1
+      endif
+      goto 10
+
+ 20   if (l.ge.lstk(k2)) then
+         scivarindex=k2
+      else
+         scivarindex=k0
+      endif
+      return
+      end
+

@@ -997,21 +997,29 @@ int C2F(parse)()
     else
       goto L15;
   }
+
   /*     gestion des points d'arrets dynamiques */
-  if (C2F(dbg).wmac != 0) {
-    i__2 = Lpt[2] - 1;
-    C2F(whatln)(&Lpt[1], &i__2, &Lpt[6], &nlc, &l1, &ifin);
-    i__2 = C2F(dbg).lgptrs[C2F(dbg).wmac] - 1;
-    for (ibpt = C2F(dbg).lgptrs[C2F(dbg).wmac - 1]; ibpt <= i__2; ++ibpt) {
-      if (Lct[8] - nlc == C2F(dbg).bptlg[ibpt - 1]) {
-	C2F(cvname)(&C2F(dbg).macnms[C2F(dbg).wmac * nsiz - 6], tmp, &c__1, 24L);
-	sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8] - nlc);
-	Msgs(32,0);
-	i__3 = ifin - l1 + 1;
-	C2F(cvstr)(&i__3, &Lin[l1], C2F(cha1).buf, &c__1, bsiz);
-	C2F(basout)(&io, &C2F(iop).wte, C2F(cha1).buf, ifin - l1 + 1);
-	C2F(basbrk).iflag = TRUE_;
-	goto L79;
+  if (C2F(dbg).nmacs != 0) { /* there are breakpoints set */
+    int kfin=C2F(dbg).wmac-1; /*the stack index of the current function*/
+    /*  first test if the function has breakpoints   */
+    int kmac;
+    for (kmac=0;kmac<C2F(dbg).nmacs;kmac++) { /* loop on table of functions containing breakpoints */
+      /* does the name of the current funtion fit the registered name*/
+      if (C2F(eqid)(&(C2F(vstk).idstk[kfin * nsiz]), &(C2F(dbg).macnms[kmac * nsiz]))) {/* yes */
+	/* test if there is a registered breakpoint at the current line*/
+	i__2 = C2F(dbg).lgptrs[kmac+1] - 1;
+	for (ibpt = C2F(dbg).lgptrs[kmac]; ibpt <= i__2; ++ibpt) {
+	  if (Lct[8] == C2F(dbg).bptlg[ibpt - 1]) { /* yes */
+	    /* display a message */
+	    C2F(cvname)(&C2F(dbg).macnms[kmac * nsiz], tmp, &c__1, 24L);
+	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8]);
+	    Msgs(32, 0);
+	    /* raise the interruption flag */
+	    C2F(basbrk).iflag = TRUE_;
+	    goto L79;
+	  }
+	}
+	break;
       }
     }
   }
