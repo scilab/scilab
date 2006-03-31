@@ -210,7 +210,11 @@ c
 c     store
    35  lstk(k) = lstk(k+1) - v
       lk = lstk(k)
-      call dcopy(v,stk(lstk(pntr)),-1,stk(lk),-1)
+      if (lstk(pntr)+v.lt.lk) then
+         call dcopy(v,stk(lstk(pntr)),1,stk(lk),1)
+      else
+         call unsfdcopy(v,stk(lstk(pntr)),-1,stk(lk),-1)
+      endif
       go to 40
 c
 c     pop stack
