@@ -1394,9 +1394,9 @@ int sciGet(sciPointObj *pobj,char *marker)
         /* free the foo */
         for ( i = 0 ; i < numcol ; i++ )
         {
-          free( foo[i] ) ;
+          FREE( foo[i] ) ;
         }
-        free( foo ) ;
+        FREE( foo ) ;
 
       }
       else
@@ -1431,9 +1431,9 @@ int sciGet(sciPointObj *pobj,char *marker)
         /* free the foo */
         for ( i = 0 ; i < numcol ; i++ )
         {
-          free( foo[i] ) ;
+          FREE( foo[i] ) ;
         }
-        free( foo ) ;
+        FREE( foo ) ;
         
       }
       else
@@ -1797,9 +1797,9 @@ int sciGet(sciPointObj *pobj,char *marker)
       /* free the foo */
       for ( i = 0 ; i < numcol ; i++ )
       {
-        free( foo[i] ) ;
+        FREE( foo[i] ) ;
       }
-      free( foo ) ;
+      FREE( foo ) ;
       
     }
     else
