@@ -23,7 +23,7 @@
 	</PARAM>
 	
 	<DESCRIPTION>
-		<P>dt=date() renvoie une chaîne de caractères contenant la date au format jj-mmm-aaaaa format.</P>
+		<P>dt=date() renvoie une chaîne de caractères contenant la date au format jj-mmm-aaaaa.</P>
 	</DESCRIPTION>
 	
 	<EXAMPLE><![CDATA[
