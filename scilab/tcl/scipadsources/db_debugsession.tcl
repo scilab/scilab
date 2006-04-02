@@ -125,13 +125,6 @@ proc stepbystep_bp {checkbusyflag stepmode} {
         # (which might occur during step by step)
         if {[isscilabbusy 5]} {return}
 
-# The code in the if {0} should have worked - This is Scilab bug 1894
-# A workaround is to execute the code in the else part of this clause
-# Reasons why it works this way are unknown
-# The only difference between the two implementations is the number of
-# breakpoints set and deleted when step into is called to enter the debug
-# (i.e. in the ReadyForDebug state of the debugger)
-if {0} {
         if {$funnameargs != ""} {
             set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
             ScilabEval_lt "setbpt(\"$funname\",1);" "seq"
@@ -145,36 +138,6 @@ if {0} {
         } else {
             # <TODO> .sce case
         }
-
-} else {
-        if {$funnameargs != ""} {
-            switch -- $stepmode {
-                "into"  {set stepscope "allscilabbuffers"}
-                "over"  {set stepscope "configuredfoo"}
-                "out"   {set stepscope "configuredfoo"}
-                default {set stepscope "allscilabbuffers" ;# should never happen}
-            }
-            set cmd [getlogicallinenumbersranges $stepscope]
-            # check Scilab limits in terms of breakpoints
-            if {$cmd == "-1"} {
-                # abort step-by-step command - do nothing
-            } elseif {$cmd == "0"} {
-                # execute "Go to next breakpoint" instead
-                tonextbreakpoint_bp
-            } else {
-                # no limit exceeded - go on one step
-                regsub -all -- {\(} $cmd "setbpt(" cmdset
-                regsub -all -- {\(} $cmd "delbpt(" cmddel
-                ScilabEval_lt "$cmdset" "seq"
-                # here tricky (but correct) behaviour!! (see below for same comment)
-                execfile_bp $stepmode
-                ScilabEval_lt "$cmddel" "seq"
-            }
-        } else {
-            # <TODO> .sce case
-    #        resume_bp
-        }
-}
 
     } elseif {[getdbstate] == "DebugInProgress"} {
         # no busy check to allow to skip lines without code (step by step)

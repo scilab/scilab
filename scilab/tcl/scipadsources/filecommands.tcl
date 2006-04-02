@@ -232,7 +232,10 @@ proc idleexitapp {} {
 proc exitapp { {quittype yesno} } {
 # exit Scipad
     global listoftextarea
-    if {[getdbstate] == "DebugInProgress"} canceldebug_bp
+    if {[getdbstate] == "DebugInProgress"} {
+        ScilabEval_lt "delbpt();abort" "sync" "seq"
+        cleantmpScilabEvalfile
+    }
     foreach textarea $listoftextarea {
         set wascanceled [closecur $quittype]
         if {$wascanceled == "Canceled"} {break}

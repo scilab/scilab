@@ -28,6 +28,8 @@ Bugs:
 
 -On Windows, opening files and then closing one of them makes the remaining
  ones unselectable in the windows menu. This is Tk bug 1224330.
+ The fix for the Tk bug exists and has beed applied to the Tk cvs tree,
+ Tcl/Tk 8.4.13 include it but Scilab does not yet use 8.4.13
 
 -When a function definition line ends with a comment, the line numbering is
  wrong 1 unit, resulting is various strange behaviors: execution not stopping
@@ -46,9 +48,6 @@ Bugs:
 
 -step-by-step debugging may highlight the wrong line in Scipad when continued
  lines without dots are present before the breakpoint stop. Bug 1469 again!!!
-
--bug 1894 (outside of Scipad) can come into play when debugging step by step,
- i.e. the debugger might stop at unexpected positions in the code
 
 -anything can happen during debug if the same function name can be found more
  than once among the opened buffers, for instance the wrong buffer may become

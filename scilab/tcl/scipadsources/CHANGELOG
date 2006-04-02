@@ -2151,6 +2151,12 @@ Francois VOGEL, 26/03/06
  * version --> 6.19
 
 Francois VOGEL, 30/03/06
- * Fixed a bug on step out if the line from which to resume execution is
-   a no code line.
+ * Fixed a bug on step out when line to return to contains no executable
+   code
  * version --> 6.20
+
+Francois VOGEL, 02/04/06
+ * Simplification of the step by step code since bug 1894 is fixed
+ * Fixed: Scipad does no longer spit a "Scilab busy" message when quitting
+   Scilab during a debug session
+ * version --> 6.21
