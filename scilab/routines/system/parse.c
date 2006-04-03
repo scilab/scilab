@@ -131,8 +131,7 @@ int C2F(parse)()
 			    673720360,673720360 };
   static int varargout[6] = { 169544223,504893467,673720349,673720360,
 				  673720360,673720360 };
-  static int catch[6] = {203229708,673720337,673720360,673720360,
-				  673720360,673720360 };
+  /* static int catch[6] = {203229708,673720337,673720360,673720360, 673720360,673720360 };*/
 
   static int *Ids     = C2F(recu).ids-nsiz-1;
   static int *Rstk    = C2F(recu).rstk-1;
@@ -141,8 +140,8 @@ int C2F(parse)()
   static int *Lin     = C2F(iop).lin-1;
   static int *Lpt     = C2F(iop).lpt-1;
   static int *Lct     = C2F(iop).lct-1;
-  static double *Stk  = C2F(stack).Stk-1;
-  static int    *Istk = (int *)( C2F(stack).Stk)-1;
+  /*static double *Stk  = C2F(stack).Stk-1;*/
+  /*static int    *Istk = (int *)( C2F(stack).Stk)-1;*/
 
   /* System generated locals */
   int i__2, i__3;
@@ -1007,12 +1006,14 @@ int C2F(parse)()
       /* does the name of the current funtion fit the registered name*/
       if (C2F(eqid)(&(C2F(vstk).idstk[kfin * nsiz]), &(C2F(dbg).macnms[kmac * nsiz]))) {/* yes */
 	/* test if there is a registered breakpoint at the current line*/
+	i__2 = Lpt[2] - 1;
+	C2F(whatln)(&Lpt[1], &i__2, &Lpt[6], &nlc, &l1, &ifin);
 	i__2 = C2F(dbg).lgptrs[kmac+1] - 1;
 	for (ibpt = C2F(dbg).lgptrs[kmac]; ibpt <= i__2; ++ibpt) {
-	  if (Lct[8] == C2F(dbg).bptlg[ibpt - 1]) { /* yes */
+	  if (Lct[8] - nlc == C2F(dbg).bptlg[ibpt - 1]) { /* yes */
 	    /* display a message */
 	    C2F(cvname)(&C2F(dbg).macnms[kmac * nsiz], tmp, &c__1, 24L);
-	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8]);
+	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8] - nlc);
 	    Msgs(32, 0);
 	    /* raise the interruption flag */
 	    C2F(basbrk).iflag = TRUE_;
