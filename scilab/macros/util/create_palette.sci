@@ -75,7 +75,8 @@ function routines=create_palette(Path)
 	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; 
 	      'BACKLASH.sci';'DEADBAND.sci';'EXPRESSION.sci';	      
 	      'CONSTRAINT_f.sci';'HYSTHERESIS.sci';'DEBUG_SCICOS.sci'
-	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block2.sci']
+	      'LOGICAL_OP.sci';'RELATIONALOP.sci';'generic_block2.sci';
+	      'PDE.sci']
 	
       elseif txt=='Linear' then
 	lisf=['DLR.sci';'TCLSS.sci';'DOLLAR.sci';
