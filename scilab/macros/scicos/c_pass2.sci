@@ -3159,4 +3159,3 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
   end 
 endfunction
 
-
