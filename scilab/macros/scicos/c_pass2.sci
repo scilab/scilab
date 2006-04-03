@@ -1198,7 +1198,7 @@ function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
       par1=parents(j,1)
       if par1~=0 & typ_l(par1) then
 	n_out=clkptr(par1+1)-clkptr(par1)
-	f=find(par1==parents)
+	f=find(par1==parents(:,1))
 	if size(f,2)==n_out then
 	  if show_comment then
 	    disp('del_inutile:')
