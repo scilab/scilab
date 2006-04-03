@@ -1617,6 +1617,8 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  if h ~= [] then
 	    vec(w(:,1))=vec(w(:,1))-1
 	    vec(w(:,1))=max([vec(w(:,1));vec(h(:,1))])+1
+	  else  //RN
+	    vec(w(:,1))=max(vec(w(:,1))) //RN
 	  end           
         else
 	  vec(w(:,1))=max(vec(w(:,1)))
@@ -3158,5 +3160,4 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     end
   end 
 endfunction
-
 
