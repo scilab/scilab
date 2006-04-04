@@ -175,3 +175,54 @@ setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo1",[8,5,6,9]
 setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo2",[14,18,10,20]),dispbpt()    // last macro - should display all the 4 bpts for foo1, but only lines 12 and 16 for foo2
 setbpt("foo1",[5,6,8,9]),setbpt("foo2",[10,12,14,16,18]),delbpt("foo2",[14,18,10,12,16]),dispbpt()    // remove all, last macro - should display all the 4 bpts for foo1, but no bpt for foo2
 
+// first non regression test for bug 1894
+delbpt()
+function foo1()
+a=1;
+a=1;
+a=1;
+a=1;
+a=1;
+endfunction
+function foo2()
+a=2;
+a=2;
+a=2;
+a=2;
+a=2;
+endfunction
+setbpt("foo2",1)
+foo2()
+delbpt("foo2",1)
+dispbpt
+setbpt("foo1",[1:5]);setbpt("foo2",[1:5]);
+dispbpt
+// the following resume(0) must spit:
+// Stop after row     2 in function foo2 :
+// and not Stop after row     2 in function foo1 :
+resume(0)
+abort
+
+// second non regression test for bug 1894
+delbpt()
+function foo1
+endfunction
+function foo2
+  function d=foo3()
+    disp("  Entering");
+    d=1
+    disp("  Leaving");
+  endfunction
+  disp("Before");
+  b=foo3();
+  disp("After");
+endfunction
+setbpt("foo2",[1:10]);
+foo2()
+delbpt("foo2",[1:10])
+setbpt("foo1",[1:2]);setbpt("foo2",[1:10]);setbpt("foo3",[1:5]);
+// the following resume must spit:
+// Stop after row     6 in function foo2 :
+// and not Stop after row     1 in function foo3 :
+resume
+
