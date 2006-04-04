@@ -155,6 +155,7 @@ cd ..\..
 goto end
 
 :check
+if NOT EXIST man goto end
 cd man
  echo checking all in man
  nmake /C /f makefile.mak check /a
@@ -162,6 +163,7 @@ cd ..
 goto end
 
 :man
+if NOT EXIST man goto end
 cd man
  echo making all in man
  nmake /C /f makefile.mak build /a
@@ -197,6 +199,7 @@ cd ..
 goto end
 
 :man-clean
+if NOT EXIST man goto end
 cd man
  echo making clean in man
  nmake /C /f makefile.mak clean 
@@ -204,6 +207,7 @@ cd ..
 goto end
 
 :man-distclean
+if NOT EXIST man goto end
 cd man
  echo making distclean in man
  nmake /C /f makefile.mak distclean 
@@ -253,16 +257,20 @@ cd ..\..
 goto end
 
 :scitests
-cd tests
+if NOT EXIST tests goto end
+cd tests\basic_tests
 echo making Scilab tests
 nmake /C /f Makefile.mak tests
+cd ..
 cd ..
 goto end
 
 :scitests-clean
-cd tests
+if NOT EXIST tests goto end
+cd tests\basic_tests
 echo cleaning Scilab tests
 nmake /C /f Makefile.mak tests-clean
+cd ..
 cd ..
 goto end
 
