@@ -82,9 +82,9 @@ t1 = t1_ref;
 t2 = (t2_ref - datenum(1970,1,1,1,0,0)) *3600*24;
 t3 = (datenum(t3_ref(1),t3_ref(2),t3_ref(6),t3_ref(7),t3_ref(8),t3_ref(9)) - datenum(1970,1,1,1,0,0)) * 3600 * 24;
 
-if abs(t2-t1) > 1  then pause,end
-if abs(t3-t1)  > 1  then pause,end
-if abs(t3-t2)  > 1  then pause,end
+if ((abs(t2-t1) > 1) & (abs(t2-t1)-3600 > 1))  then pause,end
+if ((abs(t3-t1) > 1) & (abs(t3-t1)-3600 > 1))  then pause,end
+if ((abs(t3-t2) > 1) & (abs(t3-t2)-3600 > 1))  then pause,end
 
 // test for calendar function
 //===========================
