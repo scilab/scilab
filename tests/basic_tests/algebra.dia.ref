@@ -3334,7 +3334,7 @@ if Err(diag(diag(X))-X)>200*%eps then bugmes();quit;end
  
 if Err(Ab-inv(X)*A*X)>200*%eps then bugmes();quit;end
  warning
- matrix is close to singular or badly scaled. rcond =    1.0000D-14
+ matrix is close to singular or badly scaled. rcond =    2.2737D-13
  
  
  
@@ -3362,7 +3362,7 @@ if Err(diag(diag(X))-X)>200*%eps then bugmes();quit;end
  
 if Err(Ab-inv(X)*A*X)>1000*%eps then bugmes();quit;end
  warning
- matrix is close to singular or badly scaled. rcond =    1.0000D-20
+ matrix is close to singular or badly scaled. rcond =    8.6736D-19
  
  
  
