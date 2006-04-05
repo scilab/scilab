@@ -2160,3 +2160,8 @@ Francois VOGEL, 02/04/06
  * Fixed: Scipad does no longer spit a "Scilab busy" message when quitting
    Scilab during a debug session
  * version --> 6.21
+
+Francois VOGEL, 05/04/06
+ * Fixed bug 1898: on Load into Scilab, the buffer is saved in a temporary
+   file, therefore no popup to confirm save shows up
+ * version --> 6.22

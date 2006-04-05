@@ -50,6 +50,10 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
         console title "Scipad debug"
     }
     
+    # give a value to tmpdir (when Scipad is launched from Scilab,
+    # this is done in scipad.sci)
+    set tmpdir $env(SCIHOME)
+
     set standaloneScipad true
 
 } else {

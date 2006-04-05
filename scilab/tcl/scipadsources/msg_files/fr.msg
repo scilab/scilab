@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.19
+# in sync at least with v6.22
 
 
 # commons
@@ -412,6 +412,9 @@
 
 # scilabexec.tcl
 ::msgcat::mcset fr "No point in loading an empty file!" "Charger un fichier vide ne présente pas d'intérêt!"
+::msgcat::mcset fr "Silent file save failed" "Enregistrement silencieux impossible"
+::msgcat::mcset fr "File could not be saved in a temporary location.\nOverwrite original file?" \
+                   "Le fichier n'a pas pu être sauvé dans une destination temporaire.\nEcraser le fichier original ?"
 ::msgcat::mcset fr "Exec done" "Exécution effectuée"
 ::msgcat::mcset fr "Matlab files" "Fichiers Matlab"
 ::msgcat::mcset fr "Matlab file to convert" "Fichier Matlab à importer"

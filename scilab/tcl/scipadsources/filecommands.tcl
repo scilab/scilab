@@ -823,11 +823,13 @@ proc writesave {textarea nametosave} {
     }
 }
 
-proc writefileondisk {textarea nametosave} {
+proc writefileondisk {textarea nametosave {nobackupskip 1}} {
 # really write the file onto the disk
 # all writability tests have normally been done before
     global filebackupdepth
-    backupfile $nametosave $filebackupdepth
+    if {$nobackupskip} {
+        backupfile $nametosave $filebackupdepth
+    }
     set FileNameToSave [open $nametosave w+]
     puts -nonewline $FileNameToSave [$textarea get 0.0 end]
     close $FileNameToSave

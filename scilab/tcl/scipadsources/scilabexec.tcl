@@ -1,6 +1,7 @@
 proc execfile {{buf "current"}} {
-# return argument: 0=success, 1 scilab busy, 2 cancel, -1 fail
+# return argument: 0=success, 1=scilab busy, 2=cancel overwrite, -1=fail
     global listoffile pad
+    global tmpdir
 
     if {$buf == "current"} {
         set textarea [gettextareacur]
@@ -15,33 +16,49 @@ proc execfile {{buf "current"}} {
 
     if {[isscilabbusy 1 $listoffile("$textarea",fullname)]} {return 1}
 
-    set doexec 1
+    set savedintempdir false
+
     if {[ismodified $textarea]} {
-        set answer [tk_messageBox -message [concat [mc "The contents of"] \
-                  $listoffile("$textarea",fullname) \
-                  [mc "may have changed, do you wish to save your changes?"] ] \
-                -title [mc "Save Confirm?"] -type yesnocancel -icon question]
-        switch -- $answer {
-            yes    { set doexec 1; filetosave $textarea }
-            no     { set doexec 0 }
-            cancel { set doexec 0; return 2 }
+        # try to save the file in a temporary directory
+        set nametosave [file join $tmpdir [file tail $listoffile("$textarea",fullname)]]
+        if {[catch {writefileondisk $textarea $nametosave 0}] != 0} {
+            set answer [tk_messageBox -title [mc "Silent file save failed"] \
+                    -icon question -type yesnocancel \
+                    -message [mc "File could not be saved in a temporary location.\nOverwrite original file?"] ]
+            switch -- $answer {
+                yes    { filetosave $textarea; set f $listoffile("$textarea",fullname); set doexec 1 }
+                no     { set doexec 0 }
+                cancel { set doexec 0; return 2 }
+            }
+        } else {
+            set f $nametosave
+            set doexec 1
+            set savedintempdir true
         }
+    } else {
+        # file is not modified wrt to its version on disk - use this version on disk
+        set f $listoffile("$textarea",fullname)
+        set doexec 1
     }
 
     if $doexec {
-        set f $listoffile("$textarea",fullname)
         if {[catch {ScilabEval_lt "exec(\"$f\");" "sync" "seq"}]} {
             scilaberror $listoffile("$textarea",fullname)
-            # this is in case a script modifies a file opened in Scipad
-            checkifanythingchangedondisk $pad
-            return -1
+            set outval -1
         } else {
             showinfo [mc "Exec done"]
-            # this is in case a script modifies a file opened in Scipad
-            checkifanythingchangedondisk $pad
-            return 0 
+            set outval 0
         }
     }
+
+    if {$savedintempdir} {
+        catch {file delete -- $f}
+    }
+
+    # this is in case a script modifies a file opened in Scipad
+    checkifanythingchangedondisk $pad
+
+    return $outval 
 }
 
 proc execselection {} {
