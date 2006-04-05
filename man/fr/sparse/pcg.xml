@@ -1,90 +1,77 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
-
-  <TITLE>pcg</TITLE>
-
-  <TYPE>Fonction Scilab</TYPE>
-
-  <DATE>Janvier 2004</DATE>
-
-  <SHORT_DESCRIPTION name="pcg">gradient conjugué préconditionné
-  </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A,
-  b, tol, maxit, M, x0) </CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE>
-
-  <PARAM><PARAM_INDENT> 
-    <PARAM_ITEM>
-      <PARAM_NAME>A</PARAM_NAME>
-      <PARAM_DESCRIPTION>: matrice symétrique définie positive ou fonction
-      retournant <VERB>A*x</VERB></PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>b</PARAM_NAME>
-      <PARAM_DESCRIPTION>: vecteur de droite (taille: n)</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>tol</PARAM_NAME>
-      <PARAM_DESCRIPTION>: tolérance (par défaut: 1e-8)
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>maxi</PARAM_NAME>
-      <PARAM_DESCRIPTION>: nompbre maximum d'iterations (par défaut: n)
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>M</PARAM_NAME>
-      <PARAM_DESCRIPTION>: préconditionnement: matrice ou fonction retournant
-      <VERB>M*x</VERB> (par défaut: aucun)
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>x0</PARAM_NAME>
-      <PARAM_DESCRIPTION>: solution initiale (par défaut: zeros(n,1))
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>x</PARAM_NAME>
-      <PARAM_DESCRIPTION>: vecteur solution</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>flag</PARAM_NAME>
-      <PARAM_DESCRIPTION>: 0 si <VERB>pcg</VERB> a convergé à la tolérance
-      voulue avant <VERB>maxi</VERB> itérations, 1 autrement
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>err</PARAM_NAME>
-      <PARAM_DESCRIPTION>: final residual norm</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>iter</PARAM_NAME>
-      <PARAM_DESCRIPTION>: nombre d'itérations exécutées</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>res</PARAM_NAME>
-      <PARAM_DESCRIPTION>: vecteur des normes des résidus</PARAM_DESCRIPTION>
-    </PARAM_ITEM> 
-  </PARAM_INDENT></PARAM>
-
-  <DESCRIPTION>
-    <P> Résout le système linéaire <VERB>Ax=b</VERB> par la méthode du
-    gradient conjugué avec préconditionnement. </P> 
-    <P> La matrice <VERB>A</VERB> doit ête définie positive. </P>
-  </DESCRIPTION>
-
-  <EXAMPLE>
-  </EXAMPLE>
-  
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>pcg</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHOR>
-    Équipe Sage (IRISA, 2004)
-  </AUTHOR>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>pcg</TITLE>
+	<TYPE>Fonction Scilab</TYPE>
+	<DATE>Janvier 2004</DATE>
+	<SHORT_DESCRIPTION name="pcg">gradient conjugué préconditionné</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A,b, tol, maxit, M, x0)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<PARAM>
+		<PARAM_INDENT> 
+			<PARAM_ITEM>
+				<PARAM_NAME>A</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: matrice symétrique définie positive ou fonction retournant <VERB>A*x</VERB></SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>b</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: vecteur de droite (taille: n)</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>tol</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: tolérance (par défaut: 1e-8)</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>maxi</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: nompbre maximum d'iterations (par défaut: n)</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>M</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: préconditionnement: matrice ou fonction retournant <VERB>M*x</VERB> (par défaut: aucun)</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>x0</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: solution initiale (par défaut: zeros(n,1))</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>x</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: vecteur solution</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>flag</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: 0 si <VERB>pcg</VERB> a convergé à la tolérance voulue avant <VERB>maxi</VERB> itérations, 1 autrement</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>err</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: final residual norm</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>iter</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: nombre d'itérations exécutées</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>res</PARAM_NAME>
+				<PARAM_DESCRIPTION><SP>: vecteur des normes des résidus</SP></PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+		</PARAM_INDENT>
+	</PARAM>
+	
+	<DESCRIPTION>
+		<P> Résout le système linéaire <VERB>Ax=b</VERB> par la méthode du
+		gradient conjugué avec préconditionnement. </P> 
+		<P> La matrice <VERB>A</VERB> doit ête définie positive. </P>
+	</DESCRIPTION>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>pcg</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	<AUTHOR>
+		Équipe Sage (IRISA, 2004)
+	</AUTHOR>
 </MAN>
