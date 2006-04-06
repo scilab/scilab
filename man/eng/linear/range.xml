@@ -26,7 +26,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: non-singular real matrix</SP>
+          <SP>: orthonormal real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -39,9 +39,27 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Computation of Range <VERB>A^k</VERB> ; the first dim columns of <VERB>X</VERB> span the
-    range of <VERB>A^k</VERB>.</P>
+    Computation of Range <VERB>A^k</VERB> ; the first dim rows of <VERB>X</VERB> span the
+    range of <VERB>A^k</VERB>. The last rows of <VERB>X</VERB> span the
+      orthogonal complement of the range. <VERB>X*X'</VERB> is the Identity matrix</P>
   </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    A=rand(4,2)*rand(2,4);   // 4 column vectors, 2 independent.
+    [X,dim]=range(A,1);dim   // compute the range
+
+    y1=A*rand(4,1);          //a vector which is in the range of A
+    y2=rand(4,1);            //a vector which is not  in the range of A
+    norm(X(dim+1:$,:)*y1)    //the last entries are zeros, y1 is in the range of A
+    norm(X(dim+1:$,:)*y2)    //the last entries are not zeros
+
+    I=X(1:dim,:)'            //I is a basis of the range
+    coeffs=X(1:dim,:)*y1     // components of y1 relative to the I basis
+
+    norm(I*coeffs-y1)        //check
+
+    ]]>
+  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>fullrfk</LINK>
@@ -50,5 +68,10 @@
       <LINK>rowcomp</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F. D.; ;   </AUTHOR>
+  <AUTHOR>F. D. INRIA ;   </AUTHOR>
+<USED_FUNCTIONS>
+    <SP>The <VERB>range</VERB> function is based on the <LINK>rowcomp</LINK> function
+    which uses the <LINK>svd</LINK> decomposition.</SP>
+</USED_FUNCTIONS>
+
 </MAN>
