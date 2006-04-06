@@ -4,8 +4,6 @@
  * using functions from a sound library 
  * Copyright ENPC/ Chancelier 
  *********************************************/
-
-
 #include <stdio.h>
 #ifdef __STDC__
 #include <stdlib.h>

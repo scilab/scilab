@@ -780,6 +780,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\intfileio.c">
+			</File>
+			<File
 				RelativePath="libst.c">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -876,6 +879,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\logger.c">
+			</File>
+			<File
+				RelativePath=".\matfileio.c">
 			</File>
 			<File
 				RelativePath="misc.c">
@@ -1515,10 +1521,16 @@ cd .. &gt;nul
 				RelativePath=".\bytedecoders.h">
 			</File>
 			<File
+				RelativePath=".\intfileio.h">
+			</File>
+			<File
 				RelativePath="libst.h">
 			</File>
 			<File
 				RelativePath=".\logger.h">
+			</File>
+			<File
+				RelativePath=".\matfileio.h">
 			</File>
 			<File
 				RelativePath=".\ole.h">

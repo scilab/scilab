@@ -19,7 +19,7 @@
 /** in fact myhcreate used a prime > MAXTAB **/
 /** WARNING : MAXTAB must be chosen > 2* the number of entries in fundef **/
 /** for good efficiency of the hash code **/
-#define MAXTAB 900
+#define MAXTAB 1536
 /*-----------------------------------------------------------------------------------*/
 typedef enum {
 	SCIFIND, SCIENTER,SCIDELETE

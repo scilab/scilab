@@ -98,7 +98,7 @@ void C2F(datatf) ()
 
 #ifdef NOSOUND 
 
-C2F(soundi)()
+C2F(matfileio)()
 {
   int Error=9999;
   sciprint("Sound and <<binary read>> interface not loaded \n");
