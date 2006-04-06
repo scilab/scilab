@@ -20,7 +20,7 @@
       <PARAM_ITEM>
 	<PARAM_NAME>k  </PARAM_NAME>
 	<PARAM_DESCRIPTION>
-	  <SP>: entier non nŽégatif, La valeur par dŽéfaut est 1</SP>
+	  <SP>: entier non négatif, La valeur par défaut est 1</SP>
 	</PARAM_DESCRIPTION> 
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -40,7 +40,7 @@
   <DESCRIPTION>
     <P> Calcul de l&apos;image de <VERB>A^k</VERB>; les <VERB>dim</VERB>
       premières colonnes de <VERB>X</VERB> forment une base de
-      <VERB>A^k</VERB>. Les derniŽères lignes de  <VERB>X</VERB> forment une
+      <VERB>A^k</VERB>. Les dernières lignes de  <VERB>X</VERB> forment une
       base de l'orthogonal de l'image. </P>
   </DESCRIPTION>
   <EXAMPLE>
@@ -50,7 +50,7 @@
 
     y1=A*rand(4,1);          // un vecteur dans l'image de A
     y2=rand(4,1);            // un vecteur qui n'est pas dans l'image
-    norm(X(dim+1:$,:)*y1)    // les derniŽéres composante sont nulles, y1 est
+    norm(X(dim+1:$,:)*y1)    // les derniéres composante sont nulles, y1 est
     dans l'image
     norm(X(dim+1:$,:)*y2)    // Les dernieres composantes ne sont pas nulles
 
@@ -67,8 +67,8 @@
   </SEE_ALSO>
   <AUTHOR>F. D.; INRIA ;   </AUTHOR>
   <USED_FUNCTIONS>
-    <SP>La fonction <VERB>range</VERB> est basŽée sue la fonction <LINK>rowcomp</LINK>
-      qui utilise la dŽécomposition <LINK>svd</LINK>.</SP>
+    <SP>La fonction <VERB>range</VERB> est basée sue la fonction <LINK>rowcomp</LINK>
+      qui utilise la décomposition <LINK>svd</LINK>.</SP>
   </USED_FUNCTIONS>
 
 </MAN>

@@ -22,14 +22,14 @@
 	<PARAM_DESCRIPTION>
 	  <SP>: chaîne de caractères optionnelle qui peut prendre les valeurs
 	    <VERB>'svd'</VERB> ou <VERB>'qr'</VERB>.  La valeur par
-	    dŽéfaut est  <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
+	    défaut est  <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
 	</PARAM_DESCRIPTION> 
       </PARAM_ITEM>
       <PARAM_ITEM>
 	<PARAM_NAME>tol  </PARAM_NAME>
 	<PARAM_DESCRIPTION>
-	  <SP>: nombre réel non nŽégatif. La valeur par
-	    dŽéfaut est  <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
+	  <SP>: nombre réel non négatif. La valeur par
+	    défaut est  <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
 	</PARAM_DESCRIPTION> 
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -80,7 +80,7 @@
   <AUTHOR>F. D.; INRIA  </AUTHOR>
   <USED_FUNCTIONS>
     
-    <SP>La fonction <VERB>rowcomp</VERB> est basŽée sur les dŽécompositions
+    <SP>La fonction <VERB>rowcomp</VERB> est basée sur les décompositions
       <LINK>svd</LINK> ou <LINK>qr</LINK>.</SP>
   </USED_FUNCTIONS>
 </MAN>
