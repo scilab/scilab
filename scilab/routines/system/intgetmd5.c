@@ -67,7 +67,11 @@ int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len))
 				GetRhsVar(2,"c",&m1,&n1,&l1);
 				Param2=cstk(l1);
 
+				#if WIN32
 				if ( stricmp(Param2,"string")==0 )
+				#else
+				if ( strcmp(Param2,"string")==0 )
+				#endif
 				{
 					char *MD5=NULL;
 					MD5=md5_str(Param1);
