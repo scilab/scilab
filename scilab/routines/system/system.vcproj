@@ -715,6 +715,12 @@ cd .. &gt;nul
 				RelativePath=".\Intersci.c">
 			</File>
 			<File
+				RelativePath=".\intgetmd5.c">
+			</File>
+			<File
+				RelativePath=".\intgetmd5.h">
+			</File>
+			<File
 				RelativePath="..\system2\intmacr2tree.c">
 			</File>
 			<File
@@ -722,6 +728,12 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\Lapack.c">
+			</File>
+			<File
+				RelativePath=".\md5.c">
+			</File>
+			<File
+				RelativePath=".\md5.h">
 			</File>
 			<File
 				RelativePath=".\msgstore.c">

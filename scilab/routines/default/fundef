@@ -272,6 +272,7 @@
 {"Calendar",        IN_matsys,	64,	2},
 {"getmemory",  	    IN_matsys,	65,	2},
 {"fromc",     	    IN_matsys,	66,	2},
+{"getmd5",     	    IN_matsys,	67,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  
