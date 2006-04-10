@@ -150,7 +150,7 @@ endfunction
 
 
 
-function gener_whatis(title)
+function gener_whatis(wtitle)
 
 	//------------------------------------------------------------------------------------------
 	// generate a whatis.htm file 
@@ -171,7 +171,7 @@ function gener_whatis(title)
 	end
 	
 	if rhs == 1 then 
-		whatis_title= title 
+		whatis_title= wtitle 
 	else
 		// find the title 
 		ind=grep(%helps(:,1),getcwd());
