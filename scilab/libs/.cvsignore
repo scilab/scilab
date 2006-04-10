@@ -122,3 +122,5 @@ os_specific_f.def
 os_specific_f.lib
 Wintools.lib
 Wintools.def
+time.def
+time.lib

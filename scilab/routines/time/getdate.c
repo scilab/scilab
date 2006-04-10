@@ -1,3 +1,6 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA */
+/*-----------------------------------------------------------------------------------*/
 #include "../machine.h"
 #include <time.h>
 #include <locale.h>
@@ -9,7 +12,19 @@
 #else
 	#include <sys/time.h> 
 #endif
+/*-----------------------------------------------------------------------------------*/
+#define ISO_WEEK_START_WDAY 1 /* Monday */
+#define ISO_WEEK1_WDAY 4 /* Thursday */
+#define YDAY_MINIMUM (-366)
+#define TM_YEAR_BASE 1900
+#ifndef __isleap
+/* Nonzero if YEAR is a leap year (every 4 years,
+except every 100th isn't, and every 400th is).  */
+# define __isleap(year) \
+	((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
+#endif
 
+/*-----------------------------------------------------------------------------------*/
 #if WIN32
 extern void sciprint __PARAMS((char *fmt,...));
 #endif
@@ -17,7 +32,7 @@ extern void sciprint __PARAMS((char *fmt,...));
 static int week_number __PARAMS ((struct tm *tp));
 void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
 void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
-
+/*-----------------------------------------------------------------------------------*/
 #if WIN32
   #if _MSC_VER <=1200 	
     static struct _timeb timebufferW;
@@ -27,12 +42,11 @@ void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
 #else
   static struct timeval timebufferU;
 #endif
-
+static int week_days __PARAMS ((int yday, int wday));
+/*-----------------------------------------------------------------------------------*/
 static int ChronoFlag=0;
-
-void  C2F(scigetdate)(dt,ierr)
-     time_t *dt;
-     int *ierr;
+/*-----------------------------------------------------------------------------------*/
+void  C2F(scigetdate)(time_t *dt,int *ierr)
 {
   *ierr=0;
   if (time(dt) == (time_t) - 1) 
@@ -52,10 +66,8 @@ void  C2F(scigetdate)(dt,ierr)
 	gettimeofday(&timebufferU,NULL);
   #endif
 }
-
-void C2F(convertdate)(dt,w)
-     int w[];
-     time_t *dt;
+/*-----------------------------------------------------------------------------------*/
+void C2F(convertdate)(time_t *dt,int w[10])
 {
 	if (*dt<0)
 	{
@@ -102,37 +114,20 @@ void C2F(convertdate)(dt,w)
 		}
 	}
 }
-
-/* following code issued from glibc-2.1.2/time/strftime.c, 
-   Tanks  to Ton van Overbeek
-*/
-
+/*-----------------------------------------------------------------------------------*/
 /* week_days computes
  *  The number of days from the first day of the first ISO week of this
  *  year to the year day YDAY with week day WDAY.  ISO weeks start on
  *  Monday; the first ISO week has the year's first Thursday.  YDAY may
  *  be as small as YDAY_MINIMUM.  */
-
-#define ISO_WEEK_START_WDAY 1 /* Monday */
-#define ISO_WEEK1_WDAY 4 /* Thursday */
-#define YDAY_MINIMUM (-366)
-
-static int week_days __PARAMS ((int yday, int wday));
-static int
-week_days (yday, wday)
-     int yday;
-     int wday;
+/*-----------------------------------------------------------------------------------*/
+static int week_days (int yday,int wday)
 {
   /* Add enough to the first operand of % to make it nonnegative.  */
   int big_enough_multiple_of_7 = (-YDAY_MINIMUM / 7 + 2) * 7;
-  return (yday
-          - (yday - wday + ISO_WEEK1_WDAY + big_enough_multiple_of_7) %
-7
-          + ISO_WEEK1_WDAY - ISO_WEEK_START_WDAY);
+  return (yday - (yday - wday + ISO_WEEK1_WDAY + big_enough_multiple_of_7) % 7 + ISO_WEEK1_WDAY - ISO_WEEK_START_WDAY);
 }
-
-
-
+/*-----------------------------------------------------------------------------------*/
 /* week_number computes 
  *      the ISO 8601  week  number  as  a  decimal  number
  *      [01,53].  In the ISO 8601 week-based system, weeks
@@ -142,16 +137,7 @@ week_days (yday, wday)
  *      January  is  the  2nd,  3rd, or 4th, the preceding
  *      days are part of the last week  of  the  preceding
  *      year. */
-
-#define TM_YEAR_BASE 1900
-#ifndef __isleap
-/* Nonzero if YEAR is a leap year (every 4 years,
-   except every 100th isn't, and every 400th is).  */
-# define __isleap(year) \
-  ((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
-#endif
-static int week_number(tp)
-     struct tm *tp;
+static int week_number(struct tm *tp)
 {
   int year = tp->tm_year + TM_YEAR_BASE;
   int days = week_days (tp->tm_yday, tp->tm_wday);
@@ -178,3 +164,4 @@ static int week_number(tp)
     }
   return ( (int)days / 7 + 1);
 }
+/*-----------------------------------------------------------------------------------*/

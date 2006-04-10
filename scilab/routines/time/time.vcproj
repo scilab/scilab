@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="interf"
-	ProjectGUID="{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}"
+	Name="time"
+	ProjectGUID="{05D8F60B-332A-4161-B946-B8AB30ED439C}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -25,7 +25,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -42,16 +42,16 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -83,7 +83,7 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -100,16 +100,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -144,7 +144,7 @@ cd .. &gt;nul
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -161,16 +161,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -205,7 +205,7 @@ cd .. &gt;nul
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -222,16 +222,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -263,8 +263,8 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32;WITH_ATLAS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
 				UsePrecompiledHeader="0"
@@ -280,16 +280,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -324,8 +324,8 @@ cd .. &gt;nul
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;WITH_ATLAS"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -341,16 +341,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -385,8 +385,8 @@ cd .. &gt;nul
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;WITH_ATLAS"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -402,16 +402,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -443,7 +443,7 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -460,16 +460,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -501,8 +501,8 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32;WITH_ATLAS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
 				UsePrecompiledHeader="0"
@@ -518,16 +518,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -562,8 +562,8 @@ cd .. &gt;nul
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;WITH_ATLAS"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -579,16 +579,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -623,7 +623,7 @@ cd .. &gt;nul
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -641,16 +641,16 @@ cd .. &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../libs/time.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul
+				CommandLine="cd $(IntDir) &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def interf.def &gt;nul
-copy interf.def ..\..\..\libs\interf.def &gt;nul
+copy *.def timetmp.def &gt;nul
+copy timetmp.def ..\..\..\libs\time.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -679,125 +679,23 @@ cd .. &gt;nul
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath=".\cs2st.c">
+				RelativePath=".\getdate.c">
 			</File>
 			<File
-				RelativePath=".\ctest.c">
+				RelativePath=".\intgetdate.c">
 			</File>
 			<File
-				RelativePath=".\dassl.c">
-			</File>
-			<File
-				RelativePath=".\hmops.c">
-			</File>
-			<File
-				RelativePath=".\intarpack.c">
-			</File>
-			<File
-				RelativePath=".\Interf.c">
-			</File>
-			<File
-				RelativePath=".\intfilestat.c">
-			</File>
-			<File
-				RelativePath=".\intgetmemory.c">
-			</File>
-			<File
-				RelativePath=".\intgget.c">
-			</File>
-			<File
-				RelativePath=".\intgraphics.c">
-			</File>
-			<File
-				RelativePath=".\intgset.c">
-			</File>
-			<File
-				RelativePath=".\intinterp.c">
-			</File>
-			<File
-				RelativePath=".\intlapack.c">
-			</File>
-			<File
-				RelativePath=".\intorand.c">
-			</File>
-			<File
-				RelativePath=".\intqld.c">
-			</File>
-			<File
-				RelativePath=".\intreadxls.c">
-			</File>
-			<File
-				RelativePath=".\intsetenv.c">
-			</File>
-			<File
-				RelativePath=".\intshowalluimenushandles.c">
-			</File>
-			<File
-				RelativePath=".\intslicot.c">
-			</File>
-			<File
-				RelativePath=".\intUImenu.c">
-			</File>
-			<File
-				RelativePath=".\matdes.c">
-			</File>
-			<File
-				RelativePath=".\matdsr.c">
-			</File>
-			<File
-				RelativePath=".\otherspecfun.c">
-			</File>
-			<File
-				RelativePath=".\stack1.c">
-			</File>
-			<File
-				RelativePath=".\stack2.c">
-			</File>
-			<File
-				RelativePath=".\stack3.c">
-			</File>
-			<File
-				RelativePath=".\stcreate.c">
-			</File>
-			<File
-				RelativePath=".\strelm-c.c">
+				RelativePath=".\mattime.c">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath=".\intcommongraphics.h">
+				RelativePath=".\intgetdate.h">
 			</File>
 			<File
-				RelativePath=".\intgetmemory.h">
-			</File>
-			<File
-				RelativePath=".\intgget.h">
-			</File>
-			<File
-				RelativePath=".\intgraphics.h">
-			</File>
-			<File
-				RelativePath=".\intgset.h">
-			</File>
-			<File
-				RelativePath=".\intshowalluimenushandles.h">
-			</File>
-			<File
-				RelativePath="matdes.h">
-			</File>
-			<File
-				RelativePath="matdsr.h">
-			</File>
-			<File
-				RelativePath="stack1.h">
-			</File>
-			<File
-				RelativePath="stack2.h">
-			</File>
-			<File
-				RelativePath="stack3.h">
+				RelativePath=".\mattime.h">
 			</File>
 		</Filter>
 	</Files>

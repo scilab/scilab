@@ -31,6 +31,7 @@ system2.def \
 wsci.def \
 xdr.def \
 slicot.def \
+time.def \
 wintools.def
 
 all : $(DEFS)

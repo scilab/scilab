@@ -56,8 +56,8 @@ c     mtlb_mode  link     ulink  c_link addinter <free>   <free>
 c     33         34        35     36    37       38        39
 c     fclear    what    sciargs  chdir getwd ieee typename
 c     40         41       42     43     44     45    46
-c     global   clearglobal isglobal gstacksize getdate intppty
-c     47         48          49        50        51       52
+c     global   clearglobal isglobal gstacksize intppty
+c     47         48          49        50      52
 c     lasterror version loadhistory savehistory gethistory resethistory macr2tree
 c     53         54        55          56         57          58        59
 c     sleep getos
@@ -77,7 +77,7 @@ c
      +      251,300,320,350,370,380,390,400,410,420,
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
-     +      694,695,697,698,699,700,701,702,703,
+     +      695,697,698,699,700,701,702,703,
      +      705,706,707,708,709,710,711,712),fin
 c     
 c     debug
@@ -244,8 +244,6 @@ c     mtlb_mode
  692  call intisglobal("isglobal")
       goto 999
  693  call intgstacksize()
-      goto 999
- 694  call intgetdate()
       goto 999
  695  call intintppty()
       goto 999
@@ -3186,62 +3184,6 @@ c     .  get stored variables
          endif
       endif
  999  return
-      end
-
-      subroutine intgetdate()
-c     Copyright INRIA
-      include '../stack.h'
-      parameter (nf=10)
-      integer w(nf),dt
-      logical checkrhs,checklhs,cremat,getscalar,getrmat
-      integer gettype
-c
-      rhs=max(0,rhs)
-      if(.not.checkrhs('getdate',0,1)) return
-      if(.not.checklhs('getdate',1,1)) return
-      if(rhs.eq.1) then
-         ityp=gettype(top)
-         if(ityp.eq.10) then
-            job=0
-            top=top-1
-            n=1
-         else 
-            if(.not.getrmat('getdate', top, top, m1, n1, lr)) return
-            top=top+1
-            if(.not.cremat('getdate',top,0,m1*n1,nf,l,lc)) return
-            do 05 i=0,m1*n1-1
-               dt=stk(lr+i)
-               call convertdate(dt,w)
-c     .         dt contains a number of seconds, number of milliseconds
-C     .         w(10) must be 0
-               w(10)=0
-               call int2db(nf,w,1,stk(l+i),m1*n1)
- 05         continue
-            call copyobj('getdate',top,top-1)
-            top=top-1
-            return
-         endif
-      else
-         job=1
-         n=nf
-      endif
-      
-      call scigetdate(dt,ierr)
-      if(ierr.ne.0) then
-         buf='Impossible to get the date...'
-         call error(999)
-         return
-      endif
-      if(job.eq.1) then
-         call convertdate(dt,w)
-      else
-         w(1)=dt
-      endif
-
- 10   top=top+1
-      if(.not.cremat('getdate',top,0,1,n,l,lc)) return
-      call int2db(n,w,1,stk(l),1)
-      return
       end
 
       subroutine intintppty()

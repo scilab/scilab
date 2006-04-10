@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/interf.a
 
-OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
+OBJSC = Interf.o ctest.o  cs2st.o stack1.o stack2.o stack3.o \
 	intlapack.o intslicot.o intarpack.o matdes.o intorand.o stcreate.o \
 	intfilestat.o strelm-c.o  matdsr.o otherspecfun.o hmops.o \
 	intinterp.o intsetenv.o intreadxls.o dassl.o intqld.o intgetmemory.o\
@@ -133,7 +133,6 @@ Interf.o: Interf.c ../stack-c.h ../graphics/Math.h ../machine.h \
 ciargc.o: ciargc.c
 cs2st.o: cs2st.c ../machine.h
 ctest.o: ctest.c ../machine.h
-getdate.o: getdate.c ../machine.h
 intarpack.o: intarpack.c ../mex.h ../stack-c.h ../graphics/Math.h \
 	../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
 	../interf/stack2.h ../interf/stack3.h
