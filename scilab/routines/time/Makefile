@@ -7,7 +7,8 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/time.a
 
 
-OBJSC = mattime.o intgetdate.o
+OBJSC = mattime.o intgetdate.o getdate.o
+
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH) $(XFLAGS)
