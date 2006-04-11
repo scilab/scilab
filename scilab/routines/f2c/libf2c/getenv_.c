@@ -14,9 +14,7 @@
 #include <stdlib.h>
 #include "f2c.h"
 
-#ifndef  environ
-#define environ     _environ
-#endif
+ /*extern char **environ; */
 
 #ifdef KR_headers
 VOID getenv_(fname, value, flen, vlen) char *value, *fname; ftnlen vlen, flen;
@@ -25,7 +23,7 @@ void getenv_(char *fname, char *value, ftnlen flen, ftnlen vlen)
 #endif
 {
   register char *ep, *fp, *flast;
-  register char **env = environ;
+  register char **env = NULL; /*environ;*/
   flast = fname + flen;
   for(fp = fname ; fp < flast ; ++fp)
     if(*fp == ' ')

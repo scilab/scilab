@@ -4,6 +4,10 @@
 #include <stdio.h>
 #endif 
 
+#if WIN32
+  #define __STDC__
+#endif
+
 #ifdef __STDC__
 #include <stdlib.h>
 #else 

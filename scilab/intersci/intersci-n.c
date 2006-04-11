@@ -6,6 +6,10 @@
 #include "getrhs.h" 
 #include "crerhs.h" 
 
+#if WIN32
+  #define __STDC__
+#endif
+
 /* global variables */
 
 int icre=1;     /* incremental counter for variable creation */
