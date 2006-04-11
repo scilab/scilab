@@ -19,6 +19,13 @@ DTK=
 DTK=-DWITH_TK
 !ENDIF
 
+!IF "$(DVC8EXP)" == ""
+DVC8EXP=
+!ELSE
+DVC8EXP=-DVC8EXP
+!ENDIF
+
+
 !IF "$(DTK)" == "-DWITH_TK"
 # -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
 USE_MT=-MT 
@@ -91,22 +98,36 @@ DLPVM=YES
 CC=cl
 LINKER=link
 
-# standard option for the linker 
-LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
+!IF "$(DPVM)"==""
+DLPVM=NO
+!ELSE
+DLPVM=YES
+!ENDIF
 
-# debug for the linker 
-#LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
+
+
 
 # include options 
 INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) 
 
-CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
+CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
 
+!IF "$(DVC8EXP)" == ""
 # standard option for C compiler
 CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -G5 -Gd
 
 # debug option for C compiler
 #CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -GB -Gd
+
+!ELSE
+# standard option for C compiler for VC 2005 Express
+CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -Gd
+
+# debug option for C compiler  for VC 2005 Express
+#CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -Gd
+!ENDIF
+
+
 
 CC_LDFLAGS = 
 #---------------------
@@ -131,6 +152,8 @@ RCVARS=-r -DWIN32
 GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 
+!IF "$(DVC8EXP)" == ""
+
 !IF "$(USE_MT)" == "-MT"
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
 !ELSEIF "$(USE_MT)" == "-MD"
@@ -138,6 +161,13 @@ GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrt.lib
 !ELSE 
 GUILIBS=-NODEFAULTLIB:libcmt.lib $(GUI) libc.lib msvcrt.lib
 !ENDIF
+
+!ELSE
+GUIFLAGS=-SUBSYSTEM:console
+GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
+GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrtd.lib
+!ENDIF
+
 
 # XLIBS is used for linking Scilab
 XLIBS=$(TKLIBS) $(PVMLIB) $(GUILIBS)

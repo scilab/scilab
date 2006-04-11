@@ -8,6 +8,7 @@ set PARAMS_COMPILE=
 if "%1"=="" goto Message
 if "%1" == "minimum" goto min
 if "%1" == "standard" goto std
+if "%1" == "vc8express" goto vc8express
 if "%1" == "all" goto all
 if "%1" == "mexlib" goto mexlib
 if "%1" == "javasci" goto javasci
@@ -24,6 +25,10 @@ goto all
 rem /**********************************************************/
 :min
 set PARAMS_COMPILE=minimum DLPVM=NO	DPVM=	DTK=
+goto Make
+rem /**********************************************************/
+:vc8express
+set PARAMS_COMPILE=standard DLPVM=NO DPVM= DTK=-DWITH_TK DVC8EXP=-DVC8EXP
 goto Make
 rem /**********************************************************/
 :std
