@@ -75,114 +75,127 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
   static int l1,n1,m1;
 
   char *param1=NULL,*param2=NULL,*param3=NULL;
+	char *output=NULL ;
+	int *paramoutINT=NULL;
+	BOOL OuputIsREG_SZ;
+	BOOL TestWinQuery=FALSE;
+
 
   Rhs=Max(0,Rhs);
-  CheckRhs(0,3);
+  CheckRhs(2,3);
   CheckLhs(0,1);
 
-  if ( (Rhs == 3) || (Rhs == 2) )
+	if (Rhs == 3)
 	{
-		char *output=NULL ;
-		int *paramoutINT=NULL;
-		BOOL OuputIsREG_SZ;
-		BOOL TestWinQuery=FALSE;
-
-		GetRhsVar(1,"c",&m1,&n1,&l1);
-		param1=cstk(l1);
-		GetRhsVar(2,"c",&m1,&n1,&l1);
-		param2=cstk(l1);
-		if ( Rhs == 3 )
+		if ( (GetType(1) != sci_strings) || (GetType(2) != sci_strings) || (GetType(3) != sci_strings))
 		{
-			GetRhsVar(3,"c",&m1,&n1,&l1);
-			param3=cstk(l1);
+			Scierror(999,MSG_ERROR14);
+			return 0;
+		}
+	}
+	else /* Rhs == 2 */
+	{
+		if ( (GetType(1) != sci_strings) || (GetType(2) != sci_strings) )
+		{
+			Scierror(999,MSG_ERROR14);
+			return 0;
+		}
+	}
 
-			if (strcmp(param1,"name") == 0)
+
+	GetRhsVar(1,"c",&m1,&n1,&l1);
+	param1=cstk(l1);
+
+	GetRhsVar(2,"c",&m1,&n1,&l1);
+	param2=cstk(l1);
+
+	if ( Rhs == 3 )
+	{
+		GetRhsVar(3,"c",&m1,&n1,&l1);
+		param3=cstk(l1);
+
+		if (strcmp(param1,"name") == 0)
+		{
+			int Col=0;
+			int NumbersElm=0;
+
+			WindowsQueryRegistryNumberOfElementsInList(param2,param3,&NumbersElm);
+			if (NumbersElm)
 			{
-				int Col=0;
-				int NumbersElm=0;
+				static char *ListKeysName[255];
 
-				WindowsQueryRegistryNumberOfElementsInList(param2,param3,&NumbersElm);
-				if (NumbersElm)
+				if (NumbersElm > 255) NumbersElm=255;
+				if ( WindowsQueryRegistryList(param2,param3,NumbersElm,ListKeysName) )
 				{
-					static char *ListKeysName[255];
+					int i=0;
 
-					if (NumbersElm > 255) NumbersElm=255;
-					if ( WindowsQueryRegistryList(param2,param3,NumbersElm,ListKeysName) )
+					CreateVarFromPtr( Rhs+1, "S", &NumbersElm, &n1, &ListKeysName);
+
+					for (i=0; i<NumbersElm;i++)
 					{
-						int i=0;
-
-						CreateVarFromPtr( Rhs+1, "S", &NumbersElm, &n1, &ListKeysName);
-
-						for (i=0; i<NumbersElm;i++)
-						{
-							FREE(ListKeysName[i]);
-							ListKeysName[i]=NULL;
-						}
-						FREE(ListKeysName);
-
-						LhsVar(1)=Rhs+1;
-						return 0;
+						FREE(ListKeysName[i]);
+						ListKeysName[i]=NULL;
 					}
-					else
-					{
-						Scierror(999,MSG_ERROR16);
-						LhsVar(1)=0;
-						return 0;
-					}
-				}
-				else
-				{
-					m1=0;
-					n1=0;
-					l1=0;
-					CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+
 					LhsVar(1)=Rhs+1;
 					return 0;
 				}
-				return 0;
-			}
-		}
-
-		output=(char*)MALLOC(MAX_PATH*sizeof(char));
-		paramoutINT=(int*)MALLOC(sizeof(int));
-
-		if ( Rhs == 3 )
-		{
-			TestWinQuery=WindowsQueryRegistry(param1,param2,param3,output,paramoutINT,&OuputIsREG_SZ);
-		}
-		else
-		{
-			TestWinQuery=WindowsQueryRegistry(param1,param2,NULL,output,paramoutINT,&OuputIsREG_SZ);
-		}
-
-		if ( TestWinQuery )
-		{
-			n1=1;
-			if ( OuputIsREG_SZ )
-			{
-				CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+				else
+				{
+					Scierror(999,MSG_ERROR16);
+					return 0;
+				}
 			}
 			else
 			{
-				CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
+				m1=0;
+				n1=0;
+				l1=0;
+				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+				LhsVar(1)=Rhs+1;
+				return 0;
 			}
-	
-			LhsVar(1) = 1;
+			return 0;
+		}
+	}
+
+	output=(char*)MALLOC(MAX_PATH*sizeof(char));
+	paramoutINT=(int*)MALLOC(sizeof(int));
+
+	if ( Rhs == 3 )
+	{
+		TestWinQuery=WindowsQueryRegistry(param1,param2,param3,output,paramoutINT,&OuputIsREG_SZ);
+	}
+	else
+	{
+		TestWinQuery=WindowsQueryRegistry(param1,param2,NULL,output,paramoutINT,&OuputIsREG_SZ);
+	}
+
+	if ( TestWinQuery )
+	{
+		n1=1;
+		if ( OuputIsREG_SZ )
+		{
+			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
 		}
 		else
 		{
-			Scierror(999,MSG_ERROR17);
-			LhsVar(1)=0;
+			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
 		}
-	    
+	
+		LhsVar(1) = 1;
+	}
+	else
+	{
 		FREE(output);
 		FREE(paramoutINT);
+		Scierror(999,MSG_ERROR17);
+		return 0;
 	}
-  else
-  {
-	Scierror(999,MSG_ERROR18);
-	LhsVar(1)=0;
-  }
+	    
+	if (output) {FREE(output);output=NULL;}
+	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
