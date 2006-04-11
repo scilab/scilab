@@ -68,6 +68,7 @@
       kc = 1
 
       if (allrow .and. allcol) then  ! *** A(:,:) = B
+         call iset(A_m, 0, C_mnel, 1)
          do ii = 1, B_m
             call copy_fullrow2sprow(ii, kc, C_it, C_mnel(ii), C_icol,
      $                              C_R, C_I, B_m, B_n, B_it, B_R, B_I, 
