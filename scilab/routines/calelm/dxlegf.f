@@ -1282,7 +1282,7 @@ C MACHINE-DEPENDENT VALUES.
 *
 * modif : use a call to dlamch in place of I1MACH
       IF (IRADX .EQ. 0) IRADX = int(dlamch('b'))       ! I1MACH (10)
-      IF (NRDPLC .EQ. 0) NRDPLC = int(dlamch('t'))     ! I1MACH (14)
+      IF (NRDPLC .EQ. 0) NRDPLC = int(dlamch('n'))     ! I1MACH (14)
       IF (DZEROX .EQ. 0.0D0) IMINEX = int(dlamch('m')) ! I1MACH (15)
       IF (DZEROX .EQ. 0.0D0) IMAXEX = int(dlamch('l')) ! I1MACH (16)
       IF (NBITSX .EQ. 0) NBITSX = 31                   ! I1MACH (8)
