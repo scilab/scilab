@@ -1,14 +1,14 @@
-#----------------------
+#----------------------------------------------
 # version for Visual C++
-#------------------------
+#----------------------------------------------
 
 all::
 
 MAKE=nmake /f Makefile.mak
 
-#---------------------
+#----------------------------------------------
 # Scilab tclsci library 
-#---------------------
+#----------------------------------------------
 # To compile with TCL/TK interface, uncomment the following lines and give
 # the good pathnames for TKLIBS and TCL_INCLUDES.
 # compiler flags: -MT or -MD  only needed if tcl/tk is used
@@ -39,9 +39,9 @@ TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
 
-#---------------------
+#----------------------------------------------
 # Scilab pvm library
-#---------------------
+#----------------------------------------------
 # To compile with PVM interface, uncomment the following lines and give
 # the good pathname for PVM_ROOT.
 #
@@ -85,26 +85,24 @@ DLPVM=YES
 !ENDIF
 
 
-#--------------------------
+#----------------------------------------------
 # to generate blas symbols compatible with 
 # intel blas library 
-#--------------------------
+#----------------------------------------------
 #DMKL=-DMKL
-#---------------------
+#----------------------------------------------
 # C compiler
 # typically, for compiling use: CFLAGS = $(CC_OPTIONS)
 # and for linking: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS)
-#---------------------
+#----------------------------------------------
 CC=cl
 LINKER=link
 
-!IF "$(DPVM)"==""
-DLPVM=NO
-!ELSE
-DLPVM=YES
-!ENDIF
+# standard option for the linker 
+LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
 
-
+# debug for the linker 
+#LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
 
 
 # include options 
@@ -127,13 +125,11 @@ CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -Gd
 #CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -Gd
 !ENDIF
 
-
-
 CC_LDFLAGS = 
-#---------------------
+#----------------------------------------------
 # Fortran Compiler 
 # default usage is to use f2c 
-#---------------------
+#----------------------------------------------
 USE_F2C=YES
 # if USE_F2C is set to NO we will use the following Fortran compiler (i.e Visual Fortran)
 !IF "$(USE_F2C)" == "NO"
@@ -141,14 +137,14 @@ FC=df
 FC_OPTIONS=/debug /nologo /assume:underscore /compile_only /iface:(cref,nomixed_str_len_arg) /names:lowercase 
 LINKER_FLAGS=$(LINKER_FLAGS) /force:multiple
 !ENDIF
-#--------------------
+#----------------------------------------------
 # resource compiler 
-#--------------------
+#----------------------------------------------
 RC=rc
 RCVARS=-r -DWIN32
-#--------------------
+#----------------------------------------------
 # Libraries 
-#--------------------
+#----------------------------------------------
 GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 
@@ -198,15 +194,15 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS)
 	@$(FC) $(FFLAGS) $<
 !ENDIF 
 
-#--------------------
+#----------------------------------------------
 # RM only exists if gcwin32 is installed 
-#----------------------------------
+#----------------------------------------------
 
 RM = del
 
-#--------------------
+#----------------------------------------------
 # clean 
-#----------------------------------
+#----------------------------------------------
 
 clean::
 	-del *.bak 
