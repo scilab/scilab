@@ -314,7 +314,7 @@ int __cdecl main(int argc, char* argv[])
         getchar();
     }
 
-    for (i = 1; i < argc; i++)
+    for ( int i = 1; i < argc; i++)
     {
         char* pszArg = argv[i];
         if (*pszArg != '-')
