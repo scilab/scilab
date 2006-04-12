@@ -34,6 +34,8 @@
 #ifndef STRICT
 #define STRICT
 #endif
+
+#define putenv _putenv
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 extern HDC TryToGetDC(HWND hWnd);

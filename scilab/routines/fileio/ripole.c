@@ -17,6 +17,9 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#if WIN32
+#define strdup _strdup
+#endif
 
 struct ripOLE_object {
 	int debug;

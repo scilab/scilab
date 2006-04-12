@@ -9,6 +9,9 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#if WIN32
+#define putenv _putenv
+#endif
 /*-----------------------------------------------------------------------------------*/
 static char DefaultScilabStartup[]="SCI/scilab.star";
 static char DefaultScilabQuit[]="SCI/scilab.quit";

@@ -25,7 +25,7 @@
 *   Modified for Scilab (2003) : Allan CORNET
 *
 */
-
+/*-----------------------------------------------------------------------------------*/
 #ifndef STRICT
 #define STRICT
 #endif
@@ -40,7 +40,10 @@
 #include "MenuWindows.h"
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
-
+/*-----------------------------------------------------------------------------------*/
+#define stricmp _stricmp
+#define strnicmp _strnicmp
+/*-----------------------------------------------------------------------------------*/
 BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;
 /*-----------------------------------------------------------------------------------*/

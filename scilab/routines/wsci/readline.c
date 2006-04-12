@@ -77,6 +77,7 @@
 #define SPACE	' '
 #define isterm(f) ((f==stdin && InteractiveMode()==0)|| f==stdout || f==stderr)
 #define SV_BUF_SIZE 5000
+#define getch _getch
 /*-----------------------------------------------------------------------------------*/
 struct sci_hist
 {

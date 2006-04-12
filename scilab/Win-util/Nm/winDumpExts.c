@@ -34,6 +34,8 @@
 #define e_magic_number IMAGE_FILE_MACHINE_I386
 #endif
 
+#define stricmp _stricmp
+
 /*
  *----------------------------------------------------------------------
  * GetArgcArgv --
@@ -246,7 +248,7 @@ DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 		    s = &symbol[1];
 		}
 #endif
-		if ((stricmp(s, "DllEntryPoint") != 0) 
+		if (( stricmp(s, "DllEntryPoint") != 0) 
 		    && (stricmp(s, "DllMain") != 0)) {
 		  if ( s[0] != '?' )
 		    fprintf(fout, "\t%s\n", s);

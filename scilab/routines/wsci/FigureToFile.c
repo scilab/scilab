@@ -5,6 +5,8 @@
 #include "FigureToFile.h"
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
+#define stricmp _stricmp
+/*-----------------------------------------------------------------------------------*/
 extern void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 extern void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 extern BOOL ExportStyle (struct BCG * ScilabGC);

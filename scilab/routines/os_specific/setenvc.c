@@ -13,6 +13,7 @@
 #endif
 
 #ifdef WIN32
+#define putenv _putenv
 static char *env=NULL;
 #endif
 

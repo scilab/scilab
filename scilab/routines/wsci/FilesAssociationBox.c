@@ -6,6 +6,8 @@
 #pragma comment(lib, "shell32.lib")
 #include "FilesAssociationBox.h"
 /*-----------------------------------------------------------------------------------*/
+#define stricmp _stricmp
+/*-----------------------------------------------------------------------------------*/
 typedef int (*fptr)(void);
 /*-----------------------------------------------------------------------------------*/
 BOOL CALLBACK FilesAssociationDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);

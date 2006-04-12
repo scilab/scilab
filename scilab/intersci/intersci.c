@@ -25,6 +25,7 @@ static int pass = 0 ;  /* flag for couting pass on code generation */
 
 #ifdef WIN32 
 static void SciEnv ();
+#define putenv _putenv
 #endif 
 
 int main(argc,argv)
