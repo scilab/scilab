@@ -36,7 +36,6 @@ OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj lstops.obj intl_e.obj intl_
 
 include ../../Makefile.incl.mak
 
-#CFLAGS = $(CC_OPTIONS) -DNODCD -DNOMETANET -DNOSCICOS -DNOSIGNAL -DNOSOUND -DNOSPARSE
 
 CFLAGS = $(CC_OPTIONS) $(XFLAGS) 
 

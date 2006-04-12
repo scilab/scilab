@@ -8,7 +8,7 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/system.lib
 
 
-OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
+OBJSC = System.obj System2.obj Calelm.obj Scierror.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
 	Sparse.obj scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj fromjava.obj calendar.obj \
 	CallScilab.obj str2sci.obj intwhat.obj fromc.obj getval.obj md5.obj intgetmd5.obj

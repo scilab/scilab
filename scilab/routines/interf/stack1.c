@@ -5,14 +5,6 @@
 /*------------------------------------------
  * Scilab stack 
  *------------------------------------------*/
-#include <string.h>
-#include <stdio.h>
-
-#ifdef __STDC__
-#include <stdarg.h>
-#else
-#include <varargs.h>
-#endif  
 
 #include "../stack-c.h"
 #include "../system/msgstore.h"
@@ -3453,89 +3445,4 @@ int C2F(gethmati)(fname, topk, spos, lw, m, n, lr, inlistx, nel, fname_len)
   *lr = sadr(il+4);
   return TRUE_;
 } 
-
-/**********************************************************************
-* Scilab Error at C level 
-**********************************************************************/
-
-extern int C2F(error)  __PARAMS((integer *n));
-extern int C2F(errmgr)  __PARAMS((integer *n, integer *errtyp));
-extern int C2F(errmsg)  __PARAMS((integer *n, integer *errtyp));
-extern int C2F(errmds)  __PARAMS((integer *num, integer *imess, integer *imode));
-extern int C2F(depfun)  __PARAMS((integer *lunit, int *trace, int *first));
-extern int C2F(depexec)  __PARAMS((integer *lunit, int *trace, int *first, int *pflag));
-extern int C2F(errloc)  __PARAMS((integer *n));
-
-static int Scierror_internal __PARAMS((integer *n,char *buffer));
-
-/* 
-* as sciprint but with an added first argument 
-* which is ignored (used in do_printf) 
-*/
-
-#ifdef __STDC__ 
-int  Scierror(int iv,char *fmt,...) 
-#else 
-/*VARARGS0*/
-int Scierror(va_alist) va_dcl
-#endif 
-	{
-	int retval;
-	integer lstr;
-	va_list ap;
-	char s_buf[bsiz];
-#ifdef __STDC__
-	va_start(ap,fmt);
-#else
-	int iv;
-	char *fmt;
-	va_start(ap);
-	iv = va_arg(ap,int);
-	fmt = va_arg(ap, char *);
-#endif
-	retval= vsprintf(s_buf, fmt, ap );
-	lstr=strlen(s_buf);
-	va_end(ap);
-	Scierror_internal(&iv,s_buf);
-	return retval;
-	}
-
-static int Scierror_internal(n,buffer)
-integer *n;
-char *buffer;
-	{
-	integer imode;
-	int trace;
-	integer imess;
-	integer errtyp, num, lct1, len;
-
-	C2F(errmds)(&num, &imess, &imode);
-	trace = ! ((num < 0 || num == *n) && imess != 0);
-	/*     de-activate output control */
-	lct1 = C2F(iop).lct[0];
-	C2F(iop).lct[0] = 0;
-	errtyp = 0;
-	if (C2F(errgst).err1 == 0 && C2F(errgst).err2 == 0) 
-		{
-		/*     . locate the error in the current statement */
-		if (trace) 
-			C2F(errloc)(n);
-		/*     . output error message */
-		else 
-			C2F(iop).lct[0] = -1;
-		/* XXX  C2F(errmsg)(n, &errtyp); */
-		errtyp=0;
-		C2F(freemsgtable)();
-		C2F(errstore)(n);
-		len=strlen(buffer);
-		C2F(msgstore)(buffer,&len);
-		if (C2F(iop).lct[0] != -1) sciprint(buffer);
-		C2F(iop).lct[0] = 0;
-		}
-	/*     handle the error */
-	C2F(errmgr)(n, &errtyp);
-	/*     re-activate output control */
-	C2F(iop).lct[0] = lct1;
-	return 0;
-	} 
 

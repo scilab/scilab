@@ -71,15 +71,13 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 /*-----------------------------------------------------------------------------------*/
 int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 {
-
   static int l1,n1,m1;
 
   char *param1=NULL,*param2=NULL,*param3=NULL;
 	char *output=NULL ;
 	int *paramoutINT=NULL;
-	BOOL OuputIsREG_SZ;
+	BOOL OuputIsREG_SZ=FALSE;
 	BOOL TestWinQuery=FALSE;
-
 
   Rhs=Max(0,Rhs);
   CheckRhs(2,3);
@@ -101,7 +99,6 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 			return 0;
 		}
 	}
-
 
 	GetRhsVar(1,"c",&m1,&n1,&l1);
 	param1=cstk(l1);
@@ -138,6 +135,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 					}
 
 					LhsVar(1)=Rhs+1;
+					C2F(putlhsvar)();
 					return 0;
 				}
 				else
@@ -153,6 +151,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 				l1=0;
 				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
 				LhsVar(1)=Rhs+1;
+				C2F(putlhsvar)();
 				return 0;
 			}
 			return 0;
@@ -176,19 +175,20 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 		n1=1;
 		if ( OuputIsREG_SZ )
 		{
-			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+			CreateVarFromPtr(Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
 		}
 		else
 		{
-			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
+			CreateVarFromPtr(Rhs+1, "i", &n1, &n1, &paramoutINT);
 		}
 	
-		LhsVar(1) = 1;
+		LhsVar(1) = Rhs+1;
+		C2F(putlhsvar)();
 	}
 	else
 	{
-		FREE(output);
-		FREE(paramoutINT);
+		if (output) {FREE(output);output=NULL;}
+		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
 		Scierror(999,MSG_ERROR17);
 		return 0;
 	}

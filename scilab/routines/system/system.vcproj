@@ -771,6 +771,9 @@ cd .. &gt;nul
 			<File
 				RelativePath=".\tksynchro.c">
 			</File>
+			<File
+				RelativePath=".\Scierror.c">
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -795,6 +798,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="msgstore.h">
+			</File>
+			<File
+				RelativePath=".\Scierror.h">
 			</File>
 		</Filter>
 	</Files>
