@@ -294,9 +294,9 @@ else
     sep=" "
   end
   if size(mtlb_opts,"*")==1 then //8 digits save
-    mtlb_fmt="(1pe14.7"+sep+")"
+    mtlb_fmt="(2x,1pe14.7"+sep+")"
   else
-    mtlb_fmt="(1pe23.15"+sep+")"
+    mtlb_fmt="(2x,1pe23.15"+sep+")"
   end
 
   mtlb_fd=file("open",mtlb_thefile,"unknown")
