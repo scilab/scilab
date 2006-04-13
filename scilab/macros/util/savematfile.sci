@@ -4,7 +4,7 @@ function savematfile(varargin)
 // www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 // Copyright INRIA
 // Authors: SS, VC
-
+vars=who('get');
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
@@ -56,7 +56,7 @@ while k<=lstsize(varargin)
 	execstr(varargin(k)+"="+stname+"(mtlb_names($))");
 	k=k+1;
       end
-    else // All fields have to be saved
+    else // All vars(1)=[];fields have to be saved
       fields=getfield(1,evstr(stname));
       fields(1:2)=[]
       for kk=fields
@@ -106,10 +106,11 @@ end
 
 // If no name given then all workspace saved
 if isempty(mtlb_names) then
-  mtlb_names=who("get");
+  mtlb_names=vars;
   
   // Part to delete Scilab variables from mtlb_names (should be improved)
-  mtlb_names(1:10)=[];// clear this function variables
+  mtlb_names(1)=[];// remove varargin
+  mtlb_names(mtlb_names=='savematfile')=[];
   mtlb_names(($-predef()+1):$)=[]; // clear predefined variables
 end
 
@@ -263,7 +264,10 @@ if bin then
 
     // Write variables as miMATRIX data type
     for k=1:size(mtlb_names,"*")
-      WritemiMatrix(mtlb_fd,evstr(mtlb_names(k)),mtlb_names(k));
+      %var=evstr(mtlb_names(k));
+      if and(type(%var)<>[9 11 13]) then
+        WritemiMatrix(mtlb_fd,evstr(mtlb_names(k)),mtlb_names(k));
+      end
     end
     
     mclose(mtlb_fd);
@@ -331,3 +335,5 @@ else
   file("close",mtlb_fd)
 end
 endfunction
+
+
