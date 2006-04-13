@@ -380,6 +380,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   int dimvectx = -1;
   int dimvecty = -1;
 
+  sciPointObj  * pNewSurface = NULL ;
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
 
@@ -644,12 +645,14 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	  flag_y = 1;
 	}
     }
+    
+    pNewSurface = ConstructSurface( psubwin, typeof3d,
+                                    x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
+                                    isfac,m1,n1,m2,n2,m3,n3,m3n,n3n) ;
+    
+    if ( pNewSurface == NULL ) { return ; }
 
-    sciSetCurrentObj (ConstructSurface
-		      ((sciPointObj *)
-		       psubwin, typeof3d,
-		       x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
-		       isfac,m1,n1,m2,n2,m3,n3,m3n,n3n));
+    sciSetCurrentObj( pNewSurface ) ;
     
     pSURFACE_FEATURE (sciGetCurrentObj())->flag_x = flag_x;
     pSURFACE_FEATURE (sciGetCurrentObj())->flag_y = flag_y;
