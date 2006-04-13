@@ -2,7 +2,7 @@
 #ifndef TCL_MESSAGESH
 #define TCL_MESSAGESH
 
-#define TCL_MSG1 "%s, at line %i of file %s\r\n"
+#define TCL_MSG1 "%s, at line %i of file %s\r\n%s\r\n"
 #define TCL_MSG2 "Alpha Release"
 #define TCL_MSG3 "Beta Release"
 #define TCL_MSG4 "Final Release"

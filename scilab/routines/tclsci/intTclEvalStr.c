@@ -14,7 +14,7 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 		char **Str=NULL;
 		int m1,n1,i,RET;
 		int m2,n2,l2;
-    Tcl_Interp *TCLinterpreter=NULL;
+        Tcl_Interp *TCLinterpreter=NULL;
 
 		GetRhsVar(1,"S",&m1,&n1,&Str);
 
@@ -55,13 +55,14 @@ int C2F(intTclEvalStr) _PARAMS((char *fname))
 
 			if (RET==TCL_ERROR)
 			{
+                const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 				if(C2F(iop).err>0)
 				{
-                    Scierror(999,TCL_ERROR10,fname,i+1);
+                    Scierror(999,TCL_ERROR10,fname,i+1,(char *)trace);
 				}
 				else
 				{
-					Scierror(999,TCL_ERROR11,fname,TCLinterpreter->result,i+1);
+					Scierror(999,TCL_ERROR11,fname,TCLinterpreter->result,i+1,(char *)trace);
 				}
 				FreeRhsSVar(Str);
 				return 0;

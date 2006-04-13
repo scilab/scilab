@@ -54,13 +54,14 @@ int C2F(intTclEvalFile) _PARAMS((char *fname))
 
 	if (RET==TCL_ERROR)
 	{
+		const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
 		if (C2F(iop).err>0) 
 		{
-			sciprint(TCL_MSG1,fname,TCLinterpreter->errorLine,cstk(l1));
+			sciprint(TCL_MSG1,fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
 		}
         else
 		{
-			Scierror(999,TCL_MSG1,fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result);
+			Scierror(999,TCL_MSG1,fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result,(char *)trace);
 			return 0;
 		}
     }
