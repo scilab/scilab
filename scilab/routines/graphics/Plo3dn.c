@@ -650,13 +650,28 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   ytmp = NULL;
 }
 
-
+/**
+ * @memo display a fac3d object. Apply the painter algorithm to the facets
+ *       and draw them with the right color (hidden or not).
+ * @param pobj the fac3d object
+ * @param x the matrice of the x coordiantes of facets
+ * @param y the matrice of the y coordiantes of facets
+ * @param z the matrice of the z coordiantes of facets
+ * @param cvect the color vector
+ * @param p the number of vertice the facests contains
+ * @param q the number of facets
+ * @param DPI not yet identified (deals with display probably)
+ */
 void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                    double * cvect, integer * p, integer * q, int *DPI)
 {
   integer polysize, npoly, whiteid, verbose = 0, narg, hiddencolor, front_size;
-  integer *polyx, *polyy, *locindex, fill[4], col[4], rear_col[5];
-  integer rear_x[5], rear_y[5], rear_size;
+  integer *polyx, *polyy, *locindex, fill[4];
+  integer * col = NULL ; /* color vector */
+  integer * rear_x   = NULL ;
+  integer * rear_y   = NULL ;
+  integer * rear_col = NULL ;
+  integer  rear_size;
   static double zmin, zmax, *polyz;
   integer i, k, color_mode, color_flag;
   sciPointObj *psubwin = NULL;
@@ -684,32 +699,39 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
   xx[0] = sciGetForeground (pobj);
 
-  polyz = graphic_alloc (5, (*q), sizeof (double));
-  if ((polyz == NULL) && (*q) != 0)
-    {
-      Scistring ("plot3dg_ : malloc No more Place\n");
-      return;
-    }
   /** Allocation  **/
-  polyx = graphic_alloc (0, (*p) + 1L, sizeof (int));
-  polyy = graphic_alloc (1, (*p) + 1L, sizeof (int));
-  locindex = graphic_alloc (2, (*q), sizeof (int));
-  if ((polyx == NULL) || (polyy == NULL) || (locindex == NULL))
-    {
-      Scistring ("plot3dg_ : malloc No more Place\n");
-      return;
-    }
 
-  xtmp = MALLOC ((*p) * (*q) * sizeof (double));
-  ytmp = MALLOC ((*p) * (*q) * sizeof (double));
-  ztmp = MALLOC ((*p) * (*q) * sizeof (double));
+  polyx    = MALLOC( ( *p + 1 ) * sizeof(int) ) ;
+  polyy    = MALLOC( ( *p + 1 ) * sizeof(int) ) ;
+  locindex = MALLOC(   *q       * sizeof(int) ) ;
+  
+  polyz = MALLOC(        (*q) * sizeof(double) ) ;
+  xtmp  = MALLOC( (*p) * (*q) * sizeof(double) ) ;
+  ytmp  = MALLOC( (*p) * (*q) * sizeof(double) ) ;
+  ztmp  = MALLOC( (*p) * (*q) * sizeof(double) ) ;
 
+  col      = MALLOC(  *p        * sizeof (integer) ) ;
+  rear_x   = MALLOC( ( *p + 1 ) * sizeof (integer) ) ;
+  rear_y   = MALLOC( ( *p + 1 ) * sizeof (integer) ) ;
+  rear_col = MALLOC( ( *p + 1 ) * sizeof (integer) ) ;
+
+  if (   polyx  == NULL || polyy    == NULL || locindex == NULL 
+      || polyz  == NULL || col      == NULL || rear_x   == NULL
+      || rear_y == NULL || rear_col == NULL || xtmp     == NULL
+      || ytmp   == NULL || ztmp     == NULL )
+  {
+    Scistring ("plot3dg_ : malloc No more Place\n");
+    return;
+  }
+
+  /* initialization */
   for (u = 0; u < (*p) * (*q); u++)
-    {
-      xtmp[u] = x[u];
-      ytmp[u] = y[u];
-      ztmp[u] = z[u];
-    }
+  {
+    xtmp[u] = x[u];
+    ytmp[u] = y[u];
+    ztmp[u] = z[u];
+  }
+
 
   ReverseDataFor3D (psubwin, xtmp, ytmp, ztmp, (*p) * (*q));
 
@@ -832,14 +854,16 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
              of the surface is painted with a uniform color). When hiddencolor=-1
              then the rear facets are processed for each specific value
              of color_flag (see below). */
+          /* WARNING : the algorithm only work for facets with 4 or less vertices.
+             it should be extended to more. */
 
           rear =
             facet_facing_rear (facteur, polyx, polyy, col, &front_size,
                                rear_x, rear_y, rear_col, &rear_size);
 
-	  rear_x[4] = rear_x[0];
-	  rear_y[4] = rear_y[0];
-	  rear_col[4] = rear_col[0];
+	  rear_x[rear_size] = rear_x[0];
+	  rear_y[rear_size] = rear_y[0];
+	  rear_col[rear_size] = rear_col[0];
 
           if (hiddencolor > 0 && rear)
             {
@@ -1052,13 +1076,31 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
         }
     }
 
+  /* freeing memory */
   FREE (xtmp);
   xtmp = NULL;
   FREE (ytmp);
   ytmp = NULL;
   FREE (ztmp);
   ztmp = NULL;
+  
+  FREE( col ) ;
+  col = NULL ;
+  FREE( rear_x ) ;
+  rear_x = NULL ;
+  FREE( rear_y ) ;
+  rear_y = NULL ;
+  FREE( rear_col ) ;
+  rear_col = NULL ;
 
+  FREE( polyx    ) ;
+  polyx = NULL ;
+  FREE( polyy    ) ;
+  polyy = NULL ;
+  FREE( polyz    ) ;
+  polyz = NULL ;
+  FREE( locindex ) ;
+  locindex = NULL ;
 }
 
 
@@ -1085,7 +1127,9 @@ facet_facing_rear (integer facteur, integer * x, integer * y, integer * c,
 
   determ1 = (y2my1 * x1mx0 - x2mx1 * y1my0) * facteur;
   flag_det1 = (determ1 < 0);
-  if (p > 3)
+
+  /* should add a general case here for more edgy facets */
+  if (p == 4)
     {                           /* further tests for the quadrilateral case */
       x3mx2 = x[3] - x[2];
       y3my2 = y[3] - y[2];
@@ -1099,7 +1143,9 @@ facet_facing_rear (integer facteur, integer * x, integer * y, integer * c,
       flag_det3 = (determ3 < 0);
     }
   else
+  {
     return (flag_det1);
+  }
 
   /* flag_det allows to precisely detect the orientation of the facet
      for the case of the quadrilateral. If flag_det==2, then the
