@@ -578,12 +578,14 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	}
     }
 
-    sciSetCurrentObj (ConstructSurface
-		      ((sciPointObj *)
-		       psubwin, typeof3d,
-		       x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
-		       isfac,m1,n1,m2,n2,m3,n3,m3n,n3n));
+    pNewSurface = ConstructSurface( psubwin, typeof3d,
+                                    x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
+                                    isfac,m1,n1,m2,n2,m3,n3,m3n,n3n) ;
     
+    if ( pNewSurface == NULL ) { return ; }
+
+    sciSetCurrentObj( pNewSurface ) ;
+        
     pSURFACE_FEATURE (sciGetCurrentObj())->flag_x = flag_x;
     pSURFACE_FEATURE (sciGetCurrentObj())->flag_y = flag_y;
     
