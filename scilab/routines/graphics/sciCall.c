@@ -316,6 +316,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   int dimvectx = -1;
   int dimvecty = -1;
 
+  sciPointObj  * pNewSurface = NULL ;
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
 
