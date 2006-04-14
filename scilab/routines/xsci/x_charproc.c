@@ -604,6 +604,7 @@ void Scistring(str)
 #include <varargs.h>
 #endif 
 
+#define MAXPRINTF 512
 /*---------------------------------------------------
  * functions similar to print(format,arg1,...,argn) 
  * but with output redirected to scilab window 
@@ -619,7 +620,8 @@ void sciprint(va_alist) va_dcl
   int i;
   integer lstr;
   va_list ap;
-  char s_buf[1024];
+  char s_buf[MAXPRINTF];
+  int count=0;
 #ifdef __STDC__
   va_start(ap,fmt);
 #else
@@ -627,7 +629,15 @@ void sciprint(va_alist) va_dcl
   va_start(ap);
   fmt = va_arg(ap, char *);
 #endif
-  (void ) vsprintf(s_buf, fmt, ap );
+#ifdef linux
+	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap );
+	if (count == -1)
+	{
+		s_buf[MAXPRINTF-1]='\0';
+	}
+#else
+	  (void )vsprintf(s_buf, fmt, ap );
+#endif
   lstr=strlen(s_buf);
 
   C2F(xscion)(&i);
@@ -657,7 +667,8 @@ void sciprint_nd(va_alist) va_dcl
   int i;
   integer lstr;
   va_list ap;
-  char s_buf[1024];
+  char s_buf[MAXPRINTF];
+  int count=0;
 #ifdef __STDC__
   va_start(ap,fmt);
 #else
@@ -666,7 +677,15 @@ void sciprint_nd(va_alist) va_dcl
   fmt = va_arg(ap, char *);
 #endif
 
-  (void ) vsprintf(s_buf, fmt, ap );
+  #ifdef linux
+	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
+	if (count == -1)
+	{
+		s_buf[MAXPRINTF-1]='\0';
+	}
+#else
+	(void ) vsprintf(s_buf, fmt, ap );
+#endif
   lstr=strlen(s_buf);
 
   C2F(xscion)(&i);
@@ -697,7 +716,8 @@ int sciprint2(va_alist) va_dcl
   int i,retval;
   integer lstr;
   va_list ap;
-  char s_buf[1024];
+  char s_buf[MAXPRINTF];
+  int count=0;
 #ifdef __STDC__
   va_start(ap,fmt);
 #else
@@ -715,20 +735,39 @@ int sciprint2(va_alist) va_dcl
     }
   else 
     {
-      retval= vsprintf(s_buf, fmt, ap );
+#ifdef linux
+	retval= vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
+	if (retval == -1)
+	{
+		s_buf[MAXPRINTF-1]='\0';
+	}
+#else
+	retval= vsprintf(s_buf, fmt, ap );
+#endif
+
       lstr=strlen(s_buf);
       C2F(xscisncr)(s_buf,&lstr,0L);
     }
-  if (getdiary()) {
-    retval= vsprintf(s_buf, fmt, ap );
+    
+  if (getdiary()) 
+  {
+#ifdef linux
+	retval= vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
+	if (retval == -1)
+	{
+		s_buf[MAXPRINTF-1]='\0';
+	}
+#else
+	retval= vsprintf(s_buf, fmt, ap );
+#endif
     lstr=strlen(s_buf);
     diary_nnl(s_buf,&lstr);
   }
 
   va_end(ap);
   return retval;
-}
 
+}
 
 /* I/O Function */
 
