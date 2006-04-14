@@ -3468,6 +3468,10 @@ extern int C2F(errloc)  __PARAMS((integer *n));
 
 static int Scierror_internal __PARAMS((integer *n,char *buffer));
 
+#if WIN32
+	#define vsnprintf _vsnprintf
+#endif
+
 /* 
 * as sciprint but with an added first argument 
 * which is ignored (used in do_printf) 
@@ -3493,12 +3497,21 @@ int Scierror(va_alist) va_dcl
 	iv = va_arg(ap,int);
 	fmt = va_arg(ap, char *);
 #endif
-	retval= vsprintf(s_buf, fmt, ap );
+#if defined (vsnprintf) || defined (linux)
+ retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
+#else
+ retval= vsprintf(s_buf,fmt, ap );
+#endif
+ if (retval == -1)
+ {
+	 s_buf[bsiz-1]='\0';
+ }
+
 	lstr=strlen(s_buf);
 	va_end(ap);
 	Scierror_internal(&iv,s_buf);
 	return retval;
-	}
+}
 
 static int Scierror_internal(n,buffer)
 integer *n;
