@@ -52,7 +52,7 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 	fmt = va_arg(ap, char *);
 #endif
 
-#ifdef vsnprintf
+#if defined (vsnprintf) || defined (linux)
  retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
 #else
  retval= vsprintf(s_buf,fmt, ap );
