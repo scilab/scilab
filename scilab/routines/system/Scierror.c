@@ -53,13 +53,13 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 #endif
 
 #ifdef vsnprintf
- retval= vsnprintf(s_buf,bsiz, fmt, ap );
+ retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
 #else
  retval= vsprintf(s_buf,fmt, ap );
 #endif
- if (count == -1)
+ if (retval == -1)
  {
-	 s_buf[retval-1]='\0';
+	 s_buf[bsiz-1]='\0';
  }
 
 	lstr=strlen(s_buf);
