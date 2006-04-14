@@ -91,7 +91,12 @@ void sciprint (char *fmt,...)
 	va_start (args, fmt);
 
 	/* next three lines added for diary SS */
-	count = vsprintf (buf, fmt, args);
+	count = _vsnprintf (buf,MAXPRINTF-1, fmt, args);
+	if (count == -1)
+	{
+		buf[MAXPRINTF-1]='\0';
+	}
+
 	lstr = strlen (buf);
 
 	C2F (xscion) (&i);
@@ -123,7 +128,11 @@ void sciprint_nd (char *fmt,...)
 	va_start (args, fmt);
 
 	/* next three lines added for diary SS */
-	count = vsprintf (buf, fmt, args);
+	count = _vsnprintf (buf,MAXPRINTF-1, fmt, args);
+	if (count == -1)
+	{
+		buf[MAXPRINTF-1]='\0';
+	}
 	lstr = strlen (buf);
 
 	C2F (xscion) (&i);
@@ -131,7 +140,6 @@ void sciprint_nd (char *fmt,...)
 	{
 		/*count = vfprintf(stdout, fmt, args ); */
 		printf ("%s", buf);
-
 	}
 	else
 	{
@@ -150,16 +158,21 @@ int sciprint2 (int iv, char *fmt,...)
 {
 	int i, count,lstr;
 	va_list ap;
-	char s_buf[1024];
+	char s_buf[MAXPRINTF];
 	va_start (ap, fmt);
 	/* next three lines added for diary SS */
-	count = vsprintf (s_buf, fmt, ap);
+	count = _vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
+	if (count == -1)
+	{
+		s_buf[MAXPRINTF-1]='\0';
+	}
+
 	lstr = strlen (s_buf);
 
 	C2F (xscion) (&i);
 	if (i == 0)
 	{
-		count = vfprintf (stdout, fmt, ap);
+		count = vfprintf (stdout,"%s",s_buf);
 	}
 	else
 	{

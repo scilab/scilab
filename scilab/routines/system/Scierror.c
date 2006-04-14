@@ -9,6 +9,10 @@
 	#include <varargs.h>
 #endif  
 /*-----------------------------------------------------------------------------------*/ 
+#if WIN32
+	#define vsnprintf _vsnprintf
+#endif
+/*-----------------------------------------------------------------------------------*/ 
 extern int C2F(error)  __PARAMS((integer *n));
 extern int C2F(errmgr)  __PARAMS((integer *n, integer *errtyp));
 extern int C2F(errmsg)  __PARAMS((integer *n, integer *errtyp));
@@ -47,7 +51,17 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 	iv = va_arg(ap,int);
 	fmt = va_arg(ap, char *);
 #endif
-	retval= vsprintf(s_buf, fmt, ap );
+
+#ifdef vsnprintf
+ retval= vsnprintf(s_buf,bsiz, fmt, ap );
+#else
+ retval= vsprintf(s_buf,fmt, ap );
+#endif
+ if (count == -1)
+ {
+	 s_buf[retval-1]='\0';
+ }
+
 	lstr=strlen(s_buf);
 	va_end(ap);
 	Scierror_internal(&iv,s_buf);

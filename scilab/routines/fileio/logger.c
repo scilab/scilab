@@ -40,7 +40,9 @@ struct LOGGER_globals {
 
 static struct LOGGER_globals LOGGER_glb={ 0, 0 };
 
-
+#if WIN32
+	#define vsnprintf _vsnprintf
+#endif
 /*------------------------------------------------------------------------
 Procedure:     LOGGER_get_file ID:1
 Purpose:       Returns the pointer to the file being used to output logs to
@@ -307,12 +309,7 @@ int LOGGER_log( char *format, ...)
 #ifdef NO_SNPRINTF
 	vsprintf(tmpoutput, format, ptr);
 #else
-	#if WIN32
-	  vsprintf(tmpoutput, format, ptr);
-	#else
 	  vsnprintf(tmpoutput,10240,format,ptr);
-    #endif
-	
 #endif
 
 	LOGGER_clean_output( tmpoutput, &output );
