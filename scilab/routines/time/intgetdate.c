@@ -90,6 +90,7 @@ int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
 				double *param=NULL;
 			
 				int *DATEARRAY=NULL;
+				int *DATEARRAYtmp=NULL;
 
 				GetRhsVar(1,"d",&m1,&n1,&l1);
 				param=stk(l1);
@@ -117,6 +118,7 @@ int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
 
 				m1=l/10;
 				n1=10;
+				DATEARRAYtmp=DATEARRAY;
 				DATEARRAY=InversionMatrixInt(n1,m1,DATEARRAY);
 				CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEARRAY);
 
@@ -124,6 +126,7 @@ int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
 				C2F(putlhsvar)();
 				if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
 				if (DATEARRAY) {FREE(DATEARRAY);DATEARRAY=NULL;}
+				if (DATEARRAYtmp) {FREE(DATEARRAYtmp);DATEARRAYtmp=NULL;}
 				return 0;
 
 			}
