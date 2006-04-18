@@ -27,46 +27,21 @@ tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)
 
-if is_complex(A) | is_complex(B) then
-  // Special case for == and ~= which handle complex values in Scilab
-  if and(tree.operator<>["==","~="]) then
-    set_infos("At least one operand is complex in "+expression2code(tree)+",so mtlb_logic is called",0)
-    tree=Funcall("mtlb_logic",1,list(A,Cste(tree.operator),B),tree.out)
-    if is_a_scalar(A) then
-      tree.lhs(1).dims=B.dims
-    else
-      tree.lhs(1).dims=A.dims
-    end
-  else
-    if is_a_scalar(A) then
-      tree.out(1).dims=B.dims
-    else
-      tree.out(1).dims=A.dims
-    end
-  end
-elseif is_real(A) & is_real(B) then
+
   // Cases with empty matrix
-  if is_empty(A) | is_empty(B) then 
+if is_empty(A) | is_empty(B) then 
     // For >, <, >= and <= : Scilab gives an error message if both operands are []
     // For == and ~= : Scilab returns %T or %F
     set_infos("At lest one operand is an empty matrix for operator: "+expression2code(tree)+", result set to []",1);
     tree=Cste([])
-  elseif is_a_scalar(A) & not_empty(B) then
+elseif is_a_scalar(A) & not_empty(B) then
     tree.out(1).dims=B.dims
-  elseif is_a_scalar(B) & not_empty(A) then
+elseif is_a_scalar(B) & not_empty(A) then
     tree.out(1).dims=A.dims
-  elseif not_empty(A) & not_empty(B) then
+elseif not_empty(A) & not_empty(B) then
     tree.out(1).dims=A.dims
-  else
+else
     tree=Funcall("mtlb_logic",1,list(A,Cste(tree.operator),B),tree.out)
     tree.lhs(1).dims=A.dims
-  end
-else
-  tree=Funcall("mtlb_logic",1,list(A,Cste(tree.operator),B),tree.out)
-  if is_a_scalar(A) then
-    tree.lhs(1).dims=B.dims
-  else
-    tree.lhs(1).dims=A.dims
-  end
 end
 endfunction
