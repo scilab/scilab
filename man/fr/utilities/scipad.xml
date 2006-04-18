@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>1st-Nov-2004 - Revised 2005, March 2006</DATE>
+  <DATE>1st-Nov-2004 - Revised 2005, 2006</DATE>
 
   <SHORT_DESCRIPTION name="scipad">Embedded Scilab text
   editor</SHORT_DESCRIPTION>
@@ -160,15 +160,15 @@
   </DESCRIPTION>
 
   <SECTION label="Debugger">
-    <P>Scipad includes a debugger (for .sci files only). The user can:</P>
+    <P>Scipad includes a debugger targeted to Scilab scripts and macros. The
+    user can:</P>
 
     <P></P>
 
     <ITEMIZE>
       <ITEM label="Set/remove breakpoints anywhere in the opened files.">
         <SP>The breakpointed lines get pink background. No breakpoint can be
-        set on empty, blank or commented lines, or outside of a function
-        definition.</SP>
+        set on empty, blank or commented lines.</SP>
 
         <P></P>
       </ITEM>
@@ -188,7 +188,10 @@
         (which causes all the variable values to be reset to a null value).
         Note also that the <LINK>varargin</LINK> keyword is fully supported,
         and that variables that are not given a value by the user are ignored
-        when Scipad launches the function for debug.</SP>
+        when Scipad launches the function for debug. If the current file
+        contains main level code (i.e. executable code outside of a function
+        definition), Scipad proposes to debug this file as a .sce file (see
+        below).</SP>
 
         <P></P>
       </ITEM>
@@ -298,14 +301,10 @@
 
     <P>In its current development state the debugger works well with
     functions, i.e. <BD>pure .sci files</BD>. Support of .sce files or mixed
-    .sce/.sci files has been foreseen but not yet implemented. That means that
-    a .sce file will not crash Scipad, which is the very least, but more, once
-    a feasible solution for debugging this type of files is figured out, it
-    should be easy to add the functionality in the Scipad source code. Anyway,
-    if actually a debug is required in a .sce, you should first convert it
-    into a .sci function just by adding (output_vars)=function foo(input_vars)
-    / endfunction and that's it. The lack of breakpoints management for .sce
-    is therefore not such a major drawback.</P>
+    .sce/.sci files is implemented but should be considered as a beta
+    functionality. Debug of .sce or mixed .sce/sci files makes use of the
+    implementation for the .sci case after having wrapped the code in a
+    function/endfunction clause.</P>
 
     <P></P>
   </SECTION>
