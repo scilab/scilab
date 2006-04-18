@@ -3,6 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intgetmd5.h"
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/
 #if WIN32
 #define stricmp _stricmp
