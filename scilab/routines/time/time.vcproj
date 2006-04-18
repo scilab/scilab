@@ -682,6 +682,9 @@ cd .. &gt;nul
 				RelativePath=".\getdate.c">
 			</File>
 			<File
+				RelativePath=".\intcalendar.c">
+			</File>
+			<File
 				RelativePath=".\intgetdate.c">
 			</File>
 			<File
@@ -691,6 +694,9 @@ cd .. &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\intcalendar.h">
+			</File>
 			<File
 				RelativePath=".\intgetdate.h">
 			</File>

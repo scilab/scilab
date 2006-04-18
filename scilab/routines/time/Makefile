@@ -7,7 +7,7 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/time.a
 
 
-OBJSC = mattime.o intgetdate.o getdate.o
+OBJSC = mattime.o intgetdate.o getdate.o intcalendar.o
 
 include ../../Makefile.incl
 

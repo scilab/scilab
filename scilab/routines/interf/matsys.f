@@ -50,7 +50,7 @@ c     resu form  isdef   exists errcatch errclear iserror predef
 c     11   12     13    14      15       16       17      18
 c     newfun clearfun  funptr  macr2lst setbpt delbpt dispbpt
 c     19      20       21       22       23     24      25
-c     funcprot whereis where   timer         havewindow stacksize
+c     funcprot whereis where   timer    <free>   havewindow stacksize
 c     26         27    28      29       30       31       32
 c     mtlb_mode  link     ulink  c_link addinter <free>   <free>
 c     33         34        35     36    37       38        39
@@ -62,8 +62,8 @@ c     lasterror version loadhistory savehistory gethistory resethistory macr2tre
 c     53         54        55          56         57          58        59
 c     sleep getos
 c     60    61 
-c     banner fromjava Calendar getmemory fromc getmd5
-c     62     63       64        65       66    67
+c     banner fromjava  getmemory fromc getmd5
+c     62     63        64        65       66   
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -78,7 +78,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      695,697,698,699,700,701,702,703,
-     +      705,706,707,708,709,710,711,712),fin
+     +      705,706,707,708,709,710,711),fin
 c     
 c     debug
  10   call intdebug()
@@ -269,13 +269,11 @@ c     mtlb_mode
       goto 999     
  708  call intfromjava('fromjava')
       goto 999
- 709  call intcalendar('Calendar')
+ 709  call intgetmemory('getmemory')
       goto 999
- 710  call intgetmemory('getmemory')
-      goto 999
- 711  call intfromc('fromc')
+ 710  call intfromc('fromc')
       goto 999   
- 712  call intgetmd5('getmd5')
+ 711  call intgetmd5('getmd5')
       goto 999        
  998  continue
 c     fake calls : only to force the 

@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "calendar.h"
+#include "intcalendar.h"
 #ifdef WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
@@ -19,10 +19,9 @@ int *InversionMatrixInt(int W,int L,int *Matrix);
 #define NBRDAY 7
 #define NBRWEEK 6
 /*-----------------------------------------------------------------------------------*/
-
 int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*-----------------------------------------------------------------------------------*/
-int C2F(intcalendar) _PARAMS((char *fname))
+int C2F(intcalendar) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
 

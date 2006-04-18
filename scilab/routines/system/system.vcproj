@@ -688,9 +688,6 @@ cd .. &gt;nul
 				RelativePath=".\Calelm.c">
 			</File>
 			<File
-				RelativePath=".\calendar.c">
-			</File>
-			<File
 				RelativePath=".\CallScilab.c">
 			</File>
 			<File
@@ -751,6 +748,9 @@ cd .. &gt;nul
 				RelativePath=".\scicurdir.c">
 			</File>
 			<File
+				RelativePath=".\Scierror.c">
+			</File>
+			<File
 				RelativePath=".\Sparse.c">
 			</File>
 			<File
@@ -770,9 +770,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\tksynchro.c">
-			</File>
-			<File
-				RelativePath=".\Scierror.c">
 			</File>
 		</Filter>
 		<Filter

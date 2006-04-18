@@ -87,7 +87,6 @@ extern void
       AddHistory(),
       C2F(xerbla)(),
       C2F(intfromjava)(),
-	  C2F(intcalendar)(),
 	  C2F(intgetmemory)(),
 	  C2F(intwhat)(),
 	  C2F(intfromc)(),
@@ -179,7 +178,6 @@ void System_contents( int x)
       AddHistory();
       C2F(xerbla)();
       C2F(intfromjava)();
-	  C2F(intcalendar)();
 	  C2F(intgetmemory)();
 	  C2F(intwhat)();
 	  C2F(intfromc)();

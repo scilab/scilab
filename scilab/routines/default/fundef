@@ -268,10 +268,9 @@
 {"getos",           IN_matsys,	60,	2},
 {"banner",          IN_matsys,	61,	2},
 {"fromjava",        IN_matsys,	62,	2},
-{"Calendar",        IN_matsys,	63,	2},
-{"getmemory",  	    IN_matsys,	64,	2},
-{"fromc",     	    IN_matsys,	65,	2},
-{"getmd5",     	    IN_matsys,	66,	2},
+{"getmemory",  	    IN_matsys,	63,	2},
+{"fromc",     	    IN_matsys,	64,	2},
+{"getmd5",     	    IN_matsys,	65,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  
@@ -664,3 +663,4 @@
 {"filesassociationbox",	IN_intwintools,	24,	2},
 #define  IN_inttime 49
 {"getdate",	        IN_inttime,	1,	2},
+{"Calendar",        IN_inttime,	2,	2},

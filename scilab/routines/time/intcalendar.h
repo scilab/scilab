@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __CALENDAR__
-#define __CALENDAR__
+#ifndef __INTCALENDAR__
+#define __INTCALENDAR__
 
 #include <stdio.h>
 #include <string.h>
@@ -11,7 +11,7 @@
 #include "../stack-c.h"
 #include "../version.h"
 
-int C2F(intcalendar) _PARAMS((char *fname));
+int C2F(intcalendar) _PARAMS((char *fname,unsigned long fname_len));
 
-#endif /*CALENDAR*/
+#endif /*INTCALENDAR*/
 /*-----------------------------------------------------------------------------------*/ 
