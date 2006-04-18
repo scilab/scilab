@@ -6,7 +6,8 @@ proc whichfun {indexin {buf "current"}} {
 #       $funname   : function name
 #       $lineinfun : logical line number of $indexin in function $funname
 #       $funline   : definition line of the function, e.g. [a,b]=foo(c,d)
-#       $precfun   : physical line number where $funname is defined
+#       $precfun   : index where $funname definition starts (position of the f
+#                    of the word "function")
 #       $contlines : number of continued lines between $precfun and $indexin
     global listoffile
     global funlineREpat1 funlineREpat2 scilabnameREpat
@@ -100,6 +101,44 @@ proc whichfun {indexin {buf "current"}} {
 
         return [list $funname $lineinfun $funline $precfun $contlines] 
     }
+}
+
+proc getendfunctionpos {ta precfun} {
+# look for endfunction corresponding to $precfun (beginning of function
+# definition)
+# the position returned is the index in $ta of the first n of the word
+# endfunction corresponding to the function definition starting at $precfun
+    set lfunpos [list $precfun]
+    set amatch [$ta search -exact -regexp "\\mfunction\\M" $precfun end]
+    set curpos [$ta index "$amatch + 1c"]
+    set amatch "firstloop"
+    while {[llength $lfunpos] != 0} {
+        # search for the next "function" or "endfunction" which is not in a
+        # comment nor in a string
+        set amatch [$ta search -exact -regexp "\\m(end)?function\\M" $curpos end]
+        if {$amatch != ""} {
+            while {[lsearch [$ta tag names $amatch] "textquoted"] !=-1 || \
+                   [lsearch [$ta tag names $amatch] "rem2"      ] !=-1} {
+                set amatch [$ta search -exact -regexp "\\m(end)?function\\M" "$amatch+8c" end]
+                if {$amatch==""} break
+            }
+        }
+        if {$amatch != ""} {
+            if {[$ta get $amatch] == "e"} {
+                # "endfunction" found
+                if {![$ta compare "end-11c" < $amatch]} {
+                    # the 'if' above is to include the "endfunction" word
+                    # into the core of the function
+                    set lfunpos [lreplace $lfunpos end end]
+                }
+            } else {
+                # "function" found
+                lappend lfunpos $amatch
+            }
+            set curpos [$ta index "$amatch + 1c"]
+        }
+    }
+    return $curpos
 }
 
 proc tagcontlinesinallbuffers {} {
@@ -406,8 +445,8 @@ proc extractfunnamefromfunline {str} {
     return $funname
 }
 
-proc isnocodeline {ind} {
-# return true if the line containing index $ind in the current textarea
+proc isnocodeline {w ind} {
+# return true if the line containing index $ind in textarea $w
 # is a no code line, i.e. if this line either:
 #     - is empty
 # or  - contains only blanks (spaces or tabs)
@@ -415,8 +454,75 @@ proc isnocodeline {ind} {
 # otherwise, return false
     global sblRE scommRE
     if {[regexp -- "^$sblRE$scommRE?\$" \
-                   [[gettextareacur] get "$ind linestart" "$ind lineend"]]} {
+                   [$w get "$ind linestart" "$ind lineend"]]} {
         return true
     }
     return false
+}
+
+proc bufferhaslevelzerocode {w} {
+# return true if textarea $w has at least one character of "level zero" code,
+# i.e. at least one character outside of a function and that is part of an
+# executable statement (i.e. an uncommented non blank character)
+# this file is therefore either a pure .sce file or a mixed .sce/.sci
+
+    set out false
+
+    # these characters can be present between functions even if uncommented,
+    # they don't denote main level code
+    set nocodechars {" " "\t" "\n"}
+
+    set funsinthatbuf [lindex [getallfunsintextarea $w] 1]
+
+    if {[lindex $funsinthatbuf 0] == "0NoFunInBuf"} {
+        set out true
+    } else {
+
+        # is there main level code before the first function definition,
+        # or between function definitions?
+        set ind "1.0"
+        foreach {fname fline precf} $funsinthatbuf {
+            # if this function is nested in a higher level function,
+            # skip it since only the intervals between highest level
+            # functions must be scanned
+            if {[whichfun $precf $w] != {}} {
+                # there is no $ind adjustment to do because if this function
+                # is nested, it is inside a function starting before it,
+                # which means that $ind has already been adjusted to the
+                # correct endfunction keyword at the end of the previous
+                # iteration
+                continue
+            }
+            while {[$w compare $ind < $precf]} {
+                set ch [$w get $ind]
+                # $ch is a character from a code statement if it is a non
+                # commented char different from space, newline, or tab
+                if {[lsearch [$w tag names $ind] "rem2"] == -1} {
+                    if {[lsearch $nocodechars $ch] == -1} {
+                        set out true
+                        break
+                    }
+                }
+                set ind [$w index "$ind + 1 c"]
+            }
+            if {$out} {break}
+            set ind [$w index "[getendfunctionpos $w $precf] + 10 c"]
+        }
+
+        # is there main level code after the last function definition?
+        while {[$w compare $ind < end]} {
+            set ch [$w get $ind]
+            # $ch is a character from a code statement if it is a non
+            # commented char different from space, newline, or tab
+            if {[lsearch [$w tag names $ind] "rem2"] == -1} {
+                if {[lsearch $nocodechars $ch] == -1} {
+                    set out true
+                    break
+                }
+            }
+            set ind [$w index "$ind + 1 c"]
+        }
+    }
+
+    return $out
 }

@@ -2165,3 +2165,14 @@ Francois VOGEL, 05/04/06
  * Fixed bug 1898: on Load into Scilab, the buffer is saved in a temporary
    file, therefore no popup to confirm save shows up
  * version --> 6.22
+
+Francois VOGEL, 10/04/06
+ * Beta implementation of .sce files debugging through automatic wrapping
+   in a function - just a try!
+ * version --> 6.23
+
+Francois VOGEL, 18/04/06
+ * Fixed: buffer was not detected as a mixed .sce/sci if the main level code
+   was only located after the end of the last function definition
+ * Fixed: debug state returns to NoDebug after a .sce debug session
+ * version --> 6.24

@@ -206,7 +206,7 @@ proc findtextdialog {typ} {
     bind $find <Alt-[fb $find.l.f4.f3.down]>  { $find.l.f4.f3.down  invoke }
     bind $find <Escape> "cancelfind $find"
     # after 0 in the following Alt binding is mandatory for Linux only
-    # This is Tk bug 1236306
+    # This is Tk bug 1236306 (fixed since Tk8.4.13RC1 or Tk 8.5a4RC3)
     bind $find <Alt-[fb $find.f2.button2]> "after 0 cancelfind $find"
     bind $find <Visibility> {raise $find $pad ; focus $find.l.f1.entry}
     bind $pad  <Expose>     {catch {raise $find ; focus $find.l.f1.entry}}
@@ -726,7 +726,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     }
     $textarea delete $mpos "$mpos + $mlen char"
     # the test on ReplaceString shouldn't be needed and is only here to
-    # work around Tk bug 1275237
+    # work around Tk bug 1275237 (fixed since Tk8.4.13RC1 or Tk 8.5a4RC3)
     if {$ReplaceString != ""} {
         $textarea insert $mpos $ReplaceString
     }

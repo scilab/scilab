@@ -320,7 +320,7 @@ proc setinscishellone_bp {var} {
             ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
         }
     } else {
-        # <TODO> .sce case
+        # <TODO> .sce case if some day the parser uses pseudocode noops
  #       ScilabEval_lt " " "seq"
     }
 }

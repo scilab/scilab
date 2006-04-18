@@ -1,4 +1,5 @@
 proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
+
     if {[getdbstate] == "ReadyForDebug"} {
         execfile_bp $stepmode
     } elseif {[getdbstate] == "DebugInProgress"} {
@@ -13,31 +14,26 @@ proc execfile_bp {{stepmode "nostep"}} {
     global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
+
+    # create the setbpt command
     set setbpcomm ""
     foreach textarea $listoftextarea {
         set tagranges [$textarea tag ranges breakpoint]
-    #    set nlins -1
-     #   set nlins -2
         foreach {tstart tstop} $tagranges {
             set infun [whichfun [$textarea index $tstart] $textarea]
             if {$infun !={} } {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
-           } else {
-                # <TODO> .sce case: I thought about:
-                # - inserting pause before each bp, or
-                # - inserting mode(6) plus mode(0) before each bp
-                # but none is satisfactory. Using mode() will fail in loops,
-                # and pause is very limited (no way to add a new bp during debug,
-                # or to remove all bp to finish execution ignoring them)
-    #            incr nlins 1
-     #           incr nlins 2
-    #            $textarea insert "$tstart +$nlins l linestart" "pause\n"
-     #           $textarea insert "$tstart +$nlins l linestart" "mode(6)\nmode(0)\n"
+            } else {
+                # <TODO> .sce case if some day the parser uses pseudocode noops
+                # with the wrapper implementation, breakpoints are always
+                # inside a function at the time of exec
             }
         }
     }
+
+    # exec the required file(s)
     if {$funnameargs != ""} {
         execfile "current"
         # exec file containing the function to debug
@@ -71,8 +67,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         getfromshell
         checkendofdebug_bp $stepmode
     } else {
-        # <TODO> .sce case
-##        execfile
+        # <TODO> .sce case if some day the parser uses pseudocode noops
     }
 }
 
@@ -125,19 +120,23 @@ proc stepbystep_bp {checkbusyflag stepmode} {
         # (which might occur during step by step)
         if {[isscilabbusy 5]} {return}
 
+#        showwrappercode
+
         if {$funnameargs != ""} {
             set funname [string range $funnameargs 0 [expr [string first "(" $funnameargs] - 1]]
             ScilabEval_lt "setbpt(\"$funname\",1);" "seq"
         } else {
-            # <TODO> .sce case
+            # <TODO> .sce case if some day the parser uses pseudocode noops
         }
         # here tricky (but correct) behaviour!! (see below for same comment)
         execfile_bp $stepmode
         if {$funnameargs != ""} {
             ScilabEval_lt "delbpt(\"$funname\",1);" "seq"
         } else {
-            # <TODO> .sce case
+            # <TODO> .sce case if some day the parser uses pseudocode noops
         }
+
+        # hidewrappercode is performed in checkendofdebug_bp
 
     } elseif {[getdbstate] == "DebugInProgress"} {
         # no busy check to allow to skip lines without code (step by step)
@@ -145,6 +144,9 @@ proc stepbystep_bp {checkbusyflag stepmode} {
             if {[isscilabbusy 5]} {return}
         }
         if {$funnameargs != ""} {
+
+#            showwrappercode
+
             # because the user can open or close files during debug,
             # getlogicallinenumbersranges must be called at each step
             switch -- $stepmode {
@@ -180,9 +182,11 @@ proc stepbystep_bp {checkbusyflag stepmode} {
                 resume_bp $checkbusyflag $stepmode
                 ScilabEval_lt "$cmddel" "seq"
             }
+
+            # hidewrappercode is performed in checkendofdebug_bp
+
         } else {
-            # <TODO> .sce case
-    #        resume_bp
+            # <TODO> .sce case if some day the parser uses pseudocode noops
         }
 
     } else {
@@ -212,6 +216,7 @@ proc getlogicallinenumbersranges {stepscope} {
 #   "-1" : the calling procedure should cancel the step-by-step command
 
     global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
+    global debugassce
 
     set cmd ""
     set nbmacros 0 ; # used to test max number of breakpointed macros
@@ -228,43 +233,22 @@ proc getlogicallinenumbersranges {stepscope} {
                 continue
             }
 
-            # look for endfunction of $funname
-            set lfunpos [list $precfun]
-            set amatch [$ta search -exact -regexp "\\mfunction\\M" $precfun end]
-            set curpos [$ta index "$amatch + 1c"]
-            set amatch "firstloop"
-            while {[llength $lfunpos] != 0} {
-                # search for the next "function" or "endfunction" which is not in a
-                # comment nor in a string
-                set amatch [$ta search -exact -regexp "\\m(end)?function\\M" $curpos end]
-                if {$amatch != ""} {
-                    while {[lsearch [$ta tag names $amatch] "textquoted"] !=-1 || \
-                           [lsearch [$ta tag names $amatch] "rem2"      ] !=-1} {
-                        set amatch [$ta search -exact -regexp "\\m(end)?function\\M" "$amatch+8c" end]
-                        if {$amatch==""} break
-                    }
-                }
-                if {$amatch != ""} {
-                    if {[$ta get $amatch] == "e"} {
-                        # "endfunction" found
-                        if {![$ta compare "end-11c" < $amatch]} {
-                            # the 'if' above is to include the "endfunction" word
-                            # into the core of the function
-                            set lfunpos [lreplace $lfunpos end end]
-                        }
-                    } else {
-                        # "function" found
-                        lappend lfunpos $amatch
-                    }
-                    set curpos [$ta index "$amatch + 1c"]
-                }
-            }
+            set curpos [getendfunctionpos $ta $precfun]
+
             # $curpos now contains the index in $ta of the first n of the word
             # endfunction corresponding to $funname
             set nbcontlines [countcontlines $ta $precfun $curpos]
             scan $precfun "%d." startoffun 
             scan $curpos  "%d." endoffun 
             set lastlogicalline [expr $endoffun - $startoffun - $nbcontlines +1]
+
+            # if the debug occurs on a .sce file wrapped in a function, the
+            # last four logical line numbers contain the code added to return
+            # local variables to the calling level and should not be
+            # breakpointed since they constitute hidden code
+            if {$debugassce} {
+                incr lastlogicalline -4
+            }
 
             append cmd "(\"$funname\",\[1:" $lastlogicalline "\]);"
 
@@ -356,6 +340,14 @@ proc runtocursor_bp {{checkbusyflag 1} {skipbptmode 0}} {
     }
 
     set textarea [gettextareacur]
+
+    # if the cursor is in the wrapper code (.sce files case), move it out
+    if {[lsearch [$textarea tag names insert] "db_wrapper"] != -1} {
+        set wrapstart [$textarea tag prevrange "db_wrapper" insert]
+        set wrapstart [lindex $wrapstart 0]
+        $textarea mark set insert "$wrapstart - 1 c"
+    }
+
     set infun [whichfun [$textarea index insert] $textarea]
     if {$infun!=""} {
         if {!$skipbptmode} {
@@ -373,7 +365,6 @@ proc runtocursor_bp {{checkbusyflag 1} {skipbptmode 0}} {
         set delbpcomm "delbpt(\"$cursorfunname\",$cursorfunline);"
         ScilabEval_lt $delbpcomm "seq"
     } else {
-        # <TODO> .sce case
         showinfo [mc "Cursor must be in a function"]
     }
 }
@@ -415,16 +406,15 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         getfromshell
         checkendofdebug_bp $stepmode
     } else {
-        # <TODO> .sce case
-        # Sending \n is if mode(6) mode(0) is used. If pause, there is no
-        # need to distinguish between .sci and .sce (resume is sent for both)
- #       ScilabEval_lt " " "seq"
+        # <TODO> .sce case if some day the parser uses pseudocode noops
     }
 }
 
 proc goonwo_bp {} {
     global funnameargs waitmessage
+
     if {[isscilabbusy 5]} {return}
+
     showinfo $waitmessage
     if {$funnameargs != ""} {
         removeallactive_bp
@@ -466,6 +456,7 @@ proc break_bp {} {
 #    from stepbystep_bp)
 if {1} {
 global funnameargs
+global setbptonreallybreakpointedlinescmd
 set checkbusyflag 0
         if {$funnameargs != ""} {
             # because the user can open or close files during debug,
@@ -482,14 +473,16 @@ set checkbusyflag 0
                 # no limit exceeded - go on one 
                 regsub -all -- {\(} $cmd "setbpt(" cmdset
                 regsub -all -- {\(} $cmd "delbpt(" cmddel
-                ScilabEval_lt "$cmdset" "sync" "seq"
-#                resume_bp $checkbusyflag $stepmode
-#                ScilabEval_lt "$cmddel" "seq"
+                ScilabEval_lt "$cmdset" "sync" ;# "seq"
+                updateactivebreakpoint 4
+                ScilabEval_lt "$cmddel" "seq"
+                getfromshell 4
             }
         } else {
-            # <TODO> .sce case
+            # <TODO> .sce case if some day the parser uses pseudocode noops
     #        resume_bp
         }
+}
 
 # <TODO> Remove next line and allow to continue debug
 # Problem: Scilab does not stop at breakpoints located after the break command point!
@@ -499,11 +492,11 @@ set checkbusyflag 0
     }
 }
 
-}
-
 proc canceldebug_bp {} {
     global funnameargs waitmessage
+
     if {[isscilabbusy 5]} {return}
+
     if {[getdbstate] == "DebugInProgress"} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
@@ -516,5 +509,11 @@ proc canceldebug_bp {} {
     } else {
         # [getdbstate] is "ReadyForDebug" - nothing to do
     }
+
+    scedebugcleanup_bp 
+
+    # dbstate must be set explicitely to NoDebug here, because
+    # scedebugcleanup_bp does nothing for .sci files
     setdbstate "NoDebug"
+
 }

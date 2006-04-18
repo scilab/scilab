@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.22
+# in sync at least with v6.24
 
 
 # commons
@@ -73,7 +73,13 @@
                         Vérifier les arguments de la fonction (leur noms)\
                         dans la boîte de dialogue de configuration."
 ::msgcat::mcset fr "Error in selected function arguments" "Erreur sur les arguments de la fonction sélectionnée"
-::msgcat::mcset fr "Debugger is not yet developed for sce scripts!" "Débug de scripts .sce non implémenté!"
+::msgcat::mcset fr "Main level code found" "Présence de code hors fonction"
+::msgcat::mcset fr "This file contains main level code.\nDebug as a single .sce file?" \
+                   "Ce fichier contient du code hors définition de fonction.\nDébugguer en tant qu'unique entité .sce ?"
+::msgcat::mcset fr "No function found" "Aucune fonction trouvée"
+::msgcat::mcset fr "This file contains no function and will be treated" \
+                   " Ce fichier ne contient aucune fonction et sera traité"
+    ::msgcat::mcset fr "as a single .sce file.\nStart debugging?" "en tant qu'unique entité .sce.\nCommencer le débug ?"
 
 
 # db_debugsession.tcl

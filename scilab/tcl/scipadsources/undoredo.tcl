@@ -48,7 +48,7 @@ proc undoredo {textarea action} {
 }
 
 proc isanymodified {} {
-# Returns true if any buffer was modified
+# Return true if any buffer was modified
     global listoftextarea
     set ret false
     foreach textarea $listoftextarea {
@@ -61,7 +61,7 @@ proc isanymodified {} {
 }
 
 proc ismodified {textarea} {
-# Returns true if the buffer in parameter was modified
+# Return true if the buffer in parameter was modified
     return [$textarea edit modified]
 }
 

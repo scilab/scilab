@@ -110,8 +110,17 @@ proc configurefoo_bp {} {
                                        {scrollarrows_bp $listboxinput up}}
     focus $buttonAddc
     grab $conf
+
+    # if no function was previously selected in the dialog, automatically get the
+    # list of available functions and treat the .sce case (propose to wrap the
+    # file in a function)
     if {$funnames == ""} {Obtainall_bp}
-    if {$funnames == ""} {OKconf_bp $conf;showinfo [mc "Debugger is not yet developed for sce scripts!"]; # <TODO> Do it!}
+
+    # if still no function is found here, the user must have a .sce file
+    # that he refused to debug as such (otherwise there is at least one
+    # function, which is the wrapper
+    # in this case, close the configure box and... that's all, folks!
+    if {$funnames == ""} {OKconf_bp $conf}
 }
 
 proc scrollyboth_bp {leftwin rightwin args} {
@@ -147,8 +156,8 @@ proc spinboxbuttoninvoke {} {
             $listboxinput insert end $var
             $listboxinputval insert end $funvarsvals($funname,$var)
         }
-    $listboxinput selection set 0
-    $listboxinput see 0
+        $listboxinput selection set 0
+        $listboxinput see 0
     }
 }
 
@@ -280,7 +289,10 @@ proc OKconf_bp {w} {
             set funnameargs ""  
             setdbstate "NoDebug"
         }
-    } else {       # .sce case
+    } else {
+        # .sce case
+        # with the wrapper implementation, this does only happen
+        # when the user refused to debug its .sce file as 
         set funnameargs ""
         setdbstate "NoDebug"
     }
@@ -373,10 +385,11 @@ proc checkarglist {funname} {
         }
     }
     if {$found == "false"} {
+        set tit [mc "Error in selected function name or arguments"]
         tk_messageBox -message [concat [mc "The selected function has not been found in the opened files, maybe it was deleted since last configuration of the debugger.\nUse button \""] \
                                        [mc "Obtain"] \
                                        [mc "\" to refresh the list of available functions."] ] \
-                      -parent $conf
+                      -icon warning -title $tit -parent $conf
     } else {
         if {$parametersOK != "true" } {
             if {$orderOK == "false"} {
@@ -409,11 +422,41 @@ proc Obtainall_bp {} {
 # argument names are gathered and displayed in the configure box
     global spin listboxinput listboxinputval funnames funvars funvarsvals
     global funsinbuffer
+    global debugassce pad conf
+
     set textarea [gettextareacur]
     set funsinbuffer($textarea) ""
     set funsinfo [lindex [getallfunsintextarea $textarea] 1]
+
     if {[lindex $funsinfo 0] != "0NoFunInBuf"} {
         # At least one function definition was found in the buffer
+        if {[bufferhaslevelzerocode $textarea]} {
+            # Mixed .sce/.sci
+            set answ [tk_messageBox -icon question -type yesno -parent $conf \
+                    -title [mc "Main level code found"] \
+                    -message [mc "This file contains main level code.\nDebug as a single .sce file?"] ]
+            switch -- $answ {
+                yes {set treatassce true }
+                no  {set treatassce false}
+            }
+        } else {
+            # Pure .sci file
+            set treatassce false
+        }
+    } else {
+        # No function definition found in the buffer
+        # Pure .sce file
+        set answ [tk_messageBox -icon question -type yesno -parent $conf \
+                -title [mc "No function found"] \
+                -message [concat [mc "This file contains no function and will be treated"] \
+                                 [mc "as a single .sce file.\nStart debugging?"] ] ]
+        switch -- $answ {
+            yes {set treatassce true}
+            no  {set debugassce false ; return}
+        }
+    }
+
+    if {!$treatassce} {
         set funtoset [lindex $funsinfo 0]
         $spin configure -state normal
         $spin delete 0 end
@@ -446,13 +489,121 @@ proc Obtainall_bp {} {
         $spin configure -state readonly
         $spin set $funtoset
         set funnames [$spin cget -values]
+        spinboxbuttoninvoke
+        $listboxinput see 0
+        set debugassce false
+
     } else {
-        # No function definition found in the buffer
-        set funnames [$spin cget -values]
-        $spin set [lindex $funnames 0]
+        # not a pure .sci file
+        # wrap in a function, and run the game again
+
+        # wrapper data cannot be undone
+        # and must not change the modified flag
+        $textarea configure -undo 0
+        set mflag [ismodified $textarea]
+
+        # add function header
+        set txt "function db_wrapper_"
+        set textareaid [scan $textarea $pad.new%d]
+        append txt $textareaid "_db()\n"
+        $textarea mark set insert 1.0
+        puttext $textarea $txt
+        $textarea tag add db_wrapper 1.0 insert
+
+        # add function return instructions
+        # note: if these instructions are changed then the number of lines
+        # to adjust lastlogicalline in proc getlogicallinenumbersranges
+        # could need to be updated too
+        set txt "\ndb_nam=who(\"local\");db_nam=strcat(db_nam(1:$-predef()),\",\")\n"
+        append txt "execstr(\"\[\" + db_nam + \"\]=resume(\" + db_nam + \")\")\n"
+        append txt "endfunction\n"
+        $textarea mark set insert end
+        set oldinsert [$textarea index insert]
+        puttext $textarea $txt
+        $textarea tag add db_wrapper $oldinsert insert
+
+        # restore the undo capability in the buffer
+        $textarea configure -undo 1
+        if {!$mflag} {
+            # catched to avoid errors when quickly closing Scipad during debug
+            catch {after idle [list resetmodified $textarea]}
+        }
+
+        $textarea tag configure db_wrapper -background gray40
+        showwrappercode
+
+        Obtainall_bp
+        set debugassce true
+
+# the wrapper code must not be elided for the debug commands to work
+#        hidewrappercode
     }
-    spinboxbuttoninvoke
-    $listboxinput see 0
+
+    # if the file is a pure or mixed .sce that the user agreed to debug as
+    # a .sce file, the wrapper function has already been inserted and there
+    # is nothing more to configure (no input argument), therefore simply
+    # close the dialog and start debugging
+    if {$debugassce} {OKconf_bp $conf;stepbystepover_bp}
+}
+
+proc showwrappercode {} {
+    global listoftextarea
+    foreach w $listoftextarea {
+        $w tag configure db_wrapper -elide false
+    }
+}
+
+proc hidewrappercode {} {
+    global listoftextarea
+    foreach w $listoftextarea {
+        $w tag configure db_wrapper -elide true
+    }
+}
+
+proc scedebugcleanup_bp {} {
+# suppress wrapper data added in the buffer by proc Obtainall_bp
+# in order to debug a .sce file, and clean the content of the
+# configure box so that the next F10 will not show remaining
+# db_wrapper_... functions
+# this proc actually deletes any text tagged as db_wrapper from
+# all the textareas
+    global listoftextarea debugassce
+    global funnames funnameargs
+
+    # if the debug in progress was not a .sce debug, do nothing
+    if {!$debugassce} {return}
+
+    # remove wrapper data previously added in the buffer
+    foreach w $listoftextarea {
+        # wrapper data removal cannot be undone
+        # and must not change the modified flag
+        $w configure -undo 0
+        set mflag [ismodified $w]
+
+        set wrapperrange [$w tag nextrange db_wrapper "1.0"]
+        while {$wrapperrange != {}} {
+            $w delete [lindex $wrapperrange 0] [lindex $wrapperrange 1]
+            set wrapperrange [$w tag nextrange db_wrapper "1.0"]
+        }
+
+        # restore the undo capability in the buffer
+        $w configure -undo 1
+        if {!$mflag} {
+            catch {after idle [list resetmodified $w]}
+        }
+
+    }
+
+    # reset configure box settings for the next configuration
+    # because the wrapper info is removed after the debug session
+    # the user cannot restart a new debug session without
+    # configuring execution again
+    set funnameargs ""
+    set funnames ""
+    set debugassce false
+
+    setdbstate "NoDebug"
+
 }
 
 proc hasvarargin {arglist} {

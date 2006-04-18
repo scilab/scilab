@@ -16,8 +16,6 @@ set watchalwaysontop 0
 set ScilabCodeMaxBreakpointedMacros 100
 set ScilabCodeMaxBreakpoints 1000
 
-# FV, 17/06/04, better do it in scipad.sci
-#ScilabEval_lt "TCL_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"
 set waitmessage [mc "Please wait..."]
 
 # Read debugger icons from gif files on disk and resize them independently of their

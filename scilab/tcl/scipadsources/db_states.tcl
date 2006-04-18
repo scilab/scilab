@@ -276,6 +276,8 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
 # to checkendofdebug_bp
     global setbptonreallybreakpointedlinescmd
 
+    set wcur [gettextareacur]
+
     set removecomm [duplicatechars [removescilab_bp "no_output"] "\""]
     regsub -all {\"\"} $removecomm "\\\"\"" removecomm
     regsub -all {\?} $removecomm "\\\?" removecomm
@@ -300,17 +302,17 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
             set skipline ""
                    }
         "into"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\[iscursorplace_bp  \]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }
@@ -319,11 +321,13 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set comm2 "if size(db_l,1)==1 then"
     set comm3   "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
     set comm4   "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
-    set comm5 "else"
-    set comm6   "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm7   "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm8 "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8]
+    set comm5   "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
+    set comm6 "else"
+    set comm7   "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm8   "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
+#    set comm9 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
+    set comm9 "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9]
 
     ScilabEval_lt "$fullcomm" "seq"
 }
