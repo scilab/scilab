@@ -9,12 +9,6 @@
 //%eps|1 1|Double|Real
 //varargout|-1 -1|Cell|Unknown
 //%shortcircuit|1 1|Double|Real
-//res1|1 100|Unknown|Unknown
-//res2|1 100|Unknown|Unknown
-//res3|1 1|Unknown|Unknown
-//res4|1 10|Unknown|Unknown
-//res5|1 -1|Unknown|Unknown
-//res6|1 1|Unknown|Unknown
-//res7|1 10|Unknown|Unknown
-//res8|1 -1|Unknown|Unknown
-//res9|1 1|Unknown|Unknown
+//res1|1 100|Double|Unknown
+//res2|1 100|Double|Unknown
+//res3|1 1|Double|Unknown
