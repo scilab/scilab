@@ -10,7 +10,7 @@ function [tree]=sci_linspace(tree)
 // Boolean value: true if one rhs is a String
 //str=%F
 
-A=tree.rhs(1)
+A=tree.rhs(1) 
 B=tree.rhs(2)
 
 // %c_linspace and %b_linspace are not defined
