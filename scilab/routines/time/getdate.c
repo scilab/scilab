@@ -100,7 +100,7 @@ void C2F(convertdate)(time_t *dt,int w[10])
 			w[8] =        nowstruct->tm_sec;
             if (ChronoFlag)
 			{
-             #if WIN32
+       #if WIN32
 				w[9] = timebufferW.millitm;
 			 #else
 				w[9] = timebufferU.tv_usec / 1000;  /* micro to ms */

@@ -14,9 +14,16 @@
 #else
 #include <sys/time.h> 
 #endif
+
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(convertdate)();
 extern void C2F(scigetdate)();
+extern int *InversionMatrixInt(int W,int L,int *Matrix);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -77,21 +84,48 @@ int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			if ( GetType(1) == sci_matrix )
 			{
-				GetRhsVar(1,"i",&m1,&n1,&l1);
-				if ( (m1 == 1) && (n1 == 1) )
+				int i=0;
+				int k=0;
+				int l=0;
+				double *param=NULL;
+			
+				int *DATEARRAY=NULL;
+
+				GetRhsVar(1,"d",&m1,&n1,&l1);
+				param=stk(l1);
+
+				l=10*m1*n1;
+				DATEARRAY=(int *)MALLOC( (l)*sizeof(int) );
+				for (k=0;k<l;k++) DATEARRAY[k]=0;
+			
+				for(i=0;i<m1*n1;i++)
 				{
-					int x=0;
-					x=*istk(l1);
-					C2F(convertdate)(&x,DATEMATRIX);
-					m1=1;
-					n1=10;
-					CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEMATRIX);
+					int j=0;
+					int paramtemp=(int)param[i];
+					double millisecondes=param[i]-paramtemp;
+					C2F(convertdate)(&paramtemp,DATEMATRIX);
+					for (j=0;j<10;j++)
+					{
+						DATEARRAY[(i*10)+j]=DATEMATRIX[j];
+					}
+					if (millisecondes>0)
+					{
+						if (millisecondes>0.999) millisecondes=0.999;
+						DATEARRAY[(i*10)+9]=(int)(millisecondes*1000);
+					}
 				}
-				else
-				{
-					Scierror(999,"Parameter must be a integer.");
-					return 0;
-				}
+
+				m1=l/10;
+				n1=10;
+				DATEARRAY=InversionMatrixInt(n1,m1,DATEARRAY);
+				CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEARRAY);
+
+				LhsVar(1)=Rhs+1;
+				C2F(putlhsvar)();
+				if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
+				if (DATEARRAY) {FREE(DATEARRAY);DATEARRAY=NULL;}
+				return 0;
+
 			}
 			else
 			{
