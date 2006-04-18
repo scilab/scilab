@@ -172,7 +172,8 @@ int sciprint2 (int iv, char *fmt,...)
 	C2F (xscion) (&i);
 	if (i == 0)
 	{
-		count = vfprintf (stdout,"%s",s_buf);
+		printf ("%s", s_buf);
+		//count = vfprintf (stdout,"%s",s_buf);
 	}
 	else
 	{
