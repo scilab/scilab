@@ -688,6 +688,9 @@ cd .. &gt;nul
 				RelativePath=".\intgetdate.c">
 			</File>
 			<File
+				RelativePath=".\intsleep.c">
+			</File>
+			<File
 				RelativePath=".\inttimer.c">
 			</File>
 			<File
@@ -705,6 +708,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intgetdate.h">
+			</File>
+			<File
+				RelativePath=".\intsleep.h">
 			</File>
 			<File
 				RelativePath=".\inttimer.h">

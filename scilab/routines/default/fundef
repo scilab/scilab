@@ -264,7 +264,7 @@
 {"gethistory",      IN_matsys,	56,	2},
 {"resethistory",    IN_matsys,	57,	2},
 {"macr2tree",       IN_matsys,	58,	2},
-{"sleep",           IN_matsys,	59,	2},
+/* <FREE> 59*/
 {"getos",           IN_matsys,	60,	2},
 {"banner",          IN_matsys,	61,	2},
 {"fromjava",        IN_matsys,	62,	2},
@@ -665,3 +665,4 @@
 {"getdate",	        IN_inttime,	1,	2},
 {"Calendar",        IN_inttime,	2,	2},
 {"timer",	        IN_inttime,	3,	2},
+{"sleep",	        IN_inttime,	4,	2},

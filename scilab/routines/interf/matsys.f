@@ -60,7 +60,7 @@ c     global   clearglobal isglobal gstacksize intppty
 c     47         48          49        50      52
 c     lasterror version loadhistory savehistory gethistory resethistory macr2tree
 c     53         54        55          56         57          58        59
-c     sleep getos
+c     <free> getos
 c     60    61 
 c     banner fromjava  getmemory fromc getmd5
 c     62     63        64        65       66   
@@ -78,7 +78,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      695,697,698,699,700,701,702,703,
-     +      705,706,707,708,709,710,711),fin
+     +      998,706,707,708,709,710,711),fin
 c     
 c     debug
  10   call intdebug()
@@ -253,8 +253,6 @@ c     mtlb_mode
       goto 999
  703  call macr2tree('macr2tree')
       goto 999
- 705  call intsleep('sleep')
-      goto 999 
  706  call intgetos('getos')
       goto 999 
  707  call intbanner('banner')
