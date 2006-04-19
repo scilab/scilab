@@ -1,6 +1,10 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
+#if WIN32
+	#define _USE_32BIT_TIME_T 1
+#endif
+/*-----------------------------------------------------------------------------------*/
 #include "../machine.h"
 #include <time.h>
 #include <locale.h>
@@ -23,7 +27,10 @@ except every 100th isn't, and every 400th is).  */
 # define __isleap(year) \
 	((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
 #endif
-
+/*-----------------------------------------------------------------------------------*/
+#ifndef _MAX__TIME64_T
+#define _MAX__TIME64_T     0x100000000000i64    /* number of seconds from 00:00:00, 01/01/1970 UTC to 23:59:59. 12/31/2999 UTC */
+#endif
 /*-----------------------------------------------------------------------------------*/
 #if WIN32
 extern void sciprint __PARAMS((char *fmt,...));
@@ -69,7 +76,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
 /*-----------------------------------------------------------------------------------*/
 void C2F(convertdate)(time_t *dt,int w[10])
 {
-	if (*dt<0)
+	if ( (*dt<0) || (*dt> _MAX__TIME64_T) )
 	{
 		w[0] = 0;
 		w[1] = 0;
@@ -81,7 +88,8 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[7] = 0;
 		w[8] = 0;
 		w[9] = 0;
-		sciprint("dt=getdate(x) x must be >0.\n");
+		if (*dt<0)	sciprint("dt=getdate(x) x must be > 0.\n");
+		else sciprint("dt=getdate(x) x must be < %d.\n",_MAX__TIME64_T);
 	}
 	else
 	{
