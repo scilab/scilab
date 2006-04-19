@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 	<head>
-		<title>toolbox_example</title>
+		<title>Toolbox Guide</title>
 		<link rel="stylesheet" href="toolbox.css" type="text/css">
 	</head>
 	
 	<body>
-		<h1 center>Guide for the toolboxes contribution (general application)</h1>
+		<h1 center>Guide for the toolboxes contribution (general application)<br /><hr></h1>
 		<p>
 			This article describes a standart method to create a Scilab toolbox.<br />
 			The objective is to help the contributors to build a toolbox easily, but also that the users are able to install it with just the execution of a main builder and a main loader script.<br />
@@ -15,31 +15,35 @@
 			(The above standarisation is not mandatory)
 		</p>
 		
-		<a href="#chap1">1. Toolbox composition</a><br /><br />
-		<a href="#chap2">2. Sub-builders and sub-loaders</a><br />
-		<ul>
-			<li><a href="#chap2.1">2.1 The macros directory</a><br /></li>
-			<ul>
-				<li><a href="#chap2.1.1">2.1.1 Creation of the builder</a><br /></li>
-				<li><a href="#chap2.1.2">2.1.2 Creation of the loader</a><br /></li>
-			</ul>
-			<li><a href="#chap2.2">2.2 The src directory</a><br /></li>
-			<ul>
-				<li><a href="#chap2.2.1">2.2.1 Interface</a><br /></li>
-				<li><a href="#chap2.2.2">2.2.2 Creation of the builder</a><br /></li>
-			</ul>
-				<li><a href="#chap2.3">2.3 The man directory</a><br />
-			<ul>
-				<li><a href="#chap2.3.1">2.3.1 Creation of .xml files</a><br /></li>
-				<li><a href="#chap2.3.2">2.3.2 Creation of the builder</a><br /></li>
-				<li><a href="#chap2.3.3">2.3.3 Creation of the loader</a><br /><br /></li>
-			</ul>
-		</ul>
-		<a href="#chap3">3. The main builder and loader</a><br /><br />
-		<a href="#chap4">4. Upload your toolbox</a><br />
+		<h2>Table of content</h2>
 		
-		<a name="#chap1"></a>
-		<h2 class=souligne>1. Toolbox composition</h2>
+		<ul>
+			<a href="#chap1">1. Toolbox composition</a><br />
+			<a href="#chap2">2. Sub-builders and sub-loaders</a><br />
+			<ul>
+				<a href="#chap2.1">2.1. The macros directory</a><br />
+				<ul>
+					<a href="#chap2.1.1">2.1.1. Creation of the builder</a><br />
+					<a href="#chap2.1.2">2.1.2. Creation of the loader</a><br />
+				</ul>
+				<a href="#chap2.2">2.2. The src directory</a><br />
+				<ul>
+					<a href="#chap2.2.1">2.2.1. Interface</a><br />
+					<a href="#chap2.2.2">2.2.2. Creation of the builder</a><br />
+				</ul>
+					<a href="#chap2.3">2.3. The man directory</a><br />
+				<ul>
+					<a href="#chap2.3.1">2.3.1. Creation of .xml files</a><br />
+					<a href="#chap2.3.2">2.3.2. Creation of the builder</a><br />
+					<a href="#chap2.3.3">2.3.3. Creation of the loader</a><br />
+				</ul>
+			</ul>
+			<a href="#chap3">3. The main builder and loader</a><br />
+			<a href="#chap4">4. Upload your toolbox</a><br />
+		</ul>
+		
+		<a name="chap1"></a>
+		<h2>1. Toolbox composition</h2>
 		<p>The root directory has the generic name of the toolbox (here <b>toolbox_example</b>), it contains 7 sub-directories:</p> 
 		
 		<ul style="list-style-type: disc">
@@ -60,14 +64,14 @@
 			<li><b>loader.sce</b></li>
 		</ul>
 		
-		<a name="#chap2"></a>
-		<h2 class=souligne>2. Sub-builders and sub-loaders</h2>
+		<a name="chap2"></a>
+		<h2>2. Sub-builders and sub-loaders</h2>
 			<p>
 				The main builder and main loader scripts launch respectively the sub-builders and sub-loaders included in the sub-directories (macros, src, man, ...), to generate and to load the necessary libraries and the Scilab help files.
 			</p>
 		
 		<a name="#chap2.1"></a>
-		<h3 class=souligne>2.1 The macros directoy</h3>
+		<h3>2.1 The macros directoy</h3>
 		<p>
 			The main builder and main loader scripts launche respectively the sub-builders and sub-loaders included in the sub-directories (macros, man, ...), to generate and to load the necessary libraries and the Scilab help files.
 			This directory included macros Scilab functions, a builder and a loader script.<br />
@@ -94,11 +98,10 @@ function [X]=foo1(A)
 			X($+1)=A(i,i);
 		end
 	end
-endfunction
-		</pre>
+endfunction</pre>
 		
-		<a name="#chap2.1.1"></a>
-		<h4 class=souligne>2.1.1 Creation of the builder</h4>
+		<a name="chap2.1.1"></a>
+		<h4>2.1.1 Creation of the builder</h4>
 		<p>
 			The builder (see above script) creates a library variable, (named here: toolbox_examplelib= toolbox name +'lib')
 			from functions .sci  include in the directory macros, and saves it in the file lib.
@@ -113,14 +116,13 @@ toolboxname='toolbox_example'
 pathB=get_absolute_file_path('builder.sce')
 disp('Building macros  in ' +pathB)
 genlib(toolboxname+'lib',pathB,%t)
-clear pathB genlib toolboxname
-		</pre>	
+clear pathB genlib toolboxname</pre>	
 		
 		<br />
 		To customize this template, replace the characters string 'toolbox_example' by the name of your toolbox.
 		
-		<a name="#chap2.1.2"></a>
-		<h4 class=souligne>2.1.2 Creation of the loader</h4>
+		<a name="chap2.1.2"></a>
+		<h4>2.1.2 Creation of the loader</h4>
 		<p>
 			The loader (see above script) loads the library lib included in the directory macros. Like the builder, the code is generic, the first step to locate macrosloader.sce script, and the second to load the library (see help <strong><var>load</strong></var> function)
 		</p>
@@ -131,19 +133,18 @@ mode(-1)
 pathL=get_absolute_file_path('loader.sce')
 disp('Loading macros  in ' +pathL)
 load(pathL+'/lib')
-clear pathL 
-		</pre>	
+clear pathL</pre>	
 		
-		<a name="#chap2.2"></a>
-		<h3 class=souligne>2.2 The src directory</h3>
+		<a name="chap2.2"></a>
+		<h3>2.2 The src directory</h3>
 		<p>
 			This directory included .c files and a builder script<br />
 			A Scilab primitive is a Scilab function which calls a function written in C or fortran code (using an interface program)<br />
 			Before to write the builder, its necessary to create for each primitives the corresponding interface programs. When a Scilab primitive is called, the interface program checks that the number, the type and the size of  inputs/outputs arguments is correct (using CheckRhs and CheckLhs functions), and get the adress of the rhs arguments which are in Scilab internal stack to give this information at the interfaced function. So in the first part we explain, thanks to template, how to implement some interfaces programs (written in C code). In this article we don't describe all the possibilities of the interface programs, for more explanations see the directory SCI/examples.  
 		</p>
 		
-		<a name="#chap2.2.1"></a>
-		<h4 class=souligne>2.2.1 Interface</h4>
+		<a name="chap2.2.1"></a>
+		<h4>2.2.1 Interface</h4>
 		<p>
 			Here two examples which enable to write many interfaces, so it's important to understand it, and know how to customize it for your toolbox. 
 		</p>
@@ -164,8 +165,7 @@ void sumab(int n, double * a, double * b, double * y)
 	int k;
 	for (k = 0; k < n; ++k) 
 	y[k] = a[k] + b[k];
-}
-		</pre>	
+}</pre>	
 			
 		<br />
 		intsumab.c<br />
@@ -208,8 +208,7 @@ sumab(n,stk(l1),stk(l2),stk(l3));
 /* 5 - Specif the ouput argument */  
 LhsVar(1) = 3;  
 return 0;
-}
-		</pre>	            
+}</pre>	            
 		
 		<br />
 		<p>
@@ -284,8 +283,7 @@ void fun1(double * a,  int na, int * nb,  double ** b , double * positive_sum){
 		*positive_sum += a[i];
 		k1++;
 	};
-}
-		</pre>	
+}</pre>	
 		
 		<br />
 		
@@ -298,8 +296,7 @@ void  fun2(double * a, int na, int * m)
 	for(i=0;i<na;i++)
 	if (a[i]>0)  
 		(*m)++;
-}
-		</pre>	
+}</pre>	
 		
 		<br />
 		
@@ -358,13 +355,12 @@ int intfun1(char *fname)
 	if(Lhs==2)
 		LhsVar(2) = 3;
 	return 0;
-}
-		</pre>	
+}</pre>	
 		
 		<br />
 		
-		<a name="#chap2.2.2"></a>
-		<h4 class=souligne>2.2.2 Creation of the builder</h4>
+		<a name="chap2.2.2"></a>
+		<h4>2.2.2 Creation of the builder</h4>
 		<p>
 			Now the src directory of the toolbox toolbox_example contains all the necessary files (<b><i>fun1.c</b></i>,
 		 	<b><i>fun2.c</b></i>, <b><i>intfun1.c</b></i>, <b><i>sumab.c</b></i>, <b><i>intsumab.c</b></i>) to create the 
@@ -378,8 +374,7 @@ int intfun1(char *fname)
 		
 		the src builder
 		<pre class="entete">
-ilib_for_link('toolboxsrc',['fun1.o' 'fun2.o','sumab.o'],[],"c")
-		</pre>	
+ilib_for_link('toolboxsrc',['fun1.o' 'fun2.o','sumab.o'],[],"c")</pre>	
 		
 		<br />
 		the interface builder<br />
@@ -392,14 +387,13 @@ libs  = ["../src/libtooloxsrc"]                 // other libs needed for linking
 table = [ 'scifun1', 'intfun1';
 	'scisum','intsumab'];        // table of (scilab_name,interface-name)
 // do not modify below
-ilib_build(ilib_name,table,files,libs)
-		</pre>	
+ilib_build(ilib_name,table,files,libs)</pre>	
 		
 		<br />	
 		<br />
 		
-		<a name="#chap2.2.2"></a>
-		<h4 class=souligne>2.2.2 Creation of the builder</h4>
+		<a name="chap2.2.2"></a>
+		<h4>2.2.2 Creation of the builder</h4>
 		<p>Now the src directory of the toolbox toolbox_example contains all the necessary files (<b><i>fun1.c</b></i>, <b><i>fun2.c</b></i>, <b><i>intfun1.c</b></i>, <b><i>sumab.c</b></i>, <b><i>intsumab.c</b></i>) to create the builder (see above template) for the primitives scifun1 and scisum.
 		<br />
 		We need to write two builders: one the hand, the src builder (see above script) which creates a shared libraries (see help <i><b>ilib_for_link</b></i> function) corresponding to the .c functions. 
@@ -409,8 +403,7 @@ ilib_build(ilib_name,table,files,libs)
 		
 		the src builder
 		<pre class="entete">
-ilib_for_link('toolbox_examplesrc',['fun1.o' 'fun2.o','sumab.o'],[],"c")
-		</pre>	
+ilib_for_link('toolbox_examplesrc',['fun1.o' 'fun2.o','sumab.o'],[],"c")</pre>	
 		
 		<br />
 		the interface builder<br />
@@ -423,24 +416,23 @@ libs  = ["../src/libtoolbox_examplesrc"]                 // other libs needed fo
 table = [ 'scifun1', 'intfun1';
 	'scisum','intsumab'];        // table of (scilab_name,interface-name)
 // do not modify below
-ilib_build(ilib_name,table,files,libs)
-		</pre>	
+ilib_build(ilib_name,table,files,libs)</pre>	
 		
 		<br />
 		The <i><b>ilib_name</b></i> value is the interface library name, the vector <i><b>files</b></i> contains all the object interface files,  
 		the vector <i><b>libs</b></i> contains the libraries needed for linking (here the library included in the src directory), 
 		the variable <i><b>table</b></i> contains the primitives names (first column) and the corresponding interface program names (second column)
 		
-		<a name="#chap2.3"></a>
-		<h3 class=souligne>2.3 The  man directory</h3>
+		<a name="chap2.3"></a>
+		<h3>2.3 The  man directory</h3>
 		<p>This directory included .xml files, a manbuilder and a manloader scripts
 				On Unix/Linux systems: to create the manual pages you need 'sabcmd', an XML parser which is part of the Sablotron package.<br /> 
 				(here link to download it:<A href="http://www.scilab.org/download/index_download.php?page=related_tool.html">  http://www.scilab.org/download/index_download.php?page=related_tool.html</A>)<br />
 				(.................... a completer  ............................)
 		</p>
 		
-		<a name="#chap2.3.1"></a>
-		<h4 class=souligne>2.3.1 Creation of .xml files</h4>
+		<a name="chap2.3.1"></a>
+		<h4>2.3.1 Creation of .xml files</h4>
 		<p> 
 		Here a template which helps you to write the .xml help files. You should just fill the different items(Langage, title, type, date, short description, ...) for the .xml files of your functions (here <b><i>foo1.xml</i></b>, <b><i>scifun1.xml</i></b>, <b><i>scisum.xml</i></b>) and put them in the man directory.
 		</p>
@@ -517,11 +509,10 @@ Add here the author  references
 &lt;USED_FUNCTIONS&gt;
 Add here the used function name and  references
 &lt;/USED_FUNCTIONS&gt;
-&lt;/MAN&gt;
-		</pre>	
+&lt;/MAN&gt;</pre>	
 		
-		<a name="#chap2.3.2"></a>
-		<h4 class=souligne>2.3.2 Creation of the builder</h4>
+		<a name="chap2.3.2"></a>
+		<h4>2.3.2 Creation of the builder</h4>
 		<p>The manbuilder (see above) creates a whatis.htm file which is a short description of the functions, and translates the xml files to html (see help xmltohtml function)
 		</p>
 		
@@ -534,11 +525,10 @@ path=get_absolute_file_path('builder.sce');//get the absolute path of this file
 add_help_chapter("Title1",path);//add help chapter
 xmltohtml(path,"Title1")
 //clear the variable stack
-clear path add_help_chapter get_absolute_file_path 
-		</pre>	
+clear path add_help_chapter get_absolute_file_path </pre>	
 		
-		<a name="#chap2.3.3"></a>
-		<h4 class=souligne>2.3.3 Creation of the loader</h4>
+		<a name="chap2.3.3"></a>
+		<h4>2.3.3 Creation of the loader</h4>
 		<p>The loader(see above script) add your help functions files in the help Scilab browser 
 		</p>
 		
@@ -547,11 +537,10 @@ clear path add_help_chapter get_absolute_file_path
 mode(-1) //force silent execution
 path=get_absolute_file_path('loader.sce');//get the absolute path of this file
 add_help_chapter("Title1",path);//add help chapter
-clear path add_help_chapter get_absolute_file_
-		</pre>	
+clear path add_help_chapter get_absolute_file_</pre>	
 		
-		<a name="#chap3"></a>
-		<h2 class=souligne>3. The main builder and loader</h2>
+		<a name="chap3"></a>
+		<h2>3. The main builder and loader</h2>
 		The builder and loader are generic, they execute all sub-builder(s) and sub-loader(s), here the both scripts:<br /><br />
 		
 		builder.sce
@@ -579,8 +568,7 @@ chdir('man');
 exec('builder.sce');
 chdir('..');
 end
-clear mainpathB
-		</pre>	
+clear mainpathB</pre>	
 		
 		<br />
 		
@@ -604,17 +592,16 @@ chdir('man');
 exec('loader.sce');
 chdir('..');
 end
-clear mainpathL
-		</pre>	
+clear mainpathL</pre>	
 
-		<a name="#chap4"></a>
-		<h2 class=souligne>4. Upload your toolbox</h2>
+		<a name="chap4"></a>
+		<h2>4. Upload your toolbox</h2>
 		<ul style="list-style-type: disc">
 			<li>Read the instructions about how to contribute , see the link: 
 				<A href="http://www.scilab.org/contrib/index_contrib.php?page=howto.html">http://www.scilab.org/contrib/index_contrib.php?page=howto.html </A></li>
 				<li>Archive and Compress your toolbox: </li>
 				<li>Complete the submission form document and add your package (here <b>toolbox_example.tar.gz</b> and <b>toolbox_example.zip</b>), 
-					see the link: <A href="http://www.scilab.fr/contrib/index_contrib.php?page=upload.html">http://www.scilab.fr/contrib/index_contrib.php?page=upload.html </A></li>
+					see the link: <A href="http://www.scilab.org/contrib/index_contrib.php?page=upload.html">http://www.scilab.fr/contrib/index_contrib.php?page=upload.html </A></li>
 		</ul>
 	</body>
 </html>

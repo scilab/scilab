@@ -6,9 +6,18 @@
 		color: black;
 		background: white;
 		font-family: arial,helvetica,sans-serif;
-		font-size : 95%;
 		padding : 10px;
 		margin : 0;
+	}
+	
+	h1{
+		text-align:center;
+	}
+	
+	h2{
+		padding-top:10px;
+		padding-bottom:10px;
+		text-decoration:none;
 	}
 	
 /* ====================================================== */
@@ -18,7 +27,7 @@
 	pre.entete{
 		background-color:#EEEEEE;
 		border:thin solid black;
-		padding : 5px;
+		padding : 10px;
 		font-size : 85%;
 		font-family:"Courier New", Courier, monospace;
 	}
@@ -29,10 +38,6 @@
 
 	var {
 		font-style:italic;
-	}
-	
-	.souligne {
-		text-decoration:underline;
 	}
 	
 	P EM {text-decoration:underline;}
