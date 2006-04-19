@@ -1,7 +1,38 @@
-<style type="text/css">
-var {font-style:italic;}
-table.entete {background-color:"#CCCCCC";
-			  border:thin solid black;}
-.souligne {text-decoration:underline;}
-P EM {text-decoration:underline;}
-</style>
+/* ====================================================== */
+/* body
+/* ====================================================== */
+
+	body {
+		color: black;
+		background: white;
+		font-family: arial,helvetica,sans-serif;
+		font-size : 95%;
+		padding : 10px;
+		margin : 0;
+	}
+	
+/* ====================================================== */
+/* Element contenant du code à afficher tel quel
+/* ====================================================== */	
+	
+	pre.entete{
+		background-color:#EEEEEE;
+		border:thin solid black;
+		padding : 5px;
+		font-size : 85%;
+		font-family:"Courier New", Courier, monospace;
+	}
+	
+/* ====================================================== */
+/* other
+/* ====================================================== */	
+
+	var {
+		font-style:italic;
+	}
+	
+	.souligne {
+		text-decoration:underline;
+	}
+	
+	P EM {text-decoration:underline;}
