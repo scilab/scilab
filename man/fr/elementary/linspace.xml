@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -10,7 +10,7 @@
   <DATE>April 1993</DATE>
 
   <SHORT_DESCRIPTION name="linspace">vecteur de valeurs
-  Ã©quidistantes</SHORT_DESCRIPTION>
+  équidistantes</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[v]=linspace(x1,x2 [,n])</CALLING_SEQUENCE_ITEM>
@@ -22,7 +22,7 @@
         <PARAM_NAME>x1,x2</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: scalaire rÃ©el ou complexe</SP>
+          <SP>: scalaire réel ou complexe</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -30,7 +30,7 @@
         <PARAM_NAME>n</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: entier (nombre de valeurs, 100 par dÃ©faut)</SP>
+          <SP>: entier (nombre de valeurs, 100 par défaut)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -38,7 +38,7 @@
         <PARAM_NAME>v</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: vecteur ligne rÃ©el ou complexe</SP>
+          <SP>: vecteur ligne réel ou complexe</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -46,11 +46,11 @@
 
   <DESCRIPTION>
     <P><VERB>linspace(x1, x2)</VERB> renvoie un vecteur ligne de n valeurs
-    rÃ©guliÃ¨rement espacÃ©es entre <VERB>x1</VERB> et <VERB>x2</VERB>. Si
+    régulièrement espacées entre <VERB>x1</VERB> et <VERB>x2</VERB>. Si
     <VERB>x1</VERB> ou <VERB>x2</VERB> sont complexes alors
     <VERB>linspace(x1,x2)</VERB> renvoie un vecteur ligne de n valeurs
-    complexes dont les partie rÃ©els (resp. imaginaires) sont regulierement
-    espacÃ©es entre les partie rÃ©els (resp. imaginaires) de x1 et x2 </P>
+    complexes dont les partie réels (resp. imaginaires) sont regulierement
+    espacées entre les partie réels (resp. imaginaires) de x1 et x2 </P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
