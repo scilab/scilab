@@ -64,53 +64,6 @@ PLATFORM GetPlatform()
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-/* Allan CORNET 2004 */
-int C2F(timer)(double *etime)
-{
-#if WIN32 
-  if (GetPlatform() == WIN9X)
-  {
-    /* Timer high Precision */
-    /* It is not easy to have CPU Time on Win9x */
-    /* timer don't return CPU Time but time between 2 calls of Timer() 2.7 compatibility*/
-    LARGE_INTEGER   Tick2;
-    LARGE_INTEGER   freq;
-      
-    QueryPerformanceFrequency(&freq);
-    QueryPerformanceCounter(&Tick2);
-      
-    if (init_clock == 1) {init_clock = 0; Tick1 = Tick2;}
-    *etime=(double) ( (double) (Tick2.QuadPart - Tick1.QuadPart) / (double)(freq.QuadPart));
-    Tick1 = Tick2;
-  }
-  else
-  if (GetPlatform() == UNKNOWN)
-  {
-		*etime=(double)-1;
-  }
-  else
-  {
-		/* NT 3.5 & > */
-		/* Return CPU Time */
-		FILETIME  ftCreation, ftExit, ftKernel,  ftUser;
-   	__int64 i64UserTick2;
-	
-		GetProcessTimes(GetCurrentProcess(), &ftCreation, &ftExit, &ftKernel, &ftUser);
-		i64UserTick2=*((__int64 *) &ftUser);
-		if (init_clock == 1) {init_clock = 0; i64UserTick1 = i64UserTick2;}
-		*etime=(double) ((double)(i64UserTick2 - i64UserTick1)/(double)10000000U);
-		i64UserTick1 = i64UserTick2;
-	}
-#else
-  clock_t t2;
-  t2 = clock();
-  if (init_clock == 1) {init_clock = 0; t1 = t2;}
-  *etime=(double)((double)(t2 - t1)/(double)CLOCKS_PER_SEC);
-  t1 = t2;
-#endif
-  return(0);
-}
-/*-----------------------------------------------------------------------------------*/
 /* define X_GETTIMEOFDAY macro, a portable gettimeofday() */
 #if  defined(VMS)
 	#define X_GETTIMEOFDAY(t) gettimeofday(t)

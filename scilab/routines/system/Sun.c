@@ -26,7 +26,6 @@ extern void
       C2F(csignal)(),
       C2F(getpidc)(),
   C2F(stimer)(),
-      C2F(timer)(),
       get_echo_mode(),
       get_is_reading(),
       set_echo_mode(),
@@ -88,7 +87,6 @@ void Sun_contents( int x)
       C2F(csignal)();
       C2F(getpidc)();
       scilab_timer_check();
-      C2F(timer)();
       get_echo_mode();
       get_is_reading();
       set_echo_mode();

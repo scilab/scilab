@@ -76,7 +76,6 @@ extern int C2F(sigbas) __PARAMS((integer *n));
 /*  "systemc-n.c.X1" */
 extern int C2F(systemc) __PARAMS((char *command, integer *stat));  
 /*  "timer-n.c.X1" */
-extern int C2F(timer) __PARAMS((double *etime));  
 extern int C2F(stimer) __PARAMS((void));  
 /*  "tmpdir-n.c.X1" */
 extern void C2F(settmpdir) __PARAMS((void));  

@@ -13,10 +13,12 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intcalendar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(inttimer) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static intTimeTable Tab[]={
   {C2F(intgetdate),"getdate"},
 	{C2F(intcalendar),"Calendar"},
+	{C2F(inttimer),"timer"},
 };
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(mattime)()

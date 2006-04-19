@@ -233,7 +233,7 @@
 {"funcprot",        IN_matsys,	26,	3},	
 {"whereis",         IN_matsys,	27,	3},	
 {"where",           IN_matsys,	28,	3},	
-{"timer",           IN_matsys,	29,	3},	
+/* <FREE> 29*/
 /* <FREE> 30*/
 {"havewindow",      IN_matsys,	31,	3},
 {"stacksize",       IN_matsys,	32,	0},	
@@ -664,3 +664,4 @@
 #define  IN_inttime 49
 {"getdate",	        IN_inttime,	1,	2},
 {"Calendar",        IN_inttime,	2,	2},
+{"timer",	        IN_inttime,	3,	2},

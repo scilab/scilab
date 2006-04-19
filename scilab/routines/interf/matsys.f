@@ -50,7 +50,7 @@ c     resu form  isdef   exists errcatch errclear iserror predef
 c     11   12     13    14      15       16       17      18
 c     newfun clearfun  funptr  macr2lst setbpt delbpt dispbpt
 c     19      20       21       22       23     24      25
-c     funcprot whereis where   timer    <free>   havewindow stacksize
+c     funcprot whereis where   <free>  <free>   havewindow stacksize
 c     26         27    28      29       30       31       32
 c     mtlb_mode  link     ulink  c_link addinter <free>   <free>
 c     33         34        35     36    37       38        39
@@ -74,7 +74,7 @@ c
       if(rhs.gt.0) il=iadr(lstk(top))
       goto (10 ,20 ,998 ,55,60 ,70 ,80 ,120,130,140,
      +      150,160,190,180,200,210,220,230,240,250,
-     +      251,300,320,350,370,380,390,400,410,420,
+     +      251,300,320,350,370,380,390,400,998,998,
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      695,697,698,699,700,701,702,703,
@@ -190,14 +190,6 @@ c
 c     where
  400  continue
       call where
-      return
-c
-c     timer
- 410  call inttimer
-      return
-c
-c     notify
- 420  continue
       return
 c
 c     havewindow
@@ -2967,23 +2959,6 @@ c     routine for intstacksize
          p=p+2*topoffset
       endif
       end
-
-      subroutine inttimer
-c     Copyright INRIA
-      include '../stack.h'
-      logical checkrhs,checklhs,cremat
-c
-      rhs=max(rhs,0)
-c
-      if(.not.checklhs('timer',1,1)) return
-      if(.not.checkrhs('timer',0,0)) return
-
-      top=top+1
-      if(.not.cremat('timer',top,0,1,1,l,lc)) return
-      call timer(stk(l))
-      return
-      end
-
 
       subroutine inttype
 c     Copyright INRIA
