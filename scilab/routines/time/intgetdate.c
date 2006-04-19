@@ -69,7 +69,7 @@ int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
 				time_t dt;
 				int ierr=0;
 				C2F(scigetdate)(&dt,&ierr);
-				DATEMATRIX[0]=dt;
+				DATEMATRIX[0]=(int)dt;
 				m1=1;
 				n1=1;
 				CreateVarFromPtr(Rhs+1, "i", &m1, &n1 ,&DATEMATRIX);
