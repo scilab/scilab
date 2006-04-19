@@ -5,7 +5,7 @@
 /*------------------------------------------
  * Scilab stack 
  *------------------------------------------*/
-
+#include <string.h>
 #include "../stack-c.h"
 #include "../system/msgstore.h"
 
