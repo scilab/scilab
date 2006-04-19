@@ -10,6 +10,10 @@
 		margin : 0;
 	}
 	
+/* ====================================================== */
+/* h1, h2 & Cie
+/* ====================================================== */
+	
 	h1{
 		text-align:center;
 	}
@@ -19,6 +23,28 @@
 		padding-bottom:10px;
 		text-decoration:none;
 	}
+	
+/* ====================================================== */
+/* a tags
+/* ====================================================== */
+	
+	a {
+		color: blue;
+		text-decoration:none;
+	}
+	
+	a:visited {
+		color: #00a;
+	}
+	
+	a:active {
+		color: red;
+	}
+	
+	a:hover {
+		text-decoration:underline;
+	}
+	
 	
 /* ====================================================== */
 /* Element contenant du code à afficher tel quel
