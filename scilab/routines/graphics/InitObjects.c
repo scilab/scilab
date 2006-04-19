@@ -1058,16 +1058,15 @@ sciInitFontContext (sciPointObj * pobj)
 
 void initsubwin()  /* Interesting / F.Leray 05.04.04 */
 {
-  sciPointObj  * psubwin;
-  sciSubWindow * ppSubWin = pSUBWIN_FEATURE (psubwin) ;
+  sciPointObj  * psubwin  ;
+  sciSubWindow * ppSubWin ;
   
 
   Cscale2default(); 
-  psubwin=sciGetSelectedSubWin (sciGetCurrentFigure ());
-  
-  /* pSUBWIN_FEATURE (psubwin)->user_data = (int *) NULL; /\* adding 30.06.05 *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->size_of_user_data = 0; */
-  
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  ppSubWin = pSUBWIN_FEATURE (psubwin) ;
+
+
   initSubWinSize( psubwin  ) ;
 
   clearUserData( psubwin ) ;
@@ -1089,47 +1088,6 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   ppSubWin->axes.subint[2] =  1;
   ppSubWin->axes.limits[0]  = 0; 
 
-
-  /* pSUBWIN_FEATURE (psubwin)->WRect[0]   = 0; */
-/*   pSUBWIN_FEATURE (psubwin)->WRect[1]   = 0; */
-/*   pSUBWIN_FEATURE (psubwin)->WRect[2]   = 1; */
-/*   pSUBWIN_FEATURE (psubwin)->WRect[3]   = 1; */
-
-/*   pSUBWIN_FEATURE (psubwin)->FRect[0]   = 0.; */
-/*   pSUBWIN_FEATURE (psubwin)->FRect[1]   = 0.; */
-/*   pSUBWIN_FEATURE (psubwin)->FRect[2]   = 1.; */
-/*   pSUBWIN_FEATURE (psubwin)->FRect[3]   = 1.; */
-/*   pSUBWIN_FEATURE (psubwin)->FRect[4]   =-1.; */
-/*   pSUBWIN_FEATURE (psubwin)->FRect[5]   = 1.; */
-/*   /\* F.Leray 05.04.04 *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->SRect[0]   = 0.0; /\* xmin *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->SRect[1]   = 1.0; /\* xmax *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->SRect[2]   = 0.0;/\* ymin *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->SRect[3]   = 1.0; /\* ymax *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->SRect[4]   = -1.0; /\* zmin *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->SRect[5]   = 1.0; /\* zmax *\/ */
-            
-/*   dir= 'd'; pSUBWIN_FEATURE (psubwin)->axes.xdir=dir; */
-/*   dir= 'l'; pSUBWIN_FEATURE (psubwin)->axes.ydir=dir; */
-/*   (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[0] = FALSE; */
-/*   (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[1] = FALSE; */
-/*   (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[2] = FALSE; */
-/*   (pSUBWIN_FEATURE (psubwin)->axes).reverse[0] = FALSE; */
-/*   (pSUBWIN_FEATURE (psubwin)->axes).reverse[1] = FALSE; */
-/*   (pSUBWIN_FEATURE (psubwin)->axes).reverse[2] = FALSE; */
-  
-/*   pSUBWIN_FEATURE (psubwin)->axes.rect = 0;   */
-/*   pSUBWIN_FEATURE (psubwin)->axes.ticscolor = -1; */
-/*   pSUBWIN_FEATURE (psubwin)->axes.subint[0] =  1; */
-/*   pSUBWIN_FEATURE (psubwin)->axes.subint[1] =  1; */
-/*   pSUBWIN_FEATURE (psubwin)->axes.subint[2] =  1; */
-/*   pSUBWIN_FEATURE (psubwin)->axes.limits[0]  = 0;   */
-/*   pSUBWIN_FEATURE (psubwin)->visible = TRUE; */
-/*   /\*   pSUBWIN_FEATURE (psubwin)->drawlater = FALSE; *\/ */
-/*   pSUBWIN_FEATURE (psubwin)->is3d = FALSE;   */
-/*   pSUBWIN_FEATURE (psubwin)->alpha  = 0.0; */
-/*   pSUBWIN_FEATURE (psubwin)->theta  = 270.0; */
-/*   pSUBWIN_FEATURE (psubwin)->FirstPlot = TRUE; */
 }
 
 int InitFigureModel()
