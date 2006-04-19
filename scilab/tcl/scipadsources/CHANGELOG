@@ -2176,3 +2176,9 @@ Francois VOGEL, 18/04/06
    was only located after the end of the last function definition
  * Fixed: debug state returns to NoDebug after a .sce debug session
  * version --> 6.24
+
+Francois VOGEL, 19/04/06
+ * Fixed: breakpoints can again be set during debug (was broken in 6.23)
+ * Breakpoints cannot be set on lines pertaining to the wrapper code used
+   for .sce files debug
+ * version --> 6.25

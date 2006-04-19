@@ -26,7 +26,12 @@ proc insertremovedebug_bp {textarea} {
     if {[isscilabbusy 5]} {return}
     set i1 [getrealstartofcontline $textarea "insert linestart"]
     set i2 [$textarea index "$i1 lineend"  ]
-    if {![isnocodeline $textarea $i1]} {
+    if {![isnocodeline $textarea $i1] &&
+        [lsearch [$textarea tag names $i1] "db_wrapper"] == -1} {
+        set infun [whichfun [$textarea index $i1] $textarea]
+        # during debug, because .sce files debug uses a wrapper function,
+        # and because no buffer modification is allowed, $infun is always
+        # non empty and contains valid function data
         set activetags [$textarea tag names $i1]
         if {[lsearch $activetags breakpoint] == -1} {
             $textarea tag add breakpoint $i1 $i2
