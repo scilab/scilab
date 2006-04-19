@@ -4071,7 +4071,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return -1;
       break;
     }
-  return -1;
+  return 0;
 }
 
 int sciInitdrawmode( BOOL mode )
