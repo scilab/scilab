@@ -4207,7 +4207,7 @@ static BOOL RegisterParentWindowGraphClass (void)
   ParentGraphwndclass.cbClsExtra = 0;
   ParentGraphwndclass.cbWndExtra = 4 * sizeof(void *);
   ParentGraphwndclass.hInstance = graphwin.hInstance;
-  ParentGraphwndclass.hIcon =  LoadIcon (graphwin.hInstance, "texticon");
+  ParentGraphwndclass.hIcon =  LoadIcon (graphwin.hInstance, (LPCSTR)TEXT(IDI_PUFFIN));
   ParentGraphwndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
   ParentGraphwndclass.hbrBackground = NULL;
   ParentGraphwndclass.lpszMenuName = NULL;
