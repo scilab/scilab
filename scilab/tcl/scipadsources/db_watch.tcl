@@ -180,7 +180,7 @@ proc showwatch_bp {} {
 
     frame $watch.f.vpw.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
 
-    frame $watch.f.vpw.f2.f2l
+    frame $watch.f.vpw.f2.f2l ;# -bg lightgrey
     set tl [mc "Watch variables:"]
     label $watch.f.vpw.f2.f2l.label -text $tl -font $menuFont
     set bl [mc "Add/Change"]
@@ -193,24 +193,28 @@ proc showwatch_bp {} {
     pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
 
-    frame $watch.f.vpw.f2.f2r
+    frame $watch.f.vpw.f2.f2r ;# -bg peachpuff
 
     panedwindow $watch.f.vpw.f2.f2r.hpw -orient horizontal -opaqueresize true
 
-    frame $watch.f.vpw.f2.f2r.hpw.f
-    set lbvarname $watch.f.vpw.f2.f2r.hpw.f.lbvarname
-    set scrolly   $watch.f.vpw.f2.f2r.hpw.f.yscroll
-    set lbvarval  $watch.f.vpw.f2.f2r.hpw.lbvarval
+    frame $watch.f.vpw.f2.f2r.hpw.fl
+    set lbvarname $watch.f.vpw.f2.f2r.hpw.fl.lbvarname
+    set scrolly   $watch.f.vpw.f2.f2r.hpw.fl.yscroll
+    frame $watch.f.vpw.f2.f2r.hpw.fr
+    set lbvarval  $watch.f.vpw.f2.f2r.hpw.fr.lbvarval
+    set scrollx   $watch.f.vpw.f2.f2r.hpw.fr.xscroll
     $buttonAddw   configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
-    scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval"
+    scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval" -takefocus 0
+    scrollbar $scrollx -command "$lbvarval xview" -orient horizontal -takefocus 0
     listbox $lbvarname -height 6 -width 12 -font $textFont -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -takefocus 0
     listbox $lbvarval  -height 6 -font $textFont -yscrollcommand \
                        "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
+                       -xscrollcommand "$scrollx set" \
                        -takefocus 0
     if {[info exists watchvars]} {
         foreach var $watchvars {
@@ -220,10 +224,13 @@ proc showwatch_bp {} {
     }
 
     pack $lbvarname -side left -expand 1 -fill both -padx 2
-    pack $scrolly -side left -expand 0 -fill both -padx 2
+    pack $scrolly   -side left -expand 0 -fill both -padx 2
 
-    $watch.f.vpw.f2.f2r.hpw add $watch.f.vpw.f2.f2r.hpw.f
-    $watch.f.vpw.f2.f2r.hpw add $lbvarval
+    pack $lbvarval -side top -expand 1 -fill both
+    pack $scrollx            -expand 0 -fill x
+
+    $watch.f.vpw.f2.f2r.hpw add $watch.f.vpw.f2.f2r.hpw.fl
+    $watch.f.vpw.f2.f2r.hpw add $watch.f.vpw.f2.f2r.hpw.fr
 
     pack $watch.f.vpw.f2.f2r.hpw -side left -expand 1 -fill both -padx 2
     pack $watch.f.vpw.f2.f2l $watch.f.vpw.f2.f2r -side left -padx 2
@@ -285,6 +292,8 @@ proc showwatch_bp {} {
     bind $lbvarname <ButtonRelease-3> {dropitem_bp $lbvarname $lbvarval "" $itemindex %y}
     bind $watch <Up>   {scrollarrows_bp $lbvarname up  }
     bind $watch <Down> {scrollarrows_bp $lbvarname down}
+    bind $watch <Left>  {$lbvarval xview scroll -1 units}
+    bind $watch <Right> {$lbvarval xview scroll  1 units}
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
                                         {scrollarrows_bp $lbvarname up}   }
     bind $watch <Configure> { \
@@ -315,16 +324,16 @@ proc showwatch_bp {} {
         set watchvpane1mins [winfo height $watch.f.vpw.f2]
         set watchvpane2mins [winfo height $watch.f.vpw.f6]
         set watchvsashcoord [$watch.f.vpw            sash coord 0]
-        set watchhpane1mins [winfo width  $watch.f.vpw.f2.f2r.hpw.f]
-        set watchhpane2mins [winfo width  $lbvarval                ]
+        set watchhpane1mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fl]
+        set watchhpane2mins [winfo width  $watch.f.vpw.f2.f2r.hpw.fr]
         set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]
         set firsttimeinshowwatch "false"
     }
 
     if {$showwatchvariablesarea == "true"} {
         $watch.f.vpw paneconfigure $watch.f.vpw.f2 -minsize $watchvpane1mins
-        $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.f -minsize $watchhpane1mins
-        $watch.f.vpw.f2.f2r.hpw paneconfigure $lbvarval                 -minsize $watchhpane2mins
+        $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fl -minsize $watchhpane1mins
+        $watch.f.vpw.f2.f2r.hpw paneconfigure $watch.f.vpw.f2.f2r.hpw.fr -minsize $watchhpane2mins
     }
     if {$showcallstackarea == "true"} {
         $watch.f.vpw paneconfigure $watch.f.vpw.f6 -minsize $watchvpane2mins

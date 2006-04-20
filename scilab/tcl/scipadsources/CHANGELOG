@@ -2182,3 +2182,8 @@ Francois VOGEL, 19/04/06
  * Breakpoints cannot be set on lines pertaining to the wrapper code used
    for .sce files debug
  * version --> 6.25
+
+Francois VOGEL, 20/04/06
+ * Added an horizontal scrollbar in the watch window for variables values,
+   as requested in the newsgroup
+ * version --> 6.26
