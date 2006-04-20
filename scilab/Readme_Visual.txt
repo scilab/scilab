@@ -6,13 +6,15 @@ Install Visual Studio C++ .NET 2003
 Install Intel Fortran 9.0.028
 Install TCL/TK 8.4(.12)
 Install Java 2 JDK
+Download zlib 1.2.3 (http://www.zlib.net/)
 
 1] copy tcl84.dll,tk84.dll,tcl84.lib and tk84.lib in bin directory.
 2] edit Make-PVM3.mak in pvm3 directory
    and modify first line (PVM_ROOT=...) with the good path
 3] copy in root of scilab directory : "tcl" directory (see below)
-4] copy in routines\Javasci jni.h and jni_md.h from Java 2 JDK
-5] click on scilab.sln (to launch Visual) or devenv scilab.sln /build release (via command line, to build release)
+4] copy zlib.dll and zdll.lib in bin directory
+5] copy in routines\Javasci jni.h and jni_md.h from Java 2 JDK
+6] click on scilab.sln (to launch Visual) or devenv scilab.sln /build release (via command line, to build release)
 
 
 N.B:
