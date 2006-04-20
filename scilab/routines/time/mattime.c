@@ -16,6 +16,8 @@ extern int C2F(intcalendar) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(inttimer) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intsleep) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intxpause) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intrealtimeinit) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intrealtime) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static intTimeTable Tab[]={
   {C2F(intgetdate),"getdate"},
@@ -23,6 +25,8 @@ static intTimeTable Tab[]={
 	{C2F(inttimer),"timer"},
 	{C2F(intsleep),"sleep"},
 	{C2F(intxpause),"xpause"},
+	{C2F(intrealtimeinit),"realtimeinit"},
+	{C2F(intrealtime),"realtime"},
 };
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(mattime)()

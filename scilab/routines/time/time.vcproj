@@ -688,6 +688,9 @@ cd .. &gt;nul
 				RelativePath=".\intgetdate.c">
 			</File>
 			<File
+				RelativePath=".\intrealtime.c">
+			</File>
+			<File
 				RelativePath=".\intsleep.c">
 			</File>
 			<File
@@ -698,6 +701,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\mattime.c">
+			</File>
+			<File
+				RelativePath=".\realtime.c">
 			</File>
 			<File
 				RelativePath=".\timer.c">
@@ -711,6 +717,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intgetdate.h">
+			</File>
+			<File
+				RelativePath=".\intrealtime.h">
 			</File>
 			<File
 				RelativePath=".\intsleep.h">
