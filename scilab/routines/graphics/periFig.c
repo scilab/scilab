@@ -218,11 +218,6 @@ void C2F(setwindowposXfig)(integer *x, integer *y, integer *v3, integer *v4)
 }
 
 
-/** To generate a pause : Empty here **/
-
-void C2F(xpauseXfig)(char *str, integer *sec_time, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
-{}
-
 /** Wait for mouse click in graphic window : Empty here **/
 
 void C2F(xclickXfig)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)

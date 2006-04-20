@@ -238,7 +238,7 @@ in_word_set (str, len)
 #ifdef WITH_GTK
 	#line 67 "Xcall1.gperf"
 #endif
-      {"xpause",		(func) C2F(dr)},
+      {""},
 #ifdef WITH_GTK
 	#line 77 "Xcall1.gperf"
 #endif

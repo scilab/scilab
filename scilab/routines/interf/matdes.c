@@ -3169,22 +3169,6 @@ int scixnumb(char *fname,unsigned long fname_len)
   return 0;
 
 } 
-
-/*-----------------------------------------------------------------------------------*/
-/* xpause(microsecs) */
-/*-----------------------------------------------------------------------------------*/
-int scixpause(char *fname,unsigned long fname_len)
-{
-  integer m1,n1,l1,v,sec=0;
-  double dv;
-  SciWin();
-  CheckRhs(-1,1);
-  if (Rhs == 1) { GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); sec = (integer) *stk(l1);} 
-  C2F(dr1)("xpause","v",&sec,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
-  LhsVar(1)=0;
-  return 0;
-} 
-
 /*-----------------------------------------------------------------------------------*/
 /* [wrect,frect,logflag,arect]=xgetech() */
 /*-----------------------------------------------------------------------------------*/

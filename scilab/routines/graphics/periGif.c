@@ -229,11 +229,6 @@ void C2F(clearwindowGif)(char *v1, integer *v2, integer *v3, integer *v4, intege
   /* FileInitGif(file); */
 }
 
-/** To generate a pause : Empty here **/
-
-void C2F(xpauseGif)(char *str, integer *sec_time, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
-{}
-
 /** Wait for mouse click in graphic window : Empty here **/
 
 void C2F(xclickGif)(char *str, integer *ibutton, integer *xx1, integer *yy1, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)

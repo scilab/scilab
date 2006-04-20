@@ -284,28 +284,6 @@ void C2F(clearwindow)(char *v1, integer *v2, integer *v3, integer *v4, integer *
 		       ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
 }
 
-/* generates a pause, in seconds */
-
-#if defined(__STDC__) || defined(_IBMR2)
-/** for usleep **/
-#include <unistd.h> 
-#endif 
-
-void C2F(xpause)(char *str, integer *sec_time, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
-{ 
-  unsigned useconds;
-  useconds=(unsigned) *sec_time;
-  if (useconds != 0)  
-#ifdef HAVE_USLEEP
-    { usleep(useconds); }
-#else
-#ifdef HAVE_SLEEP
-  {  sleep(useconds/1000000); }
-#else
-  return;
-#endif
-#endif
-}
 
 /*-----------------------------------------------------------------
  * Changes the graphic window popupname 

@@ -29,7 +29,6 @@
  extern void  C2F(fillpolylineXfig)();
  extern void  C2F(drawpolymarkXfig)();
  extern void  C2F(displaynumbersXfig)();
- extern void  C2F(xpauseXfig)();
  extern void  C2F(drawrectangleXfig)();
  extern void  C2F(drawrectanglesXfig)();
  extern void  C2F(drawsegmentsXfig)();

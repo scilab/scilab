@@ -189,7 +189,7 @@ xcall_in_word_set (str, len)
       {""},
       {"xclickany",    {C2F(xclick_any),C2F(xclick_anyPos),C2F(xclick_anyXfig),C2F(xclick_anyGif)}},
       {""},
-      {"xpause",    {C2F(xpause),C2F(xpausePos),C2F(xpauseXfig),C2F(xpauseGif)}},
+      {""},
       {""}, 
       {""},
       {"xreplaysh",    {Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show}},

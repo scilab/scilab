@@ -29,7 +29,6 @@
  extern int C2F(drawpolylines)();
  extern int C2F(drawpolymark)();
  extern int C2F(displaynumbers)();
- extern int C2F(xpause)();
  extern int C2F(drawrectangle)();
  extern int C2F(drawrectangles)();
  extern int C2F(drawsegments)();

@@ -76,7 +76,6 @@ xliness,    {C2F(fillpolylines),C2F(fillpolylinesPos),C2F(fillpolylinesXfig),C2F
 xmarks,    {C2F(drawpolymark),C2F(drawpolymarkPos),C2F(drawpolymarkXfig),C2F(drawpolymarkGif)}
 xname,    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}
 xnum,    {C2F(displaynumbers),C2F(displaynumbersPos),C2F(displaynumbersXfig),C2F(displaynumbersGif)}
-xpause,    {C2F(xpause),C2F(xpausePos),C2F(xpauseXfig),C2F(xpauseGif)}
 xpolys,    {C2F(drawpolylines),C2F(drawpolylinesPos),C2F(drawpolylinesXfig),C2F(drawpolylinesGif)}
 xrect,    {C2F(drawrectangle),C2F(drawrectanglePos),C2F(drawrectangleXfig),C2F(drawrectangleGif)}
 xrects,    {C2F(drawrectangles),C2F(drawrectanglesPos),C2F(drawrectanglesXfig),C2F(drawrectanglesGif)}

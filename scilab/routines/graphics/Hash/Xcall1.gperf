@@ -64,7 +64,6 @@ xliness,	fillpolylines_1
 xmarks,		drawpolymark_1
 xname,		(func) C2F(dr)
 xnum,		displaynumbers_1
-xpause,		(func) C2F(dr)
 xpolys,		drawpolylines_1
 xrect,		drawrectangle_1
 xrects,		drawrectangles_1

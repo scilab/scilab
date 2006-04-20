@@ -651,48 +651,6 @@ void C2F(clearwindow)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 }
 /*-----------------------------------------------------------------------------------*/
 
-/*-----------------------------------------------------------
-  \encadre{To generate a pause, in seconds}
-  ------------------------------------------------------------*/
-
-void C2F(xpause)(str, sec_time, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *sec_time;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
-{ 
-  int ms = (*sec_time)/1000; /** time is specified in microseconds in scilab**/
-  if (*sec_time > 0)
-    {
-#ifdef WIN32
-      {
-	if (ms > 0) Sleep(ms); /* Number of milliseconds to sleep. */
-      }
-#else
-      {
-#ifdef HAVE_USLEEP
-	{ usleep(*sec_time); }
-#else
-#ifdef HAVE_SLEEP
-	{  sleep(*sec_time); }
-#endif
-#endif
-      }
-#endif
-    }
-  else
-    {
-      Scierror(999,"xpause: error time must be >0.\r\n");
-      return; 
-    }
-}
 
 
 /*-----------------------------------------------------------------------------------*/

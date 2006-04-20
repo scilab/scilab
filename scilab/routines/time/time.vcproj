@@ -694,6 +694,9 @@ cd .. &gt;nul
 				RelativePath=".\inttimer.c">
 			</File>
 			<File
+				RelativePath=".\intxpause.c">
+			</File>
+			<File
 				RelativePath=".\mattime.c">
 			</File>
 			<File
@@ -714,6 +717,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\inttimer.h">
+			</File>
+			<File
+				RelativePath=".\intxpause.h">
 			</File>
 			<File
 				RelativePath=".\mattime.h">

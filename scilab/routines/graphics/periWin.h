@@ -30,7 +30,6 @@
  extern void C2F(drawpolymark)();
  extern void C2F(setpopupname)();
  extern void C2F(displaynumbers)();
- extern void C2F(xpause)();
  extern void C2F(drawrectangle)();
  extern void C2F(drawrectangles)();
  extern void C2F(drawsegments)();

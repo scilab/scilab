@@ -187,7 +187,7 @@ in_word_set (str, len)
 #line 48 "Xcall1.gperf"
       {"xclea",		cleararea_1},
 #line 67 "Xcall1.gperf"
-      {"xpause",		(func) C2F(dr)},
+      {""},
 #line 77 "Xcall1.gperf"
       {"xstring",	displaystring_1},
       {""},
