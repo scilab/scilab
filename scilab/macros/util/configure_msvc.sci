@@ -139,8 +139,17 @@ if MSDOS then
   err=setenv("INCLUDE",INCLUDE);
   if (err == %F) then bOK=%F,return,end
   
-  LIB=getenv('LIB','');  
-  W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
+  LIB=getenv('LIB',''); 
+ 
+  ierr1=execstr("W2003R2SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1'',''Install Dir'');","errcatch");
+  ierr2=execstr("W2003SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3'',''Install Dir'');","errcatch");
+  
+  if (ierr1 == 0) then
+    W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1','Install Dir');
+  else
+    W2003SDK=winqueryreg('HKEY_LOCAL_MACHINE','Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3','Install Dir');
+  end
+  
   LIB=MSVCDir+'\LIB;'+MSVSDir+'\SDK\v2.0\lib;'+W2003SDK+'\Lib;'+LIB;
   err=setenv("LIB",LIB);
   if (err == %F) then bOK=%F,return,end
