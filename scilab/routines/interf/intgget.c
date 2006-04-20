@@ -1501,7 +1501,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->ARect[3];
     }
     else
-      {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
+      {strcpy(error_message,"margins property does not exist for this handle");return -1;}
   } 
   else if (strcmp(marker,"tics_color") == 0) 
     {
