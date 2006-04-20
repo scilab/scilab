@@ -778,9 +778,6 @@ cd .. &gt;nul
 				RelativePath=".\integral_func.c">
 			</File>
 			<File
-				RelativePath=".\intrealtime.c">
-			</File>
-			<File
 				RelativePath=".\invblk4.c">
 			</File>
 			<File
@@ -821,9 +818,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\readc.c">
-			</File>
-			<File
-				RelativePath=".\realtime.c">
 			</File>
 			<File
 				RelativePath=".\relationalop.c">
