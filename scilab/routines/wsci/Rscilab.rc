@@ -462,6 +462,7 @@ IDI_LINE                ICON                    "icones scilab\\LINE.ico"
 IDI_DOUBLEARROW         ICON                    "Icones Scilab\\DOUBLEARROW.ico"
 IDI_POLYLINE            ICON                    "Icones Scilab\\POLYLINE.ico"
 IDI_PICKER              ICON                    "Icones Scilab\\PICKER.ico"
+IDI_PUFFIN              ICON                    "Icones Scilab\\puffin.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
