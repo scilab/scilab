@@ -276,8 +276,6 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
 # to checkendofdebug_bp
     global setbptonreallybreakpointedlinescmd
 
-    set wcur [gettextareacur]
-
     set removecomm [duplicatechars [removescilab_bp "no_output"] "\""]
     regsub -all {\"\"} $removecomm "\\\"\"" removecomm
     regsub -all {\?} $removecomm "\\\?" removecomm
@@ -302,17 +300,17 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
             set skipline ""
                    }
         "into"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\[iscursorplace_bp  \]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline $wcur insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }
