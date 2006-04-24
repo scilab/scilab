@@ -800,6 +800,9 @@ cd .. &gt;nul
 				RelativePath=".\Scierror.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\system.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
