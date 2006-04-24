@@ -1706,6 +1706,7 @@ int scixset(char *fname,unsigned long fname_len)
   integer lr, mark[2], font[2], verb=0;
   double  xx[5],dv ;
   sciPointObj *subwin = NULL; 
+  BOOL keyFound = FALSE ;
 
   if (Rhs <= 0) {int zero=0; sci_demo(fname,"xsetm();",&zero); return 0; }
 
@@ -1714,16 +1715,24 @@ int scixset(char *fname,unsigned long fname_len)
 
   GetRhsVar(1,"c",&m1,&n1,&l1);
 
-  for (i=0; i < NUMSETFONC ; i++) 
-    if (strcmp(cstk(l1),KeyTab_[i])==0) goto OK;
+  for ( i = 0 ; i < NUMSETFONC ; i++ )
+  {
+    if ( strcmp(cstk(l1),KeyTab_[i]) == 0 )
+    {
+      keyFound = TRUE ;
+      break ;
+    }
+  }
 
-  i = 105;v=m1*n1;
-  strncpy(C2F(cha1).buf,cstk(l1),v);
-  C2F(msgs)(&i,&v);
-  LhsVar(1)=0;
-  return 0;
+  if ( !keyFound )
+  {
+    i = 105;v=m1*n1;
+    strncpy(C2F(cha1).buf,cstk(l1),v);
+    C2F(msgs)(&i,&v);
+    LhsVar(1)=0;
+    return 0;
+  }
 
- OK:
   /* Allan CORNET Avril 2004 */
   /* Bloque la commande xset('window') sans numero de fenetre */
   if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
@@ -2893,6 +2902,7 @@ int scixget(char *fname,unsigned long fname_len)
 {
   integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v,i ;
   double dv;
+  BOOL keyFound = FALSE ;
 
   SciWin();
   if (Rhs <= 0) {
@@ -2906,18 +2916,26 @@ int scixget(char *fname,unsigned long fname_len)
   GetRhsVar(1,"c",&m1,&n1,&l1);
 
   /* check if key is valid */
-  for (i=0; i < NUMSETFONC ; i++) 
-    if (strcmp(cstk(l1),KeyTab_[i])==0) goto OK;
+  for (i=0; i < NUMSETFONC ; i++)
+  {
+    if ( strcmp(cstk(l1),KeyTab_[i]) == 0 )
+    {
+      keyFound = TRUE ;
+      break ;
+    }
+  }
 
-  i = 105;v=m1*n1;
-  strncpy(C2F(cha1).buf,cstk(l1),v);
-  C2F(msgs)(&i,&v);
-  x2=0;
-  CreateVar(Rhs+1,"d",&x2,&x2,&l3);
-  LhsVar(1)=Rhs+1;
-  return 0;
-
- OK:  
+  if ( !keyFound )
+  {
+    i = 105;v=m1*n1;
+    strncpy(C2F(cha1).buf,cstk(l1),v);
+    C2F(msgs)(&i,&v);
+    x2=0;
+    CreateVar(Rhs+1,"d",&x2,&x2,&l3);
+    LhsVar(1)=Rhs+1;
+    return 0;
+  }
+  
   if (Rhs == 2) {
     GetRhsVar(2,"d",&m2,&n2,&l2); 
     CheckScalar(2,m2,n2);  
