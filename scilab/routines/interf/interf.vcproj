@@ -804,6 +804,9 @@ cd .. &gt;nul
 			RelativePath=".\dsRC.fundef">
 		</File>
 		<File
+			RelativePath=".\fmlelm.fundef">
+		</File>
+		<File
 			RelativePath=".\interp.fundef">
 		</File>
 		<File
@@ -811,6 +814,9 @@ cd .. &gt;nul
 		</File>
 		<File
 			RelativePath=".\list.fundef">
+		</File>
+		<File
+			RelativePath=".\logelm.fundef">
 		</File>
 		<File
 			RelativePath=".\lstelmi.fundef">

@@ -18,13 +18,8 @@
 #include "../interf/interp.fundef"
 #include "../interf/polaut.fundef"
 #include "../interf/strelm.fundef"
-	
-#define  IN_fmlelm  22  
-{"addf",		IN_fmlelm,	1,	0},	
-{"ldivf",		IN_fmlelm,	4,	2},	
-{"mulf",		IN_fmlelm,	3,	0},	
-{"rdivf",		IN_fmlelm,	5,	0},	
-{"subf",		IN_fmlelm,	2,	0},	
+#include "../interf/fmlelm.fundef"	
+
 #define  IN_logelm  23  
 {"find",		IN_logelm,	1,	0},
 {"bool2s",		IN_logelm,	2,	0},
