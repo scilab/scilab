@@ -779,6 +779,9 @@ cd .. &gt;nul
 				RelativePath=".\intwintools.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\wintools.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
