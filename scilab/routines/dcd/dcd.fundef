@@ -1,0 +1,12 @@
+#define  IN_dcd  37
+{"cdfbet",		IN_dcd,		1,	3},
+{"cdfbin",		IN_dcd,		2,	3},
+{"cdfchi",		IN_dcd,		3,	3},
+{"cdfchn",		IN_dcd,		4,	3},
+{"cdff",		IN_dcd,		5,	3},
+{"cdffnc",		IN_dcd,		6,	3},
+{"cdfgam",		IN_dcd,		7,	3},
+{"cdfnbn",		IN_dcd,		8,	3},
+{"cdfnor",		IN_dcd,		9,	3},
+{"cdfpoi",		IN_dcd,		10,	3},
+{"cdft",		IN_dcd,		11,	3},

@@ -697,6 +697,9 @@ cd.. &gt;nul
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 		</Filter>
+		<File
+			RelativePath=".\dcd.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

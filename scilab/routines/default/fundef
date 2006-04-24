@@ -249,18 +249,7 @@
 {"gammaln",		IN_specfun,	6,	3},	
 {"dlgamma",		IN_specfun,	7,	3},	
 {"calerf",		IN_specfun,	8,	3},	
-#define  IN_dcd  37
-{"cdfbet",		IN_dcd,		1,	3},
-{"cdfbin",		IN_dcd,		2,	3},
-{"cdfchi",		IN_dcd,		3,	3},
-{"cdfchn",		IN_dcd,		4,	3},
-{"cdff",		IN_dcd,		5,	3},
-{"cdffnc",		IN_dcd,		6,	3},
-{"cdfgam",		IN_dcd,		7,	3},
-{"cdfnbn",		IN_dcd,		8,	3},
-{"cdfnor",		IN_dcd,		9,	3},
-{"cdfpoi",		IN_dcd,		10,	3},
-{"cdft",		IN_dcd,		11,	3},
+#include "../dcd/dcd.fundef"
 #define  IN_randlib  38
 {"grand",		IN_randlib,	1,	3},
 #define  IN_otherspecfun  39  
@@ -313,22 +302,7 @@
 {"%i_prod",		IN_intelm,	26,	3},
 {"%i_cumprod",		IN_intelm,	27,	3},
 
-#define  IN_intlapack  44
-{"qr",			IN_intlapack,	1,	3},
-{"svd",			IN_intlapack,	2,	3},
-{"lsq",			IN_intlapack,	3,	3},
-{"spec",		IN_intlapack,	4,	3},
-{"inv",			IN_intlapack,	5,	3},
-{"rcond",		IN_intlapack,	6,	3},
-{"chol",		IN_intlapack,	7,	3},
-{"lu",			IN_intlapack,	8,	3},
-{"slash",		IN_intlapack,	9,	3},
-{"backslash",		IN_intlapack,	10,	3},
-{"schur",		IN_intlapack,	11,	3},
-{"hess",		IN_intlapack,	12,	3},
-{"det",			IN_intlapack,	13,	3},
-{"balanc",		IN_intlapack,	14,	3},	
-
+#include "../lapack/lapack.fundef"
 #include "../slicot/slicot.fundef"
 #include "../arpack/arpack.fundef"
 
