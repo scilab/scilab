@@ -734,6 +734,9 @@ cd .. &gt;nul
 				RelativePath=".\mattime.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\time.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
