@@ -801,13 +801,25 @@ cd .. &gt;nul
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\dsRC.fundef">
+		</File>
+		<File
 			RelativePath=".\io.fundef">
 		</File>
 		<File
 			RelativePath=".\lstelmi.fundef">
 		</File>
 		<File
+			RelativePath=".\new.fundef">
+		</File>
+		<File
 			RelativePath=".\otherspecfun.fundef">
+		</File>
+		<File
+			RelativePath=".\qz.fundef">
+		</File>
+		<File
+			RelativePath=".\ric.fundef">
 		</File>
 		<File
 			RelativePath=".\strelm.fundef">

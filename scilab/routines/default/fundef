@@ -1,22 +1,13 @@
 /** you can insert in this file new scilab functions **/
 
-#define  IN_MatdsRC 2
-{"bdiag",		IN_MatdsRC,	4,	2},	
+#include "../interf/dsRC.fundef"
 #include "../interf/io.fundef"
 #include "../calelm/calelm.fundef"
 #include "../graphics/graphics.fundef"	
-  
-#define  IN_matqz  8  
-{"ereduc",		IN_matqz,	3,	2},	
-{"fstair",		IN_matqz,	4,	2},	
-#define  IN_matric 9  
-{"ricc_old",		IN_matric,	3,	2},	
-#define  IN_matnew  10  
-{"freq",		IN_matnew,	4,	2},	
-{"ltitr",		IN_matnew,	5,	2},	
-{"ppol",		IN_matnew,	2,	2},	
-{"rtitr",		IN_matnew,	6,	2},	
-{"tr_zer",		IN_matnew,	3,	2},	
+#include "../interf/qz.fundef"
+#include "../interf/ric.fundef"
+#include "../interf/new.fundef"
+
 #define  IN_matopt  11  
 {"fsolve",		IN_matopt,	4,	2},
 {"lsqrsolve",		IN_matopt,	5,	2},
