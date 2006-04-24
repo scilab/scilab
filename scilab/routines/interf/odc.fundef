@@ -1,2 +1,1 @@
-#define  IN_matodc  29  
 {"odedc",		IN_matodc,	1,	3},	

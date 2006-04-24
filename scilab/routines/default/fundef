@@ -1,52 +1,133 @@
 /** you can insert in this file new scilab functions **/
 
+#define  IN_MatdsRC 2
 #include "../interf/dsRC.fundef"
+
+#define  IN_matio  5  
 #include "../interf/io.fundef"
+
+#define  IN_matelm  6  
 #include "../calelm/calelm.fundef"
+
+#define  IN_matdes  7
 #include "../graphics/graphics.fundef"	
+
+#define  IN_matqz  8  
 #include "../interf/qz.fundef"
+
+#define  IN_matric 9  
 #include "../interf/ric.fundef"
+
+#define  IN_matnew  10  
 #include "../interf/new.fundef"
+
+#define  IN_matopt  11  
 #include "../optim/optim.fundef"
+
+#define  IN_matode  12  
 #include "../interf/ode.fundef"
+
+#define  IN_matsys  13  
 #include "../system/system.fundef"
+
+#define  IN_matusr  14  
 #include "../interf/usr.fundef"
+
+#define  IN_metane  15  
 #include "../metanet/metanet.fundef"
+
+#define  IN_polelm  16  
 #include "../interf/polelm.fundef"
+
+#define  IN_lstelm  17  
 #include "../interf/list.fundef"
+
+#define  IN_sigelm  18  
 #include "../signal/signal.fundef"
+
+#define  IN_intinterp  19  
 #include "../interf/interp.fundef"
+
+#define  IN_polaut  20
 #include "../interf/polaut.fundef"
+
+#define  IN_strelm  21  
 #include "../interf/strelm.fundef"
+
+#define  IN_fmlelm  22  
 #include "../interf/fmlelm.fundef"	
+
 #define  IN_matus2  24  
+
+#define  IN_xawelm  25  
 #include "../menusX/menusX.fundef"
+
+#define  IN_matimp  26  
 #include "../interf/imp.fundef"	
+
+#define  IN_spelm  27  
 #include "../interf/spelm.fundef"	
+
+#define  IN_matodc  29  
 #include "../interf/odc.fundef"	
+
+#define  IN_intdef  30  
 #include "../interf/def.fundef"	
+
+#define  IN_feval  31  
 #include "../interf/feval.fundef"	
+
+#define  IN_bva  32  
 #include "../interf/bva.fundef"	
+
+#define  IN_matfileio  34  
 #include "../fileio/fileio.fundef"
+
+#define  IN_specfun  36  
 #include "../interf/specfun.fundef"
+
+#define  IN_dcd  37
 #include "../dcd/dcd.fundef"
+
+#define  IN_randlib  38
 #include "../randlib/randlib.fundef"
+
+#define  IN_otherspecfun  39  
 #include "../interf/otherspecfun.fundef"
 
-#define  IN_tclsci  40
 #ifdef WITH_TK
+#define  IN_tclsci  40
 #include "../tclsci/fundef.tclsci"
 #endif
 
+#define  IN_lstelmi  41
 #include "../interf/lstelmi.fundef"
+
 #ifdef WITH_PVM
+#define  IN_pvm  42
 #include "../pvm/pvm.fundef"
 #endif
 
+#define  IN_intelm  43
 #include "../int/int.fundef"
+
+#define  IN_intlapack  44
 #include "../lapack/lapack.fundef"
+
+#define  IN_intslicot  45
 #include "../slicot/slicot.fundef"
+
+#define  IN_intarpack  46
 #include "../arpack/arpack.fundef"
+
+#define  IN_intcos  28  
+#define  IN_coselm  35  
+#define  IN_intcscicos 47
 #include "../scicos/scicos.fundef"
+
+#define  IN_intwintools 48
 #include "../wintools/wintools.fundef"
+
+#define  IN_inttime 49
 #include "../time/time.fundef"
+

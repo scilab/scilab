@@ -1,4 +1,4 @@
-#define  IN_xawelm  25  
+
 {"addmenu_old",		IN_xawelm,	8,	3},	
 {"delmenu_old",		IN_xawelm,	9,	3},	
 {"setmenu_old",		IN_xawelm,	10,	3},	

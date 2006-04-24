@@ -1,4 +1,3 @@
-#define  IN_matdes  7
 {"champ",										IN_matdes,	1,	2},	
 {"champ1",									IN_matdes,	2,	2},	
 {"oldcontour",							IN_matdes,	3,	2},	

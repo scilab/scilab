@@ -1,4 +1,3 @@
-#define  IN_inttime 49
 {"getdate",	        IN_inttime,	1,	2},
 {"Calendar",        IN_inttime,	2,	2},
 {"timer",	        IN_inttime,	3,	2},

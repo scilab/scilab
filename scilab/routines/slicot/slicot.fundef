@@ -1,4 +1,3 @@
-#define  IN_intslicot  45
 {"sident",		IN_intslicot,	1,	3},
 {"sorder",		IN_intslicot,	2,	3},
 {"findBD",		IN_intslicot,	3,	3},

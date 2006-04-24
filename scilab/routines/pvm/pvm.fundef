@@ -1,4 +1,3 @@
-#define  IN_pvm  42
 {"pvm_joingroup",	IN_pvm,		1,	1},
 {"pvm_lvgroup",		IN_pvm,		2,	1},
 {"pvm_gsize",		IN_pvm,		3,	1},

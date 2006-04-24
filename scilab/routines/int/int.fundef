@@ -1,4 +1,3 @@
-#define  IN_intelm  43
 {"int32",		IN_intelm,	1,	3},
 {"int16",		IN_intelm,	2,	3},
 {"int8",		IN_intelm,	3,	3},

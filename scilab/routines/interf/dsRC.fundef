@@ -1,2 +1,1 @@
-#define  IN_MatdsRC 2
 {"bdiag",		IN_MatdsRC,	4,	2},	
