@@ -352,13 +352,7 @@
 {"hinf",		IN_intslicot,	8,	3},
 {"dhinf",		IN_intslicot,	9,	3},
 {"linmeq",		IN_intslicot,	10,	3},
-#define  IN_intarpack  46
-{"dsaupd",		IN_intarpack,	1,	3},
-{"dnaupd",		IN_intarpack,	2,	3},
-{"znaupd",		IN_intarpack,	3,	3},
-{"dseupd",		IN_intarpack,	4,	3},
-{"dneupd",		IN_intarpack,	5,	3},
-{"zneupd",		IN_intarpack,	6,	3},
+#include "../arpack/arpack.fundef"
 #define  IN_intcscicos 47
 {"scicos_time",      	IN_intcscicos,  1,      2},
 {"duplicate",         	IN_intcscicos,  2,      2},
