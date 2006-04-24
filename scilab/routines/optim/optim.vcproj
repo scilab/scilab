@@ -689,6 +689,9 @@ cd .. &gt;nul
 				RelativePath="spd.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\optim.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
