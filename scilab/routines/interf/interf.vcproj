@@ -807,6 +807,9 @@ cd .. &gt;nul
 			RelativePath=".\io.fundef">
 		</File>
 		<File
+			RelativePath=".\list.fundef">
+		</File>
+		<File
 			RelativePath=".\lstelmi.fundef">
 		</File>
 		<File

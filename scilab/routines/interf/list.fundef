@@ -1,0 +1,10 @@
+#define  IN_lstelm  17  
+{"glist",		IN_lstelm,	5,	1},	
+{"list",		IN_lstelm,	1,	1},	
+{"lsslist",		IN_lstelm,	4,	1},	
+{"rlist",		IN_lstelm,	3,	1},	
+{"tlist",		IN_lstelm,	2,	1},	
+{"lstcat",		IN_lstelm,	6,	1},	
+{"mlist",		IN_lstelm,	7,	1},	
+{"definedfields",	IN_lstelm,	8,	1},	
+{"lstsize",		IN_lstelm,	9,	1},	
