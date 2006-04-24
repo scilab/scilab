@@ -69,3 +69,5 @@ arpacklcc.lib
 Atlaslcc.lib
 lapacklcc.lib
 libf2clcc.lib
+zdll.lib
+zlib1.dll
