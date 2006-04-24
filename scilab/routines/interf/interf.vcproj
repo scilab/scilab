@@ -825,6 +825,9 @@ cd .. &gt;nul
 			RelativePath=".\otherspecfun.fundef">
 		</File>
 		<File
+			RelativePath=".\polaut.fundef">
+		</File>
+		<File
 			RelativePath=".\polelm.fundef">
 		</File>
 		<File

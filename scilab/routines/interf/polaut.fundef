@@ -1,0 +1,5 @@
+#define  IN_polaut  20
+/* ius means internal ugly stuff arl2 is the function*/  
+{"arl2_ius",		IN_polaut,	1,	2},	
+{"ldiv",		IN_polaut,	3,	2},	
+{"residu",		IN_polaut,	2,	2},	
