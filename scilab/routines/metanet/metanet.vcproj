@@ -702,6 +702,9 @@ cd .. &gt;nul
 				RelativePath="mysearch.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\metanet.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
