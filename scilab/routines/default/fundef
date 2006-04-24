@@ -1,668 +1,135 @@
 /** you can insert in this file new scilab functions **/
 
 #define  IN_MatdsRC 2
-{"bdiag",		IN_MatdsRC,	4,	2},	
+#include "../interf/dsRC.fundef"
+
 #define  IN_matio  5  
-{"deff",		IN_matio,	11,	1},	
-{"diary",		IN_matio,	6,	1},	
-{"disp",		IN_matio,	18,	1},	
-{"exec",		IN_matio,	4,	1},	
-{"execstr",		IN_matio,	17,	1},	
-{"file",		IN_matio,	13,	1},	
-{"getenv",		IN_matio,	20,	1},	
-{"getf",		IN_matio,	3,	1},	
-{"getpid",		IN_matio,	19,	1},	
-{"host",		IN_matio,	14,	1},	
-{"lib",			IN_matio,	5,	1},	
-{"oldload",		IN_matio,	1,	1},	
-{"load",		IN_matio,	25,	1},	
-{"print",		IN_matio,	9,	1},	
-{"rat",			IN_matio,	12,	2},	
-{"read",		IN_matio,	2,	1},	
-{"readb",		IN_matio,	15,	1},	
-{"oldsave",		IN_matio,	7,	1},	
-{"save",		IN_matio,	24,	1},	
-{"unix",		IN_matio,	14,	1},	
-{"writb",		IN_matio,	16,	1},	
-{"write",		IN_matio,	8,	1},	
-{"read4b",              IN_matio,       22,	1},
-{"write4b",             IN_matio,       23,	1},
-{"mgetl",     	        IN_matio,       26,	1},
-{"fileinfo",     	IN_matio,       27,	1},
-{"getio",       	IN_matio,       28,	1},
-{"setenv",       	IN_matio,       29,	1},
-{"xls_open",       	IN_matio,       30,	1},
-{"xls_read",       	IN_matio,       31,	1},
+#include "../interf/io.fundef"
+
 #define  IN_matelm  6  
-{"abs",			IN_matelm,	1,	0},	
-{"atan",		IN_matelm,	25,	0},	
-{"asin",              	IN_matelm,      44,     0},
-{"acos",              	IN_matelm,      45,     0},                          
-{"ceil",		IN_matelm,	33,	3},	
-{"clean",		IN_matelm,	31,	3},	
-{"conj",		IN_matelm,	4,	2},	
-{"cos",			IN_matelm,	24,	0},	
-{"cumprod",		IN_matelm,	36,	0},	
-{"cumsum",		IN_matelm,	35,	0},	
-{"diag",		IN_matelm,	10,	0},	
-{"dsearch",		IN_matelm,	48,	0},	
-{"exp",			IN_matelm,	26,	2},	
-{"expm",		IN_matelm,	34,	2},	
-{"eye",			IN_matelm,	13,	1},	
-{"floor",		IN_matelm,	32,	3},	
-{"imag",		IN_matelm,	3,	0},	
-{"imult",            	IN_matelm,      43,     0},                                
-{"int",			IN_matelm,	6,	0},	
-{"kron",		IN_matelm,	19,	0},	
-{"log",			IN_matelm,	28,	0},	
-{"log1p",             	IN_matelm,      42,     0},                                
-{"matrix",		IN_matelm,	22,	0},	
-{"max",			IN_matelm,	16,	0},	
-{"maxi",		IN_matelm,	16,	0},	
-{"min",			IN_matelm,	17,	0},	
-{"mini",		IN_matelm,	17,	0},	
-{"number_properties",	IN_matelm,      46,     0},
-{"nearfloat",		IN_matelm,      47,     0},
-{"ones",		IN_matelm,	15,	0},	
-{"prod",		IN_matelm,	9,	0},	
-{"rand",		IN_matelm,	14,	0},	
-{"real",		IN_matelm,	2,	0},	
-{"round",		IN_matelm,	5,	0},	
-{"sign",		IN_matelm,	30,	0},	
-{"sin",			IN_matelm,	23,	0},	
-{"size",		IN_matelm,	7,	0},	
-{"sort",		IN_matelm,	18,	0},	
-{"sqrt",		IN_matelm,	27,	0},	
-{"sum",			IN_matelm,	8,	0},	
-{"tan",                 IN_matelm,      41,     0},
-{"tril",		IN_matelm,	12,	0},	
-{"triu",		IN_matelm,	11,	0},	
-{"testmatrix",		IN_matelm,	37,	0},	
-{"isreal",		IN_matelm,	38,	0},	
-{"frexp",		IN_matelm,	39,	0},
-{"zeros",		IN_matelm,	40,	0},
-{"isequal",		IN_matelm,	49,	0},
-{"spones",		IN_matelm,	50,	0},
-	
+#include "../calelm/calelm.fundef"
+
 #define  IN_matdes  7
-{"champ",										IN_matdes,	1,	2},	
-{"champ1",									IN_matdes,	2,	2},	
-{"oldcontour",							IN_matdes,	3,	2},	
-{"driver",									IN_matdes,	4,	2},	
-{"fec",											IN_matdes,	5,	2},	
-{"geom3d",									IN_matdes,	6,	2},	
-{"grayplot",								IN_matdes,	7,	2},	
-{"Matplot",									IN_matdes,	8,	2},	
-{"Matplot1",								IN_matdes,	9,	2},	
-{"contour2di",							IN_matdes,	10,	2},	
-{"param3d",									IN_matdes,	11,	2},	
-{"param3d1",								IN_matdes,	12,	2},	
-{"xstringb",								IN_matdes,	13,	2},	
-{"plot2d",									IN_matdes,	14,	2},	
-{"plot2d1",									IN_matdes,	15,	2},	
-{"plot2d2",									IN_matdes,	16,	2},	
-{"plot2d3",									IN_matdes,	17,	2},	
-{"plot2d4",									IN_matdes,	18,	2},	
-{"plot3d",									IN_matdes,	19,	2},	
-{"plot3d1",									IN_matdes,	20,	2},	
-{"winsid",									IN_matdes,	21,	1},	
-{"xarc",										IN_matdes,	22,	2},	
-{"xarcs",										IN_matdes,	23,	2},	
-{"xarrows",									IN_matdes,	24,	2},	
-{"drawaxis",								IN_matdes,	25,	2},	
-{"xchange",									IN_matdes,	26,	2},	
-{"xclea",										IN_matdes,	27,	2},	
-{"oldxclear",								IN_matdes,	28,	2},	
-{"xclick",									IN_matdes,	29,	2},	
-{"xdel",										IN_matdes,	30,	2},	
-{"xend",										IN_matdes,	31,	2},	
-{"xfarc",										IN_matdes,	32,	2},	
-{"xfarcs",									IN_matdes,	33,	2},	
-{"xfpoly",									IN_matdes,	34,	2},	
-{"xfpolys",									IN_matdes,	35,	2},	
-{"xfrect",									IN_matdes,	36,	2},	
-{"xg2ps",										IN_matdes,	37,	2},	
-{"xget",										IN_matdes,	38,	2},	
-{"xgetech",									IN_matdes,	39,	2},	
-{"xgetmouse",								IN_matdes,	40,	2},	
-{"xgrid",										IN_matdes,	41,	2},	
-{"xinfo",										IN_matdes,	42,	2},	
-{"xinit",										IN_matdes,	43,	2},	
-{"xlfont",									IN_matdes,	44,	2},	
-{"xload",										IN_matdes,	45,	2},	
-{"xpoly",										IN_matdes,	46,	2},	
-{"xpolys",									IN_matdes,	47,	2},	
-{"xrect",										IN_matdes,	48,	2},	
-{"xrects",									IN_matdes,	49,	2},	
-{"xs2fig",									IN_matdes,	50,	2},	
-{"xsave",										IN_matdes,	51,	2},	
-{"xsegs",										IN_matdes,	52,	2},	
-{"xselect",									IN_matdes,	53,	2},	
-{"xset",										IN_matdes,	54,	2},	
-{"xsetech",									IN_matdes,	55,	2},	
-{"xstring",									IN_matdes,	56,	2},	
-{"xstringl",								IN_matdes,	57,	2},	
-{"xtape",										IN_matdes,	58,	2},	
-{"xtitle",									IN_matdes,	59,	2},	
-{"xgraduate",								IN_matdes,	60,	2},	
-{"xname",										IN_matdes,	61,	2},	
-{"xaxis",										IN_matdes,	62,	2},	
-{"seteventhandler",					IN_matdes,	63,	2},	
-{"xs2gif",									IN_matdes,	64,	2},	
-{"xs2ppm",									IN_matdes,	65,	2},	
-{"xs2ps",										IN_matdes,	66,	2},	
-{"xs2bmp",									IN_matdes,	67,	2},	
-{"xs2emf",									IN_matdes,	68,	2},	
-{"set_posfig_dim",					IN_matdes,	69,	2},	
-{"xsnative",								IN_matdes,	70,	2},	
-{"show_window",							IN_matdes,	71,	2},	
-{"zoom_rect",								IN_matdes,	72,	2},	
-{"unzoom",									IN_matdes,	73,	2},	
-{"StringBox",								IN_matdes,	74,	2},	
-/* NG beg */
-{"move",										IN_matdes,	75,	2},	
-{"glue",										IN_matdes,	76,	2},	
-{"unglue",									IN_matdes,	77,	2},	
-{"drawnow",									IN_matdes,	78,	2},	
-{"drawlater",								IN_matdes,	79,	2},	
-{"draw",										IN_matdes,	80,	2},	
-{"addcb",										IN_matdes,	81,	2},	
-{"copy",										IN_matdes,	82,	2},	
-{"delete",									IN_matdes,	83,	2},	
-{"get",											IN_matdes,	84,	2},	
-{"set",											IN_matdes,	85,	2},	
-{"newaxes",									IN_matdes,	86,	2},	
-/* NG end */
-{"gsort",										IN_matdes,	87,	1},	
-{"help_gtk",								IN_matdes,	88,	2},	
-{"clc",											IN_matdes,	89,	2},	
-{"tohome",									IN_matdes,	90,	2},	
-{"UImenu",									IN_matdes,	91,	2},	
-{"showalluimenushandles",		IN_matdes,	92,	2},	
-  
+#include "../graphics/graphics.fundef"	
+
 #define  IN_matqz  8  
-{"ereduc",		IN_matqz,	3,	2},	
-{"fstair",		IN_matqz,	4,	2},	
+#include "../interf/qz.fundef"
+
 #define  IN_matric 9  
-{"ricc_old",		IN_matric,	3,	2},	
+#include "../interf/ric.fundef"
+
 #define  IN_matnew  10  
-{"freq",		IN_matnew,	4,	2},	
-{"ltitr",		IN_matnew,	5,	2},	
-{"ppol",		IN_matnew,	2,	2},	
-{"rtitr",		IN_matnew,	6,	2},	
-{"tr_zer",		IN_matnew,	3,	2},	
+#include "../interf/new.fundef"
+
 #define  IN_matopt  11  
-{"fsolve",		IN_matopt,	4,	2},
-{"lsqrsolve",		IN_matopt,	5,	2},
-{"optim",		IN_matopt,	1,	2},	
-{"qld",			IN_matopt,	6,	3},	
-{"qpqpqp",		IN_matopt,	2,	2},	
-{"semidef",		IN_matopt,	3,	3},	
+#include "../optim/optim.fundef"
 
 #define  IN_matode  12  
-{"ode",			12,	1,	2},	
-#define  IN_matsys  13  
-{"debug",           IN_matsys,	1,	3},	
-{"who",             IN_matsys,	2,	2},	
-/* <FREE> 3*/
-{"lines",           IN_matsys,	4,	1},	
-{"argn",            IN_matsys,	5,	1},	
-{"comp",            IN_matsys,	6,	1},	
-{"fort",            IN_matsys,	7,	1},	
-{"call",            IN_matsys,	7,	1},	
-{"mode",            IN_matsys,	8,	1},	
-{"type",            IN_matsys,	9,	0},	
-{"error",           IN_matsys,	10,	1},	
-{"resume",          IN_matsys,	11,	1},	
-{"return",          IN_matsys,	11,	1},	
-{"format",          IN_matsys,	12,	1},	
-{"isdef",           IN_matsys,	13,	1},	
-{"exists",          IN_matsys,	14,	1},	
-{"errcatch",        IN_matsys,	15,	1},	
-{"errclear",        IN_matsys,	16,	1},	
-{"iserror",         IN_matsys,	17,	1},	
-{"predef",          IN_matsys,	18,	1},	
-{"newfun",          IN_matsys,	19,	3},	
-{"clearfun",        IN_matsys,	20,	3},	
-{"funptr",          IN_matsys,	21,	3},	
-{"macr2lst",        IN_matsys,	22,	3},	
-{"setbpt",          IN_matsys,	23,	3},	
-{"delbpt",          IN_matsys,	24,	3},	
-{"dispbpt",         IN_matsys,	25,	3},	
-{"funcprot",        IN_matsys,	26,	3},	
-{"whereis",         IN_matsys,	27,	3},	
-{"where",           IN_matsys,	28,	3},	
-/* <FREE> 29*/
-/* <FREE> 30*/
-{"havewindow",      IN_matsys,	31,	3},
-{"stacksize",       IN_matsys,	32,	0},	
-{"mtlb_mode",       IN_matsys,	33,	0},	
-{"link",            IN_matsys,	34,	1},	
-{"ulink",           IN_matsys,	35,	1},	
-{"c_link",	        IN_matsys,	36,	3},	
-{"addinter",        IN_matsys,	37,	3},	
-/* <FREE> 38*/
-/* <FREE> 39*/
-{"clear",	        IN_matsys,	40,	3},	
-{"what",            IN_matsys,	41,	3},	
-{"sciargs",	        IN_matsys,	42,	2},	
-{"chdir",           IN_matsys,  43, 2},
-{"getcwd",          IN_matsys,  44, 2},
-{"pwd",             IN_matsys,  44, 2},
-{"ieee",            IN_matsys,  45, 2},
-{"typename",        IN_matsys,  46, 2},
-{"global",          IN_matsys,  47, 2},
-{"clearglobal",     IN_matsys,  48, 2},
-{"isglobal",        IN_matsys,  49, 2},
-{"gstacksize",      IN_matsys,  50, 2},
-{"intppty",         IN_matsys,  51, 2},
-{"lasterror",       IN_matsys,  52, 2},
-{"getversion",      IN_matsys,  53, 2},
-{"loadhistory",     IN_matsys,	54,	2},
-{"savehistory",     IN_matsys,	55,	2},
-{"gethistory",      IN_matsys,	56,	2},
-{"resethistory",    IN_matsys,	57,	2},
-{"macr2tree",       IN_matsys,	58,	2},
-/* <FREE> 59*/
-{"getos",           IN_matsys,	60,	2},
-{"banner",          IN_matsys,	61,	2},
-{"fromjava",        IN_matsys,	62,	2},
-{"getmemory",  	    IN_matsys,	63,	2},
-{"fromc",     	    IN_matsys,	64,	2},
-{"getmd5",     	    IN_matsys,	65,	2},
-#define  IN_matusr  14  
-{"user",		IN_matusr,	1,	1},	
-#define  IN_metane  15  
-{"m6loadg",                  		IN_metane,	1,	3},
-{"m6saveg",                  		IN_metane,	2,	3},
-{"m6prevn2p",                		IN_metane,	3,	3},
-{"m6ns2p",                   		IN_metane,	4,	3},
-{"m6p2ns",                   		IN_metane,	5,	3},
-{"m6edge2st",                		IN_metane,	6,	3},
-{"m6prevn2st",               		IN_metane,	7,	3},
-{"m6compc",                  		IN_metane,	8,	3},
-{"m6concom",                 		IN_metane,	9,	3},
-{"m6compfc",                 		IN_metane,	10,	3},
-{"m6sconcom",                		IN_metane,	11,	3},
-{"m6pcchna",                 		IN_metane,	12,	3},
-{"m6fordfulk",               		IN_metane,	13,	3},
-{"m6johns",                  		IN_metane,	14,	3},
-{"m6dijkst",                 		IN_metane,	15,	3},
-{"m6frang",                  		IN_metane,	16,	3},
-{"m6chcm",                   		IN_metane,	17,	3},
-{"m6transc",                 		IN_metane,	18,	3},
-{"m6dfs",                    		IN_metane,	19,	3},
-{"m6umtree",                 		IN_metane,	20,	3},
-{"m6umtree1",                		IN_metane,	21,	3},
-{"m6dmtree",                 		IN_metane,	22,	3},
-{"m6tconex",                 		IN_metane,	23,	3},
-{"m6flomax",                 		IN_metane,	24,	3},
-{"m6kilter",                 		IN_metane,	25,	3},
-{"m6busack",                 		IN_metane,	26,	3},
-{"m6floqua",                 		IN_metane,	27,	3},
-{"m6relax",                  		IN_metane,	28,	3},
-{"m6findiso",                		IN_metane,	29,	3},
-{"m6ta2lpd",                 		IN_metane,	30,	3},
-{"m6ta2lpu",                 		IN_metane,	31,	3},
-{"m6lp2tad",                 		IN_metane,	32,	3},
-{"m6lp2tau",                 		IN_metane,	33,	3},
-{"m6dfs2",                   		IN_metane,	34,	3},
-{"m6diam",                   		IN_metane,	35,	3},
-{"m6cent",                   		IN_metane,	36,	3},
-{"m6hullcvex",               		IN_metane,	37,	3},
-{"m6clique",                 		IN_metane,	38,	3},
-{"m6clique1",                		IN_metane,	39,	3},
-{"m6hamil",                  		IN_metane,	40,	3},
-{"m6visitor",                		IN_metane,	41,	3},
-{"m6bmatch",                 		IN_metane,	42,	3},
-{"m6knapsk",                 		IN_metane,	43,	3},
-{"m6prfmatch",               		IN_metane,	44,	3},
-{"m6permuto",                		IN_metane,	45,	3},
-{"m6mesh2b",                 		IN_metane,	46,	3},
-{"m6deumesh",                		IN_metane,	47,	3},
-{"m6bandred",                		IN_metane,	48,	3},
-{"m6meshmesh",               		IN_metane,	49,	3},
-{"m6ford",                   		IN_metane,	50,	3},
-#define  IN_polelm  16  
-{"bezout",		IN_polelm,	13,	2},	
-{"coeff",		IN_polelm,	4,	0},	
-{"degree",		IN_polelm,	3,	0},	
-{"poly",		IN_polelm,	1,	1},	
-{"pppdiv",		IN_polelm,	6,	2},	
-{"roots",		IN_polelm,	2,	2},	
-{"sfact",		IN_polelm,	14,	2},	
-{"simp",		IN_polelm,	7,	2},	
-{"simp_mode",		IN_polelm,	15,	0},	
-{"varn",		IN_polelm,	16,	1},	
-#define  IN_lstelm  17  
-{"glist",		IN_lstelm,	5,	1},	
-{"list",		IN_lstelm,	1,	1},	
-{"lsslist",		IN_lstelm,	4,	1},	
-{"rlist",		IN_lstelm,	3,	1},	
-{"tlist",		IN_lstelm,	2,	1},	
-{"lstcat",		IN_lstelm,	6,	1},	
-{"mlist",		IN_lstelm,	7,	1},	
-{"definedfields",	IN_lstelm,	8,	1},	
-{"lstsize",		IN_lstelm,	9,	1},	
-#define  IN_sigelm  18  
-{"amell",		IN_sigelm,	6,	2},	
-{"corr",		IN_sigelm,	4,	2},	
-{"delip",		IN_sigelm,	7,	2},	
-{"fft",			IN_sigelm,	2,	2},	
-{"remez",		IN_sigelm,	8,	2},	
-{"rpem",		IN_sigelm,	5,	2},	
-{"syredi",		IN_sigelm,	9,	2},	
-#define  IN_intinterp  19  
-{"splin",		IN_intinterp,	1,	3},	
-{"lsq_splin",		IN_intinterp,	2,	3},
-{"interp",		IN_intinterp,	3,	3},	
-{"linear_interpn",	IN_intinterp,	4,	3},
-{"splin2d",		IN_intinterp,	5,	3},	
-{"interp2d",		IN_intinterp,	6,	3},
-{"cshep2d",		IN_intinterp,	7,	3},	
-{"eval_cshep2d",	IN_intinterp,	8,	3},
-{"splin3d",		IN_intinterp,	9,	3},	
-{"interp3d",		IN_intinterp,  10,	3},
-{"bsplin3val",		IN_intinterp,  11,	3},	
-#define  IN_polaut  20
-/* ius means internal ugly stuff arl2 is the function*/  
-{"arl2_ius",		IN_polaut,	1,	2},	
-{"ldiv",		IN_polaut,	3,	2},	
-{"residu",		IN_polaut,	2,	2},	
-#define  IN_strelm  21  
-{"code2str",		IN_strelm,	7,	1},	
-{"convstr",		IN_strelm,	4,	0},	
-{"emptystr",		IN_strelm,	5,	1},	
-{"length",		IN_strelm,	1,	1},	
-{"part",		IN_strelm,	2,	1},	
-{"str2code",		IN_strelm,	6,	1},	
-{"strcat",		IN_strelm,	9,	1},	
-{"strindex",		IN_strelm,	10,	1},	
-{"string",		IN_strelm,	3,	1},	
-{"strsubst",		IN_strelm,	11,	1},	
-{"ascii",		IN_strelm,	12,	1},	
-{"grep",		IN_strelm,	13,	1},
-{"tokens",		IN_strelm,	14,	1},
-{"strsplit",		IN_strelm,	15,	1},
-	
-#define  IN_fmlelm  22  
-{"addf",		IN_fmlelm,	1,	0},	
-{"ldivf",		IN_fmlelm,	4,	2},	
-{"mulf",		IN_fmlelm,	3,	0},	
-{"rdivf",		IN_fmlelm,	5,	0},	
-{"subf",		IN_fmlelm,	2,	0},	
-#define  IN_logelm  23  
-{"find",		IN_logelm,	1,	0},
-{"bool2s",		IN_logelm,	2,	0},
-{"or",			IN_logelm,	3,	0},
-{"and",			IN_logelm,	4,	0},
-#define  IN_matus2  24  
-#define  IN_xawelm  25  
-{"addmenu_old",		IN_xawelm,	8,	3},	
-{"delmenu_old",		IN_xawelm,	9,	3},	
-{"setmenu_old",		IN_xawelm,	10,	3},	
-{"unsetmenu_old",	IN_xawelm,	11,	3},	
-{"x_choose",		IN_xawelm,	3,	1},	
-{"x_dialog",		IN_xawelm,	1,	1},	
-{"x_mdialog",		IN_xawelm,	4,	1},	
-{"x_message",		IN_xawelm,	2,	1},	
-{"x_message_modeless",	IN_xawelm,	13,	1},	
-{"xchoicesi",		IN_xawelm,	7,	2},	
-{"xgetfile",		IN_xawelm,	12,	2},
-{"x_print_dialog",	IN_xawelm,	14,	1},
-#define  IN_matimp  26  
-{"dasrt",		IN_matimp,	3,	2},	
-{"dassl",		IN_matimp,	2,	2},	
-{"impl",		IN_matimp,	1,	2},	
-#define  IN_spelm  27  
-{"full",		IN_spelm,	3,	3},	
-{"ludel",		IN_spelm,	6,	3},	
-{"lufact",		IN_spelm,	4,	3},	
-{"luget",		IN_spelm,	7,	3},	
-{"lusolve",		IN_spelm,	5,	3},	
-{"nnz",			IN_spelm,	9,	3},	
-{"sparse",		IN_spelm,	1,	3},	
-{"spget",		IN_spelm,	2,	3},	
-{"spchol",		IN_spelm,	13,	3},	
-{"readmps",		IN_spelm,	14,	3},	
-{"fadj2sp",		IN_spelm,	15,	3},	
-{"spcompack",		IN_spelm,	16,	3},
-{"ordmmd",		IN_spelm,	17,	3},
-{"blkfc1i",		IN_spelm,	18,	3},
-{"blkslvi",		IN_spelm,	19,	3},
-{"inpnvi",		IN_spelm,	20,	3},
-{"sfinit",		IN_spelm,	21,	3},
-{"symfcti",		IN_spelm,	22,	3},
-{"bfinit",		IN_spelm,	23,	3},
-{"mtlb_sparse",		IN_spelm,	24,	3},
-{"%msp_spget",		IN_spelm,	25,	3},
-{"%msp_full",		IN_spelm,	26,	3},
-#define  IN_intcos  28  
-{"scicosim",		IN_intcos,	1,	3},	
-{"sctree",		IN_intcos,	2,	2},	
-{"sci_tree2",		IN_intcos,	3,	2},	
-{"sci_tree3",		IN_intcos,	4,	2},	
-{"sci_tree4",		IN_intcos,	5,	2},
-{"scicos_debug",	IN_intcos,	6,	2},
-{"scicos_debug_count",	IN_intcos,	7,	2},
-#define  IN_matodc  29  
-{"odedc",		IN_matodc,	1,	3},	
-#define  IN_intdef  30  
-{"intg",		IN_intdef,	1,	2},	
-{"int2d",		IN_intdef,	2,	2},	
-{"int3d",		IN_intdef,	3,	2},	
-#define  IN_feval  31  
-{"feval",		IN_feval,	1,	2},	
-#define  IN_bva  32  
-{"bvode",		IN_bva,		1,	2},	
-#define  IN_matfileio  34  
-{"mopen",		IN_matfileio,	3,	3},	
-{"mputstr",		IN_matfileio,	4,	3},	
-{"mclose",		IN_matfileio,	5,	3},	
-{"mput",		IN_matfileio,	6,	3},	
-{"mget",		IN_matfileio,	7,	3},	
-{"mgetstr",		IN_matfileio,	8,	3},	
-{"meof",		IN_matfileio,	9,	3},	
-{"mseek",		IN_matfileio,	10,	3},
-{"mtell",		IN_matfileio,	11,	3},
-{"mclearerr",	IN_matfileio,	12,	3},
-{"mprintf",     IN_matfileio,   13, 3},
-{"mfprintf",    IN_matfileio,   14, 3},
-{"msprintf",    IN_matfileio,   15, 3},
-{"mscanf",      IN_matfileio,   16, 3},
-{"mfscanf",     IN_matfileio,   17, 3},
-{"msscanf",     IN_matfileio,   18, 3},
-{"fscanfMat",   IN_matfileio,   19, 3},
-{"fprintfMat",	IN_matfileio,	20,	3},
-{"NumTokens",	IN_matfileio,	21,	3},
-{"savewave",	IN_matfileio,	1,	3},	
-{"loadwave",	IN_matfileio,	2,	3},	
-{"PlaySound",	IN_matfileio,	22,	3},
-{"beep",		IN_matfileio,	23,	3},
-#define  IN_coselm  35  
-{"curblock",		IN_coselm,	5,	3},	
-{"getblocklabel",	IN_coselm,	6,	3},	
-{"getscicosvars",	IN_coselm,	3,	2},	
-{"setscicosvars",	IN_coselm,	4,	2},	
-{"var2vec",		IN_coselm,	1,	2},	
-{"vec2var",		IN_coselm,	2,	2},
-#define  IN_specfun  36  
-{"oldbesseli",		IN_specfun,	1,	3},	
-{"oldbesselj",		IN_specfun,	2,	3},	
-{"oldbesselk",		IN_specfun,	3,	3},	
-{"oldbessely",		IN_specfun,	4,	3},	
-{"gamma",		IN_specfun,	5,	3},	
-{"gammaln",		IN_specfun,	6,	3},	
-{"dlgamma",		IN_specfun,	7,	3},	
-{"calerf",		IN_specfun,	8,	3},	
-#define  IN_dcd  37
-{"cdfbet",		IN_dcd,		1,	3},
-{"cdfbin",		IN_dcd,		2,	3},
-{"cdfchi",		IN_dcd,		3,	3},
-{"cdfchn",		IN_dcd,		4,	3},
-{"cdff",		IN_dcd,		5,	3},
-{"cdffnc",		IN_dcd,		6,	3},
-{"cdfgam",		IN_dcd,		7,	3},
-{"cdfnbn",		IN_dcd,		8,	3},
-{"cdfnor",		IN_dcd,		9,	3},
-{"cdfpoi",		IN_dcd,		10,	3},
-{"cdft",		IN_dcd,		11,	3},
-#define  IN_randlib  38
-{"grand",		IN_randlib,	1,	3},
-#define  IN_otherspecfun  39  
-{"legendre",		IN_otherspecfun,	1,	3},	
-{"beta",		IN_otherspecfun,	2,	3},	
-{"besseli",		IN_otherspecfun,	3,	3},	
-{"besselj",		IN_otherspecfun,	4,	3},	
-{"besselk",		IN_otherspecfun,	5,	3},	
-{"bessely",		IN_otherspecfun,	6,	3},	
-{"besselh",		IN_otherspecfun,	7,	3},	
+#include "../interf/ode.fundef"
 
-#define  IN_tclsci  40
+#define  IN_matsys  13  
+#include "../system/system.fundef"
+
+#define  IN_matusr  14  
+#include "../interf/usr.fundef"
+
+#define  IN_metane  15  
+#include "../metanet/metanet.fundef"
+
+#define  IN_polelm  16  
+#include "../interf/polelm.fundef"
+
+#define  IN_lstelm  17  
+#include "../interf/list.fundef"
+
+#define  IN_sigelm  18  
+#include "../signal/signal.fundef"
+
+#define  IN_intinterp  19  
+#include "../interf/interp.fundef"
+
+#define  IN_polaut  20
+#include "../interf/polaut.fundef"
+
+#define  IN_strelm  21  
+#include "../interf/strelm.fundef"
+
+#define  IN_fmlelm  22  
+#include "../interf/fmlelm.fundef"
+
+#define  IN_logelm  23 
+#include "../interf/logelm.fundef"	
+
+#define  IN_matus2  24  
+
+#define  IN_xawelm  25  
+#include "../menusX/menusX.fundef"
+
+#define  IN_matimp  26  
+#include "../interf/imp.fundef"	
+
+#define  IN_spelm  27  
+#include "../interf/spelm.fundef"	
+
+#define  IN_matodc  28  
+#include "../interf/odc.fundef"	
+
+#define  IN_intdef  29  
+#include "../interf/def.fundef"	
+
+#define  IN_feval  30  
+#include "../interf/feval.fundef"	
+
+#define  IN_bva  31  
+#include "../interf/bva.fundef"	
+
+#define  IN_matfileio  32  
+#include "../fileio/fileio.fundef"
+
+#define  IN_specfun  33  
+#include "../interf/specfun.fundef"
+
+#define  IN_dcd  34
+#include "../dcd/dcd.fundef"
+
+#define  IN_randlib  35
+#include "../randlib/randlib.fundef"
+
+#define  IN_otherspecfun  36  
+#include "../interf/otherspecfun.fundef"
+
 #ifdef WITH_TK
+#define  IN_tclsci  37
 #include "../tclsci/fundef.tclsci"
 #endif
 
-#define  IN_lstelmi  41
-{"getfield",		IN_lstelmi,	1,	1},	
-{"setfield",		IN_lstelmi,	2,	1},	
-#define  IN_pvm  42
-{"pvm_joingroup",	IN_pvm,		1,	1},
-{"pvm_lvgroup",		IN_pvm,		2,	1},
-{"pvm_gsize",		IN_pvm,		3,	1},
-{"pvm_gettid",		IN_pvm,		4,	1},
-{"pvm_getinst",		IN_pvm,		5,	1},
-{"pvm_barrier",		IN_pvm,		6,	1},
-{"pvm_bcast",		IN_pvm,		7,	1},
-{"pvm_tasks",		IN_pvm,		8,	1},
-{"pvm_config",		IN_pvm,		9,	1},
-{"pvm_addhosts",	IN_pvm,		10,	1},
-{"pvm_delhosts",	IN_pvm,		11,	1},
-{"pvm_parent",		IN_pvm,		12,	1},
-{"pvm_tidtohost",	IN_pvm,		13,	1},
-{"pvm_set_timer",	IN_pvm,		14,	1},
-{"pvm_get_timer",	IN_pvm,		15,	1},
-{"pvm_mytid",		IN_pvm,		16,	1},
-{"pvm_exit",		IN_pvm,		17,	1},
-{"pvm_kill",		IN_pvm,		18,	1},
-{"pvm_spawn",		IN_pvm,		19,	1},
-{"pvm_spawn_independent",IN_pvm,	20,	1},
-{"pvm_recv",		IN_pvm,		21,	1},
-{"pvm_send",		IN_pvm,		22,	1},
-{"pvm_recv_var",	IN_pvm,		23,	1},
-{"pvm_send_var",	IN_pvm,		24,	1},
-{"pvm_reduce",		IN_pvm,		25,	1},
-{"pvm_start",		IN_pvm,		26,	1},
-{"pvm_halt",		IN_pvm,		27,	1},
-{"pvm_error",		IN_pvm,		28,	1},
-{"pvm_sci2f77",         IN_pvm,         29,     1},
-{"pvm_f772sci",         IN_pvm,         30,     1},
-{"pvm_probe",           IN_pvm,         31,     1},
-{"pvm_bufinfo",         IN_pvm,         32,     1},
-{"pvm_error_mode",      IN_pvm,         33,     1},
-#define  IN_intelm  43
-{"int32",		IN_intelm,	1,	3},
-{"int16",		IN_intelm,	2,	3},
-{"int8",		IN_intelm,	3,	3},
-{"inttype",		IN_intelm,	4,	3},
-{"double",		IN_intelm,	5,	3},
-{"uint32",		IN_intelm,	6,	3},
-{"uint16",		IN_intelm,	7,	3},
-{"uint8",		IN_intelm,	8,	3},
-{"mgeti",		IN_intelm,	9,	3},
-{"%i_mput",		IN_intelm,	11,	3},
-{"%i_abs",		IN_intelm,	13,	3},
-{"%i_diag",		IN_intelm,	14,	3},
-{"%i_triu",		IN_intelm,	15,	3},
-{"%i_tril",		IN_intelm,	16,	3},
-{"%i_sum",		IN_intelm,	17,	3},
-{"%i_cumsum",		IN_intelm,	18,	3},
-{"%i_max",		IN_intelm,	19,	3},
-{"%i_min",		IN_intelm,	20,	3},
-{"%i_maxi",		IN_intelm,	19,	3},
-{"%i_mini",		IN_intelm,	20,	3},
-{"readxbm",		IN_intelm,	22,	3},
-{"%i_p",		IN_intelm,	23,	3},
-{"iconvert",		IN_intelm,	24,	3},
-{"%i_matrix",		IN_intelm,	25,	3},
-{"%i_prod",		IN_intelm,	26,	3},
-{"%i_cumprod",		IN_intelm,	27,	3},
+#define  IN_lstelmi  38
+#include "../interf/lstelmi.fundef"
 
-#define  IN_intlapack  44
-{"qr",			IN_intlapack,	1,	3},
-{"svd",			IN_intlapack,	2,	3},
-{"lsq",			IN_intlapack,	3,	3},
-{"spec",		IN_intlapack,	4,	3},
-{"inv",			IN_intlapack,	5,	3},
-{"rcond",		IN_intlapack,	6,	3},
-{"chol",		IN_intlapack,	7,	3},
-{"lu",			IN_intlapack,	8,	3},
-{"slash",		IN_intlapack,	9,	3},
-{"backslash",		IN_intlapack,	10,	3},
-{"schur",		IN_intlapack,	11,	3},
-{"hess",		IN_intlapack,	12,	3},
-{"det",			IN_intlapack,	13,	3},
-{"balanc",		IN_intlapack,	14,	3},	
-#define  IN_intslicot  45
-{"sident",		IN_intslicot,	1,	3},
-{"sorder",		IN_intslicot,	2,	3},
-{"findBD",		IN_intslicot,	3,	3},
-{"rankqr",		IN_intslicot,	4,	3},
-{"contr",		IN_intslicot,	5,	3},
-{"mucomp",		IN_intslicot,	6,	3},
-{"ricc",		IN_intslicot,	7,	3},
-{"hinf",		IN_intslicot,	8,	3},
-{"dhinf",		IN_intslicot,	9,	3},
-{"linmeq",		IN_intslicot,	10,	3},
-#define  IN_intarpack  46
-{"dsaupd",		IN_intarpack,	1,	3},
-{"dnaupd",		IN_intarpack,	2,	3},
-{"znaupd",		IN_intarpack,	3,	3},
-{"dseupd",		IN_intarpack,	4,	3},
-{"dneupd",		IN_intarpack,	5,	3},
-{"zneupd",		IN_intarpack,	6,	3},
-#define  IN_intcscicos 47
-{"scicos_time",      	IN_intcscicos,  1,      2},
-{"duplicate",         	IN_intcscicos,  2,      2},
-{"diffobjs",          	IN_intcscicos,  3,      2},
-{"pointer_xproperty",   IN_intcscicos,  4,      2},
-{"phase_simulation",    IN_intcscicos,  5,      2},
-{"set_xproperty",       IN_intcscicos,  6,      2},
-{"scicos_cpass2",       IN_intcscicos,  7,      2},
-{"set_blockerror",      IN_intcscicos,  8,      2},
-{"ctree2" ,             IN_intcscicos,  9,      2},
-{"ctree3" ,             IN_intcscicos,  10,     2},
-{"ctree4" ,             IN_intcscicos,  11,     2},
-#define  IN_intwintools 48
-{"winopen",	        IN_intwintools,	1,	2},
-{"winqueryreg",	        IN_intwintools,	2,	2},
-{"getlongpathname",	IN_intwintools,	3,	2},
-{"getshortpathname",	IN_intwintools,	4,	2},
-{"ddeopen",		IN_intwintools,	5,	2},
-{"ddeclose",		IN_intwintools,	6,	2},
-{"ddeexec",		IN_intwintools,	7,	2},
-{"ddepoke",		IN_intwintools,	8,	2},
-{"ddereq",		IN_intwintools,	9,	2},
-{"ddeisopen",	 	IN_intwintools,	10,	2},
-{"ClipBoard",		IN_intwintools,	11,	2},
-{"hidetoolbar",		IN_intwintools,	12,	2},
-{"toolbar",		IN_intwintools,	13,	2},
-{"setlanguagemenu",	IN_intwintools,	14,	2},
-{"console",		IN_intwintools,	15,	2},
-{"about",		IN_intwintools,	16,	2},
-{"mcisendstring",	IN_intwintools,	17,	2},
-{"oemtochar",		IN_intwintools,	18,	2},
-{"chartooem",		IN_intwintools,	19,	2},
-{"printsetupbox",	IN_intwintools,	20,	2},
-{"toprint",	IN_intwintools,	21,	2},
-{"settextcolor",	IN_intwintools,	22,	2},
-{"settextbackgroundcolor",	IN_intwintools,	23,	2},
-{"filesassociationbox",	IN_intwintools,	24,	2},
-#define  IN_inttime 49
-{"getdate",	        IN_inttime,	1,	2},
-{"Calendar",        IN_inttime,	2,	2},
-{"timer",	        IN_inttime,	3,	2},
-{"sleep",	        IN_inttime,	4,	2},
-{"xpause",	        IN_inttime,	5,	2},
-{"realtimeinit",	IN_inttime,	6,	2},
-{"realtime",		IN_inttime,	7,	2},
+#ifdef WITH_PVM
+#define  IN_pvm  39
+#include "../pvm/pvm.fundef"
+#endif
+
+#define  IN_intelm  40
+#include "../int/int.fundef"
+
+#define  IN_intlapack  41
+#include "../lapack/lapack.fundef"
+
+#define  IN_intslicot  42
+#include "../slicot/slicot.fundef"
+
+#define  IN_intarpack  43
+#include "../arpack/arpack.fundef"
+
+#define  IN_intcos  44  
+#define  IN_coselm  45  
+#define  IN_intcscicos 46
+#include "../scicos/scicos.fundef"
+
+#define  IN_intwintools 47
+#include "../wintools/wintools.fundef"
+
+#define  IN_inttime 48
+#include "../time/time.fundef"

@@ -1,4 +1,3 @@
-#define  IN_logelm  23  
 {"find",		IN_logelm,	1,	0},
 {"bool2s",		IN_logelm,	2,	0},
 {"or",			IN_logelm,	3,	0},

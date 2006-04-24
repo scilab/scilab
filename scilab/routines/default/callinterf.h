@@ -37,42 +37,42 @@ extern void    /* 24  */ C2F(matus2)();
 extern void    /* 25  */ C2F(xawelm)();
 extern void    /* 26  */ C2F(matimp)();
 extern void    /* 27  */ C2F(spelm)();
-extern void    /* 28  */ C2F(intscicos)();
-extern void    /* 29  */ C2F(matodc)();
-extern void    /* 30  */ C2F(defint)();
-extern void    /* 31  */ C2F(feval)();
-extern void    /* 32  */ C2F(bva)();
-/* 33  */ /* FREE */
-extern void    /* 34  */ C2F(matfileio)();
-extern void    /* 35  */ C2F(coselm)();
-extern void    /* 36  */ C2F(specfun)();
-extern void    /* 37  */ C2F(dcd)();
-extern void    /* 38  */ C2F(randlib)();
-extern void    /* 39  */ C2F(otherspfunlib)();
-
+extern void    /* 28  */ C2F(matodc)();
+extern void    /* 29  */ C2F(defint)();
+extern void    /* 30  */ C2F(feval)();
+extern void    /* 31  */ C2F(bva)();
+extern void    /* 32  */ C2F(matfileio)();
+extern void    /* 33  */ C2F(specfun)();
+extern void    /* 34  */ C2F(dcd)();
+extern void    /* 35  */ C2F(randlib)();
+extern void    /* 36  */ C2F(otherspfunlib)();
 #ifdef WITH_TK
-extern void    /* 40  */ C2F(inttclsci)();
+extern void    /* 37  */ C2F(inttclsci)();
 #define TCLINTERF C2F(inttclsci)
 #else 
 #define TCLINTERF C2F(NoTclsci)
 #endif
-extern void    /* 41  */ C2F(lstelmi)();
+extern void    /* 38  */ C2F(lstelmi)();
 #ifdef WITH_PVM
-extern void    /* 42  */ C2F(intpvm)();
+extern void    /* 39  */ C2F(intpvm)();
 #define PVMINTERF C2F(intpvm)
 #else 
 #define PVMINTERF C2F(NoPvm)
 #endif
-extern void    /* 43  */ C2F(intelm)();
-extern void    /* 44  */ C2F(intlapack)();
-extern void    /* 45  */ C2F(intslicot)();
-extern void    /* 46  */ C2F(intarpack)();
-extern void    /* 47  */ C2F(intcscicos)();
-extern void    /* 48  */ C2F(intwintools)();
-extern void    /* 49  */ C2F(mattime)();
+extern void    /* 40  */ C2F(intelm)();
+extern void    /* 41  */ C2F(intlapack)();
+extern void    /* 42  */ C2F(intslicot)();
+extern void    /* 43  */ C2F(intarpack)();
+
+extern void    /* 44  */ C2F(intscicos)();
+extern void    /* 45  */ C2F(coselm)();
+extern void    /* 46  */ C2F(intcscicos)();
+
+extern void    /* 47  */ C2F(intwintools)();
+extern void    /* 48  */ C2F(mattime)();
 
 static OpTab Interfaces[] ={
-    /* 01  */ {C2F(matlu)},
+  /* 01  */ {C2F(matlu)},
 	/* 02  */ {C2F(matdsr)},
 	/* 03  */ {C2F(matsvd)},
 	/* 04  */ {C2F(matqr)},
@@ -99,28 +99,29 @@ static OpTab Interfaces[] ={
 	/* 25  */ {C2F(xawelm)},
 	/* 26  */ {C2F(matimp)},
 	/* 27  */ {C2F(spelm)},
-	/* 28  */ {C2F(intscicos)},
-	/* 29  */ {C2F(matodc)},
-	/* 30  */ {C2F(defint)},
-	/* 31  */ {C2F(feval)},
-	/* 32  */ {C2F(bva)},
-    /* 33  */ {C2F(matus2)}, /* free position may be used */
-	/* 34  */ {C2F(matfileio)},
-	/* 35  */ {C2F(coselm)},
-	/* 36  */ {C2F(specfun)},
-	/* 37  */ {C2F(dcd)},
-    /* 38  */ {C2F(randlib)},
-    /* 39  */ {C2F(otherspfunlib)},
-    /* 40  */ {TCLINTERF},
-	/* 41  */ {C2F(lstelmi)},
-	/* 42  */ {PVMINTERF},
-    /* 43  */ {C2F(intelm)},
-    /* 44  */ {C2F(intlapack)},
-    /* 45  */ {C2F(intslicot)},
-    /* 46  */ {C2F(intarpack)},
- 	/* 47  */ {C2F(intcscicos)},
-	/* 48  */ {C2F(intwintools)},
-	/* 49  */ {C2F(mattime)}
+	/* 28  */ {C2F(matodc)},
+	/* 29  */ {C2F(defint)},
+	/* 30  */ {C2F(feval)},
+	/* 31  */ {C2F(bva)},
+	/* 32  */ {C2F(matfileio)},
+	/* 33  */ {C2F(specfun)},
+	/* 34  */ {C2F(dcd)},
+  /* 35  */ {C2F(randlib)},
+  /* 36  */ {C2F(otherspfunlib)},
+  /* 37  */ {TCLINTERF},
+	/* 38  */ {C2F(lstelmi)},
+	/* 39  */ {PVMINTERF},
+  /* 40  */ {C2F(intelm)},
+  /* 41  */ {C2F(intlapack)},
+  /* 42  */ {C2F(intslicot)},
+  /* 43  */ {C2F(intarpack)},
+
+	/* 44  */ {C2F(intscicos)},
+	/* 45  */ {C2F(coselm)},
+ 	/* 46  */ {C2F(intcscicos)},
+
+	/* 47  */ {C2F(intwintools)},
+	/* 48  */ {C2F(mattime)}
 };
 
 #endif /*__CALLINTERF__*/

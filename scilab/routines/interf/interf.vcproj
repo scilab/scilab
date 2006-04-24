@@ -694,9 +694,6 @@ cd .. &gt;nul
 				RelativePath=".\intarpack.c">
 			</File>
 			<File
-				RelativePath=".\Interf.c">
-			</File>
-			<File
 				RelativePath=".\intfilestat.c">
 			</File>
 			<File
