@@ -1,0 +1,11 @@
+#define  IN_polelm  16  
+{"bezout",		IN_polelm,	13,	2},	
+{"coeff",		IN_polelm,	4,	0},	
+{"degree",		IN_polelm,	3,	0},	
+{"poly",		IN_polelm,	1,	1},	
+{"pppdiv",		IN_polelm,	6,	2},	
+{"roots",		IN_polelm,	2,	2},	
+{"sfact",		IN_polelm,	14,	2},	
+{"simp",		IN_polelm,	7,	2},	
+{"simp_mode",		IN_polelm,	15,	0},	
+{"varn",		IN_polelm,	16,	1},	

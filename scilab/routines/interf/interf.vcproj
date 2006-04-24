@@ -819,6 +819,9 @@ cd .. &gt;nul
 			RelativePath=".\otherspecfun.fundef">
 		</File>
 		<File
+			RelativePath=".\polelm.fundef">
+		</File>
+		<File
 			RelativePath=".\qz.fundef">
 		</File>
 		<File
@@ -826,6 +829,9 @@ cd .. &gt;nul
 		</File>
 		<File
 			RelativePath=".\strelm.fundef">
+		</File>
+		<File
+			RelativePath=".\usr.fundef">
 		</File>
 	</Files>
 	<Globals>

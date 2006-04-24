@@ -10,21 +10,10 @@
 #include "../optim/optim.fundef"
 #include "../interf/ode.fundef"
 #include "../system/system.fundef"
-
-#define  IN_matusr  14  
-{"user",		IN_matusr,	1,	1},	
+#include "../interf/usr.fundef"
 #include "../metanet/metanet.fundef"
-#define  IN_polelm  16  
-{"bezout",		IN_polelm,	13,	2},	
-{"coeff",		IN_polelm,	4,	0},	
-{"degree",		IN_polelm,	3,	0},	
-{"poly",		IN_polelm,	1,	1},	
-{"pppdiv",		IN_polelm,	6,	2},	
-{"roots",		IN_polelm,	2,	2},	
-{"sfact",		IN_polelm,	14,	2},	
-{"simp",		IN_polelm,	7,	2},	
-{"simp_mode",		IN_polelm,	15,	0},	
-{"varn",		IN_polelm,	16,	1},	
+#include "../interf/polelm.fundef"
+
 #define  IN_lstelm  17  
 {"glist",		IN_lstelm,	5,	1},	
 {"list",		IN_lstelm,	1,	1},	
@@ -126,9 +115,9 @@
 {"dlgamma",		IN_specfun,	7,	3},	
 {"calerf",		IN_specfun,	8,	3},	
 #include "../dcd/dcd.fundef"
-#define  IN_randlib  38
-{"grand",		IN_randlib,	1,	3},
+#include "../randlib/randlib.fundef"
 #include "../interf/otherspecfun.fundef"
+
 #define  IN_tclsci  40
 #ifdef WITH_TK
 #include "../tclsci/fundef.tclsci"
@@ -140,11 +129,9 @@
 #endif
 
 #include "../int/int.fundef"
-
 #include "../lapack/lapack.fundef"
 #include "../slicot/slicot.fundef"
 #include "../arpack/arpack.fundef"
-
 #include "../scicos/scicos.fundef"
 #include "../wintools/wintools.fundef"
 #include "../time/time.fundef"

@@ -719,6 +719,9 @@ cd .. &gt;nul
 				RelativePath="ultra.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\randlib.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
