@@ -801,10 +801,22 @@ cd .. &gt;nul
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\bva.fundef">
+		</File>
+		<File
+			RelativePath=".\def.fundef">
+		</File>
+		<File
 			RelativePath=".\dsRC.fundef">
 		</File>
 		<File
+			RelativePath=".\feval.fundef">
+		</File>
+		<File
 			RelativePath=".\fmlelm.fundef">
+		</File>
+		<File
+			RelativePath=".\imp.fundef">
 		</File>
 		<File
 			RelativePath=".\interp.fundef">
@@ -825,6 +837,9 @@ cd .. &gt;nul
 			RelativePath=".\new.fundef">
 		</File>
 		<File
+			RelativePath=".\odc.fundef">
+		</File>
+		<File
 			RelativePath=".\ode.fundef">
 		</File>
 		<File
@@ -841,6 +856,12 @@ cd .. &gt;nul
 		</File>
 		<File
 			RelativePath=".\ric.fundef">
+		</File>
+		<File
+			RelativePath=".\specfun.fundef">
+		</File>
+		<File
+			RelativePath=".\spelm.fundef">
 		</File>
 		<File
 			RelativePath=".\strelm.fundef">

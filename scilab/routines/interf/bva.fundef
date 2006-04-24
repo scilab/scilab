@@ -1,0 +1,2 @@
+#define  IN_bva  32  
+{"bvode",		IN_bva,		1,	2},	
