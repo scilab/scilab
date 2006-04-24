@@ -813,6 +813,9 @@ cd .. &gt;nul
 			RelativePath=".\new.fundef">
 		</File>
 		<File
+			RelativePath=".\ode.fundef">
+		</File>
+		<File
 			RelativePath=".\otherspecfun.fundef">
 		</File>
 		<File

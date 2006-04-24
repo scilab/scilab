@@ -8,10 +8,7 @@
 #include "../interf/ric.fundef"
 #include "../interf/new.fundef"
 #include "../optim/optim.fundef"
-
-#define  IN_matode  12  
-{"ode",			12,	1,	2},	
-
+#include "../interf/ode.fundef"
 #include "../system/system.fundef"
 
 #define  IN_matusr  14  
