@@ -927,6 +927,9 @@ cd.. &gt;nul
 				RelativePath=".\SetProperty.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\graphics.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
