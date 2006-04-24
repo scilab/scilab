@@ -359,40 +359,11 @@
 #define  IN_lstelmi  41
 {"getfield",		IN_lstelmi,	1,	1},	
 {"setfield",		IN_lstelmi,	2,	1},	
-#define  IN_pvm  42
-{"pvm_joingroup",	IN_pvm,		1,	1},
-{"pvm_lvgroup",		IN_pvm,		2,	1},
-{"pvm_gsize",		IN_pvm,		3,	1},
-{"pvm_gettid",		IN_pvm,		4,	1},
-{"pvm_getinst",		IN_pvm,		5,	1},
-{"pvm_barrier",		IN_pvm,		6,	1},
-{"pvm_bcast",		IN_pvm,		7,	1},
-{"pvm_tasks",		IN_pvm,		8,	1},
-{"pvm_config",		IN_pvm,		9,	1},
-{"pvm_addhosts",	IN_pvm,		10,	1},
-{"pvm_delhosts",	IN_pvm,		11,	1},
-{"pvm_parent",		IN_pvm,		12,	1},
-{"pvm_tidtohost",	IN_pvm,		13,	1},
-{"pvm_set_timer",	IN_pvm,		14,	1},
-{"pvm_get_timer",	IN_pvm,		15,	1},
-{"pvm_mytid",		IN_pvm,		16,	1},
-{"pvm_exit",		IN_pvm,		17,	1},
-{"pvm_kill",		IN_pvm,		18,	1},
-{"pvm_spawn",		IN_pvm,		19,	1},
-{"pvm_spawn_independent",IN_pvm,	20,	1},
-{"pvm_recv",		IN_pvm,		21,	1},
-{"pvm_send",		IN_pvm,		22,	1},
-{"pvm_recv_var",	IN_pvm,		23,	1},
-{"pvm_send_var",	IN_pvm,		24,	1},
-{"pvm_reduce",		IN_pvm,		25,	1},
-{"pvm_start",		IN_pvm,		26,	1},
-{"pvm_halt",		IN_pvm,		27,	1},
-{"pvm_error",		IN_pvm,		28,	1},
-{"pvm_sci2f77",         IN_pvm,         29,     1},
-{"pvm_f772sci",         IN_pvm,         30,     1},
-{"pvm_probe",           IN_pvm,         31,     1},
-{"pvm_bufinfo",         IN_pvm,         32,     1},
-{"pvm_error_mode",      IN_pvm,         33,     1},
+
+#ifdef WITH_PVM
+#include "../pvm/pvm.fundef"
+#endif
+
 #define  IN_intelm  43
 {"int32",		IN_intelm,	1,	3},
 {"int16",		IN_intelm,	2,	3},
