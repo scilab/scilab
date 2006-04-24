@@ -2,8 +2,7 @@
 
 #define  IN_MatdsRC 2
 {"bdiag",		IN_MatdsRC,	4,	2},	
-#include "../interf/io.fundef
-
+#include "../interf/io.fundef"
 #include "../calelm/calelm.fundef"
 #include "../graphics/graphics.fundef"	
   
@@ -80,21 +79,8 @@
 {"arl2_ius",		IN_polaut,	1,	2},	
 {"ldiv",		IN_polaut,	3,	2},	
 {"residu",		IN_polaut,	2,	2},	
-#define  IN_strelm  21  
-{"code2str",		IN_strelm,	7,	1},	
-{"convstr",		IN_strelm,	4,	0},	
-{"emptystr",		IN_strelm,	5,	1},	
-{"length",		IN_strelm,	1,	1},	
-{"part",		IN_strelm,	2,	1},	
-{"str2code",		IN_strelm,	6,	1},	
-{"strcat",		IN_strelm,	9,	1},	
-{"strindex",		IN_strelm,	10,	1},	
-{"string",		IN_strelm,	3,	1},	
-{"strsubst",		IN_strelm,	11,	1},	
-{"ascii",		IN_strelm,	12,	1},	
-{"grep",		IN_strelm,	13,	1},
-{"tokens",		IN_strelm,	14,	1},
-{"strsplit",		IN_strelm,	15,	1},
+
+#include "../interf/strelm.fundef"
 	
 #define  IN_fmlelm  22  
 {"addf",		IN_fmlelm,	1,	0},	
@@ -161,24 +147,13 @@
 #include "../dcd/dcd.fundef"
 #define  IN_randlib  38
 {"grand",		IN_randlib,	1,	3},
-#define  IN_otherspecfun  39  
-{"legendre",		IN_otherspecfun,	1,	3},	
-{"beta",		IN_otherspecfun,	2,	3},	
-{"besseli",		IN_otherspecfun,	3,	3},	
-{"besselj",		IN_otherspecfun,	4,	3},	
-{"besselk",		IN_otherspecfun,	5,	3},	
-{"bessely",		IN_otherspecfun,	6,	3},	
-{"besselh",		IN_otherspecfun,	7,	3},	
-
+#include "../interf/otherspecfun.fundef"
 #define  IN_tclsci  40
 #ifdef WITH_TK
 #include "../tclsci/fundef.tclsci"
 #endif
 
-#define  IN_lstelmi  41
-{"getfield",		IN_lstelmi,	1,	1},	
-{"setfield",		IN_lstelmi,	2,	1},	
-
+#include "../interf/lstelmi.fundef"
 #ifdef WITH_PVM
 #include "../pvm/pvm.fundef"
 #endif

@@ -803,6 +803,15 @@ cd .. &gt;nul
 		<File
 			RelativePath=".\io.fundef">
 		</File>
+		<File
+			RelativePath=".\lstelmi.fundef">
+		</File>
+		<File
+			RelativePath=".\otherspecfun.fundef">
+		</File>
+		<File
+			RelativePath=".\strelm.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
