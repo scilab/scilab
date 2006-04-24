@@ -2212,6 +2212,9 @@ cd .. &gt;nul
 				RelativePath="wmen_scilab.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\menusX.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
