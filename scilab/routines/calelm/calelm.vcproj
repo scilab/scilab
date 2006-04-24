@@ -809,6 +809,9 @@ cd .. &gt;nul
 				RelativePath="sci_tools.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\calelm.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

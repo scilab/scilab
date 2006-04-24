@@ -800,6 +800,9 @@ cd .. &gt;nul
 				RelativePath="stack3.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\io.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
