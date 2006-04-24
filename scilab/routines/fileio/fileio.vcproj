@@ -1551,6 +1551,9 @@ cd .. &gt;nul
 				RelativePath="wav.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\fileio.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
