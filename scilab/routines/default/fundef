@@ -15,19 +15,8 @@
 #include "../interf/polelm.fundef"
 #include "../interf/list.fundef"
 #include "../signal/signal.fundef"
+#include "../interf/interp.fundef"
 
-#define  IN_intinterp  19  
-{"splin",		IN_intinterp,	1,	3},	
-{"lsq_splin",		IN_intinterp,	2,	3},
-{"interp",		IN_intinterp,	3,	3},	
-{"linear_interpn",	IN_intinterp,	4,	3},
-{"splin2d",		IN_intinterp,	5,	3},	
-{"interp2d",		IN_intinterp,	6,	3},
-{"cshep2d",		IN_intinterp,	7,	3},	
-{"eval_cshep2d",	IN_intinterp,	8,	3},
-{"splin3d",		IN_intinterp,	9,	3},	
-{"interp3d",		IN_intinterp,  10,	3},
-{"bsplin3val",		IN_intinterp,  11,	3},	
 #define  IN_polaut  20
 /* ius means internal ugly stuff arl2 is the function*/  
 {"arl2_ius",		IN_polaut,	1,	2},	

@@ -804,6 +804,9 @@ cd .. &gt;nul
 			RelativePath=".\dsRC.fundef">
 		</File>
 		<File
+			RelativePath=".\interp.fundef">
+		</File>
+		<File
 			RelativePath=".\io.fundef">
 		</File>
 		<File
