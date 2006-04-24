@@ -1,0 +1,11 @@
+#define  IN_intslicot  45
+{"sident",		IN_intslicot,	1,	3},
+{"sorder",		IN_intslicot,	2,	3},
+{"findBD",		IN_intslicot,	3,	3},
+{"rankqr",		IN_intslicot,	4,	3},
+{"contr",		IN_intslicot,	5,	3},
+{"mucomp",		IN_intslicot,	6,	3},
+{"ricc",		IN_intslicot,	7,	3},
+{"hinf",		IN_intslicot,	8,	3},
+{"dhinf",		IN_intslicot,	9,	3},
+{"linmeq",		IN_intslicot,	10,	3},

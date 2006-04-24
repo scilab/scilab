@@ -947,6 +947,9 @@ cd .. &gt;nul
 				RelativePath=".\scicos_block.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\scicos.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
