@@ -818,6 +818,9 @@ cd .. &gt;nul
 				RelativePath="def.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\int.fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
