@@ -165,6 +165,20 @@
 				CleanCommandLine="cleanmacros.bat"
 				Output="BuildMacros.exe"/>
 		</Configuration>
+		<Configuration
+			Name="Release without scicos|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="..\bin\scilex -ns -nwni -f buildmacros.sce"
+				CleanCommandLine="cleanmacros.bat"
+				Output="BuildMacros.exe"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>

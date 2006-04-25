@@ -820,6 +820,82 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Release without scicos|Win32"
+			OutputDirectory=".\Release without scicos"
+			IntermediateDirectory=".\Release without scicos"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="1"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation=".\Release without scicos/"
+				ObjectFile=".\Release without scicos/"
+				ProgramDataBaseFileName=".\Release without scicos/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib wsock32.lib oldnames.lib libcpmt.lib"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				IgnoreDefaultLibraryNames="libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib,msvcrtd.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				ProgramDatabaseFile=".\Release without scicos/LibScilab.pdb"
+				SubSystem="2"
+				SupportUnloadOfDelayLoadedDLL="TRUE"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Release/LibScilab.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
+copy ..\*.def ..\LibScilab.def &gt;nul
+copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
+"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -1021,6 +1097,13 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release without scicos|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\Sav.ico">
@@ -1041,10 +1124,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
+				RelativePath="..\..\routines\wsci\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico">
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico">
@@ -1125,6 +1208,11 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			<FileConfiguration
 				Name="Release with Debug Information|Win32"
 				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release without scicos|Win32">
 				<Tool
 					Name="VCCustomBuildTool"/>
 			</FileConfiguration>

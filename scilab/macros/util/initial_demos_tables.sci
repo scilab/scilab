@@ -15,9 +15,12 @@ function demolist=initial_demos_tables()
 		'Signal Processing','signal/signal.dem';
 		'Optimization','optimization/optimization.dem';
 		'Graph & Networks','metanet/meta.dem';
-		'Scicos','scicos/scicos.dem';
 		'Random','random/random.dem';
 	];
+	
+	if %scicos then
+		demolist = cat(1,demolist,['Scicos','scicos/scicos.dem']);
+	end
 	
 	if with_tk() then
 		demolist = cat(1,demolist,['TK/TCL demos','tk/tk.dem']);
