@@ -163,9 +163,11 @@ end
 clear verbose;
 
 // Define Scicos data tables ===========================================
+if %scicos then 
 [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
 	%scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
 clear initial_scicos_tables
+end
 
 
 // load contrib menu if present ========================================

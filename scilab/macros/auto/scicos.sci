@@ -12,7 +12,8 @@ function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
 [lhs,rhs]=argn(0)
 
 if ~%scicos then
-  error('scicos interfaces not loaded',999);
+  warning('scicos isn''t installed.');
+  abort;
 end
 
 

@@ -11,6 +11,10 @@ function [scs_m,newparameters,needcompile,edited]=scicos_new(scs_m,menus)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 
+if ~%scicos then
+  warning('scicos isn''t installed.');
+  abort;
+end
 
 //xset('window',curwin);
 olds=get('old_style')
