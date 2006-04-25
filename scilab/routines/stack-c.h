@@ -156,6 +156,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 #define GetType(n)   C2F(gettype)((c_local = n +Top - Rhs, &c_local))
 
 #define VarType(n)   C2F(vartype)((c_local=n,&c_local))
+#define ElementType(n,m)   C2F(elementtype)((c_local=n,&c_local),(c1_local=m,&c1_local))
 
 #define OverLoad(n) C2F(overload)((c_local = n +Top - Rhs, &c_local),fname,strlen(fname))
 

@@ -50,6 +50,7 @@ extern int C2F(cvstr1old) __PARAMS((integer *n, integer *line, char *str, intege
 extern int C2F(tryenhaut) __PARAMS((integer *itopl, integer *i__));
 extern int C2F(isref) __PARAMS((integer *lw));
 extern integer C2F(vartype) __PARAMS((integer *number));
+extern integer C2F(elementtype) __PARAMS((integer *lnumber,integer *number));
 extern int C2F(createvar) __PARAMS((integer *lw, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len));
 
 extern int C2F(creatework)  __PARAMS((integer *number,integer *m,integer  *lr));
