@@ -2540,7 +2540,10 @@ double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
   int flag_limit = 0,i;
   double * tmp = NULL;
 
-  tmp=(double *)MALLOC(nbtics*sizeof(double));
+  if ( nbtics <= 0 || ( tmp = MALLOC( nbtics * sizeof(double) ) ) == NULL )
+  {
+    return NULL ;
+  }
 
   if(logflag=='l')
     {
