@@ -28,8 +28,12 @@ function xmlfiletohtml(path,xsl)
 			// sabcmd does not like c:/.. path replace it by file://c:/..
 			xsl='file://'+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 			generate_cmd='""'+WSCI+'\Win-util\sablotron\sabcmd'+'""'
-            in='file://'+in;
-            out='file://'+out;
+			if basename(in)+".xml2"<>in then
+				in='file://'+in;
+			end
+			if basename(out)+".xml2"<>out then
+				out='file://'+out;
+			end
 			instr=generate_cmd+' '+xsl+' '+in+' '+out
 			RM='del /s '
 		else

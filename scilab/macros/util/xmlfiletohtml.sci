@@ -23,11 +23,17 @@ function xmlfiletohtml(path,xsl)
 		in=path+"2"
 		out=strsubst(path,'.xml','.htm')
     
-		// form the html generatorc command line instruction
+		// form the html generator command line instruction
 		if  MSDOS then 
 			// sabcmd does not like c:/.. path replace it by file://c:/..
 			xsl='file://'+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 			generate_cmd='""'+WSCI+'\Win-util\sablotron\sabcmd'+'""'
+			if basename(in)+".xml2"<>in then
+				in='file://'+in;
+			end
+			if basename(out)+".xml2"<>out then
+				out='file://'+out;
+			end
 			instr=generate_cmd+' '+xsl+' '+in+' '+out
 			RM='del /s '
 		else
