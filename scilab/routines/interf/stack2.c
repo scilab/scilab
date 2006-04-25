@@ -1507,6 +1507,43 @@ int C2F(getrhscvar)(number, typex, it, m, n, lr, lc, type_len)
 }
 
 /*---------------------------------------------------------------------
+ * elementtype:
+ *   returns the type of the element indexed by *number in the list 
+ *   whose variable number is *lnumber. If the indexed element does not exist
+ *   the function returns 0.
+ *---------------------------------------------------------------------*/
+
+int C2F(elementtype)(integer *lnumber, integer *number)
+{
+  integer il,lw,itype,n,ix,ili;
+  char *fname = Get_Iname();
+
+  if (*lnumber > Rhs) {
+    Scierror(999,"%s: bad call to elementtype! \r\n",fname);
+    return FALSE_;
+  }
+
+  lw = *lnumber + Top - Rhs; /*index of the variable numbered *lnumber in the stack */
+  il = iadr(*Lstk(lw)); 
+  if (*istk(il) < 0) il = iadr(*istk(il + 1));
+  itype = *istk(il ); /* type of the variable numbered *lnumber */
+  if (itype < 15 || itype > 17) { /* check if it is really a list */
+    Scierror(210,"%s: Argument %d: wrong type argument, expecting a list\r\n",fname,*lnumber);
+    return FALSE_;
+  }
+  n = *istk(il + 1);/* number of elements in the list */
+  itype = 0; /*default answer if *number is not a valid element index */
+  if (*number<=n && *number>0) {
+    ix = sadr(il + 3 + n); /* adress of the first list element */
+    if (*istk(il + 1+ *number) < *istk(il + *number + 2)) { /* the required element is defined */
+      ili = iadr(ix + *istk(il + 1+ *number) - 1); /* adress of the required element */
+      itype = *istk(ili);
+    }
+  }
+  return itype;
+}
+
+/*---------------------------------------------------------------------
  *     This function must be called after getrhsvar(lnumber,'l',...) 
  *     Argument lnumber is a list 
  *     we want here to get its argument number number 
