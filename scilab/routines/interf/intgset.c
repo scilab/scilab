@@ -258,21 +258,47 @@ int gset(fname,fname_len)
 						strcmp(cstk(l2),"y_ticks")==0 ||
 						strcmp(cstk(l2),"z_ticks")==0))
       {
-	if(VarType(3) != 16){
+        char * sizeNotEqual = "Ticks location and label vectors must have the same size.\r\n" ;
+	
+        if(VarType(3) != 16)
+        {
 	  Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
 	  return -1;
 	}
 
 	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&ptrindex[0]);
-	GetListRhsVar(3,3,"S",&numrow[1],&numcol[1],&ptrindex[1]);
-
-	if(numrow[0] == 0 || numrow[1] == 0 || numcol[0] == 0 || numcol[1] == 0){
-	  Scierror(999,"%s: Incorrect argument, a complete 'ticks' tlist must be defined!\r\n",fname);
-	  return -1;
-	}
-
-	if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
+       
+        if ( numrow[0] == 0 && numcol[0] == 0 )
+        {
+          if ( ElementType( 3, 3 ) == 1 )
+          {
+            /* labels should be an empty vector */
+            GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&ptrindex[1]);
+            if ( numrow[1] != 0 || numcol[1] != 0 )
+            {
+              Scierror(999,sizeNotEqual) ;
+              return -1 ;
+            }
+          }
+          else
+          {
+            Scierror(999,sizeNotEqual) ;
+            return -1 ;
+          }
+        }
+        else
+        {
+          /* we should have the same number of ticks and locations */
+          GetListRhsVar(3,3,"S",&numrow[1],&numcol[1],&ptrindex[1]);
+          if ( numrow[1] != numrow[0] || numcol[1] != numcol[0] )
+          {
+            Scierror(999,sizeNotEqual) ;
+            return -1 ;
+          }
+        }
+        
+        if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
 
       }
     else if(strcmp(cstk(l2),"data") == 0){ /* distinction for "data" treatment for champ and surface objects */
@@ -426,7 +452,14 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
       ppsubwin->axes.u_nxgrads = prod;
 
       FREE(ppsubwin->axes.u_xgrads); ppsubwin->axes.u_xgrads = NULL;
-      if((ppsubwin->axes.u_xgrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      if ( prod > 0 )
+      {
+        ppsubwin->axes.u_xgrads = MALLOC( prod * sizeof(double) ) ;
+        if( ppsubwin->axes.u_xgrads == NULL )
+        {
+          return -1 ;
+        }
+      }
 
 
       if(ppsubwin->logflags[0]=='l')
@@ -448,7 +481,10 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
 
       FREE(ppsubwin->axes.u_xlabels); ppsubwin->axes.u_xlabels = NULL;
 
-      ppsubwin->axes.u_xlabels = *(char ***) &ptrindex[1];
+      if ( prod > 0 )
+      {
+        ppsubwin->axes.u_xlabels = *(char ***) &ptrindex[1];
+      }
     }
   else if(strcmp(xyztick,"y_ticks")==0)
     {
@@ -459,7 +495,11 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
       ppsubwin->axes.u_nygrads = prod;
 
       FREE(ppsubwin->axes.u_ygrads); ppsubwin->axes.u_ygrads = NULL;
-      if((ppsubwin->axes.u_ygrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      
+      if ( prod > 0 )
+      {
+        if((ppsubwin->axes.u_ygrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      }
 
 
       if(ppsubwin->logflags[1]=='l')
@@ -481,7 +521,10 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
 
       FREE(ppsubwin->axes.u_ylabels); ppsubwin->axes.u_ylabels = NULL;
 
-      ppsubwin->axes.u_ylabels = *(char ***) &ptrindex[1];
+      if ( prod > 0 )
+      {
+        ppsubwin->axes.u_ylabels = *(char ***) &ptrindex[1];
+      }
     }
   else if(strcmp(xyztick,"z_ticks")==0)
     {
@@ -492,8 +535,11 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
       ppsubwin->axes.u_nzgrads = prod;
 
       FREE(ppsubwin->axes.u_zgrads); ppsubwin->axes.u_zgrads = NULL;
-      if((ppsubwin->axes.u_zgrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
-
+      
+      if ( prod > 0 )
+      {
+        if((ppsubwin->axes.u_zgrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
+      }
 
       if(ppsubwin->logflags[2]=='l')
 	{
@@ -514,7 +560,10 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
 
       FREE(ppsubwin->axes.u_zlabels); ppsubwin->axes.u_zlabels = NULL;
 
-      ppsubwin->axes.u_zlabels = *(char ***) &ptrindex[1];
+      if ( prod > 0 )
+      {
+        ppsubwin->axes.u_zlabels = *(char ***) &ptrindex[1];
+      }
     }
   return 0;
 }
