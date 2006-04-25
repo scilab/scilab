@@ -56,19 +56,32 @@ extern void    /* 40  */ C2F(inttclsci)();
 #else 
 #define TCLINTERF C2F(NoTclsci)
 #endif
+
 extern void    /* 41  */ C2F(lstelmi)();
+
 #ifdef WITH_PVM
 extern void    /* 42  */ C2F(intpvm)();
 #define PVMINTERF C2F(intpvm)
 #else 
 #define PVMINTERF C2F(NoPvm)
 #endif
+
 extern void    /* 43  */ C2F(intelm)();
 extern void    /* 44  */ C2F(intlapack)();
-extern void    /* 45  */ C2F(intscicos)();
-extern void    /* 46  */ C2F(coselm)();
 
-extern void    /* 47  */ C2F(intcscicos)();
+#if WITHOUT_SCICOS
+	#define SCICOSINTERF1 C2F(Nointscicos)
+	#define SCICOSINTERF2 C2F(Nocoselm)
+	#define SCICOSINTERF3 C2F(Nointcscicos)
+#else
+	extern void    /* 45  */ C2F(intscicos)();
+	#define SCICOSINTERF1 C2F(intscicos)
+	extern void    /* 46  */ C2F(coselm)();
+	#define SCICOSINTERF2 C2F(coselm)
+	extern void    /* 47  */ C2F(intcscicos)();
+	#define SCICOSINTERF3 C2F(intcscicos)
+#endif
+
 extern void    /* 48  */ C2F(intwintools)();
 extern void    /* 49  */ C2F(mattime)();
 
@@ -117,9 +130,9 @@ static OpTab Interfaces[] ={
 	/* 42  */ {PVMINTERF},
   /* 43  */ {C2F(intelm)},
   /* 44  */ {C2F(intlapack)},
-  /* 45  */ {C2F(intscicos)},  
-  /* 46  */ {C2F(coselm)},
- 	/* 47  */ {C2F(intcscicos)},
+  /* 45  */ {SCICOSINTERF1},  
+  /* 46  */ {SCICOSINTERF2},
+ 	/* 47  */ {SCICOSINTERF3},
 	/* 48  */ {C2F(intwintools)},
 	/* 49  */ {C2F(mattime)}
 };
