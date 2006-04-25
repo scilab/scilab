@@ -37,14 +37,14 @@ extern void    /* 24  */ C2F(matus2)();
 extern void    /* 25  */ C2F(xawelm)();
 extern void    /* 26  */ C2F(matimp)();
 extern void    /* 27  */ C2F(spelm)();
-extern void    /* 28  */ C2F(intscicos)();
+extern void    /* 28  */ C2F(intslicot)();
 extern void    /* 29  */ C2F(matodc)();
 extern void    /* 30  */ C2F(defint)();
 extern void    /* 31  */ C2F(feval)();
 extern void    /* 32  */ C2F(bva)();
 /* 33  */ /* FREE */
 extern void    /* 34  */ C2F(matfileio)();
-extern void    /* 35  */ C2F(coselm)();
+extern void    /* 35  */ C2F(intarpack)();
 extern void    /* 36  */ C2F(specfun)();
 extern void    /* 37  */ C2F(dcd)();
 extern void    /* 38  */ C2F(randlib)();
@@ -65,14 +65,15 @@ extern void    /* 42  */ C2F(intpvm)();
 #endif
 extern void    /* 43  */ C2F(intelm)();
 extern void    /* 44  */ C2F(intlapack)();
-extern void    /* 45  */ C2F(intslicot)();
-extern void    /* 46  */ C2F(intarpack)();
+extern void    /* 45  */ C2F(intscicos)();
+extern void    /* 46  */ C2F(coselm)();
+
 extern void    /* 47  */ C2F(intcscicos)();
 extern void    /* 48  */ C2F(intwintools)();
 extern void    /* 49  */ C2F(mattime)();
 
 static OpTab Interfaces[] ={
-    /* 01  */ {C2F(matlu)},
+  /* 01  */ {C2F(matlu)},
 	/* 02  */ {C2F(matdsr)},
 	/* 03  */ {C2F(matsvd)},
 	/* 04  */ {C2F(matqr)},
@@ -99,25 +100,25 @@ static OpTab Interfaces[] ={
 	/* 25  */ {C2F(xawelm)},
 	/* 26  */ {C2F(matimp)},
 	/* 27  */ {C2F(spelm)},
-	/* 28  */ {C2F(intscicos)},
+	/* 28  */ {C2F(intslicot)},
 	/* 29  */ {C2F(matodc)},
 	/* 30  */ {C2F(defint)},
 	/* 31  */ {C2F(feval)},
 	/* 32  */ {C2F(bva)},
-    /* 33  */ {C2F(matus2)}, /* free position may be used */
+  /* 33  */ {C2F(matus2)}, /* free position may be used */
 	/* 34  */ {C2F(matfileio)},
-	/* 35  */ {C2F(coselm)},
+	/* 46  */ {C2F(intarpack)},
 	/* 36  */ {C2F(specfun)},
 	/* 37  */ {C2F(dcd)},
-    /* 38  */ {C2F(randlib)},
-    /* 39  */ {C2F(otherspfunlib)},
-    /* 40  */ {TCLINTERF},
+  /* 38  */ {C2F(randlib)},
+  /* 39  */ {C2F(otherspfunlib)},
+  /* 40  */ {TCLINTERF},
 	/* 41  */ {C2F(lstelmi)},
 	/* 42  */ {PVMINTERF},
-    /* 43  */ {C2F(intelm)},
-    /* 44  */ {C2F(intlapack)},
-    /* 45  */ {C2F(intslicot)},
-    /* 46  */ {C2F(intarpack)},
+  /* 43  */ {C2F(intelm)},
+  /* 44  */ {C2F(intlapack)},
+  /* 45  */ {C2F(intscicos)},  
+  /* 46  */ {C2F(coselm)},
  	/* 47  */ {C2F(intcscicos)},
 	/* 48  */ {C2F(intwintools)},
 	/* 49  */ {C2F(mattime)}
