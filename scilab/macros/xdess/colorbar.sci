@@ -35,7 +35,7 @@ function colorbar(umin, umax, colminmax,fmt)
     fmt='%-5.2g'
   else
     if type(fmt)<>10|size(fmt,'*')<>1 then 
-      error('colorbar: the fmt argument should be a string containing a C format")
+      error("colorbar: the fmt argument should be a string containing a C format")
     end
   end
   
@@ -117,7 +117,7 @@ function colorbar(umin, umax, colminmax,fmt)
     //It is not possible to set no ticks for x (should be fixed)
     a_cb.x_ticks=tlist(["ticks","locations","labels"],-1,'');
     ytics = linspace(umin, umax, nb_grad);
-    a_cb.y_ticks=tlist(["ticks","locations","labels"],ytics, ' '+msprintf(fmt+'\n',ytics'));
+    a_cb.y_ticks=tlist(["ticks","locations","labels"],ytics', ' '+msprintf(fmt+'\n',ytics'));
     a_cb.auto_ticks = ["off","off","on"];
     a_cb.box = "on";
     a_cb.margins=[0 0.75 0 0];
