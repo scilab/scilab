@@ -93,7 +93,7 @@ function %helps=initial_help_chapters(language)
 			
 	
 	case "fr"
-		helpstmp=["Programmation";
+			helpstmp=["Programmation";
 			"Librairie graphique";
 			"Fonctions élémentaires";
 			"Entrées-sorties";
@@ -120,10 +120,10 @@ function %helps=initial_help_chapters(language)
 			"Solveurs creux";
 			];
 			
-			if %tk then %helpstmp=[%helpstmp;"Interface TCL/Tk"];,end;
-			if %scicos then %helpstmp=[%helpstmp;"Scicos : éditeur et simulateur de blocs diagrammes"];,end;
-			if with_javasci() then %helpstmp=[%helpstmp;"Interface Java"];,end;
-			if %pvm then %helpstmp=[%helpstmp;"Calcul parallèle avec PVM"];,end;
+			if %tk then helpstmp=[helpstmp;"Interface TCL/Tk"];,end;
+			if %scicos then helpstmp=[helpstmp;"Scicos : éditeur et simulateur de blocs diagrammes"];,end;
+			if with_javasci() then helpstmp=[helpstmp;"Interface Java"];,end;
+			if %pvm then helpstmp=[helpstmp;"Calcul parallèle avec PVM"];,end;
 			
 			%helps=[%helps,helpstmp];
 			clear helpstmp;
