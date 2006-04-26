@@ -83,8 +83,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1} = {4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC} = {FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A} = {13082624-97F9-47DB-A9A1-AD7D6BF3856A}
+		{B7A0273E-8E71-4663-8497-0895945ED54D} = {B7A0273E-8E71-4663-8497-0895945ED54D}
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290} = {BC23A846-75D6-4375-A5AB-F5A8EFEFE290}
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621} = {4FC72D4A-80EE-4B1A-8724-0201C1A35621}
+		{566E524B-D327-4416-A865-9C83503FAB7B} = {566E524B-D327-4416-A865-9C83503FAB7B}
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0} = {DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A} = {C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C} = {2652D55A-391C-4341-A299-6B7BDCE45F0C}
@@ -402,6 +404,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "man\BuildHelp.
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "ocaml\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -443,6 +447,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CheckHelp", "man\CheckHelp\
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA} = {DE0A9A62-5A35-4F99-86CE-69B0C36792BA}
 	EndProjectSection
 EndProject
@@ -461,6 +467,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Javasci", "routines\Javasci
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildChm", "man\BuildChm\BuildChm.vcproj", "{D319F719-F429-4842-A6F9-B1227FE2A54D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
