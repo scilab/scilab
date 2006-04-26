@@ -16,11 +16,37 @@ function %helps=initial_help_chapters(language)
 		if rhs<>1 then error(39), end
 	end
 	
-	dirs=["programming";"graphics";"elementary";"fileio";"functions";"strings";
-		"gui";"utilities";"time";"linear";"polynomials";"control";"robust";
-		"nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
-		"tdcs";"statistics";"dcd";"identification";"mtlb";
-		"sparse";"pvm";"tksci";"java"];
+	dirs=["programming";
+				"graphics";
+				"elementary";
+				"fileio";
+				"functions";
+				"strings";
+				"gui";
+				"utilities";
+				"time";
+				"linear";
+				"polynomials";
+				"control";
+				"robust";
+				"nonlinear";
+				"signal";
+				"arma";
+				"metanet";
+				"sound";
+				"translation";
+				"tdcs";
+				"statistics";
+				"dcd";
+				"identification";
+				"mtlb";
+				"sparse";];
+	
+	if %tk then dirs=[dirs;"tksci"];,end;
+	if %scicos then dirs=[dirs;"scicos"];,end;
+	if with_javasci() then dirs=[dirs;"java"];,end;
+	if %pvm then 	dirs=[dirs;"pvm"];,end;
+	
 	
 	sep="/";
 	if MSDOS then sep="\",end
@@ -30,37 +56,60 @@ function %helps=initial_help_chapters(language)
 	select language
 	
 	case "eng"
-		%helps=[%helps,..
-			["Programming";"Graphics Library";"Elementary Functions";
-			"Input/Output Functions";"Handling of functions and libraries";
-			"Character string manipulations";"GUI and Dialogs";"Utilities";
-			"Time and Date";"Linear Algebra";"Polynomial calculations";
-			"General System and Control";"Robust control toolbox";
+		helpstmp=["Programming";
+			"Graphics Library";
+			"Elementary Functions";
+			"Input/Output Functions";
+			"Handling of functions and libraries";
+			"Character string manipulations";
+			"GUI and Dialogs";
+			"Utilities";
+			"Time and Date";
+			"Linear Algebra";
+			"Polynomial calculations";
+			"General System and Control";
+			"Robust control toolbox";
 			"Optimization and simulation";
 			"Signal Processing toolbox";
 			"Arma modelisation and simulation toolbox";
 			"Metanet: graph and network toolbox";
-			"Scicos: Bloc diagram editor and simulator";"Sound file handling";
-			"Language or data translations";"TdCs";
+			"Sound file handling";
+			"Language or data translations";
+			"TdCs";
 			"Statistic basics";
 			"Cumulative Distribution Functions; Inverses, grand";
 			"Identification";
 			"Matlab to Scilab conversion tips";
-			"Sparse solvers";
-			"PVM parallel toolbox";
-			"TCL/Tk interface";"Java Interface"]];
+			"Sparse solvers";];
+			
+			if %tk then helpstmp=[helpstmp;"TCL/Tk interface"];,end;
+			if %scicos then helpstmp=[helpstmp;"Scicos: Bloc diagram editor and simulator"];,end;
+			if with_javasci() then helpstmp=[helpstmp;"Java Interface"];,end;
+			if %pvm then helpstmp=[helpstmp;"PVM parallel toolbox"];,end;
+			
+			%helps=[%helps,helpstmp];
+			clear helpstmp;
+			
+			
 	
 	case "fr"
-		%helps=[%helps,..
-			["Programmation";"Librairie graphique";"Fonctions élémentaires";
-			"Entrées-sorties";"Manipulation des fonctions et des librairies";
-			"Manipulations de chaînes de caractères";"IHM et Dialogues";"Utilitaires";
-			"Heure et date";"Algèbre linéaire";"Calculs sur les polynômes";
-			"Contrôle et théorie des systèmes";"Contrôle robuste";
+		helpstmp=["Programmation";
+			"Librairie graphique";
+			"Fonctions élémentaires";
+			"Entrées-sorties";
+			"Manipulation des fonctions et des librairies";
+			"Manipulations de chaînes de caractères";
+			"IHM et Dialogues";
+			"Utilitaires";
+			"Heure et date";
+			"Algèbre linéaire";
+			"Calculs sur les polynômes";
+			"Contrôle et théorie des systèmes";
+			"Contrôle robuste";
 			"Optimisation et simulation";
-			"Traitement du signal";"Modélisation et simulation ARMA";
+			"Traitement du signal";
+			"Modélisation et simulation ARMA";
 			"Metanet : graphes et réseaux";
-			"Scicos : éditeur et simulateur de blocs diagrammes";
 			"Manipulation de fichiers sons";
 			"Génération de code, traduction de données";
 			"TdCs";
@@ -69,8 +118,16 @@ function %helps=initial_help_chapters(language)
 			"Identification";
 			"Aide à la conversion Matlab vers Scilab";
 			"Solveurs creux";
-			"Calcul parallèle avec PVM";
-			"Interface TCL/Tk";"Interface Java"]];
+			];
+			
+			if %tk then %helpstmp=[%helpstmp;"Interface TCL/Tk"];,end;
+			if %scicos then %helpstmp=[%helpstmp;"Scicos : éditeur et simulateur de blocs diagrammes"];,end;
+			if with_javasci() then %helpstmp=[%helpstmp;"Interface Java"];,end;
+			if %pvm then %helpstmp=[%helpstmp;"Calcul parallèle avec PVM"];,end;
+			
+			%helps=[%helps,helpstmp];
+			clear helpstmp;
+			
 	end
 	
 	%helps=[SCI+%helps(:,1),%helps(:,2)];
