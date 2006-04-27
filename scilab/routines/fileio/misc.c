@@ -12,68 +12,7 @@
  ****************************************************************/
 #include <stdio.h>
 #include "../machine.h"
-/*-----------------------------------------------------------------------------------*/
-#define IMPORT  extern
-#define EXPORT 
-
-#ifdef __MINGW32__
-#define HAVE_STRERROR
-#endif 
-
-#define	PRIVSIZE	100
-#define NLOOPS		8
-
-#if	defined(__STDC__) || defined(ARM)
-	#define	P1(x) x
-#else
-	#define P1(x)
-#endif
-/*-----------------------------------------------------------------------------------*/
-double 	       swapd(P1(double d));			/* Swap double */
-unsigned short swapw(P1(unsigned short us));		/* Swap short */
-unsigned long  swapl(P1(unsigned long ul));		/* Swap long */
-float  	       swapf(P1(float f));			/* Swap float */
-extern void sciprint __PARAMS((char *fmt,...));
-/*-----------------------------------------------------------------------------------*/
-struct  signalinfo {
-	long		rate;		/* sampling rate */
-	int		size;		/* word length of data */
-	int		style;		/* format of sample numbers */
-	int		channels;	/* number of sound channels */
-	};
-
-struct  instrinfo {
-	char 		MIDInote;	/* for unity pitch playback */
-	char		MIDIlow, MIDIhi;/* MIDI pitch-bend range */
-	char		loopmode;	/* semantics of loop data */
-	char		nloops;		/* number of active loops */
-	unsigned char	smpte[4];	/* SMPTE offset (hour:min:sec:frame) */
-	/* this is a film audio thing */
-	};
-
-struct  loopinfo {
-	int		start;		/* first sample */
-	int		length;		/* length */
-	int		count;		/* number of repeats, 0=forever */
-	int		type;		/* 0=no, 1=forward, 2=forward/back */
-	};
-
-struct soundstream {
-	struct	signalinfo info;	/* signal specifications */
-	struct  instrinfo instr;	/* instrument specification */
-	struct  loopinfo loops[NLOOPS];	/* Looping specification */
-	char	swap;			/* do byte- or word-swap */
-	char	seekable;		/* can seek on this file */
-	char	*filename;		/* file name */
-	char	*filetype;		/* type of file */
-	char	*comment;		/* comment string */
-	FILE	*fp;			/* File stream pointer */
-	double	priv[PRIVSIZE/8];	/* format's private data area */
-	int     ierr;
-	};
-
-IMPORT struct soundstream informat, outformat;
-typedef struct soundstream *ft_t;
+#include "misc.h"
 /*-----------------------------------------------------------------------------------*/
 EXPORT char *sizes[] = {
 			 "NONSENSE!",

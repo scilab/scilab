@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #endif
 #include "../machine.h"
-#include "../fileio/st.h"
+#include "../fileio/misc.h"
 
 struct soundstream ftf;
 extern FILE *GetFile();

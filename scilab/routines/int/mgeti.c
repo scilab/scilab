@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #endif
 #include "../machine.h"
-#include "../fileio/st.h"
+#include "../fileio/misc.h"
 
 int SWAP(char type[],integer *fd); /* Defined at the end of this file */
 
