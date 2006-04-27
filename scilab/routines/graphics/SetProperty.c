@@ -3610,7 +3610,7 @@ int sciInitCurrentFigure( sciPointObj * mafigure )
 int
 sciSetCurrentFigure (sciPointObj * mafigure)
 {
-  if ( sciGetCurrentFigure() == mafigure )
+  if ( sciGetCurPointedFigure() == mafigure )
   {
     /* nothing to do */
     return 1 ;

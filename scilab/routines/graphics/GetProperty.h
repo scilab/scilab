@@ -119,8 +119,8 @@ extern sciPointObj *sciIsExistingFigure(int *value); /* GET */ /* WARNING specia
 extern int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
 extern int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
 
-
-extern sciPointObj *sciGetCurrentFigure (); /* GET */
+extern sciPointObj * sciGetCurPointedFigure( void ) ; /* GET */
+extern sciPointObj * sciGetCurrentFigure (); /* GET */
 extern struct BCG *sciGetCurrentScilabXgc (); /* GET */
 extern BOOL sciGetReplay (); /* GET */
 

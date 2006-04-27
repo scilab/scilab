@@ -3774,8 +3774,16 @@ sciGetScrollPosH (sciPointObj * pobj)
     }
 }
 
+/*-----------------------------------------------------------------------------------*/
+/**
+ * @memo as sciGetCurrentFigure but do not create any figure if none exists
+ */
+sciPointObj * sciGetCurPointedFigure( void )
+{
+  return sciGetCurrentScilabXgc()->mafigure ;
+}
 
-
+/*-----------------------------------------------------------------------------------*/
 /**sciGetCurrentFigure
  * @memo Returns the pointer to the current selected figure. 
  */
