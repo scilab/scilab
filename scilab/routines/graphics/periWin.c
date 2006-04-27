@@ -35,6 +35,7 @@
 #include "scigraphic.h"
 #include "../machine.h"
 #include "../wsci/GetOS.h"
+#include "clipping.h"
 
 
 #ifdef WITH_TK
@@ -3542,6 +3543,34 @@ void C2F(fillpolylines)(str, vectsx, vectsy, fillvect, n, p, v7, dv1, dv2, dv3, 
   C2F(set_dash_and_color)(Dvalue,PI0,PI0,PI0); 
 }
 /*-----------------------------------------------------------------------------------*/
+
+static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore) ;
+
+/** Only draw one polygon  with current line style **/
+/** according to *closeflag : it's a polyline or a polygon **/
+/** n is the number of points of the polyline */
+/** ths routine also perform clipping to avoid overflow */
+void C2F(drawClippedPolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
+     char *str;
+     integer *n;
+     integer *vx;
+     integer *vy;
+     integer *closeflag;
+     integer *v6;
+     integer *v7;
+     double *dv1;
+     double *dv2;
+     double *dv3;
+     double *dv4;
+{ 
+  integer n1;
+  if (*closeflag == 1) n1 = *n+1;else n1= *n;
+  if (n1 >= 2) 
+  {
+    C2F(analyse_points)( *n, vx, vy, *closeflag );
+  }
+}
+/*-----------------------------------------------------------------------------------*/
 /** Only draw one polygon  with current line style **/
 /** according to *closeflag : it's a polyline or a polygon **/
 /** n is the number of points of the polyline */
@@ -3562,12 +3591,12 @@ void C2F(drawpolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, dv4)
   integer n1;
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
   if (n1 >= 2) 
-    {
-      if (C2F(store_points)(*n, vx, vy,*closeflag))
-	{
-	  Polyline(hdc,C2F(ReturnPoints)(),(int) n1);
-	} 
-    }
+  {
+    if (C2F(store_points)(*n, vx, vy,*closeflag))
+	  {
+	    Polyline(hdc,C2F(ReturnPoints)(),(int) n1);
+	  } 
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 /** Fill the polygon or polyline **/
@@ -5122,6 +5151,21 @@ integer first_out(n, ideb, vx, vy)
     }
   return(-1);
 }
+/*-----------------------------------------------------------------------------------*/
+static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore)
+{
+  SClipRegion clipping ;
+  integer windowSize[2] ;
+  integer verbose = 0 ;
+  integer narg ;
+  C2F(getwindowdim)( &verbose, windowSize, &narg, vdouble ) ;
+  clipping.leftX = 0 ;
+  clipping.rightX = windowSize[0] ;
+  clipping.bottomY = 0 ;
+  clipping.topY = windowSize[1] ;
+  C2F(clipPolyLine)( n, vx, vy, onemore, &clipping ) ;
+}
+
 /*-----------------------------------------------------------------------------------*/
 int CheckScilabXgc()
 {
