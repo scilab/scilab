@@ -141,3 +141,6 @@
 #define  IN_inttime 49
 #include "../time/time.fundef"
 
+#define  IN_intsound 50
+#include "../sound/sound.fundef"
+

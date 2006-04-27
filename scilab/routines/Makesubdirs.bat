@@ -132,7 +132,11 @@ echo Making %1 in directory  wsci
  nmake /C /f Makefile.mak %1
 cd ..
 cd time
-echo Making %1 in directory  times
+echo Making %1 in directory  time
+ nmake /C /f Makefile.mak %1
+cd ..
+cd sound
+echo Making %1 in directory sound 
  nmake /C /f Makefile.mak %1
 cd ..
 cd wsci\Wscilex

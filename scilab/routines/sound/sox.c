@@ -10,7 +10,6 @@
  * the consequences of using this software.
  * 1999 Copyright ENPC 
  *****************************************************/
-
 #include "st.h"
 #include <string.h>
 
@@ -23,20 +22,18 @@
 #include <errno.h>
 #include "../machine.h"
 #include "sox.h" 
-
+/*-----------------------------------------------------------------------------------*/ 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
 #define Min(x,y) ( ( (x) < (y))  ? (x) : (y) )
 extern void sciprint __PARAMS((char *fmt, ...));
 struct soundstream informat;
 ft_t ft;
-
+/*-----------------------------------------------------------------------------------*/ 
 static void checkformat __PARAMS((ft_t ft));
 static void cleanup  __PARAMS((void));
 static void init  __PARAMS((void));
 static int filetype __PARAMS((int fd));
-
-
-
+/*-----------------------------------------------------------------------------------*/ 
 /************************************************************
  * loadwave 
  * --------
@@ -44,10 +41,7 @@ static int filetype __PARAMS((int fd));
  * if flag == 1, res is read 
  * if flag == 0, size of res is computed but res is not read
  ************************************************************/
-
-
-int C2F(loadwave)(char * filename,double *res, integer * size_res,
-		  integer flag,WavInfo *Wi, integer *ierr)
+int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,WavInfo *Wi, integer *ierr)
 {
   long i,size_max;
 #if defined(__alpha)|defined(__ia64__)
@@ -145,13 +139,11 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,
   *ierr= ft->ierr;
   return 0 ;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 /************************************************************
  * savewave 
  ************************************************************/
-
-int C2F(savewave)(char * filename,double *res,integer * rate,
-		  integer *size_res,integer *nchannels, integer *ierr)
+int C2F(savewave)(char * filename,double *res,integer * rate,integer *size_res,integer *nchannels, integer *ierr)
 {
   long buf[BUFSIZ];
   long i,size_max;
@@ -234,9 +226,9 @@ int C2F(savewave)(char * filename,double *res,integer * rate,
   *ierr= ft->ierr;
   return 0;
 }
-
-
-void init(void) {
+/*-----------------------------------------------------------------------------------*/ 
+void init(void) 
+{
   /* init files */
   informat.info.rate      = 0;
   informat.info.size      = -1;
@@ -248,7 +240,7 @@ void init(void) {
   informat.fp        = stdin;
   informat.filename  = "input";
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 /* 
  * Process input file -> effect table -> output file
  *	one buffer at a time
@@ -263,17 +255,15 @@ int filetype(int fd)
   return st.st_mode & S_IFMT;
 }
 #endif
-
+/*-----------------------------------------------------------------------------------*/ 
 /* called from util.c:fail */
-
 void cleanup(void)
 {
   if (informat.fp)
     fclose(informat.fp);
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 /* check that all settings have been given */
-
 static void checkformat(ft_t ft)
 {
   if (ft->info.rate == 0)
@@ -306,6 +296,6 @@ static void checkformat(ft_t ft)
   if (ft->info.channels == -1)
     ft->info.channels = 1;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 
 

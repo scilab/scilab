@@ -16,10 +16,10 @@
  * Notes: most of the headerless formats set their handlers to raw
  * in their startread/write routines.  
  ****************************************************************/
-
+/*-----------------------------------------------------------------------------------*/ 
 #include "st.h"
 #include "libst.h"
-
+/*-----------------------------------------------------------------------------------*/ 
 extern void sciprint __PARAMS((char *fmt, ...));
 
 /****************************************************************
@@ -160,13 +160,11 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
   ft->ierr=1;
   return done;
 }
-
-
+/*-----------------------------------------------------------------------------------*/ 
 /****************************************************************
  * Convert the sox internal signed long format 
  * to the raw file data, and write it.
  ****************************************************************/
-
 void rawwrite(ft_t ft, long int *buf, long int nsamp)
 {
   register int datum;
@@ -263,11 +261,10 @@ void rawwrite(ft_t ft, long int *buf, long int nsamp)
       }
       
     }
-  sciprint("Sorry, don't have code to write %s, %s\r\n",
-	   styles[ft->info.style], sizes[ft->info.size]);
-  ft->ierr=1;
+  sciprint("Sorry, don't have code to write %s, %s\r\n",styles[ft->info.style], sizes[ft->info.size]);
+	ft->ierr=1;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 
 
 

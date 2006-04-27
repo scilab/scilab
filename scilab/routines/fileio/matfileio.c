@@ -32,17 +32,10 @@ extern int intsmget __PARAMS((char *fname,unsigned long fname_len));
 extern int intsmgetstr __PARAMS((char *fname,unsigned long fname_len));
 extern int intsmseek __PARAMS((char *fname,unsigned long fname_len));
 extern int intsmtell __PARAMS((char *fname,unsigned long fname_len));
-
-extern int intBeep __PARAMS((char *fname,unsigned long fname_len));
-extern int intPlaysound __PARAMS((char *fname,unsigned long fname_len));
-extern int intssavewave __PARAMS((char *fname,unsigned long fname_len));
-extern int intsloadwave __PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 /*  interface function */
 /*-----------------------------------------------------------------------------------*/ 
 static TabF Tab[]={
-	{ intssavewave, "savewave"},
-	{ intsloadwave, "loadwave"},
 	{ intsmopen, "mopen"},
 	{ intsmputstr, "mputstr"},
 	{ intsmclose, "mclose"},
@@ -62,8 +55,6 @@ static TabF Tab[]={
 	{int_objfscanfMat,"fscanfMat"},
 	{int_objfprintfMat,"fprintfMat"},
 	{int_objnumTokens,"NumTokens"},
-	{intPlaysound,"PlaySound"},
-	{intBeep,"beep"},
 	{intsmerror, "merror"}
 	};
 /*-----------------------------------------------------------------------------------*/ 
