@@ -22,8 +22,7 @@ LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/console.a \
 	$(SCIDIR)/libs/int.a \
         $(SCIDIR)/libs/slicot.a  $(SCIDIR)/libs/arpack.a \
         $(SCIDIR)/libs/wintools.a $(SCIDIR)/libs/time.a \
-        $(SCIDIR)/libs/sound.a \
-        @PVMSCILIB@ @XDRLIBNAME@ @TCLSCILIB@ 
+        $(SCIDIR)/libs/sound.a @PVMSCILIB@ @XDRLIBNAME@ @TCLSCILIB@ 
 
 
 LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB) $(PVMGLIB) $(PVMLIB)
