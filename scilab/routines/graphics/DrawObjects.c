@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE,   INRIA 2001-2002
+ *    Djalel ABDEMOUCHE,   INRIA 2002-2004
+ *    Fabrice Leray,       INRIA 2004-2006
+ *    Jean-Baptiste Silvy, INRIA 2006-xxxx
  *    Comment:
  *    This file contains all functions used to Draw the content of a window.
  *    The main functions is sciDrawObj that draws the objects recursively.
@@ -104,96 +105,6 @@ unsigned short defcolors[] = {
 #ifdef WIN32
 static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/
 #endif
-
-
-
-/**sciCreateFont
- * @memo This funcion creates logical font
- * @param  HDC hdc: The Handle Context...(hdc = BeginPaint(hwnd))
- * @param  TCHAR * szFaceName: the name of the font (for ex: Times New Roman)
- * @param  int iDeciPtHeight:
- * @param  int iDeciPtWidth:
- * @param  int iAttributes: the logical bitwise between SCI_ATTR_
- * @param  BOOL fLogRes:
- * @return  HFONT structure
- */
-#ifdef WIN32 
-/*
-  HFONT
-  sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight,
-  int iDeciPtWidth, int iAttributes, BOOL fLogRes)
-  {
-  FLOAT cxDpi, cyDpi;
-  HFONT hFont;
-  LOGFONT lf;
-  POINT2D pt;
-  TEXTMETRIC tm;
-
-  SaveDC (hdc);
-
-  SetGraphicsMode (hdc, GM_ADVANCED);
-  ModifyWorldTransform (hdc, NULL, MWT_IDENTITY);
-  SetViewportOrgEx (hdc, 0, 0, NULL);
-  SetWindowOrgEx (hdc, 0, 0, NULL);
-
-  if (fLogRes)
-  {
-  cxDpi = (FLOAT) GetDeviceCaps (hdc, LOGPIXELSX);
-  cyDpi = (FLOAT) GetDeviceCaps (hdc, LOGPIXELSY);
-  }
-  else
-  {
-  cxDpi = (FLOAT) (25.4 * GetDeviceCaps (hdc, HORZRES) /
-  GetDeviceCaps (hdc, HORZSIZE));
-
-  cyDpi = (FLOAT) (25.4 * GetDeviceCaps (hdc, VERTRES) /
-  GetDeviceCaps (hdc, VERTSIZE));
-  }
-
-  pt.x = (int) (iDeciPtWidth * cxDpi / 72);
-  pt.y = (int) (iDeciPtHeight * cyDpi / 72);
-
-  DPtoLP (hdc, &pt, 1);
-
-  lf.lfHeight = -(int) (fabs (pt.y) / 10.0 + 0.5);
-  lf.lfWidth = 0;
-  lf.lfEscapement = 0;
-  lf.lfOrientation = 0;
-  lf.lfWeight = iAttributes & SCI_ATTR_BOLD ? 700 : 0;
-  lf.lfItalic = iAttributes & SCI_ATTR_ITALIC ? 1 : 0;
-  lf.lfUnderline = iAttributes & SCI_ATTR_UNDERLINE ? 1 : 0;
-  lf.lfStrikeOut = iAttributes & SCI_ATTR_STRIKEOUT ? 1 : 0;
-  lf.lfCharSet = DEFAULT_CHARSET;
-  lf.lfOutPrecision = 0;
-  lf.lfClipPrecision = 0;
-  lf.lfQuality = 0;
-  lf.lfPitchAndFamily = 0;
-
-  lstrcpy (lf.lfFaceName, szFaceName);
-
-  hFont = CreateFontIndirect (&lf);
-
-  if (iDeciPtWidth != 0)
-  {
-  hFont = (HFONT) SelectObject (hdc, hFont);
-
-  GetTextMetrics (hdc, &tm);
-
-  DeleteObject (SelectObject (hdc, hFont));
-
-  lf.lfWidth = (int) (tm.tmAveCharWidth *
-  fabs (pt.x) / fabs (pt.y) + 0.5);
-
-  hFont = CreateFontIndirect (&lf);
-  }
-
-  RestoreDC (hdc, -1);
-  return hFont;
-  }
-*/
-#endif
-
-
 
 
 /**sciGetDC
@@ -3902,18 +3813,10 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
   ytmp = MALLOC(n*sizeof(double));
 
 
-  /*   for(u=0;u<n;u++) */
-  /*     { */
-  /*       xtmp[u] = x[u]-2*(x[u]-xmoy); */
-  /*     } */
-  
+    
   if (sciGetEntityType(pobj) == SCI_SUBWIN){
 
     cube_scaling = pSUBWIN_FEATURE(pobj)->cube_scaling;
-
-    /*if (pSUBWIN_FEATURE (pobj)->isoview)*/
-
-    
 
     if(cube_scaling == FALSE)
       {
@@ -5445,19 +5348,6 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grad
   return -1;
 }
 
-/* /\* test on all 3 axes *\/ */
-/* BOOL GetIsAxes(sciPointObj *psubwin) */
-/* { */
-/*   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
-  
-/*   if((ppsubwin->axes.axes_visible[0] == FALSE) */
-/*      && (ppsubwin->axes.axes_visible[1] == FALSE) */
-/*      && (ppsubwin->axes.axes_visible[2] == FALSE)) */
-/*     return FALSE; */
-/*   else */
-/*     return TRUE; */
-/* } */
-
 /* test on x and y axes only : used in 2D routines only */
 BOOL GetIsAxes2D(sciPointObj *psubwin)
 {
@@ -5474,12 +5364,6 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
 {
   double xbox[8], ybox[8], zbox[8];
 
-  /* if( Abs(Teta) > 0.1 ) */
-/*   { */
-/*     sciprint("Error: Theta must close to 0. to trigger this algo"); */
-/*     return -1; */
-/*   } */
-  
   Teta = 0.1; /* Little offset to compute correct values for xind,  InsideU and InsideD */
 
   /* update Cscale.m from the new viewing angles */
@@ -5491,135 +5375,6 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
 
   return 0;
 }
-
-
-/* int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz) */
-/* { */
-/*   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
-/*   /\*   static int flag = 0; *\/ */
-/*   int xmmin = -1, ymmin = -1; */
-/*   int xmmax = -1, ymmax = -1; */
-/*   int x,y; */
-/*   int pixel_size = -1; */
-/*   int *nbgrads = NULL; */
-/*   double * grads = NULL; */
-/*   int * nbsubtics = NULL; */
-/*   int palier1 = 70, palier2 = 120; */
-/*   int driver = GetDriverId(); /\* return the first letter of the driver name (see XCall.c) *\/ */
-
-/*   if(driver == 1) /\* Pos driver : special case *\/ */
-/*     { */
-/*       palier1 = 540; */
-/*       palier2 = 756; */
-/*     } */
-  
-/*   if((xyz=='x') && (ppsubwin->logflags[0] != 'l')){ */
-/*     nbgrads = &ppsubwin->axes.nxgrads; */
-/*     nbsubtics = &ppsubwin->axes.nbsubtics[0]; */
-/*     grads   = ppsubwin->axes.xgrads; */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /\* fx is useless *\/ */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz); */
-/*   } */
-/*   else if ((xyz=='y') && (ppsubwin->logflags[1] != 'l')){ */
-/*     nbgrads = &ppsubwin->axes.nygrads; */
-/*     nbsubtics = &ppsubwin->axes.nbsubtics[1]; */
-/*     grads   = ppsubwin->axes.ygrads; */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /\* fy is useless *\/ */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz); */
-/*   } */
-/*   else if ((xyz=='z') && (ppsubwin->logflags[2] != 'l')){ */
-/*     nbgrads = &ppsubwin->axes.nzgrads; */
-/*     nbsubtics = &ppsubwin->axes.nbsubtics[2]; */
-/*     grads   = ppsubwin->axes.zgrads; */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /\* fz is useless *\/ */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval); */
-/*   } */
-/*   else{ */
-/*     /\* nothing to try to adapt : if at least one log scale is enabled *\/ */
-/*     /\* nothing is done *\/ */
-    
-/*     return 0; */
-/*     /\*   sciprint("Error in AdaptGraduations call\n"); *\/ */
-/*     /\*     return -1; *\/ */
-/*   } */
-    
-/*   x = xmmax - xmmin; */
-/*   y = ymmax - ymmin; */
-  
-/*   pixel_size = (int) sqrt(x*x + y*y); */
-
-/* /\*   printf("Axe %c\n",xyz); *\/ */
-
-/* /\*   printf("Cscale.Wscx1 = %lf\t Cscale.Wscy1 = %lf\n",Cscale.Wscx1,Cscale.Wscy1); *\/ */
-/* /\*   printf("Cscale.frect[0] = %lf\t Cscale.frect[3] = %lf\n",Cscale.frect[0],Cscale.frect[3]); *\/ */
-/* /\*   printf("Cscale.Wxofset1 = %lf\t Cscale.Wyofset1 = %lf\n",Cscale.Wxofset1,Cscale.Wyofset1); *\/ */
-  
-
-/* /\*   printf("xmmin = %d et xmmax = %d\n",xmmin,xmmax); *\/ */
-/* /\*   printf("ymmin = %d et ymmax = %d\n",ymmin,ymmax); *\/ */
-
-
-/* /\*   printf(" pixel_size = %d\n\n", pixel_size); *\/ */
-  
-/*   if(pixel_size > palier2) /\* nothing to adapt : 10 graduations can be displayed *\/ */
-/*     return 0;          /\* and the corresponding computed subtics number can be used too *\/ */
-/*   else if(pixel_size <= palier1 ) /\* 3 graduations only are necessary *\/ */
-/*     { */
-/*       grads[0] = grads[0]; */
-/*       grads[1] = (grads[0] + grads[(*nbgrads)-1])/2; */
-/*       grads[2] = grads[(*nbgrads)-1]; */
-/*       *nbgrads = 3; */
-/*       if(ppsubwin->flagNax == FALSE) *nbsubtics = 3; */
-/*     } */
-/*   else if(pixel_size > palier1) */
-/*     { */
-/*       FindGrads(grads, nbgrads); */
-/*       if(ppsubwin->flagNax == FALSE) *nbsubtics = 2; */
-      
-/*     } */
-
-/*   /\* flag = 0; *\/ */
-
-
-/*   return 0; */
-/* } */
-
-
-/* int FindGrads(double *grads,int * n_grads) */
-/* { */
-/*   int nbgrads,i; */
-/*   double pas = 0.; */
-/*   double min = -1.; */
-/*   double grads_tmp[20]; */
-
-/*   nbgrads = *n_grads; */
-
-
-/*   for(i=0;i<20;i++) grads_tmp[i] = grads[i]; */
-
-/*   if((nbgrads % 2)!= 0 ) /\* nombre impair de grads *\/ */
-/*     { */
-/*       for(i=0;i<(int) (nbgrads+1)/2;i++) { */
-/* 	grads[i] = grads_tmp[2*i]; */
-/*       } */
-      
-/*       *n_grads = (int) (nbgrads+1)/2; /\* (7+1)/2 = 4, (9+1)/2 = 5 ...*\/ */
-/*     } */
-/*   else */
-/*     { */
-/*       min = grads[0]; */
-/*       pas = (grads[nbgrads-1] - grads[0]) / ((nbgrads-1) / 2); */
-      
-/*       for(i=0;i<(int)(nbgrads/2);i++) { */
-/* 	grads[i] = min + i*pas; */
-/*       } */
-      
-/*       *n_grads = (int) (nbgrads)/2; /\* 6/2=3, 12/2 = 6 ...*\/ */
-/*     } */
-    
-/*   return 0; */
-/* } */
-
 
 /* F.Leray 02.11.04 */
 /* BuildXYZvectForClipping_IfNanOrLogON : this function is used for polylines to determine if we have to cut the polyline data for 2 reasons: */
@@ -6170,12 +5925,6 @@ sciClip (sciPointObj *pobj)
     tmpx = ppsubwin->FRect[0]; /* xmin */
     tmpy = ppsubwin->FRect[3]; /* ymax */
     
-/*     if(ppsubwin->axes.reverse[0] == TRUE) */
-/*       tmpx = tmpx + tmpw; */
-    
-/*     if(ppsubwin->axes.reverse[1] == TRUE) */
-/*       tmpy = tmpy  - tmph; */
-    
     clip[0] = tmpx;
     clip[1] = tmpy;
     clip[2] = tmpw;
@@ -6189,11 +5938,6 @@ sciClip (sciPointObj *pobj)
     { 
       double tmpw, tmph;
       double tmpx, tmpy;
-/*       int i; */
-
-/*       printf("** ** *** ***** *** \n"); */
-/*       for(i=0;i<4;i++) */
-/* 	printf("clip_region[%d] = %lf\n",i,clip_region[i]); */
 
       tmpw = clip_region[2];
       tmph = clip_region[3];
@@ -6201,24 +5945,11 @@ sciClip (sciPointObj *pobj)
       tmpx = clip_region[0];
       tmpy = clip_region[1];
       
-/*       printf("AVANT\n"); */
-/*       printf("tmpx = %lf\n",tmpx); */
-/*       printf("tmpy = %lf\n",tmpy); */
-/*       printf("tmpw = %lf\n",tmpw); */
-/*       printf("tmph = %lf\n",tmph); */
-
       if(ppsubwin->axes.reverse[0] == TRUE)
 	tmpx = tmpx + tmpw;
       
       if(ppsubwin->axes.reverse[1] == TRUE)
 	tmpy = tmpy - tmph;
-      
-      
-/*       printf("APRES\n"); */
-/*       printf("tmpx = %lf\n",tmpx); */
-/*       printf("tmpy = %lf\n",tmpy); */
-/*       printf("tmpw = %lf\n",tmpw); */
-/*       printf("tmph = %lf\n-------------\n",tmph); */
       
       x = XDouble2Pixel( tmpx);
       y = YDouble2Pixel( tmpy);
@@ -6236,10 +5967,8 @@ sciClip (sciPointObj *pobj)
 void
 sciUnClip (sciPointObj * pobj)
 {
-/*   sciPointObj * psubwin = sciGetParentSubwin(pobj); */
   int value = sciGetIsClipping(pobj);     /* clipping state */
   
-  /*  if (value > -1 && !pSUBWIN_FEATURE(psubwin)->is3d)*/
   if (value > -1)
     C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L);
 }
@@ -6368,8 +6097,6 @@ int Merge3dDimension(sciPointObj *pparent)
     q+=N;
     psonstmp = psonstmp->pnext;
   }
-
-/*   pSUBWIN_FEATURE(pparent)->nb_vertices_in_merge = q; */
 
   return q;
 }
@@ -7218,16 +6945,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      for ( k1= 0 ; k1 < p ; k1++) zl+= Zoriginal[k1]; /* F.Leray 01.12.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
 	      fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
 
-	      /* 	      sciprint("whiteid-1 = %d\n",whiteid-1); */
-	      /* 	      sciprint("zl = %lf\n",zl); */
-	      /* 	      sciprint("zmin = %lf zmax = %lf\n",zmin,zmax); */
-	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[4]); */
-	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[4]); */
-	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[5]); */
-	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[5]); */
-	      /* 	      sciprint("fill[0] = %d\n\n",fill[0]); */
-	     
-	      if ( flag  < 0 ) fill[0]=-fill[0];
+              if ( flag  < 0 ) fill[0]=-fill[0];
 	      if(sciGetIsLine(pobj)){
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
 		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
@@ -9146,7 +8864,7 @@ sciDrawObj (sciPointObj * pobj)
 	      
 	      if ( sciGetIsLine(pobj) )
               {
-               
+                
 		x[0] = sciGetForeground( pobj ) ;
                 x[2] = sciGetLineWidth(  pobj ) ;
                 x[3] = sciGetLineStyle( pobj ) ;
@@ -9159,18 +8877,15 @@ sciDrawObj (sciPointObj * pobj)
 			  PD0, PD0, PD0, 0L, 0L);
 		C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 			  PD0, PD0, PD0, 0L, 0L);
-                /* draw the polyline inside the window */
-                /* this is required to avoid overflow when
-                   coordinates are changed */
                 
-                /* C2F(clipPolyLine)( n1, xm, ym, closeflag, &clipping ) ; */
                 C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+                
 	      }
 	    }
 	  
-#ifdef WIN32 
+#ifdef WIN32
 	  if ( flag_DO == 1) ReleaseWinHdc ();
-#endif  
+#endif
 	 
 	  FREE(xzz); xzz = (double *) NULL;
 	  FREE(yzz); yzz = (double *) NULL;
@@ -11995,379 +11710,6 @@ int FreeVertices(sciPointObj * psubwin)
   pHead2 = (Vertices *) NULL;
 
   return 0;
-}
-
-/*-------------------------------------------------------------------------------------*/
-/* Functions taken from periX11.c used here to work on every plateform                 */
-/*-------------------------------------------------------------------------------------*/
-
-
-/*-------------------------------------------------------------------------------------*/
-/* use for drawing precomputing clipping when drawing polygons                         */
-/* Test a single point to be within the xleft,xright,ybot,ytop bbox.
- * Sets the returned integers 4 l.s.b. as follows:
- * bit 0 if to the left of xleft.
- * bit 1 if to the right of xright.
- * bit 2 if below of ybot.
- * bit 3 if above of ytop.
- * 0 is returned if inside.
- */
-
-int sciClipPoint(integer x, integer y, SClipRegion * clipping )
-{
-  integer ret_val = 0;
-
-  if (x < clipping->leftX) ret_val |= (char)0x01;
-  else if (x > clipping->rightX) ret_val |= (char)0x02;
-  if (y < clipping->bottomY) ret_val |= (char)0x04;
-  else if (y > clipping->topY ) ret_val |= (char)0x08;
-  return ret_val;
-}
-
-/*-------------------------------------------------------------------------------------*/
-
-void sciClipLine( integer       x1      ,
-                  integer       yy1     ,
-                  integer       x2      ,
-                  integer       y2      ,
-                  integer     * x1n     ,
-                  integer     * yy1n    ,
-                  integer     * x2n     ,
-                  integer     * y2n     ,
-                  integer     * flag    ,
-                  SClipRegion * clipping  )
-{
-  integer  x_intr[2], y_intr[2]; /* used to store intersection points 
-				  * at most two points 
-				  */
-  integer x, y, dx, dy, count, pos1, pos2; 
-
-  *x1n=x1  ;
-  *yy1n=yy1;
-  *x2n=x2  ;
-  *y2n=y2  ;
-  *flag=4  ;
-
-  pos1 = sciClipPoint(x1, yy1, clipping ) ;
-  pos2 = sciClipPoint(x2, y2 , clipping ) ;
-  if (pos1 || pos2) {
-    if (pos1 & pos2) { *flag=0;return;}	  
-    /* segment is totally out. */
-
-    /* Here part of the segment MAy be inside. test the intersection
-     * of this segment with the 4 boundaries for hopefully 2 intersections
-     * in. If non found segment is totaly out.
-     */
-    count = 0;
-    dx = x2 - x1;
-    dy = y2 - yy1;
-
-    /* Find intersections with the x parallel bbox lines: */
-    if (dy != 0) {
-      x = (int) (clipping->bottomY - y2)  * ((double) dx / (double) dy) + x2;
-      /* Test for clipping.bottomY boundary. */
-      if (x >= clipping->leftX && x <= clipping->rightX ) {
-	x_intr[count] = x;
-	y_intr[count++] = clipping->bottomY ;
-      }
-      x = (clipping->topY - y2) * ((double) dx / (double) dy) + x2; 
-      /* Test for clipping.topY boundary. */
-      if ( x >= clipping->leftX && x <= clipping->rightX ) {
-	x_intr[count] = x;
-	y_intr[count++] = clipping->topY;
-      }
-    }
-    if ( count < 2 )
-      {
-	/* Find intersections with the y parallel bbox lines: */
-	if (dx != 0) {
-	  y = (clipping->leftX - x2) * ((double) dy / (double) dx) + y2;   
-	  /* Test for clipping.leftX boundary. */
-	  if (y >= clipping->bottomY && y <= clipping->topY) {
-	    x_intr[count] = clipping->leftX;
-	    y_intr[count++] = y;
-	  }
-	  if ( count < 2 ) 
-	    {
-	      y = (clipping->rightX - x2) * ((double) dy / (double) dx) + y2;  
-	      /* Test for clipping.rightX boundary. */
-	      if (y >= clipping->bottomY && y <= clipping->topY) {
-		x_intr[count] = clipping->rightX;
-		y_intr[count++] = y;
-	      }
-	    }
-	}
-      }
-
-    if (count == 2) {
-      if (pos1 && pos2) {	   /* Both were out - update both */
-	*x1n = x_intr[0];
-	*yy1n = y_intr[0];
-	*x2n = x_intr[1];
-	*y2n = y_intr[1];
-	*flag=3;return;
-      }
-      else if (pos1) {       /* Only x1/yy1 was out - update only it */
-	if (dx * (x2 - x_intr[0]) + dy * (y2 - y_intr[0]) >= 0) {
-	  *x1n = x_intr[0];
-	  *yy1n = y_intr[0];
-	  *flag=1;return;
-	}
-	else {
-	  *x1n = x_intr[1];
-	  *yy1n = y_intr[1];
-	  *flag=1;return;
-	}
-      }
-      else {	         /* Only x2/y2 was out - update only it */
-	if (dx * (x_intr[0] - x1) + dy * (y_intr[0] - yy1) >= 0) {
-	  *x2n = x_intr[0];
-	  *y2n = y_intr[0];
-	  *flag=2;return;
-	}
-	else {
-	  *x2n = x_intr[1];
-	  *y2n = y_intr[1];
-	  *flag=2;return;
-	}
-      }
-    }
-    else 
-      {
-	/* count != 0 */
-	*flag=0;
-        return;
-      }
-  }
-}
-
-/*-------------------------------------------------------------------------------------*/
-
-void sciDrawInsideSegments( integer       iib, 
-                            integer       iif, 
-                            integer     * vx , 
-                            integer     * vy ,
-                            SClipRegion * clipping )
-{
-  integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0;
-  integer npts;
-  integer * vxNew ; /* the drawn vector */
-  integer * vyNew ;
-  int close = 0 ;
-  /* backup of the first and last bounds of the bounds of the drawn vector
-     which may be changed */
-  int prevBounds[4] ;
-
-  npts = ( iib > 0) ? iif-iib+2  : iif-iib+1;  
-  
-  if ( iib > 0) 
-  {
-    sciClipLine( vx[iib-1], vy[iib-1],
-                 vx[iib]  , vy[iib]  ,
-                 &x1n     , &y1n     ,
-                 &x2n     , &y2n     ,
-                 &flag1   , clipping ) ;
-  }
-  sciClipLine( vx[iif-1], vy[iif-1],
-               vx[iif]  , vy[iif]  ,
-               &x11n    , &y11n    ,
-               &x2n     , &y2n     ,
-               &flag2   , clipping    ) ;
-  vxNew = &vx[Max(0,iib-1)] ;
-  vyNew = &vy[Max(0,iib-1)] ;
-
-  prevBounds[0] = vxNew[0]      ;
-  prevBounds[1] = vyNew[0]      ;
-  prevBounds[2] = vxNew[npts-1] ;
-  prevBounds[3] = vyNew[npts-1] ;
-
-  if ( iib > 0 && (flag1==1||flag1==3) )
-  {
-    vxNew[0] = x1n ;
-    vyNew[0] = y1n ;
-  }
-  if ( flag2==2 || flag2==3 )
-  {
-    vxNew[npts-1] = x2n ;
-    vyNew[npts-1] = y2n ;
-  }
-
-  
-  C2F (dr) ("xlines", "xv", &npts, vxNew, vyNew, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-
-  /* restore the possibly changed bounds */
-  vxNew[0]      = prevBounds[0] ;
-  vyNew[0]      = prevBounds[1] ;
-  vxNew[npts-1] = prevBounds[2] ;
-  vyNew[npts-1] = prevBounds[3] ;
-
-}
-
-/*-------------------------------------------------------------------------------------*/
-
-/* draw the segement defined by (vx[index-1],vy[index-1]) (vx[index],vy[index]) */
-void sciDrawOutsideSegment( integer index, 
-                            integer *vx  ,
-                            integer *vy  , 
-                            SClipRegion * clipping )
-{
-  /** The segment is out but can cross the box **/
-  integer segX[2],segY[2],flag;
-  sciClipLine( vx[index-1], vy[index-1]  ,
-               vx[index]  , vy[index]    ,
-               &segX[0]   , &segY[0],
-               &segX[1]   , &segY[1]  ,
-               &flag      , clipping  ) ;
-  if ( flag == 3 )
-  {
-    int nbPoints = 2 ;
-    int close    = 0 ;
-    C2F (dr) ("xlines", "xv", &nbPoints, segX, segY, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-  }
-}
-
-/*-------------------------------------------------------------------------------------*/
-
-/* 
- *  returns the first (vx[.],vy[.]) point inside 
- *  xleft,xright,ybot,ytop bbox. begining at index ideb
- *  or zero if the whole polyline is out 
- */
-
-integer sciFirstInClipRegion( integer       n   ,
-                              integer       ideb,
-                              integer     * vx  ,
-                              integer     * vy  ,
-                              SClipRegion * clipping )
-{
-  integer i;
-  for (i=ideb  ; i < n ; i++)
-  {
-    if (    vx[i] >= clipping->leftX 
-         && vx[i] <= clipping->rightX 
-         && vy[i] >= clipping->bottomY 
-         && vy[i] <= clipping->topY    )
-    {
-      return(i);
-    }
-  }
-  return(-1);
-}
-
-/*-------------------------------------------------------------------------------------*/
-
-/* 
- *  returns the first (vx[.],vy[.]) point outside
- *  xleft,xright,ybot,ytop bbox.
- *  or zero if the whole polyline is out 
- */
-integer sciFirstOutClipRegion( integer       n   ,
-                               integer       ideb,
-                               integer     * vx  ,
-                               integer     * vy  ,
-                               SClipRegion * clipping )
-{
-  integer i;
-  for ( i=ideb  ; i < n ; i++ )
-  {
-    if (    vx[i] < clipping->leftX 
-         || vx[i] > clipping->rightX  
-         || vy[i] < clipping->bottomY
-         || vy[i] > clipping->topY   ) 
-    {
-      return(i);
-    }
-  }
-  return(-1);
-}
-
-/*-------------------------------------------------------------------------------------*/
-
-/* check every segment of the polyline and draw only the part which is in the */
-/* clip region */
-void C2F(clipPolyLine)( integer       n     , 
-                        integer     * vx    , 
-                        integer     * vy    , 
-                        integer       closed,
-                        SClipRegion * clipping )
-{ 
-  integer iib,iif,ideb=0,vxl[2],vyl[2];
-  
-  while (1) 
-  { 
-    integer j;
-    iib = sciFirstInClipRegion( n, ideb, vx, vy, clipping ) ;
-    if (iib == -1)
-    { 
-      for (j=ideb+1; j < n; j++)
-      {
-        sciDrawOutsideSegment( j, vx, vy, clipping ) ;
-      }
-      break;
-    }
-    else
-    { 
-      if ( iib - ideb > 1) 
-      {
-        /* un partie du polygine est totalement out de ideb a iib -1 */
-        /* mais peu couper la zone */
-        for ( j = ideb + 1 ; j < iib; j++ )
-        {
-          sciDrawOutsideSegment(j,vx,vy, clipping ) ;
-        }
-      }
-    }
-    iif = sciFirstOutClipRegion( n, iib, vx, vy, clipping ) ;
-    if ( iif == -1 ) 
-    {
-      /* special case the polyligne is totaly inside */
-      if (iib == 0) 
-      {
-        C2F (dr) ("xlines", "xv", &n, vx, vy, &closed, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L) ;
-        return ;
-      }
-      else
-      { 
-	sciDrawInsideSegments( iib, n-1, vx, vy, clipping ) ;
-      }
-      break;
-    }
-
-    sciDrawInsideSegments( iib, iif, vx, vy, clipping ) ;
-    ideb=iif;
-  }
-  if ( closed )
-  {
-    /* The polyligne is closed we consider the closing segment */
-    integer x1n,y1n,x2n,y2n,flag1=0;
-    vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0];
-    sciClipLine( vxl[0], vyl[0],
-                 vxl[1], vyl[1],
-                 &x1n  , &y1n  ,
-                 &x2n  , &y2n  ,
-                 &flag1, clipping ) ;
-    
-    if ( flag1==0 ) { return ; }
-
-    if ( flag1==1 || flag1==3 )
-    {
-      vxl[0] = x1n ;
-      vyl[0] = y1n ;
-    }
-    if ( flag1==2 || flag1==3 )
-    {
-      vxl[1] = x2n ;
-      vyl[1] = y2n ;
-    }
-    
-    {
-      int nbPoints = 2 ;
-      int close = 0 ;
-      C2F (dr) ("xlines", "xv", &nbPoints, vxl, vyl, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-    }
-    
-    
-  }
 }
 
 /*-------------------------------------------------------------------------------------*/

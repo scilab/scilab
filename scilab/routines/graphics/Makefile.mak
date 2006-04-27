@@ -14,7 +14,7 @@ OBJSC = periWin.obj periPos.obj periFig.obj periGif.obj Xcall.obj Xcall1.obj \
 	dr1Call.obj sciCall.obj Plo2dn.obj Plo3dn.obj \
 	GetProperty.obj BuildObjects.obj CloneObjects.obj DestroyObjects.obj \
 	DrawObjects.obj SetProperty.obj HandleManagement.obj InitObjects.obj \
-	Interaction.obj Interaction.obj SetProperty.obj \
+	Interaction.obj Interaction.obj SetProperty.obj clipping.obj \
 
 OBJSF = 
 
@@ -59,4 +59,4 @@ RecSave.obj: RecSave.c Math.h ../machine.h Graphics.h Rec.h
 Xcall1.obj: Xcall1.c Math.h ../machine.h Graphics.h PloEch.h
 Xcall.obj: Xcall.c Math.h ../machine.h Graphics.h periX11.h periPos.h \
 	periFig.h periGif.h
-
+clipping.obj: clipping.c clipping.h
