@@ -24,6 +24,7 @@
  extern void  C2F(initgraphicXfig)();
  extern void  C2F(initgraphicfromscreenXfig)();
  extern void  C2F(drawpolylineXfig)();
+ void C2F(drawClippedPolylineXfig)();
  extern void  C2F(drawpolylinesXfig)();
  extern void  C2F(fillpolylinesXfig)();
  extern void  C2F(fillpolylineXfig)();

@@ -30,6 +30,8 @@
 #include "color.h"
 #include "bcg.h"
 #include "Events.h"
+#include "clipping.h"
+
 #ifdef WITH_TK
 #include <tcl.h>
 #include <tk.h>
@@ -3072,7 +3074,7 @@ void C2F(drawpolylines)(char *str, integer *vectsx, integer *vectsy, integer *dr
        {/** we use the line-style number abs(drawvect[i])  **/
 	 xset_line_style(drawvect+i,PI0,PI0,PI0);
 	 close = 0;
-	 C2F(drawpolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,&close,
+	 C2F(drawClippedPolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,&close,
 			   PI0,PI0,PD0,PD0,PD0,PD0);
        }
    }
@@ -3108,7 +3110,7 @@ void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fi
 			    PI0,PI0,PD0,PD0,PD0,PD0);
 	  xset_line_style(Dvalue,PI0,PI0,PI0);
 	  xset_pattern(&cpat,PI0,PI0,PI0);
-	  C2F(drawpolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,(close=1,&close)
+	  C2F(drawClippedPolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,(close=1,&close)
 			    ,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else  if (fillvect[i] == 0 )
@@ -3116,7 +3118,7 @@ void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fi
 	  /** boundaries ONLY **/
 	  xset_line_style(Dvalue,PI0,PI0,PI0);
 	  xset_pattern(&cpat,PI0,PI0,PI0);
-	  C2F(drawpolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,(close=1,&close)
+	  C2F(drawClippedPolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,(close=1,&close)
 			    ,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else 
@@ -3132,11 +3134,47 @@ void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fi
   xset_dash_and_color(Dvalue,PI0,PI0,PI0);  /* ajoute ss le 13/09/00 */
 }
 
+static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore) ;
+
 /* 
  * Only draw one polygon  with current line style 
  * according to *closeflag : it's a polyline or a polygon
  * n is the number of points of the polyline 
  */
+
+void C2F(drawClippedPolyline)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+{ 
+  integer n1;
+  if ( *closeflag )
+  {
+    n1 = *n+1 ;
+  }
+  else
+  {
+    n1= *n ;
+  }
+  if (n1 >= 2) 
+  {
+    C2F(analyze_points)(*n, vx, vy,*closeflag);
+    /*Old code replaced by a routine with clipping */
+    /* if (C2F(store_points)(*n, vx, vy,*closeflag)) */
+/*     { */
+/*       /\* draw the points *\/ */
+/*       XDroutine( n1 ) ; */
+/*       /\*XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1, */
+/*         ScilabXgc->CurVectorStyle);*\/ */
+/*       XFlush(dpy); */
+/*     } */
+    /*XFlush(dpy);*/
+  }
+}
+
+
+/* 
+ * Same as drawpolyline but does not check the clipping
+ */
+
+
 
 void C2F(drawpolyline)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
@@ -4451,21 +4489,7 @@ void XDroutine(int npts)
 		ScilabXgc->CurVectorStyle);
 }
 
-/* My own clipping routines  
- * XDrawlines with clipping on the current graphic window 
- * to avoid trouble on some X servers 
- */
-
-static integer xleft,xright,ybot,ytop;
-
-/* Test a single point to be within the xleft,xright,ybot,ytop bbox.
- * Sets the returned integers 4 l.s.b. as follows:
- * bit 0 if to the left of xleft.
- * bit 1 if to the right of xright.
- * bit 2 if below of ybot.
- * bit 3 if above of ytop.
- * 0 is returned if inside.
- */
+static int xleft, xright, ybot, ytop ;
 
 static int clip_point(integer x, integer y)
 {
@@ -4596,53 +4620,6 @@ void clip_line(integer x1, integer yy1, integer x2, integer y2, integer *x1n, in
   }
 }
 
-/* static void change_points(integer i, integer x, integer y) */
-/* { */
-/*   points[i].x=(short)x;   points[i].y=(short)y; */
-/* } */
-
-/* static void MyDraw(integer iib, integer iif, integer *vx, integer *vy) */
-/* { */
-/*   integer x1n,y1n,x11n,y11n,x2n,y2n,flag2=0,flag1=0; */
-/*   integer npts; */
-/*   npts= ( iib > 0) ? iif-iib+2  : iif-iib+1; */
-/*   if ( iib > 0) */
-/*     { */
-/*       clip_line(vx[iib-1],vy[iib-1],vx[iib],vy[iib],&x1n,&y1n,&x2n,&y2n,&flag1); */
-/*     } */
-/*   clip_line(vx[iif-1],vy[iif-1],vx[iif],vy[iif],&x11n,&y11n,&x2n,&y2n,&flag2); */
-/*   if (C2F(store_points)(npts, &vx[Max(0,iib-1)], &vy[Max(0,iib-1)],(integer)0L)); */
-/*   { */
-/*     if (iib > 0 && (flag1==1||flag1==3)) change_points((integer)0L,x1n,y1n); */
-/*     if (flag2==2 || flag2==3) change_points(npts-1,x2n,y2n); */
-/*     XDroutine((int)npts); */
-
-/*   } */
-/* } */
-
-/* static void My2draw(integer j, integer *vx, integer *vy) */
-/* { */
-/*   /\** The segment is out but can cross the box **\/ */
-/*   integer vxn[2],vyn[2],flag; */
-/*   integer npts=2; */
-/*   clip_line(vx[j-1],vy[j-1],vx[j],vy[j],&vxn[0],&vyn[0],&vxn[1],&vyn[1],&flag); */
-/*   if (flag == 3 && C2F(store_points)(npts,vxn,vyn,(integer)0L)) */
-/*     { */
-/* #ifdef DEBUG */
-/*       sciprint("segment out mais intersecte en (%d,%d),(%d,%d)\r\n", */
-/* 	       vxn[0],vyn[0],vxn[1],vyn[1]); */
-/* #endif */
-/*       XDroutine((int)npts); */
- 
-/*     } */
-/* } */
-
-/* 
- *  returns the first (vx[.],vy[.]) point inside 
- *  xleft,xright,ybot,ytop bbox. begining at index ideb
- *  or zero if the whole polyline is out 
- */
-
 integer first_in(integer n, integer ideb, integer *vx, integer *vy)
 {
   integer i;
@@ -4681,83 +4658,19 @@ integer first_out(integer n, integer ideb, integer *vx, integer *vy)
   return(-1);
 }
 
-/* static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore) */
-/* { */
-/*   integer iib,iif,ideb=0,vxl[2],vyl[2]; */
-/*   integer verbose=0,wd[2],narg; */
-/*   xget_windowdim(&verbose,wd,&narg,vdouble); */
-/*   xleft=0;xright=wd[0]; ybot=0;ytop=wd[1]; */
-/* #ifdef DEBUG1 */
-/*   xleft=100;xright=300; */
-/*   ybot=100;ytop=300; */
-/*   if (ScilabXgc->Cdrawable != (Drawable) 0) */
-/*     XDrawRectangle(dpy, ScilabXgc->Cdrawable, gc,xleft,ybot,(unsigned)xright-xleft, */
-/* 		   (unsigned)ytop-ybot); */
-/*   if (ScilabXgc->CurPixmapStatus != 1) */
-/*     XDrawRectangle(dpy,(Drawable) ScilabXgc->CWindow , gc,xleft,ybot,(unsigned)xright-xleft, */
-/* 		   (unsigned)ytop-ybot); */
-/* #endif */
-/* #ifdef DEBUG */
-/*   sciprint("inside analyze\r\n"); */
-/* #endif */
-/*   while (1) */
-/*     { integer j; */
-/*     iib=first_in(n,ideb,vx,vy); */
-/*     if (iib == -1) */
-/*       { */
-/* #ifdef DEBUG */
-/* 	sciprint("[%d,end=%d] polyline out\r\n",(int)ideb,(int)n); */
-/* 	/\* all points are out but segments can cross the box *\/ */
-/* #endif */
-/* 	for (j=ideb+1; j < n; j++) My2draw(j,vx,vy); */
-/* 	break; */
-/*       } */
-/*     else */
-/*       if ( iib - ideb > 1) */
-/* 	{ */
-/* 	  /\* un partie du polygine est totalement out de ideb a iib -1 *\/ */
-/* 	  /\* mais peu couper la zone *\/ */
-/* 	  for (j=ideb+1; j < iib; j++) My2draw(j,vx,vy); */
-/* 	}; */
-/*     iif=first_out(n,iib,vx,vy); */
-/*     if (iif == -1) { */
-/*       /\* special case the polyligne is totaly inside *\/ */
-/*       if (iib == 0) */
-/* 	{ */
-/* 	  if (C2F(store_points)(n,vx,vy,onemore)) */
-/* 	    { */
-/* 	      int n1 ; */
-/* 	      if (onemore == 1) n1 = n+1;else n1= n; */
-/* 	      XDroutine(n1); */
-/* 	      return; */
-/* 	    } */
-/* 	  else */
-/* 	    return; */
-/* 	} */
-/*       else */
-/* 	MyDraw(iib,n-1,vx,vy); */
-/*       break; */
-/*     } */
-/* #ifdef DEBUG */
-/*     sciprint("Analysed : [%d,%d]\r\n",(int)iib,(int)iif); */
-/* #endif */
-/*     MyDraw(iib,iif,vx,vy); */
-/*     ideb=iif; */
-/*     } */
-/*   if (onemore == 1) { */
-/*     /\* The polyligne is closed we consider the closing segment *\/ */
-/*     integer x1n,y1n,x2n,y2n,flag1=0; */
-/*     vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0]; */
-/*     clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1); */
-/*     if ( flag1==0) return ; */
-/*     if ( C2F(store_points)((integer)2L,vxl,vyl,(integer)0L)) */
-/*       { */
-/* 	if (flag1==1||flag1==3) change_points((integer)0L,x1n,y1n); */
-/* 	if (flag1==2||flag1==3) change_points((integer)1L,x2n,y2n); */
-/* 	XDroutine(2); */
-/*       } */
-/*   } */
-/* } */
+static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer onemore)
+{
+  SClipRegion clipping ;
+  integer windowSize[2] ;
+  integer verbose = 0 ;
+  integer narg ;
+  xget_windowdim( &verbose, windowSize, &narg, vdouble ) ;
+  clipping.leftX = 0 ;
+  clipping.rightX = windowSize[0] ;
+  clipping.bottomY = 0 ;
+  clipping.topY = windowSize[1] ;
+  C2F(clipPolyLine)( n, vx, vy, onemore, &clipping ) ;
+}
 
 int CheckScilabXgc(void)
 {

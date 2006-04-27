@@ -48,6 +48,7 @@
 #include "periFig.h"
 #include "color.h"
 #include "bcg.h" /* NG */
+#include "clipping.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -1688,7 +1689,7 @@ void C2F(drawarcXfig)(char *str, integer *x, integer *y, integer *width, integer
   /* Fix bug 1737 : if n==360 we want a closed circle */
   if(n == 360) close = 1;
 
-  C2F(drawpolylineXfig)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);
+  C2F(drawClippedPolylineXfig)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);
 }
 
 
@@ -1829,7 +1830,7 @@ void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
 	{/** on utilise un style pointill\'e  **/
 	  C2F(set_line_style_Xfig)(drawvect+i,PI0,PI0,PI0);
 	  close = 0;
-	  C2F(drawpolylineXfig)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,&close,PI0,PI0,PD0,PD0,PD0,PD0);
+	  C2F(drawClippedPolylineXfig)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,&close,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
     }
   /** back to default values **/
@@ -1893,6 +1894,9 @@ static BOOL checkPolygons( integer *polyX, integer *polyY, integer polyLength, i
   }
   return TRUE ;
 }
+
+
+
 /*----------------------------------------------------------------------------------*/
 
 /** fill a set of polygons each of which is defined by **/
@@ -1930,6 +1934,77 @@ void C2F(fillpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
 			fillvect);
   C2F(setpatternXfig)(&(cpat),PI0,PI0,PI0);
   FPRINTF((file,"#/absolu true def\n"));
+}
+
+/*
+ * same as drawpolylineXfig but don't perform clipping
+ */
+
+void C2F(drawClippedPolylineXfig)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
+{ 
+  integer i=1,fvect=0;
+  integer *vxtmp = NULL;
+  integer *vytmp = NULL;
+  int j;
+
+  if ( ScilabGCXfig_is_initialized == FALSE ) {
+    sciprint("xinit must be called before any action \r\n");
+    return;
+  }
+
+  if((vxtmp=MALLOC(((*n)+1)*sizeof(integer)))==0){
+    sciprint("Can not allocate vxtmp while exporting to Fig\n");
+    return;
+  }
+  
+  if((vytmp=MALLOC(((*n)+1)*sizeof(integer)))==0){
+    sciprint("Can not allocate vxtmp while exporting to Fig\n");
+    return;
+  }
+
+  
+  for( j = 0 ; j < (*n ) ; j++ )
+  {
+    vxtmp[j] = vx[j];
+    vytmp[j] = vy[j];
+  }
+  
+  vxtmp[(*n)] = vx[0];
+  vytmp[(*n)] = vy[0];
+
+  if (*closeflag == 1 ){
+    int nb = (*n)+1;
+    FPRINTF((file,"#/closeflag true def\n"));
+    if (ScilabGCXfig.ClipRegionSet ==1 )
+      {
+	C2F(analyze_pointsXfig)(nb, vxtmp, vytmp, *closeflag);
+      }
+    else     
+    C2F(fillpolylinesXfig)(str,vxtmp,vytmp,&fvect,&i,&nb,PI0,PD0,PD0,PD0,PD0);
+  }
+  else {
+    FPRINTF((file,"#/closeflag false def\n"));
+    if (ScilabGCXfig.ClipRegionSet ==1 )
+      {
+	C2F(analyze_pointsXfig)(*n, vx, vy, *closeflag);
+      }
+    else 
+    C2F(fillpolylinesXfig)(str,vx,vy,&fvect,&i,n,PI0,PD0,PD0,PD0,PD0);
+  }
+
+  FREE(vxtmp); vxtmp = NULL;
+  FREE(vytmp); vytmp = NULL;
+
+  /*   if (*closeflag == 1 ) */
+  /*     FPRINTF((file,"#/closeflag true def\n")); */
+  /*   else  */
+  /*     FPRINTF((file,"#/closeflag false def\n")); */
+  /*   if (ScilabGCXfig.ClipRegionSet ==1 ) */
+  /*     { */
+  /*       C2F(analyze_pointsXfig)(*n, vx, vy, *closeflag); */
+  /*     } */
+  /*   else  */
+  /*     C2F(fillpolylinesXfig)(str,vx,vy,&fvect,&i,n,PI0,PD0,PD0,PD0,PD0); */
 }
 
 
@@ -1974,21 +2049,11 @@ void C2F(drawpolylineXfig)(char *str, integer *n, integer *vx, integer *vy, inte
   if (*closeflag == 1 ){
     int nb = (*n)+1;
     FPRINTF((file,"#/closeflag true def\n"));
-    if (ScilabGCXfig.ClipRegionSet ==1 )
-      {
-	C2F(analyze_pointsXfig)(nb, vxtmp, vytmp, *closeflag);
-      }
-    else      
-      C2F(fillpolylinesXfig)(str,vxtmp,vytmp,&fvect,&i,&nb,PI0,PD0,PD0,PD0,PD0);
+    C2F(fillpolylinesXfig)(str,vxtmp,vytmp,&fvect,&i,&nb,PI0,PD0,PD0,PD0,PD0);
   }
   else {
     FPRINTF((file,"#/closeflag false def\n"));
-    if (ScilabGCXfig.ClipRegionSet ==1 )
-      {
-	C2F(analyze_pointsXfig)(*n, vx, vy, *closeflag);
-      }
-    else 
-      C2F(fillpolylinesXfig)(str,vx,vy,&fvect,&i,n,PI0,PD0,PD0,PD0,PD0);
+    C2F(fillpolylinesXfig)(str,vx,vy,&fvect,&i,n,PI0,PD0,PD0,PD0,PD0);
   }
 
   FREE(vxtmp); vxtmp = NULL;
@@ -2774,67 +2839,78 @@ static void My2draw(integer j, integer *vx, integer *vy)
 			 PI0,PD0,PD0,PD0,PD0);
   }
 }
-
 static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer onemore)
-{ 
-  integer iib,iif,ideb=0,vxl[2],vyl[2],fvect=0,ipoly=1,deux=2;
-  integer xleft, xright, ybot, ytop;
+{
+  SClipRegion clipping ;
 
-  if ( ScilabGCXfig_is_initialized == FALSE ) {
-    sciprint("xinit must be called before any action \r\n");
-    return;
-  }
-
-  xleft=ScilabGCXfig.CurClipRegion[0];
-  xright=xleft+ScilabGCXfig.CurClipRegion[2];
-  ybot=ScilabGCXfig.CurClipRegion[1];
-  ytop= ybot + ScilabGCXfig.CurClipRegion[3];
-  set_clip_box(xleft, xright, ybot, ytop);
-  while (1) 
-    { integer j;
-      iib=first_in(n,ideb,vx,vy);
-      if (iib == -1) 
-	{ 
-	  for (j=ideb+1; j < n; j++) My2draw(j,vx,vy);
-	  break;
-	}
-      else 
-      if ( iib - ideb > 1) 
-	{
-	  /* un partie du polygine est totalement out de ideb a iib -1 */
-	  /* mais peu couper la zone */
-	  for (j=ideb+1; j < iib; j++) My2draw(j,vx,vy);
-	};
-      iif=first_out(n,iib,vx,vy);
-      if (iif == -1) {
-	/* special case the polyligne is totaly inside */
-	if (iib == 0) 
-	  {
-	    /** XXXX : if (C2F(store_points)(n,vx,vy,onemore)); **/
-	    /** if (onemore == 1) n1 = n+1;else n1= n; **/
-	    C2F(fillpolylinesXfig)("MyDraw",vx,vy,&fvect,&ipoly,&n,
-			 PI0,PD0,PD0,PD0,PD0);
-	    return ;
-	  }
-	else 
-	  MyDraw(iib,n-1,vx,vy);
-	break;
-      }
-      MyDraw(iib,iif,vx,vy);
-      ideb=iif;
-    }
-  if (onemore == 1) {
-    /* The polyligne is closed we consider the closing segment */
-    integer x1n,y1n,x2n,y2n,flag1=0;
-    vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0];
-    clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1);
-    if ( flag1==0) return ;
-    if (flag1==1||flag1==3) {vxl[0]=x1n;vyl[0]=y1n;}
-    if (flag1==2||flag1==3) {vxl[1]=x2n;vyl[0]=y2n;}
-    C2F(fillpolylinesXfig)("MyDraw",vxl,vyl,&fvect,&ipoly,&deux,
-			 PI0,PD0,PD0,PD0,PD0);
-  }
+  clipping.leftX = ScilabGCXfig.CurClipRegion[0];
+  clipping.rightX = ScilabGCXfig.CurClipRegion[0] +ScilabGCXfig.CurClipRegion[2];
+  clipping.bottomY = ScilabGCXfig.CurClipRegion[1] ;
+  clipping.topY = ScilabGCXfig.CurClipRegion[1] + ScilabGCXfig.CurClipRegion[3] ;
+  C2F(clipPolyLine)( n, vx, vy, onemore, &clipping ) ;
 }
+
+
+/* static void C2F(analyze_pointsXfig)(integer n, integer *vx, integer *vy, integer onemore) */
+/* {  */
+/*   integer iib,iif,ideb=0,vxl[2],vyl[2],fvect=0,ipoly=1,deux=2; */
+/*   integer xleft, xright, ybot, ytop; */
+
+/*   if ( ScilabGCXfig_is_initialized == FALSE ) { */
+/*     sciprint("xinit must be called before any action \r\n"); */
+/*     return; */
+/*   } */
+
+/*   xleft=ScilabGCXfig.CurClipRegion[0]; */
+/*   xright=xleft+ScilabGCXfig.CurClipRegion[2]; */
+/*   ybot=ScilabGCXfig.CurClipRegion[1]; */
+/*   ytop= ybot + ScilabGCXfig.CurClipRegion[3]; */
+/*   set_clip_box(xleft, xright, ybot, ytop); */
+/*   while (1)  */
+/*     { integer j; */
+/*       iib=first_in(n,ideb,vx,vy); */
+/*       if (iib == -1)  */
+/* 	{  */
+/* 	  for (j=ideb+1; j < n; j++) My2draw(j,vx,vy); */
+/* 	  break; */
+/* 	} */
+/*       else  */
+/*       if ( iib - ideb > 1)  */
+/* 	{ */
+/* 	  /\* un partie du polygine est totalement out de ideb a iib -1 *\/ */
+/* 	  /\* mais peu couper la zone *\/ */
+/* 	  for (j=ideb+1; j < iib; j++) My2draw(j,vx,vy); */
+/* 	}; */
+/*       iif=first_out(n,iib,vx,vy); */
+/*       if (iif == -1) { */
+/* 	/\* special case the polyligne is totaly inside *\/ */
+/* 	if (iib == 0)  */
+/* 	  { */
+/* 	    /\** XXXX : if (C2F(store_points)(n,vx,vy,onemore)); **\/ */
+/* 	    /\** if (onemore == 1) n1 = n+1;else n1= n; **\/ */
+/* 	    C2F(fillpolylinesXfig)("MyDraw",vx,vy,&fvect,&ipoly,&n, */
+/* 			 PI0,PD0,PD0,PD0,PD0); */
+/* 	    return ; */
+/* 	  } */
+/* 	else  */
+/* 	  MyDraw(iib,n-1,vx,vy); */
+/* 	break; */
+/*       } */
+/*       MyDraw(iib,iif,vx,vy); */
+/*       ideb=iif; */
+/*     } */
+/*   if (onemore == 1) { */
+/*     /\* The polyligne is closed we consider the closing segment *\/ */
+/*     integer x1n,y1n,x2n,y2n,flag1=0; */
+/*     vxl[0]=vx[n-1];vxl[1]=vx[0];vyl[0]=vy[n-1];vyl[1]=vy[0]; */
+/*     clip_line(vxl[0],vyl[0],vxl[1],vyl[1],&x1n,&y1n,&x2n,&y2n,&flag1); */
+/*     if ( flag1==0) return ; */
+/*     if (flag1==1||flag1==3) {vxl[0]=x1n;vyl[0]=y1n;} */
+/*     if (flag1==2||flag1==3) {vxl[1]=x2n;vyl[0]=y2n;} */
+/*     C2F(fillpolylinesXfig)("MyDraw",vxl,vyl,&fvect,&ipoly,&deux, */
+/* 			 PI0,PD0,PD0,PD0,PD0); */
+/*   } */
+/* } */
 
 /* static void C2F(analyze_pointsXfigForFilling)(integer n, integer *vx, integer *vy, integer onemore, integer cpat) */
 /* {  */
