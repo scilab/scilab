@@ -755,6 +755,9 @@ cd.. &gt;nul
 				RelativePath=".\Champ.c">
 			</File>
 			<File
+				RelativePath=".\clipping.c">
+			</File>
+			<File
 				RelativePath=".\CloneObjects.c">
 			</File>
 			<File
@@ -930,6 +933,9 @@ cd.. &gt;nul
 			</File>
 			<File
 				RelativePath=".\BuildObjects.h">
+			</File>
+			<File
+				RelativePath=".\clipping.h">
 			</File>
 			<File
 				RelativePath=".\CloneObjects.h">
