@@ -29,11 +29,9 @@
 
 #define MSG_SCIMSG24 "Wscilex <Options> : run Scilab.\n"
 #define MSG_SCIMSG24B "scilex <Options> : run Scilab.\n"
-#define MSG_SCIMSG25 "-ns:if this option is present the startup file SCI/scilab.star is not executed.\n"
-#define MSG_SCIMSG26 "-nb:if this option is present then the scilab welcome banner is not displayed.\n"
-#define MSG_SCIMSG27 "-l lang: it fixes the user language.\nThe possible lang values are 'fr' for french and 'eng' for english.\nThe default language is english. This default value is fixed the scilab.star file.\n" 
-#define MSG_SCIMSG28 "-f file: Scilab script file is executed first into Scilab.\n" 
-#define MSG_SCIMSG29 "-e instruction: Scilab instruction instruction is executed first into Scilab."
+
+
+
 #define MSG_SCIMSG30 "Help"
 #define MSG_SCIMSG31 "Copyright ® "
 #define MSG_SCIMSG32 "Ouvrir"
@@ -134,5 +132,19 @@
 #define MSG_SCIMSG119 "Arrê&ter sélecteur d'entités"
 
 #define MSG_SCIMSG121 "Please modify ""ComSpec"" environment variable.\ncommand.com on W9x.\ncmd.exe on W2K and more."
+
+#define MSG_SCIMSG122 "Arguments : passes Arguments to Scilab, This Arguments can be retreived\n  by the Scilab function sciargs.\n"
+#define MSG_SCIMSG123 "-e Instruction : execute the scilab instruction given in Instruction argument.\n"
+#define MSG_SCIMSG124 "-f File : execute the scilab script given in File argument.\n"
+#define MSG_SCIMSG125 "  '-e' and '-f' options are mutually exclusive.\n\n"
+#define MSG_SCIMSG126 "-l lang : it fixes the user language.\n  The possible lang values are 'fr' for french and 'eng' for english.\n  The default language is english.\n  This default value is fixed the scilab.star file.\n\n" 
+#define MSG_SCIMSG127 "-mem N : set the initial stacksize.\n"
+#define MSG_SCIMSG128 "-ns : if this option is present the startup file scilab.star is not executed.\n"
+#define MSG_SCIMSG129 "-nb : if this option is present then scilab welcome banner is not displayed.\n"
+#define MSG_SCIMSG130 "-nouserstartup : don't execute user startup files .scilab or scilab.ini.\n"
+#define MSG_SCIMSG131 "-nw : start Scilab without specialized Scilab Window.\n"
+#define MSG_SCIMSG132 "-nwni : start Scilab without user interaction (batch mode).\n"
+#define MSG_SCIMSG133 "-texmacs : reserved for WinTeXMacs.\n"
+
 
 #endif /*_MESSAGESH_*/

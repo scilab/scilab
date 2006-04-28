@@ -160,11 +160,19 @@ int Console_Main(int argc, char **argv)
 		  (stricmp (my_argv[argcount],"-HELP")==0) )
 	  {
 		  printf(MSG_SCIMSG24B);
-		  printf(MSG_SCIMSG25); 
-		  printf(MSG_SCIMSG26); 
-		  printf(MSG_SCIMSG27); 
-		  printf(MSG_SCIMSG28); 
-		  printf(MSG_SCIMSG29);
+		  printf(MSG_SCIMSG122); 
+			printf(MSG_SCIMSG123); 
+			printf(MSG_SCIMSG124); 
+			printf(MSG_SCIMSG125); 
+			printf(MSG_SCIMSG126); 
+			printf(MSG_SCIMSG127); 
+			printf(MSG_SCIMSG128); 
+			printf(MSG_SCIMSG129); 
+			printf(MSG_SCIMSG130); 
+			printf(MSG_SCIMSG131); 
+			printf(MSG_SCIMSG132); 
+			printf(MSG_SCIMSG133); 
+
 		  printf("\n");
 		  exit(1);
 	  }
@@ -331,13 +339,21 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			 (stricmp (my_argv[i], "-?") == 0) ||
 			 (stricmp (my_argv[i], "-HELP") == 0) )
 		{
-			char Msg[1024];
+			char Msg[2048];
 			strcpy(Msg,MSG_SCIMSG24);
-			strcat(Msg,MSG_SCIMSG25); 
-			strcat(Msg,MSG_SCIMSG26); 
-			strcat(Msg,MSG_SCIMSG27); 
-			strcat(Msg,MSG_SCIMSG28); 
-			strcat(Msg,MSG_SCIMSG29);
+			strcat(Msg,MSG_SCIMSG122); 
+			strcat(Msg,MSG_SCIMSG123); 
+			strcat(Msg,MSG_SCIMSG124); 
+			strcat(Msg,MSG_SCIMSG125); 
+			strcat(Msg,MSG_SCIMSG126); 
+			strcat(Msg,MSG_SCIMSG127); 
+			strcat(Msg,MSG_SCIMSG128); 
+			strcat(Msg,MSG_SCIMSG129); 
+			strcat(Msg,MSG_SCIMSG130); 
+			strcat(Msg,MSG_SCIMSG131); 
+			strcat(Msg,MSG_SCIMSG132); 
+			strcat(Msg,MSG_SCIMSG133); 
+
 			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
 			exit(1);
 		}
