@@ -51,17 +51,16 @@ return
 
 
   /////////////////////////
-case 'foreground'         // <=> color or edgecolor
+case 'font_foreground'         // <=> color or edgecolor
   /////////////////////////
 
   if (type(PropertyValue) == 10)
-   
     index = getColorIndex(PropertyValue);
     
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
 
     if index < 10
-      titlelabel.foreground = color(ColorVal(index));
+      titlelabel.font_foreground = color(ColorVal(index));
     elseif index == 10  // 'none' selected
       titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
     else
@@ -72,7 +71,7 @@ case 'foreground'         // <=> color or edgecolor
   elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
     
     if (size(PropertyValue,'*')==3)
-      titlelabel.foreground = addcolor(PropertyValue);
+      titlelabel.font_foreground = addcolor(PropertyValue);
     else
       warning("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
       ResetFigureDDM(current_figure, cur_draw_mode);
@@ -85,6 +84,42 @@ case 'foreground'         // <=> color or edgecolor
     return;
   end
 
+  
+   /////////////////////////
+case 'foreground'        // <=> foregroundcolor
+  /////////////////////////
+  
+if (type(PropertyValue) == 10)
+    index = getColorIndex(PropertyValue);
+    
+    ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+
+   if index < 10
+      titlelabel.fill_mode = 'on'
+      titlelabel.foreground = color(ColorVal(index));
+    elseif index == 10  // 'none' selected
+      titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
+    else
+      warning("Color value must be a 3 elements vector or an index in the colormap.");
+      ResetFigureDDM(current_figure, cur_draw_mode);
+      return;
+    end
+elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
+    
+    if (size(PropertyValue,'*')==3) 
+      titlelabel.fill_mode = 'on'
+      titlelabel.foreground = addcolor(PropertyValue);
+    else
+      warning("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      ResetFigureDDM(current_figure, cur_draw_mode);
+      return;
+    end
+else
+    warning("Color value must be a 3 elements vector or an index in the colormap.");
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    return;
+end
+  
   
   /////////////////////////
 case 'background'        // <=> backgroundcolor
@@ -106,7 +141,7 @@ if (type(PropertyValue) == 10)
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
-  elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
+elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
     
     if (size(PropertyValue,'*')==3) 
       titlelabel.fill_mode = 'on'
@@ -116,13 +151,13 @@ if (type(PropertyValue) == 10)
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
-
-  else
+else
     warning("Color value must be a 3 elements vector or an index in the colormap.");
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
-  end
+end
 
+  
   /////////////////////////
 case 'text'        // <=> string
   /////////////////////////
@@ -150,6 +185,7 @@ case 'position'        // <=> position, à completer: la position par rapport à z
     return;
   end
 
+  
   /////////////////////////  
 case 'visible'           // <=> visible
   /////////////////////////
