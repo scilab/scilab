@@ -325,8 +325,7 @@ void C2F(clipPolyLine)( integer       n     ,
       /* special case the polyligne is totaly inside */
       if (iib == 0) 
       {
-        int close = 0 ;
-        C2F (dr) ("xuclines", "xv", &n, vx, vy, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L) ;
+        C2F (dr) ("xuclines", "xv", &n, vx, vy, &closed, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L) ;
         return ;
       }
       else
