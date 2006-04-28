@@ -152,7 +152,7 @@ if grep(args,'scilex')<>[] then
     end
   end
 end
-clear ans  %b_h_s args with_tk LANGUAGE
+clear ans  %b_h_s args with_tk LANGUAGE addmenu delmenu
 
 // LCC initialization =================================================
 global LCC
