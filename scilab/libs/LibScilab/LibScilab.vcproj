@@ -934,10 +934,16 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\PASTE.ico">
 			</File>
 			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\PICKER.ico">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\POLYLINE.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\PRINT.ico">
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\puffin.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\RECTANGLE.ico">
