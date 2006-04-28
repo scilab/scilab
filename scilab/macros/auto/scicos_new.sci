@@ -16,6 +16,17 @@ if ~%scicos then
   abort;
 end
 
+// Define Scicos data tables ===========================================
+if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") ) then
+  [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
+	%scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
+  clear initial_scicos_tables
+end
+//======================================================================
+
 //xset('window',curwin);
 olds=get('old_style')
 set("old_style","on")

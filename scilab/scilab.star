@@ -9,11 +9,21 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 clearglobal();
 
 // Set stack size   ===================================================
-newstacksize=5000000;
+defaultstacksize=5000000;
 old=stacksize()
-if old(1)<>newstacksize then stacksize(newstacksize),end
-clear old newstacksize
-
+params=sciargs();
+nparam=find(params=='-mem');
+if (nparam) then
+  ierr=execstr('newstacksize='+params(nparam+1),'errcatch');
+  if (ierr==0) then
+    if old(1)<>newstacksize then stacksize(newstacksize),end
+  else
+    if old(1)<>defaultstacksize then stacksize(defaultstacksize),end
+  end
+else
+  if old(1)<>defaultstacksize then stacksize(defaultstacksize),end
+end
+clear nparam params ierr old newstacksize defaultstacksize
 // Special variables definition =======================================
 ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
 
@@ -129,13 +139,16 @@ clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variabl
 // Menu for Help and editor ===========================================
 if grep(args,'scilex')<>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
-    delmenu("Help")
+    
     if ~MSDOS then 
+      delmenu("Help")
       addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),
     end
     if with_tk() then
-	delmenu("Editor")
-      if ~MSDOS then addmenu("Editor",list(2,"scipad();")),end
+	    if ~MSDOS then 
+        delmenu("Editor")
+        addmenu("Editor",list(2,"scipad();"));
+      end
     end
   end
 end
@@ -161,14 +174,6 @@ if verbose then
 	clear show_startupinfo;
 end
 clear verbose;
-
-// Define Scicos data tables ===========================================
-if %scicos then 
-[scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
-	%scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
-clear initial_scicos_tables
-end
-
 
 // load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
