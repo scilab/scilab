@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<?xml-stylesheet type="text/xsl" href="file:///usr/local/lib/scilab/man/eng/html-rev.xsl"?>
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>title</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>Avril 2006</DATE>
+
+  <SHORT_DESCRIPTION name="title">display a title on a graphic
+  window</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>title(my_title)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>title(my_title,&lt;Property&gt;)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>my_title</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string, it's the title to display</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>&lt;Property&gt;</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: This optional argument represents a sequence of couple
+          statements <VERB>{PropertyName,PropertyValue}</VERB> that defines
+          global objects' properties applied to the created title.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>&lt;axes_handle&gt;</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: This optional argument forces the title to appear inside the
+          selected axes given by <VERB>axes_handle</VERB> rather than the
+          current axes (see <LINK>gca</LINK>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>title</VERB> displays a title on a graphic window. </P>
+
+    <P>The <VERB>Property</VERB> arguments should be used to customize the
+    title. Here is a complete list of the available options.</P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Property :">
+        <P><VERB>backgroundcolor</VERB>: this field contains the color used to
+        fill the box if any. Its value should be a color index (relative to
+        the current colormap). </P>
+
+        <P><VERB>color</VERB>: this field contains the color used to display
+        the title text. Its value should be a color index (relative to the
+        current colormap). </P>
+
+        <P><VERB>edgecolor</VERB>: this field contains the color used to
+        display the line around the box if any. Its value should be a color
+        index (relative to the current colormap). </P>
+
+        <P><VERB>fontname</VERB>: Seven differents fonts are available :
+        "Courrier", "Symbol", "Times", "Times Italic", "Times Bold", "User
+        defined". The font_size property is an index in [0 6] which is
+        associated to the previous font names. </P>
+
+        <P><VERB>fontsize</VERB>: The fontsize property is used to select the
+        type of size of the title. Its value should be an integer in between 0
+        and 5 which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</P>
+
+        <P><VERB>position</VERB>: This 2d vector allows you to place manually
+        the title on the screen. The position is stored in the data units of
+        the axes. </P>
+
+        <P><VERB>rotation</VERB>: This scalar allows you to turn the title.
+        The font is turned inverse clockise with the angle given in degrees.
+        </P>
+
+        <P><VERB>visible</VERB>: this field contains the visible property
+        value for the title. It should be "on" or "off". By default, the label
+        is visible, the value's property is "on" . If "off" the title is not
+        displayed on the screen. </P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// display a title with several properties 
+title('my title');
+// change the color for the font
+title('my title','color','blue');
+// change the color for the around the box
+title('my title','edgecolor','red');
+// change the position of the title 
+title('my title','position',[0.3 0.8]);
+// change the size of the font
+title('my title','fontsize',3);
+// a rotation 
+title('my title','rotation',90);
+
+// We can do all these modifications with just the below instruction:
+title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>label_properties</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>titlepage</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xtitle</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>F.Belahcene</AUTHOR>
+</MAN>
