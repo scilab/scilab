@@ -3567,7 +3567,7 @@ void C2F(drawClippedPolyline)(str, n, vx, vy, closeflag, v6, v7, dv1, dv2, dv3, 
   if (*closeflag == 1) n1 = *n+1;else n1= *n;
   if (n1 >= 2) 
   {
-    C2F(analyse_points)( *n, vx, vy, *closeflag );
+    C2F(analyze_points)( *n, vx, vy, *closeflag );
   }
 }
 /*-----------------------------------------------------------------------------------*/
