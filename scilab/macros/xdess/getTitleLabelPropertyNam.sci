@@ -13,7 +13,7 @@ Table    = [ 'visible' 'fontname' 'fontangle' 'fontsize' 'rotation' ..
              'position' 'color' 'edgecolor' 'backgroundcolor' ];
 
 TableEQ =  [ 'visible' 'font_style' 'font_style' 'font_size' 'font_angle' ..
-             'position' 'foreground' 'foreground' 'background'] 
+             'position' 'font_foreground' 'foreground' 'background'] 
 
 //TableEQ =  [ 'visible' 'font_style' 'font_style' 'font_size' 'font_angle' ..
   //           'position' 'foreground' 'background' .. 
