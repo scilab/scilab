@@ -28,6 +28,7 @@
 /* error "gperf generated tables don't work with this execution character set. Please report a bug to <bug-gnu-gperf@gnu.org>." */
 /* #endif */
 
+
 /* #line 1 "Xcall.gperf" */
 /*------------------------------------------------------------------------
    *  Graphic library for 2D and 3D plotting 
@@ -70,6 +71,18 @@
  * Other drivers are Postscript Fig ( xfig ) and Rec ( Rec= X11 + Recording capabilities) 
  *    xfig is only meaningfull when using Unix machine 
  * ----------------------------------------------------------------*/
+
+/* How to use the hash table by jb Silvy 04/2006 */
+/* The hash table (asso_values array) has been created using the gperf software. */
+/* Normally, each a new function is added in Xcall, gperf shoud be run to obtain a new hastable */
+/* But here I present a way to avoid using gperf ( :) ). */
+/* When dr is called, the programm will compute the hash value of the called function (xset,
+/* xarc,...). The function hash compute this. The obtained number will then give the function to */
+/* call in the driver. This number is the index of the function to be called in the wordlist array. */
+/* As you can see, there are empty baskets. They can be used to add new functions (that's the point :) )*/
+/* So if you want to add a new functions, you need to find a name which fits one basket. */
+/* So it is not possible to choose any name, there can be only one name per basket. */
+/* However, I think it is easier than running gperf each time ;). */
 
 static void C2F(all)();
 
