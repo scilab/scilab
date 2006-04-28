@@ -35,13 +35,14 @@ end
 monaxe = gca();
 
 nv = size(ListArg);
-
-// detect and set the strig now:
-if modulo(nv,2) == 1 then
+// detect and set the string now:
+if  type(ListArg(1))== 10 & modulo(nv,2) == 1 then
   st = ListArg(1);
   execstr("monaxe."+ titlelabel +".text"+"=st")
   ListArg(1) = null();
   nv=nv-1 
+else
+ error("wrong input argument")
 end
 
 T=[];
@@ -101,6 +102,7 @@ end
 //postponed drawings are done now !
 // smart drawnow
 ResetFigureDDM(current_figure, cur_draw_mode);
+
 
 endfunction
 
