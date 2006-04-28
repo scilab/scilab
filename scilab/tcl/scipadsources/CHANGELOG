@@ -2192,3 +2192,15 @@ Francois VOGEL, 21/04/06
  * Fixed: Empty lines skipping failed when the debug command just switched
    the active buffer
  * version --> 6.27
+
+Francois VOGEL, 28/04/06
+ * Made use of TIP #231 implementation (Support for [wm attributes] on X11) in
+   the context of the watch window being always on top - Uses the Tk85 global
+   variable
+ * Since Scilab is now distributed with Tcl/Tk 8.4.13 the patch enforced by
+   the Scilab team in Scipad 5.67 has been removed (Tcl bugs 1193497 / patch
+   1344540 are fixed, i.e. file writable is based on the ACL list on Windows
+   directories instead of on the read-only attribute)
+ * Fixed: Opening a file with Control-o inserted an empty line in the current
+   buffer
+ * version --> 6.28

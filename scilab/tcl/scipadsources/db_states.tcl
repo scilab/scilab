@@ -243,25 +243,37 @@ proc managewatchontop_bp {} {
 # tell the windows manager to keep or not the watch window on top
 # of the other windows
 #   Windows: use wm attributes -topmost
-#   Linux:   use wm transient
+#   Linux:   use wm transient if Tk version is before 8.5
+#            use wm topmost if Tk version is 8.5 or above
+# TIP #231 implements wm topmost for X11 environments and is included in
+# Tk starting from Tcl/Tk8.5a4
 # wm transient seems to work equally well on Windows, but since
 # there is -topmost for win, let's use the latter
     global watch watchalwaysontop tcl_platform pad
+    global Tk85
     if {[info exists watch]} {
         if {$watchalwaysontop} {
             if {$tcl_platform(platform) == "windows"} {
                 wm attributes $watch -topmost 1
             } else {
                 # Linux case
-                # the following is minimal but could be enough
-                # more is difficult, see http://wiki.tcl.tk/3014
-                wm transient $watch $pad
+                if {$Tk85} {
+                    wm attributes $watch -topmost 1
+                } else {
+                    # the following is minimal but could be enough
+                    # more is difficult, see http://wiki.tcl.tk/3014
+                    wm transient $watch $pad
+                }
             }
         } else {
             if {$tcl_platform(platform) == "windows"} {
                 wm attributes $watch -topmost 0
             } else {
-                wm transient $watch
+                if {$Tk85} {
+                    wm attributes $watch -topmost 0
+                } else {
+                    wm transient $watch
+                }
             }
         }
     }

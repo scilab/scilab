@@ -29,7 +29,8 @@ Bugs:
 -On Windows, opening files and then closing one of them makes the remaining
  ones unselectable in the windows menu. This is Tk bug 1224330.
  The fix for the Tk bug exists and has beed applied to the Tk cvs tree,
- Tcl/Tk 8.4.13 include it but Scilab does not yet use 8.4.13
+ Tcl/Tk 8.4.13 include it in principle, but something probably went wrong
+ since the final release for 8.4.13 still fails.
 
 -When a function definition line ends with a comment, the line numbering is
  wrong 1 unit, resulting is various strange behaviors: execution not stopping
@@ -55,24 +56,32 @@ Bugs:
  if a function is defined in more than one buffer, proc checkarglist may
  detect the wrong one and prevents correct configuration of the debugger
 
+-modselection bugs:
+  . <TODO> Ctrl-d with a selection starting in the middle of a line -> indent
+    the first line from column 0
+  . <TODO> Ctrl-m without selection -> // at the insert point (not at the
+    beginning of the line
+  . When a line contains leading tabs and you hit ctrl-d and tab key
+    inserts spaces, each of these leading tabs are replaced by a *single*
+    space. It should be $indentspaces spaces.
+  . Unindenting a line with leading tabs does nothing. It should unindent.
+  . The indentation scheme should take into account the "Tab inserts..."
+    settings from the option menu. Actually as far as I understand/tried
+    indent/unindent always uses spaces. Using tabs instead when "Tab inserts
+    spaces" is unchecked would be a valuable improvement since some users
+    still use tabs to indent. Ctrl-d/D should transform existing tabs into
+    spaces or viceversa depending on the option,
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
-
--On Windows, trying to save a file in C:\Documents and Settings\<account>\My Documents
- usually produces a read-only warning and prevents the user from saving there.
- This is Tcl bug 1193497 / patch 1344540.
- A patch has been forced in by the operational team.
- The fix for the Tcl bug exists and has beed applied to the Tcl cvs tree,
- both in the core-8.4 branch and HEAD. Tcl/Tk 8.5a4 and 8.4.13 include it
- but Scilab does not yet use 8.4.13
 
 -the window geometry is now managed in pixels. This is fine for restoring
  exactly the same window geometry as in the previous session, but loses
  some advantages of the previously broken grid management, such as resize
  of the window upon font size changes.
 
--2nd-button now succeds in importing an X external selection into scipad
+-2nd-button now succeeds in importing an X external selection into scipad
  under linux. With one remaining glitch, the insertion cursor zomps back
  to the beginning of the insertion at the end of the process.
  Under windows 2nd-button is ineffective if the selection is external, 
@@ -106,16 +115,8 @@ Wishes:
 -------
 
 Debugger wishes:
-
--the debugger works well for functions but shell scripts are not supported yet.
- Step by step execution remains to be implemented, but this requires Scilab
- core support.
  
 -Conditional breakpoints
-
--make use of the vector argument for setbpt and delbpt to shorten the
- ScilabEval command - this is less needed since long ScilabEvals can
- now be evaluated without errors
 
 -Allow to watch a generic expression (bonus: the expression could be e.g.
  a graphical command, so that an array is *plotted* at each breakpoint)
@@ -228,9 +229,10 @@ Other wishes:
  would replace the existing ones. Add a visual indicator of this state.
  Note: this should be manageable in Tk8.4 using a combination of a delete
  and an insert (or perhaps selecting the next character and then puttext)
- but there will be a new text widget subcommand .text replace in Tk 8.5
+ but there is a new text widget subcommand .text replace in Tk 8.5
  that will do it at once and manage the undo/redo stacks at the same time.
  See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
+ .text replace is available at least from 8.5a3
 
 -paned window to allow for viewing two different parts of the same text buffer
  at the same time. Would be nice if the output of .text -dump could be feeded

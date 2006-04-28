@@ -788,19 +788,7 @@ proc writesave {textarea nametosave} {
     if {[file exists $nametosave]} {
         set readonlyflag [expr [file writable $nametosave] == 0]
     } else {
-# >>>>>>>>>>>>>>Patch starts<<<<<<<<<<<<<<<
-# This patch is intended to have limited lifetime and should be removed
-# once Tcl bugs 1193497 and 1344540 are fixed, i.e. file writable be
-# based on the ACL list on Windows directories instead of on the read-only
-# attribute
-# Once removed, non regression on bug 1785 should be tested, it should
-# still work with no further change
-        # To fix the Windows bad behavior when wanting to write a 
-        # file in an exotic directory where read-only is set
-        set readonlyflag 0
-# >>>>>>>>>>>>>>End of patch<<<<<<<<<<<<<<<
-# original code before patch is the following line only:
-#        set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
+        set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
     }
     if {$readonlyflag==0} {
         # writefileondisk catched to deal with unexpected errors (should be none!)

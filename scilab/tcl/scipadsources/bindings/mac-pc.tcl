@@ -12,6 +12,8 @@ sbind Text <Control-i> {}
 sbind Text <Control-d> ""
 sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
 
+# remove the default sbind ctrl-o=insert new line
+sbind Text <Control-o> {}
 sbind $pad <Control-o>     {showopenwin currenttile}
 sbind $pad <Control-Key-4> {showopenwin horizontal}
 sbind $pad <Control-Key-5> {showopenwin vertical}
