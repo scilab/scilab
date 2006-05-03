@@ -42,6 +42,8 @@ c
       do 20 i=0,rhs-1
          il=iadr(lstk(topk))
          if(istk(il).lt.0) then
+c     .     next line to reset the global property if it is set
+            infstk(topk)=0
             k=istk(il+2)
             if (k.eq.0) then
                volk=istk(il+3)
