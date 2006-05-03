@@ -113,7 +113,7 @@
 
 #ifdef WITH_TK
 #define  IN_tclsci  40
-#include "../tclsci/fundef.tclsci"
+#include "../tclsci/tclsci.fundef"
 #endif 
 
 #define  IN_lstelmi  41
