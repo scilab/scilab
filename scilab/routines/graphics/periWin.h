@@ -25,6 +25,7 @@
  extern void C2F(MissileGCget)();
  extern void C2F(initgraphic)();
  extern void C2F(drawpolyline)();
+ extern void C2F(drawClippedPolyline)();
  extern void C2F(fillpolylines)();
  extern void C2F(drawpolylines)();
  extern void C2F(drawpolymark)();
