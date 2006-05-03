@@ -6,7 +6,7 @@ LIBRARY = $(SCIDIR)/libs/fileio.a
 
 RIPOLE= bt-int.o bytedecoders.o logger.o ole.o olestream-unwrap.o pldstr.o ripole.o
 
-OBJSC = matfileio.o intfileio.o sound.o misc.o fileio.o xls.o $(RIPOLE)
+OBJSC = matfileio.o intfileio.o files.o misc.o fileio.o xls.o $(RIPOLE)
 
 OBJSF = 
 
@@ -22,7 +22,7 @@ fileio.o: fileio.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
 	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
 	../interf/stack3.h ../os_specific/Os_specific.h
 misc.o: misc.c ../machine.h
-sound.o: sound.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
+files.o: files.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
 
 xls.o: ../machine.h
 

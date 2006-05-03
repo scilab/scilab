@@ -6,7 +6,7 @@ LIBRARY = $(SCIDIR)/libs/fileio.lib
 
 RIPOLE= bt-int.obj bytedecoders.obj logger.obj ole.obj olestream-unwrap.obj pldstr.obj ripole.obj
 
-OBJSC = matfileio.obj intfileio.obj sound.obj misc.obj fileio.obj xls.obj $(RIPOLE)
+OBJSC = matfileio.obj intfileio.obj files.obj misc.obj fileio.obj xls.obj $(RIPOLE)
 
 OBJSF = 
 

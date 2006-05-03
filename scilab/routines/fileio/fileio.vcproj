@@ -849,6 +849,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\files.c">
+			</File>
+			<File
 				RelativePath=".\intfileio.c">
 			</File>
 			<File
@@ -919,9 +922,6 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\ripole.c">
-			</File>
-			<File
-				RelativePath=".\sound.c">
 			</File>
 			<File
 				RelativePath=".\xls.c">
