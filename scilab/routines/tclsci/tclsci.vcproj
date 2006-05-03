@@ -790,9 +790,6 @@ cd .. &gt;nul
 				RelativePath=".\intTclGetVersion.c">
 			</File>
 			<File
-				RelativePath=".\inttclsci.c">
-			</File>
-			<File
 				RelativePath=".\intTclSet.c">
 			</File>
 			<File
@@ -803,6 +800,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclUpVar.c">
+			</File>
+			<File
+				RelativePath=".\mattclsci.c">
 			</File>
 			<File
 				RelativePath=".\ScilabEval.c">
