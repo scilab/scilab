@@ -43,7 +43,7 @@
 
 #include "x_ptyx.h"
 #include "x_data.h"
-#include "jpc_global.h"
+#include "global.h"
 #include "../version.h"
 
 extern Widget realToplevel;

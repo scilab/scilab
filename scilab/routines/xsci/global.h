@@ -75,7 +75,7 @@
 #endif
 
 #include "../machine.h"
-#include "jpc_defs.h"
+#include "defs.h"
 
 #include "All-extern.h"
 

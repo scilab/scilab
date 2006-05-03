@@ -38,7 +38,7 @@
 #include <malloc.h>
 #endif
 
-#include "jpc_global.h"
+#include "global.h"
 #include "../os_specific/Os_specific.h" 
 #include "All-extern-x1.h" 
 #include "../graphics/Graphics.h" 

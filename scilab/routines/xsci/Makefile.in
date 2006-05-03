@@ -8,9 +8,9 @@ LIBRARY = $(SCIDIR)/libs/xsci.a
 OBJSC = wf_w_dir.o wf_w_file.o wf_w_util.o wf_w_cursor.o \
 	wf_f_util.o wf_f_read.o \
 	wf_w_msgpanel.o wf_w_setup.o wf_e_edit.o wf_w_init.o \
-	jpc_windows.o jpc_command.o  jpc_utils.o jpc_inter.o   \
-	jpc_SGraph.o jpc_xwidgets.o \
-	jpc_coloredit.o \
+	windows.o command.o  utils.o inter.o   \
+	SGraph.o xwidgets.o \
+	coloredit.o \
 	x_button.o x_charproc.o x_cursor.o \
 	x_data.o x_input.o \
 	x_main.o x_menu.o x_misc.o x_screen.o \
@@ -73,24 +73,24 @@ distclean::
 
 # generated with gcc -MMD
 
-jpc_SGraph.o: jpc_SGraph.c ../graphics/Math.h ../machine.h \
+SGraph.o: SGraph.c ../graphics/Math.h ../machine.h \
 	../graphics/Graphics.h ../os_specific/men_Sutils.h ../menusX/men_scilab.h \
 	All-extern.h All-extern-x1.h ../graphics/bcg.h \
 	../graphics/GetProperty.h ../graphics/DestroyObjects.h \
 	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
 	../interf/stack3.h
-jpc_coloredit.o: jpc_coloredit.c wf_fig.h wf_figx.h wf_resources.h \
+coloredit.o: coloredit.c wf_fig.h wf_figx.h wf_resources.h \
 	wf_mode.h wf_w_drawprim.h wf_w_util.h wf_w_setup.h ../machine.h \
 	All-extern.h All-extern-x1.h
-jpc_command.o: jpc_command.c jpc_global.h ../machine.h jpc_defs.h \
+command.o: command.c global.h ../machine.h defs.h \
 	All-extern.h ../os_specific/Os_specific.h All-extern-x1.h ../graphics/Graphics.h
-jpc_inter.o: jpc_inter.c x_ptyxP.h x_ptyx.h x_data.h ../machine.h \
+inter.o: inter.c x_ptyxP.h x_ptyx.h x_data.h ../machine.h \
 	All-extern-x.h All-extern.h ../os_specific/Os_specific.h Xscilab.ad.h
-jpc_utils.o: jpc_utils.c jpc_global.h ../machine.h jpc_defs.h \
+utils.o: utils.c global.h ../machine.h defs.h \
 	All-extern.h
-jpc_windows.o: jpc_windows.c x_ptyx.h x_data.h jpc_global.h ../machine.h \
-	jpc_defs.h All-extern.h ../version.h x_xbas.icon.X
-jpc_xwidgets.o: jpc_xwidgets.c ../graphics/Math.h ../machine.h \
+windows.o: windows.c x_ptyx.h x_data.h global.h ../machine.h \
+	defs.h All-extern.h ../version.h x_xbas.icon.X
+xwidgets.o: xwidgets.c ../graphics/Math.h ../machine.h \
 	../graphics/Graphics.h
 test.o: test.c
 wf_e_edit.o: wf_e_edit.c wf_fig.h wf_figx.h wf_resources.h wf_mode.h \

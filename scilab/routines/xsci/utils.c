@@ -42,7 +42,7 @@
  *    concat():			Concatenate two strings together
  */
 
-#include "jpc_global.h"
+#include "global.h"
 #include <string.h> /* in case of dmalloc */ 
 
 #ifdef __STDC__
