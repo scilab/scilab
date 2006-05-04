@@ -156,7 +156,6 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 	int *Status=NULL;
 	char *Param1String=NULL;
 	char *Param2String=NULL;
-	BOOL ECHOMODE=FALSE;
 
 	char **Output=NULL;
 	int numberoflines=0;
