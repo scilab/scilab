@@ -1,0 +1,433 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2006 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/
+#include "intdos.h"
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+/*-----------------------------------------------------------------------------------*/
+#define BUFSIZE 4096
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+/* globals */
+typedef struct pipeinfo
+{
+	HANDLE pipe;
+	char *OutputBuffer;
+	int NumberOfLines;
+} pipeinfo;
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static DWORD WINAPI ReadFromPipe (LPVOID args);
+static int ClosePipeInfo (pipeinfo pipe);
+static int spawncommand(char *command);
+static int GetNumberOfLines(char *lines);
+static char **CreateOuput(pipeinfo *pipe);
+static int PrintOuput(char **ouput,int nbrlines);
+extern BOOL IsWindowInterface(void);
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static pipeinfo pipeOut= {INVALID_HANDLE_VALUE, NULL,0};
+static pipeinfo pipeErr= {INVALID_HANDLE_VALUE, NULL,0};
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+int C2F(intdos) _PARAMS((char *fname,unsigned long l))
+{
+	int m1,n1,l1;
+	int *Status=NULL;
+	char *Param1String=NULL;
+	char *Param2String=NULL;
+	BOOL ECHOMODE=FALSE;
+
+	char **Output=NULL;
+	int numberoflines=0;
+
+	CheckRhs(1,2);
+	CheckLhs(1,2);
+
+	if (GetType(1)!=sci_strings) 
+	{
+		Scierror(999,"first parameter must be a string.\r\n");
+		return 0;
+	}
+
+	GetRhsVar(1,"c",&m1,&n1,&l1);
+	Param1String=cstk(l1);
+
+	if (Rhs == 2)
+	{
+		if (GetType(2)!=sci_strings) 
+		{
+			Scierror(999,"second parameter must be a string.\r\n");
+			return 0;
+		}
+		GetRhsVar(2,"c",&m1,&n1,&l1);
+		Param2String=cstk(l1);
+
+		if (strcmp("-echo",Param2String))
+		{
+			Scierror(999,"Unrecognized option: %s.\r\n",Param2String);
+			return 0;
+		}
+		else
+		{
+			ECHOMODE=TRUE;
+		}
+	}
+
+	spawncommand(Param1String);
+
+	Status=(int*)MALLOC(sizeof(int));
+
+	if ( strlen(pipeErr.OutputBuffer) )
+	{
+		/* StdErr will be "Output" */
+		*Status=FALSE;
+		Output=CreateOuput(&pipeErr);
+		numberoflines=pipeErr.NumberOfLines;
+	}
+	else
+	{
+		/* StdOut will be "Output" */
+		*Status=TRUE;
+		Output=CreateOuput(&pipeOut);
+		numberoflines=pipeOut.NumberOfLines;
+	}
+
+	if (ECHOMODE) PrintOuput(Output,numberoflines);
+
+	if (Lhs == 1)
+	{
+		m1=1;n1=1;
+		CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &Status);
+		LhsVar(1)=Rhs+1;
+	}
+	else /* Lhs == 2 */
+	{
+		if (Output[0])
+		{
+			m1=numberoflines;
+			n1=1;
+			CreateVarFromPtr(Rhs+1, "S",&m1, &n1, Output);
+			
+		}
+		else
+		{
+			m1=0;
+			n1=0;
+			l1=0;
+			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		}
+		
+		LhsVar(1)=Rhs+1;
+
+		m1=1;n1=1;
+		CreateVarFromPtr(Rhs+2, "b", &n1, &n1, &Status);
+		LhsVar(2)=Rhs+2;
+	}
+
+	C2F(putlhsvar)();
+
+	if (Status) {FREE(Status);Status=NULL;}
+	if (Output)
+	{
+		int i=0;
+		for(i=0;i<numberoflines;i++) if (Output[i]) {FREE(Output[i]);Output[i]=NULL;}
+		FREE(Output);
+		Output=NULL;
+	}
+
+	ClosePipeInfo (pipeOut);
+	ClosePipeInfo (pipeErr);
+
+	return 0;
+}
+#else
+/*-----------------------------------------------------------------------------------*/
+int C2F(intdos) _PARAMS((char *fname,unsigned long l))
+{
+	int m1,n1,l1;
+	int *Status=NULL;
+	char *Param1String=NULL;
+	char *Param2String=NULL;
+	BOOL ECHOMODE=FALSE;
+
+	char **Output=NULL;
+	int numberoflines=0;
+
+	CheckRhs(1,2);
+	CheckLhs(1,2);
+
+	if (GetType(1)!=sci_strings) 
+	{
+		Scierror(999,"first parameter must be a string.\r\n");
+		return 0;
+	}
+
+	GetRhsVar(1,"c",&m1,&n1,&l1);
+	Param1String=cstk(l1);
+
+	if (Rhs == 2)
+	{
+		if (GetType(2)!=sci_strings) 
+		{
+			Scierror(999,"second parameter must be a string.\r\n");
+			return 0;
+		}
+		GetRhsVar(2,"c",&m1,&n1,&l1);
+		Param2String=cstk(l1);
+
+		if (strcmp("-echo",Param2String))
+		{
+			Scierror(999,"Unrecognized option: %s.\r\n",Param2String);
+			return 0;
+		}
+	}
+
+	Status=(int*)MALLOC(sizeof(int));
+	*Status=FALSE;
+	numberoflines=1;
+
+	if (Lhs == 1)
+	{
+		m1=1;n1=1;
+		CreateVarFromPtr(Rhs+1, "b", &n1, &n1, &Status);
+		LhsVar(1)=Rhs+1;
+	}
+	else /* Lhs == 2 */
+	{
+		char *StringTmp=NULL;
+		m1=numberoflines;
+		n1=1;
+		Output=(char**)MALLOC((numberoflines)*sizeof(char**));
+		StringTmp=(char*)MALLOC((512)*sizeof(char*));
+		strcpy(StringTmp,"only for Windows.");
+		Output[0]=StringTmp;
+		CreateVarFromPtr(Rhs+1, "S",&m1, &n1, Output);
+		LhsVar(1)=Rhs+1;
+
+		m1=1;n1=1;
+		CreateVarFromPtr(Rhs+2, "b", &n1, &n1, &Status);
+		LhsVar(2)=Rhs+2;
+	}
+
+	C2F(putlhsvar)();
+
+	if (Status) {FREE(Status);Status=NULL;}
+	if (Output)
+	{
+		int i=0;
+		for(i=0;i<numberoflines;i++) if (Output[i]) {FREE(Output[i]);Output[i]=NULL;}
+		FREE(Output);
+		Output=NULL;
+	}
+	return 0;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static int spawncommand(char *command)
+{
+	char shellCmd[_MAX_PATH];
+	char *CmdLine=NULL;
+
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+	SECURITY_ATTRIBUTES sa;
+	DWORD threadID;
+	BOOL ok;
+	HANDLE hProcess, h, pipeThreads[2];
+
+	hProcess = GetCurrentProcess();
+
+	ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
+	ZeroMemory(&si, sizeof(STARTUPINFO));
+	si.cb = sizeof(STARTUPINFO);
+	si.dwFlags   = STARTF_USESTDHANDLES;
+	si.hStdInput = INVALID_HANDLE_VALUE;
+
+	ZeroMemory(&sa, sizeof(SECURITY_ATTRIBUTES));
+	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+	sa.lpSecurityDescriptor = NULL;
+	sa.bInheritHandle = TRUE;
+
+	/* create a non-inheritible pipe. */
+	CreatePipe(&pipeOut.pipe, &h, &sa, 0);
+
+	/* dupe the write side, make it inheritible, and close the original. */
+	DuplicateHandle(hProcess, h, hProcess, &si.hStdOutput, 
+		0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
+
+	/* Same as above, but for the error side. */
+	CreatePipe(&pipeErr.pipe, &h, &sa, 0);
+	DuplicateHandle(hProcess, h, hProcess, &si.hStdError, 
+		0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
+
+	/* base command line */
+	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
+
+	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
+	sprintf(CmdLine,"%s /A /C %s",shellCmd,command);
+
+	ok = CreateProcess(
+		NULL,	    /* Module name. */
+		CmdLine,	    /* Command line. */
+		NULL,	    /* Process handle not inheritable. */
+		NULL,	    /* Thread handle not inheritable. */
+		TRUE,	    /* yes, inherit handles. */
+		DETACHED_PROCESS, /* No console for you. */
+		NULL,	    /* Use parent's environment block. */
+		NULL,	    /* Use parent's starting directory. */
+		&si,	    /* Pointer to STARTUPINFO structure. */
+		&pi);	    /* Pointer to PROCESS_INFORMATION structure. */
+
+	if (!ok) return 2;
+
+	if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
+
+	/* close our references to the write handles that have now been inherited. */
+	CloseHandle(si.hStdOutput);
+	CloseHandle(si.hStdError);
+
+	WaitForInputIdle(pi.hProcess, 5000);
+	CloseHandle(pi.hThread);
+
+	/* start the pipe reader threads. */
+	pipeThreads[0] = CreateThread(NULL, 0, ReadFromPipe, &pipeOut, 0, &threadID);
+	pipeThreads[1] = CreateThread(NULL, 0, ReadFromPipe, &pipeErr, 0, &threadID);
+
+	/* block waiting for the process to end. */
+	WaitForSingleObject(pi.hProcess, INFINITE);
+	CloseHandle(pi.hProcess);
+
+	/* wait for our pipe to get done reading */
+	WaitForMultipleObjects(2, pipeThreads, TRUE, 500);
+	CloseHandle(pipeThreads[0]);
+	CloseHandle(pipeThreads[1]);
+
+	return 0;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static int ClosePipeInfo (pipeinfo pipe)
+{
+	CloseHandle(pipe.pipe);
+	if (pipe.OutputBuffer)
+	{
+		FREE(pipe.OutputBuffer);
+		pipe.OutputBuffer=NULL;
+		pipe.NumberOfLines=0;
+	}
+	return 0;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static DWORD WINAPI ReadFromPipe (LPVOID args)
+{
+	pipeinfo *pi = (pipeinfo *) args;
+	int readSoFar = 0;
+	DWORD dwRead;
+	BOOL moreOutput = TRUE;
+	char *op=NULL;
+
+	pi->OutputBuffer = (char*) MALLOC(BUFSIZE);
+	op = pi->OutputBuffer;
+
+	while (moreOutput) 
+		{
+		BOOL bres = ReadFile( pi->pipe, op, BUFSIZE-1, &dwRead, NULL);
+
+		moreOutput = bres || (dwRead != 0);
+
+		if (moreOutput) 
+			{
+			int i=0;
+			char *line=NULL;
+
+			readSoFar += dwRead;
+			pi->OutputBuffer  = (char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
+			op = pi->OutputBuffer + readSoFar;
+			}
+		} 
+	*op = '\0';
+	return 0;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static int GetNumberOfLines(char *lines)
+	{
+	int NumberOfLines=0;
+	if (lines)
+		{
+		int i=0;
+		while(lines[i]!='\0')
+			{
+			if (lines[i]=='\n') NumberOfLines++;
+			i++;
+			}
+		if (NumberOfLines==0) NumberOfLines=1;
+		}
+	return NumberOfLines;
+	}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static char **CreateOuput(pipeinfo *pipe)
+	{
+	char **OuputStrings=NULL;
+
+	pipe->NumberOfLines=GetNumberOfLines(pipe->OutputBuffer);
+
+	if(pipe->NumberOfLines)
+	{
+		char *line=NULL;
+		int i=0;
+
+		OuputStrings=(char**)MALLOC((pipe->NumberOfLines)*sizeof(char**));
+		line=strtok(pipe->OutputBuffer,"\n");
+
+		while(line)
+		{
+			char *TmpOuputStrings=NULL;
+			TmpOuputStrings=MALLOC((strlen(line)+1)*sizeof(char));
+
+			if (IsWindowInterface()) sprintf(TmpOuputStrings,"%s",line);
+			else CharToOem(line,TmpOuputStrings);
+
+			if (TmpOuputStrings[strlen(TmpOuputStrings)-1] == '\r') TmpOuputStrings[strlen(TmpOuputStrings)-1] = 0;
+			OuputStrings[i]=TmpOuputStrings;
+			line=strtok(NULL,"\n");
+			i++;
+		}
+	}
+
+	return OuputStrings;
+	}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static int PrintOuput(char **ouput,int nbrlines)
+{
+	BOOL bOK=FALSE;
+	if (ouput)
+	{
+		int i=0;
+		for(i=0;i<nbrlines;i++) 
+		{
+			if (ouput[i]) sciprint("%s\n",ouput[i]);
+		}
+		bOK=TRUE;
+	}
+	return bOK;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/

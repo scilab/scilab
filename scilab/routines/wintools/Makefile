@@ -5,9 +5,12 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wintools.a
 
-OBJSC = intOEMconvert.o intmcisendstring.o intwintools.o intabout.o intclipboard.o intconsoledos.o intdde.o \
+OBJSC = intOEMconvert.o intmcisendstring.o intwintools.o  \
+				intabout.o intclipboard.o intconsoledos.o intdde.o \
         intpathname.o intsetlanguagemenu.o inttoolbar.o \
-        intwinopen.o intwinqueryreg.o intprintbox.o inttoprint.o intihmcolor.o intfileassociationbox.o
+        intwinopen.o intwinqueryreg.o intprintbox.o \
+        inttoprint.o intihmcolor.o intfileassociationbox.o \
+        intdos.o
         
 OBJSF =
 
@@ -33,3 +36,4 @@ intsetlanguagemenu.o: ../stack.h intsetlanguagemenu.h
 inttoolbar.o: ../stack.h inttoolbar.h
 intwinopen.o: ../stack.h intwinopen.h
 intwinqueryreg.o: ../stack.h intwinqueryreg.h
+intdos.o: ../stack.h intdos.h
