@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTTCLSCI__
-#define __INTTCLSCI__
+#ifndef __MATTCLSCI__
+#define __MATTCLSCI__
 
 #ifdef WIN32
   #include <windows.h>
@@ -31,6 +31,6 @@ typedef struct table_struct
 
 int ReInitTCL(void);
 
-#endif /*  __INTTCLSCI__ */
+#endif /*  __MATTCLSCI__ */
 /*-----------------------------------------------------------------------------------*/
 

@@ -875,9 +875,6 @@ cd .. &gt;nul
 				RelativePath=".\intTclGetVersion.h">
 			</File>
 			<File
-				RelativePath=".\inttclsci.h">
-			</File>
-			<File
 				RelativePath=".\intTclSet.h">
 			</File>
 			<File
@@ -888,6 +885,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclUpVar.h">
+			</File>
+			<File
+				RelativePath=".\mattclsci.h">
 			</File>
 			<File
 				RelativePath=".\Messages.h">
