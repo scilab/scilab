@@ -1,7 +1,7 @@
-# Generated automatically from Makefile.in by configure.
 SHELL = /bin/sh
 
 SCIDIR=../..
+
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS)
@@ -12,18 +12,22 @@ EXAMPLES= Ex-colnew.o Ex-corr.o  Ex-feval.o  Ex-fsolve.o  Ex-impl.o  \
 	Ex-intg.o \
 	Ex-ode-more.o  Ex-ode.o  Ex-odedc.o  Ex-optim.o  Ex-schur.o  \
 	Ex-fort.o \
-	Ex-dasrt.o  Ex-dassl.o  Ex-fbutn.o Ex-int2d.o Ex-int3d.o
+	Ex-dasrt.o  Ex-dassl.o  Ex-fbutn.o Ex-int2d.o Ex-int3d.o \
+	Ex-lsqrsolve.o 
 
-OBJS =  FTables.o $(EXAMPLES) mainsci.o matusr.o matus2.o Funtab.o  \
-	msgstxt.o scimem.o callinterf.o mexlib.o
+OBJSC=  FTables.o  Funtab.o  scimem.o callinterf.o mexlib.o
+OBJSF=  $(EXAMPLES)  matusr.o matus2.o  msgstxt.o   mainsci.o
 
-all:: $(OBJS)
+all:: $(OBJSC) $(OBJSF)
 
 FTables.h : Flist 
 	./FCreate
 
+clean::
+	$(RM) *.o *.obj 
+
 distclean::
-	$(RM) *.o
+	$(RM) *.o *.obj 
 
 #=============================== dependencies 
 
@@ -32,12 +36,13 @@ $(EXAMPLES) : ../stack.h
 
 #=======================generated with gcc======================
 
-callinterf.o: callinterf.c ../machine.h ../sun/addinter.h callinterf.h
+callinterf.o: callinterf.c ../machine.h ../os_specific/addinter.h callinterf.h
 FTables.o: FTables.c FTables0.h ../machine.h FTables.h ../stack-c.h \
-  ../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
-  ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../sun/link.h
-Funtab.o: Funtab.c ../machine.h fundef
+	../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
+	../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../os_specific/link.h
+Funtab.o: Funtab.c ../machine.h fundef ../tclsci/tclsci.fundef
 mexlib.o: mexlib.c ../mex.h ../stack-c.h ../graphics/Math.h ../machine.h \
-  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h
+	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+	../interf/stack2.h ../interf/stack3.h
 scimem.o: scimem.c ../machine.h
+
