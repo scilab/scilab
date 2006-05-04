@@ -117,4 +117,4 @@ xsci: top level window and utilities using code from: xterm, xxgdb, xfig
 	 combined and modified by J.P. Chancelier.
 
 wsci: Scilab programs for the windows version derived from 
-         gnuplot/gsview (gvwprn.c) and emacs (runemacs.c) (J.P.Chancelier).
+         gnuplot/gsview (gvwprn.c) (J.P.Chancelier).
