@@ -62,6 +62,8 @@ optim: optimization routines (Modulopt library, INRIA).
 
 poly: Scilab polynomial library (INRIA).
 
+PDE Scicos palette: developped by  EADS-CCR.
+
 pvm: interface routines with PVM developed by ReMaP and Resedas projects 
      at INRIA.
 
