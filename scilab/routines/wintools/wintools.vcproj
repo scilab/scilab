@@ -788,7 +788,7 @@ cd .. &gt;nul
 				RelativePath=".\intwinqueryreg.c">
 			</File>
 			<File
-				RelativePath=".\intwintools.c">
+				RelativePath=".\matwintools.c">
 			</File>
 		</Filter>
 		<Filter
@@ -843,7 +843,7 @@ cd .. &gt;nul
 				RelativePath=".\intwinqueryreg.h">
 			</File>
 			<File
-				RelativePath=".\intwintools.h">
+				RelativePath=".\matwintools.h">
 			</File>
 		</Filter>
 		<File

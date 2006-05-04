@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTWINTOOLS__
-#define __INTWINTOOLS__
+#ifndef __MATWINTOOLS__
+#define __MATWINTOOLS__
 
 #ifdef WIN32
   #include <windows.h>
@@ -21,6 +21,6 @@ typedef struct table_struct {
 } WintoolsTable;
 
 
-#endif /*  __INTWINTOOLS__ */
+#endif /*  __MATWINTOOLS__ */
 /*-----------------------------------------------------------------------------------*/
 

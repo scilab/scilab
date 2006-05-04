@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/wintools.a
 
-OBJSC = intOEMconvert.o intmcisendstring.o intwintools.o  \
+OBJSC = intOEMconvert.o intmcisendstring.o matwintools.o  \
 				intabout.o intclipboard.o intconsoledos.o intdde.o \
         intpathname.o intsetlanguagemenu.o inttoolbar.o \
         intwinopen.o intwinqueryreg.o intprintbox.o \
@@ -26,7 +26,7 @@ FFLAGS = $(FC_OPTIONS)
 include ../Make.lib
 
 intmcisendstring.o: ../stack.h intmcisendstring.h
-intwintools.o: ../stack.h intwintools.h
+matwintools.o: ../stack.h matwintools.h
 intabout.o: ../stack.h intabout.h
 intclipboard.o: ../stack.h intclipboard.h
 intconsoledos.o: ../stack.h intconsoledos.h
