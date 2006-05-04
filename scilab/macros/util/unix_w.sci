@@ -13,66 +13,28 @@ function unix_w(cmd)
 // host unix_x unix_s unix_g
 //!
 // Copyright INRIA
-// Modified by Allan CORNET 2004
+// Modified by Allan CORNET
   if prod(size(cmd))<>1 then   error(55,1),end
   
-  shl=getshell();
-  
   if MSDOS then 
-    tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if shl <> 'cmd' then
-    	cmd1= cmd + ' > '+ tmp;
-    else
-    	tmp=TMPDIR+'\unix.out';
-     	cmd1=cmd +'>'+ tmp +' 2>'+TMPDIR+'\unix.err';
+    [rep,stat]=dos(cmd,'-echo');
+    if (~stat) then
+      error('unix_w: error during ``'+cmd+''''' execution')
     end
   else 
      tmp=TMPDIR+'/unix.out';
      cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
-  end 
+     stat=host(cmd1);
   
-  stat=host(cmd1);
-  
-  select stat
-   case 0 then
-   	if MSDOS then
-   	  rep=mgetl(tmp);
-   	  if size(rep,'*')<>0 then
-        for k=1:size(rep,'*') 
-			    rep(k)=oemtochar(rep(k));
-		    end
-		  end
-      mputl(rep,tmp);
-    end
-    write(%io(2),read(tmp,-1,1,'(a)'))
-   case -1 then // host failed
-    error(85)
-  else
-     if MSDOS then 
-     	if shl <> 'cmd' then
-     		error('unix_w: shell error');
-     	else
-     		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
-     		if size(msg,'*')<>0 then
-          for k=1:size(msg,'*') 
-			      msg(k)=oemtochar(msg(k));
-		      end
-		  	end
-     		error('unix_w: '+msg(1))
-     	end
+     select stat
+     case 0 then
+       write(%io(2),read(tmp,-1,1,'(a)'))
+     case -1 then // host failed
+       error(85)
      else
 	msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
 	error('unix_w: '+msg(1))
-     end 
-  end
-  if MSDOS then
-    if shl <> 'cmd' then
-    	host('if exist '+tmp+' del '+tmp);
-    else
-    	host('if exist '+tmp+' del '+tmp);
-    	host('if exist '+TMPDIR+'\unix.err'+' del '+TMPDIR+'\unix.err');
-    end
-  else
+     end
      host('rm -f '+tmp);
-  end
+  end 
 endfunction
