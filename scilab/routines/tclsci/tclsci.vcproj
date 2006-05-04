@@ -912,7 +912,7 @@ cd .. &gt;nul
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\fundef.tclsci">
+			RelativePath=".\tclsci.fundef">
 		</File>
 	</Files>
 	<Globals>
