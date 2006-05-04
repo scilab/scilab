@@ -24,10 +24,11 @@ typedef struct pipeinfo
 #if __MSC__
 static DWORD WINAPI ReadFromPipe (LPVOID args);
 static int ClosePipeInfo (pipeinfo pipe);
-static int spawncommand(char *command);
+static int spawncommand(char *command,BOOL DetachProcess);
 static int GetNumberOfLines(char *lines);
-static char **CreateOuput(pipeinfo *pipe);
+static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess);
 static int PrintOuput(char **ouput,int nbrlines);
+static BOOL DetectDetachProcessInCommandLine(char *command);
 extern BOOL IsWindowInterface(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -44,6 +45,7 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 	char *Param1String=NULL;
 	char *Param2String=NULL;
 	BOOL ECHOMODE=FALSE;
+	BOOL DetachProcessOption=FALSE;
 
 	char **Output=NULL;
 	int numberoflines=0;
@@ -59,6 +61,7 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 
 	GetRhsVar(1,"c",&m1,&n1,&l1);
 	Param1String=cstk(l1);
+	DetachProcessOption=DetectDetachProcessInCommandLine(Param1String);
 
 	if (Rhs == 2)
 	{
@@ -81,7 +84,7 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 		}
 	}
 
-	spawncommand(Param1String);
+	spawncommand(Param1String,DetachProcessOption);
 
 	Status=(int*)MALLOC(sizeof(int));
 
@@ -89,14 +92,14 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 	{
 		/* StdErr will be "Output" */
 		*Status=FALSE;
-		Output=CreateOuput(&pipeErr);
+		Output=CreateOuput(&pipeErr,DetachProcessOption);
 		numberoflines=pipeErr.NumberOfLines;
 	}
 	else
 	{
 		/* StdOut will be "Output" */
 		*Status=TRUE;
-		Output=CreateOuput(&pipeOut);
+		Output=CreateOuput(&pipeOut,DetachProcessOption);
 		numberoflines=pipeOut.NumberOfLines;
 	}
 
@@ -231,7 +234,7 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 #endif
 /*-----------------------------------------------------------------------------------*/
 #if __MSC__
-static int spawncommand(char *command)
+static int spawncommand(char *command,BOOL DetachProcess)
 {
 	char shellCmd[_MAX_PATH];
 	char *CmdLine=NULL;
@@ -240,8 +243,10 @@ static int spawncommand(char *command)
 	PROCESS_INFORMATION pi;
 	SECURITY_ATTRIBUTES sa;
 	DWORD threadID;
+	DWORD dwCreationFlags;
 	BOOL ok;
 	HANDLE hProcess, h, pipeThreads[2];
+	DWORD ExitCode;
 
 	hProcess = GetCurrentProcess();
 
@@ -270,9 +275,17 @@ static int spawncommand(char *command)
 
 	/* base command line */
 	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
-
 	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
 	sprintf(CmdLine,"%s /A /C %s",shellCmd,command);
+
+	if (DetachProcess)
+	{
+		dwCreationFlags=DETACHED_PROCESS;
+	}
+	else
+	{
+		dwCreationFlags=0;
+	}
 
 	ok = CreateProcess(
 		NULL,	    /* Module name. */
@@ -280,7 +293,7 @@ static int spawncommand(char *command)
 		NULL,	    /* Process handle not inheritable. */
 		NULL,	    /* Thread handle not inheritable. */
 		TRUE,	    /* yes, inherit handles. */
-		DETACHED_PROCESS, /* No console for you. */
+		dwCreationFlags, /* No console for you. */
 		NULL,	    /* Use parent's environment block. */
 		NULL,	    /* Use parent's starting directory. */
 		&si,	    /* Pointer to STARTUPINFO structure. */
@@ -303,6 +316,12 @@ static int spawncommand(char *command)
 
 	/* block waiting for the process to end. */
 	WaitForSingleObject(pi.hProcess, INFINITE);
+
+	if ( GetExitCodeProcess(pi.hProcess,&ExitCode) == STILL_ACTIVE )
+	{
+		TerminateProcess(pi.hProcess,0);
+	}
+
 	CloseHandle(pi.hProcess);
 
 	/* wait for our pipe to get done reading */
@@ -341,21 +360,21 @@ static DWORD WINAPI ReadFromPipe (LPVOID args)
 	op = pi->OutputBuffer;
 
 	while (moreOutput) 
-		{
+	{
 		BOOL bres = ReadFile( pi->pipe, op, BUFSIZE-1, &dwRead, NULL);
 
 		moreOutput = bres || (dwRead != 0);
 
 		if (moreOutput) 
-			{
+		{
 			int i=0;
 			char *line=NULL;
 
 			readSoFar += dwRead;
 			pi->OutputBuffer  = (char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
 			op = pi->OutputBuffer + readSoFar;
-			}
-		} 
+		}
+	} 
 	*op = '\0';
 	return 0;
 }
@@ -363,25 +382,25 @@ static DWORD WINAPI ReadFromPipe (LPVOID args)
 /*-----------------------------------------------------------------------------------*/
 #if __MSC__
 static int GetNumberOfLines(char *lines)
-	{
+{
 	int NumberOfLines=0;
 	if (lines)
-		{
+	{
 		int i=0;
 		while(lines[i]!='\0')
-			{
+		{
 			if (lines[i]=='\n') NumberOfLines++;
 			i++;
-			}
-		if (NumberOfLines==0) NumberOfLines=1;
 		}
-	return NumberOfLines;
+		if (NumberOfLines==0) NumberOfLines=1;
 	}
+	return NumberOfLines;
+}
 #endif
 /*-----------------------------------------------------------------------------------*/
 #if __MSC__
-static char **CreateOuput(pipeinfo *pipe)
-	{
+static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
+{
 	char **OuputStrings=NULL;
 
 	pipe->NumberOfLines=GetNumberOfLines(pipe->OutputBuffer);
@@ -399,8 +418,28 @@ static char **CreateOuput(pipeinfo *pipe)
 			char *TmpOuputStrings=NULL;
 			TmpOuputStrings=MALLOC((strlen(line)+1)*sizeof(char));
 
-			if (IsWindowInterface()) sprintf(TmpOuputStrings,"%s",line);
-			else CharToOem(line,TmpOuputStrings);
+			if (IsWindowInterface())
+			{
+				if (DetachProcess)
+				{
+					sprintf(TmpOuputStrings,"%s",line);
+				}
+				else
+				{
+					OemToChar(line,TmpOuputStrings);
+				}
+			}
+			else 
+			{
+				if (DetachProcess)
+				{
+					CharToOem(line,TmpOuputStrings);
+				}
+				else
+				{
+					sprintf(TmpOuputStrings,"%s",line);
+				}
+			}
 
 			if (TmpOuputStrings[strlen(TmpOuputStrings)-1] == '\r') TmpOuputStrings[strlen(TmpOuputStrings)-1] = 0;
 			OuputStrings[i]=TmpOuputStrings;
@@ -410,7 +449,7 @@ static char **CreateOuput(pipeinfo *pipe)
 	}
 
 	return OuputStrings;
-	}
+}
 #endif
 /*-----------------------------------------------------------------------------------*/
 #if __MSC__
@@ -425,6 +464,25 @@ static int PrintOuput(char **ouput,int nbrlines)
 			if (ouput[i]) sciprint("%s\n",ouput[i]);
 		}
 		bOK=TRUE;
+	}
+	return bOK;
+}
+#endif
+/*-----------------------------------------------------------------------------------*/
+#if __MSC__
+static BOOL DetectDetachProcessInCommandLine(char *command)
+{
+	BOOL bOK=FALSE;
+	if (command)
+	{
+		int i=strlen(command);
+		for (i=strlen(command)-1;i>=0;i--)
+		{
+			if (command[i]==' ') command[i]='\0';
+			else break;
+		}
+		i=strlen(command);
+		if ( (i>0) &&(command[i-1]=='&') ) bOK=TRUE;
 	}
 	return bOK;
 }
