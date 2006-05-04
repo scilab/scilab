@@ -33,6 +33,14 @@
 #define MAXLONG LONG_MAX
 #endif
 
+#ifndef LONG_MAX 
+#define LONG_MAX 2147483647L 
+#endif 
+
+#ifndef MAXLONG
+#define MAXLONG LONG_MAX
+#endif
+
 #if defined(netbsd)
 #include <ieeefp.h>
 #endif
