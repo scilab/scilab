@@ -55,7 +55,7 @@ callinterf.obj: callinterf.c ../machine.h ../os_specific/addinter.h callinterf.h
 FTables.obj: FTables.c FTables0.h ../machine.h FTables.h ../stack-c.h \
 	../graphics/Math.h ../graphics/Graphics.h ../stack-def.h \
 	../interf/stack1.h ../interf/stack2.h ../interf/stack3.h ../os_specific/link.h
-Funtab.obj: Funtab.c ../machine.h fundef ../tclsci/fundef.tclsci
+Funtab.obj: Funtab.c ../machine.h fundef ../tclsci/tclsci.fundef
 mexlib.obj: mexlib.c ../mex.h ../stack-c.h ../graphics/Math.h ../machine.h \
 	../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
 	../interf/stack2.h ../interf/stack3.h
