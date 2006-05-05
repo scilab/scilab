@@ -292,7 +292,10 @@ proc opensourceof {} {
     pack $opensof.f3 -pady 4 -after $opensof.f2
 
     bind $opensof <Return> {OKopensourceof %W}
-    bind $opensof <Double-Button-1> {OKopensourceof %W}
+    # bind to the listbox only, otherwise quick clicks on the scrollbar
+    # triggers a validation of the currently selected item, which is
+    # not desirable
+    bind $opensof.f2.lb <Double-Button-1> {OKopensourceof %W}
     bind $opensof <Escape> "destroy $opensof"
     bind $opensof <Up>   {scrollarrows_bp $opensoflb up}
     bind $opensof <Down> {scrollarrows_bp $opensoflb down}

@@ -2204,3 +2204,12 @@ Francois VOGEL, 28/04/06
  * Fixed: Opening a file with Control-o inserted an empty line in the current
    buffer
  * version --> 6.28
+
+Francois VOGEL, 05/05/06
+ * Fixed: completion of keyword containing a % character inserted a ?? pattern
+   instead of the percent followed by the next character of the keyword - this
+   was due to wrong interpretation of the % character as a substitution char
+   in the completion bindings
+ * Fixed: clicking quickly on the scrollbar of the Open source of... dialog
+   validated the currently selected item, which is not what was wanted
+ * version --> 6.29

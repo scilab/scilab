@@ -237,24 +237,27 @@ proc popup_completions {} {
         grab $pad.popcompl
 
         # usability bindings
+        # [string map {"%" "%%"} $compl] is needed in the binding to prevent
+        # Tcl from interpreting the possible % char as a substitution char, which
+        # would lead to inserted completions starting by ?? (unknown completion)
         bind $pad.popcompl <Escape> \
                 "destroy $pad.popcompl ; focus $ta ; break"
         bind $pad.popcompl <Return> \
-                "completewith [list $compl] $ind $ta ; destroy $pad.popcompl ; focus $ta ; break"
+                "completewith [list [string map {"%" "%%"} $compl]] $ind $ta ; destroy $pad.popcompl ; focus $ta ; break"
         bind $pad.popcompl <KP_Enter> \
                 [bind $pad.popcompl <Return>]
         bind $pad.popcompl <Down> \
-                "selectnextcompletion %W [list $compl] ; break"
+                "selectnextcompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Up> \
-                "selectpreviouscompletion %W [list $compl] ; break"
+                "selectpreviouscompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Next> \
-                "selectlastcompletion %W [list $compl] ; break"
+                "selectlastcompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Prior> \
-                "selectfirstcompletion %W [list $compl] ; break"
+                "selectfirstcompletion %W [list [string map {"%" "%%"} $compl]] ; break"
         bind $pad.popcompl <Motion> \
-                "selectmouseoverlaycompletion %W %x %y [list $compl] $popw $poph ; break"
+                "selectmouseoverlaycompletion %W %x %y [list [string map {"%" "%%"} $compl]] $popw $poph ; break"
         bind $pad.popcompl <Button-1> \
-                "completewithmouseselected %W %x %y [list $compl] $ind $ta $popw $poph ; break"
+                "completewithmouseselected %W %x %y [list [string map {"%" "%%"} $compl]] $ind $ta $popw $poph ; break"
         bind $pad.popcompl <KeyPress>  {popup_completions_again_KP %W %A %K %s ; break}
         bind $pad.popcompl <BackSpace> {popup_completions_again_BS %W ; break}
         bind $pad.popcompl <Delete>    {}
