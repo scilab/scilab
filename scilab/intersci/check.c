@@ -336,6 +336,7 @@ void CheckOptDim(f,var,nel)
      int nel;
      VARPTR var;
 {
+  if (var->el[nel]-1>=0) {
   VARPTR var1 = variables[var->el[nel]-1];
   if ( var1->nfor_name == 0) 
     {
@@ -354,6 +355,7 @@ void CheckOptDim(f,var,nel)
 		  var1->for_name[0],var1->name);
 	}
     }
+  }
 }
 
 
