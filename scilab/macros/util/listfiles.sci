@@ -26,7 +26,8 @@ function files= listfiles(paths,flag,flagexpand)
   if MSDOS then
     for i=1:size(paths,'*') 
       // dir returns names without the dirname 
-      filesi=unix_g('dir /B /OD ""'+paths(i)+'""');
+      [filesi,stat]=dos('dir /B /OD ""'+paths(i)+'""');
+      if (~stat) then filesi="",end;
       if filesi == "" then filesi=[],end
       if filesi<>[] then 
 	filesi=filesi($:-1:1)
