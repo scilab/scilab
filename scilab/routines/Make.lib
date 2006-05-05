@@ -19,7 +19,7 @@ $(LIBRARY): $(OBJS)
 	@$(RANLIB) $@
 
 clean::
-	$(RM) *.o
+	$(RM) $(OBJSC) $(OBJSF)
 
 cleanC :
 	$(RM) $(OBJSC)
@@ -33,4 +33,4 @@ f2cclean	:
 	$(RM) $(F2CFILES)
 
 distclean::
-	$(RM) *.o $(LIBRARY)
+	$(RM) $(OBJSC) $(OBJSF) $(LIBRARY)
