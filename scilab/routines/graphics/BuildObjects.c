@@ -1194,15 +1194,25 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
  	}
-
-      for (i = 0; i < n1; i++)
-	{
-	  ppoly->pvector[i].x = pvecx[i];
-	  ppoly->pvector[i].y = pvecy[i];
-	  ppoly->pvx[i]       = pvecx[i];
-	  ppoly->pvy[i]       = pvecy[i];
+      if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL)) {
+	for (i = 0; i < n1; i++)
+	  {
+	    ppoly->pvector[i].x = pvecx[i];
+	    ppoly->pvector[i].y = pvecy[i];
+	    ppoly->pvx[i]       = pvecx[i];
+	    ppoly->pvy[i]       = pvecy[i];
 	  
-	}
+	  }
+      }
+      else {
+	for (i = 0; i < n1; i++)
+	  {
+	    ppoly->pvector[i].x = 0.0;
+	    ppoly->pvector[i].y = 0.0;
+	    ppoly->pvx[i]       = 0.0;
+	    ppoly->pvy[i]       = 0.0;
+	  }
+      }
 
       /**DJ.Abdemouche 2003**/
       if (pvecz == (double *) NULL)
