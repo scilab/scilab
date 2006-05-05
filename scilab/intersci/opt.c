@@ -108,9 +108,33 @@ void WriteOptArgPhase2(f,i)
     case VALUE:
       switch (var->type) 
 	{
+/* 	case SCALAR: */
+/* 	  /\* to be done *\/ */
+/* 	  if (var->for_type == 2) { */
+/* 	    Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi); */
+/* 	    Fprintf(f,indent,"%s = %s);\n",var->for_name[0],var->opt_name); */
+/* 	    Fprintf(f,--indent,"}\n"); */
+/* 	    Fprintf(f,indent++,"else {\n"); */
+/* 	    Fprintf(f,indent,"%s = *istk(opts[%d].l);\n",var->for_name[0],opt_posi); */
+/* 	    Fprintf(f,--indent,"}\n"); */
+/* 	  } */
+/* 	  else if (var->for_type == 3) { */
+/* 	    AddDeclare(DEC_DOUBLE,var->for_name[0]); */
+/* 	    Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi); */
+/* 	    Fprintf(f,indent,"%s = %s);\n",var->for_name[0],var->opt_name); */
+/* 	    Fprintf(f,--indent,"}\n"); */
+/* 	    Fprintf(f,indent++,"else {\n"); */
+/* 	    Fprintf(f,indent,"%s = *stk(opts[%d].l);\n",var->for_name[0],opt_posi); */
+/* 	    Fprintf(f,--indent,"}\n"); */
+/* 	    var->for_name[0] */
+/* 	  } */
+/* 	  break; */
 	case SCALAR:
-	  /* to be done */
+	  sprintf(data,"%s",var->opt_name);
+	  OptvarGetSize(var->opt_name,size,data);
+	  OptMATRIX(f,var);
 	  break;
+
 	case MATRIX:
 	  OptvarGetSize(var->opt_name,size,data);
 	  OptMATRIX(f,var);
