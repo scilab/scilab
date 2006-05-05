@@ -628,7 +628,7 @@ proc docolorizeuserfun {} {
 # note that neither chset nor words are sorted for userfun tag
     global listoffile listoftextarea
     global words chset
-    global notsnccRE
+    global notsnccRE notsncclookaheadRE
 
     set mode scilab
     set tag userfun
@@ -707,7 +707,7 @@ proc docolorizeuserfun {} {
             if {$atleastone} {
                 set pat [string range $pat 0 "end-1"]
             }
-            append pat {)} $notsnccRE
+            append pat {)} $notsncclookaheadRE
 
             set allmatch [regexp -all -inline -indices -- $pat $fulltext]
 

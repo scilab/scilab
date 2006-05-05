@@ -2213,3 +2213,8 @@ Francois VOGEL, 05/05/06
  * Fixed: clicking quickly on the scrollbar of the Open source of... dialog
    validated the currently selected item, which is not what was wanted
  * version --> 6.29
+
+Francois VOGEL, 05/05/06
+ * Fixed: user function names separated by a single character were not
+   colorized
+ * version --> 6.30

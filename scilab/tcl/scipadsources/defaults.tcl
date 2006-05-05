@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.29"
+set version "Version 6.30"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -184,6 +184,8 @@ set sncc2RE {[\w#!?$]}
 # Negated Scilab names character class (non reporting)
 # Note: this is neither the negation of $sncc1RE nor the negation of $sncc2RE
 set notsnccRE {(?:[^\w%#!?$])}
+# Negated Scilab names character class lookahead
+set notsncclookaheadRE {(?=[^\w%#!?$])}
 
 # Scilab names regexp, reporting version and non-reporting version
 set snRE_rep {}
