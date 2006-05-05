@@ -415,39 +415,36 @@ static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 
 		while(line)
 		{
-			char *TmpOuputStrings=NULL;
-			TmpOuputStrings=MALLOC((strlen(line)+1)*sizeof(char));
+			OuputStrings[i]=MALLOC((strlen(line)+1)*sizeof(char));
 
 			if (IsWindowInterface())
 			{
 				if (DetachProcess)
 				{
-					sprintf(TmpOuputStrings,"%s",line);
+					sprintf(OuputStrings[i],"%s",line);
 				}
 				else
 				{
-					OemToChar(line,TmpOuputStrings);
+					OemToChar(line,OuputStrings[i]);
 				}
 			}
 			else 
 			{
 				if (DetachProcess)
 				{
-					CharToOem(line,TmpOuputStrings);
+					CharToOem(line,OuputStrings[i]);
 				}
 				else
 				{
-					sprintf(TmpOuputStrings,"%s",line);
+					sprintf(OuputStrings[i],"%s",line);
 				}
 			}
 
-			if (TmpOuputStrings[strlen(TmpOuputStrings)-1] == '\r') TmpOuputStrings[strlen(TmpOuputStrings)-1] = 0;
-			OuputStrings[i]=TmpOuputStrings;
+			if (OuputStrings[i][strlen(OuputStrings[i])-1] == '\r') OuputStrings[i][strlen(OuputStrings[i])-1] = 0;
 			line=strtok(NULL,"\n");
 			i++;
 		}
 	}
-
 	return OuputStrings;
 }
 #endif
