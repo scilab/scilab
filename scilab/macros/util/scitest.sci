@@ -139,7 +139,7 @@ function myexec()
       if fileinfo(tmpfiles+'dia')<>[] then  
 	unix_s('del '+tmpfiles+'dia')
       end
-      unix_s('""'+SCI+'\bin\scilex.exe'+'""'+' -nwni -args -nouserstartup < '+tmpfiles+'tst')
+      dos('""'+SCI+'\bin\scilex.exe'+'""'+' -nwni -args -nouserstartup < '+tmpfiles+'tst 1>NUL');
   else
      if fileinfo(tmpfiles+'dia')<>[] then  
        unix_s('rm -f '+tmpfiles+'dia')
