@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.15
+# in sync at least with v6.30
 
 
 # commons
@@ -29,11 +29,11 @@
                    "Attendere, ricolorazione in corso"
 ::msgcat::mcset it "You can't do that while colorization is in progress.\
                     Please try again when finished."\
-                   "Non si può fare questo prima che la colorazione sia\
+                   "Non si puÃ² fare questo prima che la colorazione sia\
                     completata. Aspettare il termine della colorazione e\
                     riprovare"
 ::msgcat::mcset it "Command forbidden during colorization"\
-                   "Comando non consentito mentre la colorazione è in corso"
+                   "Comando non consentito mentre la colorazione Ã¨ in corso"
 
 
 # completion.tcl
@@ -60,7 +60,7 @@
                     the debugger.\nUse button \""\
                    "la funzione selezionata non compare in nessuno dei files\
                     aperti, potrebbe essere stata cancellata dall'ultima\
-                    volta che il debugger è stato configurato. Usare il\
+                    volta che il debugger Ã¨ stato configurato. Usare il\
                     tasto \""
 ::msgcat::mcset it "\" to refresh the list of available functions."\
                    "\" per rinfrescare la lista delle funzioni disponibili"
@@ -75,13 +75,13 @@
                    "nel file!\n\n Verificare il nome della funzione e gli\
                     argomenti (nome, ordine di comparsa) nella casella del\
                     dialogo di configurazione.\n L'ordine degli argomenti\
-                    può essere modificato trascinando e deponendo col\
+                    puÃ² essere modificato trascinando e deponendo col\
                     mouse."
 ::msgcat::mcset it "Error in selected function name or arguments"\
                    "Errore nella funzione selezionata o nei suoi argomenti"
 ::msgcat::mcset it "At least one input argument does not match definition of\
                     the function"\
-                   "Uno o più argomenti non corrispondono alla definizione\
+                   "Uno o piÃ¹ argomenti non corrispondono alla definizione\
                     della funzione"
 ::msgcat::mcset it "in the file!\n\nCheck function arguments (their names)\
                     in the configuration dialog."\
@@ -90,30 +90,35 @@
                     configurazione."
 ::msgcat::mcset it "Error in selected function arguments"\
                    "Errore negli argomenti della funzione selezionata"
-::msgcat::mcset it "Debugger is not yet developed for sce scripts!"\
-                   "Il debugger non funziona, per ora, su programmi *.sce!"
+::msgcat::mcset it "Main level code found"\
+                   "Codice a livello principale"
+::msgcat::mcset it "This file contains main level code.\nDebug as a single\
+                    .sce file?"\
+                   "Questo file contiene codice a livello principale. Eseguire\
+                    il debug trattando tutto il file come un unica funzione?"
+::msgcat::mcset it "No function found" "Nessuna funzione trovata"
+::msgcat::mcset it "This file contains no function and will be treated"\
+                   "Questo file non contiene alcuna funzione e sarÃ  trattato"
+::msgcat::mcset it "as a single .sce file.\nStart debugging?"\
+                   "Come un unico file .sce. Cominciare il debug?"
 
 
-# db_debugsession.tcl   
-::msgcat::mcset it "Cursor position is out of reach!"\
-                   "La posizione del cursore è irraggiungibile"
+# db_debugsession.tcl
 ::msgcat::mcset it "Cursor must be in a function"\
                    "Il cursore deve essere dentro una funzione"
 ::msgcat::mcset it "No effect - The debugged file is not stuck"\
-                   "Senza effetto - il file in debug non è piantato"
+                   "Senza effetto - il file in debug non Ã¨ piantato"
 ::msgcat::mcset it "Too many breakpointed functions"\
                    "Troppe funzioni con punti di arresto"
-::msgcat::mcset it "You have currently"\
-                   "Ci sono al momento"
+::msgcat::mcset it "You have currently" "Ci sono al momento"
 ::msgcat::mcset it "functions in your opened files." "funzioni."
-::msgcat::mcset it "Scilab supports a maximum of"\
-                   "Scilab supporta al massimo"
+::msgcat::mcset it "Scilab supports a maximum of" "Scilab supporta al massimo"
 ::msgcat::mcset it "possible breakpointed functions (see help setbpt)."\
                    "funzioni con punti d'arresto (vedi help setbpt)."
 ::msgcat::mcset it "Step-by-step hence cannot be performed."\
-                   "Il modo passo-passo non è pertanto possible."
+                   "Il modo passo-passo non Ã¨ pertanto possible."
 ::msgcat::mcset it "This command will actually run to the next breakpoint."\
-                   "Questo comando andrà solo fino all'arresto successivo"
+                   "Questo comando andrÃ  solo fino all'arresto successivo"
 ::msgcat::mcset it "Too many breakpoints" "Troppi punti d'arresto"
 ::msgcat::mcset it "Executing this command would require to set"\
                    "Eseguire questo comando richiederebbe di inserire"
@@ -121,6 +126,7 @@
                    "punti d'arresto nei files aperti."
 ::msgcat::mcset it "possible breakpoints in Scilab (see help setbpt)."\
                    "possibili punti d'arresto (vedere help setbpt)."
+::msgcat::mcset it "No breakpoint here!" "Non si puÃ² mettere un arresto qui!"
 
 
 # db_init.tcl
@@ -139,14 +145,13 @@
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
 ::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
-::msgcat::mcset it "Show watch variables" "Mostra le variabili"
 ::msgcat::mcset it "Hide watch variables" "Nascondi le variabili"
-::msgcat::mcset it "Show call stack" "Mostra lo stack"
 ::msgcat::mcset it "Hide call stack" "Nascondi lo stack"
+::msgcat::mcset it "Always on top" "Sempre in primo piano"
 ::msgcat::mcset it "Undefined elements are not legal in variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
 ::msgcat::mcset it ".\nThis variable will not be updated in Scilab."\
-                   ".\nQuesta variabile non sarà aggiornata in Scilab"
+                   ".\nQuesta variabile non sarÃ  aggiornata in Scilab"
 ::msgcat::mcset it "Illegal undefined element found"\
                    "Trovato un elemento indefinito"
 
@@ -163,29 +168,29 @@
 ::msgcat::mcset it "is neither a valid filename nor a valid directory.\
                     Either you're dragging an object of another type, or you\
                     hit a bug of the dnd mechanism."\
-                   "non è un nome valido per un file. O è stato trascinato\
+                   "non Ã¨ un nome valido per un file. O Ã¨ stato trascinato\
                     un oggetto di tipo sbagliato, o il meccanismo di d&d ha\
                     un baco."
 ::msgcat::mcset it "File not found" "File non trovato"
 ::msgcat::mcset it "does not exist anymore. Do you want to create an empty\
                     file with the same name?"\
-                   "non esiste più. Creare un nuovo file collo stesso nome?"
+                   "non esiste piÃ¹. Creare un nuovo file collo stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
 ::msgcat::mcset it "The file" "Il file"
 ::msgcat::mcset it "is already opened! Save the current opened file to\
                     another name and reopen it from disk!"\
-                   "è già aperto! Salvarlo eventualmente con un altro nome e\
+                   "Ã¨ giÃ  aperto! Salvarlo eventualmente con un altro nome e\
                     riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
 ::msgcat::mcset it "saved" "salvato"
-::msgcat::mcset it "cannot be written!" "non è scrivibile!"
+::msgcat::mcset it "cannot be written!" "non Ã¨ scrivibile!"
 ::msgcat::mcset it "The contents of " "Il contenuto di"
 ::msgcat::mcset it "has changed on disk, save it anyway?"\
-                   "è cambiato sul disco, salvare comunque?"
+                   "Ã¨ cambiato sul disco, salvare comunque?"
 ::msgcat::mcset it "has been modified outside of Scipad. Do you want to\
                     reload it?"\
-                   "è stato cambiato fuori da Scipad. Ricaricarlo dal disco?"
-::msgcat::mcset it "File has changed!" "Il file è cambiato"
+                   "Ã¨ stato cambiato fuori da Scipad. Ricaricarlo dal disco?"
+::msgcat::mcset it "File has changed!" "Il file Ã¨ cambiato"
 ::msgcat::mcset it "Save as" "Registra come"
 ::msgcat::mcset it "Scilab files" "Files Scilab"
 ::msgcat::mcset it "Scicos files" "Files Scicos"
@@ -200,19 +205,19 @@
 ::msgcat::mcset it "to saved?" "salvata sul disco?"
 ::msgcat::mcset it "Revert Confirm?" "Conferma recupero?"
 ::msgcat::mcset it "Unreadable file" "File illeggibile!"
-::msgcat::mcset it "exists but is not readable!" "esiste, ma non è leggibile!"
+::msgcat::mcset it "exists but is not readable!" "esiste, ma non Ã¨ leggibile!"
 ::msgcat::mcset it "This file is rather large and colorization might take\
                     some time.\n\nColorize anyway?"\
-                   "Questo file è relativamente grosso, e la colorazione\
+                   "Questo file Ã¨ relativamente grosso, e la colorazione\
                     potrebbe richiedere tempo. Colorare comunque?"
 ::msgcat::mcset it "File size warning" "Avvertimento: grosso file"
 
 
 # findreplace.tcl
 ::msgcat::mcset it "The string" "La stringa \["
-::msgcat::mcset it "could not be found in" "\] non è stata trovata"
+::msgcat::mcset it "could not be found in" "\] non Ã¨ stata trovata"
 ::msgcat::mcset it "could not be found in any of the opened files !"\
-                   "\] non è stata trovata in nessuno dei files aperti!"
+                   "\] non Ã¨ stata trovata in nessuno dei files aperti!"
 ::msgcat::mcset it "replacements done" "sostituzioni effettuate"
 ::msgcat::mcset it "Find" "Cerca"
 ::msgcat::mcset it "No match found in the selection for"\
@@ -221,7 +226,7 @@
                    "\] trovata all'interno della selezione. Continuare la\
                     ricerca nel resto del testo?"
 ::msgcat::mcset it "You are searching for an empty string!"\
-                   "La stringa da cercare è vuota!"
+                   "La stringa da cercare Ã¨ vuota!"
 ::msgcat::mcset it "Re&place" "&Sostituisci"
 ::msgcat::mcset it "Find what:" "Cerca:"
 ::msgcat::mcset it "Replace with:" "Cambia in:"
@@ -254,8 +259,8 @@
 ::msgcat::mcset it "Directory access issue" "Errore di accesso alla directory"
 ::msgcat::mcset it "The directory you specified cannot be reached. The\
                     search won't bring any result."\
-                   "Scipad non può accedere alla directory specificata. La\
-                    ricerca non darà risultato"
+                   "Scipad non puÃ² accedere alla directory specificata. La\
+                    ricerca non darÃ  risultato"
 ::msgcat::mcset it "Some directories or files could not be open and will be\
                     ignored during search.\n You might miss read access to\
                     them.\n\n The following ones will be ignored"\
@@ -280,11 +285,11 @@
                    "\n Originato da tknotepad di Joseph Acosta,\
                     joeja@mindspring.com.\n Modificato dal Consorzio\
                     Scilab.\n Migliorato da Enrico Segre 2003-2006\n e da\
-                    François Vogel (in particolare il debugger) 2004-2006.\n\
-                    Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n  \
+                    FranÃ§ois Vogel (in particolare il debugger) 2004-2006.\n\
+                    Traduzioni: \n   norvegese, TorbjÃ¸rn Pettersen 2005; \n  \
                     polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
                     Lindholm 2005; \n   tedesco, Dirk Reusch 2005; \n  \
-                    spagnolo, Juan Nicolás Quesada 2006."
+                    spagnolo, Juan NicolÃ¡s Quesada 2006."
 
 
 # infomessages.tcl
@@ -374,7 +379,7 @@
 ::msgcat::mcset it "&Break" "&Stop"
 ::msgcat::mcset it "Cance&l debug" "&Annulla il debug"
 
-#    ::msgcat::mcset fr "language scheme" "schéma langage"
+#    ::msgcat::mcset fr "language scheme" "schÃ©ma langage"
 # menues.tcl - Scheme menu
 ::msgcat::mcset it "S&cilab" "&Scilab"
 ::msgcat::mcset it "&XML" "&XML"
@@ -420,9 +425,9 @@
 ::msgcat::mcset it "&Locale" "&Localizzazione"
 # locale names (common)
 ::msgcat::mcset it "de locale (de)" "Deutsch (de)"
-::msgcat::mcset it "fr locale (fr)" "Français (fr)"
+::msgcat::mcset it "fr locale (fr)" "FranÃ§ais (fr)"
 ::msgcat::mcset it "eng locale (eng)" "English (eng)"
-::msgcat::mcset it "es locale (es)" "Español (es)"
+::msgcat::mcset it "es locale (es)" "EspaÃ±ol (es)"
 ::msgcat::mcset it "it locale (it)" "Italiano (it)"
 ::msgcat::mcset it "no locale (no)" "Norsk (no)"
 ::msgcat::mcset it "pl locale (pl)" "Polski (pl)"
@@ -439,7 +444,7 @@
 
 # menues.tcl - Help menu
 ::msgcat::mcset it "&Help..." "&Aiuto..."
-::msgcat::mcset it "&What's?..." "&Cos'è?..."
+::msgcat::mcset it "&What's?..." "&Cos'Ã¨?..."
 ::msgcat::mcset it "&About" "A &proposito"
 ::msgcat::mcset it "Adding &translations..." "&Tradurre Scipad..."
 ::msgcat::mcset it "Adding Scipad Translations..."\
@@ -465,6 +470,12 @@
 # scilabexec.tcl
 ::msgcat::mcset it "No point in loading an empty file!"\
                    "Inutile caricare un file vuoto!"
+::msgcat::mcset it "Silent file save failed"\
+                   "Salvataggio silente non riuscito"
+::msgcat::mcset it "File could not be saved in a temporary\
+                    location.\nOverwrite original file?"\
+                   "Non Ã¨ stato possibile copiare il file in una cartella\
+                    temporanea. Sovrascrivere il file originale?"
 ::msgcat::mcset it "Exec done" "Exec terminato"
 ::msgcat::mcset it "Matlab files" "Files Matlab"
 ::msgcat::mcset it "Matlab file to convert" "File Matlab da importare"
@@ -475,8 +486,8 @@
                     details -- Perhaps report the error text and the\
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
-                   "La traduzione del file è fallita, vedere la finestra\
-                    Scilab per dettagli -- Il baco può essere riportato a\
+                   "La traduzione del file Ã¨ fallita, vedere la finestra\
+                    Scilab per dettagli -- Il baco puÃ² essere riportato a\
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
                     includendo il file incriminato ed il messagggio di\
                     errore."
@@ -484,7 +495,7 @@
                     help file"\
                    "Scegliere una cartella di destinazione per la sorgente\
                     XML della pagina di aiuto"
-::msgcat::mcset it "Older version of" "Esiste già una versione di"
+::msgcat::mcset it "Older version of" "Esiste giÃ  una versione di"
 ::msgcat::mcset it "found!" "!"
 ::msgcat::mcset it "An old version of" "Esiste una versione precedente di"
 ::msgcat::mcset it "already exists: open the old file instead?"\
@@ -496,42 +507,41 @@
                     Scilab!"
 ::msgcat::mcset it "impossibleScilabEval_message"\
                    "ATTENZIONE : Un comando non ha potuto essere passato a\
-                    Scilab.  ed è stato ignorato\n\n  La ragione più\
-                    probabile è che la cartella TMPDIR di Scilab non sia\
-                    scrivibile. Ne può risultare un comportamento\
-                    imprevedibile.\n\n Il comando in questione è:\n\n-->"
+                    Scilab.  ed Ã¨ stato ignorato\n\n  La ragione piÃ¹\
+                    probabile Ã¨ che la cartella TMPDIR di Scilab non sia\
+                    scrivibile. Ne puÃ² risultare un comportamento\
+                    imprevedibile.\n\n Il comando in questione Ã¨:\n\n-->"
 ::msgcat::mcset it "impossibleScilabEval_message2"\
                    "ATTENZIONE : Un comando non ha potuto essere passato a\
-                    Scilab ed è stato ignorato perché troppo lungo.\
-                    Ne può risultare un comportamento imprevedibile.\n\n\
-                    Se si è nel corso di una sessione di debug, provare a\
-                    ridurre le variabili osservate. \n\n Il comando in\
-                    questione è:\n\n-->"
-::msgcat::mcset it "(end of command skipped)"\
-                   "(resto del comando omesso)"
+                    Scilab ed Ã¨ stato ignorato perchÃ© troppo lungo. Ne puÃ²\
+                    risultare un comportamento imprevedibile.\n\n Se si Ã¨\
+                    nel corso di una sessione di debug, provare a ridurre le\
+                    variabili osservate. \n\n Il comando in questione\
+                    Ã¨:\n\n-->"
+::msgcat::mcset it "(end of command skipped)" "(resto del comando omesso)"
 ::msgcat::mcset it "Scilab working" "Scilab occupato"
 ::msgcat::mcset it "Scilab is working, please wait for the prompt to execute\
                     this command!"\
-                   "Scilab è occupato, attendere il prompt per eseguire\
+                   "Scilab Ã¨ occupato, attendere il prompt per eseguire\
                     questo comando!"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to load file"\
-                   "Scilab è occupato, attendere il prompt per caricare il\
+                   "Scilab Ã¨ occupato, attendere il prompt per caricare il\
                     file"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to execute the\
                     selection."\
-                   "Scilab è occupato, attendere il prompt per eseguire la\
+                   "Scilab Ã¨ occupato, attendere il prompt per eseguire la\
                     selezione"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a\
                     Matlab file."\
-                   "Scilab è occupato, attendere il prompt per convertire un\
+                   "Scilab Ã¨ occupato, attendere il prompt per convertire un\
                     file Matlab"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to compile the\
                     help file."\
-                   "Scilab è occupato, attendere il prompt per compilare la\
+                   "Scilab Ã¨ occupato, attendere il prompt per compilare la\
                     pagina di aiuto"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to issue a\
                     debugger command."\
-                   "Scilab è occupato, aspettare il prompt per eseguire\
+                   "Scilab Ã¨ occupato, aspettare il prompt per eseguire\
                     comandi di debug."
 ::msgcat::mcset it "Scilab execution error"\
                    "Errore di Scilab durante l'esecuzione"
@@ -556,7 +566,7 @@
 ::msgcat::mcset it "begins at" "comincia a"
 ::msgcat::mcset it ", and there are" ", e ci sono"
 ::msgcat::mcset it "continued lines, i.e. we are at line"\
-                   "linee continuate, cioè siamo alla linea"
+                   "linee continuate, cioÃ¨ siamo alla linea"
 ::msgcat::mcset it "of" "di"
 ::msgcat::mcset it "Function" "Funzione"
 ::msgcat::mcset it "line" "linea"
