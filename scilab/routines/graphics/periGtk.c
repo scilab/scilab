@@ -3855,6 +3855,40 @@ static void C2F(analyze_points)(integer n, integer *vx, integer *vy, integer one
   }
 }
 
+/* copied from periX11.c by Enrico Segre on 7/5/06 to allow compilation */
+void C2F(drawClippedPolyline)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+{ 
+  integer n1;
+  if ( *closeflag )
+  {
+    n1 = *n+1 ;
+  }
+  else
+  {
+    n1= *n ;
+  }
+  if (n1 >= 2) 
+  {
+    C2F(analyze_points)(*n, vx, vy,*closeflag);
+    /*Old code replaced by a routine with clipping */
+    /* if (C2F(store_points)(*n, vx, vy,*closeflag)) */
+/*     { */
+/*       /\* draw the points *\/ */
+/*       XDroutine( n1 ) ; */
+/*       /\*XDrawLines (dpy, ScilabXgc->Cdrawable, gc, get_xpoints(), (int) n1, */
+/*         ScilabXgc->CurVectorStyle);*\/ */
+/*       XFlush(dpy); */
+/*     } */
+    /*XFlush(dpy);*/
+  }
+}
+
+
+/* 
+ * Same as drawpolyline but does not check the clipping
+ */
+
+
 int CheckScilabXgc(void)
 {
   return( ScilabXgc != (struct BCG *) 0);
