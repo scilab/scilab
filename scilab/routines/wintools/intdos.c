@@ -30,6 +30,7 @@ static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess);
 static int PrintOuput(char **ouput,int nbrlines);
 static BOOL DetectDetachProcessInCommandLine(char *command);
 extern BOOL IsWindowInterface(void);
+extern BOOL IsAFile(char *chainefichier);
 #endif
 /*-----------------------------------------------------------------------------------*/
 #if __MSC__
@@ -88,19 +89,46 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 
 	Status=(int*)MALLOC(sizeof(int));
 
-	if ( strlen(pipeErr.OutputBuffer) )
+	if (DetachProcessOption)
 	{
-		/* StdErr will be "Output" */
-		*Status=FALSE;
-		Output=CreateOuput(&pipeErr,DetachProcessOption);
-		numberoflines=pipeErr.NumberOfLines;
+		if ( strlen(pipeErr.OutputBuffer) )
+		{
+			/* StdErr will be "Output" */
+			*Status=FALSE;
+			Output=CreateOuput(&pipeErr,DetachProcessOption);
+			numberoflines=pipeErr.NumberOfLines;
+		}
+		else
+		{
+			/* StdOut will be "Output" */
+			*Status=TRUE;
+			Output=CreateOuput(&pipeOut,DetachProcessOption);
+			numberoflines=pipeOut.NumberOfLines;
+		}
 	}
 	else
 	{
-		/* StdOut will be "Output" */
-		*Status=TRUE;
-		Output=CreateOuput(&pipeOut,DetachProcessOption);
-		numberoflines=pipeOut.NumberOfLines;
+		char *TMPDir=NULL;
+		char FileTMPDir[MAX_PATH];
+
+		TMPDir=getenv("TMPDIR");
+		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
+
+		if (IsAFile(FileTMPDir))
+		{
+			DeleteFile(FileTMPDir);
+			/* StdOut will be "Output" */
+			*Status=TRUE;
+			Output=CreateOuput(&pipeOut,DetachProcessOption);
+			numberoflines=pipeOut.NumberOfLines;
+		}
+		else
+		{
+			/* StdErr will be "Output" */
+			*Status=FALSE;
+			Output=CreateOuput(&pipeErr,DetachProcessOption);
+			numberoflines=pipeErr.NumberOfLines;
+		}
 	}
 
 	if (ECHOMODE) PrintOuput(Output,numberoflines);
@@ -275,15 +303,26 @@ static int spawncommand(char *command,BOOL DetachProcess)
 
 	/* base command line */
 	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
-	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
-	sprintf(CmdLine,"%s /A /C %s",shellCmd,command);
 
 	if (DetachProcess)
 	{
+		CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
+		sprintf(CmdLine,"%s /A /C %s",shellCmd,command);
+
 		dwCreationFlags=DETACHED_PROCESS;
 	}
 	else
 	{
+		char *TMPDir=NULL;
+		char FileTMPDir[MAX_PATH];
+
+		TMPDir=getenv("TMPDIR");
+		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
+		if (IsAFile(FileTMPDir)) DeleteFile(FileTMPDir);
+
+		CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s && echo DOS>%s")+strlen(FileTMPDir)+1)*sizeof(char) );
+		sprintf(CmdLine,"%s /A /C %s && echo DOS>%s",shellCmd,command,FileTMPDir);
+
 		dwCreationFlags=0;
 	}
 
