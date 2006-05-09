@@ -1750,7 +1750,6 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf->dimzx = dimzx; /* dimzx is completly equal to m3*/
       psurf->dimzy = dimzy; /* dimzx is completly equal to n3*/
       psurf->izcol = izc;
-      psurf->pproj = NULL;	/* Les projections ne sont pas encore calculees */
       psurf->isselected = TRUE;
 
       psurf->flag[0] = flag[0]; /* F.Leray 16.04.04 HERE We store the flag=[mode (hidden part ), type (scaling), box (frame around the plot)] */

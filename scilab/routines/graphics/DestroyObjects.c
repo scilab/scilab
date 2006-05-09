@@ -506,7 +506,7 @@ DestroySurface (sciPointObj * pthis)
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
-  /*FREE (pSURFACE_FEATURE (pthis)->pproj);*/
+
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   cmpt=0;
