@@ -7308,17 +7308,22 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_FIGURE:
     {
       sciFigure * ppFigure = pFIGURE_FEATURE(pobj) ;
+      int curWinNum = 0 ;
       if( !ppFigure->auto_redraw )
       {
         break ;
       }
-     
+      
       x[1] = sciGetBackground (pobj) ;
       x[4] = 0 ;
       /** xclear will properly upgrade background if necessary **/
 #ifdef WIN32
       flag_DO = MaybeSetWinhdc() ;
 #endif
+      
+      /* select the right figure for drawing to avoid displaying in a wrong window */
+      C2F(dr)("xget","window",&verbose,&curWinNum,&narg,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+      C2F(dr)("xset","window",&(ppFigure->number),PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
       
       C2F(dr)("xset","pixmap",&(ppFigure->pixmap),PI0,PI0,PI0,PI0,PI0,PD0,
 	      PD0,PD0,PD0,0L,0L);
@@ -7346,6 +7351,9 @@ sciDrawObj (sciPointObj * pobj)
        
 	psonstmp = psonstmp->pprev;
       }
+      
+      /* return to the current window */
+      C2F(dr)("xset","window",&curWinNum,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
       break;
     }
     case SCI_SUBWIN: 
