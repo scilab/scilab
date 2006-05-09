@@ -902,7 +902,6 @@ typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
-  POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
   double *pvz; /**DJ.Abdemouche 2003**/

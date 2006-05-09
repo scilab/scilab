@@ -430,7 +430,6 @@ DestroyLegend (sciPointObj * pthis)
 int
 DestroyPolyline (sciPointObj * pthis)
 {
-  FREE (pPOLYLINE_FEATURE (pthis)->pvector);
   FREE (pPOLYLINE_FEATURE (pthis)->pvx);
   FREE (pPOLYLINE_FEATURE (pthis)->pvy);
   FREE (pPOLYLINE_FEATURE (pthis)->user_data);

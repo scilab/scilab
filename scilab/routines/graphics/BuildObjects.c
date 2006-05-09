@@ -1166,19 +1166,11 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
       pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
       ppoly = pPOLYLINE_FEATURE (pobj);
-      if ((ppoly->pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPOLYLINE_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      
       /* pour le moment je garde les vecteurs separes, et non en POINT2D */
       if ((ppoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
 	{
-	  FREE(pPOLYLINE_FEATURE (pobj)->pvector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+          sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pPOLYLINE_FEATURE(pobj));
 	  FREE(pobj);
@@ -1187,8 +1179,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       if ((ppoly->pvy = MALLOC (n1 * sizeof (double))) == NULL)
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-	  FREE(pPOLYLINE_FEATURE (pobj)->pvector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+          sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pPOLYLINE_FEATURE(pobj));
 	  FREE(pobj);
@@ -1197,9 +1188,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL)) {
 	for (i = 0; i < n1; i++)
 	  {
-	    ppoly->pvector[i].x = pvecx[i];
-	    ppoly->pvector[i].y = pvecy[i];
-	    ppoly->pvx[i]       = pvecx[i];
+            ppoly->pvx[i]       = pvecx[i];
 	    ppoly->pvy[i]       = pvecy[i];
 	  
 	  }
@@ -1207,8 +1196,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       else {
 	for (i = 0; i < n1; i++)
 	  {
-	    ppoly->pvector[i].x = 0.0;
-	    ppoly->pvector[i].y = 0.0;
 	    ppoly->pvx[i]       = 0.0;
 	    ppoly->pvy[i]       = 0.0;
 	  }
@@ -1224,7 +1211,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
 	    {
 	      FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-	      FREE(pPOLYLINE_FEATURE (pobj)->pvector);
 	      FREE(pPOLYLINE_FEATURE (pobj)->pvy);
 	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	      sciDelHandle (pobj);
@@ -1245,8 +1231,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvy);
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-	  FREE(pPOLYLINE_FEATURE (pobj)->pvector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+          sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pPOLYLINE_FEATURE(pobj));
 	  FREE(pobj);
