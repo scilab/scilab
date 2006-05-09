@@ -2126,22 +2126,43 @@ if test "$with_ocaml" != no; then
 fi
 
 #################
-## Sablotron or xsltproc
+## Man management
 #################
 
+# Sablotron or xsltproc
+# ===================
+
 AC_CHECK_PROG(WITH_XSLTPROC,xsltproc,yes,no)
+
 if test "$WITH_XSLTPROC" = yes; then
-  MANTARGET=man
-  MANGENERATOR=xsltproc
+	MANTARGET=man
+	MANGENERATOR=xsltproc
 else 
-  AC_CHECK_PROG(WITH_SABCMD,sabcmd,yes,no)
-  if test "$WITH_SABCMD" = yes; then
-   MANTARGET=man
-   MANGENERATOR=sabcmd
-  else
-   AC_MSG_WARN([Sablotron "sabcmd" or xmlto not found: I will not build man pages])
-   MANTARGET=
-  fi
+	AC_CHECK_PROG(WITH_SABCMD,sabcmd,yes,no)
+	if test "$WITH_SABCMD" = yes; then
+		MANTARGET=man
+		MANGENERATOR=sabcmd
+	else
+		AC_MSG_WARN([Sablotron "sabcmd" or xmlto not found: I will not build man pages])
+		MANTARGET=
+	fi
+fi
+
+# Now check if man sources 
+# are checked out or not
+# ===================
+
+AC_CHECK_FILE(man/fr/Makefile.in,[MAN_FR=man/fr/Makefile],[MAN_FR=])
+
+if test "$MAN_FR" = ''; then
+	MANTARGET=
+	AC_MSG_WARN([man/fr/Makefile.in not found : I will not build man pages])
+else
+	AC_CHECK_FILE(man/eng/Makefile.in,[MAN_ENG=man/eng/Makefile],[MAN_ENG=])
+	if test "$MAN_ENG" = ''; then
+		MANTARGET=
+		AC_MSG_WARN([man/eng/Makefile.in not found : I will not build man pages])
+	fi
 fi
 
 #########################
@@ -2271,7 +2292,7 @@ AC_SUBST(TERM_LDFLAGS)
 AC_SUBST(JAVASCITARGET)
 AC_SUBST(JAVA_INCL)
 AC_SUBST(GCCFIX)
-AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile man/fr/Makefile man/eng/Makefile)
+AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile $MAN_FR $MAN_ENG)
  
 
 
