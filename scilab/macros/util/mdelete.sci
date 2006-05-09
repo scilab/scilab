@@ -30,11 +30,19 @@ end
 
 if MSDOS then
   fullfilename=strsubst(file_path+filename,"/","\");
-  cmd="del "+fullfilename;
+  [x,ierr]=fileinfo(fullfilename);
+  if ~ierr then
+    cmd="del "+fullfilename;
+    unix_w(cmd);
+  end
 else
   cmd="rm -f "+file_path+filename;
+  [x,ierr]=fileinfo(file_path+filename);
+  if ~ierr then
+    cmd="rm -f "+file_path+filename;
+    unix_w(cmd);
+  end
 end
 
-unix_w(cmd);
 endfunction
 
