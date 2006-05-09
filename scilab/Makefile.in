@@ -55,7 +55,7 @@ all:: @MANTARGET@
 
 distclean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in routines $(SUBDIRS) man;\
+	for i in routines $(SUBDIRS) @MANTARGET@;\
 	do \
 		(cd $$i ; echo "making distclean in $$i..."; \
 			$(MAKE) $(MFLAGS)  distclean); \
@@ -76,7 +76,7 @@ distclean::
 
 clean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
-	for i in routines $(SUBDIRS) man;\
+	for i in routines $(SUBDIRS) @MANTARGET@;\
 	do \
 		(cd $$i ; echo "making clean in $$i..."; \
 			$(MAKE) $(MFLAGS)  clean); \
@@ -91,7 +91,7 @@ man::
 	done
 
 
-manclean:	
+manclean:
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
 	for i in man;\
 	do \
