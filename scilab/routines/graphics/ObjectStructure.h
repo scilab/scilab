@@ -1020,7 +1020,6 @@ typedef struct
   int m3,n3;
   int m3n,n3n;
 
-  POINT2D *pproj;			/* projections on 2d */
   integer flag[3];
   double ebox[6];
   int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
