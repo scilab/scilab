@@ -3219,7 +3219,6 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     *pvfy = NULL,
     *pvfz = NULL;
   int *pstyle = NULL;
-  POINT2D *pvector;
 
   switch (sciGetEntityType (pthis))
     {
@@ -3238,17 +3237,12 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    FREE(pvx); pvx = (double *) NULL;
 	    return -1;
 	  } 
-	  if ((pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    FREE(pvy); pvy = (double *) NULL;
-	    return -1;
-	  }
+	  
 	  if (*numcol == 3)
 	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
 	      FREE(pvx); pvx = (double *) NULL;
 	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvector); pvector = (POINT2D *) NULL;
-	      return -1;
+              return -1;
 	    }
 	  
 	  /* 	  for (i = 0; i < *numrow; i++) /\* Init. to 0. if no z is specified *\/ */
@@ -3257,23 +3251,19 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvector); pPOLYLINE_FEATURE (pthis)->pvector = NULL;
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
+          FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
 	  
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pvx[i] = tab[i];
 	      pvy[i] = tab[i+ (*numrow)];
-	      pvector[i].x =  tab[i];
-	      pvector[i].y =  tab[i+ (*numrow)];
-	      if (*numcol == 3)
+              if (*numcol == 3)
 		pvz[i] = tab[i+ 2*(*numrow)];
 	    }
 
 	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
 	  pPOLYLINE_FEATURE (pthis)->pvy=pvy; 
-	  pPOLYLINE_FEATURE (pthis)->pvector=pvector;
-	  pPOLYLINE_FEATURE (pthis)->n1=n1;
+          pPOLYLINE_FEATURE (pthis)->n1=n1;
 	  pPOLYLINE_FEATURE (pthis)->dim_icv=n1;
 	  
 
