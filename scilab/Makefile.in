@@ -303,4 +303,4 @@ cvsclean::
 	@cd man; $(RM) -f -r arma comm control dcd elementary fileio functions graphics gui identification linear metanet nonlinear polynomials programming pvm robust scicos signal sound strings tdcs time-date tclsci translation utilities
 
 setversion : 
-	echo "SCIVERSION=Scilab-4.0-CVS-`date --iso`" > Version.incl
+	echo "SCIVERSION=Scilab-4.0-SVN-`date --iso`" > Version.incl
