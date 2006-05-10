@@ -3236,6 +3236,7 @@ void *GetRawData(lw)
   int *loci = (int *) stk(l1);
   C2F(intersci).ntypes[lw - 1] = '$';
   C2F(intersci).iwhere[lw - 1] = l1;
+  /*  C2F(intersci).lad[lw - 1] = l1;  to be checked */
   return loci;
 }
 
