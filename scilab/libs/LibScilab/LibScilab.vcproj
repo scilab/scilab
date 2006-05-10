@@ -1047,10 +1047,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
+				RelativePath="..\..\routines\wsci\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico">
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico">
@@ -1136,22 +1136,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\ifconsol.lib">
-		</File>
-		<File
 			RelativePath="..\..\pvm3\lib\WIN32\libgpvm3.lib">
-		</File>
-		<File
-			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libifcore.lib">
-		</File>
-		<File
-			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libifport.lib">
-		</File>
-		<File
-			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libirc.lib">
-		</File>
-		<File
-			RelativePath="C:\Program Files\Intel\Compiler\Fortran\9.0\IA32\Lib\libm.lib">
 		</File>
 		<File
 			RelativePath="..\..\pvm3\lib\WIN32\libpvm3.lib">
