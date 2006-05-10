@@ -37,11 +37,12 @@ class  Exemple1 {
     }
   	System.out.println("----------------------------------------------------");
  	  SciDoubleArray d = new SciDoubleArray("D",1,4,new double [] {1,2,3,4});
+ 	  SciDoubleArray q = new SciDoubleArray("Q",3,1, new double [] {0,0,0} );
+ 	  
     d.Send();
-    Scilab.Exec("P=poly(D,''x'',''coeffs'');");
+    Scilab.Exec("P=poly(D'',''x'',''coeff'');");
     Scilab.Exec("Q=real(roots(P));");
-    
-    SciDoubleArray q = new SciDoubleArray("Q",1,3);
+        
     q.Get();
     q.disp();
     System.out.println("----------------------------------------------------");
