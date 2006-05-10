@@ -3780,7 +3780,14 @@ sciGetScrollPosH (sciPointObj * pobj)
  */
 sciPointObj * sciGetCurPointedFigure( void )
 {
-  return sciGetCurrentScilabXgc()->mafigure ;
+  if ( sciGetCurrentScilabXgc() != NULL )
+  {
+    return sciGetCurrentScilabXgc()->mafigure ;
+  }
+  else
+  {
+    return NULL ;
+  }
 }
 
 /*-----------------------------------------------------------------------------------*/

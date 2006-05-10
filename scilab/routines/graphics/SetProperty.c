@@ -4150,7 +4150,7 @@ int sciSetUsedWindow( int winNum )
     return 1 ;
   }
 
-  return sciInitUsedWindow( &winNum ) ;
+  return sciInitUsedWindow( winNum ) ;
 }
 
 /*-------------------------------------------------------------------------------------------*/
