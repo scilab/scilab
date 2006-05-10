@@ -4124,6 +4124,37 @@ int sciSwitchWindow(winnum)
   return 0;
 }
 
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * @memo In new graphic style, select a window and create one if not already done.
+ */ 
+int sciInitUsedWindow( int winNum )
+{
+  int verbose = 0 ;
+  /* select or create the window in the driver */
+  C2F(dr)("xset","window",&winNum,&verbose,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L) ;
+  
+  return sciSwitchWindow( &winNum ) ; /* create the handle */
+}
+
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * @memo In new graphic style, select a window and create one if not already done.
+ */
+int sciSetUsedWindow( int winNum )
+{
+  /* select or create the window in the driver */
+  if ( sciGetCurPointedFigure() != NULL && sciGetNum( sciGetCurPointedFigure() ) == winNum )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+
+  return sciInitUsedWindow( &winNum ) ;
+}
+
+/*-------------------------------------------------------------------------------------------*/
+
 int init_version_flag( int flag )
 {
   double *XGC,dv=0;

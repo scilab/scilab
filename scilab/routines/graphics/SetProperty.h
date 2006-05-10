@@ -188,6 +188,9 @@ extern int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numco
 extern int sciSetdrawmode(BOOL mode); /* SET */
 extern int sciSwitchWindow(int *winnum); /* SET */
 
+extern int sciInitUsedWindow( int winNum ) ; /* SET */
+extern int sciSetUsedWindow( int winNum ) ; /* SET */
+
 extern int init_version_flag(int flag) ;
 extern int set_version_flag (int flag) ; /* SET */
 

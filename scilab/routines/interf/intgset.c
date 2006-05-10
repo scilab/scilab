@@ -1334,31 +1334,48 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"Object is not an Axes Entity");return -1;}
     }
   else if (strcmp(marker,"current_figure") == 0) 
+  {
+    if (VarType(2) == 9)
     {
-      if (VarType(2) == 9) {
-	tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
-	if (tmpobj == (sciPointObj *) NULL)
-	  {strcpy(error_message,"Object is not valid");return -1;}
-	if (sciGetEntityType (tmpobj) != SCI_FIGURE)
-	  {strcpy(error_message,"Object is not a handle on a figure");return -1;}
-	num=pFIGURE_FEATURE(tmpobj)->number;
+      tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
+      if (tmpobj == (sciPointObj *) NULL)
+      {
+        strcpy(error_message,"Object is not valid") ;
+        return -1 ;
       }
-      else if (VarType(2) == 1){
-	num=(int)stk(*value)[0];
+      if (sciGetEntityType (tmpobj) != SCI_FIGURE)
+      {
+        strcpy(error_message,"Object is not a handle on a figure");
+        return -1;
       }
-      else{
-	strcpy(error_message,"Bad argument to determine the current figure: should be a window number or a handle (available under new graphics mode only)");return -1;
-      }
-      
-      C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-
-      if(version_flag() == 0){
-	if (sciSwitchWindow(&num) != 0){
-	  strcpy(error_message,"It was not possible to create the requested figure");return -1;
-	}
-      }
-
+      num=pFIGURE_FEATURE(tmpobj)->number;
     }
+    else if (VarType(2) == 1)
+    {
+      num=(int)stk(*value)[0];
+    }
+    else
+    {
+      strcpy(error_message,"Bad argument to determine the current figure: should be a window number or a handle (available under new graphics mode only)");return -1;
+    }
+      
+    
+    if( version_flag() == 0  )
+    {
+      /* select the figure num */
+      int res = sciSetUsedWindow( num ) ;
+      if ( res < 0 )
+      {
+        strcpy(error_message,"It was not possible to create the requested figure");
+      }
+      return res ;
+    }
+    else
+    {
+      C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L) ;
+    }
+
+  }
 
   /************************  figure Properties *****************************/ 
   else if (strcmp(marker,"figure_position") == 0)
