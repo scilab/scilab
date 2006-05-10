@@ -2218,3 +2218,8 @@ Francois VOGEL, 05/05/06
  * Fixed: user function names separated by a single character were not
    colorized
  * version --> 6.30
+
+Francois VOGEL, 10/05/06
+ * Fixed: scicos_blocks/*/lib keywords can be colorized, opened as source,
+   and tab-completed on Windows (apparently only worked before on Linux)
+ * version --> 6.31
