@@ -6,7 +6,6 @@ class  Exemple4 {
   public static void main(String[] args) 
   {
     SciString S1 = new SciString("Sentence","Who is the best ?");
-    S1.Send();
     
     S1.disp();
     

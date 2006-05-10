@@ -8,10 +8,6 @@ class  Exemple3 {
   SciDoubleArray b = new SciDoubleArray("B",4,1, new double [] {3,1,2,4} );
   SciDoubleArray c = new SciDoubleArray("C",4,1, new double [] {0,0,0,0} );
   
-  a.Send();
-  b.Send();
-  c.Send();
-  
   Scilab.Exec("disp(A);");
   Scilab.Exec("disp(B);");
   Scilab.Exec("disp(C);");
