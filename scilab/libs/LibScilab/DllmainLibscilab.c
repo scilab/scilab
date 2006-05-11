@@ -10,6 +10,12 @@
 #pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libm.lib")
 #pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libirc.lib")
 /*-----------------------------------------------------------------------------------*/ 
+#pragma comment(lib,"../../bin/tcl84.lib")
+#pragma comment(lib,"../../bin/tk84.lib")
+/*-----------------------------------------------------------------------------------*/ 
+#pragma comment(lib,"../../pvm3/lib/WIN32/libpvm3.lib")
+#pragma comment(lib,"../../pvm3/lib/WIN32/libgpvm3.lib")
+/*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
   switch (reason) 

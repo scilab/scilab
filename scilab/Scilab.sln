@@ -110,7 +110,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E} = {C352587B-F5E4-457C-80EE-A1AEAB176C8E}
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25} = {425B887B-9FC5-4CD2-B632-DBFC000E3E25}
 		{5DB1307C-6079-4C25-AA66-92B9569274B0} = {5DB1307C-6079-4C25-AA66-92B9569274B0}
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B} = {7C349E84-E25E-496F-93EC-14C0F42FDE3B}
 		{495C9E8A-439A-426E-AA2C-0B22653875F9} = {495C9E8A-439A-426E-AA2C-0B22653875F9}
 		{3DBBFF93-F344-4484-A317-14F985434BBC} = {3DBBFF93-F344-4484-A317-14F985434BBC}
 		{1D219098-007C-4F76-9AE6-271ABBB7D393} = {1D219098-007C-4F76-9AE6-271ABBB7D393}
@@ -401,6 +400,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "man\BuildHelp.vcproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "ocaml\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -438,6 +439,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xmlint", "Win-util\xmlint\x
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CheckHelp", "man\CheckHelp\CheckHelp.vcproj", "{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}"
 	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA} = {DE0A9A62-5A35-4F99-86CE-69B0C36792BA}
 	EndProjectSection
 EndProject
@@ -456,6 +459,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Javasci", "routines\Javasci
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildChm", "man\BuildChm\BuildChm.vcproj", "{D319F719-F429-4842-A6F9-B1227FE2A54D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1} = {BFE3C796-D755-4BB2-840A-89A98D2A4AC1}
 	EndProjectSection
@@ -1887,29 +1892,17 @@ Global
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release without scicos.ActiveCfg = Release without scicos|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release without scicos.Build.0 = Release without scicos|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug.ActiveCfg = Debug|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug.Build.0 = Debug|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas without Java.Build.0 = Debug with Atlas without Java|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug without Java.ActiveCfg = Debug without Java|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug without Java.Build.0 = Debug without Java|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release.ActiveCfg = PIV_Release|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release.Build.0 = PIV_Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release.ActiveCfg = Release|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release.Build.0 = Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release without scicos.ActiveCfg = Release without scicos|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release without scicos.Build.0 = Release without scicos|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug.ActiveCfg = Debug|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32

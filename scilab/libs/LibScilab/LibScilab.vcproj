@@ -1124,10 +1124,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico">
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
+				RelativePath="..\..\routines\wsci\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico">
@@ -1218,19 +1218,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="..\..\pvm3\lib\WIN32\libgpvm3.lib">
-		</File>
-		<File
-			RelativePath="..\..\pvm3\lib\WIN32\libpvm3.lib">
-		</File>
-		<File
 			RelativePath="..\LibScilab.def">
-		</File>
-		<File
-			RelativePath="..\..\bin\tcl84.lib">
-		</File>
-		<File
-			RelativePath="..\..\bin\tk84.lib">
 		</File>
 	</Files>
 	<Globals>
