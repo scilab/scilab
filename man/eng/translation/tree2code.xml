@@ -52,8 +52,7 @@
   <DESCRIPTION>
     <P>
     Given a loaded Scilab function "tree" (returned by macr2tree), tree2code allows to
-    re-generate the code. Note that as comments are not retained in
-    loaded functions the comments cannot be regenerated.</P>
+    re-generate the code.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
