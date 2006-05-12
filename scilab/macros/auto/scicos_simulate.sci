@@ -30,23 +30,6 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
 //
 // list of blocks to ignore (blocks using graphics) in nw mode
 
-	if ~%scicos then
-  	warning('scicos isn''t installed.');
-  	abort;
-	end
-
-  // Define Scicos data tables ===========================================
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
-    [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
-	  %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
-    clear initial_scicos_tables
-  end
-  //======================================================================
-
-
 
   Ignoreb=['cscope','cmscope','scope','mscope','scopexy','evscpe','affich']
   //
