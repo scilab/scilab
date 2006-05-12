@@ -16,6 +16,7 @@ c
       elseif(istk(il).eq.1) then
          is=0
       else
+         err=rhs
          call error(44)
          return
       endif
