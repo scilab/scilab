@@ -52,8 +52,7 @@
   <DESCRIPTION>
     <P>
     A partir de l'arbre (retourné par macr2tree) d'une fonction Scilab chargée en mémoire,
-    tree2code permet de regénérer le code de la fonction. Les commentaires n'étant pas gardés
-    dans la fonction compilée, ils ne peuvent pas être regénérés.
+    tree2code permet de regénérer le code de la fonction.
     </P>
   </DESCRIPTION>
   <EXAMPLE>
