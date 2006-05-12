@@ -8,7 +8,11 @@ function count = mtlb_fprintf(varargin)
 count=0
 // No fid given: mtlb_fprintf(fmt,...)
 // Output is the screen
-if type(varargin(1))==10 then
+
+if size(varargin)==1 & type(varargin(1))==10 then
+mprintf("%s \n",varargin(1))
+count=length(varargin(1))
+elseif type(varargin(1))==10 then
   fmt=varargin(1)
   nfmt=size(strindex(fmt,"%"),"*")
   nv=size(varargin)-1
@@ -58,6 +62,7 @@ else
     na=size(a,"*")
     
     mult=max(na/nfmt,1)
+    
     fmt=strcat(fmt(ones(1,mult))) // duplicate format
     
     l=list()
@@ -71,6 +76,9 @@ else
       mfprintf(fid,fmt,l(:))
       count=size(a,"*")
     end
+  elseif nv==0 & nfmt==0 & type(varargin(2))==10
+    mfprintf(fid,"%s",varargin(2))
+    count=length(varargin(2))
   elseif nv==0 then
     if or(fid==[1 2]) then
       error("In mtlb_fprintf: mprintf(format) is not implemented")
