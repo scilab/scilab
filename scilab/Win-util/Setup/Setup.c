@@ -54,6 +54,7 @@ BOOL DeleteAKey(char *Clef);
 char * GetWhereIsThisExe(void);
 /*-----------------------------------------------------------------------------------*/
 #define PATH_MAX 512
+#define stricmp _stricmp
 /*-----------------------------------------------------------------------------------*/
 char * GetWhereIsThisExe(void)
 {

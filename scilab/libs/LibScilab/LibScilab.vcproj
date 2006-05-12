@@ -24,7 +24,7 @@
 				Optimization="0"
 				OptimizeForProcessor="0"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="4"
 				PrecompiledHeaderFile=""
@@ -96,7 +96,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -171,7 +171,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -246,7 +246,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -319,9 +319,9 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Optimization="0"
 				OptimizeForProcessor="0"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="4"
+				RuntimeLibrary="3"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation=".\Debug with Atlas/"
 				ObjectFile=".\Debug with Atlas/"
@@ -337,7 +337,8 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				IgnoreDefaultLibraryNames="libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib,msvcrtd.lib"
+				IgnoreAllDefaultLibraries="FALSE"
+				IgnoreDefaultLibraryNames="libc.lib;MSVCRTD.lib"
 				ModuleDefinitionFile="..\LibScilab.def"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
@@ -391,9 +392,9 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="TRUE"
-				RuntimeLibrary="4"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
@@ -407,12 +408,12 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib wsock32.lib oldnames.lib libcpmt.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib wsock32.lib oldnames.lib"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				IgnoreDefaultLibraryNames="libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib,msvcrtd.lib"
+				IgnoreDefaultLibraryNames="libc.lib;MSVCRT.lib"
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile=".\Release with Atlas/LibScilab.pdb"
 				SubSystem="2"
@@ -467,7 +468,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -540,7 +541,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Optimization="0"
 				OptimizeForProcessor="0"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="4"
 				PrecompiledHeaderFile=""
@@ -610,7 +611,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Optimization="0"
 				OptimizeForProcessor="0"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="4"
 				PrecompiledHeaderFile=""
@@ -682,7 +683,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -757,7 +758,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -835,7 +836,7 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
@@ -1158,65 +1159,6 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\resource.h">
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\..\bin\atlas.lib">
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="TRUE">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="TRUE">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="PIV_Release|Win32"
-				ExcludedFromBuild="TRUE">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Pentium_Release|Win32"
-				ExcludedFromBuild="TRUE">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release with Atlas|Win32">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="PIV_Release with Atlas|Win32">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug without Java|Win32"
-				ExcludedFromBuild="TRUE">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release with Atlas without Java|Win32">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release with Debug Information|Win32"
-				ExcludedFromBuild="TRUE">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release without scicos|Win32">
-				<Tool
-					Name="VCCustomBuildTool"/>
-			</FileConfiguration>
-		</File>
 		<File
 			RelativePath="..\LibScilab.def">
 		</File>

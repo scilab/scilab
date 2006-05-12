@@ -41,7 +41,6 @@ extern int SendScilabJob(char *job);
 extern void ScilabDoOneEvent(void);
 /********************************************************************************************************/
 #if WIN32
-extern char *getenv();
 extern void start_sci_gtk();
 extern void add_sci_argv();
 extern void add_sci_argv();

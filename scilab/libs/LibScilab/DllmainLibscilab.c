@@ -5,16 +5,52 @@
 #include <windows.h> 
 /*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\ifconsol.lib")
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcore.lib")
 #pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifport.lib")
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libm.lib")
+#if _DEBUG
+#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcoremdd.lib")
+#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libmmdd.lib")
+#else
+#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcoremd.lib")
+#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libmmd.lib")
+#endif
 #pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libirc.lib")
 /*-----------------------------------------------------------------------------------*/ 
+#if WITH_TK
 #pragma comment(lib,"../../bin/tcl84.lib")
 #pragma comment(lib,"../../bin/tk84.lib")
+#endif
 /*-----------------------------------------------------------------------------------*/ 
+#if WITH_PVM
 #pragma comment(lib,"../../pvm3/lib/WIN32/libpvm3.lib")
 #pragma comment(lib,"../../pvm3/lib/WIN32/libgpvm3.lib")
+#pragma comment(lib,"../../libs/pvm_f.lib")
+#endif
+/*-----------------------------------------------------------------------------------*/ 
+#pragma comment(lib,"../../bin/atlas.lib")
+#pragma comment(lib,"../../bin/arpack.lib")
+#pragma comment(lib,"../../bin/lapack.lib")
+/*-----------------------------------------------------------------------------------*/ 
+#pragma comment(lib,"../../libs/blas_f.lib")
+#pragma comment(lib,"../../libs/calelm_f.lib")
+#pragma comment(lib,"../../libs/control_f.lib")
+#pragma comment(lib,"../../libs/dcd_f.lib")
+#pragma comment(lib,"../../libs/default_f.lib")
+#pragma comment(lib,"../../libs/integ_f.lib")
+#pragma comment(lib,"../../libs/interf_f.lib")
+#pragma comment(lib,"../../libs/intersci_f.lib")
+#pragma comment(lib,"../../libs/int_f.lib")
+#pragma comment(lib,"../../libs/lapack_f.lib")
+#pragma comment(lib,"../../libs/metanet_f.lib")
+#pragma comment(lib,"../../libs/optim_f.lib")
+#pragma comment(lib,"../../libs/os_specific_f.lib")
+#pragma comment(lib,"../../libs/poly_f.lib")
+#pragma comment(lib,"../../libs/randlib_f.lib")
+#pragma comment(lib,"../../libs/scicos_f.lib")
+#pragma comment(lib,"../../libs/signal_f.lib")
+#pragma comment(lib,"../../libs/slicot_f.lib")
+#pragma comment(lib,"../../libs/sparse_f.lib")
+#pragma comment(lib,"../../libs/system2_f.lib")
+#pragma comment(lib,"../../libs/system_f.lib")
 /*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

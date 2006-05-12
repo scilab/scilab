@@ -123,10 +123,10 @@ cd ..
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;JAVA_EXPORTS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				ObjectFile=".\Debug with Atlas/"
 				ProgramDataBaseFileName=".\Debug with Atlas/vc70.pdb"
@@ -177,8 +177,8 @@ cd ..
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;JAVA_EXPORTS"
-				RuntimeLibrary="0"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				ObjectFile=".\Release with Atlas/"
 				ProgramDataBaseFileName=".\Release with Atlas/vc70.pdb"

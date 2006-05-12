@@ -211,10 +211,10 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				ObjectFile=".\Debug with Atlas/"
 				ProgramDataBaseFileName=".\Debug with Atlas/vc70.pdb"
@@ -262,8 +262,8 @@
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="4"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				ObjectFile=".\Release with Atlas/"
 				ProgramDataBaseFileName=".\Release with Atlas/vc70.pdb"
@@ -695,10 +695,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
-				RelativePath=".\resource.h">
+				RelativePath="..\resource.h">
 			</File>
 			<File
-				RelativePath="..\resource.h">
+				RelativePath=".\resource.h">
 			</File>
 		</Filter>
 		<Filter
@@ -802,10 +802,10 @@
 				RelativePath="..\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\Icones Scilab\scilab.ico">
+				RelativePath="..\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\scilab.ico">
+				RelativePath="..\Icones Scilab\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\Icones Scilab\scilab24.ico">
