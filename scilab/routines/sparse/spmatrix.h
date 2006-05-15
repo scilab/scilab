@@ -33,8 +33,6 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2004/08/27 13:55:54 $
- *  $Revision: 1.2 $
  */
 
 

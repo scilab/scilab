@@ -28,8 +28,6 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/08/01 11:30:37 $
- *  $Revision: 1.5 $
  */
 
 

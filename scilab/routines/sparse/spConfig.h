@@ -32,9 +32,7 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2005/07/26 16:09:29 $
- *  $Revision: 1.8 $
- */
+  */
 
 
 #ifndef spCONFIG_DEFS
