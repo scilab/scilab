@@ -9,7 +9,6 @@
      
    HISTORY
      fleury - Dec 17, 1997: Created.
-     $Log: sci_tools.h,v $
      Revision 1.1  2001/04/26 07:47:34  scilab
      Initial revision
 
