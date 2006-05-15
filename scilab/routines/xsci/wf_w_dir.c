@@ -8,7 +8,6 @@
  *	Digital Equipment Corporation
  *	treese@crl.dec.com
  *
- *	$Source: /usr/local/cvsroot_tmp/scilab/routines/xsci/wf_w_dir.c,v $
  *
  *	COPYRIGHT 1990  DIGITAL EQUIPMENT CORPORATION, MAlYNARD, MASSACHUSETTS
  *	  ALL RIGHTS RESERVED.
