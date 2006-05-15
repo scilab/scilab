@@ -90,7 +90,7 @@ void WriteOptArgPhase2(f,i)
      FILE *f;
 {
   VARPTR var = variables[basfun->in[i]-1];
-  int opt_posi = var->stack_position - basfun->NewMaxOpt +1 ;
+  int opt_posi = basfun->NewMaxOpt - (basfun->nin - var->stack_position)-1;
   Fprintf(f,indent,"/* default value to optional argument %s */\n",var->name);
   switch (var->opt_type) 
     {
@@ -108,29 +108,9 @@ void WriteOptArgPhase2(f,i)
     case VALUE:
       switch (var->type) 
 	{
-/* 	case SCALAR: */
-/* 	  /\* to be done *\/ */
-/* 	  if (var->for_type == 2) { */
-/* 	    Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi); */
-/* 	    Fprintf(f,indent,"%s = %s);\n",var->for_name[0],var->opt_name); */
-/* 	    Fprintf(f,--indent,"}\n"); */
-/* 	    Fprintf(f,indent++,"else {\n"); */
-/* 	    Fprintf(f,indent,"%s = *istk(opts[%d].l);\n",var->for_name[0],opt_posi); */
-/* 	    Fprintf(f,--indent,"}\n"); */
-/* 	  } */
-/* 	  else if (var->for_type == 3) { */
-/* 	    AddDeclare(DEC_DOUBLE,var->for_name[0]); */
-/* 	    Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi); */
-/* 	    Fprintf(f,indent,"%s = %s);\n",var->for_name[0],var->opt_name); */
-/* 	    Fprintf(f,--indent,"}\n"); */
-/* 	    Fprintf(f,indent++,"else {\n"); */
-/* 	    Fprintf(f,indent,"%s = *stk(opts[%d].l);\n",var->for_name[0],opt_posi); */
-/* 	    Fprintf(f,--indent,"}\n"); */
-/* 	    var->for_name[0] */
-/* 	  } */
-/* 	  break; */
+
 	case SCALAR:
-	  sprintf(data,"%s",var->opt_name);
+	  sprintf(data,"{%s}",var->opt_name);
 	  OptvarGetSize(var->opt_name,size,data);
 	  OptMATRIX(f,var);
 	  break;
@@ -163,12 +143,16 @@ void OptMATRIX(f,var)
      FILE *f;
      VARPTR var;
 {
-  int opt_posi = var->stack_position - basfun->NewMaxOpt+1;
+  int opt_posi = basfun->NewMaxOpt - (basfun->nin - var->stack_position)-1;
   Fprintf(f,indent++,"if ( opts[%d].position == -1 ){\n",opt_posi);
   Fprintf(f,indent,"iopos++ ; opts[%d].position = iopos;\n",opt_posi);
   AddDeclare1(DEC_DATA,"%s xdat%d[]= %s, *dat%d = xdat%d",
 	      SGetCDec(var->for_type),
 	      opt_posi,data,opt_posi,opt_posi);
+  AddDeclare1(DEC_INT,"m%d",var->stack_position);
+  AddDeclare1(DEC_INT,"n%d",var->stack_position);
+  AddDeclare1(DEC_INT,"l%d",var->stack_position);
+
   switch ( var->type ) 
     {
     case MATRIX : 
@@ -178,6 +162,11 @@ void OptMATRIX(f,var)
     case STRING : 
       Fprintf(f,indent,"opts[%d].m = %s;opts[%d].n = 1;  opts[%d].type = \"%s\";\n",
 	      opt_posi,size,opt_posi,opt_posi,SGetForTypeAbrev(var));
+      break;
+    case SCALAR:
+      Fprintf(f,indent,"opts[%d].m = 1;opts[%d].n = 1;\n",opt_posi,opt_posi);
+      break;
+
     }
   Fprintf(f,indent,"CreateVarFromPtr(opts[%d].position,opts[%d].type,&opts[%d].m,&opts[%d].n,&dat%d);\n",
 	  opt_posi,opt_posi,opt_posi,opt_posi,
@@ -195,7 +184,10 @@ void OptMATRIX(f,var)
     }
   ChangeForName2(var,"%s(opts[%d].l)",SGetForTypeStack(var), opt_posi);
   Fprintf(f,--indent,"}\n");
-  Fprintf(f,indent++," else { \n"); 
+  Fprintf(f,indent," else { \n"); 
+  /* should be optimized to exploit dimension infos stored in opts */
+  Fprintf(f,indent++,"GetRhsVar(%d,\"%s\",&m%d,&n%d,&l%d);\n",var->stack_position,
+  	  SGetForTypeAbrev(var),var->stack_position,var->stack_position,var->stack_position);
   (*(CHECKTAB[var->type].fonc))(f,var,0);
   Fprintf(f,--indent,"} \n");
 }
