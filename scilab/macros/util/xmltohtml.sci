@@ -221,7 +221,24 @@ function gener_whatis(wtitle)
 			end
 		end
 	end
-	text = [head;gsort(line,'g','i');"</dl></body></html>"];
+
+    // fix bug 1978
+    //  first trim the htm file name, for instance this element of matrix "line":
+    //  "<dd><A HREF=""if.htm"">if</A> - conditional execution</dd>"
+    //  becomes the following element of matrix "trimmed":
+    // "if</A> - conditional execution</dd>"
+    trimmed=emptystr(line);
+    for i=1:size(line,"r")
+      r=strindex(line(i),".htm"">")+6;
+      trimmed(i)=part(line(i),r:length(line(i)));
+    end
+    //  now sort the trimmed array, and keep the k indices describing how it was sorted
+    [trimmed,k] = gsort(trimmed,'g','i');
+    //  finally apply the indices k to the original matrix "line"
+    line=line(k(:))
+    // end of fix for bug 1978
+
+	text = [head;line;"</dl></body></html>"];
 	
 	mputl(text,"whatis.htm");
 	
