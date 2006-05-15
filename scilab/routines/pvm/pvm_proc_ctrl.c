@@ -10,7 +10,6 @@
      
    HISTORY
      fleury - Nov 6, 1997: Created.
-     $Log: pvm_proc_ctrl.c,v $
      Revision 1.20  2005/10/22 18:53:10  cornet
      update memory management under Windows
      use HeapAlloc and VirtualAlloc (for scilab stack)
