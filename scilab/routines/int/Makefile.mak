@@ -14,7 +14,7 @@ OBJSC = tpconv.obj \
 	gencusum.obj genmcusum.obj genmdsp.obj genbitops.obj mgeti.obj mputi.obj \
 	genabs.obj gendiag.obj genmdiag.obj gentril.obj gentriu.obj genkron.obj \
 	genmmax.obj genmmin.obj genmax2.obj genmin2.obj gifimg.obj \
-	genconcatrow.obj genconcatcol.obj genisany.obj
+	genconcatrow.obj genconcatcol.obj genisany.obj genimpl.obj
 
 
 OBJSF = intelm.obj intops.obj  memused.obj uppertype.obj \
@@ -24,7 +24,7 @@ OBJSF = intelm.obj intops.obj  memused.obj uppertype.obj \
 	i_t.obj i_logic.obj i_sum.obj i_cumsum.obj  i_prod.obj i_cumprod.obj \
 	i_convert.obj i_abs.obj i_diag.obj \
 	i_tril.obj i_triu.obj i_kron.obj i_maxi.obj i_mini.obj  readxbm.obj \
-	i_matrix.obj
+	i_matrix.obj i_b_i.obj
 
 include ../../Makefile.incl.mak
 
