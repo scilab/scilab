@@ -10,7 +10,6 @@
  *   NOTES 
  *   HISTORY 
  *     fleury - Jun 29, 1999: Created. 
- *     $Log: scipvmf77.c,v $
  *     Revision 1.3  2005/01/19 14:40:36  cornet
  *     remove some functions not used or only for debug (not recquired by scilab)
  *     Cleaning Sources ...
