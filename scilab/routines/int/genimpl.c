@@ -41,7 +41,7 @@ Type STEP  = (Type)*((Type *)step);\
 Type LAST  = (Type)*((Type *)last);\
 Type j;\
    i = 0;\
-   for (j=FIRST;j<=LAST;j+=STEP) i++;\
+   for (j=FIRST;j<=LAST;j=j+STEP) {i++;}\
    *res = i;\
 }
 

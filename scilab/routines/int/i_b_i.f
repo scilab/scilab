@@ -48,7 +48,7 @@ c
          m3=istk(il3+1)
          n3=istk(il3+2)
          it3=istk(il3+3)
-         l3=il2+4
+         l3=il3+4
          mn3=m3*n3
       else
          it3=it2
