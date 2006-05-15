@@ -9,7 +9,6 @@
      
    HISTORY
      fleury - Dec 17, 1997: Created.
-     $Log: sci_tools.c,v $
      Revision 1.3  2002/07/25 08:42:45  chanceli
      updates
 
