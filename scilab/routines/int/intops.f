@@ -93,8 +93,8 @@ c      call i_p_i
 c     
 c     :
  50   continue
-c      call i_b_i
-      fin=-fin
+      call i_b_i
+c      fin=-fin
       go to 999
 c     
 c     .*

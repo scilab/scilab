@@ -11,7 +11,7 @@ OBJSC = tpconv.o \
 	gencusum.o genmcusum.o genmdsp.o genbitops.o mgeti.o mputi.o \
 	genabs.o gendiag.o genmdiag.o gentril.o gentriu.o genkron.o \
 	genmmax.o genmmin.o genmax2.o genmin2.o gifimg.o \
-	genconcatrow.o genconcatcol.o genisany.o
+	genconcatrow.o genconcatcol.o genisany.o genimpl.o
 
 
 OBJSF = intelm.o intops.o  memused.o uppertype.o \
@@ -21,7 +21,7 @@ OBJSF = intelm.o intops.o  memused.o uppertype.o \
 	i_t.o i_logic.o i_sum.o i_cumsum.o  i_prod.o i_cumprod.o \
 	i_convert.o i_abs.o i_diag.o \
 	i_tril.o i_triu.o i_kron.o i_maxi.o i_mini.o  readxbm.o \
-	i_matrix.o
+	i_matrix.o i_b_i.o
 
 include ../../Makefile.incl
 
