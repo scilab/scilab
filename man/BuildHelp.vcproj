@@ -1,118 +1,60 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8,00"
 	Name="BuildHelp"
 	ProjectGUID="{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
-	Keyword="MakeFileProj">
+	Keyword="MakeFileProj"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="Debug"
-			IntermediateDirectory="Debug"
-			ConfigurationType="0">
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
+				Output=""
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="Release"
-			IntermediateDirectory="Release"
-			ConfigurationType="0">
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
-				Output="BuildHelp.exe"/>
-		</Configuration>
-		<Configuration
-			Name="Debug with Atlas|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Atlas|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
-				Output="BuildHelp.exe"/>
-		</Configuration>
-		<Configuration
-			Name="PIV_Release with Atlas|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
-				Output="BuildHelp.exe"/>
-		</Configuration>
-		<Configuration
-			Name="Debug without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
-		</Configuration>
-		<Configuration
-			Name="Debug with Atlas without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Atlas without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
-				Output="BuildHelp.exe"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Debug Information|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="0">
-			<Tool
-				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
-				Output="BuildHelp.exe"/>
+				Output="BuildHelp.exe"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -121,20 +63,24 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
 			<File
-				RelativePath=".\makefile.mak">
+				RelativePath=".\makefile.mak"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
 		</Filter>
 	</Files>
 	<Globals>
