@@ -18,7 +18,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -115,7 +114,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -151,6 +149,7 @@
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -183,6 +182,7 @@
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
+				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
 				ImportLibrary="../../bin/LibScilab.lib"
 				TargetMachine="1"
@@ -372,11 +372,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico"
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\routines\wsci\scilab.ico"
 				>
 			</File>
 			<File

@@ -19,7 +19,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -104,7 +103,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -127,6 +125,7 @@
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
 				PreprocessorDefinitions="STRICT;WITH_TK;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc70.pdb"
@@ -153,6 +152,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				OptimizeForWindows98="1"
 				ImportLibrary="$(OutDir)/libmat.lib"
 				TargetMachine="1"
 			/>

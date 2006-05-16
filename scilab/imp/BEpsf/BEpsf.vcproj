@@ -135,6 +135,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -161,6 +162,7 @@
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/BEpsf.pdb"
 				SubSystem="1"
+				OptimizeForWindows98="1"
 				TargetMachine="1"
 			/>
 			<Tool

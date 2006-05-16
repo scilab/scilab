@@ -19,7 +19,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -87,7 +86,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -111,6 +109,7 @@
 				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11,../../../tcl/include"
 				PreprocessorDefinitions="STRICT;WITH_TK;WIN32;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc70.pdb"

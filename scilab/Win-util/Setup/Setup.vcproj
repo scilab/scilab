@@ -118,6 +118,7 @@
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
@@ -140,6 +141,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				OptimizeForWindows98="1"
 				TargetMachine="1"
 			/>
 			<Tool

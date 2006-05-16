@@ -19,7 +19,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -101,7 +100,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -123,6 +121,7 @@
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc70.pdb"
@@ -147,6 +146,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="0"
+				OptimizeForWindows98="1"
 				ImportLibrary="$(OutDir)/Javasci.lib"
 				TargetMachine="1"
 			/>

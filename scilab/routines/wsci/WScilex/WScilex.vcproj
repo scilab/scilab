@@ -19,7 +19,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -99,7 +98,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-
 			CharacterSet="2"
 			>
 			<Tool
@@ -122,6 +120,7 @@
 				FavorSizeOrSpeed="1"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc70.pdb"
@@ -146,6 +145,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				OptimizeForWindows98="1"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -213,11 +213,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\resource.h"
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File
-				RelativePath=".\resource.h"
+				RelativePath="..\resource.h"
 				>
 			</File>
 		</Filter>
@@ -355,11 +355,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\scilab.ico"
+				RelativePath="..\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\Icones Scilab\scilab.ico"
+				RelativePath="..\scilab.ico"
 				>
 			</File>
 			<File

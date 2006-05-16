@@ -18,7 +18,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -106,7 +105,6 @@
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -137,6 +135,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -163,6 +162,7 @@
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Blatexprs.pdb"
 				SubSystem="1"
+				OptimizeForWindows98="1"
 				TargetMachine="1"
 			/>
 			<Tool
