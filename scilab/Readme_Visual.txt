@@ -1,8 +1,8 @@
-How to compile with visual studio C++ .Net 2003 and Intel Fortran 9.1 ?
+How to compile with visual studio C++ .Net 2005 and Intel Fortran 9.1 ?
 
 Prerequirements:
 
--- Visual Studio C++ .NET 2003
+-- Visual Studio C++ .NET 2005
 -- Intel Fortran 9.1.3192
 -- Java JDK 1.5
 
@@ -21,4 +21,4 @@ svn co --username anonymous --password Scilab svn://frioul.inria.fr/scilab/trunk
 
 copy all files in your scilab directory
 
-click on scilab.sln (to launch Visual) or devenv scilab.sln /build "Release with Atlas" (via command line, to build scilab)
+click on scilab.sln (to launch Visual) or devenv scilab.sln /build "Release" (via command line, to build scilab)

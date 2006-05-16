@@ -1,265 +1,43 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8,00"
 	Name="pvm"
 	ProjectGUID="{63352867-3983-48E3-94FE-DD8F0D6E921F}"
-	SccProjectName=""
-	SccLocalPath="">
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;__STDC__;_DEBUG;WIN32"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Debug/"
-				ObjectFile=".\Debug/"
-				ProgramDataBaseFileName=".\Debug/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="PIV_Release|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
 			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\$(IntDir)/"
-				ObjectFile=".\$(IntDir)/"
-				ProgramDataBaseFileName=".\$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
+				Name="VCPreBuildEventTool"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCCustomBuildTool"
+			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCXMLDataGeneratorTool"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Pentium_Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\$(IntDir)/"
-				ObjectFile=".\$(IntDir)/"
-				ProgramDataBaseFileName=".\$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug with Atlas|Win32"
-			OutputDirectory=".\Debug with Atlas"
-			IntermediateDirectory=".\Debug with Atlas"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
@@ -269,468 +47,123 @@ cd .. &gt;nul
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Debug with Atlas/"
-				ObjectFile=".\Debug with Atlas/"
-				ProgramDataBaseFileName=".\Debug with Atlas/"
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
-				CompileAs="0"/>
+				CompileAs="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
+				Culture="1036"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/pvm.lib"
+				SuppressStartupBanner="true"
+			/>
 			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def pvmtmp.def &gt;nul&#x0D;&#x0A;copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+			/>
 		</Configuration>
 		<Configuration
-			Name="Release with Atlas|Win32"
-			OutputDirectory=".\Release with Atlas"
-			IntermediateDirectory=".\Release with Atlas"
+			Name="Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release with Atlas/"
-				ObjectFile=".\Release with Atlas/"
-				ProgramDataBaseFileName=".\Release with Atlas/"
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
+				Culture="1036"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="PIV_Release with Atlas|Win32"
-			OutputDirectory=".\PIV_Release with Atlas"
-			IntermediateDirectory=".\PIV_Release with Atlas"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\PIV_Release with Atlas/"
-				ObjectFile=".\PIV_Release with Atlas/"
-				ProgramDataBaseFileName=".\PIV_Release with Atlas/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
 				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="true"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;__STDC__;_DEBUG;WIN32"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug with Atlas without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;__STDC__;_DEBUG;WIN32"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Atlas without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release with Atlas without Java/"
-				ObjectFile=".\Release with Atlas without Java/"
-				ProgramDataBaseFileName=".\Release with Atlas without Java/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Debug Information|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release with Debug Information/"
-				ObjectFile=".\Release with Debug Information/"
-				ProgramDataBaseFileName=".\Release with Debug Information/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release without scicos|Win32"
-			OutputDirectory=".\Release without scicos"
-			IntermediateDirectory=".\Release without scicos"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release without scicos/"
-				ObjectFile=".\Release without scicos/"
-				ProgramDataBaseFileName=".\Release without scicos/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/pvm.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def pvmtmp.def &gt;nul
-copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def pvmtmp.def &gt;nul&#x0D;&#x0A;copy pvmtmp.def ..\..\..\libs\pvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -738,245 +171,325 @@ cd .. &gt;nul
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			>
 			<File
-				RelativePath=".\intspvm_addhosts.c">
+				RelativePath=".\intspvm_addhosts.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_barrier.c">
+				RelativePath=".\intspvm_barrier.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_bcast.c">
+				RelativePath=".\intspvm_bcast.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_bufinfo.c">
+				RelativePath=".\intspvm_bufinfo.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_config.c">
+				RelativePath=".\intspvm_config.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_delhosts.c">
+				RelativePath=".\intspvm_delhosts.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_error.c">
+				RelativePath=".\intspvm_error.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_error_mode.c">
+				RelativePath=".\intspvm_error_mode.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_exit.c">
+				RelativePath=".\intspvm_exit.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_f772sci.c">
+				RelativePath=".\intspvm_f772sci.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_get_timer.c">
+				RelativePath=".\intspvm_get_timer.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_getinst.c">
+				RelativePath=".\intspvm_getinst.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_gettid.c">
+				RelativePath=".\intspvm_gettid.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_gsize.c">
+				RelativePath=".\intspvm_gsize.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_halt.c">
+				RelativePath=".\intspvm_halt.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_joingroup.c">
+				RelativePath=".\intspvm_joingroup.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_kill.c">
+				RelativePath=".\intspvm_kill.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_lvgroup.c">
+				RelativePath=".\intspvm_lvgroup.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_mytid.c">
+				RelativePath=".\intspvm_mytid.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_parent.c">
+				RelativePath=".\intspvm_parent.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_probe.c">
+				RelativePath=".\intspvm_probe.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_recv.c">
+				RelativePath=".\intspvm_recv.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_recv_var.c">
+				RelativePath=".\intspvm_recv_var.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_reduce.c">
+				RelativePath=".\intspvm_reduce.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_sci2f77.c">
+				RelativePath=".\intspvm_sci2f77.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_send.c">
+				RelativePath=".\intspvm_send.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_send_var.c">
+				RelativePath=".\intspvm_send_var.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_set_timer.c">
+				RelativePath=".\intspvm_set_timer.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_spawn.c">
+				RelativePath=".\intspvm_spawn.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_spawn_independent.c">
+				RelativePath=".\intspvm_spawn_independent.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_start.c">
+				RelativePath=".\intspvm_start.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_tasks.c">
+				RelativePath=".\intspvm_tasks.c"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_tidtohost.c">
+				RelativePath=".\intspvm_tidtohost.c"
+				>
 			</File>
 			<File
-				RelativePath=".\matpvm.c">
+				RelativePath=".\matpvm.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pvm_grp.c">
+				RelativePath=".\pvm_grp.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pvm_info.c">
+				RelativePath=".\pvm_info.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pvm_proc_ctrl.c">
+				RelativePath=".\pvm_proc_ctrl.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pvm_recv.c">
+				RelativePath=".\pvm_recv.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pvm_send.c">
+				RelativePath=".\pvm_send.c"
+				>
 			</File>
 			<File
-				RelativePath=".\scipvmf77.c">
+				RelativePath=".\scipvmf77.c"
+				>
 			</File>
 			<File
-				RelativePath=".\varpack.c">
+				RelativePath=".\varpack.c"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl">
+			Filter="h;hpp;hxx;hm;inl"
+			>
 			<File
-				RelativePath=".\intspvm_addhosts.h">
+				RelativePath=".\intspvm_addhosts.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_barrier.h">
+				RelativePath=".\intspvm_barrier.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_bcast.h">
+				RelativePath=".\intspvm_bcast.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_bufinfo.h">
+				RelativePath=".\intspvm_bufinfo.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_config.h">
+				RelativePath=".\intspvm_config.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_delhosts.h">
+				RelativePath=".\intspvm_delhosts.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_error.h">
+				RelativePath=".\intspvm_error.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_error_mode.h">
+				RelativePath=".\intspvm_error_mode.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_exit.h">
+				RelativePath=".\intspvm_exit.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_f772sci.h">
+				RelativePath=".\intspvm_f772sci.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_get_timer.h">
+				RelativePath=".\intspvm_get_timer.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_getinst.h">
+				RelativePath=".\intspvm_getinst.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_gettid.h">
+				RelativePath=".\intspvm_gettid.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_gsize.h">
+				RelativePath=".\intspvm_gsize.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_halt.h">
+				RelativePath=".\intspvm_halt.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_joingroup.h">
+				RelativePath=".\intspvm_joingroup.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_kill.h">
+				RelativePath=".\intspvm_kill.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_lvgroup.h">
+				RelativePath=".\intspvm_lvgroup.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_mytid.h">
+				RelativePath=".\intspvm_mytid.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_parent.h">
+				RelativePath=".\intspvm_parent.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_probe.h">
+				RelativePath=".\intspvm_probe.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_recv.h">
+				RelativePath=".\intspvm_recv.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_recv_var.h">
+				RelativePath=".\intspvm_recv_var.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_reduce.h">
+				RelativePath=".\intspvm_reduce.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_sci2f77.h">
+				RelativePath=".\intspvm_sci2f77.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_send.h">
+				RelativePath=".\intspvm_send.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_send_var.h">
+				RelativePath=".\intspvm_send_var.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_set_timer.h">
+				RelativePath=".\intspvm_set_timer.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_spawn.h">
+				RelativePath=".\intspvm_spawn.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_spawn_independent.h">
+				RelativePath=".\intspvm_spawn_independent.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_start.h">
+				RelativePath=".\intspvm_start.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_tasks.h">
+				RelativePath=".\intspvm_tasks.h"
+				>
 			</File>
 			<File
-				RelativePath=".\intspvm_tidtohost.h">
+				RelativePath=".\intspvm_tidtohost.h"
+				>
 			</File>
 			<File
-				RelativePath=".\matpvm.h">
+				RelativePath=".\matpvm.h"
+				>
 			</File>
 			<File
-				RelativePath="sci_pvm.h">
+				RelativePath="sci_pvm.h"
+				>
 			</File>
 			<File
-				RelativePath="sci_tools.h">
+				RelativePath="sci_tools.h"
+				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\pvm.fundef">
+			RelativePath=".\pvm.fundef"
+			>
 		</File>
 	</Files>
 	<Globals>

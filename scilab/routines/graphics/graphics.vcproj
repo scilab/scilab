@@ -1,265 +1,43 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8,00"
 	Name="graphics"
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
-	SccProjectName=""
-	SccLocalPath="">
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;_DEBUG;WIN32"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Debug/"
-				ObjectFile=".\Debug/"
-				ProgramDataBaseFileName=".\Debug/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="PIV_Release|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
 			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\$(IntDir)/"
-				ObjectFile=".\$(IntDir)/"
-				ProgramDataBaseFileName=".\$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
+				Name="VCPreBuildEventTool"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCCustomBuildTool"
+			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
+				Name="VCXMLDataGeneratorTool"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Pentium_Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\$(IntDir)/"
-				ObjectFile=".\$(IntDir)/"
-				ProgramDataBaseFileName=".\$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug with Atlas|Win32"
-			OutputDirectory=".\Debug with Atlas"
-			IntermediateDirectory=".\Debug with Atlas"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
@@ -269,468 +47,123 @@ cd.. &gt;nul
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Debug with Atlas/"
-				ObjectFile=".\Debug with Atlas/"
-				ProgramDataBaseFileName=".\Debug with Atlas/"
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
-				CompileAs="0"/>
+				CompileAs="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
+				Culture="1036"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/graphics.lib"
+				SuppressStartupBanner="true"
+			/>
 			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphics.def &gt;nul&#x0D;&#x0A;copy graphics.def ..\..\..\libs\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+			/>
 		</Configuration>
 		<Configuration
-			Name="Release with Atlas|Win32"
-			OutputDirectory=".\Release with Atlas"
-			IntermediateDirectory=".\Release with Atlas"
+			Name="Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="TRUE"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release with Atlas/"
-				ObjectFile=".\Release with Atlas/"
-				ProgramDataBaseFileName=".\Release with Atlas/"
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
+				Culture="1036"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="PIV_Release with Atlas|Win32"
-			OutputDirectory=".\PIV_Release with Atlas"
-			IntermediateDirectory=".\PIV_Release with Atlas"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\PIV_Release with Atlas/"
-				ObjectFile=".\PIV_Release with Atlas/"
-				ProgramDataBaseFileName=".\PIV_Release with Atlas/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
 				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="true"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;_DEBUG;WIN32"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug with Atlas without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;_DEBUG;WIN32"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Atlas without Java|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release with Atlas without Java/"
-				ObjectFile=".\Release with Atlas without Java/"
-				ProgramDataBaseFileName=".\Release with Atlas without Java/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release with Debug Information|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release with Debug Information/"
-				ObjectFile=".\Release with Debug Information/"
-				ProgramDataBaseFileName=".\Release with Debug Information/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release without scicos|Win32"
-			OutputDirectory=".\Release without scicos"
-			IntermediateDirectory=".\Release without scicos"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\Release without scicos/"
-				ObjectFile=".\Release without scicos/"
-				ProgramDataBaseFileName=".\Release without scicos/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/graphics.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def graphics.def &gt;nul
-copy graphics.def ..\..\..\libs\graphics.def &gt;nul
-del *.def &gt;nul
-cd.. &gt;nul
-"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphics.def &gt;nul&#x0D;&#x0A;copy graphics.def ..\..\..\libs\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -738,271 +171,294 @@ cd.. &gt;nul
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			>
 			<File
-				RelativePath=".\Actions.c">
+				RelativePath=".\Actions.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Alloc.c">
+				RelativePath=".\Alloc.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Axes.c">
+				RelativePath=".\Axes.c"
+				>
 			</File>
 			<File
-				RelativePath=".\BuildObjects.c">
+				RelativePath=".\BuildObjects.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Champ.c">
+				RelativePath=".\Champ.c"
+				>
 			</File>
 			<File
-				RelativePath=".\clipping.c">
+				RelativePath=".\clipping.c"
+				>
 			</File>
 			<File
-				RelativePath=".\CloneObjects.c">
+				RelativePath=".\CloneObjects.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Contour.c">
+				RelativePath=".\Contour.c"
+				>
 			</File>
 			<File
-				RelativePath=".\DestroyObjects.c">
+				RelativePath=".\DestroyObjects.c"
+				>
 			</File>
 			<File
-				RelativePath=".\dr1Call.c">
+				RelativePath=".\dr1Call.c"
+				>
 			</File>
 			<File
-				RelativePath=".\DrawObjects.c">
+				RelativePath=".\DrawObjects.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Events.c">
+				RelativePath=".\Events.c"
+				>
 			</File>
 			<File
-				RelativePath=".\FeC.c">
+				RelativePath=".\FeC.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Format.c">
+				RelativePath=".\Format.c"
+				>
 			</File>
 			<File
-				RelativePath=".\GetProperty.c">
+				RelativePath=".\GetProperty.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Gray.c">
+				RelativePath=".\Gray.c"
+				>
 			</File>
 			<File
-				RelativePath=".\gsort.c">
+				RelativePath=".\gsort.c"
+				>
 			</File>
 			<File
-				RelativePath=".\HandleManagement.c">
+				RelativePath=".\HandleManagement.c"
+				>
 			</File>
 			<File
-				RelativePath=".\InitObjects.c">
+				RelativePath=".\InitObjects.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Interaction.c">
+				RelativePath=".\Interaction.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Math.c">
+				RelativePath=".\Math.c"
+				>
 			</File>
 			<File
-				RelativePath=".\nues1.c">
+				RelativePath=".\nues1.c"
+				>
 			</File>
 			<File
-				RelativePath=".\periFig.c">
+				RelativePath=".\periFig.c"
+				>
 			</File>
 			<File
-				RelativePath=".\periGif.c">
+				RelativePath=".\periGif.c"
+				>
 			</File>
 			<File
-				RelativePath=".\periPos.c">
+				RelativePath=".\periPos.c"
+				>
 			</File>
 			<File
-				RelativePath=".\periWin.c">
+				RelativePath=".\periWin.c"
+				>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release|Win32"
+					>
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="PIV_Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Pentium_Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release with Atlas|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="PIV_Release with Atlas|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release with Atlas without Java|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release with Debug Information|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release without scicos|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						FavorSizeOrSpeed="2"/>
+						FavorSizeOrSpeed="2"
+					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\Plo2d.c">
+				RelativePath=".\Plo2d.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo2d1.c">
+				RelativePath=".\Plo2d1.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo2d2.c">
+				RelativePath=".\Plo2d2.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo2d3.c">
+				RelativePath=".\Plo2d3.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo2d4.c">
+				RelativePath=".\Plo2d4.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo2dEch.c">
+				RelativePath=".\Plo2dEch.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo2dn.c">
+				RelativePath=".\Plo2dn.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo3d.c">
+				RelativePath=".\Plo3d.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Plo3dn.c">
+				RelativePath=".\Plo3dn.c"
+				>
 			</File>
 			<File
-				RelativePath=".\qsort.c">
+				RelativePath=".\qsort.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Rec.c">
+				RelativePath=".\Rec.c"
+				>
 			</File>
 			<File
-				RelativePath=".\RecLoad.c">
+				RelativePath=".\RecLoad.c"
+				>
 			</File>
 			<File
-				RelativePath=".\RecSave.c">
+				RelativePath=".\RecSave.c"
+				>
 			</File>
 			<File
-				RelativePath=".\sciCall.c">
+				RelativePath=".\sciCall.c"
+				>
 			</File>
 			<File
-				RelativePath=".\SetProperty.c">
+				RelativePath=".\SetProperty.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Xcall.c">
+				RelativePath=".\Xcall.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Xcall1.c">
+				RelativePath=".\Xcall1.c"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl">
+			Filter="h;hpp;hxx;hm;inl"
+			>
 			<File
-				RelativePath="bcg.h">
+				RelativePath="bcg.h"
+				>
 			</File>
 			<File
-				RelativePath=".\BuildObjects.h">
+				RelativePath=".\BuildObjects.h"
+				>
 			</File>
 			<File
-				RelativePath=".\clipping.h">
+				RelativePath=".\clipping.h"
+				>
 			</File>
 			<File
-				RelativePath=".\CloneObjects.h">
+				RelativePath=".\CloneObjects.h"
+				>
 			</File>
 			<File
-				RelativePath="color.h">
+				RelativePath="color.h"
+				>
 			</File>
 			<File
-				RelativePath=".\DestroyObjects.h">
+				RelativePath=".\DestroyObjects.h"
+				>
 			</File>
 			<File
-				RelativePath=".\DrawObjects.h">
+				RelativePath=".\DrawObjects.h"
+				>
 			</File>
 			<File
-				RelativePath=".\Events.h">
+				RelativePath=".\Events.h"
+				>
 			</File>
 			<File
-				RelativePath=".\GetProperty.h">
+				RelativePath=".\GetProperty.h"
+				>
 			</File>
 			<File
-				RelativePath="giffonts.h">
+				RelativePath="giffonts.h"
+				>
 			</File>
 			<File
-				RelativePath="Graphics.h">
+				RelativePath="Graphics.h"
+				>
 			</File>
 			<File
-				RelativePath=".\HandleManagement.h">
+				RelativePath=".\HandleManagement.h"
+				>
 			</File>
 			<File
-				RelativePath=".\InitObjects.h">
+				RelativePath=".\InitObjects.h"
+				>
 			</File>
 			<File
-				RelativePath=".\Interaction.h">
+				RelativePath=".\Interaction.h"
+				>
 			</File>
 			<File
-				RelativePath="Math.h">
+				RelativePath="Math.h"
+				>
 			</File>
 			<File
-				RelativePath=".\ObjectStructure.h">
+				RelativePath=".\ObjectStructure.h"
+				>
 			</File>
 			<File
-				RelativePath="periFig.h">
+				RelativePath="periFig.h"
+				>
 			</File>
 			<File
-				RelativePath="periGif.h">
+				RelativePath="periGif.h"
+				>
 			</File>
 			<File
-				RelativePath="periPos.h">
+				RelativePath="periPos.h"
+				>
 			</File>
 			<File
-				RelativePath="periWin.h">
+				RelativePath="periWin.h"
+				>
 			</File>
 			<File
-				RelativePath="PloEch.h">
+				RelativePath="PloEch.h"
+				>
 			</File>
 			<File
-				RelativePath="Rec.h">
+				RelativePath="Rec.h"
+				>
 			</File>
 			<File
-				RelativePath="scigraphic.h">
+				RelativePath="scigraphic.h"
+				>
 			</File>
 			<File
-				RelativePath=".\SetProperty.h">
+				RelativePath=".\SetProperty.h"
+				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\graphics.fundef">
+			RelativePath=".\graphics.fundef"
+			>
 		</File>
 	</Files>
 	<Globals>

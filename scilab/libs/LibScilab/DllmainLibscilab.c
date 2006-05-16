@@ -31,6 +31,7 @@
 #pragma comment(lib,"../../bin/lapack.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../libs/blas_f.lib")
+//#pragma comment(lib,"../../libs/lapack_f.lib")
 #pragma comment(lib,"../../libs/calelm_f.lib")
 #pragma comment(lib,"../../libs/control_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")
@@ -39,7 +40,7 @@
 #pragma comment(lib,"../../libs/interf_f.lib")
 #pragma comment(lib,"../../libs/intersci_f.lib")
 #pragma comment(lib,"../../libs/int_f.lib")
-#pragma comment(lib,"../../libs/lapack_f.lib")
+
 #pragma comment(lib,"../../libs/metanet_f.lib")
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/os_specific_f.lib")

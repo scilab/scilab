@@ -35,7 +35,7 @@ extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 extern int versionflag;
 /*-----------------------------------------------------------------------------------*/
-static char error_message[70];
+static char error_message[128];
 /*-----------------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 int getgrayplotdata(sciPointObj *pobj);

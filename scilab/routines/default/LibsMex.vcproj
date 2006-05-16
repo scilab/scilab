@@ -35,7 +35,7 @@
 				Output="LibsMex.exe"/>
 		</Configuration>
 		<Configuration
-			Name="Debug with Atlas|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="0">

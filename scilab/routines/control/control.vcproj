@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -29,10 +29,10 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Release/control.pch"
-				AssemblerListingLocation=".\Release/"
+				PrecompiledHeaderFile="$(ConfigurationName)/control.pch"
+				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile=".\$(IntDir)/"
-				ProgramDataBaseFileName=".\Release/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
 copy *.def control.def &gt;nul
 copy control.def ..\..\..\libs\control.def &gt;nul
 del *.def &gt;nul
@@ -72,8 +72,8 @@ cd .. &gt;nul
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -86,10 +86,10 @@ cd .. &gt;nul
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Debug/control.pch"
-				AssemblerListingLocation=".\Debug/"
-				ObjectFile=".\Debug/"
-				ProgramDataBaseFileName=".\Debug/"
+				PrecompiledHeaderFile="$(ConfigurationName)/control.pch"
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -105,7 +105,7 @@ cd .. &gt;nul
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
-for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
 copy *.def control.def &gt;nul
 copy control.def ..\..\..\libs\control.def &gt;nul
 del *.def &gt;nul
