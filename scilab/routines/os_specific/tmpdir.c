@@ -59,7 +59,7 @@ void C2F(settmpdir)(void)
 	  }
 	  else
 	  {
-		  sprintf(tmp_dir,"%sSCI_TMP_%d_",TmpDirDefault,(int) getpid());
+		  sprintf(tmp_dir,"%sSCI_TMP_%d_",TmpDirDefault,(int) _getpid());
 	  }
 
 	  if ( CreateDirectory(tmp_dir,NULL)==FALSE)

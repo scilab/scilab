@@ -70,7 +70,13 @@ extern void f_init(void);
 extern int (*f__donewrec)(void), t_putc(int), x_wSL(void);
 extern void b_char(char*,char*,ftnlen), g_char(char*,ftnlen,char*);
 extern int c_sfe(cilist*), z_rnew(void);
-extern int isatty(int);
+
+#ifndef __MSC__
+	extern int isatty(int);
+#else
+	#define isatty _isatty
+#endif
+
 extern int err__fl(int,int,char*);
 extern int xrd_SL(void);
 #ifdef __cplusplus

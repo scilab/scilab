@@ -2,10 +2,6 @@
 #include <math.h>
 #include "../machine.h"
 
-#if WIN32
-#define NULL    0
-#endif
-
 static int c__1 = 1;
 static int c__0 = 0;
 static int c_n1 = -1;

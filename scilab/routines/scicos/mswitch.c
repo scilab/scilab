@@ -1,8 +1,10 @@
 #include "scicos_block.h"
 #include <math.h>
 
+#ifndef __MSC__
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
 
 void  mswitch(scicos_block *block,int flag)
 {

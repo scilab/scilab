@@ -22,8 +22,10 @@
 
 
 #define abs(x) ((x) >= 0 ? (x) : -(x))
+#ifndef __MSC__
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
 #define freeall \
 	      FREE(rhot);\
 	      FREE(ihot);\
@@ -105,6 +107,8 @@ extern  integer C2F(stimer)();
 extern  integer C2F(xscion)();
 extern  integer C2F(ddaskr)();
 extern  integer C2F(lsodar2)();
+
+extern int scilab_timer_check();
 
 ScicosImport  scicos_imp;
 

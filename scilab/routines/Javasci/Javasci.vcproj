@@ -63,7 +63,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="../../bin/Javasci.dll"
-				LinkIncremental="1"
+				LinkIncremental="0"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/Javasci.pdb"
 				SubSystem="2"
@@ -142,11 +142,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="../../bin/Javasci.dll"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
+				EnableCOMDATFolding="0"
 				ImportLibrary="$(OutDir)/Javasci.lib"
 				TargetMachine="1"
 			/>

@@ -1,10 +1,6 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#if WIN32
-#define NULL    0
-#endif
-
 void ratelimiter(scicos_block *block,int flag)
 {/*  rpar[0]=rising rate limit, rpar[1]=falling rate limit */
   double* pw,rate,t;

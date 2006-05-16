@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #if (defined __MSC__) || defined(__MINGW32__) 
+#undef putenv
 #define putenv(x) _putenv(x)
 #endif
 
@@ -47,9 +48,16 @@ void SciEnv ()
 #else 
       p = modname + 1;
 #endif 
-      if ( ( p1 = getenv("SCI"))  == (char *) 0 )
-	{  sprintf(env,"SCI=%s",p); putenv(env); }
-    }
+    if ( ( p1 = getenv("SCI"))  == (char *) 0 )
+	{
+		sprintf(env,"SCI=%s",p);
+		#if __MSC__
+			_putenv(env);
+		#else
+			putenv(env);
+		#endif
+	}
+  }
 }
 
 

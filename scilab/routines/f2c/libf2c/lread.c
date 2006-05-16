@@ -5,6 +5,8 @@
 #include "ctype.h"
 #include "fp.h"
 
+#include <stdio.h>
+
 extern char *f__fmtbuf;
 
 #ifdef Allow_TYQUAD
@@ -59,12 +61,14 @@ un_getc(int x, FILE *f__cf)
 #endif
 { return ungetc(x,f__cf); }
 #else
-#define un_getc ungetc
-#ifdef KR_headers
- extern int ungetc();
-#else
-extern int ungetc(int, FILE*);	/* for systems with a buggy stdio.h */
-#endif
+	#ifdef KR_headers
+		extern int ungetc();
+	#else
+		#ifndef __MSC__
+			extern int ungetc(int, FILE*);	/* for systems with a buggy stdio.h */
+		#endif
+	#endif
+	#define un_getc ungetc
 #endif
 
 t_getc(Void)

@@ -19,6 +19,11 @@ extern "C" {
 extern int getpid(void), isatty(int), pause(void);
 #endif
 
+#if __MSC__
+#define fileno _fileno
+#endif
+
+
 extern VOID f_exit(Void);
 
  static VOID

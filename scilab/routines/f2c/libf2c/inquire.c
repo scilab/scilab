@@ -27,6 +27,9 @@ integer f_inqu(inlist *a)
 	{	byfile=1;
 		g_char(a->infile,a->infilen,buf);
 #ifdef NON_UNIX_STDIO
+	#if __MSC__
+		#define access _access
+	#endif
 		x = access(buf,0) ? -1 : 0;
 		for(i=0,p=NULL;i<MXUNIT;i++)
 			if(f__units[i].ufd != NULL

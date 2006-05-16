@@ -2,10 +2,6 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#if WIN32
-#define NULL    0
-#endif
-
 void deriv(scicos_block *block,int flag)
 { 
   double* rw;

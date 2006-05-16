@@ -88,6 +88,9 @@ f__canseek(FILE *f) /*SYSDEP*/
 #endif
 {
 #ifdef NON_UNIX_STDIO
+	#if __MSC__
+		#define fileno _fileno
+	#endif
 	return !isatty(fileno(f));
 #else
 	struct stat x;

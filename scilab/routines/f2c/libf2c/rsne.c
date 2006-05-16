@@ -54,6 +54,7 @@ un_getc(x,f__cf) int x; FILE *f__cf;
 #undef abs
 #undef min
 #undef max
+ #include <stdio.h>
 #include "stdlib.h"
 #include "string.h"
 
@@ -62,8 +63,10 @@ un_getc(x,f__cf) int x; FILE *f__cf;
 un_getc(int x, FILE *f__cf)
 { return ungetc(x,f__cf); }
 #else
-#define un_getc ungetc
-extern int ungetc(int, FILE*);	/* for systems with a buggy stdio.h */
+	#define un_getc ungetc
+	#ifndef __MSC__
+		extern int ungetc(int, FILE*);	/* for systems with a buggy stdio.h */
+	#endif
 #endif
 #endif
 

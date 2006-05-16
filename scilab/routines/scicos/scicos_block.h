@@ -7,6 +7,10 @@
 #include <malloc.h>
 #endif 
 
+#if __MSC__
+#include <stdlib.h>
+#endif
+
 typedef void (*voidg)();
 
 typedef struct {
@@ -55,13 +59,10 @@ double Get_Jacobian_parameter(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
 
-#if WIN32
-#undef min
-#undef max
-#endif
-
+#ifndef __MSC__
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
 
 extern int s_copy();
 extern int s_cmp();

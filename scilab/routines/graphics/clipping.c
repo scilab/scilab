@@ -66,13 +66,13 @@ void sciClipLine( integer       x1      ,
 
     /* Find intersections with the x parallel bbox lines: */
     if (dy != 0) {
-      x = (int) (clipping->bottomY - y2)  * ((double) dx / (double) dy) + x2;
+      x = (integer) ((int) (clipping->bottomY - y2)  * ((double) dx / (double) dy) + x2);
       /* Test for clipping.bottomY boundary. */
       if (x >= clipping->leftX && x <= clipping->rightX ) {
 	x_intr[count] = x;
 	y_intr[count++] = clipping->bottomY ;
       }
-      x = (clipping->topY - y2) * ((double) dx / (double) dy) + x2; 
+      x = (integer)((clipping->topY - y2) * ((double) dx / (double) dy) + x2); 
       /* Test for clipping.topY boundary. */
       if ( x >= clipping->leftX && x <= clipping->rightX ) {
 	x_intr[count] = x;
@@ -83,7 +83,7 @@ void sciClipLine( integer       x1      ,
       {
 	/* Find intersections with the y parallel bbox lines: */
 	if (dx != 0) {
-	  y = (clipping->leftX - x2) * ((double) dy / (double) dx) + y2;   
+	  y = (integer)((clipping->leftX - x2) * ((double) dy / (double) dx) + y2);   
 	  /* Test for clipping.leftX boundary. */
 	  if (y >= clipping->bottomY && y <= clipping->topY) {
 	    x_intr[count] = clipping->leftX;
@@ -91,7 +91,7 @@ void sciClipLine( integer       x1      ,
 	  }
 	  if ( count < 2 ) 
 	    {
-	      y = (clipping->rightX - x2) * ((double) dy / (double) dx) + y2;  
+	      y = (integer)((clipping->rightX - x2) * ((double) dy / (double) dx) + y2);  
 	      /* Test for clipping.rightX boundary. */
 	      if (y >= clipping->bottomY && y <= clipping->topY) {
 		x_intr[count] = clipping->rightX;

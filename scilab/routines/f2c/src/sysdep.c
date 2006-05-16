@@ -63,7 +63,11 @@ Un_link_all(int cdelete)
 #endif
 {
 #ifndef KR_headers
+	#if __MSC__
+	#define unlink _unlink
+	#else
 	extern int unlink(const char *);
+	#endif
 #endif
 	if (!debugflag) {
 		unlink(c_functions);

@@ -136,6 +136,9 @@ integer f_open(olist *a)
 	case 'o':
 	case 'O':
 #ifdef NON_UNIX_STDIO
+	#if __MSC__
+	#define access _access
+	#endif
 		if(access(buf,0))
 #else
 		if(stat(buf,&stb))
@@ -155,6 +158,9 @@ integer f_open(olist *a)
 	case 'n':
 	case 'N':
 #ifdef NON_UNIX_STDIO
+	#if __MSC__
+		#define access _access
+	#endif
 		if(!access(buf,0))
 #else
 		if(!stat(buf,&stb))
