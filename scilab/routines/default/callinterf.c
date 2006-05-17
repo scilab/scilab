@@ -128,7 +128,7 @@ extern int   System_contents __PARAMS((int));
 extern int  Intersci_contents __PARAMS((int));
 extern int  Sparse_contents __PARAMS((int));
 
-#ifndef WIN32
+#ifndef _MSC_VER
 int ForceLink(void)
 {
   Blas_contents(0);

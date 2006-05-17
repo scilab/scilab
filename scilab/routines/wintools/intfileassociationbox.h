@@ -5,7 +5,7 @@
 #ifndef __INTFILEASSOCIATIONBOX__
 #define __INTFILEASSOCIATIONBOX__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include "../wsci/FilesAssociationBox.h"
   #include "../wsci/wgnuplib.h"
 #endif

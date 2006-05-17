@@ -3,7 +3,7 @@
 
 /** only used to force the linker to load  functions **/
 
-#ifndef WIN32
+#ifndef _MSC_VER
 
 extern int C2F(dspe2)();
 extern int C2F(wspe2)();

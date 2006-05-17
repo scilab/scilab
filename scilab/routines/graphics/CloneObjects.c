@@ -23,7 +23,7 @@
 #include "bcg.h"
 #include "SetProperty.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */

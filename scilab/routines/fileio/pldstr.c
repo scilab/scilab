@@ -1,4 +1,4 @@
-#if WIN32
+#if _MSC_VER
 #include <stdarg.h>
 #endif
 
@@ -13,13 +13,13 @@
 #include "logger.h"
 #include "pldstr.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#if WIN32
+#if _MSC_VER
 #define strdup _strdup
 #endif
 
@@ -742,7 +742,7 @@ char *PLD_dprintf(const char *format, ...)
 	{
 	  /* Attempt to print out string out into the allocated space*/
 		va_start(ap, format);
-		#if WIN32
+		#if _MSC_VER
 		n = _vsnprintf (p, size, format, ap); 
 		#else
 		n = vsnprintf (p, size, format, ap); 

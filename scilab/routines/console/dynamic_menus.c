@@ -3,7 +3,7 @@
  *    jpc@cermics.enpc.fr 
  *    Changed: steer, jpc 2004 
  *--------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #include <stdio.h>
 #else
@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "../machine.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h"  /* malloc */
 #else
 #include "../os_specific/sci_mem_alloc.h"  /* malloc */
@@ -46,10 +46,10 @@
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)  
  *---------------------------------------------------------------------*/
 
-#ifdef WIN32
+#ifdef _MSC_VER
 extern int GetOSVersion(void);
 extern BOOL IsToThePrompt(void);
-#endif /*WIN32*/
+#endif /*_MSC_VER*/
 
 extern void banner(void);
 
@@ -120,7 +120,7 @@ int StoreCommand ( char *command)
 
 int StoreCommand1 (char *command,int flag)
 {
-#ifdef WIN32
+#ifdef _MSC_VER
  if ( (flag == 1) && ( !IsToThePrompt () ) ) flag=0;
 #endif
  switch (flag)
@@ -161,7 +161,7 @@ int StoreCommand1 (char *command,int flag)
 					while ((r = q->next))	q = r;
 					q->next = p;
 				}
-#ifdef WIN32
+#ifdef _MSC_VER
 			if (IsToThePrompt ()) write_scilab ("\n");
 #endif
 			return (0);
@@ -296,7 +296,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 	char Release[256];
     char *output=NULL;
 
-	#ifndef WIN32
+	#ifndef _MSC_VER
 	struct utsname uname_pointer;
 	#endif
 
@@ -304,7 +304,7 @@ int C2F(intgetos) _PARAMS((char *fname))
 	CheckRhs(0,0);
 	CheckLhs(1,2);
 
-#if WIN32
+#if _MSC_VER
 	
 	#define OS_ERROR                       -1
 	#define OS_WIN32_WINDOWS_NT_3_51        0

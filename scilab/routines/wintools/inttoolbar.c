@@ -3,14 +3,14 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "inttoolbar.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
   extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
   extern int ToolBarWin32(int WinNum,char *onoff);
   extern int GetStateToolBarWin32(int WinNum);
@@ -29,9 +29,9 @@ int C2F(inthidetoolbar) _PARAMS((char *fname))
 
 	GetRhsVar(1,"i",&m1,&n1,&l1);
  	num_win=*istk(l1);
-	#ifdef WIN32
+	#ifdef _MSC_VER
 		HideToolBarWin32(num_win); /* see "wsci/wmenu.c" */
-	#endif /*WIN32*/
+	#endif /*_MSC_VER*/
 	LhsVar(1)=0;
 	C2F(putlhsvar)();
  }
@@ -63,7 +63,7 @@ int C2F(inttoolbar) _PARAMS((char *fname))
 
 			numwin=*istk(l1);
 
-			#ifdef WIN32
+			#ifdef _MSC_VER
 			if (GetStateToolBarWin32(numwin))
 			{
 				strcpy(Output,"on");
@@ -97,7 +97,7 @@ int C2F(inttoolbar) _PARAMS((char *fname))
 
 			if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) )
 			{
-				#ifdef WIN32
+				#ifdef _MSC_VER
 					if (ToolBarWin32(numwin,param))
 					{
 						strcpy(Output,"on");

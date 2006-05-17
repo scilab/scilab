@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../machine.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -91,7 +91,7 @@ static char *xls_basename (name)
 char *name;
 {
   char *base;
-#ifdef WIN32
+#ifdef _MSC_VER
   base = strrchr (name, '\\');
 #else
   base = strrchr (name, '/');
@@ -112,7 +112,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   int nsheets;
   char IN[256],TMP[256];
   char sep[2];
-#ifdef WIN32
+#ifdef _MSC_VER
   sep[0]='\\';
 #else
   sep[0]='/';

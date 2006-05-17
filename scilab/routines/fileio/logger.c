@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifndef WIN32
+#ifndef _MSC_VER
 #include <syslog.h>
 #endif
 #include <errno.h>
@@ -14,14 +14,14 @@
 
 #include "logger.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 
-#ifndef WIN32
+#ifndef _MSC_VER
 static int _LOGGER_mode = _LOGGER_SYSLOG;
 static int _LOGGER_syslog_mode = LOG_MAIL|LOG_INFO;
 #else
@@ -40,7 +40,7 @@ struct LOGGER_globals {
 
 static struct LOGGER_globals LOGGER_glb={ 0, 0 };
 
-#if WIN32
+#if _MSC_VER
 	#define vsnprintf _vsnprintf
 #endif
 /*------------------------------------------------------------------------
@@ -116,7 +116,7 @@ int LOGGER_set_logfile( char *lfname )
 	_LOGGER_outf = fopen(lfname,"a");
 	if (!_LOGGER_outf)
 	{
-#ifndef WIN32
+#ifndef _MSC_VER
 		syslog(1,"LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)",lfname,strerror(errno));
 #else
 		fprintf(stderr, "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n", lfname, strerror(errno));
@@ -329,7 +329,7 @@ int LOGGER_log( char *format, ...)
 			fprintf(stderr,"%s%s",output, lineend );
 			break;
 		case _LOGGER_SYSLOG:
-			#ifndef WIN32
+			#ifndef _MSC_VER
 			syslog(_LOGGER_syslog_mode,output);
 			#endif
 			break;

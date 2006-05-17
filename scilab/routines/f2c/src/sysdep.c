@@ -63,7 +63,7 @@ Un_link_all(int cdelete)
 #endif
 {
 #ifndef KR_headers
-	#if __MSC__
+	#if _MSC_VER
 	#define unlink _unlink
 	#else
 	extern int unlink(const char *);

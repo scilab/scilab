@@ -42,7 +42,7 @@
 #include "../machine.h"
 #include "periMac.h"
 #else 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "Math.h"
 #include "periWin.h"
 #else
@@ -332,7 +332,7 @@ int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,
 	    integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
 	    integer lx0, integer lx1)
 { 
-#ifdef WIN32
+#ifdef _MSC_VER
   if ( DriverId == 0 && DriverName[0] != 'I' ) 
     {
       SetWinhdc();

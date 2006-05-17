@@ -7,7 +7,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwinopen) _PARAMS((char *fname))
 {
-	#ifndef WIN32
+	#ifndef _MSC_VER
 	#define FILENAME_MAX 4096 
 	#endif
 	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
@@ -15,7 +15,7 @@ int C2F(intwinopen) _PARAMS((char *fname))
 	int m1,n1,l1;
 	int out_n;
 	long int lout;
-	#ifdef WIN32
+	#ifdef _MSC_VER
 	HINSTANCE error=NULL;
 	#endif
 	CheckRhs(1,1);
@@ -26,7 +26,7 @@ int C2F(intwinopen) _PARAMS((char *fname))
 	lout=FILENAME_MAX;
 	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
 
-	#ifdef WIN32
+	#ifdef _MSC_VER
 	error = ShellExecute(NULL, "open", filename, NULL, NULL, SW_SHOWNORMAL);
 	if ( error<= (HINSTANCE)32)
 	{

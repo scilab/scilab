@@ -27,7 +27,7 @@
 #include "ObjectStructure.h"
 #include "Axes.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -37,7 +37,7 @@
 #include "../tclsci/GedManagement.h"
 #endif
 
-#if WIN32
+#if _MSC_VER
 extern HDC TryToGetDC(HWND hWnd);
 #endif
 
@@ -102,7 +102,7 @@ unsigned short defcolors[] = {
 };
 
 
-#ifdef WIN32
+#ifdef _MSC_VER
 static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/
 #endif
 
@@ -110,7 +110,7 @@ static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive D
 /**sciGetDC
  * @memo Returns the HDC of the figure window (not the parent)
  */
-#ifdef WIN32
+#ifdef _MSC_VER
 HDC        /* BCG Type priWin !! decommente par SS ???? */ 
 sciGetDC (sciPointObj * pobj)
 {
@@ -6260,7 +6260,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   double ytmp[10];
   double ztmp[10];
   
-#ifdef WIN32 
+#ifdef _MSC_VER 
   int hdcflag;
 #endif
 
@@ -6890,13 +6890,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	context[3] = 0;
 	context[4] = sciGetMarkStyle(pobj);
 	context[5] = sciGetLineWidth (pobj);
-#ifdef WIN32
+#ifdef _MSC_VER
 	hdcflag=MaybeSetWinhdc();
 #endif
 	C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
 	C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
-/* #ifdef WIN32 */
+/* #ifdef _MSC_VER */
 /* 	if ( hdcflag == 1) ReleaseWinHdc (); */
 /* #endif	   */
 
@@ -7144,7 +7144,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       }
     }
 
-#ifdef WIN32
+#ifdef _MSC_VER
 	if ( hdcflag == 1) ReleaseWinHdc ();
 #endif	  
 	
@@ -7317,7 +7317,7 @@ sciDrawObj (sciPointObj * pobj)
       x[1] = sciGetBackground (pobj) ;
       x[4] = 0 ;
       /** xclear will properly upgrade background if necessary **/
-#ifdef WIN32
+#ifdef _MSC_VER
       flag_DO = MaybeSetWinhdc() ;
 #endif
       
@@ -7338,7 +7338,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F(dr)("xset","background",&x[1],PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L); /* Change background F.Leray*/
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,
 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#ifdef WIN32
+#ifdef _MSC_VER
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
@@ -7426,7 +7426,7 @@ sciDrawObj (sciPointObj * pobj)
 	  markidsizenew[0] = sciGetMarkStyle(pobj);
 	  markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
 	 
-#ifdef WIN32
+#ifdef _MSC_VER
 	  flag_DO=MaybeSetWinhdc();
 #endif
 	  C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
@@ -7474,7 +7474,7 @@ sciDrawObj (sciPointObj * pobj)
 	  
 	  labels2D_draw(pobj); /* F.Leray 08.08.05 : labels' drawing at the end */
 	  
-#ifdef WIN32
+#ifdef _MSC_VER
 	  if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	  wininfo("");  
@@ -7526,7 +7526,7 @@ sciDrawObj (sciPointObj * pobj)
       	xxx[3] = 0;
       	xxx[4] = sciGetFontStyle(pobj);
       
-#ifdef WIN32 
+#ifdef _MSC_VER 
       	flag_DO=MaybeSetWinhdc();
 #endif
       	C2F (dr1) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
@@ -7561,7 +7561,7 @@ sciDrawObj (sciPointObj * pobj)
 			 &dv, &dv, &dv, &dv, 5L, 6L);
       	C2F (dr1) ("xset", "foreground", &xold[1], &vold, &vold, &vold, &vold,
 			 &v, &dv, &dv, &dv, &dv, 5L, 10L);
-#ifdef WIN32 
+#ifdef _MSC_VER 
       	if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
  	}
@@ -7607,14 +7607,14 @@ sciDrawObj (sciPointObj * pobj)
 	  FREE(yvect); yvect = (double *) NULL;
 	}
 
-#ifdef WIN32
+#ifdef _MSC_VER
       flag_DO=MaybeSetWinhdc();
 #endif   
       newfec(xm,ym,pFEC_FEATURE (pobj)->pnoeud,pFEC_FEATURE (pobj)->pfun,
 	     &pFEC_FEATURE (pobj)->Nnode,&pFEC_FEATURE (pobj)->Ntr,
 	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax,
 	     pFEC_FEATURE (pobj)->colout, pFEC_FEATURE (pobj)->with_mesh);
-#ifdef WIN32
+#ifdef _MSC_VER
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	  
@@ -7637,7 +7637,7 @@ sciDrawObj (sciPointObj * pobj)
       markidsizenew[0] =  sciGetMarkStyle(pobj);;
       markidsizenew[1] =  sciGetLineWidth (pobj);;
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO=MaybeSetWinhdc();
 #endif
 
@@ -7649,7 +7649,7 @@ sciDrawObj (sciPointObj * pobj)
 		PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 		PD0, PD0, 0L, 0L);
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 
@@ -7706,7 +7706,7 @@ sciDrawObj (sciPointObj * pobj)
 		xm[i]= XScale(pSEGS_FEATURE (pobj)->vx[i]); 
 		ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);}
 	    } 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  flag_DO = MaybeSetWinhdc();
 #endif
 	  if (pSEGS_FEATURE (pobj)->arrowsize == 0){
@@ -7825,7 +7825,7 @@ sciDrawObj (sciPointObj * pobj)
 		/* This is true for old and new graphics mode. */
 	      } /***/
 	  }
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 	  FREE(xm);         xm = (integer *) NULL;
@@ -7834,7 +7834,7 @@ sciDrawObj (sciPointObj * pobj)
 	}
       else    /*ptype == 1*/ /* ptype == 1 F.Leray : This IS A champ */
         {
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  flag_DO = MaybeSetWinhdc();
 #endif
 	  /*verbose = 1; */ /* debug F.Leray release mode */
@@ -7843,7 +7843,7 @@ sciDrawObj (sciPointObj * pobj)
 	    C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 	  else
 	    C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 
@@ -7887,7 +7887,7 @@ sciDrawObj (sciPointObj * pobj)
 			     pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
 			     pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
 			     &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact),&(pSEGS_FEATURE (pobj)->typeofchamp));
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  flag_DO = MaybeSetWinhdc();
 #endif
 
@@ -8005,7 +8005,7 @@ sciDrawObj (sciPointObj * pobj)
 	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);
 	    }
 	  }
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 	  FREE(xm) ; xm = (integer *) NULL;
@@ -8044,7 +8044,7 @@ sciDrawObj (sciPointObj * pobj)
 		  ym[j+i*n2]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[j]);
 		}
 	    
-#ifdef WIN32
+#ifdef _MSC_VER
 	    flag_DO = MaybeSetWinhdc();
 #endif
 	    frame_clip_on();
@@ -8055,7 +8055,7 @@ sciDrawObj (sciPointObj * pobj)
 	      GraySquareDirect(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);
 
 	    frame_clip_off();
-#ifdef WIN32
+#ifdef _MSC_VER
 	    if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	    
@@ -8091,7 +8091,7 @@ sciDrawObj (sciPointObj * pobj)
 		trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n1],&ym[j+i*n2],
 			&xvect[i],&yvect[j],NULL);
 	    
-#ifdef WIN32
+#ifdef _MSC_VER
 	    flag_DO = MaybeSetWinhdc();
 #endif
 	    frame_clip_on(); 
@@ -8148,7 +8148,7 @@ sciDrawObj (sciPointObj * pobj)
 		}
 	    
 	    frame_clip_off();  
-#ifdef WIN32
+#ifdef _MSC_VER
 	    if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	    
@@ -8174,7 +8174,7 @@ sciDrawObj (sciPointObj * pobj)
 	     
 	      for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
 	      for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
-#ifdef WIN32
+#ifdef _MSC_VER
 	      flag_DO = MaybeSetWinhdc();
 #endif
 	      frame_clip_on(); 
@@ -8185,7 +8185,7 @@ sciDrawObj (sciPointObj * pobj)
 	      frame_clip_off();  
 	      /*	      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
 			      &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-#ifdef WIN32
+#ifdef _MSC_VER
 	      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	     
@@ -8222,7 +8222,7 @@ sciDrawObj (sciPointObj * pobj)
 		  trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
 			  &xvect[i],&yvect[j],NULL);
 	    
-#ifdef WIN32
+#ifdef _MSC_VER
 	      flag_DO = MaybeSetWinhdc();
 #endif
 	      frame_clip_on(); 
@@ -8256,7 +8256,7 @@ sciDrawObj (sciPointObj * pobj)
 		  }
 	    
 	      frame_clip_off();  
-#ifdef WIN32
+#ifdef _MSC_VER
 	      if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	    
@@ -8289,14 +8289,14 @@ sciDrawObj (sciPointObj * pobj)
   
 	    for ( j =0 ; j < n1 ; j++)	 
 	      ym[j]= (int) (( py1[0]*j + py1[1]*((n1-1)-j) )/ (n1-1)); 
-#ifdef WIN32
+#ifdef _MSC_VER
 	    flag_DO = MaybeSetWinhdc();
 #endif
 
 	    frame_clip_on(); 
 	    GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
 	    frame_clip_off();
-#ifdef WIN32
+#ifdef _MSC_VER
 	    if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	    /*	  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
@@ -8342,7 +8342,7 @@ sciDrawObj (sciPointObj * pobj)
 		trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
 			&xvect[i],&yvect[j],NULL);
 	   
-#ifdef WIN32
+#ifdef _MSC_VER
 	    flag_DO = MaybeSetWinhdc();
 #endif
 	    frame_clip_on(); 
@@ -8374,7 +8374,7 @@ sciDrawObj (sciPointObj * pobj)
 		}
 	   
 	    frame_clip_off();  
-#ifdef WIN32
+#ifdef _MSC_VER
 	    if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	    FREE(xm); xm = (integer *) NULL;
@@ -8419,7 +8419,7 @@ sciDrawObj (sciPointObj * pobj)
       BuildXYZvectForClipping_IfNanOrLogON(pobj,sciGetParentSubwin(pobj),&nb_curves, &xvect, &yvect, &zvect, &curves_size);
       /* //////////////////////////////////////////////////////////////// */
       
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO = MaybeSetWinhdc();
 #endif
       
@@ -8432,7 +8432,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
    
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       n1 = pPOLYLINE_FEATURE (pobj)->n1;
@@ -8444,7 +8444,7 @@ sciDrawObj (sciPointObj * pobj)
       sciClip(pobj);
 
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO = MaybeSetWinhdc ();
 #endif
 
@@ -8821,7 +8821,7 @@ sciDrawObj (sciPointObj * pobj)
 	      break;
 	    default:
 	      sciprint ("This Polyline cannot be drawn !\n");
-/* #ifdef WIN32  */
+/* #ifdef _MSC_VER  */
 /* 	      if ( flag_DO == 1) ReleaseWinHdc (); */
 /* #endif   */
 	      break;     
@@ -8891,7 +8891,7 @@ sciDrawObj (sciPointObj * pobj)
 	      }
 	    }
 	  
-#ifdef WIN32
+#ifdef _MSC_VER
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
 	 
@@ -8922,7 +8922,7 @@ sciDrawObj (sciPointObj * pobj)
       
       FREE(curves_size); curves_size = NULL;
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       
@@ -8949,7 +8949,7 @@ sciDrawObj (sciPointObj * pobj)
       x[4] = 0;
       v = 0;
       dv = 0;
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO = MaybeSetWinhdc ();
 #endif
     
@@ -8958,7 +8958,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, 
 		PD0, PD0, PD0, PD0, 4L, 10L);
       
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       /**DJ.Abdemouche 2003**/
@@ -9021,7 +9021,7 @@ sciDrawObj (sciPointObj * pobj)
 	angle1 = 360*64 - (angle2+angle1);
       }
      
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO = MaybeSetWinhdc ();
 #endif
       sciClip(pobj);
@@ -9049,7 +9049,7 @@ sciDrawObj (sciPointObj * pobj)
 /*       else */
 /* 	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L); */
       sciUnClip(pobj);
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
       break;
@@ -9066,13 +9066,13 @@ sciDrawObj (sciPointObj * pobj)
 /* 	  x[3] = 0; */
 /* 	  x[4] = 0; */
 /* 	  x[5] = sciGetFillColor(pobj); */
-/* #ifdef WIN32  */
+/* #ifdef _MSC_VER  */
 /* 	  flag_DO = MaybeSetWinhdc (); */
 /* #endif */
 	 
 /* 	  C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv, */
 /* 		     &dv, &dv, &dv, 5L, 4096); */
-/* #ifdef WIN32  */
+/* #ifdef _MSC_VER  */
 /* 	  if ( flag_DO == 1) ReleaseWinHdc (); */
 /* #endif */
 /* 	} */
@@ -9084,7 +9084,7 @@ sciDrawObj (sciPointObj * pobj)
 
       v = 0;
       dv = 0; 
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO = MaybeSetWinhdc ();
 #endif
 
@@ -9093,7 +9093,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
       /**DJ.Abdemouche 2003**/
@@ -9131,7 +9131,7 @@ sciDrawObj (sciPointObj * pobj)
 	  hstr=pRECTANGLE_FEATURE (pobj)->strheight;
 	  
 	  
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(pobj);
@@ -9196,7 +9196,7 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	  
 	  sciUnClip(pobj);
-#ifdef WIN32 
+#ifdef _MSC_VER
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
 	}
@@ -9216,7 +9216,7 @@ sciDrawObj (sciPointObj * pobj)
 	  ReverseDataFor3D(sciGetParentSubwin(pobj), rectx, recty, rectz, n);
 
 	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  flag_DO = MaybeSetWinhdc ();
 #endif
 	  sciClip(pobj);
@@ -9267,7 +9267,7 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	  
 	  sciUnClip(pobj);
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
 	}
@@ -9288,7 +9288,7 @@ sciDrawObj (sciPointObj * pobj)
         dv = 0;
 
         flagx = 0;
-#ifdef WIN32 
+#ifdef _MSC_VER 
         flag_DO = MaybeSetWinhdc ();
 #endif
         if ( ppText->isclip )
@@ -9415,7 +9415,7 @@ sciDrawObj (sciPointObj * pobj)
             C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           }
           
-#ifdef WIN32 
+#ifdef _MSC_VER 
           flag_DO = MaybeSetWinhdc ();
 #endif
           /* load the object foreground and dashes color */
@@ -9428,7 +9428,7 @@ sciDrawObj (sciPointObj * pobj)
           C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
           C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
           
-#ifdef WIN32 
+#ifdef _MSC_VER 
           if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
           C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
@@ -9455,7 +9455,7 @@ sciDrawObj (sciPointObj * pobj)
           sciUnClip(pobj);
         }
         
-#ifdef WIN32 
+#ifdef _MSC_VER 
         if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       }
@@ -9473,7 +9473,7 @@ sciDrawObj (sciPointObj * pobj)
       x[4] = 0;
       v = 0;
       dv = 0;
-#ifdef WIN32 
+#ifdef _MSC_VER 
       flag_DO = MaybeSetWinhdc ();
 #endif
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
@@ -9498,7 +9498,7 @@ sciDrawObj (sciPointObj * pobj)
 	       pAXES_FEATURE(pobj)->str,pAXES_FEATURE (pobj)->subint,pAXES_FEATURE (pobj)->format,
 	       pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,fontstyle_zero, /* F.Leray 08.04.04 : Adding here fontstyle_zero*/
 	       pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg, 1); 
-#ifdef WIN32 
+#ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       sciUnClip(pobj);   
@@ -9530,19 +9530,19 @@ sciDrawObj (sciPointObj * pobj)
       markidsizenew[0] = sciGetMarkStyle(pobj);
       markidsizenew[1] = sciGetLineWidth (pobj);
       x[4] = 0;v = 0;dv = 0; 
-#ifdef WIN32
+#ifdef _MSC_VER
       flag_DO = MaybeSetWinhdc();
 #endif
       C2F (dr) ("xset", "thickness",  x+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); /*D.A 17/12/2003*/
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
-#ifdef WIN32
+#ifdef _MSC_VER
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       
       
       n=1;               
-#ifdef WIN32
+#ifdef _MSC_VER
       flag_DO = MaybeSetWinhdc();
 #endif
       switch(pSURFACE_FEATURE (pobj)->typeof3d)
@@ -9562,7 +9562,7 @@ sciDrawObj (sciPointObj * pobj)
 	default:
 	  break;
 	}
-#ifdef WIN32
+#ifdef _MSC_VER
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       break;

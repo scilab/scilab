@@ -421,7 +421,7 @@ static int SaveChamp(char *plot)
 #else /* not macintosh */
 #       ifndef VMS
 #   	include <sys/types.h>	/* for <netinet/in.h> on some systems */
-#   	if (!defined __MSC__) && !(defined __MINGW32__) 
+#   	if (!defined _MSC_VER) && !(defined __MINGW32__) 
 #          include <netinet/in.h>	/* for htonl() */
 #   	endif
 #	endif
@@ -430,7 +430,7 @@ static int SaveChamp(char *plot)
 
 #define assert(ex) {if (!(ex)){ sciprint("Graphic Load/Save Error \r\n");return(0);}} 
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #include "../xdr/rpc/types.h"
 #include "../xdr/rpc/xdr.h"
 #else 
@@ -472,7 +472,7 @@ static SaveTable SaveCTable[] ={
   {"xgrid",SaveGrid},
   {(char *)NULL,NULL}};
 
-#ifdef __MSC__
+#ifdef _MSC_VER
 #define __STDC__
 #endif 
 

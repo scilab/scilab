@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intsetlanguagemenu.h"
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
   extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -33,7 +33,7 @@ int C2F(intsetlanguagemenu) _PARAMS((char *fname))
 		return 0;
 	}
 
-	#ifdef WIN32
+	#ifdef _MSC_VER
 		SetLanguageMenu(Language);
 	#else
 

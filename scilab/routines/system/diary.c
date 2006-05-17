@@ -11,7 +11,7 @@ int getdiary()
   
 void C2F(diary)(char *str,int *n)
 {
-#if defined(MSDOS) || defined(_Windows) || defined(DOS386)
+#if defined(MSDOS) || defined(_MSC_VER) || defined(DOS386)
   char newline[2]="\r\n";
   int nn=2;
 #else

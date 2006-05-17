@@ -12,7 +12,7 @@
 #define __SCI_OBJECT_STRUCTURE__
 
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #include <windowsx.h>
 #ifndef __GNUC__XXX
@@ -27,7 +27,7 @@
 #include "../stack-c.h" 
 
 
-#ifndef WIN32
+#ifndef _MSC_VER
 #ifndef FALSE
 #define FALSE 0
 #endif
@@ -88,7 +88,7 @@
 
 #define pUIMENU_FEATURE(pointobj)       ((sciUimenu       *)pointobj->pfeatures)/** */
 
-#ifndef WIN32
+#ifndef _MSC_VER
 typedef unsigned short HMENU;
 typedef void *HFONT;                                         
 typedef int BOOL;                                       
@@ -669,7 +669,7 @@ typedef struct
   int MenuPosition;
   int CallbackType;
 
-  #if WIN32
+  #if _MSC_VER
 	HMENU hMenu;
 	int IDM_this;
   #endif

@@ -5,7 +5,7 @@
 #ifndef __INTSETLANGUAGEMENU__
 #define __INTSETLANGUAGEMENU__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
 #endif
 

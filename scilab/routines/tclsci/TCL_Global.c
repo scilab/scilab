@@ -38,7 +38,7 @@ static char *UiPropertiesName[NBRPROPERTIES]={
 /*-----------------------------------------------------------------------------------*/
 void nocase (char *s)
 {
-#ifndef WIN32
+#ifndef _MSC_VER
   int lg;
   int i;
   char c;

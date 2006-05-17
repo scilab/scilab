@@ -88,7 +88,7 @@ f__canseek(FILE *f) /*SYSDEP*/
 #endif
 {
 #ifdef NON_UNIX_STDIO
-	#if __MSC__
+	#if _MSC_VER
 		#define fileno _fileno
 	#endif
 	return !isatty(fileno(f));

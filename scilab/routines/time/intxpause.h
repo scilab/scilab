@@ -5,7 +5,7 @@
 #ifndef __INTXPAUSE__
 #define __INTXPAUSE__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 	#include <windows.h>
 #else
 	#include <sys/utsname.h>

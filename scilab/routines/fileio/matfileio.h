@@ -5,7 +5,7 @@
 #ifndef __MATFILEIO__
 #define __MATFILEIO__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #include <stdio.h>
 #endif

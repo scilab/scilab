@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #if ~defined(THINK_C) && ~defined(__MWERKS__)
-	#if !(defined __MSC__) && !(defined __MINGW32__) 
+	#if !(defined _MSC_VER) && !(defined __MINGW32__) 
 		#include <sys/time.h>
 	#else 
 		#include <windows.h>
@@ -27,7 +27,7 @@
 	#endif
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	static __int64 i64UserTick1;
 	static LARGE_INTEGER   Tick1;
 	typedef enum
@@ -40,12 +40,12 @@
 
 static int init_clock = 1;
 
-#if WIN32
+#if _MSC_VER
 	PLATFORM GetPlatform(void);
 	static long stimerwin(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 PLATFORM GetPlatform()
 {
   OSVERSIONINFO osvi;
@@ -71,8 +71,8 @@ PLATFORM GetPlatform()
 	#if defined(THINK_C) || defined(__MWERKS__)
 		#define X_GETTIMEOFDAY(t) 0 
 	#else
-		#if defined(WIN32)
-			#if !(defined __MSC__)
+		#if defined(_MSC_VER)
+			#if !(defined _MSC_VER)
 				#ifndef  __MINGW32__
 					#define X_GETTIMEOFDAY(t) gettimeofday(t, &tmz )
 					static struct timezone tmz;
@@ -96,20 +96,20 @@ static long int scilab_stimer_deprecated(void)
         YieldToAnyThread();
         return(0);
 #else 
-#if !(defined __MSC__) && !(defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __MINGW32__)
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
   scilab_timer_check();
   return(ctime.tv_usec);
 #else 
   return(stimerwin());
-#endif /* !(defined __MSC__) && !(defined __MINGW32__) */ 
+#endif /* !(defined _MSC_VER) && !(defined __MINGW32__) */ 
 #endif /* defined(THINK_C)||defined(__MWERKS__) */
 }
 /*-----------------------------------------------------------------------------------*/
 /* stimer */
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 static long stimerwin(void)
 {
 	long int i;
@@ -124,7 +124,7 @@ static long stimerwin(void)
  * a time interval of dt microsec (dt=10000)
  */
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 static long int ctime_old=0;
 int scilab_timer_check(void)
 {
@@ -145,5 +145,5 @@ int scilab_timer_check(void)
   if (rep) ctime_old=ctime;
   return rep;
 }
-#endif /* WIN32  */
+#endif /* _MSC_VER */
 /*-----------------------------------------------------------------------------------*/

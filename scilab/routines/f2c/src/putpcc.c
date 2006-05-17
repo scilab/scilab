@@ -1606,7 +1606,7 @@ get_argtypes(Exprp p, Argtypes ***pat0, Argtypes ***pat1)
 	Addrp a;
 	Argtypes **at0, **at1;
 	Namep np;
-	#ifndef WIN32
+	#ifndef _MSC_VER
 		expptr rp;
 	#endif
 	Extsym *e;

@@ -133,7 +133,7 @@
 
 ***/
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -147,7 +147,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef WIN32
+#ifdef _MSC_VER
   #include "../../pvm3/include/pvm3.h"
 #else
   #include "pvm3.h"
@@ -155,19 +155,19 @@
 #include "../machine.h"
 #include "sci_pvm.h"
 
-#ifndef WIN32 
+#ifndef _MSC_VER 
 #include <unistd.h>
 #endif 
 
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #include <sys/utime.h>
 #else 
 #include <sys/time.h>
-#endif /** WIN32 **/
+#endif /** _MSC_VER **/
 
 /* stat function */
-#if (defined __MSC__) || defined(__MINGW32__) 
+#if (defined _MSC_VER) || defined(__MINGW32__) 
 #define stat _stat 
 #endif 
 
@@ -422,13 +422,13 @@ void C2F(scipvmspawn)(char *task,  int *l1,
     where = NULL;
   else
     flag = PvmTaskHost;
-#if (defined __MSC__)  || defined(__MINGW32__) 
+#if (defined _MSC_VER)  || defined(__MINGW32__) 
   strcpy(cmd, "scilex.exe");
 #else
   /* I really need scilab here for gtk -version */
   strcpy(cmd, "scilab");
 #endif 
-#if (defined __MSC__) || defined(__MINGW32__) 
+#if (defined _MSC_VER) || defined(__MINGW32__) 
   if ( _stricmp(task,"null") != 0) 
 #else 
   if (strcasecmp(task, "null")) 

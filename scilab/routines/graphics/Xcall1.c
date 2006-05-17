@@ -2,7 +2,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -60,7 +60,7 @@ static double  Dvide;
 #endif 
 
 
-#ifdef WIN32
+#ifdef _MSC_VER
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 #endif
 

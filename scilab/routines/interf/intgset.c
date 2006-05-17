@@ -20,7 +20,7 @@
 
 #include "intcommongraphics.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -1107,7 +1107,7 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
 /*-----------------------------------------------------------------------------------*/
 void updateMenus( struct BCG * XGC )
 {
-#if  WIN32
+#if  _MSC_VER
   {
     extern void RefreshGraphToolBar(struct BCG * ScilabGC);
     extern void RefreshMenus(struct BCG * ScilabGC);

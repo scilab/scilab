@@ -20,7 +20,7 @@
 
 #include "intcommongraphics.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -322,7 +322,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
-#if WIN32 /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
+#if _MSC_VER /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
 	  stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj); 
 	  stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj);
 #else

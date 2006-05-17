@@ -14,7 +14,7 @@
 #include "Rec.h"
 #include "PloEch.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -2316,7 +2316,7 @@ void Tape_ReplayNewAngle(char *unused, integer *winnumber, integer *v1, integer 
 
 void Tape_Replay(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 { 
-#ifdef WIN32
+#ifdef _MSC_VER
   int flag;
 #endif
   char name[4];
@@ -2327,7 +2327,7 @@ void Tape_Replay(char *unused, integer *winnumber, integer *v3, integer *v4, int
     {
       if ( name[0] =='R' )
 	{
-#ifdef WIN32
+#ifdef _MSC_VER
 	  /** win32 : we dont't want to use dr because it will 
 	  change the hdc **/
 	  C2F(SetDriver)("Int",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
@@ -2335,12 +2335,12 @@ void Tape_Replay(char *unused, integer *winnumber, integer *v3, integer *v4, int
 	  C2F(dr)("xsetdr","X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
 	}
-#ifdef WIN32
+#ifdef _MSC_VER
       /** if hdc is not set we use the current window hdc **/
       flag=MaybeSetWinhdc();
 #endif
       Tape_Replay1(ListPFirst,*winnumber);
-#ifdef WIN32
+#ifdef _MSC_VER
       if ( flag == 1) ReleaseWinHdc();
 #endif
       C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

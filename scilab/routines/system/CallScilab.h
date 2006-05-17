@@ -5,7 +5,7 @@
 #ifndef __CALLSCILAB__
 #define __CALLSCILAB__
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
   #include <windows.h>
 #endif
 #include <stdio.h>

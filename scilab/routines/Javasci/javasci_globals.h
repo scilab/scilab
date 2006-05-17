@@ -7,7 +7,7 @@
 #include <math.h>
 #include <stdio.h> 
 #include <string.h>
-#if WIN32
+#if _MSC_VER
   #include <windows.h>
   #pragma comment(lib, "User32.lib")
 #endif
@@ -40,7 +40,7 @@ extern void SetFromJavaToON(void);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);
 /********************************************************************************************************/
-#if WIN32
+#if _MSC_VER
 extern void start_sci_gtk();
 extern void add_sci_argv();
 extern void add_sci_argv();

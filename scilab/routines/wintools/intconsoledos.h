@@ -5,7 +5,7 @@
 #ifndef __INTCONSOLEDOS__
 #define __INTCONSOLEDOS__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
 #endif
 
@@ -14,7 +14,7 @@
 #include "../stack-c.h"
 #include "../version.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../Wsci/WinConsole.h"
 #endif
 

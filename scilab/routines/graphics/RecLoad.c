@@ -20,13 +20,13 @@
 #else /* not macintosh */
 #       ifndef VMS
 #   	include <sys/types.h>	/* for <netinet/in.h> on some systems */
-#   	if !(defined __MSC__) && !(defined __MINGW32__)
+#   	if !(defined _MSC_VER) && !(defined __MINGW32__)
 #          include <netinet/in.h>	/* for htonl() */
 #   	endif
 #	endif
 #endif /* not macintosh */
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #include "../xdr/rpc/types.h"
 #include "../xdr/rpc/xdr.h"
 #else 
@@ -38,7 +38,7 @@
 #include "Math.h"
 #include "Rec.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -747,7 +747,7 @@ static LoadTable LoadCTable[] ={
   {"xgrid",LoadGrid},
   {(char *)NULL,NULL}};
 
-#ifdef __MSC__
+#ifdef _MSC_VER
 #define __STDC__
 #endif 
 

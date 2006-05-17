@@ -19,7 +19,7 @@ extern "C" {
 extern int getpid(void), isatty(int), pause(void);
 #endif
 
-#if __MSC__
+#if _MSC_VER
 #define fileno _fileno
 #endif
 

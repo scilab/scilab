@@ -5,7 +5,7 @@
 #ifndef __SCIERROR__
 #define __SCIERROR__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
 #endif
 
@@ -24,7 +24,7 @@
 #define TRUE  1
 #define FALSE 0
 
-#if defined (__STDC__) || defined (WIN32)
+#if defined (__STDC__) || defined (_MSC_VER)
 	int  Scierror __PARAMS((int iv,char *fmt,...));
 #else
 	int Scierror __PARAMS(());

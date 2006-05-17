@@ -3,13 +3,13 @@
 
 #include "../stack-c.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#if WIN32
+#if _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 
@@ -44,7 +44,7 @@ extern int C2F(dseupd) __PARAMS((int *rvec, char *howmny, int *select, double *d
 
 extern int C2F(dneupd) __PARAMS((int *rvec, char *howmny, int *select, double *dr, double *di, double *z, int *ldz, double *sigmar, double *sigmai, double *workev, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_length));
 
-#if WIN32
+#if _MSC_VER
 extern int C2F(znaupd)();
 extern int C2F(zneupd)();
 #endif
@@ -459,7 +459,7 @@ int C2F(intarpack)()
 {
 	Rhs = Max(0, Rhs);
 	
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

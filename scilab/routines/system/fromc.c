@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "fromc.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */

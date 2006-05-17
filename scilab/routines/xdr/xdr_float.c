@@ -47,10 +47,10 @@ static char sccsid[] = "@(#)xdr_float.c 1.12 87/08/11 Copyr 1984 Sun Micro";
 
 
 #ifdef __MINGW32__
-#define __MSC__
+#define _MSC_VER
 #endif 
 
-#if !(defined __MSC__)
+#if !(defined _MSC_VER)
 #include <sys/param.h>
 #include <rpc/types.h> 
 #include <rpc/xdr.h>
@@ -65,7 +65,7 @@ static char sccsid[] = "@(#)xdr_float.c 1.12 87/08/11 Copyr 1984 Sun Micro";
  * This routine works on Suns (Sky / 68000's) and Vaxen.
  */
 
-#if defined(vax) || defined(WIN32)
+#if defined(vax) || defined(_MSC_VER)
 
 /* What IEEE single precision floating point looks like on a Vax */
 struct	ieee_single {
@@ -111,7 +111,7 @@ xdr_float(xdrs, fp)
 	switch (xdrs->x_op) {
 
 	case XDR_ENCODE:
-#if defined(WIN32) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
+#if defined(_MSC_VER) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
 		return (XDR_PUTLONG(xdrs, (long *)fp));
 #else
 		vs = *((struct vax_single *)fp);
@@ -133,7 +133,7 @@ xdr_float(xdrs, fp)
 #endif
  
 	case XDR_DECODE:
-#if defined(WIN32) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
+#if defined(_MSC_VER) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
 		return (XDR_GETLONG(xdrs, (long *)fp));
 #else
 		vsp = (struct vax_single *)fp;
@@ -208,7 +208,7 @@ xdr_double(xdrs, dp)
 	double *dp;
 {
 	register long *lp;
-#if !defined(WIN32) && !defined(mc68000) && !defined(sparc) && !defined(mips) && !defined(mmax) && !defined(_X86_)
+#if !defined(_MSC_VER) && !defined(mc68000) && !defined(sparc) && !defined(mips) && !defined(mmax) && !defined(_X86_)
 	struct	ieee_double id;
 	struct	vax_double vd;
 	register struct dbl_limits *lim;
@@ -218,7 +218,7 @@ xdr_double(xdrs, dp)
 	switch (xdrs->x_op) {
 
 	case XDR_ENCODE:
-#if defined(WIN32) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
+#if defined(_MSC_VER) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
 		lp = (long *)dp;
 #else
 		vd = *((struct vax_double *)dp);
@@ -243,15 +243,15 @@ xdr_double(xdrs, dp)
 		id.sign = vd.sign;
 		lp = (long *)&id;
 #endif
-#if defined(WIN32) || defined(_X86_) 
+#if defined(_MSC_VER) || defined(_X86_) 
 		return (XDR_PUTLONG(xdrs, lp+1) && XDR_PUTLONG(xdrs, lp));
 #else
 		return (XDR_PUTLONG(xdrs, lp++) && XDR_PUTLONG(xdrs, lp));
 #endif
 	case XDR_DECODE:
-#if defined(WIN32) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
+#if defined(_MSC_VER) || defined(mc68000) || defined(sparc) || defined(mips) || defined(mmax) || defined(_X86_)
 		lp = (long *)dp;
-#if defined(WIN32) || defined(_X86_)
+#if defined(_MSC_VER) || defined(_X86_)
 		return (XDR_GETLONG(xdrs, lp+1) && XDR_GETLONG(xdrs, lp));
 #else
 		return (XDR_GETLONG(xdrs, lp++) && XDR_GETLONG(xdrs, lp));

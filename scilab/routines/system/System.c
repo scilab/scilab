@@ -3,7 +3,7 @@
 
 /** only used to force the linker to load all system functions **/
 
-#ifndef WIN32
+#ifndef _MSC_VER
 
 extern void 
       C2F(intversion)(),

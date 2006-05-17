@@ -221,7 +221,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define  GetListRhsCVar(n,m,ct,it,m1e1,n1e1,l1e1,l1e2)  if(!C2F(getlistrhscvar)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,m1e1,n1e1,(integer *) l1e1,(integer *) l1e2,1L)) {return 0;}
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #define CheckRhs(minrhs,maxrhs)  \
   if (! C2F(checkrhs)(fname,(c_local = minrhs,&c_local),(c1_local=maxrhs,&c1_local),\
 		      (unsigned long)strlen(fname))) { \

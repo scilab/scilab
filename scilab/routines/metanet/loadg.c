@@ -1,5 +1,5 @@
 #include <stdio.h>
-#if !(defined __MSC__) && !(defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __MINGW32__)
 #ifdef __FreeBSD__
 #include <sys/types.h>
 #endif
@@ -12,12 +12,12 @@
 #include <malloc.h>
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <stdlib.h> /*qsort*/
 #include <direct.h> /*_getcwd _chdir*/
 #endif
 
-#if (defined __MSC__) || (defined __MINGW32__)
+#if (defined _MSC_VER) || (defined __MINGW32__)
 /** only used for x=dir[1024] **/
 #define  getwd(x) _getcwd(x,1024)
 #endif
@@ -26,7 +26,7 @@
 #include "../machine.h"
 #include "defs.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -74,11 +74,11 @@ int *default_node_diam,*default_node_border,*default_edge_width;
 int *default_edge_hi_width,*default_font_size;
 int *ndim,*ma;
 {
-  /** #ifdef __MSC__
+  /** #ifdef _MSC_VER
   return;
   #else  **/
   FILE *fg;
-#if !(defined __MSC__) && !(defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __MINGW32__)
   DIR *dirp;
 #endif
   char fname[2 * MAXNAM];
@@ -92,7 +92,7 @@ int *ndim,*ma;
   char **lar;
 
   path[*lpath] = '\0';
-#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __ABSC__) && !(defined __MINGW32__)
   if ((dirp=opendir(path)) != NULL) {
     sprintf(description,"\"%s\" is a directory",path);
     cerro(description);
@@ -102,7 +102,7 @@ int *ndim,*ma;
 #endif
   if (dirname(path) == NULL) getwd(dir);
   else strcpy(dir,dirname(path));
-#if !(defined __MSC__)&& !(defined __MINGW32__)
+#if !(defined _MSC_VER)&& !(defined __MINGW32__)
   if ((dirp=opendir(dir)) == NULL) {
     sprintf(description,"Directory \"%s\" does not exist",dir);
     cerro(description);
@@ -120,7 +120,7 @@ int *ndim,*ma;
     return;
   }
   strcpy(*name,pname);
-#if !(defined __MSC__) && !(defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __MINGW32__)
   if(!CheckGraphName(*name,dir)) {
     sprintf(description,"Graph file \"%s/%s.graph\" does not exist",dir,*name);
     cerro(description);
@@ -404,5 +404,5 @@ int *ndim,*ma;
   }
   myhdestroy();
   fclose(fg);
-  /** #endif**/ /**  __MSC__ **/
+  /** #endif**/ /**  _MSC_VER **/
 }

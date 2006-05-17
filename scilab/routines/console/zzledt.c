@@ -20,7 +20,7 @@ static char Sci_Prompt[10];
 #endif 
 
 #ifndef WITHOUT_STD_ZZLEDT /* the gtk readline version is in gtk */ 
-#ifndef WIN32 /** The win32 version is defined in the wsci directory **/
+#ifndef _MSC_VER /** The win32 version is defined in the wsci directory **/
 #include <string.h>
 #include <signal.h> /* for SIGINT */
 

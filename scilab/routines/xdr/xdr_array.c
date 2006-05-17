@@ -47,16 +47,16 @@ static char *rcsid = "$Id: xdr_array.c,v 1.1 2001/04/26 07:48:37 scilab Exp $";
 #include <string.h>
 
 #ifdef __MINGW32__
-#define __MSC__
+#define _MSC_VER
 #endif 
 
-#ifdef  WIN32 
+#ifdef  _MSC_VER 
 #include "rpc/types.h"
 #include "rpc/xdr.h"
 #else
 #include <rpc/types.h>
 #include <rpc/xdr.h>
-#endif /* WIN32 */
+#endif /* _MSC_VER */
 
 #define LASTUNSIGNED	((u_int)0-1)
 

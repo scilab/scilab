@@ -9,7 +9,7 @@
 #include <malloc.h>
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -120,7 +120,7 @@ void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr)
 {
   int ln,li=1,di=0,*SciS,job=1,i,ni;
   char *description,*p;
-#ifdef WIN32 
+#ifdef _MSC_VER 
   ln=ptrdesc[*nd]+2*(*nd)+1;
 #else 
   ln=ptrdesc[*nd]+*nd+1;
@@ -134,7 +134,7 @@ void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr)
       ni=ptrdesc[i]-li;
       C2F(cvstr)(&ni,SciS,p,&job,(long int)0);
       SciS += ni;
-#ifdef WIN32 
+#ifdef _MSC_VER 
       p[ni]= '\r';
       ni=ni+1;
 #endif 
@@ -167,7 +167,7 @@ void ScilabC2MStr2(int *res, int *nr, int *ptrres, char *str, int *ierr, int max
 	    {
 	      int ni1;
 	      ni1=ni=i-li;
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	      if (i > 0 && str[i-1]=='\r' ) ni1=ni-1;
 #endif 
 	      ptrres[*nr+1]=ptrres[*nr]+ni1;
@@ -200,7 +200,7 @@ void ScilabC2MStr2(int *res, int *nr, int *ptrres, char *str, int *ierr, int max
  * Done in place. 
  ********************************************/
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 void squash_r(char *s)
 {
   register char *r = s;		/* reading point */
@@ -210,7 +210,7 @@ void squash_r(char *s)
   }
   *w = '\0';				
 }
-#endif /* WIN32 */
+#endif /* _MSC_VER */
 
 
 void ScilabCM2MStr(char **str, int nv, int *res, int *ptrres, int maxchars, int *ierr)
@@ -219,7 +219,7 @@ void ScilabCM2MStr(char **str, int nv, int *res, int *ptrres, int maxchars, int 
   ptrres[0]=1;
   for (i= 0 ; i < nv ;i++) 
     {
-#ifdef WIN32 
+#ifdef _MSC_VER 
       /** cvstr changes \n to ! : we suppress \r in str **/
       squash_r(str[i]);
 #endif 

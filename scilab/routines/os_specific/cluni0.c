@@ -46,7 +46,7 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 #if defined(THINK_C)||defined(__MWERKS__)
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]=':';
 #else
-#if defined(WIN32)
+#if defined(_MSC_VER)
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]='\\';
 #else
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='\\') out_name[k]='/';

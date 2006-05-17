@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "../machine.h"
 
-#if WIN32
+#if _MSC_VER
 	#include <windows.h>
 #else
 	#include <sys/time.h>
@@ -15,7 +15,7 @@
 	#endif
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if WIN32
+#if _MSC_VER
 	static double simulation_start = 0;
 	static double simulation_scale = 0;
 	static __int64 realtime_start = 0;
@@ -33,7 +33,7 @@
 #endif
 
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef WIN32
+#ifndef _MSC_VER
 static inline unsigned long long TIME2ULL(struct timeval t)
 {
   unsigned long long result;
@@ -42,7 +42,7 @@ static inline unsigned long long TIME2ULL(struct timeval t)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef WIN32
+#ifndef _MSC_VER
 static inline struct timeval ULL2TIME(unsigned long long t)
 {
   struct timeval result;
@@ -52,7 +52,7 @@ static inline struct timeval ULL2TIME(unsigned long long t)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef WIN32
+#ifndef _MSC_VER
 int C2F(realtimeinit)(double *t,double *scale)
 {
   struct timeval now;
@@ -65,7 +65,7 @@ int C2F(realtimeinit)(double *t,double *scale)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef WIN32
+#ifndef _MSC_VER
 int C2F(realtime)(double *t)
 {
   struct timeval now;
@@ -92,7 +92,7 @@ int C2F(realtime)(double *t)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef WIN32
+#ifdef _MSC_VER
 int C2F(realtimeinit)(double *t, double *scale)
 {
   SYSTEMTIME st;
@@ -106,7 +106,7 @@ int C2F(realtimeinit)(double *t, double *scale)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef WIN32
+#ifdef _MSC_VER
 int C2F(realtime)(double *t) 
 {
   __int64 realtime_diff;

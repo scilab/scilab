@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 #include "../graphics/Math.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -147,7 +147,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
 #include "link_linux.c"
 #endif /* end of __ELF__ */
 #else
-#if defined(WIN32)
+#if defined(_MSC_VER)
 #include "link_W95.c"
 #else
 /**
@@ -180,7 +180,7 @@ void C2F(isciulink)(i)
 
 #ifdef WLU
 #ifndef DLDLINK
-#ifndef WIN32
+#ifndef _MSC_VER
 #ifndef __APPLE_CC__
 #define WLU1 /* dld will add the leading _ itself, win32 too, dlcompat too */
 #endif

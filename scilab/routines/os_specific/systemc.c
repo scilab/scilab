@@ -3,7 +3,7 @@
 /* Copyright (Allan CORNET) INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
 #include<stdio.h>
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #include "../wsci/GetOS.h"
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -12,7 +12,7 @@
 #endif
 #include "../machine.h"
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 extern BOOL IsAFile(char *chainefichier);
 BOOL CallWindowsShell(char *command,BOOL WaitInput);
 #endif
@@ -25,7 +25,7 @@ int system();
 /*-----------------------------------------------------------------------------------*/
 int C2F(systemc)(char *command, integer *stat)
 {
-#if WIN32
+#if _MSC_VER
 	{
 		int OS=GetOSVersion();
 		if ( (OS==OS_WIN32_WINDOWS_NT_3_51) ||
@@ -63,7 +63,7 @@ int C2F(systemc)(char *command, integer *stat)
 	return(0);
 }
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 BOOL CallWindowsShell(char *command,BOOL WaitInput)
 {
 	BOOL bReturn=FALSE;

@@ -23,7 +23,7 @@
 #include "../graphics/DestroyObjects.h"
 #include "intcommongraphics.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -41,7 +41,7 @@ extern void  C2F(msgs)(int *i, int *v);
 extern int C2F(dsort) _PARAMS((double *count, int *n, int *index));
 extern int IsAScalar(int RhsNumber);
 extern int C2F(deletewin)(integer *number);
-#if WIN32
+#if _MSC_VER
 extern int Interface_XS2BMP(int figurenum,char *filename); /* wgraph.c */
 extern int Interface_XS2EMF(int figurenum,char *filename);
 #endif
@@ -4644,7 +4644,7 @@ int scixg2psofig_G(char *fname,char *dr,unsigned long fname_len,unsigned long dr
 int intxs2bmp(char *fname,unsigned long fname_len)
 {
   int bOK=0;
-#if WIN32
+#if _MSC_VER
 
   CheckLhs(0,1);
   CheckRhs(2,2);
@@ -4692,7 +4692,7 @@ int intxs2bmp(char *fname,unsigned long fname_len)
 int intxs2emf(char *fname,unsigned long fname_len)
 {
   int bOK=0;
-#if WIN32
+#if _MSC_VER
 
   CheckLhs(0,1);
   CheckRhs(2,2);

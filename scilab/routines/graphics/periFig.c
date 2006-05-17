@@ -22,7 +22,7 @@
 #include "../machine.h"
 
 
-#if defined(THINK_C)|| defined(WIN32)
+#if defined(THINK_C)|| defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 #define GXclear 0
@@ -50,7 +50,7 @@
 #include "bcg.h" /* NG */
 #include "clipping.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -108,7 +108,7 @@ static integer  xfig_font[]= { 12,32,0,1,2,3,16,17,18,19,0};
 static char *sizeXfig_[] = { "08" ,"10","12","14","18","24"};
 static integer  isizeXfig_[] = { 8,10,12,14,18,24};
 
-#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(__MSC__)|| defined(__EDG__)
+#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
 static FILE *file= (FILE *) 0;
 #define FPRINTF(x) ( file != (FILE*) 0) ?  fprintf x  : 0 
 #else 

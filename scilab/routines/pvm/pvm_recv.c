@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef WIN32
+#ifdef _MSC_VER
   #include "../../pvm3/include/pvm3.h"
 #else
   #include "pvm3.h"
@@ -24,7 +24,7 @@
 #include "../calelm/sci_tools.h"
 #include "sci_pvm.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */

@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intabout.h"
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
   extern void Callback_ABOUT(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -14,7 +14,7 @@ int C2F(intabout) _PARAMS((char *fname))
 	CheckRhs(0,0) ;
 	CheckLhs(0,1) ;
 
-	#if WIN32
+	#if _MSC_VER
 		Callback_ABOUT();
 	#else
 	   /* A voir sous Unix */

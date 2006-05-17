@@ -3,7 +3,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 #include <Windows.h>
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
@@ -61,7 +61,7 @@ int C2F(inttclsci)()
 {  
 	Rhs = Max(0, Rhs);
 	ReInitTCL();  
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 			_try
 			{

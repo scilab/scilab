@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	#define _USE_32BIT_TIME_T 1
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -10,7 +10,7 @@
 #include <locale.h>
 #include <stdio.h>
 
-#if WIN32
+#if _MSC_VER
 	#include <sys/types.h> 
 	#include <sys/timeb.h>
 #else
@@ -28,13 +28,13 @@ except every 100th isn't, and every 400th is).  */
 	((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	#ifndef _MAX__TIME64_T
 		#define _MAX__TIME64_T     0x100000000000i64    /* number of seconds from 00:00:00, 01/01/1970 UTC to 23:59:59. 12/31/2999 UTC */
 	#endif
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 extern void sciprint __PARAMS((char *fmt,...));
 #endif
 
@@ -42,7 +42,7 @@ static int week_number __PARAMS ((struct tm *tp));
 void C2F(scigetdate) __PARAMS ((time_t *dt, int *ierr));
 void C2F(convertdate) __PARAMS ((time_t *dt, int w[]));
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
   #if _MSC_VER <=1200 	
     static struct _timeb timebufferW;
   #else
@@ -64,7 +64,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
   }
   ChronoFlag=1;
   
-  #if WIN32
+  #if _MSC_VER
   #if _MSC_VER <=1200 	
     _ftime( &timebufferW );
   #else
@@ -78,7 +78,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
 /*-----------------------------------------------------------------------------------*/
 void C2F(convertdate)(time_t *dt,int w[10])
 {
-	#if WIN32
+	#if _MSC_VER
 	if ( (*dt<0) || (*dt> _MAX__TIME64_T) )
 	#else
 	if (*dt<0)
@@ -95,7 +95,7 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[8] = 0;
 		w[9] = 0;
 		if (*dt<0)	sciprint("dt=getdate(x) x must be > 0.\n");
-		#if WIN32
+		#if _MSC_VER
 		else sciprint("dt=getdate(x) x must be < %d.\n",_MAX__TIME64_T);
 		#endif
 	}
@@ -116,7 +116,7 @@ void C2F(convertdate)(time_t *dt,int w[10])
 			w[8] =        nowstruct->tm_sec;
             if (ChronoFlag)
 			{
-       #if WIN32
+       #if _MSC_VER
 				w[9] = timebufferW.millitm;
 			 #else
 				w[9] = timebufferU.tv_usec / 1000;  /* micro to ms */

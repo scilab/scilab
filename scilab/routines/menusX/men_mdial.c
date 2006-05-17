@@ -1,5 +1,5 @@
 /* Copyright ENPC */
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #include "wmen_scilab.h"
 MDialog SciMDialog = {{0},0,0,NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
 #else
@@ -7,7 +7,7 @@ MDialog SciMDialog = {{0},0,0,NULL,NULL,NULL,-1,0};  /** used to stored the mdia
 MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */

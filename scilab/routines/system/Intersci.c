@@ -3,7 +3,7 @@
 #include "../machine.h"
 
 /** only used to force the linker to load all calelm functions **/
-#ifndef WIN32
+#ifndef _MSC_VER
 
 extern void C2F(cchar)(),
   C2F(ccharf)(),

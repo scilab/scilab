@@ -1,4 +1,4 @@
-#if WIN32
+#if _MSC_VER
 #include <stdio.h> /* printf */
 #endif
 /* Table of constant values */

@@ -5,9 +5,9 @@
 #ifndef __IHMCOLOR__
 #define __IHMCOLOR__
 
-#ifdef WIN32
-  #include <windows.h>
-#endif
+
+#include <windows.h>
+
 
 #include "../machine.h"
 #include "../stack-c.h"

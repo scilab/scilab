@@ -9,7 +9,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#ifndef	WIN32
+#ifndef	_MSC_VER
 #include "../stack-c.h"
 #endif
 
@@ -25,7 +25,7 @@ extern void reset_history(void);
   #define STRICT
 #endif
 
-#ifdef	WIN32
+#ifdef	_MSC_VER
   #include "../wsci/wcommon.h" /* for BOOL */
 #else
   typedef int BOOL;

@@ -21,7 +21,7 @@
 
 #include "../machine.h"
 
-#if defined(THINK_C) || defined (__MWERKS__)|| defined(WIN32)
+#if defined(THINK_C) || defined (__MWERKS__)|| defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 #define GXclear 0
@@ -47,7 +47,7 @@
 #include "color.h"
 #include "bcg.h" /* NG */
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -91,7 +91,7 @@ static void WriteColorRGBDef(char *str, short unsigned int *tab, int ind);
 
 static double *vdouble = 0; /* used when a double argument is needed */
 
-#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(__MSC__) || defined(__EDG__)
+#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(_MSC_VER) || defined(__EDG__)
 static FILE *file= (FILE *) 0;
 #define FPRINTF(x) ( file != (FILE*) 0) ?  fprintf x  : 0 
 #else 

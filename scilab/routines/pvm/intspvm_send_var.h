@@ -7,7 +7,7 @@
 #ifndef __INTSPVM_SEND_VAR__
 #define __INTSPVM_SEND_VAR__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
   #include <stdio.h>
 #endif
@@ -16,7 +16,7 @@
 #include "../stack-c.h"
 
 #include <string.h> 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include "../../pvm3/include/pvm3.h"
 #else
   #include "pvm3.h"

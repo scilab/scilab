@@ -56,7 +56,7 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     {Str[n1]=atlas;n1++;}
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #if _DEBUG
     {Str[n1]=debugmode;n1++;}
 #else

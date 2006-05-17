@@ -71,7 +71,7 @@ extern int (*f__donewrec)(void), t_putc(int), x_wSL(void);
 extern void b_char(char*,char*,ftnlen), g_char(char*,ftnlen,char*);
 extern int c_sfe(cilist*), z_rnew(void);
 
-#ifndef __MSC__
+#ifndef _MSC_VER
 	extern int isatty(int);
 #else
 	#define isatty _isatty

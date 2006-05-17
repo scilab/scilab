@@ -5,7 +5,7 @@
 #ifndef __MATWINTOOLS__
 #define __MATWINTOOLS__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
   #include <stdio.h>
 #endif

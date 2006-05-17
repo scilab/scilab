@@ -2,14 +2,14 @@
 #ifndef MATDES_SCI 
 #define MATDES_SCI 
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
-#if _MSC_VER <=1200
-#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
+#if _MSC_VER
+	#if _MSC_VER <=1200
+		#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
+	#else
+		#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+	#endif
 #else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-#endif
-#else
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+	#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
 #endif
 /*-----------------------------------------------------------------------------------*/
 #endif /* MATDES_SCI */

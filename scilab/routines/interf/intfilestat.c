@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#if WIN32
+#if _MSC_VER
 #include <Windows.h>
 #endif
 
@@ -16,13 +16,13 @@
 int C2F(intfilestat)(fname)
 char * fname;
 {
-#ifdef WIN32
+#ifdef _MSC_VER
    struct _stat buf;
 #else
    struct stat buf;
 #endif
    int result, m1, n1, l1 , l2,one=1,n;
-#if WIN32
+#if _MSC_VER
    char DriveTemp[MAX_PATH];
 #endif
    CheckRhs(1,1);
@@ -33,7 +33,7 @@ char * fname;
    CreateVar(2,"c",&one,&n,&l2);
    C2F(cluni0)(cstk(l1), cstk(l2), &m1,m1*n1,n);
    /* Get data associated with "given file": */
-#ifdef WIN32
+#ifdef _MSC_VER
    {
 		char *path=cstk(l2);
 		wsprintf(DriveTemp,"%s",path);
@@ -53,7 +53,7 @@ char * fname;
    /* Check if statistics are valid: */
    if( result != 0 ) 
    {
-#if WIN32
+#if _MSC_VER
 	 if ( (strlen(DriveTemp)==2) ||(strlen(DriveTemp)==3) )
 	 {
 		 UINT DriveType=GetDriveType(DriveTemp);
@@ -114,7 +114,7 @@ char * fname;
      *stk(l2+6) = (double) buf.st_ctime;/* time of last change */
      *stk(l2+7) = (double) buf.st_atime;/* time of last access */
      *stk(l2+8) = (double) buf.st_rdev;/* device type (if inode device) */
-#ifdef WIN32
+#ifdef _MSC_VER
      *stk(l2+9) = 0.0;
      *stk(l2+10) = 0.0;
 #else 

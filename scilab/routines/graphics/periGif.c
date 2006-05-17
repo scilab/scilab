@@ -41,7 +41,7 @@
 #include <malloc.h>
 extern  char  *getenv();
 #endif
-#if defined(THINK_C) || defined (__MWERKS__)|| defined(WIN32)
+#if defined(THINK_C) || defined (__MWERKS__)|| defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 #define GXclear 0
@@ -71,7 +71,7 @@ extern  char  *getenv();
 #endif
 
 #define Char2Int(x)   ( x & 0x000000ff )
-#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(__MSC__)|| defined(__EDG__)
+#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
 static FILE *file= (FILE *) 0;
 #define FPRINTF(x) ( file != (FILE*) 0) ?  fprintf x  : 0 
 #else 

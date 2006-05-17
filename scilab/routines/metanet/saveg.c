@@ -1,5 +1,5 @@
 #include <stdio.h>
-#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __ABSC__) && !(defined __MINGW32__)
 #if defined(netbsd) || defined(freebsd) 
 #include <sys/types.h>
 #endif
@@ -12,11 +12,11 @@
 #include <malloc.h>
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <stdlib.h> /*qsort*/
 #include <direct.h> /*_getcwd _chdir*/
 #endif
-#if (defined __MSC__) || (defined __MINGW32__) 
+#if (defined _MSC_VER) || (defined __MINGW32__) 
 /** only used for x=dir[1024] **/
 #include <io.h>
 #define  getwd(x) _getcwd(x,1024) 
@@ -30,7 +30,7 @@
 
 
 #include "../machine.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -76,7 +76,7 @@ int *default_edge_hi_width,*default_font_size;
 int *ma;
 {
   FILE *f;
-#if !(defined __MSC__) &&! (defined __MINGW32__)
+#if !(defined _MSC_VER) &&! (defined __MINGW32__)
   DIR *dirp;
 #else
   int it;
@@ -122,9 +122,9 @@ int *ma;
     strcpy(nname,name);
   }
   else {
-#if (defined __MSC__) || (defined __MINGW32__)
+#if (defined _MSC_VER) || (defined __MINGW32__)
     getwd(dir);
-#if (defined __MSC__)   || (defined __MINGW32__)
+#if (defined _MSC_VER)   || (defined __MINGW32__)
     it= chdir(path);
     chdir(dir);
 #else
@@ -146,7 +146,7 @@ int *ma;
       else strcpy(dir,dirname(path));     
     }
   }
-#if !(defined __MSC__) && ! (defined __MINGW32__)
+#if !(defined _MSC_VER) && ! (defined __MINGW32__)
   if ((dirp=opendir(dir)) == NULL) {
     sprintf(description,"Directory \"%s\" does not exist",dir);
     cerro(description);

@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 #if ~defined(THINK_C) && ~defined(__MWERKS__)
-	#if !(defined __MSC__) && !(defined __MINGW32__) 
+	#if !(defined _MSC_VER) && !(defined __MINGW32__) 
 		#include <sys/time.h>
 	#else 
 		#include <windows.h>
@@ -21,7 +21,7 @@
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	static __int64 i64UserTick1;
 	static LARGE_INTEGER   Tick1;
 #else
@@ -32,7 +32,7 @@ static int init_clock = 1;
 /*-----------------------------------------------------------------------------------*/
 int C2F(timer)(double *etime)
 {
-#if WIN32 
+#if _MSC_VER 
   /* NT */
 	/* Return CPU Time */
 	FILETIME  ftCreation, ftExit, ftKernel,  ftUser;

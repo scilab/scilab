@@ -4,13 +4,13 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intclipboard.h"
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
   extern int InterfaceWindowsClipboard _PARAMS((char *fname,unsigned long l));
 #endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(intclipboard) _PARAMS((char *fname,unsigned long l))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsClipboard(fname,l);
 #else
 	Scierror(999,"Only for Windows\r\n");

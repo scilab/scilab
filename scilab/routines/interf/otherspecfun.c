@@ -17,7 +17,7 @@
 #include <setjmp.h>
 #include "../stack-c.h"
 
-#if WIN32
+#if _MSC_VER
 	#include "../os_specific/win_mem_alloc.h"
 	extern char *GetExceptionString(DWORD ExceptionCode);
 	#undef min

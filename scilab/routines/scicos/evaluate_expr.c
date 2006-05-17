@@ -1,6 +1,6 @@
 #include "scicos_block.h"
 #include <math.h>
-#if WIN32
+#if _MSC_VER
 #include <float.h>
 #endif
 
@@ -12,7 +12,7 @@ int isinf(double x) { return !finite(x) && x==x; }
 int isinf(double x) { return !finite(x) && x==x; }
 #endif
 
-#if WIN32
+#if _MSC_VER
 /*
 arcsinh z = log (z+sqrt(1+z2))
 */
@@ -490,7 +490,7 @@ void evaluate_expr(scicos_block *block,int flag)
 	}
       }
     }
-    #if WIN32
+    #if _MSC_VER
     if(!_finite(stack[bottom])||_isnan(stack[bottom])){
     #else
      if(isinf(stack[bottom])||isnan(stack[bottom])){

@@ -29,13 +29,13 @@ static void Initialize()
 
   if ((p1 = getenv ("SCI")) == (char *) 0)
     {
-#if (defined __MSC__ ) || (defined __MINGW32__) 
+#if (defined _MSC_VER ) || (defined __MINGW32__) 
       set_sci_env(SCI);
 #endif 
     }
   else
     {
-#if (defined __MSC__ ) || (defined __MINGW32__) 
+#if (defined _MSC_VER ) || (defined __MINGW32__) 
       set_sci_env(p1);
 #endif 
     }

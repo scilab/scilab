@@ -3,21 +3,21 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intmcisendstring.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
 	#include <windows.h>
 	#pragma comment(lib, "winmm.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(intmcisendstring) _PARAMS((char *fname))
 {
-#if WIN32
+#if _MSC_VER
 	mcisendstringWindowsfunction(fname);
 #else
 	mcisendstringUnixfunction(fname);
@@ -25,7 +25,7 @@ int C2F(intmcisendstring) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 int mcisendstringWindowsfunction _PARAMS((char *fname))
 {int m1,n1,l1;
 

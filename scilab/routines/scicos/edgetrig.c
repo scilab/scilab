@@ -1,7 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#if WIN32
+#if _MSC_VER
 extern void sciprint();
 #endif
 

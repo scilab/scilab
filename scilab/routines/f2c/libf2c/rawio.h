@@ -26,7 +26,7 @@ extern FILE *fdopen(int, const char*);
 #endif
 #endif
 
-#ifdef __MSC__
+#ifdef _MSC_VER
 	#define mktemp _mktemp
 #else
 	extern char *mktemp(char*);

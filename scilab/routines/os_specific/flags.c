@@ -1,5 +1,5 @@
 /* Copyright INRIA/ENPC */
-#if defined(THINK_C)||defined(__MWERKS__)||defined(WIN32)
+#if defined(THINK_C)||defined(__MWERKS__)||defined(_MSC_VER)
 #define True 1
 #define False 0
 #else

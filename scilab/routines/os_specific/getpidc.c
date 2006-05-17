@@ -3,7 +3,7 @@
 
 #ifdef __STDC__
 #include <stdlib.h>
-#ifndef WIN32
+#ifndef _MSC_VER
 #include <sys/types.h>
 #include <unistd.h>
 #endif

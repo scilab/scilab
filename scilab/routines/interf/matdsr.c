@@ -6,7 +6,7 @@
 
 #include "matdsr.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
@@ -136,7 +136,7 @@ static LapackTable Tab[]={
 int C2F(matdsr)(void)
 {  
 	Rhs = Max(0, Rhs);
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 			_try
 			{

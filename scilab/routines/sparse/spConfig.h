@@ -513,7 +513,7 @@
 #   define  LARGEST_SHORT_INTEGER   SHRT_MAX
 #   define  LARGEST_LONG_INTEGER    LONG_MAX
 #endif
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #   include <limits.h>
 #   include <float.h>
 #   define  MACHINE_RESOLUTION      DBL_EPSILON

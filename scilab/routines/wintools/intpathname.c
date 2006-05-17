@@ -3,14 +3,14 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intpathname.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
 typedef  DWORD (WINAPI * GetLongPathNamePROC) (LPCSTR,LPSTR,DWORD); 
 DWORD _GetLongPathName(LPCSTR lpszPath, OUT LPSTR lpszLongPath, int nSize);
 #endif
@@ -33,7 +33,7 @@ int C2F(intgetlongpathname) _PARAMS((char *fname))
 
 		LongName=(char*)MALLOC(MAX_PATH_LONG*sizeof(char));
 
-		#ifdef WIN32
+		#ifdef _MSC_VER
 		  if (_GetLongPathName(ShortName,LongName,MAX_PATH_LONG))
 		  {
 			  bOK=TRUE;
@@ -94,7 +94,7 @@ int C2F(intgetshortpathname) _PARAMS((char *fname))
 
 		ShortName=(char*)MALLOC((strlen(LongName)+1)*sizeof(char));
 
-		#ifdef WIN32
+		#ifdef _MSC_VER
 		  if (GetShortPathName(LongName,ShortName,(DWORD)strlen(LongName)+1))
 		  {
 			  bOK=TRUE;
@@ -138,7 +138,7 @@ int C2F(intgetshortpathname) _PARAMS((char *fname))
 	
 }
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
 DWORD _GetLongPathName(LPCSTR lpszPath, OUT LPSTR lpszLongPath, int nSize) 
 { 
 	DWORD sz=0;

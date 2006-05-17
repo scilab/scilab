@@ -5,7 +5,7 @@
 #ifndef __GETMEMORY__
 #define __GETMEMORY__
 
-#ifdef WIN32
+#ifdef _MSC_VER
    #include <windows.h>
 #else
    #if defined(hpux)

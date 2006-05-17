@@ -5,7 +5,7 @@
 #ifndef __MATSOUND__
 #define __MATSOUND__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
   #include <stdio.h>
 #endif

@@ -5,7 +5,7 @@
 #ifndef __INTGRAPHICS__
 #define __INTGRAPHICS__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #include <stdio.h>
 #endif

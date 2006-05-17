@@ -58,7 +58,7 @@ extern int cf_type; /* used by gcf to determine if current figure is a graphic (
 
 /*******************************************************/
 
-#ifdef WIN32
+#ifdef _MSC_VER
 extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight, int iDeciPtWidth, int iAttributes, BOOL fLogRes);  /* DRAWINGS */
 extern HDC sciGetDC (sciPointObj * pobj);     /* DRAWINGS */
 /* extern HDC sciGetHDC (sciPointObj * pobj);    /\* DRAWINGS *\/ */ /* inexistant in Entities.c */

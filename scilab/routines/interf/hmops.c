@@ -18,7 +18,7 @@
 #include <math.h>
 #include <stdlib.h>
 /* #include <stdio.h> */
-#if WIN32
+#if _MSC_VER
 #undef min
 #undef max
 #endif
@@ -63,7 +63,7 @@ typedef struct sci_bool_sparse {
 } SciBoolSparse;
 
 
-#if WIN32
+#if _MSC_VER
 extern int C2F(ddmpev)();
 int C2F(createlistcvarfrom)();
 #endif

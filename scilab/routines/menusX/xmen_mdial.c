@@ -1,6 +1,6 @@
 /* Copyright ENPC */
 #include "../sci_mem_alloc.h"
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #include "wmen_scilab.h"
 #else
 #include "men_scilab.h"

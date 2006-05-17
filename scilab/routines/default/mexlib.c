@@ -50,7 +50,7 @@
 #include <varargs.h>
 #endif 
 
-#ifdef WIN32
+#ifdef _MSC_VER
 	#include <stdlib.h> /*pour exit()*/
 #endif
 
@@ -2029,7 +2029,7 @@ void  mexPrintf (va_alist) va_dcl
     }
   else 
     {
-	#if WIN32
+	#if _MSC_VER
 		sciprint("%s",buf);
 		
 	#else

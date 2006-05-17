@@ -212,7 +212,7 @@ IMPORT int soxpreview;	/* Preview mode: be fast and ugly */
 #define READBINARY      "r", "mbf=16", "ctx=stm" 
 #define WRITEBINARY     "w", "ctx=stm"
 #endif
-#if defined(DOS) || defined(WIN32)
+#if defined(DOS) || defined(_MSC_VER)
 #define READBINARY	"rb"
 #define WRITEBINARY	"wb"
 #endif

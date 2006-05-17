@@ -3,7 +3,7 @@
 #include "../stack-c.h" 
 #include "../os_specific/Os_specific.h" /* isanan */ 
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 /* vc++ pbs with nan and comparisons */ 
 #define NAN_CHECK 
 #endif 

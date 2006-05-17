@@ -9,10 +9,7 @@
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 
-#ifdef WIN32
-	#define putenv _putenv
-#endif
-
+#define putenv _putenv
 /********************************************************************************************************/
 /* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
 /* sont définies directement dans scilex */
@@ -428,10 +425,8 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 {
 	BOOL bOK=TRUE;
 
-	#ifdef __MSC__
+	#ifdef _MSC_VER
 		putenv ("COMPILER=VC++");
-	#else
-		putenv ("COMPILER=Unknow");
 	#endif
 
 	

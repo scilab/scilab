@@ -54,10 +54,10 @@ static char *rcsid = "$Id: xdr_rec.c,v 1.2 2005/08/01 11:30:37 cornet Exp $";
 #include <string.h>
 
 #ifdef __MINGW32__
-#define __MSC__
+#define _MSC_VER
 #endif 
 
-#if !(defined __MSC__)
+#if !(defined _MSC_VER)
 #include <netinet/in.h> /** jpc : je met netinet/ avant rpc pour eviter un warning */
 #include <rpc/types.h> 
 #include <rpc/xdr.h>
@@ -313,7 +313,7 @@ xdrrec_getpos(xdrs)
 	register RECSTREAM *rstrm = (RECSTREAM *)xdrs->x_private;
 	register long pos;
 
-#if (defined __MSC__) 
+#if (defined _MSC_VER) 
   /* XXX : no lseek in msvc++*/
 	fseek((FILE *)(int)rstrm->tcp_handle, (long) 0, 1);
 	pos = ftell((FILE *)(int)rstrm->tcp_handle);

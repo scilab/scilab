@@ -5,7 +5,7 @@
 #ifndef __INTPRINTBOX__
 #define __INTPRINTBOX__
 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h>
 #endif
 
@@ -24,7 +24,7 @@
 
 
 int C2F(intprintsetupbox) _PARAMS((char *fname));
-#if WIN32
+#if _MSC_VER
 	HDC GetPrinterDC(void);
 	char GetPrinterOrientation(void);
 	char* GetPrinterName(void);

@@ -1,6 +1,6 @@
 #include "intPlaySound.h"
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef WIN32
+#ifdef _MSC_VER
 	#pragma comment(lib, "winmm.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -58,7 +58,7 @@ int intPlaysound __PARAMS((char *fname,unsigned long fname_len))
 int C2F(playsound)(char *fname,char *command,unsigned long fname_len)
 {
 
-#ifdef WIN32
+#ifdef _MSC_VER
   /* Stop Playing*/
   PlaySound(NULL,NULL,SND_PURGE);	
   /* Play Wav file	*/

@@ -8,7 +8,7 @@ extern int InterfaceWindowsQueryRegistry _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwinqueryreg) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsQueryRegistry(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");

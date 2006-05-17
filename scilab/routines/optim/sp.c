@@ -16,7 +16,7 @@
 #include <string.h>
 #include "spd.h"
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 extern void Scistring (char *str);
 #endif
 

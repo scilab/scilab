@@ -9,13 +9,13 @@
 extern void cerro();
 
 #include "../machine.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#if WIN32
+#if _MSC_VER
 extern int F2C(arbor)();
 #endif
 

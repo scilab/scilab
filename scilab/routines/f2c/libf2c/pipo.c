@@ -1,10 +1,10 @@
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 OKWIN32=1
 #endif 
 
 
-#ifdef __MSC__ 
+#ifdef _MSC_VER 
 OKMSC=1
 #endif 
 

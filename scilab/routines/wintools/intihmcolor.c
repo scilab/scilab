@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intihmcolor.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -12,7 +12,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
 	extern BOOL SetIhmSystemDefaultTextColor(void);
 	extern BOOL SetIhmTextBackgroundColor(int R,int G,int B);
@@ -30,7 +30,7 @@ int C2F(intsettextcolor) _PARAMS((char *fname))
 
 	if (Rhs == 0)
 	{
-		#if WIN32
+		#if _MSC_VER
 		if (IsWindowInterface()) *paramoutINT=(int)SetIhmSystemDefaultTextColor();
 		else *paramoutINT=(int)FALSE;
 		#else
@@ -60,7 +60,7 @@ int C2F(intsettextcolor) _PARAMS((char *fname))
 					(G>=0) && (G<256) &&
 					(B>=0) && (B<256) )
 				{
-					#if WIN32
+					#if _MSC_VER
 					if (IsWindowInterface()) *paramoutINT=(int)SetIhmTextColor(R,G,B);
 					else *paramoutINT=(int)FALSE;
 					#else
@@ -105,7 +105,7 @@ int C2F(intsettextbackgroundcolor) _PARAMS((char *fname))
 
 	if (Rhs == 0)
 	{
-		#if WIN32
+		#if _MSC_VER
 		if (IsWindowInterface()) *paramoutINT=(int)SetIhmSystemDefaultTextBackgroundColor();
 		else *paramoutINT=(int)FALSE;
 		#else
@@ -134,7 +134,7 @@ int C2F(intsettextbackgroundcolor) _PARAMS((char *fname))
 					 (G>=0) && (G<256) &&
 					 (B>=0) && (B<256) )
 				{
-					#if WIN32
+					#if _MSC_VER
 					if (IsWindowInterface()) *paramoutINT=(int)SetIhmTextBackgroundColor(R,G,B);
 					else *paramoutINT=(int)FALSE;
 					#else

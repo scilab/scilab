@@ -4,7 +4,7 @@
  *--------------------------------------------*/
 
 #include "../graphics/Math.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -18,7 +18,7 @@ extern int C2F(getarg)(int *,char *,long int ln);
 int C2F(sciiargc)() 
 {
   int val=0;
-#ifdef WIN32
+#ifdef _MSC_VER
   val=sci_iargc(); /* see wsci/winmain.c */
 #else
 #ifdef G95_FORTRAN
@@ -32,7 +32,7 @@ int C2F(sciiargc)()
 
 int C2F(scigetarg)(int *n,char *str,long int ln)
 {
-#ifdef WIN32
+#ifdef _MSC_VER
   sci_getarg(n,str,ln); /* see wsci/winmain.c */
 #else 
 #ifdef G95_FORTRAN

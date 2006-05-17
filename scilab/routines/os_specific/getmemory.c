@@ -14,7 +14,7 @@ int getfreememory()
 #define kooctet 1024
 #undef MEMOK
 
-#if defined(WIN32)
+#if defined(_MSC_VER)
   {
     #define MEMOK 1
     MEMORYSTATUS stat;
@@ -82,7 +82,7 @@ int getmemorysize()
 #undef MEMOK
 
 
-#if defined(WIN32)
+#if defined(_MSC_VER)
 #define MEMOK 1
   {
     MEMORYSTATUS stat;

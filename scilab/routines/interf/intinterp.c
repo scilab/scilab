@@ -7,7 +7,7 @@
  *     Bruno Pincon
  */
 
-#if WIN32
+#if _MSC_VER
 #include <string.h>
 #endif
 #include <math.h>
@@ -16,19 +16,19 @@
 #include "../stack-c.h"
 #include "interp.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#if WIN32
+#if _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 
 
-#if WIN32
+#if _MSC_VER
 #undef min
 #undef max
 #endif
@@ -37,7 +37,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #define max(a,b) ((a) < (b) ? (b) : (a))
 
 
-#if WIN32
+#if _MSC_VER
 extern int C2F(dset)();
 extern int C2F(bicubicinterpwithgrad)();
 extern int C2F(bicubicinterpwithgradandhes)();
@@ -1271,7 +1271,7 @@ int C2F(intinterp)(void)
 {
 	Rhs = Max(0, Rhs);
 
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

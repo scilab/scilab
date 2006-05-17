@@ -3,18 +3,18 @@
 #include "../machine.h"
 #include <stdio.h>
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#if WIN32
+#if _MSC_VER
 #include <windows.h>
 #endif
-#if defined(__STDC__) || defined(__MSC__) || defined(__CYGWIN__)
+#if defined(__STDC__) || defined(_MSC_VER) || defined(__CYGWIN__)
 #include <stdlib.h>
-#ifndef WIN32
+#ifndef _MSC_VER
 #include <sys/types.h>
 #include <unistd.h>
 #endif
@@ -22,11 +22,11 @@
 extern  char  *getenv();
 #endif
 
-#if (defined __MSC__) || defined(__MINGW32__) 
+#if (defined _MSC_VER) || defined(__MINGW32__) 
 #define putenv(x) _putenv(x)
 #endif
 
-#if defined(__MSC__)
+#if defined(_MSC_VER)
 #include <process.h>
 #endif
 
@@ -43,7 +43,7 @@ static char tmp_dir[256],buf[256];
 
 void C2F(settmpdir)(void)
 {
-#if WIN32
+#if _MSC_VER
 	#define PATH_MAX 1024
 	char TmpDirDefault[PATH_MAX];
 #endif
@@ -51,7 +51,7 @@ void C2F(settmpdir)(void)
   if ( first == 0 ) 
     {
       first++;
-#ifdef WIN32 
+#ifdef _MSC_VER 
 	  if (!GetTempPath(PATH_MAX,TmpDirDefault))
 	  {
 		  MessageBox(NULL,"Don''t find Windows temporary directory","Error",MB_ICONERROR);
@@ -107,7 +107,7 @@ char *get_sci_tmp_dir(void)
 }
 
 
-#if WIN32
+#if _MSC_VER
 /* Remove directory and subdirectories */
 /* A.C INRIA 2005 */
 int DeleteDirectory(char *refcstrRootDirectory)
@@ -185,7 +185,7 @@ int DeleteDirectory(char *refcstrRootDirectory)
 void C2F(tmpdirc)(void)
 {
   char *tmp_dir = get_sci_tmp_dir(); 
-#ifdef WIN32 
+#ifdef _MSC_VER 
   DeleteDirectory(tmp_dir);
 #else 
 #if (defined(hppa))

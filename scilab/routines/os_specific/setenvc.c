@@ -6,13 +6,13 @@
 #ifdef WITH_TK
   #include "../tclsci/TCL_Global.h"
 #endif
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #define putenv _putenv
 static char *env=NULL;
 #endif
@@ -71,7 +71,7 @@ int setenvc(char *string,char *value)
       ret=TRUE;
       UpdateEnvVar=1;
     }
-#ifdef WIN32
+#ifdef _MSC_VER
   if (env)
     {
       FREE(env);

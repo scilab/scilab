@@ -4,14 +4,14 @@
 /*-----------------------------------------------------------------------------------*/
 #include "inttoprint.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	extern void PrintFile(char *filename);
 	extern void PrintString(char *lines,char *Entete);
 	extern BOOL FileExist(char *filename);
@@ -28,7 +28,7 @@ int C2F(inttoprint) _PARAMS((char *fname))
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
-	#if WIN32
+	#if _MSC_VER
 	if (Rhs == 1)
 	{
 		if (GetType(1) == sci_strings)

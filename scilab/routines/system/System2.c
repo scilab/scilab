@@ -5,7 +5,7 @@
 /* only used to force the linker to load all calelm functions 
  */ 
 
-#ifndef WIN32
+#ifndef _MSC_VER
 
 extern void C2F(bint2d)(),
   C2F(bint3d)(),

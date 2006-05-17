@@ -3,13 +3,13 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "Scierror.h"
 
-#if defined  (__STDC__) || defined  (WIN32)
+#if defined  (__STDC__) || defined  (_MSC_VER)
 	#include <stdarg.h>
 #else
 	#include <varargs.h>
 #endif  
 /*-----------------------------------------------------------------------------------*/ 
-#if WIN32
+#if _MSC_VER
 	#define vsnprintf _vsnprintf
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -32,7 +32,7 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 * as sciprint but with an added first argument 
 * which is ignored (used in do_printf) 
 */
-#if defined (__STDC__) || defined (WIN32)
+#if defined (__STDC__) || defined (_MSC_VER)
 	int  Scierror(int iv,char *fmt,...) 
 #else
 	int Scierror(va_alist) va_dcl
@@ -42,7 +42,7 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 	integer lstr;
 	va_list ap;
 	char s_buf[bsiz];
-#if defined (__STDC__) || defined (WIN32)
+#if defined (__STDC__) || defined (_MSC_VER)
 	va_start(ap,fmt);
 #else
 	int iv;

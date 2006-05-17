@@ -5,7 +5,7 @@
 #include "intgraphics.h"
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/ 
-#if WIN32
+#if _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -207,7 +207,7 @@ int C2F(matdes)()
 {  
   Rhs = Max(0, Rhs);
 
-#if WIN32
+#if _MSC_VER
 #ifndef _DEBUG
   _try
     {

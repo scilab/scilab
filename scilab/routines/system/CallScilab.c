@@ -3,13 +3,13 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "CallScilab.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#if WIN32
+#if _MSC_VER
 #define putenv _putenv
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -35,7 +35,7 @@ extern void C2F(freemem)(void);
 extern int CloseTCLsci(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void initTCLTK(void);
 extern void start_sci_gtk();
@@ -45,7 +45,7 @@ extern void TextMessage1 (int ctrlflag);
 extern int C2F(sxevents)();
 #endif
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
 static void SetSciEnv(void)
 {
   extern void set_sci_env(char *DefaultSCIPATH);
@@ -82,7 +82,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	if (SCIpath==NULL)
 	{
-		#ifdef WIN32
+		#ifdef _MSC_VER
 			SetSciEnv();
 		#else
 		{
@@ -135,7 +135,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	/* running the startup */ 
 	C2F(settmpdir)();
-#if WIN32
+#if _MSC_VER
 	InitWindowGraphDll();
 	start_sci_gtk() ;
 #endif
@@ -187,7 +187,7 @@ int TerminateScilab(char *ScilabQuit)
 		if (QuitStringToScilab) {FREE(QuitStringToScilab);QuitStringToScilab=NULL;}
 		if (ScilabQuitUsed) {FREE(ScilabQuitUsed);ScilabQuitUsed=NULL;}
 
-		#if WIN32
+		#if _MSC_VER
 			C2F(freegmem)();
 			C2F(freemem)();
 		#endif
@@ -239,7 +239,7 @@ int SendScilabJob(char *job)
 /*-----------------------------------------------------------------------------------*/
 void ScilabDoOneEvent(void)
 {
-#if WIN32
+#if _MSC_VER
 	TextMessage1 (1);
 #else 
 	C2F(sxevents)();

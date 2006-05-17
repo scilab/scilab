@@ -20,20 +20,20 @@
 #include "../os_specific/sci_mem_alloc.h"  /* malloc */
 
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #if !(defined __CYGWIN32__)
 #include <float.h>
 #define finite(x) _finite(x) 
 #endif 
-#else  /* WIN32 */ 
+#else  /* _MSC_VER */ 
 /** This should only be provided when finite prototype is missing **/
 /** XXX : to be tested **/
 #ifndef __cplusplus
 int finite __PARAMS((double));
 #endif
-#endif /* WIN32 */
+#endif /* _MSC_VER */
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #if !(defined __CYGWIN32__)
 #include <float.h>
 #define ISNAN(x) _isnan(x)
@@ -94,7 +94,7 @@ int finite __PARAMS((double));
 #include <ieeefp.h>
 #endif
 
-#if defined(THINK_C)|| defined(WIN32)
+#if defined(THINK_C)|| defined(_MSC_VER)
   #define M_PI 3.14159265358979323846
 #else
   #if defined(HAVE_VALUES_H)

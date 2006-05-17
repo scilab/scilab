@@ -8,7 +8,7 @@
 
 #include "../machine.h" /* to be sure that WITH_XXX are defined */
 
-#ifndef WIN32
+#ifndef _MSC_VER
 #ifdef WITH_GTK
 #include <gtk/gtk.h>
 #else
@@ -22,7 +22,7 @@
 #define CoordModeOrigin 0
 #endif 
 
-#ifndef WIN32
+#ifndef _MSC_VER
   #ifndef GXclear 
    #define GXclear 0
    #define GXand 1
@@ -104,7 +104,7 @@ typedef struct BCG
   sciPointObj *mafigure;  /* Entities root */
   int graphicsversion;
   /* NG end */
-#ifdef WIN32
+#ifdef _MSC_VER
   /** windows specific objects **/
   HWND	hWndParent;     /* parent window handle */
   HWND CWindow ;   /** window of the top level widget of the graphic window **/

@@ -12,7 +12,7 @@
  extern void free();
  extern void exit_();
 #else
-#ifdef WIN32
+#ifdef _MSC_VER
 #undef max
 #undef min
 #endif

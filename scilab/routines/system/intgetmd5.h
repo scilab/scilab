@@ -5,7 +5,7 @@
 #ifndef __INTGETMD5__
 #define __INTGETMD5__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #endif
 

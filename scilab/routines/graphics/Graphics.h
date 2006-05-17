@@ -490,7 +490,7 @@ extern void C2F(gemptyGif)  __PARAMS((integer *,integer *,integer *,double *));
 	
 	/* periX11.c */
 
-#ifndef WIN32 
+#ifndef _MSC_VER 
 
 extern void SciClick __PARAMS((integer *ibutton,integer *x1,integer *yy1,integer *iflag,int getmouse,
 		       int dyn_men,int getrelease,char *str,integer * lstr));
@@ -683,7 +683,7 @@ extern void ReleaseWinHdc  __PARAMS((void));
 
 
 
-#endif /* ifndef WIN32 */
+#endif /* ifndef _MSC_VER */
 
 extern integer first_in __PARAMS(( integer,integer,integer *,integer*));
 extern integer first_out __PARAMS(( integer,integer,integer *,integer*));

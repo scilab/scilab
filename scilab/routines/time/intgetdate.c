@@ -8,14 +8,14 @@
 #include <locale.h>
 #include <stdio.h>
 
-#if WIN32
+#if _MSC_VER
 #include <sys/types.h> 
 #include <sys/timeb.h>
 #else
 #include <sys/time.h> 
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */

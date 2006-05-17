@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#ifdef WIN32
+#ifdef _MSC_VER
   #include "../../pvm3/include/pvm3.h"
 #else
   #include "pvm3.h"

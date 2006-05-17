@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #else
 #include <stdio.h>
@@ -11,13 +11,13 @@
 #include "../os_specific/Os_specific.h"
 #include "../graphics/Math.h" 
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h"  /* malloc */
 #else
 #include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 	BOOL FileExist(char *filename);
 	BOOL ExistModelicac(void);
 	BOOL ExistJavaSciWin(void);
@@ -75,7 +75,7 @@ int C2F(withscicos)(int *rep)
 /*************************************************************************************************/
 int C2F(withocaml)(int *rep)
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	if (ExistModelicac())
 	{
 		*rep =1;
@@ -96,7 +96,7 @@ int C2F(withocaml)(int *rep)
 /*************************************************************************************************/
 int C2F(withjavasci)(int *rep)
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	if (ExistJavaSciWin())
 	{
 		*rep =1;
@@ -127,7 +127,7 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   return 0;
 }
 /*************************************************************************************************/
-#ifdef WIN32
+#ifdef _MSC_VER
 BOOL FileExist(char *filename)
 {
      BOOL retour=FALSE;	
@@ -181,7 +181,7 @@ int ExistJavaSciUnix(void)
 	char *SCIPATH = (char*)getenv ("SCI");
 	char *fullpathJavaSci=NULL;
 
-#ifndef WIN32
+#ifndef _MSC_VER
 	#define JavaSciName "libjavasci"
 
 	struct utsname uname_pointer;

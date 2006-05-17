@@ -13,7 +13,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -1503,7 +1503,7 @@ int I3dRotation(void)
       integer ibutton,in,iwait=0,istr=0;
       integer verbose=0,ww,narg;
       double x0,yy0,x,y,xl,yl,bbox[4];
-#ifdef WIN32
+#ifdef _MSC_VER
       SetWinhdc();
       SciMouseCapture();
       if (version_flag() != 0)
@@ -1516,7 +1516,7 @@ int I3dRotation(void)
       /*C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);*/
       if (version_flag() != 0)
 	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#ifdef WIN32
+#ifdef _MSC_VER
       ReleaseWinHdc();
       SciMouseRelease();
 #endif
@@ -1588,7 +1588,7 @@ int I3dRotation(void)
       yy0=(yy0-Cscale.frect[1])*yy;
       x=x0;y=yy0;
 
-#ifdef WIN32
+#ifdef _MSC_VER
       SetWinhdc();
       SciMouseCapture();
 #endif
@@ -1620,7 +1620,7 @@ int I3dRotation(void)
 	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#ifdef WIN32
+#ifdef _MSC_VER
       ReleaseWinHdc();
       SciMouseRelease();
 #endif
@@ -1665,7 +1665,7 @@ int I3dRotation(void)
 static void dbox(void)
 {
   double xbox[8],ybox[8],zbox[8];
-#ifdef WIN32
+#ifdef _MSC_VER
   integer verbose=0,pat,pat1=3,narg,un=1;
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1673,7 +1673,7 @@ static void dbox(void)
 #endif/**DJ.Abdemouche 2003**/
   SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
   C2F(box3d)(xbox,ybox,zbox);
-#ifdef WIN32
+#ifdef _MSC_VER
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
 }

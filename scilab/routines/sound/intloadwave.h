@@ -5,7 +5,7 @@
 #ifndef __INTLOADWAVE__
 #define __INTLOADWAVE__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #endif
 

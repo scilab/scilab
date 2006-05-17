@@ -17,7 +17,7 @@
 
 #include "../stack-c.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -26,7 +26,7 @@
 
 static integer cx1 = 1;
 
-#if WIN32
+#if _MSC_VER
 extern int C2F(getorient)( );
 extern int C2F(rcsort)( );
 extern int C2F(funnam)( );
@@ -1201,7 +1201,7 @@ static StrelmTable Tab[]={
 int C2F(cstrelm)()
 {  
 	Rhs = Max(0, Rhs);
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intdos.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 /* globals */
 typedef struct pipeinfo
 {
@@ -21,7 +21,7 @@ typedef struct pipeinfo
 } pipeinfo;
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static DWORD WINAPI ReadFromPipe (LPVOID args);
 static int ClosePipeInfo (pipeinfo pipe);
 static int spawncommand(char *command,BOOL DetachProcess);
@@ -33,12 +33,12 @@ extern BOOL IsWindowInterface(void);
 extern BOOL IsAFile(char *chainefichier);
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static pipeinfo pipeOut= {INVALID_HANDLE_VALUE, NULL,0};
 static pipeinfo pipeErr= {INVALID_HANDLE_VALUE, NULL,0};
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 {
 	int m1,n1,l1;
@@ -261,7 +261,7 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static int spawncommand(char *command,BOOL DetachProcess)
 {
 	char shellCmd[_MAX_PATH];
@@ -372,7 +372,7 @@ static int spawncommand(char *command,BOOL DetachProcess)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static int ClosePipeInfo (pipeinfo pipe)
 {
 	CloseHandle(pipe.pipe);
@@ -386,7 +386,7 @@ static int ClosePipeInfo (pipeinfo pipe)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static DWORD WINAPI ReadFromPipe (LPVOID args)
 {
 	pipeinfo *pi = (pipeinfo *) args;
@@ -419,7 +419,7 @@ static DWORD WINAPI ReadFromPipe (LPVOID args)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static int GetNumberOfLines(char *lines)
 {
 	int NumberOfLines=0;
@@ -437,7 +437,7 @@ static int GetNumberOfLines(char *lines)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 {
 	char **OuputStrings=NULL;
@@ -488,7 +488,7 @@ static char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static int PrintOuput(char **ouput,int nbrlines)
 {
 	BOOL bOK=FALSE;
@@ -505,7 +505,7 @@ static int PrintOuput(char **ouput,int nbrlines)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-#if __MSC__
+#if _MSC_VER
 static BOOL DetectDetachProcessInCommandLine(char *command)
 {
 	BOOL bOK=FALSE;

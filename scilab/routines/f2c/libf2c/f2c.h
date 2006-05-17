@@ -154,7 +154,7 @@ struct Namelist {
 	};
 typedef struct Namelist Namelist;
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #undef min
 #undef max
 #endif

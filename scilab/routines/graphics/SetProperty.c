@@ -32,7 +32,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -3142,7 +3142,7 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
 	  /*  sciGetScilabXgc (pobj)->CurResizeStatus = num1;  
 	      C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
 	      C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);*/
-#ifdef WIN32
+#ifdef _MSC_VER
 	  /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
 	  /* SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  
 	     -sciGetScilabXgc (pobj)->horzsi.nPos,

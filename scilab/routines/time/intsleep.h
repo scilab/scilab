@@ -5,7 +5,7 @@
 #ifndef __INTSLEEP__
 #define __INTSLEEP__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 	#include <windows.h>
 #else
 	#include <sys/utsname.h>

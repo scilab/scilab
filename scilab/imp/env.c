@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if (defined __MSC__) || defined(__MINGW32__) 
+#if (defined _MSC_VER) || defined(__MINGW32__) 
 #undef putenv
 #define putenv(x) _putenv(x)
 #endif
@@ -51,7 +51,7 @@ void SciEnv ()
     if ( ( p1 = getenv("SCI"))  == (char *) 0 )
 	{
 		sprintf(env,"SCI=%s",p);
-		#if __MSC__
+		#if _MSC_VER
 			_putenv(env);
 		#else
 			putenv(env);

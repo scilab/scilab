@@ -35,14 +35,14 @@ void banner(void)
 		sciprint("   doesn't provide and doesn't support the port of Scilab to MacOS.\r\n\r\n");
 	#endif /* __APPLE__ */
 
-	#if ( defined(WITH_GTK) || defined(__CYGWIN32__) || defined(__MINGW32__) ) || ( defined(__MSC__) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
+	#if ( defined(WITH_GTK) || defined(__CYGWIN32__) || defined(__MINGW32__) ) || ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
 		sciprint("\r\n\r\n");
 		sciprint("Warning: the operational team of the Scilab Consortium\r\n");
 		sciprint("   doesn't provide and doesn't support this version of Scilab built with\r\n");
 		sciprint("   ");
   #endif
 
-	#if defined(__MSC__) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) 
+	#if defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) 
 		/* Visual Studio C++ 6.0 */
 		sciprint("Microsoft Visual C++ 6.0");
 	#else
@@ -65,7 +65,7 @@ void banner(void)
 		#endif
 	#endif
 
-	#if ( defined(WITH_GTK) || defined(__CYGWIN32__) || defined(__MINGW32__) ) || ( defined(__MSC__) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
+	#if ( defined(WITH_GTK) || defined(__CYGWIN32__) || defined(__MINGW32__) ) || ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
 		sciprint(".\r\n\r\n");
 	#endif
 }

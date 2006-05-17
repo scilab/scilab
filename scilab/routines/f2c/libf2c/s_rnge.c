@@ -23,7 +23,7 @@ sig_die(".", 1);
 #ifdef __cplusplus
 return 0;
 #endif
-#ifdef WIN32
+#ifdef _MSC_VER
 return 0;
 #endif
 }

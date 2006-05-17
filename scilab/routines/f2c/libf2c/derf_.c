@@ -9,7 +9,7 @@ extern double erf(double);
 double derf_(doublereal *x)
 #endif
 {
-#ifdef __MSC__ 
+#ifdef _MSC_VER 
 fprintf(stderr,"libf2c : No erf \n");
 return(0);
 #else 

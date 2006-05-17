@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "InitTclTk.h"
 #include "TclEvents.h"
-#ifndef WIN32
+#ifndef _MSC_VER
  #include <dirent.h>
  #include <X11/Xlib.h>
  #include <X11/Xatom.h>
@@ -22,7 +22,7 @@ extern int IsFromC(void);
 extern void sci_tk_activate(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
-#ifndef WIN32
+#ifndef _MSC_VER
   int XTKsocket=0;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
@@ -46,7 +46,7 @@ int OpenTCLsci(void)
   char TkScriptpath[2048];
   char MyCommand[2048];
 
-#ifndef WIN32
+#ifndef _MSC_VER
   DIR *tmpdir=NULL;
   Display *XTKdisplay;
 #endif
@@ -71,7 +71,7 @@ int OpenTCLsci(void)
       return(1);
     }
 
-#ifdef WIN32
+#ifdef _MSC_VER
   strcpy(TkScriptpath, SciPath);
   strcat(TkScriptpath, "/tcl/TK_Scilab.tcl");
 
@@ -100,7 +100,7 @@ int OpenTCLsci(void)
       return(1);
     }
   else fclose(tmpfile);
-#endif /* WIN32 */ 
+#endif /* _MSC_VER */ 
   
 #if defined(__CYGWIN32__) 
   /* we must pass X: pathnames to tcl */
@@ -145,7 +145,7 @@ int OpenTCLsci(void)
   if (TKmainWindow == NULL)
     {
       TKmainWindow = Tk_MainWindow(TCLinterp);
-	  #ifndef WIN32
+	  #ifndef _MSC_VER
         XTKdisplay=Tk_Display(TKmainWindow);
         XTKsocket = ConnectionNumber(XTKdisplay);
 	  #endif

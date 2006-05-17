@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intdde.h"
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
   extern int InterfaceWindowsDDEopen _PARAMS((char *fname));
   extern int InterfaceWindowsDDEclose _PARAMS((char *fname));
   extern int InterfaceWindowsDDEexec _PARAMS((char *fname));
@@ -15,7 +15,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(intddeopen) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsDDEopen(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
@@ -27,7 +27,7 @@ int C2F(intddeopen) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intddeclose) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsDDEclose(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
@@ -39,7 +39,7 @@ int C2F(intddeclose) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intddeexec) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsDDEexec(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
@@ -51,7 +51,7 @@ int C2F(intddeexec) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intddepoke) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsDDEpoke(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
@@ -63,7 +63,7 @@ int C2F(intddepoke) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intddereq) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsDDEreq(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
@@ -75,7 +75,7 @@ int C2F(intddereq) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intddeisopen) _PARAMS((char *fname))
 {
-#ifdef WIN32
+#ifdef _MSC_VER
 	InterfaceWindowsDDEIsOpen(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");

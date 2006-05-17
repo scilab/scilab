@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intprintbox.h"
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 	extern BOOL ConfigurePrinterDialogBox(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -17,7 +17,7 @@ int C2F(intprintsetupbox) _PARAMS((char *fname))
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	#if WIN32
+	#if _MSC_VER
 		if (ConfigurePrinterDialogBox())
 		{
 			*paramoutINT=(int)(TRUE);

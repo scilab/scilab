@@ -1,7 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#ifndef __MSC__
+#ifndef _MSC_VER
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif

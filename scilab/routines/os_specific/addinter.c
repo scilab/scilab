@@ -13,7 +13,7 @@
 #include "Os_specific.h"
 
 #include "../stack-def.h"
-#ifdef WIN32
+#ifdef _MSC_VER
  #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
  #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -274,7 +274,7 @@ void C2F(userlk)(integer *k)
     }
   if ( DynInterf[k1].ok == 1 ) 
   {
-	#if WIN32
+	#if _MSC_VER
 	  #ifndef _DEBUG
 		_try
 		{

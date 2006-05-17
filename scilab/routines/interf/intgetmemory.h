@@ -5,7 +5,7 @@
 #ifndef __INTGETMEMORY__
 #define  __INTGETMEMORY__
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <string.h>
 #endif
 

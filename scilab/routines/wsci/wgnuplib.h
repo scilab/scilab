@@ -25,9 +25,6 @@
  *   Allan CORNET INRIA 2005
  */
 
-#ifdef _WINDOWS
-#define _Windows
-#endif
 
 #ifdef __DLL__ 
 /** XXXXX #define EXPORT extern "C" __declspec (dllexport) **/

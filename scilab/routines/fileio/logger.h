@@ -6,7 +6,7 @@
 #define _LOGGER_STDERR 1
 #define _LOGGER_STDOUT 2
 #define _LOGGER_FILE   3
-/* #ifndef WIN32 */
+/* #ifndef _MSC_VER */
 #define _LOGGER_SYSLOG 4
 /* #endif */
 

@@ -20,7 +20,7 @@
 #include "Interaction.h"
 #include "DrawObjects.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -1098,7 +1098,7 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
   C2F(dr)("xget","line style",&verbose,style,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-#ifdef WIN32
+#ifdef _MSC_VER
   SetWinhdc();
   SciMouseCapture();
 #endif 
@@ -1142,7 +1142,7 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
       pixel_x = x_pixel[1];
       pixel_y = y_pixel[1];
     }   
-#ifndef WIN32
+#ifndef _MSC_VER
   /** XXXX */
   C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
@@ -1165,7 +1165,7 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
   C2F(dr)("xset","line style",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-#ifdef WIN32
+#ifdef _MSC_VER
   ReleaseWinHdc();
   SciMouseRelease();
 #endif
@@ -1871,7 +1871,7 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
   
   int xm[5], ym[5];
   
-  #ifdef WIN32
+  #ifdef _MSC_VER
     integer verbose=0,pat,pat1=3,narg;
   #endif
 
@@ -1909,7 +1909,7 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
     ym[2] = ypix_ini;
   }
   
-#ifdef WIN32
+#ifdef _MSC_VER
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
@@ -1921,7 +1921,7 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
 
 
 
-#ifdef WIN32
+#ifdef _MSC_VER
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif
 }

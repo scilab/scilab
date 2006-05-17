@@ -21,7 +21,7 @@ int C2F(intxpause) _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 		}
 	
-	#ifdef WIN32
+	#ifdef _MSC_VER
 		{
 			int ms = (sec)/1000; /** time is specified in milliseconds in scilab**/
 			if (ms > 0) Sleep(ms); /* Number of milliseconds to sleep. */

@@ -11,7 +11,7 @@
 
 typedef int logical;
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(parse)() line 1393 */
 #endif
 

@@ -3,14 +3,14 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intOEMconvert.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#ifdef WIN32
+#ifdef _MSC_VER
   extern BOOL IsWindowInterface(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -32,7 +32,7 @@ int C2F(intoemtochar) _PARAMS((char *fname))
 		OEMstring=cstk(l1);
 		
 		Output=(char*)MALLOC((strlen(OEMstring)+1)*sizeof(char));
-	#if WIN32
+	#if _MSC_VER
 		if (IsWindowInterface())
 		{
 				OemToChar(OEMstring,Output);
@@ -76,7 +76,7 @@ int C2F(intchartooem) _PARAMS((char *fname))
 		Charstring=cstk(l1);
 
 		Output=(char*)MALLOC((strlen(Charstring)+1)*sizeof(char));
-	#if WIN32
+	#if _MSC_VER
 		if (IsWindowInterface())
 		{
 			CharToOem(Charstring,Output);

@@ -58,7 +58,7 @@
 #ifndef __ABSC__
 #include <sys/types.h>
 #endif
-#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
+#if (defined _MSC_VER) || (defined __ABSC__) || (defined __MINGW32__)
 #undef FALSE
 #undef TRUE 
 #include <winsock.h>
@@ -66,11 +66,11 @@ typedef char * caddr_t;
 #define bzero(x,n) memset(x,0,n)
 #define bcopy(x,y,n) memcpy(x,y,n)
 #define IEEEFP
-#endif /* __MSC__ && __ABSC__ */
+#endif /* _MSC_VER && __ABSC__ */
 
 #endif /* makedev */
 
-#if !(defined __MSC__) && !(defined __ABSC__) && ! (defined __MINGW32__)
+#if !(defined _MSC_VER) && !(defined __ABSC__) && ! (defined __MINGW32__)
 #include <sys/time.h>
 #endif
 #ifdef __ABSC__

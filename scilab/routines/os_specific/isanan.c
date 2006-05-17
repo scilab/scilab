@@ -6,7 +6,7 @@
 #include "Os_specific.h"
 
 
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #ifndef __CYGWIN32__
 #define _ISANAN
 #include <float.h>

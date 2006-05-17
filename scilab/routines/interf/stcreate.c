@@ -9,7 +9,7 @@ static integer c17 = 17;
 static integer c1 = 1;
 static integer c4 = 4;
 
-#ifdef WIN32
+#ifdef _MSC_VER
 int sttyp(ivt, job, nf, fnames);
 int creonevoid(slw,lw);
 int crelistofvoids(slw,lw,nels);

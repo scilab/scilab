@@ -812,7 +812,7 @@ TestOpTab GraphicTestTab[] ={
  {(char *) NULL,vide}
 };
 
-#ifndef WIN32 
+#ifndef _MSC_VER 
 #ifdef WITH_GTK
 int call_graphics_predefined_callbacks(char *name, int winid)
 {

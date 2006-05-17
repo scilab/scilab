@@ -7,7 +7,7 @@
 #include <malloc.h>
 #endif 
 
-#if __MSC__
+#if _MSC_VER
 #include <stdlib.h>
 #endif
 
@@ -59,7 +59,7 @@ double Get_Jacobian_parameter(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
 
-#ifndef __MSC__
+#ifndef _MSC_VER
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif

@@ -1,7 +1,7 @@
 /* Copyright INRIA/ENPC */
 #include <string.h>
 #include "../machine.h"
-#ifdef WIN32 
+#ifdef _MSC_VER 
 #include <windows.h>
 #if !(defined __CYGWIN32__)
 #include <direct.h>
@@ -21,13 +21,13 @@ static char     cur_dir[FSIZE];
 extern char	   *getcwd();
 #define GETCWD(x,y) getcwd(x,y)
 #else
-#ifndef WIN32
+#ifndef _MSC_VER
 extern char	   *getwd();
 #define GETCWD(x,y) getwd(x)
 #endif
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 extern void sciprint (char *fmt,...);
 #endif
 

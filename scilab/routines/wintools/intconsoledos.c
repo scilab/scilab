@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intconsoledos.h"
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -23,7 +23,7 @@ int C2F(intconsoledos) _PARAMS((char *fname))
 
 	if (Rhs==0)
 	{
-		#ifdef WIN32
+		#ifdef _MSC_VER
 		if (IsWindowInterface()) 
 			{
 				if (GetConsoleState()) strcpy(Output,"on");
@@ -49,7 +49,7 @@ int C2F(intconsoledos) _PARAMS((char *fname))
 
 			if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) )
 			{
-				#ifdef WIN32
+				#ifdef _MSC_VER
 				if (IsWindowInterface()) 
 					{
 						if (strcmp(param,"on")==0)

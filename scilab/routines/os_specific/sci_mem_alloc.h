@@ -3,7 +3,7 @@
 #ifndef __SCI_MEM_ALLOC__
 #define __SCI_MEM_ALLOC__
 
-#if WIN32
+#if _MSC_VER
 #include <stdlib.h>
 #endif
 
@@ -28,7 +28,7 @@
  extern void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);
  extern void  MyFree(void *x, char *fichier,int ligne);
 
-#ifndef WIN32
+#ifndef _MSC_VER
  
  #ifdef lint5
    #include <sys/stdtypes.h>

@@ -3,7 +3,7 @@
 #ifndef __SCI_MEM_ALLOC__
 #define __SCI_MEM_ALLOC__
 
-#if WIN32
+#if _MSC_VER
 #include <stdlib.h>
 #endif
 
@@ -23,7 +23,7 @@
 #undef REALLOC
 #endif
 
-#ifndef WIN32
+#ifndef _MSC_VER
  extern void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
  extern void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);
  extern void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);

@@ -13,7 +13,7 @@ extern int getarg_(int *,char *,long int ln);
 int C2F(sciiargc)() 
 {
   int val;
-#ifdef WIN32
+#ifdef _MSC_VER
   val=sci_iargc(); /* see wsci/winmain.c */
 #else
   val=iargc_();
@@ -23,7 +23,7 @@ int C2F(sciiargc)()
 
 int C2F(scigetarg)(int *n,char *str,long int ln)
 {
-#ifdef WIN32
+#ifdef __MSC_VER
   sci_getarg(n,str,ln); /* see wsci/winmain.c */
 #else 
   getarg_(n,str,ln);

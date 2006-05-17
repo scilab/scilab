@@ -1,5 +1,5 @@
 #include <stdio.h>
-#if !(defined __MSC__)&& !(defined __MINGW32__)
+#if !(defined _MSC_VER)&& !(defined __MINGW32__)
 #if defined(netbsd) || defined(freebsd)
 #include <sys/types.h>
 #endif
@@ -12,7 +12,7 @@
 #include <malloc.h>
 #endif
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -24,7 +24,7 @@ int CheckGraphName(name,dir)
 char *name;
 char *dir;
 {
-#if (defined __MSC__) || (defined __MINGW32__)
+#if (defined _MSC_VER) || (defined __MINGW32__)
   return(0);
 #else 
   DIR *dirp;
@@ -50,7 +50,7 @@ char *dir;
   }
   closedir(dirp);
   return 0;
-#endif /**  __MSC__ **/
+#endif /**  _MSC_VER **/
 }
 
 char *StripGraph(name)

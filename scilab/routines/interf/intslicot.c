@@ -3,7 +3,7 @@
 
 #include "../stack-c.h"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
@@ -43,7 +43,7 @@ extern Gatefunc C2F(intdhinf);
 extern Gatefunc C2F(intlinmeq);
 extern int C2F(intmb03od) __PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(intzb03od) __PARAMS((char *fname, unsigned long fname_len));
-#if WIN32
+#if _MSC_VER
 extern int C2F(ab01od)();
 #endif
 
@@ -147,7 +147,7 @@ static GenericTable Tab[]={
 int C2F(intslicot)()
 {
 	Rhs = Max(0, Rhs);
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

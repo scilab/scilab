@@ -13,7 +13,7 @@
 #include "st.h"
 #include <string.h>
 
-#ifndef WIN32
+#ifndef _MSC_VER
 #include <sys/types.h>
 #include <sys/stat.h>
 #endif
@@ -65,7 +65,7 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,integer flag,W
       return 0;
     }
   ft->filename = filename;
-#if defined(DOS) || defined(__OS2__) || defined(WIN32) || defined (__MWERKS__)
+#if defined(DOS) || defined(__OS2__) || defined(_MSC_VER) || defined (__MWERKS__)
   informat.seekable  = 1;
 #else
   informat.seekable  = (filetype(fileno(informat.fp)) == S_IFREG);
@@ -164,7 +164,7 @@ int C2F(savewave)(char * filename,double *res,integer * rate,integer *size_res,i
     }
 
   ft->filename = filename;
-#if defined(DOS) || defined(__OS2__) || defined(WIN32) || defined (__MWERKS__)
+#if defined(DOS) || defined(__OS2__) || defined(_MSC_VER) || defined (__MWERKS__)
   informat.seekable  = 1;
 #else
   informat.seekable  = (filetype(fileno(informat.fp)) == S_IFREG);
@@ -245,7 +245,7 @@ void init(void)
  * Process input file -> effect table -> output file
  *	one buffer at a time
  */
-#if defined(DOS) || defined(__OS2__) || defined(WIN32) || defined (__MWERKS__)
+#if defined(DOS) || defined(__OS2__) || defined(_MSC_VER) || defined (__MWERKS__)
 int filetype(int fd) { return 0;}
 #else 
 int filetype(int fd)
