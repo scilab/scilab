@@ -149,7 +149,7 @@ int C2F(playsound)(char *fname,char *command,unsigned long fname_len)
    */
   char system_cmd[FILENAME_MAX+10];
   int rep ;
-  sprintf(system_cmd,"%s  %s",(command == NULL) ? "play": command, filename);
+  sprintf(system_cmd,"%s  %s > /dev/null 2>&1",(command == NULL) ? "play": command, filename);
   rep = system(system_cmd);
   return rep;
 #endif 
