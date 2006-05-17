@@ -133,6 +133,7 @@ BINDISTFILES = \
 	$(SCIBASE)/Path.incl \
 	$(SCIBASE)/README_Unix \
 	$(SCIBASE)/RELEASE_NOTES \
+	$(SCIBASE)/SVN_revision.incl \
 	$(SCIBASE)/Version.incl \
 	$(SCIBASE)/configure \
 	$(SCIBASE)/libtool \
