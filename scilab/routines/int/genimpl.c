@@ -25,8 +25,15 @@ Type j;\
     STEP=(Type)*((Type *)step);\
     RES=(Type *)res;\
     i = 0;\
-    for (j=FIRST;j<=LAST;j+=STEP){\
-      RES[i++]=j;\
+    if (STEP<(Type)0) {\
+      for (j=FIRST;j>=LAST;j+=STEP){\
+        RES[i++]=j;\
+      }\
+    }\
+    else if (STEP>(Type)0) {\
+      for (j=FIRST;j<=LAST;j+=STEP){\
+        RES[i++]=j;\
+      }\
     }\
 }
 
@@ -41,7 +48,15 @@ Type STEP  = (Type)*((Type *)step);\
 Type LAST  = (Type)*((Type *)last);\
 Type j;\
    i = 0;\
-   for (j=FIRST;j<=LAST;j=j+STEP) {i++;}\
+   if (STEP<(Type)0) {\
+     for (j=FIRST;j>=LAST;j=j+STEP) {i++;}\
+   }\
+   else if (STEP>(Type)0) {\
+     for (j=FIRST;j<=LAST;j=j+STEP) {i++;}\
+   }\
+   else {\
+    i=-1;\
+   }\
    *res = i;\
 }
 

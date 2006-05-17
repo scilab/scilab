@@ -84,7 +84,7 @@ c
          call genimpl2(it1,istk(l1),istk(l2),istk(l1))
       else
          call genimpl3dim(it1,istk(l1),istk(l2),istk(l3),nr)
-         if (nr.eq.0) goto 10
+         if (nr.le.0) goto 10
          err=sadr(l1+memused(it1,nr))-lstk(bot)
          if(err.gt.0) then
             call error(17)
