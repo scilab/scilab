@@ -25,7 +25,6 @@ if "%1" == "xmlint-distclean" goto xmlint-distclean
 if "%1" == "xmlint-clean" goto xmlint-clean
 if "%1" == "check" goto check
 if "%1" == "man-distclean" goto man-distclean
-if "%1" == "tcl" goto tcl
 if "%1" == "libs-distclean" goto libs-distclean
 if "%1" == "libs-clean" goto libs-clean
 if "%1" == "modelicac-distclean" goto modelicac-distclean
@@ -189,13 +188,6 @@ cd routines\javasci
  echo making all Javasci
  nmake /C /f makefile.mak all /a
 cd ..\.. 
-goto end
-
-:tcl
-cd tcl
- echo making all in tcl
- nmake /C /f Makefile.mak 
-cd ..
 goto end
 
 :man-clean

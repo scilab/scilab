@@ -7,7 +7,6 @@
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
 del *.def &gt;nul
-del empty.obj  &gt;nul
 cd.. &gt;nul"/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" RuntimeLibrary="rtMultiThreadedDebugDLL" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool"/>
@@ -24,7 +23,6 @@ cd.. &gt;nul" Description="Build Lapack.def file"/></Configuration>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="cd $(IntDir) &gt;nul
 del *.def &gt;nul
-del empty.obj  &gt;nul
 cd.. &gt;nul"/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool"/>
@@ -316,6 +314,6 @@ cd.. &gt;nul" Description="Build Lapack.def file"/></Configuration></Configurati
 		<File RelativePath="..\zunmrz.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
-		<File RelativePath="..\..\..\bin\Atlas.lib"/>
-		<File RelativePath="..\lapack.fundef"/></Files>
+		<File RelativePath="..\lapack.fundef"/>
+		<File RelativePath="..\..\..\bin\Atlas.lib"/></Files>
 	<Globals/></VisualStudioProject>

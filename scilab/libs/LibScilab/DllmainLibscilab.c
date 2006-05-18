@@ -30,8 +30,6 @@
 #pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
 /*-----------------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../libs/blas_f.lib")
-//#pragma comment(lib,"../../libs/lapack_f.lib")
 #pragma comment(lib,"../../libs/calelm_f.lib")
 #pragma comment(lib,"../../libs/control_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")

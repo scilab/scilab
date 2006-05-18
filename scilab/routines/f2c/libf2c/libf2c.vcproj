@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="libf2c"
+	Name="libf2c_DLL"
 	ProjectGUID="{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}"
 	>
 	<Platforms>

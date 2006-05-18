@@ -44,9 +44,6 @@ check::
 man::
 	Makesubdirs.bat man 
 
-tcl:: 
-	Makesubdirs.bat tcl 
-
 MakeMexLib::
 	Makesubdirs.bat MakeMexLib
 
