@@ -141,7 +141,7 @@ int C2F(intopenxls)(char *fname, long lfn)
 	    result == OLEER_PROPERTIES_READ_FAIL)
       Scierror(999,"%s :file %s is not an ole2 file\r\n",fname,IN);
     else if(result == -1)
-      Scierror(999,"%s :file %s exists but cannot be opened\r\n",fname,IN);
+      Scierror(999,"%s :file %s  cannot be opened\r\n",fname,IN);
 
     return 0;
   }
