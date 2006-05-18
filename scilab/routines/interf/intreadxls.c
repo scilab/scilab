@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../machine.h"
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -91,7 +91,7 @@ static char *xls_basename (name)
 char *name;
 {
   char *base;
-#ifdef WIN32
+#ifdef _MSC_VER
   base = strrchr (name, '\\');
 #else
   base = strrchr (name, '/');
@@ -112,7 +112,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   int nsheets;
   char IN[256],TMP[256];
   char sep[2];
-#ifdef WIN32
+#ifdef _MSC_VER
   sep[0]='\\';
 #else
   sep[0]='/';
@@ -141,7 +141,7 @@ int C2F(intopenxls)(char *fname, long lfn)
 	    result == OLEER_PROPERTIES_READ_FAIL)
       Scierror(999,"%s :file %s is not an ole2 file\r\n",fname,IN);
     else if(result == -1)
-      Scierror(999,"%s :file %s exists but cannot be opened\r\n",fname,IN);
+      Scierror(999,"%s :file %s  cannot be opened\r\n",fname,IN);
 
     return 0;
   }
