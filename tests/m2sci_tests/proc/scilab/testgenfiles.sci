@@ -203,8 +203,10 @@ function []=testgenfiles(test_files,opt)
 		end
 	
 		mputl(diafiletxt,GEN_FILES_DIR+diafilename);
-	
-		funname=basename(test_files(file_ind))
+	  
+	 
+	funname=basename(test_files(file_ind))
+  
 	
 		if opt=="ref" then
 			// Now Scilab reference file is created, it has to be validated
@@ -217,6 +219,7 @@ function []=testgenfiles(test_files,opt)
 				mdelete(pathconvert(GEN_FILES_DIR+"*.sci",%F))
 				mdelete(pathconvert(GEN_FILES_DIR+"*.cat",%F))
 				mdelete(pathconvert(GEN_FILES_DIR+"*varslist*.*",%F))
+				mdelete(pathconvert(GEN_FILES_DIR+"resume_*",%F))
 			else
 				if ~or(funname==failed_fun) then
 					if size(failed_fun,"*")==0 then
@@ -230,27 +233,33 @@ function []=testgenfiles(test_files,opt)
 			end
 		else
 			write(%io(2),"Comparison between "+funname+".dia.ref and "+funname+".dia file...")
-			
-			DIATXT=mgetl(GEN_FILES_DIR+diafilename)
-			DIAREFTXT=mgetl(GEN_FILES_DIR+diafilename+".ref")
-			
-			// Remove Scilab and Matlab version
-			for ktxt=1:size(DIATXT,"*")
-				if ~isempty(strindex(DIATXT(ktxt),"version")) then
-					DIATXT(ktxt:ktxt+1)=[]
-					break
-				end
-			end
+			mdelete(pathconvert(GEN_FILES_DIR+"*.sci",%F))
+			mdelete(pathconvert(GEN_FILES_DIR+"*.cat",%F))
+			mdelete(pathconvert(GEN_FILES_DIR+"*varslist*.*",%F))
+			mdelete(pathconvert(GEN_FILES_DIR+"resume_*",%F))
+			passed=valid_dia(funname)
+			//DIATXT=mgetl(GEN_FILES_DIR+diafilename)
+			//DIAREFTXT=mgetl(GEN_FILES_DIR+diafilename+".ref")
 			
 			// Remove Scilab and Matlab version
-			for ktxt=1:size(DIAREFTXT,"*")
-				if ~isempty(strindex(DIAREFTXT(ktxt),"version")) then
-					DIAREFTXT(ktxt:ktxt+1)=[]
-					break
-				end
-			end
+			//for ktxt=1:size(DIATXT,"*")
+			//	if ~isempty(strindex(DIATXT(ktxt),"version")) then
+			//		DIATXT(ktxt:ktxt+1)=[]
+			//		break
+			//	end
+			//end
 			
-			if or(DIATXT<>DIAREFTXT) then
+			// Remove Scilab and Matlab version
+			//for ktxt=1:size(DIAREFTXT,"*")
+			//	if ~isempty(strindex(DIAREFTXT(ktxt),"version")) then
+			//		DIAREFTXT(ktxt:ktxt+1)=[]
+			//		break
+			//	end
+			//end
+			
+			//if or(DIATXT<>DIAREFTXT) then
+			
+			if ~passed then	
 				if ~or(funname==failed_fun) then
 					if size(failed_fun,"*")==0 then
 						failed_fun=["Comparison between FUNNAME.dia.ref and FUNNAME.dia file...";"";"---> Test for "+funname+": FAILED !"]
@@ -270,6 +279,9 @@ function []=testgenfiles(test_files,opt)
 		else
 			write(%io(2),["****** End of test of "+basename(test_files(file_ind))+" ******";""])
 		end
+		if opt=='' then
+		mdelete(GEN_FILES_DIR+diafilename)
+	end
 	end
 	
 	// write fun_failed
@@ -280,5 +292,4 @@ function []=testgenfiles(test_files,opt)
 	end
 	mputl(failed_fun,funfile)
 	clearglobal failed_fun
-
 endfunction
