@@ -1083,7 +1083,7 @@ int C2F(otherspfunlib)(void)
 		return 0;
 	}
 
-	#if WIN32
+	#if _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{
