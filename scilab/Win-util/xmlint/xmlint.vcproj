@@ -69,7 +69,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile=".\xmlint.exe"
-				LinkIncremental="1"
+				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(ConfigurationName)/xmlint.pdb"
