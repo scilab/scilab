@@ -7,7 +7,7 @@ function tree=sci_acoth(tree)
 // V.C.
 
 X=getrhs(tree)
-X=convert2double(X)
+//X=convert2double(X)
 
 set_infos(["If "+expression2code(X)+" is outside [-1,1]"
     "   complex part of output of "+expression2code(tree)+" will be the opposite of Matlab one."],2)

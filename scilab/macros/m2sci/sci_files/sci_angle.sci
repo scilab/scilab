@@ -7,7 +7,7 @@ function tree=sci_angle(tree)
 // V.C.
 
 A=getrhs(tree)
-A=convert2double(A)
+//A=convert2double(A)
 
 if typeof(A)=="variable" then
   n=A

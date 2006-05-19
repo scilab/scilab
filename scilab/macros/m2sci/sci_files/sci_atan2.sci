@@ -8,8 +8,8 @@ function [tree]=sci_atan2(tree)
 
 // %c_atan and %b_atan are not defined in Scilab
 [Y,X]=getrhs(tree)
-Y=convert2double(Y)
-X=convert2double(X)
+//Y=convert2double(Y)
+//X=convert2double(X)
 tree.rhs=Rhs(Y,X)
 
 // Scilab atan() does not work with complex

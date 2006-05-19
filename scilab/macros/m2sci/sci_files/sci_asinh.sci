@@ -10,7 +10,7 @@ function [tree]=sci_asinh(tree)
 tree.name="asinh"
 
 A=getrhs(tree)
-A=convert2double(A)
+//A=convert2double(A)
 tree.rhs=Rhs(A)
 
 tree.lhs(1).dims=A.dims

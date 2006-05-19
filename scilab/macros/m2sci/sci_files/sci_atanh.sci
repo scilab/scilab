@@ -8,7 +8,7 @@ function [tree]=sci_atanh(tree)
 // V.C.
 
 A=getrhs(tree)
-A=convert2double(A)
+//A=convert2double(A)
 tree.rhs=Rhs(A)
 
 set_infos(["If "+expression2code(A)+" is outside [-1,1]"

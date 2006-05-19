@@ -7,7 +7,7 @@ function tree=sci_acsch(tree)
 // V.C.
 
 X=getrhs(tree)
-X=convert2double(X)
+//X=convert2double(X)
 
 tree.name="asinh"
 Op=Operation("./",list(Cste(1),X),list())
