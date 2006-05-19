@@ -30,11 +30,19 @@ end
 
 if MSDOS then
   fullfilename=strsubst(file_path+filename,"/","\");
-  cmd="del "+fullfilename;
+  lst_files=listfiles(fullfilename);
+  if lst_files<>[] then
+    cmd="del "+fullfilename;
+    unix_w(cmd);
+  end
 else
   cmd="rm -f "+file_path+filename;
+  lst_files=listfiles(file_path+filename)
+  if lst_files<>[] then
+    cmd="rm -f "+file_path+filename;
+    unix_w(cmd);
+  end
 end
 
-unix_w(cmd);
 endfunction
 
