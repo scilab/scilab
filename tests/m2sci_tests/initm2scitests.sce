@@ -28,6 +28,8 @@ getf(PROC_DIR+"validref.sci")
 getf(PROC_DIR+"testgenfiles.sci")
 getf(PROC_DIR+"verifinfos.sci")
 getf(PROC_DIR+"rescomp.sci")
+getf(PROC_DIR+"valid_dia.sci")
+getf(PROC_DIR+"verif_dia.sci")
 
 getf(PROC_DIR+"testwrittenfiles.sci")
 
