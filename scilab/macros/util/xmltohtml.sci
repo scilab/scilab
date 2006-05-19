@@ -52,7 +52,7 @@ function xmltohtml(dirs,titles,xsl,step)
 	[lhs,rhs]=argn(0) 
 	
 	if rhs > 4 then error(39),return; end
-	if rhs <= 3 then step='all';end 
+	if rhs <= 3 then step='all'; end 
 	if rhs <= 2 then xsl= 'html-rev.xsl'; end 
 	if rhs <= 1 then titles= H + emptystr(dirs);end 
 	if rhs <= 0 then dirs = man_dirs ;end 
@@ -136,13 +136,16 @@ function xmltohtml(dirs,titles,xsl,step)
 	end
 	
 	//------------------------------------------------------------------------------------------
-	// now help workshop (Only under Windows)
+	// now help workshop (Only under Windows and only if
+	// we build the scilab man (SCI/man/fr and SCI/man/eng )
 	//------------------------------------------------------------------------------------------
 	
 	if MSDOS then
-		if step=='all' | step == 'hw' then 
-			mprintf('Creating sciman.hh* \n');
-			gener_hh(dirs,titles)
+		if step=='all' | step == 'hw' then
+			if (strindex(dirs(1),'\eng\') <> []) | (strindex(dirs(1),'\fr\') <> []) then
+				mprintf('Creating sciman.hh* \n');
+				gener_hh(dirs,titles)
+			end
 		end
 	end
 
