@@ -136,13 +136,16 @@ function xmltohtml(dirs,titles,xsl,step)
 	end
 	
 	//------------------------------------------------------------------------------------------
-	// now help workshop (Only under Windows)
+	// now help workshop (Only under Windows and only if
+	// we build the scilab man (SCI/man/fr and SCI/man/eng )
 	//------------------------------------------------------------------------------------------
 	
 	if MSDOS then
-		if step=='all' | step == 'hw' then 
-			mprintf('Creating sciman.hh* \n');
-			gener_hh(dirs,titles)
+		if step=='all' | step == 'hw' then
+			if (strindex(dirs(1),'\eng\') <> []) | (strindex(dirs(1),'\fr\') <> []) then
+				mprintf('Creating sciman.hh* \n');
+				gener_hh(dirs,titles)
+			end
 		end
 	end
 
