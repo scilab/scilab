@@ -1,4 +1,4 @@
-function [m]=msd(x,orien)
+function m=msd(x,orien)
 //
 //This function computes  the mean squared  deviation of the values of a
 //vector or matrix x.
@@ -20,17 +20,17 @@ function [m]=msd(x,orien)
 //author: carlos klimann
 //date: 1999-06-18
 //
-  if x==[] then s=%nan, return, end
-  [lhs,rhs]=argn(0)
+  rhs=argn(2)
   if rhs==0 then error('msd requires at least one input.'), end
-  [nrow ncol]=size(x);
-  if rhs==1
-    m=sqrt(sum((x-mean(x)).^2)/(nrow*ncol));
+  if x==[] then s=%nan, return, end
+  if rhs==1 then orien='*',end
+  if orien=='*' then
+    m=sqrt(sum((x-mean(x)).^2)/size(x,orient));
   elseif orien=='c'|orien==2 then
-    m=sqrt(sum((x-mean(x,'c')*ones(x(1,:))).^2,'c')/ncol);
+    m=sqrt(sum((x-mean(x,orien)*ones(x(1,:))).^2,orien)/size(x,orien));
   elseif orien=='r'|orien==1 then
-    m=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/ncol);
+    m=sqrt(sum((x-ones(x(:,1))*mean(x,orien)).^2,orien)/size(x,orien));
   else
-    error('2nd argument of st_dev must be equal to ''c'', ''r'', 1 or 2');
+    error('2nd argument of msd must be equal to ''c'', ''r'', 1 or 2');
   end
 endfunction
