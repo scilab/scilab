@@ -25,7 +25,7 @@ function m=msd(x,orien)
   if x==[] then s=%nan, return, end
   if rhs==1 then orien='*',end
   if orien=='*' then
-    m=sqrt(sum((x-mean(x)).^2)/size(x,orient));
+    m=sqrt(sum((x-mean(x)).^2)/size(x,orien));
   elseif orien=='c'|orien==2 then
     m=sqrt(sum((x-mean(x,orien)*ones(x(1,:))).^2,orien)/size(x,orien));
   elseif orien=='r'|orien==1 then
