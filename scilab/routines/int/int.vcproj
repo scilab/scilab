@@ -341,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\i_nextj.c"
+				>
+			</File>
+			<File
 				RelativePath=".\mgeti.c"
 				>
 			</File>
