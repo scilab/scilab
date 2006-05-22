@@ -7,6 +7,7 @@
 #include <Windows.h>
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
+extern BOOL ExistScicos(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
@@ -36,30 +37,46 @@ static intcscicosTable Tab[]={
   {inttree3,"ctree3"},
   {inttree4,"ctree4"},
 };
+static int SCICOS_ON=1;
+static int NotFirstTimeinScicosGateway=0;
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(intcscicos)()
 {  
 	Rhs = Max(0, Rhs);
-	#if _MSC_VER
-		#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-			char *ExceptionString=GetExceptionString(GetExceptionCode());
-			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
-		}
+	if (!NotFirstTimeinScicosGateway)
+	{
+		#if _MSC_VER
+		SCICOS_ON=ExistScicos();
+		#endif
+		NotFirstTimeinScicosGateway++;
+	}
+	if (SCICOS_ON)
+	{
+		#if _MSC_VER
+			#ifndef _DEBUG
+				_try
+				{
+					(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+				}
+				_except (EXCEPTION_EXECUTE_HANDLER)
+				{
+					char *ExceptionString=GetExceptionString(GetExceptionCode());
+					sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+					if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+				}
+			#else
+				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			#endif
 		#else
 			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 		#endif
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
-
-	C2F(putlhsvar)();
+		C2F(putlhsvar)();
+	}
+	else
+	{
+		Scierror(999,"Scicos isn't installed\n");
+	}
+	
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
