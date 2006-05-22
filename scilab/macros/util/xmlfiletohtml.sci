@@ -19,7 +19,6 @@ function xmlfiletohtml(path,xsl)
 
 		// build .xml2 file where LINK tags references are solved
 		find_links(path,path+"2")
-		update_date(path,path+"2")
 		in=path+"2"
 		out=strsubst(path,'.xml','.htm')
     
@@ -53,28 +52,4 @@ function xmlfiletohtml(path,xsl)
 		
 		unix_s(RM+path+"2")
 	end
-endfunction
-
-function update_date(xmlfile,xmlfile2)
-
-	//-------------------------------------
-	// Author : Pierre MARECHAL
-	// Scilab Team
-	// Copyright INRIA
-	// Date : 09/05/2005
-	//-------------------------------------
-	
-	//-------------------------------------
-	// Add the date of the last modification of the xml file
-	//--------------------------------------
-
-	txt=mgetl(xmlfile2);
-	d=grep(txt,"<DATE>");
-	if d==[] then mputl(txt,xmlfile2); return; end
-	[x,ierr]=fileinfo(xmlfile);
-	if x(6)<1064550000 then mputl(txt,xmlfile2); return; end
-	modification_date = getdate(x(6));
-	txt(d)="<DATE>"+string(modification_date(6))+"/"+string(modification_date(2))+"/"+string(modification_date(1))+"</DATE>";
-	mputl(txt,xmlfile2);
-	
 endfunction
