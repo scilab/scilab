@@ -30,6 +30,10 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
 //
 // list of blocks to ignore (blocks using graphics) in nw mode
 
+	if ~%scicos then
+    warning('scicos isn''t installed.');
+    abort;
+	end
 
   Ignoreb=['cscope','cmscope','scope','mscope','scopexy','evscpe','affich']
   //
