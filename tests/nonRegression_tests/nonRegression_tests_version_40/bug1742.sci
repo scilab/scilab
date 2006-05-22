@@ -1,40 +1,16 @@
-614
-631
-657
-661
-670
-768
-799
-950
-1023
-1468
-1491
-1505
-1506
-1560
-1590
-1602
-1620
-1625
-1629
-1636
-1662
-1682
-1693
-1711
-1712
-1720
-1725
-1732
-1736
-1742
-1768
-1772
-1784
-1786
-1787
-1794
-1802
-1859
-1933
-1955
+// Non-regression test file for bug 1742
+// Copyright INRIA
+// Scilab Project - Serge Steer
+// Copyright INRIA 2006
+// Date : 4 mai 2006
+
+mode(-1);
+x=matrix([5 2:8],2,4);
+r=(msd(x)-3.5)<%eps
+r=r&norm(msd(x,1)-[3 1 1 1]/2)<%eps
+r=r&norm(msd(x,'r')-[3 1 1 1]/2)<%eps
+r=r&norm(msd(x,2)-sqrt([2;5]))<%eps
+r=r&norm(msd(x,'c')-sqrt([2;5]))<%eps
+
+affich_result(r,1742);
+clear
