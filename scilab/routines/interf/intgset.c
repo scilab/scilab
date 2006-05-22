@@ -2039,7 +2039,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       if ( sciGetAutoPosition( pobj ) )
       {
-        return sciSetAutoPosition( pobj, FALSE ) ;
+        sciSetAutoPosition( pobj, FALSE ) ;
       }
       if (sciGetEntityType(pobj)== SCI_UIMENU)
       {

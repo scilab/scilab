@@ -4551,7 +4551,7 @@ int sciSetAutoPosition ( sciPointObj * pObj, BOOL value )
     /* nothing to do */
     return 1 ;
   }
-  return sciInitAutoRotation( pObj, value) ;
+  return sciInitAutoPosition( pObj, value) ;
   
 }
 
