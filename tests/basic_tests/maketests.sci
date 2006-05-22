@@ -78,6 +78,11 @@ tests = ['algebra.tst';
 	'TCL_SetGet.tst';
 	'filesassocation.tst'];
 	
+	
+	if ~%scicos then
+	  tests(find(tests=='scicos.tst'))=[];
+	end
+	
 	if ~MSDOS then
 		tests(find(tests=='filesassocation.tst'))=[];
 	end
@@ -91,12 +96,9 @@ tests = ['algebra.tst';
 	end
 	
 	if MSDOS then
-		comp_target = getenv('COMPILER','NO');
-		if comp_target == 'gcc ' then 
-			tests(find(tests=='links.tst'))=[]
-		end
-		tests(find(tests=='pvm.tst'))=[]
+		tests(find(tests=='pvm.tst'))=[];
 	end
+	
 	
 endfunction
 
