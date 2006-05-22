@@ -31,7 +31,7 @@ c
       if(comp(1).ne.0) return
       top = top + 1
       vt=ogettype(top-1)
-      goto (10,20,2,2,2,2,2,2,2,30,2,2,2,2,40) vt
+      goto (10,20,2,2,2,2,2,45,2,30,2,2,2,2,40) vt
  2    err=vt
       call error(76)
       return
@@ -107,6 +107,11 @@ c---- listes
       if(j.gt.m) goto 50
       if (.not.lmatj("nextj",top,j)) return 
       goto 21
+c---- matrices d'entiers
+ 45   continue
+      if (inextj(j).eq.1) goto 21
+      goto 50
+
  21   rhs = 0
       sym=semi
       if (j.gt.1) then
