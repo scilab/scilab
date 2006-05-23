@@ -325,74 +325,6 @@ clear GRAPH2DIA PATHGRAPH2DIA OPTIONSGRAPH2DIA OPTIONSGRAPH2REF;
  
 //---------------------------------------------------------------------------------
  
-if (LANGUAGE=='fr') then
-  SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Executer avec '+getversion()+'\command');
-else
-  SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Run with '+getversion()+'\command');
-end
- 
-[PATHSCICOS1DIA,OPTIONSSCICOS1DIA]=GetPathAndOptionsInThisString(SCICOS1DIA);
- 
-OPTIONSSCICOS1REF='""'+' -X ""%1""';
- 
-if ( (PATHSCICOS1DIA==PATHREF) & (OPTIONSSCICOS1DIA==OPTIONSSCICOS1REF) ) then
-  disp('cos execute OK');
- 
- cos execute OK   
-  NBRTESTOK=NBRTESTOK+1;
-else
-  disp('cos execute NOK');
-  pause;
-end;
- 
-clear SCICOS1DIA PATHSCICOS1DIA OPTIONSSCICOS1DIA OPTIONSSCICOS1REF;
- 
-//---------------------------------------------------------------------------------
- 
-SCICOS2DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\open\command');
- 
-[PATHSCICOS2DIA,OPTIONSSCICOS2DIA]=GetPathAndOptionsInThisString(SCICOS2DIA);
- 
-OPTIONSSCICOS2REF='""'+' -O ""%1""';
- 
-if ( (PATHSCICOS2DIA==PATHREF) & (OPTIONSSCICOS2DIA==OPTIONSSCICOS2REF) ) then
-  disp('cosf open OK');
- 
- cosf open OK   
-  NBRTESTOK=NBRTESTOK+1;
-else
-  disp('cosf open NOK');
-  pause;
-end;
- 
-clear SCICOS2DIA PATHSCICOS2DIA OPTIONSSCICOS2DIA OPTIONSSCICOS2REF;
- 
-//---------------------------------------------------------------------------------
- 
-if (LANGUAGE=='fr') then
-  SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Executer avec '+getversion()+'\command');
-else
-  SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Run with '+getversion()+'\command');
-end
- 
-[PATHSCICOS3DIA,OPTIONSSCICOS3DIA]=GetPathAndOptionsInThisString(SCICOS3DIA);
- 
-OPTIONSSCICOS3REF='""'+' -X ""%1""';
- 
-if ( (PATHSCICOS3DIA==PATHREF) & (OPTIONSSCICOS3DIA==OPTIONSSCICOS3REF) ) then
-  disp('cosf execute OK');
- 
- cosf execute OK   
-  NBRTESTOK=NBRTESTOK+1;
-else
-  disp('cosf execute NOK');
-  pause;
-end;
- 
-clear SCICOS3DIA PATHSCICOS3DIA OPTIONSSCICOS3DIA OPTIONSSCICOS3REF;
- 
-//---------------------------------------------------------------------------------
- 
 execstr('SAVDIA=winqueryreg(''HKEY_CLASSES_ROOT'',''SAV_scilab_file\shell\open\command'');','errcatch');
  
 if isdef('SAVDIA') then
@@ -433,18 +365,27 @@ end;
  
 //---------------------------------------------------------------------------------
  
-if ( (NBRTESTOK==17) | (NBRTESTOK==18) | (NBRTESTOK==19) ) then
-  if (NBRTESTOK==17) then
-    disp('Entries in Regitry OK (Default Installation)');
+if %scicos then
+  if ( (NBRTESTOK==17) | (NBRTESTOK==18) | (NBRTESTOK==19) ) then
+    disp('Entries in Regitry OK (Not Default Installation)');
+  else
+    disp('Entries in Regitry NOK');
+    pause;
+  end
+else
+  if ( (NBRTESTOK==14) | (NBRTESTOK==15) | (NBRTESTOK==16) ) then
+    if (NBRTESTOK==14) then
+      disp('Entries in Regitry OK (Default Installation)');
  
  Entries in Regitry OK (Default Installation)   
+    else
+      disp('Entries in Regitry OK (Not Default Installation)');
+    end
   else
-    disp('Entries in Regitry OK (Not Default Installation)');
-  end;
-else
-  disp('Entries in Regitry NOK');
-  pause;
-end;
+    disp('Entries in Regitry NOK');
+    pause;
+  end
+end
  
 //---------------------------------------------------------------------------------
  

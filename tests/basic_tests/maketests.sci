@@ -2,7 +2,7 @@
 //
 // Copyright INRIA 2005
 // Scilab team
-// Date : December 8th 2005
+// Date : 08/05/2006
 // 
 //================================
 
@@ -76,15 +76,17 @@ tests = ['algebra.tst';
 	'trycatch.tst';
 	'parse.tst';
 	'TCL_SetGet.tst';
-	'filesassocation.tst'];
-	
+	'filesassocation.tst';
+	'scicos_filesassociation.tst'];
 	
 	if ~%scicos then
-	  tests(find(tests=='scicos.tst'))=[];
+		tests(find(tests=='scicos.tst'))=[];
+		tests(find(tests=='scicos_filesassociation.tst'))=[];
 	end
 	
 	if ~MSDOS then
 		tests(find(tests=='filesassocation.tst'))=[];
+		tests(find(tests=='scicos_filesassociation.tst'))=[];
 	end
 	
 	if ~with_tk() then
