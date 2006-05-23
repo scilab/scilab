@@ -18,7 +18,7 @@
  </head>
  <body bgcolor="#FFFFFF">
  <center><xsl:value-of select="./TYPE"/></center>
-  <div align="right">Dernière mise à jour : <xsl:value-of select="./DATE"/></div>
+  <div align="right">Last update : <xsl:value-of select="./DATE"/></div>
  <xsl:for-each select="./SHORT_DESCRIPTION">
    <p><b><xsl:value-of select="@name"/></b> - <xsl:apply-templates/></p>
  </xsl:for-each>
