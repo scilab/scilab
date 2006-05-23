@@ -87,7 +87,7 @@ function update_date(xmlfile,xmlfile2)
 	[x,ierr]=fileinfo(xmlfile);
 	if x(6)<1064550000 then mputl(txt,xmlfile2); return; end
 	modification_date = getdate(x(6));
-	txt(d)="<DATE>"+string(modification_date(6))+"/"+string(modification_date(2))+"/"+string(modification_date(1))+"</DATE>";
+	txt(d)="<DATE>"+msprintf('%02d',modification_date(6))+"/"+msprintf('%02d',modification_date(2))+"/"+msprintf('%04d',modification_date(1))+"</DATE>";
 	mputl(txt,xmlfile2);
 	
  endfunction
