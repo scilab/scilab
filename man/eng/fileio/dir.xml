@@ -58,13 +58,13 @@
     </P>
   </DESCRIPTION>
   <EXAMPLE>
-    <![CDATA[
-    dir
-    dir SCI/macros/util/base*.sci
-    x=dir('SCI/macros/util/base*.sci')
-    dt=getdate(x.date);
-    mprintf("%s: %d-%d-%d %d:%d:%d\n",x.name,dt(:,[3 2 1 7:9]))
-    ]]>
+<![CDATA[
+dir
+dir SCI/Makefile*
+x=dir('SCI/Makefile*')
+dt=getdate(x.date);
+mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 3 7:9]))
+]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
