@@ -14,14 +14,28 @@ function xmlfiletohtml(path,xsl)
   
 	//proceed if xml file is newest than htm file
 	if newest(path,strsubst(path,".xml",".htm"))==1 then
-	
+		
 		mprintf('  Processing file %s.xml\n',basename(path));
-
+		
 		// build .xml2 file where LINK tags references are solved
 		find_links(path,path+"2")
+		
+		// If the sources we are building are extracted from SVN with
+		// the "svn export" command, we can use the "last modification
+		// date" of the xml file, if not ( ie sources extracted with the
+		// "svn checkout" command ), it doesn't mean anything to use
+		// this system.
+		
+		if ~(isdir(strsubst(path,basename(path)+'.xml','.svn'))) then
+			if (basename(xsl) == 'html-rev') then
+				xsl = strsubst(xsl,'html-rev','html-bin');
+			end
+			update_date(path,path+"2")
+		end
+		
 		in=path+"2"
 		out=strsubst(path,'.xml','.htm')
-    
+		
 		// form the html generator command line instruction
 		if  MSDOS then 
 			// sabcmd does not like c:/.. path replace it by file://c:/..
@@ -53,3 +67,27 @@ function xmlfiletohtml(path,xsl)
 		unix_s(RM+path+"2")
 	end
 endfunction
+
+function update_date(xmlfile,xmlfile2)
+	  
+	//-------------------------------------
+	// Author : Pierre MARECHAL
+	// Scilab Team
+	// Copyright INRIA
+	// Date : 09/05/2005
+	//-------------------------------------
+	
+	//------------------------------------- 
+	// Add the date of the last modification of the xml file
+	//--------------------------------------
+	
+	txt=mgetl(xmlfile2);
+	d=grep(txt,"<DATE>");
+	if d==[] then mputl(txt,xmlfile2); return; end
+	[x,ierr]=fileinfo(xmlfile);
+	if x(6)<1064550000 then mputl(txt,xmlfile2); return; end
+	modification_date = getdate(x(6));
+	txt(d)="<DATE>"+string(modification_date(6))+"/"+string(modification_date(2))+"/"+string(modification_date(1))+"</DATE>";
+	mputl(txt,xmlfile2);
+	
+ endfunction
