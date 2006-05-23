@@ -1,4 +1,4 @@
-// Non-regression test file for bug 1636
+// Non-regression test file for bug 1662
 // Copyright INRIA
 // Scilab Project - F. Belahcene
 
@@ -42,7 +42,7 @@ SCIFILECONTENTSREF=["function [y] = bug1662(x)";
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,924);
+	affich_result(%F,1662);
 else
-	affich_result(%T,924);
+	affich_result(%T,1662);
 end

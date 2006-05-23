@@ -38,9 +38,9 @@ SCIFILECONTENTSREF=["function [A] = bug1636(x,y,z,t,u,v,w,z)";
 
 		
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,924);
+	affich_result(%F,1636);
 else
-	affich_result(%T,924);
+	affich_result(%T,1636);
 end
 
 clear
