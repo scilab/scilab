@@ -152,7 +152,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\bin\dumpexts -o %%~nf.def -n hashtable.dll %%f &gt;nul&#x0D;&#x0A;copy *.def hashtable1.def &gt;nul&#x0D;&#x0A;copy  ..\hashtable.def+ hashtable1.def ..\..\..\..\bin\hashtable.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n hashtable.dll %%f &gt;nul&#x0D;&#x0A;copy *.def hashtable1.def &gt;nul&#x0D;&#x0A;copy  ..\hashtable.def+ hashtable1.def ..\..\..\bin\hashtable.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"

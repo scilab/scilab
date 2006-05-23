@@ -152,7 +152,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localization1.def &gt;nul&#x0D;&#x0A;copy  ..\localization.def+ localization1.def ..\..\..\..\bin\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localization1.def &gt;nul&#x0D;&#x0A;copy  ..\localization.def+ localization1.def ..\..\..\bin\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
