@@ -762,8 +762,8 @@ static void MoveChild(viewp, x, y)
 
 /** used when we resize the graphic window (i.e the drawbox) at Scilab level **/
 
-#define WINMINW 400 
-#define WINMINH 300 
+#define WINMINW 100
+#define WINMINH 100
 
 void GViewportResize(ScilabXgc,width,height) 
      struct BCG *ScilabXgc;
