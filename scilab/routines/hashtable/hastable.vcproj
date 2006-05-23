@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="localization"
-	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
+	Name="hashtable"
+	ProjectGUID="{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}"
 	>
 	<Platforms>
 		<Platform
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;../glib-2.0&quot;;../libxml2"
+				AdditionalIncludeDirectories="&quot;../glib-2.0&quot;"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -65,13 +65,13 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localization1.def &gt;nul&#x0D;&#x0A;copy  ..\localization.def+ localization1.def ..\..\..\bin\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n hashtable.dll %%f &gt;nul&#x0D;&#x0A;copy *.def hashtable1.def &gt;nul&#x0D;&#x0A;copy  ..\hashtable.def+ hashtable1.def ..\..\..\bin\hashtable.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\bin\localization.dll"
-				ModuleDefinitionFile="..\..\bin\localization.def"
-				ImportLibrary="..\..\bin\localization.lib"
+				OutputFile="..\..\bin\hashtable.dll"
+				ModuleDefinitionFile="..\..\bin\hashtable.def"
+				ImportLibrary="..\..\bin\hashtable.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -127,7 +127,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;../glib-2.0&quot;;../libxml2"
+				AdditionalIncludeDirectories="&quot;../glib-2.0&quot;"
 				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -152,15 +152,15 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\bin\dumpexts -o %%~nf.def -n localization.dll %%f &gt;nul&#x0D;&#x0A;copy *.def localization1.def &gt;nul&#x0D;&#x0A;copy  ..\localization.def+ localization1.def ..\..\..\..\bin\localization.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\bin\dumpexts -o %%~nf.def -n hashtable.dll %%f &gt;nul&#x0D;&#x0A;copy *.def hashtable1.def &gt;nul&#x0D;&#x0A;copy  ..\hashtable.def+ hashtable1.def ..\..\..\..\bin\hashtable.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\bin\localization.dll"
-				ModuleDefinitionFile="..\..\bin\localization.def"
+				OutputFile="..\..\bin\hashtable.dll"
+				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\bin\localization.lib"
+				ImportLibrary="..\..\bin\hashtable.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -196,11 +196,11 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\Dllmainlocalization.c"
+				RelativePath=".\Dllmainhashtable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\localization.c"
+				RelativePath=".\hashtable.c"
 				>
 			</File>
 		</Filter>
@@ -209,7 +209,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\localization.h"
+				RelativePath=".\hashtable.h"
 				>
 			</File>
 		</Filter>
