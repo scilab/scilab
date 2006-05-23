@@ -9,7 +9,6 @@ ans(1)
 sin(3)
 ans
 ans==1
-what
 :
 [
 ]
