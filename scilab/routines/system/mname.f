@@ -126,7 +126,7 @@ c     %l_o_l or %l_n_l  instead of undefined type dependent one.
             goto 10
          else
             call  putid(ids(1,pt+1),id1)
-            call error(4)
+            call error(144)
             return
          endif
       endif
