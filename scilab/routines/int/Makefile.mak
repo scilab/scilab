@@ -14,7 +14,7 @@ OBJSC = tpconv.obj \
 	gencusum.obj genmcusum.obj genmdsp.obj genbitops.obj mgeti.obj mputi.obj \
 	genabs.obj gendiag.obj genmdiag.obj gentril.obj gentriu.obj genkron.obj \
 	genmmax.obj genmmin.obj genmax2.obj genmin2.obj gifimg.obj \
-	genconcatrow.obj genconcatcol.obj genisany.obj genimpl.obj
+	genconcatrow.obj genconcatcol.obj genisany.obj genimpl.obj i_nextj.obj
 
 
 OBJSF = intelm.obj intops.obj  memused.obj uppertype.obj \
