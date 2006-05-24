@@ -251,6 +251,8 @@ c       %% next lines added  for runtime set rhs args number
                if (err.gt.0) return
             endif
          endif
+      else
+         lhs=1
       endif
 
 
