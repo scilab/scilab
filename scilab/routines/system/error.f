@@ -199,7 +199,7 @@ c Bug 1069 corrected - Francois VOGEL November 2004
      +  91, 92, 93, 94, 95, 96, 97, 98, 99,100,101,102,103,104,105,
      + 106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,
      + 121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,
-     + 136,137,138,139,140,141,142,143
+     + 136,137,138,139,140,141,142,143,144
      + ),n
 
       goto (
@@ -829,6 +829,14 @@ c
  143  call msgout(io,lunit,
      +   'optim : df0 must be positive !')
       goto 999
+ 144  continue
+      call cvname(ids(1,pt+1),buf,1)
+      ilb=lnblnk(buf(1:nlgh))
+      call msgout(io,lunit,'Undefined operation for the given operands')
+      call msgout(io,lunit,'  check or define function '//buf(1:ilb)//
+     +  ' for overloading')
+      goto 999
+
  200  continue
       goto 999
 c     messages from 201 to 203 and 205 to 214 are no more used by error 
@@ -1106,10 +1114,11 @@ C     errors from semidef
       goto 999
  246  continue
       call cvname(ids(1,pt+1),buf,1)
+      ilb=lnblnk(buf(1:nlgh))
       call msgout(io,lunit,'function not defined for'//
-     &     ' given argument type(s)')
-      call msgout(io,lunit,'Check arguments or define function '
-     &     //buf(1:nlgh)//' for overloading')
+     &     ' given argument type(s),')
+      call msgout(io,lunit,'  check arguments or define function '
+     &     //buf(1:ilb)//' for overloading')
       goto 999
  247  continue
       goto 999
