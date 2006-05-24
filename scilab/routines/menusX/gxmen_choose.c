@@ -32,7 +32,7 @@ int ExposeChooseWindow(ChooseMenu *PCh)
   GtkWidget *button;
   GtkWidget *separator;
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
 
   /* do not accept a reenter mode */ 
   if ( window != NULL) return FALSE ; 

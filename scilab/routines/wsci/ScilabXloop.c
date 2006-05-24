@@ -49,7 +49,7 @@ int GetBasic()
 } 
 /*-----------------------------------------------------------------------------------*/
 
-void start_sci_gtk() 
+void start_sci_tcltk() 
 {
 #ifdef WITH_TK
   initTCLTK();
@@ -63,9 +63,6 @@ void SetXsciOn ()
 {
 switch_rlgets (1);
 INXscilab = 1;
-#ifdef WITH_TK
-  initTCLTK ();
-#endif
 }
 /*-----------------------------------------------------------------------------------*/
 int C2F (xscion) (int *i)
@@ -102,8 +99,8 @@ int C2F(checkevts)(int *i)
 
 void sci_tk_activate(void)
 {
-	#ifdef WITH_TK
-  start_sci_gtk();
+  #ifdef WITH_TK
+  start_sci_tcltk();
   initTCLTK();
   BasicScilab = 0;
   #endif

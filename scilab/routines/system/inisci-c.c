@@ -22,7 +22,10 @@
 	BOOL FileExist(char *filename);
 	BOOL ExistModelicac(void);
 	BOOL ExistJavaSciWin(void);
+	extern void SciEnv(void);
 #endif
+
+extern void start_sci_tcltk();
 
 
 /*************************************************************************************************/
@@ -238,5 +241,15 @@ int ExistJavaSciUnix(void)
 	if (fullpathJavaSci) FREE(fullpathJavaSci);
 #endif
 	return bOK;
+}
+/*************************************************************************************************/
+int C2F(initscilab)(void)
+{
+	#ifdef _MSC_VER
+		SciEnv();
+		start_sci_tcltk() ;
+	#else
+	#endif
+	return 0;
 }
 /*************************************************************************************************/

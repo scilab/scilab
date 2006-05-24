@@ -106,6 +106,9 @@ c
 c     initialization call
 c     -------------------
 
+c     initialization C environment
+      call initscilab
+
 c     .  dynamic linking initialization
 c     .  ------------------------------
       nlink=0
@@ -364,6 +367,8 @@ c     debug mode
       wmac    =   0
       mmode   =   0
       simpmd  =   1
+      
+
 
       return
       end

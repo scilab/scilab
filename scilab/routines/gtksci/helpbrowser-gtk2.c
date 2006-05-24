@@ -550,7 +550,7 @@ open_browser_dialog (const gchar *help_path,
   gchar     *eek_png_path;
   static int first =0;
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
 
   if ( window != NULL) 
     {

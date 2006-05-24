@@ -55,7 +55,7 @@ int mDialogWindow(void)
   GtkWidget *hbbox;
   GtkWidget *scrolled_win;
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
 
   /* to utf 8 */
 

@@ -79,7 +79,7 @@ extern void sci_winch_signal(int);
 extern void C2F(tmpdirc)();
 extern void sci_clear_and_exit (int);
 extern void sci_usr1_signal(int);
-extern void start_sci_gtk(void);
+extern void start_sci_tcltk(void);
 
 /* ../os_specific/inffic.c */ 
 extern char *get_sci_data_strings(int n);

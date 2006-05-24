@@ -134,7 +134,7 @@ static void R_clear  __PARAMS((int x,int y,int w,int h));
 
 static void CreateGtkGWindow (struct BCG *ScilabXgc) ;
 void create_graphic_window_menu(struct BCG *dd);
-void start_sci_gtk();
+void start_sci_tcltk();
 
 /* Allocating colors in BCG struct */
 
@@ -4135,7 +4135,7 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
 }
 
 static void CreateGtkGWindow(struct BCG *ScilabXgc) {
-  start_sci_gtk(); /* be sure that gtk is started */
+  start_sci_tcltk(); /* be sure that gtk is started */
   GTK_Open(ScilabXgc,"unix:0",600,400);
 }
 /* NG beg */

@@ -41,7 +41,7 @@ extern int SendScilabJob(char *job);
 extern void ScilabDoOneEvent(void);
 /********************************************************************************************************/
 #if _MSC_VER
-extern void start_sci_gtk();
+extern void start_sci_tcltk();
 extern void add_sci_argv();
 extern void add_sci_argv();
 extern void set_sci_env(char *DefaultSCIPATH);

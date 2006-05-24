@@ -226,7 +226,7 @@ void C2F(realmain)()
  * and a menu or graphic window is activated 
  */
 
-void start_sci_gtk() {
+void start_sci_tcltk() {
   int i;
   C2F(xscion)(&i); 
   if ( i== 0 && GetBasic() == 1) 
@@ -663,7 +663,7 @@ int GetScreenProperty(char *prop, char *value)
   /* sciprint("GetScreenProperty not implemented in gtk 1\r\n"); */
   return -1;
 #else 
-  start_sci_gtk();
+  start_sci_tcltk();
   GdkScreen *screen =  gdk_screen_get_default();
   
   if(!strcmp(prop,"screensize_px"))
@@ -722,7 +722,7 @@ int GetScreenDPI(int *ixres, int *iyres)
   *iyres = 96;
   return 0;
 #else 
-  start_sci_gtk();
+  start_sci_tcltk();
   GdkScreen *screen =  gdk_screen_get_default();
   double xres, yres;
   

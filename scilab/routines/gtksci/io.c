@@ -30,7 +30,7 @@
 #include "../tclsci/TCL_Global.h"
 #endif
 
-extern void start_sci_gtk(void);
+extern void start_sci_tcltk(void);
 extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
@@ -230,7 +230,7 @@ int GetBasic() { return  BasicScilab;}
 void sci_tk_activate(void)
 {
 #ifdef WITH_TK
-  start_sci_gtk(); /* be sure that gtk is started */
+  start_sci_tcltk(); /* be sure that gtk is started */
   initTCLTK();
   BasicScilab = 0;
   flushTKEvents();

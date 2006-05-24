@@ -68,7 +68,7 @@ int  DialogWindow(void)
 
   static scigtk_dialog answer = { RESET , NULL,NULL};
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
 
   answer.window = window  = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window),"Scilab dialog");
@@ -256,7 +256,7 @@ static int sci_dialog_(char *Title, char * init_value, char **button_name , int 
 
   static scigtk_dialog answer = {NULL, RESET , NULL,NULL};
 
-  start_sci_gtk(); /* be sure that gtk is started */
+  start_sci_tcltk(); /* be sure that gtk is started */
 
   answer.window = window  = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window),"Scilab dialog");

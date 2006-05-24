@@ -109,6 +109,17 @@ int OpenTCLsci(void)
   strcpy(TkScriptpath,SciPath);
   strcat(TkScriptpath, "/tcl/TK_Scilab.tcl");
 #endif
+  {
+	  char *PathWsci= getenv ("SCI");
+
+		if ( PathWsci == NULL )
+		{
+			MessageBox(NULL,"MSG_ERROR","ERROR",MB_ICONWARNING);
+			exit(1);
+		}
+  }
+
+
 
   if (TCLinterp == NULL) 
     {

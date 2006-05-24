@@ -696,7 +696,7 @@ open_browser_dialog (gchar *help_path,
   gint     success;
   guint    i;
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
 
   if ( window != NULL) 
     {

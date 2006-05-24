@@ -50,7 +50,7 @@ int  sci_show_banner=1;
 extern void PrintFile(char *filename);
 extern void C2F (tmpdirc) ();
 extern void C2F (getwins) (integer *, integer *, integer *);
-extern void start_sci_gtk();
+extern void start_sci_tcltk();
 extern void sci_tk_activate(void);
 extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
@@ -181,7 +181,6 @@ int Console_Main(int argc, char **argv)
   hdllInstance = GetModuleHandle(MSG_SCIMSG9);
 
   atexit (WinExit);
-  SciEnv ();
   if (nowin == 1)
     {
 	  SaveConsoleColors();
@@ -191,7 +190,7 @@ int Console_Main(int argc, char **argv)
 		  UpdateConsoleColors();
 	  }
 
-	  start_sci_gtk() ;
+	  
 	  sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
 	 
     }
@@ -448,7 +447,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	}		
 	hdllInstance = hInstance;
 	atexit (WinExit);
-	SciEnv();
+
 
 	/* Splashscreen*/
 	if ( (sci_show_banner) && (LaunchAFile == FALSE) )CreateSplashscreen();

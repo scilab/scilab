@@ -116,7 +116,7 @@ static int menu_export (int *colored,int *orient)
   current_lp_status.in_use = 1;
   rep =RESET;
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
 
   /* computing list file type */
   if (SetPrinterList(2)== MEMERR) 
@@ -268,7 +268,7 @@ static int menu_print (int *colored,int *orient)
   if ( current_lp_status.in_use == 1) return FALSE;
   current_lp_status.in_use = 1;
 
-  start_sci_gtk(); /* in case gtk was not initialized */
+  start_sci_tcltk(); /* in case gtk was not initialized */
   rep =RESET;
   /* computing list of printers  */
   /* men_print should be changed not to allocate this each time we print */
