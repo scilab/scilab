@@ -4,7 +4,6 @@
 // verifier qu'il n'y a pas de fichier avec l'extension .testbug650 pour effectuer le test
  
 if MSDOS then
-	clear
 	mode (-1)
 	correct = %F
 	correctT1 = %F
@@ -17,7 +16,7 @@ if MSDOS then
 	err=stripblanks(err);
 	
 	if (res==9999) then
-		if ( err == "unix_w: Fichier introuvable" ) then
+		if ( err == "unix_w: error during ``dir *.testbug650'''' execution" ) then
 			correctT1 = %T;
 		else
 			correctT1 = %F;
@@ -30,7 +29,7 @@ if MSDOS then
 	err=stripblanks(err);
 	
 	if (res==9999) then
-		if ( err == "unix_x: Fichier introuvable" ) then
+		if ( err == "unix_x: error during ``dir *.testbug650'''' execution" ) then
 			correctT2 = %T;
 		else
 			correctT2 = %F;
@@ -66,7 +65,7 @@ if MSDOS then
 	else
 		correct=%F;
 	end
-	
+pause	
 	affich_result(correct, 650)
 	clear
 	
