@@ -44,8 +44,13 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		 'l','Link';
 		 'q','Quit']
   //Scicos Modelica librabry path definitions==============================
-
-  modelica_libs='SCI/macros/scicos_blocks/'+['Electrical','Hydraulics'];
+  modelica_libs='SCI/macros/scicos_blocks/'+['Electrical','Hydraulics']
+  
+  //add TMPDIR/Modelica for generic modelica blocks
+  status=mkdir(TMPDIR,'Modelica');
+  if isdir(TMPDIR+'/Modelica') then 
+    modelica_libs=[modelica_libs,TMPDIR+'/Modelica'];
+  end
 
   //Scicos Menus Help definitions===========================================
 
@@ -392,3 +397,4 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		     [' Icon Editor allows you to define graphically the icon of the block.'],..
 		     [' Used to define personalized shortcuts.'])
 endfunction
+
