@@ -8,7 +8,7 @@ mode(-1);
 clear
 tab=ascii(9);
 path=TMPDIR;
-path='/tmp';
+
 desc=['foo'+tab+'x'+tab+'y'+tab+'[ITMAX 2000]'+tab+'[eps 0.001]'
       'x'+tab+'scalar'
       'y'+tab+'scalar'
