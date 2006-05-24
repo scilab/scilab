@@ -150,6 +150,7 @@
 <P>* 141 "incorrect function (argument n:%d)"  </P>
 <P>* 142 "hot restart : dimension of working table (argument n:%d)"  </P>
 <P> 143 "optim : df0 must be positive !"  </P>
+<P> 144 "Undefined operation for the given operands check or define function %s for overloading"  </P>
 <P> 201 "Argument %d of %s: wrong type argument, expecting a real or complex matrix"  </P>
 <P> 202 "Argument %d of %s: wrong type argument, expecting a real matrix"  </P>
 <P> 203 "Argument %d of %s : wrong type argument, expecting a real vector"  </P>
