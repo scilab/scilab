@@ -435,8 +435,12 @@ request_url (HtmlDocument *doc,
                "been written or your installation is not complete. Ensure "
                "that your installation is complete before reporting this "
                "error as a bug."));
-          
-          html_document_write_stream (doc, msg, strlen (msg));
+
+	  /* html_document_write_stream (doc, msg, strlen (msg)); */
+	  html_stream_write (stream, msg,strlen(msg));
+	  html_stream_close (stream);
+
+	  /* g_print ("pb with document: \"%s\" ",name); */
 
           g_free (msg);
           g_free (name);
