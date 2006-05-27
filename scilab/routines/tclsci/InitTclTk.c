@@ -109,6 +109,7 @@ int OpenTCLsci(void)
   strcpy(TkScriptpath,SciPath);
   strcat(TkScriptpath, "/tcl/TK_Scilab.tcl");
 #endif
+#ifdef _MSC_VER
   {
 	  char *PathWsci= getenv ("SCI");
 
@@ -118,7 +119,7 @@ int OpenTCLsci(void)
 			exit(1);
 		}
   }
-
+#endif /* _MSC_VER */
 
 
   if (TCLinterp == NULL) 
