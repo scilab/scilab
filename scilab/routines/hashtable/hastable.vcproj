@@ -71,6 +71,7 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\hashtable.dll"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
+				GenerateDebugInformation="true"
 				ImportLibrary="..\..\bin\hashtable.lib"
 			/>
 			<Tool
