@@ -86,11 +86,6 @@ extern void exit();
 
 char *ProgramName;
 
-#ifdef WITH_TK
-/*  extern void initTCLTK(void);
-  extern void flushTKEvents(void); */
-#endif
-
 
 extern void sci_clear_and_exit (int);
 extern int C2F(nofpex) (void);
@@ -219,12 +214,6 @@ void C2F(realmain)()
       else 
 	sprintf(startup," ");
     }
-    
- #ifdef WITH_TK
-   /*initTCLTK();
-   flushTKEvents();*/
- #endif
-  
 
   if ( no_window == 0 ) 
     {
