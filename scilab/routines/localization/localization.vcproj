@@ -71,6 +71,8 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\localization.dll"
 				ModuleDefinitionFile="..\..\bin\localization.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				ImportLibrary="..\..\bin\localization.lib"
 			/>
 			<Tool

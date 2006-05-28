@@ -11,6 +11,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
 	#define vsnprintf _vsnprintf
+	extern char *QueryStringError(char *Tag);
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(error)  __PARAMS((integer *n));
@@ -53,7 +54,25 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 #endif
 
 #if defined (vsnprintf) || defined (linux)
- retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
+{
+	#if _MSC_VER
+
+	char *LocalizedString=QueryStringError(fmt);
+	if (LocalizedString)
+	{
+		retval= vsnprintf(s_buf,bsiz-1, LocalizedString, ap );
+	}
+	else
+	{
+		retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
+	}
+	#else
+
+	retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
+
+	#endif
+	
+}
 #else
  retval= vsprintf(s_buf,fmt, ap );
 #endif
@@ -82,7 +101,7 @@ static int Scierror_internal(integer *n,char *buffer)
 	C2F(iop).lct[0] = 0;
 	errtyp = 0;
 	if (C2F(errgst).err1 == 0 && C2F(errgst).err2 == 0) 
-		{
+	{
 		/*     . locate the error in the current statement */
 		if (trace) 
 			C2F(errloc)(n);
@@ -95,9 +114,12 @@ static int Scierror_internal(integer *n,char *buffer)
 		C2F(errstore)(n);
 		len=strlen(buffer);
 		C2F(msgstore)(buffer,&len);
-		if (C2F(iop).lct[0] != -1) sciprint(buffer);
-		C2F(iop).lct[0] = 0;
+		if (C2F(iop).lct[0] != -1)
+		{
+			sciprint(buffer);
 		}
+		C2F(iop).lct[0] = 0;
+	}
 	/*     handle the error */
 	C2F(errmgr)(n, &errtyp);
 	/*     re-activate output control */

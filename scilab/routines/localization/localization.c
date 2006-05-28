@@ -1,15 +1,20 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* INRIA 2006 */
 /* HUANG Xu */
+/* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "localization.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define LENGTH_OUTPUT 1024
-int count=0;//count the number of the #text and type==3 node 
-gchar *tag=NULL;
-gchar *string=NULL;
+static int count=0;//count the number of the #text and type==3 node 
+static gchar *tag=NULL;
+static gchar *string=NULL;
 
-char strBufOut[LENGTH_OUTPUT];
+static char strBufOut[LENGTH_OUTPUT];
+
+static GHashTable *Table_Scilab_Errors=NULL;
+
+char *Replace(char *s1, char *s2, char *s3);
 /*-----------------------------------------------------------------------------------*/ 
 char* ConvertEncoding(char *encodingFrom, char *encodingTo, const char* inputStr)
 {
@@ -41,7 +46,6 @@ char* ConvertEncoding(char *encodingFrom, char *encodingTo, const char* inputStr
 /*-----------------------------------------------------------------------------------*/ 
 void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding) 
 {
-
 	if(xmlTextReaderNodeType(reader)==3)//to get all nodes whose type is 3(#text node)
 	{
 		const char *node_value;
@@ -56,7 +60,6 @@ void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding)
 			node_value=ConvertEncoding("UTF-8",encoding,(const char *)xmlTextReaderConstValue(reader));
 		}
 		
-//		const char *node_value=(const char *)xmlTextReaderConstValue(reader);
 		if((count%2)!=0)//odd, tag
 		{
 			tag=(gchar *)malloc(strlen(node_value)+1);
@@ -67,30 +70,20 @@ void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding)
 	
 			string=(gchar *)malloc(strlen(node_value)+1);
 			strcpy(string,node_value);
-			//hashtable insert
-
-			/* it works also
-			gchar *tag1=g_strdup(tag);
-			gchar *string1=g_strdup(string);*/
-
 			g_hash_table_replace(table, g_strdup(tag), g_strdup(string));
-			//g_hash_table_insert(table, tag1, string1);
-			printf("tag:%s, string:%s\t inserted\n",tag,string);
 			free(tag); tag=NULL;
 			free(string); string=NULL;
 
 		}
 	}
-
 }
 /*-----------------------------------------------------------------------------------*/ 
-void AppendXmlFile(const char *filename, GHashTable *table, char* encoding)
+int AppendXmlFile(const char *filename, GHashTable *table, char* encoding)
 {
+	int bOK=0;
     xmlTextReaderPtr reader;
     int ret;
 
-
-//    reader = xmlReaderForFile(filename, NULL, 0);
 	reader = xmlReaderForFile(filename, encoding, 0);
 
     if (reader != NULL) 
@@ -101,8 +94,6 @@ void AppendXmlFile(const char *filename, GHashTable *table, char* encoding)
             ProcessNode(reader, table, encoding);
             ret = xmlTextReaderRead(reader);
         }
-
-		printf("ATTENTION:Appending of the xmlfile %s has finished\n", filename);
 
         xmlFreeTextReader(reader);
 		/*
@@ -116,14 +107,110 @@ void AppendXmlFile(const char *filename, GHashTable *table, char* encoding)
 
         if (ret != 0) 
 		{
-            fprintf(stderr, "%s : failed to parse\n", filename);
+            bOK=0;
+		}
+		else
+		{
+			bOK=1;
 		}
 	}
 	else 
 	{
-		fprintf(stderr, "Unable to open %s\n", filename);
+		bOK=0;
 	}
+	return bOK;
 	
 }
 /*-----------------------------------------------------------------------------------*/ 
+GHashTable *GetHashTableScilabErrors(void)
+{
+	return Table_Scilab_Errors;
+}
+/*-----------------------------------------------------------------------------------*/ 
+int InitializeHashTableScilabErrors(char* SCIPATH)
+{
+	char *FileLanguage=NULL;
+	Table_Scilab_Errors=CreateHashtable();
 
+	FileLanguage=(char*)malloc( (strlen(SCIPATH)+strlen("/localization/errors.xml")+1)*sizeof(char));
+	strcpy(FileLanguage,SCIPATH);
+	strcat(FileLanguage,"/localization/errors.xml");
+
+	AppendXmlFile(FileLanguage, Table_Scilab_Errors,"UTF-8");
+
+	free(FileLanguage);
+	
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
+char *QueryStringError(char *Tag)
+{	
+	char oldpiece[8];
+	char newpiece[8];
+	char *StringError=NULL;
+	char *StringWithoutSomeChars=NULL;
+
+	/* Replace \r\n by \\r\\n */
+	strcpy(oldpiece,"\r\n");
+	strcpy(newpiece,"\\r\\n");
+	StringWithoutSomeChars=Replace( Tag,oldpiece,newpiece);
+	
+
+	StringError=SearchHash(Table_Scilab_Errors,StringWithoutSomeChars);//show the string we need
+	free(StringWithoutSomeChars);
+	
+	if (StringError)
+	{
+		/* Replace \\r\\n by \r\n */
+		strcpy(oldpiece,"\\r\\n");
+		strcpy(newpiece,"\r\n");
+		StringWithoutSomeChars=Replace(StringError,oldpiece,newpiece);
+		
+		StringError=StringWithoutSomeChars;
+	}
+
+	return StringError;
+}
+/*-----------------------------------------------------------------------------------*/ 
+char *Replace(char *s1, char *s2, char *s3) 
+{ 
+  char *retour=NULL; 
+  
+  if(s1 && s2 && s3)
+  {
+	char *tmp=NULL; 
+	int i=0; 
+	int j=0; 
+	int lenS2=strlen(s2);
+	int lenS3=strlen(s3);
+
+	if (!(tmp = strstr(s1, s2))) return (s1); 
+	
+	retour = malloc(1); 
+	while ((tmp = strstr(s1 + i, s2)) != 0) 
+    { 
+      if (!(strcmp(s1 + i, tmp))) 
+        { 
+          retour = realloc(retour, strlen(retour) + lenS3); 
+          strcpy(retour + j, s3); 
+          i += lenS2; 
+          j += lenS3; 
+        } 
+      else 
+        { 
+          retour = realloc(retour, strlen(retour) + 1); 
+          retour[j++] = s1[i++]; 
+        } 
+    } 
+	while (s1[i]) 
+    { 
+      retour = realloc(retour, strlen(retour) + 1); 
+      retour[j++] = s1[i++]; 
+    } 
+	retour[j] = 0; 
+  }
+  else retour=NULL;
+
+  return (retour); 
+} 
+/*-----------------------------------------------------------------------------------*/ 

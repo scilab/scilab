@@ -11,6 +11,8 @@
 
 #ifdef _MSC_VER
 extern void SciEnv(void);
+extern int InitializeHashTableScilabErrors(char* SCIPATH);
+extern char *GetScilabDirectory(BOOL UnixStyle);
 #endif
 
 #if WITH_TK
@@ -20,6 +22,8 @@ extern void flushTKEvents ();
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
 {
+	char *SCIPATH=NULL;
+
 	#ifdef _MSC_VER
 	SciEnv();
 	#endif
@@ -27,6 +31,11 @@ int C2F(initscilab)(void)
 	#if WITH_TK
 	initTCLTK();
 	flushTKEvents();
+	#endif
+
+	#ifdef _MSC_VER
+	SCIPATH=GetScilabDirectory(TRUE);
+	InitializeHashTableScilabErrors(SCIPATH);
 	#endif
 
 	return 0;
