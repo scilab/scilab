@@ -15,7 +15,7 @@ include ../../Makefile.incl.mak
 
 
 
-CFLAGS = $(CC_OPTIONS) $(XFLAGS) 
+CFLAGS = $(CC_OPTIONS) $(XFLAGS) -I"..\glib-2.0"
 
 FFLAGS = $(FC_OPTIONS)
 
