@@ -93,6 +93,7 @@ LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \
 	libs/gd.lib libs/int.lib libs/arpack.lib \
 	libs/libf2c.lib libs/wintools.lib libs/time.lib \
 	libs/sound.lib \
+	lib/hashtable.lib localization.lib \
 	$(TCLSCI) $(PVM)
 
 LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)
