@@ -213,6 +213,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InitScilab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\Intersci.c"
 				>
 			</File>
@@ -315,6 +319,10 @@
 			</File>
 			<File
 				RelativePath=".\fromjava.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InitScilab.h"
 				>
 			</File>
 			<File

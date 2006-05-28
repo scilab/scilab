@@ -37,8 +37,6 @@ extern int CloseTCLsci(void);
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);
-extern void initTCLTK(void);
-extern void start_sci_tcltk();
 extern void InitWindowGraphDll(void);
 extern void TextMessage1 (int ctrlflag);
 #else
@@ -122,9 +120,6 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	SetFromCToON();
 
 	/* Scilab Initialization */ 
-	#ifdef WITH_TK
-	 initTCLTK(); /* TCLTK Init. */
-  #endif
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
 	if ( ierr > 0 ) 
@@ -137,7 +132,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	C2F(settmpdir)();
 #if _MSC_VER
 	InitWindowGraphDll();
-	start_sci_tcltk() ;
+
 #endif
 
 	lengthStringToScilab=(int)(strlen("exec(\"SCI/scilab.star\",-1);quit;")+strlen(ScilabStartupUsed));

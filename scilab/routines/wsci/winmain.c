@@ -50,8 +50,6 @@ int  sci_show_banner=1;
 extern void PrintFile(char *filename);
 extern void C2F (tmpdirc) ();
 extern void C2F (getwins) (integer *, integer *, integer *);
-extern void start_sci_tcltk();
-extern void sci_tk_activate(void);
 extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
 extern void CreateSplashscreen(void);
@@ -518,7 +516,7 @@ void InitWindowGraphDll(void)
    graphwin.Title = MSG_SCIMSG23;
    graphwin.szMenuName = GetszGraphMenuName();
    graphwin.lptw = &textwin;
-   sci_tk_activate();
+
     
 }
 /*-----------------------------------------------------------------------------------*/

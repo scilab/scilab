@@ -24,39 +24,12 @@
 extern void initTCLTK ();
 extern void flushTKEvents ();
 extern int  tcl_check_one_event(void);
-static int BasicScilab = 1;
+static int BasicScilab = 0;
 #endif
 /*-----------------------------------------------------------------------------------*/
 /** do I want a scilab or an xscilab (here it means Windows ) */
 
 int INXscilab = 0; /**  XXXX just to use zzledt1 **/
-
-/*-----------------------------------------------------------------------------------*/
-void SetNotBasic()
-{
-	#ifdef WITH_TK
-  BasicScilab=0;
-  #endif
-}
-/*-----------------------------------------------------------------------------------*/
-int GetBasic() 
-{
-#ifdef WITH_TK
-	 return  BasicScilab;
-#else
-	 return  0;
-#endif
-} 
-/*-----------------------------------------------------------------------------------*/
-
-void start_sci_tcltk() 
-{
-#ifdef WITH_TK
-  initTCLTK();
-  BasicScilab = 0;
-  flushTKEvents();
-#endif
-}
 
 /*-----------------------------------------------------------------------------------*/
 void SetXsciOn ()
@@ -71,39 +44,19 @@ int C2F (xscion) (int *i)
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
-
 /* used to know if we must check events 
  * inside the scilab interpreter (parse/*)
- * A faire sous windows 
  */
 
 int C2F(checkevts)(int *i)
 {
   /*  *i= INXscilab; */
   #if WITH_TK
-  *i= Max(INXscilab,1-BasicScilab);
+  *i= Max(INXscilab,1);
   #else
   *i= INXscilab;
   #endif
   return(0);
-}
-/*-----------------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- * used to start tk at run time when scilab 
- * was started with scilab -nw 
- * open a display with DisplayInit and initialize 
- * Tk. If TK_Started is set to one then the initialization 
- * was correct.
- *---------------------------------------------------------------------------*/
-
-void sci_tk_activate(void)
-{
-  #ifdef WITH_TK
-  start_sci_tcltk();
-  initTCLTK();
-  BasicScilab = 0;
-  #endif
 }
 /*-----------------------------------------------------------------------------------*/
 /*************************************************
@@ -136,7 +89,7 @@ void TextMessage1 (int ctrlflag)
 /*-----------------------------------------------------------------------------------*/
 int C2F (sxevents) ()
 {
-	#ifdef WITH_TK
+  #ifdef WITH_TK
   if (INXscilab == 1 || BasicScilab == 0 )
   #else
   if (INXscilab == 1 )

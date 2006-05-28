@@ -83,7 +83,6 @@ void Initialize()
   #endif
 
   /* Scilab Initialization */
-  initTCLTK(); /* TCLTK Init. */
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
     {
@@ -96,7 +95,6 @@ void Initialize()
   /* Initialisation fenetre graphique */
   #if _MSC_VER
     InitWindowGraphDll();
-    start_sci_tcltk() ;
   #endif
 
   /* pour initialisation de la primitive scilab : fromjava() */

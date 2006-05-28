@@ -264,10 +264,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\..\bin\LibScilab.lib"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

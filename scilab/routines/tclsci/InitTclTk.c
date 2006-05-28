@@ -19,7 +19,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 extern int IsFromC(void);
-extern void sci_tk_activate(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef _MSC_VER
@@ -243,7 +242,7 @@ int ReInitTCL(void)
 	{
 		if ( first == 0) 
 		{
-			sci_tk_activate();
+			initTCLTK();
 			first++;
 			if ( TK_Started != 1 ) 
 			{
