@@ -1,0 +1,25 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2006 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/ 
+#include <windows.h> 
+/*-----------------------------------------------------------------------------------*/ 
+#pragma comment(lib,"../../Java/jdk1.5.0_06/lib/jvm.lib")
+/*-----------------------------------------------------------------------------------*/ 
+int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
+{
+  switch (reason) 
+    {
+    case DLL_PROCESS_ATTACH:
+      break;
+    case DLL_PROCESS_DETACH:
+      break;
+    case DLL_THREAD_ATTACH:
+      break;
+    case DLL_THREAD_DETACH:
+      break;
+    }
+  return 1;
+}
+/*-----------------------------------------------------------------------------------*/ 
+
