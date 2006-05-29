@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="jvm"
+	Name="libjvm"
 	ProjectGUID="{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
 	>
 	<Platforms>
@@ -65,14 +65,14 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n jvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def jvm1.def &gt;nul&#x0D;&#x0A;copy  ..\jvm.def+ jvm1.def ..\..\..\bin\jvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libjvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def libjvm1.def &gt;nul&#x0D;&#x0A;copy  ..\libjvm.def+ libjvm1.def ..\..\..\bin\libjvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\bin\jvm.dll"
-				ModuleDefinitionFile="..\..\bin\jvm.def"
+				OutputFile="..\..\bin\libjvm.dll"
+				ModuleDefinitionFile="..\..\bin\libjvm.def"
 				GenerateDebugInformation="true"
-				ImportLibrary="..\..\bin\jvm.lib"
+				ImportLibrary="..\..\bin\libjvm.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -153,15 +153,15 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n jvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def jvm1.def &gt;nul&#x0D;&#x0A;copy  ..\jvm.def+ jvm1.def ..\..\..\bin\jvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libjvm.dll %%f &gt;nul&#x0D;&#x0A;copy *.def libjvm1.def &gt;nul&#x0D;&#x0A;copy  ..\libjvm.def+ libjvm1.def ..\..\..\bin\libjvm.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\bin\jvm.dll"
-				ModuleDefinitionFile="..\..\bin\jvm.def"
+				OutputFile="..\..\bin\libjvm.dll"
+				ModuleDefinitionFile="..\..\bin\libjvm.def"
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\bin\jvm.lib"
+				ImportLibrary="..\..\bin\libjvm.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
