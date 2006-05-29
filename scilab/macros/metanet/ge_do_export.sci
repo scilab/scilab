@@ -19,8 +19,17 @@ function ge_do_export(GraphList)
   else
     rect=[0,0,600,400];
   end
-  xsetech(arect=[0,0,0,0])
-  plot2d(0,0,frameflag=3,axesflag=0,rect=rect)
-  ge_drawobjs(GraphList)
+  if get('figure_style')=='old' then
+    xsetech(arect=[0,0,0,0])
+    plot2d(0,0,frameflag=3,axesflag=0,rect=rect)
+    ge_drawobjs(GraphList)
+  else
+    drawlater()
+    f=gcf();//f.axes_size=[rect(3)-rect(1);rect(4)-rect(2)];
+    ax=gca();ax.data_bounds=[rect(1) rect(2);rect(3),rect(4)];
+    ax.margins=[0,0,0,0]
+    ge_drawobjs(GraphList)
+    drawnow()
+  end
   xset('window',old)
 endfunction
