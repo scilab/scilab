@@ -135,7 +135,6 @@ cd time
 echo Making %1 in directory  time
  nmake /C /f Makefile.mak %1
 cd ..
-
 cd sound
 echo Making %1 in directory sound 
  nmake /C /f Makefile.mak %1
@@ -148,6 +147,11 @@ cd localization
 echo Making %1 in directory localization 
  nmake /C /f Makefile.mak %1
 cd ..
+cd jvm
+echo Making %1 in directory libjvm 
+ nmake /C /f Makefile.mak %1
+cd ..
+
 cd wsci\Wscilex
 echo Making %1 in directory  wsci\WScilex
  nmake /C /f Makefile.mak %1
@@ -164,12 +168,6 @@ cd int
 echo Making %1 in directory  int
  nmake /C /f Makefile.mak %1
 cd ..
-
-REM cd if97
-REM echo Making %1 in directory  if97
-REM  nmake /C /f Makefile.mak %1
-REM cd ..
-
 cd tclsci
 echo Making %1 in directory  tclsci
  nmake /C /f Makefile.mak %1

@@ -95,6 +95,7 @@ LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \
 	libs/sound.lib \
 	libs/hashtable.lib libs/localization.lib \
 	bin/glib-2.0.lib bin/libxml2.lib bin/iconv.lib \
+	libs/libjvm.lib Java/jdk1.5.0_06/lib/jvm.lib \
 	$(TCLSCI) $(PVM)
 
 LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)

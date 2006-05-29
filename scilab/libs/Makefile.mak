@@ -4,7 +4,7 @@ include ../Makefile.incl.mak
 all :: ..\bin\LibScilab.def 
 
 
-FILES = AAbase.def+arpack.def+blas.def+calelm.def+console.def+control.def+dcd.def+default.def+gd.def+graphics.def+int.def+integ.def+interf.def+intersci.def+lapack.def+libf2c.def+menusX.def+metanet.def+optim.def+poly.def+rand.def+scicos.def+signal.def+slicot.def+fileio.def+sparse.def+os_specific.def+system.def+system2.def+wsci.def+xdr.def+wintools.def+time.def+sound.def+hashtable.def+localization.def
+FILES = AAbase.def+arpack.def+blas.def+calelm.def+console.def+control.def+dcd.def+default.def+gd.def+graphics.def+int.def+integ.def+interf.def+intersci.def+lapack.def+libf2c.def+menusX.def+metanet.def+optim.def+poly.def+rand.def+scicos.def+signal.def+slicot.def+fileio.def+sparse.def+os_specific.def+system.def+system2.def+wsci.def+xdr.def+wintools.def+time.def+sound.def+hashtable.def+localization.def+libjvm.def
 
 
 !IF "$(DTK)" == "-DWITH_TK"
@@ -61,7 +61,8 @@ clean::
 	-del time.def 
 	-del sound.def 
 	-del hashtable.def 
-	-del localization.def 
+	-del localization.def
+	-del libjvm.def  
 	-del *.lib
 	-del ..\bin\libscilab.def
 	-del ..\bin\libscilab.dll
@@ -106,6 +107,7 @@ distclean::
 	-del sound.def 
   -del hashtable.def 
 	-del localization.def 
+	-del libjvm.def  
 	-del *.lib
 	
 
