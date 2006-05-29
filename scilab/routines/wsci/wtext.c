@@ -465,8 +465,8 @@ void TextPutStr (LPTW lptw, LPSTR str)
       p = lptw->ScreenBuffer + lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
       pa = lptw->AttrBuffer + lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
       limit = lptw->ScreenSize.x - lptw->CursorPos.x;
-      for (count = 0; (count < limit) && *str
-	   && (isprint ((int) *str) || *str == '\t'); count++)
+
+      for (count = 0; (count < limit) && *str && (iswprint ((int) str[0]) || *str == '\t'); count++)
 	{
 	  if (*str == '\t')
 	    {
@@ -494,7 +494,7 @@ void TextPutStr (LPTW lptw, LPSTR str)
 	  NewLine (lptw);
 	  str++;
 	}
-      else if (*str && !isprint ((int) *str) && *str != '\t')
+      else if (*str && !iswprint ((int) str[0]) && *str != '\t')
 	{
 	  TextPutCh (lptw, *str++);
 	}
