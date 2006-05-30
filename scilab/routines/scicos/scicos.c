@@ -537,6 +537,7 @@ int C2F(scicos)
     /*     fermeture des blocks */
     cosend(t0);
   } else if (*flag__ == 4) {
+    phase=1;
     idoit(t0);
     if (*ierr == 0) {
       if((W=MALLOC(sizeof(double)*nx))== NULL ){
