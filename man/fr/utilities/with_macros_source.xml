@@ -9,7 +9,7 @@
 
   <DATE>2006</DATE>
 
-  <SHORT_DESCRIPTION name="with_macros_source">Teste si les sources des macros sont installÃ©es</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="with_macros_source">Teste si les sources des macros sont installées</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>r=with_macros_source()</CALLING_SEQUENCE_ITEM>
@@ -28,7 +28,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>Returns <VERB>%t</VERB> Teste si les sources des macros sont installÃ©es retourne alors
+    <P>Returns <VERB>%t</VERB> Teste si les sources des macros sont installées retourne alors
     <VERB>%f</VERB> dans le cas contraire.</P>
   </DESCRIPTION>
 </MAN>
