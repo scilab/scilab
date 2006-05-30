@@ -91,6 +91,9 @@ int *r;
   i1 = 1;i2 = 1;
   ii1 = *n; 
   switch (*typ) {
+  case 0:
+    CHECK(double);
+    break;
   case 1:
     CHECK(integer1);
     break;

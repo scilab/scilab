@@ -39,8 +39,11 @@ c
       l1=il1+4
       mn1=m1*n1
 
-      it=min(int(it1/10),int(it2/10))*10+max(mod(it1,10),mod(it2,10))
-
+      if (istk(il1).eq.1.or.istk(il2).eq.1) then
+         it=0
+      else
+         it=min(int(it1/10),int(it2/10))*10+max(mod(it1,10),mod(it2,10))
+      endif
 c     comparaisons
       if(m1.eq.-1) then
 c     .  eye op b
