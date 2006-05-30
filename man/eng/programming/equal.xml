@@ -2,66 +2,77 @@
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>1</TITLE>
-  <TYPE>Scilab Function</TYPE>
+  <TITLE>equal</TITLE>
+  <TYPE>Scilab symbol</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="equal"> (=) affectation, comparison equal sign</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="equal"> (=) assignment , comparison, equal sign</SHORT_DESCRIPTION>
+ 
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="-">
-        <SP>Equal sign is used to denote a value affectation to a variable.</SP>
+      <DESCRIPTION_ITEM label="Assignment:">
+        <SP>The equal sign  <VERB>=</VERB> is used to denote the assignment of value(s) to
+	  variable(s). The syntax can be :</SP>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM>
+	    <SP><VERB>a=expr</VERB> where
+	  <VERB>a</VERB> is a variable name and <VERB>expr</VERB> a scilab
+	  expression which evaluates to a single result.</SP>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM>
+	    <SP><VERB>[a,b,...]=expr</VERB> where
+	    <VERB>a</VERB>,<VERB>b</VERB>,<VERB>...</VERB> are variable names and <VERB>expr</VERB> a scilab
+	    expression which results in as many results as given variable
+	    names.</SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-">
-        <SP><VERB> a == b</VERB>  denotes equality comparison between  expressions <VERB> a</VERB> and <VERB> b</VERB>:</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="With">
-        <SP>matrix objects,</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="If">
-        <SP><VERB> a</VERB> and <VERB> b</VERB> are matrices with same types and identical dimensions, the comparison is performed element by element and the result is a matrix of booleans.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="If">
-        <SP><VERB> a</VERB> and <VERB> b</VERB> are matrices with same types, but <VERB> a</VERB> or <VERB> b</VERB> is a 1 by 1 matrix the scalar is compared with each element of the matrix. The result is a matrix of booleans.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="In">
-        <SP>The others cases the result is the boolean <VERB> %f</VERB></SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="With">
-        <SP>list objects,</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="If">
-        <SP><VERB> a</VERB> and <VERB> b</VERB> are lists with  identical sizes, the comparison is performed element by element and and recursively. The result is a row vector of booleans.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="If">
-        <SP><VERB> a</VERB> and <VERB> b</VERB> are lists with non equal sizes the result is the boolean <VERB> %f</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="With">
-        <SP>tlist and mlist object. If no overloading function is defined the <VERB> list</VERB> comparison method is used.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="With">
-        <SP>other data types (functions, libraries,...) , the result is <VERB> %t</VERB> if the objects are identical and <VERB> %f</VERB> in the other case.</SP>
+      <DESCRIPTION_ITEM label="Comparison:">
+        <SP>The equal sign  <VERB>=</VERB> is also used in the comparison
+	  operators:</SP>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM>
+	  <SP><VERB>a==b</VERB>, denotes equality comparison between the values
+	      of the expressions <VERB> a</VERB> and <VERB>b</VERB>.</SP> 
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM>
+	    <SP><VERB>a~=b</VERB>, denotes inequality comparison between the values
+	      of the  expressions <VERB>a</VERB> and <VERB> b</VERB>:</SP> 
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM>
+	    <SP><VERB>a&lt;=b</VERB> and <VERB>a&gt;=b</VERB>  denotes ordering
+	      comparison between the values of the expressions <VERB> a</VERB>
+	      and <VERB> b</VERB>:</SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+	<SP>See <LINK>comparison</LINK> for semantic details.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
-    <P>
-    Comparison between different data types returns <VERB> %f</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
-<![CDATA[
-a=sin(3.2)
-[u,s]=schur(rand(3,3))
-[1:10]==4
-1~=2
-   ]]>
+    <![CDATA[
+    a = sin(3.2)
+    M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
+    [u,s] = schur(M)
+    [1:10] == 4 
+    1~=2
+    ]]>
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>less</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
+      <LINK>great</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>boolean</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>isequal</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comparison</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
