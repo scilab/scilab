@@ -3,9 +3,10 @@
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>less</TITLE>
-  <TYPE>Scilab Function</TYPE>
+  <TYPE>Scilab symbol</TYPE>
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="less"> (&lt;) lower than comparison</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="great"> (&lt;) greater than comparison</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     logical comparison symbol
@@ -31,6 +32,12 @@
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>if</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comparison</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>equal</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
