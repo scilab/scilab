@@ -1,3 +1,0 @@
-echo %1 en cours de chez suite...
-cd %EnvQ_Work%\%1
-rem scilex -nw -e exec("../../proc/fonct_qualif.sci");exec("%1.sci");quit >> %EnvQ_Log%\%1.log
