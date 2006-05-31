@@ -1,0 +1,48 @@
+# test_demoplay.dpf
+# by Jaime Urzua
+#    mailto:jaime_urzua@yahoo.com
+<slide silent>demoplay
+<tx>
+<tx>demoplay is a function that allow display demos and examples files in a secuential manner.
+<tx>
+<tx>The GUI have four button:
+<tx>  1.- Previous slide
+<tx>  2.- Home
+<tx>  3.- Next
+<tx>  4.- Quit
+<tx>
+<tx>Press Next Button ...
+
+<slide>Bug 1673
+<tx>
+<tx>Circles can't be moved or picked (new graphic/Edit menu or entity picker)
+<tx>
+<cm>plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+<cm>xset("color",3)
+<cm>xarc(-1,1,2,2,0,90*64)
+<cm>xarc(-1.5,1.5,3,3,0,360*64)
+<tx>
+<tx>Now, Try to move the circle and the arc
+
+<slide>Bug 1667
+<tx>
+<tx>The function getlinestyle works very slowly and in most of cases crashes with a lot of error messages.
+<tx>
+<cm>t = getlinestyle ()
+<tx>
+<tx> Just try to select a type of line
+
+<slide>Bug 1647
+<tx>
+<tx>xgetmouse output during the entity picker :
+<tx>  --> 
+<tx>    - 5.  
+<tx>  -->-->-->-->-->-->-->-->-->-->-->--> 
+<tx>      0.  
+<tx>  --> 
+<tx>    - 5.  
+<tx>  -->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->-->--
+<cm>plot2d();
+<tx>
+<tx>activate the entity picker and click here and there.
+

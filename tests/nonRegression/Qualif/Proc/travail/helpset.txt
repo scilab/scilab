@@ -1,0 +1,172 @@
+Affiche, fixe ou supprime des variables d'environnement de cmd.exe.
+
+SET [variable=[chaŒne]]
+
+  variable  Nom de la variable d'environnement.
+  chaŒne    ChaŒne de caractŠres … affecter … la variable.
+
+SET sans paramŠtres affiche les variables d'environnement d‚finies.
+
+Si les extensions de commandes sont activ‚es, SET est modifi‚ comme suitÿ:
+
+La commande SET appel‚e avec un nom de variable seulement, sans signe ‚gal
+ou valeur, affiche la valeur de toutes les variables dont le pr‚fixe correspond
+au nom donn‚ … la commande SET. Par exempleÿ:
+
+    SET P
+
+affiche toutes les variables qui commence avec la lettre 'P'
+
+La commande SET fixe la valeur ERRORLEVEL … 1 si le nom de variable n'est
+pas trouv‚ dans l'environnement en cours.
+
+La commande SET n'autorise pas qu'un signe ‚gal (=) fasse partie du nom d'une
+variable.
+
+Deux nouvelles options ont ‚t‚ ajout‚es … la commande SETÿ:
+
+    SET /A expression
+    SET /P variable=[ChaŒneInvite]
+
+L'option /A sp‚cifie que la chaŒne … droite du signe ‚gal est une
+expression num‚rique qui est ‚valu‚e. L'‚valuation de l'expression est assez
+simple et prend en charge les op‚rations suivantes dans l'ordre d‚croissant
+de pr‚s‚anceÿ:
+
+    ()                   - groupement
+    ! ~ -                - op‚rateurs unaires
+    * / %               - op‚rateurs arithm‚tiques
+    + -                  - op‚rateurs arithm‚tiques
+    << >>                - d‚calage logique
+    &                    - ET au niveau du bit
+    ^                    - OU exclusif au niveau du bit
+    |                    - OU au niveau du bit
+    = *= /= %= += -=    - attribution
+      &= ^= |= <<= >>=
+    ,                    - s‚parateur d'expression
+
+Si vous utilisez des op‚rateurs logiques ou des nombres, vous devez mettre
+l'expression entre guillemets. Toute chaŒne non num‚rique dans l'expression est
+trait‚e comme une variable d'environnement dont les valeurs sont converties en
+nombres avant d'ˆtre utilis‚es. Si un nom de variable d'environnement est
+sp‚cifi‚ mais n'est pas d‚fini dans l'environnement en cours, alors la valeur
+z‚ro est utilis‚e. Cela vous permet de faire des op‚rations avec les valeurs
+d'une variable d'environnement sans avoir … entrer des signes % pour obtenir
+ces valeurs. Si SET /A est ex‚cut‚ … partir de la ligne de commande en dehors
+d'un script de commande, alors la valeur finale de l'expression est affich‚e.
+L'op‚rateur d'assignation requiert un nom de variable d'environnement …
+gauche du cet op‚rateur. Les valeurs num‚riques sont des nombres d‚cimaux, …
+moins qu'ils ne soient pr‚fix‚s par 0x pour les valeurs hexad‚cimales et 0
+pour la notation octale. Donc 0x12 est identique … 18 et
+… 022. Notez que la notation octale peut ˆtre confuseÿ: 08 et 09 ne sont pas
+valides car 8 et 9 ne sont pas des nombres valides en notation octale.
+
+L'option /P vous permet de fixer la valeur d'une variable avec une ligne
+entr‚e par l'utilisateur. Elle affiche la chaŒne ChaŒneInvite sp‚cifi‚e
+avant de lire la ligne entr‚e. La ChaŒneInvite peut ˆtre vide.
+
+La substitution de la variable d'environnement a ‚t‚ am‚lior‚e comme suitÿ:
+
+    %PATH:ch1=ch2%
+
+d‚veloppe la variable d'environnement PATH, rempla‡ant chaque
+occurrence de "ch1" dans le r‚sultat d‚velopp‚ par "ch2".  "ch2" peut ˆtre
+une chaŒne vide pour supprimer toutes les occurrences de "ch1" de la sortie
+d‚velopp‚e. "ch1" peut commencer par un ast‚risque, auquel cas
+la commande traitera la chaŒne … partir du d‚but et jusqu'… la premiŠre
+occurrence du reste de ch1.
+
+Vous pouvez aussi sp‚cifier des sous-chaŒnes pour une expression.
+
+    %PATH:~10,5%
+
+d‚veloppe la variable d'environnement PATH et utilise seulement 5
+caractŠres … partir du onziŠme (d‚calage de 10)  dans le r‚sultat sous forme
+d‚velopp‚e. Si la longueur n'est pas sp‚cifi‚e, tout le reste de la valeur
+de la variable est trait‚. Si l'une des valeurs (d‚calage ou longueur)
+est n‚gative, alors le nombre utilis‚ est la longueur de la valeur de la
+variable d'environnement ajout‚e au d‚calage ou … la longueur donn‚.
+
+    %PATH:~-10%
+
+extrait les 10 derniers caractŠres de la variable PATH.
+
+    %PATH:~0,-2%
+
+extrait tous les caractŠres sauf les deux derniers de la variable PATH.
+
+Enfin, la prise en charge de l'expansion retard‚e de variables d'environnement
+a ‚t‚ ajout‚e. Cette prise en charge est toujours d‚sactiv‚e par d‚faut, mais
+peut ˆtre activ‚e/d‚sactiv‚e via l'option de ligne de commande /V dans CMD.EXE.
+Voir CMD /?
+
+La prise en charge de l'expansion retard‚e de variables d'environnement est
+utile pour contourner les limites de l'expansion en cours qui se produit … la
+lecture d'une ligne de texte et non … son ex‚cution. L'exemple suivant montre
+le problŠme caus‚ par l'expansion imm‚diate de variablesÿ:
+
+    set VAR=avant
+    if "%VAR%" == "avant" (
+        set VAR=aprŠs
+        if "%VAR%" == "aprŠs" @echo Cela marche si vous lisez ce message
+    )
+
+n'affichera jamais le message car la variable %VAR% pr‚sente dans les deux
+instances de IF est remplac‚e … la lecture de la premiŠre instance de IF, ‚tant
+donn‚ que le corps de IF, instruction compos‚e, est logiquement inclus. Donc le
+IF compris dans l'instance compare "avant" avec "aprŠs" et il n'y aura jamais
+‚galit‚. De mˆme, l'exemple suivant ne fonctionnera pas comme pr‚vuÿ:
+
+    set LIST=
+    for %i in (*) do set LIST=%LIST% %i
+    echo %LIST%
+
+car la liste des fichiers du r‚pertoire ne sera PAS cr‚‚e, et en fait la
+variable LIST prendra le valeur du dernier fichier trouv‚. Une fois encore
+cela est d– au fait que %LIST% n'est ‚tendu qu'une fois, lorsque FOR est
+lu et … ce stade la variable LIST est vide. Donc la boucle FOR ex‚cut‚e estÿ:
+
+    for %i in (*) do set LIST= %i
+
+qui donne toujours … LIST la valeur du dernier fichier trouv‚.
+
+L'expansion retard‚e de variables d'environnement vous permet d'utiliser un
+autre caractŠre (le point d'exclamation) afin d'‚tendre les variables
+d'environnement durant l'ex‚cution. Si l'expansion retard‚e de variables est
+activ‚e, les exemples ci-dessus peuvent ˆtre ‚crits comme suit afin de
+fonctionner comme vous le souhaitezÿ:
+
+    set VAR=avant
+    if "%VAR%" == "avant" (
+        set VAR=aprŠs
+        if "!VAR!" == "aprŠs" @echo Cela marche si vous lisez ce message
+    )
+
+    set LIST=
+    for %i in (*) do set LIST=!LIST! %i
+    echo %LIST%
+
+Si les extensions de commandes sont activ‚es, alors plusieurs variables
+d'environnement dynamiques peuvent ˆtre d‚velopp‚es sans apparaŒtre dans la
+liste de variables affich‚e par SET. Les valeurs de ces variables sont
+calcul‚es dynamiquement chaque fois que la variable est d‚velopp‚e. Si
+l'utilisateur d‚finit explicitement une variable avec un de ces noms, alors
+cette d‚finition ‚crase la d‚finition dynamique d‚crite ci-dessousÿ:
+
+%CD% - se d‚veloppe en la chaŒne du r‚pertoire en cours.
+
+%DATE% - se d‚veloppe en la date actuelle en utilisant le mˆme
+    format que la commande DATE.
+
+%TIME% - se d‚veloppe en l'heure en cours en utilisant le mˆme
+    format que la commande TIME.
+
+%RANDOM% - se d‚veloppe en un nombre al‚atoire compris entre 0 et 32767.
+
+%ERRORLEVEL% - se d‚veloppe en la valeur en cours de ERRORLEVEL
+
+%CMDEXTVERSION% - se d‚veloppe en le num‚ro de version des
+    extensions du processeur de commande en cours.
+
+%CMDCMDLINE% - se d‚veloppe en la ligne de commande originale
+    qui a appel‚ le processeur de commande.
