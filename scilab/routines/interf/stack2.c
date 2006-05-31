@@ -3191,6 +3191,21 @@ int C2F(createdata)(lw, n)
   return TRUE_; 
 }
 
+/*---------------------------------------------------------------------
+ * copyvarfromsciptr 
+ *     copy a Scilab variable given by 
+ *      - its first adress l in stk 
+ *      - its size n
+ *    to the variable position  lw
+ *----------------------------------------------------------------------*/
+int C2F(copyvarfromsciptr)(lw, n,l)
+     integer lw, n,l;
+{
+  int ret,un=1;
+  if ((ret=C2F(createdata)(&lw, n))==FALSE_) return ret;
+  C2F(unsfdcopy)(&n,stk(l),&un,stk(*Lstk(lw + Top - Rhs)),&un);
+  return TRUE_; 
+}
  
 void *GetData(lw)
      /* Usage: header = (int *) GetData(lw); header[0] = type of variable lw etc */
