@@ -21,8 +21,17 @@
     <P><VERB>public static boolean HaveAGraph() </VERB>: return true if there
     is a scilab graphic window.</P>
 
-    <P><VERB>public static boolean Exec(String job) </VERB>: execute a job in
-    scilab. return true if there is no error.</P>
+    <P><VERB>public static boolean Exec(String job) </VERB>: execute a job in scilab. return true if there is no error.</P>
+    
+    <P><VERB>public static native boolean ExistVar(String VarName) </VERB>: Detect if VarName exists in Scilab. return true if Varname exist.</P>
+    
+    <P><VERB>public static native int TypeVar(String VarName) </VERB>: return  Scilab type of VarName. See <LINK>type</LINK></P>
+    
+		<P><VERB>public static native int GetLastErrorCode() </VERB>: return  last Error code. See <LINK>getlasterror</LINK></P>
+    
+    <P><VERB>public static native boolean Finish() </VERB>: terminate scilab (call scilab.quit , close a scilab object)</P>
+    
+    
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[ // See SCI/examples/Callsci/CallsciJava directory]]></EXAMPLE>
@@ -43,6 +52,15 @@
     <SEE_ALSO_ITEM>
       <LINK>SciStringArray</LINK>
     </SEE_ALSO_ITEM>
+    
+    <SEE_ALSO_ITEM>
+      <LINK>type</LINK>
+    </SEE_ALSO_ITEM>
+    
+    <SEE_ALSO_ITEM>
+      <LINK>getlasterror</LINK>
+    </SEE_ALSO_ITEM>
+    
   </SEE_ALSO>
 
   <AUTHOR>A.C</AUTHOR>
