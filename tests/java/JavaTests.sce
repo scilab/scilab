@@ -44,7 +44,13 @@ function ExecJava(filename,buildref)
 			repfilename=currentdir+'/'+fname+'.dia';
 		end
 	end
-	commandline='java '+fname +' > '+repfilename;
+
+	if MSDOS then
+	  commandline='..\Java\jre1.5.0_06\bin\java '+fname +' > '+repfilename;
+	else
+	  commandline='../Java/jre1.5.0_06/bin/java '+fname +' > '+repfilename;
+	end
+
 	unix(commandline);
 	chdir(currentdir);
 endfunction
