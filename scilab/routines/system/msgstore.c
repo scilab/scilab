@@ -5,45 +5,39 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
-
+/*-----------------------------------------------------------------------------------*/ 
 #include "msgstore.h"
-
-
-
+/*-----------------------------------------------------------------------------------*/ 
 #define MEM_LACK 3
 #define MAX_LINES 2
 #define MAX_MSG_LINES  20
-
+/*-----------------------------------------------------------------------------------*/ 
 static char* msg_buff[MAX_MSG_LINES];
 static char funname[25];    /* Francois VOGEL August 2004 - Replaced 24 by 25 (bug 803)*/
 static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
-
-int C2F(errstore)(n)
-     int *n;
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(errstore)(int *n)
 {
   err_n = *n;
   return 0;
 }
-int C2F(linestore)(n)
-     int *n;
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(linestore)(int *n)
 {
   where = *n;
   return 0;
 }
-int C2F(funnamestore)(str,n)
-     char *str;
-     int *n;
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(funnamestore)(char *str,int *n)
 {
   memset(funname,'\0',25);    /* Francois VOGEL August 2004 (bug 803)*/
   strncpy(funname, str, (size_t)*n);
   return 0;
 }
-
-int C2F(msgstore)(str,n)
-     char *str;
-     int *n;
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(msgstore)(char *str,int *n)
 {
   char *line, c;
   int i,count=0;
@@ -58,7 +52,7 @@ int C2F(msgstore)(str,n)
   msg_buff[msg_line_counter++]=line;
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 void C2F(freemsgtable)()
 {
   int k;
@@ -67,7 +61,7 @@ void C2F(freemsgtable)()
   msg_line_counter=0;
   err_n = 0;
 }
-
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(lasterror)(fname,fname_len)
      char *fname;
      unsigned long fname_len;
@@ -135,3 +129,9 @@ int C2F(lasterror)(fname,fname_len)
   C2F(putlhsvar)();
   return(0);
 }
+/*-----------------------------------------------------------------------------------*/
+int GetLastErrorCode(void)
+{
+	return err_n;
+}
+/*-----------------------------------------------------------------------------------*/ 

@@ -16,6 +16,7 @@ import java.io.*;
   		while ( (i==0) && ( Scilab.HaveAGraph() != false) );
   		Scilab.Events();
   		System.out.println("Fenetre Graphique fermee");
+  		Scilab.Finish();
   	}
   }
 

@@ -14,7 +14,7 @@ class  Exemple4 {
     Scilab.Exec("Sentence2=''Scilab is the best.'';");
     S2.disp();
 
-
+		Scilab.Finish();
     
   }
 }

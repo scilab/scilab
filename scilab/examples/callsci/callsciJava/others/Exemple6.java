@@ -27,6 +27,7 @@ class  Exemple6 {
     q.Get();
     q.disp();
     System.out.println("----------------------------------------------------");
+    Scilab.Finish();
   }
 }
 

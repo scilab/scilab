@@ -40,6 +40,9 @@ class  Exemple7B {
     {
       e.printStackTrace();
     }
+    
+    Scilab.Finish();
+    
   }
 }
   	

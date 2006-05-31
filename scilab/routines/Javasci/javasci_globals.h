@@ -7,7 +7,7 @@
 #include <math.h>
 #include <stdio.h> 
 #include <string.h>
-#if WIN32
+#if _MSC_VER
   #include <windows.h>
   #pragma comment(lib, "User32.lib")
 #endif
@@ -39,10 +39,11 @@ extern int version_flag();
 extern void SetFromJavaToON(void);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);
+extern int TerminateScilab(char *ScilabQuit);
+extern int GetLastErrorCode(void);
 /********************************************************************************************************/
-#if WIN32
-extern char *getenv();
-extern void start_sci_gtk();
+#if _MSC_VER
+extern void start_sci_tcltk();
 extern void add_sci_argv();
 extern void add_sci_argv();
 extern void set_sci_env(char *DefaultSCIPATH);
