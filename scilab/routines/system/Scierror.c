@@ -56,35 +56,32 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 #if defined (vsnprintf) || defined (linux)
 {
 	#if _MSC_VER
-
-	char *LocalizedString=QueryStringError(fmt);
-	if (LocalizedString)
-	{
-		retval= vsnprintf(s_buf,bsiz-1, LocalizedString, ap );
-	}
-	else
-	{
-		retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
-	}
+		char *LocalizedString=QueryStringError(fmt);
+		if (LocalizedString)
+		{
+			retval= vsnprintf(s_buf,bsiz-1, LocalizedString, ap );
+		}
+		else
+		{
+			retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
+		}
 	#else
-
-	retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
-
+		retval= vsnprintf(s_buf,bsiz-1, fmt, ap );
 	#endif
 	
 }
 #else
- retval= vsprintf(s_buf,fmt, ap );
+	retval= vsprintf(s_buf,fmt, ap );
 #endif
- if (retval == -1)
- {
+if (retval == -1)
+{
 	 s_buf[bsiz-1]='\0';
- }
+}
 
-	lstr=strlen(s_buf);
-	va_end(ap);
-	Scierror_internal(&iv,s_buf);
-	return retval;
+lstr=strlen(s_buf);
+va_end(ap);
+Scierror_internal(&iv,s_buf);
+return retval;
 }
 /*-----------------------------------------------------------------------------------*/ 
 static int Scierror_internal(integer *n,char *buffer)

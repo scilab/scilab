@@ -39,5 +39,7 @@ public class  Exemple7A {
       e.printStackTrace();
     }
     
+    Scilab.Finish();
+    
   }
 }

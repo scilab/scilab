@@ -9,7 +9,7 @@ class  ExempleEvent
   public static void main(String[] args)  throws Exception
 
   {
-        int i=0;
+    int i=0;
         
 	  Scilab.Exec("plot3d();");
   	
@@ -27,6 +27,7 @@ class  ExempleEvent
    		System.out.println("Boucle Java sans fin "+i);
 		  i++;
   	}
+  	Scilab.Finish();
   	
   }
 

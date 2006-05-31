@@ -21,6 +21,8 @@ class  Exemple2 {
     // on envoit h a Scilab 
     // on fait executer une instruction Scilab 
     Scilab.Exec("disp(H)");
+    
+    Scilab.Finish();
        
   }
 }

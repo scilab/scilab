@@ -25,6 +25,8 @@ class  Exemple3 {
   b.disp();
   c.disp();
   
+  Scilab.Finish();
+  
 	}
 }
   

@@ -177,7 +177,7 @@ int TerminateScilab(char *ScilabQuit)
 		QuitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 		sprintf(QuitStringToScilab,"exec(\"%s\",-1);quit;",ScilabQuitUsed);
 
-		/* C2F(scirun)(QuitStringToScilab,strlen(QuitStringToScilab)); */
+		C2F(scirun)(QuitStringToScilab,strlen(QuitStringToScilab));
 
 		if (QuitStringToScilab) {FREE(QuitStringToScilab);QuitStringToScilab=NULL;}
 		if (ScilabQuitUsed) {FREE(ScilabQuitUsed);ScilabQuitUsed=NULL;}
