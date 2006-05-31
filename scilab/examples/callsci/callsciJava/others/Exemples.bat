@@ -1,44 +1,43 @@
 @echo off
-rem A modifier selon votre répertoire d'installation de Java(TM) 2 SDK, Standard Edition Version 1.4.2
-PATH=%PATH%;c:\Wintools\JBuilder9\jdk1.4\bin;
+SET JAVA="../Java/jre1.5.0_06/bin/java.exe"
 
 rem execution des exemples
 cd ..\..\..\..\bin
 echo ------------------------------------------------------------------------
 echo Exemple 1
 echo ------------------------------------------------------------------------
-java Exemple1
+%JAVA% Exemple1
 pause
 echo ------------------------------------------------------------------------
 echo Exemple 2
 echo ------------------------------------------------------------------------
-java Exemple2
+%JAVA% Exemple2
 pause
 echo ------------------------------------------------------------------------
 echo Exemple 3
 echo ------------------------------------------------------------------------
-java Exemple3
+%JAVA% Exemple3
 pause
 echo ------------------------------------------------------------------------
 echo Exemple 4
 echo ------------------------------------------------------------------------
-java Exemple4
+%JAVA% Exemple4
 pause
 echo ------------------------------------------------------------------------
 echo Exemple 5
 echo ------------------------------------------------------------------------
-java Exemple5
+%JAVA% Exemple5
 pause
 echo ------------------------------------------------------------------------
 echo Exemple 6
 echo ------------------------------------------------------------------------
-java Exemple6
+%JAVA% Exemple6
 pause
 echo ------------------------------------------------------------------------
 echo Exemple 7
 echo ------------------------------------------------------------------------
-java Exemple7A
-java Exemple7B
+%JAVA% Exemple7A
+%JAVA% Exemple7B
 echo ------------------------------------------------------------------------
 pause
 cd ..\examples\callsci\callsciJava\others

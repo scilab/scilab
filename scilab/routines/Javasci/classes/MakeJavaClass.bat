@@ -1,5 +1,4 @@
 @echo off
-rem A modifier selon votre répertoire d'installation de Java(TM) 2 SDK
 SET JAVAC="../../../Java/jdk1.5.0_06/bin/javac.exe"
 rem Compilation des classes Java d'interfaces
 
