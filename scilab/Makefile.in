@@ -149,6 +149,7 @@ BINDISTFILES = \
 	$(SCIBASE)/examples \
 	$(SCIBASE)/imp/NperiPos.ps \
 	$(SCIBASE)/imp/giffonts \
+	$(SCIBASE)/Java/jre1.5.0_06 \
 	$(SCIBASE)/macros \
 	$(SCIBASE)/man/eng \
 	$(SCIBASE)/man/fr \
