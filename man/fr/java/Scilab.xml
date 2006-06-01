@@ -27,7 +27,7 @@
     
     <P><VERB>public static native int TypeVar(String VarName) </VERB>: return  Scilab type of VarName. See <LINK>type</LINK></P>
     
-		<P><VERB>public static native int GetLastErrorCode() </VERB>: return  last Error code. See <LINK>getlasterror</LINK></P>
+		<P><VERB>public static native int GetLastErrorCode() </VERB>: return  last Error code. See <LINK>lasterror</LINK></P>
     
     <P><VERB>public static native boolean Finish() </VERB>: terminate scilab (call scilab.quit , close a scilab object)</P>
     
@@ -58,7 +58,7 @@
     </SEE_ALSO_ITEM>
     
     <SEE_ALSO_ITEM>
-      <LINK>getlasterror</LINK>
+      <LINK>lasterror</LINK>
     </SEE_ALSO_ITEM>
     
   </SEE_ALSO>
