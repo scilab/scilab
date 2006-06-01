@@ -30,11 +30,16 @@ char *GetSciPath(void);
 static char *GetSciPathCyg(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
-static int first =0;
-/*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
-	if ( OpenTCLsci()==0 ) TK_Started=1;
+	if ( OpenTCLsci()==0 ) 
+	{
+		TK_Started=1;
+	}
+	else
+	{
+		TK_Started=0;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 int OpenTCLsci(void)
@@ -174,7 +179,6 @@ int CloseTCLsci(void)
 		TKmainWindow=NULL;
 		bOK=1;
 		TK_Started=0;
-		first=0;
 	}
 	return bOK;
 }

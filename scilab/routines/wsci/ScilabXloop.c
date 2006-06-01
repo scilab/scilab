@@ -21,7 +21,6 @@
 
 #ifdef WITH_TK
 #include "tcl.h"
-extern void initTCLTK ();
 extern void flushTKEvents ();
 extern int  tcl_check_one_event(void);
 static int BasicScilab = 0;

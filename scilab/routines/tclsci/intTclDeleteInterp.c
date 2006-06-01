@@ -5,6 +5,7 @@
 #include "intTclDeleteInterp.h"
 /*-----------------------------------------------------------------------------------*/
 extern int CloseTCLsci(void);
+extern void initTCLTK(void);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intTclDeleteInterp) _PARAMS((char *fname))
 {
@@ -52,11 +53,8 @@ int C2F(intTclDeleteInterp) _PARAMS((char *fname))
 			Scierror(999,TCL_ERROR13,fname);
 			return 0;
 		}
-
-		if (TK_Started)
-		{
-			CloseTCLsci();
-		}
+		CloseTCLsci();
+		initTCLTK();
 	}
 
 	LhsVar(1)=0;

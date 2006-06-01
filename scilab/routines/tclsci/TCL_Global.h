@@ -42,7 +42,6 @@
 /*-----------------------------------------------------------------------------------*/
 extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
-extern int TK_Started;
 extern int XTKsocket;
 extern int IsAScalar(int RhsNumber); 
 /*-----------------------------------------------------------------------------------*/

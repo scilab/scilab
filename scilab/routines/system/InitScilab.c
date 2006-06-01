@@ -18,7 +18,6 @@ extern int StartJVM(char *SCILAB_PATH);
 
 #if WITH_TK
 extern void initTCLTK ();
-extern void flushTKEvents ();
 #endif
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
@@ -30,8 +29,7 @@ int C2F(initscilab)(void)
 	#endif
 
 	#if WITH_TK
-	initTCLTK();
-	flushTKEvents();
+		initTCLTK();
 	#endif
 
 	#ifdef _MSC_VER

@@ -7,4 +7,5 @@
 #define TCL_WARNING3 "Warning : Figure %d does not exist.\n"
 #define TCL_WARNING4 "Warning: ScilabEval command is too long and has been truncated to %d characters!\r\n"
 #define TCL_WARNING5 "Warning: Too many callbacks in queue!\r\n"
+#define TCL_WARNING6 "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\r\n"
 #endif  /* TCL_WARNINGSH */

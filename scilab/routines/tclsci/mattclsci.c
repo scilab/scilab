@@ -9,6 +9,8 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/
+extern int TK_Started;
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(intTclDoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclEvalFile) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclEvalStr) _PARAMS((char *fname,unsigned long fname_len));
@@ -54,7 +56,9 @@ extern int C2F(intTclExistInterp) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
 {  
-	Rhs = Max(0, Rhs);
+	if (TK_Started)
+	{
+		Rhs = Max(0, Rhs);
 	#if _MSC_VER
 		#ifndef _DEBUG
 			_try
@@ -73,6 +77,11 @@ int C2F(inttclsci)()
 	#else
 		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	#endif
+	}
+	else
+	{
+		sciprint(TCL_WARNING6);
+	}
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
