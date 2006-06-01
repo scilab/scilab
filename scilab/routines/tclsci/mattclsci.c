@@ -53,14 +53,13 @@ extern int C2F(intTclExistInterp) _PARAMS((char *fname,unsigned long fname_len))
   {C2F(intTclExistVar),"TCL_ExistVar"},
   {C2F(intTclUpVar),"TCL_UpVar"},
   {C2F(intTclDeleteInterp),"TCL_DeleteInterp"},
-	{C2F(intTclCreateSlave),"TCL_CreateSlave"},
-	{C2F(intTclExistInterp),"TCL_ExistInterp"}
+  {C2F(intTclCreateSlave),"TCL_CreateSlave"},
+  {C2F(intTclExistInterp),"TCL_ExistInterp"}
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
 {  
 	Rhs = Max(0, Rhs);
-	ReInitTCL();  
 	#if _MSC_VER
 		#ifndef _DEBUG
 			_try

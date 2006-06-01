@@ -236,26 +236,3 @@ static char *GetSciPathCyg(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
-int ReInitTCL(void)
-{
-	if (TK_Started != 1 )
-	{
-		if ( first == 0) 
-		{
-			initTCLTK();
-			first++;
-			if ( TK_Started != 1 ) 
-			{
-				initTCLTK();
-				/* Derniere chance ;) d'initialisation */
-				if ( TK_Started != 1 ) 
-				{
-					Scierror(999,TCL_ERROR20);
-					return 0;
-				}
-			}
-		}
-	}
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
