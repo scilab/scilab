@@ -51,8 +51,9 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
   head='mode(3);clear;lines(28,72);lines(0);'..
        +'deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');'..
        +'predef(''all'');'..
+       +'tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);'..
        +'diary('''+tmpfiles+'dia'+''');'..
-       +'mprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);'..
+       +'write(%io(2),tmpdirToPrint);'..
        +pg1;
   
   tail="diary(0);"+pg2+"exit;"
