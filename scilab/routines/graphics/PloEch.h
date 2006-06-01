@@ -67,10 +67,11 @@ extern int YLogScale(double y);
 /*
  * geometric transformation "for length"
  */
-#define WScale(w)   inint (Cscale.Wscx1 * w)
-#define WLogScale(x,w) inint (Cscale.Wscx1 * (log10 ((x + w) / x)))
-#define HScale(h)   inint (Cscale.Wscy1 * h) 
-#define HLogScale(y,h) inint (Cscale.Wscy1 * (log10 (y / y - h)))
+#define WScale(w)   inint (Cscale.Wscx1 * (w))
+#define WLogScale(x,w) inint (Cscale.Wscx1 * (log10 (((x) + (w)) / (x))))
+#define HScale(h)   inint (Cscale.Wscy1 * (h)) 
+/*#define HLogScale(y,h) inint (Cscale.Wscy1 * (log10 (y / y - h))) */
+#define HLogScale(y,h) inint (Cscale.Wscy1 * (log10 ( ((y) + (h)) / (y) ) )) /* modif jb Silvy 05/2006 */
 #define WDouble2Pixel(x,w) ((Cscale.logflag[0] == 'n') ? ( WScale(w)) : ( WLogScale(x,w)))
 #define HDouble2Pixel(y,h) ((Cscale.logflag[1] == 'n') ? ( HScale(h)) : ( HLogScale(y,h)))
 /* NG end */

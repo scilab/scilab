@@ -174,4 +174,11 @@ extern int FreeVertices(sciPointObj * psubwin);
 extern int ChildrenCounter(sciPointObj *pparent);
 extern int GetBarNumber(sciPointObj * pobj);
 extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
+
+extern void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
+                                   double        ulPoint[3]   ,
+                                   double        userSize[2]  ,
+                                   int           edgesX[4]    ,
+                                   int           edgesY[4]     ) ;
+
 #endif /* __SCI_DRAWINGS__ */

@@ -7534,7 +7534,6 @@ sciDrawObj (sciPointObj * pobj)
   integer *zm = NULL;
   integer n2 = 1, xtmp[4], ytmp[4], *pstyle = NULL/*,rect1[4]*/;
   integer closeflag = 0,ias,ias1;
-  integer width, height;
   double anglestr,w2,h2,as;
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
@@ -9353,37 +9352,22 @@ sciDrawObj (sciPointObj * pobj)
 #endif
       break;
     case SCI_RECTANGLE:
+    {
+      sciRectangle * ppRect = pRECTANGLE_FEATURE (pobj) ;
+      /* store the size of the rectangle */
+      double ulPoint[3]  = { ppRect->x, ppRect->y, ppRect->z } ;
+      double rectSize[2] = { ppRect->width, ppRect->height }   ;
+      int rectEdgesX[4] ;
+      int rectEdgesY[4] ;
       if (!sciGetVisibility(pobj)) break;
-     
-      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
       n = 1;
- /*      if (sciGetFillStyle(pobj) != 0) */
-/* 	{       */
-/* 	  x[0] = 64;	/\*la dash est de la meme couleur que le foreground*\/ */
-/* 	  x[1] = 1; */
-/* 	  x[2] = 0; */
-/* 	  x[3] = 0; */
-/* 	  x[4] = 0; */
-/* 	  x[5] = sciGetFillColor(pobj); */
-/* #ifdef WIN32  */
-/* 	  flag_DO = MaybeSetWinhdc (); */
-/* #endif */
-	 
-/* 	  C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv, */
-/* 		     &dv, &dv, &dv, 5L, 4096); */
-/* #ifdef WIN32  */
-/* 	  if ( flag_DO == 1) ReleaseWinHdc (); */
-/* #endif */
-/* 	} */
-      
-      /* load some line properties */
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
 
       v = 0;
       dv = 0; 
-#ifdef WIN32 
+#ifdef WIN32
       flag_DO = MaybeSetWinhdc ();
 #endif
 
@@ -9395,182 +9379,174 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
+
+      /* get the 4 vertices of the rectangle in pixels */
+      rectangleDouble2Pixel( sciGetParentSubwin(pobj),
+                             ulPoint                 ,
+                             rectSize                ,
+                             rectEdgesX              ,
+                             rectEdgesY                ) ;
+
       /**DJ.Abdemouche 2003**/
-      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
-	{
-	  sciSubWindow * ppsubwin = (pSUBWIN_FEATURE (sciGetParentSubwin(pobj)));
-	  double tmpx = pRECTANGLE_FEATURE (pobj)->x;
-	  double tmpy = pRECTANGLE_FEATURE (pobj)->y;
-	  
-	  double tmpwidth = pRECTANGLE_FEATURE (pobj)->width;
-	  double tmpheight= pRECTANGLE_FEATURE (pobj)->height;
+      if ( !(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d) )
+      {
+        int rectPixPosX   ;
+        int rectPixPosY   ;
+        int rectPixWidth  ;
+        int rectPixHeight ;
+        
+        /* retrieve x,y,w,h */
+        rectPixPosX   = rectEdgesX[0] ;
+        rectPixPosY   = rectEdgesY[0] ;
+        rectPixWidth  = rectEdgesX[2] - rectEdgesX[0] ;
+        rectPixHeight = rectEdgesY[2] - rectEdgesY[0] ;
 
-	  if((ppsubwin->axes.reverse[0] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
-	    tmpx= tmpx + tmpwidth;
-	  }
-	  
-	  if((ppsubwin->axes.reverse[1] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
-	    tmpy = tmpy - tmpheight;
-	  }
-	  
-	  x1  = XDouble2Pixel(tmpx); 
-	  yy1 = YDouble2Pixel(tmpy);
-	    
-	  /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
-	  width = WDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x,pRECTANGLE_FEATURE (pobj)->width); 
-	  height = HDouble2Pixel(pRECTANGLE_FEATURE (pobj)->y,pRECTANGLE_FEATURE (pobj)->height);
-	  
-	  if (pRECTANGLE_FEATURE (pobj)->strwidth==0)
-	    {
-	      pRECTANGLE_FEATURE (pobj)->strwidth=width;
-	      pRECTANGLE_FEATURE (pobj)->strheight=height;
-	      
-	    }
-	  wstr=pRECTANGLE_FEATURE (pobj)->strwidth;
-	  hstr=pRECTANGLE_FEATURE (pobj)->strheight;
+        if ( ppRect->strwidth == 0 )
+        {
+          ppRect->strwidth  = rectPixWidth  ;
+          ppRect->strheight = rectPixHeight ;
+          
+        }
+        wstr=ppRect->strwidth;
+        hstr=ppRect->strheight;
 	  
 	  
 #ifdef WIN32 
-	  flag_DO = MaybeSetWinhdc ();
+        flag_DO = MaybeSetWinhdc ();
 #endif
-	  sciClip(pobj);
+        sciClip(pobj);
 
-	  if(sciGetIsFilled(pobj) == TRUE){
-	    x[0] = sciGetBackground(pobj);
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
-		      &dv, &dv, &dv, &dv, 5L, 6L);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
-		      &dv, &dv, &dv, &dv, 5L, 10L );
-	    C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  }
+        if( sciGetIsFilled(pobj) )
+        {
+          x[0] = sciGetBackground(pobj);
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+                    &dv, &dv, &dv, &dv, 5L, 6L);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+                    &dv, &dv, &dv, &dv, 5L, 10L );
+          C2F(dr)("xfrect",str,&rectPixPosX,&rectPixPosY,&rectPixWidth,&rectPixHeight,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        }
 	  
-	  if(sciGetIsMark(pobj))
-	    {
-	      x[0] = sciGetMarkForeground(pobj);
+        if( sciGetIsMark(pobj) )
+        {
+          x[0] = sciGetMarkForeground(pobj);
 	       
-	      markidsizenew[0] =  sciGetMarkStyle(pobj);
-	      markidsizenew[1] =  sciGetMarkSize(pobj);
+          markidsizenew[0] =  sciGetMarkStyle(pobj);
+          markidsizenew[1] =  sciGetMarkSize(pobj);
 	      
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
 	     
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
+          C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+                    PD0, PD0, 0L, 0L);
 	     
-	      n = 4;
-	      xtmp[0] = x1;
-	      xtmp[1] = x1+width;
-	      xtmp[2] = x1+width;
-	      xtmp[3] = x1;
-	      ytmp[0] = yy1;
-	      ytmp[1] = yy1;
-	      ytmp[2] = yy1+height;
-	      ytmp[3] = yy1+height;
+          n = 4;
+          xtmp[0] = rectPixPosX ;
+          xtmp[1] = rectPixPosX + rectPixWidth ;
+          xtmp[2] = rectPixPosX + rectPixWidth ;
+          xtmp[3] = rectPixPosX ;
+          ytmp[0] = rectPixPosY ;
+          ytmp[1] = rectPixPosY ;
+          ytmp[2] = rectPixPosY + rectPixHeight ;
+          ytmp[3] = rectPixPosY + rectPixHeight ;
 	     
-	      DrawNewMarks(pobj,n,xtmp,ytmp,DPI);
-	    }
+          DrawNewMarks(pobj,n,xtmp,ytmp,DPI);
+        }
 
-	  if (sciGetIsLine(pobj))
-	    {
-	      x[0] = sciGetForeground(pobj);
+        if (sciGetIsLine(pobj))
+        {
+          x[0] = sciGetForeground(pobj);
 
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);    
+          C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);
 	      
 
-	      if (pRECTANGLE_FEATURE (pobj)->str == 1){
-		yy1 -= hstr;
-		C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	      else
-		C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
+          if (ppRect->str == 1)
+          {
+            rectPixPosY -= hstr;
+            C2F(dr)("xrect",str,&rectPixPosX,&rectPixPosY,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
+          else
+          {
+            C2F(dr)("xrect",str,&rectPixPosX,&rectPixPosY,&rectPixWidth,&rectPixHeight,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
+        }
 	  
-	  sciUnClip(pobj);
-#ifdef WIN32 
-	  if ( flag_DO == 1)  ReleaseWinHdc ();
+        sciUnClip(pobj);
+#ifdef WIN32
+        if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
-	}
+      }
       else /* Rect. in 3D */
-	{ 
-	  double rectx[4],recty[4],rectz[4];
-	  int close=1;
-	  n=4;
-	  xm = graphic_alloc(0,4,sizeof(int));
-	  ym = graphic_alloc(1,4,sizeof(int));
-	  rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
-	  rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
-	  recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
-	  recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
-	  rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
-
-	  ReverseDataFor3D(sciGetParentSubwin(pobj), rectx, recty, rectz, n);
-
-	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
-#ifdef WIN32 
-	  flag_DO = MaybeSetWinhdc ();
+      { 
+        int close=1;
+        n=4;
+                
+#ifdef WIN32
+        flag_DO = MaybeSetWinhdc ();
 #endif
-	  sciClip(pobj);
+        sciClip(pobj);
 
 	  
-	  if(sciGetIsFilled(pobj) == TRUE){
-	    x[0] = sciGetBackground(pobj);
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
-		      &dv, &dv, &dv, &dv, 5L, 6L);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
-		      &dv, &dv, &dv, &dv, 5L, 10L );
-	    C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-	  }
+        if( sciGetIsFilled(pobj) )
+        {
+          x[0] = sciGetBackground(pobj);
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+                    &dv, &dv, &dv, &dv, 5L, 6L);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+                    &dv, &dv, &dv, &dv, 5L, 10L );
+          C2F (dr) ("xarea", str, &n, rectEdgesX, rectEdgesY, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+        }
 	  
-	  if (sciGetIsMark(pobj)) 
-	    {
-	      x[0] = sciGetMarkForeground(pobj);
+        if (sciGetIsMark(pobj)) 
+        {
+          x[0] = sciGetMarkForeground(pobj);
 		 
-	      markidsizenew[0] =  sciGetMarkStyle(pobj);
-	      markidsizenew[1] =  sciGetMarkSize(pobj);
+          markidsizenew[0] =  sciGetMarkStyle(pobj);
+          markidsizenew[1] =  sciGetMarkSize(pobj);
 
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
 	     
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
+          C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+                    PD0, PD0, 0L, 0L);
 	     
-	      n=4;
+          n=4;
 	     
-	      DrawNewMarks(pobj,n,xm,ym,DPI);
-	    }
+          DrawNewMarks(pobj,n,rectEdgesX,rectEdgesY,DPI);
+        }
 
-	  if (sciGetIsLine(pobj)) 
-	    {
-	      x[0] = sciGetForeground(pobj);
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
+        if (sciGetIsLine(pobj)) 
+        {
+          x[0] = sciGetForeground(pobj);
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);    
+          C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);
 	      
-	      C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	    }
-	  
-	  sciUnClip(pobj);
-#ifdef WIN32 
-	  if ( flag_DO == 1)  ReleaseWinHdc ();
+          C2F (dr) ("xlines", "xv", &n, rectEdgesX, rectEdgesY, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+        }
+
+        sciUnClip(pobj);
+#ifdef WIN32
+        if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
-	}
-      break;
+      }
+    }
+    break;
     case SCI_TEXT:
       if (!sciGetVisibility(pobj))
       {
@@ -12111,5 +12087,75 @@ int FreeVertices(sciPointObj * psubwin)
   return 0;
 }
 
+/*------------------------------------------------------------------------------------------*/
+void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
+                            double        ulPoint[3]   ,
+                            double        userSize[2]  ,
+                            int           edgesX[4]    ,
+                            int           edgesY[4]     )
+{
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( parentSubWin  ) ;
+
+  if ( ppSubWin->is3d )
+  {
+    double rectx[4],recty[4],rectz[4];
+    int n = 4 ;
+    rectx[0] = rectx[3] = ulPoint[0] ;
+    rectx[1] = rectx[2] = ulPoint[0] + userSize[0] ;   
+    recty[0] = recty[1] = ulPoint[1] ;
+    recty[2] = recty[3] = ulPoint[1] - userSize[1];
+    rectz[0] = rectz[1] = rectz[2]= rectz[3] = ulPoint[2] ;
+    
+    ReverseDataFor3D( parentSubWin, rectx, recty, rectz, n);
+    
+    trans3d( parentSubWin,n,edgesX,edgesY,rectx,recty,rectz) ;
+  }
+  else
+  {
+    /* 2D mode */
+    /* position of the upper left point of the rectangle with reverse axes. */
+    double realPoint[2] ;
+    int ulPointPix[2] ;
+    int sizePix[2] ;
+    
+    if ( ppSubWin->axes.reverse[0] )
+    {
+      realPoint[0] = ulPoint[0] + userSize[0] ;
+    }
+    else
+    {
+      realPoint[0] = ulPoint[0] ;
+    }
+    
+    if ( ppSubWin->axes.reverse[1] )
+    {
+      realPoint[1] = ulPoint[1] - userSize[1] ;
+    }
+    else
+    {
+      realPoint[1] = ulPoint[1] ;
+    }
+	  
+    ulPointPix[0] = XDouble2Pixel( realPoint[0] ) ; 
+    ulPointPix[1] = YDouble2Pixel( realPoint[1] ) ;
+	
+    /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
+    sizePix[0] = WDouble2Pixel( ulPoint[0], userSize[0] ) ;
+    /* for y we take the length from the bottom left corner */
+    sizePix[1] = HDouble2Pixel( ulPoint[1] - userSize[1], userSize[1] ) ;
+
+    edgesX[0] = ulPointPix[0] ;
+    edgesX[1] = ulPointPix[0] + sizePix[0]  ;
+    edgesX[2] = ulPointPix[0] + sizePix[0]  ;
+    edgesX[3] = ulPointPix[0] ;
+
+    edgesY[0] = ulPointPix[1] ;
+    edgesY[1] = ulPointPix[1] ;
+    edgesY[2] = ulPointPix[1] + sizePix[1]  ;
+    edgesY[3] = ulPointPix[1] + sizePix[1]  ;
+
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 
 #undef round
