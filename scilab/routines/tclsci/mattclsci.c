@@ -9,11 +9,6 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int TK_Started;
-/*-----------------------------------------------------------------------------------*/
-extern initTCLTK(void);
-extern int ReInitTCL(void);
-/*-----------------------------------------------------------------------------------*/
 extern int C2F(intTclDoOneEvent) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclEvalFile) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intTclEvalStr) _PARAMS((char *fname,unsigned long fname_len));
