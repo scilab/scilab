@@ -27,8 +27,6 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
-
-
 /*-----------------------------------------------------------------------------------*/
 #ifndef NULL
   #define NULL 0
@@ -44,6 +42,7 @@ extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 extern int XTKsocket;
 extern int IsAScalar(int RhsNumber); 
+extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
 void nocase (char *s);
 char *Matrix2String(int RhsMatrix);
