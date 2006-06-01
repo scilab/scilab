@@ -1,5 +1,12 @@
 function scipad(varargin)
 // start Scipad editor
+	nwnimode=find(sciargs()=="-nwni");
+	if (nwnimode <>[]) then
+	 clear nwnimode
+	 warning(" Scilab in no window no interactive mode : Scipad unavailable");
+	 abort;
+	end;
+	
 global LANGUAGE
 global TMPDIR
   if with_tk() then
