@@ -49,3 +49,5 @@ txt=tree2code(tree,%T);
 
 // Replace the old code by the new code (which is txt) in the file  
 //mputl(txt,fun);
+
+endfunction
