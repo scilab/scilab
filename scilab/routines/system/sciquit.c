@@ -90,9 +90,10 @@ int ExitScilab(void)
 		if (i != 0)	CloseConsoleGUI();
 	#endif
 
-	C2F(freegmem)();
-	C2F(freemem)();
-	
+	#ifdef _MSC_VER /* Bug sous Linux lors de la liberation memoire */
+		C2F(freegmem)();
+		C2F(freemem)();
+	#endif
 
 	#ifdef WITH_TK
 		CloseTCLsci();
