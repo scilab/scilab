@@ -108,6 +108,8 @@ static void strip_blank(char *source);
 extern sciPointObj *pfiguremdl; /* F.Leray 18.11.04 : used to be destroyed with sciquit */
 extern sciPointObj *paxesmdl;   /* F.Leray 18.11.04 : used to be destroyed with sciquit */
 
+void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
+
 /*---------------------------------------------------------- 
  * mainsci.f directly call this function 
  * thus this is the real main for scilab 
@@ -124,12 +126,12 @@ static int  initial_script_type = 0; /* 0 means filename 1 means code */
 extern void settexmacs();
 
 int  sci_show_banner=1;
-
+/*----------------------------------------------------------------------------------*/
 void C2F(realmain)()
 {
   int ierr, argc,i;
-  static int ini=-1;
-  char startup[256];
+ 
+
   char **argv, *display = NULL;
   
   #if (defined __GNUC__  )
@@ -141,16 +143,15 @@ void C2F(realmain)()
   /* floating point exceptions */
   C2F(nofpex)(); 
   /* create argv */
-  if (( argv = create_argv(&argc))== NULL) 
-    exit(1);
+  if (( argv = create_argv(&argc))== NULL)  exit(1);
   ProgramName = argv[0];
   /* scanning options */
   for ( i=0 ; i < argc ; i++) 
     {
-      if ( strcmp(argv[i],"-nw") == 0) 
-	{ no_window = 1; } 
-      if ( strcmp(argv[i],"-nwni") == 0) 
-	{ no_window = 1; } 
+      if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
+
+      if ( strcmp(argv[i],"-nwni") == 0){ no_window = 1; } 
+
       else if ( strcmp(argv[i],"-display") == 0) 
 	{ 
 	  char dpy[128];
@@ -169,6 +170,16 @@ void C2F(realmain)()
       else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
 
     }
+
+ realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
+}
+/*----------------------------------------------------------------------------------*/
+void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory)
+{
+  static int ini=-1;
+  int ierr=0;
+  char startup[256];
+
   /* create temp directory */
   C2F(settmpdir)();
   /* signals */
@@ -217,15 +228,13 @@ void C2F(realmain)()
 
   if ( no_window == 0 ) 
     {
+      int argc=0;
+      char **argv=NULL;
+
+      argv = create_argv(&argc);
+
       /* we are in window mode */
       SetXsciOn();
-    }
-
-  if ( no_window == 0 ) 
-    {
-      /* enters window mode first then 
-       * call inisci and scirun 
-       */
       main_sci(argc,argv,startup,strlen(startup),memory);
     }
   else 
@@ -238,10 +247,8 @@ void C2F(realmain)()
     }
   /* cleaning */
   C2F(sciquit)();
-  return ;
 }
-
-
+/*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
 
 static struct _resource {
