@@ -1,5 +1,8 @@
 // demo pour visualisation des fonctions elementaires
-// complexe - Bruno Pincon 
+// complexe - Bruno Pincon
+
+// Adapted for new graphic by Pierre MARECHAL ( 16/12/2005 )
+
 path=get_absolute_file_path('cmplxfunc.dem');
 
 getf(path+"MacCmplx.sci")  //  les macros utilisees ici
