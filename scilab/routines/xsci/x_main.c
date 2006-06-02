@@ -656,54 +656,11 @@ static void strip_blank(char *source)
   }
 }
 
-/*-------------------------------------------------------
- * Exit function called by some 
- * X11 functions 
- * call sciquit which call clear_exit
- *-------------------------------------------------------*/
-
-int C2F(sciquit)(void)            /* used at Fortran level */
-{
-  int status = 0;
-  /* fprintf(stderr,"I Quit Scilab through sciquit\n"); */
-
- /* F.Leray : graphic objects models (for axe and figure) can now be deleted */
-  DestroyAllGraphicsSons(pfiguremdl); paxesmdl = (sciPointObj *) NULL;
-  DestroyFigure(pfiguremdl); pfiguremdl = (sciPointObj *) NULL;
-  
-  if ( no_startup_flag == 0) 
-    {
-      char *quit_script =  get_sci_data_strings(5);
-      C2F(scirun)(quit_script,strlen(quit_script));
-    }
-  sci_exit(status) ;
-  return 0;
-} 
 
 void sci_clear_and_exit(int n) /* used with handlers */ 
 {
   /* fprintf(stderr,"I Quit Scilab through sci_clear_and_exit\n"); */
   C2F(sciquit)();
-}
-
-int sci_exit(int n) 
-{
-  /* fprintf(stderr,"I Quit Scilab through sci_exit\n");*/
-  /** clean tmpfiles **/
-  C2F(tmpdirc)();
-  /** clean ieee **/
-#ifdef sun 
-#ifndef SYSV
-#include <sys/ieeefp.h>
-  {
-    char *mode, **out, *in;
-    ieee_flags("clearall","exeption","all", &out);
-  }
-#endif 
-#endif 
-  /* really exit */
-  exit(n);
-  return(0);
 }
 
 /*-------------------------------------------------------
@@ -775,4 +732,10 @@ static void Syntax (badOption)
 int IsConsoleMode(void)
 {
   return no_window;
+}
+
+
+int Get_no_startup_flag(void)
+{
+	return no_startup_flag;
 }

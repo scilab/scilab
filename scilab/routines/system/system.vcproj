@@ -225,10 +225,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intgetmd5.h"
-				>
-			</File>
-			<File
 				RelativePath="..\system2\intmacr2tree.c"
 				>
 			</File>
@@ -242,10 +238,6 @@
 			</File>
 			<File
 				RelativePath=".\md5.c"
-				>
-			</File>
-			<File
-				RelativePath=".\md5.h"
 				>
 			</File>
 			<File
@@ -270,6 +262,10 @@
 			</File>
 			<File
 				RelativePath=".\Scierror.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sciquit.c"
 				>
 			</File>
 			<File
@@ -326,6 +322,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\intgetmd5.h"
+				>
+			</File>
+			<File
 				RelativePath="..\system2\intmacr2tree.h"
 				>
 			</File>
@@ -334,11 +334,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\md5.h"
+				>
+			</File>
+			<File
 				RelativePath="msgstore.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Scierror.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sciquit.h"
 				>
 			</File>
 		</Filter>

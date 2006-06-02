@@ -23,17 +23,12 @@ extern int setenvc(char *string,char *value);
 extern int C2F(inisci)(int *,int *,int *);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
-extern void C2F (tmpdirc) (void);
 extern int C2F(ismenu)();
 extern void SetFromCToON(void);
 extern int version_flag(void); 
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int IsFromC(void);
-extern void C2F(freegmem)(void);
-extern void C2F(freemem)(void);
-#ifdef WITH_TK
-extern int CloseTCLsci(void);
-#endif
+extern int ExitScilab(void);
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -157,40 +152,7 @@ int TerminateScilab(char *ScilabQuit)
 
 	if (StartScilabIsOK)
 	{
-		char *ScilabQuitUsed=NULL;
-		char *QuitStringToScilab=NULL;
-		int lengthStringToScilab=0;
-
-		if (ScilabQuit==NULL)
-		{
-			ScilabQuitUsed=(char*)MALLOC((strlen(DefaultScilabQuit)+1)*sizeof(char));
-			sprintf(ScilabQuitUsed,"%s",DefaultScilabQuit);
-		}
-		else
-		{
-			ScilabQuitUsed=(char*)MALLOC((strlen(ScilabQuit)+1)*sizeof(char));
-			sprintf(ScilabQuitUsed,"%s",ScilabQuit);
-		}
-
-		lengthStringToScilab=(int)(strlen("exec('SCI/scilab.quit',-1);quit;")+strlen(ScilabQuitUsed));
-
-		QuitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
-		sprintf(QuitStringToScilab,"exec(\"%s\",-1);quit;",ScilabQuitUsed);
-
-		C2F(scirun)(QuitStringToScilab,strlen(QuitStringToScilab));
-
-		if (QuitStringToScilab) {FREE(QuitStringToScilab);QuitStringToScilab=NULL;}
-		if (ScilabQuitUsed) {FREE(ScilabQuitUsed);ScilabQuitUsed=NULL;}
-
-		#if _MSC_VER
-			C2F(freegmem)();
-			C2F(freemem)();
-		#endif
-
-		#ifdef WITH_TK
-			CloseTCLsci();
-		#endif
-
+		ExitScilab();
 		StartScilabIsOK=FALSE;
 		bOK=TRUE;
 	}

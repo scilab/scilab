@@ -48,15 +48,13 @@ BOOL ScilabIsStarting=TRUE;
 int  sci_show_banner=1;
 /*-----------------------------------------------------------------------------------*/
 extern void PrintFile(char *filename);
-extern void C2F (tmpdirc) ();
-extern void C2F (getwins) (integer *, integer *, integer *);
 extern void ChangeCursorWhenScilabIsReady(void);
 extern TW InitTWStruct(void);
 extern void CreateSplashscreen(void);
 extern void settexmacs(void);
 extern void MessageBoxNewGraphicMode(void);
+extern int ExitScilab(void);
 /*-----------------------------------------------------------------------------------*/
-static void AllGraphWinDelete ();
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
 int MAIN__ ()
@@ -178,7 +176,6 @@ int Console_Main(int argc, char **argv)
 
   hdllInstance = GetModuleHandle(MSG_SCIMSG9);
 
-  atexit (WinExit);
   if (nowin == 1)
     {
 	  SaveConsoleColors();
@@ -197,8 +194,8 @@ int Console_Main(int argc, char **argv)
         MessageBox(NULL,MSG_ERROR79,MSG_ERROR20,MB_ICONWARNING);
     }
 
-  /* Remove TMP Directory */
-  C2F(tmpdirc)();
+  ExitScilab();
+  
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -444,8 +441,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		}
 	}		
 	hdllInstance = hInstance;
-	atexit (WinExit);
-
 
 	/* Splashscreen*/
 	if ( (sci_show_banner) && (LaunchAFile == FALSE) )CreateSplashscreen();
@@ -471,8 +466,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	/* Tue ce process pour fermeture correcte sous Windows 98 */
 	Kill_Scilex_Win98();
 
-	/* Remove TMP Directory */
-	C2F(tmpdirc)();
+	ExitScilab();
+
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -557,51 +553,6 @@ int InteractiveMode ()
 int C2F(showlogo) ()
 {
 	return show_logo;
-}
-/*-----------------------------------------------------------------------------------*/
-/*---------------------------------------------------
-* atexit procedure for scilab and scilab -nw
-*---------------------------------------------------*/
-
-void WinExit (void)
-{
-	int i;
-	C2F (xscion) (&i);
-	if (i != 0)
-	{
-		/** delete all graph windows **/
-		AllGraphWinDelete ();
-		TextMessage ();		/* process messages */
-		TextClose (&textwin);
-		TextMessage ();		/* process messages */
-	}
-	else
-	{
-	  RestoreConsoleColors();
-	}
-	return;
-}
-/*-----------------------------------------------------------------------------------*/
-/* utility function for WinExit */
-/*-----------------------------------------------------------------------------------*/
-static void AllGraphWinDelete ()
-{
-	integer iflag = 0, num, *ids = (integer *) 0;
-	C2F (getwins) (&num, ids, &iflag);
-	if (num > 0)
-	{
-		ids = MALLOC ((unsigned) num * sizeof (integer));
-	}
-	iflag = 1;
-
-	if (ids != NULL)
-	{
-		int i;
-		C2F (getwins) (&num, ids, &iflag);
-		for (i = 0; i < num; i++)
-		C2F (deletewin) (&ids[i]);
-		FREE (ids);
-	}
 }
 /*-----------------------------------------------------------------------------------*/
 /* Modification Correction Bug Win 9x Winoldap */

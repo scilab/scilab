@@ -67,7 +67,8 @@ extern BOOL IsWindowInterface(void);
 extern char *GetExceptionString(DWORD ExceptionCode);
 static void interrupt_setup ();
 static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory);
-static int sci_exit(int n) ;
+extern int sci_exit(int n); 
+extern LPTW GetTextWinScilab(void);
 /*-----------------------------------------------------------------------------------*/
 static int  no_startup_flag=0;
 jmp_buf env;
@@ -159,9 +160,10 @@ void sci_clear_and_exit(int n) /* used with handlers */
 #else
   MessageBox(NULL,MSG_WARNING30,MSG_WARNING22,MB_ICONWARNING);
 #endif
-  WinExit();
   C2F(sciquit)();
 }
+/*-----------------------------------------------------------------------------------*/
+
 /*-----------------------------------------------------------------------------------*/
 static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory)
 {
@@ -248,39 +250,11 @@ static void realmain(int nos,char *initial_script,int initial_script_type,int lp
 		C2F(scirun)(startup,strlen(startup));
 	#endif
 
-	/* cleaning */ /* Allan CORNET 18/01/2004 */
-	WinExit();
-	C2F(sciquit)(); 
-	C2F(tmpdirc)();
+	C2F(sciquit)();
+	
 }
 /*-----------------------------------------------------------------------------------*/
-/*-------------------------------------------------------
- * Exit function called by some 
- * X11 functions 
- * call sciquit which call clear_exit
- *-------------------------------------------------------*/
-int C2F(sciquit)()            /* used at Fortran level */
-{
-  int status = 0;
-  /* fprintf(stderr,"I Quit Scilab through sciquit\n"); */
-  if ( no_startup_flag == 0) 
-    {
-      char *quit_script =  get_sci_data_strings(5);
-      C2F(scirun)(quit_script,strlen(quit_script));
-    }
-  return sci_exit(status) ;
-} 
-/*-----------------------------------------------------------------------------------*/
-int sci_exit(int n) 
-{
-  /* fprintf(stderr,"I Quit Scilab through sci_exit\n");*/
-  /** clean tmpfiles **/
-  C2F(tmpdirc)();
-  /* really exit */
-  exit(n);
-  return(0);
-}
-/*-----------------------------------------------------------------------------------*/
+
 /*-------------------------------------------------------
  * usr1 signal : used to transmit a Control C to 
  * scilab 
@@ -297,5 +271,10 @@ void sci_usr1_signal(int n)
 void  sci_sig_tstp(int n)
 {
   Scierror(999,MSG_ERROR67);
+}
+/*-----------------------------------------------------------------------------------*/
+int Get_no_startup_flag(void)
+{
+	return no_startup_flag;
 }
 /*-----------------------------------------------------------------------------------*/
