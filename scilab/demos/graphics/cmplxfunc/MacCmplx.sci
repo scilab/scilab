@@ -65,6 +65,8 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	
 	// Bruno (10/10/2001): macros for the complex function dem
 	
+	// Adapted for new graphic by Pierre MARECHAL ( 16/12/2005 )
+	
 	// computes the facets
 	
 	[xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
