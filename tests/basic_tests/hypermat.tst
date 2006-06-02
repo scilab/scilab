@@ -14,7 +14,7 @@ for k=1:size(Data)
   if or(h(1:3)<>matrix(data([1 2 3]),-1,1)) then mprintf(msg,td,test,k); pause,end
   if or(h(1,2:3)<>data([3 5])) then mprintf(msg,td,test,k); pause,end
   if or(h(1,4:5)<>data([7 9])) then mprintf(msg,td,test,k); pause,end
-  mprintf('    test%d.%d completed\n',test,k)
+  msgToPrint=msprintf('    test%d.%d completed\n',test,k);write(%io(2),msgToPrint);
 end
 //insertion of []
 test=2;
@@ -33,7 +33,7 @@ for k=1:size(Data)
   h=hypermat([2 3 2],data);
   h(:,:,:)=[];
   if h<>[] then mprintf(msg,td,test,k); pause,end
-  mprintf('    test%d.%d completed\n',test,k)
+  msgToPrint=msprintf('    test%d.%d completed\n',test,k);write(%io(2),msgToPrint);
 
 end
 
@@ -79,7 +79,7 @@ for k=1:size(Data)
   if type(h)<>type(data) then mprintf(msg,td,test,k); pause,end
   if or(size(h)<>[15,1]) then mprintf(msg,td,test,k); pause,end
   if or(h(13:15)<>I) then mprintf(msg,td,test,k); pause,end
-  mprintf('    test%d.%d completed\n',test,k)
+  msgToPrint=msprintf('    test%d.%d completed\n',test,k);write(%io(2),msgToPrint);
 
 end
 
@@ -94,7 +94,7 @@ for k=1:size(Data)
   if h(:,:,1)<>data then mprintf(msg,td,test,k); pause,end
   d=[];d(3,4)=I;
   if h(:,:,2)<>d then mprintf(msg,td,test,k); pause,end
-  mprintf('    test%d.%d completed\n',test,k)
+  msgToPrint=msprintf('    test%d.%d completed\n',test,k);write(%io(2),msgToPrint);
 end
 
 
