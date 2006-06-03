@@ -90,17 +90,16 @@ char *ProgramName;
 extern void sci_clear_and_exit (int);
 extern int C2F(nofpex) (void);
 extern int C2F(scigetarg) (int *,char *,long int l);
-extern int C2F(sciiargc) (void);
+
 extern char *strindex ();
 extern void do_hangup();
 extern void do_kill();
 extern void sci_usr1_signal(int n) ;
+extern char ** create_argv(int *argc);
 
 static void Syntax  __PARAMS((char *badOption));  
-static void strip_blank  __PARAMS((char *source));  
 static void Syntax  (char *badOption);  
-static char ** create_argv(int *argc);
-static void strip_blank(char *source);
+
 
 extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 
@@ -114,15 +113,16 @@ extern void realmain(int nowin,int no_startup_flag,char *initial_script,int init
 extern void settexmacs();
 
 int  sci_show_banner=1;
+static int  no_window = 0;
 /*----------------------------------------------------------------------------------*/
 void C2F(realmain)()
 {
   int ierr, argc,i;
   int  no_startup_flag=0;
-	int  memory = MIN_STACKSIZE;
-	int  no_window = 0;
-	char * initial_script = NULL;
-	int  initial_script_type = 0; /* 0 means filename 1 means code */
+  int  memory = MIN_STACKSIZE;
+	
+  char * initial_script = NULL;
+  int  initial_script_type = 0; /* 0 means filename 1 means code */
  
 
   char **argv, *display = NULL;
@@ -166,7 +166,8 @@ void C2F(realmain)()
 
  realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
 }
-*----------------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
 
 static struct _resource {
@@ -542,50 +543,9 @@ int GetBytesAvailable (fd)
 #endif
 }
 
-/* utility */
-
-#define BSIZE 128 
-
-static char ** create_argv(int *argc)
-{
-  int i;
-  char **argv;
-  *argc = C2F(sciiargc)() + 1;
-  if ( ( argv = malloc((*argc)*sizeof(char *))) == NULL) return NULL;
-  for ( i=0 ; i < *argc ; i++) 
-    {
-      char buf[BSIZE];
-      C2F(scigetarg)(&i,buf,BSIZE);
-      buf[BSIZE-1]='\0';
-      strip_blank(buf);
-      argv[i] = malloc((strlen(buf)+1)*sizeof(char));
-      if ( argv[i] == NULL) return NULL;
-      strcpy(argv[i],buf);
-      /* fprintf(stderr,"arg[%d] %s\n",i,argv[i]);*/
-    }
-  return argv;
-}
-
-/* utility */
-
-static void strip_blank(char *source)
-{
-  char *p;
-  p = source;
-  /* look for end of string */
-  while(*p != '\0') p++;
-  while(p != source) {
-    p--;
-    if(*p != ' ') break;
-    *p = '\0';
-  }
-}
-
-
 void sci_clear_and_exit(int n) /* used with handlers */ 
 {
-  /* fprintf(stderr,"I Quit Scilab through sci_clear_and_exit\n"); */
-  C2F(sciquit)();
+   C2F(sciquit)();
 }
 
 /*-------------------------------------------------------
@@ -595,8 +555,7 @@ void sci_clear_and_exit(int n) /* used with handlers */
 
 void sci_usr1_signal(int n) 
 {
-  /* fprintf(stderr," usr1 signal "); */
-  controlC_handler(n);
+   controlC_handler(n);
 }
 
 /*-------------------------------------------------------
