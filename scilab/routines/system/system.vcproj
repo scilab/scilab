@@ -253,6 +253,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\realmain.c"
+				>
+			</File>
+			<File
 				RelativePath=".\run.c"
 				>
 			</File>
@@ -339,6 +343,10 @@
 			</File>
 			<File
 				RelativePath="msgstore.h"
+				>
+			</File>
+			<File
+				RelativePath=".\realmain.h"
 				>
 			</File>
 			<File

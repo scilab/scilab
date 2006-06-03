@@ -52,31 +52,16 @@
 #include "Warnings.h"
 #include "Errors.h"
 
-
 /*-----------------------------------------------------------------------------------*/
-extern int C2F (stimer) (void);
-extern void C2F (settmpdir) (void);
-extern void C2F (tmpdirc) (void);
-extern void C2F (getenvc) (int *ierr, char *var, char *buf, int *buflen, int *iflag);
-extern char *get_sci_data_strings (int n);
 extern int C2F(sciquit)(void );
-extern int C2F(scirun)(char * startup, int lstartup);
-extern int C2F(inisci)(int *,int *,int *);
-extern int IsNoInteractiveWindow(void);
-extern BOOL IsWindowInterface(void);
-extern char *GetExceptionString(DWORD ExceptionCode);
 static void interrupt_setup ();
-static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory);
-extern int sci_exit(int n); 
-extern LPTW GetTextWinScilab(void);
+extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 /*-----------------------------------------------------------------------------------*/
-static int  no_startup_flag=0;
 jmp_buf env;
-extern char input_line[];
 /*-----------------------------------------------------------------------------------*/
 /***********************************************
  * SIGINT is not used up to now 
- * CtrC are detected in readline or in jpc_Xloop 
+ * CtrC are detected in readline or in ScilabXloop 
  * TextMessage1  while we are in a scilab window 
  * the function SignalCtrC set a flag 
  * for scilab 
@@ -106,9 +91,6 @@ static void interrupt_setup (void)
 /*-----------------------------------------------------------------------------------*/
 void sci_windows_main (int nowin, int *nos, char *path,int pathtype,int *lpath,int memory)
 {
-#ifdef XPG3_LOCALE
-  (void) setlocale (LC_CTYPE, "");
-#endif
   setbuf (stderr, (char *) NULL);
   if (!setjmp (env))
     {
@@ -122,7 +104,8 @@ void sci_windows_main (int nowin, int *nos, char *path,int pathtype,int *lpath,i
 	SetCursor (LoadCursor ((HINSTANCE) NULL, IDC_ARROW));
     }
   /* take commands from stdin */
-	realmain (*nos, path,pathtype,*lpath,memory);
+  realmain(nowin,*nos,path,pathtype,memory);
+
 }
 /*-----------------------------------------------------------------------------------*/
 void sci_clear_and_exit(int n) /* used with handlers */ 
@@ -163,98 +146,6 @@ void sci_clear_and_exit(int n) /* used with handlers */
   C2F(sciquit)();
 }
 /*-----------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------*/
-static void realmain(int nos,char *initial_script,int initial_script_type,int lpath,int memory)
-{
-	int ierr;
-	static int ini=-1;
-	char startup[256];
-	/* create temp directory */
-	C2F(settmpdir)();
-
-	/* signals */
-	signal(SIGINT,sci_clear_and_exit);
-	signal(SIGILL,sci_clear_and_exit);
-	signal(SIGFPE,sci_clear_and_exit);
-	signal(SIGSEGV,sci_clear_and_exit);
-	signal(SIGTERM,sci_clear_and_exit);
-	signal(SIGBREAK,sci_clear_and_exit);
-	signal(SIGABRT,sci_clear_and_exit);
-
-	/*  prepare startup script  */
-	if ( nos != 1 ) 
-	{
-		/* execute a startup */
-		no_startup_flag = 0;
-		if ( initial_script != NULL ) 
-		{
-			switch ( initial_script_type ) 
-			{
-				case 0 : 
-					sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),initial_script);
-				break;
-				case 1 : 
-					sprintf(startup,"%s;%s;",get_sci_data_strings(1),initial_script);
-				break;
-			}
-		}
-		else sprintf(startup,"%s;",get_sci_data_strings(1));
-	}
-	else 
-	{
-		/* No startup but maybe an initial script  */
-		no_startup_flag = 1;
-		if ( initial_script != NULL ) 
-			switch ( initial_script_type ) 
-			{
-				case 0 : 
-					sprintf(startup,"exec('%s',-1)",initial_script);
-				break;
-				case 1 : 
-					sprintf(startup,"%s;",initial_script);
-				break;
-			}
-		else  sprintf(startup," ");
-	}
-
-	/* initialize scilab interp  */
-	C2F(inisci)(&ini, &memory, &ierr);
-	if (ierr > 0) sci_exit(1) ;
-
-	/* execute the initial script and enter scilab */ 
-	#ifndef _DEBUG
-		_try
-			{
-				C2F(scirun)(startup,strlen(startup));
-			}
-		_except (EXCEPTION_EXECUTE_HANDLER) 
-			{
-				Rerun:
-					{
-						char *ExceptionString=GetExceptionString(GetExceptionCode());
-						sciprint("Warning !!!\nScilab has found a critical error (%s).\nScilab may become unstable.\n",ExceptionString);
-						if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
-					}
-				_try
-					{
-						C2F(scirun)("",strlen(""));
-}
-						_except (EXCEPTION_EXECUTE_HANDLER) 
-						{
-							goto Rerun;
-						}
-
-					}
-	#else
-		C2F(scirun)(startup,strlen(startup));
-	#endif
-
-	C2F(sciquit)();
-	
-}
-/*-----------------------------------------------------------------------------------*/
-
 /*-------------------------------------------------------
  * usr1 signal : used to transmit a Control C to 
  * scilab 
@@ -271,10 +162,5 @@ void sci_usr1_signal(int n)
 void  sci_sig_tstp(int n)
 {
   Scierror(999,MSG_ERROR67);
-}
-/*-----------------------------------------------------------------------------------*/
-int Get_no_startup_flag(void)
-{
-	return no_startup_flag;
 }
 /*-----------------------------------------------------------------------------------*/

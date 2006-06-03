@@ -91,9 +91,6 @@ extern void sci_clear_and_exit (int);
 extern int C2F(nofpex) (void);
 extern int C2F(scigetarg) (int *,char *,long int l);
 extern int C2F(sciiargc) (void);
-extern void C2F(settmpdir) (void);
-extern char *get_sci_data_strings (int n);
-extern void C2F(tmpdirc)();
 extern char *strindex ();
 extern void do_hangup();
 extern void do_kill();
@@ -105,9 +102,6 @@ static void Syntax  (char *badOption);
 static char ** create_argv(int *argc);
 static void strip_blank(char *source);
 
-extern sciPointObj *pfiguremdl; /* F.Leray 18.11.04 : used to be destroyed with sciquit */
-extern sciPointObj *paxesmdl;   /* F.Leray 18.11.04 : used to be destroyed with sciquit */
-
 extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 
 /*---------------------------------------------------------- 
@@ -117,12 +111,6 @@ extern void realmain(int nowin,int no_startup_flag,char *initial_script,int init
  *----------------------------------------------------------*/
 
 #define MIN_STACKSIZE 180000
-
-static int  no_startup_flag=0;
-static int  memory = MIN_STACKSIZE;
-static int  no_window = 0;
-static char * initial_script = NULL;
-static int  initial_script_type = 0; /* 0 means filename 1 means code */
 extern void settexmacs();
 
 int  sci_show_banner=1;
@@ -130,6 +118,11 @@ int  sci_show_banner=1;
 void C2F(realmain)()
 {
   int ierr, argc,i;
+  int  no_startup_flag=0;
+	int  memory = MIN_STACKSIZE;
+	int  no_window = 0;
+	char * initial_script = NULL;
+	int  initial_script_type = 0; /* 0 means filename 1 means code */
  
 
   char **argv, *display = NULL;
@@ -664,10 +657,4 @@ static void Syntax (badOption)
 int IsConsoleMode(void)
 {
   return no_window;
-}
-
-
-int Get_no_startup_flag(void)
-{
-	return no_startup_flag;
 }
