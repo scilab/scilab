@@ -12,7 +12,7 @@ OBJSC = System.o System2.o Calelm.o Scierror.o Sun.o Intersci.o Blas.o Lapack.o 
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
 	inisci-c.o diary.o  parse.o run.o Sparse.o fromjava.o \
 	CallScilab.o intwhat.o fromc.o getval.o md5.o intgetmd5.o \
-	InitScilab.o sciquit.o
+	InitScilab.o sciquit.o realmain.o
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \

@@ -108,7 +108,7 @@ static void strip_blank(char *source);
 extern sciPointObj *pfiguremdl; /* F.Leray 18.11.04 : used to be destroyed with sciquit */
 extern sciPointObj *paxesmdl;   /* F.Leray 18.11.04 : used to be destroyed with sciquit */
 
-void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
+extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 
 /*---------------------------------------------------------- 
  * mainsci.f directly call this function 
@@ -173,82 +173,7 @@ void C2F(realmain)()
 
  realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
 }
-/*----------------------------------------------------------------------------------*/
-void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory)
-{
-  static int ini=-1;
-  int ierr=0;
-  char startup[256];
-
-  /* create temp directory */
-  C2F(settmpdir)();
-  /* signals */
-  signal(SIGINT,sci_clear_and_exit);
-  signal(SIGBUS,sci_clear_and_exit);
-  signal(SIGSEGV,sci_clear_and_exit);
-  signal(SIGQUIT,sci_clear_and_exit);
-  signal(SIGHUP,sci_clear_and_exit);
-  signal(SIGUSR1,sci_usr1_signal);
-  /*  prepare startup script  */
-
-  if ( no_startup_flag == 0) 
-    {
-      /* execute a startup */
-      if ( initial_script != NULL ) 
-	{
-	  switch ( initial_script_type ) 
-	    {
-	    case 0 : 
-	      sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
-		      initial_script);
-	      break;
-	    case 1 : 
-	      sprintf(startup,"%s;%s;",get_sci_data_strings(1),
-		      initial_script);
-	      break;
-	    }
-	}
-      else 
-	sprintf(startup,"%s;",get_sci_data_strings(1));
-    }
-  else 
-    {
-      /* No startup but maybe an initial script  */
-      if ( initial_script != NULL ) 
-	  switch ( initial_script_type ) 
-	    {
-	    case 0 : 
-	      sprintf(startup,"exec('%s',-1)",initial_script); break;
-	    case 1 : 
-	      sprintf(startup,"%s;",initial_script);   break;
-	    }
-      else 
-	sprintf(startup," ");
-    }
-
-  if ( no_window == 0 ) 
-    {
-      int argc=0;
-      char **argv=NULL;
-
-      argv = create_argv(&argc);
-
-      /* we are in window mode */
-      SetXsciOn();
-      main_sci(argc,argv,startup,strlen(startup),memory);
-    }
-  else 
-    {
-      /* initialize scilab interp  */
-      C2F(inisci)(&ini, &memory, &ierr);
-      if (ierr > 0) sci_exit(1) ;
-      /* execute the initial script and enter scilab */ 
-      C2F(scirun)(startup,strlen(startup));
-    }
-  /* cleaning */
-  C2F(sciquit)();
-}
-/*----------------------------------------------------------------------------------*/
+*----------------------------------------------------------------------------------*/
 Boolean   sunFunctionKeys = False;
 
 static struct _resource {
