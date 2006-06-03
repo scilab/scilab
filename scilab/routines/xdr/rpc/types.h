@@ -55,10 +55,8 @@
 #define mem_free(ptr, bsize)	free(ptr)
 
 #ifndef makedev /* ie, we haven't already included it */
-#ifndef __ABSC__
 #include <sys/types.h>
-#endif
-#if (defined _MSC_VER) || (defined __ABSC__) || (defined __MINGW32__)
+#if (defined _MSC_VER)
 #undef FALSE
 #undef TRUE 
 #include <winsock.h>
@@ -66,38 +64,21 @@ typedef char * caddr_t;
 #define bzero(x,n) memset(x,0,n)
 #define bcopy(x,y,n) memcpy(x,y,n)
 #define IEEEFP
-#endif /* _MSC_VER && __ABSC__ */
+#endif /* _MSC_VER */
 
 #endif /* makedev */
 
-#if !(defined _MSC_VER) && !(defined __ABSC__) && ! (defined __MINGW32__)
+#if !(defined _MSC_VER)
 #include <sys/time.h>
-#endif
-#ifdef __ABSC__
-#include <time.h>
 #endif
 
 #ifndef INADDR_LOOPBACK
 #define	INADDR_LOOPBACK		(u_long)0x7F000001
 #endif
 
-/** not useful for gcwin32 
-#ifdef __GCWIN32__
-#ifndef PASCAL 
-#define PASCAL      __stdcall
-#endif
-u_long PASCAL htonl (u_long hostlong);
-u_long PASCAL ntohl (u_long netlong);
-#endif 
-**/
-/** for MINGWIN32   **/
 
-#ifdef __MINGW32__
-#ifndef PASCAL 
-#define PASCAL      __stdcall
-#endif
 u_long PASCAL htonl (u_long hostlong);
 u_long PASCAL ntohl (u_long netlong);
-#endif 
+
 
 #endif /* !_RPC_TYPES_H */

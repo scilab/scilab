@@ -12,7 +12,7 @@
 #if _MSC_VER
 #include <windows.h>
 #endif
-#if defined(__STDC__) || defined(_MSC_VER) || defined(__CYGWIN__)
+#if defined(__STDC__) || defined(_MSC_VER)
 #include <stdlib.h>
 #ifndef _MSC_VER
 #include <sys/types.h>
@@ -22,7 +22,7 @@
 extern  char  *getenv();
 #endif
 
-#if (defined _MSC_VER) || defined(__MINGW32__) 
+#if (defined _MSC_VER)
 #define putenv(x) _putenv(x)
 #endif
 

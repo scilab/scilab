@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #if ~defined(THINK_C) && ~defined(__MWERKS__)
-	#if !(defined _MSC_VER) && !(defined __MINGW32__) 
+	#if !(defined _MSC_VER)
 		#include <sys/time.h>
 	#else 
 		#include <windows.h>
@@ -72,16 +72,7 @@ PLATFORM GetPlatform()
 		#define X_GETTIMEOFDAY(t) 0 
 	#else
 		#if defined(_MSC_VER)
-			#if !(defined _MSC_VER)
-				#ifndef  __MINGW32__
-					#define X_GETTIMEOFDAY(t) gettimeofday(t, &tmz )
-					static struct timezone tmz;
-				#else
-					#define X_GETTIMEOFDAY(t) 0
-				#endif /** __MINGW32__ **/
-			#else
-				#define X_GETTIMEOFDAY(t) 0
-			#endif /* MSC__ */
+			#define X_GETTIMEOFDAY(t) 0
 		#else
 			#define X_GETTIMEOFDAY(t) gettimeofday(t, (struct timezone*)0)
 		#endif
@@ -96,14 +87,14 @@ static long int scilab_stimer_deprecated(void)
         YieldToAnyThread();
         return(0);
 #else 
-#if !(defined _MSC_VER) && !(defined __MINGW32__)
+#if !(defined _MSC_VER)
   struct timeval ctime;
   X_GETTIMEOFDAY(&ctime);
   scilab_timer_check();
   return(ctime.tv_usec);
 #else 
   return(stimerwin());
-#endif /* !(defined _MSC_VER) && !(defined __MINGW32__) */ 
+#endif /* !(defined _MSC_VER */ 
 #endif /* defined(THINK_C)||defined(__MWERKS__) */
 }
 /*-----------------------------------------------------------------------------------*/

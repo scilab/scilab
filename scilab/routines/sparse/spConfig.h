@@ -533,16 +533,6 @@
 #   define  LARGEST_LONG_INTEGER    LONG_MAX
 #endif
 
-#if defined(__CYGWIN32__)
-#   include <limits.h>
-#   include <float.h>
-#   define  MACHINE_RESOLUTION      DBL_EPSILON
-#   define  LARGEST_REAL            DBL_MAX
-#   define  SMALLEST_REAL           DBL_MIN
-#   define  LARGEST_SHORT_INTEGER   SHRT_MAX
-#   define  LARGEST_LONG_INTEGER    LONG_MAX
-#endif
-
 #endif /* NOT defined(__STDC__) */
 
 

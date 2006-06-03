@@ -91,7 +91,7 @@ static void WriteColorRGBDef(char *str, short unsigned int *tab, int ind);
 
 static double *vdouble = 0; /* used when a double argument is needed */
 
-#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(_MSC_VER) || defined(__EDG__)
+#if defined(__GNUC__) || defined(_MSC_VER) || defined(__EDG__)
 static FILE *file= (FILE *) 0;
 #define FPRINTF(x) ( file != (FILE*) 0) ?  fprintf x  : 0 
 #else 

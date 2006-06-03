@@ -26,9 +26,6 @@ int TK_Started=0;
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 char *GetSciPath(void);
-#if defined(__CYGWIN32__) 
-static char *GetSciPathCyg(void);
-#endif
 /*-----------------------------------------------------------------------------------*/
 void initTCLTK(void)
 {
@@ -106,13 +103,6 @@ int OpenTCLsci(void)
   else fclose(tmpfile);
 #endif /* _MSC_VER */ 
   
-#if defined(__CYGWIN32__) 
-  /* we must pass X: pathnames to tcl */
-  if ( SciPath ) FREE(SciPath);
-  SciPath=GetSciPathCyg();  
-  strcpy(TkScriptpath,SciPath);
-  strcat(TkScriptpath, "/tcl/TK_Scilab.tcl");
-#endif
   if (TCLinterp == NULL) 
     {
       TCLinterp = Tcl_CreateInterp();
@@ -205,38 +195,4 @@ char *GetSciPath(void)
 	
 	return PathUnix;
 }
-/*-----------------------------------------------------------------------------------*/
-#if defined(__CYGWIN32__) 
-/* from cygwin /cygdrive/f/ to f: 
- * PathUnix must be a valid pathname returned by GetSciPath
- */
-static char *GetSciPathCyg(void)
-/* force SciPath to Unix format for compatibility (Windows) */
-{
-  const char *cygwin = "/cygdrive/";
-  char *PathUnix=NULL;
-  char *SciPathTmp=NULL;
-  int i=0;
-
-  SciPathTmp=getenv("SCI");
-
-  if (SciPathTmp)
-    {
-      PathUnix=(char*)MALLOC( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
-      
-      strcpy(PathUnix,SciPathTmp);
-      for (i=0;i<(int)strlen(PathUnix);i++)
-	{
-	  if (PathUnix[i]=='\\') PathUnix[i]='/';
-	}
-    }
-  if (strncmp(PathUnix,cygwin,strlen(cygwin))==0)
-    {
-      strcpy(PathUnix,SciPathTmp +strlen(cygwin)-1);
-      *PathUnix = *(PathUnix+1);
-      *(PathUnix+1)= ':';
-    }
-  return PathUnix;
-}
-#endif
 /*-----------------------------------------------------------------------------------*/

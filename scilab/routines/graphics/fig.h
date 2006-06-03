@@ -385,7 +385,7 @@ extern	double		drand48();
 extern	long		random();
 extern	void		srandom(unsigned int);
 
-#elif !defined(__osf__) && !defined(__CYGWIN__)
+#elif !defined(__osf__) 
 extern	void		srandom();
 
 #endif

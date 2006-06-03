@@ -43,9 +43,6 @@ static char *rcsid = "$Id: xdr_stdio.c,v 1.2 2005/08/01 11:30:37 cornet Exp $";
  * from the stream.
  */
 #include <stdio.h>
-#ifdef __MINGW32__
-#define _MSC_VER
-#endif 
 
 #if !(defined _MSC_VER)
 #include <netinet/in.h> /** jpc : je met netinet/ avant rpc pour eviter un warning */

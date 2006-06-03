@@ -77,14 +77,6 @@ fi
 ## creating Path.incl if needed
 ###############################
 # 
-# change scidir for mingw 
-#   *-*-cygwin* |   *-*-mingw32*)
-
-case "$host" in
-   *-*-mingw32*)
-    SCIDIR=`echo $SCIDIR | sed -e 's+/cygdrive/\([[a-zA-Z]]*\)/+\1:/+g' `
-    ;;
-esac
 
 if test -f Path.incl; then
   PATH_INCL=`cat Path.incl`
@@ -204,13 +196,7 @@ fi
 # on windows target generating scripts for 
 # printing is useless 
 BLPR_SCRIPTS='$(BPROGRAMS)'
-# on windows target when generating script 
-# cygdrive/xxx must be replaced by xxx:/ 
-# for mingw32 
-SED_CYGDRIVE=
-# subset of examples which are supposed to work 
 EXAMPLES_TESTS='$(SUBDIRS1) $(SUBDIRS2)'
-# special stuff for cygwin in impdir 
 IMPPREF=S
 IMPENV= 
 # strip executable (not to be done on darwin) 
@@ -1228,99 +1214,6 @@ i*86-*-linux-gnu | *-pc-linux-gnu )
     cp -f $SCIDIR/pvm3/conf/HPPA.def $SCIDIR/pvm3/conf/HPPA.def.orig
     cp -f $SCIDIR/pvm3/conf/HPPA11.def $SCIDIR/pvm3/conf/HPPA.def
     ;;
-
-# CYGWIN32 for Windows 9X/NT/XP 
-  *-*-cygwin* )
-    SCILABSCRIPT=scilab-gcwin32.g
-    PERIFILE=periWin.o
-    MAIN='mainsci.o'
-    GUILIB='wsci'
-    XDRLIB='xdr'
-    XDRLIBNAME='libs/xdr.a'
-    MENUSOBJS=WOBJS
-    BLPR_SCRIPTS=
-    # with cygwin we keep /cygdrive/ SED_CYGDRIVE='$(CYGDRIVE)'
-    IMPPREF=B
-    IMPENV=env.o
-    # want to build f2c comand 
-    # which is required for building fortran dlls 
-    # which can be loaded into scilab 
-    F2C_SUBDIR=f2c/src
-    # just *-so tests 
-    EXAMPLES_TESTS='$(SUBDIRS1)'
-    GCC=yes
-    CC=gcc 
-    CC_OPTIONS=' -mieee-fp -O2 -DNDEBUG  -Wall'
-      if test "$enable_debug" = yes; then 
-	CC_OPTIONS=' -g   -Wall'
-      fi
-    CC_LDFLAGS=
-    WITH_G77='yes'
-    FC=g77
-    if test "$WITH_G77" = yes; then
-      FC=g77
-    fi 
-    FC_OPTIONS="-O2 "
-    FC_OPTIONS_O0=
-      if test "$enable_debug" = yes; then 
-        FC_OPTIONS="-g "
-      fi
-    FC_LDFLAGS=
-    if test "$with_f2c" = yes; then
-      # ignore with_f2c here       
-      FC=g77
-    fi    
-    LD=gcc
-    #LD_LDFLAGS="-mconsole --enable-stdcall-fixup"
-    WINXFLAGS='-I../xdr'
-    MAKEFILE_TARGET=Makefile.gcwin32
-    ;;
-# CYGWIN32 for Windows 9X/NT/XP 
-# mingw32 is detected 
-   *-*-mingw32*)
-    SCILABSCRIPT=scilab-gcwin32.g
-    PERIFILE=periWin.o
-    MAIN='mainwin95.o'
-    GUILIB='wsci'
-    XDRLIB='xdr'
-    XDRLIBNAME='libs/xdr.a'
-    MENUSOBJS=WOBJS
-    BLPR_SCRIPTS=
-    SED_CYGDRIVE='$(CYGDRIVE)'
-    IMPPREF=B
-    IMPENV=env.o
-    # want to build f2c comand 
-    # which is required for building fortran dlls 
-    # which can be loaded into scilab 
-    F2C_SUBDIR=f2c/src
-    # just *-so tests 
-    EXAMPLES_TESTS='$(SUBDIRS1)'
-    GCC=yes
-    CC=gcc 
-    CC_OPTIONS='-mno-cygwin -mieee-fp -O -DNDEBUG -fwritable-strings  -Wall'
-      if test "$enable_debug" = yes; then 
-	CC_OPTIONS='-mno-cygwin -g -fwritable-strings  -Wall'
-      fi
-    CC_LDFLAGS=
-    FC=g77
-    if test "$WITH_G77" = yes; then
-      FC=g77
-    fi 
-    FC_OPTIONS="-O -mno-cygwin"
-    FC_OPTIONS_O0="-mno-cygwin"
-      if test "$enable_debug" = yes; then 
-        FC_OPTIONS="-g -mno-cygwin"
-      fi
-    FC_LDFLAGS=
-    if test "$with_f2c" = yes; then
-      # ignore with_f2c here       
-      FC=g77
-    fi    
-    LD=gcc
-    LD_LDFLAGS="-mconsole --enable-stdcall-fixup"
-    WINXFLAGS='-I../xdr'
-    MAKEFILE_TARGET=Makefile.mingwin32
-    ;;
 # FreeBSD  systems (not supported by INRIA)
   *-*-freebsd*)
      GCC=yes
@@ -1632,18 +1525,12 @@ fi
 #######################
 
 # Pb of automatic insertion of -lXt -lXext -lX11 in Makefile.incl.in
-# which does not work with mingwin. Thus I add this two vars to 
+# Thus I add this two vars to 
 # configure.in 
 
 XXTXEXT="-lXt -lXext"
 XX11="-lX11"
 
-  case "$host" in
-      *-*-mingw32*)
-      XXTXEXT=
-      XX11=
-    ;;
-  esac
   
 ###########################
 ## test for JAVA compiler
@@ -1783,7 +1670,7 @@ PVMROOTR='$SCI/pvm3'
 PVMINST=
 PVMINST1=
 
-# files to be added for building the hoster with mingw 
+
 PVMHOSTERFILES= 
 # compile hoster ? 
 PVMHOSTER=
@@ -1827,15 +1714,6 @@ if test "$with_pvm" != no; then
 		AC_DEFINE(WITH_PVM)
 		PVMARCH="$ac_cv_PVM_arch"
 		
-		case "$host" in
-		*-*-mingw32*)
-			ac_cv_PVM_arch=MINGW
-			PVMARCH="$ac_cv_PVM_arch"
-			PVMHOSTERFILES="pvmwinrexec.o pvmwinrsh.o"
-			PVMHOSTER=h
-			;;
-		esac
-		
 		PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
 		AC_ARG_WITH(pvm-library,
 			[  --with-pvm-library=DIR  PVM library files are in DIR ],
@@ -1846,19 +1724,7 @@ if test "$with_pvm" != no; then
 		PVMLIB="$PVMLIBDIR/libpvm3.a"
 		PVMSCIDIR=pvm
 		PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
-		
-		case "$host" in
-		*-*-mingw32*)
-			# add src to PVMINCLUDE 
-			PVMINCLUDE="$PVMINCLUDE -I$SCIDIR/pvm3/src"
-			#     to have path with SCIDIR 
-			# PVMROOT=`echo $PVMROOT | sed -e "s+$SCIDIR+\\$(SCIDIR)+g" `
-			
-			PVMLIB=`echo $PVMLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-			PVMGLIB=`echo $PVMGLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-			PVMINCLUDE=`echo $PVMINCLUDE | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" ` 
-			;;
-		esac
+				
 	fi
 fi
 
@@ -1919,14 +1785,7 @@ if test "$with_tk" != no; then
 	fi
 	
 	TKBASE=
-	case "$host" in
-	*-*-mingw32*)
-		TKBASE=$SCIDIR
-		TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-		TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-		TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	;;
-	esac
+	
 	
 	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
 	
@@ -1934,8 +1793,6 @@ if test "$with_tk" != no; then
 		*-*-darwin*)
 		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
 		;;
-		*-*-cygwin* |   *-*-mingw32*)
-		GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
 	esac 
 
 fi
@@ -2338,7 +2195,6 @@ AC_SUBST(CFLAGS)
 #AC_SUBST(FC_USE_CDEC)
 AC_SUBST(FC_SUBDIR)
 AC_SUBST(BLPR_SCRIPTS)
-AC_SUBST(SED_CYGDRIVE)
 AC_SUBST(F2C_SUBDIR)
 AC_SUBST(EXAMPLES_TESTS)
 AC_SUBST(IMPPREF)

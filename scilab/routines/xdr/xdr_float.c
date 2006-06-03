@@ -46,10 +46,6 @@ static char sccsid[] = "@(#)xdr_float.c 1.12 87/08/11 Copyr 1984 Sun Micro";
 #include <sys/types.h>
 
 
-#ifdef __MINGW32__
-#define _MSC_VER
-#endif 
-
 #if !(defined _MSC_VER)
 #include <sys/param.h>
 #include <rpc/types.h> 

@@ -1,10 +1,11 @@
 #include <stdio.h>
-#if !(defined _MSC_VER)&& !(defined __MINGW32__)
-#if defined(netbsd) || defined(freebsd)
-#include <sys/types.h>
+#if !(defined _MSC_VER)
+	#if defined(netbsd) || defined(freebsd)
+		#include <sys/types.h>
+	#endif
+	#include <dirent.h>
 #endif
-#include <dirent.h>
-#endif
+
 #include <string.h>
 #ifdef __STDC__
 #include <stdlib.h>
@@ -20,11 +21,9 @@
 
 #define MAXNAM 80
 
-int CheckGraphName(name,dir)
-char *name;
-char *dir;
+int CheckGraphName(char *name,char *dir)
 {
-#if (defined _MSC_VER) || (defined __MINGW32__)
+#if (defined _MSC_VER)
   return(0);
 #else 
   DIR *dirp;

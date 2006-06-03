@@ -8,9 +8,5 @@ void cgetarg(n,str)
   char * str;
 #endif
 {
-#ifndef __ABSC__
   getarg(n,str,strlen(str));
-#else
-  GETARG(n,str,strlen(str));
-#endif
 }

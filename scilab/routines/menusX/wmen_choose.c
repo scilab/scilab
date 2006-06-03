@@ -1,6 +1,6 @@
 /* Copyright ENPC */
 /* wchoose.c 
- * Scilab [ gcwin32 and WIN32 ] 
+ * Scilab 
  *   Jean-Philipe Chancelier 
  *   Bugs and mail : Scilab@inria.fr 
  * modeless version 

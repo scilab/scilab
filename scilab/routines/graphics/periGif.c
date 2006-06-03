@@ -71,7 +71,7 @@ extern  char  *getenv();
 #endif
 
 #define Char2Int(x)   ( x & 0x000000ff )
-#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
+#if defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
 static FILE *file= (FILE *) 0;
 #define FPRINTF(x) ( file != (FILE*) 0) ?  fprintf x  : 0 
 #else 

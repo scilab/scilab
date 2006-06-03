@@ -46,20 +46,13 @@ static char *rcsid = "$Id: xdr.c,v 1.2 2002/06/28 10:46:30 chanceli Exp $";
 #include <stdio.h>
 #include <stdlib.h>
 
-/** #define __INSIDE_CYGWIN32__ **/
-#ifdef __MINGW32__
-#define _MSC_VER
-#endif 
 
-#if !(defined _MSC_VER) && !(defined __ABSC__)
-#include <rpc/types.h> 
-#include <rpc/xdr.h>
+#if !(defined _MSC_VER)
+	#include <rpc/types.h> 
+	#include <rpc/xdr.h>
 #else
-#ifdef __INSIDE_CYGWIN32__  
-#undef __INSIDE_CYGWIN32__  /** for winsock.h in cygwin for mingw32 **/
-#endif 
-#include "rpc/types.h" 
-#include "rpc/xdr.h"
+	#include "rpc/types.h" 
+	#include "rpc/xdr.h"
 #endif
 
 /*

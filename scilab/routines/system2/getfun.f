@@ -88,7 +88,6 @@ c
             goto 25            
          else
             if( ltype.eq.1) then
-C     .       jpc : cygwin32 b17.1 bug 
 c            backspace(lunit)
                call myback(lunit)
             else

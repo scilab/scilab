@@ -63,7 +63,6 @@ C     ierr=2:erroneous string read
       end
 
       subroutine myback(lunit)
-C     backspace has erratic behaviour with cygwin32 
 c     this routine mimin the same behaviour without 
 c     using backspace 
 C     this routine is only used in getfun where lrecl 

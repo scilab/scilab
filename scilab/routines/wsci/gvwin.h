@@ -14,9 +14,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
-#ifndef __ABSC__
 #include <process.h>
-#endif
+
 
 #define MAXSTR 256     /* maximum file name length and general string length */
 
@@ -25,7 +24,7 @@
 extern int gp_printfile(HINSTANCE hInstance,HWND hwnd,char *filename, char *port);
 
 #ifdef __GNUC__XXX
-/** XXXXXX Missing declarations for gcwin32 **/
+
 typedef PRINTER_DEFAULTS *LPPRINTER_DEFAULTS;
 
 #define PRINTER_ENUM_DEFAULT     0x00000001

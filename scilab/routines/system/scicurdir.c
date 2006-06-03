@@ -2,17 +2,16 @@
 #include <string.h>
 #include "../machine.h"
 #ifdef _MSC_VER 
-#include <windows.h>
-#if !(defined __CYGWIN32__)
-#include <direct.h>
-#define chdir(x) _chdir(x)
-#define GETCWD(x,y) _getcwd(x,y)
+	#include <windows.h>
+	#include <direct.h>
+	#define chdir(x) _chdir(x)
+	#define GETCWD(x,y) _getcwd(x,y)
 #else 
-#include <unistd.h>
-extern void sciprint(char *fmt,...);
-#define GETCWD(x,y) getcwd(x,y)
+	#include <unistd.h>
+	extern void sciprint(char *fmt,...);
+	#define GETCWD(x,y) getcwd(x,y)
 #endif 
-#endif 
+
 
 #define FSIZE 1024
 static char     cur_dir[FSIZE];

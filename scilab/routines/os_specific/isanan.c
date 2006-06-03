@@ -7,10 +7,8 @@
 
 
 #ifdef _MSC_VER 
-#ifndef __CYGWIN32__
-#define _ISANAN
-#include <float.h>
-#endif 
+	#define _ISANAN
+	#include <float.h>
 #endif 
 
 

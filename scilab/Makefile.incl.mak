@@ -168,9 +168,9 @@ GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrtd.lib
 # XLIBS is used for linking Scilab
 XLIBS=$(TKLIBS) $(PVMLIB) $(GUILIBS)
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\glib-2.0.lib" "$(SCIDIR1)\bin\libxml2.lib" "$(SCIDIR1)\bin\iconv.lib"
+#XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\glib-2.0.lib" "$(SCIDIR1)\bin\libxml2.lib" "$(SCIDIR1)\bin\iconv.lib"
 # if you use ATLAS library (dll)
-#XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
+XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
 
 .c.obj	:
 	@echo ------------- Compile file $< --------------

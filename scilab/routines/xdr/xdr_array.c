@@ -46,10 +46,6 @@ static char *rcsid = "$Id: xdr_array.c,v 1.1 2001/04/26 07:48:37 scilab Exp $";
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef __MINGW32__
-#define _MSC_VER
-#endif 
-
 #ifdef  _MSC_VER 
 #include "rpc/types.h"
 #include "rpc/xdr.h"

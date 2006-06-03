@@ -5,11 +5,6 @@
 
 #ifndef F2C_INCLUDE
 #define F2C_INCLUDE
-/** added for MKL **/
-
-#ifdef MKL 
-#include "MKL.h"
-#endif 
 
 /** added for Scilab addinter  vc++ version **/
 /* XXXXX pour gcc -3.1 il faut un extern devant le 

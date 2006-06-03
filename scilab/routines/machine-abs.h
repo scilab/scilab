@@ -94,13 +94,5 @@ typedef int integer;
 
 
 
-/** Intel Blas library on win32 */
-
-#ifdef MKL 
-#include "MKL.h" 
-#endif 
-
-
-
 
 #endif MACHINE_H 

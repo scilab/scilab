@@ -45,9 +45,6 @@ static char *rcsid = "$Id: xdr_reference.c,v 1.2 2005/08/01 11:30:37 cornet Exp 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef __MINGW32__
-#define _MSC_VER
-#endif 
 
 #if !(defined _MSC_VER)
 #include <rpc/types.h> 

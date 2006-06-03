@@ -108,7 +108,7 @@ static integer  xfig_font[]= { 12,32,0,1,2,3,16,17,18,19,0};
 static char *sizeXfig_[] = { "08" ,"10","12","14","18","24"};
 static integer  isizeXfig_[] = { 8,10,12,14,18,24};
 
-#if defined(__CYGWIN32__) || defined(__MINGW32__) || defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
+#if defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
 static FILE *file= (FILE *) 0;
 #define FPRINTF(x) ( file != (FILE*) 0) ?  fprintf x  : 0 
 #else 

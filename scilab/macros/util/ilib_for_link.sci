@@ -96,20 +96,9 @@ function ilib_link_gen_Make(names,files,libs,makename,libname,ldflags,cflags,ffl
   	ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,...
 			       ldflags,cflags,fflags,cc,flag)
   else if getenv('WIN32','NO')=='OK' then
-    select comp_target
-     case 'VC++'   then Makename = makename+'.mak'
+     Makename = makename+'.mak'
       ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
 			       ldflags,cflags,fflags,cc)
-     case 'gcc' then 
-      // cygwin assumed 
-      Makename = makename;
-      ilib_link_gen_Make_unix(names,files,libs,Makename,libname,...
-			      ldflags,cflags,fflags,cc)
-    else 
-       Makename = makename;
-       ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
-				ldflags,cflags,fflags,cc)
-    end
   else
      Makename = makename;
      ilib_link_gen_Make_unix(names,files,libs,Makename,libname,...
@@ -138,27 +127,11 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
   if cc<>"" then 
     mfprintf(fd,"CC="+cc+ "\n");
   end
-  if getenv('WIN32','NO')=='OK' then
-    // cygwin 
-    mfprintf(fd,"OTHERLIBS = ");
-    for x=libs(:)' ; mfprintf(fd," %s.a",x);end
-    mfprintf(fd,"\n");
-    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
-	     " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
-    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
-	     " -Dmexfunction=mex$* "+ fflags +"\n"); 
-  else
-     mfprintf(fd,"CFLAGS = $(CC_OPTIONS) "+cflags+ "\n");
-     mfprintf(fd,"FFLAGS = $(FC_OPTIONS) "+fflags+ "\n");
-  end
+  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) "+cflags+ "\n");
+  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) "+fflags+ "\n");
+  
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+ "\n");
-  if getenv('WIN32','NO')=='OK' then
-    // cygwin assumed : we use a specific makedll 
-    // and not libtool up to now XXX 
-    mfprintf(fd,"include $(SCIDIR)/config/Makecygdll.incl\n");
-  else
-     mfprintf(fd,"include $(SCIDIR)/config/Makeso.incl\n");
-  end
+  mfprintf(fd,"include $(SCIDIR)/config/Makeso.incl\n");
   mclose(fd);
 endfunction
 

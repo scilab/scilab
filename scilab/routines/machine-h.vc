@@ -84,14 +84,4 @@ typedef int integer;
 #define  _PARAMS(paramlist)		paramlist
 #endif
 
-
-/** Intel Blas library on win32 */
-
-#ifdef MKL 
-#include "MKL.h" 
-#endif 
-
-
-
-
 #endif /* MACHINE_H  */

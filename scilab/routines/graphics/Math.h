@@ -21,27 +21,21 @@
 
 
 #ifdef _MSC_VER 
-#if !(defined __CYGWIN32__)
-#include <float.h>
-#define finite(x) _finite(x) 
-#endif 
+		#include <float.h>
+		#define finite(x) _finite(x) 
 #else  /* _MSC_VER */ 
-/** This should only be provided when finite prototype is missing **/
-/** XXX : to be tested **/
-#ifndef __cplusplus
-int finite __PARAMS((double));
-#endif
+	/** This should only be provided when finite prototype is missing **/
+	/** XXX : to be tested **/
+	#ifndef __cplusplus
+	int finite __PARAMS((double));
+	#endif
 #endif /* _MSC_VER */
 
 #ifdef _MSC_VER 
-#if !(defined __CYGWIN32__)
-#include <float.h>
-#define ISNAN(x) _isnan(x)
+	#include <float.h>
+	#define ISNAN(x) _isnan(x)
 #else 
-#define ISNAN(x) isnan(x)
-#endif /* __CYGWIN32__ */
-#else 
-#define ISNAN(x) isnan(x)
+	#define ISNAN(x) isnan(x)
 #endif 
 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )

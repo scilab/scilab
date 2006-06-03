@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 #if ~defined(THINK_C) && ~defined(__MWERKS__)
-	#if !(defined _MSC_VER) && !(defined __MINGW32__) 
+	#if !(defined _MSC_VER)
 		#include <sys/time.h>
 	#else 
 		#include <windows.h>

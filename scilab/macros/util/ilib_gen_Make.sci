@@ -77,27 +77,12 @@ function ilib_gen_Make_unix(name,tables,files,libs,Makename,with_gateway,ldflags
   mfprintf(fd,"\n") ;
   mfprintf(fd,"LIBRARY = %s.a\n",name);
   mfprintf(fd,"include $(SCIDIR)/Makefile.incl\n");
-  if getenv('WIN32','NO')=='OK' then
-    // for cygwin 
-    mfprintf(fd,"OTHERLIBS = ");
-    for x=libs(:)' ; mfprintf(fd," %s.a",x);end
-    mfprintf(fd,"\n");
-    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
-	     " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
-    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
-	     " -Dmexfunction=mex$* "+ fflags +"\n"); 
-  else
-     mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$* "+cflags+ "\n");
-     mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -Dmexfunction=mex$* "+fflags+ "\n");
-  end
+  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$* "+cflags+ "\n");
+  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -Dmexfunction=mex$* "+fflags+ "\n");
+
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+ "\n");
-  if getenv('WIN32','NO')=='OK' then
-    // cygwin assumed : we use a specific makedll 
-    // and not libtool up to now XXX 
-    mfprintf(fd,"include $(SCIDIR)/config/Makecygdll.incl\n");
-  else
-     mfprintf(fd,"include $(SCIDIR)/config/Makeso.incl\n");
-  end
+  mfprintf(fd,"include $(SCIDIR)/config/Makeso.incl\n");
+
   mclose(fd);
 
 endfunction

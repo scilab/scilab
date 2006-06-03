@@ -1,10 +1,6 @@
 #define IMPORT  extern
 #define EXPORT 
 
-#ifdef __MINGW32__
-#define HAVE_STRERROR
-#endif 
-
 #define	PRIVSIZE	100
 #define NLOOPS		8
 
