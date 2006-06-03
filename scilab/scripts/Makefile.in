@@ -21,12 +21,9 @@ PROGRAMS = $(SBIN)/scilab @BLPR_SCRIPTS@
 
 all:: $(PROGRAMS)
 
-CYGDRIVE= -e "s+/cygdrive/\([a-zA-Z]*\)/+\1:/+g" 
-SED_CYGDRIVE= @SED_CYGDRIVE@
-
 $(SBIN)/scilab: @SCILABSCRIPT@ $(IP) $(IV)
 	@$(RM) $(SBIN)/scilab
-	@sed -e "s+SCILAB_DIRECTORY+$(SCIDIR)+" $(SED_CYGDRIVE) \
+	@sed -e "s+SCILAB_DIRECTORY+$(SCIDIR)+" \
 	-e "s+SCILAB_VERSION+$(SCIVERSION)+" \
 	-e "s+SCILABGS+@SCILAB_GS@+" @SCILABSCRIPT@ > scilab;
 	@cp scilab $(SBIN)

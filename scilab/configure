@@ -464,7 +464,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 WITH_GFORTRAN ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS WITH_F95 X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS WITH_JAVAC _ACJNI_JAVAC GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep WITH_XSLTPROC WITH_SABCMD RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINST1 PVMINCLUDE PVMHOSTERFILES PVMHOSTER PVMHELP TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TCLSCILIB TCLSCIDIR TCLTKHELP TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION SONAME FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 PERIX11NOPT GETLIBTK MANGENERATOR TERM_NAME TERM_LDFLAGS JAVASCITARGET JAVA_INCL GCCFIX LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 WITH_GFORTRAN ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS WITH_F95 X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS WITH_JAVAC _ACJNI_JAVAC GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep WITH_XSLTPROC WITH_SABCMD RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINST1 PVMINCLUDE PVMHOSTERFILES PVMHOSTER PVMHELP TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TCLSCILIB TCLSCIDIR TCLTKHELP TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION SONAME FC_SUBDIR BLPR_SCRIPTS F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 PERIX11NOPT GETLIBTK MANGENERATOR TERM_NAME TERM_LDFLAGS JAVASCITARGET JAVA_INCL GCCFIX LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1724,14 +1724,6 @@ fi
 ## creating Path.incl if needed
 ###############################
 #
-# change scidir for mingw
-#   *-*-cygwin* |   *-*-mingw32*)
-
-case "$host" in
-   *-*-mingw32*)
-    SCIDIR=`echo $SCIDIR | sed -e 's+/cygdrive/\([a-zA-Z]*\)/+\1:/+g' `
-    ;;
-esac
 
 if test -f Path.incl; then
   PATH_INCL=`cat Path.incl`
@@ -2155,13 +2147,7 @@ fi
 # on windows target generating scripts for
 # printing is useless
 BLPR_SCRIPTS='$(BPROGRAMS)'
-# on windows target when generating script
-# cygdrive/xxx must be replaced by xxx:/
-# for mingw32
-SED_CYGDRIVE=
-# subset of examples which are supposed to work
 EXAMPLES_TESTS='$(SUBDIRS1) $(SUBDIRS2)'
-# special stuff for cygwin in impdir
 IMPPREF=S
 IMPENV=
 # strip executable (not to be done on darwin)
@@ -3658,7 +3644,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 3661 "configure"' > conftest.$ac_ext
+  echo '#line 3647 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -5128,7 +5114,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:5131:" \
+echo "$as_me:5117:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -6230,11 +6216,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6233: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6219: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6237: \$? = $ac_status" >&5
+   echo "$as_me:6223: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -6492,11 +6478,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6495: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6481: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6499: \$? = $ac_status" >&5
+   echo "$as_me:6485: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -6554,11 +6540,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6557: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6543: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:6561: \$? = $ac_status" >&5
+   echo "$as_me:6547: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -8802,7 +8788,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 8805 "configure"
+#line 8791 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -8900,7 +8886,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 8903 "configure"
+#line 8889 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -11159,11 +11145,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:11162: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:11148: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:11166: \$? = $ac_status" >&5
+   echo "$as_me:11152: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -11221,11 +11207,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:11224: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:11210: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:11228: \$? = $ac_status" >&5
+   echo "$as_me:11214: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -12598,7 +12584,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 12601 "configure"
+#line 12587 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12696,7 +12682,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 12699 "configure"
+#line 12685 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -13581,11 +13567,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13584: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13570: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:13588: \$? = $ac_status" >&5
+   echo "$as_me:13574: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -13643,11 +13629,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13646: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13632: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:13650: \$? = $ac_status" >&5
+   echo "$as_me:13636: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -15777,11 +15763,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15780: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:15766: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:15784: \$? = $ac_status" >&5
+   echo "$as_me:15770: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16039,11 +16025,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16042: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16028: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16046: \$? = $ac_status" >&5
+   echo "$as_me:16032: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16101,11 +16087,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16104: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16090: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:16108: \$? = $ac_status" >&5
+   echo "$as_me:16094: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -18349,7 +18335,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 18352 "configure"
+#line 18338 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -18447,7 +18433,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 18450 "configure"
+#line 18436 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -20207,7 +20193,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_verb"
-(eval echo $as_me:20210: \"$ac_link\") >&5
+(eval echo $as_me:20196: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -20285,7 +20271,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_cv_prog_f77_v"
-(eval echo $as_me:20288: \"$ac_link\") >&5
+(eval echo $as_me:20274: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -22430,7 +22416,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_verb"
-(eval echo $as_me:22433: \"$ac_link\") >&5
+(eval echo $as_me:22419: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -22508,7 +22494,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_cv_prog_f77_v"
-(eval echo $as_me:22511: \"$ac_link\") >&5
+(eval echo $as_me:22497: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -22800,99 +22786,6 @@ echo "$as_me: error: Unable to configure: Fortran fort77 compiler not found" >&2
     FGETARG=fgetarg-hpux
     cp -f $SCIDIR/pvm3/conf/HPPA.def $SCIDIR/pvm3/conf/HPPA.def.orig
     cp -f $SCIDIR/pvm3/conf/HPPA11.def $SCIDIR/pvm3/conf/HPPA.def
-    ;;
-
-# CYGWIN32 for Windows 9X/NT/XP
-  *-*-cygwin* )
-    SCILABSCRIPT=scilab-gcwin32.g
-    PERIFILE=periWin.o
-    MAIN='mainsci.o'
-    GUILIB='wsci'
-    XDRLIB='xdr'
-    XDRLIBNAME='libs/xdr.a'
-    MENUSOBJS=WOBJS
-    BLPR_SCRIPTS=
-    # with cygwin we keep /cygdrive/ SED_CYGDRIVE='$(CYGDRIVE)'
-    IMPPREF=B
-    IMPENV=env.o
-    # want to build f2c comand
-    # which is required for building fortran dlls
-    # which can be loaded into scilab
-    F2C_SUBDIR=f2c/src
-    # just *-so tests
-    EXAMPLES_TESTS='$(SUBDIRS1)'
-    GCC=yes
-    CC=gcc
-    CC_OPTIONS=' -mieee-fp -O2 -DNDEBUG  -Wall'
-      if test "$enable_debug" = yes; then
-	CC_OPTIONS=' -g   -Wall'
-      fi
-    CC_LDFLAGS=
-    WITH_G77='yes'
-    FC=g77
-    if test "$WITH_G77" = yes; then
-      FC=g77
-    fi
-    FC_OPTIONS="-O2 "
-    FC_OPTIONS_O0=
-      if test "$enable_debug" = yes; then
-        FC_OPTIONS="-g "
-      fi
-    FC_LDFLAGS=
-    if test "$with_f2c" = yes; then
-      # ignore with_f2c here
-      FC=g77
-    fi
-    LD=gcc
-    #LD_LDFLAGS="-mconsole --enable-stdcall-fixup"
-    WINXFLAGS='-I../xdr'
-    MAKEFILE_TARGET=Makefile.gcwin32
-    ;;
-# CYGWIN32 for Windows 9X/NT/XP
-# mingw32 is detected
-   *-*-mingw32*)
-    SCILABSCRIPT=scilab-gcwin32.g
-    PERIFILE=periWin.o
-    MAIN='mainwin95.o'
-    GUILIB='wsci'
-    XDRLIB='xdr'
-    XDRLIBNAME='libs/xdr.a'
-    MENUSOBJS=WOBJS
-    BLPR_SCRIPTS=
-    SED_CYGDRIVE='$(CYGDRIVE)'
-    IMPPREF=B
-    IMPENV=env.o
-    # want to build f2c comand
-    # which is required for building fortran dlls
-    # which can be loaded into scilab
-    F2C_SUBDIR=f2c/src
-    # just *-so tests
-    EXAMPLES_TESTS='$(SUBDIRS1)'
-    GCC=yes
-    CC=gcc
-    CC_OPTIONS='-mno-cygwin -mieee-fp -O -DNDEBUG -fwritable-strings  -Wall'
-      if test "$enable_debug" = yes; then
-	CC_OPTIONS='-mno-cygwin -g -fwritable-strings  -Wall'
-      fi
-    CC_LDFLAGS=
-    FC=g77
-    if test "$WITH_G77" = yes; then
-      FC=g77
-    fi
-    FC_OPTIONS="-O -mno-cygwin"
-    FC_OPTIONS_O0="-mno-cygwin"
-      if test "$enable_debug" = yes; then
-        FC_OPTIONS="-g -mno-cygwin"
-      fi
-    FC_LDFLAGS=
-    if test "$with_f2c" = yes; then
-      # ignore with_f2c here
-      FC=g77
-    fi
-    LD=gcc
-    LD_LDFLAGS="-mconsole --enable-stdcall-fixup"
-    WINXFLAGS='-I../xdr'
-    MAKEFILE_TARGET=Makefile.mingwin32
     ;;
 # FreeBSD  systems (not supported by INRIA)
   *-*-freebsd*)
@@ -23811,7 +23704,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:23814:" \
+echo "$as_me:23707:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -24006,7 +23899,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_verb"
-(eval echo $as_me:24009: \"$ac_link\") >&5
+(eval echo $as_me:23902: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -24084,7 +23977,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_cv_prog_f77_v"
-(eval echo $as_me:24087: \"$ac_link\") >&5
+(eval echo $as_me:23980: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -26178,18 +26071,12 @@ fi
 #######################
 
 # Pb of automatic insertion of -lXt -lXext -lX11 in Makefile.incl.in
-# which does not work with mingwin. Thus I add this two vars to
+# Thus I add this two vars to
 # configure.in
 
 XXTXEXT="-lXt -lXext"
 XX11="-lX11"
 
-  case "$host" in
-      *-*-mingw32*)
-      XXTXEXT=
-      XX11=
-    ;;
-  esac
 
 ###########################
 ## test for JAVA compiler
@@ -27611,7 +27498,7 @@ PVMROOTR='$SCI/pvm3'
 PVMINST=
 PVMINST1=
 
-# files to be added for building the hoster with mingw
+
 PVMHOSTERFILES=
 # compile hoster ?
 PVMHOSTER=
@@ -27669,15 +27556,6 @@ _ACEOF
 
 		PVMARCH="$ac_cv_PVM_arch"
 
-		case "$host" in
-		*-*-mingw32*)
-			ac_cv_PVM_arch=MINGW
-			PVMARCH="$ac_cv_PVM_arch"
-			PVMHOSTERFILES="pvmwinrexec.o pvmwinrsh.o"
-			PVMHOSTER=h
-			;;
-		esac
-
 		PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
 
 # Check whether --with-pvm-library or --without-pvm-library was given.
@@ -27692,18 +27570,6 @@ fi;
 		PVMSCIDIR=pvm
 		PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
 
-		case "$host" in
-		*-*-mingw32*)
-			# add src to PVMINCLUDE
-			PVMINCLUDE="$PVMINCLUDE -I$SCIDIR/pvm3/src"
-			#     to have path with SCIDIR
-			# PVMROOT=`echo $PVMROOT | sed -e "s+$SCIDIR+\\$(SCIDIR)+g" `
-
-			PVMLIB=`echo $PVMLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-			PVMGLIB=`echo $PVMGLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-			PVMINCLUDE=`echo $PVMINCLUDE | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
-			;;
-		esac
 	fi
 fi
 
@@ -27852,7 +27718,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 27855 "configure"
+#line 27721 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -28170,7 +28036,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 28173 "configure"
+#line 28039 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -28501,14 +28367,7 @@ echo "$as_me: error: TCL/TK not found. Use --without-tk or specify the librairie
 	fi
 
 	TKBASE=
-	case "$host" in
-	*-*-mingw32*)
-		TKBASE=$SCIDIR
-		TK_INC_PATH=`echo $TK_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-		TCL_INC_PATH=`echo $TCL_INC_PATH | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-		TCLTK_LIBS=`echo $TCLTK_LIBS | sed -e "s+$SCIDIR+\\$(TKBASE)+g" `
-	;;
-	esac
+
 
 	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
 
@@ -28516,8 +28375,6 @@ echo "$as_me: error: TCL/TK not found. Use --without-tk or specify the librairie
 		*-*-darwin*)
 		GETLIBTK=/sw/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
 		;;
-		*-*-cygwin* |   *-*-mingw32*)
-		GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
 	esac
 
 fi
@@ -29683,7 +29540,6 @@ fi
 
 
 
-
                                                                                                                                                                                                                                                                                                                                                               ac_config_files="$ac_config_files Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile $MAN_FR $MAN_ENG"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -30466,7 +30322,6 @@ s,@SCIVERSION@,$SCIVERSION,;t t
 s,@SONAME@,$SONAME,;t t
 s,@FC_SUBDIR@,$FC_SUBDIR,;t t
 s,@BLPR_SCRIPTS@,$BLPR_SCRIPTS,;t t
-s,@SED_CYGDRIVE@,$SED_CYGDRIVE,;t t
 s,@F2C_SUBDIR@,$F2C_SUBDIR,;t t
 s,@EXAMPLES_TESTS@,$EXAMPLES_TESTS,;t t
 s,@IMPPREF@,$IMPPREF,;t t
