@@ -12,7 +12,7 @@ OBJSC = System.obj System2.obj Calelm.obj Scierror.obj Sun.obj Intersci.obj Blas
 	Sparse.obj scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
 	inisci-c.obj diary.obj  parse.obj run.obj fromjava.obj \
 	CallScilab.obj str2sci.obj intwhat.obj fromc.obj getval.obj md5.obj intgetmd5.obj \
-	InitScilab.obj sciquit.obj
+	InitScilab.obj sciquit.obj realmain.obj
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \
