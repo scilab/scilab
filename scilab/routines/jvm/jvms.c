@@ -53,7 +53,6 @@ IMPORT_EXPORT_LIBJVM_DLL int TerminateJVMs(void)
 		b1=TerminateJVM_CONSOLE();
 	}
 
-	b1=TerminateJVM_CONSOLE();
 	/*b2=TerminateJVM_SCILAB();
 	b3=TerminateJVM_GRAPHIC();*/
 	

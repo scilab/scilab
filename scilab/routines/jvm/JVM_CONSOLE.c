@@ -157,25 +157,22 @@ int TerminateJVM_CONSOLE(void)
 {
 	int bOK=FALSE;
 	JNIEnv *env=NULL;	
-	
-	if (Terminate_JVM_Thread_CONSOLE())
+
+	if( (*jvm_CONSOLE)->GetEnv(jvm_CONSOLE, (void **)&env, JNI_VERSION_1_4) ) 
 	{
-		if( (*jvm_CONSOLE)->GetEnv(jvm_CONSOLE, (void **)&env, JNI_VERSION_1_4) ) 
-  	{ 
-       bOK=FALSE;
-  	} 
-  	else
-  	{
-   		if ( (*jvm_CONSOLE)->DestroyJavaVM(jvm_CONSOLE) )
-   		{
-	   		bOK=FALSE;
-   		}
-   		else bOK=TRUE;
-   	 }
+		bOK=FALSE;
 	}
 	else
 	{
-		bOK=FALSE;
+		if ( (*jvm_CONSOLE)->DestroyJavaVM(jvm_CONSOLE) )
+   		{
+			bOK=FALSE;
+		}
+		else 
+		{
+			if (Terminate_JVM_Thread_CONSOLE())	bOK=TRUE;
+			else bOK=FALSE;
+		}
 	}
 	
 	return bOK;

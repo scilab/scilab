@@ -1834,8 +1834,6 @@ void ExitWindow(void)
 		if (IsEnableTransparencyMode())	ScilabFxFadeOut();
         WriteRegistryTxt (lptw);
     	C2F(sciquit)();
-		C2F(tmpdirc)();
-        Kill_Scilex();
      }
      else
      {
@@ -1849,8 +1847,6 @@ void ExitWindow(void)
 		   if (IsEnableTransparencyMode())	ScilabFxFadeOut();
 		   WriteRegistryTxt (lptw);
 		   C2F(sciquit)();
-		   C2F(tmpdirc)();
-		   Kill_Scilex();
 	   }
 	   else
 	   {
@@ -1871,8 +1867,6 @@ void ExitWindow(void)
 			   if (IsEnableTransparencyMode())	ScilabFxFadeOut();
 			   WriteRegistryTxt (lptw);
 			   C2F(sciquit)();
-			   C2F(tmpdirc)();
-			   Kill_Scilex();
 		   }
 	   }
    }
