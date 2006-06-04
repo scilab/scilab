@@ -13,6 +13,9 @@ extern void sci_usr1_signal(int n);
 extern char *get_sci_data_strings(int n);
 extern int sci_exit(int n);
 extern int C2F(sciiargc) (void);
+#if _MSC_VER
+extern char *GetExceptionString(DWORD ExceptionCode);
+#endif
 /*-----------------------------------------------------------------------------------*/
 static void strip_blank(char *source);
 /*-----------------------------------------------------------------------------------*/
@@ -178,7 +181,8 @@ static void strip_blank(char *source)
   p = source;
   /* look for end of string */
   while(*p != '\0') p++;
-  while(p != source) {
+  while(p != source)
+  {
     p--;
     if(*p != ' ') break;
     *p = '\0';
