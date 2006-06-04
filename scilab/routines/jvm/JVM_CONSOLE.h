@@ -2,10 +2,11 @@
 /* INRIA 2006 */
 /* Allan CORNET*/
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __JVM__
-#define __JVM__
+#ifndef __JVM_CONSOLE__
+#define __JVM_CONSOLE__
 /*-----------------------------------------------------------------------------------*/ 
 #include "jni.h"
+#include "jvm_common.h"
 #ifdef _MSC_VER
   #include <windows.h>
 #endif
@@ -15,15 +16,15 @@
   #define NULL 0
 #endif
 #ifndef TRUE 
-#define TRUE  1
+	#define TRUE  1
 #endif 
 #ifndef FALSE
-#define FALSE 0
+	#define FALSE 0
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-int StartJVM(char *SCILAB_PATH);
-int TerminateJVM(void);
-void CallStaticVoidMethod(char *Class,char *Method);
+int StartJVM_CONSOLE(char *SCILAB_PATH);
+int TerminateJVM_CONSOLE(void);
+IMPORT_EXPORT_LIBJVM_DLL JavaVM *Get_jvm_CONSOLE(void);
 /*-----------------------------------------------------------------------------------*/ 
-#endif /* __JVM__ */
+#endif /* __JVM_CONSOLE__ */
 /*-----------------------------------------------------------------------------------*/ 

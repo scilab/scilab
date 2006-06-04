@@ -37,6 +37,7 @@ extern void C2F(freemem)(void);
 extern LPTW GetTextWinScilab(void);
 extern BOOL IsWindowInterface(void);
 extern void RestoreConsoleColors(void);
+extern int TerminateJVMs(void);
 #endif
 
 #ifdef WITH_TK
@@ -99,6 +100,9 @@ int ExitScilab(void)
 		CloseTCLsci();
 	#endif
 
+	#ifdef _MSC_VER
+		TerminateJVMs();
+	#endif
 
 	/** clean tmpfiles **/
 	C2F(tmpdirc)();

@@ -13,7 +13,7 @@
 extern void SciEnv(void);
 extern int InitializeHashTableScilabErrors(char* SCIPATH);
 extern char *GetScilabDirectory(BOOL UnixStyle);
-extern int StartJVM(char *SCILAB_PATH); 
+extern int StartJVMs(char *SCILAB_PATH); 
 #endif
 
 #if WITH_TK
@@ -35,7 +35,7 @@ int C2F(initscilab)(void)
 	#ifdef _MSC_VER
 	SCIPATH=GetScilabDirectory(TRUE);
 	InitializeHashTableScilabErrors(SCIPATH);
-	StartJVM(SCIPATH); 
+	StartJVMs(SCIPATH); 
 	#endif
 
 	return 0;

@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="libjvm"
-	ProjectGUID="{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
-	RootNamespace="libjvm"
+	Name="SciGUIConsole"
+	ProjectGUID="{B3805031-D315-4275-9D1D-5C43F8E92616}"
+	RootNamespace="SciGUIConsole"
 	>
 	<Platforms>
 		<Platform
@@ -25,7 +25,6 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description=""
 				CommandLine=""
 				ExcludedFromBuild="false"
 			/>
@@ -45,7 +44,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../Java/jdk1.5.0_06/include;../../Java/jdk1.5.0_06/include/win32;&quot;../glib-2.0&quot;"
-				PreprocessorDefinitions="STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LIBJVM_DLL"
+				PreprocessorDefinitions="STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_SciGUIConsole_DLL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -68,16 +67,15 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Creation .Lib External Functions"
-				CommandLine="lib /DEF:$(InputDir)LibScilab_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)LibScilab_Import.lib 1&gt;NUL 2&gt;NUL"
+				Description=""
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab_Import.lib"
-				OutputFile="..\..\bin\libjvm.dll"
+				OutputFile="..\..\Java\bin\SciGUIConsole.dll"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
-				ImportLibrary="..\..\bin\libjvm.lib"
+				ImportLibrary="..\..\Java\bin\SciGUIConsole.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -102,6 +100,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Building Class"
+				CommandLine="cd $(InputDir)\classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd .."
 			/>
 		</Configuration>
 		<Configuration
@@ -115,7 +115,6 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description=""
 				CommandLine="cd"
 			/>
 			<Tool
@@ -136,7 +135,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../../Java/jdk1.5.0_06/include;../../Java/jdk1.5.0_06/include/win32;&quot;../glib-2.0&quot;"
-				PreprocessorDefinitions="STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LIBJVM_DLL"
+				PreprocessorDefinitions="STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_SciGUIConsole_DLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -160,17 +159,16 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Creation .Lib External Functions"
-				CommandLine="lib /DEF:$(InputDir)LibScilab_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)LibScilab_Import.lib 1&gt;NUL 2&gt;NUL"
+				Description=""
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab_Import.lib"
-				OutputFile="..\..\bin\libjvm.dll"
+				OutputFile="..\..\Java\bin\SciGUIConsole.dll"
 				ModuleDefinitionFile=""
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\bin\libjvm.lib"
+				ImportLibrary="..\..\Java\bin\SciGUIConsole.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -195,6 +193,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Building Class"
+				CommandLine="cd $(InputDir)\classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd .."
 			/>
 		</Configuration>
 	</Configurations>
@@ -206,19 +206,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\Dllmainjvm.c"
-				>
-			</File>
-			<File
-				RelativePath=".\JVM_CONSOLE.c"
-				>
-			</File>
-			<File
-				RelativePath=".\JVM_Windows.c"
-				>
-			</File>
-			<File
-				RelativePath=".\jvms.c"
+				RelativePath=".\DllmainSciGUIConsole.c"
 				>
 			</File>
 		</Filter>
@@ -226,22 +214,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\jvm_common.h"
-				>
-			</File>
-			<File
-				RelativePath=".\JVM_CONSOLE.h"
-				>
-			</File>
-			<File
-				RelativePath=".\JVM_Windows.h"
-				>
-			</File>
-			<File
-				RelativePath=".\jvms.h"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>
