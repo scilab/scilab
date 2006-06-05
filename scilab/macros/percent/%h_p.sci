@@ -427,6 +427,9 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible) 
 	 "text = "+T
+	 "auto_dimensionning = "+sci2exp(h.auto_dimensionning) ;
+	 "drawing_size = "+sci2exp(h.drawing_size) ;
+	 "alignment = "+sci2exp(h.alignment) ;
 	 "data = "+sci2exp(h.data,0)
 	 "box = "+sci2exp(h.box) 
 	 "line_mode = " + sci2exp(h.line_mode);
