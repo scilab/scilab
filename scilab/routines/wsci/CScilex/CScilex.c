@@ -3,6 +3,7 @@
 /***********************************************************************/
 #include <Windows.h>
 #include "stdio.h"
+#include "../DetectFramework2/DetectFramework.h"
 #include "../../os_specific/win_mem_alloc.h" /* MALLOC */
 /***********************************************************************/
 typedef int (*MYPROC) (int , char **);
@@ -20,6 +21,12 @@ int main (int argc, char **argv)
 	LPSTR argvbis[MAXCMDTOKENS];
 	int i=0;
 	int FindNW=0;
+
+	if (!DetectFrameWorkNET2())
+	{
+		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
+		return -1;
+	}
 
 	for (i=0;i<argc;i++)
 	{

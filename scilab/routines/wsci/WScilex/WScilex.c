@@ -2,6 +2,7 @@
 /* Copyright (C) 2005 INRIA Allan CORNET */
 /***********************************************************************/
 #include <Windows.h>
+#include "../DetectFramework2/DetectFramework.h"
 /***********************************************************************/
 typedef int (*MYPROC) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
 /***********************************************************************/
@@ -10,6 +11,12 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 	HINSTANCE hinstLib; 
 	MYPROC Windows_Main; 
 	BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
+
+	if (!DetectFrameWorkNET2())
+	{
+		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
+		return -1;
+	}
 	
 	hinstLib = LoadLibrary(TEXT("Libscilab")); 	
 	if (hinstLib != NULL) 

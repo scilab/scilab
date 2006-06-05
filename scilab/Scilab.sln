@@ -4,6 +4,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "routines\wsci\WS
 	ProjectSection(ProjectDependencies) = postProject
 		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77} = {9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}
+		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3} = {7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}
 		{66F2FB48-5D68-4445-A856-119F685A371B} = {66F2FB48-5D68-4445-A856-119F685A371B}
 	EndProjectSection
 EndProject
@@ -342,6 +343,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm3-make", "pvm3\pvm3-make
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CScilex", "routines\wsci\CScilex\CScilex.vcproj", "{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
 	ProjectSection(ProjectDependencies) = postProject
+		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3} = {7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}
 		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
 	EndProjectSection
 EndProject
@@ -452,6 +454,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm", "routines\jvm\libj
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SciGUIConsole", "routines\SciGUIConsole\SciGUIConsole.vcproj", "{B3805031-D315-4275-9D1D-5C43F8E92616}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectFramework", "routines\wsci\DetectFrameWork2\DetectFramework.vcproj", "{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -793,6 +797,10 @@ Global
 		{B3805031-D315-4275-9D1D-5C43F8E92616}.Debug|Win32.Build.0 = Debug|Win32
 		{B3805031-D315-4275-9D1D-5C43F8E92616}.Release|Win32.ActiveCfg = Release|Win32
 		{B3805031-D315-4275-9D1D-5C43F8E92616}.Release|Win32.Build.0 = Release|Win32
+		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Debug|Win32.Build.0 = Debug|Win32
+		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Release|Win32.ActiveCfg = Release|Win32
+		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
