@@ -8,6 +8,7 @@
   <SHORT_DESCRIPTION name="ulink"> unlink a dynamically linked shared object</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>ulink(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ulink()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
     <P>
