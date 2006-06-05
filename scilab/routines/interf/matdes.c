@@ -66,9 +66,10 @@ extern void unzoom_one_axes(sciPointObj *psousfen);
 extern void Xrects  _PARAMS((char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2));
 extern void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box));
 extern void Xtitle  _PARAMS((char *str,int n));
-extern void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,
+extern void Objstring _PARAMS((char ** fname,unsigned long fname_len,integer str,double x,double y,
 			       double *angle,double *box,double* wh, long *hdl, int fill,
-			       int *foreground,int *background,BOOL isboxed,BOOL isline, BOOL isfilled));
+			       int *foreground,int *background,BOOL isboxed,BOOL isline,
+                               BOOL isfilled, sciTextAlignment alignment));
 extern void Xpoly  _PARAMS((char *fname,unsigned long fname_len,int n,int close,double *x,double *y));
 extern void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
 extern void Xsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
@@ -1995,7 +1996,7 @@ int scixset(char *fname,unsigned long fname_len)
 int scixstring(char *fname,unsigned long fname_len)
 {
   double rect[4],wc,x,y,yi,angle=0.0;
-  integer i,j,iv =0,flagx=0;
+  integer i,j,iv=0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
   long hdlstr/* , hdlrect */;
@@ -2019,30 +2020,27 @@ int scixstring(char *fname,unsigned long fname_len)
     if ((flagx == 1) && (*stk(l4) == 0))
       isboxed = TRUE;
 
-    for (i = m3 -1 ; i >= 0; --i)  {
-      int ib = 0;
-      for (j = 0 ; j < n3 ; ++j) {
-	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-	ib += strlen(Str[i+ m3*j]);
-	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
-      }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE,FALSE);
-      wc = Max(wc,rect[2]);
-      if (i != 0 ) 
-	y += rect[3] * 1.2; 
-      else 
-	y += rect[3];
-    } /* end for(i) */
-
-    /*    if ((flagx == 1) && (*stk(l4) == 0)) { */
-    /*       double dx1= y - yi ; */
-    /*       Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect,TRUE); */
-    /*     } */
-    /*     /\** construct Compound and make it current object **\/  */
-    /*     if ((flagx == 1) && (*stk(l4) == 0)) */
-    /*       sciSetCurrentObj (ConstructCompoundSeq (m3+1)); */
-    /*     else   */
-    if (m3 > 1) sciSetCurrentObj ( ConstructCompoundSeq (m3));
+    /* for (i = m3 -1 ; i >= 0; --i) */
+/*     { */
+/*       int ib i= 0; */
+/*       for ( j = 0 ; j < n3 ; ++j ) */
+/*       { */
+/* 	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]); */
+/* 	ib += strlen(Str[i+ m3*j]); */
+/* 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;} */
+/*       } */
+/*       Objstring (C2F(cha1).buf,1,1,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE,FALSE); */
+/*       wc = Max(wc,rect[2]); */
+/*       if (i != 0 )  */
+/* 	y += rect[3] * 1.2;  */
+/*       else  */
+/* 	y += rect[3]; */
+/*     } /\* end for(i) *\/ */
+    
+    /* create the object */
+    Objstring ( Str,m3,n3,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE,FALSE, ALIGN_LEFT ) ;
+    
+    /* if (m3 > 1) sciSetCurrentObj ( ConstructCompoundSeq (m3)); */
 
   }
   else {
@@ -2169,7 +2167,10 @@ int scixtitle(char *fname,unsigned long fname_len)
           default:
             break;
           }
-          sciSetText( modifiedLabel, C2F(cha1).buf , strlen(C2F(cha1).buf) ) ;
+          {
+            char * text = C2F(cha1).buf ;
+            sciSetText( modifiedLabel, &text, 1, 1 ) ;
+          }
           if ( box == 1 )
           {
             sciSetIsFilled( modifiedLabel, TRUE ) ;
@@ -2203,7 +2204,7 @@ int scixtitle(char *fname,unsigned long fname_len)
 int scixstringb(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
-  integer fill =0, i,j,v,ib;
+  integer fill =0, v; 
   double x,y,w,hx;
   char **Str;
   double wh[2],rect[4],angle=0;
@@ -2229,21 +2230,22 @@ int scixstringb(char *fname,unsigned long fname_len)
 	       fname);
       return 0;   }
   }
-  ib = 0;
-  for (i = 0 ; i < m3 ; ++i) {
-    for (j = 0 ; j < n3; ++j) 
-      {
-	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-	ib += strlen(Str[i+ m3*j]);
-	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
-      }
-    C2F(cha1).buf[ib]= '\n'; ib++;
-  }
-  C2F(cha1).buf[ib-1]='\0';
+  /* ib = 0; */
+/*   for (i = 0 ; i < m3 ; ++i) { */
+/*     for (j = 0 ; j < n3; ++j)  */
+/*       { */
+/* 	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]); */
+/* 	ib += strlen(Str[i+ m3*j]); */
+/* 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;} */
+/*       } */
+/*     C2F(cha1).buf[ib]= '\n'; ib++; */
+/*   } */
+/*   C2F(cha1).buf[ib-1]='\0'; */
 
-  if (version_flag() == 0) {
+  if ( version_flag() == 0 )
+  {
     wh[0]=w;wh[1]=hx;
-    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,TRUE,FALSE);
+    Objstring (Str,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,TRUE,FALSE, ALIGN_LEFT );
   }
   else { /* NG end */
     C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
@@ -2316,170 +2318,6 @@ int scixstringl(char *fname,unsigned long fname_len)
 }
 
 /*-----------------------------------------------------------------------------------*/
-/* matrixLine2String                                                                 */
-/* convert a line of a string matrix to an unique string. Each member of the line is */
-/* separated by a space. The destination string is not allocate here.                */ 
-/*-----------------------------------------------------------------------------------*/
-void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest )
-{
-  int lineIndex = 0 ;
-  int j ;
-  for ( j = 0 ; j < matrixSize[1] ; j++ )
-    {
-      /* insert the space but not before the first element */
-      if ( j != 0 )
-	{
-	  dest[lineIndex] = ' ';
-	  lineIndex++ ;
-	}
-
-      strcpy( dest + lineIndex, matrix[ numLine + matrixSize[0] * j ] ) ;
-      lineIndex += strlen( matrix[ numLine + matrixSize[0] * j ]) ;
-     
-    }
-      
-}
-
-/*-----------------------------------------------------------------------------------*/
-/* stringBoundingRect                                                                */
-/* compute the bounding rect [x,y,w,h] in pixels of matrix of strings.               */
-/*-----------------------------------------------------------------------------------*/
-void stringBoundingRect( char ** textMatrix, int textSize[2], int textPos[2], int rect[4] )
-{
-  
-  int i ;
-  
-  rect[0] = textPos[0] ;
-  rect[1] = textPos[1] ;
-  rect[2] = 0 ;
-  
-  /* compute the rectangle [x,y,w,h] for the matrix */
-  /* the width of the matrix is the max of the width of the lines */
-  /* its heigth is the sum of the heigth plus little gap between */
-  /* each lines */
-  for ( i = textSize[0] - 1 ; i >= 0 ; i-- )
-    {
-      integer curRect[4] ;
-      /* convert the line into a big string */
-      matrixLine2String( textMatrix, textSize, i, C2F(cha1).buf ) ;
-
-      C2F(dr)("xstringl",C2F(cha1).buf,&rect[0],&rect[1],curRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,9L,bsiz);
-      rect[2] = Max( rect[2], curRect[2] );
-      if ( i > 0 )
-	{
-	  /* a line is after this one */
-	  /* here a little error is done sonce we work in pixels */
-	  /* moreover the 1.2 should not be coded "en dur" */
-	  rect[1] -= round( curRect[3] * 1.2 ) ;
-	}
-      else
-	{
-	  rect[1] -= curRect[3] ;
-	}
-    }
-  rect[3] = textPos[1] - rect[1] ;
-}
-
-
-/*-----------------------------------------------------------------------------------*/
-/* getStringBox                                                                      */
-/* compute the four corners of a text                                                */
-/*-----------------------------------------------------------------------------------*/
-void getStringBox( char   ** text         ,
-                   double    textPos[2]   ,
-                   int       textSize[2]  ,
-                   double    angle        ,
-                   int       fontId       , 
-                   int       fontSize     , 
-                   double    corners[4][2] )
-{
-  integer    zero = 0   ;
-  integer    rect[4]    ;
-  integer    curFont[2] ;
-  integer    center[2]  ;
-  integer    v          ;
-
-
-  /* get the current font */
-  /* we need to change the defaut font before using xstringl */
-  C2F(dr)("xget","font",&zero,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L);
-
-  /* set the new font */
-  C2F(dr)("xset","font",&fontId,&fontSize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  /* get the bounding box with xstringl */
-  /* we must work with pixel values since the text is unaffected by scales */
-  /* the lower-left pixel of the text is put is in (10,10) */
-  /* to avoid <0 values for log axis */
-  center[0]  = XDouble2Pixel( textPos[0] ) ;
-  center[1]  = YDouble2Pixel( textPos[1] ) ;
-  
-  /* get the bounding retcnagle [x,y,w,h] in pixels */
-  stringBoundingRect( text, textSize, center, rect ) ;
-  
-  /* return to the previous size */
-  C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  /* get the 4 corners not turned */
-  /* rect[0-1] == upper-left point */
-  /* rect[2] == width  */
-  /* rect[3] == heigth */
-  
-  corners[0][0] = rect[0] ;
-  corners[0][1] = rect[1] + rect[3] ;
-
-  corners[1][0] = rect[0] ;
-  corners[1][1] = rect[1] ;
-
-  corners[2][0] = rect[0] + rect[2] ;
-  corners[2][1] = rect[1] ;
-
-  corners[3][0] = corners[2][0] ;
-  corners[3][1] = corners[0][1] ;
-  
-  /* rotate everything around corner1 if needed */
-  if ( Abs( angle ) > EPSILON )
-    {
-      double cosAngle = cos( angle ) ;
-      double sinAngle = sin( angle ) ;
-      rotate2Dim( corners[1], corners[0], cosAngle, sinAngle, corners[1] ) ;
-      rotate2Dim( corners[2], corners[0], cosAngle, sinAngle, corners[2] ) ;
-      rotate2Dim( corners[3], corners[0], cosAngle, sinAngle, corners[3] ) ;
-  
-      /* take everything back to user coordinates */
-      /* to retrieve exactly the first corner as in stringl we take the input */
-      corners[0][0] = textPos[0] ; /*XDPixel2Double( corners[0][0] ) ;*/
-      corners[0][1] = textPos[1] ; /*YDPixel2Double( corners[0][1] ) ;*/
-    
-      corners[1][0] = XDPixel2Double( corners[1][0] ) ;
-      corners[1][1] = YDPixel2Double( corners[1][1] ) ;
-    
-      corners[2][0] = XDPixel2Double( corners[2][0] ) ;
-      corners[2][1] = YDPixel2Double( corners[2][1] ) ;
-    
-      corners[3][0] = XDPixel2Double( corners[3][0] ) ;
-      corners[3][1] = YDPixel2Double( corners[3][1] ) ;
-    
-    }
-  else
-    {
-      /* to retrieve exactly the first corner as in stringl we take the input */
-      corners[0][0] = textPos[0] ; /* XDPixel2Double( corners[0][0] ) ;*/
-      corners[0][1] = textPos[1] ; /* YDPixel2Double( corners[0][1] ) ; */
-    
-      corners[1][0] = corners[0][0] ;
-      corners[1][1] = YDPixel2Double( corners[1][1] ) ;
-    
-      corners[2][0] = XDPixel2Double( corners[2][0] ) ;
-      corners[2][1] = corners[1][1] ;
-    
-      corners[3][0] = corners[2][0] ;
-      corners[3][1] = corners[0][1] ;
-    }
-
-}
-
-/*-----------------------------------------------------------------------------------*/
 /* sciStringBox                                                                      */
 /*-----------------------------------------------------------------------------------*/
 int sciStringBox( char * fname, unsigned long fname_len )
@@ -2527,7 +2365,7 @@ int sciStringBox( char * fname, unsigned long fname_len )
   SciWin() ;
 
   /* get the string box */
-  getStringBox( text, textPos, textSize, angle, fontId, fontSize, corners ) ;
+  getStringBox( text, textPos, textSize, FALSE, NULL, angle, fontId, fontSize, corners ) ;
 
   FreeRhsSVar( text ) ;
 
@@ -4755,13 +4593,18 @@ int scirect(char *fname,unsigned long fname_len)
 	if (strcmp(fname,"xrect")==0){
 	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
-		   &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+                   &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
 	}
 	else{ /* xfrect case */
 	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	  Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),
-		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+                   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
 	}
+
+        if ( hdl < 0 )
+        {
+          return -1 ;
+        }
 
 	if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
 	  Merge3d(psubwin); /* an addtomerge function should be much more efficient */
@@ -4779,16 +4622,24 @@ int scirect(char *fname,unsigned long fname_len)
       GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
       if (version_flag() == 0){
 	sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-	if (strcmp(fname,"xrect")==0) {	
+	if (strcmp(fname,"xrect")==0)
+        {	
 	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
-		   &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
+                   &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE) ;
 	}
-	else{
+	else
+        {
 	  int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
 	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
-		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
+                   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
 	}
+
+        if ( hdl < 0 )
+        {
+          return -1 ;
+        }
+
 	if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
 	  Merge3d(psubwin); /* an addtomerge function should be much more efficient */
 	  sciDrawObj(sciGetCurrentFigure ());}

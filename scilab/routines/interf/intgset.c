@@ -52,7 +52,7 @@ int gset(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
   unsigned long hdl; 
   int lw,t2;
-  BOOL vis_save;
+  BOOL vis_save = FALSE ;
   sciPointObj *pobj;
 
   /* F.Leray Adding some tmp variable for SCI_SURFACE / data case*/
@@ -170,19 +170,34 @@ int gset(fname,fname_len)
       if (t2<0) {
 	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
 	return 0;} 
-      if (VarType(3) != t2) { 
+      if (VarType(3) != t2)
+      { 
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
-	return 0;} 
-      if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
-      if (VarType(3) == 9)  GetRhsVar(3,"h",&numrow3,&numcol3,&l3);
-      if (VarType(3) == 10) 
-	{ if ((strcmp(cstk(l2),"tics_labels") !=0)
-	      && ((strcmp(cstk(l2),"auto_ticks")) !=0)
-	      && ((strcmp(cstk(l2),"axes_visible")) !=0)
-	      && ((strcmp(cstk(l2),"axes_reverse")) !=0))
-	  {GetRhsVar(3,"c",&numrow3,&numcol3,&l3);} 
+	return 0;
+      } 
+      if ( VarType(3) == 1 )
+      {
+        GetRhsVar(3,"d",&numrow3,&numcol3,&l3) ;
+      }
+      else if ( VarType(3) == 9 )
+      {
+        GetRhsVar(3,"h",&numrow3,&numcol3,&l3);
+      }
+      else if ( VarType(3) == 10 ) 
+      { 
+        if (    strcmp( cstk(l2), "tics_labels"  ) != 0
+             && strcmp( cstk(l2), "auto_ticks"   ) != 0
+             && strcmp( cstk(l2), "axes_visible" ) != 0
+             && strcmp( cstk(l2), "axes_reverse" ) != 0
+             && strcmp( cstk(l2), "text"         ) != 0 )
+        {
+          GetRhsVar(3,"c",&numrow3,&numcol3,&l3);
+        } 
 	else
-	  GetRhsVar(3,"S",&numrow3,&numcol3,&l3); }
+        {
+	  GetRhsVar(3,"S",&numrow3,&numcol3,&l3);
+        }
+      }
       break;
     case 10:/* first is a string argument so it's a gset("command",[param]) */ 
       CheckRhs(2,2);
@@ -229,16 +244,28 @@ int gset(fname,fname_len)
 	  return 0;
 	}
 
-      if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
-      if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
-      if ( (VarType(2) == 10) ) {
-	if ((strcmp(cstk(l2),"tics_labels") !=0)
-	    && ((strcmp(cstk(l2),"auto_ticks")) !=0)
-	    && ((strcmp(cstk(l2),"axes_visible")) !=0)
-	    && ((strcmp(cstk(l2),"axes_reverse")) !=0))
-	  {GetRhsVar(2,"c",&numrow3,&numcol3,&l3);} 
-	else 
+      if ( VarType(2) == 1 )
+      {
+        GetRhsVar(2,"d",&numrow3,&numcol3,&l3);
+      }
+      else if ( VarType(2) == 9 )
+      {
+        GetRhsVar(2,"h",&numrow3,&numcol3,&l3);
+      }
+      else if ( VarType(2) == 10 )
+      {
+	if (   strcmp( cstk(l2), "tics_labels"  ) != 0
+	    && strcmp( cstk(l2), "auto_ticks"   ) != 0
+	    && strcmp( cstk(l2), "axes_visible" ) != 0
+	    && strcmp( cstk(l2), "axes_reverse" ) != 0
+               && strcmp( cstk(l2), "text"      ) != 0 )
+        {
+          GetRhsVar(2,"c",&numrow3,&numcol3,&l3);
+        } 
+	else
+        {
 	  GetRhsVar(2,"S",&numrow3,&numcol3,&l3);
+        }
       }
       break;
     default:
@@ -301,95 +328,102 @@ int gset(fname,fname_len)
         if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
 
       }
-    else if(strcmp(cstk(l2),"data") == 0){ /* distinction for "data" treatment for champ and surface objects */
+    else if(strcmp(cstk(l2),"data") == 0)
+    { /* distinction for "data" treatment for champ and surface objects */
       if((sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1))
-	{	/* F.Leray Work here*/
-	  int address[4],i;
-	  for(i=0;i<4;i++) address[i] = 0;
+      {	/* F.Leray Work here*/
+        int address[4],i;
+        for(i=0;i<4;i++) address[i] = 0;
 
-	  if(VarType(3) != 16){
-	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-	    return -1;
-	  }
+        if(VarType(3) != 16)
+        {
+          Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
+          return -1;
+        }
 
-	  GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+        GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 
-	  if(m3tl != 5 || n3tl != 1){
-	    sciprint("Tlist size must be 1x5\r\n");
-	    return -1;
-	  }
+        if(m3tl != 5 || n3tl != 1)
+        {
+          sciprint("Tlist size must be 1x5\r\n");
+          return -1;
+        }
 
-	  GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
-	  GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
-	  GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
-	  GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&address[3]);
+        GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
+        GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
+        GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
+        GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&address[3]);
 
-	  if (setchampdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
-	}
+        if (setchampdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
+      }
       else if((sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
-	{	/* F.Leray Work here*/
-	  int address[4],i;
-	  for(i=0;i<4;i++) address[i] = 0;
+      {	/* F.Leray Work here*/
+        int address[4],i;
+        for(i=0;i<4;i++) address[i] = 0;
 
-	  if(VarType(3) != 16){
-	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-	    return -1;
-	  }
+        if(VarType(3) != 16)
+        {
+          Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
+          return -1;
+        }
 
-	  GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+        GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 
-	  if(m3tl != 4 || n3tl != 1){
-	    sciprint("Tlist size must be 1x4\r\n");
-	    return -1;
-	  }
+        if(m3tl != 4 || n3tl != 1)
+        {
+          sciprint("Tlist size must be 1x4\r\n");
+          return -1;
+        }
 
-	  GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
-	  GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
-	  GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
+        GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
+        GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
+        GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
 
-	  if (setgrayplotdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
-	}
+        if (setgrayplotdata(pobj, address, numrow, numcol,fname)!=0) { return 0; }
+      }
       else if(sciGetEntityType(pobj) == SCI_SURFACE)
-	{	/* F.Leray Work here*/
-	  if(VarType(3) != 16){
-	    Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-	    return -1;
-	  }
-	  GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+      {	/* F.Leray Work here*/
+        if(VarType(3) != 16)
+        {
+          Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
+          return -1;
+        }
+        GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 
-	  /* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); 
-	     Not good because 3,1 is the string character "3d x y z [en option col]"*/
-	  GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
-	  GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
+        /* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); 
+           Not good because 3,1 is the string character "3d x y z [en option col]"*/
+        GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
+        GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
 
-	  if(m3tl == 4)
-	    {
-	      GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
-	      flagc = 0;
-	    }
-	  else if( m3tl == 5)
-	    {
-	      GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
-	      GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&lxyzcol[3]);
-	      flagc = 1;
-	    }
-	  else
-	    {
-	      sciprint("Error m3tl must be equal to 4 or 5\r\n");
-	      return -1;
-	    }
+        if(m3tl == 4)
+        {
+          GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
+          flagc = 0;
+        }
+        else if( m3tl == 5)
+        {
+          GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
+          GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&lxyzcol[3]);
+          flagc = 1;
+        }
+        else
+        {
+          sciprint("Error m3tl must be equal to 4 or 5\r\n");
+          return -1;
+        }
 
-	  if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0)  return 0;
-	}
+        if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0) {  return 0; }
+      }
       else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
-	{
-	  if ( ( setStatus = sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3) ) < 0) {
-	    Scierror(999,"%s: %s\r\n",fname,error_message);
-	    return 0;
-	  }
-	}
+      {
+        if ( ( setStatus = sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3) ) < 0) {
+          Scierror(999,"%s: %s\r\n",fname,error_message);
+          return 0;
+        }
+      }
     }
-    else{ /* F.Leray 02.05.05 : main case (using sciGetPoint routine inside GetProperty.c) */
+    else /* F.Leray 02.05.05 : main case (using sciGetPoint routine inside GetProperty.c) */
+    {
       if ( (setStatus = sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)) < 0 ) {
 	Scierror(999,"%s: %s\r\n",fname,error_message);
 	return 0;
@@ -410,7 +444,7 @@ int gset(fname,fname_len)
 	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
 	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label )
       { 
-       /* Addings F.Leray 10.06.04 */
+        /* Addings F.Leray 10.06.04 */
 	num= sciGetNumFigure (pobj);    
 	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
@@ -1787,6 +1821,67 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"text_box_mode property does not exist for this handle");
 	return -1;}
     }
+  else if ( strcmp(marker,"auto_dimensionning") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      if ( strcmp(cstk(*value),"on") == 0 )
+      {
+        return sciSetAutoSize( pobj, TRUE ) ;
+      }
+      else if ( strcmp(cstk(*value),"off") == 0 )
+      {
+        return sciSetAutoSize( pobj, FALSE ) ;
+      }
+      else
+      {
+        strcpy(error_message,"Value must be 'on/off'");
+        return -1;
+      }
+    }
+    else
+    {
+      strcpy(error_message,"auto_dimensionning property does not exist for this handle");
+      return -1;
+    }
+  }
+  else if ( strcmp(marker,"drawing_size") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      return sciSetUserSize( pobj, stk(*value)[0], stk(*value)[1] ) ;
+    }
+    else
+    {
+      strcpy(error_message,"drawing_size property does not exist for this handle");
+      return -1;
+    }
+  }
+  else if ( strcmp(marker,"alignment") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      if ( strcmp(cstk(*value),"left") == 0 )
+      {
+        return sciSetAlignment( pobj, ALIGN_LEFT ) ;
+      }
+      else if ( strcmp(cstk(*value),"center") == 0 )
+      {
+        return sciSetAlignment( pobj, ALIGN_CENTER ) ;
+      }
+      else if ( strcmp(cstk(*value),"right") == 0 )
+      {
+        return sciSetAlignment( pobj, ALIGN_RIGHT ) ;
+      }
+      strcpy(error_message,"Second argument must be 'left','center' or 'right'.");
+      return -1 ;
+    }
+    else
+    {
+      strcpy(error_message,"alignment property does not exist for this handle");
+      return -1 ;
+    }
+  }
   else if (strcmp(marker,"text_box") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_TEXT)
@@ -1805,8 +1900,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
           return -1;
         }
     }
-  else if (strcmp(marker,"text") == 0) {
-    return sciSetText((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
+  else if (strcmp(marker,"text") == 0)
+  {
+    char *** pStrings = (char ***) value ;
+    return sciSetText( pobj, *pStrings, *numrow, *numcol ) ;
   }
   /******************/
   else if (strcmp(marker,"auto_clear") == 0) {
@@ -2044,6 +2141,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if (sciGetEntityType(pobj)== SCI_UIMENU)
       {
         pUIMENU_FEATURE(pobj)->MenuPosition = (int)stk(*value)[0];
+        return 0 ;
       }
       else if(sciGetEntityType(pobj) == SCI_LABEL)
       {
@@ -2291,7 +2389,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         return -1 ;
       }
 
-      /* check for logflags that values are greater then 0 */
+      /* check for logflags that values are greater than 0 */
       if (   ( ppSubWin->logflags[0] == 'l' && xMin <= 0.0 )
           || ( ppSubWin->logflags[1] == 'l' && yMin <= 0.0 )
           || ( ppSubWin->logflags[2] == 'l' && zMin <= 0.0 ) )
@@ -2320,59 +2418,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         ppSubWin->SRect[5] = zMax ;
       }
 
-      /**DJ.Abdemouche 2003**/
-      /*if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6))
-	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;} */
-      
-      
-
-      /* if(ppSubWin->logflags[0] == 'n'){ /\* General case for x : logflag='n' *\/ */
-/* 	ppSubWin->SRect[0]=stk(*value)[0]; */
-/* 	ppSubWin->SRect[1]=stk(*value)[1]; */
-/*       } */
-/*       else{/\* log. case *\/ */
-/* 	/\*xmin*\/ */
-/* 	if(stk(*value)[0] <= 0. || stk(*value)[1] <= 0.) */
-/* 	  {sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;} */
-/* 	else{ */
-/* 	  ppSubWin->SRect[0]=stk(*value)[0]; */
-/* 	  ppSubWin->SRect[1]=stk(*value)[1]; */
-/* 	} */
-/*       } */
-
-/*       if( ppSubWin->logflags[1] == 'n'){  /\* General case for y : logflag='n' *\/ */
-/* 	ppSubWin->SRect[2]=stk(*value)[2]; */
-/* 	ppSubWin->SRect[3]=stk(*value)[3]; */
-/*       } */
-/*       else{/\* log. case *\/ */
-/* 	/\*ymin*\/ */
-/* 	if(stk(*value)[2] <= 0. || stk(*value)[3] <= 0.) */
-/* 	  {sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;} */
-/* 	else{ */
-/* 	  ppSubWin->SRect[2]=stk(*value)[2]; */
-/* 	  ppSubWin->SRect[3]=stk(*value)[3]; */
-/* 	} */
-/*       } */
-
-/*       if (*numrow * *numcol == 6) */
-/* 	{ */
-/* 	  if(ppSubWin->logflags[2] == 'n'){  /\* General case for z : logflag='n' *\/ */
-/* 	    ppSubWin->SRect[4]=stk(*value)[4]; */
-/* 	    ppSubWin->SRect[5]=stk(*value)[5]; */
-/* 	  } */
-/* 	  else{/\* log. case *\/ */
-/* 	    /\*zmin*\/ */
-/* 	    if(stk(*value)[4] <= 0. || stk(*value)[5] <= 0.) */
-/* 	      {sciprint("Error: bounds on z axis must be strictly positive to use logarithmic mode\n");return -1;} */
-/* 	    else{ */
-/* 	      ppSubWin->SRect[4]=stk(*value)[4]; */
-/* 	      ppSubWin->SRect[5]=stk(*value)[5]; */
-/* 	    } */
-/* 	  } */
-/* 	} */
-      /* to inform plotxx function to take this boundary into account */
       ppSubWin->FirstPlot = FALSE;
-
 
     }
     else if (sciGetEntityType (pobj) == SCI_SURFACE) {
@@ -2796,7 +2842,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       char *flags;
       flags=cstk(*value);
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+      if (sciGetEntityType (pobj) == SCI_SUBWIN)
+      {
+        sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
 	if (((*numrow * *numcol == 2) || (*numrow * *numcol == 3)) && 
 	    (flags[0]=='n'||flags[0]=='l')&&
 	    (flags[1]=='n'||flags[1]=='l')) {
@@ -2804,67 +2852,72 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  /* Update the data_bounds values ?? NO we will see if data_bounds contains
 	     negative boundaries and send an error message to the user */
 
-	  if( (pSUBWIN_FEATURE (pobj)->SRect[0] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[1] <= 0.) 
-	      && flags[0] == 'l') {
+	  if( ( ppSubWin->SRect[0] <= 0. || ppSubWin->SRect[1] <= 0.) 
+	      && flags[0] == 'l')
+          {
 	    strcpy(error_message,
 		   "Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode");
 	    return -1;
 	  }
 	  else
-	    {
-	      pSUBWIN_FEATURE (pobj)->axes.u_xlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],
-									 pSUBWIN_FEATURE (pobj)->axes.u_xgrads, 
-									 &pSUBWIN_FEATURE (pobj)->axes.u_nxgrads, 
-									 pSUBWIN_FEATURE (pobj)->axes.u_xlabels);
+          {
+            ppSubWin->axes.u_xlabels = ReBuildUserTicks( ppSubWin->logflags[0], flags[0],
+                                                         ppSubWin->axes.u_xgrads, 
+                                                         &ppSubWin->axes.u_nxgrads, 
+                                                         ppSubWin->axes.u_xlabels);
+            
+            /*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
+            ppSubWin->logflags[0]=flags[0];
+          }
 
-	      /*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
-	      pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
-	    }
-
-	  if((pSUBWIN_FEATURE (pobj)->SRect[2] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[3] <= 0.) 
+	  if((ppSubWin->SRect[2] <= 0. || ppSubWin->SRect[3] <= 0.) 
 	     && flags[1] == 'l'){ 
 	    strcpy(error_message,
 		   "Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode");
 	    return -1;
 	  }
 	  else
-	    {
-	      pSUBWIN_FEATURE (pobj)->axes.u_ylabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],  
-									 pSUBWIN_FEATURE (pobj)->axes.u_ygrads, 
-									 &pSUBWIN_FEATURE (pobj)->axes.u_nygrads, 
-									 pSUBWIN_FEATURE (pobj)->axes.u_ylabels);
-
-	      /* 	      ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],'y'); */
-	      pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
-	    }
+          {
+            ppSubWin->axes.u_ylabels = ReBuildUserTicks( ppSubWin->logflags[1], flags[1],  
+                                                         ppSubWin->axes.u_ygrads, 
+                                                         &ppSubWin->axes.u_nygrads, 
+                                                         ppSubWin->axes.u_ylabels);
+            
+            /* 	      ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],'y'); */
+            ppSubWin->logflags[1]=flags[1];
+          }
 
 	  /* third new case (for z) F.Leray 03.11.04 */
 	  if((*numrow * *numcol == 3) &&
 	     (flags[2]=='n'||flags[2]=='l')){
-	    if( (pSUBWIN_FEATURE (pobj)->SRect[4] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[5] <= 0.) 
+	    if( (ppSubWin->SRect[4] <= 0. || ppSubWin->SRect[5] <= 0.) 
 		&& flags[2] == 'l')
 	      {strcpy(error_message,"Error: data_bounds on z axis must be strictly positive to switch to logarithmic mode");return -1;}
 	    else
 	      {
-		pSUBWIN_FEATURE (pobj)->axes.u_zlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[2], flags[2],  
-									   pSUBWIN_FEATURE (pobj)->axes.u_zgrads, 
-									   &pSUBWIN_FEATURE (pobj)->axes.u_nzgrads, 
-									   pSUBWIN_FEATURE (pobj)->axes.u_zlabels);
+		ppSubWin->axes.u_zlabels = ReBuildUserTicks( ppSubWin->logflags[2], flags[2],  
+                                                             ppSubWin->axes.u_zgrads, 
+                                                             &ppSubWin->axes.u_nzgrads, 
+                                                             ppSubWin->axes.u_zlabels);
 
 		/*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
-		pSUBWIN_FEATURE (pobj)->logflags[2]=flags[2];
+		ppSubWin->logflags[2]=flags[2];
 	      }
-
 
 	  }
 
-
 	}
 	else 
-	  {strcpy(error_message,"incorrect log_flags value");return -1;}
+        {
+          strcpy(error_message,"incorrect log_flags value");
+          return -1;
+        }
       }
       else
-	{strcpy(error_message,"log_flags property does not exist for this handle");return -1;}
+      {
+        strcpy(error_message,"log_flags property does not exist for this handle");
+        return -1;
+      }
     }
   else if (strcmp(marker,"arrow_size") == 0) {
     if(sciGetEntityType (pobj) == SCI_SEGS)

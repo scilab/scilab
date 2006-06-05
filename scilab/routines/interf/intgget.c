@@ -17,6 +17,7 @@
 /* Constructors should NOT be called at this level (not inside matdes.c) */
 #include "../graphics/BuildObjects.h"
 #include "../graphics/DestroyObjects.h"
+#include "../graphics/StringMatrix.h"
 
 #include "intcommongraphics.h"
 
@@ -965,6 +966,63 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"text_box_mode property does not exist for this handle");return -1;}
     }
+  else if ( strcmp(marker,"auto_dimensionning") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      if ( sciGetAutoSize( pobj ) )
+      {
+        sciReturnString( "on" ) ;
+      }
+      else
+      {
+        sciReturnString( "off" ) ;
+      }
+    }
+    else
+    {
+      strcpy(error_message,"auto_dimensionning property does not exist for this handle");return -1;
+    }
+  }
+  else if ( strcmp(marker,"drawing_size") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      double size[2] ;
+      sciGetUserSize( pobj, &(size[0]), &(size[1]) ) ;
+      sciReturnRowVector( size, 2 ) ;
+    }
+    else
+    {
+      strcpy(error_message,"drawing_size property does not exist for this handle");return -1;
+    }
+  }
+  else if ( strcmp(marker,"alignment") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) == SCI_TEXT )
+    {
+      switch ( sciGetAlignment( pobj ) )
+      {
+      case ALIGN_LEFT :
+        sciReturnString("left") ;
+        break;
+      case ALIGN_RIGHT:
+        sciReturnString("right") ;
+        break ;
+      case ALIGN_CENTER:
+        sciReturnString("center");
+        break ;
+      default:
+        strcpy(error_message,"error acceding alignment property");
+        return -1 ;
+      }
+    }
+    else
+    {
+      strcpy(error_message,"alignment property does not exist for this handle");
+      return -1 ;
+    }
+  }
   else if (strcmp(marker,"text_box") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_TEXT) {
@@ -979,10 +1037,9 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strcmp(marker,"text") == 0)
     {
-      numrow = 1;
-      numcol = sciGetTextLength((sciPointObj *)pobj);
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
+      /* get the size of the text matrix */
+      sciGetTextSize( pobj , &numrow, &numcol ) ;
+      CreateVarFromPtr(Rhs+1,"S", &numrow, &numcol, getStrMatData( sciGetText( pobj ) ) ) ;
     }
 
   else if (strcmp(marker,"auto_clear") == 0)
@@ -2668,6 +2725,22 @@ int sciReturnInt( int value )
   CreateVar( Rhs+1, "i", &numRow, &numCol, &outIndex ) ;
   *istk(outIndex) = value ;
   
+  return 0 ;
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+int sciReturnRowVector( double values[], int nbValues )
+{
+  int numRow   = 1        ;
+  int numCol   = nbValues ;
+  int outIndex = 0        ;
+  int i ;
+  CreateVar(Rhs+1,"d",&numRow,&numCol,&outIndex) ;
+  for ( i = 0 ; i < nbValues ; i++ )
+  {
+    stk(outIndex)[i] = values[i] ;
+  }
   return 0 ;
 }
 

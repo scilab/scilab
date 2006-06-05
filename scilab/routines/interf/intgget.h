@@ -19,6 +19,9 @@ int sciReturnString( const char * value ) ;
 /* copy an int in the scilab stack for output */
 int sciReturnInt( int value ) ;
 
+/* copy a row vector in the scilab stack for output */
+int sciReturnRowVector( double values[], int nbValues ) ;
+
 /*-----------------------------------------------------------------------------------*/
 
 #endif /*__INTGGET__*/
