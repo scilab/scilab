@@ -11762,7 +11762,7 @@ void getStringBox( char   ** text         ,
                    double    corners[4][2] )
 {
   int pos[2] ;
-  int textSize[2] ;
+  int textSize[2] = {0,0} ;
   int corn[4][2] ;
   StringMatrix * strings = newCompleteMatrix( (void **) text, textDim[0], textDim[1] ) ;
 
@@ -11770,8 +11770,11 @@ void getStringBox( char   ** text         ,
   pos[0] = XDouble2Pixel( textPos[0] ) ;
   pos[1] = YDouble2Pixel( textPos[1] ) ;
 
-  textSize[0] = WDouble2Pixel( textPos[0], userSize[0] ) ;
-  textSize[1] = HDouble2Pixel( textPos[1], userSize[1] ) ;
+  if ( !autoSize )
+  {
+    textSize[0] = WDouble2Pixel( textPos[0], userSize[0] ) ;
+    textSize[1] = HDouble2Pixel( textPos[1], userSize[1] ) ;
+  }
 
   /* NULL because we don't need the position of each string */
   getStringsPositions( strings, &fontId, &fontSize, pos, autoSize, textSize, angle, NULL, corn ) ;

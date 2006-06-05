@@ -2365,7 +2365,7 @@ int sciStringBox( char * fname, unsigned long fname_len )
   SciWin() ;
 
   /* get the string box */
-  getStringBox( text, textPos, textSize, FALSE, NULL, angle, fontId, fontSize, corners ) ;
+  getStringBox( text, textPos, textSize, TRUE, NULL, angle, fontId, fontSize, corners ) ;
 
   FreeRhsSVar( text ) ;
 
