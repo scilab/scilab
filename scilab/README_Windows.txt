@@ -1,5 +1,5 @@
-                Scilab version 4.0 for Windows (98/2000/XP)
-                *******************************************
+                Scilab for Windows (98/2000/XP)
+                *******************************
  
 ******************************************************************************
 0 - COPYRIGHT NOTICE
@@ -38,7 +38,7 @@ I - TO RUN SCILAB (BINARY VERSION)
     6 - If you have any problems or suggestions concerning Scilab,
         http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi        
         or better post a message to newsgroup:
-  	    comp.soft-sys.math.scilab
+                         comp.soft-sys.math.scilab
 
 
 ******************************************************************************
