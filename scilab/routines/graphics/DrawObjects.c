@@ -11764,7 +11764,7 @@ void getStringBox( char   ** text         ,
   int pos[2] ;
   int textSize[2] ;
   int corn[4][2] ;
-  StringMatrix * strings = newCompleteMatrix( (void **) text, textDim[0], textSize[1] ) ;
+  StringMatrix * strings = newCompleteMatrix( (void **) text, textDim[0], textDim[1] ) ;
 
   /* take coordinates in pixels */
   pos[0] = XDouble2Pixel( textPos[0] ) ;
@@ -12322,14 +12322,15 @@ void drawText( sciPointObj * pObj )
   int posY ;
   int textProperties[4] ;
   int verb=0;
+  sciText * ppText =  pTEXT_FEATURE( pObj ) ;
+  sciPointObj * parentSW = sciGetParentSubwin(pObj) ;
   
   if (!sciGetVisibility(pObj))
   {
     return ;
   }
   
-  sciText * ppText =  pTEXT_FEATURE( pObj ) ;
-  sciPointObj * parentSW = sciGetParentSubwin(pObj) ;
+  
   
 #ifdef _MSC_VER
   flag_DO = MaybeSetWinhdc ();

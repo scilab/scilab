@@ -342,7 +342,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sciMatrix.c"
+				>
+			</File>
+			<File
 				RelativePath=".\SetProperty.c"
+				>
+			</File>
+			<File
+				RelativePath=".\StringMatrix.c"
+				>
+			</File>
+			<File
+				RelativePath=".\Vect2Matrix.c"
 				>
 			</File>
 			<File
@@ -451,7 +463,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sciMatrix.h"
+				>
+			</File>
+			<File
 				RelativePath=".\SetProperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\StringMatrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Vect2Matrix.h"
 				>
 			</File>
 		</Filter>

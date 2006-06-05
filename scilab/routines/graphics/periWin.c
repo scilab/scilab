@@ -4496,6 +4496,17 @@ void C2F(drawaxis)(str, alpha, nsteps, v2, initpoint, v6, v7, size, dx2, dx3, dx
  **/
 }
 /*-----------------------------------------------------------------------------------*/
+/**
+ * get the miniam and maximal font size the driver can display
+ */
+void C2F(getFontMaxSize)( char * str, integer * sizeMin, integer * sizeMax,
+						  integer * v1, integer * v2, integer * v3, integer * v4,
+						  double * dx1, double * dx2, double * dx3, double * dx4 )
+{
+  *sizeMin = 0 ;
+  *sizeMax = FONTMAXSIZE ;
+}
+/*-----------------------------------------------------------------------------------*/
 /*-----------------------------------------------------
   \encadre{Display numbers z[i] at location (x[i],y[i])
   with a slope alpha[i] (see displaystring), if flag==1
