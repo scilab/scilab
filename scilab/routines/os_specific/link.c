@@ -320,3 +320,13 @@ void  ShowDynLinks(void)
     }
 }
 
+void ulinkall(void)
+{
+	int i=0;
+	
+	for ( i = 0 ; i < Nshared ; i++)
+	{
+		if ( hd[i].ok == OK) Sci_Delsym(i);
+	}
+    
+}

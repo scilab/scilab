@@ -205,7 +205,7 @@ c     mtlb_mode
       goto 999
  600  call scilink("link")
       goto 999
- 610  call sciulink("unlink")
+ 610  call intulink("unlink")
       goto 999
  620  call sciislink("c_link")
       goto 999
@@ -482,25 +482,6 @@ C     jpc on accepte un entier
          endif
          return
       endif
-      call objvide(fname,top)
-      return
-      end
-
-      subroutine sciulink(fname) 
-C     ================================================================
-C     unlink function  (unlik a whole shared lib ) 
-C     ================================================================
-      character*(*) fname
-cc    implicit undefined (a-z)
-      include '../stack.h'
-      integer ilib,l1,topk
-      logical getscalar,checkrhs
-      character*(2) strf
-      topk=top
-      if (.not.checkrhs(fname,1,1)) return
-      if (.not.getscalar(fname,topk,top,l1)) return
-      ilib=int(stk(l1))
-      call isciulink(ilib)
       call objvide(fname,top)
       return
       end
