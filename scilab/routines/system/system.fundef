@@ -66,3 +66,4 @@
 {"getmemory",  	    IN_matsys,	63,	2},
 {"fromc",     	    IN_matsys,	64,	2},
 {"getmd5",     	    IN_matsys,	65,	2},
+{"warning",    	    IN_matsys,	66,	2},

@@ -62,7 +62,7 @@ c     lasterror version loadhistory savehistory gethistory resethistory macr2tre
 c     53         54        55          56         57          58        59
 c     <free> getos
 c     60    61 
-c     banner fromjava  getmemory fromc getmd5
+c     banner fromjava  getmemory fromc getmd5 warning
 c     62     63        64        65       66   
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
@@ -78,7 +78,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      695,697,698,699,700,701,702,703,
-     +      998,706,707,708,709,710,711),fin
+     +      998,706,707,708,709,710,711,712),fin
 c     
 c     debug
  10   call intdebug()
@@ -264,7 +264,10 @@ c     mtlb_mode
  710  call intfromc('fromc')
       goto 999   
  711  call intgetmd5('getmd5')
+      goto 999
+ 712  call intwarning('warning')
       goto 999        
+        
  998  continue
 c     fake calls : only to force the 
 c     linker to load the following functions
